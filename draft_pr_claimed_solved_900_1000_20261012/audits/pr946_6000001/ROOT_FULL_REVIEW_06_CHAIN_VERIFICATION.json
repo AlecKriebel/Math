@@ -1,0 +1,1527 @@
+{
+  "utc": "2026-10-16T05:22:49.185793+00:00",
+  "status": "PASS_READONLY_FULL_CHAIN_GATES",
+  "pr": 946,
+  "problem_id": "6000001",
+  "freeze_sha256": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+  "operations_inventory_sha256": "f4742eca6ddd628ecac1e704fed772a17837d42d4d0fdef42c73d3cda3bed254",
+  "candidate_revision": 6,
+  "all_review_packets": [
+    {
+      "round": "01",
+      "manifest_sha256": "2f1a4ba73839b83280e9daba44fbe79e70b52a80761deded5314e0db99c7e834",
+      "public_payloads": 40,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_01",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-15T12:57:29.914572+00:00",
+        "completed_utc": "2026-10-15T13:19:04.506804+00:00",
+        "candidate_revision": 1,
+        "candidate_pins": {
+          "freeze": "715717bdbb17b9c20ded279496e7b5b4ceb439e7d86e20eb238a067efd308920",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "5672873695bd71ff852fc8631e5ba980adffc4025b42ecb38d2617a8673ebb63"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 76242,
+            "sha256": "c9dc84ce258488ce9929fba2b2e7cc3a19077a3cf52d9fac1cea0c9798ab9ad8"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [
+          {
+            "id": "FP01-OPS-001",
+            "severity": "required",
+            "category": "operational_review_history",
+            "location": "accept_pr946.py:370-495",
+            "finding": "A later sealed adverse canonical full_package_NN round can be omitted from the supplied consecutive clean prefix and the earlier prefix accepted.",
+            "evidence": [
+              "OPERATIONS_ADVERSARY.json",
+              "operations_adversary.py"
+            ],
+            "repair": "Inventory all canonical review directories safely and require the complete sealed consecutive sequence; reject omitted, malformed and unsealed canonical rounds."
+          },
+          {
+            "id": "FP01-OPS-002",
+            "severity": "required",
+            "category": "operational_schema",
+            "location": "accept_pr946.py:377-495",
+            "finding": "Current-freeze reviews accept missing candidate_revision, mismatched revision999, and absent COLD.normalized_fields_ignored despite mandatory schema.",
+            "evidence": [
+              "SCHEMA_ADVERSARY.json",
+              "operations_adversary.py"
+            ],
+            "repair": "Require mandatory keys/types explicitly for all review paths, compare revision to authenticated freeze, and require explicit exact empty normalization list."
+          }
+        ],
+        "optional_issues": [
+          {
+            "id": "FP01-OPS-003",
+            "category": "state_consistency",
+            "location": "accept_pr946.py:1205-1235",
+            "finding": "Full finalize selects next target but leaves publication summary omitting946 and carries its portable_release_tooling field to next target.",
+            "evidence": [
+              "FINALIZE_STATE_ADVERSARY.json",
+              "finalize_state_adversary.py"
+            ],
+            "repair": "Refresh publication summary from completed records and clear or scope target-specific tooling before selecting next target."
+          },
+          {
+            "id": "FP01-DOC-001",
+            "category": "document_metadata",
+            "location": "research_note.tex title/status area",
+            "finding": "Descriptor declares version1.0 and CC-BY4.0 but standalone PDF has no visible version/license notice.",
+            "evidence": [
+              "PDF_RENDER_REVIEW.json"
+            ],
+            "repair": "Add compact version1.0 and CC-BY4.0 notice consistent with descriptor."
+          }
+        ],
+        "clean_for_preprint": false,
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive statistical manifold of fixed dimension n>=1 with a prescribed ordered mutually dual torsion-free pair admits a proper embedding into an open U subset R^N, N=binomial(2n+4,3), carrying one smooth positive ordinary Hessian potential. The ambient standard connection and its metric dual are both torsion-free and flat and induce exactly the two prescribed connections by orthogonal projection. Both input torsions vanishing is necessary and sufficient for general positive Riemannian dual pairs; countable zero-dimensional inputs are treated separately. No mathematical gap identified within this stated scope.",
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "Manuscript eq7 explicitly displays non-affine scalar third-jet law; independently reconstructed and finite mutation checked."
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "Manuscript explicitly distinguishes varying-point germ jets from one global scalar function and held-fixed germ coefficients from basepoint differentiation."
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "Manuscript includes proper log(t) embedding and explicit unbounded cubic coefficient stress example."
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "DirectAmari1997pp84-85/87 citations and torsion/curvature/local-chart definitions are present and actualpages inspected."
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Precise normal-addition variable-radius Definition3.53/Theorem3.54pp43-44 citation present; actualpagesread."
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "dr=P_T,dnu=P_N and zero correctionfirstjet explicitly stated and independently derived."
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square Schur bound displayed in manuscript section3; universal pointwise proof checked."
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "WhitneyLemma19p665footnote32 precisely cited for proper embedding; actualpageimageinspected."
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "Manuscript retains convexity/completeness/globaldual/boundary/indefinite exclusions."
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Optional circle/noncompactparabola illustrations preserved and explained in companion global_adversary report and exactcontrols; freshlyreplayed. The concise note directs to companion materials rather than duplicating lengthy examples."
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Source, priority, mathematical and operational conclusions remain separate, including current non-clean operational verdict."
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Historical strictfloatwrapperFAIL preserved and freshly reproduced, separatecurrenttyped12fieldpolicyexplicit;89freshnegativecontrols."
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Immutable targetstate/historyabsence independentlyconfirmed; declared4/5 retained withoutcertifiedhistoricalevents, auditadds0."
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "OldauditAoptimizedfalsePASSfreshlyconfirmed withcorruptedproof; unchangedhistoricalscript only runs under actualisolatednonoptimized protectedchildren in currentpackage."
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Separatecurrentv2fourtoolpins authenticated; oldFIFOtimeout andcurrentpromptregularrejectionfreshlyconfirmed, current10package+84operationcontrolsPASS; oldsealsunchanged."
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "ActualAJLS4.10p222/4.11p238 finitecompact/countablenoncompact currentmanuscriptreading is correct; actualauthorizedimagesread."
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Broaderofficialabstract retained asadversewording, actualstatementscopecontrols; noerratum/falsityinferred."
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Lauritzen,Matumoto,Le/Nash/Gromov,Marugame,LoiMatta,Whitney/tubeandOsipovcreditsincluded; materialfouroldbody+239/VORgapsretained."
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "Historicalfamilysealsauthenticatedunchanged; currentcorrectedAJLSscope appended rather than retroactivelyeditingoldreports."
+          }
+        },
+        "priority_status": "Bounded primary audit; no valid fullunrestricted predecessor established, but firstness/novelty/currentopenness unestablished and materialprimarybody gaps remain.",
+        "assigned_review_completion_percent": 100,
+        "proof_search_turns_added_by_audit": 0,
+        "original_declared_turns": "4/5",
+        "author_native_history_authenticated": false,
+        "original_total_attempt_count_known": false,
+        "external_actions_executed": 0,
+        "canonical_candidate_mutations": 0,
+        "procedure_limitation": {
+          "root_predelegation_readonly_gate_utc": "2026-10-15T12:55:58.330776+00:00",
+          "first_complete_local_scope_authentication_utc": "2026-10-15T12:58:31.410065+00:00",
+          "local_complete_gate_preceded_TeX_display": false,
+          "explanation": "Initial local script checked all33originalGit/disk/archivebytes, then failed queue-row-format filter; a combined shell read still displayed source/TeX. Display time is bounded between recordedstart and firstcompleteauth, not separatelytimestamped. Correctedexactqueueauth and independentreconstruction preceded reading earlierverdicts. This limitation is disclosed; NEWround must enforce successfulscopegate beforemathread."
+        }
+      }
+    },
+    {
+      "round": "02",
+      "manifest_sha256": "e0361044f313b540f8a46b6a417a00a1777e22a33439e9a097aa0f9e7b54c3e6",
+      "public_payloads": 39,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_02",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-15T13:36:56.710649+00:00",
+        "completed_utc": "2026-10-15T13:59:59.429953+00:00",
+        "candidate_revision": 2,
+        "candidate_pins": {
+          "freeze": "bdd016d29f8647c92081990d8fe271e577bd01abe5f132790fdec00600d3bf67",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "a3a1059bf762171d37dde836efb7ae0422477015d181102d0f323c369760ce90"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 80716,
+            "sha256": "7d8d05fc3b05b249de51851db2eeb1e1d7adeecb774046183ecfb0fe08082e5a"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [
+          {
+            "id": "FP02-OPS-001",
+            "severity": "required",
+            "category": "operational_review_history",
+            "location": "accept_pr946.py:620-633 accepted_package; merge/zenodo/tracker_append/native_write/finalize action boundaries",
+            "finding": "After acceptance, later actions neither reauthenticate the accepted complete sealed review chain nor inventory new canonical full_package_NN rounds. An adverse or unfinished round added after acceptance, including after readiness, can be ignored before merge and publication actions.",
+            "evidence": [
+              "INDEPENDENT_OPERATIONS_CONTROLS.json",
+              "independent_operations_controls.py",
+              "ACTION_BOUNDARY_REVIEW.json"
+            ],
+            "repair": "Revalidate accepted review seals/full records/current and historical freezes/issue resolutions and exact complete directory set at every later action, then recheck immediately before mutating dispatches, after readiness and per native CAS parent. Add new-adverse-round and changed-seal controls across all actions."
+          }
+        ],
+        "optional_issues": [
+          {
+            "id": "FP02-DOC-001",
+            "category": "source_link",
+            "location": "research_note.tex:455, PDF bibliography item7",
+            "finding": "Tubular-neighborhood citation uses non-www math.toronto.edu hostname, freshly HTTP404; www.math.toronto.edu serves the exact authenticated primary PDF.",
+            "evidence": [
+              "SOURCE_LINK_CONTROLS.json",
+              "PRIMARY_SOURCE_REVIEW.json"
+            ],
+            "repair": "Use https://www.math.toronto.edu/mgualt/courses/17-1300/docs/17-1300-notes-11.pdf and rebuild paper/archive/metadata pins consistently."
+          }
+        ],
+        "clean_for_preprint": false,
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive statistical manifold of fixed dimension n>=1 with a prescribed ordered mutually dual torsion-free connection pair admits a proper embedding into one open U subset R^N, N=binomial(2n+4,3), carrying one smooth positive ordinary Hessian potential. The standard connection and its metric dual are torsion-free and flat and induce exactly the prescribed ordered pair by orthogonal projection. Both input torsions vanishing is necessary and sufficient for general positive Riemannian dual pairs; countable zero-dimensional inputs are separately realized in R. No mathematical gap identified within this stated scope.",
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "Current equation7 explicitly gives nonlinear scalar third-jet chart law. Independently reconstructed and eight fresh chart entries/missing-inhomogeneous negative controls pass."
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "Current note distinguishes varying-point germs from one scalar function and germ-held coefficients from basepoint differentiation; independently reconstructed."
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "Current proper log(t) example has t^3/6 lift coefficient, unbounded with t, and correct unit third derivative; no uniform inverse bound asserted."
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "Direct Amari1997pp84-85/87 references present. Actual primary page images inspected; local dual coordinates and torsion/curvature definition verified."
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Definition3.53/Theorem3.54pp43-44 are precisely cited and actual primary pages inspected. The source is valid; new optional broken-hostname issue is separately FP02-DOC-001."
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "dr=P_T and dnu=P_N stated and derived from normal addition; normal correction first jet vanishes."
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square and Schur bound shown explicitly, independently checked universally and in nine exact stress cases."
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "WhitneyLemma19p665footnote32 precise citation present; actual page and properness mechanics inspected."
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "All stated exclusions of convexity, completeness, global gradient injectivity, boundary and indefinite extensions retained."
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Circle and noncompact parabola illustrations preserved in companion materials and fully freshly replayed; concise paper refers to those materials."
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Source, priority, mathematical and operational conclusions separately assessed; current operational NONCLEAN does not invent a mathematical gap."
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Strict historical floating wrapper freshly FAILs; separate typed12-field policy documented and88 fresh negative controls plus historical32 pass."
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Immutable target native state/history absence verified; original declared4/5 retained without certified historical events, zero added proof searches."
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "Historical corrupted-proof assertion checker falsePASS underO/OO freshly reproduced; current wrappers use actual isolated optimization0 children."
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Historicalv1FIFO timeout freshly reproduced. Currentv2 prompt regular-file rejection, forced stat/open FIFO replacement, caps/growth and links freshly pass; old seals preserved."
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "Actual authorized AJLS4.10p222/4.11p238 pages personally inspected; current note correctly says finitecompact/countablenoncompact, not inaccessible statements."
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Broader publisher abstract retained as adverse prior wording; actual statement distinction checked, no erratum/falsity inferred."
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Lauritzen, Matumoto, Le/Nash/Gromov, Marugame, LoiMatta, Whitney/tube and Osipov ancestry credited with four old-body and239/publisher-version gaps preserved."
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "Older sealed historical families preserved; current actual AJLS statement reading appended in candidate and checked against pages."
+          },
+          "FP01-OPS-001": {
+            "verified": true,
+            "resolution": "The original acceptance-prefix omission is repaired: descriptor-anchored casefold-prefix inventory rejects omitted/unsealed/malformed/mixedcase/gapped/symlink rounds and rechecks within acceptance. Fresh actual filesystem and68 repair controls pass. Later-action postacceptance gap separately required as FP02-OPS-001."
+          },
+          "FP01-OPS-002": {
+            "verified": true,
+            "resolution": "Explicit required keys/exact types for RESULT/START/END/COLD checked, positive exact corresponding revision and explicit empty normalization list required; fresh omitted-key/type/revision controls pass including historical branch."
+          },
+          "FP01-OPS-003": {
+            "verified": true,
+            "resolution": "Full mocked finalization refreshes publication summary from published completed records and removes prior portable_release_tooling from final next-target state; fresh68 suite confirms."
+          },
+          "FP01-DOC-001": {
+            "verified": true,
+            "resolution": "All six actual rendered current PDF pages inspected; page1 visibly version1.0 and CC BY4.0 matching descriptor. Strict old/new TeX comparison confirms only that notice changed."
+          }
+        },
+        "priority_status": "Bounded primary review with actual AJLS statements inspected and material final-body gaps preserved; no novelty, firstness or continued-openness certification.",
+        "assigned_review_completion_percent": 100,
+        "proof_search_turns_added_by_audit": 0,
+        "original_declared_turns": "4/5",
+        "author_native_history_authenticated": false,
+        "original_total_attempt_count_known": false,
+        "external_mutations_executed": 0,
+        "canonical_candidate_mutations": 0,
+        "procedure": {
+          "successful_own_scope_gate_before_any_math_source_read": true,
+          "first_successful_authentication_utc": "2026-10-15T13:37:22.903116+00:00",
+          "end_authentication_utc": "2026-10-15T13:56:05.551408+00:00",
+          "independent_reconstruction_preceded_prior_verdict_reads": true,
+          "initial_gate_error": "Remote-main object initially absent; exact object fetched without FETCH_HEAD/ref mutation, full gate repeated successfully before mathematics.",
+          "temporary_scratch": "Initial ephemeral child OS scratch cleaned automatically; all four modes repeated with TMPDIR within own private directory.",
+          "real_operational_helpers_executed": false,
+          "captured_kit_services": "All fake; no credentials/network publication actions."
+        }
+      }
+    },
+    {
+      "round": "03",
+      "manifest_sha256": "28f08795caf265a412463b3b30880f29bcbc615eb84baf4b92010d1720326370",
+      "public_payloads": 35,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_03",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-15T14:07:45+00:00",
+        "completed_utc": "2026-10-15T14:26:40.989469+00:00",
+        "candidate_revision": 3,
+        "candidate_pins": {
+          "freeze": "fdff50b3a1c77523b1b1b7c3da42b2dfdbb1bc17ada7b19abfcbfbbd40d4c505",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 82271,
+            "sha256": "f2695b6b7d5e7c6553280082b41987a7fbc7332bc980228502f7e10d8b7ded73"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [
+          {
+            "id": "FP03-OPS-001",
+            "severity": "required",
+            "category": "operational_final_completion_review_history",
+            "location": "accept_pr946.py:1309-1316,1323-1350 finalize",
+            "finding": "The last accepted_review_check precedes CURRENT_STATE/inventory reads and gate_next. A new canonical pending/adverse review introduced during those reads is ignored before final workflow-completion state/log writes; pending review introduced during state reading also permits already_finalized=true recovery return.",
+            "evidence": [
+              "ACTION_CHAIN_CONTROLS.json",
+              "action_chain_controls.py",
+              "FULL_AUDIT.md"
+            ],
+            "repair": "Reauthenticate the complete accepted review history after all state/next-status reads immediately before the final completion-write sequence, and before the already-finalized return after state reading; add actual-directory behavioral pending/adverse/drift and positive-chain controls. Preserve candidate03 and older evidence, rebuild pins and commission a NEW entire full-package review."
+          }
+        ],
+        "optional_issues": [],
+        "clean_for_preprint": false,
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive statistical manifold of fixed finite dimension n>=1 with its prescribed ordered mutually dual torsion-free connection pair admits a proper smooth embedding into one open U subset R^N, N=binomial(2n+4,3), carrying one smooth positive ordinary Hessian potential. The standard flat connection and its metric dual are torsion-free and flat and induce exactly the prescribed ordered pair by orthogonal projection. For general positive Riemannian dual pairs, both input torsions vanishing is necessary and sufficient; countable zero-dimensional inputs are separately realized in R. No mathematical gap identified within this exact scope.",
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "Equation7 displays all three inhomogeneous scalar third-jet terms. Own8 rational-base chart entries and a tensor-only negative control verify the law."
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "The manuscript distinguishes varying-point germs from one scalar function and fixed-germ coefficient evaluation from basepoint differentiation; independently reconstructed."
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "The proper log(t) example has smooth unbounded t^3/6 coefficient and exact unit third derivative; own symbolic differentiation passes."
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "Actual Amari1997pp84–85/87 personally inspected; current direct references match torsion/curvature flatness and local dual coordinates."
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Actual GualtieriDef3.53/Thm3.54pp43–44 inspected; current corrected wwwURL freshly retrieves exact pinned PDF."
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "Normal-addition differential dr=P_T,dnu=P_N is explicit and independently derived; correction first jet vanishes."
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square formula and bound Schur>=(2+t)I are explicit. Own5 rotated3x2 exact stress cases pass."
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "Actual WhitneyTheorem1p654 and Lemma19p665/footnote32 personally inspected; properness input valid."
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "Exclusions of convexity, completeness, global dual-gradient injectivity, boundary and indefinite metrics remain explicit."
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Circle and noncompact parabola illustrations remain in authenticated companion materials; both fully replayed in all4 cold modes."
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Mathematics, source priority, replay and operational conclusions separately assessed. New operational defect creates no invented proof gap."
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Historical strict floating-output wrapper freshly rejects this runtime. Separate typed12 finite sample policy documented; fresh88 negatives and32 legacy typed cases pass."
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Actual originalHEAD selected state/history absent; original PRdeclared4/5 retained, unknown historical total, no fabricated perturn events; auditadds0."
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "Corrupted-proof historical assert checker freshly rejects normal and falsely passes underO/OO. Current children actually isolated optimize0 in all4 outer modes."
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Oldv1FIFO timeout freshly reproduced; currentv2 prompt rejection, forced stat/openFIFO race, cap/growth and links all tested in own mirrors."
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "Actual authorized AJLSDef4.9p221/Thm4.10p222/p237/Thm4.11p238 personally inspected: finitecompact/countablenoncompact. Statements no longer misclassified as unavailable."
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Broad older abstract and unrestricted claims retained with actual narrower body distinction; no inferred erratum, falsity or current openness."
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Lauritzen/Matumoto/Le/NashGromov/Marugame/LoiMatta/Whitney/tube/Osipov ancestry checked against actual available passages; finalbody/p239/VOR gaps preserved."
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "Every curated payload in all8 older family seals and prior full01/02 checked against preserved manifests; actualAJLS correction appended without changing older reports."
+          },
+          "FP01-OPS-001": {
+            "verified": true,
+            "resolution": "Canonical-prefix complete-set scan is descriptor-anchored/casefolded and rejects omitted adverse/pending/malformed/mixedcase/symlink/gap entries; own component68 tests and actual31 chain tests verify."
+          },
+          "FP01-OPS-002": {
+            "verified": true,
+            "resolution": "Mandatory RESULT/START/END/COLD keys/exacttypes, positive corresponding revision and explicit empty normalization enforced; fresh68 omission/type/revision controls and full actualhistorical branch pass."
+          },
+          "FP01-OPS-003": {
+            "verified": true,
+            "resolution": "Full mocked finalization updates publication summary and clears prior portable tooling. Fresh68 component suite confirms; new late-review final-state bypass separately required asFP03-OPS-001."
+          },
+          "FP01-DOC-001": {
+            "verified": true,
+            "resolution": "All6 freshly rendered pages inspected; page1 visibly version1.0/CCBY4, matching descriptor and metadata."
+          },
+          "FP02-OPS-001": {
+            "verified": false,
+            "resolution": "Substantial repair verified: actual accepted_package reconstructs full accepted chain/currentandhistorical freezes/originals, and newreview/payload/seal/record/theorem drift is rejected. Postready, kitstage/publish/inspect, trackerappend, nativeCAS/retry and finalPRedit immediate checks work. Residual final completion/state and alreadyfinalized return bypass reproduced; tracked asFP03-OPS-001. Not fully resolved."
+          },
+          "FP02-DOC-001": {
+            "verified": true,
+            "resolution": "Corrected wwwTube URL freshly retrieves exact799796cc... primaryPDF; currentTeX/PDF/archive are consistently pinned and all6 pages inspected."
+          }
+        },
+        "priority_status": "Bounded actual-primary review; AJLS statements inspected and material final-body gaps retained; no novelty, firstness or continued-openness certification.",
+        "assigned_review_completion_percent": 100,
+        "original_declared_turns": "4/5",
+        "original_total_attempt_count_known": false,
+        "author_native_history_authenticated": false,
+        "proof_search_turns_added_by_audit": 0,
+        "new_target_realization_mechanisms_launched": 0,
+        "actual_external_mutations": 0,
+        "canonical_candidate_mutations": 0,
+        "full_review_scope": "Entire theorem, source/priority ancestry, all6PDFpages/TeX/metadata, closed cold replay/typed/historical controls, all6helpers and capturedkit, entire chronological review chain/currentandhistorical candidates, all prior findings and final operational actions.",
+        "procedure": {
+          "own_successful_gate_before_any_math_read": true,
+          "independent_reconstruction_before_prior_verdicts": true,
+          "four_mode_cold_receipts_exact_no_fields_deleted": true,
+          "raw_source_and_render_redistribution": false,
+          "actual_directory_action_controls": 31,
+          "component_suites_have_disclosed_shared_guard_stubs": true,
+          "new_finalization_defects_do_not_depend_on_stubbing_the_shared_guard": true,
+          "test_harness_initial_errors": "Own fixture paths/default argument rebinding and a missing synthetic merge destination were corrected before successful final31-case run; these were harness construction errors, not candidate defects."
+        }
+      }
+    },
+    {
+      "round": "04",
+      "manifest_sha256": "7fb99b465473a17ad54a363c4ee6f410023b3857343a5df2c356a705d50180d0",
+      "public_payloads": 39,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_04",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-16T03:59:08.581894+00:00",
+        "completed_utc": "2026-10-16T04:17:35.425300+00:00",
+        "candidate_revision": 4,
+        "candidate_pins": {
+          "freeze": "4a5ad29c194c353bd1a8fe502767673d8cd335e9b60b9135b88e031b03cebad3",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 82465,
+            "sha256": "0ac1335d4703638002392802a37db43fa0307561a8052b54b98f47c955094591"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [
+          {
+            "id": "FP04-OPS-001",
+            "severity": "required",
+            "category": "operational_canonical_acceptance_refresh",
+            "location": "accept_pr946.py:620-637,711-730,1311-1317,1328-1344",
+            "finding": "The immediate shared guard does not reload canonical ACCEPTANCE.json. Revocation or accepted theorem drift during late state/next-status reads still allows completion or already_finalized; acceptance revocation during ready still permits the subsequent merge dispatch.",
+            "evidence": [
+              "ACTION_CHAIN_CONTROLS.json",
+              "action_chain_controls.py",
+              "FULL_AUDIT.md"
+            ],
+            "repair": "Refresh and validate canonical acceptance at each immediate boundary, require exact consistency with the authenticated action snapshot and stop on revocation or drift, including after intervening service reads. Preserve captured execution and uncertain-action recovery semantics."
+          },
+          {
+            "id": "FP04-OPS-002",
+            "severity": "required",
+            "category": "operational_current_freeze_refresh",
+            "location": "accept_pr946.py:493-560,620-637,1311-1317,1328-1344",
+            "finding": "The immediate shared guard retains the already-loaded current freeze and does not reread every current frozen file. Standalone current TeX or FREEZE drift introduced during state/next-status reads still allows completion or already_finalized while a fresh accepted_package immediately rejects.",
+            "evidence": [
+              "ACTION_CHAIN_CONTROLS.json",
+              "action_chain_controls.py",
+              "FULL_AUDIT.md"
+            ],
+            "repair": "Reauthenticate the externally pinned current freeze and complete current payload/evidence context at existing immediate boundaries and compare the refreshed snapshot, including after reads inside the guard. Retain snapshot execution semantics; no atomic hostile-filesystem guarantee is required."
+          }
+        ],
+        "optional_issues": [],
+        "clean_for_preprint": false,
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive-definite statistical manifold of fixed finite dimension n>=1, with its prescribed ordered mutually dual torsion-free smooth connections, admits a proper smooth embedding into one open U subset R^N, N=binomial(2n+4,3)>n, carrying one smooth positive ordinary Hessian potential whose standard connection and metric dual are torsion-free/flat and induce that ordered pair by orthogonal projection. For a general positive Riemannian dual pair in this category, both input torsions vanishing is necessary and sufficient. Countable zero-dimensional inputs have the separate proper realization in R; the empty case is vacuous. No convexity, ambient completeness, globally injective dual gradient, finite probability model, dimension optimality or historical novelty is asserted.",
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "Equation7 and own eight nonlinear2D chart components verify every inhomogeneous scalar third-jet term; tensor-only negative is sensitive."
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "Current text explicitly distinguishes varying-base germs/nonholonomic section, fixed-germ coefficient evaluation and subsequent base differentiation; independently reconstructed."
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "Displayed proper logt example has smooth unbounded leading coefficient t^3/6 and unit third derivative; no minimum-norm claim is inferred."
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "Actual Amari84–85/87 inspected; current direct reference supports both torsion/curvature flatness and local dual coordinates."
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Actual GualtieriDef3.53/Thm3.54pp43–44 freshly opened at corrected wwwURL; variable-radius tube is appropriate."
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "Current dr=P_T,dnu=P_N and zero first jet of normal correction are explicit and independently derived."
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square Schur bound(2+t)I displayed; own exact graph Hessian/variable penalty controls pass."
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "Actual WhitneyTheorem1p654/Lemma19p665/footnote32 personally inspected; properness input is supported."
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "Current scope explicitly excludes convexity/completeness/globaldualgradient/boundary/indefinite extensions."
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Circle and noncompact parabola illustrations preserved in authenticated companion materials, freshly replayed in all four cold modes."
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Universal proof, bounded priority, finite computation and operational cleanliness are distinguished; operational issues do not invent a proof gap."
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Actual strict wrapper failure preserved; own direct replay finds9/12 samplefloat differences max2.1032064978498966e-12. Separate typed12-field policy passes88+44 negatives and is not a roundoff certificate."
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Actual immutable selected state/history absent; declared4/5 and unknown native total disclosed, no fabricated events, audit adds0."
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "Original corruptedproof assert checker reproduced normal failure and O/OO falsePASS. Current diagnostics actually isolated optimization0 in all outer modes."
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Actual oldv1FIFO timeout contrasted with v2 prompt rejection; own15 nonblocking and6 link controls include cap/growth/stat-open FIFO race."
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "Actual AJLS221/222/237/238 preview personally read; finitecompact/countablenoncompact statement distinction available and explicit, p239/fullchapter still unavailable."
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Broad old claims and current abstracts retained as adverse evidence; no erratum/falsity/absence/openness inferred from unavailable final bodies."
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Actual available Lauritzen/Matumoto/Le/Marugame/LoiMatta/Whitney/tube/Osipov passages checked; free-map/NashGromov ancestry credited and finalbody gaps retained."
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "All8 older family seals plus separate replayrepair, prior full01/02/03 and corresponding complete historical snapshots/seven execution sources authenticated; old evidence unchanged."
+          },
+          "FP01-OPS-001": {
+            "verified": true,
+            "resolution": "Descriptor-anchored canonical-prefix scan rejects omitted pending/adverse/malformed/mixedcase/gap/link rounds. Own actual complete01/02/03/04 chain and68 schema/component controls pass."
+          },
+          "FP01-OPS-002": {
+            "verified": true,
+            "resolution": "Mandatory exacttyped RESULT/START/END/COLD schemas, candidate revision correspondence and explicit empty normalization enforced;68 negative schema controls and full historical branches pass."
+          },
+          "FP01-OPS-003": {
+            "verified": true,
+            "resolution": "Finalizer recomputes publication summary and removes portable_release_tooling; full positive completion and68 component controls confirm cleanup."
+          },
+          "FP01-DOC-001": {
+            "verified": true,
+            "resolution": "All six fresh renders personally inspected; page1 visibly version1.0 and CCBY4.0, consistent with descriptor."
+          },
+          "FP02-OPS-001": {
+            "verified": false,
+            "resolution": "Complete-chain reconstruction/new-round/seal drift checks substantially repaired, including finalcompletion history windows. Residual immediate-boundary canonical acceptance revocation/theorem drift and currentfreeze/TeX drift bypass reproduced asFP04-OPS-001/002, so broader contract is only partially resolved."
+          },
+          "FP02-DOC-001": {
+            "verified": true,
+            "resolution": "Corrected wwwTube URL freshly serves actual variable-radius primary theorem; currentTeX/PDF/archive consistent."
+          },
+          "FP03-OPS-001": {
+            "verified": true,
+            "resolution": "Actual fullchain pending/adverse round and sealedreview payload/manifest drift introduced after nextstatus/state reads now reject before completion or alreadyfinalized return. Positive completion/recovery pass. Distinct staleacceptance/currentfreeze defects are newFP04 findings."
+          }
+        },
+        "whole_package_review_completed": true,
+        "actual_external_mutations": 0,
+        "new_proof_search_responses": 0,
+        "limitations": [
+          "Bounded AI adversarial review, not human refereeing or formal certification.",
+          "Historical novelty/firstness/current openness not established; primary access gaps disclosed.",
+          "Actual chain terminal verdict and services/Git transport data are synthetic contract fixtures, never production acceptance.",
+          "Trust roots include interpreter, entry, standard library, installed math packages, executables, external pins and OS/process/filesystem; no OS sandbox."
+        ]
+      }
+    },
+    {
+      "round": "05",
+      "manifest_sha256": "4d60602995d799a0850c4657b3401ad9c353460800f1fbd752c532b73b6963b2",
+      "public_payloads": 48,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_05",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-16T04:30:36.608514+00:00",
+        "completed_utc": "2026-10-16T04:49:47.763011+00:00",
+        "candidate_revision": 5,
+        "candidate_pins": {
+          "freeze": "adf39584e2645b7b530447523f690ca7e2bf68587c647f7bd5b218b758fa8068",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 83550,
+            "sha256": "62fa159687104c889195863303fa5642d877e52257bc9e4fb2bc97e89ea2b919"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [
+          {
+            "id": "FP05-OPS-001",
+            "severity": "required",
+            "category": "initial_acceptance_final_canonical_refresh",
+            "location": "accept_pr946.py:696-726",
+            "finding": "Initial accept authenticates current candidate and full reviews, then performs a final premerge/source/original reread without refreshing current freeze/payload/dependency context afterward. A current TeX change during the final actual source_gate still writes canonical ACCEPTANCE for the stale freeze. Fresh accepted_package rejects the same tree, so later external actions remain blocked.",
+            "evidence": [
+              "LATE_REFRESH_CONTROLS.json",
+              "late_refresh_controls.py",
+              "CURRENT05_CONTROLS.json"
+            ],
+            "repair": "After final live/source/original/review reads, reauthenticate and compare the current externally pinned candidate and operational dependency context before writing acceptance. Cover currentFREEZE/payload/evidence/dependency drift. Preserve captured execution and no-OS-atomicity limits."
+          },
+          {
+            "id": "FP05-OPS-002",
+            "severity": "required",
+            "category": "late_sealed_review_content_refresh",
+            "location": "accept_pr946.py:634-655",
+            "finding": "The shared guard authenticates full reviews, refreshes canonical acceptance/current freeze/dependencies, then scans only review-directory names. Changing a sealed terminal review payload or MANIFEST during the intervening current-state refresh is missed and the guard returns. Fresh accepted_package rejects the same tree. This is a deterministic intervening-read gap, not an atomic hostile-filesystem requirement.",
+            "evidence": [
+              "LATE_REFRESH_CONTROLS.json",
+              "late_refresh_controls.py",
+              "SERVICE_BOUNDARIES.json",
+              "service_boundaries.py",
+              "CURRENT05_CONTROLS.json"
+            ],
+            "repair": "Reauthenticate externally sealed review contents/seals and the complete canonical directory set after intervening current-candidate reads, comparing with the accepted chain. Test payload and seal drift while canonical dependencies refresh plus valid complete-chain controls. Do not promise OS atomicity."
+          }
+        ],
+        "optional_issues": [],
+        "clean_for_preprint": false,
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "strongest_verified_theorem": "Every smooth Hausdorff second-countable boundaryless positive-definite statistical manifold of fixed finite dimension n>=1 with its prescribed ordered mutually dual torsion-free smooth connections admits a proper smooth embedding into one open U subset R^N, N=binomial(2n+4,3)>n, carrying one smooth positive ordinary Hessian potential whose standard connection and metric dual are torsion-free/flat and induce that ordered pair by orthogonal projection. For a general positive Riemannian dual pair in this category, both input torsions vanishing is necessary and sufficient. Countable zero-dimensional inputs have the separate proper realization in R; the empty case is vacuous. No convexity, ambient completeness, globally injective dual gradient, finite probability model, dimension optimality, historical novelty, firstness or present openness is asserted.",
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "Equation7 and own8-component nonlinear2D check give all three inhomogeneous terms;7 nonzero tensor-only omissions detected."
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "Current proof distinguishes nonholonomic varying-base germs, fixed-coefficient jet evaluation and subsequent base differentiation; independently reconstructed before prior verdicts."
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "Proper log(t) example has smooth unbounded t^3/6 coefficient and unit third derivative; no minimum-norm claim is made."
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "Actual Amari84–85/87 personally viewed; current direct citations support both torsion/curvature flatness and local affine coordinates."
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Actual Gualtieri43–44 personally viewed and corrected wwwURL freshly returned exact799796cc... primary PDF; variable-radius theorem applies."
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "dr=P_T,dnu=P_N and zero first jet of the normal correction are explicit and independently derived."
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square Schur bound(2+t)I is displayed. Own5 unbounded2x3 exact block checks and omitted-correction negatives pass."
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "Actual WhitneyTheorem1p654 and Lemma19p665/footnote32 personally viewed; finite-limit-point removal supplies properness."
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "Convexity, completeness, global dual-gradient injectivity, boundary and indefinite extensions remain explicitly excluded."
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Circle/noncompact-parabola illustrations retained in authenticated companion material and actually replayed in all4 cold modes; separate universal reconstruction supplied."
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Mathematics, bounded priority, finite computation and operational cleanliness separately assessed; operational findings do not invent a proof gap."
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Fresh strict wrapper fails; actual author replay reproduces9/12float differences/max2.1032064978498966e-12. Typed12-field policy and88+44 negatives pass; no proved roundoff claim."
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Actual immutable selected state/history lack target native events. Declared4/5, unknown historical total and0audit proof responses are disclosed; no fabricated events."
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "Fresh corrupted-proof original auditA checker fails normally and falsely passes O/OO. Current children actually isolated optimization0/-B in all4outer modes."
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Fresh oldv1FIFO timeout preserved; currentv2 promptly rejects and actual15nonblocking/6link controls include stat/openFIFO replacement, caps and growth."
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "Actual authorized AJLS221/222/237/238 personally viewed; finitecompact/countablenoncompact statements available, p239/fullchapter still unavailable."
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Older unrestricted claims and broad publisher abstracts remain adverse evidence; unavailable final bodies establish neither falsity, erratum nor current openness."
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Actual available Lauritzen/Matumoto/Le/NashGromov/Marugame/LoiMatta/Osipov ancestry checked and credited; finalbody and publisher-version gaps retained."
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "All8 family manifests, separatev2repair and full01..04 external seals/every curated payload independently authenticated; dated earlier reports unchanged."
+          },
+          "FP01-OPS-001": {
+            "verified": true,
+            "resolution": "Descriptor-anchored complete canonical directory scan rejects omitted pending/adverse/malformed/mixedcase/gap/symlink rounds. Own current05 23action and79schema/directory controls plus actual historical chain support exact omission repair."
+          },
+          "FP01-OPS-002": {
+            "verified": true,
+            "resolution": "Mandatory exacttyped RESULT/START/END/COLD schemas, positive matching revisions and explicit normalization enforced. Own79schema/directory negatives and actual current/historical branches pass."
+          },
+          "FP01-OPS-003": {
+            "verified": true,
+            "resolution": "Actual positive finalizer recomputes publication summary and removes portable_release_tooling. Complete metadata/readback/local completion/repeat fixture passes."
+          },
+          "FP01-DOC-001": {
+            "verified": true,
+            "resolution": "All6 fresh renders personally inspected; page1 visibly version1.0/CCBY4.0, matching descriptor."
+          },
+          "FP02-OPS-001": {
+            "verified": false,
+            "resolution": "Substantial global repair verified at entries, postready, kitstage/publish/inspect, GWSappend, nativeCAS, finalcompletion/recovery. Sealed-review payload/seal drift during later current-state refresh still passes the shared guard; exact new residual FP05-OPS-002 means broader complete-current-approval contract remains partial."
+          },
+          "FP02-DOC-001": {
+            "verified": true,
+            "resolution": "Corrected wwwToronto URL freshly returned exact799796cc... PDF; actual variable-radius theorem and currentTeX/PDF/archive agree."
+          },
+          "FP03-OPS-001": {
+            "verified": true,
+            "resolution": "Current05 fullchain tests reject pending/adverse/new sealed payload or seal drift during final state/nextstatus reads before completion and already-finalized return. Positive completion/recovery passes."
+          },
+          "FP04-OPS-001": {
+            "verified": true,
+            "resolution": "Actual central accepted_state_check rereads full canonical acceptance at shared entry and after original/fullreview reads. Own revocation/theorem/accepted-record tests at those windows, postready and late state/status reads reject before subsequent dispatch/completion."
+          },
+          "FP04-OPS-002": {
+            "verified": true,
+            "resolution": "Actual central refresh recaptures7dependencies and current externalFREEZE/all223+65 files. Own TeX/FREEZE/helper/inventory/evidence drift tests at entry/during source-history/late state-status-action windows reject. Distinct sealed-review drift separately FP05-OPS-002."
+          }
+        },
+        "whole_package_review_completed": true,
+        "assigned_review_completion_percent": 100,
+        "actual_external_mutations": 0,
+        "canonical_candidate_mutations": 0,
+        "new_proof_search_responses": 0,
+        "new_target_realization_mechanisms": 0,
+        "original_declared_turns": "4/5",
+        "historical_native_event_history_authenticated": false,
+        "original_total_attempt_count_known": false,
+        "no_OS_sandbox_or_atomic_filesystem_claim": true,
+        "limitations": [
+          "Bounded AI adversarial review, not independent human refereeing or formal proof certification.",
+          "Priority access/coverage gaps remain material.",
+          "Terminal05 verdict and all mutation-boundary services/Git are explicitly synthetic.",
+          "Entrypoint/interpreter/stdlib/math libraries/executables/external pins/process/filesystem trusted."
+        ]
+      }
+    },
+    {
+      "round": "06",
+      "manifest_sha256": "1c75fc274754826a9d189a7e5e5ac206782deddd0a91dc75d0636d9aa787de71",
+      "public_payloads": 61,
+      "result": {
+        "pr": 946,
+        "problem_id": "6000001",
+        "original_pr_head": "7d3adb0e500b0414a49a449e7981d34ade329427",
+        "reviewer_agent_id": "/root/pr946_full_package_06",
+        "clean_context": true,
+        "full_reproducer_completed": true,
+        "started_utc": "2026-10-16T05:02:37.457596+00:00",
+        "completed_utc": "2026-10-16T05:21:26.680525+00:00",
+        "candidate_revision": 6,
+        "candidate_pins": {
+          "freeze": "9af8f2570af53b6a6658a7998ac08927829c8747be7c764a8d2c392dc6c6afe1",
+          "manifest": "52165ba2410fa32238244feef20820e5bca9971f60c90542a2360f4d44e6c4ec",
+          "pdf": "b874d63619ec7abbd3d9109639eb017b69435118c4cc9d5fec450605e4316e42"
+        },
+        "inspected_helper_hashes": {
+          "accept_pr946.py": {
+            "bytes": 85902,
+            "sha256": "8e1a0d7b3ca6e5d72e76415541b393fbfbe52e307368bc86b9e7982d5be27cd7"
+          },
+          "merge_pr946.py": {
+            "bytes": 7123,
+            "sha256": "8cef58dad47aff16ec8863212051366e91e24c9ae1905412f6fec373a09585b9"
+          },
+          "run_pr946_zenodo.py": {
+            "bytes": 7124,
+            "sha256": "c66c13733bc03fe4fa66cc541a29d7b7cc84cfc72408bbfb42329927f268a322"
+          },
+          "append_pr946_tracker.py": {
+            "bytes": 7125,
+            "sha256": "f7bb2d9cffb672c2da95e691a4ed41e421ddb954d9fc3397dea35074abde2ca4"
+          },
+          "update_pr946_publication_ledger.py": {
+            "bytes": 7124,
+            "sha256": "5ccc7375eb8d7fad65e2ba421cc4041cda085ea364224d5122a9857256d18cac"
+          },
+          "finalize_pr946_and_gate_next.py": {
+            "bytes": 7126,
+            "sha256": "1e72f8760dec3456d701bf96bd27495ddafb4e15402a85858d4b5befd21e18c4"
+          }
+        },
+        "required_issues": [],
+        "optional_issues": [],
+        "clean_for_preprint": true,
+        "strongest_verified_theorem": "For every smooth Hausdorff second-countable manifold without boundary of fixed finite dimension n>=1, every positive Riemannian metric g and every prescribed ordered mutually g-dual torsion-free connection pair (nabla,nabla*) admit a proper smooth embedding into one open subset U of R^N, N=binomial(2n+4,3)>n, carrying one smooth function Psi with everywhere positive ordinary Hessian G, such that f*G=g and the G-orthogonal tangential projections of the standard flat connection D and its G-dual D* induce exactly (nabla,nabla*) in that order; both ambient connections are torsion-free and flat. Among general smooth positive Riemannian dual pairs in this category, vanishing of both torsions is necessary and sufficient. Countable zero-dimensional and empty cases have the separate trivial realization in R. No convexity, completeness, global dual-gradient injectivity, finite probability model, optimal dimension or historical novelty is asserted.",
+        "mathematical_remaining_gap_for_stated_theorem": null,
+        "prior_issue_resolution": {
+          "O1": {
+            "verified": true,
+            "resolution": "All three inhomogeneous scalar third-jet terms are explicit in equation7; new nonlinear2D exact checks validate8 entries and detect tensor-only omissions.",
+            "current06_evidence": [
+              "INDEPENDENT_DERIVATION.md",
+              "INDEPENDENT_EXACT_CHECKS.json"
+            ]
+          },
+          "O2": {
+            "verified": true,
+            "resolution": "Varying-base nonholonomic germs are distinguished from one global scalar; fixed coefficients in E and later base differentiation independently reconstructed before prior verdicts.",
+            "current06_evidence": [
+              "INDEPENDENT_DERIVATION.md"
+            ]
+          },
+          "O3": {
+            "verified": true,
+            "resolution": "The proper log(t) example has smooth unbounded t^3/6 coefficient and unit third derivative, newly checked exactly; no minimum-norm claim.",
+            "current06_evidence": [
+              "INDEPENDENT_EXACT_CHECKS.json"
+            ]
+          },
+          "SM-OPTIONAL-1": {
+            "verified": true,
+            "resolution": "Actual Amari84–85/87 personally viewed: torsion/curvature flatness and local dual coordinates support direct current citations.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md",
+              "PRIMARY_SOURCE_PINS.json"
+            ]
+          },
+          "global_hessian/optional_exposition/0": {
+            "verified": true,
+            "resolution": "Actual Gualtieri43–44 personally viewed; fresh wwwURL returns exact authenticated variable-radius primary PDF.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md",
+              "SOURCE_LINK_CONTROLS.json"
+            ]
+          },
+          "global_hessian/optional_exposition/1": {
+            "verified": true,
+            "resolution": "dr=P_T and dnu=P_N and zero first jet of the normal correction are explicit and independently derived.",
+            "current06_evidence": [
+              "INDEPENDENT_DERIVATION.md"
+            ]
+          },
+          "global_hessian/optional_exposition/2": {
+            "verified": true,
+            "resolution": "Completed-square Schur lower bound(2+t)I is displayed and new exact unbounded2x3 block controls detect omission of normal correction.",
+            "current06_evidence": [
+              "INDEPENDENT_DERIVATION.md",
+              "INDEPENDENT_EXACT_CHECKS.json"
+            ]
+          },
+          "global_hessian/optional_exposition/3": {
+            "verified": true,
+            "resolution": "Actual Whitney654Theorem1/665Lemma19fn32 personally viewed, including proper finite-limit-point removal.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md"
+            ]
+          },
+          "global_adversary/optional_findings/0": {
+            "verified": true,
+            "resolution": "Global scope and excluded convexity/completeness/dual-gradient injectivity/boundary/indefinite/probability/optimal-dimension conclusions remain clear in all outputs.",
+            "current06_evidence": [
+              "INDEPENDENT_DERIVATION.md",
+              "PDF_RENDER_REVIEW.json"
+            ]
+          },
+          "global_adversary/optional_findings/1": {
+            "verified": true,
+            "resolution": "Circle/noncompact-parabola companion illustrations remain authenticated and actually replay in all4 cold modes; universal proof is separately reconstructed.",
+            "current06_evidence": [
+              "COLD_REPLAY.json",
+              "INDEPENDENT_DERIVATION.md"
+            ]
+          },
+          "global_adversary/optional_findings/2": {
+            "verified": true,
+            "resolution": "Universal mathematics, bounded priority, finite computation and complete operations are independently assessed; none is substituted for another.",
+            "current06_evidence": [
+              "FULL_AUDIT.md"
+            ]
+          },
+          "reproducibility/required_findings/0": {
+            "verified": true,
+            "resolution": "Fresh historical strict wrapper fails; direct actual replay has9/12 different sample floats/max2.1032064978498966e-12. Exactly12 typed finite bounded fields pass88 negatives and44 exact-leaf/domain controls, with no roundoff-proof claim.",
+            "current06_evidence": [
+              "REPRODUCTION_ADVERSARY.json",
+              "TYPED_FLOAT_CONTROLS.json",
+              "NUMERICAL_CONTROLS.json"
+            ]
+          },
+          "reproducibility/required_findings/1": {
+            "verified": true,
+            "resolution": "Actual immutable native state/history lack target events. Declared4/5, unknown historical total, unauthenticated native history and0audit proof responses are honest in every publication path.",
+            "current06_evidence": [
+              "PRESERVATION_CHECKS.json",
+              "SERVICE_BOUNDARIES.json"
+            ]
+          },
+          "reproducibility/optional_findings/0": {
+            "verified": true,
+            "resolution": "Fresh corrupted-proof original auditA fails normally and falsely passes O/OO. Actual current diagnostic children are isolated optimization0/-B in all4 outer modes.",
+            "current06_evidence": [
+              "REPRODUCTION_ADVERSARY.json",
+              "ACTUAL_RUNTIME_FLAGS.json"
+            ]
+          },
+          "reproducibility/v1_FIFO_required_repair": {
+            "verified": true,
+            "resolution": "Actual v1 FIFO timeout and v2 prompt rejection reproduced;15 nonblocking/6link tests include forced stat/open replacement, caps, growth and ancestor links.",
+            "current06_evidence": [
+              "REPRODUCTION_ADVERSARY.json",
+              "V2_NONBLOCKING_REPLAY.json",
+              "V2_LINK_REPLAY.json"
+            ]
+          },
+          "priority_falsifier/required_repair/0": {
+            "verified": true,
+            "resolution": "Actual authorized AJLS221/222/237/238 personally viewed: finitecompact/countablenoncompact statements available; p239/full chapter still unaudited.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md",
+              "PRIMARY_SOURCE_PINS.json"
+            ]
+          },
+          "priority_falsifier/required_repair/1": {
+            "verified": true,
+            "resolution": "Older unrestricted finite-simplex claims remain substantive adverse evidence; final2006/2007 bodies remain unavailable, and neither falsity/erratum/firstness/current openness follows.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md",
+              "FRESH_PRIORITY_CHECK.json"
+            ]
+          },
+          "priority_falsifier/required_repair/2": {
+            "verified": true,
+            "resolution": "Actual Lauritzen/Matumoto/Lê/Marugame/LoiMatta/Osipov ancestry and mechanism limits checked and credited; properness/globalchart/dimension do not shield historical priority.",
+            "current06_evidence": [
+              "PRIMARY_SOURCE_REVIEW.md"
+            ]
+          },
+          "priority_falsifier/required_repair/3": {
+            "verified": true,
+            "resolution": "All8 family seals and v2 repair, all5 full seals/every curated payload and complete223-file historical candidates with7 sources authenticated without changing old reports.",
+            "current06_evidence": [
+              "PRESERVATION_CHECKS.json",
+              "HISTORY_AUTHENTICATION.json"
+            ]
+          },
+          "FP01-OPS-001": {
+            "verified": true,
+            "resolution": "Actual current06 canonical directory scan rejects omitted/pending/adverse/malformed/mixedcase/gap/symlink rounds; all5 prior seals plus synthetic06 retained.",
+            "current06_evidence": [
+              "SCHEMA_CONTROLS.json",
+              "CURRENT06_CONTROLS.json",
+              "CONTRACT06_CONTROLS.json"
+            ]
+          },
+          "FP01-OPS-002": {
+            "verified": true,
+            "resolution": "Mandatory exacttyped RESULT/START/END/COLD fields and positive matching revision/explicit empty normalization enforced on actual current and historical paths. Missing/wrongtype controls and re-sealed synthetic revision999/bool/whole-receipt negatives reject.",
+            "current06_evidence": [
+              "SCHEMA_CONTROLS.json",
+              "CONTRACT06_CONTROLS.json"
+            ]
+          },
+          "FP01-OPS-003": {
+            "verified": true,
+            "resolution": "Complete actual positive finalizer recomputes publication summary and clears target-specific tooling; completion/repeat and status-only next selection pass.",
+            "current06_evidence": [
+              "SERVICE_BOUNDARIES.json",
+              "CURRENT06_CONTROLS.json",
+              "NATIVE_RETRY06_CONTROLS.json"
+            ]
+          },
+          "FP01-DOC-001": {
+            "verified": true,
+            "resolution": "All6 actual PDF pages freshly rendered and personally viewed; page1 version1.0 and CCBY4.0 match descriptor.",
+            "current06_evidence": [
+              "PDF_RENDER_REVIEW.json"
+            ]
+          },
+          "FP02-OPS-001": {
+            "verified": true,
+            "resolution": "Broader complete-current-approval contract now resolved for the stated deterministic logical windows: actual entry/shared guards, postready, kit/GWS/native/final metadata dispatches, per CAS retry, late completion/recovery, and final sealed review/historical closure after intervening current-state reads all reject invalidation. No hostile OS atomicity promise.",
+            "current06_evidence": [
+              "CURRENT06_CONTROLS.json",
+              "CLOSURE06_CONTROLS.json",
+              "ACTION_ENTRY_CONTROLS.json",
+              "SERVICE_BOUNDARIES.json",
+              "MERGE_RECOVERY06_CONTROLS.json",
+              "NATIVE_RETRY06_CONTROLS.json"
+            ]
+          },
+          "FP02-DOC-001": {
+            "verified": true,
+            "resolution": "Correct wwwToronto URL serves exact authenticated primary PDF; current TeX/PDF/archive cite it consistently.",
+            "current06_evidence": [
+              "SOURCE_LINK_CONTROLS.json",
+              "PDF_RENDER_REVIEW.json"
+            ]
+          },
+          "FP03-OPS-001": {
+            "verified": true,
+            "resolution": "Actual current06 late state/nextstatus and already-finalized windows reject new pending/adverse rounds and sealed-history drift; positive completion/recovery pass.",
+            "current06_evidence": [
+              "CURRENT06_CONTROLS.json",
+              "SERVICE_BOUNDARIES.json"
+            ]
+          },
+          "FP04-OPS-001": {
+            "verified": true,
+            "resolution": "Actual accepted_state_check refreshes full canonical acceptance before and after intervening original/review reads; revocation/theorem/accepted-record drift rejects at shared, postready and final-state/status boundaries.",
+            "current06_evidence": [
+              "CURRENT06_CONTROLS.json",
+              "ACTION_ENTRY_CONTROLS.json",
+              "MERGE_RECOVERY06_CONTROLS.json"
+            ]
+          },
+          "FP04-OPS-002": {
+            "verified": true,
+            "resolution": "Actual candidate_state_check recaptures7 dependencies and exact external FREEZE/all223+77payload/evidence identities; TeX/FREEZE/helper/inventory/evidence drift rejects after intervening reads and before actions/completion.",
+            "current06_evidence": [
+              "CURRENT06_CONTROLS.json",
+              "CLOSURE06_CONTROLS.json",
+              "ACTION_ENTRY_CONTROLS.json"
+            ]
+          },
+          "FP05-OPS-001": {
+            "verified": true,
+            "resolution": "Initial actual accept reauthenticates current candidate/dependencies after final actual premerge/source/original reads, then closes sealed review/historical contexts before exclusive approval save. Nine object classes plus pending/adverse injections reject without creating ACCEPTANCE; valid actual initial approval/readback passes in fake fixture.",
+            "current06_evidence": [
+              "CLOSURE06_CONTROLS.json"
+            ]
+          },
+          "FP05-OPS-002": {
+            "verified": true,
+            "resolution": "Actual shared closing review_state_check authenticates all externally sealed review payloads/seals/historical candidate sources after the second current-FREEZE refresh. Payload/seal/historical-file/dependency/pending/adverse injections reject, with actual review_check unmodified.",
+            "current06_evidence": [
+              "CLOSURE06_CONTROLS.json",
+              "SERVICE_BOUNDARIES.json"
+            ]
+          }
+        },
+        "whole_package_review_completed": true,
+        "assigned_review_completion_percent": 100,
+        "actual_external_mutations": 0,
+        "canonical_candidate_mutations": 0,
+        "new_proof_search_responses": 0,
+        "new_target_realization_mechanisms": 0,
+        "original_declared_turns": "4/5",
+        "historical_native_event_history_authenticated": false,
+        "original_total_attempt_count_known": false,
+        "actual_current06_fake_fixture": {
+          "prior_real_full_seals": 5,
+          "complete_historical_candidates": 5,
+          "current_context_cases": 183,
+          "schema_cases": 79,
+          "terminal06_explicitly_synthetic": true
+        },
+        "no_OS_sandbox_or_atomic_filesystem_claim": true,
+        "limitations": [
+          "Bounded primary-source coverage; final-body/publisher-version gaps are explicit.",
+          "No historical novelty, firstness or current-openness certification.",
+          "No independent human peer review or formal proof certification.",
+          "Trusted entrypoint/interpreter/stdlib/math libraries/executables/process/filesystem/external pins remain assumptions.",
+          "All publication/Git mutations in tests fake; no actual operation performed."
+        ]
+      }
+    }
+  ],
+  "authenticated_review_chain": [
+    {
+      "round": 1,
+      "manifest_sha256": "2f1a4ba73839b83280e9daba44fbe79e70b52a80761deded5314e0db99c7e834",
+      "completed_utc": "2026-10-15T13:19:04.506804+00:00",
+      "required_repairs": [
+        {
+          "id": "FP01-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:370-495",
+          "finding": "A later sealed adverse canonical full_package_NN round can be omitted from the supplied consecutive clean prefix and the earlier prefix accepted.",
+          "evidence": [
+            "OPERATIONS_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Inventory all canonical review directories safely and require the complete sealed consecutive sequence; reject omitted, malformed and unsealed canonical rounds."
+        },
+        {
+          "id": "FP01-OPS-002",
+          "severity": "required",
+          "category": "operational_schema",
+          "location": "accept_pr946.py:377-495",
+          "finding": "Current-freeze reviews accept missing candidate_revision, mismatched revision999, and absent COLD.normalized_fields_ignored despite mandatory schema.",
+          "evidence": [
+            "SCHEMA_ADVERSARY.json",
+            "operations_adversary.py"
+          ],
+          "repair": "Require mandatory keys/types explicitly for all review paths, compare revision to authenticated freeze, and require explicit exact empty normalization list."
+        }
+      ],
+      "optional_improvements": [
+        {
+          "id": "FP01-OPS-003",
+          "category": "state_consistency",
+          "location": "accept_pr946.py:1205-1235",
+          "finding": "Full finalize selects next target but leaves publication summary omitting946 and carries its portable_release_tooling field to next target.",
+          "evidence": [
+            "FINALIZE_STATE_ADVERSARY.json",
+            "finalize_state_adversary.py"
+          ],
+          "repair": "Refresh publication summary from completed records and clear or scope target-specific tooling before selecting next target."
+        },
+        {
+          "id": "FP01-DOC-001",
+          "category": "document_metadata",
+          "location": "research_note.tex title/status area",
+          "finding": "Descriptor declares version1.0 and CC-BY4.0 but standalone PDF has no visible version/license notice.",
+          "evidence": [
+            "PDF_RENDER_REVIEW.json"
+          ],
+          "repair": "Add compact version1.0 and CC-BY4.0 notice consistent with descriptor."
+        }
+      ],
+      "public_files_authenticated": 40
+    },
+    {
+      "round": 2,
+      "manifest_sha256": "e0361044f313b540f8a46b6a417a00a1777e22a33439e9a097aa0f9e7b54c3e6",
+      "completed_utc": "2026-10-15T13:59:59.429953+00:00",
+      "required_repairs": [
+        {
+          "id": "FP02-OPS-001",
+          "severity": "required",
+          "category": "operational_review_history",
+          "location": "accept_pr946.py:620-633 accepted_package; merge/zenodo/tracker_append/native_write/finalize action boundaries",
+          "finding": "After acceptance, later actions neither reauthenticate the accepted complete sealed review chain nor inventory new canonical full_package_NN rounds. An adverse or unfinished round added after acceptance, including after readiness, can be ignored before merge and publication actions.",
+          "evidence": [
+            "INDEPENDENT_OPERATIONS_CONTROLS.json",
+            "independent_operations_controls.py",
+            "ACTION_BOUNDARY_REVIEW.json"
+          ],
+          "repair": "Revalidate accepted review seals/full records/current and historical freezes/issue resolutions and exact complete directory set at every later action, then recheck immediately before mutating dispatches, after readiness and per native CAS parent. Add new-adverse-round and changed-seal controls across all actions."
+        }
+      ],
+      "optional_improvements": [
+        {
+          "id": "FP02-DOC-001",
+          "category": "source_link",
+          "location": "research_note.tex:455, PDF bibliography item7",
+          "finding": "Tubular-neighborhood citation uses non-www math.toronto.edu hostname, freshly HTTP404; www.math.toronto.edu serves the exact authenticated primary PDF.",
+          "evidence": [
+            "SOURCE_LINK_CONTROLS.json",
+            "PRIMARY_SOURCE_REVIEW.json"
+          ],
+          "repair": "Use https://www.math.toronto.edu/mgualt/courses/17-1300/docs/17-1300-notes-11.pdf and rebuild paper/archive/metadata pins consistently."
+        }
+      ],
+      "public_files_authenticated": 39
+    },
+    {
+      "round": 3,
+      "manifest_sha256": "28f08795caf265a412463b3b30880f29bcbc615eb84baf4b92010d1720326370",
+      "completed_utc": "2026-10-15T14:26:40.989469+00:00",
+      "required_repairs": [
+        {
+          "id": "FP03-OPS-001",
+          "severity": "required",
+          "category": "operational_final_completion_review_history",
+          "location": "accept_pr946.py:1309-1316,1323-1350 finalize",
+          "finding": "The last accepted_review_check precedes CURRENT_STATE/inventory reads and gate_next. A new canonical pending/adverse review introduced during those reads is ignored before final workflow-completion state/log writes; pending review introduced during state reading also permits already_finalized=true recovery return.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the complete accepted review history after all state/next-status reads immediately before the final completion-write sequence, and before the already-finalized return after state reading; add actual-directory behavioral pending/adverse/drift and positive-chain controls. Preserve candidate03 and older evidence, rebuild pins and commission a NEW entire full-package review."
+        }
+      ],
+      "optional_improvements": [],
+      "public_files_authenticated": 35
+    },
+    {
+      "round": 4,
+      "manifest_sha256": "7fb99b465473a17ad54a363c4ee6f410023b3857343a5df2c356a705d50180d0",
+      "completed_utc": "2026-10-16T04:17:35.425300+00:00",
+      "required_repairs": [
+        {
+          "id": "FP04-OPS-001",
+          "severity": "required",
+          "category": "operational_canonical_acceptance_refresh",
+          "location": "accept_pr946.py:620-637,711-730,1311-1317,1328-1344",
+          "finding": "The immediate shared guard does not reload canonical ACCEPTANCE.json. Revocation or accepted theorem drift during late state/next-status reads still allows completion or already_finalized; acceptance revocation during ready still permits the subsequent merge dispatch.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Refresh and validate canonical acceptance at each immediate boundary, require exact consistency with the authenticated action snapshot and stop on revocation or drift, including after intervening service reads. Preserve captured execution and uncertain-action recovery semantics."
+        },
+        {
+          "id": "FP04-OPS-002",
+          "severity": "required",
+          "category": "operational_current_freeze_refresh",
+          "location": "accept_pr946.py:493-560,620-637,1311-1317,1328-1344",
+          "finding": "The immediate shared guard retains the already-loaded current freeze and does not reread every current frozen file. Standalone current TeX or FREEZE drift introduced during state/next-status reads still allows completion or already_finalized while a fresh accepted_package immediately rejects.",
+          "evidence": [
+            "ACTION_CHAIN_CONTROLS.json",
+            "action_chain_controls.py",
+            "FULL_AUDIT.md"
+          ],
+          "repair": "Reauthenticate the externally pinned current freeze and complete current payload/evidence context at existing immediate boundaries and compare the refreshed snapshot, including after reads inside the guard. Retain snapshot execution semantics; no atomic hostile-filesystem guarantee is required."
+        }
+      ],
+      "optional_improvements": [],
+      "public_files_authenticated": 39
+    },
+    {
+      "round": 5,
+      "manifest_sha256": "4d60602995d799a0850c4657b3401ad9c353460800f1fbd752c532b73b6963b2",
+      "completed_utc": "2026-10-16T04:49:47.763011+00:00",
+      "required_repairs": [
+        {
+          "id": "FP05-OPS-001",
+          "severity": "required",
+          "category": "initial_acceptance_final_canonical_refresh",
+          "location": "accept_pr946.py:696-726",
+          "finding": "Initial accept authenticates current candidate and full reviews, then performs a final premerge/source/original reread without refreshing current freeze/payload/dependency context afterward. A current TeX change during the final actual source_gate still writes canonical ACCEPTANCE for the stale freeze. Fresh accepted_package rejects the same tree, so later external actions remain blocked.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "After final live/source/original/review reads, reauthenticate and compare the current externally pinned candidate and operational dependency context before writing acceptance. Cover currentFREEZE/payload/evidence/dependency drift. Preserve captured execution and no-OS-atomicity limits."
+        },
+        {
+          "id": "FP05-OPS-002",
+          "severity": "required",
+          "category": "late_sealed_review_content_refresh",
+          "location": "accept_pr946.py:634-655",
+          "finding": "The shared guard authenticates full reviews, refreshes canonical acceptance/current freeze/dependencies, then scans only review-directory names. Changing a sealed terminal review payload or MANIFEST during the intervening current-state refresh is missed and the guard returns. Fresh accepted_package rejects the same tree. This is a deterministic intervening-read gap, not an atomic hostile-filesystem requirement.",
+          "evidence": [
+            "LATE_REFRESH_CONTROLS.json",
+            "late_refresh_controls.py",
+            "SERVICE_BOUNDARIES.json",
+            "service_boundaries.py",
+            "CURRENT05_CONTROLS.json"
+          ],
+          "repair": "Reauthenticate externally sealed review contents/seals and the complete canonical directory set after intervening current-candidate reads, comparing with the accepted chain. Test payload and seal drift while canonical dependencies refresh plus valid complete-chain controls. Do not promise OS atomicity."
+        }
+      ],
+      "optional_improvements": [],
+      "public_files_authenticated": 48
+    },
+    {
+      "round": 6,
+      "manifest_sha256": "1c75fc274754826a9d189a7e5e5ac206782deddd0a91dc75d0636d9aa787de71",
+      "completed_utc": "2026-10-16T05:21:26.680525+00:00",
+      "required_repairs": [],
+      "optional_improvements": [],
+      "public_files_authenticated": 61
+    }
+  ],
+  "latest_exact_theorem": "For every smooth Hausdorff second-countable manifold without boundary of fixed finite dimension n>=1, every positive Riemannian metric g and every prescribed ordered mutually g-dual torsion-free connection pair (nabla,nabla*) admit a proper smooth embedding into one open subset U of R^N, N=binomial(2n+4,3)>n, carrying one smooth function Psi with everywhere positive ordinary Hessian G, such that f*G=g and the G-orthogonal tangential projections of the standard flat connection D and its G-dual D* induce exactly (nabla,nabla*) in that order; both ambient connections are torsion-free and flat. Among general smooth positive Riemannian dual pairs in this category, vanishing of both torsions is necessary and sufficient. Countable zero-dimensional and empty cases have the separate trivial realization in R. No convexity, completeness, global dual-gradient injectivity, finite probability model, optimal dimension or historical novelty is asserted.",
+  "live_PR": {
+    "baseRefName": "main",
+    "headRefName": "dot/statistical-embedding-6000001-proof-20261007",
+    "headRefOid": "7d3adb0e500b0414a49a449e7981d34ade329427",
+    "isDraft": true,
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 946,
+    "state": "OPEN",
+    "title": "Problem 6000001: audited global statistical embedding proof",
+    "url": "https://github.com/AlecKriebel/Math/pull/946"
+  },
+  "fresh_main": "d40bce2bfffc843659ba4de365bd9f9f67d2f083",
+  "fresh_source_gate": {
+    "utc": "2026-10-16T05:22:47.434747+00:00",
+    "remote_main": "d40bce2bfffc843659ba4de365bd9f9f67d2f083",
+    "present": true,
+    "holds": [],
+    "statement_hash": "04707260f4ed2585125f1da57279c9cf1da447cd99a9010d463e5be43dc945cd",
+    "review_hash": "f8584e1f273da5d42d94704da74c51cf5aa9f0100b44e2bc9b2096c45eabf4fb",
+    "related_target_membership": {}
+  },
+  "all33_actual_original_Git_disk_archive_checked": true,
+  "all_prior_required_optional_findings_resolved": true,
+  "canonical_review_history_complete": true,
+  "acceptance_created": false,
+  "external_mutations": 0,
+  "new_proof_responses": 0
+}

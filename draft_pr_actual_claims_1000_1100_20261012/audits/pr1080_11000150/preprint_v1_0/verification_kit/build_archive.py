@@ -14,19 +14,19 @@ _spec.loader.exec_module(verify)
 
 
 def build(destination):
+    output = verify.fresh_output(destination)
     verify.verify()
-    output = Path(destination).resolve()
-    verify.require(not output.is_relative_to(verify.ROOT), "archive must be outside the kit")
-    verify.require(not output.is_symlink(), "archive output symlink rejected")
     names = json.loads((verify.ROOT / "ALLOWLIST.json").read_text())["members"]
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as z:
-        for name in names:
-            record = zipfile.ZipInfo("verification_kit/" + name, (2026, 10, 14, 0, 0, 0))
-            record.create_system = 3
-            record.external_attr = 0o100644 << 16
-            record.compress_type = zipfile.ZIP_STORED
-            record.flag_bits = 0
-            z.writestr(record, (verify.ROOT / name).read_bytes())
+    # Exclusive creation never truncates an existing output or inode alias.
+    with output.open("xb") as stream:
+        with zipfile.ZipFile(stream, "w", compression=zipfile.ZIP_STORED) as z:
+            for name in names:
+                record = zipfile.ZipInfo("verification_kit/" + name, (2026, 10, 14, 0, 0, 0))
+                record.create_system = 3
+                record.external_attr = 0o100644 << 16
+                record.compress_type = zipfile.ZIP_STORED
+                record.flag_bits = 0
+                z.writestr(record, (verify.ROOT / name).read_bytes())
     return {"status": "PASS", "archive": str(output), "bytes": output.stat().st_size,
             "sha256": verify.digest(output), "members": len(names), "method": "stored; fixed date, mode and sorted order"}
 

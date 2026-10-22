@@ -1,0 +1,9 @@
+# Research log
+
+2026-10-16T19:07:49.291160+00:00 — Independent audit started. Target record read. Progress 10%. Exact claim: find a CM variety whose all powers have only Lefschetz Hodge classes but whose reduction has an exotic Tate class on some power. Primary CM lifting bridge remains unverified.
+
+2026-10-16T19:14:26.827354+00:00 — Checkpoint, progress 85%. Original Ribet pp84–87 verifies every simple CM threefold is nondegenerate. Original Tate Bourbaki theorem2 p102 verifies a same-dimensional CM lift after isogeny and finite extension. Exact PARI/GP confirms polynomial, geometric simplicity under every extension, angle rank2, and an exotic codimension3 Tate class on the square. Direct CM lifting of the particular database representative is unnecessary and remains outside the verified claim. DKZ Remark3.5 conflicts with this verified construction and is excluded as an unproved bridge.
+
+2026-10-16T19:16:53.166289+00:00 — Final checkpoint, progress100% for the assigned earlier-threefold audit. The universal forward implication is disproved by the prior polynomial plus original Tate/Ribet theorems and the all-powers invariant argument. Primary-source conflict tested and recorded. Direct lifting of a chosen database representative and Zarhin1995 body not claimed. Exact GP run passed; authored-manifest and corruption controls next. No disposition or repository mutation made.
+
+2026-10-16T19:17:50.163239+00:00 — Integrity checkpoint, progress100%. Arithmetic passed, wrong external pin rejected, and copied-file corruption rejected. Codimension3 on the square: Tate90 versus Lefschetz88. Authored report, ledgers, code, and verification record sealed in a raw-excluding manifest. No mathematical gap remains for the stated universal counterexample; direct liftability of every isogeny-class member is not a claim.

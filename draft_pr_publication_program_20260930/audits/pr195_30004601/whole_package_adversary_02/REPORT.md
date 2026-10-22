@@ -1,0 +1,75 @@
+# PR195 publication package v2: independent whole-package adversary 02
+
+**CLEANPASS. No substantive finding or required repair was identified in the exact frozen complete package reviewed.** The mathematical claim, reproducibility, new comparison supplement, source scope, attribution, historical qualifications, PDF presentation, metadata and archive integrity pass this review. This is an AI adversarial review, not conventional human peer review or a historical-priority certificate. It does not perform publication or complete any other parent workflow step.
+
+The assigned review is 100% complete. The reviewed inputs were not changed. No Git/index/ref/checkout/branch operation, remote write, publication, outreach, editor-tab operation or inspection/execution of publication lifecycle code outside the package was performed. All new outputs are confined to this review directory.
+
+## Reviewed object and independence
+
+The object is the sibling `publication_package_v2`, exactly 14 top-level files. `REVIEWED_INPUT_PINS.json` records every byte count and SHA-256; `ARCHIVE_INSPECTION.json` records all 78 ZIP entries and nested manifest checks. Supplied critical pins were independently confirmed:
+
+| Object | Bytes | SHA-256 |
+|---|---:|---|
+| PACKAGE_SEAL.json | 3,126 | 80677327e71c1f1d8c040f62efbbe061d8ff85650d18f885cdecd22211c6b5dd |
+| seven_plane_gin.pdf | 82,753 | 4cdc4d5810d0ffe09c23242aeea9560bd9dffcdacdc9c09f9b2133562d3d5180 |
+| seven_plane_gin.tex | 18,436 | c824a6b0327044714027f80d5067488a1f5875a2007f1555b2c038d595a2e43d |
+| verification-package.zip | 166,511 | 3191ba517f25281bdec5b9a7d0dcf0871011d7e1ec36eaa07c0aa009a5ca8c83 |
+
+I read the complete manuscript and original OWR/BPT conjecture before favorable audit reports, Root gates or the first whole-package review. `INDEPENDENT_INITIAL_RECORD.md` freezes that initial mechanism and falsification assessment. The parent supplied the proposed claim, input identities, source leads and intended qualified scope; these were not accepted as proof. Earlier reports were read only after this initial record was fixed. `COVERAGE.json` identifies review methods for every top-level file and archive entry.
+
+## Mathematical falsification and strongest result
+
+For any characteristic-zero field K, let Q=xy(x-y)(x-2y)zw(x+z+w), J=(Q_x,Q_y,Q_z,Q_w), and B its degree-reverse-lexicographic generic initial ideal with x1>x2>x3>x4. The supported theorem is p=min{d:x2^d in B}=8, together with a degree-seven minimal generator in K[x1,x2,x3] divisible by x3. No full gin, named exponent, smallest hyperplane count, arbitrary-section assertion or positive-characteristic extension is proved or needed.
+
+I tried to break every substantive bridge:
+
+1. **Ambient polars and completeness of syzygies.** Coordinate factors ensure essentiality; all seven factors are distinct and central. Euler identifies the four-polar ideal with the convention adjoining Q. After restriction there are still four ambient polars. Reduction modulo a distinct restricted factor takes place in a domain and characterizes every linear syzygy by a_i.u=lambda_i L_i and sum(lambda_i)=0. The constant version forces all four constants zero, proving minimality of the generators rather than assuming it.
+2. **Scalar counts and binary height.** Independent X,Y force the four pencil scalars equal. Independent ternary X,Z,W then make all scalars equal; trace 7a=0 removes them. In binary, the one relation among X,Z,W yields parameters d,t with trace coefficient 7 on d. This has rank one even when the other coefficient vanishes; the map to actual syzygies is injective. Restricted Euler and distinct binary factors rule out a common projective zero over an algebraic closure: exactly one factor vanishes, leaving its nonzero ambient normal times a nonzero product. Height two descends to K.
+3. **Hilbert--Burch and genericity.** Four independent degree-six binary generators give three positive coefficient shifts summing to six. Precisely one linear syzygy forces (1,2,3), hence H2(6,7,8)=(3,1,0). The ternary values are H3(5,6,7)=(21,24,24). These conclusions hold throughout the explicitly defined open conditions, not just at a sample. The compatible rational flag and determinant-one GL4 lift prove nonemptiness in every field in scope. Its K-defined open inverse image in affine-space GL4 meets the gin open; an infinite field has rational points in such an open. No rational-point assertion about an arbitrary variety is required.
+4. **The generator is minimal in the full ring.** The revlex section identity identifies these dimensions with B's first-variable truncations. Strong stability makes the binary pure-power cutoff exactly eight. Multiplication by x3 on the three-variable quotient has kernels zero at degree six and one at degree seven. With no ideal elements below six, a killed standard degree-six monomial gives a minimal divisor involving x3 of degree exactly seven. Divisors cannot involve x4, so minimality persists in B. The manuscript safely uses the triangle mechanism inside B3 and does not infer arbitrary later-variable generators from one sectional row.
+
+These are checkable algebraic deductions. The computations corroborate them. Characteristic seven and dependent ternary X,Z,W are material excluded cases; archived controls drop the degree-seven rank from twelve to eleven. I found no circularity, unproved upper rank bound, reversed semicontinuity, loss of syzygies, hidden gcd assumption or mistaken generator-minimality inference.
+
+## Independent controls and complete replay
+
+My new `independent_evaluation_controls.py` imports no archived implementation. It evaluates the ambient product-rule polar vector directly, without expanding Q or substituting a coefficient polynomial. Homogeneous degree-k forms are evaluated at (1,t), 0<=t<=k, or at (1,s,t), s,t>=0, s+t<=k. These grids are unisolvent: the falling-factorial basis is triangular by total degree with nonzero diagonal, so evaluation preserves coefficient rank in characteristic zero. Exact rational elimination and explicit nonzero evaluation minors reproduce all five proof-critical ranks. `INDEPENDENT_EVALUATION_CONTROLS.json` retains the witnesses.
+
+It also checks the binary identity at ten unisolvent points, distinguishes the three chain-rule restricted derivatives (ranks 3,9) from the four ambient polars (4,12), and reproduces a degenerate ternary rank eleven. A separate valid binary flag with W=(5/6)s+t, Z=2s+3t and rho=(1,2,-6) has 4rho_x+rho_z+rho_w=0. Its factors remain distinct; the predicted one-dimensional linear-syzygy branch and ranks (4,7,9) survive. This directly attacks the exceptional trace-coefficient case. A prime-101 evaluation control agrees without confusing small-characteristic evaluation degeneracy with the characteristic-zero claim. A separate exact flat closure computation confirms that the only rank-two flat of multiplicity at least three is the four-factor pencil.
+
+Before execution I read every packaged executable source, including differentiation/substitution, Gaussian elimination, minor and complete-kernel construction, primitive syzygy selection, signed Hilbert--Burch minors, Gröbner representations and all 21 binary Buchberger pairs. I checked the finite-coordinate scope of the partial three/four-variable initial ideals. The archived exact certificate is reconstructed byte-for-byte; comparison certificates are reconstructed as complete JSON data.
+
+From a fresh private extraction, `/opt/homebrew/opt/python@3.14/bin/python3.14 -E -S -B -P verify_package.py` passed all 77 inventory hashes and all five required programs. `REPLAY_STDOUT.json` preserves the output. Three additional archived mathematical programs also match their stored JSON exactly. The code uses standard-library arithmetic and requires no original-submission files, external services, CAS or third-party dependencies. The current Python 3.11+ command is correct; the older 3.10+ README statement is explicitly identified as a dated documentation error in the current instructions.
+
+## New two-example supplement
+
+I independently checked the original [Nasrollah Nejad--Simis Example 3.4](https://arxiv.org/pdf/2606.18693v2) and [Walther bracelet Example 5.7](https://arxiv.org/pdf/1504.07164). Their equations match every normal row in the supplement. Both systems have rank four. The supplied ternary and binary maps are coherent and extend to invertible full bases. My evaluation computation independently gives, for both, H2(8,9,10)=(5,2,0) and H3(7,8,9)=(36,41,43).
+
+The relevant ranks are absolute maxima (binary 4,8,11; ternary 4,12). Their nonzero exact minors therefore establish these ranks on a common nonempty open, rather than only lower bounds at a favorable sample. The gin open meets it. Strong stability gives cutoff ten; the two third-variable multiplication kernels are 36-41+5=0 and 41-43+2=0. There are no elements below degree eight. Thus there is no largest-third-variable generator before ten. The broader involving-third exclusion is valid: replace later variables by x3 in a supposed earlier minimal generator and take a minimal divisor. A divisor involving x3 contradicts the truncation conclusion; a binary divisor already divides the original generator, contradicting its minimality.
+
+The supplement does not compute a full gin and does not claim an independent reviewer. Its AST wrapper authenticates the dependency's exact hash, compiles only the imports/definitions preceding `examples`, and resolves that dependency through `__file__`. The reviewed prefix contains only standard-library imports and definitions. A private copy passes from an unrelated working directory; changing its dependency causes rejection at the hash assertion before execution. `SUPPLEMENTARY_REPLAY_CHECKS.json` records this control. No reviewed file was edited.
+
+## Sources, credit and priority boundary
+
+I independently read and visually confirmed the second-variable statements in [OWR printed234](https://ems.press/content/serial-article-files/46883), BPT Conjecture5.7 in [arXiv](https://arxiv.org/pdf/1801.09868) and the accepted manuscript, and [final MPT Conjecture4.6/Theorem4.7](https://ems.press/content/serial-article-files/52275?nt=1). BPT's d0+1 is exactly p; MPT uses zero-based indices and proves the K3 arrangement case. Restricting four ambient polars does not contradict that theorem. The imported first-variable exponent was a transcription error, as the note states.
+
+[Conca Lemma1.2](https://arxiv.org/pdf/math/0210064) supports the section identity; BPT4.4/6.2/6.6 support the credited generic-initial machinery with the manuscript's truncation precision. [Falk--Proudfoot Section4](https://arxiv.org/pdf/math/0002094v2) supports the classical shared-coordinate parallel connection. [Tohaneanu Section2.1](https://arxiv.org/pdf/1405.2122v2) explicitly mediates the Orlik--Terao attribution. The note claims no new general method or construction.
+
+[Migliore--Nagel Section8.2](https://arxiv.org/pdf/2508.12113v1) applies with d=7, |S0|=1, s=3 and multiplicity4, giving 0→S(-7)^3⊕S(-9)→S(-6)^5→J^top→0. This is substantive credited prior information; it concerns five generators and does not itself give the required sections of four-generated J. Their Section3 independently confirms the restriction distinction.
+
+I checked the primary PT equations and all fourteen Janasz--Pokora rigid-octic equations, including the quadratic coefficient conventions. Their exact replay and the algebraic maximum-rank/Hilbert--Burch deductions support cutoffs 9,7,5 and fourteen cutoffs9, with no earlier third-variable witness. Nonzero minors modulo1009 are valid characteristic-zero nonvanishing certificates through the stated residue maps, not positive-characteristic gin claims. Together with the new supplement this is a bounded comparison of nineteen examples.
+
+I inspected all 36 source records, 120 query records and retrieval/scope metadata; I did not independently re-run every historical search or re-prove every unrelated cited theorem. Original Galligo/Burch/book full texts were not separately read here; the precise needed statements and mediated attribution were checked. [Ilardi's institutional record](https://www.iris.unina.it/handle/11588/726226) still labels the postprint restricted; I obtained no full article. Possible overlap remains unexcluded. The 63 octic families, Boolean extensions, other related gins, historical code and candidate first public timestamp remain unexhausted. The manuscript, README and deposit retain unresolved priority and independent discovery. The qualified publication scope does not require inventing universal firstness.
+
+## Whole package and presentation
+
+All 78 ZIP names are unique safe relative paths; every entry is an authored UTF-8 text/data/source file. There are no symlinks, private folders, downloaded article files or third-party dependencies. The inventory binds all 77 other entries. All six nested manifests/allowlists and Root gate safe-file pins match. The six duplicate root files match the top-level files byte-for-byte. The first whole-package report and acceptance are consistent dated v1 records; their old input pins agree, and neither purports to review the new v2 supplement. Before/after file-set and hash checks show unchanged extraction and all fourteen original inputs.
+
+Every page of the actual six-page PDF was rendered and visually inspected against the TeX. Equations, subscripts, table, references, author, ORCID and disclosures agree; no clipping, overlap, missing glyph or unreadable item was found. PDF metadata confirms six pages, no forms, encryption or JavaScript. The standalone source has no external local includes. I did not recompile it; this review checks the actual supplied source/PDF and prior compiler attestations.
+
+Title, Alec Kriebel, ORCID0009-0001-9320-500X, date15October2026, polynomial, cutoff, degree and characteristic agree across source/PDF/README/references/deposit. Deposit metadata describes a preprint and exactly the three supplied output filenames. CC BY4.0 applies only to authored materials. Extensive AI assistance, unrefereed status and no conventional human peer review are stated consistently. Local deposit-check and readiness fields remain dated local attestations, not claims that publication occurred. No publication lifecycle code outside the package was inspected.
+
+## Disposition
+
+No required repairs. No mathematical, computational, attribution, historical-scope, disclosure, presentation or integrity defect remains within the assigned complete-package scope. The strongest verified result is the explicit characteristic-zero counterexample with a checkable proof and exact reproducible corroboration. Historical precedence beyond the disclosed bounded corpus remains unresolved.
+
+**CLEANPASS applies only to the exact fourteen-file v2 package and 78-entry archive pinned in this report.** Changes create a new object. This review supplies no publication, DOI, tracker, merge, human-review or worldwide-priority claim.

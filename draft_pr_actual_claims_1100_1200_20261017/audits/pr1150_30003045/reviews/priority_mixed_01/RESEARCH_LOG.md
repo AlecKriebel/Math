@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-17 23:35 UTC (approximate start; clock not separately captured): created the dedicated review folder and ignore rules before retaining external materials. Completion estimate: 5% of this priority-family audit. Task brief disclosed candidate data; no old audit or sibling/root review read.
+- 2026-10-17 23:36:55 UTC: completed the mathematical bodies of both core ALO manuscripts and the original contributing OWR talk. Sealed INDEPENDENT_CORE before candidate access. Exact mixed-generator overlap found, but no recorded third-Pfister obstruction in these complete core bodies. Completion estimate: 50%.
+- 2026-10-17 23:37–23:39 UTC: read the candidate and short later mixed-splitting paper; screened higher-inseparable, de Rham–Witt and 2025 rational-cohomology statements. Preserved publisher and HAL access failures. Found the later narrowly scoped Omega-kernel correction and read its theorem/proof/context. Completion estimate: 85%.
+- 2026-10-17 23:40 UTC: transcribed all 47 actual search queries in tool-call order; recorded the lack of per-query timing and unused guessed PII. Preserved the exact candidate snapshot. Completion estimate: 92%.
+- Final receipt timestamp: completed the theorem-level scope table, exact specialization, third-kernel bridge, credit requirement, and bounded priority conclusion. Completion estimate: 100% of the assigned family review, not of global novelty certification or publication readiness. No Git, PR, deposit, tracker, or external-human action occurred.

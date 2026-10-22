@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Compile the standalone source outside frozen package contents."""
-import argparse, os, shutil, subprocess
+import argparse, os, shutil, subprocess, sys
+sys.dont_write_bytecode=True
 from pathlib import Path
+from package_paths import fresh_output,safe_path
 p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--tectonic',default='tectonic');a=p.parse_args()
-root=Path(__file__).resolve().parents[1];dest=a.out.resolve()
-if dest==root:raise SystemExit('Use a separate output directory.')
-dest.mkdir(parents=True,exist_ok=True)
-source=dest/'paper.tex';shutil.copyfile(root/'paper.tex',source)
+root=Path(__file__).resolve().parents[1];dest=fresh_output(a.out,root)
+dest.mkdir()
+source=dest/'paper.tex';shutil.copyfile(safe_path(root,'paper.tex'),source)
 env=os.environ.copy();env['SOURCE_DATE_EPOCH']='1791936000';env['FORCE_SOURCE_DATE']='1'
-proc=subprocess.run([a.tectonic,'--outdir',str(dest),'--keep-logs',str(source)],env=env,text=True,capture_output=True)
+proc=subprocess.run([a.tectonic,'--outdir',str(dest),'--keep-logs',str(source)],env=env,text=True,capture_output=True,cwd=dest)
 (dest/'compile.stdout.txt').write_text(proc.stdout);(dest/'compile.stderr.txt').write_text(proc.stderr)
 print(proc.stdout);print(proc.stderr)
 if proc.returncode:raise SystemExit(proc.returncode)

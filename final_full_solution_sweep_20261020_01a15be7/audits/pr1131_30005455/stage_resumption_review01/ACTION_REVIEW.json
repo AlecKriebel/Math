@@ -1,0 +1,109 @@
+{
+  "at": "2026-10-22T09:28:26.897467+00:00",
+  "decision": "HOLD",
+  "proposal_manifest_sha256": "a278e6ace55e2a1bcecc7d916ac01bb6ee0e0d2e35b0828cbffb5f9152388c5c",
+  "actual_wrapper_sha256": "cc3b78b9728f4dbc9b5f3a899e7d5029c872387ab5af989ecddd1feb04d5bf6a",
+  "operations_manifest_sha256": "eab69e53e9d32510bbf00d74c1b94b70542a8b29cf326c42f5d974e510f09d00",
+  "modes": [
+    {
+      "mode": "normal",
+      "actual_wrapper_cases": 14,
+      "actual_parsed_production_stage_cases": 6,
+      "component_CLI_refusals": 3,
+      "wrapper_counterexamples": [
+        "late_resumption_adoption_revoked",
+        "late_old_stage_intent_changed"
+      ],
+      "PR_reference_counterexamples": [
+        "known_compact_pull_request",
+        "known_spaced_pull_request",
+        "known_hash_pull_request"
+      ],
+      "fake_create_POSTs": 10,
+      "fake_uploads": 15,
+      "fake_metadata_updates": 7,
+      "real_external_mutations": 0,
+      "real_escape_attempts": []
+    },
+    {
+      "mode": "O",
+      "actual_wrapper_cases": 14,
+      "actual_parsed_production_stage_cases": 6,
+      "component_CLI_refusals": 3,
+      "wrapper_counterexamples": [
+        "late_resumption_adoption_revoked",
+        "late_old_stage_intent_changed"
+      ],
+      "PR_reference_counterexamples": [
+        "known_compact_pull_request",
+        "known_spaced_pull_request",
+        "known_hash_pull_request"
+      ],
+      "fake_create_POSTs": 10,
+      "fake_uploads": 15,
+      "fake_metadata_updates": 7,
+      "real_external_mutations": 0,
+      "real_escape_attempts": []
+    },
+    {
+      "mode": "OO",
+      "actual_wrapper_cases": 14,
+      "actual_parsed_production_stage_cases": 6,
+      "component_CLI_refusals": 3,
+      "wrapper_counterexamples": [
+        "late_resumption_adoption_revoked",
+        "late_old_stage_intent_changed"
+      ],
+      "PR_reference_counterexamples": [
+        "known_compact_pull_request",
+        "known_spaced_pull_request",
+        "known_hash_pull_request"
+      ],
+      "fake_create_POSTs": 10,
+      "fake_uploads": 15,
+      "fake_metadata_updates": 7,
+      "real_external_mutations": 0,
+      "real_escape_attempts": []
+    }
+  ],
+  "copied_inputs_final_rehashed": 282,
+  "copied_inputs_all_unchanged": true,
+  "frozen_resumption_packet_unchanged": true,
+  "root_runtime_revocation": "Intentional rename, original approval path absent. Revoked preserved body hash866ff...f8d matches original. This is not sealed source drift. Reviewer did not restore or write any approval.",
+  "real_service_mutations": 0,
+  "family_completion_percent": 100,
+  "overall_sweep_percent": 80,
+  "production_execution_cleared": false,
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "material",
+      "title": "New resumption adoption not rechecked after full gate",
+      "mechanism": "Changing root_confirmed_failure_before_delegate_create tofalse and unresolved_findings afterfirst actualfullbefore_stage gate still permits create/twouploads/update and writes stageverified. All3modes.",
+      "counterexample_cases": [
+        "late_resumption_adoption_revoked"
+      ]
+    },
+    {
+      "id": "F2",
+      "severity": "material",
+      "title": "Old stage intent drift detected only after stage mutations and verified receipt",
+      "mechanism": "At same firstfullgateboundary changing oldintentid999 permits create/twouploads/update; ZENODO_STAGE_VERIFIED is alreadywritten before final oldbytecheck raises. All3modes.",
+      "counterexample_cases": [
+        "late_old_stage_intent_changed"
+      ]
+    },
+    {
+      "id": "F3",
+      "severity": "material",
+      "title": "Known spelled-out PR identity evades original production duplicate gate",
+      "mechanism": "Existing same-result row with pull request1131 / pull request 1131 / pull request #1131 survives actual parsed originalstage CLI andall fullaccount/dualvalueFORMULA/nativegates, createsonefake target/twouploads/updateandstageverified. FullURL/PR#positivecontrols rejectbeforecreate; nearby11310 correctlydistinct. Threecasesall3modes,9counterexamples.",
+      "counterexample_cases": [
+        "known_compact_pull_request",
+        "known_spaced_pull_request",
+        "known_hash_pull_request"
+      ]
+    }
+  ],
+  "initial_no_attempt_premise": "Conditionally supported by trusted root actual failure trace ending in read_owned_pages before delegate.create; reviewer independently reproduced that control-flow boundary with zero mock create. Nullstate is not itself proof of noPOST. No fresh actualservice query byreviewer."
+}

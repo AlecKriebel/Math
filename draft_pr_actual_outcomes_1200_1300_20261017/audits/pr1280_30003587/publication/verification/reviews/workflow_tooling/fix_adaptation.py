@@ -1,0 +1,5 @@
+from pathlib import Path
+R=Path(__file__).resolve().parent;D=R/'deployed';P=D/'audits/pr1280_30003587/publication'
+p=P/'workflow_regression.py';s=p.read_text().replace("read_text());if len(s['files'])", "read_text())\\nif len(s['files'])");p.write_text(s)
+p=P/'prepare_package.py';s=p.read_text();a=s.index("    if context['edition_mode']=='preserve_submitted':");b=s.index("    v['authenticate_current']",a);s=s[:a]+"    v['need'](context['edition_mode']=='preserve_submitted','Only exact original-nine preservation is authorized')\n    for name in sorted(v['NAMES']):shutil.copyfile(AUDIT/'submitted'/name,EDITION/name)\n"+s[b:];p.write_text(s)
+p=P/'build_package.py';s=p.read_text().replace("run=subprocess.run([sys.executable,'-B',str(package/'verify.py'),*args],check=True,capture_output=True,text=True)","run=subprocess.run([sys.executable,'-B',str(package/'verify.py'),*args],capture_output=True,text=True)\n    if run.returncode:raise RuntimeError('Portable verifier rejected build: '+run.stderr)");p.write_text(s)

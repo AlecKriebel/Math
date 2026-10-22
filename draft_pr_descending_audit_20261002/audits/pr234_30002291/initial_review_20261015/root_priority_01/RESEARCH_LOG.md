@@ -1,0 +1,3 @@
+# Root priority research log
+
+2026-10-15T05:45:13.591727+00:00 — PR234 remains35%. Root original-target/prior-class distinction recorded before final priority reports. Actual three arXiv history originals plus2018 functionals manuscript retrieved, original2014 survey independently retrieved; model/assumptions/theorem passages read,2018 LSS full first-regime proof PDF13–21 read. Crossref resolves2018 pagination3117–3146; bibliography alone is not theorem evidence. Five independent priority families active, including explicit novelty-saving/classification adversary. No current claimed_solved status change, preprint, deposit, tracker or merge.

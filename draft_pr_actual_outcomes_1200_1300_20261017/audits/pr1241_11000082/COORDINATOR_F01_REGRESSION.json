@@ -1,0 +1,270 @@
+{
+  "at_utc": "2026-10-17T21:05:53.791194+00:00",
+  "status": "PASS",
+  "coordinator_sha256": "c8761e4204fed950f0158c1383112cbc02dbf009220982e791daa41015d0453e",
+  "kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "test_sha256": "16d23af3e97ca344131c6caa148788935f36257aee073bf8e1f12f8b872df481",
+  "count": 17,
+  "results": [
+    {
+      "case": "exact_ASCII_no_saved_inspect",
+      "events": [
+        "GET_77",
+        "READONLY_LIVE_PREFLIGHT",
+        "GET_77",
+        "PUBLISH_POST_77",
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": true,
+      "state": "published",
+      "recovered": false,
+      "publish_posts": 1,
+      "publication_receipt": true,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "stale_saved_inspect_replaced_by_fresh",
+      "events": [
+        "GET_77",
+        "READONLY_LIVE_PREFLIGHT",
+        "GET_77",
+        "PUBLISH_POST_77",
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": true,
+      "state": "published",
+      "recovered": false,
+      "publish_posts": 1,
+      "publication_receipt": true,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "F01_legacy_normalized_before_inspect",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": true,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "DepositError: Exact supplied metadata required; normalization refused before publication",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "F01_normalization_after_exact_inspect_before_POST",
+      "events": [
+        "GET_77",
+        "READONLY_LIVE_PREFLIGHT",
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": true,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "DepositError: Exact supplied metadata required; normalization refused before publication",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "already_published_readonly_recovery",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": true,
+      "state": "published",
+      "recovered": false,
+      "publish_posts": 0,
+      "publication_receipt": true,
+      "fresh_inspect_saved": true,
+      "intent_saved": false
+    },
+    {
+      "case": "lost_POST_response_readonly_recovered",
+      "events": [
+        "GET_77",
+        "READONLY_LIVE_PREFLIGHT",
+        "GET_77",
+        "PUBLISH_POST_77",
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": true,
+      "state": "published",
+      "recovered": true,
+      "publish_posts": 1,
+      "publication_receipt": true,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "unconfirmed_POST_no_second_attempt",
+      "events": [
+        "GET_77",
+        "READONLY_LIVE_PREFLIGHT",
+        "GET_77",
+        "PUBLISH_POST_77",
+        "GET_77",
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "DepositError: Simulated lost response; Zenodo has not confirmed publication. Run inspect on this saved draft; no publication retry was made",
+      "second_attempt_refused": "Prior attempt unresolved; inspect known ID, never retry blindly",
+      "retry_extra_posts": 0,
+      "publish_posts": 1,
+      "publication_receipt": false,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "prior_intent_unpublished_refused",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Prior attempt unresolved; inspect known ID, never retry blindly",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": true,
+      "intent_saved": true
+    },
+    {
+      "case": "different_known_state_ID_refused",
+      "events": [],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Kit draft and stage receipt differ",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "invalid_stage_ID_refused",
+      "events": [],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit ID differs",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "missing_inspect_exactness",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Exact inspected metadata required",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "nonexact_inspect",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Exact inspected metadata required",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "inspect_wrong_ID",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit ID differs",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "inspect_wrong_state",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit state differs",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "inspect_wrong_files",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit summary files differ",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "inspect_wrong_environment",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit summary identity differs",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    },
+    {
+      "case": "inspect_wrong_title",
+      "events": [
+        "GET_77"
+      ],
+      "fixture_legacy_curly_description": false,
+      "live_network_calls": 0,
+      "completed": false,
+      "error": "RuntimeError: Deposit summary identity differs",
+      "publish_posts": 0,
+      "publication_receipt": false,
+      "fresh_inspect_saved": false,
+      "intent_saved": false
+    }
+  ],
+  "limits": "Synthetic release authentication and live preflights only; actual kit.run, exact verifier, coordinator execute/intent/receipt paths used with in-memory client. Zero real network/mutation. R2 authenticated separately; new full reviewer still required."
+}

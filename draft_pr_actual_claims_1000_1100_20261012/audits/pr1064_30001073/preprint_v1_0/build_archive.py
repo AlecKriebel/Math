@@ -14,7 +14,18 @@ for protected in root.rglob('*'):
  alias=out.resolve()==protected.resolve() or (out.exists() and out.samefile(protected))
  v.require(not alias,'cannot overwrite protected package input '+protected.relative_to(root).as_posix())
 v.require(out.suffix=='.zip','archive output must end in .zip')
-if out.is_relative_to(root):v.require(out==root/'support.zip' or out.is_relative_to(root/'tmp'),'inside package output must be support.zip or under tmp/')
+def physical_relative(path,directory):
+ # Resolve() can preserve a case alias. Walk past absent components until an
+ # existing ancestor is physically the directory; keep its remaining suffix.
+ suffix=[]
+ while True:
+  if path.exists() and directory.exists() and path.samefile(directory):return Path(*reversed(suffix))
+  parent=path.parent
+  if parent==path:return None
+  suffix.append(path.name);path=parent
+inside=physical_relative(out,root)
+if inside is not None:
+ v.require(inside==Path('support.zip') or (inside.parts and inside.parts[0]=='tmp') or physical_relative(out,root/'tmp') is not None,'inside package output must be support.zip or under tmp/')
 out.parent.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9,strict_timestamps=True) as z:
  for name in allow:

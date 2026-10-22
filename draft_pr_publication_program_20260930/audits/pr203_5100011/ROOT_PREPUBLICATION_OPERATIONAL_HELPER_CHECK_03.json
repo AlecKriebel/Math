@@ -1,0 +1,49 @@
+{
+  "UTC": "2026-10-16T09:08:55.297390+00:00",
+  "PR": 203,
+  "Root_accepted_bounded_operational_adversary": true,
+  "review_report": {
+    "bytes": 11928,
+    "sha256": "f3f54fd9f3adcef5fac40331d1924369a04fd9528c8c18d493a7b4e164d9e2fe"
+  },
+  "review_manifest": {
+    "bytes": 2124,
+    "sha256": "1b921e70e238f071cb513f5bd8ce9909900469d34d17a72866ab05756123e3da"
+  },
+  "current_safe_helpers": {
+    "publication_checkpoint_01/checkpoint_ready203.py": {
+      "bytes": 12809,
+      "sha256": "885011ebd0fff029dc7d522344b0875ab586dbf6ddeafd050d1ff87df5419d58"
+    },
+    "publication_lifecycle_01/finish203.py": {
+      "bytes": 22581,
+      "sha256": "48a0f5e39ae87613ac2cfe257e088129040498ec116f1ecc93018ab179d7a4b4"
+    },
+    "publication_lifecycle_01/sync_actual_checkpoint.py": {
+      "bytes": 1816,
+      "sha256": "5a74771f78ec46bad680343620056607437a10ce70eea1fd242b7e150b58eb6f"
+    },
+    "publication_operations_01/publish_exact.py": {
+      "bytes": 5447,
+      "sha256": "33f857bdb3c6bcfb1a4c66332a2fa90e3c75598153a30b6900d93d70f0395512"
+    },
+    "publication_operations_01/update_tracker.py": {
+      "bytes": 7134,
+      "sha256": "792d4a01daa22454090fb8e15328523d95d57e730bbd7af1656441dff2aef27e"
+    },
+    "native_publication_preparation_01/make_native.py": {
+      "bytes": 11910,
+      "sha256": "00ede6937cdd4789e73f0053f074602374e6b2e4171e01d8ab6f6074182751ac"
+    }
+  },
+  "supersedes_historical_CHECK_01_and_02_for_current_helper_pins": true,
+  "two_detected_retry_recovery_flaws_repaired_before_external_action": true,
+  "Root_verified_repairs": [
+    "Exclusive file+directory fsynced stage/publish attempt markers precede child launch; all unconfirmed repeat mutations refused, read-only reconciliation permitted",
+    "Tracker inflight pins and reloads original full preappend baseline and after must retain its Counter as well as fresh reads",
+    "Filesystem directory fsync actually succeeded on this APFS volume at09:07:34UTC"
+  ],
+  "historical_optimization_wording_correction": "CHECK_01 overstates all-six helper modules explicitly refusing optimization. Actual mutating entrypoint modules do refuse it; pure make_native.py is an assertion-contracted constructor used only through ordinary-Python gated wrappers and is not standalone mutation authority. CHECK_01/02 remain dated unchanged records.",
+  "no_actual_publication_tracker_or_merge_yet": true,
+  "PR_completion_estimate_percent": 88
+}

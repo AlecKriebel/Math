@@ -1,0 +1,29 @@
+## Exact affirmative result
+
+Adds the complete authored proof and substantive independent internal mathematical audit for problem 30006210 / OWR-14299088-012.
+
+For every pair of positive integers n,d and every pair of nonzero real multilinear polynomials f,g on {-1,1}^n of degree at most d, all relative coordinate influences at most 1/(4096d^8) imply intersecting supports. Relative influence uses the full squared L2 norm, including the constant coefficient. Thus c=1/4096 and C=8 suffice. The proof establishes the stronger lower bound 1/(1024d^8) for the maximum influence under disjointness.
+
+The essential prior separator is credited prominently to Longcheng Li, Qian Li, Xingjian Li and Qipeng Liu, [arXiv:2608.03824v1, Lemma 3.5](https://arxiv.org/abs/2608.03824v1). Its proof is reconstructed with depth 16d^4. The Markov/Bernoulli input is credited to [Kothari, Kovacs-Deak, Wang and Yang, arXiv:2601.08727v3](https://arxiv.org/abs/2601.08727v3). The adaptive covariance bridge and square-influence estimate are fully proved.
+
+The frozen proof's pending-audit header is explicitly updated to its accepted internal mathematical status. All mathematics, source credit and substantive limitations are preserved; original and distributed proof hashes are distinguished. The proof and audit are AI-assisted and unrefereed. No external human peer review, journal acceptance of this proof, formal machine proof, novelty or priority is claimed. No general distribution-formulation, other-group or approximate-support extension is claimed.
+
+The earlier exponential sufficient threshold requires the strict inequality delta < 2^(-d)/d; the d=1 example f=1+x, g=1-x refutes its non-strict endpoint. This correction remains explicit and does not affect the new theorem. The full proof has no hidden computational dependency; finite checks are supplementary.
+
+This addition-only draft distributes authored mathematical prose and public acceptance/status/citation/verification metadata. No code, certificates, copied source documents/text/images, datasets, raw receipts or private coordination are included. QUEUE.md and every unrelated path are unchanged.
+
+## Exact public-file identities
+
+- `ACCEPTANCE.json`: 2,165 bytes; SHA-256 `89133f2fcae27fd9d38acdb12237a8179afa4e11e1ca27c980b284ef09fadeba`.
+- `AUDIT.md`: 14,411 bytes; SHA-256 `e302641d0420536a2a8ecc2b8e19f3e50c7236fb90aacc3940e8b7176e09c6eb`.
+- `MANIFEST.json`: 1,877 bytes; SHA-256 `65df31af80baac61ef97addd4825820a4b60ecd8140b4511dba602a5cf1d4a6d`.
+- `PROOF.md`: 13,567 bytes; SHA-256 `20bf5956520b2b53bb4b415d7d5683a6ae1cf1273bd36372accbc49fab482da1`.
+- `README.md`: 2,907 bytes; SHA-256 `b8b20e7e1cd514d2ed0bd58ef00c9fc8c8fff1e880e8058eba260bd49f5cac44`.
+- `SOURCE_DEPENDENCIES.json`: 3,215 bytes; SHA-256 `689c01d7f1f93fe4dbb0349377a559c4ff9a676bfdac8a5c2f489fc6c3544314`.
+- `SOURCE_METADATA.json`: 2,464 bytes; SHA-256 `943145d8230cd26122a22583c50e3fb6e32d0bcb292ad29e4eb5a18b09263fda`.
+- `STATUS.json`: 2,168 bytes; SHA-256 `b631f01ed0953cc667307681c329cd5bba1d281b016c3871497e87b40850d23d`.
+- `SUMMARY.md`: 1,212 bytes; SHA-256 `a59f26162bf876ef394489767ce2a5848722e6a54fb8d7c7834706f7360673a3`.
+- `VERIFICATION_SUMMARY.md`: 3,558 bytes; SHA-256 `a1181e6e7217bb1a051035fce6b665ec04d57e9a0b71657da8189420d2bf4d09`.
+
+MANIFEST.json lists all ten members and hashes the other nine. Its SHA-256 above independently pins the manifest.
+

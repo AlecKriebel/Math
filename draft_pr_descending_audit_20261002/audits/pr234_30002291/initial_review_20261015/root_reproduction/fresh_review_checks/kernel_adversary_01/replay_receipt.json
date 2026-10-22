@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "started_utc": "2026-10-15T05:35:25.733220+00:00",
+  "finished_utc": "2026-10-15T05:35:25.762134+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "script_sha256": "2afbfe7c36de4e23d38d2e9e7605ad9ba2eed933f06d925355fadfe8448ce539",
+  "candidate_path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr234_30002291/initial_review_20261015/root_reproduction/fresh_review_checks/submitted/unsolved_math_prioritization/attempts/30002291/PROOF.md",
+  "candidate_sha256": "508f71b81ee669d4934ef1cc9e061c129e47d36359896ad7b3e20574dbfbc539",
+  "method": "Exact rational and integer root interval arithmetic, with analytic integral tail bounds; no Monte Carlo.",
+  "checks": [
+    {
+      "name": "endpoint_reindexing",
+      "status": "PASS",
+      "counts": [
+        2,
+        7,
+        64,
+        256
+      ]
+    },
+    {
+      "name": "impulse_grid_indexing",
+      "status": "PASS",
+      "s": "7/3",
+      "phases": [
+        "0",
+        "1/2",
+        "1/1000003",
+        "1000002/1000003"
+      ],
+      "increments_each": 12
+    },
+    {
+      "name": "certified_infinite_W_intervals",
+      "status": "PASS",
+      "alpha": "1/4",
+      "summands": 256,
+      "bounds": {
+        "0": {
+          "lower": "11869232288820427440524602825306062467/10633823966279326983230456482242756608",
+          "upper": "95618472308455877513459985836633176457/85070591730234615865843651857942052864",
+          "decimal_lower": 1.1161772403284722,
+          "decimal_upper": 1.1239897403284722
+        },
+        "1/2": {
+          "lower": "296588910516099762905657472276695729427/340282366920938463463374607431768211456",
+          "upper": "22059176409986297332682962416734556824583858179346083863009/25083875028565150701457597143985735193713466578447730999296",
+          "decimal_lower": 0.8715964720705305,
+          "decimal_upper": 0.8794166126591537
+        },
+        "1": {
+          "lower": "94952556421909957105399739222620267207/85070591730234615865843651857942052864",
+          "upper": "112665670273118061650905241998119973881536782480824421853751/100237276399953087507659333893092961728770212715030330212352",
+          "decimal_lower": 1.1161619367008968,
+          "decimal_upper": 1.1239897403394612
+        }
+      }
+    },
+    {
+      "name": "deterministic_time_counterexample_separation",
+      "status": "PASS",
+      "exact_comparison": "W(0)>=1>5/(4sqrt(2))>=W(1/2); 25<32"
+    },
+    {
+      "name": "deterministic_power_tail_localization",
+      "status": "PASS",
+      "alpha": "1/4",
+      "bounds": [
+        {
+          "delta_over_eta": "1/17",
+          "energy_upper": "1/32",
+          "decimal_upper": 0.03125
+        },
+        {
+          "delta_over_eta": "1/131",
+          "energy_upper": "1152921504606846976/105162621329683961347",
+          "decimal_upper": 0.010963225241337865
+        },
+        {
+          "delta_over_eta": "1/2053",
+          "energy_upper": "2305843009213693952/835619181757914008111",
+          "decimal_upper": 0.0027594424105521747
+        },
+        {
+          "delta_over_eta": "1/65539",
+          "energy_upper": "72057594037927936/147576204372310491131",
+          "decimal_upper": 0.000488273799589929
+        }
+      ]
+    }
+  ],
+  "limitations": "Checks certify their displayed deterministic consequences. The theorem is assessed by the independent analytic derivation in REPORT.md; a finite computation does not prove stochastic stable convergence."
+}

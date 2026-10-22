@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[unicode,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A first-order obstruction to Habiro's rank interpolation},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\slie}{\mathfrak{sl}}
+\newcommand{\Cass}{\lambda_{\mathrm C}}
+\title{A first-order obstruction to Habiro's rank interpolation}
+\author{Alec Kriebel\\[2pt]
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{16 October 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+The rank completion printed in Ohtsuki's Conjecture~7.30 cannot interpolate
+the standard unified $\slie_n$ invariants of an integral homology sphere
+with nonzero Casson invariant. A finite quotient forces its first Taylor
+coefficients to be affine in $n$, contrary to the classical cubic
+coefficient formula. The specified Poincar\'e sphere gives the incompatible
+values $0,-6,-24$. This is a negative answer to the literal displayed
+statement, obtained from established quantum-invariant results.
+\end{abstract}
+
+\section{The printed completion}
+In the notation of Ohtsuki's collection \cite[pp.~490--492]{O}, put
+\[
+ R=\varprojlim_m\Z[q,q^{-1}]
+       \big/\Bigl(\prod_{j=1}^{m}(q^j-1)\Bigr),\qquad
+ E_m(t)=\prod_{j=1}^{m}(t-q^j),\qquad
+ S=\varprojlim_m R[t]/(E_m(t)).
+\]
+The transition maps are quotient maps. This $R$ is the ordinary integral
+Habiro ring: $q$ is already a unit in every polynomial quotient, since
+the defining polynomial has constant term $\pm1$.
+For $F\in S$, evaluation at $t=q^n$ is defined through any coordinate
+$m\ge n$; compatibility makes the value independent of that choice.
+
+Conjecture~7.30 asks for an invariant $F_M\in S$ of every integral
+homology $3$-sphere $M$ such that
+\[
+ F_M(q^n)=I_n(M)\quad(n\ge1),\qquad
+ I_n(M)=I^{\slie_n}(M)\ (n\ge2),\quad I_1(M)=1.
+\]
+Thus $n$ denotes matrix size, not the Lie rank $n-1$.
+Its fixed-Lie-algebra premise, Conjecture~7.29, is supplied by the
+Habiro--L\^e unification theorem \cite[Theorem~1.1]{HL}.
+
+\begin{theorem}\label{thm}
+Use the coefficient ring and standard invariant normalization above.
+If $\Cass(M)\ne0$, there is no $F_M\in S$ with these evaluations.
+Here $\Cass$ is the Casson--Walker invariant in L\^e's Lescop
+normalization. In particular, the orientation of the Poincar\'e homology
+sphere given by $-1$ surgery on the left-handed trefoil is a counterexample
+to the printed conjecture.
+\end{theorem}
+
+\section{A finite-jet constraint}
+Let $D=\Z[x]/(x^2)$. The substitution $q\mapsto1+x$,
+$q^{-1}\mapsto1-x$ kills $(q-1)(q^2-1)$.
+Projection to the second coordinate therefore defines a ring map
+$T_1:R\to D$. No injectivity assertion for Taylor expansion is needed.
+
+\begin{lemma}\label{lem}
+For $F\in S$, write $T_1(F(q^n))=u_n+v_nx$ for $n=1,2,3$.
+Then $u_1=u_2=u_3$ and $v_3-2v_2+v_1=0$.
+Consequently, $F(q)=1$ implies $v_3=2v_2$.
+\end{lemma}
+\begin{proof}
+The third coordinate of $F$ has a representative
+$P(t)=a+bt+ct^2$, with $a,b,c\in R$, by division by the monic
+polynomial $E_3$. Evaluation on this quotient is well-defined at
+$q,q^2,q^3$. Write $T_1(a)=a_0+a_1x$, and similarly for $b,c$.
+Since $(1+x)^k=1+kx$ in $D$,
+\[
+ T_1(P(q^n))=
+ a_0+b_0+c_0+
+ \bigl(a_1+b_1+c_1+n(b_0+2c_0)\bigr)x .
+\]
+The coefficient of $x$ is affine in $n$. If $F(q)=1$, its value at
+$n=1$ is zero, which gives the last assertion.
+\end{proof}
+Only one finite interpolation quotient and one finite coefficient
+quotient occur in this argument; it differentiates no infinite sum.
+
+\section{The quantum coefficient and counterexample}
+Habiro--L\^e identify the Taylor series of the unified invariant with
+the Ohtsuki series \cite[Proposition~1.9]{HL}; their
+Proposition~1.2 also gives the projective specialization.
+L\^e's published first-coefficient formula
+\cite[p.~821]{L}, in the variable $x=q-1$, specializes on an integral
+homology sphere to
+\begin{equation}\label{coeff}
+ [x]\,T_1(I_n(M))=n(n^2-1)\Cass(M),\qquad n\ge2 .
+\end{equation}
+The factor involving $|H_1(M;\Z)|$ is $1$ here.
+These sources use a common type-A parameter: roots have squared length
+$2$, and $q=v^2=\exp(h)$ \cite[\S3A1--2]{HL}.
+Changing from $h$ to $q-1$ does not change a first coefficient.
+Thus \eqref{coeff} concerns the invariants in the printed question,
+with no rank-dependent rescaling.
+
+If $F_M$ existed, Lemma~\ref{lem} would give
+\[
+ 0=v_3-2v_2+v_1
+   =24\Cass(M)-2\cdot6\Cass(M)=12\Cass(M).
+\]
+This proves the nonexistence assertion in Theorem~\ref{thm}.
+
+For an explicit orientation check, let $P$ be the sphere in that theorem.
+The source's series \cite[p.~492]{O}, also given as a unified invariant
+in \cite[\S16.1, equation~(16.1)]{H}, is
+\[
+ I_2(P)=\sum_{k\ge0}
+       q^k\,\frac{\prod_{j=k+1}^{2k+1}(1-q^j)}{1-q}.
+\]
+After cancelling $1-q$ in each polynomial summand, it becomes
+\[
+ q^k(1+q+\cdots+q^k)
+       \prod_{j=k+2}^{2k+1}(1-q^j).
+\]
+The $k=0$ term is $1$; the $k=1$ term is
+$q(1+q)(1-q^3)=-6x+O(x^2)$.
+Every $k\ge2$ term is divisible by $x^k$, so the entire remaining
+tail contributes no constant or linear term.
+Hence $[x]I_2(P)=-6$ and \eqref{coeff} fixes $\Cass(P)=-1$
+in the stated convention. It follows that
+\[
+ (v_1,v_2,v_3)=(0,-6,-24),\qquad
+ v_3-2v_2+v_1=-12\ne0.
+\]
+This proves the explicit counterexample. \qed
+
+\section{Scope, attribution, and verification}
+The obstruction concerns the displayed ordinary completion.
+It gives no existence criterion when $\Cass(M)=0$.
+Removing rank one alone does not remove the obstruction:
+the same finite-quotient argument at sizes $2,3,4$ gives a second
+difference of $18\Cass(M)$.
+Poles in $q-1$, a different completion, or rank-dependent normalization
+change the question; no corrected formulation is proposed here.
+
+The cubic type-A behavior is classical, already explicit in
+L\^e--Murakami--Ohtsuki \cite[Proposition~5.3 and Remark~5.4]{LMO}
+and in the all-rank free-energy formalism
+\cite[\S3]{GLM}. The coefficient and unification inputs above are
+credited prior results. Fixed-rank unification, link-interpolation
+stability, and enlarged knot-color completions
+\cite{BG,FZ,Fang} do not by themselves assert the printed
+$S$-valued homology-sphere interpolation.
+No novelty, firstness, or continued-openness claim is made.
+The accompanying bounded priority audit records its source-access
+and coverage gaps.
+The collection's volume year is $2002$; the publisher records its
+release on 1 June 2004.
+
+Source-free verification materials provide exact arithmetic checks,
+preserved original files, independent adversarial reports, and
+reproduction instructions. Portable finite-checker stages were
+reproduced on macOS; the legacy Linux/bubblewrap whole-filesystem
+read-only replay was not reproduced there.
+The cited topology theorems remain mathematical inputs.
+AI tools were used extensively in developing and checking this work.
+This note is unrefereed; no independent human peer review or formal
+proof-assistant certification is asserted.
+
+\smallskip
+\noindent\textcopyright\ 2026 Alec Kriebel.
+Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+
+\begin{thebibliography}{9}
+\bibitem{O}
+T.~Ohtsuki (editor), \emph{Problems on invariants of knots and
+3-manifolds}, Geom.\ Topol.\ Monogr.\ \textbf{4} (2002), 377--572,
+Conjecture~7.30, p.~492.
+\href{https://msp.org/gtm/2002/04/p024.xhtml}{Publisher record}.
+
+\bibitem{L}
+T.~T.~Q.~L\^e, \emph{On perturbative PSU$(n)$ invariants of rational
+homology 3-spheres}, Topology \textbf{39} (2000), 813--849.
+\href{https://doi.org/10.1016/S0040-9383(99)00037-3}{doi:10.1016/S0040-9383(99)00037-3}.
+
+\bibitem{HL}
+K.~Habiro and T.~T.~Q.~L\^e, \emph{Unified quantum invariants for integral
+homology spheres associated with simple Lie algebras},
+Geom.\ Topol.\ \textbf{20} (2016), 2687--2835.
+\href{https://doi.org/10.2140/gt.2016.20.2687}{doi:10.2140/gt.2016.20.2687}.
+
+\bibitem{H}
+K.~Habiro, \emph{A unified Witten--Reshetikhin--Turaev invariant for
+integral homology spheres}, Invent.\ Math.\ \textbf{171} (2008), 1--81.
+The equation locator used here refers to
+\href{https://arxiv.org/abs/math/0605314v1}{arXiv:math/0605314v1} (2006).
+
+\bibitem{LMO}
+T.~T.~Q.~L\^e, J.~Murakami and T.~Ohtsuki,
+\emph{On a universal perturbative invariant of 3-manifolds},
+Topology \textbf{37} (1998), 539--574.
+\href{https://letu.math.gatech.edu/Papers/LMO.pdf}{Author-hosted published text}.
+
+\bibitem{GLM}
+S.~Garoufalidis, T.~T.~Q.~L\^e and M.~Mari\~no,
+\emph{Analyticity of the free energy of a closed 3-manifold},
+SIGMA \textbf{4} (2008), 080.
+\href{https://letu.math.gatech.edu/Papers/Free_Energy.pdf}{Author-hosted text}.
+
+\bibitem{BG}
+A.~Beliakova and E.~Gorsky,
+\emph{Cyclotomic expansions for $\mathfrak{gl}_N$ link invariants via
+interpolation Macdonald polynomials}, Selecta Math.\ \textbf{30}
+(2024), 101.
+\href{https://doi.org/10.1007/s00029-024-00990-y}{doi:10.1007/s00029-024-00990-y}.
+
+\bibitem{FZ}
+H.~Fang and T.~Zhou, \emph{Cyclotomic Newton expansions and a
+rank-uniform integer-valued Newton completion},
+\href{https://arxiv.org/abs/2608.29585v1}{arXiv:2608.29585v1}
+(30 August 2026).
+
+\bibitem{Fang}
+H.~Fang, \emph{Quantum color Newton rings},
+\href{https://arxiv.org/abs/2610.21102v1}{arXiv:2610.21102v1}
+(15 October 2026).
+\end{thebibliography}
+\end{document}

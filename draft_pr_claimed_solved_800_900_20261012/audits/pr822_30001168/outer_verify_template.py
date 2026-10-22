@@ -46,7 +46,7 @@ def main():
    need(not i.is_dir() and not n.is_absolute() and '..' not in n.parts and str(n)==i.filename and stat.S_ISREG(i.external_attr>>16),'regular safe ZIP member')
    need(z.read(i)==(package/i.filename).read_bytes(),'ZIP/extracted identity')
  frozen=package/'source'
- changed_wrappers={'PUBLICATION_MANIFEST.json','PUBLICATION_METADATA.json','README.md','RESEARCH_LOG.md','verify_publication.py'}
+ changed_wrappers={'PUBLICATION_MANIFEST.json','PUBLICATION_METADATA.json','README.md','RESEARCH_LOG.md','verify_publication.py','package_controls.py'}
  for p in frozen.rglob('*'):
   if p.is_file() and p.relative_to(frozen).as_posix() not in changed_wrappers:
    need(p.read_bytes()==(root/p.relative_to(frozen)).read_bytes(),'preserved original payload')

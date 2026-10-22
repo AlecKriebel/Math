@@ -9,6 +9,7 @@ or checked out. Avoiding a complete alternate index keeps disk use small.
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import stat
@@ -16,6 +17,14 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 EFFORT = Path(__file__).resolve().parent
+
+def main_advanced(stderr, parent):
+    if 'non-fast-forward' in stderr or 'fetch first' in stderr:
+        return True
+    race = re.search(
+        r"cannot lock ref 'refs/heads/main': is at ([0-9a-f]{40}) "
+        r"but expected ([0-9a-f]{40})", stderr)
+    return bool(race and race[2] == parent and race[1] != parent)
 
 def run(args, **kwargs):
     return subprocess.run(args, cwd=ROOT, check=True, text=True,
@@ -92,7 +101,7 @@ def main():
             receipt.write_text(json.dumps(record, indent=2)+'\n')
             print(json.dumps(record, indent=2))
             return
-        if 'non-fast-forward' not in push.stderr and 'fetch first' not in push.stderr:
+        if not main_advanced(push.stderr, parent):
             raise RuntimeError(push.stderr)
     raise RuntimeError('main advanced on each attempt; checkpoint not pushed')
 

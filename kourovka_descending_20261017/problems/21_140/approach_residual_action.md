@@ -1,0 +1,444 @@
+# Residual and graph-action construction audit
+
+Checkpoint: 2026-10-17 21:28:07 UTC. Estimated progress toward solving
+21.140: **5%**; this narrow route audit: **90%** pending independent review.
+No counterexample is claimed. No assertion of novelty or current open status
+is made. This note contains checkable exclusions and the exact remaining gap.
+
+## Scope and source record
+
+Let \(\Gamma\) be a simple graph, let \(A\ne1\) be a group, and let \(H\)
+act on \(\Gamma\) by graph automorphisms. Write
+\[
+ B=A_\Gamma,\qquad W=A_\Gamma\rtimes H,
+\]
+where the action permutes identical vertex groups without twisting their
+labels. All cohomological dimensions below are integral.
+
+Primary sources inspected and saved in `sources/raw/`:
+
+* Kropholler--Martino, *Graph-wreath products and finiteness conditions*,
+  [arXiv:1407.0302v3](https://arxiv.org/html/1407.0302v3), especially Theorems
+  2.3, 2.4, 2.8 and Lemma 2.5.
+* Needham, *Residual Finiteness of Graph Wreath Products*,
+  [arXiv:2509.11170v1](https://arxiv.org/html/2509.11170v1), Theorem 1.1.
+* Fournier-Facio--Kropholler--Lyman--Zaremsky,
+  [arXiv:2506.02319v2](https://arxiv.org/html/2506.02319v2), especially
+  Theorem 1.5 and Appendix A.
+* Kropholler--Mislin, *Groups acting on finite dimensional spaces with finite
+  stabilizers*, Comment. Math. Helv. 73 (1998), 122--136,
+  [primary publisher PDF](https://ems.press/content/serial-article-files/42793),
+  Theorem A.
+
+Source-derived summary of arXiv:2506.02319v2 (under 150 words): Its Theorem 1.5
+assumes that the acting group belongs to Kropholler's hierarchy
+\(\mathbf H\mathfrak F\), that it acts simplicially on an
+infinite-dimensional flag complex \(X\), and that the vertex group \(B\) is
+infinite. The conclusion is:
+
+> If \(B\) is an infinite group, then the graph-wreath product
+> \(B\nwsebipropto_X G\) is not of type \(\mathrm F_\infty\).
+
+Thus it excludes finite-cohomological-dimension acting groups. Appendix A
+uses quasi-retractions to transfer finiteness properties to the vertex group.
+Its Question 2.4 asks for an oligomorphic action with all finite-subset
+stabilizers of type \(\mathrm{FP}_\infty\), where the acting group contains
+no copy of \(F\); the text relates this directly to Witzel's question.
+
+The proofs below are independently supplied deductions, not claimed new
+theorems. In particular the finite-coloring argument does not depend on
+Needham's residual-finiteness criterion.
+
+## 1. A finite-coloring obstruction, with an explicit bound
+
+**Lemma.** Suppose \(W\) is residually finite, and \(H\) has \(r<\infty\)
+orbits on vertices and \(m<\infty\) orbits on edges. Then \(\Gamma\) has a
+proper finite coloring. More explicitly, choose edge-orbit representatives
+\(\{v_i,w_i\}\), \(1\le i\le m\), and fix \(a\in A\setminus\{1\}\).
+Choose finite quotient homomorphisms
+\[
+ q_i:W\longrightarrow Q_i,
+ \qquad q_i(a_{v_i}a_{w_i}^{-1})\ne1.
+\]
+Put \(K_i=\ker(q_i|_H)\) and \(K=\bigcap_iK_i\). Then the \(K\)-orbits of
+vertices give a proper coloring with at most
+\[
+ r[H:K]\ \le\ r\prod_{i=1}^m[H:K_i]
+ =r\prod_{i=1}^m|q_i(H)|
+ \le\ r\prod_{i=1}^m|Q_i|
+\]
+colors. The empty product is 1.
+
+*Proof.* The indicated element is nontrivial: retracting the graph product
+onto its vertex group at \(v_i\) sends it to \(a\). Hence residual finiteness
+provides \(q_i\). If \(k\in K_i\) sent \(v_i\) to \(w_i\), the natural
+permutation action would give
+\[
+ q_i(a_{w_i})
+ =q_i(k a_{v_i}k^{-1})=q_i(a_{v_i}),
+\]
+contradicting the choice of \(q_i\). Thus \(K_i v_i\) does not contain
+\(w_i\), and the same is true for \(K\).
+
+Now suppose endpoints \(hv_i,hw_i\) of any translate of this representative
+were in the same \(K\)-orbit. There would be \(k\in K\) such that
+\(khv_i=hw_i\). Since \(K\) is normal in \(H\),
+\(h^{-1}kh\in K\subseteq K_i\), again a contradiction. Endpoints of every
+edge therefore have distinct \(K\)-orbits. Each transitive \(H\)-orbit
+splits into at most \([H:K]\) \(K\)-orbits. The index inequality follows
+from the injection \(H/K\hookrightarrow\prod_i H/K_i\). This proves every
+claim. \(\square\)
+
+Boundary checks: No faithfulness of the action, torsion-freeness of either
+input, commutativity of \(A\), or bound on vertex stabilizers was used. The
+absence of twisting is used when identifying \(k a_v k^{-1}\) with
+\(a_{kv}\). For an edgeless graph the coloring has at most \(r\) colors;
+for an empty vertex set the base is trivial and the conclusion is vacuous.
+
+## 2. Why finite presentation supplies the orbit hypotheses
+
+Here is a presentation argument, included to make the application independent
+of a quoted graph-wreath finiteness criterion.
+
+If \(W\) is finitely generated, then \(A,H\) are finitely generated and
+there are finitely many vertex orbits. Indeed choose a finite generating set
+of \(W\) and reduced graph-product words for its base components. Only
+finitely many vertices and finitely many labels from \(A\) occur. Let
+\(Y\) be the union of the \(H\)-orbits of those vertices and let
+\(A_0\le A\) be generated by those labels. The natural subgroup
+\((A_0)_Y\rtimes H\) contains the chosen generators, so equals \(W\).
+Graph-product normal forms, or the canonical retractions onto induced
+subgraphs and individual vertex groups, then give \(Y=V\Gamma\) and
+\(A_0=A\). Also \(H\) is a quotient of \(W\), hence finitely generated.
+
+Now suppose \(W\) is finitely presented. Let
+\[
+ W_\varnothing=\left(\mathop{*}_{v\in V\Gamma}A_v\right)\rtimes H
+ \longrightarrow W
+\]
+be the quotient adding all edge commutators. Its domain is finitely generated
+by the preceding paragraph and finite orbit representatives. Whenever a
+finitely generated group \(P\) surjects onto a finitely presented group
+\(Q\), the kernel is normally generated by finitely many elements: lift
+through a finite-rank free group and use finite normal generation of the
+relator subgroup for \(Q\).
+
+Choose such a finite list of normal generators for
+\(\ker(W_\varnothing\to W)\). Expressing them as finite products of
+conjugates of edge commutators uses only finitely many edges. Let
+\(\Gamma_0\) retain exactly their \(H\)-orbits. Every chosen normal
+generator already vanishes in \(A_{\Gamma_0}\rtimes H\), so its kernel
+from \(W_\varnothing\) equals the full kernel defining \(W\).
+
+If \(\Gamma\) had an omitted edge \(\{v,w\}\), choose nontrivial labels
+\(a,b\in A\). The element \([a_v,b_w]\) would be nontrivial in
+\(A_{\Gamma_0}\): its induced two-vertex graph is edgeless, giving the
+embedded free product \(A_v*A_w\). It vanishes in \(A_\Gamma\), a
+contradiction. Thus there are only finitely many edge orbits.
+
+**Corollary.** A finitely presented residually finite graph-wreath product
+with nontrivial uniform vertex group has a finite-chromatic defining graph.
+
+**RAAG consequence.** If additionally \(A=\mathbb Z\) and
+\(\mathrm{cd}(H)=h<\infty\), let \(d\) be the number of colors supplied
+above. Every clique has at most \(d\) vertices. The Salvetti construction
+for the possibly infinite graph is then an aspherical complex of dimension
+at most \(d\), so \(\mathrm{cd}(A_\Gamma)\le d\). The standard extension
+inequality gives
+\[
+ \mathrm{cd}(W)\le h+d<\infty.
+\]
+Consequently this entire residual-finite RAAG-by-finite-cd permutation-action
+route fails already at finite presentation. An infinite graph by itself does
+not imply infinite cohomological dimension: unbounded clique size is needed
+for this construction.
+
+## 3. Residual filters exclude every abstract copy of F
+
+Use the standard facts that every nontrivial normal subgroup of \(F\)
+contains \(F'\), and that \(F'\) contains copies of \(F\) supported in
+closed dyadic subintervals of \((0,1)\).
+
+If a class \(\mathcal C\) contains no copies of \(F\), every homomorphism
+\(F\to C\), \(C\in\mathcal C\), is noninjective and kills \(F'\).
+Therefore a group residually in \(\mathcal C\) cannot contain \(F\): a
+fixed nonidentity element of an embedded \(F'\) could not be separated by
+any such homomorphism. This justifies residual-finite, residual-solvable,
+and residual-finite-cohomological-dimension filters. The last phrase means
+residually in groups each having finite integral cohomological dimension;
+there need be no uniform bound. Finite-cd groups exclude \(F\) since
+\(F\) contains \(\mathbb Z^n\) for every \(n\).
+
+Also the class of groups containing no copy of \(F\) is extension closed.
+For an embedded \(F\) in an extension with \(F\)-free quotient, its
+projection has nontrivial kernel, hence that kernel contains \(F'\) and a
+copy of \(F\); this contradicts the \(F\)-free kernel. It is closed under
+directed unions because \(F\) is finitely generated.
+
+Thus a graph product of \(F\)-free finite-cd groups, followed by an
+\(F\)-free head, can indeed exclude all copies of \(F\). The missing
+ingredient is precisely simultaneous type \(\mathrm F_\infty\) and
+infinite cohomological dimension; the filter alone supplies neither.
+
+## 4. Correct finiteness inheritance and a general no-new-input obstruction
+
+The head \(H\) is a homomorphic retract of \(W\). A vertex group \(A\)
+need not be a homomorphic retract of \(W\): killing \(H\) identifies its
+vertex orbit, and an edge within that orbit would then force commutativity
+in the image of \(A\).
+
+There is nevertheless a direct coarse retraction to \(A\). Fix a vertex
+\(u\), and let \(p_u:A_\Gamma\to A\) be the canonical homomorphism
+killing every other vertex group. Define
+\[
+ \beta(b,h)=p_u(b).
+\]
+It has the section \(a\mapsto(a_u,1)\). Use finite generating sets for
+\(A,H\), and use base generators at finitely many vertex-orbit
+representatives to generate \(W\). Right multiplication by a head generator
+does not change \(\beta\). Right multiplication by a base generator
+\(c_v\) changes \(b\) to \(b c_{hv}\); its projection is unchanged if
+\(hv\ne u\), and changes by multiplication by \(c\) if \(hv=u\).
+Thus \(\beta\) is Lipschitz for these word metrics, with an honest section.
+Alonso's quasi-retract inheritance of \(\mathrm F_n\) therefore makes
+\(A\) of type \(\mathrm F_\infty\) whenever \(W\) is. This also gives
+a precise interpretation of Appendix A.4 without treating graph-product
+elements as coordinate functions.
+
+**Inheritance proposition.** If a nonempty uniform graph-wreath product
+\(W\) is a counterexample to 21.140, then at least one of \(A,H\) is
+already a counterexample.
+
+*Proof.* Both inputs embed in \(W\), so are torsion-free and contain no
+copy of \(F\). The preceding coarse retraction and the head retraction make
+both of type \(\mathrm F_\infty\). If \(A=1\), then \(W=H\), so assume
+\(A\ne1\), hence \(A\) is infinite.
+
+Suppose both inputs had finite cohomological dimension. Every finite graph
+product of copies of \(A\) also has finite cohomological dimension. One
+can see this inductively from
+\[
+ A_\Lambda
+ =A_{\Lambda\setminus\{v\}}
+ *_{A_{\operatorname{link}(v)}}
+ \bigl(A_{\operatorname{link}(v)}\times A_v\bigr),
+\]
+using the standard cohomological-dimension bounds for direct products and
+amalgams. Such groups lie in \(\mathbf H\mathfrak F\), since a group of
+finite cohomological dimension has a finite-dimensional free contractible
+CW-model. The vertex set is countable because \(W\) is finitely generated,
+so \(A_\Gamma\) is a countable directed union of finite graph products.
+Closure of \(\mathbf H\mathfrak F\) under countable directed unions and
+extensions now gives
+\(A_\Gamma\rtimes H\in\mathbf H\mathfrak F\).
+
+Kropholler--Mislin Theorem A gives a finite-dimensional model for proper
+actions for an \(\mathbf H\mathfrak F\)-group of type
+\(\mathrm{FP}_\infty\). Since \(W\) is torsion-free, this is a free
+contractible model, forcing \(\mathrm{cd}(W)<\infty\), a contradiction.
+Hence at least one input has infinite cohomological dimension and satisfies
+all four target requirements. \(\square\)
+
+The argument uses no claim that every residually finite or residually
+solvable group belongs to \(\mathbf H\mathfrak F\).
+
+## 5. Repairing the graph-product notation in the coarse argument
+
+For a general graph, a graph-product element is not a finitely supported
+coordinate function. The coordinate notation in Appendix A.2 can be replaced
+by the following normal-form construction; this is a repair of the argument,
+not an asserted failure of its conclusion.
+
+Suppose \(\rho:A\to\mathbb Z\) is Lipschitz for word metrics,
+\(\rho(1)=0\), and has a set-theoretic section
+\(s:\mathbb Z\to A\) with \(s(0)=1\). Given a reduced syllable word in
+\(A_\Gamma\), apply \(\rho\) to its syllables and evaluate the resulting
+word in the RAAG \(\mathbb Z_\Gamma\). Reduced graph-product words differ
+only by swapping adjacent commuting syllables; their images undergo the
+same swaps. Thus this defines a map \(R:A_\Gamma\to\mathbb Z_\Gamma\),
+even when some image syllables vanish.
+
+Right multiplication by a generator \(c_v\) either appends a syllable, or
+changes a unique syllable \(b_v\) to \((bc)_v\), possibly deleting it.
+In the latter case write the original reduced word as \(u b_v t\), where
+every syllable of \(t\) has its vertex in \(\operatorname{link}(v)\).
+The image of \(t\) commutes with the target generator \(z_v\), giving
+\[
+ R(w)^{-1}R(wc_v)=z_v^{\rho(bc)-\rho(b)}.
+\]
+The exponent is uniformly bounded. In the append case it is bounded by
+\(|\rho(c)|\). A syllablewise application of \(s\) defines an honest
+section of \(R\): nonzero exponents have nontrivial images, so the
+graph-product reduced-word criterion is preserved.
+
+The map \(R\) is equivariant for vertex permutations. Consequently
+\((b,h)\mapsto(R(b),h)\) is a coarse retraction
+\[
+ A_\Gamma\rtimes H\longrightarrow\mathbb Z_\Gamma\rtimes H
+\]
+for the finite orbit-representative generating sets. In checking right
+multiplication by a base generator at \(v\), the changed syllable occurs
+at \(hv\); conjugating back by the head component turns the displayed
+difference into a bounded power of the generator at \(v\).
+
+For completeness, every infinite finitely generated \(A\) admits such a
+\(\rho,s\). Choose a bi-infinite geodesic \(s:\mathbb Z\to A\) through
+1 in its locally finite Cayley graph (obtain one by translating midpoints of
+arbitrarily long geodesic segments and taking a diagonal subsequence). Then
+\[
+ \rho(a)=\inf_{n\in\mathbb Z}\bigl(n+d(a,s(n))\bigr)
+\]
+is integer-valued, finite, 1-Lipschitz, and satisfies
+\(\rho(s(k))=k\). Finiteness follows from the lower bound
+\(-d(a,1)\) and the choice \(n=0\) as an upper bound. This supplies the
+normal-form version of the reduction to cyclic vertex groups.
+
+## Route status and exact gap
+
+* Residual-finite, finitely presented RAAG-by-finite-cd permutation-action
+  constructions: **blocked**, with the explicit finite-coloring proof above.
+* General graph-wreath constructions over finite-cd or other
+  \(\mathbf H\mathfrak F\) heads: **blocked** for infinite-dimensional
+  clique complexes by the inspected Theorem 1.5; the normal-form argument
+  repairs the coarse-map notation needed in its reduction.
+* Uniform graph-wreath constructions as a way to manufacture the first
+  counterexample from inputs that are not already counterexamples:
+  **blocked** by the inheritance proposition, without residual assumptions.
+* Residually solvable or residually finite-cd groups in general: the
+  \(F\)-exclusion filter is proved, but no construction here supplies a
+  torsion-free \(\mathrm F_\infty\) group of infinite cohomological
+  dimension. Asserting one exists is the unsupported central step, not a
+  candidate result.
+
+No external input or outreach was sought. Git and publication operations are
+left to the parent research effort, as instructed.
+
+## Independent adversarial addendum: the parent HNN construction
+
+Checkpoint: 2026-10-17 21:30:27 UTC. Discovery estimate: **8%**, reflecting
+verified exclusions rather than a solution; assigned route audit: **100%**.
+
+Independently checked the explicit construction and graph-wreath inheritance
+proposition in `approach_constructive.md`. Verdict: **PASS**, with the
+qualifications below. This audit does not use Appendix A.2.
+
+Write
+\[
+ P=\bigoplus_{n\ge1}\mathbb Zg_n,\quad K=P*F(a,b),\quad
+ \ell_n=a^{-n}ba^n,\quad m_n=g_n\ell_n.
+\]
+The kernel of \(F(a,b)\to\langle a\rangle\) has the free basis
+\(\{a^{-k}ba^k:k\in\mathbb Z\}\), by the Schreier rewriting process
+using transversal \(\{a^k:k\in\mathbb Z\}\). The \(\ell_n\),
+\(n\ge1\), form a subset of this basis and therefore freely generate
+\(L\). For \(M=\langle m_n:n\ge1\rangle\), projecting \(K\) onto
+\(F(a,b)\) sends \(m_n\) to \(\ell_n\). A nonempty freely reduced
+word in the symbols \(m_n\) therefore cannot be trivial. Thus \(M\) has
+the stated free basis, and \(\ell_n\mapsto m_n\) defines an isomorphism
+\(L\to M\). No independence of the \(m_n\) was assumed from the
+independence of \(g_n\); the projection proves it.
+
+For
+\[
+ E=\langle K,t\mid t^{-1}\ell_nt=m_n\;(n\ge1)\rangle,
+\]
+Britton's lemma applies to these injective associated-subgroup maps and
+embeds \(K\). The equality
+\(g_n=t^{-1}\ell_nt\ell_n^{-1}\) expresses every base generator in
+\(a,b,t\). The HNN torsion theorem makes every finite-order element
+conjugate into \(K\), which is torsion-free. The embedded \(P\) contains
+\(\mathbb Z^r\) for every \(r\), proving infinite integral cd.
+
+The universal \(F\)-exclusion follows from the hierarchy argument:
+\(P\) is a countable directed union of finite-cd groups; free products
+and this HNN extension preserve \(\mathbf H\mathfrak F\).
+Consequently \(E\in\mathbf H\mathfrak F\), whereas the torsion-free
+\(\mathrm{FP}_\infty\), infinite-cd group \(F\) is not in that
+subgroup-closed hierarchy. This uses the stated Kropholler--Mislin theorem,
+not any unproved residual property of \(E\).
+
+For the HNN homology sequence, the two edge maps on \(H_1(L)\) are
+\[
+ [\ell_n]\longmapsto[b],\qquad
+ [\ell_n]\longmapsto g_n+[b].
+\]
+Their difference is \(-g_n\) (the opposite orientation changes only the
+sign). This is injective because the \(g_n\) form the indicated basis of
+\(P\). Since \(L\) is free, the relevant part is
+\[
+ 0\to H_2(K)\to H_2(E)\to H_1(L)
+ \xrightarrow{-g_n}H_1(K),
+\]
+so \(H_2(K)\to H_2(E)\) is an isomorphism. In higher degrees both
+adjacent edge homology groups vanish, with the same result. A free-product
+classifying space and the torus direct limit give
+\[
+ H_j(K;\mathbb Z)=H_j(P;\mathbb Z)=\Lambda^j P\qquad(j\ge2).
+\]
+At degree one the cokernel is \(\mathbb Z^2\), while the edge map on
+\(H_0\) is zero. Thus
+\(0\to\mathbb Z^2\to H_1(E)\to\mathbb Z\to0\) splits as a
+sequence of abelian groups, giving \(H_1(E)=\mathbb Z^3\).
+In particular the generating rank is exactly three, not merely at most
+three. The infinite-rank \(H_2(E)\) excludes \(\mathrm{FP}_2\), because
+tensoring a projective resolution finitely generated through degree two
+with \(\mathbb Z\) gives finitely generated second integral homology.
+
+The graph-wreath no-first-counterexample proposition also passes. Its use
+of a coarse vertex retraction is justified by the explicit canonical
+projection \(p_u\), and its section is Lipschitz: choose \(u\) among the
+orbit representatives, or express \(a_u\) by a fixed head conjugation of
+one representative's generator. Finite generation of \(A\) and finiteness
+of the vertex-orbit set were independently established in Section 2 above.
+If both inputs had finite cd, each finite graph-product stage has finite cd
+by the displayed amalgam induction; hierarchy closure and
+Kropholler--Mislin then force finite cd of \(W\). No circular use of the
+target conclusion, no coordinate-function assumption, and no claim that
+\(A\) is an honest group retract is needed.
+
+Remaining gap: the HNN example verifies exactly three of the four target
+conditions and explicitly fails the fourth, \(\mathrm F_\infty\).
+The graph-wreath result excludes an entire manufacturing route but gives
+neither a counterexample nor a proof for arbitrary torsion-free
+\(\mathrm F_\infty\) groups.
+
+## Independent adversarial addendum: finitely presented Baumslag benchmark
+
+Checkpoint: 2026-10-17 21:33:30 UTC. Discovery estimate: **8%**; benchmark
+audit complete. Verdict: **PASS** for the presentation, semidirect-product
+identification, torsion-freeness, residual finiteness, metabelianity,
+infinite integral cd, absence of every abstract copy of \(F\), and failure
+of \(\mathrm{FP}_3\).
+
+Independent normal-form and tensor checks are preserved in
+[baumslag_independent_audit.md](baumslag_independent_audit.md). They verify
+\(B\cong R_{\rm add}\rtimes\mathbb Z^2\), where
+\(R=\mathbb Z[x,x^{-1},(1+x)^{-1}]\). For \(q\ge2\), the alternating
+tensor module is \(\Delta_qS_q\), and
+\[
+ S_q\cong\mathbb Q[e_1,\ldots,e_{q-2}][e_q^{\pm1},f^{\pm1}].
+\]
+Thus it is free over the rational head group ring. The \(q=1\) row has
+zero homology because \(s-1=x\) is invertible. The LHS sequence collapses,
+giving, as vector spaces,
+\[
+ H_0(B;\mathbb Q)=\mathbb Q,\quad H_1(B;\mathbb Q)=\mathbb Q^2,
+ \quad H_2(B;\mathbb Q)=\mathbb Q^2,
+\]
+\[
+ H_n(B;\mathbb Q)\cong\mathbb Q[e_1,\ldots,e_{n-2}]\quad(n\ge3).
+\]
+In particular \(B\) is \(\mathrm F_2\) but not
+\(\mathrm{FP}_3\). Inverse conjugation conventions do not change the
+calculation.
+
+This is a classical benchmark, without a novelty claim. The exact
+presentation is corroborated by Hermiller--Martínez-Pérez, Theorem 6.1,
+[author PDF](https://shermiller.github.io/Susan_Hermiller/webppr/stackablehnn.pdf),
+saved with extracted text in `sources/raw/`. Mullaney's 2013 thesis gives
+historical leads to Baumslag--Dyer (1982) and Baumslag--Stammbach (1987) for
+stronger integral results; those original papers were not independently
+read. The rational homology conclusion rests on the independent proof.
+The full parent exposition is in `constructive_baumslag_benchmark.md`.
+The benchmark satisfies three target conditions and finite presentation,
+but fails the required all-dimensional finiteness condition.

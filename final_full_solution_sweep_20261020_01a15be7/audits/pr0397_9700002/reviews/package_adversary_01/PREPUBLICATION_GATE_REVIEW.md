@@ -1,0 +1,17 @@
+# Read-only publication-state safeguard review
+
+Inspected actual current prepublication_check.py, SHA256219dcf6eb170eaae3106ff9fb67ae32676584371603043c25154ab06fd1dfbee. Its live main function was not invoked. No credentials were read by this review and no external state was changed.
+
+The fixed target is PR397 in AlecKriebel/Math. The supplied expected head must be a40-hex commit; the live PR must have that exact head, base main and the intended head repository. A closed, unmerged PR fails. The helper verify_destination checks effective fetch/push destination against the intended repository, including URL-rewrite hazards; calling it is read-only. This review does not execute the separate checkpoint machinery.
+
+The GWS operation is values.get on the intended spreadsheet and 'Math Puzzles'!A:AQ, with formatted values. The header must be exactly Original Problem, Solution Chat URL, DOI, Notes. Every row is compared with the original candidate-specific live snapshot; all changed rows are recorded. Candidate identifiers, alias, PR and concept vocabulary are scanned. This avoids an append-row assumption and exposes concurrent ledger changes for reconciliation.
+
+The Zenodo operations are GETs. The code requires an authenticated known-record positive control and performs both a keyword query and a complete empty-query account listing. Pagination requires exact, stable totals; duplicate record IDs, next-link loops and incomplete final coverage fail. The complete listing is scanned by metadata, filenames and exact upload MD5 checksums. A specified expected deposit must be present in that complete-model/file comparison, even if omitted by keyword search. Other candidates are explicitly listed as unexpected. Local .zenodo-state leads are also recorded. The use of a complete account listing is material because keyword search alone previously omitted a prepared draft.
+
+The current publication release manifest's file lengths and SHA256 values are rechecked immediately before the receipt is written. Source target/head, current remote main, complete-account coverage, ledger leads/differences, local state leads and release hashes appear together in the receipt.
+
+The script is an evidence producer, not an automatic release authorizer. Leads or changed ledger rows yield identity_verdict='Root reconciliation required; this script does not decide mathematical identity' and can still exit successfully. Local state leads are likewise evidence for human/root reconciliation. A zero exit code alone must never be treated as permission to publish or append. This is explicit in the code and current root records; it is not a newly discovered false-clearance bug. There is no atomic cross-service lock, and a previous successful receipt cannot establish later live state. The parent must run and interpret the appropriate live phases immediately before integration/stage/publish/ledger actions.
+
+The independently extracted account_search function was tested offline with a complete two-page positive fixture and six required rejections: inexact total, changed total, duplicate IDs, incomplete listing, pagination loop and missing total. All passed. The actual live main function and imported credential/publication modules were never executed.
+
+No substantive target or coverage defect was found in this read-only safeguard scope. No current live duplicate-clearance, publication-state guarantee, upload authorization or ledger-write authorization is granted by this report.

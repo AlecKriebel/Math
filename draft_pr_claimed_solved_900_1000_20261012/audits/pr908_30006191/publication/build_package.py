@@ -89,13 +89,16 @@ def main():
         for name, record in records.items():
             add(folder/name, 'reviews/'+family+'/'+name, record)
         add(folder/'MANIFEST.json', 'reviews/'+family+'/MANIFEST.json')
-    for name in ['note.tex', 'README.md', 'requirements.txt', 'verify_package.py', 'run_checked.py']:
+    for name in ['note.tex', 'README.md', 'requirements.txt', 'verify_package.py', 'run_checked.py',
+                 'copy_guard_challenge.py']:
         add(P/name, name)
     add(P/'output/pdf/note.pdf', 'note.pdf')
     for name in ['ORIGINAL_SNAPSHOT.json', 'PR_DESCRIPTION_ANCHOR.json',
                  'TARGET_IDENTITY_PREFLIGHT.json', 'ROOT_ANALYTIC_CHECKPOINT.md',
                  'PRIORITY_FRAMING.md', 'ROOT_PRIORITY_MAPPING_CHECK.md', 'BIBLIOGRAPHIC_IDENTITIES.json',
                  'MATH_AUDIT_SYNTHESIS.json', 'PUBLICATION_REVIEW_CORRECTIONS.md']:
+        add(A/name, name)
+    for name in ['REVIEW01_REPAIR_RECEIPT.json', 'PR_DESCRIPTION_CORRECTED.md']:
         add(A/name, name)
     manifest = {'schema_version': 1, 'pr': 908, 'problem_id': '30006191',
                 'original_pr_head': snapshot['head'], 'original_packet_manifest_sha256': PIN,

@@ -1,0 +1,121 @@
+{
+  "timestamp_utc": "2026-10-21T07:53:14.418876+00:00",
+  "original_files_verified": 11,
+  "snapshot": [
+    {
+      "path": "original/CANDIDATE_PROOF.md",
+      "bytes": 20525,
+      "sha256": "152881a86b39c8b8afec166842000b8b256cad2ac04c764731e23468d8877d85",
+      "git_blob": "401e5173bbcc07b5ec948c6bcad8dbfeb39db510"
+    },
+    {
+      "path": "original/DENSITY_CHECK_RECEIPT.json",
+      "bytes": 149,
+      "sha256": "b5f096a567330667b42800a04fe49d302ad204e0c13c468764a8c7026d83645f",
+      "git_blob": "d4c2f4288a3cbb454d6dd37057b81828266f33a8"
+    },
+    {
+      "path": "original/EXPOSITION_NOTE.md",
+      "bytes": 3463,
+      "sha256": "b1ea4c02b852f1fc0041b5354b6ae3e1072fc01f9a7ac7f4ca81170261e7be4b",
+      "git_blob": "c3d90c4680b877615b22a62dc24cc10684efd8d4"
+    },
+    {
+      "path": "original/INDEPENDENT_MEASURE_FACTORIZATION_REVIEW.md",
+      "bytes": 19994,
+      "sha256": "c744d1255470989d9ca230690ae29bb7e83edaae46e947af6202aa0db2b7a803",
+      "git_blob": "eab1b51557d0ade80ccf8439d117d6ea5328d412"
+    },
+    {
+      "path": "original/INDEPENDENT_MEASURE_FACTORIZATION_REVIEW_MANIFEST.json",
+      "bytes": 808,
+      "sha256": "ea6c658259472319ba82e056ac1b0b0e35391e2c24127ad9945db69502b9f49d",
+      "git_blob": "79dd896b50d828db751f29ba2e11569b1f60400d"
+    },
+    {
+      "path": "original/PUBLIC_PACKET_MANIFEST.json",
+      "bytes": 2371,
+      "sha256": "b6fb800027d986a7a214784b998f3d7db23520af84956ceea9c630c3701caccc",
+      "git_blob": "4892ab6d043d09d196d869a310683640f2fbff58"
+    },
+    {
+      "path": "original/README.md",
+      "bytes": 4724,
+      "sha256": "e5d5cb40b7ebb43aedbad802440245da5bcad85fc312bdedd9f0a12463969287",
+      "git_blob": "7291c045d25435093b48da1797f8cb08736477b2"
+    },
+    {
+      "path": "original/check_density_chain.py",
+      "bytes": 1087,
+      "sha256": "c025f04d10c8261ae956423b7742ea1481135cb235c3a4cb586b9e08b8e8897d",
+      "git_blob": "fdf1642aaaba8006195c56e3e751ea79f87eb5bc"
+    },
+    {
+      "path": "original/independent_reviews/CONTINUITY_CORE_REVIEW.md",
+      "bytes": 18725,
+      "sha256": "1761466f73179947f55441c8d775d017e167e4a56d489b975bd759cd32072488",
+      "git_blob": "ca42b3fc3656f5d1b2bcb154cf09b468d3fb0516"
+    },
+    {
+      "path": "original/independent_reviews/CONTINUITY_CORE_REVIEW_RECEIPT.json",
+      "bytes": 820,
+      "sha256": "4fda18aff9514f759f1da112c7e257b0d1312e8385d6a53698d6b24a61d20062",
+      "git_blob": "181c8bd9d49095401ce4e738899d3a3630d39bef"
+    },
+    {
+      "path": "original/verify_public_packet.py",
+      "bytes": 949,
+      "sha256": "722214bf0b8c20c6da3dddd1dfbde5d96549848b1db353198ec16bbb8e6db826",
+      "git_blob": "6219fb35dafd793ae4d34efafe65019bbc6b22e0"
+    }
+  ],
+  "public_manifest_files_verified": 10,
+  "normal_original_runs": [
+    {
+      "script": "verify_public_packet.py",
+      "mode": "normal",
+      "exit_code": 0,
+      "stdout": "{\n  \"public_files_verified\": 10,\n  \"finite_identity_checks\": 4240,\n  \"scope\": \"File integrity and bounded algebraic identities only; no formal proof certification.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "check_density_chain.py",
+      "mode": "normal",
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"finite_identity_checks\": 4240,\n  \"scope\": \"Ordinal addition and Gaussian density scale chain only; no proof certification.\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "historical_assert_optimization_controls": [
+    {
+      "case": "Changed proof bytes",
+      "mode": "normal",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/private/pr0399_measure/mutated_proof/verify_public_packet.py\", line 13, in <module>\n    assert len(data) == expected['bytes'], (name, 'length')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('CANDIDATE_PROOF.md', 'length')\n"
+    },
+    {
+      "case": "Changed proof bytes",
+      "mode": "optimized",
+      "exit_code": 0,
+      "stdout": "{\n  \"public_files_verified\": 10,\n  \"finite_identity_checks\": 4240,\n  \"scope\": \"File integrity and bounded algebraic identities only; no formal proof certification.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "Deliberately wrong density-scale identity",
+      "mode": "normal",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/final_full_solution_sweep_20261020_01a15be7/private/pr0399_measure/mutated_checker/check_density_chain.py\", line 30, in <module>\n    assert direct==chained\n           ^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "Deliberately wrong density-scale identity",
+      "mode": "optimized",
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"finite_identity_checks\": 4240,\n  \"scope\": \"Ordinal addition and Gaussian density scale chain only; no proof certification.\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "conclusion": "Normal historical checker reproduces4240 identities and10 manifested payloads. Optimization disables asserts: changed proof and deliberately wrong identity still produce a success report under-O. This is a package verification limitation, not a defect in the unchanged written proof. New verifier should use explicit guards; original files remain untouched.",
+  "original_files_unchanged": true
+}

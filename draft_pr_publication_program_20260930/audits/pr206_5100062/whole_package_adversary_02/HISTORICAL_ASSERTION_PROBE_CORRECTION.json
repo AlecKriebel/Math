@@ -1,0 +1,51 @@
+{
+  "correction_to": "HISTORICAL_ASSERTION_STATIC_CHECK.json",
+  "explanation": "The initial instruction counter looked for pre-3.14 LOAD_ASSERTION_ERROR. Python3.14.6 uses LOAD_COMMON_CONSTANT AssertionError; the initial zero/zero counter is not valid evidence. Actual common-constant instruction inspection below supersedes that counter. The AST retains Assert nodes in both modes on this runtime, so those node counts locate guards but do not independently demonstrate bytecode elision. No original source executed.",
+  "results": [
+    {
+      "source": "verify_triangles.py",
+      "levels": {
+        "0": {
+          "optimized_ast_assert_nodes": 1,
+          "assertion_error_loads": [
+            {
+              "function": "check",
+              "opcode": "LOAD_COMMON_CONSTANT",
+              "argument": "AssertionError"
+            }
+          ]
+        },
+        "1": {
+          "optimized_ast_assert_nodes": 1,
+          "assertion_error_loads": []
+        }
+      },
+      "executed": false
+    },
+    {
+      "source": "independent_review/independent_check.py",
+      "levels": {
+        "0": {
+          "optimized_ast_assert_nodes": 2,
+          "assertion_error_loads": [
+            {
+              "function": "ck",
+              "opcode": "LOAD_COMMON_CONSTANT",
+              "argument": "AssertionError"
+            },
+            {
+              "function": "close",
+              "opcode": "LOAD_COMMON_CONSTANT",
+              "argument": "AssertionError"
+            }
+          ]
+        },
+        "1": {
+          "optimized_ast_assert_nodes": 2,
+          "assertion_error_loads": []
+        }
+      },
+      "executed": false
+    }
+  ]
+}

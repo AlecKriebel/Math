@@ -1,0 +1,13 @@
+# Root analytic reading of the PR280 draft note
+
+Read at 2026-10-21T06:53:05.585211+00:00. Draft source SHA256 `7ae2e6106ebac2593a59c4ef1d0632be1cd9514e3247ff9ed49fdb2c3265d931`. Global sweep estimate27%; this is not final package clearance.
+
+Root read the complete new six-page TeX manuscript and new dependency-free finite checker/wrapper. The theorem's exact period identity is valid only eventually for fixed1/2<=x<1; small/moving endpoint controls are explicit. Primitive-character factorization, the Jacobi/Gauss exceptional case, squarefree-divisor bound and the quantitative bridge reconstruct correctly. The shifted-prime mean proof's large-modulus tail and summed Siegel–Walfisz errors are o(pi(X)); the elementary product lower bound and equal modulo4 prime densities give the stated two subsequences without a fixed-base Artin conjecture.
+
+The stronger positive-upper-density quantifier is proved by the cited continuous scalar empirical law and a valid atom obstruction, rather than incorrectly inferred from just two subsequences. Every shrinking closed interval has asymptotic frequency at least the positive upper density if the scalar converged on that subset, forcing an impossible atom. The bounded continuous h moment equals the primitive-fiber mass times1-2/p, so it also precludes weak convergence. Proper divisor periods contribute zero. These deductions use the actual point weights and p scale.
+
+Scope is precisely the fixed polynomial-forward/rational-inverse map on all affine points at3mod4primes; genus-zero fibers and infinite order are explicit. No polynomial automorphism, elliptic model, projective singularity, arbitrary zero-density selection, or later prime-average question is resolved by implication. Older triangular/character/mean/scalar inputs are credited, and the unrecovered2011body is candidly disclosed. No firstness/new arithmetic or worldwide absence is claimed.
+
+The finite program independently compares raw small affine orbit graphs to fiber histograms and exact Fraction CDF/moment identities, checks divisor/Mobius/primitive bounds and bad-prime failures. The new advertised147619 checks are separate from earlier8347742+230780 receipts and from the unreplayed original SymPy scripts. Guards use explicit RuntimeError rather than assertions that optimization disables. Root has read but not yet run the final archived verifier; package assembly, final bytes, actual PDF visual QA, manifest closure and new sequential full-package adversaries remain gates.
+
+No mathematical defect identified in this bound draft. All later source edits require reassessment; this note is not an independent human peer review, global historical-priority certificate, release authorization, or publication/ledger receipt.

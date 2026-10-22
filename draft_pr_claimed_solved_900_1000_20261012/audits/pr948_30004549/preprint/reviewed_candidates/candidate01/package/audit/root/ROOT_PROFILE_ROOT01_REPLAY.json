@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-16T08:22:48.830439+00:00",
+  "driver_sha256": "252b38c10858eab3fd2ea2e7314e1d2aeee7a257bb5fb6360bac3e9526949046",
+  "result": "pass",
+  "events": [
+    {
+      "case": "directory_alias",
+      "scope": "filesystem-neutral namespace input",
+      "result": "reject",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "case": "file_directory_alias",
+      "scope": "filesystem-neutral namespace input",
+      "result": "reject",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "case": "file_ancestor",
+      "scope": "filesystem-neutral namespace input",
+      "result": "reject",
+      "message": "file used as ancestor/directory"
+    },
+    {
+      "case": "shared_ancestor",
+      "result": "pass"
+    },
+    {
+      "case": "zip_directory_alias",
+      "scope": "concrete archive bytes; decompression forbidden",
+      "result": "reject",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "case": "zip_file_directory_alias",
+      "scope": "concrete archive bytes; decompression forbidden",
+      "result": "reject",
+      "message": "case-alias file/directory namespace"
+    },
+    {
+      "case": "zip_file_ancestor",
+      "scope": "concrete archive bytes; decompression forbidden",
+      "result": "reject",
+      "message": "file used as ancestor/directory"
+    }
+  ],
+  "limitations": "Targeted root replay of new bug regressions; not a new full test-suite run. Tree collisions are filesystem-neutral, ZIP inputs are actual bytes. No mathematical certification."
+}

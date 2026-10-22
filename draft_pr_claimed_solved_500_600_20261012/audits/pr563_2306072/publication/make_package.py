@@ -33,7 +33,11 @@ def main():
     for name in ("USER_SUPPLIED_PRIMARY_SOURCES.json", "USER_PRIMARY_ROOT_NOTES.md",
                  "PRIMARY_SOURCE_ROOT_SEAL_CHECK.json", "PRIMARY_SOURCE_ROOT_REPLAY.json",
                  "PRIORITY09_ROOT_REPLAY.json", "PRIORITY10_ROOT_ACCEPTANCE.json",
-                 "PRE_SUPPLIED_SOURCE_FREEZE_RECEIPT.json"):
+                 "PRE_SUPPLIED_SOURCE_FREEZE_RECEIPT.json",
+                 "GOH1992_SOURCE_RECEIPT.json", "GOH1992_ROOT_NOTES.md",
+                 "GOH11_ROOT_ACCEPTANCE.json", "GOH12_ROOT_ACCEPTANCE.json",
+                 "MANUSCRIPT_GOH_REVISION.json",
+                 "USER_PRIORITY_LIMIT_AUTHORIZATION_20261014.json"):
         add(name, AUDIT / name)
     original = AUDIT / "original"
     for p in sorted(original.rglob("*")):
@@ -43,7 +47,8 @@ def main():
                    "priority03", "priority04_hib1996", "priority05_friedland1977",
                    "priority06_zemyan2003", "priority07_zemyan_bounds",
                    "priority08_radial_extrema", "priority09_commentary_citations",
-                   "priority10_adversary"):
+                   "priority10_adversary", "priority11_goh1992_source",
+                   "priority12_goh1992_adversary"):
         folder = AUDIT / "reviews" / family
         for p in sorted(folder.iterdir()):
             if p.is_file() and (p.suffix in (".md", ".json", ".jsonl", ".py")

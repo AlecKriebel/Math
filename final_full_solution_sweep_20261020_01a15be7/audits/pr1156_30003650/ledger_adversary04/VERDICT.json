@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "reviewer": "ledger_adversary04",
+  "helper": "reconcile_external_ledger_v4.py",
+  "helper_bytes": 15464,
+  "helper_sha256": "99f3d6760535f158e219ed5d2a2ae594e3f254bfec7b5c87f403b4eacdba56d3",
+  "plan_sha256": "83df78463704c63ea3969a87325f18ab21c21893d6e1b8b49c5b16a6b4e3b2e1",
+  "ready_for_existing_publication_record": false,
+  "ordinary_guard_matrix": {"cases_per_mode": 156, "modes": [0, 1, 2], "expected_outcomes_passed": 468},
+  "alias_boundary_matrix": {"cases_per_mode": 22, "modes": [0, 1, 2], "unexpected_simulated_appends_per_mode": 20, "full_url_controls_blocked_per_mode": 2},
+  "material_findings": [
+    {
+      "id": "UNRESOLVED_RESOLVER_REFERENCE_FORMS",
+      "severity": "material_conservative_dedup_guard_gap",
+      "location": "audits/pr0399_30001179/ops_binding.py:445",
+      "trigger": "An unresolved bare or domain-relative doi.org/shortdoi.org short resolver reference in any ledger cell or raw owned metadata.",
+      "observed": "Full exact helper appends in the fixture and reports verified, while the corresponding full http(s) URL blocks.",
+      "required_resolution": "Conservatively recognize/review these reference forms with authority boundaries, then independently rerun both the complete matrix and alias cases.",
+      "actual_duplicate_or_resolver_equivalence_asserted": false
+    }
+  ],
+  "all_original_before_after_pins_matched": true,
+  "real_service_or_process_attempts": 0,
+  "external_mutations": 0,
+  "temporary_case_fixture_trees_retained": 0,
+  "no_prior_ledger_review_read": true,
+  "scope": "Operational existing external publication ledger reconciliation only; no mathematical/priority recertification, new DOI, authorship transfer, or external outreach.",
+  "review_completion_estimate_percent": 100
+}

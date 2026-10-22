@@ -1,0 +1,90 @@
+{
+  "schema": "pr209-release-helper-assessment-v1",
+  "reviewer": "release_helpers_adversary_03",
+  "completed_utc": "2026-10-16T07:47:14.841355+00:00",
+  "verdict": "REPAIRS_REQUIRED",
+  "frozen_sources": [
+    {
+      "path": "append_verified_tracker.py",
+      "bytes": 7990,
+      "sha256": "22dde4e79ec817bcd7027cfb05cb8fe1b64ded6c8cd23b78784a7510e6232162"
+    },
+    {
+      "path": "integrate_reviewed_pr.py",
+      "bytes": 32855,
+      "sha256": "0edc4e78be2d055d26cdd2886a6bb8076b6d87bfa36a4f5bae4da6695f2cc1bb"
+    },
+    {
+      "path": "publish_preprint.py",
+      "bytes": 6658,
+      "sha256": "bd10fe08fcd71964994e983614097a883d668ca4ad1c997394a667935238f3cf"
+    },
+    {
+      "path": "release_binding.py",
+      "bytes": 36794,
+      "sha256": "13681b28c0bd55e45fc36d75039272ac18b0ab1d69a6cb545fb68d5f5a0d7e12"
+    },
+    {
+      "path": "verify_and_merge.py",
+      "bytes": 29349,
+      "sha256": "367983ec743ba9cea2cc154d50870642f1f4e08fffd92765eb04652035854874"
+    },
+    {
+      "path": "verify_published_readonly.py",
+      "bytes": 8586,
+      "sha256": "fadad0b666ef50fa6ed83596838b9a1bae95aa2d5a89d81965d63cc58d748710"
+    }
+  ],
+  "mandatory_findings": [
+    {
+      "id": "RH209-03-M01",
+      "classification": "mandatory",
+      "status": "open",
+      "title": "Existing completion receipt accepts incorrect unvalidated static facts",
+      "source": "verify_and_merge.py",
+      "source_lines": [
+        326,
+        338
+      ],
+      "reproducer": "receipt_corruption_probe.py: successful full synthetic preparation/merge, exact authority reload, then exact complete_merge under six one-field PR_MERGED corruptions; all six accepted with zero provider mutations",
+      "evidence": [
+        "RECEIPT_CORRUPTION_RESULT.json",
+        "CORRUPTION_EXIT.json",
+        "corruption.stdout.jsonl",
+        "FIXTURE_receipt_corruption_final.zip",
+        "FIXTURE_receipt_corruption_final_MANIFEST.json"
+      ],
+      "required_fix": "Authenticate every static field of an existing completion receipt against rederived authority and validate historical dynamic evidence separately; preserve corrupt bytes and reject read-only without any retry. Obtain a NEW exact-source independent review."
+    }
+  ],
+  "optional_findings": [],
+  "case_completion_percent": 65,
+  "helper_audit_completion_percent": 100,
+  "scope": {
+    "frozen_utc": "2026-10-16T07:34:00.430766Z",
+    "independent_contract": "WORKFLOW_CONTRACT.md",
+    "source_text_or_AST_rewrites": false,
+    "provider_and_path_substitutions_only": true,
+    "no_actual_provider_calls": true,
+    "no_candidate_or_scientific_modifications": true,
+    "no_release_authority": true
+  },
+  "verification": {
+    "initial_program_actual_exit": 0,
+    "additional_program_actual_exit": 1,
+    "additional_harness_and_storage_failures_preserved": true,
+    "final_corruption_program_actual_exit": 0,
+    "corruptions_reproduced": 6,
+    "actual_zip_payloads": 211,
+    "actual_originals": 23,
+    "actual_whole_review_chain": [
+      2,
+      1
+    ],
+    "actual_two_helper_seals_and_all13_dispositions_authenticated_with_synthetic_successor": true,
+    "all230_scientific_files_unchanged": true,
+    "all6_current_and_frozen_sources_match": true,
+    "all_fixture_zip_members_CRC_SHA256_and_original_equality_checked": true
+  },
+  "report": "REPORT.md"
+}

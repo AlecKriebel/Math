@@ -1,0 +1,34 @@
+# Independent analytic review: PR1310 / Erdős1038
+
+The finite-polynomial analytic argument withstands this adversarial review, conditional on the actual global interval obligations6.1 and7.1. No blocking defect was found in the reduction to finitely many clusters, the imported circle inequality, the adjoint boundary correction, the strict finite lower-bound implication, or positive-platform recovery. Those numerical obligations were not replayed by this family, so this packet does **not** accept the matching global lower bound, claimed lower digits, family minimizer, or finite nonattainment unconditionally. Historical PASS reports cannot replace that missing evidence.
+
+Independently, the new exact Fraction witness proves the unconditional one-sided statement
+
+    inf_f |{x:|f(x)|<1}| < T
+    T=1.83443047576266171109075363512901884952989750747
+     <1.834430475762662.
+
+Here f ranges over every nonconstant monic real polynomial with all roots in[-1,1]. The witness bounds the exact fixed-candidate width strictly below T by at least42327065090/10^40. This stronger comparator bridge does not imply that the candidate is globally minimizing. The separately authenticated supremum statement2sqrt2 and its equality characterization are imported from Tao's actual Theorem2.1, whose entire external proof was not independently reaudited.
+
+The current head is4ce3fbd19d499c7a16aa46ca416ad3305ef3d286. All21changed blobs were pinned and reverified by native Git blob hash, SHA256 and byte count. The entire new61946byte PROOF and both17143/16809byte certificate-proof notes were read; source and reviewer inventories distinguish this from old audit reports merely retained for context. The added QUEUE row explicitly supersedes the historical partial upper-bound limitation. This review assesses that later global claim and does not incorrectly classify the current PR from its older partial report.
+
+The actual1958 original Problem1 asks about general intervals I_r. The modern EP1038 statement and database2449 specify r=1. The PR should clarify “r=1 specialization of Problem1”; its result does not claim allr. No classification of arbitrary probability measures is needed to settle this finite original.
+
+`ANALYTIC_DERIVATION.md` gives the checkable review, including:
+
+- Root-component collapse with the correct Jensen domain, rational finite masses, contact separators, mean reflection/translation, A>=1/2, and the complete elementary small-k case.
+- Positive inverse-series coefficients, convex width support, reference convergence/derivatives and contact limits; the positive inverse radius and simple separated crossings are used explicitly.
+- The corrected adjoint DM−integral(g dxi)=−F(2)Gamma, including finite jump velocities and integrable Abel limits. Dropping the boundary term is false; the actual sign uses the final target root<=2.
+- Finite mixed-energy blocks and the actual unconditional Christ–Iliopoulou Theorem1.1/(1.3). Nonnegative capped densities, singular-kernel truncation, Haar scaling, four quadrants and the essential factor2 all match the scalar inequality. Strict-admissibility/equality hypotheses of other circle theorems are not silently imported.
+- Branch uniqueness, physical crossings, nonsingular bulk/tail variables, the soft-endpoint deflation, root-existence-before-Newton logic, finite-k covers, scalar monotonicity reductions and terminal cancellations. Each numerical sign, derivative, overlap or global comparison that remains necessary is identified rather than inferred from a hash or count.
+- Strict finite summation conditional on6.1/7.1, followed by a distinct positive-platform perturbation and empirical approximation. Direct approximation of the zero platform is invalid; a counterexample is included. The actual recovery first fixes a positive platform, proves L1 potential and sign-set convergence, then diagonalizes.
+
+The exact independent `diagnostics.py` ran15766checks in each of normal, -O and -OO modes. It checks finite algebra and domain counterexamples; it is not a global numerical proof or large-slab replay. Generic Poisson kernel points are not represented as certified reference roots, and a rational pi stand-in checks cancellation only. The initial diagnostics artifact is retained and explicitly superseded after strengthening a cover predicate and correcting a chart endpoint; only the final three artifacts count. The separate fixed-candidate Fraction checker imports no author code and proves all four root signs with90atanh terms, explicit rational logarithm remainders, admissibility and the strict exact T comparison in all three modes. Its negative/domain controls also execute under optimization.
+
+Primary provenance was freshly checked. EHP1958, Wang's proposed paper and Tao's note match the PR's SHA256 pins. The direct JHU circle PDF request returned403; a different primary NSF archive edition was retrieved, and its actual unconditional theorem statement was read in text and image. Its519483bytes must not be confused with the PR's548600byte edition. This review imports that standard theorem, not its full55page proof. The Wang status page was observed through the web tool as Proposed; a separate bounded direct fetch exceeded the cap and is recorded as a failure, not a successful raw capture. Wang/Tao credit and the source's proposed/unrefereed status must be preserved. No originality or complete priority conclusion is issued here.
+
+Fresh native GWS CLI reads occurred **before mathematical review** at11:09:18UTC and again at11:31:23UTC on22October2026. Both read the numeric target gid, all43columns, full values and FORMULA views with stable metadata and strict typed identity. Both found191rows and zero target leads under the recorded semantic/name/identifier/title/URL aliases. Raw rows remain private and losslessly compressed with exact readback hashes. This is a coverage observation, not permission to append. No row proposal, DOI claim or publication readiness is issued.
+
+The remaining full-global acceptance gap is precise: a fresh independent numerical record must establish every6.1 chart/root/derivative/global-minimum comparison and every7.1 reference/scalar-surplus/terminal-cover assertion used in the derivation, including exact comparator T linkage. This family deliberately did not read or contact the separate numerical reviewer. If those gates fail, only the independently proved upper bound and the externally sourced supremum survive this packet. No concrete analytic repair is currently required, apart from the original-source wording clarification.
+
+Assigned analytic review100%; overall sweep80%. This is no global completion certification. Publication_ready=false. No external mutations, PR comments, Git mutations, CASE, append helper or action approval were produced. All earlier closed packets and v04 remain untouched.

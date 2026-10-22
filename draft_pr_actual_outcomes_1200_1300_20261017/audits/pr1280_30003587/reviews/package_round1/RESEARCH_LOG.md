@@ -1,0 +1,7 @@
+# Package round1 research log
+
+- 2026-10-18T03:11:54.327591+00:00 — Entry checkpoint: authenticated428stable+186readonlyinputs against the specified freeze. Review completion estimate0%. No inherited PASS conclusion adopted.
+- 2026-10-18T03:14:03.501162+00:00 — Checkpoint: actualZIP membership,17registries/137declaredfamilymembers/177portable records, all3verifier modes and corruption controls passed. Main proof/alternate-route audit and all5page visuals inspected. Review completion estimate75%; publication safeguard investigation active.
+- 2026-10-18T03:14:39.038590+00:00 — Checkpoint: complete actual workflow worker passed in normal mode on explicitly synthetic fixtures. Review completion estimate80%. Earlier optimized attempts later encountered recorded disk failures; no failed attempt promoted toPASS.
+- 2026-10-18T03:22:42.729894+00:00 — Checkpoint: final full optimized workers completed and result objects match normal; actual-metadata/artifact17case, ready7case and append20case probes separately repeated in all3modes. Four required repairs established: premergecompleteassurance, identitytokens, PRbase and graphsingletonscope. Review completion estimate98%.
+- 2026-10-18T03:22:59.866184+00:00 — Final checkpoint: all614frozeninputbindings reauthenticated unchanged. CHANGES_REQUIRED,4findings. Assigned frozen-edition review completion estimate100%; publication remains uncleared pending root repairs and distinct sequential whole-package reviewer. No external person communication or service/Git/PR/tracker mutation.

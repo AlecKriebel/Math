@@ -1,0 +1,115 @@
+--- before/preprint_v1_0/kit/scripts/safety.py
++++ current/preprint_v1_0/kit/scripts/safety.py
+@@ -15,13 +15,21 @@
+         raise ValueError(message)
+ 
+ def no_links(path):
+-    path = Path(os.path.abspath(path))
+-    for node in [path, *path.parents]:
++    # Inspect the original lexical prefixes before abspath can erase a
++    # symlink followed by "..". Ordinary safe sibling "../" paths remain
++    # valid. No component is dereferenced through a symlink in this check.
++    raw = Path(path)
++    if not raw.is_absolute():
++        raw = Path.cwd() / raw
++    parts = raw.parts
++    node = Path(raw.anchor)
++    for index, part in enumerate(parts[1:], start=1):
++        node = node / part
+         if node.is_symlink():
+             raise ValueError('symlink component: ' + str(node))
+-        if node.exists() and node != path:
++        if index < len(parts) - 1 and node.exists():
+             require(node.is_dir(), 'ancestor is not a directory: ' + str(node))
+-    return path
++    return Path(os.path.abspath(raw))
+ 
+ def regular(path):
+     path = no_links(path)
+@@ -96,10 +104,18 @@
+     r = no_links(ROOT)
+     require(p != r and r not in p.parents and p not in r.parents,
+             'output overlaps protected kit: ' + str(p))
+-    # Preflight all parent components before any mkdir or subprocess write.
++    # A case-insensitive filesystem can give the same protected directory
++    # a differently cased lexical name. Compare physical identity for EVERY
++    # existing output ancestor, including ancestors above absent components.
++    # This is a static preflight, not a concurrent-filesystem security claim.
++    root_stat = r.stat()
++    root_identity = (root_stat.st_dev, root_stat.st_ino)
+     for parent in p.parents:
+         if parent.exists():
+             require(parent.is_dir(), 'output ancestor is not a directory')
++            parent_stat = parent.stat()
++            require((parent_stat.st_dev, parent_stat.st_ino) != root_identity,
++                    'output physically overlaps protected kit: ' + str(p))
+     return p
+ 
+ def create_output_dir(path):
+--- before/preprint_v1_0/kit/README.md
++++ current/preprint_v1_0/kit/README.md
+@@ -10,7 +10,7 @@
+ 
+ ## Commands
+ 
+-Use Python 3.10+ and its standard library. Run from the extracted kit root. Every output target must be absent; use a fresh sibling directory or filename. Do not redirect shell output onto an input: shell redirection occurs before Python can guard it. The guards protect all program-controlled paths, reject existing destinations (including hardlink aliases), reject leaf and ancestor symlinks before resolution, reject input-tree overlap, and create subprocess outputs only inside one fresh directory. These are ordinary accidental-overwrite guards, not a defense against concurrent hostile filesystem mutation.
++Use Python 3.10+ and its standard library. Run from the extracted kit root. Every output target must be absent; use a fresh sibling directory or filename. Do not redirect shell output onto an input: shell redirection occurs before Python can guard it. The guards protect all program-controlled paths, reject existing destinations (including hardlink aliases), reject leaf and ancestor symlinks before resolution, reject input-tree overlap, check every existing output ancestor against the protected kit's device/inode identity (including case aliases on a case-insensitive filesystem), and create subprocess outputs only inside one fresh directory. Safe ordinary `../` sibling destinations remain supported; a symlink component followed by `..` is rejected before normalization. These are ordinary accidental-overwrite guards, not a defense against concurrent hostile filesystem mutation.
+ 
+ ```sh
+ python3 -B scripts/verify_kit.py
+@@ -34,8 +34,22 @@
+ 
+ ## Package and historical evidence
+ 
+-`CUSTODY_MAP.json` partitions every preexisting audit input individually into an exact selected authored copy or an exclusion. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They do not override `CURRENT_STATUS.json` or claim that new whole-package reviews are complete. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
++`CUSTODY_MAP.json` partitions every audit input captured before the 16 October 2026 repair individually into an exact selected authored copy or an exclusion. Its original 171-input stage remains intact as dated history. Selected whole-review/root evidence and the original bytes of every changed interface are appended under `historical/repair01/`; changed original paths resolve to those explicit before-repair copies. Source PDFs, extracted third-party text, images, raw private searches and duplicate snapshots are excluded. No source body is redistributed. Public source hashes and actual read scopes are retained. `historical/` contains exact dated submitted/reviewer/root evidence: its acceptance labels and pending fields retain captured-stage meaning. They do not override `CURRENT_STATUS.json` or claim that new whole-package reviews are complete. Historical executable environments are neither copied nor declared portable. The newly written `scripts/run_checks.py` is the portable checker.
+ 
+ `metadata.json`, `.zenodo.json` and `metadata_api.json` encode one identical Zenodo API metadata object. The external native `zenodo-deposit.json` has exactly the repository uploader's `{metadata, files}` schema and selects the paper PDF and support ZIP. Its metadata equals the bare/API objects. The external `DEPOSIT_BINDING.json` binds those exact deliverables without a hash cycle; neither descriptor is inside its own selected ZIP. No DOI, external publication or PR merge is claimed at this stage.
+ 
+ Copyright Alec Kriebel, 2026. Paper, authored notes and code: CC BY 4.0; see `LICENSE.txt`. Cited third-party works retain their own rights.
++
++## Current repair checkpoint (16 October 2026 UTC)
++
++One new complete whole-package review has finished. It accepted the complete
++mathematics and conservative priority framing, with one P3 mismatch between
++the advertised lexical symlink rejection and the shared path checker. This
++bounded repair checks lexical prefixes before normalization and also rejects
++physical input-tree aliases through differently cased existing ancestors.
++The manuscript, PDF and every native bibliographic metadata field are
++unchanged. The first review and original preparation receipts are exact
++captured-stage history. A NEW complete independent whole-package review is
++still required, with a minimum of two total new complete reviews and all
++actionable findings resolved. Readiness and publication remain false, and
++all external services remain held after the preceding PR #1032 disposition.
+--- before/preprint_v1_0/README.md
++++ current/preprint_v1_0/README.md
+@@ -17,8 +17,10 @@
+ 
+ The full analytic argument, prior-source qualifications and reading limits
+ are in the paper and kit; they are not delegated to absent historical code.
+-The support kit includes 57 exact selected authored historical copies and
+-114 individually justified exclusions from a 171-file hash-only baseline.
++The initial preparation included 57 exact selected authored historical
++copies and 114 individually justified exclusions from a 171-file hash-only
++baseline. That dated stage is preserved; the current repair custody map
++appends exact whole-review/root evidence and before-repair interfaces.
+ Third-party source bodies, extracted source text and images are not
+ redistributed. All 171 prior inputs were rehashed unchanged; the eight
+ original snapshots were additionally rechecked against their actual Git blobs.
+@@ -38,7 +40,14 @@
+ 
+ This candidate is **not publication-ready yet**. Root adoption and at least
+ two new independent whole-package adversarial reviews, with all actionable
+-issues resolved, are required. `kit/CURRENT_STATUS.json` records zero such
+-new reviews, false readiness/publication flags, and the ordered service hold
++issues resolved, are required. The initial preparation recorded zero such new reviews. After the
++16 October 2026 bounded path-check repair, `kit/CURRENT_STATUS.json` records
++one completed full review and requires a NEW complete full review, retaining
++false readiness/publication flags and the ordered service hold
+ at the preceding #1032 disposition. No upload, DOI, tracker write, merge,
+ Git mutation, release or outside communication occurred.
++
++The bounded repair report and full before/after code/prose diff are in
++`../repairs/package01/`. The paper, PDF and shared native metadata object
++are byte-identical to the reviewed preparation. No new compilation or layout
++change was needed for this shared-guard repair.

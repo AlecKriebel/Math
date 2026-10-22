@@ -1,0 +1,16 @@
+# Independent reconstruction before prior audits
+
+Recorded: 2026-10-17 16:31 UTC / 09:31 America/Los_Angeles.
+Reviewer: independently delegated topology adversary for PR #1102 / problem 30006658.
+
+Only the authored MATHEMATICAL_REPORT.md, source metadata, and original primary sources have been consulted. Neither MATHEMATICAL_AUDIT.md nor ACCEPTANCE.json nor SOURCE_REVIEW.md has been opened. SOURCE_METADATA.json includes summaries of earlier source inspection; those bibliographic summaries were visible, but no earlier mathematical audit reasoning was used. This record precedes any permitted consultation of earlier audits; this reviewer plans to preserve independence by not consulting them at all.
+
+Let A be an augmented differential graded k-algebra, k a field. Suppose K is perfect over A, has finite total k-homology, and Loc(K)=Loc(k). Every M in Loc(k) is a filtered homotopy colimit of objects in thick(K): use the compact-generator Morita equivalence with E=REnd_A(K), then express an E-module by a semi-free resolution as the filtered union of finite dependency-closed collections of generators. Differential dependencies are finite, and strict descent in the well-order plus finite branching makes each finite dependency closure finite. Tensoring with K preserves homotopy colimits. Every resulting stage has finite total k-homology. Alternatively, the Ind-completion description of Loc(K) gives the same result.
+
+For an A-linear map f:M→A and x∈H_n(M), compactness of Σ^nA (or exactness of filtered colimits of complexes) puts x in the image of H_n(P) for some P∈thick(K) mapping to M. The image of H_*(P)→H_*(A) is a finite-dimensional graded left ideal. If H_*(A) is an infinite-dimensional graded Hopf algebra, that image is zero by the finite-ideal theorem (including signs by parity bosonization). Therefore H_*(f)=0. This uses finite dimensionality stage by stage, not boundedness of all M.
+
+For X=(BG)^∧_p and A=C_*(ΩX;k), the required K exists: DGI §5.7 explicitly treats all compact Lie groups at F_p, proves proxy-smallness on both sides of Koszul duality, establishes mod-p goodness and finite p-group π_1(X), and invokes the valid double-centralizer criterion. Tensor the F_p proxy with k for arbitrary characteristic-p fields. This avoids any cochain scalar-extension assumption. The loop-space homology is a graded Hopf algebra even when ΩX is disconnected. If it had finite total dimension at F_p, X would be the classifying space of a p-compact group; Ishiguro's 2007 Prop. 1.3(a) then forces π_0(G) p-nilpotent. Contraposition gives infinite dimension under the target hypothesis; field extension preserves it.
+
+Thus the authored argument yields H_*(Γ_k A→A)=0 for every compact Lie G with non-p-nilpotent component group and every characteristic-p field. No orientability, nilpotent component action, spectral-sequence collapse, simply-connectedness of X, or connectedness of ΩX is used. It proves the literal OWR Question 2.2, and also includes dimension-zero finite groups. It does not imply nullity of the map in D(A).
+
+Provisional result: full mathematical implication verified; no counterexample or unsupported central step found. Completion estimate for assigned topology audit: 90%. Novelty and exhaustive priority are separate unperformed tasks.

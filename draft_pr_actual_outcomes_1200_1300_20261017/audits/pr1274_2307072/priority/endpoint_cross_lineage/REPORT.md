@@ -1,0 +1,49 @@
+# Reverse cross-review: endpoint witnesses against primary lineage
+
+The primary-lineage report's central priority conclusions survive this cross-review. The 2019 book visibly attributes a resolution to Volberg; its reference 52 really identifies the 2008 finite-p paper; Iwaniec's 1986 article prints the exact logarithmic witness, output and primitive; and Gill's 2010 positive-angular Theorem 1 matches the target. None of this clears firstness for the particular polynomial family or supplies a located earlier full-target proof in the literal annihilator formulation.
+
+A detached correction is required to **my own initial endpoint-witnesses report**: final Bañuelos–Osękowski (2014), printed p.214, actually has the conjugated angular factor, just as its author manuscript does. My earlier statement that the final display correctly restated the positive-angular formula was a reading error. The preserved initial seal is not edited. The current resolution uses Gill's actual Theorem 1 and the self-contained proof in MATH_CHECKS.md.
+
+## Inputs, independence and validation
+
+This informed reverse review began after both independent initial seals. The primary-lineage manifest matches the assigned SHA256 `a329d5fe51b943bade54f4cf6235e9e4def6862578003d191e8ca6d37dac2d3e`; all seven explicit authored members verify. My initial endpoint-witnesses manifest remains `5d9a42f759bafd3b2b9b86643d155ae9b0323fce5d8292d8e27d08b955f8beeb`, with all nine members verifying. Both packets remain unchanged.
+
+I read the other family's complete report, source ledger, query ledger and all retrieval receipts. Every one of its 38 byte-hashed receipts matches retained bytes. Its counts reproduce: 87 literal searches in 22 batches; 19 primary PDF acquisitions; one additional PDF extracted from the publisher ZIP; one primary preview screenshot. These are acquisition counts, not claims to full mathematical reading. The ledgers' qualified reading descriptions do not claim that all technical proofs were audited.
+
+I re-read the critical source passages and images listed in SOURCE_LEDGER.json. The root extension was permitted input only after initial sealing. I also freshly obtained Osękowski's final article during this review. Raw sources, extracted text, screenshots and provider responses remain in ignored `_local`; they are not portable authored output.
+
+## The book attribution and its precise limit
+
+The retained [authorized Google Books preview](https://books.google.com/books?id=lxCuDwAAQBAJ&pg=PA211), 88,100 bytes, SHA256 `0a7680cff97c65045d0365828624b17f353d7076bf2b8c693aba3fefb99d3cfb`, visibly supports the primary-lineage report's paraphrased claim: Update 7.72 credits Volberg with resolving the problem and directs readers to Bañuelos–Janakiraman reference 52. I independently read that entire displayed page image. The negative kernel, uniform estimate, polynomial question and Hinkkanen attribution are also visible.
+
+The preceding definition of N is not in that image. The other family reports an explicit p.210 preview exclusion; this reviewer could not recreate that UI state because the browser was unavailable and the web renderer could not access either Google Books page. I therefore independently verify the visible p.211 sentence, not a complete 2019 definition or version collation. A fresh [publisher chapter landing](https://link.springer.com/chapter/10.1007/978-3-030-25165-9_7) still exposes subscription-preview content, identifies pp.185–216 and gives 8 September 2019. Neither the full chapter nor p.210 was obtained here. No access control was bypassed.
+
+The [official back matter](https://link.springer.com/content/pdf/bbm:978-3-030-25165-9/1), printed p.247/PDF p.7, unambiguously identifies reference 52 as Bañuelos–Janakiraman, *Lp-bounds for the Beurling–Ahlfors transform*, Transactions AMS 360(7) (2008), 3603–3612, explicitly indexed to 7.72. It is distinct from the 2009 weak-type paper.
+
+I independently rehashed and read the actual final 2008 PDF retained by the other family: 182,999 bytes, SHA256 `f1660c2e1c1549e95de420fef11dbfeede90a3bc14d6e28c56bda5629f6ad692`. The title page dates electronic publication to 13 February 2008 and the issue to July 2008. I read the complete extracted ten-page text for scope and visually checked pp.3603, 3604, 3611 and 3612; I did not independently reprove its martingale estimates. Its stated results concern finite-p norm estimates. No explicit annihilator target, Hinkkanen claim, logarithmic witness or submitted polynomial family was located. My fresh ordinary request to the same AMS endpoint returned 403; that does not undo the other family's authenticated successful acquisition.
+
+Thus the published credit is verified, whereas a particular full-target account in the cited article remains unlocated. This gap is not evidence that Volberg's credit is false, that the editors intended a different reference, or that the answer originated privately. The proof's date and mechanism cannot be inferred from that sentence. No such correction or historical inference is authorized by this audit.
+
+## The 1989 date and historical framing
+
+I visually checked both provenance tables in the 2018 v2 PDF: table 1 identifies column L as the Brannan–Hayman 1989 survey, and table 2 assigns miscellaneous problems 68–83 to L. Fresh primary publisher metadata corroborates the survey's January 1989 date and BLMS 21, pp.1–35. This supports a statement about the compilers' provenance assignment. The actual original 7.72 page remains unread, so exact original wording, pairing, pagination and first public formulation are not independently established. The collection's 1967 origin is not a verified date for this particular problem.
+
+The January 2021 official updates text has no 7.72 entry; this is a finding about that document only. Neither that absence nor a search result licenses a present-worldwide openness claim. The primary-lineage report already respects these limits.
+
+## Formula matching and convention checks
+
+The [1986 original](https://doi.org/10.1307/mmj/1029003418), printed pp.387–388, uses the target negative kernel and prints rho=(z/|z|)^2 times the disc indicator, its output (1+log|z|²) times that indicator, and the primitive z log|z|² times the indicator. I re-inspected both complete pages visually. This is an exact dated precedent, not a generic BMO-unboundedness substitute. The literal N-membership and polynomial consequences are additional deductions made in this audit.
+
+In [Gill (2010)](https://doi.org/10.1307/mmj/1281531461), pp.353–356, I read the definition, all relevant statements and the complete Section 2 proof. Theorem 1 on p.354 uses F=(z/bar z)f(|z|²) and SF=-Lambda* f(|z|²); it is correct for the target convention. The proof explicitly credits Iwaniec's earlier pair. However, the ordinary radial display above Theorem 1 has the opposite sign to the negative kernel on p.353. The exact check B(1_D)(z)=-1/z² outside D proves the discrepancy. This does not alter the positive-angular theorem used for the submitted family.
+
+In [Bañuelos–Janakiraman (2009)](https://doi.org/10.1307/mmj/1250169072), the positive kernel on p.459 and the positive logarithmic pair in Remark 2.1 on p.461 cannot both be used literally with the same operator: changing the kernel sign changes that output sign. The remark remains a valid citation route to the 1986 example; the original negative-kernel formula is the appropriate exact match. No assertion about failure of the paper's norm estimates or an official erratum follows.
+
+In the [2014 final article](https://doi.org/10.1307/mmj/1395234366), the lower p.214 display is F=(bar z/z)f(|z|²), followed by BF=-Lambda* f(|z|²). Its p.213 kernel is negative. The conjugated input is not the positive-angular target. For f=1_(0,1), its outside transform is -3/(2z^4), whereas the displayed radial right side is zero there. The final and [author manuscript](https://www.mimuw.edu.pl/~ados/publications/papers/adjoint3.pdf) have the same issue despite distinct body hashes. My initial final-versus-author distinction is withdrawn in this detached record. Its ordinary radial display also has the same sign mismatch as Gill's. These localized display checks are not a claim that the whole paper is invalid.
+
+Freshly retrieved [Osękowski (2013)](https://link.springer.com/article/10.1007/s00209-012-1083-z), online 3 November 2012, has the same exact pair and primitive in the complete proof of Theorem 4.3, p.529, under the negative kernel on p.526. Its final body matches the root extension's hash. It is a further positive precedent, later than the 1986 printed example. It establishes no earliest priority and does not itself print the literal N/polynomial assertion.
+
+## Resolution and remaining gap
+
+The elementary proof in MATH_CHECKS.md independently yields annihilation against every holomorphic area-L1 test, failure of boundedness for the old witness, and the submitted polynomial specialization with norm H_m. These are current compositions and calculations, not text backdated to any earlier source. The exact particular polynomial family and H_m pairing remain unlocated in the bounded literature audit. That is a priority gap, not evidence of firstness or substantial novelty.
+
+The appropriate retained framing is an attributed explicit verification of the printed endpoint questions, crediting Iwaniec (1986) and Gill (2010), optionally noting the identical later Osękowski example, and accurately reporting the book's Volberg attribution with the located-account limitation. The primary-lineage report passes its core source challenge. Before any synthesis, the 2014 final-formula claim in my initial packet must be superseded by the detached correction here. No publication, push, branch change, external communication or production edit occurred.

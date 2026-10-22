@@ -1,0 +1,9 @@
+# Finite computation adversary research log
+
+- 2026-10-18T00:45:50.179862+00:00 — 10%: Read applicable AGENTS; authenticated both frozen candidate inputs; mathematical review started from source and primary paper before reading any computation report. All scratch and downloaded primary bytes are under ignored `_local/`.
+
+- 2026-10-18T00:47:19.240714+00:00 — 55%: Candidate replay agrees byte-for-byte. Authenticated the later sealed candidate report/manifest separately; all nine listed authored members match. Independent primary Appendix A visual check detects benign printed normalization typo 2^3 z-tilde in prose: the displayed product has eight doubled weights and equals 2^8 z-tilde. Source §4 and §5 use the required nested exponent. Reviewed ring-rank/Frobenius lower proof and geometry; developed an independent root-monomial/Vandermonde algorithm, now running. No counterexample so far.
+
+- 2026-10-18T00:47:53.563858+00:00 — 90%: Independent monomial/Vandermonde computation returns normalized pairing 6994561955642; independently generated C8 quotient-root localization at a new signed/permuted weight set agrees. Projective and Lagrangian controls pass; long-root omission and orientation reversal produce detectable wrong answers. No central finite-mathematical defect found. Remaining work: precise inference/dependency report, final end-authentication, manifest seal.
+
+- 2026-10-18T00:49:16.721623+00:00 — 100%: Adversarial mathematical review complete. Exact class valuation22 independently confirmed; upper8 consequence valid with explicit structural citations. Identified only the benign printed primary normalization typo and clarified that k3 alone does not prove exact index8. Final frozen and sealed-candidate inputs all reauthenticated. Authored manifest sealed next; raw files and root-supplied freeze excluded from authored membership.

@@ -45,6 +45,8 @@ def main():
     a = ap.parse_args()
     mapping = json.loads(Path(a.mapping).read_text())
     pid, number = mapping['problem_id'], mapping['pr']
+    if type(pid) is not int or type(number) is not int or pid <= 0:
+        raise RuntimeError('PR and problem ID must be positive integer keys')
     if not 800 <= number <= 900:
         raise RuntimeError('PR outside assigned shard')
     if a.push and mapping['final_review_status'] != 'CLEAR':
@@ -77,7 +79,10 @@ def main():
     updated = current.replace(oldrow, replacement, 1)
     if updated.replace(replacement, oldrow, 1) != current:
         raise RuntimeError('Queue bytes outside target row changed')
-    prefix = 'unsolved_math_prioritization/attempts/' + str(pid) + '/'
+    # PR872's frozen evidence lives in this verified legacy problem folder.
+    # Do not accept a caller-supplied arbitrary repository prefix.
+    prefix = ('random_property_t_30006628/' if (number, pid) == (872, 30006628)
+              else 'unsolved_math_prioritization/attempts/' + str(pid) + '/')
     seen = set()
     mapped = []
     for f in mapping['files']:

@@ -1,0 +1,105 @@
+{
+  "schema": "pr210-release-helper-review04-findings-v1",
+  "utc": "2026-10-16T03:55:50.531988+00:00",
+  "review_completion_percent": 100,
+  "disposition": "UNRESOLVED_DO_NOT_PROMOTE_SOURCE04_TO_CLEARANCE",
+  "whole_manuscript_review": false,
+  "reviewed_sources": [
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/append_verified_tracker.py",
+      "bytes": 6439,
+      "sha256": "9eedf40db79d0949b1bf98a80b78decc71e94201b7030c7cf42af93f915c0ebb"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/integrate_reviewed_pr.py",
+      "bytes": 18074,
+      "sha256": "b0309af583e85f3e7c443191322420d5b8a11e73d9eb1d01a34b3f1248912528"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/publish_preprint.py",
+      "bytes": 5335,
+      "sha256": "67287d9f4e45779040502d7226391a36839716e40cc42f9507a13ae10fd569a5"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/release_binding.py",
+      "bytes": 10448,
+      "sha256": "afc858a311137fa99e9a33207848d2ccc913a12f07862aa663b610b262bdb8ce"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/verify_and_merge.py",
+      "bytes": 8638,
+      "sha256": "e56e3f6eb7a7b183f8fe4a3e977f267783188c12faf2766cf456f98910d5eabe"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/publication/verify_published_readonly.py",
+      "bytes": 4367,
+      "sha256": "05b5e494de791a03fa876da2b777e8891cf145ff67fc78aac9fb9221ec774a8b"
+    },
+    {
+      "path": "draft_pr_descending_audit_20261002/audits/pr210_5100033/initial_review_20261015/reconcile_published_release_readonly.py",
+      "bytes": 10002,
+      "sha256": "f37a36699e2ad0a527e4d71f314b126f29dd2176916d0ec7420acd86afa60e00"
+    }
+  ],
+  "mandatory_findings": [
+    {
+      "id": "R4-F1",
+      "severity": "mandatory",
+      "status": "UNRESOLVED",
+      "title": "Exact reconstructed MAIN placeholder still differs from actual captured queued row",
+      "source": "publication/integrate_reviewed_pr.py",
+      "line": 93,
+      "mechanism": "The helper sets each empty release field10/11/12 to one space, but retained actual MAIN008 has two spaces in each. The full-row equality rejects the real untouched queued/0-of-5 placeholder.",
+      "evidence": [
+        "ROOT independently reported capture mismatch, independently confirmed here",
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: actual retained MAIN queued row still refuses current repaired source; actual MAIN whitespace regression",
+        "LOCAL_INTEGRITY_RESULTS.json: actual [2,2,2] vs reconstructed [1,1,1]"
+      ],
+      "impact": "Real intended integration remains blocked before native copy/object/ref intent or mutation.",
+      "repair": "Reconstruct or pin the exact actual untouched placeholder from trustworthy original-parent evidence; test actual saved008 bytes explicitly, plus per-column and whitespace near misses. Preserve the frozen original PR claimed_solved/1-of-5 eligibility and old claimed_solved MAIN route.",
+      "discovery_credit": "Root reported exact whitespace issue; this review independently verified and executed its counterexample."
+    },
+    {
+      "id": "R4-F2",
+      "severity": "mandatory",
+      "status": "UNRESOLVED",
+      "title": "Historical archive manifest and exact prior publication/tracker identity are not authorized by fresh clearance",
+      "source": "initial_review_20261015/reconcile_published_release_readonly.py",
+      "line": 42,
+      "mechanism": "Fresh clearance binds old FINAL_CLEARANCE hash but no archive-manifest hash, old receipt hashes, exact deposit23398175 or exact A113:D113 range. A locally rewritten manifest plus coherent archived/current receipts passes all guards while retaining unchanged old clearance/science hashes.",
+      "evidence": [
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: other deposit23398176 accepted",
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: Other tab A7:D7 accepted while properties report Math Puzzles"
+      ],
+      "impact": "The approved SAME-record/SAME-four-cells reconciliation can be redirected to a different existing deposit or range, then accepted by publication()/tracker(). No external mutation is needed.",
+      "repair": "Bind an exact schema/path-safe immutable archive manifest and its complete expected evidence set in new clearance, including initial receipt/intent hashes, actual production record/DOI23398175, spreadsheet/sheet identity and exact Math Puzzles A113:D113. Validate those identities against that authority before any provider call. A file list that can be changed alongside its data is not independent authority.",
+      "discovery_credit": "Independent source04 mechanism and probes."
+    },
+    {
+      "id": "R4-F3",
+      "severity": "mandatory",
+      "status": "UNRESOLVED",
+      "title": "Initial evidence is not frozen through the local receipt transition",
+      "source": "initial_review_20261015/reconcile_published_release_readonly.py",
+      "line": 109,
+      "mechanism": "The archive and current-original receipt equality are checked only before slow provider reads. Later unchanged() revalidates clearance/scientific inputs and self source, but not accepted historical/current evidence. Provenance hashes are reread from archive after the calls; current receipts are replaced without rechecking their accepted bytes. Current original stage/publish intents are not compared with archived originals at all.",
+      "evidence": [
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: late archive publication change accepted and provenance hash points to changed unaccepted bytes",
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: late current publication receipt change silently overwritten",
+        "INDEPENDENT_RECONCILIATION_RESULTS.json: changed current PUBLISH_ATTEMPT differs from archive but accepts"
+      ],
+      "impact": "The transition can relabel changed evidence as accepted original evidence, or discard evidence written during revalidation, while reporting prior_evidence_preserved=True.",
+      "repair": "Read accepted evidence as same-byte snapshots, hash/parse those snapshots once, verify all intended preserved current originals/intents, and revalidate all immutable archive and current-original byte hashes immediately before durable local intent/replacement. Abort with original evidence retained on any drift. Derive provenance hashes from accepted snapshots and carry those identities in the intent.",
+      "discovery_credit": "Independent source04 mechanism and probes."
+    }
+  ],
+  "optional_findings": [],
+  "independent_controls": 49,
+  "counterexample_observations": 6,
+  "reused_workflow_controls_completed": 42,
+  "reused_transition_suite": "INTERRUPTED_ENOSPC_NOT_CLAIMED_COMPLETE",
+  "actual_provider_network_or_action_calls": 0,
+  "clearance_granted": false,
+  "passing_assertion_records": 43,
+  "passing_assertion_records_note": "Includes a diagnostic successful assertion that actual MAIN is incorrectly refused; not a claim that49 desired safety properties pass."
+}

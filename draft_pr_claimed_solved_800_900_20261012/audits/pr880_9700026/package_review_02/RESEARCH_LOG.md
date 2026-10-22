@@ -1,0 +1,13 @@
+# Independent whole-package review 02 log
+
+2026-10-15T10:41:37.946404+00:00 — Start, 0%. Scope: bounded review of the exact PR880 candidate; no candidate, Git, remote, DOI or queue changes. Original proof effort stays 2/5. Independent reading precedes candidate proof and old reports.
+
+2026-10-15T10:42:55.653101+00:00 — 15%. Independent source-first reconstruction complete and frozen before candidate/old report reading. Derived protected disk, scalar bound, tie nullness, local Lipschitz mechanism and continuation. Identified source antecedents and exact critical/zero/collision restrictions.
+
+2026-10-15T10:44:44.851965+00:00 — 35%. Analytic/conceptual verdict fixed independently: no gap found in scoped theorem or acknowledged priority transfer. All 5 exact PDF pages visually inspected after independent page-pin authentication. No prior package report read.
+
+2026-10-15T10:51:33.380751+00:00 — 75%. Independent exact inventory/Git blob match, 8-receipt normal/-O replay, normal/-O same-runtime byte-identical rebuild and 10-receipt full-input hardlink replay complete. Each mode passed 81 fresh negative controls and 7 positive controls; exact checks passed 1368 hard influence comparisons, 15 scalar polynomial identities, 45 gradient identities and 4 hypothesis controls. Static archival effects reviewed; none of the ancillary harnesses executed.
+
+One initial repeat of optimized outer replay returned nonzero with no stderr; stdout was not captured by that first harness failure path. Cause unknown. A direct subsequent optimized replay and the complete captured re-execution sequence passed. Disk was observed at144MiB available but is not established as the cause. The harness now retains any future failure stdout/stderr. No candidate defect inferred from the unclassified event. An initial assembler collision test used invalid JSON before reaching its intended guard; the private fixture was corrected to valid JSON, and final controls count only the corrected runs.
+
+2026-10-15T10:57:28.779161+00:00 — 100%. Bounded independent whole-package review completed: CLEAR for unchanged exact seal/11core/215outer/161portable. No actionable repairs. Final source-first reasoning, primary priority transfer, PDF/metadata/static code review, exact fixtures, actual replays/builds and private archive scan are recorded. Parent evidence check added an explicit relative-simplex initial-margin guard to reviewer-only code; both exact modes reran successfully. Final candidate pins and actual trees remain stable; branch main. This is review completion only; no new central proof effort, world-priority certification, human peer review, publication or remote mutation.

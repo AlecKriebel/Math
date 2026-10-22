@@ -1,0 +1,401 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Equal dilatations deep in the Johnson filtration: a convex-core proof},pdfauthor={Alec Kriebel},pdfsubject={An attributed alternative proof of the negative answer to Farb Question 7.6; unrefereed}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem*{remark}{Remark}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Out}{\operatorname{Out}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\PSL}{\operatorname{PSL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\HH}{\mathbb H^2}
+\newcommand{\I}{\mathcal I}
+\title{Equal dilatations deep in the Johnson filtration:\\a convex-core proof}
+\author{Alec Kriebel\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{17 October 2026 \quad (version 1.0; unrefereed preprint)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Farb asked whether the pseudo-Anosov dilatation spectrum of a fixed deep
+Johnson-filtration term has bounded multiplicity, counted using ambient
+mapping-class conjugacy. Ferudun has recorded a negative answer, including
+this scope. We give an alternative proof using a compact convex core.
+For every fixed closed genus $g\ge2$, fixed finite depth $k\ge3$, and $N$,
+there are $N$ pairwise nonconjugate elements of $\I_g(k)$ in $\Mod_g$
+with one common pseudo-Anosov dilatation. Explicit commutators produce
+hyperbolic elements at the prescribed depth; high powers give a Schottky
+subgroup. A compact-core argument uniformly bounds fusion of its conjugacy
+classes in any discrete Fuchsian overgroup. Horowitz's universal trace
+families then give the result. The argument does not require an arithmetic
+description of the full disk stabilizer. No priority or novelty claim is made.
+\end{abstract}
+
+\section{Statement and context}
+Let $S_g$ be a closed oriented surface of genus $g\ge2$, let
+$\pi=\pi_1(S_g)$, and put
+\[
+ \Gamma_0=\pi,\qquad \Gamma_{j+1}=[\pi,\Gamma_j],\qquad
+ \I_g(j)=\ker\bigl(\Mod_g\longrightarrow\Out(\pi/\Gamma_j)\bigr).
+\]
+Here $\Mod_g$ consists of orientation-preserving mapping classes.
+Thus $\I_g(1)$ is the Torelli group. This is the indexing in
+Farb's question \cite[\S1.2 and Question 7.6]{Farb}.
+For $H\le\Mod_g$ and $t>0$, define the ambient multiplicity
+\[
+ m_H(t)=\#\{[f]_{\Mod_g}: f\in H\text{ is pseudo-Anosov and }
+                         \log\lambda(f)=t\}.
+\]
+In this definition a class is counted when it has a representative in $H$.
+Conjugators can belong to all of $\Mod_g$.
+
+\begin{theorem}\label{thm:main}
+For each fixed $g\ge2$ and fixed finite $k\ge3$, and every integer $N\ge1$,
+there are pseudo-Anosov $f_1,\ldots,f_N\in\I_g(k)$ with the same dilatation
+which represent distinct conjugacy classes of $\Mod_g$.
+Consequently $\sup_{t>0}m_{\I_g(k)}(t)=\infty$.
+\end{theorem}
+
+This is the negative answer to Farb's Question 7.6. A theorem containing
+this statement has already been published as an unrefereed preprint by
+Ferudun \cite[Theorem 1.1]{Ferudun}; that theorem also states extensions
+beyond the scope considered here. The present note supplies an alternative
+proof of the displayed statement. The passage from subgroup conjugacy to
+ambient conjugacy is discussed in Anderson's earlier survey
+\cite[\S5, author-hosted version]{Anderson}. Ferudun compares conjugacy using an
+integral saddle-connection lattice and a virtually free group. Here we
+first pass to a subgroup with compact convex core and use properness of
+the full Fuchsian action. No assertion is made that this alternative
+mechanism is new. The common dilatation may vary with $N$. Powers are
+allowed; neither ambient primitivity nor the simple-length question
+(Farb's Question 7.7) is addressed.
+
+\section{A free subgroup at a fixed depth}
+We begin by checking the filtration indices, including the outer action.
+We use $[x,y]=xyx^{-1}y^{-1}$.
+
+\begin{lemma}\label{lem:central}
+For $a,b\ge1$ one has
+$[\I_g(a),\I_g(b)]\subseteq\I_g(a+b)$.
+A Dehn twist about a separating curve belongs to $\I_g(2)$.
+\end{lemma}
+\begin{proof}
+Let $A(a)\le\Aut(\pi)$ consist of automorphisms inducing the identity on
+$\pi/\Gamma_a$. The lower-central commutator inclusions give
+$[\Gamma_i,\Gamma_j]\subseteq\Gamma_{i+j+1}$.
+Induction on $j$ then gives
+\begin{equation}\label{eq:action}
+ \alpha(z)z^{-1}\in\Gamma_{a+j}
+ \qquad(\alpha\in A(a),\ z\in\Gamma_j).
+\end{equation}
+Indeed, the case $j=0$ is the definition. At the next step expand
+$\alpha([x,z])$ for $x\in\pi$, $z\in\Gamma_j$; the errors lie in
+$[\Gamma_a,\Gamma_j]$ or $[\pi,\Gamma_{a+j}]$, hence in
+$\Gamma_{a+j+1}$. Products and inverses preserve the congruence.
+
+For $\alpha\in A(a)$, $\beta\in A(b)$ and $x\in\pi$, write
+$\alpha(x)=xu$, $\beta(x)=xv$ with $u\in\Gamma_a$, $v\in\Gamma_b$.
+By \eqref{eq:action}, modulo $\Gamma_{a+b}$ the values of
+$\alpha\beta(x)$ and $\beta\alpha(x)$ are respectively $xuv$ and $xvu$.
+They agree, since $[u,v]\in\Gamma_{a+b+1}$.
+Thus $[A(a),A(b)]\subseteq A(a+b)$.
+An outer automorphism trivial on $\pi/\Gamma_a$ has a representative
+inducing an inner automorphism of that quotient. Lift its conjugating
+element to $\pi$ and adjust the representative by the inverse inner
+automorphism. This gives a representative in $A(a)$, and proves the
+asserted containment after passage to outer classes. This centrality is
+also the classical input used in \cite[proof of Proposition 4.8]{FLM}.
+
+For a separating curve, take a basepoint on one side and a twist
+representative which fixes that side. On generators on the other side
+it acts by conjugation by the boundary word, up to its sign. That word
+is in $\Gamma_1$, so its conjugation changes each generator by an element
+of $[\Gamma_1,\pi]=\Gamma_2$. The induced outer action on
+$\pi/\Gamma_2$ is therefore trivial.
+\end{proof}
+
+Fix filling separating simple closed curves $a,b$ in minimal position.
+Such a pair exists for every $g\ge2$; see
+\cite[\S7.2]{Farb} or \cite[Lemma 2.2]{AT}.
+Write $\mu=i(a,b)$ and $A=T_a$, $B=T_b$.
+The graph $a\cup b$ has $\mu$ vertices and $2\mu$ edges, and its
+complement consists of $F\ge1$ disks. Thus
+$\mu=2g-2+F\ge2g-1$. Since a separating curve has zero mod-$2$
+intersection with every curve, $\mu$ is even and consequently $\mu\ge4$.
+
+Thurston's rectangle construction gives a flat quadratic differential,
+a Teichm\"uller disk $D$, and derivatives of $A,B$ with lifts
+\begin{equation}\label{eq:AB}
+ U=\begin{pmatrix}1&\mu\\0&1\end{pmatrix},\qquad
+ V=\begin{pmatrix}1&0\\-\mu&1\end{pmatrix}.
+\end{equation}
+For a single pair of curves the shear parameter is the intersection
+number $\mu$; see \cite[\S5.1 and Lemma 6.3]{Leininger}.
+We use the following standard disk facts as stated in
+\cite[Theorems 3.1--3.2]{Leininger}: the derivative homomorphism
+\[
+ \rho:\operatorname{Stab}_{\Mod_g}(D)\longrightarrow\PSL(2,\mathbb R)
+\]
+has discrete image and finite kernel; a hyperbolic derivative gives a
+pseudo-Anosov with
+\begin{equation}\label{eq:normalization}
+ \log\lambda(f)=\tfrac12\ell_{\HH}(\rho(f));
+\end{equation}
+and a pseudo-Anosov stabilizes a unique Teichm\"uller disk.
+The last statement is Bers's theorem, used here in Leininger's
+restatement. We do not require injectivity of $\rho$ on the full stabilizer.
+
+Define $c_1=A$ and $c_r=[B,c_{r-1}]$ for $r\ge2$.
+Lemma~\ref{lem:central} gives $c_r\in\I_g(2r)$.
+For any determinant-one matrix $C=\left(\begin{smallmatrix}p&q\\w&s\end{smallmatrix}\right)$,
+direct multiplication gives
+\[
+ [V,C]=\begin{pmatrix}
+ 1+\mu qs&-\mu q^2\\
+ \mu(s^2-1)-\mu^2qs&1-\mu qs+\mu^2q^2
+ \end{pmatrix}.
+\]
+Its trace is $2+\mu^2q^2$. Starting with the upper-right entry $\mu$ of
+$U$, induction yields, for the corresponding lifts $C_r$ of $\rho(c_r)$,
+\begin{equation}\label{eq:deep}
+ (C_r)_{12}=-\mu^{\,2^r-1},\qquad
+ \tr C_r=2+\mu^{\,2^r}>2 \qquad(r\ge2).
+\end{equation}
+Fix $k\ge3$ and set $r=\max\{2,\lceil k/2\rceil\}$ and $c=c_r$.
+Then $c\in\I_g(k)$ and its derivative is hyperbolic.
+Its two fixed points on $\partial\HH=\mathbb R\cup\{\infty\}$ avoid $0$,
+since $(C_r)_{12}\ne0$. The parabolic
+$V^M(z)=z/(1-M\mu z)$ sends both points towards $0$ as $M\to\infty$.
+For some positive $M$, the fixed points of $\rho(c)$ and
+$\rho(d)$, where $d=B^McB^{-M}$, are therefore disjoint.
+Normality gives $d\in\I_g(k)$.
+
+\begin{lemma}\label{lem:schottky}
+Two hyperbolic elements of $\PSL(2,\mathbb R)$ with disjoint fixed-point
+sets have sufficiently large common positive powers which freely
+generate a convex-cocompact rank-two group.
+\end{lemma}
+\begin{proof}
+Choose disjoint closed boundary intervals around their four fixed
+points. Choose a repelling geodesic half-plane for each element inside
+its repelling interval. For sufficiently large powers, the image of
+the complementary half-plane is an attracting half-plane inside the
+corresponding attracting interval. The four half-planes have disjoint
+closures, including their ideal endpoints. Their pairings give the
+classical Schottky fundamental region $P$, exterior to their interiors,
+and ping-pong proves that the two powered elements are a free basis.
+
+Here strict separation also gives compactness of the convex core.
+For each possible first letter, the limit set lies in the images under
+that letter of the three allowed next-letter intervals. These finitely
+many images are strictly inside the corresponding paired interval.
+Thus the ideal boundary of the closed fundamental region $P$ is disjoint
+from the limit set $\Lambda$. The closed convex hull $X$ of $\Lambda$
+in $\HH$ has ideal boundary exactly $\Lambda$. Consequently $P\cap X$
+has no ideal accumulation point and is compact. Its translates cover
+$X$, so $X/J$ is compact for the generated group $J$. In particular all
+its nonidentity elements are hyperbolic.
+\end{proof}
+
+Apply the lemma to $\rho(c),\rho(d)$ and choose the resulting exponent
+$L$. Then
+\begin{equation}\label{eq:H}
+ H=\langle c^L,d^L\rangle\le\I_g(k),\qquad J=\rho(H)
+\end{equation}
+is free of rank two and $J$ is convex cocompact.
+Indeed, any relation between the displayed generators of $H$ would
+produce one between their free images; this also proves that
+$\rho|_H:H\to J$ is an isomorphism. Every nonidentity element of $H$
+is pseudo-Anosov. The choices of $H,J$ are now fixed independently of $N$.
+
+\section{A uniform bound for ambient conjugacy}
+The following elementary lemma is the conjugacy comparison needed here.
+Convex cocompact means that the quotient of the convex hull of the limit
+set is compact.
+
+\begin{lemma}\label{lem:fusion}
+Let $J\le G\le\PSL(2,\mathbb R)$, where $G$ is discrete and $J$ is
+convex cocompact. There is a finite constant $C=C(J,G)$ such that each
+$G$-conjugacy class of hyperbolic elements contains at most $C$ distinct
+$J$-conjugacy classes of elements of $J$.
+\end{lemma}
+\begin{proof}
+Let $X$ be the convex hull of $\Lambda(J)$, and choose a compact set
+$K\subset X$ with $JK=X$. Such a set exists by compactness of $X/J$.
+Properness of the discrete action on $\HH$ implies finiteness of
+\[
+ S=\{s\in G:sK\cap K\ne\varnothing\}.
+\]
+Explicitly, if $K\subset B(o,R)$ then $d(o,so)\le2R$ for $s\in S$;
+the isometries satisfying this bound form a compact set because the
+stabilizer of $o$ is compact. Its intersection with the discrete group
+$G$ is finite.
+
+Fix a hyperbolic $u\in J$. Its axis is in $X$. Conjugate $u$ within $J$
+so that a point $x$ on its axis belongs to $K$. Keep this one $u$ and this
+one $x$ fixed for all subsequent conjugators. If $v=tut^{-1}\in J$ with
+$t\in G$, then $tx$ is on the axis of $v$, hence in $X$.
+Choose $j\in J$ with $jtx\in K$. Now $s=jt$ belongs to $S$ and
+\[
+ jvj^{-1}=sus^{-1}.
+\]
+Thus every $J$-class in the specified $G$-class is represented by an
+entry of the fixed list $\{sus^{-1}:s\in S\}$ that belongs to $J$.
+Take $C=|S|$. Although $x$ depends on $u$, the sets $K,S$ do not;
+the bound is uniform in $u$ and its translation length.
+\end{proof}
+
+Let $G=\rho(\operatorname{Stab}_{\Mod_g}(D))$ and take $J$ from
+\eqref{eq:H}. If $f,h\in H\setminus\{1\}$ satisfy $zfz^{-1}=h$
+for any $z\in\Mod_g$, then $h$ stabilizes both $D$ and $zD$.
+Its unique invariant disk forces $zD=D$. Consequently
+$\rho(f),\rho(h)$ are conjugate in the full group $G$.
+Since $H\to J$ is an isomorphism, Lemma~\ref{lem:fusion} bounds by
+$C$ the number of $H$-classes inside one ambient $\Mod_g$-class.
+The possibly nontrivial finite kernel of the full derivative map causes
+no loss: only injectivity on $H$ and the implication from ambient
+conjugacy to $G$-conjugacy were used. Neither finite index nor arithmetic
+of $G$ is required.
+
+\section{Universal trace families and the conclusion}
+Horowitz \cite[Example 8.2, pp.~648--649]{Horowitz} constructs, in a free
+group $F(x,y)$, $2^m$ nonidentity pairwise nonconjugate words with the
+same trace under every representation to $\SL(2,\mathbb C)$.
+For clarity, his recursion can be written as
+\begin{align}\label{eq:horowitz}
+ W_0&=x,\notag\\
+ W_j&=W_{j-1}^{-\varepsilon_j}y^{2j}
+       W_{j-1}^{\varepsilon_j}y^{2j-1}
+       W_{j-1}^{-\varepsilon_j}y^{2j}
+       W_{j-1}^{\varepsilon_j},\quad \varepsilon_j\in\{1,-1\}.
+\end{align}
+The exponents $2j$ are linear in $j$; the family size is $2^m$.
+We recall why both properties of this construction hold.
+
+The words are freely reduced and begin and end with $x^{\pm1}$.
+For $U=W_{m-1}$ the cyclic form is
+\[
+ U^{\varepsilon_m}y^{2m-1}U^{-\varepsilon_m}y^{4m}.
+\]
+The positive odd syllable $y^{2m-1}$ occurs exactly once, and its inverse
+syllable is absent; earlier words have only smaller odd syllables.
+The closing syllable $y^{4m}$ is also unique, since every $y$-syllable
+in $U$ has absolute exponent at most $2m-2$. These two markers
+anchor cyclic comparison and recover the block $U^{\varepsilon_m}$. For $m>1$ the corresponding odd marker
+in $U$ distinguishes $U$ from the inverse of any earlier-level choice;
+for $m=1$ use $x\ne x^{-1}$. Induction recovers all the signs.
+Thus the $2^m$ choices give distinct conjugacy classes, and the words
+are nonidentity.
+
+For the trace assertion, the rank-two trace-polynomial identity says
+that the trace of a word in $P,Q\in\SL(2,\mathbb C)$ is a polynomial
+in $\tr P,\tr Q,\tr(PQ)$
+\cite[Theorem 3.1 and Corollary 3.14]{Horowitz}.
+Flipping the sign at the $j$th stage replaces the pair
+$(U^{-1}yU,y)$ by $(UyU^{-1},y)$, where $U=W_{j-1}$; every later
+word is the same word in the respective pair. Their trace coordinates
+agree, since
+\[
+ \tr(U^{-1}yU)=\tr(UyU^{-1})=\tr y,\qquad
+ \tr(U^{-1}yUy)=\tr(UyU^{-1}y).
+\]
+The latter equality is cyclic invariance of trace. Flipping one sign
+at a time proves the universal common-trace assertion.
+
+Identify $F(x,y)$ with $H$ using the basis in \eqref{eq:H}.
+The projective representation of $H$ lifts to $\SL(2,\mathbb R)$ by
+choosing lifts of the two free generators. At level $m$, the $2^m$
+words therefore have a common trace $t_m$. They are all hyperbolic,
+so $|t_m|>2$. Their common translation length and dilatation satisfy
+\[
+ \ell_m=2\operatorname{arcosh}(|t_m|/2),\qquad
+ \lambda_m=\exp(\ell_m/2)
+           =\frac{|t_m|+\sqrt{t_m^2-4}}2>1
+\]
+by \eqref{eq:normalization}. At most $C$ of these $H$-classes can fuse
+in a $\Mod_g$-class. There are consequently at least
+$\lceil2^m/C\rceil$ ambient classes at the common value
+$\log\lambda_m$. Given $N$, choose $m$ with $2^m\ge CN$.
+This proves Theorem~\ref{thm:main}, with the genus, depth and subgroup
+all fixed before $m$ varies. \hfill$\square$
+
+\section*{Scope, verification and disclosure}
+The argument includes genus two and each finite Johnson depth
+separately. It asserts no infinite multiplicity at one fixed value,
+no result for the intersection of all filtration terms, and no
+ambient-primitivity or simple-loop statement. Its infinite claims rest
+on the written arguments and the cited standard theorems. Accompanying
+exact-arithmetic checks of commutator matrices and finite trace-word
+families are consistency checks, not substitutes for those proofs.
+
+AI tools were used extensively in research, proof development,
+verification, literature searches and writing. Additional AI agents
+performed adversarial mathematical checks. This manuscript is
+unrefereed, has not undergone external human peer review, and is not
+a formal proof-assistant certification. The author is responsible for
+the claims and final text. No claim of first resolution, a new existence
+theorem, or current openness of the historical question is made.
+
+\begin{thebibliography}{9}
+\bibitem{Anderson} J.~W.~Anderson,
+\emph{Variations on a theme of Horowitz},
+in \emph{Kleinian Groups and Hyperbolic 3-Manifolds},
+London Math. Soc. Lecture Note Ser. \textbf{299},
+Cambridge University Press, 2003.
+\href{https://doi.org/10.1017/CBO9780511542817.015}{doi:10.1017/CBO9780511542817.015}.
+We cite \S5 of the author-hosted version:
+\url{https://eprints.soton.ac.uk/29876/1/horowitz.pdf}.
+
+\bibitem{AT} T.~Aougab and S.~J.~Taylor,
+\emph{Pseudo-Anosovs optimizing the ratio of Teichm\"uller to curve graph
+translation length}, arXiv:1510.00995, Lemma~2.2, preprint pp.~3--4.
+\url{https://arxiv.org/abs/1510.00995}.
+
+\bibitem{Farb} B.~Farb,
+\emph{Some problems on mapping class groups and moduli space},
+in \emph{Problems on Mapping Class Groups and Related Topics},
+Proc. Sympos. Pure Math. \textbf{74}, American Mathematical Society,
+2006, pp.~11--55.
+\href{https://doi.org/10.1090/pspum/074/2264130}{doi:10.1090/pspum/074/2264130}.
+Question~7.6 and the filtration conventions are cited here in the
+author-hosted volume version, printed pp.~51 and~14 respectively
+(PDF pp.~58 and~21):
+\url{https://www.math.uchicago.edu/~farb/papers/mcgbook.pdf}.
+Its pagination differs from the published chapter.
+
+\bibitem{FLM} B.~Farb, C.~J.~Leininger and D.~Margalit,
+\emph{The lower central series and pseudo-Anosov dilatations},
+Amer. J. Math. \textbf{130} (2008), 799--827.
+\href{https://doi.org/10.1353/ajm.0.0005}{doi:10.1353/ajm.0.0005}.
+Preprint: \url{https://arxiv.org/abs/math/0603675},
+\S4.2, proof of Proposition~4.8.
+
+\bibitem{Ferudun} A.~Ferudun,
+\emph{Unbounded Multiplicity in the Dilatation Spectrum of Every Term
+of the Johnson Filtration: An Observation on a Question of Farb},
+EulerSolve Research Papers, AMR-109-0082, version~1.0,
+11 October 2026, unrefereed preprint.
+\href{https://doi.org/10.5281/zenodo.23301731}{doi:10.5281/zenodo.23301731}.
+
+\bibitem{Horowitz} R.~D.~Horowitz,
+\emph{Characters of free groups represented in the two-dimensional
+special linear group}, Comm. Pure Appl. Math. \textbf{25} (1972),
+635--649.
+\href{https://doi.org/10.1002/cpa.3160250602}{doi:10.1002/cpa.3160250602}.
+Primary paper copy:
+\url{https://www.math.purdue.edu/~eremenko/Pdf/horowitz.pdf}.
+
+\bibitem{Leininger} C.~J.~Leininger,
+\emph{On groups generated by two positive multi-twists:
+Teichm\"uller curves and Lehmer's number},
+Geom. Topol. \textbf{8} (2004), 1301--1359.
+\href{https://doi.org/10.2140/gt.2004.8.1301}{doi:10.2140/gt.2004.8.1301}.
+Theorems~3.1--3.2, pp.~1314--1315; \S5.1 and Lemma~6.3.
+\end{thebibliography}
+\end{document}

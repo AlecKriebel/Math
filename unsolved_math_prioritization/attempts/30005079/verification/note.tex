@@ -1,0 +1,388 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An explicit rank-two entropy-minimizing Fano degeneration},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Bl}{\operatorname{Bl}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\MA}{\operatorname{MA}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\Res}{\operatorname{Res}}
+\title{An explicit rank-two entropy-minimizing\\ Fano degeneration}
+\author{Alec Kriebel\\{\small Independent researcher}\\
+{\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}}
+\date{16 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a smooth Fano fivefold with a nondivisorial global
+entropy-minimizing valuation and a nontrivial canonical first degeneration.
+The example is the product of an explicit quadric blowup with the first
+Hirzebruch surface. Its two positive valuation weights are specified by exact
+moment equations; an elementary resultant argument, using the classical
+Hermite--Lindemann theorem, proves that their ratio is irrational.
+The associated graded anticanonical ring identifies the first central
+variety, which is singular although the original fivefold is smooth.
+Global optimality follows from the established optimal-degeneration and
+soliton theorems after checking the product filtration and normalization.
+The threefold factor and its optimal degeneration are due to Miao--Wang.
+No claim of novelty or historical firstness is made.
+\end{abstract}
+
+\section{The construction and its target}
+
+Blum's discussion of canonical Fano degenerations asks for explicit examples
+whose first central variety differs from the original variety, and in
+particular for one with a nondivisorial minimizing valuation
+\cite[pp.~888--889]{OWR}. The construction below satisfies both requirements.
+We work over \(\C\). By a divisorial real valuation we mean
+\(c\,\ord_F\), where \(F\) is a prime divisor over the variety and \(c>0\)
+is real. An irrational rescaling alone therefore does not prove
+nondivisoriality.
+
+Earlier explicit nontrivial first centers include Li--Li's
+\(\mathrm{SO}_4\)-compactifications \cite[\S6]{LL}.
+Their second example has a two-component optimizer; we have not verified
+irrationality of its direction. Miao--Wang's divisorial threefold factor
+already appears in their January 2024 first preprint.
+We cite the revised edition for precise theorem numbering.
+The present claim is an explicit construction, not a priority certificate.
+
+In \(\mathbb P^4_{[u:x_0:x_1:x_2:x_3]}\), set
+\[
+ Q=\{u^2+x_0^2+x_1^2+x_2^2+x_3^2=0\},\qquad H=Q\cap\{u=0\},
+\]
+\[
+ C=H\cap\{x_0^2+2x_1^2+3x_2^2+4x_3^2=0\},\qquad V=\Bl_C Q.
+\]
+Let \(E\subset V\) be the strict transform of \(H\). Let \(S=\mathbb F_1\)
+be the smooth toric surface with anticanonical polygon
+\[
+ P=\{(x,y):-1\leq y\leq1,\ -1\leq x\leq y+1\},
+\]
+and let \(D\subset S\) be the toric divisor with inward primitive normal
+\((0,1)\). Put \(X=V\times S\).
+Define \(a,b>0\) by
+\begin{align}
+ &\int_{-1}^0 s(2+s)^2e^{-as}\,ds+
+             \int_0^2 s(2-s)^2e^{-as}\,ds=0, \label{eq:a}\\
+ &\int_{-1}^1 y(2+y)e^{-by}\,dy=0. \label{eq:b}
+\end{align}
+Their existence and uniqueness are proved below.
+
+\begin{theorem}\label{thm:main}
+The variety \(X\) is a smooth Fano fivefold. The quasi-monomial valuation
+\(v\) with weights \((a,b)\) along the transverse divisors
+\(E\times S\) and \(V\times D\) is the unique global \(H\)-minimizing
+valuation on \(X\). Its value group is \(a\Z+b\Z\), of rational rank two,
+so \(v\) is nondivisorial.
+Its canonical first central variety is
+\[
+ Z\times S,\qquad
+ Z=\Bl_C Q_0,\qquad
+ Q_0=\{x_0^2+x_1^2+x_2^2+x_3^2=0\}\subset\mathbb P^4.
+\]
+This central variety is singular and hence is not isomorphic to \(X\).
+It already admits the required Kähler--Ricci soliton, so the second,
+polystable step changes no underlying variety.
+\end{theorem}
+
+We use the global valuative \(H\)-functional in the Han--Li/Blum--Liu--Xu--Zhuang
+convention. For finite-discrepancy valuations its expression is
+\[
+ H(v)=A_X(v)+\log\int_{\R}e^{-\lambda}\,d\mu_v(\lambda),
+\]
+where \(\mu_v\) is the probability-normalized asymptotic
+Duistermaat--Heckman measure of the raw valuation filtration on
+\(\bigoplus_m H^0(X,-mK_X)\); see \cite[Definition~4.1]{HL}.
+The scale of a valuation matters for this functional.
+
+\section{Geometry and the established factor degeneration}
+
+The quadric \(Q\) and its hyperplane section \(H\) are smooth.
+Dependent gradients for the two equations of \(C\subset\mathbb P^3\)
+would give \((i+1-\lambda)x_i=0\) for all \(i=0,\ldots,3\).
+Distinct coefficients permit at most one nonzero coordinate, contradicting
+\(\sum x_i^2=0\). Thus \(C\) is smooth. On \(H\simeq\mathbb P^1\times
+\mathbb P^1\) it is a connected \((2,2)\)-curve of genus one:
+connectedness follows from \(H^1(H,\mathcal O_H(-2,-2))=0\), and
+adjunction gives its genus.
+
+Write \(h\) for the pulled-back hyperplane class and \(F\) for the
+blowup exceptional divisor. The codimension-two blowup formula gives
+\(-K_V=3h-F\). The ideal \(\mathcal I_C(2)\) is globally generated by
+the second quadric equation and the products of \(u\) with the five
+coordinates. The graph of these generators embeds the blowup into
+\(Q\times\mathbb P^N\), with second hyperplane class \(2h-F\).
+Hence \(3h-F\) is ample. Also \(E\simeq H\), since \(C\) is Cartier in
+\(H\).
+
+These data put \(V\) in family \(2.23(a)\) of \cite{MW}.
+Miao--Wang identify the \(\ord_E\) special degeneration, its central
+variety \(Z\), and its canonical weight coordinate \(s=k/m-1\)
+\cite[\S3.1, Theorems~3.1--3.2]{MW}. The weight measure has density
+\[
+ \rho(s)=
+ \begin{cases}(2+s)^2&-1\leq s\leq0,\\
+               (2-s)^2&0\leq s\leq2.
+ \end{cases}
+\]
+Its mass is \(5\), and its positive soliton scale is exactly the \(a\)
+in \eqref{eq:a}. Their weighted K-polystability theorem for
+\((Z,a\xi_E)\) is an explicit input here.
+The underlying ordinary family is the blowup along \(C\times\mathbb A^1\)
+of
+\[
+ \{t^2u^2+\textstyle\sum x_i^2=0\}\subset\mathbb P^4\times\mathbb A^1 .
+\]
+The center is relatively smooth of codimension two; its regular-parameter
+blowup charts show flatness and identify the scheme-theoretic central
+fiber. The specialness and associated anticanonical grading are those
+of the cited \(\ord_E\) degeneration.
+
+The vertex \(o=[1:0:0:0:0]\) of \(Q_0\) is disjoint from \(C\).
+The blowup is an isomorphism there, so \(Z\) has an ordinary
+three-dimensional double point and is smooth elsewhere. Blowing up that
+node resolves it with discrepancy \(1\); in particular it is klt and
+Gorenstein. The same graph argument proves \(-K_Z=3h-F\) ample.
+
+The polygon \(P\) has cyclic inward normals
+\((1,0),(0,1),(-1,1),(0,-1)\), with consecutive determinants \(1\)
+and all facets at distance one. Thus \(S\) is smooth Fano.
+Products preserve the stated Fano and klt properties. Moreover
+\(\operatorname{Sing}(Z\times S)=\{o\}\times S\), whereas \(X\) is smooth.
+
+\section{Exact weights and irrationality}
+
+Each left side of \eqref{eq:a}--\eqref{eq:b} is strictly decreasing:
+its derivative is a negative integral of \(s^2\rho(s)e^{-ts}\)
+or \(y^2(2+y)e^{-ty}\). Its value at zero is respectively
+\(5/12\) or \(2/3\). A fixed negative subinterval dominates as
+\(t\to+\infty\). Hence each equation has exactly one positive root.
+
+The \(x\)-slice of \(P\) has width \(2+y\) and midpoint \(y/2\).
+Consequently \eqref{eq:b} kills both components of the weighted
+barycenter with weight \(e^{-by}\).
+Strict positive definiteness of the covariance Hessian of
+\(\log\int_Pe^{-\langle\xi,p\rangle}dp\) gives the unique toric
+parameter \(\xi=(0,b)\). Wang--Zhu's theorem supplies the soliton
+\cite{WZ}. Their analytic point-action parameter is the negative of
+the filtration parameter used here; see \cite[Remark~2.45]{HL}.
+
+\begin{lemma}\label{lem:irrational}
+The ratio \(a/b\) is irrational.
+\end{lemma}
+\begin{proof}
+Elementary integration, for \(t>0\), rewrites the two moment equations as
+\begin{align}
+ &(a^3+a^2-2a-6)e^{3a}+16ae^{2a}+4a+6=0, \label{eq:pa}\\
+ &(b^2-2)e^{2b}+3b^2+4b+2=0. \label{eq:pb}
+\end{align}
+Here \(b^2\neq2\), since the remaining coefficient would be
+\(8+4b\neq0\). If \(b\) were algebraic, \eqref{eq:pb} would make
+\(e^{2b}\) algebraic, contrary to Hermite--Lindemann. Thus \(b\)
+is transcendental.
+
+Suppose \(a/b=p/q\), with positive integers \(p,q\), and write
+\(r=p/q\), \(z=e^{b/q}\). Then
+\[
+ A(b,z)=B(b,z)=0,
+\]
+where
+\begin{align*}
+ A(T,U)&=(r^3T^3+r^2T^2-2rT-6)U^{3p}
+                           +16rTU^{2p}+4rT+6,\\
+ B(T,U)&=(T^2-2)U^{2q}+3T^2+4T+2.
+\end{align*}
+The polynomial \(R(T)=\Res_U(A,B)\in\Q[T]\) has degree at most
+\(6(p+q)\), by separate homogeneity of the resultant.
+Its coefficient in that degree is
+\[
+ \Res_U(r^3U^{3p},\,U^{2q}+3)
+       =r^{6q}3^{3p}\neq0 .
+\]
+Indeed these are exactly the highest \(T\)-degree parts of the
+two polynomials in the Sylvester determinant. Thus \(R\) is nonzero.
+The common root \(z\) implies \(R(b)=0\), contradicting the
+transcendence of \(b\).
+\end{proof}
+
+At the generic point of \(E\times D\), choose normal parameters \(h,w\).
+The usual monomial valuation of weights \(a,b\) extends to \(\C(X)\).
+Equivalently, choose toric characters \(z,w\) on \(S\) with
+\(\ord_D(z)=0\), \(\ord_D(w)=1\); its Gauss formula is
+\[
+ v\Bigl(\sum f_{ij}z^iw^j\Bigr)
+       =\min_{i,j}\{a\,\ord_E(f_{ij})+bj\}.
+\]
+For a fixed leading pair, distinct powers of \(z\) cannot cancel
+over \(\C(E)\), so multiplication of leading terms justifies the
+formula and its fraction-field extension.
+All values lie in \(a\Z+b\Z\); the parameters \(h,w\) attain
+\(a,b\), giving equality. Lemma~\ref{lem:irrational} makes its
+rational rank two. Every \(c\,\ord_F\) has rational rank one.
+The valuation has ordered rank one as a subgroup of \(\R\);
+it is the \emph{rational} rank that proves nondivisoriality.
+
+\section{The real filtration and its normalization}
+
+Let \(A_m=H^0(V,-mK_V)\) and \(B_m=H^0(S,-mK_S)\).
+Künneth gives \(R(X)_m=A_m\otimes B_m\).
+For a first-factor section of \(E\)-order \(k\) and a toric
+character \((i,j)\in mP\cap\Z^2\), the raw weight is
+\[
+                  ak+b(j+m).
+\]
+An \(\ord_E\)-adapted basis tensored with character lines is
+adapted to \(v\). Irrationality separates distinct \((k,j)\);
+different \(i\) remain linearly independent in the residue field.
+Leading coefficients multiply without an additional cancellation.
+Therefore, as degree-graded algebras,
+\[
+       \gr_v R(X)\simeq(\gr_{\ord_E}R(V))\mathbin{\#}R(S),
+\]
+where \(\#\) is the equal-degree Segre product.
+The factor degeneration identifies \(\gr_{\ord_E}R(V)\) with the
+anticanonical section ring of \(Z\), after a common Veronese if needed.
+The Segre algebra is finitely generated and its Proj is \(Z\times S\)
+with anticanonical polarization.
+
+This is finite generation in the geometric real-filtration sense:
+finitely many homogeneous section generators with real weights.
+It is not a claim that the positive cone of the dense group
+\(a\Z+b\Z\) is a finitely generated semigroup
+\cite[Definition~2.2]{BLXZ}.
+The ordinary \(E\) family and the toric action on \(S\), or an
+adapted finite anticanonical embedding with these real diagonal
+weights, realize the special real degeneration with this central ring
+\cite[\S2.2, Geometric R-TC I]{HL}.
+Rational directions approximate it by ordinary special degenerations;
+no such rational direction is asserted to minimize \(H\).
+
+Both transverse divisors have discrepancy one on the smooth \(X\),
+so \(A_X(v)=a+b\). The canonical anticanonical weight is consequently
+\[
+           ak+b(j+m)-m(a+b)=a(k-m)+bj.                 \tag{*}
+\]
+Thus the induced central parameter is precisely
+\((a\xi_E,b(0,1))\). In particular no unaccounted character twist
+or sign change appears when applying the optimality criterion.
+
+\section{Global optimality and the canonical first step}
+
+We spell out the analytic product step to avoid assuming a tensorization
+theorem for \(H\)-minimizers. The polystability of \((Z,a\xi_E)\)
+from \cite{MW}, together with \cite{BLXZ,HLYTD}, gives its weak soliton.
+The toric factor has the soliton specified above.
+Use the Han--Li convention
+\[
+ e^{-\theta_\phi(\xi)}\MA_n(\phi)=e^{-\phi},\qquad
+ \Ric(\omega)-\omega=-dd^c\theta_\phi(\xi),
+ \quad \MA_n(\phi)=\omega^n/n!,
+\]
+with harmless constant normalizations of the canonical volume measure
+\cite[(110)--(111), Remark~2.45]{HL}.
+For factor potentials \(\phi_Z,\phi_S\), put
+\(\phi=\phi_Z+\phi_S\), \(\theta=\theta_Z+\theta_S\).
+The binomial expansion gives exactly
+\[
+ \MA_5(\phi)=\MA_3(\phi_Z)\otimes\MA_2(\phi_S).
+\]
+The factor equations multiply to the same equation on \(Z\times S\)
+for the sum parameter. The potentials are bounded on a resolution
+\cite[Corollary~31, Proposition~32]{HLYTD};
+the product Monge--Ampère measure and klt canonical measure have
+no mass on the analytic singular set. Hence the equality extends
+from the regular locus as a weak equation. This also follows in the
+finite-energy formulation of \cite{HLYTD}.
+
+By \cite[Theorem~1.3]{BLXZ}, the central pair is weighted K-polystable,
+in particular semistable.
+Han--Li's criterion \cite[Theorem~5.3]{HL}, with their comparison
+of infima \cite[Theorem~1.5]{HL}, now proves that \(v\) minimizes
+\(H\) among \emph{all} valuations on the original \(X\).
+The special real degeneration, its klt anticanonical central ring,
+finite discrepancy, and exact induced parameter were checked above;
+no restriction to product-form competitors is made.
+Blum--Liu--Xu--Zhuang's absolute uniqueness theorem
+\cite[Theorem~1.2]{BLXZ} identifies this valuation and
+\(\Proj\gr_vR(X)\) with the canonical first step.
+The central pair is already polystable, so its second step changes
+no underlying variety. The smooth/singular distinction and
+Lemma~\ref{lem:irrational} complete Theorem~\ref{thm:main}.
+
+\section{Scope and verification}
+
+This is an explicit construction from the cited general theorems and
+Miao--Wang's established threefold example. We do not claim historical
+firstness, a new general optimal-degeneration theorem, a
+three-dimensional nondivisorial example, or an exhaustive priority
+determination. The statement resolves the specified construction
+request in dimension five without a product exclusion.
+The accompanying archive preserves the original proof and corrections,
+primary-source fingerprints, independent adversarial analyses, and
+exact auxiliary checks. Numerical brackets and finitely many
+resultants do not prove irrationality; the universal argument above does.
+Successful software checks do not formally verify the geometric or
+analytic theorem inputs.
+
+AI tools were used extensively in developing, checking, and preparing this
+work. The reported adversarial reviews were conducted by AI agents.
+This preprint is unrefereed; independent human peer review and formal
+verification have not been completed.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+H.~Blum, Degenerations of unstable Fano varieties and Kahler--Ricci soliton,
+in \emph{Toric Geometry}, \emph{Oberwolfach Rep.} 19 (2022), no.~2,
+Report 17/2022, pp.~888--889; published online 14 April 2023.
+\href{https://doi.org/10.4171/OWR/2022/17}{doi:10.4171/OWR/2022/17}.
+\bibitem{MW}
+M.~Miao and L.~Wang, \emph{Optimal Degenerations of K-unstable Fano
+threefolds}, first posted 25 January 2024; cited edition
+arXiv:2401.13999v2, 13 April 2026.
+\href{https://arxiv.org/abs/2401.13999v2}{arXiv:2401.13999v2}.
+\bibitem{LL}
+Y.~Li and Z.~Li, Equivariant \(\mathbb R\)-test configurations and
+semistable limits of \(\mathbb Q\)-Fano group compactifications,
+\emph{Peking Math. J.} 6 (2023), 559--607.
+\href{https://doi.org/10.1007/s42543-022-00054-0}{doi:10.1007/s42543-022-00054-0}.
+The inspected example text is
+\href{https://arxiv.org/abs/2103.06439v6}{arXiv:2103.06439v6}.
+\bibitem{WZ}
+X.-J.~Wang and X.~Zhu, Kähler--Ricci solitons on toric manifolds with
+positive first Chern class, \emph{Adv. Math.} 188 (2004), 87--103.
+\href{https://doi.org/10.1016/j.aim.2003.09.009}{doi:10.1016/j.aim.2003.09.009}.
+\bibitem{HL}
+J.~Han and C.~Li, Algebraic uniqueness of Kähler--Ricci flow limits
+and optimal degenerations of Fano varieties,
+\emph{Geom. Topol.} 28 (2024), 539--592.
+The cited theorem numbering is that of
+\href{https://arxiv.org/abs/2009.01010v1}{arXiv:2009.01010v1}.
+\bibitem{HLYTD}
+J.~Han and C.~Li, On the Yau--Tian--Donaldson conjecture for
+generalized Kähler--Ricci soliton equations,
+\emph{Comm. Pure Appl. Math.} 76 (2023), 1793--1867.
+\href{https://doi.org/10.1002/cpa.22053}{doi:10.1002/cpa.22053}.
+The cited corollary/proposition locators refer to the
+\href{https://sites.math.rutgers.edu/~cl1412/papers/g-soliton.pdf}{inspected author manuscript}.
+\bibitem{BLXZ}
+H.~Blum, Y.~Liu, C.~Xu and Z.~Zhuang, The existence of the
+Kähler--Ricci soliton degeneration,
+\emph{Forum Math. Pi} 11 (2023), e9.
+\href{https://doi.org/10.1017/fmp.2023.5}{doi:10.1017/fmp.2023.5}.
+The inspected preprint is
+\href{https://arxiv.org/abs/2103.15278v2}{arXiv:2103.15278v2}.
+\end{thebibliography}
+\end{document}

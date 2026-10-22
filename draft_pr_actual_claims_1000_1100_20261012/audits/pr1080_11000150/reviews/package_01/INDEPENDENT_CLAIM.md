@@ -1,6 +1,6 @@
 # Independent claim and proof obligations
 
-Derived from the current paper and mathematical report before reading prior acceptance or verdicts.
+Derived from the current paper and mathematical report before consulting the old audit reports, verdicts, and root acceptance. The initial read batch also returned the original manifest's accepted-partial edition label; the report contains an embedded historical acceptance paragraph. Neither was used as proof evidence. This derivation is independent mathematical reconstruction, not a claim of fully blind review.
 
 Fix g>=1, one pointwise fixed boundary, positive non-null-homotopic simple closed curves and ordered words equal to one positive boundary twist. Repetitions count; every pair has geometric intersection <=1. The theorem asserts finitely many simultaneous-conjugacy classes, hence finite attained maximum M(g)>=4g(2g+1), peripheral singleton only, no separating factors otherwise, M(1)=12 and M(2)=40. The exact maximum/classification bundle in genus >=3 remains partial. No historical novelty or current-openness theorem is asserted.
 

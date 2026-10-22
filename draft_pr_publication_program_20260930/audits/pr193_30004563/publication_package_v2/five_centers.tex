@@ -1,0 +1,285 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}[2]{\lVert #1-#2\rVert^{16}}
+\newcommand{\detv}[2]{\det(#1,#2)}
+\title{Five outgoing centers in a $16$-realization cube move}
+\author{Alec Kriebel\thanks{ORCID: \url{https://orcid.org/0009-0001-9320-500X}.}}
+\date{15 October 2026\\\small Unrefereed research note}
+\begin{document}
+\maketitle
+\begin{abstract}
+We specify six algebraic boundary points, an incoming center, and at least five distinct outgoing centers for a cube move of $16$-realizations. Existence follows from strict rational sign bounds for two continuous one-variable residuals. The boundary parameters are uniquely defined real roots of monotone polynomials. This contradicts the at-most-three expectation for construction curves sharing a focus in Remark~4.8 of Melotti--Ramassamy--Th\'evenin, in the realization setting allowing crossings. The fixed boundary is crossed, so the example concerns no proper embedding. Neither the exact number of centers for this boundary nor a universal maximum is determined.
+\end{abstract}
+
+\section{Statement and setting}
+A quadrilateral $PQRS$ is an $\alpha$-quad when
+\[
+ |P-Q|^\alpha+|R-S|^\alpha=|P-S|^\alpha+|Q-R|^\alpha.
+\]
+We use the realization setting of \cite[Definitions~2.1, 2.4--2.5]{MRT}: crossed faces are permitted. For fixed distinct $A_1,\ldots,A_6$, an incoming center $Z$ must make
+\[
+ A_1A_2A_3Z,\quad A_3A_4A_5Z,\quad A_5A_6A_1Z
+\]
+$\alpha$-quads; an outgoing center $X$ must make
+\[
+ A_2A_3A_4X,\quad A_4A_5A_6X,\quad A_6A_1A_2X
+\]
+$\alpha$-quads. Both alternating boundary triples must be noncollinear.
+
+\begin{theorem}\label{thm:main}
+There exist six fixed distinct boundary points, with both alternating triples noncollinear, that admit an incoming $16$-realization and at least five distinct outgoing $16$-realization centers. Each selected center is distinct from every boundary point.
+\end{theorem}
+
+The construction also gives at least five intersections of two construction curves with a common focus. Thus it contradicts the $\alpha>1$ expectation in \cite[Remark~4.8, p.~811]{MRT}, and the maximum-three conjecture in the crossing-permitted setting of \cite[p.~1785]{OWR}. The boundary itself has a strict crossing, as verified below. The result makes no claim about proper embeddings, the exact total count, a universal maximum, or $\alpha<1$.
+
+\section{Five common-focus solutions}
+Put
+\begin{equation}\label{eq:data}
+ A=(0,0),\quad B=(b,0),\quad C=(c,d),\qquad
+ b=\frac{2073}{10000},\ c=\frac{4719}{10000},\ d=\frac{64}{10000},\quad
+ \lambda=\frac{27}{1250}.
+\end{equation}
+First seek solutions of
+\begin{equation}\label{eq:focus}
+ \N{X}{B}-\N{X}{A}=\lambda,\qquad
+ \N{X}{C}-\N{X}{A}=1.
+\end{equation}
+For $s\geq0$, all roots below denote the nonnegative real eighth root:
+\[
+ u=s^{1/8},\quad v=(s+\lambda)^{1/8},\quad w=(s+1)^{1/8},
+\]
+\begin{equation}\label{eq:G}
+ x=\frac{b^2+u-v}{2b},\qquad
+ y=\frac{c^2+d^2+u-w-2cx}{2d},\qquad G(s)=x^2+y^2-u.
+\end{equation}
+These functions are continuous on $[0,\infty)$.
+
+\begin{lemma}\label{lem:equiv}
+Zeros of $G$ correspond bijectively to solutions of \eqref{eq:focus}, with $s=\N{X}{A}$.
+\end{lemma}
+\begin{proof}
+The two coordinate equations are the invertible linear system
+\[
+ 2bx=b^2+u-v,\qquad 2cx+2dy=c^2+d^2+u-w;
+\]
+its determinant is $4bd>0$. If $G(s)=0$, these equations give
+$|X-A|^2=u$, $|X-B|^2=v$, and $|X-C|^2=w$. Taking eighth powers gives \eqref{eq:focus}. Conversely, a solution determines $s=|X-A|^{16}$; taking the unique nonnegative eighth roots of its three distance powers gives the same linear system and $G(s)=0$. No extra solutions are introduced by squaring or a branch choice. Distinct $s$ give distinct $X$.
+\end{proof}
+
+The accompanying exact verifier establishes the strict bounds in Table~\ref{tab:signs}; every terminating decimal here and below denotes an exact rational.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{c@{\qquad}c}
+\toprule
+$s$ & interval containing $G(s)$\\
+\midrule
+$9/10000$ & $(0.38,0.39)$\\
+$11/10000$ & $(-0.28,-0.27)$\\
+$13/10000$ & $(0.51,0.52)$\\
+$1/2$ & $(-0.91,-0.90)$\\
+$1$ & $(9,10)$\\
+$10^{16}$ & $(-4.766,-4.765)$\\
+\bottomrule
+\end{tabular}
+\caption{Strict rational sign bounds. The last row also has the analytic derivation below.}\label{tab:signs}
+\end{table}
+
+The five open intervals between successive cutpoints are disjoint and have opposite endpoint signs. The intermediate value theorem and Lemma~\ref{lem:equiv} therefore give at least five distinct solutions. No uniqueness within any interval is assumed.
+
+For the last row, $u=100$ exactly. Concavity gives, for $a>0$,
+\[
+ 0<(10^{16}+a)^{1/8}-100\leq \frac{a}{8\cdot10^{14}}.
+\]
+Set $\delta_v=v-u$, $\delta_w=w-u$, and
+\[
+ x_0=\frac b2=\frac{2073}{20000},\qquad
+ y_0=\frac{c^2+d^2-bc}{2d}=\frac{1249057}{128000}.
+\]
+Then \eqref{eq:G} gives the rational boxes
+\begin{align*}
+ x_0-\frac{\lambda}{16b\,10^{14}}&\leq x\leq x_0,\\
+ y_0-\frac{1}{16d\,10^{14}}&\leq y\leq
+ y_0+\frac{(c/b)\lambda}{16d\,10^{14}}.
+\end{align*}
+Both coordinates are positive in these boxes. Squaring their endpoints and subtracting $100$ proves the last row, hence in particular $G(10^{16})<-4.7$. For scale,
+\[
+ x_0^2+y_0^2=\frac{39007985196121}{409600000000}<95.235.
+\]
+This argument avoids subtracting nearly equal large radicals. More generally $v-u,w-u\to0$ as $s\to\infty$, so $G(s)\to-\infty$; the fifth IVT interval nevertheless gives a finite point.
+
+\section{One fixed admissible boundary}
+Let $J(q_x,q_y)=(-q_y,q_x)$. For $q\ne0$ and the nonzero heights used below, define $T(q,h,\ell)$ as the real solution of
+\begin{equation}\label{eq:T}
+ |q|^{16}\left(\big((t-1)^2+h^2\big)^8-\big(t^2+h^2\big)^8\right)=\ell.
+\end{equation}
+This is a unique, unambiguous algebraic specification for rational inputs. Indeed, for $g(t)=(t^2+h^2)^8$,
+\[
+ g''(t)=16(t^2+h^2)^6(h^2+15t^2)>0.
+\]
+Thus $g(t-1)-g(t)$ is strictly decreasing. Its leading term is $-16t^{15}$, so it tends to $+\infty$ and $-\infty$ at the respective ends of the real line. Existence and uniqueness follow.
+
+Define
+\[
+ t_1=T(C,10,1),\qquad t_3=T(B,1,\lambda),\qquad
+ t_5=T(C-B,-10,1-\lambda),
+\]
+\begin{equation}\label{eq:boundary}
+\begin{array}{lll}
+ A_1=t_1C+10JC,&A_2=A,&A_3=t_3B+JB,\\
+ A_4=B,&A_5=B+t_5(C-B)-10J(C-B),&A_6=C.
+\end{array}
+\end{equation}
+Their defining equations give exactly
+\begin{equation}\label{eq:boundaryidentities}
+ \N{A_1}{C}-\N{A_1}{A}=1,\quad
+ \N{A_3}{B}-\N{A_3}{A}=\lambda,\quad
+ \N{A_5}{C}-\N{A_5}{B}=1-\lambda.
+\end{equation}
+In particular, writing $a=\N{A_1}{A}$, $f=\N{A_3}{A}$ and $g=\N{A_5}{B}$, the six successive boundary edge powers are
+\begin{equation}\label{eq:edges}
+ (a,\ f,\ f+\lambda,\ g,\ g+1-\lambda,\ a+1).
+\end{equation}
+The odd and even sums both equal $a+f+g+1$. This exact telescope will supply the dependent third face equations.
+
+Rational bisection of \eqref{eq:T}, with strict polynomial signs at the endpoints, yields
+\[
+\begin{array}{c|cc}
+ &x&y\\\hline
+ A_1&(0.17194,0.17196)&(4.72219,4.72221)\\
+ A_3&(-0.55229,-0.55227)&2073/10000\\
+ A_5&(0.40359,0.40361)&(-2.64281,-2.64279).
+\end{array}
+\]
+Together with \eqref{eq:data}, these give six distinct boundary points. The exact verifier also gives
+\begin{align*}
+ \detv{A_4-A_2}{A_6-A_2}&=0.00132672>0,\\
+ 6.37<\detv{A_3-A_1}{A_5-A_1}&<6.39.
+\end{align*}
+Both alternating triples are noncollinear. In fact all twenty boundary triples are noncollinear.
+
+No solution of \eqref{eq:focus} is a boundary point. Positivity of $\lambda$ implies $|X-B|>|X-A|$, hence $x<b/2$; this excludes $A_1,A_5$, whose certified $x$ coordinates exceed $b/2$. The point $A$ fails because $b^{16}\ne\lambda$. The points $B,C$ fail the first and second equations, respectively, by positivity of their right-hand sides. Finally exact intervals give
+\[
+ \N{A_3}{C}-\N{A_3}{A}-1\in(0.98,0.99),
+\]
+which excludes $A_3$.
+
+\section{An incoming center and the six face equations}
+Define the fixed algebraic constants
+\begin{equation}\label{eq:LM}
+ L=\N{B}{A_5}-\N{B}{A_3}=g-f-\lambda,\qquad
+ M=\N{A}{A_1}-\N{A}{A_3}=a-f.
+\end{equation}
+Exact boundary enclosures prove $L,M>0$. Put $b'=A_5-A_3$, $c'=A_1-A_3$, and $D'=\detv{b'}{c'}$. This determinant equals the positive odd determinant above. For $s\in[1/100,11/1000]$ let
+\begin{align*}
+ u'&=s^{1/8},& v'&=(s+L)^{1/8},& w'&=(s+M)^{1/8},\\
+ R_1&=|b'|^2+u'-v',&& R_2=|c'|^2+u'-w',
+\end{align*}
+\[
+ Y_x=\frac{R_1c'_y-R_2b'_y}{2D'},\qquad
+ Y_y=\frac{b'_xR_2-c'_xR_1}{2D'},\qquad
+ H(s)=Y_x^2+Y_y^2-u'.
+\]
+The boundary roots and $L,M$ are fixed constants throughout, not values selected anew from interval boxes. All radical arguments are positive and $D'\ne0$, so $H$ is continuous. Rational interval propagation through these formulas proves
+\[
+ H(1/100)\in(0.00037,0.00038),\qquad
+ H(11/1000)\in(-0.00081,-0.00080).
+\]
+The intermediate value theorem gives a root. The same squared-distance argument as in Lemma~\ref{lem:equiv}, translated by $A_3$, shows that $Z=A_3+Y$ satisfies
+\begin{equation}\label{eq:incoming}
+ \N{Z}{A_5}-\N{Z}{A_3}=L,\qquad
+ \N{Z}{A_1}-\N{Z}{A_3}=M.
+\end{equation}
+For the whole retained $s$ interval, interval arithmetic encloses $Z$ in
+\[
+ (0.1677,0.1717)\mathbin{\times}(-0.0036,-0.0026),
+\]
+which is disjoint from every boundary point.
+
+For completeness, all six face identities are displayed here. Write $r_i=\N{Z}{A_i}$ and $q_P=\N{X}{P}$ for any of the five selected $X$. Equations \eqref{eq:focus}, \eqref{eq:edges}, \eqref{eq:LM} and \eqref{eq:incoming} give
+\[
+\begin{array}{c|l}
+\text{incoming face}&\text{opposite-side identity}\\\hline
+ A_1A_2A_3Z&a+r_3=r_1+f\\
+ A_3A_4A_5Z&(f+\lambda)+r_5=r_3+g\\
+ A_5A_6A_1Z&(g+1-\lambda)+r_1=r_5+(a+1)
+\end{array}
+\]
+\[
+\begin{array}{c|l}
+\text{outgoing face}&\text{opposite-side identity}\\\hline
+ A_2A_3A_4X&f+q_B=q_A+(f+\lambda)\\
+ A_4A_5A_6X&g+q_C=q_B+(g+1-\lambda)\\
+ A_6A_1A_2X&(a+1)+q_A=q_C+a.
+\end{array}
+\]
+The third incoming equation uses exactly $M-L=a-g+\lambda$; it is not inferred from an interval containing zero. This proves Theorem~\ref{thm:main} without invoking a flip-existence theorem.
+
+\section{Exact verification and scope}
+The support file \texttt{verify\_five\_centers.py} uses only Python's standard library. All validity decisions use integers and \texttt{Fraction}; no floating-point value decides a sign. For $q\geq0$, it bounds $q^{1/8}$ between consecutive points $k/10^{36}$ and $(k+1)/10^{36}$, found by binary search and checked by integer eighth powers. Ordinary outward rational interval operations then establish the displayed bounds. The three boundary roots use 128 exact bisections from $[-8,8]$, with strict endpoint signs. Dependence lost in repeated interval occurrences only enlarges an enclosure; the signs remain strict for the same fixed algebraic boundary.
+
+The file \texttt{exact\_certificate.json} records the full rational enclosures. A default verifier run recomputes and compares it without writing. Each of five sign brackets is refined by 100 sign-preserving bisections, retaining five disjoint zero brackets without assuming uniqueness. The resulting center boxes and the whole incoming box avoid every line through a boundary pair. Internal check counts are implementation bookkeeping, not counts of independent mathematical propositions.
+
+To see concretely why this is not an embedding example, let
+$\operatorname{or}(P,Q,R)=\detv{Q-P}{R-P}$. The exact certificate proves the sign pattern
+\[
+\begin{array}{c|cccc}
+ &\operatorname{or}(A_1,A_2,A_3)&\operatorname{or}(A_1,A_2,A_4)&
+ \operatorname{or}(A_3,A_4,A_1)&\operatorname{or}(A_3,A_4,A_2)\\\hline
+ \text{sign}&-&+&+&-
+\end{array}
+\]
+so the fixed boundary segments $[A_1,A_2]$ and $[A_3,A_4]$ cross in their interiors. No central-point choice can make that fixed drawing a proper embedding. Exact total root counts and a global maximum remain undetermined, and no conclusion for $\alpha<1$ is drawn.
+
+\paragraph{Earlier weighted-distance families and priority.}
+The curves themselves belong to earlier weighted-distance families. Ash--Bolker~\cite{AB} study costs $\varphi(|x-P|)+w(P)$, including $\varphi(t)=t^4$; their separate oscillatory example $\varphi(t)=t+k\sin t$ is not a pure power and does not itself settle the present count. Bourne--Peletier--Roper~\cite[Definition~4.12 in the author manuscript]{BPR} explicitly define $p$-power cells by comparison of $|x-x_i|^p-w_i$; Bourne--Roper~\cite[Section~5, p.~2568]{BR} repeat this family. With $p=16$ and weights $w_A=0$, $w_B=\lambda$, $w_C=1$, equality of the three costs is exactly \eqref{eq:focus}. No new family of curves is claimed here.
+
+A bounded search of primary texts and public records completed on 15 October 2026 located no earlier pure-power shared-focus counterexample with at least four intersections in the checked corpus. That bounded negative finding does not establish historical priority. No firstness, independence from unknown work, or contemporaneous public-awareness claim is made.
+
+\paragraph{AI assistance and review status.}
+AI systems were used extensively in proof exploration, drafting, code generation and adversarial mathematical checks. This preprint is unrefereed and has not received conventional human peer review.
+
+\paragraph{License.}
+This note and its accompanying original support files are offered under Creative Commons Attribution 4.0 International (CC BY 4.0), \url{https://creativecommons.org/licenses/by/4.0/}. Primary-source PDFs are not included.
+
+\begin{thebibliography}{9}
+\bibitem{MRT}
+P.~Melotti, S.~Ramassamy and P.~Th\'evenin,
+\emph{Cube moves for $s$-embeddings and $\alpha$-realizations},
+Ann. Inst. H. Poincar\'e D Comb. Phys. Interact. \textbf{10} (2023), 781--817.
+\href{https://doi.org/10.4171/AIHPD/163}{doi:10.4171/AIHPD/163}.
+See in particular Remark~4.8, p.~811.
+
+\bibitem{OWR}
+P.~Melotti (joint work with S.~Ramassamy and P.~Th\'evenin),
+\emph{Cube flips in $s$-embeddings and $\alpha$-immersions},
+in \emph{Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case},
+Oberwolfach Report 35/2020, p.~1785.
+\href{https://doi.org/10.4171/OWR/2020/35}{doi:10.4171/OWR/2020/35}.
+
+\bibitem{AB}
+P.~F.~Ash and E.~D.~Bolker,
+\emph{Generalized Dirichlet tessellations},
+Geometriae Dedicata \textbf{20} (1986), 209--243.
+\href{https://doi.org/10.1007/BF00164401}{doi:10.1007/BF00164401}.
+
+\bibitem{BPR}
+D.~P.~Bourne, M.~A.~Peletier and S.~M.~Roper,
+\emph{Hexagonal patterns in a simplified model for block copolymers},
+SIAM J. Appl. Math. \textbf{74} (2014), 1315--1337.
+\href{https://doi.org/10.1137/130922732}{doi:10.1137/130922732}.
+Author manuscript: \url{https://arxiv.org/abs/1305.6540}.
+
+\bibitem{BR}
+D.~P.~Bourne and S.~M.~Roper,
+\emph{Centroidal power diagrams, Lloyd's algorithm and applications to optimal location problems},
+SIAM J. Numer. Anal. \textbf{53} (2015), 2545--2569.
+\href{https://doi.org/10.1137/141000993}{doi:10.1137/141000993}.
+\end{thebibliography}
+\end{document}

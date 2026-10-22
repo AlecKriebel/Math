@@ -1,0 +1,212 @@
+--- a/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py
++++ b/draft_pr_claimed_solved_900_1000_20261012/accept_pr952.py
+@@ -1131,53 +1131,183 @@
+     return {QUEUE:new_queue,STATE:new_state,HISTORY:new_history}
+ 
+ 
++def native_attempt_inventory():
++    """A partial/orphan/later attempt must never cause a fresh blind push."""
++    groups={}
++    for entry in W.iterdir():
++        if not entry.name.casefold().startswith('native_publication_cas_'):continue
++        match=re.fullmatch(r'NATIVE_PUBLICATION_CAS_([0-9]{2})_(INTENT|PREPARED|ACTION|DEFINITIVE_RACE)\.json',entry.name)
++        need(match is not None,'noncanonical or unsupported native attempt artifact')
++        number=int(match[1]);need(1<=number<=6,'native attempt outside fixed bound')
++        groups.setdefault(number,set()).add(match[2])
++    numbers=sorted(groups)
++    need(not numbers or numbers==list(range(1,numbers[-1]+1)),'native attempt history gap')
++    for number,parts in groups.items():
++        need({'INTENT','PREPARED'}<=parts,'partial/orphan native attempt requires exact reconciliation')
++        if number!=numbers[-1]:need('DEFINITIVE_RACE' in parts,'later native attempt after unresolved uncertainty')
++    return groups
++
++
++def native_prepared_pair(attempt,accepted,publication,merge,tracker):
++    """Validate runtime observations against current independently accepted authority."""
++    stem=f'NATIVE_PUBLICATION_CAS_{attempt:02d}_'
++    names=[stem+'INTENT.json',stem+'PREPARED.json']
++    raw={name:read_regular(W/name) for name in names}
++    planned,prepared=[strict_json(raw[name]) for name in names]
++    planned_keys={'utc','parent','published_event','replacement_pins','accepted_freeze_sha256','attempt','blind_retry_permitted'}
++    prepared_keys={'utc','parent','commit','paths','published_event','source_gate','native_safety','accepted_freeze_sha256','attempt','blind_retry_permitted'}
++    need(type(planned) is dict and set(planned)==planned_keys,'exact native planned intent schema')
++    need(type(prepared) is dict and set(prepared)==prepared_keys,'exact native prepared schema')
++    for record in (planned,prepared):
++        need(type(record['attempt']) is int and record['attempt']==attempt and record['blind_retry_permitted'] is False,'native exact attempt/no blind retry')
++        need(record['accepted_freeze_sha256']==accepted['freeze_sha256'],'native prepared accepted freeze linkage')
++        need(type(record['parent']) is str and re.fullmatch('[0-9a-f]{40}',record['parent']),'native exact prepared parent')
++        utc(record['utc'])
++    need(planned['parent']==prepared['parent'] and exact(planned['published_event'],prepared['published_event']),'native planned/prepared parent/event mismatch')
++    commit=prepared['commit'];need(type(commit) is str and re.fullmatch('[0-9a-f]{40}',commit),'native prepared commit identity')
++    event=prepared['published_event'];need(type(event) is dict and type(event.get('at')) is str,'native prepared event timestamp')
++    expected=native_event(accepted,publication,merge,tracker);expected['at']=event['at']
++    need(exact(event,expected),'native event differs from exact accepted publication/merge/tracker/accounting template')
++    need(utc(event['at'])<=utc(planned['utc'])<=utc(prepared['utc']),'native planned/prepared event chronology')
++    need(type(prepared['paths']) is list and len(prepared['paths'])==3 and set(prepared['paths'])=={QUEUE,STATE,HISTORY},'native prepared exact three-path declaration')
++    pins=planned['replacement_pins'];need(type(pins) is dict and set(pins)=={QUEUE,STATE,HISTORY},'native planned entire replacement pins')
++    for pin in pins.values():validate_pin(pin)
++    need(type(prepared['source_gate']) is dict and type(prepared['native_safety']) is dict,'native prepared source/native observations')
++    if (W/(stem+'ACTION.json')).exists():
++        name=stem+'ACTION.json';raw[name]=read_regular(W/name);action=strict_json(raw[name])
++        required_record(action,{'utc':str,'returncode':int,'stdout':str,'stderr':str},'native saved action observation')
++        need(set(action)=={'utc','returncode','stdout','stderr'},'native exact saved action schema');utc(action['utc'])
++    pair={'planned':planned,'prepared':prepared,'parent':prepared['parent'],'commit':commit,'published_event':event,'raw_pins':{name:fingerprint(body) for name,body in raw.items()}}
++    native_prepared_commit_proof(pair,merge)
++    return pair
++
++
++def native_prepared_commit_proof(pair,merge):
++    """Validate saved local commit bytes even for a claimed definitive race."""
++    parent,commit,event=pair['parent'],pair['commit'],pair['published_event']
++    need(run(['git','show','-s','--format=%P',commit]).strip()==parent,'native prepared actual single parent differs')
++    need(set(run(['git','diff','--name-only',parent,commit]).splitlines())=={QUEUE,STATE,HISTORY},'native prepared actual exact three paths')
++    run(['git','merge-base','--is-ancestor',merge['mergeCommit']['oid'],parent])
++    parents=run(['git','show','-s','--format=%P',merge['mergeCommit']['oid']]).split()
++    need(len(parents)==2 and parents[1]==HEAD,'native prepared ordinary original-head merge')
++    need(exact(native_safety(parent),pair['prepared']['native_safety']),'native prepared absent/UNKNOWN parent baseline differs')
++    source=source_gate(parent);saved=pair['prepared']['source_gate']
++    need(type(saved.get('utc')) is str,'native saved source timestamp');utc(saved['utc'])
++    need(exact(saved,{**source,'utc':saved['utc']}),'native prepared exact parent source differs')
++    replacements=native_replacements(blob(parent,QUEUE),blob(parent,STATE),blob(parent,HISTORY),event)
++    need(exact({name:fingerprint(body) for name,body in replacements.items()},pair['planned']['replacement_pins']),'native prepared full replacement pins differ')
++    need(all(blob(commit,name)==body for name,body in replacements.items()),'native prepared full raw replacement bytes differ')
++    original_check(merge['mergeCommit']['oid']);original_check(parent);original_check(commit)
++
++
++def native_ancestor_status(older,newer):
++    need(all(type(x) is str and re.fullmatch('[0-9a-f]{40}',x) for x in (older,newer)),'native ancestry exact commits')
++    result=subprocess.run(['git','merge-base','--is-ancestor',older,newer],cwd=ROOT,capture_output=True)
++    need(type(result.returncode) is int and result.returncode in (0,1),'native ancestry query failed or uncertain')
++    return result.returncode==0
++
++
++def native_definitive_race(attempt,pair):
++    """Only a proven non-mutation CAS failure permits a fresh-parent attempt."""
++    stem=f'NATIVE_PUBLICATION_CAS_{attempt:02d}_'
++    race=load(W/(stem+'DEFINITIVE_RACE.json'));action=load(W/(stem+'ACTION.json'))
++    need(type(race) is dict and set(race)=={'utc','not_pushed_commit','observed_remote_main','repeat_requires_fresh_source_native_gate'},'exact definitive native race schema')
++    utc(race['utc'])
++    need(race['not_pushed_commit']==pair['commit'] and race['repeat_requires_fresh_source_native_gate'] is True,'definitive native race exact commit')
++    observed=race['observed_remote_main'];need(type(observed) is str and re.fullmatch('[0-9a-f]{40}',observed) and observed!=pair['parent'],'definitive native race distinct observed parent')
++    need(type(action.get('returncode')) is int and action['returncode']!=0 and any(text in action.get('stderr','') for text in ('stale info','non-fast-forward','fetch first')),'definitive native race needs actual nonzero CAS action')
++    need(not native_ancestor_status(pair['commit'],observed),'definitive race contradicts commit already on saved main')
++    current=remote_main();need(not native_ancestor_status(pair['commit'],current),'definitive race contradicts commit already on current main')
++    return race
++
++
++def native_exact_recovery_gate(attempt,accepted,freeze,tracker,publication,merge,context):
++    """Read-only full proof for one exact saved commit; no native-state waiver."""
++    accepted_review_check(accepted,freeze,context)
++    linked_publication,linked_merge=publication_links(accepted,freeze,tracker)
++    need(exact(linked_publication,publication) and exact(linked_merge,merge),'native recovery publication/merge authority changed')
++    pair=native_prepared_pair(attempt,accepted,publication,merge,tracker)
++    commit,parent,event=pair['commit'],pair['parent'],pair['published_event']
++    before=pr_view();main_destination(before,merged=True)
++    need(exact(before['mergeCommit'],merge['mergeCommit']),'native recovery actual merged PR identity')
++    observed=remote_main()
++    need(native_ancestor_status(commit,observed),'exact prepared native commit not confirmed on current main; never repush')
++    run(['git','merge-base','--is-ancestor',merge['mergeCommit']['oid'],parent])
++    merge_parents=run(['git','show','-s','--format=%P',merge['mergeCommit']['oid']]).split()
++    need(len(merge_parents)==2 and merge_parents[1]==HEAD,'native recovery exact ordinary original-head merge')
++    baseline=native_safety(parent)
++    need(exact(baseline,pair['prepared']['native_safety']),'native prepared baseline differs from exact absent/UNKNOWN parent')
++    parent_source=source_gate(parent)
++    old_source=pair['prepared']['source_gate'];need(type(old_source.get('utc')) is str,'saved native source timestamp')
++    utc(old_source['utc'])
++    need(exact(old_source,{**parent_source,'utc':old_source['utc']}),'native saved source identity differs from exact parent source')
++    expected=native_replacements(blob(parent,QUEUE),blob(parent,STATE),blob(parent,HISTORY),event)
++    need(exact({name:fingerprint(body) for name,body in expected.items()},pair['planned']['replacement_pins']),'native planned replacement pins mismatch exact parent/event bytes')
++    # Existing full verifier proves single parent, three actual paths, full raw
++    # replacements, ancestry, current exact event, source/no-holds/related and
++    # original merge identity. Extra checks below preserve originals at parent,
++    # prepared commit AND fresh main, rather than accepting a mutable event alone.
++    verification=native_verify(publication,merge,tracker,accepted,pair['prepared'])
++    need(verification.get('confirmed') is True,'native actual commit verification incomplete')
++    original_check(parent);original_check(commit);original_check(observed)
++    accepted_review_check(accepted,freeze,context)
++    source=source_gate(observed);native=native_safety(observed,event)
++    fresh=native_prepared_pair(attempt,accepted,publication,merge,tracker)
++    need(exact(fresh,pair),'native prepared evidence changed inside recovery bracket')
++    after=pr_view();bracket=observation_bracket(before,after,merged=True)
++    current=remote_main()
++    numbered_receipt('NATIVE_EXACT_RECOVERY_BRACKET',{**bracket,'attempt':attempt,'commit':commit,'parent':parent,'observed_remote_main_before':observed,'observed_remote_main_after':current,'pair_pins':pair['raw_pins'],'source_gate':source,'native_safety':native,'native_verification':verification})
++    need(bracket['authority_equal'] and current==observed,'native recovery PR/main changed inside source/native bracket')
++    need(native_ancestor_status(commit,current),'native prepared commit ancestry lost at recovery boundary')
++    return {**pair['planned'],**pair['prepared'],'push_confirmed':True,'observed_remote_main':current,'recovered_by_exact_commit_readback':True,'other_queue_state_history_bytes_preserved':True,'checkout_index_HEAD_untouched':True,'recovery_pair_pins':pair['raw_pins'],'recovery_current_source_gate':source,'recovery_current_native_safety':native,'recovery_actual_commit_verification':verification,'recovery_bracket':bracket}
++
++
+ def native_write(args,context):
+     need(not (W/'NATIVE_PUBLICATION_RECEIPT.json').exists(),'native receipt exists: readback/reconcile')
+-    accepted,freeze=accepted_package(context);merged_gate(accepted,freeze)
++    accepted,freeze=accepted_package(context)
+     tracker=load(W/'TRACKER_RECEIPT.json');publication,merge=publication_links(accepted,freeze,tracker)
+-    # Persist a per-attempt intent BEFORE object creation or push. An uncertain
+-    # push is read back by exact commit before deciding whether a retry is safe.
+-    for attempt in range(1,7):
++    groups=native_attempt_inventory()
++    # Authenticate every recorded attempt before invoking the ordinary absent-
++    # state merged gate. An uncertain exact commit can only be recovered, never
++    # pushed again. A malformed/partial pair cannot authorize any later attempt.
++    for attempt in sorted(groups):
++        pair=native_prepared_pair(attempt,accepted,publication,merge,tracker)
++        if 'DEFINITIVE_RACE' in groups[attempt]:
++            native_definitive_race(attempt,pair)
++            continue
++        receipt=native_exact_recovery_gate(attempt,accepted,freeze,tracker,publication,merge,context)
++        save(W/'NATIVE_PUBLICATION_RECEIPT.json',receipt,exclusive=True)
++        return
++    # Only no prior attempt, or fully proven definitive CAS failures, reach a
++    # fresh strict absent-state gate. The normal path retains its lease check.
++    merged_gate(accepted,freeze)
++    for attempt in range(len(groups)+1,7):
+         intent_path=W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_INTENT.json'
+-        if intent_path.exists():
+-            intent=load(intent_path);prepared=load(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_PREPARED.json');commit=prepared.get('commit');intent={**intent,**prepared}
+-            need(type(commit) is str,'existing native intent requires explicit exact-commit reconciliation')
+-            if (W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_DEFINITIVE_RACE.json').exists():
+-                race=load(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_DEFINITIVE_RACE.json');need(race.get('not_pushed_commit')==commit,'CAS race exact commit');continue
+-            observed=remote_main()
+-            probe=subprocess.run(['git','merge-base','--is-ancestor',commit,observed],cwd=ROOT,capture_output=True)
+-            need(probe.returncode==0,'prior native intent not confirmed: reconcile; never blindly repush')
+-            event=intent['published_event'];native_safety(observed,event)
+-            receipt={**intent,'push_confirmed':True,'observed_remote_main':observed,'recovered_by_exact_commit_readback':True}
+-            save(W/'NATIVE_PUBLICATION_RECEIPT.json',receipt,exclusive=True);return
+         destination=merged_gate(accepted,freeze);parent=destination['observed_remote_main']
+         safety=native_safety(parent);claimed_row(blob(parent,QUEUE))
+         event=native_event(accepted,publication,merge,tracker)
+         replacements=native_replacements(blob(parent,QUEUE),blob(parent,STATE),blob(parent,HISTORY),event)
+-        # Persist the exact planned input before Git object creation.
+         save(intent_path,{'utc':utc_now(),'parent':parent,'published_event':event,'replacement_pins':{name:fingerprint(raw) for name,raw in replacements.items()},'accepted_freeze_sha256':accepted['freeze_sha256'],'attempt':attempt,'blind_retry_permitted':False},exclusive=True)
+-        # No Git index, checkout, branch, local HEAD or configuration is used.
+         tree=explicit_tree(parent,{p:r.decode() for p,r in replacements.items()})
+         changed=run(['git','diff','--name-only',parent,tree]).splitlines()
+         need(set(changed)=={QUEUE,STATE,HISTORY},'exactly three native publication paths')
+         commit=run(['git','commit-tree',tree,'-p',parent],input='Record verified PR952 preprint with original declared turns and UNKNOWN historical native count\n').strip()
+-        intent={'utc':utc_now(),'parent':parent,'commit':commit,'paths':changed,'published_event':event,'source_gate':destination['source_gate'],'native_safety':safety,'accepted_freeze_sha256':accepted['freeze_sha256'],'attempt':attempt,'blind_retry_permitted':False}
+-        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_PREPARED.json',intent,exclusive=True)
++        prepared={'utc':utc_now(),'parent':parent,'commit':commit,'paths':changed,'published_event':event,'source_gate':destination['source_gate'],'native_safety':safety,'accepted_freeze_sha256':accepted['freeze_sha256'],'attempt':attempt,'blind_retry_permitted':False}
++        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_PREPARED.json',prepared,exclusive=True)
+         accepted_review_check(accepted,freeze,context)
+         push=subprocess.run(['git','push','--force-with-lease=refs/heads/main:'+parent,'origin',commit+':refs/heads/main'],cwd=ROOT,capture_output=True,text=True)
+-        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_ACTION.json',{'utc':utc_now(),'returncode':push.returncode,'stdout':push.stdout,'stderr':push.stderr})
++        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_ACTION.json',{'utc':utc_now(),'returncode':push.returncode,'stdout':push.stdout,'stderr':push.stderr},exclusive=True)
+         observed=remote_main()
+-        check=subprocess.run(['git','merge-base','--is-ancestor',commit,observed],cwd=ROOT,capture_output=True)
+-        if check.returncode==0:
+-            native_safety(observed,event)
+-            receipt={**intent,'push_confirmed':True,'observed_remote_main':observed,'other_queue_state_history_bytes_preserved':True,'checkout_index_HEAD_untouched':True}
++        if native_ancestor_status(commit,observed):
++            receipt=native_exact_recovery_gate(attempt,accepted,freeze,tracker,publication,merge,context)
++            receipt['recovered_by_exact_commit_readback']=False
+             save(W/'NATIVE_PUBLICATION_RECEIPT.json',receipt,exclusive=True)
+             print(json.dumps({'commit':commit,'doi':publication['doi'],'original_declared_turns':'1/5','historical_native_turn_count':'UNKNOWN','new_author_proof_responses':0}));return
+         definitive=('stale info' in push.stderr or 'non-fast-forward' in push.stderr or 'fetch first' in push.stderr)
+         need(push.returncode!=0 and definitive and observed!=parent,'native push uncertain/non-CAS failure: inspect exact commit; no blind repeat')
+-        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_DEFINITIVE_RACE.json',{'utc':utc_now(),'not_pushed_commit':commit,'observed_remote_main':observed,'repeat_requires_fresh_source_native_gate':True})
++        save(W/f'NATIVE_PUBLICATION_CAS_{attempt:02d}_DEFINITIVE_RACE.json',{'utc':utc_now(),'not_pushed_commit':commit,'observed_remote_main':observed,'repeat_requires_fresh_source_native_gate':True},exclusive=True)
++        pair=native_prepared_pair(attempt,accepted,publication,merge,tracker);native_definitive_race(attempt,pair)
+     raise RuntimeError('Six definite main races; native ledger remains pending')
+-
+ 
+ def native_verify(publication,merge,tracker,accepted,native):
+     commit,parent=native['commit'],native['parent'];observed=remote_main()

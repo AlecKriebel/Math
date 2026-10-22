@@ -1,0 +1,5 @@
+# Supplemental AA' dependency-verification audit log
+
+- 2026-10-16 05:54:45 UTC — Began bounded adversarial read of Root's new target-parity AA' verification, after prior candidate/source-family work. No claim of a new independent approach family. Scoped supplement completion: 10%.
+- 2026-10-16 05:55:30 UTC — Authenticated the 4,973-byte input hash bdcf7dd3414a09c62e1b2878ca2b0faf015771a87a6a3c0d48b9ef3667b4f8ca and the unchanged prior manifest hash. Independently derived homogeneous dual-conic/polarity formulas, established the unramified simple-pole model at infinite W, checked no adjacent infinite W, both parity congruences, fixed-orbit disjointness, and palindromic zero cancellation. No gap found. Scoped supplement completion: 85%.
+- 2026-10-16 05:57:05 UTC — Completed self-contained supplemental derivation and adversarial report. Verdict: sound for strict confocal, primitive N=2mod4 scope, with credited flag/translation inputs; no repair required. No old tests rerun. Prior manifest and all original artifacts remained unchanged. Scoped supplement completion: 100%; root final mathematical gate remains pending.

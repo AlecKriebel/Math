@@ -50,3 +50,9 @@ bootstrap gives an alternate vanishing-error route, without becoming a prior
 published theorem. The preliminary 2025-model sentence was corrected before
 freezing to extended algebra/time averaging; no UV-smearing attribution to that
 paper remains in the current note.
+
+## 2026-10-14T05:52:02.414232+00:00 — first full-package review repairs
+
+Review01 passes the mathematical/source/priority/computation/PDF/descriptor package. Required R1 is resolved in the live PR body: it links the current externally pinned isolated verifier, qualifies historical assertion/inventory limitations, and discloses the prior direct cutoff adaptation and later audit bootstrap. Exact live-body readback confirmed without changing the draft or original head. The old body anchor and sealed candidate01 are preserved as historical evidence. Optional O1 is resolved in current README/Zenodo human prose by ordinary word/number spacing. The paper also states the already-intended positive index N>=1 explicitly. Original26 bytes and1/5 remain unchanged. The revised candidate must be rebuilt/replayed/frozen and checked by a NEW second whole-package reviewer before acceptance. REVIEW01_REPAIR_RECEIPT.json binds the old/new live-body fingerprints; no merge/deposit/tracker write has occurred.
+
+2026-10-15T03:36:28.245132+00:00 — Before freezing candidate02, root strengthened the reproduction boundary by authenticating the completed disposable copy before executing any copied checker. Four controlled post-copy checker corruptions must be rejected before their marker can execute. This supplements source authentication and preserves all original mathematical bytes; it does not broaden the stated race/security threat model.

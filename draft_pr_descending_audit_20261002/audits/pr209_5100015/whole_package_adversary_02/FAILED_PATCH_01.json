@@ -1,0 +1,7 @@
+{
+  "recorded_utc": "2026-10-16T06:13:35.560021+00:00",
+  "scope": "Own report-authoring patch only, before seal; no candidate file affected",
+  "attempted_patch": "*** Begin Patch\n*** Update File: seal_review.py\n@@\n for name,row in F['core'].items():\n     raw=(B/name).read_bytes();assert len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256']\n+for row in F['all_candidate_files']:\n+    raw=(B/row['path']).read_bytes();assert len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256']\n@@\n-Fifteen new spectral families\n+Fifteen new spectral families\n*** End Patch",
+  "tool_error": "apply_patch verification failed: Failed to find expected lines in seal_review.py:\nFifteen new spectral families",
+  "resolution": "Failed patch was atomic and changed no file; the real target lines were patched successfully afterward. This record preserves the failed attempt."
+}

@@ -1,0 +1,12 @@
+# Independent PR1253 review log
+
+- 2026-10-22T08:28:19Z: Fresh numeric-grid GWS check before mathematical inspection.191 nonempty rows, no target/author/stackedness lead. Own-family completion 10%; overall 79%.
+- 2026-10-22T08:28:51Z: Controlling Swartz, Bagchi v1 and final Datta–Murai PDFs freshly retrieved, plus essential combinatorial/topological source papers. Exact source hashes match the PR. Own-family completion 20%; overall 79%.
+- 2026-10-22T08:34:03Z: Original question, arbitrary-field hypotheses, new mu/Morse/global filling and final cutting/handle proof passages inspected. Both source journal DOIs authenticated; Bagchi journal body remains inaccessible. Four initial Zenodo queries return no package match. Own-family completion 50%; overall 79%.
+- 2026-10-22T08:37:00Z: Separation-index induction and all displayed injection cases, filling specialization and topology/face formulas independently challenged. Local cutting repair is sufficient; no classification defect found. Own-family completion 65%; overall 79%.
+- 2026-10-22T08:41:56Z: Fresh finite checker passes all 24 gluings, both orientations, integral/prime-field H1,16,384 induced-H1 tests and cutting examples. An output-counter bookkeeping issue was corrected before final runs: the literal omitted-face counts are 4,6,8,10, not zero; the omission tests themselves already passed. Own-family completion 80%; overall 79%.
+- 2026-10-22T08:43:25Z: Final normal/-O/-OO outputs agree. Existing publisher/source identities and bounded package checks consolidated; no new upload or DOI action. Own-family completion 90%; overall 79%.
+
+The 08:37 checkpoint is rounded. Source retrievals and mode receipts preserve actual timestamps. The universal classification is a joint established-theorem consequence with explicit imports and a local printed-definition repair. The finite checks are corroboration. No author/source programs, people contacts, agents, Git/shared-state writes or service mutations occurred.
+
+- 2026-10-22T08:56:03+00:00: Final normal/-O/-OO receipts agree including the complete relative-Morse order control. Qualified four-cell proposal saved with exactly blank B; no service write. Earlier PR1235/PR1239 complete directory seals and members reverified unchanged. Review closed with full established-theorem coverage, no exact remaining gap under identified imports. Own-family completion 100%; overall 79%.

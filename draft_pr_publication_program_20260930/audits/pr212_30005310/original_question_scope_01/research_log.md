@@ -1,0 +1,7 @@
+# Research log: original-question scope
+
+- 2026-10-17 21:05:03 UTC: Began independent source-only family. Read the PDF skill and opened the sole authorized primary report. No submitted artifacts, prior audit, proof, counterexample, or scripts accessed. Source-scope progress estimate: 10%.
+- 2026-10-17 21:05-21:06 UTC: Read report text and downloaded official PDF to an external /tmp cache. Web screenshot responses were text-only/error and were not treated as pixels. Locally rendered one-based PDF pages 26-29 with Poppler and actually viewed all four whole-page images. Printed pp.3146-3149, zero-based PDF pages25-28. Source-scope progress estimate: 60%.
+- 2026-10-17 21:06:18 UTC: Independently fixed the model/ideal/threshold notation and distinguished Boolean signed-SOS/intersection exhaustion from its numerical consequences. Recorded singleton-color inclusion, no explicit four-cycle restriction, generator/nonvanishing/sampling/indexing ambiguities, and exact decisive-proof obligations. Source-scope progress estimate: 100%; PR mathematical audit 0% by this agent. Awaiting Root frozen packet. No local Git or external communication performed.
+
+The public selection for this checkpoint consists only of source_scope_report.md, research_log.md, and source_scope_pins.json in this folder. Third-party PDF bytes, extracts, and page renderings remain outside that selection in /tmp/pr212_original_source_scope_01/.

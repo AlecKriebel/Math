@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/run_targeted_workflow.py", line 23, in <module>
+    f=m.fixture(Path(tmp)/'main');p,t,pub=m.publication_and_tracker_controls(f);m.update_controls(f,p,t);out['groups']['postmerge']=m.postmerge_controls(f);save()
+                                                                                                                                    ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 608, in postmerge_controls
+    save(pubpath/'PUBLICATION_RECEIPT.json',pub)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/publication/workflow_regression.py", line 27, in save
+    def save(path,obj):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(obj,indent=2)+'\n')
+                                                                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1283_30005434/reviews/package_round1/_local/workflow_tooling/_local/serial-postmerge-brd57k_3/main/program/audits/pr1283_30005434/publication/PUBLICATION_RECEIPT.json'

@@ -1,0 +1,361 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{microtype}
+\newcommand{\sn}{\operatorname{sn}}
+\newcommand{\cn}{\operatorname{cn}}
+\newcommand{\dn}{\operatorname{dn}}
+\newcommand{\dist}{\operatorname{dist}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{The odd-period focal-pedal sum invariant}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Attributed research note, 16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We verify the focal-pedal invariant \(k601\) of Reznik, Garcia and
+Koiller: for an odd-period billiard in a fixed proper confocal ellipse
+pair, the product of the sums of the distances from the two foci to
+the original side lines is constant. The proof combines Stachel's
+canonical billiard coordinates with the classical odd-order
+generalized Landen formulas of Khare and Sukhatme. We give the required
+trace normalization directly from convergent classical Fourier series.
+Admissible primitive winding classes and odd repetitions are included.
+An exact four-period example shows why parity matters. This is an
+attributed verification, without a novelty or priority claim.
+\end{abstract}
+
+\section{Statement and conventions}
+
+Let \(E:x^2/a^2+y^2/b^2=1\), where \(a>b>0\). Fix \(0<\lambda<b^2\) and
+the proper nested confocal elliptic caustic
+\[
+ C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,\qquad
+ \alpha^2=a^2-\lambda,\quad\beta^2=b^2-\lambda,\qquad
+ c^2=a^2-b^2=\alpha^2-\beta^2.
+\]
+The common foci are \(F_\pm=(\pm c,0)\). For a closed billiard
+\(P_0,\ldots,P_{N-1}\), let \(L_i\) be the complete supporting line of
+\(P_iP_{i+1}\), with indices modulo \(N\), and put
+\[
+ q_{\pm,i}=\dist(F_\pm,L_i),\qquad
+ I(P)=\left(\sum_{i=0}^{N-1}q_{+,i}\right)
+       \left(\sum_{i=0}^{N-1}q_{-,i}\right).
+\]
+These are ordinary Euclidean perpendicular distances; the foot is not
+clipped to the segment. Set
+\[
+ k=\frac c\alpha,\quad m=k^2,\quad k'=\frac\beta\alpha=\sqrt{1-m},
+ \qquad K=K(m)=\int_0^{\pi/2}\frac{d\theta}{\sqrt{1-m\sin^2\theta}}.
+\]
+Our \(\sn(u\mid m),\cn(u\mid m),\dn(u\mid m)\) use the
+\emph{parameter} \(m\). References using modulus \(k\), including DLMF,
+use \(k=\sqrt m\).
+
+\begin{theorem}\label{thm:main}
+Suppose the family with outer ellipse \(E\) and caustic \(C\) has odd
+physical least period \(N\geq3\). Then \(I(P)\) is independent of the
+initial vertex, and
+\begin{equation}\label{eq:constant}
+ I(P)=\beta^2\left[
+       \sum_{j=0}^{N-1}\frac1{\dn(4Kj/N\mid m)}\right]^2.
+\end{equation}
+Every admissible primitive winding \(0<\tau<N/2\) with
+\(\gcd(\tau,N)=1\), including stars, and reversal of orientation are
+covered. Repeating an odd primitive orbit \(r\) times multiplies \(I\)
+by \(r^2\); in particular, an odd indexed repetition has this constancy.
+\end{theorem}
+
+The target is \(k601\) in Table~7, p.~9, of the exact preprint edition
+\cite{RGKpre}, and Table~7, p.~349, of the published article \cite{RGK}.
+Section~3.7 defines the distances from the foci to the pedal feet on
+the original sides. We make the standard complete-line pedal
+interpretation explicit. The row itself does not literally print
+a primitive-period or complete-supporting-line qualifier; odd
+repetitions reduce harmlessly by the \(r^2\) law. The question mark in
+the historical tables does not certify present-day openness.
+
+\section{A classical odd-order trace formula}
+
+The entire special-function step is a direct consequence of earlier
+generalized Landen formulas, not a new identity. The shared parameter is specified in \cite[Eq.~(53)]{KSlanden};
+the common-argument odd-order formulas are in its Section~3.1,
+pp.~12--13, Eqs.~(68)--(70), with normalizations in Eqs.~(14), (32).
+All-odd pair-correlation constancies were already stated in
+\cite[Table~1, Eq.~(29)]{KScyclic}; a general proof framework and
+explicit correlations appear in \cite[Sections~1--2 and
+Appendix~A]{KLScyclic}. We verify the needed normalization from
+classical Fourier series.
+
+\begin{lemma}[Classical odd-order trace formula]\label{lem:trace}
+For \(0<m<1\) and odd \(N\geq3\), define
+\[
+ D(t)=\sum_{j=0}^{N-1}\dn(t+4Kj/N\mid m),\qquad
+ H(t)=\sum_{j=0}^{N-1}\cn(t+4Kj/N\mid m).
+\]
+Let
+\[
+ q=e^{-\pi K(1-m)/K(m)},\quad Q=q^N,\quad
+ M=\left[\frac{\theta_2(0,Q)}{\theta_3(0,Q)}\right]^4,\quad
+ K_M=K(M),\quad \gamma=\frac K{NK_M}.
+\]
+Then \(0<M<1\), \(\gamma>0\), and for real \(t\),
+\begin{equation}\label{eq:traces}
+ D(t)=\gamma^{-1}\dn(t/\gamma\mid M),\qquad
+ H(t)=\frac{\sqrt M}{\sqrt m\,\gamma}\cn(t/\gamma\mid M).
+\end{equation}
+In particular,
+\begin{equation}\label{eq:lorentz}
+ D(t)^2-mH(t)^2=\frac{1-M}{\gamma^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The classical Fourier expansions \cite[22.11.2--3]{DLMF} are
+\begin{align*}
+ \dn(t\mid m)&=\frac\pi{2K}
+  +\frac{2\pi}K\sum_{n\geq1}
+       \frac{q^n}{1+q^{2n}}\cos\frac{n\pi t}K,\\
+ \cn(t\mid m)&=\frac{2\pi}{\sqrt m\,K}\sum_{n\geq0}
+       \frac{q^{n+1/2}}{1+q^{2n+1}}
+           \cos\frac{(2n+1)\pi t}{2K}.
+\end{align*}
+They converge absolutely and uniformly for real \(t\), since \(0<q<1\).
+Thus finite grid sums may be interchanged with the series.
+The root-of-unity sum
+\(\sum_{j=0}^{N-1}e^{2\pi i\ell j/N}\) is \(N\) if \(N\mid\ell\)
+and zero otherwise. For dn it keeps \(N\mid2n\), equivalently
+\(N\mid n\) because \(N\) is odd. For cn it keeps
+\(2n+1=N(2s+1)\). Consequently
+\begin{align*}
+ D(t)&=\frac{N\pi}{2K}
+  +\frac{2N\pi}K\sum_{\ell\geq1}
+       \frac{Q^\ell}{1+Q^{2\ell}}\cos\frac{N\ell\pi t}K,\\
+ H(t)&=\frac{2N\pi}{\sqrt m\,K}\sum_{s\geq0}
+       \frac{Q^{s+1/2}}{1+Q^{2s+1}}
+           \cos\frac{N(2s+1)\pi t}{2K}.
+\end{align*}
+The standard nome inversion formulas
+\cite[22.2.1--2]{DLMF} identify \(M\) as the parameter with nome \(Q\)
+and give \(K_M=(\pi/2)\theta_3(0,Q)^2\).
+Comparing the series with those of parameter \(M\), using
+\(\gamma K_M=K/N\), proves \eqref{eq:traces}.
+Finally, \(\dn^2(z\mid M)-M\cn^2(z\mid M)=1-M\) gives
+\eqref{eq:lorentz}.
+\end{proof}
+
+For comparison with \cite{KSlanden}, its \(\alpha\) is our \(\gamma\).
+Its \(\alpha_1\), denoted here by \(\eta\), satisfies
+\[
+ \gamma=\left[\sum_{j=0}^{N-1}\dn(2Kj/N\mid m)\right]^{-1},\qquad
+ \eta=\left[\sum_{j=0}^{N-1}\cn(4Kj/N\mid m)\right]^{-1},\qquad
+ M=m\gamma^2/\eta^2.
+\]
+The dn grids agree because dn has period \(2K\) and \(2\) is
+invertible modulo odd \(N\). The cn sum at zero is positive by its
+filtered Fourier series. These relations specify the shared parameter
+and argument without conflating the unequal cn and dn amplitudes.
+
+\section{The geometric bridge}
+
+We use Stachel's canonical parametrization
+\cite[Theorem~4.3 and Eq.~(4.9)]{Stachel}.\footnote{The alternating
+sign printed for the dn half-period shift on p.~1613 is a typo:
+\(\dn(u+2K)=\dn u\). We use the correct period and quarter-period
+identities from DLMF.} For an admissible primitive
+winding \(\tau\), put
+\[
+ h=\frac{2\tau K}N,\qquad
+ a=\frac{\alpha\dn(h\mid m)}{\cn(h\mid m)},\qquad
+ b=\frac{\beta}{\cn(h\mid m)}.
+\]
+Then \(0<h<K\), and the family has vertices
+\[
+ P_i=(-a\sn(u+2ih\mid m),\,b\cn(u+2ih\mid m)),\qquad u\in\mathbb R.
+\]
+This is a credited geometric input, not a new proof of integrability.
+
+For \(v_i=u+(2i+1)h\), the chord line is
+\begin{equation}\label{eq:line}
+ -\frac{\sn(v_i\mid m)}\alpha X+
+  \frac{\cn(v_i\mid m)}\beta Y=1.
+\end{equation}
+To check the contact phase directly, use the difference-addition identity
+\[
+ \cn x\,\cn y+\dn(y-x)\sn x\,\sn y=\cn(y-x),
+\]
+where the common parameter is \(m\). Substitution of either vertex
+parameter \(v_i-h\) or \(v_i+h\) into \eqref{eq:line} yields \(1\).
+The identity follows by solving the cn/dn difference-addition system;
+its real determinant \(1-m\sn^2x\sn^2y\) is at least \(1-m>0\).
+Equation \eqref{eq:line} is tangent to \(C\) at
+\((-\alpha\sn v_i,\beta\cn v_i)\).
+
+The normal norm is
+\[
+ \sqrt{\frac{\sn^2v_i}{\alpha^2}+\frac{\cn^2v_i}{\beta^2}}
+     =\frac{\dn v_i}\beta.
+\]
+The ordinary distances are therefore
+\begin{equation}\label{eq:distances}
+ q_{+,i}=\beta\frac{1+k\sn v_i}{\dn v_i},\qquad
+ q_{-,i}=\beta\frac{1-k\sn v_i}{\dn v_i}.
+\end{equation}
+Here \(\dn v_i\geq k'>0\) and \(1\pm k\sn v_i\geq1-k>0\), so
+the absolute values in Euclidean distance are resolved by explicit
+positive bounds. The same focal-line support geometry and the
+pointwise identity \(q_{+,i}q_{-,i}=\beta^2\) already appear in
+Bialy--Tabachnikov \cite[Lemma~4.2]{BT}. The pointwise product alone
+does not establish the product of sums.
+
+Coprimality of \(\tau,N\) makes the set of \(v_i\) modulo \(4K\)
+exactly \(\{v+4Kj/N:0\leq j<N\}\). With
+\[
+ A(v)=\sum_j\frac1{\dn(v+4Kj/N)},\qquad
+ B(v)=\sum_j\frac{\sn(v+4Kj/N)}{\dn(v+4Kj/N)}
+\]
+and common parameter \(m\), \eqref{eq:distances} gives
+\(I=\beta^2(A^2-mB^2)\).
+The classical quarter-period identities
+\[
+ \dn(z+K)=\frac{k'}{\dn z},\qquad
+ \cn(z+K)=-\frac{k'\sn z}{\dn z}
+\]
+give \(A(v)=D(v+K)/k'\), \(B(v)=-H(v+K)/k'\).
+Thus Lemma~\ref{lem:trace} yields
+\[
+ I(P)=\alpha^2[D(v+K)^2-mH(v+K)^2]
+      =\alpha^2\frac{1-M}{\gamma^2},
+\]
+independent of \(u\).
+At \(v=0\), the odd function \(\sn z/\dn z\) pairs under negation
+on the grid, so \(B(0)=0\). This proves \eqref{eq:constant}.
+Reversal permutes the same side lines. Repetition multiplies each
+sum by \(r\), proving the \(r^2\) law and Theorem~\ref{thm:main}.
+
+\section{An exact parity boundary and the circular limit}
+
+There is no unrestricted even-period extension. Consider
+\[
+ E:\frac{x^2}{3/2}+\frac{y^2}{3/4}=1,\qquad
+ C:x^2+4y^2=1,\qquad F_\pm=(\pm\sqrt3/2,0).
+\]
+The axis-vertex diamond
+\[
+ (0,\sqrt3/2),\quad(-\sqrt{3/2},0),\quad
+ (0,-\sqrt3/2),\quad(\sqrt{3/2},0)
+\]
+is a primitive four-period billiard. Its sides, written with
+right-hand side \(1\), have normal norm \(\sqrt2\); each pair of
+opposite sides has distances summing to \(2/\sqrt2\) from either
+focus. Each four-side sum is \(2\sqrt2\), hence \(I=8\).
+The rectangle with cyclic vertices
+\[
+ (1,1/2),\quad(-1,1/2),\quad(-1,-1/2),\quad(1,-1/2)
+\]
+lies on \(E\), and its sides \(x=\pm1,\ y=\pm1/2\) are tangent to \(C\).
+Each focal distance sum is \(3\), hence \(I=9\).
+The diamond satisfies specular reflection by axial symmetry.
+At the rectangle vertices the ellipse normals have components
+\((\pm2/3,\pm2/3)\), giving the same reflection law.
+Thus these are two primitive four-period billiards in the same
+proper-confocal family with unequal products.
+
+When \(c=0\), the foci coincide with the center and every side has
+distance \(\beta\) from it, so directly \(I=N^2\beta^2\).
+No singular Landen normalization at \(m=0\) is needed.
+Collapsed or hyperbolic caustics, grazing limits and replacement
+of line distance by segment distance are outside the assertion.
+
+\section{Attribution and verification status}
+
+The source quantity and observation are due to Reznik, Garcia and
+Koiller; the focal support identity is credited to
+Bialy--Tabachnikov; the canonical coordinates are used in Stachel's
+form. The complete odd-order trace identity and pair correlations
+are existing generalized Landen and cyclic-identity mathematics
+\cite{KScyclic,KLScyclic,KSlanden}.
+The proof resolves the stated invariant question by an attributed
+application of these inputs. We claim no theorem, formula or
+proof-method novelty, firstness, independent discovery or simultaneity.
+
+The bounded prior comparison distinguishes these established inputs
+from an earlier explicit full geometric \(k601\) application.
+It has not established such an earlier printed application in its
+selected sources, and it does not exclude one elsewhere.
+No present-day openness or priority conclusion follows from this
+bounded finding or the historical table's question mark.
+
+AI systems were used extensively in research, proof development,
+drafting, adversarial review and computation. This note is unrefereed.
+AI review and computational checks are not conventional human peer
+review, a proof-assistant formalization or a formally certified proof.
+Numerical checks are finite, noninterval diagnostics; the universal
+assertion rests on the proof above.
+
+\begin{thebibliography}{9}
+\bibitem{RGK}
+D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Fifty New Invariants of \(N\)-Periodics in the Elliptic Billiard},
+Arnold Math.\ J.\ \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}
+{doi:10.1007/s40598-021-00174-y}.
+
+\bibitem{RGKpre}
+D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Eighty New Invariants of \(N\)-Periodics in the Elliptic Billiard},
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11},
+29 October 2020. Exact edition, Table~7, p.~9.
+
+\bibitem{Stachel}
+H.~Stachel, \emph{On the motion of billiards in ellipses},
+Eur.\ J.\ Math.\ \textbf{8} (2022), 1602--1622.
+\href{https://doi.org/10.1007/s40879-021-00524-2}
+{doi:10.1007/s40879-021-00524-2}.
+
+\bibitem{BT}
+M.~Bialy and S.~Tabachnikov,
+\emph{Dan Reznik's identities and more},
+Eur.\ J.\ Math.\ \textbf{8} (2022), 1341--1354
+(first published online 11 September 2020).
+\href{https://doi.org/10.1007/s40879-020-00428-7}
+{doi:10.1007/s40879-020-00428-7}.
+
+\bibitem{KScyclic}
+A.~Khare and U.~Sukhatme,
+\emph{Cyclic identities involving Jacobi elliptic functions},
+J.\ Math.\ Phys.\ \textbf{43} (2002), 3798--3806.
+\href{https://doi.org/10.1063/1.1484541}{doi:10.1063/1.1484541};
+\href{https://arxiv.org/abs/math-ph/0201004v2}
+{arXiv:math-ph/0201004v2}, 4 January 2002.
+
+\bibitem{KLScyclic}
+A.~Khare, A.~Lakshminarayan and U.~Sukhatme,
+\emph{Cyclic identities for Jacobi elliptic and related functions},
+J.\ Math.\ Phys.\ \textbf{44} (2003), 1822--1841.
+\href{https://doi.org/10.1063/1.1560856}{doi:10.1063/1.1560856}.
+Full preprint: \emph{Cyclic Identities Involving Jacobi Elliptic
+Functions.~II},
+\href{https://arxiv.org/abs/math-ph/0207019v2}
+{arXiv:math-ph/0207019v2}, 24 March 2003.
+
+\bibitem{KSlanden}
+A.~Khare and U.~Sukhatme,
+\emph{Generalized Landen Transformation Formulas for Jacobi Elliptic
+Functions},
+\href{https://arxiv.org/abs/math-ph/0312074v1}
+{arXiv:math-ph/0312074v1}, 31 December 2003.
+Cited equation and page numbers refer to this exact version.
+
+\bibitem{DLMF}
+National Institute of Standards and Technology,
+\emph{NIST Digital Library of Mathematical Functions},
+\href{https://dlmf.nist.gov/}{https://dlmf.nist.gov/},
+version 1.2.8, 15 September 2026.
+Chapter~22, especially Sections~22.2, 22.4--22.6, 22.8 and~22.11.
+\end{thebibliography}
+\end{document}

@@ -71,6 +71,18 @@ def safe_output(path, extra=()):
     target = p.resolve()
     require(target != ROOT and ROOT not in target.parents,
             "output must be outside canonical kit directory")
+    # resolve() preserves spelling on case/normalization-insensitive hosts.
+    # Compare every existing ancestor physically, even above absent directories.
+    # This also works when __file__ names the kit through a different alias.
+    root_stat = ROOT.stat()
+    root_identity = (root_stat.st_dev, root_stat.st_ino)
+    for ancestor in [target, *target.parents]:
+        try:
+            ancestor_stat = ancestor.stat()
+        except FileNotFoundError:
+            continue
+        require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,
+                "output must be outside physical kit directory")
     for source in protected(extra):
         require(target != source.resolve(), "output aliases protected input")
         if p.exists() and source.exists():

@@ -1,0 +1,24 @@
+{
+  "checked_utc": "2026-10-16T05:48:48.381471+00:00",
+  "result": "CONFIRMED_COMPRESSION_DESCRIPTION_MISMATCH",
+  "source_zip_sha256": "8bb9f93af0cad003e2033e3f9d14b2b6618d2a44977c037787d197796e24e277",
+  "tested_member": "paper.tex",
+  "actual_compressed_bytes": 7411,
+  "level_stream_comparison": {
+    "-1": {
+      "bytes": 7411,
+      "matches_actual_deflate_stream": true
+    },
+    "6": {
+      "bytes": 7411,
+      "matches_actual_deflate_stream": true
+    },
+    "9": {
+      "bytes": 7409,
+      "matches_actual_deflate_stream": false
+    }
+  },
+  "cause": "Custom ZipInfo bypasses ZipFile default compresslevel inheritance; writestr receives no explicit level.",
+  "required_fix": "Pass compresslevel=9 directly to writestr for every custom ZipInfo, then rebuild source and kit and retest. Or revise truthful compression documentation; no mathematical issue.",
+  "frozen_six_unchanged": true
+}

@@ -1,0 +1,15 @@
+# Independent primary scope and priority recheck
+
+2026-10-21 18:12 UTC — Started review of PR630/problem30000700/OWR1460-004, assigned immutable head 810cd5c148bbae7c7c5a47423c375ada98e903b6. Review outputs restricted to this folder. No candidate controls executed; no external communication, provider writes, Git mutations, releases, or canonical changes authorized. Root is independently handling current tracker/publication dedup and original control replay. Completion estimate: 5%.
+
+2026-10-21 18:12:49 UTC — Independently retrieved both primary PDFs from publisher endpoints. Source-first derivation and visual inspection are pending; old audit conclusions have not been read. Completion estimate: 15%.
+
+2026-10-21T18:13:56.060867+00:00 — Sealed source-first checkpoint before reading candidate proof or old verdicts. Literal OWR H has no a!=0 hypothesis. Direct B=2b substitution into old Example 1 supplies a nonvacuous target k=2 counterexample. Completion estimate: 40%.
+
+2026-10-21T18:15:57.726618+00:00 — Read candidate complete PROOF.md, wrapper/safe READMEs, STATUS, audit and CORRECTIONS, then prior root implication/priority verdict only after the source-first checkpoint. All 28 candidate files compared directly with local immutable Git commit objects: exact matches, no extras. No candidate code executed. Cornell author PDF Proposition 7 read and visually inspected; timestamped 19 Jan 2000, arXiv v1 submitted 20 Jan 2000, with 2001 journal reference. Its one-critical-value mechanism matches the polynomial shape argument. Completion estimate: 65%.
+
+Log correction: initial retrieval entry was initially mistyped as 18:15; corrected to the recorded HTTP completion time 18:12:49 UTC. Source-first seal remains fully valid. Additional source retrieval records are separated so the first-checkpoint ledger remains immutable.
+
+2026-10-21T18:21:10.339562+00:00 — Completed independent derivations and boundary falsification checks for all three propositions. Exact stdout-only script copied to new private replay directory and run normally and optimized; both passed with byte-identical output. Verified source version distinction: Cornell Prop7/p27 versus dated arXiv v1 Prop5/p26. Full report and bounded search ledger written. No novel central resolution established; retain valid refinements and original closed recommendation. Completion estimate: 95%, final input/output seal check pending.
+
+2026-10-21T18:21:45.881214+00:00 — Final verification before sealing: all source-first checkpoint entries valid; all 28 canonical/native inputs still match immutable-head private copies; new exact controls passed in normal and optimized Python with identical output; reports and custody files complete. Root reports its own full immutable-head control replay and direct source body verification complete; not independently imported into this subreview. Completion estimate: 100% of assigned independent recheck. No sealed output will be changed after this seal. No new publication or remote action.

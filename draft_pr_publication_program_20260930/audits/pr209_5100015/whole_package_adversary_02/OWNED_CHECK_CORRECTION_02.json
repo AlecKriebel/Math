@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-17T01:42:02.503932+00:00",
+  "failure": "KeyError: http_status at per-download observation; owned checker assumed a key not present in the receipt schema.",
+  "failed_source_sha256": "35203c30ac7cb5d9b50f8a37fa8823d9fad26e3c0165ec04991b5c1f3e546509",
+  "not_a_package_defect": true,
+  "repair": "Require the actually recorded public_download_bytes_verified flag. HTTP 200 is separately recorded at the public-record level; no per-file HTTP claim invented.",
+  "additional_failures": [
+    {
+      "failure": "One ancillary row-inspection command used Path('.').parent without resolving, so it looked in the owned folder rather than sibling folder.",
+      "repair": "Resolved absolute parent before reading; no file was mutated."
+    },
+    {
+      "failure": "Owned checker assumed title/DOI/date tracker layout before reading actual row schema; assertion failed.",
+      "failed_source_sha256": "4a7a44c41979a770b43fda6e14bc0d363b9bce90d6514d02bc04a29aed9b4319",
+      "repair": "Actual row layout is source URL / empty B / DOI / qualified notes. Check these actual bound cells; no package defect."
+    }
+  ],
+  "exact_type_strengthening": {
+    "utc": "2026-10-17T01:43:38.097183+00:00",
+    "initial_geometry_pass_source_sha256": "46e1183c85b01bff9e78dd3c4f3c808021df9b860b8e84deeafef80a51b64df9",
+    "issue": "Exact fixture coordinates included ordinary Python integer zero; division could introduce floating-point zero into nominal symbolic arithmetic. No theorem issue or observed failing equality.",
+    "repair": "Sympify every exact-fixture coordinate before any geometry arithmetic and rerun the full owned geometry program; initial pass source/result preserved."
+  }
+}

@@ -1,0 +1,9 @@
+# Current verified publication proof
+
+For a>b>0,0<lambda<b^2, fix the outer ellipse and proper confocal elliptical caustic. If the physical family has least N divisible by four, its signed original-trajectory area times signed area of perpendicular feet of each fixed finite real M on the original complete side lines is phase independent. All admitted coprime primitive stars and both traversal orientations; zero or negative pedal areas allowed.
+
+Published note: https://doi.org/10.5281/zenodo.23414057. Exact source: draft_pr_publication_program_20260930/audits/pr203_5100011/publication_package_v2/original_pedal_flag.tex. Sections2-4 give the complete incidence-curve proof, including real half-period for primitive stars, physical-step identification, explicit ramification charts, branch double-to-simple pole reduction includingN4, parity-separated supports and complementary signed zeros. Section5 credits classical radial dependence/four-period implications and gives exact boundary controls. The proof does not divide by areas or coefficients depending onM.
+
+This is an attributed incidence-curve presentation using explicit branch charts and complementary pole/zero cancellation. Established Poncelet flag curves/involutions/meromorphic methods are credited to Schwartz-Tabachnikov, AST and Chavez-Caliz; Steiner radiality and the Bialy-Tabachnikov earlier four-period implication are credited. Neither theorem nor proof method is claimed novel. The published proof does not require the original Jacobi/contact-trace route or the separate credited AA-prime theorem; those original inputs were independently audited and are preserved as provenance.
+
+Original PROOF.md is retained byte-for-byte as the independently audited submitted Jacobi/contact-trace proof. Current source/scope/priority qualifications here supersede dated historical openness/search statements, without altering original provenance.

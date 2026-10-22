@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-10-16T06:15:05.212357+00:00",
+  "program": "from pathlib import Path\nimport hashlib,json\nO=Path('.');m=json.loads((O/'AUTHORED_MANIFEST.json').read_text());a=json.loads((O/'ASSESSMENT.json').read_text())\nfor r in m['files']:\n raw=(O/r['path']).read_bytes();assert len(raw)==r['bytes'] and hashlib.sha256(raw).hexdigest()==r['sha256']\nfor r in a['evidence'].values():\n raw=(O/r['path']).read_bytes();assert len(raw)==r['bytes'] and hashlib.sha256(raw).hexdigest()==r['sha256']\nfor n,r in a['frozen_bindings'].items():\n raw=(O.parent/'preprint'/n).read_bytes();assert len(raw)==r['bytes'] and hashlib.sha256(raw).hexdigest()==r['sha256']\nassert a['mandatory_findings']==a['optional_findings']==[]\ntext=(O/'REPORT.md').read_text();assert all(x not in text for x in ['COMPLETED_UTC','FROZEN_UTC','CORE_TABLE'])\nprint(json.dumps(dict(status='PASS',review_completed_utc=a['completed_utc'],sealed_rows=len(m['files']),review_files_valid=True,all_seven_current_core_bindings_valid=True,mandatory=0,optional=0),indent=2))\n",
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\n  File \"/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'preprint/PACKAGE_MANIFEST.json'\n",
+  "exit_code": 1,
+  "scope": "Own additional read-only postseal QA, after every original manifest row and assessment evidence pin had passed",
+  "cause": "Path('.').parent is '.' rather than the resolved working-directory parent; wrong relative candidate lookup",
+  "resolution": "Use absolute resolved owned directory. No candidate defect or scientific failure; all original assertions/timestamps and payload bytes preserved."
+}

@@ -1,0 +1,39 @@
+# Primary source access and exact reading scope
+
+PR204 / problem5100012 / AMR-050-0012 / k203,b. Audit started2026-10-16 10:02:53 UTC. Exact HTTP times, sizes, hashes and selected metadata fields are retained in PRIMARY_RECEIPTS.json. Source bytes were read in memory; no new third-party PDF/text copy is included in this folder.
+
+## Exact positive target
+
+Alper Ferudun, *Center-Pedal Area Products in Elliptic Billiards*, v1.0, manuscript date1 October2026.
+
+- Record https://zenodo.org/records/23085904 ; metadata https://zenodo.org/api/records/23085904 ; DOI registration https://api.datacite.org/dois/10.5281/zenodo.23085904 .
+- Original PDF https://zenodo.org/api/records/23085904/files/main.pdf/content . Read ALL five pages, not just abstract or search snippets. Fetched2026-10-16T10:03:55–10:03:56Z;78322bytes; SHA256 `8ba41a5466bc289a9f714b57527f596fbe39b3422bc6bcf0a95d39bbde50c40c`. Original record advertises MD5 `135fd58caf732f2afb141bac8e229543`; this audit separately computed SHA256, not MD5.
+- Page1 defines fixed a>b>0 and0<lambda<b², signed ordered shoelace area, center feet to original sidelines, all admitted coprime windings including stars, least period N>=3, reversal, and Theorem1 for N odd or divisible4. It explicitly states that RGK does not literally define minimal period and excludes hyperbolic/degenerate caustics.
+- Page2 gives reflection velocities and the velocity-product telescope, then Lemma3's explicit centered-pedal trace coefficient, with positivity. Page3 specifies canonical Jacobi phase and the scalar trace f=dn/W. Pages3–4 locate complementary poles, prove their parity separation, pair trace terms/edges to remove product poles and apply elliptic constancy. Page5 gives exact least6/padded12 counterexample, low-period checks, provenance and bibliography.
+- Landing page https://eulersolve.org/papers/amr-050-0012/ read via web. It labels manuscript/online release1 October2026, version1.0, unrefereed and AI-assisted, with novelty undetermined and no absolute-priority claim. Website PDF open https://eulersolve.org/papers/amr-050-0012/paper.pdf?v=8ba41a5466bc returned Internal Error in this audit; the original deposited PDF above succeeded. No claim that the failed website open verified its bytes.
+
+## Later arbitrary-point paper, exact centered4k specialization
+
+Ferudun, *Pedal Areas of Periodic Elliptic Billiard Trajectories with Respect to an Arbitrary Point*, v1.0, dated15 October2026.
+
+- Record https://zenodo.org/records/23400541 ; API https://zenodo.org/api/records/23400541 ; DOI metadata https://api.datacite.org/dois/10.5281/zenodo.23400541 .
+- Original PDF https://zenodo.org/api/records/23400541/files/AMR-050-0011-paper.pdf/content .183271bytes,17pages, SHA256 `5c54d3e2e525d794fec25be6ec1a929eaccc95e2332b0ae6ee0ed780e46098a0`. Full text was extracted in memory; the large tool output was truncated, so this audit only claims actual reading of pp1–6 and the separately re-extracted pp9–11. It does not certify full17-page reading.
+- Pages1–4 give least-period and signed original-side conventions, TheoremA for arbitrary complex M and N divisible4, reversal, and explicit credit to the earlier centered paper for odd/4k origin case. Thus TheoremA at M=O covers the4k part of PR204; it is not by itself a theorem for all odd N.
+- Pages9–11: Lemma4.3 groups the two determinant terms incident to a double-pole foot and uses equality of the two neighboring feet at the limiting phase to reduce the summed pedal area to at most a simple pole. Lemmas4.4–4.6 identify parity-separated poles and complementary zeros; TheoremA removes product poles. This is substantive method overlap with PR204's adjacent-term cancellation. It does not establish dependence or independence between authors.
+
+## Experimental statement and version endpoints
+
+Reznik–Garcia–Koiller, original arXiv record https://arxiv.org/abs/2004.12497 . All11 history entries inspected; actual relevant version endpoints read, not every intermediate revision.
+
+- v1 https://arxiv.org/pdf/2004.12497v1 , *Forty New Invariants*, actual pp1–4 read.1123449bytes; SHA256 `085ecad4062dc55d4ae8053c693acb8121f928a992c3e850d943964b949810e7`. Page2 defines signed areas; p3§3.3 defines pedal; p4Table2 already records k203,b, A A_m, N not2mod4, M=O, detection4/20 and proof'?'.
+- v11 https://arxiv.org/pdf/2004.12497v11 , *Eighty New Invariants*, reused existing private file `../../pr203_5100011/primary_source_private/rgk_arxiv_v11.pdf`; pp1–4 and6 read.3389610bytes; SHA256 `c56bb4ea29734ed04ee153206bb8619286df544714fd3f77fe97bdc945dfe1da`. Signed area isp3; pedal definition/status-column explanationp4; same rowTable3p6.
+- Published *Fifty New Invariants*, DOI https://doi.org/10.1007/s40598-021-00174-y ; author-hosted final https://armj.math.stonybrook.edu/pdf-Springer-final/021-0174.pdf . Reused `../../pr203_5100011/primary_source_private/rgk_journal2021.pdf`; PDFpp1,3,4,6 (printed341,343,344,346) read.1836579bytes; SHA256 `c2a2e644521fd03a15833a23bd57c2498b5644036f6bc8fe682c40581f640d42`.
+- The table does NOT literally say primitive/least period. The target restriction is a mathematical qualification, not a verbatim RGK condition. The printed '?' is evidence of the historical table's proof status, not evidence that no proof exists today. The original source_manifest's condensed least-N wording should be corrected in any future narrative rather than repeated as literal source text.
+
+## Established theorem/method lineage
+
+- Stachel, *On the Motion of Billiards in Ellipses*, DOI https://doi.org/10.1007/s40879-021-00524-2 ; primary arXiv https://arxiv.org/abs/2105.03624 . Published PDF reused at `../../pr203_5100011/primary_source_private/stachel_journal2022.pdf`, pp1,13 (printed1602,1614) read.726042bytes; SHA256 `9121028d7295435740cebb25ec60abe1a0dcc4e96686c226b1b6533bd49515d8`. Theorem4.3/(4.9) supplies canonical Jacobi parameter, contact half-step and coprime winding. Source DOI/PDF journal is European Journal of Mathematics; the repository filename cited originally mislabels the journal. This is an input, not a newly proved pedal product.
+- Chavez-Caliz, *More About Areas and Centers of Poncelet Polygons*, DOI https://doi.org/10.1007/s40598-020-00154-8 ; primary arXiv https://arxiv.org/abs/2004.05404 ; final https://armj.math.stonybrook.edu/pdf-Springer-final/020-0154.pdf . Reused `../../pr203_5100011/primary_source_private/chavez_journal2021.pdf`, PDFpp1,3,14,15 (printed91,93,104,105) read.816433bytes; SHA256 `9e575ffa9a67e3a4f5af90f0cb2824c190f06768afa30f1ad7c920921f9224bf`. Theorems3/6 concern original polygon area times OUTER tangent polygon area for even Poncelet families between concentric ellipses in general position. The second factor differs from center-pedal area. The p104 proof explicitly uses meromorphic area products, complementary zeros/poles and constancy on the elliptic curve: prior method lineage, not literal exact theorem.
+- Akopyan–Schwartz–Tabachnikov, *Billiards in Ellipses Revisited*, original https://arxiv.org/abs/2001.02934 , actualv2 PDF https://arxiv.org/pdf/2001.02934 .199175bytes; SHA256 `04decb72f08d3cd9b2ec854ad0276edb6a45434224c327c17a31a8ef83ce0ec0`. Actual pp2–3 and5–7 read. Theorems1/2 are cosine invariants; Theorem3 is an odd-period original/outer area ratio. Pages5–7 complexify, use bilinear rather than Hermitian products, cancel neighboring singular terms and apply Liouville. This is close prior architecture, not the exact centered-pedal conclusion.
+
+DLMF input validity was already mathematically checked by other families. It supplies standard identities and meromorphic facts, not evidence of theorem novelty. Existing PR203 notes were used as source locators; their conclusions were not substituted for the centered primary reading. No new favorable whole-package review was read.

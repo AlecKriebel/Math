@@ -1,0 +1,402 @@
+{
+  "utc": "2026-10-15T09:04:23.831096+00:00",
+  "all_programs_passed": true,
+  "versions": {
+    "python": "3.14.6",
+    "numpy": "2.3.4",
+    "sympy": "1.14.0"
+  },
+  "package_members_hash_verified": 167,
+  "original_reported_exact_assertions": 2156,
+  "limitations": "Finite controls and floating illustrations supplement the written proof; no infinite limit or priority certification.",
+  "programs": [
+    {
+      "program": "verify.py",
+      "sha256": "fe8db87ab49a6c1c94da57b5d407552ab14ac3d790b610bfb3d7b725d55d1c2d",
+      "exact_assertions": 301,
+      "expected_comparison_pass": true,
+      "result": {
+        "status": "PASS",
+        "exact_assertions": 301,
+        "dynamic_hs_diagnostics": [
+          {
+            "coarse_n": 2,
+            "fine_n": 4,
+            "hilbert_schmidt_difference": 0.13006680840917204,
+            "block_symmetry_error": 1.734723475976807e-18
+          },
+          {
+            "coarse_n": 4,
+            "fine_n": 8,
+            "hilbert_schmidt_difference": 0.10553753037435903,
+            "block_symmetry_error": 4.9065389333867974e-18
+          },
+          {
+            "coarse_n": 8,
+            "fine_n": 16,
+            "hilbert_schmidt_difference": 0.08106458385887867,
+            "block_symmetry_error": 1.5515838457795457e-17
+          }
+        ],
+        "static_cube_3_extreme_eigenvalues": [
+          -0.34266199206139736,
+          0.5677022905009627
+        ],
+        "static_matrix_symmetry_error": 0.0,
+        "limitations": "Floating-point matrix checks are diagnostics only, not interval certificates, proof of spectral convergence, or certified lattice endpoint estimates."
+      }
+    },
+    {
+      "program": "independent_review/independent_check.py",
+      "sha256": "25ace6e4af4ec5b7a18e154e42494d5b5d99593f868ad6787b4a16bfc663e997",
+      "exact_assertions": 625,
+      "expected_comparison_pass": true,
+      "result": {
+        "status": "PASS",
+        "exact_assertions": 625,
+        "defective_eigenvalue_controls": [
+          {
+            "dimension": 11,
+            "static_norm": 0.5,
+            "projection_error": 0.1246747333852277,
+            "algebraic_multiplicity": 2
+          },
+          {
+            "dimension": 19,
+            "static_norm": 0.5,
+            "projection_error": 0.06245931784238021,
+            "algebraic_multiplicity": 2
+          },
+          {
+            "dimension": 35,
+            "static_norm": 0.5,
+            "projection_error": 0.031244913985326084,
+            "algebraic_multiplicity": 2
+          },
+          {
+            "dimension": 67,
+            "static_norm": 0.5,
+            "projection_error": 0.01562436422488337,
+            "algebraic_multiplicity": 2
+          }
+        ],
+        "limitations": "Independent algebra, summation symmetry, integrability exponents, and finite-dimensional defective-eigenvalue controls; the infinite-dimensional convergence assertions require the reviewed analytical proof."
+      }
+    },
+    {
+      "program": "scope_continuation/verify_scope.py",
+      "sha256": "d87e75790b4ecd9a1665c316dcb23336f0d88f9386c86b67214d727c611180aa",
+      "exact_assertions": 482,
+      "expected_comparison_pass": true,
+      "result": {
+        "status": "PASS",
+        "exact_assertions": 482,
+        "frequency": "1/10000",
+        "trace_imaginary_upper_bound": "-7831/15000000000000000",
+        "e_upper_bound": "1631/600",
+        "geometric_removed_volume_ratio": "2^(-3j-12)/7",
+        "limits": "Exact algebra and inequalities only. The Hilbert-space spectral and compact-mask arguments require the written proof; no numerical eigenvalue is used."
+      }
+    },
+    {
+      "program": "scope_continuation/independent_review/independent_scope_check.py",
+      "sha256": "f02ce6e80824f95e30a429ba431fddbc97924fd16ad2bbcbbee28d1552d0317b",
+      "exact_assertions": 748,
+      "expected_comparison_pass": true,
+      "result": {
+        "status": "PASS",
+        "exact_assertions": 748,
+        "frequency": "1/10000",
+        "ball_constant_mode_dimension": 3,
+        "static_gap": "1/15",
+        "average_quadratic_mode_coefficient": "-4/15",
+        "imaginary_trace_upper_bound": "-7831/15000000000000000",
+        "author_scope": "Arbitrary compact positive-volume empty-interior support; not a regular-particle counterexample",
+        "limitations": "Exact finite controls of formulas and constants. Completeness of the Helmholtz/spherical-harmonic decomposition, compact-mask convergence and Riesz persistence are verified in the written review, not certified by these checks."
+      }
+    },
+    {
+      "program": "ball_exact_controls.py",
+      "sha256": "9d7430a0e2fcc5a41572248a60fb43ea18a36a76906c404109ac62ecfa19a5bd",
+      "result": {
+        "count": 1244,
+        "all_passed": true,
+        "negative_trace_coefficient": "-7831/15000",
+        "no_floating_eigenvalues": true
+      }
+    },
+    {
+      "program": "kernel_controls.py",
+      "sha256": "8a832f41f441648499b1a38b7691679d4d36a0bd16fc2df636518c652bfdedf1",
+      "result": {
+        "timestamp_utc": "2026-10-15T09:04:06.227308+00:00",
+        "executable_versions": {
+          "python": "3.14.6",
+          "numpy": "2.3.4",
+          "sympy": "1.14.0"
+        },
+        "exact": {
+          "radial_derivative_identity": true,
+          "remainder_I_series": "-k**2/(8*pi*r) - I*k**3/(6*pi) + 3*k**4*r/(32*pi) + O(r**2)",
+          "remainder_eeT_series": "-k**2/(8*pi*r) - k**4*r/(32*pi) + O(r**2)",
+          "source_nu3": "4*pi/3",
+          "exact_shells_checked": 427,
+          "squared_radius_max": 512,
+          "shell_numerator_sums_zero": true,
+          "exact_translated_h_scaling": true
+        },
+        "static_gaussian": [
+          {
+            "h": 0.5,
+            "lattice_value": -0.1430352111024384,
+            "continuum_value": -0.13333333333333333,
+            "absolute_error": 0.009701877769105055
+          },
+          {
+            "h": 0.25,
+            "lattice_value": -0.1363937975626922,
+            "continuum_value": -0.13333333333333333,
+            "absolute_error": 0.003060464229358878
+          },
+          {
+            "h": 0.125,
+            "lattice_value": -0.13413943869107747,
+            "continuum_value": -0.13333333333333333,
+            "absolute_error": 0.0008061053577441413
+          },
+          {
+            "h": 0.0625,
+            "lattice_value": -0.1335374413459025,
+            "continuum_value": -0.13333333333333333,
+            "absolute_error": 0.00020410801256917632
+          }
+        ],
+        "dynamic_nested": [
+          {
+            "k": [
+              1.7,
+              0.0
+            ],
+            "coarse_n": 2,
+            "fine_n": 4,
+            "hs_difference": 0.38525252088692696,
+            "fine_mass_in_omitted_coarse_blocks": 0.09723899811480674
+          },
+          {
+            "k": [
+              1.7,
+              0.0
+            ],
+            "coarse_n": 4,
+            "fine_n": 8,
+            "hs_difference": 0.296596172852682,
+            "fine_mass_in_omitted_coarse_blocks": 0.04810541449080441
+          },
+          {
+            "k": [
+              1.7,
+              0.0
+            ],
+            "coarse_n": 6,
+            "fine_n": 12,
+            "hs_difference": 0.25050455412357336,
+            "fine_mass_in_omitted_coarse_blocks": 0.032006076635718105
+          },
+          {
+            "k": [
+              1.7,
+              0.0
+            ],
+            "coarse_n": 8,
+            "fine_n": 16,
+            "hs_difference": 0.22123854495224246,
+            "fine_mass_in_omitted_coarse_blocks": 0.02398766422508252
+          },
+          {
+            "k": [
+              1.2,
+              -0.8
+            ],
+            "coarse_n": 2,
+            "fine_n": 4,
+            "hs_difference": 0.32180304789496317,
+            "fine_mass_in_omitted_coarse_blocks": 0.07695199723842093
+          },
+          {
+            "k": [
+              1.2,
+              -0.8
+            ],
+            "coarse_n": 4,
+            "fine_n": 8,
+            "hs_difference": 0.2249823469546498,
+            "fine_mass_in_omitted_coarse_blocks": 0.030764560955822515
+          },
+          {
+            "k": [
+              1.2,
+              -0.8
+            ],
+            "coarse_n": 6,
+            "fine_n": 12,
+            "hs_difference": 0.18566458858272783,
+            "fine_mass_in_omitted_coarse_blocks": 0.0190752869336825
+          },
+          {
+            "k": [
+              1.2,
+              -0.8
+            ],
+            "coarse_n": 8,
+            "fine_n": 16,
+            "hs_difference": 0.16240884022879767,
+            "fine_mass_in_omitted_coarse_blocks": 0.01380252556960338
+          },
+          {
+            "k": [
+              0.0,
+              0.0
+            ],
+            "coarse_n": 2,
+            "fine_n": 4,
+            "hs_difference": 0.0,
+            "fine_mass_in_omitted_coarse_blocks": 0.0
+          },
+          {
+            "k": [
+              0.0,
+              0.0
+            ],
+            "coarse_n": 4,
+            "fine_n": 8,
+            "hs_difference": 0.0,
+            "fine_mass_in_omitted_coarse_blocks": 0.0
+          },
+          {
+            "k": [
+              0.0,
+              0.0
+            ],
+            "coarse_n": 6,
+            "fine_n": 12,
+            "hs_difference": 0.0,
+            "fine_mass_in_omitted_coarse_blocks": 0.0
+          },
+          {
+            "k": [
+              0.0,
+              0.0
+            ],
+            "coarse_n": 8,
+            "fine_n": 16,
+            "hs_difference": 0.0,
+            "fine_mass_in_omitted_coarse_blocks": 0.0
+          }
+        ],
+        "limitation": "Numerical tables are illustration only; proofs are in the independent reconstruction/report."
+      }
+    },
+    {
+      "program": "spectral_illustration.py",
+      "sha256": "a4401ff94ce1c875c0665388eaad946e02954fa8779c6667271b0c66355b8a49",
+      "result": {
+        "purpose": "Adversarial finite-block illustration; not a proof certificate",
+        "exact_static_resolvent_norm_gap": "1/2",
+        "right_compact_product_counterexample_norm": 1,
+        "defective_cluster_rows": [
+          {
+            "epsilon": 0.0625,
+            "compact_error_norm": 0.0625,
+            "cluster_eigenvalues": [
+              [
+                -0.24989032959735238,
+                2.0001756407439117
+              ],
+              [
+                0.2499197918807715,
+                1.9997858785867821
+              ]
+            ],
+            "cluster_algebraic_multiplicity": 2,
+            "riesz_projection_norm_gap": 0.028162618464928547,
+            "full_resolvent_norm_gap_at_3i": 0.11884692151206849,
+            "contour_double_resolution_gap": 2.490519599769899e-15
+          },
+          {
+            "epsilon": 0.015625,
+            "compact_error_norm": 0.015625,
+            "cluster_eigenvalues": [
+              [
+                -0.1249967400730949,
+                2.000005795773648
+              ],
+              [
+                0.12499719849776668,
+                1.9999935961606246
+              ]
+            ],
+            "cluster_algebraic_multiplicity": 2,
+            "riesz_projection_norm_gap": 0.006999489837199325,
+            "full_resolvent_norm_gap_at_3i": 0.10561035763813834,
+            "contour_double_resolution_gap": 5.250562821351959e-15
+          },
+          {
+            "epsilon": 0.00390625,
+            "compact_error_norm": 0.00390625,
+            "cluster_eigenvalues": [
+              [
+                -0.06249990121902425,
+                2.000000185941361
+              ],
+              [
+                0.06249990837418316,
+                1.9999998045308325
+              ]
+            ],
+            "cluster_algebraic_multiplicity": 2,
+            "riesz_projection_norm_gap": 0.0017476423233977068,
+            "full_resolvent_norm_gap_at_3i": 0.1054231487330995,
+            "contour_double_resolution_gap": 4.504907067912036e-15
+          },
+          {
+            "epsilon": 0.0009765625,
+            "compact_error_norm": 0.0009765625,
+            "cluster_eigenvalues": [
+              [
+                -0.031249996965164263,
+                2.0000000058857434
+              ],
+              [
+                0.03124999707693286,
+                1.9999999939652795
+              ]
+            ],
+            "cluster_algebraic_multiplicity": 2,
+            "riesz_projection_norm_gap": 0.00043677632716586964,
+            "full_resolvent_norm_gap_at_3i": 0.10541015045313717,
+            "contour_double_resolution_gap": 2.2296950064203756e-15
+          },
+          {
+            "epsilon": 0.000244140625,
+            "compact_error_norm": 0.000244140625,
+            "cluster_eigenvalues": [
+              [
+                -0.015624999906004666,
+                2.0000000001850986
+              ],
+              [
+                0.015624999907750823,
+                1.9999999998125728
+              ]
+            ],
+            "cluster_algebraic_multiplicity": 2,
+            "riesz_projection_norm_gap": 0.00010918577021319839,
+            "full_resolvent_norm_gap_at_3i": 0.10540931173237815,
+            "contour_double_resolution_gap": 4.062819193653868e-15
+          }
+        ],
+        "all_assertions_passed": true
+      }
+    }
+  ]
+}

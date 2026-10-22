@@ -1,0 +1,53 @@
+{
+  "utc": "2026-10-14T05:44:16.874541+00:00",
+  "pr": 1080,
+  "problem_id": 11000150,
+  "head": "64b252b199f2692eef2545656190c14bcaf63889",
+  "review": "NEW_COMPLETE_WHOLE_CANDIDATE_01",
+  "verdict": "MATHEMATICS_ACCEPTED_TWO_PACKAGE_REPAIRS_REQUIRED",
+  "mathematics_passed": true,
+  "findings": [
+    {
+      "id": "PACKAGE01-P2-ZENODO-MANIFEST",
+      "severity": "P2",
+      "path": "preprint_v1_0/deposit_metadata.json",
+      "trigger": "Repository Zenodo local check of custom object exits1: exact metadata/files wrapper absent",
+      "repair": "Retain custom research metadata separately; provide fully reviewed native API metadata and metadata/files manifest naming exact PDF/ZIP; bind all forms and run native local check and clean interfaces."
+    },
+    {
+      "id": "PACKAGE01-P3-ARCHIVE-OUTPUT-ALIASES",
+      "severity": "P3",
+      "path": "preprint_v1_0/verification_kit/build_archive.py",
+      "line": 18,
+      "trigger": "Outside hardlink or ancestor alias to allowlisted TeX truncates it and returns PASS; resolving an outside leaf symlink defeats its rejection guard",
+      "repair": "Preflight unresolved symlinks and existing samefile/inode aliases to protected kit and delivery files before writes; preserve inputs on rejection; test normal and optimized modes; reseal repaired package without changing proof/PDF/history."
+    }
+  ],
+  "severity_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1,
+    "P3": 1
+  },
+  "original_bundle_status": "PARTIAL",
+  "restricted_arbitrary_length_clause": "COMPLETE_NEGATIVE_UNDER_EXACT_CONVENTIONS",
+  "historical_priority": "UNKNOWN",
+  "novelty": "UNKNOWN",
+  "paper_pages_actually_viewed": 7,
+  "fresh_primary_pages_actually_viewed": 13,
+  "actual_commands": 48,
+  "all_documented_clean_commands_passed": true,
+  "fresh_independent_math_controls_passed_normal_and_optimized": true,
+  "fully_blind_review_claimed": false,
+  "initial_manifest_and_embedded_report_labels_encountered_without_use_as_proof_evidence": true,
+  "candidate_changed": false,
+  "publication_ready": false,
+  "published": false,
+  "repair_then_new_complete_whole_review_required": true,
+  "minimum_whole_reviews": 2,
+  "human_peer_review": false,
+  "formal_certification": false,
+  "review_completion_estimate_percent": 100,
+  "math_research_completion_estimate_percent": 60,
+  "report": "REPORT.md"
+}
