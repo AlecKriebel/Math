@@ -1,0 +1,538 @@
+--- a/01_triangle_rigidity.md
++++ b/01_triangle_rigidity.md
+@@ -6,29 +6,29 @@
+ 
+ ## Setup and known reduction
+ 
+-Let (P\subset\mathbb R^2\) be a nondegenerate, unit-area triangle containing 0, and let \(\psi=h_P\) be its support function. Let its distinct outer unit normals be \(\nu_1,\nu_2,\nu_3\), and write
++Let \(P\subset\mathbb R^2\) be a nondegenerate, unit-area triangle containing 0, and let \(\psi=h_P\) be its support function. Let its distinct outer unit normals be \(\nu_1,\nu_2,\nu_3\), and write
+ \[
+ P=\{x:x\cdot\nu_i<h_i,\ i=1,2,3\}.
+ \]
+-For (0<\alpha<2\), minimizers of (P_\psi+\gamma V_\alpha\) exist when γ is small. Their nonlocal term is uniformly Lipschitz with respect to symmetric difference, so they are (O(\gamma)\)-quasiminimizers of the crystalline perimeter. The planar Figalli–Maggi rigidity theorem then says that they are convex polygons whose sides have normals among those of (P\). They converge, modulo translations, to (P\). These are precisely the first steps in the proof of Bonacini–Cristoferi–Topaloglu (2021), Theorem 2.5; those steps do not use the side-transitive symmetry hypothesis. The symmetry is used later for the energy comparison.
++For \(0<\alpha<2\), minimizers of \(P_\psi+\gamma V_\alpha\) exist when γ is small. Their nonlocal term is uniformly Lipschitz with respect to symmetric difference, so they are \(O(\gamma)\)-quasiminimizers of the crystalline perimeter. The planar Figalli–Maggi rigidity theorem then says that they are convex polygons whose sides have normals among those of \(P\). They converge, modulo translations, to \(P\). These are precisely the first steps in the proof of Bonacini–Cristoferi–Topaloglu (2021), Theorem 2.5; those steps do not use the side-transitive symmetry hypothesis. The symmetry is used later for the energy comparison.
+ 
+ With only these three permitted normals, a bounded convex set with nonempty interior must have all three supporting sides. Thus any such minimizer is a triangle with the same oriented normals.
+ 
+ ## Exact geometry
+ 
+-Let (N\) be the (3\times2\) matrix with rows \(\nu_i^T\), and let \(\ell=(\ell_1,\ell_2,\ell_3)\) be the side-length vector. The divergence theorem gives
++Let \(N\) be the \(3\times2\) matrix with rows \(\nu_i^T\), and let \(\ell=(\ell_1,\ell_2,\ell_3)\) be the side-length vector. The divergence theorem gives
+ \[
+ N^T\ell=0,\qquad \ell\cdot h=2|P|=2.
+ \]
+-The normals span \(\mathbb R^2\), so \(N\) has rank 2. Consequently the three columns of \([N\ h]\) are linearly independent: if (Na+ch=0\), multiplication by \(\ell^T\) gives (2c=0\), hence (a=0\).
++The normals span \(\mathbb R^2\), so \(N\) has rank 2. Consequently the three columns of \([N\ h]\) are linearly independent: if \(Na+ch=0\), multiplication by \(\ell^T\) gives \(2c=0\), hence \(a=0\).
+ 
+ Every support vector \(h'\in\mathbb R^3\) therefore has the unique form
+ \[
+ h'=Na+ch.
+ \]
+-Whenever \(h'\) defines a nondegenerate bounded triangle with these oriented normals, (c>0\), and the triangle is exactly (a+cP\). Its area is (c^2\). Under the unit-area constraint, (c=1\).
++Whenever \(h'\) defines a nondegenerate bounded triangle with these oriented normals, \(c>0\), and the triangle is exactly \(a+cP\). Its area is \(c^2\). Under the unit-area constraint, \(c=1\).
+ 
+-It follows that every small-γ global minimizer is a translate of (P\). Since a minimizer exists, (P\) itself is a global minimizer and is unique modulo translations.
++It follows that every small-γ global minimizer is a translate of \(P\). Since a minimizer exists, \(P\) itself is a global minimizer and is unique modulo translations.
+ 
+ ## Independent first-variation check
+ 
+@@ -37,11 +37,11 @@
+ B_i=\int_{L_i}v_P(x)\,d\mathcal H^1(x),\qquad
+ v_P(x)=\int_P|x-y|^{-\alpha}\,dy.
+ \]
+-Translation invariance of (V_\alpha\) implies
++Translation invariance of \(V_\alpha\) implies
+ \[
+ \sum_{i=1}^3 B_i\nu_i=0.
+ \]
+-The nullspace of \(N^T\) is one dimensional and contains \(\ell\); hence (B_i=A\ell_i\) for some (A\). Thus every triangle has the same average potential on each of its sides, without requiring any reflection symmetry.
++The nullspace of \(N^T\) is one dimensional and contains \(\ell\); hence \(B_i=A\ell_i\) for some \(A\). Thus every triangle has the same average potential on each of its sides, without requiring any reflection symmetry.
+ 
+ The boundary first-variation formula used here is justified for every \(\alpha<2\) in Approach 2; it is also the sliding formula in the cited primary papers. No nonintegrable boundary-to-boundary Hessian is used.
+ 
+--- a/02_stationarity_and_global_minimality.md
++++ b/02_stationarity_and_global_minimality.md
+@@ -2,54 +2,54 @@
+ 
+ ## Theorem
+ 
+-Let (P\subset\mathbb R^2\) be an open bounded convex polygon, with nonzero side lengths and no redundant collinear sides, containing the origin and satisfying |P|=1. Let \(\psi=h_P\), and fix (0<\alpha<2\). The following are equivalent:
++Let \(P\subset\mathbb R^2\) be an open bounded convex polygon, with nonzero side lengths and no redundant collinear sides, containing the origin and satisfying |P|=1. Let \(\psi=h_P\), and fix \(0<\alpha<2\). The following are equivalent:
+ 
+-1. (P\) minimizes (P_\psi+\gamma V_\alpha\), among all unit-area finite-perimeter sets, for at least one \(\gamma>0\).
++1. \(P\) minimizes \(P_\psi+\gamma V_\alpha\), among all unit-area finite-perimeter sets, for at least one \(\gamma>0\).
+ 2. The side averages
+    \[
+    A_i(P)=\frac1{\ell_i}\int_{L_i}v_P\,d\mathcal H^1
+    \]
+-   are independent of (i\).
+-3. For all sufficiently small \(\gamma>0\), (P\) is the unique global minimizer modulo translations.
++   are independent of \(i\).
++3. For all sufficiently small \(\gamma>0\), \(P\) is the unique global minimizer modulo translations.
+ 
+ Implication 2→3 is the point requiring proof beyond merely writing the stationarity equations. The theorem does **not** explicitly classify the solutions of those equations.
+ 
+ ## 1. Support-number coordinates and smooth transport
+ 
+-Write (P=P(h)=\bigcap_i\{x:x\cdot\nu_i<h_i\}\), with cyclically ordered normals. For small (s\in\mathbb R^n\), put (P_s=P(h+s)\). All sides remain present. Each vertex is the intersection of two successive supporting lines, and hence is an affine function of (s\).
++Write \(P=P(h)=\bigcap_i\{x:x\cdot\nu_i<h_i\}\), with cyclically ordered normals. For small \(s\in\mathbb R^n\), put \(P_s=P(h+s)\). All sides remain present. Each vertex is the intersection of two successive supporting lines, and hence is an affine function of \(s\).
+ 
+-Triangulate \(\overline P\) by joining 0 to its successive vertices. On each reference triangle define (F_s\) to be the affine map fixing 0 and taking its two boundary vertices to the corresponding vertices of (P_s\). The definitions agree on shared edges. Thus (F_s:\overline P\to\overline{P_s}\) is a continuous piecewise-affine bijection. For sufficiently small (s\), the triangles remain nondegenerate and form the fan triangulation of (P_s\).
++Triangulate \(\overline P\) by joining 0 to its successive vertices. On each reference triangle define \(F_s\) to be the affine map fixing 0 and taking its two boundary vertices to the corresponding vertices of \(P_s\). The definitions agree on shared edges. Thus \(F_s:\overline P\to\overline{P_s}\) is a continuous piecewise-affine bijection. For sufficiently small \(s\), the triangles remain nondegenerate and form the fan triangulation of \(P_s\).
+ 
+ Moreover
+ \[
+ F_s(x)=x+U_s(x),\qquad
+ \|U_s\|_{\operatorname{Lip}(P)}\le C|s|.
+ \]
+-The global Lipschitz estimate follows by integrating the bounded piecewise gradient along the segment joining any two points of the convex set (P\). In particular
++The global Lipschitz estimate follows by integrating the bounded piecewise gradient along the segment joining any two points of the convex set \(P\). In particular
+ \[
+ (1-C|s|)|x-y|\le |F_s(x)-F_s(y)|\le(1+C|s|)|x-y|.
+ \]
+-The Jacobian (J_s\) is, on each fixed triangle, a positive polynomial of degree at most two in (s\), with bounded derivatives of every required order.
++The Jacobian \(J_s\) is, on each fixed triangle, a positive polynomial of degree at most two in \(s\), with bounded derivatives of every required order.
+ 
+ Pulling back the interaction gives
+ \[
+ V_\alpha(P_s)=\int_P\int_P
+  |F_s(x)-F_s(y)|^{-\alpha}J_s(x)J_s(y)\,dx\,dy.
+ \]
+-For a parameter derivative, each differentiated difference (\partial_{s_j}(F_s(x)-F_s(y))\) is bounded by (C|x-y|\). Differentiating the kernel once or twice therefore produces an integrand bounded by (C|x-y|^{-\alpha}\), including the Jacobian terms. For example the potentially worst second derivative is bounded by
++For a parameter derivative, each differentiated difference \(\partial_{s_j}(F_s(x)-F_s(y))\) is bounded by \(C|x-y|\). Differentiating the kernel once or twice therefore produces an integrand bounded by \(C|x-y|^{-\alpha}\), including the Jacobian terms. For example the potentially worst second derivative is bounded by
+ \[
+ C|F_s(x)-F_s(y)|^{-\alpha-2}|x-y|^2
+ \le C'|x-y|^{-\alpha}.
+ \]
+-This is integrable on (P\times P\) precisely in the relevant range \(\alpha<2\). Dominated differentiation proves that (s\mapsto V_\alpha(P_s)\) is (C^2\), with bounded Hessian on a small parameter neighborhood. The same proof works for smoothly varying vertices, and gives arbitrarily many parameter derivatives on a fixed nondegenerate triangulation.
++This is integrable on \(P\times P\) precisely in the relevant range \(\alpha<2\). Dominated differentiation proves that \(s\mapsto V_\alpha(P_s)\) is \(C^2\), with bounded Hessian on a small parameter neighborhood. The same proof works for smoothly varying vertices, and gives arbitrarily many parameter derivatives on a fixed nondegenerate triangulation.
+ 
+ This argument avoids the misleading isolated boundary-to-boundary integral \(\iint_{L_i\times L_i}|x-y|^{-\alpha}\), which diverges when \(\alpha\ge1\). The cancellation comes from differences of a **single global Lipschitz transport field**.
+ 
+-## 2. First variation for all (0<\alpha<2\)
++## 2. First variation for all \(0<\alpha<2\)
+ 
+-The potential (v_P\) is continuous. One direct proof splits the convolution into a ball of radius (r\), whose contribution is at most (Cr^{2-\alpha}\), and its complement, where the kernel is uniformly continuous under a small translation.
++The potential \(v_P\) is continuous. One direct proof splits the convolution into a ball of radius \(r\), whose contribution is at most \(Cr^{2-\alpha}\), and its complement, where the kernel is uniformly continuous under a small translation.
+ 
+-For (D_s=\chi_{P_s}-\chi_P\), the exact identity is
++For \(D_s=\chi_{P_s}-\chi_P\), the exact identity is
+ \[
+ V_\alpha(P_s)-V_\alpha(P)
+ =2\int D_s v_P+ \iint D_s(x)D_s(y)|x-y|^{-\alpha}\,dx\,dy.
+@@ -58,9 +58,9 @@
+ \[
+ C\delta^{2-\alpha/2}=o(\delta).
+ \]
+-Indeed, for a set (D\) of measure \(\delta\), splitting the potential integral at radius \(\sqrt\delta\) gives \(\|v_D\|_\infty\le C\delta^{1-\alpha/2}\). Since \(\delta=O(|s|)\), the remainder is (o(|s|)\).
++Indeed, for a set \(D\) of measure \(\delta\), splitting the potential integral at radius \(\sqrt\delta\) gives \(\|v_D\|_\infty\le C\delta^{1-\alpha/2}\). Since \(\delta=O(|s|)\), the remainder is \(o(|s|)\).
+ 
+-The first term consists of signed thin strips of widths (s_i\) along the sides, plus (O(|s|^2)\)-area corner pieces. Continuity of (v_P\) yields
++The first term consists of signed thin strips of widths \(s_i\) along the sides, plus \(O(|s|^2)\)-area corner pieces. Continuity of \(v_P\) yields
+ \[
+ DV_\alpha(P)[s]=2\sum_i s_iB_i,
+ \qquad B_i=\int_{L_i}v_P\,d\mathcal H^1.
+@@ -73,15 +73,15 @@
+ 
+ ## 3. Necessity
+ 
+-On this fixed-normal class, (P_\psi(P_s)=\sum_i\psi(\nu_i)\ell_i(s)\) is smooth. Since (P\) minimizes its own anisotropic perimeter under area constraint, its derivative vanishes on \(\ell^\perp\).
++On this fixed-normal class, \(P_\psi(P_s)=\sum_i\psi(\nu_i)\ell_i(s)\) is smooth. Since \(P\) minimizes its own anisotropic perimeter under area constraint, its derivative vanishes on \(\ell^\perp\).
+ 
+-If (P\) minimizes the total energy for any \(\gamma>0\), every sufficiently small two-sided constrained variation has zero first derivative. Hence \(\sum_i B_i s_i=0\) for every \(s\in\ell^\perp\). Linear algebra gives (B=A\ell\), which is condition 2.
++If \(P\) minimizes the total energy for any \(\gamma>0\), every sufficiently small two-sided constrained variation has zero first derivative. Hence \(\sum_i B_i s_i=0\) for every \(s\in\ell^\perp\). Linear algebra gives \(B=A\ell\), which is condition 2.
+ 
+-Conversely, if two side averages differ, there is a tangent vector with nonzero first derivative of (V_\alpha\). The implicit function theorem realizes it by an exact area-preserving support path. Reversing its sign gives a strict energy descent for every fixed \(\gamma>0\), since the perimeter derivative vanishes. This excludes minimality for any positive γ.
++Conversely, if two side averages differ, there is a tangent vector with nonzero first derivative of \(V_\alpha\). The implicit function theorem realizes it by an exact area-preserving support path. Reversing its sign gives a strict energy descent for every fixed \(\gamma>0\), since the perimeter derivative vanishes. This excludes minimality for any positive γ.
+ 
+ ## 4. Stationarity supplies a quadratic interaction bound
+ 
+-By the (C^2\) result,
++By the \(C^2\) result,
+ \[
+ V_\alpha(P_s)-V_\alpha(P)=2A\sum_i\ell_i s_i+O(|s|^2)
+ \]
+@@ -89,11 +89,11 @@
+ \[
+ |V_\alpha(P_s)-V_\alpha(P)|\le C|s|^2.
+ \]
+-For fixed (P\) and sufficiently small (s\),
++For fixed \(P\) and sufficiently small \(s\),
+ \[
+ |s|\le C_P|P_s\triangle P|.
+ \]
+-For completeness, take a closed middle subsegment of each side, of positive length, away from the vertices. The other supporting inequalities have uniformly positive slack there. For all small (s\), the strip between the old and new supporting lines above this subsegment lies in the symmetric difference. Choose disjoint fixed neighborhoods of these subsegments. Their strip areas give a lower bound (c\sum_i|s_i|\), proving the estimate.
++For completeness, take a closed middle subsegment of each side, of positive length, away from the vertices. The other supporting inequalities have uniformly positive slack there. For all small \(s\), the strip between the old and new supporting lines above this subsegment lies in the symmetric difference. Choose disjoint fixed neighborhoods of these subsegments. Their strip areas give a lower bound \(c\sum_i|s_i|\), proving the estimate.
+ 
+ We have proved the two-sided bound
+ \[
+@@ -118,25 +118,25 @@
+ \[
+ |V_\alpha(E)-V_\alpha(F)|\le L_\alpha|E\triangle F|.
+ \]
+-Let (E_\gamma\) be a minimizer. Comparison with (P\) gives
++Let \(E_\gamma\) be a minimizer. Comparison with \(P\) gives
+ \[
+ c_P\delta(E_\gamma)^2
+ \le\gamma\bigl(V_\alpha(P)-V_\alpha(E_\gamma)\bigr)
+ \le\gamma L_\alpha\delta(E_\gamma).
+ \]
+-Hence \(\delta(E_\gamma)\le\gamma L_\alpha/c_P\), unless it is zero already. Also minimality against an arbitrary equal-area (F\) gives
++Hence \(\delta(E_\gamma)\le\gamma L_\alpha/c_P\), unless it is zero already. Also minimality against an arbitrary equal-area \(F\) gives
+ \[
+ P_\psi(E_\gamma)\le P_\psi(F)+\gamma L_\alpha|E_\gamma\triangle F|.
+ \]
+-Thus (E_\gamma\) is an (O(\gamma)\) perimeter quasiminimizer. The rigidity theorem and its uniform proximity conclusion make (E_\gamma\), after translation, a close convex polygon with the normals of (P\). For small enough γ all of (P\)'s facets remain represented, so (Q) applies.
++Thus \(E_\gamma\) is an \(O(\gamma)\) perimeter quasiminimizer. The rigidity theorem and its uniform proximity conclusion make \(E_\gamma\), after translation, a close convex polygon with the normals of \(P\). For small enough γ all of \(P\)'s facets remain represented, so (Q) applies.
+ 
+ Combining (Q) with quantitative Wulff stability now yields
+ \[
+ 0\ge \mathcal E_\gamma(E_\gamma)-\mathcal E_\gamma(P)
+ \ge(c_P-\gamma C)\delta(E_\gamma)^2.
+ \]
+-Choose γ smaller than the existence/rigidity/proximity thresholds and (c_P/C\). Then \(\delta(E_\gamma)=0\). Every minimizer is a translate of (P\), proving condition 3. Condition 3 trivially implies 1.
++Choose γ smaller than the existence/rigidity/proximity thresholds and \(c_P/C\). Then \(\delta(E_\gamma)=0\). Every minimizer is a translate of \(P\), proving condition 3. Condition 3 trivially implies 1.
+ 
+ ## Exact remaining gap
+ 
+-The theorem gives a finite-dimensional integral test but does not solve it geometrically. There are (n-3\) nontranslation constrained directions, and the zero set of their interaction derivatives remains to be classified for general (n\). Nor does this argument automatically cover nonsimple higher-dimensional polytopes, where arbitrary support shifts can change combinatorics and a single smooth vertex parametrization need not exist.
++The theorem gives a finite-dimensional integral test but does not solve it geometrically. There are \(n-3\) nontranslation constrained directions, and the zero set of their interaction derivatives remains to be classified for general \(n\). Nor does this argument automatically cover nonsimple higher-dimensional polytopes, where arbitrary support shifts can change combinatorics and a single smooth vertex parametrization need not exist.
+--- a/03_parallelogram_classification.md
++++ b/03_parallelogram_classification.md
+@@ -2,7 +2,7 @@
+ 
+ ## Theorem
+ 
+-For fixed (0<\alpha<2\), a parallelogram is sliding-stationary for the Riesz energy under area constraint if and only if it is a rhombus. Consequently, when used as its own area-normalized Wulff shape, it remains a global minimizer for all sufficiently small positive γ exactly when it is a rhombus.
++For fixed \(0<\alpha<2\), a parallelogram is sliding-stationary for the Riesz energy under area constraint if and only if it is a rhombus. Consequently, when used as its own area-normalized Wulff shape, it remains a global minimizer for all sufficiently small positive γ exactly when it is a rhombus.
+ 
+ The positive conclusion for rhombi is already contained in BCT (2021), Theorem 2.5. The integral calculation below supplies a self-contained strict exclusion of every non-rhombic parallelogram. No priority claim is made.
+ 
+@@ -12,16 +12,16 @@
+ \[
+ P=\{sa+tb:0<s,t<1\},\qquad D=|\det(a,b)|>0,
+ \]
+-where (a,b\) are independent vectors. Put (A=|a|\), (B=|b|\), and (p=\alpha/2\). Scaling to area one will not affect equality of side-average potentials.
++where \(a,b\) are independent vectors. Put \(A=|a|\), \(B=|b|\), and \(p=\alpha/2\). Scaling to area one will not affect equality of side-average potentials.
+ 
+-Opposite sides have identical average potentials by central symmetry. Let (M_b\) be the average on a side parallel to (b\), and (M_a\) the average on a side parallel to (a\). Direct parametrization and the convolution of two uniform interval measures give
++Opposite sides have identical average potentials by central symmetry. Let \(M_b\) be the average on a side parallel to \(b\), and \(M_a\) the average on a side parallel to \(a\). Direct parametrization and the convolution of two uniform interval measures give
+ \[
+ M_b=D\int_0^1\int_{-1}^{1}(1-|t|)|sa+tb|^{-\alpha}\,dt\,ds,
+ \]
+ \[
+ M_a=D\int_0^1\int_{-1}^{1}(1-|s|)|sa+tb|^{-\alpha}\,ds\,dt.
+ \]
+-In the second display the inner variable is (s\), the outer is (t\). Defining
++In the second display the inner variable is \(s\), the outer is \(t\). Defining
+ \[
+ H(s,t)=|sa+tb|^{-\alpha}+|sa-tb|^{-\alpha},\qquad 0<s,t<1,
+ \]
+@@ -33,29 +33,29 @@
+ \]
+ These integrals are finite for \(\alpha<2\), because the linear maps (s,t)→sa±tb are invertible and the only singularity is at (0,0).
+ 
+-Write \(c=(a\cdot b)/(AB)\in(-1,1)\). The two terms in (H\) have squared denominators
++Write \(c=(a\cdot b)/(AB)\in(-1,1)\). The two terms in \(H\) have squared denominators
+ \[
+ A^2s^2+B^2t^2\pm2ABcst.
+ \]
+-After interchanging (s,t\), their difference, with either fixed sign, is
++After interchanging \(s,t\), their difference, with either fixed sign, is
+ \[
+ (A^2-B^2)(s^2-t^2).
+ \]
+-If (A>B\) and (s>t\), both denominators for (H(s,t)\) are strictly larger than those for (H(t,s)\). Since (r\mapsto r^{-p}\) is strictly decreasing,
++If \(A>B\) and \(s>t\), both denominators for \(H(s,t)\) are strictly larger than those for \(H(t,s)\). Since \(r\mapsto r^{-p}\) is strictly decreasing,
+ \[
+ (s-t)[H(s,t)-H(t,s)]<0\quad\text{for }s\ne t.
+ \]
+-The same strict sign holds when (s<t\). Thus (1) is strictly negative. If (A<B\), it is strictly positive. If (A=B\), it is identically zero.
++The same strict sign holds when \(s<t\). Thus (1) is strictly negative. If \(A<B\), it is strictly positive. If \(A=B\), it is identically zero.
+ 
+-There are only two potentially distinct side averages. They are equal exactly when (A=B\), equivalently when (P\) is a rhombus. Applying Approach 2 completes the theorem.
++There are only two potentially distinct side averages. They are equal exactly when \(A=B\), equivalently when \(P\) is a rhombus. Applying Approach 2 completes the theorem.
+ 
+ ## A strict first-order obstruction
+ 
+-For a unit-area rectangle of side lengths (a\ne b\), the area-preserving path changing the lengths to (ae^t,be^{-t}\) has
++For a unit-area rectangle of side lengths \(a\ne b\), the area-preserving path changing the lengths to \(ae^t,be^{-t}\) has
+ \[
+ \left.\frac d{dt}V_\alpha(P_t)\right|_{t=0}=2(M_b-M_a)\ne0.
+ \]
+-At the rectangle's own crystalline Wulff shape, the anisotropic-perimeter first derivative along this path is zero. Choosing the appropriate sign of (t\) therefore lowers the full energy for **every** fixed \(\gamma>0\). This is stronger than failure of small-γ global minimality.
++At the rectangle's own crystalline Wulff shape, the anisotropic-perimeter first derivative along this path is zero. Choosing the appropriate sign of \(t\) therefore lowers the full energy for **every** fixed \(\gamma>0\). This is stronger than failure of small-γ global minimality.
+ 
+ ## Limit of the approach
+ 
+--- a/04_near_square_continuation.md
++++ b/04_near_square_continuation.md
+@@ -2,20 +2,20 @@
+ 
+ ## Objective and result
+ 
+-Rather than trying to force symmetry from sliding stationarity, perturb the normal directions of a known stationary polygon. For every fixed (0<\alpha<2\), there exists a neighborhood of the square's four outward normals such that every ordered four-normal configuration in that neighborhood has a unique nearby, area-one, sliding-stationary quadrilateral, modulo translation.
++Rather than trying to force symmetry from sliding stationarity, perturb the normal directions of a known stationary polygon. For every fixed \(0<\alpha<2\), there exists a neighborhood of the square's four outward normals such that every ordered four-normal configuration in that neighborhood has a unique nearby, area-one, sliding-stationary quadrilateral, modulo translation.
+ 
+ In particular, there are non-parallelogram quadrilaterals whose Wulff shapes remain global minimizers at small γ. The result is local and implicit. It does not identify all such quadrilaterals or rule out additional stationary solutions far away.
+ 
+ ## 1. A nondegenerate constrained Hessian at the square
+ 
+-Let (R_\tau\) be the centered unit-area rectangle with horizontal side length (a=e^\tau\) and vertical side length (b=e^{-\tau}\). Let (M_b(\tau),M_a(\tau)\) be the side averages from Approach 3. By the side-velocity first-variation formula,
++Let \(R_\tau\) be the centered unit-area rectangle with horizontal side length \(a=e^\tau\) and vertical side length \(b=e^{-\tau}\). Let \(M_b(\tau),M_a(\tau)\) be the side averages from Approach 3. By the side-velocity first-variation formula,
+ \[
+ \frac d{d\tau}V_\alpha(R_\tau)=2(M_b(\tau)-M_a(\tau)).
+ \tag{1}
+ \]
+-Indeed, each vertical side moves outward with speed (a/2\), while each horizontal side moves outward with speed (-b/2\); the side integrals are (bM_b\) and (aM_a\), respectively, and (ab=1\).
++Indeed, each vertical side moves outward with speed \(a/2\), while each horizontal side moves outward with speed \(-b/2\); the side integrals are \(bM_b\) and \(aM_a\), respectively, and \(ab=1\).
+ 
+-For perpendicular (a,b\), formula (1) in Approach 3 reads
++For perpendicular \(a,b\), formula (1) in Approach 3 reads
+ \[
+ M_b(\tau)-M_a(\tau)
+ =2\int_0^1\int_0^1(s-t)
+@@ -28,7 +28,7 @@
+ \frac{(s-t)^2(s+t)}{(s^2+t^2)^{1+\alpha/2}}\,ds\,dt<0.
+ \tag{2}
+ \]
+-The integral is finite: the integrand has degree (1-\alpha\) near the origin, hence its polar-area integral behaves as \(\int_0 r^{2-\alpha}\,dr\). It is strictly positive on a set of positive measure. The exact negativity holds throughout (0<\alpha<2\); it is not based on numerics.
++The integral is finite: the integrand has degree \(1-\alpha\) near the origin, hence its polar-area integral behaves as \(\int_0 r^{2-\alpha}\,dr\). It is strictly positive on a set of positive measure. The exact negativity holds throughout \(0<\alpha<2\); it is not based on numerics.
+ 
+ ## 2. A genuine chart for the constrained quadrilaterals
+ 
+@@ -37,27 +37,27 @@
+ \theta^0=(0,\pi/2,\pi,3\pi/2),\qquad
+ \nu_i(\theta_i)=(\cos\theta_i,\sin\theta_i).
+ \]
+-For \(\theta\) near \(\theta^0\), all successive supporting lines intersect transversely. Translation changes supports by (h_i\mapsto h_i+\nu_i\cdot u\). Since \(\nu_1,\nu_2\) are independent, there is a unique translation imposing
++For \(\theta\) near \(\theta^0\), all successive supporting lines intersect transversely. Translation changes supports by \(h_i\mapsto h_i+\nu_i\cdot u\). Since \(\nu_1,\nu_2\) are independent, there is a unique translation imposing
+ \[
+ h_1=h_2=1/2.
+ \]
+-Set (h_3=1/2+z\). At the square (z=0,h_4=1/2), the derivative of area with respect to (h_4\) equals the fourth side length, which is 1. The implicit function theorem gives a smooth function
++Set \(h_3=1/2+z\). At the square (z=0,h_4=1/2), the derivative of area with respect to \(h_4\) equals the fourth side length, which is 1. The implicit function theorem gives a smooth function
+ \[
+ h_4=H(\theta,z)
+ \]
+-making the area exactly 1. Near the basepoint all four side lengths remain positive, and the origin remains in the interior. Denote this polygon by (Q(\theta,z)\).
++making the area exactly 1. Near the basepoint all four side lengths remain positive, and the origin remains in the interior. Denote this polygon by \(Q(\theta,z)\).
+ 
+-This chart includes every sufficiently close area-one quadrilateral with the specified normals, modulo translations. Its only residual shape coordinate is (z\).
++This chart includes every sufficiently close area-one quadrilateral with the specified normals, modulo translations. Its only residual shape coordinate is \(z\).
+ 
+ ## 3. Smoothness under changing normals
+ 
+-The vertices of (Q(\theta,z)\) are smooth functions of (θ,z), obtained by solving nonsingular (2\times2\) linear systems. Apply the fixed reference fan-triangulation construction from Approach 2. The resulting maps and all their required parameter derivatives are uniformly Lipschitz in space; differences of each derivative at (x,y\) are (O(|x-y|)\). The same dominating kernel \(C|x-y|^{-\alpha}\) therefore proves that
++The vertices of \(Q(\theta,z)\) are smooth functions of (θ,z), obtained by solving nonsingular \(2\times2\) linear systems. Apply the fixed reference fan-triangulation construction from Approach 2. The resulting maps and all their required parameter derivatives are uniformly Lipschitz in space; differences of each derivative at \(x,y\) are \(O(|x-y|)\). The same dominating kernel \(C|x-y|^{-\alpha}\) therefore proves that
+ \[
+ f(\theta,z)=V_\alpha(Q(\theta,z))
+ \]
+-is (C^2\).
++is \(C^2\).
+ 
+-At \(\theta=\theta^0\), the polygon has width (a=1+z\) and height (1/a\), up to translation. Thus (\tau=\log(1+z)\). Since (f_z(\theta^0,0)=0\), equation (2) gives
++At \(\theta=\theta^0\), the polygon has width \(a=1+z\) and height \(1/a\), up to translation. Thus \(\tau=\log(1+z)\). Since \(f_z(\theta^0,0)=0\), equation (2) gives
+ \[
+ f_{zz}(\theta^0,0)=
+ \left.\frac{d^2}{d\tau^2}V_\alpha(R_\tau)\right|_{\tau=0}<0.
+@@ -65,7 +65,7 @@
+ 
+ ## 4. Implicit critical shapes
+ 
+-Apply the implicit function theorem to (G(\theta,z)=f_z(\theta,z)\). There is a unique (C^1\) function (z=z(\theta)\), for θ sufficiently close to θ⁰ and z sufficiently close to zero, such that
++Apply the implicit function theorem to \(G(\theta,z)=f_z(\theta,z)\). There is a unique \(C^1\) function \(z=z(\theta)\), for θ sufficiently close to θ⁰ and z sufficiently close to zero, such that
+ \[
+ f_z(\theta,z(\theta))=0.
+ \]
+@@ -78,12 +78,12 @@
+ \]
+ The resulting quadrilateral has one pair of opposite sides parallel and the other pair nonparallel. It is not a parallelogram and hence not a rhombus. Every side-transitive convex quadrilateral is equilateral and therefore a rhombus, so these examples lie outside the side-transitive class.
+ 
+-This is an existence proof for exact examples, not a claim that a floating-point quadrilateral is exactly stationary. The relevant shape is defined by the unique local zero (z(\theta)\).
++This is an existence proof for exact examples, not a claim that a floating-point quadrilateral is exactly stationary. The relevant shape is defined by the unique local zero \(z(\theta)\).
+ 
+ ## What remains open
+ 
+-- No explicit formula is obtained for (z(\theta)\).
++- No explicit formula is obtained for \(z(\theta)\).
+ - Uniqueness is only near the square and at the fixed nearby normal data.
+ - The proof does not control continuation through side collapse, distant branches, or arbitrary normal fans.
+-- For (n\ge5\), there are (n-3\) genuine constrained shape directions; extending this method requires a nondegenerate full Hessian, which is not proved here.
++- For \(n\ge5\), there are \(n-3\) genuine constrained shape directions; extending this method requires a nondegenerate full Hessian, which is not proved here.
+ - The construction uses the source's permission of non-even anisotropies. It does not settle a separately imposed centrally symmetric classification.
+--- a/05_vertex_truncation_obstruction.md
++++ b/05_vertex_truncation_obstruction.md
+@@ -10,25 +10,25 @@
+ 
+ ## 1. Birth of a side by cutting a vertex
+ 
+-Let (P\) have area 1, let (p\) be a vertex, and remove a small triangular cap (D_t\) around (p\), obtained by inserting a fixed new supporting direction. Write \(\delta_t=|D_t|\to0\), (Q_t=P\setminus D_t\), and
++Let \(P\) have area 1, let \(p\) be a vertex, and remove a small triangular cap \(D_t\) around \(p\), obtained by inserting a fixed new supporting direction. Write \(\delta_t=|D_t|\to0\), \(Q_t=P\setminus D_t\), and
+ \[
+ \widehat Q_t=(1-\delta_t)^{-1/2}Q_t.
+ \]
+-Then \(|\widehat Q_t|=1\). The cap shrinks to (p\), and continuity of (v_P\) gives
++Then \(|\widehat Q_t|=1\). The cap shrinks to \(p\), and continuity of \(v_P\) gives
+ \[
+ \int_{D_t}v_P=\delta_t v_P(p)+o(\delta_t).
+ \]
+-The self-energy estimate (V_\alpha(D_t)\le C\delta_t^{2-\alpha/2}=o(\delta_t)\) is valid for every \(\alpha<2\). Therefore
++The self-energy estimate \(V_\alpha(D_t)\le C\delta_t^{2-\alpha/2}=o(\delta_t)\) is valid for every \(\alpha<2\). Therefore
+ \[
+ V_\alpha(Q_t)=V_\alpha(P)-2\delta_t v_P(p)+o(\delta_t).
+ \]
+-By the homogeneity (V_\alpha(rE)=r^{4-\alpha}V_\alpha(E)\),
++By the homogeneity \(V_\alpha(rE)=r^{4-\alpha}V_\alpha(E)\),
+ \[
+ V_\alpha(\widehat Q_t)-V_\alpha(P)
+ =\delta_t\left[\frac{4-\alpha}{2}V_\alpha(P)-2v_P(p)\right]+o(\delta_t).
+ \tag{1}
+ \]
+-If (P\) is sliding-critical with common side average (A\), Euler's identity and \(\sum_i h_i\ell_i=2|P|\) imply
++If \(P\) is sliding-critical with common side average \(A\), Euler's identity and \(\sum_i h_i\ell_i=2|P|\) imply
+ \[
+ (4-\alpha)V_\alpha(P)=2\sum_i h_i\int_{L_i}v_P=4A|P|.
+ \]
+@@ -42,32 +42,32 @@
+ 
+ ## 2. Positive sign: equilateral triangles
+ 
+-Take an equilateral triangle and one of its sides, positioned horizontally with midpoint at 0. Every horizontal slice of the triangle is a centered interval. For each fixed positive vertical distance (y\), convolution of the strictly decreasing even function \(s\mapsto(s^2+y^2)^{-\alpha/2}\) with a centered interval is even and strictly decreasing for positive horizontal coordinates. This follows directly by differentiating its endpoint antiderivative:
++Take an equilateral triangle and one of its sides, positioned horizontally with midpoint at 0. Every horizontal slice of the triangle is a centered interval. For each fixed positive vertical distance \(y\), convolution of the strictly decreasing even function \(s\mapsto(s^2+y^2)^{-\alpha/2}\) with a centered interval is even and strictly decreasing for positive horizontal coordinates. This follows directly by differentiating its endpoint antiderivative:
+ \[
+ \frac d{dx}\int_{-a}^{a}[(x-s)^2+y^2]^{-\alpha/2}\,ds
+ =[(x+a)^2+y^2]^{-\alpha/2}-[(x-a)^2+y^2]^{-\alpha/2}<0
+ \]
+-for (x>0,a>0\). Integrating over slices proves that (v_P\) along the base is strictly decreasing from its midpoint to either endpoint. The endpoint value is therefore strictly below the side average (A\). Rotation symmetry gives this at each vertex.
++for \(x>0,a>0\). Integrating over slices proves that \(v_P\) along the base is strictly decreasing from its midpoint to either endpoint. The endpoint value is therefore strictly below the side average \(A\). Rotation symmetry gives this at each vertex.
+ 
+-Consequently every sufficiently small fixed-direction vertex cut, followed by area renormalization, strictly **increases** (V_\alpha\). This supplies a valid boundary-exclusion direction at an equilateral triangular boundary shape.
++Consequently every sufficiently small fixed-direction vertex cut, followed by area renormalization, strictly **increases** \(V_\alpha\). This supplies a valid boundary-exclusion direction at an equilateral triangular boundary shape.
+ 
+ ## 3. Negative sign: very obtuse triangles
+ 
+-The opposite sign also occurs, already for any fixed (0<\alpha<1\). Let
++The opposite sign also occurs, already for any fixed \(0<\alpha<1\). Let
+ \[
+ T_\varepsilon=\operatorname{conv}\{(-1,0),(1,0),(0,\varepsilon)\},
+ \qquad p_\varepsilon=(0,\varepsilon),\qquad |T_\varepsilon|=\varepsilon.
+ \]
+-Put (w(x)=1-|x|\) for \(|x|\le1\). The cross section at horizontal position (x\) is (0<y<\varepsilon w(x)\).
++Put \(w(x)=1-|x|\) for \(|x|\le1\). The cross section at horizontal position \(x\) is \(0<y<\varepsilon w(x)\).
+ 
+-By changing variables (y=\varepsilon s\) and dominated convergence,
++By changing variables \(y=\varepsilon s\) and dominated convergence,
+ \[
+ \frac{v_{T_\varepsilon}(p_\varepsilon)}{\varepsilon}
+ \longrightarrow J_\alpha:=\int_{-1}^1w(x)|x|^{-\alpha}\,dx
+ =\frac2{(1-\alpha)(2-\alpha)}.
+ \tag{3}
+ \]
+-The domination is by (w(x)|x|^{-\alpha}\), integrable for \(\alpha<1\).
++The domination is by \(w(x)|x|^{-\alpha}\), integrable for \(\alpha<1\).
+ 
+ Similarly,
+ \[
+@@ -76,7 +76,7 @@
+ w(x)w(y)|x-y|^{-\alpha}\,dx\,dy.
+ \tag{4}
+ \]
+-Here the dominating kernel is (w(x)w(y)|x-y|^{-\alpha}\), also integrable for \(\alpha<1\).
++Here the dominating kernel is \(w(x)w(y)|x-y|^{-\alpha}\), also integrable for \(\alpha<1\).
+ 
+ An exact one-dimensional convolution calculation gives
+ \[
+@@ -85,7 +85,7 @@
+  {(1-\alpha)(2-\alpha)(3-\alpha)(4-\alpha)}.
+ \tag{5}
+ \]
+-For a direct verification, (w*w\) is even and equals
++For a direct verification, \(w*w\) is even and equals
+ \[
+ (w*w)(u)=
+ \begin{cases}
+@@ -94,9 +94,9 @@
+ 0,&u\ge2.
+ \end{cases}
+ \]
+-Insert this into (I_\alpha=2\int_0^2u^{-\alpha}(w*w)(u)\,du\), integrate the displayed polynomials, and simplify to (5).
++Insert this into \(I_\alpha=2\int_0^2u^{-\alpha}(w*w)(u)\,du\), integrate the displayed polynomials, and simplify to (5).
+ 
+-Every triangle is sliding-critical. If (A_\varepsilon\) is its common side average, the scaling identity above gives
++Every triangle is sliding-critical. If \(A_\varepsilon\) is its common side average, the scaling identity above gives
+ \[
+ \frac{A_\varepsilon}{\varepsilon}
+ =\frac{4-\alpha}{4}\frac{V_\alpha(T_\varepsilon)}{\varepsilon^2}
+@@ -109,7 +109,7 @@
+  {2(1-\alpha)(2-\alpha)(3-\alpha)}>0.
+ \tag{6}
+ \]
+-To prove the strict sign, convexity of (\alpha\mapsto2^{4-\alpha}\) on [0,1] gives
++To prove the strict sign, convexity of \(\alpha\mapsto2^{4-\alpha}\) on [0,1] gives
+ \[
+ 2^{4-\alpha}\le16-8\alpha<16-4\alpha\qquad(0<\alpha<1).
+ \]
+@@ -117,7 +117,7 @@
+ \[
+ v_{T_\varepsilon}(p_\varepsilon)>A_\varepsilon.
+ \]
+-Uniform dilation to area one multiplies both sides by the same positive factor, preserving the inequality. Formula (2) shows that a small cut at this very obtuse apex, followed by area normalization, strictly **decreases** (V_\alpha\).
++Uniform dilation to area one multiplies both sides by the same positive factor, preserving the inequality. Formula (2) shows that a small cut at this very obtuse apex, followed by area normalization, strictly **decreases** \(V_\alpha\).
+ 
+ ## 4. Consequence and exact gap
+ 
+--- a/README.md
++++ b/README.md
+@@ -6,17 +6,17 @@
+ 
+ **The geometric classification remains unresolved after five substantive approaches.** This is not a solution claim. The notes establish a planar analytic criterion, give complete triangle and parallelogram subclasses, and construct an implicit family of nonsymmetric quadrilaterals. They do not classify all polygons or higher-dimensional polytopes. No claim of priority is made for the partial results.
+ 
+-Fix (0<\alpha<2). The energy is
++Fix \(0<\alpha<2\). The energy is
+ \[
+ \mathcal E_\gamma(E)=P_\psi(E)+\gamma V_\alpha(E),\qquad
+ V_\alpha(E)=\int_E\int_E |x-y|^{-\alpha}\,dx\,dy,\qquad |E|=1.
+ \]
+-Here (P=W_\psi\) is a unit-area convex polygon and \(\psi\) is convex, positively one-homogeneous, and strictly positive on the unit circle. **Evenness is not assumed in the source.** The exponent is fixed before choosing the small-γ threshold.
++Here \(P=W_\psi\) is a unit-area convex polygon and \(\psi\) is convex, positively one-homogeneous, and strictly positive on the unit circle. **Evenness is not assumed in the source.** The exponent is fixed before choosing the small-γ threshold.
+ 
+ ## Results and their limits
+ 
+ 1. **Triangles.** Every nondegenerate triangular Wulff shape is the unique minimizer up to translation for sufficiently small γ. The key sliding-stationarity observation is already in Bonacini–Cristoferi–Topaloglu (2022), Remark 4.1. The conclusion follows from their earlier small-γ reduction and is not claimed as new.
+-2. **Planar criterion.** Equal side-average Riesz potentials are necessary and sufficient for small-γ global minimality. The proof includes the missing sufficiency steps: a (C^2\) transport estimate, quantitative Wulff coercivity, existence, and crystalline rigidity. This remains an implicit system, not an explicit classification.
++2. **Planar criterion.** Equal side-average Riesz potentials are necessary and sufficient for small-γ global minimality. The proof includes the missing sufficiency steps: a \(C^2\) transport estimate, quantitative Wulff coercivity, existence, and crystalline rigidity. This remains an implicit system, not an explicit classification.
+ 3. **Parallelograms.** Exactly the rhombi satisfy that criterion. A non-rhombic parallelogram fails even first-order minimality for every γ>0.
+ 4. **Near-square continuation.** For every four-normal configuration sufficiently close to the square's, there is a locally unique sliding-critical unit-area quadrilateral near the square, modulo translations. It follows that small-γ minimizers include quadrilaterals outside the side-transitive class of the 2021 theorem. This is a local implicit construction, not a classification of all quadrilaterals.
+ 5. **Boundary/vertex truncations.** An exact expansion identifies the sign governing birth of a new side. Both signs occur among triangular limits. Thus a naive “maximize within each normal fan and rule out its boundary” strategy does not close the global classification.
+--- a/SELF_AUDIT.md
++++ b/SELF_AUDIT.md
+@@ -7,7 +7,7 @@
+ ## Counted approaches
+ 
+ 1. **Normal-fan rigidity for triangles:** exact support-space proof and independent translation-identity proof; global small-γ conclusion uses established existence and rigidity.
+-2. **Transport and coercivity:** prove (C^2\) dependence, stationarity, quadratic interaction control, and global sufficiency in the plane.
++2. **Transport and coercivity:** prove \(C^2\) dependence, stationarity, quadratic interaction control, and global sufficiency in the plane.
+ 3. **Parallelogram integral comparison:** exact sign calculation classifying this subclass.
+ 4. **Normal-direction continuation:** compute the negative square Hessian, construct an actual quotient chart, and apply the implicit function theorem to obtain nonsymmetric quadrilaterals.
+ 5. **Degenerating-facet analysis:** derive the vertex-cut expansion and prove both signs by equilateral and thin-obtuse triangle examples.
+@@ -24,7 +24,7 @@
+ - **Exact area constraint:** support coordinates are restricted to a smooth area level set; the linear stationarity cancellation is followed by a second-order area remainder.
+ - **Translations:** the global energy comparison uses optimally aligned translates. The local four-normal chart fixes two support numbers using a unique translation, leaving exactly one constrained shape direction.
+ - **Global conclusion:** not inferred from stationary side averages alone. Existence, quasiminimizer rigidity, quantitative Wulff coercivity, and the quadratic interaction estimate are all required and recorded.
+-- **Square Hessian factor:** first derivative is (2(M_b-M_a)\); the resulting second derivative is \(-4\alpha\) times the positive square integral. A second reduction to a one-dimensional integral was numerically checked.
++- **Square Hessian factor:** first derivative is \(2(M_b-M_a)\); the resulting second derivative is \(-4\alpha\) times the positive square integral. A second reduction to a one-dimensional integral was numerically checked.
+ - **Parallelogram angles:** both plus and minus cross terms have the same strict comparison after swapping integration variables. The proof covers every angle in (0,π), not only rectangles.
+ - **Nonsymmetric examples:** their normals explicitly fail to be two antipodal pairs. Thus they cannot accidentally be rhombi. Their exact supports are supplied by an implicit existence theorem, not by floating-point root finding.
+ - **Vertex cuts:** these are used to examine boundaries of allowed-normal families for the Riesz-only classification strategy. They are not claimed to be fixed-normal variations of the original triangle or to lower its full crystalline energy.
+--- a/SOURCES_AND_SCOPE.md
++++ b/SOURCES_AND_SCOPE.md
+@@ -14,7 +14,7 @@
+ - The planar classification discussion concerns convex polygons, side translations preserving their normal directions, and exact preservation of area. It does not require stationarity under arbitrary smooth variations or under rotating a side.
+ - The main planar result has \(d=2\), \(0<\alpha<2\). A higher-dimensional sufficient theorem is also present. A planar result alone must not be called a classification of all higher-dimensional anisotropies.
+ - The source assumes \(\psi\) convex, positively one-homogeneous, strictly positive on the sphere, and crystalline. It does **not** assume evenness. Every convex polygon containing 0 is allowed as the Wulff shape of its support function.
+-- Unit-area normalization is harmless for the qualitative small-γ property. For a fixed volume (m\), the effective coefficient is \(\gamma m^{(d+1-\alpha)/d}\).
++- Unit-area normalization is harmless for the qualitative small-γ property. For a fixed volume \(m\), the effective coefficient is \(\gamma m^{(d+1-\alpha)/d}\).
+ - The exponent is fixed; “sufficiently small” need not mean a uniform threshold across all exponents, shapes, or numbers of facets.
+ 
+ ## Primary results used
