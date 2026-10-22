@@ -1849,7 +1849,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1838 | 30002169 / OWR-12013-001 | Intrinsic Viscosity Solutions for Rough Hamilton–Jacobi Equations | 0.0522 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 1839 | 30005048 / OWR-9790364-002 | Elementary Proofs of Laguerre–Pólya Total Positivity | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1840 | 30005111 / OWR-10252930-021 | Elementary Proof of the Closed Walk Stacking Criterion | 0.0521 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 1841 | 30003131 / OWR-14604-008 | Quadratic-Length Universal Random Permutations | 0.0517 | 5.5 | 3 | 2016 | already_solved | 1/5 |  | Chen-Wang (arXiv:2610.13530v1, October 2026) proves asymptotic full universality at 32k^2, settling Alon's 1000k^2 question. Complete proof and coupling independently audited; journal acceptance unestablished; sharp 1/4 threshold remains open. Existing result, not a new proof: [acceptance record](../random_universality_30003131/README.md). |  |
 | 1842 | 30003172 / OWR-14741-004 | Simultaneously Adaptive Universal Source Coding | 0.0517 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1843 | 30005478 / OWR-12697711-014 | Algorithms for Amoeba Dimensions from Tropical Fans | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1844 | 30005529 / OWR-13750333-010 | Compatible Geodesic and Horocycle Symbolic Codings | 0.0517 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
