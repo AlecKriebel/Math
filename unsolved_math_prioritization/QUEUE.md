@@ -562,7 +562,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 552 | 30001065 / OWR-2090-018 | Universal Optimality of Exceptional Spherical Codes | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 554 | 30006272 / OWR-14299283-013 | Catalan Formulas for Ekedahl-Oort Intersection Cohomology | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 554 | 30006272 / OWR-14299283-013 | Catalan Formulas for Ekedahl-Oort Intersection Cohomology | 0.1150 | 6.0 | 3 | 2025 | unsolved | 5/5 |  | 2026-10-04: five substantive approaches; independent audit passes the scoped partial results. Primary target is canonical-basis elements for orbit closures of complexes, not Ekedahl-Oort strata (catalogue title preserved). Proven slice reduction, restricted small/semismall incidence formulas, and a complete non-sparse example; the all-orbits Catalan extension remains unresolved. No novelty claim. [Proof and audit](attempts/30006272/README.md). |  |
 | 555 | 30006308 / OWR-14299288-014 | Deformation Spaces of Smooth Complete Toric Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 556 | 30006359 / OWR-14299511-008 | Irreducible Forest Decomposition of Consistency-Equation Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 557 | 30006363 / OWR-14299512-001 | Topological Invariance of Helicity | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
