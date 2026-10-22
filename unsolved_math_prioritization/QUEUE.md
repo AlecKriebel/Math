@@ -497,7 +497,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 486 | 30005248 / OWR-11695855-001 | Local Complexity of Functional Estimation | 0.1263 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 488 | 30005507 / OWR-13750328-012 | Frobenius–Schur Indicators in Real Nilpotent Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 489 | 30005508 / OWR-13750328-013 | Projective Characters and Square Roots in Real Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 489 | 30005508 / OWR-13750328-013 | Projective Characters and Square Roots in Real Blocks | 0.1254 | 6.0 | 3 | 2023 | unsolved | 5/5 |  | [Audited partial record](attempts/30005508/PUBLICATION.md): central-quotient reduction to the involution-orbit conjecture, model-family and product results, exact nonnilpotent order-864 checks; fresh independent audit PASS for scoped partial results. General problem remains unresolved; no novelty or full-resolution claim. |  |
 | 490 | 30005717 / OWR-14298007-012 | Even-Dimensional Stress-Space Reconstruction | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 491 | 30005723 / OWR-14298009-001 | Modular Generators for Massive Double Cones | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 492 | 30005528 / OWR-13750333-009 | Periodic Minimizers in Compact Linear Domino Games | 0.1254 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
