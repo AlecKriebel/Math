@@ -669,7 +669,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 658 | 30000576 / OWR-1323-013 | Chaos of Individual Operators in Chaotic Semigroups | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 659 | 30000700 / OWR-1460-004 | IM-Sharing Variants of Theorem H for Entire Functions | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 660 | 30000704 / OWR-1460-010 | Boundary Regularity for Complete Conformal Metrics | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 661 | 30000930 / OWR-1790-007 | Ext-Algebra Models for Crossingless Matchings | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 661 | 30000930 / OWR-1790-007 | Ext-Algebra Models for Crossingless Matchings | 0.1052 | 5.5 | 3 | 2008 | unsolved | 5/5 |  | Audited k=2 half-canonical Yoneda algebra is abstractly isomorphic to the two-matching arc algebra as a cohomologically graded algebra; no canonical or trace-preserving normalization. General weighted all-k comparison unresolved after five approaches. [Evidence](attempts/30000930/README.md). |  |
 | 662 | 30001017 / OWR-2049-004 | Intersection Numbers on First Voronoi Compactifications | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 663 | 4000018 / AMR-039-0018 | L2 Bonnet–Myers and dimension | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 664 | 30003322 / OWR-15181-014 | Set-Sized Models of Initial Surreal Substructures | 0.1051 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
