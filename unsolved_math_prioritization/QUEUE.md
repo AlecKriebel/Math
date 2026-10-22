@@ -633,7 +633,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 622 | 30002048 / OWR-11784-007 | Exceptional-Unit Bounds by Algebraic Degree | 0.1110 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 623 | 30002497 / OWR-12866-004 | Irrational Local Maxima of the Fractional-Part Autocorrelation | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 624 | 30002508 / OWR-12866-018 | Continuity and Strict Monotonicity of Nyman–Beurling Distances | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 625 | 30002526 / OWR-12869-003 | Eliminating Whitney Umbrellas in Projective Group Realization | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 625 | 30002526 / OWR-12869-003 | Eliminating Whitney Umbrellas in Projective Group Realization | 0.1105 | 5.5 | 3 | 2014 | unsolved | 5/5 |  |  |  |
 | 626 | 30004994 / OWR-9790354-005 | Entropy and Nondiagonal Asymptotic Pairs | 0.1105 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 627 | 30005253 / OWR-11695855-006 | Optimality of Monotonized Asymptotic Risk | 0.1105 | 4.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 628 | 30006276 / OWR-14299284-004 | Multiplicativity of Tautological Chow Projections | 0.1104 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
