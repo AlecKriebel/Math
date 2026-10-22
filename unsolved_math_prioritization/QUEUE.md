@@ -299,7 +299,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 288 | 10400219 / AMR-103-0219 | Problem 12.14 — (N. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 289 | 10400220 / AMR-103-0220 | Problem 12.15 — (M. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 290 | 10400228 / AMR-103-0228 | Problem 12.23 — (A. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 291 | 11000192 / AMR-109-0192 | Problem 2.5 — Construct an example of a pseudo-Anosov mapping class for a closed surface which is not ergodic on the SU(2)-characte… | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 291 | 11000192 / AMR-109-0192 | Problem 2.5 — Construct an example of a pseudo-Anosov mapping class for a closed surface which is not ergodic on the SU(2)-characte… | 0.1760 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 292 | 11000296 / AMR-109-0296 | Question 5.4 — Is the image of the second Morita class in H8(GL(6, Z); Q)) non-trivial? | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 293 | 20001414 / AIM-DYNAMICAL_SYSTEMS-0072 | A Wasserstein rate dictionary for local-update generators | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 294 | 20001798 / AIM-GEOMETRY-0136 | Airy topological recursion, exact WKB, and the wild Hodge gap | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
