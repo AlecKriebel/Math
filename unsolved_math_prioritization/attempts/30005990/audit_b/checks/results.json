@@ -1,0 +1,141 @@
+{
+  "status": "passed",
+  "independent": true,
+  "proof_status": "Sanity and negative controls only; analytic audit is in reports/AUDIT.md.",
+  "number_of_controls": 16,
+  "results": {
+    "frozen_PROOF.md": {
+      "passed": true,
+      "detail": {
+        "sha256": "d78e4612f31f16b3be6a735ca2a0c1417483bdbe18f548d0d9ae52cb16909c34",
+        "bytes": 17776
+      }
+    },
+    "frozen_REALIZATION_APPROACHES.md": {
+      "passed": true,
+      "detail": {
+        "sha256": "eb2502b48d0781a2ab70e6ed023696875f889a33ce95ac08cf7fffff75409b0b",
+        "bytes": 18644
+      }
+    },
+    "radial_dimension_is_exactly_three": {
+      "passed": true,
+      "detail": "(-2*t*Derivative(u(x, t), t) + (k - 1)*(t*Derivative(u(x, t), t) - u(x, t)) + 2*u(x, t))/t**3"
+    },
+    "wrong_radial_dimension_detected": {
+      "passed": true,
+      "detail": "Two radial coordinates leave a nonzero residual for u=t^2."
+    },
+    "weak_transfer_total_derivative": {
+      "passed": true,
+      "detail": "The integration-by-parts remainder is precisely d_t(u a)."
+    },
+    "axis_capacity_rate": {
+      "passed": true,
+      "detail": "28*pi*eps/3"
+    },
+    "nonzero_trace_counterexample": {
+      "passed": true,
+      "detail": "u=1 lifts to 1/|y|: energy diverges and flux is -4*pi, so off-axis harmonicity alone does not remove the axis."
+    },
+    "tree_interpolation_explicit_formula": {
+      "passed": true,
+      "detail": {
+        "cases": 4000,
+        "max_error": 0.0,
+        "formula": "G_s(a,b)_i=[(1-s) hat(a)_i+s hat(b)_i]_+"
+      }
+    },
+    "unequal_Y_multipliers_rejected": {
+      "passed": true,
+      "detail": [
+        [
+          1,
+          0,
+          1.0
+        ],
+        [
+          2,
+          1,
+          1.0
+        ],
+        [
+          2,
+          0,
+          2.0
+        ]
+      ]
+    },
+    "hemisphere_sphere_spectral_shift": {
+      "passed": true,
+      "detail": "d - 1"
+    },
+    "minmax_threshold_arithmetic": {
+      "passed": true,
+      "detail": "The shifted 3/2 eigenvalue is (5/2)(d+1/2)."
+    },
+    "hemisphere_groundstate_normalization": {
+      "passed": true,
+      "detail": "phi=t has eigenvalue d-1 and lifts to the constant 1, whose eigenvalue is 0. This independently fixes the sign of the shift."
+    },
+    "explicit_3D_long_cylinder_obstruction": {
+      "passed": true,
+      "detail": {
+        "restricted_lower_in_pi_squared": "37/3",
+        "slab_sum_in_pi_squared": "9",
+        "domain": "(0,1)^2 x (0,3)"
+      }
+    },
+    "thin_mode_gap": {
+      "passed": true,
+      "detail": {
+        "cases": 1000,
+        "minimum_slack": 31.90689871591395
+      }
+    },
+    "projection_does_not_preserve_segregation": {
+      "passed": true,
+      "detail": {
+        "overlap_coefficient": "4*sqrt(2)/(3*pi)",
+        "explanation": "Two disjoint half-interval modes have the same positive first-mode projection; their transverse excess diverges as epsilon^-2, excluding them from a bounded-energy sequence."
+      }
+    },
+    "Bessel_radial_and_frequency_controls": {
+      "passed": true,
+      "detail": [
+        {
+          "d": 3,
+          "nu": "3.0",
+          "first_zero": 6.380161895923983,
+          "ode_residual": 0.0,
+          "quadratic_asymptotic_error": 2.5890880615754713e-14,
+          "uncorrected_frequency_at_0.002": 2.5000000000414255
+        },
+        {
+          "d": 4,
+          "nu": "3.5",
+          "first_zero": 6.98793200050052,
+          "ode_residual": 2.897817305224548e-70,
+          "quadratic_asymptotic_error": 3.0107139806320973e-14,
+          "uncorrected_frequency_at_0.002": 2.5000000000428195
+        },
+        {
+          "d": 5,
+          "nu": "4.0",
+          "first_zero": 7.588342434503804,
+          "ode_residual": 2.897817305224548e-70,
+          "quadratic_asymptotic_error": 3.4539532115332246e-14,
+          "uncorrected_frequency_at_0.002": 2.500000000044211
+        },
+        {
+          "d": 8,
+          "nu": "5.5",
+          "first_zero": 9.355812111042747,
+          "ode_residual": 0.0,
+          "quadratic_asymptotic_error": 4.911355461347989e-14,
+          "uncorrected_frequency_at_0.002": 2.500000000048358
+        }
+      ]
+    }
+  }
+}
