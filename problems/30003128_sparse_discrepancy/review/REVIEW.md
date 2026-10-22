@@ -1,0 +1,9 @@
+# Independent source and full-proof review: 30003128
+
+PASS for credited already_solved, zero author turns. The original OWR printed 1201 directly answers its rhetorical sparse-regular discrepancy question negatively; the positive result on 1202 requires Cayley/vertex-transitive symmetry. The primary Conlon–Zhao Example 1.2 and subsequent Theorems 1.3–1.4 support that distinction. This is source reconciliation and exposition, not a new open-problem solution.
+
+The complete attached deterministic proof was checked: tensor spectrum including the unique leading eigenvalue; q tending to infinity with k=q²; sparsity and vanishing relative spectral bound for the base; the uniform ordered-edge cut bound after normalization changes from N to n; and the small-clique repeated eigenvalue. The displayed 3dm normalization bound and additional dm clique bound hold even for overlapping vertex sets. The optional connected switch preserves degrees and connectivity since each removed edge has an alternate triangle path. Its exact Laplacian Rayleigh quotient 2n/(mN) establishes a positive nontrivial eigenvalue asymptotic to d. A sequence of orders suffices to refute the universal asymptotic claim. No probabilistic existence estimate is needed.
+
+All author/source hashes were validated. The supplied checker replayed 35,629 assertions. Independently written exact controls check three additional tensor/switch fixtures, connectivity, degrees, balanced-vector quotients and tensor eigenvalue bounds. Finite controls support rather than prove the asymptotic conclusion. No claim about stronger size-sensitive discrepancies or the symmetric graph subclass is warranted.
+
+Approved publication scope: frozen compact authored packet plus this review and its checker, with only this queue row changed to already_solved 0/5. Do not redistribute source PDFs or imported records.
