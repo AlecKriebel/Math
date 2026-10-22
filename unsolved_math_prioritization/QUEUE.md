@@ -638,7 +638,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 627 | 30005253 / OWR-11695855-006 | Optimality of Monotonized Asymptotic Risk | 0.1105 | 4.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 628 | 30006276 / OWR-14299284-004 | Multiplicativity of Tautological Chow Projections | 0.1104 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 629 | 30006336 / OWR-14299291-005 | Prismatic Extension of Generic-Point Vanishing | 0.1104 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 630 | 30003296 / OWR-15177-013 | Complete Surfaces inside the Genus-Four Moduli Space | 0.1099 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 630 | 30003296 / OWR-15177-013 | Complete Surfaces inside the Genus-Four Moduli Space | 0.1099 | 5.5 | 3 | 2016 | unsolved | 5/5 |  |  |  |
 | 631 | 30003592 / OWR-15586-003 | Polyhedrality of Movable Cycle Cones on Toric Varieties | 0.1096 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 632 | 30003644 / OWR-15956-010 | Zero-Free Dirichlet Polynomials on the Unit Line | 0.1096 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 633 | 5300088 / AMR-052-0088 | Injectivity radius from the number of generators | 0.1089 | 6.0 | 4 | 1990 | queued | 0/5 |  |  |  |
