@@ -1789,7 +1789,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1778 | 30005770 / OWR-14298158-015 | Diagonal Permuton Limits for Skew-Sum Avoidance | 0.0559 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1779 | 30004514 / OWR-1703876-007 | Barycentric Hyperplanes Through Convex Body Centroids | 0.0553 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 1780 | 30006230 / OWR-14299093-005 | Converse Bessel-Pair Criterion for Grushin Operators | 0.0552 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 1781 | 30000043 / OWR-720-011 | Wavelet Structure of Canonical Tight Frames | 0.0545 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
+| 1781 | 30000043 / OWR-720-011 | Wavelet Structure of Canonical Tight Frames | 0.0545 | 5.0 | 3 | 2004 | claimed_solved | 1/5 |  | Negative answer under the usual indexed single-generator canonical-tight interpretation: real Haar phi=h+(1/100)Dh gives a Riesz basis of all L2(R) with inverse-square-root translation defect >1/1000. Classical perturbation/mechanism credited to Lemarie via Daubechies (1990) and Daubechies-Bin Han (2002); no novelty, verified prior tight-resolution, arbitrary-reindexing or altered-lattice claim. [Reviewed reader](attempts/30000043/README.md). |  |
 | 1782 | 30000215 / OWR-822-007 | Theoretical Certification of Crossing-Number Optimality | 0.0545 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 1783 | 30000386 / OWR-1183-006 | The Two-Dimensional Time-Bomb Conjecture | 0.0544 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 1784 | 30001101 / OWR-2489-006 | Alcuin Numbers and Recognition of Small Boat Graphs | 0.0542 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
