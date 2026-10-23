@@ -1,0 +1,155 @@
+{
+  "passed": true,
+  "tests": 21,
+  "actual_sockets_created": false,
+  "writable_disposable_copies_only": true,
+  "results": [
+    {
+      "name": "wrong_average",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 46, in check\n    require(set(averages.values())=={expected},'closed-neighborhood average')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: closed-neighborhood average\n"
+    },
+    {
+      "name": "strict_k4",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 58, in check\n    require((F(chi)>expected)==(k>=4),'strict threshold')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: strict threshold\n"
+    },
+    {
+      "name": "invalid_primal",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 50, in check\n    require(all(colors[v]!=colors[w] for v in adj for w in adj[v]),'proper coloring primal certificate')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: proper coloring primal certificate\n"
+    },
+    {
+      "name": "overweight_dual",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 56, in check\n    require(all(sum(dual[v] for v in s)<=1 for s in independent),'fractional dual feasibility')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: fractional dual feasibility\n"
+    },
+    {
+      "name": "k1_wrong_chi",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 52, in check\n    require(len(set(colors.values()))==chi,'primal weight')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: primal weight\n"
+    },
+    {
+      "name": "missing_pendant_edges",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/check_exact.py\", line 64, in <module>\n    results=[check(k) for k in range(1,13)]\n             ^^^^^^^^\n  File \"<disposable>/check_exact.py\", line 42, in check\n    require(omega==(max(k,2) if v<k else 2), 'local clique number')\n  File \"<disposable>/check_exact.py\", line 9, in require\n    raise ValueError(message)\nValueError: local clique number\n"
+    },
+    {
+      "name": "bool_size",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 29, in validate\n    require(type(row['bytes']) is int and row['bytes']>=0,'strict byte integer')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: strict byte integer\n"
+    },
+    {
+      "name": "float_size",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 29, in validate\n    require(type(row['bytes']) is int and row['bytes']>=0,'strict byte integer')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: strict byte integer\n"
+    },
+    {
+      "name": "negative_size",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 29, in validate\n    require(type(row['bytes']) is int and row['bytes']>=0,'strict byte integer')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: strict byte integer\n"
+    },
+    {
+      "name": "bool_schema",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 21, in validate\n    require(type(m['schema_version']) is int and m['schema_version']==1,'schema integer')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: schema integer\n"
+    },
+    {
+      "name": "float_id",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 22, in validate\n    require(type(m['problem_id']) is int and m['problem_id']==30002271,'problem integer')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: problem integer\n"
+    },
+    {
+      "name": "duplicate",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 32, in validate\n    require(len(names)==len(set(names)),'duplicate file')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: duplicate file\n"
+    },
+    {
+      "name": "payload_tamper",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 36, in validate\n    require(inventory[row['name']]==row['bytes'],'size mismatch')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: size mismatch\n"
+    },
+    {
+      "name": "extra_file",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 33, in validate\n    require(set(inventory)==set(names)|{'MANIFEST.json'},'inventory mismatch')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: inventory mismatch\n"
+    },
+    {
+      "name": "missing_file",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 33, in validate\n    require(set(inventory)==set(names)|{'MANIFEST.json'},'inventory mismatch')\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: inventory mismatch\n"
+    },
+    {
+      "name": "extra_directory",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 15, in validate\n    require(stat.S_ISREG(s.st_mode),'nonregular entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: nonregular entry: extra\n"
+    },
+    {
+      "name": "manifest_symlink",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 15, in validate\n    require(stat.S_ISREG(s.st_mode),'nonregular entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: nonregular entry: MANIFEST.json\n"
+    },
+    {
+      "name": "payload_symlink",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 15, in validate\n    require(stat.S_ISREG(s.st_mode),'nonregular entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: nonregular entry: AUDIT.md\n"
+    },
+    {
+      "name": "fifo",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 15, in validate\n    require(stat.S_ISREG(s.st_mode),'nonregular entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: nonregular entry: fifo\n"
+    },
+    {
+      "name": "hardlink",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<disposable>/validate.py\", line 39, in <module>\n    if __name__=='__main__': print(json.dumps(validate(Path(__file__).parent),indent=2))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<disposable>/validate.py\", line 16, in validate\n    require(s.st_nlink==1,'hardlinked entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: hardlinked entry: alias\n"
+    },
+    {
+      "name": "simulated_socket_mode",
+      "rejected": true,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<disposable>/validate.py\", line 15, in validate\n    require(stat.S_ISREG(s.st_mode),'nonregular entry: '+rel)\n  File \"<disposable>/validate.py\", line 7, in require\n    if not ok: raise ValueError(msg)\n               ^^^^^^^^^^^^^^^^^^^^^\nValueError: nonregular entry: AUDIT.md\n"
+    }
+  ]
+}
