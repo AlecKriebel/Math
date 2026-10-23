@@ -1897,7 +1897,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1886 | 11000031 / AMR-109-0031 | Problem 3.10 — Find a finitely presented subgroup H < Modg for which there are infinitely many conjugacy classes of finite subgroups… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1887 | 30004758 / OWR-8415338-005 | Monge–Ampère Singularities for Nonpolyhedral Obstacles | 0.0476 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 1888 | 30004800 / OWR-8415343-001 | Weighted Sobolev Stability Under Nonlinear Composition | 0.0476 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 1889 | 30005097 / OWR-10252929-010 | Hermite and GL2 Equivalence Classes of Number Fields | 0.0474 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 1889 | 30005097 / OWR-10252929-010 | Hermite and GL2 Equivalence Classes of Number Fields | 0.0474 | 5.0 | 3 | 2022 | unsolved | 5/5 |  | Five bounded approaches; intended fixed-field degree at least five problem including nonmonic primitive irreducible polynomials remains unsolved. Corrected root-versus-polynomial inequivalence distinction retained; quartic counterexample does not close target; no novelty claim. [Report](attempts/hermite_finiteness_30005097/FIVE_APPROACHES.md). |  |
 | 1890 | 30005760 / OWR-14298158-005 | Inversion Monotonicity in the Domino Subclass | 0.0466 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 1891 | 30000903 / OWR-1782-017 | Real-Rooted Barycentric h-Polynomials and g-Theorem Conditions | 0.0460 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 1892 | 11000162 / AMR-109-0162 | Problem 2.5 — Knowing that d(φ)≥ 1, can we decide whether it is ≥ 2? | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
