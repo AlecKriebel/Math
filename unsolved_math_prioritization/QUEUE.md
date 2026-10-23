@@ -1787,7 +1787,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1776 | 30005160 / OWR-11101912-009 | Strict Majorant Properties at Fixed Noneven Exponents | 0.0568 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1777 | 30005572 / OWR-13750341-006 | Eisenstein Maps from Bianchi Homology to K2 | 0.0564 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 1778 | 30005770 / OWR-14298158-015 | Diagonal Permuton Limits for Skew-Sum Avoidance | 0.0559 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 1779 | 30004514 / OWR-1703876-007 | Barycentric Hyperplanes Through Convex Body Centroids | 0.0553 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 1779 | 30004514 / OWR-1703876-007 | Barycentric Hyperplanes Through Convex Body Centroids | 0.0553 | 5.5 | 3 | 2020 | claimed_solved | 1/5 |  | verified prior negative: Myroshnychenko–Tatarko–Yaskin published counterexample in n=5; not a new result. [Authored proof reader](attempts/30004514/reader/README.md); WXY submitted-preprint supplement optional. |  |
 | 1780 | 30006230 / OWR-14299093-005 | Converse Bessel-Pair Criterion for Grushin Operators | 0.0552 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 1781 | 30000043 / OWR-720-011 | Wavelet Structure of Canonical Tight Frames | 0.0545 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 1782 | 30000215 / OWR-822-007 | Theoretical Certification of Crossing-Number Optimality | 0.0545 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
