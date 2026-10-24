@@ -146,7 +146,7 @@ class RunnerControlFlowTests(unittest.TestCase):
         if any('SmokeInvalid.lean' in x for x in argv): return FakeProcess(1,'error: type mismatch\nTrue.intro has type True\n')
         if 'Bell/Audit.lean' in argv: return FakeProcess(0,STANDARD)
         return FakeProcess()
-    def invoke(self,serial=False):
+    def invoke(self,serial=False,bootstrap=False):
         with ExitStack() as stack:
             stack.enter_context(patch.object(runner,'validate_pins',side_effect=self.pin_error,return_value=[]))
             stack.enter_context(patch.object(runner,'source_snapshot',side_effect=self.snapshots))
@@ -154,7 +154,22 @@ class RunnerControlFlowTests(unittest.TestCase):
             stack.enter_context(patch.object(runner.subprocess,'Popen',side_effect=self.fake_process))
             stack.enter_context(patch('check_axioms.REQUIRED_MAIN',{'Bell.public'}))
             stack.enter_context(redirect_stdout(io.StringIO()));stack.enter_context(redirect_stderr(io.StringIO()))
-            return runner.run(argparse.Namespace(bootstrap=False,serial=serial),self.root)
+            return runner.run(argparse.Namespace(bootstrap=bootstrap,serial=serial),self.root)
+    def test_bootstrap_builds_helper_before_cache_interpreter(self):
+        self.assertEqual(self.invoke(bootstrap=True), 0)
+        build = ['lake', 'build', 'Cache.Main']
+        get = ['lake', 'env', 'lean', '--run', '.lake/packages/mathlib/Cache/Main.lean', 'get']
+        self.assertLess(self.calls.index(build), self.calls.index(get))
+    def test_bootstrap_helper_failure_never_fetches_or_certifies(self):
+        self.overrides['lake build Cache.Main'] = (1, 'error: helper build failed')
+        self.assertNotEqual(self.invoke(bootstrap=True), 0)
+        self.assertFalse(any('--run' in call for call in self.calls))
+        self.assert_failed()
+    def test_bootstrap_helper_error_with_zero_exit_rejected(self):
+        self.overrides['lake build Cache.Main'] = (0, 'error: recovered helper error')
+        self.assertNotEqual(self.invoke(bootstrap=True), 0)
+        self.assertFalse(any('--run' in call for call in self.calls))
+        self.assert_failed()
     def assert_failed(self):
         kernel=json.loads((self.root/'reports/kernel_report.json').read_text())
         self.assertFalse(kernel['main_declarations_kernel_checked'])

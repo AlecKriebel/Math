@@ -206,6 +206,12 @@ def run(args: argparse.Namespace, root: Path = ROOT) -> int:
         _, commit = command(['lake', 'env', 'lean', '--githash'], 'lean-githash')
         inspect_compiler(version, commit)
         if args.bootstrap:
+            stage = 'dependency_cache_build'
+            # A clean checkout has Cache sources but no imported Cache oleans.
+            # Build only the helper module before interpreting it; do not depend
+            # on a pre-existing cache or invoke the platform's native linker.
+            _, text = command(['lake', 'build', 'Cache.Main'], 'dependency-cache-build')
+            check_no_errors(text, stage)
             stage = 'dependency_cache'
             # Interpret the pinned cache tool: older Lean native linkers can produce
             # executables rejected by current macOS dyld. This runs identical
