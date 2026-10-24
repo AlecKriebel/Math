@@ -49,6 +49,8 @@ jobs:
         working-directory: qubit_povm_pvm_minimum_settings/bell_lean
     steps:
       - uses: actions/checkout@v7
+        with:
+          sparse-checkout: qubit_povm_pvm_minimum_settings
       - uses: actions/setup-python@v7
         with:
           python-version-file: qubit_povm_pvm_minimum_settings/.python-version
@@ -67,6 +69,8 @@ jobs:
         # The runner checks all dependency revisions and the compiler commit.
         # Only dependency build artifacts are reused, never project outputs.
         run: python scripts/run_lean.py --bootstrap --serial
+      - name: Check independent expanded physical endpoint
+        run: lake env lean ../hardening_audit_20261024/MainEndpointProbe.lean
       - name: Preserve run-specific verification evidence
         if: always()
         uses: actions/upload-artifact@v7
@@ -75,5 +79,5 @@ jobs:
           path: |
             qubit_povm_pvm_minimum_settings/bell_lean/reports/latest_run.json
             qubit_povm_pvm_minimum_settings/bell_lean/reports/runs/
-            qubit_povm_pvm_minimum_settings/bell_lean/reports/preflight.json
+            qubit_povm_pvm_minimum_settings/bell_lean/reports/preflight/
           if-no-files-found: warn
