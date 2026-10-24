@@ -7,3 +7,7 @@ Preliminary authoritative source/literature audit complete. Literal basis-word g
 ## 2026-10-24T21:39:32.348522+00:00 — literal(a) source implication accepted (5%)
 
 Fresh nonauthor adversary independently reproduced all positive-n wordlength formulas and mappingtorusisomorphism, byte-rechecked threeprimaryPDFs, and read the exact prior nonvirtualembedding Cor10.3. Root independently reconstructed the argument/read the source and reran both distinct checkers in temporarycopies. LITERAL_A_ACCEPTANCE binds the evidence. Record(a)as prior-implied negative ONLY at its printed actual-word metric, no originality or wholeproblemclaim. Three originalHydra(b)m≥5families remainactive.
+
+## 2026-10-24T22:06:39.614474+00:00 — reviewed partials checkpoint (5%)
+
+Three original approach families produced the checked reductions and exact method countermodels summarized in ROOT_CHECKPOINT.md. Constructive four-scope repairs passed fresh recheck; canonical geometry, negative centralizer/census/uniform model, independent homology certificates, height controls and source-convention delta all have fresh nonauthor PASS within partial scope. Root reran ten checker/certificate invocations and verified 86 current reviewed-file hashes. The rank5 Lie/BCH delta remains pending its new independent adversary and a possible inter-osculation certificate. No complete result, paper or new publication. Previous question-only turn was no new discovery; current turn is concrete progress.

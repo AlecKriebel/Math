@@ -1,0 +1,29 @@
+# Bounded independent priority audit for 21.124
+
+Checkpoint: 2026-10-24 22:02 UTC. Audit completion estimate: 100% of the bounded assignment; discovery completion estimate for the full problem: 0%. This is a literature scope check, not a proof audit or a claim of exhaustive priority clearance.
+
+**Finding:** no complete positive theorem and no CAT(0), finite-rank-free-by-cyclic counterexample to virtual RAAG embeddability was located. Keep 21.124 provisionally eligible. The strongest recent direct evidence is Wu–Ye's revision of 16 October 2026: its Question 1.1 still states the general question, while Theorem 4.5 solves the one-vertex tubular case. Absence from this search does not prove that no solution exists.
+
+## Exact scope checks
+
+1. [Wu–Ye, arXiv:2504.14192v2](https://arxiv.org/html/2504.14192v2), Question 1.1, Theorem 4.5, Theorem 1.4. Theorem 4.5 assumes a tubular presentation with a single vertex group Z². It is not the theorem for all CAT(0) free-by-cyclic groups. Theorem 1.4 supplies virtually special examples which fail virtual cocompact cubulation; that failure does not refute the noncompact specialness question.
+
+2. [Button, *Free by cyclic groups and linear groups with restricted unipotent elements*](https://api.repository.cam.ac.uk/server/api/core/bitstreams/81ce29df-38de-4e87-805c-3d377d1661f3/content), DOI 10.1515/gcc-2017-0009, Corollary 4.7, pp. 147–148. The positive-characteristic nonlinearity example is Gersten's group. The same paper explicitly describes its failure to be CAT(0). Thus this is not an eligible counterexample. [Button's earlier arXiv version](https://arxiv.org/html/1610.03712), §6, has the same scope.
+
+3. [Brady–Soroko, *Dehn functions of subgroups of right-angled Artin groups*](https://sites.math.unt.edu/~soroko/Dehn-functions-RAAGs.pdf), §9 Question 1 and §10 Corollary 10.3. The question is the same virtual RAAG question. Gersten's group and its finite-index subgroups fail proper semisimple CAT(0) actions; the negative embedding theorem therefore does not contradict the target CAT(0) hypothesis.
+
+4. [Merladet Urigüen–Minasyan, arXiv:2505.18054v3](https://arxiv.org/html/2505.18054v3), Propositions 1.9, 1.10 and Appendix A. Tubular groups with (VRC) are virtually special. The CAT(0) implication goes from (VRC) to CAT(0), not conversely. This does not establish CAT(0) ⇒ (VRC) for all tubular groups or free-by-cyclic groups.
+
+5. [Merladet Urigüen–Minasyan, arXiv:2511.21293v1](https://arxiv.org/html/2511.21293), Corollary 1.4 and Example 1.14. Balanced tubular groups with cycle-disjoint underlying graphs are already virtually special, CAT(0), and virtually finite-rank-free-by-cyclic. Example 1.14 is virtually free-by-cyclic and not virtually RFRS, but contains Gersten's group as an amalgam vertex group. Restricting a proper semisimple CAT(0) action to that subgroup is impossible, so this is not a CAT(0) counterexample.
+
+6. [Delage, arXiv:2602.08759v3](https://arxiv.org/html/2602.08759v3), Theorems 1.1(1), 1.2(1), and the correction following Theorem 1.2. For φ(a)=a, φ(b)=b, φ(c)=cw(a,b), the mapping torus is CAT(0) exactly when w=1 or w is outside [F₂,F₂]. Nontrivial commutator twists do not even admit proper semisimple CAT(0) actions. This corrects Samuelson (2006), Theorem 4.4; the uncorrected theorem must not be used to certify new counterexample candidates. Delage gives further CAT(0) examples but no full virtual specialness theorem.
+
+7. [Bongiovanni–Ghosh–Gültepe–Hagen, arXiv:2508.15738v3](https://arxiv.org/html/2508.15738v3), Theorem A, §1.1.3, Examples 9.3–9.4. This classifies coarse median/hierarchical hyperbolicity and being quasi-isometric to a cube complex. These properties are not equivalent here to virtual embeddability into a RAAG. Its cocompact cubulation obstructions do not answer 21.124 with specialness allowed to be noncompact. Likewise [Munro–Petyt, arXiv:2407.09275](https://arxiv.org/abs/2407.09275) concerns coarse median and cocompact cubulation obstructions.
+
+8. [Button, tubular free-by-cyclic cubulation](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/68D1803EEBCD906596AEBAADEA5BD2BE/S0008439500022657a.pdf/tubular_free_by_cyclic_groups_act_freely_on_cat0_cube_complexes.pdf). A free action on a possibly infinite-dimensional cube complex does not supply the proper cocompact CAT(0) action required in 21.124, or the finite-dimensional cubulation needed for Woodhouse's tubular virtual specialness criterion.
+
+9. [Button, *Tubular groups, 1-relator groups and nonpositive curvature*](https://api.repository.cam.ac.uk/server/api/core/bitstreams/cfcbf386-4eda-42eb-8be8-a7ca5bdeb881/content), published 2019, DOI 10.1142/S021819671950053X, Theorems 4 and 6. There are CAT(0) tubular and one-relator groups which are not residually finite. They cannot be finite-rank-free-by-cyclic, since such groups are residually finite. They therefore do not answer 21.124. Searches for a published CAT(0) tubular example with a finite-rank free fiber and a failure of (VRC), including holonomy/overlapping-cycle terminology, located no eligible example. This is a bounded negative search finding, not a theorem that overlapping-cycle cases all remain unresolved.
+
+## Limits and eligibility caveats
+
+The interpretation audited was the literal noncompact specialness convention supplied in the task. No claim about an intended compact variant is made. The paper statements above were inspected for scope; their proofs were not independently certified. The authoritative Notebook edition and official updates are the parent audit's responsibility. No subscription MathSciNet access or complete zbMATH citation crawl was performed in this bounded subtask. Search-engine date metadata was not used as proof of publication date: arXiv version histories were inspected for the principal recent works. No external researcher was contacted.

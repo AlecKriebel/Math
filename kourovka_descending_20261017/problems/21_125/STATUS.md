@@ -1,5 +1,5 @@
-# Kourovka21.125 — eligible remainder under original research
+# Kourovka21.125 — reviewed partials; final geometry delta in review
 
-Checkpoint 2026-10-24T21:38:29.216700+00:00. Discovery estimate **5%**. Source/priority audit completed. The literal ordinary-word-length(a) has an elementary negative implication of the prior Gersten/Brady–Soroko theorem, which passed a separate fresh audit; it is not a new original full-problem claim. An alternative cyclic/outer growth condition is a different formulation, with no documented official correction asserted.
+Checkpoint 2026-10-24T22:07:39.762255+00:00. Full-remainder discovery estimate **5%**. Literal ordinary-growth(a) is a freshly verified negative implication of prior work; no original full-problem claim. Eligible Hydra(b) ranks≥5 remain unresolved.
 
-Hydra(b) is reported known affirmative for m≤4 and remains provisionally open for m≥5 in the bounded current audit. Independent original work now begins on that remainder. No complete original result or publication gate.
+Constructive, negative, homology, canonical-cover and root control deductions passed fresh nonauthor reviews within their stated partial scope, with scope repairs recorded. Root reproduced ten checker/certificate invocations and86 current reviewed-file hashes. See ROOT_CHECKPOINT.md. A new fixed-rank Lie/BCH quotient and possible inter-osculation witness remain under independent verification; they are not promoted by this checkpoint. No paper, new upload or tracker write.

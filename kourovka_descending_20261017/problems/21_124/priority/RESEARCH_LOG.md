@@ -1,0 +1,9 @@
+# 21.124 priority-preparation log
+
+2026-10-24T22:01:02.686363+00:00 — Started independent authoritative statement and literature audit. Research-discovery completion estimate: 0%; source/priority preparation estimate: 25%. No original solution claim, Git action, publication, external communication, QUEUE or PR consultation. Fresh browser reading confirms October20officialedition and Wu–Ye October16v2; byte-identical nearby primary caches copied for exact local rereading.
+
+2026-10-24T22:06:14.495471+00:00 — Independent latest-literature audit completed. Important changes to future research: Delage2026 corrects Samuelson's old CAT(0) certificate; balanced cycle-disjoint tubular groups are already known; Linton2026 handles hyperbolic groups even with infinite-rank free kernel. Fresh22:04UTC official PDF hashes are byte-identical to caches. Preliminary priority recommendation: eligible/provisionally open, no complete solution located. Preparation estimate:95%; discovery estimate:0%.
+
+2026-10-24T22:06:14.495475+00:00 — Fresh reviewer checked my source and priority notes against primary statements. Tightened Delage scope to display φ(a)=a, φ(b)=b, φ(c)=c w(a,b), avoiding unsupported extension to arbitrary two-sided twists. Historical HW definitions kept separate from root's new parity-cover deduction; that proof requires its own audit. Raw publications excluded by a local .gitignore; all work remains within21_124/priority.
+
+2026-10-24T22:06:44.789470+00:00 — Bounded preparation complete (100% of assignment; full-discovery estimate0%). All34 source cache hashes/lengths independently rechecked; official PDFs live22:04UTC unchanged; exact updates search has no21.124. Reviewer's one Delage scope repair applied and recorded inPREPARATION_ACCEPTANCE.json. No complete solution found; eligible/provisionally open recommendation ready for root. This is neither an original research result nor publication clearance.
