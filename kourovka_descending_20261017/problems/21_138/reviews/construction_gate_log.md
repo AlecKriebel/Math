@@ -1,0 +1,5 @@
+# Construction-gate research log
+
+2026-10-24T17:04:15.727710+00:00 — Independently excluded the standard torsion-free Tarski embedding route using coherence; reproduced epichain stabilization and the stronger infinite-H2/FP2 obstruction for Fournier-Facio–Sun v3. Derived the dyadic subgroup in BS(1,2), hence in Higman and Baumslag–Gersten. Checked Hyde–Lodha v3 has an infinite-index Z². All six primary sources were fetched successfully and hashed without retaining full text. No candidate satisfies all hypotheses. Completion estimate toward the full problem: 5%. Parent received the proofs and source/version gates.
+
+2026-10-24T17:04:15.727872+00:00 — Adversarially verified the parent’s bounded-rank free-union obstruction and stable-image reduction for noninjective endomorphisms of finitely generated free groups; passed with rank-zero boundary case. The proper ascending HNN kernel is an explicit infinite-index nonfree subgroup. Automorphism mapping tori require further analysis. Full-problem estimate unchanged at 5%.

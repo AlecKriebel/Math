@@ -113,3 +113,9 @@ The interrupted prior turn is classified progress: scoped checkpoint08was confir
 Previous goal turn is classified progress: it completed a fresh adversarial scope audit of the user-linked Lean theorem and confirmed the existing Zenodo record through the public API and DOI redirect. It establishes no new mathematical discovery. Current research independently audited the new139flow/certificate constructions:67 exact relator-walk cases and universal proofs pass, but the general zero-vb2/certificate-existence gap remains. Recordedunsolvedat15%, publicationgateclosed.
 
 Next descending138has unchanged official full IF statement and no located complete solution. Independent structure/construction agents preserveearlyindependence. Root proposes a checked-primary combination GKLProp3.5+LintonCor1.5+WiltonA that classifies allfgvirtuallyindicableIFgroups, allowing infinite-rank free kernels; a fresh adversary is checking it. If accepted, any unrestrictedcounterexamplemustFAb. This is partial/derivedresearch, not a fullsolution orpublicationclaim.
+
+## 2026-10-24T17:15:03.955143+00:00 —21.138 remains unsolved;21.137 prior-solved;21.136 opened (5%)
+
+VirtuallyindicableIFcaseacceptedbyfreshnonauthorreview. Independentstructureandconstructionroutesgivepowerbalance, normalfreeandcentralAdiangates, cyclicCSA/centralremainder, strictascendingkernelandfinitepresentationbarriers. BoundaryerrorinKleinabelianizationwasrepairedandreviewed; nofull138solution. Estimate12%, publicationgateclosed.
+
+Authoritativestarred137andprimaryoddprimepreprintsjustifyalready_solvedwithoutduplicatepublication. Next136hasexactarbitraryprofinite/strictcontinuumstatement; Wilson2023provesFGcaseonly. PublishedCor3.1hasanevidentomittedFGhypothesis, whichisnotusedasageneralresult. Source/priorityscreencompleteat5%; newindependentmathematicalroutesnowstart.
