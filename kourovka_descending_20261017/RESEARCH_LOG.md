@@ -143,3 +143,11 @@ Next135exact character-degree multiset/radical question remains open in the prop
 ## 2026-10-24T18:02:47.537458+00:00 —21.135 first restricted theorem audited (10%)
 
 Character-multiset twins of A5^r×PSL2(7)^s are isomorphic for every pair of nonnegative exponents, by classical3Dimage classification, degree10 exclusion, exact simplequotient kernel counts, and5/7valuations. Fresh adversary accepts proof and quantitative variant; root independently reproduces exact exterior-square norm certificate. No general radicalfree classification, originality certification, or new publication. Independent Clifford/arithmetic/construction families continue. Completed136checkpoint12pushedas1fc6a7036f7babf197249e3e2597be8dfa16e83e and remoteconfirmed.
+
+## 2026-10-24T18:12:06.620687+00:00 —21.135 broader mechanism work continues (12%)
+
+Checkpoint13acceptedlowdimensional proof and independent certificate pushedas73ae06b27a85d32fd39ed70adcb4711001212f64, remoteconfirmed. Root candidate recovery theorem now covers any fixed nonempty finite permutation action; the first fresh adversary pass is positive and final independent followup is pending. Arithmetic restrictedfamily and finite-catalog/product exact computations are under separate fresh audit. A new finiteperfectdegree6 image route for A7 powers is being checked against Lindsey1971primaryclassification, with all exceptional cases and forbiddendegrees still to audit. No fullsolution, noveltycertificate, Zenodo upload or trackerchange.
+
+## 2026-10-24T18:15:12.806897+00:00 —21.135 reviewed exact arithmetic/construction checkpoint (12%)
+
+Arithmetic restrictedfamily and arbitrarypermutation-wreath degree recovery now passed fresh adversarialreviews. The 2157table/1252606pair boundedscan was independentlyreproduced, and rootdirectly recomputed the explicit E subgroupofS5² spectralgcd counterexample. Generalproblem remainsunresolved; no noveltycertification orpublication. A7allpowers degree6classification route remainsactive and excludedfromthischeckpoint.
