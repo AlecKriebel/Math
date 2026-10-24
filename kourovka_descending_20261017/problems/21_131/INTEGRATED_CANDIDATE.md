@@ -35,3 +35,7 @@ The only deep external embedding theorem in the construction is AAJZ Theorem 4.3
 No original-solution status follows merely from combining two correct arguments. The extensive priority audit must still exclude existing nil-adjoint realization theorems and equivalent AT applications. The general algebra-family proposition embeds every countable locally finite p-group and is stronger than required, but its priority is also unestablished.
 
 No preprint upload, DOI, release, tracker entry, human review or formal verification is claimed for 21.131.
+
+## Subsequent disposition at 2026-10-24T19:02:07.485299+00:00
+
+Freshcombinedreviewpassed; the optionalabsolute-nil refinementpassedanewindependentreviewer and nowprovidesthe strongerhomogeneousRFsourceSECTION. The detailednote is nil_embeddings/ABSOLUTE_NIL_EXTENSION.md; freshaudit absolute_fresh_adversary/AUDIT.md. Extensivepriorityremainsqualifiedapparentlyoriginal. The completepreprintis nowin preprint/main.tex, with finalfreshpackagecyclespending. Overallpublicationestimate85%; noDOI/publicationyet. Earlier65% statementsdescribehistoricalcheckpoints.

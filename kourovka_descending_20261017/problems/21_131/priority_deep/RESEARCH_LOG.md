@@ -1,0 +1,8 @@
+# Deep priority research log:21.131
+
+- **2026-10-24 18:40:53UTC:** Began independent audit of the actual embedding and original-AT candidate. Priority audit estimate10%; no originality classification yet.
+- **2026-10-24 18:43UTC:** Identified Phillips1977 periodic embedding precedent and published2017AAJZannouncement. No canonical-Golod group corollary found. Priority estimate45%.
+- **2026-10-24 18:45UTC:** Obtained actual Hammoudi2003 and Sozutov–Alexandrova2017PDFs. Flagged absolute-nil versus stable-nil and N-algebra versus arbitrary nil distinctions promptly to parent. Priority estimate70%.
+- **2026-10-24 18:49:43 UTC:** Extensive bounded search/citation audit complete. No prior complete same-scope theorem located. Qualified classification: apparently original deduction, with established2017deep input; no first-discovery claim and no publication promotion. Priority estimate90%; remaining access and database limits recorded in originality_verdict.md. No substantive new proof, Git, outreach, or publication performed by this auditor.
+
+- **2026-10-24 18:54:51 UTC — Bibliography and scope correction.** Corrected Hammoudi’s article range from 93–100 to 93–101 after checking the actual primary text’s printed101. Read the new absolute-nil refinement and fresh independent18:51audit, then added a dated scope addendum: C’s direct all-extension proof now permits Hammoudi’s homogeneous classical Golod cover and an inverse-image subgroup epimorphism from a residually finite source. Earlier stable≠absolute cautions remain historical and mathematically valid; no change to qualified originality verdict. Priority estimate90%.

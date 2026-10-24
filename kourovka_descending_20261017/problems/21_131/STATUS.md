@@ -1,13 +1,13 @@
-#21.131 candidate status
+#21.131 preprint-review status
 
-Checkpoint: 2026-10-24T18:46:05.962826+00:00. Estimated completion toward a verified original resolution: **65%**.
+Checkpoint:2026-10-24T19:02:07.485299+00:00. Estimated completion toward verified original resolution and publication: **85%**.
 
-- Stage: complete candidate construction, combined source-scope and extensive priority reviews pending.
-- Strongest reviewed mathematical claim: every countably infinite locally finite p-group embeds in a literal Notebook9.76 Golod group; independently constructed original infinite-support AT target is countable locally finite p.
-- Separate tree and algebra adversaries found no gap; root reproduced11778 exact section checks,63 named noncommutative checks, and all saved tree/wreath/augmentation outputs.
-- Current classification: candidate_under_review. **Not solved_verified**, no originality certification, no published21.131 record.
-- Primary-source limitation: original1986 first-hand web extraction exists, but local original PDF/raster acquisition and fresh independent full-definition acquisition failed. The fresh official Notebook raster confirms the source and subgroup/image quantifiers.
-- Broader literature: Phillips1977 general periodic-group embedding is prior; Hammoudi2003 classicalGolod quotient theorem requires absolutely nil, which has not yet been established for the selected algebra.
-- Optional absolute-nil/classical homogeneous-source strengthening is under investigation separately; it is not used in the current argument.
+- Complete mathematical candidate: all countably infinite locally finite p-groups embed in literal9.76Golod groups and are quotients of subgroups of homogeneous, residually finite classical Golod groups. A self-contained countable infinite original-ATp target resolves the exact21.131request.
+- Separate algebra/target, fresh combined proof and fresh absolute-nil refinement reviews found no substantive mathematical gap.
+- Expanded bounded priority audit found no complete prior same-scope result; apparently original deduction/application, with established inputs credited and access limits disclosed.
+- Seven-page preprint compiles without warnings and all seven rendered pages were visually inspected. Packaged exact verification agrees with independent checkpoint outputs.
+- Stage: fresh full paper/package adversarial review1 running; next fresh sequential package review still required. Current label candidate_under_review, not yet solved_verified or published.
+- Original1986primarytext was inspected through indexed full text; originalPDFbyteswere not acquired. This access limitation is disclosed, and the homogeneous-source result removes the originalbroadGolod-definition concern.
+- No21.131Zenodo draft/publication/DOI or trackerwrite.
 
-See INTEGRATED_CANDIDATE.md and family proof/audit notes. Publication gate remains closed pending full verification and priority.
+See preprint/main.tex, publication/README.md, complete proof notes, and dated reviews. Publication gate remains closed until the final review cycle passes.
