@@ -285,3 +285,15 @@ The finite-regular reduction separately passed fresh primary and secondary revie
 All five original families are terminal. Fresh reviews accept the second candidate's82-type finite positive witness and the corrected height-smoothing construction criterion. Both test groups are virtually special; no proposed universal negative survives. Final synthesis preserves the precise all-group/infinite-fiber gap and all reopening conditions. 156 current hashes and21 checker invocations pass with corrected harness diagnostics retained. No complete21.124result, original-priority claim or publication.
 
 Checkpoint29 remotely confirmed0af8765e3e127e82c60048411bed9f90c742b3a9,parent36d2a883c290194bf5c540a5140d937ae9aa72eb,159 own changed files. This goal turn made concrete progress through new exact affirmative constructions, adversarial verification and preservation of findings. Next21.123sourceaudit is active; a prior Fraga preprint and actual accepted-source versions require priority resolution before original research eligibility.
+
+## 2026-10-24T23:09:59.428573+00:00 —21.123 prior corrected construction identified and audited
+
+Selectionaudit100%, newdiscovery0%. Independent scope/proof challenges support excluding the specified corrected Property3 construction as already solved by FragaDOI10.20944/preprints202608.2109.v1. Literal/accepted-version/typographic/external-theorem and no-human-review qualifications are preserved in ROOT_PRIORITY_DECISION, not erased by the status shorthand.26 current hashes and three root checker reproductions pass. No new publication or tracker.
+
+Checkpoint30remotely confirmed09a4c37f9dd3b528f3af5d069390f8ec9dea0f61,parent82cd37b47061a817865dd7b75106cbbcb60db3f0,58ownchangedfiles; owncheckpoint29isverifiedancestor.124finaloutcomeunsolved6%. Currentturn made concreteprogress through exactcandidateconstructions, audits, two remote checkpoints and exclusion of a prior solved target. Nextdescending122source/prioritypreparation isactive; no completeprioranswer found inpreparationsofar.
+
+## 2026-10-24T23:15:46.779841+00:00 —21.122 eligible-source gate and original families (5%)
+
+Fresh official and independent literature audits locate no complete exact value-set dichotomy solution. Root accepted the full arbitrary-word/arbitrary-profinite scope and verified68 source/outputchecks. Three independent original families begin.123isexcludedunderitsrecordedpriorcorrected-prescriptionreading, withfullversion/typographic/peer-reviewcaveats;124remainsunsolvedaftertwopositivecandidateconstructions.
+
+Shared storage briefly prevented a new agent startup. Root removed only its own completed LP environment after no-handle/untracked checks, recovering164750315regularfilebytes; all mathematical evidence and reproductionrequirements remain. Existing agents now run the other two families, so the objective remains active without a blocker.
