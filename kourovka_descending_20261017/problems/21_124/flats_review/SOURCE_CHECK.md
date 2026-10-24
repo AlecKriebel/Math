@@ -1,0 +1,10 @@
+# Read-only primary source checks
+
+Checked live2026-10-24UTC. This is a scope audit, not a novelty audit.
+
+- Mike Carr, *Two-generator subgroups of right-angled Artin groups are quasi-isometrically embedded*, [arXiv1412.0642v2](https://arxiv.org/pdf/1412.0642), revised2015-10-13. Theorem1.4, Corollary1.5, and Corollary5.1 support the direct distortion obstruction. Section5.2 explicitly gives a virtually RAAG-embeddable mapping torus with a distorted rank-two fiber, so illustrates the virtual limitation. The Emory-hosted URL timed out in this audit; the arXiv PDF was successfully read instead.
+- Marco Linton, *Embedding finitely generated free-by-cyclic groups in {finitely generated free}-by-cyclic groups*, [arXiv2510.10178v2](https://arxiv.org/html/2510.10178v2#S1.Thmtheorem2),2026-04-22. The introduction explicitly allows the free kernel to have infinite rank. Theorem1.2 embeds every finitely generated such group into a mapping torus with finite-rank free kernel, even as a retract. No CAT(0) preservation is asserted.
+- Leo Delage, *Which F3-by-Zs are CAT(0)?*, [arXiv2602.08759v3](https://arxiv.org/html/2602.08759v3#S3),2026-03-26. Proposition3.1 supplies the centralizer-commutator obstruction; Theorem4.1 and Remark4.2 include the eligible positive-k commutator family. The old Samuelson theorem requires correction. Application here agrees with the separate all-k audit.
+- Xiaolei Wu and Shengkui Ye, *Some questions related to free-by-cyclic groups and tubular groups*, [arXiv2504.14192v2](https://arxiv.org/html/2504.14192v2#S1),2026-10-16. The introduction states the open virtual-RAAG question, the broad free-kernel convention, the rank-two positive case, and the distinction between virtual specialness and cocompact cubulation. No unrestricted theorem settling21.124 is inferred.
+
+Established results above remain external dependencies. The flat retractions, lattice restrictions, affine noncommutation check, and residual-finiteness deduction are justified explicitly in `AUDIT.md`. No contact with authors or other individuals was undertaken.
