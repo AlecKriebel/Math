@@ -15,3 +15,9 @@ The three initial original families are terminal with precise gaps. The finite-r
 The fresh pell_positive_review independently validates all517 positive integer pair weights, full signed projected counts, every interval segment and all three permutation bijections, the conjugation orientation, and discrete vertex injectivity in dimensionN+1. Primary2505.18054v3 Theorem1.6 and Proposition1.10 therefore prove this candidate virtually special. Its original all-finite-holonomy negative route is defeated. This is not a full universal21.124 solution or novelty claim. A separate six-edge metric countermodel now has an exact82-pair witness of degree4370132, pending its own fresh reviewer.
 
 The finite-regular reduction separately passed fresh primary and secondary review. Current manifest verification covers131 frozen-file checks across11 review receipts. No partial theorem enters the publication pipeline.
+
+## 2026-10-24T23:01:52.292759+00:00 —21.124 closed unsolved after final reviews (6%)
+
+All five original families are terminal. Fresh reviews accept the second candidate's82-type finite positive witness and the corrected height-smoothing construction criterion. Both test groups are virtually special; no proposed universal negative survives. Final synthesis preserves the precise all-group/infinite-fiber gap and all reopening conditions. 156 current hashes and21 checker invocations pass with corrected harness diagnostics retained. No complete21.124result, original-priority claim or publication.
+
+Checkpoint29 remotely confirmed0af8765e3e127e82c60048411bed9f90c742b3a9,parent36d2a883c290194bf5c540a5140d937ae9aa72eb,159 own changed files. This goal turn made concrete progress through new exact affirmative constructions, adversarial verification and preservation of findings. Next21.123sourceaudit is active; a prior Fraga preprint and actual accepted-source versions require priority resolution before original research eligibility.

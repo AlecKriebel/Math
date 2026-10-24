@@ -26,6 +26,8 @@ def main():
       ('dihedral_review',[('input_sha256',''),('review_files_sha256','dihedral_review')]),
       ('height_envelope_review',[('input_sha256',''),('review_output_sha256','height_envelope_review')]),
       ('pell_positive_review',[('input_sha256',''),('output_sha256','pell_positive_review')]),
+      ('height_positive_review',[('input_sha256',''),('review_files_sha256','height_positive_review')]),
+      ('smoothing_review',[('input_sha256',''),('review_output_sha256','smoothing_review')]),
     ]
     for folder,fields in configurations:
         origin=folder+'/RECEIPT.json';p=BASE/origin;d=json.loads(p.read_text());receipts.append({'path':origin,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
