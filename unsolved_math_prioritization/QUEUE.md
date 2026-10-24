@@ -1884,7 +1884,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1873 | 30006522 / OWR-14299904-004 | Weak-Order Growth of Grothendieck Schubert Supports | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1874 | 30006595 / OWR-14299909-010 | Modularity of Higher-$t$ Generating-Function Coefficients | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1876 | 3321 / OPG-322 | Drawing disconnected graphs on surfaces | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1876 | 3321 / OPG-322 | Drawing disconnected graphs on surfaces | 0.0495 | 5.0 | 1 | unknown | UNSOLVED | 5/5 |  | Partial crossing-budget exclusion and orientable mixed-crossing forest/no-bridge result; arbitrary-surface every-optimum target unresolved. Lattice witness is not a graph counterexample; torus announcement concerns existence only. No novelty claim. [Report](attempts/disconnected_surfaces_3321/FIVE_APPROACHES.md). |  |
 | 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1879 | 30001553 / OWR-4425-008 | Sharp Bounds for Alternating Involution Periods | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
