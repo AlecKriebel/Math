@@ -1,5 +1,7 @@
 # Independent corpus completeness audit
 
+**Final audited scope (supersedes intermediate counts below):244 named manuscript entries =202 primary Zenodo manuscript record editions +42 supplemental documents, including1 formally rejected/withdrawn manuscript. The supplemental set has40 archive-verified PDFs (39 live/historical notes +1 withdrawn artifact) and2 public repository-only PDFs. Consolidation yields229 scientific paper lines/work groups; no claim of229 distinct novel results. All260 selected unique archive PDF payloads have explicit dispositions.**
+
 Audit date: 2026-10-24. Read-only discovery; no external individual contacted. Initial inventory audit completion estimate: 60%. Fresh primary-deposit cross-check completed 2026-10-24 10:30 PDT; overall corpus audit estimate: 80% (embedded archive manuscripts remain to classify).
 
 ## Strongest available local sources
@@ -76,3 +78,37 @@ The target Full List tab was empty in the retained starting snapshot. The existi
 The existing Math Puzzles tab has287 rows including header and explicitly includes other authors' prior publications. It is a research/outcome ledger, not an authored bibliography; do not attribute all its rows to Alec Kriebel.
 
 Current `docs/papers/` contains40 paper-page folders,40 canonical paper.pdf files, and27 canonical PDF checksums unmatched among the211 primary deposited PDFs. Unmatched files include actual extra papers, older editions and archival precursors. This is an independent signal requiring the software-archive expansion. Some public-notebook papers developed after the latest2026-09-07 software snapshot may have no verified Zenodo representation (e.g. equal-sum-product and knights/rooks notes); preserve them as repository-only if inclusion is needed to satisfy all authored papers, with DOI blank and publication-status qualification.
+
+## Supplemental candidate manifest
+
+Created `sources/supplemental_candidates.json` with30 explicit manuscript candidates:27 unmatched canonical public paper-page PDFs and3 concrete existing-Papers-sheet manuscripts whose current public repository PDFs were independently accessible. All30 PDF URLs returned HTTP200 at the check. Each candidate includes exact local PDF MD5, SHA256, bytes, full extracted text path, public page/repository URL, and archival member-list matches.
+
+28 candidates have exact ZIP-member CRC32+byte-size listing matches in one or more published Zenodo software archives; payload SHA256/MD5 confirmation is still pending the archive extraction report. Two are verified repository-only among the scoped Zenodo archives: equal-sum-product and knights-rooks-n4-r2. DOI should remain blank for these unless another verified deposit is found. Shared monorepository archive DOI links must be labelled “embedded in repository archive”, not presented as dedicated paper DOIs.
+
+At least three candidates are likely older editions/precursors of current primary manuscripts and must be explicitly linked rather than counted as new independent work: `k3p-theta-trinet-collision` →22136869 (expanded K2P+K3P collision paper); `s-tc-jc-sharp-boundary` →22089373; `simultaneous-amplification-beyond-three-halves` →22089807. Review agent is checking exact scientific scope. Keller-map precursor notes also carry archival/consolidation qualifications; preserve each document in the inventory while avoiding cumulative-impact inflation.
+
+Recommended eventual reporting unit is **manuscript entries including identified older editions and presentation copies**, with explicit work-family/supersession links. A raw row count should not be called a count of distinct novel results. The current minimum scope is202 primary manuscript record editions plus30 supplemental candidates =232 manuscript inventory entries, before semantic deduplication and any final archive-only canonical-paper discoveries.200 primary scientific works remains a provisional primary-only count; adding only materially distinct supplemental works requires the independent semantic review.
+
+## Final archive coverage and scientific grouping checkpoint
+
+Corpus audit completion estimate:100% for the defined inventory discovery and provenance scope (2026-10-24,10:36PDT); scoring/publication judgment is separate.
+
+The full fresh account and software-archive review found**243 inventoried manuscript entries**:202 primary Zenodo manuscript record editions plus41 supplemental named manuscript documents.39 supplements have actual PDF member payloads verified in published Zenodo repository archives;2 are public repository-only papers with all public bytes verified. No tracker-only or local-only draft is being silently counted as published. The provisional consolidation map has**229 scientific paper lines/work groups**, including200 primary groups plus29 additional groups. This count does not assert229 novel results, and archival/non-novel notes remain explicitly qualified.
+
+`work_group_adjudication.json` records every supplemental mapping and the two primary aliases. Four supplemental entries are earlier/subsumed manuscripts of existing primary work; cyclic Bell precursors are grouped with their consolidated exact-values paper, Keller image/vanishing precursors with Unified Consequences, and the narrow/full weighted-lift monodromy corollaries with their broader attributed paper line. Separate gamma–theta order12 and13 theorems and three different Hadamard mechanisms remain separate notes.
+
+All260 unique selected archive PDF payloads were individually accounted for:39 inventoried supplemental manuscript payloads;92 historical manuscript editions/presentations;82 supplements/summaries/clarifications;20 figures/diagrams;9 cover letters;1 explicitly rejected historical JC draft;17 exact copies of primary-corpus PDFs. No unclassified payload remains. Independently recomputed all243 extracted nonidentical PDF MD5/SHA256/size values and checked all extracted texts:zero failures. The rejected convention-closure draft maps to the current JC paper line and is not promoted as a new valid theorem.
+
+The certificate dataset tar contains285 members and no PDFs; its two separately attached PDFs exactly match22089373. The Bell source tar contains8 members and no PDFs. Full advertised MD5 and SHA256 were checked for those tarballs. The other excluded payloads are an integrity text and an empty unpublished draft.
+
+Integrity qualification: software-archive PDF members were fetched with public HTTP byte ranges and checked against ZIP directory CRC32/byte size, with their own SHA256 recorded and independently recomputed. Full hundreds-of-megabytes monorepository archive MD5 hashes were not recomputed. Do not claim complete-archive cryptographic reproduction.
+
+Authorship qualification: the cube-component-exit PDF explicitly withholds its author name pending priority review, and exact-delta4 uses a program byline. These are attributed in context to the owned research program rather than falsely described as carrying the named author ORCID on their first page.
+
+## Explicit rejected manuscript inclusion — final244th entry
+
+At the final completeness pass, the formal22-page OutcomeQ manuscript was promoted from the historical-artifact register into its own explicitly withdrawn inventory row, as requested to preserve ALL named manuscript documents. Exact title: “Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes–Cantor Networks: Convention closure by a canonical cleanup quotient.” Byline:Alec Kriebel. Archive21940945; member MD5c218b68edd3c3b3138fe3809cf8a3f83; SHA25630930f86f5bde4bc173b6eb565319779c8eeed24b6163ece129ece56c623dc0a.
+
+Frozen `history/rejected_outcome_q/README.md` explicitly rejects it and excludes it from support of the active paper. Public frozen-tag README bytes were fetched and matched the local immutable git object. Independently reconstructed the exact double-zipper counterexample: binary, acyclic, only the root lies on all root-to-leaf paths, reticulationQ has reticulation childq, and successive root/zipper cleanup leaves an ordinary3-leaf star. The universal cleanup-strong class is therefore empty under the printed definition, so the intended nonvacuous global transfer fails.
+
+`reviews/rejected_jc.json` records score2.0 ONLY for the surviving local one-step JC identity, added contribution0.0, and publication verdict “Withdrawn or invalid main claim.” It does not rate the false global theorem2.0 as though it were a valid small result. The artifact maps to existing work group22089373 and adds no scientific work group. Final inventory count244 and work-group count229 are stored in `work_group_adjudication.json`.

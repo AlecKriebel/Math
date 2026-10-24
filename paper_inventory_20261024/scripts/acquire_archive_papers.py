@@ -6,6 +6,7 @@ members are checked against ZIP CRC32 and persisted with exact SHA256/MD5 hashes
 from __future__ import annotations
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import difflib
 import hashlib
 import io
 import json
@@ -130,9 +131,18 @@ def extract_one(archive, member):
         text_path.parent.mkdir(parents=True, exist_ok=True)
         text_path.write_text(text)
         first = pages[0] if pages else ''
+        pdf_metadata = reader.metadata or {}
+        metadata_title = str(pdf_metadata.get('/Title', '') or '').strip()
+        metadata_author = str(pdf_metadata.get('/Author', '') or '').strip()
+        before_author = re.split(r'Alec\s*Kriebel', first, flags=re.I)[0].strip()
+        guessed_title = ' '.join(before_author.split()) if 0 < len(before_author) < 400 else (first.splitlines()[0] if first else '')
         result.update({'status': 'ok', 'member_md5': hashlib.md5(data).hexdigest(),
             'member_sha256': hashlib.sha256(data).hexdigest(), 'member_crc32_verified': True,
             'pages': len(pages), 'characters': len(text), 'first_page_text': first,
+            'pdf_metadata_title': metadata_title, 'pdf_metadata_author': metadata_author,
+            'title': metadata_title or guessed_title,
+            'title_basis': 'embedded PDF metadata' if metadata_title else 'first-page text, requires semantic review',
+            'relationship_to_main_corpus': 'Pending semantic duplicate/version adjudication',
             'alec_name_on_first_page': bool(re.search(r'Alec\s*Kriebel|Kriebel,?\s*Alec', first, re.I))})
     except Exception as exc:
         result.update({'status': 'error', 'error': str(exc)})
@@ -182,10 +192,29 @@ def main():
             results.append(result)
     matches = [{'crc32': k[0], 'bytes': k[1], 'main_corpus_id': existing_crc[k],
                 'all_archive_occurrences': occurrences[k]} for k in selected if k in existing_crc]
+    def normalized(value):
+        return re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip()
+    main_papers = [r for r in rows if r['classification'] == 'paper' and r.get('is_latest_paper_version')]
+    for result in results:
+        if result['status'] != 'ok': continue
+        related = []
+        for main_paper in main_papers:
+            similarity = difflib.SequenceMatcher(None, normalized(result['title']), normalized(main_paper['title'])).ratio()
+            if similarity >= .69:
+                related.append({'id': main_paper['id'], 'title': main_paper['title'], 'title_similarity': round(similarity, 3)})
+        result['relationship_to_main_corpus'] = {
+            'status': 'unadjudicated; title similarity is only a screening aid',
+            'candidate_related_main_records': sorted(related, key=lambda r: -r['title_similarity'])}
     write_json(SOURCES / 'archive_papers.json', {'utc': stamp(),
+        'complete': all(a['status'] == 'ok' for a in listings) and all(r['status'] == 'ok' for r in results),
         'method': 'Public HTTPS byte ranges; advertised archive MD5 retained; each PDF member size/CRC32 and SHA256 checked',
         'limitations': 'Full-archive MD5 not recomputed. Semantic authorship and duplicate/version adjudication is separate.',
         'candidate_unique_pdf_payloads': len(selected), 'exact_matches_to_main_corpus': matches,
+        'summary': {'archives_listed': len(listings), 'unique_non_literature_pdf_payloads': len(selected),
+            'exact_main_corpus_matches': len(matches), 'additional_payloads_extracted': len(results),
+            'extraction_errors': sum(r['status'] != 'ok' for r in results),
+            'first_page_alec_name': sum(r.get('alec_name_on_first_page', False) for r in results),
+            'full_archive_md5_recomputed': False},
         'papers': sorted(results, key=lambda r: (r['source_deposit_id'], r['member']))})
     print(f"Extracted {len(results)} unique payloads outside main corpus; {len(matches)} exact matches", flush=True)
 
