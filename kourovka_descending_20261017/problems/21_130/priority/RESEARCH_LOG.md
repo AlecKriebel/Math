@@ -1,0 +1,8 @@
+# Research log — 21.130 preliminary priority audit
+
+- 2026-10-24T19:29:10Z — Opened exact-claim audit from parent research contract. Audit completion estimate: 5%. Discovery of a proof/counterexample is outside this audit's scope.
+- 2026-10-24T19:29:58Z — Downloaded original arXiv v9 and official main Notebook; exact target matches Conjecture 3.3(i) and printed p. 198. Main Notebook hash agrees with parent. Audit completion estimate: 40%.
+- 2026-10-24T19:30:40Z — Inspected proposer-authored MathOverflow page and latest editorial site. Identified mutable official updates file with November label, preserved without historical-date inference. Audit completion estimate: 60%.
+- 2026-10-24T19:32:02Z — Checked interval-only SSRN classification, full-group/rainbow-sum results, random-like/near-full hypotheses, and stronger harmonious-subset definition. No complete resolution found. Distinct approach to the priority challenge delegated before promoting the status. Audit completion estimate: 85%.
+- 2026-10-24T19:33:31.684460+00:00 — Wrote preliminary evidence table, exact equivalent formulations, source-access limitations and retrieval manifests. Waiting for independent adversarial challenge. Audit completion estimate: 95%.
+- 2026-10-24T19:34:01.828994+00:00 — Independent adversarial audit completed: no complete resolution located; independently confirmed exact scope and current editorial entry. Added and checked the new partial-sequence source arXiv:2511.19285v1. Final provisional-open recommendation documented. Audit completion estimate: 100%. No new proof progress or novelty claimed.
