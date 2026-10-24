@@ -14,7 +14,7 @@ The paper gives an affirmative answer to Kourovka Notebook21.131 (A.V.Timofeenko
 - `verification/lib/`: independently authored finite tree, matrix, wreath and augmentation evaluators, plus the construction family's finite-level evaluator.
 - `verification/expected_results.json`: deterministic finite results for independent comparison.
 - `audits/`: mathematical, scope and priority reviews. Reports are dated historical checkpoints; later reports record the disposition of earlier pending questions.
-- `source_manifest.json` and `algebra_sources.json`: source URLs and checksums. Third-party papers and primary-page images are not redistributed.
+- `source_manifest.json`, `algebra_sources.json` and the two absolute-extension source manifests: source URLs and checksums. Third-party papers and primary-page images are not redistributed.
 - `MANIFEST.json`: file sizes and SHA-256 checksums for the complete package except the manifest itself.
 
 ## Reproduce
@@ -24,6 +24,8 @@ Run `python3 verification/run_all.py` from the unpacked package. Python3.10 or l
 The finite checks comprise11,778 common-zero section/portrait comparisons;63 named noncommutative matrix checks;348,516 fresh tree-section comparisons and3,516 fresh algebra assertions; the construction family's stored finite-level images and transitivity checks; and nonabelian wreath/augmentation calculations for UT3 over F2 and F3. The two matrix evaluators include negative controls showing that the diagonal auxiliary map is not a homomorphism. A bad tree cutoff and invalid wreath wraparound are also checked as negative controls.
 
 These are supplemental exact finite checks. They do not prove local finiteness of every generated subgroup, universal embeddings, absolute nilness, the external embedding theorems, or originality. Those claims are justified by the paper's infinite proofs and explicitly cited external theorems.
+
+The second full-package reviewer also supplied `verification/review2_stress.py` and its expected JSON output. Run it with ordinary, non-optimized Python to reproduce 468 additional concrete-matrix comparisons over fields of orders 2, 3, 4, 5, 7 and 11. Its assertion-based checks are supplemental and are separate from the canonical runner above.
 
 Compile `main.tex` with `tectonic -X compile main.tex`, or a normal LaTeX distribution with lmodern, amsmath, amssymb, amsthm, mathtools, microtype, geometry, enumitem and hyperref. For conventional LaTeX run twice to resolve references.
 

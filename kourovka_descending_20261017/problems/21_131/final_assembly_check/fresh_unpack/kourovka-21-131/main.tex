@@ -1,0 +1,502 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\Mat}{\operatorname{M}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Aug}{\Delta}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\title{Locally finite \(p\)-groups in Golod groups\\and an AT section}
+\author{Alec Kriebel\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{24 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an affirmative answer to Kourovka Notebook Problem 21.131 of
+A.~V.~Timofeenko. For every prime \(p\), we construct a countable infinite
+locally finite AT \(p\)-group satisfying Rozhkov's original infinite-support
+definition. More generally, every countably infinite locally finite
+\(p\)-group embeds in a Golod group in the precise nil-algebra sense of
+Problem 9.76. It is also a quotient of a subgroup of a classical homogeneous,
+residually finite Golod group. The argument combines augmentation ideals
+with the stable-nil embedding construction of
+Alahmadi--Alsulami--Jain--Zelmanov. Relative elementary matrices place the
+desired derived subgroup inside a finitely generated canonical adjoint
+subgroup. Tracking scalar extension permits Hammoudi's homogeneous Golod
+cover to be applied.
+\end{abstract}
+
+\section{The problem and the precise source groups}
+
+Problem 21.131 in the twenty-first edition of the Kourovka Notebook
+\cite[p.~199]{KN}, proposed by A.~V.~Timofeenko, asks for an epimorphism
+from a subgroup of a Golod group, as defined in Problem 9.76, onto an
+infinite AT-group in the sense of Rozhkov \cite{Rozhkov}. We answer this
+existential question. The AT target below is infinitely generated.
+The whole source Golod group is not asserted to be AT, so the construction
+does not settle the distinct Problem 13.55.
+
+All algebras are associative and may be nonunital. For a nil algebra \(C\),
+write \(C^\#=\Fp\oplus C\) for its unitization. Its adjoint group is \(1+C\).
+For finite algebra generators \(c_1,\ldots,c_r\), put
+\[
+ G(C;c_1,\ldots,c_r)=\langle 1+c_1,\ldots,1+c_r\rangle\leq 1+C.
+\]
+If \(r\geq2\) and \(C\) is nil but not nilpotent, this is exactly a
+Golod group in the definition of \cite[Problem 9.76, p.~38]{KN}: present
+\(C\) as a quotient of the free nonunital algebra on these generators.
+That definition does not require a homogeneous ideal or residual
+finiteness. We shall additionally obtain the requested section using
+a homogeneous classical Golod source.
+
+Call an algebra \emph{stable nil} if \(\Mat_n(C)\) is nil for every finite
+\(n\). In this paper, \emph{absolutely stable nil} means that
+\(\Mat_n(C\otimes_F K)\) is nil for every field extension \(K/F\) and
+every finite \(n\). In particular it is absolutely nil.
+These last two properties are not interchanged without proof.
+
+\begin{theorem}\label{thm:main}
+Let \(p\) be a prime and \(H\) a countably infinite locally finite
+\(p\)-group.
+\begin{enumerate}[label=(\roman*),nosep]
+\item \(H\) embeds in a Golod group in the precise sense of Problem 9.76.
+\item There are a finitely generated, residually finite classical Golod
+\(p\)-group \(\Gamma\), a subgroup \(P\leq\Gamma\), and an epimorphism
+\(P\twoheadrightarrow H\). The defining nil algebra of \(\Gamma\) may be
+chosen positively graded with homogeneous Golod relations.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:AT}
+For every prime \(p\), a subgroup of a residually finite classical Golod
+\(p\)-group maps onto an infinite AT-group in Rozhkov's original definition.
+Consequently Problem 21.131 has an affirmative answer.
+\end{corollary}
+
+Phillips \cite{Phillips} already established general embeddings of
+countable periodic groups into finitely generated periodic groups.
+The issue addressed here is the canonical nil-adjoint realization.
+The algebraic embedding input is due to
+Alahmadi--Alsulami--Jain--Zelmanov \cite{AAJZshort,AAJZ};
+the passage to a homogeneous cover uses Hammoudi \cite{Hammoudi}.
+We make these dependencies explicit.
+
+\section{A locally finite AT target}
+
+Use the rooted \(p\)-ary tree with alphabet
+\(A=\{0,1,\ldots,p-1\}\). A portrait assigns a permutation of \(A\)
+at every vertex. Let \(a\) have the cycle
+\(\sigma=(0\,1\,\cdots\,p-1)\) at the root and identity elsewhere.
+Number tuple coordinates from zero and tree depths from zero.
+
+We recall precisely the part of \cite[\S1]{Rozhkov} used here.
+A rooted mutation acts only on coordinate zero. A longitudinal mutation
+fixes an infinite directing ray, has infinite support in coordinate
+levels, and, on a tuple first departing from that ray at coordinate \(j\),
+changes only coordinate \(j+1\), by a permutation depending on the mutation,
+the level and the departing symbol. An AT-group is generated by a subgroup
+\(C\) of rooted mutations and a subset \(D\) of longitudinal mutations,
+with all accompanying permutation groups transitive on the respective
+alphabets. In particular \(D\) need not be finite or be a subgroup.
+
+Let \(i(1),i(2),\ldots\) be the concatenation
+\[
+ 1;\quad 1,2;\quad 1,2,3;\quad 1,2,3,4;\quad\cdots.
+\]
+For \(i\geq1\), define \(d_i\) to have portrait \(\sigma\) at precisely
+the vertices
+\[
+ v_n=0^{n-1}1,\qquad i(n)=i,
+\]
+and identity at all other vertices. The vertices \(v_n\) are pairwise
+incomparable. Hence all these local actions have disjoint supports.
+The \(d_i\) commute, have order \(p\), and are independent. Set
+\[
+ H=\langle a,d_1,d_2,\ldots\rangle.
+\]
+
+Every \(d_i\) fixes \(0^\infty\). On a tuple whose first nonzero coordinate
+is \(j\), it changes only coordinate \(j+1\): it acts by \(\sigma\)
+if the departing symbol is \(1\) and \(i(j+1)=i\), and otherwise acts
+trivially. Each \(i\) occurs infinitely often, so every designated \(d_i\)
+has infinite level support. Take \(C=\langle a\rangle\) and
+\(D=\{d_i:i\geq1\}\). At level zero the accompanying group is
+\(\langle\sigma\rangle\); at each level \(n\geq1\), the generator
+\(d_{i(n)}\) supplies \(\sigma\) at \(v_n\). Thus every accompanying group
+is \(\langle\sigma\rangle\), which is transitive. This proves the original
+AT condition, including its infinite-support requirement.
+
+\begin{lemma}\label{lem:target}
+The group \(H\) is countable, infinite and locally finite \(p\).
+\end{lemma}
+\begin{proof}
+Its independent subgroup \(\langle d_i:i\geq1\rangle\cong
+\bigoplus_{i\geq1}C_p\) proves infinitude, and countability is immediate.
+Fix a finite \(I\subset\mathbb N\) and
+\(H_I=\langle a,d_i:i\in I\rangle\). Choose \(N\geq1\) with \(i(N)\notin I\).
+Let \(t_i\) be the section of \(d_i\) at \(0^N\), and set
+\(B_N=\langle t_i:i\in I\rangle\). Their remaining portraits are disjoint,
+so \(B_N\) is finite elementary abelian, of order \(p^{|I|}\).
+
+Every depth-\(N\) section of a chosen generator belongs to \(B_N\).
+For \(a\) all such sections are trivial. For \(d_i\), the section at
+\(0^N\) is \(t_i\). The only other possible nontrivial section is the
+root cycle at \(v_N\); it is absent since \(i(N)\notin I\). Earlier
+portraits have no descendants, and later portraits lie below \(0^N\).
+The section formula
+\((fg)|_v=f|_{g(v)}\,g|_v\), and its inverse version, now show that every
+depth-\(N\) section of every element of \(H_I\) lies in \(B_N\).
+
+The faithful decomposition into the action through depth \(N\) and its
+depth-\(N\) sections embeds \(H_I\) in
+\[
+ B_N^{\,p^N}\rtimes W_N,
+\]
+where \(W_N\) is the finite iterated wreath product of \(N\) copies of
+\(C_p\). This is a finite \(p\)-group. Every finite subset of \(H\)
+is contained in one such \(H_I\), proving the assertion.
+\end{proof}
+
+The missing label at the chosen depth is essential: a selected label
+there would leave a rooted cycle beside a directed tail. Local finiteness
+is established on the infinite tree, not inferred from finite computations.
+
+\section{From locally finite groups to adjoint derived subgroups}
+
+\begin{lemma}\label{lem:envelope}
+Every countable locally finite \(p\)-group \(H\) embeds in the derived
+subgroup of a countable locally finite \(p\)-group \(K\).
+\end{lemma}
+\begin{proof}
+Set \(K_0=H\), \(m_j=p^{j+1}\), and
+\(K_{j+1}=K_j^{m_j}\rtimes\langle t_j\rangle\), where \(t_j\) has order
+\(m_j\) and cyclically permutes the coordinates. Embed \(K_j\) diagonally
+in the base and take the direct limit \(K\). Each stage, and hence the
+limit, is countable and locally finite \(p\): finitely many coordinates
+from finitely many elements are contained in one finite \(p\)-subgroup.
+
+If \(h\) in a stage has order \(p^b\), use a later transition with
+\(p^b\mid m_j\). Index its coordinates modulo \(m_j\) and arrange
+\(t_j f t_j^{-1}(i)=f(i-1)\). For \(f(i)=h^i\) one has
+\[
+ (f t_j f^{-1}t_j^{-1})(i)=h^i h^{-(i-1)}=h.
+\]
+The wraparound equality uses \(h^{m_j}=1\).
+Thus the image of every element of \(K\) lies in \(K'\), and \(K=K'\).
+In particular the original \(H\) embeds in \(K'\).
+\end{proof}
+
+For the specific AT target one may use just \(K=H\wr C_p\):
+each chosen generator has order \(p\), so the same computation puts its
+diagonal image in \(K'\). It then puts the diagonal image of all \(H\)
+in \(K'\), without asserting exponent \(p\) for \(H\).
+
+\begin{lemma}\label{lem:augmentation}
+For a countable locally finite \(p\)-group \(K\), the augmentation ideal
+\(A=\Aug(\Fp[K])\) is countable dimensional and absolutely stable nil.
+The map \(k\mapsto1+(k-1)\) embeds \(K\) in \(1+A\).
+\end{lemma}
+\begin{proof}
+For any extension field \(E/\Fp\),
+\(A\otimes E=\Aug(E[K])\). Finitely many elements of this ideal are
+supported in a finite \(p\)-subgroup \(Q\).
+Its augmentation ideal is nilpotent. Here is the standard induction:
+choose a central \(z\in Q\) of order \(p\). The central ideal
+\(J=(z-1)E[Q]\) satisfies \(J^p=0\), and
+\(E[Q]/J\cong E[Q/\langle z\rangle]\).
+If the augmentation ideal of the quotient has nilpotence index \(q\),
+then \(\Aug(E[Q])^q\subseteq J\), so its \(pq\)-th power is zero.
+This starts at the trivial group.
+
+The entries of any finite matrix over \(\Aug(E[K])\) lie in one such
+nilpotent augmentation ideal. The matrix is therefore nilpotent.
+This proves absolute stable nilness. The group embedding is the usual
+inclusion of the group basis into its group algebra and is injective.
+\end{proof}
+
+The first clause of \cite[Theorem 4.3]{AAJZ} embeds every countable-dimensional
+stable nil algebra in a finitely generated stable nil algebra.
+This result was already announced in \cite[Theorem 6]{AAJZshort}.
+We first use this clause without a scalar-extension refinement.
+Embedding \(A\) in such a \(B\) embeds \(K\) in \(U=1+B\);
+Lemma~\ref{lem:envelope} therefore embeds \(H\) in \(U'\).
+The extension to unitizations is injective, since it is the original
+linear injection on the nil ideal and identity on the scalar summand.
+
+\section{The finite canonical unit subgroup}
+
+\begin{lemma}\label{lem:elementary}
+Let \(B\) be a finitely generated stable nil \(\Fp\)-algebra.
+There is a finitely generated group \(L\leq1+\Mat_3(B)\) containing
+an isomorphic copy of \((1+B)'\).
+\end{lemma}
+\begin{proof}
+Put \(R=\Fp\oplus B\), and let \(s_1,\ldots,s_d\) generate \(B\) as a
+nonunital algebra. Write \(e_{ij}(b)=I+bE_{ij}\). Let
+\(E=\E_3(R)\), \(Q=\E_3(\Fp)\), and
+\(X=\{e_{ij}(s_\ell):i\ne j,\ 1\leq\ell\leq d\}\).
+For distinct indices the identities
+\[
+ e_{ij}(b)e_{ij}(c)=e_{ij}(b+c),\qquad
+ [e_{ik}(b),e_{kj}(c)]=e_{ij}(bc)
+\]
+hold with commutator \(xyx^{-1}y^{-1}\).
+Induction on words, followed by addition and integer powers, shows that
+\(\langle X\rangle\) contains every \(e_{ij}(b)\), \(b\in B\).
+The use of the prime field ensures all scalar coefficients are obtained
+by integer powers. Since
+\(e_{ij}(\lambda+b)=e_{ij}(\lambda)e_{ij}(b)\), \(E=\langle Q,X\rangle\).
+
+Define
+\[
+ L=\langle qxq^{-1}:q\in Q,\ x\in X\rangle.
+\]
+It is finitely generated because \(Q\) is finite. It contains \(X\),
+is normalized by \(Q\), and is trivially normalized by itself.
+Hence it is normal in \(E=\langle Q,L\rangle\); it equals the normal
+closure of the elementary matrices over \(B\). Each displayed generator
+lies in \(1+\Mat_3(B)\), as does \(L\).
+
+For \(u\in1+B\), put \(D(u)=\diag(u,u^{-1},1)\). Elementary
+factorization gives
+\[
+ D(u)=e_{12}(u)e_{21}(-u^{-1})e_{12}(u)
+             e_{12}(-1)e_{21}(1)e_{12}(-1).
+\]
+In \(E/L\), each factor may be replaced by its reduction modulo \(B\).
+The resulting product is its value at \(u=1\), namely identity.
+Thus \(D(u)\in L\). Direct multiplication, retaining the coefficient order,
+gives
+\[
+ D(u)D(v)D(uv)^{-1}=\diag(1,u^{-1}v^{-1}uv,1).
+\]
+These coefficients generate \((1+B)'\). Therefore
+\(h\mapsto\diag(1,h,1)\) embeds \((1+B)'\) in \(L\).
+No homomorphism assertion for \(u\mapsto D(u)\) is used.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(i)]
+Use the preceding lemmas to embed \(H\) in \(L\).
+List its finite displayed generators as \(I+c_1,\ldots,I+c_r\) and let
+\(C\) be the nonunital subalgebra of \(\Mat_3(B)\) generated by the \(c_i\).
+It is nil because \(\Mat_3(B)\) is nil.
+Every inverse of \(I+c_i\) is a finite geometric polynomial in \(c_i\);
+hence \(L=G(C;c_1,\ldots,c_r)\leq1+C\).
+If \(C\) were nilpotent, words below a fixed length would span it.
+It would be finite dimensional over the finite field, making \(1+C\)
+finite, contrary to \(H\leq L\).
+
+All elements \(1+c\) have finite \(p\)-power order:
+\((1+c)^{p^e}=1+c^{p^e}=1\) for large \(e\).
+Thus infinite \(L\) is not cyclic. After deleting identity entries and
+repetitions its finite list has at least two entries; the remaining
+differences still generate the same algebra. This gives precisely the
+source required in Problem 9.76.
+\end{proof}
+
+\section{A homogeneous residually finite source}
+
+For clarity we verify the scalar-extension property needed for Hammoudi.
+Stable nilness alone is not substituted for absolute nilness.
+
+\begin{lemma}\label{lem:absolute}
+A countable-dimensional absolutely stable nil \(\Fp\)-algebra \(A\)
+embeds in a finitely generated absolutely stable nil \(\Fp\)-algebra.
+\end{lemma}
+\begin{proof}
+We track the construction in \cite[Lemmas 4.1, 4.3--4.5 and proof of
+Theorem 4.3]{AAJZ}. Its seed can be fixed before a field extension is chosen.
+Indeed their Lemma 4.3, applied to
+\[
+ \Fp[t_1,t_2,\ldots]\otimes\Mat_\infty(\Fp),
+\]
+gives a fixed finitely generated infinite-dimensional algebra \(B_0\)
+whose tensor product with this algebra is nil.
+The polynomial-matrix algebra has locally subexponential growth:
+a finite set lies in a finite matrix corner over finitely many polynomial
+variables, where growth is polynomial.
+For every \(E/\Fp\) and every finite sum
+\(X=\sum_{\ell=1}^s b_\ell\otimes\alpha_\ell\otimes Y_\ell
+\in\Mat_n(B_0\otimes E)\), with \(b_\ell\in B_0\),
+\(\alpha_\ell\in E\) and \(Y_\ell\in\Mat_n(\Fp)\), the universal element
+\(\sum b_\ell\otimes t_\ell\otimes Y_\ell\) is nilpotent.
+Evaluation \(t_\ell\mapsto\alpha_\ell\) proves \(X\) nilpotent.
+Thus this same \(B_0\) is absolutely stable nil. This is the fixed-seed
+argument in their Lemma 4.4.
+
+Their auxiliary algebra is
+\(\widetilde A=A\wr N\), where \(N=\Fp u+\Fp u^2\), \(u^3=0\).
+It is the external semidirect sum \(N+\Mat_2(A)\).
+Base change commutes with this finite-dimensional wreath construction.
+For every \(E\) and \(n\), its matrix ideal is
+\(\Mat_{2n}(A\otimes E)\), nil by assumption, and its quotient is
+\(\Mat_n(N\otimes E)\), nilpotent. An extension of a nil ideal by a nil
+algebra is nil: a power of each element enters the ideal, and another
+power is zero. Hence \(\widetilde A\) is absolutely stable nil.
+
+Put \(V=\Fp\oplus B_0\), with a fixed basis, and let
+\(S_F=S(\widetilde A,V)\) be the matrices over \(\widetilde A\)
+with finitely many nonzero rows, as in \cite{AAJZ}.
+The natural map
+\[
+ S_F\otimes E\longrightarrow S(\widetilde A\otimes E,V\otimes E)
+\]
+is injective and multiplicative. To check injectivity, write a tensor as
+\(\sum M_\ell\otimes\alpha_\ell\) with the \(\alpha_\ell\)
+\(\Fp\)-linearly independent; zero in each matrix entry then forces
+all entries of each \(M_\ell\) to vanish. Finite sums of matrices have a
+common finite row support. Matrix multiplication also involves finite
+sums, because the right factor has finite row support.
+No surjectivity of this scalar-extension map is required.
+
+The bimodule actions are left multiplication on \(V\) and precomposition
+by left multiplication on \(V\); these extend to the same actions over
+\(E\). Consequently the external semidirect sums give an injection
+\[
+ (B_0+S_F)\otimes E\ \longrightarrow\
+ R_E=(B_0\otimes E)+S(\widetilde A\otimes E,V\otimes E).
+\]
+The finite-row algebra is an ideal: postcomposition sends a finite-dimensional
+output space into another such space, while precomposition preserves its
+output space.
+
+Every \(\Mat_n\) of that finite-row ideal is nil. View its blocks as
+one finite-row matrix indexed by \(\{1,\ldots,n\}\) times the chosen basis.
+For a finite row support \(T\), the \(T\times T\) corner map is a
+homomorphism whose kernel has square zero. The corner is nil by stable
+nilness of \(\widetilde A\otimes E\); therefore the original matrix is
+nilpotent. The quotient \(\Mat_n(R_E)\) by this ideal is
+\(\Mat_n(B_0\otimes E)\), also nil. Thus \(\Mat_n(R_E)\) is nil.
+
+Finally the containment argument of \cite[proof of Theorem 4.3]{AAJZ}
+places \(A\) in the finitely generated algebra
+\[
+ B_1=\langle B_0,c_\gamma,e_{11}(u)\rangle\leq B_0+S_F
+\]
+for one generating linear map \(\gamma:V\to\widetilde A\).
+The two additional matrices have finite row support.
+This invokes exactly their established embedding construction; only
+its scalar-extension property is being checked here.
+Field extension preserves the injection \(B_1\hookrightarrow B_0+S_F\).
+The injection into \(R_E\) then proves every \(\Mat_n(B_1\otimes E)\)
+nil. The finitely generated algebra \(B_1\) is the required one.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
+Use Lemma~\ref{lem:absolute} for the augmentation ideal in
+Lemma~\ref{lem:augmentation}, and use its absolutely stable nil containing
+algebra as \(B\) in the elementary construction.
+The resulting finitely generated difference algebra
+\(C\subseteq\Mat_3(B)\) is absolutely nil: after every field extension it
+injects into the nil algebra \(\Mat_3(B\otimes E)\).
+
+Present \(C=F/I\), with \(F=\Fp\langle x_1,\ldots,x_r\rangle_+\)
+and \(x_i\mapsto c_i\). Hammoudi's Theorem 3 \cite[p.~96]{Hammoudi}
+provides a homogeneous ideal \(J\subseteq I\) such that \(D=F/J\)
+is a classical Golod nil algebra. His construction retains these
+generators. Therefore
+\[
+ \Gamma=\langle1+x_1+J,\ldots,1+x_r+J\rangle
+   \ \xrightarrow{\ \rho\ }\ L
+\]
+is surjective; see also \cite[Corollary 3]{Hammoudi}.
+The algebra \(D\) is positively graded, with finite-dimensional homogeneous
+components. Its degree truncations are finite nilpotent \(\Fp\)-algebras
+and separate its elements. The corresponding finite \(p\)-group maps
+separate elements of \(\Gamma\), proving residual finiteness.
+The group is infinite since it maps onto infinite \(L\).
+
+For the embedding \(\iota:H\hookrightarrow L\) already constructed, set
+\(P=\rho^{-1}(\iota(H))\). The map
+\(\iota^{-1}\circ\rho|_P:P\twoheadrightarrow H\) is the required epimorphism.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:AT}]
+Apply Theorem~\ref{thm:main}(ii) to the original AT group of
+Lemma~\ref{lem:target}.
+\end{proof}
+
+\section{Scope, verification and disclosures}
+
+The target and subgroup may be infinitely generated, as the problem
+permits. We do not obtain a finitely generated AT quotient or an AT
+realization of the entire source. The homogeneous-source conclusion
+is a section statement; it does not assert that every countable locally
+finite \(p\)-group embeds in a residually finite group.
+For example a nontrivial finite image of the divisible Pr\"ufer
+\(p\)-group is impossible.
+
+The proofs above are theoretical. Supplementary standard-library scripts
+check finite portraits, common-zero sections, nonabelian wreath identities,
+augmentation powers and noncommutative elementary identities.
+These finite checks do not prove the universal statements.
+The package includes exact inputs, outputs and independent AI adversarial
+reviews. External theorems remain identified as such; no formal
+proof-assistant verification of this result is claimed.
+
+The accompanying priority audit searched the official Notebook and
+updates, arXiv, related primary literature and accessible bibliographic
+records through 24 October 2026. It found no earlier complete same-scope
+solution. This is a bounded assessment, not a certification of first
+priority. The AT definition was checked using primary indexed full text;
+repeated attempts to obtain the original 1986 PDF bytes failed.
+The exact source excerpts and acquisition limitations are documented in
+the local research record; third-party articles are not redistributed
+with the verification package.
+
+AI tools were used extensively in discovering, developing, checking and
+writing the mathematics, including independent adversarial AI reviews.
+This preprint has not undergone independent human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{AAJZshort}
+A.~Alahmadi, H.~Alsulami, S.~K.~Jain and E.~Zelmanov,
+On matrix wreath products of algebras,
+\emph{Electron. Res. Announc. Math. Sci.} \textbf{24} (2017), 78--86.
+\href{https://doi.org/10.3934/era.2017.24.009}{doi:10.3934/era.2017.24.009}.
+
+\bibitem{AAJZ}
+A.~Alahmadi, H.~Alsulami, S.~K.~Jain and E.~Zelmanov,
+Matrix wreath products of algebras and embedding theorems,
+\emph{Trans. Amer. Math. Soc.} \textbf{372} (2019), 2389--2406.
+\href{https://doi.org/10.1090/tran/7642}{doi:10.1090/tran/7642}.
+Detailed theorem numbering used here is that of the author manuscript,
+\href{https://arxiv.org/abs/1703.08734v2}{arXiv:1703.08734v2}.
+
+\bibitem{Hammoudi}
+L.~Hammoudi, Quotients of nilalgebras and their associated groups,
+\emph{Pacific J. Math.} \textbf{212} (2003), no.~1, 93--101.
+\href{https://doi.org/10.2140/pjm.2003.212.93}{doi:10.2140/pjm.2003.212.93}.
+
+\bibitem{KN}
+E.~I.~Khukhro and V.~D.~Mazurov (eds.),
+\emph{Unsolved Problems in Group Theory: The Kourovka Notebook},
+21st ed., Sobolev Institute of Mathematics, Novosibirsk, 2026,
+official revision of 20 October 2026, Problems 9.76, 13.55 and 21.131.
+\url{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf}.
+
+\bibitem{Phillips}
+R.~E.~Phillips, Embedding methods for periodic groups,
+\emph{Proc. London Math. Soc.} (3) \textbf{35} (1977), 238--256;
+correction, (3) \textbf{38} (1979), 152.
+\href{https://doi.org/10.1112/plms/s3-35.2.238}{doi:10.1112/plms/s3-35.2.238}.
+
+\bibitem{Rozhkov}
+A.~V.~Rozhkov, Theory of Aleshin type groups,
+\emph{Mat. Zametki} \textbf{40} (1986), no.~5, 572--589;
+English translation, \emph{Math. Notes} \textbf{40} (1986), 827--836.
+\href{https://doi.org/10.1007/BF01159699}{doi:10.1007/BF01159699}.
+\end{thebibliography}
+\end{document}
