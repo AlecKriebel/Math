@@ -1,5 +1,5 @@
-# Kourovka21.125 — reviewed partials; final geometry delta in review
+# Kourovka21.125 — unsolved after substantial original research
 
-Checkpoint 2026-10-24T22:07:39.762255+00:00. Full-remainder discovery estimate **5%**. Literal ordinary-growth(a) is a freshly verified negative implication of prior work; no original full-problem claim. Eligible Hydra(b) ranks≥5 remain unresolved.
+Checkpoint 2026-10-24T22:18:57.661793+00:00. Discovery estimate **6%**. All original families are terminal and their material partial findings freshly reviewed. The final rank5 no-self-intersection construction was itself rigorously falsified as a special cover by an exact group identity and inter-osculation.
 
-Constructive, negative, homology, canonical-cover and root control deductions passed fresh nonauthor reviews within their stated partial scope, with scope repairs recorded. Root reproduced ten checker/certificate invocations and86 current reviewed-file hashes. See ROOT_CHECKPOINT.md. A new fixed-rank Lie/BCH quotient and possible inter-osculation witness remain under independent verification; they are not promoted by this checkpoint. No paper, new upload or tracker write.
+Literal ordinary-growth(a) is negative by a verified prior-theorem implication; eligible Hydra(b) ranks≥5 remain unresolved. See ROOT_SYNTHESIS.md for full scope, accepted partials and precise gaps. No new publication or tracker entry.

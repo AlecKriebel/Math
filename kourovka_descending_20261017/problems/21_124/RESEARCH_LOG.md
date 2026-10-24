@@ -1,0 +1,5 @@
+# Kourovka21.124 research log
+
+## 2026-10-24T22:20:47.765617+00:00 — original research begins (5%)
+
+Previous21.125effort endedunsolvedafterdistinct substantialtheoretical/computationalattempts andfreshreviews; allacceptedpartialfindingsandexactgaps preserved. Authoritative21.124sourceandtwofreshprioritychecks locatenocompleteknownresolution. Currentthreeoriginalfamiliesstartindependently. Literalvirtualspecialnesshasnocompactnessanddoesnotexplicitlyboundfreefiberrank. Lintonhyperbolicallfiberrankcaseknown;generalretractembeddingdoesnotpreserveCAT0. Newrootminseteligibilityfilterisbeingwrittenandwillreceivefreshreview; nooriginalfullsolutionclaim.
