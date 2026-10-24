@@ -1,0 +1,6 @@
+# Research log — 21.126 source preparation and preliminary priority audit
+
+- 2026-10-24T20:53:56Z — Opened audit only: both super-exponential and sub-exponential/non-polynomial Dehn-function existence questions for finitely presented subgroups of RAAGs. No original solution effort. Assigned audit completion estimate: 5%.
+- 2026-10-24T20:56:00.782838+00:00 — Inspected exact official21.126; Brady–Soroko original Question 2 and July2021 Questions1.8; Bridson exponential-example scope; Brady–Tran CAT(0)scope; 2025Goswami–Verma is distortion only; 2026Bestvina–Brady classification gives degrees1–4. Audit completion estimate: 65%.
+- 2026-10-24T20:59:50.294969+00:00 — Wrote source contract, rate-convention cautions, primary priority audit, and manifest. Both branches provisionally open in bounded search. Explicitly preserved distortion/Dehn and CAT(0)/RAAG gaps; classical hydra doubles nonRF barrier verified. Assigned audit completion estimate: 100%; original solution effort: 0%.
+- 2026-10-24T21:00:25.233127+00:00 — Validation checkpoint: manifest JSON parsed; all 15 cached source hashes, sizes, and extracted PDF texts checked; exact official hash and formula escaping checked. Assigned audit completion estimate: 100%.

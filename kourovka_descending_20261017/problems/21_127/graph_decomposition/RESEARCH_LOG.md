@@ -1,0 +1,13 @@
+# Graph-of-groups mechanism research: 21.127
+
+2026-10-24T20:40:46.889293+00:00 — Opened independent structural route. Target: rational scl for arbitrary RAAG commutator elements. Focus: P4 and torus amalgam surface gluing. Estimate: 3% toward full target; no complete result.
+
+2026-10-24T20:53:36.450076+00:00 — Derived and exactly verified a winding-transport criterion for fixed coordinate-torus polygon blocks. The remaining non-disks form a minimum transversal of coordinate components with nonzero charge. Constructed a P4 family with sixteen blocks, eight bad coordinate components, transversal number four, and exact relative cost two within that family; large unchanged-block graph covers retain positive-density loss. General annular covers may change block types and are explicitly outside that counting statement.
+
+2026-10-24T20:53:36.450088+00:00 — Constructed two explicit null-homologous full-support exterior elements g1,g2. A cyclic-cover-and-four-holed-cap argument proves absolute chain scl≤2. Retraction to F(a,c), plus a directly verified commutator identity for h=acacAcACCC, proves chain scl≥1. The exact chain value remains between these bounds. Exact integer-flow, homology, free-reduction, and exhaustive hitting-set checks passed. Estimate: 7% toward the full target; no complete resolution.
+
+2026-10-24T20:53:36.450093+00:00 — A temporary optional SciPy installation failed ENOSPC; its environment was removed without touching other work. An independent standard-library Fraction simplex probe completed the small free-group LP instead, with matching exact primal/dual objectives, agreeing with the direct commutator proof. All essential checks need no external packages.
+
+2026-10-24T20:53:36.450096+00:00 — Tested finite-cover repair of the canonical splitting, free-derived-subgroup reduction, and collapsing edge directions in Chen's isometric-embedding theorem. Each transfers or violates an essential hypothesis; exact gaps recorded. No theorem controlling all block types or pairings, and no irrational element, was established. No git, publication, external outreach, or other-agent work was performed. Files frozen for a fresh adversarial review.
+
+2026-10-24T20:58:32.201799+00:00 — Fresh adversarial review requested a wording clarification: arbitrary rewiring retains the legal graph-of-groups endpoint types (ab–bc for b, bc–cd for c). Added that explicit condition immediately before the rewiring argument. This clarifies the existing mechanism; no mathematical construction, computation, or bound changed. Completion estimate remains 7%; original full rationality target unsolved. Historical FROZEN_MANIFEST.json is retained unchanged, with this delta recorded separately.
