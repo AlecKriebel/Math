@@ -1,0 +1,6 @@
+# Imported theorem provenance
+
+- Jonathan Lubin and John Tate, *Formal Complex Multiplication in Local Fields*, Annals of Mathematics 81 (1965), 380–387, Theorem 2(b), pp. 383–384. DOI https://doi.org/10.2307/1970622 . Checked original PDF at https://math.bu.edu/people/jsweinst/AWS/Files/LubinTateFormalCMinLocalFields.pdf . Local cached PDF SHA-256 `89615bfd7f6d6c174c5d199857d7c79ac9340e64a428d8e0983e30ee04dd600f`. The cached original and extracted text are excluded from Git; the derived proofs and source citation are publication artifacts.
+- Linyuan Lu and László Székely, *Using Lovász Local Lemma in the Space of Random Injections*, Electronic Journal of Combinatorics 14(1) (2007), R63, Theorem 1 and Lemma 3. DOI https://doi.org/10.37236/981 . Checked primary PDF https://people.math.sc.edu/lu/papers/randinj.pdf . Used only for the standard sparse-multiplicity sufficient condition in `PARTIAL_RESULTS.md`.
+
+No source was contacted or messaged. The mathematical polynomial coefficients, analytic transfer proof, and integral obstruction in this folder are independently checkable from their displayed statements and exact scripts. Existing literature priority and novelty are handled separately by the root task; no novelty is asserted here.
