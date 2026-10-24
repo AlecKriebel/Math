@@ -1,4 +1,4 @@
-name: Qubit POVM-PVM exact verification
+name: Qubit POVM-PVM formal and exact verification
 
 on:
   push:
@@ -39,3 +39,41 @@ jobs:
           path: |
             qubit_povm_pvm_minimum_settings/paper/main.pdf
             qubit_povm_pvm_minimum_settings/paper/review.pdf
+
+  lean:
+    name: Lean proofs, statement contracts, and axiom audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: qubit_povm_pvm_minimum_settings/bell_lean
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version-file: qubit_povm_pvm_minimum_settings/.python-version
+      - name: Install verifier dependencies
+        run: python -m pip install --requirement requirements-preflight.txt
+      - name: Install pinned Lean toolchain
+        shell: bash
+        run: |
+          curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(cat lean-toolchain)"
+      - name: Run verifier regression and exact preflight checks
+        run: python scripts/preflight_all.py
+      - name: Rebuild every project proof and check contracts and axioms
+        # The runner checks all dependency revisions and the compiler commit.
+        # Only dependency build artifacts are reused, never project outputs.
+        run: python scripts/run_lean.py --bootstrap --serial
+      - name: Preserve run-specific verification evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qubit-povm-pvm-lean-${{ github.sha }}
+          path: |
+            qubit_povm_pvm_minimum_settings/bell_lean/reports/latest_run.json
+            qubit_povm_pvm_minimum_settings/bell_lean/reports/runs/
+            qubit_povm_pvm_minimum_settings/bell_lean/reports/preflight.json
+          if-no-files-found: warn
