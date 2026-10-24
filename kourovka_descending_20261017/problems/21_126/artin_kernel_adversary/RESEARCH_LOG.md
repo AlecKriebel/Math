@@ -1,0 +1,7 @@
+# Independent Artin-kernel adversarial review
+
+2026-10-24T21:25:58.213909+00:00 — Review started, 15% complete. Frozen three proof notes and three primary-source text extracts. Treating the asserted polynomial bound as an unproved partial class exclusion. No authorship, no novelty claim, no full resolution of 21.126, no publication or outreach.
+
+2026-10-24T21:28:40.501903+00:00 — Review 80% complete. Analytically checked rectangular disk pushing, cubic rewriting, fixed-residue identity HNN structure, and original-boundary-word filling estimates. Independent exact checks passed for 32,767 graph/living-set pairs, 82,455 link-induction steps, 952 signed weighted residue identities, and 4,900 residue pairs. No fatal objection found. Supplemental 2026 Roy source has an unqualified arbitrary-map reading contradicted by an elementary path example; it is not used by the audited proof.
+
+2026-10-24T21:31:08.265778+00:00 — Review 100% complete. PASS for the finite-graph rank-one Artin-kernel polynomial upper bound; no outstanding substantive objection. Final expanded bounded checks include 1,428 signed weighted residue identities, including characters with proper image rZ. All three frozen proof notes and primary-source text extracts are unchanged. A source-manifest delta added bibliographic metadata and unused MMV locators; inspected and accepted without changing the audited rank-one argument. This is a partial class exclusion only: no full 21.126 solution, novelty certification, publication, or human review.

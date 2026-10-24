@@ -1,0 +1,23 @@
+# Independent adversarial audit: positive constant transitions
+
+**PASS for the precise model theorem in the revised note.** This is an elementary obstruction for counts produced by one fixed nonnegative integral matrix, together with one narrow uniformly upper-triangular multitransition extension. It is not a theorem that all finite recurrences, all substitution groups, all RAAG subgroups, or all Dehn functions have a polynomial/exponential dichotomy. No novelty or Kourovka solution claim is verified here.
+
+## Independent proof checks
+
+1. Trimming by reachability from the support of b and co-reachability to the support of c preserves every contributing walk and removes only vertices that can contribute none. A nonempty trim graph has a successful walk.
+2. A strongly connected component with a cycle and internal outdegree one at each vertex is precisely a simple directed cycle with multiplicity-one edges. Singleton components with zero, one, and two or more loops are correctly separated.
+3. At a branching vertex two internal outgoing edges, followed by return paths, give two closed words W1,W2 of lengths p,q with distinct first edges. Their powers W1^q,W2^p have equal length pq, and fixed-length block concatenation gives an injective map from binary words to walks. Entry and exit paths exist because the graph is trim. This proves the exponential lower bound without a Perron–Frobenius or irreducibility assumption on the entire matrix. An upper bound follows from finite maximal edge multiplicity/outdegree.
+4. In the absence of branching cyclic components, a successful walk is described by finitely many choices of an SCC chain, entry/exit vertices and connecting edges, plus one nonnegative full-cycle count per cyclic component visited. Cumulative length at most n gives O(n^r), where r is the maximal number of such components in a successful chain. A successful skeleton with r cyclic components gives the matching lower bound by varying each count up to a fixed multiple of n. Thus the exponent is r, not r-1: the function is cumulative rather than an exact-length count.
+5. For one fixed substitution, the incidence matrix really does encode letter counts, including erasing substitutions. The inequalities C(n)/(n+1)<=M(n)<=C(n) are immediate. An exponential C divided by n+1 is still bounded below exponentially after decreasing its exponential rate. A polynomial upper bound for C bounds M as well. This conclusion does not establish a group filling bound without a separate equivalence theorem.
+6. For switching matrices I+N in a common strict upper-triangular basis, the revised condition 0<=N_ij<=M is explicit. Expanding the ordered product gives a sum over ordered subsets of positions. Terms of degree d vanish, regardless of which factors occur. A degree-j entry has at most d^(j-1) summands of size at most M^j. Summation over binomial(n,j) subsets gives the displayed polynomial bound. This argument makes no assertion for arbitrary switching families.
+7. The recurrence T(2^k)=2^k T(2^(k-1)), T(1)=1, gives log_2 T(2^k)=k(k+1)/2 by summing the integers 1 through k. On 2^k<=n<2^(k+1), log T(n)/log n>=k/2 tends to infinity, while log T(n)/n<=k(k+1)log(2)/(2*2^k) tends to zero. Thus the monotone extension really is superpolynomial and subexponential. It is a counterexample to an overbroad claim about all finitely described recurrences, not an example of a Dehn function or a constructed subgroup.
+
+## Adversarial cases checked
+
+An acyclic successful graph has eventual positive constant cumulative count (r=0). A simple directed cycle has linear cumulative count despite periodic exact-length counts. Two and three cyclic singleton components in a chain give quadratic and cubic cumulative count. Parallel self-loops give exponential count. Erasure does not invalidate the prefix maximum estimate. Two identical identity transition matrices show why counting all switch words cannot establish growth of the maximum product norm. These cases agree with the precise restricted theorem.
+
+`verify_transitions.py` independently checks five exact counting formulas at every n from zero through 100 and the dyadic recurrence for indices one through 100. The resulting arithmetic certificate is `transition_checks.json`. These finite tests corroborate formulas only; the asymptotic proof is the argument above.
+
+## Repairs
+
+I requested that the triangular-matrix bound specify nonnegative bounded entries (or bounded absolute values). The revised note now states 0<=N_ij<=M. The redundant 'unless eventually zero' exception for a prefix maximum was also removed. The final revised bytes were reread. No substantive objection remains within the declared scope.

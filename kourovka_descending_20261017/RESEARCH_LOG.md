@@ -249,3 +249,13 @@ Checkpoint24preparationinitiallyfailedattheshellheredocbeforeanyscriptcouldrunbe
 The previous narrow goal turn completed a renewed source-scope/priority check of the linked149Lean and published-package attribution; no new theorem or upload resulted. Current mathematical work makes progress: all127families frozen and freshly reviewed, matching and exact-chain addenda independently pass, free-image blind word verified, eight root checker reruns pass, and actual primary equation/nongeometric-cover theorem scopes read. Preserve127asunsolved with12% discovery estimate and no publication. ROOT_SYNTHESIS records the precise all-graph encoding/absolute-realization and irrational-extremality gaps.
 
 21.126 primary audit is complete and three independent original families now work on the full intrinsic-Dehn existence target. Initial discovery estimate5%; publication gate closed. Checkpoint24commit1dbdd02c874dd0f7566a70e813ba587248011070 was remotely confirmed; checkpoint25 will preserve frozen127work and126source/start records, excluding live126family files.
+
+## 2026-10-24T21:18:40.597755+00:00 — goal-turn audit and next safe action
+
+Classify the immediately preceding user-question turn as **no progress toward new mathematical discovery**: it repeated the existing149scope check and confirmed attribution in the already published archive. It answered the user accurately but did not advance a new solution. No blocker recurred. This continuation has resumed concrete work: final127partial synthesis/reproduction and checkpoint25completed,126three original families are live, and two root construction filters have complete candidate proofs awaiting fresh review. The persistent goal remains active without redefinition.
+
+## 2026-10-24T21:38:29.216700+00:00 —21.126 reviewed partials, unsolved;21.125 eligible remainder opened (5%)
+
+Current goal turn made concrete progress:127partial synthesis/push25confirmed47e11db00c83a796ecf66766a9a601b98a53758a;126three independent original families now complete and reviewed, including newrank-one/abelianedge/smallambient and finiteindexcharacter filters. Root proof/source checks and six exact checker reruns pass. Full126target remainsunresolved; recordedunsolved at12% with no paper/upload/tracker.
+
+125preliminaryprimaryaudit completed and literal(a) prior-implication scope is under fresh independent finalreview. The Hydra(b)m≥5 remainder is provisionallyopen; three original families begin. Do not turn a wordlength ambiguity, a partial counterexample, or a restricted rank case into a claimed complete original resolution.
