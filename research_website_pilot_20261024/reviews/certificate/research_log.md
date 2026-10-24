@@ -1,0 +1,9 @@
+# Independent certificate review log
+
+2026-10-24T22:48:21.329835+00:00 — Started independent computational/adversarial review of deposited release. Completion estimate: 5%. Scope: reconstruct tree and square without importing deposited routines, verify every integer current/divergence/energy, adversarial corruption tests, and free-boundary transfer. No earlier review artifacts read.
+
+2026-10-24T22:50:07.563665+00:00 — Independent word-coordinate reconstruction passed all 19,931 edges, complete 40-neighbor root list, 797,240 exact integer currents, 122,800 divergences, 40 energies, exact total and strict inequality. J equals H[W] in this particular ball by independent computation (only subset needed). All 15 manifest members match size/hash. Deposited current/reduction scripts replayed normally and under -O; all four outputs byte-match frozen JSON. Completion estimate: 70%; pending hostile parser results and written transfer/metadata assessment.
+
+2026-10-24T22:53:00.276769+00:00 — Final checkpoint. Completion estimate: 100% of assigned certificate, boundary, parser, and transfer review (not a probability of theorem correctness). Verdict PASS within documented scope. Hostile full-certificate suite: 161/161 expected outcomes, including 145 rejections; all 20 altered-file entry-point cases fail the byte pin. No false mathematical certification found. Bounded direct-API/schema leniencies documented. Exact Q(sqrt(2)) equations and theorem/README/metadata constants agree. Full G all-depth proof remains the parallel analytic review; source manifest checked again at completion.
+
+2026-10-24T22:53:37.811369+00:00 — Additional published-PDF consistency checkpoint: extracted and visually inspected all seven frozen PDF pages. Core displayed equations, integer counts, exponents, inequalities and disclosures agree with source. No clipping/overlap/missing glyph observed. Completion remains 100% of assigned review including this additional consistency check.

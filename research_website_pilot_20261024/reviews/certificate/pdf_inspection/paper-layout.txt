@@ -1,0 +1,337 @@
+        Free spanning-forest degree can decrease under squaring
+                                              Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                           22 October 2026
+                                          Preprint, version 1.0.0
+
+
+
+                                                Abstract
+         The expected root degree of the free uniform spanning forest need not be invariant under
+     squaring an inﬁnite connected locally ﬁnite simple vertex-transitive graph. For the binary grand-
+     parent graph G, of degree 8, two explicit free-exhaustion reductions give E degFUSF(G) (o) =
+           √
+     (24 − 2)/7 > 3.22. For its simple square G2 , of degree 40, a ﬁnite rational-current certiﬁ-
+     cate proves E degFUSF(G2 ) (o) ≤ 3208526010913748780/1018 < 3.21. All currents, divergences
+     and energies are veriﬁed with integer arithmetic; the passage to the inﬁnite free forest is jus-
+     tiﬁed by ﬁnite-support ﬂows and free exhaustion. With the explicitly adopted normalization
+     bF (X) = 21 E degFUSF(X) (o) − 1, this gives bF (G) − bF (G2 ) > 1/200, a negative answer to the
+     unrestricted vertex-transitive assertion in Abért’s Question 24. The graph and electrical/forest
+     principles are established background; no new general forest mechanism or exhaustive priority
+     claim is made.
+
+
+1    The question and the precise convention
+For a simple graph X, its simple square X 2 has the same vertices, with distinct vertices adjacent
+when their X-distance is at most two. Every edge below has unit conductance. The free uniform
+spanning forest, abbreviated FUSF, is the weak limit of uniform spanning trees on ﬁnite connected
+induced subgraphs exhausting X, with no boundary vertices identiﬁed [2, §5]. For vertex-transitive
+X, deﬁne
+                                bF (X) = 21 E degFUSF(X) (o) − 1.                              (1)
+The choice of o does not matter.
+     Abért’s Some questions, dated 2 November 2010, printed p. 4, Question 24 [1], asks square
+invariance for the ﬁrst L2 Betti number obtained from expected free-forest degree for an arbitrary
+vertex-transitive graph. The original does not print a normalization formula. We state (1) explicitly:
+                                                                            (2)
+it is the usual forest-derived normalization matching E degFUSF = 2 + 2β1 on Cayley graphs [4,
+p. 1]. Our directly proved assertion is unequal expected degrees, and the answer about bF uses (1).
+We do not identify a diﬀerent nonunimodular L2 invariant with it. No unimodularity hypothesis is
+present in the inspected question; its adjacent comment already aﬃrms the Cayley case.
+
+
+
+
+                                                    1
+Theorem 1. Let T be the 3-regular tree with a distinguished end, let p(v) be the neighbor toward that
+end, and let G have the unordered edges {v, p(v)} and {v, p2 (v)}. Then G is an inﬁnite connected
+locally ﬁnite simple vertex-transitive graph of degree 8, with nonunimodular full automorphism group.
+Its square H = G2 is vertex-transitive of degree 40, and
+                                                     √
+                                               24 − 2        161
+                           E degFUSF(G) (o) =            >       ,                                (2)
+                                                   7          50
+                                               3208526010913748780      321
+                          E degFUSF(H) (o) ≤                18
+                                                                      <     .                     (3)
+                                                         10             100
+Consequently bF (G) − bF (H) > 1/200.
+
+    The grandparent family is prior; Tang studies its FUSF connectivity and branching [5, §5.2].
+The contribution here is the speciﬁc expected-degree comparison, using the exact original value
+and a ﬁnite certiﬁcate for the square. The known Cayley case and unimodular framework are not
+refuted. We make no assertion about a new general electrical method.
+
+
+2    The graph and the electrical facts used
+The end stabilizer in Aut(T ) acts transitively and preserves G, proving transitivity; G contains
+T . At any vertex there are three incident tree edges and ﬁve incident grandparent edges, with no
+repetitions.
+    We also verify nonunimodularity for the full group. A tree edge x p(x) lies in exactly three
+triangles of G, through p2 (x) and the two children of x. A grandparent edge x p2 (x) lies in exactly
+one, through p(x). Thus G intrinsically determines the tree edges. On the three recovered tree-
+neighbors of x, the induced G-graph is K1,2 , whose unique center is p(x). Every automorphism
+therefore preserves p and the distinguished end. Conversely an end-preserving tree automorphism
+preserves G. The stabilizer of x ﬁxes p(x), while the stabilizer of p(x) has an orbit of size two on
+its children, including x. The paired suborbit sizes 1, 2 violate the usual unimodularity criterion
+[5, §2.3]. A nonunimodular transitive subgroup alone would not have suﬃced for this full-group
+conclusion.
+    For ﬁnite connected unit-conductance networks, resistance is the minimum of
+                                                 ∑
+                                        E(θ) =           θ(x, y)2
+                                                 {x,y}
+
+over unit ﬂows between the speciﬁed terminals; sum once per unoriented edge. We use Thom-
+son’s principle, Rayleigh monotonicity and Kirchhoﬀ’s edge-marginal identity [2, §4, Theorem 4.1].
+Deﬁne free resistance by a ﬁnite free induced exhaustion:
+                                      F
+                                     RX (x, y) = lim RXn (x, y).
+                                                   n
+
+The limit decreases and is exhaustion-independent. The ﬁnite identity and the free weak limit give,
+for every edge e = {x, y},
+                                   P(e ∈ FUSF(X)) = RX F
+                                                         (x, y).                                (4)
+See also [2, Proposition 7.1 and Theorem 7.8]. Connected edge-exhaustions give the same limit:
+they are eventually sandwiched between any ﬁxed ﬁnite induced ball and some larger ball, so
+Rayleigh monotonicity squeezes the resistance limits. These facts concern free boundaries, not
+wired resistance or the unconstrained minimum among inﬁnite square-summable ﬂows.
+
+                                                   2
+3    First calculation: branches and a diagonal free exhaustion
+For a vertex u, write a = p(u) and b = p2 (u). Let Bm (u; a, b) contain u, its descendants through
+m generations, and terminals a, b. Include every grandparent-graph edge incident to an interior
+vertex with both endpoints in this set, and omit the edge ab. An untruncated descendant branch
+meets the rest of G only at a, b. The truncation deletes external edges; it makes no identiﬁcations.
+Diﬀerent child branches have disjoint interiors.
+    Let κm be the terminal conductance of Bm . The case m = 0 is the two-unit-edge path a − u − b.
+Replacing each of u’s two child branches by its terminal conductance therefore gives the exact
+recurrence
+                                                        1 + 2κm
+                                   κ0 = 12 ,   κm+1 =           .                                (5)
+                                                        2 + 2κm
+Indeed the ua conductance becomes 1 + 2κm , in series with the unit edge ub. The map in (5) is
+increasing, starts the sequence increasing from 1/2, and is bounded above by 1. Its unique positive
+ﬁxed point is
+                              √                          √             A
+                        κ = 1/ 2,      A = 1 + 2κ = 1 + 2,       κ=        .
+                                                                     1+A
+     Put xi = pi (o). For m ≥ 0, n ≥ 2, form the following ﬁnite connected subgraph Lm,n : the spine
+x0 , . . . , xn with all adjacent and skip-one edges; both depth-m child branches at x0 , with terminals
+x0 , x1 ; and the one depth-m oﬀ-spine child branch at each xi , 1 ≤ i < n, with terminals xi , xi+1 . All
+original distinct edges retain conductance one. These graphs increase with each parameter. Every
+end-ray from a ﬁxed vertex merges with the spine at a ﬁnite place; its oﬀ-spine depth is ﬁnite. Thus
+Ln,n eventually contains every vertex and every edge of G. The temporarily omitted branches at
+the top xn appear at later stages. This is a genuine free edge-exhaustion.
+     Eliminate the attached branches. The conductance on x0 x1 is Am = 1 + 2κm ; on each higher
+adjacent pair it is Cm = 1 + κm ; each skip-one edge still has conductance one. For the upper suﬃx
+x1 , . . . , xn , its terminal conductance is
+                                                                             t
+                             Bm,n = TCn−2 (Cm ),             TC (t) = C +       .                      (6)
+                                       m
+                                                                            1+t
+This follows by eliminating the top triangular cell successively: a direct C is parallel to a unit edge
+in series with the remaining upper conductance.
+    For t ≥ Cm ≥ 1, TC0 m (t) ≤ 1/4. Here Cm stays in a compact interval and the positive ﬁxed point
+of TC , the positive root of B 2 − CB − C = 0, depends continuously on C. Hence the convergence of
+the iterates in (6) is geometrically uniform in m. As m = n → ∞, Cm → C = 1 + κ and Bn,n → A,
+since A = C + A/(1 + A). This justiﬁes the actual diagonal limit; no unsupported interchange of
+two inﬁnite limits is made.
+    The reduced three-terminal network has conductances Am , Bm,n , 1 on x0 x1 , x1 x2 , x0 x2 . Thus
+                                                     (                  )−1
+                                                            Bm,n
+                                RLm,n (x0 , x1 ) =   Am +                     ,                        (7)
+                                                          1 + Bm,n
+                                                     (                  )−1
+                                                         Am Bm,n
+                                RLm,n (x0 , x2 ) =   1+                       .                        (8)
+                                                        Am + Bm,n
+
+Along the free exhaustion, these converge respectively to
+                                       √                               √
+                               1      3 2−2                  2     6−2 2
+                   Rtree =         =          ,     Rgp =        =       .                             (9)
+                            1 + 3κ       7                3 + 2κ     7
+
+                                                         3
+The end stabilizer is transitive on unoriented edges of each type. Applying (4) separately to the
+three tree edges and ﬁve grandparent edges at o gives
+                                                                    √
+                                                               24 − 2
+                           E degFUSF(G) (o) = 3Rtree + 5Rgp =         .
+                                                                  7
+Since (73/50)2 > 2, the last expression exceeds (24 − 73/50)/7 = 161/50. No mass-transport
+argument is used.
+
+
+4    Second calculation: an induced exhaustion and contraction
+We independently recover (9) using only induced ﬁnite graphs. Put vj = pj (o), and let Sn be all
+descendants of vn through depth 2n. Let Gn = G[Sn ], n ≥ 2. When n increases by one, old depths
+increase by one but the allowed depth increases by two. These ﬁnite connected sets are nested and
+exhaust T , by end-ray coalescence.
+    Consider descendants of x through depth m, together with its parent y, retaining the direct
+edge xy but excluding the edge from x to its grandparent. Eliminating the strict descendants gives
+conductance cm between x, y, where
+                                         2cm−1                         cm−1
+               c0 = 1,      cm = 1 +            ,       am = 1 +                (m ≥ 1).      (10)
+                                       1 + cm−1                      1 + cm−1
+
+Each of the two children supplies its reduced cm−1 in series with a unit edge to y, proving the
+recurrence directly.
+   Eliminate oﬀ-spine vertices in Gn . The resulting conductances on the spine v0 , . . . , vn are
+
+             v0 v1 : cn ,   vj vj+1 : an+j (1 ≤ j < n),       vj vj+2 : 1 (0 ≤ j ≤ n − 2).
+
+Both children at v0 are oﬀ-spine; above it there is one oﬀ-spine child, whose descendant depth is
+n + j − 1. The oﬀ-spine part at the top vn has only one attachment and has no eﬀect; no terminal
+outside Gn is introduced. Reducing the upper suﬃx gives
+                                                          uj+1,n
+                 un−1,n = a2n−1 ,      uj,n = an+j +                   (1 ≤ j ≤ n − 2).       (11)
+                                                        1 + uj+1,n
+
+The ﬁnal triangle has conductances cn , u1,n , 1.                                    √
+    The map t 7→ 1 + 2t/(1 + t) contracts on [1, ∞) by at most 1/2, so cm → c = 1 + 2 = A and
+am → a = 1 + c/(1 + c). For the suﬃx maps in (11) the derivative in their argument is at most 1/4,
+all arguments and coeﬃcients are uniformly bounded, and every coeﬃcient index is at least n + 1.
+With ϵn = supm≥n+1 |am − a|, iteration gives
+
+                                           4
+                               |u1,n − c| ≤ ϵn + C0 4−(n−2) −→ 0,
+                                           3
+because c = a + c/(1 + c). Apply (7)–(8) with cn , u1,n and use this induced free exhaustion. The
+limits are again exactly (9).
+    For reproducible ﬁnite checks, global rational elimination on the actual induced networks
+gives, at n = 2, the triangle (7/3, 17/10, 1) and resistances 27/80, 121/240. At n = 3 it gives
+(12/5, 6236/2669, 1). These checks support the ﬁnite indexing; the written contraction proofs es-
+tablish the all-depth and inﬁnite-volume assertions.
+
+
+                                                    4
+5    A complete ﬁnite certiﬁcate for the square
+Let W be the radius-10 ball about o in T . Write K = G[W ], J = K 2 . Then J ⊆ H. Every
+H-neighbor of o has a witness using at most two G-edges, hence a tree walk of at most four edges,
+entirely within the radius-4 tree ball. Therefore J contains every H-edge at o.
+    For clarity, the complete neighbor count is as follows: four strict ancestors; 2 + 4 + 8 + 16 = 30
+strict descendants in depths one through four; the sibling; the uncle (the parent’s sibling); the
+sibling’s two children; and the uncle’s two children. These disjoint possibilities exhaust two ancestor-
+or-descendant G steps and total 40. The end stabilizer preserves H, so its degree is 40 everywhere.
+    Here is an exact speciﬁcation of the ﬁnite data. Index the tree ball by breadth-ﬁrst lexicographic
+word order: the root has index 0 and children 1, 2, 3; vertex i ≥ 1 has outward children 2i + 2, 2i + 3.
+Thus
+                          |W | = 1 + 3(210 − 1) = 3070,      |E(J)| = 19931.
+Choose the distinguished end ray 0, 1, 4, 10, 22, . . .. On this ray p(0) = 1, p(i) = 2i + 2 for i 6= 0; oﬀ
+this ray p(i) is the outward-tree predecessor (0 for i = 1, 2, 3, otherwise b(i − 2)/2c). Construct K
+by all pairs i, p(i) and i, p2 (i) with endpoints in W , then square K. Order the unordered J-edges
+(i, j), i < j, lexicographically. The sorted root-neighbor indices are
+
+                                            1, . . . , 22,       24, 25,    30, . . . , 45.
+
+    The source supplement contains the exact compressed JSON certiﬁcate named square_ﬂow_
+certiﬁcate.json.gz, and a short independent standard-library veriﬁer. For each of those 40 targets v,
+its row supplies one integer nv,e for every ordered-list edge e. Give that edge its listed orientation
+i → j, and put θv (e) = nv,e /D, D = 109 . The veriﬁer regenerates the whole ﬁnite graph from the
+indexed tree, matches every edge and terminal, and checks the following ﬁnite integer identities:
+                  ∑                   ∑                      (                      )
+                            nv,e −              nv,e = D 1{x=v} − 1{x=o} ,                       x ∈ W,   (12)
+               e out of x            e into x
+                               ∑ ∑
+                                                n2v,e = 3208526010913748780.                              (13)
+                                v e∈E(J)
+
+All 797240 current entries are actual integers; all 122800 vertex-divergence equations and all 40
+individual energy numerators are veriﬁed. Each unoriented edge is counted once. This is feasible-
+current veriﬁcation, not trust in a numerical residual or a claim of current optimality. Floating-point
+solves were used to ﬁnd the original witnesses; their generator is unnecessary for checking (12)–(13).
+The immutable data and exact checking suﬃce.
+Lemma 2. For the currents above,
+                                                   ∑                    3208526010913748780   321
+                     E degFUSF(H) (o) ≤                 E(θv ) =                   18
+                                                                                            <     .
+                                                    v                           10            100
+
+Proof. Equation (12) makes θv a unit ﬂow from v to o in the ﬁnite graph J. Thomson’s principle
+gives RJ (o, v) ≤ E(θv ). Take any connected ﬁnite induced free exhaustion Hn of H. For large n,
+J ⊆ Hn , so extend θv by zero. It remains a unit ﬂow of unchanged energy, giving
+
+                                                RHn (o, v) ≤ RJ (o, v) ≤ E(θv ).
+
+Pass to the free limit and apply (4). Summing over the complete root neighborhood gives the
+claim from (13). The ﬁnal strict inequality is the integer comparison 100 · 3208526010913748780 <
+321 · 1018 .
+
+                                                                    5
+    Only ﬁnitely supported ﬂows were transferred to ﬁnite free networks. Minimizing over arbi-
+trary square-summable inﬁnite ﬂows instead would give wired resistance and would not justify the
+required free upper bound. No boundary is shorted and no wired bound is substituted. Diﬀerent
+root edges may use diﬀerent ﬂows, since only marginals are summed.
+
+Completion of Theorem 1. The graph assertions and (2) were proved above. Lemma 2 proves (3).
+With (1),                                    (            )
+                                            1 161 321          1
+                          bF (G) − bF (H) >        −        =     .
+                                            2 50      100     200
+
+
+
+6    Predecessors, scope, and reproducibility
+The grandparent graph, ﬁnite electrical principles and free-exhaustion framework are inherited,
+with explicit references above. Tang’s inspected arXiv version proves connectivity and branching
+properties for this family, not the comparison proved here. Pete–Timár [4, Theorems 1.1–1.2]
+already show that FUSF component counts can depend on the generating set even for a ﬁxed
+virtually free group; they explicitly distinguish this from expected degree, which is group-invariant
+for Cayley graphs. Those results are not claimed as new here. Gaboriau’s harmonic-projection
+invariant is formulated with a transitive unimodular action [3, §2.4]. No such tracial hypothesis is
+used in our negative calculation. No claim concerning failure in the unimodular subclass is made.
+    The original question was checked in the actual seven-page 2010 source, including its unrestricted
+scope and Cayley comment. Our bounded primary-source investigation through 22 October 2026
+authenticated no earlier publication of this complete expected-degree square comparison. That
+does not certify historical ﬁrstness or continued worldwide openness. Tang’s ﬁnal journal PDF
+and Pete–Timár’s ﬁnal journal PDF returned access-challenge pages; their actual arXiv versions
+identiﬁed below were read instead. The full Lyons–Peres book and all unindexed sources were not
+inspected. Source-edition and exact read-scope limits are recorded in the supplement. None of
+these dependency DOIs is presented as a prior publication of this full counterexample.
+    The supplement contains the entire rational-current data, the independent indexed-tree veri-
+ﬁer, exact per-target outcomes, an independent binary-word/global-rational-elimination check of
+the ﬁnite reductions, editable manuscript, dependencies, priority notes, licenses and oﬄine packag-
+ing instructions. Every current certiﬁcate entry is checked exactly; no external solver, numerical
+tolerance, original claimant program or installed third-party package is needed for replay. The cer-
+tiﬁcate proves a ﬁnite statement; Lemma 2 is the separate universal argument making it an inﬁnite
+free-forest bound. The ﬁnite circuit diagnostics do not prove the inﬁnite limits; Sections 3–4 do.
+No formal proof-assistant certiﬁcation is claimed.
+
+Disclosure and license. AI tools were extensively involved in mathematical research and ex-
+ploration, proof development and reconstruction, computational veriﬁcation, literature and source
+investigation, manuscript preparation, editing, and adversarial auditing. Alec Kriebel is the named
+human author. This is an unrefereed preprint and has not undergone formal independent human
+peer review. AI reviews do not supply human refereeing or journal acceptance. Original prose and
+certiﬁcate data are CC BY 4.0; original veriﬁcation and packaging code is MIT licensed.
+
+
+
+
+                                                  6
+References
+[1] M. Abért, Some questions, 2 November 2010, printed p. 4, Question 24. Author-hosted
+    problem list.
+
+[2] I. Benjamini, R. Lyons, Y. Peres, and O. Schramm, Uniform spanning forests, Ann. Probab.
+    29 (2001), 1–65. doi:10.1214/aop/1008956321. Inspected corrected author version dated 27
+    January 2009: usf.pdf.
+
+[3] D. Gaboriau, Invariant percolation and harmonic Dirichlet functions, Geom. Funct. Anal. 15
+    (2005), 1004–1051. doi:10.1007/s00039-005-0539-2. Inspected arXiv:math/0405458v3.
+
+[4] G. Pete and Á. Timár, The free uniform spanning forest is disconnected in some virtually free
+    groups, depending on the generator set, Ann. Probab. 50 (2022), 2218–2243.
+    doi:10.1214/22-AOP1581. Actual inspected body: arXiv:2006.06387v2, 24 January 2021.
+
+[5] P. Tang, Weights of uniform spanning forests on nonunimodular transitive graphs,
+    Electron. J. Probab. 26 (2021), 1–62. doi:10.1214/21-EJP709. Actual inspected body:
+    arXiv:1908.09889v2, 3 December 2020.
+
+
+
+
+                                                7
+

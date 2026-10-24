@@ -1,0 +1,132 @@
+Independent adversarial resistance review
+Completed 2026-10-24 22:51:08 UTC; completion 100% of assigned review.
+
+VERDICT
+No mathematical defect found in either original-graph free-exhaustion
+construction or in the free-boundary transfer principle. The claimed
+original resistances and expected degree are supported by checkable
+finite reductions and valid limit arguments. This is a scoped mathematical
+review, not a verification of the square's deposited integer certificate.
+The certificate and deposited verifier were not read or run.
+
+READ SCOPE AND INDEPENDENCE
+Read sources/published-release/main.tex only among prior local artifacts.
+Consulted BLPS, Uniform Spanning Forests, corrected 27 January 2009 author
+version, https://rdlyons.pages.iu.edu/pdf/usf.pdf, specifically Theorem 4.1,
+Propositions 7.1–7.2 and Theorem 7.8. No inventory/review or claimant
+verification code was read. New finite graph reconstruction and exact
+Schur elimination code is check_finite_networks.py in this directory.
+No git changes, outreach, site changes, or other agents used.
+
+1. BRANCH GEOMETRY AND FIRST EXHAUSTION (main.tex lines 140–221)
+In B_m(u;a,b), u has direct unit connections to a and b. A child's entire
+descendant branch has precisely the two external terminals u and a; no
+edge jumps to b because original edges span only one or two parent steps.
+The branches have disjoint interiors and no edges between them. Eliminating
+the two child interiors therefore adds 2*kappa_m to the u-a conductance,
+then u is in series with the unit u-b edge. The stated recurrence and
+initial kappa_0=1/2 follow, including m=0.
+
+The full L_{m,n} includes both descendant branches at x_0 and one sibling
+branch at every x_i for 1<=i<n. Each branch contributes only to the
+adjacent spine pair named in the manuscript. Thus A_m=1+2*kappa_m and
+C_m=1+kappa_m, including the last pair x_{n-1},x_n, are exact. There is
+no extra parallel copy of a terminal edge: every branch explicitly omits
+its terminal edge. Skip-one spine edges remain unit edges.
+
+Increasing either parameter preserves all prior vertices and edges. For
+a fixed vertex whose distinguished-end ray first meets the spine at x_k,
+choose n>k and n at least its depth below the relevant branch root. It
+then belongs to L_{n,n}; its original parent/grandparent edges eventually
+belong as well. No vertex identification or external terminal is used.
+Indeed these L_{m,n} are also induced on their described vertex sets,
+although that strengthening is unnecessary for the stated edge exhaustion.
+
+For n=2 the upper suffix conductance is exactly C_m. Each extra upper
+triangle produces T_C(t)=C+t/(1+t), so the exponent n-2 is correct.
+Let B(C) denote its positive fixed point. Since C>=1 and B(C)>=C,
+|T_C^(n-2)(C)-B(C)| <= 4^(-(n-2))*|C-B(C)|
+                         <= 4^(-(n-2)).
+The final inequality follows from B(C)-C=B(C)/(1+B(C))<1.
+This bound is uniform in m and directly proves the diagonal assertion.
+As C_m->1+1/sqrt(2), continuity gives B(C_m)->1+sqrt(2).
+
+2. INDUCED EXHAUSTION AND INDICES (main.tex lines 226–281)
+S_n consists of the binary descendant tree rooted at v_n to depth 2n.
+Each old vertex's depth increases by one at the next stage, while the
+cutoff increases by two, proving nesting. If a fixed vertex has depth d
+below v_k, its depth below v_n is n-k+d for n>=k; this is <=2n once n is
+sufficiently large. Thus the induced graphs really exhaust G.
+
+At v_j the full remaining descendant depth is n+j. An off-spine child
+has remaining depth n+j-1. Its reduced edge to v_j is c_{n+j-1}, in
+series with its unit grandparent edge to v_{j+1}; adding the spine edge
+gives 1+c_{n+j-1}/(1+c_{n+j-1})=a_{n+j}. For v_0 both children contribute,
+giving c_n. At v_n the off-spine branch has only v_n as an attachment,
+so it is electrically inert; there is no missing attachment to v_{n-1}
+because sibling vertices are not adjacent in G. This checks every endpoint
+case and the terminal index a_{2n-1}.
+
+The sequence c_m lies in [1,c] with c=1+sqrt(2). Its map has derivative
+2/(1+t)^2<=1/2 there, hence |c_m-c|<=sqrt(2)*2^(-m).
+For a_m=1+c_{m-1}/(1+c_{m-1}),
+|a_m-a|<=sqrt(2)*2^(-(m+1)), so
+epsilon_n=sup_{m>=n+1}|a_m-a|<=sqrt(2)*2^(-(n+2)).
+All upper-suffix arguments are at least 3/2 and below c. The manuscript's
+looser derivative bound 1/4 applies. Since |a_{2n-1}-c|<1, its displayed
+estimate is valid with C_0=1:
+|u_{1,n}-c| <= (4/3)*epsilon_n + 4^(-(n-2)) -> 0.
+No exchange of dependent infinite limits is needed.
+
+3. FRESH EXACT FINITE COMPUTATION
+Generated vertices as binary words below the highest ancestor. Original
+edges join a word to its one- and two-letter-shorter prefixes whenever
+both endpoints are present. A generic rational Schur complement, selecting
+minimum-degree vertices without branch formulas, reduced each actual
+network to its terminals. Only after this reduction were its results
+compared with manuscript recurrence predictions.
+
+All checks passed:
+* B_m for m=0,...,5 (6 cases).
+* L_{m,n} for m=0,...,4 and n=2,...,6 (25 cases).
+* G[S_n] for n=2,...,5 (4 cases; 31,127,511,2047 vertices).
+
+The induced reduced triangles, ordered (v_0v_1,v_1v_2,v_0v_2), are:
+n=2: (7/3, 17/10, 1).
+n=3: (12/5, 6236/2669, 1).
+n=4: (41/17, 14071307/5845298, 1).
+n=5: (70/29, 2826493097830/1171069453917, 1).
+The n=2 resistances are exactly 27/80 and 121/240, as printed.
+Full rational outputs are in finite_network_results.json.
+Finite checks corroborate indexing; the arguments above supply the
+universal and limiting proof.
+
+4. FREE VERSUS WIRED AND FINAL ALGEBRA
+BLPS Proposition 7.1 describes free currents obtained from finite
+subnetworks; Proposition 7.2 separately identifies the unconstrained
+finite-energy infinite-flow minimum as wired. Its Theorem 4.1 and Theorem
+7.8 support the manuscript's unit-conductance edge marginal passage.
+
+The original calculations delete external edges and preserve separate
+boundary vertices. Reduction of finite interiors preserves terminal
+response and is not wiring the infinite boundary. Cofinal finite
+subgraphs give the same free resistance: for each fixed finite induced
+ball B_r, eventually B_r is a subgraph of the exhaustion, while every
+exhaustion graph lies in some larger ball. Rayleigh bounds give equality
+of limits, with the inequalities in the proper direction.
+
+For the square, any finite-support unit flow on J extends by zero to
+each sufficiently large finite free exhaustion member of H, preserving
+all divergences and energy. Thus R_H^F(o,v)<=R_J(o,v)<=E(theta_v).
+This is a free upper bound. It never substitutes a wired resistance.
+Whether the displayed currents have their claimed exact divergences and
+energy was outside this review; the transfer itself is sound.
+
+Both original constructions give the triangle (A,A,1), A=1+sqrt(2), so
+R_tree=1/(A+A/(1+A))=(3*sqrt(2)-2)/7,
+R_gp=1/(1+A/2)=(6-2*sqrt(2))/7.
+Three tree and five grandparent edges at the root therefore give
+3*R_tree+5*R_gp=(24-sqrt(2))/7. Edge-type transitivity suffices; no
+unimodularity or mass-transport assumption enters this summation.
+
+No substantive correction is indicated within the assigned scope.
