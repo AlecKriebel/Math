@@ -21,3 +21,7 @@ Provisional verdict: PASS for a webpage presenting the exact expected-degree com
 ## 2026-10-24 22:52:12 UTC — Review delivered; 100% of assigned scope review complete
 
 Final artifact: SCOPE_ATTRIBUTION_REVIEW.md. Verdict: scoped PASS for the expected-degree comparison and its carefully qualified connection to Question 24, contingent on the separate mathematical/certificate audits; HOLD for stronger unsupported claims. Exact permitted headline, explanatory copy, technical inequality, historical qualifier, preprint status, source links/read scopes and residual priority limits are recorded. Added two primary sources beyond the release's original five-body review and authenticated the public Zenodo record. No necessary correction to the manuscript's scope statement identified. No worldwide novelty certification issued. Downloaded full source bodies are local references excluded from Git; the link/hash manifest remains checkable. No outreach and no Git action occurred.
+
+## 2026-10-24 23:10:18 UTC — Revised follow-up copy check; 100% complete
+
+Read the latest paper page and both requested follow-up screening reports. Verdict PASS: sign question has the full graph/unit-conductance hypotheses, conditional implications are correct, and phrasing asserts neither directional evidence nor worldwide-open/novel status. Short preprint/AI disclosure remains accurate. Saved FOLLOWUP_PUBLIC_COPY_CHECK.md with exact file hash. No site changes or outreach.

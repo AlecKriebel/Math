@@ -26,16 +26,24 @@ to set it after reviewing the pilot.
    decorative cards, badges, large editorial typography, and a sidebar.
 6. Include the real title, author/ORCID, publication/version dates, accurate
    status, full visible abstract, a brief accessible explanation, exact result
-   and limits, verification summary, AI disclosure, DOI, unchanged downloads,
+   and limits, concise status and AI disclosure, DOI, unchanged downloads,
    citation, and credited background. A professional public invitation may
    identify useful substantive collaborations; do not promise authorship for
    endorsement. User explicitly authorized this page invitation. Do not
    contact an individual on the user's behalf.
+   Keep detailed verification replays and dated internal audit notes in the
+   research record, not on the public page. Embed the unchanged local PDF
+   with a direct-open fallback and a link to the Zenodo original: Zenodo
+   currently blocks cross-site framing. Keep this presentation simple.
 7. Provide citation metadata, a same-directory direct searchable PDF, canonical
    URL, structured scholarly data, and a sitemap entry. Preserve the Zenodo
    DOI and dates. Do not invent a journal, acceptance, firstness, or exact value
    where only an upper bound is proved. Do not publish internal impact scores
    as quality badges.
+   Add a follow-up question only after mathematical and literature screening
+   identifies a substantive payoff. Do not fill a future-work list with
+   routine parameter variations, label a settled case open, or turn one
+   example into an unsupported directional conjecture.
 8. Independently check copy, local links/anchors, dates/schema, file identities,
    and the limited diff. Inspect desktop and phone layouts. Publish only the
    intended website changes through its existing hosting workflow; verify

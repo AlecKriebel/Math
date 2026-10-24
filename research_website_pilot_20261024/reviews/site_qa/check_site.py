@@ -80,7 +80,7 @@ for path in PAGES:
         ok = f.is_file()
         fragment_ok = True
         if ok and u.fragment:
-            fragment_ok = f.suffix == '.html' and unquote(u.fragment) in parse_file(u.path).ids
+            fragment_ok = (f.suffix == '.pdf' and u.fragment == 'view=FitH') or (f.suffix == '.html' and unquote(u.fragment) in parse_file(u.path).ids)
         checked.append({'reference': href, 'path': u.path, 'exists': ok, 'fragment_valid': fragment_ok})
         if not ok or not fragment_ok:
             missing.append(href)
