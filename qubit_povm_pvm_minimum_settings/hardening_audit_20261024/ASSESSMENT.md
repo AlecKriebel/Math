@@ -15,6 +15,12 @@ The fresh adversarial review found no missing mathematical premise in the main e
 
 The replay is also wired into CI after a fresh complete source build and the expanded physical endpoint contract. The earlier pre-hardening source_identity.json records 104 matches; the subsequent bootstrap fix changes two verifier scripts, with all production mathematical sources unchanged.
 
+## Fresh Linux source-build evidence
+
+[GitHub run 40105321824](https://github.com/AlecKriebel/Math/actions/runs/40105321824) passed from a fresh Ubuntu runner after the bootstrap repair. The [retained receipt](ci_evidence/40105321824/20261024T150601Z-da92833f/kernel_report.json) records a complete project source rebuild, all seven statement-contract files and 826 public axiom audits. All 104 protected input hashes match the current repository. The independently expanded physical endpoint also passed. The exact-artifact and PDF job passed separately. This run used pinned downloaded dependency artifacts; it did not rebuild every Mathlib source file.
+
+The final combined [GitHub run 40106363370](https://github.com/AlecKriebel/Math/actions/runs/40106363370), at commit `8aae12015e4fb470ce5a0970f5b792dc3ca7ad8f`, also passed. Its [fresh source-build receipt](ci_evidence/40106363370/20261024T151943Z-8d837c61/kernel_report.json) is linked by the [successful Linux replay receipt](ci_evidence/40106363370/replay/receipt.json): **33,644 declarations and 1,271 compiled modules**, the same three endpoints and all four actual kernel controls. The expanded physical contract and nine driver failure-handling scenarios passed in this same run. All 104 protected source hashes and current checker hashes match; retained command-log hashes and dependency inventories were independently checked. See [CI review](ci_review.md) and [validation summary](ci_evidence/40106363370/validation_summary.json).
+
 ## Why the extra replay matters
 
 Pinned Lean 4.19 imports serialized constants without rechecking every proof body. In an isolated negative fixture, `--trust=0` accepted an imported malformed proof of False, and its axiom listing was empty. This is a demonstration of the imported-artifact trust boundary, not a theorem admitted into the project. The deliberately malformed fixture is outside all production proof modules and never imported by them.
@@ -29,7 +35,7 @@ This is an independent replay pass using the same Lean kernel, not a second kern
 
 - **Highest assurance follow-up:** reproduce with all dependencies rebuilt from pinned sources on a separately provisioned machine. A distinct kernel implementation would provide additional implementation diversity. Neither is an identified missing lemma in the existing proof.
 - **Human semantic review:** an independent expert can inspect the model definitions, exact quantifiers and correspondence with the intended physics. The present independent reviews are separate AI-agent reviews. No external reviewer has been contacted.
-- **Optional mathematical strengthening:** prove an explicit Carathéodory bound of at most D+1 complete projective branches, where D is the full behavior-table dimension. This makes shared randomness quantitative; the existing theorem already establishes exact finite simulation. It is not required for the equality.
+- **Optional API strengthening:** expose the already formalized Carathéodory bound as a named complete-projective-strategy corollary with at most D+1 branches, where D is the behavior-table dimension. `Bell.convexHull_eq_finite_combinations` already proves the finite-slot bound internally and is used in compactness. The missing convenience is the specialized public endpoint, not the quantitative convexity foundation or the finite-simulation proof.
 - Completing the unused general SDP/KKT, full manifold/Hessian/inertia or all auxiliary manuscript calculations would expand coverage, but would not fill a dependency gap found in this main result.
 
 ## Historical package and reproduction
