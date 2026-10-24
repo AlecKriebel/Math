@@ -1,0 +1,8 @@
+# Independent restricted-counterexample audit log
+
+- **2026-10-24T23:25:23Z — audit0%.** Read policy and all three candidate notes/checker. Assigned review only; no original counterexample claim. Requested author freeze via root and delegated the distinct law/branch proof challenge.
+- **2026-10-24T23:26Z — audit35%.** Identified missing explicit infinite-controller surjectivity/profinite-continuity assumptions, the empty-index boundary, and ambiguity between deterministic nonidentity values and genuinely varying active fibers. Sent concrete boundary controls to root; no author files edited.
+- **2026-10-24T23:28Z — final freeze verified; audit60%.** Author repaired those points. Derived local sections from an open subgroup avoiding the finite kernel, checked clopen activation, and verified central exponent/coset formulas. Law/branch secondary review returned PASS.
+- **2026-10-24T23:31:29Z — audit85%.** Independent AGL(2,2), recursive wreath tables, central-extension tests, and odd-prime semidirect controls all passed and match author counts. The remaining rare-activation/cocycle realization step remains unsupported; no fullproblem conclusion.
+- **2026-10-24T23:32:46Z — reproduction complete.** Author checker rerun with only output redirection; all non-timestamp fields match. Fresh primary reads verify the law theorem, Abért's first Corollary4 clause, and the metabelian/nilpotent scope boundaries.
+- **2026-10-24T23:34Z — audit100%.** PASS for the final frozen three-note supporting package. Family discovery remains the frozen highly uncertain2%; overall21.122 is not solved. No new publication approval, novelty claim, outside communication, git action, or tracker update.
