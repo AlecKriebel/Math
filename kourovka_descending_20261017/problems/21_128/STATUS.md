@@ -1,0 +1,3 @@
+# Kourovka21.128 — independent original research
+
+Checkpoint 2026-10-24T20:24:47.911832+00:00; discovery estimate10%. Exact question: are A[F4] and A[H4] abstractly commensurable? Preliminary current primary audit finds no complete known solution; both 2026 profinite rigidity papers concern whole groups. Three independent families are active: common finite covers, virtual invariants, and intrinsic centralizer/arrangement structures. Root's nonzero-Euler quotient calculation forces hypothetical quotient indices a=21b but does not obstruct them. No candidate complete resolution; publicationgateclosed.

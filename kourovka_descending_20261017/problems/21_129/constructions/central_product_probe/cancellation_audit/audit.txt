@@ -1,0 +1,189 @@
+CENTRAL STABILIZATION AND CENTRAL-LATTICE QUOTIENT AUDIT
+Timestamp: 2026-10-24 19:58:23 UTC
+Status: verified deductive audit, conditional only on the stated published CP results.
+Completion of this bounded audit: 100%.
+
+PRIMARY SOURCE
+M. Cumplido and L. Paris, Commensurability in Artin groups of spherical type,
+Rev. Mat. Iberoam. 38 (2022), 503-526, DOI 10.4171/RMI/1282.
+Local primary text:
+/Users/alec/Documents/Math/kourovka_descending_20261017/problems/21_129/priority/sources/cumplido_paris_2022.txt
+Used: Proposition 3.1(1)-(4), Corollary 3.2, Lemma 4.1,
+Theorems 2.2 and 2.3(1). Bars distinguishing a pure group and its central
+quotient are lost in the text extraction; notation below separates them.
+
+NOTATION AND EXACT TARGET
+G ~ H means abstract commensurability: isomorphic finite-index subgroups.
+VZ(G) = {g in G : C_G(g) has finite index in G}, the virtual center.
+A_Gamma is a spherical Artin group, P_Gamma its pure finite-index subgroup.
+For a connected component Gamma_i put Q_i=P_i/Z(P_i).
+The target is to test whether adjoining finitely many central infinite cyclic
+factors can hide a mismatch between products of the nontrivial Q_i, and to
+check arbitrary central lattice quotients, including nonprimitive lattices.
+No claim of newness or resolution of the remaining irreducible comparisons
+is made.
+
+LEMMA 1 (VIRTUAL CENTER CRITERION)
+VZ(G)=1 iff every finite-index subgroup U of G has trivial center.
+Proof: If z belongs to Z(U), its centralizer contains U, so z belongs to
+VZ(G). Conversely, if g centralizes a finite-index subgroup U, then g is
+central in <U,g>, which is a finite-index subgroup of G. Thus the condition
+on all such centers forces g=1. This argument needs no torsion assumption.
+Finite products of groups with trivial virtual center again have trivial
+virtual center: the centralizer of a tuple is the product of its coordinate
+centralizers, and finite index forces each coordinate centralizer to have
+finite index. The empty product is the trivial group and also qualifies.
+
+LEMMA 2 (CENTRAL STABILIZATION CANCELLATION)
+Let VZ(G)=VZ(H)=1, and let a,b be finite nonnegative integers. Then
+
+     G x Z^a ~ H x Z^b  iff  G ~ H and a=b.
+
+Proof: Let K <=_fi G x Z^a and L <=_fi H x Z^b, and let f:K -> L be an
+isomorphism. The projection pi_G(K) has finite index in G. If (g,z) is
+central in K, then g is central in pi_G(K), hence g=1 by Lemma 1. Therefore
+
+     Z(K)=K intersect (1 x Z^a),
+     K/Z(K) isomorphic to pi_G(K) <=_fi G.
+
+The central intersection has finite index in 1 x Z^a, so Z(K) is free
+abelian of rank a. The corresponding statements hold for L with rank b.
+Since f identifies centers and induces an isomorphism of central quotients,
+a=b and G~H. The reverse implication follows by taking products of
+isomorphic finite-index subgroups with Z^a. This proof applies when one or
+both cores are trivial and when a or b is zero. It does not require finite
+generation of G or H, strong indecomposability, or a splitting of K.
+
+GENERAL FINITE-INDEX SPLIT FORM
+Suppose X has a finite-index subgroup G x Z^r and Y has a finite-index
+subgroup H x Z^s, with both cores having trivial virtual center. Then
+
+ X x Z^a ~ Y x Z^b  iff  G~H and r+a=s+b.
+
+This is immediate by commensurability and Lemma 2. It is the correct form
+when X and Y already have central factors: a=b need not follow by itself.
+
+LEMMA 3 (INDEPENDENT PRODUCT-MATCHING PROOF)
+Let G=product_{i=1}^m G_i and H=product_{j=1}^n H_j, with all factors
+infinite, strongly indecomposable, and having trivial virtual center.
+Then G~H iff m=n and their factors match by commensurability up to a
+permutation. Strongly indecomposable means that every finite-index subgroup
+is indecomposable as a direct product.
+
+Proof of the forward direction: choose f:U -> V, where U<=_fi G and
+V<=_fi H. Put U_i=U intersect G_i and U_0=product U_i. Each U_i is finite
+index in G_i; U_0 is finite index in U; f(U_0) is finite index in H. Write
+N_ij=pr_{H_j}(f(U_i)) and B_j=product_i N_ij. The N_ij commute pairwise,
+and B_j has finite index in H_j. Its center is trivial by Lemma 1. An
+element in N_ij intersect product_{l != i} N_lj centralizes every factor
+of B_j and so is trivial. Hence B_j is the internal direct product of the
+N_ij. Strong indecomposability of H_j implies exactly one of these factors
+is nontrivial. Thus each j is assigned to exactly one i.
+
+No i can have no assigned j, because then f(U_i)=1, contradicting the
+injectivity of f and the infinitude of U_i. For the nonempty set J_i of
+indices assigned to i, f(U_i) is contained in product_{j in J_i} H_j.
+Because f(U_0) has finite index in H and these blocks have disjoint
+coordinates, f(U_i) has finite index in its block. Consequently it contains
+the finite-index product of its intersections with the factors H_j in that
+block. If |J_i|>=2 this gives a nontrivial direct product decomposition of
+a finite-index subgroup of U_i, contradicting strong indecomposability of
+G_i. Thus each J_i has one element; m=n; and f(U_i) is finite index in its
+matched H_j. The reverse implication is obtained by multiplying matching
+finite-index isomorphisms. Empty products cause no exception: any nonempty
+product here is infinite and cannot be commensurable with the trivial group.
+
+APPLICATION TO SPHERICAL PURE QUOTIENTS
+CP Proposition 3.1(2) gives P_i isomorphic to Q_i x Z, with Z(P_i)=Z.
+For rank-one Gamma_i=A1, Q_i=1. Otherwise CP Theorem 2.3(1) gives strong
+indecomposability and infinitude of Q_i, while CP Lemma 4.1 gives trivial
+centralizers of finite-index subgroups, hence VZ(Q_i)=1. Thus a product of
+nontrivial Q_i satisfies Lemmas 2 and 3.
+
+In particular, for Q=product_i Q_i and R=product_j R_j, with trivial
+rank-one quotients omitted,
+
+ Q x Z^a ~ R x Z^b
+ iff a=b and the nontrivial factors match by commensurability.
+
+Rank-one factors only affect the abelian rank and cannot compensate for a
+missing or mismatched nontrivial quotient factor. If original Artin groups
+are used instead of their cores, the existing centers must be counted:
+A_Gamma is virtually Q x Z^p, where p is its number of connected components.
+Hence stable equivalence with A_Omega is characterized by core matching and
+p+a=q+b. Original groups can fail to be commensurable when a != b only
+through such different abelian ranks; for example A_A2 and A_A2 x Z are
+not commensurable, but A_A2 x Z is the latter group itself. With equal
+stabilizations the original Artin groups do cancel.
+
+CENTRAL-LATTICE CLAIM (ENDORSED)
+Let Gamma have p connected components, k components with at least two
+vertices, and a=p-k singleton components. Let C <= Z(A_Gamma), and let
+r=rank(C). Write P=P_Gamma and L=P intersect C. Then:
+
+ (i) P is finite index and has a decomposition P isomorphic to Q x Z^p,
+     where Q is the product of the k nontrivial Q_i. Under any such splitting,
+     Z(P)=1 x Z^p, because Q has trivial center. Since C is central, L lies
+     in Z(P). Moreover [C:L] is finite, so rank(L)=rank(C)=r.
+
+(ii) The image of P in A_Gamma/C is PC/C, with kernel exactly L, and
+     [A_Gamma/C : PC/C]=[A_Gamma:PC] <= [A_Gamma:P] < infinity.
+     Thus P/L is a finite-index subgroup of the quotient. This remains true
+     even though C need not be contained in P.
+
+(iii) Smith normal form of the subgroup L<=Z^p gives
+
+       P/L isomorphic to Q x Z^(p-r) x T,
+
+     for a finite abelian group T. In particular, A_Gamma/C is commensurable
+     with Q x Z^(p-r). A nonprimitive L merely produces T, and the subgroup
+     Q x Z^(p-r) x {1} has finite index. No torsion-free quotient assumption
+     has been smuggled in.
+
+(iv) It follows that (A_Gamma/C) x Z^r ~ A_Gamma.
+
+(v) If A_Gamma/C ~ A_Omega for a spherical diagram Omega, then
+     A_Omega x Z^r ~ A_Gamma. Applying CP Theorem 2.2 to Omega disjoint union
+     r copies of A1 shows that the non-singleton components of Omega match
+     those of Gamma up to commensurability, and that Omega has exactly a-r
+     singleton components. Non-singleton irreducible spherical factors
+     cannot be commensurable with Z: their pure quotient has trivial virtual
+     center and is infinite, so their finite-index form Q_i x Z cannot be
+     virtually cyclic. Therefore r<=a.
+
+(vi) Conversely, if r<=a, let Gamma' be obtained by deleting any r singleton
+     components. Its pure subgroup is Q x Z^(p-r), so A_Gamma/C~A_Gamma'.
+     The orientation of C in the p-dimensional center is irrelevant for
+     abstract commensurability.
+
+BOUNDARY CHECKS
+* C=1: r=0 and the statement recovers A_Gamma itself. Since the original
+  center is torsion-free, a rank-zero subgroup C is indeed trivial.
+* r=p and k>0: the quotient is virtually Q, with no abelian factor, and
+  cannot be commensurable with any spherical Artin group; r>p-k.
+* r=p and k=0: A_Gamma=Z^p and its quotient is finite. It is commensurable
+  with the Artin group of the empty diagram, namely 1. If the target class
+  excludes the empty diagram, this is an explicit exception to the terse
+  formulation 'iff r<=a': no nonempty spherical Artin group is finite or
+  virtually trivial. This convention must be stated.
+* p=0: G=1, C=1, and the empty-target convention gives the expected result.
+* Finite torsion in P/L or A_Gamma/C does not obstruct abstract
+  commensurability, because the exhibited finite-index subgroup removes T.
+  It would matter if the question instead required isomorphism or an
+  embedding in a torsion-free group.
+
+HYPOTHESIS CHECK AND COUNTEREXAMPLE
+Centerless is weaker than trivial virtual center and cannot replace it.
+Let D be the infinite dihedral group. Z(D)=1, but D is virtually Z.
+Both G=D and H=D x D are centerless, and G x Z ~ H since both are virtually
+Z^2, while G and H are not commensurable: their torsion-free finite-index
+abelian subgroups have ranks 1 and 2. Thus even with nontrivial centerless
+G,H, unequal central stabilizations can hide different virtually abelian
+cores. This is exactly ruled out by VZ=1 in Lemma 2.
+
+EXACT LIMITS / REMAINING GAPS
+No gap remains in this central-lattice calculation or cancellation audit,
+given the cited CP theorems. The audit does not prove the CP results anew,
+does not decide any remaining pair of irreducible spherical commensurability
+classes, and does not address targets that are Artin groups of nonspherical
+type or arbitrary groups without the stated virtual-center hypotheses.

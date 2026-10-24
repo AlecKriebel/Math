@@ -1,0 +1,7 @@
+# Research log — 21.128 preliminary priority audit
+
+- 2026-10-24T20:11:42Z — Opened exact F4/H4 abstract-commensurability contract. Audit completion estimate: 5%. No proof or novelty claim.
+- 2026-10-24T20:12:15Z — Downloaded current official Notebook and both September/October2026 finite-quotient preprints. Main Notebook hash matches contract. Audit completion estimate: 30%.
+- 2026-10-24T20:13:22Z — Rechecked published Cumplido–Paris and Soroko sources; original F4/H4 gap persists in them. Inspected full Gavazzi–Haladjian–Paris Theorem1.1, corollaries, and finite-index occurrences: whole-group completion rigidity, no arbitrary finite-index classification. Audit completion estimate: 60%.
+- 2026-10-24T20:14:17.051090+00:00 — Renewed author/editor and equivalent-terminology searches: B(G28)/B(G30), pure Artin/braid groups, central quotients, reflection-arrangement complements, projectivized complements. Distinguished CHL holonomy quotients from source Artin groups and large-type/virtual-Artin terminology. No complete solution located. Audit completion estimate: 80%.
+- 2026-10-24T20:17:59.603018+00:00 — Finished primary theorem-scope checks, alias/CHL false-positive checks, and current author/editor searches. Wrote PRIORITY.md and SOURCE_MANIFEST.json with source hashes and access limits. Preliminary assessment: no complete resolution located; treat 21.128 as provisionally open. Assigned audit completion estimate: 100%; no mathematical solution or novelty claim.

@@ -1,0 +1,13 @@
+# The October2026 finite-quotient theorem does not settle21.129
+
+Checkpoint:24October2026. This is a priority/scope audit and an elementary filter, with no novelty claim.
+
+Hughes–Ng–Ragosta–Scherich–Verberne, *Finite quotients of spherical Artin groups*, arXiv:2609.27171v2 (16October2026; initially23September), TheoremC states: for irreducible spherical Artin groups G,H, an isomorphism of their profinite completions implies G is isomorphic to H. The primary PDF and section11 were inspected; URL/hash/version are in FINITE_QUOTIENT_SOURCE.json. Primary links: https://arxiv.org/abs/2609.27171v2 and https://arxiv.org/html/2609.27171v2 . Their smallest-nonabelian-quotient classification is also a theorem about whole-group quotients. No assertion identifying finite-index subgroups or classifying quasi-isometries is supplied there.
+
+There is a direct counterexample to treating finite-quotient equality as a necessary condition for the conclusion in21.129. For each n≥2, the spherical Artin groups A[A_n] and A[B_n] are commensurable by Cumplido–Paris2022 Theorem2.4(1), hence quasi-isometric.
+
+Their abelianizations differ. In an Artin presentation, an odd-labelled relation makes the two endpoint generators equal in the abelianization, while an even-labelled relation imposes no relation on their exponent vectors. Thus the abelianization is free abelian on the connected components of the graph retaining only odd-labelled edges. The A_n diagram is connected with all labels3, so A[A_n]^ab=Z. The B_n diagram has one edge labelled4 and all other edges labelled3; removing the even edge leaves two components, so A[B_n]^ab=Z². Consequently B_n has the finite quotient (Z/2)², whereas A_n has no such quotient: every map from A_n to an abelian group factors through its cyclic abelianization. The two groups therefore have different finite quotient sets despite being commensurable and quasi-isometric.
+
+This is consistent with the new isomorphism-rigidity theorem, which concerns a stronger equivalence relation. For commensurability, one would instead need information about isomorphic open subgroups of the profinite completions, or other genuinely virtual data, plus a theorem connecting that data to the discrete groups. Neither is supplied by TheoremC. Quasi-isometry alone gives no equality of the finite-quotient sets, as the explicit A/B example demonstrates.
+
+The four-pair reduction remains unchanged. This audit excludes a misleading inference from a current prior theorem, rather than answering any residual implication. A virtual strengthening of finite-quotient rigidity would be a materially different mechanism requiring a new proof.

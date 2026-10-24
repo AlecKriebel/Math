@@ -1,0 +1,13 @@
+# Root independent homological review
+
+Checkpoint 2026-10-24T20:23:42.513208+00:00. Bounded partial-result review: 100%; full problem discovery remains incomplete.
+
+Read SPECTRAL_FILTER.md, COARSE_COHOMOLOGY_FILTER.md and PROFILE_TABLE.md, inspected the cached primary repair text and actual DJLO theorem/Remark6 through the fresh source audit. The following exact scope passes.
+
+1. The graded tensor differential has cancelling cross terms in its full Laplacian, and both standard circle Laplacians have Fourier symbol2(1−cosθ). Tensor traces give the displayed identity, including both summands. The Gaussian constant is1/sqrt(4πt). Finite spectral trace permits dominated convergence to the zero-eigenspace mass without a gap. Nonzero top L2 mass gives the two full-Laplacian exponents1, but zero lower mass supplies no strict exponent inequality. No nonamenable Novikov–Shubin QI-invariance assertion is imported.
+2. In the repaired arrangement spectral sequence, ambient V is minimum in reverse inclusion; its local complement is contractible. The ambient term is (ZQ)^β with β>0. All nonzero terms lie on total degree d, so it survives as an associated-graded subquotient. Tensoring abelian groups with Q is exact: a subquotient of infinite rational rank forces infinite rational rank in the filtered total group. DJLO gives freeness, while the finite CW/countable group bounds rank by countable. Therefore top group is free abelian of rankℵ0, with concentration in d. Compact-support cellular cochains identify with group-ring cochains on a proper locally finite cocompact model. Cup products vanish by degrees; no group-ring module equivalence or ordinary cohomology invariance is inferred.
+3. The affine decone removes the scalar central C* factor. CP3.1 identifies its primitive loop with the pure center, so the finite decone model is K(Q,1). The H4 polynomial factor is checked over Q(sqrt5); y=x+x^-1 gives root brackets separating exponent pairs1,29 and11,19. Root reproduced the author's complete arithmetic in a separate output path, with byte-equivalent JSON data. A new adversary additionally reproduced determinants using a different algorithm.
+
+Fresh independent report: compact_coh_fresh_review/AUDIT.md. Its sole citation-page objection was repaired: Davis3.14/(3.3) are pp12–13. The unused local finite-abelian-rank phrase is not a hypothesis of the argument. Ordinary Betti numbers, numerical L2 dimensions and top amplitudes are not treated as QI invariants. Profile reproduction receipt: profile_reproduction.json.
+
+No residual pair is settled. These are validated route filters and elementary deductions from cited prior results, with no novelty/publication claim.
