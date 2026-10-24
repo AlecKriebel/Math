@@ -1,0 +1,5 @@
+# Research log — 21.132
+
+## 2026-10-24T18:23:48.528957+00:00 — exact source and prior-product audit
+
+Read latest full statement and context9.76/Archive11.101. Confirmed no printed restriction blocks finite direct products and no fixed two-generator requirement exists. Identified the cited2013Timofeenko article and2006Sereda–Sozutov centerless construction, preserving the RF-quotient caveat. Located a public3-page complete construction with exactly the proposed T x C_p mechanism, realized inside a Golod nil algebra and with RF separately proved by a homogeneous degree filtration. DirectHTTP403/timeout and later URL-open failures were recorded; obtained and saved a successful complete cached web-tool extraction, explicitly not PDF bytes. A fresh independent reviewer read the complete text and checked scope/product/internal proof steps, with the1964existence theorem left as an external established input. No new result or historical first-priority claim. Classified **already_solved**. Completion100%ofselection/statusaudit; originaldiscovery0%. NoGit/outreach/publication/tracker action, and no21.131research started.

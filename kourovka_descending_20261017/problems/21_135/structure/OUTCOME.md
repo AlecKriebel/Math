@@ -1,0 +1,14 @@
+# Structural-family outcome — Kourovka21.135
+
+**Full problem outcome: unsolved.** Discovery completion estimate: **12%**. No complete resolution of the original arbitrary radical-free source problem, no claim of a first discovery, and no publication action are justified by this family.
+
+Two materially distinct mechanisms produced checkable results:
+
+1. **Abelian minimal normal subgroup / Clifford packets.** Every hypothetical elementary abelian V has |V| dividing c(D)=|H|/lcm(D), and the full multiset decomposes into exact dual-orbit packets with orbit-size divisibility and twisted-inertia degree-square masses. Central Cp subgroups give determinant, Galois, and prime-free-square-mass constraints. A perfect small-GL criterion is proved. These deductions passed a fresh nonauthor audit in `review/adversarial_review.md`. They are elementary consequences of established character theory and are not claimed original.
+2. **Restricted complete recognition theorem.** For every r≥0, equality of degree multisets with A7^r implies H≅A7^r. The proof in `degree6/A7_power_recognition.md` derives quasiprimitivity from the least nonlinear degree6, applies Lindsey's complete established degree-six classification, eliminates every alternative using genuine ordinary quotient/cover degrees, and counts distinct A7 quotient kernels. The complete restricted proof passed a fresh nonauthor adversarial review in `degree6/review/adversarial_recognition_review.md`. Nine ordinary tables and three central-cover multisets were independently read from primary data. Originality remains unresolved; a bounded priority screen does not exclude inaccessible prior work.
+
+The exact obstruction to the first route is exhibited by an artificial central-C2 packet for the radical-free source A7^3. All retained divisibility, determinant, Galois, and square-mass conditions are satisfied; it even defines a central involution of the complex algebra with regular tracezero. It has not been realized as an actual group's characters, and adjoining that unit to the original group merely doubles its order. Thus it supplies no counterexample and exposes the missing global group-basis realization condition.
+
+The exact obstruction to extending the second route is the source-dependent forbidden-degree monoid. Mixed A5/A7 products already admit the forbidden24 and20; enough factors admit63 and189. General radical-free groups may also be nonperfect or permute socle factors, losing the minimum-degree/quotient-count setup. A proof for these larger classes cannot be inferred from the pure A7 theorem.
+
+No unsupported general induction, arbitrary subgroup degree inheritance, equality of ordinary and projective degree sets, or identification of a quotient-character subset has been used. The full target remains open after this substantial structural attempt.

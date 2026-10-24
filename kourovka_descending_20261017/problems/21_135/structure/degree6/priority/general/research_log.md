@@ -1,0 +1,4 @@
+# Research log: bounded general recognition priority screen
+
+- 2026-10-24, before 18:17 UTC: Read project AGENTS.md. Searched broad finite semisimple, characteristically simple, direct-product/direct-power, degree-multiset, complex-group-algebra, recent/preprint, and representation-zeta formulations. Preserved distinction between degree sets, multisets, codegrees, and graphs. No candidate general theorem covering every S^n or every A7^n was located. Completion estimate: 90% of bounded screening; central literature question unresolved.
+- 2026-10-24 18:17 UTC: Verified the exact 2015 primary Theorem B (quasisimple recognition); checked primary 2023 journal metadata/abstract and author-text Corollary 2.8 for bounded Suzuki powers. Recorded Hawkes 1994 as an unaccessed priority gap supplied by parent. Saved findings.md with URLs and exact scope. Completion estimate: 100% of bounded screening; no novelty conclusion. No outreach, git operation, or publication.

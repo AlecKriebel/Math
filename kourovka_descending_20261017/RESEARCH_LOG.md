@@ -151,3 +151,21 @@ Checkpoint13acceptedlowdimensional proof and independent certificate pushedas73a
 ## 2026-10-24T18:15:12.806897+00:00 —21.135 reviewed exact arithmetic/construction checkpoint (12%)
 
 Arithmetic restrictedfamily and arbitrarypermutation-wreath degree recovery now passed fresh adversarialreviews. The 2157table/1252606pair boundedscan was independentlyreproduced, and rootdirectly recomputed the explicit E subgroupofS5² spectralgcd counterexample. Generalproblem remainsunresolved; no noveltycertification orpublication. A7allpowers degree6classification route remainsactive and excludedfromthischeckpoint.
+
+## 2026-10-24T18:20:00.572660+00:00 — prior goal turn classified progress; current primary crosschecks (12%)
+
+The previous goal turn made genuine progress: completed136was recordedunsolved; new135mixedsimpleproduct recognition and arbitrarypermutation-wreath recovery were proved and independentlyaudited; arithmetic and boundedcatalog computations were independentlyreproduced; checkpoints12–14 were remotelyconfirmed, latest1d9f3688ae2740bb9aa6cfba2578b76e7eb621d9. No complete135solution or newpublicationresulted.
+
+Current root primary read confirms Lindsey1971Section3 exact faithful/quasiprimitive/unimodular six-dimensional classification and the2011CheltsovShramov restatement. The activeA7power proof remainsunderfreshfullcaseaudit; boundedprioritysearchretainsinaccessibleHawkes1994gap and certifiesno novelty. Separatepreliminaryscreenfound134alreadynegativeThompson and133exactSJnegativeinOct2026primarypaper+liveAGTAproposerlist, despiteunstarredNotebook. These are priorresults, no newdiscoveries oruploadpermissions.
+
+## 2026-10-24T18:23:49.375783+00:00 —21.135unsolved after degree6review;134/133prior-solved;132priorityaudit (5%)
+
+AllA7powers recognition passedfresh fullcaseaudit; no complete135resolution or noveltycertification. Substantial independent structural, arithmetic, construction and lowdegree families are preserved with exact computations and explicit general gaps. Final135estimate12%, publicationgateclosed.
+
+Both134parts haveofficialpriornegativeThompson solution. Exact133SJnegativepaperandliveproposerstatusmatch despiteunstarredNotebook. These are recordedalready_solvedwithoutduplicatepublication. Next132exactexistinggradednilalgebra/product solution is underfullscope/prioritycheck. DirectMaidenheadPDFdownload403 is distinguished from the completewebcached143-line/3-page extraction; noPDFbytes/hash is invented. Root read and checked centralideal iteration, residualfinite degreefiltration and finitecentre product argument; separatefreshnonauthorreviewisfinishing.
+
+## 2026-10-24T18:31:24.219074+00:00 —132priorconstruction validated;131opened (5%)
+
+Existingpublic132gradedquotient/productproof suppliesallprimes, actualGoloddefinition, residualfinitenessandcentreCp; root andfreshnonauthor checkedtheelementarylogic. Itsprimarysourceispreservedascompletewebcachedextraction; directPDFbytesareunavailable(403), draftdateisnotfirstpostingdate, andhistorical2006RFclaimisnotimported. Labelalready_solved, no newpublication.
+
+Current131sourceisGolodsubgroupepimorphismontooneinfiniteATgroup, notforallprimes. OriginalRozhkov1986ATdefinitionneednotbeFGorperiodic, butanytargetimageofGolodambientmustbeap-group. Theoriginalinfinite-supportlongitudinalmutationconditioncannotbereplacedbyalaterweakerdefinition. ExactC/Dgeneratorandportraitrequirementsanddatedpriorityarebeingfinalizedbeforetargetconstruction. Completed135A7proofwitnesseswerealsoindependentlyqueriedthrough12ordinaryGAPtables, matchingbothsourceparsers; no general135solution.
