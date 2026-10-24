@@ -131,3 +131,11 @@ Separatefreshreviewchecksnewcodinglemma(unboundedabeliantorsion⇒continuumambie
 ## 2026-10-24T17:38:12.403335+00:00 — Checkpoint11diskrecovery; discovery remains10%
 
 Firstalternate-indexwritefailedbeforecommitbecauseworkspacewasfull. Twoincompletepacktemporariesunchangedforover2.5hourswererecheckedwithnoopenhandlesandnoactiveGitprocess, thenremoved,reclaiming6,135,480,320bytes. Validobjects,refs,researchandworkingfilesuntouched; exactreceiptpreserved. Retryingonlyfinishedown136artifacts; activeisolated-classnotesexcluded.
+
+## 2026-10-24T17:52:50.450361+00:00 — source-scope answer verified;21.136 concluded unsolved;21.135 opened (5%)
+
+Previous goal turn is progress of a bounded source-scope audit: it compared the user-linked original-formulation Lean theorem with the corrected ambient statement and freshly confirmed the already-published Zenodo record by its public API. It earns no new mathematical discovery or upload.
+
+Current136fresh review accepts isolated-class persistence through closed normal torsion or virtually abstract locally nilpotent kernels, including nonopen finite-index subgroups. Final136estimate12%; all arbitraryprofinite gaps remain explicit, and publication gate stays closed. Completed independent multi-route evidence is synthesized in STATUS/CLAIM_LEDGER. Checkpoint11d6c0f7bdf5764af102b128438fbd4479403648f1 was confirmed remote.
+
+Next135exact character-degree multiset/radical question remains open in the proposer September2026Problem3.9(ii) and current official Notebook. Initial discovery5%; independent structural, constructive/computational, and arithmetic research begins. No prior simple/quasisimple recognition result is promoted to arbitrary radicalfree groups.

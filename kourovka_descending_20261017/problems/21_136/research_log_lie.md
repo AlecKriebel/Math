@@ -27,3 +27,25 @@ The direct noncommuting extension is falsified by the faithful two-dimensional Q
 Checked the primary current arXiv version of Kionke–Otmen–Toti–Vannacci–Weigel 2507.19086v2, revised 28 May 2026 (HTML front matter dated 24 August 2026), concerning probabilistic/coset identities. Its analytic Examples 5.9 and 5.11 provide prior norm-zero semidirect-product context. It does not state our arbitrary metabelian P0 theorem in the inspected text. This limited inspection is not an originality audit or a proof of novelty. A full priority audit would be needed before any separate claim of originality.
 
 No original complete Kourovka resolution, publication, DOI, or tracker update is claimed. Files remain confined to 21_136; Git/push are left to the root's scoped checkpoint.
+
+## 2026-10-24 17:31 UTC onward — materially distinct isolated-class mechanism
+
+Discovery completion estimate: **10%**. Began a new assignment from the parent after completing the dense-torsion/Lie attempt. The target is now the stronger local assertion that an infinite-order conjugacy class cannot be isolated relatively among infinite-order classes; this assertion is not assumed true.
+
+First tested a possible finite-quotient contradiction from power-conjugators and their conjugates. A primary source, Glebsky arXiv:1604.06359, supplies a control: generalized Higman groups H(k), for p dividing k−1, have p-quotients retaining arbitrarily large orders of their cyclic generators. For p=2 and k odd, the pro-2 completion with its cyclic generator rotation realizes infinite-order conjugate elements x,y with x^y=x^k. Therefore one fixed self-conjugate power relation is not a contradiction. Isolation's uniform family of small conjugators is stronger and remains to be exploited.
+
+The independent child initially obtained a metabelian local theorem. A new centralizer-torsion argument then removed the quotient-abelian restriction: if A is closed normal abelian and x has an isolated infinite-order class, its image cannot be finite in G/A. If that image b were finite, the projected neighborhood would be torsion, making C_(G/A)(b) torsion. A conjugator of x to a nearby integer power x^n, with n≡1 mod ord(b), then has a power in A and cannot act on a=x^ord(b)∞ by n^m. The local isolation passes to the quotient once its image is known infinite. Induction therefore excludes relatively isolated infinite-order classes in all virtually soluble profinite groups.
+
+The Lie adversary independently checked this repair and reported no objection. Root reconstructed it as well and observed the same argument extends to closed normal abstract locally nilpotent kernels, using the explicit terminating-commutator contradiction. Root requested the child's fresh proof and will obtain another independent audit. Full exact notes are in approach_isolated_classes.md. This is a substantive partial local mechanism, not a solution for arbitrary pro-p or profinite groups and not an originality claim.
+
+## 2026-10-24 17:45 UTC — local mechanism checkpoint ready for fresh root review
+
+Discovery completion estimate: **10%**. All currently assigned local-family proof artifacts are complete and stable. The arbitrary local-isolation assertion and original Kourovka problem remain unresolved.
+
+The child completed locally_nilpotent_extension.md and its parent independently audited it. A further fresh subagent verified the exact c-fold commutator index and produced the pro-3 affine control in which the iterated commutators converge to identity but never terminate. This sharply separates abstract local nilpotence from pronilpotence. The consolidated isolated_local_audit.md records the full restricted theorem and remaining gap.
+
+Additional exact constraints were proved: an isolated infinite-order element is approached by torsion of unbounded orders in every neighborhood; its cyclic closure has finite prime support; and its procyclic normalizer has infinite index. Isolation restricts to any open subgroup containing the element after removing the other finitely many compact open-subgroup conjugacy orbits. This last fact gives the normalizer obstruction using the new abelian-kernel theorem.
+
+The Glebsky prior-source control is recorded in isolated_sources/manifest.json. It supplies only fixed power-conjugation relations and is not claimed to realize the uniform small-conjugator family demanded by isolation. The source's entire ring-theoretic proof was not independently reconstructed.
+
+Root has been notified that approach_isolated_classes.md and the descendant proof/audit files are ready for an additional nonauthor adversarial review. No publication, Git operation, or external communication occurred.
