@@ -71,6 +71,10 @@ jobs:
         run: python scripts/run_lean.py --bootstrap --serial
       - name: Check independent expanded physical endpoint
         run: lake env lean ../hardening_audit_20261024/MainEndpointProbe.lean
+      - name: Test replay driver failure handling
+        run: python -m unittest discover -s ../hardening_audit_20261024 -p test_run_replay.py
+      - name: Replay the main theorem dependency closure in an empty kernel environment
+        run: python ../hardening_audit_20261024/run_replay.py --root . --output ../hardening_audit_20261024/ci_replay
       - name: Preserve run-specific verification evidence
         if: always()
         uses: actions/upload-artifact@v7
@@ -80,4 +84,5 @@ jobs:
             qubit_povm_pvm_minimum_settings/bell_lean/reports/latest_run.json
             qubit_povm_pvm_minimum_settings/bell_lean/reports/runs/
             qubit_povm_pvm_minimum_settings/bell_lean/reports/preflight/
+            qubit_povm_pvm_minimum_settings/hardening_audit_20261024/ci_replay/
           if-no-files-found: warn

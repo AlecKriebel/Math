@@ -33,3 +33,14 @@ The wrapper first checks the exact shipment file membership and SHA-256 manifest
 ## Contents and exclusions
 
 The source, PDFs, exact artifacts, Lean proofs, verifier, pinned manifests, historical input archives required by audits, and public review evidence are included. The root SHA-256 manifest binds all shipped files. Historical run receipts remain historical and are not evidence for changed inputs. Local build caches, compiler binaries, virtual environments, discovery work directories, and private submission correspondence are excluded. Source code including Lean is MIT licensed; manuscript and mathematical data are CC BY 4.0; the bundled lineno package retains its own LPPL notice.
+
+## October 24 bootstrap correction and additional verification
+
+The current repository runner builds the dependency-cache helper before its
+first use. The frozen September ZIP predates that repair: for its online
+bootstrap only, run `(cd bell_lean && lake build Cache.Main)` before
+`python reproduce.py --bootstrap`. This changes only generated `.lake` outputs;
+the tested prepared-cache path is unaffected. Do not rewrite historical
+checksums or receipts. The [October hardening assessment](hardening_audit_20261024/ASSESSMENT.md)
+records the discovered failure, corrected active CI, and additional dependency
+proof replay. These additions are outside the frozen September ZIP.

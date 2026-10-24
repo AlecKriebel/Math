@@ -42,3 +42,20 @@ Lean is `leanprover/lean4:v4.19.0`, compiler commit `6caaee842e9495688c1567e78c0
 The compiler/runtime, machine and separately provisioned compiled dependency cache remain trust assumptions. All project proofs are rebuilt; Mathlib is not independently rebuilt. Dependency Git pins and tracked-file cleanliness are checked; they do not independently authenticate a cached compiled artifact. Ordinary Lean linter warnings occur, but proof errors, recovered panics and failed contracts are rejected.
 
 From a clean extraction, run `python reproduce.py --bootstrap`, or use `--dependency-cache /absolute/path/to/prepared/.lake/packages`. See [complete package instructions](../VERSION_2.md) and [Lean-only instructions](OFFLINE_RUN.md). The final local ZIP is separately checked by a further clean extraction, whose outside-the-ZIP receipt and hashes avoid a self-referential archive hash. No immutable release or new DOI is created.
+
+## October 24 hardening addendum
+
+The mathematical sources certified above are unchanged. A fresh adversarial
+review found no missing main-equality premise. An additional empty-environment
+kernel replay passed for all 33,644 declarations in the dependency closure of
+the main equality and combined Hilbert/finite-label endpoints. This uses the
+same pinned kernel, not an independent kernel implementation.
+
+The active repository workflow now includes Lean verification. Its first fresh
+online-bootstrap attempt exposed a missing compilation step for the dependency
+cache helper; the current runner and its regression tests repair that step.
+These two verifier-script changes are **not** covered by the historical
+104-input snapshot above. Their fresh CI status, replay receipt, scope and
+remaining trust assumptions are recorded in the
+[October assessment](../hardening_audit_20261024/ASSESSMENT.md).
+The frozen September package and historical receipts are preserved.
