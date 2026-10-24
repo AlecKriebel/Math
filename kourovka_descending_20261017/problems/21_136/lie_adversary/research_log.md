@@ -1,0 +1,6 @@
+# Independent Lie locality research log
+
+- 2026-10-24 17:12–17:16 UTC, completion 5%: independently read root AGENTS and Wilson 2023 primary text. Found generalized-dihedral counterexample to dropping finite generation from dense torsion plus one bounded-exponent coset; generalized to every prime using finite augmentation modules.
+- 2026-10-24 17:17–17:21 UTC, completion 8%: separated the stronger every-open-coset property P, proved its equivalence to dense torsion interior, identified non-open Zassenhaus coset lifting gap, and obtained virtually nilpotent finite-class positive subclass. No full solution claim.
+- 2026-10-24 17:24 UTC, completion 8%: wrote checkable full control construction and proofs in independent_locality_audit.md. Spawned an independent narrow check of stronger P subclasses; awaiting that live subagent rather than treating it as complete. No Git, outreach or publication performed.
+- 2026-10-24 17:28 UTC, full-problem completion estimate 10%: child completed the stronger virtually metabelian P0 theorem. Independently checked all norm, localization, semisimplicity, finite-index and iteration steps, including p=2, q=1 and infinite-dimensional controls; no objection to precise partial theorem. Wrote metabelian_adversarial_audit.md. General pro-p gap remains; no solution/publication label.
