@@ -1,0 +1,24 @@
+# Additional virtual algebraic routes: status and precise gaps
+
+Research date: 2026-10-24 UTC. These are attempted mechanisms and obstructions, not asserted invariants separating the target groups.
+
+| Mechanism | What was checked | Exact status / gap |
+|---|---|---|
+| Full profinite rigidity → virtual rigidity | Current primary papers already audited by the parent compare whole completions. FREE_RETRACT_FILTER.md proves every finite group is a quotient of some finite-index subgroup of either target. | Whole-completion rigidity does not classify open subgroup isomorphisms. Virtual quotient *existence* is universal; number, cost, topology, and compatible tower data remain potentially useful but uncomputed. No virtual rigidity theorem supplied. |
+| Full rational cohomology / Orlik–Solomon pencil dimensions | Pure central quotients have different base first Betti numbers and different local rank-two multiplicities. | Arbitrary finite covers can have arbitrarily large primitive cup-isotropic subspaces and character subtori, proved here. A separating result would need an intrinsic characterization surviving all covers, rather than a base pencil count or largest virtual dimension. None obtained. |
+| Rational Malcev / holonomy Lie algebra | A finite-index inclusion is not generally a rational Malcev equivalence: F2 has an index-two subgroup F3. | It is invalid to transport the base holonomy Lie algebra unchanged across arbitrary finite-index subgroups. A genuine virtual structure theorem would be needed. The ordinary nilpotent quotient ranks have no finite virtual upper bound for either target. |
+| Existence of representation images or Zariski closures | Every finitely generated group, hence every finitely generated linear image, occurs as a virtual quotient for both targets. | A useful representation invariant would need faithfulness, a characteristic representation, minimal dimension, constraints on kernels, or another intrinsic condition. No theorem proving such a distinction was obtained. Embeddings into larger ADE Artin groups do not give a virtual representation classification. |
+| Commensurator five-torsion | The full H4 central quotient has order-15 torsion. A positive answer would force five-torsion in Comm(Q_F). | Exact promising conditional test, but excluding actual order-five automorphisms of all finite-index subgroups of Q_F is not proved. OUTER_TORSION_FILTER.md proves virtual Out five-torsion is automatic and is insufficient. |
+| Virtual poly-freeness | Primary Brieskorn Proposition 2 proves asphericity for F4 by an affine-curve fibration over an aspherical classical arrangement base. Bestvina's published 1999 Question 2 discussion explicitly records that the pure groups in types An, Bn, Dn, I2(p), F4 are poly-free, with a finite series of finite-rank free factors. | If the Artin groups in 21.128 are commensurable, H4 must be virtually poly-free as well. No obstruction to virtual poly-freeness of H4 was proved or located. Ordinary non-local-indicability of the *full* H4 group is not a virtual obstruction: a finite-index pure subgroup is bi-orderable. This route remains blocked at a stronger unresolved structural question. |
+
+## The poly-free implication, with quantifiers
+
+A group is poly-free if it admits a finite subnormal series with free factors. A subgroup inherits such a series by intersection; each resulting factor embeds in a free group and is free. For a finite-index subgroup, the intersected factors have finite index in the original factors, so finite generation of the free factors is retained as well.
+
+Since P_F has finite index in A[F4] and has such a poly-free series, any group commensurable with A[F4] is virtually poly-free: intersect the finite-index isomorphic subgroups with P_F and transport the series across the isomorphism. This does not assert that the entire full H4 group would itself be poly-free.
+
+The primary sources for the F4 input are [Brieskorn, Sur les groupes de tresses, Proposition 2](https://www.numdam.org/item/SB_1971-1972__14__21_0.pdf), printed p.25–26 / scan pages 401-05–401-06, and [Bestvina, Non-positively curved aspects of Artin groups of finite type](https://doi.org/10.2140/gt.1999.3.269), introduction around Question 2, printed p.272. Their historical discussion is not a current priority certificate for the H4 virtual question.
+
+## Why these are recorded as blocked approaches
+
+None of the missing assertions is established by its name or by analogy with mapping class groups. Recovering a characteristic peripheral structure of arbitrary covers, classifying all their actual finite-order automorphisms, proving H4 is not virtually poly-free, or establishing an appropriate virtual profinite rigidity theorem would require a materially new argument. Restating one of these assertions would not solve 21.128. This family will reopen a route only if a concrete new mechanism supplies the missing proof.

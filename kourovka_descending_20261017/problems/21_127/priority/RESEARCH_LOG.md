@@ -1,0 +1,6 @@
+# Research log — 21.127 source preparation and preliminary priority audit
+
+- 2026-10-24T20:29:07Z — Opened audit only; exact target rationality of scl for every commutator-subgroup element of every right-angled Artin group. No original solution work. Assigned audit completion estimate: 5%.
+- 2026-10-24T20:30:56.100768+00:00 — Exact official statement and 18.40 definition checked; full main-source hash matches prior contract. Read Chen–Heuer vertex-chain rationality and gap/NP-hardness scopes; proposer October 2021 Questions 2.1/2.2 explicitly separates computability from rationality. Susse and Chen graph-of-groups hypotheses inspected. Audit completion estimate: 60%.
+- 2026-10-24T20:33:52.045254+00:00 — Completed bounded2026 author/arXiv/editor update checks and wrote SOURCE_CONTRACT.md, PRIORITY.md, SOURCE_MANIFEST.json. Assessment: provisionally open, with graph/element/chain/algorithm scopes explicit. Assigned audit completion estimate: 100%; original solution work: 0%.
+- 2026-10-24T20:34:19.844898+00:00 — Validation checkpoint: JSON parsed, all 20 cached source hashes/sizes and PDF text artifacts checked; formula escaping checked. Assigned audit completion estimate: 100%. No original mathematical result claimed.
