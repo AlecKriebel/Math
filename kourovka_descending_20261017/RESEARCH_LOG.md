@@ -195,3 +195,9 @@ Completionestimate95%towardpublishedandtrackedresult. Freshpackage02passedwithou
 ## 2026-10-24T19:21:01.314857+00:00 — final assembly guard passed
 
 Completionestimate95%. A newindependentassemblyreviewer verified30saferegularZIPentries,all29manifestentries,25unchangedbaselinefiles,andtheexactREADME/MANIFEST/report02/checker/outputdelta. Freshcanonicaland468stressreproductionsmatchbyte-for-byte; F4helperarithmeticwasexhaustivelychecked. No requiredcorrection. The finalpackagePDFandTeXareunchangedfromfullreview02. Thisclears the publicationgate for the already-authorizedZenodoworkflow. No131uploadyetatthischeckpoint.
+
+## 2026-10-24T19:29:10.104975+00:00 — publication and tracker confirmed (100%)
+
+The existing production receipts confirm publication of record 23624706 on 24 October, DOI 10.5281/zenodo.23624706. Public metadata and both downloaded files match the final reviewed package. Tracker 'Math Puzzles'!A288:D288 was appended and exactly read back; DOI count is one. Mathematical outcome remains solved_verified; research status is now published. No additional upload or spreadsheet write was needed in this checkpoint. Paper explicitly discloses extensive AI use, no independent human peer review, no formal verification, and bounded priority/source access. The next descending candidate is 21.130.
+
+Previous goal turn classified progress: a fresh independent scope adversary confirmed the user-linked Lean theorem solves the original 21.149 wording; its explicit witness is realized in a larger Dlab group, so it does not settle the corrected ambient quantifiers. This is priority/scope evidence, not a new discovery. No new publication action occurred in that user-question turn.
