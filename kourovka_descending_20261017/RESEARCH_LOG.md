@@ -139,3 +139,7 @@ Previous goal turn is progress of a bounded source-scope audit: it compared the 
 Current136fresh review accepts isolated-class persistence through closed normal torsion or virtually abstract locally nilpotent kernels, including nonopen finite-index subgroups. Final136estimate12%; all arbitraryprofinite gaps remain explicit, and publication gate stays closed. Completed independent multi-route evidence is synthesized in STATUS/CLAIM_LEDGER. Checkpoint11d6c0f7bdf5764af102b128438fbd4479403648f1 was confirmed remote.
 
 Next135exact character-degree multiset/radical question remains open in the proposer September2026Problem3.9(ii) and current official Notebook. Initial discovery5%; independent structural, constructive/computational, and arithmetic research begins. No prior simple/quasisimple recognition result is promoted to arbitrary radicalfree groups.
+
+## 2026-10-24T18:02:47.537458+00:00 —21.135 first restricted theorem audited (10%)
+
+Character-multiset twins of A5^r×PSL2(7)^s are isomorphic for every pair of nonnegative exponents, by classical3Dimage classification, degree10 exclusion, exact simplequotient kernel counts, and5/7valuations. Fresh adversary accepts proof and quantitative variant; root independently reproduces exact exterior-square norm certificate. No general radicalfree classification, originality certification, or new publication. Independent Clifford/arithmetic/construction families continue. Completed136checkpoint12pushedas1fc6a7036f7babf197249e3e2597be8dfa16e83e and remoteconfirmed.
