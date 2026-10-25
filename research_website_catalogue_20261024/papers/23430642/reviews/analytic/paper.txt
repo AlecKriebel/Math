@@ -1,0 +1,467 @@
+                  A ﬂow reduction for equilibrium uniqueness
+                         in rank-one bimatrix games
+                                            Alec Kriebel
+                                       Independent researcher
+                                     ORCID: 0009-0001-9320-500X
+
+                                   13 October 2026 Version 1.0
+
+
+                                               Abstract
+         For explicitly listed rational bimatrix games of variable positive dimensions and exact rank
+     rank(A + B) = 1, deciding whether there is exactly one mixed-strategy equilibrium pair is coNP-
+     complete. Its nonuniqueness counterpart is NP-complete. Arbitrary degeneracy is allowed. A
+     polynomial reduction from nonempty positive-integer Partition produces a known strict pure
+     equilibrium and an additional equilibrium exactly when the source instance admits a partition.
+     The construction applies the signed ﬂow counter of Disser and Skutella and the auxiliary zero-
+     sum representation of Adsul and coauthors. A comparison-preserving rational perturbation
+     isolates every real-demand ﬂow optimum, an injective simplex encoding transfers diagnostic arc
+     ﬂow to a scalar consistency equation, and a uniform polynomial-bit exact penalty controls every
+     auxiliary minimizer. Rational support-polytope certiﬁcates establish membership, including
+     positive-dimensional equilibrium sets. A bounded source audit found no matching proof among
+     the inspected bodies; worldwide priority remains unknown.
+
+
+1    Statement, scope, and lineage
+A rational bimatrix game is given by explicitly listed matrices A, B ∈ Qm×N , with m, N ≥ 1.
+Both players maximize their own expected payoﬀs. Its equilibrium set E(A, B) consists of pairs
+(x, y) ∈ ∆m × ∆N satisfying the two best-response conditions. The word unique refers to the entire
+strategy pair. Deﬁne the ordinary languages
+
+                      Uniqueness1 = {(A, B) : rank(A + B) = 1, |E(A, B)| = 1},
+                 Nonuniqueness1 = {(A, B) : rank(A + B) = 1, |E(A, B)| > 1}.
+
+Malformed encodings are rejected; rank-invalid games belong to neither language. Dimensions vary
+with the input, whose size includes all rational entries in binary.
+Theorem 1. Uniqueness1 is coNP-complete and Nonuniqueness1 is NP-complete under polynomial-
+time many-one reductions. Hardness holds for games supplied with a known strict pure equilibrium.
+The construction permits degeneracy and imposes no nondegeneracy promise.
+   We prove this by reducing Partition on nonempty lists of positive integers w1 , . . . , wn , n ≥ 1.
+This restriction retains its usual NP-completeness. Every output has one speciﬁed strict pure
+equilibrium; it is the sole equilibrium on no instances, and has a distinct companion on yes instances.
+No claim is made about strong hardness, ﬁxed dimensions, nondegenerate-promise hardness, or
+uniqueness of equilibrium payoﬀs.
+
+                                                    1
+    The historical rank-one uniqueness conjecture appears in von Stengel’s contribution to Oberwol-
+fach Report 38/2018, printed p. 2332, as joint work with Adsul, Garg, Mehta, and Sohoni [9]. The
+signed counting network, designated bridge, and parametric ﬂow/LP activity hardness used here are
+due to Disser and Skutella [4, 5]. Their journal Lemmas 3.1–3.2 and Figures 1–3 control our source
+argument. The auxiliary zero-sum family and scalar hyperplane representation are established by
+Adsul and coauthors [1, 2]. We reprove the needed specialization to control every equilibrium,
+including degeneracy. Gilboa and Zemel already proved unrestricted bimatrix uniqueness coNP-
+completeness and rational certiﬁcate membership [7]; the known-default-plus-additional-witness
+pattern also occurs in Conitzer and Sandholm [3]. Neither of those displayed hardness construc-
+tions imposes sum rank one. Generic cost perturbation and all-real-demand uniqueness have earlier
+precedents, including Erickson, Fox, and Lkhamsuren [6]. LP duality, determinant bounds, and
+exact-penalty techniques are classical tools. The role of the present proof is their speciﬁc quantita-
+tive connection to the diagnostic bridge and complete rank-one equilibrium exhaustion.
+    A bounded primary-source audit through 13 October 2026 located no exact matching theorem
+or reduction in the inspected bodies. Global priority remains unknown: the full Murty 1980 article,
+exact SODA 2015 proceedings body, Ruta Mehta’s 2012 thesis, and Nikolas Patris’s 2026 thesis
+were not recovered, and further source coverage remains incomplete. These are priority gaps, not
+assumptions of the proof below. We do not assert ﬁrstness or current worldwide openness. The
+supplement records source editions, reading scopes, and these gaps.
+
+
+2    The diagnostic ﬂow network
+           ∑                                                                             ∑
+Write S = i wi > 0, αi = wi /(24S), η = 1/(24S), and δ = η/5. Thus T =                   i αi = 1/24 < 1/12,
+and every αi is a positive multiple of η. For 0 ≤ j < 2n , put
+                                                ∑
+                                                n
+                                         zj =         (−1)biti−1 (j) αi .
+                                                i=1
+
+A partition exists exactly when some zj = 0; otherwise |zj | ≥ η = 5δ.
+   For each sign σ ∈ {+1, −1} make distinct nodes sσi , tσi for 0 ≤ i ≤ n. The base arc sσ0 → tσ0 has
+capacity one and cost δ. At each level i ≥ 1 add the following four arcs, each of capacity 2i−1 :
+
+                               Arc                            Cost
+                               sσi → sσi−1 , tσi−1 → tσi      σαi /2
+                               sσi → tσi−1 , sσi−1 → tσi      (2i − 1 − σαi )/2
+
+Add a global source s, sink t, and arcs s → sσn , tσn → t of capacity 2n and cost zero. The distinguished
+bridge
+                                                            −
+                                             e : s+  0 −→ t0
+
+has capacity one and cost zero. There are
+
+                             V = 4n + 6,         p = 8n + 7,                F = 2n+1 .
+
+The graph is a DAG: order s ﬁrst, both families of si in decreasing i, both families of ti in increasing
+i, and t last. Every arc increases this order. The source cut bounds the ﬂow value by F . A zero-
+bridge ﬂow attaining F puts 2n−1 on each of the four level-n arcs in each gadget, zero on lower-level
+arcs, and 2n on each exterior arc. This is a conserved ﬂow, including when n = 1. Scaling it gives
+a zero-bridge feasible ﬂow at every real value in [0, F ].
+
+                                                         2
+    Successive shortest paths (SSP) starts from zero and augments along a shortest simple residual
+s–t path by its bottleneck. An original arc of cost ci contributes a reverse residual arc of cost −ci .
+The initial zero ﬂow is value-zero optimal because the original graph is acyclic, even though some
+cheap arc costs are negative.
+
+Lemma 2 (Disser–Skutella source event). Every legitimate SSP execution on this unperturbed
+network augments in units and uses e if and only if Partition is a yes instance. Any forward use
+raises fe from zero to one and is immediately followed by a reverse use lowering it to zero. At a
+forward midpoint the ﬂow value is q = 2j + 21 ≤ F − 32 and fe = 12 .
+
+Proof. This is the state/two-step argument in the complete journal Lemmas 3.1–3.2 of [4]. We spell
+out the comparisons needed for its universal SSP quantiﬁer. In a gadget, the cheap connectors ﬁrst
+run the lower gadget forward; once they are exhausted, the crossed connectors run it in reverse.
+The recursive state j has marginal path cost j + v [j] + (−1)j δ for signed weights v = σα, and the
+base arc is empty at even j and full at odd j. The inductive phases are strictly separated: after
+the base adjustment their cost envelope is [j − T − δ, j + T + δ], and 2(T + δ) < 1. Thus shortest
+ties do not permit a departure from this recursive state sequence.
+    When the two gadgets are synchronized at state j, their whole-gadget paths and the bridge
+path have the following costs, where z = zj :
+
+       State                  + path         − path       Forward bridge       Next reverse if z = 0
+       Even j, base empty     j+z+δ          j−z+δ        j                    j + 2δ
+       Odd j, base full       j+z−δ          j−z−δ        j − 2δ               j
+
+If z ̸= 0, one whole-gadget path is strictly cheaper than the bridge because |z| ≥ 5δ. Its compan-
+ion augmentation restores synchronization, and the same comparisons exclude bridge use in that
+companion step. If z = 0, the forward bridge wins strictly; the next shortest path reverses it and
+restores synchronization at the next state. The recursive arcs and base/bridge capacities make
+each bottleneck one. This state induction applies to any chosen shortest path and has no special
+tie-breaking hypothesis. The forward use starts at value 2j, giving the claimed midpoint, with
+j ≤ 2n − 1.
+
+Remark 3 (Source arithmetic clariﬁcations). The printed i = 1 base discussion in [4], p. 5:8, gives
+the second path cost as −v1 ; its two crossed arcs give 1 − v1 , consistent with the general state
+formula. Its post-base-adjustment envelope on p. 5:9 needs the additional ±δ used above. The
+underlying arc formulas and strict state separation are unchanged. These are source-exposition
+clariﬁcations, not a diﬀerent gadget or a new source-hardness theorem. The journal body is the
+controlling edition; the exact SODA body was not certiﬁed in the priority audit.
+
+
+3    Isolation for every real demand
+Let D be the least common multiple of the reduced denominators of the original p arc costs.
+Enumerate the arcs deterministically, for example by sign + then −, base then levels in increasing
+order and the four arcs in the table’s order, then exterior arcs, then the bridge. Set
+                                     1
+                             ρi =        ,      c′i = ci + ρi   (1 ≤ i ≤ p).
+                                    4D3i
+
+
+
+
+                                                      3
+Lemma 4. The perturbed SSP execution is a legitimate unperturbed execution in the same residual
+states. For each real q ∈ [0, F ], the perturbed ﬁxed-value minimum-cost ﬂow is unique. Its interpo-
+lated SSP curve is that optimum at every real value. On no instances every optimum has fe = 0;
+on yes instances the unique optimum has fe = 12 at some q ≤ F − 32 .
+Proof. A simple residual path has projected original-arc incidence in {−1, 0, 1}p . A diﬀerence of
+                                                                 ∑
+two such paths has coordinates between −2 and 2. Since i ρi < 1/(8D), perturbing a path
+comparison changes it by less than 1/(4D). Every nonzero original comparison is in (1/D)Z and
+has magnitude at least 1/D. Its sign persists. Consequently a perturbed shortest path is an original
+shortest path in that same residual state. Starting at zero, select that same path in the original
+execution; its bottleneck depends only on the common capacities and ﬂow. Induction keeps the
+two states identical. Lemma 2 therefore governs the perturbed execution. Comparisons between
+diﬀerent executions or states would not suﬃce.
+    No simple residual cycle with nonzero projected vector σ ∈ {−1, 0, 1}p has zero perturbed cost.
+A nonzero original cost has magnitude at least 1/D and retains its sign. If the original cost is zero,
+                           ∑
+the ﬁrst nonzero term of i σi /(4D3i ) strictly dominates the ﬁnite tail, so the sum is nonzero. The
+formal two-cycle made of an original arc and its reverse has zero projection and changes no original
+ﬂow.
+    Fix a real q and suppose f ̸= g were two optimal ﬂows. The diﬀerence g − f is a sign-conformal
+residual circulation of f : on each original arc use only the sign of gi − fi , and at most its residual
+capacity. Decompose it into positive multiples of simple directed cycles. At least one has nonzero
+projection; sign conformity excludes formal zero-projection two-cycles. Optimality of f makes ev-
+ery occurring cycle cost nonnegative, since otherwise a suﬃciently small augmentation improves
+f . Their weighted sum is c′ · (g − f ) = 0, so an occurring nontrivial cycle has zero cost, a contra-
+diction. Compactness of the capacitated ﬁxed-value feasible set supplies an optimum. This proves
+uniqueness for real, not just integral, q.
+    For completeness, interpolation is optimal rather than an integrality heuristic. If f is optimal
+at value q, P is a shortest residual s–t path of cost ℓ, and 0 ≤ ∆ is at most its bottleneck, any
+feasible value-(q + ∆) ﬂow g yields a residual ﬂow g − f . Its path/cycle decomposition has s–t paths
+of total amount ∆ and nonnegative-cost cycles. Each path costs at least ℓ, so c′ · (g − f ) ≥ ∆ℓ. The
+interpolation f + ∆χP attains equality and is optimal. Starting at the value-zero optimum proves
+this along the entire SSP curve. The source event supplies the half-bridge midpoint in the yes case;
+uniqueness transfers its no-case zero-bridge property from the curve to every optimum.
+
+    Choose a topological order r and H = 1 + maxi |c′i |. Replace costs by
+
+                                   c̄uv = c′uv + H(r(v) − r(u)) > 0.
+
+For a value-q ﬂow this adds H(r(t) − r(s))q, constant at ﬁxed value. Residual s–t paths all receive
+the same cost shift, and residual cycles receive zero. All conclusions of Lemma 4 remain valid.
+From now on, an unrestricted optimum always means the optimum on this post-perturbation, post-
+potential network, before imposing the simplex restriction below.
+
+
+4    An injective simplex and a uniform exact penalty
+Let L = V − 1 = 4n + 5, K = 1/(2L), and ε = K/2 = 1/(4L). A nonnegative feasible DAG ﬂow of
+value q decomposes into paths of at most L arcs, hence
+                                             ∑
+                                                  fi ≤ Lq.                                          (1)
+                                              i
+
+
+                                                   4
+There are no original circulation components; in particular q = 0 forces f = 0.
+   Use simplex coordinates x = (x0 , x∗ , x1 , . . . , xp ) ∈ ∆p+2 , and deﬁne linear functions on the
+simplex by                          (   ∑ )
+               h = F (1 − x0 ) = F x∗ +      xi ,           fi = LF xi ,  q = h − Kfe .             (2)
+                                              i
+                                  ∑
+They satisfy f ≥ 0, 0 ≤ h ≤ F ,     i fi ≤ Lh, and
+                                                  ∑
+                                        q ≥h−K        fi ≥ h/2 ≥ 0.                                (3)
+                                                  i
+
+Moreover q > 0 for every simplex point other than pure row 0. Conversely, these bounds on (f, h)
+give the unique representation
+                                                          ∑
+                                 fi              h     fi                      h
+                            xi =    ,       x∗ =   − i ,            x0 = 1 −     .                 (4)
+                                 LF              F   LF                        F
+Thus the slack coordinate creates no multiplicity for a ﬁxed (f, h).
+   Let D be the network incidence matrix with +1 at an arc’s tail and −1 at its head, and d have
++1 at s, −1 at t, zero elsewhere. Impose fi ≤ ui , Df = qd, and q = λ. Replace each equality by its
+two opposite inequalities, retaining all V conservation equations, to obtain
+
+                                              Rx ≤ r + sλ.
+
+Here s denotes the parameter-coeﬃcient vector, not the network source. There are k = p + 2V + 2
+                                                                                        ∑
+inequalities. Deﬁne c ∈ Qp+2 by c0 = c∗ = 0, ci = LF c̄i on arc coordinates, so cT x = i c̄i fi .
+Consider
+                          v(λ) = min{cT x : x ∈ ∆p+2 , Rx ≤ r + sλ}.                        (5)
+For every real λ ∈ [0, F ], scale the zero-bridge maximum ﬂow. It has h = q = λ and satisﬁes
+(1), proving feasibility and compactness. On a no instance, the unique unrestricted optimum has
+fe = 0, so h = q = λ ≤ F and the optimum survives the restriction. Every restricted optimum is
+therefore that unrestricted optimum and has fe = 0. On a yes instance, the half-bridge unrestricted
+optimum has
+                        q = λ ≤ F − 32 ,   h = λ + K/2 < F,      λ < F − ε.
+It obeys (1), so its unique representation is retained and remains optimal in (5).
+
+Lemma 5 (Uniform exact penalty). One can compute a positive integer M of polynomial binary
+length such that, for every real λ ∈ [0, F ], all minimizers over the simplex of
+
+                            ϕλ (x) = cT x + M max{0, max(Rj x − rj − sj λ)}                        (6)
+                                                              j
+
+are precisely the feasible optima of (5).
+
+Proof. The dual of (5) is
+
+                         max ν − (r + sλ)T µ,             µ ≥ 0,   ν1 ≤ c + RT µ.
+                            µ,ν
+
+Its feasible polyhedron is rational, independent of λ, and nonempty (µ = 0, ν ≤ mini ci ). It
+is pointed: any two-sided line has zero µ direction by µ ≥ 0, then zero ν direction by its upper
+bounds. Strong LP duality supplies an attained optimal face for every real λ in the speciﬁed interval.
+
+
+                                                      5
+A nonempty pointed polyhedron has a vertex; a vertex of this optimal face is a vertex of the whole
+feasible polyhedron, because a feasible decomposition of an optimum has optimal endpoints.
+    Let a positive integer Q clear all denominators in the dual constraints, and let H0 ≥ 1 bound
+the absolute integer coeﬃcients and right-hand sides after clearing, including nonnegativity. This
+uses only R, c, not λ. Put d0 = k + 1. Every dual vertex has d0 independent active equations.
+Cramer’s rule bounds each coordinate’s magnitude by d0 !H0d0 : the denominator is a nonzero integer
+determinant of magnitude at least one, and expansion bounds each numerator determinant. This
+also applies to a lower-dimensional optimal face or redundant constraints. Thus an optimal dual
+vertex can always be chosen with
+                                       ∥µ∥1 ≤ C := k d0 !H0d0 .
+Compute M = C + 1 directly, without enumerating vertices.
+    For any simplex point let ∆x = max{0, maxj (Rj x − rj − sj λ)}. The chosen optimal dual vertex
+gives
+                cT x ≥ ν − µT Rx ≥ v(λ) − C∆x ,      ϕλ (x) ≥ v(λ) + (M − C)∆x .
+Every infeasible point is strictly worse than a feasible optimum. Feasible minimizers attain exactly
+v(λ), proving equality of the entire minimizer sets. Irrational λ changes only the dual objective; the
+same rational vertex bound is uniform. The product of constraint denominators is an admissible
+Q, with polynomial bit length. Thus log H0 and log M = O(k log k + k log H0 ) are polynomial.
+
+
+5    The rank-one game and all its equilibria
+Adjoin a baseline penalty column j = 0 with R0 = r0 = s0 = 0. For 0 ≤ j ≤ k deﬁne
+
+              Gj = c + M RjT − M rj 1,    bj = −M sj ,   A·j = −Gj ,      B = −A + abT ,           (7)
+
+where a0 = −ε and every other row entry of a is F − ε. Therefore
+
+                                            aT x = h − ε.
+
+The opposite inequalities q ≤ λ and −q ≤ −λ supply entries −M, +M in b. Since a0 ̸= 0 and b ̸= 0,
+A + B = abT has exact rank one. Its dimensions are
+
+                  m = p + 2 = 8n + 9,        N = k + 1 = p + 2V + 3 = 16n + 22.
+
+    For real λ consider the auxiliary zero-sum game with row matrix
+
+                                          Aλ = A − 1λbT
+
+and column matrix −Aλ . Its column-j row payoﬀ against x is
+
+                               xT Aλ,·j = −cT x − M (Rj x − rj − sj λ).
+
+Thus its row player’s minimax-optimal strategies are exactly the minimizers of (6), including all
+optimal faces. Finite zero-sum minimax guarantees an optimal opposing strategy and that any
+optimal row strategy can be paired with any optimal column strategy.
+
+Lemma 6 (Full scalar correspondence). A pair (x, y) is an equilibrium of (A, B) if and only if it is
+an equilibrium of an auxiliary zero-sum game at a parameter satisfying λ = aT x. Every candidate
+parameter lies in [−ε, F − ε].
+
+                                                  6
+Proof. For any y, replacing A by Aλ shifts every row payoﬀ by the same scalar −λbT y. At aT x = λ,
+original and auxiliary column expected payoﬀs agree because xT B = −xT A + λbT = −xT Aλ . Both
+complete best-response sets therefore agree, proving both directions without support restrictions.
+The range follows from the convex combination of the entries of a. In particular this correspondence
+includes opposing-strategy degeneracy, zero probabilities, and continua.
+
+   This is the rank-one specialization of [1, Theorem 1]. In arXiv:1812.04611v4, dated 22 Decem-
+ber 2019, the corresponding result is Theorem 7. Its Theorems 19, 20, 21 correspond to journal
+Theorems 4, 5, 6; journal Theorem 7 is a diﬀerent structure result. The journal appeared online 4
+June 2020 and in volume 69(2) in 2021.
+
+Proposition 7. There is exactly one crossing at negative parameters. It occurs at λ = −ε and
+gives a strict pure equilibrium pair: pure row 0 and the column for q − λ.
+
+Proof. For λ < 0, the diagnostic penalty q − λ is positive throughout the simplex. Since cT x ≥ 0
+and (3) holds,
+                                ϕλ (x) ≥ cT x + M (q − λ) ≥ −M λ.
+Pure row 0 attains equality: f = h = q = 0, capacity residuals are negative, conservation residuals
+vanish, the baseline is zero, and the opposite parameter residual is λ < 0. Every other x has q > 0,
+so is strictly worse. Pure row 0 is therefore the unique optimal row strategy at every negative
+parameter. Its scalar equation forces λ = −ε.
+    At that point q − λ is the unique maximizing penalty column against row 0, so the auxiliary
+opposing strategy is its pure column. Directly in the original game, row 0 receives payoﬀ zero in
+that column, while every other row receives −ci − M qi < 0. The star row has q∗ = F ; each arc row
+has qi = F , except the bridge row has qe = F/2. Against row 0 the diagnostic column payoﬀ is
+M ε > 0, while baseline and conservation columns give zero, the opposite parameter column gives
+−M ε, and capacity columns give −M ui < 0. Both best responses are strict, proving uniqueness of
+the pair at this crossing.
+
+    For every candidate λ ≥ 0, Lemma 5 applies because λ ≤ F − ε < F . It forces q = λ. The
+scalar equation is then
+                                                                     ε  1
+                          λ = h − ε = q + Kfe − ε      ⇐⇒     fe =     = .                         (8)
+                                                                     K  2
+At λ = 0, the DAG has only the zero ﬂow, so no such crossing exists. In a no Partition instance
+every restricted optimum has fe = 0, excluding every nonnegative crossing and all opposing-strategy
+choices. Proposition 7 leaves exactly the strict default pair. In a yes instance the retained half-
+augmentation optimum satisﬁes (8) at λ ≤ F − 3/2 < F − ε; pair its x with any auxiliary optimal y.
+Lemma 6 gives a second equilibrium, distinct because its bridge ﬂow is 1/2. This is an actual positive
+witness existence argument. The yes equilibrium set may be degenerate or positive-dimensional;
+the no-case argument has exhausted all pairs rather than one selected path.
+
+
+6    Encoding and membership
+The preceding reduction is a polynomial construction. Each capacity has O(n) bits and F has
+n + 2 bits. Original cost denominators divide 240S, so D has O(log S) bits; a generic denominator-
+product bound would also suﬃce. The ternary denominators add O(p) bits per arc. Costs of order
+2n , the topological potential, L, K, ε, and all R, r, s, c coeﬃcients have polynomial encoding length.
+
+
+                                                  7
+Lemma 5 computes an extremely large numerical M , but of polynomial binary length, by integer
+arithmetic. Explicitly listing the m × N matrices is polynomial. The exponential SSP run is used
+only to prove correctness; it is never executed by the reduction algorithm. This proves NP-hardness
+of Nonuniqueness1 and, by complementing the source decision, coNP-hardness of Uniqueness1 .
+    We include the certiﬁcate proof because exact pair uniqueness with arbitrary degeneracy re-
+quires rational witnesses even when initially observed equilibria are irrational. This membership
+conclusion is established prior art [7, §3.13]; the explicit bounds below also clarify our encoding
+convention.
+    For nonempty sets I ⊆ {1, . . . , m} and J ⊆ {1, . . . , N } choose i0 ∈ I, j0 ∈ J, and deﬁne compact
+rational polytopes
+                        X(I, J) = {x ∈ ∆m : xi = 0 (i ∈
+                                                      / I),
+                                               xT (B·j − B·j0 ) ≤ 0 for all j,
+                                               xT (B·j − B·j0 ) = 0 for j ∈ J},
+                         Y (I, J) = {y ∈ ∆N : yj = 0 (j ∈
+                                                        / J),
+                                               (Ai· − Ai0 · )y ≤ 0 for all i,
+                                               (Ai· − Ai0 · )y = 0 for i ∈ I}.
+Every member of X(I, J) × Y (I, J) is an equilibrium: all used actions are best responses. Every
+equilibrium belongs to its actual-support cell. Closed cells permit zero declared probabilities and
+add no false equilibria. Hence E(A, B) is exactly the ﬁnite union of these compact product polytopes,
+with no claim that the union is convex or has polynomially many cells.
+    Let ℓ be the total binary input length. Multiply payoﬀs by the product of their denominators,
+producing integer entries of magnitude at most 2ℓ , and comparison coeﬃcients of magnitude at most
+H1 = 2ℓ+1 . Remaining coeﬃcients and right sides are 0, ±1. At a vertex in ambient dimension d,
+active normals span Rd , even for a lower-dimensional cell: otherwise a small movement in both signs
+along an annihilating direction preserves active constraints and the ﬁnite strict inactive inequalities,
+contradicting extremality. Select d independent active equations. Hadamard’s bound and Cramer’s
+rule bound each coordinate’s numerator and denominator by
+                                                dd/2 H1d .
+Each needs at most ⌈d(ℓ + 1) + (d/2) log2 d⌉ + 2 bits, including sign. Use d = m and d = N for the
+two factors.
+    The vertices of a product are products of factor vertices. If the union of all nonempty cell vertices
+had only one pair, every nonempty cell would be that singleton, as would its union. Thus whenever
+the equilibrium set is nonsingleton, it contains two distinct rational vertex pairs of polynomial size,
+even if the initial witnesses were irrational or in a continuum. A veriﬁer checks nonnegative unit
+vectors, distinctness, and the exact inequalities
+                   (Ay)i ≤ xT Ay     for every i,       (B T x)j ≤ xT By   for every j
+for each pair. These are suﬃcient as well as necessary because expected payoﬀs are averages of the
+pure payoﬀs.
+    Finite-game equilibrium existence [8] makes the complement of nonuniqueness on valid rank-one
+inputs exactly uniqueness. Rank is polynomially checkable by exact arithmetic: for C = A + B ̸= 0
+choose a nonzero pivot Ci0 j0 , and rank is one exactly when Cij Ci0 j0 = Cij0 Ci0 j for all i, j. The
+ordinary complement of Uniqueness1 has a polynomial-time rank-invalid (or malformed) branch
+and the two-pair NP certiﬁcate branch. Therefore Uniqueness1 ∈ coNP and Nonuniqueness1 ∈
+NP, completing Theorem 1. The supplied-default version uses the same reduction and certiﬁcates.
+
+                                                    8
+7    Veriﬁcation and disclosure
+The quantiﬁed proof above is mathematical evidence. New, separately authored exact checks
+accompany the supplement: the ﬂow family checks 37 weight vectors, 660 augmentations with
+half-ﬂow certiﬁcates, 864 residual cycles in small instances, six original-choice searches, and four
+deliberate negative controls; its normal and optimized-mode receipts are retained. The game family
+constructs six complete games and checks 204 auxiliary pairs, strict defaults, dual certiﬁcates, and
+deliberate penalty/sign/certiﬁcate failures. These ﬁnite checks supplement the proof; they do not
+enumerate every equilibrium or prove the all-instance claims. They are separate from the omitted
+historical six-game/39-network script references. The original eleven-ﬁle theoretical edition contains
+no executable, ﬁxtures, or check logs, and those historical computations were not replayed.
+    This unrefereed preprint was developed with extensive AI assistance in mathematical solving,
+source inspection, veriﬁcation, and writing, including fresh independent and adversarial AI review
+families. These reviews are not conventional human journal peer review or proof-assistant veriﬁca-
+tion. Alec Kriebel is the named author and independent researcher. The accompanying support
+package preserves the dated AI review history and the exact input scope of each review; its current
+kit state is recorded in STATUS.json. No journal acceptance or publication service action is im-
+plied. The authored work is licensed under Creative Commons Attribution 4.0 International; cited
+third-party works retain their own rights and their raw bodies are excluded from the supplement.
+
+
+References
+ [1] B. Adsul, J. Garg, R. Mehta, M. Sohoni, and B. von Stengel, Fast algorithms for rank-1 bimatrix games,
+     Operations Research 69(2) (2021), 613–631. doi:10.1287/opre.2020.1981. Journal Theorems 1, 4, 5, 6
+     correspond to Theorems 7, 19, 20, 21 in arXiv:1812.04611v4 (22 December 2019).
+
+ [2] B. Adsul, J. Garg, R. Mehta, and M. Sohoni, Rank-1 bimatrix games: a homeomorphism and a polyno-
+     mial time algorithm, Proceedings of STOC (2011), 195–204. doi:10.1145/1993636.1993664.
+
+ [3] V. Conitzer and T. Sandholm, New complexity results about Nash equilibria, Games and Economic
+     Behavior 63(2) (2008), 621–641. Author manuscript; Deﬁnition 4, Theorem 1, Corollary 2.
+
+ [4] Y. Disser and M. Skutella, The simplex algorithm is NP-mighty, ACM Transactions on Algorithms
+     15(1), Article 5 (journal footer November 2018), 1–19. doi:10.1145/3280847; author-hosted journal
+     body. Lemmas 3.1–3.2, Figures 1–3, Corollary 1.7. Some issue bibliographies give 2019.
+
+ [5] Y. Disser and M. Skutella, The simplex algorithm is NP-mighty, Proceedings of SODA (2015), 858–872.
+     doi:10.1137/1.9781611973730.59. Historical predecessor; exact proceedings body not certiﬁed in this
+     audit.
+
+ [6] J. Erickson, K. Fox, and L. Lkhamsuren, Holiest minimum-cost paths and ﬂows in surface graphs, Pro-
+     ceedings of STOC (2018). Author manuscript, Section 3, Lemma 3.3 and Theorem 3.4 (real capacities
+     and demands).
+
+ [7] I. Gilboa and E. Zemel, Nash and correlated equilibria: some complexity considerations, Games and
+     Economic Behavior 1(1) (1989), 80–93. Author-hosted journal scan, Sections 3.1–3.2 and 3.13.
+
+ [8] J. F. Nash, Non-cooperative games, Annals of Mathematics 54(2) (1951), 286–295.
+
+ [9] B. von Stengel, Algorithms for rank-1 bimatrix games, in New Directions in Stochastic Optimisation,
+     Oberwolfach Reports 38/2018, 15(3), 2303–2384, contribution p. 2332. Joint work with B. Adsul, J.
+     Garg, R. Mehta, and M. Sohoni. doi:10.4171/OWR/2018/38; primary report. Posted 27 August 2019.
+
+
+
+                                                    9
+

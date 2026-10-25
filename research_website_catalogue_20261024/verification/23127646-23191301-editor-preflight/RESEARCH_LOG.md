@@ -1,0 +1,5 @@
+# Publication editor — 23127646 and 23191301
+
+2026-10-25T01:54:22.133474+00:00 — 80% complete. All six full reports read and exact source abstracts, dates, editions, original asset MD5/size/SHA, ZIP extraction bytes and reviewer report/verdict/evidence hashes rebound. Both have explicit root clearance; publication and promotion records prepared. Abstracts retain 109 and 123 words respectively. Original source/scope/review files unchanged. Pending render, scoped checker extension, content QA and unchanged-file audit. No Git, deployment, spreadsheet, browser or outreach.
+
+2026-10-25T01:55:01.375633+00:00 — 100% of the two authorized pages completed. Each passes 57/57 checks. Three representative regression pages pass 57/57, 69/69 and 45/45. Original PDF/ZIP bytes, source abstracts, edition/date and six review bindings pass. Only preexisting index/sitemap changed, eight files added, all other site bytes including CSS unchanged. Editing ownership retained temporarily for separately requested tangent-paper preflight pending its stable final scope binding and root clearance. No browser, Git, deploy, sheet or outreach.

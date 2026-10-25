@@ -1,0 +1,106 @@
+{
+  "title": "Non-symmetry of biconstrained two-step reachability",
+  "slug": "biconstrained-two-step-reachability-asymmetry",
+  "description": "Swapping two connection thresholds changes the guaranteed two-step reachability in finite graphs, with a proved gap of at least 1/108.",
+  "abstract": "The biconstrained reachability function ψ(x, y) is the largest fraction of the first part that some vertex of the third part must reach in two steps, over all finite tripartite graphs satisfying minimum-degree conditions in both directions on each adjacent pair. We answer its symmetry question negatively: |ψ(13/27, 14/27) − ψ(14/27, 13/27)| ≥ 1/108. The proof establishes the exact rational-boundary formula ψ(1 − θ, θ) = 1 − θ/d(θ), where d(θ) is a minimum integer degree of a positive rational regular incidence template. An existing seven-type example and its complement bound both relevant integers by four, making equality impossible. Neither exact value nor their ordering is needed or asserted.",
+  "plain_language": [
+    "Imagine three groups of vertices, with connections between neighboring groups. Each adjacent pair must meet a minimum connection requirement in both directions. How large a fraction of the first group must at least one vertex in the third group be able to reach in two steps?",
+    "Exchanging the two thresholds can change that guarantee. At thresholds 13/27 and 14/27, the guarantees differ by at least 1/108. This is a statement about all eligible finite graphs; looking at two individual examples would not suffice.",
+    "The surprising feature is that the proof establishes a definite gap without finding either exact guarantee or deciding which is larger. It obtains an exact boundary formula involving an integer, then uses a known small construction to restrict the possible integers."
+  ],
+  "result": [
+    "The graph is finite and simple, partitioned into nonempty stable parts A, B and C, with no A–C edges. An (x,y)-biconstrained graph satisfies all four conditions: every A vertex has at least x|B| neighbors in B; every B vertex has at least x|A| neighbors in A and y|C| neighbors in C; every C vertex has at least y|B| neighbors in B.",
+    "For each graph, take the largest fraction of A reachable from any single C vertex through B. Each reached A vertex is counted once, however many paths reach it. The function ψ(x,y) is the infimum of this maximum over all eligible finite graphs and partitions. It is the best universal guarantee; its attainment is not assumed in the definition.",
+    "The main separation is |ψ(13/27,14/27) − ψ(14/27,13/27)| ≥ 1/108. Neither exact value nor their ordering is asserted.",
+    "More generally, for every rational θ with 0 < θ < 1, the paper proves ψ(1−θ,θ) = 1−θ/d(θ), and this value is attained by a finite ordinary graph.",
+    "Here d(θ) is the minimum unweighted maximum row degree of a finite binary matrix M with distinct columns and strictly positive rational probability vectors b and q satisfying Mq = θ1 and Mᵀb = θ1. A row degree counts column types, not weighted mass. Rows may repeat and the matrix may be rectangular."
+  ],
+  "why_it_works": [
+    "On the boundary x+y=1, a vertex in C that misses a vertex in A forces their middle neighborhoods to be complementary. If the maximum reach is below one, this applies to every C vertex and forces exact degree equalities between B and C. Grouping identical neighborhoods produces a regular incidence template. The reverse degree condition from B to A bounds the smallest missed class, giving a lower bound valid for every finite graph.",
+    "For the matching upper bound, a template attaining the least integer degree gives weighted vertex types. Strictly positive middle weights preserve the paths between distinct types, and rational weights turn the construction into an ordinary finite graph by replacing types with integer numbers of vertices. This proves the formula and finite attainment.",
+    "The seven-type construction of Chudnovsky, Hompe, Scott, Seymour and Spirkl, together with its complement, gives d(13/27) ≤ 4 and d(14/27) ≤ 4. The formula then leaves only finitely many integer possibilities; none give equal guarantees, and every possible absolute gap is at least 1/108."
+  ],
+  "limitations": [
+    "The boundary formula is stated for rational θ strictly between zero and one. The page makes no claim about irrational boundary parameters, the endpoints, or the full function away from this boundary.",
+    "The two integer minima, the two exact ψ-values and their ordering remain unevaluated here. The displayed finite graphs supply upper bounds only and are not claimed to attain the infima. The bound 1/108 is not claimed to be the exact gap.",
+    "All four degree inequalities and strict positivity of the rational template weights matter. The known symmetry of the related one-direction function φ is a different result. The inherited seven-type example is credited prior work; the contribution here is the universal rational-boundary formula and its quantitative asymmetry consequence. No exhaustive priority or current-openness certification is claimed."
+  ],
+  "background": [
+    {
+      "title": "Paul Seymour — Biconstrained graphs, Oberwolfach Report 1/2019",
+      "url": "https://ems.press/content/serial-article-files/46780",
+      "note": "Printed pages 46–47 give the four degree conditions and ask whether ψ is symmetric."
+    },
+    {
+      "title": "Chudnovsky, Hompe, Scott, Seymour and Spirkl — Concatenating Bipartite Graphs (2022)",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v29i2p47",
+      "note": "The finite weighted framework and Figure 1 supply the credited seven-type template. Theorem 2.3 concerns φ symmetry; Theorem 12.2 concerns a special minimal-value case for ψ."
+    }
+  ],
+  "collaboration": "I welcome collaboration with researchers in extremal graph theory who would like to examine the boundary formula, its incidence-template argument and relationship to earlier biconstrained results, or help prepare a journal submission.",
+  "follow_up": null,
+  "follow_up_reason": "No follow-up conjecture with independently established significance and unresolved status meeting the requested high bar was identified in this scope assignment. Unevaluated quantities alone do not justify a public follow-up section.",
+  "status": "Unrefereed preprint developed with extensive AI assistance.",
+  "ai_disclosure": "Research, proof development, computational checks, literature review and writing were extensively AI-assisted. This is an unrefereed preprint without external human peer review or formal proof-assistant verification. The archive includes the published source and exact computational controls.",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "publication_date": "2026-10-03",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23127646",
+  "pdf_filename": "biconstrained_asymmetry.pdf",
+  "supplement_filename": "biconstrained-asymmetry-verification.zip",
+  "source_binding": {
+    "record_id": "23127646",
+    "concept_record_id": "23127645",
+    "record_url": "https://zenodo.org/records/23127646",
+    "doi": "10.5281/zenodo.23127646",
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "publication_date": "2026-10-03",
+    "manuscript_date": "October 3, 2026",
+    "version_source": "Zenodo metadata supplies version 1.0; the manuscript prints its date without a numbered version.",
+    "source_retrieved_utc": "2026-10-25T01:40:35.289741+00:00",
+    "files": [
+      {
+        "name": "biconstrained_asymmetry.pdf",
+        "url": "https://zenodo.org/api/records/23127646/files/biconstrained_asymmetry.pdf/content",
+        "resolved_url": "https://zenodo.org/api/records/23127646/files/biconstrained_asymmetry.pdf/content",
+        "retrieved_utc": "2026-10-25T01:40:35.168704+00:00",
+        "bytes": 67359,
+        "md5": "82911cd471138ea4c5c40d2ba0747634",
+        "sha256": "35ddcd2a64bf0906fadcf762b913dfd9369941784ca0da87d97a3e9080ea80e4",
+        "zenodo_checksum": "md5:82911cd471138ea4c5c40d2ba0747634",
+        "integrity": "PASS"
+      },
+      {
+        "name": "biconstrained-asymmetry-verification.zip",
+        "url": "https://zenodo.org/api/records/23127646/files/biconstrained-asymmetry-verification.zip/content",
+        "resolved_url": "https://zenodo.org/api/records/23127646/files/biconstrained-asymmetry-verification.zip/content",
+        "retrieved_utc": "2026-10-25T01:40:35.289581+00:00",
+        "bytes": 198015,
+        "md5": "75a0dfae581142f858d6c2455e14dbf1",
+        "sha256": "5415f48f702ab2e234376b73c4853043b1b7601316392ff4750123eb66339d81",
+        "zenodo_checksum": "md5:75a0dfae581142f858d6c2455e14dbf1",
+        "integrity": "PASS"
+      }
+    ],
+    "embedded_assets": [],
+    "pdf_sha256": "35ddcd2a64bf0906fadcf762b913dfd9369941784ca0da87d97a3e9080ea80e4",
+    "supplement_sha256": "5415f48f702ab2e234376b73c4853043b1b7601316392ff4750123eb66339d81",
+    "abstract_source": "sources/published-source/biconstrained-asymmetry-verification/biconstrained-asymmetry-verification/biconstrained_asymmetry.tex",
+    "abstract_source_sha256": "d225e6447a766f14713b418e7868679bfb38d82fbaa25823f9d500b8bd0783fc",
+    "abstract_word_count": 109,
+    "abstract_normalization": "Entire published abstract retained; only TeX math commands, delimiters, spacing and mathematical typography normalized.",
+    "frozen_scope_content_path": "reviews/scope/candidate-content.json",
+    "frozen_scope_content_sha256": "f8ec0d6693a53d08e93dffaff943e0f8dceb3a13dc4527d3a8a4245b035e710c",
+    "reviewed_documents": [
+      {
+        "filename": "biconstrained_asymmetry.pdf",
+        "pages": 4,
+        "read_scope": "all pages by each manuscript reviewer"
+      }
+    ],
+    "source_extraction_files_bound": 87,
+    "review_boundary": "AI analytic, adversarial and source-scope reviews; not human peer review, formal proof certification or exhaustive novelty certification."
+  }
+}

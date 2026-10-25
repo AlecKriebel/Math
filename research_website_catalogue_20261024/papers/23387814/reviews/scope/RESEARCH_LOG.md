@@ -1,0 +1,6 @@
+# Acquisition and scope review — 23387814
+
+2026-10-25T01:58:30.261926+00:00 — 0% complete. Assigned fresh Zenodo acquisition, complete published reader inventory, mathematical scope and primary interfaces; no mathematical PASS or verifier replay implied. No sibling or dedicated historical opinion read. Scope workspace created; publication/UI/outreach mutations excluded.
+
+## 2026-10-25T01:59:48.982986+00:00 — 40%
+Fresh official two-asset acquisition, MD5/size/SHA256 checks, safe ZIP extraction and all-reader PDF map complete. Entire five-page published PDF and complete TeX read; first page visually inspected. Original author PROOF.md read for the all-curve geometry interface. Incidental exposure: record description and manuscript Section 5 contain historical AI review/priority assertions; author PROOF.md contains a candidate-status preface. ROOT_EARLY_PROOF.md was opened as mathematical support, but it is an old root verification note; its mathematical assessment was visible. No sibling or dedicated REPORT/VERDICT bodies were read, and these historical assertions are not adopted as evidence or mathematical clearance. Current role remains acquisition and scope only. Primary-reference acquisition in progress; no published scientific verifier run.

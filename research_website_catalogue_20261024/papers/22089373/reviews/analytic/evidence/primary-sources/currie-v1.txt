@@ -1,0 +1,1481 @@
+                                             SEMIALGEBRAIC CONDITIONS FOR IDENTIFYING TRIANGLES IN
+                                                            PHYLOGENETIC NETWORKS
+
+                                              BRYAN CURRIE, AVIVA K. ENGLANDER, JOSE A. ESPARZA-LOZANO, ELIZABETH GROSS,
+                                                MAX HILL, COLBY LONG, DEVON OLDS, KAWIKA O’CONNOR, UDANI RANASINGHE,
+                                                                          AND CHRISTIN SUM
+
+                                                   Abstract. An important consideration for a model-based method of phylogenetic network
+
+
+
+
+arXiv:2606.26673v1 [q-bio.PE] 25 Jun 2026
+                                                   inference is the identifiability of the network parameter of the model. A recurring theme
+                                                   in previous works exploring this issue is that it is often difficult to identify the orientation
+                                                   of edges in a triangle of the network. In fact, it has been shown that for some models
+                                                   it is impossible to determine the orientation of triangle edges utilizing the standard alge-
+                                                   braic technique of phylogenetic invariants. In this work, we consider one such model with a
+                                                   Jukes-Cantor site-substitution process and no coalescence. We give a complete semialgebraic
+                                                   description of three, 3-leaf Jukes-Cantor phylogenetic network models with embedded tri-
+                                                   angles. By describing these base cases, we resolve several questions about the identifiability
+                                                   of networks with embedded triangles. We show that for any pair of models, the intersection
+                                                   and set differences of the models are full-dimensional regions of the space of site-pattern
+                                                   probability distributions. Thus, despite being algebraically indistinguishable, these network
+                                                   models are not identical, nor are they identifiable (or generically identifiable). Our results
+                                                   also yield a straightforward biological interpretation–that the signal from a hybridization
+                                                   event may be immediately detectable but decays over time until it is impossible to identify
+                                                   the orientation of edges in the triangle of a network.
+
+
+
+
+                                                                                       1. Introduction
+                                               A phylogenetic network model represents non-tree-like evolution along a directed acyclic
+                                            graph. In such a model, network nodes of in-degree two correspond to reticulation events,
+                                            such as hybridization or lateral gene transfer, where a certain proportion of the information
+                                            at the node is assumed to have been inherited along each of the incoming edges. Recognizing
+                                            that reticulation events are likely common in the evolutionary history of many species, there
+                                            has been increasing interest in the theory of phylogenetic network models of DNA sequence
+                                            evolution and their application to phylogenetic inference (Barley et al., 2022; Cui et al., 2013;
+                                            Gambette et al., 2017; Hibbins and Hahn, 2022; Mallet et al., 2016; Pardi and Scornavacca,
+                                            2015; Rose et al., 2025; Solı́s-Lemus and Ané, 2016; van der Heijden et al., 2025; Zhang et al.,
+                                            2018).
+                                               One important consideration for developing model-based methods of phylogenetic infer-
+                                            ence is the identifiability of the model parameters. In general, a model parameter is iden-
+                                            tifiable if it can be uniquely recovered from some output of the model. In the ideal case
+                                            for phylogenetic inference, the observed data will perfectly fit a phylogenetic model and the
+                                            corresponding model parameters are inferred. However, for this inference to be consistent,
+                                            there must be a unique set of parameters corresponding to the data, that is, the parameters
+                                            must be identifiable. As we consider the specific setting of networks, the same holds: to
+                                            develop a consistent model-based method of network inference, the network parameter of
+                                            the model must be identifiable. Several works have studied identifiability in phylogenetic
+                                                                                                  1
+2                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+network models with and without a coalescent process (Allman et al., 2025, 2024, 2022;
+Baños, 2019; Englander et al., 2025; Gross and Long, 2018; Gross et al., 2021; Holtgrefe
+et al., 2025; Rhodes et al., 2025; Xu and Ané, 2023).
+   One recurring theme in these works is that while many network features are identifiable
+from data, it is often not possible to identify network triangles or to determine the orienta-
+tion of edges in a triangle of the network. For example, the results of Gross and Long (2018)
+establish only the identifiability of triangle-free networks, and the standard methods of al-
+gebraic statistics employed therein are unable to distinguish networks such as those shown
+in Figure 1. Likewise, Barton et al. (2026); Englander et al. (2025); Gross et al. (2021)
+and Holtgrefe et al. (2025) also consider only triangle-free networks due to the inadequacy
+of algebraic methods for distinguishing triangles. It is thought that hybridization is nega-
+tively correlated with genetic distance between species (Mallet, 2005). Since reticulation is
+expected to be most common among closely related species, triangles are likely an impor-
+tant part of the evolutionary history of many sets of taxa, making the gap in the current
+results especially unfortunate. One notable exception to this trend are the results of Allman
+et al. (2024), who showed that under the network multispecies coalescent model, 3-cycles
+can sometimes be detected from gene tree quartet concordance factors.
+   The results of Englander et al. (2025); Gross and Long (2018) and Gross et al. (2021)
+apply to DNA sequence models without a coalescent process. Here, each choice of parameters
+produces a probability distribution on the possible DNA site-patterns that may be observed
+in the aligned DNA sequences of the species under consideration. The algebraic approach
+used to prove the identifiability of the network parameter is based on finding phylogenetic
+invariants for each network. These are polynomial relationships that are always satisfied
+by the site-pattern probability distributions coming from a model on the network. The key
+idea is to show that every pair of networks is algebraically distinguishable, that is, there is
+a polynomial invariant for each that is not an invariant for the other. Thus, given a site-
+pattern probability distribution from a network model, one can evaluate the invariants at the
+distribution to determine the network parameter that produced the data. This is a standard
+technique in algebraic statistics and phylogenetic invariants have been used to establish many
+identifiability results (Sullivant, 2023, Chapter 15, p.335-370). Often, the approach is to first
+find phylogenetic invariants for trees or networks with just a few taxa using computational
+tools, and then, to use combinatorial arguments and restrictions to subsets of taxa to show
+that trees or networks with an arbitrary number of leaves are distinguishable.
+   As noted above, despite the power of the algebraic approach, for certain models these
+methods are simply insufficient to establish the identifiability of networks with embedded
+triangles. For example, under the Jukes-Cantor model, there are no phylogenetic invariants
+for the three networks shown in Figure 1 and so they are not algebraically distinguishable.
+   For those familiar with considering phylogenetic models from an algebraic statistics per-
+spective, the fact that there are no invariants for these networks means that each of the
+models is a full-dimensional subset of the probability simplex and its Zariski closure fills the
+entire space. However, although their Zariski closures are equal, the example below gives
+some intuition for why we may not expect the models themselves to be equal.
+
+
+Example 1.1. Consider the site-pattern probability distribution generated by the Jukes-
+Cantor model on N1 , the rooted 3-leaf network from Figure 1. Figure 2 (left) shows this
+network with branch lengths given in expected number of mutations per site. The dotted
+                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                3
+
+
+
+
+       Figure 1. The three 3-leaf level-one triangle networks, each rooted on one of
+       the non-hybrid leaf edges.
+
+reticulation edges are length ϵ > 0 and represent a near instantaneous hybridization event.
+For this example, we assume half of the genetic information is inherited along each edge.
+   If ℓ is sufficiently large, then the sites observed at leaves 2 and 3 are nearly independent. If
+it is also the case that s is very small, then the resulting site pattern probability distribution
+from the model represents essentially a coin flip as to whether the site observed at leaf 1
+is identical to the site at leaf 2 or at leaf 3. It seems impossible for such a distribution to
+result from any choice of branch lengths and reticulation parameter for networks N2 or N3 .
+Indeed, by applying the results of Corollary 3.3, we can show that for fixed ℓ, when s is
+below a certain threshold the resulting site-pattern probability distribution does not belong
+to the models on networks N2 and N3 . The biological interpretation of this result is rather
+straightforward–it is generally possible to identify the precise nature of a hybridization event
+immediately after it occurs, but this signal decays until it eventually becomes impossible to
+determine the orientation of edges in the triangle of the network.
+   Figure 2 (right) shows this relationship explicitly for the limiting case as ϵ → 0. In
+the figure, points (s, ℓ) in the shaded region result in distributions that belong exclusively
+to the model on N1 . For a fixed ℓ, as s increases we eventually approach the threshold
+of identifiability beyond which it is impossible to determine the orientation of edges in the
+triangle. As ℓ → ∞, the boundary threshold for s approaches the asymptote s = ℓ− 34 log(4),
+                                             √
+and as ℓ → 0, it approaches ℓ = (1 + 5)s. The second asymptote implies that when ℓ is
+small (the biologically relevant √ case), distinguishing the hybrid node requires s to be less
+than approximately ℓ/(1 + 5) ≈ ℓ/3.2.
+   If the models are not equal, it is possible that there are polynomial inequalities that hold
+for each model that would allow us to distinguish them. Such inequalities have also been
+used to establish identifiability for phylogenetic models (Allman et al., 2024; Englander et al.,
+2025).
+   In this work, we consider the Jukes-Cantor model on the 3-leaf phylogenetic networks with
+embedded triangles shown in Figure 1. By finding polynomial inequalities for these base case
+models, we are able to resolve several questions about the identifiability of networks with
+embedded triangles. For example, our results show that in general these networks are not
+identifiable (or generically identifiable), however, we also show that none of the 3-leaf triangle
+network models are identical. That is, each network model contains site-pattern probability
+distributions that do not belong to the other two models.
+   The remainder of our paper proceeds as follows. In Materials and Methods, we describe
+the phylogenetic network models and their parameterizations in the Fourier coordinates. In
+4                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+
+
+
+                                                   branch length ℓ
+               ℓ/2            ℓ/2
+
+
+
+
+          s           s             s
+
+
+           2              1         3                                branch length s
+
+       Figure 2. Left: The network N1 from Figure 1, with branch lengths given in
+       expected number of mutations per site. Right: The shaded region represents
+       the choices of branch lengths (in terms of s and ℓ) for which the resulting
+       site-pattern probability distributions belong exclusively to the model on N1 .
+
+
+Results, we first describe the identifiability of numerical parameters within a single model,
+and then give a complete semialgebraic description of the network model for M1 , the model
+on N1 . In the subsection Model Intersections and Implications for Identifiability, we apply
+the above results to explore the intersections of all three Jukes-Cantor 3-leaf triangle net-
+work models, including giving necessary and sufficient conditions in terms of the numerical
+parameters for the resulting site-pattern probability distribution to lie in the intersection of
+two or more models. We then further explore the size of model intersections. Finally, we
+present two applications to biological data and discuss the implications of these results for
+the identifiability and practical inference of phylogenetic networks.
+
+
+                               2. Materials and Methods
+  A distribution in a phylogenetic network model of DNA sequence evolution can be viewed
+as a mixture of tree distributions. Thus we begin this section by describing tree-based
+Markov models of DNA sequence evolution.
+
+2.1. Phylogenetic Tree Models. Let T be a rooted n-leaf binary phylogenetic tree with
+leaves labeled by the taxa in [n] = {1, . . . , n} and root vertex ρ. To each vertex v of T , we
+associate a random variable Xv with state space the set of four DNA bases {A, G, C, T}. The
+state of this random variable represents the nucleotide at the site being modeled in the DNA
+sequence of the taxon represented by the vertex v.
+   The root distribution of the model, π, specifies the probability of observing each of the
+four DNA bases at the root of the tree. We associate to each edge of T a 4 × 4 Markov
+transition matrix with rows and columns indexed by the four DNA bases. The entries of
+these matrices describe the rates of mutation along each edge, that is, for edge e = uv of T ,
+Mije = P (Xv = j | Xu = i). We refer to the root distribution and the entries of the transition
+matrices as the numerical parameters of the model.
+                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                5
+
+  Given an assignment of states to the vertices of T ,
+                                          ϕ : V (T ) → {A, G, C, T},
+we can compute the probability of observing this particular assignment of states using the
+root distribution and the transition matrices as
+
+                                                        Y
+                                                                  e
+                                   p(ϕ) = π ϕ(ρ)                 Mϕ(u),ϕ(v) .
+                                                      e∈E(T )
+
+   To compute the probability of observing a particular site-pattern (X1 , . . . , Xn ) in the
+aligned DNA sequences of the taxa at the leaves, we compute the joint distribution of the
+leaves by marginalizing over all possible assignments of states to the interior vertices of T .
+More formally, if ϕ|L is the n-tuple of states that ϕ assigns to the leaves L of T , then the
+probability of observing the site-pattern ω = (i1 , i2 , . . . , in ) is
+
+                               X                     X                   Y
+                                                                                   e
+(1)                   pω =                p(ϕ) =                πϕ(ρ)             Mϕ(u),ϕ(v) .
+                             ϕ : ϕ|L =ω            ϕ : ϕ|L =ω           e∈E(T )
+
+  In this work, we will assume that the transition matrices come from a continuous-time
+Jukes-Cantor model of DNA sequence evolution. Thus, the root distribution is uniform, and
+each transition matrix M e has the form
+
+                                             (
+                                                 1
+                                                   + 43 e−4t/3        if i = j
+(2)                               Mije =         4                              ,
+                                                 1
+                                                 4
+                                                   − 41 e−4t/3        if i ̸= j
+
+where t is the branch length in expected number of mutations per site (Jukes et al., 1969);
+see also (Semple et al., 2003, Chapter 8, pp.194-197).
+  For a fixed tree T , the phylogenetic model defines a map
+                                                                  n
+(3)                                          ψT : ΘT → ∆4 −1
+from the numerical parameter space ΘT for the model to the set of site-pattern probability
+distributions. The image of this map, MT = im(ψT ), is the phylogenetic model associated
+to T .
+
+2.2. Phylogenetic Network Models. To define a site-substitution model on an n-leaf
+rooted binary phylogenetic network N , we first specify a root distribution and then associate
+a transition matrix to each edge of N just as for a phylogenetic tree model. Let w1 , . . . , wm
+be the reticulation vertices of N , the nodes of in-degree two, and let e0i and e1i be the edges
+directed into wi .
+   To obtain a tree from the network, for each i ∈ [m], we independently delete e1i with
+probability δi ∈ (0, 1), and otherwise, we delete e0i . Intuitively, the parameter δi corresponds
+to the probability that the particular site being modeled was inherited along edge e0i . After
+deleting the m edges, the result is a rooted n-leaf phylogenetic tree. Each of these trees, along
+with its transition matrices inherited from N , gives rise to a distribution in a phylogenetic
+tree model, and we can take a convex combination of these distributions to get a site-pattern
+6                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+probability distribution from the network. For the networks we consider in this paper, there
+is only a single reticulation node, and so for each network we obtain a map
+                                                            n
+                                  ψN : ΘN × (0, 1) → ∆4 −1 ,
+                               (θ, δ) 7→ δψT1 (θ) + (1 − δ)ψT2 (θ).
+In the expression above, ΘN × (0, 1) represents the numerical parameter space of the model,
+which includes the root distribution, transition matrices, and the single reticulation edge
+parameter δ chosen between 0 and 1. The trees T1 and T2 are the embedded trees of the
+network obtained by independently deleting e11 and e01 respectively. Just as for a tree, we
+define the image of this map, MN = im(ψN ), to be the phylogenetic model associated to the
+network N . Note that as in (Englander et al., 2025) we do not allow δ to be either 0 or 1.
+Thus, the models of the embedded trees are not contained in the network model.
+  Though these models are naturally defined in terms of rooted networks, because the Jukes-
+Cantor model is time-reversible, the location of the root in the network is unidentifiable
+(Gross et al., 2021). Thus, we can determine the parameterization of the phylogenetic model
+associated to the network N from the semi-directed network obtained from N by suppressing
+the root vertex and undirecting all edges other than the reticulation edges. For example, the
+semi-directed versions of N1 , N2 , and N3 from Figure 1 are depicted in Figure 3. For these
+three networks, we denote the corresponding phylogenetic models by M1 , M2 , and M3 .
+
+2.3. The Fourier Coordinates. To compute the joint distribution at the leaves of a tree
+in a phylogenetic model, we sum over all possible states of the internal vertices. For one
+of the 3-leaf triangle networks of Figure 1, after we delete a reticulation edge, the resulting
+tree has five edges, each with their own transition matrix, and three internal vertices. Thus,
+following Eq. (1), each coordinate of the map ψTi is parameterized by a degree 5 polynomial
+with 43 = 64 terms. As a convex sum of ψT1 and ψT2 , the parameterization of the network
+is even more complex, making it difficult to perform algebraic computations or to obtain a
+semialgebraic description of the model. Thus, we will apply a linear change of coordinates
+called the discrete Fourier transform that is defined for the Jukes-Cantor model as well as a
+broader class of models known as group-based models (Evans and Speed, 1993). In these new
+coordinates, the phylogenetic tree models are parameterized by monomials, which makes
+computations much more tractable. The Jukes-Cantor model is a group-based model, and
+we give a brief outline here of how to obtain the parameterization of the network in these
+new coordinates. It is not necessary to state all of the definitions surrounding group-based
+models and the discrete Fourier transform in order to describe the parameterization, so we
+do not delve into the details here and refer the interested reader instead to Sturmfels and
+Sullivant (2005) and (Sullivant, 2023, Chapter 15, pp. 335-370).
+   For what follows, we will assume that the tree T is unrooted. We identify the state space
+{A, G, C, T} with the Klein four-group Z2 × Z2 as follows: A = (0, 0), G = (1, 0), C = (0, 1),
+T = (1, 1). We associate to each edge ei ∈ E(T ) the four eigenvalues of its transition matrix
+M ei , which we refer to as the Fourier parameters, denoted aiA , aiG , aiC and aiT . The largest
+of these, aiA , is always 1 since M ei is a stochastic matrix. Due to symmetries of the Jukes-
+Cantor model, the remaining three Fourier parameters satisfy aiC = aiG = aiT = e−4ti /3 , where
+ti is the branch length of ei in expected number of mutations per site. Hence there is really
+only a single Fourier parameter ai for each edge ei , namely,
+(4)                                       ai = e−4ti /3 .
+                         IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                                  7
+
+For this paper, we will assume that each branch length ti is finite and positive. Notice
+that since ti > 0, the corresponding Fourier parameter ai lies in the interval (0, 1). The
+parameter ai can be regarded as a measure of the nucleotide transmission fidelity along its
+edge, a quantity which decreases to 0 as the branch length ti increases.
+   The Fourier transform extends to a transformation of the coordinate space, from probabil-
+ity coordinates to what we will call q-coordinates. The Fourier parameterization, which gives
+us the value of the q-coordinate qω for the site-pattern ω = (g1 , g2 , . . . , gn ) ∈ {A, G, C, T}n , is
+defined as
+                                                                                    n
+                                      
+                                                                aiP
+                                             Q                                      P
+                                      
+                                                                              if         gj = 0,
+                                                                      j∈A gj
+                                      
+                                        ei ∈E(T )                                   j=1
+(5)                          qω = e induces the split A|B
+                                 i   
+                                       0                                       otherwise
+                                      
+
+ where addition is in the group Z2 × Z2 .
+  These q-coordinates are not interpretable as probabilities; however, there is an inverse
+Fourier transform that allows us to convert back and forth between the q-coordinates and
+the probability coordinates (see Appendix B). Thus, a semialgebraic description of a model
+in terms of q-coordinates can be transformed to obtain a semialgebraic description of the
+model in probability coordinates (and vice versa). For the rest of this paper we will work in
+the Fourier coordinates, and for simplicity, we will use M1 , M2 , and M3 for the transformed
+models in the space of q-coordinates.
+
+2.4. Parameterization of the 3-Leaf Jukes-Cantor Networks. In this section, we give
+the parameterization of the model M1 in Fourier coordinates using the semi-directed version
+of N1 with edges labeled as in Figure 3. From this parameterization, one can easily obtain
+parameterizations of M2 and M3 by permuting coordinates, as described below.
+
+                         3                                  3                                              2
+                    a3                                 b3                                             c2
+
+
+               a6            a5                   b6              b5                             c6            c5
+
+                     a4                                 b4                                             c4
+         a1                       a2         b2                           b1               c3                       c1
+
+           1                      2           2                           1                  3                      1
+                    N1                                 N2                                             N3
+
+        Figure 3. The three semi-directed networks corresponding to models
+        M1 , M2 , and M3 , with associated Fourier edge parameters.
+
+   We begin by noting that because the Fourier transform gives a linear change of coordinates,
+for the network model, each qω is parameterized by a convex combination of the parameter-
+izations for the displayed trees in Fourier coordinates. For example, if we delete the edge
+labeled a6 with probability δ and the a4 edge with probability (1 − δ) in the Jukes-Cantor
+model on the network N1 shown in Figure 3, then qCGT , qGGA , and qAAA are parameterized as
+8                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+follows:
+                              qCGT = δa1C a2G a3T a4C a5T + (1 − δ)a1C a2G a3T a5G a6C
+                              qGGA = δa1G a2G a3A a4G a5A + (1 − δ)a1G a2G a3A a5G a6G
+                              qAAA = δa1A a2A a3A a4A a5A + (1 − δ)a1A a2A a3A a5A a6A .
+   From Equation (5), we see that many coordinates for a group-based model on a tree are
+trivial after transformation, and the same coordinates will be trivial for the network model.
+Thus, for the 3-leaf network model, there are only 16 non-trivial coordinates to consider.
+We can also simplify the parameterization of many of these non-trivial coordinates. Since
+aiA = 1 for all i ∈ [6], it is not necessary to include the aiA parameters (and hence, no need to
+consider the coordinate qAAA which is equal to 1 for any choice of parameters for the model).
+Moreover, since aiC = aiG = aiT , several of the Fourier coordinates are always identical; for
+example, qCCA = qGGA = qTTA .
+   After making these simplifications, there are only four non-trivial equivalence classes of
+Jukes-Cantor q-coordinates. We choose one representative from each of these equivalence
+classes, qACC , qCAC , qCCA , and qCGT , to form the set of simplified Jukes-Cantor q-coordinates. For
+N1 , the simplified Jukes-Cantor q-coordinates are parameterized as follows:
+
+                              qACC = a2 a3 a5
+                              qCAC = δa1 a3 a4 a5         + (1 − δ)a1 a3 a6
+(6)
+                              qCCA = δa1 a2 a4            + (1 − δ)a1 a2 a5 a6
+                              qCGT = δa1 a2 a3 a4 a5 + (1 − δ)a1 a2 a3 a5 a6
+where a1 , . . . , a6 ∈ (0, 1) and δ ∈ (0, 1).
+  Working in the simplified Jukes-Cantor q-coordinates, the parameter space becomes
+                            ΘN1 = {(a1 , . . . , a6 ) : 0 < a1 , . . . , a6 < 1} ,
+the parameterization map becomes
+                                             ψN1 : R7 → R4
+                          (a1 , a2 , a3 , a4 , a5 , a6 , δ) 7→ (qACC , qCAC , qCCA , qCGT ),
+and the model becomes
+                             M1 = {ψN1 (θ) : θ ∈ ΘN1 × (0, 1)} ⊆ R4 .
+
+                                                  3. Results
+   In this section, we begin by describing the non-identifiability of the numerical parameters
+for a single 3-leaf triangle network model.
+
+3.1. Identifiability of Numerical Parameters. The numerical parameters of the 3-leaf
+network model are not identifiable. Indeed, only the products δa1 a4 and (1 − δ)a1 a6 are
+recoverable at best. Thus, for any choice of a1 , a2 , a3 , a4 , a5 , a6 , δ ∈ (0, 1), we can describe a
+two-dimensional region R of parameter space for which the map ψN1 sends every point of
+R to the same point in the model. For example, for any θ = (a1 , . . . , a6 , δ) ∈ ΘN1 × (0, 1),
+                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                               9
+
+
+
+
+       Figure 4. Networks (A)-(D) show four different choices of branch lengths
+       for N1 that all give rise to the same site-pattern probability distribution. The
+       networks are rooted along edge e5 for display, but as noted above, the location
+       of the root is not identifiable. Branch lengths, measured in expected number
+       of mutations per site, are displayed in the figure as horizontal distances.
+
+
+we can construct a new set of parameters θ′ ∈ ΘN1 × (0, 1) such that ψN1 (θ) = ψN1 (θ′ ) by
+taking
+                                                                             
+                       ′                     a4           a6 (1 − δ)
+(7)                   θ = β1 a1 , a2 , a3 ,       , a5 ,               , β2 δ
+                                            β1 β2        β1 (1 − β2 δ)
+for any choice of β1 , β2 in appropriate open intervals of the positive real numbers containing 1.
+   The networks shown in Figure 4 illustrate this non-identifiability of the numerical param-
+eters. First, we assign branch lengths to the network N1 in Figure 3 to obtain network (A).
+For network (A), the edges e1 , e4 , e5 and e6 are all length 1, the edges e2 and e3 are length
+2, and δ = 21 . Recall that the Fourier parameter corresponding to the edge ei of length ti is
+ai = e−4ti /3 . Thus, the Fourier parameters for network (A) are a1 = a4 = a5 = a6 = e−4/3
+and a2 = a3 = e−8/3 . Networks (B) and (C) are obtained by scaling the parameters accord-
+ing to Eq. (7) and then converting the Fourier parameters to branch lengths. In particular,
+network (B) is obtained by setting β1 = e and β2 = 1, and network (C) by setting β1 = 1
+and β2 = e−2/3 .
+   To account for the non-identifiability of a1 , a4 , a6 , and δ, in our proof of Theorem 3.1 we
+will reparameterize the model by making the substitutions a∗4 = δa1 a4 and a∗6 = (1 − δ)a1 a6
+(see Appendix A for details). The new parameters a∗4 and a∗6 must satisfy the additional
+restriction that a∗4 + a∗6 < 1 but are otherwise free. Yet, even after introducing a∗4 and a∗6 ,
+the map is still not one-to-one. For a generic point q ∈ M1 , the fiber is a one-dimensional
+region of R5 , which is described in detail in Lemma A.3. Thus, since there is an additional
+degree-of-freedom, if we perturb one of the Fourier parameters, we can adjust the others so
+that the corresponding point in the model remains unchanged. Network (D) in Figure 4 is
+one such network, where beginning with network (A), we increase the length of edge e2 by
+1/4, and adjust all other parameters accordingly.
+
+3.2. A Semialgebraic Description of the Jukes-Cantor 3-Leaf Triangle Network
+Models. We now give a complete semialgebraic description of M1 in the space of simplified
+Jukes-Cantor q-coordinates. Combined with the results above, this will allow us to charac-
+terize the intersections of M1 , M2 , and M3 to gain insight into the question of network
+identifiability.
+10                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+Theorem 3.1 (Semialgebraic description of M1 ). Let q = (qACC , qCAC , qCCA , qCGT ). Then q ∈
+M1 if and only if the following inequalities hold:
+(8)                                   0 < qACC , qCAC , qCCA , qCGT < 1
+(9)                                                 qACC − qCGT > 0
+(10)                                            qCGT − qACC qCAC > 0
+                                                             2
+(11)                                       qACC qCAC qCCA − qCGT >0
+(12)                           qCGT + qACC (qCGT − qCAC − qCCA ) > 0.
+Moreover, if q ∈ M1 then the following inequalities also hold:
+(13)                                       qCAC − qCGT > 0
+(14)                                       qCCA − qCGT > 0
+(15)                                   qCGT − qACC qCCA > 0.
+    We defer the proof of Theorem 3.1 to Appendix A. Note that by symmetries, we can
+easily obtain similar descriptions of M2 and M3 by permuting the indices appropriately,
+i.e., by swapping the first and second index or by swapping the first and third. Note that
+inequalities (8), (9),(11), (13), and (14) appear in the description for all three models, and
+thus, are not informative about the location of the hybrid node. Inequalities (10) and (15)
+each appear in two of the three model descriptions and thus are only partially informative.
+    The linear inequalities (9), (13), and (14) are readily interpretable in terms of the two
+displayed trees. For example, if we restrict to the parameterization for the tree containing
+edge e4 (this can be done by setting δ = 1), we see that inequality (9) says that leaf node 1
+in Figure 3 does not lie on the path between leaves 2 and 3 in the displayed tree containing
+e4 . To see why this is the case, observe that setting δ = 1 in Eq. (6) yields
+(16)                          qACC − qCGT = a2 a3 a5 (1 − a1 a4 ) ≥ 0.
+If the edges e2 , e3 , and e5 are finite then this is 0 if and only if a1 = a4 = 1 or equivalently,
+t1 = t4 = 0. A similar situation holds when considering the displayed tree containing e6 .
+Since the network distribution is a convex sum of the tree distributions, the linear inequality
+Eq. (16) holds strictly for the network as well.
+   Inequality (11) also has an interesting interpretation that was first noted by Englander
+et al. (2025). Substituting a site-pattern distribution from any of the three 3-leaf networks
+                                                                                          2
+into this polynomial will yield a positive value. But, the polynomial qACC qCAC qCCA − qCGT   is an
+algebraic invariant for the 3-leaf claw tree under the Jukes-Cantor model. Thus, this invariant
+distinguishes the 3-leaf tree model from the 3-leaf network models, and the invariant residual
+may provide evidence of hybridization.
+   The other inequalities in Theorem 3.1 are less illuminating. When converted to the prob-
+ability coordinates, inequalities (10) and (15) are irreducible degree 2 polynomials with 20
+terms and inequality (12) is an irreducible degree 2 polynomial with 18 terms, and none of
+these have a readily apparent biological interpretation.
+3.3. Model Intersections and Implications for Identifiability. In this section, we
+prove our main result (Theorem 3.5) regarding the identifiability of 3-cycles in a phylogenetic
+network model. In practical terms, Theorem 3.5 implies that if edge parameters are chosen
+randomly, then with positive probability, determining which of the three leaves is descended
+from the hybrid node is impossible even with infinite data.
+                     IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                  11
+
+  First, we show the sets M1 \M2 and M1 ∩ M2 are separated by a single algebraic curve;
+namely, qCGT + qCAC (qCGT − qACC − qCCA ) = 0.
+Theorem 3.2. Let q = (qACC , qCAC , qCCA , qCGT ) ∈ M1 . Then q ∈ M2 if and only if
+(17)                             qCGT + qCAC (qCGT − qACC − qCCA ) > 0.
+Similarly, q ∈ M3 if and only if
+(18)                             qCGT + qCCA (qCGT − qACC − qCAC ) > 0.
+Proof. We prove only the case for M2 as the case for M3 is similar. As noted in the
+discussion following Theorem 3.1, by permuting indices of the Jukes-Cantor q-coordinates,
+we can easily derive defining sets of inequalities for the other two network models. In
+particular, by transposing the first two indices in the inequalities (8) through (12), and
+using the linear invariant qCGT − qGCT = 0 to write qGCT as qCGT , we find that the set M2 is
+defined by the inequality (17) together with the inequalities
+                                 0 < qACC , qCAC , qCCA , qCGT < 1
+                                               qCAC − qCGT > 0
+(19)
+                                          qCGT − qCAC qACC > 0
+                                                           2
+                                         qACC qCAC qCCA − qCGT > 0.
+Suppose q ∈ M1 . It is easy to see that all of the inequalities in (19) are implied by inequalities
+in the statement of Theorem 3.1, since q ∈ M1 . Hence, q ∈ M2 if and only if inequality
+(17) holds.                                                                                      □
+  Theorem 3.2 establishes a criterion for determining whether a point q ∈ M1 is in M1 \M2
+or M1 ∩ M2 . The next corollary, which will be useful for interpretation, expresses this
+inequality in terms of the numerical parameters a1 , . . . , a6 , and δ, and follows immediately
+by substituting the parameterization of M1 into the inequalities (17) and (18).
+Corollary 3.3 (Distinguishability criteria). Let q ∈ M1 , and let θ = (a1 , a2 , a3 , a4 , a5 , a6 , δ) ∈
+ΘN1 × (0, 1) be a choice of numerical parameters such that ψN1 (θ) = q. Then q ∈       / M2 if and
+only if
+
+                            a5           δa4 (1 − a3 a5 ) + a6 (1 − δ)(1 − a3 )
+(20)            a1 ≥                   ·                                          .
+                    δa4 a5 + a6 (1 − δ) δa4 (1 − a3 a5 ) + a5 a6 (1 − δ)(1 − a3 )
+Similarly, q ∈
+             / M3 if and only if
+                            a5           a6 (1 − δ)(1 − a2 a5 ) + δa4 (1 − a2 )
+(21)           a1 ≥                    ·                                          .
+                    δa4 + a5 a6 (1 − δ) a6 (1 − δ)(1 − a2 a5 ) + δa4 a5 (1 − a2 )
+  The network parameter of these models is generically identifiable if the set of parameters
+that maps into the intersection of two models is measure zero within the parameter space.
+Theorem 3.5 states that this is not the case. To prove this, we will utilize the following
+lemma, in which we use the notation M2 to denote the Euclidean closure of M2 .
+Lemma 3.4. Both M1 ∩ M2 and M1 \M2 are nonempty open subsets of R4 .
+Proof. We begin by showing that M1 ∩ M2 and M1 \M2 are open sets. By Theorem 3.1,
+M1 is the intersection of a finite number of open sets; namely, the sets corresponding to the
+strict inequalities in (8)-(12). Therefore M1 is open. Similarly, Theorem 3.2 implies that
+12                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+M1 ∩ M2 is open since it is the intersection of two open sets. Moreover, since M1 is open
+and M2 is closed, M1 \M2 is open as well.
+   It remains to show that M1 ∩M2 and M1 \M2 are nonempty. To show that M1 ∩M2 ̸= ∅,
+observe that for any choice of a1 , a2 , a3 , a4 , a6 , δ ∈ (0, 1), as a5 → 1, the right-hand side of
+inequality (20) tends to
+                                                      1
+                                                               > 1.
+                                               δa4 + (1 − δ)a6
+Therefore we may choose a5 sufficiently close to 1 so that the right-hand side of inequality (20)
+is larger than a1 , in which case Corollary 3.3 implies ψN1 (a1 , a2 , a3 , a4 , a5 , a6 , δ) ∈ M1 ∩ M2 ,
+and hence M1 ∩ M2 ̸= ∅. Similarly, to show that M1 \M2 ̸= ∅, observe that we may choose
+a5 sufficiently close to zero so that the right-hand side of (20) is smaller than a1 , in which
+case q = ψN1 (a1 , a2 , a3 , a4 , a5 , a6 , δ) ∈ M1 \M2 .                                             □
+   Lemma 3.4 can be understood as saying that M1 ∩ M2 and M1 \M2 are both full-
+dimensional subsets of R4 . The proof of Theorem 3.5 now follows by a simple topological
+argument. In particular, since M1 ∩ M2 is open by Lemma 3.4, it follows by continuity
+              −1
+of ψN1 that ψN 1
+                 (M1 ∩ M2 ) is an open subset of the parameter space ΘN1 × (0, 1) ⊆ R7 .
+                   −1
+Therefore, since ψN 1
+                      (M1 ∩ M2 ) is open, it is also both full-dimensional and of positive
+measure.
+Theorem 3.5. The semi-directed topology of a 3-leaf Jukes-Cantor triangle network model
+is not generically identifiable from the site pattern distribution.
+   Although we have now shown that the network parameter is not generically identifiable,
+                                                                        −1
+the story does not end here. Since M1 \M2 is open, it follows that ψN     1
+                                                                            (M1 \M2 ) is open,
+            −1
+and hence ψN1 (M1 \M2 ) contains an open set. Thus, there exists a full dimensional subset
+of parameter space on which it is theoretically possible to determine which of the three leaves
+is descendant from the hybrid node.
+3.4. The Volume of Model Intersections. In this section, we take a closer look at the
+models and their intersections to better understand the practical implications of these results
+for phylogenetic inference. To estimate the relative volumes of the three models and their
+intersections, we sampled n = 109 points uniformly at random from the probability simplex
+∆4 using the Dirichlet(1, 1, 1, 1, 1) distribution and recorded the proportion of points whose
+Fourier transform satisfied the model inequalities. These results are summarized in Figure 5.
+The code for this and all subsequent simulations in this section are available in the file
+model-size-simulations.jl in the Supplementary Materials.
+Observation 1 (Model overlap in the simplex). The three models M1 , M2 and M3 cor-
+respond to small regions of the simplex which overlap substantially. Only about 3.7% of
+simplex points correspond to distributions in any of the three models, with each model ac-
+counting for only about 1.76% of simplex points. Moreover, of the simplex points which
+belong to a given model Mi , almost half (47.9%) coincide with at least one of the other two
+models.
+  Since the Fourier transformation scales 4-dimensional volume in the simplex uniformly
+by a constant factor (see Appendix B), we can estimate the model volumes explicitly. The
+4-dimensional volume of the space of simplified Jukes-Cantor coordinates is approximately
+0.26337; within this space, each of the models M1 , M2 , and M3 has absolute volume approx-
+imately 0.00464, the volume of the intersection of any two models is approximately 0.00184,
+                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                             13
+
+and the volume of the intersection of all three is approximately 0.00147. See Remark 1 in
+Appendix B for details.
+
+  While these figures give some perspective on the geometry of the models and their in-
+tersections in the q-coordinates, the issue of identifiability is perhaps better illuminated by
+considering which parameter choices for a model give a site-pattern probability distribution
+that belongs to one or both of the other models. To investigate this, we sampled n = 108
+numerical parameter vectors (a1 , . . . , a6 , δ) for N1 uniformly at random from ΘN1 × (0, 1).
+
+Observation 2 (Model overlap in the parameter space). We find that when parameters are
+sampled uniformly at random, about 94.3% of parameter choices yield a point in the inter-
+section of two or more models, in which case the hybrid is not distinguishable. In particular,
+                                                  −1
+about 91.4% of parameter choices lie in ψN         1
+                                                     (M1 ∩ M2 ∩ M3 ), about 92.8% lie in each of
+  −1                    −1                                       −1
+ψN1 (M1 ∩ M2 ) and ψN1 (M1 ∩ M3 ), and only 5.7% lie in ψN        1
+                                                                    (M1 \(M2 ∪ M3 )).
+   One limitation in interpreting these results is that the uniform sampling regime, while
+of interest geometrically, places excessive weight on very long branches which are not bi-
+ologically realistic. To address this, we simulated networks with shorter, bounded branch
+lengths. For each δ ∈ {.01, .02, . . . , .99} and each m ∈ {.1, .25, .5, 1}, we sampled n = 107
+                                       iid
+sets of branch lengths t1 , . . . , t6 ∼ unif(0, m) for N1 .
+   The results of this simulation (shown in Fig. 6) indicate that the conditions needed for
+hybrid distinguishability are rarely satisfied for the sorts of branch lengths typically seen in
+phylogenetic inference. The proportion of hybrid distinguishable networks was always less
+than 1%, even in the best-case setting where δ = 1/2 and m = 1. Moreover, as the bound
+on branch lengths m decreases, the distinguishability proportion further decreases, and is
+negligible when δ is close to zero or one.
+
+
+
+
+       Figure 5. Venn diagram showing the percentage of points in ∆4 which belong
+       to the regions of intersections of the models M1 , M2 , and M3 . The vast
+       majority of simplex points (96.2%) do not correspond to any of the three
+       network models.
+14                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+
+
+
+                          Proportion of samples in M1 \ (M2 ∪ M3 )
+
+
+
+
+                                                                     δ (reticulation parameter)
+
+       Figure 6. The proportion of networks in which the hybrid node is distin-
+                                                                                iid
+       guishable as a function of δ, for N1 with branch lengths t1 , . . . , t6 ∼ unif(0, m).
+
+3.5. Implications for Network Inference in Practice. The previous section shows that
+the three models overlap substantially, especially when considering biologically relevant pa-
+rameters. Here we elaborate on some of the implications of the distinguishability criteria in
+Corollary 3.3 when taking into account additional biological considerations. We first start
+with an example to illustrate Corollary 3.3.
+Example 3.6. Let N be the 5-leaf network shown in Figure 7 and let X be a subset of the
+taxa {A, B, C, D, E}. Let N|X be the restriction of N to the taxa in X, p|X the site-pattern
+probability distribution from the Jukes-Cantor model on the restricted network when δ = 12 ,
+and q|X the image of p|X under the Fourier transform. Notice that when |X| = 3, N|X is a
+tree unless X is equal to {A, B, C}, {A, B, E}, {A, C, D}, or {A, D, E}, in which case it is
+a 3-leaf triangle network.
+   As an example, consider the restriction of this network to the leaf set {A, C, D}. Matching
+the labels from Figure 3 to the version of the restricted network shown in Figure 8 (where
+A, C, and D match to 1, 2, and 3 respectively), we obtain the following values for the Fourier
+parameters:
+                      4                                                            4                        4
+            a1 = e− 3 (.20) ,                                            a2 = e− 3 (.30) ,        a3 = e− 3 (.15) ,
+                      4                                                            4                        4
+            a4 = e− 3 (.10) ,                                            a5 = e− 3 (.70) ,        a6 = e− 3 (.10) .
+Substituting these values into the right-hand side of inequality (20) gives approximately
+0.74, which is less than a1 ≈ 0.77. This tells us that q|{A,C,D} could not have come from the
+3-leaf triangle network where C is the leaf below the reticulation vertex. On the other hand,
+applying inequality (21) in a similar manner, we find the right hand side to be approximately
+0.79, so the inequality is not satisfied. This tells us that q|{A,C,D} could have come from a
+                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                 15
+
+3-leaf triangle network where D is the leaf below the reticulation vertex. As a result, it is
+not possible to determine the orientation of edges in the triangle of the 3-leaf network from
+q|{A,C,D} .
+   Applying the bounds for all of the triplets that result in 3-leaf triangle networks, we see
+that only when X = {A, D, E} can we infer the orientation of edges in the triangle N|X
+from q|X . That we can identify the hybrid node in this example only for the two shortest
+leaf edges is in line with our observation from Example 1.1 that the signal of hybridization
+decays. Note that there is no way to gain distinguishability by adding additional leaves
+below the hybrid node, in contrast to the gene tree data setting (Allman et al., 2024).
+
+
+
+
+       Figure 7. A 5-leaf network with branch lengths in expected number of mu-
+       tations per site.
+
+
+
+
+                Figure 8. The network in Figure 7 restricted to {A, C, D}.
+
+  Careful interpretation of the inequalities in Corollary 3.3 suggests that the criteria for
+hybrid distinguishability are highly restrictive, even more so when biological considerations
+are taken into account. In particular, we find three necessary conditions for the hybrid node
+to be distinguishable.
+  First, the hybridization must be sufficiently recent. Inequalities (20) and (21) establish
+an exact age cutoff: if the hybridization is sufficiently ancient, i.e. a1 = e−4t1 /3 is sufficiently
+16                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+small, then the hybrid node cannot be distinguished, even with unlimited data. Although
+this cutoff (the minimum of the right-hand sides of (20) and (21)) is a complicated function
+of the model parameters, it is not difficult to deduce the simpler necessary condition that
+distinguishability requires a1 > a5 . Converting this condition to branch lengths, it holds that
+if the evolutionary distance t1 between the initial hybrid and its present-day descendants is
+greater than the divergence t5 between the hybrid’s parent species, then the hybrid will not
+be distinguishable.
+   Second, the evolutionary divergence between the parental species prior to hybridization
+must be sufficiently large for the hybrid to be distinguishable. If too little divergence took
+                                               4
+place prior to hybridization (i.e., if a5 = e− 3 t5 is sufficiently close to 1), the right-hand sides
+of (20) and (21) exceed 1, in which case neither inequality can be satisfied since a1 < 1. This
+requirement is restrictive because 3-cycles are expected to occur mostly between closely
+related taxa, as hybridization rates decline rapidly with evolutionary divergence (Mallet
+et al., 2007; Peñalba et al., 2024).
+   Third, distinguishability requires the hybrid’s descendants retain substantial minor-parent
+ancestry, i.e. from the parent species with the smaller genetic contribution to the hy-
+brid. When the proportion of genomic material inherited from the minor-parent (i.e.,
+min {δ, 1 − δ}) is near zero, both inequalities (20) and (21) will fail because their right-hand
+sides exceed 1. This is illustrated in the plot of Figure 9, which shows that distinguishability
+is unlikely when δ is close to 0 or 1 (see Appendix C).
+   In practice, the required combination of high parental divergence together with substantial
+minor-parent ancestry is likely to be rare. Although F1 hybrids may exhibit δ ≈ 1/2,
+theoretical and empirical studies suggest that minor-parent ancestry typically decays rapidly
+through selective purging (within tens of generations) (Langdon et al., 2024; Moran et al.,
+2021; Veller et al., 2023). Thus, while retained levels of minor-parent ancestry exceeding 10%
+are not uncommon (Langdon et al., 2024; Moran et al., 2021), it is often the case that minor-
+parent ancestry is small, and this tends to be incompatible with distinguishability (see Figs. 6
+and 9). This difficulty is compounded by the fact that selective purging is driven in part
+by hybrid incompatibilities, which increase nonlinearly with parental divergence (Langdon
+et al., 2024). Hence, the high parental divergence required for distinguishability is likely
+to coincide with low minor-parent ancestry, and this combination is likely to violate the
+distinguishability conditions.
+   Finally, we discuss the impact of the root location. The limitations of inferring the hybrid
+node in a 3-cycle can often, though not always, be circumvented through additional taxon
+sampling. If N1 is rooted on edge a5 (as in Fig. 9), then adding an outgroup will result in a
+network with a 4-cycle, allowing for the use of tests based on 4-cycles. On the other hand, if
+the root lies on one of the leaf edges 2 or 3 (as shown in Fig. 10), this need not be possible.
+The network in Figure 10 could arise due to hybridization between two unsampled or extinct
+“ghost lineages” which both diverged from the ancestor of species 2 after its divergence with
+species 3. If species 3 is the closest extant relative of species 1 and 2, then additional taxon
+sampling will not yield a 4-cycle, so methods specific to 3-cycles are required.
+   However, in the ghost-lineage scenario in Figure 10, we expect the hybrid node to typically
+not be distinguishable from site pattern data, at least when approximately clock-like evolu-
+tion is assumed. This is due to our next theorem, which shows that under a molecular clock
+model with all leaves equidistant from the root, the hybrid node will not be distinguishable.
+                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                           17
+
+
+
+
+       Figure 9. Left: The 3-leaf phylogenetic network N1 with root placed on
+       the edge corresponding to the parameter a5 . Right: The proportion of such
+       networks for which the hybrid node is distinguishable, assuming the intervals
+       h1 , h2 −h1 , h3 −h2 and h4 −h3 are drawn uniformly at random from the interval
+       (0, .5). See Appendix C.
+
+Theorem 3.7. Under the ghost-lineage scenario shown in Figure 10 with the molecular
+clock assumption, for any choice of 0 < h1 < h2 < h3 < h4 , it holds that q ∈ M1 ∩ M2 .
+In particular, the hybrid node in the 3-cycle is not distinguishable from the site pattern
+distribution.
+Proof. Let h1 < h2 < h3 < h4 be arbitrary. By the molecular clock assumption, the Fourier
+parameters are
+                                        4                             4
+                              a1 = e− 3 h1                 a2 = e− 3 h2
+                                        4                             4
+(22)                          a3 = e− 3 (2h4 −h3 )         a4 = e− 3 (h2 −h1 )
+                                        4                             4
+                              a5 = e− 3 (h3 −h2 )          a6 = e− 3 (h3 −h1 ) .
+We need to show that q ∈ M1 ∩ M2 . By Eq. (20) this occurs precisely when
+                    a1 (δa4 a5 + (1 − δ)a6 )(δa4 (1 − a3 a5 ) + (1 − δ)a5 a6 (1 − a3 ))
+                     < a5 (δa4 (1 − a3 a5 ) + (1 − δ)a6 (1 − a3 )).
+ By Eq. (22), the Fourier parameters satisfy a2 = a1 a4 and a6 = a4 a5 . Using these relations,
+the above inequality can be rewritten (code available in the supplemental materials in the
+file ghost-scenario-calculation.m2) as
+                          a6 (a2 a3 a25 δ − a2 a3 a25 − a2 a3 a5 δ − a2 a25 δ
+                               + a2 a25 + a2 δ + a3 a5 + a5 δ − a5 − δ) < 0.
+The left-hand side factors as
+                    −a6 [δ(1 − a2 )(1 − a3 a5 ) + (1 − δ)a5 (1 − a3 )(1 − a2 a5 )],
+which is clearly negative for all a2 , a3 , a5 , a6 , δ ∈ (0, 1). Hence q ∈ M1 ∩ M2 .        □
+18                 IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+
+
+
+       Figure 10. A 3-leaf phylogenetic network rooted on edge 3 at time h4 . The
+       network exhibits a 3-cycle arising from ghost lineages that diverged from
+       species 2 at times h3 and h2 and later hybridized at time h1 . Note that a3 is
+       the Fourier parameter of leaf 3 when the root is suppressed.
+
+3.6. Applications to Biological Data. In this section, we present two examples from the
+literature where a phylogenetic network is inferred from biological data. We restrict these
+networks to a subset of the taxa so that the inferred networks are triangle networks. We then
+apply the bound from Corollary 3.3 to determine if the inferred parameters are identifiable
+under the Jukes-Cantor model. Our goal in this section is simply to give insight into the
+implications of our results for practical inference. As such, we have derived parameter values
+from the published literature that are likely of interest to biologists. But, we note that
+networks were not inferred assuming that the data were generated by the Jukes-Cantor
+network models we study.
+3.6.1. Melinaea. In (van der Heijden et al., 2025), the authors study the lineages of Melinaea
+and Mechanitis butterflies found throughout Central and South America and provide evi-
+dence of fast and recent radiation. Here, we examine one of the triangle networks from that
+paper involving Melinaea idae, Melinaea lilis, and Melinaea marsaeus. Mel. idae and Mel.
+lilis are sister species while Mel. marsaeus is a representative of the ingroup clade involved in
+the study. The authors fit the network using the multispecies-coalescent-with-introgression
+(MSCi) model implemented in BPP v.4.6.2 (Flouri et al., 2019). For their analysis, they
+assumed a mutation rate of 2.9 × 10−9 substitutions per site per generation and four genera-
+tions per year. Converting the branch lengths from scenario 1 of the inferred species network
+in (van der Heijden et al., 2025, Fig. 3A) into expected number of substitutions per site, we
+obtain the network shown in Figure 11.
+    After converting the branch lengths to Fourier parameters, we then substituted them (and
+the estimate δ = .261) into the right-hand sides of the inequalities in Corollary 3.3. This gave
+≈ 1.0004 for (20) and ≈ 1.0003 for (21), both of which are greater than a1 = .997. Hence,
+neither inequality is satisfied, and therefore the hybrid is not distinguishable. Together,
+these results imply that under the Jukes-Cantor model with no coalescence, any of the three
+species could be the hybrid descendant.
+3.6.2. Rhizoplaca. In (Keuler et al., 2020), the authors use maximum pseudolikelihood, im-
+plemented in PhyloNet (Wen et al., 2018), to obtain a phylogenetic network for seven lich-
+enized fungus species in the genus Rhizoplaca. We replicate their analysis without bootstrap
+                       IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                             19
+
+                                                                  0.00363
+                                                                                   mars
+                                  0.00092                  0.0012
+                                                                       0.00242
+                                                                                   idae
+                                                                  0.00001
+                                           0.00211                     0.00244
+                                                                                   lilis
+
+       Figure 11. Network from van der Heijden et al. (2025) on three species of
+       neotropical butterflies with branch lengths converted to expected number of
+       mutations per site.
+
+thresholding, while constraining the number of hybridizations to one. Our code is available
+in the supplemental materials in src/rhizoplaca/. The top-scoring network is shown in
+Figure 12; branch lengths were converted from coalescent units to expected number of muta-
+tions per site using the population mutation parameter θ = 2 × 10−3 , which roughly accords
+with estimates found by Leavitt et al. (2013). This network appears to closely match the
+network obtained in (Keuler et al., 2020, Fig. 4(a)), which does not include branch lengths
+for the leaf edges and reticulation edges since it was inferred from gene tree topologies.
+
+                  MPL inferred network (logL = −3995168)
+                                                           novo
+                                                                                           mela
+                                                           mela
+                           0.000192                                    0.000192
+                                            0.373
+                                                                                  0.373
+                                            0.627          shus
+              5
+                                5.21e−05
+                                                           pari
+                                                                                  0.627    shus
+                      0.00043                              port
+                                                                       0.000482
+                                0.00016                    715f
+                                           0.000422                                        pari
+                                                           haydenii
+
+
+
+       Figure 12. The highest-scoring phylogenetic network for Rhizoplaca with
+       one reticulation, with internal branch lengths expressed in expected number
+       of mutations per site, and its restriction to a 3-taxon network.
+
+   If we restrict the network to the leaves labeled mela, pari, and shus, we obtain the rooted
+3-cycle network with shus the hybrid species (see Fig. 12). Following Example 1.1, let
+us suppose that the leaf edges all have branch length s, measured in expected number of
+mutations per site, and that the reticulation edges are of negligible length. Using the bound
+in Corollary 3.3, we find that it is possible to determine the direction of hybridization, i.e.,
+that shus is the hybrid descendant, if and only if the evolutionary distance s is less than
+approximately 0.00017 expected mutations per site.
+
+                                                       4. Discussion
+   Since hybridization in eukaryotes occurs most commonly between closely-related taxa
+(Mallet et al., 2016), 3-cycles are likely to be common in nature; however, they have posed
+significant challenges from an identifiability standpoint. Due to these challenges, previous
+20                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+identifiability results have routinely excluded networks with 3-cycles from consideration,
+leaving a gap in the literature.
+   In this work, we fully describe the semialgebraic sets of the Fourier transformed distribu-
+tions that arise from each of the three 3-leaf triangle networks under the Jukes-Cantor model
+of DNA substitution. Furthermore, for each pair of 3-leaf triangle networks, we give an ex-
+plicit semialgebraic description of the set of parameters of the first model that gets mapped
+into the intersection of both models; this set of parameters constitutes approximately 92.8%
+of the numerical parameter space ΘN1 × (0, 1). Thus, the primary conclusion is that there
+is a full-dimensional region in the space of site-pattern probabilities where identifying the
+hybrid node is possible, and a full-dimensional region where identifying the hybrid node is
+impossible, even with infinitely long sequences.
+   Further analysis of our results from a practical lens suggests that it is generally not possible
+to determine the orientation of edges in a 3-leaf triangle network using the site pattern distri-
+bution. Hybrid distinguishability requires recent hybridization, high parental divergence, and
+substantial minor-parent ancestry, conditions which are unlikely to all be satisfied, especially
+simultaneously. These results are consistent with the intuition that the signal distinguishing
+the hybrid lineage is expected to be weakest when hybridization took place a long time ago,
+or between closely-related taxa. What is more surprising is our conclusion, highlighted in
+Example 1.1, that this loss of identifiability is subject to a sharp cutoff.
+   This paper focuses solely on the Jukes-Cantor model, however, we expect that similar
+techniques can be used for other group-based models, such as the Kimura 2-parameter (K2P)
+and Kimura 3-parameter (K3P) models. The Jukes-Cantor model is a sub-model of both of
+these, obtained by identifying certain entries in the Markov transition matrices. From the
+model perspective, the Jukes-Cantor model for a network can be obtained by intersecting
+the K2P or K3P model for that network with a linear space. While our work suggests that
+similar results might hold for these other models, it is not clear that any are immediately
+implied by this work. Thus, it may be the case that hybrid node identification is more
+plausible under these different models.
+   Likewise, the network-based models we study, if we assume ultrametricity, can be seen as
+a limit of the network multispecies coalescent (NMSC) model as population sizes approach
+zero. Similar identifiability results have also been established for the NMSC model using
+semialgebraic conditions. Allman et al. (2024) show that in level-1 networks, 3-cycles gen-
+erally can be detected from gene tree quartet concordance factors under the NMSC model.
+In addition, they show that the location of the hybrid node in the 3-cycle can sometimes
+be determined and sometimes not, depending on the numerical parameters, the number of
+leaves, and their position relative to the hybrid node. Although the results in (Allman et al.,
+2024) do not imply the results presented in this paper (see Remark 4.7 in (Allman et al.,
+2024)), there are parallels between their results and those of this paper. The precise nature
+of this connection is not well-understood as the results are based on fundamentally different
+data types. A related question, and an especially important one for applications, is to un-
+derstand under what conditions 3-cycles can be inferred assuming a model combining both
+coalescence and substitution (e.g. see Allman et al. (2022)).
+   We have shown that the inequalities of Theorem 3.1 contain important information about
+model membership. This naturally suggests that it may be possible to use these inequali-
+ties for network inference, in very restrictive settings, using techniques designed for models
+described by algebraic constraints, for example, by using incomplete U-statistics (Barnhill
+                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                            21
+
+et al., 2025; Sturma et al., 2024) or by substituting sequence data into the defining polyno-
+mial equalities and inequalities and using scoring or supervised machine learning algorithms
+for inference (Barton et al., 2026; Casanellas et al., 2021; Martin et al., 2025). However, the
+results of this paper point to an important caution in the development of such classification
+algorithms. In particular, these algorithms should take into account that the space of ex-
+pected site pattern frequencies contains substantial regions where the classification problem
+does not have a unique solution. On the other hand, the results of this paper establish that
+classification is theoretically possible over very specific parameter regimes.
+   Finally, we emphasize that the results of this work should not be interpreted as settling
+the question of indistinguishability of 3-cycles more broadly. Rather, as discussed above, our
+conclusions are restricted to the problem of inferring hybrid nodes from site-pattern frequency
+distributions under the Jukes–Cantor substitution model. Other sources of genetic signal,
+including synteny and gene tree discordance, may provide substantially stronger information
+for reconstructing 3-cycles.
+                                    Acknowledgments
+   This research began during the Fall 2025 Graduate Research Community at the University
+of Hawai‘i at Mānoa supported by the National Science Foundation (DGE-2429967). AE
+was additionally supported by NSF Award DMS-2023239. EG was additionally supported
+by DMS-2527518.
+                               Supplementary Materials
+  Supplementary materials can be found in the following GitHub repository: https://
+github.com/max-hill/semialgebraic-conditions-for-triangle-networks.
+22                 IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+                                        References
+Allman, E. S., C. Ané, H. Baños, and J. A. Rhodes. 2025. Beyond level-1: Identifiability of
+  a class of galled tree-child networks. arXiv:2504.21116.
+Allman, E. S., H. Baños, M. Garrote-Lopez, and J. A. Rhodes. 2024. Identifiability of level-1
+  species networks from gene tree quartets. Bull. Math. Biol. 86:110.
+Allman, E. S., H. Baños, and J. A. Rhodes. 2022. Identifiability of species network topologies
+  from genomic sequences using the logDet distance. J. Math. Biol. 84:35.
+Baños, H. 2019. Identifying species network features from gene tree quartets under the
+  coalescent model. Bull. Math. Biol. 81:494–534.
+Barley, A. J., A. Nieto-Montes de Oca, N. L. Manrı́quez-Morán, and R. C. Thomson. 2022.
+  The evolutionary network of whiptail lizards reveals predictable outcomes of hybridization.
+  Science 377:773–777.
+Barnhill, D., M. Garrote-López, E. Gross, M. Hill, B. Kagy, J. A. Rhodes, and J. Z. Zhang.
+  2025. Methodological considerations for semialgebraic hypothesis testing with incomplete
+  U-statistics. arXiv:2507.13531 .
+Barton, T., E. Gross, C. Long, and J. Rusinko. 2026. Statistical learning with phylogenetic
+  network invariants. Bull. Soc. Syst. Biol. 4 no. 1 (2026) 4.
+Casanellas, M., J. Fernández-Sánchez, and M. Garrote-López. 2021. SAQ: Semi-algebraic
+  quartet reconstruction. IEEE/ACM Trans. Comput. Biol. Bioinform. 18:2855–2861.
+Cui, R., M. Schumer, K. Kruesi, R. Walter, P. Andolfatto, and G. G. Rosenthal. 2013. Phy-
+  logenomics reveals extensive reticulate evolution in Xiphophorus fishes. Evolution 67:2166–
+  2179.
+Englander, A. K., M. Frohn, E. Gross, N. Holtgrefe, L. van Iersel, M. Jones, and S. Sulli-
+  vant. 2025. Identifiability of phylogenetic level-2 networks under the Jukes-Cantor model.
+  bioRxiv Pages 2025–04.
+Evans, S. N. and T. P. Speed. 1993. Invariants of some probability models used in phyloge-
+  netic inference. Ann. Stat. Pages 355–377.
+Flouri, T., X. Jiao, B. Rannala, and Z. Yang. 2019. A Bayesian implementation of the
+  multispecies coalescent model with introgression for phylogenomic analysis. Mol. Biol.
+  Evol. 37.
+Gambette, P., K. T. Huber, and S. Kelk. 2017. On the challenge of reconstructing level-1
+  phylogenetic networks from triplets and clusters. J. Math. Biol. 74:1729–1751.
+Gross, E. and C. Long. 2018. Distinguishing phylogenetic networks. SIAM J. Appl. Algebra
+  Geom. 2:72–93.
+Gross, E., L. van Iersel, R. Janssen, M. Jones, C. Long, and Y. Murakami. 2021. Distinguish-
+  ing level-1 phylogenetic networks on the basis of data generated by Markov processes. J.
+  Math. Biol. 83:1–24.
+Hibbins, M. S. and M. W. Hahn. 2022. Phylogenomic approaches to detecting and charac-
+  terizing introgression. Genetics 220:iyab173.
+Holtgrefe, N., E. S. Allman, H. Baños, L. van Iersel, V. Moulton, J. A. Rhodes, and K. Wicke.
+  2025. Distinguishing phylogenetic level-2 networks with quartets and inter-taxon quartet
+  distances. arXiv:2507.17308.
+Jukes, T. H., C. R. Cantor, et al. 1969. Evolution of protein molecules. Mammalian protein
+  metabolism 3:132.
+Keuler, R., A. Garretson, T. Saunders, R. J. Erickson, N. St. Andre, F. Grewe, H. Smith,
+  H. T. Lumbsch, J.-P. Huang, L. L. St. Clair, and S. D. Leavitt. 2020. Genome-scale data
+                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                             23
+
+  reveal the role of hybridization in lichen-forming fungi. Sci. Rep. 10:1497.
+Krantz, S. and H. Parks. 2008. Geometric integration theory. Springer.
+Langdon, Q. K., J. S. Groh, S. M. Aguillon, D. L. Powell, T. Gunn, C. Payne, J. J. Baczenas,
+  A. Donny, T. O. Dodge, K. Du, et al. 2024. Swordtail fish hybrids reveal that genome
+  evolution is surprisingly predictable after initial hybridization. PLoS Biology 22:e3002742.
+Leavitt, S. D., F. Fernández-Mendoza, S. Pérez-Ortega, M. Sohrabi, P. K. Divakar,
+  J. Vondrák, H. Thorsten Lumbsch, and L. L. S. Clair. 2013. Local representation of global
+  diversity in a cosmopolitan lichen-forming fungal species complex (Rhizoplaca, Ascomy-
+  cota). J. Biogeogr. 40:1792–1806.
+Mallet, J. 2005. Hybridization as an invasion of the genome. Trends Ecol. Evol. 20:229–237.
+Mallet, J., M. Beltrán, W. Neukirchen, and M. Linares. 2007. Natural hybridization in
+  heliconiine butterflies: the species boundary as a continuum. BMC Evol. Biol. 7:28.
+Mallet, J., N. Besansky, and M. W. Hahn. 2016. How reticulated are species? BioEssays
+  38:140–149.
+Martin, S., N. Holtgrefe, V. Moulton, and R. M. Leggett. 2025. Algebraic invariants for
+  inferring 4-leaf semi-directed phylogenetic networks. Syst. Biol. Page syaf071.
+Moran, B. M., C. Payne, Q. Langdon, D. L. Powell, Y. Brandvain, and M. Schumer. 2021.
+  The genomic consequences of hybridization. Elife 10:e69016.
+Pardi, F. and C. Scornavacca. 2015. Reconstructible phylogenetic networks: do not distin-
+  guish the indistinguishable. PLoS Comput. Biol. 11:e1004135.
+Peñalba, J. V., A. Runemark, J. I. Meier, P. Singh, G. O. Wogan, R. Sánchez-Guillén,
+  J. Mallet, S. J. Rometsch, M. Menon, O. Seehausen, et al. 2024. The role of hybridization
+  in species formation and persistence. Cold Spring Harb. Perspect. Biol. 16:a041445.
+Rhodes, J. A., H. Baños, J. Xu, and C. Ané. 2025. Identifying circular orders for blobs in
+  phylogenetic networks. Adv. Appl. Math. 163:102804.
+Rose, J. P., B. Li, M. J. Sporck-Koehler, E. A. Stacy, K. R. Wood, E. M. Lemmon, A. R.
+  Lemmon, C. Ané, K. J. Sytsma, and T. J. Givnish. 2025. Phylogenomics of the tetraploid
+  Hawaiian lobeliads: Implications for their origin, dispersal history, and adaptive radiation.
+  Proc. Natl. Acad. Sci. U.S.A. 122:e2421004122.
+Semple, C., M. Steel, et al. 2003. Phylogenetics vol. 24. Oxford University Press.
+Solı́s-Lemus, C. and C. Ané. 2016. Inferring phylogenetic networks with maximum pseudo-
+  likelihood under incomplete lineage sorting. PLoS Genet. 12:e1005896.
+Sturma, N., M. Drton, and D. Leung. 2024. Testing many constraints in possibly irregular
+  models using incomplete U-statistics. J. R. Stat. Soc. Ser. B Stat Methodol. 86:987–1012.
+Sturmfels, B. and S. Sullivant. 2005. Toric ideals of phylogenetic invariants. J. Comput. Biol.
+  12:457–481.
+Sullivant, S. 2023. Algebraic Statistics vol. 194. AMS.
+The algebraic-phylogenetics collaboration. 2026. A database of small trees and networks in
+  algebraic phylogenetics. Version 0.3. Available at http://www.algebraicphylogenetics.
+  org.
+van der Heijden, E. S. M., K. Näsvall, F. A. Seixas, C. E. B. Nobre, A. C. D. Maia, P. Salazar-
+  Carrión, J. M. Walker, D. Szczerbowski, S. Schulz, I. A. Warren, K. G. G. Córdova, M. J.
+  Sánchez-Carvajal, F. Chandi, A. P. Arias-Cruz, N. Rueda-M, C. Salazar, K. K. Dasmaha-
+  patra, S. H. Montgomery, M. McClure, D. E. Absolon, T. C. Mathers, C. A. Santos, S. Mc-
+  Carthy, J. M. D. Wood, G. Lamas, C. Bacquet, A. V. L. Freitas, K. R. Willmott, C. D.
+  Jiggins, M. Elias, and J. I. Meier. 2025. Genomics of neotropical biodiversity indicators:
+24                 IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+  Two butterfly radiations with rampant chromosomal rearrangements and hybridization.
+  Proc. Natl. Acad. Sci. U.S.A. 122:e2410939122.
+Veller, C., N. B. Edelman, P. Muralidhar, and M. A. Nowak. 2023. Recombination and
+  selection against introgressed DNA. Evolution 77:1131–1144.
+Wen, D., Y. Yu, J. Zhu, and L. Nakhleh. 2018. Inferring phylogenetic networks using Phy-
+  loNet. Syst. Biol. 67:735–740.
+Xu, J. and C. Ané. 2023. Identifiability of local and global features of phylogenetic networks
+  from average distances. J. Math. Biol. 86:12.
+Zhang, C., H. A. Ogilvie, A. J. Drummond, and T. Stadler. 2018. Bayesian inference of
+  species networks from multilocus sequence data. Mol. Biol. Evol. 35:504–517.
+                     IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                     25
+
+                              Appendix A. Proof of Theorem 3.1
+   We begin by introducing a reparameterization which will simplify our analysis. We sub-
+stitute a∗4 := δa1 a4 and a∗6 := (1 − δ)a1 a6 where the new parameters a∗4 , a∗6 ∈ (0, 1) and must
+satisfy a∗4 + a∗6 < 1, but are otherwise free. In these new parameters (omitting the stars to
+simplify notation), we now have:
+                            qACC = a2 a3 a5           qCAC = a3 a4 a5 + a3 a6
+(23)                M1 :
+                            qCCA = a2 a4 + a2 a5 a6   qCGT = a2 a3 a5 (a4 + a6 ).
+  The corresponding parameter space for network N1 is
+        e N1 = {(a2 , a3 , a4 , a5 , a6 ) : 0 < a2 , a3 , a4 , a5 , a6 < 1 and a4 + a6 < 1} ⊆ R5 .
+        Θ
+  We will use ψeN1 to denote the new parameterization map shown in Eq. (23). With this
+new notation                         n                 o
+                               M1 = ψeN1 (θ) : θ ∈ Θ
+                                                   e N1 .
+Similar simplifications give reparameterizations for the other two networks N2 and N3 shown
+in Figure 3, which are as follows:
+                             qACC = b3 b4 b5 + b3 b6 qCAC = b1 b3 b5
+                     M2 :
+                             qCCA = b1 b4 + b1 b5 b6 qCGT = b1 b3 b5 (b4 + b6 )
+
+                               qACC = c2 c4 c5 + c2 c6     qCAC = c1 c4 + c1 c5 c6
+                       M3 :
+                               qCCA = c1 c2 c5             qCGT = c1 c2 c5 (c4 + c6 ).
+  We now prove Theorem 3.1, which provides a complete semialgebraic description of M1 .
+We present the proof of this theorem in the following two subsections. In particular, the
+equivalence statement in the theorem will follow immediately from Lemmas A.1 and A.4,
+and the additional inequalities (13), (14), and (15) will follow from Lemma A.2.
+A.1. Proof of the “Only If ” Direction of Theorem 3.1. Our first lemma establishes
+the forward direction of Theorem 3.1.
+Lemma A.1. If (qACC , qCAC , qCCA , qCGT ) ∈ M1 then inequalities (8), (9), (10), (11), and (12)
+hold.
+Proof. By definition of M1 , there exists (a2 , . . . , a6 ) ∈ (0, 1)5 with a4 + a6 < 1 such that
+                        ψeN (a2 , a3 , a4 , a5 , a6 ) = (qACC , qCAC , qCCA , qCGT ).
+                               1
+
+Therefore, qACC , qCAC , qCCA , and qCGT are given by the formulas in Eq. (23), which we will use
+to prove inequalities (8), (9), (10), (11), and (12).
+   We begin by proving inequality (8). By the formulas in Eq. (23), it is easily seen that
+qACC , qCAC , qCCA , qCGT > 0 since a2 , a3 , a4 , a5 , a6 > 0. It is also clear that qACC , qCGT < 1 since
+a2 , a3 , a4 , a5 , a6 < 1 and a4 + a6 < 1. It remains to show that qCAC < 1 and qCCA < 1. Since
+the two are similar, we show only the case of qCAC , which proceeds as follows:
+                       qCAC = a3 a4 a5 + a3 a6
+                            = a3 (a4 a5 + a6 )
+                            < a3 (a4 + a6 )                           since a5 < 1
+                            < 1,
+26                    IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+where the last inequality is due to a3 < 1 and a4 + a6 < 1.
+  Next we will prove inequality (9). By definition of ψeN1 ,
+                            qACC − qCGT = a2 a3 a5 − (a2 a3 a4 a5 + a2 a3 a5 a6 )
+                                         = a2 a3 a5 (1 − (a4 + a6 ))
+                                         > 0,
+where the last inequality follows due to a2 , a3 , a5 > 0 and a4 + a6 < 1.
+  To prove inequality (10), first observe that the formulas in Eq. (23) imply
+                       qCGT − qACC qCAC = a2 a3 a5 (a4 + a6 ) − a2 a23 a5 (a4 a5 + a6 )
+                                         = a2 a3 a5 (a4 (1 − a3 a5 ) + a6 (1 − a3 )).
+Again, this must be greater than 0 since a2 , a3 , a4 , a5 , a6 > 0 and a3 , a5 < 1.
+  Inequality (11) was first shown in Englander et al. (2025); the proof presented here is
+essentially the same as theirs: substituting in the formulas from Eq. (23) and rearranging
+terms, one finds that
+                                                2
+(24)                          qACC qCAC qCCA − qCGT = a22 a23 a4 a5 a6 (1 − a5 )2 ,
+which is positive since a4 , a5 , a6 > 0 and a5 < 1.
+  Finally, to prove inequality (12), observe that by Eq. (23), the left hand side of (12) can
+be written as
+                       a2 a3 a5 (a4 (1 − a2 )(1 − a3 a5 ) + a6 (1 − a3 )(1 − a2 a5 )),
+which is positive since a2 , a3 , a4 , a5 , a6 > 0 and a2 , a3 , a5 < 1.                              □
+Lemma A.2 (Additional inequalities). If (qACC , qCAC , qCCA , qCGT ) ∈ M1 , then
+(13)                                             qCAC − qCGT > 0
+(14)                                             qCCA − qCGT > 0
+(15)                                        qCGT − qACC qCCA > 0
+Proof. Using the formulas from Eq. (23), it is easily verified that the three inequalities may
+be written as
+                            qCAC − qCGT = a3 [a4 a5 (1 − a2 ) + a6 (1 − a2 a5 )]
+                            qCCA − qCGT = a2 [a4 (1 − a3 a5 ) + a5 a6 (1 − a3 )]
+                        qCGT − qACC qCCA = a2 a3 a5 [a4 (1 − a2 ) + a6 (1 − a2 a5 )] .
+In all three cases, the right hand sides are seen to be positive by inspection, since 0 <
+a2 , a3 , a4 , a5 , a6 < 1.                                                             □
+
+A.2. Proof of the “If ” Direction of Theorem 3.1. In this section we prove the back-
+wards direction of Theorem 3.1. Namely, we will show that if qACC , qCAC , qCCA , and qCGT satisfy
+inequalities (8), (9), (10), (11), and (12), then there exists (a2 , a3 , a4 , a5 , a6 ) ∈ Θ
+                                                                                           e N1 such that
+ψeN1 (a2 , a3 , a4 , a5 , a6 ) = (qACC , qCAC , qCCA , qCGT ).
+   We begin by showing that for any q = (qACC , qCAC , qCCA , qCGT ) ∈ R4 satisfying inequality (11),
+               −1
+the fiber ψeN    1
+                   (q) contains a one-dimensional family of points in R5 parameterized by a single
+free parameter.
+                     IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                27
+
+Lemma A.3 (Existence of a one-parameter real family of solutions). Assume that the co-
+ordinates (qACC , qCAC , qCCA , qCGT ) ∈ R4 satisfy inequality (11). Then there exists a family of
+solutions in R5 to the polynomial system
+                                       
+                                         q = a2 a3 a5
+                                        ACC
+                                       
+                                       
+                                         qCAC = a3 a4 a5 + a3 a6
+(25)
+                                       
+                                        qCCA = a2 a4 + a2 a5 a6
+                                        q =a a a a +a a a a
+                                          CGT      2 3 4 5       2 3 5 6
+
+taking the form (a2 , a3 , a4 , a5 , a6 ) ∈ R5 , where a2 ∈ R\ {0} is a free variable and
+
+                                   qACC qCAC a2 − qACC qCGT
+(26)                          a3 =
+                                     qCGT a2 − qACC qCCA
+                                                      a2 u
+(27)                          a4 =             2                    2
+                                   qACC qCAC a2 − 2qACC qCGT a2 + qACC  qCCA
+                                   qCGT a2 − qACC qCCA
+(28)                          a5 =
+                                    qCAC a22 − qCGT a2
+                                    (qCAC a2 − qCGT )(qCGT a2 − qACC qCCA )
+(29)                          a6 =                                  2
+                                                                             ,
+                                   qACC qCAC a22 − 2qACC qCGT a2 + qACC qCCA
+                            2
+where u = qACC qCAC qCCA − qCGT .
+Proof. The computations to verify that equations Eq. (26)-(29) yield symbolic solutions to
+(25) can be found in the file one-param-family-computation.m2 in the Supplementary
+Materials. It remains only to show that the denominators of Eq. (26)-(29) are non-zero for
+all a2 ∈ R\ {0}.
+   We first note that since we assume inequality (11), any solution of the polynomial system
+25 must satisfy a2 , a3 , a4 , a5 , a6 ̸= 0 and a5 ̸= 1, which follows immediately by inspection of
+Eq. (24).
+   To see that the denominators of Eqs. (26) and (28) are nonzero, we write them in terms
+of the Fourier parameters as follows:
+                               qCGT a2 − qACC qCCA = a22 a3 a5 a6 (1 − a5 ).
+and
+                                    qCAC a22 − qCGT a2 = a22 a3 a6 (1 − a5 ).
+Both of these are nonzero since a2 , a3 , a5 , a6 ̸= 0 and a5 ̸= 1.
+   Finally, observe that the denominator of Eqs. (27) and (29) is quadratic in the variable
+a2 . The discriminant is
+                                     2      2
+                                                                 
+                                 4qACC     qCGT  − qACC qCAC qCCA ,
+or equivalently, since qACC = a2 a3 a5 ,
+                                    4(a2 a3 a5 )2 qCGT
+                                                   2
+                                                                       
+                                                       − qACC qCAC qCCA .
+This is negative by inequality (11), and hence the quadratic is nonzero for all a2 ∈ R\ {0}. □
+  The next lemma establishes the backwards direction of Theorem 3.1.
+Lemma A.4. If (qACC , qCAC , qCCA , qCGT ) ∈ R4 satisfies inequalities (8), (9), (10), (11), and (12),
+then (qACC , qCAC , qCCA , qCGT ) ∈ M1 .
+28                  IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+Proof. By definition of M1 , we need to show there exists a solution (a2 , a3 , a4 , a5 , a6 ) to the
+polynomial system (25) satisfying 0 < a2 , a3 , a4 , a5 , a6 < 1 and a4 + a6 < 1.
+   Assume a3 , a4 , a5 , a6 are given by Eqs. (26) to (29), with a2 to be chosen later. By
+Lemma A.3, it will suffice to show that there exists a2 ∈ (0, 1) such that 0 < a3 , a4 , a5 , a6 < 1
+and a4 + a6 < 1. Let
+                                           qACC (qCCA − qCGT )
+                                      η :=                     .
+                                            qCGT − qACC qCAC
+We will show that η ∈ (0, 1), and that 0 < a3 , a4 , a5 , a6 < 1 and a4 + a6 < 1 whenever
+η < a2 < 1. The proof proceeds through a series of claims. Our first claim presents a series
+of useful inequalities which, among other things, will verify that η ∈ (0, 1).
+
+Claim 1: 0 < qqCGT
+               CAC
+                   < qACC qCCA
+                       qCGT
+                               < η < 1.
+Proof of Claim 1. We prove the inequalities from left to right. The first inequality follows
+trivially by the assumption that qCGT , qCAC > 0, and the second follows directly by inequality
+(11).
+                                                                 2
+   To prove the third inequality, observe that qACC qCAC qCCA > qCGT by inequality (11). Multi-
+plying by −qACC and then adding qACC qCCA qCGT to both sides yields
+                                         2                                      2
+                       qACC qCCA qCGT − qACC qCAC qCCA < qACC qCCA qCGT − qACC qCGT .
+Factoring both sides gives
+                         qACC qCCA (qCGT − qACC qCAC ) < qACC qCGT (qCCA − qCGT ).
+Dividing both sides by qCGT and qCGT −qACC qCAC (which inequality (10) guarantees to be positive)
+implies qACC qCCA
+          qCGT
+                  < η. Finally, the inequality η < 1 is readily verified using inequalities (10)
+and (12).
+                                                                                                     □ Claim
+
+  Since η ∈ (0, 1), it remains only to show that 0 < a3 , a4 , a5 , a6 < 1 whenever η < a2 < 1.
+The next two claims verify that a3 , a4 , a5 , a6 > 0 whenever η < a2 < 1.
+
+Claim 2: If η ≤ a2 < 1 then a3 > 0 and a5 > 0.
+Proof of Claim 2. By Eqs. (26) and (28),
+                                                                                              
+                                      qCGT
+                    qACC qCAC a2 − qCAC                              qCGT       a2 − qACC qCCA
+                                                                                       qCGT
+               a3 =                              and        a5 =                    .
+                                qACC qCCA                                         qCGT
+                    qCGT a2 − qCGT                                   qCAC a2 a2 − qCAC
+Using the inequalities in the statement of Claim 1, it is clear by inspection of these formulas
+that both a3 and a5 are positive when a2 ≥ η.
+                                                                                                     □ Claim
+
+
+Claim 3: If η ≤ a2 < 1 then a4 > 0 and a6 > 0.
+Proof of Claim 3. Assume a2 ≥ η. To show that a4 > 0, we will show that both the numerator
+and denominator of Eq. (27) are positive. By completing the square, the denominator can
+be written as
+                                                                          2
+                       2                    2                         qCGT      qACC
+(30)        qACC qCAC a2 − 2qACC qCGT a2 + qACC qCCA = qACC qCAC a2 −         +      u,
+                                                                      qCAC      qCAC
+                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                           29
+
+which is positive since u > 0 due to inequality (11). The numerator is also positive by (11),
+hence a4 > 0.
+  Similarly, we will show a6 > 0 using the same approach, namely by showing that both the
+numerator and denominator of Eq. (29) are positive. Positivity of the denominator follows
+immediately by Eq. (30). To see that the numerator is also positive, first observe that it can
+be written as
+                                                                                      
+                                                                   qCGT        qACC qCCA
+          (qCAC a2 − qCGT )(qCGT a2 − qACC qCCA ) = qCAC qCGT a2 −        a2 −             .
+                                                                   qCAC          qCGT
+Claim 1 implies that the right-hand side is a product of positive terms when a2 ≥ η. Hence
+a6 > 0.
+                                                                                       □ Claim
+
+  It remains to show that a3 , a4 , a5 , a6 < 1 whenever η < a2 < 1, which we show in the next
+three claims.
+
+Claim 4: If η < a2 < 1 then a3 < 1.
+Proof of Claim 4. Taken together, the inequalities η < a2 < 1 and inequality (10) imply that
+                            qACC (qCCA − qCGT ) < (qCGT − qACC qCAC )a2 .
+Rearranging terms gives
+                           qACC qCAC a2 − qACC qCGT < qCGT a2 − qACC qCCA .
+The right-hand side is positive (by Claim 1 and the assumption that a2 > η), and hence
+                                    qACC qCAC a2 − qACC qCGT
+                                                             < 1.
+                                      qCGT a2 − qACC qCCA
+Since the left hand side is precisely a3 by Eq. (26), the claim follows.
+                                                                                       □ Claim
+
+
+Claim 5: If η ≤ a2 < 1 then a4 < 1, a6 < 1, and a4 + a6 < 1.
+Proof of Claim 5. By the formulas in Eq. (25) and inequality (9), a4 +a6 = qqCGT
+                                                                             ACC
+                                                                                 < 1. Moreover
+by Claim 3, a4 , a6 > 0 when a2 ≥ η. Therefore a4 < 1 and a6 < 1.
+                                                                                       □ Claim
+
+
+Claim 6: If η ≤ a2 < 1 then a5 < 1.
+Proof of Claim 6. Inequality (11) states that u > 0, so the following inequality holds for any
+a2 ∈ R:                                        2
+                                           qCGT       u
+                               qCAC a2 −           +      > 0.
+                                           qCAC      qCAC
+Expanding and rearranging terms, we can rewrite the above inequality as
+(31)                          qCGT a2 − qACC qCCA < qCAC a22 − qCGT a2 .
+If a2 ≥ η, then Claim 1 implies a2 > qCGT /qCAC , which implies that the right-hand side of
+Eq. (31) is positive. Therefore
+                                  qCGT a2 − qACC qCCA
+                                                      < 1,
+                                   qCAC a22 − qCGT a2
+and hence a5 < 1 by Eq. (28).
+                                                                                       □ Claim
+30                   IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+  We can now finish the proof of Lemma A.4. By Claim 1, η ∈ (0, 1), allowing us to choose
+a2 ∈ (η, 1). Letting a3 , a4 , a5 , a6 be given by the formulas in Eq. (26)-(29), Lemma A.3 implies
+that (a2 , a3 , a4 , a5 , a6 ) is a solution to the polynomial system (25). Moreover a3 , a4 , a5 , a6 > 0
+(by Claims 2 and 3), and a3 , a4 , a5 , a6 < 1 (by Claims 4 to 6). Hence (a2 , a3 , a4 , a5 , a6 ) ∈
+(0, 1)5 . Finally, a4 + a6 < 1 by Claim 5.                                                              □
+  Thus, we have proven both directions of Theorem 3.1, giving a complete semialgebraic
+description of M1 .
+
+                           Appendix B. The Fourier Transform
+   In this section we show how to use the Fourier transform to translate between the site pat-
+tern probabilities defined in Eq. (1) and the simplified Jukes-Cantor q-coordinates defined in
+Eq. (6). We also prove the uniform volume-scaling property cited in Observation 1. Accom-
+panying code and computations for this section can be found in the supplemental materials
+in the file Fourier-transform-appendix.jl. For additional details on the Fourier transfor-
+mation, see (Sturmfels and Sullivant, 2005) and (Sullivant, 2023, Chapter 15, pp. 335–370).
+   We begin by making the observation that a given site-pattern distribution arising from a
+3-leaf network (defined in Eq. (1)) may be encoded as a point p := (p0 , p1 , p2 , p3 , p4 )⊤ ∈ ∆4 ,
+where
+                                p0 = Pr [X1 = X2 = X3 ]
+                                p1 = Pr [X1 ̸= X2 = X3 ]
+                                p2 = Pr [X1 = X3 ̸= X2 ]
+                                p3 = Pr [X1 = X2 ̸= X3 ]
+                                p4 = Pr [X1 , X2 , X3 are all distinct] .
+Due to symmetries of the Jukes-Cantor model, there are 5 equivalence classes for the leaf-
+state assignment probabilities of Eq. (1), and we may take pAAA , pACC , pCAC , pCCA , pCGT as our
+system of representatives (see The algebraic-phylogenetics collaboration (2026)). Then we
+observe that since pAAA = pCCC = pGGG = pTTT ,
+                               p0 = pAAA + pCCC + pTTT + pGGG = 4pAAA .
+Similar considerations yield p1 = 12pACC , p2 = 12pCAC , p3 = 12pCCA , and p4 = 24pCGT .
+   To obtain the simplified Jukes-Cantor q-coordinates, we apply the following linear change
+of coordinates:                                                
+                       qAAA      1    1        1      1       1        p0
+                     qACC  1
+                                   1      −1/3  −1/3     −1/3  p1 
+                                                                  
+                     qCAC  = 1 −1/3         1   −1/3     −1/3  p2  .
+                                                               
+                     qCCA  1 −1/3 −1/3             1     −1/3 p3 
+                       qCGT      1 −1/3 −1/3 −1/3             1/3 p4
+The 5 × 5 matrix in this equation is the specialized Fourier transformation (The algebraic-
+phylogenetics collaboration, 2026), which we will denote by F . Note that qAAA = 1 since
+p0 + p1 + p2 + p3 + p4 = 1. Thus, to obtain the simplified Jukes-Cantor q-coordinates from
+a point p ∈ ∆4 , we apply the transformation F := π ◦ F , where π is the projection
+                                π(x1 , x2 , x3 , x4 , x5 ) = (x2 , x3 , x4 , x5 ).
+                     IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS                                31
+
+Formally, the space of simplified Jukes-Cantor q-coordinates is the set S := {F(p) : p ∈ ∆4 }.
+The site pattern probabilities can be recovered from the simplified Fourier coordinates by
+inverting F .
+  The next lemma shows that F scales 4-dimensional volume uniformly by the constant
+              4
+factor √25 43 .
+
+Lemma B.1 (Volume scaling). Let E ⊆ ∆4 be measurable. Then
+                                          4
+                                      2    4
+                            |F(E)| = √        · |E|,
+                                       5 3
+where | · | denotes the 4-dimensional volume.
+Proof. It is straightforward to verify that for all p = (p0 , p1 , p2 , p3 , p4 )⊤ ∈ ∆4 ,
+(32)                                     F(p) = 1 + Aπ(p)
+where 1 = (1, 1, 1, 1)⊤ and
+                                                               
+                                                0 1 1 1
+                                             4 1 0 1 1 
+                                       A=−                     .
+                                             3 1 1 0 1 
+                                                1 1 1 1/2
+                                                 4
+A direct computation gives det(A) = −2 43 .
+  Further, observe that when restricted to ∆4 , the map π is a bijection onto π(∆4 ), with
+                      , u4 ) = (1 − u1 − u2 − u3 − u4 , u1 , u2 , u3 , u4 )⊤ . Since the 4-dimensional
+inverse T (u1 , . . . √
+Jacobian of T is 5, it follows by the area formula (Krantz and Parks, 2008, Theorem 5.1.1,
+Chapter 5, p.125) applied to π −1 = T that
+                                               1
+(33)                                |π(E)| = √ |E|.
+                                                5
+for every measurable E ⊆ ∆4 . Therefore, since volume is translation invariant,
+               |F(E)| = |1 + Aπ(E)|
+                        = |Aπ(E)|
+                        = | det(A)| · |π(E)|
+                             4                                                  4
+                              4                                                   4
+                        =2        · |π(E)|                   since | det(A)| = 2
+                              3                                                   3
+                                4
+                            2   4
+                        =√             · |E|                 by Eq. (33).
+                             5 3
+                                                                                                   □
+Remark 1. Lemma B.1√can be used to justify the volume claims made in Observation 1. For
+example, since |∆4 | = 245 , Lemma B.1 implies that the space of simplified Fourier coordinates
+S has 4-dimensional volume 43 /35 ≈ 0.263. Since approximately 1.76% of ∆4 is mapped to
+M1 (as shown in Figure 5), and since the transformation F scales the 4-dimensional volume
+of subsets of ∆4 uniformly, it follows that M1 occupies about 1.76% of the volume of S.
+Hence M1 has volume (0.0176)|S| ≈ 0.00464.
+32                 IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS
+
+   Similarly, Figure 5 shows that for any i ̸= j, approximately 0.7% of the simplex is mapped
+to Mi ∩Mj , and approximately 0.56% is mapped to M1 ∩M2 ∩M3 . Therefore |Mi ∩Mj | =
+(0.007)|S| ≈ 0.00184 for i ̸= j, and |M1 ∩ M2 ∩ M3 | = (0.0056)|S| ≈ 0.00147.
+                   Appendix C. Details for Figure 9 Simulation
+  For each δ ∈ {.01, .02, . . . , .99} we simulated n = 107 random networks of the form shown
+in Figure 9. In particular, h4 is the height of the network, and edges a6 and a4 diverge at
+times h3 and h2 respectively, and then hybridize at time h1 . We assumed a molecular clock,
+so that the Fourier parameters were taken to be
+                                             4
+                                    ai = e− 3 hi , i = 1, 2, 3,
+                                             4
+                                   a4 = e− 3 (h2 −h1 )
+                                             4
+                                   a5 = e− 3 (2h4 −h2 −h3 )
+                                             4
+                                   a6 = e− 3 (h3 −h1 )
+where the intervals h1 , h2 −h1 , h3 −h2 , and h4 −h3 were drawn independently and uniformly at
+random from the interval (0, 0.5). Varying the maximum of the uniform distribution had the
+effect of scaling the height of the bump, with ‘proportion distinguishable’ increasing when .5
+was replaced by 1 and decreasing when smaller values were used. Code for running this sim-
+ulation and replicating the plot in Figure 9 can be found in the file delta-figure-plot.jl
+in the Supplementary Materials.
+                IDENTIFYING TRIANGLES IN PHYLOGENETIC NETWORKS   33
+
+New Jersey Institute of Technology
+Email address: bc479@njit.edu
+
+University of Wisconsin Madison
+Email address: akenglander@wisc.edu
+
+University of Hawai‘i at Mānoa
+Email address: joseael@hawaii.edu
+
+University of Hawai‘i at Mānoa
+Email address: egross@hawaii.edu
+
+University of Hawai‘i at Mānoa
+Email address: max6@hawaii.edu
+
+The College of Wooster
+Email address: clong@wooster.edu
+
+North Carolina State University
+Email address: dolds@ncsu.edu
+
+University of Hawai‘i at Mānoa
+Email address: oconnor3@hawaii.edu
+
+University of Hawai‘i at Mānoa
+Email address: udanir@hawaii.edu
+
+University of Hawai‘i at Mānoa
+Email address: csum@hawaii.edu
+

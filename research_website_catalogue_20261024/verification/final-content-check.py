@@ -44,7 +44,19 @@ TEX_PATHS={
  '22729355':'published-source/Exact_Diffusion_Design_Source_v1.0.11/main.tex',
  '22136869':'published-source/k2p-k3p-theta-collision-19cf11f65ed4/combined-paper-clarified.tex',
  '23180194':'published-source/mass_stationarity_verification/paper.tex',
+ '23127646':'published-source/biconstrained-asymmetry-verification/biconstrained-asymmetry-verification/biconstrained_asymmetry.tex',
+ '23191301':'published-source/odd_power_sos_verification/paper.tex',
+ '23127955':'published-source/paper.tex',
 }
+OCTOBER_EDITOR_IDS={'23127646','23191301'}
+def normalized_october_abstract(rid,body):
+ body=body.replace('$','')
+ if rid=='23127646':
+  for old,new in [(r'\psi','ψ'),(r'\theta','θ'),(r'\geq','≥')]:body=body.replace(old,new)
+  body=body.replace('ψ(x,y)','ψ(x, y)').replace('|ψ(13/27,14/27)-ψ(14/27,13/27)|≥','|ψ(13/27, 14/27) − ψ(14/27, 13/27)| ≥').replace('ψ(1-θ,θ)=1-θ/d(θ)','ψ(1 − θ, θ) = 1 − θ/d(θ)')
+ elif rid=='23191301':
+  body=body.replace('q=3','q = 3').replace(r'3\cdot10^{62}','3 · 10^62').replace(r'q\ge3','q ≥ 3').replace(r'220\times220','220 × 220')
+ return ' '.join(body.split())
 ADDED_IDS={'23203334','22929486','23088066','23353160','23147866','23157237','22729355'}
 def decode_added_abstract(tex):
  tex=tex.replace(r'Rei\ss{}','Reiß').replace('$L^2$','L²')
@@ -54,7 +66,9 @@ def decode_added_abstract(tex):
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex,record_id=None):
  if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
+ if record_id in OCTOBER_EDITOR_IDS:tex=normalized_october_abstract(record_id,tex)
  if record_id=='23180194':tex=tex.replace(r'\xi','ξ').replace('$','').replace('--','–')
+ if record_id=='23127955':tex=tex.replace(r'\R^3','ℝ³').replace('$','').replace('~',' ')
  tex=tex.replace(r"Krej\v{c}\'i\v{r}\'ik",'Krejčířík')
  tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
  tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
@@ -109,6 +123,15 @@ for rid in args.record_ids:
   normalized_abstract=' '.join(a.replace(r'\xi','ξ').replace('$','').replace('--','–').split())
   test('abstract_full_source_text',normalized_abstract==c['abstract'])
   test('abstract_full_113_words',len(c['abstract'].split())==113)
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid in OCTOBER_EDITOR_IDS:
+  test('abstract_full_source_text',normalized_october_abstract(rid,a)==c['abstract'])
+  test('abstract_full_source_word_count',len(c['abstract'].split())=={'23127646':109,'23191301':123}[rid])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid=='23127955':
+  normalized_abstract=' '.join(a.replace(r'\R^3','ℝ³').replace('$','').replace('~',' ').split())
+  test('abstract_full_source_text',normalized_abstract==c['abstract'])
+  test('abstract_full_122_words',len(c['abstract'].split())==122)
   test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  if rid in ADDED_IDS:
   compact=lambda text: re.sub(r'\s+','',unicodedata.normalize('NFKC',text))
@@ -197,10 +220,10 @@ for rid in args.record_ids:
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
-  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194') or rid in ADDED_IDS:
+  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194','23127955') or rid in ADDED_IDS or rid in OCTOBER_EDITOR_IDS:
    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
    test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
-  if rid in ADDED_IDS or rid=='23180194':
+  if rid in ADDED_IDS or rid in ('23180194','23127955') or rid in OCTOBER_EDITOR_IDS:
    test('all_published_source_assets_bound',gate['source_files']==receipt['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
  if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
@@ -304,6 +327,35 @@ for rid in args.record_ids:
   test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/candidate-content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/c['source_binding']['frozen_scope_content_path']))
   test('root_disposition_at_stated_scope',gate['disposition_by']=='root' and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['reviews']['analytic']['verdict']['status']=='SUPPORTED_AT_STATED_SCOPE' and gate['reviews']['adversarial']['verdict']['status']=='PASS' and gate['reviews']['scope']['verdict']['verdict']=='PASS_SCOPE_ONLY')
   test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_clearance'] is False and bool(gate['scope_gate_resolution']))
+ if rid in OCTOBER_EDITOR_IDS:
+  expected_date={'23127646':'2026-10-03','23191301':'2026-10-06'}[rid]
+  printed_date={'23127646':r'\date{October 3, 2026}','23191301':r'\date{6 October 2026}'}[rid]
+  candidate_path={'23127646':'reviews/scope/candidate-content.json','23191301':'reviews/scope/content.json'}[rid]
+  test('printed_edition_date_binding',record['version']==c['version']==c['source_binding']['zenodo_version']=='1.0' and record['publication_date']==c['publication_date']==expected_date and c['source_binding']['manuscript_version'] is None and printed_date in source)
+  test('two_original_assets_only',len(receipt['files'])==2 and len(texts)=={'23127646':4,'23191301':6}[rid] and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==len(c['abstract'].split()))
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']==candidate_path and c['source_binding']['frozen_scope_content_sha256']==sha(p/candidate_path))
+  av=gate['reviews']['adversarial']['verdict'];sv=gate['reviews']['scope']['verdict']
+  test('root_disposition_at_stated_scope',gate['disposition_by']=='root' and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['reviews']['analytic']['verdict']['status']=='PASS' and av.get('status',av.get('verdict'))=='PASS')
+  test('frozen_scope_chronology_preserved',(sv['mathematical_clearance'] is False if rid=='23127646' else sv['mathematical_gate'] is False) and bool(gate['scope_gate_resolution']))
+ if rid=='23127646':
+  test('scope_complete',all(x in unescape(h) for x in ['finite and simple','nonempty stable parts A, B and C','no A–C edges','all four conditions','x|B| neighbors in B','x|A| neighbors in A and y|C| neighbors in C','y|B| neighbors in B','Each reached A vertex is counted once','infimum of this maximum over all eligible finite graphs','every rational θ with 0 < θ < 1','ψ(1−θ,θ) = 1−θ/d(θ)','attained by a finite ordinary graph','minimum unweighted maximum row degree','distinct columns and strictly positive rational probability vectors b and q','Mq = θ1 and Mᵀb = θ1']))
+  test('quantitative_gap_and_limits',all(x in unescape(h) for x in ['|ψ(13/27,14/27) − ψ(14/27,13/27)| ≥ 1/108','Neither exact value nor their ordering is asserted','two integer minima','upper bounds only','not claimed to attain the infima','not claimed to be the exact gap','no claim about irrational boundary parameters','The inherited seven-type example is credited prior work']))
+  test('universal_proof_not_examples_only',all(x in unescape(h) for x in ['lower bound valid for every finite graph','minimum connection requirement in both directions','finite ordinary graph','d(13/27) ≤ 4 and d(14/27) ≤ 4','known symmetry of the related one-direction function φ is a different result']))
+ if rid=='23191301':
+  test('scope_complete',all(x in unescape(h) for x in ['real homogeneous forms','squares of real polynomials','Here n counts variables','N = 10^62','C(3 · 10^62,6,3) is nonconvex','every fixed odd q ≥ 3','finite n(q)','different separating functional','coefficient-1 modified Motzkin sextic','220 monomials','eight parity blocks']))
+  test('quantifiers_and_limits',all(x in unescape(h) for x in ['not prove nonconvexity for three variables','one common dimension that works for all odd exponents','not a classification','no claim of optimality','no stubbornness claim','It is not integration against a positive measure','not materialized numerically']))
+  test('credited_classical_ingredients',all(x in unescape(h) for x in ['The classical polynomial and its sum-of-squares cube come from earlier work','separation, product positivity and distinct-index counting have earlier sources','application to a fixed-exponent obstruction','larger odd power after the polynomials are added']))
+ if rid=='23127955':
+  test('scope_complete',all(x in unescape(h) for x in ['every three pairwise disjoint convex subsets','union of all complete affine lines','three-dimensional Lebesgue outer measure zero','Tangency requires actual intersection with the set and containment of the line in a supporting plane','contact may be an entire segment','their closures may intersect','If any set is empty','sets need not be closed, bounded, full dimensional, strictly convex or smooth']))
+  test('scope_limits_preserved',all(x in unescape(h) for x in ['does not prove containment in countably many 2-manifolds','Hausdorff-dimension bound of two','union of tangent lines need not itself be closed','Contact with a closure alone is not enough','not an algorithm for enumerating tangents','not a certification of first priority']))
+  test('proof_and_credited_inputs',all(x in unescape(h) for x in ['countably many disjoint compact caps','At almost every parameter','three distinct contacts give it three distinct roots','Separate cases handle points, segments and planar sets','Conjecture 4 in Oberwolfach Report 44/2008','standard density theorem, Rademacher’s theorem and area formula']))
+  test('printed_edition_date_binding',record['version']==c['version']==c['source_binding']['zenodo_version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-03' and c['source_binding']['manuscript_version'] is None and r'\date{3 October 2026\\\small Unrefereed preprint}' in source)
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)==8 and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']} and sha(p/'sources/published-source/common_tangent_nullness.pdf')==sha(p/'sources'/c['pdf_filename']))
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==122)
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/content.json'))
+  test('root_disposition_at_stated_scope',gate['disposition_by']=='root' and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['reviews']['analytic']['verdict']['status']=='PASS' and gate['reviews']['adversarial']['verdict']['status']=='PASS' and gate['reviews']['scope']['verdict']['status']=='PASS_SCOPE_ONLY' and gate['reviews']['scope']['verdict']['completion_percent']==100 and bool(gate['scope_gate_resolution']))
+  test('proof_wording_precision_preserved',bool(gate['nonblocking_proof_wording']) and 'globally smooth' not in unescape(h))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

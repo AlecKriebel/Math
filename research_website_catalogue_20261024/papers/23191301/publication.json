@@ -1,0 +1,136 @@
+{
+  "title": "Nonconvexity of fixed odd-power sum-of-squares cones",
+  "slug": "fixed-odd-power-sos-nonconvexity",
+  "description": "A finite sextic example shows that requiring a fixed odd power to be a sum of squares need not define a convex set.",
+  "abstract": "For a fixed odd integer q, consider the nonnegative real homogeneous forms whose qth powers are sums of squares. We give a negative answer to the general-dimensional convexity question recorded by Reznick in 2023. For sextics and q = 3, the cone is nonconvex in the explicit finite dimension 3 · 10^62. For every odd q ≥ 3, it is nonconvex in some finite dimension depending on q. The proof combines a classical modified Motzkin form with an SOS cube, separation from the SOS cone, positivity of product truncated functionals, and elementary distinct-index counting. An explicit rational moment functional gives the displayed dimension; its 220 × 220 local positivity certificate can be checked without floating-point arithmetic. No ternary or smallest-dimension conclusion is made.",
+  "plain_language": [
+    "A sum of squares is a particularly transparent way to show that a polynomial is never negative. Some nonnegative polynomials do not have such a representation themselves, but their cubes do. This paper asks whether averaging polynomials with that property preserves it.",
+    "The result is that it can fail. The construction takes many separate copies of one classical polynomial, each with a sum-of-squares cube. Their average remains nonnegative, yet its cube cannot be written as a sum of squares. The displayed example uses 3 · 10^62 variables: a finite existence result, not a small or practical example.",
+    "The same obstruction works for every fixed odd exponent at least three, in a finite number of variables that may depend on the exponent. Keeping the exponent fixed is essential. Earlier convexity results allow a larger odd power after the polynomials are added.",
+    "The classical polynomial and its sum-of-squares cube come from earlier work. This note uses them with established separation and product arguments to address the general convexity question recorded by Reznick in 2023. It does not settle the three-variable case or claim a verified first resolution."
+  ],
+  "result": [
+    "For real homogeneous forms f of positive even degree m, let C(n,m,q) consist of those that are nonnegative on R^n and whose fixed positive odd qth power is a finite sum of squares of real polynomials. Nonnegativity follows automatically from the power condition when q is odd. These sets are closed and stable under nonnegative scaling; addition is the issue under investigation. Here n counts variables.",
+    "Put N = 10^62 and use N disjoint triples of variables. For each triple define p_i = x_i^4 y_i^2 + x_i^2 y_i^4 + z_i^6 − x_i^2 y_i^2 z_i^2. Each p_i belongs to C(3N,6,3), but N^−1 times their sum does not. Thus C(3 · 10^62,6,3) is nonconvex.",
+    "For every fixed odd q ≥ 3, there is a finite n(q) for which C(n(q),6,q) is nonconvex. The construction may use a different separating functional and a different number of variable blocks for each q. Each counterexample also persists after adding unused variables.",
+    "For q = 3, the paper supplies a rational linear functional on polynomials of degree at most 18 in three variables. Its order-nine moment matrix has 220 monomials and splits into eight parity blocks. The accompanying archive contains the manuscript source, the exact local certificate and a standalone rational-arithmetic checker."
+  ],
+  "limitations": [
+    "The explicit number of variables is a sufficient bound, with no claim of optimality. The theorem does not prove nonconvexity for three variables, for a prescribed small dimension, or in one common dimension that works for all odd exponents.",
+    "The result concerns sextics and a prescribed odd exponent. It is not a classification of all degrees, dimensions and exponents. The ordinary sum-of-squares cone at q = 1 remains convex.",
+    "Failure at one odd power does not say that every odd power fails. The established convexity of the union over odd exponents is consistent with the result, and no stubbornness claim is made for the constructed average.",
+    "The separating functional is positive on squares within its specified degree range. It is not integration against a positive measure: it assigns a negative value to a nonnegative polynomial. The enormous product matrix is handled by a finite algebraic argument, not materialized numerically.",
+    "The seed, its cube identity, SOS separation, product positivity and distinct-index counting have earlier sources. The contribution is their application to a fixed-exponent obstruction and the explicit finite cube certificate. The bounded literature comparison does not establish worldwide priority."
+  ],
+  "background": [
+    {
+      "title": "Reznick, The Odd Powers of the Motzkin Polynomial, etc. (2023)",
+      "url": "https://doi.org/10.4171/OWR/2023/14",
+      "note": "The contribution on pp.778–781 records the general fixed-odd-power convexity question and the modified Motzkin cube example. The fixed-power question appears on p.779."
+    },
+    {
+      "title": "Blekherman, Kozhasov and Reznick, On odd powers of nonnegative polynomials that are not sums of squares (2026)",
+      "url": "https://doi.org/10.1017/fms.2026.10221",
+      "note": "Theorem 5.3 proves convexity when the odd exponent may increase. Section 6 repeats the fixed-exponent question and gives the credited cube identity for the modified Motzkin family."
+    },
+    {
+      "title": "Berg, Christensen and Jensen, A remark on the multidimensional moment problem (1979)",
+      "url": "https://doi.org/10.1007/BF01420423",
+      "note": "Lemma 1 gives exactly the dehomogenized coefficient-1 seed used here. Theorems 3–4 provide classical closure and positive-functional separation results."
+    },
+    {
+      "title": "Barak, Kelner and Steurer, Rounding Sum-of-Squares Relaxations (2013)",
+      "url": "https://eccc.weizmann.ac.il/report/2013/184/",
+      "note": "Appendix A, Lemma A.5, proves the established product-positivity property for truncated pseudoexpectations used by the disjoint-copy argument."
+    },
+    {
+      "title": "Acevedo and Blekherman, Power Mean Inequalities and Sums of Squares, v1 (2023)",
+      "url": "https://arxiv.org/abs/2303.11823v1",
+      "note": "Lemma 2.1 is a precedent for separating the leading contribution of distinct indices from lower-order collisions."
+    },
+    {
+      "title": "Blekherman and Riener, Symmetric Nonnegative Forms and Sums of Squares, v4 (2020)",
+      "url": "https://arxiv.org/abs/1205.3102v4",
+      "note": "Proposition 6.4 provides another related distinct-index asymptotic argument. It is credited as an ingredient, not as the fixed-power nonconvexity theorem."
+    },
+    {
+      "title": "Baldi, Blekherman, Kozhasov, Plaumann, Reznick and Sinn, Stubborn Polynomials, v1 (2026)",
+      "url": "https://arxiv.org/abs/2602.01191v1",
+      "note": "Theorem 2.2 establishes convexity of the nonstubborn cone by allowing the odd exponent to increase; this is a different statement from fixed-power convexity."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent review of the fixed-exponent obstruction, its rational moment certificate, the precise relationship to earlier sum-of-squares results, or preparation for journal submission. Expertise in real algebraic geometry and polynomial positivity would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed. Reducing the dimension or settling the ternary case would be substantial, but the paper and this review provide no distinct, well-supported new mechanism or carefully delimited conjecture beyond those obvious unresolved boundaries. Listing them as a new research proposal would not meet the requested high bar.",
+  "publication_date": "2026-10-06",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23191301",
+  "author": "Alec Kriebel",
+  "pdf_filename": "odd_power_sos_nonconvexity.pdf",
+  "supplement_filename": "odd_power_sos_verification.zip",
+  "additional_assets": [],
+  "why_it_works": [
+    "Start with the classical coefficient-1 modified Motzkin sextic p. It is nonnegative and not itself a sum of squares, while its cube has an explicit sum-of-squares identity. Multiplying that identity by the square of p^((q−3)/2) supplies an SOS representation at every odd q ≥ 3.",
+    "For a chosen exponent q, separate p from the finite-degree sum-of-squares cone. This gives a normalized linear functional L that is nonnegative on the necessary squares but has L(p) < 0. Taking finite products of this functional preserves positivity on squares involving separate variable blocks.",
+    "When the qth power of a sum of many disjoint copies is expanded, terms using q different copies give the leading contribution. Their coefficient is L(p)^q, which is negative because q is odd. Terms that repeat a copy grow at a lower rate, so the product functional eventually assigns a negative value to the entire power. That excludes every sum-of-squares representation.",
+    "For the cube, a displayed rational moment table makes the argument finite and explicit. With L(p) = −1 and the specified second and third moments, the resulting cubic expression is negative at N = 10^62. The local positivity certificate and the written product argument play separate roles."
+  ],
+  "status": "Unrefereed preprint, version 1.0, developed with extensive AI assistance. No completed human peer review or formal proof-assistant verification is claimed; independent specialist review is welcome.",
+  "ai_disclosure": "AI tools were used extensively in derivation, literature comparison, reproduction, writing and adversarial verification. This is an unrefereed preprint without human peer review or formal proof-assistant verification. Its mathematical and source claims remain open to independent correction.",
+  "source_binding": {
+    "record_id": "23191301",
+    "concept_record_id": "23191300",
+    "record_url": "https://zenodo.org/records/23191301",
+    "doi": "10.5281/zenodo.23191301",
+    "version": "1.0",
+    "zenodo_publication_date": "2026-10-06",
+    "manuscript_date": "6 October 2026",
+    "printed_edition": "6 October 2026; no version number printed in the manuscript. Version 1.0 is the Zenodo metadata value.",
+    "source_retrieved_utc": "2026-10-25T01:42:02.070006+00:00",
+    "pdf_sha256": "78930bbd8e727df2de0ca64ac3b5994a7e3392a289bd9058a4fc8dce02fd9e66",
+    "supplement_sha256": "680fb649cc1288684611fd2767334c5c9d9b62f8be086441319539704551033c",
+    "files": [
+      {
+        "name": "odd_power_sos_nonconvexity.pdf",
+        "url": "https://zenodo.org/api/records/23191301/files/odd_power_sos_nonconvexity.pdf/content",
+        "bytes": 92284,
+        "sha256": "78930bbd8e727df2de0ca64ac3b5994a7e3392a289bd9058a4fc8dce02fd9e66",
+        "zenodo_checksum": "md5:a125402b725f8c77ebcef71dc7f17b3a",
+        "md5": "a125402b725f8c77ebcef71dc7f17b3a",
+        "integrity": "PASS"
+      },
+      {
+        "name": "odd_power_sos_verification.zip",
+        "url": "https://zenodo.org/api/records/23191301/files/odd_power_sos_verification.zip/content",
+        "bytes": 28376,
+        "sha256": "680fb649cc1288684611fd2767334c5c9d9b62f8be086441319539704551033c",
+        "zenodo_checksum": "md5:170667a634be643d34f54193b57f58ce",
+        "md5": "170667a634be643d34f54193b57f58ce",
+        "integrity": "PASS"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "odd_power_sos_nonconvexity.pdf",
+        "pages": 6,
+        "read_scope": "all pages by each manuscript reviewer"
+      }
+    ],
+    "support_read_scope": "Complete paper.tex, verification/check_certificate.py and verify_package.py; mathematical moment/initial-block/Schur certificate data; README, CLAIM_SCOPE, SOURCE_VERSIONS and PROVENANCE for scope/provenance only. Dedicated PRIORITY_NOTE.md and expected_output.json were not read. No verifier was run by this scope reviewer.",
+    "abstract_source": "sources/published-source/odd_power_sos_verification/paper.tex",
+    "archive_pdf_identity": "There is no PDF inside the verification archive and no separate reader PDF. The public main PDF is the sole published reader.",
+    "review_boundary": "AI analytic, adversarial and source-scope reviews; not human peer review, formal proof certification or exhaustive novelty certification.",
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "publication_date": "2026-10-06",
+    "version_source": "Zenodo metadata supplies version 1.0; the manuscript prints its date without a numbered version.",
+    "embedded_assets": [],
+    "abstract_source_sha256": "b679f06c2e228e3d325074083982d20bb59dcafd64e4645e724b9a5abfbd456b",
+    "abstract_word_count": 123,
+    "abstract_normalization": "Entire published abstract retained; only TeX math commands, delimiters, spacing and mathematical typography normalized.",
+    "frozen_scope_content_path": "reviews/scope/content.json",
+    "frozen_scope_content_sha256": "7d7a527d16bedd19facf673dec3ce56311c45e0e1e35c25820cbca8c18947e7d",
+    "source_extraction_files_bound": 13
+  },
+  "orcid": "https://orcid.org/0009-0001-9320-500X"
+}

@@ -1,0 +1,352 @@
+                                                 THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS
+
+                                                    OTFRIED CHEONG, XAVIER GOAOC, AND ANDREAS F. HOLMSEN
+
+
+
+
+                                                 Abstract. We prove that for any set F of n ≥ 2 pairwise disjoint open convex sets
+                                                 in R3 , the connected components of the set of lines intersecting every member of
+                                                 F are contractible. The same result holds for directed lines.
+
+
+
+
+arXiv:2205.14681v2 [math.MG] 5 Sep 2024
+                                                                               1. Introduction
+                                             Let F be a family of convex sets in Rd . A line transversal to F is a line that
+                                          intersects every member of F. Here is the main result that we prove in this note:
+                                          Theorem 1. For any family F of n ≥ 2 pairwise disjoint open convex sets in R3 ,
+                                          every connected component of line transversals to F is acyclic.
+                                          Here, the space of lines in R3 is endowed with its natural topology (see Section 2).
+                                          Recall that a set is acyclic if it has trivial homology in dimension 1 and higher. The
+                                          statement of Theorem 1 remains true when the lines are directed. A natural question
+                                          is whether the assumption that the sets be open can be replaced by a compactness
+                                          condition; We do not know if this is possible, but offer some comments in the final
+                                          section.
+
+                                             Our proof goes through the analysis of the cone of directions T (F) of the family
+                                          F of convex sets, defined as the set of vectors x ∈ S2 for which there exists a
+                                          line transversal to F in the direction x. We first establish that S2 \ T (F) is path-
+                                          connected (Lemma 5, and the cornerstone of our proof), and it is a well-known fact
+                                          that this implies that the connected components of T (F) are contractible. With the
+                                          Vietoris-Begle mapping theorem, this implies Theorem 1.
+                                          1.1. Context and motivation. Our motivation to study the topology of sets of
+                                          line transversals to convex sets originates in questions raised in combinatorial ge-
+                                          ometry, more precisely in geometric transversal theory. We refer to the chapters
+                                          by Goodman, Pollack and Wenger [15] and by Goodman and Pollack [14] or the
+                                          survey of Holmsen and Wenger [21] for an overview.
+
+                                             Helly’s theorem asserts that for any finite family F of convex sets in Rd , if every
+                                          d + 1 members of F have a point in common, then all members of F have a point
+                                          in common. A natural question is whether a similar phenomenon holds for higher-
+                                          dimensional transversals, for instance:
+
+                                                  Is there a constant Hd such that for any finite family of pairwise
+                                                  disjoint convex sets in Rd , if every Hd members of F have a line
+                                                  transversals then F has a line transversal.
+                                                                                        1
+                    THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                                 2
+
+The answer is negative in general, already for d = 2, but positive under further
+restrictions on F. In particular, the influence of the geometry of the members of
+F on the existence of Helly-type theorems was extensively investigated, leading to
+many specialized results and techniques on, for instance, parallelotopes [26, 12],
+disjoint translates of a convex set in the plane [16, 22, 27] or in R3 [20], disjoint
+planar convex sets with an ordering condition [18], disjoint balls [9, 17, 7, 5], etc.
+
+   A more unified picture emerges when one considers the above question through
+a topological lens. Helly’s theorem enjoys several topological generalizations, see
+e.g. [19, 10, 23], and some of the recent ones relate the Helly-type properties of a
+family of sets to some measure of its topological complexity [8, 11]. These results
+allow to retrieve in a single stroke several of the special cases once the influences
+of the geometry of F on the homology of the set of line transversals to F has been
+elucidated. In the plane, any connected component of line transversals to disjoint
+convex sets is contractible, so the geometry only limits the number of connected
+components of line transversals; See the discussion in [8, § 7]. Theorem 1 estab-
+lishes that the same happens in R3 for open sets.1 We conjecture that the same
+holds in higher dimension:
+Conjecture 2. For any family F of n ≥ 2 pairwise disjoint open convex sets in Rd ,
+every connected component of line transversals to F is acyclic.
+
+   As a final remark it should be pointed out that the study of geometric transversals
+is not limited to line transversals. More generally, a k-transversal to a family of
+convex sets in Rd is a k-dimensional affine flat that intersects every member of
+the family. Most studied is the case of hyperplane transversals, that is, when k =
+d − 1, and some notable results are; Necessary and sufficient conditions for the
+existence of hyperplane transversals [13, 25, 28, 3], a (p, q)-theorem for hyperplane
+transversals [2], and results on the topology of the space of hyperplane transversals
+[4]. For 1 < k < d − 1, much less is known, but there are some intriguing results
+concerning the topology of the space of k-transversals for small families of convex
+sets [6, 24].
+
+                                        2. Background
+  We denote by L the space of lines in R3 equipped with its usual topology; this
+topology can be defined for instance via a parameterization of that space (e.g. by
+Plücker coordinates) or by recasting it as a quotient space of an open subset of
+R3 × R3 , via the map that sends a pair of distinct points to the line that they span.
+We denote by L+ the the space of directed lines in R3 , equipped with its usual
+topology (which can be defined similarly).
+
+  The Vietoris-Begle mapping theorem asserts that in certain conditions, some of
+the topological and homological properties of a topological space X are preserved
+   1
+    Interestingly, in several of the geometric settings where Helly-type theorems exist for line
+transversals, their study proceeds through the analysis of geometric permutations, which appear,
+in hindsight, as a combinatorial characterization of the connected components of line transversals.
+                    THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                     3
+
+by continuous projections p : X → Y with contractible fibers2. As discussed
+in [8, Appendix], there are several formulations of this theorem, which vary in the
+assumption on the spaces X and Y and in the specific properties that are preserved.
+Here we will use the following special case of the Vietoris-Begle mapping theorem
+(which follows from [8, Lemma 26 (1)]):
+Lemma 3 (Vietoris-Begle for lines in R3 ). Let π : L+ → S2 denote the map that
+associates to a directed line its direction. Let U ⊆ X be an open set. If π−1 (v) ∩ U
+is contractible for every v ∈ π(U), then for every integer i ≥ 0 we have Hi (U, Q) ≃
+Hi (π(U), Q).
+
+  We will also use the following classical fact (see e.g. [1, Section 4.2]):
+Lemma 4. Let U be an open subset of S2 . Every connected component of U is
+contractible if and only if S2 \ U is path-connected.
+               3. Building paths between non-transversal directions
+   Let F be a finite family of convex sets in R3 . The set of transversal directions
+for F is the the set of vectors x ∈ S 2 for which there exists a line transversal to F
+in the direction x. For a vector x ∈ S2 , let p x : R3 → x⊥ denote the orthogonal
+projection into the orthogonal complement of x. The set of transversal directions
+for F can also be expressed as
+                         T (F) = {x ∈ S2 : K∈F p x (K) , ∅.}
+                                            T
+(1)
+Note that T (F) is an antipodally symmetric subset of S 2 . The set of non-transversal
+directions for F is the set S2 \ T (F).
+  Since the members of F are pairwise disjoint and open, we can choose, for any
+two members of F, some plane that separates them strictly. By translating these
+separating hyperplanes to the origin, we get an arrangement of great circles on S2 .
+We call the union of these great circles, one per pair of members of F, a set of
+separating directions for F. Note that any set of separating directions for F is a
+path-connected subset of N(F). The following is our main technical ingredient.
+Lemma 5. Let F be a finite family of at least two pairwise disjoint open convex
+sets in R3 . For any set Y of separating directions for F and any boundary point v
+of N(F), there exists a path γ : [0, 1] → N(F) such that γ(0) = v and γ(1) ∈ Y.
+Proof. Consider a point v on the boundary of N(F), that is, v ∈ N(F) ∩ T (F). (Here
+X denotes the closure of X.) The formulation of T (F) given in Equation (1) makes
+it clear that when the members of F are open, so is T (F). It follows that N(F) is
+closed, and that we have
+                            K∈F pv (K) = ∅ ,
+                          T                  T
+                                               K∈F pv (K).
+
+Indeed, the equality on the left must hold or else v < N(F), and the inequality on the
+                                                                      T
+right must hold or else v is in the interior of N(F). It follows that K∈F pv (K) has
+empty interior (as a subset of R2 ). By a simple application of Helly’s theorem there
+  2
+   Meaning that for every y ∈ p(X), the set p−1 (y) is contractible.
+                     THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                        4
+                                                 T
+exists a subfamily G ⊂ F with |G| ≤ 3 such that K∈G pv (K) has empty interior.
+Since the members of F have nonempty interiors, G must consist of two or three
+members. These cases will be treated separately.
+                 y                                                  y
+
+
+                                                                          πv (K1 )
+            πv (K1 )
+
+                                                         πv (K2 )
+                                    x                                                x
+
+                       πv (K2 )                                         πv (K3 )
+
+
+
+
+                                  Figure 1. Caption
+
+   Suppose G = {K1 , K2 }. (See Figure 1, left.) In this case pv (K1 ) and pv (K2 ) are
+strictly separated by a line. Let n be the unit normal vector of a plane among the
+separating directions for F such that x·n < 0 for every x ∈ K1 and x·n > 0 for every
+x ∈ K2 . (The vector n must exists since the separating set Y contains a great circle
+from a strictly separating plane for every pair of sets.) Note that if v · n = 0, then
+v ∈ Y, and we are done by defining γ to be constant path. It remains to consider
+the situation when n · v , 0. Without loss of generality we may assume that, as
+depicted in Figure 1 left,
+         v = (0, 0, 1),
+         v · n > 0,
+         K1 lies in the open halfspace y > 0, and
+         K2 lies in the open halfspace y < 0.
+   For θ ∈ [0, π] define the vector v(θ) = (0, sin θ, cos θ), and let α ∈ (0, π) be the
+unique value such that v(α) · n = 0. This means that v(α) ∈ Y, and we claim that for
+any 0 < θ < α we have v(θ) ∈ N(F). Setting γ(t) = v(αt) gives us the desired path.
+   To see why v(θ) ∈ N(F), note first that for 0 < θ < α we have v(θ) · n > 0.
+This implies that if a line in the direction v(θ) intersects K1 and K2 , then it must
+intersect K1 before it intersects K2 . On the other hand, for any 0 < θ < π, a line
+in the direction v(θ) must intersect the open halfspace y < 0 before it intersects
+the open halfspace y > 0. But this implies that such a line would have to intersect
+K2 before it could intersect K1 . It follows that for 0 < θ < α the vector v(θ) is a
+non-transversal direction for F.
+
+   Now suppose G = {K1 , K2 , K3 }. (See Figure 1, right.) In this case, each pv (Ki )
+is contained in an open halfplane, such that the closures of these three halfplanes
+intersect in a single point. Moreover, we may assume that the pairwise intersections
+of the pv (Ki ) are nonempty or else we may apply the previous case analysis.
+                  THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                        5
+
+   As before, let n be the unit normal vector of a plane among the separating direc-
+tions for F such that x · n < 0 for every x ∈ K1 and x · n > 0 for every x ∈ K2 .
+If v · n = 0, then v ∈ Y and we are done by defining γ to be constant path, so we
+consider the situation when n · v , 0. Without loss of generality we may assume
+that, as depicted in Figure 1 right,
+         v = (0, 0, 1),
+         v · n > 0,
+         K1 lies in the open halfspace y > ax for some a < 0,
+         K2 lies in the open halfspace y > bx for some b > 0, and
+         K3 lies in the open halfspace y < 0.
+   For θ ∈ [0, π] define the vector u(θ) = (sin θ, 0, cos θ), and let β ∈ (0, π) be the
+unique value such that u(β) · n = 0. This means that u(β) ∈ Y, and we will show
+that for any 0 < θ < β we have u(θ) ∈ N(F), which will complete the proof.
+   As in the previous case, we note that for 0 < θ < β we have u(θ) · n > 0.
+Therefore, if a line in the direction u(θ) intersects K1 and K2 , then it must intersect
+K1 before it intersects K2 . On the other hand, consider a line ℓ in the direction u(θ)
+for any 0 < θ < π. If ℓ intersects K3 , then ℓ is contained in the open halfspace
+y < 0, since the y-coordinate of u(θ) equals 0. If ℓ also intersects K1 and K2 ,
+then ℓ meets K2 in the intersection of the open halfspaces y < 0 and x < 0, while
+ℓ meets K1 in the intersection of the open half spaces y < 0 and x > 0. Since
+u(θ) · (1, 0, 0) = sin θ > 0, the line ℓ must intersect K2 before it intersects K1 . It
+follows that for 0 < θ < β the vector u(θ) is a non-transversal direction for F, and
+the proof of the claim is complete.                                                   □
+
+                                   4. Wrapping up
+   We now use our path-building Lemma 5 to analyze sets of directions and sets of
+line transversals.
+Lemma 6. Let F be a finite family of at least two pairwise disjoint open convex
+sets in R3 . The set N(F) = S2 \ T (F) of non-transversal directions for F is a
+path-connected subset of S2 .
+Proof. Let x be a vector in N(F). Starting at x, we move along an arbitrary geo-
+desic of S2 until we either meet the boundary of N(F) or we meet Y, stopping at
+whichever happens first. If we meet Y first, then we are done since Y is a path-
+connected subset of N(F). If we meet the boundary of N(F) first, then we change
+direction and move along the path given by Lemma 5, and again we reach Y by a
+path contained within N(F).                                                   □
+Our main result now easily follows from Lemma 6 by arguments spelled out in [8,
+Lemma 24], which we summarize here for completeness.
+Proof of Theorem 1. Let F be a finite family of at least two pairwise disjoint convex
+sets in R3 . We first prove that the conected components of line transversals to F
+are acyclic when (i) members of F are open, and (ii) lines are directed.
+
+   First, let us remark that Lemmas 6 and 4 imply that the connected components
+of T (F) are contractible and therefore acyclic.
+                   THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                             6
+
+   Now, let π : L+ → S2 denote the map that sends every directed line to its
+direction vector. Let L+ (F) denote the set of directed line transversals to F. For
+any direction v ∈ T (F), let L+v (F) denote the set of directedTline transversals to
+F with direction v. The fact that L+v is homeomorphic to K∈F pv (K) has two
+consequences: (i) for every v ∈ T (F), the fiber π−1 (v) ∩ L+ (F) is contractible, and
+(ii) for every connected component U of L+ (F), π(U) is a connected component
+of T (F). With Lemma 3, the acyclicity of the connected components of T (F)
+therefore implies the acyclicity of the connected components of L+ .
+
+    To go from directed to non-directed lines, let us fix a plane Π separating two
+ members of F (which ones does not matter) and a vector ⃗n normal to Π. Let L′ (F)
+ denote the set of directed line transversals to F that make a positive dot product with
+⃗n. The map that associates each line in L(F) to its orientation making a positive
+ dot-product with ⃗n induces a homeomorphism between L(F) and L′ (F). Since no
+ line in L+ (F) has a direction parallel to Π, every connected component of L′ (F) is
+ a connected components of L+ (F). Hence, every connected component of L(F) is
+ homeomorphic to a connected component of L+ (F) and is also acyclic.                  □
+
+                                 5. Concluding remarks
+   Let us conclude with a construction that shows that for every compact subset C ⊂
+R, there exists a family F of four pairwise disjoint compact convex sets in R3 with
+T (F) homeomorphic to C. This highlights some of the issues that arise when trying
+to replace the openness condition by a compactness assumption in Theorem 1.
+
+   Let Σ denote the hyperbolic paraboloid defined by the equation z = xy. This
+surface is doubly ruled: every point (α, β, αβ) is on two lines contained in Σ, namely
+λα = Σ ∩ {x = α} and ℓβ = Σ ∩ {y = β}. For i = 1, 2, 3, let S i denote the closed line
+segment supported by λi and bounded by the planes y = 1 and y = 2. The set of
+lines transversals to {S 1 , S 2 , S 3 } is exactly {ℓb : b ∈ [1, 2]}.
+                                                                       n                  o
+   Now fix an arbitrary compact subset C ⊆ [1, 2] and let Ĉ = c−4        1
+                                                                            , c, c−4
+                                                                                  c
+                                                                                       : c∈C .
+Every point of Ĉ belongs to the hyperbola with equation x(y − 4) = 1, which is the
+intersection of Σ and the plane z = 4y + 1. Let S 4 denote the convex hull of Ĉ.
+The set S 4 is compact and convex. Moreover, since S 4 is contained in the plane
+z = 4y + 1, we can see that S 4 ∩ Σ = Ĉ. It follows that
+                         T ({S 1 , S 2 , S 3 , S 4 }) = {ℓb : b ∈ C} ≃ C,
+as announced. Let us stress that using ideas showcased in [20] we can make
+each S i into a convex body, with non-empty interior, without changing the set of
+line transversals of the family.
+
+   Consider this construction for C a Cantor set. On the one hand, inflating each
+set S i into an open set by taking its Minkowski sum with an open ball of radius ϵ
+yields, for any choice of ϵ > 0, a family with a connected set of line transversals.
+Conversely, replacing each S i by its interior yields a family with an empty set of
+line transversals. Either change drastically modifies the set of line transversal.
+                    THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                                  7
+
+                                           References
+ [1] L. V. Ahlfors. Complex Analysis. McGraw-Hill Book Co., New York, 1978.
+ [2] N. Alon and G. Kalai. Bounding the piercing number. Discrete & Computational Geometry,
+     13:245–256, 1995.
+ [3] L. Anderson and R. Wenger. Oriented matroids and hyperplane transversals. Adv. Math.,
+     119:117–125, 1996.
+ [4] J. L. Arocha, J. Bracho, L. Montejano, D. Oliveros, and R. Strausz. Separoids, their categories
+     and a hadwiger-type theorem for transversals. Discrete & Computational Geometry, 27:377–
+     385, 2002.
+ [5] C. Borcea, X. Goaoc, and S. Petitjean. Line transversals to disjoint balls. Discrete & Compu-
+     tational Geometry, 1-3:158–173, 2008.
+ [6] J. Bracho and L. Montejano. Helly-type theorems on the homology of the space of transver-
+     sals. Discrete & Computational Geometry, 27:387–393, 2002.
+ [7] O. Cheong, X. Goaoc, A. Holmsen, and S. Petitjean. Hadwiger and Helly-type theorems for
+     disjoint unit spheres. Discrete & Computational Geometry, 1-3:194–212, 2008.
+ [8] É. Colin de Verdière, G. Ginot, and X. Goaoc. Helly numbers of acyclic families. Adv. Math.,
+     253:163–193, 2014.
+ [9] L. Danzer. Über ein Problem aus der kombinatorischen Geometrie. Archiv der Mathematik,
+     1957.
+[10] H. E. Debrunner. Topological transversals to a family of convex sets. Amer. Math. Monthly,
+     77:375–380, 1970.
+[11] X. Goaoc, P. Paták, Z. Patáková, M. Tancer, and U. Wagner. Bounding Helly numbers via
+     Betti numbers. In A journey through discrete mathematics, pages 407–447. Springer, Cham,
+     2017.
+[12] J. E. Goodman, A. Holmsen, R. Pollack, K. Ranestad, and F. Sottile. Cremona convexity,
+     frame convexity, and a theorem of Santaló. Advances in Geometry, 6:301–322, 2006.
+[13] J. E. Goodman and R. Pollack. Hadwiger’s transversal theorem in higher dimensions. J. Amer.
+     Math. Soc, 1:301–309, 1988.
+[14] J. E. Goodman and R. Pollack. Geometric transversal theory. In Encyclopaedia of Mathemat-
+     ics. Springer-Verlag, Heidelberg, Germany, 2002. http://eom.springer.de/g/g130050.
+     htm.
+[15] J. E. Goodman, R. Pollack, and R. Wenger. Geometric transversal theory. In J. Pach, editor,
+     New Trends in Discrete and Computational Geometry, volume 10 of Algorithms and Combi-
+     natorics, pages 163–198. Springer-Verlag, Heidelberg, Germany, 1993.
+[16] B. Grünbaum. On common transversals. Archiv der Mathematik, 9:465–469, 1958.
+[17] B. Grünbaum. Common transversals for families of sets. Journal of the London Mathematical
+     Society, 35:408–416, 1960.
+[18] H. Hadwiger. Über eibereiche mit gemeinsamer treffgeraden. Portugal Math., 6:23–29, 1957.
+[19] E. Helly. Über systeme von abgeschlossenen mengen mit gemeinschaftlichen punkten.
+     Monatsh. f. Mathematik und Physik, 37:281–302, 1930.
+[20] A. Holmsen and J. Matoušek. No Helly theorem for stabbing translates by lines in Rd . Discrete
+     & Computational Geometry, 31:405–410, 2004.
+[21] Andreas Holmsen and Rephael Wenger. Helly-type theorems and geometric transversals.
+     Handbook of discrete and computational geometry, pages 91–123, 2017.
+[22] M. Katchalski. A conjecture of Grünbaum on common transversals. Math. Scand., 59(2):192–
+     198, 1986.
+[23] L. Montejano. A new topological helly theorem and some transversal results. Discrete & Com-
+     putational Geometry, 52:390–398, 2014.
+[24] L. Montejano and R. Karasev. Topological transversals to a family of convex sets. Discrete &
+     Computational Geometry, 46:383–300, 2011.
+[25] R. Pollack and R. Wenger. Necessary and sufficient conditions for hyperplane transversals.
+     Combinatorica, 10:307–311, 1990.
+                   THE TOPOLOGY OF THE SET OF LINE TRANSVERSALS                                8
+
+[26] L. Santaló. Un teorema sobre conjuntos de paralelepipedos de aristas paralelas. Publ. Inst.
+     Mat. Univ. Nat. Litoral, 2:49–60, 1940.
+[27] H. Tverberg. Proof of Grünbaum’s conjecture on common transversals for translates. Discrete
+     & Computational Geometry, 4:191–203, 1989.
+[28] R. Wenger. A generalization of hadwiger’s transversal theorem to intersecting sets. Discrete
+     & Computational Geometry, 5:383–388, 1990.
+
