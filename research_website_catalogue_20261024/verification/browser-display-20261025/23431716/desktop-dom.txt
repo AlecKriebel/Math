@@ -1,0 +1,120 @@
+Browser tab: 963520582, Title: "A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs | Alec Kriebel", URL: "https://aleckriebel.com/research/chip-firing-halting-simple-digraphs/".
+0 AXWebArea A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs | Alec Kriebel, URL: aleckriebel.com/research/chip-firing-halting-simple-digraphs/
+	1 link Description: Skip to content, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/#main
+	2 container
+		3 link Description: Alec Kriebel, Value: aleckriebel.com/
+		4 container Main navigation
+			5 link Description: Research, Value: aleckriebel.com/research/
+			6 text  | 
+			7 link Description: Blog, Value: aleckriebel.com/blog/
+			8 text  | 
+			9 link Description: ORCID, Value: orcid.org/0009-0001-9320-500X
+	10 container
+		11 heading A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs, Value: 1
+			12 link Description: A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/
+		13 container
+			14 text By Alec Kriebel, independent researcher.
+			15 text Published  16 October 2026  · Version 1.0 ·  Unrefereed preprint
+		16 container
+			17 link Description: Read the paper (PDF, 7 pages), Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/paper.pdf
+			18 text  · 
+			19 link Description: Source and verification (ZIP), Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/pr1098_support_v1_0.zip
+			20 text  · 
+			21 link Description: Zenodo record, Value: doi.org/10.5281/zenodo.23431716
+		22 container
+			23 link Description: Plain-English explanation, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/#plain-language
+			24 text  · 
+			25 link Description: Read on this page, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/#paper
+			26 text  · 
+			27 link Description: Collaboration, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/#collaborate
+		28 container abstract
+			29 heading Abstract, Value: 2
+				30 text Abstract
+			31 text We give a self-contained proof that ordinary conservative chip-firing halting is NP-complete on finite loopless simple strongly connected digraphs. Hardness holds with polynomial numerical total initial chips and a specified vertex whose deletion leaves an acyclic graph of depth at most one. A separate construction forbids antiparallel arcs. The proof combines the primed-toppler mechanism of Holroyd–Levine–Winkler with the classical prime/Boolean/clause encoding of Stockmeyer–Meyer, also reconstructed by Gramlich. We prove the physical conservative realization, its legal checkpoint dynamics and the arbitrary-schedule implication in full; NP membership is credited to Farrell–Levine and reproved with an explicit certificate bound. This is an attributed proof of the historical simple-digraph question. Exact full-result and realization priority and preexisting worldwide openness remain unknown after a bounded audit; no firstness is claimed. AI tools were used extensively. The paper is unrefereed and has not received external human peer review.
+		32 container plain-language
+			33 heading The idea in plain English, Value: 2
+				34 text The idea in plain English
+			35 text Place a pile of chips at each vertex of a directed graph. A vertex can fire when it has enough chips to send one along every outgoing arrow. Firing moves chips without creating or removing any. The question is whether the game can eventually reach a position where no vertex can fire.
+			36 text This paper proves that deciding whether the game halts is NP-complete even when the graph has no loops or repeated arrows and every vertex can reach every other vertex. A separate construction also forbids arrows pointing in opposite directions between the same two vertices.
+			37 text The difficulty persists with polynomially many initial chips and a graph that becomes very shallow after removing one specified vertex. The construction encodes a Boolean formula through counters that cycle modulo small primes: a stable position can be reached exactly when the formula has a satisfying assignment.
+		38 container result
+			39 heading The precise result, Value: 2
+				40 text The precise result
+			41 text The input is a finite loopless simple strongly connected digraph with at least two vertices and an arbitrary nonnegative integer chip configuration encoded in binary. Each vertex fires at its actual outdegree and sends one chip along each outgoing arc. There is no dissipative sink.
+			42 text HALTING asks whether some finite legal firing sequence reaches a stable configuration. The problem is NP-complete under deterministic polynomial-time many-one reductions. The same conclusion holds for the oriented subclass, which additionally forbids antiparallel arcs.
+			43 text Hardness holds when a specified root r is supplied and deleting r leaves an acyclic graph with no directed path of two arcs. The reduction also has polynomial numerical total initial chips in the source 3-SAT input length, so the hardness persists when chip counts are written in unary.
+			44 text Membership in NP covers arbitrary binary chip counts. A certificate records how many times each vertex fires, with polynomially many bits, and certifies a nonnegative stable endpoint. It need not list the full firing sequence.
+		45 container proof
+			46 heading Why the result holds, Value: 2
+				47 text Why the result holds
+			48 text A modular bank stores a number of chips that is largest exactly at selected residues. Its priming specializes the established primed-toppler construction of Holroyd–Levine–Winkler. The prime/Boolean/clause encoding is due to Stockmeyer–Meyer and is also reconstructed by Gramlich.
+			49 text The proof realizes these counters as an ordinary conservative graph. At each checkpoint, every emitted chip has returned to the correct part of the graph. The root becomes unable to fire precisely when all residue conditions hold. The Chinese remainder theorem connects such a checkpoint to a satisfying Boolean assignment.
+			50 text A legal checkpoint sequence establishes both directions of the reduction. Classical least action relates this sequence to all legal firing orders, without a fairness assumption. The proof also gives an explicit bound for a short firing-count certificate, using the NP-membership method of Farrell–Levine.
+		51 container limits
+			52 heading Scope and limitations, Value: 2
+				53 text Scope and limitations
+			54 text These are worst-case complexity statements. Unless P = NP, no polynomial-time algorithm solves every valid input. This does not mean that every instance is difficult, and the polynomial-bit certificate does not give a polynomial-time simulation of the game.
+			55 text The theorem does not claim bounded-degree or Eulerian hardness, and it does not concern a fixed graph, a dissipative-sink model, weighted firing thresholds or a specified target configuration. The oriented construction is separate from the simple construction, which allows antiparallel arcs.
+			56 text The primed-toppler mechanism, prime-residue encoding, root-last stabilization, least action, tree periods and NP-membership method have prior sources. The paper supplies a complete conservative graph realization and halting reduction with those antecedents credited.
+			57 text Exact full-result and realization priority remain unknown. A bounded source comparison does not establish that the historical question was still open worldwide immediately before this work. Finite computational checks support the written proof; they do not establish the universal theorem by exhaustion.
+		58 container status
+			59 heading Status and AI use, Value: 2
+				60 text Status and AI use
+			61 text AI tools were used extensively in solving, checking, adversarial review, source comparison, programming and writing. The author is responsible for the claims. The paper has not received external human peer review or journal acceptance and is not formally certified in a proof assistant.
+		62 container paper
+			63 heading Read the paper, Value: 2
+				64 text Read the paper
+			65 container
+				66 link Description: Open PDF in a full window, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/paper.pdf
+				67 text  · 
+				68 link Description: Download the original from Zenodo, Value: zenodo.org/records/23431716/files/paper.pdf
+			69 container A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs — full paper PDF
+				70 AXWebArea aleckriebel.com/research/chip-firing-halting-simple-digraphs/paper.pdf#view=FitH
+		71 container collaborate
+			72 heading Collaborate on this result, Value: 2
+				73 text Collaborate on this result
+			74 text I welcome substantive collaboration on independent mathematical review, comparison with the chip-firing and computational-complexity literature, or preparation for journal submission. Expertise in chip-firing dynamics, abelian networks or exact complexity reductions would be especially useful.
+			75 text Authorship and responsibilities would be discussed in relation to the substantive contributions made.
+		76 link Description: Contact Alec, Value: mailto:me@aleckriebel.com
+		77 container cite
+			78 heading Cite this paper, Value: 2
+				79 text Cite this paper
+			80 container
+				81 text Alec Kriebel. (2026).  A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs  (Version 1.0) [Preprint]. Zenodo. 
+				82 link Description: https://doi.org/10.5281/zenodo.23431716, Value: doi.org/10.5281/zenodo.23431716
+			83 link Description: Download BibTeX, Value: aleckriebel.com/research/chip-firing-halting-simple-digraphs/citation.bib
+		84 container background
+			85 heading Background and prior work, Value: 2
+				86 text Background and prior work
+			87 content list
+				88 container
+					89 AXListMarker • 
+					90 link Description: Farrell and Levine, CoEulerian graphs, Value: doi.org/10.1090/proc/12952
+					91 text : This work states the historical simple-digraph question and proves NP membership. Its least-action and tree-period methods are credited and reproved here at the required scope.
+				92 container
+					93 AXListMarker • 
+					94 link Description: Holroyd, Levine and Winkler, Abelian logic gates, Value: arxiv.org/abs/1511.00422v2
+					95 text : Lemma 4.1 supplies the primed-toppler mechanism used by the modular-storage construction. The paper does not claim this mechanism as new.
+				96 container
+					97 AXListMarker • 
+					98 link Description: Stockmeyer and Meyer, Word Problems Requiring Exponential Time: Preliminary Report, Value: esp.mit.edu/download/827dcf47cbc9cf4a3b04dbf773ea54fb/M3175_meyer-stockmeyer-word-probs.pdf
+					99 text : Theorem 6.1 contains the classical prime/Boolean/clause encoding. The present proof uses its complementary acceptance formulation.
+				100 container
+					101 AXListMarker • 
+					102 link Description: Gregor Gramlich, Probabilistic and Nondeterministic Unary Automata, Value: ggramlich.github.io/Publications/unaryMFCS03.pdf
+					103 text : Fact 3 reconstructs the same prime-residue encoding and is explicitly credited as a source.
+				104 container
+					105 AXListMarker • 
+					106 link Description: Matthew Farrell, The halting problem for chip-firing on finite directed graphs, Value: pi.math.cornell.edu/files/Research/SeniorTheses/farrellMatthewThesis.pdf
+					107 text : The thesis supplies prior root-last stabilization and conserved-mass context. Lionel Levine is the thesis adviser, not a coauthor.
+				108 container
+					109 AXListMarker • 
+					110 link Description: Kimmo Eriksson, No Polynomial Bound for the Chip Firing Game on Directed Graphs, Value: ams.org/journals/proc/1991-112-04/S0002-9939-1991-1065944-3/S0002-9939-1991-1065944-3.pdf
+					111 text : Exponentially long games on simple directed graphs with polynomially many initial chips were already known. A short halting certificate should not be confused with a short simulation.
+	112 container
+		113 link Description: Research home, Value: aleckriebel.com/research/
+		114 text  | 
+		115 link Description: me@aleckriebel.com, Value: mailto:me@aleckriebel.com
+		116 text © 2013–2026 Kriebel LLC.
+
+The focused UI element is 0 AXWebArea A modular-storage proof of NP-completeness for chip-firing halting on simple digraphs | Alec Kriebel, URL: aleckriebel.com/research/chip-firing-halting-simple-digraphs/

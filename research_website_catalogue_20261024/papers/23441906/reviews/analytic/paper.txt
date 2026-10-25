@@ -1,0 +1,265 @@
+                  A simple brace outside asymmetric products
+                              of two trivial braces
+                                               Alec Kriebel
+                                       ORCID: 0009-0001-9320-500X
+
+                                   17 October 2026         Version 1.0.0
+
+                                                   Abstract
+          We give a negative answer to Cedó’s Problem 9 in Oberwolfach Report 51/2019. An explicit
+      left brace of order 20 000 is nontrivial and simple, has metabelian multiplicative group with
+      abelian Sylow subgroups, and is not an asymmetric product of two trivial braces. The obstruc-
+      tion is intrinsic: every such two-factor product has zero triple star products within each additive
+      Sylow subbrace, whereas the constructed brace has (x∗x)∗x = x3 6= 0 in its 5-primary subbrace.
+      The obstruction covers the full admissible symmetric-cocycle deﬁnition, not only a chosen bi-
+      linear construction family. All operations and the simplicity argument are given directly; exact
+      veriﬁcation programs and independent adversarial audits accompany the note.
+
+
+1    The question
+A left brace (B, +, ◦) has an abelian additive group, a multiplicative group, and the compatibility
+                                      a ◦ (b + c) = a ◦ b − a + a ◦ c.
+Write λa (b) = −a + a ◦ b and a ∗ b = λa (b) − b. The maps λa are additive automorphisms and
+satisfy λa◦b = λa λb . The brace is trivial when a ∗ b = 0 for all a, b. An ideal is an additive subgroup
+invariant under all λa and normal in the multiplicative group; a nonzero brace is simple if its only
+ideals are 0 and itself.
+    Cedó asks whether every ﬁnite nontrivial simple left brace with a metabelian multiplicative
+group and abelian multiplicative Sylow subgroups is an asymmetric product of two trivial braces
+[2, p. 3228, Problem 9]. We retain all these hypotheses.
+Theorem 1. There is a nontrivial simple left brace B of order 20 000 with
+                       ∼ C4 × C5 ,
+                (B, +) =                (B, ◦) =∼ (C3 ⋊τ C2 ) × (C4 ⋊M C5 ),
+                                  5      2                   5                 2
+
+where τ negates the ﬁrst and third coordinates of F35 and M is the ﬁve-cycle on the even-weight
+subspace of F52 . Its multiplicative group is metabelian with every Sylow subgroup abelian. No brace
+isomorphic to B is an asymmetric product of two trivial braces.
+
+
+2    An invariant of every two-trivial-factor product
+We use the full asymmetric-product deﬁnition of Catino–Colazzo–Stefanelli, in its left-brace formu-
+lation [3, 4, 6]. With trivial factors T, S, an admissible presentation has operations
+                                 (t, s) + (u, v) = (t + u, s + v + b(t, u)),                                (1)
+                                  (t, s) ◦ (u, v) = (t + αs (u), s + v),                                    (2)
+
+
+                                                      1
+where α : S → Aut(T, +) is a group homomorphism. Initially b : T × T → S is only a normalized
+symmetric 2-cocycle: b(t, 0) = 0, b(t, u) = b(u, t), and
+
+                             b(t + u, w) + b(t, u) = b(t, u + w) + b(u, w).
+
+Admissibility means that these operations deﬁne a left brace, as in the cited general deﬁnition.
+Lemma 2. If a ﬁnite brace has a presentation (1)–(2) with T, S trivial and all its multiplicative
+Sylow subgroups abelian, then
+                                       (a ∗ b) ∗ c = 0
+for all a, b, c in any one additive Sylow subbrace.
+Proof. The cocycle identity gives
+
+                             (t, s) − (u, v) = (t − u, s − v − b(t − u, u)),
+
+and therefore, before assuming biadditivity,
+
+                                 λ(t,s) (u, v) = (αs (u), v − b(αs (u), t)).
+
+Since (t, 0) ◦ (u, 0) = (t + u, 0), lambda composition evaluated on (w, 0) forces b(w, t + u) = b(w, t) +
+b(w, u). Symmetry makes b biadditive.
+    For a prime p, write Tp , Sp for the primary subgroups of the ﬁnite abelian factor groups. Mixed-
+primary values of b vanish, and b(Tp , Tp ) ⊆ Sp : each value is killed by the relevant prime powers.
+Consequently the set P = Tp ×Sp is an additive subgroup of the full p-part of the order. Its additive
+law need not split, especially for p = 2; its order suﬃces. The action preserves Tp , so the same set
+is also a multiplicative Sylow subgroup.
+    Commuting (t, 0) and (0, s) inside this abelian multiplicative Sylow subgroup gives αs (t) = t
+for s ∈ Sp , t ∈ Tp . For a = (t, s) and b0 = (u, v) in P , twisted additive subtraction now gives
+
+                           a ∗ b0 = (u, v − b(u, t)) − (u, v) = (0, −b(u, t)).
+
+Every (0, w) with w ∈ Sp has identity lambda action on P . Thus (a ∗ b0 ) ∗ c = 0 for every c ∈ P .
+
+   The lemma does not require simplicity or metabelianity. Brace isomorphisms preserve additive
+Sylow subgroups and both star operations, so a nonzero primary triple star excludes every possible
+presentation, including one with diﬀerent factors or coordinates.
+
+
+3    The explicit brace
+Let R = xF5 [x]/(x5 ), with basis x, x2 , x3 , x4 . In the ambient unital truncated polynomial ring,
+deﬁne
+                                 r2 r3 r4                         t2 t3      t4
+                     L(r) = r −    +       − ,          E(t) = t + + + .
+                                 2      3       4                 2    6    24
+All denominators are invertible in F5 . Formal expansion through degree four, with higher total
+degrees zero, proves
+
+                    L(E(t)) = t,    E(L(r)) = r,       L(r + u + ru) = L(r) + L(u).                   (3)
+
+There is no division by ﬁve or inﬁnite-series assumption. Let σ be substitution x 7→ −x, and put
+
+                                             η(r) = [x4 ]L(r).
+
+                                                     2
+Then η(r + u + ru) = η(r) + η(u), η(σr) = η(r), and L(σr) = σL(r).
+   Let V be the even-weight subspace of F52 . For v, w ∈ V set
+
+                                        ∑
+                                        4
+                                                                  wt(v)
+                           β(v, w) =          v i wi ,   Q(v) =           (mod 2).
+                                        i=0
+                                                                    2
+
+The integer weight identity proves
+
+                                  Q(v + w) = Q(v) + Q(w) + β(v, w).                                  (4)
+
+The restricted dot form β is nondegenerate: the orthogonal complement of the even-weight space
+in F52 consists of constant vectors, and its only even-weight constant vector is zero. Cyclic rotation
+M preserves V, β, Q and has order ﬁve. Its ﬁxed vectors in V are zero, so M − id is invertible.
+    Take B = R × V × F2 with componentwise addition. For a = (r, v, z) write s(a) = η(r) and
+e(a) = z + Q(v), and deﬁne
+                                 (                                                              )
+          (r, v, z) ◦ (u, w, Z) = r + σ e(a) u + rσ e(a) u, v + M s(a) w, z + Z + β(v, M s(a) w) .   (5)
+
+Exponents of M are interpreted modulo ﬁve.
+
+Proposition 3. These operations make B a left brace with the two groups stated in Theorem 1.
+
+Proof. Write L(r) = l1 x + l2 x2 + l3 x3 + sx4 and k = (l1 , l2 , l3 ). The map
+
+                                      Ψ(r, v, z) = ((k, z + Q(v)), (v, s))
+
+is a bijection onto (F35 ⋊τ C2 ) × (V ⋊M C5 ): recover r with E, and then z. For a second input with
+corresponding coordinates h, f, w, t, (3) gives the output logarithm L(r) + σ e(a) L(u). Its ﬁrst three
+coeﬃcients are k + τ e(a) h and its fourth is s + t. Equation (4) gives
+
+              z + Z + β(v, M s w) + Q(v + M s w) = z + Q(v) + Z + Q(w) = e(a) + f.
+
+Thus the complete transformed product is exactly ((k + τ e(a) h, e(a) + f ), (v + M s w, s + t)). This
+proves the group law, including associativity and inverses.
+   Direct additive subtraction in (5) yields
+                                        (                                              )
+                  λ(r,v,z) (u, w, Z) = (1 + r)σ z+Q(v) u, M η(r) w, Z + β(v, M η(r) w) .             (6)
+
+The ﬁrst block is an invertible F5 -linear map, since 1 + r is a unit. The last two coordinates form
+an invertible triangular F2 -linear map. Every lambda map is therefore an additive automorphism,
+proving the left-brace identity. Finally |B| = 54 24 2 = 20 000.
+
+   The commutator subgroup of the displayed multiplicative group is
+                                                             ∼ C2 × C4 ,
+                                     (τ − id)F35 × (M − id)V =  5    2
+
+which is abelian of order 400. Both actions are nontrivial, so the group is nonabelian and metabelian.
+Explicit Sylow subgroups are F35 × C5 and C2 × V of orders 625 and 32, respectively. Both are
+abelian, and Sylow conjugacy covers all Sylow subgroups. No normal-Sylow assumption is used.
+
+
+
+
+                                                         3
+4    Simplicity and exclusion
+Proposition 4. Every nonzero ideal of B is B.
+
+Proof. For an ideal I, i ∈ I and g ∈ B, both λg (i) − i and i ∗ g lie in I. The second inference
+follows in the quotient brace B/I, where i becomes zero; it is not an assumption about arbitrary
+left ideals.
+    If a nonzero element (r, v, z) ∈ I has r 6= 0, its additive sixfold multiple is (r, 0, 0) 6= 0. Let cxj
+be the lowest nonzero term of r. For j < 4, formula (6) gives
+
+                                 (λ(x4−j ,0,0) − id)(r, 0, 0) = (cx4 , 0, 0).
+
+For j = 4 this already holds without applying a lambda diﬀerence. Additive rescaling gives a =
+(x4 , 0, 0) ∈ I.
+     Otherwise I has a nonzero element (0, v, z). If v = 0 it is b = (0, 0, 1). If v 6= 0, choose w with
+β(w, v) = 1. Then (λ(0,w,0) − id)(0, v, z) = b. Thus every nonzero ideal contains a or b.
+     From b one obtains b ∗ (x, 0, 0) = (3x, 0, 0) and hence a nonzero ring element, which gives a.
+Conversely, η(x4 ) = 1 implies
+
+                                    a ∗ (0, w, 0) = (0, (M − id)w, 0).
+
+Surjectivity of M − id puts every pure V vector into I, and a binary lambda diﬀerence gives b.
+Thus either starting point gives all of P2 = {0} × V × F2 and also (x, 0, 0). For j = 1, 2, 3,
+
+                                  (λ(x,0,0) − id)(xj , 0, 0) = (xj+1 , 0, 0).
+
+These monomials generate P5 = R × {0} × {0} additively. Hence I contains both primary parts
+and equals B.
+
+   On P5 , star multiplication is ordinary ring multiplication. In particular x ∗ x = x2 6= 0, so the
+brace is nontrivial, and
+                                        (x ∗ x) ∗ x = x3 6= 0.
+Lemma 2 rules out every asymmetric product of two trivial braces. Together with Propositions 3
+and 4, this proves Theorem 1 and gives the full negative answer to the original question.
+
+
+5    Prior work, veriﬁcation, and review status
+Asymmetric and matched products, radical-ring braces, truncated logarithm/exponential identities
+and cyclic orthogonal actions are established methods [3, 4, 5, 6]. General matched-product formu-
+las [1] recover (5), but their existence statement does not replace the all-ideal simplicity proof. No
+new general construction formalism is claimed. Recent work also uses local commutative algebras
+and invariant homomorphisms [7]; those ingredients themselves are not a novelty claim.
+    A literature audit on 17 October 2026 found no prior full answer or veriﬁed published full
+implication for this target. This is a bounded ﬁnding, not historical-priority certiﬁcation. It
+included the current arXiv version of [8] and the recent constructions [9, 10]. The full bodies
+of [11, 12] and several ﬁnal journal versions, including that of [8], were unavailable; their broader
+consequences are not excluded by abstracts. The companion audit records exact versions, inspection
+boundaries, access failures and citation-coverage limits.
+
+
+
+                                                      4
+    The source/veriﬁcation archive contains the original full proof, independently authored adver-
+sarial reports, four exact programs and expected results. Factored identities check the full construc-
+tion; independent derivations from all 19 999 nonzero ideal seeds end at the nine additive generators.
+The archive retains deterministic seed receipts, sample derivations, deliberately broken controls and
+ordinary/optimized execution records. These supplement the universal proofs; no enumeration of
+all 20 0003 triples is asserted. The universal nonpresentation lemma is proved above, rather than
+inferred from ﬁnite examples.
+    AI tools were used extensively in construction, proof development, computation, adversarial
+veriﬁcation, literature research and writing. This version is unrefereed. AI adversarial review is
+not external human peer review, journal acceptance or formal proof-assistant certiﬁcation. The
+note and authored supporting materials are released under CC BY 4.0.
+
+
+References
+ [1] D. Bachiller, Extensions, matched products, and simple braces, J. Pure Appl. Algebra 222 (2018),
+     1670–1691. arXiv:1511.08477v3.
+
+ [2] F. Cedó, Finite simple left braces: constructions and problems, in Mini-Workshop: Algebraic Tools for
+     Solving the Yang–Baxter Equation, Oberwolfach Reports 51/2019, 3226–3228.
+     doi:10.4171/OWR/2019/51.
+
+ [3] F. Catino, I. Colazzo and P. Stefanelli, Regular subgroups of the aﬃne group and asymmetric product
+     of radical braces, J. Algebra 455 (2016), 164–182. doi:10.1016/j.jalgebra.2016.01.038.
+
+ [4] D. Bachiller, F. Cedó, E. Jespers and J. Okniński, Asymmetric product of left braces and simplicity;
+     new solutions of the Yang–Baxter equation, Commun. Contemp. Math. 21 (2019), 1850042.
+     arXiv:1705.08493v1.
+
+ [5] F. Cedó, E. Jespers and J. Okniński, An abundance of simple left braces with abelian multiplicative
+     Sylow subgroups, Rev. Mat. Iberoam. 36 (2020), 1309–1332. doi:10.4171/rmi/1168.
+
+ [6] F. Cedó, E. Jespers and J. Okniński, Every ﬁnite abelian group is a subgroup of the additive group of
+     a ﬁnite simple left brace, J. Pure Appl. Algebra 225 (2021), 106476. arXiv:2001.08905v1.
+
+ [7] B. Verbeken, Powerful multiplicative groups do not force right nilpotence in ﬁnite braces,
+     arXiv:2608.01884v2 (2026).
+
+ [8] F. Cedó and J. Okniński, New simple solutions of the Yang–Baxter equation and their permutation
+     groups, J. Pure Appl. Algebra 229 (2025), 108025. Inspected version: arXiv:2401.12904v2.
+
+ [9] M. Damele, Kernel–wreath constructions and inﬁnite families of ﬁnite simple skew braces,
+     arXiv:2609.20401v1 (2026).
+
+[10] M. Damele, Inverse Baer deformations and ﬁnite simple skew braces of nilpotent type,
+     arXiv:2609.24640v1 (2026).
+
+[11] W. Rump, Aﬃne structures of decomposable solvable groups, J. Algebra 556 (2020), 725–749.
+     doi:10.1016/j.jalgebra.2020.04.004. Full body not inspected.
+
+[12] W. Rump, Almost simple braces and primitive solutions to the Yang–Baxter equation, J. Algebra 601
+     (2022), 72–86. doi:10.1016/j.jalgebra.2022.03.008. Full body not inspected.
+
+
+
+
+                                                     5
+
