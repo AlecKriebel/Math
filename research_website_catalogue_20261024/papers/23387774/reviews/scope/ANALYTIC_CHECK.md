@@ -1,0 +1,61 @@
+# Independent derivation and dependency check
+
+The whole actual seven-page PDF, seven raw page renders and complete standalone TeX were read before the initial independent seal. This check preserves the full theorem: every deterministic s_g>0 with s_g->0 and g s_g->infinity, in the stated principal holomorphic quadratic ensemble, with all fixed joint compact-window count moments. No historical mathematical verdict or sibling opinion supplies a proof step below.
+
+## Ensemble, sampling and import boundaries
+
+At fixed g>=2, take uniformly an isomorphism class of square-tiled half-translation surfaces in Q(1^(4g-4)) with at most N unit squares. Count each maximal horizontal cylinder once, with unbounded heights; normalize each area by the entire area. The first limit is N->infinity. Write nu_g for that unordered area-multiset law. Only afterward does g->infinity. There is no diagonal N(g) claim, arbitrary-stratum claim, primitive-only sampling claim or simultaneous all-direction claim. Vertical cylinders have the same marginal by rotation.
+
+Actual DL Theorem1.4 gives the unweighted square-tiled normalized-area law and m=infinity specialization. Actual DGZZ Section2.2 explains why nonprincipal strata are negligible in the fixed-genus square-cutoff count, and the OWR contribution explicitly gives the principal-stratum setting and equivalence of automorphism weighting in the limit. Labeling the simple zeros contributes a fixed (4g-4)! multiplicity and does not change the unordered area statistic. DGZZ uses half-unit squares in some volume conventions; scaling the entire surface does not change normalized cylinder areas. No square-count/genus uniform rate is inferred from those fixed-genus statements.
+
+The main substantial inputs remain published geometry: DL Theorem3.2 and its graph mixture, Eq(6.1), Lemma6.4 and its proof; DGZZ Theorems1.7,1.12 and5.2 in their literal ranges. Aggarwal's uniform intersection-number theorem is used through DL's stated uniform consequence, not independently reproved or claimed fully read here. The random permutation model and classical assembly probability statements are prior work.
+
+## Exact geometric comparison
+
+Set n=3g-3, a_j=zeta(2j)/(2j), H(z)=exp(sum a_j z^j), h_n=[z^n]H. The ordered composition law is product(a_ji)/(h_n k!). For cycle counts c_j it becomes product(a_j^c_j/c_j!)/h_n under sum j c_j=n. The independent Poisson representation conditions the finite vector Z_1,...,Z_n on its finite weighted total. That event has probability exp(-sum_(1..n) a_j) h_n>0. An infinite weighted total is not conditioned on a finite value.
+
+For a one-vertex graph with k loops and vertex genus g-k, the automorphism factor is 2^k k!. DL's actual displayed expansion is exactly F_gk=A_gk sum_(sum j=n) c_tilde_gk(j) product x_i^(2j_i-1)/(2j_i)!, with the A_gk printed in the manuscript. The uniform Eq(6.1) at genus g-k applies for k<=floor((3/5)log(2n)): k is at most a fixed constant times log(g-k), and g-k is asymptotic to g. Hence c_tilde tends uniformly to1 over all positive compositions in that range, including arbitrarily large individual j_i.
+
+Summing positive heights gives zeta(2j_i); integrating the positive monomials over the unit simplex gives product(2j_i-1)!/(2n-1)!. Conditional on each monomial, the normalized areas thus have exactly Dirichlet(2j_1,...,2j_k) law. The simplex normalizing factor common to all compositions leaves weights D_gk c_tilde/k! product a_ji, with D=A/2^k. Direct factorial cancellation gives
+
+D_(g,k+1)/D_(g,k)=12(g-k)(3g-3-k)/((6g-5-2k)(6g-6-2k)).
+
+Uniformly for k=O(log g), its log is O((k+1)/g); summing from1 to k yields D_gk/D_g1=1+O(log²g/g). Positivity lets the uniform coefficient error survive normalization without cancellation. Applying the same Dirichlet kernel cannot enlarge total variation and preserves the uniform conditional density comparison for arbitrary nonnegative test statistics.
+
+The graph-cutoff exceptions need a rate. DGZZ Theorem1.12 gives E t^K=O(n^((t-1)/2)) at t=11/10, inside |t|<8/7. Markov at k_g=floor(.6log(2n)) gives exponent eta=.6log(1.1)-.05>1/220, using log(1+x)>x/(1+x). A floor only changes a constant. DGZZ Theorem5.2 says that at k<=log(g)/log(9/4), multivertex contribution relative to the one-vertex contribution is O(log^25(g) g^-1 2^k). The cutoff lies inside that range for large g, and 2^kg=O(g^(.6log2)); the remaining power 1-.6log2 is positive. Therefore the bad event has polynomially small probability. No larger-k extension of that estimate is used.
+
+For any fixed r, the same exponential K bound yields E K^r=O(log^r n): split the tail integral at A log n with A sufficiently large, and sum the residual exponential tail. Consequently E[K^r;bad] <= (E K^(2r))^(1/2) P(bad)^(1/2)=o(1). The model has the identical exponential moment order from the coefficients of H^t. Uniform positive density comparison on good events plus vanishing bad-event moments is sufficient to transfer count moments. Plain total variation alone would not be sufficient.
+
+## Coefficients and the unmarked point process
+
+Expand zeta to obtain H(z)=(1-z)^(-1/2) B(z), B=product_(m>=2)(1-z/m²)^(-1/2), analytic for |z|<4. Its logarithm has a convergent analytic branch there. Telescoping product_(m=2..M)(1-1/m²)=(M+1)/(2M) gives B(1)=sqrt2. Convolution with the binomial coefficients therefore yields h_n~sqrt(2/pi)n^(-1/2), with positive two-sided bounds c(n+1)^(-1/2). For any fixed t>0, the same argument gives [z^n]H^t~2^(t/2)n^(t/2-1)/Gamma(t/2). The analytic tail is exponentially small; the binomial ratio is uniform away from a terminal fraction of n. Thus h_(n-r)/h_n tends uniformly to1 for r=o(n), and globally is at most C sqrt((n+1)/(n-r+1)).
+
+Deleting selected components in the exact finite assembly gives the factorial identity E product (C_j)_(r_j)=h_(n-sum j r_j)/h_n product a_j^r_j, or0 when the selected size exceeds n. It is the positive-real-weight specialization of AT Lemma5/(126), also obtained directly by shifting c_j to c_j-r_j. The fresh author-uploaded 2013 facsimile of that older paper has the exact identity and complete proof on PDF pp49–50. This is an older result, not new credit.
+
+Put q=n s_g. Then q->infinity and q=o(n). In any fixed factorial moment of counts in compact q-scale windows, the removed size is O(q), so the coefficient ratio tends uniformly to1. Since zeta(2j)->1 and sum_(aq<=j<=bq) 1/(2j)->(1/2)log(b/a), these moments converge to those of independent Poisson variables. Poisson moment determinacy gives finite-window distributions; bounded expected counts on each compact gives local tightness. This proves the unmarked point-process limit in the vague topology.
+
+ABT Theorem3.1 already implies the unmarked approximation for every b_n=o(n). Its finite conditioning relation, uniform logarithmic condition and complete proof of Theorem3.1 were read from the actual 25-page primary PDF through the web PDF reader. Direct local requests to the author host returned403; the alternative publisher URL returned HTML. Neither was recorded as a successful PDF download, and no fresh local-byte hash is asserted for ABT. This access distinction does not create a gap in the self-contained coefficient/factorial derivation. For the present Poisson a_j, j P(Z_j=1)=zeta(2j)e^-a_j/2=1/2+O(1/j), and for l>=2, jP(Z_j=l)<=C^l/(j l!), supplying a decreasing O(1/j) error and factorially summable constants. Thus ABT's hypotheses match and its prior credit is substantive.
+
+## Gamma marking at arbitrarily slow q divergence
+
+Given the composition take independent Y_i~Gamma(2j_i, rate1). For a nonnegative Lipschitz test f supported in [a,b] away from zero, the expected absolute difference of marked and unmarked sums is bounded by sum_j a_j h_(n-j)/h_n E|f(Y_j/(2q))-f(j/q)|.
+
+For aq/2<=j<=2bq, coefficient ratios are bounded, E|Y_j/(2q)-j/q|<=sqrt(2j)/(2q), and summing a_j<=C/j gives O(q^-1/2). For j<aq/2, the unmarked summand is zero and the Gamma upper Chernoff bound with exponent1/2 gives P(Y_j>=2aq)<=e^-aq 2^(2j)<=exp(-a(1-log2)q). Summed weights cost only O(log(q+2)). For j>2bq, a lower-tail bound gives P(Y_j<=2bq)<=e^(bq)(3/2)^(-2j)<=e^(-c j), c=2log(3/2)-1/2>0. Up to n/2 the coefficient ratio is bounded; above n/2 the worst sqrt(n) loss is beaten by the exponential tail. All three errors vanish whenever q->infinity and q=o(n), without a log n union factor.
+
+The marked process therefore has the same vague Poisson limit. Conditional on every composition, T=sumY_i is Gamma(2n,1), so T/(2n)->1 in probability. The normalized locations satisfy (Y_i/T)/s_g=(Y_i/(2q))(2n/T). Joint Slutsky with a deterministic limiting scalar and continuity of positive dilation gives the normalized point process; independence of T and the marked process is unnecessary. This treats all intermediate rates, not only q growing faster than log n.
+
+## All fixed count moments and restoration of the square-count limit
+
+Write p_nj=P(Y_j/(2q) in[a,b]). The same three-range argument without the coefficient ratio bounds sum a_j p_nj by a window-dependent constant. Independent marking and deletion give E(M_n)_(r)=sum_(sum j_i<=n) h_(n-sum j_i)/h_n product a_ji p_nji. If sum j_i<=n/2 the ratio is bounded. Otherwise at least one j_i>=n/(2r), whose lower Gamma tail is exp(-c_r n) since q=o(n); the ratio costs at most sqrt(n), and other unrestricted weight sums cost only powers of log n. This bounds every fixed factorial and ordinary marked-count moment. It also works on finite unions of compact intervals.
+
+On 1/2<=T/(2n)<=2 a normalized [a,b] count is bounded by the marked [a/2,2b] count. Outside that event, Gamma Chernoff gives exp(-cn) and K<=n, so every fixed count moment's exceptional contribution vanishes. Higher fixed moments imply uniform integrability of each prescribed power and of mixed powers bounded by the total count on a union. The Poisson process has no fixed-endpoint atoms, hence vague convergence gives the joint count laws, and uniform integrability gives every fixed joint moment.
+
+The geometric transfer then uses the uniform good-event density ratio and vanishing bad-event K moments. At each sufficiently large fixed g, relevant shrinking endpoints lie below1. Components with at least two cylinders have continuous simplex densities; the one-cylinder atom lies at1. Thus the count statistic is a continuity set for the fixed-genus law. Its fixed-genus bound K<=3g-3 also bounds all fixed powers, so N->infinity may be taken first for counts and moments, then g->infinity. No diagonal rate follows.
+
+## Boundary and priority checks
+
+The limit is a locally finite point process only on (0,infinity); its intensity has infinite mass near zero and infinity, so there is no claim of convergence of all components as a finite unscaled total count. The microscopic regime q=O(1) needs a different Gamma-smoothed intensity, and q of order n invalidates the small-deletion ratio. The theorem excludes both regimes. Constant rescaling does not change dx/(2x), but it does change the fixed microscopic density. Consequently the OWR4g-4 and thesis6g-6 discrepancy cannot be ignored for microscopic claims; it does not change the stated intermediate-window conclusion. No microscopic theorem or correction of that report is promoted here.
+
+Fresh actual DL p5098, Liu's thesis Remark1.5.9 and the visually read Durham slide195 are genuine prior announcements. The thesis gives the all-multiplicity zeta series; the primitive slides have its first term and label the fixed-window law a conjecture. The limiting density tail alone does not exchange fixed-window and genus limits. The announced full small-components project was not located in the bounded current search, and its unseen contents are a retained priority uncertainty. No absence-of-search-result argument establishes newness.
+
+The prospective contribution here is a written geometric moving-window consequence with uniform comparison, Gamma marking and all fixed moments. The model, unmarked every-rate result, component factorial identity, substantial geometric enumeration and microscopic intellectual context are prior. This review supports the full stated theorem but supplies no universal novelty certificate or promotion authority.
