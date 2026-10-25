@@ -1,0 +1,898 @@
+Commun. Math. Phys. 386, 1319–1335 (2021)
+                                                                             Communications in
+Digital Object Identifier (DOI) https://doi.org/10.1007/s00220-021-04163-2
+                                                                              Mathematical
+                                                                                Physics
+
+
+
+
+The Set of Separable States has no Finite Semidefinite
+Representation Except in Dimension 3 × 2
+Hamza Fawzi
+Department of Applied Mathematics and Theoretical Physics, University of Cambridge, Cambridge, UK.
+E-mail: h.fawzi@damtp.cam.ac.uk
+
+Received: 22 July 2019 / Accepted: 30 June 2021
+Published online: 31 July 2021 – © The Author(s) 2021
+
+
+Abstract: Given integers n ≥ m, let Sep(n, m) be the set of separable states on the
+Hilbert space Cn ⊗ Cm . It is well-known that for (n, m) = (3, 2) the set of separable
+states has a simple description using semidefinite programming: it is given by the set of
+states that have a positive partial transpose. In this paper we show that for larger values
+of n and m the set Sep(n, m) has no semidefinite programming description of finite size.
+As Sep(n, m) is a semialgebraic set this provides a new counterexample to the Helton–
+Nie conjecture, which was recently disproved by Scheiderer in a breakthrough result.
+Compared to Scheiderer’s approach, our proof is elementary and relies only on basic
+results about semialgebraic sets and functions.
+
+
+1. Introduction
+
+Entanglement is a fundamental aspect of quantum mechanics. The set of separable states
+(i.e., nonentangled states) on the Hilbert space Cn ⊗ Cm is defined as:
+                                                                          
+         Sep(n, m) = conv x x † ⊗ yy † : x ∈ Cn , |x| = 1, y ∈ Cm , |y| = 1 .
+
+                                                              n
+Here x † = x̄ T indicates conjugate transpose, |x|2 = x † x = i=1 |xi |2 and conv denotes
+                                                           nm
+the convex hull. The set Sep(n, m) lives in the space H of Hermitian matrices of size
+nm × nm, and it is full-dimensional in the subspace of matrices of trace equal to one.
+    A fundamental computational task in quantum information is to decide membership
+in the convex set Sep(n, m). One of the first tests designed to check whether a state
+ρ ∈ Hnm is separable is the Peres-Horodecki criterion [Per96,HHH96] (also known as
+the Positive Partial Transpose (PPT) criterion). It is based on the observation that for
+any ρ ∈ Sep(n, m), (I ⊗ T)(ρ) is positive semidefinite where I is the identity map,
+and T the transpose map. Indeed one can easily verify that if ρ = x x † ⊗ yy † then
+1320                                                                                                   H. Fawzi
+
+
+(I ⊗ T)(ρ) = x x † ⊗ (yy † )T = x x † ⊗ ȳ ȳ †  0. In other words we have the inclusion
+Sep(n, m) ⊆ PPT(n, m) where
+                                                                             
+        PPT(n, m) = ρ ∈ Hnm : ρ  0, (I ⊗ T)(ρ)  0, and Tr[ρ] = 1 .                  (1)
+
+It is known, from earlier work of Woronowicz [Wor76], that we have equality Sep(n, m) =
+PPT(n, m) if, and only if n + m ≤ 5. Thus, the smallest cases where Sep(n, m) =
+PPT(n, m) are (n, m) = (4, 2) and (n, m) = (3, 3).
+Semidefinite programming The description of the set PPT(n, m) in Eq. (1) allows us
+to decide membership, and optimize linear functions on PPT(n, m), via semidefinite
+programming. Semidefinite programming is a fundamental tool in optimization that has
+played a crucial role in recent developments in quantum information theory. We say that
+a convex set C has a semidefinite representation (also called a semidefinite lift) of size
+r if it can be expressed as
+                                       C = π(S)                                        (2)
+where π : R D → Rd is a linear map and S ⊂ R D is a convex set defined using a linear
+matrix inequality
+                        S = {w ∈ R D : M0 + w1 M1 + · · · + w D M D  0}                                     (3)
+where M0 , . . . , M D are Hermitian matrices of size r × r . A set S of the form (3) is
+known as a spectrahedron. In this paper we are most interested in when a semidefinite
+representation of finite size exists, and call this simply a semidefinite representation
+throughout. If a convex set C admits a semidefinite representation, then optimizing
+a linear function on C can be cast as a semidefinite program. Equation (1) gives a
+semidefinite representation of PPT(n, m).
+Horodecki’s criterion The set of separable states has the following well-known de-
+scription due to the Horodeckis [HHH96]:
+                                                                                        
+  Sep(n, m) = ρ ∈ Hnm : Tr[ρ] = 1 and (I ⊗ )(ρ)  0 ∀ : Mm → Mn positive .
+                                                                                         (4)
+Here Mk = Ck×k and a C-linear map  : Mm → Mn is positive if it is Hermitian
+preserving and if (X )  0 for all X  0. When n = m, the relaxation PPT(n, m)
+corresponds to having only the identity and transpose maps in Eq. (4), which are both
+positive. A recent result of Skowronek [Sko16] shows that when n = m = 3, there
+is no finite family of positive maps 1 , . .. , k : M3 → M3 such that Sep(3, 3) =
+   ρ ∈ H9 : (I ⊗ i )(ρ)  0 ∀i = 1, . . . , k . Note that the right-hand side of the previ-
+ous equation is a specific semidefinite representable set. Thus Skowronek’s result rules
+out certain specific semidefinite representations for Sep(3, 3).1
+DPS hierarchy In [DPS04], Doherty, Parrilo and Spedalieri proposed a complete hierar-
+chy of approximations to the set of separable states based on semidefinite programming.
+The first level of the hierarchy coincides with the PPT test, and subsequent levels form
+tighter and tighter convex relaxations of the set of separable states. If we denote the
+convex relaxation at level k by DPSk (n, m) we have (dropping the (n, m)):
+                    Sep ⊆ · · · ⊆ DPSk ⊆ DPSk−1 ⊆ · · · ⊆ DPS1 = PPT.
+   1
+ The result of Skrownek is in fact more general than this, and rules any formulation of the form
+  ρ : (I ⊗ i )((I ⊗ B)ρ(I ⊗ B † ))  0 ∀i = 1, . . . , k, ∀B ∈ M3 where 1 , . . . , k is a finite set of posi-
+tive maps.
+The Set of Separable States                                                             1321
+
+
+The key property of the DPS hierarchy is that each set DPSk has a semidefinite repre-
+sentation of size min(n, m) O(k) . The hierarchy is known to be complete, meaning that if
+ρ∈/ Sep, then there exists a finite k such that ρ ∈
+                                                  / DPSk . The integer k however depends
+on the state ρ and it is known that, unless n + m ≤ 5, there is no finite k such that
+DPSk (n, m) = Sep(n, m) [DPS04, Section VIII.B].
+Contributions The main result of this paper is
+Theorem 1. If Sep(n, m) = PPT(n, m) then Sep(n, m) has no (finite) semidefinite repre-
+sentation. In other words, Sep(n, m) has no semidefinite representation when n + m > 5.
+Remark 1. Some remarks concerning Theorem 1:
+   • Note that Theorem 1 contains as a special case the fact that whenever Sep(n, m) =
+    PPT(n, m), then there is no representation of Sep(n, m) as {ρ ∈ Hnm : Tr[ρ] =
+    1 and (I ⊗ i )(ρ)  0, ∀i = 1, . . . , k} where 1 , . . . , k : Mm → Mn is a finite
+    family of positive maps. This is because the latter set is semidefinite representable
+    (in fact it is a spectrahedron). Let us mention that if one is only interested in approx-
+    imating the set Sep(n, m), Aubrun and Szarek [AS17b] gave a lower bound on the
+    number k of positive maps needed.
+   • Our result also includes as a special case the fact that there is no finite k such
+    that DPSk (n, m) = Sep(n, m), when n + m > 5. We note that our result is a strict
+    generalization of this fact. Indeed, the failure of the DPS hierarchy to converge in a
+    finite number of levels does not preclude by itself the existence of another semidefinite
+    program that represents Sep(n, m) exactly. There are well-known examples of convex
+    sets where the sum-of-squares hierarchy (of which DPS can be seen as a particular
+    instance) is never exact and yet a finite semidefinite representation does exist, see
+    e.g., [NPS10, Example 3.7].
+   • Observe that if Sep(n, m) has no semidefinite representation, then the same is true
+    for Sep(N , m) for N ≥ n. This is because Sep(n, m) can be realized as a linear
+    section of Sep(N , m) as follows:
+
+              Sep(n, m) ≃ {ρ ∈ Sep(N , m) : (Tr 2 ρ)ii = 0 ∀i = n + 1, . . . , N }
+
+   where Tr 2 ρ is the result of tracing out the second subsystem from ρ. Indeed, setting
+                                                                     
+   (Tr 2 ρ)ii = 0 implies that in any representation of ρ as ρ = k pk xk xk† ⊗ yk yk† ,
+   the vectors xk must satisfy (xk )i = 0 for all i = n + 1, . . . , N , i.e., that xk ∈
+   Cn × {0} N −n ≃ Cn . To prove our theorem it thus suffices to prove that Sep(3, 3) and
+   Sep(4, 2) have no semidefinite representations.
+Helton–Nie conjecture The question of finding semidefinite representations for convex
+sets has attracted a lot of attention in the optimization community [Nem06,GPT13].
+Helton and Nie [HN09] gave sufficient conditions for a set to have a semidefinite rep-
+resentation, and conjectured that any convex semialgebraic set has a semidefinite rep-
+resentation. (A set is semialgebraic set if it can be described using a finite boolean
+combinations of polynomial equations and inequalities. One can verify that Sep(n, m)
+is a semialgebraic set, see Sect. 2.3.) In his breakthrough paper, Scheiderer [Sch18] dis-
+proved this conjecture and exhibited convex semialgebraic sets that have no semidefinite
+representations.
+    Our proof of Theorem 1 is inspired from the arguments of Scheiderer. Compared to
+the paper of Scheiderer the present paper has two main contributions. First, the proof we
+give simplifies the arguments of Scheiderer and does not rely on any specialized results
+1322                                                                                                   H. Fawzi
+
+
+from algebraic geometry. We only use basic results from analysis (Taylor expansions),
+and some standard facts about semialgebraic sets and functions which are elementary
+to state. The proof should thus be accessible to readers in quantum information and
+optimization. The second contribution is the application of the method of proof for
+Sep(n, m) which is defined in terms of complex numbers. This turns out to cause certain
+difficulties as certain standard facts about real polynomials are not true about Hermitian
+polynomials, particularly on the relation between homogeneous polynomials and their
+dehomogenizations (see Sect. 5 and Appendix A for more details).
+Main technical result Our main technical result, Theorem 2 below and of which The-
+orem 1 is a corollary, gives a general way to construct a convex set with no semidefinite
+representation from a nonnegative Hermitian polynomial that is not a sum of squares.
+We recall that a Hermitian polynomial p(z) is a polynomial with complex coefficients in
+the indeterminates (z, z̄) = (z 1 , . . . , z n , z̄ 1 , . . . , z̄ n ) such that p(z) ∈ R for all z ∈ Cn . A
+Hermitian polynomial is a sum of squares if it can be written as a sum of squares of Her-
+mitian polynomials. (More details about Hermitian polynomials are givenin Sect. 2.)
+For the statement of the theorem, we use the monomial notation z u = i=1                          n
+                                                                                                      z iu i for
+u∈N .  n
+
+                                                           
+Theorem 2 (General theorem). Let p(z) = (u,v)∈A puv z u z̄ v be a Hermitian polyno-
+mial supported on A ⊂ Nn × Nn , and assume that p is nonnegative on Cn but not a
+sum of squares. Assume furthermore that A is downward closed, i.e., if (u, v) ∈ A then
+all (u , v ) ∈ Nn × Nn with 0 ≤ u ≤ u and 0 ≤ v ≤ v are in A. Define the monomial
+map m A : Cn → C|A| , z → z u z̄ v (u,v)∈A for z ∈ Cn . Then the convex set
+                                                                 
+                                   C A = cl conv m A (z) : z ∈ Cn                                           (5)
+
+is not semidefinite representable, where cl denotes topological closure.
+
+    The set of separable states is of the form (5) for well-chosen set A. Indeed, dropping
+the normalization condition and letting SEP(n, m) be the convex cone of separable
+states, we have:
+
+                                     
+        SEP(n, m) = conv                 xi x̄ j yk ȳl 1≤i, j≤n : (x, y) ∈ Cn × Cm
+                                                    1≤k,l≤m
+                                                                                                 
+                                          α β γ δ
+                        = conv          x x̄ y ȳ    |α|=|β|=|γ |=|δ|=1
+                                                                        : (x, y) ∈ Cn × Cm
+
+                                          k
+where for ζ ∈ Nk we let |ζ | =               i=1 ζi . This shows that SEP(n, m) = C A where
+                                                                           
+    A = (α, β, γ , δ) ∈ (Nn × Nn ) × (Nm × Nm ) : |α| = |β| = |γ | = |δ| = 1 .                              (6)
+
+The attentive reader will notice that this set A is not downward closed, and so does
+not satisfy the condition of Theorem 2. As a matter of fact, to prove Theorem 1 we
+apply Theorem 2 with a dehomogenization of A which satisfies the downward closed
+condition, and then homogenize back to get the desired convex cone. The details are
+explained in Sect. 5.
+Overview of proof We briefly sketch the main ideas for the proof of Theorem 2.
+The Set of Separable States                                                             1323
+
+
+  • We first show that if the set C A has a semidefinite representation, then there exists
+   a finite number of functions f 1 , . . . , fr : R2n ≃ Cn → R such that any nonnegative
+   Hermitian polynomial supported on A ∪ {(0, 0)} can be written as a sum of squares
+   from spanR ( f 1 , . . . , fr ). This characterization of semidefinite representations via
+   sums of squares is not new: it follows from the factorization theorem of Gouveia,
+   Parrilo and Thomas [GPT13] and its sum-of-squares interpretation see e.g., [Faw16].
+   We note that a similar characterization is also used in Scheiderer’s paper, see [Sch18,
+   Theorem 3.4].
+  • One of the main observations needed to prove Theorem 2 is to note that the functions
+    f 1 , . . . , fr can be chosen to be semialgebraic. (We recall the precise definition of
+   semialgebraic functions in Sect. 2.) One key property of such functions that turns
+   out to be particularly important is that they are smooth almost everywhere. Com-
+   bining this property with a simple observation regarding smooth sum of squares
+   decompositions of homogeneous polynomials allows us to prove Theorem 2 already
+   in the special case where p is a homogeneous polynomial. This allows us to prove
+   that Sep(n, m) is not semidefinite representable when (n, m) = (5, 3) or (4, 4). The
+   complete proof of Theorem 2 which allows us to cover the cases (n, m) = (4, 2) and
+   (3, 3) for separable states, requires an additional technical argument using Puiseux
+   expansions for univariate continuous semialgebraic functions.
+Real version of Theorem 2 We note that one can state an analogue of Theorem 2 dealing
+with real polynomials instead of Hermitian polynomials. The proof is similar, and we
+state it below just for convenience and for future reference.
+                                                               
+Theorem 3 (Main theorem for real polynomials). Let p(x) = u pu x u ∈ R[x] where
+A ⊂ Nn finite, be a real polynomial that is nonnegative on Rn but not a sum of squares.
+Assume furthermore that A is downward closed, i.e., if u ∈ A then all u ∈ Nn with
+0 ≤ u ≤ u are in A. Define the monomial map m A (x) = x u u∈A for x ∈ Rn . Then the
+convex set
+                                                        
+                               cl conv m A (x) : x ∈ Rn
+is not semidefinite representable.
+   The theorem above can be used to recover the result of Scheiderer [Sch18, Corollary
+4.25], that the cone Pn,2d of nonnegative (real) forms in n variables of degree 2d is not
+semidefinite representable when it is distinct from n,2d , the cone of sums of squares.
+Indeed, it suffices to take p in Theorem 3 to be a dehomogenization of a nonnegative
+form that is not a sum of squares, and to use the well-known fact that a convex set has a
+semidefinite representation if and only if its dual has one.
+Organization The paper is organized as follows. In Sect. 2 we set some of the notations
+and present some background material on Hermitian polynomials, sums of squares, and
+semialgebraic sets and functions that are useful for the proof of the main theorem. In
+Sect. 3 we review the connection between the existence of semidefinite programming
+representations, and sums of squares. The proof of Theorem 2 is in Sect. 4 and the proof
+of Theorem 1 in Sect. 5.
+
+
+2. Preliminaries
+We recall in this section some results on Hermitian polynomials, the duality Sep/nonneg-
+ative polynomials and PPT/sums of squares and semialgebraic sets and functions.
+1324                                                                                               H. Fawzi
+
+
+2.1. Hermitian polynomials. For z ∈ Cn , we denote the elementwise complex conjugate
+of z by z̄ = (z̄ 1 , . . . , z̄ n ). If u ∈ Nn we define the monomial z u = z 1u 1 . . . z nu n . A Hermitian
+polynomial p(z) is a polynomial in z and z̄ of the form
+
+                           p(z) =              puv z u z̄ v         (A ⊂ Nn × Nn )                       (7)
+                                     (u,v)∈A
+
+such that p(z) ∈ R for all z ∈ Cn . This is equivalent to saying that puv = pvu for all
+u, v. The support of p is supp( p) = {(u, v) : puv = 0} ⊂ Nn × Nn . The Hermitian
+polynomial p is nonnegative if p(z) ≥ 0 for all z ∈ Cn . Further, we say that p is a sum
+of squares if we can write
+                                                p=            qk2                                        (8)
+                                                         k
+
+for Hermitian polynomials qk . If p(z) is a Hermitian polynomial we will often consider
+the real polynomial P(a, b) = p(a + ib) in R[a1 , . . . , an , b1 , . . . , bn ]. One can check
+that p is a sum-of-squares if and only if P is a sum-of-squares of real polynomials.
+
+Remark 2 (Sums of squares for Hermitian polynomials). Another common definition
+of a Hermitian
+                 polynomial p(z) being a sum-of-squares is that p can be written as
+p(z) = k |gk (z)|2 where gk are (holomorphic) polynomials in z only (and not in z̄).
+Clearly if p has such a representation then it is a sum-of-squares in the sense (8) since
+then p = k Re[gk ]2 +Im[gk ]2 and Re[gk ] and Im[gk ] are both Hermitian polynomials.
+The converse however is not true. It is possible that a polynomial p has a representation
+(8) and cannot be written as a sum of modulus squares of holomorphic polynomial
+mappings. See e.g., [DP09] for more on this distinction. In this paper we only work with
+the definition (8) of sums of squares.
+
+
+2.2. Sep, PPT, nonnegative polynomials, and sums of squares. For convenience, we will
+work in this paper with the cone of separable states, where we drop the normalization
+condition:
+                                                                 
+                SEP(n, m) = conv x x † ⊗ yy † : x ∈ Cn , y ∈ Cm .
+
+One can verify that Sep(n, m) is the compact slice Sep(n, m) = SEP(n, m) ∩ {ρ :
+Tr ρ = 1}.2 Let also PPT be the cone of states that have positive partial transpose, i.e.,
+                                                                      
+              PPT (n, m) = ρ ∈ Hnm : ρ  0 and (I ⊗ T)(ρ)  0
+
+so that PPT(n, m) = PPT (n, m) ∩ {ρ : Tr ρ = 1}.
+Dual of Sep For any integer k, let Mk = Ck×k . A C-linear map  : Mn → Mm that
+is Hermitian preserving is positive if (ρ)  0 whenever ρ  0. Equivalently,
+                                                                                  is
+positive if the degree-four Hermitian polynomial p(x, y) = y †  x x † y is nonnegative
+on Cn+m ≃ Cn × Cm . It is well-known that the dual of SEP(n, m) can be identified, via
+  2 Indeed if ρ =  p x x † ⊗ y y † with Tr ρ = 1 and p ≥ 0, then by redefining p ← p |x |2 |y |2
+                         i k k k        k k                       k                   k     k k     k
+we can assume without loss of generality that |xk | = |yk | = 1. Taking the trace on both sides of ρ =
+            †       †                   
+  i pk x k x k ⊗ yk yk tells us that 1 =    k pk since Tr ρ = 1, i.e., ρ ∈ Sep(n, m).
+The Set of Separable States                                                                             1325
+
+
+the Choi isomorphism3 , with the cone of positive maps Mn → Mm (see e.g., [AS17a,
+Table 2.2]). Equivalently, the dual of SEP(n, m) can be identified with nonnegative
+degree-four Hermitian polynomials of the form
+
+                    p(x, y) =                  pi jkl xi x̄ j yk ȳl   (x ∈ Cn , y ∈ Cm )                (9)
+                                 1≤i, j≤n
+                                 1≤k,l≤m
+
+where pi jkl = (E i j )lk . Polynomials of the form (9) have a biquadratic structure: they
+are quadratic independently in each block of variables x and y. The duality between SEP
+and nonnegative polynomials of the form (9) is in fact immediate from the definition of
+SEP.
+Dual of PPT Using the identification above, it turns out that the dual of PPT (n, m)
+corresponds to polynomials p(x, y) that are sums of squares. Indeed, it is well-known
+(see again [AS17a, Table 2.2]) that the dual cone of PPT (n, m) can be identified, via
+the Choi isomorphism, with the cone of maps  : Mn → Mm that are decomposable,
+i.e., that can be written  = S1 + S2 ◦ T where S1 and S2 are two completely positive
+maps, and T is the transpose map. Recall that a map      S : Mn → Mm is completely
+positive if there exist matrices Vt such that S(X ) = t Vt∗ X Vt . One can verify that a
+map  is decomposable if and only if, the associated Hermitian polynomial (9) is a sum
+of squares. We did not find any reference for this equivalence, so we include a proof here.
+(The proofs we found in the literature are only for the direction ⇒ in Proposition 1. The
+proof of Proposition 1 is a special case of a more general result in [FF20], joint with Kun
+Fang, where it is shown that the dual of DPSk can be identified with a sum-of-squares
+condition of degree k.)
+Proposition 1. A map  : Mn               → Mm is decomposable if, and only if, the Hermitian
+polynomial p(x, y) = y †  x x † y is a sum of squares.
+                                                                                          
+Proof. If S(ρ)= t Vt ρVt† is a completely positive map then y † S(x x † )y = t y † Vt x x †
+           T
+Vt† y =      t | ȳ Vt x| is a sum-of-squares.
+                         2                                    Also for the transpose map T, we have
+                                                   T
+y (S ◦ T)(x x )y = y S(x̄ x̄ )y =
+  †             †           †          †
+                                                     t |y V̄t x| is also a sum-of-squares. It follows
+                                                                 2
+
+that if  is decomposable then p(x, y) = y  x x † y is a sum-of-squares.
+                                                            †
+
+    We now  prove the converse. Assume p(x, y) = y † (x x † )y is a sum-of-squares, i.e.,
+p(x, y) = t qt (x, y)2 for some Hermitian polynomials qt . We need to show that 
+is decomposable. Because of the biquadratic structure of p we see that qt cannot have
+monomials xi2 , x¯i 2 , xi x j , x¯i x¯j , xi x¯j or x¯i x j and similarly for the y’s. Thus this means
+that qt must have the form
+
+                        qt (x, y) = x T Mt y + x̄ T M̄t ȳ + x T Nt ȳ + x̄ T Nt y
+                                               
+                                          gt               g¯t         ht      h¯t
+
+where M ∈ Cn×n and N ∈ Cm×m . Squaring qt we get
+
+      qt2 = gt2 + 2|gt |2 + 2gt h t + 2gt h¯t + g¯t 2 + 2g¯t h t + 2g¯t h¯t + h 2t + 2|h t |2 + h¯t .
+                                                                                                  2
+
+
+   3 The Choi isomorphism associates with a channel  : M → M the state C() = 
+                                                             n        m                    1≤i, j≤n E i j ⊗
+(E i j ) ∈ Cnm×nm where E i j is the matrix with a 1 in entry (i, j) and zero elsewhere. The state C()
+satisfies for any x ∈ Cn and y ∈ Cm the identity Tr[C()x x † ⊗ yy † ] = y † (x̄ x̄ † )y.
+1326                                                                                               H. Fawzi
+
+                     
+When summing k qt2 we see that the only terms that can produce monomials of the
+form xi x¯j yk ȳl (the monomials that appear in p) are the terms 2|gt |2 and 2|h t |2 . The sum
+of all the other terms must thus be equal to 0. At the end we get (including the constant
+2 in Mt and Nt ):
+
+                              p=          |x T Mt y|2 + |x T Nt ȳ|2 .
+                                      t
+                                                                                                 †
+From here it easily follows that  = S1 + S2 ◦ T where S1 (ρ) =                           t Nt ρ Nt and
+                   †
+S2 (ρ) = t M̄t ρ M̄t .                                                                                   
+                                                                                                         
+   The following diagram summarizes the discussion above.
+                      SEP
+                                     ⊂       PPT
+                                                
+                       ⏐                        ⏐
+                       ⏐
+              (duality)                        ⏐(duality)
+                                                
+                 Nonnegative              Sum-of-squares
+                                      ⊃
+            Hermitian polynomials (9)   Hermitian polynomials (9)
+
+
+2.3. Semialgebraic sets and functions. Semialgebraic sets A semialgebraic subset of
+Rn is a subset that can be defined by a finite boolean combination of polynomial equations
+(P = 0) and inequalities (P > 0) where P ∈ R[x1 , . . . , xn ]. For example a set of the
+form {w ∈ R D : M0 + w1 M1 + · · · + w D M D  0} is semialgebraic since the condition
+that a matrix is positive semidefinite can be expressed by a finite number of polynomial
+inequalities. The set of separable states can be shown to be semialgebraic. One can prove
+this using the celebrated and powerful result of Tarski stating that the projection of a
+semialgebraic set is semialgebraic. A consequence of Tarski’s theorem is that the convex
+hull of a semialgebraic set S ⊂ Rn is semialgebraic. Indeed this is because we can write
+conv(S) as the projection on the x component of the following semialgebraic set
+       
+         (x, λ, s1 , . . . , sn+1 ) ∈ Rn × Rn+1 × (Rn )n+1 :
+                                                                n+1               n+1         
+            λ1 , . . . , λn+1 ≥ 0, s1 , . . . , sn+1 ∈ S, x =         λi si and         λi = 1 .
+                                                                i=1               i=1
+
+(Note that, by Carathéodory theorem any element in conv(S) is a convex combination
+of at most n + 1 points in S.) To see why the set Sep(n, m) is a semialgebraic subset of
+                2
+Hnm ≃ R2(nm) first note that the following set
+                                                                            
+        (ρ, x, y) ∈ Hnm × Cn × Cm s.t. ρ = x x † ⊗ yy † and |x|2 = |y|2 = 1        (10)
+                                                                2
+is a semalgebraic subset of Hnm × Cn × Cm ≃ R2(nm) × R2n × R2m since the equations
+can all be written as real polynomial equations in the real and imaginary components.
+By Tarski’s theorem it follows that the projection of (10) on the Hnm component, which
+is precisely the set of pure product states, is semialgebraic. Thus Sep is semialgebraic
+as the convex hull of a semialgebraic set.
+Semialgebraic functions A function f : Rn → Rm is called semialgebraic if its graph
+{(x, f (x)) : x ∈ Rn } ⊆ Rn × Rm is a semialgebraic set. Even though semialgebraic
+The Set of Separable States                                                           1327
+
+
+functions form a very broad class of functions, they are tame and possess nice regularity
+properties. Examples of semialgebraic functions are polynomials, rational functions, or
+power functions (with rational exponent). Functions that are not semialgebraic are e.g.,
+exp(x), or the indicator function of the rationals in R. We state two basic results about
+semialgebraic functions that will be crucial for us.
+Theorem 4 (Almost everywhere smoothness of semialgebraic functions). Let f : Rn →
+R be a semialgebraic function. Then f is smooth (C ∞ ) everywhere except possibly on
+the zero set of a polynomial P ∈ R[x1 , . . . , xn ] \ {0}.
+Proof. See e.g., [HP16, Theorem 1.7].                                                    
+                                                                                         
+    Clearly Theorem 4 is not true for general functions, cf. the indicator function of the
+rationals in R. The second result that we will need concerns semialgebraic functions in
+one variable.
+Theorem 5. (Puiseux expansion for one-dimensional semialgebraic functions) Assume
+ f : (0, η) → R where η > 0, is a semialgebraic continuous function that is bounded.
+Then f can be extended by continuity to the interval [0, η). Additionally, there exists an
+integer m such that the map t → f (t m ) is C ∞ on [0, ) for some 0 < < η.
+Proof. See [BPR06, Section 3.3].                                                         
+                                                                                         
+    We note that the theorem above is not true for arbitrary functions. For example the
+function x → sin(1/x) is bounded and continuous on any interval (0, η) but cannot be
+extended by continuity at 0. We finally record the following result which will also be
+needed for our proof. It simply says that any linear map, restricted to a semialgebraic
+set always admits a semialgebraic inverse.
+Theorem 6. Let S ⊂ R N be a semialgebraic set and let π : R N → Rn be a linear map.
+Then there exists a semialgebraic function F : π(S) → S that satisfies π(F(x)) = x
+for all x ∈ π(S).
+Proof. See [HP16, Lemma 1.5].                                                            
+                                                                                         
+
+
+3. Semidefinite Programming Lifts
+We are now ready to start the proof of Theorem 2 (and thus of Theorem 1 too). The first
+thing we need is a necessary condition for the existence of a semidefinite representation
+for a given convex set C. The condition we state in Theorem 7 below is very similar to
+[GPT13, Theorem 1]4 . Recall that, for A ⊂ Nn × Nn we denote by m A (z) the monomial
+map:
+                                         
+                               m A (z) = z u z̄ v (u,v)∈A .
+
+We also denote by cl S the (topological) closure of a set S.
+Theorem 7. Let A ⊂ Nn × Nn . Assume that
+                                                     
+                       C A = cl conv m A (z) : z ∈ Cn
+
+has a semidefinite representation of size k. Then there exists 2k 2 + 1 semialgebraic func-
+tions f j : Cn → R ( j = 1, . . . , 2k 2 +1) such that any nonnegative Hermitian polynomial
+  4 The given condition is also sufficient, but we will only need necessity here.
+1328                                                                                         H. Fawzi
+
+
+p supported
+              on A ∪ {(0, 0)} is a sum-of-squares from V = spanR ( f 1 , . . . , f 2k 2 +1 ), i.e.,
+p = j h 2j for some h j ∈ V . Furthermore, the magnitude of the coefficients expressing
+the h j in terms of the basis ( f 1 , . . . , f 2k 2 +1 ) are all bounded by φ( p) where  p is the
+largest magnitude of the coefficients of p, and φ is some polynomial that only depends
+on the semidefinite representation of C A .
+   The main difference between the statement above and the one in [GPT13] (see also
+[Faw16, Theorem 5, Chapter 2]) is that here the functions f 1 , . . . , f 2k 2 +1 are semi-
+algebraic. (We say that a function f : Cn → R is semialgebraic if the function
+F : Rn × Rn → R defined by F(a, b) = f (a + ib) is semialgebraic.) This obser-
+vation will be crucial to us. We note that a statement similar to the theorem above
+appears as Theorem 3.4 in [Sch18]. Instead of working with semialgebraic functions,
+Scheiderer works with polynomial functions on an algebraic variety X .
+Proof. Assume that C A = π(S) where S is a spectrahedron defined using a linear matrix
+inequality of size k × k:
+                                                                    
+            S = w ∈ R N : M(w) := M0 + M1 w1 + · · · + M N w N  0 .
+
+We can assume without loss generality that S has nonempty interior in R N . This in turn
+implies, using standard results about spectrahedra, that there exists w̃ ∈ S such that
+M(w̃) is positive definite (possibly after changing M), see e.g., [RG95, Section 2.4].
+   For any z ∈ Cn there exists w(z) ∈ S such that π(w(z)) = m A (z). Since M(w(z)) 
+0 we can find F(z) ∈ Ck×k such that M(w(z)) = F(z)F(z)† . Furthermore, by Theo-
+rem 6, the function z ∈ Cn → F(z) ∈ Ck×k can be taken to be semialgebraic.
+   Let p(z) be a Hermitian polynomial supported on A ∪ {(0, 0)}, i.e., p(z) =  p̃,
+m A (z) + c for some c ∈ R, where p̃ denotes the coefficients of the polynomial p(z) in
+the monomial basis. Since p ≥ 0 we get  p̃, m A (z) + c ≥ 0 for all z ∈ Cn . This implies
+that  p̃, σ  + c ≥ 0 for all σ ∈ C A . We can lift this linear inequality to an inequality on
+the spectrahedron S, i.e., we have  p̃, π(w) + c ≥ 0 for all w ∈ S, in other words
+
+                      π ∗ ( p̃), w + c ≥ 0 ∀w ∈ R N s.t. M(w)  0.
+
+By Farkas’ lemma/duality for SDPs, this means that there exists B  0 and b ≥ 0 such
+that
+                 π ∗ ( p̃), w + c = B, M(w) + b    ∀w ∈ R N .               (11)
+Plugging w = w(z) we get
+
+              p̃, π(w(z)) + c = B, M(w(z)) + b = B, F(z)F(z)†  + b.
+
+Since π(w(z)) = m A (z) and  p̃, m A (z) = p(z) we get finally that p(z) + c =
+B, F(z)F(z)†  + b for all z ∈ Cn . Factorizing B = D D † we get
+
+                                                                k
+               p(z) + c = Tr D D † F(z)F(z)† + b =                      |D † F(z)|i2j + b
+                                                                i j=1
+                                 k
+                            =           Re[(D † F(z))i j ]2 + Im[(D † F(z))i j ]2 + b.
+                                i j=1
+The Set of Separable States                                                                       1329
+
+
+If we define the 2k 2 + 1 semialgebraic functions to be the constant function and the
+z → Re[Fi j (z)] and z → Im[Fi j (z)], we get the desired claim.
+   For the last statement of the theorem, we show that the coefficients of B (and thus of
+D) are bounded by a polynomial in the coefficients of p. To get this, we can simply plug
+the value w = w̃ that makes M(w) positive definite in (11). If we denote by λ > 0 the
+smallest eigenvalue of M(w̃) we get π ∗ ( p̃), w̃ + c = B, M(w̃) + b ≥ λ Tr[B] + b ≥
+λB + b, thus max(B, b) ≤ (π ∗ ( p̃), w̃ + c)/ min(λ, 1) ≤ O(max{ p, |c|}).    
+
+
+4. Proof of Theorem 2
+We are now ready to prove our main theorem, Theorem 2. We first recall a piece of
+notation that we will use throughout the proof: for any function f : Cn → R we
+associate the function of real variables F : Rn × Rn → R, denoted by a capital letter,
+defined by F(a, b) = f (a + ib). We will also sometimes think of a vector z ∈ Cn as
+z ∈ R2n and write for instance F(z).
+   Assume that C A has an SDP representation. Then, from Theorem 7 there exist semi-
+algebraic functions f 1 , . . . , fr : Cn → R such that the following is true:
+            Any nonnegative Hermitian polynomial supported on A ∪ {(0, 0)}
+                                                                                                   (∗)
+               is a sum-of-squares of functions from spanR ( f 1 , . . . , fr ).
+    We will now prove that the functions f i can be taken to be smooth at the origin.
+(By this we mean that the associated functions Fi : Rn × Rn → R are smooth at
+(0, 0).) This will follow from our assumption that A is downward closed. Since the Fi
+are semialgebraic we know from Theorem 4 that each Fi is smooth almost everywhere.
+Thus we can find a common point z 0 = (a0 , b0 ) ∈ Rn × Rn such that all functions
+Fi are smooth at z 0 . Now let f̃ i (z) = f i (z − z 0 ) for all i ∈ {1, . . . , r }. We claim that
+these semialgebraic functions still satisfy the property (∗). Indeed if q is a nonnegative
+Hermitian polynomial supported on A ∪ {(0, 0)} then q(z + z 0 ) is nonnegative and is
+also supported on A, since A is downward closed. It follows that q(z + z 0 ) is a sum-
+of-squares from spanR ( f 1 , . . . , fr ). But this implies that q(z) is a sum-of-squares from
+spanR ( f˜1 , . . . , f˜r ).
+    In the rest of the proof we will thus assume that the F1 , . . . , Fr are smooth at the
+origin. If p is homogeneous we are almost done        by the following simple observation: if
+P is a real homogeneous polynomial and P = j H j2 for some functions H j : Rm → R
+that are smooth at the origin, then P is a sum-of-squares of polynomials. This can be
+proved by a simple Taylor expansion; for example by applying the following proposition         
+                                                                               dk             
+to the identity t 2k P(z) = P(t z) = j H j (t z)2 and observing that dt            k H j (t z)  is a
+                                                                                            t=0
+degree k polynomial in z ∈ R2n (it is the k’th term in the Taylor expansion of H j at z).
+Proposition 2. Assume that g j : [0, η) → R are smooth functions5 and that there exists
+                                                                          2
+                                                               g(k)j (0)
+a ∈ R such that at 2k = j g j (t)2 for all t ∈ [0, η). Then a = j     k!      .
+                                                                    
+Proof. If we Taylor expand the g j at 0 we get at 2k =          j (g j (0) + tg j (0) + · · · +
+   (k)                                                                         (k−1)
+t g j (0)/k!+o(t )) . By equating powers of t we get that g j (0) = · · · = g j
+ k              k  2                                                                  (0) = 0
+             (k)
+and that a = j (g j (0)/k!) as desired.
+                            2                                                                 
+                                                                                              
+  5 Smoothness at 0 is smoothness on the right.
+1330                                                                                      H. Fawzi
+
+
+   The case where p is not necessarily homogeneous requires an additional argument.
+The following argument is inspired from [Sch18, Proposition 4.18]. Let 2d = deg p, and
+for any t ∈ R consider the Hermitian polynomial pt (z) = t 2d p(z/t). This Hermitian
+polynomial is nonnegative and is also supported on A. Thus we know from property (∗)
+that there exist real coefficients a j (t) ∈ Rr s.t.
+                                                         2
+                         Pt (z) =           a j (t)T F(z)           ∀z ∈ R2n                 (12)
+                                      j
+
+where we let F(z) = (F1 (z), . . . , Fr (z)). The functions a j (t) are defined by a semialge-
+braic relation and so can be taken to be semialgebraic. As such the a j must be continuous
+on some (0, η) for η > 0. From the last part of the statement of Theorem 7 we also
+know that the a j must be bounded on (0, η). Thus, by Theorem 5 we know that the a j
+can be extended by continuity to [0, η) and that for large enough m, a j (t m ) is smooth
+on [0, η ) for some 0 < η < η. From (12) we get:
+
+                            Pt m (t m z) =         (a j (t m )T F(t m z))2 .
+                                               j
+
+But note that Pt m (t m z) = t 2dm P(z). Thus
+
+                            t 2dm P(z) =           (a j (t m )T F(t m z))2 .
+                                               j
+
+
+If we let g j (t) = a j (t m )T F(t m z) we know that the g j are smooth on [0, η ), since the
+F are smooth at the origin. We can apply the observation of Proposition 2 to get that
+                                                    (dm) 2
+                                                    g j (0)
+                                 P(z) =                              .
+                                                       (dm)!
+                                               j
+
+                                    (dm)
+But from the definition of g j , g j (0) is a polynomial of degree d in z (this can be seen
+e.g., by considering a Taylor expansion of F at the origin and of t → a j (t m ) at t = 0).
+This contradicts the assumption that p(z) is not a sum of squares of polynomials.
+
+
+5. Proof of Theorem 1
+
+The case Sep(3, 3): We prove that SEP(3, 3) has no semidefinite representation. Define
+the Choi polynomial [Cho75] by
+
+             p(x, y) = |x1 |2 |y1 |2 + |x2 |2 |y2 |2 + |x3 |2 |y3 |2
+                      − 2(Re[x1 x¯2 y1 y¯2 ] + Re[x2 x¯3 y2 y¯3 ] + Re[x1 x¯3 y1 y¯3 ])
+                        + 2(|x1 |2 |y2 |2 + |x2 |2 |y3 |2 + |x3 |2 |y1 |2 ).
+
+It was shown in [Cho75] (see also [Cho80, Appendix B]) that p(x, y) ≥ 0 for all (x, y) ∈
+C3 × C3 , and yet p(x, y) is not a sum of squares. In fact the real polynomial p(x, y)
+when (x, y) ∈ R3 × R3 is not a sum of squares. It follows, by a simple homogenization
+The Set of Separable States                                                                 1331
+
+
+argument, that the Hermitian polynomial p̂(x1 , x2 , y1 , y2 ) = p(x1 , x2 , 1, y1 , y2 , 1) is
+not a sum of squares. Note that the support of p̂ satisfies
+                                                                                      
+  supp p̂⊂ Â= (α, β, γ , δ)∈(N2 ×N2 )×(N2 ×N2 ) : |α|≤1, |β|≤1, |γ |≤1, |δ|≤1 .
+
+Since Â is downward closed it follows from Theorem 2 that
+                                                             
+         C Â = cl conv m Â (x, y) : (x, y) ∈ C2 × C2
+                                                                                         (13)
+              = cl conv x α y β x̄ γ ȳ δ |α|≤1,|β|≤1,|γ |≤1,|δ|≤1 : (x, y) ∈ C2 × C2
+
+does not have a semidefinite representation. To conclude that SEP(3, 3) has no semidef-
+inite representation, it remains to note that C Â is a hyperplane section of SEP(3, 3).
+Indeed, first recall that SEP(3, 3) can be written as
+                                                                      
+                 SEP(3, 3) = cl conv m A (x, y) : (x, y) ∈ C3 × C3
+
+where
+                                                                                 
+ A = (α, β, γ , δ) ∈ (N3 × N3 ) × (N3 × N3 ) : |α| = 1, |β| = 1, |γ | = 1, |δ| = 1 .
+
+It is easy to see that there is a one-to-one correspondence between Â and A. In terms of the
+monomial map m this simply means that m A is the homogenization of m Â . For example
+under an appropriate
+                         ordering of the monomials we have m A (x1 , x2 , x3 , y1 , y2 , y3 ) =
+                        y
+|x3 | |y3 | m Â x3 , y3 where we let x = (x1 , x2 ) and y = (y1 , y2 ). It thus follows that
+     2     2       x
+
+SEP(3, 3) can be written as
+                                                          
+                                                     x y
+         SEP(3, 3) = cl conv |x3 |2 |y3 |2 m Â        ,     : (x, y) ∈ C3 × C3 .
+                                                     x3 y3
+It can then be readily verified that C Â is a hyperplane section of SEP(3, 3) where the
+appropriate coordinate (corresponding to the monomial |x3 |2 |y3 |2 ) is set to 1.
+The case Sep(4, 2): Following the same approach as above, we need to exhibit a Her-
+mitian polynomial p̂(x1 , x2 , x3 , y) supported on
+                                                                                  
+  Â = (α, β, γ , δ) ∈ (N3 × N) × (N3 × N) : |α| ≤ 1, |β| ≤ 1, |γ | ≤ 1, |δ| ≤ 1 (14)
+
+that is nonnegative but not a sum-of-squares. Since Sep(4, 2) = PPT(4, 2) we know that
+there exists a Hermitian homogeneous polynomial p(x, y) on (x, y) ∈ C4 × C2 of the
+form
+                       p(x, y) =           pi jkl xi x¯j yk ȳl (x ∈ C4 , y ∈ C2 )
+                                   i jkl
+
+that is nonnegative but not a sum of squares. Note that such a p satisfies p(λx, μy) =
+|λ|2 |μ|2 p(x, y) for any (λ, μ) ∈ C2 . To get the desired polynomial p̂ it would suffice
+to dehomogenize the polynomial p by setting one of the x variables to 1, and one of
+the y variables to 1. It turns out, however, that one cannot guarantee in general that this
+dehomogenized polynomial is not a sum of squares. (We give an explicit example in
+Appendix A.) The reason we could dehomogenize the Choi polynomial in the (3, 3)
+1332                                                                                                 H. Fawzi
+
+
+case was that the Choi polynomial is not a sum of squares when the variables are real.
+One cannot expect this to be true for our polynomial in (4,2) variables as it is known
+that any biquadratic real polynomial in (n, 2) variables is a sum of squares [Cal73].
+Nevertheless we show in Appendix A that by choosing an appropriate polynomial p,
+and an appropriate dehomogenization we can get a polynomial p̂(x, y) supported on
+Â of Eq. (14) that is not a sum-of-squares. This implies that C Â is not semidefinite
+representable. Using a similar argument as for the (3, 3) case we get that SEP(4, 2) is
+not semidefinite representable.
+
+Acknowledgements. I would like to thank Omar Fawzi for his encouragements and for helpful comments on
+the paper. I would also like to thank Claus Scheiderer for useful discussions and exchanges related to the
+material of this paper, and James Saunderson for comments that helped improved the exposition.
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which
+permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence,
+and indicate if changes were made. The images or other third party material in this article are included in the
+article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is
+not included in the article’s Creative Commons licence and your intended use is not permitted by statutory
+regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder.
+To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims
+in published maps and institutional affiliations.
+
+
+A. The Case Sep(4, 2)
+
+In this section we exhibit a nonnegative Hermitian polynomial p̂(x1 , x2 , x3 , y) supported
+on Â, defined in Eq. (14), that is not a sum of squares.
+    Consider the following map  : M2 → M4 studied in [HK16]:
+                              ⎡                                          ⎤
+                            3w + 4x − 2y − 2z 2z − 2x    0       0
+                  x y        ⎢      2y − 2x         2x      z       0    ⎥
+                           =⎣                                             .
+                  z w                  0             y     2w    −w − 2z ⎦
+                                       0             0   −w − 2y 2w + 4x
+
+It is shown in [HK16] that the map  is positive but not decomposable. We associate to
+ the Hermitian polynomial
+
+                            W(x, y) = x † (yy † )x          x ∈ C4 , y ∈ C2 .
+
+Then we know from Proposition 1 that W is positive but not a sum of squares. The
+purpose of this section is to prove the following:
+
+Proposition 3 The (nonhomogeneous) Hermitian polynomial W(1, x2 , x3 , x4 , 1, y2 ) is
+not a sum of squares.
+
+   The proof of this proposition involves some computations, and we use the specific
+properties of W (its zeros) which have been studied in [HK16]. We note that there are
+other dehomogenizations of W that are sums of squares. For example, we show later
+that W(x1 , x2 , −6, x4 , 1, y2 ) is a sum of squares.
+The Set of Separable States                                                                                  1333
+
+
+Proof of Proposition 3. To lighten the notation we let y2 = α. In [HK16], the zeros of
+the polynomial W were identified. Namely it was shown that
+                       W(x1 (α), x2 (α), x3 (α), x4 (α), 1, α) = 0 ∀α ∈ C                                    (15)
+where
+                                                                 
+x(α) := 2α(1 − α), α 4 − 2(α + ᾱ) + 3|α|2 , −4 − 2|α|2 , −ᾱ(2 + α) ∈ C4 .
+
+Let p(x2 , x3 , x4 , α) = W(1, x2 , x3 , x4 , 1, α). The explicit formula of p is
+
+            p(x2 , x3 , x4 , α) = 2|α|2 |x3 |2 + 2|α|2 |x4 |2 − x3 x¯4 |α|2 − x¯3 x4 |α|2
+                                 + x¯2 x3 α + x2 x¯3 ᾱ − 2 x¯3 x4 α − 2x3 x¯4 ᾱ
+                                     + 3|α|2 + 2|x2 |2 + 4|x4 |2 + 2x2 α + 2 x¯2 ᾱ
+                                     − 2x2 − 2 x¯2 − 2α − 2ᾱ + 4.
+                        
+Assume that p = i gi2 where gi are Hermitian polynomials in x2 , x3 , x4 , α. Since p
+has no terms |x3 |2 we see that the gi cannot contain monomials x3 or x¯3 . Similarly p
+does not have a term |α|2 |x2 |2 and so the gi cannot contain monomials αx2 , ᾱx2 , α x¯2
+or ᾱ x¯2 . It follows that each gi must be a linear combination of the monomials
+                              1, α, x2 , x4 , αx3 , αx4 , ᾱx3 , ᾱx4
+and their conjugates. In other words, each gi is of the form:
+    gi (x2 , x3 , x4 , α) = ai + bi α + ci x2 + di x4 + ei αx3 + f i αx4 + gi ᾱx3 + h i ᾱx4
+                                                                                                             (16)
+                           + b¯i ᾱ + c¯i x¯2 + d¯i x¯4 + e¯i ᾱ x¯3 + f̄ i ᾱ x¯4 + g¯i α x¯3 + h¯i α x¯4
+where ai , bi , . . . , h i ∈ C. We will now use the information about the zeros of W (and
+thus of p) to deduce relations about these coefficients and reach a contradiction.
+Since W is bihomogeneous in the first set of variables, we have (dividing by |x1 (α)|2 )
+from (15) that
+                                                  
+                        x2 (α) x3 (α) x4 (α)
+                p              ,       ,       , α = 0, ∀α ∈ C \ {0, 1}.
+                        x1 (α) x1 (α) x1 (α)
+            
+Since p = i gi2 we get that for all i,
+                                                    
+                          x2 (α) x3 (α) x4 (α)
+                gi               ,       ,      , α = 0, ∀α ∈ C \ {0, 1}.             (17)
+                          x1 (α) x1 (α) x1 (α)
+
+We can clear denominators in (17) by multiplying the expression by |x1 (α)|2 . As a result
+we get that
+                                                      
+                            x2 (α) x3 (α) x4 (α)
+             |x1 (α)|2 gi         ,       ,        , α = 0, ∀α ∈ C.                   (18)
+                            x1 (α) x1 (α) x1 (α)
+The left-hand side of (18) is a Hermitian polynomial in α that is identically zero. Hence all
+its coefficients must be equal to 0. This allows us to derive conditions on the coefficients
+of gi in (16). More precisely:
+   • The coefficient of α 4 is 4h¯i . Setting 4h¯i to zero yields h i = 0.
+1334                                                                                                H. Fawzi
+
+
+  • The coefficient of α 4 ᾱ is 4g¯i + 2h¯i . Setting to zero we get gi = 0.
+  • The coefficient of α 2 is −4d¯i − 8g¯i . Setting to zero we get di = 0.
+                                                                                               
+This gives a contradiction: indeed the coefficient of |x4 |2 in p is 4 > 0 and yet                 i |di |
+                                                                                                             2 =
+0.                                                                                                            
+                                                                                                              
+   We conclude this appendix by proving, as promised, that there is another dehomog-
+enization of W that is a sum of squares. Let:
+                          q(x1 , x2 , x4 , α) = W(x1 , x2 , −6, x4 , 1, α).
+Let
+          ⎛                                      ⎞               ⎛                      ⎞
+       36           0      −3      0    0      0               0         0       0
+                                                                                 0 3  6
+     ⎜ 0            2      −1      0    −1     0⎟            ⎜0          0       0 −1 ⎟
+                                                                                 0    0
+     ⎜ −3           −1                         0⎟            ⎜                          ⎟
+     ⎜                      1      0    1        ⎟           ⎜0          0       0 0 ⎟
+                                                                                 0    0
+   A=⎜ 0                                           ,       B=⎜                            .
+     ⎜              0      0       2    0      0⎟⎟           ⎜6          0       1 0 ⎟
+                                                                                 0    0 ⎟
+     ⎝ 0            −1      1      0   3
+                                       2       0⎠            ⎝0          0       0 0 ⎠
+                                                                                 0    1
+       0            0      0       0   0       1               3         −1      0
+                                                                                 0 0  0
+                                                                                  
+   One can verify that A − B  0 and A + B  0, i.e., that BA BA  0.
+Let m(x1 , x2 , x4 , α) = (α, x1 , x2 , x4 , ᾱx1 , ᾱx4 ). Then one can check that we have the
+following sum of squares decomposition of q:
+                                                       †        
+                                            m(x, α)         A B m(x, α)
+                    q(x1 , x2 , x4 , α) =                                   .
+                                            m̄(x, α)        B A m̄(x, α)
+
+
+
+References
+[AS17a] Aubrun, G., Szarek, S.: Alice and Bob Meet Banach: The Interface of Asymptotic Geometric
+        Analysis and Quantum Information Theory, vol. 223. American Mathematical Society, New York
+        (2017)
+[AS17b] Aubrun, G., Szarek, S.: Dvoretzky’s theorem and the complexity of entanglement detection. Dis-
+        crete Anal. (2017)
+[BPR06] Basu, S., Pollack, R., Roy, M.F.: Algorithms in Real Algebraic Geometry. Springer, New York
+        (2006)
+[Cal73] Calderón, A.P.: A note on biquadratic forms. Linear Algebra Appl. 7(2), 175–177 (1973)
+[Cho75] Choi, M.D.: Positive semidefinite biquadratic forms. Linear Algebra Appl. 12(2), 95–100 (1975)
+[Cho80] Choi, M.D.: Some assorted inequalities for positive linear maps on C ∗ -algebras. J. Oper. Theory
+        271–285 (1980)
+[DP09]  D’Angelo, J.P., Putinar, M.: Polynomial optimization on odd-dimensional spheres. In: Emerging
+        Applications of Algebraic Geometry, pp. 1–15. Springer (2009)
+[DPS04] Doherty, A.C., Parrilo, P.A., Spedalieri, F.M.: Complete family of separability criteria. Phys. Rev.
+        A 69(2), 022308 (2004)
+[Faw16] Fawzi, H.: Power and limitations of convex formulations via linear and semidefinite programming
+        lifts. PhD thesis, Massachusetts Institute of Technology (2016)
+[FF20]  Fang, K., Fawzi, H.: The sum-of-squares hierarchy on the sphere and applications in quantum
+        information theory. Math. Program. (2020)
+[GPT13] Gouveia, J., Parrilo, P.A., Thomas, R.R.: Lifts of convex sets and cone factorizations. Math. Oper.
+        Res. 38(2), 248–264 (2013)
+[HHH96] Horodecki, M., Horodecki, P., Horodecki, R.: Separability of mixed states: necessary and sufficient
+        conditions. Phys. Lett. A 223(1), 1–8 (1996)
+[HK16]  Ha, K.C., Kye, S.H.: Construction of exposed indecomposable positive linear maps between matrix
+        algebras. Linear Multilinear Algebra 64(11), 2188–2198 (2016)
+[HN09]  Helton, J.W., Nie, J.: Sufficient and necessary conditions for semidefinite representability of convex
+        hulls and sets. SIAM J. Optim. 20(2), 759–791 (2009)
+The Set of Separable States                                                                           1335
+
+
+[HP16]     Hà, H.V., Pham, T.S.: Genericity in Polynomial Optimization, vol. 3. World Scientific, Singapore
+           (2016)
+[Nem06]    Nemirovski, A.: Advances in convex optimization: conic programming. In: Proceedings of the
+           International Congress of Mathematicians (ICM 2006) (2006)
+[NPS10]    Netzer, T., Plaumann, D., Schweighofer, M.: Exposed faces of semidefinitely representable sets.
+           SIAM J. Optim. 20(4), 1944–1955 (2010)
+[Per96]    Peres, A.: Separability criterion for density matrices. Phys. Rev. Lett. 77(8), 1413 (1996)
+[RG95]     Ramana, M., Goldman, A.J.: Some geometric results in semidefinite programming. J. Glob. Optim.
+           7(1), 33–50 (1995)
+[Sch18]    Scheiderer, C.: Spectrahedral shadows. SIAM J. Appl. Algebra Geom. 2(1), 26–44 (2018)
+[Sko16]    Skowronek, L.: There is no direct generalization of positive partial transpose criterion to the
+           three-by-three case. J. Math. Phys. 57(11), 112201 (2016)
+[Wor76]    Stanislaw, L.W.: Positive maps of low dimensional matrix algebras. Rep. Math. Phys. 10(2), 165–
+           183 (1976)
+
+Communicated by H-T. Yau
+

@@ -1,0 +1,559 @@
+                                                                                                                                                                                1
+
+
+
+
+                                                                  The Capacity of the
+                                                            Quantum Multiple Access Channel
+                                                                                                Andreas Winter
+
+                                         Abstract— We define classical–quantum multiway channels                The outline of the paper is as follows: in section II the
+                                      for transmission of classical information, after recent work           basic definitions are stated, in particular quantum multi-
+                                      by Allahverdyan and Saakian. Bounds on the capacity re-
+                                      gion are derived in a uniform way, which are analogous to              way channels are formally introduced. Section III reviews
+                                      the classically known ones, simply replacing Shannon en-               notation and facts about quantum information quantities
+                                      tropy with von Neumann entropy. For the single receiver                we shall need. In the following section IV we prove the
+
+
+
+
+arXiv:quant-ph/9807019v3 1 Feb 2001
+                                      case (multiple access channel) the exact capacity region is
+                                      determined. These results are applied to the case of noisy
+                                                                                                             outer bounds for the capacity region. Sections V contains
+                                      channels, with arbitrary input signal states.                          a central result on the state disturbance of a measurement
+                                         A second issue of this work is the presentation of a cal-           with high success probability. In section VI this result is
+                                      culus of quantum information quantities, based on the alge-            used to prove the direct coding theorem for the quantum
+                                      braic formulation of quantum theory.
+                                                                                                             multiple access channel. In the last section VII we com-
+                                        Keywords— quantum channel, multiway channel, coding,                 ment on the quantum–quantum multiway channel which
+                                      capacity.
+                                                                                                             may be fed with arbitrary input states.
+                                                                                                                The results of the present work are part of the au-
+                                                             I. Introduction                                 thor’s Ph.D. thesis [17], mainly chapter III (with alterna-
+                                         Classical multiway channels were already studied by                 tive proofs), and appendix A.
+                                      Shannon [16]. Ahlswede [1], [2] first determined the ca-                          II. Quantum Multiway Channels
+                                      pacity region of the channel with s senders and r receivers,
+                                      where all senders want to transmit independent messages,                  This is the simplest situation of multi–user communica-
+                                      which all receivers should get. For a good overview on mul-            tion in general: consider s independent senders, sender i
+                                      tiuser communication theory in general consult [6], or the             using a (finite) alphabet Xi , say with an a priori probabil-
+                                      textbook [5].                                                          ity distribution Pi . This alphabet serves as a set of tags
+                                         In the present paper we define the corresponding quan-              of different actions each user may take, such that a signal
+                                      tum channel (after Allahverdyan and Saakian [3]), extend-              appears in the output system, composed of the effects of
+                                      ing the definition of a classical–quantum channel (see [8]).           these s independent choices, and the channel noise. To the
+                                      Our motivation is twofold: in the first place, it is a very            output system the r receivers have partial access, and their
+                                      common situation that many users want to communicate                   task is to each reconstruct the s messages the senders chose
+                                      via the same transmission system, and all real systems                 to send. This is to be achieved by block–coding and via a
+                                      should be described by quantum mechanics. Then, sec-                   previously agreed coding/decoding scheme.
+                                      ondly, we feel that it helps understanding quantum com-                   Formally, this model is captured as follows: the channel
+                                      munication if we try to solve questions known in a clas-               is simply a map
+                                      sical context for quantum channels. This the more, as for
+                                      Holevo’s results on quantum channels (coding theorem and                                 W : X1 × · · · × Xs → S(Y)
+                                      information bound) not only the question and its answer,
+                                                                                                             from the input alphabets into the set S(Y) of states of
+                                      but even the method of solution is rather close to classically
+                                                                                                             the (finite dimensional) C∗ –algebra Y, mapping the input
+                                      well known mathematics (see [18]), and we should find out
+                                                                                                             (x1 , . . . , xs ) to the output state Wx1 ...xs . Without loss of
+                                      whether this similarity extends further.
+                                                                                                             generality we may assume that Y = L(H) is the full oper-
+                                         The results of the present work are: we bound the ca-               ator algebra of the finite dimensional Hilbert space H, and
+                                      pacity region, the actual bounds being obtainable from the             we shall assume that the Wx1 ...xs are density operators on
+                                      classical case by formally replacing Shannon entropy by                H.1
+                                      von Neumann entropy in the expressions, thus following a
+                                                                                                                However, to express the theory in this algebraic manner
+                                      general principle or feeling in physics. The central result
+                                                                                                             has its merits, as we shall see:
+                                      is a proof of the direct coding theorem for the multiple ac-
+                                                                                                                The output state (generally mixed) is accessed by sev-
+                                      cess channel (one receiver: r = 1), using the technique of
+                                                                                                             eral receicers. These are represented by commuting ∗–
+                                      Holevo [9] and Schumacher/Westmoreland [15], which was
+                                                                                                             subalgebras Yj (j = 1, . . . , r) of Y: the meaning is that
+                                      designed to solve the single–sender case.
+                                                                                                             receiver j may use any measurement (POVM) whose ele-
+                                        The author is with Fakultät für Mathematik, Universität Biele-    ments belong to Yj . The commutativity ensures that these
+                                      feld, Postfach 100131, 33501 Bielefeld, Germany. Electronic address:   measurements can be performed together. The typical case
+                                      winter@mathematik.uni-bielefeld.de. Research supported by the
+                                      Deutsche Forschungsgemeinschaft via SFB 343 “Diskrete Strukturen        1 In the general case we may make use of the fact that the states of
+                                      in der Mathematik”.                                                    Y are uniquely described by density operators inside Y.
+2
+
+
+of this situation is that Y = Y1 ⊗ · · · ⊗ Yr , where we                     (Here J c denotes the complement [s] \ J of J in [s]). Note
+identify Yj with the subalgebra 1⊗(j−1) ⊗ Yj ⊗ 1⊗(r−j) of                    that
+Y. By linear extension we may view W as a completely                                         X                    O
+positive, trace preserving map from X1 ⊗ · · · ⊗ Xs to Y,                     Tr X(J c ) γ =       PJ (xi |i ∈ J)   xi ⊗(PJ c W )(xi |i∈J) .
+where Xi = CXi is the commutative algebra of C–valued                                      ∀i∈J: xi ∈Xi                 i∈J
+
+functions on Xi , whose elements we identify with their in-                  Transmission is now by using codes on n–blocks:
+dicator functions.2 If all the Wx1 ...xs commute with each                      An n–block–code is a collection (f1 , . . . , fs , D1 , . . . , Dr )
+other (hence have a common diagonalization) the channel                      of maps fi : Mi → Xin (where Mi is the set of messages of
+is called quasi–classical, and classical if Y is a commutative               sender i) and decoding observables (POVMs) Dj ⊂ Y⊗n                j ,
+algebra.                                                                     indexed by M1 × · · · × Ms , i.e.:
+   It should be stressed that all this can be embedded into
+standard quantum theory by identifying all algebras in                                  Dj = {Djµ ∈ Yj : µ ∈ M1 × · · · × Ms },
+question with operator algebras in some sufficiently large
+Hilbert space, e.g. a commutative algebra with a set of di-                  such that                           X
+agonal matrices. To get more familiar with this formalism                                         Djµ ≥ 0,            Djµ = 1.
+the reader might consult a book like [12].                                                                        µ
+
+   For fixed a priori distributions define the channel state                 There are r (average) error probabilities of the code, the
+           X                                                                 probability that the receiver j guesses incorrectly any one
+    γ=               P1 (x1 ) · · · Ps (xs )x1 ⊗ · · · ⊗ xs ⊗ Wx1 ...xs      of the sent words, taken over the uniform distribution on
+         ∀i xi ∈Xi                                                           the message sets:
+
+on X1 ⊗ · · · ⊗ Xs ⊗ Y. This serves as the quantum analogue                  ēj (f1 , . . . , fs , Dj ) =
+of the joint distribution of the random variables represent-                                    1          X                                 
+                                                                                 1−                          Tr Wfn(m1 )...f (ms ) Dj,m1 ...ms .
+ing input and output letters in the classical case. It may                            |M1 | · · · |Ms |
+                                                                                                     ∀i:mi ∈Mi
+be interpreted as the joint state of the system after the
+channel usage, where the senders kept a record of their
+individual letters (this is possible because they input clas-                We call (f1 , . . . , fs , D1 , . . . , Dr ) an (n, ǭ)–code if all error
+sical information, reflected in the classical nature of their                probabilities ēj (f1 , . . . , fs , Dj ) do not exceed ǭ.
+systems).                                                                       The rates of the code are the Ri = n1 log |Mi |. A tuple
+    Note the 1–1–correspondence between states γ on X1 ⊗                     (R1 , . . . , Rs ) is said to be achievable, if for any ǭ, δ > 0
+· · · ⊗ Xs ⊗ Y and pairs (P, W ) of channels W and probabil-                 there exists for any large enough n an (n, ǭ)–code with i–
+ity distributions P on X1 × · · ·× Xs . This is a feature of our             th rate at least Ri − δ. The set of all achievable tuples
+model, which relies on the commutativity of the Xi (com-                     (which is clearly closed) is called the capacity region of the
+pare [13] for the difficulties encountered in more general                   channel, and to determine this region is the problem to be
+situations).                                                                 addressed here.
+    We will employ block coding on the discrete memoryless                      Some observations should be made: first, the capac-
+channel generated by W : for sequences xn1 , . . . , xns , xni =             ity region is convex, by the time sharing principle: let
+xi1 . . . xin ∈ Xin , the n–block channel                                    (R1 , . . . , Rs ) and (R1′ , . . . , Rs′ ) be rate tuples of m– and
+                                                                             n–block codes, respectively, with error probability ǭ each.
+                W n : X1n × · · · × Xsn → S(Y⊗n )                            By concatenating the codewords to (m + n)–blocks, and
+                                                                             tensoring the corresponding decoding observables, we get
+is defined by                                                                an (m + n)–block code with error probability at most 2ǭ,
+                                                                                                    m              n
+                                                                             and with rates m+n         Ri + m+n      Ri′ .
+Wxnn1 ...xns = Wx11 x21 ...xs1 ⊗Wx12 x22 ...xs2 ⊗· · ·⊗Wx1n x2n ...xsn .        Second, note that in the multi–user situation not a sin-
+                                                                             gle number describes the performance of the channel (as
+We now introduce some notation to describe the channel                       with capacity in the single–sender case). Instead, only with
+as seen by a subset of senders, while the others enter only                  given behaviour of the other senders the channel gets a
+stochastically:                                                              specific capacity for a particular sender. Intuitively, this
+                                               N
+   For a J ⊂ [s] Q= {1, . . . , s} denote PJ =Q i∈J Pi , i.e.                is because the others’ (unknown!) actions may be seen as
+               = i∈J Pi (xi ), and X (J) = i∈J Xi (simi-
+PJ (xi |i ∈ J) N                                                             additional noise (a phenomenon known as “interference” in
+larly X(J) = i∈J Xi ).                                                       classical multi–user channels).
+   Define the reduced channel PJ c W : X (J) → S(Y) by
+                                                                             III. Information Quantities in Quantum Systems
+                                 X
+                                                             c
+    (PJ c W )(xi |i∈J) =                      PJ c (xi |i ∈ J )Wx1 ...xs .     In this section we introduce some notation in which we
+                            ∀i∈J c : xi ∈Xi                                  express our results. From [17], appendix A, we use the
+  2 Since all algebras here are finite dimensional we do not care about
+                                                                             definitions of various information quantities for observables
+the topological distictions necessary in general, between linear spaces      and ∗–subalgebras, which we review for the sake of self–
+and their duals, between maps and their adjoints.                            containedness:
+                                                                                                                                              3
+
+
+  Let A be a C∗ –algebra, and ρ a state on it. For a ∗–          with the von Neumann entropy H: so this is the familiar
+subalgebra B we want to define the entropy of ρ with re-         writing of a conditional as an average of entropies.
+spect to this subalgebra (we shall stress the dependence on        There are a number of important relations between all
+B, as ρ is supposed to be fixed). To this end let us consider    these quantities, of which we shall make use of two:
+the restriction σ = ρ|B of ρ to B, and define                      Lemma 1: Let Vk : Ak → S(Zk ) (k = 1, 2) be two chan-
+                                                                 nels, and Q a probability distribution on A1 ×A2 . Forming
+             H(B) = Hρ (B) = −Tr (σ log σ).                      the channel state
+Here Tr is the unique trace on B (i.e. a positive C–linear                     X
+functional on B, with the properties Tr AB = Tr BA and                 γ=              Q(a1 , a2 )a1 ⊗ V1,a1 ⊗ a2 ⊗ V2,a2 ,
+                                                                              ak ∈Ak :k=1,2
+Tr A∗ = Tr A), that assigns 1 to all minimal idempotents
+of B. An important example is the usual trace of L(H),
+                                                                 we have the following subadditivity relation:
+in which case the formula gives the familiar von Neumann
+entropy of the state.                                                 I(CA1 CA2 ∧ Z1 Z2 ) ≤ I(CA1 ∧ Z1 ) + I(CA2 ∧ Z2 ).
+  Motivated by identities for classical Shannon entropy
+                                                                       Proof: This is well known for classical channels, and
+we may now define, for (elementwise) commuting ∗–
+                                                                 the proof in our case runs exactly the same. Compare [17],
+subalgebras B and C: the conditional entropy
+                                                                 theorem A.17.
+                H(B|C) = H(BC) − H(C),                              Lemma 2 (Fano inequality) Let X, Y be commuting al-
+                                                                 gebras, and X be commutative. For a state ρ on XY con-
+and the mutual information                                       sider POVMs X ⊂ X, Y ⊂ Y, running over the same index
+           I(B ∧ C) = H(B) + H(C) − H(BC)                        set.
+                                                                    Then the probability of the event “X 6= Y ”, i.e.
+                    = H(B) − H(B|C).
+                                                                                                     X
+The condition that the algebras commute is crucial here:                              Pe = 1 −           Tr (ρXj Yj ),
+it ensures that all observables in B are coexistent with all                                         j
+
+observables in C, and also, that the product BC is indeed
+the algebra generated by B and C. Of course, these defi-         satisfies
+nitions are only formally derived from well known classical                     H(X|Y) ≤ 1 + Pe log Tr 1X .
+formulas, and there is no reason to expect that they are              Proof: See [17], corollary A.25. Observe that the
+meaningful (which indeed they are only to a limited de-          statement of the lemma is a way of expressing the Holevo
+gree: see the discussions in [4], and in [11]). Anyhow, for      bound [7].
+our purposes they make sufficient sense.
+   If D is a third ∗–subalgebra, commuting with both B and                       IV. Upper Capacity Bounds
+C, we may finally define the conditional mutual information         The following theorem (which we call the weak converse
+                                                                 because of theorem 9 and note 4) was, in the case r = 1
+  I(B ∧ C|D) = H(B|D) + H(C|D) − H(BC|D)
+                                                                 and s = 2, stated in [3].
+             = H(BD) + H(CD) − H(BCD) − H(D).                       Theorem 3 (Weak converse) The capacity region of the
+                                                                 quantum multiway channel is contained in the closure of
+                                                                 all nonnegative (R1 , . . . , Rs ) satisfying for all J ⊂ [s] and
+We note, that the conditional mutual information is posi-
+                                                                 j ∈ [r]
+tive, by the strong subadditivity of von Neumann entropy
+(see [17], theorem A.9).                                                           X             X
+   In all the above expressions we supressed the dependence             R(J) =            Ri ≤       qu Iγu (X(J) ∧ Yj |X(J c ))
+                                                                                    i∈J          u
+on the underlying state ρ. In cases of possible ambiguity it
+is added as a subscript.                                                                                    P
+                                                                 for channel states γu and qu ≥ 0, u qu = 1.
+   With these definitions we have the (easily checked) iden-
+                                                                      Proof:     Let (f1 , . . . , fs , D1 , . . . , Dr ) be any (n, ǭ)–
+tities for the system introduced in section II, with the chan-
+                                                                 code with rate tuple (R1 , . . . , Rs ). Then the uniform dis-
+nel state γ:
+                                                                 tribution on the codewords induces a channel state γ on
+   I(X(J) ∧ Y|X(J c )) = I(X(J) ∧ YX(J c ))                      (X1 · · · Xs Y)⊗n :
+                       = H(Y|X(J c )) − H(Y|X1 · · · Xs )                     1               X          O
+                       = H(PJ W |PJ c ) − H(W |P[s] ),           γ=                                          fi (mi ) ⊗ Wfn1 (m1 )...fs (ms ) .
+                                                                       |M1 | · · · |Ms |
+                                                                                           ∀i: mi ∈Mi    i
+where in the last line an alternative notation is used:
+   For a channel V : A → S(Z) and a probability distribu-        Its restriction to the u–th copy in this tensor power will
+tion Q on A let                                                  be denoted γu . Let j ∈ [r], J ⊂ [s]: by Fano inequality
+                            X                                    (lemma 2) we have
+                H(V |Q) =       Q(a)H(Va ),
+                            a∈A                                              H(X⊗n (J)|Y⊗n
+                                                                                        j X
+                                                                                            ⊗n
+                                                                                               (J c )) ≤ 1 + ǭ · nR(J).
+4
+
+
+With                                                                     The quantum operation ∆ : S(A) → S(CB ⊗ A) with
+    H(X   ⊗n
+               (J)|Y⊗n  ⊗n
+                           (J c ))                                                             X     p    p
+                    j X                                                               ∆ : ρ 7→    b ⊗ Db ρ Db
+                   = H(X ⊗n
+                             (J)) − I(X⊗n (J) ∧ Y⊗n
+                                                 j X
+                                                     ⊗n
+                                                        (J c ))                                      b∈B
+
+                   = nR(J) − I(X      ⊗n
+                                           (J) ∧ Y⊗n
+                                                  j X
+                                                      ⊗n
+                                                         (J c ))         has the property that
+                                                                                                                     √
+                                                                                ∀a ∈ A       kϕ(a) ⊗ ρa − ∆(ρa )k1 ≤ 8ǫ + ǫ.
+we conclude now                                                               Proof: It suffices to prove the second statement since
+                      1  1                                               the first inequality is obtained from it by a partial trace
+    (1 − ǭ)R(J) ≤      + Iγ (X⊗n (J) ∧ Y⊗n
+                                         j X
+                                              ⊗n
+                                                 (J c ))
+                      n n                                                which does not increase k · k1 :
+                            n
+                      1  1X                                                                                 q         q
+                     ≤ +       Iγ (X(J) ∧ Yj X(J c )),                     kϕ(a) ⊗ ρa − ∆(ρa )k1 ≤ ρa − Dϕ(a) ρa Dϕ(a)
+                      n n u=1 u                                                                                                1
+                                                                                                              X p          p
+using lemma 1 (subadditivity of mutual information).                                                      +       k D b ρa D b k 1
+   Remark 4: For classical channels the region described in                                                   b6=ϕ(a)
+                                                                                                           q        q
+the theorem is the exact capacity region (i.e. all the rates                                         = ρa − Dϕ(a) ρa Dϕ(a)
+there are achievable), as was first proved by Ahlswede [1],                                                 X
+                                                                                                                            1
+[2]. This fact is our reason to call it the weak converse, as                                             +     Tr (ρa Db )
+it describes the best outer bounds of (n, ǭ)–code rates for                                                  b6=ϕ(a)
+n → ∞ and ǭ → 0.                                                                                     q
+   To prove that for multiple access channels (r = 1) this                                           ≤ 8(1 − Tr (ρa Dϕ(a) ))
+holds, too, is the object of the rest of the paper, though we                                             + (1 − Tr (ρa Dϕ(a) ))
+conjecture it to be true in general.                                                                  √
+   Remark 5: The numerical computation of the above re-                                              ≤ 8ǫ + ǫ,
+gions is not yet possible from the given description: we
+need a bound on the number of different single–letter chan-
+nel states one has to consider in the convex combinations.               using triangle inequality and lemma 6.
+For the multiple access channel (r = 1) this is easy: by                   Lemma 8 (Average version) With the same definitions
+Caratheodory’s theorem s will suffice. For general r it is               as in lemma 7, only replacing equation (1) with
+possible to show that r(2s − 1) are sufficient (cf. [5]).                             X                            
+                                                                                           P (a) 1 − Tr (ρa Dϕ(a) ) ≤ ǭ,  (2)
+      V. Measurement Error and Disturbance                                             a∈A
+
+  In this section a central result is proved that essentially            for a probability distribution P on A, we have
+states that if a POVM serves to indentify the states of                              X                         √
+an ensemble with high probability, then it may be imple-                                  P (a)kρa − δ(ρa )k1 ≤ 8ǭ + ǭ
+mented as an operation that disturbes the ensemble states                              a∈A
+very little.
+  Lemma 6: Let ρ be a state, and X a positive operator                   and
+with X ≤ 1 and 1 − Tr (ρX) ≤ ǫ < 1. Then                                         X                                      √
+                                                                                       P (a)kϕ(a) ⊗ ρa − ∆(ρa )k1 ≤      8ǭ + ǭ.
+                       √ √             √
+                  kρ − Xρ Xk1 ≤ 8ǫ,                                              a∈A
+                                                                             Proof: Again, we have only to prove the second state-
+with the trace norm kXk1 = Tr |X|.                                       ment. Introducing ǫa = 1 − Tr (ρa Dϕ(a) ) we have, like in
+     Proof: See [18], lemma V.9.                                         the previous proof,
+  Lemma 7 (Tender measurement) Let ρa (a ∈ A) be a                                                          √
+set of states on A, and D an observable indexed by B. Let                           kϕ(a) ⊗ ρa − ∆(ρa )k1 ≤ 8ǫa + ǫa .
+further ϕ : A → B be any map and ǫ > 0 such that
+                                                                         Forming the average of the left hand√ side under the dis-
+                   ∀a ∈ A      1 − Tr (ρa Dϕ(a) ) ≤ ǫ              (1)   tribution P , and using concavity of 8x + x the assertion
+                                                                         follows.
+(i.e. the observable recognizes ϕ(a) from ρa with max-
+imal error probability ǫ). Then the quantum operation                    VI. Quantum Multiple Access Channel: Coding
+δ : S(A) → S(A) defined by                                                 Throughout this section we will assume r = 1 and else
+                          Xp       p                                     notation as before.
+                 δ : ρ 7→      Db ρ Db                                     Theorem 9: Let R1 , . . . , Rs be nonnegative, satisfying
+                                b∈B
+                                                                         for some a priori distributions Pi on the Xi the constraints
+disturbes the states ρa only a little:                                                         X
+                                                   √                             ∀J ⊂ [s]          Ri ≤ I (X(J) ∧ Y|X(J c )) .
+                ∀a ∈ A       kρa − δ(ρa )k1 ≤       8ǫ + ǫ.                                    i∈J
+                                                                                                                                                              5
+
+
+Then for every ǭ, δ > 0 and all sufficiently large n there are                 averaged over the choice of Ci , is at most ǫ/s for large
+(n, ǭ)–codes with rates n1 log |Mi | ≥ Ri − δ.                                 enough n:
+      Proof: It is sufficient by the time sharing principle                                      hēV n (Ci , Di )iCi ≤ ǫ/s
+to prove the assertion only for the upper extremal points
+                                                                                (where we identified the set of messages with Ci ). This is
+of the region described, and by symmetry we may assume
+                                                                                because I(Pi ; V ) = I(Xi ∧ YX1 · · · Xi−1 ) = Ri . (Recall the
+(for i = 1, . . . , s) that
+                                                                                approach of [9] and [15]: a random code — drawn according
+   Ri = I(Xi ∧ YX1 · · · Xi−1 )                                                 to Pi⊗n — is chosen with rate slightly below I(Pi ; V ), and
+      = H(Y|X1 · · · Xi−1 ) − H(Y|X1 · · · Xi )                                 a decoding POVM constructed which forces the expected
+                                                                                average error probability small. Then it is concluded that
+      = H(P{>i−1} W |P{≤i−1} ) − H(P{>i} W |P{≤i} ).                            a code with this small error probability actually exists).
+That these are indeed the upper extreme points is proved                          We note that by the construction from [9] and [15] it is
+in the appendix.                                                                assured that
+   The idea of the following construction is to first decode
+the message m1 from sender 1, using only the incoming                                                 Di,cni ∈ (X1 · · · Xi−1 Y)⊗n ,
+signal. Then decode the message m2 from sender 2, using                         for all cni ∈ Ci . It is easlity seen that we may assume
+m1 and the incoming signal (which is almost undisturbed                         this w.l.o.g., for wherever the Di comes from: the Vcnni are
+by the tender measurement lemma). Iterate, until you de-                        density operators on some Hilber space H, such that
+code message ms from sender s, using m1 , . . . , ms−1 and
+the still almost unchanged incoming signal.                                                       Vcnni ∈ (X1 · · · Xi−1 Y)⊗n ⊂ L(H).
+   Let ǫ, δ > 0, and consider s families of codewords Ci ⊂
+Xin of size Li = |Ci | = ⌈2n(Ri −δ) ⌉, drawn independently                      Denoting this subset embedding by E, we have
+from Xin according to the a priori distribution Pi⊗n .
+   Fix i for the moment and define the following channel:                         Tr (Vcnni Di,cni ) = Tr (E(Vcnni )Di,cni ) = Tr (Vcnni E ∗ (Di,cni )),
+for xni ∈ Xin                                                                   with the adjoint map E ∗ . I.e. the decoding error probabil-
+                (i)
+ρ(i) : xni 7→ ρxni =                                                            ities do not change if we replace the Di,cni by E ∗ (Di,cni ) ∈
+                                                                              (X1 · · · Xi−1 Y)⊗n .
+               1                     X        O                                    Now we confront the decoder Di with the signal ρ, ob-
+                                               cnj ⊗ Wcnn ...xn ...cn         taining an average error probability
+   L1 · · · Li−1 Li+1 · · · Ls                                  1    i    s
+                                 ∀j6=i: cn
+                                         j ∈Cj
+                                                  j<i
+                                                                                                                          1 X
+                                                                                       ēi = ēρ(i) (Ci , Di ) = 1 −           Tr (ρcni Di,cni ).
+                                                                                                                          Li n
+                                                                                                                              ci ∈Ci
+(we denote these word states by ρ(i) , in contrast to the
+letter states W ). Note that this is the channel belonging                      Obviously the code average over choice of Cj , j 6= i is
+to the channel state γ from the proof of theorem 3, reduced                     exactly ēV n (Ci , Di ), so by the previous argument
+to (X1 · · · Xi−1 Y)⊗n .
+                           (i)
+   The average of ρxni over the choice of C1 , . . . , Ci−1 ,                                          hē1 + . . . + ēs iC1 ...Cs ≤ ǫ.
+Ci+1 , . . . , Cs is indeed a product state:                                    This means that there actually exist codebooks C1 , . . . , Cs
+   (i)
+                       X                            O                           with all the ēi ≤ ǫ. Now consider the corresponding op-
+ hρxni iCi :i6=j =             P{6=i} (xnj |j 6= i)   xnj ⊗ Wxnn1 ...xns
+                                                                                erations ∆i of the observables Di , from lemma 7. By the
+                 ∀j6=i: xn   n
+                         j ∈Xj
+                                                        j<i
+            X                              O                                    average tender measurement lemma 8 we find for each i:
+    =                 P{<i} (xnj |j < i)          xnj ⊗ (P{>i} W )nxn1 ...xni                                                                      
+       ∀j<i: xn   n
+              j ∈Xj
+                                           j<i                                      1        X       O                         O
+                                                                                                         cnj ⊗Wcnn1 ...cns −∆i    cnj ⊗Wcnn1 ...cns
+    = Vxnni ,                                                                   L1 · · ·Ls
+                                                                                           ∀j:cn
+                                                                                               j ∈Cj j≤i                       j<i
+                                                                                                                                                      1
+                                                                                             √
+                                                                                          ≤ 8ǫ + ǫ.
+with
+            X                              O
+ Vxi =                P{<i} (xj |j < i)           xj ⊗ (P{>i} W )x1 ...xi .     Their concatenation ∆ = ∆s ◦ · · · ◦ ∆1 will be the decoder
+        ∀j<i: xj ∈Xj                       j<i
+                                                                                process: it satisfies
+In [9] and [15] a construction of a decoding observable for
+                                                                                                  X         s
+                                                                                                            O
+the channel V and set Ci of codewords is described,3 which                            1
+                                                                                                                  cnj ⊗ Wcnn1 ...cns − ∆(Wcnn1 ...cns )
+has the property that it’s average error probability                              L1 · · · Ls
+                                                                                                ∀j:cn
+                                                                                                    j ∈Cj
+                                                                                                            j=1
+                                                                                                                                                          1
+                                 1 X                                                         √
+         ēV n (Ci , Di ) = 1 −         Tr (Vcnni Di,cni ),                              ≤ s( 8ǫ + ǫ),
+                                |Ci | n
+                                         ci ∈Ci
+                                                                                                                                                     √
+ 3 Observe that in this way D
+                                   i will be independent from the other
+                                                                                since each step introduces a deviation of at most                     8ǫ + ǫ,
+codes and their decoding observables!                                           and does not increase trace norm.
+6
+
+
+  Now, discarding the signal itself (i.e tracing out Y⊗n ),                  see that these bounds can be approached — at least for the
+we arrive at e
+             ∆ = Tr Y⊗n ◦ ∆, which satisfies                                 multiple access channel.
+                                                                                We have thus obtained the capacity region R(1) in the
+        1           X         s
+                              O                                  √           1–separable case, i.e. for input states that are separable
+                                          e
+                                    cnj − ∆(W n
+                                                    n)       ≤ s( 8ǫ + ǫ).   (it is easy to see that best performance in this case is for
+                                             cn
+                                              1 ...cs
+    L1 · · · Ls
+                  ∀j:cn
+                      j ∈Cj
+                              j=1
+                                                         1                   product states). Of course we could allow the sender to use
+                                                                             blocks of states which entangle at most ν systems, getting
+                                                                             a possibly larger region R(ν) . This is because now the
+This means, that ∆        e is a quantum operation with classical            subadditivity of the mutual information, used in the upper
+outcomes in C1 × · · · × Cs (hence described by a POVM                       bound in section IV, does not hold any longer. We leave
+D indexed by this set), which recovers rather accurately                     open the question of the ultimate capacity region R =
+                                                                             S
+(cn1 , . . . , cns ) from Wcnn1 ...cns , on average.                           νR
+                                                                                    (ν) (which even for the case s = r = 1 is unsolved):
+
+                                                                             whether it be equal or strictly larger than R(1) .
+  Now we may combine the (weak) converse theorem 3
+and the foregoing direct coding theorem 9 (together with                                         VIII. Conclusion
+the time sharing principle by which the capacity region is
+convex) to obtain                                                               We introduced quantum multiway channel and bounded
+  Theorem 10: The capacity region of the quantum multi-                      its capacity region. In the case of the quantum multiple ac-
+ple access channel is the convex closure of all nonnegative                  cess channel this led to a complete characterization of the
+(R1 , . . . , Rs ) satisfying                                                capacity region, formally identical to the result in the clas-
+                                                                             sical case. This confirms the validity of the principle that
+                            X
+            ∀J ⊂ [s]          Ri ≤ I (X(J) ∧ Y|X(J c ))                      in the theory of classical information transmission over a
+                               i∈J                                           quantum channel capacities are obtained from the classical
+                                                                             formulas by replacing Shannon entropy by von Neumann
+for some input distribution and corresponding channel                        entropy.
+state.                                                                         The next step is of course to prove the direct coding the-
+                                                                             orem in the case of several receivers. It seems that for this
+     VII. Quantum–Quantum Multiway Channels
+                                                                             a refinement of the methods used here or even a different
+  Allahverdyan and Saakian in [3] actually defined quan-                     approach is needed: namely, it is known that it is not suf-
+tum multiway channels in more general form: namely al-                       ficient to achieve rate tuples of the form used in the proof
+lowing in the definition of section II general C∗ –algebras Xi               of theorem 9. Hence the method of sequentially decoding
+(and not only commutative ones as we did). Each sender                       the messages of the different senders has to be abandoned.
+i may then use any set of states on Xi for transmission.
+Formally, let                                                                   A note on the literature: Since the findings of the
+                                                                             present paper (published at that time only as an e–print
+                      ϕ : S(X1 ⊗ · · · ⊗ Xs ) → S(Y)
+                                                                             (quant-ph/9807019)) an article by Huang, Zhang, and
+be any completely positive, trace preserving, linear map,                    Hou [10] on quantum multiple access channels has ap-
+i.e. a quantum operation on states. A code for sender i                      peared, where the 2–sender pure state case of a multiple
+now consists of a map Fi : Mi → S(Xi⊗n ), the decoders                       access channel is treated.
+are still observables in the algebras Yj . This allows for                      In that work a reference to the above statement was
+definition of error probabilities and rates, and hence of the                made concerning the wish for a more direct proof of the
+capacity region, the details of which we leave to the reader.                achievability of the region described in the coding theo-
+   By composition we can view this as a classical–quantum                    rem 10. The authors propose to supply such a proof. How-
+channel on n–blocks:                                                         ever, they too employ the present paper’s method to show
+                                                                             achievability of the “corners” (compare theorem 9), and
+         (m1 , . . . , ms ) 7→ ϕ⊗n (F1 (m1 ) ⊗ · · · ⊗ Fs (ms )).            then invoke the time–sharing principle. As was pointed
+                                                                             out here this method is not adapted to prove the theorem
+If we now make the restriction that in coding the senders                    for multiple receivers: it is still an open problem to find
+have to use product states, i.e.                                             a proof that directly allows to achieve every point of the
+                     Fi (mi ) = Fi,mi ,1 ⊗ · · · ⊗ Fi,mi ,n                  capacity region. We most probably know how to perform
+                                                                             the random code selection, but the analog of the maximum
+with Fi,mi ,k ∈ S(Xi ), we see immediately that the ar-                      likelihood decoder necessary to decode all messages simul-
+gument from section IV applies, and gives a general up-                      taneously still evades us (for detail how this strategy works
+per bound theorem (with the slight difference that now                       in the classical case, see [2]).
+in the formation of the channel states γu instead of the
+states Wf1 (m1 )u ...fs (ms )u there occur the output states                                   Acknowledgements
+ϕ(F1,m1 ,u ⊗ · · · ⊗ Fs,ms ,u )).                                              The author wishes to thank Peter Löber for discussions
+  Conversely: those input states and a distribution on                       on the subject, and Prof. Rudolf Ahlswede for comments
+them being chosen we can apply the coding theorem 9 to                       on the proof of the classical theorem.
+                                                                                                                                              7
+
+
+                           Appendix                                     There the second estimate is again by strong subadditivity,
+                      Extremal points                                   with A1 = X(J2 ), A2 = YX(K c ∩ J2c ), A3 = X(K \ J1 ).
+
+  We shall prove: any upper extremal point of the region                   It follows that if (K ′ ) is met with equality for any K ′ ,
+of non–negative tuples (R1 , . . . , Rs ) which satisfy for all         also (K ′ ∩ K) and (K ′ ∪ K) are met with equality. It is
+J ⊂ [s]                                                                 easily seen that both below and above K there must occur
+                                                                        equalities (except already |K| = 1 or K = [s]).
+                 R(J) ≤ I(X(J) ∧ YX(J c )),                      (J )      It remains to show that (R1 , . . . , Rs ) defined by (3) be-
+for fixed channel state, is one of the (R1 , . . . , Rs ) with          longs to the region. But this is clear by the same argument
+                                                                        as above, used top–down: the conjunction of all (J) with
+            Rπ(i) = I(Xπ(i) ∧ YXπ(1) · · · Xπ(i−1) )                    J ⊂ [s] is implied by the conjunction of all with J ⊂ [s− 1],
+                                                                        this in turn inductively by all with J ⊂ [s − 2] etc.
+for some permutation π of the set [s], and any such tuple
+belongs to this region.                                                                            References
+   Let (R1 , . . . , Rs ) be an upper extremal point, hence s of        [1]  R. Ahlswede, “Multi–way communication channels”, in: Sec-
+the inequalities (for nonempty subsets K1 , . . . , Ks of [s])               ond International Symposium on Information Theory, pp. 23–
+are met with equality. We are done if we can prove that                      52, Hungarian Academy of Sciences 1971.
+                                                                        [2] R. Ahlswede, “The capacity region of a channel with two senders
+these can be chosen to form a strictly increasing chain ∅ 6=                 and two receivers”, Ann. Prob., vol. 2, no. 5, pp. 805–814, 1974.
+K1 ⊂ K2 ⊂ . . . ⊂ Ks = [s], w.l.o.g. Ki = {s, s − 1, . . . , s −        [3] A. E. Allahverdyan, D. B. Saakian, “Accessible information in
+i + 1}, because then                                                         multi–access quantum channels”, in: Quantum computing and
+                                                                             quantum communications (Palm Springs, CA, 1998), pp. 276–
+                                                                             284, LNCS 1509, Springer, Berlin, 1999.
+            Ri = I(Xi · · · Xs ∧ YX1 · · · Xi−1 )                       [4] N. Cerf, C. Adami, “Information theory of quantum entangle-
+                  − I(Xi+1 · · · Xs ∧ YX1 · · · Xi )             (3)         ment and measurement”, Physica D, vol. 120, no. 1–2, pp. 62–81,
+                                                                             1998.
+               = I(Xi ∧ YX1 · · · Xi−1 ).                               [5] I. Csiszár, J. Körner, Information Theory: Coding Theorems for
+                                                                             Discrete Memoryless Systems, Academic Press, New York, 1981.
+Choose any one such set, say K 6= ∅:                                    [6] A. El Gamal, T. Cover, “Multiple User Information Theory”,
+                                                                             Proc. IEEE, vol. 68, pp. 1466–1483, 1980.
+                R(K) = I(X(K) ∧ YX(K c )).                              [7] A. S. Holevo, “Bounds for the quantity of information transmit-
+                                                                             ted by a quantum channel”, Probl. Inf. Transm., vol. 9, no. 3,
+                                                                             pp. 177–183, 1973.
+We would like to employ induction to extend this K in                   [8] A. S. Holevo, “Problems in the mathematical theory of quantum
+both directions to a chain. That we can do so follows from                   communication channels”, Rep. Math. Phys., vol. 12, no. 2, pp.
+                                                                             273–278, 1977.
+                                                                        [9] A. S. Holevo, “The Capacity of the Quantum Channel with Gen-
+  Lemma 11: If R1 , . . . , Rs ≥ 0 are such that with ∅ 6=                   eral Signal States”, IEEE Trans. Inf. Theory, vol. 44, no. 1, 1998,
+K ⊂ [s]: R(K) = I(X(K) ∧ YX(K c )) and (J) holds for all                     269–273.
+J ⊂ K and for all K ⊂ J ⊂ [s]. Then (J) holds for all                   [10] M. Huang, Y. Zhang, G. Hou, “Classical capacity of a quantum
+                                                                             multiple–access channel”, Phys. Rev. A, vol. 62, 052106, 2000.
+J ⊂ [s].                                                                [11] L. B. Levitin, “Quantum Generalization of Conditional Entropy
+    Proof: First let K ⊂ J ⊂ [s]. Then (J), together                         and Information”, in: Quantum computing and quantum com-
+with (K) met with equality, implies                                          munications (Palm Springs, CA, 1998), pp. 269–275, LNCS
+                                                                             1509, Springer, Berlin, 1999.
+       R(J \ K) ≤ H(Y|X(J c )) − H(Y|X(K c ))                           [12] M. Ohya, D. Petz, Quantum Entropy and Its Use, Springer Ver-
+                                                                             lag, Berlin, New York, 1993.
+                ≤ H(Y|X((J \ K)c )) − H(Y|X([s]))                       [13] M. Ohya, “Some aspects of quantum information theory and
+                                                                             their application to irreversible processes”, Rep. Math. Phys.,
+                = I(X(J \ K) ∧ Y|X((J \ K)c )),                              vol. 27, no. 2, pp. 19–47, 1989.
+                                                                        [14] B. Schumacher, “Quantum Coding”, Phys. Rev. A, vol. 51, no.
+which is equation (J \ K). There the second estimate is                      4, pp. 2738–2747, 1995.
+by strong subadditivity applied to A1 = X(J \ K), A2 =                  [15] B. Schumacher, W. Westmoreland, “Sending classical informa-
+                                                                             tion via noisy quantum channels”, Phys. Rev. A, vol. 56, no. 1,
+YX(J c ), A3 = X(K).                                                         pp. 131–138, 1997.
+                                                ˙ 2 with
+  Now let J ⊂ [s] be arbitrary and write J = J1 ∪J                      [16] C. E. Shannon, “Two–way communication channels”, in: Proc.
+J1 = J ∩ K, J2 = J \ K. Then by assumption and the                           Fourth Berkeley Symposium Probability and Statistics (ed. J.
+                                                                             Neyman), Berkeley 1961, pp. 611–644. Reprinted in: Claude El-
+previous                                                                     wood Shannon Collected Papers (eds. N. J. A. Sloane, A. D.
+                                                                             Wyner), New York 1993, pp. 351–384.
+R(J) = R(J1 ) + R(J2 )                                                  [17] A. Winter, Coding Theorems of Quantum Information
+                                                                             Theory, doctoral dissertation, Universität Bielefeld 1999,
+     ≤ H(Y|X(J1c )) − H(Y|X([s]))                                            http://archiv.ub.uni-bielefeld.de/disshabi/mathe.htm.
+         + H(Y|X(J2c ∩ K c )) − H(Y|X(K c ))                                 Also as e–print http://arXiv.org/abs/quant-ph/9907077.
+                                                                        [18] A. Winter “Coding Theorem and Strong Converse for Quantum
+     = H(YX(J1c )) + H(YX(K c ∩ J2c )) − H(YX(K c ))                         Channels”, IEEE Trans. Inf. Theory, vol. 45, no. 7, pp. 2481–
+                                                                             2485, 1999.
+         − H(X((K \ J1 ) ˙∪(K c \ J2 ))) − H(Y|X([s]))
+     ≤ H(YX(J1c ∩ J2c )) − H(X(J1c ∩ J2c )) − H(Y|X([s]))
+     = H(Y|X(J1c ∩ J2c )) − H(Y|X([s]))
+     = I(X(J) ∧ Y|X(J c )).
+

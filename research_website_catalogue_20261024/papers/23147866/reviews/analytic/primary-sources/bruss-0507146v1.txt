@@ -1,0 +1,748 @@
+                                       November 7, 2018 2:11 WSPC/INSTRUCTION FILE                         Pisa-2005
+
+
+
+
+                                                International Journal of Quantum Information
+                                                 c World Scientific Publishing Company
+
+
+
+
+arXiv:quant-ph/0507146v1 15 Jul 2005
+                                                                Dense coding with multipartite quantum states
+
+
+                                                                                          Dagmar Bruß
+                                                     Institut für Theoretische Physik III, Heinrich-Heine-Universität Düsseldorf, D-40225
+                                                                                      Düsseldorf, Germany
+
+                                                                          Maciej Lewenstein∗, Aditi Sen(De), Ujjwal Sen
+                                                 ICFO-Institut de Ciències Fotòniques, Jordi Girona 29, Edifici Nexus II, E-08034 Barcelona,
+                                                                                           Spain, and
+                                                    Institut für Theoretische Physik, Universität Hannover, D-30167 Hannover, Germany
+
+                                                                       Giacomo Mauro D’Ariano and Chiara Macchiavello
+                                                Dipartimento di Fisica “A. Volta” and INFM-Unitá di Pavia, Via Bassi 6, I-27100 Pavia, Italy
+
+
+                                                          We consider generalisations of the dense coding protocol with an arbitrary number
+                                                     of senders and either one or two receivers, sharing a multiparty quantum state, and using
+                                                     a noiseless channel. For the case of a single receiver, the capacity of such information
+                                                     transfer is found exactly. It is shown that the capacity is not enhanced by allowing the
+                                                     senders to perform joint operations. We provide a nontrivial upper bound on the capacity
+                                                     in the case of two receivers. We also give a classification of the set of all multiparty
+                                                     states in terms of their usefulness for dense coding. We provide examples for each of
+                                                     these classes, and discuss some of their properties.
+
+                                                     Keywords: Quantum information theory; quantum dense coding; entanglement
+
+
+
+                                                1. Introduction
+                                                Entanglement among quantum systems can be used to perform tasks that are not
+                                                possible with classical states. Phenomena where entanglement plays a crucial role
+                                                include e.g. teleportation 1 and dense coding 2 . In the dense coding protocol, en-
+                                                tangled quantum states are used to send classical information from a sender (say,
+                                                Alice) to a receiver (say, Bob). Suppose that Alice wants to send two bits of classical
+                                                information to Bob. Then the Holevo bound, to be discussed later, shows that Alice
+                                                must send two qubits (two-dimensional quantum states) to Bob, if only a noiseless
+                                                quantum channel is available. However, if Alice and Bob have previously shared
+                                                entanglement, then Alice may have to send less than two qubits to Bob. It was
+                                                shown by Bennett and Wiesner 2 , that by using a previously shared singlet, Alice
+                                                will be able to send two bits to Bob, by transmitting just a single qubit.
+                                                    To consider a realistic scenario, two avenues are usually taken. One approach is
+
+                                                ∗ Also at Institució Catalana de Recerca i Estudis Avançats.
+
+
+
+                                                                                                 1
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                    Pisa-2005
+
+
+
+
+       2   Dagmar Bruß et al.
+
+
+       to consider a noisy quantum channel, where the additional resource is an arbitrary
+       amount of shared bipartite pure state entanglement (see e.g. 3,4,5,6 ). This is the
+       scenario of the so-called entanglement assisted capacity, which refers to a property
+       of the channel. The other approach is to consider a noiseless quantum channel, while
+       the assistance is by a given bipartite mixed entangled state (see e.g. 5,6,7,8,9,10 ). In
+       this second case the capacity refers to a feature of the state. In this paper, we
+       consider the second approach, in the general situation of several senders and one
+       or two receivers. Therefore the senders and the receiver(s) share a given multiparty
+       state. The senders (called Alices, and named as A1 , A2 , · · · , AN ) want to send
+       classical information to the receivers (Bobs, B1 and B2 ), where the information
+       of one Alice can be different from that of another. All the parties that take part
+       in the protocol are at distant locations. Consequently, both the encoding of the
+       information by the Alices, and the decoding of it by the Bobs, must be by local
+       operations. Additionally, the Alices can communicate between themselves over a
+       classical channel, and likewise the Bobs can do so between themselves. Classical
+       communication is of course not allowed between the senders and the receivers.
+           We considered this scenario in Ref. 11 , and named it “distributed quantum
+       dense coding”. In this paper, we further discuss the bounds on the capacity of
+       dense coding in this scenario, for a given state, where the capacity is defined as
+       the number of classical bits that can be accessed by the receivers, per use of the
+       noiseless channel. Also, we give a classification of multipartite states according to
+       their degree of ability to assist in distributed dense coding.
+           The paper is organized as follows. In Section 2 we discuss the Holevo bound,
+       which is a crucial element in finding the capacity of dense coding for the case of
+       a single receiver. In Section 3, we consider the case of dense coding with a single
+       sender and a single receiver. In Section 4, we take up the case of many senders
+       but a single receiver, and find the capacity in this scenario. We show that the
+       capacity is not enhanced by allowing the senders to perform joint operations. To
+       consider the case of many receivers, we must obtain a Holevo-like upper bound
+       on classical information that can be decoded from multiparty quantum ensembles.
+       Such a bound, derived in Ref. 13 for bipartite ensembles, is discussed in Section
+       5. In Sec. 6 we obtain an upper bound of dense coding schemes for an arbitrary
+       number of senders and two receivers (a bound for multiparty ensembles is currently
+       absent 14 ). In Sec. 7, we will discuss a classification of multiparty states according
+       to their degree of usefulness in dense coding protocols and give some examples. In
+       Sec. 8 we will summarize our results and discuss some related open problems.
+
+
+       2. The Holevo bound
+       The Holevo bound is an upper bound on the amount of classical information that
+       can be accessed from a quantum ensemble in which the information is encoded.
+       Suppose that Alice (A) has the classical message i that occurs with probability
+       pi . Alice encodes this information i in a quantum state ρi , and sends it to Bob.
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                     Pisa-2005
+
+
+
+
+                                                    Dense coding with multipartite quantum states     3
+
+
+         Bob receives the ensemble {pi , ρi }, and wants to obtain as much information as
+         possible about i. To do so, he performs a measurement, that gives the result m with
+         probability qm . Let the corresponding post-measurement ensemble be {pi|m , ρi|m }.
+         The information gathered can be quantified by the mutual information between the
+         message index i and the measurement outcome 15 :
+                                                      X
+                                I(i : m) = H({pi }) −   qm H({pi|m }).                   (1)
+                                                          m
+                                P
+             Here H({rx }) = − x rx log2 rx is the Shannon entropy of the probability dis-
+         tribution {rx }. Bob will be interested to obtain the maximal information, which
+         is maximum of I(i : m) for all measurement strategies. This quantity is called the
+         accessible information:
+
+                                            Iacc = max I(i : m),                                    (2)
+
+         where the maximization is performed over all measurement strategies.
+              The maximization involved in the definition of accessible information is usually
+         hard to compute, and hence the importance of bounds 12,16 . In particular, in Ref.
+         12
+            , a universal upper bound on Iacc , the Holevo bound, is given (see also 17,13,18 )
+                                                                       X
+                            Iacc ({pi , ρi }) ≤ χ({pi , ρi }) ≡ S(ρ) −   pi S(ρi ).         (3)
+                                                                      i
+                    P
+         Here ρ =      i pi ρi is the average ensemble state, and S(ς) = −tr(ς log2 ς) is the
+         von Neumann entropy of ς. The Holevo bound is asymptotically achievable in the
+         sense that if the sender is able to send long strings of the input quantum states ρi ,
+         then there exists a particular encoding and a decoding scheme that asymptotically
+         attains the bound 19 .
+
+
+         3. Capacity of dense coding with one sender and one receiver
+         Suppose that Alice and Bob share a quantum state ρAB . Alice performs the unitary
+         operation Ui with probability pi , on her part of the state ρAB to encode the classical
+         information i. Subsequent to her unitary rotation, she sends her part of the state
+         ρAB to Bob. Bob then has the ensemble {pi , ρi }, where
+
+                                          ρi = Ui ⊗ 1 ρAB Ui† ⊗ 1 .                                 (4)
+
+            The information that Bob is able to gather is Iacc ({pi , ρi }). This quantity is
+         bounded from above by χ({pi , ρi }). The “one-capacity” C (1) of dense coding for
+         the state ρAB is the Holevo bound for the best encoding by Alice:
+                                                                             !
+                                                               X
+                        (1)
+                      C (ρ) = max χ({pi , ρi }) ≡ max S(ρ) −       pi S(ρi ) .            (5)
+                                 pi ,Ui                pi ,Ui
+                                                                          i
+
+         The superscript (1) reflects the fact that Alice is using the shared state once at a
+         time, during the asymptotic process. She is not using entangled unitaries on more
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                         Pisa-2005
+
+
+
+
+       4   Dagmar Bruß et al.
+
+
+       than one copy of her parts of the shared states ρAB . As we will see below, encoding
+       with entangled unitaries does not help her to send more information to Bob.
+          In performing the maximization in Eq. (5), first note that the second term in
+       the right hand side (rhs) is equal to −S(ρ), for all choices of the unitaries and
+       probabilities, as unitary operations do not change the spectrum, and hence the
+       entropy, of a state. Secondly, we have
+                                S(ρ) ≤ S(ρA ) + S(ρB ) ≤ log2 dA + S(ρB ),                          (6)
+       where dA is the dimension of Alice’s part of the Hilbert space of ρAB , and ρA = trB ρ,
+       ρB = trA ρ. Moreover, S(ρB ) = S(ρB ), as nothing was done at Bob’s end during
+       the encoding procedure. Therefore, we have
+                                      max S(ρ) ≤ log2 dA + S(ρB ).                                  (7)
+                                      pi ,Ui
+
+           This bound is reached by any complete set of orthogonal unitary opera-
+       tors {Wj }, to be chosen with equal probabilities, which satisfy the trace rule
+        1
+          PdA     †
+       dA   j=1 Wj ΞWj = tr[Ξ]I, for any operator Ξ. Therefore, we have
+
+                                   C (1) (ρ) = log2 dA + S(ρB ) − S(ρ).                             (8)
+           The optimization procedure above essentially follows that in Ref. 9 . Several
+       other lines of argument are possible for the maximization. One approach is given
+       in Ref. 8 (see also 11 ). Another way to proceed is to guess where the maximum is
+       reached, and then perturb the guessed result. If the first order perturbations vanish,
+       the guessed result is correct, as the von Neumann entropy is a concave function and
+       the maximization is carried out over the continuous set of all {pi , Ui } 11 . Note here
+       that without using the additional resource of entangled states, Alice will be able
+       to reach a capacity of just log2 dA bits. Therefore, entanglement in a state ρAB is
+       useful for dense coding if S(ρB ) − S(ρ) > 0. Such states exist, an example being
+       the singlet state.
+
+       3.1. Entangled encoding and the asymptotic capacity
+       Suppose now that Alice is able to use entangled unitaries on two copies of the
+       shared state ρ. For definiteness, let us call the copies ρa1 b1 and ρa2 b2 (a1 and a2
+       refer to Alice’s states, b1 and b2 to Bob’s). Alice may possibly apply unitaries
+       Ui that cannot be written as Ui = Uia1 ⊗ Uia2 . Applying such a general set of
+                                                                                      (2)         (2)
+       unitaries Ui with probabilities
+         a1 a2            a1 b1      a2 b2
+                                            a1pai2,† the output ensemble is {pi , ρi }, where ρi =
+       Ui      ⊗1 ⊗ 1 ρ         ⊗ρ          Ui       ⊗1 ⊗ 1. It is natural to define the “two-capacity”
+       of dense coding for the state ρ as
+                                                                                              !
+                              1                  (2)       1                  X           (2)
+                C (2) (ρ) = max χ({pi , ρi }) ≡ max S(ρ(2) ) −                     pi S(ρi ) ,       (9)
+                              2 pi ,Ui                     2 pi ,Ui             i
+                            (2)
+       where ρ(2) =
+                    P
+                      i pi ρi . Again the second term within the maximization of Eq.
+       (9) is just −S(ρ ⊗ ρ) = −2S(ρ). The first term is bounded from above by
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                         Pisa-2005
+
+
+
+
+                                                          Dense coding with multipartite quantum states   5
+
+
+         log2 (da1 da2 ) + S(ρb1 ⊗ ρb2 ) = 2 log2 dA + 2S(ρB ), which can be reached by any
+         complete set of orthogonal unitaries on A1 A2 that satisfies the trace rule. (Here
+         daj is the dimension of the particle aj , and ρbj = traj ρaj bj , where j = 1, 2.) How-
+         ever, one such set of unitaries is formed by tensor products of two complete sets
+         of orthogonal unitaries on A1 and A2 . Therefore, product unitaries are enough
+         to attain C (2) , and its value is equal to that of C (1) . Similar arguments hold for
+                                           (L)
+         C (L) (ρ) = L1 maxpi ,Ui χ({pi , ρi }) for any L, where the Ui ’s are now possibly en-
+         tangled unitaries over the L-fold tensor product of the Hilbert space on Alice’s side.
+         Consequently, the asymptotic capacity (henceforth called capacity) of dense coding
+         of a bipartite state ρAB is given by
+                            C(ρ) = lim C (L) (ρ) = log2 dA + S(ρB ) − S(ρ).                          (10)
+                                      L→∞
+
+            Note however that this additivity is shown only in the case of encoding by
+         unitary operations. In this paper, both in the bipartite as well as in the multipartite
+         scenario, we will consider unitary encoding only.
+
+         3.2. Bipartite bound entangled states
+         A bipartite state ρAB is useful for dense coding if and only if S(ρB ) − S(ρ) > 0. We
+         now show that this relation cannot hold for bipartite bound entangled states 20 .
+         Let us first state the reduction criterion 21 for detecting distillable states: If a state
+         ρAB is separable or bound entangled, then ρA ⊗ IdB ≥ ρAB and IdA ⊗ ρB ≥ ρAB .
+         There exist distillable states that violate this criterion. Any state ρAB for which
+         S(ρB ) − S(ρAB ) > 0 violates the reduction criterion 22 (see also 23 ), and is hence
+         distillable. Therefore, a state that is useful for dense coding is always distillable,
+         i.e. free entangled. It has been shown that bound entangled states are not useful
+         for sending classical information even by more general encoding operations 5 .
+
+         4. Capacity of dense coding with many senders and one receiver
+         Suppose now that there are N Alices, viz. A1 , A2 , · · ·, AN , who want to send infor-
+         mation to a single receiver, Bob (B). They share the quantum state ρA1 A2 ···AN B .
+         Depending on the classical information ik that Ak wants to send to Bob, she applies
+         the unitary operation Uik with probability pik (k = 1, 2, · · · , N ). After applying the
+         unitary operations, they send their parts of the quantum state to Bob, who has now
+         the ensemble {p{i} , ρ{i} }, where {i} denotes the string {i1 , i2 , · · · , iN }. Moreover
+                                                                                    †
+                   p{i} = pi1 pi2 · · · piN ,       ρ{i} = U{i} ⊗ 1 ρA1 A2 ···AN B U{i} ⊗ 1,         (11)
+         where U{i} = Ui1 ⊗ Ui2 ⊗ · · · ⊗ UiN . The task of Bob is to obtain as much in-
+         formation as possible about the message string {i}. Since the Holevo bound is
+         asymptotically attainable by product encoding (Section 2), the “one-capacity” of
+         the state ρA1 A2 ···AN B in this case is defined as
+                                      C (1) (ρ) =     max χ({p{i} , ρ{i} }).                         (12)
+                                                    p{i} ,U{i}
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                   Pisa-2005
+
+
+
+
+       6   Dagmar Bruß et al.
+
+
+          To avoid multiple indices, we use the same notation as in the case of a single
+       sender. As we will see, the capacities in the case of a single sender and multiple
+       senders are the same (at least in the case when there is only a single receiver).
+       Analogous considerations as for the maximization of Eq. (5) lead to
+                  C (1) (ρ) = log2 dA1 + log2 dA2 + · · · + log2 dAN + S(ρB ) − S(ρ),    (13)
+       where dAk is the dimension of the Hilbert space in possession of the kth Alice Ak .
+       Moreover by similar arguments as in Section 3.1, also in this case, the one-capacity
+       can be shown to be the asymptotic capacity, so that
+                   C(ρ) = log2 dA1 + log2 dA2 + · · · + log2 dAN + S(ρB ) − S(ρ).        (14)
+           Again, we use the same notation as in the case of a single sender. The capacity
+       is reached by any complete set of orthogonal unitaries that satisfies the trace rule.
+       However such a complete orthogonal set of unitaries of the A1 A2 · · · AN space can
+       be formed by product unitaries of the individual spaces of the Ak . This leads us to
+       the conclusion that even if the Alices are allowed to perform entangled unitaries,
+       this will not enhance the dense coding capacity of the state ρA1 A2 ···AN B . We will
+       illustrate the case of many Alices in detail for clarity. However, as long as one
+       considers unitary encodings, it is clear that the Holevo bound is the same for fac-
+       torised unitaries, and many Alices are equivalent to a single one with the according
+       dimension.
+
+
+       5. Holevo-like upper bound on locally accessible information
+       The Holevo bound is an upper bound on the accessible information encoded in a
+       quantum ensemble that is sent to a single receiver. This is also an upper bound
+       on the accessible information encoded in a quantum ensemble that is sent to two
+       receivers, where the receivers are allowed to perform only local operations and clas-
+       sical communication (LOCC). However, in Ref. 13 , we have obtained an independent
+       upper bound for this situtation. (For a lower bound, see Ref. 24 .) Suppose that a
+       sender encodes the classical message i in the bipartite quantum state ρB   i
+                                                                                    1 B2
+                                                                                         with
+       probability pi , and sends it to two Bobs (Bob1 (B1 ) and Bob2 (B2 )). The tasks of
+       the Bobs is to gather as much information as posssible about i. Let the accessible
+       information in this situation be called “locally accessible information”, denoted by
+        LOCC
+       Iacc    . It was shown in Ref. 13 that
+                      LOCC
+                     Iacc  ≤ χLOCC ≡ S(ρB1 ) + S(ρB2 ) −         max pi S(ρZ
+                                                                           i ),          (15)
+                                                               Z=B1 ,B2
+
+                                              B1 B2
+       where ρB            B1 B2
+                                 , ρB               , ρZ = p i ρZ
+                                                           P
+                i = trB2 ρi         i = trB1 ρi                  i , Z = B1 , B2 .
+                 1                   2
+
+
+          This bound is not necessarily better than the Holevo bound for all ensembles. For
+       example, for the ensemble formed by the states |00i, |11i, taken with probability
+       1                                                                 LOCC
+       2 each, the Holevo bound equals 1, while our local bound χ               is 2. This, of
+                                        LOCC        LOCC
+       course, implies that the bound χ         on Iacc   is asymptotically not attainable in
+       general. However, there are important examples for which the local bound (χLOCC )
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                        Pisa-2005
+
+
+
+
+                                                         Dense coding with multipartite quantum states   7
+
+
+         is drastically smaller than the global one (χ). For example, for the four Bell states
+         |ψ ± i, |φ± i, chosen with probabilities pi (i = 1, 2, 3, 4), χ = H({pi }), while χLOCC =
+         1. In particular, for equal apriori probabilities, the global bound is 2, while the local
+         one is still unity.
+
+
+         6. Capacity of dense coding with many senders and two receivers
+         We will now consider the case of dense coding with two receivers. Suppose therefore
+         that N Alices (A1 , A2 , · · · , AN ) and two Bobs (B1 and B2 ) share a quantum state
+         ρA1 ,A2 ,··· ,AN B1 B2 . To send the classical information ik , Ak performs the unitary
+         operation Uik , with probability pik . Then the Alices send their part of the resulting
+         state to the Bobs. For definiteness, let us assume that A1 , A2 , · · · , AM send their
+         parts of the resulting state to B1 , while the rest of the Alices send to B2 . Hence the
+         Bobs receive the ensemble {p{i} , ρ{i} }, where p{i} = pi1 pi2 · · · piN , ρ{i} = U{i} ⊗
+                                      †
+         1 ⊗ 1 ρA1 A2 ···AN B1 B2 U{i}    ⊗ 1 ⊗ 1, with U{i} = Ui1 ⊗ Ui2 ⊗ · · · ⊗ UiN . Let us warn
+         here that the same notation ρ{i} was used in the case of a single receiver in Section
+         4, although the situation there is different than this one. The aim of the Bobs is
+         to gather maximal information from the ensemble {p{i} , ρ{i} } about the message
+         string {i} = {i1 , i2 , · · · , iN }, but they are restricted to perform only LOCC between
+         themselves. The “one-capacity” in this case is
+                                   (1)                  LOCC
+                                 CLOCC (ρ) =       max Iacc  ({p{i} , ρ{i} }),                        (16)
+                                                 p{i} ,U{i}
+
+         so that
+                                   (1)
+                                 CLOCC (ρ) ≤ max χLOCC ({p{i} , ρ{i} }),                              (17)
+                                                 p{i} ,U{i}
+
+         where the ensemble states ρ{i} in the two above equations is to be considered
+         in the A1 A2 · · · AM B1 : AM+1 AM+2 · · · AN B2 bipartite split, for calculating the
+         locally accessible information and its local bound. We have
+
+                        χLOCC ({p{i} , ρ{i} }) = S(ρ1 ) + S(ρ2 ) − max p{i} S(ρZ
+                                                                               {i} ),                 (18)
+                                                                       Z=1,2
+
+                                           1 ···AN B1 B2                          A1 ···AN B1 B2
+         where ρ1{i} = trAM +1 ···AN B2 ρA
+                                         {i}             , ρ2{i} = trA1 ···AM B1 ρ{i}            , and ρZ =
+           p{i} ρZ
+         P
+                 {i} , Z = 1, 2.
+            The last term on the rhs of Eq. (18) equals − maxZ=1,2 S(ρZ ), for any choice of
+         unitaries and probabilities in the maximization of Eq. (17), where
+
+                          ρ1 = trAM +1 AM +2 ···AN B2 ρ,       ρ2 = trA1 A2 ···AM B1 ρ.               (19)
+
+              Next, note that the maximization in Eq. (17) of the first two terms on the rhs
+         of Eq. (18) can be independently performed. For example, the maximization of
+         S(ρ1 ) can be performed solely on the probabilities p1 , p2 , · · · , pM , and the unitaries
+         U1 , U2 , · · · , UM and can be done as in Section 4. Similar considerations hold for the
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                        Pisa-2005
+
+
+
+
+       8    Dagmar Bruß et al.
+
+
+       maximization of S(ρ2 ) over the probabilities pM+1 , pM+2 , · · · , pN , and the unitaries
+       UM+1 , UM+2 , · · · , UN . So finally, we have
+               (1)
+             CLOCC (ρ) ≤ log2 dA1 + · · · + log2 dAN + S(ρB1 ) + S(ρB2 ) − max S(ρZ ). (20)
+                                                                               Z=1,2
+
+          For unitary encoding, the rhs of Eq. (18) is additive, and so the asymptotic
+       capacity of distributed dense coding is also bounded by the same quantity:
+
+             CLOCC (ρ) ≤ log2 dA1 + · · · + log2 dAN + S(ρB1 ) + S(ρB2 ) − max S(ρZ ). (21)
+                                                                               Z=1,2
+
+       The partition in Eq. (19) corresponds to the partition in two Bobs’ states after they
+       received the states ρ{i} . In general, the local capacities of the state depend on this
+       partition.
+
+
+       7. A classification of multiparty states by their dense-codeability
+       A simple lower bound on CLOCC can be obtained by considering the case when the
+       two Bobs do not use communication, whereby the two channels (one from the first
+       M Alices to B1 and the other from the next N − M Alices to B2 ) are independent,
+       and so the capacities add. Let us denote the capacity without communication as
+       CLO , and thus have
+
+                                 CLOCC (ρ) ≥ CLO (ρ) = C(ρ1 ) + C(ρ2 ),                     (22)
+
+       where C(ρ) is given by Eq. (14), and ρ1 and ρ2 are defined in Eq. (19). If the Bobs
+       are together, and are allowed to perform global measurements, then the capacity is
+       given by using Eq. (14). This capacity is also an upper bound of CLOCC . Therefore,
+
+           CLOCC (ρ) ≤ log2 dA1 + log2 dA2 + · · · + log2 dAN + S(ρB1 B2 ) − S(ρ) = CG (ρ).(23)
+
+           The rhs of the above inequality (23) is precisely the dense coding capacity of
+       the state ρ, when the two receivers are together, and hence are allowed to perform
+       global measurements. We have denoted this quantity by CG (ρ). With the help
+       of the quantities CG , CLOCC , CLO , and the relations between them, multipartite
+       states can be classified according to their usefulness for dense-coding. Consider
+       therefore the N + 2-partite state ρA1 A2 ···AN B1 B2 , and consider first the bipartite
+       split A1 A2 · · · AN : B1 B2 . This is the senders to receivers bipartite split in the
+       distributed dense coding scenario. In this bipartite split, the usual classification is
+       into four classes: Separable states (S), bound entangled states with positive partial
+       transpose (PBE) 20 , bound entangled states with nonpositive partial transpose
+       (NBE) (if existing) 25 , and distillable states. As shown in Sec. 3.2, bound entangled
+       states (both PBE and NBE), as well as separable states are not useful for dense
+       coding. Thus only distillable states can be useful. However, not all distillable states
+       can be used. For example, even for 2 ⊗ 2 states, the Werner state 26
+                                                                   I ⊗I
+                                    ρp = p|ψ − ihψ − | + (1 − p)                            (24)
+                                                                     4
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                         Pisa-2005
+
+
+
+
+                                                         Dense coding with multipartite quantum states     9
+
+
+         is distillable when p ≥ 31 . But using Eq. (10), one can see that the state ρp is
+         good for dense coding only for p ≥ 0.7476. Going back to our multiparty state
+         ρA1 A2 ···AN B1 B2 in the bipartite split A1 A2 · · · AN : B1 B2 , the distillable states are
+         divided into two categories: Ones which are globally dense-codeable, and ones which
+         are not. The globally dense-codeable (G-DC) states are those which can be useful
+         for dense coding when the two Bobs are at the same location. Therefore they are
+         precisely those for which CG > log2 dA1 + log2 dA2 + · · · + log2 dAN , i.e. for which
+         S(ρB1 B2 ) > S(ρ). The states which are distillable in the A1 A2 · · · AN : B1 B2 split,
+         and yet are not useful for dense coding are denoted by D.
+
+
+
+
+                                         ?
+                                      NBE            D         G−DC       LOCC−DC       LO−DC
+                       S     PBE
+
+
+
+
+         Fig. 1. Classification of multipartite quantum states, according to their usefulness for dense
+         coding with more than one receiver. Notice that the labels classify only the states in the shell and
+         not in the whole set (ellipse). Separable, bound entangled states with positive partial transpose,
+         bound entangled states with nonpositive partial transpose (if existing), distillable but not useful
+         for dense coding respectively are denoted as S, PBE, NBE, D. In the bipartite case, there is just
+         one more shell, consisting of states which are distillable and can be used for dense coding. These
+         states are in the shell G-DC. In the multiparty case, there also exist shells which contain states
+         that are good for G-DC but not good for LOCC-DC. Similarly, the shell denoted as LOCC-DC
+         contain states who are useful for LOCC-DC but not for LO-DC, as explained in the text. Also there
+         are states which are good for dense coding even without communication (LO-DC). As discussed
+         in the text, all shells are non-empty and of nonzero measure. Borders between sets that are not
+         known to be convex are drawn as dashed lines.
+
+
+             Although the classification above into S, PBE, NBE, D, and G-DC was con-
+         sidered for a multiparty state, this is essentially the classification for bipartite
+         states. This classification is summarized in Fig. 1, where for the bipartite case,
+         only the classes S, PBE, NBE, D, and G-DC are meaningful. The multiparty case
+         offers a much richer classification: the states ρA1 ···AN B1 B2 that are distillable in the
+         A1 · · · AN : B1 B2 split, can in this case be divided into the following four classes:
+         (1) LO-DC class: This class contains states that can be used for dense coding even
+             when the Bobs are separated and they do not even communicate classically.
+             Precisely, they are those for which
+                                   CLO > log2 dA1 + log2 dA2 + · · · + log2 dAN ,                       (25)
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                     Pisa-2005
+
+
+
+
+       10   Dagmar Bruß et al.
+
+
+           i.e. for which S(ρB1 ) + S(ρB2 ) > S(ρA1 A2 ···AM B1 ) + S(ρAM +1 AM +2 ···AN B2 ).
+       (2) LOCC-DC class: This class contains states that are useful for dense coding when
+           the two Bobs are separated, but they are allowed to communicate classically.
+           So, these are states for which
+
+                            CLOCC > log2 dA1 + log2 dA2 + · · · + log2 dAN .              (26)
+
+           Moreover, we require that the states in the LOCC-DC class to be not LO-DC.
+       (3) G-DC class: This class contains states that are useful for dense coding when
+           the two Bobs are at the same location. Therefore, for these states
+
+                                 CG > log2 dA1 + log2 dA2 + · · · + log2 dAN .            (27)
+
+           Again we also require that the states in the G-DC class are not LOCC-DC.
+       (4) D class: The final class contains the states that are distillable in the
+           A1 A2 · · · AN : B1 B2 split, but not G-DC:
+
+                                 CG ≤ log2 dA1 + log2 dA2 + · · · + log2 dAN .            (28)
+
+
+       7.1. Examples
+       We will now give examples for all the above classes. We have already shown that
+       the Werner states provide examples of states which are distillable, and yet are not
+       useful for dense coding. Similar examples exist for GHZ states 27 admixed√with
+       white noise: p|GHZihGHZ| + (1 − p)I ⊗n /2n where |GHZi = (|0i⊗n + |1i⊗n )/ 2.
+          There also exist states by which dense coding is possible only when the receivers
+       (B1 and B2 ) are together. An example of such a state is
+                                  1
+                                    (|0000i + |0101i + |1000i + |1110i)                   (29)
+                                  2
+       from Ref. 28 . Here the first two parties are senders and they perform the unitary
+       operations. Then the first party sends her part of the multiparty state to the third
+       party, while the second one sends her part to the fourth party. For this state,
+       CG > log2 dA1 + log2 dA2 + · · · + log2 dAN but the upper bound of CLOCC in Eq.
+       (21) is less than log2 dA1 +log2 dA2 +· · ·+log2 dAN (with N = 2 and dA1 = dA2 =√2).
+           Let us now consider the four-qubit GHZ state, namely (|0000i + |1111i)/ 2.
+       We will now show that this state is useful for dense coding, even when the re-
+       ceivers are restricted only to LOCC operations. However the capacity CLO of
+       the GHZ state is vanishing, since its two-particle local density matrices are sep-
+       arable. Suppose therefore that the four-qubit GHZ state (ignoring normalization)
+       |GHZ4 iA1 A2 B1 B2 = |0000i + |1111i is shared by four far-apart partners A1 , A2 , B1 ,
+       and B2 . A1 , A2 perform the unitary operations I, σx , σy , σz (σx , σy , σz are the
+       Pauli matrices), with equal probabilities. Then A1 sends her qubit to B1 and A2 to
+       B2 . B1 and B2 then share the states {|ψi i}8i=1 , of the eight orthogonal states with
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                     Pisa-2005
+
+
+
+
+                                                    Dense coding with multipartite quantum states   11
+
+
+         equal probabilities, given by
+                                              B       B         B      B
+                                |ψ1,2 i = |00i 1 |00i 2 ± |11i 1 |11i 2 ,
+                                |ψ3,4 i = |00iB1 |10iB2 ± |11iB1 |01iB2 ,
+                                                                                                (30)
+                                |ψ5,6 i = |10iB1 |00iB2 ± |01iB1 |11iB2 ,
+                                              B      B        B      B
+                                |ψ7,8 i = |10i 1 |10i 2 ± |01i 1 |01i 2 ,
+         where the smaller index on the lhs corresponds to the upper sign on the rhs. For the
+         decoding (by LOCC between B1 and B2 ), B1 begins by making a measurement with
+         the projectors P0 = |00i h00|+ |11i h11|, P1 = |01i h01|+ |10i h10| and communicates
+         the result to B2 . If P0 (P1 ) clicks, then they know that the state is among |ψi i , i ∈
+         {1, 2, 3, 4} (|ψi i , i ∈ {5, 6, 7, 8}). Now B2 performs a measurement with the same
+         projectors P0 , P1 . Depending on the outcome, they know that the state they share is
+         either |ψ1,2 i, or |ψ3,4 i, or |ψ5,6 i, or |ψ7,8 i. Note that none of the above measurements
+         disturbs the shared state. Lastly, performing a measurement in {|00i ± |11i} or
+         {|01i ± |10i} basis (depending on the outcomes in the previous measurements) by
+         both the Bobs on their respective sides, will help them to locally distinguish the
+         state perfectly. The above protocol for dense coding and the upper bound in Eq.
+         (21), imply that CLOCC = 3, for the four-qubit GHZ, which is therefore LOCC-DC.
+             An example for which the capacity CLO is non-zero is |ψ − iA1 B1 ⊗ |ψ − iA2 B2 . It
+         is actually non-zero for tensor product of any two bipartite states ρA1 B1 and ρA2 B2 ,
+         which are independently useful in dense coding with a single sender and a single
+         receiver, i.e. for which C(ρA1 B1 ) + C(ρA2 B2 ) > log2 dA1 + log2 dA2 .
+             The boundary between LO-DC and LOCC-DC states is given by CLO =
+         log2 dA1 + log2 dA2 + · · · + log2 dAN . For four qubit states, with two senders and
+         two receivers, the boundary is given by CLO = 2. Now for the state |ψ − i ⊗ |ψ − i,
+         we have CLO = 4, so that it is far from the boundary. (It actually possesses the
+         maximal dense coding capacity reachable by any four qubit state with two senders
+         and two receivers.) Consequently, by continuity, one can argue that this state will
+         remain away from the boundary even after admixture of sufficiently small amount
+         of noise. This implies that the LO-DC class has a nonzero measure. A similar way
+         of arguing is possible for all other examples corresponding to the different classes
+         considered above. In particular, the LOCC-DC class can be proven to be of nonzero
+         measure by considering noise admixture to the four qubit GHZ state.
+
+
+         7.2. Convexity of the classes
+         Now we consider the question of convexity of the boundaries between the shells
+         considered in Fig. 1. Separable states form a convex set. So do the states with
+         positive partial transpose (PPT), i.e. separable and PPT bound entangled states,
+         since adding two PPT states never gives a state whose partial transpose is non-
+         positive. It was shown in Ref. 29 that the boundary between the NBE and D shells
+         is not convex, if a certain NBE state exists (see also 30 ). The D to G-DC boundary
+         is convex since the conditional entropy S(ρAB ) − S(ρB ) is a concave function 31 .
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                    Pisa-2005
+
+
+
+
+       12   Dagmar Bruß et al.
+
+
+       The LOCC-DC to LO-DC boundary is convex due to the same reason, as it is the
+       sum of two convex quantities, viz. the two single receiver capacities. However the
+       convexity of the G-DC to LOCC-DC boundary is not known.
+
+       8. Discussion
+       In this paper, we have introduced dense coding protocols for multipartite states
+       where all the parties are far apart. We have considered two types of schemes: one
+       with several senders and a single receiver, and another with several senders and
+       two receivers who are allowed to perform only local operations. In the first case, we
+       found the exact capacity of the channel while in the latter case, we provide a useful
+       upper bound. In the latter case, we have also shown that the GHZ state achieves the
+       upper bound. These two protocols help us to classify multipartite states from the
+       point of view of usefulness for dense coding. In the bipartite case, this classification
+       is complete. We know that separable states as well as bound entangled states are
+       not useful for dense coding, while highly distillable states are good for it. There
+       exist some distillable states which are not useful for dense coding. However in
+       the multipartite situation, several questions remain open, both for one and two
+       receiver(s). For example, we do not know whether multipartite bound entangled
+       states are useful in such schemes. Let us consider the “unlockable” bound entangled
+       state
+                                         1X
+                                    ρS =       |ψi ihψi | ⊗ |ψi ihψi |                     (31)
+                                         4 i
+       of Ref. 32 , where the |ψi is are the Bell states. Let ρS be shared between A1 , A2 , B1 ,
+       B2 . ρS is separable in all two party by two party splittings, although it has one bit
+       of entanglement in all one party by three party splittings. One can check by using
+       Eq. (23) that the CG of ρS is not greater than 3 bits, but exactly equal to 3 bits,
+       when A1 , A2 , B1 are senders and B2 is the receiver. Since all its two party by two
+       party splittings are separable, it is clear that it will never be useful for dense coding
+       with two receivers. We have also checked our formulas for other bound entangled
+       states, e.g. the bound entangled states formed from the unextendible product bases
+       33
+          , and they are not useful for dense coding either.
+            In this paper, we have considered distributed communication protocols, where
+       the senders are only allowed to perform unitary operations. This case is more in-
+       teresting from the perspective of a real implementation. However the Holevo-like
+       upper bound 13 on accessible information holds for any encoding (as well as de-
+       coding) operation. So, it is also interesting to consider general encoding protocols,
+       and obtain upper bounds on distributed communication rates in this case. For the
+       latest development of this general case in a situation, where there is only a single
+       sender and a single receiver, see e.g. 5,6 . In this paper, it is always assumed that
+       the transmission channel is noiseless, even if the shared states that we use as our
+       resource may be noisy. Even in the case of such noiseless channels, we show that
+       the states that we require in such communication are highly entangled. It would be
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                  Pisa-2005
+
+
+
+
+                                                 Dense coding with multipartite quantum states   13
+
+
+         interesting to study the dense coding capacity of noisy states in the realistic case
+         of noisy channels.
+
+
+         Acknowledgments
+         We thank Alexander Holevo and Mario Ziman for valuable comments. We acknowl-
+         edge support from the Deutsche Forschungsgemeinschaft (SFB 407, SPP 1078,
+         SPP 1116, 436POL), the Alexander von Humboldt Foundation, the EC Program
+         QUPRODIS, the ESF Program QUDEDIS, and EU IP SCALA.
+
+
+         References
+          1. C.H. Bennett et al., Phys. Rev. Lett. 70, 1895 (1993).
+          2. C.H. Bennett and S.J. Wiesner, Phys. Rev. Lett. 69, 2881 (1992).
+          3. C.H. Bennett et al., Phys. Rev. Lett. 83, 3081 (1999).
+          4. C.H. Bennett et al., Entanglement-assisted capacity of a quantum channel and the
+             reverse Shannon theorem, quant-ph/0106052.
+          5. M. Horodecki et al., Q. Inf. and Comput. 1, 70 (2001).
+          6. A. Winter, J. Math. Phys. 43, 4341 (2002).
+          7. S. Bose, M.B. Plenio, and V. Vedral, Mixed state dense coding and its relation to
+             entanglement measures, quant-ph/9810025.
+          8. T. Hiroshima, J. Phys. A: Math. Gen. 34, 6907 (2001).
+          9. M. Ziman and V. Bužek, Phys. Rev. A 67, 042321 (2003).
+         10. X.S. Liu et al., Phys. Rev. A 65, 022304 (2002).
+         11. D. Bruß et al., Phys. Rev. Lett. 93, 210501 (2004).
+         12. J.P. Gordon, in Proc. Int. School Phys. “Enrico Fermi, Course XXXI”, ed. P.A.
+             Miles, pp. 156 (Academic Press, NY 1964); L.B. Levitin, in Proc. VI National Conf.
+             Inf. Theory, Tashkent, pp. 111 (1969); A.S. Holevo, Probl. Pereda. Inf. 9, 3 1973
+             [Probl. Inf. Transm. 9, 110 (1973)].
+         13. P. Badzia̧g et al., Phys. Rev. Lett. 91, 117901 (2003).
+         14. M. Horodecki, A. Sen(De), and U. Sen, Quantification of quantum correlation of
+             ensemble of states, quant-ph/0310100.
+         15. T. M. Cover and J. A. Thomas, Elements of Information Theory (Wiley, 1991).
+         16. R. Josza, D. Robb, and W.K. Wotters, Phys. Rev. A, 49, 668 (1994).
+         17. B. Schumacher et al., Phys. Rev. Lett. 76, 3452 (1996).
+         18. M Horodecki et al., Phys. Rev. Lett. 93, 170503 (2004) .
+         19. B. Schumacher and M.D. Westmoreland, Phys. Rev. A 56, 131 (1997); A.S. Holevo,
+             IEEE Trans. Inf. Theory 44, 269 (1998).
+         20. M. Horodecki, P. Horodecki, and R. Horodecki, Phys. Rev. Lett. 80, 5239 (1998).
+         21. M. Horodecki and P. Horodecki, Phys. Rev. A 59, 4206 (1999); N.J. Cerf, C. Adami,
+             and R.M. Gingrich, ibid. 60, 898 (1999).
+         22. K.G.H. Vollbrecht and M.M. Wolf, Conditional entropies and their relation to entan-
+             glement criteria, quant-ph/0202058.
+         23. T. Hiroshima, Phys. Rev. Lett. 91, 057902 (2003).
+         24. A. Sen(De), U. Sen, and M. Lewenstein, Lower Bound on Locally Accessible Infor-
+             mation: Local Subentropy, quant-ph/0505137.
+         25. D. P. DiVincenzo et al., Phys. Rev. A 61, 062312 (2000); W. Dür et al., Phys. Rev.
+             A 61, 062313 (2000).
+         26. R.F. Werner, Phys. Rev. A 40, 4277 (1989).
+November 7, 2018 2:11 WSPC/INSTRUCTION FILE                   Pisa-2005
+
+
+
+
+       14   Dagmar Bruß et al.
+
+
+       27. D.M. Greenberger, M.A. Horne, and A. Zeilinger, in Bell’s Theorem, Quantum The-
+           ory, and Conceptions of the Universe, ed. M. Kafatos, (Kluwer, Dordrecht, 1989).
+       28. F. Verstraete et al., Phys. Rev. A 65, 052112 (2002).
+       29. P.W. Shor, J.A. Smolin, and B.M. Terhal, Phys. Rev. Lett. 86, 2681 (2001).
+       30. T. Eggeling et al., Phys. Rev. Lett. 87, 257902 (2001).
+       31. A. Wehrl, Rev. Mod. Phys. 50, 221 (1978).
+       32. J.A. Smolin, Phys. Rev. A 63, 032306 (2001).
+       33. C.H. Bennett et al., Phys. Rev. Lett. 82, 5385 (1999); D.P. DiVincenzo et al., Comm.
+           Math. Phys. 238, 379 (2003).
+

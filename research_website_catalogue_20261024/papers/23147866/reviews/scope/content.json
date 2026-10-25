@@ -1,0 +1,185 @@
+{
+  "title": "Asymptotic LOCC dense coding with the symmetric four-qubit W state",
+  "slug": "symmetric-four-qubit-w-state-locc-dense-coding",
+  "description": "A many-copy protocol lets two independent senders use the symmetric four-qubit W state to exceed two bits per copy with LOCC decoding.",
+  "abstract": "The distributed dense-coding question posed by Bruß and collaborators asks whether the symmetric four-qubit W state gives a strict advantage when two independent senders each transmit one qubit to a different receiver and the receivers decode using local operations and classical communication (LOCC). We give an affirmative answer in their asymptotic unitary-encoding model. Independent Pauli encodings followed by a complete Bell measurement at one receiver produce a finite classical–quantum multiple-access channel whose entire output is local to the other receiver. Winter’s coding theorem gives an achievable sum-rate supremum of 3/2 + h₂(1/4) = 2.311278… bits per resource copy. In particular, both senders can transmit 9/8 bits per copy with vanishing average error. This settles the stated W-state classification question using established measurement and coding ingredients; it does not determine the optimal LOCC capacity or assert a one-copy advantage.",
+  "plain_language": [
+    "Two senders and two receivers share a four-qubit W state. Each sender encodes an independent message and sends one qubit to their own receiver. The receivers can exchange ordinary classical messages, but cannot send quantum systems to each other.",
+    "The paper shows that, by coding across many copies, they can transmit more than the two-bit total available without the shared entangled resource. Its protocol approaches a combined rate of about 2.311278 bits per copy. A concrete rate safely inside the proven region is 1.125 bits per sender, or 2.25 bits in total.",
+    "One receiver measures in the Bell basis and forwards the outcome. The other keeps their quantum systems and decodes them together across many copies. Keeping those systems quantum until the final decoding step is what allows a standard multiple-access coding theorem to be used.",
+    "The result answers the specified W-state classification question in an asymptotic unitary-encoding model. It does not say that a single copy beats two bits, or that 2.311278 is the best possible rate for all allowed protocols."
+  ],
+  "result": [
+    "For the symmetric state |W₄⟩ = (|1000⟩ + |0100⟩ + |0010⟩ + |0001⟩)/2 in the order A₁A₂B₁B₂, sender i initially holds Aᵢ and receiver i holds Bᵢ. Each sender transmits their encoded qubits noiselessly to their corresponding receiver.",
+    "With independent uniformly distributed messages, separate fixed codebooks and local unitary encoders, every nonnegative rate pair with R₁ < 3/2, R₂ < 3/2 and R₁ + R₂ < 3/2 + h₂(1/4) is achievable with vanishing uniform average decoding error.",
+    "The protocol’s achievable sum-rate supremum is 3/2 + h₂(1/4) ≈ 2.311278 bits per resource copy, giving a lower bound on the optimal LOCC capacity. In particular, R₁ = R₂ = 9/8 gives a total rate of 9/4 bits per copy.",
+    "Independent single-qubit Pauli operations suffice for encoding. A complete Bell measurement at the first receiver, classical forwarding and a collective local measurement at the second receiver implement the decoder; no extra shared entanglement or quantum communication between receivers is supplied.",
+    "This places the symmetric W₄ state in the LOCC-dense-codeable class of the stated original unitary-encoding model. The paper also connects its vanishing-error rate statement to the source’s asymptotic accessible-information formulation."
+  ],
+  "limitations": [
+    "The rate is asymptotic over many independent resource copies and allows collective quantum decoding inside a receiver’s laboratory. It is not a one-copy advantage, a finite-block performance guarantee or an explicit practical family of codebooks.",
+    "The theorem gives a capacity lower bound. It does not prove that 3/2 + h₂(1/4) is the optimal LOCC capacity, characterize every achievable rate pair or rule out better protocols.",
+    "The error criterion is uniform average error over independent messages. Zero-error and maximal-error coding are not established.",
+    "The ownership and routing are fixed: each independent sender sends one qubit per copy to their own receiver, and receiver operations are local across A₁B₁ : A₂B₂. There is no sender message disclosure, feedback to senders, additional shared entanglement or quantum communication between receivers.",
+    "The two-bit calculation when both receivers immediately use Bell measurements concerns that particular one-copy measurement and input ensemble. It is not a converse bound for arbitrary one-copy LOCC strategies.",
+    "Bell forwarding and multiple-access dense coding have earlier precedents. The claimed addition is the specific retained-quantum-output channel and its achievable region for this W₄ problem, using Winter’s established coding theorem. This bounded comparison does not certify worldwide first priority, formal proof verification or completed human peer review."
+  ],
+  "background": [
+    {
+      "title": "Bruß and collaborators, Distributed quantum dense coding",
+      "url": "https://arxiv.org/abs/quant-ph/0407037v3",
+      "note": "Introduces the distributed task, unitary-encoding framework and usefulness classification. Several-receiver bounds must be distinguished from achieved rates."
+    },
+    {
+      "title": "Bruß, distributed dense-coding contribution, Oberwolfach Report 4/2005",
+      "url": "https://ems.press/content/serial-article-files/45978",
+      "note": "Printed pages 203–205 explicitly ask whether the four-qubit W state belongs to the LOCC-dense-codeable class."
+    },
+    {
+      "title": "Winter, The capacity of the quantum multiple-access channel",
+      "url": "https://arxiv.org/abs/quant-ph/9807019v3",
+      "note": "Theorem 9 gives product-prior multiple-access achievability with separate encoder maps and vanishing uniform average error. Its single quantum output must be available in one receiver’s laboratory."
+    },
+    {
+      "title": "Pradhan, Agrawal and Pati, Teleportation and superdense coding with genuine quadripartite entangled states",
+      "url": "https://arxiv.org/abs/0705.1917v1",
+      "note": "Section 4.2.3 already uses Bell measurements and classical forwarding for a two-bit W-state protocol. The present protocol retains the second receiver’s quantum output for many-copy decoding."
+    },
+    {
+      "title": "Cao and Song, Quantum secure direct communication with W state",
+      "url": "https://doi.org/10.1088/0256-307X/23/2/005",
+      "note": "An earlier W-state communication scheme using Bell measurements and classical communication, credited by the manuscript for its paired Bell decomposition. Its security task is distinct from the independent-message rate theorem here."
+    },
+    {
+      "title": "Huang, Zhang and Hou, Classical capacity of a quantum multiple-access channel",
+      "url": "https://arxiv.org/abs/quant-ph/9911120v5",
+      "note": "Earlier work already connects multiple-access coding with dense coding. That general connection is not claimed as a new idea here."
+    },
+    {
+      "title": "Hayashi and Wang, Dense Coding with Locality Restriction on Decoders",
+      "url": "https://doi.org/10.1103/PRXQuantum.3.030346",
+      "note": "Studies a sender, receiver and helper with a different ownership and transmission arrangement. Its capacity formula cannot be imported without checking the receiver partition used here."
+    }
+  ],
+  "why_it_works": [
+    "A paired Bell decomposition makes the effect of independent Pauli encodings explicit. The first receiver performs a complete Bell measurement and forwards every outcome, without postselecting successful events.",
+    "That measurement produces a finite classical–quantum multiple-access channel. The classical outcome and remaining quantum state are both held by the second receiver, so Winter’s ordinary single-output coding theorem applies to this channel.",
+    "The channel output entropy is 3/2 for each input pair. Averaging over either sender gives entropy 3, while averaging over both gives 3 + h₂(1/4). These yield the two individual bounds 3/2 and the sum bound 3/2 + h₂(1/4).",
+    "The many-copy decoder can be conditioned on the forwarded classical outcome string, leaving its quantum measurement entirely inside the second receiver’s laboratory. Separate Pauli codebooks implement independent senders.",
+    "The rate pair (9/8,9/8) lies strictly inside the achievable region and exceeds the two-bit classical benchmark. A Fano inequality transfers reliable message decoding to the accessible-information formulation of the original question."
+  ],
+  "collaboration": "I welcome substantive collaboration on independent verification of the channel and coding argument, comparison with earlier distributed dense-coding protocols, and preparation for journal review. Expertise in quantum Shannon theory, multiple-access coding or LOCC measurements would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is proposed. Exact optimal capacity and finite-block implementations are natural targets, but this review supplies neither a new converse mechanism nor a concrete coding construction that meets the requested high bar for a worthwhile research proposal.",
+  "publication_date": "2026-10-04",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23147866",
+  "author": "Alec Kriebel",
+  "pdf_filename": "w4_locc_dense_coding.pdf",
+  "supplement_filename": null,
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Original TeX source",
+      "url": "https://zenodo.org/records/23147866/files/w4_locc_dense_coding.tex?download=1"
+    },
+    {
+      "label": "Exact channel verification script",
+      "url": "https://zenodo.org/records/23147866/files/verify_channel.py?download=1"
+    },
+    {
+      "label": "Published source and reproduction notes",
+      "url": "https://zenodo.org/records/23147866/files/README.md?download=1"
+    },
+    {
+      "label": "Published file checksums",
+      "url": "https://zenodo.org/records/23147866/files/SHA256SUMS.txt?download=1"
+    }
+  ],
+  "status": "Unrefereed research note, Zenodo version 1.0, developed with extensive AI assistance. The manuscript is dated 4 October 2026 and does not print a version label. No completed human peer review or formally machine-verified proof is claimed.",
+  "ai_disclosure": "AI tools were used extensively in developing the solution, checking the proof, reviewing the literature and preparing the paper. Internal AI reviews do not constitute conventional human peer review or refereeing; exact finite channel checks supplement the mathematical argument.",
+  "source_binding": {
+    "record_id": "23147866",
+    "concept_record_id": "23147865",
+    "record_url": "https://zenodo.org/records/23147866",
+    "doi": "10.5281/zenodo.23147866",
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "manuscript_date": "October 4, 2026",
+    "publication_date": "2026-10-04",
+    "archive_version_label": null,
+    "version_source": "Version 1.0 is supplied by Zenodo metadata. The manuscript prints October 4, 2026 but no version label; no version was silently added to its metadata or source.",
+    "source_retrieved_utc": "2026-10-25T01:08:25.952130+00:00",
+    "pdf_sha256": "61140691594c742dff977862eddf215e23b7e7313c9fd6e4d7b3b008827bfe86",
+    "supplement_sha256": null,
+    "files": [
+      {
+        "name": "LICENSE.txt",
+        "url": "https://zenodo.org/api/records/23147866/files/LICENSE.txt/content",
+        "bytes": 686,
+        "sha256": "5df6286f0f476f163afa53e57dba4a6a1e7208feaab963279286a0ab5258bdc3",
+        "zenodo_checksum": "md5:4474fe43715455fa603b0e1c43d086b9"
+      },
+      {
+        "name": "README.md",
+        "url": "https://zenodo.org/api/records/23147866/files/README.md/content",
+        "bytes": 4529,
+        "sha256": "ea3e26c89f6bbbfb684fe13bb91123c69fc42507d832ac3c625a4ef93bf4d347",
+        "zenodo_checksum": "md5:e316db249c3fc6f91831fd3916ad15b5"
+      },
+      {
+        "name": "w4_locc_dense_coding.pdf",
+        "url": "https://zenodo.org/api/records/23147866/files/w4_locc_dense_coding.pdf/content",
+        "bytes": 74000,
+        "sha256": "61140691594c742dff977862eddf215e23b7e7313c9fd6e4d7b3b008827bfe86",
+        "zenodo_checksum": "md5:4e38c0109e965494394538cf542f174b"
+      },
+      {
+        "name": "PRIORITY_AUDIT.md",
+        "url": "https://zenodo.org/api/records/23147866/files/PRIORITY_AUDIT.md/content",
+        "bytes": 11910,
+        "sha256": "f76283263e83649903ce78d7a478acc220be5d380ff77511402ef7d718ac40ce",
+        "zenodo_checksum": "md5:ad657ab8d27414f421cd29715f76406a"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "url": "https://zenodo.org/api/records/23147866/files/SHA256SUMS.txt/content",
+        "bytes": 596,
+        "sha256": "0fb6625bb928f4766ef5f9446518f61c2615a8892ad3a67f5d82095460db3edc",
+        "zenodo_checksum": "md5:b06164f330b3b5f7fb58a2234214d808"
+      },
+      {
+        "name": "verification_results.json",
+        "url": "https://zenodo.org/api/records/23147866/files/verification_results.json/content",
+        "bytes": 641,
+        "sha256": "f3c2e8bef8fbbf799c878340a22c57c42a68cca4a3bde51e7ecb82621fbd35fc",
+        "zenodo_checksum": "md5:888cd88033aa8a0477ac93f32edaf809"
+      },
+      {
+        "name": "verify_channel.py",
+        "url": "https://zenodo.org/api/records/23147866/files/verify_channel.py/content",
+        "bytes": 4882,
+        "sha256": "b0b0e1fe9feaf1d9724f18bf38cef1f22f633e820460b362da2c8c1971d7f0cd",
+        "zenodo_checksum": "md5:b0e3e89ef6ed3a59695dd149cd842bcd"
+      },
+      {
+        "name": "w4_locc_dense_coding.tex",
+        "url": "https://zenodo.org/api/records/23147866/files/w4_locc_dense_coding.tex/content",
+        "bytes": 16553,
+        "sha256": "21beee795a3d8c4a43cba4ce9494698068bbdfe5e3807e15e1c1b1dde7ab7b32",
+        "zenodo_checksum": "md5:edc092de72866756a1d330d8d2f4bc19"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "w4_locc_dense_coding.pdf",
+        "pages": 5,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "Complete original verify_channel.py and manuscript proof read; TeX abstract/date inspected. PRIORITY_AUDIT.md and verification_results.json were acquired and checksum-verified without reading their bodies. Manuscript/code self-status assertions are not validation. No current sibling mathematical findings consulted.",
+    "abstract_source": "Complete original page 1 abstract, cross-checked against TeX and visually rendered PDF. Only whitespace and mathematical typography normalized; AI/status prose remains separate.",
+    "archive_pdf_identity": "No ZIP or additional PDF is published. All eight separately published assets are acquired and bound; original source/code downloads remain distinct links.",
+    "review_boundary": "Independent publication-scope and bounded primary-literature review; not a mathematical gate, exhaustive novelty certification or human peer review."
+  }
+}
