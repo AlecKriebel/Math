@@ -1,0 +1,145 @@
+       Local structure and algorithms in nonsmooth optimization
+                             Adrian S. Lewis
+          (joint work with James V. Burke and Michael L. Overton)
+
+
+
+The Belgian chocolate problem. Illustrating the difficulty of control design
+problems, Blondel [1] proposed the following problem in 1994:
+        Given a real δ, find stable real polynomials p and q such that the
+        polynomial r(s) = (s2 − 2δs + 1)p(s) + (s2 − 1)q(s) is also stable.
+(We call a polynomial p stable if its abscissa α(p) = max{Re s : p(s) = 0} is
+nonpositive.) Clearly the problem is unsolvable if δ = 1, since then r(1) = 0; more
+delicate results (summarized in [7]) show it remains unsolvable for δ < 1 close to 1.
+Blondel offered a prize of 1kg of Belgian chocolate for the case δ = 0.9, a problem
+solved via randomized search in [7].
+   To illustrate the theme of this talk, we first outline (based on joint work with
+D. Henrion) a more systematic, optimization approach to the chocolate problem.
+We fix the degrees of the polynomials p and q (say 3, for example), without loss
+of generality suppose p is monic, and consider the resulting problem
+                  (CP )         min{α(pqr) : p, q cubic, p monic}.
+A feasible solution with negative objective value would solve Blondel’s problem.
+
+A simple nonsmooth algorithm. For nonsmooth optimization problems like
+(CP ), it is convenient to have on hand a simply-implementable, intuitive, robust
+algorithm for minimizing a nonsmooth function f . We present such a method in
+[3]. To motivate it, suppose for simplicity f (unlike the abscissa α) is Lipschitz.
+    Fundamental for good behavior in nonsmooth optimization is the regularity of
+the function f at points x, which means we can write the directional derivative as
+                        f 0 (x; d) = lim sup ∇f (x)T d, for all d
+                                     y→x
+
+(noting the almost everywhere differentiability of f on its domain in Rn ). Both
+convex and smooth functions are regular. Assuming regularity, we can check that
+the steepest descent direction at x is
+                             
+               − lim argmin kdk : d ∈ conv{∇f (y) : y ∈ x + B} ,
+                  ↓0
+
+where B denotes the unit ball. The Gradient Sampling algorithm of [3] approxi-
+mates this direction by a random vector
+          Gm
+                             
+             (x) = −argmin kdk : d ∈ conv{∇f (Yi ) : i = 1, 2, . . . , m} ,
+
+for some fixed radius , fixed m > n, and independent, uniformly distributed,
+random points Yi ∈ x + B. (In practice, we add the point x.) The algorithm then
+performs a simple line search along this direction, and repeats.
+                                           1
+The performance of Gradient Sampling. The Gradient Sampling algorithm
+is intuitive, and straightforward to implement when function and gradient evalu-
+ations are cheap. Experiments on a wide variety of examples are very promising
+[3]. Rigorous justifications include the almost sure convergence of the search di-
+rection Gm  (x) to a “robust” steepest descent direction as the sample size m grows
+[2], and convergence results for the algorithm under a variety of underlying as-
+sumptions and implementation regimes (for reducing the radius , for example)
+[3]. Among these results, however, the following fact is particularly suggestive of
+the “smoothing” effect of the algorithm.
+Theorem 1. The expectation of the search direction Gm
+                                                     (x) depends continuously
+on the point x.
+We sketch a proof suggested by S. Henderson. First, we sample the points Yi
+corresponding to the current point x, as above. Next, we construct random points
+Yi0 corresponding to a perturbed point x0 , but “coupled” with the points Yi as
+follows. If Yi ∈ x0 + B, then we set Yi0 = Yi ; otherwise we choose Yi0 uniformly
+distributed on the set (x0 + B) \ (x + B). The resulting random points Yi0 are
+mutually independent, and uniformly distributed on the ball x0 + B, as required.
+Since the set (x + B) \ (x0 + B) has measure O(kx − x0 k), the sets {Yi } and
+                                               m 0
+{Yi0 } (and hence the vectors Gm  (x) and G (x )) are identical with probability
+              0
+1 − O(kx − x k). On the other hand, even if this latter event does not occur, since
+                                     m 0
+f is Lipschitz, the vector Gm
+                             (x) − G (x ) is uniformly bounded. In summary, the
+expectation of this latter vector must be O(kx − x0 k).
+Solving the chocolate problem. The Gradient Sampling algorithm suggests
+numerically that the solution of the problem (CP ) for any value of δ near 0.9 has
+a distinctive structure: the polynomial q is a constant, and the polynomial r has
+a negative real zero of order five. Armed with this observation, a simple hand
+calculation reveals a unique feasible solution of this form under the assumption
+      p      √
+δ < 21 2 + 2 ≈ 0.924, in particular solving Blondel’s problem.
+   A nice exercise in nonsmooth calculus verifies our numerical observation that
+the above solution is indeed a local minimizer for the problem (CP ), at least when
+we further restrict the polynomial q to be constant. The requisite nonsmooth
+chain rule we need relies heavily on the following striking result [4].
+Theorem 2. The abscissa α is regular throughout the set of degree-k polynomials.
+Structural persistence in nonsmooth optimization. The persistent solution
+structure for the chocolate problem (CP ) as the parameter δ varies illustrates
+another important feature of concrete nonsmooth optimization problems, akin to
+active set phenomena in nonlinear programming. For classical nonlinear programs,
+the second-order sufficient conditions have several important consequences:
+     (i) the current point is a strict local minimizer;
+    (ii) as we perturb the problem’s parameters, this minimizer varies smoothly
+         on an “active” manifold;
+   (iii) we can calculate perturbed minimizers via smooth systems of equations.
+                                         2
+Properties (ii) and (iii) do not rely fundamentally on second-order theory, and
+indeed they also hold for a broad class of nonsmooth functions introduced in [6].
+   For simplicity once again, we restrict attention to Lipschitz functions f . We
+call f partly smooth relative to the active manifold M if f is regular throughout
+M and the directional derivative f 0 (x; d) is continuous as x varies on M, with
+                   f 0 (x; −d) > −f 0 (x; d) whenever 0 6= d ⊥ M at x.
+This last condition enforces a “vee-shape” on the graph of f around a “ridge”
+corresponding to M. Partial smoothness holds, for example, for the function
+x 7→ max{xi }, the Euclidean norm, and the maximum eigenvalue of a symmetric
+matrix, and the property is typically preserved under smooth composition, gen-
+erating a wealth of applications. Furthermore, critical points of partly smooth
+functions typically satisfy the sensitivity properties (ii) and (iii) above.
+   The structural persistence we first observed numerically in the chocolate prob-
+lem (CP ) is explained by the following refinement of Theorem 2. We associate
+with any polynomial p a list of multiplicities of those zeroes of p with real part
+equal to the abscissa, listed in order of decreasing imaginary part.
+Theorem 3. The abscissa α is partly smooth relative to any manifold of polyno-
+mials having a fixed list of multiplicities.
+   By contrast with the sensitivity properties (ii) and (iii) above, convenient checks
+for property (i) (strict local minimality) do typically involve second-order analysis.
+For partly smooth functions f , the extra assumption we need is prox-regularity [5].
+This property requires, locally, that the nearest-point projection onto the epigraph
+{(x, r) : r ≥ f (x)} should be unique (as typically holds if f is the pointwise
+maximum of some smooth functions, for example). The question of the prox-
+regularity of the abscissa α remains open. The essential ingredient is the following
+question, with which we end.
+Question 1. Does every degree-k polynomial p(s) near the polynomial sk have a
+unique nearest stable polynomial?
+
+                                        References
+ [1] V.D. Blondel Simultaneous stabilization of linear systems, Springer, Berlin (1994).
+ [2] J.V. Burke, A.S. Lewis and M.L. Overton Approximating subdifferentials by random sam-
+     pling of gradients, Math. of O.R. 27 (2002), 567–584.
+ [3] J.V. Burke, A.S. Lewis and M.L. Overton A robust gradient sampling algorithm for non-
+     smooth, nonconvex optimization, SIAM J. Opt, to appear.
+ [4] J.V. Burke and M.L. Overton Variational analysis of the abscissa mapping for polynomials,
+     SIAM J. Control Opt. 39 (2001), 1651–1676.
+ [5] W.L. Hare and A.S. Lewis, Identifying active sets via partial smoothness and prox-regularity,
+     J. Convex Analysis (2004), to appear.
+ [6] A.S. Lewis, Active sets, nonsmoothness and sensitivity, SIAM J. Opt. 13 (2003), 702–725.
+ [7] V.V. Patel, G. Deodhare and T. Viswanath Some applications of randomized algorithms for
+     control system design, Automotica 28 (2002), 2085–2092.
+
+
+
+
+                                                3
+

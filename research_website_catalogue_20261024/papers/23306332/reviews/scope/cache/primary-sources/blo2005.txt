@@ -1,0 +1,1655 @@
+Math. Program., Ser. B 104, 263–292 (2005)
+
+Digital Object Identifier (DOI) 10.1007/s10107-005-0616-1
+
+
+
+
+James V. Burke · Adrian S. Lewis · Michael L. Overton
+
+Variational analysis of functions of the roots of polynomials
+Dedicated to R. Tyrrell Rockafellar on the occasion of his 70th birthday. Terry is one of those rare individuals
+who combine a broad vision, deep insight, and the outstanding writing and lecturing skills crucial for engaging
+others in his subject. With these qualities he has won universal respect as a founding father of our discipline.
+We, and the broader mathematical community, owe Terry a great deal. But most of all we are personally
+thankful to Terry for his friendship and guidance.
+
+Received: May 2, 2004 / Accepted: February 25, 2005
+Published online: July 14, 2005 – © Springer-Verlag 2005
+
+Abstract. The Gauss-Lucas Theorem on the roots of polynomials nicely simplifies the computation of the
+subderivative and regular subdifferential of the abscissa mapping on polynomials (the maximum of the real
+parts of the roots). This paper extends this approach to more general functions of the roots. By combining the
+Gauss-Lucas methodology with an analysis of the splitting behavior of the roots, we obtain characterizations
+of the subderivative and regular subdifferential for these functions as well. In particular, we completely char-
+acterize the subderivative and regular subdifferential of the radius mapping (the maximum of the moduli of
+the roots). The abscissa and radius mappings are important for the study of continuous and discrete time linear
+dynamical systems.
+
+
+
+
+1. Introduction
+
+Let P n denote the linear space of complex polynomials of degree n or less. Define the
+root mapping on P n to be the multifunction R : P n → C given by
+                                      R(p) = {λ | p(λ) = 0 } ,
+and let φ : C → IR ∪ {+∞} = IR   ¯ be a lower semi-continuous convex function. We are
+concerned with the variational properties of functions φ̂ : P n → IR ∪ {±∞} defined as
+                                 φ̂(p) = sup {φ(λ) | λ ∈ R(p) } .                                           (1)
+The abscissa and radius mappings on P n are obtained by taking φ(λ) = Re λ and φ(λ) =
+|λ|, respectively. Indeed, the abscissa and radius mappings are the primary motivation for
+
+J.V. Burke: Department of Mathematics, University of Washington, Seattle, WA 98195, USA.
+e-mail: burke@math.washington.edu
+Research supported in part by the National Science Foundation Grant DMS-0203175.
+A. S. Lewis: School of Operations Research and Industrial Engineering, Cornell University, Ithaca, NY 14853,
+USA. e-mail: aslewis@orie.cornell.edu
+Research supported in part by the Natural Sciences and Engineering Research Council of Canada.
+M.L. Overton: Courant Institute of Mathematical Sciences, New York University, New York, NY 10012, USA.
+e-mail: overton@cs.nyu.edu
+Research supported in part by the National Science Foundation Grant DMS-0412049.
+
+Mathematics Subject Classification (1991): 90C46, 49K40, 65K05, 15A42
+264                                                                             J.V. Burke et al.
+
+
+this study. The variational behavior of these functions is important for our understanding
+of the stability properties of continuous and discrete time dynamical systems [1, 2].
+    The functions defined by (1) possess a very rich variational structure. In addition,
+these functions are related to important applied problems. Consequently, they offer an
+ideal setting in which to test the utility and robustness of any theory for analyzing the
+variational structure of nonsmooth functions. We study the variational behavior of the
+class (1) on the set Mn of polynomials of degree n. This set is an open dense subset of
+the linear space P n (endowed with the topology of pointwise convergence). Note that on
+the set Mn the sup in (1) can be replaced by max. The supremum in (1) is only required
+for constant polynomials. We also note that the non-constant members of the class (1)
+are never locally Lipschitz on Mn and are always unbounded in the neighborhood of
+any point on the boundary of Mn . The non-Lipschitzian behavior is seen by considering
+the family of polynomials p (λ) = (λ − λ0 )n − . To see that φ̂ must be unbounded
+on the boundary of Mn recall that for any non-constant convex function φ there must
+exist a nonzero direction a ∈ C for which φ(τ a) → +∞ as τ ↑ ∞. If p ∈ P n is any
+polynomial of degree less than n, the polynomial defined by q (λ) = (1 − a −1 λ)p(λ)
+is in P n , and satisfies q → p as   0. Moreover,  −1 a ∈ R(q ) for all  > 0.
+Therefore, φ̂(q ) → +∞ as   0. It is this essential unboundedness of the roots on the
+boundary of Mn that motivates the restriction to Mn . On Mn the roots of polynomials
+are continuous functions of their coefficients, so the functions φ̂ defined in (1) are lower
+semi-continuous on Mn .
+    We use the tools developed in [6, 7, 12, 14] to study the variational properties of
+φ̂. Our earlier work demonstrates that these techniques are well suited to applications
+in stability theory [1–5]. In addition, we make fundamental use of a classical result
+originally due to Gauss and commonly known as the Gauss-Lucas Theorem. This result
+establishes a beautiful and elementary convexity relationship between the roots of a
+polynomial and the roots of its derivative.
+Theorem 1. [Gauss-Lucas] All critical points of a non-constant polynomial p lie in the
+convex hull H of the set of roots of p. If the roots of p are not collinear, no critical point
+of p lies on the boundary of H unless it is a multiple root of p.
+   The Gauss-Lucas Theorem implies the following chain of inclusions for any poly-
+nomial of degree n:
+
+        conv R(p(n−1) ) ⊂ conv R(p(n−2 ) ⊂ · · · ⊂ conv R(p  ) ⊂ conv R(p),                 (2)
+
+where conv S denotes the convex hull of the set S.
+   Theorem 1 is referred to by Gauss as early as 1830 and has been rediscovered many
+times. In 1879, Lucas [9, 10] published a refinement of Gauss’s result. For more on the
+Gauss-Lucas Theorem and its uses see Marden [11].
+   With regard to the chain (2), it is useful to observe that
+
+           φ̂(p) = sup {φ(λ) | λ ∈ R(p) } = sup {φ(λ) | λ ∈ conv R(p) } .                    (3)
+
+To see this note that the second supremum is clearly greater than or equal to the first so
+we need only show the reverse inequality. Let λ ∈ conv R(p), then, by Caratheodory,
+Variational analysis of functions of the roots of polynomials                           265
+
+
+there exist λ1 , λ2 , λ3 ∈ R(p) and 0 ≤ µ1 , µ2 , µ3 with µ1 + µ2 + µ3 = 1 such that
+λ = µ1 λ1 + µ2 λ2 + µ3 λ3 . But then by convexity
+
+                 φ(λ) ≤ µ1 φ(λ1 ) + µ2 φ(λ2 ) + µ3 φ(λ3 ) ≤ max φ(λj ),
+                                                                           j =1,2,3
+
+so that the second supremum in (3) is less than or equal to the first.
+    In [5], Burke and Overton investigate the variational properties of the abscissa map-
+ping using an approach modeled on work of Levantovskii [8]. However, this approach is
+difficult and lengthy, and provides little insight into the underlying variational geometry.
+Furthermore, extending this approach to other functions of the roots of polynomials
+would be a daunting task at best. In [3], an approach based on the Gauss-Lucas Theo-
+rem is introduced to simplify the derivation of the tangent cone to the epigraph of the
+abscissa mapping at the polynomial p(λ) = (λ − λ0 )n . This derivation is one of the two
+most difficult technical hurdles in [5]. The second is the verification of subdifferential
+regularity.
+    In this paper, we apply the Gauss-Lucas ideas in [3] to the class of functions given
+by (1). As in [3], we focus on the computation of the tangent cone to the epigraph at the
+polynomials
+
+                                       e(n,λ0 ) (λ) = (λ − λ0 )n .
+
+We recover our earlier result for the abscissa mapping and obtain the corresponding
+result for the radius mapping which is stated below. Here and throughout, we denote the
+complex conjugate of the complex scalar z by z̄.
+Theorem 2. Let r : P n → IR denote the radius mapping on P n :
+
+                                  r(p) = max {|λ| | λ ∈ R(p) } .
+                                                 n
+Let (v, η) ∈ P n × IR be such that v =               k=0 bk e(n−k,λ0 ) .
+
+ (i) (v, η) is an element of the tangent cone to the epigraph of r at the polynomial
+     p(λ) = λn if and only if
+
+                                   1
+                             η≥      |b1 | and 0 = bk , k = 2, 3, . . . , n.
+                                   n
+(ii) (v, η) is an element of the tangent cone to the epigraph of r at the polynomial
+     p(λ) = (λ − λ0 )n with λ0 = 0 if and only if
+
+                                 1                     
+                          η≥           |b2 | − Re λ¯0 b1 ,
+                               n|λ0 |
+                                      
+                           0 = Re λ¯0 −b2 , and 0 = bk , k = 3, . . . , n.
+
+    The notation and definitions follow those established in [14]. The definitions of the
+terms epigraph and tangent cone used in Theorem 2 appear in the next section. Notation
+specific to the study of polynomials on the complex plane is introduced below.
+266                                                                             J.V. Burke et al.
+
+
+    Recall that the complex plane C is a Euclidean space when endowed with the usual
+real inner product ω , λ = Re ω̄λ. By extension, Cn is also a Euclidean space when
+given the real inner product
+                                                             n
+                    (ω1 , . . . , ωn )T , (λ1 , . . . , λn )T =   ωk , λ k .
+                                                                k=1
+                                           
+      Given λ0 ∈ C we define the basis e(k,λ0 ) | k = 0, 1, . . . , n for P n , where
+                         e(k,λ0 ) (λ) = (λ − λ0 )k , k = 0, 1, . . . , n.
+Each such basis defines a real inner product (or duality pairing) on P n :
+                                                     
+                                                     n
+                                   p , q λ0 = Re           āk bk ,
+                                                     k=0
+                                      
+where p = nk=0 ak e(k,λ0 ) and q = nk=0 bk e(k,λ0 ) . In the case n = 0, we recover
+the real inner product on C. When λ0 = 0, we drop the subscript on the inner product
+and simply write · , · . Note that this family of inner products behaves continuously
+in p, q, and λ0 in the sense that the mapping (p, q, λ0 ) → p , q λ0 is continuous on
+P n × P n × C. To see this simply note that
+                                               
+                                               n
+                                                 p (k) (λ) q (k) (λ)
+                           p , q λ = Re                                .
+                                                      k!         k!
+                                               k=0
+
+             √ on a Euclidean space gives rise to a norm |·| in the usual way by
+The inner product
+setting |x| = x , x .
+    Given a mapping φ : C → IR,  ¯ we define the mapping φ̃ : IR 2 → IR ¯ by the
+composition φ̃ = φ ◦ , where  : IR → C is the linear transformation
+                                    2
+
+                                      (x) = x1 + i x2 ,                                     (4)
+i ∈ C denoting the imaginary unit. If we endow IR 2 with its usual inner product and C
+with the inner product above, we have
+                                                        Re µ
+                                −1 µ = ∗ µ =               .
+                                                        Im µ
+We say that φ is differentiable in the real sense if φ̃ is differentiable, in which case the
+derivative of φ is given by the chain rule as
+                                    φ  (ζ ) = ∇ φ̃(∗ ζ ).
+Here ∇ φ̃ denotes the gradient of φ̃. Similarly, we say that φ is twice differentiable in
+the real sense if φ̃ is twice differentiable and again the chain rule gives
+                                φ  (ζ )δ = ∇ 2 φ̃(∗ ζ )∗ δ,                             (5)
+where ∇ 2 φ̃ denotes the Hessian of φ̃. Since these are the only notions of differentiabil-
+ity we employ, we omit the qualifying phrase in the real sense when specifying that a
+function from C to I¯R is differentiable or twice differentiable. We also make use of the
+following notation:
+                                                                          
+              φ  (ζ ; δ) = φ  (ζ ) , δ and φ  (ζ ; ω, δ) = ω , φ  (ζ )δ .
+Variational analysis of functions of the roots of polynomials                           267
+
+
+2. The tangent cone and the subderivative
+
+We use the tools in [7, 14] to describe the variational geometry of the function φ̂. Recall
+that the epigraph of a function f mapping a Euclidean space E into the extended real
+numbers I¯R = IR ∪ {+∞} is the subset of E × IR given by
+                                 epi (f ) = {(x, µ) | f (x) ≤ µ } ,                     (6)
+and the domain is the set
+                                    dom (f ) = {x | f (x) < ∞ } .
+The fundamental variational object for f is the tangent cone to its epigraph [14, Definition
+6.1]. Given a set C in a linear space S and a point x ∈ C, the tangent cone to C at x is
+defined to be the set
+                                                                       
+                                 ∃{x k } ⊂ C, {tk } ⊂ IR such that
+              TC (x) = d  k                                              .
+                              x → x, tk ↓ 0, and t −1 (x k − x) → d
+                                                                k
+The tangent cone to epi (f ) at a point can be viewed as the epigraph of another function
+called the subderivative of f at x. It is denoted by df (x) [14, Theorem 8.2]:
+                 epi (df (x)) = {(w, η) | df (x)(w) ≤ η } = Tepi (f ) (x, f (x))        (7)
+for all x ∈ dom (f ) = {x | f (x) < +∞ }. The subderivative generalizes the notion of a
+directional derivative as seen by the following alternative formula [14, Definition 8.1]:
+                                                       f (x + tw  ) − f (x)
+                           df (x)(w) = lim inf                               .          (8)
+                                              t0               t
+                                             w →w
+   In the case of the function class (1), the computation of the tangent cone is simplified
+due to the fact that (p, η) ∈ epi (φ̂) if and only if (ζp, η) ∈ epi (φ̂) for every nonzero
+complex scalar ζ .
+Lemma 1. Define Mn1 ⊂ Mn to be the set of monic polynomials of degree n:
+                                                 
+                                        
+                     Mn1 = e(n,0) + q  q ∈ P n−1 .
+
+                    ¯ by
+Define φ̂1 : P n → IR
+                                               
+                                                   φ̂(p) , if p ∈ Mn1 ,
+                                   φ̂1 (p) =
+                                                   +∞ , otherwise.
+Let λ0 ∈ dom (φ), bk ∈ C, k = 0, 1, . . . , n, η ∈ IR, and set
+                             
+                             n                                  
+                                                                n
+                       v=          bk e(n−k,λ0 ) and ṽ =             bk e(n−k,λ0 ) .
+                             k=0                                k=1
+Then
+                                                                       
+                                   (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 )
+if and only if
+                                                                       
+                                 (ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) .
+268                                                                                 J.V. Burke et al.
+
+
+Remark 1. The lemma shows that
+                                                                                 
+            Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) = C e(n,λ0 ) + Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) ,
+                     
+where C e(n,λ0 ) = ξ e(n,λ0 ) | ξ ∈ C . Therefore, we can restrict our analysis of the tan-
+gent cone to sequences that lie in the set Mn1 . This is the approach taken in [4]. Here we
+work on the seemingly more general space Mn in order to simplify applications.
+                                                    
+Proof. Suppose (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) , that is, there exists a sequence ξj ↓ 0
+such that
+               (e(n,λ0 ) + ξj v + o(ξj ), φ(λ0 ) + ξj η + o(ξj )) ∈ epi (φ̂),
+or equivalently,
+                            ξj ṽ
+            (e(n,λ0 ) +               + o(ξj ), φ(λ0 ) + ξj η + o(ξj )) ∈ epi (φ̂1 ).
+                        1 + ξ j b0
+                                            
+Hence (ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) .
+                                                                
+    Conversely, suppose (ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) . By definition, there exists
+ξj ↓ 0 such that
+
+               (e(n,λ0 ) + ξj ṽ + o(ξj ), φ(λ0 ) + ξj η + o(ξj )) ∈ epi (φ̂1 ).                 (9)
+Multiplying e(n,λ0 ) + ξj ṽ + o(ξj ) by (1 + ξj b0 ) gives
+              (1 + ξj b0 )(e(n,λ0 ) + ξj ṽ + o(ξj )) = e(n,λ0 ) + ξj v + o(ξj ).
+That is, (9) is equivalent to
+              (e(n,λ0 ) + ξj v + o(ξj ), φ(λ0 ) + ξj η + o(ξj )) ∈ epi (φ̂) .
+                                              
+Therefore, (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) which proves the result.                          
+                                                                                                  
+
+    Next recall that the epigraph of the convex function φ as well as all of the lower level
+sets
+                                levφ (µ) = {λ | φ(λ) ≤ µ }
+are convex sets [13]. This allows us to apply the Gauss-Lucas Theorem in a powerful
+way. Since
+                          µ ≥ φ̂(p) ⇐⇒ R(p) ⊂ levφ (µ),                                        (10)
+the Gauss-Lucas Theorem yields the following chain of inclusions for any polynomial
+of degree n providing (p, µ) ∈ epi (φ̂):
+            conv R(p(n−1) ) ⊂ · · · ⊂ conv R(p  ) ⊂ conv R(p) ⊂ levφ (µ).                     (11)
+This system of inclusions along with subdifferential information about the function φ
+provide the basis for a set of necessary conditions for a pair (v, η) ∈ P n × IR to be an
+element of the tangent cone to epi (φ̂).
+Variational analysis of functions of the roots of polynomials                             269
+
+
+   The convexity of φ implies that φ is directionally differentiable in all directions at
+every point in λ0 ∈ dom (φ) [13] and one has
+                                  φ(λ0 + τ ξ ) − φ(λ0 )        φ(λ0 + τ ξ ) − φ(λ0 )
+           φ  (λ0 ; ξ ) = lim                          = inf                        .
+                           τ ↓0            τ              τ >0          τ
+Taking τ = 1 and ξ = λ − λ0 in the right hand side of this expression gives the
+subdifferential inequality
+
+                                  φ(λ) ≥ φ(λ0 ) + φ  (λ0 ; λ − λ0 ).
+
+A vector ω is a subgradient of φ, written ω ∈ ∂φ(λ), if and only if
+
+                            φ(λ) ≥ φ(λ0 ) + ω , λ − λ0 ∀ λ ∈ C .                         (12)
+
+The subdifferential ∂φ(λ0 ) is always a closed convex set, although it may be empty at
+points on the boundary of the set dom (φ). The subdifferential is related to the directional
+derivative of φ by the formula
+
+                            φ  (λ0 ; λ) = sup { z , λ | z ∈ ∂φ(λ0 ) } .                 (13)
+
+Therefore, at points
+
+                               λ0 ∈ dom (∂φ) = {λ | ∂φ(λ) = ∅ } ,
+
+we have φ  (λ0 ; ·) : C → IR ∪ {+∞} is a lower semi-continuous convex function. Since
+φ  (λ0 ; ·) is a convex function, we can use (1) to define
+
+                                             φ̂λ0 = φ 
+                                                       (λ0 ; ·).
+
+That is, we define the function φ̂λ0 : P n → IR ∪ {±∞} by
+                                       
+                        φ̂λ0 (q) = sup φ  (λ0 ; λ) | q(λ) = 0 ,
+
+and observe that by (13), (3), and (11),
+
+                   φ̂λ0 (q) = sup { z , λ) | (z, λ) ∈ ∂φ(λ0 ) × conv R(q) }
+                                          
+                            ≥ sup z , λ)  (z, λ) ∈ ∂φ(λ0 ) × conv R(q  )
+                            = φ̂λ0 (q  ).                                               (14)
+
+The next lemma shows how to extend the subdifferential inequality for φ to the function
+φ̂ by using the function φ̂λ0 .
+Lemma 2. Given 0 < τ ∈ IR and λ0 ∈ dom (φ), define the linear transformation
+S[τ,λ0 ] : P n → P n by S[τ,λ0 ] (p)(λ) = p(λ0 + τ λ). Then, for every p ∈ P n ,
+
+                              φ̂(p) ≥ φ(λ0 ) + τ φ̂λ0 ([S[τ,λ0 ] (p)]( ) ),              (15)
+
+for = 0, 1, . . . , (deg(p) − 1).
+270                                                                                             J.V. Burke et al.
+
+
+Proof. For the case = 0, we have
+                   φ̂(p) = max {φ(λ) | p(λ) = 0 }
+                                    
+                         = max φ(λ)  S[τ,λ0 ] (p)(γ ) = 0, λ = λ0 + τ γ
+                                              
+                         = max φ(λ0 + τ γ )  S[τ,λ0 ] (p)(γ ) = 0
+                                                       
+                         ≥ max φ(λ0 ) + τ φ  (λ0 ; γ )  S[τ,λ0 ] (p)(γ ) = 0
+                          = φ(λ0 ) + τ φ̂λ0 (S[τ,λ0 ] (p)).
+The remaining cases follow immediately from (14) and (11).                                                    
+                                                                                                              
+    We now translate the content of Lemma 2 into statements about the coefficients of
+the underlying polynomials. Consider the polynomial
+                                                     
+                                                     n
+                                           p=              ak e(n−k,λ0 ) ,                                 (16)
+                                                     k=0
+with a0 = 0. The th derivative of this polynomial is given by
+                                           
+                                           n−
+                           p( ) = !                 b(n − k, )ak e(n−(k+ ),λ0 ) ,                          (17)
+                                           k=0
+
+where b(n, k) with k ≤ n are the binomial coefficients b(n, k) = k!(n−k)!
+                                                                    n!
+                                                                          . Applying the
+operator S[τ,λ0 ] to p yields
+                                                      
+                                                      n
+                                   S[τ,λ0 ] (p) =           ak τ (n−k) e(n−k,0) ,                          (18)
+                                                      k=0
+and
+                                                    
+                                                    n−
+                  [S[τ,λ0 ] (p)]   ( )
+                                         = !τ   n
+                                                          b(n − k, )τ −k ak e(n−(k+ ),0) ,                 (19)
+                                                    k=0
+for = 0, 1, 2, . . . , (n − 1) (the case = 0 is just (18). With this notation, we have the
+following simple consequence of Lemma 2.
+Lemma 3. Let p ∈ P n be as in (16) and let t ∈ IR be positive. Then
+                                                     
+                                                     s
+            φ̂(p) ≥ φ(λ0 ) + t 1/s φ̂λ0                    b(n − k, n − s)t −k/s ak e(s−k,0) ,             (20)
+                                                     k=0
+for s = 1, . . . , n.
+Proof. In (19) take = n − s and τ = t 1/s for = 0, 1, 2, . . . , (n − 1), or equivalently,
+s = 1, . . . , n, to obtain
+                                                    
+                                                    s
+                S[τ,λ0 ] (p)(n−s) = !t n/s                b(n − k, n − s)t −k/s ak e(s−k,0) ,
+                                                    k=0
+
+for s = 1, . . . , n. Plugging this expression into (15) yields the result since φ̂λ0 (p) =
+φ̂λ0 (ζp) for every nonzero complex number ζ .                                            
+                                                                                          
+Variational analysis of functions of the roots of polynomials                                         271
+
+
+    The main result of the section now follows.
+Theorem 3. Let λ0 ∈ dom (∂φ) with ∂φ(λ0 ) = {0}. If
+                                                           
+                       (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 )
+
+with
+                                                   
+                                                   n
+                                            v=           bk e(n−k,λ0 ) ,                             (21)
+                                                   k=0
+
+then
+
+                                 η ≥ φ  (λ0 ; −b1 /n),                                              (22)
+                                                
+                                 0 = g , −b2 ∀ g ∈ ∂φ(λ0 ),                  and                     (23)
+                                 0 = bk , k = 3, . . . , n.                                          (24)
+
+Thus, in particular, if rspan (∂φ(λ0 )) = C, then b2 = 0, where for any D ⊂ C the set
+                        N                                                     
+                          
+         rspan (D) =          τk xk | N ∈ IN, τk ∈ IR, xk ∈ D k = 1, . . . , N
+                              k=1
+
+is the real linear span of D.
+                                               
+Proof. Let (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) with v given by (21).Then, by Lemma 1,
+                                      
+(ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) , where
+
+                                                   
+                                                   n
+                                            ṽ =         bk e(n−k,λ0 ) .
+                                                   k=1
+
+Hence there exist sequences tj ↓ 0 and {(pj , µj )} ∈ epi (φ̂1 ) such that
+
+                          tj−1 ((pj , µj ) − (e(n,λ0 ) , φ(λ0 ))) → (ṽ, η).
+
+                             j        j       j
+That is, there exists {(a0 , a1 , . . . , an )} ∈ Cn+1 such that
+
+                                                   
+                                                   n
+                                                           j
+                                            pj =         ak e(n−k,λ0 ) ,
+                                                   k=0
+
+tj−1 (µj − φ(λ0 )) → η, a0 = 1 for all j = 1, 2, . . . , and ak → 0 with tj−1 ak → bk for
+                                  j                                          j                   j
+
+k = 1, . . . , n. By applying Lemma 3 to pj for each j = 1, 2, . . . with t = tj we obtain
+for s = 1, 2, . . . , n
+
+                                      1/s
+                                               
+                                               s
+                                                                           −k/s j
+              µj ≥ φ(λ0 ) + tj φ̂λ0                  b(n − k, n − s)tj         ak e(s−k,0)   ,
+                                               k=0
+272                                                                                J.V. Burke et al.
+
+
+or equivalently,
+
+            −1/s
+                                          
+                                          s
+                                                                 −k/s j
+           tj      (µj − φ(λ0 )) ≥ φ̂λ0         b(n − k, n − s)tj    ak e(s−k,0)              (25)
+                                          k=0
+
+for each s = 1, . . . , n. We now consider the limit as j → ∞ in each of these inequalities.
+First observe that
+           s                                     
+                                  −k/s j                                      
+               b(n − k, n − s)tj ak e(s−k,0) → b(n, n − s)e(s,0) + bs
+            k=0
+
+for s = 1, . . . , n. Hence
+            
+            s
+                                   −k/s j                                       
+       R          b(n − k, n − s)tj    ak e(s−k,0)    → R b(n, n − s)e(s,0) + bs
+            k=0
+
+                              j
+for s = 1, . . . , n, since a0 = 1 for all j = 1, 2, . . . and the roots of a polynomial are a
+continuous function of its coefficients on Mn . Therefore, the lower semi-continuity of
+φ̂λ0 and the inequalities (25) imply that
+
+                    η ≥ φ̂λ0 (b(n, n − 1)e(1,0) + b1 ) = φ  (λ0 ; −b1 /n)                    (26)
+which proves (22). For s = 2, . . . , n, the inequalities (25) imply that
+            0 ≥ φ̂λ0 (b(n, n − s)e(s,0) + bs )
+                                             1/s                             
+                                      −bs                   ω = e2πk i /s
+                         
+              = max φ λ0 ;                          ω                                        (27)
+                                  b(n, n − s)               k = 0, . . . , s − 1 .
+
+By assumption there exists g ∈ ∂φ(λ0 ) with g = 0. Inequality (27) implies that
+                                              1/s 
+                                        −bs
+                          0 ≥ g,                     ω ,
+                                    b(n, n − s)
+
+for ω = e2π k i /s (k = 0, 1, . . . , s − 1). For s = 3, . . . , n this can only occur if bs = 0
+which gives (24). For s = 2 we have
+                                                 1/2 
+                                          −b2
+                     0 ≥ g, ±                             ∀ g ∈ ∂φ(λ0 ),
+                                       b(n, n − 2)
+
+or equivalently, condition (23) holds.                                                           
+                                                                                                 
+
+    The conditions (23)and (24) play a key role in our subsequent analysis. Condition
+(24) is transparent, but condition (23) is not since it is nonlinear in b2 . In the following
+lemma we describe the underlying convexity of this condition. For this we use the notion
+of the cone generated by a subset of the complex plane. Given a set D contained in C
+we define the cone generated by D to be the set
+                         cone (D) = {τ x | τ ∈ IR + and x ∈ D } .
+Variational analysis of functions of the roots of polynomials                           273
+
+
+If D is a convex subset of C, then cone (D) is convex and rspan (D) = cone (D) −
+cone (D). The polar of any convex cone K in C is the set
+
+                                 K ◦ = {z | z , x ≤ 0 ∀ x ∈ K } ,
+
+and we have the relationship cl (K) = K ◦◦ .
+
+Lemma 4. Let λ0 ∈ dom (∂φ) with ∂φ(λ0 ) = {0}, and let b2 ∈ C. Then the following
+statements are equivalent.
+       √       
+  (i) g , −b2 = 0 for all g ∈ ∂φ(λ0 ).
+                              √
+ (ii) Either b2 = 0 or rspan ( b2 ) = rspan (∂φ(λ0 )).
+(iii) Either b2 = 0 or cone (∂φ(λ0 )2 ) = cone ({b2 }), where
+
+                                                                  
+                                       ∂φ(λ0 )2 = g 2 | g ∈ ∂φ(λ0 ) .
+
+
+In addition, the set of all b2 ∈ C satisfying (i) is given by the convex cone Kλ◦0 , where
+
+
+                        Kλ0 = −cone (∂φ(λ0 )2 ) + i [rspan (∂φ(λ0 )2 )]                (28)
+
+so that
+                            
+                                      {0}        , if rspan (∂φ(λ0 )) = C, and
+                   Kλ◦0 =
+                                cone (∂φ(λ0 )2 ) , otherwise.
+
+Proof. Observe that if b2 = 0, then the condition in (i) implies that the real linear span
+rspan (∂φ(λ0 )) must be a line through the origin in C since ∂φ(λ0 ) = {0}. Note that
+any line through the origin can be written as rspan (v) for some v ∈ C and that the line
+perpendicular to this line in the real inner product is the line i [rspan (v)]. With these
+observations, we have the following string of equivalences:
+
+                                   
+                                   √      
+                                    g,−b2 = 0 ∀ g ∈ ∂φ(λ0 )
+                                         √⇐⇒ 
+                   either b2 = 0 or v , i b2 = 0 ∀ v ∈ rspan (∂φ(λ0 ))
+                                            ⇐⇒
+                                      either b2 = 0 or              √
+                  v , w = 0 ∀(v, w) ∈ rspan (∂φ(λ0 )) × ( i [rspan ( b2 )])
+                                            ⇐⇒                  √
+                      either b2 = 0 or rspan (∂φ(λ0 )) = rspan ( b2 ),
+
+where the final equivalence follows since the lines i [rspan (∂φ(λ0 ))] and the line
+rspan (∂φ(λ0 )) are perpendicular whenever b2 = 0. Therefore, (i) and (ii) are equivalent.
+274                                                                              J.V. Burke et al.
+
+
+      The equivalence of (ii) and (iii) follows from the following string of equivalences:
+                                                                 √
+                       either b2 = 0 or rspan (∂φ(λ0 )) = rspan ( b2 )
+                                              ⇐⇒
+                                        either b2 = 0 or        √
+                         ∀ g ∈ ∂φ(λ0 ) ∃ τ ∈ IR such that g = τ b2
+                                              ⇐⇒
+                                        either b2 = 0 or
+                         ∀ g ∈ ∂φ(λ0 ) ∃ τ ∈ IR such that g 2 = τ 2 b2
+                                              ⇐⇒
+                                        either b2 = 0 or
+                       cone ({g 2 }) = cone ({b2 }) ∀ g ∈ ∂φ(λ0 ) \ {0}
+                                              ⇐⇒
+                       either b2 = 0 or cone (∂φ(λ0 )2 ) = cone ({b2 }).
+
+    Next note that the condition, rspan (∂φ(λ0 )) = C is equivalent to the condition
+rspan (∂φ(λ0 )2 ) = C since the subdifferential ∂φ(λ0 ) is a convex set. In this case the
+Kλ0 = C, and so Kλ◦0 = {0}. Therefore, if rspan (∂φ(λ0 )) = C, then the set of all b2
+satisfying (23) equals Kλ◦0 = {0}.
+    If rspan (∂φ(λ0 )) = C, the set rspan (∂φ(λ0 )) is a line through the origin since
+∂φ(λ0 ) = {0}. This line must equal the real linear span of any nonzero element of
+∂φ(λ0 ). Hence the set cone (∂φ(λ0 )2 ) is a ray emanating from the origin (not a line),
+and the set Kλ0 is a convex cone in C. An easy computation shows that the polar of
+this cone is the ray cone (∂φ(λ0 )2 ). Hence, by (iii), the set of all b2 satisfying (23)
+is contained in Kλ◦0 . On the other hand, suppose b2 ∈ Kλ◦0 = cone (∂φ(λ0 )2 ). Since
+cone (∂φ(λ0 )2 ) is a ray emanating from the origin, we have
+
+               Kλ◦0 = cone (∂φ(λ0 )2 ) = cone ({g 2 })    ∀ g ∈ ∂φ(λ0 ) \ {0}.
+
+Hence,
+√      for each g ∈ ∂φ(λ0 ) \ {0} there is a τg ≥ 0 such that b2 = τg g 2 , or equivalently,
+         √
+ b2 = ± τg g. Consequently,
+                                    √ 
+                  g,       −b2 = ± g , i τg g = 0        ∀ g ∈ ∂φ(λ0 ) \ {0},
+
+which shows that every b2 ∈ Kλ◦0 satisfies (23) completing the proof that Kλ◦0 is precisely
+the set of all complex numbers that satisfy (23).                                         
+                                                                                          
+
+   If φ is twice continuously differentiable with φ  (λ0 ; ·, ·) positive definite, then The-
+orem 3 can be sharpened. For this we make use of the following technical result.
+Lemma 5. If H is a 2-by-2 real symmetric matrix with nonnegative trace then the func-
+tion
+                                     √             √ 
+                        f (w) = −1 w , H −1 w
+
+is sublinear, i.e. positive homogeneous and subadditive (see (4) for the definition of ).
+Variational analysis of functions of the roots of polynomials                                     275
+
+
+Proof. If
+
+                                                       ab
+                                              H =
+                                                       bc
+
+and z = x + i y with x and y real, then
+                                             
+                     f (z2 ) = −1 z , H −1 z = ax 2 + 2bxy + cy 2
+                                  a+c 2     a−c
+                              =      |z | +     Re(z2 ) + b Im(z2 ).
+                                   2         2
+Hence
+                                     a+c       a−c
+                         f (w) =         |w| +     Re(w) + b Im(w)
+                                      2         2
+and the result follows.                                                                             
+                                                                                                    
+
+Definition 1. A function f : C → IR is said to be quadratic on C exactly when f
+composed with  (defined in (4)) is quadratic on IR 2 .
+
+   We now sharpen the inequality (22) using the notation established at the end of
+Section 1.
+Theorem 4. If in Theorem 3 it is further assumed that φ is either (i) quadratic, or (ii)
+twice continuously differentiable at λ0 with φ  (λ0 ; ·, ·) positive definite, then condition
+(22) can be strengthened to
+                             1                              
+                       η≥      φ (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ) .                          (29)
+                             n
+Proof. If φ is quadratic, then the proof follows essentially the same pattern of proof as
+in the positive definite case. Therefore, we only provide the proof in the case where φ is
+assumed to be twice continuously
+                                     differentiable
+                                                       at λ0 with φ  (λ0 ; ·, ·) positive definite.
+    Let (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) with v given by (21). By Theorem 3, (v, η)
+satisfies (22)–(24). By Lemma 1,
+                                                                   
+                             (ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) ,
+             n
+where ṽ =     k=1 bk e(n−k,λ0 ) . By (24), bk = 0, k = 3, . . . , n and so there exist
+sequences tr ↓ 0, ηr → η, b1r → b1 , b2r → b2 , and bkr → 0, k = 3, . . . , n such that
+
+                                   φ(λ0 ) + ηr tr + o(tr ) ≥ φ̂(pr ),                            (30)
+
+where
+                           
+                           n
+        pr = e(n,λ0 ) +          (bkr tr + o(tr ))e(n−r,λ0 )
+                           k=1
+            = e(n,λ0 ) + (b1r tr + o(tr ))e(n−1,λ0 ) + (b2r tr + o(tr ))e(n−2,λ0 ) + o(tr ),
+276                                                                                         J.V. Burke et al.
+
+
+with the second equality following since bkr → 0, k = 3, . . . , n. Let λ1r , . . . , λnr
+denote the roots of the polynomials pr for r = 1, 2, . . . , respectively. We have
+
+                                 
+                                 n
+                                       (λkr − λ0 ) = −b1r tr + o(tr ),                                 (31)
+                                 k=1
+
+and
+                                    n                  2
+            
+            n                                                    
+                  (λkr − λ0 ) =
+                             2
+                                             (λkr − λ0 )     −2          (λj r − λ0 )(λkr − λ0 )
+            k=1                        k=1                        j <k
+
+                                 = (−b1r tr + o(tr ))2 − 2(b2r tr + o(tr ))
+                                 = −2b2r tr + o(tr ).                                                  (32)
+
+      Set zkr = λkr − λ0 for k = 1, . . . , n and r = 1, 2, . . . . By (31) and (32) we have
+
+                                       
+                                       n
+                                             zkr = −b1r tr + o(tr )                                    (33)
+                                       k=1
+
+and
+
+                                  
+                                  n
+                                        (zkr )2 = −2b2r tr + o(tr ),                                   (34)
+                                  k=1
+
+respectively. With this notation, (30) becomes
+
+                    φ(λ0 ) + ηr tr + o(tr ) ≥ φ(λ0 + zkr ), k = 1, . . . , n.
+
+Taking second-order Taylor expansions yields
+
+                                         1
+       ηr tr + o(tr ) ≥ φ  (λ0 ; zkr ) + φ  (λ0 ; zkr , zkr ) + o(|zkr |2 ), k = 1, . . . , n,      (35)
+                                         2
+
+(note that if φ is quadratic then the term o(|zkr |2 ) equals zero). Since pr → e(n,λ0 ) , we
+have zkr → 0, k = 1, . . . , n. Hence, the positive definiteness of φ  (λ0 ; ·, ·) implies
+that for every  > 0 there is an r0 such that
+
+                   1                                   1 −  
+                     φ (λ0 ; zkr , zkr ) + o(|zkr |2 ) ≥      φ (λ0 ; zkr , zkr ),
+                   2                                       2
+for k = 1, . . . , n and all r ≥ r0 (if φ is quadratic then we can take  = 0 without the
+assumption of positive definiteness). Therefore, for r ≥ r0 , the inequalities (35) imply
+the inequalities
+
+                                                  1 −  
+           ηr tr + o(tr ) ≥ φ  (λ0 ; zkr ) +          φ (λ0 ; zkr , zkr ), k = 1, . . . , n.
+                                                    2
+Variational analysis of functions of the roots of polynomials                                 277
+
+
+Now sum over k and again use the positive definiteness of φ  (λ0 ; ·, ·) with Lemma 5
+and definition (5) to obtain
+                       
+                                                           !       ! 
+                                             1 −   
+                                  n                 n
+                     1     
+    ηr tr + o(tr ) ≥     φ (λ0 ;     zkr ) +           φ λ0 ; zkr2 , z2
+                                                                         kr
+                     n                         2
+                                 k=1               k=1
+                                                        &          &           
+                                                          ' n        ' n
+                     1         n
+                                             1 −      '         '
+                   ≥     φ (λ0 ;     zkr ) +       φ λ0 ; (       2 ,(
+                                                                zkr           2  ,
+                                                                             zkr
+                     n                         2
+                                       k=1                         k=1         k=1
+
+for all r ≥ r0 . Plugging in (33) and (34) gives the relation
+                      tr                                        
+             ηr tr ≥      φ (λ0 ; −b1r ) + (1 − )φ  (λ0 ; −b2r , −b2r )
+                      n
+                                                                     +o(tr ).
+
+Dividing through by tr and taking the limit yields the inequality
+                         1                                     
+                   η≥      φ (λ0 ; −b1 ) + (1 − )φ  (λ0 ; −b2 , −b2 ) .
+                         n
+Observe that if φ is quadratic, we can obtain this inequality with  = 0 without the
+positive definiteness assumption. Since  > 0 was arbitrary, we obtain (29).       
+                                                                                   
+
+    If φ is not quadratic and φ  (λ0 ; ·, ·) is only positive semidefinite, we can still sharpen
+(22) but not as finely as in (29). The proof in the indefinite case is completely different.
+Unlike the proof of Theorem 4, it relies only on the Gauss-Lucas Theorem.
+Theorem 5. If in Theorem 3 it is further assumed that φ is twice continuously differen-
+tiable, then condition (22) can be strengthened to
+
+                        1                   1                   
+                 η≥       φ (λ0 ; −b1 ) +         φ  (λ0 ; −b2 , −b2 ) ,                   (36)
+                        n                 (n − 1)
+when n > 1.
+                                    
+Proof. Consider the polynomial p = nk=0 ak e(n−k,λ0 ) and set
+                              -
+                                     
+                                   a1 2       2a2
+                          r=            −
+                                  na0     n(n − 1)a0
+
+The Gauss-Lucas theorem tells us that if µ ≥ φ̂(p), then
+                                                      
+                                        
+                     µ ≥ max φ(λ)  p (n−2) (λ) = 0
+                                                          
+                                                   −a1
+                       = max φ(λ)  λ = λ0 +            ±r
+                                                    na0
+                                             
+                                     −a1
+                       ≥ φ λ0 +            ±r ,
+                                     na0
+278                                                                              J.V. Burke et al.
+
+
+where
+                              
+                    −a1
+             φ λ0 +      ±r
+                     na0
+                         .               /      .                    /
+                                  −a1        1           −a1     −a1
+              = φ(λ0 ) + φ (λ0 ) ,         +      φ (λ0 )        ,
+                                   na0        2             na0     na0
+                                 .                /
+                                          −a
+                ± φ (λ0 ) , r ± φ  (λ0 )
+                                                1
+                                                      ,r
+                                             na0
+                                                    2
+                  1                  −a1        
+                + φ (λ0 )r , r + o            ± r  .
+                  2                        na0
+
+By adding the resulting pair of inequalities, one associated with each of the two roots,
+and then dividing by 2, we get the inequality
+                         .              /       .                     /
+                                    −a1       1           −a1     −a1
+           µ ≥ φ(λ0 ) + φ  (λ0 ) ,        +      φ (λ0 )        ,
+                                    na0       2             na0      na0
+                                                    2
+                   1                    −a1       
+                 + φ  (λ0 )r , r + o        ± r  .                            (37)
+                   2                       na0
+                                                           
+     Next, suppose that (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) with v given by (21). By Lemma
+                                         
+1, (ṽ, η) ∈ Tepi (φ̂1 ) e(n,λ0 ) , φ(λ0 ) , where
+
+                                                
+                                                n
+                                      ṽ =            bk e(n−k,λ0 ) .
+                                                k=1
+
+Then, as in the proof of Theorem 3, there exist sequences tj ↓ 0 and {(pj , µj )} ∈ epi (φ̂1 )
+such that
+
+                        tj−1 ((pj , µj ) − (e(n,λ0 ) , φ(λ0 ))) → (ṽ, η).
+                          j       j         j
+That is, there exists {(a0 , a1 , . . . , an )} ∈ Cn+1 such that
+
+                                                
+                                                n
+                                                        j
+                                      pj =            ak e(n−k,λ0 ) ,
+                                                k=0
+
+tj−1 (µj − φ(λ0 )) → η, a0 = 1 for all j = 1, 2, . . . , and tj−1 ak → bk for k = 1, . . . , n.
+                              j                                         j
+
+                                        j
+By replacing µ by µj and ak by ak , k = 0, . . . , n in (37), dividing through by tj , and
+slightly re-arranging, we obtain
+                                        j
+                                                                   j          j
+                                                                                  
+           µj − φ(λ0 )                −a        1                −a         −a
+                        ≥ φ  (λ0 ) ,    1
+                                             +      φ  (λ0 )       1
+                                                                       ,        1
+                tj                    ntj       2                ntj          n
+                                                                       2 
+                            1                              −a j     
+                                                                        
+                          + φ (λ0 )r j , r j + tj−1 o  1 ± r j   ,
+                            2                                  n        
+Variational analysis of functions of the roots of polynomials                            279
+
+
+where
+                                      &
+                                      '      2
+                                      '
+                                      ' aj              j
+                                                      2a2
+                                 rj = '
+                                      (   1 
+                                                 −            .
+                                            1
+                                                   n(n − 1)tj
+                                         ntj2
+
+Taking the limit in this inequality as j → ∞ yields (36).                                  
+                                                                                           
+
+    The representation (7) along with Theorems 3, 4, and 5 yield the following repre-
+sentations and bounds for the subderivative of the function φ̂.
+Theorem 6. Let φ̂ be as defined in (1), λ0 ∈ dom (∂φ) with ∂φ(λ0 ) = {0}, and
+                                               
+                                               n
+                                         v=          bk e(n−k,λ0 )
+                                               k=0
+
+be given. Then d φ̂(e(n,λ0 ) )(v) = +∞ if (23) and (24) are not satisfied; otherwise,
+                                                        1 
+                                 d φ̂(e(n,λ0 ) )(v) ≥     φ (λ0 ; −b1 ),                (38)
+                                                        n
+with equality holding if rspan (∂φ(λ0 )) = C.
+    If it is further assumed that the function φ is twice continuously differentiable at λ0 ,
+then whenever n > 1 the inequality (38) can be refined to
+               1                      1                  
+                  φ (λ0 ; −b1 ) +         φ  (λ0 ; −b2 , −b2 )                        (39)
+               n                     n−1
+                                      1                               
+               ≤ d φ̂(e(n,λ0 ) )(v) ≤    φ (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ) ,       (40)
+                                      n
+whenever (23) and (24) are both satisfied. “Moreover, quality holds in the second in-
+equality in (40) if any one of the following three conditions hold”
+                                              
+                             φ  (λ0 ; −b2 , −b2 ) = 0,                         (41)
+                               
+                             φ (λ0 ; ·, ·) is positive definite, or             (42)
+                                   φ is quadratic.                                      (43)
+
+Proof. By Theorem 3 we know that the subderivative is +∞ if (23) and (24) are not
+satisfied. The lower bounds (38) and (39) are immediate consequences of Theorems 3
+and 5, respectively.
+    The representation (7) and Lemma 1 imply that with no loss in generality we may
+assume for the remainder of the proof that b0 = 0 in v.
+    Suppose that rspan (∂φ(λ0 )) = C and (23) and (24) hold. We show that equality
+must hold in (38). As noted in Lemma 4, rspan (∂φ(λ0 )) = C implies that bk = 0, k =
+2, 3, . . . , n. To see that equality is attained consider the family of polynomials
+
+                         pξ (λ) = (λ − λ0 + ξ b1 /n)n
+                                  = (λ − λ0 )n + ξ b1 (λ − λ0 )n−1 + o(ξ ).
+280                                                                              J.V. Burke et al.
+
+
+For any sequence of real positive scalars {ξν } decreasing to zero definition (8) shows
+that
+                                          φ(λ0 − ξν b1 /n) − φ(λ0 )
+                 φ  (λ0 ; −b1 /n) = lim
+                                    ν→∞                ξν
+                                              φ̂(pξν ) − φ̂(e(n,λ0 ) )
+                                     = lim
+                                        ν→∞             ξν
+                                     ≥ d φ̂(e(n,λ0 ) )(v),
+hence equality holds in (38).
+    If either φ is quadratic, or φ  (λ0 ; ·, ·) is positive definite, then Theorem 4 tells us
+that the expression on the right hand side of (40) is also a lower bound. Thus, to show
+equality in these two cases we need only establish the upper bound (40). In addition,
+once this upper bound is established then we also obtain equality when (41) holds since
+in this case the upper bound (40) reduces to the lower bound (38). Thus, it remains only
+to prove the upper bound (40). We assume throughout that the polynomial v satisfies
+both (23) and (24).
+    We use (8) to establish the upper bound (40). The bound is obtained by considering
+the tangents to smooth curves having as limit e(n,λ0 ) . The proof proceeds by considering
+the even and odd cases for n separately. But in both cases we make use of the following
+family of polynomials:
+                                                                     m
+                                     ξ            1         
+         q(ξ,ν) (λ) = λ − λ0 − (b1 −                  ν) + −b2 ξ/m
+                                     n           2m
+                                                                      m
+                                       ξ            1        
+                      · λ − λ0 − (b1 −                  ν) − −b2 ξ/m
+                                       n          2m
+                                                                                    m
+                                       2ξ             ν
+                    = (λ − λ0 ) +
+                                2
+                                           (b1 −         )(λ − λ0 ) + b2 ξ/m + o(ξ )
+                                        n           2m
+                                       2mξ              ν
+                    = (λ − λ0 )2m +          (b1 −         )(λ − λ0 )2m−1
+                                         n             2m
+                                    + b2 ξ(λ − λ0 )2m−2 + o(ξ ).
+    First assume that n is even: n = 2m for some positive integer m. Consider the family
+of polynomials
+                         q(ξ,0) (λ) = (λ − λ0 )n + ξ v(λ) + o(ξ ).
+For all ξ , this polynomial has only two roots:
+                                                 0
+                                           b1        −b2
+                              λ ξ = λ0 − ξ ±             ξ.
+                                           n          m
+For ξ real and positive, the second-order Taylor expansion of φ at these roots gives
+                                       0                          0         
+                                 b1        −b2              b1       −b2
+  φ̂(q(ξ,0) ) = max φ λ0 − ξ +                 ξ , φ λ0 − ξ −             ξ
+                                 n          m               n         m
+                                               1                
+              = φ(λ0 ) + ξ φ  (λ0 ; −b1 /n) + φ  (λ0 ; −b2 /m, −b2 /m) + o(ξ )
+                                               2
+Variational analysis of functions of the roots of polynomials                             281
+
+                         √   
+since by (23), φ  (λ0 ) , −b2 = 0. Therefore,
+
+                                          φ̂(q(ξ,0) ) − φ(λ0 )
+                d φ̂(e(n,λ0 ) )(v) ≤ lim
+                                     ξ 0           ξ
+                                     1                                
+                                   =     φ (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ) ,
+                                     n
+establishing the even case.
+    Now consider the odd case with n = 2m + 1. This time set
+                                           √         √
+                                 φ  (λ0 ; −b2 , −b2 )
+                            ν=−
+                                           φ  (λ0 )
+
+and consider the family of polynomials
+                                                         
+                                                 ξ
+                          pξ (λ) = λ − λ0 − (b1 + ν)            q(ξ,ν) (λ)
+                                                 n
+                                 = (λ − λ0 )n + ξ v(λ) + o(ξ ).
+
+For all values of ξ the roots of this polynomial are
+
+                          ξ                  ξ       1     
+                   λ0 −     (b1 + ν) and λ0 − (b1 −    ν) ± −b2 ξ/m.
+                          n                  n      2m
+
+Taking the second-order Taylor expansion of φ at the root λ0 − nξ (b1 + ν) for ξ real and
+positive shows that φ(λ0 − nξ (b1 + ν)) equals
+                                                             
+              φ(λ0 ) + (ξ/n) φ  (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ) + o(ξ ).           (44)
+
+Similarly, taking
+               √ the second-order Taylor expansion of φ at either of the        two√roots λ0 −
+ξ
+  (b −  1
+          ν)±    −b   ξ/m for ξ real and positive and using the fact that φ  (λ ; −b ) = 0
+n 1 2m              2                                                            0      2
+shows that
+                                                                
+                                  ξ         1        
+                        φ λ0 − (b1 −           ν) ± −b2 ξ/m
+                                  n        2m
+
+also equals (44). Therefore, for ξ real and positive, we have
+
+                                  1                                
+          φ̂(pξ ) = φ(λ0 ) +        (φ (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ))ξ + o(ξ ).
+                                  n
+The proof is completed as in the even degree case.                                          
+                                                                                            
+
+   Theorem 3 and    its refinements  give necessary conditions for inclusion in the tan-
+gent cone Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) . We now use the conditions given in Theorem 6 to
+characterize the tangent cone when φ is twice differentiable at λ0 .
+282                                                                              J.V. Burke et al.
+
+
+Theorem 7. Let λ0 ∈ dom (φ) be such that ∂φ(λ0 ) = {0}, and set
+                                         
+                                         n
+                                   v=          bk e(n−k,λ0 ) .
+                                         k=0
+
+If either rspan (∂φ(λ0 )) = C or φ is twice continuously differentiable
+                                                                            at λ0 and any one
+of the three conditions (41)–(43) hold, then (v, η) ∈ Tepi (φ̂) e(n,λ0 ) , φ(λ0 ) if and only if
+
+                         1                               
+                     η≥     φ (λ0 ; −b1 ) + φ  (λ0 ; −b2 , −b2 ) ,
+                        n         
+                     0 = g , −b2 ∀ g ∈ ∂φ(λ0 ), and                                         (45)
+                    0 = bk , k = 3, . . . , n,
+                                      √        √
+where we interpret the term φ  (λ0 ; −b2 , −b2 ) as zero when φ is not twice contin-
+uously differentiable at λ0 .
+
+Proof. Apply Theorem 6 in conjunction with the representation (7).                             
+                                                                                               
+
+
+3. Regular normals and subgradients
+
+Next consider the variational objects dual to the tangent cone and the subderivative.
+These are the cone of regular normals to the epigraph at a point and the set of reg-
+ular subgradients. The cone of regular normals is the polar of the tangent cone [14,
+Proposition 6.5]:
+         1epi (f ) (x) = Tepi (f ) (x)◦
+         N
+                                   
+                       = (z, τ )  (z, τ ) , (w, µ) ≤ 0, ∀ (w, µ) ∈ Tepi (f ) (x) .
+
+A vector v is a regular subgradient [14, Definition 8.3] for f at x ∈ dom (f ) if
+
+                        f (y) ≥ f (x) + v , y − x + o(|y − x|).                             (46)
+
+We call the collection of all regular subgradients for f at x the regular subdifferential
+of f at x and denote this set by ˆ∂f (x). The regular subdifferential at a point is always
+a closed convex set. At points x where ˆ∂f (x) = ∅ the regular normals and the regular
+subgradients are related by the formula [14, Theorem 8.9]
+                                                                           
+      1epi (f ) (x) = t (v, −1)  v ∈ ∂f
+      N                                ˆ (x), t > 0 ∪ (v, 0)  v ∈ ∂f ˆ (x)∞ , (47)
+
+              ∞
+where ˆ∂f (x) denotes the recession cone of the set ˆ∂f (x). The recession cone of any
+convex set C is given by
+
+                     C ∞ = {z | x + τ z ∈ C ∀ x ∈ C and τ ∈ IR } .
+
+The regular subdifferential is related to the subderivative by the formula [14, Exercise 8.4]
+                        ˆ∂f (x) = {v | v , w ≤ df (x)(w) ∀ w } .                            (48)
+Variational analysis of functions of the roots of polynomials                                    283
+
+
+    Recall that the support function for any set D in a Euclidean space E is given by
+
+                                       σD (w) = sup v , w .
+                                                    v∈D
+
+The support function of a set is a sublinear function and coincides with the support
+function for the closed convex hull of the set. The domain of the support function for
+a convex set C is called the barrier cone for C, denoted bar (C) [13, Section 13]. The
+polar of the barrier cone is precisely the recession cone [13, Corollary 14.2.1]:
+
+                                           bar (C)◦ = C ∞ .
+
+If the set C is itself a convex cone, then C ∞ = cl (C) and bar (C) = (C ∞ )◦ . Sup-
+port functions are important in the context of the theory of subdifferentials since the
+representation (48) implies the inequality
+
+                               σ ˆ∂f (x) (w) ≤ df (x)(w) ∀ w ∈ E.
+
+    We use the relation (48) to estimate the regular subdifferential of φ̂ at e(n,λ0 ) and
+then use this estimate to approximate the cone of regular normals. Our estimates for the
+regular subdifferential depends on the following parameterized family of multifunctions
+δ : dom (∂φ) ⇒ Cn+1 with parameter values 0 ≤ δ ∈ IR. For δ = 0, define 0 (λ0 )
+as the direct product
+                                           1
+                        0 (λ0 ) = {0} × (− ∂φ(λ0 )) × Kλ0 × Cn−2 ,
+                                           n
+where Kλ0 is defined in (28). For δ > 0, the multifunction δ is only defined when φ is
+twice continuously differentiable in which case
+
+                     δ (λ0 ) = {0} × {−φ  (λ0 )/n} × (δ,2) (λ0 ) × Cn−2 ,
+
+where
+                                                                                      
+                            
+          (δ,2) (λ0 ) = θ2  θ2 , φ  (λ0 )2 ≤ δ ( i φ  (λ0 )) , φ  (λ0 )( i φ  (λ0 )) .
+
+    Given λ0 ∈ dom (∂φ) and δ ≥ 0, the set δ (λ0 ), when defined, is a non-empty
+closed convex set. Since we use (47) to estimate the regular normals from the regular
+subdifferential, we require expressions for the recession cone of the sets δ (λ0 ). Since
+                                                       
+                                       
+                   (δ,2) (λ0 )∞ = θ2  θ2 , φ  (λ0 )2 ≤ 0 = Kλ0
+
+and the recession cone of a product of sets is the product of their recession cones, we
+have
+
+                        δ (λ0 )∞ = {0} × (−∂φ(λ0 )∞ ) × Kλ0 × Cn−2                             (49)
+
+for all δ ≥ 0.
+    We now characterize the support function for the sets δ (λ0 ).
+284                                                                             J.V. Burke et al.
+
+
+Lemma 6. Let λ0 ∈ dom (φ) be such that ∂φ(λ0 ) = {0}, and let δ ≥ 0. Then for every
+vector
+
+                                  b = (b0 , b1 , . . . , bn )T ∈ Cn+1
+
+we have σδ (λ0 ) (b) < +∞ if and only if the components of b satisfy (23) and (24), in
+which case
+                                  1                              2           3
+                σδ (λ0 ) (b) = φ  (λ0 ; −b1 ) + δφ  λ0 ; −b2 , −b2 .               (50)
+                                  n
+                           √          √       
+Here the term δφ  λ0 ; −b2 , −b2 is to be interpreted as zero when δ = 0 and φ is
+not twice continuously differentiable at λ0 . Finally, if φ is twice continuously differen-
+tiable at λ0 with
+                                                                      
+                              ( i φ  (λ0 )) , φ  (λ0 )( i φ  (λ0 )) = 0,
+                √        √
+then δφ  (λ0 ; −b2 , −b2 ) = 0 for every b ∈ Cn+1 satisfying (23) and (24).
+
+Proof. Since δ (λ0 ) is a direct product of sets,
+
+        σδ (λ0 ) (b) =     sup        θ,b
+                          θ∈δ (λ0 )
+
+                     1                                           
+                                                                  n
+                                                                               
+                    = φ (λ0 ; −b1 ) +      sup         θ2 , b 2 +    sup θj , bj .         (51)
+                     n                θ2 ∈(δ,2) (λ0 )              θj ∈C
+                                                                        j =3
+
+Clearly, σδ (λ0 ) (b) is finite if and only if both the second and third terms in (51) are
+finite. We will show that second term is finite if and only if b satisfies (23), and the third
+term is finite if and only if b satisfies (24).                     
+     For the third term in (51) we have nj=3 supθj ∈C θj , bj < ∞ if and only if
+                  
+supθj ∈C θj , bj < ∞, j = 3, . . . , n, or equivalently, (24) holds.
+     Consider now the second term in (51). It is the support function for the convex set
+(δ,2) (λ0 ). This term is finite if and only if b2 is an element of the barrier cone of
+(δ,2) (λ0 ) [13, page 112]. The barrier cone is contained in the polar of the recession
+cone of (δ,2) (λ0 ). By (49), this recession cone is the set Kλ0 , i.e.
+
+                                       bar ((δ,2) (λ0 )) ⊂ Kλ◦0 .
+
+In the case where δ = 0, (0,2) (λ0 )∞ = Kλ0 , and so bar ((0,2) (λ0 )) = Kλ◦0 . Therefore,
+by Lemma 4, supθ2 ∈(0,2) (λ0 ) θ2 , b2 < ∞ if and only if b2 satisfies (23). For δ > 0,
+let b2 ∈ Kλ◦0 = −cone (φ  (λ0 )2 ) so that there is a τ ∈ IR + such that b2 = τ φ  (λ0 )2 .
+Then for any θ2 ∈ (δ,2) (λ0 )
+                                                                                
+           θ2 , b2 = τ θ2 , φ  (λ0 ) ≤ δ ( i φ  (λ0 )) , φ  (λ0 )( i φ  (λ0 )) < ∞.
+
+Hence, Kλ◦0 ⊂ bar ((δ,2) (λ0 )), that is,
+
+                               bar ((δ,2) (λ0 )) = Kλ◦0     ∀δ ≥ 0 ,
+
+and, again by Lemma 4, supθ2 ∈(0,2) (λ0 ) θ2 , b2 < ∞ if and only if b2 satisfies (23).
+Variational analysis of functions of the roots of polynomials                                           285
+
+
+     Thus we have shown that σδ (λ0 ) (b) is finite if and only if the second and third terms
+in (51) are finite which occurs if and only if b satisfies (23) and (24).
+     Next suppose that σδ (λ0 ) (b) is finite, or equivalently, assume that b satisfies (23)
+(i.e., b2 ∈ Kλ◦0 ) and (24). We show that (50) holds. If δ = 0, then
+                             sup            θ2 , b2 = sup              θ2 , b 2
+                        θ2 ∈(0,2) (λ0 )                   θ2 ∈Kλ0
+                                                       = 0                    
+                                                                          
+                                                       = δ −b2 , φ  (λ0 ) −b2 ,
+
+where the second equality follows since b2 ∈ Kλ◦0 . Now suppose that δ > 0. Then, by
+                                        √
+Lemma 4(ii), there is a τ ∈ IR such that b2 = τ φ  (λ0 ). Hence
+                                                             
+                 sup       θ2 , b2 = τ 2 sup θ2 , φ  (λ0 )2
+                  θ2 ∈(δ,2) (λ0 )                        θ2 ∈(δ,2)
+                                                                                                 
+                                                 = τ δ ( i φ  (λ0 )) , φ  (λ0 )( i φ  (λ0 ))
+                                                      2
+                                                                                                  
+                                                 = δ ( i τ φ  (λ0 )) , φ  (λ0 )( i τ φ  (λ0 ))
+                                                                                
+                                                 = δ ( i b2 ) , φ  (λ0 )( i b2 )
+                                                                                  
+                                                 = δ −b2 , φ  (λ0 ) −b2 .
+
+Hence, in either case, (50) holds. The final statement of the Theorem also follows from
+the final derivation above.                                                           
+                                                                                      
+     Lemma 6 combined with Theorem 6 and the representation (48) provide a basis for
+estimates, and in some cases formulas, for the regular subdifferential of φ̂ at e(n,λ0 ) . But
+first we need to map the sets δ (λ0 ) into the space of polynomials. Given λ0 ∈ C define
+the linear transformation τλ0 : P n → Cn+1 to be the mapping that takes a polynomial
+to its Taylor series coefficients when expanded at the base point λ0 , specifically,
+                                2                                     3T
+                      τλ0 (p) = p(n) (λ0 )/n, . . . , p (λ0 ), p(λ0 ) .                  (52)
+                                                  
+Equivalently, if p has the representation p = nk=0 ak e(n−k,λ0 ) , then τλ0 (p) = (a0 , a1 ,
+. . . , an )T . The family of linear transformations τλ is continuous in λ, and for each λ0
+the transformation τλ0 is invertible. Indeed, one has
+
+                                                    τλ−1
+                                                      0
+                                                         = τλ∗0
+when the adjoint τλ∗0 is defined using the inner product · , · λ0 .
+
+Theorem 8. Let φ̂ be as defined in (1) and λ0 ∈ dom (φ) be such that ∂φ(λ0 ) = {0}.
+Then
+                                     d φ̂(e(n,λ0 ) )(v) ≥ σ0 (λ0 ) (τλ0 (v))                          (53)
+for all v ∈ P n and
+                                           τλ∗0 0 (λ0 ) ⊂ ∂ˆ φ̂(e(n,λ0 ) ),                           (54)
+286                                                                                  J.V. Burke et al.
+
+
+where τλ∗0 is the adjoint of τλ0 with respect to the inner product · , · λ0 . Equality holds
+in both (53) and (54) if rspan (∂φ(λ0 )) = C.
+    If it is further assumed that the function φ is twice continuously differentiable at λ0
+with φ  (λ0 ) = 0, then
+                 σδ1 (λ0 ) (τλ0 (v)) ≤ d φ̂(e(n,λ0 ) )(v) ≤ σδ2 (λ0 ) (τλ0 (v)),              (55)
+for all v ∈ P n , and
+                         τλ∗0 δ1 (λ0 ) ⊂ ∂ˆ φ̂(e(n,λ0 ) ) ⊂ τλ∗0 δ2 (λ0 )                     (56)
+where δ1 = 1/(n(n − 1)) and δ2 = 1/n. Furthermore,                                 
+                                                 
+                                                            if φ is quadratic, or φ (λ0 ; ·, ·)
+is positive definite, or ( i φ (λ0 )) , φ (λ0 )( i φ (λ0 )) = 0, then
+                             d φ̂(e(n,λ0 ) )(v) = σδ2 (λ0 ) (τλ0 (v))
+for all v ∈ P n , and
+                                 ∂ˆ φ̂(e(n,λ0 ) ) = τλ∗0 δ2 (λ0 ) .
+Proof. Inequality (53) follows from the bound (38) in Theorem 6 coupled with Lemma
+6. The left and right inequalities in (55) follow from (39) and (40) in Theorem 6, respec-
+tively, again in conjunction with Lemma 6. The subdifferential inclusions in (54) and
+the left hand side of (56) follow immediately from the definition of the adjoint transfor-
+mation, the representation (48), the inequalities in (53), and the left hand side of (55),
+respectively. Here we have also used the identity
+                                     σD (A ·) = σA∗ D (·),
+where A is any linear transformation between Euclidean spaces E1 and E2 .
+    The inclusion on the right hand side of (56) follows from the definition of the adjoint
+transformations and the fact that for any two closed convex sets C1 and C2 one has that
+C1 ⊂ C2 if and only if σC1 (v) ≤ σC2 (v) for all v.
+    The final statement of the Theorem follows from the final statement of Theorem 6,
+the final statement of Lemma 6, and the preceding comment on the relationship between
+support functions and convex sets.                                                       
+                                                                                         
+    We now apply Theorem 8 to (47) obtaining approximations to the cone of regular
+normals to epi (φ̂) at the point (e(n,λ0 ) , φ(λ0 )). We begin by extending the definitions
+for the sets δ (λ0 ) by the formula
+             δ (λ0 ) = {γ (θ, −1) | θ ∈ δ (λ0 ), 0 < γ ∈ IR } ∪ δ (λ0 )∞ ,
+where the recession cone δ (λ0 )∞ is given by the formula (49). In addition, for each
+λ ∈ C, define the linear transformation τ̂λ : P n × IR → Cn+1 × IR by τ̂λ (p, µ) =
+(τλ (p), µ) where the linear transformation τλ is defined in (52). The adjoint of τ̂λ , with
+respect to the inner product
+                             (q, η) , (p, µ) = q , p λ0 + ηµ
+on P n × IR, is the linear transformation τ̂λ∗ : Cn+1 × IR → P n × IR given by
+                          τ̂λ∗ (w, µ) = (τλ∗ (w), µ) = τ̂λ−1 (w, µ).
+Theorem 8 and relation (47) give the following corollary to Theorem 8.
+Variational analysis of functions of the roots of polynomials                               287
+
+
+Corollary 1. Let δ ≥ 0 and φ̂ be as defined in (1) with λ0 ∈ dom (∂φ) satisfying
+∂φ(λ0 ) = {0}. Then
+                                               1
+                              τ̂λ∗0 0 (λ0 ) ⊂ N                                           (57)
+                                                epi (φ̂) (e(n,λ0 ) , φ(λ0 )),
+
+with equality holding if rspan (∂φ(λ0 )) = C. If it is further assumed that the function φ
+is twice continuously differentiable at λ0 with φ  (λ0 ) = 0, then
+                                       1
+                     τ̂λ∗0 δ1 (λ0 ) ⊂ N                                 ∗
+                                        epi (φ̂) (e(n,λ0 ) , φ(λ0 )) ⊂ τ̂λ0 δ2 (λ0 )      (58)
+
+where δ1 = 1/(n(n − 1)) and δ2 = 1/n. Furthermore,                                 
+                                                 
+                                                            if φ is quadratic, or φ (λ0 ; ·, ·)
+is positive definite, or ( i φ (λ0 )) , φ (λ0 )( i φ (λ0 )) = 0, then
+                             1                                 ∗
+                             Nepi (φ̂) (e(n,λ0 ) , φ(λ0 )) = τ̂λ0 δ2 (λ0 ) .
+
+
+
+4. The abscissa mapping
+
+We apply the results of the preceding two sections to the abscissa mapping for polyno-
+mials:
+
+                                  a(p) = sup {Re λ | λ ∈ R(p) } .
+
+Here a = φ̂, where φ̂ is defined in (1) with the function φ given by the linear form
+
+                                            φ(λ) = 1 , λ .
+
+Since φ  (λ) ≡ 0, we obtain complete characterizations for the variational objects under
+study. We state two results. The first concerns the tangent cone and subderivative, and
+the second the regular normals and subdifferential.
+                                                                       
+Theorem 9. Given λ0 ∈ C, one has (v, η) ∈ Tepi (a) e(n,λ0 ) , Re (λ0 ) , with
+
+                                               
+                                               n
+                                         v=          bk e(n−k,λ0 )
+                                               k=0
+
+if and only if
+                                          1
+                                   η ≥ − Re (b1 ),
+                                          n
+                                   0 ≤ Re b2 , 0 = Im b2 ,           and
+                                   0 = bk , k = 3, . . . , n.
+
+Moreover, da(e(n,λ0 ) )(v) = +∞ if (59) and (59) are not satisfied; otherwise,
+                                                       1
+                                   da(e(n,λ0 ) )(v) = − Re (b1 ).
+                                                       n
+Proof. The final statement of the theorem follows immediately from the final statement
+of Theorem 6. The first part of the result follows from Theorem 7.                  
+                                                                                    
+288                                                                          J.V. Burke et al.
+
+
+Remark 2. The two conditions
+                       √     0 ≤ Re b2 and 0 = Im b2 in (59) are equivalent to the
+single condition 0 = Re −b2 which follows from condition (45) in Theorem 7.
+
+    The subdifferential and normal cone characterizations follow directly from Theorem
+8 and Corollary 1.
+Theorem 10. Let λ0 ∈ C be given. Then
+                                                                             
+                                                                           −1
+     1epi (a) (e(n,λ0 ) , Re (λ0 )) = τ̂λ∗ t (w, −1)  0 ≤ t, w0 = 0, w1 = n ,
+     N                                    0               and Re (w2 ) ≤ 0
+and
+
+            ∂a(e(n,λ0 ) ) = τλ∗0 {w | w0 = 0, w1 = −1/n, and Re (w2 ) ≤ 0 } .
+
+      The results of Theorems 9 and 10 coincide precisely with those found in [3, 5].
+
+
+5. The radius mapping
+
+Consider now the radius mapping for polynomials:
+
+                              r(p) = sup {|λ| | λ ∈ R(p) } .
+
+Here r = φ̂, where φ̂ is defined in (1) with the function φ given by the modulus
+
+                                        φ(λ) = |λ| .
+
+The modulus is convex and infinitely differentiable in the real sense except at the origin.
+The convex subdifferential is given by
+                                       
+                                            B, if ζ = 0;
+                          ∂ |·| (ζ ) =
+                                         ζ / |ζ | , otherwise,
+
+where B = {ζ | |ζ | ≤ 1 } is the closed unit disk in C. At nonzero ζ we have
+                                          1  2
+                      |·| (ζ ; δ, δ) =      |δ| − ζ / |ζ | , δ 2 .
+                                         |ζ |
+Since for λ0 = 0 the Hessian is not positive definite and
+                                .                            /
+                         1          i λ0                   i λ0
+                             =             , φ  (λ0 )            ,
+                       |λ0 |       |λ0 |                  |λ0 |
+it would seem that our strongest results for the polynomial e(λ0 ,n) do not apply when
+λ0 = 0. However, this difficulty is easily sidestepped.
+Lemma 7. Let p ∈ Mn be any polynomial for which r(p) > 0. Then (v, η) ∈
+Tepi (r) (p, µ) if and only if (v, µη) ∈ Tepi (r2 ) (p, 21 µ2 ), where
+                                                                  
+                                            1 2
+                             r2 (p) = sup      |λ| | λ ∈ R(p) .
+                                            2
+Variational analysis of functions of the roots of polynomials                              289
+
+
+Proof. Let (v, η) ∈ Tepi (r) (p, µ). Then there exist sequences
+                                  {(pk , µk )} ⊂ epi (r) and tk  0                       (59)
+such that
+                                           pk − p
+                                                  → v, and                                (60)
+                                              tk
+                                           µk − µ
+                                                  → η.                                    (61)
+                                             tk
+Moreover, we may assume with no loss in generality that µk > 0 for all k since µ ≥
+r(p) > 0.
+   Now since (p, µ) ∈ epi (r) if and only if (p, µ2 /2) ∈ epi (r2 ), we have (59) is
+equivalent to
+                               {(pk , µ2k /2)} ⊂ epi (r2 ) and tk  0.                    (62)
+Also, since 0 < µ, µk , (61) is equivalent to
+                                    (µk − µ)(µk + µ)
+                                                     → 2µη
+                                           tk
+or equivalently,
+
+                                          2 µk − 2 µ
+                                          1 2    1 2
+                                                          → µη.                           (63)
+                                                tk
+Therefore, the statements (59)–(61) are equivalent to the statements (62), (60), and (63),
+or equivalently, (v, µη) ∈ Tepi (r2 ) (p, µ).                                           
+                                                                                        
+    Lemma 7 gives the representation
+                                                                     
+                                       
+            Tepi (r) (p, µ) = (v, η/µ)  (v, η) ∈ Tepi (r2 ) (p, µ2 /2) ,                 (64)
+
+whenever r(p) > 0. Since 21 |·|2 is quadratic, with ( 21 |·|2 ) (ζ ; δ, δ) = |δ|2 , Theorem 7
+provides a complete characterization of the tangent cone Tepi (r) (e(n,λ0 ) , |λ0 |).
+Theorem 11. Let λ0 ∈ C and let (v, η) ∈ P n × IR be such that
+                                               
+                                               n
+                                         v=          bk e(n−k,λ0 ) .
+                                               k=0
+
+
+(i) If λ0 = 0, then (v, η) ∈ Tepi (r) (e(n,0) , λ0 ) if and only if
+                                             1
+                                         η≥     |b1 | ,
+                                             n
+                                         0 = bk , k = 2, 3, . . . , n.
+    Moreover, dr(e(n,λ0 ) )(v) = +∞ if (65) is not satisfied; otherwise,
+                                                                1
+                                         dr(e(n,λ0 ) )(v) =       |b1 | .
+                                                                n
+290                                                                                         J.V. Burke et al.
+
+
+(ii) If λ0 = 0, then (v, η) ∈ Tepi (r) (e(n,λ0 ) , |λ0 |) if and only if
+                                                 1                    
+                                          η≥          |b2 | − Re λ¯0 b1 ,
+                                              n |λ0 |
+                                                     
+                                          0 = Re λ¯0 −b2 , and
+                                          0 = bk , k = 3, . . . , n.
+      Moreover, dr(e(n,λ0 ) )(v) = +∞ if (65) and (65) are not satisfied; otherwise,
+                                                           1                    
+                                 dr(e(n,λ0 ) )(v) =             |b2 | − Re λ¯0 b1 .
+                                                        n |λ0 |
+Proof. The case λ0 = 0 follows from Theorem 6 and the representation (7) since the
+fact that B = ∂ |·| (0) has non-empty interior implies that rspan (∂ |·| (0)) = C. The case
+λ0 = 0 follows from Theorem 7 and the representation (64).                                
+                                                                                          
+   We have the following dual variational results for the regular subdifferential and
+normal cone.
+Theorem 12. Let λ0 ∈ C and let the linear transformation τλ : P n → Cn+1 be as
+defined in (52). Set
+                                                     
+                               θ0 
+                              
+                                                    1 
+                                                        
+                      r          ..  
+                      (λ0 ) =  .   θ0 = 0, θ1 ∈ B ,
+                              
+                                                   n  
+                                 θn
+if λ0 = 0; otherwise, set
+                                                                  
+                      θ0 
+                     
+                                          −λ0                      
+                                                               |λ0 | 
+             r          ..  
+            (λ0 ) =  .   θ0 = 0, θ1 =         , θ2 , λ0 ≤
+                                                           2
+                                                                       .
+                     
+                                         n |λ0 |               n   
+                          θn
+
+(i) If λ0 = 0, then
+                                      dr(e(n,λ0 ) )(v) = σr (λ0 ) (τλ0 (v)),
+                                         ˆ∂r(e(n,λ0 ) ) = τλ∗ r (λ0 ),
+                                                                 0
+
+      and
+                                                                                      
+                                                                   µ ≥ 0, w ∈ Cn+1 ,
+                   1epi (r) (e(n,λ0 ) , 0) =
+                   N                              (τλ∗0 (w), −µ)                          .
+                                                                    w0 = 0, |w1 | ≤ µ
+(ii) If λ0 = 0, then
+                                      dr(e(n,λ0 ) )(v) = σr (λ0 ) (τλ0 (v)),                          (65)
+                                         ˆ (n,λ0 ) ) = τλ∗ r (λ0 ),
+                                         ∂r(e                                                          (66)
+                                                                 0
+
+      and
+                                                                                               
+                                                             
+            1epi (r) (e(n,λ0 ) , λ0 ) =                       µ ≥ 0, w0 = 0, w1 = −µλ      0
+                                                                                       |λ0 | ,
+            N                                 (τλ∗0 (w), −µ)                                      . (67)
+                                                                    w2 , λ0 ≤ µ |λ0 |
+                                                                            2
+Variational analysis of functions of the roots of polynomials                                             291
+
+
+Proof. Let us first suppose that λ0 = 0. In this case, rspan (∂ |·| (0)) = C since the
+subdifferential B = ∂ |·| (0) has non-empty interior, hence the results of Theorems 6 and
+(58) directly apply to give the result.
+    Next suppose that λ0 = 0. In this case, Lemma 6 combined with Part (2) of Theorem
+11 gives (65). This in turn establishes (66) due to the relation (48). The final relation
+(67) follows from the equivalence (47).                                                 
+                                                                                        
+
+
+6. Concluding remarks
+
+We have shown that the Gauss-Lucas technique presented in [3] extends nicely to the
+class (1) obtaining first-order necessary condition for inclusion in the tangent cone
+Te(n,λ0 ) (epi (φ̂)) (Theorem 3). However, substantial additional work was required to
+obtain the second-order necessary and sufficient conditions given in Theorem 7. It is
+gratifying that the second-order result preserves the simplicity and geometric appeal of
+Theorem 3. Simply stated the result says that first-order growth in φ̂ is controlled not
+only by φ  (λ0 ) but also by the second-order behavior in directions that are both perpen-
+dicular to φ  (λ0 ) and correspond to a square root splitting of the roots. This is illustrated
+in the application to the radius mapping in Section 5.
+     Regrettably, Theorem 7 is still incomplete in the case where φ  (λ0 ) is indefinite. We
+conjecture that the result continues to hold in this case. This conjecture is closely related
+to the much deeper conjecture that the functions φ̂ are prox-regular [14, Definition 13.27]
+at points where φ is twice differentiable. If true, this result would make a number of
+results possible including the extension of Theorem 7 to the indefinite case. Indeed, the
+prox-regularity question is at this time the most important unresolved issue concerning
+this class of functions.
+     The extension of the results in the previous sections to general polynomials on Mn
+and issues of subdifferential regularity are part of our ongoing work.
+
+Acknowledgements. We wish to thank two anonymous referees for their careful reading of the original man-
+uscript. Their efforts have contributed greatly to the quality of the paper. We would also like to thank Boris
+Mordukhovich for all of his efforts as Editor of this special issue.
+
+
+
+References
+
+ 1. Burke, J.V., Lewis, A.S., Overton, M.L.: Optimizing matrix stability. Proc. of the American Math. Soc.
+    129, 1635–1642 (2000)
+ 2. Burke, J.V., Lewis, A.S., Overton, M.L.: Optimal stability and eigenvalue multiplicity. Foundations of
+    Computational Mathematics 1, 205–225 (2001)
+ 3. Burke, J.V., Lewis, A.S., Overton, M.L.: Variational analysis of the abscissa mapping for polynomials via
+    the Gauss-Lucas theorem. Journal of Global Optimization 28, 259–268 (2004)
+ 4. Burke, J.V., Overton, M.L.: Variational analysis of the abscissa mapping for polynomials. SIAM Journal
+    on Control and Optimization 39, 1651–1676 (2000)
+ 5. Burke, J.V., Overton, M.L.: Variational analysis of non–Lipschitz spectral functions. Math. Programming
+    90, 317–351 (2001)
+ 6. Clarke, F.H.: Optimization and Nonsmooth Analysis. Wiley, New York 1983. Republished by SIAM,
+    1990
+ 7. Clarke, F.H., Ledyaev, Yu.S., Stern, R.J., Wolenski, P.R.: Nonsmooth Analysis and Control Theory.
+    Springer, 1998
+292                             J.V. Burke et al.: Variational analysis of functions of the roots of polynomials
+
+
+ 8. Levantovskii, L.V.: On singularities of the boundary of a stability region. Moscow Univ. Math. Bull. 35,
+    19–22 (1980)
+ 9. Lucas, F.: Sur une application de la méchanique rationnelle á la théorie des équations. C.R. Acad. Sci.
+    Paris 89, 224–226 (1879)
+10. Lucas, F.: Géométrie des Polynômes. J. École Polytech 46, 1–33 (1879)
+11. Marden, M.: Geometry of Polynomials. American Mathematical Society, 1966
+12. Mordukhovich, B.S.: Variational Analysis and Generalized Differentiation, Vol. 1: Basic Theory, Vol. 2:
+    Applications. Springer, 2005
+13. Rockafellar, R.T.: Convex Analysis. Princeton University Press, 1970
+14. Rockafellar, R.T., Wets, R.J-B.: Variational Analysis. Springer, 1998
+

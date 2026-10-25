@@ -42,6 +42,7 @@ try:
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.log',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stderr',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stdout',
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.download',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.txt',env=env)
     tree=git('write-tree',env=env)
     message=sys.argv[1] if len(sys.argv)>1 else 'Checkpoint Zenodo research website catalogue'

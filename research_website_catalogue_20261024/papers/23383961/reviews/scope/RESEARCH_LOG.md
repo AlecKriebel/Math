@@ -1,0 +1,13 @@
+# Source and scope review — 23383961
+
+## 2026-10-25T03:22:49.535875+00:00 — 2%
+Active attached objective read first. Exact frozen row74 identity and both asset expectations read. Dedicated source/scope folders created. Scope only; no mathematical PASS or helper execution. Historical assessment/priority bodies and sibling conclusions remain opaque. Prior seals untouched.
+
+## 2026-10-25T03:26:59.451544+00:00 — 55%
+Resumed under explicit GPT-6.1 Sol Ultra policy. No acquisition process remained live. Reused authenticated assets and real inherited ETH Duren PDF. Fresh Zenodo API is byte-identical; exact queue identity, both file checksums, all original source-baseline hashes and ZIP CRCs rechecked. Full five-page published reader and current TeX read, rendered and visually inspected. Static support derivation/code inspection only. Actual Hayman–Lingham v2 target and Duren primary theorem/conventions now inspected; finishing primary custody/read ledger and restrained candidate. No mathematical verdict or execution.
+
+## 2026-10-25T03:30:13.794174+00:00 — 100% source/scope
+Completed full published-reader/current-TeX and static current proof/code reading, all five rendered reader pages, actual target Problem6.72, Duren support differential/conventions and full article, Pfluger introduction/geometry/selected definitions, de Branges coefficient statement/final implication, full Brown1979 article, and published area/distance theorem bodies. Reacquired Duren/Pfluger/de Branges bytes match inherited originals. Wrote REVIEW.md, full original abstract plus held candidate.json, custody/member/reader bindings, primary/current read ledgers and scope-only verdict.json. Historical verdicts remain unadopted; incidental exposure disclosed. No submitted math execution, repair, mathematical PASS, historical-firstness, follow-up, publication or external communication. All original source-baseline hashes still match. Remaining gap is independent analytic/adversarial adjudication and separately assigned reproduction; wider priority comparisons remain limited. Scope ownership released to parent on final seal.
+
+## 2026-10-25T03:30:54.342152+00:00 — 100% source/scope, final custody checkpoint
+All255 regular ZIP members checked by magic as well as suffix; no additional PDF or common archive signature. JSON artifacts parse, candidate remains held with followup null, current-read hashes match. All259 baseline source files rechecked unchanged immediately before sealing. SEAL.json binds every scope artifact and raw cache file except itself; its own digest is reported in handoff. This is a custody check, not execution of submitted mathematics.

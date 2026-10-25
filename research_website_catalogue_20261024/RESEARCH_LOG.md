@@ -218,3 +218,13 @@ The active objective file changed to97d02095…with the same full203-paper task;
 Allthree complete final reports and full six-page source read; both publicassets and all198extractedmembers match the CRC-checked archive unchanged. Exact binary nonnegative loopless stronglyconnected multigraph coNP theorem cleared, including every-target-word reverse implication and credited membership. Source/rawreceipt assets field is preserved; future reader normalization must be read-only.15October preparation date must remain distinct from17October recordcreation. No source repair, follow-up or broadergraph/priority claim.
 
 Completion43of203(21.18%);47of203(23.15%)root-passed or defect-disposed, includingfour preparations. Full203goalactive.
+
+
+## 2026-10-25T03:25:14.146926+00:00 — human subagent model preference applied
+
+The human explicitly requested GPT-6.1 Sol at Ultra instead of GPT-6 Astra Ultra for subagents. Active inherited-model workers and the discovered slit-primary child were interrupted; completed scientific seals remain unchanged. Unfinished scope/publication work is being handed to fresh explicitly configured Sol Ultra workers. This changes orchestration only, not scientific disposition or203-paper scope. Completion remains43of203(21.18%);47of203(23.15%)root-passed or defect-disposed.
+
+
+## 2026-10-25T03:33:04.585213+00:00 — Sol Ultra model handoff and three-page deployment
+
+The human explicitly requested GPT-6.1 Sol at Ultra for subagents. Saved MODEL_POLICY.md; interrupted inherited-model work and started all new review/editorial/display lanes with explicit Sol Ultra settings. Earlier sealed scientific evidence remains intact. Root revalidated all 57 three-page source/approval/output bindings, read full actual public copies, and accepted exact cube/DFC/BV wording. Explicit fifteen-path website commit 6b2094186ecaa0e0e4538137e71d812afd47e249 pushed and deployed at Firebase a2ca3c0d0525e67e; sixteen live files byte-match. Actual browser gates underway; canonical Sheet cells remain blank. Generic-Cantor and surreal complete final sets added to root queue without clearance. Slit/stable full source scope sealed; separate analytic/adversarial reviews underway or queued for a free slot. No outreach, repairs, releases, or frozen evidence rewrites. Overall best guess: 43/203 finalized or defect-deferred (21.18%); 47/203 root-cleared or defect-disposed (23.15%); 147 unstarted. Full203 active.

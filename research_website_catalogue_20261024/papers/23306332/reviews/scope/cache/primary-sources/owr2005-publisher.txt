@@ -1,0 +1,3079 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                   Report No. 2/2005
+
+                       Optimization and Applications
+                                       Organised by
+                                 Florian Jarre (Düsseldorf)
+                               Claude Lemaréchal (Grenoble)
+                                  Jochem Zowe (Erlangen)
+
+
+                         January 9th – January 15th, 2005
+
+         Abstract. Proceedings of a workshop devoted to optimization problems,
+         their theory and resolution, and above all applications of them. The top-
+         ics covered existence and stability of solutions; design, analysis, development
+         and implementation of algorithms; applications in mechanics, telecommuni-
+         cations, medicine, operations research.
+
+
+
+Mathematics Subject Classification (2000): 49-06, 65K, 90C.
+
+
+
+                        Introduction by the Organisers
+
+This workshop was attended by 47 participants with broad geographic representa-
+tion from all continents. It was enlightened by this cheerful atmosphere special to
+Oberwolfach, and which the participants contributed to by their mutual friendship
+and esteem.
+   The theme was optimization problems, their theory and resolution, and above
+all applications of them. Some emphasis was put on the still recent subject of
+optimization over the cone of positive semidefinite matrices (SDP). In the following
+20 extended abstracts, one finds
+– several papers devoted to theory per se: exitence and stability of solutions,
+  analysis of algorithms;
+– a good number on methodology of resolution: design, development, implemen-
+  tation of algorithms;
+– a majority dealing with applications; some such applications come from other
+  branches of mathematics (combinatorics, dynamic systems), but most from the
+  real world: operations research, telecommunications, production and transporta-
+  tion, medicine, model management.
+70                                                   Oberwolfach Report 2/2005
+
+   We thank Gail Pieper (Argonne National Laboratory) for her careful proofread-
+ing of every abstract; her editorial work substantially improved the presentation
+of this material.
+Optimization and Applications                                                                                          71
+
+
+
+
+Workshop: Optimization and Applications
+
+Table of Contents
+
+
+Vincent Acary
+   An Overview of Nonsmooth Dynamical Systems . . . . . . . . . . . . . . . . . . . . . . . 73
+Natalia Alexandrov (joint with Robert Michael Lewis)
+   Managing Models in Simulation-Based Design Optimization . . . . . . . . . . . . 76
+Kurt M. Anstreicher
+  Musin’s Proof of the Kissing Number in Dimension Four . . . . . . . . . . . . . . . 79
+Amir Beck (joint with Aharon Ben-Tal and Marc Teboulle)
+  Some New Results on the Total Least Squares Problem . . . . . . . . . . . . . . . . . 82
+Andreas Eisenblätter (joint with Hans-Florian Geerdes, Thorsten Koch)
+  UMTS Radio Network Evaluation and Design . . . . . . . . . . . . . . . . . . . . . . . . 84
+Marina A. Epelman (joint with Júlı́us Atlason, Shane Henderson)
+  Optimizing Call Center Staffing by Using Simulation and
+  Analytic-Center Cutting-Plane Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 86
+Michael C. Ferris (joint with Geng Deng, Dennis G. Fryback, Vipat
+   Kuruchittham)
+   Breast Cancer Epidemiology:
+   Calibrating Simulations via Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+Martin Gugat
+  L1 -Optimal Boundary Control of a String to Rest in Finite Time . . . . . . . 93
+Christoph Helmberg (joint with Stefan Röhl)
+   Joint Online Truck Scheduling and Inventory Management for Multiple
+   Warehouses1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 95
+Diethard Klatte (joint with Bernd Kummer)
+   Stability in Nonlinear Optimization under Constraint Degeneracy . . . . . . . 98
+Michal Kočvara (joint with Michael Stingl)
+   Recent Progress in the NLP-SDP Code PENNON . . . . . . . . . . . . . . . . . . . . . 101
+Adrian S. Lewis (joint with James V. Burke and Michael L. Overton)
+  Local Structure and Algorithms in Nonsmooth Optimization . . . . . . . . . . . . 104
+Sven Leyffer
+   The Return of the Active Set Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+Katja D. Mombaur (joint with H. G. Bock, J. P. Schlöder, R. W. Longman)
+   Stability Optimization of Periodic Walking and Running Motions . . . . . . . 109
+72                                                                                Oberwolfach Report 2/2005
+
+Yurii Nesterov (joint with Boris Polyak)
+   Global Performance of the Newton Method . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+Franz Rendl (joint with I. Dukanovic, J. Povh, A. Wiegele)
+   A Boundary-Point Method for Semidefinite Programs . . . . . . . . . . . . . . . . . . 113
+Kees Roos
+   A Full-Newton Step O(n) Infeasible Interior-Point Algorithm for Linear
+   Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 115
+Annick Sartenaer, Philippe L. Toint
+  On Recursive Multiscale Trust-Region Algorithms for
+  Unconstrained Minimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 119
+Takashi Tsuchiya (joint with Renato D. C. Monteiro)
+   Complexity Analysis of Interior-Point Algorithms and Geometric
+   Properties of the Central Trajectory for Linear Programming . . . . . . . . . . . 121
+Michael Ulbrich
+   Newton-Type Preconditioned Multilevel Methods for
+   Infinite-Dimensional Complementarity Problems with Applications . . . . . . 124
+Stefan Ulbrich
+   Primal-Dual Interior-Point Multigrid Methods for
+   PDE-Constrained Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 127
+Optimization and Applications                                                       73
+
+                                    Abstracts
+
+             An Overview of Nonsmooth Dynamical Systems
+                            Vincent Acary
+
+
+      1. A Very Short Introduction to Moreau’s Sweeping Process
+    Nonsmooth dynamical systems (NSDS) are a very special kind of dynamical
+systems, characterized by a nonsmooth evolution with respect to time and by a
+set of nonsmooth generalized equations. The so-called Moreau sweeping process
+[10, 11] is a special kind of differential inclusion with a maximal monotone operator
+[5], which appears to be a nice formulation for the unilateral dynamics:
+                   (
+                     ẋ(t) + f (x, t) = λ(t), x(t) ∈ Rn , λ(t) ∈ Rm
+(1)
+                     −λ(t) ∈ NΦ(t) (x(t)),
+where f is a smooth vector field and NΦ(t) is the normal cone to an admissible set
+Φ(t) for the state x. We refer to [2] for the equivalence with other types of order-one
+NSDS and to [7] for a review of various extensions of Moreau’s sweeping process
+and associated mathematical results with weaker assumptions on the regularity of
+the solution.
+   Many examples of NSDS come from the engineering sciences. In electrical
+engineering, networks with idealized components (diodes, saturation, relays, etc.)
+are easily formulated as in (1). If the dynamics is linear, linear complementarity
+systems are often considered:
+                       
+                                                   n       m
+                       ẋ = Ax + Bλ, x ∈ R , λ ∈ R
+                       
+(2)                       w = Cx + Dλ
+                       
+                       
+                          0 ⩽ w ⊥ λ ⩾ 0.
+For passive systems, this formulation is equivalent to (1) when D = 0 (see [6]);
+but we will see that it is not well defined in all cases. In mechanical engineering,
+M. Schatzman [16] has given a correct meaning to motion with measure accelera-
+tion for Lagrangian systems with unilateral contact, and J.-J. Moreau has extended
+the sweeping process to the second-order system [12]
+(3)                     −du + f (t, q(t)) ∈ NT (q) (u(t)).
+Here u = q̇ is the velocity assumed to be a right-continuous function of bounded
+variations, and T (q) is the tangent cone to the admissible set Φ at the position q(t).
+The acceleration is replaced by a differential measure du, which may be viewed as
+the derivative in the sense of distributions of the velocity u (for more details see
+[13]). This compact formulation is powerful, not only from the computational point
+of view, but also from the pure mathematical point of view [9, 17, 4]. In control
+engineering, the standard problem of controlling a dynamical system with state
+constraints yields a dual problem that is also an NSDS. Numerous applications also
+74                                                               Oberwolfach Report 2/2005
+
+exist in biology, in economics, and in any problems where a constraint is imposed
+on the state variable.
+   Numerical methods inherit from the approach chosen to investigate NSDS. Two
+major approaches are widespread: the hybrid approach and the nonsmooth ap-
+proach.
+   The hybrid approach considers NSDS as a hybrid multimodal dynamical system.
+In each mode, separated by two events, sufficient regularity is assumed on the
+system to accommodate standard analysis and classical numerical methods. This
+approach results in a family of computational schemes called event driven. In this
+framework, one cannot establish a general convergence proof, and the accumulation
+of events in finite time cannot be circumvented.
+   The nonsmooth approach is based on Moreau’s sweeping process and its vari-
+ants. The key idea is to write a suitable approximation of measures on a finite
+interval, which yields efficient and robust numerical schemes, called time stepping.
+The first such algorithm was the “catching-up algorithm” [11]. In the framework
+of multibody dynamics, the derived algorithm is a “nonsmooth contact dynam-
+ics” method [14, 15, 8], which can treat several thousands of 3D frictional contact
+conditions. The time step is no longer driven by events but is simply fixed by
+an a priori error criterion. Accumulations of events, or large numbers thereof in
+finite time, are handled without difficulty. Furthermore, convergence analysis of
+this family of schemes gives a constructive existence proof for rather complicate
+systems [9, 17].
+
+
+           2. Higher Relative-Degree Moreau’s Sweeping Process
+    In joint work with B. Brogliato and D. Goeleven [1, 3], higher relative-degree
+systems are studied1. If the relative degree is at least 3, a generalized solution
+is a distribution of order larger than 2. Therefore, a positivity constraint on λ
+is meaningless. To circumvent this problem, we propose a new formulation of
+such systems as a measure-differential inclusion of higher order. This derivation
+is rather technical; we refer the reader to [3] for more details.
+    With this formulation, we give a precise meaning to solutions as distributions
+generated by a finite set of differential measures. Global existence and uniqueness
+results are also proved for a certain class of regular functions (analytical in every
+right neighborhood) and under a monotonicity assumption. Moreover, an efficient
+time-stepping scheme is designed; its convergence proof is currently under study.
+Applications for such types of systems include electrical and mechanical systems
+with feedback control, as well as the design of an indirect framework for solving
+optimal control problems with state constraints, based on necessary conditions.
+
+
+     1In systems of the form (2), the relative degree r between the output w and the multiplier λ
+may be defined as the rank of the first nonzero element in the sequence of Markov parameters
+(D, CB, CAB, CA2 B, . . .). A clear analogy exists between this relative degree and the differential
+index in differential algebraic equations.
+Optimization and Applications                                                                  75
+
+                                        References
+ [1] V. Acary and B. Brogliato. Higher order Moreau’s sweeping process. In P. Alart, O. Maison-
+     neuve, and R. T. Rockafellar, eds., Nonsmooth Mechanics and Analysis: Theoretical and
+     Numerical Advances, Colloquium in Honor of the 80th Birthday of J. J. Moreau (2003).
+     Kluwer, 2005.
+ [2] V. Acary, B. Brogliato, A. Daniilidis, and C. Lemaréchal. On the equivalence between
+     complementarity systems, projected systems and unilateral differential inclusions. RR 5107,
+     Inria, 2004. www.inria.fr/rrrt/rr-5107.html. In revision for Systems and Control Letters.
+ [3] V. Acary, B. Brogliato, and D. Goeleven. Higher order Moreau’s sweeping process: Math-
+     ematical formulation and numerical simulation. In revision for Mathematical Programming
+     A, 2005.
+ [4] P. Ballard. The dynamics of discrete mechanical systems with perfect unilateral constraints.
+     Archives of Rational Mechanics and Analysis, 154:199–274, 2000.
+ [5] H. Brezis. Opérateurs maximaux monotones et semi-groupe de contraction dans les espaces
+     de Hilbert. North Holland, 1973.
+ [6] B. Brogliato. Absolute stability and the Lagrange-Dirichlet theorem with monotone multi-
+     valued mappings. Systems and Control Letters, 51:343–353, 2004.
+ [7] C. Castaing, T. X. Duc Ha, and M. Valadier. Evolution equations governed by the sweeping
+     process. Set-Valued Analysis, 1:109–139, 1993.
+ [8] M. Jean. The nonsmooth contact dynamics method. Computer Methods in Applied Me-
+     chanics and Engineering, 177:235–257, 1999. Special issue on Computational Modeling of
+     Contact and Friction, edited by J. A. C. Martins and A. Klarbring.
+ [9] M. D. P. Monteiro Marques. Differential inclusions in nonsmooth mechanical problems:
+     Shocks and dry friction, volume 9 of Progress in Nonlinear Differential Equations and
+     Their Applications. Birkhäuser, 1993.
+[10] J. J. Moreau. Rafle par un convexe variable, première partie, exposé 15 (deuxième partie,
+     exposé 3, 1972). Séminaire d’analyse convexe, 1971.
+[11] J. J. Moreau. Evolution problem associated with a moving convex set in a Hilbert space.
+     Journal of Differential Equations, 26:347–374, 1977.
+[12] J. J. Moreau. Standard inelastic shocks and the dynamics of unilateral constraints. In
+     G. Del Piero and F. Maceri, eds., Unilateral Problems in Structural Analysis, number 288
+     in CISM Courses and Lectures, pages 173–221. Springer Verlag, 1985.
+[13] J. J. Moreau. Bounded variation in time. In J. J. Moreau, P. D. Panagiotopoulos, and
+     G. Strang, eds., Topics in Nonsmooth Mechanics, pages 1–74, Bikhäuser, 1988.
+[14] J. J. Moreau. Unilateral contact and dry friction in finite freedom dynamics. In J. J. Moreau
+     and P. D. Panagiotopoulos, eds., Nonsmooth Mechanics and Applications, number 302 in
+     CISM Courses and Lectures, pages 1–82. Springer Verlag, 1988.
+[15] J. J. Moreau. Numerical aspects of the sweeping process. Computer Methods in Applied
+     Mechanics and Engineering, 177:329–349, 1999. Special issue on Computational Modeling
+     of Contact and Friction, edited by J. A. C. Martins and A. Klarbring.
+[16] M. Schatzman. A class of nonlinear differential equations of second order in time. Nonlinear
+     Analysis, 2(3):355–373, 1978.
+[17] D. Stewart. Convergence of a time-stepping scheme for rigid-body dynamics and resolution
+     of Painlevé’s problem. Archives of Rational Mechanics and Analysis, 145:215–260, 1998.
+76                                                        Oberwolfach Report 2/2005
+
+      Managing Models in Simulation-Based Design Optimization
+                        Natalia Alexandrov
+                (joint work with Robert Michael Lewis)
+
+Advances in numerical modeling and computational power enable increasingly ac-
+curate simulation of physical and engineering phenomena. However, the enormous
+cost of repeated high-fidelity simulations, such as the Navier-Stokes equations or
+those based on fine computational meshes, makes the use of high-fidelity models
+impractical in the context of single-discipline or multidisciplinary design optimiza-
+tion.
+   Engineering designers have traditionally alleviated this difficulty by the com-
+bined use of high-fidelity and low-fidelity models in heuristic procedures, with
+low-fidelity models ranging from data-fitting models to simplified physics models.
+See, for instance, [8] for a review of approximations in structural optimization
+and [15] for a review of models in aerodynamic optimization. Some approaches
+to optimization with variable-fidelity models attempt to create the “best” low-
+fidelity model and optimize it, while others update the model by using heuristic
+procedures. See, for example, [10] and the references therein. Convergence to
+high-fidelity solutions is not guaranteed, in general.
+   Approximation and model management optimization (AMMO) [3, 1, 6, 7, 2, 4,
+5] combine the use of general variable-fidelity models with analytically substanti-
+ated algorithms to improve tractability of design with high-fidelity models while
+preserving provable convergence properties. We consider the following general de-
+sign problem. Given a set of design variables x, the analysis computes a set of
+quantities u(x) of engineering interest. The computational model used in comput-
+ing u(x) often involves the solution of a set of (coupled) differential equations, as
+in the case of computing the flow around an airplane. The design problem is
+                              minimize     f (x, u(x))
+                                  x
+                              subject to   h(x, u(x)) = 0
+                                           g(x, u(x)) ≥ 0
+                                           xl ≤ x ≤ xu .
+In conventional optimization, the analysis supplies the optimizer with objective
+and constraint function and derivative information. The optimizer builds local
+approximations of the objective and constraints—usually first- or second-order
+Taylor series—to compute new designs x. The basic idea of AMMO is to replace
+the local Taylor series model in the optimization subproblems with general models
+that satisfy consistency conditions with respect to the high-fidelity model. This is
+motivated as follows.
+   In general, the favorable situation in optimization occurs when the trends in the
+low-fidelity model responses coincide with those of the high-fidelity model. Thus,
+while the absolute difference between the low- and high-fidelity responses may be
+large, it is the trend in the low-fidelity model that is of significance to optimization.
+In practice, the trends in the low-fidelity problem may behave differently from
+Optimization and Applications                                                       77
+
+those in the high-fidelity problem. To address this, AMMO borrows from existing
+engineering practice to transform the low-fidelity responses to produce a better
+approximation of the trends of the high-fidelity problem.
+   The first-order AMMO idea can be used in conjunction with any gradient-based
+optimization algorithm. Here is an example of an AMMO algorithm for bound
+constrained minimization.
+    Initialize xc , ∆c
+    Do until convergence:
+         Select model ac with ac (xc ) = fhi (xc ); ∇ac (xc ) = ∇fhi (xc )
+         Solve approximately for sc = x − xc :
+                    minimize       ac (xc + s)
+                        s
+                   subject to       xl ≤ xc + s ≤ xu
+                                      k s k∞ ≤ ∆c
+
+                        fhi (xc ) − fhi (xc + sc )
+        Compute ρc ≡
+                        fhi (xc ) − ac (xc + sc )
+       Accept sc if fhi (xc ) > fhi (xc + sc ); otherwise reject
+       Update ∆c and xc based on the value of ρc
+    End do
+The ratio ρc of the actual reduction in the high-fidelity objective to the predicted
+reduction obtained by computing with the corrected low-fidelity model measures
+the performance of the corrected low-fidelity model. The trust radius ∆c is up-
+dated, based on the value of ρc , according to the standard trust-region practice.
+The step of choosing the model ac and the nature of the trust-region subproblem
+distinguish this algorithm from conventional optimization.
+   The first-order consistency conditions in this case require the model ac used in
+the optimization subproblem to satisfy ac (xc ) = fhi (xc ) and ∇ac (xc ) = ∇fhi (xc ).
+These ensure that ac mimics the local behavior of a Taylor series model around
+the current best design xc . This, in turn, can be used to prove that the overall
+optimization process will converge to a constrained stationary point of the high-
+fidelity objective fhi .
+   Although exact consistency is unnecessary, a number of easily computed correc-
+tions ensure consistency, for instance, a technique we call the β-correction [13, 11].
+Given the high-fidelity objective fhi = f and any low-fidelity approximation flo of
+the objective fhi , we correct flo as follows. Define
+                        fhi (x)
+               β(x) =           ,    βc (x) = β(xc ) + ∇β(xc )T (x − xc ) .
+                        flo (x)
+Then ac (x) = βc (x)flo (x) satisfies the first-order consistency conditions. Conver-
+gence analysis of the resulting AMMO schemes relies on the consistency conditions
+and standard assumptions for the convergence analysis of the underlying optimiza-
+tion algorithm.
+   Practical efficiency of any particular AMMO scheme depends on the ability to
+transfer the computational load to the lower-fidelity computations and the relative
+78                                                             Oberwolfach Report 2/2005
+
+cost of low-fidelity model with respect to high-fidelity model. AMMO has been
+implemented by several research groups, mostly in the context of optimization of
+systems governed by computational fluid dynamics. Threefold to sevenfold savings
+in terms of high-fidelity evaluations have been observed in accumulated numerical
+experience.
+   Model management has also been explored in the context of derivative-free
+optimization (e.g., [9]), as well as in the special algorithmic context of multigrid-
+based approaches (e.g., [14] and [12]).
+
+
+
+                                        References
+ [1] N. M. Alexandrov. On managing the use of surrogates in general nonlinear optimization,
+     AIAA Paper 98-4798, September 1998.
+ [2] N. M. Alexandrov, J. E. Dennis, Jr., R. M. Lewis, and V. Torczon. A trust region framework
+     for managing the use of approximation models in optimization. Structural Optimization,
+     15:16–23, 1998.
+ [3] N. M. Alexandrov and R. M. Lewis. A trust region framework for managing approximation
+     models in engineering optimization. AIAA Papers 96-4101 and 96-4102, September 1996.
+ [4] N. M. Alexandrov and R. M. Lewis. An overview of first-order model management for
+     engineering optimization. Optimization and Engineering, 2:413–430, 2001.
+ [5] N. M. Alexandrov and R. M. Lewis. First-order approximation and model management
+     in optimization. In Large-Scale PDE-Constrained Optimization, edited by L. T. Biegler,
+     O. Ghattas, M. Heinkenschloss, and B. van Bloemen Waanders, Springer, 2003, pp. 63–79.
+ [6] N. M. Alexandrov, R. M. Lewis, C. R. Gumbert, L. L. Green, and P. A. Newman. Optimiza-
+     tion with variable-fidelity models applied to wing design. AIAA Paper 2000-0841, January
+     2000.
+ [7] N. M. Alexandrov, E. J. Nielsen, R. M. Lewis, and W. K. Anderson. First-order model man-
+     agement with variable-fidelity physics applied to multi-element airfoil optimization. AIAA
+     Paper 2000-4886, September 2000.
+ [8] J.-F. M. Barthelemy and R. T. Haftka. Approximation concepts for optimum structural
+     design—a review. Structural Optimization, 5:129–144, 1993.
+ [9] A. J. Booker, J. E. Dennis, Jr., P. D. Frank, D. B. Serafini, V. Torczon, and M. W. Tros-
+     set. A rigorous framework for optimization of expensive functions by surrogates. Structural
+     Optimization, 17:1–13, 1999.
+[10] S. Burgee, A. Giunta, V. Balabanov, B. Grossman, W. Mason, R. Narducci, R. Haftka,
+     and L. Watson. A coarse-grained parallel variable-complexity multidisciplinary optimization
+     problem. The International Journal of Supercomputing Applications and High Performance
+     Computing, 10:269–299, 1996.
+[11] K. J. Chang, R. T. Haftka, G. L. Giles, and P.-J. Kao. Sensitivity-based scaling for approx-
+     imating structural response. Journal of Aircraft, 30:283–288, 1993.
+[12] S. Gratton, A. Sartenaer, and P. Toint. Recursive trust-region methods for multiscale non-
+     linear optimization (Part I): Global convergence and complexity. Report 04/06, CERFACS
+     and Dept. of Mathematics, University of Namur, 2005.
+[13] R. T. Haftka. Combining global and local approximations. AIAA Journal, 29:1523–1525,
+     1991.
+[14] R. M. Lewis and S. G. Nash. A multigrid approach to the optimization of systems governed
+     by differential equations. AIAA Paper 2000-4890, 2000.
+[15] J. C. Newman, III, A. C. Taylor, III, R. W. Barnwell, P. A. Newman, and G. J.-W. Hou.
+     Overview of sensitivity analysis and shape optimization for complex aerodynamic configu-
+     rations. Journal of Aircraft, 36:87–96, 1999.
+Optimization and Applications                                                       79
+
+        Musin’s Proof of the Kissing Number in Dimension Four
+                         Kurt M. Anstreicher
+
+
+For n ≥ 3 let S n−1 = {x ∈ Rn : xT x = 1}, and −1 < z < 1. A finite set
+C = {xi }M i=1 ⊂ S
+                   n−1
+                        is called a spherical z-code if xTi xj ≤ z for all i 6= j. For
+      1
+z = 2 , {xi } correspond to contact points between S n−1 and M non-overlapping
+spheres of radius one that are all incident to S n−1 . Maximizing the number M of
+such spheres is called the kissing problem in dimension n, and the maximal M is
+called the kissing number.
+    The kissing problem in dimension 3 has a long history, going back to a discussion
+between Isaac Newton and David Gregory in 1694. Newton apparently believed
+that for n = 3 the kissing number was 12, while Gregory thought that 13 might be
+possible. In fact 13 is not possible but this is surprisingly difficult to prove. The
+first complete proof is credited to Schütte and van der Waerden [8] in 1953, and
+a subsequent proof by Leech [5] (see also [9]) in 1956 is now standard. The idea
+of Leech’s proof is relatively simple but there are many details, some non-trivial,
+that require verification. The proof also appears to be impossible to extend to
+higher dimensions, for example to n = 4.
+    For general n and z there are several approaches that provide upper bounds
+on the size M of a z-code C ⊂ S n−1 ; see for example [2, 9]. For small n the
+best results are typically obtained using the Delsarte bounds, which are based on a
+combination of harmonic analysis and linear programming [2, 3, 4, 6, 9]. For z = 12
+this approach leads to a complete characterization of maximal codes in dimensions
+n = 8 and 24 [1, 2], but for n = 3 the result is a bound of 13. For n = 4 a 21 -code
+with M = 24 is known, but the Delsarte bound is 25. The determination of the
+kissing number in dimension 4 has been an outstanding open problem for many
+years.
+    A 2003 paper of Musin [7] appears to have settled the kissing problem in dimen-
+sion 4 via an interesting extension of the Delsarte bounds. To describe Musin’s
+result we need to introduce the original linear programming bounds. The distance
+distribution of a code C = {xi }M i=1 is the function λ(·) : [−1, 1] → R+ defined as
+
+                                     |{(i, j) : xTi xj = s}|
+(1)                         λ(s) =                           .
+                                                M
+
+                              P z-code the distance distribution satisfies λ(s) ≥ 0,
+It follows that if C is a spherical
+−1 ≤ s ≤ z, λ(1) = 1, and −1≤s≤z λ(s) = M − 1. Let Φk (·), k = 0, 1, . . . denote
+                                                                  (β,β)          
+the Gegenbauer, or ultraspherical, polynomials Φk (t) = Pk              (t)/ k+β
+                                                                              k , where
+  (β,β)
+Pk      (·) is the Jacobi polynomial with β = (n − 3)/2. The normalization of Φk (·)
+is chosen so that Φk (1) = 1 for all k. Using techniques from harmonic analysis it
+can be shown ([4], [2, Chapters 9, 13], [9, Chapter 8]) that
+                             X
+(2)                    1+          λ(s)Φk (s) ≥ 0, k = 1, 2, . . . .
+                         −1≤s≤z
+80                                                                       Oberwolfach Report 2/2005
+
+From (1) and (2), using k = 1, . . . , K, the Delsarte bound on M is obtained via
+the semi-infinite linear programming problem
+                                X
+            LP :         max           λ(s)
+                                         −1≤s≤z
+                                          X
+                             s.t.                 λ(s)Φk (s) ≥ −1,             k = 1, . . . , K,
+                                         −1≤s≤z
+                                         λ(s) ≥ 0,       −1 ≤ s ≤ z.
+The dual of LP is the problem
+                                           K
+                                           X
+                LD :             min             fk
+                                           k=1
+                                           K
+                                           X
+                                  s.t.           fk Φk (s) ≤ −1,              −1 ≤ s ≤ z,
+                                           k=1
+                                           fk ≥ 0,        k = 1, . . . , K.
+                       PK
+    Let f (s) = 1 + k=1 fk Φk (s), where fk ≥ 0, k = 1, . . . , K. For the Delsarte
+bound, obtained from LD rather than LP, fk are chosen to minimize f (1) subject
+to f (s) ≤ 0, s ∈ [−1, z]. Musin’s idea is to generalize f (·) in such a way that more
+detail regarding the possible structure of λ(·) can be exploited. Note that if λ(·)
+is the distance distribution of a spherical z-code, then
+    X               XK         X               K
+                                                X            
+          λ(s) =         fk +        λ(s) 1 +      fk Φk (s)
+ −1≤s≤z                k=1          −1≤s≤z                   k=1
+                         XK                 X                     K
+                                                                    X                      X
+                       −         fk 1 +                λ(s)Φk (s) ≤   fk +                         λ(s)f (s),
+                           k=1             −1≤s≤z                             k=1        −1≤s≤z
+
+and therefore
+                                    X                                 X
+                M = 1+                       λ(s) ≤ f (1) +                     λ(s)f (s).
+                                  −1≤s≤z                             −1≤s≤z
+
+    Musin allows f (·) to be nonnegative and decreasing on [−1, t0 ) and nonpositive
+on [t0 , z], for some t0 < −z. We refer to such an f (·) as a Musin polynomial. Let
+                                             PM
+λi (s) = |{j : xTi xj = s}|, so that λ(s) = [ i=1 λi (s)]/M . Then if f (·) is a Musin
+polynomial,
+                             X                                       M
+                                                                     X        X
+      M    ≤    f (1) +                  λ(s)f (s) = f (1) +                         [λi (s)/M ]f (s)
+                           −1≤s≤t0                                   i=1 −1≤s≤t0
+                                           X
+           ≤    f (1) + max                           λi (s)f (s).
+                           i=1,...,M
+                                         −1≤s≤t0
+
+   For given (n, z, t0 ), define Ym to be the set of spherical z-codes {yi }m i=0 in S
+                                                                                       n−1
+                                        T
+that satisfy the additional condition y0 yi ≤ t0 , i = 1, . . . m. Let µ be the maximum
+Optimization and Applications                                                               81
+
+m so that Ym is nonempty, and define
+                                      m
+                                      X
+(3)                     hm = max            f (y0T yi ),   m = 1, . . . , µ.
+                               y∈Ym
+                                      i=1
+
+Musin’s final bound is then given by
+(4)                              M ≤ f (1) + max hm .
+                                                  m=1,...,µ
+
+   The computation of Musin’s bound (4) has two main steps. The first requires
+construction of an appropriate Musin polynomial f (·). For fixed (n, z, t0 ) this
+involves the solution of a problem similar to LD, with added terms corresponding
+to certain candidate configurations in Ym , m = 1, . . . , µ. The second step is
+verification of the bound (4) via computation of hm , m = 1, . . . , µ. While the
+construction of f (·) is relatively straightforward, verification of the bound is more
+complex since the optimization problem (3) defining each hm is highly nonconvex.
+There are, however, several factors that facilitate the verification phase. First,
+if n is small and |t0 | is not too small then µ cannot be too large. For example
+for z = 21 and a value t0 ≈ −0.6, the value of µ in dimensions 3 and 4 is 4 and
+6, respectively [7]. Second, Musin is able to partially characterize the structure
+of a maximizing set Ym∗ , simplifying the computation of hm . For m ≤ n Musin
+shows that Ym∗ must be a regular spherical simplex containing −y0 . For m > n the
+structure of Ym∗ is more complex, but for dimensions 3 and 4 the form is sufficiently
+constrained to permit the computation of hm . For z = 21 the result is the first
+proof that M < 25 in dimension 4, and a new proof that M < 13 in dimension
+3. In some higher dimensions Musin constructs a polynomial f (·) that appears
+to give an improvement over the Delsarte bound, but verification of the bound
+in these dimensions is currently too difficult to complete. Simplification of the
+verification phase is an interesting topic of ongoing research.
+
+
+                                       References
+ [1] E. Bannai and N.J.A. Sloane, Uniqueness of certain spherical codes, Canadian J. Math. 33
+     (1981), 437-449.
+ [2] J.H. Conway and N.J.A. Sloane, Sphere Packings, Lattices and Groups, Third edition,
+     Springer, New York, 1999.
+ [3] P. Delsarte, J.-M. Goethals and J.J. Seidel, Spherical codes and designs, Geom. Dedicat. 6
+     (1977), 363-388.
+ [4] G.A. Kabatiansky and V.I. Levenshtein, Bounds for packings on a sphere and in space,
+     Problems of Information Transmission 14 (1978), 1-17.
+ [5] J. Leech, The problem of the thirteen spheres, Math. Gazette 40 (1956), 22-23.
+ [6] V.I. Levenshtein, Universal bounds for codes and designs, In Handbook of Coding Theory,
+     Volume 1, V.S. Pless and W.C. Huffman, eds., North-Holland, Amsterdam, 1998, 499-648.
+ [7] O.R. Musin, The kissing number in four dimensions, preprint, Institute for Mathematical
+     Study of Complex Systems, Moscow, 2003.
+ [8] K. Schütte and B.L. van der Waerdan, Das Problem der dreizehn Kugeln, Math. Annalen
+     53 (1953), 325-334.
+ [9] C. Zong, Sphere Packings, Springer, Berlin, 1999.
+82                                                     Oberwolfach Report 2/2005
+
+        Some New Results on the Total Least Squares Problem
+                              Amir Beck
+           (joint work with Aharon Ben-Tal and Marc Teboulle)
+
+
+Many problems in data fitting and estimation give rise to an overdetermined sys-
+tem of linear equations Ax ≈ b, where both the matrix A ∈ Rm×n and the vector
+b ∈ Rm are contaminated by noise. The total least squares (TLS) approach to
+this problem [8, 10] is to seek a perturbation matrix E and a perturbation vector
+w that minimize kEk2 + kwk2 subject to the consistency equation; that is, E and
+w are the solutions of the optimization problem
+
+                (TLS)       min {kEk2 + kwk2 : (A + E)x = b + w}.
+                         w,E,x
+
+
+  One of the main reasons for the wide use of TLS is the fact that the problem
+has essentially an explicit solution, expressed by the singular value decomposition
+(SVD) of the augmented matrix (A, b) [8, 10].
+  We consider here two variants of the TLS problem:
+     • The regularized TLS (RTLS) problem, in which a quadratic con-
+       straint on the vector x is introduced:
+
+      (RTLS)     min {kEk2 + kwk2 : (A + E)x = b + w, L2 ≤ xT Qx ≤ U 2 },
+                w,E,x
+
+        where Q is a positive definite matrix.
+
+     • The structured TLS (STLS) problem, in which an additional linear
+       constraint on the perturbation matrix is enforced:
+
+          (STLS)     min {kEk2 + kwk2 : (A + E)x = b + w, L(E) = 0}.
+                    w,E,x
+
+        Here L is a linear operator. The linear structure discussed here is the block
+        circulant structure.
+A key difficulty with both problems is their nonconvexity. All current known
+methods to solve them (see, e.g., [13, 9, 12, 1]) converge to a point satisfying
+first-order necessary optimality conditions. In [4, 2] we show that a global optimal
+solution to both problems can be found efficiently.
+    The analysis of (RTLS) relies on a different formulation of the problem. Specif-
+ically, if we fix x and minimize with respect to E and w, (RTLS) becomes:
+                                                                  
+                                   kAx − bk2      2    T         2
+                   (RTLS’) min                : L ≤ x Qx ≤ U .
+                             x      kxk2 + 1
+
+   A simple observation, which goes back to Dinkelbach [7] and which will enable
+us to solve (RTLS’), is the following.
+Optimization and Applications                                                               83
+
+Observation: The following two statements are equivalent for a given α:
+                                      2
+    (1) minL2 ≤xT Qx≤U 2 kAx−bk
+                          kxk2 +1 ≤ α.
+    (2) minL2 ≤xT Qx≤U 2 {kAx − bk2 − α(kxk2 + 1)} ≤ 0.
+The second problem, of minimizing an indefinite quadratic function subject to a
+double-sided quadratic constraint, can be reduced to the following convex problem
+by using an argument of Ben-Tal and Teboulle [6]:
+                         X n                              n
+                                                           X         
+                                            √
+            (CP) min           λj vj − |fj | vj + c : L2 ≤   vj ≤ U 2 .
+                      vj ≥0
+                              j=1                               j=1
+
+By using convex duality, the solution of (CP) can be obtained just by solving at
+most two single-variable convex optimization problems.
+   The above discussion gives rise to an efficient algorithm for solving (RTLS’). An
+ǫ-global optimal solution to (RTLS’) is calculated by solving a sequence of very
+simple convex minimization problems parametrized by a single parameter. The
+overall computational effort of the algorithm is O(n3 log ǫ−1 ).
+   In [2] we study (STLS), where the matrix A has either a block circulant (BC)
+structure or a (more special) elementary block circulant structure (EBC):
+                                                                         
+               A0      A1 · · · AN −1                   A0 A1 · · · A1
+             AN −1 A0 · · · AN −2                   A1 A0 · · · A1 
+                                                                         
+       A= .           .          .        , A= .          ..         .. ,
+             ..       ..         ..                 ..     .          . 
+                A1       A2     ···       A0                 A1    A1     ···   A0
+            |                 {z               }         |              {z           }
+                              BC                                      EBC
+where A0 , A1 , . . . , AN −1 are m × n matrices. The BC and EBC structures appear
+in the context of multichannel signal estimation [5, 3], image restoration [11] and
+more. We show that by applying the discrete Fourier transform, (STLS) decom-
+poses into N unstructured (TLS) problems. The N solutions of these problems are
+then assembled to generate the optimal global solution of (STLS). Similar results
+are obtained for elementary block circulant matrices. Here the optimal solution is
+obtained by assembling two solutions: one of an unstructured TLS problem and
+the second of a multidimensional TLS problem.
+
+                                          References
+[1] T. J. Abatzoglou, J. M. Mendel, and G. A. Harada. The constrained total least squares
+    technique and its applications to harmonic superresolution. IEEE Trans. Signal Processing,
+    39(5):1070–1087, May 1991.
+[2] A. Beck and A. Ben-Tal. A global solution for the structured total least squares problem
+    with block circulant matrices. SIAM J. Matrix Anal. Appl. to appear.
+[3] A. Beck, A. Ben-Tal, and Y. C. Eldar. Robust mean-squared error estimation of multiple
+    signals in linear systems affected by model and noise uncertainties. Preprint.
+[4] A. Beck, A. Ben-Tal, and M. Teboulle. Finding a global optimal solution for a quadratically
+    constrained fractional quadratic problem with applications to the regularized total least
+    squares. Preprint.
+[5] A. Beck, Y. C. Eldar, and A. Ben-Tal. Minimax mean-squared error estimation of multi-
+    channel signals. Preprint.
+84                                                             Oberwolfach Report 2/2005
+
+ [6] A. Ben-Tal and M. Teboulle. Hidden convexity in some nonconvex quadratically constrained
+     quadratic programming. Mathematical Programming, 72(1):51–63, 1996.
+ [7] W. Dinkelbach. On nonlinear fractional programming. Management Sciences, 13:492–498,
+     1967.
+ [8] G. H. Golub and C. F. Van Loan. An analysis of the total least-squares problem. SIAM J.
+     Numer. Anal., 17(6):883–893, Dec. 1980.
+ [9] H. Guo and R. Renaut. A regularized total least squares algorithm. In Total Least Squares
+     and Errors-in-Variables Modeling, pages 57–66. Kluwer, 2002.
+[10] S. Van Huffel and J. Vandewalle. The Total Least-Squares Problem: Computational Aspects
+     and Analysis, volume 9 of Frontier in Applied Mathematics. Philadelphia, PA: SIAM, 1991.
+[11] A. K. Katsaggelos, K. T. Lay, and N. P. Galatsanos. A general framework for frequency
+     domain multi-channel signal processing. IEEE Trans. Image Processing, 2(3):417–420, July
+     1993.
+[12] J. B. Rosen, H. Park, and J. Glick. Total least norm formulation and solution for structured
+     problems. Siam J. Matrix Anal. Appl., 17(1):110–126, 1996.
+[13] D. Sima, S. Van Huffel, and G. H. Golub. Regularized total least squares based on quadratic
+     eigenvalue prblem solvers. Technical Report SCCM-04-10, Stanford Univ., 2003.
+
+
+
+                 UMTS Radio Network Evaluation and Design
+                              Andreas Eisenblätter
+               (joint work with Hans-Florian Geerdes, Thorsten Koch)
+
+   The Universal Mobile Telecommunications System (umts) is a third-generation
+cellular system for mobile telecommunications. umts supports all services of the
+worldwide-predominant gsm and gprs networks and is more powerful, more flexi-
+ble, and more radio-spectrum efficient than its predecessors. The present short
+exposition reports on activities within the EU-funded project Momentum [7]
+and within the DFG Research Center Matheon: Mathematics for Key Tech-
+nologies [1].
+   umts is a Wideband Code Division Multiple Access system [5]. Radio transmis-
+sions are generally not separated in the time or the frequency domain. Complex
+coding schemes are used to distinguish different radio transmissions at a receiver.
+The capability to properly detect the desired carrier signal, however, requires that
+the ratio between the carrier signal and interfering signals (cir) does not drop
+below some threshold value. Interference thus needs to be carefully controlled
+during network planning and operation because it is a limiting factor for network
+capacity [6].
+The Problem. A central part in the initial deployment and the subsequent ex-
+pansions of a umts radio network is to decide about the location and configuration
+of the base stations, including their antennas. Among others, the type of an an-
+tenna (and thus its radiation pattern), the mounting height, and its main radiation
+direction– azimuth in the horizontal plane and the tilt in the vertical plane –have
+to be decided. Basically, the problem is to design a network of sufficient coverage
+and capacity.
+   Each antenna provides coverage and capacity to the network, but the two are
+coupled through intercell interference and depend on the current occupation of
+Optimization and Applications                                                                85
+
+the network. In consequence, even assessing the merits of a given network design
+with respect to coverage and capacity is not easy. Moreover, there is no canonical
+optimization goal. Irrespective of such subtleties, mathematical umts radio net-
+work optimization models typically have aspects of facility location/set covering
+(trying to establish coverage) and (multiple) knapsack (trying to reflect coupled
+cell capacity).
+A System Model. Concerning network evaluation, closed linear characteriza-
+tions of the receive and transmit powers for umts cells have recently been de-
+veloped. Here, they are presented in a simple version to illustrate the strong
+interrelation among cells.
+    The transmit powers for the up- and downlink of all mobiles can be derived
+from these characterizations. The powers are obtained under the assumptions
+that perfect power control applies to each dedicated radio link (signals are not
+stronger than necessary) [5], that no cell is in overload, and that no restrictions
+are imposed on the transmit powers of mobiles. Only the downlink case (base
+station to mobile communication) is addressed here. Similar expressions exist for
+the uplink case.
+    For cell i, let p̄↓i denote the total transmit power in the cell, p̌↓i the cumulative
+                                                                             (η)
+power of all common channels (not subject to power control), and pi the power
+the cell would need to emit for its users if all receptions were interference free, that
+is, the power needed for overcoming receiver noise only. Moreover, let C ↓ denote
+a square matrix containing the interference coupling within cells (on the diagonal)
+and between cells. A linear equation system allows the derivation of the total cell
+transmit powers given the other terms:
+                                             −1
+(1)                            p̄↓ = I − C ↓     · (p(η) + p̌↓ ) .
+                                      (η)
+The matrix C ↓ and the vector pi are defined below, based on a measure for the
+impact of serving a user. For mobile m, let α↓m ∈ (0, 1] denote the service-specific
+transmit activity, µ↓m the service-specific cir requirement, and ω̄m ∈ [0, 1] the
+fraction of own-cell signals received as interference due to loss of code orthogonality
+                                                            ↓
+in the radio propagation environment. Moreover, let γim         denote the end-to-end
+attenuation between cell i and mobile m, and let Mi be the set of users served by
+                                                                    ↓
+cell i. Mobile m can be associated with a downlink user load lm        defined as
+                              ↓
+(2)                          lm := (α↓m µ↓m )/(1 + ω̄m α↓m µ↓m ) .
+This quantity is the key to defining the traffic noise power p(η) and the downlink
+coupling matrix C ↓ :
+                 X ηm                        X                           X γjm↓
+      (η)
+(3) pj      :=         ↓
+                             ↓
+                            lm ,   Cii↓ :=               ↓
+                                                    ω̄m lm ,    ↓
+                                                               Cij :=         ↓
+                                                                                  ↓
+                                                                                 lm (i 6= j) .
+                 m∈Mj γjm                    m∈Mi                       m∈Mi γim
+
+Definitions (2) and (3) can be extended to spatial (average) traffic intensity.
+Optimization Models. Various mixed integer programming models have been
+proposed in recent years. Two distinct approaches are sketched. On the one hand
+are models that try to closely reflect the expected network performance. They
+86                                                           Oberwolfach Report 2/2005
+
+consider traffic snapshots and try to find a network optimized for these snapshots;
+see, for example, [4]. On the other hand, a recent development is based on (1)
+with average traffic intensities [2]. Here, the goal is basically to obtain a network
+with good “average” performance.
+Challenges. The challenge of developing effective optimization techniques is pre-
+ceded by two other challenges. One involves devising a reasonable system model
+([7, 4, 2], still ongoing), and the other involves collecting sufficient real-world data
+[7, 3] to guide the modeling and to perform computational studies on other opti-
+mization models and methods.
+   The robustness of solutions, as well as the fact that input is statistical data, be-
+comes increasingly important. What if the expectations to the traffic distribution
+are off by 10%? Advanced optimization and evaluation techniques should certify
+their superiority to simple planning heuristics in these respects.
+   In practice, however, the simple heuristic methods often outperform (or at
+least compete with) heavy-duty optimization techniques, simply because the latter
+fail on large instances. An amazing gap still exists between our state-of-the-art
+optimization techniques and what is needed to prevail for regular planning and
+optimization tasks in radio network planning.
+
+                                       References
+[1] DFG Research Center Matheon: Mathematics for Key Technologies: Modelling, simulation,
+    and optimization of read-world processes. Project B4. http://www.matheon.de 2002–2005.
+[2] A. Eisenblätter and H.-F. Geerdes. A novel view on cell coverage and coupling for UMTS
+    radio network evaluation and design. Technical report, Zuse Institute Berlin (ZIB), 2004.
+    Submitted to INOC’05 Conference.
+[3] A. Eisenblätter, H.-F. Geerdes, U. Türke, and T. Koch. Momentum data scenarios for radio
+    network planning and simulation (extended abstract). In Proc. of WiOpt’04, Cambridge, UK,
+    2004.
+[4] A. Eisenblätter, T. Koch, A. Martin, T. Achterberg, A. Fügenschuh, A. Koster, O. Wegel,
+    and R. Wessäly. Modelling feasible network configurations for UMTS. In G. Anandalingam
+    and S. Raghavan, eds, Telecommunications Network Design and Management. Kluwer, 2002.
+[5] H. Holma and A. Toskala. WCDMA for UMTS. Wiley, 2001.
+[6] J. Laiho, A. Wacker, and T. Novosad, eds. Radio Network Planning and Optimization for
+    UMTS. Wiley, 2001.
+[7] MOMENTUM project. Models and simulations for network planning and control of UMTS.
+    http://momentum.zib.de, 2001–2003. IST-2000-28088.
+
+
+
+     Optimizing Call Center Staffing by Using Simulation and
+               Analytic-Center Cutting-Plane Methods
+                          Marina A. Epelman
+             (joint work with Júlı́us Atlason, Shane Henderson)
+
+We describe a method for selecting staff levels at an inbound call center, or a
+similar service facility, that minimizes cost while simultaneously ensuring satisfac-
+tory customer service. Simulation is used to report service-level performance for
+Optimization and Applications                                                          87
+
+a given set of staffing levels, and an analytic-center cutting-plane method guides
+the selection of staffing levels.
+   Define the vector of staffing levels as y ∈ Zp+ , where p is the number of time
+periods in the planning horizon. The call center staffing problem can then be
+formulated as a MINLP as follows:
+(1)                 min{f (y) : gi (y) ≥ 0, i = 1, . . . , p, y ∈ Zp+ }.
+Here the constraints gi (y) ≥ 0, i = 1, . . . , p, express the quality-of-service require-
+ments in each period, which typically represent “π percent of calls are answered
+within τ seconds.” The objective function f (y) represents the minimal cost of
+covering the desired staffing level y by predetermined feasible staff schedules, or
+shifts, and can be evaluated by solving an integer linear covering problem.
+    The main challenge in solving (1) lies in the difficulty of identifying feasible
+staffing levels, or even verifying feasibility of a particular y, especially when there
+is significant linkage in performance between different periods. To this end, we use
+simulation with n independent replications to approximately evaluate performance
+of the call center at proposed staffing level y. Thus, after selecting n, we replace
+problem (1) with its sample average approximation:
+(2)                min{f (y) : ḡi (y, n) ≥ 0, i = 1, . . . , p, y ∈ Zp+ }.
+Use of common random numbers ensures consistency of function evaluations be-
+tween simulations. See [1] for convergence analysis of solutions of (2) as n → ∞.
+   It has been empirically confirmed that service-level functions in each period
+exhibit behavior similar to that of pseudoconcave functions of continuous variables.
+We say that a function h(·) is discrete pseudoconcave if for any ŷ ∈ Z+
+                                                                       p , there exists
+a vector q(ŷ) ∈ Rp such that for any y ∈ Z+ p,
+
+(3)                        q(ŷ)T (y − ŷ) ≤ 0 ⇒ h(y) ≤ h(ŷ).
+We refer to vectors q(·) as pseudogradients. Since the constraint functions of (1)
+and (2) appear to be discrete pseudoconcave, it is appealing to apply a cutting
+plane-type algorithm to solve the MINLP (2).
+   Although several such methods for solving MINLPs have been proposed, they
+cannot be directly applied to (2). Indeed, in these algorithms it is assumed that the
+constraint functions are, in fact, differentiable functions of continuous variables;
+the integrality restrictions on the variables are, in a sense, exogenous. In such a
+setting the concept of a convex (continuous) nonlinear relaxation of the integer
+program is straightforward, and feasibility cuts are generated simply by using the
+gradients of these continuous functions. In our setting, however, the service-level
+functions and their sample average approximations are not defined at noninteger
+values of y, and devising their continuous extension is nontrivial at best.
+   To address this difficulty, we introduce the first application of an Analytic Cen-
+ter Cutting Plane Method (ACCPM) to MINLPs with discrete pseudoconcave
+constraints. Our method differs from algorithms described above in two main
+ways (see [6] for review of ACCPMs):
+88                                                             Oberwolfach Report 2/2005
+
+– As in ACCPM, the analytic center of the polyhedral localization set is computed
+   at every iteration. Next, however, the integer point in the localization set nearest
+   to the analytic center is found by solving an IP; feasibility of this integer point
+   ŷ is then checked by simulation.
+– To add a feasibility cut if ŷ found above violates one or more of the constraints,
+   we estimate a pseudogradient of the violated constraint at ŷ and generate a cut
+   using inequality (3). Among many approaches tested, forward finite differencing
+   was shown to perform the best in approximating the pseudogradients (see [3]).
+Under reasonable assumptions, this algorithm will converge finitely to the optimal
+solution of (2).
+     We have successfully implemented the algorithm above and tested its perfor-
+mance on the call center staffing problem. Our benchmarks were the heuristics
+based on the analytical queueing methods developed by Green et al. ([4, 5]),
+widely considered to be the state of the art in multiperiod staffing. Experiments
+on a call center modeled as an M (t)/M/s(t) queue show that our algorithm out-
+performs, or at least equals, these heuristics in every case in which shift structure
+is explicitly considered, which is the setting we are primarily interested in (see [2]).
+Of course, these extremely appealing properties have to be traded off against the
+computational cost of the procedure, which is not inconsiderable. Nonetheless, it
+is a robust procedure that can be applied in a near-black-box fashion. Moreover,
+the complex structure of realistic call centers imposes a limit on the applicability
+of queueing-based heuristics. In such cases, simulation and our simulation-based
+algorithm are a viable alternative.
+
+
+
+                                        References
+ [1] J. Atlason, M. A. Epelman, and S. G. Henderson. Call center staffing with simulation and
+     cutting plane methods. Ann. Oper. Res., 127:333–358, 2004.
+ [2] J. Atlason, M. A. Epelman, and S. G. Henderson. Optimizing call center staffing using
+     simulation and ACCPMs. IOE Tech. Report 04-09, University of Michigan, 2004.
+ [3] J. Atlason, M. A. Epelman, and S. G. Henderson. Using simulation to approximate sub-
+     gradients of convex performance measures in service systems. In Proceedings of the 2003
+     Winter Simulation Conference, edited by S. Chick, P. J. Sánchez, D. Ferrin, and D. J.
+     Morrice, 2003.
+ [4] L. V. Green, P. J. Kolesar, and J. Soares. Improving the SIPP approach for staffing service
+     systems that have cyclic demands. Oper. Res., 49:549–564, 2001.
+ [5] L. V. Green, P. J. Kolesar, and J. Soares. An improved heuristic for staffing telephone call
+     centers with limited operating hours. Prod. and Oper. Management, 12:46–61, 2003.
+ [6] J. E. Mitchell. Polynomial interior point cutting plane methods. Optim. Methods Softw.,
+     18:507–534, 2003.
+Optimization and Applications                                                      89
+
+                Breast Cancer Epidemiology:
+                 Calibrating Simulations via Optimization
+                            Michael C. Ferris
+     (joint work with Geng Deng, Dennis G. Fryback, Vipat Kuruchittham)
+
+We investigate the use of optimization and data mining techniques for calibrating
+the input parameters to a discrete event simulation code. In the context of a
+breast-cancer epidemiology model we show how a hierarchical classifier can accu-
+rately predict those parameters that ensure the simulation replicates benchmark
+data within 95% confidence intervals. We formulate an optimization model that
+evaluates solutions based on an integer valued score function. The scores are deter-
+mined from a simulation run (and are therefore subject to stochastic variations),
+and are expensive to calculate.
+    The Wisconsin Breast Cancer Epidemiology Simulation uses detailed individual-
+woman-level discrete event simulation of four processes (breast cancer natural his-
+tory, detection, treatment and nonbreast cancer mortality among U.S. women) to
+replicate breast cancer incidence rates according to the Surveillance, Epidemiol-
+ogy, and End Results (SEER) Program data from 1975 to 2000. Incidence rates
+are calculated for four different stages of tumor growth, namely, in situ, local-
+ized, regional, and distant; these correspond to increasing size and/or progression
+of the disease. Each run involves the simulation of 3 million women and takes
+approximately 8 minutes to execute on a 1 GHz Pentium machine with 1 GB of
+RAM.
+    The four simulated processes overlap in complex ways, and thus it is very dif-
+ficult to formulate analytical models of their interactions. However, each can be
+modeled by simulation; these models need to take into account the increase in
+efficiency of screening processes that has occurred since 1975, the changes in non-
+screen detection as a result of increased awareness of the disease, and a variety of
+other changes during that time. The simulations are grounded in mathematical
+and statistical models that are formulated by using a parameterization. For ex-
+ample, the natural history process in the simulation can be modeled by using a
+Gompertzian growth model that is parameterized by a mean and variance typically
+unknown exactly but for which a range of reasonable values can be estimated. The
+overall simulation facilitates interaction between the various components, but it is
+extremely difficult to determine values for the parameters that ensure the simula-
+tion replicates known data patterns across the time period studied. In all, there
+are 37 parameters, most of which interact with each other and are constrained by
+linear relationships. Further details can be found in [1, 3].
+    A score is calculated that measures how well the simulation output replicates an
+estimate of the incidence curves in each of the four growth stages. Using SEER and
+Wisconsin Cancer Reporting System (WCRS) data, we generate an envelope that
+captures the variation in the data that might naturally be expected in a population
+of the size we simulated. For the 26 years considered, the four growth stages give
+a total of 104 points, each of which is tested to see whether it lies in the envelope.
+90                                                         Oberwolfach Report 2/2005
+
+The number of points outside the envelope is summed to give the score (0 is ideal).
+While one could argue that distance to the envelope might be a better measure,
+such calculations are scale dependent and were not investigated. Unfortunately,
+the score function also depends on the “history” of breast cancer incidence and
+mortality that is generated in the simulation based on a random seed value ω. We
+will adopt the notation fω (v), where v represents the vector of parameters and
+ω indexes the replication. While we are interested in the distribution (over ω) of
+fω (v), we will focus here on the problem
+                                    min max fω (v).
+                                      v    ω
+
+   The purpose of this study is to determine parameter values v that generate
+small values for the scoring function. Prior to the work described here, acceptance
+sampling had been used to fit the parameters. Essentially, the simulation was run
+tens of thousands of times with randomly chosen inputs to determine a set of good
+values. With over 450,000 simulations, only 363 were found that had a score no
+more than 10. That is, for a single replication ω, 363 vectors v had fω (v) ≤ 10.
+   Our first goal was to generate many more vectors v with scores no more than
+10. To do this, we attempted to use the given scoring function data to generate a
+classifier that quickly predicts whether a given vector v is in
+                  L(λ) = {v|fω (v) ≤ λ} , for a fixed replication ω.
+We typically use λ = 5 to indicate good fit and λ = 10 for acceptable parameter
+choices. Our approach is as follows:
+– Split the data into a training (90%) and testing (10%) set.
+– Given the training set, generate a (hierarchical) classifier that predicts member-
+  ship of L(λ). Validate this classifier on the testing set.
+– Generate 100,000 potential values for v, uniformly at random.
+– For those vectors v that the classifier predicts are in L(λ), evaluate fω (v) via
+  simulation.
+   Since the classifier is cheap to evaluate, this process facilitates a more efficient
+exploration of the parameter space. Clearly, instead of using a single replication ω,
+we could replace fω (v) by maxω∈Ω fω (v) where Ω = {ω1 , . . . , ωm } for some m > 1.
+In fact this approach was carried out. The difficulty is that we require replication
+data (for our experiments we choose m = 10) and we update the definition of L(λ)
+appropriately. However, the process we follow is identical to that outlined here.
+   In our setting, v has dimension 37. Using expert advice, we allowed only 9
+dimensions to change; the other 28 values were fixed to the feasible values that
+have highest frequency of occurrence over the “positive” samples. For example, if
+v37 can take possible values from [φ1 , φ2 , . . . , φn ], then we set the value of v37 to
+be arg minni=1 W
+               Pi
+                 i
+                   , where Pi and Wi are the number of appearances of φi in the
+positive and whole sample set. This is similar to using a naive Bayesian classifier to
+determine which value has the highest likelihood to be “positive”. Our experiments
+showed this choice of values outperformed even the values that experts deemed
+appropriate for these 28 values; a posteriori analysis confirmed their superiority.
+Optimization and Applications                                                          91
+
+    We generated a hierarchical classifier. The key difficulty in generating a classifier
+is the fact that we have a vast majority of “negative” data points (i.e., vectors
+v∈ / L(λ)). By successively projecting our training data into two-dimensional slices,
+we identified two pairs of planes (meanGamma/varGamma and onsetProp/lag) in
+which only “negative” data points in our training set were present outside a small
+band of values. The top level of the classifier labels points outside these bands
+as “negative”. The remaining points (within the bands, the positive and negative
+points are intermingled) are classified by using the following procedure.
+    Given a particular training set A, a variety of support vector machine classifiers
+can be generated by solving an optimization problem for values u and γ, and using
+the kernel classifier [7]
+                                   K(v ′ , A′ )u − γ ≤ 0
+to imply that a new point v is “negative”, where K is a given kernel function. We
+used the following kernels: linear, polynomial degree 2, polynomial degree 3, and
+Gaussian. We also used the C45 decision tree classifier and k-nearest neighbor
+classifier with k = 5. All of these classifiers are publicly available [6, 9].
+    Furthermore, the one-sided sampling approach [4] was used to generate a num-
+ber of different training sets; the sampling approach iteratively removes “negative”
+points in a rigorously defined manner, and we stop this process when there are
+approximately 500 “negative” points remaining (there are around 300 “positive”
+points in each training set). The resulting classifier is evaluated on the testing set
+by using the measures
+        # correctly classified positives                # correctly classified negatives
+TP =                                        and T N =                                    .
+              total # of positives                           total # of negatives
+(Note that cross-validation accuracy is inappropriate to use in this setting because
+it can be made large by classifying all points as “negative” on account of the
+imbalanced nature of the data.) Classifiers are discarded if the value of T P is less
+than 0.9 (typically T N is around 0.4). This value was chosen to guarantee the
+probability of removing positive points in error is small. We also generate training
+sets by resampling with replacement.
+    For a uniform sample of 100,000 potential values of v, the naive banding clas-
+sifier removes all but 8 640. Each of the above classifiers was used successively to
+determine whether the point v was “negative” (and hence removed from consid-
+eration); if not, v was passed onto the next classifier. This process was repeated
+until the number of points being removed decreased to zero. At that stage there
+were 788 points that were hypothesized to be “positive”. These 788 points were
+tested using simulation, and 65% were found to be “positive”. This is a significant
+improvement over the random sampling scheme.
+    A further sequence of classifiers was determined from a training set generated
+by using the above sampling schemes, but where we adjusted the number of “neg-
+ative” points in the training set so that the resulting values for T P and T N were
+approximately 0.6 and 0.7. These additional classifiers have a larger chance of
+removing “positive” samples in error, but they reduce the number of remaining
+points in our sample much more quickly. For our example set the remaining 788
+92                                                            Oberwolfach Report 2/2005
+
+points was reduced to 220 points. Evaluating these remaining points by simula-
+tion, 195 were found to be in L(10). Thus, with very high success rate (89%), our
+classifier is able to predict values of v that have a low score fω (v).
+   We employed the classifier technique above to generate a large number of sam-
+ples in L(30). Given these samples, we used the DACE toolbox [5] to fit a kriging
+model to the data, which we consider a surrogate function [2] for our objective.
+We used the Nelder-Mead simplex method [8] to optimize this surrogate and gen-
+erated several local minimizers for this function based on different trial starting
+points. These local minimizers were evaluated by simulation. To improve our
+results further, we updated the surrogate function with the simulation results of
+the local minimizers and repeated the optimization. The parameter values found
+by using this process outperform all previous values found. Furthermore, expert
+analysis of various output curves generated from the simulation results with the
+best set of parameter values confirms the quality of this solution.
+   While our procedure is somewhat ad hoc, the following conclusions are evident:
+– The classifier technique is cheap to use and predicts good parameter values very
+  accurately without performing additional simulations.
+– A hierarchical classifier significantly improves classification accuracy.
+– Imbalanced training data has a detrimental effect on classifier behavior. Ensur-
+  ing the data is balanced in size is crucial before generating classifiers.
+   The classifier facilitates easy generation of parameter settings within a given
+level set of score values and potentially allows investigation of such level sets and
+good parameter settings from a biological perspective. Future work will investigate
+characterizing the level set more precisely with the aim of enhancing biological
+understanding of the model parameters.
+
+
+                                       References
+ [1] CISNET, http://cisnet.cancer.gov/profiles/.
+ [2] J. E. Dennis, A. Booker, P. Frank, D. Serafini, V. Torczon, and M. Trosset, A rigorous
+     framework for optimization of expensive functions by surrogates. Structural Optimization,
+     17(1):1–13, 1999.
+ [3] D. G. Fryback, N. K. Stout, M. A. Rosenberg, A. Trentham-Dietz, V. Kuruchittham, and
+     P. L. Remington. The Wisconsin breast cancer epidemiology simulation model. Preprint,
+     January 2005.
+ [4] M. Kubat and S. Matwin. Addressing the curse of imbalanced data sets: One sided sampling.
+     In Proceedings of the Fourteenth International Conference on Machine Learning, 1997, pp.
+     179–186.
+ [5] S. N. Lophaven, H. B. Nielsen, and J. Søndergaard. DACE – A Matlab kriging toolbox,
+     Informatics and Mathematical Modelling. Technical University of Denmark, DTU, 2002.
+ [6] J. Ma, Y. Zhao, and A. Stanley. OSU SVM classifier Matlab Toolbox. http://www.ece.osu.
+     edu/∼maj/osu svm/.
+ [7] O. L. Mangasarian, Generalized support vector machines. In Advances in Large Margin
+     Classifiers, edited by A. Smola, P. Bartlett, B. Schölkopf, and D. Schuurmans, MIT Press,
+     Cambridge, MA, 2000, pp. 135–146.
+ [8] J. A. Nelder and R. Mead, A simplex method for function minimization. Computer Journal,
+     7:308–313, 1965.
+Optimization and Applications                                                              93
+
+ [9] J. Weston, A. Elisseeff, G. Bakir, and F. Sinz. The Spider, Matlab Machine Learning Tool-
+     box. http://www.kyb.tuebingen.mpg.de/bs/people/spider/.
+
+
+
+
+   L1 -Optimal Boundary Control of a String to Rest in Finite Time
+                          Martin Gugat
+
+
+Hyperbolic partial differential equations often appear as models in engineering, for
+example as systems of conservation laws that model fluid flow.
+   The control of such systems is usually possible only with boundary controls,
+which in the mathematical model corresponds to control via the boundary condi-
+tions. To get some insight into the nature of optimal controls for such systems, we
+consider the following problem of optimal Dirichlet boundary control for the wave
+equation:
+                                 Z T
+             
+             
+             
+                      min            |u1 (t)| + |u2 (t)| dt suject to
+             
+                u1 ,u2 ∈L1 (0,T ) 0
+             
+             
+                 ytt (x, t) = c2 yxx (x, t),                 (x, t) ∈ (0, L) × (0, T )
+ (P)         
+                y(0, t) = u1 (t), y(L, t) = u2 (t), t ∈ (0, T )
+             
+             
+             
+                y(x, 0) = y0 (x), yt (x, 0) = y1 (x), x ∈ (0, L)
+             
+             
+                 y(x, T ) = 0,         yt (x, T ) = 0,       x ∈ (0, L).
+The functions y0 and y1 are given, as well as the real numbers T > 0, L > 0, c > 0.
+   In general, this problem does not have a unique solution. An explicit represen-
+tation of all solutions is given in the following theorem.
+
+RTheorem      1. Assume that T ≥ t0 = L/c, that y0 ∈ L1 (0, L), and that Y1 (x) =
+  x              1
+  0 y1 (s) ds ∈ L (0, L). For t ∈ (0, t0 ), let
+                                                      Z ct
+                   α0 (t) =      y0 (ct)      + (1/c)      y1 (s) ds,
+                                                       0
+                                                      Z L−ct
+                   β0 (t) = y0 (L − ct) − (1/c)                y1 (s) ds.
+                                                            0
+
+Choose a real number r that minimizes
+                             Z
+                           1 t0
+(1)                I(r) =       |α0 (t) − r| + |β0 (t) + r| dt.
+                           2 0
+Let k = max{j ∈ N : jt0 ≤ T } and ∆ = T − kt0 . For j ∈ {0, . . . , k} and t ∈ (0, ∆),
+let λj (t) ≥ 0, νj (t) ≥ 0 almost everywhere be such that λj (α0 − r) ∈ L1 (0, ∆),
+νj (β0 + r) ∈ L1 (0, ∆), and
+               k
+               X                    k
+                                    X
+                     λj (t) = 1 =         νj (t) almost everywhere on (0, ∆).
+               j=0                  j=0
+94                                                            Oberwolfach Report 2/2005
+
+   For j ∈ {0, . . . , k−1} and t ∈ (∆, t0 ), let µj (t) ≥ 0, ωj (t) ≥ 0 almost everywhere
+be such that µj (α0 − r) ∈ L1 (∆, t0 ), ωj (β0 + r) ∈ L1 (∆, t0 ) and
+              k−1
+              X                    k−1
+                                   X
+                    µj (t) = 1 =         ωj (t) almost everywhere on (∆, t0 ).
+              j=0                  j=0
+
+   Then the optimal solutions of (P) are the controls u1 , u2 described by (2) below:
+     
+     
+        u1 (t + jt0 ) = λj (t)[α0 (t) − r]/2          if j is even and t ∈ (0, ∆),
+     
+        u   (t + jt   ) = µ   (t)[α    (t)  −  r]/2   if j is even and t ∈ (∆, t0 ),
+     
+          1         0       j        0
+     
+        u   (t + jt   ) = −ν     (t)[β   (t)  + r]/2  if j is odd and t ∈ (0, ∆),
+     
+          1         0          j       0
+      u (t + jt ) = −ω (t)[β (t) + r]/2 if j is odd and t ∈ (∆, t ),
+           1         0          j        0                                       0
+(2)
+     
+        u 2 (t + jt 0 ) = νj  (t)[β 0 (t)  +  r]/2    if j is even and t ∈ (0, ∆),
+     
+     
+     
+        u2 (t + jt0 ) = ωj (t)[β0 (t) + r]/2          if j is even and t ∈ (∆, t0 ),
+     
+     
+     
+        u   (t + jt   ) = λ   (t)[−α      (t) +  r]/2 if j is odd and t ∈ (0, ∆),
+      2             0       j           0
+         u2 (t + jt0 ) = µj (t)[−α0 (t) + r]/2 if j is odd and t ∈ (∆, t0 ).
+
+  The minimal value of (P) is given by the integral I(r) of (1) with an optimal
+choice of r. The solution of (P) is unique if and only if its minimal value is zero.
+
+    A proof of this result is given in [2]. This proof is based on the traveling waves
+solution of the wave equation. It shows how the structure of the optimal controls
+is related to the characteristic curves.
+    The solutions of the corresponding problems for Lp -norms with p ∈ [2, ∞)
+are given in [3], where a proof based on Fourier series and moment problems is
+presented. For these problems, where
+                                Z T
+                                    |u1 (t)|p + |u2 (t)|p dt
+                                   0
+
+is minimized, the optimal controls are uniquely determined and have the same
+structure as in (2) but only with
+
+                    λj (t) = νj (t) = 1/(k + 1), µj (t) = ωj (t) = 1/k.
+
+This is true also for p ∈ (1, 2), but then the proof uses the technique of [2].
+   For the corresponding L∞ problem where the objective function is an essential
+supremum, the controls u1 , u2 described as in the case p ∈ (1, ∞) give the element
+of minimal L2 norm in the solution set (see [3]).
+   Theorem 1 shows that, if the problem data T , L, or c is changed, the structure
+of the solution set can change if T = kt0 . Note that, even for C ∞ initial data,
+the optimal state may have jumps generated by the discontinuities of the optimal
+controls.
+   Problem (P) is related to control problems for nonlinear hyperbolic systems;
+see [1]. We hope that Theorem 1 helps to exploit the structure of optimal controls
+for quasilinear hyperbolic systems.
+Optimization and Applications                                                                  95
+
+                                        References
+ [1] M. Gugat. Boundary controllability between sub- and supercritical flow. SIAM Journal on
+     Control and Optimization, 42:1056–1070, 2003.
+ [2] M. Gugat. L1 -Optimal boundary control of a string to rest in finite time. In Recent Advances
+     in Optimization (Proc. of the 12th French-German-Spanish Conference on Optimization).
+     Lecture Notes in Economics and Mathematical Systems, Springer (2005), to appear.
+ [3] M. Gugat, G. Leugering, and G. Sklyar. Lp optimal boundary control for the wave equation.
+     SIAM Journal on Control and Optimization, 2005, to appear.
+
+
+     Joint Online Truck Scheduling and Inventory Management for
+                          Multiple Warehouses1
+                          Christoph Helmberg
+                       (joint work with Stefan Röhl)
+
+Consider the following real-world problem. Given several warehouses connected
+by a shuttle service of several trucks for shipping pallets of stored articles between
+them, and given an online stream of orders that are stochastic and that have to be
+handled within short time at specific warehouses, find, online, a schedule of truck
+routes and truck loads so that (one hopes) all products are available at the right
+place ahead of processing time.
+   For this problem we suggest an approach based on convex relaxation of an
+integer programming formulation and demonstrate its practical suitability on real
+world data of our industrial partner eCom Logistik GmbH & Co. KG. For up to
+three warehouses and roughly 40 000 articles, the method computes a schedule
+within five to twelve minutes. In long-term simulations it reduces the average
+number of pallets that have to be transported on short notice because of demand
+to less than half the number of the semi-automatic approach currently in use.
+   Several issues are of relevance in this problem. An appropriate stochastic opti-
+mization model is required that links the success probability of the inventory of the
+warehouses to the truck rides. The model must be solvable within short time in
+order to be suitable for online computations, and the approach must be sufficiently
+robust to compensate frequent external changes in orders and uncertainties in the
+logistic transportation process.
+   In our method we follow the classical approach to model large-scale trans-
+portation or network design problems as multicommodity flow problems (see, e.g.,
+[19, 16, 14]). These can be decomposed and solved efficiently with Lagrangian
+relaxation by combining min-cost flow algorithms (see, e.g., [1]) and bundle meth-
+ods (see, e.g., [11, 4]). In particular, we model the rides of the trucks as well as
+the flow of pallets between warehouses by time-discretized networks coupled via
+linear capacity constraints. Our main contribution is the development of a convex
+piecewise-linear cost function that models the stochastic quality of the warehouse
+configurations as follows. We assume that for each article p and each warehouse
+  1This work was supported by research grant 03HEM2B4 of the German Federal Ministry of
+Education and Research (responsibility for the content rests with the authors).
+96                                                          Oberwolfach Report 2/2005
+
+w, a probability distribution Fpw : Z → [0, 1] is given that assigns to a number
+α of pallets of article p the probability that demand at w for p over a specified
+period of time will not exceed α pallets. Our cost function penalizes the reduction
+of α available pallets by one by g(Fpw (α − 1)), where g : [0, 1] → R+ is required to
+be nonnegative, nonincreasing, and convex. Choosing g identical for all products
+p and warehouses w yields a reasonable priority on the sequence in which pallets
+should be transported. If we choose g(x) = 1 − x and evaluate the cost function
+at the end of the planning period, we minimize the expected number of pallets
+that still have to be transported after the last truck ride. In practice, we compute
+estimates for Fpw using the empirical distribution based on past demand (see, e.g.,
+[8, 18]), choose g(x) ≈ − log x to enforce transportation of pallets that are needed
+with high probability, and evaluate at several time steps. Even moderately ac-
+curate solutions for this cost structure give rise to reasonable schedules. Indeed,
+within five to ten minutes a schedule based on rounding, an approximate solu-
+tion to linear programs with up to 1.5 million variables and 500,000 constraints is
+obtained on a Linux PC, using MCF [15] for solving the min-cost-flow problems
+and ConicBundle, which is an outgrowth of [9], for finding appropriate multipliers.
+Solving the linear program by a state-of-the-art simplex solver would need between
+half an hour and four hours on the same machine without leading to significantly
+better rounded solutions.
+   Within online environments, robustness hinges on reacting flexibly to new situ-
+ations rather than sticking to past decisions. Consequently, our method does not
+keep any information on previous solutions but operates solely on status messages
+of the logistic operating system (the message system has been developed jointly
+with our industrial partner for this purpose). Therefore, the method is capable of
+continuing independent on what part of its proposed solution has been accepted
+by the human planner. The approach has been thoroughly tested in a detailed
+simulation study over a period of 100 days on the real-world online data stream
+of our industrial partner.
+   There is a vast literature on inventory management and logistics (see, e.g., [7]),
+yet we found few references that deal with both problems at the same time; and
+none of them treat both problems in sufficient detail for our purposes. In some
+works the transportation process is assumed to be instantaneous (see e.g. [12, 13,
+5, 3, 20]), in others the stochastic part is fixed (see e.g. [2, 6]) or considerations
+are reduced to only one product [17]. To the best of our knowledge the approach
+proposed is the first that deals jointly with inventory management of multiple
+products and interwarehouse logistics involving vehicle routing with transportation
+times. The full paper [10], code, and data are available at www.tu-chemnitz.de/
+mathematik/discrete/projects/warehouse trucks/
+
+                                      References
+ [1] R. K. Ahuja, T. L. Magnanti, and J. B. Orlin. Network Flows: Theory, Algorithms, and
+     Applications. Prentice-Hall, Inc., Englewood Cliffs, New Jersey, 1993.
+ [2] S. Anily and A. Federgruen. Two-echelon distribution systems with vehicle routing costs
+     and central inventories. Oper. Res., 41(1):37–47, 1993.
+Optimization and Applications                                                                   97
+
+ [3] T. W. Archibald, S. A. E. Sassen, and L. C. Thomas. An optimal policy for a two depot
+     inventory problem with stock transfer. Manage. Sci., 43(2):173–183, 1997.
+ [4] S. Feltenmark and K. C. Kiwiel. Dual applications of proximal bundle methods, including
+     Lagrangian relaxation of nonconvex problems. SIAM J. Optim., 10(3):697–721, 2000.
+ [5] E. H. Frazelle, S. T. Hackman, U. Passy, and L. K. Platzman. The forward-reserve problem.
+     In Proceedings of the 1992 IBM Europe Institute on Optimization Solutions, pages 43–61,
+     Oberlech, Austria, 1994.
+ [6] F. Fumero and C. Vercellis. Synchronized development of production, inventory, and distri-
+     bution schedules. Transp. Sci., 33(3):330–340, 1999.
+ [7] S. Graves, A. Rinnooy Kan, and P. Zipkin, editors. Logistics of production and inventory,
+     volume 4 of Handbooks in Operations Research and Management Science. North-Holland,
+     Amsterdam, 1993.
+ [8] P. Hall. The Bootstrap and Edgeworth Expansions. Springer, New York, 1992.
+ [9] C. Helmberg and K. C. Kiwiel. A spectral bundle method with bounds. Math. Programming,
+     93(2):173–194, 2002.
+[10] C. Helmberg and S. Röhl. A Case Study of Joint Online Truck Scheduling and Inventory
+     Management for Multiple Warehouses Preprint 2005-3, Technische Universität Chemnitz,
+     Fakultät für Mathematik, January 2005.
+[11] J.-B. Hiriart-Urruty and C. Lemaréchal. Convex Analysis and Minimization Algorithms II,
+     volume 306 of Grundlehren der mathematischen Wissenschaften. Springer, Berlin, Heidel-
+     berg, 1993.
+[12] P. Köchel. Ein dynamisches Mehr-Lager-Modell mit Transportbeziehungen zwischen den
+     Lagern. Math. Operationsforsch. Statist., Ser. Optimization, 13:267–286, 1982.
+[13] P. Köchel. Optimal adaptive inventory control for a multi-location model with redistribution.
+     Optimization, 19:525–537, 1988.
+[14] B. Korte and J. Vygen. Combinatorial optimization. Theory and algorithms, volume 21 of
+     Algorithms and Combinatorics. Springer, Berlin, 2 edition, 2002.
+[15] A. Löbel. MCF Version 1.2 – A network simplex Implementation. Konrad-Zuse-Zentrum
+     für Informationstechnik Berlin, Jan. 2000. Available at http://www.zib.de/Optimization/
+     Software/Mcf (free of charge for academic use).
+[16] M. Padberg. Linear optimization and extensions, volume 12 of Algorithms and Combina-
+     torics. Springer, 2 edition, 1999.
+[17] M. I. Reiman, R. Rubio, and L. M. Wein. Heavy traffic analysis of the dynamic stochastic
+     inventory-routing problem. Transp. Sci., 33(4):361–380, 1999.
+[18] J. Shao. Mathematical Statistics, Springer Texts in Statistics. Springer-Verlag, New York,
+     Berlin, Heidelberg, 2 edition, 2003.
+[19] A. Schrijver. Combinatorial Optimization, volume 24 of Algorithms and Combinatorics.
+     Springer, 2003.
+[20] J. P. van den Berg, G. P. Sharp, A. J. R. M. (Noud) Gademann, and Y. Pochet. Forward-
+     reserve allocation in a warehouse with unit-load replenishments. Europ. J. Oper. Res.,
+     111:98–113, 1998.
+98                                                          Oberwolfach Report 2/2005
+
+     Stability in Nonlinear Optimization under Constraint Degeneracy
+                               Diethard Klatte
+                        (joint work with Bernd Kummer)
+
+The stationary solution map X of a perturbed nonlinear program is studied. We
+characterize stability properties of X under constraint degeneracy (which here
+means that the linear independence constraint qualification (LICQ) is not satisfied
+at the solutions under consideration), and we compare this with known stability
+results in the nondegenerate case. We restrict our study here to a basic model: a
+nonlinear program under canonical perturbations, namely,
+            f (x) − aT x → min x
+P(p)                                            ,   p = (a, b) perturbation vector,
+            s.t. gi (x) ≤ bi (i = 1, . . . , m)
+where f, gi ∈ C 2 (Rn , R) ∀i. In a similar way, certain perturbed variational in-
+equalities could be handled, and additional equality constraints (or constraints
+with C 1,1 functions) or nonlinear parameterizations could be included.
+Notation. Following Kojima [6], we write the Karush-Kuhn-Tucker (KKT) con-
+ditions for P(p), p = (a, b) as
+                                 Pm +
+        Φ1 (x, y) := Df (x) +      i=1 yi Dgi (x) = a ,      yi+ = max{0, yi },
+(1)                                      −
+        Φ2i (x, y) := gi (x) −         yi         = bi ,     yi− = min{0, yi }.
+We will study the stationary solution set mapping
+                        X(p) := {x | ∃y : (x, y) satisfies (1)}
+for (p, x) ∈ gph X near (0, x0 ), where x0 ∈ X(0) is some given point. The multiplier
+set associated with (0, x0 ) is
+                       Y 0 := {y | (x0 , y) satisfies (1) at p = 0}.
+Without loss of generality suppose throughout g(x0 ) = 0. Further, let
+                                           Xm
+ Ai = Dgi (x0 )T (rows), L(x, y) = f (x) +      yi+ gi (x), Q(y) = Dxx
+                                                                     2
+                                                                       L(x0 , y).
+                                                    i=1
+  We are interested in the following three stability notions: X is said to be locally
+upper Lipschitz (l.u.L.) at (0, x0 ) ∈ gph X if there exist µ, ε > 0 such that
+                 kx − x0 k ≤ µkpk ∀x ∈ X(p) ∩ B(x0 , ε), p near 0,
+in particular, X(0) ∩ B(x0 , ε) = {x0 } holds, and X(p) ∩ B(x0 , ε) = ∅ for p 6= 0
+is possible; X is called strongly Lipschitz-stable (s.L.s.) at (0, x0 ) ∈ gph X if, for
+some ε > 0, X(·) ∩ B(x0 , ε) is single-valued and Lipschitz near p = 0; X is called
+strongly stable in Kojima’s sense at (0, x0 ) if, w.r.t. small quadratic perturbations
+of the objective and small righthand side perturbations of the constraints, X(·) ∩
+B(x0 , ε) is (for some ε > 0) single valued and continuous near p = 0.
+   Obviously, if X is s.L.s. at (0, x0 ), then X is l.u.L. at (0, x0 ) and fulfills X(p) ∩
+B(x0 , ε) 6= ∅ for some ε > 0 and all p near 0 (and hence the Mangasarian-Fromovitz
+constraint qualification (MFCQ) holds at x0 ; see [5]), while the opposite direction
+already fails for linear programs under MFCQ.
+Optimization and Applications                                                            99
+
+Stability under LICQ. Suppose that LICQ holds at x0 ; hence Y 0 is a singleton,
+say Y 0 = {y 0 }. We recall some well-known results for this case.
+   Supposing in addition strict complementarity, the KKT system for (x, y, p) near
+(x0 , y 0 , 0) reduces to a C 1 equality system. Thus Φ−1 is locally single-valued
+and lies in C 1 (with the well-known formula for DΦ−1 ) if and only if DΦ(x0 , y 0 )
+is nonsingular. This classical result (see [3]) uses the standard inverse function
+theorem.
+   Avoiding strict complementarity, Jongen et al. [2] have shown that X is s.L.s.
+at (0, x0 ) if and only if X is strongly stable in Kojima’s sense at (0, x0 ).
+   At this point, let us answer a question of the discussion at the Oberwolfach
+meeting: it is not enough to require that X is locally single valued and continuous
+under canonical perturbations only to imply strong stability in Kojima’s sense. The
+following one-dimensional parametric unconstrained program is a counterexample:
+                      x4 − ax − cx2 → minx∈R , |a|, |c| small.
+  Next we characterize l.u.L. and s.L.s. of X under LICQ by linearization of the
+KKT system: X is s.L.s at (0, x0 ) if and only if the system
+                                     Pm
+                    (i) Q(y 0 )u + i=1 αi Ai T = 0,
+                   (ii) yi0 Ai u                   = 0 (∀i)
+                  (iii) αi Ai u                    ≥ 0 (∀i)
+has the unique trivial solution (u, α) = 0; see [4] for the above form. Several
+equivalent conditions are well known; see, for example, [7, 2, 1, 4]. Further, X is
+l.u.L. at (0, x0 ) if and only if the system
+              (i), (ii), (iii) and (iv) Ai u ≤ 0 ≤ αi (for all i : yi0 = 0)
+has the unique trivial solution (u, α) = 0; see, for example, [4].
+   Both characterizations may be rewritten in terms of quadratic auxiliary pro-
+grams. Further, they show that under LICQ and strict complementarity at x0 , the
+three stability concepts coincide. However, under LICQ without strict complemen-
+tarity, s.L.s. and l.u.L. already differ for (solvable) quadratic convex programs.
+Stability under possible constraint degeneracy. The formal negation of the
+properties l.u.L. and s.L.s., respectively, leads to the violation of injectivity of
+appropriate generalized derivatives of X; for details of the corresponding concepts
+see [8, 4]. Thus, the negation of the local upper Lipschitz property gives
+           singularity 1:    ∃ξ k ∈ X(π k ) with ξ k → x0 and π k → 0
+                             such that ξ k 6= x0 and kπ k k/kξ k − x0 k → 0.
+                                                              k   0
+This means that, by taking a cluster point u of uk = kξξk −x    −x
+                                                                   0 k , some u 6= 0 belongs
+             0                                                 0
+to CX(0, x )(0), the contingent derivative of X at (0, x ) in direction 0.
+    Strong Lipschitz stability of X at (0, x0 ) is violated iff one has local unsolvability
+(i.e., there are ε > 0 and pk → 0 with X(pk ) ∩ B(x0 , ε) = ∅), or
+   singularity 2:    ∃xk ∈ X(pk ), ξ k ∈ X(π k ) with xk , ξ k → x0 and pk , π k → 0
+                     such that xk 6= ξ k and kπ k − pk k/kξ k − xk k → 0.
+100                                                           Oberwolfach Report 2/2005
+
+The latter means, in terms of the strict graphical (Thibault) derivative T X, that
+some u 6= 0 belongs to T X(0, x0 )(0).
+    A subtle analysis of CX and T X in terms of the original problem gives the
+following results (note that the above conditions under LICQ were obtained simi-
+larly). In the following, suppose MFCQ at x0 ; for partial use of a weaker CQ see
+[5].
+    Singularity 1 holds if and only if there are y 0 ∈ Y 0 and (u, α) with u 6= 0 such
+that (y 0 , u, α) satisfies the above system (i), (ii), (iii) and (iv); see [4, Chapt. 8]
+for this result and further refinements. In [5], we prove that singularity 2 holds if
+and only if there are y 0 ∈ Y 0 and u 6= 0 such that
+
+                          (ii) yi0 Ai u =       0      (∀i)
+
+and for certain sequences xk → x0 and αk , one has
+                                   P
+                    (i)′ Q(y 0 )u + αki Dgi (xk ) → 0,
+                  (iii)′ αki Ai u                  ≥ 0 (∀i).
+
+While the above characterizations under LICQ and that of singularity 1 use only
+information for P(0) at {x0 } × Y 0 , our condition for singularity 2, and hence for
+s.L.s. of X at (0, x0 ) under constraint degeneracy, depends on limits of data at a
+sequence xk → x0 . In [5], we discuss examples with convex polynomial problem
+functions which show that s.L.s. is not invariant when the problem functions are
+replaced by their quadratic approximations at x0 .
+   It is standard that local solvability may be guaranteed by appropriate second-
+order optimality conditions; see, for example, [1, 4]. In [5] we prove in the case
+of linear constraints under MFCQ that nonsingularity 2 automatically implies
+X(p) ∩ B(x0 , ε) 6= ∅ for some ε > 0. For further stability results under con-
+straint degeneracy (relations to Kojima’s strong stability and the Aubin property,
+simplifications for linearly constrained programs, and so on), we again refer to [5].
+
+
+                                       References
+ [1] J. F. Bonnans and A. Shapiro. Perturbation Analysis of Optimization Problems. Springer,
+     New York, 2000.
+ [2] H. Th. Jongen, T. Möbert, J. Rückmann, and K. Tammer. On inertia and Schur complement
+     in optimization. Lin. Algebra Appl., 95”97–109, 1987.
+ [3] A. V. Fiacco and G. P. McCormick. Nonlinear Programming: Sequential Unconstrained
+     Minimization Techniques. Wiley, New York, 1968.
+ [4] D. Klatte and B. Kummer. Nonsmooth Equations in Optimization. Kluwer, Dordrecht-
+     Boston-London, 2002.
+ [5] D. Klatte and B. Kummer. Strong Lipschitz stability of stationary solutions for nonlinear
+     programs and variational inequalities. SIAM J. Optim., to appear, 2005.
+ [6] M. Kojima. Strongly stable stationary solutions in nonlinear programs. In Analysis and
+     Computation of Fixed Points, edited by S. M. Robinson, Academic Press, New York, 1980,
+     pp. 93–138.
+ [7] S. M. Robinson. Strongly regular generalized equations. Math. Oper. Res., 5:43–62, 1980.
+ [8] R. T. Rockafellar and R. J.-B. Wets, Variational Analysis, Springer, Berlin, 1998.
+Optimization and Applications                                                            101
+
+            Recent Progress in the NLP-SDP Code PENNON
+                             Michal Kočvara
+                      (joint work with Michael Stingl)
+
+We report on recent advances in the computer program PENNON, aimed at solving
+optimization problems with nonlinear and semidefinite constraints. The problems
+are of the type
+(NLP-SDP)                          min f (x)
+                                  x∈Rn
+                                  s.t.         hi (x) ≤ 0,       i = 1, . . . , mh
+                                                A(x) 4 0 ,
+where f, hi : R → R are twice continuously differentiable and A : Rn → SmA
+                   n
+
+is generally nonconvex. The principal idea of the algorithm is to replace the
+inequality constraints by penalized ones. With pi > 0 for i ∈ {1, . . . , m}, we have
+                   hi (x) ≤ 0 ⇐⇒ pi ϕ(hi (x)/pi ) ≤ 0,           i = 1, . . . , mh
+and
+                           A(x) 4 0 ⇐⇒ ΦP (A(x)) 4 0 ,
+where ϕ and ΦP are smooth penalty functions satisfying a number of properties
+(see [4]). For the penalized problem we write the Lagrangian
+                                         mh
+                                         X
+(1)     F (x, u, U, p, P ) = f (x) +           ui pi ϕ(hi (x)/pi ) + hU, ΦP (A(x))iSmA
+                                         i=1
+and define the algorithm, a variant of the method of multipliers:
+  PENNON algorithm:
+             (i)       Find xk+1 satisfying k∇x F (x, uk , U k , pk , P k )k ≤ εk
+            (ii)       uk+1
+                        i   = uki ϕ′ (hi (xk+1 )/pki ),      i = 1, . . . , mh
+                           k+1                       k
+                       U         = DA Φp (A(x); U )
+           (iii)       pk+1
+                        i    < pki , i = 1, . . . , mh
+                         k+1       k
+                       P         <P .
+The algorithm was originally proposed and analyzed for convex nonlinear programs
+(NLPs) by Polyak [7], later refined by Ben-Tal and Zibulevsky [1], generalized for
+nonconvex NLP by Breitfeld and Shanno [2], and recently revised by Polyak and
+Griva [8]. For details on the current SDP-NLP algorithm as used in PENNON,
+see [4, 5].
+   The approximate unconstrained minimization in Step (i) is performed by the
+modified Newton or trust-region method. In both cases, we find a search direction
+by solving the equation Hd = −g, where g and H is the gradient and Hessian of
+the Lagrangian (1) at a given point. In the standard version of the code we use
+(sparse or dense) Cholesky factorization to solve this system. Recently, we have
+implemented preconditioned conjugate gradient (PCG) method. The advantage
+102                                                          Oberwolfach Report 2/2005
+
+is twofold, depending on the structure of the matrix H and on the type of the
+constraints.
+PCG and Large-Scale Sparse NLP. Large-scale NLP problems often have
+sparse structure, leading to sparse H and allowing us to use efficient variants of
+sparse Cholesky factorization. If, however, the gradient of just one constraint is
+dense, the matrix H becomes dense, too. In such a case, we replace the Cholesky
+factorization by PCG. In PCG, we need to compute only the Hessian-vector prod-
+uct Hz; we do not need to compute H explicitly. In the above situation, we
+evaluate and store only the “sparse part” of H (call it Hsp ), and the dense gradi-
+ents ∇hi . The product is then performed by the formula of the type
+                                          X
+                            Hz = Hsp z +      γi γiT z .
+                                                dense
+
+This strategy allows us to solve large “sparse-dense” problems. For instance,
+problem lane-emden40 from the COPS3 collection [3] (n = 19241, mh = 81) can
+be solved in 1 min 40 sec using 300 MB of memory, as compared to 26 min and
+1600 MB needed by the Cholesky-based version.
+PCG and Medium-Scale Dense SDP. Most linear SDP problems arising from
+various applications lead to a dense matrix H,P even if the problem data matrices
+are sparse. For linear problems with A(x) = ni=1 xi Ai the complexity of Hessian
+computation is O(m3A n + m2A n2 ) for dense Ai and O(m2A n + K 2 n2 ) for sparse Ai ,
+where K is the maximum number of nonzeros in Ai , i = 1, . . . , n. The complexity
+of the Cholesky factorization for a dense matrix is O(n3 ). For problems with
+n ≫ m, the Cholesky method is expected to become the bottleneck of the code.
+In this case, the use of approximate PCG (with expected complexity of O(n2 ))
+can improve the efficiency significantly. Further, we need only the product with
+∇2 F (xk ), which can be replaced by a finite-difference formula
+                                         ∇F (xk + θz) − ∇F (xk )
+                         ∇2 F (xk )z ≈
+                                                   θ
+                    √
+with θ = (1 + kxk k2 ε). Thus, in each PCG iteration, we need to compute just
+one gradient; this may significantly decrease the demands on the memory and
+CPU time (see [6] for details).
+   Table 1 gives comparison of the standard code with the PCG-based code with
+and without exact Hessian computation. Tested are problems with n ≫ m from [9],
+arising from maximum clique problems on randomly generated graphs (theta*)
+and maximum clique problems from the Second DIMACS Implementation Chal-
+lenge.
+
+                                       References
+ [1] A. Ben-Tal and M. Zibulevsky. Penalty/barrier multiplier methods for convex programming
+     problems. SIAM J. Optim., 7:347–366, 1997.
+ [2] M. Breitfeld and D. Shanno. A globally convergent penalty-barrier algorithm for nonlinear
+     programming and its computational performance. Technical report, Rutcor Research Report,
+     Rutgers University, New Jersey, 1994.
+Optimization and Applications                                                               103
+
+        Table 1. Results for selected TOH problems. PENSDP: standard code
+        with Cholesky algorithm; P-PCG(diag): code with CG algorithm and diago-
+        nal preconditioner; P-A-PCG(BFGS): code with CG algorithm, approximate
+        Hessian computations and BFGS preconditioner. CPU/it: time per a New-
+        ton iteration. Times in seconds; Sun UltraSparc III 1200 MHz with 4 GB
+        RAM.
+
+                                     PENSDP            P-PCG(diag)       P-A-PCG(BFGS)
+    Problem             n    m     CPU CPU/it          CPU CPU/it         CPU   CPU/it
+    ham 7 5 6       1 793   128     104        3.2       19      0.7         4      0.1
+    ham 9 8         2305    512     266        9.8      138      5.3       210      4.7
+    ham 8 3 4      16129    256   71264    2036.1      2983     80.1       104      2.7
+    ham 9 5 6      53761    512       memory              memory          1984     37.4
+    theta42         5986    200    3978     104.6       391      9.3        51      1.2
+    theta6          4375    300    1719      42.9       197      5.3       108      2.0
+    theta62        13390    300   51359    1222.8      3779     77.1       196      4.3
+    theta8          7905    400    8994     243.0       783     19.1       263       5.
+    theta82        23872    400       memory              memory           650     14.4
+    theta10        12470    500   30610     956.5      6571    126.4       492      10.
+    theta102       37467    500       memory              memory          1948     47.5
+    theta103       62516    500       memory              memory          6149    149.9
+    theta104       87845    500       memory              memory          8400    215.3
+    theta12        17979    600      timed out        14098    223.7       843     16.2
+    theta123       90020    600       memory              memory         11733   266.66
+    theta162      127600    800       memory              memory         50098   927.74
+    keller4         5101    171    3724      66.5       297      6.5        52      1.1
+    sanr200-0.7     6 033   200    4210     107.9       393      9.1        52      1.2
+
+
+
+
+[3] E. D. Dolan, J. J. Moré, and T. S. Munson. Benchmarking Optimization Software with
+    COPS 3.0. Technical report, ANL/MCS-TM-273, Argonne National Laboratory, Mathe-
+    matics and Computer Science Division, February 2004.
+[4] M. Kočvara and M. Stingl. PENNON—a code for convex nonlinear and semidefinite pro-
+    gramming. Optim. Methods and Software, 18:317–333, 2003.
+[5] M. Kočvara and M. Stingl. Solving nonconvex SDP problems of structural optimization with
+    stability control. Optim. Methods and Software, 19:595–609, 2004.
+[6] M. Kočvara and M. Stingl. On the solution of large-scale SDP problems by the modified bar-
+    rier method using iterative solvers. Research report 304, Institute of Applied Mathematics,
+    University of Erlangen, 2005.
+[7] R. A. Polyak. Modified barrier functions: Theory and methods. Math. Prog., 54:177–222,
+    1992.
+[8] R. A. Polyak and I. Griva. Nonlinear rescaling in constrained optimization: Primal-dual
+    approach. Technical report, George Mason University, 2004.
+[9] K. C. Toh. Solving large scale semidefinite programs via an iterative solver on the augmented
+    systems. SIAM J. Optim., 14:670–698, 1999.
+104                                                         Oberwolfach Report 2/2005
+
+        Local Structure and Algorithms in Nonsmooth Optimization
+                               Adrian S. Lewis
+            (joint work with James V. Burke and Michael L. Overton)
+
+
+
+The Belgian Chocolate Problem. Illustrating the difficulty of control design
+problems, Blondel [1] proposed the following problem in 1994:
+         Given a real δ, find stable real polynomials p and q such that the
+         polynomial r(s) = (s2 − 2δs + 1)p(s) + (s2 − 1)q(s) is also stable.
+(We call a polynomial p stable if its abscissa α(p) = max {Re s : p(s) = 0} is non-
+positive.) Clearly the problem is unsolvable if δ = 1, since then r(1) = 0; more
+delicate results (summarized in [7]) show it remains unsolvable for δ < 1 close to 1.
+Blondel offered a prize of 1 kg of Belgian chocolate for the case δ = 0.9, a problem
+solved by using randomized search in [7].
+   To illustrate the theme of this talk, we first outline (based on joint work with
+D. Henrion) a more systematic optimization approach to the chocolate problem.
+We fix the degrees of the polynomials p and q (say 3). Without loss of generality,
+suppose p is monic, and consider the resulting problem
+(CP )                     min{α(pqr) : p, q cubic, p monic.}
+A feasible solution with negative objective value would solve Blondel’s problem.
+
+A Simple Nonsmooth Algorithm. For nonsmooth optimization problems like
+(CP ), it is convenient to have on hand a simply-implementable, intuitive, robust
+algorithm for minimizing a nonsmooth function f . We present such a method in
+[3]. To motivate it, suppose for simplicity f (unlike the abscissa α) is Lipschitz.
+    Fundamental for good behavior in nonsmooth optimization is the regularity of
+the function f at points x, which means we can write the directional derivative as
+                         f ′ (x; d) = lim sup ∇f (x)T d, for all d
+                                      y→x
+
+(noting the almost everywhere differentiability of f on its domain in Rn ). Both
+convex and smooth functions are regular. Assuming regularity, we can check that
+the steepest descent direction at x is
+                              
+                − lim argmin kdk : d ∈ co{∇f (y) : y ∈ x + ǫB} ,
+                   ǫ↓0
+
+where B denotes the unit ball. The gradient sampling algorithm of [3] approxi-
+mates this direction by a random vector
+                              
+           Gmǫ (x) = − argmin kdk : d ∈ co{∇f (Yi ) : i = 1, 2, . . . , m} ,
+
+for some fixed radius ǫ, fixed m > n, and independent, uniformly distributed,
+random points Yi ∈ x + ǫB. (In practice, we add the point x.) The algorithm then
+performs a simple line search along this direction, and repeats.
+Optimization and Applications                                                   105
+
+The Performance of Gradient Sampling. The gradient sampling algorithm is
+intuitive and straightforward to implement when function and gradient evaluations
+are cheap. Experiments on a wide variety of examples are promising [3]. Rigorous
+justifications include
+– the almost sure convergence of the search direction Gm
+                                                       ǫ (x) to a “robust” steepest
+  descent direction as the sample size m grows [2], and
+– convergence results for the algorithm under a variety of underlying assumptions
+  and implementation regimes (for reducing the radius ǫ, for example) [3].
+Among these results, however, the following fact is particularly suggestive of the
+“smoothing” effect of the algorithm.
+Theorem 1. The expectation of the search direction Gm
+                                                    ǫ (x) depends continuously
+on the point x.
+We sketch a proof suggested by S. Henderson. First, we sample the points Yi
+corresponding to the current point x, as above. Next, we construct random points
+Yi′ corresponding to a perturbed point x′ , but “coupled” with the points Yi as
+follows. If Yi ∈ x′ + ǫB, then we set Yi′ = Yi ; otherwise we choose Yi′ uniformly
+distributed on the set (x′ + ǫB) \ (x + ǫB). The resulting random points Yi′ are
+mutually independent, and uniformly distributed on the ball x′ + ǫB, as required.
+Since the set (x + ǫB) \ (x′ + ǫB) has measure O(kx − x′ k), the sets {Yi } and
+{Yi′ } (and hence the vectors Gm               m ′
+                                 ǫ (x) and Gǫ (x )) are identical with probability
+              ′
+1 − O(kx − x k). On the other hand, even if this latter event does not occur, since
+f is Lipschitz, the vector Gm        m ′
+                            ǫ (x) − Gǫ (x ) is uniformly bounded. In summary, the
+expectation of this latter vector must be O(kx − x′ k).
+Solving the Chocolate Problem. The gradient sampling algorithm suggests
+numerically that the solution of the problem (CP ) for any value of δ near 0.9 has
+a distinctive structure: the polynomial q is a constant, and the polynomial r has
+a negative real zero of order five. Armed with this observation, a simple hand
+calculation
+       p    reveals a unique feasible solution of this form under the assumption
+     1
+             √
+δ < 2 2 + 2 ≈ 0.924, in particular solving Blondel’s problem.
+   A nice exercise in nonsmooth calculus verifies our numerical observation that
+the above solution is indeed a local minimizer for the problem (CP ), at least when
+we further restrict the polynomial q to be constant. The requisite nonsmooth
+chain rule we need relies heavily on the following striking result [4].
+Theorem 2. The abscissa α is regular throughout the set of degree-k polynomials.
+Structural Persistence in Nonsmooth Optimization. The persistent solu-
+tion structure for the chocolate problem (CP ) as the parameter δ varies illustrates
+another important feature of concrete nonsmooth optimization problems, akin to
+active set phenomena in nonlinear programming. For classical nonlinear programs,
+the second-order sufficient conditions have several important consequences:
+   (i) The current point is a strict local minimizer.
+  (ii) As we perturb the problem’s parameters, this minimizer varies smoothly on
+       an “active” manifold.
+106                                                            Oberwolfach Report 2/2005
+
+ (iii) We can calculate perturbed minimizers via smooth systems of equations.
+Properties (ii) and (iii) do not rely fundamentally on second-order theory; indeed,
+they also hold for a broad class of nonsmooth functions introduced in [6].
+    For simplicity once again, we restrict attention to Lipschitz functions f . We
+call f partly smooth relative to the active manifold M if f is regular throughout
+M and the directional derivative f ′ (x; d) is continuous as x varies on M, with
+                   f ′ (x; −d) > −f ′ (x; d) whenever 0 6= d ⊥ M at x.
+This last condition enforces a “vee-shape” on the graph of f around a “ridge”
+corresponding to M. Partial smoothness holds, for example, for the function
+x 7→ max{xi }, the Euclidean norm, and the maximum eigenvalue of a symmetric
+matrix, and the property is typically preserved under smooth composition, gen-
+erating a wealth of applications. Furthermore, critical points of partly smooth
+functions typically satisfy the sensitivity properties (ii) and (iii) above.
+   The structural persistence we first observed numerically in the chocolate prob-
+lem (CP ) is explained by the following refinement of Theorem 2. We associate
+with any polynomial p a list of multiplicities of those zeroes of p with real part
+equal to the abscissa, listed in order of decreasing imaginary part.
+Theorem 3. The abscissa α is partly smooth relative to any manifold of polyno-
+mials having a fixed list of multiplicities.
+   By contrast with the sensitivity properties (ii) and (iii) above, convenient checks
+for property (i) (strict local minimality) do typically involve second-order analysis.
+For partly smooth functions f , the extra assumption we need is prox-regularity [5].
+This property requires, locally, that the nearest-point projection onto the epigraph
+{(x, r) : r ≥ f (x)} be unique (as typically holds if f is the pointwise maximum of
+some smooth functions, for example). The question of the prox-regularity of the
+abscissa α remains open. The essential ingredient is the following question, with
+which we end.
+Question 1. Does every degree-k polynomial p(s) near the polynomial sk have a
+unique nearest stable polynomial?
+
+                                        References
+ [1] V. D. Blondel. Simultaneous Stabilization of Linear Systems. Springer, Berlin, 1994.
+ [2] J. V. Burke, A. S. Lewis, and M. L. Overton. Approximating subdifferentials by random
+     sampling of gradients. Math. of O.R., 27:567–584, 2002.
+ [3] J. V. Burke, A. S. Lewis, and M. L. Overton. A robust gradient sampling algorithm for
+     nonsmooth, nonconvex optimization. SIAM J. Opt., to appear.
+ [4] J..V. Burke and M. L. Overton. Variational analysis of the abscissa mapping for polynomials.
+     SIAM J. Control Opt., 39:1651–1676, 2001.
+ [5] W. L. Hare and A. S. Lewis. Identifying active sets via partial smoothness and prox-
+     regularity. J. Convex Analysis, to appear.
+ [6] A. S. Lewis. Active sets, nonsmoothness and sensitivity. SIAM J. Opt., 13:702–725, 2003.
+ [7] V. V. Patel, G. Deodhare, and T. Viswanath. Some applications of randomized algorithms
+     for control system design. Automotica, 28:2085–2092, 2002.
+Optimization and Applications                                                           107
+
+                  The Return of the Active Set Method
+              Sven Leyffer (Argonne National Laboratory)
+
+   For solving nonlinear optimization problems, two competing iterative approa-
+ches are available: active set methods and interior-point methods. Current imple-
+mentations of interior methods often outperform active set methods in terms of
+speed. On the other hand, active set methods are more robust and better suited for
+warm starts, which are important for solving integer optimization problems [8, 9].
+Consequently, we have recently become interested in new active set approaches,
+which are reviewed in this note.
+
+             1. Active Set Methods for Quadratic Programs
+   Consider the quadratic programming (QP) problem
+                       1 T
+          minimize       x Hx + g T x subject to AT x = b and l ≤ x ≤ u,
+              x        2
+where A ∈ Rn×m has full rank and H is symmetric but not necessarily positive
+definite. Our new active set approach has two main components.
+    First, we identify an estimate of the optimal active set by approximately mini-
+mizing the augmented Lagrangian
+                           1                                 1
+            L(x, y, ρ) := xT Hx + g T x − y T (AT x − b) + ρkAT x − bk2 ,
+                           2                                 2
+                                                         T
+in the box l ≤ x ≤ u, where y are the multipliers of A x = b and ρk is the penalty
+parameter. This step provides a Cauchy-point xkc , a first-order multiplier estimate
+yck = y k − ρk (AT xkc − b), and an active set estimate Ak := {i : [xkc ]i = li or [xkc ]i =
+ui }. This step is similar to the iterates generated by LANCELOT [3].
+    Next, we solve an equality constraint QP in the remaining inactive variables
+indexed by I := {1, . . . , n} A by computing an approximate solution to the first-
+order conditions
+                                                                       
+                HI,I −A:,I          ∆xI               [∇xL(xck , ykc , 0)]I
+                                              = −                             ,
+                 AT:,I               ∆y                  AT xck − b
+where HI,I is the submatrix of H corresponding to rows and columns of I. We
+then perform a backtracking line-search along (xkc + α∆xI , yck + α∆y) to ensure
+global convergence. We show that if α = 1, then the two steps are equivalent to a
+Newton step on the first-order conditions.
+    Global convergence is enforced through the use of a filter [6, 7]. A filter F is a
+list of pairs of constraint violation hl := kAT xl − bk and projected gradient error
+θl := k∇x Ll − z l k (z l are the multipliers of the box constraints). A new point xk
+is acceptable to the filter if hk ≤ βhl , or θk ≤ βθl for all l ∈ F. The backtracking
+line-search reduces α until an acceptable iterate is found. This acceptable iterate
+may be added to the filter.
+    Traditional proofs for augmented Lagrangian methods use two forcing sequences
+ηk ց 0 and ωk ց 0 to control progress in hk and θk , respectively, and guide the
+108                                                    Oberwolfach Report 2/2005
+
+penalty parameter. Recently, it has been shown [4] that ηk ց 0 is sufficient to
+ensure convergence for certain QPs. The filter approach removes the need for
+any forcing sequence whose choice may be problematic in practice. Preliminary
+numerical experience is encouraging, and we are able to detect the optimal active
+set in a modest number of iterations.
+
+            2. Active Set Methods for Nonlinear Programs
+   Recently, researchers have expressed renewed interest in sequential linear pro-
+gramming (SLP) methods for nonlinear optimization problems such as
+                       minimize f (x)   subject to c(x) ≥ 0;
+                            x
+
+see [5, 2, 1]. These SLP methods solve a trust-region LP around the current iterate
+xk , given by
+           minimize gkT d   subject to ck + ATk d ≥ 0 and kdk∞ ≤ ∆k ,
+                d
+
+where gk = ∇f (xk ), ck = c(xk ), and Ak = ∇c(xk )T . The solution of this LP
+provides an estimate of the active inequality constraints, which is used to define
+an equality constrained QP to compute a second-order step.
+   One problematic aspect of this approach is the use of the ℓ∞ trust-region. It has
+been observed that while the active constraints corresponding to c(x) ≥ 0 settle
+down, the active trust-region bounds do not, and this feature may cause the LP
+solver to perform many wasteful pivots even close to the solution.
+   We propose an alternative trust-region subproblem based on penalizing an el-
+liptic or ℓ2 trust-region. This gives rise to the following active set identification
+problem
+                                  1
+                minimize µgkT d + dT d subject to ck + ATk d ≥ 0.
+                     d            2
+It can be shown that the dual of this problem is a bound-constrained QP in the
+multipliers y,
+                    1 T T                       µ2 T
+       minimize       y A Ay − (c − µAT g)T y +   g g     subject to y ≥ 0.
+            y       2                           2
+Convergence of a filter algorithm along the lines of [2] can be shown. The proof
+exploits a piecewise quadratic relationship between the penalty parameter µ and
+the ℓ2 trust-region radius ∆.
+
+                                 3. Conclusions
+   We have introduced two active set identification strategies for optimization.
+Both schemes can be implemented in a matrix-free format, requiring only matrix-
+vector operations and iterative linear system solves. We believe that this is an
+important ingredient for a successful large-scale active set strategy.
+Optimization and Applications                                                                 109
+
+                                         References
+[1] R. H. Byrd, N. I. M. Gould, J. Nocedal, and R. A. Waltz. An algorithm for nonlinear op-
+    timization using linear programming and equality constrained subproblems. Mathematical
+    Programming, Series B, 100(1):27–48, 2004.
+[2] C.M. Chin and R. Fletcher. On the global convergence of an SLP-filter algorithm that takes
+    EQP steps. Mathematical Programming, 96(1):161–177, 2003.
+[3] A. R. Conn, N. I. M. Gould, and Ph. L. Toint. Trust-Region Methods. MPS-SIAM Series on
+    Optimization. SIAM, Philadelphia, 2000.
+[4] Z. Dostal, A. Friedlander, and S. A. Santos. Augmented Lagrangian with adaptive precision
+    control for quadratic programming with equality constraints. Computational Optimization
+    and Appllications, 14(1):37–53, 1999.
+[5] R. Fletcher and E. Sainz de la Maza. Nonlinear programming and nonsmooth optimization
+    by successive linear programming. Math. Programming, 43:235–256, 1989.
+[6] R. Fletcher and S. Leyffer. Nonlinear programming without a penalty function. Math. Pro-
+    gramming, 91:239–270, 2002.
+[7] R. Fletcher, S. Leyffer, and Ph. L. Toint. On the global convergence of a filter-SQP algorithm.
+    SIAM J. Opt., 13(1):44–59, 2002.
+[8] C. A. Floudas. Nonlinear and Mixed–Integer Optimization. Topics in Chemical Engineering.
+    Oxford University Press, New York, 1995.
+[9] I. E. Grossmann. Review of nonlinear mixed-integer and disjunctive programming techniques.
+    Optimization and Engineering, 3:227–252, 2002.
+
+
+
+   Stability Optimization of Periodic Walking and Running Motions
+                            Katja D. Mombaur
+         (joint work with H. G. Bock, J. P. Schlöder, R. W. Longman)
+
+The model-based mathematical investigation of walking and running motions plays
+an important role in many areas of application, such as the design of walking ro-
+bots, computer graphics, sports, and medicine. Mathematical models of walking
+involve distinct model phases with possibly different degrees of freedom, each de-
+scribed by a different set of nonlinear differential and algebraic equations with
+invariants
+                                      (q̇ T (t), v̇ T (t)) = (v(t)T , aT (t))
+                                                                                  
+        M (q(t), v(t), p)   GT (q(t), p)             a         f (q(t), v(t), u(t), p)
+                                              ·            =
+          G(q(t), p)             0                   λ            γ(q(t), v(t), p)
+                              gpos = g(q(t), p) = 0           gvel = G(q(t), p) · q̇(t) = 0.
+   Phase boundaries are implicitly defined by the roots of some switching func-
+tions si (t, q(t), v(t), p) = 0. At these points, there may be discontinuities in
+the righthand side of the linear system, that is, ∆f (q, v, u, p), ∆γ(q, v, p) (which
+translates into discontinuities in the accelerations ∆a), or even in the velocities,
+∆v(t, q, v, u, p), which are part of the state variables xT = (q T , v T )). Walking prob-
+lems also involve a number of complex linear and nonlinear, coupled and decoupled
+equality and inequality constraints; one example is the periodicity constraint on
+the state variables (or a subset thereof) x̃(T ) = x̃(0).
+110                                                       Oberwolfach Report 2/2005
+
+    A crucial aspect of walking and running is stability. Stabilization by means of
+feedback control is a complex issue, and the large amount of online computations
+performed by the feedback system restricts the speed of operation. As an alter-
+native approach we therefore investigate the existence of open-loop stable (i.e.,
+self-stabilizing) systems that – under small perturbations – asymptotically con-
+verge back to the precomputed periodic orbit without any feedback corrections at
+all, relying just on the inherent dynamic and kinematic properties.
+    The determination of open-loop stable solutions for such complex systems as
+walking robots is possible only by means of optimization. We have developed a
+numerical method for the optimization of open-loop stability of periodic systems
+based on a two-level approach [1]. In the outer loop, a stability optimization is
+performed with the model parameters left free for variation. Stability is defined
+by using a generalization of Lyapunov’s first method to multiphase systems with
+discontinuities: the spectral radius |λ|max of the nonsymmetric monodromy matrix
+Cx must be smaller than 1 for the system to be stable. This requirement leads to
+the optimization criterion
+                               min |λ(Cx (p))|max ,
+                                p
+
+which is nondifferentiable, may be non-Lipschitz at points of multiple maximum
+eigenvalue, and involves the derivatives of the Poincaré mapping; it thus represents
+a difficult nonstandard optimization criterion. The task of the inner loop is a
+generation of an energy optimal periodic gait solution for the model parameter
+values given by the outer loop, that is, a solution of the optimal control problem
+                                                 Z T
+       multiphase DAE-model                 min      kuk|22dt
+                                            x,u,T     0
+                                           subject to
+                                        x(τj+ ) = h(x(τj− )) for j = 1, . . . , nph
+                        gj (t, x(t), u(t), p) ≥ 0        for t ∈ [τj−1 , τj ]
+              req/ineq (x(0), . . . , x(T ), p) = / ≥ 0.
+For the solution of this problem we built on the optimal control methods based on
+the direct boundary value problem approach developed by Bock and Plitt [2] and
+Leineweber [3] and adapted these methods to handle 3-index DAEs. The outer-
+loop nondifferentiable problem has been solved by using a direct search method.
+
+
+
+
+   This method has been used to design a number of fundamentally new open-loop
+stable robot configurations with one and two legs performing walking, running,
+and gymnastics motions; some are shown in the figure (for details, see, e.g., [4,
+5, 6]). The range of application of this method is not restricted to robots and
+Optimization and Applications                                                              111
+
+biomechanical systems however; it can be used for any periodic dynamic process
+with discontinuities, for instance, from chemistry or economics.
+
+                                       References
+[1] K. D. Mombaur, H. G. Bock, J. P. Schlöder, and R. W. Longman. Open-loop stable solution
+    of periodic optimal control problems in robotics. Zeitschrift für Angewandte Mathematik und
+    Mechanik (ZAMM), to appear, 2005.
+[2] H. G. Bock and K.-J. Plitt. A multiple shooting algorithm for direct solution of optimal
+    control problems. In Proceedings of the 9th IFAC World Congress, Budapest, 1984, pp.
+    242–247.
+[3] D. B. Leineweber. Efficient reduced SQP methods for the optimization of chemical processes
+    described by large sparse DAE models, VDI-Fortschrittbericht, Reihe 3, no. 613, 1999.
+[4] K. D. Mombaur, R. W. Longman, H. G. Bock, and J. P. Schlöder. Open-loop stable running.
+    Robotica, 23:21–33, 2005.
+[5] M. J. Coleman, M. Garcia, K. D. Mombaur, and A. Ruina. Prediction of stable walking for
+    a toy that cannot stand. Physical Review E, 2:2001.
+[6] K. D. Mombaur, H. G. Bock, J. P. Schlöder, and R. W. Longman. Human-like actuated
+    walking that is asymptotically stable without feedback. In Proc. IEEE International Con-
+    ference on Robotics and Automation. Seoul, 2001, pp. 4128–4133.
+
+
+                 Global Performance of the Newton Method
+                                Yurii Nesterov
+                         (joint work with Boris Polyak)
+
+We consider a special strategy for regularizing the standard Newton method as
+applied to the unconstrained minimization problem
+                               f (x)    →     min : x ∈ E,
+where E is a finite-dimensional real vector space and f is two times continuously
+differentiable function whose Hessian is Lipschitz continuous on some convex open
+set F ⊆ E:
+                      kf ′′ (x) − f ′′ (y)k ≤ Lkx − yk, x, y ∈ F.
+The classical Newton iterate yf (x) is defined as a minimizer of the quadratic model
+of f around x:
+             yf (x)   =    argmin Vf,x (y)
+                               y
+           Vf,x (y) =      f (x) + hf ′ (x), y − xi + 12 hf ′′ (x)(y − x), y − xi.
+Sometimes this iterate is not well defined. Therefore we suggest using the following
+regularization [1]:
+                                                               
+                    cf,M (x) = arg min Vf,x (y) + M           3
+                                                     6 ky − xk ,
+                                          y
+
+where M is a positive parameter. The advantages of this construction follow from
+two observations:
+– If M ≥ L, then for any y ∈ F we have
+                              f (y) ≤ Vf,x (y) + M        3
+                                                 6 ky − xk .
+112                                                              Oberwolfach Report 2/2005
+
+– The point cf,M (x) can be computed by standard techniques from linear algebra
+  from a convex univariate minimization problem (as could be inferred from [2]).
+   Thus, iterating
+(1)                          xk+1 = cf,M (xk ),      k = 0, 1, . . . ,
+we obtain a sequence that satisfies all naturally expected properties of a second-
+order process:
+– any limit point satisfies second-order necessary optimality conditions;
+– the local rate of convergence is quadratic;
+– the global rate of convergence in terms of the norm of the gradient is better than
+  that of the gradient method.
+   Moreover, for some nontrivial classes of (nonconvex) problems, we managed to
+justify for (1) a global rate of convergence. For example, if f is star-convex, then
+(1) converges globally as O( k12 ), where k is the iteration counter.
+   A similar idea can be used for modifying the Gauss-Newton method [3] as
+applied to the system of nonlinear equations
+                                           F (x) = 0,
+with F : E1 → E2 . Introducing for Ei the norms k · ki , i = 1, 2, we can define the
+corresponding operator norm k · k12 :
+                            kAk12 = max {kAxk2 : kxk1 ≤ 1}.
+                                       x∈E1
+
+Let us assume that F has a Lipschitz-continuous Jacobian:
+                      kF ′ (x) − F ′ (y)k12 ≤ Lkx − yk1 ,        x, y ∈ F.
+Then, we can define
+                                                                          
+          gF,M (x)    =     arg min kF (x) + F ′ (x)(y − x)k2 + M        2
+                                                                2 ky − xk1 ,
+                                 y
+
+where M is a positive parameter. As before, this object is computable in polyno-
+mial time. Moreover, if M ≥ L, then for any y ∈ F we have
+                 kF (y)k2    ≤    kF (x) + F ′ (x)(y − x)k2 + M        2
+                                                              2 ky − xk1 .
+
+This inequality is essential for global and local convergence analysis of the process
+                             xk+1 = gF,M (xk ),      k = 0, 1, . . . .
+
+                                        References
+ [1] Yu. Nesterov and B. T. Polyak. Cubic regularization of a Newton scheme and its global
+     performance. CORE Discussion paper #2003/41, 2003. Submitted to Math. Prog.
+ [2] B. T. Polyak. Convexity of quadratic transformations and its use in control and optimization.
+     JOTA, 99(3), p.553-583, 1998.
+ [3] Yu. Nesterov. Modified Gauss-Newton scheme with worst-case guarantees for its global per-
+     formance. CORE Discussion Paper #2003/86, 2003. Submitted to SIOPT.
+Optimization and Applications                                                 113
+
+         A Boundary-Point Method for Semidefinite Programs
+                              Franz Rendl
+            (joint work with I. Dukanovic, J. Povh, A. Wiegele)
+
+
+
+      1. Semidefinite Programs and Projection onto the Positive
+                           Semidefinite Cone
+   Recently, Burer and Vandenbussche [2] proposed to solve lift-and-project relax-
+ations of binary integer problems by exploiting the augmented Lagrangian tech-
+nique applied to the primal positive semidefinite program (SDP). We will apply
+the idea to the dual SDP; see also [4, 5]. This approach seems to be more natural,
+and also gives an interesting interpretation of the augmented Lagrangian approach
+as a boundary-point method.
+   We consider the following primal-dual pair of SDP problems, given by symmet-
+ric n × n matrices C and Ai , i = 1, . . . , m and a vector b ∈ Rm :
+(P)                maxhC, Xi ,     such that A(X) = b, X  0 ,
+whose dual is
+(D)                min bT y      such that AT (y) − C = Z  0 .
+We make the usual assumption that both problems have strictly feasible points,
+so that strong duality holds and (X, y, Z) is optimal if and only if
+          X  0,    A(X) = b ,     Z  0,   AT (y) − Z = C ,      ZX = 0 .
+We have problems in mind where the size n of the primal matrix is not too large,
+say n ≤ 1000, but the number m of constraints could be arbitrary.
+   If W is a symmetric matrix with eigenvalue decomposition W = P ΛP T , we
+partition P and the diagonal matrix Λ according to positive and negative eigen-
+values: Λ = (Λ1 , Λ2 ), P = (P1 , P2 ) with diag (Λ1 ) ≥ 0, diag (Λ2 ) < 0. Thus
+W = P1 Λ1 P1T + P2 Λ2 P2T = W+ + W− . It is well known that
+                                   min kZ − W k2
+                                   Z0
+
+is attained at Z = W+ = P1 Λ1 P1T . In other words, the projection of W onto the
+cone of semidefinite matrices is given by setting the negative eigenvalues of W to
+zero.
+
+         2. An Augmented Lagrangian Approach to Solve (D)
+   We apply the augmented Lagrangian method to solve (D). Thus we introduce
+a Lagrange multiplier X for the dual equations Z + C − AT (y) = 0 and consider
+for fixed σ > 0 the augmented Lagrangian Lσ :
+                                                      σ
+       Lσ (y, Z; X) := bT y + hX, Z + C − AT (y)i +     kZ + C − AT (y)k2 .
+                                                      2
+114                                                    Oberwolfach Report 2/2005
+
+Define
+                                                    1
+(1)                         W (y) := AT (y) − C −     X,
+                                                    σ
+                                                 1
+so that Lσ (y, Z; X) = bT y + σ2 kZ − W (y)k2 − 2σ kXk2, and let
+                                            σ
+(2)                       f (y, Z) := bT y + kZ − W (y)k2 .
+                                            2
+The augmented Lagrangian method to solve (D) consists in minimizing f (y, Z)
+(approximately), to get y and Z  0. Then X is updated to X + σ(Z + C − AT (y))
+and the whole process is iterated until convergence; see [1].
+   Clearly, the crucial step here is minimizing f (y, Z), so we take a closer look at
+the optimality conditions of this problem.
+
+          3. Optimality Conditions for the Inner Minimization
+   To minimize f (y, Z) of (2) subject to y ∈ Rm , Z  0 is a convex quadratic
+SDP. After introducing a Lagrange multiplier V  0 for the constraint Z  0, we
+get the Lagrangian
+                          L(y, Z, V ) := f (y, Z) − hV, Zi
+and the following KKT necessary conditions for optimality:
+              ∇y L = 0 ,   ∇Z L = 0 ,    V  0,    Z  0,    VZ = 0.
+Since the problem is convex and the Slater condition holds, these conditions are
+also sufficient for optimality. Expanding the gradient conditions, we note that y, Z
+is optimal if and only if there exists V such that
+(3)                  A(AT (y)) = A(Z + C) + σ1 (A(X) − b) ,
+(4)                V = X − σW (y) , Z  0 , V  0 , V Z = 0 .
+For y fixed, the problem minZ0 f (y, Z) is a projection onto the cone of semidefi-
+nite matrices. Therefore, Z must also satisfy the projection condition
+(5)                                 Z = W (y)+ .
+Thus we can reformulate the necessary and sufficient conditions for optimality as
+follows: (y, Z, V ) is optimal if and only if
+                                 1
+     A(AT (y)) = A(Z + C) + (A(X) − b) , Z = W (y)+ , V = −σW (y)− .
+                                 σ
+Keeping Z constant, we get y from the linear system (3), while keeping y constant,
+we get Z from (5). Note that here we alternate solving a system of order m, and
+a projection onto the cone S+ of SDP matrices. Using (1) and (5), the update on
+X is given by X + σ(Z + C − AT (y)) = −σW (y)− = V  0.
+   These updates for X and Z motivate us to call this a boundary-point method, as
+both Z and X are on the boundary of the cone of semidefinite matrices. Moreover
+ZX = 0 holds throughout. Hence, once feasibility with respect to the primal and
+dual linear equations is reached, we have an optimal solution.
+   Finally, the matrix variables X and Z can be eliminated, since they can be
+defined through y. The problem is really to minimize over y ∈ Rm the function
+Optimization and Applications                                                              115
+
+h(y) := bT y + σ2 kW (y)− k2 ; it is convex differentiable with Lipschitz continuous
+gradient given by ∇h(y) = b + σA(W (y)− ). We could also minimize h(y) directly,
+using for instance the method of Nesterov [6].
+
+                         4. Application to Compute ϑ(G)
+   The theta number ϑ(G), associated to a graph G = (V, E), is the optimal value
+of the following SDP; see for instance [3]:
+     ϑ(G) = maxhJ, Xi ,      such that xij = 0 ∀[ij] ∈/ E , tr(X) = 1 , X  0 .
+                             n
+Let n = |V | and m =          2− |E|, that is, m denotes the number of equations
+xij = 0. We consider graphs with edge density 0.5, which are the hardest for
+standard methods because m ≈ |E(G)|. We solve the resulting SDP to about
+six digits of relative accuracy and get the following computational results on a
+laptop (1.7 Mhz, 1 GB RAM, Matlab under Linux). The computation times are
+essentially determined by the number of eigenvalue decompositions. There are
+typically less than 1 000 of these. Current research focuses on further applications
+of this approach and will be reported elsewhere.
+                      n          200    300     400      500     600
+                     m         10000 22500 40000 62500 90100
+                 time (sec.)     120    350     880 1700 3060
+
+                                        References
+[1] D. Bertsekas. Constrained optimization and Lagrange multiplier methods. Academic Press,
+    New York, 1982.
+[2] S. Burer and D. Vandenbussche. Solving lift-and-project relaxations of binary integer pro-
+    grams. Technical report, 2004.
+[3] L. Lovász. On the Shannon capacity of a graph. IEEE Trans. Inform. Theory, 25:1–7, 1979.
+[4] J. Malick. A dual approach to semidefinite least-squares problems. SIAM J. Matrix Analysis
+    and Applications, 26:272.284, 2004.
+[5] J. Malick. Proximal algorithms for semidefinite programming. Technical report, Inria Rhône-
+    Alpes, in preparation.
+[6] Y. Nwesterov. Introductory Lectures on Convex Optimization: a Basic Course. Kluwer Aca-
+    demic Publishers, Dordrecht, The Netherlands, 2004.
+
+
+
+    A Full-Newton Step O(n) Infeasible Interior-Point Algorithm for
+                        Linear Optimization
+                             Kees Roos
+
+Interior-point methods (IPMs) for solving linear optimization (LO) problems were
+initiated by Karmarkar [6]. They not only have polynomial complexity but are
+also highly efficient in practice. One may distinguish between feasible IPMs and
+infeasible IPMs (IIPMs). Feasible IPMs start with a strictly feasible interior point
+and maintain feasibility during the solution process. An elegant and theoretically
+sound method to find a strictly feasible starting point is to use a homogeneous
+embedding model, by introducing artificial variables. This technique was presented
+116                                                        Oberwolfach Report 2/2005
+
+first by Ye et al. [29] and studied by many others [1, 4, 5, 8, 11, 12, 14, 15, 16, 18,
+21, 24, 25, 27, 29, 30]. Only a few commercial software packages are based on this
+approach: to our knowledge, only MOSEK [2], SeDuMi [19], and XpressMP .
+    Most of the existing software packages use an IIPM. IIPMs start with an arbi-
+trary positive point, and feasibility is reached as optimality is approached. The
+first IIPMs were proposed by Lustig [9] and Tanabe [20]. Global convergence was
+shown by Kojima et al. [7], whereas Zhang [30] proved an O(n2 L) iteration bound
+for IIPMs under certain conditions. Mizuno [10] introduced a primal-dual IIPM
+and proved global convergence of the algorithm. A discussion and analysis of
+IIPMs can be found in the book by Wright [26] and, with less detail, in the books
+by Ye [28] and Vanderbei [22]. The performance of existing IIPMs highly depends
+on the choice of the starting point, which makes these methods less robust than
+the methods using the homogeneous embedding technique.
+    As usual, we consider the linear optimization (LO) problem in the standard
+form
+                                
+(P)                         min cT x : Ax = b, x ≥ 0 ,
+with its dual problem
+                             
+(D)                       max bT y : AT y + s = c,      s≥0 .
+Here A ∈ Rm×n ; b, y ∈ Rm and c, x, s ∈ Rn . Without loss of generality we assume
+that rank (A) = m. The vectors x, y and s are the vectors of variables. The
+best-known iteration bound for IIPMs is
+                       n                                        o
+                              T
+                     max x0 s0 , b − Ax0 , c − AT y 0 − s0
+(1)        O n log                                                 .
+                                            ε
+
+Here (x0 , y 0 , s0 ) > 0 denotes the starting point; b − Ax0 and c − AT y 0 − s0 are
+the initial primal and dual residue vectors, respectively, whereas ε is an upper
+bound for the duality gap and the norms of residual vectors upon termination of
+the algorithm. It is assumeed in this result that an optimal solution (x∗ , y ∗ , s∗ )
+exists with k(x∗ , s∗ )k ≤ ζ and that the initial iterate is (x0 , y 0 , s0 ) = ζ(e, 0, e).
+   Until 2003, the search directions used in all primal-dual IIPMs were computed
+from the linear system
+                                    A∆x     = b − Ax
+                            AT ∆y + ∆s      = c − AT y − s
+                            s∆x + x∆s       = µe − xs,
+which yields tho so-called primal-dual Newton search directions ∆x, ∆y, and ∆s.
+   To describe the idea underlying our algorithm, we make some remarks with
+a historical flavor. In feasible IPMs, feasibility of the iterates is given, and the
+ultimate goal is to get iterates that are optimal. There is a well-known IPM
+that aims to reach optimality in one step, namely, the affine-scaling method. But
+everybody familiar with IPMs knows that this does not yield a polynomial-time
+Optimization and Applications                                                               117
+
+method. The past two decades have made it very clear that, to get a polynomial-
+time method, one should be less greedy and work with a search direction that
+moves the iterates only slowly in the direction of optimality. Only then can one
+take full profit of the efficiency of Newton’s method, which is the working horse in
+all IPMs.
+    In IIPMs, the iterates are not feasible; and, apart from reaching optimality,
+one needs to strive for feasibility. This is reflected by the choice of the search
+direction, as defined above: when moving from x to x+ := x + ∆x, the new iterate
+x+ satisfies the primal feasibility constraints, except possibly the nonnegativity
+constraint. In fact, in general x+ will have negative components; and, to keep the
+iterates positive, one is forced to take a damped step of the form x+ := x + α∆x,
+where α < 1 denotes the stepsize. But this same phenomenon occurred with the
+affine-scaling method in feasible IPMs. There the best complexity results clearly
+hold for methods that are much less greedy and that use full Newton steps (with
+α = 1). Striving to reach feasibility in one step might be too optimistic and may
+deteriorate the overall behavior of a method. One may better exercise a little
+patience and move more slowly in the direction of feasibility. Therefore, in our
+approach, the search directions are designed in such a way that a full Newton step
+reduces the sizes of the residual vectors with the same speed as the duality gap.
+The outcome of our analysis confirms that this is a good strategy. It yields a full-
+Newton step method with the same complexity as given by (1). We conjecture,  √
+however, that a more careful analysis will reduce this bound by a factor of n.
+
+                                        References
+ [1] E. D. Andersen and Y. Ye. A computational study of the homogeneous algorithm for large-
+     scale convex optimization. Computational Applications and Optimization, 10:243–269, 1998.
+ [2] E. D. Andersen and K. D. Andersen. The MOSEK interior-point optimizer for linear pro-
+     gramming: An implementation of the homogeneous algorithm. In S. Zhang, H. Frenk,
+     C. Roos, and T. Terlaky, eds., High Performence Optimization Techniques, pages 197–232.
+     Kluwer Academic Publishers, Dordrecht, The Netherlands, 1999.
+ [3] Y.Q. Bai, M. El Ghami, and C. Roos. A comparative study of kernel functions for primal-
+     dual interior-point algorithms in linear optimization. SIAM J. Opt., 15(1):101–128 (elec-
+     tronic), 2004.
+ [4] J. F. Bonnans and F. A. Potra. On the convergence of the iteration sequence of infeasible
+     path following algorithms for linear complementarity problems. Math. O.R., 22(2):378–407,
+     1997.
+ [5] R. M. Freund. A potential-function reduction algorithm for solving a linear program directly
+     from an infeasible ’warm start’. Math. Programming, 52:441–466, 1991.
+ [6] N. Karmarkar. New polynomial-time algorithm for linear programming. Combinattorica 4,
+     pages 373–395, 1984.
+ [7] M. Kojima, N. Megiddo, and S. Mizuno. A primal-dual infeasible-interior-point algorithm
+     for linear programming. Math. Programming 61, pages 263–280, 1993.
+ [8] M. Kojima, T. Noma, and A. Yoshise. Global convergence in infeasible-interior-point algo-
+     rithms. Math. Programming, Series A, 65:43–72, 1994.
+ [9] I. J. Lustig. Feasible issues in a primal-dual interior-point method. Math. Programming 67,
+     pages 145–162, 1990/91.
+[10] S. Mizuno. Polynomiality of infeasible-interior-point algorithms for linear programming.
+     Math. Programming 67, pages 109–119, 1994.
+118                                                              Oberwolfach Report 2/2005
+
+[11] S. Mizuno, M. J. Todd, and Y. Ye. A surface of analytic centers and infeasible- interior-point
+     algorithms for linear programming. Math. O.R., 20:135–162, 1995.
+[12] Yu. Nesterov, M. J. Todd, and Y. Ye. Infeasible-start primal-dual methods and infeasibility
+     detectors for nonlinear programming problems. Math. Programming, 84(2, Ser. A):227–267,
+     1999.
+[13] J. Peng, C. Roos, and T. Terlaky. Self-Regularity. A New Paradigm for Primal-Dual
+     Interior-Point Algorithms. Princeton University Press, Princeton, New Jersey, 2002.
+[14] F. A. Potra. A quadratically convergent predictor-corrector method for solving linear pro-
+     grams from infeasible starting points. Math. Programming, 67(3, Ser. A):383–406, 1994.
+[15] F. A. Potra. An infeasible-interior-point predictor-corrector algorithm for linear program-
+     ming. SIAM J. Opt., 6(1):19–32, 1996.
+[16] C. Roos, T. Terlaky, and J.-Ph. Vial. Theory and Algorithms for Linear Optimization. An
+     Interior-Point Approach. John Wiley & Sons, Chichester, UK, 1997.
+[17] M. Salahi, T. Terlaky, and G. Zhang. The complexity of self-regular proximity based in-
+     feasible IPMs. Technical Report 2003/3, Advanced Optimization Laboratory, McMaster
+     University, Hamilton, Ontario, Canada, 2003.
+[18] R. Sheng and F. A. Potra. A quadratically convergent infeasible-interior-point algorithm for
+     LCP with polynomial complexity. SIAM J. Opt., 7(2):304–317, 1997.
+[19] J. F. Sturm. Using SeDuMi 1.02, a MATLAB toolbox for optimization over symmetric cones.
+     Optimization Methods & Software, 11:625–653, 1999.
+[20] K. Tanabe. Centered Newton method for linear programming: Interior and “exterior” point
+     method (in Janpanese). In K. Tone, ed., New Methods for Linear Programming, volume 3,
+     pages 98–100, The Institute of Statistical Mathematics, Tokyo, 1990.
+[21] M. J. Todd and Y. Ye. Approximate Farkas lemmas and stopping rules for iterative
+     infeasible-point algorithms for linear programming. Math. Programming, 81(1, Ser. A):1–21,
+     1998.
+[22] R. J. Vanderbei. Linear Programming: Foundations and Extensions. Kluwer Academic Pub-
+     lishers, Boston, Massachusetts, 1996.
+[23] R. S. Westfall. Never at Rest: A Biography of Isaac Newton. Cambridge University Press,
+     Cambridge, UK, 1964.
+[24] S. J. Wright. An infeasible-interior-point algorithm for linear complementarity problems.
+     Math. Programming, 67(1):29–52, 1994.
+[25] S. J. Wright. A path-following infeasible-interior-point algorithm for linear complementarity
+     problems. Optimization Methods & Software, 2:79–106, 1993.
+[26] S.J. Wright. Primal-Dual Interior-Point Methods. SIAM, Philadelphia, Pennsylvania, 1996.
+                                                                      √
+[27] F. Wu, S. Wu, and Y. Ye. On quadratic convergence of the O( nL)-iteration homogeneous
+     and self-dual linear programming algorithm. Annals of Operations Research, 87:393–406,
+     1999.
+[28] Y. Ye. Interior Point Algorithms, Theory and Analysis. John Wiley & Sons, Chichester,
+     UK, 1997.
+                                                 √
+[29] Y. Ye, M.J. Todd, and S. Mizuno. An O( nL)-iteration homogeneous and self-dual linear
+     programming algorithm. Math. O.R., 19:53–67, 1994.
+[30] Y. Zhang. On the convergence of a class of infeasible-interior-point methods for the horizontal
+     linear complementarity problem. SIAM J. Opt., 4:208–227, 1994.
+Optimization and Applications                                                          119
+
+       On Recursive Multiscale Trust-Region Algorithms for
+                     Unconstrained Minimization
+              Annick Sartenaer and Philippe L. Toint
+                     (joint work with Serge Gratton)
+
+   Many large-scale finite-dimensional minimization programs arise from the dis-
+cretization of infinite-dimensional problems, such as optimal-control problems de-
+fined in terms of either ordinary or partial differential equations. We report here
+on a potentially efficient new class of algorithms using this structure and briefly
+discuss a first set of numerical experiments.
+   A simple first approach is to use coarser grids in order to compute approximate
+solutions, which can then be used as starting points for the optimization problem
+on a finer grid (see [10, 3, 5, 4], for instance). However, potentially more efficient
+techniques are inspired from the multigrid paradigm in the solution of partial
+differential equations and associated systems of linear algebraic equations (see,
+for example, [6, 7]). The work presented here was in particular motivated by the
+“generalized truncated Newton algorithm” presented in Fisher [9], a talk by Moré
+[13], the contributions by Lewis and Nash [11, 12] and the computational success
+of the low/high-fidelity model management techniques of Alexandrov, Lewis, and
+coauthors [1, 2].
+   We consider the solution of the unconstrained optimization problem
+(1)                                     min f (x),
+                                       x∈Rn
+
+where f is a twice-continuously differentiable objective function which maps Rn
+into R and is bounded below. The trust-region methods which we study produce,
+given an initial point x0 , a sequence {xk } of iterates (one hopes) converging to a
+local first-order critical point for the problem. At each iterate xk , these methods
+build a (typically quadratic) model mk (xk + s) of f (xk + s). This model is then
+assumed to be adequate in a “trust region”, defined as a sphere of radius ∆k > 0
+centered at xk , and a step sk is then computed that sufficiently reduces this model
+in the region. The objective function is computed at the trial point xk + sk and
+this trial point is accepted as the next iterate if and only if the achieved reduction
+in f is sufficiently large compared to the predicted reduction in mk . The value
+of the radius is then updated to ensure that it is decreased when the trial point
+cannot be accepted as the next iterate, and is increased otherwise. Obtaining
+sufficient decrease on this model then amounts to (approximately) solving the
+problem minksk≤∆k mk (xk + s).
+    We investigate what can be done to reduce the cost of solving (1) if one attempts
+to exploit the knowledge of simplified expressions of the objective function, when
+available. More specifically, we assume that we know a collection of functions
+{fi }ri=0 such that each fi is a twice-continuously differentiable function from Rni
+to R (with ni ≥ ni−1 ), the connection with our original problem being that nr = n
+and fr (x) = f (x) for all x ∈ Rn . We will also assume that, for each i = 1, . . . , r, fi
+is “more costly” to minimize than fi−1 . This may be because fi has more variables
+120                                                              Oberwolfach Report 2/2005
+
+than fi−1 (as would typically be the case if the fi represent increasingly finer
+discretizations of the same infinite-dimensional objective) or because the structure
+(in terms of partial separability, sparsity, or eigenstructure) of fi is more complex
+than that of fi−1 , or for any other reason. To fix terminology, we will refer to
+a particular i as a level. Of course, for fi−1 to be useful at all in minimizing
+fi , there should be some relation between the variables of these two functions.
+We henceforth assume that, for each i = 1, . . . , r, there exist a full-rank linear
+operator Ri from Rni into Rni−1 and another full-rank operator Pi from Rni−1
+into Rni such that Pi = RiT , where Pi and Ri are interpreted as restriction and
+prolongation between a fine and a coarse grid. The idea is then to use fr−1 to
+construct an alternative model hr−1 for fr = f in the neighborhood of the current
+iterate that is cheaper than mk and to use this alternative model to define the
+step in the trust-region algorithm whenever possible. If more than two levels
+are available (r > 1), this procedure can be done recursively, the approximation
+process stopping at level 0, where the usual quadratic model is always used. The
+resulting algorithm can then be specified as a variant of the basic trust-region
+algorithm of [8].
+    We briefly describe the global convergence theory associated with this algorithm
+and show convergence from arbitrary starting points to first-order critical points
+under classical assumptions. We also discuss an associated dimension-independent
+worst-case complexity result. We next present a first numerical application for one
+of the possible implementations. This implementation specifies the nature of the
+nonrecursive iterations, which fall into two classes: smoothing iterations, aimed
+at decreasing high-frequency components of the gradient, and damping iterations,
+which decrease their low-frequency components (an important issue is to modify
+these iterations so as to ensure “sufficient decrease” in the sense of the Cauchy
+condition). Other implementation issues concern the form of the recursive itera-
+tions, ranging from free form (where the optimization at lower levels is governed
+purely by accuracy requirements) to fixed cycles (such as the V and W cycles in-
+spired by multigrid techniques). The efficiency of the method is demonstrated on a
+minimum-surface problem with highly oscillatory boundary conditions. Problems
+of this type involving up to 1.1 million variables were solved by the new algorithm
+in Matlab on an oldish laptop PC (Pentium 4 Mobile, 1.6 GHz). Perspectives are
+described, which are both numerous and interesting.
+
+
+                                         References
+ [1] N. M. Alexandrov and R. L. Lewis. An overview of first-order model management for engi-
+     neering optimization. Optimization and Engineering, 2:413–430, 2001.
+ [2] N. M. Alexandrov, R. L. Lewis, C. R. Gumbert, L. L. Green, and P. A. Newman. Approxi-
+     mation and model management in aerodynamic optimization with variable fidelity models.
+     J. Aircraft, 38(6):1093–1101, 2001.
+ [3] R. E. Bank, P. E. Gill, and R. F. Marcia. Interior point methods for a class of elliptic varia-
+     tional inequalities. In T. Biegler, O. Ghattas, M. Heinkenschloss, and B. Van Bloemen Waan-
+     ders, eds., High Performance Algorithms and Software for Nonlinear Optimization, pages
+     218–235, Springer Verlag, Heidelberg, 2003.
+Optimization and Applications                                                              121
+
+ [4] S. J. Benson, L. C. McInnes, J. Moré, and J. Sarich. Scalable algorithms in optimization:
+     Computational experiments. Preprint ANL/MCS-P1175-0604, Mathematics and Computer
+     Science, Argonne National Laboratory, Argonne, Illinois, 2004. To appear in the Proceedings
+     of the 10th AIAA/ISSMO Multidisciplinary Analysis and Optimization (MA&O) Confer-
+     ence, August 30-September 1, 2004.
+ [5] J. T. Betts and S. O. Erb. Optimal low thrust trajectory to the moon. SIAM J. Applied
+     Dynamical Systems, 2(2):144–170, 2003.
+ [6] A. Brandt. Multi-level adaptative solutions to boundary value problems. Math. Computa-
+     tion, 31(138):333–390, 1977.
+ [7] W. L. Briggs, V. E. Henson, and S. F. McCormick. A Multigrid Tutorial, 2nd ed. SIAM,
+     Philadelphia, Pennsylvania, 2000.
+ [8] A. R. Conn, N. I. M. Gould, and Ph. L. Toint. Trust-Region Methods. Number 01 in MPS-
+     SIAM Series on Optimization. SIAM, Philadelphia, Pennsylvania, 2000.
+ [9] M. Fisher. Minimization algorithms for variational data assimilation. In Recent Develop-
+     ments in Numerical Methods for Atmospheric Modelling, pages 364–385. ECMWF, 1998.
+[10] A. Griewank and Ph. L. Toint. Local convergence analysis for partitioned quasi-Newton
+     updates. Num. Mathematik, 39:429–448, 1982.
+[11] M. Lewis and S. G. Nash. Practical aspects of multiscale optimization methods for VLSI-
+     CAD. In Jason Cong and Joseph R. Shinnerl, eds., Multiscale Optimization and VLSI/CAD,
+     pages 265–291. Kluwer Academic Publ., Dordrecht, The Netherlands, 2002.
+[12] M. Lewis and S. G. Nash. Model problems for the multigrid optimization of systems governed
+     by differential equations. SIAM J. Sci. Comp., to appear, 2005.
+[13] J. J. Moré. Terascale optimal PDE solvers. Talk at the ICIAM 2003 Conference, Sydney,
+     Australia, 2003.
+
+
+
+      Complexity Analysis of Interior-Point Algorithms and Geometric
+       Properties of the Central Trajectory for Linear Programming
+                              Takashi Tsuchiya
+                    (joint work with Renato D. C. Monteiro)
+
+We study the geometrical structure of the central trajectory associated with a
+linear programming (LP) problem using the same techniques developed in [2] to
+establish a new complexity bound for the Mizuno-Todd-Ye predictor-corrector
+(MTY-PC) primal-dual interior-point algorithm.
+   We consider the LP problem
+(1)                    minimizex cT x subject to Ax = b, x ≥ 0,
+and its associated dual problem
+(2)               maximize (y,s) bT y subject to AT y + s = c, s ≥ 0,
+where A ∈ Rm×n , c ∈ Rn and b ∈ Rm are given, and the vectors x, s ∈ Rn and
+y ∈ Rm are the unknown variables. We assume that both (1) and (2) have interior
+feasible solutions.
+   The MTY-PC algorithm solves (1) and (2) by closely following the central
+trajectory, which is defined as the set of solutions of the following family of systems
+of bilinear equations in (x, s, y), parametrized by ν > 0:
+(3)                x ◦ s = ν1, Ax = b, AT y + s = c, x > 0, s > 0.
+122                                                       Oberwolfach Report 2/2005
+
+Here ◦ denotes the Hadamard product of vectors, that is, componentwise product
+of two vectors. The vector of all ones is denoted by 1. Given β ∈ (0, 1), we define
+the 2-norm neighborhood of the central trajectory with opening β as
+                                                                  
+                                                    x◦s
+            N (β) ≡ (x, y, s) feasible solution :          −e ≤β ,
+                                                   µ(x, s)
+where µ(x, s) = xT s/n.
+   We now describe the MTY-PC algorithm with opening β ∈ [0, 1/2]. One itera-
+tion of the algorithm consists of a predictor step followed by a corrector step. At
+the beginning of an iteration, an iterate lying in the smaller neighborhood N (β 2 )
+is assumed given. A predictor step is then performed, which consists of moving
+along the Newton direction for system (3) with ν = 0 until a point lying in the
+boundary of the larger neighborhood N (β) is located. Next, a corrector step from
+the latter point is performed to obtain the next iterate of the MTY-PC algorithm
+lying in the smaller neighborhood N (β 2 ). This corrector step consists of taking a
+full Newton step toward the central trajectory point with the same duality gap as
+the base point. Classical results about√the MTY-PC algorithm establish that it
+has the iteration-complexity bound O( n log(1/ε)) for reducing the duality gap
+by a factor of ε, as well as asymptotic quadratic convergence.
+   Set χ̄A = max{kG−1 Ak : G ∈ G},     e where G    e denotes the set of all m × m
+nonsingular submatrices of A. This quantity is known as the condition number of
+A and its properties have been studied by several authors starting from Dikin [1]
+(see references in [4, 6] for more details). It is known that χ̄A is bounded by 2LA
+if A is integral, where LA is the input size of A. Furthermore, let
+            χ̄∗A ≡ inf{χ̄AD : D is a positive definite diagonal matrix}.
+We established in [4] the following complexity result for the MTY-PC algorithm.
+Theorem 1 Given 0 < ε ≤ 1 and an initial point (x0 , s0 , y 0 ) ∈ N (β 2 ) with β ∈
+(0, 1/4], the MTY-PC algorithm generates an iterate (xk , sk , y k ) ∈ N (β 2 ) satisfy-
+ing µ(xk , sk ) ≤ εµ(x0 , s0 ) in O min[n2 log log(1/ε), log(1/ε)] + n3.5 log(χ̄∗A + n)
+iterations.
+   This result was strongly motivated by Vavasis and Ye’s seminal work [6], where
+a polynomial-time interior-point algorithm with an iteration-complexity bound of
+O(n3.5 log(χ̄A + n)) is developed (see also [3]). Their analysis is based on the
+clever notion of a crossover event, and their algorithm occasionally uses a special
+step, namely, the layered least squares (LLS) step, in order to make substantial
+progress along the straight parts of the central trajectory. Crossover events and
+LLS steps are also used in a crucial way in the proof of the above theorem and the
+subsequent results about the geometrical structure of the central trajectory.
+   Vavasis and Ye [6] made an interesting observation that the central trajectory
+consists of O(n2 ) “long and straight” parts and that its remaining curved part is
+relatively short, in that it can be traversed by a standard short-step path-following
+algorithm in O(n3.5 log(χ̄A + n)) iterations. This observation was essentially moti-
+vated by the technique used to establish the iteration-complexity of their method
+and was not formally justified, in that the notion of straightness of the central
+Optimization and Applications                                                         123
+
+trajectory was not defined rigorously. The purpose of this work is to relate the
+new complexity analysis of the interior-point algorithms developed in [3, 4, 6] with
+the geometrical structure of the central trajectory in a more concrete way.
+   To this end, the following integral over the central trajectory plays a fundamen-
+tal role:                                    Z ν0
+                                                  κ(ν)
+                              F (ν0 , ν1 ) =           dν,
+                                              ν1   ν
+where κ(ν) = kν ẋ(ν)ṡ(ν)k1/2 . This integral was first introduced by Sonnevend,
+Stoer and Zhao [5] to analyze the iteration-complexity of a predictor-corrector
+type path-following algorithm (see also [7]). We refer to the function κ(·) as the
+“curvature” of the central trajectory. The following result gives an estimation of
+the number of iterations of the MTY-PC algorithm in terms of the above integral.
+Proposition 2 For given 0 < µ1 < µ0 , denote by #(µ0 , µ1 , β) the number of
+iterations of the MTY-PC algorithm with opening β needed to reduce the duality
+gap from µ0 to µ1 . Then,
+                                               √
+                                  F (µ0 , µ1 )/ β
+                              lim                 = 1.
+                              γ→0 #(µ0 , µ1 , β)
+
+   One of the interpretations of the above formula is that, as the opening β becomes
+sufficiently small, the curvature κ(ν) divided by β 1/2 provides an estimate on the
+number of iterations needed to reduce the current duality gap ν by a factor of
+e−1 . Thus, κ is a reasonable measure of straightness
+                                                  √         of the central trajectory. The
+classical
+   √       complexity   analysis   yields   κ  ≤    n, and therefore we have F (µ, εµ) =
+O( n log(1/ε)) as a trivial bound, where 0 < ε ≤ 1.
+   The main results we have obtained about the behavior of the curvature and the
+integral are summarized in the following two theorems.
+                                                 √
+Theorem 3 For any constant κ̄ ∈ (0, n], there exists l ≤ n(n − 1)/2 closed
+intervals Ik = [dk , ek ], k = 1, ..., l, such that:
+   i) dk ≥ ek+1 for all k = 1, ..., l − 1;
+   ii) {ν > 0 : κ(ν) ≥ κ̄} ⊆ ∪lk=1 Ik ;
+   iii) log(ek /dk ) = O(n log(χ̄∗A + n) + n log κ̄−1 ) for all k = 1, ..., l.
+Theorem 4 Let ν > 0 and 0 < ε ≤ 1. Then, we have
+         F (ν, εν) = O(n3.5 log(χ̄∗A + n) + min[n3.5 log log(1/ε), log(1/ε)]).
+    A few remarks are now in order. Theorem 3 bounds the length (in the logarith-
+mic scale) of the curved part of the central trajectory. The intervals Ik (i = 1, ..., l)
+contain the parameters ν with large curvature (i.e., such that κ(ν) ≥ κ̄) and the
+theorem claims that the total length of all the Ik ’s is reasonably bounded. Theo-
+rem 4 gives an upper bound on the integral F . The bound consists of two terms:
+the first one is independent of ε, and the second one grows very slowly as a function
+of ε or independent of n.
+    In view of existing results about the limiting behavior of the central trajectory,
+it is not difficult to see that F (∞, 0) is well defined as an improper integral and is
+bounded by a constant depending on (A, b, c). Therefore, an interesting question is
+124                                                           Oberwolfach Report 2/2005
+
+whether there is an upper bound on F (∞, 0) depending only on A. We conjecture
+that F (∞, 0) = O(n3.5 log(χ̄∗A + n)).
+
+                                       References
+[1] I. I. Dikin. On the speed of an iterative process. Upravlyaemye Sistemi, 12:54–60, 1974.
+[2] S. Mizuno, M. J. Todd, and Y. Ye. On adaptive-step primal-dual interior-point algorithms
+    for linear programming. Math. O.R., 18:964–981, 1993.
+[3] R. D. C. Monteiro and T. Tsuchiya. A variant of the Vavasis-Ye layered-step interior-point
+    algorithm for linear programming. SIAM J. Opt., 13:1054–1079, 2003.
+[4] R. D. C. Monteiro and T. Tsuchiya. New iteration-complexity bound for the MTY predictor-
+    corrector algorithm. SIAM J. Opt., 15:319–347, 2005.
+[5] G. Sonnevend, J. Stoer, and G. Zhao. On the complexity of following the central path of
+    linear programs by linear extrapolation II, Math. Programming, 52:527–553, 1951.
+[6] S. Vavasis and Y. Ye. A primal-dual accelerated interior point method whose running time
+    depends only on A. Math. Programming, 74:79–120, 1996.
+[7] G. Zhao and J. Stoer. Estimating the complexity of path-following methods for solving linear
+    programs by curvature integrals. Applied Mathematics and Optimization, 27:86–103, 1993.
+
+
+      Newton-Type Preconditioned Multilevel Methods for
+  Infinite-Dimensional Complementarity Problems with Applications
+                         Michael Ulbrich
+
+In this study, we give an overview of recent results and work in progress on Newton-
+type methods for the following infinite-dimensional Mixed Complementarity Prob-
+lem (MCP):
+                 (a)                 G(y, u) = 0
+(1)
+                 (b)      u ∈ K, F (y, u) ∈ K+ , hF (y, u), uiU ∗ ,U = 0.
+Here G : Y × U → Z and F : Y × U → V are continuously Fréchet differentiable
+operators; Y, Z are Banach spaces; and U ⊂ M(Ω) is a function space, M(Ω)
+denoting the space of real-valued measurable functions on the bounded measurable
+set Ω ⊂ Rn . Furthermore, V ⊂ U ∗ is a (generalized) function space, where U ∗ is
+the dual space of U , K ⊂ U is the cone of a.e. nonnegative functions in U , and
+K+ ⊂ U ∗ denotes the dual cone of K.
+   When V ⊂ M(Ω), the complementarity condition (1) (b) can be written point-
+wise as
+                   u ≥ 0, F (u) ≥ 0, uF (u) = 0 a.e. on Ω.
+We can further transform this problem into the operator equation
+                                                  
+                                     def  G(y, u)
+(2)                          H(y, u) =               = 0,
+                                           Φ(y, u)
+                  def
+where Φ(y, u)(·) = φ(u(·), F (y, u)(·)). Here, φ : R2 → R is an NCP-function, that
+is, satisfies φ(a, b) = 0 iff a, b ≥ 0 and ab = 0. Commonly used NCP-functions, for
+example, φmin (a, b) = min(a, b), are usually nonsmooth, but Lipschitz continuous
+and semismooth. As a consequence, the operator Φ is in general nonsmooth and
+this is inherited by H.
+Optimization and Applications                                                   125
+
+  For simplicity, we now focus on an important special case of (1), the nonlinear
+complementarity problem (NCP). Assuming again V ⊂ M(Ω), one can state the
+NCP as follows:
+(3)                u ≥ 0,      F (u) ≥ 0,   uF (u) = 0   a.e. on Ω.
+The reformulated problem (2) then reduces to the nonsmooth equation
+(4)                Φ(u) = 0,     with Φ(u)(·) := φ(u(·), F (u)(·)).
+We present a rigorous analysis for the case where U = Lp (Ω), V = Lq (Ω), p ∈
+[2, ∞], q ∈ [1, p], 1/p + 1/q ≤ 1. Under appropriate assumptions (which are mild
+if p > q and require a particular structure of φ and F if p = q), we then can show
+that Φ : U → V is ∂Φ-semismooth [2] (this concept is introduced below), that is,
+             sup     kΦ(u + s) − Φ(u) − M skV = o(kskU )        (kskU → 0),
+         M∈∂Φ(u+s)
+
+where ∂Φ(u) ⊂ L(U, V ) is a suitably chosen generalized differential. Under slightly
+stronger assumptions, we can prove semismoothness of order κ > 0. Here, we
+propose to call a continuous operator H : W1 → W2 between Banach spaces
+∂H-semismooth at w if the following holds:
+          sup      kH(w + s) − H(w) − M skW2 = o(kskW1 ) (kskW1 → 0).
+      M∈∂H(w+s)
+
+The operator H is called ∂H-semismooth of order κ > 0 if o(kskW1 ) can be
+                     1+κ
+strengthened to O(kskW1 ). We then can show that the Newton-type iteration
+ Given wk , choose Mk ∈ ∂H(wk ), solve Mk sk = −H(wk ), set wk+1 = wk + sk
+converges locally q-superlinearly (with order 1 + κ if H is semismooth of order
+κ > 0) to a solution w∗ ∈ W1 if all the operators Mk are uniformly bounded
+invertible (we call regularity condition this property and related ones).
+   With regard to the specific operator Φ, the structure of its associated general-
+ized differential implies that the regularity condition usually can be verified only
+in the case U = V . Fortunately, this choice of spaces is possible if F is con-
+tinuously Fréchet differentiable and has the structure F (u) = γu + A(u), where
+A : U → Lr (Ω) is locally Lipschitz continuous for some r > p and if we make the
+particular choice φ(a, b) = min(γa, b) for the NCP-function. Alternatively, we
+can use a more general class of NCP-functions, obtain semismoothness of Φ with
+a norm gap (i.e., p > q), and then have to augment the Newton iteration by a
+smoothing step [2]. Here, however, we follow the first approach.
+   The following theoretical questions are addressed:
+– Sufficient conditions for regularity [3, 4], that is, conditions implying
+                   M −1 V,U ≤ C       ∀ M ∈ ∂Φ(u), ku − u∗ kU < ε.
+
+ Two variants are given for the case U = V = L2 (Ω), where the main assumption
+ is a coercivity condition for F ′ (u∗ ) either on L2 or on an appropriate tangent
+ space.
+126                                                       Oberwolfach Report 2/2005
+
+– A mesh independence results [1]. Here the NCP (3) and piecewise constant
+  discretizations (3)h , h > 0 denoting the mesh size, are considered. The corre-
+  sponding reformulations (4) and (4)h , respectively, induce semismooth Newton
+  iterations that generate sequences uk and ukh , respectively. Under very natural
+  assumptions, we show that, for any given rate θ, there exists a universal radius
+  δθ > 0 and a mesh size hθ > 0 such that the Newton iterates (uk ) and (ukh ),
+  h ≤ hθ , converge with at least q-linear rate θ to a solution u∗ and corresponding
+  discrete solutions u∗h , respectively, whenever the initial points lie within δθ -balls
+  centered at u∗ and u∗h , respectively.
+– Verification of the assumptions for concrete problems.
+In our study, a strong focus is placed on applications in the field of optimization
+with PDEs and on efficient implementations of the proposed method for large-scale
+discretizations. In particular, we discuss control-constrained semilinear elliptic
+control problems and 3D elastic two-body contact problems. The first problem
+class directly fits in our theoretical framework, whereas for the contact problem
+a regularization procedure is required to make the theory rigorously applicable.
+Error estimates for the regularized solutions are also presented [5].
+    For both, the control problem and the contact problem we show that multigrid
+solvers for elliptic PDEs can be used to solve the linear operator equations arising
+in each iteration of the semismooth Newton method very efficiently. To this end,
+we observe that appropriate block eliminations in the Newton systems result in an
+elliptic system of PDEs to which multigrid methods can be applied. For instance,
+the semismooth Newton system for the (regularized) elastic contact problem can
+be reduced to a system involving the linear operator
+                                                       
+                                E + γ −1 B ∗ (d · B) 0
+                                                          ,
+                                      −d · B         γI
+
+where E is the elliptic differential operator of the elasticity equations, B is the
+normal trace operator on the potential contact boundary ΓC , γ is the regular-
+ization parameter, and d(x) ∈ {0, 1}, x ∈ ΓC . Since the upper left block is a
+system of elliptic differential operators, we can apply a multigrid method to solve
+the Newton system with optimal complexity. A similar approach can be taken for
+the elliptic optimal control problem. The multigrid method can either be used as
+a direct solver or, which is more efficient for harder problems (e.g., the elasticity
+problem), one or more multigrid cycles can serve as a preconditioner for Krylov
+subspace iterative solvers. Also, a nested iteration can be used to take additional
+advantage of the multilevel grid hierarchy. Starting on the coarsest grid, approxi-
+mate solutions of the discretized optimization problem are transported to the next
+finer grid to obtain good initial points for the Newton process on this grid and so
+forth.
+   Numerical results for both problems are presented. They support the super-
+linear convergence results for the Newton iteration (less than 10 iterations are
+needed), its mesh-independent behavior, and they prove the efficiency of the multi-
+grid Newton approach.
+Optimization and Applications                                                               127
+
+                                        References
+ [1] M. Hintermüller and M. Ulbrich, A mesh-independence result for semismooth Newton meth-
+     ods, Math. Programming 101 (2004), 151–184.
+ [2] M. Ulbrich, Semismooth Newton methods for operator equations in function spaces, SIAM
+     J. Optim. 13 (2003), 805–842.
+ [3] M. Ulbrich, Nonsmooth Newton-like methods for variational inequalities and constrained
+     optimization problems in function spaces, Habilitation thesis, Fakultät für Mathematik, TU
+     München, 2001.
+ [4] M. Ulbrich, On a nonsmooth Newton method for nonlinear complementarity problems in
+     function space with applications to optimal control, in M. C. Ferris, O. L. Mangasarian,
+     and J.-S. Pang (eds.), Complementarity: Applications, Algorithms and Extensions, Kluwer
+     Academic Publishers, 2001, 341–360.
+ [5] M. Ulbrich and S. Ulbrich, A multigrid semismooth Newton method for contact problems
+     in linear elasticity, Technical report in preparation, Fachbereich Mathematik, Universität
+     Hamburg, 2005.
+
+
+
+         Primal-Dual Interior-Point Multigrid Methods for
+                     PDE-Constrained Optimization
+                             Stefan Ulbrich
+
+We present recent results from [1] on interior-point methods for PDE-constrained
+optimization problems of the form
+         min      f (y, u) subject to c(y, u) = 0, u ∈ B := {v ∈ U : l ≤ u ≤ r}
+     (y,u)∈Y ×U
+
+where U = Lp (Ω), 2 ≤ p < ∞ is the control space, Ω ⊂ Rd is bounded and
+measurable, Y is the state space and the bounds l, r lie in L∞ (Ω), r − l ≥ ν > 0.
+The constraint c(y, u) = 0 is the appropriate formulation of a (system of) PDE(s)
+with boundary and/or initial conditions. We assume that f : Y × U → R and
+c : Y × U → Z are twice locally Lipschitz-continuously differentiable, that there
+exists a unique solution y = y(u) ∈ Y of c(y, u) = 0 for all u ∈ B and that cy has
+a bounded inverse.
+    As in the finite-dimensional case the basic concept of the proposed interior
+point method consists in following the central path by using damped Newton
+steps inside a neighborhood of the central path. However, the algorithmic details
+and the convergence analysis are strongly influenced by the infinite-dimensional
+nature of the problem and differ significantly from the finite-dimensional case.
+    Starting from the first order optimality conditions we introduce the central
+path as the solution path of the relaxed optimality conditions with perturbed
+complementarity condition. Although the associated logarithmic barrier function
+is not a barrier function in the classical sense, since C has no interior point in Ls (Ω)
+for s < ∞, the perturbed optimality conditions are nevertheless the optimality
+system for a corresponding barrier problem.
+    The proposed interior point algorithm follows the central path approximately
+by applying damped primal-dual Newton steps, which are projected on a wide
+neighborhood of the central path. The convergence of the algorithm is analyzed
+128                                                         Oberwolfach Report 2/2005
+
+for convex linear-quadratic problems that have the following smoothing property:
+the reduced gradient ĝ(y, u) corresponding to the control component has the form
+ĝ(y, u) = αu + ĝs (y, u), where ĝs is locally bounded in Lq (Ω) for some q > p and
+the reduced Hessian Ĥ has the structure Ĥ(y, u) = αI + Ĥs (y, u), where Ĥs (y, u) is
+locally bounded in L(Lp (Ω), Lq (Ω)). These structural assumptions are satisfied for
+several important applications, e.g., distributed and Neumann boundary control
+of elliptic and parabolic PDEs, distributed control of hyperbolic PDEs and the
+incompressible Navier-Stokes equations, and regularized contact problems.
+    In the case q = ∞ we prove global linear convergence. The case q < ∞ leads to
+a norm gap that is closed by using a smoothing step. We show that the resulting
+method converges globally linear und locally superlinear under a moderate strict
+complementarity assumption. An extension to nonlinear problems can be obtained
+in a vicinity of a solution satisfying appropriate regularity assumptions.
+    Moreover, we show how multigrid methods can be applied to solve the Newton
+system efficiently. We demonstrate this for control constrained elliptic problems
+and 3D elastic two body contact problems. Numerical results are shown for these
+problems which demonstrate the efficiency of the approach.
+
+                                      References
+ [1] S. Ulbrich, Primal-dual interior point methods for PDE-constrained optimization, Tech-
+     nical report in preparation, Fachbereich Mathematik, Technical University of Darmstadt,
+     Germany, 2005.
+
+
+
+
+                                                          Reporter: Claude Lemaréchal
+Optimization and Applications                                                     129
+
+                                      Participants
+
+
+Dr. Vincent Acary                           Prof. Dr. Aharon Ben-Tal
+vincent.acary@inrialpes.fr                  abental@ie.technion.ac.il
+INRIA Rhone-Alpes                           Faculty of Industrial Engineering &
+655 avenue de l’Europe                      Management
+F-38334 Montbonnot, St. Ismier, Cedex       Technion
+                                            Israel Institute of Technology
+                                            Haifa 32000
+Prof. Dr. Wolfgang Achtziger
+                                            ISRAEL
+Wolfgang.Achtziger@uni-dortmund.de
+Fachbereich Mathematik
+Universität Dortmund                       Dr. Andreas Eisenblätter
+44221 Dortmund                              eisenblaetter@zib.de
+                                            Konrad-Zuse-Zentrum für
+                                            Informationstechnik Berlin (ZIB)
+Prof. Dr. Natalia Alexandrov
+                                            Takustr. 7
+n.alexandrov@nasa.gov
+                                            14195 Berlin
+NASA Langley Research Center
+Mail Stop 159
+Hampton VA 23681-2199                       Prof. Dr. Marina Epelman
+USA                                         mepelman@umich.edu
+                                            Department of Industrial and
+                                            Operations Engineering
+Prof. Dr. Kurt M. Anstreicher
+                                            University of Michigan, Room 2845
+kurt-anstreicher@uiowa.edu
+                                            1205 Beal Avenue
+Department of Management Sciences           Ann Arbor MI 48109-2117
+The University of Iowa                      USA
+Iowa City IA 52242-1000
+USA
+                                            Prof. Dr. Michael Ferris
+                                            ferris@cs.wisc.edu
+Dr. Amir Beck
+                                            Computer Sciences Department
+becka@tx.technion.ac.il
+                                            University of Wisconsin-Madison
+Faculty of Industrial Engineering &         1210 West Dayton St.
+Management                                  Madison, WI 53706-1685
+Technion                                    USA
+Israel Institute of Technology
+Haifa 32000
+ISRAEL                                      Prof. Dr. Roger Fletcher
+                                            fletcher@maths.dundee.ac.uk
+                                            Dept. of Mathematics
+                                            University of Dundee
+                                            23 Perth Road
+                                            GB-Dundee, DD1 4HN
+130                                               Oberwolfach Report 2/2005
+
+Prof. Dr. Robert M. Freund            Prof. Dr. Christoph Helmberg
+rfreund@mit.edu                       helmberg@mathematik.tu-chemnitz.de
+MIT                                   Fakultät für Mathematik
+Sloan School of Management            Technische Universität Chemnitz
+50 Memorial Dr.                       09107 Chemnitz
+Cambridge, MA 02142-1347
+USA
+                                      Prof. Dr. Florian Jarre
+                                      jarre@opt.uni-duesseldorf.de
+Prof. Dr. Roland W. Freund            Mathematisches Institut
+freund@math.ucdavis.edu               Heinrich-Heine-Universität
+Department of Mathematics             Gebäude 25.22
+University of California              Universitätsstraße 1
+1, Shields Avenue                     40225 Düsseldorf
+Davis, CA 95616-8633
+USA
+                                      Prof. Dr. Christian Kanzow
+                                      kanzow@mathematik.uni-wuerzburg.de
+Prof. Dr. Jean-Charles Gilbert        Institut für Angewandte Mathematik
+jean-charles.gilbert@inria.fr         und Statistik
+INRIA                                 Universität Würzburg
+BP 105                                Am Hubland
+F-78153 Rocquencourt                  97074 Würzburg
+
+
+Dr. Martin Gugat                      Prof. Dr. Diethard Klatte
+gugat@am.uni-erlangen.de              klatte@ior.unizh.ch
+Institut für Angewandte Mathematik   Institut für Operations Research
+Universität Erlangen                 Universität Zürich
+Martensstr. 3                         Moussonstr. 15
+91058 Erlangen                        CH-8044 Zürich
+
+
+Prof. Dr. Margareta Halicka           Dr. Michal Kocvara
+halicka@fmph.uniba.sk                 kocvara@utia.cas.cz
+UAM FMFI                              Inst. of Info. Theory & Automation
+UK                                    Academy of Sciences of the Czech R.
+Mlynska dolina                        Pod Vodarenskou vezi 4
+842 48 Bratislava                     P.O.Box 18
+Slovakia                              182 08 Prague 8
+                                      CZECH REPUBLIC
+Prof. Dr. Matthias Heinkenschloss
+heinken@caam.rice.edu                 Dr. Friedemann Leibfritz
+heinken@rice.edu                      leibfr@uni-trier.de
+CAAM Dept. MS 134                     Abteilung Mathematik
+Rice University                       Fachbereich IV
+6100 S. Main Street                   Universität Trier
+Houston, TX 77005-1892                54286 Trier
+USA
+Optimization and Applications                                                 131
+
+Prof. Dr. Claude Lemarechal             Prof. Dr. Renato D.C. Monteiro
+claude.lemarechal@inria.fr              renato.monteiro@isye.gatech.edu
+INRIA Rhone-Alpes                       School of Industrial and Systems
+655 avenue de l’Europe                  Engineering
+F-38334 Montbonnot, St. Ismier, Cedex   Georgia Institute of Technology
+                                        765 Ferst Drive
+                                        Atlanta GA 30332-0205
+Prof. Dr. Adrian Lewis
+                                        USA
+aslewis@orie.cornell.edu
+ORIE
+Cornell University                      Prof. Dr. Yurii Nesterov
+Rhodes Hall 214                         nesterov@core.ucl.ac.be
+Ithaca, NY 14853                        Center for Operations Research and
+USA                                     Econometrics
+                                        Universite de Louvain
+                                        34 Voie du Roman Pays
+Dr. Sven Leyffer
+                                        B-1348 Louvain-la-Neuve
+leyffer@mcs.anl.gov
+Mathematics and Computer Science
+Division                                Prof. Dr. Florian-A. Potra
+Argonne National Laboratory             potra@math.umbc.edu
+9700 South Cass Avenue                  Dept. of Mathematics and Statistics
+Argonne, IL 60439-4844                  University of Maryland
+USA                                     Baltimore County
+                                        1000 Hilltop Circle
+                                        Baltimore, MD 21250
+Prof. Dr. Shinji Mizuno
+                                        USA
+mizuno@me.titech.ac.jp
+Dep.of Industrial Engineering
+and Mangement                           Prof. Dr. Franz Rendl
+Tokyo Institute of Technology           franz.rendl@uni-klu.ac.at
+2-12-1 Oh-okayama Meguro-ku             Institut für Mathematik
+Tokyo 152-8552                          Universität Klagenfurt
+JAPAN                                   Universitätsstr. 65-67
+                                        A-9020 Klagenfurt
+Dr. Katja Mombaur
+Katja.Mombaur@IWR.Uni-Heidelberg.de     Prof. Dr. James Renegar
+Interdisziplinäres Zentrum             renegar@mac.com
+für Wissenschaftliches Rechnen         renegar@orie.cornell.edu
+Universität Heidelberg                 School of Operations Research and
+Im Neuenheimer Feld 368                 Industrial Engineering
+69120 Heidelberg                        Cornell University
+                                        Upson Hall
+                                        Ithaca, NY 14853-7901
+                                        USA
+132                                                  Oberwolfach Report 2/2005
+
+Prof. Dr. Kees Roos                   Prof. Dr. Michael J. Todd
+c.roos@ewi.tudelft.nl                 miketodd@cs.cornell.edu
+EWI/ISA/ALG                           miketodd@orie.cornell.edu
+Delft University of Technology        School of Operations Research and
+Mekelweg 4                            Industrial Engineering
+NL-2628 CD Delft                      Cornell University
+                                      Upson Hall
+                                      Ithaca, NY 14853-7901
+Prof. Annick Sartenaer
+                                      USA
+annick.sartenaer@fundp.ac.be
+as@math.fundp.ac.be
+Departement de Mathematique           Prof. Dr. Philippe L. Toint
+Universite de Namur                   philippe.toint@fundp.ac.be
+(FUNDP)                               Department of Mathematics
+Rempart de la Vierge 8                The University of Namur
+B-5000 Namur                          FUNDP
+                                      61, rue de Bruxelles
+                                      B-5000 Namur
+Prof. Dr. Mike Saunders
+saunders@stanford.edu
+Management Science and Engineering    Prof. Dr. Takashi Tsuchiya
+Terman Engineering Center             tsuchiya@sun312.ism.ac.jp
+Room 330                              The Institute of Stat. Mathematics
+Stanford University                   4-6-7 Minami Azabu, Minato-ku
+Stanford CA 94305-4026                Tokyo 106-8569
+USA                                   JAPAN
+
+Prof. Dr. Josef Stoer                 Prof. Dr. Reha Tütüncü
+jstoer@mathematik.uni-wuerzburg.de    reha@cmu.edu
+Institut für Angewandte Mathematik   Department of Mathematical Sciences
+und Statistik                         Carnegie Mellon University
+Universität Würzburg                6113 Wean Hall
+Am Hubland                            Pittsburgh PA 15213
+97074 Würzburg                       USA
+
+
+Prof. Dr. Jean-Jacques Strodiot       Prof. Dr. Michael Ulbrich
+jean-jacques.strodiot@fundp.ac.be     ulbrich@math.uni-hamburg.de
+Departement de Mathematique           Fachbereich Mathematik
+Universite de Namur                   Universität Hamburg
+(FUNDP)                               20141 Hamburg
+Rempart de la Vierge 8
+B-5000 Namur
+                                      Prof. Dr. Stefan Ulbrich
+                                      ulbrich@mathematik.tu-darmstadt.de
+                                      Fachbereich Mathematik
+                                      TU Darmstadt
+                                      Schloßgartenstr. 7
+                                      64289 Darmstadt
+Optimization and Applications                             133
+
+Prof. Dr. Jean Philippe Vial      Prof. Dr. Jochem Zowe
+jean-philippe.vial@hec.unige.ch   imi imi@t-online.de
+HEC-Geneve                        Laimbacher Str. 73
+Section of Management Studies     95447 Bayreuth
+University of Geneva
+Bd du Pont d’Arve 40
+CH-1211 Geneve 4
+
+Prof. Dr. Stephen J. Wright
+swright@cs.wisc.edu
+Computer Sciences Department
+University of Wisconsin-Madison
+1210 West Dayton St.
+Madison, WI 53706-1685
+USA
+

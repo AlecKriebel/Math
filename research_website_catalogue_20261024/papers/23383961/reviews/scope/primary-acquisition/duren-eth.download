@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verification required</title>
+  <script>window.CAP_CUSTOM_WASM_URL = "https://www.e-periodica.ch/cap/assets/cap_wasm_bg.wasm";</script>
+  <script type="module" src="https://www.e-periodica.ch/cap/assets/widget.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    footer {
+      position: absolute;
+      width: calc(100% - 2em);
+      margin: 0 1em;
+      bottom: 1em;
+      display: flex;
+      justify-content: center;
+      left: 0;
+
+      > p {
+        font-size: 1em;
+        text-align: center;
+        > a {
+          color: hsl(42, 19%, 47%);
+          text-underline-offset: 3px;
+        }
+      }
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cap-widget {
+      display: flex;
+      zoom: 1.5;
+    }
+    @media (max-width: 767px) {
+      .cap-widget {
+        zoom: 1.5;
+      }
+    }
+    @media (max-width: 480px) {
+      .cap-widget {
+        zoom: 1.25;
+      }
+    }
+    @media (max-width: 320px) {
+      .cap-widget {
+        zoom: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+<h1 class="sr-only">Bestätigung erforderlich</h1>
+<cap-widget
+  id="cap"
+  class="cap-widget"
+  required
+  data-cap-api-endpoint="https://www.e-periodica.ch/cap/e1815eca44/">
+</cap-widget>
+</main>
+<footer>
+  <p>
+    <a href="/cntmng?pid=com-001%3A1981%3A56%3A%3A30&bot=1">This link is intended for web crawlers and bots</a>
+  </p>
+</footer>
+
+<script type="module">
+  const cap = document.getElementById("cap");
+  cap.addEventListener("solve", (e) => {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/cntmng?pid=com-001%3A1981%3A56%3A%3A30';
+    const tokenInput = document.createElement('input');
+    tokenInput.type = 'hidden';
+    tokenInput.name = 'token';
+    tokenInput.value = e.detail ? e.detail.token : 'error';
+    form.appendChild(tokenInput);
+    document.body.appendChild(form);
+    form.submit();
+  });
+  cap.addEventListener("error", (e) => {
+    console.error("cap error", e.detail);
+  });
+  customElements.whenDefined("cap-widget").then(() => {
+    if (!document.location.search.includes('autostart=0') && true) {
+      cap.solve();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1105 @@
+Math. Program., Ser. B 97: 155–176 (2003)
+
+Digital Object Identifier (DOI) 10.1007/s10107-003-0441-3
+
+
+
+
+A.S. Lewis
+
+The mathematics of eigenvalue optimization
+Received: December 4, 2002 / Accepted: April 22, 2003
+Published online: May 28, 2003 – © Springer-Verlag 2003
+
+Abstract. Optimization problems involving the eigenvalues of symmetric and nonsymmetric matrices pres-
+ent a fascinating mathematical challenge. Such problems arise often in theory and practice, particularly in
+engineering design, and are amenable to a rich blend of classical mathematical techniques and contemporary
+optimization theory. This essay presents a personal choice of some central mathematical ideas, outlined for the
+broad optimization community. I discuss the convex analysis of spectral functions and invariant matrix norms,
+touching briefly on semidefinite representability, and then outlining two broader algebraic viewpoints based
+on hyperbolic polynomials and Lie algebra. Analogous nonconvex notions lead into eigenvalue perturbation
+theory. The last third of the article concerns stability, for polynomials, matrices, and associated dynamical sys-
+tems, ending with a section on robustness. The powerful and elegant language of nonsmooth analysis appears
+throughout, as a unifying narrative thread.
+
+Key words. eigenvalue optimization – convexity – nonsmooth analysis – duality – semidefinite program –
+subdifferential – Clarke regular – chain rule – sensitivity – eigenvalue perturbation – partly smooth – spectral
+function – unitarily invariant norm – hyperbolic polynomial – stability – robust control – pseudospectrum –
+H∞ norm
+
+
+
+
+                                     PART I: INTRODUCTION
+
+1. Von Neumann and invariant matrix norms
+
+Before outlining this survey, I would like to suggest its flavour with a celebrated classical
+result. This result, von Neumann’s characterization of unitarily invariant matrix norms,
+serves both as a historical jumping-off point and as an elegant juxtaposition of the central
+ingredients of this article.
+    Von Neumann [64] was interested in unitarily invariant norms  ·  on the vector
+space Mn of n-by-n complex matrices:
+                          U XV  = X for all U, V ∈ Un , X ∈ Mn ,
+where Un denotes the group of unitary matrices. The singular value decomposition shows
+that the invariants of a matrix X under unitary transformations of the form X → U XV
+are given by√the singular values σ1 (X) ≥ σ2 (X) ≥ · · · ≥ σn (X), the eigenvalues of
+the matrix X ∗ X. Hence any invariant norm  ·  must be a function of the vector
+σ (X), so we can write X = g(σ (X)) for some function g : Rn → R. We ensure this
+last equation if we define g(x) = Diag x for vectors x ∈ Rn , and in that case g is
+
+A.S. Lewis: Department of Mathematics, Simon Fraser University, Burnaby, BC V5A 1S6, Canada. e-mail:
+aslewis@sfu.ca. Website: www.cecm.sfu.ca/∼aslewis. Research supported in part by NSERC.
+Mathematics Subject Classification (2000): 90C30, 15A42, 65F15, 49K40
+156                                                                                 A.S. Lewis
+
+
+a symmetric gauge function: that is, g is a norm on Rn whose value is invariant under
+permutations and sign changes of the components. Von Neumann’s beautiful insight was
+that this simple necessary condition is in fact also sufficient.
+Theorem 1.1 (von Neumann, 1937). The unitarily invariant matrix norms are exactly
+the symmetric gauge functions of the singular values.
+   Von Neumann’s proof rivals the result in elegance. He proceeds by calculating the
+dual norm of a matrix Y ∈ Mn ,
+                             Y ∗ = max{ X, Y : X = 1}
+where the real inner product X, Y in Mn is the real part of the trace of X ∗ Y . Specifically,
+he shows that any symmetric gauge function g satisfies the simple duality relationship
+                                    (g∗ ◦ σ )∗ = g ◦ σ,                                   (1)
+where g∗ is the norm on Rn dual to g. From this, the hard part of his result follows: g ◦ σ
+is indeed a norm, being the dual of some positively homogeneous function.
+     The proof of formula (1) is instructive. Von Neumann uses two key ingredients: the
+fact that any norm g is its own bidual g∗∗ , and the fundamental inequality
+                                  X, Y ≤ σ (X), σ (Y ) .                                  (2)
+He proves this inequality by considering the optimality conditions for the problem of
+maximizing Y, Z as the variable Z varies over the matrix manifold
+                   {U XV : U, V ∈ Un } = {Z ∈ Mn : σ (Z) = σ (X)}.                        (3)
+     The ideas driving this lovely argument illustrate many of the threads we pursue in this
+survey: groups of matrix transformations (such as unitary multiplication) and associated
+canonical forms (such as the singular value decomposition); matrix functions invariant
+under these transformations (such as unitarily invariant norms) and associated symmet-
+ric functions (such as symmetric gauges); convexity and duality arguments (such as the
+biduality relationship for norms); variational arguments over matrix manifolds (like that
+defined in equation (3)).
+     One last important ingredient for us is missing from von Neumann’s original devel-
+opment, namely sensitivity analysis or perturbation theory. The crucial tool here is the
+subdifferential [56] of a convex function f : E → R, where E is an arbitrary Euclidean
+space and R = [−∞, +∞]. The subdifferential at a point x ∈ E where f (x) is finite is
+the set
+               ∂f (x) = {y ∈ E : y, z − x ≤ f (z) − f (x) for all z ∈ E}.
+The subdifferential gives sensitivity information via directional derivatives:
+                          f  (x; w) = sup{ y, w : y ∈ ∂f (x)}.
+A more careful study of the key inequality (2) shows the attractive formula
+      ∂(g ◦ σ )(X) = {U (Diag y)V : U, V ∈ Un , y ∈ ∂g(x), X = U (Diag x)V }              (4)
+for any symmetric gauge function g [65, 67, 35].
+The mathematics of eigenvalue optimization                                               157
+
+
+2. An outline
+
+This article presents a personal view of some of the beautiful mathematics underlying
+eigenvalue optimization. As an expository mathematical essay, it contains no proofs,
+algorithms, applications, or computational results. A survey of the broader picture may
+be found in [43]. Although making frequent use of the language of convex analysis [56,
+29, 6], the writing is, as far as possible, self-contained.
+    After this outline, which concludes Part I, the survey breaks into three further parts:
+Part II on convex optimization involving the eigenvalues of symmetric matrices; Part
+III on applications of variational analysis to eigenvalue perturbation theory and to the
+stability of polynomials; Part IV on the stability and robust stability of nonsymmetric
+matrices. A portion of Part III and all of Part IV relies heavily on an extended and ongo-
+ing joint project with Jim Burke and Michael Overton. Many of the ideas I sketch in
+those sections are shared with them; all the errors are mine.
+     Each of the three main parts further breaks down into sections. I have tried to organize
+each section around both a theme in optimization and a fundamental, often classical,
+mathematical result underlying the theme. Most sections include an open question or
+two that I find interesting.
+     Part II begins with Davis’s characterization of those convex functions of symmetric
+matrices that are invariant under orthogonal similarity transformations, a close analogue
+of von Neumann’s result. In the search for unifying frameworks in which to pursue this
+analogy, we explore two algebraic settings. In the first, we consider the eigenvalues of
+a symmetric matrix as a special case of the characteristic roots of a hyperbolic polyno-
+mial, and we consider the implications of Gårding’s theorem on the convexity of the
+associated hyperbolicity cone. The second framework, better suited for questions about
+duality, invokes classical semisimple Lie theory. In this setting, we consider the Kostant
+convexity theorem, a far-reaching generalization of Horn’s characterization of the diag-
+onals of symmetric matrices with given eigenvalues. We also follow various analogues
+of the Chevalley restriction theorem concerning the smoothness of invariant functions
+of eigenvalues.
+     Part III begins with a rapid sketch of some of the central ideas we need from contem-
+porary nonsmooth optimization, as developed by Clarke, Ioffe, Mordukhovich, Rocka-
+fellar and others. We explore Lidskii’s theorem, one of the central results of eigenvalue
+perturbation theory, from a variational analysis perspective. Turning to polynomials, we
+relate a fundamental result of Burke and Overton—that the set of stable monics (all of
+whose zeros have negative real part) is everywhere Clarke regular—to the famous Gauss-
+Lucas theorem. Nonsmooth calculus then gives an analogous result for “power-stable”
+polynomials, all of whose zeros lie in the unit disk.
+     Part IV concerns the stability of nonsymmetric matrices. Either by appealing to
+classical results of Arnold on manifolds of matrices with fixed Jordan structure, or by
+applying a nonsmooth chain rule to the previous regularity result for stable polynomi-
+als, we arrive at Burke and Overton’s characterization of the points of regularity of the
+cone of stable matrices (all of whose eigenvalues have negative real part). The Jordan
+structure of a solution to an optimization problem over this cone typically persists under
+small perturbations to the problem. We end with a discussion of robust stability. We
+follow two approaches, one via a classical semidefinite characterization of Lyapunov,
+158                                                                           A.S. Lewis
+
+
+and the other via pseudospectra: the two approaches can be reconciled by a celebrated
+result from numerical analysis, the Kreiss matrix theorem. The pseudospectral approach
+shows considerable computational promise.
+
+
+                       PART II: SYMMETRIC MATRICES
+
+3. Convex spectral functions
+
+Twenty years after the appearance of von Neumann’s characterization of unitarily invari-
+ant matrix norms, Davis [20] proved an exactly analogous result for convex spectral
+functions on the vector space Sn of n-by-n symmetric matrices, that is, convex functions
+F : Sn → R satisfying
+                    F (U T XU ) = F (X) for all U ∈ On , X ∈ Sn ,
+where On denotes the group of orthogonal matrices. The spectral decomposition shows
+that we can write any such function in the form F (X) = f (λ(X)), where λ1 (X) ≥
+λ2 (X) ≥ · · · ≥ λn (X) are the eigenvalues of X (whence the name “spectral” function).
+Following von Neumann’s argument, we could define f (x) = F (Diag x) for vectors
+x ∈ Rn , and in that case f is a symmetric convex function. Davis observed that this
+necessary condition is also sufficient.
+Theorem 3.1 (Davis, 1957). The convex spectral functions are exactly the symmetric
+convex functions of the eigenvalues.
+Indeed, one can parallel von Neumann’s duality-based argument closely to prove this
+result [36], but we defer further discussion of duality approaches to Section 5. A nice
+summary is [31].
+    The interior point revolution and Nesterov and Nemirovski’s seminal 1994 book
+[52] shifted focus in convex optimization towards questions of tractability. A partic-
+ularly compelling approach [52, 3, 66] considers the semidefinite-representable sets,
+namely those of the form
+                            {x ∈ Rm : Ax ∈ B + L + Sn+ }
+for some positive integer n, linear map A : Rm → Sn , matrix B ∈ Sn , and linear
+subspace L ⊂ Sn , where Sn+ denotes the cone of positive semidefinite matrices in Sn .
+(We use the term somewhat loosely: for tractability, we would want a “concrete” repre-
+sentation, and one where the dimension n does not grow too quickly as the dimension m
+grows. Furthermore, for optimization over a full-dimensional convex set, a semidefinite
+representation of any convex set with the same boundary usually suffices.) A semidef-
+inite representable function f : Rm → R is one whose epigraph {(x, r) : f (x) ≤ r}
+is semidefinite-representable. Davis’s theorem has a nice analogue in this framework,
+essentially a rephrasing of [3, Prop 4.2.1].
+Theorem 3.2 (Ben-Tal/Nemirovski, 2001). The semidefinite-representable spectral
+functions are exactly the symmetric semidefinite-representable functions of the eigen-
+values.
+The mathematics of eigenvalue optimization                                             159
+
+
+Furthermore, von Neumann’s characterization (Theorem 1.1) has a corresponding ana-
+logue: the semidefinite-representable unitarily invariant norms are exactly the semidefi-
+nite-representable symmetric gauge functions of the singular values (cf. [3, Prop 4.2.2]).
+    The striking parallels between von Neumann’s framework of unitarily invariant
+norms and Davis’s framework of convex spectral functions demand a unified analysis. In
+the next two sections we consider two perspectives, the first a remarkably elementary but
+purely primal approach, and the second a more sophisticated, duality-based approach.
+
+
+4. Hyperbolic polynomials
+
+Any symmetric matrix X has all real eigenvalues. In other words, the zeros of the charac-
+teristic polynomial t → det(X − tI ) are all real. Remarkably, this very simple property
+drives many convexity results about eigenvalues.
+    To see this, consider a homogeneous polynomial p of degree n on Rm . We call p
+hyperbolic with respect to a vector d ∈ Rm if p(d) = 0 and the polynomial t →
+p(x − td) has all real zeros for any vector x ∈ Rm [22]. We call these zeros the char-
+acteristic roots of x, and denote them λ1 (x) ≥ λ2 (x) ≥ · · · ≥ λn (x). The hyperbolicity
+cone is the set Cp = {x : λn (x) > 0}. With this terminology, the determinant is a
+hyperbolic polynomial on the vector space of symmetric matrices with respect to the
+identity matrix, the characteristic roots are just the eigenvalues, and the hyperbolicity
+cone consists of the positive definite matrices.
+    The hyperbolic polynomials form a rich class. For example (see [2, Fact 2.10]), for
+any hyperbolic polynomial p as above, the polynomials pr (·) = Er (λ(·)) are all hyper-
+bolic with respect to d, where Er denotes the rth elementary symmetric function on Rn ,
+namely the sum over all r-fold products of the variables.
+    Fundamental to questions about convexity is the following wonderfully concise
+result. For an elementary (although not transparent) proof, see [23].
+
+Theorem 4.1 (Gårding, 1951). Hyperbolicity cones are convex.
+
+Building on Gårding’s observation, Güler [25] proved (with the above notation) that
+the function − ln(p(·)) is a self-concordant barrier for the hyperbolicity cone Cp , with
+barrier parameter n. (See [52, 55] for the definition and algorithmic implications of self-
+concordance.) Güler’s result suggests efficient primal algorithms for linearly-constrained
+optimization problems posed over the hyperbolicity cone.
+    Güler’s barrier
+                  is an example of a convex symmetric function of the characteristic
+roots, namely − j ln λj (·). In fact, by bootstrapping up from Gårding’s theorem we
+obtain a complete generalization of the interesting direction in Davis’s characterization
+(Theorem 3.1). The following result appeared in [2].
+
+Theorem 4.2 (convex functions of characteristic roots). Symmetric convex functions
+of the characteristic roots of a hyperbolic polynomial are convex.
+
+    The success of the idea of semidefinite representability now suggests the tempt-
+ing question of the modeling power of hyperbolic polynomials. In particular, does the
+characterization of Ben-Tal and Nemirovski (Theorem 3.2) have any extension in this
+160                                                                                A.S. Lewis
+
+
+framework? Specifically, which symmetric functions of λ(x) have tractable representa-
+tions? One potentially useful tool is the representability of hyperbolic means [45]: in
+the above notation, these are functions of the form p 1/n on the domain Cp . Sets of the
+form
+                            {(x, t) ∈ Cp × R+ : t n ≤ p(x)}
+have an easily computable self-concordant barrier with barrier parameter O(n2 ). By
+applying this fact to the hyperbolic polynomials pr (·) = Er (λ(·)), we deduce the repre-
+sentability of constraints on elementary symmetric functions of the characteristic roots
+of the form Er (λ(x)) ≥ k.
+    Can hyperbolic polynomials model more powerfully than semidefinite program-
+ming? More precisely, are all hyperbolicity cones semidefinite representable? Forms of
+this question go back to Lax [34], who made the following conjecture.
+Conjecture 4.3 (Lax, 1958). If p is a polynomial on R3 , then p is hyperbolic of degree
+n with respect to the vector (1, 0, 0) and p(1, 0, 0) = 1 if and only if there exist matrices
+B, C ∈ Sn such that p is given by p(x, y, z) = det(xI + yB + zC).
+This conjecture is indeed true, as follows from recent work of Helton and Vinnikov
+[27, 63]: see [44]. This result implies that any three-dimensional hyperbolicity cone is
+a semidefinite slice: it is isomorphic to an intersection of a positive definite cone with a
+subspace (and hence in particular is semidefinite representable).
+     Homogeneous cones (open convex pointed cones for which any element of the cone
+can be mapped to any other by a linear automorphism of the cone) are a special case of
+hyperbolicity cones [25]. In this case the representability question was recently answered
+affirmatively in [17] (see also [21]): any homogeneous cone is a semidefinite slice.
+
+
+5. Duality, smoothness, and Lie theory
+
+The technical hurdle in extending Ben-Tal and Nemirovski’s characterization of semi-
+definite-representable spectral functions (Theorem 3.2) to the very broad framework of
+hyperbolic polynomials lies in the lack of any obvious duality theory. At the opposite
+extreme, the algebraic framework unifying the most successful primal-dual interior-
+point methods for conic convex programs, namely that of Euclidean Jordan algebras, is
+rather narrow in scope [26]. In this section we consider an intermediate algebraic frame-
+work, covering an interesting range of examples but with a duality theory rich enough
+to subsume the development in Section 1 around von Neumann’s characterization of
+unitarily invariant norms.
+    This section (and this section alone) is Lie-theoretic in essence. Rather than assume
+any familiarity with Lie theory, we simply retrace our steps through the familiar case
+of symmetric matrices, using the key results as illustrations of the general case. For
+this beautiful classical development we follow the outline provided by [53, Chap. 5,
+Sec. 3,4]. More details appear in [40].
+    We begin with our familiar decomposition of the vector space of n-by-n real matrices
+with trace zero, sl(n, R), into a sum of the subspace of skew-symmetric matrices, so(n),
+and the symmetric matrices with trace zero, pn , and note this sum is direct and orthogo-
+nal with respect to the bilinear form (X, Z) = tr(XZ): we write sl(n, R) = so(n) ⊕ pn .
+The mathematics of eigenvalue optimization                                            161
+
+
+This is a special case of a Cartan decomposition g = k ⊕ p, where g is a real semisimple
+Lie algebra, k is a subalgebra of g tangent to a maximal compact subgroup K of any
+connected semisimple Lie group G with Lie algebra g (for example, the adjoint group
+for g) and a complementary subspace p, direct with respect to the Killing form (·, ·). In
+our example, G is the special linear group SL(n, R) of matrices with determinant one
+(and sl(n, R) is the tangent space to G at the identity), and K is the subgroup SO(n) of
+orthogonal matrices.
+    We say that a subalgebra a of g is R-diagonalizable if g has a basis with respect to
+which each element of a (regarded as an operator on p via the natural adjoint represen-
+tation) is represented as a diagonal matrix. In our example, the diagonal matrices with
+trace zero, an , form a maximal R-diagonalizable subalgebra.
+    The group K acts on the subspace p via the adjoint representation: in our example,
+this action is X → U · X = U XU T for X ∈ pn and U ∈ SO(n). Now consider
+the normalizer and centralizer corresponding to any fixed maximal R-diagonalizable
+subalgebra a of g, defined respectively by
+
+                            N = {k ∈ K : k · a = a}
+                            Z = {k ∈ K : k · x = x for all x ∈ a}.
+
+The Weyl group is the quotient group W = N/Z. We can think of W , loosely, as a
+group of linear transformations on a (which is a Euclidean space with inner product the
+Killing form). At this point in the development, a miracle occurs (fundamental to the
+classification of semisimple Lie algebras): the Weyl group W is always a finite reflection
+group. In our example, elementary calculations show that N is the group of matrices with
+determinant one and having exactly one nonzero entry of ±1 in each row and column,
+and Z is the subgroup of diagonal matrices in N , so we can consider W as acting on
+an by permuting diagonal entries: in other words, the Weyl group is isomorphic to the
+group of n-by-n permutation matrices Pn .
+    We are now ready for the driving result of this section [32].
+
+Theorem 5.1 (Kostant, 1973). Suppose g = k ⊕ p is a Cartan decomposition of a real
+semisimple Lie algebra corresponding to a maximal compact subgroup K, and suppose
+a ⊂ p is a maximal R-diagonalizable subalgebra. Then the orthogonal projection (under
+the Killing form) onto a of any orbit of K acting on p is the convex hull of an orbit of
+the Weyl group.
+
+In our example, the orthogonal projection is the map that sets the off-diagonal entries
+of a trace-zero symmetric matrix to zero, so we deduce the following result [30]. (The
+trace-zero assumption below is easily dispensable.)
+
+Corollary 5.2 (Horn, 1954). The diagonals of all symmetric matrices similar to a given
+trace-zero symmetric matrix X form a polytope. This polytope is the convex hull of all
+vectors with entries permutations of the eigenvalues of X.
+
+    What is the connection with the characterizations of von Neumann and Davis (The-
+orems 1.1 and 3.1)? One appealing way to restate the Davis characterization is that
+a spectral function is convex if and only if its restriction to the subspace of diagonal
+162                                                                               A.S. Lewis
+
+
+matrices is convex. In this form, it is not hard to deduce the characterization from Horn’s
+result. Von Neumann’s characterization has an analogous restatement: a unitarily invari-
+ant function on Mn is a norm if and only if its restriction to the Euclidean subspace of
+real diagonal matrices, Dn , is a norm. Using Kostant’s theorem, we obtain the following
+broad unification [40].
+
+Corollary 5.3 (invariant convex functions). In the framework of Kostant’s theorem, a
+K-invariant function h : p → R is convex if and only if its restriction to the subspace a
+is convex.
+
+Von Neumann’s characterization follows by considering the standard Cartan decompo-
+sition of the Lie algebra su(p, q) instead of sl(n, R).
+     Given the results of Ben-Tal and Nemirovski on semidefinite representability (The-
+orem 3.2 and the subsequent comment), the following conjecture seems promising.
+
+Conjecture 5.4 (semidefinite representability of invariant functions). With the frame-
+work of Kostant’s theorem, a K-invariant function h : p → R is semidefinite-represent-
+able if and only if h|a is semidefinite-representable.
+
+     So far in this section, the rather sophisticated algebraic framework has succeeded
+in paralleling the characterizations of von Neumann and Davis, results also captured by
+the much more spartan framework of hyperbolic polynomials sketched in the previous
+section. In apparent contrast with the latter framework, however, semisimple Lie theory
+is rich in duality theory, allowing us to imitate von Neumann’s entire development. An
+analogous development for Euclidean Jordan algebras appeared recently in [48].
+     Consider von Neumann’s beautiful duality formula (1), for example. An equivalent
+statement is that any unitarily invariant norm  ·  on Mn satisfies
+                                                   
+                                                       
+                                    ·  n =  · ∗  n ,
+                                      D   ∗             D
+
+or in words, “the dual of the restriction is the restriction of the dual”. For inhomogeneous
+convex functions f on a Euclidean space, the Fenchel conjugate function
+                              f ∗ (y) = sup{ x, y − f (x)}
+                                          x
+
+replaces the dual norm as the key duality tool [56]. An analogous result to von Neu-
+mann’s holds for the Fenchel dual of a spectral function [36], and the two can be broadly
+unified by the following result [40], using Kostant’s theory.
+
+Theorem 5.5 (conjugates of invariant functions). In the framework of Kostant’s the-
+orem, any K-invariant function h : p → R satisfies (h|a)∗ = h∗ |a.
+
+   Our algebraic framework also nicely covers subdifferential formulas like (4) and its
+analogue for spectral functions [36]:
+      ∂(f ◦ λ)(X) = {U (Diag y)U T : U ∈ On , y ∈ ∂f (x), X = U (Diag x)U T }           (5)
+for any symmetric convex function f : Rn → R. The following result [40] again unifies
+the two threads.
+The mathematics of eigenvalue optimization                                             163
+
+
+Theorem 5.6 (subdifferentials of invariant functions). In the framework of Kostant’s
+theorem, a K-invariant convex function h : p → R at a point x ∈ p has subdifferential
+               ∂h(x) = {k · v : k ∈ K, u, v ∈ a, x = k · u, v ∈ ∂h|a(u)}.
+     Summarizing the general direction of these results, we see that the interesting con-
+vex-analytic properties of an invariant function on the “large” underlying space p lift
+precisely from the corresponding properties on the “small” subspace a. These kind of
+“lifting” results are reminiscent of another famous piece of classical Lie theory, the
+Chevalley restriction theorem.
+Theorem 5.7 (Chevalley). With the framework of Kostant’s theorem, any K-invariant
+function h : p → R is a polynomial of degree k if and only if the restriction h|a is a
+polynomial of degree k.
+For example, the spectral polynomials of degree k are exactly the degree-k symmetric
+polynomials of the eigenvalues. (In fact, the Chevalley result states more: the restriction
+map h → h|a is an isomorphism of algebras.)
+    The Chevalley restriction theorem is an example of how smoothness lifts to the space
+p from the subspace a. Analogues exist for C (∞) and analytic functions—see [19]. At
+the opposite extreme, at least for spectral functions, we have the following result (see
+[37, 46]).
+Theorem 5.8 (lifting smoothness). Consider an open symmetric set  ⊂ Rn and a
+symmetric function f :  → R. Then, on the space Sn , the function f ◦ λ is C (1) (or
+respectively C (2) ) if and only if f is C (1) (or respectively C (2) ).
+(A set is symmetric if it is invariant under coordinate permutations.) We can even write
+down straightforward formulas for the first and second derivatives of f ◦ λ in terms of
+those for f . This pattern suggests several natural conjectures. Does the analogous result
+hold for C (k) functions with k ≥ 3? Do these results hold in our Lie-theoretic framework
+above? What about for symmetric functions of the characteristic roots of a hyperbolic
+polynomial? (It is not too hard to show that differentiability does lift in the hyperbolic
+polynomial setting.)
+     One reason for studying C (3) functions in optimization is as a helpful framework
+for investigating self-concordance.   For example, the symmetric function f : R++ n →R
+                         
+defined by f (x) = − i ln(xi ) is a self-concordant barrier with parameter n, and so
+is f ◦ λ ≡ − ln det. Does self-concordance always lift in this manner [62]? A simple
+example supporting such a conjecture (and specializing a somewhat more general result)
+is the following [51]: if f : (−1, 1) → R is a self-concordant barrier with parameter k,
+then so is the function f ( · 2 ).
+
+                     PART III: SOME VARIATIONAL ANALYSIS
+
+6. Nonsmooth optimization
+
+We have seen how classical optimization theory—the variational analysis of smooth
+or convex functions—applies well to spectral functions of symmetric matrices. In par-
+ticular, derivatives or subdifferentials are easy to calculate in terms of the underlying
+164                                                                               A.S. Lewis
+
+
+symmetric function. Over the last thirty years, great progress has been made in our
+understanding of optimization problems that are neither smooth nor convex, driven by
+Clarke, Ioffe, Mordukhovich, Rockafellar and others. In this part, we apply this powerful
+theory to eigenvalue perturbation analysis and to the stability of polynomials.
+   We begin in this section with a quick summary of the relevant variational analysis.
+The two texts [18] and [57] are excellent general sources.
+    In this section we fix a Euclidean space E. We call a vector z ∈ E a regular subgra-
+dient of a function f : E → R at a vector x ∈ E if f (x) is finite and
+                  f (y) − f (x) ≥ z, y − x + o(|y − x|) as y → x;
+                             ˆ (x) is the set of such z. This notion is a one-sided version
+the regular subdifferential ∂f
+of the classical gradient, as well as correlating with the classical subdifferential of a
+convex function. We next define “limiting” subgradients by “closing” the regular sub-
+differential mapping ∂fˆ . Specifically, we call z a subgradient of f at x if there exists a
+sequence of vectors xr → x and a sequence of regular subgradients yr ∈ ∂f      ˆ (xr ) such
+that f (xr ) → f (x) and yr → y; the subdifferential ∂f (x) is the set of such z.
+     An attractive feature of variational analysis is that we can study a set S ⊂ E via
+its indicator function δS , which takes the value 0 on S and +∞ outside S. The regular
+                                                        ˆ S (x), and the normal cone NS (x)
+normal cone N̂S (x) is just the regular subdifferential ∂δ
+is the subdifferential ∂δS (x). We call S (Clarke) regular at x ∈ S if S is locally closed
+at x and the normal and regular normal cones agree. Two examples are worth keeping in
+mind. First, a closed convex set S is regular at any element x ∈ S, and NS (x) is then just
+the usual normal cone in the sense of convex analysis. Secondly, if the set M ⊂ E is
+a manifold, which for our purposes just means M can be expressed locally around any
+element as the zero set of some C (2) functions with linearly independent gradients, then
+NM (·) is just the usual normal space in the sense of elementary differential geometry.
+     We call a function f : E → R (subdifferentially) regular at x ∈ E if f (x) is finite
+and the epigraph of f is regular at the point (x, f (x)): in this case, every subgradient
+is regular (∂f (x) = ∂fˆ (x)). In particular, convex functions are regular at every point
+where they take finite value, the subdifferential agreeing with the same notion from
+convex analysis. The subdifferential of a C (1) function just consists of the gradient.
+     The most basic nontrivial result of differential calculus is the mean value theorem,
+and variational analysis provides a useful generalization for nonsmooth functions (see
+for example [57]).
+Theorem 6.1 (mean value). If the function h : E → R is locally Lipschitz on an open
+convex set containing the line segment [x, y] ⊂ E, then there exists a point w ∈ [x, y] and
+a subgradient z ∈ ∂h(w)∪−∂(−h)(w) satisfying the equation h(y)−h(x) = z, y − x .
+   Crucial to the uses of differential calculus on all but the simplest of functions is the
+chain rule. From several nonsmooth generalizations, we need the following one for our
+development.
+Theorem 6.2 (chain rule). Suppose the function  : Rm → E is C (1) at the point
+v ∈ Rm , the set S ⊂ E is regular at the point (v), and the condition NS ((v)) ∩
+ker(∇(v))∗ = {0} holds. Then the inverse image
+                            −1 (S) = {u ∈ Rm : (u) ∈ S}
+The mathematics of eigenvalue optimization                                              165
+
+
+is regular at the point v, with normal cone given by
+
+                              N−1 (S) (v) = (∇(v))∗ NS ((v)).
+
+     We end this section with some less standard material. From a variational perspective,
+much of the fascinating behaviour of eigenvalues (and indeed many other concrete func-
+tions) arises from a delicate interplay between smooth and nonsmooth properties. For
+the purposes of sensitivity analysis, this interplay is well captured by the idea of partial
+smoothness [42]. A set S ⊂ E is partly smooth relative to an active manifold M ⊂ S
+if, as the point x varies in M, the set S is always regular at x with normal cone NS (x)
+varying continuously and spanning NM (x). The continuity of NS (·) on M amounts
+to the condition that for any convergent sequence in M, say xr → x, and any normal
+vector y ∈ NS (x), there exists a sequence of normal vectors yr ∈ NS (xr ) satisfying
+yr → y. The “spanning” condition ensures a kind of “sharpness” of the set S around
+the manifold M. The following result, essentially due to [54], provides a nice example.
+
+Theorem 6.3 (partial smoothness of semidefinite cone). Given any nonnegative inte-
+gers k ≤ n ≥ 1, the semidefinite cone Sn+ is partly smooth relative to the subset of
+matrices of rank k.
+
+    Partial smoothness captures much of the essence of active set ideas in optimization.
+Under reasonable conditions, for example, if the optimal solution to a smooth minimi-
+zation problem over a partly smooth feasible region lies on the active manifold, then the
+solution will remain on the manifold under small perturbations to the problem. Many
+operations on sets preserve partial smoothness. For example, an exact analogue of the
+chain rule (Theorem 6.2) describes how taking inverse images preserves partial smooth-
+ness [42]. This result, in combination with the partial smoothness of the semidefinite
+cone, explains why the rank of an optimal solution of a semidefinite program is typically
+stable under small perturbations to the problem.
+
+
+7. Eigenvalue perturbation theory
+
+At the heart of the perturbation theory of symmetric matrices stands the following result
+[47].
+
+Theorem 7.1 (Lidskii, 1950). For any given matrices X, Y ∈ Sn , the vector λ(Y )−λ(X)
+lies in the convex hull of the set {P λ(Y − X) : P ∈ Pn }.
+
+This result and its various proofs, for example, form the unifying theme of the book [5].
+   Via a separating hyperplane, we arrive at the equivalent version
+
+                    wT (λ(Y ) − λ(X)) ≤ w̄ T λ(Y − X) for all w ∈ Rn ,
+
+where w̄ ∈ Rn has the same components as w, arranged in decreasing order. In this
+form, it becomes tempting to apply the nonsmooth mean value result (Theorem 6.1) to
+the function wT λ(·), but this function is not convex, so we first need a formula like (5)
+for nonconvex spectral functions. Happily, the formula extends unchanged [39].
+166                                                                               A.S. Lewis
+
+
+Theorem 7.2 (subdifferentials of spectral functions). For any symmetric function f :
+Rn → R and any matrix X ∈ Sn , we have
+                                                                         
+      ∂(f ◦ λ)(X) = U (Diag y)U T : U ∈ On , y ∈ ∂f (x), X = U (Diag x)U T .
+
+The corresponding result for the regular subdifferential also holds. The function f ◦ λ
+is regular at X if and only if f is regular at λ(X).
+
+By applying this result to the symmetric function f (x) = wT x̄, Lidskii’s theorem
+quickly follows [38].
+    To what extent does Lidskii’s theorem extend to the frameworks of Section 4 (Hyper-
+bolic polynomials) and Section 5 (Duality, smoothness, and Lie theory)? Theorem 5.6
+(subdifferentials of invariant functions) does indeed extend at least to nonconvex, locally
+Lipschitz functions, and this suffices to generalize Lidskii’s theorem to the Lie-theoretic
+framework of Section 5 [59], since the function x → w T x̄ is indeed locally Lipschitz.
+This result, originally due to Berezin and Gel’fand [4], in fact predated Lidskii’s publi-
+cation of his special case [5].
+    This leaves two outstanding questions. First, a full unification of our characteriza-
+tions of subdifferentials, Theorems 7.2 and 5.6, seems an obvious conjecture. Secondly,
+does a version of Lidskii’s theorem hold for the characteristic roots of a hyperbolic poly-
+nomial? Weaker results do hold: for example, in the notation of Section 4 (Hyperbolic
+polynomials), we have the following result of Lax [34]:
+
+                          λ(y − x) ≥ 0 ⇒ λ(y) − λ(x) ≥ 0.
+
+
+8. Stable polynomials
+
+Eigenvalues of matrices are intimately related to zeros of polynomials, via the idea of
+the the characteristic polynomial. Before moving towards eigenvalue optimization for
+nonsymmetric matrices in the last part of this paper, we therefore pause to consider
+variational properties for functions of the zeros of polynomials.
+     First let us fix some notation. Denote the space of complex polynomials of degree no
+more than n by P n . The natural basis elements for P n are the polynomials ek defined by
+ek (z) = zk for k = 0, 1, . . . , n (together with iek ), and we can view P n as a Euclidean
+space if we define this basis as orthonormal. Finally, define the stable monic set by
+
+                   Pstn = {p ∈ P n : zn+1 + p(z) = 0 ⇒ Re z ≤ 0}.
+
+   The stable monic set Pstn is closed, because the set of zeros of a monic polyno-
+mial behave continuously. Surprisingly, however, the good behaviour of this set is more
+dramatic, from a variational perspective. Fundamentally, this good behaviour is a con-
+sequence of central results in [16], encapsulated in the following result.
+
+Theorem 8.1 (Burke-Overton, 2001). The stable monic set Pstn is everywhere regular.
+The mathematics of eigenvalue optimization                                               167
+
+
+    Proving this result in the style of [16] requires calculating the normal cone at an
+arbitrary element of Pstn . This calculation is rather involved, needing a systematic frame-
+work for breaking polynomials into factors (the “local factorization lemma” [16, Lem.
+1.4]), as well as the following fundamental calculation of the normal cone to the stable
+monic set at zero:
+                                n
+                                 
+                  NPstn (0) =        µk ek : 0 ≥ µn ∈ R, Re µn−1 ≤ 0 .                    (6)
+                                  k=0
+
+Some of the intricacies of the original approach are eased by an inductive use of the
+following famous result about polynomials (for which a good reference is [50]).
+
+Theorem 8.2 (Gauss-Lucas, 1830). All critical points of a nonconstant polynomial lie
+in the convex hull of the set of zeros of the polynomial.
+
+(See [14] for this approach.)
+    Clarke regularity is in fact just the first part of a powerful structural analysis of the
+stable monic set. Given any list of natural numbers L, let PL n denote the set of polynomi-
+
+als p ∈ P for which the purely imaginary zeros of the monic polynomial zn+1 + p(z),
+          n
+
+when listed in order of decreasing imaginary part, have multiplicities given by the list L.
+One can check that PL  n is a manifold, and in fact we arrive at the following result (cf.
+
+[42, Ex. 3.7]).
+
+Theorem 8.3 (partial smoothness of stable monics). For any list L, the stable monic
+set Pstn is partly smooth relative to the subset Pstn ∩ PL
+                                                         n.
+
+
+In words, the set of stable monics is partly smooth relative to any subset of those mon-
+ics having imaginary zeros with some fixed pattern of multiplicities. Using this result,
+we could now apply the partly smooth analogue of the chain rule (Theorem 6.2) to
+investigate stability problems of the form
+
+                               inf{cT u : u ∈ Rm , (u) ∈ Pstn },
+
+for some given cost vector c ∈ Rm and smooth map  : Rm → P n . Partial smooth-
+ness guarantees that the pattern of multiplicities of the imaginary zeros of (u) for the
+optimal u typically persists under small perturbations to the problem.
+    Suppose, instead of the stable monic set, we are interested in the power-stable
+monics:
+                   Ppst
+                     n
+                        = {q ∈ P n : zn+1 + q(z) = 0 ⇒ |z| ≤ 1}.                      (7)
+A nice application of the chain rule allows us to use our existing analysis of the stable
+monic set to deduce corresponding results for the power-stable case.
+    To see how to accomplish this, we first make a small technical restriction, easy to
+circumvent later: we define a dense open subset of the space P n by
+
+                                P̂ n = {q ∈ P n : 1 + q(1) = 0},
+                                                                                     n =
+and in place of the set of all power-stable monics, we consider instead the subset P̂pst
+P̂ n ∩Ppst
+       n . Now notice that the transformation of the complex plane w → (w+1)/(w−1)
+168                                                                                  A.S. Lewis
+
+
+maps the open right halfplane (minus the point 1) onto the complement of the closed
+unit disk. Hence a polynomial q ∈ P̂ n lies in Ppst
+                                                n if and only if
+
+
+                                     n+1
+                            w+1                  w+1
+             w = 1 and                    +q             = 0 ⇒ Re w ≤ 0.
+                            w−1                  w−1
+
+To capture this property using the chain rule, define a map  : P̂ n → P n by
+
+                  1                                         w+1
+ (q)(w) =              (w + 1)n+1 + (w − 1)n+1 q                      − w n+1 , for w = 1
+               1 + q(1)                                     w−1
+
+(extended by continuity at w = 1). Then we have
+
+      P̂pst
+        n
+            = {q ∈ P̂ n : wn+1 + (q)(w) = 0 ⇒ Re w ≤ 0} = −1 (Pstn ).
+
+Elementary calculations show the map  is smooth, with everywhere invertible Jaco-
+bian, so the chain rule (Theorem 6.2) now demonstrates that the power-stable monic
+set P̂pst
+      n is everywhere Clarke regular. We could, in principle, compute the normal cone
+
+using formulas for the normal cone to the stable monic set.
+    The power of Burke and Overton’s concise observation that the stable monic set
+is everywhere Clarke regular (Theorem 8.1) suggests at least two lines of questions.
+First, the elegance of the result is not matched by existing proofs: even with the use of
+the Gauss-Lucas theorem, extended elementary calculations seem necessary. Is there,
+perhaps, a broader framework in which the fact of regularity is more transparent? Sec-
+ondly, are more powerful results true? For example, prox-regularity of sets is a stronger
+property than Clarke regularity, in particular implying the existence of single-valued
+projections onto the set from points nearby. Is the stable monic set prox-regular?
+
+
+            PART IV: STABILITY OF NONSYMMETRIC MATRICES
+
+9. Stable matrices
+
+Eigenvalues of nonsymmetric matrices show much more unruly behaviour than those of
+symmetric matrices. Lidskii’s theorem (7.1) shows the eigenvalue map for symmetric
+matrices λ : Sn → Rn is Lipschitz, and Davis’s theorem (3.1)demonstrates
+                                                                                   its elegant
+convexity properties. By contrast, the eigenvalues of the matrix 10 0t , for example, are not
+Lipschitz in the variable t. Furthermore, unlike in the symmetric case, the set of complex
+n-by-n stable matrices Mstn , by which we mean (in not entirely standard fashion) those
+matrices having no eigenvalues
+                              in2 the
+                                       open right halfplane, is not convex.  −1For2 example,
+                                                                                      
+both the matrices 00 02 and −2   2 −2 are stable, whereas their midpoint 1 −1 is not.
+    Nonetheless, the set of stable matrices Mstn has some attractive properties from a
+variational perspective. It is certainly closed, because the set of eigenvalues of a matrix
+behaves continuously. In this section we follow Burke and Overton’s generalization of
+their result on the regularity of the stable monic set Pstn (Theorem 8.1) to a more inter-
+esting result about Mstn . The matrix case really is more general, because the zeros of
+The mathematics of eigenvalue optimization                                               169
+
+                            
+the monic polynomial en − n−1          j
+                              j =1 aj e are exactly the eigenvalues of the companion
+matrix
+                                                                       
+           an−1 0 · · · 0                                     0 1 0 ··· 0
+          an−2 0 · · · 0                                  0 0 1 ··· 0
+                                                                       
+          .. .. . . ..  + J, for the Jordan block J =  .. .. .. . . ..  .
+          . . . .                                         . . . . .
+            a0 0 · · · 0                                      0 0 0 ··· 0
+Matrices are also the more interesting case, because of their more immediate model-
+ing powers: A ∈ Mstn exactly when trajectories of the dynamical system ẋ = Ax have
+exponential growth.
+     For nonsymmetric matrices, the algebraic multiplicity of an eigenvalue (its multiplic-
+ity as a zero of the characteristic polynomial) may differ from its geometric multiplicity
+(the dimension of the corresponding eigenspace). Indeed, eigenvalues “typically” have
+geometric multiplicity one, in which case we call them nonderogatory. This observation
+is made precise by the following result from celebrated work of Arnold [1].
+Theorem 9.1 (Arnold, 1971). The space of square matrices Mn stratifies into manifolds
+corresponding to fixed Jordan structure. Among those manifolds corresponding to a fixed
+Jordan structure for all but one particular eigenvalue, the manifold corresponding to
+that eigenvalue being nonderogatory has strictly largest dimension.
+   The following remarkable result shows that, like the stable monic set, the set of stable
+matrices is surprisingly well-behaved near typical elements [15].
+Theorem 9.2 (Burke-Overton, 2001). The set of stable matrices Mstn is regular at a
+particular matrix exactly when each imaginary eigenvalue of the matrix is nonderoga-
+tory.
+The more powerful part of this result, that nonderogatory imaginary eigenvalues implies
+regularity, was originally proved using further work of Arnold discussed below. Before
+returning to this approach, consider first an attack very much in the spirit of this article,
+using the results on polynomials from the previous section and the chain rule. To make
+life simple, we consider the result for a nonderogatory matrix (a matrix all of whose
+eigenvalues are nonderogatory).
+    We consider first the map  : Mn → P n−1 defined via the characteristic polynomial:
+                           (X)(z) = det(zI − X) − zn (z ∈ C).                           (8)
+Assuming the matrix X is nonderogatory, the local factorization lemma [16, Lem. 1.4]
+shows that the Jacobian map ∇(X) is surjective. But the set of stable matrices Mstn is just
+the inverse image −1 (Pstn−1 ), and regularity now follows by the chain rule (Theorem
+6.2).
+    The chain rule also gives a formula for the normal cone at the matrix X. For example,
+from formula (6) we can deduce the normal cone at the Jordan block J :
+                                                                    
+                                 n                                 
+                  NMstn (J ) =       θj (J j )∗ : θ0 ∈ R+ , Re θ1 ≥ 0 .                  (9)
+                                                                    
+                                     j =0
+170                                                                                    A.S. Lewis
+
+
+Burke and Overton’s work [15] leads to an analogous formula for the normal cone at
+any stable matrix having all its imaginary eigenvalues nonderogatory. They also present
+some theory for the general case, although a complete result remains an open question.
+    In a similar vein, the partly smooth analogue of the chain rule [42] allows us to deduce
+from Theorem 8.3 (partial smoothness of stable monics) that Mstn is partly smooth, at
+least in the nonderogatory case. The complete result is as follows [42]. By analogy with
+Section 8 (Stable polynomials), given a list of natural numbers L, let ML    n denote the set
+                   n
+of matrices in M all of whose purely imaginary eigenvalues are nonderogatory, and,
+when listed in order of decreasing imaginary part, have multiplicities given by the list L.
+Arnold’s results show ML    n is a manifold.
+
+Theorem 9.3 (partial smoothness of stable matrices). For any list L, the set of stable
+matrices Mstn is partly smooth relative to the subset Mstn ∩ ML
+                                                              n.
+
+      Solutions of “semistable programming” problems of the form
+                             inf{f (u) : u ∈ Rm , (u) ∈ Mstn },
+for some smooth cost function f : Rm → R and smooth constraint map  : Rm → Mn ,
+have an interesting structural stability property. Specifically, for a typical critical point ū,
+the Jordan structure of the matrix (ū) persists under small perturbations to the problem
+[10, 42]. The reason, fundamentally, is Theorem 9.3.
+    The original approaches to Burke and Overton’s characterization of regular points
+in the set of stable matrices (Theorem 9.2) and to the partial smoothness of this set
+(Theorem 9.3) depended much more explicitly on Arnold’s results [1]. A very special
+case suffices to illustrate the essential idea.
+    Consider the orbit of the Jordan block J ∈ Mn under similarity transformations:
+                             {P J P −1 : P ∈ Mn is invertible}.
+The core of Arnold’s technique is the following result.
+Lemma 9.4 (Arnold, 1971). The orbit of the Jordan block J ∈ Mn under similar-
+ity transformations is a manifold with normal space N at J spanned by the matrices
+I, J ∗ , (J 2 )∗ , . . . , (J n−1 )∗ . Any matrix X ∈ Mn close to J is similar to a unique matrix
+in J + N , depending smoothly on X.
+Building on this idea, Arnold was able to construct on a neighbourhood of any matrix,
+canonical forms that, unlike the Jordan form, vary smoothly. Applying his results in the
+simple special case of nonderogatory matrices gives the tools we need for this section,
+the form of formula (9) being an obvious example.
+     “Power-stable” matrices are also of great interest: if we define the set of matrices
+  n ⊂ Mn to consist of those matrices with all eigenvalues in the closed unit disk,
+Mpst
+then A ∈ Mpst n exactly when the iteration x
+                                                k+1 = Axk exhibits exponential growth. By
+analogy with Burke and Overton’s characterization of regularity for the stable matrices
+Mstn , it turns out that the set Mpst
+                                  n is regular at any element all of whose eigenvalues of
+
+modulus one are nonderogatory, and for example,
+                                                                         
+                                    n                                   
+                     n (I + J ) =
+                 NMpst                  θj (J j )∗ : θ0 ∈ R+ , Re θ1 ≥ −θ0 .
+                                                                         
+                                    j =0
+The mathematics of eigenvalue optimization                                                171
+
+
+Two approaches suggest themselves, again in the spirit of this article, the first applying
+the chain rule (Theorem 6.2) to the inverse image −1 (Ppst
+                                                          n ), where  is the character-
+
+istic polynomial map (8) and Ppst is the set of power-stable monics (7).
+                                n
+
+     The second, more direct, matrix-based approach works by analogy with Section 8
+(Stable polynomials). For technical reasons, we first consider the subset
+
+                             M1n = {W ∈ Mn : W − I invertible},
+
+and define a map  : M1n → Mn by (W ) = (W −I )−1 (W +I ). For a matrix W ∈ M1n
+it is easy to check W ∈ Mpst
+                          n if and only if (W ) ∈ Mn , so again we can apply the
+                                                    st
+chain rule.
+
+
+10. Robust stability
+
+In the previous section we remarked that a matrix A ∈ Mn has an eigenvalue outside
+the closed unit disk exactly when the iteration xk+1 = Axk exhibits exponential growth.
+These equivalent properties can also be checked via semidefinite programming, using
+the following well-known result. The original, continuous-time case is due to Lyapunov
+[49]. As usual,  ·  denotes the operator two-norm on Mn (which is exactly the largest
+singular value σ1 (·)). For two matrices G and H in the space Hn of n-by-n Hermitian
+matrices, we write H  G to mean H − G is positive definite.
+
+Theorem 10.1 (Lyapunov, 1893). For any matrix A ∈ Mn , the following properties
+are equivalent:
+  (i) All eigenvalues of A lie in the open unit disk;
+ (ii) Ak  → 0 exponentially as k → ∞;
+(iii) There exists a matrix H  0 in Hn such that H  A∗ H A.
+
+    Attractively simple as it is, this result is often deceptive for two reasons, which, as we
+see in the next result, are related. The first difficulty is one of robustness : as we saw in
+the last section, the dependence of the eigenvalues on A is not Lipschitz. Consequently,
+when a stable matrix A is close to a matrix with a multiple eigenvalue, unexpectedly
+small perturbations to A can destroy stability. Secondly, there is the difficulty of tran-
+sient growth : even if Ak  → 0 asymptotically, intermediate values of Ak  may be
+very large [60, 61].
+    These difficulties can be quantified by the following classical result in numerical
+analysis [33]. We need some more notation. First, consider the Lyapunov condition
+factor for a matrix A ∈ Mn , defined by
+                                                                                 
+           L(A) = inf γ > 1 : γ I  H  γ −1 I, H  A∗ H A, H ∈ Hn .
+
+Condition (iii) in Lyapunov’s theorem above says exactly that L(A) is finite. We compare
+this condition factor with the power bound
+
+                              P (A) = sup{Ak  : k = 1, 2, . . .},
+172                                                                              A.S. Lewis
+
+
+as well as with a third quantity defined in terms of pseudospectra [24]. For real     ≥ 0,
+the -pseudospectrum of A is the set
+
+                (A) = {z ∈ C : X − zI singular, X ∈ Mn , X − A ≤ }
+                    = {z ∈ C : σn (A − zI ) ≤ }.
+
+Thus the -pseudospectrum of A consists of all eigenvalues of matrices within a distance
+  of A, and in particular, 0 (A) is just the spectrum of A. The third quantity we consider
+is the Kreiss constant
+                                                                  
+                                      |z| − 1
+                      K(A) = sup               : > 0, z ∈ (A) ,
+
+which is a bound on the linear rate at which the -pseudospectrum bulges outside the
+unit disk, as a function of . This supremum in fact occurs for bounded : for matrices
+with eigenvalues close to the unit circle, the growth in the -pseudospectrum for small
+  > 0 is the key phenomenon.
+
+Theorem 10.2 (Kreiss, 1962). Over any set of matrices in Mn , the Kreiss constant
+K, the power bound P , and the Lyapunov condition factor L are either all uniformly
+bounded above or all unbounded.
+
+    Results parallel to Theorems 10.1 and 10.2 hold for the continuous-time version. In
+that case we are interested in bounding etA  (t ≥ 0), the left halfplane takes the place
+of the unit disk, and the Lyapunov inequality becomes H  0, 0  A∗ H + H A. The
+relevant pseudospectral quantity is −1 Re z (z ∈ (A)).
+    Kreiss’s original work included inequalities relating the three functions K, P and
+L. These inequalities have gradually improved in subsequent work, culminating in the
+following tight result [58]
+
+Theorem 10.3 (Spijker, 1991). On the space Mn , the Kreiss constant K and the power
+bound P are related by the inequality K ≤ P ≤ enK.
+
+    Let us return to the continuous-time case, where we are interested in the dynamical
+system ẋ = Ax. Trajectories of this system all converge to the origin exponentially if
+and only if the spectral abscissa
+
+                                 α(A) = max Re      0 (A)
+
+is strictly negative. But as we observed at the beginning of the section, this condition is
+not robust: even if it holds, the pseudospectral abscissa
+
+                                α (A) = max Re        (A)
+
+may be positive for small > 0. In other words, nearby matrices may not be stable, and
+relatedly (via the continuous-time version of the Kreiss matrix theorem), trajectories of
+ẋ = Ax may have large transient peaks.
+    This argument suggests the pseudospectral abscissa α (for some small > 0) is a
+better measure of system decay than the spectral abscissa. It is closely related to two
+The mathematics of eigenvalue optimization                                             173
+
+
+other important quantities in robust control theory: for a stable matrix A, the complex
+stability radius [28] is
+
+                               β(A) = max{ ≥ 0 : α (A) ≤ 0},                          (10)
+
+which is just the distance to the set of matrices that are not stable, and the H∞ norm of
+the transfer function s → (sI − A)−1 , which is β(A)−1 (see for example [8]).
+    As well as its advantages in modeling, the pseudospectral abscissa α has compu-
+tational attractions. Regularizing the spectral abscissa in this way enhances convexity
+properties: in particular [12],
+
+                                          1
+                              lim α (A) − = λ1 (A + A∗ ),                             (11)
+                              →∞            2
+
+and the right hand side is a convex function of the matrix A. The pseudospectral abscissa
+also has better Lipschitz properties than the spectral abscissa, as the following result
+shows [12, 41].
+
+Theorem 10.4 (Lipschitzness of pseudospectral abscissa). Around any given non-
+derogatory matrix, the pseudospectral abscissa α is locally Lipschitz and subdifferen-
+tially regular for all small > 0.
+
+    The pseudospectral abscissa is surprisingly easy to calculate efficiently. An algorithm
+building on well-known methods for the H∞ norm [7, 9], using a test for imaginary
+eigenvalues of associated 2n-by-2n Hamiltonian matrices, turns out to be globally and
+quadratically convergent and effective in practice [13].
+    Control problems often involve a parametrized matrix A, and we wish to choose
+the parameters in order to enhance some stability aspect of the system ẋ = Ax. By
+minimizing the pseudospectral abscissa α for various choices of ≥ 0, we construct
+a range of options balancing asymptotic decay and the avoidance of transient growth:
+large amounts to a focus on initial growth (a consequence of equation (11)); some
+intermediate choice of corresponds to minimizing the H∞ norm (a consequence of
+equation (10)); = 0 focuses on asymptotic decay.
+    Semidefinite-programming-based techniques for optimizing robust stability, involv-
+ing variants of the Lyapunov inequality H  0 and 0  A∗ H +H A, may not be practical
+except for matrices A of low dimension due to the introduction of many subsidiary vari-
+ables (the entries of the Hermitian matrix H ). By contrast, as we remarked above, the
+pseudospectral abscissa is relatively easy to compute (along with subdifferential infor-
+mation), and local optimization is promising both in theory, in results like Theorem 10.4
+(Lipschitzness of pseudospectral abscissa), and in computational practice [11].
+    We end with one more open question. Suppose the spectral abscissa minimization
+problem inf F α has optimal solution some nonderogatory matrix X̄. If we instead con-
+sider the regularized problem inf F α , we generate corresponding optimal solutions X
+converging to X̄ as → 0. Is the pseudospectral abscissa α locally Lipschitz around
+X ? Theorem 10.4 shows the answer is yes when the feasible region F is a singleton,
+but in general the answer seems less clear.
+174                                                                                                 A.S. Lewis
+
+
+Acknowledgements. Many people have contributed to the viewpoints I have sketched. I would like to express
+my particular thanks to: Jon Borwein, for teaching me the power of convex and nonsmooth analysis; Michael
+Overton, for his constant encouragement on eigenvalue optimization; Jim Renegar, for his broad, level-headed
+enthusiasm for optimization theory; Jim Burke, Jean-Baptiste Hiriart-Urruty, Claude Lemaréchal and François
+Oustry, for helping convince me of the convergence of nonsmooth theory and practice; Levent Tunçel and
+Henry Wolkowicz, my colleagues at Waterloo, for their numerous insightful presentations on semidefinite
+programming; Stephen Boyd, Laurent El Ghaoui and Carsten Scherer, for encouraging me to delve into the
+control literature; Dragomir Djoković for his patient help with Lie theory; Nick Trefethen, for his advice on
+pseudospectra; Chris Godsil, for his insights on linear algebra and compact disks.
+
+
+
+References
+ 1. Arnold, V.I.: On matrices depending on parameters. Russian Math. Surveys 26, 29–43 (1971)
+ 2. Bauschke, H.H., Güler, O., Lewis, A.S., Sendov, H.S.: Hyperbolic polynomials and convex analysis.
+    Canadian J. Math. 53, 470–488 (2001)
+ 3. Ben-Tal, A., Nemirovski, A.: Lectures on Modern Convex Optimization: Analysis, Algorithms, and Engi-
+    neering Applications. SIAM, Philadelphia, 2001
+ 4. Berezin, F.A., Gel’fand, I.M.: Some remarks on the theory of spherical functions on symmetric Rieman-
+    nian manifolds. Tr. Mosk. Mat. Obshch. 5, 311–351 (1956); English translation in AMS Translations 21,
+    193–238 (1962)
+ 5. Bhatia, R.: Matrix Analysis. Springer, New York, 1997
+ 6. Borwein, J.M., Lewis, A.S.: Convex Analysis and Nonlinear Optimization. Springer-Verlag, New York,
+    2000
+ 7. Boyd, S., Balakrishnan, V.: A regularity result for the singular values of a transfer matrix and a quadrati-
+    cally convergent algorithm for computing its L∞ -norm. Syst. Control Lett. 15, 1–7 (1990)
+ 8. Boyd, S., El Ghaoui, L., Feron, E., Balakrishnan, V.: Linear Matrix Inequalities in System and Control
+    Theory. SIAM, Philadelphia, 1994
+ 9. Bruinsma, N.A., Steinbuch, M.: A fast algorithm to compute the H∞ -norm of a transfer function matrix.
+    Syst. Control Lett. 14, 287–293 (1990)
+10. Burke, J.V., Lewis, A.S., Overton, M.L.: Optimal stability and eigenvalue multiplicity. Found. Comput.
+    Math. 1, 205–225 (2001)
+11. Burke, J.V., Lewis, A.S., Overton, M.L.: A nonsmooth, nonconvex optimization approach to robust sta-
+    bilization by static output feedback and low-order controllers. Technical report, Courant Institute, 2003.
+    To appear, Proceedings of ROCOND’03, Milan.
+12. Burke, J.V., Lewis, A.S., Overton, M.L.: Optimization and pseudospectra, with applications to robust
+    stability. SIAM J. Matrix Anal. Appl. 25, 80–104 (2003)
+13. Burke, J.V., Lewis, A.S., Overton, M.L.: Robust stability and a criss-cross algorithm for pseudospectra.
+    IMA J. Numerical Anal. 23, 1–17 (2003)
+14. Burke, J.V., Lewis, A.S., Overton, M.L.: Variational analysis of the abscissa mapping for polynomials
+    and the Gauss-Lucas theorem. J. Global Optim., 2003, to appear
+15. Burke, J.V., Overton, M.L.: Variational analysis of non-Lipschitz spectral functions. Math. Programming
+    90, 317–352 (2001)
+16. Burke, J.V., Overton, M.L.: Variational analysis of the abscissa mapping for polynomials. SIAM J. Control
+    Optim. 39, 1651–1676 (2001)
+17. Chua, C.B.: Relating homogeneous cones and positive definite cones via T-algebras. Technical report,
+    Cornell University, 2003. Submitted to SIAM J. Optim.
+18. Clarke, F.H., Ledyaev, Yu.S., Stern, R.J., Wolenski, P.R.: Nonsmooth Analysis and Control Theory.
+    Springer-Verlag, New York, 1998
+19. Dadok, J.: On the C ∞ Chevalley’s theorem. Advances in Math. 44, 121–131 (1982)
+20. Davis, C.: All convex invariant functions of hermitian matrices. Arch. Math. 8, 276–278 (1957)
+21. Faybusovich, L.: On Nesterov’s approach to semi-infinite programming. Acta Applicandae Math. 74,
+    195–215 (2002)
+22. Gårding, L.: Linear hyperbolic differential equations with constant coefficients. Acta Math. 85, 2–62
+    (1951)
+23. Gårding, L.: An inequality for hyperbolic polynomials. J. Math. Mech. 8, 957–965 (1959)
+24. Pseudospectra Gateway. http://web.comlab.ox.ac.uk/projects/pseudospectra
+25. Güler, O.: Hyperbolic polynomials and interior point methods for convex programming. Math. Operations
+    Res. 22(2), 350–377 (1997)
+26. Hauser, R., Güler, O.: Self-scaled barrier functions on symmetric cones and their classification. Found.
+    Comput. Math. 2, 121–143 (2002)
+The mathematics of eigenvalue optimization                                                                 175
+
+
+27. Helton, J.W., Vinnikov, V.: Linear matrix inequality representation of sets. Technical report, Mathematics
+    Department, UCSD, 2002
+28. Hinrichsen, D., Pritchard, A.J.: Stability radii of linear systems. Syst. Control Lett. 7, 1–10 (1986)
+29. Hiriart-Urruty, J.-B., Lemaréchal, C.: Convex Analysis and Minimization Algorithms. Springer-Verlag,
+    Berlin, 1993
+30. Horn, R.A.: Doubly stochastic matrices and the diagonal of a rotation matrix. American J. Math. 76,
+    620–630 (1954)
+31. Jarre, F.: Convex analysis on symmetric matrices. In [66], 13–28
+32. Kostant, B.: On convexity, the Weyl group and the Iwasawa decomposition. Annales scientifiques de
+    l’Ecole Normale Supérieure 6, 413–455 (1973)
+33. Kreiss, H.O.: Uber die Stabilitätsdefinition für Differenzengleichungen die partielle Differenzialgleich-
+    ungen approximieren. BIT 2, 153–181 (1962)
+34. Lax, P.D.: Differential equations, difference equations and matrix theory. Commun. on Pure and Appl.
+    Math. 6, 175–194 (1958)
+35. Lewis, A.S.: The convex analysis of unitarily invariant matrix functions. J. Convex Anal. 2, 173–183
+    (1995)
+36. Lewis, A.S.: Convex analysis on the Hermitian matrices. SIAM J. Optim. 6, 164–177 (1996)
+37. Lewis, A.S.: Derivatives of spectral functions. Math. Operations Res. 6, 576–588 (1996)
+38. Lewis, A.S.: Lidskii’s theorem via nonsmooth analysis. SIAM J. Matrix Anal. Appl. 21, 379–381 (1999)
+39. Lewis, A.S.: Nonsmooth analysis of eigenvalues. Math. Programming 84, 1–24 (1999)
+40. Lewis, A.S.: Convex analysis on Cartan subspaces. Nonlinear Anal., Theo., Methods and Appl. 42, 813–
+    820 (2000)
+41. Lewis, A.S.: Robust regularization. Technical report, Simon Fraser University, 2002. Submitted to Math-
+    ematical Programming
+42. Lewis, A.S.: Active sets, nonsmoothness and sensitivity. SIAM J. Optim. 13, 702–725 (2003)
+43. Lewis, A.S., Overton, M.L.: Eigenvalue optimization. Acta Numerica 5, 149–190 (1996)
+44. Lewis,A.S., Parrilo, P., Ramana, M.: The Lax conjecture is true. Technical report, Simon Fraser University,
+    2003. Submitted to Proceedings of the American Mathematical Society
+45. Lewis, A.S., Sendov, H.S.: Self-concordant barriers for hyperbolic means. Math. Programming 91, 1–10
+    (2001)
+46. Lewis, A.S., Sendov, H.S.: Twice differentiable spectral functions. SIAM J. Matrix Anal. Appl. 23, 368–
+    386 (2001)
+47. Lidskii, V.I.: On the proper values of a sum and product of symmetric matrices. Dokl. Akad. Nauk. SSSR
+    75, 769–772 (1950)
+48. Lim, Y., Kim, J., Faybusovich, L.: Simultaneous diagonalization on simple Euclidean Jordan algebras
+    and its applications. Technical report, University of Notre Dame, 2003
+49. Lyapunov, A.M.: Problème général de la stabilité du mouvement. Number 17 in Annals of Mathematics
+    Studies. Princeton University Press, Princeton, N.J., 1947. Reprinted from Ann. Fac. Sci. Univ. Toulouse
+    2, 27–247, 1907, a French translation of a Russian original from 1893. English translation: The General
+    Problem of the Stability of Motion. Taylor and Francis, London, 1992
+50. Marden, M.: Geometry of Polynomials. American Mathematical Society, 1966
+51. Nemirovski, A.: 2000. Private communication
+52. Nesterov,Y.E., Nemirovskii, A.S.: Interior-Point Polynomial Algorithms in Convex Programming. SIAM,
+    Philadelphia, 1994
+53. Onishchik, A.L., Vinberg, E.B.: Lie Groups and Algebraic Groups. Springer-Verlag, Berlin, 1990
+54. Oustry, F.: A second-order bundle method to minimize the maximum eigenvalue function. Math. Pro-
+    gramming 89, 1–33 (2000)
+55. Renegar, J.: A Mathematical View of Interior-Point Methods in Convex Optimization. SIAM, Philadel-
+    phia, 2001
+56. Rockafellar, R.T.: Convex Analysis. Princeton University Press, Princeton, N.J., 1970
+57. Rockafellar, R.T., Wets, R.J.-B.: Variational Analysis, Springer, Berlin, 1998
+58. Spijker, M.N.: On a conjecture by Levesque and Trefethen related to the Kreiss matrix theorem. BIT 31,
+    551–555 (1991)
+59. Tam, T.-Y., Hill, W.C.: Derivatives of orbital functions, an extension of Berezin-Gel’fand’s theorem and
+    applications. Technical report, Auburn University, 2001
+60. Trefethen, L.N.: Pseudospectra of linear operators. SIAM Review 39, 383–406 (1997)
+61. Trefethen, L.N.: Computation of pseudospectra. Acta Numerica 8, 247–295 (1999)
+62. Tunçel, L.: 1995. Private communication.
+63. Vinnikov, V.: Self-adjoint determinantal representations of real plane curves. Math. Ann. 296, 453–479
+    (1993)
+64. von Neumann, J.: Some matrix inequalities and metrization of matric-space. Tomsk University Review,
+    1, 286–300 (1937); In: Collected Works, Pergamon, Oxford, 1962, Volume IV, 205–218
+176                                                A.S. Lewis: The mathematics of eigenvalue optimization
+
+
+65. Watson, G.A.: Characterization of the subdifferential of some matrix norms. Linear Algebra and its Appl.
+    170, 33–45 (1992)
+66. Wolkowicz, H., Saigal, R., Vandenberghe, L.: editors. Handbook of Semidefinite Programming: Theory,
+    Algorithms, and Applications. Kluwer, Boston, 2000
+67. Ziȩtak, K.: Subdifferentials, faces and dual matrices. Linear Algebra and its Appl. 185, 125–141 (1993)
+

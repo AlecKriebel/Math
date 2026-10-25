@@ -1,0 +1,172 @@
+166                                                                               A.S. Lewis
+
+
+Theorem 7.2 (subdifferentials of spectral functions). For any symmetric function f :
+Rn → R and any matrix X ∈ Sn , we have
+                                                                         
+      ∂(f ◦ λ)(X) = U (Diag y)U T : U ∈ On , y ∈ ∂f (x), X = U (Diag x)U T .
+
+The corresponding result for the regular subdifferential also holds. The function f ◦ λ
+is regular at X if and only if f is regular at λ(X).
+
+By applying this result to the symmetric function f (x) = wT x̄, Lidskii’s theorem
+quickly follows [38].
+    To what extent does Lidskii’s theorem extend to the frameworks of Section 4 (Hyper-
+bolic polynomials) and Section 5 (Duality, smoothness, and Lie theory)? Theorem 5.6
+(subdifferentials of invariant functions) does indeed extend at least to nonconvex, locally
+Lipschitz functions, and this suffices to generalize Lidskii’s theorem to the Lie-theoretic
+framework of Section 5 [59], since the function x → w T x̄ is indeed locally Lipschitz.
+This result, originally due to Berezin and Gel’fand [4], in fact predated Lidskii’s publi-
+cation of his special case [5].
+    This leaves two outstanding questions. First, a full unification of our characteriza-
+tions of subdifferentials, Theorems 7.2 and 5.6, seems an obvious conjecture. Secondly,
+does a version of Lidskii’s theorem hold for the characteristic roots of a hyperbolic poly-
+nomial? Weaker results do hold: for example, in the notation of Section 4 (Hyperbolic
+polynomials), we have the following result of Lax [34]:
+
+                          λ(y − x) ≥ 0 ⇒ λ(y) − λ(x) ≥ 0.
+
+
+8. Stable polynomials
+
+Eigenvalues of matrices are intimately related to zeros of polynomials, via the idea of
+the the characteristic polynomial. Before moving towards eigenvalue optimization for
+nonsymmetric matrices in the last part of this paper, we therefore pause to consider
+variational properties for functions of the zeros of polynomials.
+     First let us fix some notation. Denote the space of complex polynomials of degree no
+more than n by P n . The natural basis elements for P n are the polynomials ek defined by
+ek (z) = zk for k = 0, 1, . . . , n (together with iek ), and we can view P n as a Euclidean
+space if we define this basis as orthonormal. Finally, define the stable monic set by
+
+                   Pstn = {p ∈ P n : zn+1 + p(z) = 0 ⇒ Re z ≤ 0}.
+
+   The stable monic set Pstn is closed, because the set of zeros of a monic polyno-
+mial behave continuously. Surprisingly, however, the good behaviour of this set is more
+dramatic, from a variational perspective. Fundamentally, this good behaviour is a con-
+sequence of central results in [16], encapsulated in the following result.
+
+Theorem 8.1 (Burke-Overton, 2001). The stable monic set Pstn is everywhere regular.
+The mathematics of eigenvalue optimization                                               167
+
+
+    Proving this result in the style of [16] requires calculating the normal cone at an
+arbitrary element of Pstn . This calculation is rather involved, needing a systematic frame-
+work for breaking polynomials into factors (the “local factorization lemma” [16, Lem.
+1.4]), as well as the following fundamental calculation of the normal cone to the stable
+monic set at zero:
+                                n
+                                 
+                  NPstn (0) =        µk ek : 0 ≥ µn ∈ R, Re µn−1 ≤ 0 .                    (6)
+                                  k=0
+
+Some of the intricacies of the original approach are eased by an inductive use of the
+following famous result about polynomials (for which a good reference is [50]).
+
+Theorem 8.2 (Gauss-Lucas, 1830). All critical points of a nonconstant polynomial lie
+in the convex hull of the set of zeros of the polynomial.
+
+(See [14] for this approach.)
+    Clarke regularity is in fact just the first part of a powerful structural analysis of the
+stable monic set. Given any list of natural numbers L, let PL n denote the set of polynomi-
+
+als p ∈ P for which the purely imaginary zeros of the monic polynomial zn+1 + p(z),
+          n
+
+when listed in order of decreasing imaginary part, have multiplicities given by the list L.
+One can check that PL  n is a manifold, and in fact we arrive at the following result (cf.
+
+[42, Ex. 3.7]).
+
+Theorem 8.3 (partial smoothness of stable monics). For any list L, the stable monic
+set Pstn is partly smooth relative to the subset Pstn ∩ PL
+                                                         n.
+
+
+In words, the set of stable monics is partly smooth relative to any subset of those mon-
+ics having imaginary zeros with some fixed pattern of multiplicities. Using this result,
+we could now apply the partly smooth analogue of the chain rule (Theorem 6.2) to
+investigate stability problems of the form
+
+                               inf{cT u : u ∈ Rm , (u) ∈ Pstn },
+
+for some given cost vector c ∈ Rm and smooth map  : Rm → P n . Partial smooth-
+ness guarantees that the pattern of multiplicities of the imaginary zeros of (u) for the
+optimal u typically persists under small perturbations to the problem.
+    Suppose, instead of the stable monic set, we are interested in the power-stable
+monics:
+                   Ppst
+                     n
+                        = {q ∈ P n : zn+1 + q(z) = 0 ⇒ |z| ≤ 1}.                      (7)
+A nice application of the chain rule allows us to use our existing analysis of the stable
+monic set to deduce corresponding results for the power-stable case.
+    To see how to accomplish this, we first make a small technical restriction, easy to
+circumvent later: we define a dense open subset of the space P n by
+
+                                P̂ n = {q ∈ P n : 1 + q(1) = 0},
+                                                                                     n =
+and in place of the set of all power-stable monics, we consider instead the subset P̂pst
+P̂ n ∩Ppst
+       n . Now notice that the transformation of the complex plane w → (w+1)/(w−1)
+168                                                                                  A.S. Lewis
+
+
+maps the open right halfplane (minus the point 1) onto the complement of the closed
+unit disk. Hence a polynomial q ∈ P̂ n lies in Ppst
+                                                n if and only if
+
+
+                                     n+1
+                            w+1                  w+1
+             w = 1 and                    +q             = 0 ⇒ Re w ≤ 0.
+                            w−1                  w−1
+
+To capture this property using the chain rule, define a map  : P̂ n → P n by
+
+                  1                                         w+1
+ (q)(w) =              (w + 1)n+1 + (w − 1)n+1 q                      − w n+1 , for w = 1
+               1 + q(1)                                     w−1
+
+(extended by continuity at w = 1). Then we have
+
+      P̂pst
+        n
+            = {q ∈ P̂ n : wn+1 + (q)(w) = 0 ⇒ Re w ≤ 0} = −1 (Pstn ).
+
+Elementary calculations show the map  is smooth, with everywhere invertible Jaco-
+bian, so the chain rule (Theorem 6.2) now demonstrates that the power-stable monic
+set P̂pst
+      n is everywhere Clarke regular. We could, in principle, compute the normal cone
+
+using formulas for the normal cone to the stable monic set.
+    The power of Burke and Overton’s concise observation that the stable monic set
+is everywhere Clarke regular (Theorem 8.1) suggests at least two lines of questions.
+First, the elegance of the result is not matched by existing proofs: even with the use of
+the Gauss-Lucas theorem, extended elementary calculations seem necessary. Is there,
+perhaps, a broader framework in which the fact of regularity is more transparent? Sec-
+ondly, are more powerful results true? For example, prox-regularity of sets is a stronger
+property than Clarke regularity, in particular implying the existence of single-valued
+projections onto the set from points nearby. Is the stable monic set prox-regular?
+
+
+            PART IV: STABILITY OF NONSYMMETRIC MATRICES
+
+9. Stable matrices
+
+Eigenvalues of nonsymmetric matrices show much more unruly behaviour than those of
+symmetric matrices. Lidskii’s theorem (7.1) shows the eigenvalue map for symmetric
+matrices λ : Sn → Rn is Lipschitz, and Davis’s theorem (3.1)demonstrates
+                                                                                   its elegant
+convexity properties. By contrast, the eigenvalues of the matrix 10 0t , for example, are not
+Lipschitz in the variable t. Furthermore, unlike in the symmetric case, the set of complex
+n-by-n stable matrices Mstn , by which we mean (in not entirely standard fashion) those
+matrices having no eigenvalues
+                              in2 the
+                                       open right halfplane, is not convex.  −1For2 example,
+                                                                                      
+both the matrices 00 02 and −2   2 −2 are stable, whereas their midpoint 1 −1 is not.
+    Nonetheless, the set of stable matrices Mstn has some attractive properties from a
+variational perspective. It is certainly closed, because the set of eigenvalues of a matrix
+behaves continuously. In this section we follow Burke and Overton’s generalization of
+their result on the regularity of the stable monic set Pstn (Theorem 8.1) to a more inter-
+esting result about Mstn . The matrix case really is more general, because the zeros of
+

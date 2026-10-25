@@ -1,0 +1,84 @@
+# Source and scope review: Nonmonotone Argument and Radial Angle of a Support Slit
+
+Scope completed 2026-10-25 UTC by GPT-6.1 Sol, Ultra. This is source acquisition, identification and static scope analysis. It is not a mathematical PASS, a reproducibility run, a historical-priority clearance, or human peer review. No submitted mathematical program was executed. This report does not authorize publication or repair the archived source.
+
+## Exact reviewed edition and custody
+
+| Field | Verified value |
+| --- | --- |
+| Queue identity | Sheet row 74; inventory index 90; work `Z-23383960`; selected record `23383961` |
+| Title | Nonmonotone Argument and Radial Angle of a Support Slit |
+| Author | Alec Kriebel; ORCID https://orcid.org/0009-0001-9320-500X |
+| Version and date | 1.0; 14 October 2026 |
+| DOI | https://doi.org/10.5281/zenodo.23383961 |
+| Public record | https://zenodo.org/records/23383961 |
+| Resource status | Published Zenodo preprint; unrefereed and AI-assisted; no human peer review claimed |
+| License | CC BY 4.0 |
+| Reader | `sources/support_slit.pdf`, 5 pages, 92,949 bytes |
+| Reader SHA-256 | `a6d227d606fda3e68adc6db4eab462ee3f12b0544a201121b5c3a21aa5099e3d` |
+| Support | `sources/verification_package.zip`, 504,786 bytes |
+| Support SHA-256 | `58853fd56272184efe8232c58c356b1a669ba43032e3c4f35e4b17e317898f51` |
+
+The fresh public API response is byte-identical to the initial saved `record.json`: SHA-256 `9109f682be5c735d8e49a50aa1b332a1745308433ee50a887fd9e30e23dbc1e4`. Its record, title, date, version, publication status, two asset sizes and MD5 values match the frozen queue entry. The queue SHA-256 remains `3c5997f53f48026ebe0069bc5ca315eec2139fadb6aef173489b6c1b68c0a479`. `custody-revalidation.json` records these checks. No later version or related work was substituted.
+
+The archive has 255 regular outer members, of which 12 are hidden; no nested archive and no additional PDF reader. `archive-map.json` lists every member, including hidden members, with its exact path and hash. `reader-map.json` maps the sole five-page reader. ZIP CRC and all 259 files in the original source baseline were rechecked without altering them. Hash agreement establishes file identity and custody, not correctness of the mathematics or authenticity of an author's historical assessments.
+
+## Full original abstract
+
+The following is the complete abstract of the unchanged published reader, with mathematical typography normalized to Markdown. It records the author's claim, not this review's verdict.
+
+> We give negative answers to the two slit-monotonicity questions of P. L. Duren recorded as Problem 6.72 in Hayman–Lingham. Every global maximizer of the real part of \(a_2+i10^{-24}(a_4-3a_3)\) in the normalized schlicht class omits an arc with nonmonotone continuous argument and nonmonotone radial angle, under both signed and ordinary unsigned conventions. The proof uses classical support-point geometry, a quantitative area-theorem estimate for the actual slit tip, and controlled inversion of the Schiffer differential. It establishes actual extremizers by compactness and does not assume that an arbitrary trajectory is an extremal slit. No formula for the maximizing function or uniqueness is required. This is an unrefereed AI-assisted research note.
+
+## Exact mathematical scope and conventions
+
+The class is \(S=\{f\in H(\mathbb D):f\text{ injective},f(0)=0,f'(0)=1\}\), with locally uniform convergence. Write \(f(z)=z+\sum_{n\ge2}a_n(f)z^n\). A support point must maximize the real part of a continuous complex-linear functional whose real part is nonconstant on \(S\); a stationary function or a formal differential trajectory does not meet that definition.
+
+The claimed theorem sets \(\varepsilon=10^{-24}\), \(\eta=10^{-12}\), and \(L(f)=a_2(f)+i\varepsilon(a_4(f)-3a_3(f))\). It claims existence of a global maximizer and the stated failure for **every** global maximizer. It gives neither an explicit maximizing map nor uniqueness. The coefficient combination is degree four, not a statement about all coefficient functionals or all support slits.
+
+Argument is a continuous real-valued lift along the nonzero omitted arc. Adding a multiple of \(2\pi\) does not change monotonicity. “Monotone” permits either nondecreasing or nonincreasing behavior. The tangent for the paper's signed radial angle points from the finite tip toward infinity. Its ordinary vector angle is nonnegative. The distinction between polar argument \(\arg w\), tangent direction \(\arg w'\), and radial angle \(\arg(w'/w)\) is essential: a tangent waver alone is not either target failure.
+
+In the proposed natural coordinate \(W(t)=-V(t)^{-2}\), \(0<t\le7/4\), increasing \(t\) points **inward**. Accordingly the outward tangent is \(-W'\), and the paper uses \(Z=tV'/V\), \(\theta'=-2\operatorname{Im}Z/t\), and \(\beta=\arg Z\). It claims \(\beta\to0\) as \(t\downarrow0\), opposite strict signs at \(t=1,7/4\), and an interior zero. Opposite values alone do not establish nonmonotonicity of a signed angle; the limiting value at infinity is part of its argument. The ordinary angle is \(|\beta|\) on the selected branch; the claimed interior zero and positive endpoint values address its monotonicity separately. At \(\varepsilon=0\) the strict sign mechanism disappears. No extrapolation to larger perturbations is licensed.
+
+The original target was acquired directly as Hayman–Lingham `arXiv:1809.07200v2`, revised 21 September 2018, printed p.143/PDF page144. Problem6.72 asks both monotonicity questions for the analytic omitted arc of a support point and credits P. L. Duren; it mentions Brown's positive point-evaluation case. The original wording does not prescribe the paper's signed/unsigned refinement. Its 2018 no-progress update does not establish open status in 2026.
+
+## Primary theorem bodies and applicability
+
+Read scopes and exact raw hashes appear in `primary-source-read-ledger.json`. Full third-party PDFs are research caches, not proposed public website assets.
+
+| Imported ingredient | Inspected primary body and precise role |
+| --- | --- |
+| Compactness and functional class | Pfluger1971 introduction, printed pp.3–4: normalized schlicht class is compact for locally uniform convergence; coefficient functionals and his holomorphic-kernel functionals are continuous and attain a real-part maximum. The finite coefficient combination in this note belongs to that class. Brown1979 p.371 also states the topology and compactness. |
+| Actual support slit and differential | Duren1981 pp.352–355, read in full with visual inspection: normalized analytic univalence, support maximization for a nonconstant continuous complex-valued linear functional; omitted single analytic arc from a finite tip to infinity with increasing modulus. His convention is \(Q_D=\Phi/w^2\), \(\Phi=L(f^2/(f-w))\), and \(Q_D\,dw^2>0\), with \(\operatorname{Re}\Phi>0\) at interior points. |
+| Classical geometric proof and boundary cases | Pfluger1971 §§4.1–4.5, pp.21–29, with §§3.3 definitions and Satz5 inspected: omitted slit geometry, nonvanishing leading coefficient/simple pole at infinity, single analytic boundary arc and radial ordering. His trajectory inequality is \(Q_P\,dw^2<0\), and Satz5 uses \(\operatorname{Re}(w^2Q_P)\le0\). These opposite trajectory signs must be converted; the same letter Q is not a license to mix conventions. Interior strictness and possible endpoint exceptions are retained. |
+| Coefficient bound | de Branges1985, pp.137–138 and final implication p.151: the coefficient theorem for an analytic injective power series with zero constant term is \(|a_n|\le n|a_1|\), yielding \(|a_n|\le n\) here. The theorem statement, normalization and final implication were inspected, not the entire classical proof reconstructed. Only n=2,3,4 is used by this note. |
+| Exterior area theorem | Pavlović–Peláez, published March2011/electronic22October2010, p.909, complete Theorem1. For analytic \(\phi(z)=\sum b_nz^n\), \(b_0\ne0\), with \(\phi(z)/z\) meromorphically one-to-one, its coefficient inequality is equivalent to \(\sum_{n\ge2}(n-1)|b_n|^2\le|b_0|^2\). Under \(\phi(z)=zF(1/z)\) it gives the exterior normalization \(F(\zeta)=\zeta+B_0+\sum_{m\ge1}B_m\zeta^{-m}\), \(\sum m|B_m|^2\le1\). Radius dilation and monotone limits avoid subtracting infinite sums. This is a later primary research article restating the classical theorem, not its original historical discovery. |
+| Boundary-distance inequality | Same paper p.910, Eq.(1.4), for a conformal disk map onto a proper simply connected domain: \(d_\Omega(F(z))\le(1-|z|^2)|F'(z)|\le4d_\Omega(F(z))\). The first inequality is the direction used for the actual tip estimate. The manuscript also supplies its own inverse-Schwarz argument. |
+| Prior positive case and angle orientation | Brown1979, entire pp.371–382 read; p.375 Theorems1–2 visually inspected. It treats \(L(g)=g(z_0)\), \(z_0\in\mathbb D\setminus\{0\}\), with conjugation/Koebe reductions. Its A is \(\arg(w/w')\), opposite in sign to the outward signed \(\arg(w'/w)\); monotonicity survives the sign change. Both polar and radial monotonicity are proved for that restricted family, not arbitrary L. Duren1981 §4 treats derivative evaluations and proves polar monotonicity for that family. |
+
+These bodies substantiate the meanings and classical inputs used by the claimed theorem. They are necessary conditions on an actual support point. They do not supply a converse extremality theorem for an arbitrary trajectory. This distinction is the principal scope boundary for the paper's continuation argument.
+
+## Static proof and support map
+
+The complete five-page published PDF and the complete current `support_slit_verification/support_slit.tex` were read. The PDF was rendered and all five pages visually inspected, including the square root in H, the sign of the inverse coordinate, the outward tangent and the version/AI disclosures. There is one published reader, not an alternative later manuscript.
+
+The paper's proposed chain is: compactness and a Koebe comparison; uniform near-Koebe coefficient enclosures; the odd-root exterior area theorem; an estimate placing the actual finite tip inside radius3/10; exact Laurent differential extraction; an inverse natural coordinate on a disk; local uniqueness plus a radius gap to place the entire constructed subarc on the actual omitted slit; uniform complex remainder estimates; opposite strict argument-derivative signs and the separate signed/unsigned angle implications. In the claimed calculation \(q(t)=t^2-2t^4/5\), with \(q(1)=3/5\) and \(q(7/4)=-441/640\). Listing that chain records the manuscript's mechanism and does not independently verify its inequalities.
+
+Static support reading covered `root_reproduction/ROOT_ANALYTIC_DERIVATION.md`, `reviews/quantitative01/DERIVATION.md`, `reviews/quantitative01/quantitative_checks.py`, `root_reproduction/ANGLE_DISTINCTION.md`, `root_reproduction/verify_angle_distinction.py`, and the package-level `run_all.py`. The quantitative program uses exact fractions for coefficient recurrences, finite margins and mutation predicates; it does not numerically construct a maximizing map. The angle-distinction construction explicitly disclaims support realizability. `run_all.py` checks manifests/seals and runs submitted jobs in scratch copies while comparing their outputs with archived expected records. No such job or package entry point was run in this source/scope pass, and no archived PASS output is adopted. `current-support-read-ledger.json` binds these paths to hashes and read roles.
+
+Historical `REPORT`, `VERDICT`, priority-assessment and acceptance bodies otherwise remained opaque. Incidental assessment sentences were encountered at the end of `ROOT_ANALYTIC_DERIVATION.md` and in the conclusion/falsification sections of the quantitative derivation, which also contain necessary proof explanations. They express historical no-gap/conditional-correctness judgments. They are disclosed as exposure, not independent evidence. The historical angle-distinction note also mentions an unread-at-the-time source; that access statement is not treated as a current literature finding. Filenames, member maps and source hash inventories reveal no adopted verdict. No sibling current reviewer report was read.
+
+## Attribution, limits and candidate wording
+
+The normalized class, support geometry, radial-angle bound and Schiffer differential method are classical. Credit belongs to the relevant prior authors, including Pfluger, Duren, Schiffer, Brown and de Branges; the manuscript also credits Friedland–Schiffer coefficient/control methods. This review independently inspected the core bodies above. It did not repeat the archive's wider full-paper priority comparisons involving Zemyan2003/2005/2007, Duren–Leung–Schiffer1983, Zhang–Ma1991, Brickman1984, Goh1992/1994 or the Friedland–Schiffer1977 framework. Their comparative claims in §5 remain author claims for purposes of this pass. The commentary attributed to Duren (2013online/2014print) and Hibschweiler1995 remain uninspected here. No firstness, worldwide openness, absence of an earlier counterexample or resolution of those access gaps is inferred from the bounded source search.
+
+Conditional candidate for later editorial use, held pending independent mathematical review:
+
+> This unrefereed AI-assisted note studies two questions attributed to P. L. Duren about the arc omitted by a normalized univalent support point: must its polar argument and its radial angle be monotone? It claims that every global maximizer of \(\operatorname{Re}[a_2+i10^{-24}(a_4-3a_3)]\) violates both properties, including the ordinary unsigned radial-angle convention. The proposed proof combines classical support-slit geometry with quantitative control of the actual slit tip and a Schiffer natural coordinate. It requires no explicit maximizing function or uniqueness. The classical methods are credited, and historical priority is not fully cleared.
+
+The full original abstract must remain clearly identified as the original abstract; the restrained candidate does not silently rewrite it. Status remains an unrefereed preprint with extensive AI use, not human peer review. `candidate.json` records this conditional wording, the unchanged full abstract, metadata, citation and required limitations. Follow-up question: **null**. No precise substantial unsolved contribution has been established by this bounded scope pass; no generic extension is proposed.
+
+## Strongest result, exact gap and release
+
+The strongest result of this pass is complete custody and reading of the selected published edition, an explicit claim/convention map, the actual original target, and inspected classical theorem bodies sufficient to identify the mathematical premises. The existing source package is preserved byte for byte. No source-acquisition blocker remains for those core premises.
+
+The exact remaining scientific gap is fresh independent analytic and adversarial adjudication of the published uniform coefficient/tip/inversion bounds, the continuation identifying W with the actual omitted arc for every maximizer, and all angle implications under the stated conventions, with meaningful reproducibility work assigned separately as appropriate. Wider historical-priority comparisons remain limited as listed above. No defect repair, mathematical PASS, promotional page, tracker mutation, Git action, release, deployment or external communication occurred. This worker releases source/scope ownership to the parent after sealing the report and custody artifacts. Source/scope completion100%; overall mathematical/publication completion is not estimated by this scope worker.

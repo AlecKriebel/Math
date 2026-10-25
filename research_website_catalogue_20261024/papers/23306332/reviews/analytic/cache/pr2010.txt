@@ -1,0 +1,392 @@
+                                                                       Journal of Convex Analysis
+                                                                  Volume 17 (2010), No. 1, 203–210
+                                                                         https://doi.org/10.68381/jca17015
+
+
+                      A Calculus of Prox-Reguarity
+                                          R. A. Poliquin∗
+                      Department of Mathematical and Statistical Sciences,
+                         University of Alberta, Edmonton, AB, Canada
+                                    rene.poliquin@ualberta.ca
+
+                                        R. T. Rockafellar
+                                  Deptartment of Mathematics,
+                       University of Washington, Seattle, WA 98195, USA
+                                    rtr@math.washington.edu
+
+Received: September 12, 2008
+Revised manuscript received: February 11, 2009
+
+In this paper we show that the operations of composition and addition, under appropriate conditions,
+preserve prox-regularity. The class of prox-regular functions covers all l.s.c., proper, convex functions,
+lower-C 2 functions, strongly amenable functions (i.e. convexly composite functions), and pln functions,
+hence a large core of functions of interest in variational analysis and optimization. These functions,
+despite being in general nonconvex, possess many of the properties that one would expect only to
+find in convex or near convex (lower-C 2 ) functions e.g. the Moreau-envelopes are C 1+ , a localization
+of the subgradient mapping is hypomonotone, etc... In this paper, we add to this list of convex-
+like properties by showing, under suitable conditions, that locally the subdifferential of the sum of
+prox-regular functions is equal to the sum of subdifferentials.
+
+Keywords: Prox-regular, proximal mapping, Moreau envelope, convex, convexly composite, pln,
+strongly amenable, subgradients, amenable functions
+
+2000 Mathematics Subject Classification: Primary 49A52, 58C06, 58C20; Secondary 90C30
+
+
+1.   Introduction
+Let f be a proper, l.s.c. function on IRn , we denote by ∂f (x) the set of limiting proximal
+subgradients of f at any point x ∈ dom f (i.e. f (x) is ﬁnite).
+Definition 1.1. The function f is prox-regular at x̄ relative to v̄ if x̄ ∈ dom f , v̄ ∈
+∂f (x̄), and there exist ǫ > 0 and r > 0 such that
+                                                                r ′      2
+                             f (x′ ) > f (x) + hv, x′ − xi −      |x − x|
+                                                                2
+whenever |x′ − x̄| < ǫ and |x − x̄| < ǫ, with x′ 6= x and |f (x) − f (x̄)| < ǫ, while
+|v − v̄| < ǫ with v ∈ ∂f (x).
+
+First note that it is obvious that if f is convex, it is prox-regular at x̄ for every
+subgradient v̄ ∈ ∂f (x̄). The same is true for lower-C 2 functions, pln (primal-lower-
+∗
+ Research by this author was supported in part by the Natural Sciences and Engineering Research
+Council of Canada under grant OGP41983.
+
+ISSN 0944-6532 / $ 2.50      c Heldermann Verlag
+204   R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity
+
+nice) functions ([15]), and strongly amenable functions, cf. [21]. A function f is strongly
+amenable at x̄ if it can be written as f = g ◦ F in a neighborhood of x̄ for a mapping
+F : IRn → IRm of class C 2 and a proper, l.s.c., convex function g : IRm → IR satisfying
+at x̄ with respect to the convex set D = dom g the basic constraint qualiﬁcation that
+
+               there is no vector y 6= 0 in ND (F (x̄)) with ∇F (x̄)∗ y = 0.
+
+(Here ND (F (x̄)) refers to the normal cone to D at F (x̄).) Amenability itself merely re-
+quires F to be of class C 1 , whereas full amenability is the subcase of strong amenability
+where g is also piecewise linear-quadratic. Full amenability already covers most appli-
+cations that arise in the framework of nonlinear programming and its extensions. For
+more on amenability, see [21].
+Prox-regular functions were ﬁrst introduced in [16]. Additional results were provided in
+[17] and [21]. For a comprehensive survey, see [21]. Extensions to non-ﬁnite dimensional
+spaces were given in [1]–[5]. Other applications and results can be found in [7]–[14],
+[18]–[20], and [23].
+The initial goal in the development of prox-regularity was to demonstrate that many of
+the important properties of convex functions can be found in a large class of nonconvex
+functions e.g. diﬀerentiable Moreau-envelopes, single-valued proximal mappings, etc...
+In Section 2 of this paper we give a brief survey of some of the important properties
+of prox-regular functions and sets (a set is prox-regular if its indicator function is
+prox-regular).
+In Section 3 of this paper, we show that under suitable conditions prox-regularity is
+preserved under addition and the composition of a prox-regular function with a C 2
+mapping. In addition, we show in Section 3 that under suitable conditions the subd-
+iﬀerential of the sum of prox-regular functions is equal to the sum of subdiﬀerentials.
+This is somewhat of a surprise since prox-regular functions are in general not “regular
+and this regularity is one of the few conditions that guarantees (see for example [21,
+Cor. 10.9]) that the subdiﬀerential of a sum is the sum of subdiﬀerentials. In Section 3
+we also obtain rules for generating new prox-regular sets from known ones.
+For more on operations that preserve prox-regularity, see [8] where the authors show
+that on the space of n × n symmetric matrices the composition of a symmetric l.s.c.
+function f with the eigenvalue mapping is prox-regular if and only if f is prox-regular.
+
+
+2.    Prox-Regular functions and sets
+The fact that the subgradient mapping of a convex function is monotone plays a vital
+role in many applications. Something similar is true for prox-regular functions in that
+a selection or localization of the subgradient mapping is r-monotone i.e. a subset of the
+subgradient mapping plus rI is monotone, where r > 0 and I is the identity mapping.
+In the next theorem, the f -attentive ǫ-localization of ∂f at (x̄, v̄) (where ǫ > 0) is the
+mapping T : IRn →  → IRn deﬁned by
+              (
+                v ∈ ∂f (x) |v − v̄| < ǫ    when |x − x̄| < ǫ and |f (x) − f (x̄)| < ǫ,
+      T (x) =
+               ∅                           otherwise.
+             R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity                   205
+
+The graph of T is the intersection of gph ∂f with the product of an f -attentive neigh-
+borhood of x̄ and an ordinary neighborhood of v̄. (The f -attentive topology on IRn is
+the weakest topology in which f is continuous.)
+Theorem 2.1 ([16, Thm. 3.2]). The function f is prox-regular at a point x̄ relative
+to v̄ if and only if the vector v̄ is a proximal subgradient of f at x̄ and there exist ǫ > 0
+and r > 0 such that, for the f -attentive ǫ-localization T of ∂f , the mapping T + rI
+is monotone, i.e., one has hv1 − v0 , x1 − x0 i ≥ −r |x1 − x0 |2 whenever |xi − x̄| < ǫ,
+|f (xi ) − f (x̄)| < ǫ, and |vi − v̄| < ǫ with vi ∈ ∂f (xi ), i = 0, 1.
+
+To illustrate further that prox-regular functions have many convex-like properties, we
+recall some of the results of [16] dealing with the properties of Moreau-envelopes eλ
+and proximal mappings Pλ . Recall that
+                                                              
+                                             ′     1 ′       2
+                         eλ (x) := min   f (x ) +     |x − x| ,
+                                    x′            2λ
+                                                                
+                                                ′    1 ′       2
+                        Pλ (x) := argmin f (x ) +       |x − x| .
+                                     x′             2λ
+Theorem 2.2 ([16, Thms. 4.4, 4.6, 5.2]). Suppose that f is prox-regular at x̄ ∈
+argmin f for v̄ = 0 with respect to ǫ and r, and let T be the f -attentive ǫ-localization
+of ∂f at (x̄, 0). Then for any λ ∈ (0, 1/r) there is a convex neighborhood Xλ of x̄ such
+that
+(a)   the mapping Pλ is single-valued and Lipschitz continuous on Xλ with
+                                                               1
+          Pλ = (I + λT )−1 ,        |Pλ (x′ ) − Pλ (x)| ≤          |x′ − x| ,   Pλ (x̄) = x̄,
+                                                            1 − λr
+(b)   the function eλ is C 1+ and lower-C 2 on Xλ with
+                        r                                                       −1
+                              | · |2 convex,    ∇eλ = λ−1 [I − Pλ ] = λI + T −1
+                                                                     
+             eλ +                                                                   .
+                    2(1 − λr)
+
+Proximal regularity can also be deﬁned for sets. A set C ⊂ IRn is prox-regular at a
+point x̄ ∈ C for a vector v̄ if and only if its indicator function δC is prox-regular at
+x̄ for v̄. With this deﬁnition of prox-regular sets you can then characterize the prox-
+regularity of a function in terms of the prox-regularity of its epigraph: a function is
+prox-regular at x̄ for the subgradient v̄ if and only if its epigraph is prox-regular at
+(x̄, f (x̄) for the normal vector (v̄, −1); see [2] and [16].
+Convex sets, “weakly convex sets ([24]), “proximally smooth sets ([6]), and sets with
+the “Shapiro property ([22]) are all examples of prox-regular sets. Strong amenability
+provides further examples: a set C ⊂ IRn is strongly amenable at one of its points x̄
+if its indicator function δC is strongly amenable at x̄, or equivalently, there is an open
+neighborhood U of x̄ and a C 2 mapping F : U → IRm along with a closed, convex set
+D ⊂ IRm such that                       
+                              C ∩ U = x ∈ U F (x) ∈ D ,
+and the constraint qualiﬁcation is satisﬁed that no nonzero vector y ∈ ND (F (x̄)) has
+∇F (x̄)∗ y = 0. The following theorem summarizes some of the results of [19] concerning
+206   R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity
+
+the local diﬀerentiability of the distance functions to prox-regular sets. In particular
+a set is prox-regular if and only if the projection mapping is locally single-valued. For
+additional results on the projection onto prox-regular sets see [20].
+Theorem 2.3 ([19, Thm. 1.3]). For a closed subset C of a Hilbert space H, and any
+point x̄ ∈ C, the following properties are equivalent:
+(a)   C is prox-regular at x̄;
+(b)   dC is continuously diﬀerentiable on O\C for some open neighborhood O of x̄;
+(c)   dC is Fréchet diﬀerentiable on O\C for some open neighborhood O of x̄;
+(d)   dC is Gateaux diﬀerentiable on O \ C for some open neighborhood O of x̄, and
+      PC is nonempty-valued on O;
+(e)   d2C is C 1+ on an open neighborhood O of x̄; i.e., Fréchet diﬀerentiable on O with
+      the derivative mapping D(d2C )(x) : H →→ H depending Lipschitz continuously on
+      x;
+(f)   PC is single-valued and strongly-weakly continuous (i.e., from the strong topology
+      in the domain to the weak topology in the range) on a neighborhood of x̄;
+(g)   C has the Shapiro property at x̄ i.e. there is a constant k > 0 along with a
+      neighborhood O of x̄ such that
+
+                      dTC (x) (x′ − x) ≤ k|x′ − x|2 for all x, x′ ∈ C ∩ O,
+
+      where TC (x) denotes the general tangent cone (contingent cone) to C at x.
+Then there is a neighborhood O of x̄ on which PC is single-valued, monotone and
+Lipschitz continuous with PC = (I + NCr )−1 on O for some r > 0, whereas D(dC ) =
+[I − PC ]/dC on O \ C.
+If the set C is weakly closed relative to a (strong) neighborhood of x̄ (which is always
+the case when the space H is ﬁnite-dimensional), then one can add the following to the
+set of equivalent properties:
+(h)   PC is single-valued around x̄.
+
+3.    Calculus of Prox-Regularity
+Consider a mapping F : IRn → IRm and a proper function g : IRm → IR. We say that
+the constraint qualiﬁcation for F and g is satisﬁed at x̄ if F (x̄) ∈ dom g and
+
+              there is no vector y 6= 0 in ∂ ∞ g (F (x̄)) with ∇F (x̄)∗ y = 0.       (1)
+
+This constraint qualiﬁcation guarantees that ∂f (x) ⊂ ∇F (x)∗ ∂g (F (x)) in an f -atten-
+tive neighborhood of x̄, cf. [21, Thm. 10.6]. In (1), ∂ ∞ g (F (x̄)) refers to the set of
+horizon subgradients. A vector v is a horizon subgradient for f at x̄ (cf. [21, Def.
+8.3]) if there exist a sequence vn of regular subgradients to f at xn and λn ց 0 with
+λn vn → v, xn → x and f (xn ) → f (x). Note that since every regular subgradient is a
+limiting proximal subgradient (cf. [21, Cor. 8.47]), we may assume that vn ∈ ∂f (xn ) in
+the previous deﬁnition of horizon subgradient.
+Theorem 3.1. Let f (x) = g (F (x)), where F : IRn → IRm is of class C 2 , g : IRm → IR
+is l.s.c. and proper, and suppose that the constraint qualiﬁcation (1) is satisﬁed at
+x̄ (which lies in dom f ). Assume further that v̄ ∈ ∂f (x̄) is a vector such that the
+              R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity            207
+
+function g is prox-regular at F (x̄) for every y ∈ ∂g (F (x̄)) with ∇F (x̄)∗ y = v̄. Then f
+is prox-regular at x̄ for v̄.
+
+Proof. As already mentioned, (1) guarantees the existence of ǫ0 > 0 such that
+          ∂f (x) ⊂ ∇F (x)∗ ∂g (F (x)) when |x − x̄| < ǫ0 , |f (x) − f (x̄)| < ǫ0 .        (2)
+The constraint qualiﬁcation further ensures that the mapping
+                    S : (x, v) → y ∈ ∂g (F (x)) ∇F (x)∗ y = v
+                                 
+
+has closed graph and is locally bounded at (x̄, v̄) with respect to the f -attentive topol-
+ogy. In particular, S(x̄, v̄) is a compact set. By our assumptions, for each y ∈ S(x̄, v̄)
+the function g is prox-regular at F (x̄) for y with constants (say) ry and ǫy . The com-
+pactness of S(x̄, v̄) enables us to make this uniform: there exist ǫ1 > 0 and r̄ > 0 such
+that
+           hy1 − y0 , u1 − u0 i ≥ −r̄ |u1 − u0 |2
+                                                                                    
+                                                                                    
+           whenever yi ∈ ∂g(ui ), |ui − F (x̄)| < ǫ1 , |g(ui ) − g (F (x̄))| < ǫ1 ,     (3)
+           dist (yi , S(x̄, v̄)) < ǫ1 .
+                                                                                    
+
+Thus in combining (2) and (3) with the established properties of S we obtain that
+there exist ǫ > 0, r̄ > 0, and Y a compact set such that
+                          
+   |xi − x̄| < ǫ,              
+                                ∃yi ∈ ∂g (F (xi )) ∩ Y with
+                          
+                          
+   |f (xi ) − f (x̄)| < ǫ
+                          
+                            =⇒    ∇F (xi )∗ yi = vi and                                    (4)
+   vi ∈ ∂f (xi ),                                                                        2
+                                  hy1 − y0 , F (x1 ) − F (x0 )i ≥ −r̄ |F (x1 ) − F (x0 )|
+                          
+                              
+   |vi − v̄| < ǫ
+                          
+
+Note that when vi = ∇F (xi )∗ yi then
+           hv1 − v0 , x1 − x0 i
+         = h∇F (x1 )∗ y1 − ∇F (x0 )∗ y1 + ∇F (x0 )∗ y1 − ∇F (x0 )∗ y0 , x1 − x0 i
+         = h[∇F (x1 )∗ − ∇F (x0 )∗ ] y1 , x1 − x0 i + h∇F (x0 )∗ (y1 − y0 ), x1 − x0 i.   (5)
+Because Y is compact and F is of class C 2 we know there exists r1 > 0 such that for
+all y ∈ Y
+                     |[∇F (x1 )∗ − ∇F (x0 )∗ ] y| ≤ r1 |x1 − x0 | .
+Thus for all y ∈ Y
+                   h[∇F (x1 )∗ − ∇F (x0 )∗ ] y, x1 − x0 i ≥ −r1 |x1 − x0 |2 .             (6)
+On the other hand, we can write the ﬁnal term in (5) as h∇φ(x0 ), x1 − x0 i for the
+C 2 function φ(x) = hy1 − y0 , F (x)i. Let r2 be an upper bound for the eigenvalues of
+the Hessian of the mapping x → hη, F (x)i where x ranges over x̄ + ǫB̄ and η ranges
+over the compact set Y − Y . Then in particular φ(x) ≤ φ(x0 ) + h∇φ(x0 ), x − x0 i +
+r2 |x − x0 |2 when |x − x̄| ≤ ǫ. It follows that
+            h∇φ(x0 ), x1 − x0 i ≥ − r2 |x1 − x0 |2 + φ(x1 ) − φ(x0 )
+                                 = − r2 |x1 − x0 |2 + hy1 − y0 , F (x1 ) − F (x0 )i
+                                 ≥ − r2 |x1 − x0 |2 − r̄ |F (x1 ) − F (x0 )|2 .           (7)
+208   R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity
+
+But there is also a constant λ such that |F (x1 ) − F (x0 )| ≤ λ |x1 − x0 | when |xi − x̄| < ǫ.
+Using this fact with the estimates (6) and (7) for the two terms at the end of (5) we
+obtain
+
+           hv1 − v0 , x1 − x0 i ≥ −r1 |x1 − x0 |2 − r2 |x1 − x0 |2 − r̄λ2 |x1 − x0 |2 .
+
+Thus for r = r1 + r2 + r̄λ2 and the same ǫ as in (4) we have
+                                                 
+         |xi − x̄| < ǫ, |f (xi ) − f (x̄)| < ǫ
+                                                     =⇒ hv1 − v0 , x1 − x0 i ≥ −r |x1 − x0 |2
+         vi ∈ ∂f (xi ), |vi − v̄| < ǫ
+
+This means that f is prox-regular at x̄ for v̄.
+Theorem 3.2. Let fi , i = 1, 2 be extended real-valued functions on IRn . Consider
+x̄ ∈ [dom f1 ∩ dom f2 ], and assume that
+
+             the only choice of vi ∈ ∂fi∞ (x̄) with v1 + v2 = 0 is v1 = v2 = 0.                  (8)
+
+Let v̄ ∈ ∂f (x̄), where f (x) = f1 (x) + f2 (x). Assume further that for each vi ∈ ∂fi (x̄)
+with v1 + v2 = v̄, the function fi is prox-regular at x̄ for vi . Then f is prox-regular at
+x̄ for v̄ and there exist ǫ > 0 such that
+
+                        [∂f1 (x) + ∂f2 (x)] ∩ B(v̄, ǫ) = ∂f (x) ∩ B(v̄, ǫ)                       (9)
+
+whenever |x − x̄| < ǫ with |f (x) − f (x̄)| < ǫ.
+
+Proof. Let g(u1 , u2 ) := f1 (u1 ) + f2 (u2 ) and F (x) := (x, x). It is an easy exercise to
+verify that all conditions in the previous theorem are satisﬁed. This gives that f is
+prox-regular at x̄ for v̄. The fact that ∂f (x) ∩ B(v̄, ǫ) ⊂ [∂f1 (x) + ∂f2 (x)] ∩ B(v̄, ǫ)
+follows from the constraint qualiﬁcation (8) and [21, Cor. 10.9].
+Now suppose that the other inclusion in (9) is not veriﬁed. If so, there exist xn con-
+verging to x̄ with f (xn ) → f (x̄) and vni ∈ ∂fi (xn ) with vn1 + vn2 converging to v̄ and
+such that vn1 + vn2 is not a subgradient to f at xn .
+First note that we must have fi (xn ) → fi (x̄) for each i. This follows from the fact that
+each fi is l.s.c. i.e. lim infx→x̄ fi (x) ≥ fi (x̄) and that f1 (xn ) + f2 (xn ) → f1 (x̄) + f2 (x̄).
+It follows from (8) that for i = 1, 2, vni can not be unbounded. To see this, assume
+that vn1 is unbounded and that (without loss of generality) kvn1 k ≥ kvn2 k. By passing
+to a subsequence if necessary, we may assume that vni /kvn1 k → vi for each i. Note
+that kv1 k = 1 and that vi ∈ ∂fi∞ (x̄) (recall that fi (xn ) → fi (x̄) and the comments
+on horizon subgradients made before Theorem 3.1). We then have v1 + v2 = 0 with
+vi ∈ ∂fi∞ (x̄) and v1 6= 0; this contradicts (8).
+We may therefore assume that vni → vi with vi ∈ ∂fi (x̄) and v1 + v2 = v̄. From our
+assumptions fi is prox-regular at x̄ for vi . Therefore for i = 1, 2, there exist ri > 0 and
+ǫi > 0 such that
+                      fi (y) ≥ fi (x) + hv, y − xi − (ri /2) |y − x|2                   (10)
+whenever |y − x̄| < ǫi , |x − x̄| < ǫi , |fi (x) − fi (x̄)| < ǫi while |v − vi | < ǫi with
+v ∈ ∂fi (x). It therefore follows that eventually vni is a proximal subgradient to fi at
+             R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity            209
+
+xn . It is trivial to verify that the sum of proximal subgradients is a proximal subgradient
+of the sum. Hence vn1 + vn2 is a proximal subgradient to f at xn . In particular, vn1 + vn2
+is a subgradient to f at xn . This contradicts our earlier assumption and completes the
+proof.
+
+The previous results can be applied to indicator functions to obtain rules for generating
+new prox-regular sets from known ones. The following corollaries are straightforward
+applications of the previous theorems.
+Corollary 3.3. Let C = x F (x) ∈ D , where F : IRn → IRm is of class C 2 and
+                           
+
+D ⊂ IRm is closed. Let x̄ ∈ C, and suppose that the following constraint qualiﬁcation
+is satisﬁed:
+
+               there is no vector y 6= 0 in ND (F (x̄)) with ∇F (x̄)∗ y = 0.
+
+Assume further that v̄ ∈ NC (x̄) is a vector such that the set D is prox-regular at F (x̄)
+for every y ∈ ND (F (x̄)) with ∇F (x̄)∗ y = v̄. Then C is prox-regular at x̄ for v̄.
+
+Corollary 3.4. Let Ci , i = 1, 2, be closed subsets of IRn , and let x̄ ∈ C = C1 ∩ C2 .
+Suppose that
+
+            the only choice of vi ∈ NCi (x̄) with v1 + v2 = 0 is v1 = v2 = 0.
+
+Let v̄ ∈ NC (x̄), and assume that for each choice of vi ∈ NCi (x̄) with v1 + v2 = v̄, the set
+Ci is prox-regular at x̄ for vi . Then C is prox-regular at x̄ for v̄ and there exist ǫ > 0
+such that
+                      [NC1 (x̄) + NC2 (x̄)] ∩ B(v̄, ǫ) = NC (x̄) ∩ B(v̄, ǫ)
+whenever |x − x̄| < ǫ.
+
+References
+[1] F. Bernard, L. Thibault: Prox-regularity of functions and sets in Banach spaces, Set-
+    Valued Anal. 12 (2004) 25–47.
+[2] F. Bernard, L. Thibault: Prox-regular functions in Hilbert spaces, J. Math. Anal. Appl.
+    303 (2005) 1–14.
+[3] F. Bernard, L. Thibault: Uniform prox-regularity of functions and epigraphs in Hilbert
+    spaces, Nonlinear Anal., Theory Methods Appl. 60A (2005) 187–207.
+[4] S. Boralugoda: Prox-Regular Functions in Hilbert Spaces, Ph.D. Thesis, University of
+    Alberta, June 1998.
+[5] S. Boralugoda, R. A. Poliquin: Local integration of prox-regular functions, J. Convex
+    Analysis 13 (2006) 27–36.
+[6] F. H. Clarke, R. J. Stern, P. R. Wolenski: Proximal smoothness and the lower-C 2 prop-
+    erty, J. Convex Analysis 2 (1995) 117–144.
+[7] G. Colombo, M. Monteiro Marques, D. P. Manuel: Sweeping by a continuous prox-regular
+    set, J. Differ. Equations 187 (2003) 46–62.
+[8] A. Daniilidis, A. Lewis, J. Malick, H. Sendov: Prox-regularity of spectral functions and
+    spectral sets, J. Convex Analysis 15 (2008) 547–560.
+210   R. A. Poliquin, R. T. Rockafellar / A Calculus of Prox-Reguarity
+
+[9] A. Eberhard: Prox-regularity and subsets, in: Optimization and Related Topics (Ballarat
+    / Melbourne, 1999), A. Rubinov et al. (ed.), Appl. Optim., 47, Kluwer, Dordrecht (2001)
+    237–313.
+[10] W. L. Hare, R. A. Poliquin: The quadratic sub-Lagrangian of a prox-regular function,
+     Nonlinear Anal., Theory Methods Appl. 47 (2001) 1117–1128.
+[11] W. L. Hare, A. S. Lewis: Identifying active constraints via partial smoothness and prox-
+     regularity, J. Convex Analysis 2 (2003) 251–266.
+[12] A. B. Levy, R. A. Poliquin, R. T. Rockafellar: Stability of locally optimal solutions,
+     SIAM J. Optim. 10 (2000) 580–604.
+[13] R. Mifflin, C. Sagastizabal: V U -smoothness and proximal point results for some non-
+     convex functions, Optim. Methods Softw. 19 (2004) 463–478.
+[14] A. Moudafi: An algorithmic approach to prox-regular variational inequalities, Appl.
+     Math. Comput. 155 (2004) 845–852.
+[15] R.A. Poliquin: Integration of subdifferentials of nonconvex functions, Nonlinear Anal.,
+     Theory Methods Appl. 17 (1991) 1805–1838.
+[16] R. A. Poliquin, R. T. Rockafellar: Prox-regular functions in variational analysis, Trans.
+     Amer. Math. Soc. 348 (1996) 1805–1838.
+[17] R. A. Poliquin, R. T. Rockafellar: Generalized hessian properties of regularized non-
+     smooth functions, SIAM J. Optim. 6 (1996) 1121–1137.
+[18] R. A. Poliquin, R. T. Rockafellar: Tilt stability of a local minimum, SIAM J. Optim. 8
+     (1998) 287–299.
+[19] R. A. Poliquin, R. T. Rockafellar, L. Thibault: Local differentiability of distance func-
+     tions, Trans. Amer. Math. Soc. 352 (2000) 5231–5249.
+[20] S. M. Robinson: Aspects of the projector on prox-regular sets, in: Variational Analysis
+     and Applications (Erice, 2003), F. Giannessi et al. (ed.), Nonconvex Optimization and
+     its Applications 79, Springer, New York (2005) 963–973.
+[21] R. T. Rockafellar, R. J.-B. Wets: Variational Analysis, Grundlehren der Mathematischen
+     Wissenschaften 317, Springer, Berlin (1998).
+[22] A. S. Shapiro: Existence and differentiability of metric projections in Hilbert spaces,
+     SIAM J. Optim. 4 (1994) 130–141.
+[23] L. Thibault: Sweeping process with regular and nonregular sets, J. Differ. Equations 1
+     (2003) 1–26.
+[24] J. P. Vial: Strong and weak convexity of sets and functions, Math. Oper. Res. 8 (1983)
+     231–259.
+

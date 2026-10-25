@@ -1,0 +1,1068 @@
+                  TRANSACTIONS OF THE
+                  AMERICAN MATHEMATICAL SOCIETY
+                  Volume 352, Number 11, Pages 5231–5249
+                  S 0002-9947(00)02550-2
+                  Article electronically published on June 9, 2000
+
+
+
+                        LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS
+
+                                     R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                               Abstract. Recently Clarke, Stern and Wolenski characterized, in a Hilbert
+                               space, the closed subsets C for which the distance function dC is continuously
+                               differentiable everywhere on an open “tube” of uniform thickness around C.
+                               Here a corresponding local theory is developed for the property of dC be-
+                               ing continuously differentiable outside of C on some neighborhood of a point
+                               x ∈ C. This is shown to be equivalent to the prox-regularity of C at x, which is
+                               a condition on normal vectors that is commonly fulfilled in variational analysis
+                               and has the advantage of being verifiable by calculation. Additional charac-
+                               terizations are provided in terms of d2C being locally of class C 1+ or such that
+                               d2C + σ| · |2 is convex around x for some σ > 0. Prox-regularity of C at x
+                               corresponds further to the normal cone mapping NC having a hypomonotone
+                               truncation around x, and leads to a formula for PC by way of NC . The local
+                               theory also yields new insights on the global level of the Clarke-Stern-Wolenski
+                               results, and on a property of sets introduced by Shapiro, as well as on the con-
+                               cept of sets with positive reach considered by Federer in the finite dimensional
+                               setting.
+
+
+
+
+                                                                  1. Introduction
+                     The distance function dC for a closed   subset C of a Hilbert space H gives for
+                  each u ∈ H the distance dC (u) = inf |u − x| x ∈ C . To what extent is dC
+                  Fréchet or Gâteaux differentiable, or continuously differentiable (the Gâteaux case
+                  then automatically implying the Fréchet sense)? This is of considerable interest
+                  in variational analysis, not only for its connection to the geometry of C and the
+                  projection mapping PC (giving for each u the set points of C nearest to u) but
+                  also for its applications in optimization. The distance to the feasible set in a
+                  problem of constrained minimization, for instance, can be used as a penalty in
+                  setting up a computationally equivalent unconstrained problem. For convex C, the
+                  differentiability of dC everywhere outside of C is well known, but for nonconvex
+                  C, less has been understood, apart from results on generic differentiability as in
+                  Borwein and Giles [1].
+
+                     Received by the editors June 17, 1997 and, in revised form, June 10, 1998.
+                     1991 Mathematics Subject Classification. Primary 49J52, 58C06, 58C20; Secondary 90C30.
+                     Key words and phrases. Variational analysis, distance functions, single-valued projections,
+                  proximal normals, prox-regularity, proximal smoothness, primal-lower-nice functions, hypomono-
+                  tone mappings, monotone mappings.
+                     This work was supported in part by the Natural Sciences and Engineering Research Council
+                  of Canada under grant OGP41983 for the first author, by the National Science Foundation under
+                  grant DMS–9500957 for the second author, and by NATO under grant CRG 960360 for the third
+                  author. The authors are grateful for useful discussions with C. Combari, and for helpful comments
+                  made by the referee.
+
+                                                                                                   c 2000 American Mathematical Society
+
+                                                                              5231
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5232                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                     Clarke, Stern and Wolenski [2] recently made headway by studying, as a gener-
+                  alization of convex sets, the proximally smooth sets, which they defined to be the
+                  closed sets C ⊂ H such that dC is (norm-to-norm-) continuously differentiable on
+                  an open “tube” of the type
+                                                     
+                  (1.1)                    UC (r) := u ∈ H 0 < dC (u) < r
+                  for some r > 0. They characterized such sets in several interesting ways. In
+                  particular, they showed that C is proximally smooth if and only if there exists
+                  r > 0 such that, for all u ∈ UC (r), the projection PC (u) is nonempty and each of
+                  its elements x belongs also to PC (x + v) for v = r[u − x]/|u − x|; cf. [2, Theorem
+                  4.1(d)]. Since the vectors v of the form v = λ[u − x]/|u − x| for some u ∈ PC−1 (x)
+                  and λ > 0 are by definition the nonzero proximal normals to C at x, they spoke of
+                  the latter as meaning that “every nonzero proximal normal v to C can be realized
+                  by an r-ball”; an equivalent statement is that
+                                            Dv           E  1
+                  (1.2)               0 ≥        , x0 − x − |x0 − x|2 , ∀x0 ∈ C.
+                                             |v|            2r
+                  Sets that satisfy (1.2) have appeared elsewhere in the literature under several names.
+                  We refer the reader to [3] and the references therein for more information.
+                     Beyond the appeal of this global property on a tube, there is a need for local
+                  information on the behavior of dC around a point x̄ ∈ C, because applications are
+                  often of this character and do not require global considerations. What character-
+                  izations can be given for the existence of an open neighborhood O of x̄ such that
+                  dC is continuously differentiable on O\C (relative complement)? It might be imag-
+                  ined that local results could be obtained by invoking global results about proximal
+                  smoothness in the case of C ∩ B for some closed ball B centered at x̄, but this runs
+                  into serious difficulty over what happens at the points where the boundary of B
+                  meets C. From another angle, the trouble can be seen in the fact that the tube
+                  concept in (1.1) is hard to coordinate with that of a neighborhood of a point x̄
+                  because of the way it depends also on other points of C near to x̄.
+                     There is a need also for better understanding of how local properties of dC
+                  correspond to those of PC . It is well known that a closed convex set C has its
+                  projection mapping PC globally single-valued and nonexpansive (Lipschitz contin-
+                  uous with modulus 1). For nonconvex sets C, where a distinction has to be made
+                  between strong and weak closure, Clarke, Stern and Wolenski [2] showed that a
+                  weakly closed set C is proximally smooth if and only if PC is single-valued on a
+                  tube UC (r). Another result was obtained by Shapiro [4] on the local level. He
+                  showed, for a strongly closed set C and a point x̄ ∈ C, that PC is single-valued on
+                  a neighborhood of x̄ if the following property holds: there is a constant k > 0 along
+                  with a neighborhood O of x̄ such that
+                  (1.3)                    dTC (x) (x0 − x) ≤ k|x0 − x|2               for all x, x0 ∈ C ∩ O,
+                  where TC (x) denotes the general tangent cone (contingent cone) to C at x. We’ll
+                  refer to this condition as the Shapiro property of C at x̄. (Shapiro actually intro-
+                  duced in [4] a more general condition of C being what he called O(m)-convex at
+                  x̄, for which this is the case of m = 2.) The single-valuedness of the projection
+                  mapping on a neighborhood of x̄ was used by Federer to define sets with positive
+                  reach near x̄. In the finite dimensional setting, Federer [5] established, among other
+                  results, that the square of dC is continuously differentiable near x̄ whenever C has
+                  positive reach near x̄.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5233
+
+
+                     In taking up the challenge of a local theory of differentiability of the distance
+                  function dC and its consequences for the projection mapping PC in the Hilbert space
+                  setting, we rely on a different property of C at a point x̄, namely prox-regularity.
+                  This property has so far been considered only in the finite-dimensional case, where
+                  it was introduced by Poliquin and Rockafellar [6]; see also [7]–[9]. In defining it,
+                  we denote by NC (x̄) the general cone of normals to C at a point x̄ ∈ C; a vector
+                  v 6= 0 belongs to NC (x̄) if and only if there is a sequence of points xk → x̄ in C
+                  at which there are proximal normals vk converging weakly to v. (Along with such
+                  vectors v 6= 0, the cone NC (x̄) is defined to contain v = 0.)
+                  Definition 1.1. A closed set C is prox-regular at x̄ for v̄, where x̄ ∈ C and v̄ ∈
+                  NC (x̄), if there exist ε > 0 and ρ > 0 such that whenever x ∈ C and v ∈ NC (x) with
+                  |x−x̄| < ε and |v−v̄| < ε, then x is the unique nearest point of x0 ∈ C |x0 −x̄| < ε
+                  to x + ρ−1 v. It is prox-regular at x̄ (without mention of a particular v̄) if this
+                  property holds for every vector v̄ ∈ NC (x̄).
+                     Poliquin and Rockafellar [6], developed prox-regularity more broadly, as a prop-
+                  erty of functions and their subgradients, rather than sets and their normals. The
+                  set version was obtained by specializing to indicator functions. Although we deal
+                  here only with sets, the tie to functions is important because a number of funda-
+                  mental results in variational analysis revolve around prox-regularity in that context.
+                  For instance, prox-regularity is the key to connections between generalized second-
+                  order derivatives of f and graphical derivatives of its subgradient mapping ∂f , and
+                  thus in the indicator case it is the key to such derivatives of the mapping NC . By
+                  putting prox-regularity of C at the center of our discussion, we provide access not
+                  only to that larger framework but also to the many examples of prox-regularity in
+                  the literature.
+                     In concentrating on sets, we will find it helpful to have an alternative description
+                  of prox-regularity alongside of Definition 1.1.
+                  Proposition 1.2. A closed set C is prox-regular at x̄ if and only if it is prox-
+                  regular at x̄ for the vector v̄ = 0. This is equivalent to the existence of ε > 0 and
+                  ρ > 0 such that whenever x ∈ C and v ∈ NC (x) with |x − x̄| < ε and |v| < ε, one
+                  has
+                                                 ρ
+                  (1.4)       0 ≥ hv, x0 − xi − |x0 − x|2 for all x0 ∈ C with |x0 − x̄| < ε.
+                                                 2
+                  Proof. Obviously if C is prox-regular at x̄ for every v̄ ∈ NC (x̄), it is prox-regular
+                  at x̄ for v̄ = 0. To prove the converse, assume that C is prox-regular at x̄ for the
+                  vector 0 with constants ε > 0 and ρ > 0. Take v̄ ∈ NC (x̄) with v̄ 6= 0, and let
+                  ε0 := min{ε/2, |v̄|/2}. For x ∈ C and v ∈ NC (x) with |x − x̄| < ε0 and |v − v̄| < ε0
+                  we have
+                                  (ε/2|v̄|)|v| ≤ (ε/2|v̄|)|v − v̄ + v̄| ≤ (ε/4) + (ε/2) < ε.
+                                                                                         
+                  By the choice of ε this implies that x is the unique closest point of x0 ∈ C |x0 −x̄| <
+                  ε to x + ρ−1 (ε/2|v̄|)v. From this we conclude that C is prox-regular at x̄ for v̄
+                  with constants ε0 and ρ0 := ε−1 2ρ|v̄|.
+                     For the second claim of the proposition, note that the inequality in (1.4) can be
+                  made strict for x0 6= x ∈ C by replacing ρ with ρ0 > ρ. With the inequality in
+                  (1.4) now strict, (1.4) is equivalent to saying that x is the unique closest point of
+                                                    −1
+                   x0 ∈ C |x0 − x̄| < ε to x + ρ0 v. Therefore C is prox-regular at x̄ for v̄ = 0 if
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5234                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  and only if there exist ε > 0 and ρ > 0 such that whenever x ∈ C and v ∈ NC (x)
+                  with |x − x̄| < ε and |v| < ε, one has (1.4).
+                     A special virtue of prox-regularity is that it can be established in many situations
+                  by checking whether a constraint qualification is satisfied. Poliquin and Rockafellar
+                  in [6] gave a number of examples of sets exhibiting prox-regularity in finite dimen-
+                  sions. In particular they showed that, under natural assumptions, a set C enjoying
+                  a smooth constraint representation around a point x ∈ C is prox-regular at x for
+                  any v ∈ NC (x); see Section 2.
+                     We are ready to state our main result. In this theorem we work with the mapping
+                  NCr : H →→ H defined for r > 0 by
+                                                (                     
+                                         r
+                                                  NC (x) ∩ int B 0, r if x ∈ C,
+                                      NC (x) =
+                                                  ∅                        if x ∈/ C.
+                               
+                  (Here B 0, r denotes the closed ball of center 0 and radius r.) A mapping T :
+                  H→ → H is hypomonotone on a subset O of X if there exists σ > 0 such that T + σI
+                  is monotone on O; this corresponds to having
+                      hv1 − v2 , x1 − x2 i ≥ −σ|x1 − x2 |2                  whenever vi are in T (xi ) and xi are in O.
+
+
+                  Theorem 1.3. For a closed set C ⊂ H and any point x̄ ∈ C, the following prop-
+                  erties are equivalent:
+                      (a) C is prox-regular at x̄.
+                      (b) dC is continuously differentiable on O\C for some open neighborhood O of
+                  x̄.
+                      (c) dC is Fréchet differentiable on O\C for some open neighborhood O of x̄.
+                      (d) dC is Gâteaux differentiable on O \ C for some open neighborhood O of x̄,
+                  and PC is nonempty-valued on O.
+                      (e) d2C is C 1+ on an open neighborhood O of x̄. i.e., Fréchet differentiable on O
+                  with the derivative mapping D(d2C )(x) : H →  → H depending Lipschitz continuously
+                  on x.
+                      (f ) There exist r > 0 and a neighborhood O of x̄ such that every nonzero proximal
+                  normal to C at any x in C ∩ O can be realized by an r-ball.
+                      (g) For some r > 0 and neighborhood O of x̄, the truncated mapping NCr is
+                  hypomonotone on O.
+                      (h) There exists λ > 0 such that
+                                                  )
+                               x = PC (u), x 6= u                                      u−x
+                  (1.5)                              =⇒ x = PC (u0 ) for u0 = x + λ           .
+                                 0 < |u − x̄| < λ                                     |u − x|
+                     (i) PC is single-valued and strongly-weakly continuous (i.e., from the strong topol-
+                  ogy in the domain to the weak topology in the range) on a neighborhood of x̄.
+                     (j) C has the Shapiro property at x̄.
+                     Then there is a neighborhood O of x̄ on which PC is single-valued, monotone
+                  and Lipschitz continuous with PC = (I + NCr )−1 on O for some r > 0, whereas
+                  D(dC ) = [I − PC ]/dC on O \ C. Here I : H → H denotes the identity mapping.
+                     If the set C is weakly closed relative to a (strong) neighborhood of x̄ (which is
+                  always the case when the space H is finite-dimensional), then one can add the
+                  following to the set of equivalent properties:
+                     (k) PC is single-valued around x̄.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5235
+
+
+                     In the equivalence in Theorem 1.3 between the prox-regularity property (a) and
+                  the Shapiro property (j), the implication from (j) to (g) could be seen already
+                  in Shapiro’s paper [4] (written before prox-regularity was developed in [6]). By
+                  providing the reverse implication along with the other equivalences, we place the
+                  Shapiro property in a much stronger light. Shapiro also proved (in the same paper)
+                  that a set with the Shapiro property has a (locally) Lipschitz continuous projection
+                  mapping. This property was also noted by Federer in [5] for sets with positive reach
+                  in finite dimensions.
+                     Other aspects of Theorem 1.3 are worth noting as well. We see that Fréchet
+                  differentiability of dC is sufficient to ensure the Lipschitz continuity of its derivative
+                  (locally). We have a criterion for PC to be single-valued, monotone and Lipschitz
+                  continuous around x̄, with an exact formula for PC in terms of a truncation of
+                  the normal cone mapping NC . Moreover the hypomonotonicity of this truncation
+                  characterizes prox-regularity.
+                     Our paper is organized as follows. In Section 2 we discuss the relationship be-
+                  tween p.l.n. (i.e., primal-lower-nice) functions and prox-regular sets. The results
+                  obtained in this section enable us to conclude that (a) is equivalent to (g) in The-
+                  orem 1.3. Section 3 is devoted to the remainder of the proof of Theorem 1.3 and
+                  of the statement and proof of its corollaries. There too, we establish that C is
+                  prox-regular at x̄ if and only if there exists σ > 0 such that the function d2C + σ| · |2
+                  is convex on some open neighborhood Oσ of x̄. In Section 4 we use the techniques
+                  developed in Sections 2 and 3 to obtain results similar to Theorem 1.3, but on the
+                  global level of proximally smooth sets. Several results of Clarke-Stern-Wolenski [2]
+                  are rederived in this way, and others are added.
+
+
+                                                             2.       P.L.N. Functions
+                     In finite-dimensional spaces, the equivalence between (a) and (g) in Theorem
+                  1.3 can be derived in a much more general context, namely that of a prox-regular
+                  function; see [6]. In the setting of an indicator function, it is actually a consequence
+                  of earlier work on p.l.n. (primal-lower-nice) functions; for more on p.l.n. functions,
+                  see [10]–[14]. Recall that a lower semicontinuous function f : H → R is p.l.n. at x̄,
+                  a point where f is finite, if there exist t0 > 0, c > 0 and ε > 0 with the property
+                  that
+                                                                                              t 0    2
+                  (2.1)                            f (x0 ) ≥ f (x) + hv, x0 − xi −              x −x
+                                                                                              2
+                  whenever t > t0 , v < ct, v ∈ ∂p f (x), x0 − x̄ < ε, and |x − x̄| < ε. Here ∂p f (x) is
+                  the set of proximal subgradients to f at x, i.e., v ∈ ∂p f (x) if there exist t ≥ 0 such
+                  that (2.1) is verified in a neighborhood of x (for more on proximal subgradient see
+                  [2] and [9]). We will denote by ∂f (x) the set of weak-limiting proximal subgradients
+                  to f at x; thus v ∈ ∂f (x) if there exists xk converging strongly to x with f (xk )
+                  converging to f (x) and vk converging weakly to v with vk ∈ ∂p f (xk ). Note that
+                  for a closed set C and any point x ∈ C we have NC (x) = ∂δC (x), and the cone of
+                  proximal normals to C at x is equal to ∂p δC (x); see [9] for more details.
+                      The fact that a function is p.l.n. has powerful consequences. For example, if the
+                  function is p.l.n. at x̄, then for all x in a neighborhood of x̄ we have ∂f (x) = ∂p f (x),
+                  and this set is closed and convex; see [13, Theorem 2.4]. The connection between
+                  prox-regular sets and p.l.n. functions will now be established.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5236                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  Proposition 2.1. The set C is prox-regular at x̄ ∈ C if and only if the indicator
+                  of C is p.l.n. at x̄.
+                  Proof. When the indicator of C is p.l.n. at x̄, then (as noted above) NC (x) agrees
+                  with the cone of proximal normals to C at x for all x in a neighborhood of x̄. From
+                  this we easily establish that C is prox-regular at x̄ for v̄ = 0, and therefore that C
+                  is prox-regular at x̄, according to Proposition 1.2.
+                     Now assume that C is prox-regular at x̄ for v̄ = 0. By Proposition 1.2, there
+                  then exist ρ > 0 and ε > 0 such that
+                                               δC (x0 ) ≥ δC (x) + hv, x0 − xi − (ρ/2)|x0 − x|2
+                  whenever |x − x̄| < ε, |x0 − x̄| < ε, |v| < ε with v ∈ NC (x). Let c = ε/ρ. If
+                  v ∈ NC (x) and |v| ≤ ct, then (ρ/t)v ∈ NC (x) with |(ρ/t)v| ≤ ε. This implies that
+                  (2.2)                    δC (x0 ) ≥ δC (x) + (ρ/t)hv, x0 − xi − (ρ/2)|x0 − x|2
+                  whenever t > 0, |x − x̄| < ε, |x0 − x̄| < ε, |v| < ct with v ∈ NC (x). Note that (2.2)
+                  is equivalent to
+                  (2.3)                        δC (x0 ) ≥ δC (x) + hv, x0 − xi − (t/2)|x0 − x|2 .
+                  This shows that δC is p.l.n. at x̄.
+                      As a consequence of Proposition 2.1 we get the following piece of Theorem 1.3.
+                  Corollary 2.2. Let C be a closed subset of H and let x̄ ∈ C. The set C is prox-
+                  regular at x̄ if and only if for some r > 0 and some neighborhood O of x̄, NCr is
+                  hypomonotone on O. In that case there exists an open neighborhood O of x̄ such
+                  that for all x ∈ O ∩ C the normal cone NC (x) is closed and convex, with every
+                  v ∈ NC (x) actually being a proximal normal to C at x.
+                  Proof. This follows from [13, Cor. 2.3 and Thm. 2.4]. To use [13, Cor. 2.3], simply
+                  note (as in the proof of Proposition 2.1) that the hypomonotonicity of NCr on some
+                  neighborhood O of x̄ is equivalent to the existence of c > 0, t0 > 0 and ε > 0 with
+                  the property that
+                                                        hv1 − v2 , x1 − x2 i ≥ −t|x1 − x2 |2
+                  whenever vi ∈ NC (xi ), |vi | ≤ ct and |xi − x̄| ≤ ε.
+                      In [6], a major class of sets enjoying prox-regularity locally was developed in
+                  terms of constraint representations. It was shown that C ⊂ Rn is prox-regular at
+                  x̄ if there is an open neighborhood O of x̄ such that
+                                                        
+                  (2.4)                       C ∩ O = x ∈ O F (x) ∈ D
+                  for a C 2 mapping F : O → Rm and a closed, convex set D     ⊂ R satisfying
+                                                                                    m
+                                                                                                  the
+                  constraint qualification that the only vector y ∈ ND F (x̄) with ∇F (x̄)∗ y = 0 is
+                  y = 0. (The Jacobian matrix for F at x̄ is denoted here by ∇F (x̄), and its adjoint
+                  by ∇F (x̄)∗ .) Because D is convex, this constraint qualification is equivalent to
+                  having
+                                                       
+                                          R+ D − F (x̄) − ∇F (x̄)Rn = Rm .
+                  Provided we adopt an extended version of the alternate form of the constraint
+                  qualification, this example carries forward to the setting of an infinite-dimensional
+                  Hilbert space. In formulating the next result, we denote by DF (x) the Fréchet
+                  derivative mapping associated with F at x.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5237
+
+
+                  Proposition 2.3. For a closed set C ⊂ H and a point x̄ ∈ C, assume that (2.4)
+                  holds for an open neighborhood O of x̄, a closed, convex set D in a Banach space
+                  E, and a mapping F : O → E that is Fréchet differentiable and such that DF (x)
+                  depends Lipschitz continuously on x ∈ O. If
+                                                      
+                                          R+ D − F (x̄) − DF (x̄)(H) = E,
+                  then C is prox-regular at x̄.
+                  Proof. Apply [10, Theorem 2.4] to conclude that δC is p.l.n. at x̄, and then invoke
+                  Proposition 2.1 of the present paper.
+                     We will now show that if every nonzero proximal normal to a set C at any point
+                  x of C can be realized by an r-ball, then C is uniformly prox-regular in the following
+                  sense.
+                  Definition 2.4. A closed set C is uniformly prox-regular with constant ρ > 0 if
+                  whenever x ∈ C and v ∈ NC (x) with |v| < 1, then x is the unique nearest point of
+                  C to x + ρ−1 v.
+                      At first glance it might seem obvious that if every nonzero proximal normal to
+                  a set C at any point x of C can be realized by some r-ball then C is uniformly
+                  prox-regular, but in the definition of uniform prox-regularity, all normal vectors
+                  v ∈ NC (x) with |v| < 1 are involved (not just the proximal normals). Although
+                  it is true that every normal vector is a weak limit of proximal normal vectors, one
+                  cannot control the norms of these proximal normal vectors. We get around these
+                  difficulties by showing, with the help of the following proposition and Corollary 2.2,
+                  that for a proximally smooth set C every vector v ∈ NC (x) must be a proximal
+                  normal vector.
+                  Proposition 2.5. Assume there exist r > 0 and an open neighborhood O of x̄ ∈ C
+                  such that every nonzero proximal normal to C at any x in C ∩ O can be realized by
+                  an r-ball. Then NCr is hypomonotone on O.
+                  Proof. Let v be a nonzero proximal normal to C at x ∈ C ∩ O. We know that v
+                  can be realized by an r-ball. Therefore, as we observed in the introduction, this
+                  implies that
+                                                            |v| 0
+                                                  − v, x0 − x ≥ −
+                                                               |x − x|2 , ∀x0 ∈ C.
+                                                            2r
+                  So, for i = 1, 2, let vi be a proximal normal to C at xi with vi nonzero and xi ∈ O.
+                  Then
+                                                                  |v1 |
+                                             − v1 , x2 − x1 ≥ −         |x2 − x1 |2 ,
+                                                                   2r
+                  and
+                                                                  |v2 |
+                                             − v2 , x1 − x2 ≥ −         |x1 − x2 |2 ,
+                                                                   2r
+                  which yields (even if vi = 0)
+                                                               1h              i
+                                       v1 − v2 , x1 − x2 ≥ −      |v1 | + |v2 | |x1 − x2 |2 .
+                                                              2r
+                  Therefore if |vi | < r, then v1 − v2 , x1 − x2 ≥ −|x1 − x2 |2 , which shows that SC
+                                                                                                    r
+                                                                                                      is
+                  hypomonotone on O with constant σ = 1. Here SC (x) is the set of proximal normals
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5238                   R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  to C at x. From this and from [13, Theorem 2.4] we deduce that SC (x) = NC (x)
+                  for all x ∈ O, and that NCr is hypomonotone on O with constant σ = 1.
+                  Corollary 2.6. If every nonzero proximal normal to C at any point x of C can be
+                  realized by an r-ball, then C is uniformly prox-regular with constant 1/r0 for every
+                  0 < r0 < r.
+                  Proof. Proposition 2.5 and Corollary 2.2 can be combined to show that C is prox-
+                  regular at every x ∈ C, and that every vector v ∈ NC (x) for x ∈ C is actually a
+                  proximal normal vector. Let 0 < r0 < r. It follows from (1.2) that for every x ∈ C
+                  and v ∈ NC (x) with |v| < 1, the point x is the unique closest point of C to x + r0 v,
+                  which shows that C is uniformly prox-regular with constants 1/r0 .
+                     The converse of Corollary 2.6 will be established later in Theorem 4.1. We will
+                  further show in Theorem 4.1 that a set C is proximally smooth with associated
+                  tube UC (r) if and only if the set C is uniformly prox-regular with constant 1/r0 for
+                  every 0 < r0 < r.
+
+                                    3.     Proof of the Main Theorem plus Corollaries
+                      The proof of Theorem 1.3 is divided into several parts. The combination of
+                  Corollary 2.2 and Proposition 2.5 with the coming 3.1, 3.4–3.6 will yield it in full.
+                      A crucial step in showing that the distance function is continuously differentiable
+                  on O \ C for some open neighborhood O of x̄ is that for some σ > 0, the function
+                  d2C +σ|·|2 is convex on a neighborhood of x̄. This property of d2C can be obtained by
+                  noticing that d2C is the Moreau-Yosida regularization of the indicator function δC
+                  with the norm square, and then applying the results of [6] in the finite-dimensional
+                  case and [14] in a general Hilbert space. However this property of d2C can easily
+                  be established here without a direct appeal to those papers. Once we show that
+                  d2C + σ| · |2 is convex on a neighborhood of x̄, we will know that d2C has proximal
+                  subgradients at all points in a neighborhood of x̄. This will tell us in particular
+                  that the projection mapping is nonempty-valued. The implication from (g) to (e)
+                  in Theorem 1.3 will thereby be validated.
+                  Proposition 3.1. Assume that C is prox-regular at x̄. Then
+                     (i) PC is single-valued around x̄.
+                     (ii) d2C is C 1+ around x̄.
+                     (iii) For every σ > 0, there is a convex neighborhood Oσ of x̄ on which the
+                  function d2C + σ| · |2 is convex.
+                     Moreover there is a neighborhood O of x̄ such that PC is monotone and Lipschitz
+                  continuous with PC = (I + NCr )−1 on O for some r > 0, while D(dC ) = [I − PC ]/dC
+                  on O \ C.
+                     In the proof of Proposition 3.1 we employ Fréchet subgradients. Recall that v is
+                  a Fréchet subgradient to a function f at x, denoted v ∈ ∂F f (x), provided
+                                                                f (x + y) − f (x) − hv, yi
+                                                     lim inf                               ≥ 0.
+                                                       y→0                 |y|
+                  Proof. Assume that C is prox-regular at x̄. According to Corollary 2.2, NCr is
+                  hypomonotone on some neighborhood O of x̄ for some r > 0. Therefore there exist
+                  ρ > 0 and ε > 0 such that
+                  (3.1)                                hv1 − v2 , x1 − x2 i ≥ −ρ|x1 − x2 |2
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5239
+
+
+                  whenever vi ∈ NC (xi ) with |vi | < ε and |xi − x̄| < ε, i = 1, 2 (just pick ε < r
+                  with int B x̄, ε ⊂ O). We may also assume that (3.1) holds when vi ∈ ∂F δC (xi )
+                  with |vi | < ε and |xi − x̄| < ε, i = 1, 2. This is because the set ∂F δC (x) is always
+                  included in the closure of the convex hull of NC (x), which is the same as NC (x) in
+                  a neighborhood of x̄ (according to Corollary 2.2).
+                     We first show that in a neighborhood of x̄, PC is single-valued and Lipschitz
+                  continuous relative to its domain.
+                  Claim. Let 0 < λ ≤ ρ with λ < 2. For i = 1, 2, let x0i ∈ PC (xi ), where |xi − x̄| <
+                  λε/2ρ. Then
+                                                               
+                                                              2
+                                         |x01 − x02 | ≤           |x1 − x2 |,
+                                                            2−λ
+                  and
+                                                                     
+                                    hx1 − x2 , x01 − x02 i ≥ 1 − (λ/2) |x01 − x02 |2 .
+                  Proof of the Claim. It follows that |x0i − xi | < λε/2ρ and that |x0i − x̄| < λε/ρ ≤ ε.
+                  So, as (2ρ/λ)(xi − x0i ) is a proximal normal to C at x0i with |(2ρ/λ)(xi − x0i )| < ε
+                  we have
+                                  h(2ρ/λ)(x1 − x01 ) − (2ρ/λ)(x2 − x02 ), x01 − x02 i ≥ −ρ|x01 − x02 |2 .
+                  Therefore
+                                    hx1 − x2 , x01 − x02 i − |x01 − x02 |2 ≥ −(λ/2)|x01 − x02 |2 ,
+                                                                            
+                  which means that hx1 − x2 , x01 − x02 i ≥ 1 − (λ/2) |x01 − x02 |2 . From this we conclude
+                  that
+                                                                          
+                                               |x1 − x2 | ≥ 1 − (λ/2) |x01 − x02 |.
+                                                                    
+                  This is the same as |x01 − x02 | ≤ 2/(2 − λ) |x1 − x2 |.
+                                                                                                      
+                      For 0 < λ ≤ ρ, with λ < 2, let x1 and x2 be two points of int B x̄, λε/2ρ (the
+                  open ball of radius λε/2ρ around x̄). Assume that the Fréchet subdifferential of d2C
+                  is nonempty at x1 and x2 . From [1, Theorem 11], we know that PC is nonempty-
+                  valued at those points, and is in fact single-valued according to the Claim. Let
+                  x0i = PC (xi ). We deduce from [15, Lemma 3.6] that
+                                                                           
+                  (3.2)                   ∂F d2C (xi ) ⊂ ∂F δC (x0i ) ∩ 2(xi − x0i ) ,
+                              
+                  i.e., ∂F d2C (xi ) = 2(xi − x0i ) with 2(xi − x0i ) ∈ ∂F δC (x0i ). From the Claim we have
+                           2h(x1 − x01 ) − (x2 − x02 ), x1 − x2 i = 2|x1 − x2 |2 − 2hx01 − x02 , x1 − x2 i
+                                                            ≥ 2|x1 − x2 |2 − 2|x01 − x02 ||x1 − x2 |
+                                                                                         
+                                                                                    2
+                                                            ≥ 2|x1 − x2 | − 2
+                                                                         2
+                                                                                            |x1 − x2 |2
+                                                                                  2−λ
+                                                                        
+                                                                    2λ
+                                                            =−              |x1 − x2 |2 .
+                                                                   2−λ
+                                                                                               2
+                  On the basis of [15,
+                                        Theorem 3.8] we  conclude  that d 2
+                                                                           C  +  λ/(2   −  λ)  | · | is convex
+                  on int B x̄, λε/2ρ . This shows
+                                                   (iii), and it also implies that ∂F dC (x) = ∂d2C (x)
+                                                                                             2
+
+                  for all x ∈ int B x̄, λε/2ρ . This in turn implies that ∂F d2C is nonempty-valued
+                  on int B x̄, λε/2ρ , which shows that for all x in int B x̄, λε/2ρ the set PC (x) is
+                  nonempty. The Claim can then be applied at all such points to conclude that PC
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5240                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  is single-valued, monotone,
+                                               and Lipschitz continuous. From (3.2) and the fact that
+                  d2C + λ/(2 − λ) | · |2 is convex on int B x̄, λε/2ρ we conclude that the Gâteaux
+                  derivative mapping of d2C on int B x̄, λε/2ρ is 2(I − PC ). This shows that d2C is
+                  C 1+ on int B x̄, λε/2ρ .                                                       
+                      Fix λ̄ > 0 with λ̄ < min{ρ, 1}. Let T (x) = NC (x) ∩ int B 0, λ̄ε/2ρ for x ∈
+                  C ∩ int B x̄, λ̄ε/2ρ , and T (x) = ∅ otherwise. There       only remains to show that
+                  (I + T )−1 (x) = PC (x) when x ∈ int B x̄, λ̄ε/2ρ . It can easily be verified that
+                  PC (x) ⊂ (I + T )−1 (x) for the x’s in question. We know that PC (x) is nonempty
+                  when x ∈ int B x̄, λ̄ε/2ρ ; therefore the desired equality will be obtained once we
+                  show that (I + T )−1 (x)is at most a singleton. For i = 1, 2, let x0i ∈ (I + T )−1 (x)
+                  with x ∈ int B x̄, λ̄ε/2ρ . It follows that (x − x0i ) ∈ T (x0i ). By the choice of T we
+                  have x0i ∈ C ∩ int B x̄, λ̄ε/2ρ with 2ρ|x − x0i | < λ̄ε < ε (because λ̄ < 1). With the
+                  help of (3.1) we have
+                             −2ρ|x01 − x02 |2 = h2ρ(x − x01 ) − 2ρ(x − x02 ), x01 − x02 i ≥ −ρ|x01 − x02 |2 ,
+                  which implies that x01 = x02 .
+                     The formula for the derivative of dC follows immediately from the formula for
+                  the derivative of d2C .
+
+                     In Theorem 1.3, (e) obviously implies (b), and that in turn implies (c). Before
+                  going any further we will need to show that if the distance function is Fréchet
+                  differentiable, then the projection mapping is strongly continuous.
+                  Lemma 3.2. Let C be a nonempty closed subset of H. If d2C is Fréchet differen-
+                  tiable on some open set O, or equivalently dC is Fréchet differentiable on O \ C,
+                  then PC is (single-valued and) strongly continuous on O.
+                  Proof. As we saw in the proof of Proposition 3.1, the Fréchet derivative of d2C at
+                  the point u is 2(u − PC (u)). The function −d2C is equal to a convex function minus
+                  the norm square. Indeed, as observed by Asplund [16], one has
+                                                                         
+                             −d2C (u) = sup − |u − x|2 = −|u|2 + sup 2hu, xi − |x|2 .
+                                                    x∈C                                        x∈C
+
+                  On the other hand, we know that the derivative of a convex function is strongly-
+                  weakly continuous—see [17] for example. The preceding observation therefore im-
+                  plies that the derivative of d2C , and hence PC , is strongly-weakly continuous on
+                  O. Let xk converge strongly to x, where x ∈ O. We have that D(d2C )(xk ) con-
+                  verges weakly to D(d2C )(x). We also have that |D(d2C )(xk )| = 2dC (xk ) converges
+                  to |D(d2C )(x)| = 2dC (x) (because dC is continuous—in fact it is Lipschitz). Thus,
+                  we have weak convergence and convergence of the norms; this implies strong con-
+                  vergence.
+
+                      We will also need the following fact.
+                  Lemma 3.3. Assume that dC is Fréchet differentiable on a neighborhood
+                                                                                            of a point
+                  ū ∈
+                     / C. Then there exists δ > 0 such that whenever u ∈ int B ū, δ and PC (u) = x,
+                  there exists t > 0 such that the point ut := u + t(u − x) likewise has PC (ut ) = x.
+                  Proof. By Lemma 3.2, there exists ε > 0 such that PC is single-valued and con-
+                       on int B ū, 2ε , with dC Fréchet differentiable there as well. Let σ =
+                  tinuous
+                  sup dC (u) u ∈ int B(ū, ε) . Then for all u ∈ int B(ū, ε) we have ε ≤ dC (u) ≤ σ,
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5241
+
+
+                  and as long as t ∈ (0, ε/σ) the point ut = u + t(u − PC (u)) lies in int B(ū, 2ε);
+                  indeed,
+                                    |ut − ū| = |(u − ū) + t(u − PC (u))| ≤ |u − ū| + t|u − PC (u)|
+                                                ≤ |u − ū| + tdC (u) < ε + [ε/σ]σ = 2ε.
+                  Fix δ ∈ (0, ε) and s ∈ (0, δ/σ) (thus s < 1) such that
+                  (3.3)                     |PC (us ) − PC (u)| < dC (u) for all u ∈ int B(ū, δ),
+                  which is possible by the continuity of dC and PC because dC (u)−|PC (us )−PC (u)| →
+                  dC (ū) > 0 as s & 0 and u → ū. Then for all u ∈ int B(ū, δ) we have sdC (u) < δ,
+                  and moreover dC (us ) > dC (u), since by (3.3)
+                                       dC (us ) = |us − PC (us )| = |u + s(u − PC (u)) − PC (us )|
+                                                  = |(1 + s)(u − PC (us )) + s(PC (us ) − PC (u))|
+                                                  ≥ (1 + s)|u − PC (us )| − s|PC (us ) − PC (u)|
+                                           > (1 + s)dC (u) − sdC (u) = dC (u).
+                                                                            
+                     Consider now any u ∈ int B(ū, δ), and let D = w dC (w) ≥ dC (us ) . In
+                  particular, us ∈ D. We know that there is a sequence of points uk converging to
+                  u with PD (uk ) 6= ∅; see [17]. Since dC (us ) > dC (u), we eventually have dC (us ) >
+                  dC (uk ), so uk ∈ / D. Let wk ∈ PD (uk ). Then uk − wk is a nonzero proximal
+                  normal to D at wk , and wk must therefore be a boundary point of D and have
+                  dC (wk ) = dC (us ). Furthermore, for k sufficiently large we have wk in the ball
+                  int B(ū, 2δ) ⊂ int B(ū, 2ε), because uk eventually belongs to int B(u, δ) and
+                  (3.4)      |uk − wk | = dD (uk ) ≤ |uk − us | → |u − us | = s|u − PC (u)| = sdC (u) < δ.
+                  In particular, then, dC (wk ) > ε and dC is Fréchet differentiable at wk with deriva-
+                  tive D(dC )(wk ) given by (wk − PC (wk ))/dC (wk ), which has norm 1.
+                     In view
+                          of the constraint representation of D in its definition, the half-space
+                  Hk := v h−D(dC )(wk ), vi ≤ 0 then gives the general tangent cone (contingent
+                  cone) to D at wk , and since proximal normals must lie in the polar of this tangent
+                  cone, the vector uk − wk must be a nonnegative scalar multiple of the normal vector
+                  −(wk − PC (wk ))/dC (wk ) to Hk . In fact we must have
+                         uk − wk = −λk (wk − PC (wk ))/dC (wk ) with λk = |uk − wk | = dD (uk ) > 0,
+                  where eventually λk < δ < ε by (3.4); hence λk < ε ≤ dC (u) < dC (us ) = dC (wk ).
+                  In terms of rk = dD (uk )/dC (wk ) we then have rk ∈ (0, 1) and uk = (1 − rk )wk +
+                  rk PC (wk ). Thus, uk belongs to the line segment joining wk with PC (wk ), and in
+                  consequence we have PC (uk ) = PC (wk ) and λk = dC (wk ) − dC (uk ) = dC (us ) −
+                  dC (uk ). This gives us
+                                                            wk = uk + tk (uk − PC (uk ))
+                  with
+                                                   rk          dD (uk )         dC (us ) − dC (uk )
+                                        tk :=           =                     =                     .
+                                                 1 − rk   dC (wk ) − dD (uk )        dC (uk )
+                  Since tk converges to t := (dC (us )−dC (u))/dC (u) > 0, we obtain that wk converges
+                  to ut and PC (wk ) converges to PC (ut ). But PC (wk ) = PC (uk ) → PC (u). Hence
+                  for this t we have PC (ut ) = PC (u), as desired.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5242                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                    And now we show (part (i) below) that (c) implies (h) in Theorem 1.3. Note also
+                  that we could add part (ii) of Proposition 3.4 to the list of equivalent properties in
+                  Theorem 1.3.
+                  Proposition 3.4. Assume dC is Fréchet differentiable on O \ C for some open
+                  neighborhood O of x̄. Then there exists λ > 0 such that:
+                     (i)
+                                                )
+                             x = PC (u), x 6= u                                   u−x
+                  (3.5)                           =⇒ x = PC (u0 ) for u0 = x + λ         .
+                               0 < |u − x̄| < λ                                  |u − x|
+                                                                            
+                     (ii) For D = y dC (y) ≥ λ and for any u ∈ int B x̄, λ \ C one has dC (u) +
+                  dD (u) = λ.
+                  Proof. By Lemma 3.2 we may assume          that there exists λ > 0 such that d2C is
+                  Fréchet differentiable on int B x̄, 2λ while PC is single-valued and strongly con-
+                  tinuous there. Let x = PC (u) with |u − x̄| < λ and u ∈           / C. It follows that
+                  0 < |x − u| < λ. Since dC is Fréchet differentiable on a neighborhood of u, we
+                  can apply Lemma 3.3 to get the existence of s > 0, with s < λ, such that for all
+                  t ∈ (0, s) we have PC (ut ) = x, where ut := u + t(u − x)/|u − x|. Note that for
+                  all such t, one has ut ∈ / C. Let λ0 be the supremum       over all t ∈ [0, λ] such that
+                  PC (ut ) = x. The continuity of PC over int B x̄, 2λ (note that   |ut − x̄| < 2λ) implies
+                  that the supremum    is attained, and   since u t ∈ int B x̄, 2λ  for t ∈ [0, λ] one has
+                  uλ0 ∈ int B x̄, 2λ . We cannot have λ0 < λ, because when we apply Lemma 3.3
+                  with uλ0 in place of u we arrive at a contradiction. Note that
+                                                                                          (u − x)
+                                                          ut = x + (|u − x| + t)                  ,
+                                                                                          |u − x|
+                  and since λ0 = λ we obtain (3.5). Let u0 := x + λ(u − x)/|u − x|. Since x ∈ C
+                  (x = PC (u)) and u0 ∈ D := y dC (y) ≥ λ , we have
+                  (3.6)                            dC (u) + dD (u) ≤ |u − x| + |u − u0 | = λ.
+                  On the other hand, dC (y) ≥ λ for any y ∈ D, which implies that
+                  (3.7)                             |y − u| ≥ dC (y) − dC (u) ≥ λ − dC (u).
+                  The combination of (3.6) and (3.7) yields (ii).
+                     It is clear in Theorem 1.3 that (h) implies (f) . But property (f) implies, by
+                  combining Corollary 2.2 with Proposition 2.5, that C is prox-regular at x̄. We
+                  therefore have the equivalence between (a), (b), (c), (e), (f), (g) and (h). We now
+                  turn our attention to adding (d), (i), and (k) to the list.
+                  Proposition 3.5. Consider a closed set C ⊂ H, a point x̄ ∈ C and a neighborhood
+                  O of x̄. The following properties are equivalent:
+                     (i) dC is continuously differentiable on O \ C.
+                     (ii) dC is Fréchet differentiable on O \ C.
+                     (iii) dC is Gâteaux differentiable on O \ C and PC is non-empty on O.
+                     (iv) PC is single-valued and strongly-weakly continuous on O.
+                     If the set C is weakly closed relative to O, then one can add the following to the
+                  set of equivalent properties:
+                     (v) PC is single-valued on O.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5243
+
+
+                  Proof. First recall that the Fréchet derivative of d2C at an arbitrary point u is
+                  2(u − PC (u)) (see the proof of Proposition 3.1). From this and Lemma 3.2 we
+                  conclude that (i) is equivalent to (ii), and that (ii) implies (iii). Let
+                                                            
+                                              f (u) = sup 2hu, xi − |x|2 .
+                                                                       x∈C
+
+                  The function f is convex, and we saw in the proof of Lemma 3.2 that f (·) + d2C (·) =
+                  | · |2 . From Hiriart-Urruty [24] we know that
+                  (3.8)                              PC (u) ⊂ ( 12 )∂f (u) for any u ∈ H.
+                  Since the derivative of a convex function is strongly-weakly continuous and equals
+                  its subdifferential, we conclude that (iii) implies (iv) (under (iii), the Gâteaux
+                  derivative of ( 12 )f on O \ C is PC ). To show that (iv) implies (i), first use Phelps
+                  [25, Lemma 7.7] to conclude that PC is maximal monotone on O. Since the sub-
+                  differential of a convex function is monotone (see for example [25, Theorem 3.24]),
+                  we get from (3.8) that the Gâteaux derivative of ( 12 )f equals PC (u) for any u ∈ O.
+                  This shows that d2C is continuously differentiable on O and that dC is continuously
+                  differentiable on O \ C (strong-weak continuity of the Gâteaux derivative of d2C
+                  implies continuous differentiability—see the proof of Lemma 3.2).
+                     Finally, it is an easy exercise to show that when a set is weakly closed and has
+                  single-valued projections then its projection mapping is strongly-weakly continuous.
+                  Therefore when the set C is weakly closed (iv) and (v) are equivalent.
+                    To complete the proof of Theorem 1.3 we need only show that prox-regularity is
+                  equivalent to the Shapiro property.
+                  Proposition 3.6. A closed subset C of H is prox-regular at x̄ if and only if C has
+                  the Shapiro property at x̄.
+                  Proof. Assume that the set C is prox-regular at x̄. There exist r > 0 and a
+                  neighborhood O of x̄ such that every proximal normal to C at x in C ∩ O can be
+                  realized by an r-ball. This means that for every unit normal v to C at x in C ∩ O
+                  we have (1/2r)|x0 − x|2 ≥ hv, x0 − xi for every x0 ∈ C. From this we conclude that
+                  C has the Shapiro property at x̄, since in this context the cones TC (x) and NC (x)
+                  are polar to each other, and therefore, by Fenchel duality, we have
+                                                         sup         hv, x0 − xi = dTC (x) (x0 − x).
+                                                  v∈NC (x),|v|=1
+
+                  Now assume that C satisfies the Shapiro property at x̄ with constant k and neigh-
+                  borhood O. As in Shapiro [4, Lemma 2.1] we conclude that hv1 − v2 , x1 − x2 i ≥
+                  −2k|x1 − x2 |2 whenever vi is a proximal normal to C at xi with xi in O ∩ C and
+                  |vi | ≤ 1. As in Proposition 2.5 we deduce from [13, Theorem 2.4] that the set of
+                  proximal normals to C at x ∈ O ∩ C is equal to the normal cone NC (x). There-
+                  fore NC1 is hypomonotone on O, and we conclude from Corollary 2.2 that C is
+                  prox-regular at x̄.
+                     Now that the entire proof of Theorem 1.3 has been put together, we turn to
+                  a couple of consequences of this theorem which give further characterizations of
+                  prox-regular sets.
+                  Corollary 3.7 (of Theorem 1.3). For a closed set C of H, the following are equiv-
+                  alent:
+                     (a) The set C is prox-regular at x̄.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5244                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                     (b) For all σ > 0, the function d2C + σ| · |2 is convex on a convex neighborhood
+                  Oσ of x̄.
+                     (c) For some σ > 0, the function d2C + σ| · |2 is convex on a convex neighborhood
+                  of x̄.
+                  Proof. We already observed in Proposition 3.1 that for all σ > 0, the function
+                  d2C + σ| · |2 is convex on some open neighborhood Oσ of x̄ when the set is prox-
+                  regular at x̄. On the other hand, if for some σ > 0 the function d2C + σ| · |2 is
+                  convex on a neighborhood of x̄, then the function d2C has Fréchet subgradients at
+                  all points in a neighborhood of x̄; but this is also true of −d2C since we saw in the
+                  proof of Lemma 3.2 that −d2C + | · |2 is a convex function. Therefore d2C is Fréchet
+                  differentiable on a neighborhood of x̄, so C is prox-regular at x̄ by Theorem 1.3.
+
+
+                  Corollary 3.8 (of Theorem 1.3). For a closed set C of H, the following are equiv-
+                  alent:
+                     (a) C is prox-regular at x̄.
+                     (b) ∂p dC (x) is nonempty at all points x in a neighborhood of x̄.
+                     (c) ∂F dC (x) is nonempty at all points x in a neighborhood of x̄.
+                  Proof. Assume that C is prox-regular at x̄. From Theorem 1.3(e) we have that dC
+                  is C 1+ on O \ C for some open neighborhood O of x̄. This implies that ∂p dC (x)
+                  is nonempty at all points x of O \ C. On the other hand, 0 is always a proximal
+                  subgradient to dC at points x in C. This shows that (b) follows from (a).
+                      Obviously (b) implies (c).
+                      We will show that (c) implies (a) by verifying that d2C is Fréchet differentiable
+                  near x̄, which implies that dC is Fréchet differentiable on O \ C for some open
+                  neighborhood O of x̄. This is easily established with the help of Lemma 3.9 below.
+                  Indeed, according to Lemma 3.9, ∂F d2C is nonempty-valued on a neighborhood of
+                  x̄. On the other hand, we know that for all x ∈ H, ∂F (−d2C )(x) is nonempty (see
+                  the proof of Lemma 3.2). From this we conclude that d2C is Fréchet differentiable
+                  on a neighborhood of x̄.
+
+                  Lemma 3.9. If v ∈ ∂F dC (u), then 2dC (u)v ∈ ∂F d2C (u).
+                  Proof. For each ε > 0, we have (by the definition of a Fréchet subgradient) that
+                                                    hv, x − ui ≤ dC (x) − dC (u) + ε|x − u|
+                  for all x in a neighborhood of u. Therefore
+                         h2dC (u)v, x − ui ≤ 2dC (u)dC (x) − 2dC (u)dC (u) + 2dC (u)ε|x − u|
+                                                                                2
+                                           = dC (x)2 − dC (u)2 − dC (x) − dC (u) + 2dC (u)ε|x − u|
+                                                  ≤ dC (x)2 − dC (u)2 + 2dC (u)ε|x − u|.
+                  From this we conclude that 2dC (u)v ∈ ∂F d2C (u).
+
+                                                       4.     Proximally Smooth Sets
+                     The local theory that has been developed so far will now be applied to the global
+                  setting of Clarke, Stern and Wolenski [2] to obtain certain of their characterizations,
+                  along with some new ones.
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5245
+
+
+                  Theorem 4.1. Let C be a closed subset of H and let r > 0. The following proper-
+                  ties are equivalent:
+                     (a) C is uniformly prox-regular with constant 1/r0 for every 0 < r0 < r.
+                     (b) dC is continuously differentiable on UC (r).
+                     (c) dC is Fréchet differentiable on UC (r).
+                     (d) dC is Gâteaux differentiable on UC (r), and PC is nonempty-valued on UC (r).
+                     (e) d2C is C 1+ on UC (r), i.e., differentiable with locally Lipschitz continuous
+                  derivative mapping (in fact with Lipschitz continuous derivative on UC (ρ) for each
+                  positive ρ < r).
+                     (f ) Every nonzero proximal normal to C at any point x of C can be realized by
+                  an r-ball.
+                     (g) Whenever xi ∈ C and vi ∈ NCr (xi ), one has
+                                                        hv1 − v2 , x1 − x2 i ≥ −|x1 − x2 |2 .
+                     If u ∈ UC (r) and x = PC (u), then x = PC (u0 ) for u0 = x + r(u − x)/|u − x|.
+                     (i) PC is single-valued and strongly-weakly continuous on UC (r).
+                     (j) dTC (x) (x0 − x) ≤ 2r
+                                            1
+                                               |x0 − x|2 whenever x0 , x are in C (global Shapiro property).
+                     Then PC is (single-valued) monotone on UC (r) and Lipschitz continuous on
+                  UC (ρ) for any ρ ∈ (0, r), with PC = (I + NCr )−1 on UC (r). Moreover, D(dC ) =
+                  [I − PC ]/dC on UC (r).
+                     If C is weakly closed (which is always the case when the space H is finite-
+                  dimensional), then one can add the following to the list of equivalent properties:
+                     (k) PC is single-valued on UC (r).
+                     In this theorem, the equivalence between (b) (i.e., the definition of proximal
+                  smoothness), (d), (e), and (k) (when the set is weakly closed), along with the fact
+                  that PC is single-valued, monotone and Lipschitz continuous under these equivalent
+                  assumptions, was shown by Clarke, Stern and Wolenski [2]. They also proved that
+                  proximal smoothness is equivalent to (f) under the extra assumption that PC (u) 6= ∅
+                  for each u ∈ UC (r). The addition of (a), (c), (f), (g), (h), (i) and (j) to the list of
+                  equivalent properties is new. Also new is the formula for PC in terms of a truncation
+                  of the normal cone mapping NC . Our arguments are quite different than those of
+                  [2] and provide an easier way of obtaining the equivalence between (b) and (f).
+                     The following will be used in the proof of Theorem 4.1.
+                  Lemma 4.2. Let C be a closed subset of H, and let 0 < ρ < r < ∞. Assume that
+                                                        hv1 − v2 , x1 − x2 i ≥ −|x1 − x2 |2
+                  whenever xi ∈ C, vi ∈ NCr (xi ). Then:
+                    (i) For xi in PC (ui ) with ui ∈ UC (ρ), one has
+                                                                  
+                                            |x1 − x2 | ≤ r/(r − ρ) |u1 − u2 |
+                  and
+                                                                                
+                                                hu1 − u2 , x1 − x2 i ≥ 1 − (ρ/r) |x1 − x2 |2 .
+                     (ii) PC is single-valued and monotone on UC (r) and Lipschitz continuous on
+                  UC (ρ). Moreover, PC = I + NCr )−1 on UC (r).                              
+                     (iii) d2C is C 1+ on UC (r), and the derivative of dC is equal to I − PC /dC on
+                  UC (r).                                
+                     (iv) The function d2C + ρ/(r − ρ) | · |2 is convex on any convex subset included
+                  in UC (ρ).
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5246                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  Proof. (i) The vector (r/ρ)(ui − xi ) is a proximal normal to C at xi , and it satisfies
+                  |(r/ρ)(ui − xi )| < r. Therefore the assumptions ensure that
+                                     h(r/ρ)(u1 − x1 ) − (r/ρ)(u2 − x2 ), x1 − x2 i ≥ −|x1 − x2 |2 ,
+                  and
+                                   hu1 − u2 , x1 − x2 i − |x1 − x2 |2 ≥ −(ρ/r)|x1 − x2 |2 ,
+                                                                       
+                  which means that hu1 − u2 , x1 − x2 i ≥ 1 − (ρ/r) |x1 − x2 |2 . From this we conclude
+                  that |u1 − u2 | ≥ 1 − (ρ/r) |x1 − x2 |. This can also be written as |x1 − x2 | ≤
+                   r/(r − ρ) |u1 − u2 |. This finishes the proof of (i).
+                     (ii)–(iv) As in the proof of Proposition 3.1, we deduce from (i) that d2C +
+                   ρ/(r − ρ) | · |2 is convex on any convex subset of UC (ρ). This implies that the
+                  Fréchet subdifferential of d2C is nonempty on UC (r). From this we conclude that
+                  PC (u) is nonempty for every u ∈ UC (r). Part (i) can then be used (as in Proposition
+                  3.1) to show that PC is single-valued, monotone, and locally Lipschitz continuous
+                  on UC (r) (in fact, Lipschitz continuous on UC (ρ)). We also have that d2C is C 1+
+                  on UC (r).
+                                                                                                     −1
+                     If x = PC (u) for u ∈ UC (r), then one easily shows that x ∈ I + NCr                (u).
+                                                              −1
+                  Therefore the desired equality I + NCr          (u) = PC (u) will be obtained once we
+                                      −1
+                  show that I + NCr       (u) is at most a singleton. For i = 1, 2, let xi ∈ (I + NCr )−1 (u)
+                  with u ∈ UC (r). It follows that (u − xi ) ∈ NCr (xi ) and that |u − xi | < r. Thus,
+                  there exist s > 1 such that s|u − xi | < r (and we still have s(u − xi ) ∈ NC (xi )).
+                  We therefore have
+                                  −s|x1 − x2 |2 = sh(u − x1 ) − (u − x2 ), x1 − x2 i ≥ −|x1 − x2 |2 ,
+                  which implies that x1 = x2 .
+                  Proof of Theorem 4.1. From Lemma 4.2 we conclude that (g) implies (e). This
+                  lemma also gives us that PC is single-valued, monotone on UC (r) and Lipschitz
+                  continuous on UC (ρ) for any ρ ∈ (0, r) with PC = (I + NCr )−1 on UC (r), whereas
+                  D(dC ) = [I − PC ]/dC on UC (r).
+                      Obviously (e) implies (b), which in turn is equivalent (by Proposition 3.5) to (c),
+                  (d), and (i).
+                      (c) implies (h): By Lemma 3.2 we have that PC is single-valued and strongly
+                  continuous on UC (r). Let x = PC (u) with u ∈ UC (r). Since the function dC
+                  is Fréchet differentiable on a neighborhood of u, we can apply Lemma 3.3 to get
+                  the existence of s > 0 such that PC (ut ) = x, where ut := u + t(u − x)/|u − x|
+                  and 0 < t < s. Let λ0 be the supremum over all t ∈ [0, (r − dC (u))] such that
+                  PC (ut ) = x. The continuity of PC on UC (r) (note that ut ∈ UC (r)) implies that
+                  the supremum is attained. We cannot have λ0 < (r − dC (u)), because this would
+                  contradict Lemma 3.3. Note that ut = x + (dC (u) + t)(u − x)/|u − x|. Since
+                  λ0 = (r − dC (u)), we obtain (h).
+                      (h) obviously implies (f).
+                      (f) implies (g): This follows from Proposition 2.5.
+                      We now know that (b)–(i) are equivalent. Property (j) can also be added to this
+                  list of equivalent properties, since one can easily show, as in the proof of Proposition
+                  3.6, that (f) implies (j) and that (j) implies (g).
+                      The fact that (f) implies (a) was noted in Corollary 2.6. Now assume that C is
+                  uniformly prox-regular with constant 1/r0 for every 0 < r0 < r; we will show that
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                       5247
+
+
+                  (f) is fulfilled. According to the definition of uniform prox-regularity, we have for
+                  all x ∈ C and v 0 ∈ NC (x) with |v 0 | < 1 that x is the unique nearest point of C
+                  to x + r0 v 0 . This means that |x0 − (x + r0 v 0 )| ≥ r0 |v 0 | for every x0 ∈ C. If we fix
+                  v ∈ NC (x) with |v| = 1 and take the limit as (r0 , v 0 ) converges to (r, v), we obtain
+                  that |x0 − (x + rv)| ≥ r for every x0 ∈ C. This gives (f).
+                     When the set C is weakly closed and has single-valued projections on UC (r),
+                  we obtain, as in Proposition 3.5, that PC is strongly-weakly continuous on UC (r).
+                  This completes the proof of Theorem 4.1.
+                  Remark. Another way to show that the Fréchet differentiability of dC on UC (r)
+                  (for some r > 0) is sufficient for the proximal smoothness of C is to invoke [21,
+                  Theorem 3, Corollaries 2 and 3]. Indeed, as was observed by Asplund ([16, page
+                  236]), the Fréchet differentiability of | · |2 − d2C at a point x is equivalent to the
+                  (norm-to-norm-) continuous differentiability of this same function at the point x.
+                  From this we can conclude that dC is continuously differentiable on the tube UC (r).
+                      The proof of the following corollary parallels that of Corollary 3.8.
+                  Corollary 4.3 ([2, Thm. 4.1]). Let C be a closed subset of H and r a positive
+                  number. The following properties are equivalent:
+                    (a) C is proximally smooth with associated tube UC (r).
+                    (b) ∂p dC (x) is nonempty at all points x of UC (r).
+                    (c) ∂F dC (x) is nonempty at all points x of UC (r).
+                      Another new characterization of proximally smooth sets comes next.
+                  Corollary 4.4. The set C is proximally smooth if and only if there exist some
+                  σ > 0 and some tube around C such that d2C + σ| · |2 is convex on any convex subset
+                  of this tube.
+
+                                                  smooth with associated tube UC (r), we saw in
+                  Proof. When the set is proximally
+                  Lemma 4.2 that d2C + ρ/(r − ρ) | · |2 is convex on any convex subset of UC (ρ) for
+                  0 < ρ < r. The rest of the proof parallels that of Corollary 3.7, and is omitted.
+
+
+                     Theorem 4.1 enables us to recover two well-known results concerning Chebyshev
+                  sets, i.e., sets C for which PC is single-valued everywhere. Part (a) of the following
+                  Corollary 4.5 was originally proved by Motzkin [22] in the finite-dimensional case
+                  and by Klee [23] in the infinite-dimensional case, and it was re-derived by Clarke,
+                  Stern and Wolenski in [2]. Part (b) of Corollary 4.5 is due to Asplund [16]. For a
+                  thorough discussion of the “Chebyshev problem”, see Hiriart-Urruty [24].
+                  Corollary 4.5. (a) A nonempty, weakly closed set C ⊂ H is convex if and only if
+                  its projection mapping PC is single-valued on H.
+                     (b) A closed set C ⊂ H is convex if and only if its projection mapping PC is
+                  single-valued and strongly-weakly continuous on H.
+                  Proof. It is well known that if C is nonempty, convex and closed (which is the same
+                  as being weakly closed under convexity), then PC is single-valued and continuous
+                  (in fact nonexpansive, i.e., Lipschitz continuous with constant 1). On the other
+                  hand (under the assumption that C is weakly closed), if PC is single-valued on H,
+                  we get from Theorem 4.1(g) that hv1 − v2 , x1 − x2 i ≥ 0 when vi ∈ NC (xi ). This,
+                  according to [15, Thm. 3.8], shows that C is convex. Under the assumptions that
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                  5248                  R. A. POLIQUIN, R. T. ROCKAFELLAR, AND L. THIBAULT
+
+
+                  PC is single-valued and strongly-weakly continuous on H we can also conclude from
+                  Theorem 4.1(g) and [15, Thm. 3.8] that C is convex.
+                        The following was established in [2, Cor. 4.15] in the finite-dimensional setting.
+                  Corollary 4.6. If C is proximally smooth, then at every point x ∈ C the normal
+                  cone NC (x) is closed and convex, with every v ∈ NC (x) actually being a proximal
+                  normal.
+                  Proof. Theorem 4.1 shows that C is prox-regular at any x ∈ C. We can then apply
+                  Corollary 2.2 to obtain the desired conclusion.
+
+                                                                      References
+                  [1]  J. M. Borwein and J. R. Giles, The proximal normal formula in Banach space, Trans. Amer.
+                       Math. Soc. 302 (1987), 371–381. MR 88m:49013
+                  [2] F. H. Clarke, R. J Stern and P. R. Wolenski, Proximal smoothness and the lower-C 2 property,
+                       J. Convex Analysis, 2 (1995), 117–144. MR 96j:49014
+                  [3] J.-P. Vial, Strong and weak convexity of sets and functions, Math. Ops. Res. 8 (1983), 231–
+                       259. MR 84m:90107
+                  [4] A. S. Shapiro, Existence and differentiability of metric projections in Hilbert spaces, SIAM
+                       J. Optimization 4 (1994), 130–141. MR 94m:90111
+                  [5] H. Federer, Curvature measures, Trans. Amer. Math. Soc. 93 (1959), 418–491. MR 22:961
+                  [6] R. A. Poliquin and R. T. Rockafellar, Prox-regular functions in variational analysis, Trans.
+                       Amer. Math. Soc. 348 (1996), 1805–1838. MR 96h:49039
+                  [7] R. A. Poliquin and R. T. Rockafellar, Generalized Hessian properties of regularized nonsmooth
+                       functions, SIAM J. Optimization 6 (1996), 1121–1137. MR 97j:49025
+                  [8] R. A. Poliquin and R. T. Rockafellar, Second-order nonsmooth analysis in nonlinear pro-
+                       gramming, Recent Advances in Nonsmooth Optimization (D. Du, L. Qi and R. Womersley,
+                       eds.), World Scientific Publishers, 1995, pp. 322–350. MR 98e:49043
+                  [9] R. T. Rockafellar and R. J.-B. Wets, Variational Analysis, Springer-Verlag, 1997.
+                       MR 98m:49001
+                  [10] C. Combari, A. Elhilali Alaoui, A. Levy, R. A. Poliquin and L. Thibault, Convex composite
+                       functions in Banach spaces and the primal-lower-nice property, Proc. Amer. Math. Soc. 126
+                       (1998), 3701–3708. MR 99b:49016
+                  [11] R. A. Poliquin, Integration of subdifferentials of nonconvex functions, Nonlinear Anal. Th.
+                       Meth. Appl. 17 (1991), 385–398. MR 92j:49008
+                  [12] R. A. Poliquin, An extension of Attouch’s Theorem and its application to second-order epi-
+                       differentiation of convexly composite functions, Trans. Amer. Math. Soc. 332 (1992), 861–
+                       874. MR 93a:49013
+                  [13] A. Levy, R. A. Poliquin and L. Thibault, Partial extension of Attouch’s theorem with appli-
+                       cations to proto-derivatives of subgradient mappings, Trans. Amer. Math. Soc. 347 (1995),
+                       1269–1294. MR 95k:49035
+                  [14] L. Thibault and D. Zagrodny, Integration of subdifferentials of lower semicontinuous func-
+                       tions, J. Math. Anal. Appl. 189 (1995), 33–58. MR 95i:49032
+                  [15] R. Correa, A. Jofré and L. Thibault, Characterization of lower semicontinuous convex func-
+                       tions, Proc. Amer. Math. Soc. 116 (1992), 61–72. MR 92k:49027
+                  [16] E. Asplund, Čebyšev sets in Hilbert spaces, Trans. Amer. Math. Soc. 144 (1969), 235–240.
+                       MR 40:6238
+                  [17] J.-P. Aubin and I. Ekeland, Applied Nonlinear Analysis, Wiley-Interscience, 1984.
+                       MR 87a:58002
+                  [18] K.-S. Lau, Almost Chebyshev subsets in reflexive Banach spaces, Indiana Univ. Math. J. 27
+                       (1978), 791–795. MR 58:23286
+                  [19] J. M. Borwein and H. M. Strojwas, Proximal analysis and boundaries of closed sets in Banach
+                       spaces II: Applications, Canad. J. Math. 39 (1987), 428–472. MR 88f:46034
+                  [20] F. H. Clarke, Optimization and Nonsmooth Analysis, SIAM Publications, Philadelphia, 1990
+                       (originally published in 1983). MR 85m:49002; MR 91e:49001
+                  [21] E. Asplund and R. T. Rockafellar, Gradients of convex functions, Trans. Amer. Math. Soc.
+                       121 (1968), 31–47. MR 39:1968
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+                                         LOCAL DIFFERENTIABILITY OF DISTANCE FUNCTIONS                            5249
+
+
+                  [22] T. S. Motzkin, Sur quelques propriétés caractéristiques des ensembles convexes, Att. R. Acad.
+                       Lincei, Rend. 21 (1935), 562–567.
+                  [23] V. Klee, Convexity of Chebyshev sets, Math. Annalen 142 (1961), 292–304. MR 22:12367
+                  [24] J.-B. Hiriart-Urruty, Ensembles de Tchebychev vs. ensembles convexes: l’état de la situation
+                       vu par l’analyse convexe non lisse, Ann. Sci. Math. Que. 22 (1998), 47–62. MR 99f:49018
+                  [25] R. R. Phelps, Convex Functions, Monotone Operators and Differentiability, Lecture Notes
+                       in Mathematics, Vol. 1364 2nd edition, Springer-Verlag, 1993. MR 94f:46055
+
+                    Department of Mathematical Sciences, University of Alberta, Edmonton, Alberta,
+                  Canada T6G 2G1
+                    E-mail address: rene.poliquin@ualberta.ca
+
+                     Department of Mathematics 354350, University of Washington, Seattle, Washington
+                  98195-4350
+                     E-mail address: rtr@math.washington.edu
+
+                    Laboratoire d’Analyse Convexe, Université Montpellier II, 34095 Montpellier,
+                  France
+                    E-mail address: thibault@math.univ-montp2.fr
+
+
+
+
+License or copyright restrictions may apply to redistribution; see http://www.ams.org/journal-terms-of-use
+
