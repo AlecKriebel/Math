@@ -1,0 +1,4 @@
+# Banach–Mazur legacy correspondence preflight
+
+* 2026-10-25T15:50:00Z (approximate initial checkpoint; exact operation times in receipts) — Read the prior odd-ear/blocking and ambient/block/modulus preflight reports and precise inventory/search/verifier method. Fresh read-only Git ref advertisement returned the requested a3c4ad43 commit; its cached docs tree equals the fixed 7a24ec1 tree. Local HEAD/main and existing working docs differ and will be preserved. This is correspondence work only; all203 remains ongoing. Completion estimate 25%.
+* Initial code checkpoint — Independently wrote and inspected inspect_readonly.py before execution. It authenticates prior seals, all254 Git blobs and76 existing extracts in place; it writes only this new namespace and captures the working-docs/index/HEAD/source/editorial/review baseline before further operations. No PDF cache copy, archive expansion or code from the papers is executed. Completion estimate 30%.
