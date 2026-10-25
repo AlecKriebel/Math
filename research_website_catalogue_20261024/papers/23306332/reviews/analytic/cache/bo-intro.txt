@@ -1,0 +1,175 @@
+VARIATIONAL ANALYSIS OF THE ABSCISSA MAPPING FOR
+POLYNOMIALS∗
+JAMES V. BURKE† AND MICHAEL L. OVERTON‡
+SIAM J. CONTROL OPTIM. c  2001 Society for Industrial and Applied Mathematics
+Vol. 39, No. 6, pp. 1651–1676
+Abstract. The abscissa mapping on the aﬃne variety Mn of monic polynomials of degree n
+is the mapping that takes a monic polynomial to the maximum of the real parts of its roots. This
+mapping plays a central role in the stability theory of matrices and dynamical systems. It is well
+known that the abscissa mapping is continuous on Mn, but not Lipschitz continuous. Furthermore,
+its natural extension to the linear space Pn of polynomials of degree n or less is not continuous. In
+our analysis of the abscissa mapping, we use techniques of modern nonsmooth analysis described
+extensively in Variational Analysis (R. T. Rockafellar and R. J.-B. Wets, Springer-Verlag, Berlin,
+1998). Using these tools, we completely characterize the subderivative and the subgradients of the
+abscissa mapping, and establish that the abscissa mapping is everywhere subdiﬀerentially regular.
+This regularity permits the application of our results in a broad context through the use of standard
+chain rules for nonsmooth functions. Our approach is epigraphical, and our key result is that the
+epigraph of the abscissa map is everywhere Clarke regular.
+Key words. nonsmooth analysis, polynomials, stability, subgradient, Clarke regular
+AMS subject classiﬁcations. 34D05, 34D20, 49J52
+PII. S0363012900367655
+Let Pn denote the linear space of complex polynomials of degree n or less, and
+let Mn denote the aﬃne variety in Pn consisting of the monic polynomials of degree
+n. In this article we study variational properties of the abscissa mapping
+a : Mn → R
+given by
+a(p) = max{Reζ |p(ζ) = 0}.
+Our study is partly motivated by the need to provide tools for understanding the
+variational behavior of the spectral abscissa mapping on the n by n complex matrices
+deﬁned by
+α(M) = a(det(λI − M)).
+Properties of the spectral abscissa are closely tied to stability theory for matrices
+and dynamical systems. Thus, the variational behavior of the spectral abscissa has
+important consequences for the sensitivity of the stability properties of such systems
+under perturbation. In [BO], we apply the variational results obtained in this paper
+to study the variational behavior of the spectral abscissa map.
+The abscissa mapping has a number of characteristics that make it diﬃcult to
+analyze. It is well known that a is continuous, but not Lipschitz continuous, on
+∗Received by the editors February 7, 2000; accepted for publication September 25, 2000; published
+electronically February 28, 2001.
+http://www.siam.org/journals/sicon/39-6/36765.html
+†Department of Mathematics, University of Washington, Seattle, WA 98195 (burke@
+math.washington.edu). The research of this author was supported in part by National Science
+Foundation grant DMS-9971852.
+‡Courant Institute of Mathematical Sciences, New York University, New York, NY 10012
+(overton@cs.nyu.edu). The research of this author was supported in part by National Science Foun-
+dation grant CCR-9731777 and the U.S. Department of Energy contract DE-FG02-98ER25352.
+1651
+Downloaded 11/14/17 to 205.175.118.196. Redistribution subject to SIAM license or copyright; see http://www.siam.org/journals/ojsa.php1652 JAMES V. BURKE AND MICHAEL L. OVERTON
+Mn. In addition, the natural extension of a to all of Pn is not continuous at any
+point of the subspace Pn−1. In this paper, we show that the techniques of modern
+nonsmooth analysis described in the recent book [RW98] are ideally suited to the study
+of mappings of this type. Thus, a secondary purpose of this paper is to illustrate the
+usefulness of the nonsmooth analysis techniques developed by many authors over the
+last 30 years by applying them to a classical function of great practical importance.
+Using techniques from nonsmooth analysis, we are able to establish that the abscissa
+mapping is everywhere subdiﬀerentially regular. This remarkable result has major
+consequences for the development of a calculus for the variational behavior of the
+abscissa mapping under composition.
+It needs to be stated that our analysis owes a great debt to earlier work of Levan-
+tovskii [Lev80]. Levantovskii studied the set of stable polynomials, i.e., the set of
+polynomials whose abscissa is nonpositive, and provided an outline for the derivation
+of the tangent cone to this set. We generalize this proof technique to establish the
+key result of section 1 (Theorem 1.2).
+The paper is organized as follows; we assume that the reader is familiar with
+[RW98]. Section 1 is devoted to the derivation of the subderivative of a. This is done
+via an epigraphical approach, where we derive the formula for the subderivative from a
+description of the tangent cone to the epigraph of the abscissa mapping a. In addition,
+we develop some basic tools that relate the prime factorization of a polynomial to a
+factorization of the tangent cone. The key to this result is the local factorization
+Lemma 1.4. In section 2, we use the representation of the tangent cone obtained in
+section 1 to derive a representation for the set of regular normals to the epigraph of
+a. This in turn yields a representation for the set of regular subgradients for a at
+any point in Mn. In section 3, we establish that the abscissa mapping is everywhere
+subdiﬀerentially regular. The key result is that the epigraph of the abscissa map is
+Clarke regular.
+Most of the notation that we use is introduced as it is required. However, it is
+useful to brieﬂy describe our conventions for discussing polynomials in their distinct
+roles as points in the linear space Pn and as functions over the complex ﬁeld. One
+could identify Pn with Cn+1
+and attempt to derive the variational properties of a as a
+mapping on Cn+1
+, but this would completely ignore the very rich underlying algebraic
+structure of polynomials. Since it is the roots of polynomials that lie at the heart of
+the mapping a, it is the polynomial perspective that drives our analysis. Given a
+polynomial p ∈ Pn, we will always use the Greek letter λ to denote the indeterminant
+associated with representing the polynomial as a function. Thus we write p(λ) as the
+associated polynomial function. Monomials and shifted monomials play a central role
+in our analysis. For this reason we give them a special notation so that we can discuss
+them as points in Pn. We write
+e(,λ0)(λ) = (λ − λ0)
+.
+1. The subderivative and the tangent cone. To apply the tools developed
+in [RW98], we ﬁrst extend the deﬁnition of a to the entire linear space Pn:
+a : Pn → R
+is given by
+a(p) =
+
+max{Reζ |p(ζ) = 0} if p ∈ Mn,
++∞ otherwise.
+Downloaded 11/14/17 to 205.175.118.196. Redistribution subject to SIAM license or copyright; see http://www.siam.org/journals/ojsa.phpTHE ABSCISSA MAPPING 1653
+This extension allows us to focus our attention on the set of monic polynomials.
+In particular, we have dom(a) = {p |a(p) < +∞} = Mn. Given p ∈ Mn, our
+goal is to derive a formula for da(p), the subderivative of the mapping a. Following
+[RW98, Deﬁnition 8.1], the subderivative of a at a point p ∈ Mn is the mapping
+da(p) : Pn → R ∪ {±∞} given by
+da(p)(q̂) = liminf
+τ0
+q→q̂
+a(p + τq) − a(p)
+τ
+,
+where the parameter τ is understood to be real. Since a is +∞ on Pn\Mn, we have
+dom(da(p)) = {p |da(p) < +∞} ⊂ Pn−1.
+Hence, we restrict our attention to the behavior of da(p) on the subspace Pn−1.
+We approach the problem of computing da(p) from an epigraphical perspective.
+The epigraph of a is the set
+epi(a) = {(p,µ) |a(p) ≤ µ < +∞}.
+Using this set, we can construct da(p) from the formula
+epi(da(p)) = Tepi(a)(p,a(p)) (1.1)
+[RW98, Theorem 8.2]. Here Tepi(a)(p,a(p)) is the tangent cone to the set epi(a) at
+the point (p,a(p)). For a subset C of a ﬁnite dimensional linear space X, we have
+TC(x) =
+
+d
+
+
+
+
+∃ {xk
+} ⊂ C and {tk} ⊂ R+ such that
+xk
+→ x, tk  0, and t−1
+k (xk
+− x) → d
+
+(1.2)
+=
+
+
+
+γd
+
+
+
+
+
+
+γ ≥ 0, and there exits {xk
+} ⊂ C
+with xk
+→ x such that d = lim
+k→∞
+xk
+− x
+xk − x
+
+
+
+, (1.3)
+where R+ is the set of nonnegative real numbers and · is any norm on X. By
+considering Pn−1 as a subspace of Pn, we have
+Tepi(a)(p,µ) ⊂ Pn−1 × R for all µ ≥ a(p), (1.4)
+since a is +∞ on Pn\Mn. In particular,
+Tepi(a)(p,µ) = Pn−1 × R whenever µ > a(p), (1.5)
+since a is continuous on Mn.
+In our ﬁrst lemma we show that the tangential geometry of epi(a) remains essen-
+tially unchanged under the linear transformations corresponding to a uniform shift of
+the roots. For each λ0 ∈ Cn
+deﬁne the linear transformation Hλ0 : Pn → Pn by
+Hλ0(p)(λ) = p(λ − λ0).
+Lemma 1.1. Let λ0 be a given complex number. Then
+Tepi(a)(Hλ0
+(p),η + Re(λ0)) = {(Hλ0
+(v),µ) : (v,µ) ∈ Tepi(a)(p,η)} .
+Downloaded 11/14/17 to 205.175.118.196. Redistribution subject to SIAM license or copyright; see http://www.siam.org/journals/ojsa.php

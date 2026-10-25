@@ -1,0 +1,54 @@
+{
+  "utc": "2026-10-25T03:35:20.812744+00:00",
+  "mutants": [
+    {
+      "name": "quotient_sign",
+      "replacement": {
+        "old": "def quotient(n, leading=-1):",
+        "new": "def quotient(n, leading=1):"
+      },
+      "sha256": "eee83faf9a1ea85e5997f84e971cec5320bd42a53a1c775249db69ae6f19f33e",
+      "returncode": 1,
+      "expected_failure": "independent quotient degrees 2 to 4",
+      "rejected": true,
+      "static_review": "original authored program reviewed; only the recorded one-line arithmetic mutation differs; failure occurs before any artifact writes"
+    },
+    {
+      "name": "double_cover",
+      "replacement": {
+        "old": "[-4*(-1)**j for j in (3,4,5)]",
+        "new": "[4*(-1)**j for j in (3,4,5)]"
+      },
+      "sha256": "0f28f5e8d3ca99674695665c7666d5b38bbd4625fbd78d526f1e9a2fdf42a468",
+      "returncode": 1,
+      "expected_failure": "negative double cover signs",
+      "rejected": true,
+      "static_review": "original authored program reviewed; only the recorded one-line arithmetic mutation differs; failure occurs before any artifact writes"
+    },
+    {
+      "name": "tip_gate",
+      "replacement": {
+        "old": "tip=F(7,25)+7*H",
+        "new": "tip=F(1,2)"
+      },
+      "sha256": "0363ac1c151ac417b38cd1959cb52898350b6bdc262f06b4dafe8a4d096cb51f",
+      "returncode": 1,
+      "expected_failure": "actual tip strict upper bound",
+      "rejected": true,
+      "static_review": "original authored program reviewed; only the recorded one-line arithmetic mutation differs; failure occurs before any artifact writes"
+    },
+    {
+      "name": "reversal_endpoint",
+      "replacement": {
+        "old": "F(1, 10**12), F(7, 4)",
+        "new": "F(1, 10**12), F(1)"
+      },
+      "sha256": "1cddfc767594d1a06f2f620f660e3c16d23378b5e44ae96aec467482edccc9cf",
+      "returncode": 1,
+      "expected_failure": "independent first variation endpoints",
+      "rejected": true,
+      "static_review": "original authored program reviewed; only the recorded one-line arithmetic mutation differs; failure occurs before any artifact writes"
+    }
+  ],
+  "all_rejected": true
+}
