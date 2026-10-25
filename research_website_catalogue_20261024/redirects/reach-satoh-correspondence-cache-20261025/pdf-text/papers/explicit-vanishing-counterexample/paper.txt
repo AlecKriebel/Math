@@ -1,0 +1,291 @@
+          An explicit Hessian-nilpotent quartic in 54 variables
+          witnessing the failure of Zhao’s Vanishing Conjecture
+                                         Alec Kriebel
+                         with heavy assistance from ChatGPT 5.6 Sol
+
+                      First public release: 21 July 2026, 13:11:39 UTC
+                  Superseded-status correction: 21 July 2026, 15:20:23 UTC
+
+
+     Superseded status. Exploration 03 replaces the 27-variable cubic and 54-variable
+     quartic dimension counts by 22 and 44. Thompson had also posted a 24-variable cu-
+     bic map before this note’s first release. This document is retained as a timestamped
+     derivation of the factor-reusing 13-variable stable model and its original 54-variable cer-
+     tificate; its compactness claim is historical, not current. Its surviving construction has
+     been consolidated into the canonical 22/44-variable paper; this note should not be cited
+     separately.
+
+                                                Abstract
+        We execute a factor-reusing Bass–Connell–Wright degree reduction of the recently announced
+     three-dimensional noninjective Keller map, obtaining a cubic homogeneous noninjective Keller
+     map in 27 variables. Applying the de Bondt–van den Essen symmetric reduction then gives
+     an explicit homogeneous quartic Hessian-nilpotent polynomial in 54 variables, with 598 mono-
+     mials, whose gradient Keller map is noninjective. This is an explicit witness to the failure of
+     Zhao’s Vanishing Conjecture, with the expanded polynomial and a two-point collision supplied
+     as machine-readable exact certificates. The underlying three-dimensional map was posted by
+     Levent Alpöge on 20 July 2026, crediting Akhil Mathew for posing the question and Claude
+     Fable for producing the example.
+
+Verification status. The algebra has passed the supplied exact symbolic checks, but this short
+note has not been peer reviewed. Independent expert scrutiny is welcome.
+
+
+1   Statement of the result
+Let i2 = −1. The straight-line construction below defines a cubic homogeneous map h : C27 → C27 .
+For A, B ∈ C27 , set
+                                              ∑27
+                                  P(A, B) = i     hj (A + iB)Bj .                            (1)
+                                                 j=1
+
+Theorem 1. The polynomial P is homogeneous of degree four, has 598 monomials when expanded,
+and its Hessian is nilpotent. The polynomial map
+
+                             Γ : C54 −→ C54 ,          Γ(Z) = Z − ∇P(Z),                               (2)
+
+
+
+                                                   1
+has Jacobian determinant one and is noninjective. Moreover,
+
+              ∆m P m = 0    for every m ≥ 1,             ∆m P m+1 6= 0         for infinitely many m ≥ 0.    (3)
+
+Thus P is a counterexample to Zhao’s Vanishing Conjecture.
+
+   The formulas below and ordinary differentiation form a finite exact certificate. The accompa-
+nying potential_sparse.json is the fully expanded polynomial over Q(i), and collision.json
+contains two distinct points with the same image under (2).
+
+
+2      A 13-variable cubic stable model
+Write u = 1 + xy. Postcomposing the map announced in [4] by the inverse of its linear part gives
+the identity-linear Keller map Φ = (Φ1 , Φ2 , Φ3 ):
+                                               3       1
+                                      Φ1 = x − x2 y − x3 z,
+                                               2       2
+                                      Φ2 = y + 3xu2 z + 3xy 2 (4 + 3xy),                                     (4)
+                                                  3      2
+                                      Φ3 = u z + y u(4 + 3xy).
+
+Thus det JΦ = 1, and the three points
+
+                                 (0, 0, − 41 ),       (1, − 32 , 13
+                                                                  2 ),       (−1, 23 , 13
+                                                                                        2 )                  (5)
+
+have the same image (0, 0, − 41 ).
+   We use the following stable degree-reduction gadget. Suppose a term cP Q is to be removed
+from the kth coordinate of a current map M . With new variables a, b, replace
+
+                      Mk 7−→ Mk − c(a + P )(b + Q),                      (a, b) 7−→ (a + P, b + Q).          (6)
+
+This is a pre- and post-composition of M ×idA2 by triangular automorphisms. A previously created
+output factor may be reused: with one new variable a, one may replace
+
+                               Mk 7−→ Mk − c(a + P )Mℓ ,                     a 7−→ a + P.                    (7)
+
+Both operations preserve the Jacobian determinant and invertibility. A collision p 6= q lifts
+through (6) by appending (−P (p), −Q(p)) and (−P (q), −Q(q)), and similarly for (7).
+   Starting from (4), perform the following operations in order. The symbols aj , bj denote the
+input variables introduced at each step.
+
+step    target   new or reused factors                                                                       c
+ 1       Φ1      P = x2 , Q = xz + 3y; add a1 , b1                                                          −1/2
+ 2       Φ2      P = 3x2 y, Q = 2z + xyz + 3y 2 ; add a2 , b2                                                 1
+ 3       Φ2      P = xy, Q = a2 z + 3xb2 ; add a3 , b3                                                       −1
+ 4       Φ3      P = xy 2 , Q = 7y + 3xz + 3xy 2 + x2 yz; add a4 , b4                                         1
+ 5       Φ3      add a5 + a4 xy; reuse output b1 + xz + 3y                                                   −1
+ 6       Φ3      reuse output a3 + xy; add b6 + a4 b1 − yb4                                                   1
+
+Finally postcompose by the shear
+
+                                            Mb4 7−→ Mb4 − Ma3 Mb1 .                                          (8)
+
+                                                             2
+The resulting map M has 13 variables
+
+                                    X = (x, y, z, a1 , b1 , a2 , b2 , a3 , b3 , a4 , b4 , a5 , b6 )                        (9)
+
+and degree three. Its linear part L is the identity except for
+                              (1)                          (1)                           (1)
+                          Mb1 = b1 + 3y,                Mb2 = b2 + 2z,               Mb4 = b4 + 7y.                       (10)
+
+In particular det L = 1. Put
+
+                                         Ψ = L−1 M = X + H2 (X) + H3 (X),                                                 (11)
+
+where Hd is homogeneous of degree d. Then deg Ψ = 3, det JΨ = 1, and Ψ has the following two
+preimages of the same point:
+
+                                      p0 = (0, 0, − 41 , 0, 0, 0, 21 , 0, 0, 0, 0, 0, 0),
+                                      p1 = (1, − 23 , 13
+                                                       2 , −1, −2, 2 , −10, 2 , 4 , − 4 , −6, − 8 , 2 ),
+                                                                   9        3 3       9        27 9
+                                                                                                                          (12)
+                      Ψ(p0 ) = Ψ(p1 ) = (0, 0, − 14 , 0, 0, 0, 21 , 0, 0, 0, 0, 0, 0).
+
+Equations (4) and (6)–(11) are a straight-line specification of all components of Ψ; no omitted
+choice is involved.
+
+
+3      The 27-variable cubic homogeneous map
+For X, Y ∈ C13 and t ∈ C, define
+                                                  (                          )
+                                      h(X, Y, t) = tH2 (X) + t2 Y, −H3 (X), 0 .                                           (13)
+
+Every component of h is cubic homogeneous. Let B(W ) = W + h(W ). At t = 1,
+                                     (                             )
+                         B(X, Y, 1) = X + H2 (X) + Y, Y − H3 (X), 1 .                                                     (14)
+
+Consequently, if
+                                                     rj = (pj , H3 (pj ), 1),                                             (15)
+then B(r0 ) = B(r1 ) = (p0 , 0, 1). Here H3 (p0 ) = 0, while
+
+                   4 , − 8 , 16 , 0, 8 , − 2 , − 8 , 0, 0, 4 ,
+    H3 (p1 ) = (− 17    45 99       135    9    177        9
+
+                                                                                                           213 27
+                                                                                                            8 , 8 , 0).   (16)
+
+Lemma 2. The polynomial matrix Jh is nilpotent.
+
+Proof. Homogeneity and (11) give
+                         (                        )
+                     det I + tJH2 (X) + t2 JH3 (X) = det JΨ(tX) = 1.                                                      (17)
+
+The Jacobian determinant of W 7→ W + h(W ) is the same determinant by the block determinant
+formula. Hence det(I +Jh(W )) = 1. Since h is cubic homogeneous, Jh(sW ) = s2 Jh(W ). Therefore
+det(I + λJh) = 1 identically in λ, which is equivalent to nilpotence of Jh.
+
+
+
+                                                                  3
+4    Symmetrization and the collision
+For a polynomial map h : Cr → Cr , de Bondt and van den Essen [2] associate
+
+                                                   ∑
+                                                   r
+                                  fh (A, B) = −i          hj (A + iB)Bj .                         (18)
+                                                   j=1
+
+Their characteristic-polynomial identity implies that Hess(fh ) is nilpotent if and only if Jh is
+nilpotent. Our polynomial in (1) is P = −fh , so Lemma 2 proves that P is Hessian nilpotent. It
+follows immediately that det JΓ = 1.
+    For completeness, the collision can be seen directly. With the linear map S(x, y) = (x − iy, y),
+differentiation gives
+                                        (                                )
+                        S −1 ΓS(x, y) = x + h(x), (I + Jh(x)T )y − ih(x) .                     (19)
+
+Take r0 , r1 from (15), let Kj = I + Jh(rj )T , put
+                                                    (                  )
+                              y1 = 0,      y0 = K0−1 −ih(r1 ) + ih(r0 ) ,                         (20)
+
+and set zj = S(rj , yj ). Equation (19) and r0 + h(r0 ) = r1 + h(r1 ) show Γ(z0 ) = Γ(z1 ). The two 54-
+tuples are recorded explicitly in collision.json; all coordinates have height at most 261. Direct
+differentiation of the 598-term expansion checks this equality exactly over Q(i).
+
+
+5    Failure of the Vanishing Conjecture
+         ∑
+Let ∆ = j ∂ 2 /∂Zj2 . Zhao proved [3] that Hessian nilpotence of a homogeneous polynomial P is
+equivalent to
+                               ∆m P m = 0      for every m ≥ 1.                           (21)
+Lemma 2 and the symmetric reduction therefore show that P satisfies the hypothesis of the Van-
+ishing Conjecture. Zhao’s inversion formula writes the formal inverse of Z − t∇P as Z + t∇Qt ,
+where
+                                     ∑∞
+                                             tm
+                               Qt =      m
+                                                       ∆m P m+1 .                         (22)
+                                        2 m!(m + 1)!
+                                        m=0
+
+If ∆m P m+1 = 0 for all suﬀiciently large m, then Q  t is a polynomial. Specializing at t = 1 would
+give a polynomial inverse of Γ, contradicting the explicit collision above. Thus ∆m P m+1 6= 0 for
+infinitely many m, proving Theorem 1.
+    This argument does not exhibit a particular exponent m for which ∆m P m+1 6= 0; it deduces the
+existence of infinitely many such exponents indirectly from the collision and the inversion formula.
+Zhao’s general finite bound for quartics in n variables reaches m > 23 (3n−2 − 1), or m > 32 (352 − 1)
+here, so direct expansion at the general bound is impractical [3].
+
+
+6    Reproducibility
+The repository contains two complementary exact checks. The script verify.py rebuilds the
+construction symbolically and verifies the original map, all six stable reduction gadgets, the cubic
+homogeneous map, Hessian nilpotence through the structural reduction, and the final collision. The
+dependency-free script verify_exported_stdlib.py uses only Python’s standard library and the
+
+                                                      4
+two JSON files to verify the expanded polynomial’s degree and term count and the exact collision.
+The latter is not a stand-alone proof of Hessian nilpotence. All arithmetic in both checks is exact.
+The certificate hashes are
+      potential_sparse.json:
+      556683b30fd9e7b9ecfb4c4d5395ee3be6a8dc5f918da08ed60db8c125f0df28
+      collision.json:
+      cbea49f88cc59ba7955a4dbd710c68224590ae310a320369c49f8c63e1f78cae
+
+The full source and certificates are available in the public project repository.
+
+
+7   Historical scope and post-release correction
+Zhang’s consequence note of 20 July 2026 observes, by Zhao’s equivalence, that the announced
+three-dimensional counterexample makes the Vanishing Conjecture false in some finite dimension;
+it explicitly leaves the consequence existential [5]. An earlier public repository [6] gives a 79-
+variable cubic homogeneous noninjective Keller map. Applying the standard symmetric reduction
+to that map would produce a 158-variable quartic in principle, but the repository did not supply
+an expanded quartic witness or its transported collision at the time of our search.
+    At initial release, this note presented the executed 54-variable, 598-term quartic, its exact
+collision, and the 27-variable factor-reusing reduction as its narrower candidate contribution. That
+priority language is retained here only as historical context. It is not the current assessment.
+    Post-release correction. Thompson’s initial public commit [7], at 03:29:42 UTC on 21 July
+2026, already gave a 24-variable cubic homogeneous reduction and therefore beat this note’s 27-
+variable dimension headline before our 13:11:39 UTC release. We failed to find it in the first audit.
+Exploration 03 subsequently compressed our 13-variable stable model to a 22-variable cubic and a
+44-variable quartic. Accordingly, this note is superseded for dimension comparisons or as a separate
+current result. Its surviving role is as the derivation of that stable model and as a reproducible
+earlier certificate. Both have now been incorporated into the canonical Exploration 03 paper.
+
+
+AI-assistance and verification disclosure
+The construction, proof organization, verification programs, website, and typeset drafts were de-
+veloped with extensive assistance from ChatGPT 5.6 Sol. Alec Kriebel takes responsibility for the
+submission and for preserving the complete source and exact certificates. The algebraic checks are
+reproducible, but the note has not been peer reviewed and independent expert scrutiny is welcome.
+
+
+References
+[1] H. Bass, E. H. Connell, and D. Wright, “The Jacobian conjecture: reduction of degree and
+    formal expansion of the inverse,” Bull. Amer. Math. Soc. 7 (1982), 287–330. doi:10.1090/S0273-
+    0979-1982-15032-7.
+
+[2] M. de Bondt and A. van den Essen, “A reduction of the Jacobian conjecture to the symmetric
+    case,” Proc. Amer. Math. Soc. 133 (2005), 2201–2205. doi:10.1090/S0002-9939-05-07570-2.
+
+[3] W. Zhao, “Hessian nilpotent polynomials and the Jacobian conjecture,” Trans. Amer. Math.
+    Soc. 359 (2007), 249–274. arXiv:math/0409534.
+
+
+                                                  5
+[4] L. Alpöge, X post announcing the three-dimensional map, crediting Akhil Mathew for posing
+    the question and Claude Fable for producing the example, 20 July 2026. Original post.
+
+[5] Z. Zhang, “Direct consequences of the three-dimensional counterexample to the Jacobian con-
+    jecture,” 20 July 2026. Web note.
+
+[6] A. Harrison, jacobian-anatomy, public GitHub repository, commit 74808fb2e1c1691b000757
+    6ba0508e5e7cdcb1e3, 20 July 2026. Repository commit.
+
+[7] W. Thompson, “An explicit 24-variable cubic-homogeneous reduction of the Alpöge–Fable Ja-
+    cobian counterexample,” public GitHub repository, commit 45a7616fdf5a20c065564f267619
+    0093722696b9, 21 July 2026. Repository.
+
+
+Archival citation status
+Do not cite this as a separate current result. Cite the canonical consolidated paper, “An explicit
+44-variable vanishing witness from a 22-variable cubic Keller map,” instead. This page remains the
+timestamped provenance record for the 13-variable reduction and original 54-variable certificate.
+
+
+
+
+                                                6
+

@@ -2,10 +2,28 @@
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from io import BytesIO
+from copy import deepcopy
 import hashlib
 import re
 import stat
 import zipfile
+
+
+def normalized_receipt_view(raw):
+    """Return an independent asset-list view; hashes must use the original bytes."""
+    if not isinstance(raw, dict):
+        raise ValueError('Receipt must be an object')
+    present = [key for key in ('files', 'assets') if key in raw]
+    if not present:
+        raise ValueError('Receipt has no deposited asset list')
+    for key in present:
+        if not isinstance(raw[key], list) or not all(isinstance(x, dict) for x in raw[key]):
+            raise ValueError('Receipt asset list must contain objects')
+    if len(present) == 2 and raw['files'] != raw['assets']:
+        raise ValueError('Conflicting files and assets lists')
+    result = deepcopy(raw)
+    result['files'] = deepcopy(raw[present[0]])
+    return result
 
 
 def asset_name(item):
@@ -55,6 +73,7 @@ class PublishedAssets:
     def __init__(self, sources, receipt, embedded_assets=()):
         self.sources = Path(sources).resolve(strict=True)
         self.deposited = {}
+        receipt = normalized_receipt_view(receipt)
         for item in receipt['files']:
             name = asset_name(item)
             if name in self.deposited:
@@ -83,6 +102,23 @@ class PublishedAssets:
             self.embedded[name] = item
             members.add((archive, member))
             extracted.add(source)
+
+    def additional_asset_kind(self, item):
+        """Validate declared kinds; infer only authenticated, recognizable PDF/ZIPs."""
+        name = safe_relative(item['filename'], basename=True)
+        asset = self.resolve(name)
+        suffix = PurePosixPath(name).suffix
+        if 'kind' in item:
+            if item['kind'] not in ('pdf', 'zip', 'text'):
+                raise ValueError('Unsupported additional asset kind: ' + repr(item['kind']))
+            if item['kind'] in ('pdf', 'zip') and suffix != '.' + item['kind']:
+                raise ValueError('Additional asset kind does not match filename: ' + name)
+            return item['kind']
+        if suffix == '.zip' and zipfile.is_zipfile(BytesIO(asset.read_bytes())):
+            return 'zip'
+        if suffix == '.pdf' and asset.read_bytes().startswith(b'%PDF-'):
+            return 'pdf'
+        raise ValueError('Cannot infer additional asset kind: ' + name)
 
     def _path(self, relative):
         safe_relative(relative)

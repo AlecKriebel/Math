@@ -1,0 +1,246 @@
+            Eternal domination and the Lovász theta function:
+         an unbounded separation and a smallest counterexample
+                                           Alec Kriebel
+                           with heavy assistance from ChatGPT 5.6 Sol
+
+                                      First prepared 25 July 2026
+                                         Revised 26 July 2026
+                                           Not peer reviewed
+
+
+                                                 Abstract
+        We show that the Lovász theta function can exceed the standard one-guard eternal domination
+     number by an unbounded factor. Combining results of Alon and of Goddard, Hedetniemi, and
+     Hedetniemi gives an explicit infinite family (Hk ) with
+                                                               (          )
+                            2 ≤ γ ∞ (Hk ) ≤ 3 and ϑ(Hk ) = Θ |V (Hk )|1/3 .
+
+     Thus the ratio ϑ/γ ∞ is unbounded. Second, let G be the ten-vertex graph with graph6 record
+     IEhbtj{ro. MacGillivray, Mynhardt, and Virgile proved that γ ∞ (G) = 3. We give an exact
+     rational feasible matrix for the standard Lovász-theta semidefinite program with objective
+                                               7593
+                                                    = 3.0372.
+                                               2500
+     Their exhaustive result through order nine, together with the theta sandwich inequality, shows that
+     G has minimum possible order among counterexamples. A solver-free verifier checks the finite theta
+     certificate and independently recomputes the eternal-domination game.
+
+Verification disclaimer. This is an unreviewed AI-assisted research note released for independent
+checking. Exact computation verifies the encoded finite statements; it is not peer review and does not
+establish literature priority.
+
+
+1 Introduction and conventions
+In the one-guard eternal domination game on a finite simple graph G, at most one guard occupies
+each vertex and the occupied vertices form a dominating set. At each turn an unoccupied vertex is
+attacked, and exactly one guard must move along an edge to the attacked vertex so that the new guard
+set is again dominating. The minimum number of guards that can defend indefinitely is γ ∞ (G) [3].
+The elementary bounds for this game are
+
+                                         α(G) ≤ γ ∞ (G) ≤ cc(G),                                           (1)
+
+where cc(G) denotes the clique-cover number [4, Theorem 1].
+   West’s problem page asks whether γ ∞ is bounded below by the Lovász theta function [7]. There is
+a potential notation trap. Work on eternal domination often writes θ(G) for the clique-cover number.
+Here we instead write
+                                           cc(G) = χ(G)
+
+                                                     1
+for clique cover and reserve ϑ(G) for the Lovász theta function. Lovász introduced the function in
+1979 [5]. With the standard convention used by Alon and Kahale [2],
+
+                  ϑ(G) = max {⟨J, X⟩ : X ⪰ 0, Tr(X) = 1, Xij = 0 for ij ∈ E(G)} .                    (2)
+
+It satisfies the familiar sandwich
+
+                                     α(G) ≤ ϑ(G) ≤ χ(G) = cc(G).                                     (3)
+
+   We give two complementary forms of the negative answer. Section 2 records an unbounded poly-
+nomial separation that follows directly from established results. Section 3 gives an exact smallest
+counterexample, together with a solver-free certificate.
+
+
+2 An explicit unbounded separation
+Alon’s explicit Ramsey construction and a theorem on eternal security combine to give considerably
+more than a single counterexample.
+
+Theorem 1. For every integer k ≥ 2 not divisible by three, put nk = 23k . There is an explicit graph
+Hk on nk vertices such that
+
+                                        2 ≤ γ ∞ (Hk ) ≤ 3,
+                                                                            1/3
+                       α(Hk ) = 2,                              ϑ(Hk ) = Θ(nk ),
+
+and hence
+                                           ϑ(Hk )        1/3
+                                                    = Θ(nk ).
+                                          γ ∞ (Hk )
+In particular, ϑ/γ ∞ is unbounded, and there is no constant C such that ϑ(H) ≤ Cγ ∞ (H) for every
+graph H.
+
+Proof. Alon explicitly constructs a 2k−1 (2k−1 − 1)-regular triangle-free Cayley graph Fk on nk vertices
+whose complement satisfies
+                                                         1/3
+                                            ϑ(Fk ) = Θ(nk )
+as k ranges over these values [1, Corollary 2.3]. Set Hk = Fk . Since k ≥ 2, the graph Fk has an edge,
+and triangle-freeness gives
+                                          α(Hk ) = ω(Fk ) = 2.
+Goddard, Hedetniemi, and Hedetniemi proved that every graph with independence number two has
+one-guard eternal domination number at most three [4, Theorem 4]. Their notation σ1 denotes the
+parameter written γ ∞ here. Equation (1) therefore gives
+
+                                           2 ≤ γ ∞ (Hk ) ≤ 3.
+
+Dividing Alon’s theta estimate by a quantity bounded between two and three gives the asserted
+ratio.
+
+
+3 A smallest counterexample
+MacGillivray, Mynhardt, and Virgile found two smallest graphs for which γ ∞ < cc [6]. Their Table 9
+records the graph6 strings IEhbtj{ro and IEhbtn{ro. Their Fact 5.1 gives clique-cover number four,
+while Proposition 5.1 and its proof give eternal domination number three. The observation here is
+
+
+                                                   2
+that the 26-edge member of that pair is already a counterexample to the proposed Lovász-theta lower
+bound.
+   Let G be the graph on vertices 0, . . . , 9 whose graph6 record is
+                                                  IEhbtj{ro.
+For complete independence from graph6 software, its edge set is
+                     E(G) = {03, 04, 07, 08, 09, 13, 15, 16, 18, 19, 24, 25, 26, 27, 28,
+                                 36, 37, 38, 46, 48, 49, 57, 58, 59, 69, 79},
+where ij denotes the unordered edge {i, j}.
+Theorem 2. The graph G satisfies
+                                                  7593
+                                         γ ∞ (G) = 3 <  ≤ ϑ(G).
+                                                  2500
+Consequently, the inequality γ ∞ (H) ≥ ϑ(H) does not hold for all graphs H.
+Proof. The equality γ ∞ (G) = 3 is established in Proposition 5.1 and its proof by MacGillivray, Myn-
+hardt, and Virgile [6]. We also independently verify it by exact state enumeration in Section 4.
+   For the theta bound, define X = M/10000, where
+                                                                                           
+                          1170    576    621      0      0    576    621      0     0     0
+                         576     1172    621     0    576      0      0     621    0     0 
+                                                                                           
+                         621      621   1025   335      0      0      0      0     0    512
+                                                                                           
+                         0         0     335   1025   621    621      0      0     0    512
+                                                                                           
+                         0        576     0     621   1172   576      0    621     0     0 
+                     M =                                                                   .
+                         576       0      0     621    576   1172   621      0     0     0 
+                                                                                           
+                         621       0      0      0      0     621   1025    335   512    0 
+                                                                                           
+                         0        621     0      0     621     0     335   1025   512    0 
+                         0         0      0      0      0      0     512    512   607   196
+                            0       0     512    512     0      0      0      0    196   607
+
+The matrix is symmetric, its diagonal entries sum to 10000, and direct inspection against the displayed
+edge list gives Mij = 0 for every ij ∈ E(G).
+    It remains to verify positive semidefiniteness without numerical approximation. Exact Gaussian
+elimination gives the following diagonal pivots in an LDLT factorization of M :
+                               57748    33696545      5611637865      5875307251
+                      1170,           ,           ,                ,              ,
+                                 65       57748         6739309        81328085
+                      147954747608      774768046339541       47387055721842240
+                                     ,                    ,                        ,
+                       2670594205        1627502223688          774768046339541
+                                  1491051941429      50290089836283
+                                                 ,                    .
+                                    39596916715       1491051941429
+Every pivot is positive, so M , and hence X, is positive definite. Thus X is feasible in (2). Finally, the
+sum of all entries of M is 30372, and therefore
+                                               30372   7593
+                                         ⟨J, X⟩ =    =       > 3.
+                                               10000   2500
+Feasibility gives the asserted lower bound for ϑ(G), and the strict separation follows.
+Corollary 3. The minimum order of a graph H satisfying γ ∞ (H) < ϑ(H) is ten.
+Proof. MacGillivray, Mynhardt, and Virgile computationally verified that every graph of order at most
+nine satisfies γ ∞ (H) = cc(H) [6, Proposition 5.2]. By (3), every such graph satisfies
+                                          ϑ(H) ≤ cc(H) = γ ∞ (H).
+Theorem 2 supplies a counterexample of order ten.
+
+                                                        3
+4 Independent exact verification
+The accompanying verifier uses Python’s standard library and no SDP solver. It parses the graph6
+record independently in two implementations and compares the result with the frozen edge list above.
+For the theta certificate it checks symmetry, trace, all 26 edge zeros, the exact entry sum, and the ten
+rational LDLT pivots.
+    For the eternal-domination game, let Dk be the dominating k-subsets of V (G). Starting with
+F0 = Dk , repeatedly set
+                               {                                                 }
+                                        for every v ∈/ S there is u ∈ S ∩ N (v)
+                      Ft+1 = S ∈ Ft :                                              .
+                                        such that (S \ {u}) ∪ {v} ∈ Ft
+
+Because the state space is finite, this deletion process reaches the greatest closed family. A nonempty
+closed family is equivalent to an eternal defense: it supplies a response after every attack, while the
+reachable states of any successful defense form such a family.
+    The exact fixed-point sizes for k = 1, 2, 3 are
+
+                                              0,   0,   86.
+
+There are 86 dominating triples, all of which survive the fixed point. The saved certificate lists them
+and the verifier checks a legal successor inside the family for all 86(10 − 3) = 602 configuration-attack
+pairs. This independently reproduces γ ∞ (G) = 3.
+
+
+5 Attribution, novelty, and scope
+The ingredients of Theorem 1 are established results: Alon supplies the explicit theta construction, and
+Goddard, Hedetniemi, and Hedetniemi supply the constant eternal-domination bound. The theorem
+is a direct synthesis, not a new graph construction. Likewise, the ten-vertex graph and its eternal-
+domination value are due to MacGillivray, Mynhardt, and Virgile [6]. The candidate contribution is
+recognizing that these results answer West’s Lovász-theta question, together with the exact rational
+certificate and minimum-order identification.
+    A focused search through notation variants, the cited papers’ reference and citation graphs, recent
+related papers, public problem pages, arXiv, and scholarly indexes found no prior public source ex-
+plicitly making either eternal-domination connection as of 26 July 2026. That search cannot establish
+worldwide priority: an unindexed, unpublished, or differently phrased antecedent may exist.
+    The counterexample theorem is an exact finite result. The minimum-order corollary additionally
+relies on the published exhaustive computation through order nine. The unbounded-family theorem
+relies on the cited published results. No numerical estimate of the optimum theta value of the ten-
+vertex graph is needed.
+
+
+AI-assistance and authorship disclosure
+The observation, exact certificates, independent verifiers, literature review, proof drafting, and pub-
+lication materials were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel’s
+direction. Alec Kriebel is the named human author. No external expert was contacted or has reviewed
+this note. Passing the supplied checks is not peer review.
+
+
+
+
+                                                    4
+References
+[1] N. Alon, Explicit Ramsey graphs and orthonormal labelings, Electronic Journal of Combinatorics
+    1 (1994), Research Paper 12, 8 pages. https://doi.org/10.37236/1192
+
+[2] N. Alon and N. Kahale, Approximating the independence number via the θ-function, Mathematical
+    Programming 80 (1998), 253–264. https://doi.org/10.1007/BF01581168
+
+[3] A. P. Burger, E. J. Cockayne, W. R. Gründlingh, C. M. Mynhardt, J. H. van Vuuren, and W. Win-
+    terbach, Infinite order domination in graphs, Journal of Combinatorial Mathematics and Combi-
+    natorial Computing 50 (2004), 179–194. https://combinatorialpress.com/jcmcc-articles/
+    volume-050/infinite-order-domination-in-graphs/
+
+[4] W. Goddard, S. M. Hedetniemi, and S. T. Hedetniemi, Eternal security in graphs, Journal of
+    Combinatorial Mathematics and Combinatorial Computing 52 (2005), 169–180. https://combin
+    atorialpress.com/jcmcc-articles/volume-052/eternal-security-in-graphs/
+
+[5] L. Lovász, On the Shannon capacity of a graph, IEEE Transactions on Information Theory 25
+    (1979), 1–7. https://doi.org/10.1109/TIT.1979.1055985
+
+[6] G. MacGillivray, C. M. Mynhardt, and V. Virgile, Eternal domination and clique covering, Elec-
+    tronic Journal of Graph Theory and Applications 10 (2022), 603–624. https://doi.org/10.561
+    4/ejgta.2022.10.2.19
+
+[7] D. B. West, Eternal domination number, Research problems webpage, accessed 26 July 2026.
+    https://dwest.web.illinois.edu/regs/eterndom.html
+
+
+
+
+                                                5
+

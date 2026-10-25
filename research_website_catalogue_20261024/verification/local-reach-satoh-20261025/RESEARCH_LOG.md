@@ -1,0 +1,7 @@
+# Local reachability and Satoh integration log
+
+2026-10-25T03:46:41.426247+00:00 — Checkpoint 1, estimated 15% of assigned local integration. Read root authority, final configs, complete readiness reports and checker proposals. Captured preservation hashes for all 42 existing article directories, site research assets, and both complete paper trees. No scientific source, verdict or config changes authorized.
+
+2026-10-25T03:48:21.054045+00:00 — Checkpoint 2, estimated 65% of assigned local integration. Both pages rendered via the established pipeline; 66 source/content checks per paper pass, with six and four searchable PDF pages. Complete actual public copy saved for root review. The 42 existing article files, all frozen paper inputs and CSS remain baseline protected. Negative controls and the one full existing-page regression remain.
+
+2026-10-25T03:50:10.505470+00:00 — Checkpoint 3, 100% of assigned local integration: LOCALREADY. New-page QA 132/132; six page mutations rejected; 32 contract/control checks passed; one full regression passed 2,298/2,298 across 43 generated pages. Original pilot separately checked. Index44/sitemap45 verified. Rehashed all 42 existing article directories and 2,179 frozen inputs unchanged. All 305 support members match their frozen extracts; embedded PDFs match deposited PDFs. Actual rendered public copy and metadata saved for root review. No Git, UI, deployment, Sheet, redirect or outreach performed. Root live/public-content gates remain. Ownership released at final handoff.

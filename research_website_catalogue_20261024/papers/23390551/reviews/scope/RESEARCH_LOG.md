@@ -1,0 +1,11 @@
+# Static scope intake research log
+
+All completion estimates concern this source/scope assignment only, never mathematical validity or the overall catalogue. No external communication or submitted executable execution occurred.
+
+- 2026-10-25T03:47:18Z — 10%: Read repository policy, programme goal/model policy and frozen row-76 identity. Created dedicated owned source and scope directories.
+- 2026-10-25T03:47:22Z — 30%: Fresh public Zenodo record and both assets retrieved; queue size/MD5 identities match. API record is published v1.0, publication date 2026-10-15; created/modified timestamps recorded separately.
+- 2026-10-25T03:47:30Z — 40%: Recursive safe ZIP audit found 323 members, one nested ZIP, 16 hidden members, one extra unique historical reader PDF and two unique TeX variants. Preserved raw bytes/modes in ignored local cache; archived judgment bodies treated as opaque.
+- 2026-10-25T03:48:30Z — 55%: Read published PDF and main TeX, historical reader and scientific TeX delta; mapped fixed-frequency, center-membership zero-diagonal matrix, geometric condition and exact off-interval scope. Read current executable controls statically without importing, building or running them.
+- 2026-10-25T03:49:30Z — 70%: Acquired full primary PDFs for OWR, CDN v3, AP, AT, DNR, YMH and erratum, IMU, Hilbert, YM (second author-hosted URL succeeded). Read exact original problem and load-bearing lattice theorem/hypotheses/proof bodies; classical comparison statements scoped separately. Full-body access for Rahola and the announced time-harmonic manuscript remains unavailable in this intake.
+- 2026-10-25T03:52:23.292277+00:00 — 95%: Wrote conditional public copy, complete original abstract, source read ledger, all-member support/reader maps and static-only scope report. Candidate follow-up is null. No mathematical, priority or publication verdict supplied.
+- 2026-10-25T03:52:23.292277+00:00 — 100%: Rehashed all 323 extracted members and both public assets; bytes and 0644 modes unchanged from intake. Static source/scope deliverable complete; independent scientific/adversarial work and root disposition remain pending. Public evidence is sealed separately from ignored raw source cache.

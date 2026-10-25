@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from concurrent.futures import ThreadPoolExecutor
 import hashlib, json, sys
+from published_assets import PublishedAssets, normalized_receipt_view
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public')
@@ -11,10 +12,21 @@ ids = [str(int(value)) for value in sys.argv[1:]]
 assert ids
 paths = ['research/index.html', 'research/research.css', 'research/sitemap.xml']
 for rid in ids:
-    c = json.loads((ROOT/'papers'/rid/'publication.json').read_text())
+    paper = ROOT/'papers'/rid
+    c = json.loads((paper/'publication.json').read_text())
+    gate = json.loads((paper/'promotion.json').read_text())
+    raw_receipt_bytes = (paper/'sources/receipt.json').read_bytes()
+    receipt = normalized_receipt_view(json.loads(raw_receipt_bytes))
+    if gate.get('source_receipt_sha256'):
+        assert gate['source_receipt_sha256'] == hashlib.sha256(raw_receipt_bytes).hexdigest()
+    assets = PublishedAssets(paper/'sources', receipt, c.get('source_binding', {}).get('embedded_assets', []))
     names = ['index.html', 'citation.bib', c['pdf_filename']]
     if c.get('supplement_filename'): names.append(c['supplement_filename'])
     names += [asset['filename'] for asset in c.get('additional_assets', [])]
+    for name in names[2:]:
+        assert hashlib.sha256((PUBLIC/'research'/c['slug']/name).read_bytes()).hexdigest() == assets.resolve(name).sha256
+    for asset in c.get('additional_assets', []):
+        assets.additional_asset_kind(asset)
     paths += [f'research/{c["slug"]}/{name}' for name in names]
 
 def check(path):

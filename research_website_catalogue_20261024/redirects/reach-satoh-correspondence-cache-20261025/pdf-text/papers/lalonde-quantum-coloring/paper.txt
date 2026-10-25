@@ -1,0 +1,451 @@
+          The quantum chromatic number of the G19 join family
+                                                 Alec Kriebel
+                                            Independent Researcher
+
+                                          Revised August 2, 2026
+
+
+                                                    Abstract
+          In Section 4.2 of Quantum colorings of spheres, Lalonde proposed the family of finite graphs
+      Gn = G19 ∨ Kn−3 as candidate witnesses for his complex-sphere obstruction. To avoid overload-
+                                                                           (1)
+      ing the fixed base graph G19 , write Jn for his Gn . Lalonde proved χq (Jn ) = n + 1 for rank-one
+      color projectors [2, Theorem 1.5] and conjectured the same value without a rank restriction. We
+      prove that conjecture in the finite-dimensional projector model:
+
+                                          χq (Jn ) = n + 1      (n ≥ 3).
+
+      Consequently ξ(Jn ) = n < χq (Jn ) = n + 1, confirming the candidate finite witnesses and giving
+      an alternative finitary proof of Lalonde’s complex-sphere lower bound. In fact, Lalonde’s fixed-
+                                                          [d]         (s)
+      dimension and fixed-rank parameters also satisfy χq (Jn ) = χq (Jn ) = n + 1 for every d, s ≥ 1.
+      In particular, adjoining one apex to G19 gives a 20-vertex graph H with χq (H) = 5.
+          The proof first symmetrizes an arbitrary coloring, so that every projector has a common
+      rank r. For a fixed color, a rational sum-of-squares identity rigidifies vertices 1, . . . , 13 into a
+      rank-r sign-vector configuration. The remaining six subspaces are classified, including all non-
+      transverse branches, by an r-plane invariant under a canonical complex structure. Orthogonality
+      between two colors then preserves the two complex-structure sectors while reversing membership
+      in the invariant planes. The resulting sector subspaces are pairwise orthogonal across colors,
+      and their dimensions give the impossible inequality 3nr ≤ 2nr. The core sum-of-squares and all
+      formal block identities have an exact, standard-library verifier.
+
+
+1    Graph, model, and result
+The vertex set of G19 is {1, . . . , 19}, and its edge set is
+
+                 E19 = {12, 13, 18, 19, 1 15, 23, 26, 27, 2 14, 34, 35, 3 16, 45, 4 12, 4 13,
+                          5 10, 5 11, 5 17, 67, 6 11, 6 13, 7 10, 7 12, 7 19, 89, 8 11, 8 12, 8 18,
+                          9 10, 9 13, 14 17, 14 18, 15 17, 15 19, 16 18, 16 19}.
+
+Here vw denotes the unordered edge (v, w). Its graph6 representation is
+                                   RxLAKA@AgYAWDGO?O?@??A?W@@OC@_.
+The only triangles are
+
+                         T0 = 123,         T1 = 189,         T2 = 345,        T3 = 267.
+
+Here ∨ denotes graph join and K0 is the empty graph. For n ≥ 3, define
+
+                                              Jn = G19 ∨ Kn−3 .
+
+                                                         1
+Thus Jn is the graph denoted Gn in [2, Section 4.2]; the letter J merely avoids overloading G19 when
+n = 19. This is the family proposed there as a finite witness for the complex-sphere obstruction of
+[2, Theorem 1.2]. Here ξ denotes complex orthogonal rank. The first joined case is the 20-vertex
+one-apex graph
+                                        H = J4 = G19 ∨ K1 .
+    An m-coloring in the finite-dimensional projector model is a family of orthogonal projections
+Pv,c ∈ Md (C), with zero projections allowed, such that
+                              X
+                              m
+                                     Pv,c = Id ,         Pv,c Pw,c = 0   (vw ∈ E).
+                               c=1
+
+The row orthogonality Pv,c Pv,c′ = 0 for c 6= c′ follows from, and may equivalently be included with,
+the assertion that the row is a projective partition of the identity. By the structure theorem recorded
+in [2, Theorem 2.19], following Cameron–Montanaro–Newman–Severini–Winter [1], this projector
+formulation is equivalent to the standard finite-dimensional definition of χq by perfect entangled
+                                                                                   [d]
+strategies for the graph-coloring game. Following [2, Section 2.4.2], write χq for the chromatic
+                                                  (s)
+number restricted to local dimension d, and χq for the rank-s quantum chromatic number.
+Theorem 1.1 (Main theorem). For every n ≥ 3 and every d, s ≥ 1,
+
+                   ξ(Jn ) = n,         χq (Jn ) = χq[d] (Jn ) = χ(s)
+                                                                 q (Jn ) = χ(Jn ) = n + 1.
+
+In particular, χq (H) = 5.
+    For n = 3, the equality χq (J3 ) = 4 was already known: J3 = G19 contains the Mančinska–
+Roberson graph G13 and is classically four-colorable [2, Section 4.2]. Thus the new unrestricted
+cases begin with the one-apex graph J4 ; the theorem is stated for all n ≥ 3 because its proof is
+uniform.
+    The orthogonal-rank equality follows from ξ(G19 ) = 3 [2, Theorem 1.6] and additivity under
+graph join [2, Theorem 2.17(5)]. For the elementary chromatic upper bound, Lalonde gives the
+four-coloring [2, Section 4.2]
+
+                  (κ(1), . . . , κ(19)) = (1, 2, 3, 2, 1, 3, 1, 3, 2, 3, 2, 4, 1, 1, 2, 1, 3, 2, 3).
+
+Giving the n−3 joined vertices fresh colors proves χ(Jn ) ≤ n+1. The work is to exclude a quantum
+n-coloring. This also excludes every coloring with fewer than n colors, since unused colors may be
+padded by zero projections.
+
+
+2    Clique saturation and uniformization
+Lemma 2.1 (Clique columns). Suppose an m-coloring contains an m-clique C. Then, for every
+color c,                             X
+                                        Pv,c = Id .
+                                                   v∈C
+
+Thus the m × m array (Pv,c )v∈C,c∈[m] is a magic unitary.
+Proof. For fixed c, the summands are pairwise orthogonal, so their sum is a projection of trace at
+most d. Summing this trace bound over the m columns gives at most md. The row identities show
+that the total trace is exactly md, so equality holds in every column. A projection of trace d in
+Md (C) is the identity.
+
+                                                           2
+Lemma 2.2 (Color uniformization). If Jn has a finite-dimensional quantum n-coloring, then it
+has one in a dimension D = nr for which every projector has the same positive rank r.
+Proof. Given a coloring in dimension d, take its direct sum over the n! color permutations:
+                                               M
+                                       Pev,c =      Pv,π(c) .
+                                                   π∈Sn
+
+This is again a coloring. Its dimension is D = n!d, while
+                                                 X
+                                                 n
+                         rank Pev,c = (n − 1)!         rank Pv,a = (n − 1)!d =: r.
+                                                 a=1
+
+Hence D = nr and r > 0.
+    Assume henceforth that such a uniform coloring exists. Fix a color c. Let Rc be the sum of the
+color-c projections on the joined clique Kn−3 and let
+                                            Q c = I D − Rc .
+The joined vertices are pairwise adjacent, so rank Rc = (n − 3)r and dim Qc = 3r. Every old-vertex
+projection Pv,c is supported on Qc . Applying Lemma 2.1 to Tj ∨ Kn−3 gives
+                                  X
+                                      Pv,c = Qc     (j = 0, 1, 2, 3).                          (1)
+                                  v∈Tj
+
+Thus, on Qc , the fixed-color projections form a uniform rank-r projective orthogonal representation
+of G19 in dimension 3r.
+
+
+3     Exact fixed-color rigidity
+In this section fix the color and write ev = Pv,c |Qc and I = IQc . All traces are the ordinary matrix
+trace on Qc .
+
+3.1   A rational core sum of squares
+Put
+                                      X = e10 + e11 + e12 + e13
+and define the three Walsh forms
+                                      H1 = e10 + e11 − e12 − e13 ,
+                                      H2 = e10 − e11 + e12 − e13 ,
+                                      H3 = e10 − e11 − e12 + e13 .
+Also put d1 = e5 − e4 , d2 = e7 − e6 , and d3 = e9 − e8 .
+Lemma 3.1 (Core SOS). The defining projection, edge, and triangle relations imply the exact
+identity
+                                 4          X3
+                                   I −X =      fj∗ fj ,                                 (2)
+                                 3
+                                                           j=0
+where all fj are self-adjoint and
+                                    
+                             1     4                    2     1
+                        f0 =     X− I ,            f i = d i + Hi       (1 ≤ i ≤ 3).
+                             2     3                    3     2
+
+                                                       3
+Proof. The triangle decompositions and edge zeros give
+                              X
+                              3
+                                    d2i = (e4 + e5 ) + (e6 + e7 ) + (e8 + e9 ) = 2I.                    (3)
+                              i=1
+
+Hadamard cancellation, together with e2j = ej , gives
+                                          X 2 + H12 + H22 + H32 = 4X.                                   (4)
+Finally,
+                                              X
+                                              3
+                                                     {di , Hi } = −4X.                                  (5)
+                                               i=1
+To see the last identity, collect the coeﬀicient of each ej for j = 10, 11, 12, 13. The corresponding
+signed sum of d1 , d2 , d3 is Nj − (2I − Nj ) = 2Nj − 2I, where Nj is the sum of the three projections
+among e4 , . . . , e9 adjacent to j. Since Nj ej = ej Nj = 0, its anticommutator with ej is −4ej .
+Summing over j proves (5).
+    Expanding the right side of (2) and inserting (3)–(5) leaves exactly 34 I − X.
+   The two sides of (2) have the same trace, namely zero, because dim Qc = 3r and each ej has
+rank r. Faithfulness of the matrix trace therefore forces every fj to vanish. Define
+                              A = e4 − e5 ,          B = e6 − e7 ,       C = e8 − e9 .
+Walsh inversion now gives
+                 e10 = 13 (I + A + B + C),                            e11 = 31 (I + A − B − C),         (6)
+                 e12 = 31 (I − A + B − C),                            e13 = 31 (I − A − B + C).
+Moreover,
+             A2 = I − e 3 ,         B 2 = I − e2 ,        C 2 = I − e1 ,      A2 + B 2 + C 2 = 2I.
+For each
+                      (a, b, c) ∈ {(1, 1, 1), (1, −1, −1), (−1, 1, −1), (−1, −1, 1)},
+the idempotency of 13 (I + aA + bB + cC) gives
+                         ab{A, B} + ac{A, C} + bc{B, C} = aA + bB + cC.
+Adding the (1, 1, 1) equation to each of the other three in turn yields
+                              {B, C} = A,            {A, C} = B,         {A, B} = C.                    (7)
+Lemma 3.2 (Core normal form). There is a Hilbert space Kc of dimension r and a unitary
+Wc : Kc3 → Qc under which the ranges of e1 , . . . , e13 are
+               1 = (I, 0, 0),                        2 = (0, I, 0),                    3 = (0, 0, I),
+               4 = (I, I, 0),                        5 = (I, −I, 0),
+               6 = (I, 0, I),                        7 = (I, 0, −I),
+               8 = (0, I, I),                        9 = (0, I, −I),
+              10 = (I, I, I),                     11 = (I, I, −I),
+              12 = (I, −I, I),                    13 = (I, −I, −I).
+Here a block row denotes the range of the associated block-column map from Kc ; normalization of
+the frame is immaterial to its range.
+
+                                                           4
+Proof. Use e1 + e2 + e3 = I to write Qc = K1 ⊕ K2 ⊕ K3 , with Ki = ran ei and dim Ki = r. The
+operator A is supported on K1 ⊕ K2 , B on K1 ⊕ K3 , and C on K2 ⊕ K3 . In the first relation of (7),
+the (1, 1) and (2, 2) blocks of {B, C} vanish, so the two diagonal blocks of A vanish. Cyclically, all
+diagonal blocks vanish. Since A2 = I − e3 , its (1, 2) block is unitary, and similarly for B, C. Thus
+                                                                              
+                          0 U 0                 0 0 V                  0 0      0
+                 A = U ∗ 0 0  , B =  0 0 0  , C = 0 0 W  .
+                          0 0 0                 V∗ 0 0                 0 W∗ 0
+Equation (7) gives U = V W ∗ , V = U W , and W = U ∗ V . Set Kc = K1 and define the unitary
+                       G : Kc3 −→ K1 ⊕ K2 ⊕ K3 ,           G(x, y, z) = (x, U ∗ y, V ∗ z).
+Pulling operators back by M 7→ G∗ M G makes all three upper off-diagonal blocks the identity: they
+become U U ∗ = I, V V ∗ = I, and U W V ∗ = I. The binary decompositions and (6) then give the
+displayed ranges.
+
+3.2   All tail branches
+The tail is not always the graph of an operator; retaining degenerate planes is essential.
+Lemma 3.3 (Tail-plane classification). After the normalization in Lemma 3.2, the ranges at vertices
+14, . . . , 19 are determined by an r-plane Mc ⊂ Kc ⊕ Kc satisfying
+                                                                
+                                                            0 I
+                                    J c Mc = Mc ,   Jc =           .                            (8)
+                                                           −I 0
+Explicitly,
+              14 = {(a, 0, b) : (a, b) ∈ Mc },                15 = {(0, a, b) : (a, b) ∈ Mc },
+              16 = {(a, −b, 0) : (a, b) ∈ Mc },                                                       (9)
+              17 = {(x, x, z) : (x, z) ∈ Mc⊥ },               18 = {(x, −z, z) : (x, z) ∈ Mc⊥ },
+              19 = {(x, −z, x) : (x, z) ∈ Mc⊥ }.
+Conversely, every Jc -invariant r-plane gives rank-r subspaces satisfying all fixed-color edge relations.
+Proof. The six core–tail edges 2 14, 1 15, 3 16, 5 17, 8 18, and 7 19 place the tail ranges in the images
+of the following injective two-column frames:
+                                      v   Fv (a, b)       v   Fv (a, b)
+                                      14 (a, 0, b)        17 (a, a, b)
+                                      15 (0, a, b)        18 (a, −b, b)
+                                      16 (a, −b, 0)       19 (a, −b, a).
+
+Because each frame is injective, there is a unique r-plane Nv ⊂ Kc2 with ran ev = Fv (Nv ). The
+frames need not be isometries. For a tail edge vw,
+                              Fv (Nv ) ⊥ Fw (Nw )     ⇐⇒     Fv∗ Fw (Nw ) ⊆ Nv⊥ ,
+so the cross-Gram pullbacks below require no normalization or transversality assumption. For the
+six tail–tail edges, direct pullback gives
+                              vw   14 17 15 17 14 18 16 18 16 19 15 19
+                              ∗
+                             Fv Fw   I     I     I     I     I   −Jc .
+
+                                                      5
+Put Mc = N14 . The first five entries successively give N17 = Mc⊥ , N15 = Mc , N18 = Mc⊥ , N16 = Mc ,
+and N19 = Mc⊥ . The final entry says Jc Mc⊥ = Mc⊥ . Because Jc is unitary and Jc∗ = −Jc , this is
+equivalent to Jc Mc = Mc . The displayed frames are exactly (9). To make the complement equalities
+explicit, every edge first gives an orthogonality inclusion between two parameter planes. Each plane
+has dimension r in the same 2r-dimensional space, as does the orthogonal complement on the right,
+so every such inclusion is an equality. Reversing these equalities verifies the converse.
+Remark 3.4. If the first-coordinate projection of Mc is invertible, then Mc = ran(I, S) and (8)
+is S 2 = −I. This transverse branch recovers the familiar operator-valued normal form. It is not
+exhaustive. For instance, M = span{(u, 0), (0, u)} ⊂ C2 ⊕ C2 , where u = (1, 0), is J-invariant but is
+not a graph. Lemma 3.3 includes this branch. It is also not equivalent, under a unitary preserving
+the displayed labeled core, to an orthogonal direct sum of rank-one fixed-color representations. Indeed,
+under the sector parametrization
+                              M ∩ ker(J − σiI) = {(x, σix) : x ∈ Eσ },
+this example has E+ = E− = span{u} and hence dim(E+ ∩ E− ) = 1. Vertices 1, 2, 3 force every
+core-preserving unitary to be block diagonal, while vertices 4 and 6 force its three blocks to coincide;
+it is therefore diag(U, U, U ) and preserves this intersection dimension. By contrast, in a direct sum
+of rank-one representations, E+ and E− are orthogonal multiplicity summands. Thus fixed-color
+higher-rank representations are not all scalar direct sums, and an unrestricted proof must control
+these branches.
+     At r = 1, for σ ∈ {+1, −1} every invariant line and its complement have the form
+                           Mc = span{(1, σi)},           Mc⊥ = span{(1, −σi)}.
+Substitution into (9) gives
+                       14 = (1, 0, σi),  15 = (0, 1, σi),   16 = (1, −σi, 0),
+                       17 = (1, 1, −σi), 18 = (1, σi, −σi), 19 = (1, σi, 1).
+Together with the core, this is exactly Lalonde’s scalar normal form [2, Theorem 4.5] after the
+phase gauge α = β = 1, with b = σ. Thus Lemmas 3.2 and 3.3 are a higher-rank extension of
+that normal form; their derivation does not invoke the computer-assisted nonidentification input [2,
+Lemma 4.4].
+
+
+4    Cross-color sector obstruction
+Take distinct colors c, d and use the core isometries from Lemma 3.2. Put
+                                      Tdc = Wd∗ Wc : Kc3 −→ Kd3 .
+Lemma 4.1 (Cross-color block equations). There are maps X, Y, Z : Kc → Kd such that
+                                                    
+                                          0    X Y
+                                 Tdc = −X      0 Z .                                             (10)
+                                         −Y −Z 0
+For L : Kc → Kd , define                                 
+                                                      0 L
+                                          ΩL =              .
+                                                     −L 0
+Then, for each L ∈ {X, Y, Z},
+                                  ΩL Mc ⊆ Md⊥ ,           ΩL Mc⊥ ⊆ Md .                            (11)
+
+                                                     6
+Proof. Same-vertex orthogonality at vertices 1, 2, 3 kills the diagonal blocks of Tdc . Vertices 4, 6, 8
+make the corresponding lower block the negative of the upper block, giving (10). No adjoints occur
+here: Tdc maps the coordinate space for c to the one for d.
+   Compressing (10) by the two-column frames in (9), vertices 14, 15, 16 give, respectively,
+
+                           ΩY Mc ⊆ Md⊥ ,      ΩZ Mc ⊆ Md⊥ ,       −ΩX Mc ⊆ Md⊥ .
+
+Vertices 17, 18, 19 give
+
+                    ΩY +Z Mc⊥ ⊆ Md ,         ΩY −X Mc⊥ ⊆ Md ,        ΩZ−X Mc⊥ ⊆ Md .
+
+The coeﬀicient transform is invertible; for example
+
+                                  2X = (Y + Z) − (Y − X) − (Z − X),
+
+with analogous formulas for Y, Z. This proves (11).
+
+   Let Γc = 2PMc − I on Kc2 . Equation (11) is equivalent to
+
+                                    Γd ΩL = −ΩL Γc         (L = X, Y, Z).                          (12)
+
+Because Mc reduces the unitary Jc , it splits across the +i and −i eigenspaces of Jc . Using the
+isometries up to a harmless factor
+
+                                    Vc,σ (x) = (x, σix),     σ ∈ {+, −},
+
+write
+                           Mc ∩ ker(Jc − σiI) = Vc,σ (Ec,σ ),     ec,σ = dim Ec,σ .
+Then
+                                              ec,+ + ec,− = r.                                     (13)
+The operator ΩL intertwines Jc with Jd and acts within a σ sector as the nonzero scalar σi times
+L. Combining this with (12) gives
+                                           ⊥
+                                  LEc,σ ⊆ Ed,σ       (c 6= d, L = X, Y, Z).                        (14)
+
+   We can now finish the proof.
+
+Proof of Theorem 1.1. Suppose that Jn had a quantum n-coloring. Uniformize it using Lemma 2.2,
+so the physical dimension is D = nr and all ranks are r > 0. For each color c, apply Lemmas 3.2
+and 3.3, and define the physical sector subspace
+
+                                      Hc,σ = Wc (Ec,σ ⊕ Ec,σ ⊕ Ec,σ ).
+
+It has dimension 3ec,σ . Equations (10) and (14) show the pairwise orthogonality directly. For c 6= d,
+                            ⊕3 and η = (η , η , η ) ∈ E ⊕3 . Then
+take ξ = (ξ1 , ξ2 , ξ3 ) ∈ Ec,σ          1 2 3         d,σ
+
+                             Wd η, Wc ξ = η, Tdc ξ
+                                        = η1 , Xξ2 + Y ξ3 + η2 , −Xξ1 + Zξ3
+                                             + η3 , −Y ξ1 − Zξ2 = 0.
+
+
+
+                                                      7
+                                                                     ⊥ . Thus, for fixed σ, the n
+Every term vanishes by (14): ηj ∈ Ed,σ , whereas Xξk , Y ξk , Zξk ∈ Ed,σ
+subspaces Hc,σ are pairwise orthogonal in the common nr-dimensional physical space. Therefore
+
+                                    X
+                                    n                           X
+                                                                n
+                                3         ec,+ ≤ nr,        3         ec,− ≤ nr.
+                                    c=1                         c=1
+
+Adding and using (13) gives
+                                               X
+                                               n
+                                    3nr = 3          (ec,+ + ec,− ) ≤ 2nr,
+                                               c=1
+
+which is impossible because n, r > 0. Hence no quantum n-coloring exists. The classical (n + 1)-
+coloring in Section 1 gives χq (Jn ) = χ(Jn ) = n + 1. Every fixed-dimension or rank-s coloring is
+finite-dimensional, giving the restricted lower bounds. Tensoring the classical solution with Id gives
+the fixed-dimension upper bound; the direct sum of its n + 1 cyclic relabelings, tensored with Is ,
+gives the fixed-rank upper bound. This explicit construction is needed because the rank-s chromatic
+numbers are not generally monotone in s, and adjoining an additional nonzero rank-s color is not
+automatic [2, Section 2.4.2]. Section 1’s orthogonal-rank calculation completes the theorem.
+
+Corollary 4.2 (Finitary complex-sphere obstruction). For every n ≥ 3, the complex unit sphere
+with orthogonality adjacency satisfies
+
+                                             χq (SCn−1 ) ≥ n + 1.
+
+In particular, Theorem 1.1 gives an alternative finitary proof of [2, Theorem 1.2].
+
+Proof. The equality ξ(Jn ) = n gives a graph homomorphism Jn → SCn−1 , and the quantum chro-
+matic number is monotone under graph homomorphisms [2, Sections 1.1 and 2.3.3]. Theorem 1.1
+therefore gives
+                                   n + 1 = χq (Jn ) ≤ χq (SCn−1 ).
+This finite witness does not follow merely from the infinitary lower bound by a general de Bruijn–
+Erdős principle: χq does not have that property [2, Proposition 3.3].
+
+
+5   Relation to the rank-one theorem and exact verification
+The three higher-rank obstacles. The closing discussion of [2, Section 4.2] identifies three bar-
+riers to the unrestricted problem: rank-one propagation no longer classifies Grassmannian-valued
+representations; no evident analogue of Lemma 4.6 supports the rank-one proof; and even a few
+values of n appear to require very large, n-specific SOS programs. Lemmas 3.1– 3.3 address the first
+barrier by classifying every fixed-color higher-rank representation through one rational core SOS
+and a J-invariant tail plane. Lemma 4.1, together with the subsequent sector relations, replaces
+the role of Lemma 4.6 by the structure needed across colors. These statements are independent of
+n, so one exact rational identity and the final packing argument treat the entire family without an
+SDP.
+    Remark 3.4 shows that the higher-rank classification recovers Lalonde’s scalar normal form [2,
+Theorem 4.5], but the proof does not assume that classification or equal original ranks. Symmetriza-
+tion makes fixed-color ranks uniform, the SOS classifies the fusion-frame core, and Lemma 3.3
+treats every tail, including non-graph and noncommuting branches. The obstruction therefore cov-
+ers arbitrary finite dimension, zero projectors, and reducible or irreducible representations. On the
+
+
+                                                        8
+induced Mančinska–Roberson graph G13 , operator propagation proving χq (G13 ) = 4 [4] is an earlier
+higher-rank rigidity precedent; the present argument uses the extra six-vertex tail. For context,
+the computer-assisted method behind Lalonde’s Lemma 4.4 is developed in [3]; neither that lemma
+nor its algorithm is used in the present classification.
+    Two standard-library obstruction verifiers replay the SOS, signs, six tail compressions, J in-
+tertwining, final symbolic dimension arithmetic, and an independent trace-SOS formulation with
+clique and cross-color checks. A separate graph checker verifies graph6, no four-clique, Lalonde’s
+four-coloring, and exhaustive non-three-colorability. All arithmetic is exact; no numerical SDP en-
+ters. The programs do not formalize the unitary gauge step in Lemma 3.2, the projection/subspace
+semantics and complement equalities in Lemma 3.3, or the final orthogonal-subspace packing; those
+remain part of the human proof.
+
+Artifact provenance. The certificate payloads and original algebraic audit were frozen in the
+initial, pre-presentation immutable project snapshot with full Git object name
+      b1944a23707eb69d2f9f25eda0bb73c32cd5500a.
+
+Relative to that project root, the certificate payloads have SHA-256 digests
+      certificate/obstruction_certificate.json:
+      fdf2aff0df2902b08ad0363e6448e299c7b04d1437b329634c9d7a719376c76c
+      certificate/lalonde_uniform_obstruction.json:
+      e5e0a6126c1adc4088e090ea58ca194f8c2f0ce243f9cd9c4c151329e97a71e1
+
+This initial algebra-audit snapshot is not the canonical source snapshot for the present typeset
+revision. That commit and the PDF digest are recorded on the landing page after typesetting,
+avoiding a self-referential hash here.
+
+Research status and disclosure. This independent research note has not been peer reviewed.
+Generative-AI systems were used substantively in mathematical exploration, adversarial proof au-
+diting, exact-verifier development, literature support, and manuscript preparation. The named
+author selected the released claims and accepts responsibility for the note. The exact programs
+replay encoded algebraic identities; they are neither foundational proof assistants nor a substitute
+for expert review of the mathematical argument.
+The current paper, technical summary, source, certificates, and verification instructions are available
+at https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/.
+
+
+References
+[1] P. J. Cameron, A. Montanaro, M. W. Newman, S. Severini, and A. Winter, On the quantum chromatic number
+    of a graph, Electron. J. Combin. 14 (2007), no. 1, R81, doi:10.37236/999.
+[2] O. Lalonde, Quantum colorings of spheres, arXiv:2606.10872v1 (2026).
+[3] O. Lalonde, On the quantum chromatic numbers of small graphs, Electron. J. Combin. 32 (2025), no. 1, P1.18,
+    doi:10.37236/12506.
+[4] L. Mančinska and D. E. Roberson, Oddities of quantum colorings, Baltic J. Mod. Comput. 4 (2016), 846–859.
+
+
+
+
+                                                       9
+

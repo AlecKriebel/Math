@@ -1,0 +1,655 @@
+Positive Recurrence of Bimolecular Weakly Reversible
+ Stochastic Reaction Networks with a Single Linkage
+                        Class
+                                                Alec Kriebel
+                                            Independent researcher
+                                              me@aleckriebel.com
+
+                                      Version 0.2 — 6 August 2026
+
+
+                                                   Abstract
+          We prove that every finite bimolecular weakly reversible stochastic mass-action network with
+      one linkage class is positive recurrent on each closed communicating class, for every positive choice
+      of rate constants. This removes the hypothesis in the 2020 theorem of Anderson, Cappelletti,
+      and Kim that each species occurs in a unary or double complex. The proof marks the target
+      complex of the actual reaction channel that most recently fired and applies a log-factorial
+      potential to the population remaining after that target is removed. Its increment is exactly a
+      target/source falling-factorial ratio. Finite target-following paths propagate the negative reward
+      of a rare terminal source, while a normalized-log compactification and an exhaustive bimolecular
+      top-complex alternative make that terminal source available along every divergent sequence
+      unless a linear stoichiometric invariant already bounds the sequence.
+
+Keywords. Stochastic reaction network; chemical reaction network; positive recurrence; continuous-
+time Markov chain; mass-action kinetics; weak reversibility; Foster–Lyapunov method.
+2020 Mathematics Subject Classification. Primary 60J27; secondary 60J74, 92C42.
+
+
+1    Introduction
+Stochastic reaction networks are continuous-time Markov-chain models for interacting populations
+whose transition rates are determined by a finite reaction graph. They arise in chemical kinetics,
+systems biology, ecology, and related population models; see, for example, Anderson and Kurtz
+(2015). A basic stability question is whether each closed irreducible component has a stationary
+probability distribution, or equivalently whether its states have finite mean return times.
+   Anderson and Kim (2018) formulated the positive-recurrence conjecture that weak reversibility
+should force this stability for stochastic mass-action systems. They established several structural
+sufficient conditions. Anderson et al. (2020a) subsequently proved the binary, one-linkage case under
+the additional condition
+
+                                {Si , 2Si } ∩ C ̸= ∅       for every species Si .                             (1)
+
+Thus each species had to occur in a pure unary or pure double complex. Other progress includes
+complex-balanced product-form systems (Anderson et al., 2010), strongly endotactic structures
+
+                                                       1
+(Anderson et al., 2020b), one-dimensional classifications (Wiuf and Xu, 2023), and nonexplosion of
+all second-order weakly reversible systems (Xu, 2026). The May 2026 revision of Xu (2026) still
+records the general bimolecular positive-recurrence problem as open.
+   The present paper removes (1) while retaining the binary and one-linkage assumptions. The
+exact theorem is stated in Theorem 2.1. It does not address multiple linkage classes or complexes of
+molecularity above two, and therefore does not settle the full positive-recurrence conjecture.
+   A small motivating example is the directed cycle
+                                          0 −→ A + B −→ B −→ 0.                                                (2)
+Species A occurs in neither A nor 2A, so (1) fails. At the boundary state (n, 0), only the reaction
+0 → A + B is enabled and the one-step drift of total population is positive. The restoring effect
+is delayed: the created B enables a fast reaction consuming A. This is representative of why a
+one-step radial Lyapunov function is not the right universal object.
+   The proof instead uses four ideas. First, we augment the embedded jump chain by marking the
+actual reaction channel that fired and retaining its target complex. Second, after removing that
+target from the population, the log-factorial potential has the exact increment
+                                                  (x)t
+                                              log
+                                                  (x)s
+when the carried target is t and the next source is s. Following the carried target therefore costs
+exactly zero. Third, a finite episode follows a fixed directed path from the carried target toward
+a selected terminal complex. A sharp scalar envelope shows that a terminal source probability
+tending to zero forces the complete episode drift to tend to −∞, no matter how the intermediate
+source rates are separated. Fourth, a normalized-log compactification of an arbitrary divergent
+sequence gives an exhaustive top-complex case split. Bimolecularity implies either the existence of
+a higher-weight source enabled over a lower terminal complex or a reaction-wise linear invariant
+that contradicts divergence inside a fixed communicating class. A finite-family random-time drift
+argument and a finite trace-chain construction complete the proof.
+
+
+2     Reaction networks and the stochastic model
+Let S = {S1 , . . . , Sd } be a finite species set. A complex is a vector y = (y1 , . . . , yd ) ∈ Nd0 , identified
+with the formal sum i yi Si . Its molecularity is |y| = i yi . A reaction channel is a labelled ordered
+                          P                                P
+
+pair r : yr → yr′ , together with a positive rate constant κr . Parallel channels are allowed. The
+reaction graph has the complexes as vertices and the reaction channels as directed edges. Its linkage
+classes are the connected components of the underlying undirected graph. A network is weakly
+reversible when each linkage class is strongly connected. With one linkage class, weak reversibility
+is simply strong connectivity of the entire complex graph.
+    We call the network binary or bimolecular when
+                                         |y| ≤ 2       for every y ∈ C.                                        (3)
+Because every complex in a weakly reversible graph is a reaction source, this agrees here with the
+usual second-order/bimolecular terminology.
+   For x ∈ Nd0 , define the multivariate falling factorial
+                                              
+                                                d
+                                               Y       xi !
+                                                                ,   x ≥ y,
+                                              
+                                              
+                                     (x)y =    i=1
+                                                   (x i − yi )!                                                (4)
+                                              
+                                              0,
+                                              
+                                                                    otherwise.
+
+                                                         2
+The stochastic mass-action propensity of channel r is λr (x) = κr (x)yr , and the formal generator is
+
+                               Lf (x) =             κr (x)yr f (x + yr′ − yr ) − f (x) .             (5)
+                                                X                                     
+                                                r
+
+The convention using products of binomial coefficients is equivalent after rescaling each positive
+rate constant by a fixed factorial factor.
+    A subset Γ ⊆ Nd0 is a closed communicating class when its states communicate through enabled
+channels and no enabled channel exits Γ. The chain restricted to Γ is irreducible. It is positive
+recurrent when one, equivalently every, state has finite expected positive return time. For a
+nonexplosive irreducible countable-state CTMC, this is equivalent to the existence of a stationary
+probability distribution.
+    A channel y → y has zero population increment and contributes zero to (5); discard it. Exact
+parallel channels with the same source and target may be combined by adding their rates. Channels
+having the same population displacement but different sources or targets remain distinct, because
+the proof marks the actual channel.
+    Every finite closed communicating class is positive recurrent: its finite irreducible jump chain has
+a stationary probability distribution, all state rates are finite, and the associated finite-state CTMC
+is nonexplosive. If the complex graph has one vertex, all closed classes are absorbing singletons. If
+all complexes have the same molecularity, every reaction preserves |x|1 , so each communicating class
+lies in a finite shell. We therefore fix henceforth an infinite closed irreducible class Γ, a strongly
+connected graph with at least two complexes, and no self channels. Every complex then has a
+genuine outgoing channel. Write
+
+                       κ̄y =                         κ̄− = min κ̄y > 0,         κ̄+ = max κ̄y .      (6)
+                                X
+                                         κr ,
+                                                            y∈C                        y∈C
+                               r:yr =y
+
+Theorem 2.1 (Binary one-linkage positive recurrence). Let a finite stochastic mass-action reaction
+network be weakly reversible, have one linkage class, and satisfy (3). For every positive rate vector,
+every closed communicating class of its population CTMC is positive recurrent.
+
+Corollary 2.2 (Stationary probability). Under the hypotheses of Theorem 2.1, every closed com-
+municating class Γ admits a stationary probability distribution πΓ . It is unique on Γ.
+
+
+3    The marked target-augmented chain
+We first define the embedded chain without assuming nonexplosion. At a nonabsorbing population
+state x, sample the actual labelled reaction channel r with probability
+                                         κr (x)yr
+                                                           Λ(x) =        κq (x)yq .                  (7)
+                                                                    X
+                                                  ,
+                                          Λ(x)                       q
+
+This discrete chain can be constructed independently of its holding times. After the sampled channel
+r fires, record its target t = yr′ . The mark is therefore obtained from the actual channel and is never
+inferred from the population displacement. Once exact parallel channels with the same source and
+target have been aggregated, retaining the target is the only part of the previous channel needed
+below. A reachable augmented state is denoted (x, t), where x is the post-jump population. If the
+next sampled channel is q : s → u, then
+
+                                                (x, t) 7−→ (x − s + u, u).                           (8)
+
+                                                                3
+The channel law depends on x, not on the historical mark, so the augmented process is Markov,
+and projection onto x is the ordinary population embedded chain.
+   Let Γe be the augmented states reachable after genuine jumps within Γ. It is closed under (8).
+It is also irreducible. Indeed, given (x, t), (x′ , t′ ) ∈ Γ,
+                                                           e choose a channel s′ → t′ and predecessor
+population z = x − t + s ∈ Γ witnessing reachability of the second pair. Population irreducibility
+                  ′    ′   ′
+
+supplies a positive-probability marked-channel path from x to z; appending s′ → t′ reaches (x′ , t′ ).
+   The carried target is always enabled. If the preceding channel was s → t, then its post-jump
+state has the form x = z − s + t ≥ t. Put
+                                                           d
+                   r = x − t ∈ Nd0 ,      V (x, t) =              log((xi − ti )!) =             log(ri !).    (9)
+                                                           X                             X
+
+                                                           i=1                              i
+
+We use log(0!) = 0. Thus V ≥ 0. Every sublevel set of V in Γe is finite, because log(n!) → ∞, each
+residual coordinate is bounded on a sublevel, and the target set is finite.
+Lemma 3.1 (Exact target/source identity). At (x, t), if the next marked channel has source s and
+target u, then
+                                                                 (x)t
+                               V (x − s + u, u) − V (x, t) = log      .                      (10)
+                                                                 (x)s
+In particular, a channel sourced at the carried target has zero increment.
+Proof. The new residual is (x − s + u) − u = x − s. Since both s and t are enabled,
+                                                   Y (xi − si )!                (x)t
+                                  exp(∆V ) =                                =        .
+                                                     i
+                                                           (xi − ti )!          (x)s
+
+
+
+   This identity gives a precise “complete-credit” interpretation: a product complex remains credited
+in full until the chain chooses a different source. The interpretation is not used in place of the
+algebraic identity.
+   For enabled source complexes define
+                                                               κ̄y (x)y
+                                               px (y) =                 .                                     (11)
+                                                                Λ(x)
+Set px (y) = 0 for disabled sources, and use 0 log 0 = 0 in entropy expressions. Unless explicitly
+stated otherwise, sums in this subsection range only over enabled source complexes. Because the
+carried target is enabled, px (t) > 0. The expected one-jump increment is
+                                                                            (x)t
+                                       d(x, t) =            px (s) log                                        (12)
+                                                    X
+                                                                                 .
+                                                   s: x≥s
+                                                                            (x)s
+
+Lemma 3.2 (Source-probability bound). For every reachable augmented state,
+
+                               d(x, t) = log px (t) −                   px (s) log px (s)
+                                                                X
+
+                                                               s: x≥s
+                                                                                                              (13)
+                                           +             px (s) log κ̄s − log κ̄t ,
+                                                X
+
+                                               s: x≥s
+
+and consequently
+                                                                                                κ̄+
+                         d(x, t) ≤ log px (t) + C0 ,              C0 = log |C| + log                .         (14)
+                                                                                                κ̄−
+
+                                                           4
+Proof. For each enabled s, (x)s = px (s)Λ(x)/κ̄s . Substitution into (12) gives (13). The entropy of a
+probability vector supported on at most |C| points is at most log |C|, and the last line contributes at
+most log(κ̄+ /κ̄− ). The zero complex creates no exception, since (x)0 = 1.
+
+
+4      Propagation along target-following paths
+For every ordered pair (t, c) ∈ C 2 , fix a simple directed path of marked channels
+
+                        t = y0 −→ y1 −→ · · · −→ yL = c,         0 ≤ L ≤ |C| − 1.                   (15)
+
+Strong connectivity supplies the path. Starting from (r + t, t), define the (t, c)-episode as follows. At
+phase yk , k < L, continue only when the exact designated channel yk → yk+1 fires; after any other
+channel, stop immediately. If the path reaches c, take one final ordinary jump and stop. When
+c = t, the path has length zero and the episode is just that final jump.
+   This is a stopping time for the marked embedded filtration. On designated edges the lifted
+populations are
+                                r + y0 −→ r + y1 −→ · · · −→ r + c.                                  (16)
+Every designated source is literally present, the residual remains r, and closedness of Γ keeps the
+entire lift in the class. The episode has between one and |C| jumps and only finitely many terminal
+branches.
+   For the designated channel at phase k, put
+                                     κy →y
+                                qk = k k+1 > 0,        pk = pr+yk (yk ).                       (17)
+                                        κ̄yk
+Let Jk (r) be the expected remaining V -increment from phase k.
+Lemma 4.1 (Exact episode recursion). The episode rewards satisfy
+
+                    JL (r) = d(r + c, c),     Jk (r) = d(r + yk , yk ) + qk pk Jk+1 (r).            (18)
+
+Proof. At phase k, the first jump has expected increment d(r + yk , yk ). Continuation occurs exactly
+when the designated channel fires, with probability qk pk . That channel is sourced at the carried
+target and has zero immediate increment by Lemma 3.1; the remaining conditional expectation is
+Jk+1 (r).
+
+    The following scalar calculation controls all possible intermediate source probabilities.
+Lemma 4.2 (Scalar envelope). For q > 0 and M ∈ R, define
+
+                                 Fq (M ) = sup {log p + C0 + qpM }.
+                                            0<p≤1
+
+Then                                  
+                                      C + qM,                    M ≥ −1/q,
+                                        0
+                            Fq (M ) =                                                               (19)
+                                      C0 − 1 − log(−qM ),        M < −1/q.
+Consequently, if Mn → −∞, then Fq (Mn ) → −∞.
+Proof. The objective has derivative p−1 + qM and second derivative −p−2 < 0. If M ≥ −1/q, its
+derivative at p = 1 is nonnegative, so concavity places the maximum at p = 1. If M < −1/q, the
+unique maximizer is p = (−qM )−1 ∈ (0, 1), which gives the second line of (19). The final assertion
+follows immediately.
+
+                                                    5
+Proposition 4.3 (Propagation of terminal drift). Fix a target-following path (15). If along a
+sequence of residuals r(n) one has
+                                    pr(n) +c (c) −→ 0,
+then the expected increment of the complete (t, c)-episode tends to −∞.
+Proof. At the terminal phase, Lemma 3.2 gives JL ≤ log pr+c (c) + C0 → −∞. If Jk+1 ≤ M ,
+Lemmas 3.2 and 4.1 give
+
+                             Jk ≤ sup {log p + C0 + qk pM } = Fqk (M ).
+                                     0<p≤1
+
+Apply Lemma 4.2 backward through the finite path.
+
+  The proof preserves every reaction-rate monomial: no edge is replaced and no unrelated rates are
+compared. Arbitrarily many nested source-rate scales are absorbed by the finite scalar recursion.
+
+
+5     Logarithmic compactification and the top-complex alternative
+We now show that every divergent augmented sequence supplies the terminal rarity required by
+Proposition 4.3, unless a linear stoichiometric invariant already makes such divergence impossible.
+   Take a sequence (x(n) , t(n) ) ∈ Γ
+                                    e leaving every finite set. Pass to a subsequence with t(n) = t, and
+set r(n) = x(n) − t. A diagonal extraction makes every coordinate of r(n) either one fixed nonnegative
+integer or divergent to infinity. Let I be the set of divergent coordinates and put
+                                                                      (n)
+                                           Rn =            log(ri           + 1).                       (20)
+                                                     X
+
+                                                     i∈I
+
+After a further subsequence, the limits
+                                               (n)
+                                 log(ri + 1)
+                       wi = lim                             (i ∈ I),            wi = 0        (i ∈
+                                                                                                 / I)   (21)
+                             n→∞      Rn
+exist. Thus w ≥ 0 and i wi = 1. A divergent coordinate may have wi = 0; it remains in I, so all
+                        P
+
+slower tiers are retained.
+Lemma 5.1 (Falling-factorial asymptotics). Let c and y be fixed complexes, and suppose y is enabled
+at r(n) + c for all sufficiently large n. Then
+
+                                     log(r(n) + c)y = Rn w · y + o(Rn ).                                (22)
+                                                                (n)                     (n)
+Proof. For yi = 1 and a divergent coordinate, log(ri +ci ) = log(ri +1)+o(Rn ); a fixed coordinate
+                                   (n)
+contributes O(1). For yi = 2 and ri → ∞,
+                             (n)           (n)                                  (n)
+                       log (ri     + ci )(ri     + ci − 1) = 2 log(ri                 + 1) + o(Rn ).
+                                                             
+
+
+If that coordinate is fixed, enabledness makes its contribution finite and hence O(1). Summing the
+coordinate contributions proves the claim.
+
+    For a complex y, write h(y) = w · y, and define
+
+                             a = max h(y),                 T = {y ∈ C : h(y) = a}.                      (23)
+                                     y∈C
+
+The next lemma is the load-bearing use of bimolecularity.
+
+                                                            6
+Lemma 5.2 (Top-complex availability or invariant). Along the divergent sequence, at least one of
+the following conclusions is available:
+  (i) a reaction-wise linear stoichiometric invariant has value tending to infinity along the sequence,
+      contradicting membership in the fixed communicating class; or
+ (ii) there are fixed complexes s, c ∈ C with h(s) > h(c) such that both s and c are enabled at r(n) + c
+      for all sufficiently large n.
+
+Proof. The following cases are exhaustive.
+
+   Configuration                      Conclusion
+   Every complex is top               The nonnegative invariant w · X.
+   A top complex contains two di-     That top complex is enabled over every lower terminal.
+   vergent particles
+   Every top complex contains one     Reduce to the four subcases below using the set K of top
+   divergent particle                 species.
+
+   If every complex is top, then w · (y ′ − y) = 0 for every channel. Therefore w · X is a nonnegative
+linear invariant. A coordinate with positive weight diverges, so the invariant value tends to infinity,
+which is impossible inside one communicating class.
+   Assume now that T ̸= C. Then a > 0. If a top complex s contains two particles whose
+coordinates belong to I, bimolecularity forces s to contain no bounded-coordinate particle. Both
+required particles are eventually present in r(n) , including the case s = 2Si . Hence s is enabled at
+r(n) + c for every lower c ∈
+                           / T , and h(s) > h(c).
+   It remains to suppose that every top complex contains exactly one divergent particle. Let K ⊆ I
+be the species appearing in top complexes. If i ∈ K, the remaining possible particle in that top
+complex has weight zero, and therefore wi = a. No complex contains two K-particles, since its
+weight would be at least 2a > a. Moreover,
+
+                                                 qK (y) :=         yi = 1.                         (24)
+                                                             X
+                                y∈T      ⇐⇒
+                                                             i∈K
+
+The forward implication follows from the definition of K. Conversely, one K-particle already
+contributes a; maximality forces all other weight to be zero and makes the complex top.
+   There are four subcases.
+   3a. If every complex has qK = 1, then MK =          i∈K Xi is a nonnegative invariant. It diverges
+                                                       P
+
+       along the sequence, a contradiction.
+  3b. If a unary top complex Si , i ∈ K, exists, it is enabled over every lower terminal complex,
+      giving conclusion (ii).
+   3c. Otherwise every top complex has the form Si + D, where D ∈   / I; call D a service species.
+       If a lower complex c contains such a D, the corresponding top source Si + D is enabled at
+       r(n) + c, giving conclusion (ii).
+  3d. If no lower complex contains any service species, let D be the set of distinct service species.
+      The signed linear functional
+                                                                                                (25)
+                                                   X
+                                            MK −        XD
+                                                       D∈D
+
+
+
+                                                   7
+       has value zero on every complex: each top complex contains one K-particle and one service
+       particle, whereas a lower complex contains neither. It is therefore reaction-wise invariant. Its
+       positive part diverges, while every service coordinate lies outside I and is fixed along the
+       subsequence. Its value tends to infinity, contradicting the fixed communicating class.
+  This exhausts all binary complexes. We reserve “conservation law” for the nonnegative invariants
+above; (25) is a signed linear stoichiometric invariant.
+
+   The invariant contradiction is exact: if ℓ · (y ′ − y) = 0 on every channel, then ℓ · x is constant
+along every path in Γ. In the signed branch, the negative-coordinate populations are fixed along the
+extracted sequence, so the invariant really does tend to +∞. A species absent from every complex is
+itself reaction-wise invariant; thus an absent coordinate cannot diverge along a fixed communicating
+class.
+Lemma 5.3 (Vanishing terminal source probability). Under conclusion (ii) of Lemma 5.2,
+                                            pr(n) +c (c) −→ 0.                                      (26)
+Proof. Both s and c are enabled. Lemma 5.1 and the strict gap h(s) > h(c) give
+                                           (r(n) + c)s
+                                                       −→ ∞.
+                                           (r(n) + c)c
+Consequently,
+                                                    κ̄c (r(n) + c)c
+                                   pr(n) +c (c) ≤                   −→ 0.
+                                                    κ̄s (r(n) + c)s
+
+
+
+6    Uniform random-time drift outside a finite set
+For each c ∈ C, let Dc (x, t) denote the exact expected increment of the fixed (t, c)-episode. Define
+                                                                           
+                                K = (x, t) ∈ Γ
+                                             e : min Dc (x, t) > −1 .                               (27)
+                                                      c∈C
+
+Proposition 6.1 (Finite and nonempty exceptional set). The set K is finite and nonempty.
+Proof. Suppose first that K were infinite. Properness of V supplies a sequence in K leaving every
+finite set. Apply the compactification of Section 5. An invariant conclusion from Lemma 5.2
+contradicts membership in one communicating class. Otherwise, Lemma 5.3 and Proposition 4.3
+supply a fixed terminal complex c for which Dc (x(n) , t) → −∞. This contradicts the definition of
+K. Thus K is finite.
+   To prove nonemptiness, select any augmented state z0 . The finite nonempty sublevel set
+{z : V (z) ≤ V (z0 )} contains a global minimizer z∗ of V . Every endpoint of every target-following
+episode remains in e Γ, so its potential is at least V (z∗ ). Hence Dc (z∗ ) ≥ 0 for every c, and z∗ ∈ K.
+
+   Outside K, choose the lexicographically first terminal complex minimizing Dc (x, t), before the
+episode begins. This is a deterministic measurable selector on the countable state space and is
+compatible with restarting under the strong Markov property. Its episode stopping time τ obeys
+                  1 ≤ τ ≤ L := |C|,       E(x,t) [V (Zτ ) − V (x, t)] ≤ −1,     (x, t) ∈
+                                                                                       / K.         (28)
+The coordinate overshoot in one episode is deterministically bounded by 2L, because each binary
+reaction changes each population coordinate by at most two.
+
+                                                       8
+7    Positive recurrence
+We now convert (28) to a finite mean return time without invoking an unnamed random-time Foster
+theorem.
+   Let Y0 = z, and let Yn+1 be the endpoint of the episode selected at Yn . Put σK = inf{n ≥ 0 :
+Yn ∈ K}. For each integer N , sum the conditional drift inequalities only through the bounded index
+N ∧ σK . Telescoping gives
+                                Ez V (YN ∧σK ) + Ez (N ∧ σK ) ≤ V (z).                          (29)
+Because V ≥ 0, monotone convergence yields
+
+                                            Ez σK ≤ V (z).                                       (30)
+
+The original augmented embedded chain therefore hits K in finite expected jump count, bounded
+by LV (z).
+   The following finite trace argument turns hitting K into positive return to one state. Details are
+included because hitting a finite set is not by itself a positive-recurrence proof.
+Proposition 7.1 (Finite trace-chain closure). The augmented embedded chain has a state with
+finite expected positive return time.
+Proof. Let TK  +
+                 = inf{n ≥ 1 : Zn ∈ K}. From k ∈ K, take one ordinary jump. There are finitely
+many channel successors, and from each successor the expected hitting time of K is finite by (30).
+Thus Ek TK +
+              < ∞ for every k ∈ K.
+    Record successive visits to K. The resulting trace chain is finite and irreducible. Indeed, any
+augmented path between two points of K, with its intermediate K-visits retained, gives a positive-
+probability trace path. Fix k∗ ∈ K. From every trace state choose a finite positive-probability trace
+path to k∗ . Finiteness supplies common constants m < ∞ and ε > 0 such that, from every trace
+state, k∗ is hit within the next m trace transitions with probability at least ε. Starting from k∗ ,
+first take one trace transition and then apply this estimate in successive blocks of m transitions.
+The number of blocks before the next visit to k∗ is geometrically dominated, so the positive trace
+return time has finite mean.
+    Finally, set
+                                       B = max Ek TK +
+                                                       < ∞.
+                                                k∈K
+If M is the positive trace return count and Lj is the number of original jumps in its j-th trace
+excursion, the strong Markov property gives E[Lj | Fj ] ≤ B. Tonelli’s theorem therefore yields
+                                                 
+                                       M
+                                       X −1
+                                    E          Lj  ≤ B EM < ∞.
+                                          j=0
+
+Hence the augmented embedded chain has finite expected positive return time to k∗ .
+
+   Projection away from the target mark shows that the population embedded chain has finite
+expected return to the population coordinate x∗ of k∗ . It remains to construct physical time and
+rule out explosion.
+Proposition 7.2 (Embedded-chain-to-CTMC conversion). Let a countable irreducible embedded
+chain be positive recurrent. Suppose a pure-jump construction assigns a finite rate Λ(x) > 0 at
+every state and that inf x Λ(x) > 0. Then the resulting minimal CTMC is nonexplosive and positive
+recurrent.
+
+                                                      9
+Proof. Let N be a finite-mean positive return count to a recurrent embedded state x∗ , and let Hj
+be the holding times. Conditional on the embedded path, Hj is exponential with mean 1/Λ(Xj ).
+Tonelli’s theorem and conditional expectation give
+                             N −1
+                                                               1         EN
+                                    Hj = E
+                             X               X
+                         E                         1{j<N }          ≤            < ∞.
+                             j=0             j≥0
+                                                             Λ(Xj )   inf x Λ(x)
+
+Thus the expected physical return time is finite, provided the construction is nonexplosive.
+   Finite mean return makes x∗ recurrent for the embedded chain, so it is visited infinitely often
+almost surely. On each visit, the following holding time has the same exponential law of finite rate
+Λ(x∗ ). The strong Markov construction makes these recurrent holding times independent copies.
+Their infinite sum diverges almost surely. Since total physical time dominates this subseries, jump
+times cannot accumulate at a finite time. The minimal CTMC is nonexplosive and has finite mean
+positive return time to x∗ .
+
+  For the marked reaction chain, the carried target gives the required lower rate bound at every
+augmented state:
+                                   Λ(x) ≥ κ̄t (x)t ≥ κ̄− > 0.                               (31)
+Indeed, t is enabled and its falling factorial is a positive integer. Propositions 7.1 and 7.2 therefore
+prove Theorem 2.1. The same return-cycle construction yields the stationary distribution in
+Corollary 2.2; uniqueness follows from irreducibility. Explicitly, after choosing a recurrent state x∗ ,
+normalizing the expected occupation measure during one return cycle gives a stationary probability
+on Γ.
+
+
+8    Scope and further questions
+The proof is class-wise. Coordinate faces, siphons, parity restrictions, and other lattice constraints
+require no separate interior argument: every constructed target-following path consists of actual
+enabled channels and therefore remains in the fixed closed class. Species absent from all complexes
+are constant on each class and appear automatically in the invariant branch of Lemma 5.2.
+   The one-linkage hypothesis is used at one decisive point: for every carried target t and selected
+terminal complex c, a directed path (15) must exist. With several linkage classes, a carried target
+need not reach a terminal source belonging to another class, so the finite path library does not
+directly glue. That extension remains open here.
+   Bimolecularity is used in the exhaustive case split of Lemma 5.2: a top complex either contains
+two diverging particles or exactly one, leaving at most one service species. Complexes of molecularity
+three or higher admit additional top configurations not covered by the argument. No claim is made
+for them.
+   The proof establishes positive recurrence and the existence of a stationary probability distribution.
+It does not provide a product form, explicit tail bounds, exponential ergodicity, or quantitative
+mixing rates.
+
+
+Declarations
+Author information. Alec Kriebel, Independent researcher. Version 0.2, 6 August 2026.
+Correspondence: me@aleckriebel.com.
+
+
+                                                         10
+Code availability. A self-contained verification archive accompanies this manuscript. It contains
+deterministic channel-level identity checks, adversarial examples, and fixed-seed stress tests. No
+computation is load bearing for the universal proof.
+
+Funding. This research received no specific grant from any funding agency in the public, commer-
+cial, or not-for-profit sectors.
+
+Competing interests.      The author declares no competing interests.
+
+A note on the use of AI
+OpenAI ChatGPT, model GPT-5.6 Pro, accessed through the ChatGPT interface on 5–6 August
+2026, was used extensively for exploratory proof search, generation and testing of verification
+code, drafting, and adversarial editorial critique. The interaction included attempts to construct
+counterexamples and several proposed approaches that were later rejected, including universal
+one-step Lyapunov claims and rate-changing cycle comparisons. The final manuscript uses only the
+marked-channel factorial argument reconstructed in Sections 3–7.
+   The author reviewed the released manuscript and verification outputs and assumes responsibility
+for all mathematical claims, citations, code, and conclusions. Automated checks are not peer review,
+and this declaration does not assert that every claim has already received independent verification
+by another human expert. The AI system is not listed as an author.
+
+
+References
+David F. Anderson and Jinsu Kim. Some network conditions for positive recurrence of stochastically
+  modeled reaction networks. SIAM Journal on Applied Mathematics, 78(5):2692–2713, 2018. doi:
+ 10.1137/17M1161427.
+
+David F. Anderson and Thomas G. Kurtz. Stochastic Analysis of Biochemical Systems, volume 1 of
+ Mathematical Biosciences Institute Lecture Series. Springer, Cham, 2015. doi: 10.1007/978-3-319
+ -16895-1.
+
+David F. Anderson, Gheorghe Craciun, and Thomas G. Kurtz. Product-form stationary distributions
+  for deficiency zero chemical reaction networks. Bulletin of Mathematical Biology, 72(8):1947–1970,
+ 2010. doi: 10.1007/s11538-010-9517-4.
+
+David F. Anderson, Daniele Cappelletti, and Jinsu Kim. Stochastically modeled weakly reversible
+ reaction networks with a single linkage class. Journal of Applied Probability, 57(3):792–810, 2020a.
+ doi: 10.1017/jpr.2020.28.
+
+David F. Anderson, Daniele Cappelletti, Jinsu Kim, and Tung D. Nguyen. Tier structure of strongly
+  endotactic reaction networks. Stochastic Processes and their Applications, 130(12):7218–7259,
+ 2020b. doi: 10.1016/j.spa.2020.07.012.
+
+Carsten Wiuf and Chuang Xu. Classification and threshold dynamics of stochastic reaction networks.
+ Advances in Applied Probability, 55(1):321–355, 2023. doi: 10.1017/apr.2022.20.
+
+Chuang Xu. On the regulary of reaction systems, 2026. Version 2, 9 May 2026.
+
+
+                                                 11
+A     Audit details for the trace chain and physical time
+This appendix records several interfaces that can otherwise be obscured by standard Markov-chain
+shorthand.
+    First, the augmented state records the actual marked channel. If two channels have the same
+population displacement but different sources or targets, their post-jump populations can agree
+while their carried targets do not. They therefore remain separate. Only channels with identical
+source and target may be aggregated.
+    Second, K in (27) is nonempty, not merely finite. The global minimum argument in Proposition 6.1
+is pathwise: every possible episode endpoint has potential at least the starting minimum. No optional
+stopping or integrability assertion is needed for this step because each episode has at most |C| jumps.
+    Third, the trace-chain proof distinguishes hitting from return. The first ordinary jump from
+k ∈ K forces a positive return time. The finite expected time back to K follows by conditioning on
+finitely many successors. The subsequent geometric-block argument is applied to the finite trace
+chain, and only afterward are the random trace excursions expanded into original embedded jumps.
+    Fourth, nonexplosion is not inferred from recurrence without an argument. The embedded chain
+is constructed first. Its recurrent marked state is visited infinitely often. The holding times attached
+to those visits form an infinite sequence of independent exponentials with one fixed finite rate, whose
+sum diverges almost surely. This directly prevents finite-time accumulation.
+    Finally, singleton absorbing classes are handled before augmentation. In an infinite irreducible
+class every population state has an enabled genuine channel; otherwise it would be absorbing and
+its class would be a singleton.
+
+
+B     Computational verification
+The accompanying Python package has no runtime third-party dependencies. It checks the exact
+falling-factorial identity using rational arithmetic, checks the entropy rewrite by representing
+logarithms of positive rationals as rational prime-exponent signatures, verifies the scalar-envelope
+branch conditions exactly, and tests the top-complex classification on a deterministic finite atlas. It
+also includes fixed-seed random stress tests and the following adversarial calibrations:
+  • the zero complex as source and target;
+  • pure binary and mixed complexes 2A and A + B;
+  • permanently zero coordinates on a closed face;
+  • a diverging species with normalized logarithmic weight zero;
+  • species absent from every complex;
+  • shared service species;
+  • parallel channels and distinct channels with one displacement;
+  • the zero-length path c = t;
+  • equal-molecularity and absorbing finite classes;
+  • signed linear invariants and parity-restricted paths;
+  • the cycle 0 → A + B → B → 0.
+   Finite enumeration and random testing are adversarial calibration only; they are not substitutes
+for Lemma 5.2. The canonical verification JSON excludes elapsed times, timestamps, temporary
+paths, and platform-dependent formatting, and is required to agree byte for byte across two runs.
+
+
+
+
+                                                  12
+

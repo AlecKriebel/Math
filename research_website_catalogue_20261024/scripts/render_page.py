@@ -4,7 +4,7 @@ from datetime import date
 from html import escape
 import hashlib, json, re, sys
 from pypdf import PdfReader
-from published_assets import PublishedAssets, asset_name
+from published_assets import PublishedAssets, asset_name, normalized_receipt_view
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public/research')
@@ -12,7 +12,8 @@ paper = ROOT / 'papers' / str(int(sys.argv[1]))
 c = json.loads((paper/'publication.json').read_text())
 gate = json.loads((paper/'promotion.json').read_text())
 assert gate['status'] == 'PASS'
-receipt = json.loads((paper/'sources/receipt.json').read_text())
+raw_receipt = json.loads((paper/'sources/receipt.json').read_bytes())
+receipt = normalized_receipt_view(raw_receipt)
 assets = PublishedAssets(paper/'sources', receipt, c.get('source_binding', {}).get('embedded_assets', []))
 if gate.get('publication_sha256'):
     assert gate['publication_sha256'] == hashlib.sha256((paper/'publication.json').read_bytes()).hexdigest()
@@ -61,7 +62,7 @@ download_links = [f'<a href="{h(c["pdf_filename"])}">Read the paper (PDF, {pages
 if c.get('supplement_filename'):
     download_links.append(f'<a href="{h(c["supplement_filename"])}" download>{h(c.get("supplement_label", "Source and verification (ZIP)"))}</a>')
 for asset in c.get('additional_assets', []):
-    assert asset['kind'] in ('pdf', 'zip', 'text')
+    assets.additional_asset_kind(asset)
     download_links.append(f'<a href="{h(asset["filename"])}">{h(asset["label"])}</a>')
 download_links.append(f'<a href="{doi}">Zenodo record</a>')
 document=f'''<!DOCTYPE html>

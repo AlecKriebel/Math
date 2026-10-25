@@ -1,0 +1,784 @@
+    A four-parameter family of reversible three-species mass-action
+                 continua without a common factor
+
+                                                 Alec Kriebel
+
+                  Version 2.0.0 - 2 August 2026 UTC - exact verification archive
+
+
+Contents
+Abstract                                                                                                         1
+
+1. Introduction                                                                                                  2
+
+2. Fixed support and conic                                                                                       2
+   2.1 Complexes and reversible graph . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    2
+   2.2 The common equilibrium conic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      3
+
+3. The exact four-parameter rate family                                                                          4
+
+4. Generic geometric coprimality                                                                                 6
+
+5. A clean fixed-support-optimal integer specialization                                                          7
+   5.1 Fixed-support integer optimality . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    8
+
+6. The frozen first specialization                                                                               8
+
+7. Transverse stability of the frozen ellipse                                                                    9
+
+8. Why the mechanism is genuinely height two                                                                    11
+
+9. Minimality and structural obstructions                                                                      11
+   9.1 Three species are necessary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   9.2 One linkage class forces full rank in three species . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   9.3 Deficiency and a global five-complex bound . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+10. Relation to earlier work and scope                                                                          12
+
+11. Exact verification                                                                                          13
+
+References                                                                                                      13
+
+Appendix A. Complete directed rate tables                                                                       13
+
+Appendix B. Reproduction commands                                                                               14
+
+
+Abstract
+We exhibit a four-dimensional exact rate family on a fixed reversible three-species reaction graph with
+one linkage class, ten complexes, and ten reversible pairs. Every positive member of the family has full
+
+
+                                                        1
+Reversible mass-action equilibrium continua                                                       Version 2.0.0
+
+
+stoichiometric rank and vanishes on the same compact positive algebraic ellipse. The positive part of rate
+space is a rational open polyhedral cone, and a nonempty Zariski-open subset of the family has geometrically
+coprime coordinate polynomials. Thus the equilibrium continuum is generically a height-two component
+within this constrained family, not a common-factor hypersurface.
+We give a primitive positive integer specialization with largest rate 10296 and rate sum 52464. Within
+the fixed support and conic-preserving family, it simultaneously minimizes both quantities among positive
+integral rate vectors. Its steady ideal is radical: over ℚ its two minimal primes are the conic prime and
+a degree-fifteen maximal ideal. We also retain the original frozen integer specialization and determine its
+transverse linear stability along the ellipse. The ellipse has one normally attracting arc and one saddle-type
+arc, separated by two exactly isolated transition points. All algebraic, integer-optimality, and Sturm claims
+are accompanied by exact symbolic verifiers.
+
+
+1. Introduction
+For a finite reaction network with complexes 𝑦 ∈ ℤ𝑛≥0 , positive rates 𝜅𝑦→𝑦′ , and concentrations 𝑥 ∈ ℝ𝑛>0 , the
+mass-action vector field is
+
+
+                                         𝐹 (𝑥) = ∑ 𝜅𝑦→𝑦′ 𝑥𝑦 (𝑦′ − 𝑦).                                        (1)
+                                                 𝑦→𝑦′
+
+
+A network is weakly reversible if every directed reaction belongs to a directed cycle, and reversible if every
+reaction is paired with its reverse. The stoichiometric subspace is
+
+
+                                         𝑆 = spanℝ {𝑦′ − 𝑦 ∶ 𝑦 → 𝑦′ },
+
+and the positive compatibility class through 𝑥0 is (𝑥0 + 𝑆) ∩ ℝ𝑛>0 .
+Boros, Craciun, and Yu asked whether a weakly reversible mass-action system can have infinitely many
+positive steady states without a polynomial common factor in the right-hand side [BCY20]. The frozen
+first version of this work answered that question with a reversible, one-linkage, three-species example whose
+coordinate gcd is one and whose steady variety contains a positive conic. The present version keeps that
+theorem unchanged and develops the larger exact structure surrounding it.
+The additions are fourfold.
+  1. We determine all rate vectors on the fixed directed support for which the same conic remains an
+     equilibrium component.
+  2. We identify the strict positive rate cone and prove that geometric coprimality holds on a nonempty
+     Zariski-open subset.
+  3. We give a substantially smaller primitive integer specialization and an exact fixed-support optimality
+     certificate.
+  4. For the frozen first specialization, we classify the two transverse eigenvalues everywhere on the equi-
+     librium ellipse.
+No claim of global minimality in complexes or reactions is made. The integer optimality result is explicitly
+restricted to this fixed support and this conic-preserving rate family.
+
+
+2. Fixed support and conic
+2.1 Complexes and reversible graph
+Use species 𝑋, 𝑌 , 𝑍, with concentration variables 𝑥, 𝑦, 𝑧, and index the complexes as follows.
+
+
+
+
+                                                        2
+Reversible mass-action equilibrium continua                                                        Version 2.0.0
+
+
+
+                                    index       exponent vector       complex
+                                           0         (0, 0, 0)        0
+                                           1         (0, 0, 1)        𝑍
+                                           2         (0, 0, 3)        3𝑍
+                                           3         (0, 1, 1)        𝑌 +𝑍
+                                           4         (0, 3, 0)        3𝑌
+                                           5         (1, 0, 1)        𝑋+𝑍
+                                           6         (1, 1, 0)        𝑋+𝑌
+                                           7         (1, 1, 1)        𝑋+𝑌 +𝑍
+                                           8         (2, 1, 0)        2𝑋 + 𝑌
+                                           9         (3, 0, 0)        3𝑋
+
+
+The ten undirected edges are
+
+
+                                          01, 04, 06, 17, 24, 27, 29, 34, 59, 89,                             (2)
+
+and both orientations of every edge are reactions. The complete rate tables for the two integer specializations
+appear in Appendix A.
+The graph is connected: from 0 one reaches 1, 4, 6, then 7, 2, 9, and finally 3, 5, 8. Hence there is one linkage
+class. The three reaction differences
+
+
+                     0 → 𝑍 = (0, 0, 1),        0 → 3𝑌 = (0, 3, 0),         0 → 𝑋 + 𝑌 = (1, 1, 0)
+
+have determinant −3. Therefore the stoichiometric subspace is
+
+
+                                                        𝑆 = ℝ3 ,                                              (3)
+
+independently of the positive rate values. There are no conservation laws, and the unique positive compati-
+bility class is the full positive orthant.
+
+2.2 The common equilibrium conic
+Define
+
+
+                                                  𝐿=𝑧−𝑥−𝑦+1                                                   (4)
+
+and
+
+                                   𝑄 = 7𝑥2 − 2𝑥𝑦 − 16𝑥 + 7𝑦2 − 16𝑦 + 16.                                      (5)
+
+The ideal
+
+
+                                                𝔭 = (𝐿, 𝑄) ⊂ ℚ[𝑥, 𝑦, 𝑧]                                       (6)
+
+is a height-two prime. Indeed, eliminating 𝑧 leaves a nonsingular plane conic. The symmetric matrix of its
+homogenization is
+
+                                                    7 −1 −8
+                                                  ⎛
+                                                  ⎜−1 7 −8⎞  ⎟,
+                                                  ⎝ −8 −8 16 ⎠
+
+                                                            3
+Reversible mass-action equilibrium continua                                                         Version 2.0.0
+
+
+with determinant −256, so the projective conic is nonsingular and geometrically irreducible.
+An exact rational parametrization is
+
+                                                   𝑑(𝑡) = 𝑡2 − 𝑡 + 1,
+                                                           𝑡2 + 3
+                                                   𝑥(𝑡) =         ,
+                                                           2𝑑(𝑡)
+                                                           3𝑡2 + 1                                             (7)
+                                                    𝑦(𝑡) =          ,
+                                                            2𝑑(𝑡)
+                                                           𝑡2 + 𝑡 + 1
+                                                    𝑧(𝑡) =            .
+                                                              𝑑(𝑡)
+
+Direct substitution gives 𝐿 = 𝑄 = 0. All coordinates are positive for every real 𝑡, since
+
+                                       1 2 3                                     1 2 3
+                            𝑑(𝑡) = (𝑡 − ) + ,                   𝑡2 + 𝑡 + 1 = (𝑡 + ) + ,
+                                       2   4                                     2   4
+
+and the other numerators are 𝑡2 + 3 and 3𝑡2 + 1. On (−1, 1),
+
+                                                            2(1 − 𝑡2 )
+                                                𝑧′ (𝑡) =               > 0,
+                                                              𝑑(𝑡)2
+
+so the parametrized equilibria there are pairwise distinct.
+The entire real conic is a compact positive ellipse. On 𝐿 = 0, set 𝑠0 = 𝑥 + 𝑦 = 𝑧 + 1 and 𝑢 = 𝑥 − 𝑦. Equation
+𝑄 = 0 becomes
+
+
+                                            4(𝑢2 + (𝑧 − 1)2 ) = (𝑧 + 1)2 .                                     (8)
+
+It follows that 1/3 ≤ 𝑧 ≤ 3 and |𝑢| ≤ (𝑧 + 1)/2, which gives 𝑥, 𝑦, 𝑧 > 0.
+
+
+3. The exact four-parameter rate family
+Order the twenty directed rates as
+
+                                   𝑘01 , 𝑘10 , 𝑘04 , 𝑘40 , 𝑘06 , 𝑘60 , 𝑘17 , 𝑘71 , 𝑘24 , 𝑘42 ,
+                                                                                                               (9)
+                                   𝑘27 , 𝑘72 , 𝑘29 , 𝑘92 , 𝑘34 , 𝑘43 , 𝑘59 , 𝑘95 , 𝑘89 , 𝑘98 .
+
+Here the subscripts are complex indices, not species indices.
+Theorem 3.1 (complete conic-preserving family). Let 𝐹 (𝑘) be the mass-action field on the support
+(2). All three coordinates of 𝐹 (𝑘) belong to 𝔭 = (𝐿, 𝑄) if and only if, for some 𝑎, 𝑏, 𝑐, 𝑑 ∈ ℚ, the rates in the
+order (9) are
+
+
+
+
+                                                               4
+Reversible mass-action equilibrium continua                                                           Version 2.0.0
+
+
+
+                        𝑘01 = (62𝑑 − 15𝑐)/48,                    𝑘10 = 33(58𝑑 − 45𝑐)/160,
+                        𝑘04 = 16𝑑/15,                            𝑘40 = (𝑐 − 𝑏)/3,
+                        𝑘06 = (154𝑑 − 221𝑐)/224,                 𝑘60 = (9856𝑑 − 3315𝑐)/1470,
+                        𝑘17 = 45(154𝑑 − 221𝑐)/3136,              𝑘71 = 5𝑐/14,
+                        𝑘24 = (15𝑎 + 16𝑑)/15,                    𝑘42 = (62𝑑 − 15𝑏 − 15𝑐)/45,
+                                                                                                                (10)
+                        𝑘27 = (154𝑑 − 192𝑎 − 221𝑐)/64,           𝑘72 = 11(58𝑑 − 45𝑐)/60,
+                        𝑘29 = 𝑎,                                 𝑘92 = 2(31𝑑 − 15𝑐)/45,
+                        𝑘34 = 88𝑑/15,                            𝑘43 = 𝑏,
+                        𝑘59 = 88𝑑/15,                            𝑘95 = 𝑐,
+                        𝑘89 = 33𝑑/5,                             𝑘98 = 𝑑.
+
+The conic-preserving rate space has dimension four, and (𝑎, 𝑏, 𝑐, 𝑑) = (𝑘29 , 𝑘43 , 𝑘95 , 𝑘98 ) are free coordinates.
+Proof. Use lexicographic order 𝑧 > 𝑦 > 𝑥. The reduced Gröbner basis of 𝔭 is
+
+                                                        2         16        16
+                              𝑧 − 𝑥 − 𝑦 + 1,        𝑦2 − 𝑥𝑦 + 𝑥2 − (𝑥 + 𝑦) + .                                  (11)
+                                                        7         7         7
+Every degree-at-most-three normal form has a unique coeﬀicient vector in the ordered monomial list
+
+
+                                               (1, 𝑥, 𝑦, 𝑥2 , 𝑥𝑦, 𝑥3 , 𝑥2 𝑦).
+
+Reduce the contribution of each unit directed rate modulo (11), and stack these seven coeﬀicients for the
+three field coordinates. This constructs a canonical rational matrix 𝑀 ∈ ℚ21×20 such that
+
+
+                                 𝐹𝑖 (𝑘) ∈ (𝐿, 𝑄)     (𝑖 = 1, 2, 3)      ⟺       𝑀 𝑘 = 0.                        (12)
+
+The 16 × 16 minor with zero-based rows
+
+
+                                   0, 1, 2, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 18, 19
+
+and columns
+
+                                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18
+
+has determinant
+
+                                            7255941120   213 311 5
+                                                       =           ≠ 0.                                         (13)
+                                              823543        77
+
+Thus rank 𝑀 ≥ 16. Substitution of (10) gives four linearly independent kernel vectors, since their entries
+in positions 12, 15, 17, 19 form the identity matrix. Hence rank 𝑀 = 16, the nullity is four, and (10) is
+exhaustive. The complete matrix and an integer-vector kernel basis are included with the exact family
+verifier. □
+Corollary 3.2 (strict positive cone). All twenty rates in (10) are positive exactly when
+
+
+                        𝑎 > 0,   𝑏 > 0,    𝑐 > 0,     𝑑 > 0,     𝑏 < 𝑐,     192𝑎 + 221𝑐 < 154𝑑.                 (14)
+
+The cone is rationally parametrized by an open positive orthant via
+
+
+                                                             5
+Reversible mass-action equilibrium continua                                                         Version 2.0.0
+
+
+
+                                               192𝑎 + 221(𝑏 + ℎ) + 𝑠
+                         𝑐 = 𝑏 + ℎ,       𝑑=                         ,        𝑎, 𝑏, ℎ, 𝑠 > 0.                (15)
+                                                       154
+
+Proof. Necessity follows from the four free rates and the two entries
+
+                                         𝑐−𝑏                   154𝑑 − 192𝑎 − 221𝑐
+                                 𝑘40 =       ,        𝑘27 =                       .
+                                          3                            64
+
+Conversely, substitute (15) into (10). Every rate becomes a nonzero linear form in 𝑎, 𝑏, ℎ, 𝑠 with nonnegative
+rational coeﬀicients. This proves suﬀiciency. The inverse coordinates are ℎ = 𝑐−𝑏 and 𝑠 = 154𝑑−192𝑎−221𝑐,
+so (15) is a bijection. □
+Every rate vector in (14) retains the connected reversible support and full stoichiometric rank. Its unique
+positive compatibility class contains the entire ellipse (6).
+
+
+4. Generic geometric coprimality
+The conic constraint is linear in rate space, but it does not generically force a coordinate common factor.
+Lemma 4.1 (scalar extension). Let 𝑓1 , … , 𝑓𝑟 ∈ ℚ[𝑥1 , … , 𝑥𝑛 ]. If they have a nonconstant common factor
+over ℂ, then they have a nonconstant common factor over ℚ.
+Proof. Choose a normalized irreducible complex common factor. Its coeﬀicients are algebraic over ℚ, because
+it is a factor of a rational polynomial. Rationality of every 𝑓𝑖 forces every distinct Galois conjugate of the
+chosen factor to divide every 𝑓𝑖 . Their product, after multiplication by a scalar, is a nonconstant rational
+polynomial dividing every 𝑓𝑖 . □
+Theorem 4.2 (generic geometric gcd one). There is a nonempty Zariski-open subset of the four-
+dimensional rate family (10) on which
+
+
+                                                 gcd(𝐹1 , 𝐹2 , 𝐹3 ) = 1
+
+over ℚ, ℝ, and ℂ.
+Proof. Homogenize all three coordinates to degree three in variables 𝑥, 𝑦, 𝑧, 𝑤. Let 𝑉𝑗 denote the vector space
+of degree-𝑗 forms in these variables. For 𝑒 = 1, 2, 3, triples with a common homogeneous factor of degree 𝑒
+form the image
+
+                                                            ⊕3
+                                      Σ𝑒 = im (ℙ(𝑉𝑒 ) × ℙ(𝑉3−𝑒 ) ⟶ ℙ(𝑉3⊕3 ))                                 (16)
+
+of the multiplication morphism. The source is projective, so Σ𝑒 is closed. Its aﬀine cone Σ ̂ 𝑒 ⊂ 𝑉 ⊕3 , including
+                                                                                                   3
+the zero triple, is closed. The finite union of these cones pulls back along the linear rate map 𝔸4 → 𝑉3⊕3 to a
+closed subset of parameter space. This formulation explicitly includes the origin, at which projectivization
+is undefined.
+Every aﬀine common factor homogenizes to a homogeneous common factor. The clean integer specialization
+in Section 5 has both aﬀine and homogenized coordinate gcd equal to one over ℚ, as checked by exact
+factorization. Lemma 4.1 excludes a factor after scalar extension. Hence this specialization lies outside the
+pulled-back closed set, whose complement is the required nonempty Zariski-open set. □
+The theorem is deliberately a generic statement inside the constrained four-dimensional family. It does not
+assert persistence of a continuum under arbitrary perturbations of all rates: leaving (10) generally destroys
+the conic component, consistently with generic-finiteness results such as [FHP26].
+For every parameter outside the closed common-factor locus, the steady ideal is nonzero, is contained in the
+height-two prime (𝐿, 𝑄), and is contained in no height-one prime. It therefore has height exactly two, and
+
+
+                                                           6
+Reversible mass-action equilibrium continua                                                      Version 2.0.0
+
+
+(𝐿, 𝑄) is a minimal prime over it. Thus the same ellipse is genuinely an irreducible steady-state component
+throughout this Zariski-open subset, not merely at the two integer specializations below.
+
+
+5. A clean fixed-support-optimal integer specialization
+Set
+
+                                           (𝑎, 𝑏, 𝑐, 𝑑) = (653, 1, 70, 915).                               (17)
+
+Its positive-orthant coordinates from (15) are
+
+
+                                            (𝑎, 𝑏, ℎ, 𝑠) = (653, 1, 69, 64),                               (18)
+
+which provide a compact strict-interiority certificate.
+Theorem 5.1 (clean integer construction). The rates obtained from (17), listed in Appendix A, are
+primitive positive integers. They define a reversible, one-linkage mass-action system with ten complexes,
+twenty directed reactions, and 𝑆 = ℝ3 . Its unique positive compatibility class contains the entire ellipse
+𝒞 = 𝑉 (𝐿, 𝑄), but its coordinate polynomials have gcd one over ℚ[𝑥, 𝑦, 𝑧], and therefore also over ℝ and ℂ.
+The vector field is
+
+                         𝐹1c = − 4697𝑥3 + 6039𝑥2 𝑦 − 9177𝑥𝑦𝑧 − 5977𝑥𝑦 + 10736𝑥𝑧
+                               + 1960𝑧 3 + 1800𝑧 + 560,
+                         𝐹2c = 915𝑥3 − 6039𝑥2 𝑦 − 9177𝑥𝑦𝑧 − 5977𝑥𝑦 − 3782𝑦3
+                                                                                                           (19)
+                               + 10736𝑦𝑧 + 4888𝑧 3 + 1800𝑧 + 3488,
+                         𝐹3c = 3712𝑥3 + 18304𝑥𝑦𝑧 − 5368𝑥𝑧 + 3712𝑦3 − 5368𝑦𝑧
+                               − 6848𝑧 3 − 10296𝑧 + 1160.
+
+Its steady ideal is radical of dimension one. Over ℚ it has exactly two minimal primes: the conic prime 𝔭 =
+(𝐿, 𝑄) and a degree-fifteen maximal ideal disjoint from 𝔭. Over the algebraic closure, the latter component
+consists of fifteen reduced isolated points.
+Proof. Formula (10) and (17) give the twenty rates exactly. Positivity also follows directly from (18). The
+graph and rank statements were proved in Section 2, and Theorem 3.1 gives 𝐹𝑖c ∈ (𝐿, 𝑄). Exact expansion
+of (1) gives (19). Exact multivariate gcd computation gives
+
+
+                                 gcd(𝐹1c , 𝐹2c ) = gcd(𝐹1c , 𝐹3c ) = gcd(𝐹2c , 𝐹3c ) = 1.                  (20)
+
+Lemma 4.1 upgrades this to geometric coprimality.
+For the radical statement, put
+
+                                                                7 2 1    7
+                                       𝐷 = 𝑦2 − 𝑦𝑧 − 𝑦 +           𝑧 − 𝑧+ ,                                (21)
+                                                                16    8  16
+
+so 𝔭 = (𝐿, 𝐷). The exact reduced lexicographic Gröbner basis of 𝐾c = (𝐹1c , 𝐹2c , 𝐹3c ), for 𝑥 > 𝑦 > 𝑧, has the
+form
+
+
+                                               𝐺0 ,      𝐷𝐻,         𝐷𝑅,                                   (22)
+
+
+
+
+                                                            7
+Reversible mass-action equilibrium continua                                                        Version 2.0.0
+
+
+where 𝐺0 is monic linear in 𝑥, 𝐻 is linear in 𝑦 with nonzero constant leading coeﬀicient, and 𝑅 ∈ ℚ[𝑧] is
+irreducible of degree fifteen. Let 𝔮 = (𝐺0 , 𝐻, 𝑅). Its reduced basis is triangular,
+
+                                      𝑥 + 𝑟𝑥 (𝑧),     𝑦 + 𝑟𝑦 (𝑧),        𝑅(𝑧),
+
+so 𝔮 is maximal of degree fifteen. Exact reduction gives 𝐷 ∉ 𝔮, hence 𝔭 + 𝔮 = (1), and every product of a
+generator of 𝔭 with a generator of 𝔮 reduces to zero modulo (22). Conversely, each generator of 𝐾c lies in
+both primes. Therefore
+
+
+                                            𝐾c = 𝔭𝔮 = 𝔭 ∩ 𝔮 = √𝐾c .                                         (23)
+
+Characteristic zero makes 𝑅 separable, yielding fifteen reduced points after scalar extension. Every reduction
+and factorization in this argument is replayed by the exact verifier. □
+
+5.1 Fixed-support integer optimality
+The clean vector has
+
+
+                        max 𝑘𝑗 = 10296,        ∑ 𝑘𝑗 = 52464,            gcd(𝑘0 , … , 𝑘19 ) = 1.             (24)
+                          𝑗
+                                                𝑗
+
+
+Proposition 5.2 (bounded exact optimum). Among all positive integral vectors in the fixed-support
+family (10), the clean vector simultaneously attains the smallest possible largest entry and the smallest
+possible sum of entries.
+Proof. Integrality of 𝑘04 = 16𝑑/15 and 𝑘71 = 5𝑐/14 forces
+
+
+                                                15 ∣ 𝑑,       14 ∣ 𝑐.                                       (25)
+
+If max𝑗 𝑘𝑗 < 10296, then 𝑘34 = 88𝑑/15 gives 𝑑 < 1755. If ∑𝑗 𝑘𝑗 < 52464, then
+
+                                                                        58
+                                           𝑘34 + 𝑘59 + 𝑘89 + 𝑘98 =         𝑑
+                                                                         3
+
+gives 𝑑 < 2714. These bounds reduce both strict-improvement questions to finite exact searches.
+For each multiple 𝑑 of 15 in the relevant range and each multiple 𝑐 of 14, positivity permits the safe bounds
+𝑐 < 𝑑, 1 ≤ 𝑏 < 𝑐, and 1 ≤ 𝑎 < 𝑑. The formulas (10) separate into entries depending only on (𝑐, 𝑑), on
+(𝑎, 𝑐, 𝑑), and on (𝑏, 𝑐, 𝑑). The verifier enumerates these finite integer sets using rational arithmetic, rejects
+every nonintegral or nonpositive entry, and computes the exact minimum of the maximum and of the sum.
+It returns respectively 10296 and 52464, both attained at (17). No floating-point optimization or rational
+reconstruction enters the certificate. □
+This proposition is not a network-wide minimality theorem. It fixes the twenty directed reactions, the conic,
+and primitive integer normalization. A common positive scaling of all rates merely rescales time.
+
+
+6. The frozen first specialization
+The original theorem remains valid without alteration. Its free parameters are
+
+
+                         (𝑎, 𝑏, 𝑐, 𝑑) = (3920, 3920, 15680, 658560) = 3920(1, 1, 4, 168),                   (26)
+
+and its positive-orthant coordinates are
+
+
+                                                          8
+Reversible mass-action equilibrium continua                                                         Version 2.0.0
+
+
+
+
+                                  (𝑎, 𝑏, ℎ, 𝑠) = (3920, 3920, 11760, 97200320).                              (27)
+
+Thus the frozen rate vector is also a strict interior point of the exact family, not a boundary specialization.
+Theorem 6.1 (frozen v1 construction). The original rates in Appendix A define a reversible, one-linkage,
+three-species mass-action system with 𝑆 = ℝ3 , the full positive ellipse 𝒞 as an equilibrium component, and
+
+
+                                              gcd(𝐹10 , 𝐹20 , 𝐹30 ) = 1.
+
+Its steady ideal is radical and equals the intersection of the conic prime with a disjoint degree-fifteen maximal
+ideal over ℚ.
+Its vector field is
+
+                      𝐹10 = − 3380608𝑥3 + 4346496𝑥2 𝑦 − 6878928𝑥𝑦𝑧 − 4380128𝑥𝑦
+                           + 7727104𝑥𝑧 + 1530515𝑧 3 + 1405575𝑧 + 437290,
+                      𝐹20 = 658560𝑥3 − 4346496𝑥2 𝑦 − 6878928𝑥𝑦𝑧 − 4380128𝑥𝑦
+                                                                                                             (28)
+                            − 2722048𝑦3 + 7727104𝑦𝑧 + 3637907𝑧 3 + 1405575𝑧 + 2544682,
+                      𝐹30 = 2706368𝑥3 + 13746656𝑥𝑦𝑧 − 3863552𝑥𝑧 + 2706368𝑦3
+                           − 3863552𝑦𝑧 − 5168422𝑧 3 − 7732494𝑧 + 845740.
+
+Proof. Equations (26) and (10) reproduce the frozen rates exactly, and Theorem 3.1 proves conic containment.
+Exact factorization makes the three primitive coordinate cubics irreducible and pairwise nonassociate, hence
+pairwise coprime. The radical decomposition follows by the same triangular Gröbner-basis certificate used
+in (21)–(23). In the frozen case, the degree-fifteen eliminant is independently certified irreducible by its
+reduction modulo the prime 19. The exact v1 verifier reconstructs every claim from the directed reaction
+table. □
+At 𝑥0 = (3/2, 1/2, 1), the compatibility class is all of ℝ3>0 , and (7) on (−1, 1) gives infinitely many distinct
+positive equilibria in that class. The continuum is genuinely height two: all coordinates lie in (𝐿, 𝑄), but
+their gcd is one.
+
+
+7. Transverse stability of the frozen ellipse
+This section concerns 𝐹 0 , not the clean specialization. Let 𝐽 (𝑡) = 𝐷𝐹 0 (𝑥(𝑡), 𝑦(𝑡), 𝑧(𝑡)). Differentiating
+𝐹 0 (𝑥(𝑡), 𝑦(𝑡), 𝑧(𝑡)) = 0 shows that the tangent direction is a zero eigenvector. Write the other two eigenvalues
+as 𝜆1 (𝑡), 𝜆2 (𝑡).
+Theorem 7.1 (exact transverse classification). There are exactly two real numbers
+
+                                        𝛼 ∈ (−4, −3),         𝛽 ∈ (9/10, 1)                                  (29)
+
+at which normal hyperbolicity is lost. The finite-𝑡 portion of the ellipse is normally attracting for
+
+
+                                                    𝛼 < 𝑡 < 𝛽,
+
+and is transversely saddle-type for 𝑡 < 𝛼 or 𝑡 > 𝛽. At each of 𝛼, 𝛽, one transverse eigenvalue is zero and the
+other is strictly negative. The point omitted by the aﬀine parameter 𝑡 ∈ ℝ, namely the limit 𝑡 = ∞, is also
+saddle-type.
+Proof. Exact characteristic-polynomial reduction gives
+
+
+                                                          9
+Reversible mass-action equilibrium continua                                                       Version 2.0.0
+
+
+
+
+                                     det(𝜆𝐼 − 𝐽 (𝑡)) = 𝜆(𝜆2 − 𝜏 (𝑡)𝜆 + 𝜋(𝑡)),                               (30)
+
+where
+
+                                                8𝑇 (𝑡)                 6272𝑁 (𝑡)
+                                    𝜏 (𝑡) = −          ,    𝜋(𝑡) = −             ,                          (31)
+                                                𝑑(𝑡)2                    𝑑(𝑡)4
+
+with
+
+
+                        𝑇 (𝑡) = 5399367𝑡4 + 1602005𝑡3 + 11579010𝑡2 + 1602005𝑡 + 6979911                     (32)
+
+and
+
+                          𝑁 (𝑡) = 5730530769𝑡8 + 20026244073𝑡7 + 29613209084𝑡6
+                                  + 118245415239𝑡5 − 38238695578𝑡4 + 127692520263𝑡3                         (33)
+                                                      2
+                                 − 127590858244𝑡 + 10579139049𝑡 − 79465564719.
+
+The transverse discriminant is
+
+                                                                 64𝐸(𝑡)
+                                                (𝜆1 − 𝜆2 )2 =           ,                                   (34)
+                                                                  𝑑(𝑡)4
+
+where
+
+                  𝐸(𝑡) = 31399532062137𝑡8 + 25149913538286𝑡7 + 139213446954293𝑡6
+                         + 100751092465458𝑡5 + 199590946186248𝑡4 + 109518436416306𝑡3                        (35)
+                         + 114191722124597𝑡2 + 26510727150318𝑡 + 17568656198073.
+
+Exact Sturm counts give no real roots for 𝑇 or 𝐸; evaluation at zero shows both are positive on ℝ. Thus
+the trace is always negative and the two transverse eigenvalues are real and distinct.
+The same exact Sturm procedure gives precisely two real roots of 𝑁 , one in each interval (29) and none
+elsewhere. Define these roots to be 𝛼, 𝛽. The sign checks
+
+                             𝑁 (−4) > 0,   𝑁 (−3) < 0,          𝑁 (9/10) < 0,   𝑁 (1) > 0
+
+show that 𝑁 < 0 between the roots and 𝑁 > 0 outside. Hence 𝜋 > 0 on (𝛼, 𝛽) and 𝜋 < 0 outside. Negative
+trace, positive product, and real roots give two negative transverse eigenvalues on the inner interval; negative
+product gives one eigenvalue of each sign on the outer intervals. At a root of 𝑁 , equation (30) has transverse
+roots 0 and 𝜏 < 0. Finally, the leading coeﬀicients in (31)–(35) give 𝜋(∞) < 0, proving saddle type at the
+omitted point. □
+For orientation only,
+
+
+                                  𝛼 ≈ −3.8135049145,             𝛽 ≈ 0.9130496953.
+
+These decimals play no role in the proof. On the interval (−1, 1) used to display the v1 continuum, the
+normally attracting part is (−1, 𝛽), the point 𝛽 is nonhyperbolic, and (𝛽, 1) is saddle-type.
+
+
+
+
+                                                           10
+Reversible mass-action equilibrium continua                                                            Version 2.0.0
+
+
+8. Why the mechanism is genuinely height two
+For every rate vector in the family,
+
+                                                     𝐹𝑖 ∈ (𝐿, 𝑄).
+
+For the two exact specializations, no nonconstant polynomial divides all three coordinates. Consequently
+their equilibrium continuum is not obtained by multiplying a smaller vector field by a common scalar poly-
+nomial. In addition:
+  • the stoichiometric class is three-dimensional, not a plane on which the field vanishes identically;
+  • all species occur, and reaction differences span all three directions;
+  • the coordinate fields are not artificial duplicates;
+  • the vector fields are nonzero off the conic; and
+  • the Jacobian has rank two at (3/2, 1/2, 1) for both specializations.
+Since (𝐿, 𝑄) is a height-two prime and the coordinate gcd is one, the steady ideal has height exactly two.
+The equilibrium conic is therefore an actual irreducible component, not merely a sampled subset of a hidden
+hypersurface.
+
+
+9. Minimality and structural obstructions
+9.1 Three species are necessary
+No one- or two-species system can have a positive-dimensional equilibrium continuum in one compatibility
+class while retaining coordinate gcd one. In one species, a positive-dimensional zero set forces the single
+coordinate polynomial to vanish identically. In two species:
+  • if dim 𝑆 = 1, all reaction vectors are collinear, so 𝐹 = 𝑣𝑓(𝑥, 𝑦) for a fixed vector 𝑣 and scalar polynomial
+    𝑓;
+  • if dim 𝑆 = 2, a positive-dimensional common zero set gives a height-one prime over the steady ideal,
+    and factoriality of ℚ[𝑥, 𝑦] supplies a nonconstant common divisor.
+Thus three species are globally minimal for the stated phenomenon.
+
+9.2 One linkage class forces full rank in three species
+Suppose a three-species, one-linkage network has dim 𝑆 = 2. Let a primitive integer vector 𝑤 span 𝑆 ⟂ .
+Connectivity makes 𝑤 ⋅ 𝑦 = 𝑚 constant over all complexes. The torus action
+
+                                     𝑇𝜌 (𝑥1 , 𝑥2 , 𝑥3 ) = (𝜌𝑤1 𝑥1 , 𝜌𝑤2 𝑥2 , 𝜌𝑤3 𝑥3 )
+
+satisfies 𝐹𝑖 (𝑇𝜌 𝑥) = 𝜌𝑚 𝐹𝑖 (𝑥). Its infinitesimal direction at a positive point 𝑝 has inner product
+
+                                                     ∑ 𝑤𝑖2 𝑝𝑖 > 0
+                                                      𝑖
+
+
+with the compatibility-class normal 𝑤, so it is transverse to the class. A one-dimensional equilibrium stratum
+in one class therefore sweeps out a two-dimensional equilibrium set. The steady ideal then has height at
+most one (unless the whole field is zero), and factoriality of ℚ[𝑥, 𝑦, 𝑧] forces a common irreducible divisor.
+Rank one is already excluded by collinearity. Hence full rank is necessary under the one-linkage hypothesis.
+
+
+
+
+                                                           11
+Reversible mass-action equilibrium continua                                                      Version 2.0.0
+
+
+9.3 Deficiency and a global five-complex bound
+Write 𝑚 for the number of active complexes, ℓ for the number of linkage classes, 𝑠 = dim 𝑆, and 𝛿 = 𝑚−ℓ −𝑠.
+Every weakly reversible target system has 𝛿 ≥ 1. Here is a direct proof. Let 𝑌 be the complex matrix, let
+𝐴𝜅 be the kinetic Laplacian, and let 𝐻 be the subspace of vectors whose coordinates sum to zero separately
+on each linkage class. Then 𝑌 (𝐻) = 𝑆 and
+
+
+                                               𝛿 = dim ker(𝑌 |𝐻 ).
+
+If 𝛿 = 0, the equilibrium identity 𝑌 𝐴𝜅 Ψ(𝑥) = 0 and 𝐴𝜅 Ψ(𝑥) ∈ 𝐻 imply 𝐴𝜅 Ψ(𝑥) = 0: every positive equi-
+librium is complex-balanced. Weak reversibility makes the kernel of each linkage Laplacian one-dimensional
+and positive. Hence two positive equilibria 𝑥, 𝑥′ have proportional monomial vectors on each linkage class,
+giving
+
+
+                                               log 𝑥 − log 𝑥′ ∈ 𝑆 ⟂ .
+
+If they lie in one compatibility class, then 𝑥 − 𝑥′ ∈ 𝑆, and strict monotonicity of the logarithm yields
+
+
+                        0 = (𝑥 − 𝑥′ ) ⋅ (log 𝑥 − log 𝑥′ ) = ∑(𝑥𝑖 − 𝑥′𝑖 )(log 𝑥𝑖 − log 𝑥′𝑖 ),
+                                                             𝑖
+
+whose summands are nonnegative and vanish only when 𝑥𝑖 = 𝑥′𝑖 . Thus a deficiency-zero weakly reversible
+system has at most one positive equilibrium per class and cannot have the target continuum.
+Now 𝑠 ≥ 2 by Section 9.1 and 𝛿 ≥ 1, so 𝑚 ≥ 4. Equality would force (𝑚, ℓ, 𝑠, 𝛿) = (4, 1, 2, 1), which Section
+9.2 excludes. Therefore every three-species weakly reversible realization of the target, even with multiple
+linkage classes, has at least five complexes. Under one linkage it must also have 𝑠 = 3 and 𝛿 = 𝑚 − 4 ≥ 1.
+The construction uses ten complexes, ten reversible pairs, maximum complex degree three, and deficiency
+
+
+                                                 10 − 1 − 3 = 6.
+
+No claim that these complex, reaction, or deficiency counts are globally minimal is made.
+
+
+10. Relation to earlier work and scope
+The construction and exact verifier were completed before the targeted literature audit. Boros, Craciun, and
+Yu constructed weakly reversible systems with continua of positive equilibria and explicitly asked whether
+such a continuum can occur without a coordinate common factor [BCY20]. Their examples use a common-
+factor hypersurface. Their displayed parametrization also contains a positive-dimensional fixed-support
+family preserving the same curve, so rate flexibility by itself is not new; every member of that family
+retains the displayed common scalar factor. The systems here answer their question by a height-two prime
+component and add a fixed-support family that is geometrically gcd one on a nonempty Zariski-open subset.
+Feliu, Henriksson, and Pascual-Escudero prove generic-finiteness results for steady-state varieties and revisit
+fine-tuned common-factor examples [FHP26]. Those results concern generic changes in ambient rate and total
+parameters. They do not preclude the exact codimension-sixteen linear family inside the twenty-dimensional
+fixed-support rate space found here.
+A narrow primary-source audit through 1 August 2026 found no earlier weakly reversible fixed-support
+positive rate family preserving a continuum in one compatibility class while being generically free of a
+coordinate common factor within that family. Thus, to our knowledge, this is the first explicit example
+with that conjunction. The four-dimensional family has codimension sixteen in ambient rate space, so
+the statement is relative rather than a claim of robustness under arbitrary rate perturbations. This is a
+conservative audit conclusion, not an exhaustive universal priority claim.
+
+                                                        12
+Reversible mass-action equilibrium continua                                                    Version 2.0.0
+
+
+11. Exact verification
+Four exact replay layers support the claims.
+  1. The frozen verifier reconstructs the original network, conic identities, gcd, graph, stoichiometry, and
+     radical decomposition.
+  2. The family verifier reconstructs the canonical 21 × 20 remainder matrix, rank minor, integer-vector
+     kernel basis, positive cone, and homogenized gcd-one witness.
+  3. The strengthening verifier reconstructs the clean field and radical decomposition, performs the bounded
+     integer enumeration, derives the characteristic polynomial, and executes all Sturm counts.
+  4. A separate 993-line v2 audit independently reconstructs the family matrix, both rate specializations,
+     both radical decompositions, the two integer optima, and hand-built Sturm chains, then checks a frozen
+     machine-readable result file.
+Appendix B gives one command that runs all four layers and additional cross-checks. All polynomial identities
+use exact rational arithmetic. The decimal approximations in Section 7 are explicitly non-evidentiary.
+Generative-AI systems were used substantively in discovery, exact computation, adversarial review, verifier
+development, and manuscript preparation. The named human author accepts responsibility for the released
+claims and artifacts. Neither exact replay nor public timestamping is a substitute for independent expert
+review.
+
+
+References
+[BCY20] B. Boros, G. Craciun, and P. Y. Yu, “Weakly Reversible Mass-Action Systems With In-
+finitely Many Positive Steady States,” SIAM Journal on Applied Mathematics 80 (2020), 1936–1946.
+doi:10.1137/19M1303034.
+[FHP26] E. Feliu, O. Henriksson, and B. Pascual-Escudero, “The Generic Geometry of Steady State Vari-
+eties,” SIAM Journal on Applied Algebra and Geometry 10 (2026), 519–548. doi:10.1137/25M1731289.
+
+
+Appendix A. Complete directed rate tables
+The rows below use the directed order (9). The v1 and clean columns are two distinct exact members of the
+same family; they are not combined in one system.
+
+                              𝑗   directed reaction   frozen v1 rate   clean rate
+                             0    0→1                       845740          1160
+                             1    1→0                      7732494         10296
+                             2    0→4                       702464           976
+                             3    4→0                         3920            23
+                             4    0→6                       437290           560
+                             5    6→0                      4380128          5977
+                             6    1→7                      1405575          1800
+                             7    7→1                         5600            25
+                             8    2→4                       706384          1629
+                             9    4→2                       900816          1237
+                            10    2→7                      1518755             1
+                            11    7→2                      6873328          9152
+                            12    2→9                         3920           653
+                            13    9→2                       896896          1214
+                            14    3→4                      3863552          5368
+                            15    4→3                         3920             1
+                            16    5→9                      3863552          5368
+
+
+                                                      13
+Reversible mass-action equilibrium continua                                                   Version 2.0.0
+
+
+
+                                𝑗   directed reaction   frozen v1 rate   clean rate
+                               17   9→5                        15680            70
+                               18   8→9                      4346496          6039
+                               19   9→8                       658560           915
+
+
+The clean vector is primitive because it contains entries equal to one. Its maximum and sum are 10296 and
+52464. The frozen vector has maximum 7732494 and sum 39165070.
+
+
+Appendix B. Reproduction commands
+In the released archive, run
+./reproduce.sh
+to create the locked local environment and replay every exact layer. From a repository checkout with the
+dependencies already installed, the combined wrapper is
+.venv/bin/python weakly_reversible_continuum_no_common_factor/manuscript_v2_draft/verify_v2_claims.py
+to replay the v1, family, clean-rate, integer-optimality, radical, and stability checks.   To compile this
+manuscript to PDF, run
+sh weakly_reversible_continuum_no_common_factor/manuscript_v2_draft/build_pdf.sh
+The build command only renders the manuscript; it does not create a release, DOI, or external publication.
+
+
+
+
+                                                        14
+

@@ -1,0 +1,123 @@
+{
+  "scope": "Static claim inventory, not mathematical validation or publication clearance",
+  "created_utc": "2026-10-25T03:52:08.386555+00:00",
+  "common_model": {
+    "channel": "one-mode pure-loss L_eta, independent vacuum environment for each use; complement L_(1-eta) up to phase",
+    "transmissivity": "1/2 <= eta <= 1",
+    "energy": "0 <= N < infinity, Tr(G_n rho_bar_n) <= nN, G_n=sum_j a_j^dagger a_j",
+    "averaging": "classical messages, shared key, encoder randomness; maximally mixed logical quantum source / transmitted half of maximally entangled reference pair",
+    "allowed_inputs": "arbitrary internal multimode entanglement, non-Gaussian and finite-energy input states",
+    "resources": "forward signed net rates, positive generation/negative consumption; finite gross rates and finite resource registers of exponential dimension; side resources charged by rate, no optical-energy charge",
+    "logs": "base 2; g(u)=(u+1)log2(u+1)-u log2 u, g(0)=0"
+  },
+  "external_entropy_hypothesis": {
+    "label": "VE / finite-energy multimode vacuum EPnI consequence",
+    "formula": "H(L_t^(tensor n)(rho))/n >= g(t*g^(-1)(H(rho)/n))",
+    "quantifiers": "all finite n >=1, every n-mode density operator with finite total photon expectation, t in [0,1]; independent n-mode vacuum at other beam-splitter input",
+    "needed_t": "quantum: eta and (1-eta)/eta; private: (1-eta)/eta; eta=1 does not need nontrivial VE",
+    "source_status": "Original 2007 EPnI was stated as conjectural. Pinned OpenAI 2026 Theorem 1.1 asserts a proof for independent finite-energy ports with arbitrary internal entanglement. This intake reads the theorem statement and vacuum consequence, not its full proof or Lean closure. Treat the capacity deductions as reliant on that external theorem; do not relabel the 2026 source as an assumed current open conjecture or as independently verified here."
+  },
+  "claims": [
+    {
+      "id": "Theorem 1",
+      "location": "PDF p2",
+      "kind": "external-theorem consequence",
+      "claim": "VE from the independent vacuum specialization of pinned OpenAI Theorem 1.1",
+      "depends_on_epni": true,
+      "current_validation": "Not independently verified in scope intake"
+    },
+    {
+      "id": "Lemma 2",
+      "location": "PDF p2",
+      "kind": "elementary claimed deduction",
+      "claim": "f_t increasing and convex for 0<=t<=1, increasing and concave for t>=1",
+      "depends_on_epni": false,
+      "support": "Derivative argument in main.tex; no equality classification claimed."
+    },
+    {
+      "id": "Theorem 3",
+      "location": "PDF p3",
+      "kind": "exact capacity consequence",
+      "claim": "Closed union over lambda in [0,1] of C+2Q<=g(lambda N)+g(eta N)-g((1-eta)lambda N), Q+E<=g(eta lambda N)-g((1-eta)lambda N), C+Q+E<=g(eta N)-g((1-eta)lambda N)",
+      "depends_on_epni": true,
+      "support": "Regularized quantum dynamic theorem; common-lambda entropy transfer; Gaussian displaced thermal ensemble, finite cutoff cost selection and closure. Inner coding construction does not require EPnI; equality of inner/outer regions does."
+    },
+    {
+      "id": "Proposition 4",
+      "location": "PDF pp3–4",
+      "kind": "literal-model obstruction claimed without EPnI",
+      "claim": "At N=0, literal joint consumed-register secrecy and reliability imply 1<=1/(d_M*d_TA)+(epsilon_sec+epsilon_rel)/2; vanishing errors exclude nontrivial generated private/key registers",
+      "depends_on_epni": false,
+      "support": "Positive photon-number vacuum kernel, trace contraction and decoder probability comparison. OTP(-1,1,-1) lies in displayed N=0 private cone but violates literal secrecy; archived finite rational outputs are not reproduction evidence."
+    },
+    {
+      "id": "Theorem 5",
+      "location": "PDF pp4–5",
+      "kind": "exact capacity consequence in explicitly changed secrecy model",
+      "claim": "Closed union over lambda in [0,1] of R+P<=g(eta N), P+S<=g(eta lambda N)-g((1-eta)lambda N), R+P+S<=g(eta N)-g((1-eta)lambda N)",
+      "depends_on_epni": true,
+      "support": "Generated-secret GEN convention, rewritten consumed-resource converse, degradable pure spectral refinement, common-lambda entropy transfer, direct key-assisted cq code, resource conversion and energy closure. Does not claim unchanged literal-source region."
+    }
+  ],
+  "secrecy": {
+    "literal": "U=(M,T_A,J,S_B), Z=(K,L,E^n), ||omega_UZ - pi_U tensor sigma_Z||_1 <= epsilon. pi_U is uniform on all four private registers jointly. J/S_B are consumed private communication/key. Exact body located in 1005.3818v3 Sec5, before Eq14; related 0903.3920v1 Eq4 retains S_B.",
+    "generated": "W=(M,T_A), X=(K,L), V=(J,S_B), Y=(W,V); ||omega_WXE - pi_W tensor omega_XE||_1 ->0. V is traced out and may correlate with generated secrets/transcript; Eve is not additionally given consumed key.",
+    "freshness": "Generated public/private message labels fresh uniform and initially independent of preshared key. Arbitrary common-randomness generation is not counted as public communication.",
+    "continuity": "Vanishing trace secrecy with log private dimensions O(n) yields o(n) information corrections, not dimension-free absolute leakage or semantic security.",
+    "catalysis": "Fixed finite composition with finite gross input seeds charged; consumed registers discarded; no superlinear catalyst and no residual key secrecy after revelation."
+  },
+  "boundaries": [
+    {
+      "case": "N=0",
+      "claim": "All RHS zero. Quantum and GEN private conversion cones; literal-model Prop4 gives different restriction on generated registers."
+    },
+    {
+      "case": "lambda=0,1",
+      "claim": "Zero/full conditional thermal entropy respectively; degenerate Gaussian distributions interpreted as point masses."
+    },
+    {
+      "case": "eta=1/2",
+      "claim": "B/E entropies coincide, Q+E<=0 and P+S<=0; remaining constraints still matter."
+    },
+    {
+      "case": "eta=1",
+      "claim": "Environment vacuum, energy-constrained noiseless formulas; no nontrivial EPnI input needed."
+    },
+    {
+      "case": "eta<1/2 or N=infinity",
+      "claim": "Outside stated exact-region theorem scope."
+    }
+  ],
+  "attainment_and_equality": "Gaussian displaced thermal/coherent ensembles attain claimed entropy values and regions through approximation/closure. Pinned EPnI asserts equality for product thermal inputs with constant mean within each port. Neither this note nor this scope intake classifies all equality cases or unique optimizers.",
+  "limits": [
+    "No peak/per-codeword/occupation energy constraint or strong converse",
+    "No semantic security for arbitrary message distributions",
+    "No consumed-key revelation guarantee",
+    "No free feedback, two-way assistance, superlinear catalysts",
+    "No thermal-channel quantum capacity, amplifier, additive-noise or confidential-broadcast theorem",
+    "No new formulas, independent EPnI proof, formal capacity verification, or human peer review claim"
+  ],
+  "next_review_families": [
+    {
+      "family": "independent analytic",
+      "mechanism": "Re-derive common-lambda bound and both capacity converse/achievability implications under exact conventions",
+      "status": "pending",
+      "gap": "Not assigned/performed by this scope-intake agent"
+    },
+    {
+      "family": "operational adversary",
+      "mechanism": "Challenge zero-energy decoder comparison, consumed-resource cancellation/composability, direct packing/covering proof and exact mean-cost approximations",
+      "status": "pending",
+      "gap": "No current scientific verdict; archived favorable reviews are opaque/non-authoritative"
+    },
+    {
+      "family": "external entropy dependency",
+      "mechanism": "Assess sufficiency and soundness of pinned EPnI theorem for all finite-energy internally entangled states",
+      "status": "pending",
+      "gap": "Core EPnI proof and formal dependency not validated in this intake"
+    }
+  ],
+  "follow_up": null,
+  "priority_verdict": null,
+  "mathematical_verdict": null
+}

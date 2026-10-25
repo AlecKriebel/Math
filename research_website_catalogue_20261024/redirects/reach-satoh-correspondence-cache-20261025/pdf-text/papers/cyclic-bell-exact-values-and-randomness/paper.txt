@@ -1,0 +1,1612 @@
+       Exact Quantum Values and Permutation-Blind
+                       Maximizers
+                in Cyclic Bell Inequalities
+      Sharp operator bounds, equality structure, and limits of Bell-value randomness
+                                       certification
+
+                                              Alec Kriebel
+                                       Independent Researcher
+                          me@aleckriebel.com ORCID: 0009-0001-9320-500X
+
+                                             9 August 2026
+
+
+                                                Abstract
+         Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak introduced two cyclic Bell families
+     designed for eﬀicient certification of√maximal global randomness. For the first reduced operator
+     they proved the general bound d 2, supplied an attaining strategy of value 2 csc(π/(2d)),
+     and conjectured that this sharper value is exact. We prove that formula in every dimension;
+     the polar-decomposition argument also applies to commuting-operator realizations. Its scalar
+     equality phases yield two complementary structural results. Every attained finite-dimensional
+     tensor-product exact maximizer of the first augmented family has, on the support of Alice’s
+     reduced state, all d equality roots with equal multiplicity, so d divides the supported dimension.
+     At the same time, conditional permutations of those phases generate a large orbit of exact
+     maximizers invisible to all first-harmonic correlators in the score. For every d ≥ 4, a final-
+     two swap maximizes both augmented cyclic families while producing a nonuniform designated
+     joint-output distribution. Thus maximal value of the displayed scalar functional alone does not
+     certify the proposed uniform 2 log2 d bits or uniquely determine the canonical behavior. This
+     does not challenge certification conditioned on the complete canonical behavior, nor determine
+     the worst-case guessing probability. An exact d = 4 certificate over Q(ζ16 ) accompanies the
+     all-dimensional proofs.
+
+
+1   Introduction
+Bell inequalities can certify randomness without a model of the devices, but the conditioning data
+matter. A complete behavior p(a, b | x, y) contains far more information than one scalar Bell value.
+If a Bell maximum exposes a unique behavior, symmetries of the score may force uniform outputs
+and, with an operator-level argument, privacy against a purifying adversary. If the maximizing
+face contains several behaviors, the same symmetry argument need not apply to each of them
+[2, 3, 4].
+    Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak recently introduced two families built
+around cyclic Fourier correlators [1]. They defined the families,
+                                                         √        found explicit maximally-entangled
+strategies, and proved the general first-family bound d 2. Their strategy has value 2 csc(π/(2d));
+they conjectured equality and confirmed it numerically through d = 6 with the NPA hierarchy [5].
+They also proved the exact value of the second reduced family by a sum-of-squares identity.
+Their symmetry analysis motivated maximal-global-randomness statements; for selected dimen-
+sions they evaluated Eve’s guessing probability numerically after fixing the complete canonical
+behavior. These are logically different inputs to a randomness problem.
+
+                                                     1
+Cyclic Bell values and maximizers                                                           A. Kriebel
+
+
+
+Topic                     Originating work [1]                    This paper
+Bell families             Introduced both cyclic families and     Adopts the displayed Hermitian
+                          their normalization                     operator definitions, with a convention
+                                                                  note
+Attaining strategies      Supplied the canonical strategies and   Rechecks admissibility and attainment
+                          matching lower√bounds                   exactly
+First reduced value       Proved βq ≤ d 2, supplied the lower     Proves the sharper all-dimensional
+                          value 2 csc(π/(2d)), and conjectured    upper bound and the q = qa = qc
+                          equality; NPA evidence through d = 6    equality
+Second reduced value      Proved value d by an SOS identity       Uses that SOS, including its
+                                                                  commuting-operator reading
+Equality structure        Identified score symmetries and         Proves the scalar phases, equal
+                          developed their randomness              supported multiplicities for every
+                          implications under a uniqueness         attained finite-dimensional
+                          hypothesis, without a complete          tensor-product exact maximizer of the
+                          maximizing-face classification          first augmented family, and a
+                                                                  conditional phase-permutation orbit
+                                                                  with exact product hypotheses
+Nonuniform                Focused on canonical realizations and   Constructs biased exact maximizers of
+phase-permuted            their symmetry-based randomness         both augmented families for every
+maximizers                implications                            d≥4
+Canonical full behavior   Randomness studied numerically in       Not contradicted
+                          selected dimensions; second family
+                          self-tested at d = 3
+Scalar-value              Maximal-violation certification         Shows that the scalar maximum alone
+implication               proposed, with a uniqueness-based       is insuﬀicient for d ≥ 4
+                          symmetry rationale
+
+Table 1: Attribution and logical scope. The present work does not claim the family definitions,
+canonical strategies, or second-family SOS.
+
+     The surrounding literature includes high-dimensional and modular Bell inequalities [6, 7, 8], self-
+testing from few measurements [9, 12], and analytic or algorithmic SOS constructions [11, 13]. Two
+contemporaneous works of the originating collaboration pursue all-dimensional global randomness
+and three-outcome noise robustness by different constructions [14, 15]. We use these works to
+set the attribution boundary; the family-specific polar bound and the phase-permuted maximizers
+below are not imported from them. To our knowledge, no prior work establishes either the first-
+family upper bound in this normalization or the nonuniform exact maximizers constructed here;
+the accompanying priority audit records the qualified search basis for that statement.
+     This paper unifies the exact-value and randomness questions through the equality phases of the
+first operator. The polar proof reduces its upper bound to a scalar roots-of-unity extremum. At
+equality the relative unitary may carry the full set of maximizing phases in different cyclic orders.
+Those orders leave the Bell-visible first harmonics unchanged, but they alter higher Fourier data
+and can change a complete output table. The same Bob observables also annihilate the sum-of-
+squares factors of Ref. [1], Eqs. (22)–(23), for the second family.
+     Our main conclusions are as follows.
+1. The finite-dimensional tensor-product, approximate, and commuting-operator values of the
+   first reduced cyclic operator are all 2 csc(π/(2d)).
+2. Every attained finite-dimensional tensor-product exact maximizer of the first augmented family
+
+                                                    2
+Cyclic Bell values and maximizers                                                        A. Kriebel
+
+
+    has all equality roots with equal multiplicity on Alice’s support; in particular, d divides that
+    supported dimension.
+
+3. A polar-linear permutation theorem gives explicit suﬀicient conditions under which phase per-
+   mutations remain admissible maximizers and preserve the entire first-harmonic correlator ma-
+   trix.
+
+4. For each d ≥ 4, one such maximizer has uniform local marginals but a nonuniform designated
+   joint table. With trivial Eve this already gives a guessing probability strictly larger than 1/d2 .
+
+5. The same construction maximizes the second augmented cyclic family and has the same target
+   table.
+
+6. The result separates scalar Bell-value certification from certification conditioned on a fixed
+   full behavior. It is not a claim about the exact worst-case guessing probability, the complete
+   maximizing face, or the randomness of the canonical realization.
+
+    The exact value and support rigidity are proved in Sections 3–4; the explicit equality orbit is
+developed in Section 5; the two biased families are treated in Sections 6 and 7; and the randomness
+interpretation is isolated in Section 8. Section 9 collects the binary benchmark and sharply scoped
+low-setting design conditions.
+
+
+2    Bell operators, behaviors, and randomness notions
+Fix d ≥ 2, write ω = e2πi/d , and identify outcomes with Zd . A projective d-outcome measurement
+{Ma }a∈Zd is encoded by the order-d unitary
+
+                                    X                        1 X −ak k
+                                    d−1                       d−1
+                             A=           ω a Ma ,    Ma =      ω   A .
+                                                             d
+                                    a=0                       k=0
+
+Zero spectral projections are allowed in the general definition. All explicit strategies below have
+the complete simple spectrum of d-th roots, so their outcomes are rank-one projectors.
+    For a matrix T written in the displayed computational basis, T denotes entrywise complex
+conjugation, while T T and T † denote its transpose and adjoint. The overbars in the separately
+defined names I d and F d indicate augmentation, not complex conjugation.
+    Let Qq denote the set of finite-dimensional tensor-product correlations, let Qqa = Qq , and let
+Qqc denote the commuting-operator correlation set, in which Alice’s and Bob’s PVMs act on one
+Hilbert space and commute across parties. Thus
+
+                                             Qq ⊆ Qqa ⊆ Qqc .
+
+For a Bell functional B, write
+
+                                 βµ (B) = sup B(p),      µ ∈ {q, qa, qc}.
+                                           p∈Qµ
+
+The operator inequalities below hold in the commuting model; a matching finite-dimensional strat-
+egy then identifies all three values. The value theorem extends to the commuting-operator model
+because it is an operator inequality, whereas the support-rigidity and privacy results are stated only
+for finite-dimensional tensor-product strategies because their proofs use reduced-state supports,
+
+
+                                                     3
+Cyclic Bell values and maximizers                                                      A. Kriebel
+
+
+Schmidt decompositions, and purifying-Eve conditional states; no commuting-operator analogue
+is claimed here.
+    For a behavior p(a, b | x, y), a scalar Bell maximum fixes only one supporting hyperplane of
+the quantum correlation set. We distinguish:
+• the value of a Bell functional;
+• its full maximizing face;
+• a selected canonical strategy and its canonical behavior;
+• the complete observed behavior, including higher Fourier correlators;
+• uniform observed target probabilities; and
+• private randomness against a purifying adversary.
+    For a purification |ΨiABE and target settings (x∗ , y∗ ), let
+                                                                         
+                      σEab
+                           = TrAB (Max∗ ⊗ Nby∗ ⊗ 1)|ΨihΨ|(Max∗ ⊗ Nby∗ ⊗ 1) .
+
+Eve’s guessing probability is
+                                                                 X
+                                G(AB | x∗ , y∗ , E) = max                      ab
+                                                                       Tr(Qab σE  ).
+                                                        {Qab }
+                                                                 a,b
+
+For model-dependent optimizations below, Sq denotes finite- dimensional tripartite tensor-product
+strategies, including Eve’s d2 -outcome guessing POVM; Sqa is the closure of the resulting finite
+extended correlations; and Sqc consists of a vector state and three party algebras on one Hilbert
+space that commute pairwise across parties, with Eve’s guessing POVM in her algebra. This fixes
+the adversarial extension rather than leaving q, qa, or qc implicit in a guessing quantity.
+    Maximal private global randomness means σE    ab = ρ /d2 for every a, b, and implies G = 1/d2 .
+                                                         E
+Uniform probabilities are necessary but not suﬀicient for this operator-valued condition. Con-
+versely, one explicit nonuniform target table, even with one-dimensional Eve, is enough to rule out
+maximal private randomness for that realization.
+Remark 2.1 (Normalization convention). Version 3 of Ref. [1] has a localized normalization dis-
+crepancy: the displayed reduced value in its Eq. (17) and its d = 3 augmented value agree with the
+operator definition, while the formula printed beside its first augmented randomness conjecture
+contains an additional factor d in the denominator. We take the displayed Hermitian operator as
+authoritative. Thus the reduced and augmented values in our convention are respectively
+                                             π
+                                  Md = 2 csc       ,     Md + 1.
+                                              2d
+Appendix G records the corresponding adjoint conventions. Nothing in our argument uses the
+typographical discrepancy.
+
+
+3    Exact value of the first cyclic operator
+For commuting Alice and Bob unitaries define
+                                            X
+                                            d−1
+                                     Id =         Re[(A0 + ω y A1 )By ] .                      (1)
+                                            y=0
+
+
+                                                       4
+Cyclic Bell values and maximizers                                                          A. Kriebel
+
+
+In the tensor model the product in (1) means a tensor product. The order-d relations are part of
+the Bell scenario, but will not be needed for the upper bound.
+
+Theorem 3.1 (Sharp commuting-operator value). Let A0 , A1 , B0 , . . . , Bd−1 be unitaries on an
+arbitrary complex Hilbert space and suppose [Ax , By ] = 0 for every x, y. Then
+                                                             π
+                                 Id ≤ Md 1,     Md = 2 csc        .                           (2)
+                                                              2d
+After imposing the order-d measurement relations,
+
+                           βq (Id ) = βqa (Id ) = βqc (Id ) = Md           (d ≥ 2).
+
+   The proof has two independent ingredients. The first is an operator identity that remains valid
+when a polar factor has a kernel.
+
+Lemma 3.2 (Polar positive-factor identity). Let A, B ⊆ B(H) be commuting unital ∗-algebras, let
+C ∈ A, let C = V |C| be its canonical polar decomposition, and let B ∈ B be unitary. Put
+
+                                      PC,B = |C † |1/2 − V |C|1/2 B.
+
+Then
+                                 |C| + |C † |           1 †
+                                              − Re(CB) = PC,B PC,B .                                (3)
+                                     2                  2
+Proof. Put M = A′′ , the von Neumann algebra generated by A. Because C ∈ A, continuous
+functional calculus places |C|, its square root, and (|C| + ε1)−1 in M for every ε > 0. Strong
+closure then places its support projection there, since
+
+                                    supp|C| = s-lim|C|(|C| + ε1)−1 .
+                                                  ε↓0
+
+The canonical polar partial isometry belongs to the same algebra; explicitly,
+
+                                        V = s-lim C(|C| + ε1)−1 .
+                                               ε↓0
+
+Indeed, the right-hand side is V |C|(|C| + ε1)−1 , which converges strongly to V supp|C| = V .
+Elementwise commutation of the two original algebras gives B ⊆ A′ ; since M = (A′ )′ , every
+element of M, in particular V and the functional-calculus factors above, commutes with B. This
+is the only closure step needed in the commuting-operator model.
+    The initial projection V † V is the support projection of |C|, while polar functional calculus gives
+
+                            |C † |1/2 V = V |C|1/2 ,        |C † |1/2 V |C|1/2 = C.
+
+Expanding yields
+                                 †
+                                PC,B PC,B = |C † | + |C| − CB − B † C † .
+No inverse and no unitary extension of V has been used.
+
+   The second ingredient is a scalar equality calculation; its elementary parity-split proof is in-
+cluded in Appendix A.
+
+
+
+
+                                                        5
+Cyclic Bell values and maximizers                                                         A. Kriebel
+
+
+Lemma 3.3 (Roots-of-unity extremum). For z ∈ T,
+
+                                          X
+                                          d−1
+                                                |1 + ω y z| ≤ Md .                               (4)
+                                          y=0
+
+Equality holds exactly when
+                                             z d = (−1)d−1 .                                     (5)
+Proof of Theorem 3.1. Set
+
+                       L y = A0 + ω y A1 ,        U = A†0 A1 ,        My = 1 + ω y U.
+
+Then Ly = A0 My . The operator My is normal because
+
+                              My† My = My My† = 21 + ω y U + ω −y U † .
+
+Consequently
+                                 |Ly | = |My |,       |L†y | = A0 |My |A†0 .
+Put
+                                                    X
+                                                    d−1
+                                        Fd (U ) =         |1 + ω y U |.
+                                                    y=0
+
+Continuous functional calculus for the unitary U , applied to Lemma 3.3, gives 0 ≤ Fd (U ) ≤ Md 1.
+Summing Lemma 3.2 now gives
+                                       1                        
+                               Id ≤      Fd (U ) + A0 Fd (U )A†0 ≤ Md 1.
+                                       2
+All functional-calculus operators used here lie in the von Neumann algebra generated by Alice’s
+observables and therefore commute with Bob’s algebra by the argument in Lemma 3.2. Thus
+no tensor-factor decomposition, finite-dimensional trace, or cyclicity assumption enters the upper
+bound. The finite order-d strategy rechecked in Appendix C attains Md . The inclusions among
+q, qa, qc then prove all three equalities.
+
+   For later equality arguments it is useful to retain the complete gap. If Ly = Vy |Ly |, define
+Py = PLy ,By and G = (Md 1 − Fd (U ))1/2 . Then
+
+                                       1X †       1      1
+                        Md 1 − I d =       Py Py + G† G + (GA†0 )† (GA†0 ).                      (6)
+                                       2 y        2      2
+
+This is an operator identity, not a finite-level NPA certificate. At the operator level, scalar func-
+tional calculus also gives
+
+                              Fd (U ) = Md 1       ⇐⇒        U d = (−1)d−1 1.
+
+For an individual maximizing vector |ψi, however, the exact conclusion from (6) is only
+
+                     Py |ψi = 0 (0 ≤ y < d),              G|ψi = 0,       GA†0 |ψi = 0.
+
+These vector-level relations do not yield a global relation for U , a description outside the state
+support, or a classification of all maximizing realizations. In finite dimension, however, the stabi-
+lizer supplied by the augmented term upgrades them to the support-level spectral restriction in
+Section 4.
+
+                                                      6
+Cyclic Bell values and maximizers                                                                A. Kriebel
+
+
+Corollary 3.4 (First augmented family). For
+
+                                          I d = Id + Re(A0 Bd )
+
+with a further order-d Bob observable,
+
+                                βq (I d ) = βqa (I d ) = βqc (I d ) = Md + 1.
+
+Proof. The upper bound follows from Theorem 3.1 and Re(A0 Bd ) ≤ 1. The finite strategy in
+Appendix C, with the aligned added observable, attains equality.
+
+    The exact formula gives a direct check against the numerical evidence in the originating paper:
+
+
+    d    Exact value Md                                                 Decimal         Source comparison
+          √
+    2    2 2                                                          2.828427 . . .   analytic CHSH value
+    3    4p                                                           4.000000 . . .       NPA 1 + AB
+                 √
+    4    2 4 +√2 2                                                    5.226252 . . .       NPA 1 + AB
+    5    2(1√+ 5)
+                √                                                     6.472136 . . .       NPA level 2
+    6    2( 6 + 2)                                                    7.727407 . . .       NPA level 2
+
+Table 2: Low-dimensional exact values. The source NPA bounds, displayed there  √   in truncated
+decimal form, agree with these values to the reported precision; its analytic d 2 bound is tight
+only at d = 2.
+
+    Appendix C also derives the two source Fourier sums and the explicit qutrit Bob observ-
+able, fixing the phase, transpose, and complex-conjugation conventions rather than identifying the
+strategies only through their common value.
+
+
+4       Finite-dimensional support-level equality rigidity
+The equality certificate yields additional information at the precise scope below once the first
+cyclic operator is augmented by its aligned term. The following result concerns every attained
+finite-dimensional tensor- product exact maximizer of the first augmented family. It does not
+extend silently to qa or qc.
+Theorem 4.1 (Equal supported multiplicities). Let a finite-dimensional tensor-product strategy
+with order-d observables and state ρAB attain
+
+                                              hI d i = Md + 1.
+
+For a purification |ΨiABE , put
+
+                          ρA = TrBE |ΨihΨ|,       K = supp ρA ,         U = A†0 A1 .
+
+Then K reduces the relative unitary U , and every root of z d = (−1)d−1 occurs in spec(U |K ) with
+the same multiplicity. Consequently,
+                                           d | dim K.
+No conclusion is asserted on K ⊥ , for approximate maximizers, or for general commuting-operator
+realizations.
+
+                                                     7
+ Cyclic Bell values and maximizers                                                         A. Kriebel
+
+
+     The proof, given in Appendix B, starts from the individual vanishing of every positive residual
+ in (6) and of the augmented stabilizer. A Schmidt- support cancellation lemma moves those vector
+ relations to K. Kernel- safe polar cancellation then makes each polar partial isometry unitary on
+ K, adjacent half-angle phases produce one reflection for each equality root, and a rank inequality
+ forces all root multiplicities to agree.
+     Equal supported multiplicities are necessary but do not imply a Weyl representation, unique-
+ ness, or self-testing. In particular, every explicit permutation maximizer below has K = Cd and
+ is compatible with the theorem.
+
+
+ 5    Equality phases and permutation blindness
+ The scalar equality set in (5) is a set, not an ordering. A Bell score built only from first powers can
+ therefore fail to record how those phases are arranged along a weighted cycle. The following general
+ statement isolates the exact suﬀicient conditions. It does not claim to classify every maximizer of
+ every polar-linear functional.
+     Let R be a finite coeﬀicient index set, let gr (z) = αr + βr z, and put
+                                          X
+                                 f (z) =     |gr (z)|,   M = max f (z).
+                                                                       z∈T
+                                          r∈R
+
+ For order-d observables define
+                                   X
+                             J =         Re[(αr A0 + βr A1 )Br ] + Re(A0 B∗ ).                       (7)
+                                   r∈R
+
+ Theorem 5.1 (Conditional phase-permutation theorem). Suppose there are labeled phases zj , srj ∈
+ T, 0 ≤ j < d, such that                        Y
+                                 f (zj ) = M,      zj = 1,
+                                                               j
+
+ and, for every r,                                                 Y
+                                  srj |gr (zj )| = gr (zj ),           srj = 1.
+                                                                   j
+
+ At a zero of gr , srj may be any unitary extension phase. For every permutation κ of the labels, set
+ on Cd
+                                A0 = X,              A1 = X diag(zκj ),
+                                                                                                  (8)
+                                Br = X diag(sr,κj ), B∗ = X,
+                                                     P
+ where X|ji = |j + 1 mod di, and use |Φd i = d−1/2 j |j, ji. Then:
+
+ (i) every displayed observable is unitary, has d-th power 1, and has the full simple d-th-root
+     spectrum;
+
+(ii) the strategy attains the operator upper bound M + 1 for (7); and
+
+(iii) all local first moments and every complex first-harmonic correlator hAx Br i, hAx B∗ i are inde-
+      pendent of κ.
+
+
+
+
+                                                        8
+Cyclic Bell values and maximizers                                                                A. Kriebel
+
+
+Proof. With U = A†0 A1 and Lr = A0 gr (U ) = Vr |Lr |, Lemma 3.2 and functional calculus give
+                                           1X †       1        1           
+                     (M + 1)1 − J =            Pr Pr + R∗† R∗ + H + A0 HA†0 ,
+                                           2 r        2        2
+
+where
+              Pr = |L†r |1/2 − Vr |Lr |1/2 Br ,   R ∗ = 1 − A0 B ∗ ,     H = M 1 − f (U ) ≥ 0.
+Thus M + 1 is an operator upper bound.
+   For arbitrary nonzero weights tj ,
+                                                                    
+                                                               Y
+                                       (X diag(tj ))d =           tj  1,                              (9)
+                                                               j
+
+                                         Q
+and its characteristic polynomial is td − j tj . The product hypotheses therefore prove (i). More-
+over, for each r, put
+                             Wr = X diag(sr,κj ),     Er = supp|Lr |.
+Then
+                                      Lr = Wr |Lr |,       V r = W r Er ,
+where Vr is the canonical polar partial isometry appearing in Pr . Consequently
+
+                                 Vr |Lr |1/2 = Wr Er |Lr |1/2 = Wr |Lr |1/2 ;
+
+the phases extending Wr on ker Lr do not enter the positive residual. Since Br = Wr , one has
+BrT = Wr† , and therefore
+                           Vr |Lr |1/2 BrT = Wr |Lr |1/2 Wr† = |L†r |1/2 .
+The vectorization identity
+                                      (R ⊗ S)|Φd i = (RS T ⊗ 1)|Φd i
+now gives Pr |Φd i = 0, including when gr (U ) has a kernel. Moreover, f (U ) = M 1, because every
+zκj is a maximizing phase, and
+
+                                 (A0 ⊗ B∗ )|Φd i = (X ⊗ X)|Φd i = |Φd i.
+
+Thus every factor in the displayed gap annihilates |Φd i, proving (ii). Finally, the maximally-
+entangled trace identity gives
+                                         1X                    1X
+                              hA0 Br i =      srj , hA1 Br i =     zj srj ,
+                                         d                     d
+                                            j                    j
+                                                               1X
+                              hA0 B∗ i = 1,         hA1 B∗ i =     zj .
+                                                               d
+                                                                         j
+
+These are symmetric sums of the labeled data. Every local observable is a weighted shift and has
+zero trace. This proves (iii).
+
+    The theorem explains both its power and its limit. It gives a concrete permutation orbit within
+a maximizing face, but it says nothing about maximizers whose relative spectrum is different, has
+different multiplicities, acts reducibly, or uses a kernel outside the stated phase data. Claims about
+the complete maximizing face require separate rigidity analysis.
+
+                                                       9
+Cyclic Bell values and maximizers                                                                             A. Kriebel
+
+
+6     Exact nonuniform maximizers of the first family
+Put                               (                                                    
+                                      0, d odd,                    πi(2k + δd )
+                          δd =                            zk = exp                            .                     (10)
+                                      1, d even,                        d
+These are precisely the roots in (5). For 0 ≤ y, k < d, define
+                                                         1 + ω y zk
+                                             sy,k =                   .
+                                                        |1 + ω y zk |
+The denominator never vanishes. The polynomial td − (−1)d−1 gives
+                      Y             Y                     Y
+                         zk = 1,       (1 + ω y zk ) = 2,     sy,k = 1.                                             (11)
+                          k                  k                               k
+
+Thus Theorem 5.1 applies with gy (z) = 1 + ω y z.
+   For every permutation κ, the explicit first-family strategy is
+                          A0 = X,                    A1 = XZκ , Zκ = diag(zκj ),
+                                                                                                                    (12)
+                          Vy = X diag(sy,κj ), By = Vy ,                  Bd = X.
+Each observable defines a rank-one projective d-outcome measurement and
+                                                 hI d i = Md + 1.
+The Bell-visible correlators are independent of the ordering. Explicitly, with αd = csc(π/(2d)),
+                          αd                       αd ω −y
+             hA0 By i =      ,        hA1 By i =           ,       hA0 Bd i = 1,              hA1 Bd i = 0.         (13)
+                          d                           d
+The cyclic ordering κj = j reproduces the canonical first-harmonic behavior. Other orderings can
+change higher powers and full probabilities.
+   To calculate the designated pair (A1 , Bd ), set
+                                                                            X
+                                                                            d−1
+                              q0 = 1,      qj+1 = zκj qj ,          qbm =         qj ω mj .                         (14)
+                                                                            j=0
+
+The product condition makes the sequence cyclic, so extend it by qj+d = qj , and put Q = diag(qj ).
+The recurrence gives A1 = QXQ† . Define
+
+                                          1 X −cj
+                                             d−1
+                                 |uc i = √       ω |ji,             |va i = Q|ua i.
+                                           d j=0
+
+Then
+                                  X|uc i = ω c |uc i,  A1 |va i = ω a |va i,
+                                                                        P
+so these are the outcome eigenvectors under the encoding A = a ω a Ma . The transpose of the
+outcome-b projector of Bd = X is the projector onto ub = u−b . Hence the maximally-entangled
+trace identity gives
+                                          1
+                        pκ (a, b | 1, d) = |hu−b | va i|2
+                                          d
+                                           1 X
+                                              d−1
+                                                                     |bq−(a+b) |2       (15)
+                                         = 3|     qj ω −(a+b)j |2 =               .
+                                          d                               d3
+                                                    j=0
+
+
+                                                          10
+Cyclic Bell values and maximizers                                                              A. Kriebel
+
+
+               P
+Parseval gives m |b  qm |2 = d2 . Consequently both local marginals are exactly 1/d, while the joint
+table is uniform if and only if every squared Fourier magnitude equals d.
+    The canonical ordering is Fourier-flat in every dimension. Indeed, for κj = j, the recurrence
+gives
+                                    qj = η j(j−1+δd ) , η = eπi/d ,
+and the parity choice in δd makes this formula cyclic. Reading indices cyclically, its autocorrelations
+are                                                             (
+                             X
+                             d−1                        X
+                                                        d−1
+                                                                  d, t = 0,
+                                             t(t−1+δd )      tj
+                       Rt :=     qj+t qj = η                ω =
+                             j=0                        j=0
+                                                                  0, 1 ≤ t < d.
+
+Therefore
+                                                    X
+                                                    d−1
+                                        |b
+                                         qm | 2 =         Rt ω mt = d
+                                                    t=0
+
+for every m, and the canonical target table is exactly 1/d2 .
+
+Theorem 6.1 (Biased exact maximizers). For every d ≥ 4, choose the final-two swap
+
+                                  κ = (0, 1, . . . , d − 3, d − 1, d − 2).                           (16)
+
+The strategy (12) attains Md + 1, has uniform local marginals, and has a nonuniform target table.
+With one-dimensional Eve,
+
+                                               1     2 sin(π/d) sin(3π/d)   1
+                        G(AB | 1, d, E) ≥          +                      > 2.                       (17)
+                                               d 2         d (d − 1)
+                                                            2              d
+
+Proof. The second cyclic autocorrelation of (14) is
+                                       X            X
+                                R2 =      qj+2 qj =   zκj zκj+1 .
+                                           j                  j
+
+It vanishes for the cyclic ordering. The swap (16) gives
+
+                R2 = (zd−1 − zd−2 )(zd−3 − z0 ),           |R2 | = 4 sin(π/d) sin(3π/d) > 0.         (18)
+
+Hence the Fourier magnitudes are not all d.
+   For the quantitative estimate put xm = |bqm |2 − d and ∆ = maxm xm . Fourier inversion at lag
+two gives
+                                            1X
+                                     R2 =         xm ω −2m ,
+                                            d m
+where the constant term vanishes for d ≥ 4. Since the nonzero mean-zero sequence (xm ) has at
+most d − 1 positive entries,
+                                      X           X
+                             d|R2 | ≤   |xm | = 2   xm ≤ 2(d − 1)∆.
+                                       m              xm >0
+
+With trivial Eve, always guessing a most likely pair gives G = (d + ∆)/d3 . Substituting (18) proves
+(17).
+
+
+
+                                                     11
+Cyclic Bell values and maximizers                                                             A. Kriebel
+
+
+   For d = 2, 3, every ordering in this particular permutation family is Fourier-flat. Indeed, for
+any permutation κ,
+                          X             X         X
+                     R1 =     qj+1 qj =    zκ j =    zk = 0,     Rd−t = Rt .
+                             j                  j                k
+
+For d = 2, R1 is the only nonzero-lag autocorrelation; for d = 3, the only such autocorrelations are
+R1 and R2 = R1 . Thus all nonzero-lag autocorrelations vanish and |b    qm |2 = d for every m. This
+leaves Bell-value rigidity in those dimensions unresolved.
+
+
+7   Extension to the second augmented cyclic family
+The second reduced family of Ref. [1] has a different Alice measurement set but compresses the
+same first-family Bob observables. Put η = eπi/d , so ω = η 2 , and define
+
+                                         (−1)ℓ−1 η ℓ(ℓ−1)
+                                 λℓ =                       ,              0 ≤ ℓ < d,               (19)
+                                        d sin(π(ℓ − 12 )/d)
+
+where (−1)−1 = −1 at ℓ = 0. For Bob’s observables in (12), let
+
+                                                           X
+                                                           d−1
+                                                bℓ =
+                                                B                ω ℓy By
+                                                           y=0
+
+and define the Hermitian functional
+                                 X
+                                 d−1             
+                        Fd =                    bℓ ,
+                                       Re λℓ Aℓ B                    F d = Fd + Re(A0 Bd ).         (20)
+                                 ℓ=0
+
+Lemma 7.1 (Coeﬀicient normalization). The coeﬀicients in (19) satisfy
+
+                                                    X
+                                                    d−1
+                                                          |λℓ |2 = 1.
+                                                    ℓ=0
+
+Proof. The logarithmic derivative of the sine product gives, away from its poles,
+
+                                       X
+                                       d−1                   
+                                                     kπ
+                                             cot x +                 = d cot(dx).
+                                                      d
+                                       k=0
+
+Differentiating yields the general identity
+
+                                   X
+                                   d−1              
+                                                  kπ
+                                         csc2 x +      = d2 csc2 (dx).                              (21)
+                                                   d
+                                   k=0
+
+At x = −π/(2d), the right-hand side is d2 . Since the numerator of every λℓ has modulus one,
+                                                             !
+                            X
+                            d−1
+                                        1 X 2 π(ℓ − 12 )
+                                            d−1
+                                |λℓ | = 2
+                                     2
+                                                csc            = 1.
+                                        d               d
+                                 ℓ=0                ℓ=0
+
+
+
+
+                                                            12
+Cyclic Bell values and maximizers                                                                              A. Kriebel
+
+
+   The SOS of Ref. [1], Eqs. (22)–(23), with prefactor 1/(2d), is short and load-bearing. Fourier
+orthogonality and unitarity of the By ’s give
+                                X †                 X
+                                    b B
+                                    B   bℓ = d2 1,      |λℓ |2 = 1.
+                                      ℓ
+                                      ℓ                                ℓ
+
+                          bℓ ,
+Thus, for Pℓ = dλℓ 1 − Aℓ B
+                                                       1 X †
+                                                                   d−1
+                                            d1 − Fd =     Pℓ Pℓ .                                                    (22)
+                                                      2d
+                                                                   ℓ=0
+The identity requires only cross-party commutation, so the source value also has the immediate
+commuting-operator reading
+
+            βq (Fd ) = βqa (Fd ) = βqc (Fd ) = d,              βq (F d ) = βqa (F d ) = βqc (F d ) = d + 1.
+
+Theorem 7.2 (Permutation maximizers of the second family). For every permutation κ, define
+
+                     rℓ = η −ℓ(ℓ−1+δd ) ,         Dℓ = rℓ X diag(ω −ℓκj ),                        A ℓ = Dℓ .         (23)
+
+Together with the By ’s in (12), these are order-d observables and
+                                                     bℓ = dλℓ Dℓ .
+                                                     B                                                               (24)
+
+They annihilate every factor in (22). With Bd = X, the augmented value is d + 1. For the swap
+(16), the target pair (A1 , Bd ) has exactly the table (15) and the gap (17) for every d ≥ 4. The
+complete matrix of complex first-harmonic correlators is independent of κ. Under the alternative
+source-appendix convention that adjoints all Bob observables, the target table is the same up to the
+harmless outcome inversion b 7→ −b.
+Proof. For zt = η 2t+δd , write
+                                                                   (
+                                                                       +1,           2t + δd < d,
+                             s0,t = εt η t+δd /2 ,         εt =
+                                                                       −1,           2t + δd > d.
+
+                                                                            bℓ at a label t is therefore
+There is no equality case, and sy,t = s0,t+y mod d . The diagonal weight of B
+ −ℓt
+ω Sℓ , with                                      X
+                                           Sℓ =       ω ℓt s0,t .
+                                                           t
+
+Let n = (d + 1 − δd )/2 and uℓ = η 2ℓ−1 . Since udℓ = −1, two geometric sums give
+                                                                                 !
+                                                     X
+                                                     n−1           X
+                                                                   d−1
+                                  Sℓ = η −δd /2            utℓ −           utℓ       = dλℓ rℓ .
+                                                     t=0           t=n
+
+This is (24), including
+                P       its phase.
+   By (9) and j κj = d(d − 1)/2,
+
+                                     Dℓd = (−1)ℓ(ℓ−1+δd )+ℓ(d−1) 1 = 1,
+
+because ℓ(ℓ + d − 2 + δd ) is even. Equation (24) gives
+
+                                   Pℓ |Φd i = dλℓ (1 − Dℓ ⊗ Dℓ )|Φd i = 0.
+
+                                                           13
+Cyclic Bell values and maximizers                                                                    A. Kriebel
+
+
+Also A0 = X, so X ⊗ X fixes |Φd i. Finally
+
+                                A1 = X diag(η 2κj +δd ) = X diag(zκj ),
+
+which identifies the target table with (15). For 0 ≤ ℓ, y < d, the trace identity and ByT = Vy† give
+
+                                                         rℓ X ℓκj
+                                        hAℓ By i =           ω sy,κj
+                                                         d
+                                                             j
+
+                                                         rℓ ω −ℓy X
+                                                   =                       ω ℓt s0,t
+                                                            d          t
+                                                             −ℓy
+                                                   = λℓ ω          ,
+
+where the last equality uses Sℓ = dλℓ rℓ . Likewise,
+                                                         rℓ X ℓκj
+                                        hAℓ Bd i =           ω = δℓ0 .
+                                                         d
+                                                             j
+
+All local first moments vanish because the displayed Alice and Bob observables are weighted shifts.
+These formulas give the complete complex first-harmonic correlator matrix and show directly that
+it is independent of κ.
+
+    The theorem uses the SOS of Ref. [1], Eqs. (22)–(23), to prove global optimality; merely
+annihilating a candidate collection of operators would not have suﬀiced. What is common to both
+families is the root ordering, the Bob cycle, and the target table. The second family additionally
+requires the exact Fourier phases in (23). No statement is made here about a complete classification
+of its maximizing face.
+
+
+8    Randomness interpretation
+For µ ∈ {q, qa, qc} and either augmented family, define the model- indexed value-conditioned
+guessing quantity
+
+                    Gµval (d; B) =        sup           GS (AB | 1, d, E),             B ∈ {I, F}.         (25)
+                                         S∈Sµ :
+                                     ⟨Bd ⟩S =βµ (Bd )
+
+The finite-dimensional construction embeds into both larger models, so Theorems 6.1 and 7.2 imply,
+for every such µ,
+
+                                      1     2 sin(π/d) sin(3π/d)   1
+                     Gµval (d; B) ≥       +                      > 2                     (d ≥ 4).          (26)
+                                      d 2         d (d − 1)
+                                                   2              d
+
+This is only a lower bound on the supremal adversarial guessing probability over the maximizing
+face. It comes from one explicit strategy with trivial Eve; the final-two swap is not claimed to be
+worst possible.
+    The scope can be stated in one sentence:
+
+     The maximum scalar Bell value alone does not identify the canonical behavior or certify
+     maximal global randomness across the entire maximizing face.
+
+
+                                                           14
+Cyclic Bell values and maximizers                                                           A. Kriebel
+
+
+     This conclusion has a precise relationship to the originating conjecture. Conjecture 2 of Ref. [1]
+states that maximal violation of the first augmented functional certifies 2 log2 d random bits for
+(x, y) = (1, d). Its printed maximum contains the isolated normalization discrepancy described in
+Remark 2.1; for the displayed operator the actual maximum is Md + 1. In that normalization, the
+constructed strategies prove that the scalar-value implication
+                                                                             1
+                            hI d i = Md + 1    =⇒        G(AB | 1, d, E) =
+                                                                             d2
+is false for every d ≥ 4. This is a counterexample to the displayed Bell-value claim in those
+dimensions, not a determination of the exact worst-case guessing probability and not a statement
+about protocols that condition on additional observed data.
+Corollary 8.1 (Behavior-level nonuniqueness). For either augmented family and every d ≥ 4, the
+maximal scalar value does not determine a unique behavior, even modulo local output relabelings.
+Proof. The canonical phase order has the uniform target table 1/d2 , whereas the final-two swap
+has the nonuniform table of Theorems 6.1 and 7.2. A local output relabeling at either target input
+only permutes the entries of that table and therefore cannot turn a uniform table into a nonuniform
+one. Thus the two exact maximizers represent inequivalent behaviors under those relabelings.
+
+    This behavior-level failure of uniqueness is the only self-testing-related consequence used here.
+We do not claim a classification under every strategy-level equivalence involving local isometries,
+ancillary systems, or transposition.
+    At d = 4, Appendix D gives maxa,b p(a, b | 1, 4) = 3/32. For the displayed trivial-Eve realization
+its min-entropy is exactly
+
+                            − log2 (3/32) = 5 − log2 3 = 3.415037 . . . < 4.                        (27)
+                    µ
+Equivalently, if Hval (d; B) := − log2 Gµval (d; B), then the scalar maximum certifies at most 5 − log2 3
+bits in every model above. The number is an upper bound on value-only worst-case conditional
+min-entropy, not its exact optimized value.
+    It is equally important to state what does not follow. The result does not dispute a calculation
+that fixes the complete canonical behavior, and it does not show that the canonical strategy
+lacks maximal global randomness. In fact, the numerical program described in Appendix B.1 of
+Ref. [1] reconstructs the full distribution of the canonical strategy before optimizing Eve’s guessing
+probability. The root-swapped strategy has different higher Fourier correlators and therefore does
+not satisfy those full-behavior constraints.
+    A full-behavior SDP may thus return G = 1/d2 for the canonical table while (26) holds for the
+scalar maximum. Passing from the first statement to the second would require uniqueness of the
+maximizing behavior, self-testing strong enough to control the target PVMs, or other statistics that
+exclude the phase-permuted realization. The source’s d = 3 self-testing theorem for the second
+family is outside our d ≥ 4 construction and is not challenged.
+Corollary 8.2 (No value-only endpoint robustness). For either augmented family and every d ≥ 4,
+there is no valid bound for all strategies of the form
+                                               1
+                           G(AB | 1, d, E) ≤      + fd (ε),       fd (ε) −→ 0,
+                                               d2
+where ε is only the Bell deficit from the maximum. More precisely, the asserted bound is required
+to hold for every strategy whose deficit is at most ε.
+
+                                                    15
+Cyclic Bell values and maximizers                                                        A. Kriebel
+
+
+Proof. The biased exact maximizer has deficit zero, hence is feasible for every ε ≥ 0, and has
+the fixed positive gap in (26). Bounds that use additional observed correlators or the complete
+behavior are not excluded.
+
+
+9    Benchmarks and design conditions for low-setting private ran-
+     domness
+The permutation mechanism is a design warning, not a universal lower bound on settings. This sec-
+tion separates one exact resource baseline, a complete binary benchmark, and a positive suﬀicient
+composition criterion from the still-open higher-dimensional problem.
+Proposition 9.1 (One-input certification baseline). If either party has only one input, every finite-
+output nonsignalling behavior is local and admits a compatible finite-dimensional pure projective
+realization in which Eve guesses both outputs perfectly at every input pair. Therefore neither
+a scalar score nor even the complete behavior in such a scenario can device-independently force
+positive private global randomness against all compatible realizations.
+                                                                       P
+Proof. Suppose Alice has one input. Nonsignalling makes p(a) = b p(a, b | y) independent of y.
+For p(a) > 0, let ry (b | a) = p(a, b | y)/p(a), and choose an arbitrary conditional distribution when
+p(a) = 0. The hidden variable
+                                                                   Y
+                           λ = (a, b1 , . . . , bmB ), µ(λ) = p(a)   ry (by | a)
+                                                                       y
+
+reproduces the whole behavior by outputting the stored entries. The pure state
+                                   Xp
+                                         µ(λ)|λiA |λiB |λiE
+                                       λ
+
+with diagonal grouping PVMs realizes it. Eve reads λ and guesses perfectly. The other case is
+symmetric.
+
+    This is a standard locality fact, and it concerns the total test-input alphabets. It does not say
+that a trusted one-input realization is intrinsically random or nonrandom, nor does it prevent a
+larger Bell test from having one designated generation input on each wing.
+Theorem 9.2 (Binary two-input benchmark). For binary Hermitian unitaries with cross-party
+commutation, set
+                               W2 = A0 B0 − 2A0 B1 + 2A1 B0 + 2A1 B1 .
+                                                                                               √
+Its finite-dimensional tensor-product, approximate, and commuting-operator values are all 3 3.
+Moreover, every attaining finite-dimensional tensor-product strategy, with arbitrary purifying Eve,
+satisfies at the target pair (x, y) = (0, 0)
+                                     ab
+                                    σE  = ρE /4        (a, b ∈ Z2 ).
+
+Hence G(AB | 0, 0, E) = 1/4 and Hmin (AB | E) = 2 bits.
+    Appendix E gives a self-contained two-square SOS and operator-valued Fourier proof. The
+result is established prior art: after the output flip B1 7→ −B1 , this is the δ = π/6 member of
+the Wooltorton–Brown–Colbeck family [10]. We include the proof as a normalization and privacy
+benchmark, not as a novelty claim.
+
+                                                  16
+Cyclic Bell values and maximizers                                                            A. Kriebel
+
+
+Corollary 9.3 (Binary setting minimality). In the finite-dimensional projective device-independent
+model considered here, two binary inputs per party suﬀice to certify two private global output
+bits. One input on either wing cannot force any private global randomness against all compatible
+realizations. Thus (2, 2) is componentwise minimal for this binary certification task.
+
+    For general d, operator-valued Fourier coeﬀicients make the privacy condition explicit. For
+target PVMs R = {Ra } and Q = {Qc }, put
+                                 X              a,c          a,c     1 X −ka−ℓc
+                   bE (k, ℓ) =
+                   σ                   ω ka+ℓc σE   ,       σE   =      ω       bE (k, ℓ).
+                                                                                σ
+                                 a,c
+                                                                     d2
+                                                                        k,ℓ
+
+                              bE (0, 0) = ρE and σ
+Thus privacy is equivalent to σ                     bE (k, ℓ) = 0 for every nonzero Fourier index.
+Observed uniformity tests only the scalar trace of these conditions.
+
+Lemma 9.4 (Private-MUB composition; suﬀicient criterion). Let |ΨiABE be a finite-dimensional
+purification. Alice has two d-outcome PVMs P = {Pb }b∈Zd and R = {Ra }a∈Zd , and Bob has a
+d-outcome PVM Q = {Qc }c∈Zd . Let π be a permutation of Zd and define
+
+                                 τEb = TrAB [(Pb ⊗ 1)|ΨihΨ|(Pb ⊗ 1)] .
+
+Suppose, for every a, b, that
+
+                                                        τEb = ρE /d,
+                                 (1 ⊗ Qπ(b) ⊗ 1)|Ψi = (Pb ⊗ 1)|Ψi,
+                                   (Pb Ra Pb ⊗ 1)|Ψi = d−1 (Pb ⊗ 1)|Ψi.
+
+Then the target pair (R, Q) obeys
+                                       a,π(b)
+                                   σE           = ρE /d2        for every a, b.
+
+The hypotheses are suﬀicient; no necessity or low-setting existence claim is made.
+
+Proof. Fix a, b and a Hermitian test operator TE . Suppressing identity factors, projectivity, cross-
+party commutation, and the matching hypothesis give
+                                       a,π(b)
+                           Tr(TE σE             ) = hΨ|Ra Qπ(b) TE Qπ(b) Ra |Ψi
+                                                 = hΨ|Pb Ra Pb TE |Ψi
+                                                   1                  1
+                                                 = hΨ|Pb TE |Ψi = 2 Tr(TE ρE ).
+                                                   d                 d
+Equality against every Hermitian TE proves the operator identity.
+
+   The lemma identifies what a successful composition would have to certify: a private reference
+PVM, perfect matching to Bob, and a state-supported MUB sandwich. It does not itself construct
+a Bell functional enforcing those hypotheses.
+   Appendix F records two narrower observations retained from the setting-complexity study: the
+standard two-input qudit self-test has no uniform joint setting pair, and one natural separately
+bounded third-setting repair cannot expose its common computational mutually unbiased basis.
+The obstruction does not rule out a genuinely joint SOS, another MUB, another self-test, or an
+arbitrary (2, 3, d, d) Bell functional.
+
+                                                           17
+Cyclic Bell values and maximizers                                                            A. Kriebel
+
+
+
+Scenario or design             Audited status
+1 × m or m × 1                 Cannot DI-force private global randomness, even from the complete behav-
+                               ior (Proposition 9.1).
+2 × 2, d = 2                   Achievable and componentwise setting-minimal (Theorem 9.2).
+2 × 2, d ≥ 3                   Open here; the standard ideal qudit realization has no uniform input pair.
+2 × 3, d ≥ 3                   Open here; the direct perfect-anchor construction fails, and Proposition F.1
+                               excludes one coeﬀicientwise exposure route.
+All-dimensional benchmark      A current construction uses two Alice inputs and d2 + 1 Bob inputs [14].
+Two augmented cyclic           Their scalar maxima fail to force maximal global randomness for every
+families                       d ≥ 4.
+
+                     Table 3: Proved, conditional, and open low-setting regimes.
+
+
+10    Discussion and open problems
+The exact value theorem and the biased maximizers expose a structural distinction between opti-
+mality and rigidity. The first operator controls a sum of moduli of first-order linear functions of
+the relative unitary. Its score is sharp enough to determine the allowable scalar phases but not
+their cyclic order. That missing order is invisible to the Bell score and visible to the target output
+distribution.
+    Several questions are now sharply posed.
+
+1. Determine whether the support-level rigidity conditions, admissible phase permutations, di-
+   rect sums, and irrelevant ancillary systems generate all attained finite-dimensional tensor-
+   product exact maximizers of the first augmented family. First classify the minimal-support
+   case dim K = d. Theorem 4.1 then forces the equality-root spectrum to be simple; determine
+   whether every such maximizer is equivalent, under the explicitly allowed symmetries, to a
+   member of the permutation orbit of Theorem 6.1. Then separately characterize the qa and qc
+   maximizing faces.
+
+2. Determine the exact worst-case guessing probability at the Bell maximum; the bound (26) need
+   not be tight.
+
+3. Resolve the d = 2, 3 maximizing faces for the first augmented family. The permutation orbit
+   studied here is uniform in those dimensions.
+
+4. Classify which phase permutations are related by local isometries and output relabelings, and
+   which produce genuinely different full behaviors.
+
+5. Find a low-setting modification whose Bell score controls the missing higher Fourier data, and
+   determine whether it is rigid or robustly self-testing.
+
+6. Develop robust bounds conditioned on a minimal set of extra correlators, rather than either
+   one scalar score or the entire behavior.
+
+The positive private-MUB criterion and the negative permutation-blindness mechanism point in the
+same direction: a successful low-setting score must control operator-valued adversarial information,
+not merely a scalar maximum or an unordered first-harmonic spectrum. These problems are
+natural opportunities for collaboration with the originating authors and the broader Bell-inequality
+community.
+
+
+                                                  18
+Cyclic Bell values and maximizers                                                           A. Kriebel
+
+
+Data, code, and historical versions
+The source, exact certificates, and verification scripts are available in the public Math repository,
+pinned for this revision at commit 609f8c6ffc083b665804890dd82fc739d414ea9d. From that
+directory, ./reproduce.sh runs the mathematical checks, the two independent d = 4 exact im-
+plementations, and clean manuscript and metadata builds; manifest.sha256 records the package
+integrity hashes. Historical standalone versions remain accessible from the canonical paper page
+linked in that repository.
+
+
+AI-assistance disclosure
+Generative-AI systems assisted with proof exploration, adversarial testing, code, literature-search
+organization, and drafting under Alec Kriebel’s direction. Alec Kriebel is the sole named author
+and takes responsibility for the manuscript and release. AI output was not treated as evidence:
+claims were retained only when accompanied by a written proof and replayable checks.
+
+
+A Proof of the scalar extremum
+Write z = e2is , h = π/d, and a = h/2. Half of the sum in (4) is
+                                                  X
+                                                  d−1
+                                       Gd (s) =         |cos(s + yh)|,
+                                                  y=0
+
+which has period h.
+   If d = 2m + 1, take −a ≤ s ≤ a and reindex by k = −m, . . . , m. Every angle lies in [−π/2, π/2],
+so
+                                     Xm
+                            Gd (s) =      cos(s + kh) = csc(a) cos s.
+                                         k=−m
+
+The maximum occurs exactly at s ≡ 0 (mod h), equivalently z d = 1.
+   If d = 2m, take 0 ≤ s ≤ h. The first m cosines are nonnegative and the last m are nonpositive.
+Two finite sums give
+                            X
+                            m−1                    X
+                                                  2m−1
+                 Gd (s) =         cos(s + yh) −          cos(s + yh) = csc(a) cos(s − a).
+                            y=0                   y=m
+
+The maximum occurs exactly at s ≡ a (mod h), equivalently z d = −1. Multiplying by two proves
+Lemma 3.3, including the equality set.
+
+
+B    Proof of support-level rigidity
+We first isolate the finite-dimensional rank step.
+Lemma B.1 (Reflection-product rank bound). Let T be unitary on an n-dimensional space and
+let E be an orthogonal projection of rank r. If
+                                                         d
+                                 T d = 1,      T (1 − 2E) = −1,
+then n ≤ dr.
+
+                                                    19
+Cyclic Bell values and maximizers                                                          A. Kriebel
+
+
+Proof. Put R = 1 − 2E. Factoring the ordered product gives
+
+                           (T R)d = T d Rd−1 · · · R0 ,         Rj = T −j RT j .
+
+Thus −1 = Rd−1 · · · R0 . Each 1 − Rj = 2T −j ET j has rank r, while repeated use of 1 − AB =
+(1 − A) + A(1 − B) gives
+
+                                                      X
+                                                      d−1
+                         rank(1 − Rd−1 · · · R0 ) ≤           rank(1 − Rj ) = dr.
+                                                        j=0
+
+The left side is rank(21) = n.
+
+Proof of Theorem 4.1. Equality in the first reduced bound and in Re(A0 Bd ) ≤ 1 is forced sepa-
+rately. Every positive term in the augmented gap therefore vanishes on |Ψi:
+
+                  Py |Ψi = 0,     (Md 1 − Fd (U ))|Ψi = 0,            (A0 Bd )|Ψi = |Ψi.         (28)
+
+Here and below identity factors on the other parties are suppressed. The last relation follows from
+1 − Re W = 12 (1 − W )† (1 − W ) for unitary W .
+   For every Alice operator R, a Schmidt decomposition across A : (BE) gives the support-
+cancellation equivalence
+                              (R ⊗ 1BE )|Ψi = 0 ⇐⇒ R|K = 0.                                     (29)
+Equivalently, the squared norm is Tr(ρA R† R). This formulation includes nonfaithful ρA and makes
+no assertion on K ⊥ . The middle relation in (28) therefore gives
+
+                     K ⊆ L := ran 1Zd (U ),        Zd = {z ∈ T : z d = (−1)d−1 }.
+
+The augmented stabilizer, after tracing out BE, gives ρA = A0 ρA A†0 , hence A0 K = K.
+   Write Ly = Vy |Ly | and define the possible kernel projection
+
+                     Eybad = 1{−ω−y } (U ),      Fy = Vy Vy† = A0 (1 − Eybad )A†0 .
+
+The bad phase is not in Zd , because its d-th power is (−1)d . Thus Eybad K = 0, and A0 K = K
+gives Fy |K = 1K . Polar functional calculus factors the first residual as
+
+                                      Py = |L†y |1/2 (1 − Vy By ).
+
+The vector qy = (1 − Vy By )|Ψi lies in ran Fy because Fy fixes the state’s Alice support and
+Fy Vy = Vy . Equation (28) also puts qy in ker|L†y |1/2 = ker Fy . Therefore
+
+                                          (Vy By )|Ψi = |Ψi.                                     (30)
+
+This cancellation uses neither an inverse nor a globally unitary extension of Vy .
+   The space K is contained in the initial support of Vy , so Vy is isometric there. Tracing (30)
+over BE yields ρA = Vy ρA Vy† , and hence Vy K = K. Thus Sy = A†0 Vy is unitary on K. On L, polar
+functional calculus gives
+                                                    1 + ωy z
+                      Sy = sy (U ),     sy (z) =               ,      sy (z)2 = ω y z.
+                                                   |1 + ω y z|
+
+
+                                                   20
+Cyclic Bell values and maximizers                                                               A. Kriebel
+
+
+It follows that U |K = ω −y (Sy |K )2 , so U (K) ⊆ K. Since U is unitary and K is finite-dimensional,
+this inclusion implies U (K) = K; hence K reduces U . Let Ek be the spectral projection of U |K
+corresponding to the root zk in (10).
+    Put η = eπi/d , read y + 1 modulo d, and let r∗ = b(d − 1)/2c. Direct division of the adjacent
+half-angle phases gives                             (
+                                                      −η, [k + y]d = r∗ ,
+                               sy (zk )sy+1 (zk ) =
+                                                      η,  [k + y]d 6= r∗ .
+Consequently, for k(y) = [r∗ − y]d ,
+
+                   Sy† Sy+1 = η(1 − 2Ek(y) ),         Vy+1 = ηVy (1 − 2Ek(y) )      on K.             (31)
+
+The map y 7→ k(y) is a permutation of the root labels.
+   Since Vy is Alice-side and By is Bob-side, the two operators commute. Thus (30), together
+with Byd = 1, gives
+                                  Vyd |Ψi = (Vy By )d |Ψi = |Ψi.
+Applying (29) to Vyd − 1 gives Vyd |K = 1K . Since η d = −1, (31) also gives
+                                                            d
+                                        Vy (1 − 2Ek(y) )         = −1K .
+
+Lemma B.1, with n = dim K, yields n ≤ d rank Ek for every k. The Ek ’s are mutually orthogonal
+and sum to 1K , so their ranks sum to n. Every one of the d inequalities must be an equality:
+rank Ek = n/d for all k. This proves the theorem.
+
+
+C     Rechecking the canonical attaining strategy
+This appendix verifies the lower strategy supplied in Ref. [1] in a polar form. On Cd , let
+
+                 Z|ji = ω j |ji,       X|ji = |j + 1 mod di,           A0 = Z,   A1 = X.
+
+Set
+          Wy = ω y Z † X,      Hy = |1 + Wy |,          Qy = Hy−1 (1 + Wy† )Z † ,      By = QTy .
+The weighted-shift action gives
+
+                       Wyd = (−1)d−1 1,         spec(Wy ) = {λ : λd = (−1)d−1 }.
+
+The spectrum is simple, and −1 is absent; hence Hy is invertible. For Ly = Z + ω y X = Z(1 + Wy ),
+
+                                        Ly = Z(1 + Wy )Hy−1 Hy
+                                             |     {z     }
+                                                       Vy
+
+
+is the polar decomposition, and Qy = Vy† is unitary.
+    It remains to check the measurement order. On the displayed spectrum put p(z) = (1+z)/|1+z|.
+Since Z † Wy Z = ω −1 Wy ,
+                                            Y
+                                            d−1
+                                      Qdy =     p(ω −r Wy )† .
+                                                r=0
+
+
+
+
+                                                      21
+Cyclic Bell values and maximizers                                                                      A. Kriebel
+
+
+For each eigenvalue λ, the corresponding scalar equals
+                                Q
+                                   (1 + ω −r λ)    1 − (−λ)d
+                                Qr        −r
+                                                =              = 1.
+                                  r |1 + ω λ|     |1 − (−λ)d |
+
+Thus Byd = 1. The weighted-cycle characteristic polynomial shows that each d-th root occurs.
+    Finally,
+                                                1             1
+                            hΦd |Ly ⊗ By |Φd i = Tr(Ly Vy† ) = Tr(Hy ).
+                                                d             d
+The spectrum of Wy is the scalar equality set, so summing over y gives hId i = Md . Taking the
+extra Bob observable Bd = Z † gives hZ ⊗ Z † i = 1, proving Corollary 3.4.
+    To identify this polar form with the source observables rather than only compare their values,
+write the source expansion as
+
+                               X
+                               d−1
+                                                                     (−1)k ω k(k+1)/2 ω −y(k+1)
+                     Bysrc =         λsrc
+                                      y,k X
+                                            k+1 k
+                                               Z ,        λsrc
+                                                           y,k =                                .
+                               k=0
+                                                                       d sin(π(k + 21 )/d)
+
+Its discrete Fourier transform is
+                                      X
+                                      d−1
+                                            ω my λsrc     src
+                                                  y,k = dλ0,k δk,m−1 (mod d) .
+                                      y=0
+
+At m = 0, 1 this gives exactly
+                   X                             X                                           π
+                       Bysrc = αd Z † ,                ω y Bysrc = αd X,          αd = csc         .         (32)
+                      y                           y
+                                                                                             2d
+
+Thus the source strategy saturates the sum of the termwise polar bounds. Every Ly is invertible
+here, so equality in each positive polar deficit uniquely forces (Bysrc )T = Vy† . Hence Bysrc = QTy = Vy :
+the transpose and complex conjugation are fixed by hΦd |R ⊗ S|Φd i = d−1 Tr(RS T ).
+   For d = 3, the coeﬀicient formula reduces to
+                                             1                             
+                                     By =      2Z 2 + 2ω 2y X − ω y+1 X 2 Z ,
+                                             3
+the explicit source observable, with α3 = 2. This appendix claims no new attaining strategy.
+
+
+D     The exact four-outcome certificate
+Let d = 4, ζ = eπi/8 , and κ = (0, 1, 3, 2). Then
+
+                          A0 = X,        A1 = X diag(ζ 2 , ζ 6 , ζ 14 , ζ 10 ),      B4 = X.
+
+The first-family polar unitaries Vy = X diag(ζ ey,0 , . . . , ζ ey,3 ) are encoded by
+
+                                 y        ey,0 ey,1 ey,2 ey,3
+                                 0           1     3     15     13
+                                 1           3    13      1     15          B y = Vy .
+                                 2          13    15      3      1
+                                 3          15     1     13      3
+
+                                                           22
+Cyclic Bell values and maximizers                                                         A. Kriebel
+
+
+These are exact monomial matrices over Q(ζ16 ), not numerical polar decompositions.
+   The recurrence (14) gives
+
+                           q = (1, ζ 2 , −1, ζ 6 ),      qm |2 )3m=0 = (2, 6, 2, 6).
+                                                       (|b
+
+For both augmented families,
+                                        (
+                                            1/32, a + b even,
+                     p(a, b | 1, 4) =                               G = 3/32 > 1/16.             (33)
+                                            3/32, a + b odd,
+
+For the displayed one-dimensional Eve this gives exactly Hmin (AB) = − log2 (3/32) = 5 − log2 3
+bits, while the ideal uniform table would give four bits. One exact verifier reconstructs (33) from
+projectors and a separate Fourier calculation. An independent exact implementation reconstructs
+                                     bℓ = 4λℓ Dℓ , checks all fourth-power relations, expands the full
+the source coeﬀicients λy,k , proves B
+second-family SOS, and verifies values M4 + 1 and 5.
+
+
+E Binary two-input benchmark
+We prove Theorem 9.2 directly, while crediting its prior-art origin in the main text. Cross-party
+identity factors are suppressed. The exact operator identity is
+                               √          1 √                 2
+                              3 31 − W2 = √    3A0 − B0 + 2B1
+                                         2 3
+                                                                                                 (34)
+                                            1 √               2
+                                          +√    3A1 − B0 − B1 .
+                                             3
+
+Its expansion uses only A2x = By2 = 1 and cross-party commutation. The two same-party Bob
+                                            √
+anticommutator terms cancel, so W2 ≤ 3 31 already in the commuting model.
+    If a finite-dimensional purified strategy attains equality, both squares annihilate |Ψi:
+                                        √                              √
+                     (B0 − 2B1 )|Ψi = 3A0 |Ψi,         (B0 + B1 )|Ψi = 3A1 |Ψi.              (35)
+
+Define the Hermitian operators
+                                         A0 + 2A1                 B0 − 2B1
+                                XA =        √     ,        ZB =      √     .
+                                              3                        3
+Solving (35) gives, explicitly as on-state relations,
+
+                                 B0 |Ψi = XA |Ψi,          ZB |Ψi = A0 |Ψi.
+
+Cross-party commutation and unitarity imply XA2 |Ψi = Z 2 |Ψi = |Ψi. The exact identities
+                                                         B
+                               √                              √
+                   {A0 , XA } = 3(XA  2
+                                        − 1),     {ZB , B0 } = 3(ZB 2
+                                                                      − 1)
+
+therefore yield
+                               {A0 , XA }|Ψi = 0,          {ZB , B0 }|Ψi = 0.                    (36)
+No global anticommutation relation is asserted.
+
+
+
+                                                      23
+Cyclic Bell values and maximizers                                                         A. Kriebel
+
+
+   Put SA = XA B0 and SB = A0 ZB . These Hermitian operators stabilize the state. For every
+Hermitian Eve test TE , cross-party commutation and (36) give
+
+                  hA0 TE i = hSA A0 TE i = hXA A0 B0 TE i = −hA0 TE SA i = −hA0 TE i,
+                  hB0 TE i = hSB B0 TE i = −hB0 TE SB i = −hB0 TE i.
+
+Here the commuting factor B0 TE , respectively A0 TE , may be moved through the relevant on-state
+anticommutator; no global anticommutation is used. Finally,
+
+                                       hA0 B0 TE i = hA0 XA TE i.
+
+The left side is real, while the complex conjugate of the right side is its negative by (36); hence the
+joint moment also vanishes. Thus all three nontrivial binary operator-valued Fourier coeﬀicients
+are zero:
+                                  hA0 TE i = hB0 TE i = hA0 B0 TE i = 0.
+For Ma0 = (1 + (−1)a A0 )/2 and Nb0 = (1 + (−1)b B0 )/2, Fourier inversion gives
+                                    1
+                            ab
+                     Tr(TE σE  )=     Tr(TE ρE ) + (−1)a hA0 TE i + (−1)b hB0 TE i
+                                    4
+                                                            1
+                                      + (−1)a+b hA0 B0 TE i = Tr(TE ρE ).
+                                                                4
+                                        ab = ρ /4.
+Equality for every Hermitian TE proves σE     E
+   For attainment, on |Φ2 i take
+                                             √                             √
+                   A0 = Z,    A1 = − 12 Z + 23 X,        B0 = X,   B1 = − 23 Z + 12 X.
+                                                                                            √
+All four observables square to 1, and the maximally entangled trace identity gives hW2 i = 3 3.
+This finite strategy and (34) establish the q = qa = qc value; the preceding operator-valued
+calculation establishes the stated finite-dimensional privacy conclusion.
+
+
+F    Scoped low-setting observations
+The standard two-input maximally-entangled-qudit self-test [9] uses Fourier-phase bases. Up to
+input swaps, conjugation, transposition, and outcome relabeling, its four ideal tables have the form
+                                                                                 
+                                      sin2 (πδxy )                      1/4 3/4
+               p(a, b | x, y) = 3 2                      , (δxy ) =                  .           (37)
+                               d sin (π(a − b + δxy )/d)               −1/4 1/4
+
+Every table has
+                                                     1              1
+                                    pmax =                     > 2,
+                                             2d3 sin2 (π/(4d))  d
+so no ideal input pair is uniform. Its ideal joint min-entropy is
+                                          π                 π2
+                             log2 2d3 sin2    = log2 d + log2    + o(1).
+                                           4d                 8
+Perfectly anchoring a third Bob setting to either Alice basis leaves a cross table with
+                                               1         1
+                              pcross
+                               max =         2         >            (d ≥ 3).
+                                       d3 sin (π/(2d))   d2
+
+                                                    24
+Cyclic Bell values and maximizers                                                             A. Kriebel
+
+
+The exception d = 2 is precisely the mutually-unbiased qubit case.
+   There is a broader but still scoped obstruction. Let F be the Fourier matrix, ρ = eπi/d , and
+R = diag(1, ρ, . . . , ρd−1 ). The real Hermitian operator system generated by the two ideal Alice
+PVMs is
+                            S = {F diag(x)F † + RF diag(y)F † R† : x, y ∈ Rd }.
+Proposition F.1 (Computational-MUB exposure obstruction). If K ∈ S has a computational
+vector er as an eigenvector with eigenvalue κ, then either K = κ1, or κ is neither the largest nor
+the smallest eigenvalue of K. Consequently, no nontrivial separately bounded term
+                                       X
+                                  L=      Kb ⊗ Q b ,     Kb ∈ S,
+                                              b
+
+can expose the computational PVM on |Φd i through a coeﬀicientwise spectral upper bound.
+Proof. Write K = C + RC ′ R† , with C, C ′ Hermitian circulants. Index rows and columns by
+0, . . . , d − 1, and write
+                                                  ′
+                                Cjk = cj−k ,    Cjk = c′j−k ,
+where the coeﬀicient subscripts are understood modulo d, while the exponent in
+
+                                           (RC ′ R† )jk = ρj−k c′j−k
+
+uses the ordinary integer difference j −k. The diagonal equation gives c0 +c′0 = κ. The off-diagonal
+components of Ker = κer , first with j = r + t and then with j = r − t, are
+
+                            ct + ρt c′t = 0                            (1 ≤ t ≤ d − 1 − r),
+                     cd−t + ρ−t c′d−t = 0                              (1 ≤ t ≤ r).
+
+Put s = min(r, d − 1 − r). Since C and C ′ are Hermitian,
+
+                             cd−t = ct ,          c′d−t = c′t       (1 ≤ t ≤ d − 1).
+
+Conjugating the second indexed family and combining it with the first therefore gives
+
+                      ct + ρt c′t = 0      (1 ≤ t ≤ max(r, d − 1 − r) = d − 1 − s).
+
+For s + 1 ≤ t ≤ d − 1, the index u = d − t satisfies 1 ≤ u ≤ d − 1 − s. Applying the preceding
+equation at u and taking its Hermitian conjugate gives
+
+                                                  ct + ρt−d c′t = 0.
+
+Because ρd = −1, this is
+                                  ct − ρt c′t = 0        (s + 1 ≤ t ≤ d − 1).
+On the common index range
+                                              s+1≤t≤d−1−s
+(which may be empty), adding and subtracting the last two equations shows directly that
+
+                                                    ct = c′t = 0.
+
+Thus only the off-diagonal cyclic modes t ∈ {1, . . . , s} ∪ {d − s, . . . , d − 1} can survive, with both
+sets empty when s = 0.
+
+                                                         25
+Cyclic Bell values and maximizers                                                             A. Kriebel
+
+
+    For 1 ≤ t ≤ s, the relation ct + ρt c′t = 0, and its Hermitian conjugate, cancel the entries
+having ordinary differences t and −t. The only surviving occurrences are therefore the wraparound
+differences t − d and d − t. Set
+                          at := ct + ρt−d c′t = ct − ρt c′t = 2ct   (1 ≤ t ≤ s).
+After grouping the first s, middle d − 2s, and last s coordinates, the upper-right corner has entries
+                                                 (
+                                                   as+p−q , 0 ≤ p ≤ q ≤ s − 1,
+                     Tpq := (K − κ1)p,d−s+q =
+                                                   0,        0 ≤ q < p ≤ s − 1.
+Hence T is an s-by-s upper-triangular Toeplitz matrix, and Hermiticity supplies the lower-left
+corner:                                                       
+                                                       0 0 T
+                                         K − κ1 =  0 0 0  .
+                                                      T† 0 0
+                                                          
+On the first and last coordinate blocks this is T0† T0 . If s = 0, the preceding vanishing already
+gives K = κ1. If s > 0 and T = 0, then T0,s−t = at = 0 for every 1 ≤ t ≤ s. Hence ct = 0 by
+at = 2ct , and c′t = 0 by ct + ρt c′t = 0. Hermiticity eliminates the modes d − s, . . . , d − 1, while the
+middle modes already vanish; together with c0 + c′0 = κ, this gives K = κ1. Thus a nonscalar K
+forces T 6= 0. An SVD of T shows that this block matrix has nonzero eigenvalues ±σj (T ). Hence
+a nonscalar K has spectrum on both sides of κ.
+    To saturate a coeﬀicientwise upper bound on the maximally entangled state with computational
+Qb , every computational outcome has nonzero weight and the corresponding eb must be a maximal
+eigenvector of Kb . The first part makes that impossible unless all relevant Kb are scalar, in which
+case the term constrains no measurement.
+
+   Proposition F.1 rules out only this separately bounded local- spectral route. It is not a no-go
+theorem for (2, 3, d, d), and it is not used in any cyclic-family conclusion.
+
+
+G     Source conventions and claim boundary
+Our first-family definition (1) follows the displayed main-text operator definition in Ref. [1]. A
+nearby appendix writes one Bob adjoint differently while its subsequent calculation follows the main
+convention. Replacing every Bob observable by its adjoint transports between the two notations,
+but mixing them within one formula does not. We therefore state every adjoint explicitly and test
+the Fourier orientation.
+    For the second family, (20) matches the Hermitian content of the source definition and the
+SOS of Ref. [1], Eqs. (22)–(23), with prefactor 1/(2d). The source text adjacent to the canonical
+construction briefly omits Alice’s entrywise conjugation, while its theorem includes it. Our choice
+Aℓ = Dℓ is the one that annihilates the displayed SOS on |Φd i.
+    If instead every Bob observable in the source appendix is written with an adjoint, set By′ = By†
+and Bd′ = Bd† . This is Bob’s outcome inversion: it sends p(a, b) to p(a, −b) while preserving
+the maximum, nonuniformity, and guessing probability. It cannot be mixed termwise with the
+no-adjoint convention used in (20).
+    The source’s numerical guessing-probability table explicitly fixes the full canonical distribution.
+Our scalar-value conclusion should therefore not be read as a criticism of that calculation. The
+literal maximal-violation conjecture and the fixed-behavior numerical experiment have different
+logical hypotheses; the present construction separates them.
+
+                                                     26
+Cyclic Bell values and maximizers                                                     A. Kriebel
+
+
+References
+ [1] I. Perito, R. D’Avino, M. Jung, P. Mironowicz, A. Acín, and R. Augusiak, Bell inequalities
+     tailored to optimal global randomness certification, arXiv:2606.21362v3 (2026),
+     https://arxiv.org/abs/2606.21362v3.
+
+ [2] C. Dhara, G. Prettico, and A. Acín, Maximal quantum randomness in Bell tests, Phys. Rev.
+     A 88, 052116 (2013), https://doi.org/10.1103/PhysRevA.88.052116.
+
+ [3] O. Nieto-Silleras, S. Pironio, and J. Silman, Using complete measurement statistics for
+     optimal device-independent randomness evaluation, New J. Phys. 16, 013035 (2014),
+     https://doi.org/10.1088/1367-2630/16/1/013035.
+
+ [4] J.-D. Bancal, L. Sheridan, and V. Scarani, More randomness from the same data, New J.
+     Phys. 16, 033011 (2014), https://doi.org/10.1088/1367-2630/16/3/033011.
+
+ [5] M. Navascués, S. Pironio, and A. Acín, Bounding the set of quantum correlations, Phys.
+     Rev. Lett. 98, 010401 (2007), https://doi.org/10.1103/PhysRevLett.98.010401.
+
+ [6] H. Buhrman and S. Massar, Causality and Tsirelson’s bounds, Phys. Rev. A 72, 052103
+     (2005), https://doi.org/10.1103/PhysRevA.72.052103.
+
+ [7] A. Salavrakos, R. Augusiak, J. Tura, P. Wittek, A. Acín, and S. Pironio, Bell inequalities
+     tailored to maximally entangled states, Phys. Rev. Lett. 119, 040402 (2017),
+     https://doi.org/10.1103/PhysRevLett.119.040402.
+
+ [8] J. Kaniewski, I. Šupić, J. Tura, F. Baccari, A. Salavrakos, and R. Augusiak, Maximal
+     nonlocality from maximal entanglement and mutually unbiased bases, and self-testing of
+     two-qutrit quantum systems, Quantum 3, 198 (2019),
+     https://doi.org/10.22331/q-2019-10-24-198.
+
+ [9] S. Sarkar, D. Saha, J. Kaniewski, and R. Augusiak, Self-testing quantum systems of
+     arbitrary local dimension with minimal number of measurements, npj Quantum Information
+     7, 151 (2021), https://doi.org/10.1038/s41534-021-00490-3.
+
+[10] L. Wooltorton, P. Brown, and R. Colbeck, Tight analytic bound on the trade-off between
+     device-independent randomness and nonlocality, Phys. Rev. Lett. 129, 150403 (2022),
+     https://doi.org/10.1103/PhysRevLett.129.150403.
+
+[11] V. Barizien, P. Sekatski, and J.-D. Bancal, Custom Bell inequalities from formal sums of
+     squares, Quantum 8, 1333 (2024), https://doi.org/10.22331/q-2024-05-02-1333.
+
+[12] I. Klep, N. Leijenhorst, and V. Magron, Robust self-testing with CHSH mod 3,
+     arXiv:2604.03700v1 (2026), https://arxiv.org/abs/2604.03700v1.
+
+[13] L. Coccia, M. Padovan, and G. Vallone, Systematic derivation of Tsirelson bounds in
+     arbitrary dimensions, arXiv:2606.21626v1 (2026), https://arxiv.org/abs/2606.21626v1.
+
+[14] M. Farkas, P. Mironowicz, and R. Augusiak, Maximal global device-independent
+     randomness from projective measurements in every dimension, arXiv:2606.21369v2 (2026),
+     https://arxiv.org/abs/2606.21369v2.
+
+
+
+                                               27
+Cyclic Bell values and maximizers                                                    A. Kriebel
+
+
+[15] R. D’Avino, I. Perito, P. Mironowicz, A. Acín, and R. Augusiak, Noise robustness of three
+     outcome Bell certified quantum randomness, arXiv:2606.21371v2 (2026),
+     https://arxiv.org/abs/2606.21371v2.
+
+
+
+
+                                               28
+

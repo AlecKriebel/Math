@@ -7,16 +7,20 @@ from urllib.parse import urlsplit,urljoin,unquote
 import json,hashlib,re,datetime,subprocess,zipfile,gzip,tarfile,zlib,unicodedata,argparse,sys
 from html import unescape
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from published_assets import PublishedAssets, asset_name
+from published_assets import PublishedAssets, asset_name, normalized_receipt_view
 parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
 parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
 parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
 parser.add_argument('--output-stem',default='final-content-check')
+parser.add_argument('--output-dir',type=Path,default=Path(__file__).resolve().parent)
 args=parser.parse_args()
 if not re.fullmatch(r'[a-zA-Z0-9_-]+',args.output_stem):parser.error('output-stem must be a simple filename stem')
 R=Path(__file__).resolve().parents[1]
+if not args.output_dir.resolve().is_relative_to(R/'verification'):parser.error('output-dir must be inside verification')
 S=args.site
 TEX_PATHS={
+ '23431676':'published-source/pr1097_support_v1_0/paper.tex',
+ '23387442':'published-source/satoh_filtration_verification/satoh_filtration_counterexamples.tex',
  '23328912':'published-source/aim_5_2_source/preprint.tex',
  '23524971':'published-source/dfc_stability_verification/dfc_stability_verification/main.tex',
  '23572690':'published-source/bv-generators-source-and-verification/main.tex',
@@ -59,6 +63,13 @@ TEX_PATHS={
  '23441906':'published-source/simple-brace-counterexample-source-and-verification/main.tex',
  '23431313':'published-source/paper.tex',
 }
+REACH_SATOH_IDS={'23431676','23387442'}
+def normalized_reach_satoh_abstract(rid,body):
+ if rid=='23431676':body=body.replace(r'T\'othm\'er\'esz','Tóthmérész')
+ else:
+  body=body.replace('$','').replace(r'\SL','SL').replace(r'\C','ℂ')
+  body=body.replace(r'\setminus',' '+chr(92)+' ').replace(r'\geq','≥').replace("Satoh's",'Satoh’s')
+ return ' '.join(body.split())
 BRACE_NIJENHUIS_IDS={'23441906','23431313'}
 def normalized_brace_nijenhuis_abstract(rid,body):
  if rid=='23441906':body=body.replace("Ced\\'o",'Cedó').replace('~',' ').replace('\\,',' ').replace('$','').replace('\\ne','≠').replace('^3','³')
@@ -121,6 +132,7 @@ def normalized_bv_abstract(body):
  for old,new in replacements.items():body=body.replace(old,new)
  return body
 def abstract_tokens(tex,record_id=None):
+ if record_id in REACH_SATOH_IDS:return wt(normalized_reach_satoh_abstract(record_id,tex))
  if record_id=='23328912':return wt(normalized_cubulation_abstract(tex))
  if record_id=='23524971':return wt(normalized_dfc_abstract(tex))
  if record_id=='23572690':return wt(normalized_bv_abstract(tex))
@@ -244,8 +256,9 @@ for rid in args.record_ids:
    if good and q.suffix=='.html' and u.fragment:good=unquote(u.fragment) in [b['id'] for _,b in Doc(q).a if 'id' in b]
    local.append(good)
  test('local_links_anchors',all(local))
- receipt=json.loads((p/'sources/receipt.json').read_text()); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
+ raw_receipt=json.loads((p/'sources/receipt.json').read_bytes());receipt=normalized_receipt_view(raw_receipt); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
  resolver=PublishedAssets(p/'sources',receipt,c.get('source_binding',{}).get('embedded_assets',[]))
+ for asset in c.get('additional_assets',[]):resolver.additional_asset_kind(asset)
  assets=[(key,c[key]) for key in ['pdf_filename','supplement_filename'] if c.get(key)]
  assets += [('additional_asset_'+asset['filename'],asset['filename']) for asset in c.get('additional_assets',[])]
  for key,name in assets:
@@ -283,7 +296,7 @@ for rid in args.record_ids:
   for related in c['source_binding'].get('related_records',[]):
    related_receipt=p/related.get('receipt','sources/related-records/'+related['record_id']+'/receipt.json')
    if not related_receipt.resolve().is_relative_to(p.resolve()):raise ValueError('Related receipt must remain within its paper folder')
-   rp=related_receipt.parent;rr=json.loads(related_receipt.read_text())
+   rp=related_receipt.parent;rr=normalized_receipt_view(json.loads(related_receipt.read_bytes()))
    related_bound=related_bound and rr['record_id']==related['record_id'] and rr['files']==related['files']
    related_bound=related_bound and all(sha(rp/asset_name(x))==x['sha256'] for x in rr['files'])
   test('related_resource_source_bindings',related_bound)
@@ -608,11 +621,46 @@ for rid in args.record_ids:
   test('scope_limits_and_predecessors',all(x in unescape(h) for x in ['does not classify arbitrary Weyl subalgebras, positive-characteristic cases, twisted-coefficient variants, or Poisson analogues','It makes no first-discovery claim','Lopes and Solotar','Benkart, Lopes and Ondrus','Herscovich and Li','Proposition 4.15','Theorem 1.7 assumes a semisimple modular automorphism']))
   test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)==6 and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
   test('primary_source_verification_zip',c['supplement_filename']=='bv-generators-source-and-verification.zip' and gate['supplement_sha256']==c['source_binding']['supplement_sha256']==sha(p/'sources'/c['supplement_filename']) and c['supplement_filename'] in [x.get('href') for t,x in d.a if t=='a'])
+ if rid in REACH_SATOH_IDS:
+  source_hash={'23431676':'daaacbeb3b198a8c13208663a6e49fc417a5b7ec2e7a0bfa62a9a87e42ce7f5f','23387442':'6860fe1479f4fb0737489311e0b6c6ec4fda616e98e245feede72b4bde593af8'}[rid]
+  clearance_hash={'23431676':'8e97b60c0ef40677bb217806a59269949bfae6cc25fbfd02dbc29b58cabf733c','23387442':'1a100a1722debd437303b74a81585a97cce3defca16923179af9fc5b912ede1f'}[rid]
+  test('abstract_full_source_text',normalized_reach_satoh_abstract(rid,a)==c['abstract'])
+  test('abstract_full_source_word_count',len(c['abstract'].split())==c['source_binding']['abstract_word_count']=={'23431676':125,'23387442':104}[rid])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==1)
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath)==source_hash and c['source_binding']['source_tex_path']==c['source_binding']['abstract_source'] and c['source_binding']['source_tex_sha256']==source_hash)
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json')==c['source_binding']['receipt_sha256']==c['source_binding']['source_receipt_sha256'])
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_bytes()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] and (p/'sources'/asset_name(x)).stat().st_size==x['bytes'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_bytes())
+  test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path)==clearance_hash and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['formal_machine_verification'] is False)
+  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] and clearance['reviews'][k]['report']==('papers/'+rid+'/'+v['report']) and clearance['reviews'][k]['verdict']==('papers/'+rid+'/'+v['verdict_file']) for k,v in gate['reviews'].items()))
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/candidate.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/candidate.json'))
+  scope_verdict=gate['reviews']['scope']['verdict']
+  test('frozen_scope_chronology_preserved',scope_verdict['status']=='SCOPE_COMPLETE_MATHEMATICAL_REVIEW_PENDING' and scope_verdict['mathematical_verdict'] is None and scope_verdict['publication_authorized'] is False and gate['reviews']['scope']['root_disposition']=='SCOPE_COMPLETE' and gate['scope_gate_resolution']==clearance['scope_gate_resolution'])
+  test('no_unjustified_follow_up',c['follow_up'] is None and gate['follow_up'] is None and clearance['follow_up'] is None)
+  test('metadata_author_orcid',c['author']=='Alec Kriebel' and art['author'][0]['sameAs']=='https://orcid.org/0009-0001-9320-500X' and c['doi']=='10.5281/zenodo.'+rid)
+  test('record_metadata_binding',sha(p/'sources/record.json')==c['source_binding'].get('metadata_sha256',c['source_binding'].get('record_sha256')))
+  test('record_creation_exact',json.loads((p/'sources/record.json').read_bytes())['created']==c['source_binding']['record_created_utc']=={'23431676':'2026-10-17T05:45:36.045033+00:00','23387442':'2026-10-15T07:50:10.998117+00:00'}[rid])
+  test('manuscript_date_distinguished',c['publication_date_label']=='Manuscript dated' and c['publication_date']==record['publication_date']=='2026-10-15' and c['source_binding']['manuscript_date']=='2026-10-15' and c['edition_note'] in unescape(h) and '<br>Manuscript dated <time datetime="2026-10-15">15 October 2026</time>' in h)
+  test('unrefereed_ai_and_authorship',all(x in unescape(h) for x in ['Unrefereed preprint','AI tools were used extensively','human peer review','actual research contributions']) and art['creativeWorkStatus']=='Unrefereed preprint')
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and {asset_name(x) for x in receipt['files']}=={name for _,name in assets} and c['source_binding']['embedded_assets']==[] and len(frames)==1 and len(texts)=={'23431676':6,'23387442':4}[rid])
+  if rid=='23431676':
+   test('raw_assets_schema_preserved','files' not in raw_receipt and receipt['files']==raw_receipt['assets'] and gate['source_receipt_asset_field']==c['source_binding']['receipt_asset_field']=='assets' and sha(p/'sources/receipt.json')=='c4ecaf95a88e3cf418f6587396cdb1ad05f191cbe96c6546c990e523f29cb548')
+   test('scope_complete',all(x in unescape(h) for x in ['finite nonempty loopless strongly connected directed multigraphs','finite sequential legal firing word','nonnegative initial configuration','specified nonnegative target','deterministic polynomial-time many-one reductions','number of vertices varies with the input','both configurations are encoded in binary','empty firing word is allowed','may stop even when another move remains available','Malformed inputs are rejected','one-vertex loopless case, reachability is exactly equality','every target-reaching word','polynomially many bits']))
+   test('limits_and_prior_credit',all(x in unescape(h) for x in ['No corresponding classification is established for simple graphs, unary encodings, bounded degrees or bounded total chip counts','Both input configurations are nonnegative','does not establish coNP membership for every signed formulation','not the running time of a reachability algorithm','Prior work by Hujter, Kiss and Tóthmérész supplies coNP membership','Farrell and Levine','Björner and Lovász','Priority of the complete result or gate/marker mechanism, independent discovery and present worldwide openness remain unestablished']))
+   test('printed_version_date',r'\date{15 October 2026, version 1.0}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0' and c['source_binding']['publication_date_policy']['record_created_utc']==clearance['publication_date_policy']['record_created_utc'] and 'not verified public availability' in unescape(h))
+   test('authenticated_missing_kind_zip',c['supplement_filename'] is None and gate['supplement_sha256'] is None and c['additional_assets']==[{'filename':'pr1097_support_v1_0.zip','label':'Source and verification package (ZIP)'}] and resolver.additional_asset_kind(c['additional_assets'][0])=='zip')
+  else:
+   test('abstract_five_complete_sentences',len(re.findall(r'\.(?:\s|$)',c['abstract']))==5 and hashlib.sha256(a.strip().encode()).hexdigest()==c['source_binding']['abstract_tex_sha256'])
+   test('scope_complete',all(x in unescape(h) for x in ['integral lower central series','entire J/J^{k+1}','rational algebra of SL(2,ℂ) matrix-entry functions','[g,h]=ghg⁻¹h⁻¹','w=[[[x₁,x₂],[x₁,x₃]],x₁]','For every n≥4, the automorphism x₄↦x₄w fixing the other generators lies in D_n(5) but not A_n(5)','v=[[[x₁,x₂],[x₁,[x₁,x₂]]],x₁]','For every n≥3, the automorphism x₃↦x₃v fixing the other generators lies in D_n(6) but not A_n(6)','actual powers J⁶ and J⁷','Integral Magnus expansions']))
+   test('limits_and_prior_credit',all(x in unescape(h) for x in ['does not establish a degree-five counterexample at rank three, failure in every degree, or an extension to larger matrix sizes','not a theorem about a trace algebra, a character algebra or a Grothendieck representation ring','distinct from the comparison of the Andreadakis filtration with the lower central series of IA_n','no new polynomial identity, historical firstness, exhaustive novelty clearance or continuing worldwide openness','2018 Oberwolfach report, pp.87–90','8 December 2017','2021 Pacific Journal of Mathematics publication','final journal text was not inspected','27 February 2015','Razmyslov','through Burde']))
+   test('metadata_version_not_printed_version',r'\date{15 October 2026}' in source and record['version']==c['version']==c['source_binding']['zenodo_version']=='1.0' and c['source_binding']['manuscript_version'] is None and c['edition_label']==c['citation_edition_label']=='Zenodo version 1.0' and 'manuscript does not print a version number' in unescape(h))
+   test('primary_source_verification_zip',c['supplement_filename']=='satoh_filtration_verification.zip' and c['additional_assets']==[] and gate['supplement_sha256']==c['source_binding']['supplement_sha256']==sha(p/'sources'/c['supplement_filename']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'
 try:
- target=R/'verification'/args.output_stem
+ target=args.output_dir/args.output_stem
  target.with_suffix('.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
  lines=['# Final content QA','',result['time'],'','Status: '+result['status'],'','Completion: 100% of requested checks executed.','',
  'Read-only checks of generated content against approved publication data and published source. Browser rendering and external HTTP checks are separate.','']

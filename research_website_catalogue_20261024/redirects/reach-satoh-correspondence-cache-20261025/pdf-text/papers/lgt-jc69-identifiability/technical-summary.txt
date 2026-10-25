@@ -1,0 +1,129 @@
+                    Global Identifiability in a Three-Taxon LGT Model
+                                     Exhaustive genealogy calculation under JC69
+                           Alec Kriebel    —        Version 0.2 – prepared for author audit – August 2026
+
+Principal theorem. Fix a known JC69 substitution rate µ > 0. For one sampled ortholog from each taxon on the rooted
+clocklike species tree ((1, 2), 3), with 0 < t1 < t2 , constant ordered-pair transfer rate λ > 0, donor retention, recipient
+replacement, no incomplete lineage sorting, and exact population site-pattern probabilities, the exhaustive ordered-pair
+Poisson LGT map is globally injective. The distribution uniquely determines (t1 , t2 , λ) at every interior point, and the
+Jacobian has rank three everywhere. There is no exceptional interior set and no second interior preimage.
+
+1. The omitted movement                                                either noncherry pair is e−2µg2 , and the nontrivial three-way
+                                                                       coordinate is e−µ(g1 +2g2 ) .
+A species branch is ancestrally unoccupied when it currently              For aggregate classes p0 , p12 , p13 = p23 , pD , define
+carries none of the ancestral lineages of the sampled leaf
+genes; the branch still carries a population gene copy.                         4(p0 + p12 ) − 1                     4(p0 + p13 ) − 1
+                                                                             A=                  ,             B=                     ,
+   Choose 0 < u < v < t1 . At u, branch 1 transfers into                               3                                    3
+branch 2. Backward in time, lineage 2 jumps to branch 1                         16p0 − 1 − 3A − 6B
+                                                                             C=                    .
+and coalesces with lineage 1, fixing cherry (1, 2). Branches                             6
+1 and 3 then carry the surviving sampled ancestry, and                 This is an affine isomorphism, and
+branch 2 is ancestrally unoccupied. At v, branch 2 transfers
+into branch 3. Backward in time, lineage 3 jumps to branch                                               4
+                                                                                            A−B =          (p12 − p13 ).
+2. This causes no immediate coalescence, but the surviving                                               3
+lineages now occupy branches 1 and 2 and coalesce vertically
+at t1 . Without the second transfer they remain on branches
+1 and 3 and do not coalesce at t1 .
+                                                                       4. Compact corrected map
+   Thus the second transfer changes the second coalescence             Set
+time and branch lengths without changing the already
+formed cherry. Topology frequencies can remain correct                             λ
+                                                                             q=       ,     x = e−(λ+µ)t1 ,      y = e−(λ+µ)(t2 −t1 ) ,
+while site-pattern probabilities change.                                          λ+µ
+                                                                       then 0 < q, x, y < 1. Put
+2. Exhaustive CTMC correction                                                     r = q + (1 − q)y 2 ,    X = x2−q ,       Z = x3 ,
+After the first sampled-gene coalescence, let the state be the         and D = A − B, M = (A + 2B)/3. Exhaustive integration
+identity of the ancestrally unoccupied branch. Conditional             gives
+on no second transfer-coalescence, this state has generator
+                                                                                    D = (1 − r)x2+q/2 ,
+                           −2 1       1
+                       λ                                                                q(1 − X) 1 + 2r
+                  Q=        1 −2 1  .                                               M=              +        X,
+                       2                                                                    2−q           3
+                            1    1 −2
+                                                                                         q 2 ((q − 2)Z + 3X − (q + 1))
+                                                                                      C=
+The second transfer-coalescence has hazard λ. Given sur-                                          (q − 2)(q + 1)
+vival for elapsed time s,                                                                          q(1 + 2r)
+                                                                                         + rZ +              (X − Z),
+               1 2 −3λs/2                      1 1 −3λs/2                                            q+1
+   Pee (s) =    + e       ,       Pee′ (s) =    − e       .
+               3 3                             3 3                     with q < r < 1. These formulas do not depend on the
+                                                                       numerical value of fixed µ after reparameterization.
+This sums arbitrarily many noncoalescing movements ex-
+actly. The resulting genealogy measure is disjoint, exhaus-
+tive, and normalized. It recovers
+
+            1 2 −3λt1                               1 1 −3λt1
+P (T1 ) =    + e      ,       P (T2 ) = P (T3 ) =    − e      .
+            3 3                                     3 3
+
+3. Fourier and pattern coordinates
+For a three-leaf ultrametric gene tree with interior times
+g1 < g2 , the cherry-pair JC69 Fourier coordinate is e−2µg1 ,
+
+
+                                                                   1
+5. Global-univalence argument                                        7. Two distinct associated maps
+Fix observed D, M . Eliminating r yields                             Auxiliary map Ftable . This is the fourteen-history map
+                                                                     obtained by distinguishing the two one-transfer density
+                     q    2(1 − q)    2D −3q/[2(2−q)]
+ M = Φq (X) =           +          X−    X            .              types and treating the displayed transfer variables as abso-
+                    2−q    2−q         3                             lute gene-tree times. A 384-bit outward-rounded Krawczyk
+For every q ∈ (0, 1), Φ′q (X) > 0, Φq (X) → −∞ as X ↓ 0,             certificate proves a second unique preimage of the exact
+and the observed M < Φq (1). Hence each q determines a               target generated by (q, x, y) = (1/2, 1/10, 3/5). Both Ja-
+unique formal X, x, r.                                               cobians exclude zero. Therefore the image contains a
+                                                                     nonempty open set of regular values with at least two
+   Let h = (1 − r)/(1 − q). The formal branch has r < 1,
+                                                                     preimages. No claim is made about almost every point of
+hence h > 0, and physical feasibility is exactly 0 < h < 1.
+                                                                     the entire image.
+Exact implicit differentiation shows dh/dq > 0 whenever
+h ≤ 1. Every crossing of h = 1 is therefore upward; a later            Distributed map Fsrc . For arXiv:2607.14653v1 and
+re-entry would require a downward crossing. Since the                repository commit
+generating point is feasible, the feasible q-set is a nonempty                   1954b2ab92525dfdaf43b50f97dcf46658cab6c9
+interval.
+   The 2 × 2 minor is                                                exact evaluation at (q, x, y) = (1/2, 81/100, 1/10) gives
+                                                                     positive normalized classes but
+               ∂(D, M )
+         det            = x3−q/2 [2 − q(1 + r)] > 0.                                  57472173                           172416519
+                ∂(x, r)                                              Asrc −Bsrc = −             ,    pxxy −pxyx = −                .
+                                                                                      800000000                         3200000000
+An exact factorization and convexity argument prove
+                                                                     Here p12 = pxxy , p13 = pxyx , and p23 = pyxx under the
+                           ∂(D, M, C)                                source’s aggregate convention. Thus Fsrc reverses the pro-
+                       det             <0
+                            ∂(q, x, r)                               cess inequality. The source snapshot records immutable
+                                                                     identifiers and hashes.
+throughout the domain. Along the fixed-(D, M ) branch,
+           dC   det ∂(D, M, C)/∂(q, x, r)
+              =                           < 0.                       8. Verification
+           dq     det ∂(D, M )/∂(x, r)
+Thus C selects a unique q, and then unique x, r, y and               Run
+(t1 , t2 , λ).
+                                                                     make verify-exact
+
+6. Topology and rate scale                                           from the package root. It deterministically checks genealogy
+                                                                     normalization, all symbolic integrations, the Fourier/site-
+The corrected map gives                                              pattern transformation, all 64 JC69 patterns, the global-
+                                                                     univalence identities, topology and scale identities, the
+           A − B = (1 − q)(1 − y 2 )x2+q/2 > 0,                      exact source diagnostic, and the MPFR Krawczyk certifi-
+                                                                     cate. Its final line is
+so p12 > p13 = p23 . After relabeling, the uniquely largest
+matching-pair class identifies the rooted species-tree cherry;       ALL EXACT CHECKS PASSED
+the theorem then identifies the parameters.
+  If µ is unknown, the exact invariance                              Monte Carlo is separated as make audit-simulation.
+                                                                                                                    √        The
+                                                                     interval verifier reconstructs the target in Q( 10) and does
+               (t1 , t2 , λ, µ) 7→ (ct1 , ct2 , λ/c, µ/c)            not reuse the discovery root search.
+leaves q, x, y unchanged. A time or rate scale must therefore
+be fixed. This does not weaken the theorem for fixed known
+µ.
+
+
+
+
+                                                                 2
+
