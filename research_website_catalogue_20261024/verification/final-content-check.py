@@ -50,7 +50,11 @@ TEX_PATHS={
  '23430642':'published-source/rank_one_uniqueness_v1_0/paper.tex',
  '23387814':'published-source/seshadri_counterexample_verification/seshadri_counterexample.tex',
  '23431716':'published-source/paper.tex',
+ '22089373':'published-source/Strong_Tree_Childness_Sharp_Level2_JC_source/paper/main.tex',
 }
+def normalized_jc_abstract(body):
+ body=body.replace('Jukes--Cantor','Jukes–Cantor').replace('$n\\ge4$','n ≥ 4').replace('$2n+1$','2n + 1')
+ return '\n\n'.join(' '.join(x.split()) for x in re.split(r'\n\s*\n',body.strip()))
 GAME_SESHADRI_IDS={'23430642','23387814'}
 def normalized_game_seshadri_abstract(rid,body):
  if rid=='23430642':
@@ -88,6 +92,7 @@ def decode_added_abstract(tex):
  return tex.replace(r'\[','').replace(r'\]','').replace('$','').replace('--','–').replace("'",'’')
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex,record_id=None):
+ if record_id=='22089373':return wt(normalized_jc_abstract(tex))
  if record_id in GAME_SESHADRI_IDS:return wt(normalized_game_seshadri_abstract(record_id,tex))
  if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
  if record_id in OCTOBER_EDITOR_IDS:tex=normalized_october_abstract(record_id,tex)
@@ -242,7 +247,9 @@ for rid in args.record_ids:
   test('supporting_materials_links',all(x['url'] in materials and x['label'] in unescape(materials) and x.get('doi','') in unescape(materials) for x in c['related_resources']))
   related_bound=True
   for related in c['source_binding'].get('related_records',[]):
-   rp=p/'sources/related-records'/related['record_id'];rr=json.loads((rp/'receipt.json').read_text())
+   related_receipt=p/related.get('receipt','sources/related-records/'+related['record_id']+'/receipt.json')
+   if not related_receipt.resolve().is_relative_to(p.resolve()):raise ValueError('Related receipt must remain within its paper folder')
+   rp=related_receipt.parent;rr=json.loads(related_receipt.read_text())
    related_bound=related_bound and rr['record_id']==related['record_id'] and rr['files']==related['files']
    related_bound=related_bound and all(sha(rp/asset_name(x))==x['sha256'] for x in rr['files'])
   test('related_resource_source_bindings',related_bound)
@@ -425,6 +432,27 @@ for rid in args.record_ids:
   test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['supplement_sha256']==gate['supplement_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
   test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/CONTENT_CANDIDATE.md' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/CONTENT_CANDIDATE.md'))
   test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_verdict'] is None and bool(gate['scope_gate_resolution']))
+ if rid=='22089373':
+  test('abstract_full_source_text',normalized_jc_abstract(a)==c['abstract'])
+  test('abstract_full_223_words',len(c['abstract'].split())==223)
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==2)
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==223)
+  test('scope_complete',all(x in unescape(h) for x in ['binary, LSA-rootable, already-simple','level at most two','every admissible rooting must be tree-child','uniform root distribution','displayed-tree mixture','strictly between zero and one','source model’s full dimension','labelled reduced bridge trees','ordinary triangle redirection','proper algebraic exceptional set','dimension 2n + 1','dimension 2n']))
+  test('scope_limits_preserved',all(x in unescape(h) for x in ['not equality of entire stochastic model images','within this class','do not show that every weakly tree-child network is ambiguous','physical bridge multipliers remain unidentifiable','exact full distribution with 4^n entries','does not establish worldwide priority']))
+  test('zenodo_date_and_printed_month_distinct',r'\date{August 2026}' in source and c['publication_date_label']=='Zenodo date' and c['edition_label']=='Zenodo version 1.1.7' and record['publication_date']==c['publication_date']=='2026-08-23' and record['version']==c['version']=='1.1.7' and c['source_binding']['manuscript_date']=='August 2026' and c['source_binding']['manuscript_version'] is None and '<br>Zenodo date <time datetime="2026-08-23">23 August 2026</time>' in h and c['edition_note'] in unescape(h))
+  test('two_original_reader_pdfs',len(texts)==33 and 'Reader supplement (PDF, 7 pages)' in unescape(h) and c['source_binding'].get('embedded_assets',[])==[])
+  links=[attrs['href'] for tag,attrs in d.a if tag=='a' and 'href' in attrs]
+  test('all_four_selected_assets_linked',len(receipt['files'])==4 and all(asset_name(x) in links for x in receipt['files']))
+  related=c['source_binding']['related_records'][0];rp=p/related['receipt'];rr=json.loads(rp.read_text());archive='stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz'
+  test('separate_companion_archive_identity',related['record_id']=='22064121' and len(rr['files'])==10 and related['source_receipt_sha256']==sha(rp) and related['record_sha256']==sha(rp.parent/'record.json') and 'https://zenodo.org/records/22064121/files/'+archive+'?download=1' in links and archive not in [asset_name(x) for x in receipt['files']] and not (f.parent/archive).exists())
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+  test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False)
+  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['supplement_pdf_sha256']==c['source_binding']['reader_pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()) and all(sha(p/name)==v['sha256'] for name,v in clearance['source_receipts'].items()))
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/content.json'))
+  test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_gate']=='NOT_PERFORMED_BY_SCOPE_REVIEWER' and bool(gate['scope_gate_resolution']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

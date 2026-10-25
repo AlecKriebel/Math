@@ -1,0 +1,1847 @@
+Documenta Math.                                                             1773
+
+
+
+
+    Gerstenhaber Structure on Hochschild Cohomology
+      of the Fomin-Kirillov Algebra on 3 Generators
+
+                   Estanislao Herscovich and Ziling Li
+
+
+                              Received: April 11, 2022
+                             Revised: September 9, 2022
+
+                          Communicated by Henning Krause
+
+
+
+
+      Abstract. The goal of this article is to compute the Gerstenhaber
+      bracket of the Hochschild cohomology of the Fomin-Kirillov algebra on
+      three generators over a field of characteristic different from 2 and 3.
+      This is in part based on a general method we introduce to easily
+      compute the Gerstenhaber bracket between elements of HH0 (A) and
+      elements of HHn (A) for n ∈ N0 , the method by M. Suárez-Álvarez in
+      [8] to calculate the Gerstenhaber bracket between elements of HH1 (A)
+      and elements of HHn (A) for any n ∈ N0 , as well as an elementary re-
+      sult that allows to compute the remaining brackets from the previous
+      ones. We also show that the Gerstenhaber bracket of HH• (A) is not
+      induced by any Batalin-Vilkovisky generator.
+
+      2020 Mathematics Subject Classification: 16E40, 18G10, 16S37
+      Keywords and Phrases: Fomin-Kirillov algebra, Hochschild cohomol-
+      ogy, Gerstenhaber bracket
+
+
+1    Introduction
+
+The goal of this article is to completely compute the Gerstenhaber bracket of
+the Hochschild cohomology HH• (A) of the Fomin-Kirillov algebra A on three
+generators over a field k of characteristic different from 2 and 3. In the paper
+[3] we have computed the algebra structure on HH• (A), and we showed that
+it is a finitely generated graded algebra with a minimal set {Xi |i ∈ J1, 14K}
+of 14 generators, three of which are in HH0 (A), five are in HH1 (A), four are
+in HH2 (A), one in HH3 (A) and one in HH4 (A). In this article we compute
+the Gerstenhaber bracket between these generators, which fully determines the
+Gerstenhaber bracket on HH• (A).
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+1774                         E. Herscovich, Z. Li
+
+Our calculations are organised as follows. First we provide a general method
+of homological flavour to easily compute the Gerstenhaber bracket between el-
+ements of HH0 (A) and elements of HHn (A) for any n ∈ N0 and any algebra A
+over a field k (see Theorem 2.7). We then use this method for the partic-
+ular case of the Fomin-Kirillov algebra A on three generators over a field of
+characteristic different from 2 and 3 (see Proposition 4.4). Secondly, for A
+as before, we compute the Gerstenhaber bracket between elements of HH1 (A)
+and elements of HHn (A) for any n ∈ N0 using the method introduced by M.
+Suárez-Álvarez in [8] (see Propositions 4.5 and 4.10). Finally, we present a
+simple result that allows us to compute the remaining Gerstenhaber brackets
+under some assumptions on the algebra structure of the Hochschild cohomology
+of an algebra (see Lemma 4.12), which are verified in the case of the Fomin-
+Kirillov algebra A on three generators over a field of characteristic different
+from 2 and 3 (see Proposition 4.14). We summarize our results in Table 4.1.
+By using the explicit expression of the Gerstenhaber bracket of HH• (A) to-
+gether with a direct computation, we show that the former is not induced by
+any Batalin-Vilkovisky generator (see Proposition 4.15).
+The article is organised as follows. In the first subsection of Section 2 we recall
+some general facts about the Gerstenhaber bracket on Hochschild cohomology.
+In Subsection 2.2 we present our general method to compute the Gerstenhaber
+bracket between elements of HH0 (A) and elements of HHn (A) for any n ∈
+N0 , whereas in Subsection 2.3 we recall the method of [8] to compute the
+Gerstenhaber bracket between elements of HH1 (A) and elements of HHn (A)
+for any n ∈ N0 . In Section 3 we recall the definition of the Fomin-Kirillov
+algebra on three generators, and we summarize some results of [3] about its
+Hochschild cohomology, in particular those we are going to use in the sequel.
+Finally, in Section 4 we compute the Gerstenhaber brackets of the generators
+of the algebra structure of the Hochschild cohomology of the Fomin-Kirillov
+algebra A on three generators, following the path described in the previous
+paragraph.
+In the whole article, we will denote by N (resp., N0 ) the set of positive (resp.,
+nonnegative) integers, and Z the set of integers. Moreover, given i, j ∈ Z we
+define the integer interval Ji, jK = {n ∈ Z|i ⩽ n ⩽ j}. To reduce space in
+the expressions of the article we will typically denote the composition f ◦ g of
+maps f and g simply by their juxtaposition f g. For a field k, all maps between
+k-vector spaces will be k-linear and all unadorned tensor products ⊗ will be
+over k.
+We would like to thank the referee for the careful reading of the article.
+
+
+
+2   The Gerstenhaber bracket on Hochschild cohomology
+
+All along this section we will consider k to be a field and A to be a (unital
+associative) k-algebra.
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+                     Gerstenhaber Structure on HH• (FK(3))                                        1775
+
+2.1     Generalities on the Gerstenhaber bracket
+In this subsection we recall several basic definitions and results concerning the
+Gerstenhaber bracket, that we will utilize in the sequel.
+Recall that the bar resolution (B• (A), d• ) of A is given by Bn (A) = A⊗(n+2)
+for n ∈ N0 , with the differentials dn : Bn (A) → Bn−1 (A) given by
+                                      n
+                                      X
+           dn (a0 | . . . |an+1 ) =         (−1)j a0 | . . . |aj−1 |aj aj+1 |aj+2 | . . . |an+1
+                                      j=0
+
+for a0 , . . . , an+1 ∈ A and n ∈ N, and the augmentation π : B0 (A) = A ⊗ A → A
+defined by the multiplication of A. We will typically write a0 | . . . |an+1 instead
+of a0 ⊗ · · · ⊗ an+1 for simplicity. There is an isomorphism
+
+                        F : HomAe Bn (A), A −→ Homk (A⊗n , A)
+                                            
+
+
+given by F (f )(a1 | . . . |an ) = f (1|a1 | . . . |an |1) for f ∈ HomAe (Bn (A), A) and
+a1 , . . . , an ∈ A. The inverse map
+
+                      G : Homk (A⊗n , A) −→ HomAe Bn (A), A
+                                                                     
+
+
+of F is explicitly given by G(g)(a0 | . . . |an+1 ) = a0 g(a1 | . . . |an )an+1 for g ∈
+Homk (A⊗n , A) and a0 , . . . , an+1 ∈ A.
+The following definition is classical (see for instance [10], Def. 1.4.1).
+Definition 2.1. Let m, n ∈ N0 , f ∈ Homk (A⊗m , A) and g ∈ Homk (A⊗n , A).
+The Gerstenhaber bracket [f, g] is defined at the chain level as the element
+of Homk (A⊗(m+n−1) , A) given by
+
+                         [f, g] = f ◦G g − (−1)(m−1)(n−1) g ◦G f,
+
+where f ◦G g is defined by
+
+      (f ◦G g)(a1 | . . . |am+n−1 )
+         Xm
+            (−1)(n−1)(i−1) f a1 | . . . |ai−1 |g(ai | . . . |ai+n−1 )|ai+n | . . . |am+n−1 .
+                                                                                          
+       =
+         i=1
+
+Moreover, if m = 0, then f ◦G g = 0, while if n = 0, then the formula should
+be interpreted by taking the value g(1) in place of g(ai | . . . |ai+n−1 ).
+Using the isomorphisms F and G of chain complexes given above, one
+defines the Gerstenhaber bracket in HomAe (B• (A), A) by [f, g] =
+G([F (f ), F (g)]) ∈ HomAe (Bm+n−1 (A), A) for f ∈ HomAe (Bm (A), A), g ∈
+HomAe (Bn (A), A) and m, n ∈ N0 . The Gerstenhaber bracket given before
+induces a well-defined bilinear map
+         [ , ] : Hm HomAe (B• (A), A) × Hn HomAe (B• (A), A)
+                                                           
+
+                                       −→ Hm+n−1 HomAe (B• (A), A)
+                                                                  
+
+
+                      Documenta Mathematica 27 (2022) 1773–1804
+1776                              E. Herscovich, Z. Li
+
+for all m, n ∈ N0 , that we also call the Gerstenhaber bracket.
+More generally, let (P• , ∂• ) be a projective bimodule resolution over A with
+augmentation µ : P0 → A. Let i• : P• → B• (A) and p• : B• (A) → P•
+be morphisms of complexes of A-bimodules lifting idA , so p• i• is homotopic to
+idP• and i• p• is homotopic to idB• (A) . We also recall that the morphisms i• and
+p• induce the quasi-isomorphisms i∗• : HomAe (B• (A), A) → HomAe (P• , A) and
+p∗• : HomAe (P• , A) → HomAe (B• (A), A) given by i∗• (f ) = f i• and p∗• (g) = gp•
+for f ∈ HomAe (B• (A), A) and g ∈ HomAe (P• , A), respectively. Moreover,
+H(i∗• ), H(p∗• ) : HH• (A) → HH• (A) are independent of the choice of i• and p• .
+The Gerstenhaber bracket
+          [ , ] : Hm HomAe (P• (A), A) × Hn HomAe (P• (A), A)
+                                                                 
+
+                                         −→ Hm+n−1 HomAe (P• (A), A)
+                                                                          
+
+
+for all m, n ∈ N0 is then defined by transport of structures. More gener-
+ally, given cocycles f ∈ HomAe (Pm , A) and g ∈ HomAe (Pn , A), we define the
+Gerstenhaber bracket [f, g] ∈ Hm+n−1 (HomAe (P• , A)) ∼  = HHm+n−1 (A) as the
+                      ∗   ∗        ∗
+cohomology class of i• ([p• (f ), p• (g)]).
+The following properties of the Gerstenhaber bracket are classical (see for in-
+stance [2], equation (2), cf. [10], Lemmas 1.4.3 and 1.4.7).
+
+Lemma 2.2. Let k be a field and A a k-algebra. Then
+
+                        [x, y] = −(−1)(m−1)(n−1) [y, x],
+                                                                                            (2.1)
+                   [x, [y, z]] = [[x, y], z] + (−1)(m−1)(n−1) [y, [x, z]],
+
+and
+
+                    [x ⌣ y, z] = [x, z] ⌣ y + (−1)m(p−1) x ⌣ [y, z]                         (2.2)
+
+for all x ∈ HHm (A), y ∈ HHn (A) and z ∈ HHp (A), where ⌣ denotes the cup
+product.
+
+Remark 2.3. To avoid any confusion, we remark that the definition of cup
+product on Hochschild cohomology in the previous result is the one given in
+[2], Section 7. Explicitly, at the level of the bar resolution it is given by
+(f ⌣ g)(a1 , . . . , am+n ) = f (a1 , . . . , am )g(am+1 , . . . , am+n ), for a1 , . . . , am+n ∈
+A, f ∈ Homk (A⊗m , A) and g ∈ Homk (A⊗n , A). A different convention, in the
+spirit of Koszul’s sign rule, includes a sign (−1)mn (see [10], Def. 1.3.1 and
+Rk. 1.3.3). To reduce space we will denote the cup product simply by juxtapo-
+sition.
+
+The previous result is typically rephrased by stating that the Hochschild co-
+homology is a Gerstenhaber algebra, i.e. a graded-commutative alge-
+bra H = ⊕n∈N0 H n endowed with a bracket [ , ] : H ⊗ H → H satisfying
+[H m , H n ] ⊆ H m+n−1 for m, n ∈ N0 , (2.1) and (2.2).
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+                Gerstenhaber Structure on HH• (FK(3))                       1777
+
+Assume for the rest of this subsection that A is graded, i.e. there exist k-
+vector subspaces {An }n∈Z of A such that A = ⊕n∈Z An , and Am · An ⊆ Am+n
+for all m, n ∈ Z. Recall that a left A-module M is called graded if there are k-
+vector subspaces {Mn }n∈Z of M such that M = ⊕n∈Z Mn and Am ·Mn ⊆ Mm+n
+for all m, n ∈ Z. Given two graded left A-modules M and N , a morphism
+f : M → N of left A-modules is called homogeneous of degree d ∈ Z if
+f (Mn ) ⊆ Nn+d for all n ∈ Z. Let HomA (M, N ) be the k-vector space consisting
+of all morphisms of left A-modules from M to N . Let
+                                        M
+                     HomA (M, N ) =        HomA (M, N )d ,
+                                       d∈Z
+
+be the graded k-vector space, where HomA (M, N )d is the subspace of
+HomA (M, N ) consisting of all homogeneous morphisms of degree d.
+The following result is classical (see [5], Cor. 2.4.4).
+Lemma 2.4. If M is a finitely generated graded module over a graded algebra A,
+then HomA (M, N ) = HomA (M, N ).
+Corollary 2.5. Let (P• , ∂• )
+                         ∂ 3    ∂2     1∂       µ
+                    · · · −→ P2 −→ P1 −→ P0 −→ A −→ 0
+
+be a projective bimodule resolution of a graded k-algebra A, where Pi is finitely
+generated as left Ae -module for i ∈ N0 , and µ and ∂i are homogeneous of
+degree 0 for i ∈ N. Then HomAe (Pi , A) = HomAe (Pi , A) for i ∈ N0 . Hence, the
+Hochschild cohomology HH• (A) ∼   = ⊕i∈N0 Hi (HomAe (P• , A)) of A is a bigraded
+algebra, for the cohomological degree i and the internal degree induced by that
+of A and P• . Moreover, the cup product and the Gerstenhaber bracket on
+HH• (A) preserve the internal degree.
+Remark 2.6. The existence of a projective bimodule resolution of the graded
+k-algebra A satisfying the conditions of the previous corollary clearly holds if
+the graded k-algebra Ae is noetherian (e.g. if A is finite dimensional over k).
+
+2.2   Method computing the bracket between HH0 (A) and HHn (A)
+In this subsection we introduce an elementary method to compute the Gersten-
+haber bracket between the cohomology groups HH0 (A) and HHn (A) for n ∈ N0
+of any algebra A using any projective bimodule resolution of A (see Thm. 2.7).
+We were unable to explicitly find this method in the existing literature (see
+Remark 2.12), although we suspect it could be well known to the experts.
+Let ρ be an element of the center Z(A) ∼       = HH0 (A) of A and ℓρ ∈
+HomAe (B0 (A), A) be the morphism defined by ℓρ (1|1) = ρ. Let (P• , ∂• ) be
+a projective bimodule resolution over A with augmentation µ : P0 → A, and
+let i0 : P0 → B0 (A) be the 0-th component of a morphism i• : P• → B• (A)
+of complexes of A-bimodules lifting idA . The main aim of this subsection is
+
+                 Documenta Mathematica 27 (2022) 1773–1804
+1778                               E. Herscovich, Z. Li
+
+to prove the following theorem, that tells us that we can compute the Ger-
+stenhaber bracket between HH0 (A) and HHn (A) for n ∈ N0 using a simple
+homological procedure on any projective bimodule resolution of A.
+
+Theorem 2.7. Consider the same assumptions as in the previous paragraph.
+Let ηn : Pn → Pn be the map given by ηn (v) = ρv − vρ for v ∈ Pn and n ∈ N0 .
+Since η• = {ηn : Pn → Pn }n∈N0 is a lifting of the zero morphism from A to
+itself, η• is null-homotopic, i.e. there is a family hρ• = {hρn : Pn → Pn+1 }n∈N0
+of morphisms of A-bimodules such that
+
+                     η0 = ∂1 hρ0         and      ηn = hρn−1 ∂n + ∂n+1 hρn                         (2.3)
+
+for n ∈ N. Then, if φ ∈ HomAe (Pn , A) is a cocycle for some n ∈ N, the
+Gerstenhaber bracket [φ, ℓρ i0 ] ∈ HHn−1 (A) is given by the cohomology class of
+φhρn−1 .
+
+Remark 2.8. It is easy to see that if φ ∈ HomAe (Pn , A) is a cocycle (resp.,
+coboundary), then φhρn−1 is a cocycle (resp., coboundary) by applying (2.3). On
+the other hand, in general we have P0 = B0 = A ⊗ A and i0 = idA⊗A , so we
+can forget about i0 in Theorem 2.7.
+The rest of this subsection is devoted to proving Theorem 2.7. In order to do
+that, we first need to prove some preliminary results.
+Let tn : Bn (A) → Bn+1 (A) be the morphism of A-bimodules given by
+                                         n
+                                         X
+              tn (a0 | . . . |an+1 ) =         (−1)j a0 | . . . |aj |ρ|aj+1 | . . . |an+1
+                                         j=0
+
+for a0 , . . . , an+1 ∈ A and n ∈ N0 . Let ξ• = {ξn : Bn (A) → Bn (A)}n∈N0 be the
+family of morphisms of A-bimodules defined by ξn (u) = ρu − uρ for u ∈ Bn (A)
+and n ∈ N0 .
+Lemma 2.9. We have that ξ0 = d1 t0 and ξn = tn−1 dn + dn+1 tn for n ∈ N.
+
+Proof. For a0 , . . . , an+1 ∈ A and n ∈ N,
+
+  d1 t0 (a0 |a1 ) = d1 (a0 |ρ|a1 ) = a0 ρ|a1 − a0 |ρa1 = ρa0 |a1 − a0 |a1 ρ = ξ0 (a0 |a1 ),
+
+and
+                                      n
+                                     X                                                  
+dn+1 tn (a0 | . . . |an+1 ) = dn+1          (−1)j a0 | . . . |aj |ρ|aj+1 | . . . |an+1       = S1 + S2 ,
+                                      j=0
+
+where
+                  n
+                  X          
+           S1 =         (−1)j (−1)j a0 | . . . |aj−1 |aj ρ|aj+1 | . . . |an+1
+                  j=0
+
+
+                    Documenta Mathematica 27 (2022) 1773–1804
+                        Gerstenhaber Structure on HH• (FK(3))                                            1779
+                                                                                                   
+                                                 j+1
+                                        + (−1)         a0 | . . . |aj |ρaj+1 |aj+2 | . . . |an+1
+
+                  = a0 ρ| . . . |an+1 − a0 | . . . |an |ρan+1
+                  = ξn (a0 | . . . |an+1 ),
+and
+       n
+       X                j−2
+                       X
+                   j
+S2 =         (−1)              (−1)r a0 | . . . |ar−1 |ar ar+1 |ar+2 | . . . |aj |ρ|aj+1 | . . . |an+1
+       j=0              r=0
+
+                       + (−1)j−1 a0 | . . . |aj−2 |aj−1 aj |ρ|aj+1 | . . . |an+1
+                       + (−1)j+2 a0 | . . . |aj |ρ|aj+1 aj+2 |aj+3 | . . . |an+1
+                         Xn                                                                        
+                                 r+1
+                       +    (−1) a0 | . . . |aj |ρ|aj+1 | . . . |ar−1 |ar ar+1 |ar+2 | . . . |an+1
+                        r=j+2
+           n
+       n  X
+       X
+   =                    (−1)j+i a0 | . . . |ai−1 |ai ai+1 |ai+2 | . . . |aj |ρ|aj+1 | . . . |an+1
+       i=0      j=i+2
+
+                 − a0 | . . . |ai−1 |ai ai+1 |ρ|ai+2 | . . . |an+1
+                 + a0 | . . . |ai−1 |ρ|ai ai+1 |ai+2 | . . . |an+1
+                       i−2
+                       X                                                                                   
+                 +           (−1)j+i+1 a0 | . . . |aj |ρ|aj+1 | . . . |ai−1 |ai ai+1 |ai+2 | . . . |an+1
+                       j=0
+       n
+       X             i−2
+                    X
+   =         (−1)i+1     (−1)j a0 | . . . |aj |ρ|aj+1 | . . . |ai−1 |ai ai+1 |ai+2 | . . . |an+1
+       i=0                   j=0
+
+                         + (−1)i−1 a0 | . . . |ai−1 |ρ|ai ai+1 |ai+2 | . . . |an+1
+                         + (−1)i a0 | . . . |ai−1 |ai ai+1 |ρ|ai+2 | . . . |an+1
+                          X n                                                                    
+                                   j−1
+                         + (−1) a0 | . . . |ai−1 |ai ai+1 |ai+2 | . . . |aj |ρ|aj+1 | . . . |an+1
+                             j=i+2
+
+   = −tn−1 dn (a0 | . . . |an+1 ).
+Hence, ξn = tn−1 dn + dn+1 tn .
+Lemma 2.10. The Gerstenhaber bracket [ϕ, ℓρ ] ∈ HomAe (Bn−1 (A), A) is given
+by [ϕ, ℓρ ] = ϕtn−1 for ϕ ∈ HomAe (Bn (A), A) and n ∈ N.
+Proof. For a0 , . . . , an ∈ A,
+   [ϕ, ℓρ ](a0 | . . . |an ) = a0 [F (ϕ), F (ℓρ )](a1 | . . . |an−1 )an
+                             = a0 (F (ϕ) ◦G F (ℓρ ))(a1 | . . . |an−1 )an
+                                  X  n                                                     
+                             = a0       (−1)i−1 F (ϕ)(a1 | . . . |ai−1 |ρ|ai | . . . |an−1 ) an
+                                         i=1
+
+
+                         Documenta Mathematica 27 (2022) 1773–1804
+1780                               E. Herscovich, Z. Li
+                               n
+                              X                                                               
+                                             i−1
+                       = a0              (−1)      ϕ(1|a1 | . . . |ai−1 |ρ|ai | . . . |an−1 |1) an
+                                   i=1
+                            n
+                            X
+                       =          (−1)i−1 ϕ(a0 |a1 | . . . |ai−1 |ρ|ai | . . . |an−1 |an )
+                            i=1
+                       = (ϕtn−1 )(a0 |a1 | . . . |an−1 |an ).
+
+Hence, [ϕ, ℓρ ] = ϕtn−1 .
+Lemma 2.11. We assume the same hypotheses as those of Theorem 2.7. Then,
+there exists a family s• = {sn : Pn → Bn+2 (A)}n∈N0 of morphisms of A-
+bimodules such that i1 hρ0 − t0 i0 = d2 s0 and in+1 hρn − tn in = dn+2 sn − sn−1 ∂n
+for n ∈ N.
+Proof. Since d1 (i1 hρ0 − t0 i0 ) = i0 ∂1 hρ0 − d1 t0 i0 = i0 η0 − ξ0 i0 = 0, where we
+used that i0 is a morphism of A-bimodules in the last equality, there exists
+a morphism s0 : P0 → B2 (A) of A-bimodules such that d2 s0 = i1 hρ0 − t0 i0 .
+We now claim that there exists a family s• = {sn : Pn → Bn+2 (A)}n∈N0 of
+morphisms of A-bimodules such that dn+2 sn = in+1 hρn − tn in + sn−1 ∂n by
+induction on n ∈ N0 (where s−1 = 0). Indeed,
+
+     dn+1 (in+1 hρn − tn in + sn−1 ∂n )
+           = dn+1 in+1 hρn − dn+1 tn in + (in hρn−1 − tn−1 in−1 + sn−2 ∂n−1 )∂n
+           = in ∂n+1 hρn − (ξn − tn−1 dn )in + in hρn−1 ∂n − tn−1 in−1 ∂n
+           = in (∂n+1 hρn + hρn−1 ∂n ) − ξn in = in ηn − ξn in = 0,
+
+where we used the inductive assumption in the first equality, Lemma 2.9 in the
+second equality, the definition of ηn in the third equality and the fact that in
+is a morphism of A-bimodules in the last equality. The result thus follows.
+Proof of Theorem 2.7. Let ϕ = φpn ∈ HomAe (Bn (A), A). Then ϕ is a cocycle
+and [φ, i∗• (ℓρ )] = i∗• ([p∗• (φ), ℓρ ]) = [ϕ, ℓρ ]in−1 = ϕtn−1 in−1 by Lemma 2.10.
+Since p• i• is homotopic to the identity of P• , there exists φ1 ∈ HomAe (Pn−1 , A)
+such that φ − ϕin = φ − φpn in = φ1 ∂n . Then,
+
+   φhρn−1 − ϕtn−1 in−1 = (ϕin + φ1 ∂n )hρn−1 − ϕtn−1 in−1
+                            = ϕ(dn+1 sn−1 − sn−2 ∂n−1 ) + φ1 (ηn−1 − hρn−2 ∂n−1 )
+                            = −ϕsn−2 ∂n−1 − φ1 hρn−2 ∂n−1 ∈ HomAe (Pn−1 , A)
+
+is a boundary, where we used Lemma 2.11 and the definition of ηn−1 in the
+second equality and the fact that φ1 is a morphism of A-bimodules in the last
+identity. Hence, [φ, i∗• (ℓρ )] ∈ HHn−1 (A) coincides with the cohomology class of
+φhρn−1 , as was to be shown.
+Remark 2.12. The homotopy maps hρ• in Theorem 2.7 are presumably homo-
+topy liftings in the sense of [9]. However, our maps hρ• do not directly follow the
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+                 Gerstenhaber Structure on HH• (FK(3))                                     1781
+
+scheme of that definition –as well as being far simpler, for they are restricted
+to a much easier situation– since they do not require the computation of any
+map ∆ : P• → P• ⊗A P• lifting the isomorphism A → A ⊗A A, which is also
+the case in [6].
+
+
+2.3   Method computing the bracket between HH1 (A) and HHn (A)
+      (after M. Suárez-Álvarez)
+
+In this subsection we will briefly recall the method introduced by M. Suárez-
+Álvarez in [8] to compute the Gerstenhaber bracket between HH1 (A) and
+HHn (A) for n ∈ N0 .
+Recall that HH1 (A) is isomorphic to the quotient of the space of derivations
+of A modulo the subspace of inner derivations. Let ρ : A → A be a derivation
+of A, i.e. ρ(xy) = ρ(x)y + xρ(y) for all x, y ∈ A. For a left A-module M , a
+ρ-operator on M is a map f : M → M such that f (am) = ρ(a)m+af (m) for
+all a ∈ A and m ∈ M . It is direct to see that the map ρe = ρ ⊗ idA + idA ⊗ ρ :
+Ae → Ae defined by ρe (x ⊗ y) = ρ(x) ⊗ y + x ⊗ ρ(y) for x, y ∈ A is a derivation
+of the enveloping algebra Ae and ρ is a ρe -operator on A.
+Let (P• , ∂• ) be a projective bimodule resolution over A with augmentation
+µ : P0 → A. A ρe -lifting of ρ to (P• , ∂• ) is a family of ρe -operators ρ• =
+{ρn : Pn → Pn }n∈N0 such that µρ0 = ρµ and ∂n ρn = ρn−1 ∂n for n ∈ N. The
+morphism of complexes
+
+                      ρ♯•,P• : HomAe (P• , A) → HomAe (P• , A)
+
+defined by ρ♯n,P• (φ) = ρφ − φρn for φ ∈ HomAe (Pn , A) and n ∈ N0 is in-
+dependent of the ρe -lifting up to homotopy (see [8], Lemma 1.6) and it thus
+induces a morphism on cohomology that we will denote by the same symbol.
+Let i• : P• → B• (A) and p• : B• (A) → P• be morphisms of complexes of
+A-bimodules lifting idA . Then the diagram
+
+                            H(ρ♯•,B• (A) ) n
+       Hn HomAe (B• (A), A)
+                                                              
+                                           H HomAe (B• (A), A)
+                      H(i∗
+                         •)                                             H(i∗
+                                                                           •)
+                                                                                           (2.4)
+                                         H(ρ♯•,P• )
+         Hn HomAe (P• , A)                                Hn HomAe (P• , A)
+                                                                          
+
+
+commutes (see [8], Lemma 1.6). On the other hand, as noted in [8], Sections 2.1
+and 2.2, using the ρe -lifting of ρ to the bar resolution defined by
+
+                                       n+1
+                                       X
+            ρn (a0 | . . . |an+1 ) =         a0 | . . . |aj−1 |ρ(aj )|aj+1 | . . . |an+1
+                                       j=0
+
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+1782                           E. Herscovich, Z. Li
+
+for a0 , . . . , an+1 ∈ A and n ∈ N0 , it is easy to check that the diagram
+
+                                      ρ♯n,B (A)                  
+                                            •
+                HomAe Bn (A), A                    HomAe Bn (A), A
+                           F                                  F
+
+                           ⊗n            [ρ,−]
+                  Homk (A       , A)                Homk (A⊗n , A)
+commutes. As a consequence, the Gerstenhaber bracket between the cohomol-
+ogy classes of G(ρ) ∈ HomAe (B1 (A), A) and ϕ ∈ HomAe (Bn (A), A) is given by
+the cohomology class of [G(ρ), ϕ] = G([ρ, F (ϕ)]) = ρ♯n,B• (A) (ϕ).
+We finally recall one of the main results of [8], which tells us that we can
+compute the Gerstenhaber bracket between HH1 (A) and HHn (A) for n ∈ N0
+using any projective bimodule resolution of A (see [8], Thm. A and Section 2.2).
+The proof just follows from observing that, on cohomology, (2.4) gives us the
+identities
+
+        i• (G(ρ)), φ = i∗• [G(ρ), p∗• (φ)] = i∗• ρ♯n,B• (A) (p∗• (φ)) = ρ♯n,P• (φ).
+      ∗                                                           
+
+
+Theorem 2.13. Let (P• , ∂• ) be a projective bimodule resolution over the alge-
+bra A with augmentation µ : P0 → A, and let i1 : P1 → B1 (A) be the first
+component of the morphism i• : P• → B• (A) of complexes of A-bimodules lift-
+ing idA . Given a cocycle φ ∈ HomAe (Pn , A) and n ∈ N0 , the Gerstenhaber
+bracket [G(ρ)i1 , φ] ∈ HHn (A) is given by the cohomology class of ρ♯n,P• (φ).
+
+Remark 2.14. Note that in our Theorem 2.7, as well as in the result proved in
+[8] that was recalled before as Theorem 2.13, we need at least some component(s)
+of the comparison map from the generic projective resolution (P• , ∂• ) to the bar
+resolution.
+
+3   Basics on the Fomin-Kirillov algebra FK(3) on 3 generators
+
+In this section we will review the basic definitions concerning the Fomin-Kirillov
+algebra on 3 generators. Recall that, given i ∈ Z, we will denote by Z⩽i the set
+{m ∈ Z|m ⩽ i}. Given r ∈ R, we set ⌊r⌋ = sup{n ∈ Z|n ⩽ r} the usual floor
+function. From now on, k is a field of characteristic different from 2 and 3.
+We recall that the Fomin–Kirillov algebra on 3 generators is the k-algebra
+FK(3) generated by the k-vector space V spanned by three elements a, b and c
+modulo the ideal generated by the vector space R ⊆ V ⊗2 spanned by
+
+                      {a2 , b2 , c2 , ab + bc + ca, ba + ac + cb}.
+
+This is a nonnegatively graded algebra by setting the generators a, b and c
+in (internal) degree 1. As usual, we will omit the tensor symbol ⊗ when de-
+noting the product of the elements of the tensor algebra TV = ⊕n∈N0 V ⊗n .
+We refer the reader to [1, 4] for more information on Fomin-Kirillov algebras.
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+                     Gerstenhaber Structure on HH• (FK(3))                         1783
+
+Note that FK(3) = ⊕m∈J0,4K FK(3)m , where FK(3)m is the subspace of FK(3)
+concentrated in internal degree m. It is easy to see that
+
+                     B = {1, a, b, c, ab, bc, ba, ac, aba, abc, bac, abac}         (3.1)
+
+is a basis of FK(3) (see [1]). Given m ∈ J0, 4K, we will denote by Bm the subset
+of (3.1) that is a basis of FK(3)m .
+Let us briefly denote by {A, B, C} the basis of V ∗ dual to the basis {a, b, c}
+of V , where the former are concentrated in internal degree −1. The quadratic
+dual FK(3)! = ⊕n∈N0 FK(3)!−n of the Fomin Kirillov algebra FK(3) is then
+given by
+
+      FK(3)! = khA, B, Ci/(BA − AC, CA − AB, AB − BC, CB − BA),
+
+where FK(3)!−n is the subspace of FK(3)! concentrated in internal degree −n.
+Notice that FK(3)!0 = k and FK(3)!−1 ∼            = V ∗ . We recall that Bn! =
+    n   n   n     n−1      n−1      n−2 2
+{A , B , C , A         B, A    C, A     B } is a basis of FK(3)!−n for all integers
+n ⩾ 2, where we follow the convention that A0 B 2 = B 2 (see [7], Lemma 4.4).
+For simplicity, from now on we will denote the Fomin-Kirillov
+algebra FK(3) simply by A. Let (A!−n )∗ be the dual space of A!−n and
+Bn!∗ = {αn , βn , γn , αn−1 β, αn−1 γ, αn−2 β2 }\{0} the dual basis to Bn! for n ∈ N,
+where we will follow the convention that if the index of some letter in an element
+of the previous sets is less than or equal to zero, it is the zero element 0. We will
+omit the index 1 for the elements of the previous bases and write B0!∗ = {ǫ! },
+where ǫ! is the basis element of (A!0 )∗ . The previous bases for the homogeneous
+components of A or (A! )# = ⊕n∈N0 (A!−n )∗ will be called usual. Recall that
+(A! )# is a graded bimodule over A! via (uf v)(w) = f (vwu) for u, v, w ∈ A!
+and f ∈ (A! )# .
+For the explicit description of the bimodule Koszul complex (K•b , db• ) over
+the Fomin-Kirillov algebra A, we refer the reader to [3], Subsection 3.1. The
+following result gives an explicit description of the minimal projective resolution
+of A in the category of bounded below graded A-bimodules.
+Proposition 3.1. ([3], Prop. 3.7) The minimal projective resolution (P•b , δ•b )
+of A in the category of bounded below graded A-bimodules is given as follows.
+For n ∈ N0 , set
+                  M                   M
+         Pnb =               b
+                         ωi Kn−4i =         ωi A ⊗ (A!−(n−4i) )∗ ⊗ A,
+                 i∈J0,⌊n/4⌋K               i∈J0,⌊n/4⌋K
+
+where ωi is a symbol of homological degree 4i and internal degree 6i for all i ∈
+N0 , the A-bimodule structure of Pnb is given by x′ (ωi x⊗u⊗y)y ′ = ωi x′ x⊗u⊗yy ′
+for all x, x′ , y, y ′ ∈ A and u ∈ (A!−(n−4i) )∗ , and the differential δnb : Pnb → Pn−1b
+
+for n ∈ N is given by
+        X                         X
+     b
+                                            ωi dbn−4i (ρn−4i ) + ωi−1 fn−4i
+                                                                        b
+                                                                                      
+   δn                 ωi ρn−4i =                                              (ρn−4i ) ,
+       i∈J0,⌊n/4⌋K                 i∈J0,⌊n/4⌋K
+
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+1784                          E. Herscovich, Z. Li
+
+where ρj ∈ Kjb for j ∈ N0 , ω−1 = 0 and fjb : Kjb → Kj+3b
+                                                            are the morphisms
+given in [3], (3.2). This gives a minimal projective resolution of A by means
+of the augmentation ǫb : P0b = A ⊗ (A!0 )∗ ⊗ A → A, where ǫb (x ⊗ ǫ! ⊗ y) = xy
+for x, y ∈ A.
+
+To reduce space, we will typically use vertical bars instead of the tensor product
+symbols ⊗ for the elements of P• . We will use in the sequel the following explicit
+expression of some values of the map f0b in the previous result. They follow
+immediately from [3], (3.2).
+Fact 3.2. The morphism f0b defined in [3], (3.2), satisfies that
+
+f0b (a|ǫ! |1) = 2a|α3 |bac + 2a|β3 |abc − 2a|γ3 |aba − a|α2 β|abc + a|α2 γ|aba
+                − a|αβ2 |bac − ac|α2 β|ab − ab|α2 γ|ac + ab|αβ2 |ab + ab|αβ2 |bc
+             − ac|αβ2 |ba − 2ab|α3 |ab − 2ab|α3 |bc + 2ac|α3 |ba + 2ac|β3 |ab
+             + 2ab|γ3 |ac − abc|α2 β|a − aba|α2 β|c + abc|α2 γ|b + aba|α2 γ|a
+             + 2abc|β3 |a + 2aba|β3 |c − 2abc|γ3 |b − 2aba|γ3 |a + 2abac|α3 |1
+             − abac|αβ2 |1,
+f0b (1|ǫ! |a) = −2|α3 |abac + 1|αβ2 |abac − a|α2 β|abc − c|α2 β|aba + a|α2 γ|aba
+                + b|α2 γ|abc + 2a|β3 |abc + 2c|β3 |aba − 2a|γ3 |aba − 2b|γ3 |abc
+             + ba|α2 β|(ab + bc) + ab|α2 γ|ba + bc|α2 γ|ba + ab|αβ2 |(ab + bc)
+             − ac|αβ2 |ba − 2ab|α3 |(ab + bc) + 2ac|α3 |ba − 2ba|β3 |(ab + bc)
+             − 2ab|γ3 |ba − 2bc|γ3 |ba + 2bac|α3 |a + 2abc|β3 |a − 2aba|γ3 |a
+             − abc|α2 β|a + aba|α2 γ|a − bac|αβ2 |a,
+f0b (b|ǫ! |1) = 2b|α3 |bac + 2b|β3 |abc − 2b|γ3 |aba − b|α2 β|abc + b|α2 γ|aba
+             − b|αβ2 |bac + ba|α2 β|ac + ba|α2 β|ba − bc|α2 β|ab − ba|α2 γ|bc
+             − bc|αβ2 |ba + 2bc|α3 |ba − 2ba|β3 |ac − 2ba|β3 |ba + 2bc|β3 |ab
+             + 2ba|γ3 |bc + aba|α2 γ|b + bac|α2 γ|a − aba|αβ2 |c − bac|αβ2 |b
+             + 2aba|α3 |c + 2bac|α3 |b − 2aba|γ3 |b − 2bac|γ3 |a + 2abac|β3 |1
+             − abac|α2 β|1,
+f0b (1|ǫ! |b) = −2|β3 |abac + 1|α2 β|abac + a|α2 γ|bac + b|α2 γ|aba − b|αβ2 |bac
+             − c|αβ2 |aba + 2b|α3 |bac + 2c|α3 |aba − 2a|γ3 |bac − 2b|γ3 |aba
+             − bc|α2 β|ab + ba|α2 β|(ba + ac) + ba|α2 γ|ab + ac|α2 γ|ab
+             + ab|αβ2 |(ba + ac) − 2ab|α3 |(ba + ac) + 2bc|β3 |ab
+             − 2ba|β3 |(ba + ac) − 2ba|γ3 |ab − 2ac|γ3 |ab + 2bac|α3 |b + 2abc|β3 |b
+             − 2aba|γ3 |b − abc|α2 β|b + aba|α2 γ|b − bac|αβ2 |b,
+f0b (c|ǫ! |1) = 2c|α3 |bac + 2c|β3 |abc − 2c|γ3 |aba − c|α2 β|abc + c|α2 γ|aba
+             − c|αβ2 |bac − (ab + bc)|α2 β|ac − (ab + bc)|α2 β|ba
+             + (ab + bc)|α2 γ|bc + (ba + ac)|α2 γ|ac − (ba + ac)|αβ2 |ab
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+                 Gerstenhaber Structure on HH• (FK(3))                             1785
+
+             − (ba + ac)|αβ2 |bc + 2(ba + ac)|α3 |ab + 2(ba + ac)|α3 |bc
+             + 2(ab + bc)|β3 |ac + 2(ab + bc)|β3 |ba − 2(ab + bc)|γ3 |bc
+             − 2(ba + ac)|γ3 |ac + bac|α2 β|a − abc|α2 β|c − bac|αβ2 |c
+             + abc|αβ2 |b + 2bac|α3 |c − 2abc|α3 |b − 2bac|β3 |a + 2abc|β3 |c
+             + 2abac|γ3 |1 − abac|α2 γ|1,
+f0b (1|ǫ! |c) = −2|γ3 |abac + 1|α2 γ|abac + a|α2 β|bac − c|α2 β|abc + b|αβ2 |abc
+                − c|αβ2 |bac − 2b|α3 |abc + 2c|α3 |bac − 2a|β3 |bac + 2c|β3 |abc
+             − bc|α2 β|ac + ab|α2 γ|bc + bc|α2 γ|bc + ba|α2 γ|ac + ac|α2 γ|ac
+             − ac|αβ2 |bc + 2ac|α3 |bc + 2bc|β3 |ac − 2ab|γ3 |bc − 2bc|γ3 |bc
+             − 2ba|γ3 |ac − 2ac|γ3 |ac + 2bac|α3 |c + 2abc|β3 |c − 2aba|γ3 |c
+             − abc|α2 β|c + aba|α2 γ|c − bac|αβ2 |c.
+
+Given n ∈ N0 , there is a canonical isomorphism
+
+                               HomAe (Pnb , A) ∼
+                                               = Qn                                (3.2)
+
+of graded k-vector spaces, where Qn = ⊕i∈J0,⌊n/4⌋K ωi∗ K n−4i and K n =
+Homk ((A!−n )∗ , A). Transporting the differential of the left member of (3.2)
+induced by that of (P•b , δ•b ), we obtain a complex of k-vector spaces Q• , whose
+cohomology gives the linear structure of the Hochschild cohomology HH• (A).
+Note that the space Homk ((A!−n )∗ , Am ) is concentrated in cohomological de-
+gree n and internal degree m − n. The symbol ωi∗ has cohomological degree 4i
+and internal degree −6i for i ∈ N0 . We will usually omit ω0∗ for simplicity.
+Let Hm n
+         be the subspace of Hn (Q• ) concentrated in internal degree m − n for
+                        n
+m, n ∈ Z. Note that Hm      = 0 for (n, m) ∈ Z2 \ (N0 × Z⩽4 ). The following result
+                                                n
+gives a recursive description of the spaces Hm    .
+Proposition 3.3. ([3], Cor. 5.3) For integers m ⩽ 1 and n ∈ N0 , we have
+
+                          ω 1−m H1n+2m−2 , if m is odd,
+                        ( ∗
+                   n ∼
+                 Hm =       ∗
+                              2
+                                 n+2m
+                          ω−  mH
+                                 0    ,     if m is even.
+                                 2
+
+
+Given elements x ∈ Bm and y ∈ Bn!∗ , the symbol y|x will denote the linear
+map in K n = Homk ((A!−n )∗ , A), which maps y to x and sends the other usual
+basis elements of (A!−n )∗ to zero. See [3], Cor. 5.4, for specific representatives
+                                            n
+of the cohomology classes of a basis of Hm    for (n, m) ∈ N0 × Z⩽4 .
+The algebra structure of the Hochschild cohomology HH• (A) (with the multi-
+plication given by the cup product) is described as follows.
+Theorem 3.4. ([3], Cor. 6.11) The Hochschild cohomology HH• (A) is iso-
+morphic to the quotient of the free graded-commutative (for the cohomological
+degree) k-algebra generated by fourteen elements (with fixed cohomological de-
+grees and internal degrees) modulo the ideal generated by the elements given in
+[3], (6.5).
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+1786                             E. Herscovich, Z. Li
+
+Moreover, the fourteen generators of HH• (A) mentioned in Theorem 3.4 are
+represented in H• (Q• ) by the following cocycles: X1 = ǫ! |(ab + ba), X2 =
+ǫ! |(ab + bc − ac), X3 = ǫ! |abac, X4 = α|bac, X5 = β|abc, X6 = γ|aba, X7 =
+α|(aba − abc), X8 = α|a + β|b + γ|c, X9 = α2 |1, X10 = β2 |1, X11 = γ2 |1, X12 =
+(αβ +αγ)|1, X13 = α3 |a+β3 |b+γ3 |c and X14 = ω1∗ ǫ! |1. Let Yi ∈ HomAe (Pnb , A)
+be the element associated to Xi via the isomorphism (3.2) for i ∈ J1, 14K. In
+what follows and to simplify our notation, given a cocycle φ, we will use the
+same symbol φ for its cohomology class.
+Let i• : P•b → B• (A) be a morphism of complexes of A-bimodules lifting idA .
+It is clear that i0 : A ⊗ (A!0 )∗ ⊗ A → A ⊗ A and i1 : A ⊗ (A!−1 )∗ ⊗ A → A⊗3
+can be chosen as follows
+
+i0 (1|ǫ! |1) = 1|1, i1 (1|α|1) = −1|a|1, i1(1|β|1) = −1|b|1 and i1 (1|γ|1) = −1|c|1.
+
+4     Gerstenhaber brackets on Hochschild cohomology of FK(3)
+
+4.1     Gerstenhaber brackets of HH0 (A) with HHn (A)
+In this subsection we are going to utilize the method introduced in Subsec-
+tion 2.2 to compute the Gerstenhaber bracket of Xi for i ∈ J1, 14K with the
+elements X1 , X2 , X3 in HH0 (A). To wit, for every element Xi with i ∈ J1, 3K,
+we find the associated element ρ in the center Z(A) such that ℓρ i0 = Xi , pro-
+vide the corresponding self-homotopy hρ• satisfying (2.3) and then compute the
+respective Gerstenhaber brackets by means of Theorem 2.7.
+We remark first that [Xi , 1] = 0 for i ∈ J1, 14K, since h1• = 0 gives [Xi , 1] = 0
+for i ∈ J4, 14K and the other follow from cohomological degree reasons. On the
+other hand, Definition 2.1 tells us that [Xi , Xj ] = 0 for i, j ∈ J1, 3K. The proof
+of the following three results is a lengthy but straightforward computation.
+
+Fact 4.1. Let ρ = ab + ba ∈ Z(A). Then, there is a self-contracting homotopy
+hρ• satisfying (2.3) such that
+
+                      hρ0 (1|ǫ! |1) = −b|α|1 − a|β|1 − 1|α|b − 1|β|a,
+                     hρn (1|αn |1) = (−1)n+1 b|αn+1 |1 − 1|αn+1 |b,
+                     hρn (1|βn |1) = (−1)n+1 a|βn+1 |1 − 1|βn+1 |a
+
+for n ∈ N, and
+
+     hρ1 (1|γ|1) = b|α2 |1 + a|β2 |1 + a|αβ|1 + b|αγ|1 − 1|α2 |b − 1|β2 |a − 1|αβ|b
+                   − 1|αγ|a,
+    hρ2 (1|γ2 |1) = a|γ3 |1 + b|γ3 |1 + c|α2 β|1 + c|αβ2 |1 + 1|γ3 |a + 1|γ3 |b + 1|α2 β|c
+                    + 1|αβ2 |c,
+    hρ2 (1|αβ|1) = −b|α3 |1 − c|β3 |1 − a|α2 γ|1 − 1|α3 |c − 1|β3 |a − 1|α2 γ|b,
+    hρ2 (1|αγ|1) = −c|α3 |1 − a|β3 |1 − b|α2 γ|1 − 1|α3 |b − 1|β3 |c − 1|α2 γ|a.
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+                  Gerstenhaber Structure on HH• (FK(3))                            1787
+
+Fact 4.2. Let ρ = ab + bc − ac ∈ Z(A). Then, there is a self-contracting
+homotopy hρ• satisfying (2.3) such that
+
+                     hρ0 (1|ǫ! |1) = c|α|1 + a|γ|1 + 1|α|c + 1|γ|a,
+                    hρn (1|αn |1) = (−1)n c|αn+1 |1 + 1|αn+1 |c,
+                    hρn (1|γn |1) = (−1)n a|γn+1 |1 + 1|γn+1 |a
+
+for n ∈ N, and
+
+  hρ1 (1|β|1) = −c|α2 |1 − a|γ2 |1 − c|αβ|1 − a|αγ|1 + 1|α2 |c + 1|γ2 |a + 1|αβ|a
+                + 1|αγ|c,
+ hρ2 (1|β2 |1) = −a|β3 |1 − c|β3 |1 − b|α2 γ|1 − b|αβ2 |1 − 1|β3 |a − 1|β3 |c − 1|α2 γ|b
+                 − 1|αβ2 |b,
+hρ2 (1|αβ|1) = b|α3 |1 + a|γ3 |1 + c|α2 β|1 + 1|α3 |c + 1|γ3 |b + 1|α2 β|a,
+hρ2 (1|αγ|1) = c|α3 |1 + b|γ3 |1 + a|α2 β|1 + 1|α3 |b + 1|γ3 |a + 1|α2 β|c.
+
+Fact 4.3. Let ρ = abac ∈ Z(A). Then, there is a self-contracting homotopy
+hρ• satisfying (2.3) such that
+
+ hρ0 (1|ǫ! |1) = −aba|γ|1 − ab|α|c − a|β|ac − 1|α|bac,
+ hρ1 (1|α|1) = aba|αβ|1 − ab|α2 |b − ba|β2 |c + c|α2 |bc + b|β2 |ac + b|αβ|bc
+              − 1|α2 |bac − 1|αβ|abc,
+  ρ
+ h1 (1|β|1) = aba|αγ|1 − 2ab|α2 |c − ac|α2 |a − ab|αβ|a + a|α2 |bc − a|β2 |ab
+               − a|β2 |bc + c|β2 |ac + a|αγ|ac − 1|αγ|bac,
+ hρ1 (1|γ|1) = 2aba|γ2 |1 − ba|αβ|c + b|α2 |bc − a|γ2 |ac − c|αβ|ac − 1|αγ|abc,
+hρ2 (1|α2 |1) = bac|α3 |1 + bc|β3 |a − ba|β3 |c + ba|α2 γ|a − b|α3 |ab − b|α3 |bc
+                + c|α3 |ba + a|β3 |ac + c|β3 |bc + a|α2 γ|bc + b|α2 γ|ba − 2|α3 |bac,
+hρ2 (1|β2 |1) = abc|β3 |1 − 2ab|α3 |c + ac|α3 |b + ab|β3 |a − bc|β3 |a + ab|α2 γ|b
+                − ba|α2 γ|a + b|α3 |ab + 2b|α3 |bc − c|α3 |ba + c|α3 |ac − a|β3 |ac
+               − b|α2 γ|ba + b|α2 γ|ac − 1|α3 |bac − 2|β3 |abc − 1|α2 γ|aba,
+ ρ
+h2 (1|γ2 |1) = −3aba|γ3 |1 + ba|β3 |c − ab|αβ2 |c − b|α3 |bc − a|β3 |ac − c|β3 |bc
+               + b|γ3 |ac − a|α2 γ|bc + 1|α3 |bac − 1|α2 β|abc,
+hρ2 (1|αβ|1) = −2aba|αβ2 |1 − ac|α3 |c − bc|β3 |b − 2ba|β3 |a − ab|α2 γ|c
+               − ba|α2 γ|b − a|α3 |bc + b|α3 |ba + 2b|α3 |ac + b|β3 |ab − c|β3 |ac
+               + a|γ3 |ac − c|γ3 |ab + c|α2 β|ac − a|α2 γ|ac − a|αβ2 |bc − 1|α2 γ|bac
+               − 1|αβ2 |abc,
+hρ2 (1|αγ|1) = −abc|α3 |1 − 2aba|α2 β|1 − 3ab|α3 |b − ab|β3 |c − 2bc|β3 |c
+               − 2ba|α2 γ|c − ba|αβ2 |a + 2a|α3 |ba − c|α3 |bc − b|β3 |ac − b|γ3 |ab
+               − a|α2 β|ab − b|α2 γ|bc + c|α2 γ|ac − c|αβ2 |ab − 1|α2 β|bac
+               − 2|α2 γ|abc.
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+1788                          E. Herscovich, Z. Li
+
+Using the previous results together with Theorem 2.7 we obtain the Gersten-
+haber bracket between Xi for i ∈ J1, 14K and X1 , X2 , X3 .
+Proposition 4.4. The Gerstenhaber bracket on HH• (A) of Xi for i ∈ J1, 14K
+with an element Xj for j ∈ J1, 3K is given by
+                        
+                        −2X1 ,
+                                              if i = 8,
+           [Xi , X1 ] = −4X1 (X9 + X10 ), if i = 13,
+                        
+                           0,                  if i ∈ J1, 14K \ {8, 13},
+                        
+                             
+                             −2X2 ,
+                                         if i = 8,
+                [Xi , X2 ] = −4X1 X10 , if i = 13,
+                             
+                               0,         if i ∈ J1, 14K \ {8, 13},
+                             
+
+and                  
+                     
+                     0,                                      if i ∈ J1, 7K,
+                     
+                     
+                     
+                     
+                     −4X3 ,                                  if i = 8,
+                      −2X   i−5 ,                             if i = 9, 10,
+                     
+                     
+                     
+                     
+         [Xi , X3 ] = 2X6 ,                                   if i = 11,
+                     
+                      2X7 − X1 X8 + X2 X8 ,                   if i = 12,
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     −4X3 (X9 + X10 + X11 ),                 if i = 13,
+                     
+                      X13 − (2/3)X8 (X9 + X10 + X11 ),        if i = 14.
+
+Proof. Note that ℓab+ba i0 = Y1 , ℓab+bc−ac i0 = Y2 and ℓabac i0 = Y3 . Applying
+Theorem 2.7 together with Facts 4.1, 4.2 and 4.3, we get the brackets
+              
+              −2X1 ,
+                                                             if i = 8,
+[Xi , X1 ] = −(α2 + β2 + γ2 )|(ab + ba) − αβ|ba − αγ|ab, if i = 13,
+              
+                0,                                            if i ∈ J1, 12K \ {8},
+              
+                      
+                      
+                       −2X2 ,                       if i = 8,
+                      (α + β + γ )|(ac − ab − bc)
+                      
+                           2   2   2
+         [Xi , X2 ] =                                if i = 13,
+                      
+                       + αβ|ac − αγ|(ab + bc),
+                      
+                        0,                           if i ∈ J1, 12K \ {8},
+                      
+
+and                     
+                        
+                        0,                                 if i ∈ J1, 7K,
+                        
+                         −4X3 ,                             if i = 8,
+                        
+                        
+                        
+                        
+                        
+                        −2X ,
+                                i−5                         if i = 9, 10,
+           [Xi , X3 ] =
+                        
+                        
+                        2X 6 ,                             if i = 11,
+                         α|(aba − abc) − β|bac − γ|bac,     if i = 12,
+                        
+                        
+                        
+                        
+                        
+                         −4(α2 + β2 + γ2 )|abac,            if i = 13.
+                        
+
+Indeed, this was simply done by computing [Yi , Y1 ] = Yi hab+ba
+                                                           h(Yi )−1 , [Yi , Y2 ] =
+Yi hab+bc−ac                        abac
+    h(Yi )−1 , and [Yi , Y3 ] = Yi hh(Yi )−1 , where h(Yi ) denotes the cohomological
+
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+                   Gerstenhaber Structure on HH• (FK(3))                                      1789
+
+degree of Yi for i ∈ J1, 13K, and by transport of structures. Note that the
+vanishing of [Xi , X3 ] for i ∈ J4, 7K also follows from a simple degree argument
+using Corollary 2.5 together with [3], Cor. 5.9. The latter two results also tell us
+that [X14 , Xj ] = 0 (or [Y14 , Yj ] = 0) for j = 1, 2, by degree reasons. This result
+also follows from noting that hab+ba  3      is of internal degree 2, so hab+ba
+                                                                           3      (1|u|1)
+is of internal degree 5 for any u ∈ B3 , which implies that Y14 (hab+ba
+                                            !∗
+                                                                          3     (1|u|1))
+vanishes, since Y14 vanishes on any homogeneous element of internal degree
+strictly less than 6. Hence, Y14 hab+ba 3      = 0. We get Y14 hab+bc−ac
+                                                                  3         = 0 for the
+same reason.
+Next, we compute ϕ = [Y14 , Y3 ] = Y14 habac  3   . By (2.3), the map habac
+                                                                        3    : P3b → P4b
+           b abac           abac b
+satisfies δ4 h3   = η3 − h2 δ3 . It is easy to check that
+
+  (η3 − habac
+         2    δ3b )(1|α3 |1) = −bac|α3 |a + abc|β3 |a − aba|β3 |c + aba|α2 γ|a + vα3 ,
+  (η3 − habac
+         2    δ3b )(1|β3 |1) = −2aba|α3 |c + bac|α3 |b + aba|β3 |a − abc|β3 |b
+                               + aba|α2 γ|b + vβ3 ,
+  (η3 − habac
+         2    δ3b )(1|γ3 |1) = abc|β3 |c + 3aba|γ3 |c − bac|αβ2 |c + vγ3 ,
+(η3 − habac
+       2    δ3b )(1|α2 β|1) = abc|α3 |a − 4bac|α3 |b − 2aba|β3 |a − abc|β3 |b
+                              + bac|β3 |c + 3aba|γ3 |b + 2aba|α2 β|a − aba|α2 γ|b
+                                − 2abc|α2 γ|c − abc|αβ2 |a + aba|αβ2 |c + vα2 β , (4.1)
+(η3 − habac
+       2    δ3b )(1|α2 γ|1) = −4bac|α3 |c + bac|β3 |a − 4abc|β3 |c + 2aba|α2 β|b
+                                + bac|α2 γ|b − 3aba|α2 γ|c + aba|αβ2 |a + vα2 γ ,
+(η3 − habac
+       2    δ3b )(1|αβ2 |1) = −3aba|α3 |b + 2abc|α3 |c − 4abc|β3 |a + bac|β3 |b
+                                + 3aba|γ3 |a + 2aba|α2 β|c − aba|α2 γ|a − abc|α2 γ|b
+                                − bac|α2 γ|c + 2aba|αβ2 |b + vαβ2 ,
+
+where vu ∈ ⊕j∈J0,4K\{3} (Aj ⊗ (A!−3 )∗ ⊗ A4−j ) for u ∈ B3!∗ . By degree reasons,
+the element habac
+             3    (1|u|1) for u ∈ B3!∗ is of the form
+
+  habac
+   3    (1|u|1) = Bu + ω1 (λu1 a|ǫ! |1 + λu2 1|ǫ! |a + λu3 b|ǫ! |1 + λu4 1|ǫ! |b + λu5 c|ǫ! |1
+                    + λu6 1|ǫ! |c),
+
+where Bu ∈ K4b has internal degree 7 and λui ∈ k for i ∈ J1, 6K. Therefore,
+
+  (η3 − habac
+         2    δ3b )(1|u|1) = δ4b habac
+                                  3    (1|u|1)
+                           = db4 (Bu ) + λu1 f0b (a|ǫ! |1) + λu2 f0b (1|ǫ! |a) + λu3 f0b (b|ǫ! |1)
+                              + λu4 f0b (1|ǫ! |b) + λu5 f0b (c|ǫ! |1) + λu6 f0b (1|ǫ! |c).
+                                                                                              (4.2)
+
+Using the explicit expression of the differential db4 given in [3], Fact 3.1, together
+with an elementary computation we see that, given any homogeneous element
+B ∈ K4b of internal degree 7, the coefficients of aba|γ3 |a and aba|α2 γ|a in db4 (B)
+
+                    Documenta Mathematica 27 (2022) 1773–1804
+1790                           E. Herscovich, Z. Li
+
+are equal, the coefficients of aba|γ3 |b and aba|α2 γ|b in db4 (B) coincide, and the
+coefficients of abc|β3 |c and abc|α2 β|c in db4 (B) are also the same. Comparing
+the coefficients of aba|γ3 |a and aba|α2 γ|a in both sides of the equation (4.2),
+where the left member is explicitly given by (4.1) and the right member is
+computed using Fact 3.2, we obtain
+
+             λα    α3
+              1 + λ2 = 1/3,
+               3
+                                    λαβ
+                                     1
+                                        2
+                                          + λαβ
+                                             2
+                                                2
+                                                  = −4/3,     λu1 + λu2 = 0
+
+for u ∈ B3!∗ \ {α3 , αβ2 }. Similarly, comparing the coefficients of aba|γ3 |b and
+aba|α2 γ|b in both sides of the equation (4.2), where the left member is explicitly
+given by (4.1) and the right member is computed using Fact 3.2, we obtain
+
+             λ3β3 + λβ4 3 = 1/3,    λα
+                                     3
+                                       2β
+                                          + λα
+                                             4
+                                               2β
+                                                  = −4/3,     λu3 + λu4 = 0
+
+for u ∈ B3!∗ \ {β3 , α2 β}. Comparing the coefficients of abc|β3 |c and abc|α2 β|c
+in both sides of the equation (4.2), where the left member is explicitly given
+by (4.1) and the right member is computed using Fact 3.2, we obtain
+
+             λγ53 + λγ63 = 1/3,     λα
+                                     5
+                                       2γ
+                                          + λα
+                                             6
+                                               2γ
+                                                  = −4/3,     λu5 + λu6 = 0
+
+for u ∈ B3!∗ \ {γ3 , α2 γ}. Then ϕ(1|u|1) = Y14 habac
+                                                 3    (1|u|1) for u ∈ B3!∗ is given
+by
+
+  ϕ(1|α3 |1) = (1/3)a,             ϕ(1|β3 |1) = (1/3)b,         ϕ(1|γ3 |1) = (1/3)c,
+ϕ(1|α2 β|1) = −(4/3)b,         ϕ(1|α2 γ|1) = −(4/3)c,         ϕ(1|αβ2 |1) = −(4/3)a.
+Hence, [X14 , X3 ] = (1/3)(α3 |a + β3 |b + γ3 |c) − (4/3)(α2 β|b + α2 γ|c + αβ2 |a).
+We now note the following identities,
+
+       α2 |(ab + ba) = X1 X9 ,                       β2 |(ab + ba) = X1 X10 ,
+      α|aba + β|bac = (1/2)(X1 X8 − X2 X8 ),              α2 |abac = X3 X9 ,      (4.3)
+            β2 |abac = X3 X10 ,                             γ2 |abac = X3 X11
+
+and
+               (α3 − αβ2 )|a = (1/2){X13 + X8 (X9 − X10 − X11 )},
+               (β3 − α2 β)|b = (1/2){X13 + X8 (X10 − X9 − X11 )},
+                (γ3 − α2 γ)|c = (1/2){X13 + X8 (X11 − X9 − X10 )},
+
+given in [3], (6.2). Using the previous equalities as well as the coboundaries
+ 2
+gj,2 ∈ B̃22 for j ∈ J1, 8K \ {4, 5} and e11,3 = α|(aba + abc) + (β − γ)|bac ∈ B̃13 of
+the sets B̃22 and B̃13 given in [3], Subsubsection 5.3.1, we get
+                                                             2       2       2
+[X13 , X1 ] = −(α2 + β2 + γ2 )|(ab + ba) − αβ|ba − αγ|ab − 3g1,2 − 3g2,2 − 2g3,2
+                 2
+              + g8,2
+            = −4(α2 + β2 )|(ab + ba) = −4X1 (X9 + X10 ),
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+                 Gerstenhaber Structure on HH• (FK(3))                          1791
+
+                                                                       2
+[X13 , X2 ] = (α2 + β2 + γ2 )|(ac − ab − bc) + αβ|ac − αγ|(ab + bc) − g1,2
+                 2      2      2      2      2
+             − 2g2,2 − g3,2 + g6,2 − g7,2 + g8,2
+          = −4β2 |(ab + ba) = −4X1 X10 ,
+[X12 , X3 ] = α|(aba − abc) − β|bac − γ|bac − e11,3
+          = 2α|(aba − abc) − 2(α|aba + β|bac) = 2X7 − X1 X8 + X2 X8 ,
+[X13 , X3 ] = −4(α2 + β2 + γ2 )|abac = −4X3 (X9 + X10 + X11 ),
+[X14 , X3 ] = (1/3)(α3 |a + β3 |b + γ3 |c) − (4/3)(α2 β|b + α2 γ|c + αβ2 |a)
+          = X13 − (2/3)X8 (X9 + X10 + X11 ).
+
+The proposition is thus proved.
+
+
+4.2   Gerstenhaber brackets of HH1 (A) with HHn (A)
+
+In this subsection we are going to utilize the method recalled in Subsection 2.3
+to compute the Gerstenhaber bracket of Xi for i ∈ J4, 8K with the elements Xj
+for j ∈ J1, 14K.
+Let ρ : A → A be a derivation of A. By [8], Lemma 1.3, the ρe -lifting ρ• =
+{ρn : Pnb → Pnb }n∈N0 of ρ to (P•b , δ•b ) exists, and it can be chosen in such a way
+that
+
+                  ρ0 (x|ǫ! |y) = ρ(x)|ǫ! |y + x|ǫ! |ρ(y),
+                                                                               (4.4)
+                ρn (ωi x|u|y) = xqωi u y + ωi ρ(x)|u|y + ωi x|u|ρ(y),
+
+                                                            !∗
+for all x, y ∈ A, n ∈ N, i ∈ J0, ⌊n/4⌋K and u ∈ Bn−4i           , where qωi u ∈ Pnb
+satisfies that δnb (qωi u ) = ρn−1 δnb (ωi 1|u|1). To reduce space, we will usually
+write qu instead of qω0 u . As recalled in Subsection 2.3, given φ ∈ HHn (A), the
+Gerstenhaber bracket [G(ρ)i1 , φ] ∈ HHn (A) is given by the cohomology class
+of ρφ − φρn .
+In what follows, we consider a set of derivations of A whose classes give a basis
+of HH1 (A) and for each of them we will provide some of the corresponding
+elements qωi u satisfying (4.4). Then, we shall compute the respective Gersten-
+haber brackets by means of Theorem 2.13.
+The proof of the following result follows immediately from the statement.
+
+Proposition 4.5. Let ρ : A → A be the derivation of A defined by ρ(x) =
+deg(x)x for x ∈ B. Then ρ• defined by ρn (ωi x|u|y) = (deg(x) + deg(y) + n +
+                                               !∗
+2i)ωi x|u|y for x, y ∈ B, i ∈ J0, ⌊n/4⌋K, u ∈ Bn−4i and n ∈ N0 is a ρe -lifting of
+ρ. Note that deg(x) + deg(y) + n + 2i is the internal degree of ωi x|u|y. Since
+G(ρ)i1 = −X8 , the Gerstenhaber bracket [X8 , φ] ∈ HHn (A) for φ ∈ HHn (A) is
+given by the cohomology class −a(φ)φ, where a(φ) is the internal degree of φ.
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+1792                             E. Herscovich, Z. Li
+
+Hence,                               
+                                     
+                                     
+                                      −2Xj ,   if j ∈ J1, 7K \ {3},
+                                     −4X3 ,    if j = 3,
+                                     
+                                     
+                                     
+                         [X8 , Xj ] = 0,        if j = 8,
+                                     
+                                       2Xj ,    if j ∈ J9, 13K,
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     6X ,
+                                         14     if j = 14.
+
+The proof of Facts 4.6, 4.7, 4.8 and 4.9 below is a lengthy but straightforward
+computation.
+
+Fact 4.6. Let ρ = ρ4 : A → A be the derivation of A defined by ρ4 (a) = bac
+and ρ4 (x) = 0 for x ∈ B \ {a}. Then the elements qωi u = qω4 i u ∈ Pnb in (4.4)
+can be chosen as follows. First, qβ4n = qγ4n = 0 for n ∈ N. Moreover,
+
+  qα4 = ba|γ|1 + b|α|c + 1|β|ac,
+ qα4 2 = ba|αβ|1 − b|α2 |b − c|α2 |c − b|αβ|c + 1|αβ|ac,
+  4
+ qαβ = ab|γ2 |1 − ab|α2 |1 + ba|αγ|1 − 2b|α2 |c − c|α2 |a − b|β2 |c − a|αβ|c
+         − b|αβ|a + 1|α2 |bc − 1|β2 |ab + 1|αγ|ac,
+  4
+ qαγ = ba|γ2 |1 + 1|β2 |ac,
+  4
+ qα3 = bc|β3 |1 + ba|α2 γ|1 + b|α3 |c + c|α3 |b + b|β3 |a − c|β3 |c − a|α2 γ|c
+         + b|α2 γ|b − 1|β3 |ac − 1|α2 γ|bc,
+qα4 2 β = ab|γ3 |1 + ba|αβ2 |1 − a|α3 |b − 2a|β3 |c − c|β3 |a − b|γ3 |c − c|γ3 |b
+         − a|α2 β|c − c|αβ2 |c − b|α2 γ|c − a|α2 γ|a + 1|α3 |bc + 1|γ3 |ba − 1|α2 γ|ba
+         − 1|αβ2 |bc,
+qα4 2 γ = ba|α2 β|1 + ab|αβ2 |1 − 2ab|α3 |1 − ba|β3 |1 + a|α3 |c + 2b|α3 |b + c|α3 |a
+         + a|β3 |a + b|β3 |c + c|β3 |b + a|α2 γ|b + a|αβ2 |c − 1|α3 |ba − 2|β3 |ab
+         + 1|αβ2 |ac,
+ 4
+qαβ 2
+      = 3ba|γ3 |1 − (ab + bc)|β3 |1 + (ab + bc)|α2 β|1 − 3c|α3 |b − 2a|β3 |b − b|β3 |a
+         − c|β3 |c − 2a|γ3 |c − 2c|γ3 |a − a|α2 β|b − 2c|α2 β|c − 2b|α2 γ|b − c|α2 γ|a
+         − c|αβ2 |b + 2|β3 |ac + 1|γ3 |ab − 1|α2 γ|ab,
+qω4 1 ǫ! = bac|α4 |a + 4abc|β4 |b − aba|γ4 |c + 4ab|α3 β|bc − 4bc|α3 β|ab
+         + 2(ba + ac)|α3 γ|ac + 2ba|α3 γ|ba + ab|α2 β2 |ac + bc|α2 β2 |ba
+         − 2ba|α2 β2 |(ab + bc) − 4ab|α4 |ba − 2bc|α4 |ba + (ba + ac)|α4 |bc
+         + 4ab|α4 |ac − 2(ba + ac)|α4 |ab + 8bc|β4 |ac − 10ba|β4 |ab − 2ac|β4 |ab
+         + 6ab|β4 |ac + 4(ab + bc)|β4 |ba − 2ab|γ4 |ba − 4bc|γ4 |ba + 6ab|γ4 |ac
+         − 5ba|γ4 |ab + 4ba|γ4 |bc − 6ac|γ4 |ab + a|α4 |bac + 4b|β4 |abc − c|γ4 |aba
+         − ω1 c|ǫ! |c.
+
+                    Documenta Mathematica 27 (2022) 1773–1804
+                  Gerstenhaber Structure on HH• (FK(3))                               1793
+
+Fact 4.7. Let ρ = ρ5 : A → A be the derivation of A defined by ρ5 (b) = abc
+and ρ5 (x) = 0 for x ∈ B \ {b}. Then the elements qωi u = qω5 i u ∈ Pnb in (4.4)
+can be chosen as follows. First, qα5 n = qγ5n = 0 for n ∈ N. Moreover,
+
+  qβ5 = ab|γ|1 + a|β|c + 1|α|bc,
+ qβ52 = ab|αγ|1 − a|β2 |a − c|β2 |c − a|αγ|c + 1|αγ|bc,
+  5
+ qαβ = ab|γ2 |1 + 1|α2 |bc,
+  5
+ qαγ = ab|αβ|1 − bc|αβ|1 − 2ba|β2 |1 − a|α2 |c − 2a|β2 |c + b|β2 |a − c|β2 |b
+        + b|γ2 |a + b|αβ|b − a|αγ|b + 1|β2 |ac − 1|α2 |ba + 1|αβ|bc,
+ qβ53 = (ba + ac)|α3 |1 + ab|α2 γ|1 + a|α3 |b + b|α3 |a + 2a|β3 |c + c|β3 |a + b|γ3 |c
+        + c|γ3 |b + a|α2 β|c + a|α2 γ|a + c|αβ2 |c − 1|γ3 |ba + 1|αβ2 |bc,
+qα5 2 β = 2ab|γ3 |1 − 2(ba + ac)|α3 |1 − (ab + bc)|α2 γ|1 + (ba + ac)|αβ2 |1 − a|α3 |b
+        − 2b|α3 |a − 2c|β3 |a − b|γ3 |c − c|γ3 |b − 2a|α2 γ|a − c|αβ2 |c + 2|α3 |bc
+        + 1|γ3 |ba − 1|α2 γ|ba,
+qα5 2 γ = ba|α2 β|1 − 2ba|β3 |1 − ab|α3 |1 + a|α3 |c + b|α3 |b + c|α3 |a + 2a|β3 |a
+        + b|β3 |c + c|β3 |b + b|α2 β|c + b|α2 γ|a + b|αβ2 |b − 2|α3 |ba − 1|β3 |ab
+        + 1|α2 β|bc,
+ 5
+qαβ 2
+      = ba|γ3 |1 + ab|α2 β|1 − b|α3 |c − c|α3 |b − b|β3 |a + c|β3 |c − b|α2 γ|b
+        + b|αβ2 |c + 2|β3 |ac − 1|α2 γ|ab + 1|α2 γ|bc,
+qω5 1 ǫ! = 4bac|α4 |a + abc|β4 |b − aba|γ4 |c + ab|α3 β|ab + 5ab|α3 β|bc
+        − 4bc|α3 β|ab + 2(ba + ac)|α3 γ|ac + 2ba|α3 γ|ba − ac|α3 γ|ba
+        − ab|α2 β2 |ba + 2bc|α2 β2 |ba − 2ba|α2 β2 |ab − ba|α2 β2 |bc + ac|α2 β2 |bc
+        − 11ab|α4 |ba + 2ab|α4 |ac + 6ba|α4 |bc + ac|α4 |ab + 9ac|α4 |bc
+        + 3ab|β4 |ac + bc|β4 |ac − 6ba|β4 |ab + ba|β4 |bc − 3ac|β4 |ab − 5ab|γ4 |ba
+        + 4ab|γ4 |ac − 4bc|γ4 |ba − 2bc|γ4 |ac − 3ba|γ4 |ab + 6ba|γ4 |bc − 8ac|γ4 |ab
+        + 4a|α4 |bac + b|β4 |abc − c|γ4 |aba − ω1 c|ǫ! |c.
+
+Fact 4.8. Let ρ = ρ6 : A → A be the derivation of A defined by ρ6 (c) = aba
+and ρ6 (x) = 0 for x ∈ B \ {c}. Then the elements qωi u = qω6 i u ∈ Pnb in (4.4)
+can be chosen as follows. First, qα6 n = qβ6n = 0 for n ∈ N. Moreover,
+
+   qγ6 = ab|α|1 + a|β|a + 1|α|ba,
+  qγ62 = ba|αβ|1 − b|α2 |b + c|β2 |c + a|γ2 |a + c|αβ|a + a|αγ|c + 1|αγ|ab,
+   6
+  qαβ = 2ab|α2 |1 + c|α2 |a + b|β2 |c + b|αβ|a + 1|β2 |ab,
+   6
+  qαγ = ba|β2 |1 + a|α2 |c + c|β2 |b + a|αγ|b + 2|α2 |ba,
+  qγ63 = ab|αβ2 |1 − ba|β3 |1 + a|β3 |a − a|γ3 |b − b|γ3 |a − b|α2 β|c − c|α2 β|b
+         − b|αβ2 |b − 1|β3 |ab + 1|αβ2 |ba,
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+1794                           E. Herscovich, Z. Li
+
+ qα6 2 β = ac|α3 |1 + ab|α2 γ|1 + 2c|α3 |c + 2a|β3 |c + 2c|β3 |a + 2a|α2 γ|a + b|α2 γ|c
+         + c|α2 γ|b + a|αβ2 |b + b|αβ2 |a − 1|α3 |(ab + bc) + 1|α2 γ|ba,
+ qα6 2 γ = 3ab|α3 |1 + 2ba|β3 |1 − a|α3 |c − c|α3 |a − b|β3 |c − c|β3 |b + 3|α3 |ba
+         + 2|β3 |ab,
+  6
+ qαβ 2
+       = 2bc|β3 |1 + 2ba|α2 γ|1 + 3b|α3 |c + 3c|α3 |b + 3b|α2 γ|b − 2|β3 |(ba + ac)
+         + 2|α2 γ|ab,
+qω6 1 ǫ! = 2bac|α2 β2 |a + aba|α2 β2 |c − 5bac|α4 |a − 3abc|β4 |b − 2bac|α3 β|b
+         + 8ab|α4 |ba − 6ab|α4 |ac + 6bc|α4 |ba + 3ba|α4 |bc + 3ac|α4 |bc
+         + 3ab|β4 |ac + 3bc|β4 |ac + 10ba|β4|ab − 8ba|β4 |bc + 8ac|β4 |ab
+         − 4ab|γ4 |ba − 2ab|α2 β2 |ba − 5a|α4 |bac − 3b|β4 |abc − 2b|α3 γ|bac
+         + 2a|α2 β2 |bac + c|α2 β2 |aba − ω1 a|ǫ! |a.
+
+Fact 4.9. Let ρ = ρ7 : A → A be the derivation of A defined by ρ7 (a) =
+aba − abc, ρ7 (ab) = ρ7 (ac) = abac, ρ7 (ba) = −abac and ρ7 (x) = 0 for x ∈
+B \ {a, ab, ba, ac}. Then the elements qωi u = qω7 i u ∈ Pnb in (4.4) can be chosen
+as follows. First, qβ7n = qγ7n = 0 for n ∈ N. Moreover,
+
+  qα7 = ab|α|1 − ab|γ|1 + a|β|a − a|β|c + 1|α|ba − 1|α|bc,
+ qα7 2 = ab|α2 |1 + ac|α2 |1 − a|αβ|a − 1|α2 |bc + 2|α2 |ba,
+  7
+ qαβ = ba|β2 |1 − ba|γ2 |1 + (ba + ac)|αβ|1 + a|α2 |c + c|β2 |b + c|β2 |c − a|γ2 |c
+        + b|γ2 |b − c|γ2 |b + c|αβ|a − c|αβ|c + a|αγ|b + c|αγ|b + 1|α2 |ba
+        − 1|γ2 |ba + 1|αβ|(ba + ac),
+  7
+ qαγ = ab|α2 |1 − ab|γ2 |1 + c|α2 |a − c|α2 |c + b|β2 |c + b|αβ|a − b|αβ|c + 1|β2 |ab
+        + 1|αβ|ac,
+  qα7 3 = ab|α3 |1 + ac|α3 |1 − 1|α3 |bc + 2|α3 |ba,
+qα7 2 β = ab|α3 |1 + 2ba|β3 |1 + 2bc|β3 |1 − ba|γ3 |1 + 2ba|α2 γ|1 − ab|αβ2 |1 − a|α3 |c
+        + 3b|α3 |c + c|α3 |b − a|β3 |a − a|β3 |b + b|β3 |a − b|β3 |c − 2c|β3 |b + c|β3 |c
+        − a|γ3 |b + a|γ3 |c − b|γ3 |b + 2c|γ3 |a + c|α2 β|c − a|α2 γ|b + a|α2 γ|c
+        + b|α2 γ|b − a|αβ2 |c + b|αβ2 |c − c|αβ2 |b + 2|α3 |ba + 1|β3 |ab − 3|γ3 |ab
+        − 1|α2 β|bc + 1|α2 β|ba + 2|α2 β|ac,
+qα7 2 γ = ac|α3 |1 − ba|γ3 |1 − (ab + bc)|α2 β|1 + ba|αβ2 |1 − b|α3 |a + 3b|α3 |c
+        + 2c|α3 |b + c|α3 |c + a|β3 |c + c|β3 |a − a|γ3 |a + 2a|γ3 |c − 2b|γ3 |b
+        + 2c|γ3 |a + b|α2 β|b − c|α2 β|a + 2c|α2 β|c + a|α2 γ|a + b|α2 γ|b + b|α2 γ|c
+        + c|α2 γ|a + b|αβ2 |a − 2|γ3 |ab + 2|α2 β|ac,
+ 7
+qαβ 2
+      = ab|α3 |1 + ba|β3 |1 − 2ab|γ3 |1 − a|α3 |c − c|α3 |a + 2c|α3 |c − a|γ3 |b
+        + b|γ3 |c + c|α2 γ|b + 1|α3 |ba + 1|β3 |ab − 1|γ3 |ba,
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+                  Gerstenhaber Structure on HH• (FK(3))                                1795
+
+qω7 1 ǫ! = 2abc|α2 β2 |a − 3abc|α2 β2 |c − aba|α2 β2 |a + 2aba|α2 β2 |b − 5bac|α4 |b
+        − 7bac|α4 |c + 5abc|β4 |c + 3aba|γ4 |a − 3aba|γ4 |b + 8ab|α4 |ab
+        + 3ab|α4 |bc + bc|α4 |bc − 2ba|α4 |ba + 4ac|α4 |ba + 6ac|α4 |ac + 9ab|β4 |ab
+        − 4bc|β4 |ab − 5bc|β4 |bc − 4ba|β4 |ba − 7ba|β4 |ac + 14ab|γ4 |ab
+        + 7bc|γ4 |ab − ba|γ4 |ba − ba|γ4 |ac − 8ac|γ4 |ba + 7ab|α3 β|ac
+        − 3bc|α3 β|ba + bc|α3 β|ac + 2ba|α3 β|ab + 3ba|α3 β|bc + ba|α3 β|ba
+        + 3ba|α3 β|ac + 3ac|α3 β|bc − 6ac|α3 β|ba − 3ac|α3 β|ac − ab|α3 γ|ab
+        + 5ab|α3 γ|bc − 9ab|α3 γ|ba − 5ab|α3 γ|ac + 3bc|α3 γ|ab + 6bc|α3 γ|bc
+        − 2bc|α3 γ|ba − 2ba|α3 γ|ab − 2ba|α3 γ|bc + 6ac|α3 γ|ab + 7ab|α2 β2 |ab
+        + 2ab|α2 β2 |bc − ba|α2 β2 |ba + 2ba|α2 β2 |ac + 4ac|α2 β2 |ac − 2b|α4 |bac
+        + c|α4 |bac + a|β4 |abc − 2c|β4 |abc + 4a|γ4 |aba + 2b|γ4 |aba
+        + 2a|α2 β2 |abc − 2c|α2 β2 |abc − a|α2 β2 |aba − 2b|α2 β2 |bac − c|α2 β2 |bac
+        + ω1 3|ǫ! |(ba + ac − bc).
+
+We will now apply the previous results to compute the Gerstenhaber brackets
+of Xi for i ∈ J4, 7K with all the other generators of the Hochschild cohomology
+of A.
+
+Proposition 4.10. The Gerstenhaber bracket [Xi , Xj ] ∈ HH• (A) for i ∈ J4, 7K
+and j ∈ J1, 14K is given by
+                                                                        
+                                             if (i, j) ∈ J4, 7K × J1, 7K
+              
+               0,                                                          
+                                                          ∪ J4, 6K × J9, 11K ,
+              
+              
+              
+              
+              
+              
+              
+              
+               2Xi ,                         if i ∈ J4, 7K and j = 8,
+                4X1 X9 ,                      if i = 7 and j = 9,
+              
+              
+              
+              
+              
+                X   X    ,                    if i = 7 and j = 10,
+              
+                   1 10
+              
+              
+              
+              
+              −X1 (X9 + X10 ),               if i = 7 and j = 11,
+              
+              
+              
+  [Xi , Xj ] = 2X1 Xi+5 ,                     if i ∈ J4, 5K and j = 12,
+              
+              
+              
+              
+               2X  1 (X 9 +  X 10 ),         if i = 6 and j = 12,
+                X1 X9 ,                       if i = 7 and j = 12,
+              
+              
+              
+              
+              
+                τ  8X   X   ,                 if i ∈ J4, 6K and j = 13,
+              
+                 i     4 10
+              
+              
+              
+              
+                4X1 X13 − 4X2 X13 − 8X4 X12 , if i = 7 and j = 13,
+              
+              
+              
+              
+                             2
+                                         
+                τi (1/3)Xi+5 − (4/3)X9 X10 ,  if i ∈ J4, 6K and j = 14,
+              
+              
+              
+              
+              
+              X X ,
+                   9 12                       if i = 7 and j = 14,
+where τi = 1 if i ∈ J4, 5K and τ6 = −1.
+
+Proof. Given i ∈ J4, 7K, let ρi be the derivation of Fact 4.6, Fact 4.7, Fact 4.8,
+and Fact 4.9, respectively. Note that G(ρi )i1 = −Yi . By Theorem 2.13,
+[−Yi , Yj ] is precisely the cohomology class of ρi Yj − Yj ρin for i ∈ J4, 7K and
+j ∈ J1, 13K, where n is the cohomological degree of Yj and ρin is obtained
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+1796                          E. Herscovich, Z. Li
+
+from (4.4) together with Fact 4.6 for i = 4, Fact 4.7 for i = 5, Fact 4.8 for
+i = 6, and Fact 4.9 for i = 7. It is explicitly given by
+                         
+                         
+                          0,                        if j ∈ J1, 7K ∪ {9},
+                         
+                           −2X4 ,                    if j = 8,
+                         
+                         
+                         
+                         
+                         
+                         αβ|(ab + bc) − αγ|ac, if j = 10,
+           [−X4 , Xj ] =
+                         
+                         
+                          −αβ|ab − αγ|ba,           if j = 11,
+                           α  |(bc − ba − ac),       if j = 12,
+                         
+                         
+                         
+                           2
+                         
+                           3α2 γ|aba − 5αβ2 |bac, if j = 13,
+                         
+
+and                      
+                         
+                          0,                        if j ∈ J1, 7K ∪ {10},
+                         
+                           −2X5 ,                    if j = 8,
+                         
+                         
+                         
+                         
+                         
+                         −αβ|bc + αγ|(ba + ac),     if j = 9,
+           [−X5 , Xj ] =
+                         
+                         
+                          −αβ|ab − αγ|ba,           if j = 11,
+                           −β2 |(ab + bc − ac),      if j = 12,
+                         
+                         
+                         
+                         
+                         
+                           −5α2 β|abc + 3α2 γ|aba,   if j = 13,
+                         
+
+as well as
+                    
+                    
+                    0,                                    if j ∈ J1, 7K ∪ {11},
+                    
+                     −2X6 ,                                if j = 8,
+                    
+                    
+                    
+                    
+                    
+                    αβ|(bc − ab) − αγ|(2ba + ac),         if j = 9,
+      [−X6 , Xj ] =
+                    
+                    
+                    −αβ|(ab + bc) + αγ|ac,                if j = 10,
+                     γ2 |(bc − ba − ac) − αβ|ba − αγ|ab,   if j = 12,
+                    
+                    
+                    
+                    
+                    
+                     −10α2 γ|aba − 2αβ2 |bac,              if j = 13,
+                    
+
+together with
+
+      [−X7 , X13 ] = α3 |(abc − 2aba) + α2 β|(2bac − 6aba) − α2 γ|(abc + 4bac)
+                     + 5αβ2 |(abc − aba),
+
+and
+              
+              
+               0,                                                    if j ∈ J1, 7K,
+              
+                −2X7 ,                                                if j = 8,
+              
+              
+              
+              
+              
+              α |(bc − ab − ac − 2ba) − αβ|(ba + ac) + αγ|bc,
+                 2                                                    if j = 9,
+[−X7 , Xj ] =
+              
+              
+               αβ|ac − αγ|(ab + bc),                                 if j = 10,
+                αβ|ba + αγ|ab,                                        if j = 11,
+              
+              
+              
+              
+              
+                (αβ + αγ)|(bc − ba − ac),                             if j = 12.
+              
+
+Next, we will compute ϕi = [−Yi , Y14 ] = ρi Y14 − Y14 ρi4 for i ∈ J4, 7K. Using
+Fact 4.6, it is easy to see that ϕ4 (1|β4 |1) = ϕ4 (1|γ4 |1) = ϕ4 (ω1 1|ǫ! |1) = 0,
+whereas Fact 4.7 gives us immediately the identities ϕ5 (1|α4 |1) = ϕ5 (1|γ4 |1) =
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+                    Gerstenhaber Structure on HH• (FK(3))                            1797
+
+ϕ5 (ω1 1|ǫ! |1) = 0, Fact 4.8 tells us that ϕ6 (1|α4 |1) = ϕ6 (1|β4 |1) =
+ϕ6 (ω1 1|ǫ! |1) = 0, and Fact 4.9 yields that ϕ7 (1|β4 |1) = ϕ7 (1|γ4 |1) = 0 and
+ϕ7 (ω1 1|ǫ! |1) = 3(bc − ba − ac). For i ∈ {4, 7} and u ∈ B4!∗ \ {β4 , γ4 } (resp.,
+i = 5 and u ∈ B4!∗ \ {α4 , γ4 }, i = 6 and u ∈ B4!∗ \ {α4 , β4 }), we have that
+
+               ϕi (1|u|1) = (ρi Y14 − Y14 ρi4 )(1|u|1) = −Y14 (qui ) = −λui ,
+
+where λui ∈ k is the coefficient of ω1 1|ǫ! |1 in qui . It is easy to check that
+
+           ρ43 δ4b (1|α4 |1) = bac|α3 |1 + abc|β3 |1 + aba|α2 γ|1 + vα4 4 ,
+         ρ43 δ4b (1|α3 β|1) = −2aba|α3 |1 + 3abc|γ3 |1 + bac|α2 β|1 + abc|α2 γ|1
+                             + 2aba|αβ2 |1 + vα4 3 β ,
+         ρ43 δ4b (1|α3 γ|1) = −2aba|β3 |1 + 2bac|γ3 |1 + 2aba|α2 β|1 + bac|α2 γ|1
+                             + abc|αβ2 |1 + vα4 3 γ ,
+        ρ43 δ4b (1|α2 β2 |1) = −2bac|α3 |1 − 2abc|β3 |1 + 4aba|γ3 |1 + 2abc|α2 β|1
+                             + 2bac|αβ2 |1 + vα4 2 β2 ,
+
+and
+
+      ρ53 δ4b (1|β4 |1) = bac|α3 |1 + abc|β3 |1 + aba|α2 γ|1 + vβ54 ,
+  ρ53 δ4b (1|α3 β|1) = −2aba|α3 |1 + 2abc|γ3 |1 + bac|α2 β|1 + aba|αβ2 |1 + vα5 3 β ,
+  ρ53 δ4b (1|α3 γ|1) = abc|α3 |1 − 2aba|β3 |1 + 2bac|γ3 |1 + 2aba|α2 β|1 + bac|α2 γ|1
+                       + abc|αβ2 |1 + vα5 3 γ ,
+ ρ53 δ4b (1|α2 β2 |1) = −3bac|α3 |1 − 2abc|β3 |1 + 3aba|γ3 |1 + 2abc|α2 β|1
+                       − aba|α2 γ|1 + bac|αβ2 |1 + vα5 2 β2 ,
+
+as well as
+
+       ρ63 δ4b (1|γ4 |1) = −abc|β3 |1 + aba|γ3 |1 + bac|αβ2 |1 + vγ64 ,
+   ρ63 δ4b (1|α3 β|1) = 4aba|α3 |1 − 2bac|β3 |1 + 2abc|α2 γ|1 + 2aba|αβ2 |1 + vα6 3 β ,
+   ρ63 δ4b (1|α3 γ|1) = −abc|α3 |1 + 2aba|β3 |1 + aba|α2 β|1 + bac|α2 γ|1 + vα6 3 γ ,
+  ρ63 δ4b (1|α2 β2 |1) = 4bac|α3 |1 + 4abc|β3 |1 + 4aba|α2 γ|1 + vα6 2 β2 ,
+
+together with
+
+  ρ73 δ4b (1|α4 |1) = (aba − abc)|α3 |1 + vα7 4 ,
+ ρ73 δ4b (1|α3 β|1) = −abc|α3 |1 + 3bac|α3 |1 + 3aba|β3 |1 + 2abc|β3 |1 − aba|γ3 |1
+                      − 2bac|γ3 |1 − abc|α2 β|1 + 2aba|α2 γ|1 + vα7 3 β ,
+ ρ73 δ4b (1|α3 γ|1) = 2aba|α3 |1 + 2bac|α3 |1 + 2abc|β3 |1 − 2bac|β3 |1 − 2aba|γ3 |1
+                      − 2abc|γ3 |1 − abc|α2 β|1 + aba|α2 γ|1 + abc|α2 γ|1 + aba|αβ2 |1
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+1798                                E. Herscovich, Z. Li
+
+                     − bac|αβ2 |1 + vα7 3 γ ,
+ρ73 δ4b (1|α2 β2 |1) = aba|α3 |1 − abc|α3 |1 + aba|β3 |1 − abc|γ3 |1 + vα7 2 β2 ,
+
+where vui ∈ ⊕j∈J0,2K (Aj ⊗ (A!−3 )∗ ⊗ A3−j ) if i ∈ {4, 7} and u ∈ B4!∗ \ {β4 , γ4 },
+or if i = 5 and u ∈ B4!∗ \ {α4 , γ4 }, or if i = 6 and u ∈ B4!∗ \ {α4 , β4 }.
+Since, qui is of the form qui = Bui +λui ω1 1|ǫ! |1 by degree reasons, where Bui ∈ K4b ,
+and we have by definition that δ4b (qui ) = ρi3 δ4b (1|u|1), we see that
+
+           db4 (Bui ) = δ4b (qui ) − λui f0b (1|ǫ! |1) = ρi3 δ4b (1|u|1) − λui f0b (1|ǫ! |1)   (4.5)
+
+for i ∈ J4, 7K. Using the explicit expression of the differential db4 given in [3],
+Fact 3.1, it is clear that the coefficients of aba|γ3 |1 and aba|α2 γ|1 in db4 (B)
+coincide for all B ∈ K4b . Comparing the coefficients of aba|γ3 |1 and aba|α2 γ|1
+in both sides of the equation (4.5), together with the expression of f0b (1|ǫ! |1)
+given in [3], (3.2), we get
+               β4    γ4        α3 β
+         λα
+          4 = λ5 = −λ6 = 1/3, λi
+           4
+                                    = λα
+                                       i
+                                         3γ
+                                            = 0, λα
+                                                  i
+                                                    2 β2
+                                                         = −τi 4/3,
+                            α2 β2
+                      λα
+                       7 = λ7
+                        4
+                                  = 0,           and λα
+                                                      7
+                                                        3β
+                                                           = λα
+                                                              7
+                                                                3γ
+                                                                   = 1,
+
+for i ∈ J4, 6K, where τi = 1 if i ∈ J4, 5K and τ6 = −1. Hence, we obtain that
+
+ ϕ4 (1|α4 |1) = −1/3, ϕ4 (1|α3 β|1) = ϕ4 (1|α3 γ|1) = 0, ϕ4 (1|α2 β2 |1) = 4/3,
+ ϕ5 (1|β4 |1) = −1/3, ϕ5 (1|α3 β|1) = ϕ5 (1|α3 γ|1) = 0, ϕ5 (1|α2 β2 |1) = 4/3,
+ ϕ6 (1|γ4 |1) = 1/3,        ϕ6 (1|α3 β|1) = ϕ6 (1|α3 γ|1) = 0, ϕ6 (1|α2 β2 |1) = −4/3,
+ ϕ7 (1|α4 |1) = ϕ7 (1|α2 β2 |1) = 0           and        ϕ7 (1|α3 β|1) = ϕ7 (1|α3 γ|1) = −1.
+
+In consequence, we get
+
+               [−X4 , X14 ] = (4/3)α2 β2 |1 − (1/3)α4 |1,
+               [−X5 , X14 ] = (4/3)α2 β2 |1 − (1/3)β4 |1,
+               [−X6 , X14 ] = (1/3)γ4 |1 − (4/3)α2 β2 |1,
+               [−X7 , X14 ] = −(α3 β + α3 γ)|1 + 3ω1∗ ǫ! |(bc − ba − ac).
+
+                          2
+Using the coboundaries gj,2   ∈ B̃22 for j ∈ J4, 6K and e3k,3 ∈ B̃33 for k ∈ J7, 8K
+given in [3], Subsubsection 5.3.1, (4.3) as well as the identities
+
+             α2 β|abc = X4 X10 , α4 |1 = X92 ,            and α2 β2 |1 = X9 X10 ,              (4.6)
+
+which follow from [3], Fact 6.3 and (6.2), we can rewrite several brackets as
+                                       2
+[−X4 , X10 ] = αβ|(ab + bc) − αγ|ac − g5,2 = 0,
+                                 2
+[−X4 , X11 ] = −αβ|ab − αγ|ba + g4,2 = 0,
+                                     2
+[−X4 , X12 ] = α2 |(bc − ba − ac) − g6,2 = −2α2 |(ab + ba) = −2X1 X9 ,
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+                  Gerstenhaber Structure on HH• (FK(3))                          1799
+
+[−X4 , X13 ] = 3α2 γ|aba − 5αβ2 |bac − 5e37,3 − 3e38,3 = −8α2 β|abc = −8X4 X10 ,
+[−X4 , X14 ] = (4/3)α2 β2 |1 − (1/3)α4 |1 = (4/3)X9 X10 − (1/3)X92 .
+
+                                         2
+Analogously, using the coboundaries gj,2     ∈ B̃22 for j ∈ {4, 5, 7} and e38,3 ∈ B̃33
+                                                                             2
+given in [3], Subsubsection 5.3.1, (4.3), (4.6) and the identity β4 |1 = X10    given
+in [3], Fact 6.3, we get that
+                                            2      2
+     [−X5 , X9 ] = −αβ|bc + αγ|(ba + ac) − g4,2 + g5,2 = 0,
+                                     2
+    [−X5 , X11 ] = −αβ|ab − αγ|ba + g4,2 = 0,
+                                          2
+    [−X5 , X12 ] = −β2 |(ab + bc − ac) − g7,2 = −2β2 |(ab + ba) = −2X1 X10 ,
+    [−X5 , X13 ] = −5α2 β|abc + 3α2 γ|aba − 3e38,3 = −8α2 β|abc = −8X4 X10 ,
+                                                                    2
+    [−X5 , X14 ] = (4/3)α2 β2 |1 − (1/3)β4 |1 = (4/3)X9 X10 − (1/3)X10 .
+
+                                       2
+Moreover, using the coboundaries gj,2     ∈ B̃22 for j ∈ J1, 5K and e3k,3 ∈ B̃33
+for k ∈ J7, 8K given in [3], Subsubsection 5.3.1, (4.3), (4.6) and the identity
+         2
+γ4 |1 = X11 given in [3], Fact 6.3, we obtain
+                                                2      2
+ [−X6 , X9 ] = αβ|(bc − ab) − αγ|(2ba + ac) + 2g4,2 − g5,2 = 0,
+                                        2
+[−X6 , X10 ] = −αβ|(ab + bc) + αγ|ac + g5,2 = 0,
+                                                      2       2      2
+[−X6 , X12 ] = γ2 |(bc − ba − ac) − αβ|ba − αγ|ab − 2g1,2 − 2g2,2 − g3,2
+             = −2(α2 + β2 )|(ab + ba) = −2X1 (X9 + X10 ),
+[−X6 , X13 ] = −10α2 γ|aba − 2αβ2 |bac − 2e37,3 + 10e38,3 = 8α2 β|abc = 8X4 X10 ,
+                                                  2
+[−X6 , X14 ] = (1/3)γ4 |1 − (4/3)α2 β2 |1 = (1/3)X11 − (4/3)X9 X10 .
+
+                                    2
+Finally, using the coboundaries gj,2   ∈ B̃22 for j ∈ J1, 6K \ {3} and e3k,3 ∈ B̃33 for
+k ∈ J1, 4K ∪ J9, 10K given in [3], Subsubsection 5.3.1, (4.3) and
+
+  α3 |(aba − abc) = X7 X9 ,     α3 |aba + β3 |bac = X7 (X9 + X10 ) − 2X6 X12 ,
+  (α3 + β3 )|aba = X6 X12 ,     (α3 β + α3 γ)|1 + 3ω1 ǫ! |(ba − bc + ac) = X9 X12 ,
+
+given in [3], Fact 6.3, or in [3], (6.2), together with the second element in the
+fifth and the eighth line, the first element in the ninth line of [3] (6.5), we have
+that
+                                                                    2      2
+   [−X7 , X9 ] = α2 |(bc − ab − ac − 2ba) − αβ|(ba + ac) + αγ|bc − g1,2 − g6,2
+              = −4α2 |(ab + ba) = −4X1 X9 ,
+                                         2
+  [−X7 , X10 ] = αβ|ac − αγ|(ab + bc) − g2,2 = −β2 |(ab + ba) = −X1 X10 ,
+                                  2      2
+  [−X7 , X11 ] = αβ|ba + αγ|ab + g1,2 + g2,2 = (α2 + β2 )|(ab + ba)
+              = X1 (X9 + X10 ),
+                                             2      2      2
+  [−X7 , X12 ] = (αβ + αγ)|(bc − ba − ac) − g1,2 + g4,2 − g5,2 = −α2 |(ab + ba)
+
+                  Documenta Mathematica 27 (2022) 1773–1804
+1800                              E. Herscovich, Z. Li
+
+                = −X1 X9 ,
+ [−X7 , X13 ] = α3 |(abc − 2aba) + α2 β|(2bac − 6aba) − α2 γ|(abc + 4bac)
+                   + 5αβ2 |(abc − aba) − (1/3)(23e31,3 + 11e32,3 − 32e33,3 − 16e34,3
+                   − 5e39,3 + 6e310,3 )
+                = (8/3)α3 |(aba − abc) − (32/3)(α3 + β3 )|aba
+                  − (16/3)(α3 |aba + β3 |bac)
+                = −(8/3)X7 (X9 + 2X10 ) = −4X1 X13 + 4X2 X13 + 8X4 X12 ,
+ [−X7 , X14 ] = −(α3 β + α3 γ)|1 + 3ω1∗ ǫ! |(bc − ba − ac) = −X9 X12 .
+The proposition is thus proved.
+Remark 4.11. Note that vanishing of [Xi , Xj ] for i ∈ J4, 7K and j ∈ J3, 7K in
+Proposition 4.10 also follows from a simple degree argument based on Corol-
+lary 2.5 and the Hilbert series of the Hochschild cohomology given in [3],
+Cor. 5.9.
+
+4.3     Gerstenhaber brackets
+We will finally compute the remaining Gerstenhaber brackets. We start with
+the following result, which is a sort of descending argument.
+Lemma 4.12. Let H = ⊕n∈N0 H n be a Gerstenhaber algebra with bracket [ , ].
+Let x ∈ H n+1 , y ∈ H n , ax ∈ H 0 , ay ∈ H 1 and z ∈ H m satisfy that ax x = ay y,
+and there is a vector subspace M ⊆ H n+m−1 such that [y, z] ∈ M and the map
+µay : M → H n+m sending v ∈ M to ay v is injective. Then, [y, z] is the unique
+element v ∈ M satisfying that ay v coincides with
+                     (−1)m−1 ax [x, z] + [ax , z]x − [ay , z]y .
+                                                              
+                                                                             (4.7)
+Proof. By (2.2) we get that
+       [ax x, z] = [ax , z]x + ax [x, z] and [ay y, z] = [ay , z]y + (−1)m−1 ay [y, z].
+
+These identities together with ax x = ay y imply
+                  ay [y, z] = (−1)m−1 ax [x, z] + [ax , z]x − [ay , z]y .
+                                                                       
+
+
+Hence, the right member is in the image of the injective map µay , and the
+result follows.
+Remark 4.13. We will apply the previous lemma to the case when H = HH• (A)
+is the Hochschild cohomology of a graded algebra A, so H is endowed with an
+extra grading, called internal (see Corollary 2.5), the elements x, y, z, ax , ay are
+homogeneous for both gradings and M ⊆ H n+m−1 is the subspace of internal
+degree equal to the sum of those of y and z. In this case, the methods given in
+Subsections 2.2 and 2.3 allow to compute the last two brackets of (4.7), whereas
+the first one will usually vanish by degree reasons.
+
+                     Documenta Mathematica 27 (2022) 1773–1804
+                  Gerstenhaber Structure on HH• (FK(3))                            1801
+
+Proposition 4.14. Let A = FK(3) be the Fomin-Kirillov algebra on 3 gen-
+erators. Then, we have the Gerstenhaber brackets [Xi , Xj ] = 0 for i, j ∈
+J9, 14K \ {13} and
+                         2
+                        
+                         2Xj ,                        if j ∈ J9, 11K,
+                        
+                        −6X X + 6X X + 2X X , if j = 12,
+                               1 14     2 14      9 12
+          [X13 , Xj ] =
+                        
+                        
+                         0,                           if j = 13,
+                          4(X9 + X10 + X11 )X14 ,      if j = 14.
+                        
+
+
+Proof. Recall that, by Corollary 2.5, the Gerstenhaber bracket satisfies that
+         n1       n2       n1 +n2 −1           ni
+[ , ] : Hm 1
+             × Hm  2
+                     → Hm   1 +m2 −1
+                                     , where Hm  i
+                                                   has internal degree mi − ni for
+i = 1, 2. Using this degree argument together with the Hilbert series of the
+Hochschild cohomology computed in [3], Cor. 5.9, we easily see that [Xi , Xj ] =
+0 for i, j ∈ J9, 14K \ {13}. Moreover, [X13 , X13 ] = 0 by (2.1).
+It remains to compute [X13 , Xj ] for all j ∈ J9, 14K\{13}. Note first the identities
+
+     [X8 , X9 ]X13 − 6[X3 , X9 ]X14 = 2X9 X13 + 12X4 X14 = 2X8 X92 ,
+                                                                 2
+   [X8 , X10 ]X13 − 6[X3 , X10 ]X14 = 2X10 X13 + 12X5 X14 = 2X8 X10 ,
+                                                                 2
+   [X8 , X11 ]X13 − 6[X3 , X11 ]X14 = 2X11 X13 − 12X6 X14 = 2X8 X11 ,
+   [X8 , X12 ]X13 − 6[X3 , X12 ]X14 = 2X12 X13 − 12X7 X14 + 6X1 X8 X14
+                                        − 6X2 X8 X14
+                                      = 2X8 X11 X12 + 6X1 X8 X14
+                                             2
+                                      = 2X8 X12 − 4X8 X9 X10
+                                    = 2X8 X9 X12 − 6X1 X8 X14 + 6X2 X8 X14 ,
+   [X8 , X14 ]X13 − 6[X3 , X14 ]X14 = 4X8 (X9 + X10 + X11 )X14 ,
+                                                                         (4.8)
+where the first equality of the first fourth lines as well as that of the last line
+follows from Propositions 4.4 and 4.5, and we used the first element of the
+seventh and the eighth line of [3], (6.5), as well as its last four elements, for the
+remaining equalities. The penultimate element of the ninth line of [3], (6.5),
+also tells us that 6X3 X14 = X8 X13 ∈ HH• (A).
+Notice now that, by degree reasons, [X13 , Xj ] ∈ H04 for j ∈ J9, 12K and H04
+is precisely the subspace of HH4 (A) spanned by the elements X92 , X10          2    2
+                                                                                  , X11 ,
+X9 X12 − 3X1 X14 + 3X2 X14 , X9 X10 , X1 X14 and X2 X14 . On the other hand,
+                 6
+[X13 , X14 ] ∈ H−2    = ω1∗ H02 , by degree reasons, and ω1∗ H02 is the subspace of
+    4
+HH (A) spanned by X9 X14 , X10 X14 , X11 X14 and X12 X14 . Let us denote by
+j
+  M ⊆ HH4 (A) the subspace given by H04 if j ∈ J9, 12K and by H−2         6
+                                                                              if j = 14.
+Since the elements X8 X92 , X8 X10  2         2
+                                       , X8 X11 , X8 X9 X12 −3X1 X8 X14 +3X2 X8 X14 ,
+X8 X9 X10 , X1 X8 X14 , and X2 X8 X14 are linearly independent, by the second
+equalities of the first four lines of (4.8) together with [3], (6.7) and (6.8), the map
+j
+  M → HH5 (A) given by left multiplication by X8 is injective for j ∈ J9, 12K.
+Similarly, the elements X8 X9 X14 , X8 X10 X14 , X8 X11 X14 and X8 X12 X14 are
+
+                   Documenta Mathematica 27 (2022) 1773–1804
+1802                                      E. Herscovich, Z. Li
+
+linearly independent, by [3], (6.8), so the map 14 M → HH7 (A) given by left
+multiplication by X8 is also injective.
+Finally, applying Lemma 4.12 to x = X14 , y = X13 , z = Xj , ax = 6X3 ,
+ay = X8 and M = j M for j ∈ J9, 14K \ {13}, together with the fact remarked at
+the beginning of the proof that [X14 , Xj ] = 0 and (4.8), the result follows.
+We can summarize the calculations of the Gerstenhaber brackets on HH• (A)
+done in Propositions 4.4, 4.5, 4.10 and 4.14 in the following table, where the
+brackets strictly below the diagonal are not displayed since they can be obtained
+using Lemma 2.2.
+
+ρ   φ X1 X2 X3 X4 X5 X6 X7   X8   X9     X10        X11                X12                    X13                          X14
+ X1   0  0  0  0  0  0  0    2X1   0      0          0                  0               4X1(X9 + X10 )                      0
+ X2      0  0  0  0  0  0    2X2   0      0          0                  0                   4X1X10                          0
+ X3         0  0  0  0  0    4X3 −2X4 −2X5          2X6        2X7 − X1 X8 + X2 X8    4X3(X9 + X10 + X11 )   X13 − (2/3)X8(X9 + X10 + X11 )
+ X4            0  0  0  0    2X4   0      0          0               2X1 X9                 8X4X10               (1/3)X92 − (4/3)X9 X10
+                                                                                                                        2
+ X5               0  0  0    2X5   0      0          0               2X1 X10                8X4X10               (1/3)X10  − (4/3)X9X10
+                                                                                                                                      2
+ X6                  0  0    2X6   0      0          0           2X1 (X9 + X10 )           −8X4X10               (4/3)X9X10 − (1/3)X11
+ X7                     0    2X7 4X1 X9 X1 X10 −X1 (X9 + X10 )        X1 X9        4X1X13 − 4X2X13 − 8X4 X12              X9 X12
+ X8                           0   2X9   2X10        2X11              2X12                   2X13                         6X14
+ X9                                0      0          0                  0                    −2X92                          0
+                                                                                                 2
+ X10                                      0          0                  0                    −2X10                          0
+                                                                                                 2
+ X11                                                 0                  0                   −2X11                           0
+ X12                                                                    0          6X1X14 − 6X2X14 − 2X9 X12                0
+ X13                                                                                           0                  4(X9 + X10 + X11 )X14
+ X14                                                                                                                        0
+
+
+
+
+                         Table 4.1: Gerstenhaber brackets [ρ, φ].
+
+Proposition 4.15. There is no generator of the Gerstenhaber bracket on
+the Hochschild cohomology HH• (A) of A = FK(3), i.e. there is no map
+∆ : HH• (A) → HH• (A) of degree −1 such that
+
+              [x, y] = (−1)|x| ∆(xy) − ∆(x)y − (−1)|x| x∆(y)
+                                                            
+                                                                  (4.9)
+
+for all homogeneous elements x, y ∈ HH• (A), where |x| is the cohomological
+degree of x. In particular, there is no Batalin-Vilkovisky structure on HH• (A)
+inducing the Gerstenhaber bracket.
+Proof. Assume that (4.9) holds. Obviously, ∆(HH0 (A)) = 0. Applying the
+results in Table 4.1 and (4.9), we get −4X3 = [X8 , X3 ] = ∆(X8 )X3 , and
+0 = [Xi , Xj ] = ∆(Xi )Xj for i ∈ J4, 7K and j ∈ J1, 3K, since X8 X3 =
+Xi Xj = 0 in that case (see the first two lines of [3], (6.5)). Hence, ∆(X8 ) ∈
+−4 + spank hX1 , X2 , X3 i and ∆(Xi ) ∈ spank hX1 , X2 , X3 i for i ∈ J4, 7K, where
+spank hX1 , X2 , X3 i is the k-subspace spanned by X1 , X2 , X3 . Moreover,
+
+          −2X4 = [X3 , X9 ] = ∆(X3 X9 ) − X3 ∆(X9 ) = ∆(X3 X9 ),
+            2X4 = [X4 , X8 ] = −∆(X4 X8 ) + ∆(X4 )X8 − X4 ∆(X8 )                                                                 (4.10)
+                = −∆(X4 X8 ) + ∆(X4 )X8 + 4X4 ,
+
+where we used that X4 Xi = X3 Xk = 0 for i ∈ J1, 3K and k ∈ J4, 8K, by
+the first two lines of [3], (6.5). Since X3 X9 = X4 X8 ∈ HH2 (A) (see the
+
+                      Documenta Mathematica 27 (2022) 1773–1804
+                Gerstenhaber Structure on HH• (FK(3))                        1803
+
+penultimate element of the third line of [3], (6.5)), adding the equations (4.10),
+we obtain ∆(X4 )X8 + 4X4 = 0. The identity ∆(X4 ) = k1 X1 + k2 X2 + k3 X3
+for k1 , k2 , k3 ∈ k, which we proved before, implies that k1 X1 X8 + k2 X2 X8 +
+4X4 = 0. This is impossible since the elements X1 X8 , X2 X8 and X4 are
+linearly independent in HH1 (A) (see [3], (6.7)). The proposition thus follows.
+
+
+
+
+References
+
+ [1] Sergey Fomin and Anatol N. Kirillov, Quadratic algebras, Dunkl ele-
+     ments, and Schubert calculus, Advances in geometry, Progr. Math., 172.
+     Birkhäuser Boston, Boston, MA, 1999, pp. 147–182. MR1667680 ↑1782,
+     1783
+ [2] Murray Gerstenhaber, The cohomology structure of an associative ring,
+     Ann. of Math. (2) 78 (1963), 267–288, DOI 10.2307/1970343. MR161898
+     ↑1776
+ [3] Estanislao Herscovich and Ziling Li, Hochschild and cyclic (co)homology
+     of the Fomin–Kirillov algebra on 3 generators (2021), available at
+     https://arxiv.org/abs/2112.01201. ↑1773, 1774, 1783, 1784, 1785,
+     1789, 1790, 1798, 1799, 1800, 1801, 1802, 1803
+ [4] Alexander Milinski and Hans-Jürgen Schneider, Pointed indecomposable
+     Hopf algebras over Coxeter groups, New trends in Hopf algebra theory (La
+     Falda, 1999), Contemp. Math., 267. Amer. Math. Soc., Providence, RI,
+     2000, pp. 215–236, DOI 10.1090/conm/267/04272. MR1800714 ↑1782
+ [5] Constantin Năstăsescu and Freddy Van Oystaeyen, Methods of graded
+     rings, Lecture Notes in Mathematics, 1836. Springer, Berlin, 2004.
+     MR2046303 ↑1777
+ [6] Cris Negron and Sarah Witherspoon, An alternate approach to the Lie
+     bracket on Hochschild cohomology, Homology Homotopy Appl. 18 (2016),
+     no. 1, 265–285, DOI 10.4310/HHA.2016.v18.n1.a14. MR3498646 ↑1781
+ [7] Dragoş Ştefan and Cristian Vay, The cohomology ring of the 12-
+     dimensional Fomin-Kirillov algebra, Adv. Math. 291 (2016), 584–620, DOI
+     10.1016/j.aim.2016.01.001. MR3459024 ↑1783
+ [8] Mariano Suárez-Álvarez, A little bit of extra functoriality for Ext and
+     the computation of the Gerstenhaber bracket, J. Pure Appl. Algebra 221
+     (2017), no. 8, 1981–1998, DOI 10.1016/j.jpaa.2016.10.015. MR3623179
+     ↑1773, 1774, 1781, 1782, 1791
+ [9] Yury Volkov, Gerstenhaber bracket on the Hochschild cohomology via an
+     arbitrary resolution, Proc. Edinb. Math. Soc. (2) 62 (2019), no. 3, 817–836,
+     DOI 10.1017/s0013091518000901. MR3974969 ↑1780
+
+                 Documenta Mathematica 27 (2022) 1773–1804
+1804                       E. Herscovich, Z. Li
+
+[10] Sarah J. Witherspoon, Hochschild cohomology for algebras, Graduate Stud-
+     ies in Mathematics, 204. American Mathematical Society, Providence, RI,
+     2019. MR3971234 ↑1775, 1776
+
+
+
+
+Estanislao Herscovich                 Ziling Li
+Institut Fourier                      Institut Fourier
+UMR 5582                              UMR 5582
+Laboratoire de Mathématiques         Laboratoire de Mathématiques
+Université Grenoble Alpes            Université Grenoble Alpes
+CS 40700                              CS 40700
+38058, Grenoble cedex 9               38058, Grenoble cedex 9
+France                                France
+
+
+
+
+                Documenta Mathematica 27 (2022) 1773–1804
+

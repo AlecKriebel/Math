@@ -1,0 +1,4 @@
+# Adversarial review log — 23572690
+
+- 2026-10-25 02:49 UTC — 10%: Read the programme objective and public acquisition receipt. Scope is the exact ordinary-Hochschild BV/bracket-generator classification in characteristic zero, with literal embedded h=0 distinguished. No sibling, scope findings, historical judgment or PRIORITY.md read.
+- 2026-10-25 02:50 UTC — 35%: Read all six published PDF pages, complete TeX, and the current dependency-interface list. Reconstructed the central-annihilator obstruction, bar comparison, repeated-factor pair and squarefree case. No defect yet; primary spanning/resolution imports remain to authenticate. Designing fresh controls in normal-ordered Weyl operators and tensor bars before reading the packaged checker. Incidental author reading-scope claims in DEPENDENCIES.md are not treated as verification.

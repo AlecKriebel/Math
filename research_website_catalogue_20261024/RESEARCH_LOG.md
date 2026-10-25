@@ -143,3 +143,31 @@ The newly completed brace report set is recorded as awaiting root disposition al
 
 
 2026-10-25T02:37:08.357554+00:00 — Final native readback verifies all245tracker rows, including34completed canonical URLs,4defects,2holds,5complete report sets awaiting root,158queued,36excluded and6aliases. Separate native screenshots verify late status changes in rows62–63. Current website master is clean atfd270b86; all17new display records and162batch artifacts remain hash-bound. Continuation state lists exact final report hashes and the next unstarted queue. Completion estimate38of203(18.72%); full goal remains active.
+
+
+## 2026-10-25T02:39:55.491519+00:00 — continuation and next inventory intake
+
+The previous goal turn made concrete progress: three new pages deployed, all seventeen display gates completed, the fourth exact defect deferred, thirty-four canonical URLs verified in the native tracker, and the Kourovka16.45 redirect checked live and in a browser. The final programme checkpoint was15c4332f7d1d090aeda7ea6a8147d5c6c383b8ed. The full objective and clean website were revalidated, and all fifteen final report/verdict pairs for the five pending papers still match their recorded hashes.
+
+Root is assessing those final reports before any promotion. Separate cubulation and file-sharing source/scope reviews have begun; independent cubulation mathematics starts from the authenticated source bytes. Completion estimate remains38 of203(18.72%). The full203-work goal remains active.
+
+
+## 2026-10-25T02:42:58.415772+00:00 — Jukes–Cantor root scientific clearance
+
+Root read all three complete final reports and the relevant deposited model/claim definitions, plus the full reader supplement. Both independent mathematical reviews reconstruct the complete forty-page argument and independently completed the full exact certificate replay. The approved claim is the fixed strict-JC strong-class containment classification and generic recovery modulo ordinary triangle redirection, together with the two carefully delimited weak-class common-germ families. Whole-image equality and broader model/competitor claims are excluded. Standard semialgebraic imports are distinguished from unavailable original book wording; no regenerate-all, human review or priority certification is claimed.
+
+All fourteen published assets were rehashed by root; the final source/review identities are bound in the immutable clearance record. Publication preparation is authorized for this paper only. Completion remains38 of203(18.72%); including this root-passed paper awaiting its publication gates,39 of203(19.21%) are reviewed or defect-deferred.
+
+
+## 2026-10-25T02:50:23.672482+00:00 — Nevo and WARM root scientific clearances
+
+Root read every complete final report and both full manuscript sources. All four public assets and165extracted members were independently rehashed unchanged. Nevo is cleared only for the characteristic-zero2-CM/local-link sphere-subcomplex theorem, with all-fields quantification confined to sphere exclusion. WARM is cleared for its exact finite model, forest alpha>4/3 and equal-rate whiskers alpha>=17/4; the critical endpoint, sharper whisker range and unequal-rate extension remain excluded. Classical dependencies and priority limits remain explicit. No follow-up or source repair is authorized.
+
+Completion remains38of203(18.72%);41of203(20.20%) are root-passed or defect-deferred, including three papers awaiting publication gates. Full203scope active.
+
+
+## 2026-10-25T02:51:19.527155+00:00 — brace and Nijenhuis root scientific clearances
+
+Root read all six complete final reports and both full manuscript sources. All four public assets and208extracted members match the CRC-checked public archives unchanged. Brace clearance is the full all-admissible-two-trivial-factor theorem with every original group/simplicity hypothesis; no broader product exclusion/minimality/priority is authorized. Nijenhuis clearance covers both smooth local-frame classification directions, all-dimensional collar/zero extension and the sufficient zero-point lemma; no certification of the stronger source persistence proof is inferred. The Nijenhuis page must preserve the declared15October manuscript/metadata date with a Manuscript dated label and distinguish17October record creation. No backdating of public availability.
+
+Cubulation and file-sharing final report sets are now complete and await root disposition;BV/reachability independent mathematical reviews run separately. Completion remains38of203(18.72%);43of203(21.18%)root-passed or defect-deferred including five awaiting publication gates. Full203scope active.

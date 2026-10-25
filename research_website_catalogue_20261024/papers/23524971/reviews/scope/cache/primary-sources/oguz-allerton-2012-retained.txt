@@ -1,0 +1,388 @@
+Fiftieth Annual Allerton Conference
+Allerton House, UIUC, Illinois, USA
+October 1 - 5, 2012
+
+     Stable, distributed P2P protocols based on random peer sampling
+         Barlas Oğuz and Venkat Anantharam
+                                                                                     Ilkka Norros
+                  EECS department
+                                                                        VTT Technical Research Centre of Finland
+          University of California Berkeley
+                                                                                    ilkka.norros@vtt.fi
+       {barlas, ananth}@eecs.berkeley.edu
+
+
+   Abstract— In a peer-to-peer file sharing system based on        a stable system. Formally however, stability of this protocol
+random contacts where the upload capacity of the seed is           remains a conjecture.
+small, a single chunk of the file may become rare, causing an         Here we propose a variant of this protocol for which we
+accumulation of peers who lack the rare chunk. To prevent this
+from happening, we propose a protocol where each peer samples      are able to prove stability in general for any number of
+a small population of peers and makes an intelligent decision      chunks and any arrival rate. To our knowledge, this is the
+to pick which chunk to download based on this sample. We           first formal demonstration under this model that distributed
+prove that the resulting system is stable under any arrival rate   load balancing strategies can guarantee stability even if the
+of peers even if the seed has small, bounded upload capacity.      seed has bounded capacity and in the absence of altruistic
+                                                                   peers. The proof, presented in section IV, employs an uncon-
+                     I. I NTRODUCTION
+                                                                   ventional Lyapunov function, which is the main contribution
+   We consider an open file sharing system where peers arrive      of this paper together with the new protocol. The form of
+according to a Poisson process of rate λ and leave once they       the Lyapunov function is quite novel and might be useful in
+have downloaded the entire file. In a single server scenario,      proving the stability of similar algorithms.
+such a system would only be stable, if the seeder (server) of
+the file has sufficient upload capacity to meet the arrival rate                    II. P ROBLEM DEFINITION
+of demand λ. In a P2P setup, however, each peer contributes           A file is divided into k chunks, to be distributed in a
+upload resources, scaling the capacity linearly with demand.       P2P system. Peers enter the system at Poisson rate λ and
+Therefore a P2P system should conceivably be stable for any        leave immediately upon receiving all k chunks. We make
+arrival rate λ regardless of the upload capacity of the original   the following assumptions:
+seed.                                                                 • There is always exactly 1 seed in the system (denoted
+   Unfortunately, this desirable property of stability under            by s), who has all the chunks.
+scaling does not always hold. It has been pointed out in [1]          • At a Poisson rate of 1, each peer can sample randomly
+that if the peers contact each other and download chunks in             with replacement up to 3 peers from the current popu-
+a purely random fashion, a single chunk might be driven to              lation ∪{s}. (A peer is allowed to sample itself.)
+near extinction, causing peers to stay in the system for a long       • At the time of sampling, the peer can choose to down-
+time and driving the number of peers in the system to infinity.         load at most 1 chunk which it does not already have,
+In this scenario, the rare chunk is difficult to obtain, because        but shows up in the sample. The download is assumed
+there is a high probability that the randomly contacted peer            to happen instantaneously.
+does not have it, and peers who have the rare chunk tend to           • A newly arriving peer arrives with no chunks.
+leave the system quickly since they probably already have          Let S be the total number of peers in the system (including
+every other chunk.                                                 the seed). Note that each peer (including the seed) can be
+   It is known that stability can be achieved if the seed has      sampled, on average, at most by three other peers per unit
+sufficient capacity to distribute a uniformly random chunk         time. Therefore the average upload bandwidth per peer is
+to each arriving peer [2], or if peers that complete the file      bounded, and does not scale with λ or S.
+remain in the network for an extra time that is on average            We seek a rule by which a peer can decide which chunk (if
+equal to the time it takes to download a single chunk [3], [4].    any) to download at each time slot from the current sample.
+However in real networks the peers may not be altruistic, and      This rule is assumed to be a function of the peer’s current
+may leave the network immediately upon completing the file.        chunk profile, and the profiles of the sampled peers. (The rule
+Also, the arrival rate of peers might overwhelm the limited        could possibly depend on the past observations of the peer,
+upload capacity of the seed. As a result, it is more desirable     as well as λ and k. However the rule we propose will not
+to overcome the rare chunk issue using a protocol which            depend on these.) We require that the chosen rule stabilizes
+helps to balance out the chunk distribution, a la Bittorrent’s     the stochastic system in the Lyapunov sense.
+[5] rare-chunk mechanism.
+   In [6], [7], [8] a distributed ‘minority’ rule is proposed,           III. S OLUTION : C OMMON CHUNK PROTOCOL
+whereby peers sample 3 other peers and download a chunk               Let Si = # peers who have chunk i including the seed,
+only if it is possessed by exactly 1 of these. Simulations and     i ∈ {1, . . . , k}.
+large system limits were used to argue that the rule leads to         S0 = # peers who have no chunks.
+978-1-4673-4539-2/12/$31.00 ©2012 IEEE                         915
+   S = total number of peers.                                        downloads chunk i, and dS̄i− is the virtual rate at which a
+   S̄i = S − Si .                                                    peer who is lacking only chunk i downloads i and leaves the
+   T̄i = # peers who have only chunk i missing.                      system. We will need the following lemmas:
+                                                                                         Sr 2
+   Definition 3.1: A chunk in a sample of 3 peers is rare               Lemma 4.1: r ≥ 6k20 where r0 = i dSi+ .
+                                                                                                           P
+if exactly 1 peer in the sample has that chunk. A chunk is                Proof: Write S̄i = S0 + B̄i + T̄i to define B̄i . B̄i is the
+called a match if it is contained in the sample but not in the       number of peers who lack chunk i and have at least 1 and
+sampling peer’s profile.                                             at most k − 2 chunks. We can write
+   We define the rule as follows:
+                                                                                    r ≥ S0 d(S0 ) + T̄i d(T̄i ) + B̄i d(B̄i )
+   • Peers with no chunks sample 3 peers at random and
+      choose to download a chunk that is a rare match. If            where d(.) denotes the virtual rate of downloads for an
+      there is more than 1, they pick randomly among them.           individual  peer in each group. By definition, d(S0 ) =
+      If there are no rare matches, the peer skips this time         P
+                                                                          dS +
+                                                                               ≥ dSj+ for any j. Also
+                                                                        i    i
+      slot without downloading.
+   • Peers who have more than zero, but less than k − 1                                      3T̄i2 Si   T̄i2 3S̄i2 Si   T̄i2 +
+                                                                                 d(T̄i ) ≥            =               ≥     dS
+      chunks sample only 1 peer at random, and download                                        S3       S̄i2 S 3        S̄i2 i
+      a chunk at random among those that match (no rare
+                                                                                                                               3S̄ 2 S
+      match required). Skip if there is no match.                    where the last inequality follows because Si3 i is the
+   • Peers who have k −1 chunks sample 3 peers at random.            probability of a rare match, but dSi+ might be smaller due
+      Download only if every chunk that the peer has appears         to the possibility of multiple rare matches. It is left to note
+                                                                                dS +
+      at least twice in the sample, and there is a match.            d(B̄i ) ≥ 3i . To argue this, note that d(B̄i ) is the total
+      Otherwise skip without downloading.                            virtual rate of downloads per peer for peers in B̄i , and a
+We will refer to this as the common chunk protocol.                  sample of chunk i is sufficient to result in a download (even
+   Roughly, the first item is meant to stop arriving peers from      if chunk i is not chosen to be downloaded). The probability
+acquiring a common chunk as their first chunk. The last item         of sampling chunk i in 1 go is at least 31 the probability of
+attempts to keep rare chunks from leaving the system. This           sampling chunk i in 3 tries, which in turn at least as large
+should balance out the chunk distribution in the system and          as dSi+ . We can now write
+provide stability.
+                                                                                       1           T̄ 3      S̄i
+   Note that by sampling only 3 peers, we are requiring the                   r ≥ (S0 + B̄i )dSi+ + i2 dSi+ ≥ dSi+ .
+bare minimum that allows a majority rule. By sampling more                             3           S̄i        6
+peers, one could clearly do better, however our main purpose         Here we argue that x + y + z = 1 =⇒ x + y3 + z 3 ≥ 16 .
+here is to demonstrate that stability is possible even in this
+restricted setting. We discuss sampling more peers and other                                          S̄i
+                                                                                                          ≥ dSi+ .
+performance enhancing heuristics in section V.                                                        S
+   In this paper, we model the proposed system by a Markov           Therefore
+process with state space X described by the peers currently                                            S(dSi+ )2  r2 S
+                                                                                        r ≥ max                  ≥ 02.
+in the system and their chunk profiles. The description of the                                    i       6        6k
+state space is essentially identical to that in [2]. Let q(x, x0 )
+denote the entries of the generator matrix of this Markov              Lemma 4.2:
+process. For any function on the state space,
+                                                                                                 Si
+   Definition 3.2: The drift ∆f (x) of a function f (x) is                            r ≥ min 3 , if S ≥ 12.
+                                                                                              i 2k
+defined as                                                                Proof: Argue as in the previous lemma that for S0 , a
+                                                                     rare match of i is sufficient for a download. For B̄i , a simple
+                        X
+            ∆f (x) =        q(x, x0 )(f (x0 ) − f (x)).                                              S̄ 2 S
+                      x0 6=x                                         match is sufficient and SSi ≥ Si 3 i . Therefore
+   We use the following well known tool for the proof:
+   Theorem 3.3: [Foster-Lyapunov] Let L be a function on                                     S̄i2 Si     T̄i3 S̄i2 Si   2S̄i3 Si
+                                                                       r ≥ (3S0 + B̄i )              + 3              ≥          , for any i.
+the state space with drift ∆L. Let L ≥ 0 and let {L ≤ l}                                       S3        S̄i2 S 3        3S 3
+be a finite set for any finite constant l > 0. If for an  > 0,
+                                                                     Here we argue that x + y + z = 1 =⇒ x + y3 + z 3 ≥ 29 .
+∆L < − on the set S > c, for a suitably chosen constant
+                                                                     Since maxi S̄i ≥ S−1
+                                                                                        k , we have the result when S ≥ 12.
+c, then the Markov process is positive recurrent.                                                   1
+                                                                       First consider the case λ ≤ 3k .
+                  IV. P ROOF OF STABILITY                              We propose:                X
+   We will split the proof into two cases according to whether                               L1 =       S̄i
+      1           1                                                                                          i
+λ ≤ 3k   or λ > 3k  . In each case, we will show the stability
+of this system by demonstrating a Lyapunov function for it.          The drift of L1 is
+   Let r be the total rate of downloads. dSi+ is the virtual                                                         1
+rate (stochastic intensity) at which a peer with no chunks                                ∆L1 = kλ − r ≤               − r.
+                                                                                                                     3
+                                                                 916
+From lemma 4.2, we know                                                     Now we are ready to show
+                            S̄ 3 Si                                         Theorem 4.3:
+                          r> i 3,      for any i.                                                ∆L < −
+                             2S
+                                                                                                                                 2 6λk4
+Picking i to be the rarest chunk, we observe that r > 31 +               with  > 0 and C = 108ek 3 whenever2 S > 4Cke3Cλk e      .
+whenever S > 3k 3 .                                                            Proof: Since we assume that 8kS < 1, we are left with
+                      1
+  Now assume λ ≥ 3k     .                                                 5 terms which can be written as
+  We propose:                                                                                                        λ(e − 1)S
+                                 X S      S                                     ∆L < [1 + λ + (C + 1)kλ] − Cr −
+                                                                                                                        e · eS0
+                      X
+               L=C         S̄i +        + S0
+                                   e Si  e                                             (e − 1)S0 r0 S   X (e − 1)S0 SdSi+
+                        i        i                                                  +                 −
+                      | {z } |        {z    }                                               eS0         i
+                                                                                                                e · eSi
+                              L1              L2
+
+where C is a constant to be chosen later.                                   •   If r ≥ 2kλ:
+  We will calculate the drift of L in two parts. A download                       – If (e−1)S
+                                                                                          eS0
+                                                                                             0 Sr0
+                                                                                                   ≥ Cr              S0
+                                                                                                     3 : Then r0 ≤ 6ekeS0 by lemma
+of chunk i decreases S̄i by one and leaves all other S̄j un-                                              S2
+                                                                                   4.1 and r0 S0 ≤ 6eke0S0 < 6ek  1
+                                                                                                                     . The third and
+changed. A new arrival increases each S̄i by one. Therefore                                                   −(e−1)(λ−1/6k)S
+                                                                                   fourth terms give at most       e·eS0
+                                                                                                                              , which
+                            ∆L1 = kλ − r.                                          is negative. Since r ≥ 2kλ, we’re done.
+Also                                                                             – If (e−1)S
+                                                                                         eS0
+                                                                                            0 Sr0
+                                                                                                  < Cr
+                                                                                                     3 , we have
+                                                  
+            X λ                     S   S+1                                                                      4
+   ∆L2 ≤              Si
+                         −λ            − S0 +1                                        ∆L < 1 + λ + (C + 1)kλ − Ckλ < −.
+             i
+                  e                eS0  e                                                                        3
+                                                                                                                         4
+                                                                            • If r < 2kλ, then by lemma 4.2, ∃Si∗ < 6k λ. Since
+                                                               
+            X             1          1     1   1
+          −       S0 SdSi+ S
+                               − Si +1 + S0 − S0 −1                              +    3S̄i2 Si                          S0
+                                                                              dSi > kS 3 , the last term is at most − ke6k4 λ . Here
+            i
+                         e  i      e      e  e
+                                                                                                    3(e−1)S̄i2∗
+            X           X S − 1        S
+                                                                               we used the bound      eS 2     > 1.
+          +   T̄i dS̄i−              − Sj                                                                                      S2
+            i
+                             e Sj −1
+                            j6=i
+                                       e                                         – If (e−1)S
+                                                                                          eS0
+                                                                                             0 Sr0      Cr
+                                                                                                    ≥ 3 : Then r0 S0   ≤ 6eke0S0 <
+                                                                                     1
+                                                                                   6ek . The third and fourth terms give at most
+   The first two terms correspond to the the arrival of a                          −(e−1)(λ−1/6k)S
+                                                                                         e·eS0
+                                                                                                   ≤ −(e−1)λS
+                                                                                                         2e·eS0
+                                                                                                                , which is negative.
+new peer. The second term is the drift due to a peer with                                            4
+
+no chunks downloading chunk i. The last term corresponds                           If S0 ≥ 3Cλk 2 e6k λ , the last term is less than
+to the event where a peer leaves the system after having                           − 23 Ckλ, and
+downloaded chunk i.                                                                                             3
+   The inequality is due to the fact that we omitted terms                              ∆L < 1 + λ + (C + 1)kλ − Ckλ < −.
+                                                                                                                2
+corresponding to transitions which keep S and S0 constant,                                                     4
+                                                                                    Else S0 < 3Cλk 2 e6k λ , so we would have
+and in the last set of terms, for each individual i we ignored
+                                                                                    − (e−1)λS
+                                                                                       2e·eS0
+                                                                                              < − 2(e−1) Ckλ and
+the terms corresponding to Si and S0 . These transactions can                                        e
+only decrease L2 .                                                                                                 2(e − 1)
+                          3S 2                                                      ∆L < 1 + λ + (C + 1)kλ −                Ckλ < −
+   Since dS̄i− ≤ minj6=i S 2j and T̄i ≤ Sj , ∀j 6= i, the last                                                         e
+term satisfies                                                                      since 2(e−1) > 54 .
+         X S − 1                                                                           e
+                           S X
+                        −            T̄i dS̄i−
+                e Sj −1   e Sj                                                   – If (e−1)S
+                                                                                          eS0
+                                                                                             0 Sr0
+                                                                                                   < Cr
+                                                                                                      3 , we can omit the second and
+           j                          i6=j
+                                                                                   fourth terms which add up to (e−1)S    0 Sr0
+                                                                                                                                −Cr < 0.
+                  X                          S̄j3 S    8k 2                                                            eS0
+              ≤           3(e − 1)(k − 1)            <      .       (1)            Again by the same reasoning as above, if S0 ≥
+                      j
+                                             S 2 eSj    S                                    4
+                                                                                   3Cλ2 e6k λ , the last term is less than − 32 Ckλ, and
+We get                                                                                                          3
+                                                                                        ∆L < 1 + λ + (C + 1)kλ − Ckλ < −.
+             X λ      λ     λ(e − 1)S                                                                           2
+    ∆L2 <        Si
+                    + S0 −
+            i
+               e     e        e · eS0                                                                          4
+                                                                                    Else S0 < 3Cλk 2 e6k λ , so we would have
+          X                  
+                                 1      1
+                                            
+                                                8k 2                                − (e−1)λS
+                                                                                        e·eS0
+                                                                                              < − 2(e−1)
+                                                                                                     e   Ckλ and
+        +     (e − 1)S0 SdSi+ S0 −        S
+                                              +
+            i
+                               e      e·e i      S                                                                 2(e − 1)
+                                                                                    ∆L < 1 + λ + (C + 1)kλ −                Ckλ < −
+                                                                                                                       e
+Since i eSi + eSλ0 < (k + 1)λ, we may write
+     P λ
+                                                                                    since 2(e−1) > 54 .
+            8k 2                          λ(e − 1)S                                          e
+       ∆L <      + λ + (C + 1)kλ − Cr −
+             S                              e· eS0
+            X                 
+                                 1      1                                    It is clear that both Lyapunov functions that are used
+          +    (e − 1)S0 SdSi+ S0 −                                       satisfy the properties of theorem 3.3. We conclude that the
+                                e    e · eSi
+             i                                                            proposed system is positive recurrent for any value of λ.
+                                                                      917
+                     V. P ERFORMANCE
+   From a performance point of view, some aspects of the
+protocol may strike the reader as inefficient. In particular,
+the rule for leaving the system is quite strict, and may cause
+substantial delay for the peers that have all but one chunk.
+Consider a state where most of the peers have a few or no
+chunks. A sample of 3 peers needs to contain at least 2k − 1
+chunks (1 for the missing chunk, 2 each for the rest) for a
+peer to be able to leave the system. Therefore a peer with
+k −1 chunks will need to wait in the system, until the system
+becomes more saturated.
+   On the other hand, this ensures availability of all chunks to
+other peers, and reduces starvation in the network. This rule
+can be interpreted as forcing a degree of altruistic behavior
+and has a similar effect in terms of stability.
+
+A. m-sampling
+   The rule for the peers that have all but one chunk can be          Fig. 1.   Reaching steady state from an empty system. k = 20. λ = 10.
+eased as follows. A peer in T̄i samples m peers at random
+with replacement instead of 3. Allow a download only if each
+chunk other than i is observed at least twice in the sample of
+m peers. This would ensure none of the chunks which leave
+are rare. Sampling more peers increases the complexity of the
+system (decreases locality), but allows for a more efficient
+search (peers could leave earlier). One could pick m to strike
+a good trade-off between complexity and performance.
+   The proof of stability generalizes to this case with little
+                                                     Sj2
+modification. In (1), note that dS̄i− ≤ minj6=i m 22 S 2 . There-
+fore the last term would be bounded by m        8k
+                                              
+                                             2 3S , which can
+be bounded by 1, provided      we modify the bound on S in
+theorem 4.3 with m
+                       
+                     2   . The rest of the proof goes through
+unaltered.
+
+B. Simulations
+   We compare our proposed algorithm with the parameter
+m taking the values {3, 5, 10}, m = 3 being the original
+protocol proposed in section III, with the rare chunk rule.
+   Figure 1 shows a system with 20 chunks and λ = 10. At            Fig. 2. Relaxing from severe imbalance. 1000 peers all lack a single chunk
+time 0, only the seed is present. We can see all four systems       at initialization. k = 20. λ = 10.
+reaching a stable state. The total number of peers for m = 5
+and m = 10 behave roughly similar to the simple rare chunk
+algorithm, where m = 3 hovers slightly above the others due
+to the stricter rule keeping peers in the system for a longer                          Protocol                   E[T]     Var(T)
+time. The same behavior is observed in figure 2, where all                            Rare chunk                  25.6      36.4
+systems relax in a similar manner from an initial population                      Common chunk, m=3               30.4     114.1
+of 1000 peers, all of which lack the same chunk.                                  Common chunk, m=5               24.9      35.2
+   As reported in [8], [6], the rare chunk rule seems to                          Common chunk, m=10              22.7      25.2
+provide stability despite the lack of a conclusive proof in this
+                                                                           Fig. 4.   Mean and variance of completion time at stationarity.
+direction. On the other hand, the newly proposed protocol
+performs competitively (and even more so with a suitably
+chosen parameter m) while having the advantage of a formal
+stability guarantee.
+   In figure 3, we compare the distribution of completion
+time for peers in each simulation. We run each system
+until it looks to have stabilized, then compare the time it
+takes for each new peer to leave the system. As expected,
+                                                                918
+                                      Fig. 3.   Empirical distribution of completion time at stationarity.
+
+
+
+
+the performance of the system at stationarity improves with               in the reverse direction. We are working to include similar
+parameter m, with m = 5 having roughly equal performance                  dynamics in our model. We will pursue the analysis of this
+with the rare chunk heuristic. Note that the common chunk                 in a more extensive document.
+protocol with m = 3 exhibits longer tails in the completion
+                                                                                                   ACKNOWLEDGMENT
+time distribution, due to the high variability of waiting time at
+the top level. Table V-B summarizes the mean and variance                   The research of the authors was supported by the ARO
+of the completion time of each algorithm. Note that with                  MURI grant W911NF-08-1-0233, “Tools for the Analysis
+20 chunks, the theoretical minimum for the average is 20                  and Design of Complex Multi-Scale Networks”, by the NSF
+time steps. The data is collected from around 3000 peers                  grant CNS-0910702, by the NSF Science & Technology
+that completed the file during the simulation.                            Center grant CCF-0939370, “Science of Information” and
+                                                                          by the Academy of Finland.
+       VI. C ONCLUSIONS AND FUTURE DIRECTIONS
+   In this paper we have demonstrated that a completely de-                                             R EFERENCES
+centralized, stable peer-to-peer network is possible, even with           [1] F. Mathieu and J. Reynier, “Missing piece issue and upload strategies in
+non-altruistic peers and a single seed with minimal upload                    flashcrowds and p2p-assisted filesharing,” in AICT-ICIW 2006. IEEE.
+                                                                          [2] L. Massoulié and M. Vojnovićscho, “Coupon replication systems,” in
+capacity. While earlier work has hinted at this result with                   ACM SIGMETRICS Performance Evaluation Review, vol. 33, no. 1.
+heuristics and simulations, it had proved difficult to come                   ACM, 2005, pp. 2–13.
+up with a provably stable scheme. Although our original                   [3] J. Zhu and B. Hajek, “Stability of peer to peer systems.” PODC, 2011.
+                                                                          [4] ——, “Stability of a peer-to-peer communication system,” Arxiv
+algorithm has drawbacks in terms of performance, we have                      preprint arXiv:1110.2753, 2011.
+suggested an improvement that allows trading locality for                 [5] B. Cohen, “Incentives build robustness in bittorrent,” in Workshop on
+performance. Our proof was easily adapted to this case,                       Economics of Peer-to-Peer systems, vol. 6. Citeseer, 2003, pp. 68–72.
+                                                                          [6] H. Reittu, “A stable random-contact algorithm for peer-to-peer file
+which suggests that the methods presented here might allow                    sharing,” in Proceedings of the 4th IFIP TC 6 International Workshop
+for stability guarantees for other algorithms. In particular the              on Self-Organizing Systems. Springer-Verlag, 2009, pp. 185–192.
+conjecture that the rare chunk protocol of [6] is stable still            [7] I. Norros and H. Reittu, “Urn models and peer-to-peer file sharing,” in
+                                                                              Modeling and Optimization in Mobile, Ad Hoc, and Wireless Networks
+holds and we are working on adapting some of the tools used                   and Workshops, 2008. WiOPT 2008. 6th International Symposium on.
+here to prove this claim.                                                     IEEE, pp. 554–554.
+   In our model, we have assumed that peers cannot ‘cheat’                [8] I. Norros, H. Reittu, and T. Eirola, “On the stability of two-chunk file-
+                                                                              sharing systems,” Queueing Systems, vol. 3, pp. 183–206, 2011.
+the protocol. In practice, one needs incentive mechanisms
+to ensure that the peers follow the protocol. One such
+mechanism could be based on tit-for-tat downloads, where a
+download happens only if it can be reciprocated by an upload
+                                                                     919
+

@@ -82,7 +82,7 @@ document=f'''<!DOCTYPE html>
 <header><p class="site-title"><a href="/">Alec Kriebel</a></p><nav aria-label="Main navigation"><a href="/research/">Research</a> | <a href="/blog/">Blog</a> | <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></nav></header>
 <main id="main"><article><header>
 <h1><a href="/research/{slug}/">{h(c['title'])}</a></h1>
-<p class="entry-meta">By {h('; '.join(authors))}, independent researcher.<br>Published <time datetime="{c['publication_date']}">{display_date}</time> · {h(c.get('edition_label', 'Version '+c['version']))} · <strong>Unrefereed preprint</strong></p>
+<p class="entry-meta">By {h('; '.join(authors))}, independent researcher.<br>{h(c.get('publication_date_label', 'Published'))} <time datetime="{c['publication_date']}">{display_date}</time> · {h(c.get('edition_label', 'Version '+c['version']))} · <strong>Unrefereed preprint</strong></p>
 <p>{' · '.join(download_links)}</p>
 <p><a href="#plain-language">Plain-English explanation</a> · <a href="#paper">Read on this page</a> · <a href="#collaborate">Collaboration</a></p>
 </header><hr>{sections}</article></main>

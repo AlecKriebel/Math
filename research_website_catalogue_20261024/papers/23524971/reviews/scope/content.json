@@ -1,0 +1,93 @@
+{
+  "title": "All-load stability of a deterministic-first-chunk file-sharing chain",
+  "slug": "deterministic-first-chunk-stability",
+  "description": "Positive recurrence at every fixed positive arrival rate for the exact two-chunk file-sharing model of Norros, Reittu and Eirola.",
+  "abstract": "We prove positive recurrence at every fixed positive arrival rate for the four-population deterministic-first-chunk chain described by Norros, Reittu and Eirola. This answers the stability conjecture in Norros's 2010 Oberwolfach contribution and the retained 2011 author proof, for the exact six-rate model with a permanent seed and invisible empty waiting rooms. A single coercive Foster function combines remaining workload, rounded cohort imbalance, and two bounded finite birth–death Poisson correctors. Monotone ratio cutoffs make every first-download interface error nonpositive. The other interface errors are controlled pointwise. The proof requires no stationary averaging, moment assumption, or uniformity in the arrival rate. Exact finite controls supplement the analytic proof. The contribution is the all-load extension of the stated historical conjecture; classical methods and source-version limits are explicit.",
+  "plain_language": [
+    "Imagine a file split into two pieces. Each new participant chooses at random which piece to fetch first, keeps that choice, and leaves as soon as both pieces are obtained. One permanent seed always has both pieces. The paper studies a precise mathematical version of this process.",
+    "The result is that this particular random system is stable at every fixed positive arrival rate. Here stability means that it repeatedly returns in finite expected time and has a unique stationary probability distribution. It does not mean that the population never becomes large or that the average population has been bounded.",
+    "The question is interesting because the associated large-system differential equations have trajectories that grow without bound. For this model, that deterministic behavior does not force instability of the original random chain. The paper extends the easy small-arrival-rate argument to every positive load."
+  ],
+  "result": [
+    "For every fixed real λ>0 and every finite initial state (a,b,x,y)∈N₀⁴, Theorem 1 asserts that the six-rate continuous-time chain is nonexplosive, irreducible and positive recurrent. It therefore has a unique stationary probability distribution.",
+    "The rates are λ/2 for each of the two arrival types, a(x+1)/D and b(y+1)/D for first downloads, and x(y+1)/D and y(x+1)/D for departures, where D=x+y+1. The empty waiting-room populations a and b do not enter this denominator. These exact rates and the permanent seed are part of the result."
+  ],
+  "why_it_works": [
+    "The proof combines the amount of unfinished downloading with a smoothed measure of imbalance between the two participant groups. Two bounded corrections handle states in which one piece is scarce.",
+    "The corrections are activated by monotone cutoffs. The first-download transitions change those cutoffs in a favorable direction; the remaining changes are bounded explicitly. One global function then has negative expected drift outside a finite set.",
+    "The argument uses localized stopping times and a finite-mean return cycle to obtain recurrence. It does not assume in advance that a stationary distribution or a stationary population moment exists."
+  ],
+  "limitations": [
+    "This is the specified two-chunk model with one permanent seed, independently uniform fixed first choices, immediate departure after completion, and invisible empty waiting rooms. It is not a theorem for arbitrary file-sharing software or other chunk-selection protocols.",
+    "There is no separate bound on the seed’s aggregate upload capacity beyond the displayed rates. In particular, many empty participants can contact the seed at once in this idealized model.",
+    "The arrival rate is fixed and strictly positive; constants may depend on it. The theorem does not provide a bound uniform in λ, a stationary population moment, a completion-time estimate, a convergence rate, or geometric ergodicity. At λ=0 the zero state is absorbing, so the irreducibility statement does not apply.",
+    "The target is the historical stability conjecture in the 2010 Oberwolfach report and the retained 2011 author proof. The 2009 preprint stated the opposite conjecture. The paper does not certify worldwide priority or that every later publication has been excluded."
+  ],
+  "background": [
+    {
+      "title": "Norros — On the stability of population processes",
+      "url": "https://doi.org/10.4171/OWR/2010/48",
+      "note": "Printed pages 2782–2783 state the deterministic-first-chunk stability conjecture despite instability of the large-system differential equations."
+    },
+    {
+      "title": "Norros, Reittu and Eirola — On the stability of two-chunk file-sharing systems",
+      "url": "https://hal.science/hal-00781341",
+      "note": "Section 3.2, Figure 2 and Conjecture 3.6 of the retained January 5, 2011 author proof specify the model, including invisible empty waiting rooms, and conjecture stability."
+    },
+    {
+      "title": "Norros, Reittu and Eirola — 2009 preprint",
+      "url": "https://arxiv.org/abs/0910.5577v1",
+      "note": "Figure 2 supplies the same transition rates, but this earlier version conjectures high-load instability. It must be distinguished from the later source."
+    },
+    {
+      "title": "Meyn and Tweedie — Stability of Markovian processes III",
+      "url": "https://doi.org/10.2307/1427522",
+      "note": "Classical continuous-time Foster–Lyapunov criteria and localized Dynkin arguments provide the background stability method."
+    },
+    {
+      "title": "Oguz, Anantharam and Norros — Stable, distributed P2P protocols based on random peer sampling",
+      "url": "https://doi.org/10.1109/Allerton.2012.6483316",
+      "note": "The Common Chunk protocol is a different all-load stable scheme: it samples the entire population and protects rare chunks before departure. Its theorem is not the DFC result."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration from researchers in stochastic processes, queueing theory and distributed systems, especially on checking the recurrence argument, placing it precisely in the file-sharing literature, and developing a journal-ready treatment. Any coauthorship would reflect a substantive contribution to the research.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed: this scope review has not established a sufficiently strong, independently justified paper-worthy question or conjecture.",
+  "publication_date": "2026-10-20",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23524971",
+  "author": "Alec Kriebel",
+  "pdf_filename": "dfc_stability.pdf",
+  "supplement_filename": null,
+  "additional_assets": [
+    {
+      "filename": "dfc_stability_verification.zip",
+      "label": "Source and verification package (ZIP)"
+    }
+  ],
+  "status": "Unrefereed preprint",
+  "ai_disclosure": "AI tools were used extensively in research, proof development, literature comparison, computation, manuscript preparation and adversarial auditing. Internal AI review does not constitute formal independent human peer review or proof-assistant certification.",
+  "source_binding": {
+    "record_id": "23524971",
+    "pdf_sha256": "bee5abffcfdb1ce8bc50f706480c81c4a80e8d609bec2a9d99c6aa4e9b805036",
+    "receipt": "sources/receipt.json",
+    "receipt_sha256": "c4e266c32b351dc934bb299de516eccfd7c740586df15ae18ce0004ac58da592",
+    "metadata_sha256": "e031b1735b0bb2747f3beed5e92bf0ba2ef2b7d6d7b7cb707903dd1cab47fe78",
+    "all_public_assets": [
+      {
+        "filename": "dfc_stability_verification.zip",
+        "sha256": "38664f12e8d2e74fa46b3f11363a071ec100aad62ece713b578293a6593d9a0e",
+        "bytes": 251455
+      },
+      {
+        "filename": "dfc_stability.pdf",
+        "sha256": "bee5abffcfdb1ce8bc50f706480c81c4a80e8d609bec2a9d99c6aa4e9b805036",
+        "bytes": 75006
+      }
+    ],
+    "embedded_assets": []
+  },
+  "related_resources": [],
+  "candidate_only": true,
+  "candidate_gate": "Scope and attribution candidate only. Separate mathematical reviews and root publication approval are required; this content is not a mathematical PASS."
+}

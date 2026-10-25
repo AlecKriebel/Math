@@ -1,0 +1,126 @@
+{
+  "title": "All-load stability of a deterministic-first-chunk file-sharing chain",
+  "slug": "deterministic-first-chunk-stability",
+  "description": "Positive recurrence for the literal six-rate deterministic-first-chunk chain at every fixed positive arrival rate, with no aggregate cap on seed upload capacity.",
+  "abstract": "We prove positive recurrence at every fixed positive arrival rate for the four-population deterministic-first-chunk chain described by Norros, Reittu and Eirola. This answers the stability conjecture in Norros's 2010 Oberwolfach contribution and the retained 2011 author proof, for the exact six-rate model with a permanent seed and invisible empty waiting rooms. A single coercive Foster function combines remaining workload, rounded cohort imbalance, and two bounded finite birth–death Poisson correctors. Monotone ratio cutoffs make every first-download interface error nonpositive. The other interface errors are controlled pointwise. The proof requires no stationary averaging, moment assumption, or uniformity in the arrival rate. Exact finite controls supplement the analytic proof. The contribution is the all-load extension of the stated historical conjecture; classical methods and source-version limits are explicit.",
+  "plain_language": [
+    "Imagine a file split into two pieces. Each arriving participant independently chooses at random which piece to fetch first and keeps that first choice. Participants leave as soon as both pieces are obtained, while one permanent seed always has both pieces.",
+    "The paper proves stability for a particular continuous-time random model at every fixed positive arrival rate. Stability here means positive recurrence and a unique stationary probability distribution. It does not imply a bound on average population or download time.",
+    "The exact model matters: empty participants are excluded from the contact denominator, and the permanent seed has no separate aggregate upload cap. Many empty participants can contact it at once. This result is not a stability theorem for a capped-seed model.",
+    "The associated large-system differential equations can have trajectories growing without bound. For this model, that behavior does not force instability of the random chain. The paper extends the elementary small-load argument to every fixed positive load."
+  ],
+  "result": [
+    "For every fixed real λ>0, Theorem 1 states that the continuous-time chain on N₀⁴ is nonexplosive, irreducible and positive recurrent, and therefore has a unique stationary probability distribution. The conclusion covers every finite initial state.",
+    "The state (a,b,x,y) records empty participants assigned to each first-chunk choice and participants holding only each respective chunk. With D=x+y+1, the two arrivals have rate λ/2, the first downloads have rates a(x+1)/D and b(y+1)/D, and departures have rates x(y+1)/D and y(x+1)/D. A transition decrementing a zero coordinate has rate zero.",
+    "The seed contributes the +1 terms. The empty populations a and b do not enter D, and these rates allow unbounded aggregate seed upload as the waiting populations grow. The theorem applies to this literal generator."
+  ],
+  "why_it_works": [
+    "The proof combines the amount of unfinished downloading with a smoothed measure of imbalance between the two participant groups. Two bounded corrections handle states in which one piece is scarce.",
+    "The corrections are activated by monotone cutoffs. The first-download transitions change those cutoffs in a favorable direction; the remaining changes are bounded explicitly. One global function then has negative expected drift outside a finite set.",
+    "The argument uses localized stopping times and a finite-mean return cycle to obtain recurrence. It does not assume in advance that a stationary distribution or a stationary population moment exists."
+  ],
+  "limitations": [
+    "The model has exactly two chunks, one permanent seed, independently uniform fixed first choices, immediate departure on completion and empty waiting rooms excluded from the contact denominator. It does not cover arbitrary file-sharing software or other chunk-selection rules.",
+    "The six rates impose no fixed aggregate seed-capacity bound. This is not a solution for a capped-seed or finite-bandwidth missing-piece model.",
+    "The arrival rate is fixed and strictly positive, and the proof constants can depend on it. No bound uniform in λ, stationary population moment, completion-time estimate, convergence rate or geometric ergodicity is established. At λ=0 the zero state is absorbing and the stated irreducibility conclusion does not apply.",
+    "The historical target is the 2010 Oberwolfach stability conjecture and the retained 2011 author-proof model. The 2009 preprint conjectured high-load instability instead. These source versions must be distinguished.",
+    "The classical Foster–Lyapunov method and finite birth–death Poisson equation are prior tools. The paper claims the all-load pointwise certificate for this model, and does not certify worldwide priority or continued openness."
+  ],
+  "background": [
+    {
+      "title": "Norros — On the stability of population processes",
+      "url": "https://doi.org/10.4171/OWR/2010/48",
+      "note": "Printed pages 2782–2783 state the deterministic-first-chunk stability conjecture despite instability of the large-system differential equations."
+    },
+    {
+      "title": "Norros, Reittu and Eirola — On the stability of two-chunk file-sharing systems",
+      "url": "https://hal.science/hal-00781341",
+      "note": "Section 3.2, Figure 2 and Conjecture 3.6 of the retained January 5, 2011 author proof specify the model, including invisible empty waiting rooms, and conjecture stability."
+    },
+    {
+      "title": "Norros, Reittu and Eirola — 2009 preprint",
+      "url": "https://arxiv.org/abs/0910.5577v1",
+      "note": "Figure 2 supplies the same transition rates, but this earlier version conjectures high-load instability. It must be distinguished from the later source."
+    },
+    {
+      "title": "Meyn and Tweedie — Stability of Markovian processes III",
+      "url": "https://doi.org/10.2307/1427522",
+      "note": "Classical continuous-time Foster–Lyapunov criteria and localized Dynkin arguments provide the background stability method."
+    },
+    {
+      "title": "Oguz, Anantharam and Norros — Stable, distributed P2P protocols based on random peer sampling",
+      "url": "https://doi.org/10.1109/Allerton.2012.6483316",
+      "note": "The Common Chunk protocol is a different all-load stable scheme: it samples the entire population and protects rare chunks before departure. Its theorem is not the DFC result."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration from researchers in stochastic processes, queueing theory and distributed systems, especially on checking the recurrence argument, placing it precisely in the file-sharing literature, and developing a journal-ready treatment. Any coauthorship would reflect a substantive contribution to the research.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed: this scope review has not established a sufficiently strong, independently justified paper-worthy question or conjecture.",
+  "publication_date": "2026-10-20",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23524971",
+  "author": "Alec Kriebel",
+  "pdf_filename": "dfc_stability.pdf",
+  "supplement_filename": null,
+  "additional_assets": [
+    {
+      "filename": "dfc_stability_verification.zip",
+      "label": "Source and verification package (ZIP)"
+    }
+  ],
+  "status": "Unrefereed preprint draft, Zenodo version 1.0, dated 20 October 2026. Developed with extensive AI assistance; no completed independent human peer review or proof-assistant certification is claimed.",
+  "ai_disclosure": "AI tools were used extensively in research, proof development, literature comparison, computation, manuscript preparation and adversarial auditing. Internal AI review does not constitute formal independent human peer review or proof-assistant certification.",
+  "source_binding": {
+    "record_id": "23524971",
+    "concept_record_id": "23524970",
+    "record_url": "https://zenodo.org/records/23524971",
+    "doi": "10.5281/zenodo.23524971",
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "manuscript_date": "2026-10-20",
+    "zenodo_publication_date": "2026-10-20",
+    "record_created_utc": "2026-10-21T04:47:15.316269+00:00",
+    "page_date_basis": "Printed manuscript date and Zenodo publication-date metadata agree. Record creation is recorded separately; no earlier DOI deposit is inferred.",
+    "source_retrieved_utc": "2026-10-25T02:38:51.709611+00:00",
+    "receipt_sha256": "c4e266c32b351dc934bb299de516eccfd7c740586df15ae18ce0004ac58da592",
+    "record_sha256": "e031b1735b0bb2747f3beed5e92bf0ba2ef2b7d6d7b7cb707903dd1cab47fe78",
+    "pdf_sha256": "bee5abffcfdb1ce8bc50f706480c81c4a80e8d609bec2a9d99c6aa4e9b805036",
+    "supplement_sha256": null,
+    "files": [
+      {
+        "name": "dfc_stability_verification.zip",
+        "url": "https://zenodo.org/api/records/23524971/files/dfc_stability_verification.zip/content",
+        "bytes": 251455,
+        "sha256": "38664f12e8d2e74fa46b3f11363a071ec100aad62ece713b578293a6593d9a0e",
+        "zenodo_checksum": "md5:5e5986453036c736cfc2d360237d4e6f",
+        "md5": "5e5986453036c736cfc2d360237d4e6f",
+        "integrity": "PASS"
+      },
+      {
+        "name": "dfc_stability.pdf",
+        "url": "https://zenodo.org/api/records/23524971/files/dfc_stability.pdf/content",
+        "bytes": 75006,
+        "sha256": "bee5abffcfdb1ce8bc50f706480c81c4a80e8d609bec2a9d99c6aa4e9b805036",
+        "zenodo_checksum": "md5:69cad465bbac242ba853fee634ea19c2",
+        "md5": "69cad465bbac242ba853fee634ea19c2",
+        "integrity": "PASS"
+      }
+    ],
+    "source_tex_path": "sources/published-source/dfc_stability_verification/dfc_stability_verification/main.tex",
+    "source_tex_sha256": "9949c92633f1654cceadfc40f6988e3e2363db4ed229face05eb2d1b681a7611",
+    "reviewed_documents": [
+      {
+        "filename": "dfc_stability.pdf",
+        "pages": 6,
+        "read_scope": "Complete current manuscript; publication-preflight reading only, no new mathematical verdict."
+      }
+    ],
+    "abstract_source": "Complete current published TeX abstract, cross-checked against PDF and frozen scope candidate; only mathematical typography and whitespace normalized, no sentence omitted.",
+    "publication_state": "DRAFT_ONLY_ROOT_DISPOSITION_PENDING; no promotion or rendering authorized.",
+    "archive_reader_note": "The embedded paper.pdf is byte-identical to the separately published six-page main PDF; one distinct reader edition.",
+    "version_source": "Version 1.0 is Zenodo metadata; the manuscript prints its date and Unrefereed preprint draft, with no version number."
+  },
+  "related_resources": [],
+  "candidate_only": true,
+  "candidate_gate": "Draft only. Root scientific disposition and publication clearance are pending. This file does not grant mathematical or publication approval."
+}

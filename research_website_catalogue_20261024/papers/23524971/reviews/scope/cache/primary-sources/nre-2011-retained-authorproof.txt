@@ -1,0 +1,1420 @@
+              On the stability of two-chunk file-sharing systems
+                                Ilkka Norros, Hannu Reittu, Timo Eirola
+
+
+
+      To cite this version:
+     Ilkka Norros, Hannu Reittu, Timo Eirola. On the stability of two-chunk file-sharing systems. Queueing
+     Systems, 2011, pp.183-206. ⟨10.1007/s11134-011-9209-2⟩. ⟨hal-00781341⟩
+
+
+
+
+                                        HAL Id: hal-00781341
+                              https://hal.science/hal-00781341v1
+                                           Submitted on 26 Jan 2013
+
+
+
+
+    HAL is a multi-disciplinary open access archive             L’archive ouverte pluridisciplinaire HAL, est des-
+for the deposit and dissemination of scientific re-        tinée au dépôt et à la diffusion de documents scien-
+search documents, whether they are published or not.       tifiques de niveau recherche, publiés ou non, émanant
+The documents may come from teaching and research          des établissements d’enseignement et de recherche
+institutions in France or abroad, or from public or pri-   français ou étrangers, des laboratoires publics ou
+vate research centers.                                     privés.
+
+
+                                              HAL Authorization
+QUES9209_source.tex; 5/01/2011; 11:31                                                                p. 1
+
+
+
+
+      On the stability of two-chunk file-sharing systems
+
+              Ilkka Norros and Hannu Reittu                              Timo Eirola
+          VTT Technical Research Centre of Finland                      Aalto University
+
+
+                                               Abstract
+
+          We consider five different peer-to-peer file sharing systems with two chunks, assuming
+      non-altruistic peers who leave the system immediately after downloading the second chunk.
+      Our aim is to find chunk selection algorithms that have provably stable performance with
+      any input rate. We show that many algorithms that first looked promising lead to unstable or
+      oscillating behavior. However, we end up with a system with desirable properties. Most of
+      our rigorous results concern the corresponding deterministic large system limits, but in two
+      simplest cases we provide proofs for the stochastic systems also.
+
+
+
+1 Introduction
+Consider the task of distributing a large file to a large number of recipients. Both the owner of the
+file, the ‘seed’, and the recipients will be called ‘peers’ from now on. Assume that each peer is able
+to open a transfer connection to any other peer, the transfer speeds being limited however. The
+most effective principle of organizing the task is that as soon as a peer has received (downloaded)
+the file, it takes the function of a seed itself and starts to upload it to new peers. The number of
+copies of the file then grows exponentially. The performance is still enhanced, if the file is divided
+into small pieces, ‘chunks’. Then a peer can re-distribute parts of the file already before having
+the whole file in possession. This technique was introduced by B. Cohen with his BitTorrent [2]
+protocol. It became soon the dominant principle of sharing large files (e.g., movies) with peer-to-
+peer networking. While the real BitTorrent is highly sophisticated and evolving software, it seems
+to be customary to use the term ‘BitTorrent-like systems’ when referring to abstracted variations
+of its basic ideas.
+This paper is motivated by the fascinating aspect of these systems that they can be arbitrarily scal-
+able thanks to their distributed algorithms and resource sharing. Moreover, stable operation seems
+to be possible even if the peers are non-altruistic in the sense of leaving the system immediately
+after having downloaded all chunks (on the other hand, the peers of our models are altruistic in
+the sense that all download requests are fulfilled). We aim at mathematical understanding of the
+key issues behind such performance, and simplify the models as much as possible, focusing on
+the case of just two chunks. Two-chunk models are really toy models, since in real systems the
+number of chunks is large, e.g. of the order 103 . However, it turns out that even the two-chunk
+
+                                                   1
+QUES9209_source.tex; 5/01/2011; 11:31                                                               p. 2
+
+
+
+
+case is highly non-trivial as regards stability issues (in fact, the role of the important last chunk is
+maximally accentuated in the two-chunk case), and we hope that some of our solutions be useful
+in the analysis of more general models.
+Although there is a wide research literature concerning the principles and algorithms of BitTorrent,
+the point of view mostly differs from ours. Qiu and Srikant [16] provided one of the first mathe-
+matical models of BitTorrent-like systems. They focus on the population dynamics of ‘leechers’
+(downloaders) and seeds, assuming that as peers complete the download, they become seeds that
+stay in the system for a random time. The division of the file into chunks is hidden, assuming uni-
+form availability of chunk replicas in the system. A simple deterministic fluid model is derived,
+and various aspects of such systems are studied using appropriate parametrizations of the fluid
+equation. Fan, Chiu and Lui [4] used stochastic differential equations to refine previous BitTor-
+rent models. Chunks were now incorporated in the model, although assuming deliberately their
+distribution to be uniform. Liao, Papadopoulos and Psounis [10] added to modeling the aspect of
+peer heterogeneity in terms of their transfer capacities, analysing download delays and fairness
+issues. Yang and de Veciana [21] considered the service capacity of BitTorrent-like systems in
+transient regime to deal with so-called flash-crowd scenarios, where a large number of peers enter
+the system simultaneously. Using the tools of age-dependent branching processes, they show an
+exponential growth of system capacity during the activation of the crowd. More specifically, they
+give upper-bound type characteristics, without considering problems like bottlenecks caused by
+rare chunks however.
+In this paper, we consider open systems with a constant rate of incoming peers. There is one
+permanent seed, but all other peers are non-altruistic. Our scenario is fully distributed and relies
+on randomness: each peer contacts another, uniformly randomly chosen peer, according to a
+standard Poisson process, and gets to know what chunks the latter possesses. What follows,
+depends on the particular algorithm. A possible chunk transfer is assumed to be instantaneous,
+which is a somewhat violent abstraction, since transfer times dominate search times in reality.
+We also remark that the model is download-restricted, whereas real peer-to-peer systems tend
+to be upload-restricted. Massoulie and Vojnovic [11, 12] were the first to propose this strongly
+abstracted model and to obtain rigorous mathematical results on it. They allowed an arbitrary
+number of chunks and analysed the corresponding deterministic large system limit (see Section
+2) with the following remarkable result: if each new peer arriving in the system obtains a roughly
+uniformly random chunk, the system is stable even if all the remaining chunks are downloaded
+randomly (among those available by each contacted peer).
+However, the results of [11] prompt for further research in at least two directions. First, the scheme
+where the seed gives a uniformly distributed chunk to every new peer makes the seed a potential
+bottleneck — thus, this algorithm is not fully distributed. In our systems, the seed has no special
+functions, its presence is needed only for guaranteeing that at least one copy of each chunk always
+remains in the system. The second problem is of theoretical nature: the stability of the large
+system limit does not automatically guarantee the stability of the original random system (see
+Section 2). Therefore, we try to establish the stability or non-stability of the stochastic systems as
+well as of their large system limits. In some cases, the question of stability remains open.
+In our first paper [14] on this area, we considered the flash-crowd scenario with greedy copying
+
+
+                                                   2
+QUES9209_source.tex; 5/01/2011; 11:31                                                            p. 3
+
+
+
+
+(a counterpart to the Plain Random Contact system of subsection 3.1). It was noticed that the
+first phase of the copying process is asymptotically (with increasing number of peers) equivalent
+to Pólya’s urn model, where the vector of relative frequencies of different chunks converges by a
+well-known martingale argument to a random point of the simplex of distributions. In the second
+phase, where peers with complete chunk collections leave the system, this imbalance leads to the
+‘rare chunk phenomenon’, whose avoidance is a central theme of this paper: one of the chunks
+is not able to become common and as a result forms a bottleneck of performance (see also [18]).
+In an open variant of this setup, with continuously incoming peers, this could lead to instability:
+the number of peers in the system could grow unboundedly, since more and more peers would
+be searching for the one rare chunk. BitTorrent counteracts to the rare chunk phenomenon by its
+‘Rarest First’ principle, and our last two algorithms can be seen as distributed ways to implement
+this principle using very coarse rarity estimates. The central question of this paper is, how to
+avoid a severely imbalanced chunk distribution, implying instability, without using any centralized
+coordination of downloads. One source of ideas for this is provided by the wide literature on urn
+models (originally often related to physics; for a recent review, see [15]). For example, Ehrenfests’
+urn model gives an almost ideal balance in a closed system. Still more relevant is the so-called
+Friedman urn, with an analogous result for an open system, with a flow of incoming particles.
+We noticed in [14] that if an empty node first contacts a node having chunk 0 (resp. 1) but then
+downloads the opposite chunk 1 (resp. 0) first (neglecting the question how a peer with that chunk
+could be found), the distribution of chunks converges almost surely to 12 − 12 as the number of
+peers goes to infinity.
+We analyse five two-chunk models, progressing ‘from problem to solution’: (i) the Plain Random
+Contact system, which is found to be unstable (recently, Hajek and Zhu [7] gave a rigorous proof of
+this in the many-chunk scenario, generalizing Proposition 3.3 of this paper); (ii) the Deterministic
+First Chunk system, proposed in [14], but found very unsatisfactory in the present scenario; (iii)
+the ideal Friedman system (non-implementable in a distributed way in our scenario), which is
+proven to be stable; and two distributed algorithms that try to emulate the Friedman system: (iv)
+the Delayed Friedman system ([19]), which may be stable but oscillates heavily, and, finally, (v)
+the Enforced Friedman system which seems to provide the desired performance. Recently, we
+have proposed also a many-chunk variant [17] of the Enforced Friedman algorithm that seems to
+provide stable operation, although no proofs have been obtained so far. The paper is structured as
+follows: general definitions and some preliminaries are given in Section 2, and the five models are
+studied in Section 3, each in its own subsection.
+
+
+2 Definitions and preliminaries
+We study time-homogeneous continuous time Markov processes S = (St )t≥0 with state space
+Nd , where d is 2,3 or 4, depending on the particular model. Denoting the ith unit vector by ei ,
+i = 1, . . . , d, the transitions are always of one of the three forms
+
+                            s → s + ei ,   s → s − ei ,   s → s + ei − ej .
+
+
+
+                                                  3
+QUES9209_source.tex; 5/01/2011; 11:31                                                              p. 4
+
+
+
+
+The process S is thought as a model of a queueing network, where the i’th state component
+presents the number of customers in network node i, i = 1, . . . , d. Denote the transition intensity
+from state n ∈ Nd to state n + v by q(n, n + v), and let
+                                                                                
+                          V = v ∈ Zd : q(n, n + v) > 0 for some n ∈ Nd
+denote the set of transition directions having positive probability. In our case, V is always finite.
+The Markov process S, started at time 0 from a fixed state n, is denoted as St (n). We are interested
+in systems with high input rate whose other transition intensities scale linearly with respect to the
+state. Denote
+                                  ⎧
+                                  ⎨ Nq(n, n + v),        if v = ei for some i ∈ {1, . . . , d}
+            q (N ) (n, n + v) =                                                                ,
+                                  ⎩ q(n, n + v),         otherwise.
+
+and let S (N ) be the Markov process with intensities q (N ) (n, n + v). Denote by y the largest
+integer less than or equal to y and define it componentwise for vectors.
+
+Definition 2.1 We say that our Markov process S has the large system limit
+                                                 ṡ = F (s),                                       (1)
+if the limits
+                                     1 (N )
+                                  lim  q (Ns, Ns + v) =: qv (s)                                (2)
+                              N →∞ N
+
+exist for all s ∈ (0, ∞)d, v ∈ V , and the function
+                                                     
+                                           F (s) =         qv (s)v                                 (3)
+                                                     v∈V
+
+is locally Lipschitz continuous.
+
+By a classical result, the local Lipschitz continuity of F implies that the autonomous ordinary
+differential equation (1) has a unique solution s(t) = s(t, w), t ∈ [0, Tw ), Tw ∈ (0, ∞], for every
+starting point s(0) = w ∈ (0, ∞)d. The domain of F can often be extended to vectors s that have
+one or several components equal to zero (we prefer the open state space since our models include
+the asymptotically negligible but functionally crucial seed). Kurtz’ little monograph [8] studies
+various types of population processes in the large system scaling regime and gives limit theorems
+that can be used for the justification of approximations. The basic limit relation in our case is the
+following ([8], Theorem 8.1):
+
+Theorem 2.2 With notation as above, assume that S possesses a large system limit and
+                                         
+                                               |v| sup qv (w) < ∞
+                                         v∈V       w∈K
+
+for all compact subsets K of (0, ∞)d. Then for all w ∈ (0, ∞)d and all t > 0
+                                       1 (N )
+                           lim sup |     St (Nw) − s(u, w)| = 0            a.s..
+                          N →∞ u∈[0,t] N
+
+
+
+                                                     4
+QUES9209_source.tex; 5/01/2011; 11:31                                                                p. 5
+
+
+
+
+Let us now turn to the question of stability. It is important to understand the differences of the
+notions of stability in stochastic and deterministic systems. The Markov process S is called stable,
+if it is irreducible and positively recurrent. This is equivalent to the existence of a unique stationary
+probability measure. Assuming irreducibility and finiteness of transition graph neighborhoods,
+stability is equivalent to the existence of a finite set of states C ⊂ Nd such that with any starting
+point S0 , the process reaches C in a time with finite expectation.
+On the other hand, the dynamical system (1) is called locally asymptotically stable around an
+equilibrium state s∗ (that is, a state with F (s∗ ) = 0), if there exists an open set U containing
+s∗ such that limt→∞ s(t) = s∗ for any initial state s(0) ∈ U. The system is called globally
+asymptotically stable, if it has a unique equilibrium state s∗ , such that limt→∞ s(t) = s∗ for any
+initial state s(0) ∈ (0, ∞)d .
+It is interesting to note that there seem to be no general results concerning the relation between the
+stability of a Markovian population model and that of its large system limit. Results of the type of
+Theorem 2.2 tell that, with large populations and high input rates, the stochastic system follows
+for some time closely the corresponding large system limit path. However, they tell nothing about
+the stability of the stochastic system S (N ) with any finite N. However, these circumstances often
+coincide, and, as we shall see here also, proving the stability of the dynamical system is usually
+much easier than proving the stability of the Markov process. Therefore it is interesting to consider
+the large system limits together with the original random systems.
+Another type of scaling to be mentioned is the fluid scaling
+                                   1
+                                     SN t (Nw), N → ∞,
+                                  N
+                                                                    
+where w is a point of the simplex w ∈ [0, 1]d : d1 wi = 1 . This scaling plays a central role in
+J. Dai’s seminal paper [3] on the stability of stochastic processing networks and subsequent work
+by many authors. Dai’s theory is able to provide necessary and sufficient conditions for stability:
+the typical form of results is that a stochastic processing system is stable if and only if all its fluid
+scaling limits reach the origin a.s. in a bounded time and stay there. Although we did not find
+ways to apply this approach to our systems, the possibility is worth of more consideration.
+All the systems studied in this paper possess differentiable large system limits, and the existence
+of a unique solution from any starting point is thus always granted. They are, however, non-linear,
+and proving their stability seems to be very hard in some cases. There are no black-box tools
+applicable in general. The following elementary lemma is sometimes useful when considering the
+asymptotic behaviour of a dynamical system. For completeness, a proof is given in the Appendix.
+
+Lemma 2.3 Let a and b be locally Lipschitz continuous functions [0, ∞) → (0, ∞). The unique
+solution u of the differential equation
+                                            u̇t = bt − at ut ,   t ≥ 0,
+with initial condition u0 ≥ 0 is positive for every t > 0 and satisfies
+                      lim inf t→∞ bt                              lim supt→∞ bt
+                                     ≤ lim inf ut ≤ lim sup ut ≤
+                     lim supt→∞ at       t→∞          t→∞         lim inf t→∞ at
+whenever the fractions are well-defined.
+
+                                                         5
+QUES9209_source.tex; 5/01/2011; 11:31                                                             p. 6
+
+
+
+
+3 Models and results
+
+3.1 Plain Random Contact system
+Our first and simplest model is defined in Figure 1. The number of non-seed peers with chunk 0
+(resp. 1) is denoted by X (resp. Y ). Peers arrive according to a Poisson process with parameter
+λ, make a random contact, download whatever chunk the contacted peer has (if the seed was
+contacted, the downloaded chunk is chosen randomly), then make repeated random contacts at
+Poisson rate 1 until the remaining chunk is found, and leave the system. The system relies entirely
+on randomness, with fatal consequences.
+
+                          X(Y + 1)          6                       6   (X + 1)Y
+                          X +Y +1                                       X +Y +1
+                                                             
+                                           X                       Y
+                                                             
+                          λ(X + 12 )        6                       6   λ(Y + 12 )
+                          X +Y +1                                       X +Y +1
+
+
+                                Figure 1: Plain Random Contact system
+
+In the general notation of Section 2, we have V = {e1 , −e1 , e2 , −e2 } = {ex , −ex , ey , −ey }, the
+intensities q(n, n + v) are those depicted in Figure 1, and the limits (2) are qex = λx/(x + y),
+qey = λy/(x + y), q−ex = q−ey = xy/(x + y). Thus, the ordinary differential equation (3)
+appearing as the large system limit of the Plain Random Contact system is
+
+                                           (λ − y)x                (λ − x)y
+                                    ẋ =            ,       ẏ =            .                     (4)
+                                             x+y                     x+y
+In this paper, we are not interested in the possible stability of the system when the input rate λ is
+sufficiently low. In all our models, λ appears in the large scale limits as a pure scaling parameter
+that can be as well chosen to be one. The stability of the stochastic system may, however, depend
+on λ. Susitaival and Aalto [20] study by simulations several two-chunk systems also from the
+point of view of stability regions in terms of λ.
+The dynamical system (4) is easily seen to be unstable even close to its equilibirium x = y = λ:
+
+Proposition 3.1 In (0, ∞)2, the system (4) has a single equilibrium (x∗ , y ∗ ) = (λ, λ). The system
+is not stable in any environment of (x∗ , y ∗). Starting with x0 > λ > y0 we have xt → ∞ and
+yt → 0, and vice versa.
+
+Proof    This is immediate from the equations (4).                                                 
+
+
+
+                                                        6
+QUES9209_source.tex; 5/01/2011; 11:31                                                                 p. 7
+
+
+
+
+As long as both x and y are large and roughly of the same size, the system empties rapidly.
+However, it is rather straightforward to prove that the stochastic system is unstable when λ is
+larger than one. We use a coupling argument and state first the behavior of an auxiliary process in
+a separate lemma:
+
+Lemma 3.2 Let U and V be mutually dependent, time-inhomogeneous birth and death processes
+with stochastic up-jump (‘α’) and down-jump (‘β’) intensities defined as follows, respectively:
+                            a
+                  αtU =        ,   βtU = bUt ,             αtV = c,        βtV = (Ut + d)1{Vt ≥1} ,
+                           t∨1
+where the parameters a, b, c, d are positive numbers and c > d ≥ 1. Then
+
+                           P(Ut ∈ {0, 1} eventually) = P lim Vt = ∞ = 1.
+                                                                      t→∞
+
+
+Moreover, with initial state (U0 , V0 ) = (0, M), where M ∈ N \ {0}, the event
+                                                                                           
+                                                             c−d
+                           AM = ∀t ≥ 0 : Ut ≤ 1 and Vt ≥ M ∨     t
+                                                              2
+
+has positive probability.
+
+Proof The process (Ut )t≥0 can be interpreted as an infinite-server queue with initial state U0 =
+u0 , arrival rate αtU and independent Exp(b)-distributed service times J1 , J2 , . . .. Denote by νt the
+counting process of its arrivals after time 0. The process νt is an inhomogeneous Poisson process,
+and νt → ∞ and νt /t → 0 hold almost surely. It follows that
+                                               ⎛                              ⎞
+                     t
+                1                      1 ⎝u0        
+                                                    u0 +νt
+                                                                 1       νt
+        lim sup        Us ds ≤ lim sup        Jn +         Jn ⎠ = lim sup = 0 a.s.,                   (5)
+          t→∞   t    0           t→∞ t    n=1      n=u0 +1       b t→∞ t
+
+where the first equality follows from the ergodic theorem. On the other hand, we have
+                                                                      t
+                                                                                               a
+                          P(Ut ≥ 1) ≤ E {Ut } = u0 e−bt +                  αsU e−b(t−s) ds ∼
+                                                                      0                        t
+for large t, where the asymptotics is easily obtained after a division of the integration interval into
+sub-intervals (0, 1], (1, t − ((2/b) log t] and (t − (2/b) log t, t]. Denote then by νt∗ the counting
+process of upward jumps of U after time 0 to any state strictly larger than 1. To establish the claim
+                                          ∗
+concerning U, it suffices to show that ν∞    is almost surely finite. Now,
+                                 ∞                            ∞
+                     ∗                                                     a
+                 E {ν∞ }=E              αtU 1{Ut ≥1} dt =                     P(Ut ≥ 1) dt < ∞,
+                                   0                             0        t∨1
+since the rightmost integrand is O(t−2 ). As regards V , note that it is a pure jump process with
+compensator                                       t
+                                        ct −           (Us + d)1{Vs ≥1} ds.
+                                               0
+
+                                                            7
+QUES9209_source.tex; 5/01/2011; 11:31                                                              p. 8
+
+
+
+
+Since c > d, (5) implies that Vt → ∞ a.s. as t → ∞.
+Denote τ1 = sup {t ≥ 0 : Ut ≥ 2} and τ0 = inf {t > τ1 : Ut = 0}. We just showed that τ0 < ∞
+a.s.. Since U is an (inhomogeneous) Markov process, there is some t0 > 0 such that
+
+                                 P[Ut0 +s ∈ {0, 1} ∀s ≥ 0 | Ut0 = 0] > 0.                          (6)
+
+Since the probability that U makes no jumps on [0, t0 ] is positive, (6) holds also with t0 = 0.
+Finally, conditioned on a realization U = u, the process V can be decomposed as
+                                                       t
+                                   Vt = V0 + Nt+ −           1{Vs− ≥1} dNs− ,
+                                                         0
+
+where N + is a homogeneous Poisson process with rate c and N − is an independent, inhomoge-
+neous Poisson process with rate ut + d. Since limt→∞ Vt /t = c − d a.s., we have, almost surely,
+eventually Vt > c−d
+                  2
+                     t. Let V0 ≥ M. To prove the last claim, it suffices to note that, conditionally
+on any realization of N − , there is a positive probability that the points of N + are arranged in such
+a way that the resulting realization of (U, V ) lies in AM .                                         
+
+
+Proposition 3.3 With λ > 1, the (stochastic) Plain Random Contact system is unstable. More
+exactly, almost surely either X or Y escapes to infinity whereas the other obtains eventually only
+the values 0 and 1.
+
+Proof We couple (X, Y ) with a copy of the process pair (U, V ) of Lemma 3.2. Choose the
+parameters of (U, V ) as
+                                  3λ         1
+                            a=        , b = , c ∈ (1, λ), d = 1,
+                                 c−1         2
+and take                                              
+                                            2c    c−1
+                                   M=           ∨        .
+                                           λ−c      2
+With Xt ∈ {0, 1} and Yt ≥ ((c − 1)/2)t ∨ M, the up- and down-intensities of X and Y satisfy
+
+                                        λ(Xt + 12 )    3
+                                                         λ    a      a
+                          αtX =                      ≤ 2 ≤     2M ≤
+                                        Xt + Y t + 1   Yt  t ∨ c−1  t∨1
+                                        Xt (Yt + 1)    Yt + 1      1
+                          βtX =                      ≥        X t ≥ Xt
+                                        Xt + Y t + 1   Yt + 2      2
+                                         λ(Yt + 12 )    λYt        λ
+                           αtY    =                  ≥        ≥         ≥c
+                                        Xt + Y t + 1   Yt + 2   1 + 2/M
+                                        (Xt + 1)Yt
+                           βtY    =                  ≤ Xt + 1.
+                                        Xt + Y t + 1
+If
+                                                                  c−1
+                                 Xt ≤ Ut ≤ 1 and Yt ≥ Vt ≥            t ∨ M,                       (7)
+                                                                   2
+                                                     8
+QUES9209_source.tex; 5/01/2011; 11:31                                                              p. 9
+
+
+
+
+then αtX ≤ αtU , βtX ≥ βtU 1{Xt >0} , αtY ≥ αtV , and βtY ≤ βtV . It follows by a standard argument
+that, with any initial state satisfying X0 = U0 = 0, Y0 ≥ V0 = M, the processes (X, Y ) and
+(U, V ) can be coupled in such a way that (7) holds for all t ≥ 0 on the event AM of Lemma 3.2.
+Hence, there exists a positive number p such that
+                                                                     
+                                                     
+                                                     
+                P lim Xt = ∞, Yt ∈ {0, 1} eventually  X0 = x0 , Y0 = 0 > p > 0                    (8)
+                  t→∞
+
+when x0 ≥ M. By symmetry, the corresponding relation holds if X and Y are interchanged.
+Next, let R > (3/2)λ and note that
+                     P((Xt , Yt ) ∈ [R ∨ M, ∞) × [R ∨ M, ∞) eventually) = 0.
+Indeed, when Xt ∧ Yt ≥ R, the total output rate of the system is larger than the total input rate λ:
+                                    2(Xt ∧ Yt )        2
+                                                    > R > λ.
+                                      Xt ∧ Y t + 1     3
+                                 1+
+                                         Xt ∨ Y t
+Thus, {Xt ∧ Yt ≤ R ∨ M } is a recurrent event. Since the intensities depicted in Figure 1 are
+bounded on {Xt ∧ Yt ≤ R ∨ M }, the probability of moving from a state with X ∧ Y ≤ R ∨ M to
+a state with X ∧ Y = 0 before a change in X ∨ Y is bounded from below by a positive constant
+not depending on the value of X ∨ Y . It follows that
+                                   {Xt ∨ Yt ≥ R ∨ M, Xt ∧ Yt = 0}
+is a recurrent event as well. Now, (8) yields the proposition.                                      
+
+Our Plain Random Contact system can be considered as a two-chunk version of the system studied
+by Massoulie and Vojnovic [11, 12]. In their model, the nodes of a feed-forward queueing network
+correspond to subsets B of the set of chunks C satisfying 0 < |B| < |C|. When a peer founds
+another having one or more new chunks, it downloads one of them randomly and moves forward
+to the corresponding node. The authors group nodes into ‘layers’ according to the cardinalities of
+the chunk sets and obtain most results in the layered version of the model, where a peer restricts
+its contacts to its own layer. Their main stability result is the following (note that the condition of
+the theorem is impossible in the two-chunk case).
+
+Theorem 3.4 ([12], Theorem 3) Assume that |C| > 2 and that the input rates λc , c ∈ C, to nodes
+of the first (one-chunk) layer satisfy the condition
+                                                          
+                                        ∀c ∈ C   λc <               λc  .
+                                                        c ∈C\{c}
+
+Then the large system limit of the layered model is asymptotically globally stable.
+
+It is quite remarkable that when the input to the first layer is sufficiently balanced, a stochastic
+system with high input rate can obviously stay in a well-balanced regime long times (or maybe
+forever) with just random chunk selection. The balancing of the input is however critical —
+as shown by Hajek and Zhu [7], choosing the first chunk from the entire population leads to
+instability also in a many-chunk system (on the other hand, they also show that the system is
+stable for λ < 1). The rest of this paper is devoted to augmenting the Plain Random Contact
+system with various distributed algorithms aimed at balancing the chunk populations X and Y .
+
+                                                   9
+QUES9209_source.tex; 5/01/2011; 11:31                                                        p. 10
+
+
+
+
+3.2 Deterministic First Chunk system
+Our first attempt to overcome the spontaneous imbalance tendency of the Plain Random Contact
+system was the Deterministic Last Chunk mechanism introduced in [14], where each peer decides
+in advance (randomly) which chunk it will download as the last one. The idea was to prevent peers
+from downloading systematically the rarest chunk as the last one before leaving the system. In the
+two-chunk case, defined by Figure 2, it is more natural to speak about a Deterministic First Chunk
+system. The number of empty peers determined to download chunk 0 (resp. 1) first is denoted
+by A (resp. B), while X and Y have their previous meaning. (The denominators X + Y + 1
+refer to an overlay network structure where the empty-handed peers in the ‘waiting rooms’ A
+and B can contact random peers in the union of X and Y , while being invisible for the latter.
+For example, in our experimental Chord-based file-sharing implementation (see [13]), a new peer
+remains invisible for Chord searches (a ‘parasite’) by delaying its first stabilize command
+until it has downloaded one chunk.)
+
+                          X(Y + 1)         6                     6   (X + 1)Y
+                          X +Y +1                                    X +Y +1
+                                                         
+                                          X                  Y
+                                                         
+
+                          A(X + 1)         6                     6   B(Y + 1)
+                          X +Y +1                                    X +Y +1
+                                                         
+                                          A                  B
+                                                         
+
+                                    λ      6                     6 λ
+                                    2                                2
+
+
+                              Figure 2: Deterministic First Chunk system
+
+This balancing rule worked promisingly well in our flash-crowd setup with many chunks in [14].
+However, its large system limit
+                                        λ   ax                   λ   by
+                                 ȧ =     −               ḃ =     −                           (9)
+                                        2 x+y                    2 x+y
+                                          (a − y)x               (b − x)y
+                                   ẋ =                   ẏ =
+                                            x+y                    x+y
+turns out to be unstable:
+
+Proposition 3.5 The system (9) has no unique equilibrium — its equilibria form the unbounded
+curve
+                                                λθ     λθ              λ
+               (a(θ), b(θ), x(θ), y(θ)) = (θ,       ,       , θ), θ ∈ ( , ∞).
+                                              2θ − λ 2θ − λ            2
+
+                                                     10
+QUES9209_source.tex; 5/01/2011; 11:31                                                                                          p. 11
+
+
+
+
+Moreover, it has an open set of trajectories where two components (either x and b or y and a)
+grow to infinity while the other two remain bounded.
+
+Proof       Choose the initial values so that
+                                                             1                    (x(0) + y(0))λ
+                         y(0) > a(0) > λ,              x(0) < λ,         b(0) >                  .
+                                                             2                        2y(0)
+Then the same relations hold for the whole paths, as seen, with help of Lemma 2.3, by writing
+
+                                              x           λ   λ
+                                   ȧ =                     +   ·y−a ,
+                                             x+y          2 2x
+                                              y           (x + y)λ
+                                   ḃ =                            −b ,
+                                             x+y             2y
+                                              x           y    (x + y)λ
+                              ẏ − ȧ =                     b−          − (y − a) .
+                                             x+y          x       2y
+
+Moreover, y and a grow toward infinity, x decreases and b approaches the value λ/2.                                                
+
+
+
+                                                                       300                       minX,Y
+
+                                                                       250
+
+
+
+                                                                       200
+   10 000
+
+
+    8000                                                               150
+
+
+    6000
+                                                                       100
+
+    4000
+                                                                        50                                              minA,B
+    2000
+
+
+
+               100 000   200 000   300 000   400 000    500 000              100 000   200 000   300 000   400 000   500 000
+
+
+
+
+Figure 3: A simulation of the evolution of the Deterministic First Chunk system with λ = 100.
+Left: The curves Xt ∨ Yt and At ∨ Bt , which almost overlap. Right: The curves Xt ∧ Yt and
+At ∧ Bt .
+
+What about the stochastic system? Closer examination of the rates in Figure 2 reveals that the be-
+havior in an unbalanced state differs remarkably from the transient behavior of the Plain Random
+Contact system (Proposition 3.3). If, say, A and Y are large and about the same size, and B and
+X are small, then both the input and output rates of X are roughly equal to X itself. Thus, X fluc-
+tuates like a time-scaled symmetric random walk reflected at the origin. Meanwhile, Y receives
+from B rather stable input at rate λ/2 (B is approximately an M/M/∞ queue), whereas its output
+
+                                                                  11
+QUES9209_source.tex; 5/01/2011; 11:31                                                                         p. 12
+
+
+
+
+                                 500
+
+
+
+                                 100
+
+                                  50
+
+
+
+                                  10
+
+                                   5
+
+
+
+
+                                       1      100        104         106        108
+
+
+
+
+Figure 4: Five long simulations of the Deterministic First Chunk system with λ = 10 in a log-log
+plot. Only the record value of total system volume in each run is shown.
+
+rate is roughly equal to X. In such a regime, X exceeds sooner or later the level λ/2, causing for
+Y a drift downwards. Although this situation may remain temporary, simulations1 indicate that Y
+cannot keep its majority for a very long time, and once X and Y have become equal, it usually
+happens that X keeps growing while Y shrinks, and their roles change. This oscillatory behavior
+is rather irregular. Figure 3 confirms the above intuitive analysis. The maxima Xt ∨ Yt and At ∨ Bt
+turn out to be very close to each other. On the other hand, At ∧ Bt is very stable as expected,
+whereas Xt ∧ Yt varies wildly. To get an idea of the kind of recurrence, we made five very long
+simulations, this time with λ = 10. Figure 4 shows the growth of the record value of total system
+population in each run. The peak heights exceed the high but not huge level 500 seldom and little,
+and we don’t observe as strong irregularity as could be expected from a null-recurrent system.
+Thus, despite Proposition 3.5, we make the following
+
+Conjecture 3.6 The Deterministic First Chunk system is stable.
+
+Note that if Conjecture 3.6 is true, we have also found an example of a stable stochastic system
+whose large system limit has an open set of diverging trajectories.
+
+
+3.3 Friedman system
+Consider an urn containing balls with two colors. The simplest version of Friedman’s urn [6]
+works so that one repeatedly picks a random ball from the urn and returns it together with a ball
+of the opposite color. The proportions of the two colors approach 12 − 12 [6, 5].
+We now modify the Plain Random Contact system by assuming deliberately (this cannot be re-
+alised in the kind of distributed systems considered in this paper) that arriving peers make a ran-
+dom contact and then enter the system with a copy of the chunk that the contacted peer did not
+   1
+    The simulations of this paper were made with discrete time versions of the models, where times between state
+changes are constant instead of being exponential with state-dependent parameters. This makes no qualitative differ-
+ence.
+
+
+                                                        12
+QUES9209_source.tex; 5/01/2011; 11:31                                                                       p. 13
+
+
+
+
+have (in the case that the seed was contacted, the downloaded chunk is chosen randomly); we call
+this complementary random input ‘Friedman input’. This system is defined by Figure 5.
+
+                           X(Y + 1)            6                       6   (X + 1)Y
+                           X +Y +1                                         X +Y +1
+                                                                  
+                                           X                          Y
+                                                                  
+                           λ(Y + 12 )          6                       6   λ(X + 12 )
+                           X +Y +1                                         X +Y +1
+
+
+                                         Figure 5: Friedman system
+
+The corresponding large system limit is
+
+                                               (λ − x)y               (λ − y)x
+                                        ẋ =                   ẏ =                                         (10)
+                                                 x+y                    x+y
+
+Proposition 3.7 The system (10) has a single equilibrium (x∗ , y ∗ ) = (λ, λ) which is globally
+asymptotically stable.
+
+Proof The equations tell immediately that with any initial state in (0, ∞)2, both x and y converge
+monotonically to (λ, λ).                                                                        
+
+Moreover, we note that (x − λ)2 + (y − λ)2 is monotonically decreasing:
+
+                 d                              2                         
+                    ((x − λ)2 + (y − λ)2 ) = −      (x − λ)2 y + (y − λ)2 x < 0.
+                 dt                            x+y
+Thus, the Euclidean distance from equilibrium is a Lyapunov function for the dynamical system
+(10). This observation suggests to study whether and where the squared distance Xt2 + Yt2 in the
+stochastic system is diminishing in some stochastic sense. Indeed, the stochastic Friedman system
+can be proven to be stable in this way.
+
+Proposition 3.8 The Friedman system defined in Figure 5 is stable for any input rate λ.
+
+Proof Denote by N x+ and N x− the counting processes of the up- and down-jumps of the process
+X, respectively, so that Xt = X0 + 0t ( dNsx+ − dNsx− ). We can then write
+                             t                                            t
+          Xt2 − X02 =             ((Xs− + 1)2 − Xs−
+                                                 2
+                                                    ) dNsx+ −                   ((Xs− − 1)2 − Xs−
+                                                                                               2
+                                                                                                  ) dNsx−
+                             0                                             0
+                             t                             t
+                       =          (2Xs− + 1) dNsx+ −               (2Xs− − 1) dNsx− .
+                             0                                 0
+
+
+                                                          13
+QUES9209_source.tex; 5/01/2011; 11:31                                                           p. 14
+
+
+
+
+(Note that N x− does not jump when Xs− = 0.) The compensators of N x+ and N x− are, respec-
+tively,
+                            t                       t
+                     x+        λ(Ys + 12 )      x−      Xs (Ys + 1)
+                   At =                    dt, At =                 dt.
+                            0 Xs + Y s + 1           0 Xs + Y s + 1
+
+Using similar notation for the process Y , we see that the process Xt2 + Yt2 is compensated to a
+                                                   
+martingale by subtracting from it the process At = 0t as dt, where
+             1     1          1                       1
+   a = 4λ(X + )(Y + ) − 2X(X − )(Y + 1) − 2(X + 1)(Y − )Y /(X + Y + 1).
+             2     2          2                       2
+Denoting m = X ∧ Y , M = X ∨ Y , we have the estimate
+              1         1     1          1                        1
+  a =             4λ(M + )(m + ) − 2M(M − )(m + 1) − 2(M + 1)m(m − )
+           M +m+1       2     2          2                        2
+        2M(m + 1)          1       1
+      ≤            2λ(1 +    )−M +
+        M +m+1            2M       2
+        1      1
+      ≤   (3λ + − M)
+        2      2
+          1
+      ≤ −
+          4
+on the set {M > 3λ + 1}. Denote τ = inf {t : Mt ≤ 3λ + 1}. Assume now that M0 = X0 ∨Y0 >
+                                     2     2
+3λ + 1. Then, the process Bt = Xt∧τ    + Yt∧τ is a non-negative supermartingale and thus converges
+to an integrable limit satisfying E {B∞ } ≤ E {B0 }, and Bt −At∧τ is a martingale (for integrability,
+note that Bt is dominated by (X0 + Y0 + Ntx+ + Nty+ )2 , where Ntx+ + N y+ is a Poisson process).
+Since At∧τ is non-increasing, we have
+                                                                τ      
+                                                                      1     1
+              B0 ≥ B0 − lim E {Bt } = − lim E {At∧τ } ≥ E               dt = E {τ } .
+                           t→∞             t→∞                    0   4     4
+Thus, the finite set {(x, y) ∈ N2 : x ∨ y ≤ 3λ + 1} is reached from any fixed initial state outside
+of it in a time having finite expectation.                                                       
+
+
+
+3.4 Delayed Friedman system
+Our first distributed implementation of the idea of the Friedman system (see [19]) was the system
+defined by Figure 6. An arriving peer first makes a random contact and then decides to download
+first the chunk that the contacted peer does not have (in the case that the seed was contacted, the
+peer decides randomly). As with the Deterministic First Chunk system, the number of empty peers
+determined to download chunk 0 (resp. 1) first is denoted by A (resp. B), while X and Y have
+the same meaning as before. We call this the Delayed Friedman system, because the subsystem
+(X, Y ) obtains Friedman input with stochastic delay.
+
+
+
+                                                 14
+QUES9209_source.tex; 5/01/2011; 11:31                                                             p. 15
+
+
+
+
+                          X(Y + 1)             6                      6   (X + 1)Y
+                          X +Y +1                                         X +Y +1
+                                                               
+                                               X                      Y
+                                                               
+
+                          A(X + 1)             6                      6   B(Y + 1)
+                          X +Y +1                                         X +Y +1
+                                                               
+                                               A                      B
+                                                               
+                          λ(Y + 12 )           6                      6   λ(X + 12 )
+                          X +Y +1                                         X +Y +1
+
+
+                                  Figure 6: Delayed Friedman system.
+
+The corresponding large system limit is the dynamical system
+                                               λy − ax                λx − by
+                                        ȧ =                   ḃ =                               (11)
+                                                x+y                    x+y
+                                               (a − y)x               (b − x)y
+                                    ẋ =                       ẏ =            .
+                                                 x+y                    x+y
+This system is difficult to analyse, because it oscillates heavily around its unique equilibrium
+(a∗ , b∗ , x∗ , y ∗) = (λ, λ, λ, λ). The ‘logic’ of the oscillating system evolution from an imbalanced
+state, depicted in the left plot of Figure 7, is the following:
+
+    • there is hardly any input to nor output from y
+
+    • the ‘Friedman rule’ directs input to a, which accumulates almost all of it, since x is negligi-
+      ble
+
+    • when enough mass has accumulated to a, the balance starts to improve
+
+    • once x has become macroscopic, a and y empty rapidly
+
+    • b has not had time to grow, so we get a situation close to the mirror image of the original.
+
+Numerical experiments like that shown in Figure 7 (right) hint to global stability, but we have
+not found an explicit Lyapunov function or other means to prove this. As regards local behavior
+near equilibrium, the linearised system at equilibrium is essentially a two-dimensional harmonic
+oscillator — the two remaining dimensions correspond to negative eigenvalues. If we continue the
+numerical computation of a trajectory of (11), we see slow convergence toward equilibrium (by
+the way, it is interesting to observe that x + y seems to never descend below 2). Indeed, the system
+
+                                                          15
+QUES9209_source.tex; 5/01/2011; 11:31                                                                                 p. 16
+
+
+
+
+     20                                                            20
+
+              a             b             a
+                                                                   15
+     15
+                       x             y
+
+     10
+          y                                                        10
+
+
+
+     5                                                              5
+
+
+
+
+                  20        40       60        80       100               200       400        600       800   1000
+
+
+
+
+Figure 7: Left: A trajectory of the large system limit (11) of the Delayed Friedman system with
+initial values a = b = 0, x = 0.1, y = 9.9. The curves of xt and yt have flat tops while those of at
+and bt have peaked tops. Right: The behaviour of x + y, initial state as before.
+
+(11) turns out to be locally asymptotically stable, and this can be shown in a non-elementary but
+basically straightforward way through a center manifold analysis (see [1, 9]).
+
+Proposition 3.9 The system defined by (11) is locally asymptotically stable. If the starting point
+(a0 , b0 , x0 , y0)√is close enough to the equilibrium (λ, λ, λ, λ), the distance to it decreases propor-
+tionally to 1/ t.
+
+Proof Since the common denominator of the right hand sides of (11) does not affect the trajec-
+tories, and since λ is a pure scaling factor, it is sufficient to consider the system
+                                 ⎡                  ⎤
+                                 x4 − x1 x3
+                              ⎢               ⎥                                           1
+                              ⎢ x −x x ⎥
+                             ⎢ 3      2 4 ⎥
+                           x =⎢               ⎥             with equilibrium        p=     1         .
+                              ⎢(x1 − x4 ) x3 ⎥                                             1
+                              ⎣               ⎦                                            1
+
+                                (x2 − x3 ) x4
+At p, the linearized system is given by the matrix
+                                                    ⎡                     ⎤
+                                                  −1 0 −1 1
+                                                ⎢            ⎥
+                                                ⎢ 0 −1 1 −1⎥
+                                                ⎢            ⎥
+                                              A=⎢            ⎥ .
+                                                ⎢ 1  0  0 −1 ⎥
+                                                ⎣            ⎦
+                                                  0  1 −1 0
+This has eigenvalues λ1,2 = ±i and λ3,4 = −1 . The latter has just one linearly independent
+eigenvector. Let v1 and v2 be the real and imaginary parts of an eigenvector corresponding to
+λ1 = i and let v3 be an eigenvector for λ3 = −1 and v4 such that A v4 + v4 = v3 . Putting
+these into matrix V we obtain the similarity transformation
+                                 ⎡                      ⎤                       ⎡                        ⎤
+                           0              1 0  0                               1  1 0 1
+                         ⎢                       ⎥                           ⎢          ⎥
+                         ⎢−1              0 0  0⎥                            ⎢−1 −1 0 1⎥
+                         ⎢                       ⎥                           ⎢          ⎥
+              V −1 A V = ⎢                       ⎥                 with   V =⎢          ⎥ .
+                         ⎢ 0              0 −1 1 ⎥                           ⎢−1 0 1 0⎥
+                         ⎣                       ⎦                           ⎣          ⎦
+                           0              0 0 −1                               1  0 1 0
+
+                                                              16
+QUES9209_source.tex; 5/01/2011; 11:31                                                                      p. 17
+
+
+
+
+Thus, the system has a two-dimensional stable manifold W s and a two-dimensional center man-
+ifold W c . The corresponding columns of V are tangents to these at p (see e.g. [1]), and the
+manifolds are invariant under the flow of the system. Trajectories close to p approach the center
+manifold like t e−t . By the reduction principle (see [9]), in order to study the stability of the
+system, it suffices to know how it behaves on the local center manifold. For this we will reduce
+the system to a normal form (see [9]).
+Take first a linear change of coordinates:
+                                      x = p + V [ uv ] ,         where        u, v ∈ R2 .
+Then the local center manifold can be expressed as
+                                                                 u
+                                            W c = {p + V [ h(u) ] : u < d} ,
+where h(u) is a two-vector with h(0, 0) = 0 and Dh(0, 0) = 0 (the latter because of tangency).
+        $        %
+            fc
+Write       fs       = V −1 f . Then the requirement of invariance of W c amounts to
+                                                    u                                 u
+                                    f s (p + V [ h(u) ]) = Dh(u) f c(p + V [ h(u) ]) .
+This is the equation for h . We can recursively solve the coefficients of the Taylor expansion of
+h . Note that the constant and linear terms are zero. This way we get:
+                                                ⎡                             ⎤
+                                                 5 u21 + u1 u2 − u22 ⎦
+                                    h(u) = 19 ⎣                        + O(u3)
+                                               −5 u1 − 14 u1u2 − 2 u2
+                                                   2                 2
+
+
+and
+                                               ⎡                                                    ⎤
+                                                −u2 + (−10 u31 + 8 u21 u2 − 2 u1 u22 + u32 )/9 ⎦
+                                   [ h(u) ]) = ⎣
+                      c               u
+   g(u) := f (p + V                                                                              + O(u4) .
+                                                                   uu1
+The behaviour of the system on the center manifold is given by equation u = g(u) . Following
+[9] we change to complex variables. An eigenvector of the linear part of g corresponding to the
+eigenvalue i is q = [ 1i ] . Setting u = z q + z̄ q̄ we get z = (u2 − i u1 )/2 and
+                          z  = i z + 8+7i
+                                       18
+                                           z 3 + 32+11i
+                                                   18
+                                                        z 2 z̄ + 32−11i
+                                                                   18
+                                                                        z z̄ 2 + −8+7i
+                                                                                  18
+                                                                                       z̄ 3 + O(|z|4 ) .
+Taking substitution z = w + β3 w 3 + β2 w 2 w̄ + β1 w w̄ 2 + β0 w̄ 3 we obtain
+w  = i w + ( 8+7i
+               18
+                   − 2 β3 ) w 3 − 32+11i
+                                    18
+                                         w 2 w̄ + ( 32−11i
+                                                      18
+                                                           + 2i β1 ) w w̄ 2 + ( −8+7i
+                                                                                 18
+                                                                                      + 4i β0 ) w̄ 3 + O(|w|4 ) .
+We see that we can kill other third order terms except the w 2 w̄ -term. Hence choosing
+                                      β0 = 7−8i
+                                            72
+                                                , β1 = 11+32i
+                                                         36
+                                                              , β2 = 0 , β3 = 7−8i
+                                                                               36
+                                                                                   ,
+we obtain the equation
+                                           w  = i w − 32+11i
+                                                         18
+                                                              |w|2 w + O(|w|4 ) .
+Now, since
+d
+dt
+   |w|2 = (i w − 32+11i
+                   18
+                        |w|2 w) w̄ + w (−i w̄ − 32−11i
+                                                  18
+                                                       |w|2 w̄) + O(|w|5 ) = − 32
+                                                                                9
+                                                                                  |w|4 + O(|w|5 ) ,
+                         √
+we see that w → 0 like 1/ t . Hence the system is locally asymptotically stable.                               
+
+                                                               17
+QUES9209_source.tex; 5/01/2011; 11:31                                                                          p. 18
+
+
+
+
+If the third order terms of the equation of w would not have determined the stability, we should
+have gone to higher order expansions.
+
+                                                                 1000
+     400
+
+                                                                 800
+     300
+                                                                 600
+
+     200
+                                                                 400
+
+     100
+                                                                 200
+
+
+
+                50 000    100 000       150 000   200 000               50 000   100 000   150 000   200 000
+
+
+
+
+Figure 8: Simulations of the Delayed Friedman system with λ = 100, trajectories of Xt and Yt
+shown. Left: Starting from the dynamic system equilibrium X0 = Y0 = A0 = B0 = λ = 100.
+Right: Starting with X0 = 1000, Y0 = A0 = B0 = 0.
+
+Simulations show that also the original stochastic system oscillates strongly, even when it is started
+from a balanced state — see Figure 8, left plot. The frequency of the oscillations is very regular
+compared with that of the Deterministic First Chunk system of Section 3.2. The amplitude is
+clearly a stochastic process with memory. When started from heavy imbalance, the process returns
+to more typical amplitudes in a similar fashion as the dynamical system — compare the right plots
+of Figures 7 and 8. Thus, the simulations suggest stability, however we have not found a way to
+prove (or disprove) it. From a practical viewpoint, the oscillations indicate that the system is not
+in good balance, which could be fatal in an application with rapidly changing arrival rates and
+flash-crowd scenarios.
+
+Conjecture 3.10 The Delayed Friedman system is stable.
+
+
+3.5 Enforced Friedman system
+The reason of the oscillatory behaviour of the Delayed Friedman system was that when a peer
+finally succeeds in downloading its first chunk according to the ‘Friedman rule’, applied possibly
+long ago, the choice may already be outdated and thus counterproductive. Our last model avoids
+this problem by realising choices only immediately or not at all. An empty peer makes three
+contacts simultaneously (sampling with replacement; the seed shows a random chunk). If two of
+the chunks of the contacted peers differ from the third one, the latter is downloaded. If all three
+chunks are similar, nothing is done, but the empty peer stays in a waiting room and repeats the
+triple contact operation after Exp(1)-distributed waiting time. The number of peers in the waiting
+room is denoted by Z. Note that if the experiment was successful (that is, a 2-1 situation was
+obtained), the probability of downloading chunk 0 is (Y + 12 )/(X + Y + 1) — exactly the same as
+in the Friedman system (this circumstance was indeed the design goal of the algorithm). Therefore
+we call this system, defined by Figure 9, the Enforced Friedman system.
+
+                                                            18
+QUES9209_source.tex; 5/01/2011; 11:31                                                                p. 19
+
+
+
+
+                            X(Y + 1)       6                      6   (X + 1)Y
+                            X +Y +1                                   X +Y +1
+                                                            
+                                          X                   Y
+                                                            
+
+                    3(X + 12 )(Y + 12 )2 Z J
+                                           ]                      3(X + 12 )2 (Y + 12 )Z
+                                            J
+                       (X + Y + 1)   3       J                        (X + Y + 1)3
+                                                   
+                                                     Z
+                                                   
+
+                                                     6
+                                               λ
+
+
+                                 Figure 9: Enforced Friedman system.
+
+The large system limit of the Enforced Friedman system is
+                                                       3xyz
+                                        ż = λ −                                                     (12)
+                                                     (x + y)2
+                                                3xy 2z      xy
+                                        ẋ =           3
+                                                         −                                           (13)
+                                               (x + y)     x+y
+                                                3x2 yz      xy
+                                        ẏ =           3
+                                                         −     .
+                                               (x + y)     x+y
+
+This is trickier than the plain Friedman system, but nevertheless tractable:
+
+Proposition 3.11 The system (12) has in (0, ∞) × (0, ∞) × (0, ∞) a single equilibrium point
+(z ∗ , x∗ , y ∗) = ( 43 λ, λ, λ). Locally, the equilibrium is a sink, i.e. all eigenvalues of the limiting
+linear system are real and negative. This equilibrium is globally asymptotically stable.
+
+Proof The uniqueness and local character of the equilibrium are found by easy computations.
+It remains to prove the global stability. Since λ is a pure scaling parameter, we can choose λ = 1.
+Let us change to the variables
+                                                                        2
+                                                                  x−y
+                                   z,   ρ = x + y,       β=                 ,
+                                                                  x+y
+
+which lose the differentiation between x and y in favour of a single imbalance characteristic β.
+
+
+
+
+                                                     19
+QUES9209_source.tex; 5/01/2011; 11:31                                                               p. 20
+
+
+
+
+The new system satisfies the equations
+                                                  3
+                                        ż = 1 − (1 − β)z                                           (14)
+                                                  4
+                                             1
+                                        ρ̇ =   (1 − β)(3z − 2ρ)                                     (15)
+                                             4
+                                                                   3z
+                                        β̇ = −β(1 − β)                −1 .                          (16)
+                                                                   ρ
+Fix arbitrary initial values z0 > 0, ρ0 > 0, β0 ∈ (0, 1) (β0 = 0 gives a simple linear system).
+1o . Note first that the system (zt , ρt , βt ) cannot escape from the set (0, ∞)×(0, ∞)×[0, 1) in finite
+time. Denote τ = inf {t ≥ 0 : βt = 1}. For t ∈ [0, τ ), żt > 0 whenever zt < 4/3, and ρ̇t > 0
+whenever ρt < (3/2)zt . Since the system freezes at τ , it follows that inf t≥0 zt ≥ min(z0 , 4/3) and
+inf t≥0 ρt > 0. Equation (16) then yields that β cannot reach 1 at any finite time, so τ = ∞.
+2o . A basic observation from the equations (13) is that the absolute value of x−y is non-increasing.
+In terms of the variables z, ρ, β this means that βρ2 is non-increasing, and the corresponding
+equation from which this is seen reads
+                                         d               3
+                                            (βt ρ2t ) = − βt (1 − βt )zt .                          (17)
+                                         dt              2
+By point 1o , we get                           ∞
+                                        lim         βs (1 − βs )zs ds = 0.                          (18)
+                                        t→∞ t
+
+Assume that βt → 1. Since βt ρ2t is decreasing by (17), ρt cannot be eventually increasing, and it
+approaches some finite limit value. On the other hand, Lemma 2.3, applied to (14), yields with
+βt → 1 that zt → ∞, and (15) makes ρt eventually increasing. This contradiction shows that
+w := 1 − lim inf t→∞ βt > 0.
+Since we already saw that eventually zt ≥ 1, we obtain by (18) and (16) (neglecting the term
+3z/ρ) that for any > 0 there exists a number t0 such that
+                                  ∞                           T
+                             >          βs (1 − βs )zs ds ≥         β̇s ds = βT − βt                (19)
+                                 t                             t
+
+for any t and T such that T > t > t0 . Choosing = w/2 we deduce that lim supt→∞ βt < 1. But
+then, (18) and (19) imply limt→∞ βt = 0.
+3o . Now, Lemma 2.3 yields that zt and ρt converge to their stable values.                            
+
+In simulations, the Enforced Friedman scheme seems to work perfectly, and to be capable to deal
+with flash-crowds and rapid input rate variations as well (say, when λ is large for a while and
+then suddenly drops). Figure 10 shows by a simulation how a heavy initial imbalance is rapidly
+improved, after which a stable regime persists with fairly small fluctuations. To understand what
+happens, note that the waiting room population Z must first grow sufficiently large to succeed in
+finding the rare copies of chunk 2. Once such a state is reached, the system emulates the ideal
+Friedman system well.
+
+                                                        20
+QUES9209_source.tex; 5/01/2011; 11:31                                                          p. 21
+
+
+
+
+                               1000
+
+
+
+                                        Z
+                                800
+
+
+
+
+                                600                 X
+
+
+                                400
+
+
+
+
+                                200     Y
+
+
+                                            2000   4000   6000   8000   10 000   12 000
+
+
+
+
+Figure 10: A simulation of the evolution of the Enforced Friedman system with λ = 100 and
+initial state X0 = 1000, Y0 = Z0 = 0.
+
+As noted earlier, the output from the waiting room is pure Friedman input to the subsystem (X, Y ),
+just with a randomly varying rate. Although it was easy to believe that the stochastic Enforced
+Friedman system be stable, we did not find a proof for
+
+Conjecture 3.12 The (stochastic) Enforced Friedman system is stable with any input rate λ.
+
+However, shortly before the submission of the final version of this paper, Conjecture 3.12 was
+proven by Barlas Oğuz (University of Berkeley). The details will be published later.
+The idea of the Enforced Friedman system can be generalized to the many-chunk case as follows
+([17]):
+
+Algorithm 3.13 Enforced Friedman algorithm for many chunks:
+
+  (i) a peer makes always three contacts simultaneously (with replacement);
+
+  (ii) if there are ‘minority chunks’ possessed by exactly one of the three peers, download one of
+       them at random;
+
+ (iii) if there are no minority chunks, wait for the next triple contact.
+
+It is very interesting that as weak favoring of rare chunks as that implemented in Algorithm 3.13
+turns out to be sufficient for stable operation, at least by our simulation evidence. As an example,
+Figure 11 shows a simulation where all non-seed peers except one are initially missing only one
+and the same chunk. It is crucial that new peers keep arriving, and most of them download the
+rare chunk in an early phase.
+
+                                                          21
+QUES9209_source.tex; 5/01/2011; 11:31                                                              p. 22
+
+
+
+
+                     150
+
+
+
+                     100
+
+
+
+                      50
+
+
+
+
+                                        10 000   20 000         30 000        40 000
+
+
+
+Figure 11: A simulation of Algorithm 3.13 with 20 chunks, λ = 10, starting from a ‘rare chunk’
+configuration with 100 peers that are missing only chunk 1, and one peer that has only that rare
+chunk. The evolution of the number of copies of each chunk is shown by a curve.
+
+As a conclusion of our study, we have seen that it is possible to create effectively stabilizing ‘Fried-
+man input’ using a simple fully distributed algorithm based on random contacts. We also observed
+that one should use a ‘waiting room’ concept with memoryless re-trials rather than launch an ac-
+tive hunt for a rare chunk — the rarity may dissolve during the hunt, leading to oscillations. The
+extra delay caused by the waiting room stage is bearable and worth its price. As regards mathe-
+matical theory, we have no proofs yet even for the large system limit in the many-chunk case, and
+also the less successful algorithms left many interesting problems open. Probably one needs some
+new insights and methods, because with m chunks the Enforced Friedman system has d = 2m − 1
+nodes which is a large number even for a modest m.
+
+Acknowledgement. We thank Balakrishna Prabhu, Rudesindo Nunez Queija, Philippe Robert,
+Florian Simatos (other members of the Euro-FGI SCALP project 2007-08), as well as Lasse
+Leskelä and Sergey Foss for fruitful discussions and insights. We also thank two anonymous
+referees for valuable feedback.
+
+
+References
+ [1] S-N. Chow and J. Hale. Methods of Bifurcation Theory. Springer-Verlag, New York, 1982.
+
+ [2] B. Cohen. BitTorrent specification, 2006. http://www.bittorrent.org.
+
+ [3] J.G. Dai. On positive Harris recurrence of multiclass queueing networks: A unified approach
+     via fluid limit models. Ann. Appl. Probability, 5:49–77, 1995.
+
+
+
+
+                                                  22
+QUES9209_source.tex; 5/01/2011; 11:31                                                     p. 23
+
+
+
+
+ [4] B. Fan, D.-M. Chiu, and J.C.S. Lui. Stochastic differential equation approach to
+     model BitTorrent-like P2P systems. In ICC’06, Istanbul, Turkey, 2006.       DOI:
+     10.1109/ICC.2006.254824.
+
+ [5] D. Freedman. Bernard Friedman’s urn. Ann. Math. Statist., 36:956–970, 1965.
+
+ [6] B. Friedman. A simple urn model. Comm. Pure Appl. Math., 2:59–70, 1949.
+
+ [7] B. Hajek and J. Zhu. The missing piece syndrome in peer-to-peer communication. 2010.
+     Submitted for publication. Preprint: http://arxiv.org/abs/1002.3493.
+
+ [8] T. Kurtz. Approximation of population processes. In CBMS-NSF Regional Conference
+     Series in Applied Mathematics, volume 36, 1981.
+
+ [9] Y.A. Kuznetsov. Elements of Applied Bifurcation Theory. Springer-Verlag, New York, 1995.
+
+[10] W.-C. Liao, F. Papadopoulos, and K. Psounis. Performance analysis of BitTorrent-like sys-
+     tems with heterogeneous users. Performance Evaluation, 64:876–891, 2007.
+
+[11] L. Massoulie and M. Vojnovic. Coupon replication systems. ACM SIGMETRICS Perfor-
+     mance Evaluation Review, 33(1):2–13, 2005.
+
+[12] L. Massoulie and M. Vojnovic. Coupon replication systems. IEEE/ACM Trans. Networking,
+     16(3):603–616, 2005.
+
+[13] I. Norros, V. Pehkonen, H. Reittu, A. Binzenhöfer, and K. Tutschku. Relying on randomness-
+     PlanetLab experiments with distributed file-sharing protocols. In Proceedings of the 3 rd
+     EURO-NGI conference on Next Generation Internet Networks (NGI 2007), Trondheim, Nor-
+     way, 2007. Downloadable from IEEE Xplore. DOI: 10.1109/NGI.2007.371191.
+
+[14] I. Norros, B. Prabhu, and H. Reittu. Flash crowd in a file sharing system based on random
+     encounters. In Inter-Perf, Pisa, Italy, 2006. Downloadable from ACM Digital Library.
+
+[15] R. Pemantle. A survey of random processes with reinforcement. Probability Surveys, 4:1–79,
+     2007.
+
+[16] D. Qiu and R. Srikant. Modeling and performance analysis of BitTorrent-like peer-to-peer
+     networks. ACM SIGCOMM Computer Communication Review, 34(4):367–378, 2004.
+
+[17] H. Reittu. A stable random-contact algorithm for peer-to-peer file sharing. In Self-
+     Organizing Systems. Proceedings of 4th IFIP TC 6 International Workshop, IWSOS 2009,
+     Zurich, Switzerland, volume 5918 of Lecture Notes in Computer Science. Springer, 2009.
+     DOI: 10.1007/978-3-642-10865-5_16.
+
+[18] H. Reittu and I. Norros. Toward modeling of a single file broadcasting in a closed
+     network. In Proceedings of IEEE SPASWIN2007, Limassol, Cyprus, 2007. DOI:
+     10.1109/WIOPT.2007.4480079.
+
+
+
+                                              23
+QUES9209_source.tex; 5/01/2011; 11:31                                                                                      p. 24
+
+
+
+
+[19] H. Reittu and I Norros. Urn models and peer-to-peer file sharing. In Proc. IEEE PHYSCOM-
+     NET’08, Berlin, 2008. DOI: 10.1109/WIOPT.2008.4586131.
+[20] R. Susitaival and S. Aalto. Analyzing the file availability and download time in a P2P file
+     sharing system. In Proceedings of NGI 2007, 2007. DOI: 10.1109/NGI.2007.371202.
+[21] X. Yang and G. de Veciana. Service capacity of peer to peer networks. In Proceedings of
+     INFOCOM 2004, pages 2242 – 2252, 2004.
+
+
+A Appendix
+Proof     of Lemma 2.3.
+Denote τ = inf {t > 0 : ut = 0}. Since u̇0 = b0 > 0 in the case that u0 = 0, we always have
+τ > 0. Assume for the contrary that τ < ∞. For t ∈ [0, τ ) we have
+                                        u̇t ≥ inf bs − ( sup as )ut .
+                                              s∈[0,τ )        s∈[0,τ )
+
+It follows that
+                      inf s∈[0,τ ) bs         inf s∈[0,τ ) bs
+             ut ≥                     + (u0 −                 ) exp(−( sup as )t),              t ∈ [0, τ ).
+                      sups∈[0,τ ) as          sups∈[0,τ ) as          s∈[0,τ )
+
+Since the right hand side is positive also for t = τ , we deduce that τ = ∞.
+Assume first that the functions a and b are bounded away from zero and infinity. Let a∗ , a∗ , b∗ , b∗
+be any positive numbers such that
+               a∗ < lim inf at ≤ lim sup at < a∗ ,            b∗ < lim inf bt ≤ lim sup bt < b∗ .
+                        t→∞             t→∞                              t→∞             t→∞
+Denote
+                                                                                                                   
+                                                                  ∗                                            ∗
+         σ = inf t ≥ 0 :        inf as ≥ a∗ , sup as ≤ a ,                inf bs ≥ b∗ , sup bs ≤ b                     .
+                              s∈[t,∞)           s∈[t,∞)                  s∈[t,∞)           s∈[t,∞)
+
+Since σ is finite and
+              inf bs − ( sup as )uσ+t ≤ u̇σ+t ≤ sup bs − ( inf as )uσ+t ,                               t ≥ 0,
+            s∈[σ,∞)         s∈[σ,∞)                       s∈[σ,∞)              s∈[σ,∞)
+
+we obtain that
+                      b∗          b∗ −a∗ t           b∗          b∗ −a∗ t
+                         + (u σ −    )e    ≤ u σ+t ≤    + (u σ −    )e    ,                    t ≥ 0,
+                      a∗          a∗                 a∗          a∗
+which implies
+                                     b∗                                b∗
+                                         ≤ lim inf u t ≤ lim sup u t ≤    .
+                                    a∗       t→∞           t→∞         a∗
+Since a∗ , a∗ , b∗ , b∗ were arbitrary, the assertion follows.
+Finally, when a and b are not both bounded away from zero and infinity and the fractions in
+the assertion are well-defined, the non-trivial cases are obtained as above, simply relaxing some
+conditions in the definition of σ.                                                              
+
+
+                                                         24
+

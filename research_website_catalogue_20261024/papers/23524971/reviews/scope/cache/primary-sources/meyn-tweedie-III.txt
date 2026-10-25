@@ -1,0 +1,1521 @@
+                                                                    Adv. Appl. Prob. 25, 518-548 (1993)
+                                                                                   Printed in N. Ireland
+                                                                       ? Applied Probability Trust 1993
+
+STABILITY OF MARKOVIAN PROCESSES III: FOSTER-
+LYAPUNOV CRITERIA FOR CONTINUOUS-TIME
+PROCESSES
+
+
+   SEAN P. MEYN,* University of Illinois
+   R. L. TWEEDIE,** Colorado State University
+
+
+          Abstract
+             In Part I we developed stability concepts for discrete chains, together with
+          Foster-Lyapunov criteria for them to hold. Part II was devoted to developing related
+          stability concepts for continuous-time processes. In this paper we develop criteria for
+          these forms of stability for continuous-parameter Markovian processes on general
+          state spaces, based on Foster-Lyapunov inequalities for the extended generator.
+             Such test function criteria are found for non-explosivity, non-evanescence, Harris
+          recurrence, and positive Harris recurrence. These results are proved by systematic
+          application of Dynkin's formula.
+             We also strengthen known ergodic theorems, and especially exponential ergodic
+          results, for continuous-time processes. In particular we are able to show that the test
+          function approach provides a criterion for f-norm convergence, and bounding
+          constants for such convergence in the exponential ergodic case.
+             We apply the criteria to several specific processes, including linear stochastic
+          systems under non-linear feedback, work-modulated queues, general release storage
+          processes and risk processes.
+          FOSTER'S CRITERION; IRREDUCIBLE MARKOV PROCESSES; STOCHASTIC LYAPUNOV
+          FUNCTIONS;  ERGODICITY;  EXPONENTIAL  ERGODICITY;           RECURRENCE;      STORAGE
+          MODELS; RISK MODELS; QUEUES; HYPOELLIPTIC DIFFUSION
+
+          AMS 1991 SUBJECT CLASSIFICATION: PRIMARY 60J10
+
+
+
+
+1. Introduction
+   1.1. Criteria for stability and recurrence. Our objectives in this paper are to
+obtain a unified approach to the stability classification of continuous-time Markov
+processes via Foster-Lyapunov inequalites applied to the generators of the process.
+   In Part II of this series of papers [25], we developed various such forms of
+'stability' for Markov processes. These are analogous to and based on stability
+concepts in discrete time, developed in Part I [24]. In [24] we also developed
+(extending [35], [27], [20]) drift or Foster-Lyapunov conditions on the transition
+   Received 28 August 1991; revision received 13 August 1992.
+   * Postal address: University of Illinois, Coordinated Science Laboratory, 1101 W.
+                                                                                         Springfield Ave.,
+Urbana, IL 61801, USA.
+   ** Postal address: Department of Statistics, Colorado State University, Fort Collins, CO 80523, USA.
+   This work was commenced at Bond University, and developed there, at the Australian National
+University, the University of Illinois, and Colorado State University.
+   Work supported in part by NSF initiation grant #ECS 8910088.
+
+                                                  518
+Stabilityof MarkovianprocessesIII                                                   519
+
+
+probability kernels governing the motion of the chain and these served to classify
+the chain as non-evanescent, recurrent, positive recurrent and so on. Consideration
+of the generator of the process is natural in continuous time, as the generator is
+usually more accessible than the transition function.
+  In this paper we develop a similar approach for stability of general right processes
+evolving on locally compact separable metric spaces, based upon the extended
+generator for the process. We obtain criteria for non-explosivity, non-evanescence,
+Harris recurrence, and positive Harris recurrence, as well as (and perhaps most
+importantly, in practice) ergodicity and geometric ergodicity. The processes covered
+by our approach include diffusions and jump-deterministic processes as special
+cases.
+  Criteria for stability of continuous-time processes on countable spaces, based on
+Foster-Lyapunov inequalities (drift conditions) for the infinitesimal generator, have
+been developed in [34], [36], [6]. For diffusion processes there are precedents for
+this work to be found in Kushner's work [19], which is primarily concerned with
+criteria for various generalizations of stability in the sense of Lyapunov using drift
+conditions associated with the infinitesimal generator, together with the application
+of Dynkin's formula. Our work is more closely related to that of Khas'minskii [17]
+who deals with stochastic generalizations of stability in the sense of Lyapunov in a
+fashion similar to [19], and presents criteria for various forms of recurrence, based
+again upon Dynkin's formula.
+  The paper is organized as follows. In the remainder of this section we describe the
+basic assumptions, present a version of Dynkin's formula and describe a truncation
+scheme which is required for its application. Section 2 presents a drift condition for
+the process which is shown to imply 'non-explosion'; that is, that the escape time for
+the process is infinite with probability 1. In Section 3 a stronger condition is used to
+obtain non-evanescence of the sample paths of the process. Using results from [25],
+this gives a criterion for Harris recurrence. In Section 4 we use a continuous-time
+version of Foster's criterion to obtain sufficient conditions for the existence of an
+invariant probability :r, together with finiteness of 7r(f) for general functions f, and
+positive Harris recurrence or generalizations of positive recurrence.
+   Sections 5 and 6 contain the most important results in the paper. We obtain
+criteria for total variation norm convergence of the distributions of the process,
+convergence of the expectation of unbounded functions of the process, and criteria
+under which such convergence takes place at a geometric rate.
+   In the final part of the paper, we apply all of these results to jump-deterministic
+processes, including work-modulated queues, general release storage processes and
+risk processes, and diffusion processes, where we obtain new convergence results
+for passive linear stochastic systems under static non-linear feedback.
+
+  1.2. The processes 0 and Om. Here we provide a brief description of the context
+which we treat, which is intended to make the paper relatively self-contained. We
+520                                                     SEAN P. MEYN AND R. L. TWEEDIE
+
+
+do not discuss many of the concepts in detail, since the background to this paper
+and the processes we consider is given in [24] and [25].
+  We suppose that      = {,:t e R+} is a time-homogeneous Markov process with
+state space (X, @S(X)), and transition functions (P'). When o = x the process 0
+evolves on the probability space (Q, iP, P,), where Q denotes the sample space. It is
+assumed that the state space X is a locally compact and separable metric space, and
+that 9@(X)is the Borel field on X.
+   The operator P' acts on bounded measurable functions f and a-finite measures I
+on X via
+
+               PY(x) = P'(x, dy)f(y),                P'(A) =     (dx)P'(x, A).
+
+For a measurable set A we let
+
+                  rA=inf{ t    0:   , E A},           1A=f     {,A}     dt.
+
+The Markov process is called ,p-irreducible if for the a-finite measure q,
+                           pf{B}> 0 =Ex[rB]          > O,      xeX
+and Harris recurrent if qp{B} > 0 =>P(TB      < oo) = 1 for any x     X. Whilst some of our
+results hold only for irreducible (i.e. 9q-irreducible for some 9() processes, many
+hold without this restriction. The most interesting of our stability results will
+however be based on Harris recurrence or stronger forms of recurrence.
+  Throughout this paper we let {O,: n              +} denote a fixed family of open
+precompact   sets for which 0,n  X  as n -- oo. By precompact we mean that the closure
+of On is a compact subset of X for each n. We let Tm A To, denote the first-entrance
+time to Oc (set to X if the process does not leave the set 0,), and denote by ~ the
+exit time for the process, defined as
+
+(1)                                     4 lim Tm.
+                                           m---.oo
+
+
+We assume without further comment that the process {(t,: 0 - t < ,} killed at time g
+is a (Borel) right process [28].
+   In the sense of stability used in this paper, the first property of importance is
+explosivity, or rather non-explosivity.
+  Non-explosivity. We call the process 0 non-explosive if Px{( =co=               1 for all
+x eX.
+The non-explosivity property is often called regularity (see [34] in the countable space
+case, [16] in the piecewise linear context, and [17] for diffusions). Unfortunately,
+regularity for sets in Markov chain theory can mean something quite different ([26],
+[23]), so we have adopted this nomenclature, calling the time ; the time of
+explosion, essentially as in Kliemann [18].
+Stabilityof MarkovianprocessesIII                                                  521
+
+
+   If the process 0 is a non-explosive right process, then 4 is strongly Markovian
+with right-continuous sample paths, and non-explosivity implies that the set
+{,: 0 < t < T} is precompact with probability 1 for any T E I +.
+   In order to develop drift criteria for non-explosivity or recurrence based on the
+generator of the process introduced in the next section, we need to consider
+truncations of the process P.
+   For m E Z+, let Am denote any fixed state in Oc and define tm by
+
+                                              (Dt   t < Tm
+(2)(DM
+(2)                                      =-
+                                        A     Am t - Tm
+Theorem 12.23 of [28] implies that the resulting process is a non-explosive right
+process. For the theory developed in this paper, we may in fact let Om denote any
+non-explosive right process with the property that IDm     = (I, whenever t < T". For
+instance, we may  take     =
+                       QDm t,A Tm   where  s A t denotes  the minimum of s and t. This
+is the approach which is taken in [19]. For applications, however, the specification of
+a 'graveyard state' Am as in (2) appears most suitable.
+   1.3. The extended generator and Dynkin's formula. Our central goal in this paper
+is to provide conditions, couched in terms of the defining characteristics of the
+process 0, for the various forms of stability developed in [25] to hold.
+   In general the characteristics used in practice to define the process are not
+couched in terms of the semigroup Pt, but rather of the extended generator of the
+process. The following definition is a slightly restricted form of that in Davis [9].
+  The extended generator. We denote by D(d) the set of all functions V:Xx
+R+-- R[ for which there exists a measurable function U:X x [R+R-R such that for
+each x X, t > 0,
+
+(3)                    E[V((,,      t)] = V(x, 0) + Ex[      U((,   s) ds]
+
+
+(4)                                  Ex[IU(qs, s)l] ds < oo.
+
+We write sV-A U and call d the extended generator of the process 4.
+  The identity (3) states that the adapted process (Mv, t3) is a martingale, where
+
+                        MV= V(Dt, t)-         V(0o, 0)-      U(Is, s)ds.
+
+This definition is an extension of the infinitesimal generator (see [19]) for Hunt
+processes: the more common definition of this is in terms of a differentiation
+operation as in (5) below.
+  For general functions f, it is not easy to know if f is in the domain of i. For
+example, one way to proceed is to first construct the strong generator (see [17] in
+522                                                    SEAN P. MEYN AND R. L. TWEEDIE
+
+
+the context of diffusions), whose domain typically contains bounded functions with
+appropriate differentiability properties, and then note that the domain of the strong
+generator is contained in the domain of the extended generator. To circumvent this
+difficulty and allow the straightforward use of unbounded functions we use a
+truncation approach which we now describe.
+   We write sim for the extended generator of 0m. Under general conditions, Sm is
+an extension of s on the set Omin the sense that if V is in the domain of M, then it
+is in the domain of im, and on Om imV = 4V. However, such conditions do not
+concern us, as we do not require that im extend i.
+   Typically, the domain of im will give us a rich choice of functions for test
+functions. Three typical examples are:
+   A. If X is discrete, then the domain of the extended generator for the process (2)
+includes any finite-valued function on X. This fact is used in Theorem 7.1 below
+which gives criteria for exponential ergodicity for a Markov process on a countable
+state space.
+  B. If 0 is an Ito process then the domain of Sm contains C2 (the class of
+functions on X x I + with continuous first and second partial derivatives), while the
+domain of i may be far smaller: see Section 8 and [19], [17].
+   C. Let Sm denote the weak infinitesimal generator for the space-time process
+{(t , t): t E [+}. A measurable function V on X x [W+is in D(5m), the domain of
+,im, if the limit
+
+
+(5)                    mV(X,             im E) [V(QI, t + h)]-   V(x, t)
+                  _     _ t)             hJo            h
+exists pointwise and satisfies
+
+(6)                     lim Ex[SimV(Q h, t + h)] = Sm V(X, t).
+                        hlO
+
+If furthermore
+
+(7)                                sup ISimV(x, t) < oo,
+                                 (x,t)    C
+
+
+whenever C cX x R+ is compact, then we have that D(im) c D(Sm) (see [19]).
+We note that when (7) holds, as it typically will in applications where the generator
+is derived through the form (5), then the integrability condition (4) is satisfied for
+the truncated process pm since the time-integral is almost surely bounded.
+   Throughout the remainder of this paper we assume that V :X- R + is a positive,
+measurable function which is in the domain of sm for all m. Such a function
+V :X -> R+ is called a norm-like function if V(x)-- oo as x - oo; this means that the
+level sets {x: V(x) < B} are precompact for each B > O. Functions on [Rk which are
+norm-like include the Euclidean norm 11-11  and any monotone, unbounded function
+of I1-II.
+Stability of Markovian processes II                                                                         523
+
+
+ All of our criteria for stability will rely on a detailed usage of Dynkin's formula,
+which is a direct consequence of the optional stopping theorem [10].
+
+  Dynkin's formula. Let T be a stopping time for the right process 0, and suppose
+that V:XxlFR+--R     is in the domain of the extended generator si.           Let
+ZTm mmin{m, r, T }. Then
+
+
+(8)          Ex[V(Dm,       rm)] = V(x,O)+       Ex[             4mV(Dt,       t) dt]            xE X.
+
+
+If r is bounded by a fixed deterministic constant, then we take Tm= T A Tm in
+Dynkin's formula without further comment.
+  A simple but important consequence of Dynkin's formula is the following
+comparison theorem.
+  Theorem 1.1 (comparison theorem). Suppose that 0 is a non-explosive right
+process, and that V, g+ and g_ are positive measurable functions. If for each m,
+ mV _ g+ -g_        on Om then for any x eX, S e                  +,
+
+                        PsV(x) +         Ptg_(x) dt ' V(x) +                 Pg+(x)
+                                                                                        dt.
+
+Hence for each x e X,
+                                 1 s                                   1 s
+                       lim sup- J ptg (x) dt< lim sup- I P'g+(x) dt
+                          s--m   S JO                      s-o         S J
+
+
+
+                        lim inf1        P'g_(x) dt _ lim inf- I P'g+(x) dt.
+                         s--oo SJ                          ---oo S J
+
+                                              m = s A Tm. It follows from
+  Proof. For fixed s EI + denote                                                                Dynkin's formula
+that for x E Om,
+
+                 Ex[V(mm)] = V(x) + Ex                   simV(Dt) dt
+(9)                                                  o
+                                                                       -
+                                      V(x) + Ex[         {g+(t)            g- A m(,t)}          dt]
+
+where g_ A m denotes the minimum of g_ and m. We bound g_ in this way to avoid
+a possibly infinite negative term.
+  By (9) and the conditions of the theorem, whenever x e Om,
+
+            Ex[V(Em)] + Ex              g_ A m(,t)       dt]      V(x) + Exj             g+(e,) dt
+
+
+                                                                  V(x) + Ex[            g+(t)         dt.
+524                                                        SEAN P. MEYN AND R. L. TWEEDIE
+
+
+Since from non-explosivity smTs as m - oo, we have from Fatou's lemma
+
+                            PV (x) _ lim inf Ex[ V(sm.)].
+                                              m-- oo
+
+Combining these inequalities, we may apply the monotone convergence theorem to
+obtain the result.
+
+  To apply Dynkin's formula in the comparison theorem we relied on the fact that,
+under non-explosivity of 0, we have rm-> T as m oo, where in this instance r = s.
+Since so many of the results of this paper crucially depend on non-explosivity in this
+way, we first give a general sufficient condition under which non-explosivity holds.
+
+
+2. Criteria for finite escape times
+  In this section our aim is to find conditions which ensure that the sample paths of
+0 remain bounded on bounded time intervals, so that the process is non-explosive.
+  Our first criterion on the extended generator of the process 0 is the following.
+
+  (CDO) Condition for non-explosion. There exists a norm-like function V and a
+constant c > 0 such that
+
+                        imV(X)-_)cV(x)                 X E Om,    m E    ..
+
+It is easy to see that if the apparently weaker bound
+                     imV(       c(x)V( + d                E Om,    m          +,
+is satisfied for constants c, d 0, then (CDO) is satisfied: if c >0, consider the
+norm-like function V + d/c, which satisfies (CDO).
+   The abbreviation CD stands for continuous drift. The conditions CD we introduce
+will in general have matching discrete drift conditions DD in [24], but explosion is
+not a possibility in discrete time so CDO has no such analogue. We see in the next
+result that (CDO) puts an upper limit on the rate of positive drift for the process.
+  Theorem 2.1. If 0 is a right process and (CDO) is satisfied, then
+   (i) t = oc, so that 0 is non-explosive.
+  (ii) There exists an a.s. finite random variable D such that
+(10)                      V(It) - D exp (ct),               0 t < oo.
+The random variable D satisfies the bound
+
+                                      -
+                       P,{D ' a}                 ,       a>0,     xeX.
+                                          a
+
+  (iii) The expectation Ex[V(,t)] is finite for each x and t, and the following bound
+holds:
+                            Ex[V(t)] -< exp (ct)V(x).
+Stability of Markovian processes III                                                                            525
+
+
+  Proof. We first apply the extended generator                m to the                                      function
+g(x, t) V(x) exp (-ct) to obtain  from  the product rule that for x e 0,
+
+                      &mg(x, t) = exp (-ct)[SmV(x)
+                                                     - cV(x)]
+                                            00.
+The product rule is easily justified, given our integrability condition (4). From
+Dynkin's formula we have, with tm = T                   A t,
+
+
+        (11)                     E,[g(<QIm, tm)] = g(x, 0) + Ex[f                     smg(ys,      s) ds]
+(11)
+                                                    _g(x, 0)= V(x).
+Let Mt = exp (-ct)V(Fm)l1(Tm _ t). We show that the adapted process (M,, Ft) is a
+supermartingale. Fix s <t, and consider first the event s > Tm}. On this event
+Mt = Ms = 0, and hence also
+                                  E[M, |     if] = Ms          on {s > T)}.
+
+On the event {s ' Tm} we use (11) to estimate
+
+                     E[Mt | F] = exp (-ct)Esm[V(,_Ms)1{Tm                                t - s}]
+                                     ' exp (-cs)E.m[g((t_s)4                   , (t - s)m)]
+                                        exp (-cs)V(m)                   = Ms
+and so we have the desired supermartingale property. By Kolmogorov's inequality,
+
+                                 PX supMMt=a            (,                     a>0.
+                                     t~0
+                                 P{supMt>           }< V(x)
+                                                        a
+
+Hence, by the definitions,
+
+                   Px    sup                                        a}    -X)               a>0.
+                        0.
+                        O_t<Tm    {V((,)exp(-ct)}                           a
+
+Letting m - ooand applying the monotone convergence theorem gives
+
+                    Px sup {V(,)           exp (-ct)}               a     V(x)             a >0.
+
+Since V is norm-like, we conclude from the definitions that = oo, which proves (i).
+The bound above then implies (ii).
+  To prove (iii) we return to (11). From this bound, Fatou's lemma and
+non-explosivity we have
+
+                    Ex[exp (-ct)V(,t)]            _ lim inf Ex[g(sgm, tm)] = V(x),
+                                                     which
+                                                         (iii).oo
+                                                      proves
+
+
+which proves (iii).
+526                                                   SEAN P. MEYN AND R. L. TWEEDIE
+
+
+   A somewhat weaker version of this result is given as Theorem 4.1 of [17] for
+diffusion processes. When X is countable, then the recent Theorem 1.11 of Chen
+([6]; also [5] in Chinese) gives (i), as does Theorem 2.3 of [34] using the much
+stronger condition that (CDO) holds with c - 0. The theorem is also closely related
+to Lemma 1 of [16] in the jump-linear case, and to Lemma 1 (p. 37) and Theorem 8
+(p. 53) of [19], which uses a stronger form of the Lyapunov function V on X, again
+with (CDO) holding with c _ 0.
+
+
+3. Criteria for recurrence
+   3.1. Criteria for non-evanescence. In [24] we developed the concept of non-
+evanescence; we say that a trajectory converges to infinity, denoted { -> oo}, if
+(, E Cc for any compact set C c X, and all t E R+ sufficiently large, and 0 is called
+non-evanescent if P{    ->- oo}= 0 for each x E X.
+   Our next result gives a criterion on the extended generator for the process 0 to
+be non-evanescent. This condition will also imply Harris recurrence under suitable
+continuity conditions on 0.
+  (CD1) Condition for recurrence. There exists a compact set Cc X, a constant
+d > 0 and a norm-like function V such that
+                       1mV()x)    dlc(x),       x     Om,   m E +.
+
+  Theorem 3.1. (i) If 0 is a right process and (CD1) holds then 0 is non-
+evanescent.
+  (ii) If 0 is non-explosive and if
+                      sm V(x) - dlc(x), X E O,  m E Z+,
+
+then even if V is not a norm-like function we have the bound
+
+                                 E,[V((tI)]-   V(x) + td
+for any x and t.
+
+  Proof. The second result is an immediate consequence of the comparison
+theorem. To prove (i), first observe that (CD1) implies (CD0), and hence from
+Theorem 2.1 we see that the process is non-explosive. Suppose now that
+P,{ -->oo} >0 for some x EX. Then since C is compact, there exists r e R+ such
+that
+                        P,{{,t   e CC:t _r} n {       -- oo}} >0.
+Hence defining the probability t as
+
+                    /1{B }   Px{i,r B I0r ECC},             B E X(X)
+we have by the Markov property
+(12)                   P,,{{),     Cc: t-:0)nfo}}n{   ---    >o.
+Stability of Markovian processes III                                                      527
+
+
+We now show that (12) leads to a contradiction. From Dynkin's formula with
+r = t A rc, non-explosivity and Fatou's lemma, we get that
+
+                Ex[V (^t A      )] = Ex lim inf V(Vmm)]
+
+
+                                  = lim infEx[V(e>,,1)]
+                                       m---o
+
+
+
+
+                                  -V(x)        + lim inf ExJ              S mV(s,) ds
+                                                  m---o            LJ()
+
+
+                                  _V(x),              x X.
+For all t>s    we have V(t,,AC)        = V(SAT(,) on the event {re - s}, while for rc>s   we
+may estimate
+                         E[V(     ^tArc) I|    ?] = E4.s[V(()(t-s)Avc)]
+
+                                                     _ V(s)         = V(s^Ar().
+
+Hence {V((Qs^AC), >: s _ O} is a convergent supermartingale. For any initial
+distribution, there are two possibilities for the limit V.. Either rc < c, or Tc= c so
+that
+
+                                           V. = lim V(,t) < o.
+                                                  t-- oc
+
+
+Since V is norm-like, this shows that
+
+                                  PM{{-              U {rcC<
+                                                 Coo}C     c}}              = 1.
+
+This obviously contradicts (12), and completes the proof.
+  The result is the continuous-time generalization of Theorem 4.5 of [24], and in the
+case where X is countable, is essentially given (with a far different approach) as
+Theorem 4 of [36]. It is related to the jump-linear result in Theorem 2 of [16].
+  3.2. Criteria for Harris recurrence. We showed in [24] and [25] that, under
+appropriate continuity conditions, non-evanescence is equivalent for both discrete
+and continuous time processes to the seemingly far stronger property of Harris
+recurrence, defined by either of
+   (i) there exists some o-finite measure u, such that whenever {A} > 0
+                                               P{A         < 00}     1;
+
+   (ii) there exists some o-finite measure (p, such that whenever p{A} > 0
+                                               Px{i7A = o} -1.
+These are shown to be equivalent in Theorem 1.1 of [22]. Note that Harris-recurrent
+chains are irreducible, whereas non-evanescent chains need not be. To link the two
+concepts, recall from [25] the definition of an embedded discrete-time chain sampled
+528                                                SEAN P. MEYN AND R. L. TWEEDIE
+
+
+according to a probability distribution a on lR+: this is governed by the Markov
+transition function Ka defined by
+
+(13)                                Ka      Pta(dt).
+
+Using the idea of sampled chains we define petite sets: a non-empty set C e @(X) is
+called qpa-petiteif (pa is a non-trivial measure on B(X) and a is a probability
+distribution on (0, oo) which satisfy the bound Ka(x, -) - (a(.) for all x e C.
+  The degree of stability of 0 is shown in [25] and in [22] to depend critically on the
+distribution of Tc for petite sets C. Here, we first note the following result.
+   Theorem 3.2. If all compact subsets of X are petite and (CD1) holds then 0 is
+Harris recurrent.
+  Proof. This follows from Theorem 3.1, in conjunction with Theorem 3.2(a) and
+Theorem 5.1(i) of [25].
+  We can achieve the same result using a seemingly different property of sampled
+chains. Recall from Section 3 of [25] that a right process is called a T-process if for
+some distribution a, the kernel Ka satisfies Ka(x, A) ' T(x, A), where the function
+T(-, A) is lower semi-continuous for each A e SA(X), and where T(x, X) is non-zero
+for all x EX.
+  The condition that all compact subsets of X are petite is shown in Theorem 5.1(i)
+of [25] to be, for non-evanescent processes, equivalent to the assumption that 0 is
+an irreducible T-process. This immediately gives the following result.
+   Theorem 3.3. If (CD1) holds for an irreducible T-process then 0 is Harris
+recurrent.
+   Several examples of processes shown in [25] to satisfy the T-process conditions,
+including diffusion processes, storage models and risk models, will be analyzed in
+later sections.
+
+
+4. Criteria for positivity and :r(f) < oo
+  4.1. A positive recurrence criterion. In the previous section we worked from the
+topological condition of non-evanescence to the probabilistic condition of Harris
+recurrence. In developing still stronger stability results, it is more rewarding to start
+from the Harris recurrence viewpoint. It is well known (cf. [1], [12]) that if 0 is
+Harris recurrent than an essentially unique invariant measure .r exists. If the
+invariant measure is finite, then it may be normalized to be a probability meaure; in
+this case 0 is called positive Harris recurrent.
+  The following result follows from Theorems 1.1 and 1.2 of [22]: it shows that
+bounds on the hitting times of petite sets will be crucial in characterizing positive
+recurrence, and we will then seek ways to develop these bounds through
+Foster-Lyapunov criteria on the generator.
+Stabilityof MarkovianprocessesIII                                                       529
+
+  Theorem 4.1. Let C e @((X) be a closed petite set, suppose that Px{rc < oo = 1,
+and that for some 6 > 0
+                                r rc()          -j
+(14)                     sup
+                         :x~[P:~~C
+                             Ex[J      f (,t) dt < oo,
+                                xeC
+
+
+where Tc(6) = 6 + 0arc, and f           1. Then 0 is positive Harris recurrent and
+Jr(f)< oo.
+  The following Foster-Lyapunov drift condition, which is stronger than (CD1) in
+the special case where V is norm-like and C is a compact set, will be shown to yield
+a criterion for positive Harris recurrence regardless of the structure of V.
+
+  (CD2) Positive recurrence condition. For some c, d > 0, f              1, a measurable set
+C, and V O,
+                    VmV(x) _ -cf(x)    + dlc(x),      x   E   m,   m E   +.
+  Note that for positivity we do not require V to be norm-like, although without this
+assumption we will need to verify non-explosivity separately.
+  As in [24] we may also consider time-varying test functions. We do not give these
+results in detail here in order to make the results more transparent; but for this one
+case we note that for a time-varying function V:X x +-X             the criterion for
+positive recurrence  becomes   the following.
+  (CD2') For some c, d > 0, f > 1, and a measurable set C,
+                             smV()t,   t) < -cf (e,) + dlc(Dt),
+when rOm> t > 0, m e Z+.
+  Extensions of all our results to the time-varying case are straightforward given the
+results here and in [24].
+   Theorem 4.2. Suppose that 0 is a non-explosive right process, that (CD2) holds
+for 0 with C a closed petite set, and that V(x) is bounded on C. Then the process is
+positive Harris recurrent, and moreover Jr(f) is finite.
+  This result extends Theorem 5.4 of [24] to the continuous-time case. There are
+some precedents for using (CD2) in continuous time: our result extends [36], [6] to
+general state spaces, although the method of proof is completely different, whilst the
+'asymptotic stability' results of Theorems 2 and 6 of [19] exploit a form of (CD2),
+and Condition (CD2) is also used by Khas'minskii in [17] in his treatment of
+diffusion processes.
+  The proof of Theorem 4.2 first requires us to establish a range of consequences of
+(CD2) used in conjunction with Dynkin's formula and the Comparison Theorem
+1.1.
+  Theorem 4.3. Suppose that 0 is a non-explosive right process and that (CD2)
+holds.
+530                                                                      SEAN P. MEYN AND R. L. TWEEDIE
+
+
+
+      (i) For any x   X, 6        0,
+
+                                 [-
+                                      rtc(6)                    -
+(15)                        ExJ                 f(t)     dt         c-'(V(x) + d6).
+
+   (ii) For every x
+
+(16)                                   lim sup - P'f(x) dt ' d/c.
+                                            PS J
+                                          ---oo
+
+
+  If an invariant probability exists, then Jr(f) ' dic.
+  (iii) For every x
+
+(17)                                  lim inf          I Pt(x, C) dt> cid.
+                                       S-   o     S Jo
+
+
+  If an invariant probability exists, then Jr(C) - c/d.
+
+  Proof. (i) It follows from (CD2) and Dynkin's formula that
+
+             O    Ex[V(Dn)]             V(x) -Ex                Ccf(t)      dt]              x E O,n Cc;
+
+
+hence by the monotone convergence theorem, non-explosivity, and the fact that
+Px(c = 0)= 1 for x E C,
+
+                             Ex [           cf (t)       dt ]       V(x),         x      X
+
+so that (15) is proved in the special case where 6 = 0.
+  We have by the Markov property and this inequality
+                 r r'^c                          r                       rC
+             Ex[          cf(4t) dt =             PO(x, dy)Ey[              cf(t,)       dt < P6V(x),
+
+and from the comparison theorem with g_ = cf and g+ = d1c we have
+
+
+              PV(x)                    cf( I) dt]
+                                                           < V(x) + Ex[dl{4                    e C} dt].
+(18)                      +E[f
+
+Combining these bounds, we have
+
+                   Ex[l          cf((t)         dt] < V(x) + dEx                  l{4t        C} dt
+
+
+which gives the bound (15) for arbitrary 6.
+  (ii) The bound (16) follows from the comparison theorem on letting g_ = cf and
+g+ = dlc. If 7r is any invariant probability, then by stationarity and Fatou's lemma
+Stability of Markovian processes III                                                               531
+
+we have for each fixed 0 < L < oo,
+                                                               1
+                   r(f AL) = lim sup                       -       pt(f    A L)(x) dt      r(dx)
+
+
+                                 flim supI                                 A L)(x) dt n(dx)
+                                           $---0o~             Jop(f                   }
+                             -(d/c)7r(X)
+from (16). Letting L t oo and applying the monotone convergence theorem compl-
+etes the proof.
+   (iii) If (CD2) holds then the conditions of the comparison theorem are satisfied
+with g_ c and g+ = dlc. We then have for each x,
+
+                                       c        lim inf                   P(x, C) dt
+                                                     S--           S
+                                                                   JoS
+
+
+which proves (17). The bound on Jr(C) is then proved using Fatou's lemma as in
+(ii).
+  Result (i) was essentially given as Theorem 7.3 of [17] in the case of diffusions on
+Euclidean space.
+  Applying Theorem 4.3 and the characterization in Theorem 4.1 we can give the
+following proof.
+  Proof of Theorem 4.2. From Theorem 4.3(i) we see that c < 0 a.s. [P,], and
+that the bound (14) holds for any 6. Hence Theorem 4.1 gives the result.
+
+  Putting this result together with Theorem 5.1 of [25] gives immediately an
+important special case for T-processes.
+  Theorem 4.4. If (CD2) holds for an irreducible non-explosive T-process with C a
+compact set and with V bounded on C, then 0 is positive Harris recurrent and
+<7(f) <    .
+
+  4.2. Existence of invariant measures and boundedness in probability. Even
+without irreducibility, the methods above may be used to prove the existence of an
+invariant probability for a Feller Markov process or a T-process. Our first result
+extends Theorem 2 of [37] from discrete-time to continuous-time processes.
+  Theorem 4.5. Suppose that 0 is a non-explosive right process with the Feller
+property: that is, P'g is a bounded continuous function whenever g is bounded and
+continuous. If (CD2) holds for some compact set Cc X, then an invariant
+probability exists, and r(f) - dic for any invariant probability n.
+  Proof. A result of Foguel [11], generalized by Stettner in [30], states that for a
+Feller process, there are two mutually exclusive possibilities: either an invariant
+532                                                     SEAN P. MEYN AND R. L. TWEEDIE
+
+
+
+probability exists, or
+                                      1
+(19)                          lim sup-        MPS(C)ds = O
+                              r--O lu r J
+
+for any compact set C c X, where the supremum is taken over all initial
+distributions ,i on the state space X.
+  The existence of an invariant probability follows directly from Theorem 4.3(iii)
+and (19), and the bound on Jr(f) follows from Theorem 4.3(ii).
+
+  We now consider T-processes in the reducible case.
+
+  Theorem 4.6. Suppose that 0 is a non-explosive T-process. If (CD2) holds for
+some compact set C c X, then for some n _- 1
+
+                                       X=         H+E
+                                            i=l
+
+
+where each Hi is a positive Harris set and P{ r/E= oo} = 0 for all x. For any invariant
+probability n we have r(f) < c/d.
+   Proof. By Theorem 4.3(i) 0 is non-evanescent, and hence the Harris part of the
+Doeblin decomposition in Section 4 of [25] is non-trival. Each Harris set is positive
+by part (iv) of the Doeblin decomposition theorem 4.1 of [25], and Theorem 4.3(iii).
+In view of (ii) of that decomposition theorem, and the observation that r{C}I c/d
+for any invariant probability by Theorem 4.3(iii), the number of Harris sets must be
+finite.
+   The proof that jr(f) is finite follows from Theorem 4.3(ii).
+  For T-processes, (CD2) also provides a criterion for a topological stability
+condition which applies, as does non-evanescence, even in the reducible case.
+  In [25], the process 0 was defined to be bounded in probability on average if for
+each initial condition x e X and each > 0, there exists a compact subset C cX such
+that
+
+                         lim inf- I Px{1, E C} ds _ 1 - ?.
+                           t--c   ot
+
+Conditions implying boundedness in probability on average are given in Theorem
+3.2(b) of [25]. These immediately give the following result.
+  Theorem 4.7. Suppose 0 is a non-explosive T-process. If (CD2) holds for some
+compact set C c X then 0 is bounded in probability on average.
+   4.3. Explosive processes under (CD2). One might hope that the stronger drift
+condition (CD2) implies the process is non-explosive even when the test function V
+is not norm-like.
+Stability of Markovian processes III                                               533
+
+
+  This is not true. When X is countable, then Theorem 2.3 of [34] provides an
+example of an irreducible birth and death process satisfying (CD2) with V not
+norm-like, for which non-explosivity fails. On a continuous space, we can construct
+the following even simpler counterexample.
+  Let 0 be a jump-deterministic process on [0, oo) which follows the deterministic
+trajectory w(t) between the time points {ti} of a Poisson process of rate A. Suppose
+that w is a continuous, strictly increasing function on [0,1) with w(0)=0 and
+w(t)->oo as t-> 1. Let 0 jump to {0} at ti, t,+S = w(s) for ti s<t, t+, and the
+process is killed at ~ = limm_, Tm, as usual. Clearly, P),( = 1) = exp (-A) > 0; and
+indeed, by a geometric trials argument Px( < oo)= 1 for all x. Now let V:+ -->
+[0, 1] denote any smooth increasing function for which V(x)= 1 for x _ 1 and
+V(0)=0. For any m, we have smV(x)=-A                for x 1, and so, although 0 is
+explosive, (CD2)   holds for this bounded   V.
+  In most applications the test function V in (CD2) will be norm-like, in which case
+(CDO) is satisfied and then Theorem 2.1 immediately implies that 0 is non-
+explosive. We conjecture that a process of 'rapid' explosion, with Ex(g) getting
+vanishingly small for x near infinity as in this example, is the only way for explosion
+to occur under (CD2).
+
+
+5. Criteria for convergence in total variation
+  The Markov process 0 is called ergodic if an invariant probability 7rexists and
+                                lim IIP'(x, )-rll   = 0,   x EX.
+                                t---oo
+
+
+In [25] we saw that if any one skeleton chain is irreducible, then positive Harris
+recurrence and ergodicity are equivalent concepts. This result leads us to define the
+following condition on the chain 0:
+   (9f) The chain 0 is a non-explosive right process, all compact sets are petite for
+some skeleton chain, and (CD2) holds for some compact set C with V bounded on
+C.
+  We immediately have the following result.
+   Theorem 5.1. Suppose that (9) holds. Then 0 is ergodic.
+
+  Proof. From Theorem 4.2 we see that 0 is positive Harris recurrent, and from
+Theorem 5.1(i) of [25] we know that the skeleton chain is irreducible when all
+compact sets are petite for the skeleton. These two properties are shown to imply
+ergodicity in Theorem 5.1 of [25].
+  Observe that although the conditions of this theorem imply that Jr(f) is finite,
+where f is the function used in (CD2), we cannot in general say if Ex[f(,t)]
+converges to Jr(f) as t-> oo;we do not even know if this expectation is bounded in t.
+This is in contrast to the discrete-time situation.
+534                                                           SEAN P. MEYN AND R. L. TWEEDIE
+
+
+   We now search for criteria for convergence of the expectation E[f(),)]   to a
+steady state value. To approach this question we need the concept of the f-norm
+ ll llf. For any positive measurable function fl 1 and any signed measure ,u on
+36(X) we write
+
+                                       ll|llf = sup Il(g)l.
+                                               Isgl<f
+
+In [24] we showed that the discrete-time analogue of (CD2) implies f-norm
+convergence of the distributions for each initial condition: that is,
+                          lim IIP"(x, ) - Trllf= O,                 x E X.
+                         n--- -co
+
+
+
+
+In particular this shows that this expectation does converge for discrete-time
+processes. In continuous time we can at least show that under (95) there are
+functions related to f whose expectations do converge without further conditions.
+Let f _ 1 and define for any A the function fa by
+
+                                     fa(x) =       Pf(x)      ds.
+
+
+  Theorem 5.2. Suppose that (9)              holds. If .r denotes the unique invariant
+probability measure for 0 we have
+                         lim IIP'(x, ')- rllfA=O,                   VxeX.
+
+  Proof. The chain is ergodic and so Jrexists from Theorem 5.1. From Theorem 4.3
+the hypotheses of Proposition 6.2 of [25] are satisfied, and the result holds.
+
+  There are a number of ways in which we can ensure that the desired limit holds in
+the f-norm itself under the conditions of Theorem 5.2.
+
+   Theorem 5.3. Suppose that (5p) holds and that one of the following conditions on
+f holds:
+    (i) for some constant 6 > 0, and constants c6, d< < o,
+
+(20)                           PSf     <cf + d,                s       ;
+
+   (ii) the test function V = f(f) for a strictly increasing, convex function p:WR+-
+R+.
+  (iii) for some c, d < oo,
+                      dmf(x)         cf(x) + d,         x E Om,       m e Z+.
+
+Then 0 is ergodic and letting Jrdenote its unique invariant probability we have
+
+                          lim IIP'(x, ')-
+                          t---.oo
+                                                  rillf= 0,         x eX.
+Stability of Markovian processes III                                               535
+
+
+  Proof. The first result follows from the argument used in Theorem 4.2 together
+with Theorem 6.3 of [25]. To prove (ii) we apply (CD2) and the comparison
+theorem to obtain the bound PsV= V + ds. Since ) is strictly increasing, its right
+derivative is bounded from below on [1, mo).From this fact and Jensen's inequality
+we may find a finite constant b such that
+
+                          pSf    -l(((f)          + ds) -f   + bds,       s ER +
+
+which shows that (20) is satisfied. The second result thus follows from (i).
+  To see that the third condition also suffices, note that since f > 1 we may assume
+without loss of generality that d = 0. By Dynkin's formula applied to the function
+exp (-ct)f together with the now standard use of Fatou's lemma we obtain the
+bound
+                                           Ptf    ecyf,      t   R+.
+
+This bound together with (i) immediately implies the result.
+
+  Theorem 5.3(i) leaves open the question of how Equation (20) may be verified.
+One method is by establishing (ii). This relationship between f and V is satisfied in
+many queueing models, where V is typically equal to fq for some q > 1 (see the
+examples below and [21]). If this condition fails, then (iii) is also useful if the
+function f is sufficiently smooth.
+  Convergence in f-norm has recently been explored at some length in the case of
+discrete-time countable space by Hordijk and Spieksma [15], [29], and it is of
+considerable interest to have results which enable the stronger form of convergence
+to be used. Theorems 5.2-5.3 go some way in this direction: the general result is still
+an open question. When the convergence is exponentially fast, however, we can
+provide a full solution, and this is done in the next section.
+
+
+6. Criteria for exponential ergodicity
+
+  Suppose that the Markov process 0 is positive Harris recurrent with invariant
+measure Jr. For a function f _ 1 we say that 0 is f-exponentially ergodic if there
+exists a constant f < 1 and a finite-valued function B(x) such that
+
+                        IIP (x, )-         rllf   B(x)O'         Vt E+,    x EX.
+This form of ergodicity is studied in [31], where it is shown that under some
+continuity conditions (in t) on the semigroup P', exponential ergodicity of the
+process 0 follows from the geometric ergodicity of the embedded skeletons or of
+the resolvent chains.
+   Here we substantially improve on the results of [31] and show that a strength-
+ened version of (CD2) provides a criterion for an exponential rate of convergence
+in the f-norm ergodic theorem, without any of the side conditions in Theorem 5.3.
+536                                                      SEAN P. MEYN AND R. L. TWEEDIE
+
+
+
+  (CD3) Condition for exponential ergodicity. The function V is norm-like, and for
+some c > 0, d < oo,
+                         Sm V(x) - -cV(x) + d,                   x E O,.
+   Theorem 6.1. Supose that I is a right process, and that all compact sets are petite
+for some skeleton chain. If (CD3) holds, then there exists 3 < 1 and B < oosuch that
+
+                   IIP'(x, ')-     llf     Bf (x),P',     t E +,           x X,
+withf = V + 1.
+  Proof. To begin, observe that (CD3) trivially implies (CDO). Hence by Theorem
+2.1 the process is non-explosive. We first apply the extended generator im to the
+function g(x, t) A V(x) exp (ct) to obtain from the product rule
+
+                       Simg(x, t) = exp (ct)[simV(x)             + cV(x)]
+                                     ' d exp (ct).
+
+By Dynkin's formula and the same argument used in the proof of the comparison
+theorem it follows that for all t e R + and x E X,
+
+        exp (ct)PtV(x) = Ex[g(DIt, t)] ' V(x) + lim inf E [fimg(s,                     S) ds]
+                                                         m->--             ()
+
+
+                                              V(x)+ d exp (cs) ds
+
+                                               V(x) + (d/c) exp (ct).
+Thus for any distribution a on I + with a(0) < 1,
+
+(21)                                     KaV -_ AV + d/c
+where A = Jo exp (-ct)a(dt) < 1.
+   Under the present hypotheses, for some 6 the 6-skeleton with transition law P6 is
+irreducible and aperiodic, and all compact subsets of X are P6-petite. Choosing
+Ka = P6 in (21), by Theorem 6.3 of [24] there exist p < 1 and R < oosuch that
+                  II|Pn(x,
+                        ')    I-    ll - Rf (x)p",         nZ       +,          x X,
+where f(x) = V(x) + 1.
+ For arbitrary t E R+ we may write t = n6 + s, with s E [0, 6), to estimate
+
+
+                 IIPt(x, )-      rf =sup      Pn6+sg-g       dr
+
+
+                                         Jps(x, dy) IIPn6(y, )-          llf
+
+                                    ' RpnPsf(x)
+
+                                         Rpn(V(x) + d/c + 1)
+Stability of Markovian processes III                                                537
+
+
+where the last inequality follows from (21), this time by choosing a = 6s; and the
+result is proved.
+  Condition (CD3) is frequently satisfied under any conditions where (CD2) can be
+checked. It is clearly the most useful of our conditions, in that it not only provides
+positive Harris recurrence and even exponential ergodicity, but also provides
+automatically the bounding constant in the f-norm convergence.
+
+
+7. Application: chains with countable state space
+  Before giving more specific examples, it is worthwhile making these results a little
+more explicit for countable spaces, since the technical conditions are then much less
+onerous and the results more transparently stated. Because any function on a
+discrete state space is continuous, it trivially follows that a Markov process whose
+state space is discrete is a T-process. When the derivative exists, the extended
+generator im for the stopped process may be represented by a matrix Q where
+qi =p(0O) for i 6 0m.
+  The approaches above enable us to provide stronger results than those currently
+available, even in discrete state space. We give just the exponential ergodicity result
+here, for ease of use and interpretation: the next theorem is a direct consequence of
+Theorem 6.1, and extends Theorem 3(ii) of [36], whilst also showing that the
+hypotheses of Theorem 1.18 of Chen [6] give much stronger conclusions than those
+he draws.
+  Theorem 7.1. Suppose that X = Z+ and ? is irreducible. If there exists a function
+V such that V(j)--> ooas j- oo, satisfying for some c, d < oo
+
+                                  qijV(j)    -cV(i)+         d,      i EX,
+
+then there exists / < 1 and B < oosuch that
+
+                         [IPt(i, .)-   If_:= Bf (i)Pt,            tER +,     iEX,
+with f = V + 1.
+
+
+8. Application: a controlled linear system
+  In Section 3.3 of [25] we considered the diffusion process
+                                                         m
+
+(22)                            dFt = Y(1,) dt + ,           Xi(Dt) dB,
+                                                     i=l
+
+whose generator is a second-order differential operator of the form
+                                                         m
+
+(23)                                    s =Y+                X2.
+                                                     i=l
+538                                                          SEAN P. MEYN AND R. L. TWEEDIE
+
+
+Since the sample paths of a diffusion are continuous, it follows that for the stopped
+process, any function V :X-> I + with continuous first and second partial derivatives
+is in the domain of sm and on 0m,
+                                                        m
+                                     ?imV = YV +             XV.
+                                                       i=l
+
+
+Using this identity we now apply the results of the paper to obtain new results for a
+classical problem in the theory of passive linear systems.
+   Let X=In", and define 0 as the state process for a linear system under
+memoryless non-linear control, following [38], by the specific form of (22)
+(24)                      d1', = FF, dt - bC(cTt,)       dt + G(4t,) dw,.
+
+From (23) we see that for any V with continuous first and second partial derivatives,
+the extended generator associated with (24) may be written, for any truncated
+process 'm, as
+
+                                            TaV(x) + 1
+(25)         SimV(x)= [Fx - b?(cx                 (x)            [G(G(x)    T VI,a2V(x)
+                                                                                    (
+                                                ax     2 ,j                        axi axj
+
+We impose the following conditions on the parameters of (24) so that 0 is a
+T-process, and the freely evolving system (with w, =)           will be exponentially
+asymptotically stable.  This fact  enables us to construct a test  function of the form
+(CD3), which   will be shown  to  imply geometric ergodicity for  the state process.
+
+  (NL1) The function G is C', and there exists a constant B for which
+                               O< G(x)G(x)T - BI,                x EX.
+
+  (NL2) All the eigenvalues of F have negative real parts.
+  (NL3) The function x?(x) is positive for all x sufficiently large; and q is C' with
+?' bounded on 1R.
+
+  (NL4) There exist two non-negative constants y and K such that y + K > 0 and
+                                                 - F)-b > 0
+                               Re (y + iC)K)CT(iWol
+for all real o.
+  In [38] it is shown that 0 is positive Harris recurrent under conditions related to
+(NL1)-(NL4); but we can actually say far more.
+  Theorem 8.1. If (NL1)-(NL4) hold then 0 is geometrically ergodic. Letting Jr
+denote its invariant probability, we have for some B < 0, /3 < 1,
+
+                        IIPt(x, )-    ll2f_- Bf(x)',         x     X,    t e R+,
+with f(-)=    12 + 1.
+Stability of Markovian processes III                                                    539
+
+
+  Proof. From [25] we have that by (NL1) the skeleton PA is its own irreducible
+continuous component for each A > 0. In [38] the function
+                                                              cTx
+
+
+                                      V(x) = xTPx + K           T(s)   ds
+
+is considered, and by appropriate choice of P >0 and Q >0 it is shown under
+(NL2)-(NL4) that
+
+                                  - b?(cX)]T           x)x) -XTQx,             XEX
+                            [Fx
+
+and
+
+        >
+                  [G(x)G(x)T], ij 3(     = trace [G(x)G(x)TP] + 2 K IG(x)Tcl2 ' (cx).
+            i,j                   ax aXj
+
+By (25), (NL1), and (NL3) we have for some c > 0, d < oo,
+                                  im V(x) _    -xTQx    + L _ -cV(x)        + d.
+
+Hence the geometric ergodicity result follows as an application of Theorem 6.1.
+
+
+9. Application:storage processes with general release rule
+
+  Many common processes in continuous time occur in the operations research
+area, and we deal with a number of them below. Processes much more general than
+those we consider on a general space are shown to be right processes in [8], [9], and
+our results will in general hold for such processes: we do not pursue the details here.
+  In [13], [14] Harrison and Resnick construct infinitesimal generators for storage
+processes with compound Poisson input and a general deterministic release path
+between jumps of the compound Poisson process. In this section we apply the
+methods above to develop criteria for recurrence, ergodicity and geometric
+ergodicity of such storage processes. Let
+
+(26)                               t = x + A(t) -      r(s)    ds,      tO0
+
+denote a general storage process as in [13]. Here {A(t), t0)} is a compound
+Poisson process with rate A and jump size distribution H(.), not degenerate at zero.
+As in [13], we assume the release function r(-) is strictly positive, left continuous
+and has a positive right limit everywhere in (0, oo). We take r(0)= 0. We assume
+further that for one and hence all a > 0
+
+(27)                                 0 < R(a)     f [r(u)]- du < o.
+                                                  Io
+540                                                             SEAN P. MEYN AND R. L. TWEEDIE
+
+
+It was shown in Theorem 4.2 of [25] that under (27) the Ka-chain is an irreducible
+T-process for any a with a(0) < 1. The fact that, in particular, skeletons are
+T-processes is exploited in [32] to analyze ergodic properties. Our analysis below is
+both simpler and gives more detailed results, since we can use the generator
+directly.
+   In Proposition 4 of [13] and its corollary, the weak infinitesimal generator s of 0
+is shown to satisfy
+
+(28)             MV(x)= A [V(x +y)-                   V(x)H(dy)-r(x)V'(x)
+                                Jo
+
+where the domain of s consists of all bounded absolutely continuous functions V
+with left-continuous density V' such that r(-)V'(.) is bounded on (0, c).
+  Similarly, if we consider the expanding sets Om = [0, m) and the truncation Om to
+be stopped at m when 0 leaves 0,, then as in the construction in [13], we get
+                           rm
+
+(29)       smV(x) = A [V(x +y) - V(x)]H(dy)
+
+                         + [V(x + m) - V(x)][1 - H(m)] - r(x)V'(x).
+It is then straightforward to see that for any increasing, unbounded V with a
+left-continuous density V' for which iV defined by (28) exists, V is in the domain of
+the extended generator of the stopped process, and simV(x) sdV(x) for all x, even
+though V may not be in the domain of M as a generator of 0.
+   Thus we can use (29) to develop a test-function approach as follows.
+  Theorem 9.1. Assume R(x)-> ooas x ->                  , and write
+                                 .
+(30)                       L(x) =             f      [r(u)-'     duH(dy).
+
+    (i) If L(x) _ 1 for all x _ xo, then 4 is Harris recurrent.
+   (ii) Suppose that for x >xo, L(x) 1 -          for some E>0;                  then 0 is Harris
+ergodic, and
+                                          IIP'(x, .)- 11O
+for all starting points x.
+  (iii) Assume that for all x        xo, L(x) - 1 -            , and for some c* > 0, D < oo,
+
+(31)               sup     ep        c*           [r(u)]- duH(dy)       = D < oo.
+                   x_o          -         x
+
+Then 0 is geometrically ergodic, and for some constants B < oo,                     < 1
+
+                                    IIP'(x, ') - rllf _ Bf(x)pt
+with f(.) = exp (aR( )).
+Stability of Markovian processes III                                                            541
+
+
+  Proof. (i) We use V(x) = R(x) in (29), and have that for x _Xo
+
+                        smR(x)if            (f        [r(u)]-' du)H(dy) - 1 0;
+
+since R(x)- oo, x -> oo, the result follows from Theorem 3.3.
+   (ii) From Theorem 5.1 it is enough to prove that (5?) holds. But exactly as in (i),
+if L(x) - 1 - ef(x), we have (CD2) holding for each m, and x _x(. To see that drift
+away from the origin is controlled, note that we have R bounded on compacta since
+it is continuous. Moreover, for x < x
+
+              simR(x) _         (x+Y [r(u)]-' du)H(dy)            - 1
+                                00   o                      +y
+(32)
+       (32)             -        [fr^ [r(u)]-du + I              [r(u)]- du]H(dy)- 1
+
+                            ARR(xo)-E,
+and so we have Harris ergodicity from Theorem 5.1.
+   (iii) Choose the test function Vc(x) = exp(cR(x)), where c >0 is to be selected
+later. Then from (29)
+
+              sm V(x)       A    [exp (cR(x + y)) - exp (cR(x))]H(dy) - c exp (cR(x))
+
+
+                        = cVc(x) {A c-1[exp (c[R(x + y)-                R(x)]) - 1]H(dy) -}.
+
+From Taylor's theorem we have
+
+               exp (c[R(x + y) - R(x)]) = 1 + c[R(x + y) - R(x)]
+                                          + (c2/2)[R(x + y)- R(x)] exp (e)
+where s ' c[R(x + y) - R(x)]. Using this upper bound for ~ in (33), we have
+
+                  S4mVc-- cVc(){A                [R(x + y)- R(x) - 1/i]H(dy)
+(34)
+                                + 2 f[R(x         + y) - R(x)2 exp (c[R(x + y)- R(x)])H(dy)}
+
+Now for x xo, as in (ii) the first integrand in (34) is less than -e, and is bounded
+for all x - xo as in (32). Using the simple bound x2 - 2A-2 exp (Ax), and choosing
+A = c*/2, c < A, we have the second integral in (34) bounded by
+
+                        2A-2 fexp        (c*[R(x + y) - R(x))H(d) )           2A-2B
+
+if x _ xo, and bounded as in (32) for x _ xo. Now choose 0                      c < eA2(2BA)-1. Then
+542                                                        SEAN P. MEYN AND R. L. TWEEDIE
+
+
+in (34), for x -Xo,
+                         im Vc(X) - -(CE/2) V(X),                X > X(,
+
+and    mVc(x) is bounded, x -x0.        The required result now follows from Theorem
+6.1.
+  In most cases in the literature, r(x)-oo            as x-- oo; cf [7], [2], [3]. It is possible to
+assume the weaker condition, covering these practical cases, that for some y >0
+
+(35)                                    lim inf r(x)       y.
+                                         X----~oo
+
+
+
+The case with r(u) bounded from zero in this way simplifies the situation. If (27)
+holds, we have R(x)---oo      as x ->        and our recurrence        result (i) needs no extra
+conditions. Moreover, in this situation we can replace the condition (31) with the
+single uniform condition
+
+(36)                   fexp    (c*y)H(dy)           < o,     some c* > 0.
+
+In [3], Section 7, it is shown that (ii) implies positive recurrence for general Levy
+process input: the proof uses notably deeper properties of the storage process
+structure. In [14], the conditions for Harris recurrence are not explicit, and our
+result (i) seems to be new, if not unexpected. There is a version of our geometric
+ergodicity result in [32], showing (36) to be sufficient for geometric ergodicity, for
+the constant release rate model. The bound on (iii) and the use of the f-norm is of
+course new.
+   We note that, as in Section 7 of [3], the ergodicity conditions of (ii) are necessary
+and sufficient if r is monotone increasing.
+
+
+10. Application:work-modulatedqueues
+  In [4] the ergodic properties of two forms of work-modulated queueing models
+are considered.In one of these (their Model 2), the work rate of the serverdepends
+on the amount of work in the system. This model is similarto that in the previous
+section, and can be analyzed similarly although in [4] the arrival rate of
+customers is also allowed to depend on the work in the system. Here we describe
+Model 1 introduced in [4] to handle situations where the service times of customers
+enteringthe queue also depend on the state of the system as the customersarrive.
+ Consider a single-server queue where the nth customer arrives at time tn, n - 1.
+We take to = 0. We let W(t) denote the work, measured in units of time, which is in
+the system at time t. Hence at time t,, the nth customerwill experience a delay of
+W(tn-) before enteringservice. At time t,, customern is allotted a service time S,
+which dependsupon the past of the system as follows:
+                P{S,   EA | So, * * *, Sn-1, Wt:t < tn = H(W(tn-),            A)
+Stabilityof MarkovianprocessesIII                                                                          543
+
+
+where H is a Markovian kernel on R+x 28(R+). The arrival times {tn: n Z+} form
+a non-stationary Poisson process with intensity A(W(t)), also depending on the work
+in the system, where A is a bounded, non-negative function with A(0)>0. We
+assume that
+           P{an arrival occurs in [t, t + h] I W(s):s _ t} = A(W(t))h + o(h).
+Davis [9] shows that such a Markov process is a right process on [R+. Since A is
+bounded it may easily be seen that the process is non-explosive; while the fact that
+this queueing model is an irreducible T-process follows exactly as in Theorem 4.2 of
+[25] for storage models. To obtain (6) for suitable functions V we will assume that A
+is left continuous, and that the transition function H has the Feller property.
+   We will use this example to illustrate how the methods introduced in this paper
+may be used to establish (i) recurrence and ergodicity; (ii) finiteness of moments of
+the steady-state work in the system; and (iii) exponential convergence of the
+expected work, and other functions of the state process. We first need to develop
+the form of the extended generator for the work-modulated queue.
+   Let Om = [0, m), m E Z, and let Slm be the extended generator for the process
+Wm defined by Wt = m for t Tm. For an initial condition x E 0m, we have
+Tm _ rom> t on the event (no arrivals occur in [0, t]}. From this fact and the basic
+definitions we obtain for x > t > 0,
+
+       E,[V(Wm)]      = V(x - t)(1 - tA(x))
+
+                            + tA(;x)f[           {f                    V(x - t + y)H(x, dy)
+                                         e[0,t         Ey[0,Om-x+s)
+
+
+                            + V(m)H(x, [m -x + s, oo))}P{tl e ds I t, _ t} + o(t).
+
+Rearranging terms gives
+          Ex[V(w      )]-       V(x)      V(x-          t)-     V(x)
+                     t                                   t             =- (x)V(x - t)
+
+                                           + A(x)                   -
+                                                              V((xt+y       )mA   )H(x, dy)+o(1).
+                                                        Jo
+This equation also holds for x = 0 on replacing V(x - t) by V(0). For differentiable
+V: R +--->R we obtain the identity, for arbitrary x E R +,
+
+                 Ex[V(Wm)] - V(x)
+          lim     X=                             -V'(x)l{x             >
+           t.o              t
+
+
+                                                      + Ai(x)     (V((x + y) A m) - V(x))H(x,       dy).
+
+Our assumption that A is left continuous and H has the Feller property ensures that
+the domain of Sm contains C'(R+) for any finite m. Finally, for an increasing,
+544                                                           SEAN P. MEYN AND R. L. TWEEDIE
+
+
+
+positive function V E C'([R+) we have the bound
+
+(37)        imV(x)       -V'(x){x       > O} + A(x)f (V(x +y)-             V(x))H(x, dy).
+
+With this bound we may apply the results of this paper to obtain rates of
+convergence of the process W to a stationary regime, and bounds on moments of the
+steady state queue size.
+  (i) Recurrence and positive recurrence. Consider the test function V(x)= x. We
+have seen that V is in the domain of the extended generator for the stopped process,
+and
+
+(38)                 SimV(x)        -1 +Al(x)h(x),             x > O, m        +
+where h(x)     f yH(x, dy), x E R+. Applying Theorem 3.2 we obtain the following
+result.
+  Theorem 10.1. If A(x)h(x)             1 for all x sufficiently large, then the process W is
+Harris recurrent.
+  To obtain positivity this condition must be strengthened slightly in the usual way.
+The next result follows from (38) and Theorem 4.2.
+  Theorem 10.2. Assume limsupx,o,                 (x)h(x)< 1; then the process W is positive
+Harris recurrent.
+
+  (ii) Finiteness of moments. Here we consider the test function V(x) = x" to obtain
+bounds on the (n - l)th moments of the steady state work in the queue. For this we
+assume that JynH(x, dy) is uniformly bounded in x. From (37) we have, for x > 0,
+
+                               -nx-1
+                                    n      + A(x) (f
+                 SmV(x)                                   ( )xn-i)H(x,         dy)
+
+                             = - nxn-(1       -                + O(x-2).
+                                                   (x)h(x))
+This and Theorem 5.3(ii) immediately gives the following result.
+  Theorem 10.3. Assume lim supx,, A,(x)h(x) < 1 and supx,o f ynH(x, dy) < oo for
+some fixed n. Then the process W is positive Harris recurrent with invariant
+probability Jt, E[W-'] < o, and
+
+                             lim IIlP(x, -) -rll     -- 0,        x eX,
+
+with f(.)   -In-' + 1.
+
+  (iii) Exponential ergodicity. To obtain exponential ergodicity we set V(x)=
+exp (ax), and apply (37) to obtain the bound
+
+(39)             SmV(X) -V          (x) +)(x)V(x)             (V(y) - 1)H(x, dy).
+Stabilityof MarkovianprocessesIII                                                 545
+
+
+  Theorem 10.4. Assume lim supx,,, A(x)h(x) < 1 and supx_(o exp (fPy)H(x, dy) < o
+for some 3>0. Then the process W is positive Harris recurrent with invariant
+probability ir such that
+
+                                       frj(dy)     exp (ay) <
+
+for some a > 0. Moreover W is exponentially ergodic, and there exists 3 < 1, B < oo
+such that
+                                    IIP'(x, ) - Jtllf '- Bf(x):'
+with f()=    exp a'-1.
+  Proof. By Taylor's theorem we have the bound, valid for any y e R +,
+                                                        ac2y2V(y)
+                                 V(y)<l+ay+                 2(Y
+
+Hence from (39) and the hypotheses of the theorem we have, for some M < oo and
+a > 0 sufficiently small,
+
+                   ,Im   V(x) C -a(1     - A(x)h(x))V(x)        + ar2MA(x)V(x).
+
+Since A is bounded, we see that the drift condition (CD3) is satisfied for all a
+sufficiently small. This with Theorem 6.1 completes the proof.
+
+
+11. Application: risk models
+  In [14], a risk model with instantaneous increase at rate r(4,) between the
+(downward) jumps of a Poisson process is defined. Assume r is continuous with
+                             >
+R(oo) = oo and that {A(t), t 0} and r are as in Section 9. Then Proposition 4 of
+[14], and the construction (16) there show the generator of the risk process 0 is
+given by
+                                               -
+                   siV(x) = r(x)V'(x)                 [V(x) - V(x -y)]H(dy)
+(40)
+                               -AH(x, oo)[V(x)- V(0)],
+with domain containing those bounded continuous V for which r(x)V'(x) is bounded
+and continuous, and has a finite limit as x->0. Note from the construction in [14]
+that, because of the continuous paths upwards 4m has a form identical to i, on
+  m = [0, m), provided we place 0 at m when the process leaves 0m. Thus we can
+again relax the boundedness assumption for increasing functions V by considering
+ 4m-
+  Theorem 11.1. Define J:           +-> R + by
+
+(41)                          J(x) =       H(x - y, o)[r(y)]-'      dy.
+                                         -/o
+546                                                           SEAN P. MEYN AND R. L. TWEEDIE
+
+
+
+    (i) SupposeJ(x) > 1 for x x0. Then the risk process is Harrisrecurrent.
+                                          >
+   (ii) Suppose J(x) 1 + , >0, for x o. Then the risk process is Harris
+ergodic.
+  (iii) Supposethat, for x> x1, and E> O, B < oo,
+
+(42)                           A4          [r(u)]-' duH(dy)        1+
+
+                                                               I
+(43)                               f [        [r(u))] du] H(dy) B.
+                                          --y
+
+Then the risk process is geometricallyergodic.
+  Proof. We first sketch the proof that ?^ is a T-process.For any x, let r/xdenote
+the point such that Px(4A = rx IAa =0) = 1. Suppose the support of H is un-
+bounded. Then by consideringonly paths for which the first jump occurs in [0, A],
+we have PA(x, B)          A A[1 - H(lx)]PA-s({O},           B), and this provides an appropriate
+componentif H is continuous. If H has bounded support, then an iterative version
+of this constructionis needed, whilst if H is discontinuousthen a smoothed version
+can be used: we omit the details. The Harris recurrence and Harris ergodicity
+conditionsthen follow by noting that the right-handside of (40), with V(x) = R(x),
+is given by 1 - J(s) as in (16) of [14], whilst clearly sdR(x) is always bounded.
+   The geometricergodicityis a trifle more delicate. We first note that if (42) holds,
+then (40) with V =R again implies Harris ergodicity. Now fix the test function
+Vc(x) = exp (cR(x)). Then from (40)
+
+            imV,(x)      c exp (cR(x))-      A     [exp (cR(x))-    exp (cR(x-y))]H(dy)
+(44)
+                         c exp (cR(x))[1-        (A/c)      [1 - exp (c(R(x) - R(x - y)))]H(dy).
+
+The integration(44) can be expanded as in (33) to see, for some ~y c[R(x)-
+R(x -y)],
+
+                Ac-'      [1 - exp (-c(R(x)        - R(x - y)))H(dy)
+
+
+(45)                  = AJ[R(x)
+                              -R(x-R             y)]H(dy)
+
+                        - 2I (R(x) - R(x -y))2 exp (-cy)H(dy)
+                          2 JQ
+                      _ 1 + ?/2,
+
+providedc is chosen small enough, from (43), that
+
+(46)                          Ac      [R(x) - R(x- y)]2H(dy)        <   .
+                                    ()o
+Stability of Markovian processes III                                                            547
+
+When (46) holds, from (45) and (44) we have
+                              im Vc(X) _ -(EC/2)Vc(X),            X _ X(.
+
+Since SimVc(x)       c exp (cR(xo)), x < xo, the result follows.
+  The geometricergodicitycondition (42) is strongerin general than the condition
+J(x) 1 + E in (ii). However, when r(u)=r, it is easy to see that they are
+equivalent,since J(x) > 1 + E entails, for all x _ x(
+
+(47)                           lA yH(dy) + )xH(x, oo) r(l + E);
+and so if A f oyH(dy) = r (so that (42) fails), then since AxH(x, oo) - A f yH(dy)--> O
+as x ->o, we cannot have (47).
+  In this case of constantincrease, the condition (43) is equivalentto
+
+(48)                                   i/r2        y2H(dy) < c.
+                                              Jo
+
+Intuitively,this says that all ergodic risk processes are in fact geometricallyergodic
+providedthat the downward'drift'providedby the compoundPoisson process is not
+due to rare, but very large, jumps. We conjecture that (43) is not necessary for
+geometricergodicity,and that a more delicate choice of test function may enable it
+to be weakened.
+
+
+Acknowledgement
+  We are gratefulto K. Sigmanfor sending us pre-publicationversionsof his work,
+and to a referee for drawingour attentionto a numberof paperswith related results
+for diffusionmodels.
+
+
+References
+    [1] AZEMA, J. KAPLAN-DUFLO,M. AND REVUZ, D. (1967) Measure invariante sur les classes
+recurrentes des processus de Markov. Z. Wahrscheinlichkeitsth. 8, 157-181.
+    [2] BROCKWELL,    P. J. (1977) Stationary distribution for dams with additive input and content-
+dependent release rate. Adv. Appl. Prob. 9, 645-663.
+    [3] BROCKWELL,P. J. RESNICK,S. J. AND TWEEDIE, R. L. (1982) Storage processes with general
+release rule and additive inputs. Adv. App. Prob. 14, 392-433.
+    [4] BROWNE,S. AND SIGMAN,K. (1992) Work-modulated queues with applications to storage
+processes. J. Appl. Prob. 29, 699-712.
+    [5] CHEN, M.-F. (1986) Jump Processes and Particle Systems. Beijing Normal University Press,
+Beijing, China.
+    [6] CHEN, M.-F. (1991) On three classical problems for Markov chains with continuous time
+parameter. J. Appl. Prob. 28, 305-320.
+    [7] fINLAR, E. AND PINSKY,M. (1972) On dams with additive inputs and general release rule. J.
+Appl. Prob. 9, 472-492.
+    [8] DAVIS, M. H. A. (1984) Piecewise-deterministic Markov processes: A general class of non-
+diffusion stochastic models. J. R. Statist. Soc. B. 46, 353-388.
+548                                                          SEAN P. MEYN AND R. L. TWEEDIE
+
+
+    [9] DAvis, M. H. A. (1993) Markov Models and Optimization. Chapman and Hall, London.
+    [10] DOOB,J. L. (1953) Stochastic Processes. Wiley, New York.
+    [11] FOGUEL,S. R. (1969) Positive operators on C(X). Proc. Amer. Math. Soc. 22, 295-297.
+    [12] GETOOR,R. K. (1979) Transience and recurrence of Markov processes. In Seminaire de
+Probabilites XVI, pp. 397-409, ed. J. Azema and M. Yor. Springer-Verlag, Berlin,
+    [13] HARRISON,   J. M. ANDRESNICK,S. I. (1976) The stationary distribution and first exit probabilities
+of a storage process with general release rule. Math. Oper. Res. 1, 347-358.
+    [14] HARRISON,J. M. AND RESNICK,S. I. (1978) The recurrence classification of risk and storage
+processes. Math. Operat. Res. 3, 57-66.
+    [15] HORDIJK,A. ANDSPIEKSMA,       F. M. (1992) On ergodicity and recurrence properties of a Markov
+chain with an application. Adv. Appl. Prob. 24, 343-376.
+    [16] KALASHNIKOV,    V. V. (1975) Certain properties of piecewise-linear Markov processes. Theory
+Prob. Appl. XX, 560-571.
+    [17] KHAS'MINSKII,   R. Z. (1980) Stochastic Stability of Differential Equations, Volume 7 of
+Mechanics-Analysis. Sijthoff & Noordhoff, Rockville, Md.
+    [18] KLIEMANN,   W. (1987) Recurrence and invariant measures for degenerate diffusions. Ann. Prob.
+15, 690-707.
+    [19] KUSHNER,H. J. (1967) Stochastic Stability and Control Volume 33 of Mathematics in Science and
+Engineering. Academic Press, New York.
+    [20] LAMPERTI,J. (1960) Criteria for the recurrence or transience of stochastic processes I. J. Math.
+Anal. Appl. 1, 314-330.
+    [21] MEYN,S. P. ANDDOWN,D. (1993) Stability of generalized Jackson networks. Ann. Appl. Prob.
+    [22] MEYN, S. P. AND TWEEDIE,R. L. (1992a) Generalized Resolvents and Harris Recurrence of
+Markov Processes. Contemporary Mathematics. American Mathematical Society, Providence, RI.
+    [23] MEYN,S. P. ANDTWEEDIE,R. L. (1993a) Markov Chains and Stochastic Stability. Control and
+Communication in Engineering. Springer-Verlag, Berlin.
+    [24] MEYN, S. P. AND TWEEDIE,R. L. (1992b) Stability of Markovian processes I: discrete time
+chains. Adv. Appl. Prob. 24, 542-574.
+    [25] MEYN,S. P. ANDTWEEDIE,R. L. (1993b) Stability of Markovian processes II: Continuous time
+processes and sampled chains. Adv. Appl. Prob. 25, 487-517.
+    [26] NUMMELIN,E. (1984) General Irreducible Markov Chains and Non-negative Operators.
+Cambridge University Press.
+    [27] NUMMELIN,E. AND TUOMINEN,P. (1982) Geometric ergodicity of Harris recurrent Markov
+chains with applications to renewal theory. Stoch. Proc. Appl. 12, 187-202.
+    [28] SHARPE,M. (1988) General Theory of Markov Processes. Academic Press, New York.
+    [29] SPIEKSMA,F. M. (1991) Geometrically Ergodic Markov Chains and the Optimal Control of
+Queues. PhD Thesis, University of Leiden.
+    [30] STETTNER,  L. (1986) On the existence and uniqueness of invariant measure for continuous time
+Markov processes. Technical Report LCDS #86-18, Brown University, Providence, RI, April.
+    [31] TUOMINEN,P. AND TWEEDIE,R. L. (1979a). Exponential decay and ergodicity of general
+Markov processes and their discrete skeletons. Adv. Appl. Prob. 11, 784-803.
+    [32] TUOMINEN,   P. ANDTWEEDIE,R. L. (1979b) Exponential ergodicity in Markovian queueing and
+dam models. J. Appl. Prob. 16, 867-880.
+    [33] TWEEDIE,R. L. (1975a) Sufficient conditions for ergodicity and recurrence of Markov chains on a
+general state space. Stoch. Proc. Appl. 3, 385-403.
+    [34] TWEEDIE,R. L. (1975b) Sufficient conditions for regularity, recurrence and ergodicity of Markov
+processes. Math. Proc. Camb. Phil. Soc. 78, 125-136.
+    [35] TWEEDIE, R. L. (1976) Criteria for classifying general Markov chains. Adv. Appl. Prob. 8,
+737-771.
+    [36] TWEEDIE,R. L. (1981) Criteria for ergodicity, exponential ergodicity and strong ergodicity of
+Markov processes. J. Appl. Prob. 18, 122-130.
+    [37] TWEEDIE,R. L. (1988) Invariant measures for Markov chains with no irreducibility assumptions.
+J. Appl. Prob. 25A, 275-285.
+    [38] WONHAM,W. M. (1966) A Liapunov criteria for weak stochastic stability. J. Differential Eqns 2,
+195-207.
+

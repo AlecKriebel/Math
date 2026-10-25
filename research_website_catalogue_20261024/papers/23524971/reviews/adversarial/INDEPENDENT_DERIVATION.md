@@ -1,0 +1,25 @@
+# Independent reconstruction before submitted helpers
+
+The current six-page PDF is the only mathematical input read at this checkpoint. No original helper, TURN_4 proof, historical opinion body or sibling report has been read. The following reasoning was reconstructed from the literal transition table.
+
+## Literal CTMC and clock
+For state (a,b,x,y) and D=x+y+1, the two arrivals have rate λ/2 each; first downloads have rates a(x+1)/D and b(y+1)/D; departures have rates x(y+1)/D and y(x+1)/D. All six rates are finite at each finite state. Workload W=2a+2b+x+y increases by two on arrivals and decreases by one on every internal jump. Thus by any fixed time t, number of internal jumps is at most W(0)+2A(t), where A is the independent rate-λ arrival clock. Total jumps ≤W(0)+3A(t). No internal explosion can occur between finite Poisson arrivals. The seed keeps every required move in finite paths to/from zero positive. λ>0 is necessary for the asserted irreducibility of the entire state space.
+
+The aggregate seed-origin rate at (a,b,0,0) is a+b. The theorem is therefore about a literal model with no fixed aggregate seed-upload capacity. It cannot be exported to a capacity-one seed model. This is explicitly acknowledged in current Theorem1 prose.
+
+## Rounded imbalance
+Z=a+x-b-y is unchanged by first downloads. Arrivals have increments ±1 with total rate λ. Departures have increments ∓1 and total rate d=(2xy+x+y)/D; the signed drift is (y-x)/D. Thus for h with globally 1/m-Lipschitz derivative, Lh≤h'(Z)(y-x)/D+(λ+d)/(2m). With m=4c, this yields β=2λ+λ/8=17λ/8 and q=1-1/8=7/8 exactly. The rounded h is C1 even across ±m; its derivative is clipped Z/m. |h'|≤1, so the signed imbalance term is bounded by c. At Z≥m and x≥3(y+1), (x-y)/D≥1/2 and it is at most -c/2.
+
+## Finite Poisson corrector
+For γ in (0,1), stationary weights for births γ(k+1) and deaths k are γ^k, since adjacent detailed balance is γ^k γ(k+1)=γ^(k+1)(k+1). The truncated mean increases strictly to γ/(1-γ)=θ+1, so finite R with μR>θ exists. Prefix-centered sums Σ[j≤k]γ^j(j-μR) are negative for k<R. Hence t_k<0 and g(k)=-Σ[k≤j<R]t_j≥0 decreases to g(R)=0. For k=0,...,R-1, multiplying the differences by the birth/death rates telescopes to k-μR; at R, Rg(R-1)=R-μR follows from the full centered sum. In the actual y-coordinate, birth rate≥γ(y+1) when b/D≥γ, and death rate≤y always. The birth increment of decreasing g is nonpositive, the death increment nonnegative. Thus Lg≤y-μR for y≤R. At y=R+1 the downward successor has g(R)=0, so all increments vanish for y>R.
+
+## Interfaces and all-state partition
+Use exact product expansion Δ(fg)=f(s)Δg+g(s')Δf. For both cutoff ratios, every first download increases D and does not increase the numerator, hence Δf≤0 without any bound on a,b. At arrivals only one cutoff moves, by at most ℓ/D. On a departure, D≥2; if w/D≥η the increment is zero; otherwise Lipschitz gives Δf≤ℓ w/[D(D-1)]≤ℓη/(D-1)≤2ℓ/D. With two products, the total positive interface remainder is ≤ℓG(λ+4d)/D. Independently, whole products cannot increase at first downloads, arrivals add ≤G and departures add ≤2G, yielding LJ≤G(λ+2d).
+
+If min(x,y)≥R+1, every present/successor g value is zero and d≥min(x,y); main drift<-2. If y≤R and x≥N, then g(x) and successor values vanish, d≤2R+1, x≥3(y+1), and qd≥(21/32)(2y+1)≥y. The interface remainder≤1. When b/D≥η, f=1 and β+c-μ+1<-3 because μ>θ=β+c+4. When b/D<η, Z≥(1-η)x-(1+η)y-η≥m; the signed term≤-c/2 and f(y-μ)≤y cancel against qd≥y. This yields ≤β-c/2+1=-3 (minus u). The symmetric corner is identical. All remaining states have x+y≤N+R; u≥(a+b)/(N+R+1), so choosing B as published gives drift≤-1 whenever a+b>B. These three regions exhaust the complement of the finite set F.
+
+## Recurrence without stationary moments
+V≥W≥n is coercive, and V≤(1+c)W+cm/2+2G. All jumps are bounded by 2+c+2G. For stopped finite-state Dynkin, the negative drift until F gives E[t∧τF∧σM]≤V(s). Nonexplosion means finite paths on each bounded time interval, so exit localization disappears almost surely; Fatou and then monotone convergence give EτF≤V(s). On finite F choose positive-probability paths to zero by a common finite horizon T. Uniform p>0 exists. Because W(T)≤W(0)+2A(T), the expected V at T is uniformly bounded over F. Trial of duration T followed by return to F has uniformly bounded mean, with success probability≥p. Strong Markov gives a geometric trial bound; expected return to zero after an arrival is finite. Regeneration therefore constructs the unique stationary distribution. No stationary first moment, geometric rate, uniformity in λ or practical population bound follows solely from this constant-negative-drift certificate.
+
+## Attack status and remaining checks
+No algebraic or boundary contradiction found at this independent reconstruction checkpoint. Still required: exact finite falsification controls, primary-source model/Foster interfaces, full necessary TURN_4/current TeX coverage, isolated original-helper replays, final integrity and source-bound verdict. This note is not yet a final review verdict.
