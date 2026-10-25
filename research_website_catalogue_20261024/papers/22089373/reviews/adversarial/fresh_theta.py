@@ -33,4 +33,14 @@ for a,b,c in product(range(4),repeat=3):
  g=(a,b,c,a^b^c);difference=sp.cancel(sym(Ts,g,src,[half]*2)-sym(Tt,g,tgt,[half]*2));num,den=sp.fraction(difference);ck('Theta quadratic exact Fourier '+str(g),sp.rem(num,Pbeta,beta)==0 and sp.gcd(den,Pbeta)==1)
 P,s,Q,t,R,u,v,S=sp.symbols('P s Q t R u v S');params=[1,half,v,half,u,s,half,t,S,P,R,Q];coords=[sym(Ts,g,params,[half]*2) for g in rows[:8]];J=sp.Matrix(coords).jacobian([P,s,Q,t,R,u,v,S]);det=DomainMatrix.from_Matrix(J).to_field().det().as_expr();expected=-P**3*s**3*Q**4*t*R**4*u**3*v*S**3*(s-1)**2*(v-1)*(v+1)**2/16384;ck('Theta printed source determinant exact polynomial',sp.cancel(det-expected)==0)
 P,x,y,z,R,w,S,Q=sp.symbols('P x y z R w S Q');params=[1,half,z,half,w,x,y,half,Q,P,R,S];coords=[sym(Tt,g,params,[half]*2) for g in rows[:8]];J=sp.Matrix(coords).jacobian([P,x,y,z,R,w,S,Q]);det=DomainMatrix.from_Matrix(J).to_field().det().as_expr();expected=-P**3*x**2*y**2*z*R**4*w**4*S**3*Q**4*(x-1)**2*(z-1)*(z+1)**3/32768;ck('Theta printed target determinant exact polynomial',sp.cancel(det-expected)==0)
-print(json.dumps({'status':'PASS','checks':checks,'check_count':len(checks),'scope':'Fresh literal graph-derived universal six equations for both graphs, all64 quadratic-field point identities, exact isolating interval strictness, and both gauge determinant factorizations. These support dimension8 and common regular germ after the written localization argument.'},indent=2))
+# The printed Jacobians use a product gauge at the suppressed root. Verify
+# that replacing (1,1/2) by the strictly physical split (2/3,3/4)
+# preserves every tensor coordinate with all other edge variables free.
+for tag,T in [('source',Ts),('target',Tt)]:
+ rest=list(sp.symbols('r2:12'));gauged=[sp.Integer(1),half]+rest;physical=[sp.Rational(2,3),sp.Rational(3,4)]+rest
+ for a,b,c in product(range(4),repeat=3):
+  g=(a,b,c,a^b^c);ck('Theta root-product strict physical gauge '+tag+str(g),sp.expand(sym(T,g,gauged,[half]*2)-sym(T,g,physical,[half]*2))==0)
+MT=mixed(E,{'C','F'},'r');theta_rootings=classify_rootings(MT,Ls,{'C','F'})
+ck('Theta has an admissible tree-child rooting',any(r['tree_child'] for r in theta_rootings))
+ck('Theta also has an admissible non-tree-child rooting',any(not r['tree_child'] for r in theta_rootings))
+print(json.dumps({'status':'PASS','checks':checks,'check_count':len(checks),'admissible_rootings':len(theta_rootings),'tree_child_rootings':sum(r['tree_child'] for r in theta_rootings),'scope':'Fresh literal graph-derived universal six equations for both graphs, all64 quadratic-field point identities, exact isolating interval strictness, and both gauge determinant factorizations. These support dimension8 and common regular germ after the written localization argument.'},indent=2))

@@ -1,0 +1,545 @@
+                        Weakly reversible mass-action systems
+                       with infinitely many positive steady states
+                       Balázs Boros1 , Gheorghe Craciun1,2 , and Polly Y. Yu1
+                          1
+                            Department of Mathematics, University of Wisconsin-Madison
+                   2
+                       Department of Biomolecular Chemistry, University of Wisconsin-Madison
+
+
+                                                    Abstract
+         We show that weakly reversible mass-action systems can have a continuum of positive steady states,
+     coming from the zeroes of a multivariate polynomial. Moreover, the same is true of systems whose
+     underlying reaction network is reversible and has a single connected component. In our construction, we
+     relate operations on the reaction network to the multivariate polynomial occurring as a common factor
+     in the system of differential equations.
+
+
+1    Introduction
+It was widely believed that every weakly reversible mass-action system has a nonzero, finite number of
+positive steady states in each invariant polyhedron. One of the fundamental questions about dynamical
+systems is the description of the set of steady states. Many mathematical analyses implicitly assume that
+steady states form a discrete set. The authors of [9] proposed a proof of both existence and finiteness of
+positive steady states of weakly reversible mass-action systems. Their proof concerning existence was made
+complete in [4]; however, their argument on finiteness is insufficient, and as shown in this paper, is not true
+in general. We construct weakly reversible (even reversible) mass-action systems with continua of positive
+steady states within some invariant polyhedra.
+Some mass-action systems are known to have at most one positive steady state within each invariant poly-
+hedron. For example, detailed-balanced and complex-balanced systems [15], injective systems [7], and those
+satisfying the hypotheses in the Deficiency-One Theorem [12].
+For a weakly reversible system, we expect the set of positive steady states in each invariant polyhedron to be
+bounded. This follows from the Permanence Conjecture [8]: every invariant polyhedron of a weakly reversible
+mass-action system admits a compact global attractor. The conjecture is proven for some special cases,
+including in 2-dimension [8,19], or when the network has a single connected component [1,5,13]. Furthermore,
+since any system of polynomial equations has finitely many nondegenerate positive roots [3, 17, 18, 21],
+necessarily, the positive steady states in our constructions lie in a bounded set (of an invariant polyhedron),
+and infinitely many of them are degenerate.
+For example, the reversible mass-action system in Figure 1 admits infinitely many positive steady states,
+including all positive zeroes of the common factor in its system of differential equations
+
+                                ẋ = (x2 y 2 + x2 + y 2 + 1 − 5xy)[1 − xy + y − x],
+                                ẏ = (x2 y 2 + x2 + y 2 + 1 − 5xy)[1 − xy − y + x].
+
+The four positive monomials in the common factor correspond to four translated copies of a base unit, while
+the negative monomial corresponds to a flipped copy of that (Figure 1). More details of these operations on
+networks are given in Section 3. The examples presented in Section 4 are 2-dimensional, but the construction
+works in higher dimensions as well.
+The rest of this paper is organized as follows. After a short section on mass-action systems (Section 2), we
+present the basic operations used in our construction (Section 3). Then we construct a number of examples
+with infinitely many positive steady states (Section 4). Finally, we list a couple of open questions and
+conclude with some remarks (Section 5).
+
+
+                                                        1
+                                     3Y               X + 3Y          2X + 3Y           3X + 3Y
+                                                  1                                     1
+                                          1                                     1
+                                                      6                                     1
+                                              1                                     6
+                                     2Y               X + 2Y          2X + 2Y           3X + 2Y
+
+
+
+
+                                     Y                X+Y                 2X + Y            3X + Y
+                                                  6                                     1
+                                          1                                     6
+                                                       1                                    1
+                                              1                                     1
+                                      0                    X               2X                   3X
+
+          Figure 1: A reversible mass-action system with infinitely many positive steady states.
+          See Example 4.2 for more details.
+
+
+2    Mass-action systems
+In this section we briefly introduce mass-action systems and related notions that are necessary for our
+exposition. For more details about mass-action systems, see [2, 11, 14, 23]. The symbol R+ denotes the set
+of positive real numbers.
+
+Definition 2.1. A Euclidean embedded graph (or a reaction network ) is a directed graph (V, E),
+where V is a finite subset of Rn .
+Vertices are points in Rn , so an edge (y i , y j ) ∈ E can be regarded as a bona fide vector in Rn . We associate
+a reaction vector y j − y i ∈ Rn to each edge (y i , y j ).
+
+Definition 2.2. A mass-action system is a triple (V, E, κ), where (V, E) is a reaction network and κ ∈ RE
+                                                                                                        +
+is a vector of rate constants. Its associated dynamical system on Rn+ is
+                                             X
+                                      ẋ =        κij xyi (y j − y i ),
+                                                      (y i ,y j )∈E
+
+
+where xy = xy11 xy22 · · · xynn . The set of positive steady states of the mass-action system is
+                                                                                
+                                                  X                             
+                                        x ∈ Rn+ :        κij xyi (y j − y i ) = 0 .
+                                                                                
+                                                      (y i ,y j )∈E
+
+
+
+
+Since ẋ lies in the stoichiometric subspace
+
+                                          S = span{y j − y i : (y i , y j ) ∈ E},
+
+the solution of the dynamical system with initial value x0 ∈ Rn+ is confined to the invariant polyhedron
+(x0 + S) ∩ Rn+ . Consequently, when we speak about the number of positive steady states of the mass-action
+system, we typically refer to those within one of these translates. In all our examples, S = Rn , and there is
+only one invariant polyhedron, namely Rn+ .
+Two network properties are of special interest for our purpose.
+
+Definition 2.3. A mass-action system (V, E, κ) is
+ (a) reversible whenever (y i , y j ) ∈ E if and only if (y j , y i ) ∈ E, or
+ (b) weakly reversible whenever every edge is part of a directed cycle.
+We conclude this section by illustrating the notions introduced.
+
+
+                                                                      2
+Example 2.4. Consider the mass-action system
+                                                              κ3
+                                                      Y            X+Y
+
+                                                 κ4                     κ2
+
+                                                      0       κ1    X
+
+whose Euclidean embedded graph (or reaction network) is
+
+
+
+
+                                            •             •
+
+
+                                            •             •
+
+and whose associated dynamical system on R2+ is
+                                                  ẋ = κ1 − κ3 xy,
+                                                  ẏ = κ2 x − κ4 y.
+This weakly reversible (but not reversible) mass-action system has a unique positive steady state.
+
+
+3     Three operations on mass-action systems
+In this section, we introduce via examples three operations on mass-action systems, namely, translation,
+scalar multiplication, and addition. In Section 4, we will combine these to construct examples of mass-action
+systems with infinitely many positive steady states.
+
+3.1    Translation
+Consider translation of a mass-action system in the plane by a fixed vector (α, β)> . The effect of this
+operation on the graph corresponds to multiplying the right-hand side of the dynamical system by the
+monomial xα y β . For example, in Figure 2(a) we have a mass-action system whose dynamical system is
+                                                  ẋ = κ1 − κ3 xy,
+                                                  ẏ = κ2 x − κ4 y.
+We translated this system by (2, 1)> to obtain the one in Figure 2(b), whose dynamical system is
+                                                ẋ = x2 y[κ1 − κ3 xy],
+                                                ẏ = x2 y[κ2 x − κ4 y].
+
+In higher dimension, translation works similarly. Translating a mass-action system by a fixed vector
+(α1 , α2 , . . . , αn )> corresponds to multiplying the right-hand side of the dynamical system by the monomial
+xα1 α2
+ 1 x2 · · · xn .
+                  αn
+
+
+
+3.2    Scalar multiplication
+Consider now scalar multiplication of the rate constants by a positive scalar λ. The effect of this operation
+on the rate constants corresponds to multiplying the right-hand side of the dynamical system by the constant
+λ. For example, in Figure 3(a) we have a mass-action system whose dynamical system is
+                                                ẋ = κ1 xy − κ3 x2 y 2 ,
+                                                ẏ = κ2 x2 y − κ4 xy 2 .
+
+
+                                                               3
+                                                                                              κ3
+                                                                                          •            •
+                                                                                     κ4                    κ2
+                                   κ3
+                               •        •                                                 •            •
+                                                                                              κ1
+                         κ4                 κ2
+                               •        •
+                                   κ1
+                                                 (a)                                 (b)
+          Figure 2: Translating a mass-action system corresponds to multiplying the right-hand
+          side of the dynamical system by a monomial. By translating the system in (a) by (2, 1)> ,
+          we obtain the system in (b).
+
+
+We multiply this system by 5 to obtain the system in Figure 3(b), whose dynamical system is
+
+                                                       ẋ = 5[κ1 xy − κ3 x2 y 2 ],
+                                                       ẏ = 5[κ2 x2 y − κ4 xy 2 ].
+
+We can also consider scalar multiplication by the negative scalar λ = −1, which flips every reaction vectors to
+the opposite direction, i.e., if a reaction is initially (y, y + v), then after this operation, we have the reaction
+(y, y − v). For example, we multiply the system in Figure 3(a) by −1 to obtain the system in Figure 3(c),
+whose dynamical system is
+
+                                                       ẋ = −[κ1 xy − κ3 x2 y 2 ],
+                                                       ẏ = −[κ2 x2 y − κ4 xy 2 ].
+
+Note that the graph in Figure 3(c) does not resemble the original one, and the set of nodes is different.
+
+
+                                                                                                   •
+                                                                                              κ4
+                        κ3                                         5κ3                                               κ3
+                    •        •                                 •         •                         •            •         •
+               κ4                κ2                      5κ4                 5κ2
+                    •        •                                 •         •           •             •            •
+                        κ1                                         5κ1                     κ1
+                                                                                                                    κ2
+                                                                                                                •
+                         (a)                                        (b)                                    (c)
+          Figure 3: Scalar multiplication of a mass-action system by a positive scalar corresponds to
+          scaling the rate constants, while multiplication by −1 corresponds to flipping the reaction
+          vectors. Take the system in (a); multiplying by 5 we obtain (b), while multiplying by −1
+          we obtain (c).
+
+The multiplication by a negative scalar λ is seen as first flipping the reaction vectors, then scale the rate
+constants by |λ|.
+In higher dimension, scalar multiplication works the same way.
+
+3.3    Addition
+Consider the addition of mass-action systems, where we take the union of the sets of vertices and the sets
+of edges, respectively. The rate constants are treated additively, as shown in the example below. The effect
+of this operation corresponds to adding together the right-hand sides of the two dynamical systems. For
+example, in Figure 4(a) and Figure 4(b), we have two mass-action systems whose associated dynamical
+
+
+
+                                                                     4
+systems are
+                                    ẋ = κ1 y − κ3 xy 2                      ẋ = −κ5 xy + κ7 x2 y 2
+                                                               and                                   .
+                                    ẏ = κ2 xy − κ4 y 2                      ẏ = −κ6 x2 y + κ8 xy 2
+
+We add these systems to obtain the one in Figure 4(c), whose dynamical system is
+
+                                         ẋ = [κ1 y − κ3 xy 2 ] + [−κ5 xy + κ7 x2 y 2 ],
+                                         ẏ = [κ2 xy − κ4 y 2 ] + [−κ6 x2 y + κ8 xy 2 ].
+
+In higher dimension, addition works exactly the same.
+
+                                                           •                                                  •
+                                                               κ8                                                 κ8
+                κ3                                                                                       κ3
+            •        •                                     •             •        •                  •        •             •        •
+                                                                             κ7                                                 κ7
+       κ4                κ2                                                                     κ4                κ2
+                                                      κ5                                                 κ5
+            •        •                            •        •             •                           •        •             •
+                κ1                                                                                       κ1
+                                                                    κ6                                                 κ6
+                                                                         •                                                  •
+                              (a)                                   (b)                                                (c)
+          Figure 4: Addition of mass-action systems corresponds to adding together the right-hand
+          sides of the dynamical systems. By adding the systems in (a) and (b), we obtain the
+          system in (c).
+
+
+4    Examples
+We now apply a combination of the above operations to create a general procedure that gives rise to weakly
+reversible mass-action systems with infinitely many positive steady states. We start by picking a weakly
+reversible mass-action system, which we call the base unit. Take a negative scalar multiple of the base
+unit. Each reaction in this (necessarily not weakly reversible) system came from a reaction in the base unit
+by reflection. Therefore, as in Figure 4, we can add an appropriate translated copy of the base unit, so the
+two reactions form a reversible pair. By adding the negative scalar multiple and all the translated copies,
+we arrive at a weakly reversible mass-action system. Its associated dynamical system is obtained from that
+of the base unit by multiplying each equation by the same scalar polynomial. With the monomials in the
+common factor represented by their exponent vectors as points in Rn , by construction the negative term is
+in the interior of the convex hull of the positive terms, an object called the Newton polytope [22]. Therefore,
+the value of the polynomial near the boundary of Rn+ is positive (see [20] for a detailed study of monomial
+domination). If the coefficient of the negative term is sufficiently negative, the value of the polynomial at
+(1, 1, . . . , 1)> is negative. Consequently, this polynomial has uncountably many roots in Rn+ , resulting in
+infinitely many positive steady states of the constructed mass-action system.
+
+Example 4.1. The square in Figure 2(a) with rate constants κi = 1 is our base unit, and Figure 5 shows
+five transformed copies of it. The full system obtained by adding these five together (Figure 6) is a weakly
+reversible mass-action system whose associated dynamical system is
+                                         ẋ = (x2 y + xy 2 + x + y − 5xy)[1 − xy],
+                                         ẏ = (x2 y + xy 2 + x + y − 5xy)[x − y].
+
+The set of positive steady states is {(x, y)> ∈ R2+ : x2 y + xy 2 + x + y − 5xy = 0} ∪ {(1, 1)> }. The first piece
+is a closed curve in R2+ , and the point (1, 1)> is the unique positive steady state of the base unit. The phase
+portraits of the base unit and the full system are shown in Figure 7.
+An analogous example exists in any dimension n ≥ 2, resulting in a hypersurface of positive steady states.
+There the base unit is a weakly reversible n-cube, and the common factor has 2n terms with coefficient
+1 and the monomial −αx1 x2 · · · xn with α > 2n. For example, in the n = 3 case the common factor is
+x2 yz + xy 2 z + xyz 2 + yz + xz + xy − αxyz with α > 6.
+
+
+                                                                     5
+                                                            •
+                                                                5
+          1                                                                                                                   1
+      •       •                                             •               •           •                                 •       •
+                                                                                    5
+  1               1                                                                                                   1               1
+                                                    5
+      •       •                                 •           •               •                                             •       •
+          1                                                                                                                   1
+                                                                        5
+                                                                            •
+
+
+                                                                                                        1
+                                                                                                    •       •
+                                                                                                1               1
+                                                                                                    •       •
+                                                                                                        1
+                                1
+                            •       •
+                        1               1
+                            •       •
+                                1
+
+Figure 5: The five building blocks of Example 4.1, a weakly reversible mass-action system
+with infinitely many positive steady states as shown in Figure 6.
+
+
+                                                                    1
+                                                            •               •
+                                                        1       5               1
+                                                    1                               1
+                                                •           •               •           •
+                                                                 1                  5
+                                            1                   1 1                         1
+                                                    5            1
+                                                •           •               •           •
+                                                    1                               1
+                                                        1               5       1
+                                                            •               •
+                                                                    1
+
+Figure 6: The full system of Example 4.1, a weakly reversible mass-action system with
+infinitely many positive steady states.
+
+
+
+
+                      (a)                                                                                       (b)
+Figure 7: The phase portraits of the base unit (a) and the full system (b), from Exam-
+ple 4.1. The full system has a curve of positive steady states, shown in orange.
+
+
+
+                                                                    6
+Example 4.2. Consider the reversible mass-action system in Figure 8(a). We saw this example in Section 1.
+Its associated dynamical system is
+
+                                           ẋ = (x2 y 2 + x2 + y 2 + 1 − 5xy)[1 − xy + y − x],
+                                           ẏ = (x2 y 2 + x2 + y 2 + 1 − 5xy)[1 − xy − y + x].
+
+The common factor x2 y 2 + x2 + y 2 + 1 − 5xy results in a curve of positive steady states, depicted in orange
+in Figure 8(b).
+
+
+
+           •           1
+                               •             •               1
+                                                                     •
+               1                                 1
+                           6                                     1
+           •       1           •             •       6               •
+
+
+           •           6
+                               •             •               1
+                                                                     •
+               1                                 6
+                           1                                     1
+           •       1           •             •       1               •
+                                       (a)                                                    (b)
+         Figure 8: The mass-action system of Example 4.2 and its phase portrait. Shown in
+         orange is the set of positive steady states.
+
+
+Example 4.3. Consider the weakly reversible mass-action system as depicted in Figure 9(a). Its associated
+dynamical system is
+
+                                                         ẋ = (x2 + xy 2 + y − 4xy)[1 − x],
+                                                         ẏ = (x2 + xy 2 + y − 4xy)[x − y].
+
+The common factor x2 + xy 2 + y − 4xy results in a curve of positive steady states, depicted in orange in
+Figure 9(b). Note that the polynomial on the right-hand side has degree 4.
+
+
+
+                               •
+                                       1
+                           4       1
+
+               •               •                 •
+                                       1
+                       1
+           1
+                       1
+               •               •                 •
+                       4
+                                                             4
+                                             1
+                                                         1
+                                                 •                   •
+                                                          1
+                                           (a)                                                 (b)
+         Figure 9: The mass-action system of Example 4.3 and its phase portrait. Shown in
+         orange is the set of positive steady states.
+
+
+
+
+                                                                         7
+5     Open questions and discussion
+In this section we list a couple of open questions. Below, we are asking the questions in the context of
+constructing a (weakly) reversible mass-action system with infinitely many positive steady states.
+    • What is the minimal degree of the polynomials in the right-hand side of the dynamical system?
+    • What is the minimum number of vertices?
+    • What is the minimum number of reactions?
+    • What is the minimum deficiency?
+The deficiency of a reaction network is the nonnegative integer m − ` − dim S, where m is the number of
+vertices, ` is the number of connected components, and S is the stoichiometric subspace [10]. Pertaining to
+the above questions, note that Example 4.3 has as the right-hand side of its dynamical system, a degree-4
+polynomial system. It has 9 vertices, 12 reactions, and its deficiency is 4.
+
+
+                                                          •
+                                                                     κ22
+                                                    κ43       κ23
+
+                                          •               •                     •
+                                               κ32                  κ21
+                                    κ33
+                                              κ31
+                                          •               •                     •
+                                              κ41                                         κ42
+                                                                          κ13
+                                                                                    κ12
+                                                                                •               •
+                                                                                     κ11
+
+                  Figure 10: The network of Example 4.3 with more general rate constants.
+
+The rate constants in the examples of Section 4 admit some flexibility, though they cannot be set arbitrarily.
+On one hand, we can always choose rate constants for a weakly reversible network such that the resulting
+mass-action system is complex-balanced. In particular, it has a unique positive steady state in each invariant
+polyhedron. On the other hand, for the system in Figure 10, if
+
+                              κ12  κ2   κ3   κ4                                 κ13  κ2   κ3   κ4
+                                1 = 22 = 23 = 24                and              1  = 32 = 33 = 34 ,
+                              κ1   κ1   κ1   κ1                                 κ2   κ2   κ2   κ2
+
+then there is a common factor κ11 x2 + κ21 xy 2 + κ31 y − κ41 xy, resulting in a continuum of positive steady states
+provided κ41 is sufficiently large. In light of this, we pose the following question:
+    • Is it possible for a weakly reversible network to have infinitely many positive steady states for each
+      choice of rate constants in an open set of the parameter space RE +?
+
+Unlike all of our examples, a common factor is in general not necessary for a continuum of positive roots in
+3 dimensions or higher. So the interesting question is:
+    • Can a weakly reversible mass-action system have infinitely many positive steady states without having
+      a common factor on the right-hand side of its differential equations?
+The analysis and characterization of the set of steady states is one of the most fundamental questions about
+mathematical models of reaction or interaction networks. In particular, in order to best interpret data from
+experimental observations, and in order to design software that finds the steady states of a specific model,
+it is important to know if we should expect the set of fixed points to be finite, or discrete, or a continuum
+[14, 16].
+Mass-action models of reversible and weakly reversible reaction networks are known or conjectured to enjoy
+several remarkable properties (such as existence of positive equilibria for any parameter values [4], persistence
+
+
+                                                                     8
+[8,19], and permanence [5,6,13]). It has also been widely believed that they can have at most a finite number
+of positive steady states within any invariant polyhedron, but here we have shown that this is actually not
+true. Hence, it becomes important to identify minimal additional assumptions (e.g. low degree, sparsity, or
+low deficiency of the network) that, in addition to reversibility, do actually imply that the set of positive
+steady states is finite. While low degree may be a good candidate for such an assumption, note that
+high degree models do appear naturally in applications, for example via elimination of denominators for
+Michaelis-Menten or Hill kinetics [6]; therefore, a better option may be some version of sparsity or low
+deficiency [14, 23].
+
+
+Acknowledgements
+The authors started this work during the 2nd Madison Workshop on Mathematics of Reaction Networks in
+2018. BB was partially supported by the Austrian Science Fund (FWF), project P28406. GC and PYY
+were supported in part by the National Science Foundation (NSF) under grant DMS-1816238. PYY was
+supported in part by the Natural Sciences and Engineering Research Council of Canada (NSERC) PGS-D.
+We appreciate the various useful suggestions by the anonymous referees.
+
+
+References
+ [1] David F. Anderson, Daniele Cappelletti, Jinsu Kim, and Tung Nguyen, Tier structure of strongly endotactic reaction
+     networks, ArXiv e-prints (2018), available at 1808.05328.
+ [2] David Angeli, A tutorial on chemical reaction network dynamics, European Journal of Control 15 (2009), no. 3, 398–406.
+ [3] Frédéric Bihan and Frank Sottile, New fewnomial upper bounds from Gale dual polynomial systems, Moscow Mathematical
+     Journal 7 (2007), no. 3, 387–407.
+ [4] Balázs Boros, Existence of positive steady states for weakly reversible mass-action systems, SIAM Journal on Mathematical
+     Analysis 51 (2019), no. 1, 435–449.
+ [5] Balázs Boros and Josef Hofbauer, Permanence of weakly reversible mass-action systems with a single linkage class, SIAM
+     Journal on Applied Dynamical Systems 19 (2020), no. 1, 352–365.
+ [6] James Brunner and Gheorghe Craciun, Robust persistence and permanence of polynomial and power law dynamical systems,
+     SIAM Journal on Applied Mathematics 78 (2018), no. 2, 801–825.
+ [7] Gheorghe Craciun and Martin Feinberg, Multiple equilibria in complex chemical reaction networks. I. The injectivity
+     property, SIAM Journal on Applied Mathematics 65 (2005), no. 5, 1526–1546.
+ [8] Gheorghe Craciun, Fedor Nazarov, and Casian Pantea, Persistence and permanence of mass-action and power-law dynam-
+     ical systems, SIAM Journal on Applied Mathematics 73 (2013), no. 1, 305–329.
+ [9] Jian Deng, Christopher Jones, Martin Feinberg, and Adrian Nachman, On the steady states of weakly reversible chemical
+     reaction networks, ArXiv e-prints (2011), available at 1111.2386.
+[10] Martin Feinberg, Complex balancing in general kinetic systems, Archive for Rational Mechanics and Analysis 49 (1972/73),
+     187–194.
+[11]          , Chemical reaction network structure and the stability of complex isothermal reactors - I. The Deficiency Zero and
+       the Deficiency One Theorems, Chemical Engineering Science 42 (1987), no. 10, 2229–2268.
+[12]         , The existence and uniqueness of steady states for a class of chemical reaction networks, Archive for Rational
+       Mechanics and Analysis 132 (1995), no. 4, 311–370.
+[13] Manoj Gopalkrishnan, Ezra Miller, and Anne Shiu, A geometric approach to the global attractor conjecture, SIAM Journal
+     on Applied Dynamical Systems 13 (2014), no. 2, 758–797.
+[14] Jeremy Gunawardena, Chemical reaction network theory for in-silico biologists, 2003. Available at http://vcp.med.
+     harvard.edu/papers/crnt.pdf.
+[15] Fritz Horn and Roy Jackson, General mass action kinetics, Archive for Rational Mechanics and Analysis 47 (1972), 81–116.
+[16] Robert L. Karp, Mercedes Pérez Millán, Tathagata Dasgupta, Alicia Dickenstein, and Jeremy Gunawardena, Complex-
+     linear invariants of biochemical networks., Journal of Theoretical Biology 311 (2012), 130–138.
+[17] Askold G. Khovanskii, A class of systems of transcendental equations, Doklady Akademii Nauk SSSR 255 (1980), no. 4,
+     804–807.
+[18]          , Fewnomials, Translations of Mathematical Monographs, vol. 88, American Mathematical Society, Providence, RI,
+       1991. Translated from the Russian by Smilka Zdravkovska.
+[19] Casian Pantea, On the persistence and global stability of mass-action systems, SIAM Journal on Mathematical Analysis
+     44 (2012), no. 3, 1636–1673.
+[20] Casian Pantea, Heinz Koeppl, and Gheorghe Craciun, Global injectivity and multiple equilibria in uni- and bi-molecular
+     reaction networks, Discrete and Continuous Dynamical Systems - Series B 17 (2012), no. 6, 2153–2170.
+[21] Frank Sottile, Real solutions to equations from geometry, University Lecture Series, vol. 57, American Mathematical Society,
+     Providence, RI, 2011.
+
+
+                                                                9
+[22] Bernd Sturmfels, Gröbner bases and convex polytopes, University Lecture Series, vol. 8, American Mathematical Society,
+     Providence, RI, 1996.
+[23] Polly Y. Yu and Gheorghe Craciun, Mathematical analysis of chemical reaction systems, Israel Journal of Chemistry 58
+     (2018), no. 6–7, 733–741.
+
+
+
+
+                                                            10
+

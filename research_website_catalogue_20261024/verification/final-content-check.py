@@ -4,7 +4,7 @@ Uses Python standard library plus an existing pdftotext executable; installs not
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,urljoin,unquote
-import json,hashlib,re,datetime,subprocess,zipfile,unicodedata,argparse,sys
+import json,hashlib,re,datetime,subprocess,zipfile,gzip,tarfile,zlib,unicodedata,argparse,sys
 from html import unescape
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
 from published_assets import PublishedAssets, asset_name
@@ -47,7 +47,29 @@ TEX_PATHS={
  '23127646':'published-source/biconstrained-asymmetry-verification/biconstrained-asymmetry-verification/biconstrained_asymmetry.tex',
  '23191301':'published-source/odd_power_sos_verification/paper.tex',
  '23127955':'published-source/paper.tex',
+ '23430642':'published-source/rank_one_uniqueness_v1_0/paper.tex',
+ '23387814':'published-source/seshadri_counterexample_verification/seshadri_counterexample.tex',
 }
+GAME_SESHADRI_IDS={'23430642','23387814'}
+def normalized_game_seshadri_abstract(rid,body):
+ if rid=='23430642':
+  body=body.replace(r'\rank(A+B)=1','rank(A + B) = 1').replace('\\PART\\','Partition').replace('$','')
+ elif rid=='23387814':
+  replacements={r'$\eps(S,L;x)\ge (2+|K_S^2|^{1/4})^{-1}$':'ε(S,L;x) ≥ (2+|K_S²|^(1/4))⁻¹',r'$d\ge7$':'d ≥ 7',r'$K_S^2=6(d-1)(d-3)$':'K_S² = 6(d−1)(d−3)','$L$':'L','$L^2=6$':'L² = 6',r'$\eps(S,L;x)\le1/(d-1)$':'ε(S,L;x) ≤ 1/(d−1)','$d=7$':'d = 7'}
+  for old,new in replacements.items():body=body.replace(old,new)
+ return ' '.join(body.split())
+def tar_gz_integrity(path):
+ """Read the complete gzip stream and tar members without extracting files."""
+ try:
+  with gzip.open(path,'rb') as stream:
+   while stream.read(1024*1024):pass
+  with tarfile.open(path,'r:gz') as archive:
+   for member in archive:
+    if member.isfile():
+     with archive.extractfile(member) as stream:
+      while stream.read(1024*1024):pass
+  return True
+ except (OSError,EOFError,tarfile.TarError,zlib.error):return False
 OCTOBER_EDITOR_IDS={'23127646','23191301'}
 def normalized_october_abstract(rid,body):
  body=body.replace('$','')
@@ -65,6 +87,7 @@ def decode_added_abstract(tex):
  return tex.replace(r'\[','').replace(r'\]','').replace('$','').replace('--','–').replace("'",'’')
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex,record_id=None):
+ if record_id in GAME_SESHADRI_IDS:return wt(normalized_game_seshadri_abstract(record_id,tex))
  if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
  if record_id in OCTOBER_EDITOR_IDS:tex=normalized_october_abstract(record_id,tex)
  if record_id=='23180194':tex=tex.replace(r'\xi','ξ').replace('$','').replace('--','–')
@@ -116,6 +139,10 @@ for rid in args.record_ids:
   abstract_source=branch.group(2)
  a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',abstract_source,re.S).group(1)
  test('abstract_full_source_words',abstract_tokens(a,rid)==wt(c['abstract']))
+ if rid in GAME_SESHADRI_IDS:
+  test('abstract_full_source_text',normalized_game_seshadri_abstract(rid,a)==c['abstract'])
+  test('abstract_full_source_word_count',len(c['abstract'].split())=={'23430642':140,'23387814':97}[rid])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  if rid=='22136869':
   test('abstract_full_source_text',normalized_kimura_abstract(a)==c['abstract'])
   test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
@@ -187,6 +214,8 @@ for rid in args.record_ids:
   test(key,actual==original.sha256 and name in [a.get('href') for t,a in d.a if t=='a'])
   if name.endswith('.zip'):
    with zipfile.ZipFile(f.parent/name) as z:test('zip_integrity_'+name,z.testzip() is None)
+  if name.endswith('.tar.gz'):
+   test('tar_gz_integrity_'+name,tar_gz_integrity(f.parent/name))
   if key.startswith('additional_asset_') and name.endswith('.pdf'):
    extra_text=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/name),'-'],text=True).split('\f')
    if not extra_text[-1].strip():extra_text.pop()
@@ -356,6 +385,27 @@ for rid in args.record_ids:
   test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/content.json'))
   test('root_disposition_at_stated_scope',gate['disposition_by']=='root' and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['reviews']['analytic']['verdict']['status']=='PASS' and gate['reviews']['adversarial']['verdict']['status']=='PASS' and gate['reviews']['scope']['verdict']['status']=='PASS_SCOPE_ONLY' and gate['reviews']['scope']['verdict']['completion_percent']==100 and bool(gate['scope_gate_resolution']))
   test('proof_wording_precision_preserved',bool(gate['nonblocking_proof_wording']) and 'globally smooth' not in unescape(h))
+ if rid in GAME_SESHADRI_IDS:
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+  decision=next(x for x in clearance['papers'] if x['record_id']==rid)
+  test('root_clearance_binding',clearance['status']==decision['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==decision and gate['approved_scope']==decision['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False)
+  test('root_clearance_source_review_identity',decision['pdf_sha256']==gate['pdf_sha256'] and decision['supplement_sha256']==gate['supplement_sha256'] and decision['source_receipt_sha256']==gate['source_receipt_sha256'] and all(decision['reviews'][k]['report_sha256']==v['sha256'] and decision['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==len(c['abstract'].split()))
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)=={'23430642':9,'23387814':5}[rid] and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+ if rid=='23430642':
+  test('scope_complete',all(x in unescape(h) for x in ['one equilibrium to be found in polynomial time','deciding uniqueness is coNP-complete','exact rank(A + B) = 1','variable positive dimensions','entire mixed-strategy equilibrium pair','known strict pure equilibrium','Arbitrary degeneracy','positive-dimensional equilibrium sets','(8n + 9) rows and (16n + 22) columns','rank-invalid inputs belong to neither']))
+  test('complexity_limits_and_credit',all(x in unescape(h) for x in ['Unless P = NP','does not establish strong hardness','fixed dimensions','nondegeneracy promise','uniqueness of equilibrium payoffs','does not run the potentially exponential sequence','Disser and Skutella','Adsul and coauthors','worldwide priority']))
+  test('tar_gz_label_and_identity',c['supplement_filename']=='supportkit-v1.0.tar.gz' and 'Source and verification (tar.gz)' in h and 'Source and verification (ZIP)' not in h and all(not asset_name(x).endswith('.zip') for x in receipt['files']))
+  test('printed_edition_date_binding',r'\date{13 October 2026\quad Version 1.0}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-13')
+  test('archive_main_pdf_identity',sha(p/'sources/published-source/rank_one_uniqueness_v1_0/output/pdf/paper.pdf')==sha(p/'sources/paper.pdf'))
+ if rid=='23387814':
+  test('scope_complete',all(x in unescape(h) for x in ['For every integer d ≥ 7','smooth integral complex projective surface','ample canonical bundle','ample integral line bundle','K_S² = 6(d−1)(d−3)','L² = 6','ε(S,L;x) ≤ 1/(d−1) < 1/(2+(K_S²)^(1/4))','The additive 2 is outside the fourth root','The surfaces vary with d and x is a special point']))
+  test('scope_limits_and_credit',all(x in unescape(h) for x in ['does not determine its exact value','very-general-point','Picard-rank-one','canonical or adjoint polarization bounds','Miranda’s classical pencil construction','does not list explicit coefficients','Historical priority']))
+  test('printed_edition_date_binding',r'\date{October 14, 2026}' in source and c['source_binding']['manuscript_version'] is None and record['version']==c['version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-14' and c['edition_label']=='Zenodo version 1.0')
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/candidate-content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/candidate-content.json'))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

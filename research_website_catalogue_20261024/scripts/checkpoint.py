@@ -32,9 +32,9 @@ try:
         print('No new programme changes'); raise SystemExit(0)
     # Archived sources, PDF extractions and raw tool output retain their bytes.
     # Hash-bound review prose and its generators may include Markdown hard
-    # breaks. Permit end-of-line spaces without rewriting scientific evidence;
+    # breaks or final blank lines. Permit those without rewriting evidence;
     # retain the other whitespace checks for authored code and notes.
-    git('-c','core.whitespace=-blank-at-eol','diff','--cached','--check',parent,'--',PROGRAM.name+'/',
+    git('-c','core.whitespace=-blank-at-eol,-blank-at-eof','diff','--cached','--check',parent,'--',PROGRAM.name+'/',
         ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',
         ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',
         ':!'+PROGRAM.name+'/papers/*/reviews/*/primary-imports/*.tex',

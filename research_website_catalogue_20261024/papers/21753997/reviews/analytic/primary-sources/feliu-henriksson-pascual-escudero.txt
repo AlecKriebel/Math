@@ -1,0 +1,1549 @@
+                                                                   The generic geometry of steady state varieties
+                                                             Elisenda Feliu∗ , Oskar Henriksson† , and Beatriz Pascual-Escudero‡
+
+
+                                            Abstract. We answer several fundamental geometric questions about reaction networks with power-law kinetics,
+                                                      on topics such as generic finiteness of the number of steady states, robustness, and nondegenerate
+                                                      multistationarity. In particular, we give an ideal-theoretic characterization of generic absolute
+                                                      concentration robustness, as well as conditions under which a network that admits multiple steady
+                                                      states also has the capacity for nondegenerate multistationarity. The key tools underlying our results
+                                                      come from the theory of vertically parametrized systems, and include a linear algebra condition that
+
+
+
+
+arXiv:2412.17798v3 [q-bio.MN] 14 May 2026
+                                                      characterizes when the steady state system has positive nondegenerate zeros.
+
+                                            Key words. Reaction network, multistationarity, absolute concentration robustness, parametric polynomial
+                                                       systems, positive zeros, mass-action, nondegeneracy
+
+                                            MSC codes. 92C42, 37N25, 14A25, 14Q30, 14P10
+
+                                                1. Introduction. A fundamental object of interest in the study of reaction networks is
+                                            the set of positive steady states, which under the assumption of mass-action kinetics (or more
+                                            generally power-law kinetics) are the positive zeros of a vertically parametrized system
+                                                                                       fκ (x) := N (κ ◦ xM ) .
+                                            Here, the variables x = (x1 , . . . , xn ) are the concentration of the species participating in the
+                                            network, the parameters κ = (κ1 , . . . , κm ) are rate constants for the reactions of the network,
+                                            the matrix N ∈ Rn×m is the stoichiometric matrix, and xM is a vector of m monomials,
+                                            encoded by the columns of the kinetic matrix M ∈ Zn×m .
+                                                The term vertically parametrized was coined in [33] and refers to the fact that each
+                                            parameter κi can appear several times in the system, but always in front of the same monomial.
+                                            Thus, these systems generalize the more well-studied class of sparse systems with freely
+                                            varying coefficients. A general framework for studying the generic properties of vertically
+                                            parametrized systems was developed in [26] (see also the subsequent papers [25, 32]), and
+                                            forms the foundation for the present paper.
+                                                The ordinary differential equations dx       dt = fκ (x) that model a mass-action system often
+                                            have linear first integrals that are independent of the choice of reaction rate constants. These
+                                            correspond to conservation laws of the form Lx = b where the rows of L ∈ Rd×n form a basis
+                                            for the left kernel of N and b = (b1 , . . . , bd ) are total amounts. Thus, the positive steady states
+                                            compatible with a choice of total amounts b are the zeros of the polynomial system
+                                                                                                                  !
+                                                                                                   N (κ ◦ xM )
+                                            (1.1)                                  Fκ,b (x) :=                        .
+                                                                                                   Lx − b
+                                               ∗
+                                                Department of Mathematical Sciences, University of Copenhagen (efeliu@math.ku.dk).
+                                               †
+                                                Department of Mathematical Sciences, University of Copenhagen. Current address: Max Planck Institute of
+                                            Molecular Cell Biology and Genetics, Dresden. (oskar.henriksson@mpi-cbg.de).
+                                              ‡
+                                                Departamento de Matemática e Informática aplicadas a las Ingenierı́as Civil y Naval ETSI Caminos, Canales y
+                                            Puertos, Universidad Politécnica de Madrid (beatriz.pascual@upm.es).
+                                                                                                   1
+2                    ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+     Many questions about the steady states of a reaction network are related to understanding
+how the geometry of the positive zero sets V>0 (fκ ) and V>0 (Fκ,b ) in Rn>0 depends on the
+parameters κ ∈ Rm                  d
+                     >0 and b ∈ R . Even though the study of reaction networks in the current
+mathematical formalism goes back at least to Feinberg, Horn and Jackson in the 1970’s
+[20, 34], where the theory was developed with a main focus on reaction networks arising in
+chemistry, many fundamental properties about the underlying polynomial systems are still not
+fully understood, including properties such as dimension, finiteness, and singularities. These
+concepts play an important role in applying machinery from algebraic geometry (see, e.g.,
+[50, Section 6.5], [49]), as well as in lifting properties of small networks to larger networks
+containing the small ones as submotifs (see, e.g., [4, 10, 17, 28, 37]).
+     Understanding the geometry of V>0 (fκ ) and V>0 (Fκ,b ) for all possible networks and
+parameter values is a very challenging task. Indeed, it follows from the classical Hungarian
+lemma [35] that the positive part of any algebraic variety can appear as V>0 (fκ ) for some
+network and some choice of κ ∈ Rm      >0 , which means that the set of steady states can display
+intricate geometry, such as its dimension being larger or even lower than expected. However,
+one of the main messages of this paper is that the problem becomes much more well-behaved if
+we change it to instead understand V>0 (fκ ) and V>0 (Fκ,b ) up to perturbations of the parameter
+values (i.e., in open regions of parameter space). In particular, we show that for many properties,
+the behavior up to perturbation agrees qualitatively with the behavior of the complex varieties
+VC∗ (fκ ) and VC∗ (Fκ,b ) in (C∗ )n for generic (κ, b) ∈ Cm+d , and hence lends itself to be studied
+with tools from algebraic geometry.
+     We first tackle the question of finiteness. By a simple equation count, it is reasonable to
+expect that V>0 (fκ ) has codimension rk(N ), and that V>0 (Fκ,b ) should be finite. Nevertheless,
+it is easy to construct examples of networks where these sets have higher-than-expected
+dimension for some parameter values. In fact, this can be done even for very well-behaved
+families of networks, such as those that are endotactic [41] or weakly reversible [9] (see
+Example 3.12). However, it has been an open question whether this type of pathology can
+arise in regions of positive measure in parameter space (see [9, Section 5]).
+     As our first main result, we answer this question in the negative. More precisely, we show
+that there are two possible scenarios for V>0 (Fκ,b ), depending on whether or not the network
+is nondegenerate, in the sense that there exist parameter values (κ, b) and a positive zero x∗ of
+Fκ,b such that the Jacobian of Fκ,b at x∗ is nonsingular. This is equivalent to requiring that
+the matrices N , M and L from (1.1) satisfy ker(N ) ∩ Rm    >0 ̸= ∅ and
+
+                "                        #
+                 N diag(w)M ⊤ diag(h)
+(1.2)         rk                      =n         for some (w, h) ∈ ker(N ) × (C∗ )n .
+                          L
+
+    Theorem A (Theorem 3.4). For a reaction network with ker(N ) ∩ Rm        >0 ̸= ∅, let Zcc be
+the solvability locus, consisting of (κ, b) ∈ Rm >0 × R  d for which V (F ) is nonempty. If the
+                                                                      >0 κ,b
+network is nondegenerate, then:
+      • Zcc has nonempty interior.
+      • V>0 (Fκ,b ) is finite for generic (κ, b) ∈ Zcc .
+      • The Jacobian of Fκ,b is nonsingular on V>0 (Fκ,b ) for generic (κ, b) ∈ Zcc .
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                    3
+
+
+If the network is degenerate, then
+      • Zcc is nonempty but has empty interior.
+      • The Jacobian of Fκ,b is singular on all of V>0 (Fκ,b ) for all (κ, b) ∈ Zcc .
+    In particular, Theorem A tells us that a reaction network cannot have infinitely many
+steady states in a nonempty open region in the space of rate constants and total amounts.
+    Analogous statements relating emptiness and dimension are given for V>0 (fκ ) in Theo-
+rem 3.1. Both of these results are an application of the theory of vertically parametrized systems
+developed in [26]. Condition (1.2) is easy to check computationally for specific networks, which
+we demonstrate in Subsection 3.3, where we check it for all networks in the database ODEbase
+[44]. In Subsection 3.4, we also prove that it is satisfied by large families of networks, including
+weakly reversible networks, injective networks, conservative networks lacking boundary steady
+states, and the networks satisfying the hypotheses of the deficiency one theorem.
+    Next, we treat the problem of absolute concentration robustness (ACR). The term
+ACR was introduced in [52] and has been extensively studied, e.g., [1, 11, 29, 40, 45, 49]. We
+say that a network has ACR for Xi for a given κ ∈ Rm      >0 if V>0 (fκ ) is nonempty and contained
+in a parallel translate of the i-th coordinate hyperplane. The weaker notion of local ACR
+was introduced in [49] and means that V>0 (fκ ) is contained in a finite union of translates of a
+coordinate hyperplane.
+    Understanding when ACR or local ACR arise for all κ ∈ Rm                >0 is a very challenging
+algebraic-geometric problem, as has recently been explored in detail in [29, 49], but the generic
+counterpart of these problems, where we only require that a property holds for almost all
+κ ∈ Rm >0 , turns out to be much more well-behaved. Using the theory of vertically parametrized
+systems, we prove that the rank condition from [49, Section 5] precisely characterizes generic
+local ACR. In particular, it is a necessary condition for ACR to hold in a nonempty open
+subset of parameter space. We also strengthen the sufficient ideal-theoretic condition from [29,
+Proposition 3.8] to a complete characterization of generic ACR.
+     Theorem B (Theorem 4.4, Corollary 4.7). For a nondegenerate network, the following are
+equivalent:
+     (i) The network has generic local ACR for Xi .
+    (ii) rk((N diag(w)M ⊤ )\i ) < rk(N ) for all w ∈ ker(N ), where \i indicates removal of the
+         i-th column.
+   (iii) There exists a nonconstant polynomial
+                                                                
+Furthermore:             g∈       N (κ ◦ xM ) : (x1 · · · xn )∞ ∩ R(κ1 , . . . , κm )[xi ] .
+     • The network has generic ACR for Xi if g has a single positive root for generic κ ∈ Rm>0 .
+     • If the network does not have generic local ACR for Xi , then, for generic κ ∈ Rm>0 , the
+       network does not have (local) ACR for Xi .
+    Finally, we also study the property of multistationarity, which refers to V>0 (Fκ,b ) having
+at least two elements for some (κ, b) ∈ Rm          d
+                                            >0 × R . When, in addition, the steady states are
+stable, this property is believed to underlie cellular decision processes, in that it offers robust
+switch-like behavior as a response to changes in the parameters via a phenomenon known as
+hysteresis [42]. The study of multistationarity can be found at the roots of reaction network
+theory, with celebrated results on complex balancing [20, 21, 34] and numerous algorithms
+4                    ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+and criteria to decide upon its existence or lack thereof, e.g., [14, 16, 36, 51]; see [38] for an
+overview.
+     Several results for inferring multistationarity from reduced models rely on the implicit
+function theorem or homotopy continuation [4, 10, 17, 28, 37, 55], and, therefore, require a
+stronger version of multistationarity, where there is a choice of parameters for which V>0 (Fκ,b )
+has at least two positive steady states that are nondegenerate, in the sense that the Jacobian
+of Fκ,b is nonsingular. This property is referred to as nondegenerate multistationarity.
+     In [39, Conjecture 2.3], the authors conjecture that if V>0 (Fκ,b ) is finite for all
+(κ, b) ∈ Rm       d
+           >0 × R , and has cardinality ℓ for some choice of parameters, then there is also a
+choice of parameters such that the network has ℓ nondegenerate positive steady states. This
+is known as the Nondegeneracy Conjecture. It has been proven for small networks (with at
+most 2 species and 2 reactions, which can be reversible) in [39, 53] and for rk(N ) = 1 in [55],
+but the general case remains open. Here, we prove the conjecture when ℓ = 2 under some
+additional assumptions, which include the case where the network is nondegenerate. A weaker
+version of our result, but easier to state, is as follows (see Theorem 5.2 for the full statement,
+which allows for milder assumptions on the network and a more precise lower bound of the
+number of positive steady states).
+     Theorem C (Theorem 5.2, Corollary 5.3). If a nondegenerate network admits multistationar-
+ity and V>0 (Fκ,b ) is finite for all (κ, b) ∈ Rm     d
+                                                >0 × R , then the network also admits nondegenerate
+multistationarity.
+    The paper is organized as follows. In Section 2, we fix the notation for the rest of the
+paper, and recall some basic terminology of chemical reaction network theory, as well as some
+results regarding the Jacobian of fκ and Fκ,b . In Section 3, we discuss the connection between
+the properties of nondegeneracy, dimension, and nonemptiness, leading up in particular to
+Theorem A. We also discuss some computational aspects, as well as how nondegeneracy relates
+to other properties of reaction networks such as weak reversibility and the dimension of the
+kinetic subspace. In Section 4, we address ACR, state Theorem B and give several examples
+to clarify the relation to previous work. After this, we devote Section 5 to nondegenerate
+multistationarity and our proof of Theorem C. Finally, we give the proofs relying on technical
+aspects of vertically parametrized systems in Section 6.
+    2. Reaction networks and steady states. In this section, we give a quick overview of
+reaction networks, introduce the varieties of positive steady states, and fix notation that will
+be used in the rest of the paper.
+    A reaction network is simply a collection of reactions
+                                        κj
+               α1j X1 + · · · + αnj Xn −−→ β1j X1 + · · · + βnj Xn ,   j = 1, . . . , m ,
+
+that model interactions among species X1 , . . . , Xn . Each of these interactions transforms a
+complex (a Z≥0 -linear combination of the species) called the reactant, into another complex
+called the product. The reactions are labelled by positive real numbers κj > 0 called reaction
+rate constants, which play a role in the dynamics of the system represented by the network.
+    This way, a reaction network can be considered as a digraph, with reactions as directed
+edges, labeled by the reaction rate constants, and complexes as nodes.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                          5
+
+
+   Example 2.1. A simple representation of enzymatic transfer of calcium ions between the
+endoplasmic reticulum and the cytosol gives rise to the following network with n = 4 species
+and m = 6 reactions:
+               κ1                       κ                        4κ    κ
+           0−
+            ↽− ⇀ X1
+             κ−−
+                            X1 + X2 −−3→ 2X1          X1 + X3 −
+                                                              ↽− ⇀
+                                                               κ−−
+                                                                   X4 −−6→ X2 + X3 .
+                2                                                  5
+
+
+Here, X1 stands for cytosolic calcium, X2 for calcium in the endoplasmic reticulum, and X3 is
+an enzyme catalyzing the transfer via the formation of an intermediate X4 [30].
+    Under the assumption of power-law kinetics with kinetic matrix M = (νij ) ∈ Rn×m , the
+evolution of the concentration x = (x1 , . . . , xn ) of the species X1 , . . . , Xn over time is given by
+the autonomous system of ordinary differential equations (ODEs)
+                                   dx
+(2.1)                                 = N (κ ◦ xM ) ,       x ∈ Rn>0 ,
+                                   dt
+where N = (βij − αij ) ∈ Zn×m is the stoichiometric matrix, xM denotes the vector whose
+                            ν         ν
+j-th entry is the product x11j · · · xnnj (i.e., the monomial in x with exponents given by the j-th
+column of M ), and κ ◦ xM is the entry-wise product of the two vectors κ = (κ1 , . . . , κm ) and
+xM . For the specific case in which the kinetics is mass action [31], M = (αij ) ∈ Zn×m ≥0   is the
+reactant matrix. In the examples, we consider mass-action kinetics unless stated otherwise.
+    For the rest of our work, we will assume that M ∈ Zn×m , i.e., that M has integer entries,
+when referring to power-law kinetics. The results extend to systems where M ∈ Qn×m using
+the approach in [49, Section 4.2]. As we allow negative exponents, we mostly work in the
+Laurent polynomial ring R[x± ] = R[x±                   ±
+                                           1 , . . . , xn ].
+    Observe that (2.1) is well defined also over Rn≥0 if M has nonnegative entries. Under
+mild additional assumptions, namely that all negative terms of the expression for dxi /dt are
+multiples of xi , both Rn≥0 and Rn>0 are forward invariant [56]. In particular, this is always the
+case under mass-action kinetics.
+    A (positive) steady state of the ODE system in (2.1) is a tuple x = (x1 , . . . , xn ) ∈ Rn>0
+such that N (κ ◦ xM ) = 0. The steady states provide useful information about the dynamics of
+the biological system under study, and this is a key topic in the theory of reaction networks;
+see [23] for an introduction to the field.
+    To remove redundancies arising when N does not have full rank n, we make a choice of
+matrix C ∈ Rs×m with s := rk(N ) and ker(C) = ker(N ), and consider the steady state
+system
+
+(2.2)                                f := C(κ ◦ xM ) ∈ R[κ, x± ]s .
+
+The results in this work do not depend on the specific matrix C, so a choice is implicitly made
+throughout. We write fκ for the system (2.2) evaluated at a fixed κ ∈ Rm    >0 . The positive
+steady state variety of the network is then the (semialgebraic) set
+
+             V>0 (fκ ) := {x ∈ Rn>0 : C(κ ◦ xM ) = 0} = {x ∈ Rn>0 : N (κ ◦ xM ) = 0} .
+
+    We define the solvability locus Z ⊆ Rm >0 of f to be the set of parameter values for which
+the network admits positive steady states:
+6                       ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+
+
+                                    Z := {κ ∈ Rm
+                                               >0 : V>0 (fκ ) ̸= ∅} .
+
+   By letting R∗ and C∗ denote the set of real and complex numbers excluding 0, we will also
+consider the real and complex steady state varieties, given by
+        VR∗ (fκ ) := {x ∈ (R∗ )n : fκ (x) = 0}       and         VC∗ (fκ ) := {x ∈ (C∗ )n : fκ (x) = 0}.
+Note that V>0 (fκ ) = VC∗ (fκ ) ∩ Rn>0 .
+    The vector subspace im(N ) is called the stoichiometric subspace. The trajectory of
+system (2.1) with initial condition x0 is confined to the linear subspace x0 + im(N ). We
+will therefore also be interested in the positive steady states constrained to these linear
+subspaces. Specifically, we consider a fixed matrix L ∈ Rd×n with full rank d := n − s (recall
+s = rk(N ) = rk(C)), whose rows form a basis of the left kernel of N . Then, we consider the
+(open) stoichiometric compatibility classes
+                              Pb := {x ∈ Rn>0 : Lx − b = 0},             b ∈ Rd .
+Such a matrix L is called a matrix of conservation laws. The choice of L is implicit
+throughout, and it does not affect the conclusions of this work.
+    Many questions about the dynamics of (2.1), and in particular about the steady states,
+are studied in the restriction to the stoichiometric compatibility classes. Two steady states in
+the same class are said to be stoichiometrically compatible. Studying the set of all positive
+steady states in the class Pb can be done via the square polynomial system
+                                                       !
+                                          C(κ ◦ xM )
+(2.3)                             F =                       ∈ R[κ, b, x± ]n ,
+                                          Lx − b
+which we refer to as the augmented steady state system (by L). We write Fκ,b for the
+system (2.3) when κ and b have been fixed.
+    By construction,
+                               V>0 (Fκ,b ) = V>0 (fκ ) ∩ Pb .
+Analogous to Z, we consider the solvability locus Zcc ⊆ Rm     d
+                                                         >0 × R of F to be
+
+                             Zcc := {(κ, b) ∈ Rm     d
+                                               >0 × R : V>0 (Fκ,b ) ̸= ∅} ,
+
+where the subscript cc is short for “compatibility class”. Note here that V>0 (fκ ) ∩ Pb ̸= ∅
+requires that b ∈ L(Rn>0 ), that is, b belongs to the positive cone on the columns of L. We
+remark that as L has full rank, L(Rn>0 ) is a d-dimensional cone.
+   The sets VC∗ (Fκ,b ) and VR∗ (Fκ,b ) are defined analogously to f . We note that F = f when
+s = n.
+   Example 2.2. For the network in Example 2.1, the ODE system (2.1) is built out of the
+matrices
+                                                                                              
+                 1 −1 1 −1 1 0                                           0      1   1   1   0   0
+                0 0 −1 0  0 1                                         0      0   1   0   0   0
+             N =                                          and       M =                         .
+                                                                                               
+                0 0  0 −1 1 1                                         0      0   0   1   0   0
+                                
+
+                 0 0  0 1 −1 −1                                          0      0   0   0   1   1
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                         7
+
+
+The rank of N is s = 3, as the bottom two rows are linearly dependent. Hence, we can choose
+                                                  
+                     1 −1 1 −1 1 0                                         h           i
+                C = 0 0 −1 0 0 1                           and      L= 0 0 1 1 .
+                                  
+                     0 0  0 −1 1 1
+With this in place, the steady state system becomes
+
+    f = (κ1 − κ2 x1 + κ3 x1 x2 − κ4 x1 x3 + κ5 x4 , −κ3 x1 x2 + κ6 x4 , −κ4 x1 x3 + κ5 x4 + κ6 x4 ),
+while the augmented steady state system has the additional entry x3 + x4 − b.
+    A key tool in the study of parametrized polynomial systems is the incidence variety,
+which consists of all pairs of parameter and variable values that together solve the system. For
+the augmented steady state system F , it admits the bijective parametrization
+
+              ϕ : ker(C) × (C∗ )n → {(κ, b, x) ∈ Cm × Cd × (C∗ )n : F (κ, b, x) = 0}
+(2.4)
+                               (w, h) 7→ (w ◦ hM , Lh−1 , h−1 ) ,
+where h−1 is taken componentwise [26, Theorem 3.1]. Importantly, ϕ also restricts to a bijection
+onto the positive incidence variety, in which case (w, h) are referred to convex coordinates [12]:
+(2.5)       (ker(C) ∩ Rm       n                  m     d   n
+                       >0 ) × R>0 → {(κ, b, x) ∈ R>0 × R × R>0 : F (κ, b, x) = 0}.
+
+    This bijection allows us to derive several foundational facts about the steady state systems,
+including nonemptiness and connectivity of solvability loci, and a well-known parametrization
+of the set of Jacobians for all parameter values and zeros. In preparation for the latter, we
+define the matrices
+
+               Qf (w) := C diag(w)M ⊤ ∈ Cs×n ,           w ∈ Cm ,
+                           "                             #
+(2.6)                          C diag(w)M ⊤ diag(h)
+            QF (w, h) :=                                     ∈ Cn×n ,    w ∈ Cm , h ∈ (C∗ )n .
+                                        L
+     Proposition 2.3. Consider a reaction network with stoichiometric matrix N ∈ Zn×m , kinetic
+matrix M ∈ Zn×m , steady state system f as in (2.2) for C ∈ Rs×n of full rank s = rk(N ) such
+that ker(N ) = ker(C), and augmented steady state system F as in (2.3) for a full rank matrix
+L ∈ Rd×n with LN = 0 and d = n − s. Then the following holds:
+     (i) ker(C) ∩ Rm >0 ̸= ∅ ⇐⇒ Z ̸= ∅ ⇐⇒ Zcc ̸= ∅.
+    (ii) The solvability loci Zcc and Z are connected when they are nonempty.
+   (iii) For (κ, b, x) = ϕ(w, h) it holds that
+                           Jfκ (x) = Qf (w) diag(h)       and      JFκ,b (x) = QF (w, h).
+    Proof. (i) For ker(C) ∩ Rm                                                         m       n
+                               >0 ̸= ∅ ⇒ Z ̸= ∅ apply ϕ to some (w, h) ∈ (ker(C) ∩ R>0 ) × R>0 .
+The rest of the implications are immediate from definition. (ii) Follows from the connectivity
+of of (ker(C) ∩ Rm        n
+                  >0 ) × R>0 , the continuity of ϕ in (2.5), as well as the continuity of the the
+projections onto R>0 × Rd and Rm
+                    m
+                                    >0 . (iii) Follows from a direct computation of the Jacobian
+matrices, see [26, Proposition 3.2].
+8                       ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+     It is common in the literature to say that a network is consistent (or dynamically nontrivial)
+if the equivalent statements in Proposition 2.3(i) hold. It follows from Proposition 2.3(iii) that
+we have the following equalities of sets:
+
+       {Jfκ (x) : κ ∈ Rm                                                           m       n
+                       >0 , x ∈ V>0 (fκ )} = {Qf (w) diag(h) : (w, h) ∈ (ker(C) ∩ R>0 ) × R>0 }
+    {JFκ,Lx (x) : κ ∈ Rm                                                      m       n
+                       >0 , x ∈ V>0 (fκ )} = {QF (w, h) : (w, h) ∈ (ker(C) ∩ R>0 ) × R>0 }.
+
+
+    We conclude this section by reminding the reader of a series of well-known definitions
+from the theory of reaction networks that will be used later on (see [23] for a more detailed
+discussion of these properties):
+     • The linkage classes of a reaction network are its connected components as a digraph.
+        Its strong linkage classes are the maximal strongly connected subdigraphs. Among
+        the strong linkage classes, one distinguishes the terminal strong linkage classes, as
+        those for which there is no edge from a node inside of the class to a node outside of it,
+        in the original network.
+     • A reaction network is weakly reversible if all connected components of the underlying
+        digraph are strongly connected.
+     • The deficiency of a reaction network is the nonnegative integer δ = c − ℓ − s, where c
+        is the number of complexes and ℓ is the number of linkage classes.
+     • A reaction network is called conservative if ker(N ⊤ ) ∩ Rn>0 ̸= ∅, that is, the row span
+        of L contains a positive vector (equivalently the Euclidean closure of Pb is a compact
+        set for all b [6]).
+     • If M ∈ Zn×m                                                n
+                  ≥0 (so that zeros of f, F can be considered in R≥0 ), a reaction network is said
+        to lack relevant boundary steady states if there does not exist (κ, b) ∈ Rm      >0 × R
+                                                                                                 d
+                    n       n                                  n
+        and x ∈ R≥0 \ R>0 such that Fκ,b (x) = 0 and Pb ∩ R>0 ̸= ∅.
+
+    3. Nondegeneracy, nonemptiness, dimension and finiteness. This section is devoted
+to the key theorems about generic nonemptiness and dimension of the positive steady state
+variety and its intersection with the stoichiometric compatibility classes. The results are a
+consequence of the general theorems on (augmented) vertically parametrized systems proven
+in [26], which are rewritten here for this more restricted context and adapted to the reaction
+network language. A version of the main result there can be found in Section 6. The main
+take-home message is that the existence of a nondegenerate zero is enough to ensure that the
+positive varieties behave “nicely”.
+
+    3.1. Terminology: nondegeneracy and genericity. We begin the section by establishing
+some terminology that will be important throughout the remainder of the paper.
+    In general, for a polynomial system g = (g1 , . . . , gℓ ) in variables x = (x                             ∗
+                                                                                    1 , . . . , xn ), a zero x
+                                                                              ∂gi 
+of g is said to be nondegenerate if the Jacobian matrix Jg (x) = ∂xj i,j of g has full rank
+when evaluated at x∗ , and degenerate otherwise.
+    We extend this notion to our parametrized steady state systems by saying that f is
+nondegenerate if there exists κ ∈ Rm     >0 such that fκ has a nondegenerate positive zero
+x∗ ∈ V>0 (fκ ), and degenerate otherwise. Similarly, we say that F is nondegenerate if there
+exists (κ, b) ∈ Rm      d                                                                     ∗
+                 >0 × R such that Fκ,b admits a nondegenerate positive zero x ∈ V>0 (Fκ,b ).
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                   9
+
+
+    As customary in reaction network theory, we adopt the terminology that a steady state
+x∗ ∈ V>0 (fκ ) is called nondegenerate if it is nondegenerate as a zero of Fκ,Lx∗ , and degen-
+erate otherwise. Similar to [3], we call x∗ weakly nondegenerate if it is a nondegenerate
+zero of fκ and strongly degenerate otherwise.
+    Furthermore, we extend this terminology to networks by saying that a network is (weakly)
+nondegenerate if there exists κ ∈ Rm             ∗                      ∗
+                                       >0 and x ∈ V>0 (fκ ) such that x is a (weakly) nonde-
+generate steady state. Similarly, we say the network is (strongly) degenerate if all steady
+states are (strongly) degenerate for all choices of rate constants.
+    Finally, we say that a property holds for generic parameters in a set A ⊆ Rℓ when this
+property holds in a nonempty Zariski open subset of A. When A is Rm              m       d
+                                                                          >0 or R>0 × R , this
+implies that the property holds in a set with nonempty Euclidean interior, and outside a
+subset of A of Lebesgue measure zero, and hence is robust against small perturbations of the
+parameter values.
+    3.2. Nonemptiness and dimension. In the notation of Section 2, the steady state system
+f has s linearly independent entries and n variables, while the augmented steady state system
+has n entries and variables. One could therefore expect that dim(V>0 (fκ )) = n − s and
+dim(V>0 (Fκ,b )) = 0 as semialgebraic sets. This is certainly the case in typical examples, but it
+is not hard to construct examples where the expectation does not hold true. The following
+theorems give us precise tools to describe the geometry of V>0 (fκ ) and V>0 (fκ ) ∩ Pb for generic
+choices of parameters in the solvability loci Z and Zcc .
+     Theorem 3.1 (Expected dimension of steady state varieties). For a reaction network with
+stoichiometric matrix N ∈ Zn×m and kinetic matrix M ∈ Zn×m , consider the steady state
+system f as in (2.2) for C ∈ Rs×n of full rank s = rk(N ) such that ker(N ) = ker(C). Let Z
+be the solvability locus of f and assume that ker(C) ∩ Rm  >0 ̸= ∅. The following statements are
+equivalent:
+     (i) rk(C diag(w)M ⊤ ) = s for some w ∈ ker(C).
+    (ii) fκ has a nondegenerate zero in (C∗ )n for some κ ∈ Cm .
+   (iii) For generic κ ∈ Z, all zeros of fκ in (C∗ )n are nondegenerate.
+   (iv) Z has nonempty Euclidean interior in Rm     >0 .
+    (v) Z is not contained in a hypersurface of Rm .
+   (vi) VC∗ (fκ ) has pure dimension n − s for at least one κ ∈ Cm .
+Furthermore, the following holds:
+       • If the equivalent statements hold, then VC∗ (fκ ) and VR∗ (fκ ) have pure dimension
+         n − s for generic κ ∈ Z, and the same is true for V>0 (fκ ) as a semialgebraic set.
+         Additionally, all zeros of fκ in Rn>0 are nondegenerate for generic κ ∈ Z.
+       • If the equivalent statements do not hold, then VC∗ (fκ ) = ∅ for generic κ ∈ Rm>0 , and
+         when not empty, dim VC∗ (fκ ) > n − s and all zeros of fκ are degenerate.
+       • The ideal generated by fκ in C[x± ] is radical for generic κ ∈ Cm .
+    The proof of this result can be found in Section 6.
+    Note that the properties (i)-(vi) in Theorem 3.1 together with the assumption
+ker(C) ∩ Rm
+          >0 ̸= ∅ precisely characterize the property of the steady state system f being
+nondegenerate and the network being weakly nondegenerate, in the sense of Subsection 3.1.
+10                     ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+      Example 3.2. With the matrices given in Example 2.2, it holds that
+
+                                          rk(C diag(w)M ⊤ ) = 3
+
+for w = (1, 1, 1, 2, 1, 1) ∈ ker(C) ∩ Rm>0 . Hence condition (i) in Theorem 3.1 is satisfied, and
+we conclude that f is nondegenerate and the network is weakly nondegenerate. In particular
+the set Z ⊆ R6>0 of the κ’s for which the network has positive steady states has nonempty
+Euclidean interior, and for generic κ in Z, all positive zeros of fκ are nondegenerate and
+V>0 (fκ ), VC∗ (fκ ), VR∗ (fκ ) have dimension 1.
+      Example 3.3. For the following reaction network with mass-action kinetics
+             κ                                      κ                                       κ
+       3X1 −−1→ 2X1                2X1 + X2 −−2→ 2X1                          X1 + X3 −−3→ X1
+             κ                                      κ                                       κ
+       2X2 −−4→ 2X2 + X3           X2 + X3 −−5→ X1 + X2 + X3                        2X3 −−6→ X2 + 2X3 ,
+
+we have s = 3, and the defining matrices are
+                                                                                                   
+                   −1          0     0    0 1 0                         3       2   1   0       0   0
+             C=N = 0         −1     0    0 0 1             and   M = 0       1   0   2       1   0 .
+                    0          0    −1    1 0 0                         0       0   1   0       1   2
+
+Any w ∈ ker(C) is of the form w = (u1 , u2 , u3 , u3 , u1 , u2 ) for some u1 , u2 , u3 ∈ C. But then
+                                                                              
+                                                −3u1 u1   u1
+                                      ⊤
+                        det(C diag(w)M ) = det −2u2 −u2 2u2  = 0.
+                                                            
+                                                 −u3 2u3 −u3
+
+Hence, condition (i) in Theorem 3.1 does not hold. We conclude that f is degenerate, the
+network is strongly degenerate, and none of the statements (i)-(vi) hold. In particular, any
+positive steady state is degenerate, and the positive steady state variety is generically empty.
+    Theorem 3.4 (Finiteness of the number of stoichiometrically compatible steady states). For
+a reaction network with stoichiometric matrix N ∈ Zn×m and kinetic matrix M ∈ Zn×m ,
+consider the augmented steady state system F as in (2.3) for C ∈ Rs×n of full rank s = rk(N )
+such that ker(N ) = ker(C) and L ∈ Rd×n with LN = 0 and d = n − s. Consider the solvability
+locus Zcc of F and assume ker(C) ∩ Rm >0 ̸= ∅. The following statements are equivalent:
+    (i) For some w ∈ ker(C) and h ∈ (C∗ )n it holds that
+                                              "                          #
+                                                  C diag(w)M ⊤ diag(h)
+                                         rk                                  = n.
+                                                           L
+
+      (ii) Fκ,b has a nondegenerate zero in (C∗ )n for some (κ, b) ∈ Cm × Cd .
+     (iii) For generic (κ, b) ∈ Zcc , all zeros of Fκ,b in (C∗ )n are nondegenerate.
+     (iv) Zcc has nonempty Euclidean interior in Rm             d
+                                                         >0 × R .
+      (v) Zcc is not contained in a hypersurface of R × Rd .
+                                                          m
+
+     (vi) VC∗ (Fκ,b ) is nonempty and finite for at least one (κ, b) ∈ Cm × Cd .
+Furthermore:
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                11
+
+
+     • If the equivalent statements hold, then for generic (κ, b) ∈ Zcc , it holds that
+
+                                      0 < #(V>0 (fκ ) ∩ Pb ) < ∞
+
+       and all points of V>0 (fκ ) ∩ Pb are nondegenerate steady states.
+     • The ideal generated by Fκ,b in C[x± ] is radical for generic (κ, b) ∈ Cm × Cd .
+    The proof is analogous to that of Theorem 3.1, and both can be found in Section 6, where
+additional properties of f and F are given. We note that ker(C) ∩ Rm >0 ̸= ∅ together with any
+of the equivalent conditions (i)-(vi) in Theorem 3.4 characterize when both the network and
+the augmented steady state system F are nondegenerate in the sense of Subsection 3.1.
+    Theorem 3.4 tells us that V>0 (fκ ) ∩ Pb is either generically empty, or finite for generic
+parameter values in Zcc . We obtain the following consequence.
+    Corollary 3.5. The set {(κ, b) ∈ Rm       n
+                                      >0 × L(R>0 ) : #(V>0 (fκ ) ∩ Pb ) = ∞} is contained in a
+proper algebraic variety, and hence always has empty Euclidean interior in Rm           n
+                                                                               >0 × L(R>0 ).
+
+    It is straightforward to see that condition (i) in Theorem 3.4 implies condition (i) in
+Theorem 3.1. This gives rise to the following corollary, which explains the choice of terminology
+of “weak” nondegeneracy and “strong” degeneracy. Note that the converse of the corollary is
+not necessarily true, as shown by Example 3.7.
+     Corollary 3.6. If the augmented steady state system is nondegenerate, then so is the steady
+state system. If a network is nondegenerate, then it is also weakly nondegenerate. If a network
+is strongly degenerate, then it is also degenerate.
+    Example 3.7. Consider the reaction network
+
+                                        κ                κ
+                             X1 + X2 −−1→ X1        X2 −−2→ 2X2 ,
+
+the steady states of which are described by the single parametric polynomial
+
+                           f = −κ1 x1 x2 + κ2 x2 = x2 (−κ1 x1 + κ2 ) .
+
+We obtain that V>0 (fκ ) = {(x1 , x2 ) ∈ R2>0 : x1 = κκ21 } for all κ ∈ R2>0 . In particular,
+Z = R2>0 , so f is nondegenerate and the network is weakly nondegenerate by Theorem 3.1.
+As the stoichiometric compatibility classes are defined by the equation x1 = b for b > 0,
+V>0 (fκ ) ∩ Pb ̸= ∅ only if κκ21 = b, and hence Zcc has empty Euclidean interior. We conclude
+that both the system F and the network are degenerate by Theorem 3.4.
+    Theorem 3.1 and Theorem 3.4 concern the generic behavior of the zero sets, but they do
+not preclude pathological behaviors from arising for specific choices of parameters. Examples
+of what these behaviors can be are given next.
+    Example 3.8. The reaction network
+
+                      κ                        κ                              κ
+          2X1 + X2 −−1→ 3X1        X1 + 2X2 −−2→ 2X1 + X2          X1 + X2 −−3→ 2X2
+12                   ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+gives rise to the system f = x1 x2 (κ1 x1 + κ2 x2 − κ3 ) and the sets Pb are defined by the equation
+x1 + x2 = b. As V>0 (fκ ) ∩ Pb is defined by the intersection of two lines, it is straightforward
+to verify that Zcc has nonempty Euclidean interior. Hence, the network is nondegenerate
+and Fκ,b has finite positive zero sets for generic (κ, b) ∈ Zcc . Nevertheless, for κ = (1, 1, 1),
+V>0 (fκ ) ∩ Pb = ∅ if b ̸= 1, whereas #(V>0 (fκ ) ∩ Pb ) = ∞ for b = 1. This only happens
+nongenerically, namely for parameters of the form ((κ1 , κ1 , κ1 b), b) with κ1 , b > 0.
+     Example 3.9. For the reaction network
+                             κ                        κ                            κ
+               3X1 + X2 −−1→ 4X1        2X1 + X2 −−2→ 3X2                 X1 + X2 −−3→ 2X1 ,
+
+we have n = 2, s = 1, and the steady state system is f = x1 x2 (κ1 x21 − 2κ2 x1 + κ3 ), which is
+generically 1-dimensional. For parameters satisfying κ22 = κ1 κ3 , all positive zeros of fκ are
+degenerate but VC∗ (fκ ), VR∗ (fκ ), and V>0 (fκ ) nonetheless have pure dimension 1. Hence,
+degeneracy of all positive steady states for a choice of parameters does not necessarily imply
+that the dimension of the steady state variety is higher than expected for that parameter value.
+     Example 3.10. For the reaction network
+                         κ                                            κ                κ
+           3X1 + X2 −−1→ 4X1 + 2X2                    X1 + X2 −−2→ 2X1 + X2 −−3→ X1
+                         κ                                            κ                κ
+           X1 + 3X2 −−4→ 2X1 + 4X2                    X1 + X2 −−5→ X1 + 2X2 −−6→ X2 ,
+
+with stoichiometric and reactant matrices
+                     "                        #                   "                        #
+                   1 1 −1 1 0 −1                                 3 1 2 1 1 1
+                C=                                and         M=             ,
+                   1 0 −1 1 1 −1                                 1 1 1 3 1 2
+
+the steady state system f is degenerate (condition (i) of Theorem 3.1 fails).                           For
+κ = (1, 2, 2, 1, 2, 2) we have
+
+                 x1 x2 (x21 + 2 − 2x1 + x22 − 2x2 )            x1 x2 ((x1 − 1)2 + (x2 − 1)2 )
+                                                      !                                         !
+        fκ =                                              =                                         ,
+                 x1 x2 (x21 − 2x1 + x22 + 2 − 2x2 )            x1 x2 ((x1 − 1)2 + (x2 − 1)2 )
+
+which has finite V>0 (fκ ). Hence, statement (vi) in Theorem 3.1 and Theorem 3.4 cannot be
+replaced by the existence of a choice of parameters for which the set of positive zeros is finite.
+     Remark 3.11 (Boundary steady states). The results in this section concern the steady states
+with nonzero coordinates. By [26, Theorem 3.19], the results on generic dimension extend from
+(C∗ )n to Cn if all the polynomials in fκ have a constant term involving a different parameter.
+This scenario arises when the network includes all inflow reactions, that is, reactions of the
+form 0 → Xi for all species Xi (in particular s = n). This is the case for Continuous-flow
+stirred-tank reactors (CFSTRs), see [16]. For these networks, the existence of a nondegenerate
+zero of fκ ensures that the set of nonnegative steady states in Rn≥0 has generically dimension 0.
+    3.3. Computationally deciding on nondegeneracy. Checking condition (i) in Theorems 3.1
+and 3.4 can be done computationally as follows. Let G ∈ Rm×(m−s) be a Gale dual matrix to
+C, in the sense that ker(C) = im(G). Recall the matrices Qf (w) and QF (w, h) from (2.6).
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                      13
+
+
+Consistency: Nonemptiness of ker(C) ∩ Rm      >0 is equivalent to the feasibility of the system
+{Cx = 0, x1 ≥ 1, . . . , xm ≥ 1}, which can be checked with linear programming.
+Nondegeneracy of f : To check condition (i) of Theorem 3.1, we pick a random u ∈ Rm−s (for
+some appropriate distribution), and compute rk(Qf (Gu)) with exact arithmetic. If the rank
+is s, then f is nondegenerate. If not, we view u as indeterminate, compute the s-minors of
+Qf (Gu) in R[u1 , . . . , um−s ], and use that f is degenerate if and only if all minors are zero.
+Nondegeneracy of F : Similarly, condition (i) in Theorem 3.4 can be checked by first com-
+puting rk(QF (Gu, h)) for a random (u, h) ∈ Rm−s × (R∗ )n with exact arithmetic. If the
+rank is n, then F is nondegenerate; if not, we compute det(QF (Gu, h)) as a polynomial in
+R[u1 , . . . , um−s , h±            ±
+                       1 , . . . , hn ], and use that F is degenerate if and only if the determinant is
+zero.
+    A Julia implementation of these computations, based on the computer algebra package
+Oscar.jl [48] and the reaction network theory package Catalyst.jl [43], can be found in
+the Zenodo repository
+                        https://doi.org/10.5281/zenodo.18063244 .
+    As a demonstration of the applicability of our implementation, we consider the networks
+in the database ODEbase [44], modeling all of them with mass-action kinetics for simplicity.
+Out of 628 networks, we found that precisely 368 are consistent. Among these, 6 networks
+are strongly degenerate. The other 362 networks are nondegenerate. The results of these
+computations are available in the aforementioned Zenodo repository.
+    The largest nondegenerate network in the database is BIOMD0000000014, with n = 86,
+m = 300 and d = n − s = 9, for which the nondegeneracy checks take less than 2 seconds∗ .
+
+    3.4. Network-theoretic conditions that ensure nondegeneracy. In this section we go
+through a number of properties that play a central role in the reaction network theory literature,
+and prove that they imply nondegeneracy of the network, and hence the equivalent properties
+in Theorem 3.1 and Theorem 3.4.
+    Weakly reversible networks are quite well understood; for example, they are known to
+admit positive steady states for all choices of (κ, b) ∈ Rm          n
+                                                           >0 × L(R>0 ) [8], and are conjectured
+to display strong dynamical behaviors such as persistence [21] or bounded trajectories [2].
+A somewhat unexpected property was revealed in [9], where the authors provide several
+examples of weakly reversible networks displaying infinitely many positive steady states in a
+stoichiometric compatibility class. One such example is given next.
+    Example 3.12. In [9], the authors considered the network
+
+
+            2Y                        X + 3Y                            2X + Y
+                       κ4                          κ8                                 κ11
+           κ1                          κ5   κ6                            κ9
+                                                                                κ12
+                  κ3
+             Y    κ2
+                            X+Y       X + 2Y     κ7     2X + 2Y           2X      κ10       3 X,
+
+
+   ∗
+       All computations were run on a MacBook Air with an Apple M2 chip and 16 GB of RAM.
+14                   ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+with s = n = 2, and fine tuned the reaction rate constants in such a way that the two
+equations defining the steady states had a common factor and the other factors did not admit
+positive zeros. They obtained dim VC∗ (fκ ) = dim V>0 (fκ ) = 1, and hence infinitely many
+positive steady states in the only stoichiometric compatibility class R2>0 . With this trick, they
+illustrated that even for weakly reversible reaction networks, dim V>0 (fκ ) could be larger than
+expected for some choice of parameter values.
+   Motivated by the example above, the authors of [9] posed the following question:
+    Is it possible for a weakly reversible network to have infinitely many positive steady
+    states [in each positive stoichiometric compatibility class] for each choice of reaction
+    rate constants in a [Euclidean] open set of the parameter space Rm   >0 ?
+We answered the question in the negative in Corollary 3.5 for any network. So the condition
+on weak reversibility is superfluous in answering the question. However, for weakly reversible
+networks, we give the following strengthened answer.
+    Corollary 3.13. Suppose that a reaction network satisfies at least one of the following:
+    (i) It is weakly reversible and has mass-action kinetics.
+   (ii) M ∈ Zn×m≥0 , it is conservative, and lacks relevant boundary steady states.
+Then Zcc = Rm            n
+               >0 × L(R>0 ) and hence the network is nondegenerate.
+
+    Proof. The fact that Zcc = Rm        n
+                                 >0 × L(R>0 ) follows for case (i), from [8], and for case (ii), by
+a standard Brouwer fixed point argument, using that the Euclidean closure of Pb is compact
+and there are no steady states at the boundary (see, e.g., [19, Lemma 1]).
+     Two other important classes of networks for which our results have implications are those
+that are injective and those that satisfy the conditions of Feinberg’s Deficiency One Theorem
+[22, Theorem 4.2].
+     A reaction network is called injective if fκ is injective as a map Pb → Rs for all
+(κ, b) ∈ Rm         n
+          >0 × L(R>0 ) (see [16, 27, 47]). The Deficiency One Theorem requires that, when
+all linkage classes of a given network are considered separately, their deficiencies add up to
+exactly the deficiency of the network, none of them being higher than 1. Additionally, each
+linkage class should have no more than one terminal strong linkage class. These properties do
+not guarantee the existence of a positive steady state, so we need to require the network to be
+consistent.
+    Corollary 3.14. Suppose that a reaction network satisfies ker(N ) ∩ Rm
+                                                                         >0 ̸= ∅ and at least
+one of the following conditions:
+    (i) It is injective.
+   (ii) It fulfils the criteria of the Deficiency One Theorem.
+Then Zcc has nonempty Euclidean interior and hence the network is nondegenerate.
+   Proof. By Proposition 2.3(i), Zcc ̸= ∅. Any positive steady state is guaranteed to be
+nondegenerate in case (i) by [18, Sec. 6], see also [27, Corollary 5.12], and in case (ii) by [22,
+Theorem 4.3]. The result now follows since condition (i) in Theorem 3.4 holds.
+   3.5. The kinetic and stoichiometric subspace. We close the section with a discussion on
+how the dimension of the kinetic subspace is related to nondegeneracy.
+   For a fixed choice of reaction rate constants κ ∈ Rm>0 , let Σκ be the coefficient matrix of
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                   15
+
+
+N (κ ◦ xM ) as a Laurent polynomial system in R[x± ]n . The kinetic subspace is
+                                          Sκ := im(Σκ ),
+which satisfies that the trajectories of (2.1) are contained in parallel translates of Sκ . In fact,
+this is the minimal vector subspace with this property. It clearly holds that Sκ ⊆ im(N ), but
+the inclusion might be strict. The stoichiometric subspace S = im(N ) depends only on N ,
+while the kinetic subspace also depends on the value of κ and the kinetic matrix M .
+     In [24], it is shown that if all linkage classes contain a unique terminal strong linkage
+class, then S and Sκ agree for all κ. Moreover, inequality of these spaces implies that all
+positive steady states are degenerate; this is immediate as if Sκ ⊊ S, then the entries of fκ
+are linearly dependent (see also [23, Section 3.A.1]). The converse is not true, as it is possible
+to find degenerate systems f with Sκ = S for all κ (e.g., Example 3.3). In [23, Page 123]
+it is stated that “when the kinetic subspace is smaller than the stoichiometric subspace, a
+positive equilibrium in a stoichiometric compatibility class will usually be accompanied by an
+infinite number of them”. The following corollary formalizes this observation over the complex
+numbers, when Sκ ⊊ S holds for generic parameters.
+     Corollary 3.15. Suppose that a reaction network satisfies Sκ ⊊ S for generic κ ∈ Z. Then
+f and F are both degenerate. In particular, the network is strongly degenerate, the solvability
+loci Z and Zcc have empty Euclidean interior, and
+                            #(VC∗ (Fκ,b )) = ∞     for all (κ, b) ∈ Zcc .
+    Proof. As Sκ ⊊ S for generic κ ∈ Z, all zeros of fκ are degenerate for generic κ ∈ Z. Thus
+condition (iii) in Theorem 3.1 does not hold, and f , and hence F , are degenerate. The rest of
+the conclusions follow from Theorems 3.1 and 3.4.
+    Example 3.16. Consider the following reaction network from [23, Example 3.A.2]
+                        κ         κ                                     κ
+                   X2 ←−1− X1 −−2→ X3                          X2 + X3 −−3→ 2X1
+with mass-action kinetics. This network has defining matrices
+                                                                         
+                          −1 −1 2                        −κ1 − κ2 2κ3
+                      N = 1 0 −1 ,               Σκ =   κ1     −κ3 
+                                                                   
+                           0 1 −1                          κ2     −κ3
+and s = 2. The first row of Σκ is linearly dependent to the two bottom rows, and, if the two
+bottom rows are linearly independent, that is, κ1 ̸= κ2 , then fκ cannot have a zero in (C∗ )2 .
+We conclude that Σκ needs to have rank 1 if κ ∈ Z and hence Sκ ⊊ S for generic κ ∈ Z. By
+Corollary 3.15, f is degenerate, and the network is strongly degenerate.
+    Finally, the results from [24] regarding the stoichiometric and kinetic subspaces allow us
+to relate degeneracy and deficiency δ. Let ℓ and t denote the number of linkage classes and
+terminal strong linkage classes, respectively.
+   Corollary 3.17. Suppose that a reaction network with mass-action kinetics satisfies t − ℓ > δ.
+Then both f and F are degenerate. In particular, the network is strongly degenerate.
+    Proof. This follows from Corollary 3.15, as the assumption implies Sκ ⊊ S for all κ ∈ Rm
+                                                                                           >0
+by statement (ii) in the theorem in [24, Section 6].
+16                      ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+    4. Generic absolute concentration robustness. In this section, we use our new under-
+standing of the steady state varieties to strengthen previous results on absolute concentration
+robustness (ACR) and to clarify its generic behavior.
+    A reaction network with a choice of power-law kinetics is said to have ACR for a certain
+species Xi if it is consistent and, for each κ ∈ Rm
+                                                  >0 , the concentration xi of Xi attains a unique
+value for all positive steady states x ∈ V>0 (fκ ) [52]. The weaker notion of local ACR was
+introduced in [49], and refers to xi attaining only a finite number of values for all positive
+steady states x ∈ V>0 (fκ ) for each κ ∈ Rm  >0 .
+    Example 4.1. Consider the following network with mass-action kinetics from [52] describing
+the phosphorylation and dephosphorylation mechanism for the enzyme isocitrate dehydrogenase:
+                          κ1       κ                                 κ4        κ
+            X1 + X2 −− ⇀ X3 −−3→ X1 + X4                X3 + X4 −− ⇀ X5 −−6→ X2 + X3 .
+                    ↽κ−−   2
+                                                                ↽κ−−  5
+
+
+For κ ∈ R6>0 , the positive steady state variety is
+
+                                                                           x1 x2 : x1 , x2 ∈ R>0 ⊂ R5>0 ,
+                   n                                                                     o
+     V>0 (fκ ) =    x1 , x2 , κ2κ+κ
+                                  1
+                                    3
+                                      x1 x2 , κκ43 1 + κκ56 , κ6 (κ
+                                                                  κ1 κ3
+                                                                   2 +κ3 )
+
+
+from where it is clear that x4 = κκ34 1 + κκ56 is constant for all x ∈ V>0 (fκ ). The network has
+                                                 
+
+ACR for X4 , but not for X1 , as the steady state value of x1 is not constant.
+    Example 4.2. For the network in Example 3.9, the value of x1 at steady state is a positive
+root of the polynomial κ1 x21 − 2κ2 x1 + κ3 , and hence attains one or two values whenever
+V>0 (fκ ) ̸= ∅. Hence, the network displays local ACR for X1 .
+    Many works have explored ACR, both from the experimental and the theoretical points
+of view, see for example [1, 11, 29, 40, 45, 49, 52]. However, no general procedure allows to
+detect it in practice, outside of specific contexts or under restrictive hypotheses. Previous work
+in the literature has attempted to understand ACR at the level of the ideal generated by fκ ,
+often for fixed values of κ. One of the first sources of this is [50], and a more recent account of
+this approach can be found in [29]. However, understanding the positive part of an algebraic
+variety for all parameter values is a challenging problem as pathologies can easily arise for
+specific values of κ (such as the variety having real dimension lower than expected). Several of
+these pathologies are discussed in [29].
+    As illustrated by Theorem 3.1 and Theorem 3.4, the behavior of the positive steady state
+variety for generic parameter values is nonpathological and resembles that of the complex
+variety. This leads us to introduce the concepts of generic ACR and generic local ACR, and
+we show that these properties can be characterized in a more satisfactory way.
+    In what follows, we let πi : Cn → C denote the projection onto the xi -coordinate.
+   Definition 4.3. Consider a weakly nondegenerate reaction network with steady state sys-
+tem f . For a fixed κ ∈ Z, we say that V>0 (fκ ) has
+     • local ACR for Xi if #πi (V>0 (fκ )) < ∞,
+     • ACR for Xi if #πi (V>0 (fκ )) = 1.
+We furthermore say that the network has
+     • generic local ACR for Xi if #πi (V>0 (fκ )) < ∞ for generic κ ∈ Z,
+     • generic ACR for Xi if #πi (V>0 (fκ )) = 1 for generic κ ∈ Z.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                           17
+
+
+If the properties hold for all κ ∈ Z, then we say that the network has local ACR or ACR for
+Xi respectively.
+    The following theorem establishes that three criteria each completely characterize generic
+(local) ACR: a linear algebra condition arising from [49, Theorem 5.3], a property of the
+elimination ideals over the coefficient field C(κ) in the spirit of [29, Proposition 3.8], and the
+complex counterpart of the definition of (local) ACR.
+     Theorem 4.4. Consider a reaction network with stoichiometric matrix N ∈ Zn×m and
+kinetic matrix M ∈ Zn×m . Let f = (f1 , . . . , fs ) be the steady state system (2.2) with C ∈ Rs×m
+of full rank s and ker(N ) = ker(C). Suppose that the network is weakly nondegenerate (i.e.,
+that f is nondegenerate). Given i ∈ {1, . . . , n}, the following are equivalent:
+     (i) The network has generic local ACR for Xi .
+    (ii) rk((N diag(w)M ⊤ )\i ) < s for all w ∈ ker(N ), where \i indicates removal of the i-th
+         column.
+   (iii) πi (VC∗ (fκ )) is a finite set for generic κ ∈ Cm .
+   (iv) For I := ⟨f1 , . . . , fs ⟩ ⊆ C(κ)[x± ], the elimination ideal I ∩ C(κ)[x±
+                                                                                 i ] is generated by one
+         nonconstant polynomial.
+Furthermore:
+       • If the network does not have generic local ACR for Xi , then, for generic κ ∈ Z, V>0 (fκ )
+         has no (local) ACR for Xi .
+       • If the network has generic local ACR for Xi and for a specific κ ∈ Z every irreducible
+         component of VC∗ (fκ ) that intersects Rn>0 contains a nondegenerate zero of fκ , then
+         V>0 (fκ ) has local ACR for Xi . In particular, the network has local ACR for Xi if
+         rk(C diag(v)M ⊤ ) = s for all v ∈ ker(C) ∩ Rm      >0 .
+    The proof of Theorem 4.4 is given in Subsection 6.2, as it relies on a general result
+on augmented vertically parametrized systems. We emphasize first, that condition (ii) of
+Theorem 4.4 can easily be rejected by taking one random choice of parameter values as in
+Subsection 3.3, and second, that conditions (iii) and (iv) of Theorem 4.4 refer to the complex
+variety VC∗ (fκ ); hence generic local ACR cannot occur if the equivalent property does not
+arise over C∗ . The following corollary is a direct consequence of Theorem 4.4.
+     Corollary 4.5. Consider a weakly nondegenerate reaction network with steady state system f .
+If the set of κ ∈ Rm>0 for which V>0 (fκ ) has local ACR for Xi has nonempty Euclidean interior,
+then the network has generic local ACR for Xi , and hence any of the equivalent statements
+(ii)-(iv) in Theorem 4.4 holds.
+    Remark 4.6. Suppose M ∈ Zn×m                                                                 ±
+                                ≥0 . In this case, we can replace I = ⟨f1 , . . . , fs ⟩ ⊆ C(κ)[x ]
+in Theorem 4.4(iv) with the saturation ideal
+
+                                 ⟨f1 , . . . , fs ⟩ : (x1 · · · xn )∞ ⊆ C(κ)[x]
+
+as this ideal equals I ∩ C(κ)[x].
+    In [29, Proposition 3.8], the ideal ⟨fκ,1 , . . . , fκ,s ⟩ ∩ C[xi ] ⊆ C[xi ] is studied for fixed values
+of κ ∈ Rm>0 , as a sufficient condition for V>0 (fκ ) to have ACR. It is also given as a sufficient
+condition that the elimination ideal of the saturated ideal is generated by a polynomial of the
+form xi − α for some α. We settle here that the study of the generator of the elimination ideal
+18                    ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+after saturating ⟨fκ,1 , . . . , fκ,s ⟩ completely characterizes whether (local) ACR arises generically.
+    Corollary 4.7. Consider a weakly nondegenerate reaction network with steady state system f .
+The following statements are equivalent:
+    (i) The network has generic ACR for Xi .
+   (ii) For I := ⟨f1 , . . . , fs ⟩ ⊆ C(κ)[x± ], the elimination ideal I ∩ C(κ)[x±
+                                                                                 i ] is generated by one
+        polynomial that has exactly one positive root for generic κ ∈ Z.
+     Proof. Immediate from Theorem 4.4.
+    Combining Theorem 4.4, Corollary 4.7 and Remark 4.6, we easily obtain Theorem B from
+the introduction.
+     Example 4.8. In Example 4.2, it holds that
+                                                    nh                   i               o
+                C diag(w)M ⊤ : w ∈ ker(C) =
+               
+                                                         −2w1 + 2w2 0 : w1 , w2 ∈ C .
+We see that condition (i) in Theorem 3.1 holds, so f is nondegenerate. Removal of the first
+column gives a matrix of rank 0. Hence, condition (ii) in Theorem 4.4 is satisfied, and we
+conclude that the network has generic local ACR for X1 .
+    Remark 4.9. Clearly, having generic ACR is necessary for a weakly nondegenerate network
+to have ACR. Theorem 4.4 gives also that lack of generic local ACR implies that generically,
+there is no ACR. We illustrate here that other relations between these concepts might not
+hold.
+    We exploit an easy source of examples for ACR, which arise from networks with full rank
+s = n. When the number of positive steady states is finite, uniqueness of steady states readily
+gives ACR. Although these are not the interesting cases in applications, they allow us to
+understand what phenomena are not to be expected. In particular:
+(1) Generic (local) ACR does not imply (local) ACR: The steady state system
+                      f = (−κ1 x1 x2 + κ2 x22 + κ3 x2 , κ1 x1 x2 − κ4 x22 − κ5 x2 ),
+which can be seen to arise from a network with mass-action kinetics, has a solvability locus
+Z with nonempty Euclidean interior,        and for generic κ ∈ Z, there is precisely one positive
+               κ2 κ5 −κ3 κ4 κ5 −κ3 
+zero, namely κ1 (κ2 −κ4 ) , κ2 −κ4 . Thus, the network has generic ACR for X1 and X2 . However,
+when κ2 = κ4 and κ3 = κ5 , the zero set consists of the points ( κ2 xκ21+κ3 , x2 ) for x2 > 0, and
+hence there is no ACR (nor local ACR).
+(2) Absence of generic ACR does not imply that, generically, there is no ACR: The network
+with one species
+                        κ                    κ                   κ              κ
+                   3X1 −−1→ 2X1       2X1 −−2→ 3X1           X1 −−3→ 0       0 −−4→ X1
+has steady state system f = −κ1 x31 + κ2 x21 − κ3 x1 + κ4 , which is an arbitrary degree three
+polynomial with coefficients of fixed and alternating sign. Hence, the solvability locus Z has
+nonempty Euclidean interior. Furthermore, in a nonempty Euclidean open subset of Z, f has
+exactly one positive root, so there is ACR for X1 . However, also in a nonempty Euclidean
+open subset of Z, f has three positive roots, and hence there is no ACR. As both presence
+and absence of ACR occur in nonempty Euclidean open sets, none of the properties arise
+generically for this network.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                            19
+
+
+(3) Absence of generic local ACR does not preclude local ACR for a specific κ: The network
+with two species
+                   κ                                       κ
+      3X1 + X2 −−1→ 4X1                    2X1 + X2 −−2→ X1 + 2X2
+                   κ                                       κ                                κ
+      X1 + 3X2 −−3→ 2X1 + 2X2              X1 + 2X2 −−4→ 3X2                      X1 + X2 −−5→ 2X1
+has s = 1 and the steady state system is
+                            f = x1 x2 (κ1 x21 − κ2 x1 + κ3 x22 − κ4 x2 + κ5 ) .
+For generic κ in the solvability locus Z, the zero set is a nonlinear curve, and hence, there
+is no generic local ACR. However, for κ = (1, 2, 1, 2, 2), we have fκ = (x1 − 1)2 + (x2 − 1)2 ,
+V>0 (fκ ) consists of one (degenerate) point, and has trivially ACR for X1 and X2 .
+    The Zenodo repository of this paper (cf. Subsection 3.3) also includes code for checking the
+rank condition in Theorem 4.4. When applying the condition to the networks in the database
+ODEbase taken with mass-action kinetics, we found 48 consistent nondegenerate networks
+that have generic local ACR but not full rank (which would trivially imply generic local ACR).
+For this check, we excluded species that do not appear in the reactant or product of any of
+the reactions. Only one of the 48 networks was originally modeled with mass-action kinetics,
+which implies the remarkable fact that only one of the 72 networks reported with mass-action
+kinetics has generic (nontrivial) local ACR. This network is studied in more detail next in
+Example 4.10.
+    Example 4.10. The network BIOMD0000000413 from [5] offers a simple model of the degra-
+dation of the (DII-)VENUS reporter in response to the plant hormone auxin in a certain
+experimental setup, c.f. [5, Fig. 2(B-C)]. Specifically, the network is
+                  κ1                         κ3        κ                  κ6                κ8
+      X1 + X2 −− ⇀ X3            X3 + X4 −− ⇀ X5 −−5→ X3              0−− ⇀ X1           0−− ⇀ X4 ,
+              ↽κ−− 2
+                                         ↽κ−− 4
+                                                                       ↽κ−−7
+                                                                                          ↽κ−−  9
+
+where X1 = auxin, X2 = TIR1, X3 = auxinTIR1, X4 = VENUS, X5 = auxinTIR1VENUS,
+and the kinetics is mass action. The network is nondegenerate and the condition (ii) in
+Theorem 4.4 holds for i = 1, which allows us to easily conclude that the network has generic
+local ACR for X1 . The polynomial κ7 x1 − κ6 generates the elimination ideal I ∩ C(κ)[x±        1 ] in
+Theorem 4.4(iv), and hence the network displays generic ACR for X1 .
+     An easy check verifies that κ7 x1 − κ6 is the sum of the first and second entries of N (κ ◦ xM ),
+and hence its specialization belongs to I ∩ C[x±   1 ] for all κ. In particular, the network displays
+ACR for X1 .
+    We remark that this network has deficiency 1, but the species X1 does not fulfill the
+sufficient conditions for ACR from [52]. ACR can though be seen to arise from the addition of
+inflow and outflow reactions (0 − ↽−−⇀
+                                     − X1 ) to a network for which X1 appears in a conservation
+law (x1 + x2 − b).
+     Example 4.11. Network BIOMD0000000167 from [5], modeled with mass-action kinetics for
+all reactions, including those originally modeled with Michaelis-Menten kinetics, satisfies the
+conditions for generic local ACR in X9 . In fact, we have generic ACR, since
+ κ2 κ24 κ26 κ7 κ10 κ211 + 2κ11 κ13 + κ213 x29 − κ1 κ23 κ25 κ8 κ9 κ212 + 2κ12 κ14 + κ214 ∈ ⟨f ⟩ ∩ C(κ)[x±
+                                                                                    
+                                                                                                       9 ],
+
+which clearly has a unique positive root for all κ ∈ R14
+                                                      >0 .
+20                   ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+    5. Nondegenerate multistationarity. A reaction network is said to admit multistation-
+arity if there exists (κ, b) ∈ Rm     d
+                                >0 × R such that
+
+
+                                         2 ≤ #V>0 (Fκ,b ) .
+
+
+We say that the network admits nondegenerate multistationarity if in addition V>0 (Fκ,b )
+contains two nondegenerate positive steady states. The following theorem, which is strength-
+ening of [13, Theorem 1], shows that, for a special type of networks, multistationarity and
+nondegenerate multistationarity go hand in hand. The concept of dissipative networks, which
+generalizes conservative networks, refers to networks for which, given κ and b, there exists a
+compact set K such that the trajectories of (2.1) in Pb eventually remain in K; see [13] for
+details. Recall the matrix QF (w, h) given in (2.6).
+
+    Theorem 5.1. Consider a reaction network with kinetic matrix M ∈ Zn×m     ≥0 . Assume that
+the network lacks relevant boundary steady states and is dissipative, and let F be the augmented
+steady state system. Assume that det(QF (w, h)) attains both positive and negative signs for
+(w, h) ∈ (ker(N ) ∩ Rm        n
+                      >0 ) × R>0 . Then the network admits at least three nondegenerate positive
+steady states for some choice of parameters.
+
+    Proof. By [13, Theorem 1], there exists ε ∈ {±1} (depending on rk(N ) and a choice of a
+specific order of the rows of JFκ,b (x)) such that the network admits multistationarity if
+
+
+(5.1)                               sign(det(JFκ∗ ,Lx∗ (x∗ )) = ε
+
+
+for some κ∗ ∈ Rm             ∗
+                  >0 and x ∈ V>0 (fκ ). More specifically, [13, Theorem 1] states that if (5.1)
+holds, then the network has at least two positive steady states for this κ∗ and b = Lx∗ , and if
+all positive steady states are nondegenerate, then there is an odd number of them.
+    By Proposition 2.3 and hypothesis, there exists (w, h) ∈ (ker(N )∩Rm              n
+                                                                             >0 )×R>0 such that the
+sign of det(QF (w, h)) is ε. Then (κ∗ , b∗ , x∗ ) := ϕ(w, h) (with ϕ as in (2.5)) is such that x∗ is a
+nondegenerate positive steady state for the parameters (κ∗ , b∗ ), and there is multistationarity.
+    On one hand, by the implicit function theorem, there exists a Euclidean ball B ⊆ Rm       >0 × R
+                                                                                                     d
+
+containing (κ∗ , b∗ ), such that for all (κ, b) ∈ B, it holds that Fκ,b has a nondegenerate zero x
+with the sign of det(JFκ,b (x)) being equal to ε.
+    On the other hand, Theorem 3.4 and the existence of a nondegenerate positive steady
+state tells us that all positive steady states are nondegenerate for all (κ, b) in a nonempty
+Zariski open subset U ⊆ Zcc . We conclude that for any (κ, b) ∈ U ∩ B (where the latter set is
+nonempty), all positive steady states are nondegenerate and at least one satisfies (5.1). Hence
+there is an odd number of them and at least three, giving the statement.
+
+    Under the same hypotheses of Theorem 5.1, it already follows from [13, Theorem 1] that
+the network admits at least two positive steady states for some choice of parameters, while
+nondegeneracy is not addressed. Our strengthening of this result is that we can guarantee the
+existence of three positive steady states, all of which will be nondegenerate.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                      21
+
+
+      Next, we give conditions that ensure that a network with the capacity for multistationarity
+also has the capacity for nondegenerate multistationarity. This is related to the Nondegeneracy
+Conjecture from [39, 53, 55], which states that if V>0 (Fκ,b ) is finite for all (κ, b) ∈ Rm     d
+                                                                                           >0 × R ,
+                                     ∗ ∗      m      d
+and has cardinality ℓ for some (κ , b ) ∈ R>0 × R , then there is some choice of parameters
+(κ′ , b′ ) ∈ Rm     d
+              >0 × R for which the network has ℓ nondegenerate positive steady states. We
+analyze this problem in more generality from a topological point of view, with the help of the
+framework of vertically parameterized systems. We derive as a consequence the case ℓ = 2 of
+the conjecture for all nondegenerate networks.
+     Theorem 5.2. Suppose that for a given (κ∗ , b∗ ) ∈ Rm      d
+                                                          >0 × R , a reaction network has at least
+ℓndeg nondegenerate positive steady states, and at least ℓdeg > 0 degenerate positive steady
+states, which are isolated points in V>0 (Fκ∗ ,b∗ ). Assume furthermore that at least one of the
+following conditions holds:
+     (i) The network is nondegenerate and V>0 (Fκ,b ) is finite for all (κ, b) in an open neighbor-
+         hood of (κ∗ , b∗ ) in Rm     d
+                                >0 × R .
+    (ii) At least one of the degenerate positive steady states for (κ∗ , b∗ ) is an isolated point in
+         the complex variety VC∗ (Fκ∗ ,b∗ ).
+Then there exists a choice of parameters (κ′ , b′ ) ∈ Rm      d
+                                                       >0 × R such that the network has at least
+
+                                         ℓndeg + min(ℓdeg , 2)
+nondegenerate positive steady states.
+    Proof. Consider the parametrization of the solvability locus Zcc of F , obtained by composing
+ϕ in (2.5) with the projection to parameter space:
+               φ : (ker(N ) ∩ Rm       n     m   d
+                               >0 ) × R>0 → R × R ,         (v, h) 7→ (v ◦ hM , Lh−1 ),
+where d = n − s. An easy dimension count shows that both the domain and codomain of φ
+are differential manifolds of dimension m + d. By construction, im(φ) = Zcc , and the fiber
+φ−1 (κ∗ , b∗ ) is homeomorphic to V>0 (Fκ∗ ,b∗ ).
+      Note that the network is nondegenerate also in case (ii): the theorem of dimension of
+fibers [46, Theorem 3.13, Corollary 3.15] says that if VC∗ (Fκ∗ ,b∗ ) has an isolated point, then
+VC∗ (Fκ,b ) is nonempty and finite for generic (κ, b) ∈ Cm × Cd , so the network is nondegenerate
+by Theorem 3.4. Hence, Zcc is an (m + d)-dimensional semialgebraic set in both case (i) and
+(ii).
+      [26, Proposition 3.3] establishes that when (κ, b, x) = ϕ(v, h), x is a nondegenerate positive
+steady state if and only if (v, h) is a critical point of φ. In this case, φ is a local diffeomeorphism
+around (v, h), and hence φ(v, h) is in the interior of φ(U ) for any open neighborhood U of
+(v, h) in (ker(N ) ∩ Rm         n
+                       >0 ) × R>0 . We also have that the set Dcc of parameter values for which
+there is a degenerate positive steady state coincides with the set of critical values of φ, and
+the Zariski closure H ⊆ Rm × Rd of Dcc is a proper algebraic variety under the assumption of
+nondegeneracy [26, Proposition 3.4]. So
+                              T := φ−1 (H) ⊆ (ker(N ) ∩ Rm       n
+                                                         >0 ) × R>0
+
+is a proper Zariski closed subset. It follows that for any nonempty open set U in
+(ker(N ) ∩ Rm       n
+            >0 ) × R>0 , the image φ(U ) has nonempty interior, as U \ T ̸= ∅ consists of regular
+points of φ, which are mapped to the interior of φ(U \ T ).
+22                    ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+   Since ℓdeg > 0, we must have (κ∗ , b∗ ) ∈ H. We want to show that there exists a choice of
+parameters (κ′ , b′ ) ∈ Rm     d
+                         >0 × R such that
+
+(5.2)              ℓndeg + min(ℓdeg , 2) ≤ #φ−1 (κ′ , b′ )       and      (κ′ , b′ ) ∈
+                                                                                     / H.
+
+    By assumption, the fiber φ−1 (κ∗ , b∗ ) contains ℓndeg isolated points Pndeg := {ξ1 , . . . , ξℓndeg }
+corresponding to nondegenerate positive steady states, and ℓdeg > 0 isolated points
+Pdeg := {δ1 , . . . , δℓdeg } corresponding to degenerate positive steady states, where, if in case (ii),
+we additionally assume that δ1 corresponds to an isolated point in VC∗ (Fκ∗ ,b∗ ).
+    Let P = Pndeg ∪ Pdeg and Up for p ∈ P be disjoint open balls in (ker(N ) ∩ Rm               n
+                                                                                      >0 ) × R>0 such
+             −1       ∗   ∗                  ∗  ∗
+that Up ∩ φ (κ , b ) = {p}. Then (κ , b ) ∈ p∈P φ(Up ). As noticed above, each φ(Up ) has
+                                                    T
+
+nonempty Euclidean interior and for each p ∈ Pndeg , (κ∗ , b∗ ) belongs to the interior of φ(Up ).
+By shrinking each Uq appropriately, we can without loss of generality assume
+                                          \
+(5.3)                        φ(Uq ) ⊆             φ(Up )   for each q ∈ Pdeg .
+                                        p∈Pndeg
+
+
+     If V := p∈P φ(Up ) has nonempty interior, then for all (κ, b) ∈ V , the fiber φ−1 (κ, b)
+              T
+
+contains at least ℓndeg + ℓdeg distinct points: one in each Up . Any (κ′ , b′ ) ∈ V \ H now satisfies
+(5.2), and we are done. Note that this will be the case when ℓdeg = 1, in which case we have
+now shown that there are at least ℓndeg + 1 nondegenerate positive steady states.
+     If the interior of V is empty, then necessarily ℓdeg ≥ 2. If (κ∗ , b∗ ) is in the interior of
+φ(Up ) for at least one p ∈ Pdeg , say δi , then the interior of φ(Uδi ) ∩ φ(Uδj ) p∈Pndeg φ(Up ) is
+                                                                                    T
+
+nonempty for all i ̸= j and, as above, we are done by picking any such j. We therefore assume
+that (κ∗ , b∗ ) is at the boundary of φ(Up ) for all p ∈ Pdeg , and in particular for δ1 . The rest of
+the proof will now focus on proving that, under this scenario, φ is not injective on Uδ1 \ T .
+    We first show that there exists an open neighborhood U ⊆ Uδ1 of δ1 , such that the fibers of
+φ|U are finite. This is trivial in case (i). For case (ii), we use the upper semi-continuity (see [54,
+02FZ]) of the map ξ 7→ dimξ (φ−1  C (φC (ξ))), where dimξ denotes the local dimension at ξ, and φC
+is the extension of φ to C as in (6.1) below. Since, by assumption, δ1 is isolated in φ−1       ∗ ∗
+                                                                                            C (κ , b ),
+                                                                                  −1
+this implies that there is an open neighborhood U ⊆ Uδ1 of δ1 such that φ|U (φ|U (ξ)) is finite
+for all ξ ∈ U .
+    Aiming for a contradiction, we now assume that φ is injective on U \ T . As all fibers of
+φ|U are finite, the Main Theorem in [7] tells us that φ|U is injective and hence an open map by
+the theorem of invariance of domain. Hence, δ1 is mapped to a point in the interior of φ(Uδ1 ),
+yielding a contradiction.
+    We conclude that there exist at least two points in Uδ1 \ T mapping to some (κ′ , b′ ) ∈     / H,
+each corresponding to a nondegenerate positive steady state. As (κ′ , b′ ) ∈ p∈Pndeg φ(Up ) by
+                                                                                   T
+
+(5.3), there are at least ℓndeg + 2 nondegenerate positive steady states for (k ′ , b′ ).
+    It remains an open question whether the lower bound of Theorem 5.2 can be improved to
+ℓndeg + ℓdeg . Nevertheless, we see that the existence of two isolated points, together with the
+conditions (i) or (ii), is sufficient for nondegenerate multistationarity. In particular, this proves
+the Nondegeneracy Conjecture for the ℓ = 2 case for all nondegenerate networks, as stated in
+Theorem C in the introduction.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                         23
+
+
+     Corollary 5.3. Suppose that for a given choice of parameters (κ∗ , b∗ ) ∈ Rm         d
+                                                                                   >0 × R , a reaction
+network has at least two positive steady states, which are isolated points in V>0 (Fκ∗ ,b∗ ), and at
+least one of the following conditions holds:
+     (i) The network is nondegenerate and V>0 (Fκ,b ) is finite for all (κ, b) in an open neighbor-
+         hood of (κ∗ , b∗ ) in Rm     d
+                                >0 × R .
+    (ii) At least one of the positive steady states for (κ∗ , b∗ ) is an isolated point in VC∗ (Fκ∗ ,b∗ ).
+Then there also exists a choice of parameters such that the network has at least two nondegenerate
+positive steady states.
+    Remark 5.4. For nondegenerate networks, condition (i) of Theorem 5.2 and Corollary 5.3 is
+satisfied if V>0 (Fκ,b ) is finite for all (κ, b) ∈ Rm    d
+                                                     >0 ×R (as required in the original Nondegeneracy
+Conjecture of [39]). Another sufficient condition for (i) is V>0 (Fκ,b ) being finite and nonempty
+for all (κ, b) in an open neighborhood of (κ∗ , b∗ ) in Rm            d
+                                                               >0 × R . We furthermore note that
+condition (ii) implies that the network is nondegenerate by Theorem 6.1. A sufficient condition
+for (ii) to hold is that VC∗ (Fκ∗ ,b∗ ) is finite.
+   Example 5.5. To understand some of the phenomena behind assumptions (i) and (ii) in
+Theorem 5.2, we consider the network with s = n = 2 and stoichiometric and kinetic matrix
+                  "                                                                        #
+                 1 −4 2 −6 11 −4 12 −14 1 −6 15 −18 10 0
+              N=                                         ,
+                 1 −4 2 −6 11 −4 12 −14 1 −6 15 −18 0 10
+                             "                                                   #
+                          5 4 3 3 3 2 2 2 1 1 1 1 1 1
+                       M=                             .
+                          1 1 3 2 1 3 2 1 5 4 3 2 1 1
+     By subtracting the second row of N to the first, we see that any positive steady state satisfies
+(κ13 − κ14 )x1 x2 = 0. Hence, Z is generically empty, the network is (strongly) degenerate, and
+all positive steady states for all choices of rate constants are degenerate. Taking κ∗ = (1, . . . , 1)
+gives
+
+                           x1 x2 (x1 − 1)2 + (x2 − 1)2 (x1 − 1)2 + (x2 − 2)2
+                                                                                     !
+(5.4)            fκ∗ =
+                           x1 x2 (x1 − 1)2 + (x2 − 1)2 (x1 − 1)2 + (x2 − 2)2
+                                                                            
+
+
+for which V>0 (fκ∗ ) = {(1, 1), (1, 2)}, and hence has two (isolated) points. Therefore, we have
+multistationarity but not nondegenerate multistationarity.
+      Remark 5.6. One might expect that the existence of two isolated positive steady states for
+some parameter values (κ∗ , b∗ ) for a nondegenerate network is sufficient for nondegenerate mul-
+tistationarity. However, additional assumptions, such as (i) or (ii) in Theorem 5.2, are needed
+to guarantee that multiple nondegenerate positive steady states arise for some perturbation of
+(κ∗ , b∗ ). To illustrate this, we consider a modification of Example 5.5 with full rank matrices
+          "                                                                                #
+        1 −4 2 −6 11 −4 12 −14 1 −6 15 −18  0  10 0
+     N=                                             ∈ Z2×15 ,
+        1 −4 2 −6 11 −4 12 −14 1 −6 15  0  −18 0 10
+                       "                                                     #
+                    5 4 3 3 3 2 2 2 1 1 1 1 1 1 1
+                 M=                               ∈ Z2×15
+                                                     ≥0 .
+                    1 1 3 2 1 3 2 1 5 4 3 2 2 1 1
+24                     ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+    The polynomial fκ,1 − fκ,2 yields 9(κ12 − κ13 )x2 − 5(κ14 − κ15 ) = 0 at any zero in (C∗ )2 .
+When κ12 ̸= κ13 and κ14 ̸= κ15 , by isolating x2 , inserting the expression into fκ,1 and clearing
+denominators and the factor x1 x2 , we obtain a degree 4 polynomial in x1 . Hence VC∗ (fκ )
+has generically four elements. As in addition ker(N ) ∩ R2>0 ̸= ∅, the steady state system f
+is nondegenerate. If either κ12 = κ13 or κ14 = κ15 , but not simultaneously, then there are
+no positive steady states. If κ12 = κ13 and κ14 = κ15 , then VC∗ (fκ ) has dimension 1 and all
+zeros are degenerate, and for κ∗ = (1, . . . , 1), fκ∗ coincides with (5.4), and there are thus two
+degenerate and isolated positive steady states. Note that condition (ii) of Theorem 5.2 is not
+satisfied, as all irreducible components of VC∗ (fκ∗ ) are infinite. Condition (i) of Theorem 5.2
+is not satisfied either, as V>0 (fκ ) is infinite for any κ = (1, . . . , 1, a, a) with 0 < a < 1.
+    We show next that any perturbation of κ∗ yields a system without nondegenerate real
+zeros. To see this, we need to assume κ12 ̸= κ13 and κ14 ̸= κ15 , and consider the degree four
+polynomial in x1 introduced above. We reparametrize the polynomial using κ12 = ϵ + κ13 and
+κ14 = a · ϵ + κ15 with ϵ ̸= 0 and a > 0 (so x2 is positive), such that it becomes:
+
+     g := ϵ4 6561κ1 x41 − 26244κ2 x31 + (4050 a2 κ3 − 21870 a κ4 + 72171κ5 )x21
+            
+
+
+                         + (−8100 a2 κ6 + 43740 a κ7 − 91854κ8 )x1 + 625 a4 κ9
+                                         − 6750 a3 κ10 + 30375 a2 κ11 − 65610 a κ13 + 65610κ15 .
+                                                                                                   
+
+
+
+If we set κi = 1 for all i ̸∈ {12, 14}, g has the roots
+
+                                  1 ± ( 59a − 2) I,   1 ± ( 59a − 1)I,
+
+i.e., either 4 complex roots, or 2 complex roots and a double positive root, independently
+of ϵ. Hence, no choice of ϵ ̸= 0 and a > 0 leads to nondegenerate positive steady states. If
+a ̸∈ { 95 , 18
+            5 }, then any small perturbation of the κi for i ∈
+                                                             / {12, 14} yields a polynomial with
+4 complex simple roots as well. If a perturbation for a ∈ { 95 , 18
+                                                                  5 } yielded positive real simple
+roots, then the same would be true after perturbing a, which we already shown is not the case.
+     This reparameterization shows that any small perturbation of κ∗ will yield a system with
+no nondegenerate real zero. In particular, this illustrates that extra assumptions such as (i)
+and (ii) in Theorem 5.2 are necessary if one aims at obtaining nondegenerate multistationarity
+by perturbing the given isolated zeros.
+     We note that the system f in this discussion, in fact, admits choices of parameters for
+which there are two nondegenerate positive steady states, but these are “far” from κ∗ and
+hence their existence is, in a sense, “independent” of the existence of two positive steady states
+for κ∗ .
+    6. Proofs of Theorem 3.1, Theorem 3.4 and Theorem 4.4. In this final section we give
+the full theorem on augmented vertically parametrized systems from [26] for completeness, and
+use it to derive Theorem 3.1, Theorem 3.4 and Theorem 4.4.
+    An augmented vertically parametrized system is one of the form
+                                
+        g = C(κ ◦ xM ), Lx − b ∈ C[κ, b, x± ]s+ℓ ,        rk(C) = s,     s ≤ n,   0 ≤ ℓ ≤ n − s.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                  25
+
+
+With ℓ = 0, the steady state system is of this form (there is no linear part), and with ℓ = n − s
+so is the augmented steady state system. The complex incidence variety
+
+                      Ig := {(κ, b, x) ∈ Cm × Cℓ × (C∗ )n : g(κ, b, x) = 0}
+
+is nonsingular and admits a parametrization
+
+(6.1)      ϕ : ker(C) × (C∗ )n → Cm × Cℓ × (C∗ )n ,     (w, h) 7→ (w ◦ hM , Lh−1 , h−1 ),
+
+analogous to (2.4). We let
+
+                           Zg = {(κ, b) ∈ Rm     ℓ
+                                           >0 × R : V>0 (gκ,b ) ̸= ∅}.
+
+
+    The following theorem is [26, Theorem 3.7] (applied to A = Rm         ℓ           n
+                                                                   >0 × R and X = R>0 in the
+notation of [26]), combined with the considerations at the start of Section 3.5 and Remark 2.4
+in [26]. At the core of the proof is the fact that degenerate zeros of g correspond to critical
+values of the projection of ϕ onto parameter space [26, Proposition 3.3]. Additionally, we add
+the condition (setZC), which is equivalent to (setZ) by [26, Lemma 2.8], and (iso1), which is
+equivalent to (setZ) by the theorem of dimension of fibers (see, e.g., [26, Theorem 2.3]).
+    Theorem 6.1. For a real augmented vertically parametrized system
+
+           g = (C(κ ◦ xM ), Lx − b) ∈ R[κ, b, x± ]s+ℓ   with s ≤ n and 0 ≤ ℓ ≤ n − s,
+
+assume that Ig ∩ (Rm     ℓ   n
+                   >0 × R × R>0 ) ̸= ∅. Consider the following statements:
+     (iso1) gκ,b has an isolated zero in (C∗ )n for some (κ, b) ∈ Cm × Cℓ .
+   (deg1) gκ,b has a nondegenerate zero in (C∗ )n for some (κ, b) ∈ Cm × Cℓ .
+ (degX1) gκ,b has a nondegenerate zero in Rn>0 for some (κ, b) ∈ Rm            ℓ
+                                                                         >0 × R .
+(degXG) There exists a nonempty Zariski open subset U ⊆ Ig such that for all
+            (κ, b, x) ∈ U ∩ (Rm       ℓ     n
+                              >0 × R × R>0 ), x is a nondegenerate zero of gκ,b .
+ (degAll) For generic (κ, b) ∈ Zg , all zeros of gκ,b in (C∗ )n are nondegenerate.
+    (setE) Zg has nonempty Euclidean interior in Rm            ℓ
+                                                         >0 × R .
+                                        m
+    (setZ) Zg is Zariski dense in C × C .     ℓ
+
+  (setZC) {(κ, b) ∈ Cm × Cℓ : VC∗ (gκ,b ) ̸= ∅} is Zariski dense in Cm × Cℓ .
+   (dim1) VC∗ (gκ,b ) has pure dimension n − s − ℓ for at least one (κ, b) ∈ Zg .
+  (dimG) VC∗ (gκ,b ) has pure dimension n − s − ℓ for generic (κ, b) ∈ Zg .
+     (real) For generic (κ, b) ∈ Z, VR∗ (gκ,b ) has pure dimension n − s − ℓ, and V>0 (gκ,b ) has
+            dimension n − s − ℓ as a semialgebraic set.
+      (reg) For generic (κ, b) ∈ Cm × Cℓ , VC∗ (gκ,b ) is a nonsingular complex algebraic variety
+            (in particular, different irreducible components do not intersect).
+      (rad) gκ,b generates a radical ideal in C[x± ] for generic (κ, b) ∈ Cm × Cℓ , and g generates
+            a radical ideal in C(κ, b)[x± ].
+26                     ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+Then the following holds:
+     • The statements (deg1), (degX1), (degXG), (degAll), (setE), (setZ), (setZC), (dim1),
+       (dimG) are all equivalent to the condition
+                   "                         #
+                   C diag(w)M ⊤ diag(h)
+                rk                      =s+ℓ              for some (w, h) ∈ ker(C) × (C∗ )n .
+                            L
+
+     • Any of the statements mentioned above implies (real) and (reg).
+     • The statement (rad) holds, independently of the other statements.
+     6.1. Proof of Theorem 3.1 and Theorem 3.4. We consider the steady state system f ,
+where ℓ = 0 and Z = Zf for Theorem 3.1, and the augmented steady state system F with
+ℓ = n − s and ZF = Zcc for Theorem 3.4. In both cases, the condition ker(C) ∩ Rm        >0 ̸= ∅
+                                                                          m      n
+implies Z ̸= ∅ and Zcc ̸= ∅ by Proposition 2.3, and hence If ∩ (R>0 × R>0 ) ̸= ∅ and
+IF ∩ (Rm        d     n
+         >0 × R × R>0 ) ̸= ∅. Therefore, we can apply Theorem 6.1.
+     The equivalence between (i)–(vi) in Theorem 3.1 and in Theorem 3.4 correspond to the
+first bullet point of Theorem 6.1 by using (deg1), (degAll), (setE), (setZ), (dim1).
+     For Theorem 3.1, we now have that if the equivalent statements hold, Theorem 6.1 gives
+that (dimG) and (real) hold, and so does the first bullet point. For the second bullet point, as
+(dim1) and (deg1) do not hold, we obtain the statement about dimension and degeneracy. As
+(setZC) does not hold, the complex varieties are nonempty only for parameters in a proper
+Zariski closed subset, hence generically empty.
+     The last bullet point of both Theorem 3.1 and Theorem 3.4 agree with that of Theorem 6.1.
+     For Theorem 3.4, the first bullet point follows from (real) and (degAll).
+     6.2. Proof of Theorem 4.4. To show the equivalence between (iii) and (iv), let Iκ denote
+the specialization of I to κ. The closure theorem gives us that VC∗ (Iκ ∩ C[x±      i ]) = πi (VC∗ (fκ ))
+             m                                                        ±
+for all κ ∈ C [15]. So πi (VC (fκ )) is finite if and only if Iκ ∩ C[xi ] is not the zero ideal. Given
+                                 ∗
+
+G ⊆ C(κ)[x± ] a Gröbner basis of I, it specializes to a Gröbner basis of Iκ for generic κ. This
+gives that Iκ ∩ C[x± i ] is generated by one polynomial for generic κ if and only if I ∩ C(κ)[xi ]
+                                                                                                      ±
+
+is, and from this the equivalence follows.
+     With this in place, it is enough to show that (ii) ⇒ (iii) ⇒ (i) ⇒ (ii). As f is nondegenerate,
+Z has nonempty Euclidean interior and is Zariski dense in Cm . Let H be the augmented
+vertical system constructed by appending xi − c to f , and let ZH ⊆ Rm        >0 × R be the subset of
+parameters (κ, c) such that Hκ,c has a zero in Rn>0 . For each κ ∈ Z, let cκ be the xi -value of
+some x ∈ V>0 (fκ ), which is nonempty by hypothesis. Then (κ, cκ ) ∈ ZH as H has a positive
+zero. Hence we have a dominant map of varieties
+
+                                 ρ : ZH → Z = C m ,        (κ, c) 7→ κ,
+
+where the overline refers to the Zariski closure in complex spaces. By the theorem of the
+dimension of fibers [46, Theorem 3.13], we conclude that the fibers of ρ have generically
+dimension dim(ZH ) − m . By construction, for κ ∈ Cm , πi (VC∗ (fκ )) can be identified as a
+subset of ρ−1 (κ), if nonempty.
+   Condition (ii) is exactly the failure of the rank condition in Theorem 6.1, namely that the
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                    27
+
+
+matrix                        "                        #
+                                  C diag(w)M ⊤ diag(h)
+                                                       ∈ C(s+1)×n ,
+                                           ei
+with ei is the canonical row vector with 1 in the i-th entry and zero otherwise, has rank at
+most s for all w ∈ ker(C) ⊆ Cm and h ∈ (C∗ )n . Hence, (ii) holds if and only if (setZC) does
+not hold, that is, ZH is a proper Zariski closed subset of Cm × C, that is, has dimension at
+most m. This in turn holds if and only if the fibers of ρ have generically dimension 0, in which
+case this implies that πi (VC∗ (fκ )) has generically dimension 0, giving (iii).
+     As Z is Zariski dense, we readily have that (iii) implies (i). Given κ ∈ Rm           nd
+                                                                                 >0 , let Vκ be the
+union of the irreducible components of VC∗ (fκ ) that contain a nondegenerate positive zero of
+fκ . Then [49, Theorem 5.3] states that (ii) is equivalent to Vκnd ∩ Rn>0 having local ACR for
+Xi for all κ ∈ Rm                  nd
+                 >0 for which Vκ ̸= ∅. By Theorem 3.1, all zeros of fκ are nondegenerate for
+generic κ ∈ Z and hence, generically, V>0 (fκ ) = Vκnd ∩ Rn>0 . Hence (i) implies (ii).
+     We now show the bullet points of the statement. For the first bullet point, if (i) does not
+hold, neither does (iii), and then for generic κ ∈ (C∗ )m , πi (VC∗ (fκ )) is the complex line C∗
+except for at most a finite number of points (by the Closure Theorem). As Z is Zariski dense,
+it follows that πi (V>0 (fκ )) also is infinite for generic κ ∈ Z and hence, generically, there is no
+local ACR.
+     For the first part of the second bullet point, the extra assumption implies
+V>0 (fκ ) = Vκnd ∩ Rn>0 for the given κ. Then, the specialized version [49, Theorem 4.11] of [49,
+Theorem 5.3] gives that V>0 (fκ ) has local ACR for Xi if and only if the matrix Jfκ (x)\i has
+rank at most s − 1 for all x ∈ V>0 (fκ ). But this is guaranteed by (ii) and Proposition 2.3.
+The second part follows again from [49, Theorem 5.3] and Proposition 2.3, as the condition
+ensures V>0 (fκ ) = Vκnd ∩ Rn>0 for all κ ∈ Z.
+    Acknowledgements. EF and OH have been funded by the Novo Nordisk Foundation
+project with grant reference number NNF20OC0065582. BP has been funded by the European
+Union’s Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie
+IF grant agreement No 794627 and the Spanish Ministry of Economy project with reference
+number PID2022-138916NB-I00. This work has also been funded by the European Union
+under the Grant Agreement no. 101044561, POSALG. Views and opinions expressed are those
+of the authors only and do not necessarily reflect those of the European Union or European
+Research Council (ERC). Neither the European Union nor ERC can be held responsible for
+them. The authors thank Anne Shiu and two anonymous referees for helpful feedback on
+earlier versions of the manuscript.
+    References.
+ [1] U. Alon, M. G. Surette, N. Barkai, and S. Leibler, Robustness in bacterial
+     chemotaxis, Nature, 397 (1999), pp. 168–171.
+ [2] D. F. Anderson, Boundedness of trajectories for weakly reversible, single linkage class
+     reaction systems, J. Math. Chem., 49 (2011), pp. 2275–2290.
+ [3] M. Banaji and E. Feliu, Positive equilibria in mass action networks: geometry and
+     bounds, 2025. Preprint: arXiv:2409.06877v2.
+ [4] M. Banaji and C. Pantea, The inheritance of nondegenerate multistationarity in
+     chemical reaction networks, SIAM J. Appl. Math., 78 (2018), pp. 1105–1130.
+28                  ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+ [5] L. Band, D. Wells, A. Larrieu, J. Sun, A. Middleton, A. French, G. Brunoud,
+     E. Sato, M. Wilson, B. Péret, M. Oliva, R. Swarup, I. Sairanen, G. Parry,
+     K. Ljung, T. Beeckman, J. Garibaldi, E. M., M. Owen, K. Vissenberg, T. Hodg-
+     man, T. Pridmore, J. King, T. Vernoux, and M. Bennett, Root gravitropism is
+     regulated by a transient lateral auxin gradient controlled by a tipping-point mechanism,
+     Proc Natl Acad Sci U S A, 109 (2012), pp. 4668–73.
+ [6] A. Ben-Israel, Notes on linear inequalities, I: The intersection of the nonnegative orthant
+     with complementary orthogonal subspaces, J. Math. Anal. Appl., 9 (1964), p. 303–314.
+ [7] A. Blokh, L. Oversteegen, and E. D. Tymchatyn, On almost one-to-one maps,
+     Trans. Amer. Math. Soc., 358 (2006), pp. 5003–5014.
+ [8] B. Boros, Existence of positive steady states for weakly reversible mass-action systems,
+     SIAM J. Math. Anal., 51 (2019), pp. 435–449.
+ [9] B. Boros, G. Craciun, and P. Y. Yu, Weakly reversible mass-action systems with
+     infinitely many positive steady states, SIAM J. Appl. Math, 80 (2020), pp. 1936–1946.
+[10] D. Cappelletti, E. Feliu, and C. Wiuf, Addition of flow reactions preserving
+     multistationarity and bistability, Math. Biosc., 320 (2020).
+[11] D. Cappelletti, A. Gupta, and M. Khammash, A hidden integral structure en-
+     dows absolute concentration robust systems with resilience to dynamical concentration
+     disturbances, J. R. Soc. Interface, 17 (2020), p. 20200437.
+[12] B. L. Clarke, Stability of Complex Reaction Networks, John Wiley & Sons, Ltd, 1980,
+     pp. 1–215.
+[13] C. Conradi, E. Feliu, M. Mincheva, and C. Wiuf, Identifying parameter regions
+     for multistationarity, PLOS Comput. Biol., 13 (2017), p. e1005751.
+[14] C. Conradi, D. Flockerzi, J. Raisch, and J. Stelling, Subnetwork analysis reveals
+     dynamic features of complex (bio)chemical networks, Proc. Nat. Acad. Sci., 104 (2007),
+     pp. 19175–80.
+[15] D. A. Cox, J. Little, and D. O’Shea, Ideals, Varieties, and Algorithms: An Intro-
+     duction to Computational Algebraic Geometry and Commutative Algebra, Undergraduate
+     Texts in Mathematics, Springer International Publishing, 2015.
+[16] G. Craciun and M. Feinberg, Multiple equilibria in complex chemical reaction networks.
+     I. The injectivity property, SIAM J. Appl. Math., 65 (2005), pp. 1526–1546.
+[17] G. Craciun and M. Feinberg, Multiple equilibria in complex chemical reaction networks:
+     extensions to entrapped species models, Syst. Biol. (Stevenage), 153 (2006), pp. 179–186.
+[18] G. Craciun and M. Feinberg, Multiple equilibria in complex chemical reaction networks:
+     Semiopen mass action systems, SIAM J. Appl. Math., 70 (2010), pp. 1859–1877.
+[19] A. Duvall and E. D. Sontag, A remark on ω-limit sets for non-expansive dynamics,
+     in 2024 IEEE 63rd Conference on Decision and Control (CDC), 2024, pp. 1504–1511.
+[20] M. Feinberg, Complex balancing in general kinetic systems, Arch. Rational. Mech. Anal.,
+     49 (1972), p. 187.
+[21] M. Feinberg, Chemical reaction network structure and the stability of complex isothermal
+     reactors—I. the deficiency zero and deficiency one theorems, Chem. Eng. Sci., 42 (1987),
+     pp. 2229–2268.
+[22] M. Feinberg, The existence and uniqueness of steady states for a class of chemical
+     reaction networks, Arch. Rational. Mech. Anal., 132 (1995), p. 311.
+THE GENERIC GEOMETRY OF STEADY STATE VARIETIES                                                29
+
+
+[23] M. Feinberg, Foundations of chemical reaction network theory, vol. 202 of Applied
+     Mathematical Sciences, Springer, Cham, 2019.
+[24] M. Feinberg and F. J. M. Horn, Chemical mechanism structure and the coincidence of
+     the stoichiometric and kinetic subspaces, Arch. Rational. Mech. Anal., 66 (1977), pp. 83–97.
+[25] E. Feliu and O. Henriksson, Toric invariance of vertically parametrized systems, 2024.
+     Preprint: arXiv:2411.15134.
+[26] E. Feliu, O. Henriksson, and B. Pascual-Escudero, Generic consistency and
+     nondegeneracy of vertically parametrized systems, J. Algebra, 677 (2025), pp. 630–666.
+[27] E. Feliu and C. Wiuf, Preclusion of switch behavior in networks with mass-action
+     kinetics, Appl. Math. Comput., 219 (2012), pp. 1449–1467.
+[28] E. Feliu and C. Wiuf, Simplifying biochemical models with intermediate species, J. R.
+     Soc. Interface, 10 (2013), p. 20130484.
+[29] L. D. Garcı́a Puente, E. Gross, H. A. Harrington, M. Johnston, N. Meshkat,
+     M. Pérez Millán, and A. Shiu, Absolute concentration robustness: Algebra and
+     geometry, J. Symb. Comput., 128 (2025), p. 102398.
+[30] K. Gatermann, M. Eiswirth, and A. Sensse, Toric ideals and graph theory to analyze
+     Hopf bifurcations in mass action systems, J. Symbolic Comput., 40 (2005), pp. 1361–1382.
+[31] C. M. Guldberg and P. Waage, Studier i affiniteten, Videnskabs-Selskabet i Christia-
+     nia, (1864), pp. 35–45.
+[32] P. A. Helminck, O. Henriksson, and Y. Ren, A tropical method for solving
+     parametrized polynomial systems, 2024. Preprint: arXiv:2409.13288.
+[33] P. A. Helminck and Y. Ren, Generic root counts and flatness in tropical geometry, J.
+     Lond. Math. Soc., 111 (2025).
+[34] F. Horn and R. Jackson, General mass action kinetics, Arch. Rational. Mech. Anal.,
+     47 (1972), pp. 81–116.
+[35] V. Hárs and J. Tóth, On the inverse problem of reaction kinetics, in Colloquia
+     Mathematica Societatis János Bolyai 30., Qualitative Theory of Differential Equations,
+     Szeged (Hungary), 1979, pp. 363–379.
+[36] H. Ji, P. Ellison, D. Knight, and M. Feinberg, CRNToolbox version 2.35, 2018.
+     available at http://crnt.osu.edu/CRNTWin.
+[37] B. Joshi and A. Shiu, Atoms of multistationarity in chemical reaction networks, J.
+     Math. Chem., 51 (2013), pp. 153–178.
+[38] B. Joshi and A. Shiu, A survey of methods for deciding whether a reaction network is
+     multistationary, Math. Model. Nat. Phenom., 10 (2015), pp. 47–67.
+[39] B. Joshi and A. Shiu, Which small reaction networks are multistationary?, SIAM J.
+     Appl. Dyn. Syst., 16 (2017), pp. 802—-833.
+[40] R. L. Karp, M. Pérez Millán, T. Dasgupta, A. Dickenstein, and J. Gunawar-
+     dena, Complex-linear invariants of biochemical networks, J. Theoret. Biol., 311 (2012),
+     pp. 130–138.
+[41] S. Kothari and A. Deshpande, Endotactic and strongly endotactic networks with
+     infinitely many positive steady states, J. Math. Chem., 62 (2024), pp. 1454–1478.
+[42] M. Laurent and N. Kellershohn, Multistability: a major means of differentiation
+     and evolution in biological systems, Trends Biochem. Sciences, 24 (1999), pp. 418–422.
+[43] T. E. Loman, Y. Ma, V. Ilin, S. Gowda, N. Korsbo, N. Yewale, C. Rackauckas,
+30                  ELISENDA FELIU, OSKAR HENRIKSSON, AND BEATRIZ PASCUAL-ESCUDERO
+
+
+     and S. A. Isaacson, Catalyst: Fast and flexible modeling of reaction networks, PLOS
+     Comput. Biol., 19 (2023), pp. 1–19.
+[44] C. Lüders, T. Sturm, and O. Radulescu, ODEbase: a repository of ODE systems
+     for systems biology, Bioinf. Adv., 2 (2022).
+[45] N. Meshkat, A. Shiu, and A. Torres, Absolute concentration robustness in networks
+     with low-dimensional stoichiometric subspace, Vietnam J. Math., 50 (2022), pp. 623–651.
+[46] D. Mumford, Algebraic Geometry I, Complex Projective Varieties, Classics in Mathe-
+     matics, Springer Verlag, 1976.
+[47] S. Müller, E. Feliu, G. Regensburger, C. Conradi, A. Shiu, and A. Dicken-
+     stein, Sign conditions for injectivity of generalized polynomial maps with applications to
+     chemical reaction networks and real algebraic geometry, Found. Comput. Math., 16 (2015),
+     pp. 69–97.
+[48] OSCAR – Open Source Computer Algebra Research system, version 1.6.0, 2025, https:
+     //www.oscar-system.org.
+[49] B. Pascual-Escudero and E. Feliu, Local and global robustness at steady state, Math.
+     Methods Appl. Sci., 45 (2022), pp. 359–382.
+[50] M. Pérez Millán, Métodos algebraicos para el estudio de redes bioquı́micas, PhD Thesis,
+     2011. Available at https://bibliotecadigital.exactas.uba.ar/collection/tesis/document/
+     tesis n5103 PerezMillan.
+[51] M. Pérez Millán, A. Dickenstein, A. Shiu, and C. Conradi, Chemical reaction
+     systems with toric steady states, Bull. Math. Biol., 74 (2012), pp. 1027–1065.
+[52] G. Shinar and M. Feinberg, Structural sources of robustness in biochemical reaction
+     networks, Science, 327 (2010), pp. 1389–91.
+[53] A. Shiu and T. de Wolff, Nondegenerate multistationarity in small reaction networks,
+     Discrete Contin. Dyn. Syst. Ser. B, 24 (2019), pp. 2683–2700.
+[54] The Stacks Project. Available at https://stacks.math.columbia.edu, 2024.
+[55] X. Tang and Z. Zhang, Multistability of reaction networks with one-dimensional
+     stoichiometric subspaces, SIAM J. Appl. Dyn. Syst., 21 (2022), pp. 1426–1454.
+[56] A. I. Vol’pert, Differential equations on graphs, Math. USSR-Sb, 17 (1972), p. 571–582.
+

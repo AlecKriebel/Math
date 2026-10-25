@@ -1,0 +1,131 @@
+{
+  "title": "A flow reduction for equilibrium uniqueness in rank-one bimatrix games",
+  "slug": "equilibrium-uniqueness-rank-one-games",
+  "description": "Deciding whether a rational rank-one bimatrix game has exactly one Nash equilibrium is coNP-complete, even when a strict pure equilibrium is supplied.",
+  "abstract": "For explicitly listed rational bimatrix games of variable positive dimensions and exact rank rank(A + B) = 1, deciding whether there is exactly one mixed-strategy equilibrium pair is coNP-complete. Its nonuniqueness counterpart is NP-complete. Arbitrary degeneracy is allowed. A polynomial reduction from nonempty positive-integer Partition produces a known strict pure equilibrium and an additional equilibrium exactly when the source instance admits a partition. The construction applies the signed flow counter of Disser and Skutella and the auxiliary zero-sum representation of Adsul and coauthors. A comparison-preserving rational perturbation isolates every real-demand flow optimum, an injective simplex encoding transfers diagnostic arc flow to a scalar consistency equation, and a uniform polynomial-bit exact penalty controls every auxiliary minimizer. Rational support-polytope certificates establish membership, including positive-dimensional equilibrium sets. A bounded source audit found no matching proof among the inspected bodies; worldwide priority remains unknown.",
+  "plain_language": [
+    "A Nash equilibrium is a pair of strategies in which neither player can improve their expected payoff by changing strategy alone. Players may randomize. In a rank-one bimatrix game, the two payoff tables have a special algebraic relationship that allows one equilibrium to be found in polynomial time.",
+    "This paper asks whether that equilibrium is the only one. It proves that deciding uniqueness is coNP-complete, while deciding whether a second equilibrium exists is NP-complete. The difficulty persists even when the input supplies a known strict pure equilibrium.",
+    "The construction turns a Partition problem into a game with a specified equilibrium. A second equilibrium exists exactly when the original integers can be split into two groups of equal total weight. This separates the task of finding one equilibrium from the task of ruling out every alternative."
+  ],
+  "result": [
+    "The input consists of explicitly listed rational payoff matrices A and B of variable positive dimensions, encoded in binary, with exact rank(A + B) = 1. Uniqueness concerns the entire mixed-strategy equilibrium pair, including pure strategies.",
+    "On these inputs, uniqueness is coNP-complete and nonuniqueness is NP-complete under polynomial-time many-one reductions. Arbitrary degeneracy is allowed, including positive-dimensional equilibrium sets. Hardness also holds when a known strict pure equilibrium is supplied.",
+    "For a nonempty list of n positive integers, the reduction constructs a game with (8n + 9) rows and (16n + 22) columns. Its rational entries have polynomial total binary encoding length. No partition gives exactly the specified equilibrium; a partition gives at least one additional equilibrium.",
+    "The formal languages reject malformed encodings and games whose payoff sum does not have exact rank one. The two languages are complements within the valid rank-one input class; rank-invalid inputs belong to neither."
+  ],
+  "why_it_works": [
+    "The proof starts from Disser and Skutella’s signed counting flow network. Flow through a designated bridge detects a partition. A small rational perturbation preserves the decisive comparisons while making the minimum-cost flow unique at every real demand.",
+    "An injective encoding places those flows inside a strategy simplex. A uniform exact penalty excludes infeasible minimizers, and the auxiliary zero-sum representation of Adsul and coauthors translates the bridge condition into the scalar consistency equation for a rank-one equilibrium.",
+    "The proof controls every auxiliary minimizer and every equilibrium, including degenerate cases. Rational certificates for two distinct equilibrium pairs establish membership in NP for nonuniqueness; checking input validity completes the coNP membership argument for uniqueness."
+  ],
+  "limitations": [
+    "These are worst-case complexity statements. Unless P = NP, they rule out a polynomial-time algorithm for every valid input; they do not say that every particular game is difficult.",
+    "The result does not establish strong hardness, hardness at fixed dimensions, hardness under a nondegeneracy promise, or uniqueness of equilibrium payoffs. It does not classify the number of equilibria beyond one versus more than one.",
+    "Some network capacities and penalty values can be exponentially large in numerical value while retaining polynomially many bits. The reduction constructs the game directly; it does not run the potentially exponential sequence of flow augmentations.",
+    "The signed counter, auxiliary zero-sum representation, unrestricted uniqueness hardness, rational certificate ideas and perturbation methods have earlier sources. The contribution here is their quantitative connection to a diagnostic bridge and the control of the complete rank-one equilibrium set.",
+    "The bounded literature comparison does not establish worldwide priority or continued open status of the historical conjecture. The support package records the sources inspected and the remaining coverage gaps. Finite exact checks support the proof but do not prove its universal claims."
+  ],
+  "background": [
+    {
+      "title": "Adsul, Garg, Mehta, Sohoni and von Stengel, Fast algorithms for rank-1 bimatrix games",
+      "url": "https://doi.org/10.1287/opre.2020.1981",
+      "note": "This work supplies polynomial-time computation of one rank-one equilibrium and the auxiliary zero-sum family with its scalar consistency condition. The present paper uses that established representation."
+    },
+    {
+      "title": "Disser and Skutella, The simplex algorithm is NP-mighty",
+      "url": "https://doi.org/10.1145/3280847",
+      "note": "The signed counting network and designated bridge are imported from this work. The journal Lemmas 3.1–3.2 are the controlling source for the flow construction."
+    },
+    {
+      "title": "von Stengel, Algorithms for rank-1 bimatrix games, Oberwolfach Report 38/2018",
+      "url": "https://doi.org/10.4171/OWR/2018/38",
+      "note": "The contribution on printed page 2332 states the historical rank-one uniqueness conjecture as joint work with Adsul, Garg, Mehta and Sohoni. This documents the question’s provenance, without certifying its present worldwide status."
+    },
+    {
+      "title": "Gilboa and Zemel, Nash and correlated equilibria: some complexity considerations",
+      "url": "https://itzhakgilboa.weebly.com/uploads/8/3/6/3/8363317/gilboa_zemel_nash_complexity.pdf",
+      "note": "Unrestricted bimatrix uniqueness was already known to be coNP-complete, with rational certificate methods. The additional requirement addressed here is exact rank one of the payoff sum."
+    },
+    {
+      "title": "Erickson, Fox and Lkhamsuren, Holiest minimum-cost paths and flows in surface graphs",
+      "url": "https://jeffe.cs.illinois.edu/pubs/pdf/holiestx.pdf",
+      "note": "Earlier perturbation arguments already give unique minimum-cost flows with real capacities and demands. The present construction needs a specific rational perturbation that preserves its diagnostic comparisons."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent mathematical review, comparison with the rank-one games and complexity literature, or preparation for journal submission. Expertise in computational game theory, network flows or exact optimization would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed. Strong hardness, nondegenerate promises and fixed dimensions are outside this theorem, but no sufficiently developed mechanism or evidence is available to justify advertising one as a worthwhile new research direction.",
+  "publication_date": "2026-10-13",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23430642",
+  "author": "Alec Kriebel",
+  "pdf_filename": "paper.pdf",
+  "supplement_filename": "supportkit-v1.0.tar.gz",
+  "supplement_label": "Source and verification (tar.gz)",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, version 1.0, developed with extensive AI assistance. Worldwide priority remains unknown.",
+  "ai_disclosure": "AI tools were used extensively in mathematical solving, source inspection, verification and writing, including independent and adversarial AI reviews. These reviews are not conventional human journal peer review or proof-assistant verification. Journal acceptance is not claimed.",
+  "source_binding": {
+    "record_id": "23430642",
+    "concept_record_id": "23430641",
+    "record_url": "https://zenodo.org/records/23430642",
+    "doi": "10.5281/zenodo.23430642",
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "manuscript_date": "13 October 2026",
+    "publication_date": "2026-10-13",
+    "version_source": "Zenodo metadata and the printed manuscript date line both specify version 1.0; the date line is 13 October 2026.",
+    "source_retrieved_utc": "2026-10-25T01:54:16.415034+00:00",
+    "source_receipt_sha256": "925f1e4eab1ed1e57fb11dd9f1018229488128719e6472e4488b693521123571",
+    "record_sha256": "6a8e730f120e9d0354f663a86c12c7ba305f4c330b2fbeddad883fbb1d07cd9a",
+    "pdf_sha256": "3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449",
+    "supplement_sha256": "cd20964fe478365bd9c2db9b6cd8f6032aea0168073e7da21149865ec2f6d34c",
+    "files": [
+      {
+        "name": "paper.pdf",
+        "url": "https://zenodo.org/api/records/23430642/files/paper.pdf/content",
+        "resolved_url": "https://zenodo.org/api/records/23430642/files/paper.pdf/content",
+        "content_type": "application/octet-stream",
+        "bytes": 108357,
+        "md5": "b76c3ef22276d51e8a2db86a57954aae",
+        "zenodo_checksum": "md5:b76c3ef22276d51e8a2db86a57954aae",
+        "sha256": "3ba83c50a4a2369a70897ee165a43f56324aa31574cf9c199e664174cbce0449",
+        "retrieved_utc": "2026-10-25T01:54:17.370881+00:00",
+        "queue_integrity": "PASS"
+      },
+      {
+        "name": "supportkit-v1.0.tar.gz",
+        "url": "https://zenodo.org/api/records/23430642/files/supportkit-v1.0.tar.gz/content",
+        "resolved_url": "https://zenodo.org/api/records/23430642/files/supportkit-v1.0.tar.gz/content",
+        "content_type": "application/octet-stream",
+        "bytes": 680672,
+        "md5": "5f6e7546d0911d2ed0c94e2449eb0df9",
+        "zenodo_checksum": "md5:5f6e7546d0911d2ed0c94e2449eb0df9",
+        "sha256": "cd20964fe478365bd9c2db9b6cd8f6032aea0168073e7da21149865ec2f6d34c",
+        "retrieved_utc": "2026-10-25T01:54:19.203181+00:00",
+        "queue_integrity": "PASS"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "paper.pdf",
+        "pages": 9,
+        "read_scope": "all pages"
+      }
+    ],
+    "embedded_assets": [],
+    "archive_pdf_identity": "The tar.gz package contains output/pdf/paper.pdf, byte-identical to the separately deposited main PDF. There is no distinct supplementary reader PDF.",
+    "abstract_source": "sources/published-source/rank_one_uniqueness_v1_0/paper.tex",
+    "abstract_source_sha256": "0ccac52f998823d98c020608c34ec2ad2cbd1d1f54db1815f0a00f898c5258c0",
+    "abstract_word_count": 140,
+    "abstract_normalization": "Complete original abstract. Whitespace, inline mathematical rank notation and the Partition small-cap command normalized for HTML; no editorial or AI prose appended.",
+    "review_boundary": "Publication content follows the root scientific clearance at the exact stated scope. AI review is not conventional human peer review, a formal proof-assistant certificate or exhaustive priority certification."
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T02:10:45.578233+00:00",
+    "draft_completion_percent": 100,
+    "scientific_clearance_received": true,
+    "publication_state": "CLEARED_FOR_LOCAL_PUBLICATION_PREPARATION"
+  }
+}

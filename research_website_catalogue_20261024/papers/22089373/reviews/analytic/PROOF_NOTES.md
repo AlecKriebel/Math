@@ -28,6 +28,8 @@ For marginalization, complete zero-sum indicator signatures, including complemen
 
 ## Finite relation and arbitrary-word argument
 
+I separately parsed the inert seven invariant templates, generated all 84 leaf-permutation transports, and verified exact port multihomogeneity of every monomial. Failing to shift the seventh template from its nonconstant-coordinate indexing is rejected by a fresh negative control.
+
 The theorem needs relations with both graphs, all physical labels, independent incoming roles, and direction. A target-only census would be insufficient. Source-generic nonzero / target-identically-zero pullbacks exclude source-open containment. In the reversed situation, target nonzero must be strictly signed over its entire open cube; a random point or a nonzero polynomial alone would not suffice. The inspected exact polynomial/sign routines make this distinction. Bernstein basis functions are strictly positive in the open cube, so nonnegative coefficients with one positive coefficient give the claimed strict sign.
 
 The inspected completion grammar distributes selected labels across every segment and selected-sink subset, restores omitted repair/sink roles, and includes marginalized incoming boundaries. Restoration is anchored to one full comparison: omitted target roles are assigned actual new physical labels, and the source enumerates all insertions preserving earlier order. Each prefix is a marginal of the original containment. It does not infer a larger containment from a smaller one. The compiler's state keys include the fixed-full root-case identity, exact source/target graphs, remaining roles, and port matching; duplicated states retain parent-path provenance.

@@ -1,0 +1,356 @@
+               A modular-storage proof of NP-completeness for
+                   chip-ﬁring halting on simple digraphs
+                                               Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                     Version 1.0, 16 October 2026
+
+
+                                                  Abstract
+          We give a self-contained proof that ordinary conservative chip-ﬁring halting is NP-complete
+      on ﬁnite loopless simple strongly connected digraphs. Hardness holds with polynomial numeri-
+      cal total initial chips and a speciﬁed vertex whose deletion leaves an acyclic graph of depth at
+      most one. A separate construction forbids antiparallel arcs. The proof combines the primed-
+      toppler mechanism of Holroyd–Levine–Winkler with the classical prime/Boolean/clause encod-
+      ing of Stockmeyer–Meyer, also reconstructed by Gramlich. We prove the physical conservative
+      realization, its legal checkpoint dynamics and the arbitrary-schedule implication in full; NP
+      membership is credited to Farrell–Levine and reproved with an explicit certiﬁcate bound. This
+      is an attributed proof of the historical simple-digraph question. Exact full-result and realization
+      priority and preexisting worldwide openness remain unknown after a bounded audit; no ﬁrst-
+      ness is claimed. AI tools were used extensively. The paper is unrefereed and has not received
+      external human peer review.
+
+
+1    Question, conventions and attribution
+An input is a ﬁnite loopless digraph G = (V, E) with N = |V | ≥ 2, at most one arc per ordered
+pair, strong connectivity, and a conﬁguration x ∈ ZV≥0 encoded in binary. A vertex v of outdegree
+dv may ﬁre when xv ≥ dv : it loses dv chips and sends one along each outgoing arc. All vertices obey
+this rule; there is no dissipative sink. A conﬁguration is stable if xv < dv for every v. The question
+HALTING asks whether some legal ﬁnite ﬁring word reaches a stable conﬁguration. Lemma 1
+below supplies the usual schedule independence, without a fairness assumption. An oriented graph
+additionally has no antiparallel pair.
+    Farrell–Levine [1, §3.1, Table 1] explicitly posed the simple-digraph NP-completeness question
+while proving membership in NP and hardness for binary directed multigraphs. Their historical
+question is the target here; an archived open-problem label is not evidence of current worldwide
+openness. We establish the following exact statement.
+Theorem 1. HALTING is NP-complete under deterministic polynomial-time many-one reductions
+on the input class above. Hardness persists when a speciﬁed root r has the property that G − r
+contains no directed path of two arcs and is acyclic, and when the numerical total initial chips is
+polynomial in the 3-SAT input length. The same assertions hold on the oriented subclass.
+    The ingredients require precise credit. The literal multiplicities in Lemma 2 specialize Holroyd–
+Levine–Winkler’s parallel primed-toppler construction [2, Lemma 4.1]. The Boolean residues and lo-
+cal clause products are the classical Stockmeyer–Meyer encoding [3, Theorem 6.1], as reconstructed
+
+                                                      1
+by Gramlich alone [4, Fact 3], presented here in complement form. We claim neither encoding as
+new. Root-last stabilization and conserved-mass comparison have antecedents in Farrell’s thesis [5,
+§§1.1,4.1] and Farrell–Levine [1, §2]. Least action and tree periods are prior mathematics; our proof
+of membership specializes [1, §3]. Even exponentially long simple-graph games with polynomial
+initial chips are prior [6]. The argument below supplies a complete conservative graph realization
+and SAT equivalence without asserting priority for that realization or its oriented version.
+
+
+2    Least action and a polynomial certiﬁcate
+Put ∆v,v = dv and ∆v,u = −1 for u → v, with other entries zero. A word with ﬁring-count vector
+g changes x to x − ∆g.
+Lemma 1 (Classical least action). If f ∈ ZV≥0 has stable z = x − ∆f , every legal word has ﬁring
+counts at most f coordinatewise. In particular a nonnegative stable z is a sound certiﬁcate of
+halting, even if f is not given as a legal word.
+Proof. At a ﬁrst ﬁring that would exceed fv , the current count at v is fv and all other counts
+are at most their coordinates of f . Nonnegative incoming arc counts put the chips at v at most
+            ∑                                                                               ∑
+xv − dv fv + u→v fu = zv < dv , contradicting legality. Thus a legal word has length at most v fv .
+Repeatedly ﬁring any legal vertex must stop at a stable conﬁguration. Conversely, an inﬁnite legal
+word rules out every nonnegative stabilizing vector. Early voluntary stopping at an active state is
+not halting.
+
+    For completeness we give the polynomial-bit certiﬁcate argument, credited to Farrell–Levine’s
+method. Strong connectivity and the directed matrix-tree theorem give a strictly positive primitive
+integer vector π ∈ ker ∆: its entries are the numbers of spanning in-arborescences toward each
+vertex, divided by their common gcd. At each nonroot tree vertex there are at most N − 1 outgoing
+choices, so
+                                      1 ≤ πv ≤ (N − 1)N −1 .                                    (1)
+If x halts, choose its actual terminating ﬁring vector f and ﬁnal stable z ≥ 0. Some w has fw < πw :
+otherwise f − π ≥ 0 has the same stable z, and Lemma 1 applied to the actual word gives f ≤ f − π,
+a contradiction. For every arc u → v, chip balance yields
+                    ∑
+             fu ≤         fa = dv fv + zv − xv ≤ dv (fv + 1) − 1,   fu + 1 ≤ dv (fv + 1).
+                    a→v
+
+Follow a simple directed path from u to w, of length at most N − 1. Since dv ≤ N − 1 and
+fw + 1 ≤ πw , we obtain
+                           fu + 1 ≤ (N − 1)N −1 πw ≤ (N − 1)2N −2 .                   (2)
+Each coordinate therefore has O(N log N ) bits. For N = 2 the only graph is the directed two-cycle;
+its only nonnegative stable input, by conservation, is zero, with f = 0, consistent with (2). A
+veriﬁer checks f ≥ 0 and 0 ≤ x − ∆f < d using binary arithmetic in polynomial time. This proves
+membership in NP for both graph classes and arbitrary input chip magnitudes, without claiming
+polynomial simulation time.
+    The additive one above is essential. For arcs 0 → 1, 1 → 0, 1 → 2, 2 → 0, input (1, 0, 0) halts
+after ﬁring 0 once. The inequality f0 ≤ d1 f1 would be false. The intermediate source inequality on
+PDF page 10 of [1] omits this slack; the self-contained argument here retains it. This observation
+is about that line, not a rejection of the prior membership theorem or a certiﬁcation of every other
+source proof.
+
+                                                     2
+3    An attributed modular bank
+Lemma 2. Let q ≥ 2, ∅ ̸= A ⊆ Z/qZ, and let h be its periodic indicator on Z. For 0 ≤ a < q put
+
+                                                                    ∑
+                                                                    q−1
+                  ca = 1 + h(−a − 1) − h(−a),            SA (k) =         ca ((a + k) mod q).
+                                                                    a=0
+                                                                                                ∑
+Here residues lie in {0, . . . , q − 1}. There are q counters in total: ca ∈ {0, 1, 2} and      a ca = q. For
+every integer k,
+                                                                q(q − 1)
+                             SA (k) = KA + qh(k),        KA =             − |A|.                          (3)
+                                                                    2
+Thus its attainable maximum is BA = KA + q, attained exactly on A.
+
+Proof. The multiplicity claims follow from h ∈ {0, 1} and telescoping. Advancing k adds one to
+each of the q counters, except that a wrapping counter loses q. The wrapping oﬀset is a = −k − 1
+(mod q), whence
+                      SA (k + 1) − SA (k) = q − qc−k−1 = q(h(k + 1) − h(k)).
+So SA − qh is constant. Over one period each counter has average (q − 1)/2; the average of qh
+is |A|, proving (3). Nonemptiness ensures that the displayed maximum is attained. Full A gives
+constant storage. Even if KA < 0 in a modulus-two boundary case, all actual residue counts and
+storage remain nonnegative. Empty A would not attain KA + q and is excluded.
+
+    This formula is an exact earlier-mechanism specialization, not a new toppler lemma. In [2,
+Lemma 4.1], take F (k) = k + h(0) − h(k) for k ≥ 0. Then F (0) = 0, F (k + q) = F (k) + q,
+and its increments are 0, 1, 2. The lemma uses F (i) − F (i − 1) = 1 + h(i − 1) − h(i) topplers
+primed at a = q − i; these are precisely ca . Their cumulative topplings equal F (k). A physical
+degree-q counter emits q chips per toppling, so conservation gives SA (k) = SA (0) + qk − qF (k),
+in agreement with (3). A one-output abstract toppler or splitter does not by itself establish an
+ordinary conservative chip-ﬁring implementation; the conservative-gate distinction is explicit in [2,
+§8.3]. We now give that implementation.
+
+
+4    The classical Boolean/CRT predicates
+Use an explicitly encoded 3-CNF formula of length L, with clauses of length at most three. Reject
+malformed encodings, remove duplicate literals, delete tautological clauses and relabel the variable
+identiﬁers actually occurring. An empty clause is a ﬁxed NO case; no clauses is a ﬁxed YES case.
+Binary names or declarations of unused variables are never expanded. Otherwise there are n ≥ 1
+variables, every clause uses 1 ≤ t ≤ 3 distinct variables, and the numbers of variables and clauses
+are O(L).
+    Choose the ﬁrst n primes starting at 3, denoted p1 , . . . , pn . For each variable use a bank with
+                                                                                         ∏
+modulus pi and allowed set {0, 1}. A clause with variable set I uses modulus qI = i∈I pi and the
+CRT representatives of its satisfying local Boolean assignments. It has 2|I| − 1 ≤ 7 allowed residues,
+a nonempty proper set. They can be obtained by inspecting at most eight assignments. An integer
+k satisﬁes all bank predicates exactly when its variable residues describe a satisfying assignment.
+                                                                                     ∏
+Conversely CRT lifts every satisfying assignment to some k ≥ 0 modulo M = i pi . This proves
+both directions without ﬁnding an assignment.
+    For exact attribution, Stockmeyer–Meyer [3, Theorem 6.1, pp. 7–8] use variable-invalid residues
+and one failed Boolean residue per clause, with the same prime and three-prime products; see
+
+                                                     3
+also [4, Fact 3]. If Vi means k mod pi ∈
+                                       / {0, 1} and FC is the unique falsifying Boolean residue for
+clause C, their bad language is           ∪        ∪
+                                             Vi ∪    FC .
+                                                     i          C
+
+Our complete allowed-predicate intersection is exactly its complement. A local clause complement
+also contains non-Boolean residues, so it is not just FC ; those additional residues are already in
+∪
+  i Vi . This supplies the exact union/complement qualiﬁcation. Neither this CRT encoding nor
+avoidance of expansion of M is claimed as new.
+     Only individual primes and products of at most three primes are enumerated. For an explicit
+polynomial bound, writing p∗j for the jth prime including 2, Dusart [7, Eq. (4.2)] gives p∗j ≤ ej log j
+for j ≥ 2. Thus
+                                  U := max pi = p∗n+1 ≤ 3(n + 1)2 .
+                                                 i
+
+A sieve up to this bound is polynomial; the j = 2 endpoint also satisﬁes it. Every local modulus
+is at most U 3 . The global product M supplies only a correctness witness: the constructor never
+expands it as a graph or simulates that many root ﬁrings.
+
+
+5    A simple conservative realization
+Index the variable and clause banks by b = 1, . . . , H, and write
+         ∑                                    qb (qb − 1)                  ∑                           ∑
+    Q=       qb ,   P = max qb ,       Kb =               − |Ab |,   B=         (Kb + qb ),   S(k) =       SAb (k).
+         b
+                             b                     2                        b                          b
+
+There are Q distinct counters: for each bank and oﬀset a, create ca separate vertices initially holding
+a chips. Equal oﬀsets do not identify vertices. Add a root r and P − 1 returns t1 , . . . , tP −1 . The
+complete arc list is
+
+                    r→v                                                  for every counter v,
+                    v → r,       v → tj (1 ≤ j < qb )                    for a counter of bank b,
+                    tj → r                                               (1 ≤ j < P ).
+
+Hence dr = Q, dv = qb and dtj = 1. The arc types are disjoint, every ordered pair occurs at most
+once, and there are no loops. Root/counter antiparallel pairs are permitted in this ﬁrst construction.
+A modulus-P bank has P actual counters, any of which reaches every return. The root reaches every
+counter, and every other vertex reaches the root; thus the graph is strongly connected. Deleting r
+leaves only counter-to-return arcs, an acyclic graph with no two-arc path. The exact counts are
+                                                                     ∑
+                                    N = Q + P,           |E| = Q +       qb2 + P − 1.                                 (4)
+                                                                     b
+
+    Initialize returns at zero and the root at
+
+                                       R = Q + B − 1 − S(0) ≥ Q − 1 ≥ 0.                                              (5)
+
+The inequality holds because each bank is at most its own maximum. The total number of chips is
+exactly C = Q + B − 1, and every ﬁring conserves it. The returns are ordinary degree-one vertices
+that return their chips to r; they never absorb or delete them.
+
+
+
+                                                            4
+6    Legal checkpoints and the SAT equivalence
+Analyze one legal order only for the proof: at a checkpoint all nonroot vertices are stable and
+the returns empty. If r is legal, ﬁre it once, then process all counters, then all returns, before
+considering r again. A stable counter gains exactly one chip from that root ﬁring and has no other
+incoming arc; it ﬁres at most once, precisely when it reaches qb . After counters have been processed,
+each return legally ﬁres once per chip it holds. These ﬁnite phases restore every emitted chip to
+the root, and no counter is reactivated before another root ﬁring. Delaying a legal root while these
+other legal vertices ﬁre is permitted in ordinary asynchronous chip-ﬁring. No sink rule has been
+substituted.
+    Inductively, at checkpoint k, after k root ﬁrings, each oﬀset-a counter holds (a + k) mod qb , all
+returns are zero, and the root holds
+
+                                   C − S(k) = Q + B − 1 − S(k).
+
+Using integral storage and S(k) ≤ B gives the exact equivalences
+
+             r stable ⇐⇒ S(k) > B − 1 ⇐⇒ S(k) = B ⇐⇒ every bank accepts k.                          (6)
+
+A bank misses its maximum by exactly qb when its predicate is false. These positive deﬁcits cannot
+cancel, proving the last equivalence.
+    If the formula is satisﬁable, CRT provides a ﬁnite successful k ≥ 0. The canonical legal process
+either stops earlier, already proving halting, or reaches that checkpoint and is stable there. If it is
+unsatisﬁable, each checkpoint permits a root ﬁring followed by ﬁnite legal nonroot phases. Their
+concatenation is an inﬁnite legal word. Lemma 1 rules out every terminating legal word, regardless
+of schedule and without fairness. We have therefore proved
+
+            3-CNF is satisﬁable     ⇐⇒     the constructed ordinary conﬁguration halts.
+
+The canonical order and possibly enormous stopping time belong to the proof, not to the polynomial
+reduction algorithm.
+
+
+7    Bounds, totality and the oriented construction
+We have H = O(L), qb ≤ U 3 , P ≤ U 3 , and Q ≤ HP . Equation (4) gives N = O(HP ) and
+|E| = O(HP 2 ); an explicit adjacency matrix of N 2 bits is polynomial as well. Oﬀset scans and CRT
+calculations on at most three primes take polynomial time and bits. Since Bb = qb (qb + 1)/2 − |Ab |,
+                                                           ∑ qb (qb + 1)
+                             0≤C =Q+B−1≤Q+                                  .
+                                                            b
+                                                                    2
+
+The numerical total chips and every coordinate are polynomial in L, so unary chip encoding also
+retains hardness. There is no expansion of a binary exponential arc multiplicity. As a consistency
+check, the prior stable-capacity bound C ≤ |E| − N for halting inputs [1, p. 2] does not trivialize
+the construction: here for every nontrivial input
+                                              ∑ ( qb (qb − 3)           )
+                           (|E| − N ) − C =                     + |Ab | ≥ 0,
+                                               b
+                                                       2
+
+because qb ≥ 3. This bound is not being used as a SAT decision rule.
+
+                                                   5
+    For malformed formulas or empty clauses use a directed two-cycle with conﬁguration (1, 0), a
+NO instance with a circulating chip. For the empty conjunction use the same graph with (0, 0),
+a stable YES instance. These cases make the reduction total on encoded strings and preserve all
+main graph restrictions, including root deletion. For nontrivial formulas the construction above
+applies.
+    For the oriented version use P returns, omit every counter-to-root arc, and instead give a
+modulus-qb counter the qb arcs v → t1 , . . . , v → tqb . Keep r → v and all tj → r. Every arc follows
+the three-part order root–counter–return–root, so no opposite pair, loop or repeated ordered pair
+occurs. Every counter reaches r through a return, and a largest-bank counter reaches all P returns;
+strong connectivity follows. Root deletion again leaves only counter-to-return arcs. Its exact counts
+are                                                              ∑
+                  N ′ = 1 + Q + P = N + 1,          |E ′ | = Q +   qb2 + P = |E| + 1.
+                                                               b
+
+All outdegrees, counter oﬀsets and root initial mass remain the same. Each ready counter now
+emits its qb chips to qb distinct returns. Legally emptying those returns sends exactly qb chips
+back to the root, so the ﬁnite-phase proof, residue induction, conservation and (6) all hold with
+no missing direct output. Thus both SAT implications and all numerical and bit bounds remain
+valid. For preprocessing use the directed three-cycle r → s → t → r, with (0, 0, 0) for YES and
+(1, 0, 0) for NO. Its deletion graph has one arc and its one-chip play is periodic. This proves the
+entire oriented case, including trivial inputs. Together with membership, Theorem 1 follows.
+
+
+8    Priority limits and veriﬁcation
+The bounded source audit found exact antecedents for the bank priming and CRT encoding, which
+are explicitly credited above. It did not establish a source statement or proved corollary containing
+the entire restricted theorem. That is not evidence of worldwide novelty. Priority of the full result,
+the conservative simple realization, the oriented realization and any remaining method contribution
+remains unknown. No claim that the question was globally open immediately before this work is
+made.
+    Several nearby interfaces must be kept separate. Generalized rotor reachability [8] has branch-
+ing arc states and a speciﬁed target; ordinary chip-ﬁring has ﬁxed outputs and asks for any stable
+endpoint. Bond–Levine’s sandpilization [9, Deﬁnition 6.5, Corollary 6.6] preserves halting on all
+inputs, not automatically one reset-state input. Hardness for containing weighted-net classes does
+not automatically restrict to one consuming transition per place, degree thresholds, unit outputs,
+conservation and a supplied marking. Esparza’s sole-author survey [10] does not remove those
+hypotheses. The full Mayr–Weihmann construction and complete Hujsa–Devillers weighted-net
+proofs were unavailable to this audit; their possible additional implications remain unknown. Op-
+timization over added chip distributions, inﬁnite backgrounds and binary arc expansion are also
+diﬀerent decision interfaces. These statements record exact transfer gaps, rather than exclude every
+possible earlier derivation.
+    The accompanying portable package contains this source, bibliographic hashes and read scopes,
+frozen authored history, new standard-library exact ﬁnite controls and a deterministic archive
+rebuilder. It distributes no third-party PDFs or copied source bodies. New diagnostics check bank
+identities and the two exact antecedent substitutions, legal conservative main/oriented graphs,
+small arbitrary schedules, certiﬁcate slack, and deliberately damaged variants. They supplement
+the general proof, do not certify the literature, and are not replays of historical omitted programs.
+Source editions and selective read scopes are distinguished explicitly in the source ledger; the actual
+
+
+                                                  6
+journal and arXiv editions of [8] have diﬀerent bytes.
+    AI tools were used extensively in solving, checking, adversarial review, source comparison, pro-
+gramming and writing. The author is responsible for the claims. This manuscript is unrefereed,
+has not received external human peer review or journal acceptance, and is not formally certiﬁed in
+a proof assistant. No individual was contacted. The paper and authored veriﬁcation materials are
+licensed under Creative Commons Attribution 4.0 International.
+
+
+References
+ [1] M. Farrell and L. Levine, CoEulerian graphs, Proc. Amer. Math. Soc. 144 (2016), 2847–2860.
+     doi:10.1090/proc/12952. Inspected edition: arXiv:1502.04690v3.
+
+ [2] A. E. Holroyd, L. Levine and P. Winkler, Abelian logic gates, inspected arXiv:1511.00422v2
+     (2018), Lemma 4.1, p. 15, and §8.3, p. 32.
+
+ [3] L. J. Stockmeyer and A. R. Meyer, Word Problems Requiring Exponential Time: Preliminary
+     Report, Proceedings of the Fifth Annual ACM Symposium on Theory of Computing (1973),
+     Theorem 6.1 and proof, pp. 7–8 of the retained preliminary report.
+
+ [4] G. Gramlich, Probabilistic and Nondeterministic Unary Automata, MFCS 2003, LNCS 2747,
+     460–469. Fact 3, PDF pp. 5–6 of the author-hosted manuscript.
+
+ [5] M. Farrell, The halting problem for chip-ﬁring on ﬁnite directed graphs, Cornell senior thesis, 2
+     December 2014, author thesis, §§1.1,4.1. L. Levine is identiﬁed as thesis advisor, not coauthor.
+
+ [6] K. Eriksson, No Polynomial Bound for the Chip Firing Game on Directed Graphs, Proc. Amer.
+     Math. Soc. 112(4) (1991), 1203–1205.
+
+ [7] P. Dusart, Estimates of Some Functions Over Primes without R.H., arXiv:1002.0442v1 (2010),
+     Eq. (4.2), PDF p. 4.
+
+ [8] D. Auger, P. Coucheney and K. R. Etse, Linear Extensions of Rotor-Routing in Directed
+     Graphs: Reachability Problems, Electron. J. Combin. 33(2) (2026), P2.5, doi:10.37236/13580,
+     Theorem 21 and Lemmas 22–23, actual journal PDF pp. 39–43.
+
+ [9] B. Bond and L. Levine, Abelian networks II. Halting on all inputs, inspected author-hosted
+     manuscript, Deﬁnition 6.5 and Corollary 6.6, PDF pp. 17–18.
+
+[10] J. Esparza, Decidability and complexity of Petri net problems—an introduction, inspected sole-
+     author survey, selected deﬁnitions and class interfaces, PDF pp. 31–32.
+
+
+
+
+                                                  7
+

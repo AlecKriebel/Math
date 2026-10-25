@@ -6,7 +6,7 @@
 
 The reviewed paper is *A flow reduction for equilibrium uniqueness in rank-one bimatrix games*, version **1.0**, dated **13 October 2026**, nine published pages. The target is **uniqueness of the entire mixed-strategy pair** in explicitly listed rational bimatrix games of variable positive dimensions, with **exact** rank(A+B)=1. Arbitrary degeneracy, zero probabilities and positive-dimensional equilibrium sets are included. The paper proves coNP-completeness of uniqueness and NP-completeness of nonuniqueness under polynomial many-one reductions. Hardness remains when a strict pure equilibrium is supplied.
 
-This is not a result about unique payoff vectors, fixed dimensions, strongly NP-hardness or a nondegenerate-input promise. It does not contradict the polynomial algorithm for finding one equilibrium of a rank-one game.
+This is not a result about unique payoff vectors, fixed dimensions, strong NP-hardness or a nondegenerate-input promise. It does not contradict the polynomial algorithm for finding one equilibrium of a rank-one game.
 
 | Immutable asset | SHA-256 |
 |---|---|
@@ -100,7 +100,7 @@ After that run, I read the full two published helpers and copied **only their co
 
 Fresh primary downloads and hashes are in `primary-source-receipts.json`:
 
-- [Disser–Skutella, author-hosted journal body](https://www2.mathematik.tu-darmstadt.de/~disser/pdfs/DisserSkutella18.pdf), SHA-256 `88cc527ec698aaa502a93c33183ae58b714a4879ca387b1101208c7dc329ff5a`: printed pages **5:5–5:10**, especially the definitions, Lemmas 3.1–3.2 and their complete proofs, and Figures 1–3 as extracted with the surrounding text. The controlling source is the journal edition. No claim is made to have inspected the exact SODA proceedings body or all 19 journal pages.
+- [Disser–Skutella, author-hosted journal body](https://www2.mathematik.tu-darmstadt.de/~disser/pdfs/DisserSkutella18.pdf), SHA-256 `88cc527ec698aaa502a93c33183ae58b714a4879ca387b1101208c7dc329ff5a`: printed pages **5:5–5:10**, especially the definitions, Lemmas 3.1–3.2 and their complete proofs. Figures 1–3 were also inspected in rendered pages 5:7 and 5:9 to confirm the connector costs/capacities, recursive orientation and directed bridge. The controlling source is the journal edition. No claim is made to have inspected the exact SODA proceedings body or all 19 journal pages.
 - [Adsul et al., arXiv v4](https://arxiv.org/abs/1812.04611v4), SHA-256 `14f221473a8a04f9863c3b49c79d230d362824327361b758530265550227c4e3`: printed pages **7–9**, Lemmas 4–6, Theorem 7 and the zero-sum LP interface in Lemma 8. Version/date and journal reference were also confirmed on the primary landing page. The mathematical full-set interface is checked in this version. I did not separately fetch the journal typesetting to certify its theorem-number mapping.
 
 Standard finite-game existence, LP duality, flow decomposition and polytope facts are used in their usual stated finite-dimensional forms. The paper rederives its penalty and rational-witness bounds; they do not rely on an unexamined new theorem. Broader historical claims and prior-art comparisons involving Gilboa–Zemel, Conitzer–Sandholm, Erickson–Fox–Lkhamsuren, the Oberwolfach conjecture, unrecovered theses and priority gaps were not independently certified by this analytic review. No global novelty or firstness finding is made.
