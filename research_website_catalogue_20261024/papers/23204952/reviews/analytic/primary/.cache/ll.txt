@@ -1,0 +1,2710 @@
+                                              Kähler-Einstein metrics and volume minimization
+                                                                           Chi Li, Yuchen Liu
+
+                                                                               July 19, 2017
+
+
+                                                                                  Abstract
+
+
+
+
+arXiv:1602.05094v3 [math.AG] 18 Jul 2017
+                                               We prove that if a Q-Fano variety V specially degenerates to a Kähler-Einstein
+                                           Q-Fano variety V , then for any ample Cartier divisor H = −r−1 KV with r ∈ Q>0 ,
+                                                                   c
+                                           the normalized volume vol(v)  = AnC (v) · vol(v) is globally minimized at the canonical
+                                           valuation ordV among all real valuations which are centered at the vertex of the
+                                           affine cone C := C(V, H). This is also generalized to the logarithmic and the orbifold
+                                           setting. As a consequence, we complete the confirmation of a conjecture in [Li15a] on
+                                           an equivalent characterization of K-semistability for any smooth Fano manifold. We
+                                           also prove that the valuation associated to the Reeb vector field of a smooth Sasaki-
+                                                                       c over the corresponding Kähler cone. These results
+                                           Einstein metric minimizes vol
+                                           strengthen the minimization result of Martelli-Sparks-Yau [MSY08].
+
+
+                                           Contents
+                                           1 Introduction                                                                         2
+                                             1.1 Motivation and background . . . . . . . . . . . . . . . . . . . . . . . .        2
+                                             1.2 Statement of main results . . . . . . . . . . . . . . . . . . . . . . . . .      3
+
+                                           2 Preliminaries                                                                        5
+                                             2.1 Conical Kähler-Einstein metrics on log Fano pair . . . . . . . . . . . .        5
+                                             2.2 log-Ding-semistability . . . . . . . . . . . . . . . . . . . . . . . . . . .     6
+                                             2.3 Filtrations and Fujita’s result . . . . . . . . . . . . . . . . . . . . . . .    8
+                                             2.4 Normalized volumes of valuations . . . . . . . . . . . . . . . . . . . . .       9
+
+                                           3 Log-K-polystability of projective cones                                             10
+                                             3.1 Berman’s result on log-K-polystability . . . . . . . . . . . . . . . . . .      10
+                                             3.2 cKE metric on the projective cone over a cKE variety . . . . . . . . .          13
+                                             3.3 An orbifold version . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   15
+                                                 3.3.1 Appendix: Seifert C∗ -bundles and orbifolds . . . . . . . . . . .         17
+
+                                           4 Proof of main theorems                                                              19
+                                             4.1 Log version of Fujita’s result . . . . . . . . . . . . . . . . . . . . . . .    19
+                                             4.2 Application of log-Fujita to the filtrations of valuations . . . . . . . . .    21
+                                             4.3 Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    24
+
+                                           5 Derivative of volumes revisited                                                     28
+                                             5.1 A volume formula . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    29
+                                             5.2 Completion of the second proof of Theorem 1.1 . . . . . . . . . . . . .         32
+
+                                           6 Minimizers from smooth Sasaki-Einstein metrics                                      34
+
+
+                                                                                      1
+7 A question                                                                            39
+
+8 Acknowledgment                                                                        39
+
+
+1     Introduction
+1.1    Motivation and background
+The study of Kähler-Einstein (KE) metrics is very active recently. In particular, the
+Yau-Tian-Donaldson correspondence has been established for smooth Fano manifolds
+(see [Tia97], [Bm12], [CDS15, Tia15]). This correspondence says that a smooth Fano
+manifold admits a Kähler-Einstein metric if and only if it’s K-polystable. The exis-
+tence of Kähler-Einstein metrics of positive curvature is a global question. However,
+it can be related to a local question by considering the affine cone over the underlying
+Fano variety with the polarization given by a positive Cartier multiple of the anti
+canonical divisor. The affine cone is singular except for the case that the Fano variety
+                                                        1
+is Pn and the polarization one uses is OPn (1) = n+1       (−KPn ). Such cone singularities
+are basic examples of Q-Gorenstein klt singularities (see [Kol13]). It’s natural to ask
+what information does the Kähler-Einstein condition provide for the associated cone
+singularities. An answer is that there are Kähler Ricci-flat cone metrics on these affine
+cones over KE Fano manifolds. These Ricci-flat cone metrics are rotationally sym-
+metric and are easily obtained by solving an ODE with respect to radius functions
+determined by the Kähler-Einstein metrics. In this way, the study of Kähler-Einstein
+metrics can be put into a broader setting of Kähler Ricci-flat cone metrics. The latter
+has also been studied extensively recently. Given an affine cone singularity, (C, o) any
+Kähler cone metric gives rise to a radius function r and its associated Reeb vector
+field ∂θ := J(r∂r ) where J is the complex structure on the regular part of the affine
+cone. If ∂θ has closed orbits, then r∂r and ∂θ generates an effective C∗ -action. This
+is called the quasi-regular case which is relevant to our discussion in this paper. The
+Ricci-flat condition is then translated to the condition that the quotient (C \ {o})/C∗
+is a Kähler-Einstein Fano orbifold (V, ∆), at least when C has isolated singularity at
+o.
+    Whether there exists such a good radius function or an associated good C∗ -action
+is a delicate question. In the case when there is an effective torus T ∼ = (C∗ )d action on
+                                                       ∗
+C, it was proved in [GMSY07, MSY08] that the C -action corresponding to the quasi-
+regular Kähler Ricci-flat cone metric should minimize a normalized volume functional.
+The normalized volume functional is defined on the space of Reeb vector fields which is
+a conic subset of the Lie algebra of T . In [Li15a], this normalized volume functional was
+re-interpreted as the normalized volume of the valuations associated to the C∗ -actions.
+This allows us to define the normalized volume functional, denoted by c     vol(v), for any
+                                                                  c
+valuation v. More precisely for any valuation v we define vol(v) = AC (v)n · vol(v).
+AC (v) is the log discrepancy of v. vol(v) is the volume of v, which is finite if v
+is centered at a closed point. Using this new point of view, one can consider the
+normalized volume as a function on the space of valuations which are centered at
+o ∈ C. Moreover, we can consider any Q-Gorenstein klt singularity, which is not
+necessarily an affine cone singularity or equipped with any C∗ -action. We then ask
+whether there is a minimizer of this normalized volume functional, and, if there is
+a minimizer, what is its geometric meaning (see [Li15a]). Although these are purely
+algebro-geometric questions, we speculated in [Li15a] that answering them could help
+to understand metric tangent cones of Kähler-Einstein varieties (cf. [DS15]).
+    As a continuation of [Li15a, Li15b], we study these two questions for affine cones
+
+
+
+                                            2
+over “K-semistable” Q-Fano varieties. In this paper we will show that for a Q-Fano
+variety V , if V (specially) degenerates to a Kähler-Einstein Fano variety, then the
+canonical valuation ordV is actually a global minimizer of c vol. As a consequence, we
+obtain an equivalent characterization of K-semistability for smooth Fano manifold,
+thus completing the confirmation of a conjecture in [Li15a].
+    On the other hand, Martelli-Sparks-Yau’s minimization result in [MSY08] works for
+a general (smooth) Sasaki-Einstein manifold whose associated Reeb vector field does
+not have to generate a C∗ -action. If the Reeb vector field generates a torus action
+of rank bigger than 1, then the Sasaki-Einstein metric is called irregular. By using
+approximation arguments, we can indeed extend our result to prove a minimization
+result in the irregular case that generalizes Martelli-Sparks-Yau’s result.
+
+1.2    Statement of main results
+Let (V n−1 , E n−2 ) be a log-Fano pair. By this we mean that −(KV + E) is an ample
+Q-Cartier divisor and (V, E) has klt singularities with E effective. Assume H =
+−r−1 (KV + E) is an ample Cartier L divisor    for an r ∈ Q>0 . We will denote the affine
+cone by C := C(V, H) = Spec +∞       k=0 H 0
+                                             (V, kH). Notice that C has Q-Gorenstein
+klt singularities at the vertex o (see [Kol13, Lemma 3.1]). (C, o) has a natural C∗ -
+action. Denote by v0 the canonical C∗ -invariant divisorial valuation ordV where V
+is considered as the exceptional divisor of the blow up Blo C → C. Denote by E the
+effective divisor on C corresponding to E, which is the closure of the divisor f −1 E
+under the projection f : C − {o} → V . Using these notations, the following is the first
+main result of this paper.
+Theorem 1.1. With the above notation, if (V, E) is a conical Kähler-Einstein log-
+                c (C,E) is globally minimized over (C, o) at ordV .
+Fano pair, then vol
+   For the definition of conical Kähler-Einstein potentials/metrics and the normalized
+        c (C,E) see Section 2. Letting E = 0, we get a non-log version:
+volume vol
+                                                             c is globally minimized
+Corollary 1.2. If V is Kähler-Einstein Q-Fano variety, then vol
+over (C, o) at ordV .
+    There are several steps to prove Theorem 1.1. We first prove that there is a conical
+Kähler-Einstein metric on the projective cone (C, E + (1 − β)V∞ ) with β = r/n. See
+section 3.2 for the relevant notations. (Notice that 0 < β ≤ 1 by Lemma 3.2.) This is
+a generalization of the construction in [Li13, Lemma 3]. Next we use Berman’s result
+to conclude that (C, E + (1 − β)V∞ ) is log-K-polystable and hence log-K-semistable,
+or equivalently log-Ding-semistable. Then we apply the log version of Fujita’s result
+to the filtration associated to any valuation. At this point, we can proceed in two
+ways to complete the proof. For the first (quick) proof we use similar arguments
+                                                           c (C,E) which turns out be
+to those used in [Fuj15, Liu16] to obtain an estimate of vol
+sharp. For the second proof, we interpret the expression in log-Fujita as the derivative
+of normalized volumes in the same spirit as in [Li15a, Li15b] and use a convexity
+argument to conclude the proof (see Section 5).
+    We can also deal with the semistable case. See section 2.2 for the definition of
+special degenerations.
+Theorem 1.3. Assume V is a Q-Fano variety. Assume either of the following two
+conditions is satisfied:
+  1. V specially degenerates to a Kähler-Einstein Q-Fano variety;
+  2. (C, (1 − nr )V∞ ) specially degenerates to a conical Kähler-Einstein pair.
+
+
+                                           3
+     c is globally minimized at ordV over (C, o).
+Then vol
+Remark 1.4. Note that the second condition does not necessarily follow from the first
+one (see [Kol13, Aside in Section 3.8]). However the first condition should imply the
+second one up to a branched covering of the projective cone.
+   When V is a smooth Fano manifold, by the deep results in [CDS15, Tia15] we
+know that V being K-semistable is equivalent to the condition that V degenerates
+to a Kähler-Einstein Fano variety. This combined with the above theorem and the
+results in [Li15b] allows us to complete the confirmation of a conjecture in [Li15a].
+Corollary 1.5. Assume V is a smooth Fano manifold. Then V is K-semistable if
+            c is globally minimized at ordV over (C, o).
+and only if vol
+Remark 1.6. We expect Corollary 1.5 to be true for any Q-Fano variety. In [Li15b],
+the first author proved that one direction is true for any Q-Fano variety. Actually the
+                                                                      c is minimized
+following stronger criterion for K-semistability was proved there: if vol
+                   ∗
+at ordV among C -equivariant divisorial valuations, then V is K-semistable.
+    The same argument in the proof of Theorem 1.1 also allows us to get orbifold
+versions of the above results. In particular, we have the following combined version.
+See Section 3.3.1 for the notations used here.
+                                 P        1                                        n
+Theorem 1.7. Let (V, ∆ =           i (1 − mi )Di ) be a smooth orbifold and f : Y    →
+   n−1                     ∗
+(V     , ∆) be a Seifert C -bundle. Assume that the orbifold canonical class Korb :=
+KV + ∆ is anti ample and c1 (Y /V ) = −r−1 (KV + ∆) with 0 < r ≤ n. Denote by C orb
+the associated orbifold projective cone and by V∞ the compactifying divisor at infinity.
+Then the following holds:
+  1. If (V, ∆) admits an orbifold Kähler-Einstein metric of positive Ricci curvature,
+     then there is a conical Kähler-Einstein metric on (C orb , (1 − nr )V∞ ).
+  2. If (C orb , (1 − nr )V∞ ) specially degenerates to a conical Kähler-Einstein pair, then
+     over the orbifold cone (Corb , o), c  vol is globally minimized at ordV . In particular,
+     in the situation of item 1, we can choose the special degeneration as the trivial
+     one and hence the same conclusion holds.
+Remark 1.8. With our assumptions, the Seifert bundle Y in general has quotient
+singularities. By allowing (V, ∆) to be a general algebraic stack, we could weaken the
+condition that Y has quotient singularities and get more general version of the above
+results. However since we don’t use them in this paper, we will not discuss it here.
+   Finally, we can use approximation argument to cover the case of smooth Sasaki-
+Einstein metrics. Indeed, by using approximation method, we can prove
+Theorem 1.9 (=Theorem 6.2). Let M be a smooth Sasaki-Einstein manifold with the
+Reeb vector field ξ. Let X = C(M ) be the Kähler cone over M . Then the valuation
+                          c X over ValX,o .
+associated to ξ minimizes vol
+Remark 1.10. Theorem 1.7 and 1.9 strength the volume minimization result in
+[MSY08].
+    We emphasize here that the main common feature of proofs of the above results
+is that we need to work in the conical/logarithmic setting. On the one hand we
+work on the projective cone over the original Q-Fano variety and construct a conical
+Kähler-Einstein metric using a (conical) Kähler-Einstein metric on the original Q-
+Fano variety. On the other hand we need to apply Berman and Fujita’s results about
+Ding-semistability in their log versions. Although this seems innocuous at first sight,
+it turns out to be crucial for us to get sharp estimates.
+
+                                             4
+2     Preliminaries
+2.1     Conical Kähler-Einstein metrics on log Fano pair
+We recall some notions in the logarithmic setting following [BBEGZ11]. Let (X, D)
+be a log pair satisfying:
+    • D is an effective Q-divisor and −(KX + D) is a Q-Cartier Q-divisor;
+    • (X, D) has klt singularities;
+    • −(KX + D) is ample.
+    From now on, let δ > 0 be a positive rational number such that L = −δ −1 (KX +D)
+is Cartier. Then L can be considered as a holomorphic line bundle. A locally bounded
+Hermitian metric on L is given by a family of locally bounded positive functions e−ϕ :=
+{e−ϕi } associated to an affine covering {Ui }i of X, such that they are compatible with
+the transition functions {gij } ∈ H 1 ({Ui }, OX
+                                               ∗
+                                                 ) of L:
+
+                                        e−ϕj     sj
+                                          −ϕ
+                                               =    = gij
+                                        e    i   si
+
+where si is a local generator of L over Ui . e−ϕ is positively curved if ϕ√i is plurisubhar-
+monic on each affine subset Ui , i.e. ϕi is lower semi-continuous and −1∂ ∂ϕ      ¯ i ≥ 0 in
+the sense of currents. A locally bounded positively curved Hermitian metric e−ϕ on
+L is called to be a conical Kähler-Einstein (cKE) potential on (X, D; L) if it satisfies
+the following Monge-Ampère equation:
+                                   √
+                                          ¯ n = mδϕ ,
+                                  ( −1∂ ∂ϕ)                                              (1)
+
+where we used the following notations:
+                                                         √
+                                                              ¯ n is defined in the
+    • For the left hand side, the Monge-Ampère measure ( −1∂ ∂ϕ)
+      sense of pluripotential theory;
+    • To define the right hand side, we first choose any integer k such that k(KX + D)
+      is Cartier and a non vanishing local section σ k . For example, we can choose
+      k = δ −1 . Then we define locally:
+                                 1/k                    1/k                             
+              mδϕ = σ k ∧ σ̄ k          |σ −k |2 e−kδϕ          =: dV(X,D) (σ) · |σ|2 e−δϕ .
+
+      It’s easy to verify that this is a globally well defined singular volume form. If
+                                             −1                                 ∗
+            P a log resolution of π : (Y, f∗ D) → (X,
+      we choose                                         S D) such that KY = π (KX +
+      D) + i ai Ei with the normal crossing divisor i Ei , then locally we have:
+                                                         Y
+                                   π ∗ (mδϕ ) = e−ψ             |fi |2ai dλ.
+                                                           i
+
+      where ψ a bounded function, Ei = {fi = 0} and dλ is the local Lebesgue measure
+      on Y . Notice that the klt condition means that ai > −1, which implies that the
+      density function of π ∗ (mδϕ ) with respect to dλ is Lp (dλ) for some p > 1. We
+      refer to [BBEGZ11, Section 3] for more details.
+                                               √
+Correspondingly, the curvature current ωϕ := −1∂ ¯    ∂ϕ is called to be a conical Kähler-
+Einstein metric of (X, D) with Ricci curvature δ > 0. If there is a cKE potential on
+(X, D; L) then the same holds for (X, D; λL) for any λ ∈ Q>0 . So for simplicity, if
+the proportional constant δ > 0 is clear (equivalently when the cohomology class of L
+is clear) we will just say that there is a cKE metric on (X, D).
+
+
+                                                 5
+    In the case when both KX and D are Q-Cartier, we can choose a local non vanishing
+section em                                           m
+         1 of mKX and a local non vanishing section e2 of mD. We then think e1 and
+e2 as Q-sections of the Q-line bundles KX and D, and obtain a Q-section σ = e1 · e2
+                                                                    1
+of KX + D. Notice that on the open set Uα , we can choose em 2 = fα ∈ O(mD)(Uα )
+where mD = {fα = 0}. Then we can write:
+                                                     1/m             1/m
+                      (σ ∧ σ)1/m    =      (em     m
+                                             1 ∧ ē1 )     (em      m
+                                                             2 ∧ ē2 )
+                                                               1
+                                    = (em       m 1/m
+                                         1 ∧ ē1 )
+                                                           |fα |2/m
+                                                    |e2 |2
+                                    =: (e1 ∧ ē1 )
+                                                   |sD |2
+
+where sD is the Q-section of D such that mD = {sm    D = 0} and we think |sD |
+                                                                               −2
+
+as defining a singular Hermitian metric on the Q-line bundle D. Using the above
+notations, we can formally write:
+
+                                          |e2 |2 −1 −1 2 −δϕ     e−δϕ
+                     mδϕ = (e1 ∧ ē1 )         2
+                                                 |e1 · e2 | e =:        .
+                                         |sD |                   |sD |2
+
+Remark 2.1. In the even more special case when X is smooth and D = (1 − β)E
+for a smooth prime divisor E and β ∈ (0, 1]. The solution to (1) can√ be shown to
+be give rise to a singular Kähler-Riemannian metric structure ωϕ := −1∂ ∂ϕ              ¯ with
+conical singularities along E (see [Don12, JMR15]). In other words away from E, ωϕ
+is a smooth Kähler metric, and near the divisor E, ωϕ is modeled on the flat conical
+metric (choosing local coordinate z = (z1 , z2 , . . . , zn ) with E = {z1 = 0}):
+                             n
+                                        !     √                          n
+         √                  X
+                                             2 −1dz1 ∧ dz̄1
+                                                                   √ X
+               ¯       2β
+           −1∂ ∂ |z1 | +        |zi | 2
+                                          =β                     + −1       dzi ∧ dz̄i .
+                            i=2
+                                                |z1 |2(1−β)             i=2
+
+It’s easy to verify that, for
+                            this model metric, the associated metric tensor can be
+written as dr2 + β 2 r2 dθ2 × gCn−1 where r = |z1 |β . So 2πβ is the metric cone angle.
+                            √
+Note that by taking the − −1∂ ∂¯ log on both sides of (1), we know that the Ricci
+curvature of ωϕ satisfies the following equality:
+                          √             √
+                     Ric −1∂ ∂ϕ  ¯ = δ −1∂ ∂ϕ  ¯ + (1 − β)2π{E},
+
+where {E} denotes the current of integration along E. Furthermore, when β = 2π/m
+for m ∈ Z>0 , then conical Kähler-Einstein metrics on the log smooth pair (X, (1−β)E)
+are nothing but orbifold Kähler-Einstein metrics. Indeed, in these cases the solution
+to the equation (1) can be shown to be orbifold smooth (see [EGZ09, BBEGZ11]). In
+particular, if β = 1 we are in the case of smooth Kähler-Einstein metrics.
+
+2.2    log-Ding-semistability
+In this section we recall the definition of log-K-semistability, and its recent equivalence
+log-Ding-semistability. The concept of log-K-stability was first introduced in [Li11]
+after the formulation the K-stability by Tian and Donaldson.
+Definition 2.2 (see [Tia97, Don02, Li11, LX14, OS15]). Let (X, D) be a log-Fano
+pair.
+  1. For any δ > 0 ∈ Q such that −δ −1 (KX + D) = L is Cartier, a test configuration
+     (resp. a semi test configuration) of (X, D; L) consists of the following data
+
+                                                6
+         • A log pair (X , D) admitting a C∗ -action and a C∗ -equivariant flat morphism
+           π : X → C1 , where the C∗ -action on the base C is given by the standard
+           multiplication;
+         • A C∗ -equivariant π-ample (resp. π-semiample) line bundle L on X such that
+           there is a C∗ -equivariant isomorphism (X , D; L)|π−1 (C\{0}) ∼
+                                                                         = (X, D; −δ −1 (KX +
+                    ∗
+           D)) × C .
+       A normal test configuration is called a special test configuration, if the following
+       are satisfied
+         • X0 is irreducible and normal, and (X0 , D0 ) is a log Fano pair;
+         • L = −δ −1 (KX /C + D).
+     In this case, we will say that (X, D) specially degenerates to (X0 , D0 ).
+  2. Assume that (X , D; L) → C is a normal test configuration. Let π̄ : (X¯ , D̄; L̄) →
+     P1 be the natural equivariant compactification of (X , D; L) → C1 . The log-CM
+     weight of of (X , D; L) is defined by
+
+                                     nδ n+1 L̄n+1 + (n + 1)δ n L̄n · (KX̄ /P1 + D)
+                log-CM(X , D; L) =                                                 .
+                                                (n + 1)(−KX − D)n
+
+  3.     • The pair (X, D) is called log-K-semistable if log-CM(X , D; L) ≥ 0 for any
+           normal test configuration (X , D; L)/C1 of (X, D; −δ −1 (KX + D)) for any
+           δ ∈ Q>0 (such that −δ −1 (KX + L) is Cartier).
+         • The pair (X, D) is called log-K-polystable if log-CM(X , D; L) ≥ 0 for any
+           normal test configuration (X , D; L)/C1 of (X, D; −δ −1 (KX + D)), and the
+           equality holds if and only if (X , D; L) ∼
+                                                    = (X, D; L) × C1 .
+   We will need a related concept of log-Ding-semistability, which is derived from
+Berman’s work in [Bm12].
+Definition 2.3 (see [Bm12, Fuj15]).      1. Let (X , D; L)/C1 be a normal semi-test con-
+     figuration of (X, D; −δ (KX + D) and (X¯ , D̄; L̄)/P1 be its natural compactifi-
+                             −1
+
+     cation. Let ∆(X ,D;L) be the Q-divisor on X satisfying the following conditions:
+         • The support Supp ∆(X ,D;L) is contained in X0 ;
+         • The divisor δ −1 ∆(X ,D;L) is a Z-divisor corresponding to the divisorial sheaf
+           L̄(δ −1 (KX̄ /P1 + D̄)).
+  2. The log-Ding invariant log-Ding(X , D; L) of (X , D; L)/C is defined as:
+
+                                     −δ n+1 L̄n+1                                   
+       log-Ding((X , D); L) :=                     − 1 − lct(X , D − ∆(X ,D;L); X0 ) .
+                                 (n + 1)(−KX − D)n
+
+  3. (X, D) is called log-Ding semistable if log-Ding(X , D; L) ≥ 0 for any normal test
+     configuration (X , D; L)/C of (X, D; −δ −1 KX ).
+Remark 2.4. For special test configurations, log-CM weight coincides with log-Ding
+invariant:
+                                       −δ n+1 L̄n+1
+             log-CM(X , D; L) =                      = log-Ding(X , D; L).             (2)
+                                   (n + 1)(−KX − D)n
+
+By the recent work of [BBJ15], (log-)Ding-semistability is equivalent to (log-)K-semistability.
+Notice that since the work in [LX14], it was known that to test log-K-semistability (or
+log-K-polystability), one only needs to test on special test configurations.
+
+
+                                             7
+2.3    Filtrations and Fujita’s result
+We recall the relevant definitions about filtrations after [BC11] (see also [BHJ15] and
+[Fuj15, Section 4.1]).
+                                                              L+∞
+Definition 2.5. A good filtration of a graded C-algebra S = m=0 Sm is a decreasing,
+left continuous, multiplicative and linearly bounded R-filtrations of S. In other words,
+for each m ≥ 0 ∈ Z, there is a family of subspaces {F x Sm }x∈R of Sm such that:
+                     ′
+  1. F x Sm ⊆ F x Sm , if x ≥ x′ ;
+              T          ′
+  2. F x Sm = x′ <x F x Sm ;
+                 ′               ′
+  3. F x Sm · F x Sm′ ⊆ F x+x Sm+m′ , for any x, x′ ∈ R and m, m′ ∈ Z≥0 ;
+  4. emin (F ) > −∞ and emax (F ) < +∞, where emin (F ) and emax (F ) are defined by
+     the following operations:
+
+                         emin (Sm , F ) = inf{t ∈ R; F t Sm 6= Sm };
+                         emax (Sm , F ) = sup{t ∈ R; F t Sm 6= 0};
+                                                              emin (Sm , F )                (3)
+                         emin (F ) = emin (S• , F ) = lim inf                ;
+                                                      m→+∞          m
+                                                               emax (Sm , F )
+                         emax (F ) = emax (S• , F ) = lim sup                  .
+                                                        i→+∞         m
+                  L+∞
+    Define S (t) = k=0 F kt Sk . When we want to emphasize the dependence of S (t)
+on the filtration F , we also denote S (t) by F S (t) . The following concept of volume
+will be important for us:
+                                                     dimC F mt Sm
+                  vol S (t) = vol F S (t) := lim sup                  .              (4)
+                                                k→+∞        mn /n!
+                                                                    L+∞ 0         m
+L+∞
+    Now assume L is an ample line bundle over X and S =               m=0 H (X, L ) =
+  m=0 Sm is the section ring of (X, L). Then following [Fuj15], we can define a se-
+quence of ideal sheaves on X:
+                         F
+                                                                
+                        I(m,x) = Image F x Sm ⊗ L−m → OX ,                           (5)
+             x
+and define F Sm := H 0 (V, Lm ·I(m,x)
+                                F
+                                      ) to be the saturation of F x Sm such that F x S m ⊆
+ x                                     x
+F Sm . F is called saturated if F Sm = F x Sm for any x ∈ R and m ∈ Z≥0 . Notice
+that with our notations we have:
+                                               kt
+                                                F H 0 (X, kL)
+                    vol F S (t) := lim sup dimC               .
+                                    k→+∞            k n /n!
+The following result was proved by Fujita by applying a criterion for Ding semistability
+([Fuj15, Proposition 3.5]) to a sequence of semi-test configurations constructed from
+a filtration. We will state a log version of it in Section 4.1.
+Theorem 2.6 ([Fuj15, Theorem 4.9]).   L Assume       (X, −KX ) is Ding-semistable. Let F
+be a good graded filtration of S = +∞   m=0  H 0
+                                                 (X, mL)  where L = −δ −1 KX . Then the
+pair (X × C, I•δ · (t)d∞ ) is sub log canonical, where
+            F          F
+      Im = I(m,me+)
+                    + I(m,me + −1)
+                                   t1 + · · · + I(m,me
+                                                 F
+                                                        − +1)
+                                                              tm(e+ −e− )−1 + (tm(e+ −e− ) ),
+                                            Z e+               
+                                δ n+1                       (t)
+      d∞ = 1 − δ(e+ − e− ) +                      vol   F S       dt,
+                             ((−KX )n ) e−
+
+and e+ , e− ∈ Z with e+ ≥ emax (S• , F ) and e− ≤ emin (S• , F ).
+
+                                                8
+2.4    Normalized volumes of valuations
+In this section, we briefly recall the concept of valuations and their normalized volumes.
+Let Y = Spec(R) be a normal affine variety. A real valuation v on the function field
+C(Y ) is a map v : C(Y ) → R, satisfying:
+  1. v(f g) = v(f ) + v(g);
+  2. v(f + g) ≥ min{v(f ), v(g)}.
+In this paper we also require v(C∗ ) = 0, i.e. v is trivial on C. Denote by Ov = {f ∈
+C(Y ); v(f ) ≥ 0} the valuation ring of v. The valuation v is said to be finite over R, or
+on Y , if Ov ⊃ R. Let ValY denote the space of all real valuations which are trivial on
+C and finite over R. Fix a closed point o ∈ Y with the corresponding maximal ideal
+of R denoted by m. We will be interested in the space ValY,o of all valuations v with
+centerY (v) = o. If v ∈ ValY,o , then v is centered on the local ring Rm (see [ELS03]).
+In other words, v is nonnegative on Rm and is strictly positive on the maximal ideal
+of the local ring Rm . For any v ∈ ValY,o , we define its valuative ideals:
+
+                                ap (v) = {f ∈ R; v(f ) ≥ p}.
+
+The by [ELS03, Proposition 1.5], ap (v) is m-primary, and so is of finite codimension
+in R (cf. [AM69]). We define the volume of v as the limit:
+                                                 dimC R/ap (v)
+                              vol(v) = lim sup                 .
+                                       p→+∞         pn /n!
+
+By [ELS03], [Mus02] and [Cut12], the limitsup on the right hand side is a limit and is
+equal to the multiplicity of the graded family of ideals a• = {ap }:
+                                                 e(ap )
+                              vol(v) = lim              =: e(a• ),                    (6)
+                                       p→+∞       pn
+where e(ap ) is the Hilbert-Samuel multiplicity of ap .
+    From now on in this paper, we assume that Y has Q-Gorenstein klt singularities.
+Following [JM10] and [BFFU13], we can define the log discrepancy for any valuation
+v ∈ ValY . This is achieved in three steps in [JM10] and [BFFU13]. Firstly, for a
+divisorial valuation ordE associated to a prime divisor E over Y , define AY (E) =
+ordE (KZ/Y ) + 1, where π : Z → Y is a smooth model of Y containing E. Next for
+any quasimonomial valuation (also called Abhyankar valuation) v ∈ QMη (Z, D) where
+         PN
+(Z, D = k=1 Dk ) is log smooth and η is a generic point of an irreducible component
+                                        PN
+of D1 ∩ · · · ∩ DN , we define AY (v) = k=1 v(Dk )AY (Dk ). Lastly for any valuation
+v ∈ ValY , we define
+                               AY (v) = sup AY (rZ,D (v))
+                                         (Z,D)
+
+where (Z, D) ranges over all log smooth models over Y , and r(Z,D) : ValY → QM(Z, D)
+are contraction maps that induce a homeomorphism ValY → lim        ←−
+                                                                       QM(Z, D). For
+                                                                     (Z,D)
+details, see [JM10] and [BFFU13, Theorem 3.1]. A basic property of AY is that for
+any proper birational morphism Z → Y , we have (see [JM10, Remark 5.6], [BFFU13,
+Proof 3.1]):
+                            AY (v) = AZ (v) + v(KZ/Y ).                       (7)
+Now we can define the normalized volume for any v ∈ ValY,o :
+                               
+           c         c Y (v) =   AY (v)n vol(v), if AY (v) < +∞,
+           vol(v) := vol
+                                 +∞,              if AY (v) = +∞.
+
+                                             9
+              c
+Notice that vol(v)                            c
+                     is rescaling invariant: vol(λv)      c
+                                                       = vol(v)  for any λ > 0. By Izumi’s
+theorem (see [Izu85, Ree89, ELS03, BFJ12, JM10, Li15a]), one can show that c          vol is
+                                                                           c
+uniformly bounded from below by a positive number on ValY,o . If vol has a global
+minimizer v∗ on ValY,o , i.e. c vol(v∗ ) = inf v∈ValY,o c
+                                                        vol(v), then we will say that c
+                                                                                      vol is
+globally minimized at v∗ over (Y, o). In [Li15a], the first author conjectured that this
+holds for all Q-Gorenstein klt singularities and proved that this is the case under a
+semi-continuity hypothesis.
+                                         c For this, we assume (Y, E) is a log pair such
+    We will also need a log version of vol.
+that E is an effective Q-Weil divisor, KY + E is Q-Cartier and (Y, E) has klt singulari-
+ties. Then we can follow the above definition by replacing AY (v) by the log discrepancy
+A(Y,E) (v) of v with respect to (Y, E). More precisely, for a divisorial valuation ordF
+associated to a prime divisor F over Y , define A(Y,E) (F ) = ordF (KZ/(Y,E) ) + 1, where
+π : Z → Y is a smooth model of Y containing F and KZ/(Y,E) := KZ − π ∗ (KY + E).
+Then we may extend the log discrepancy function A(Y,E) (·) to all valuations v ∈ ValY
+in the same way as in the absolute case AY (·). Indeed we can fix a smooth model
+φ : W → Y and write:
+                                 KW = φ∗ (KY + E) + G.
+Notice that G is Q-Cartier. Because W is smooth and C(W ) ∼
+                                                          = C(Y ), we can define,
+for any v ∈ ValY ∼
+                 = ValW ,
+
+                              A(Y,E) (v) := AW (v) + v(G),
+
+where v(G) := k1 v(IkG ) if kG is Cartier with the ideal sheaf IkG (see [dFH09]). With
+the above definition, we define for any v ∈ ValY,o :
+                            
+             c (Y,E) (v) =    A(Y,E) (v)n vol(v), if A(Y,E) (v) < +∞,
+            vol
+                              +∞,                   if A(Y,E) (v) = +∞.
+
+Notice that in the case when KY and E are Q-Cartier, then we have:
+
+                               A(Y,E) (v) = AY (v) − v(E).                              (8)
+
+In particular AY (v) = ∞ if and only if A(Y,E) (v) = ∞.
+
+
+3     Log-K-polystability of projective cones
+3.1    Berman’s result on log-K-polystability
+In this section, we state and sketch a proof of Berman result on log-Ding-polystability
+which will be shown to imply a log version of Fujita’s result in Section 4.1.
+Theorem 3.1 ([Bm12]). If (X, D; L) has a conical Kähler-Einstein potential, then
+(X, D) is log-K-polystable. In particular, it is log-K-semistable, and equivalently log-
+Ding-semistable.
+   This was proved by Berman (see [Bm12, Section 4.3]). For the reader’s convenience,
+we provide a sketch of the proof.
+
+Proof. Define the space of locally bounded positively curved Hermitian metrics on L:
+                                                                √
+        H∞ (X, L) := {e−ϕ | ϕ = {ϕj } ∈ L∞loc (X) is l.s.c. and   −1∂ ¯
+                                                                     ∂ϕ ≥ 0},
+
+
+
+
+                                            10
+              √
+where ωϕ := −1∂ ∂ϕ  ¯ ≥ 0 is in the sense of currents. We fix a locally bounded
+reference Hermitian metric e−φ0 on L (see section 2.1). For any ϕ ∈ H∞ (X, h) define
+the log-Ding-energy (see [Din88]) as:
+                                                  Z       
+                                  0              1     −δϕ
+                        F (ϕ) = Fφ0 (ϕ) − log        e       .                   (9)
+                                                Ln X
+
+Here we used the notations in Section 2.1 and the Monge-Ampère energy Fφ00 (ϕ) is
+defined as:
+                       δ    X 1 Z
+                            n
+                                               √           √
+         0
+        Fφ0 (ϕ) = −                                 ¯ k ∧ ( −1∂ ∂φ
+                                    (ϕ − φ0 ) ( −1∂ ∂ϕ)         ¯ 0 )n−k .
+                    (n + 1)    n
+                              L X
+                            k=0
+
+The reason for considering the log-Ding-energy is that its critical point is exactly the
+conical Kähler-Einstein potential, i.e. the solution (up to a constant) to the complex
+Monge-Ampère equation:            √
+                                 ( −1∂ ∂ϕ) ¯ n = mδϕ .                              (10)
+Moreover if there is a conical Kähler-Einstein potential e−φcKE on the pair (X, D), then
+F (ϕ) is bounded from below on H∞ (X, L) by F (φcKE ) < +∞ (see [Bn15, BBEGZ11]).
+We will later apply this fact to a family of Hermtian metrics coming from any test
+configuration.
+    Now suppose ((X , D); pL) is a normal test configuration of ((X, D); pL). Let e−Φ
+be any √ locally bounded Hermitian metric on pL which is positively curved, i.e. sat-
+isfying −1∂ ¯   ∂Φ ≥ 0 in the sense of current. Following the approach in [Bm12], we
+consider the divisor ∆ = (KX /C1 + D) + δL with its defining section S.  e Then we get
+a relative measure on X :
+                                              e 2 mΦ .
+                                      vΦ := |S|
+Here as before, mΦ is a globally defined measure on X , which on the regular part of
+              exp(− δ Φ)
+X is equal to |SD |p2 where SD is the defining section of D on the regular part of
+X . Notice that it has a positive curvature current:
+                                                     
+               √          δ                    δ√
+                 −1∂ ∂¯                  2
+                            Φ + log |SD | =           ¯
+                                                  −1∂ ∂Φ + {SD = 0}
+                          p                    p
+where {SD = 0} is the current of integration along the divisor D. By Berndtsson’s
+subharmonicity theorem (see [Bn15, BP08]), we know that the function on the base:
+                                            Z      !
+                               G(t) := − log              vΦ
+                                                   X /C
+
+
+is subharmonic. Notice that if e−Φ is C∗ -invariant which is the case for the metrics
+we will choose, the subharmonicity implies G(t) is convex in − log |t|.
+    We can argue as Berman in [Bm12, Section 3.3] to show that the Lelong number
+of G(t) is equal to:
+                           l0 := 1 − lct((X , D − ∆); X0 ).                     (11)
+Recall that the Lelong number of G(t) can be defined as:
+                                                   G(t)
+                                   l0 = lim inf           .                         (12)
+                                         t→0      log |t|
+On the other hand, by the equivariant isomorphism:
+
+                            µ : (X |C∗ , pL) ∼
+                                             = (X, pL) × C∗
+
+                                           11
+we get a family of Hermitian metrics ϕt ∈ H∞ (X, L) such that
+                                                    1
+                                 e−ϕt = (µ−1 )∗ e− p Φ           .
+                                                         X×{t}
+
+From the construction, we can see that:
+
+                                  F (ϕt ) = Fφ00 (ϕt ) − G(t).                        (13)
+
+Now there are two natural choices of the locally bounded Hermitian metric on pL
+for which we can carry out the above constructions to get two families of Hermtian
+metrics on L → X. For the first one we use the well known fact that there is an
+C∗ -equivariant embedding:
+
+                       α1 : X → PN × C1 with pL = α∗1 OPN (1)
+
+where C∗ acts on C1 by multiplication and acts on PN through a one-parameter
+subgroup of PGL(N + 1, C). Pulling back the Fubini-Study metric on OPN (1), we
+                                                  (1)
+get a smooth Hermitian metric, denoted by e−Φ , on pL. The family of Hermitian
+          (1)                     (1)
+metrics {ϕt } associated to e−Φ as above is usually called Bergman metrics on
+L → X. We can prove the log-Ding-semistability by using family. Indeed, it’s well
+                  (1)
+known that Fφ00 (ϕt ) is concave in − log |t|, and its slope at infinity is equal to:
+                                  (1)
+                        Fφ00 (ϕt )    δ L̄n+1     δ n+1 L̄n+1
+                     lim           =−      n
+                                              =−              .                       (14)
+                     t→0 − log |t|       L       (−KX − D)n
+So combining this formula (11)-(13), we get:
+                       (1)
+                  F (ϕt )       δ n+1 L̄n+1
+              lim           =−              − (1 − lct((X , D − ∆); X0 ).             (15)
+              t→0 − log |t|    (−KX − D)n
+                                                                         (1)
+As mentioned above, if (X, D) is conical Kähler-Einstein, then F (ϕt ) is bounded
+from below, so the right-hand-side of (15) is non-negative.
+   To prove the stronger polystability, we need to consider another locally bounded
+metric, which is obtained by solving a homogeneous complex Monge-Ampère equation
+on X |{|t|≤1}
+                         √               √
+                                  ¯ (1) + −1∂ ∂Ψ)
+                           ( −1∂ ∂Φ              ¯ n+1 = 0;
+                           Ψ|X×S 1 = 0.
+                                                                                     (2)
+It’s now well known that there exists a bounded solution Ψ. Denoting e−Φ            =
+     (1)                                              (2)
+e−(Φ +Ψ) , then the family of Hermitian metrics {ϕt } associated to the locally
+                               (2)
+bounded Hermitian metric e−Φ is a so-called weak geodesic ray in H∞ (X, L) ema-
+nating from e−ϕ1 . If we choose φ0 to be the conical Kähler-Einstein potential, then
+we have
+                d                  (2)                    d           (2)
+                               F (ϕt )) ≥ 0, and lim              F (ϕt ) = 0.
+           d(− log |t|) |t|=1−                   t→0 d(− log |t|)
+                           (2)                                                 (2)
+By the convexity of F (ϕt ) with respect to − log |t|, this implies that F (ϕt ) is affine
+                                                                          (2)          (2)
+with respect to − log |t|. It’s well known that for the geodesic ray {ϕt }, Fφ00 (ϕt )
+is affine in the variable − log |t|, so G(t) must be affine with respect to − log |t|. By
+arguing as in [Bm12] (see also [Bn15]), we can conclude that (X , D; L) is indeed a
+product test configuration.
+
+
+
+                                              12
+3.2     cKE metric on the projective cone over a cKE variety
+Let (V, E) be a log Fano pair. Assume H = −r−1 (KV +E) is an ample Cartier divisor.
+Consider the projective cone over V with polarization H:
+                                          +∞
+                                                  !
+                                          M
+                                 C = Proj      Sm
+                                               m=0
+
+where                              m
+                                   M                       
+                           Sm =          H 0 (V, kH) · um−k .
+                                   k=0
+
+Geometrically, C = C ∪ V∞ where C is the affine cone over V defined as
+                                      +∞
+                                                      !
+                                      M
+                                             0
+                          C = Spec        H (V, mH) ;
+                                         m=0
+
+V∞ is the divisor at infinity, which is clearly isomorphic to V . Let E be the corre-
+sponding divisor on C. By [Kol13, Section 3.1], KC + E is Q-Cartier, (C, E) has klt
+singularities and moreover:
+
+                              − (KC + E) ∼Q (1 + r)V∞ .                            (16)
+
+Define the cone angle parameter:
+                                           r
+                                         β=  .                                    (17)
+                                           n
+The following lemma is well known. For the absolute case, see [IP99, Corollary 2.1.13].
+Lemma 3.2. Assume that (V n−1 , E) is a log Fano pair. If H = −r−1 (KV + E) is
+Cartier for r ∈ Q>0 , then 0 < r ≤ n.
+
+Proof. The proof is the same as in [IP99, Corollary 2.1.13]. By the general Kawamata-
+Viehweg vanishing (see [Kol97, 2.16]), H i (V, OV (mH)) = 0 for any i > 0 and m > −r.
+By Riemann-Roch, χ(V, mH) is a polynomial in m of degree n − 1. By the above
+vanishing, we know that this polynomial has roots m = −1, −2, · · · , 1 − ⌈r⌉. So we
+get r ≤ n.
+
+   The above lemma yields 0 < r ≤ n, so β ∈ (0, 1]. Then it’s easy to verify that the
+pair (C, E + (1 − β)V∞ ) is klt, whose anti-log-canonical divisor is given as:
+                                                       r            n+1
+           − (KC + E + (1 − β)V∞ ) ∼Q (1 + r) − (1 − ) V∞ = r               V∞ . (18)
+                                                        n               n
+We will denote by L the line bundle associated to the Cartier divisor V∞ . Notice that
+L|V∞ ∼
+     = H so that (Ln ) = (H n−1 ).
+Proposition 3.3. If (V, E) has a conical Kähler-Einstein Hermitian metric on (V, E; H),
+then there exists a conical KE potential on (C, E + (1 − β)V∞ ; L).
+
+Proof. Let h := e−φ be the cKE potential on (V, E; H). By the calculation in [Li13],
+the cKE potential e−ϕL on (C, E + (1 − β)V∞ ; L) should satisfy the equality:
+                                                         h
+                      ksV∞ k2hL := |sV∞ |2 e−ϕL =               n/r ,             (19)
+                                                     1 + hr/n
+
+where sV∞ is the defining section of OC (V∞ ) and h is viewed as a non-negative function
+on C \ {o}.
+
+                                            13
+Remark 3.4. If E = ∅ this is just an appropriately normalized form of the result in
+[Li13, Lemma 3]. The expression in (19) is clearly a generalization of the classical
+Fubini-Study metric on OPn (1).
+   It’s easy to see that the formula (19) defines a locally bounded Hermitian metric
+e−ϕL on L. We will directly verify that this is indeed a cKE potential. We will denote
+by f¯ : C \ {o} ∼
+                = H → V∞ = V the natural projection. It’s also convenient to denote
+ρ = log h such that
+                   √
+   • h = eρ and −1∂ ¯     ∂ρ = −f¯∗ ω + 2π{V∞ }, where ω is the curvature current of
+      the cKE potential h over (V, E; H) and {V∞ } denotes the current of integration
+      along V∞ ;
+   • ∂ρ = ∂ log a + dξξ . As a consequence we have:
+
+                                                                      ¯
+                                               ¯ = f¯∗ ω n−1 ∧ dξ ∧ dξ
+                              f¯∗ ω n−1 ∧ ∂ρ ∧ ∂ρ
+                                                                 |ξ|2
+Using the above notation, we can calculate:
+     √                        √                n√
+   − −1∂ ∂¯ log ksk2hL = (− −1∂ ∂¯ log ρ) +       −1∂ ∂¯ log(1 + eβρ )
+                                               r
+                                                                                 
+                                            n     βeβρ          β 2 eβρ        ¯
+                       = ω − 2π{V∞ } +         −         ω+               ∂ρ ∧ ∂ρ
+                                            r    1 + eβρ      (1 + eβρ )2
+                                    ω         βeβρ          ¯ − 2π{V∞ }.
+                          =              +             ∂ρ ∧ ∂ρ
+                                 1 + eβρ   (1 + eβρ )2
+Here we identify ω on V with its pull back f¯∗ ω to C \ {o}. So we get the curvature
+current of e−ϕL :
+                    √               ω           βeβρ
+                          ¯ L=
+                      −1∂ ∂ϕ              +                   ¯
+                                                         ∂ρ ∧ ∂ρ.               (20)
+                                 1+e   βρ    (1 + eβρ )2
+
+              √ a positive current over C \ {o}. The volume form (or the Monge-Ampère
+This is clearly
+measure) of −1∂ ∂ϕ  ¯ L is equal to
+                  √                                eβρ
+                       ¯ L )n
+                 ( −1∂ ∂ϕ           =      nβ               f¯∗ ω n−1 ∧ ∂ρ ∧ ∂ρ
+                                                                              ¯
+                                              (1 + eβρ )n+1
+                                                   eβρ                  dξ ∧ dξ¯
+                                    =      nβ       βρ  n+1
+                                                            f¯∗ ω n−1 ∧         .
+                                              (1 + e )                    |ξ|2
+Because e−φ is conical Kähler-Einstein on (V, E; H = −r−1 (KV + E)), it satisfies the
+following equation on the regular part of V :
+                                                        e−rφ
+                                           ω n−1 =             ,                         (21)
+                                                        |sE |2
+where sE is the defining section of OV (E|Vreg ). Taking the curvature on both sides,
+we get:                       √
+                                    ¯
+                Ric(ω n−1 ) = −1∂ ∂(rφ   + log |sE |2 ) = rω + 2π{E}.            (22)
+We define a measure on C reg :
+                     √
+            M := ( −1∂ ¯      ∂ϕL )n · |sV∞ |2(1−β) |sE |2
+                                  eβρ           ¯∗ ω n−1 ∧ ∂ρ ∧ ∂ρ
+                                                                ¯ · |sV |2(1−β) |sE |2
+                   =    nβ                n+1 f                        ∞
+                             (1 + eβρ )
+                             eβρ |sV∞ |2(1−β) dξ ∧ dξ¯ ¯∗ n−1          
+                   =    nβ               n+1        2
+                                                      ∧f ω    · |sE |2
+                                     βρ
+                              (1 + e )          |ξ|
+
+
+                                                   14
+Using the cKE equation (21), we know that M is induced given by a bounded (indeed
+continuous) volume form on the regular part of C\{o}, which induces a locally bounded
+Hermitian metric on −(KC + (1 − β)V∞ + E):
+
+                              eβρ |sV∞ |2(1−β) dξ ∧ dξ¯ ¯∗ n−1           
+               e−ψ    := nβ               n+1        2
+                                                       ∧f ω     · |sE |2
+                               (1 + eβρ )        |ξ|
+                              eβρ |sV∞ |2(1−β) dξ ∧ dξ¯ ¯∗ −rφ 
+                      =    nβ             n+1          ∧f e      .
+                               (1 + eβρ )        |ξ|2
+
+We can easily calculate the curvature current of e−ψ :
+ √                   √                                √
+   −1∂ ¯
+       ∂ψ = (−β −1∂ ¯       ∂ρ + 2πβ{V∞ }) + (n + 1) −1∂ ∂¯ log(1 + eβρ ) + f¯∗ (rω)
+                                                                      
+                                        βeβρ           β 2 eβρ      ¯
+             = βω + rω + (n + 1) −             ω+              ∂ρ ∧ ∂ρ
+                                       1 + eβρ     (1 + eβρ )2
+                                                          
+                                         βeβρ                          √
+             = (n + 1)β
+                               ω
+                                    +                  ¯ = (n + 1)r −1∂ ∂ϕ
+                                                 ∂ρ ∧ ∂ρ                     ¯ L.
+                            1+e  βρ         βρ
+                                      (1 + e ) 2                  n
+
+Compared to the identity (18), the above equality means that the Hermitian metric
+                                           n+1
+e−ψ on −(KC +E +(1−β)V∞ ) is equal to e−r n ϕL up to positive rescaling. Moreover,
+combining the above equalities, we see that e−ϕL satisfies the following equation on
+the regular part of C:
+                                                         n+1
+                           √                        e−r n ϕL
+                                ¯ L )n
+                          ( −1∂ ∂ϕ         =                         .
+                                                 |sV∞ |2(1−β) |sE |2
+
+This identity holds a priori on C reg . However, it extends to hold on the whole C in the
+pluripotential sense because both sides does not charge the singular set C sing . Indeed,
+the latter follows from the fact ϕL is locally bounded and (C, (1 − β)V∞ + E) is klt.
+   So by the definition in Section 2.1, we see that e−ϕL is indeed a conical Kähler-
+Einstein potential on (C, E + (1 − β)V∞ ; L).
+
+
+3.3    An orbifold version
+For the notions used in the following proposition, see Section 3.3.1.
+                                                 P
+Proposition 3.5. Let f : Y n → (V n−1 , ∆ = i (1 − m1i )Di ) be a Seifert C∗ -bundle.
+Assume c1 (Y /V ) is positive and let C orb denote the associated orbifold projective cone.
+Assume that (V, ∆) is orbifold smooth and the following two conditions are satisfied:
+  1. The orbifold canonical class Korb := KV + ∆ is anti ample and there is a smooth
+     orbifold Kähler-Einstein metric on (V, ∆; −Korb )
+  2. The Chern class c1 (Y /V ) = −r−1 (KV + ∆) with 0 < r ≤ n.
+Then there exists a conical Kähler-Einstein potential on (C orb , (1 − β)V∞ ; OC orb (V∞ ))
+with β = nr .
+                                                                   ◦
+Proof. For simplicity, we will just denote C orb by C and by C the punctured projective
+cone C \{o}. Assume ω is a smooth orbifold Kähler metric on (V, ∆) in the orbifold first
+Chern class c1 (Horb ) = −r−1 c1 (Korb ). Then there exists a smooth orbifold Hermitian
+metric e−φ = {e−φi } on Horb whose orbifold Chern curvature is ω. In other words, for
+                                                      e
+any local orbifold chart πi : Wi → Wi /µm ∼ = Ui , e−φ := πi∗ e−φi is a smooth Hermitian
+
+
+                                            15
+                                                                 √
+metric on the line bundle πi∗ Horb , whose Chern curvature ω           ¯ ∗ φi = π ∗ ω is
+                                                             e := −1∂ ∂π  i      i
+a smooth Kähler metric on Wi .
+     Following (19), we define a locally bounded Hermitian metric on the Q-line bundle
+f¯∗ Horb = V∞ by first defining µm -invariant functions over Wi × C:
+                                                            e
+                                     e                   e −φi
+                                e−Φi =                             β −1 .
+                                               1 + e−β φei |ξ|2β
+
+where√ξ = ξi is the coordinate of the second factor C. Then its curvature current
+e i = −1∂ ∂¯Φ
+Ω           e i is a (1,1)-current on Wi × C and can be calculated as in (20):
+                                                     e
+          e             e
+                        ω                      βe−β φi            (dξ − ξ∂ φei ) ∧ (dξ − ξ∂ φei )
+          Ωi =                       +
+                 1 + e−β φei |ξ|2β       (1 + e−β φei |ξ|2β )2              |ξ|2(1−β)
+e i is smooth away from Wi × {0} and has conical singularities of angle 2πβ along Wi ×
+Ω
+         e
+{0}. e−Φi descends to become a Hermitian metric on the Q-line bundle f¯∗ Horb |f¯−1 Ui
+whose Chern curvature Ωi is induced from Ω    e i under the quotient Wi × C → Wi ×
+C/µm = f (Ui ). Using the transition functions of the Q-line bundle f¯∗ Horb , it’s easy
+           ¯−1
+
+to verify that Ωi = Ωj on any intersection Ui ∩ Uj so that there is a globally defined
+                     ◦
+(1,1)-current Ω on C . The collection e−Φ := {e−Φi } defines a Hermitian metric on
+               ◦
+f¯∗ Horb over C whose curvature is the globally defined (1,1)-current Ω.
+     Now by taking into account of the formula (24), we can carry out the same calcu-
+lation in the proof of Proposition 3.3 for the case ∆ = 0 using the above equivariant
+                                                                                ◦
+charts. So we see that e−Φ satisfies the conical Kähler-Einstein equation on C :
+                                                                r(n+1)
+                                  √           e− n Φ
+                                 ( −1∂ ¯
+                                      ∂Φ)n =              ,                                         (23)
+                                             |sV∞ |2(1−β)
+where sV∞ is Q-section of the Q-line bundle OC (V∞ ). Because β = r/n and, by Lemma
+3.11, −KC = (r + 1)V∞ = r(n+1) n  V∞ + (1 − nr )V∞ , both sides of (23) can be considered
+as singular Hermitian metrics on −KC . Arguing as before, (23) actually holds on the
+whole C because both sides do not charge the vertex o. So we see that e−Φ is indeed
+a cKE potential on (C orb , (1 − β)V∞ ; OC (V∞ )).
+
+
+   In the above theorem, we assumed that (V, ∆) is a smooth orbifold and the metrics
+under consideration are all orbifold smooth. However one can show that the smooth-
+ness assumptions are not necessary and the conclusion still holds for locally bounded
+orbifold metrics in the sense of pluripotential theory. So we can get a more general
+result as follows. Since we don’t need this more general version in this paper, we leave
+the proof to the reader.
+                                                 P
+Proposition 3.6. Let f : Y n → (V n−1 , ∆ = i (1 − m1i )Di ) be a Seifert C∗ -bundle.
+Assume c1 (Y /V ) is positive and let C orb denote the associated orbifold projective cone.
+Assume that E is an orbifold Q-Cartier divisor such that the following two conditions
+are satisfied:
+  1. The orbifold log canonical class KV +∆+E is anti ample and there is an orbifold
+     conical Kähler-Einstein metric on (V, ∆; E);
+  2. The Chern class c1 (Y /V ) = −r−1 (KV + ∆ + E) for 0 < r ≤ n;
+  3. The following equality holds as an identity of effective Q-divisors:
+                                KC ◦ + V∞ + E = f¯∗ (KV + ∆ + E).
+
+                                                   16
+   Then there exists a conical Kähler-Einstein metric on (C orb , (1−β)V∞ +E; OC orb (V∞ ))
+with β = nr .
+
+3.3.1    Appendix: Seifert C∗ -bundles and orbifolds
+For the reader’s convenience, we recall the definition of Seifert C∗ -bundle and their
+associated orbifolds after Kollár. The following materials can be found in [Kol04a,
+Kol04b]).
+Definition 3.7. Let V be a normal complex space. A Seifert C∗ -bundle over V is a
+normal complex space Y together with a morphism f : Y → V and a C∗ -action on Y
+such that the following two conditions are satisfied:
+  1. f is Stein and C∗ -equivariant (with respect to the trivial action on V );
+  2. For every p ∈ V , the C∗ -action on the reduced fiber Yp := redf −1 (p), C∗ × Yp →
+     Yp is C∗ -equivariantly biholomorphic to the natural C∗ -action on C∗ /µm for
+     some m = m(p, Y /V ), where µm ⊂ C∗ denotes the group of mth roots of unity.
+The number m(p, Y /V ) is called the multiplicity of the Seifert fiber over p.
+    One can always assume that the C∗ -action is effective, that is, m(p, Y /V ) = 1
+for general p ∈ V . Let f : Y → V be a Seifert C∗ -bundle. The set of points
+{p ∈ V ; m(p, Y /V ) > 1} is a closed analytic subset of V . It can be decomposed as
+the union of Weil divisors ∪Di and of a subset of codimension at least 2 contained in
+Sing(V ). The multiplicity m(p, Y /V ) is constant on a dense open subset of each Di .
+                                                                  ∗
+This common value is called the multiplicity of the   P Seifert1 C -bundle over Di , and
+is denoted by mi = m(Di ). The Q-divisor ∆ := i (1 − mi )Di is called the branch
+divisor of f : Y → V . We will often write f : Y → (V, ∆) to indicate the branch
+divisor.
+    Kollár [Kol04a] classified general Seifert C∗ -bundles over V , generalizing the pre-
+vious special cases of Dolgachev-Pinkham-Demazure.
+Definition 3.8 (see [Kol04a]). Let V be a normal variety, L a rank 1 reflexive sheaf
+on V , Di distinct irreducible divisors and 0 < si < 1 rational numbers. Define:
+                                                                 !
+                           X                X        X
+                      S(L,     si Di ) :=      L[j]     ⌊jsi ⌋Di
+                              i                    j∈Z      i
+                              X                                 X
+                      Y (L,       si Di ) :=       SpecV S(L,       si Di ).
+                              i                                 i
+
+where L[k] = (L⊗k )∗∗ for the rank 1 reflexive sheaf L (see [Kol04a]).
+                                         P                      P
+   There is a natural C∗ -action on S(L, i sP               [j]
+                                              i Di ) where L (
+                                                                                    j
+                                                                  i si Di ) is the λ eigen-
+                            ∗
+subsheaf. This induces a C -action on Y (L, i si Di ).
+Theorem 3.9 (Kollár). Let V be a normal variety.
+                                                                              P
+  1. Every Seifert C∗ -bundle
+                        P     f : Y → V can be uniquely written as Y ∼= Y (L, i si Di )
+     for some L and i si Di .
+               P                                                          P
+  2. f : Y (L, i si Di ) → V is a Seifert C∗ -bundle if and only if L[M] ( i (M si )Di )
+     is locally free for some M > 0 and M si is an integer for every i.
+Definition 3.10. The Chern class of f : Y → (V, ∆) is defined as
+                                       X
+                     c1 (Y /V ) := L +   si [Di ] ∈ H 2 (V, Q).
+                                               i
+
+
+
+                                               17
+    Seifert C∗ -bundles can be compactified by adding the zero and infinite sections.
+Their union gives a proper morphism f¯ : Ȳ → V which is a P1 -bundle over the set
+where m(p) = 1. We have the zero section V0 ⊂ Ȳ and the infinity section V∞ ⊂ Ȳ .
+The zero section V0 ⊂ Ȳ can be contracted to a point {o} if and only if c1 (Y /V ) is
+positive. In this case, we will denote by C := C orb = C(Y /V ) the projective variety
+obtained from Ȳ by contracting V0 and call it the orbifold projective cone. We will
+                   ◦                                                       ◦
+also denote by C the punctured projective cone C \ {o} and still by f¯ : C → V the
+restriction of f¯.
+Lemma 3.11 ([Kol04a, 40-42]). Suppose c1 (Y /V ) is positive and denote by C the
+orbifold projective cone over V . Then KC is Q-Cartier if and only if c1 (Y /V ) =
+−r−1 (KV + ∆) with r ∈ Q>0 . In this case C has klt singularities and as Q-divisors
+on C,
+                                 KC ∼Q −(1 + r)V∞ .                            (24)
+
+Proof. As pointed out in [Kol04a, 42], the first statement follows from the formula
+for canonical divisor of Y : KY = f ∗ (KV + ∆) and the description of the class group
+of Seifert bundles by Flenner-Zaidenberg. If t is a coordinate on each C∗ -fibre, then
+                                    ◦
+dt/t is a well defined 1-form on C with pole order 1 along V∞ . Using this we see
+that KC ◦ (V∞ ) = f¯ (KV + ∆). So (24) follows from the fact that, as Q-divisors,
+                     ∗
+
+V∞ ∼Q f¯∗ c1 (Y /V ). C has quotient singularities and hence klt singularities near V∞ .
+On the other hand, using the same argument as in [Kol13, Proof of Lemma 3.1], we
+know that C has klt singularities at the vertex.
+
+
+Definition 3.12. An orbifold is a normal, compact complex space V covered by local
+charts given as quotients of smooth coordinate charts. In other words, V can be covered
+by open charts V = ∪i Ui , and for each Ui there is a smooth complex space Wi and
+a finite group Gi acting on Wi such that Ui is biholomorphic to the quotient space
+Wi /Gi . The quotient maps will be denoted by πi : Wi → Ui .
+    One needs to assume the compatibility condition between the charts: there are
+global divisors Dj ⊂ X and ramification indices mj such that Dij = Ui ∩ Dj and
+mij =P mj (after suitable re-indexing). The branch divisor of the orbifold Pis defined as
+∆ := i (1 − m1j )Dj and the orbifold canonical class is defined as KV + i (1 − m1i )Di .
+This is the negative of the orbifold Chern class:
+                                        X         1
+                  corb
+                   1 (V, ∆) := c1 (X) −     (1 −      )[Di ] ∈ H 2 (V, Q).
+                                          i
+                                                  m i
+
+    Let f : Y → (V, ∆) be a Seifert C∗ -bundle with Y smooth. For p ∈ V pick any
+y ∈ f −1 (p) and a µm -invariant smooth hypersurface Wp ⊂ Y transversal to redf −1 (p)
+for m = m(p, Y /V ). Then {πp : Wp → Up := Wp /µm } gives an orbifold structure on
+V . The orbifold branch divisor coincides with the branch divisor of the Seifert bundle.
+The orbifolds coming from a smooth Seifert bundle have additional property that each
+Up is a quotient by a cyclic group µm . Such an orbifold is called locally cyclic.
+    It’s useful to use the local structure of near V∞ . We can choose an open set U =
+W/µm such that f¯−1 (U ) ∼   = C×Cn−1 /µm (p, a1 , · · · , an−1 ) such that gcd(a1 , . . . , an−1 , m) =
+1. Following Kollár, we define the integers:
+                                                                                  Y
+             ci := gcd(a1 , . . . , abi , . . . , an−1 , m), di := ai ci /C, C :=   ci .
+                                                                                       i
+
+Then ci are pairwise relatively prime and C/ci divides ai . Moreover as a variety:
+                  V = Azn−1 /µm (a1 , . . . , an−1 ) ∼
+                                                     = Anx /µm/C (d1 , . . . , dn ).
+
+                                                 18
+Denote M = m/C and define the Q-divisors:
+
+                     Di : (xi = 0)/µM (d1 , . . . , dbi , . . . , dn−1 ) ⊂ V.
+
+and let
+                      OV (j) := ǫj -eigenspace of C[x1 , . . . , xn−1 ]
+as an OX -module. Then OV (Dj ) ∼ = OV (dj ). Moreover,      acts on Anx without
+                                                  P since µM P
+                            ∗
+pseudo-reflections, KAnx = π KV . So KV = OV (− di ) = OV (− Di ) and
+                                          X           1          X Di
+                      Korb = KV +              (1 −      )Di = −      .
+                                           i
+                                                      ci         i
+                                                                   ci
+
+so that
+                                XC                 X ai                     X
+                 C · Korb = −             Di = −               Di = OV (−       ai ).
+                                 i
+                                     ci               i
+                                                          di                i
+                                        P
+One can write p uniquely as p ≡ lC + ai bi mod M where 0 ≤ bi < ci for every i
+and                                            !
+                                   XC                      X
+          C · c1 (Y /X) = OV Cl +         bi di = OV (Cl +   ai bi ) = OV (p).
+                                     i
+                                       ci
+                                       P
+If c1 (Y /X) = −r−1 Korb , then p = r−1 i ai and locally
+
+                             f¯−1 (U ) = U × (r−1 KU−1 )/µm .
+
+Definition 3.13. An orbifold Hermitian metric g on the orbifold (V, ∆) is a Hermitian
+metric g on V \ (SingV ∪ Supp∆) such that for every chart πi : Wi → Ui the pull back
+πi∗ g extends to a Hermitian metric on Wi . Similarly, geometric objects on complex
+manifolds can be extended in a straight forward manner to the orbifold setting by
+working with local uniformizing charts. For example one can talk about curvature,
+Kähler metrics, Kähler-Einstein metrics on orbifolds.
+
+
+4     Proof of main theorems
+4.1       Log version of Fujita’s result
+Following [Fuj15], we will first translate Berman’s expansion of log-Ding-energy into
+an algebraic version.
+Proposition 4.1 ([Fuj15, Proposition 3.5]). Let (X, D) be a n-dimensional log-Q-
+Fano pair which is log-Ding-semistable. Let δ be a positive rational number such that
+−δ −1 (KX + D) is Cartier. Let IM ⊂ · · · ⊂ I1 ⊂ OX be a sequence of coherent ideal
+sheaves and let I := IM +IM−1 t1 +· · ·+I1 tM−1 +(tM ) ⊂ OX×C1 . Let Π : X → X ×C1
+be the blowup along I. Denote D := Π∗ (D × C1 ). Let E ⊂ X be the Cartier divisor
+defined by OX (−E) = I · OX , and let
+                                                          
+              L := Π∗ OX×C1 (−δ −1 KX×C1 /C1 + D × C1 ) ⊗ OX (−E).
+
+Assume that L is semiample over C1 . Then (X , D; L) is naturally seen as a (possibly
+non-normal) semi test configuration of (X, D; −δ −1 (KX + D)). Under these condi-
+tions, ((X × C1 , D × C1 ); I δ · (t)d ) must be sub log canonical, where
+
+                                               δ n+1 (L̄n+1 )
+                            d := 1 +                           .
+                                          (n + 1)((−KX − D)n )
+
+                                                19
+Moreover, we have the equality:
+                                                                            
+                                H 0 (X×C1 ,OX×C1 (−kδ −1 (KX×C1 /C1 +D×C1 ))
+                         dim H 0 (X×C1 ,O 1 (−kδ−1 (K 1 1 +D×C1 ))·I k )
+                                           X×C            X×C /C
+       (L̄n+1 ) = − lim                       n+1
+                                                                               .
+                   k→+∞                     k     /(n + 1)!
+Proof. The proof is the same as Fujita’s proof. Let ν : X ν → X be the normalization.
+Denote Dν := ν ∗ D. Then (X ν , Dν ; ν ∗ L)/C1 is a normal semi test configuration of
+(X, D; −δ −1 (KX + D)). By the log-Ding-semistability of (X, D), we can deduce that
+log-Ding(X ν , Dν ; ν ∗ L) ≥ 0. Then we notice the identity:
+                                                                     
+                        OX̄ ν δ −1 KX̄ ν /P1 + Dν − ∆(X ν ,Dν ;ν ∗ L) ∼ = ν ∗ L̄−1
+                                                                        
+                 = ν ∗ OX̄ δ −1 Π∗ (KX×P1 /P1 + D × P1 ) + δE .
+
+So (X ν , Dν − ∆(X ν ,Dν ;ν ∗ L) + cX0ν ) is sub log canonical if and only if ((X × C1 , D ×
+C1 ); I δ · (t)c ) is sub log canonical. Thus we have the identity:
+                                                                                          
+           lct(X ν , Dν − ∆(X ν ,Dν ;ν ∗ L) ; X0ν ) = lct (X × C1 , (D × C1 ) · I δ ); (t) .
+
+The rest of the argument is the same as in [Fuj15] and [Oda13].
+
+   Assume (X, D) is a L   log pair such that L = −δ −1 (KX + D) is an ample Cartier
+                            +∞
+divisor. Denote by S = m=0 H 0 (X, mL) the graded C-algebra of sections of (X, L).
+Assume F is a good filtration of the graded ring S as in Definition 2.5. Following
+Fujita, define the ideal sheaf:
+                                                          
+                            F
+                          I(m,x) = Im F x Sm ⊗ L−m → OX ,
+
+and the ideal sheaf on X × C:
+                                                                                  
+         F          F
+   Im = I(m,me+)
+                 + I(m,me+ −1)
+                               t1 + · · · + I(m,me
+                                             F
+                                                  − +1)
+                                                        tm(e+ −e− )−1 + tm(e+ −e− ) .
+
+   By [Fuj15, 4.3], there exists m1 ∈ Z>0 such that {Im }m≥m1 is a graded family of
+coherent ideal sheaves on X × C1 . For any m ≥ m1 , let
+   • Πm : Xm → X × C1 be the blow up along Im ,
+   • Dm := Π∗m (D × C1 ),
+   • Em ⊂ Xm be the Cartier divisor defined by OXm (−Em ) = Im · OXm , and
+                                                  
+   • Lm := Π∗m OX×C1 (−mδ −1 KX×C1 /C1 + D × C1 ) ⊗ OXm (−Em ).
+Proposition 4.2 ([Fuj15, 4.6]). The line bundle Lm is semiample over C1 . Thus
+(Xm , Dm ; Lm )/C1 is a semi test configuration of (X, D; Lm ).
+                                                        δ/m
+  Thus, by Proposition 4.1, ((X × C1 , D × C1 ); Im · (t)dm ) is sub log canonical,
+where
+                                       δ n+1 (L̄n+1
+                                                m )
+                    dm := 1 +                             .
+                               (n + 1)mn+1 ((−KX − D)n )
+Proposition 4.3 (log-Fujita, cf. [Fuj15]). Assume the log pair (X, D) satisfies the
+following properties:
+   • KX + D is Q-Cartier;
+   • (X, D) is a klt log-Fano pair;
+   • (X, D) is log-Ding-semistable;
+   • L = −δ −1 (KX + D) is an ample Cartier divisor;
+
+                                            20
+                                               L+∞          0
+   • F is a good graded filtration of S =           k=0 H       (X, kL) (see Definition 2.5).
+Then ((X × C , D × C ); I•δ · (t)d∞ ) is sub log canonical, where
+               1        1
+
+                                                                                       
+         F           F           1             F           m(e+ −e− )−1      m(e+ −e− )
+   Im =I(m,me +)
+                 + I(m,me+ −1) t   + · · · + I(m,me− +1) t              +  t              ,
+                                Z e+             
+                           δ
+   d∞ =1 − δ(e+ − e− ) + n             vol F S (t) dt.
+                         (L ) e−
+
+Proof. The proof is the same as in [Fuj15]. Indeed by [Fuj15, 4.7] we have that
+limm→∞ dm = d∞ . Then the proposition follows by [Fuj15, 2.5(1)].
+
+4.2    Application of log-Fujita to the filtrations of valuations
+Let o ∈ X be a closed point. Let v ∈ ValX,o be a real valuation centered at o. We
+will apply the above log version of Fujita’s result to the filtration associated to v on
+X. Consider the following graded filtration of S. For an x ∈ R define:
+                                F x Sm = H 0 (X, Lm ⊗ ax ),
+where ax := ax (v) = {f ∈ OX : v(f ) ≥ x}.
+Lemma 4.4. F is a decreasing, left-continuous, multiplicative and saturated filtration
+of S. Moreover, if A(X,D) (v) < +∞ then F is also linearly bounded.
+
+Proof. It’s clear the F is decreasing, left-continuous and multiplicative. To prove that
+F is saturated notice that the homomorphism
+                               F x Sm ⊗C L⊗(−m) ։ I(m,x)
+                                                   F
+
+
+                       F                                            x
+induces the inclusion I(m,x) ⊂ ax for any x ∈ R. Thus F Sm = H 0 (X, L⊗m · I(m,x)
+                                                                                F
+                                                                                  )⊂
+  x
+F Sm .
+    If A(X,D) (v) < +∞, then by a log version of [Li15a, Proposition 1.2] there exists
+a constant c = c(X, o) such that v ≤ cA(X,D) (v)ordo . So it’s easy to see that
+                    e(S• , F ) ≤ cA(X,D) (v) · emax (S• , Fordo ) < +∞.
+The second inequality follows from the work in [BKMS14].
+
+
+   It is clear that F x Sm = Sm for x ≤ 0. Hence we may choose e− = 0. The graded
+family of ideal sheaves I• on X × C1 becomes:
+                 F
+           Im = I(m,me+)
+                            F
+                         + I(m,me+ −1)
+                                       t1 + · · · + I(m,1)
+                                                     F
+                                                           tme+ −1 + (tme+ ) .
+We also have that
+                                                    Z ∞             
+                                            δ
+                       d∞ = 1 − δe+ +                     vol F S (t) dt.
+                                          (Ln )     0
+
+   The valuation v extends
+                     P      to a C∗ -invariant valuation v̄ on C(X × C) = C(X)(t),
+such that for any f = k fk tk we have:
+                                 v̄(f ) = min{v(fk ) + k}.
+                                           k
+
+Proposition 4.5. If (X, D) is log-Ding-semistable and L = −δ −1 (KX + D) then
+                                     Z +∞            
+                                  δ
+                   A(X,D) (v) − n          vol F S (t) dt ≥ 0.               (25)
+                                (L ) 0
+
+                                               21
+Proof. We may assume that A(X,D) (v) < +∞, since otherwise the inequality holds
+automatically. Hence Lemma 4.4 implies that F is good and saturated.
+    By Proposition 4.3, we know that ((X ×C1 , D×C1 ); I•δ ·(t)d∞ ) is sub log canonical.
+Since (X, D) × C1 := (X × C1 , D × C1 ) has klt singularities, for any 0 < ǫ ≪ 1 there
+exists m = m(ǫ) such that
+                                                                       
+              OX×C1 ⊂ J (X × C1 , D × C1 ); Im   (1−ǫ)δ/m
+                                                          · (t)(1−ǫ)d∞ .
+
+By [BFFU13, 1.2] we know that the following inequality holds for any real valuation
+u on X × C1 :
+                                  (1 − ǫ)δ
+                  A(X,D)×C1 (u) >          u(Im ) + (1 − ǫ)d∞ u(t).            (26)
+                                     m
+Let us choose a sequence of quasi-monomial real valuations {vn } on X such that
+vn → v and A(X,D) (vn ) → A(X,D) (v) when n → ∞. It is easy to see that {v̄n } is a
+sequence of quasi-monimial valuations on X × C1 satisfying v̄n (t) = 1 and
+
+                           A(X,D)×C1 (v̄n ) = A(X,D) (vn ) + 1.
+
+Hence we have
+
+             A(X,D) (v) + 1 = lim A(X,D) (vn ) + 1 = lim A(X,D)×C1 (v̄n )
+                              n→∞                       n→∞
+                              (1 − ǫ)δ
+                            ≥           lim v̄n (Im ) + (1 − ǫ)d∞ .
+                                 m     n→∞
+
+From the definition of F x Sm we get:
+                                           
+                                       F
+                                   v I(m,x)   ≥ x.
+
+Therefore,
+                                           n                    o
+                                                  F
+                 lim v̄n (Im ) = lim min    vn I(m,j)   + me+ − j
+                n→∞           n→∞ 0≤j≤re+
+                                      n                         o
+                                                  F
+                             = min      lim vn I(m,j)   + me+ − j
+                              0≤j≤re+ n→∞
+                                      n                   o
+                                           F
+                             = min     v I(m,j)   + me+ − j
+                                0≤j≤re+
+
+                             ≥ me+
+
+Hence when ǫ → 0+ we get:
+
+                              A(X,D) (v) + 1 ≥ δe+ + d∞ .                           (27)
+
+Therefore,
+
+                        A(X,D) (v) ≥ −1 + δe+ + d∞
+                                          Z +∞           
+                                       δ
+                                   = n         vol F S (t) dt.
+                                     (L ) 0
+Hence we get the desired inequality.
+
+Proposition 4.6. If (X, D) is log-Ding-semistable, then for any real valuation v cen-
+tered at any closed point of X, we have the estimate:
+                                            n
+                        c                 n
+                        vol(X,D) (v) ≥          (−KX − D)n .                     (28)
+                                         n+1
+
+                                           22
+Proof. We prove this estimate using the method in [Fuj15, Liu16]. We may assume
+A(X,D) (v) < +∞, since otherwise the inequality holds automatically. Since F mx Sm =
+H 0 (X, L⊗m · amx ), we have the exact sequence
+
+             0 → F mx Sm → H 0 (X, L⊗m ) → H 0 (X, L⊗m ⊗ (OX /amx )).
+
+Hence we have
+                      dim F mx Sm ≥ h0 (X, L⊗m ) − ℓ(OX /amx).
+Dividing by mn /n! and taking limits as m → +∞, we get
+                                    
+                          vol F S (x) ≥ (Ln ) − vol(v)xn .                          (29)
+
+So we have the estimate:
+             Z +∞                    Z √
+                                         n
+                                           (Ln )/vol(v)
+                            (x)
+                    vol F S       dx ≥                  ((Ln ) − vol(v)xn ) dx
+              0                          0
+                                         n          p
+                                    =       (Ln ) · n (Ln )/vol(v).
+                                        n+1
+Applying (4.5) we get the inequality:
+                             Z +∞                
+                         δ                    (t)
+      A(X,D) (v) ≥                  vol   F S       dt
+                       (Ln ) 0
+                         δ     n      n n
+                                          p
+                                                n )/vol(v) =
+                                                              n p
+                  ≥                (L   )   (L                   n
+                                                                   (δL)n /vol(v).
+                       (Ln ) n + 1                           n+1
+Since δL = −KX − D, this is exactly equivalent to
+                                                    n
+            c (X,D) (v) = A(X,D) (v)n vol(v) ≥    n
+            vol                                         (−KX − D)n .
+                                                 n+1
+
+
+
+Proof of Theorem 1.1. By Section 3, we apply the above proposition to the case X = C
+and D = (1 − β)V∞ + E. Recall that by (18) we have:
+                                                                       n+1
+              −(KX + D)       = −(KX + (1 − β)V∞ + E) = r                  V∞ .
+                                                                        n
+So we get the intersection number:
+                                                       n
+                                                  n+1
+                         (−KX − D)n = rn                     H n−1 .                (30)
+                                                   n
+
+Because v is centered at o ∈ C, v(V∞ ) = 0 and hence A(X,D) (v) = A(C,E) (v) − (1 −
+β)v(V∞ ) = A(C,E) (v). On the other hand, A(C,E) (v0 ) = r (see [Kol13, Section 3.1])
+                            c (C,E) (v0 ) = rn H n−1 = vol(v
+and vol(v0 ) = (H n−1 ). So vol                        c 0 ). Substituting (30) into
+(28), we get:
+
+           c (C,E) (v) = An                 n n−1   c 0 ) = vol
+                                                            c (C,E) (v0 ).
+           vol            (C,D) · vol(v) ≥ r H    = vol(v                           (31)
+
+
+
+Proof of Theorem 1.3. Choose F ∈ | − mKV | for m ≫ 1 such that F is an irreducible
+prime divisor satisfying:
+
+                                             23
+  1. F does not contain the center of v;
+  2. (V, (1 − β)F ) is klt for any 0 < β < 1.
+Consider the effective divisor Eκ = (1 − κ)F/m with 0 < κ ≤ 1. Then (V, Eκ ) is a
+log-Fano pair:
+
+                    −KV − Eκ = −KV − (1 − κ)(−KV ) = κ(−KV ).
+
+Using Tian’s α-invariant as in [Bm13, LS12, SW12] (see also [JMR15, BHJ15]), we
+know that the log-Ding-energy is proper and there exists a conical Kähler-Einstein
+potential on (V, Eκ ; −KV ) for 0 < κ ≪ 1.
+    Now if V specially degenerates to a Kähler-Einstein variety then its Ding-energy is
+uniformly bounded from below by [Li13, Theorem 4] (and hence V is K-semistable).
+Notice that the assumption in [Li13, Theorem 4] is that the generic fiber V is smooth.
+However the proof works for general Q-Fano variety V . Indeed the key calculation
+showing the continuity of log-Ding-energy there is generalized later in [LWX15, Ap-
+pendix I]. So by using interpolation argument as in [LS12], we know that there is a
+conical Kähler-Einstein potential on (V, Eκ ; −KV ) for any κ ∈ (0, 1).
+    Because F does not contain the center of v, v(IEκ ) = 0 and hence A(X,Eκ ) (v) =
+AX (v). On the other hand, H = −r−1 KV = −(κr)−1 (KV + Eκ ). So by Theorem 1.1
+(see (31)),
+                   c         c (X,E ) (v) ≥ (κr)n H n−1 = κn c
+                   vol(v) = vol                              vol(v0 ).
+                                    κ
+
+
+The conclusion follows by letting κ → 1.
+    If (C, (1 − β)V∞ ) specially degenerates to a conical Kähler-Einstein pair, then its
+log-Ding-energy is uniformly bounded from below by [Li13, Theorem 4] as above. So
+the pair is log-Ding-semistable by the proof of Berman’s result in Proposition 3.1.
+Hence we can directly apply log-Fujita in Proposition 4.3 as in the proof Theorem
+1.1.
+
+Proof of Theorem 1.7. The first statement is just Proposition 3.5. For the second
+statement, we can use the same argument as in the proof of Theorem 1.1 and Theorem
+1.3 by applying Proposition 4.6 to the case X = C orb and D = (1 − β)V∞ .
+
+4.3    Examples
+Example 4.7. Consider the n-dimensional Ak−1 singularity.
+
+                      Ank−1 := {z12 + · · · + zn2 + zn+1
+                                                     k
+                                                         = 0} ⊂ Cn+1 .
+
+Ank−1 is an orbifold affine cone with the orbifold base (V, ∆) given by the hypersurface
+in weighted projective space {Z12 + · · · + Zn2 + Zn+1
+                                                   k
+                                                       = 0} ⊂ Pn (k, · · · , k, 2). It’s easy
+to see that the following
+   • If k is odd, (V, ∆) = (Pn−1 , (1 − k1 )Q′n−2 ) where Q′n−1 = {Z12 + · · · + Zn2 = 0} ⊂
+     Pn−1 ;
+   • If k is even, (V, ∆) = (Qn−1 , (1 − k2 )Qn−2 ) where Qn−1 = {Z12 + · · · + Zn+1
+                                                                                 2
+                                                                                     =
+             n+1       n−2    n
+     0} ⊂ P      and Q     = Q ∩ {Zn+1 = 0}.
+The above two cases are related by using the 2-fold branched covering τ : Qn−1 →
+(Pn−1 , 12 Q′n−2 ) so that KQn−1 = τ ∗ KPn−1 + 21 Q′n−2 and hence KQn−1 +(1− k2 )Qn−2 =
+τ ∗ (KPn−1 + (1 − k1 )Q′n−2 ). By [GMSY07, LS12, Li13], there is a conical Kähler-
+Einstein metric on (V, ∆) if and only if one of the following conditions hold:
+  1. k = 1 or 2, and n is any positive integer;
+
+
+                                             24
+  2. n = 2 and k is any positive integer;
+  3. n = 3 and 1 ≤ k ≤ 3.
+There is a natural C∗ -action given by: (z1 , · · · , zn , zn+1 ) → (tk z1 , · · · , tk zn, t2 zn+1 ).
+The associated valuation is denoted by v0 . Notice that (V, ∆) = Ank−1 − {0} /C∗ . By
+Theorem 1.7, if any of the above conditions is satisfied, vol(v)   c       is globally minimized
+                                                     ∗
+at the valuation v0 associated to canonical C -action.
+    Also by [LS12] and [Li13], (V, ∆) is log-K-semistable but not log-K-polystable if and
+only if (n, k) = (3, 4) or (n, k) = (4, 3). Using the orbifold-version Theorem 1.7, we
+can show that in these two cases c      vol(v) is also globally minimized at v0 . We will prove
+this for the case (n, k) = (3, 4) and the argument for the case (n, k) = (4, 3) is similar.
+When (n, k) = (3, 4), (V, ∆) = (Q2 , (1 − 24 )Q1 ) ∼     = (P1 × P1 , 12 E) where E denotes the
+diagonal P1 . The compactified orbifold cone C orb is just the natural compactification of
+A32 inside P4 (1, 2, 2, 2, 1). In other words, if the latter is given weighted homogeneous
+coordinates [Z0 , Z1 , · · · , Z4 ] such that zi = Zi /Z02 for 1 ≤ i ≤ 3 and z4 = Z4 /Z0 , then
+we have:
+                   C orb = {Z12 + Z22 + Z32 + Z44 = 0} ⊂ P4 (1, 2, 2, 2, 1).
+    By the construction in [LS12, Li13] (see also [Li15b, Section 5.3]), we know that
+(V, ∆) specially degenerates into (P2 (1, 1, 2), 21 F ) =: (V0 , 21 F ), where F = {W2 = 0} if
+[W0 , W1 , W2 ] are weighted homogeneous coordinates of P(1, 1, 2). This can be realized
+as a degeneration inside P3 (2, 2, 2, 1) where the two pairs are realized as weighted
+projective hypersurfaces:
+                           
+                 1    1 1
+                P ×P , E       = {Z12 + Z22 + Z32 + Z44 = 0} ⊂ P3 (2, 2, 2, 1);
+                        2
+                           
+                        1
+               2
+            P (1, 1, 2), F     = {Z12 + Z22 + Z32 = 0} ⊂ P3 (2, 2, 2, 1).
+                        2
+
+Correspondingly, C orb degenerates to the weighted projective cone over P2 (1, 1, 2) given
+by:
+                     X0 := {Z12 + Z22 + Z32 = 0} ⊂ P4 (1, 2, 2, 2, 1).
+Because (P2 (1, 1, 2), 21 F ) has a natural orbifold Kähler-Einstein metric by pushing for-
+ward the Fubini-Study metric of P2 under the 2-fold branched covering map (P2 →
+P2 (1, 1, 2), 12 F ), by Proposition 3.5, there is a conical Kähler-Einstein metric on the
+pair (X0 , (1−β)(V0 )∞ ) where (V0 )∞ ∼  = V0 = P2 (1, 1, 2). To see the cone angle β = r/n,
+we notice that
+                          −KX0 = 4H = 4 ({Z0 = 0} ∩ X0 ) = 4(V0 )∞ ,
+where H is the weighted hyperplane divisor of P4 (1, 2, 2, 2, 1). So we get r = 3 by
+comparing with (24). Alternatively, we can calculate the orbifold canonical class
+K(P2 (1,1,2), 12 F ) = −4H ′ + H ′ = −3H ′ where H ′ is the weighted hyperplane divisor
+of P2 (1, 1, 2). Notice we indeed have H ′ = 21 F = H|P2 (1,1,2) under the embedding
+given above (taking into account of the Z2 -orbifold locus of P3 (2, 2, 2, 1)). In any case
+we get β = 3/3 = 1. So there is actually a Kähler-Einstein metric on the normal
+variety X0 which is orbifold smooth along (V0 )∞ . Now we can apply Theorem 1.7 to
+obtain the statement we wanted.
+Remark 4.8. For all other cases of (n, k), by the calculations in [Li15a]
+                                                                        it was conjec-
+                                                                                      
+           c is minimized at the valuation associated to the weight 1, · · · , 1, n−2 .
+tured that vol                                                                    n−1
+A more general question will be studied in a forth coming paper.
+Example 4.9. Next, we will consider quotient surface singularities.
+
+                                                 25
+Proposition 4.10. Let (X, o) be a quotient surface singularity with local analytic
+model C2 /G, where G acts freely in codimension 1. Then
+
+                                       c         4
+                                   min vol(v) =     .
+                                 v∈ValX,o       |G|
+
+The minimum is achieved at the pushforward of ord0 ∈ ValC2 ,0 .
+
+Proof. For simplicity we may assume that (X, o) = (C2 /G, 0) and G ⊂ U (2). Denote
+by S 1 ⊂ U (2) the subgroup consisting of diagonal matrices. Let H := G ∩ S 1 with
+d := |H|. Denote by v∗ the pushforward of ord0 ∈ ValC2 ,0 .
+    We first show that c           4
+                       vol(v∗ ) = |G|       c2 be the blow up of C2 at the origin 0 with
+                                      . Let C
+exceptional divisor E. Denote by π : C2 → X the quotient map. Then π lifts to C       c2
+        c2    b        b      c 2
+as π̂ : C → X, where X := C /G. We have the following commutative diagram:
+
+                                      c2
+                                      C       π̂       b
+                                                       X
+                                     g                  h
+
+                                          2   π
+                                      C                X
+
+Let F ⊂ Xb be the exceptional divisor of h. For a general point on F , its stabilizer is
+exactly H. So π̂ ∗ F = dE, which implies that v∗ = π∗ (ordE ) = d ordF . It is clear that
+                                                    
+                                                   1
+                           KCc2 = π̂ ∗ KXb + 1 −       F .
+                                                   d
+
+Then combining these equalities with KCc2 = g ∗ KC2 + E, we get
+                                                           
+                                                       2
+                              KXb = h∗ KX +              − 1 F.
+                                                       d
+
+Hence AX (ordF ) = d2 and AX (v∗ ) = d · AX (ordF ) = 2. Lemma 4.11 implies that
+            1
+vol(v∗ ) = |G| . So c           4
+                    vol(v∗ ) = |G| .
+    Now we will show that c    vol(v) ≥ 4 for any real valuation v ∈ ValX,o . Consider
+                                      |G|
+X := P2 /G as a natural projective compactification of X. Let ωF S be the Fubini-
+Study metric on P2 . Since G acts isometrically on (P2 , ωF S ), ωF S induces an orbifold
+Kähler-Einstein metric ωG on X. Let l∞ be the line of infinity in P2 . The metric ωG
+can be also viewed as a conical Kähler-Einstein metric on X with a cone angle 2π      d
+along D := l∞ /G. Therefore, (X, (1 − d1 )D) is log Ding semistable. By Proposition
+4.6 we know that                                     2 !
+                       c        4                   1
+                       vol(v) ≥      −KX − 1 −           D       .
+                                9                   d
+
+Let π̄ : P2 → X be the quotient map. We notice that
+                                                 
+                                  ∗             1
+                          KP2 = π̄ KX + 1 −         D .
+                                                d
+
+Hence
+                            c       4 ((−KP2 )2 )    4
+                            vol(v) ≥ ·            =     .
+                                    9    |G|        |G|
+Thus we prove the proposition.
+
+                                              26
+Lemma 4.11. Let G be a finite group acting on C2 = Spec C[x, y]. Assume that the
+G-action is free in codimension 1. Then we have
+                                   dimC C[x, y]G
+                                               <m    1
+                                lim               =     .
+                               m→∞     m2 /2        |G|
+Proof. Denote W := C[x, y]1 = Cx ⊕ Cy. Then we have that
+                                       M
+                             C[x, y] ∼
+                                     =   Symm W.
+                                               m≥0
+
+Denote by ρm : G → GL(m + 1, C) the representation of G on Symm W . Since
+G is a finite group, ρm (g) is diagonalizable for any m ≥ 0 and g ∈ G. Denote
+the two eigenvalues of ρ1 (g) by λg , µg . Then the eigenvalues of ρm (g) are exactly
+λm    m−1
+ g , λg   µg , · · · , λg µm−1
+                           g   , µm
+                                  g . From representation theory we know that
+
+                                                      1 X
+                         dimC (Symm W )G =                tr(ρm (g)).
+                                                     |G|
+                                                          g∈G
+
+Let dm := dimC C[x, y]G
+                      <m . Hence we have
+
+                        m−1
+                        X                                   m−1
+                                                          1 XX
+                 dm =         dimC (Symi W )G =                  tr(ρi (g))
+                        i=0
+                                                         |G| i=0
+                                                                  g∈G
+
+                         1    X m−1
+                                X
+                    =                   (λig + λi−1                i−1
+                                                g µg + · · · + λg µg   + µig )
+                        |G|
+                              g∈G i=0
+                         1 X          X
+                    =                        λig µjg .
+                        |G|
+                              g∈G i+j≤m−1
+
+The eigenvalues λg , µg can be chosen in a way so that λg−1 = λ−1
+                                                               g  and µg−1 = µ−1
+                                                                              g .
+                                     m      m
+For any m divisible by |G|, we have λg = µg = 1. Hence we get:
+                          1 X X i j      1 X X i
+                dm+1 =          λg µg =        λg−1 µjg−1
+                         |G|            |G|
+                               g∈G i+j≤m                    g∈G i+j≤m
+                         1 X X m−i m−j
+                      =        λg µg .
+                        |G|
+                               g∈G i+j≤m
+
+Therefore, for any m divisible by |G| we have
+                                                                       
+                            1 X X                       X
+                                                                        
+             dm + dm+1 =                      λig µjg +       λm−i
+                                                               g   µm−j
+                                                                    g
+                           |G|
+                               g∈G i+j≤m−1              i+j≤m
+                                            !          
+                                      m          m
+                            1 X X i X j 
+                        =                λg           µg .
+                           |G|       i=0        j=0
+                                  g∈G
+
+Since G acts freely in codimension 1, we have thatPλg , µg 6= 1 unlessP
+                                                                      g is the identity.
+                                                    m                   m
+Hence for any g that is not the identity, we have i=0 λig = 1 and j=0 µjg = 1. As
+a result,
+                                      1                       
+                        dm + dm+1 =       (m + 1)2 + |G| − 1 .                     (32)
+                                     |G|
+Since C[x, y]G is a finitely generated C-algebra, we know that dm ∼ cm2 for some
+                                         1
+constant c. Thus (32) implies that c = 2|G| , which finishes the proof.
+
+                                                27
+Remark 4.12. It is clear that (C2 \ {0})/G → P1 /G has a natural Seifert C∗ -bundle
+structure with C orb = P2 /G and V∞ = l∞ /G. Hence Proposition 4.10 can be also
+proved by applying Theorem 1.7.
+Example 4.13 (A logarithmic example). Assume V is a projective toric variety deter-
+mined by a lattice polytope P ⊂ Rn−1 which is defined by the following linear functions
+on Rn−1 :
+                         li (x) := hηi , xi + ai ≥ 0, 1 ≤ i ≤ N.
+where η := {ηi } is a set of primitive inward normal vectors to the facets of P . Here
+the primitivity of ηi means that a · ηi ∈ Zn−1 for a > 0 if and only if a ∈ Z>0 . We
+denote by p∗ the center of mass of P with respect to the Lebesgue measure.
+    By the works in [Leg11, BB12, DGSW13],       P there exists a conical Kähler-Einstein
+potential on the pair (V, E; H) where E = i (1 − γi )Ei with γi = r · li (p∗ ) for any
+r > 0 satisfying r · li (p∗ ) ≤ 1 for 1 ≤ i ≤ N . In this case, the log anti canonical class
+of (V, E) is
+                     X          X                 X              X
+        −K(V,E) =         Ei −      (1 − γi )Ei =    γi Ei = r ·    Li (p∗ )Ei = rH,
+                      i          i                      i                  i
+
+which is ample. By Proposition P  3.3, there exists a conical KE on the projective cone
+(C, E + (1 − β)V∞ ) with E =        i (1 − γi )Ei and β = r/n. We can also get this
+result by using the existence result in [Leg11, BB12, DGSW13]. Indeed, C is also a
+toric projective variety given the polytope P in Rn defined by the linear functions of
+y = (y ′ , yn ) ∈ Rn−1 × R:
+
+                 Li (y) := hηi , y ′ i + ai yn ≥ 0;         LN +1 := −yn + 1 ≥ 0.
+                                                                n
+It’s elementary that the center of mass of P is given by p∗ = n+1  (p∗ , 1). So by
+[Leg11, BB12, DGSW13] there is a conical KE metric on the pair (C, D) where
+                              X
+                          D=      (1 − βi )Ei + (1 − βn )V∞ .
+                                      i
+
+The cone angles are given by:
+                                                            
+                                      n                 n                             sn
+    βi = s · Li (p∗ ) = s   ηi ,         p∗       + ai             = sli (p∗ ) =            γi .
+                                     n+1               n+1                         r(n + 1)
+and                                                 
+                                                n        s
+                     βn = s · Ln (p∗ ) = s · −     +1 =     .
+                                               n+1      n+1
+So if we choose s = r(n+1)
+                       n     so that βi = γi for 1 ≤ i ≤ n − 1, then βn = r/n as seen.
+                     c ((C,E) obtains its global minimum at the valuation correspond-
+   By Theorem 1.1, vol
+ing to the canonical C∗ -action on the cone.
+
+
+5     Derivative of volumes revisited
+In this section, we will point out the relation between the estimates in Section 4.2 to
+the arguments/calculations in [Li15b]. This will allow us to get a different proof of
+Theorem 1.1. The main idea is similar to that in [Li15a, Li15b], that is the formula
+appearing in log version of Fujita’s result should be viewed as a derivative of normalized
+volumes. Firstly, similar to [Li15b] we will derive a formula for vol c (C,E) (v) using the
+“leading component” filtration. Then we consider a function Φ(s), which is convex
+
+                                                   28
+                                                    c (C,E) (v0 ) and Φ(1) = vol
+with respect to s ∈ [0, 1] and interpolates: Φ(0) = vol                      c (C,E) (v).
+To show Φ(1) ≥ Φ(0), by the convexity, we just need to show that the derivative of Φ
+at s = 0 is nonnegative. Our main observation is that this non-negativity is exactly
+the inequality (25). So from this point, we can use Proposition 4.5 and get a different
+proof of Theorem 1.1.
+
+5.1    A volume formula
+                                                             L           L+∞
+Let (V, H) be a polarized projective variety. Denote by R = k=0 Rk = k=0 H 0 (V, kH)
+the graded section ring of (V, H). Let C = C(V, H) = Spec(R) be the affine cone of V
+with the polarization H. Let v1 be any real valuation centered at o with AC (v1 ) < +∞.
+We introduce the following notation.
+                                         L+∞
+Definition 5.1. For any g ∈ R =            k=0 Rk , assume that it is decomposed into
+“homogeneous” components g = gk1 + · · · + gkp with gkj 6= 0 ∈ Rkj and k1 < k2 <
+· · · < kp . We define deg(g) = kp and define ld(g) to be the “leading component” gkp .
+   With the above definition, we define a filtration:
+
+            F x Rk = {f ∈ Rk ; ∃g ∈ R such that v1 (g) ≥ x and ld(g) = f }.           (33)
+
+We notice that following properties of F x R• .
+  1. For fixed k, {F x Rk }x∈R is a family of decreasing C-subspace of Rk .
+  2. F is multiplicative: v1 (gi ) ≥ xi and ld(gi ) = fi ∈ Rki implies
+
+                     v1 (g1 g2 ) ≥ x1 + x2 ,       ld(g1 g2 ) = f1 · f2 ∈ Rk1 +k2 .
+
+  3. If A(v1 ) < +∞, then F is linearly bounded. Indeed by Izumi’s theorem in [Li15a,
+     Proposition 1.2] (see also [Izu85, Ree89, BFJ12]), there exist c1 , c2 ∈ (0, +∞)
+     such that
+                                     c1 v0 ≤ v1 ≤ c2 v0 .
+      For any g ∈ R, k := v0 (ld(g)) ≥ v0 (g) ≥ c−1                           x
+                                                    2 x. So if x > c2 k then F Rk = 0.
+      So F is linearly bounded from above. On the other hand, for any f ∈ Rk ,
+      v1 (f ) ≥ c1 v0 (f ) = c1 k. So if x ≤ c1 k, then F x Rk = Rk . So F is linearly
+      bounded from below. Note that the argument in particular shows the following
+      relation:
+                                      v1                     v1
+                                  inf    ≤ emin ≤ emax ≤ sup .                    (34)
+                                   m v0                   m v0
+
+For later convenience, from now on we will fix the following constant:
+                                                    v1
+                                     c1 := inf         > 0.                           (35)
+                                               m    v0
+By [Li15b, Lemma 4.2], we have the following characterization of this constant:
+
+                                                          v1 (Ri )
+                                c1 = v1 (V ) = inf                 .                  (36)
+                                                    i>0       i
+The following is a reason why the filtration in (33) works for our purpose.
+Proposition 5.2 (cf. [Li15b, Proposition 4.3]). For any m ∈ R, we have the following
+identity:
+                    +∞
+                    X
+                        dimC (Rk /F m Rk ) = dimC (R/am (v1 )) .
+                      k=0
+
+
+                                               29
+   Notice that because of linearly boundedness, the sum on the left hand side is a finite
+sum. More precisely, by the above discussion, when k ≥ m/c1 , then dimC (Rk /F m Rk ) =
+0.
+
+Proof. For each fixed k, let dk = dimC (Rk /F m Rk ). Then we can choose a basis of
+Rk /F m Rk :              n                             o
+                               (k)       (k)
+                             [fi ]k | fi       ∈ Rk , 1 ≤ i ≤ dk ,
+
+where [·]k means taking quotient class in Rk /F m Rk . Notice that for k ≥ ⌈m/c1 ⌉, the
+set is empty. We want to show that the set
+                        n                                        o
+                           (k)
+                  B := [fi ] | 1 ≤ i ≤ dk , 0 ≤ k ≤ ⌈m/c1 ⌉ − 1 .
+
+is a basis of R/am (v1 ), where [·] means taking quotient in R/am (v1 ).
+   • We first show that B is a linearly independent set. For any nontrivial linear
+                      (k)
+     combination of [fi ]:
+              dk
+            N X
+                            "N d            #
+            X     (k) (k)
+                             XX  k
+                                    (k) (k)
+                 ci [fi ] =        ci f i     = [f (k1 ) + · · · + f (kp ) ] =: [F ],
+            k=0 i=1                  k=0 i=1
+
+     where f (kj ) 6= 0 ∈ Rkj \ F m Rkj and k1 < k2 < · · · < kp . In particular ld(F ) =
+     f (kp ) 6∈ F m Rkp . By the definition of F m Rkp , we know that
+
+                                 f (k1 ) + · · · + f (kp ) 6∈ am (v1 ),
+
+     which is equivalent to [F ] 6= 0 ∈ R/am (v1 ).
+   • We still need to show that B spans R/am (v1 ). Suppose on the contrary B does
+     not span R/am(v1 ). Then there is some k ∈ Z>0 and f ∈ Rk − am (v1 ) such that
+                                                                            (k)
+     [f ] 6= 0 ∈ R/am (v1 ) can not be written as a linear combination of [fi ], i.e. not
+     in the span of B. We can choose a minimal k such that this happens. So from
+     now on we assume that k has been chosen such that that for any k ′ < k and
+     g ∈ Rk′ , [g] is in the span of B. Then there are two cases to consider.
+                                                 (k)
+       1. If f ∈ Rk \ F m Rk , then since {[fi ]k } is a basis of Rk /F m Rk , we can write
+               Pdk       (k)
+          f = j=1    cj fj + hk where hk ∈ F m Rk . By the definition of F m Rk , there
+          exists h ∈ am (v1 ) with ld(h) = hk . By the minimality of k, we know that
+                                                           Pdk         (k)
+          [hk − h] = [hk ] is in the span of B. So [f ] = j=1     cj [fj ] + [hk ] is also in
+          the span of B. Contradiction.
+       2. If f ∈ F m Rk ⊂ Rk , then by the definition of F m Rk , f +h ∈ am (v1 ) for some
+          h ∈ R such that ld(f + h) = f . Since we assumed that [f ] 6= 0 ∈ R/am (v1 ),
+          we have h 6= 0 and k ′ := deg(h) < v0 (f ) = k. Now we can decompose h
+          into homogeneous components:
+
+                                        h = h(k1 ) + · · · + h(kp ) ,
+
+          with h(kj ) ∈ Rkj and k1 < · · · < kp = k ′ . Because k ′ < k and the minimal
+          property of k, we know that each [h(kj ) ] in the span of B. So we have
+          [f ] = [(f + h) − h] = [−h] is in the span of B. This contradicts our
+          assumption that [f ] is not in the span of B.
+
+
+
+
+                                                30
+   With the above proposition, we can follow [Li15b] to derive the following volume
+formula:
+                                            n!
+                     vol(v1 ) =       lim       dimC R/am (v1 )
+                                     p→+∞ mn
+                                                Z +∞              dt
+                                     H n−1                    (t)
+                               =            − n      vol    R                           (37)
+                                       cn1       c1                tn+1
+                                       Z +∞            
+                                             dvol R(t)
+                               =     −                   .                              (38)
+                                         c1       tn
+
+As in [Li15b], motivated by the case of C∗ -invariant valuations, we define a function
+of two parametric variables (λ, s) ∈ (0, +∞) × [0, 1]:
+                                               Z +∞           
+                            H n−1                          (t)          λsdt
+        Φ(λ, s) =                        −   n      vol  R
+                     (λc1 s + (1 − s))n          c1              (1 − s + λst)n+1
+                     Z +∞               (t)
+                                            
+                              −dvol R
+                 =                             .                                  (39)
+                      c1    ((1 − s) + λst)n
+
+Then it’s easy to verify that Φ(λ, s) satisfies the following properties:
+  1. For any λ ∈ (0, +∞), we have:
+
+               Φ (λ, 1) = vol(λv1 ) = λ−n vol(v1 ),      Φ(λ, 0) = vol(v0 ) = H n−1 .
+
+  2. For fixed λ ∈ (0, +∞), Φ(λ, s) is continuous and convex with respect to s ∈ [0, 1].
+  3. The directional derivative of Φ(λ, s) at s = 0 is equal to:
+                                                       Z +∞          
+                                                   1
+              Φs (λ, 0) = nλH n−1 λ−1 − c1 − n−1              vol R(t) dt .             (40)
+                                                 H       c1
+
+Roughly speaking, the parameter λ is a rescaling parameter, and s is an interpolation
+                                                               r
+parameter. To apply this lemma to our problem, we let λ = A(C,E) (v1 ) =: λ∗ such that
+
+
+                                   A(C,E) (v1 )n vol(v1 )   c (C,E) (v1 )
+                                                            vol
+                     Φ(λ∗ , 1) =              n
+                                                          =               .
+                                            r                   rn
+              c (C,E) (v0 ) = rn H n−1 = vol(v
+Recall that vol                          c 0 ). So the problem of showing volc (C,E) (v1 ) ≥
+c (C,E) (v0 ) is equivalent to showing that Φ(λ∗ , 1) ≥ Φ(λ∗ , 0). By item 2-3 of the above
+vol
+lemma, we just need to show that Φs (λ∗ , 0) is non-negative. This will be finally proved
+in the next section by showing that the derivative Φs (λ∗ , 1) is nothing but the left-
+hand-side of (25) for the case (X, D) = (C, (1 − β)V∞ + E).
+    Here to prepare for this calculation, we first transform the expression in (40) into
+a different expression. For convenience, we first define a function:
+                                         Z +∞
+                                                         tn dx
+                                Θ(t) = n       vol(R(x) ) n+1 .                        (41)
+                                          t              x
+Although this seems to be arbitrary at present, this turns out to be a natural function.
+Indeed, we will see that Θ(t) is nothing but the vol(F S (t) ) (see (48)). Notice that by
+the volume formula (37), we have:
+                               Z +∞
+                                               dx
+                Θ(c1 ) = cn1 n      vol(R(x) ) n+1 = H n−1 − cn1 vol(v1 ).           (42)
+                                c1            x
+
+                                              31
+                             R +∞
+Let’s calculate the integral c1 Θ(t)dt:
+     Z +∞                 Z +∞ Z +∞                   tn dt
+           Θ(t)dt = n            dt        vol R(x) n+1
+      c1                    c1       t                   x
+                          Z +∞              dx Z x
+                     = n         vol R(x) n+1             tn dt
+                            c1                x        c1
+                                Z +∞                         Z +∞           n 
+                           n                    (x)                         (x) c1 dx
+                     =                  vol R         dx − c1         vol R
+                         n+1      c1                             c1             xn+1
+                                Z +∞            
+                           n                                 c1
+                     =                 vol R(x) dx −              Θ(c1 ).
+                         n + 1 c1                          n+1
+So we get the formula:
+                Z +∞                   Z
+                                    n + 1 +∞         c1
+                      vol R(x) dx =          Θ(t)dt + Θ(c1 ).                           (43)
+                 c1                   n   c1         n
+   Dividing the above formula by H n−1 and substituting this into the (40), we get
+the new expression for the derivative Φ at s = 0:
+                                                 Z +∞               
+                          n−1    −1          n+1              Θ(c1 )
+          Φs (λ, 0) = nλH       λ − c1 −               Θdt −           .      (44)
+                                            nH n−1 c1        nH n−1
+Using the formula (42), we also get another expression:
+                                                Z +∞                       
+                   n−1    −1     n+1       n+1                cn+1
+                                                               1   vol(v1 )
+   Φs (λ, 0) = nλH       λ − c1        −                Θdt +                 .         (45)
+                                   n      nH n−1 c1             n H n−1
+
+5.2    Completion of the second proof of Theorem 1.1
+Let C = C ∪ V∞ = Proj(S) be the projective cone as before, where
+                                  +∞
+                                  M            +∞
+                                               M
+                             S=         Sm =         H 0 (V, mH)
+                                  m=0          k=0
+             −1
+and H = −r        (KV + E) for r ∈ Q>0 . Recall that we have
+                                                           r         r(n + 1)
+         KC + E + (1 − β)V∞ = −(r + 1)V∞ + (1 −              )V∞ = −          V∞ .
+                                                           n            n
+For simplicity of notations, we let δ = r(n + 1)/n and L = V∞ . Notice that (Ln ) =
+(H n−1 ).
+Proposition 5.3. We have the following equality:
+                                
+                                        n+1
+                                                 Z +∞             
+                           n−1    −1                          (t)
+          Φs (λ, 0) = nλ(H     ) λ −                  vol F S      dt ,                 (46)
+                                      n(H n−1 ) 0
+where the left-hand-side is the same as in (40).
+   Assuming this formula, we can prove our Theorem 1.1. Indeed, when λ = λ∗ =
+    r
+A(C,E) (v1 ) , we have:
+                                                           Z +∞              
+                        nr(H n−1 ) A(C,E) (v)        n+1                  (t)
+      Φs (λ∗ , 0) =                              −               vol F S       dt
+                        A(C,E) (v)        r        n(H n−1 ) 0
+                                                    Z +∞             
+                        n(H n−1 )                  δ
+                    =                A(C,D) (v) − n        vol F S (t) dt ,
+                        A(C,E) (v)                L 0
+
+                                           32
+where X = C and D = (1 − β)V∞ + E. By Proposition 4.5, the right-hand-side is
+nonnegative.
+   The rest of this section is devoted to the proof of the formula (46). We start with
+the following observation, which can be seen as a cut-off version of Lemma 5.2.
+Lemma 5.4. For any x ∈ R, we have the following identity:
+                                                 m
+                                                 X
+                                 dimC F x Sm =         dimC F x Rk .                 (47)
+                                                 k=0
+
+                                                                              (k)
+Proof. For any k ∈ [0, m] ∩ Z, denote lk = dimC F x Rk and let {fi |1 ≤ i ≤ lk } be a
+                                                      (k)                           (k)
+basis of F x Rk . By definition of F x Rk , for each gi in the basis, there exists gi ∈ R
+                 (k)                 (k)       (k)                     (k)           (k)
+such that v1 (gi ) ≥ x and ld(gi ) = fi (in particular deg(gi ) = deg(fi ) ≤
+                                   (k)
+m). We claim that the set {gi | 1 ≤ i ≤ lk , 1 ≤ k ≤ m} is a basis of F x Sm .
+Indeed, it’s easy to see that this set consists of linearly independent elements. We
+just need to show that they span F x Sm . For any g ∈ F x Sm , we decompose g into
+homogeneous components: g = gk1 + · · · + gkp with gkj 6= 0 ∈ Rkj and k1 < · · · <
+                                                                             (k )
+kp = deg(g) ≤ m. So we have ld(g) ∈ F x Rkp is in the span of fi p . So we can find
+                                 (k )
+a linear combination h of gi p with ld(h) = ld(g). Now deg(g − h) < deg(g) and
+v1 (g − h) ≥ min{v1 (g), v1 (h)} ≥ x. In other words g − h ∈ F x Sm is of strictly smaller
+degree compared to g. Now we can use induction to finish the proof.
+
+   Using (47) and Lemma 4.5 in [Li15b], we get the formula for vol(F S (x) ):
+                                Z +∞         xn dt
+                  vol F S (x) = n      vol R(t) n+1 = Θ(x),                          (48)
+                                   x             t
+
+where we used the previously defined function Θ(t) in (41).
+Corollary 5.5. The following holds for vol(F S (x) ):
+  1. If x ≥ c2 , then vol(F S (x) ) = 0.
+  2. For any x ∈ R, we have:
+
+                                 vol(F S (x) ) ≥ −xn vol(v1 ) + H n−1
+
+     The equality holds if x ≤ c1 .
+
+Proof. If x ≤ c1 , then with the help of the volume formula (37), we get:
+                                        Z +∞                                 Z c1
+                     (x)            n               (t)   dt       n   n−1     dt
+           vol(F S         ) =   nx         vol(R ) n+1 + nx H                 n+1
+                                      c              t                  x    t
+                                     1n−1             
+                                     H                                    c1
+                            =    xn          − vol(v1 ) + H n−1 xn −t−n x
+                                        cn1
+                                     n−1                        n         
+                                     H                       n−1    x
+                            =    xn          − vol(v1 )  + H      −     +  1
+                                        cn1                         cn1
+                            =    −xn vol(v1 ) + H n−1 .
+
+
+
+
+                                               33
+If x ≥ c1 then because vol(R(t) ) ≤ H n−1 , we have:
+                             Z +∞            xn dt        Z +∞ Z x 
+           vol F S (x)   = n          vol R(t) n+1 = nxn             −
+                                 x               t              c1        c1
+                                  n−1              
+                                   H                                   x
+                         ≥ xn            − vol(v1 ) − xn H n−1 −t−n c1
+                                    cn1
+                                  n−1                               
+                                   H                               xn
+                         = xn            −  vol(v1 )  + H n−1
+                                                               1 −
+                                    cn1                            cn1
+                          =   H n−1 − vol(v1 )xn .
+
+
+
+    Using the above lemma, we can derive a key ingredient in our formula:
+    Z +∞                    Z c1 Z +∞ 
+                 (x)
+          vol(F S )dx =           +         vol(F S (x) )dx
+      0                           0      c1
+                                         Z c1                              Z +∞
+                           = −vol(v1 )             n
+                                                x dx + H      n−1
+                                                                    c1 +          vol(F S (x) )dx
+                                          0                                c1
+                                                                    Z +∞
+                                 vol(v1 ) n+1
+                           = −           c    + c1 H n−1 +                 Θ(x)dx
+                                  n+1 1                              c1
+                                                          Z +∞       
+                                cn+1
+                                 1                   n−1
+                           =  −      vol(v1 ) + c1 H     +      Θ(t)dt .
+                                n+1                         c1
+
+The proof of (46) is finally at our hand, because we can transform the expression in
+the bracket of (45) to become:
+                                               Z +∞
+                    −1       n+1        n+1                  cn+1
+                                                               1   vol(v1 )
+                   λ − c1          −                   Θdt +
+                               n      nH n−1 c1                 n H n−1
+                                               Z +∞                           
+                           n+1                                  cn+1
+                                                                 1
+               = λ−1 −              c 1 H n−1
+                                              +         Θdt −        vol(v  1 )
+                          nH n−1                  c1            n+1
+                                  Z +∞
+                           n+1
+               = λ−1 −                    vol(F S (x) )dx
+                          nH n−1 0
+                                        Z +∞
+                    −1    n+1 1
+               = λ −                          vol(F S (x) )dx.
+                             n H n−1 0
+
+6     Minimizers from smooth Sasaki-Einstein metrics
+In this section, we generalize our minimization to the set-up of smooth Sasaki-Einstein
+metrics, or equivalently to the case of Ricci-flat Kähler cone metrics with isolated
+singularities.
+    Let X be an n-dimensional affine variety with an isolated singularity at o. Assume
+the algebraic torus TC := (C∗ )r acts on X such that o is in the closure of any TC -orbit.
+Assume that there is a TC -equivariant holomorphic (n, 0)-form σ on X. The latter
+assumption allows us to define the weight function:
+                                                          Lu σ
+                                A : tC → C,        u 7→        ,
+                                                           σ
+where Lu is the Lie derivative with respect to the holomorphic vector field u in the
+Lie algebra tC .
+
+                                              34
+   Suppose that there is a Kähler cone metric on X with the radius function r : X →
+R≥0 and denote the link M = {r = 1}. Then M is a Sasaki manifold with the contact
+form η = dc log r = −r−1 Jdr. The Reeb vector field, defined as ξ = J(r∂r ), is a
+holomorphic Killing vector field and satisfies η(ξ)|L = −Jdr(J∂r ) = 1. We assume
+that the holomorphic vector field u = r∂r − iJ(r∂r ) is in the Lie algebra of TC . The
+volume of the contact manifold (M, η) is then equal to:
+                                   Z                 Z
+             vol(η) = vol(M, η) =     η ∧ (dη)n−1
+                                                   =     dc r ∧ (ddc r)n−1 .
+                                      M                   M
+
+If r is a radius function of a Kähler cone metric, then for any λ > 0, r̃ = rλ is also a
+Kähler cone radius function. If we denote M̃ = r̃−1 (1) and η = dc log r̃, then we have
+the re-scaling properties vol(M̃ ) = λn vol(M ) and ũ = r̃∂r̃ − iJ(r̃∂r̃ ) = λ−1 u.
+    On the other hand, if there are two Kähler cone metric ω and ω̃ with the same
+Reeb vector vector field J(r∂r ) = J(r̃∂r̃ ), then r̃ = reφ for a basic function φ. In other
+words, φ satisfies Lξ φ = L∂r φ = 0). One can then verify that vol(M, η) = vol(M, η̃).
+So the volume function descends to become a function defined on the space of Reeb
+vector fields (see [MSY08]).
+    As in [MSY08], we define the space of Reeb vector fields as the dual cone of the
+moment cone of the (S 1 )d action on X. It’s well known that we have the following
+equivalent characterization of the Reeb cone. Suppose X = Spec(R) for a finite
+generated C-algebra. Under the torus action, we have a decomposition of R into
+weight spaces:                                M
+                                       R=         Rα
+                                            α∈Γ
+
+where
+   • For any α ∈ Zd , Rα = {f ∈ R; t ◦ f = tα f for any t ∈ TC = (C∗ )r };
+   • Γ = {α ∈ Zd ; Rα 6= 0}.
+The Reeb cone of X is then the following conic subset of the real Lie algebra:
+
+                        t+         d
+                         R = {ξ ∈ R ; hα, ξi > 0 for any α ∈ Γ}.
+
+As a functional defined on t+
+                            R , the volume functional satisfies the rescaling property
+vol(λξ) = λ−n vol(ξ). Now consider the set of normalize Reeb vector fields:
+
+                                t̂+
+                                  R = {ξ ∈ t; Lξ Ω = nΩ}.
+
+For any ξ ∈ t+              ˆ     n                                              +
+             R , denote by ξ := A(ξ) ξ the corresponding normalized element in t̂R . The
+following basic result in Sasaki-Einstein geometry was proved by Martelli-Sparks-Yau:
+Theorem 6.1 ([MSY08]). If there is a Ricci-flat Kähler cone metric on X with the
+Reeb vector field ξ ∈ t, then ξ̂ minimizes the volume functional restricted to t̂+
+                                                                                 R.
+
+   Now we switch our points of view by using the normalized volume. As in [Li15a],
+the first observation is that any ξ ∈ t+
+                                       R determines a valuation vξ of the function field
+C(X) as follows:
+                                 (                              )
+                                              X
+                    vξ (f ) = min hα, ξi; f =    fα with fα 6= 0 .
+                                                  α
+
+ξ ∈ t+
+     R exactly means that the center of vξ over X is o. Moreover A(ξ) = A(vξ ) is
+nothing but the log discrepancy of the valuation vξ . The main result of this section is
+the following
+
+                                            35
+Theorem 6.2. Notations as above, if there exists a Ricci-flat Kähler cone metric on
+X with the Reeb vector field ξ ∈ t+                     c
+                                  R , then vξ minimizes vol(v) over ValX,o .
+   This is a strengthing of Theorem 6.1. The rest of this section is devoted to the
+proof of Theorem 6.2. The idea of proof for the irregular case is to use approximation
+by quasi-regular ones, similar to the one used in [CS12] (see also [CS15]).
+   If ξ = J(r∂r ) is a quasi-regular Reeb vector field, then the holomorphic field
+u = r∂r − iξ generates a (C∗ )r -action on X such that X/C∗ = (S, ∆) is a Fano
+orbifold and the projection π = πS : X → S is an orbifold line bundle, which we will
+denote by H, or HS if we want to emphasize its dependence on S. Notice that if
+we rescale ξ by a constant λ > 0, the projection and the orbifold line bundle do not
+change. Moreover there is a canonical holomorphic vector field along the fibre of HS
+given by u∗ = ζ∂ζ where ζ is the coordinate variable along the fibre. In general, if
+ξ = λ−1 ξ∗ , we have u = λ−1 u∗ . One can then verify that r2/λ = h defines an orbifold
+Hermitian metric on HS−1 → S. So the contact form η = dc log r = λ2 dc log h satisfies
+                           λ c           √
+                    dη =     dd log h = λ −1∂ ∂¯ log h = π ∗ (λωh ).
+                           2
+Hence the transverse Kähler metric ω T can be identified with the orbifold Kähler
+metric λπS∗ ωh . The Kähler cone metric on X is given by:
+                                                           √
+                  √           √                         2 λ −1∇ζ ∧ ∇ζ
+                        ¯ 2         ¯  λ     λ ∗
+            Ω = −1∂ ∂r = −1∂ ∂h = λh πS ωh + λ h                      ,        (49)
+                                                              |ζ|2
+where ∇ζ = dζ + ζ · ∂ log h.
+Lemma 6.3. If ξ is quasi-regular with A(ξ) = n, then we have:
+      T
+  1. ωM ∈ 2πc1 (−(KS + ∆))/n;
+                                                 n
+  2. vol(ξ) = (2π)n A(S)n (−S|S )n−1 /nn = (2π) c
+                                             nn vol(ordS ).
+
+Proof. The canonical vector field ξ∗ = ζ∂ζ has weight equal to A(S) and [ωh ] =
+                                                    n
+[dη∗ |H ] = 2πc1 (−S|S ). So if A(ξ) = n, then ξ = A(S) ξ∗ and η = A(S)
+                                                                    n η∗ . So we have:
+
+       T
+     [ωM ] = [dη|H ] = A(S)[dη∗ |H ]/n ∈ A(S)2πc1 (−S|S ) = 2πc1 (−(KS + ∆))/n.
+   To calculate vol(ξ) or equivalently vol(η), we notice that the Kähler cone metric
+tensor is given by:                                        
+                        gΩ = dr2 + r2 λgωh + λ2 ∇θ ⊗ ∇θ .
+with λ = A(S)
+           n    and ∇θ being the connection form of the orbifold S 1 -bundle. So the
+volume form dvolgM = η ∧ (dη)n−1 on the link M = r−1 (1) is given by λn dvolgωh ∧ dθ,
+                                                 n
+whose integral is equal to λn [ωh ]n−1 2π = A(S)    n
+                                             nn (2π) (−S|S )
+                                                            n−1
+                                                                .
+
+
+    For any Fano orbifold (e.g. X/hetξ i = (S, ∆)), we define the greatest lower bound
+of the Ricci curvature (see [Tia92, Sze11]:
+R(S, ∆) = sup{t > 0; ∃ an orbifold Kähler metric ω with [ω] = 2πc1 (−K(S,∆) ) and Ric(ω) ≥ tω}.
+Taking m ≫ 1 sufficiently divisible, we can choose an orbifold smooth divisor D ∈
+      orb
+ −mK(S,∆)  , and define:
+                                                                                 
+                                                                            1−γ
+R((S, ∆), D/m) = sup γ > 0; ∃ an orbifold conical Kähler metric on (S, ∆ +     D) .
+                                                                             m
+   We have the orbifold version of an result in [SW12].
+
+                                           36
+                                                                     orb
+Lemma 6.4 (cf. [SW12, Li13]). For any orbifold smooth divisor D ∈ −mK(S,∆) ,
+the following inequality holds:
+
+                                                    (m − 1)R(S, ∆)
+                    R(S, ∆) ≥ R((S, ∆); D/m) ≥                     .                  (50)
+                                                     m − R(S, ∆)
+
+Proof. Consider the log-Ding-energy:
+                                                Z                
+                                          1               e−γϕ
+                      Gγ (ϕ) := Fφ00 (ϕ) −  log          2(1−γ)/m
+                                          γ        S |s|
+                                              Z                 
+                                0       1            −tϕ−(1−t)φ0
+                     Ft (ϕ) := Fφ0 (ϕ) − log       e               ,
+                                        t        S
+
+where D = {s = 0}, e−φ0 is an orbifold smooth Hermitian metric on −(KS + ∆) and
+e−ϕ is a continuous Hermitian metric on the line bundle −(KS + ∆).
+   The first inequality follows from the inequality:
+
+                                  Gt (ϕ) ≤ Ft (ϕ) + Ct ,
+
+where Ct is independent of ϕ. By Hölder’s inequality, we have:
+ Z                    Z
+          e−γϕ                               1
+                  =      e−γ(ϕ−φ0 )                       e−φ0
+         2(1−γ)/m                       2  −mφ 0 )(1−γ)/m
+   S |s|               S            (|s| e
+                      Z                    1/p Z                               1/q
+                             −γp(ϕ−φ0 ) −φ0                     1             −φ0
+                  ≤        e           e                   2 −mφ0 )(1−γ)q/m
+                                                                            e          .
+                         S                           S (|s| e
+
+   The second inequality follows by solving the inequalities:
+
+                  γp < R(S, ∆),     (1 − γ)q/m < 1,        p−1 + q −1 = 1.
+
+
+
+Proposition 6.5. With the above notations, we have the following inequality
+
+                                                            c
+             c X (v) ≥ R(S, ∆)n A(S)n (−S|S )n−1 = R(S, ∆)n vol(ord
+             vol                                                   S ).
+
+Proof. For any γ < R(S, ∆), when m is sufficiently large, there exists a conical Kähler-
+                                                           D
+Einstein metric ω ∈ 2πc1 (−(KX + ∆)) on (S, ∆ + (1 − γ) m    ) with Ricci curvature γ:
+
+                                                    1−γ
+                            Ric(ω) = γω + {∆} +         {D}.
+                                                     m
+Notice that the following identities hold:
+
+              −(KS + ∆) = −A(S)S|S ,         c
+                                             vol(ord          n
+                                                    S ) = A(S) (−S|S )
+                                                                      n−1
+                                                                          .
+
+So we have
+                            1−γ
+                 −(KS + ∆ +      D) = −γ(KS + ∆) = −γA(S)S.
+                              m
+Denoting by D the corresponding divisor associated to D on X. So by Theorem 1.7
+we have:
+               c 1−γ (v) ≥ γ n A(S)n (−S|S )n−1 = γ n vol(ord
+              vol                                       c     S ).
+                 (X,    D)
+                        m
+
+
+
+
+                                             37
+   This holds for any γ < R((S, ∆); D/m). Moreover, we can choose D sufficiently
+                                                                c 1−γ (v) =
+general such that D is not contained in the center of v so that vol(X, m D)
+c
+volX (v). By letting γ → R((S, ∆); D/m), we get
+                    c X (v) ≥ R((S, ∆); D/m)n A(S)n (−S|S )n−1 .
+                    vol
+
+By Lemma 6.4, by choosing m sufficiently large (and D sufficiently general), we get:
+             c X (v) ≥ R(S, ∆)n A(S)n (−S|S )n−1 = R(S, ∆)n vol(ord
+             vol                                            c      S ).
+
+
+
+
+   Finally we will deal with the irregular case. Recall that the following well known
+lemma.
+Lemma 6.6 (see [BGM06]). With the above notations, the following conditions are
+equivalent:
+  1. (X, Ω) is a Ricci-flat Kähler cone metric;
+  2. (M, gM ) is an Sasaki-Einstein metric with Einstein constant equal to 2n − 2;
+                                                       T        T
+  3. The transverse metric satisfies the identity Ric(gM ) = 2ngM .
+Moreover if the Reeb vector field ξ is quasi-regular, then the above condition is also
+equivalent to the condition that ((S, ∆), ωh ) is a Kähler-Einstein Fano orbifold satis-
+fying the identity Ric(ωh ) = nλωh .
+
+Proof. Equivalence of 1 and 2 follows from the Gauss-Codazzi equation for Ricci
+curvature. The equivalence of 2 and 3 follows from the formula for the Ricci curvatures:
+ (a) Ric(gM )(X, ξ) = 2nη(X) for any vector field X;
+                            T
+ (b) Ric(gM )(X, Y ) = Ric(gM )(X, Y ) − 2gM (X, Y ) for any pair of sections X, Y of
+     H.
+                                 T
+In the quasi-regular case, ωh = ωM and hence the last statement.
+
+Remark 6.7. In the quasi-regular case, equivalence of 1 and 3 also follows from the
+following calculation:
+                            √                    √
+                 Ric(Ω) = − −1∂ ∂¯ log Ωn = − −1∂ ∂¯ log(hnλ ωhn )
+                        = π ∗ (Ric(ωh ) − nλωh ).
+
+Lemma 6.8. If (M, gM ) is a Sasaki metric with an irregular Reeb vector field ξ, then
+there exists a sequence of quasi-regular Sasaki metrics {gk }k ∈ N on M with Reeb
+vector fields ξk such that ξk → ξ and gM,k → gM in the C ∞ topology as k → +∞.
+Moreover we can assume A(ξk ) = A(ξ) for any k.
+
+Proof. We consider the deformations of Sasaki structures that preserve the CR struc-
+ture and change the Reeb vector field (see [BGM06, BGS08]):
+
+                        η̃ = f η,   ξ˜ = ξ + ρ,   Φ̃ = Φ − Φξ˜ ⊗ η̃
+
+such that:
+                           η̃( ˜
+                              ξ) = 1,   ˜
+                                        ξ⌋dη̃ = 0,    Lξ̃ Φ̃ = 0.
+           1
+Then f = 1+η(ρ) . The corresponding Riemannian metric g̃M is given by
+
+                            g̃M = dη̃ ◦ (Φ̃ ⊗ I) ⊕ η̃ ⊗ η̃.
+
+                                            38
+It’s easy to see that g̃M depends on ξ̃ smoothly. When ρ = ξ̃ − ξ is sufficiently small,
+g̃M − gM is sufficiently small in the C ∞ topology. We can also let ξ̃ changes in the set
+Cb to ensure A(ξk ) = A(ξ) = n.
+
+
+    Now we can complete the proof of Theorem 6.2.
+
+Proof of the Theorem 6.2. As mentioned above, the transverse Ricci curvature and
+the Ricci curvature are related by:
+                                               T       T
+                           Ric(gM )|H×H = Ric(gM ) − 2gM ,                           (51)
+
+where H denotes the horizontal distribution of the Sasakian structure. Let gM be the
+Sasaki-Einstein metric associated to the Ricci-flat Kähler cone metric. By Lemma 6.8
+we can find a sequence of quasi-regular Sasaki metrics gM,k with the corresponding
+quotients ((Sk , ∆k ); ωk ) satisfying: Ric(ωk ) ≥ (1 − ǫ)ωk where ωk ∈ 2πc1 (−(KSk +
+∆k )). Indeed, we can choose k large enough such that gM,k from Lemma 6.8 satisfies:
+                                                                   T                   T
+Ric(gM,k ) ≥ (2(n − 1) − 2nǫ)gM,k which implies by (51) Ric(gM,k      ) ≥ (2n − 2nǫ)gM,k
+or equivalently Ric(ωkT ) ≥ (n − nǫ)ωM,k T            T
+                                             where ωM,k   is the transversal Kähler form
+                                                 T
+associated to the transverse Kähler metric gM,k . Moreover, we can assume A(ξk ) =
+n = A(ξ). Then by Lemma 6.3, we have [ωkT ] ∈ 2πc1 (−(KS + ∆))/n. We just need to
+            T
+let ωk = nωM,k  .
+    By construction, there exists ck > 0 such that vξk = ck · ordSk . Then as k → +∞,
+we have ck · ordSk → vξ , R(Sk , ∆k ) → 1 and vol  c X (ordS ) = vol
+                                                                   c X (vξ ) → vol
+                                                                                c X (vξ ).
+                                                             k            k
+By Proposition 6.5, we have
+
+                           c X (v)
+                           vol                      c k ).
+                                     ≥ R(Sk , ∆k )n vol(S
+
+                                              c X (v) ≥ vol(v
+Letting k → +∞, we get the wanted inequality: vol       c ξ ).
+
+
+7     A question
+We end this paper with the following question whose answer would lead to a purely
+algebraic proof of the result in this paper.
+Question: With the notations used in this paper, give an algebraic proof (i.e. with-
+out using conical Kähler-Einstein metrics) of the following result (and its logarith-
+mic/orbifold version): a Q-Fano variety V is K-semistable (resp. K-polystable) if and
+only if (C, (1 − β)V∞ ) is log-K-semistable (resp. log-K-polystable).
+    Notice that the correct cone angle β = nr can be detected by log Futaki invariant
+defined in [Don12] as in [LS12, Section 3.3] (see also [Li11]).
+    Postscript note: After the completion of the first version of this paper, some
+consequences/applications of our main results has appeared in [Liu16, LX16, HS16].
+Moreover the above question has been answered affirmatively in [LX16].
+
+
+8     Acknowledgment
+We would like to thank Chenyang Xu and Kento Fujita for helpful comments. The
+first author is partially supported by NSF DMS-1405936. The first author would like
+to thank Laszlo Lempert and Sai-Kee Yeung for their interest in this work. Part of
+this paper is written while the first author visits MSRI at Berkeley, and he would like
+to thank the institute for its hospitality. The second author is partially supported by
+
+
+                                           39
+NSF DMS-0968337. The second author would like to thank his advisor János Kollár
+for his constant support, encouragement and numerous inspiring conversations. The
+second author also wishes to thank Charles Stibitz, Yury Ustinovskiy, Xiaowei Wang
+and Ziquan Zhuang for many useful discussions.
+
+
+References
+[AM69] M.F. Atiyah and I.G. MacDonald. Introduction to commutative algebra,
+       Addison-Wesley, Reading, Mass., 1969.
+[Bm13] R. Berman. A thermodynamic formalism for Monge-Ampère equations,
+       Moser-Trudinger inequalities and Kähler-Einstein metrics, Adv. Math. 248
+       (2013), 1254-1297.
+[Bm12] R. Berman. K-polystability of Q-Fano varieties admitting Kähler-Einstein
+       metrics, arXiv:1205.6214.
+[BB12]   R. Berman and B. Berndtsson. Real Monge-Ampère equations and Kähler-
+         Ricci solitons on toric log Fano varieties, arXiv:math.DG/1207.6128.
+[BBEGZ11] R. Berman, S. Boucksom, P. Eyssidieux, V. Guedj and A. Zeriahi.
+       Kähler-Einstein metrics and the Kähler-Ricci flow on log Fano varieties,
+       arXiv:1111.7158.
+[BBJ15] R. Berman, S. Boucksom and M. Jonsson. A variational approach to the
+        Yau-Tian-Donaldson conjecture. arXiv:1509.04561
+[Bn15]   B. Berndtsson. A Brunn-Minkowski type inequality for Fano manifolds and
+         some uniqueness theorems in Kähler geometry. Inventiones Mathematicae
+         200, 1 (2015), 149-200.
+[BP08]   B. Berndtsson and M. Păun. Bergman kernels and the pseudoeffectivity of
+         relative canonical bundles. Duke Math. J. 145 (2008), no. 2, 341-378.
+[BC11]   S. Boucksom and H. Chen. Okounkov bodies of filtered linear series, Com-
+         positio Math. 147 (2011) 1205-1229.
+[BFFU13] S. Boucksom, T. de Fernex, C. Favre and S. Urbinati. Valuation spaces and
+       multiplier ideals on singular varieties, Recent advances in algebraic geometry,
+       29-51, London Math. Soc. Lecture Note Ser., 417, Cambridge Univ. Press,
+       Cambridge, 2015. arXiv:1307.02227.
+[BFJ12] S. Boucksom, C. Favre and M. Jonsson. A refinement of Izumi’s theorem,
+        arXiv:1209.4104.
+[BGM06] C. Boyer, K. Galicki, and P. Matzeu. On Eta-Einstein Sasakian Geometry,
+       Commun. Math. Phys. 262, 177-208 (2006).
+[BGS08] C. Boyer, K. Galicki, and S. R. Simanca. Canonical Sasakian metrics, Com-
+        mun. Math. Phys. 279, 705-733 (2008).
+[BHJ15] S. Boucksom, T. Hisamoto and M. Jonsson. Uniform K-stability,
+        Duistermaat-Heckman measures and singularities of pairs, arXiv:1504.06568.
+[BKMS14] S. Boucksom, A. Küronya, C. Maclean and T. Szemberg. Vanishing se-
+       quences and Okounkov bodies. Math. Ann. 2014.
+[CDS15] X.X. Chen, S. K. Donaldson and S. Sun. Kähler-Einstein metrics on Fano
+        manifols, I-III, J. Amer. Math. Soc. 28 (2015), 183-197, 199-234, 235-278.
+[CS12]   T. Collins, G. Székelyhidi; K-semistability for irregular Sasakian manifolds,
+         arXiv:1204.2230.
+
+
+                                         40
+[CS15]    T. Collins, G. Székelyhidi;     Sasaki-Einstein metrics and K-stability.
+          arXiv:1512.07213.
+[Cut12] S.D. Cutkosky. Multiplicities associated to graded families of ideals.
+        arXiv:1206.4077.
+[DGSW13] V. Datar, B. Guo, J. Song and X. Wang. Connecting toric manifolds by
+      conical Kähler-Einstein metrics, arXiv:math.DG/1308.6781.
+[Din88] W. Ding. Remarks on the existence problem of positive Kähler-Einstein met-
+        rics. Math. Ann. 282, 463-471 (1988).
+[Don02] S. Donaldson. Scalar curvature and stability of toric varieties, J. Differential
+        Geometry. 62 (2002), no. 2, 289-349.
+[Don12] S. Donaldson. Kähler metrics with cone singularities along a divisor, Essays
+        in Mathematics and its applications, 2012, pp 49-79.
+[DS15]    S. Donaldson and S. Sun. Gromov-Hausdorff limits of Kähler manifolds and
+          algebraic geometry, II, arXiv:1507.05082.
+[DT92]    W. Ding and G. Tian. Kähler-Einstein metrics and the generalized Futaki
+          invariant. Invent. Math. 110 (1992), no. 2, 315-335.
+[ELS03] L. Ein, R. Lazarsfeld and K. E. Smith. Uniform approximation of Abhyankar
+        valuation ideals in smooth function fields, American Journal of Mathematics
+        125 (2003), 409-440.
+[EGZ09] P. Eyssidieux, V. Guedj and A. Zeriahi. Singular Kähler-Einstein metrics, J.
+        Amer. Math. Soc. 22 (2009), 607-639.
+[Fut83]   A. Futaki. An obstruction to the existence of Einstein Kähler metrics, In-
+          ventiones Mathematicae (1983), 437-443.
+[Fuj15]   K. Fujita. Optimal bounds for the volumes of Kähler-Einstein Fano mani-
+          folds, arXiv:1508.04578.
+[GMSY07] J. P. Gauntlett, D. Martelli, J. Sparks and S.-T. Yau. Obstructions to
+       the existence of Sasaki-Einstein metrics, Commu. Math. Phy. 273, 803-827
+       (2007).
+[dFH09] T. de Fernex, and C. D. Hacon. Singularities on normal varieties, Compositio.
+        Math. 145 (2009) 393-414.
+[HS16]    H-J. Hein, S. Sun, Calabi-Yau manifolds with isolated singularities,
+          arXiv:1607.02940.
+[IP99]    V. A. Iskovskikh and Yu. G. Prokhorov. Fano varieties. Algebraic geometry,
+          V, 1-247, Encyclopaedia Math. Sci., 47, Springer, Berlin, 1999.
+[Izu85]   S. Izumi. A measure of integrity for local analytic algebras. Publ. RIMS
+          Kyoto Univ. 21 (1985), 719-735.
+[JM10]    M. Jonsson and M. Mustaţă, Valuations and asymptotic invariants for se-
+          quences of ideals, Ann. Inst. Fourier (Grenoble) 62 (2012), no. 6, 2145-2209.
+          arXiv:1011.3699.
+[JMR15] T. Jeffres, R. Mazzeo and Y. Rubinstein. Kähler-Einstein metrics with edge
+        singularities, with an appendix by C. Li and Y. Rubinstein. to appear in
+        Ann. of Math. arXiv:1105.5216.
+[Kol97] J. Kollár. Singularities of pairs. Algebraic geometry-Santa Cruz 1995, 221-
+        287, Proc. Sympos. Pure Math., 62, Part 1, Amer. Math. Soc., Providence,
+        RI, 1997.
+[Kol04a] J. Kollár. Seifert Gm -bundles, arXiv:0404386.
+
+                                          41
+[Kol04b] J. Kollár. Einstein metrics on five-dimensional Seifert bundles, J. Geom.
+         Anal. 15 (2005), no.3, 445-476.
+[Kol13] J. Kollár. Singularities of the Minimal Model Program, Cambridge Tracts in
+        Mathematics, 200, Cambridge University Press, 2013.
+[Laz96] R. Lazarsfeld. Positivity in algebraic geometry, I: Classical setting: line bun-
+        dles and linear series, Erger Mathematik und ihrer Grenzgebiete. (3) 48,
+        Springer-Verlag, Berlin, 1996.
+[Leg11] E. Legendre. Toric Kähler-Einstein metrics and convex compact polytopes,
+        arXiv:DG/1112.3239.
+[LM09] R. Lazarsfeld and M. Mustaţă. Convex bodies associated to linear series,
+       Ann. Sci. Éc. Norm. Supér. 42 (2009), no. 5, 783-835.
+[Li11]    C. Li. Remarks on logarithmic K-stability. Communications in Contempo-
+          rary Mathematics. arXiv:1104.0428.
+[Li13]    C. Li. Yau-Tian-Donaldson correspondence for K-semistable Fano manifolds.
+          To appear in Crelle’s journal, arXiv:1302.6681.
+[Li15a]   C. Li. Minimizing normalized volumes of valuations. arXiv:1511.08164.
+[Li15b]   C. Li. K-semistability is equivariant volume minimization, accepted by Duke
+          Math. Jour. , arXiv:1512.07205.
+[LS12]    C. Li and S. Sun. Conical Kähler-Einstein metrics revisited. Comm. Math.
+          Phys. 331 (2014), no. 3, 927-973. arXiv:1207.5011
+[LX14]    C. Li and C. Xu. Special test configurations and K-stability of Fano varieties,
+          Ann. of Math. (2) 180 (2014), no.1, 197-232.
+[LX16]    C. Li and C. Xu. Stability of valuations and Kollár components,
+          arXiv:1604.05398.
+[LWX15] C. Li, X. Wang and C. Xu. Quasi-projectivity of the moduli space of smooth
+       Kähler-Einstein Fano manifolds, arXiv:1502.06532.
+[Liu16]   Y. Liu. The volume          of   singular   Kähler-Einstein   Fano   varieties,
+          arXiv:1605.01034.
+[MSY08] D. Martelli, J. Sparks and S.-T. Yau. Sasaki-Einstein manifolds and volume
+        minimisation, Commu. Math. Phys. 280, 611-673 (2008).
+[Mus02] M. Mustaţă. On multiplicities of graded sequences of ideals, Journal of Al-
+        gebra 256 (2002) 229-249.
+[Oda13] Y. Odaka. A generalization of the Ross-Thomas slope theory, Osaka. J. Math.
+        50 (2013), no. 1, 171-185.
+[OS15]    Y. Odaka and S. Sun. Testing log K-stability by blowing up formalism,
+          Annales de la Faculté des Sciences de Toulouse, Vol. XXIV, n◦ 3, 2015.
+          arXiv:1112.1353.
+[Oko96] A. Okounkov. Brunn-Minkowski inequality for multiplicities, Invent. Math.
+        125 (1996), 405-411.
+[Ree89] D. Rees. Izumi’s theorem. In Commutative algebra (Berkeley, CA, 1987),
+        407-416. Math. Sci. Res. Inst. Publ., 15. Springer, New York. 1989.
+[SW12] Song J., X. Wang. The greatest Ricci lower bound, conical Einstein metrics
+       and the Chern number inequality, arXiv:1207.4839.
+[Sze11]   G. Székelyhidi, Greatest lower bounds on the Ricci curvature of Fano mani-
+          folds, Compositio Mathematica, Vol. 147, Issue 1, 2011, pp. 319-331.
+
+
+                                           42
+[Tia97]   G. Tian. Kähler-Einstein metrics with positive scalar curvature, Invent.
+          Math. 130 (1997), no. 1, 1-37.
+[Tia92]   G. Tian, On stability of the tangent bundles of Fano varieties, Internat. J.
+          Math. (3) (1992) 401-413.
+[Tia15]   G. Tian. K-stability and Kähler-Einstein metrics, Communications on Pure
+          and Applied Mathematics, Volume 8, Issue 7, pages 1085-1156, July 2015.
+Department of Mathematics, Purdue University, West Lafayette, IN 47907-2067
+E-mail address: li2285@purdue.edu
+Department of Mathematics, Princeton University, Princeton, NJ, 08544-1000.
+E-mail address: yuchenl@math.princeton.edu
+
+
+
+
+                                          43
+

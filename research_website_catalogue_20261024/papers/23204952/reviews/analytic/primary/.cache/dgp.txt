@@ -1,0 +1,1716 @@
+                               Comptes Rendus
+                                    Mathématique
+Stéphane Druel, Henri Guenancia and Mihai Păun
+
+A decomposition theorem for Q-Fano Kähler–Einstein varieties
+
+Volume 362, Special Issue S1 (2024), p. 93-118
+
+Online since: 6 June 2024
+Issue date: 6 June 2024
+
+Part of Special Issue: Complex algebraic geometry, in memory of Jean-Pierre Demailly
+Guest editor: Claire Voisin (CNRS, Institut de Mathématiques de Jussieu-Paris rive
+gauche, France)
+
+
+
+
+https://doi.org/10.5802/crmath.612
+            This article is licensed under the
+Creative Commons Attribution 4.0 International License.
+http://creativecommons.org/licenses/by/4.0/
+
+
+
+
+                                                 CENTRE
+                                                 MERSENNE
+                           The Comptes Rendus. Mathématique are a member of the
+                                Mersenne Center for open scientific publishing
+                              www.centre-mersenne.org — e-ISSN : 1778-3569
+                                                                              Comptes Rendus. Mathématique
+                                                                            2024, Vol. 362, Special issue S1, p. 93-118
+                                                                         https://doi.org/10.5802/crmath.612
+
+
+
+
+Research article / Article de recherche
+Algebraic geometry / Géométrie algébrique
+
+Complex algebraic geometry, in memory of Jean-Pierre Demailly /
+Géométrie algébrique complexe, en mémoire de Jean-Pierre Demailly
+
+A decomposition theorem for Q-Fano
+Kähler–Einstein varieties
+Un théorème de décomposition pour les variétés Q-Fano
+qui admettent une métrique de Kähler–Einstein
+Stéphane Druel ∗,a , Henri Guenancia b and Mihai Păun c
+      a Univ Lyon, CNRS, Université Claude Bernard Lyon 1, UMR 5208, Institut Camille Jordan, F-69622
+
+      Villeurbanne, France
+      b Institut de Mathématiques de Toulouse, Université Paul Sabatier, 31062 Toulouse Cedex 9, France
+
+      c Lehrstuhl für Mathematik VIII, Universität Bayreuth, 95440 Bayreuth, Germany
+
+      E-mails: stephane.druel@math.cnrs.fr, henri.guenancia@math.cnrs.fr, mihai.paun@uni-bayreuth.de
+
+      It is an honor for us to dedicate this paper to the memory of Jean-Pierre Demailly, who always shared his tremendous
+                                                        insights and vision of complex geometry with kindness and generosity.
+
+      Abstract. Let X be a Q-Fano variety admitting a Kähler–Einstein metric. We prove that up to a finite quasi-
+      étale cover, X splits isometrically as a product of Kähler–Einstein Q-Fano varieties whose tangent sheaf is
+      stable with respect to the anticanonical polarization. This relies among other things on a very general splitting
+      theorem for algebraically integrable foliations. We also prove that the canonical extension of T X by O X is
+      polystable with respect to the anticanonical polarization.
+      Résumé. Soit X une variété Q-Fano admettant une métrique de Kähler–Einstein. Nous montrons, qu’à un
+      revêtement fini quasi-étale près, X est un produit de variétés Q-Fano admettant une métrique de Kähler–
+      Einstein dont le fibré tangent est stable relativement au diviseur anticanonique. La démonstration repose
+      notamment sur un théorème de décompostion pour les feuilletages algébriquement intégrables. Nous mon-
+      trons également que l’extension canonique de T X par O X est polystable à nouveau relativement au diviseur
+      anticanonique.
+      Keywords. Q-Fano varieties, singular Kähler–Einstein metrics, stable reflexive sheaves, algebraically inte-
+      grable foliations.
+      Mots-clés. Variétés Q-Fano, métriques de Kähler–Einstein singulières, faisceaux réflexifs stables, feuilletages
+      algébriquement intégrables.
+      2020 Mathematics Subject Classification. 14B05, 14J45, 32Q20, 37F75.
+      Funding. S. D. was partially supported by the ERC project ALKAGE (ERC grant Nr 670846), the CAPES-
+      COFECUB project Ma932/19 and the ANR project Foliage (ANR grant Nr ANR-16-CE40-0008-01). H. G. was
+      partially supported by the ANR project GRACK. M. P. was partially supported by the DFG..
+      Manuscript received 31 December 2022, accepted 3 January 2024.
+
+  ∗ Corresponding author
+
+
+
+
+ISSN (electronic): 1778-3569                             https://comptes-rendus.academie-sciences.fr/mathematique/
+94                             Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+1. Introduction
+
+Let (X , ω) be a Fano Kähler–Einstein manifold, i.e. X is a projective manifold with −K X ample
+and admitting a Kähler metric ω solving Ric ω = ω. It follows from the (easy direction of the)
+Kobayashi–Hitchin correspondence that the tangent bundle of X splits as a direct sum of parallel
+subbundles
+                                                M
+                                          TX =      Fi                                      (1)
+                                                      i ∈I
+such that F i is stable with respect to −K X . Since X is simply connected, de Rham’s splitting
+theorem asserts that one can integrate the foliations arising in decomposition (1) and obtain an
+isometric splitting
+                                        (X , ω) ≃ (X i , ωi )
+                                                 Y
+                                                     i ∈I
+into Kähler–Einstein Fano manifolds which is compatible with (1).
+    Over the last few decades, a lot of attention has been drawn to projective varieties with mild
+singularities, in relation to the progress of the Minimal Model Program (MMP). In that context,
+the notion of Q-Fano variety (cf. Definition 1) has emerged and played a central role in birational
+geometry.
+    On the analytic side, singular Kähler–Einstein metrics have been introduced and constructed
+in various settings (see e.g. [2, 4, 18] and Definition 2). They induce genuine Kähler–Einstein
+metrics on the regular part of the variety but are in general incomplete, preventing the use of most
+useful results in differential geometry (like the de Rham splitting theorem mentionned above) to
+analyze their behavior. However, these objects are well-suited to study (poly)-stability properties
+of the tangent sheaf as it was observed by [25], relying on earlier results by [17].
+    In the Ricci-flat case, the holonomy of the singular metrics was computed in [20]. Moreover,
+[15] provided an algebraic integrability result for foliations as well as a splitting result in that
+setting. Building upon those results, Höring and Peternell [26] could eventually prove the singular
+version of the Beauville–Bogomolov decomposition theorem.
+    In the positive curvature case, some simplifications appear (for instance, the algebraic integra-
+bility of foliations can be related to stability properties by [5]) but new difficulties also arise: the
+singularities are klt rather than canonical and Gorenstein, and one cannot regularize the singular
+Kähler–Einstein metrics with an equally good control on the Ricci curvature. In this paper, our
+main contribution is to single out and overcome those difficulties in order to prove the following
+structure theorem for Q-Fano varieties that admit a Kähler–Einstein metric.
+
+Theorem A. Let X be a Q-Fano variety admitting a Kähler–Einstein metric ω. Then T X is
+polystable with respect to c 1 (X ). Moreover, there exists a quasi-étale cover f : Y → X such that
+(Y , f ∗ ω) decomposes isometrically as a product
+                                        (Y , f ∗ ω) ≃ (Yi , ωi ),
+                                                     Y
+                                                      i ∈I
+where Yi is a Q-Fano variety with stable tangent sheaf with respect to c 1 (Yi ) and ωi is a Kähler–
+Einstein metric on Yi .
+
+     Below are a few remarks about the result above.
+       • Theorem A shows that for all “practical aspects” the tangent sheaf of a Q-Fano variety
+         admitting a Kähler–Einstein metric can always be assumed to be stable. Moreover, it can
+         be expressed in a purely algebraic way using the notion of K -stability, cf. Remark 4 (this
+         is the case for Theorem B below as well).
+       • The quasi-étale cover above is needed to split X even when T X is already split, as we see
+         by taking e.g. X = (P1 × P1 )/〈ι × ι〉 where ι : P1 → P1 is the involution ι([u : v]) = [u : −v].
+                              Stéphane Druel, Henri Guenancia and Mihai Păun                         95
+
+
+
+      • It was proved very recently by Braun [6, Thm. 2] that the fundamental group of the regular
+        locus of a Q-Fano variety is finite. Relying on that result, one can refine Theorem A and
+                                                                            reg
+        obtain that the varieties Yi satisfy the additional property: π1 (Yi ) = {1}.
+      • Semistability of T X for a Kähler–Einstein Q-Fano variety X was proved by Chi Li in [35,
+        Prop. 3.7] in the case where X admits a resolution where all exceptional divisors have
+        non-positive discrepancy, e.g. a crepant resolution.
+  Our second main result is the following generalisation of a theorem of Tian [37, Thm. 0.1],
+which is a way to express some “strong” polystability of T X .
+
+Theorem B. Let X be a Q-Fano variety admitting a Kähler–Einstein metric. Then the canonical
+extension of T X by O X is polystable with respect to c 1 (X ).
+
+    We refer to Section 3.1 for the construction of the canonical extension. As we explain further
+below, at the end of the introduction (see paragraph on the strategy of proof of Theorem B), the
+generalization from the smooth to the singular case requires some non-trivial new input on top
+of the analytic techniques already developed for the proof of the semistability/polystability of the
+tangent sheaf T X , i.e. Theorem 6.
+    In another direction, the semistability of the canonical extension has been proved in [35,
+Thm. 1.4] for K -semistable log smooth log Fano pairs. It is very likely that the proof of the above
+theorem will carry over mutatis mutandis to the more general setting of log Fano pairs, but we
+will not pursue this direction in this paper.
+    Our last main result is a very general splitting theorem for algebraicallly integrable foliations,
+which plays a key role in the proof of Theorem A, but is certainly of independent interest.
+
+Theorem C. Let X be a normal projective variety, and let
+                                                  Fi
+                                              M
+                                        TX =
+                                                     i ∈I
+be a decomposition of T X into involutive subsheaves with algebraic leaves. Suppose that there
+exists a Q-divisor ∆ such that (X , ∆) is klt. Then there exists a quasi-étale cover f : Y → X as well as
+a decomposition                                        Y
+                                                  Y ≃ Yi
+                                                       i ∈I
+of Y into a product of normal projective varieties such that the decomposition T X = i ∈I Fi lifts
+                                                                                            L
+
+to the canonical decomposition                         M ∗
+                                           TQi ∈I Yi =      pri TYi .
+                                                    i ∈I
+
+    Theorem C can be seen as the generalization of the splitting result in [15] where additional
+assumptions are made, both on the singularities of X and the positivity of K Fi . More precisely,
+in [15] X is assumed to have canonical singularities, and the K Fi are assumed to be Q-linearly
+trivial. We also refer to [16, Thm. 1.5] for a somewhat related result. In comparison to [15,
+Prop. 4.10], the range of applications of Theorem C is significantly broader.
+
+
+Strategy of proof of the main results
+
+Theorem A. The first step is the object of Theorem 6 where one proves that T X is the direct sum
+of stable subsheaves that are parallel with respect to the Kähler–Einstein metric ω on X reg . This
+is achieved by computing slopes of subsheaves using the metric induced by the Kähler–Einstein
+metric and using Griffiths’ well-known formula for the curvature of a subbundle. However, the
+presence of singularities (for X and ω) makes it hard to carry out the analysis directly on X .
+One has to work on a resolution using approximate Kähler–Einstein metrics as in [25]. Yet an
+96                             Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+additional error term appears in the Fano case, requiring to introduce some new ideas to deal
+with it as explained on page 99, cf “term (I)”.
+   Once Theorem 6 is at hand, one can appeal to Theorem C where the foliations are induced
+by the Kähler–Einstein metric as showed in the first step. Note that the algebraic integrability of
+these foliations follows from the deep results of [5]. An easy induction allows one to split X as
+a product of Q-Fano varieties with stable tangent sheaf. The isometric splitting follows from a
+suitable characterization of singular Kähler–Einstein metrics, cf. Claim 28.
+
+Theorem B. The proof of Theorem B takes up most of Section 3. It relies largely on the compu-
+tations carried out in Section 2 to prove the polystability of T X , but on top of those, several new
+ideas are needed to overcome the presence of singularities.
+   First, one needs to reduce the statement to one on a resolution in order to use analytic
+methods. Then we use again the technique of working with approximate Kähler–Einstein metrics,
+but in the current context this has the effect of modifying the canonical extension as well.
+As a result, we cannot evaluate directly the slope of a subsheaf of the canonical extension
+corresponding to the initial Kähler–Einstein metric. Dealing with this difficulty is our main
+contribution in this framework. The rest of the proof uses a combination of the original idea
+of Tian and the computations of Section 2.
+
+Theorem C. The starting point is the observation that since each foliation Fi admits a comple-
+ment inside T X , Fi is automatically weakly regular. It turns out that weakly regular foliations
+have many nice properties. The important fact which is established here is that an algebraically
+integrable, weakly regular foliation on a Q-factorial projective variety with klt singularities is in-
+duced by a surjective, equidimensional morphism X → Y , cf. Theorem 17. When combined with
+suitable generalisations of other techniques and results in [16], this leads to the proof of Theo-
+rem C.
+
+
+Acknowledgements
+
+It is our pleasure to thank Daniel Greb, Stefan Kebekus and Thomas Peternell for sharing their
+results [23] and encouraging us to prove Theorem B. H. G. thanks Sébastien Boucksom for useful
+discussions about Remark 4.
+    Finally, we thank the referee for the helpful and detailed report.
+
+
+2. Polystability of the tangent sheaf
+
+2.1. Set-up
+
+2.1.1. Notation
+Definition 1. Let X be a projective variety of dimension n. We say that X is a Q-Fano variety if X
+has klt singularities and −K X is an ample Q-line bundle.
+
+     We also recall the definition of (twisted) singular Kähler–Einstein metric, cf. [2].
+
+Definition 2. Let X be a Q-Fano variety, let ϑ ∈ c 1 (X ) be a smooth representative and let γ ∈ [0, 1).
+A twisted Kähler–Einstein metric relatively to the couple (ϑ, γ) is a closed, positive current ωKE,γ ∈
+c 1 (X ) with bounded potentials, which is smooth on X reg and satisfies
+                                      Ric ωKE,γ = (1 − γ)ωKE,γ + γϑ
+on that open set. When γ = 0, we write ωKE := ωKE,0 and we call it a Kähler–Einstein metric.
+                                Stéphane Druel, Henri Guenancia and Mihai Păun                              97
+
+
+
+Remark 3. By [2, Prop. 3.8], a smooth Kähler metric ω ∈ c 1 (X reg ) on X reg satisfying Ric ω = ω
+extends to a Kähler–Einstein metric in the sense of Definition 2 if and only if X reg ωn = c 1 (X )n .
+                                                                                R
+
+In particular, if f : Y → X is a (finite) quasi-étale cover between Q-Fano varieties and ωKE is a
+Kähler–Einstein metric on X , then f ∗ ωKE is a Kähler–Einstein metric on Y .
+
+   Let ω X ∈ c 1 (X ) be a fixed Kähler metric on X . We will systematically make either one of the
+following assumptions:
+
+Assumption A. For any γ ∈ (0, 1) small enough, there exists a twisted Kähler–Einstein metric ωKE,γ
+on X relatively to (ω X , γ).
+
+Assumption B. There exists a Kähler–Einstein metric ωKE on X .
+
+Remark 4. One can rephrase the Assumptions A-B using the algebraic notion of K -stability. It
+follows from [36] (building upon results of [8–10], [38], [34], [3] in the smooth case) that
+      • X satisfies Assumption A if and only if X is K -semistable.
+      • X satisfies Assumption B if X is uniformly K -stable, and the converse holds provided
+        Aut◦ (X ) = {1}.
+
+Notation 5. Let π : Xb → X be a resolution of singularities of X with exceptional divisor E =
+P
+   k∈I E k and discrepancies a k > −1 given by
+
+                                        K Xb = π∗ K X + a k E k .
+                                                       X
+
+There exist numbers εk ∈ Q+ such that the cohomology class π∗ c 1 (X ) − εk c 1 (E k ) contains a
+                                                                                P
+
+Kähler metric ω Xb . We fix them for the rest of the paper. Next, we pick sections s k ∈ H 0 ( Xb , O Xb (E k ))
+such that E k = (s k = 0), smooth hermitian metrics h k on O Xb (E k ) with Chern curvature ϑk :=
+i Θhk (E k ) and a volume form dV on Xb such that Ric dV = π∗ ω X − k∈I a k ϑk . We set
+                                                                      P
+                                                     Y
+                                              h E :=    hk                                                  (2)
+                                                        k∈I
+which defines a smooth metric on O Xb (E ).
+
+2.1.2. The twisted Kähler–Einstein metric and its regularizations
+   In this section, we assume that either Assumption A or Assumption B is fulfilled so that there
+exists a (twisted) Kähler–Einstein metric ωKE,γ
+      • either for any γ ∈ [0, 1) such that 0 < γ ≪ 1
+      • or for γ = 0.
+For the time being, the parameter γ is fixed.
+  We denote by π∗ ωKE,γ = π∗ ω X + ddc ϕ the singular metric solving
+                                     (π∗ ω X + ddc ϕ)n = e −(1−γ)ϕ f dV
+where f = i ∈I |s i |2ai ∈ L p (dV ) for some p > 1. It is known that ϕ is bounded (even continuous)
+            Q
+
+on Xb and smooth outside E , cf. [2]. Note that ϕ depends on γ, but as notation will get quite heavy
+later, we choose not to highlight that dependence.
+   Next, we choose a family ψε ∈ C ∞ ( Xb ) of quasi-psh functions on Xb such that:
+       • One has ψε → ϕ in L 1 ( Xb ) and in C ∞ ( Xb \ E ).
+                                                loc
+      • There exists C > 0 such that ∥ψε ∥L ∞ ( Xb ) ≤ C .
+      • There exists a continuous function κ : [0, 1] → R+ with κ(0) = 0 such that π∗ ω X + ddc ψε ≥
+        −κ(ε)ω Xb .
+This is a standard application of Demailly’s regularization results ([11]). The smooth convergence
+outside E claimed in the first item follows from the explicit expression of the function ψε , see
+e.g. [13, (3.3)].
+98                               Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+     For ε, t ≥ 0, one introduces the unique function ϕt ,ε ∈ L ∞ (X ) ∩ PSH( Xb , π∗ ω X + t ω Xb ) solving
+                            (
+                             (π∗ ω X + t ω Xb + ddc ϕt ,ε )n = f ε e −(1−γ)ψε e −c t dV
+                              sup Xb ϕt ,ε = 0
+where
+        • f ε := e aε (|s i |2 + ε2 )ai ,
+                     Q
+
+        • a ε is a normalizing constant such that Xb f ε e −(1−γ)ψε dV = c 1 (X )n ; it converges to 1 when
+                                                            R
+
+          ε → 0.
+        • c t is defined by {π∗ ω X + t ω Xb }n = e c t · c 1 (X )n .
+The existence and uniqueness of ϕt ,ε follows from Yau’s theorem [39] when t , ε > 0 (in which case
+ϕt ,ε is actually smooth) while the general case is treated in [18]. It follows from ibid. that there
+exists a constant C > 0 such that
+                                          ∥ϕt ,ε ∥L ∞ (X ) ≤ C                                    (3)
+for any t , ε ∈ [0, 1]. Moreover, any weak limit ϕ
+                                                 b of a sequence (ϕtk ,εk ) is bounded and is a smooth
+limit outside E . Therefore, it solves the equation
+                                                     ϕ)n = e −(1−γ)ϕ f dV
+                                        (π∗ ω X + ddc b
+on Xb . By the uniqueness result [18, Thm. A], we have ϕ
+                                                       b = ϕ. That is
+                                 ϕt ,ε −→ ϕ in L 1 ( Xb ) and in Cloc
+                                                                   ∞ b
+                                                                      ( X \ E ).                           (4)
+                                        t ,ε→0
+One sets
+                                         ωt ,ε := π∗ ω X + t ω Xb + ddc ϕt ,ε                              (5)
+which solves the equation
+                                    Ric ωt ,ε = π∗ ω X + (1 − γ)ddc ψε − Θε                                (6)
+where
+                                            Θε = Θ(E , h Eε ) =       a i ϑi ,ε
+                                                                  X
+                                                                                                           (7)
+is the curvature of
+                                             h Eε =    (|s i |2 + ε2 )−1 h i
+                                                      Y
+                                                                                                           (8)
+                                                       i
+and ϑi ,ε = ϑi + ddc log(|s i |2 + ε2 ) converges to the current of integration along E i when ε → 0.
+
+
+2.2. Stability of T X .
+
+Setup and notation as in Section 2.1.
+     Let F ⊂ T Xb be a subsheaf of positive rank r . We can assume that F is saturated in T Xb , i.e.
+T Xb /F is torsion-free. This is because saturating a subsheaf increases its slope.
+     From now on, we choose small numbers t , ε > 0 which we will later let go to zero. The
+Kähler metric ωt ,ε defined in (5) induces an hermitian metric h t ,ε on T Xb which in turn induces a
+hermitian metric h F on F := F |W , where W ⊂ Xb is the maximal locus where F is a subbundle of
+T Xb . Then, it is classical (see e.g. [29, Rem. 8.5]) that one can compute the slope of F by integrating
+the trace of the first Chern form of (F, h F ) over W , i.e.
+                                    Z
+                                                         t ,ε = c 1 (F ) · {ωt ,ε }
+                                                                                    n−1
+                                        c 1 (F, h F ) ∧ ωn−1                            .              (9)
+                                    W
+On W , we have the following standard identity (cf. e.g. [12, Thm. 14.5])
+                          i Θ(F, h F ) = prF i Θ(T Xb , h t ,ε )|F + βt ,ε ∧ β∗t ,ε ,
+                                            ¡                     ¢
+
+where β ∈ C 0,1
+              ∞
+                 (W, Hom(T Xb , F )) (i.e. β is a smooth (0, 1)-form on W with values in Hom(T Xb , F ))
+and β is its adjoint with respect to h t ,ε and h F . Therefore, we get
+     ∗
+
+         c 1 (F, h F ) ∧ ωn−1                                       n−1                    ∗       n−1
+                          t ,ε = trEnd prF i Θ(T Xb , h t ,ε )|F ∧ ωt ,ε + trEnd (βt ,ε ∧ βt ,ε ∧ ωt ,ε ).
+                                      ¡    ¡                    ¢¢
+                                                                                                           (10)
+                                  Stéphane Druel, Henri Guenancia and Mihai Păun                                          99
+
+
+
+   By (9), the integral of the left-hand side over W , yields r times the slope of F with respect to
+{π∗ ω X + t ω Xb }. As for the right-hand side, one can simplify the first term using the formula
+                                   n · i Θ(T Xb , h t ,ε ) ∧ ωn−1                    n
+                                                              t ,ε = (♯ Ric ωt ,ε ) ωt ,ε .                           (11)
+Here we denote by ♯ Ric ωt ,ε the endomorphism of T Xb induced by the Ricci curvature of ωt ,ε .
+  The equation (6) is equivalent to
+                   Ric ωt ,ε = (1 − γ)ωt ,ε + γπ∗ ω X − t ω Xb + (1 − γ)ddc (ψε − ϕt ,ε ) − Θε .                      (12)
+Using the formula above, one gets
+                                         1−γ
+                                               Z
+  µωt ,ε (F ) ≤ (1 − γ)µωt ,ε (T X ) +             trEnd prF (♯ddc (ψε − ϕt ,ε ))|F ωnt,ε
+                                          nr       Xb
+                                               |                    {z                     }
+                                                                   =:(I)
+                                                 γ                                         1
+                                                    Z                                        Z
+                                             +         trEnd prF (♯π∗ ω X )|F ωnt,ε −           trEnd prF (♯Θε )|F ωnt,ε
+                                               nr Xb                                      nr Xb
+                                               |                {z                   }       |          {z             }
+                                                               =:(II)                                  =:(III)
+                                                 1
+                                                    Z
+                                             +          trEnd (βt ,ε ∧ β∗t ,ε ∧ ωn−1
+                                                                                 t ,ε ) .
+                                               nr W
+                                                    |               {z                }
+                                                                     =:(IV)
+
+  We therefore have four terms to deal with. To deal with (II)–(IV), we will use the same
+computations as in [25], cf. explanations below. The main new term is (I), which we treat first.
+
+The term (I). It arises from the fact that, say when γ = 1, we can not necessarily solve the
+perturbed equation Ric ωt ,ε = ωt ,ε − t ω Xb − Θε unlike in the case where K X is ample or trivial. If all
+the discrepancies a i were negative, one could likely still solve that equation using e.g. properness
+of Ding functional but we will not expand on that.
+   In order to deal with (I), one makes the following observations:
+   • Given δ > 0, there exist η = η(δ) > 0 and an open neighborhood Uδ of E ⊂ Xb such that
+                                              Z
+                               ∀ ε, t ≤ η,       (ωψε + ωt ,ε ) ∧ ωn−1
+                                                                   t ,ε ≤ δ,                          (13)
+                                                        Uδ
+                                         c
+where ωψε = π ω X + t ω Xb + dd ψε . This inequality is a consequence of the Chern–Levine–
+                   ∗
+
+Nirenberg inequality along with the bound of the potentials below
+                                ∃ C > 0, ∀ ε, t ,       ∥ϕt ,ε ∥L ∞ ( Xb ) + ∥ψε ∥L ∞ ( Xb ) ≤ C                      (14)
+that we infer from (3). Indeed, as explained in [25], one proceeds as follows. Let Ξδ δ>0 be a
+                                                                                                          ¡    ¢
+
+family of functions defined on R+ , such that Ξδ (x) = 0 if x ≤ δ−1 and Ξδ (x) = 1 if x ≥ 1 + δ−1 .
+Moreover we can assume that the derivative of Ξδ is bounded by a constant independent of δ.
+Then we evaluate the quantity
+                                    µ                ¶
+                                                1
+                             Z
+                                  Ξδ log log          (ωψε + ωt ,ε ) ∧ ωn−1
+                                                                        t ,ε                  (15)
+                               Xb            |s E |2
+and the proof of the classical Chern–Levine–Nirenberg (see e.g. [12, III.3 (3.3)]) inequality shows
+that the integral in (13) is smaller than   Z
+                                                                  ωnE                                                 (16)
+                                                             Uδ
+up to a constant which is independent of t , ε. In (16) we denote by ωE a metric with ¡Poincaré sin-
+gularities along the divisor E , and by Uδ the support of the truncation function Ξδ log log |s 1|2 .
+                                                                                                   ¢
+                                                                                                E
+Here the main point is that the norm of the Hessian of the truncation function is uniformly
+bounded when measured with respect to ωE . The conclusion follows.
+100                              Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+  The hermitian endormorphism ♯ddc (ψε −ϕt ,ε ) is dominated (in absolute value) by the positive
+endomorphism
+                                     ♯(ωψε + ωt ,ε )
+whose endomorphism trace is nothing but trωt ,ε (ωψε + ωt ,ε ). By (13), we are done with (I) on Uδ .
+  • The second observation is that given K ⋐ Xb \ E , there exists η = η(K ) > 0 such that
+                                      ∀ ε, t ≤ η,    ∥ψε − ϕt ,ε ∥C 2 (K ) ≤ δ.                            (17)
+This is a consequence of the fact that (ϕt ,ε ) and (ψε ) converge uniformly (in ε, t ) to ϕ on K by
+stability of the Monge–Ampère operator, cf. e.g. [24, Thm. C], and have uniformly bounded C p (K )
+norm for any p thanks to (14), Tsuji’s trick and Evans–Krylov plus Schauder estimates.
+   Therefore, one has ±♯ddc (ψε − ϕt ,ε ) ≤ δω Xb hence (I) is controlled on K by δ K ω Xb ∧ ωnt,ε ≤ C δ.
+                                                                                   R
+
+Conclusion. Let F t ,ε := trEnd prF (♯ddc (ψε − ϕt ,ε R))|F ωnt,ε . One fixes δ > 0. We get a neighborhood
+Uδ of E and a number η′ = η′ (δ) > 0 such that Uδ F t ,ε ≤ δ for any ε, t ≤ η′ . Applying the second
+observation to K = Xb \Uδ , we find η′′ = η′′ (δ) such that X \Uδ F t ,ε ≤ C δ for any ε, t ≤ η′′ . Choosing
+                                                                  R
+
+η := min{η′ , η′′ }, we find that                       Z
+                                          ∀ ε, t ≤ η,            F t ,ε ≤ C ′ δ.
+                                                            Xb
+In short, the term (I) converges to zero when ε, t → 0.
+
+The term (II). As π∗ ω X ≥ 0, one has
+                        trEnd prF (♯π∗ ω X )|F ωnt,ε ≤ trEnd (♯π∗ ω X )ωnt,ε
+                                                     = trωt ,ε (π∗ ω X ) = n π∗ ω X ∧ ωn−1
+                                                                                       t ,ε .
+
+Integrating over X , one finds
+                                       (II) ≤ γr −1 (π∗ c 1 (X ) · {ωt ,ε }n−1 )
+                                             γn
+and the right-hand side converges to r µ(T Xb ) when t → 0, where the slope is taken with respect
+to π∗ c 1 (X ).
+
+The term (III). As said above, the arguments to treat this term are borrowed from [25]. For the
+convenience of the reader, we will recall the important steps. To lighten notation, we will drop
+                                   ε2 |D ′ s|2      ε2                              ε2
+the index i . One can write Θε = (|s| 2 +ε2 )2 + |s|2 +ε2 · ϑ. Let us set g ε := |s|2 +ε2 . Up to rescaling ω X
+                                                                                                              b,
+one can assume that −ω Xb ≤ ϑ ≤ ω Xb so that Θε + g ε ω Xb ≥ 0. Then one sees easily that
+                                                             ³                ´
+                         trEnd prF (♯Θε )|F ωnt,ε ≤ trEnd ♯Θε + ♯(g ε ω X ) ωnt,ε
+                                                       = Θε ∧ ωn−1                n−1
+                                                               t ,ε + g ε ω Xb ∧ ωt ,ε
+
+and one obtains that the term (III) converges to zero when ε, t → 0 since
+     • R X Θε ∧ ωn−1
+                   t ,ε = c 1 (E )· {π ω X + t ω Xb }
+                                      ∗               n−1
+       R
+                                                          and E is exceptional,
+                       n−1
+     • X g ε ω Xb ∧ ωt ,ε → 0 when ε, t → 0 thanks to the smooth convergence to 0 outside E and
+       the Chern–Levine–Nirenberg inequality combined with the bound (3) on the potentials,
+       cf. first item in Part (I).
+
+The term (IV). Note that the term βt ,ε ∧ β∗t ,ε is pointwise negative in the sense of Griffiths on W .
+In particular, the term (IV) is non-positive. Since (I) and (III) converge to zero, this shows that
+                                                    ¡n
+                                    µ(F ) ≤ 1 + γ − 1 · µ(T Xb ),
+                                            ¡             ¢¢
+                                                                                                   (18)
+                                                     r
+where the slope is taken with respect to π∗ c 1 (X ).
+   Working under Assumption A, one obtains the inequality (18) above for any γ > 0 small
+enough. In particular, this shows that under Assumption A, T Xb is semistable with respect to
+π∗ c 1 (X ).
+                              Stéphane Druel, Henri Guenancia and Mihai Păun                          101
+
+
+
+   From now on, we assume that the stronger Assumption B holds; i.e. one can choose γ = 0.
+Assume additionally that there exists a subsheaf F ⊂ T Xb with the same slope as T Xb and let F sat
+be its saturation in T Xb ; it is a subbundle in codimension one. As the slope has not increased by
+saturation, F = F sat in codimension one on Xb \ E . Therefore, if we set W ◦ := W ∩ ( Xb \ E ), then
+W ◦ ⊂ Xb \ E has codimension at least two and by the above computation, one has
+                                           Z
+                                       lim    (βt ,ε ∧ β∗t ,ε ∧ ωn−1
+                                                                 t ,ε ) = 0.
+                                   ε,t →0 W ◦
+We know by (4) that βt ,ε → β∞ locally smoothly on W ◦ when ε, t → 0 where β∞ is the second
+fundamental form induced by the hermitian metric h KE induced by π∗ ωKE on T Xb |W ◦ and on
+F |W ◦ by restriction. By Fatou lemma, we have β∞ ≡ 0 on W ◦ , that is, we have a holomorphic
+decomposition T Xb |W ◦ = F |W ◦ ⊕ F |W
+                                      ⊥
+                                        ◦ where the orthogonal is taken with respect to h KE .
+   We are now ready to prove
+Theorem 6. Let X be a Q-Fano variety.
+     (i) If Assumption A is satisfied, then T X is semistable with respect to c 1 (X ).
+    (ii) If Assumption B is satisfied, then T X is polystable with respect to c 1 (X ). More precisely, we
+         have:
+            • Any saturated subsheaf F ⊂ T X with µ(F ) = µ(T X ) is a direct summand of T X and
+               F | X reg ⊂ T X reg is a parallel subbundle with respect to ωKE .
+            • There exists a decomposition
+                                                            Fi
+                                                         M
+                                                    TX =
+                                                     i ∈I
+              such that Fi is stable with respect to c 1 (X ), Fi | X reg ⊂ T X reg is a parallel subbundle
+              with respect to ωKE , and the decomposition T X reg = ⊕i ∈I Fi | X reg is orthogonal with
+              respect to ωKE .
+Proof. Let F ⊂ T X be a subsheaf and let α := c 1 (X ). The sheaf F induces a subsheaf G ◦ ⊂ T Xb | Xb \E
+and we denote by G ⊂ T Xb the saturation of G ◦ in T Xb . By the arguments above (cf. inequality (18)
+and the comments below it), one has µπ∗ α (G ) ≤ µπ∗ α (T Xb ) = c 1 (X )n /n = µα (T X ). Moreover, one
+has clearly µπ∗ α (G ) = µα (F ). This shows that T X is semistable with respect to c 1 (X ).
+     Now, assume that there exists a Kähler–Einstein metric ωKE . If F ⊂ T X satisfies µα (F ) = 0,
+then µπ∗ α (G ) = 0 and we have shown above that π∗ ωKE induces a splitting T Xb |W = G |W ⊕ (G |W )⊥
+over a Zariski open subset W ⊂ Xb \E whose complement in Xb \E has codimension at least two. Set
+V := π(W ) ⊂ X reg so that F |V is a subbundle of T X and we have a splitting T X |V = F |V ⊕ (F |V )⊥
+induced by ωKE and codim X (X \ V ) ≥ 2.
+     Let us denote by j : V ,→ X the open immersion. As F ⊂ T X is saturated, it is reflexive, hence
+j ∗ (F |V ) = F . Moreover, (F |V )⊥ extends to a reflexive sheaf F ⊥ := j ∗ ((F |V )⊥ ) on X satisfying
+T X = F ⊕ F ⊥ on the whole X . In particular, F is a direct summand of T X and as such, it is
+subbundle of T X over X reg . By iterating this process and starting with F with minimal rank,
+one can decompose T X = i ∈I Fi into reflexive sheaves which, over X reg , are parallel (pairwise
+                              L
+
+orthogonal) subbundles with respect to ωKE .                                                           □
+
+3. Polystability of the canonical extension
+In this section, we keep using the setup and notation of Section 2.1.
+
+
+3.1. The canonical extension
+Let E be a coherent sheaf on X sitting in the exact sequence below
+                                     0 −→ Ω[1]
+                                           X
+                                               −→ E −→ O X −→ 0.                                      (19)
+102                            Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+The sheaf E is automatically torsion-free and it is locally free on X reg .
+
+Remark 7. Let U ⊂ X be a non-empty Zariski open subset. As an extension of O X by Ω[1]              X
+                                                                                                      ,
+E |U is uniquely determined by the image of 1 ∈ H 0 (U , O X ) in H 1 (U , Ω[1]
+                                                                            X
+                                                                                ) under the connecting
+morphism in the long exact sequence arising from H 0 (U , −).
+
+  From now on, one assumes that the extension class of E is the image of c 1 (X ) in H 1 (X , Ω1X )
+under the canonical map
+                      Pic(X ) ⊗ Q ≃ H 1 (X , O X∗ ) ⊗ Q → H 1 (X , Ω1X ) → H 1 (X , Ω[1]
+                                                                                     X
+                                                                                         ).
+This is legitimate since K X is Q-Cartier.
+
+Definition 8. The dual E ∗ of the sheaf E sitting in the exact sequence (19) with extension class
+c 1 (X ) is called the canonical extension of T X by O X .
+                                                                                                [1]
+   The exact sequence (19) is locally splittable since for any affine U ⊂ X , one has h 1 (U , ΩU   ) = 0.
+In particular, when one dualizes (19), one see that the canonical extension of T X by O X sits in the
+short exact sequence below
+                                  0 −→ O X −→ E ∗ −→ T X −→ 0.                                        (20)
+   The goal of this section is to prove the following, cf. Theorem B.
+
+Theorem 9. Let X be a Q-Fano variety. If Assumption A (resp. Assumption B) is satisfied, then the
+canonical extension E ∗ of T X by O X is semistable (resp. polystable) with respect to c 1 (X ).
+
+   The proof of Theorem 9 above is divided into three main steps corresponding to the next three
+sub-sections. First one can reduce the semistability statement above to a semistability property
+on the resolution Xb thanks to Lemma 10, then we prove the said statement, cf. Theorem 11 and,
+finally, we prove polystability assuming the existence of a Kähler–Einstein metric.
+
+
+3.2. Reduction to a statement on the resolution
+
+Let Eb be the vector bundle on Xb sitting in the exact sequence below
+                                    0 −→ Ω1 −→ Eb −→ O b −→ 0
+                                                  Xb               X                                      (21)
+such that its extension class is π   ∗
+                                         c 1 (X ) ∈ H ( Xb , Ω1b ). Its dual sits in the exact sequence
+                                                       1
+                                                              X
+                                         0 −→ O Xb −→ Eb∗ −→ T Xb −→ 0.                                   (22)
+
+Lemma 10. If the vector bundle Eb∗ is semistable with respect to π∗ c 1 (X ), then the torsion-free
+sheaf E ∗ is semistable with respect to c 1 (X ).
+
+   Although slope stability is usually defined with respect to an ample polarization, the same
+definition actually makes sense with respect to an arbitrary nef class like π∗ c 1 (X ), cf e.g. [22].
+
+Proof. Set α := c 1 (X ). Let X ◦ ⊆ X reg be an open set with complement of codimension at least 2
+in X such that the restriction π| Xb ◦ of π to Xb ◦ := π−1 (X ◦ ) induces an isomorphism Xb ◦ ≃ X ◦ . By
+Remark 7 we have
+                                            (π∗ E ∗ )| Xb ◦ ≃ Eb|∗Xb ◦ .                             (23)
+Let F ⊆ E ∗ be a subsheaf and let F     c ⊆ Eb∗ be the saturated subsheaf of Eb∗ whose restriction to
+X is (π F )| Xb ◦ . By the projection formula together with the fact that X \ X ◦ has codimension at
+ b ◦     ∗
+
+least 2 in X , we have
+                             µα (F ) = µπ∗ α (F
+                                              c) and µα (E ∗ ) = µπ∗ α (Eb∗ ).
+The lemma follows easily.                                                                                   □
+                                   Stéphane Druel, Henri Guenancia and Mihai Păun                       103
+
+
+
+3.3. Statement on the resolution
+
+In this section, we prove that the vector bundle Eb∗ from Section 3.2 is semistable with respect
+to π∗ c 1 (X ), cf. Theorem 11 below. In order to streamline the notation, we set V := Eb∗ and in
+the following we will not distinguish between the locally free sheaf V and the associated vector
+bundle. Recall that V fits into the exact sequence of locally free sheaves
+
+                                            0 −→ O Xb −→ V → T Xb −→ 0.                                 (24)
+
+We denote by β ∈ H     1
+                           ( Xb , T ⋆ ) the second fundamental form.
+                                   Xb
+  Our result in this section is a singular version of Theorem 0.1 in [37].
+
+Theorem 11. Let X be a Q-Fano variety satisfying Assumption A. Let V be the vector bundle on Xb
+appearing in (24), whose extension class β coincides with the inverse image of the first Chern class
+of X by the resolution π : Xb → X . Then V is semistable with respect to π⋆ c 1 (X ).
+
+Proof. The strategy of proof is as follows. We would like to compute the slope of F using an
+hermitian metric on V induced by the (twisted) Kähler–Einstein metric, using an approximation
+process as in Section 2.2. As the natural metric in the extension class of V is singular, we
+introduce an algebraic 1-parameter family (Vz )z∈C that can be endowed with natural smooth
+hermitian metrics for suitable z ∈ R close to zero and such that we have sheaf injections V ,→
+Vt ⊗ O Xb (E ). We then proceed to compute slopes following the strategy of Section 2.2.
+
+Step 1. Deformations of V . We pick an arbitrary subsheaf F ⊆ V of the vector bundle V sitting
+in the exact sequence below
+                                                0 → O Xb → V → T Xb → 0
+and corresponding to the extension class
+
+                              α = (a i j ) ∈ Ext1 (T Xb , O Xb ) ≃ H 1 ( Xb , H om(T Xb , O Xb ))
+
+relatively to a covering by open subsets (Ui ). The bundle V can be obtained as follows: on Ui , it
+is the trivial extension, V|Ui = O Xb |U ⊕ T Xb |U and the transition functions are given by
+                                            i           i
+
+                                                  IdOXb |Ui j   ai j
+                                                 µ                         ¶
+                                                                             .
+                                                      0       IdT Xb |Ui j
+The subsheaf F is given by two morphisms of sheaves p i : F|Ui → O Xb |U and q i : F|Ui → T Xb |U
+                                                                             i                    i
+satisfying
+                             (
+                               p i |Ui j = p j |Ui j + a i j ◦ (q j |Ui j ),
+                                          q i |Ui j = q j |Ui j .
+  Recall that we have a reduced divisor E = E 1 + · · · + E r . Up to refining the covering (Ui ), one
+can assume that E k is given by the equation f ki = 0 on Ui . The transition functions of O Xb (E k ) are
+        fk j
+g k,i j = f .
+           ki
+    Now, given complex numbers z 1 , . . . , z r ∈ C, one considers the extension Vz1 ,...,zr of T Xb by O Xb
+whose class is
+                               dg 1,i j                  dg r,i j
+                             ·          ¸              ·          ¸
+                      α + z1                                        = α + z k c 1 (E k ).
+                                                                         X
+                                          + · · · + zr
+                                g 1,i j                   g r,i j        k
+   Set Vz1 ,...,zr (E ) := Vz1 ,...,zr ⊗ O Xb (E ). Then, there is an injection of sheaves
+
+                                                     F ⊆ Vz1 ,...,z s (E )
+extending F ⊆ V ⊆ V (E ) for (z k ) in a Zariski open neighborhood of 0 ∈ Cr .
+104                              Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+                                                                                 df
+   Indeed, consider the morphism F|Ui → Vz1 ,...,z s (E )|Ui given by p i + k z k f ki ◦ q i on the first
+                                                                           P
+                                                                                   ki
+factor and q i on the second. Those morphisms can be glued since one has
+                                                d f ki dg k,i j d f k j
+                                                      =         +       ,
+                                                 f ki   g k,i j   fk j
+for any index k. The induced map F → Vz1 ,...,z s (E ) is obviously injective for (z k ) in a Zariski open
+neighborhood of 0 ∈ Cr .
+   Now, recall that α = π∗ c 1 (X ) and that the Kähler metric ω Xb lives in the class α − εk c 1 (E k ) for
+                                                                                            P
+
+some εk > 0, so that the approximate Kähler–Einstein metric ωt ,ε belongs to (1 + t )αt , where
+                                                   t X
+                                       αt := α −         εk c 1 (E k ).
+                                                 1+t k
+For any t ∈ R, we set
+                              Vt := Vz1 ,...,zr and Vt (E ) := Vt ⊗ O Xb (E )
+where z k := − 1+t · εk for 1 ≤ k ≤ r . This vector bundle Vt is the extension of T Xb by O Xb with
+                t
+
+extension class αt and Vt (E ) comes equipped with a sheaf injection
+                                                       F ⊆ Vt (E ).                                            (25)
+Moreover, it is clear from the definition of Vz1 ,...,zr that we have
+                                             c 1 (Vt (E )) = c 1 (V ) + c 1 (E )                               (26)
+for any t ∈ R.
+
+Step 2. Metric properties of Vt (E ). First of all, we pick one number γ > 0 as in Assumption A. It
+will be fixed until the very end of the argument.
+     We seek to endow Vt (E ) with a suitable smooth hermitian metric, at least when t > 0 is small
+enough. Given that Vt (E ) = Vt ⊗ O Xb (E ) and that we have already fixed a smooth hermitian metric
+h E on O Xb (E ) in (2), it is enough to construct a hermitian metric on Vt .
+     Now, we can endow the bundles O Xb and T Xb with the trivial metric and the hermitian metric
+h t ,ε induced by ωt ,ε , respectively. Now, we set
+                                                          1
+                                                  βt =       ωt ,ε ∈ αt
+                                                         1+t
+which we view as an element of C 0,1
+                                  ∞ b
+                                     ( X , T ∗b ). Relatively to a fixed C ∞ splitting of Vt , the direct
+                                            X
+sum metric h Vt induced on Vt has a Chern connection D Vt which has the following expression
+                                                   µ          ¶
+                                                     d −βt
+                                         D Vt = ∗
+                                                    βt D T Xb
+or equivalently                                     ³                                         ´
+                                 D Vt (s 1 , s 2 ) = d s 1 − βt · s 2 , β⋆
+                                                                         t · s 1 + D T Xb s 2                  (27)
+where D T Xb is the Chern connections induced by h t ,ε on T Xb . Of course, it depends strongly on
+the parameters t , ε. We denote by β⋆   t ∈ C 1,0 ( X , T Xb ) the adjoint of βt ∈ C 0,1 ( X , T Xb ). Moreover, the
+                                              ∞ b                                           ∞ b   ∗
+
+Chern curvature of D Vt is given by
+                                             −βt ∧ β∗t              D T′ ∗ βt
+                                           Ã                                            !
+                           Θ(Vt , h Vt ) =                                Xb              ,
+                                               ∂β∗t        Θ(T Xb , h t ,ε ) − β∗t ∧ βt
+where D T′ ∗ is the (1, 0)-part of the Chern connection of (T ⋆ , h t∗,ε ).
+           Xb
+                                                              b              X
+   We analyze next several quantities which are playing a role in the evaluation of the curvature
+of Vt .
+                                    Stéphane Druel, Henri Guenancia and Mihai Păun                               105
+
+
+
+• The factor βt . The form βt is given by
+                                                             ∂ ⋆
+                                                          µ      ¶
+                                                  1 X
+                                         βt =         ωpq          ⊗ dz q ,                                       (28)
+                                                 1+t        ∂z p
+where ωpq are the coefficients of ωt ,ε with respect to the coordinates (z i )i =1,...,n . Its adjoint is
+computed by the formula
+                                               〈βt · v, w〉 + 〈v, β⋆
+                                                                  t · w〉 = 0,                                     (29)
+where the first bracket is the standard hermitian product in C and the second one is the one
+induced by (T Xb , h t ,ε ). We have
+                                            1 X ∂
+                                     β⋆
+                                      t =−             ⊗ dz i .                          (30)
+                                           1+t    ∂z i
+We have the following formulas
+                                                D T′ ∗ βt = 0,               ∂β⋆
+                                                                               t = 0.                             (31)
+                                                     Xb
+
+The first equality holds since ωt ,ε is a Kähler metric while the second one is obvious from (30).
+   Moreover, we have
+                                                                 1 n
+                                  (1 + t )2 · βt ∧ β⋆    n−1
+                                                    t ∧ ωt ,ε = − ωt ,ε                         (32)
+                                                                 n
+as well as
+                                          (1 + t )2 · β⋆
+                                                       t ∧ βt = ωt ,ε ⊗ IdT Xb .                                  (33)
+                                                    p
+• The curvature of Vt . If we replace βt by (1 + t ) µβt for some positive number µ, this does not
+affect the complex structure of the bundles at stake but only the metrics. Moreover, we see from
+the identities (31)-(32)-(33) that the curvature becomes
+                                           µµ n
+                                            n ωt ,ε
+                                                                                            ¶
+                                                                       0
+                   Θ(Vt , h Vt ) ∧ ωn−1  =                                                    .
+                                    t ,ε      0 Θ(T Xb , h t ,ε ) ∧ ωn−1      n
+                                                                     t ,ε − µωt ,ε ⊗ IdT Xb
+                                µ             n
+Now we choose µ so that n = 1 − µ, i.e. µ := n+1 . Recalling (11) and the expression of the Ricci
+curvature of ωt ,ε given in (12), we get that
+                                                                               1
+                    Θ(T Xb , h t ,ε ) ∧ ωn−1      n
+                                         t ,ε − µωt ,ε ⊗ IdT Xb =                 ωn ⊗ IdT Xb +A t ,ε,γ ωnt,ε ,
+                                                                             n + 1 t ,ε
+where
+                     A t ,ε,γ = −γ IdT Xb +♯ γπ∗ ω X − t ω Xb + (1 − γ)ddc (ψε − ϕt ,ε ) − Θε
+                                            £                                                 ¤
+                                                                                                                  (34)
+is such that the number
+                                                     1
+                                                          Z
+                                       a t ,ε,γ :=                 trEnd prF (A t ,ε,γ )|F ωnt,ε
+                                                     n        Xb
+satisfies
+                                         lim sup lim sup lim sup a t ,ε,γ = 0                                     (35)
+                                            γ→0           t →0            ε→0
+thanks to the computations of Section 2.2.
+• The curvature of Vt (E ). Finally, we endow Vt (E ) with the metric h Vt (E ) := h Vt ⊗ h E . It satisfies
+                                          1
+            Θ(Vt (E ), h Vt (E ) ) ∧ ωn−1
+                                      t ,ε =  ωn ⊗ IdVt +A t ,ε,γ ωnt,ε + (ΘE ∧ ωn−1
+                                                                                 t ,ε ) ⊗ IdVt (E ) .             (36)
+                                        n + 1 t ,ε
+where A t ,ε,γ is defined in (34) and satisfies (35).
+
+Step 3. The slope inequality. Now, one wants to follow the strategy in Section 2.2 and compute
+the slope of F using the induced metric h F t from (Vt (E ), h Vt (E ) ) under the sheaf injection (25).
+The metric h F t is well-defined only on the locus W ⊂ Xb where F t := F |W is a subbundle. As F
+106                               Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+may not be saturated in Vt (E ), the complement of W may have codimension one. However, we
+have the formula
+                                    1
+                                      Z
+                      µωt ,ε (F ) =         c 1 (F t , h F t ) ∧ ωn−1
+                                                                  t ,ε − c 1 (D) · {ωt ,ε }
+                                                                                            n−1
+                                    r ZW
+                                    1
+                                  ≤         c 1 (F t , h F t ) ∧ ωn−1
+                                                                  t ,ε
+                                    r W
+                                  ≤ µωt ,ε (Vt (E )) + a t ,ε,γ + c 1 (E ) · {ωt ,ε }n−1
+where D is an effective divisor such that O X (D) = det((Vt (E )/F )tor ). Since E is π-exceptional, the
+conclusion follows from the curvature formula (36) along with (35) and the two easy facts below
+      • µωt ,ε (F ) → µα (F ) when t → 0,
+      • µωt ,ε (Vt (E )) → µα (V ) when t , ε → 0 since E is exceptional, cf. (26).
+Theorem 11 is now proved.                                                                              □
+
+
+3.4. Polystability
+
+In this paragraph, we work under the Assumption B and we aim to prove the second part of
+Theorem 9, i.e. that E ∗ is polystable with respect to c 1 (X ).
+    By a standard inductive argument, it is enough to prove that if F ⊂ E ∗ is any saturated
+subsheaf with µc1 (X ) (F ) = µc1 (X ) (E ∗ ), then it is holomorphically complemented; i.e. there exists
+G ⊂ E ∗ such that E ∗ = F ⊕ G .
+    Let F be such a subsheaf and let F         c ⊂ V the induced sheaf on Xb , cf. Lemma 10; it satisfies
+µα (Fc) = µα (E ∗ ). The same arguments as in the end of Section 2.2 show the orthogonal
+complement Gb of F   c ⊂ V0 (E ) with respect to the well-defined hermitian metric h V (E ) on Xb \ E
+                                                                                              0
+is holomorphic. Note that V0 (E ) ≃ Eb∗ on Xb \ E , hence π∗ (V0 (E )| Xb \E ) ≃ E ∗ by (23).
+    Now, define G := π∗ Gb on X reg ; this is a coherent subsheaf of E ∗ | X reg by the observation above.
+We can extend it to a coherent saturated subsheaf G ⊂ E ∗ across X sing ; in particular, G is reflexive.
+The injection F ⊕ G ,→ E ∗ isomorphic over X reg , hence everywhere by reflexivity of the sheaves
+involved. This concludes the proof of Theorem 9.
+
+
+4. A splitting theorem
+
+4.1. Foliations
+
+In this section, we recollect some results about foliations that we will use later on for the reader’s
+convenience. We refer to [16, §3 and 4] and the references therein for notions around foliations
+on normal varieties and their singularities.
+   Here we only recall the notion of weakly regular foliation. Let F be a foliation of positive rank
+r on a normal variety X . The r -th wedge product of the inclusion F ⊆ T X gives a map
+                                           O X (−K F ) ,→ (∧r T X )∗∗ .
+We will refer to the dual map
+                                                Ω[r
+                                                 X
+                                                    ]
+                                                      → O X (K F )
+as the Pfaff field associated to F . The foliation F is called weakly regular if the induced map
+                                          (ΩrX ⊗ O X (−K F ))∗∗ → O X
+is surjective (see [16, §5.1]).
+   Examples of weakly regular foliations are provided by the following result (see [16, Lem. 5.8]).
+                             Stéphane Druel, Henri Guenancia and Mihai Păun                       107
+
+
+
+Lemma 12. Let X be a normal variety, and let F be a foliation on X . Suppose that there exists a
+distribution G on X such that T X = F ⊕ G . Then F is weakly regular.
+   The following lemma says that a weakly regular foliation has mild singularities if its canonical
+divisor is Cartier and the ambient space has klt singularities (see [16, Lem. 5.9]).
+Lemma 13. Let X be a normal variety with klt singularities, and let F be a foliation on X . Suppose
+that K F is Cartier. If F is weakly regular, then it has canonical singularities.
+   Next, we recall the behaviour of weakly regular foliations with respect to finite covers (see [16,
+Prop. 5.13]).
+Lemma 14. Let X be a normal variety, let F be a foliation on X , and let f : X 1 → X be a finite cover.
+Suppose that each codimension 1 irreducible component of the branch locus of f is F -invariant.
+Then F is weakly regular if and only if f −1 F is weakly regular.
+   Finally, we recall the behaviour of foliations with canonical singularities with respect to finite
+covers and birational maps (see [16, Lem. 4.3]).
+Lemma 15. Let f : X 1 → X be a finite cover of normal varieties, and let F be a foliation on X
+with K F Q-Cartier. Suppose that each codimension 1 component of the branch locus of f is F -
+invariant. If F has canonical singularities, then f −1 F has canonical singularities as well.
+  Recall that Q-divisors D 1 and D 2 are said to be Q-linearly equivalent if there exists an integer
+m > 0 such that mD 1 and mD 2 are linearly equivalent. We write D 1 ∼Q D 2 .
+Lemma 16. Let q : Z → X be a birational quasi-projective morphism of normal varieties, and
+let F be a foliation on X . Suppose that K F is Q-Cartier and that K q −1 F ∼Q q ∗ K F . If F has
+canonical singularities, then q −1 F has canonical singularities as well.
+Proof. By assumption, there exist a normal variety Z ⊇ Z and a projective birational morphism
+q : Z → X whose restriction to Z is q. The same argument used in the proof of [16, Lem. 4.2]
+shows that
+                                  a(E , Z , q −1 F ) = a(E , X , F )
+for any exceptional prime divisor E over Z with non-empty center in Z . The lemma follows
+easily.                                                                                     □
+
+
+4.2. Weakly regular foliations with algebraic leaves
+
+This section contains a generalization of Theorem 6.1 in [16]. The following result is proved in [16]
+under the additional assumption that F has canonical singularities.
+Theorem 17. Let X be a normal projective variety with Q-factorial klt singularities, and let F be
+a weakly regular foliation on X with algebraic leaves.
+    (1) Then F is induced by a surjective equidimensional morphism p : X → Y onto a normal
+        projective variety Y .
+    (2) Moreover, there exists an open subset Y ◦ with complement of codimension at least 2 in Y
+        such that p −1 (y) is irreducible for any y ∈ Y ◦ .
+   Before we give the proof of Theorem 17, we need to prove a number of auxiliary statements.
+   Throughout the present section, we will be working in the following setup.
+Setup 18. Let X and Y be normal quasi-projective varieties, and let p ′ : X 99K Y be a dominant
+rational map with r := dim X − dim Y > 0. Let Z be the normalization of the graph of p ′ , and let
+p : Z → Y and q : Z → X be the natural morphisms. Let F be the foliation induced by p ′ .
+108                             Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+Proposition 19. Let the setting and notation be as in 18, and assume that K F is Cartier.
+      (1) Then the Pfaff field Ω[r
+                                X
+                                   ]
+                                     → O X (K F ) associated to F induces a map
+
+                                                Ω[r
+                                                 Z
+                                                    ]
+                                                      → q ∗ O X (K F )
+
+          which factors through the Pfaff field Ω[r
+                                                  Z
+                                                    ]
+                                                      → O Z (K q −1 F ) associated to q −1 F . In particular,
+          there exists an effective q-exceptional Weil divisor B on Z such that
+
+                                               K q −1 F + B ∼Z q ∗ K F .
+
+      (2) Moreover, if E is a q-exceptional prime divisor on Z such that p(E ) = Y , then E ⊆ Supp B .
+
+Proof. Let Z0 ⊆ Y × X be the graph of p ′ , and denote by n : Z → Z0 the normalization map.
+Consider the foliation
+
+                                G := pr∗X F ⊆ pr∗X T X ⊆ pr∗Y TY ⊕ pr∗X T X .
+
+Let ΩrX → O X (K F ) be the map induced by the Pfaff field Ω[r
+                                                            X
+                                                               ]
+                                                                 → O X (K F ). By construction, Z0 is
+invariant under G , and hence, there is a factorization:
+
+                          ΩrY ×X | Z0           pr∗X ΩrX | Z0         (pr∗X O X (K F ))| Z0
+
+
+                             ΩrZ0                                         OY ×X (K G )| Z0 .
+
+Notice that the foliation induced by G on Z is q −1 F . By [1, Prop. 4.5], the map ΩrZ0 →
+(pr∗X O X (K F ))| Z0 extends to a map
+
+                               ΩrZ → n ∗ ((pr∗X O X (K F ))| Z0 ) ≃ q ∗ O X (K F ),
+
+which gives a morphism
+                                                Ω[r
+                                                 Z
+                                                    ]
+                                                      → q ∗ O X (K F ).
+
+This map factors through the Pfaff field
+
+                                              ν Z : Ω[r
+                                                     Z
+                                                        ]
+                                                          → O Z (K q −1 F )
+
+associated to q −1 F away from the closed set where ν Z is not surjective, which has codimension
+at least 2 in Z . Hence, there exists an effective Weil divisor B on Z such that
+
+                                               K q −1 F + B ∼Z q ∗ K F .
+
+Moreover, the morphism Ω[r
+                        Z
+                           ]
+                             → q ∗ O X (K F ) identifies with the composition
+
+                                        Ω[r
+                                         Z
+                                            ]
+                                              → O Z (K q −1 F ) → q ∗ O X (K F )
+
+since q ∗ O X (K F ) is torsion-free. Note that B is obviously q-exceptional, proving the first item.
+   The second item follows from [16, Lem. 4.19] by induction on the rank of F as in the proof of
+Proposition 4.17 in [16]. Notice that the assumption that the birational morphism is projective in
+the statement of Lemma 4.19 in [16] is not necessary.                                                 □
+                              Stéphane Druel, Henri Guenancia and Mihai Păun                       109
+
+
+
+Corollary 20. Setting and notation as in Setup 18. Suppose that X has klt singularities. Suppose
+in addition that K F is Cartier and that F is weakly regular.
+    (1) Then the foliation q −1 F is weakly regular and K q −1 F ∼Z q ∗ K F .
+    (2) Moreover, if E is a prime q-exceptional divisor on Z , then p(E ) ⊊ Y .
+
+Proof. By Proposition 19 (1), the Pfaff field
+
+                                            Ω[r
+                                             X
+                                                ]
+                                                  → O X (K F )
+
+associated to F induces a map
+                                           Ω[r
+                                            Z
+                                               ]
+                                                 → q ∗ O X (K F )
+which factors through the Pfaff field Ω[r
+                                        Z
+                                          ]
+                                            → O Z (K q −1 F ) associated to q −1 F . On the other hand,
+by [28, Thm. 1.3], there exists a morphism of sheaves
+
+                                                q ∗ Ω[r
+                                                     X
+                                                        ]
+                                                          → Ω[r
+                                                             Z
+                                                                ]
+
+
+that agrees with the usual pull-back morphism of Kähler differentials wherever this makes sense.
+One then readily checks that we obtain a commutative diagram as follows:
+
+                                      q ∗ Ω[r
+                                           X
+                                              ]
+                                                          q ∗ O X (K F )
+
+
+                                        Ω[r
+                                         Z
+                                            ]
+                                                         q ∗ O X (K F ).
+
+This implies that the map Ω[r Z
+                                ]
+                                  → q ∗ O X (K F ) is surjective. Consequently, this map identifies with
+the Pfaff field associated to q F , proving item (2).
+                               −1
+
+   Finally, item (2) is an immediate consequence of item 1 together with Proposition 19 (2).          □
+
+   As we will see, Theorem 17 is an easy consequence of Lemma 21 and Lemma 22 below.
+
+Lemma 21. Setting and notation as in 18. Suppose that X has klt singularities and that F is
+weakly regular. Then there exists an open subset Y ◦ with complement of codimension at least 2
+in Y such that, for any y ∈ Y ◦ , either p −1 (y) is empty or any connected component of p −1 (y) is
+irreducible.
+
+Proof. We argue by contradiction and assume that there exists a prime divisor D ⊂ Y such that,
+for a general point y ∈ D, p −1 (y) is non-empty and some connected component of p −1 (y) is
+reducible. Let S ⊆ p −1 (D) be a subvariety of maximal dimension and dominating D such that for
+a general point z ∈ S there is at least two irreducible components of p −1 (p(z)) passing through z.
+We will show in Step 2 that S has codimension 2 in Z .
+
+Step 1. Construction. Shrinking Y if necessary, we may assume without loss of generality that p
+is equidimensional. Replacing X by an open neighborhood of the generic point of q(S), we may
+also assume that there exists a positive integer m such that
+
+                                           O X (mK F ) ≃ O X .
+Let f : X 1 → X be the associated cyclic cover, which is quasi-étale (see [33, Def. 2.52]), and let Z1
+be the normalization of the product Z × X X 1 . The induced morphism g : Z1 → Z is then a finite
+cover.
+   By [14, Lem. 4.2], there exists a finite cover Y2 → Y with Y2 normal and connected such that
+the following holds. If Z2 denotes the normalization of the product Y2 ×Y Z1 , then the natural
+110                           Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+morphism p 2 : Z2 → Y2 has reduced fibers over codimension 1 points in Y2 . We may also assume
+that Y2 → Y is a Galois cover. We obtain a commutative diagram as follows:
+                                                g1               q1
+                                      Z2                 Z1               X1
+                                                             g                f
+                                                                 q
+                                     p2           p1     Z                X
+                                                             p
+
+
+                                      Y2                 Y.
+Notice that g ◦ g 1 : Z2 → Z is a finite Galois cover.
+
+Step 2. Away from a closed subset of codimension at least 3, Z has quotient singularities and
+the foliation induced by p on Z is weakly regular. Moreover, S has codimension 2 in Z . Notice
+that X 1 has klt singularities by [30, Prop. 3.16], and that the foliation F X 1 := f −1 F is weakly
+regular by Lemma 14. Observe now that the foliation F Z1 := q 1−1 F X 1 is given by p 1 and that Z1
+identifies with the normalization of the graph of the rational map p 1 ◦ q 1−1 . Therefore, F Z1 is
+weakly regular and
+                                          K FZ ∼Z q 1∗ K FX
+                                                     1                1
+by Corollary 20 (1). On the other hand, F X 1 has canonical singularities (see Lemma 13). Applying
+Lemma 16, we conclude that F Z1 has canonical singularities as well. This in turn implies that the
+foliation F Z2 := g 2−1 F Z1 has also canonical singularities (see Lemma 15). From [14, Lem. 5.4],
+we conclude that Z2 has canonical singularities over a big open set contained in Y2 , using the
+fact that p 2 has reduced fibers over codimension 1 points by construction. In particular, Z2 has
+canonical singularities in codimension 2.
+   Since g ◦ g 1 : Z2 → Z is a finite Galois cover, there exists an effective Q-divisor ∆ on Z such that
+                                          K Z2 ∼Q (g ◦ g 1 )∗ (K Z + ∆).
+Moreover, away from a closed subset of codimension at least 3, K Z + ∆ is Q-Cartier by [16,
+Lem. 2.6]), and the pair (Z , ∆) is klt by [30, Prop. 3.16] so that it has Cohen–Macaulay singularities.
+Then Harstshorne’s connectedness theorem implies that S has codimension 2 in Z .
+     By construction, any irreducible codimension 1 component of the ramification locus of g is
+q 1 -exceptional, and hence invariant under F Z1 by Corollary 20 (2). It follows from Lemma 14
+that F Z := q −1 F is weakly regular in codimension 2.
+
+Step 3. End of proof. Let z ∈ S be a general point. Recall from [21, Prop. 9.3] that z has an analytic
+neighborhood U ⊆ Z that is biholomorphic to an analytic neighborhood of the origin in a variety
+of the form Cdim Z /G, where G is a finite subgroup of GL(dim Z , C) that does not contain any
+quasi-reflections. In particular, if W denotes the inverse image of U in the affine space Cdim Z ,
+then the quotient map
+                                        gU : W → W /G ≃ U
+is étale outside of the singular set.
+    By Lemma 14 again, F Z induces a regular foliation on W . Let F 1 and F 2 be irreducible
+components of p −1 (p(z)) passing through z with F 1 ̸= F 2 . Note that
+                                    gU−1 (F 1 ∩U ) ∩ gU−1 (F 2 ∩U ) ̸= ;.
+By general choice of z, F 1 and F 2 are not contained in the singular locus of F Z , and hence both
+gU−1 (F 1 ∩ U ) and gU−1 (F 2 ∩ U ) are a disjoint union of leaves. But then, any leaf passing through
+some point of gU−1 (F 1 ∩ U ) ∩ gU−1 (F 2 ∩ U ) is a connected component of both gU−1 (F 1 ∩ U ) and
+                                Stéphane Druel, Henri Guenancia and Mihai Păun                               111
+
+
+
+gU−1 (F 2 ∩U ). This in turn implies that F 1 = F 2 , yielding a contradiction. This finishes the proof of
+the lemma.                                                                                              □
+
+Lemma 22. Setting and notation as in 18. Suppose that X has klt singularities and that F is
+weakly regular. Let E be a prime q-exceptional divisor on Z such that dim p (E ) ≥ dim Y − 1.
+
+    (1) Then dim p (E ) = dim Y − 1. In particular, E is invariant under the foliation on Z induced
+        by p.
+    (2) Moreover, if z is a general point in E , then there exists a curve T ⊆ E passing through z with
+        dim p(T ) = 1 such that q(E p(t1 ) (t 1 )) = q(E p(t2 ) (t 2 )) for general points t 1 and t 2 in T , where
+        E p(t ) (t ) denotes the irreducible component of E p(t ) ⊆ p −1 (p(t )) passing through t ∈ T ⊂ E .
+
+Proof. For the reader’s convenience, the proof is subdivided into a number of steps.
+
+
+
+Step 1. Reduction to the case where K F is Cartier and proof of (1). Replacing X by an open
+neighborhood of the generic point of q(E ), we may assume without loss of generality that there
+exists a positive integer m such that
+
+
+                                              O X (mK F ) ≃ O X .
+
+
+Let f : X 1 → X be the associated cyclic cover, which is quasi-étale (see [33, Def. 2.52]), and let Z1
+be the normalization of the product Z × X X 1 . The induced morphism g : Z1 → Z is then a finite
+cover. We obtain a commutative diagram as follows:
+
+                                                           q1
+                                                  Z1             X1
+                                                       g             f
+                                                           q
+                                             p1    Z             X
+                                                       p
+
+
+                                                  Y.
+
+
+Notice that X 1 has klt singularities by [30, Prop. 3.16], and that the foliation F X 1 := f −1 F is
+weakly regular by Lemma 14. Observe now that the foliation F Z1 := q 1−1 F X 1 is given by p 1 and
+that Z1 identifies with the normalization of the graph of the rational map p 1 ◦ q 1−1 . By item 1
+in Corollary 20, F Z1 is weakly regular. Let E 1 be a prime divisor on Z1 such that g (E 1 ) = E .
+Notice that E 1 is q 1 -exceptional and that dim p (E ) = dim p 1 (E 1 ). Thus, replacing X by X 1 , we
+may assume without loss of generality that
+
+
+                                                   K F ∼Z 0.
+
+
+   Then, by Corollary 20 (2), we must have p(E ) ⊊ Y . It follows that p(E ) is a prime divisor on
+Y since dim p (E ) ≥ dim Y − 1 by assumption. In particular, E is invariant under the foliation
+F Z := q −1 F .
+112                           Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+Step 2. The foliation induced by F on q(E ). Set B := q(E ), and let E ◦ ⊆ E ∩ Zreg be a non-empty
+open set. We obtain a commutative diagram as follows:
+                                                                             a
+                                                              E◦                        B
+
+
+                                                     j         E                        B
+                                                                                            i
+                                                                             q
+                                                              Z                         X
+                                                             p
+
+
+                                                              Y.
+
+Shrinking X , if necessary, we may assume without loss of generality that B is smooth. By [28,
+Thm. 1.3 and Prop. 6.1], there is a factorization
+
+                                                                          di
+
+
+                                    ΩrX |B                            Ω[r
+                                                                       X B
+                                                                          ]
+                                                                            |                        ΩrB .
+                                                                                        d refl i
+
+
+This implies that the map Ω[r
+                           X B
+                              ]
+                                | → ΩrB is surjective.
+
+Claim 23. The foliation FE ◦ on E ◦ induced by F Z is projectable under a.
+
+Proof of Claim 23. Let
+
+                         ν X : Ω[r
+                                X
+                                   ]
+                                     ↠ O X (K F ) and νZ : Ω[rZ ] → O Z (K FZ )
+
+be the Pfaff fields associated to F and F Z respectively. Since E ◦ is invariant by F Z , there is a
+factorization
+                                                                                 ν Z |E ◦
+                           ΩrZ |E ◦                        Ω[r
+                                                            Z E
+                                                               ]
+                                                                 | ◦                            O Z (K FZ )|E ◦
+                                                         d refl j
+
+                            ΩrE ◦                             ΩrE ◦                             O Z (K FZ )|E ◦ .
+
+Recall from the proof of Corollary 1 that there is a commutative diagram
+
+                                                                    q ∗ νX
+                                           q ∗ Ω[r
+                                                X
+                                                   ]
+                                                                                 q ∗ O X (K F )
+                                        d refl q                                            ∼
+                                                                     νZ
+                                              Ω[r
+                                               Z
+                                                  ]
+                                                                                  O Z (K FZ ).
+
+Finally, by [28, Prop. 6.1], the diagram
+
+                                                                                      a ∗ d refl i
+                             (q ∗ Ω[r
+                                   X E
+                                      ]
+                                        )| ◦ ≃ a ∗ (Ω[r
+                                                     X B
+                                                        ]
+                                                          | )                                          a ∗ ΩrB
+                                      d refl q|E ◦
+
+                                             Ω[r
+                                              Z E
+                                                 ]
+                                                   | ◦                                                  ΩrE ◦
+                                                                                 d refl j
+                                Stéphane Druel, Henri Guenancia and Mihai Păun                                   113
+
+
+
+is commutative as well. Therefore, we have a commutative diagramm as follows:
+
+                                                                               a ∗ d refl i
+                           (q ∗ Ω[r
+                                 X E
+                                    ]
+                                      )| ◦ ≃ a ∗ (Ω[r
+                                                   X B
+                                                      ]
+                                                        | )                                       a ∗ ΩrB
+
+
+                               (q ∗ ν X )|E ◦                                                      ΩrE ◦
+
+
+                                (q ∗ O X (K F ))|E ◦                       ∼                  O Z (K FZ )|E ◦ .
+
+This in turn implies that there is a factorization
+
+                                                                d refl i
+                                                Ω[r
+                                                 X B
+                                                    ]
+                                                      |                                 ΩrB
+                                                    ν X |B
+
+                                         O X (K F )|B                           O X (K F )|B
+
+whose pull-back to E ◦ gives the diagram above. It follows that the map
+
+                                                     ΩrB ↠ O X (K F )|B
+
+is the Pfaff field associated to a weakly regular foliation FB of rank r on B such that d a(FE ◦ ) =
+FB . This completes the proof of the claim.                                                                        □
+
+   Then item (2) is an immediate consequence of Claim 23 above.                                                    □
+
+   We are now ready to prove Theorem 17.
+
+Proof of Theorem 17. Let p : Z → Y be the family of leaves, and let q : Z → X be the natural
+morphism. Since p has connected fibers by construction, Lemma 21 applied to p ◦ q −1 implies
+that p has irreducible fibers over a big open set contained in Y . Hence, to prove Theorem 17, it
+suffices to show that Exc q is empty.
+   We argue by contradiction and assume that Exc q ̸= ;. Let E be an irreducible component of
+Exc q. Then E has codimension 1 since X is Q-factorial by assumption. Recall from Lemma 21
+that p −1 (y) is irreducible for a general point y in p(E ). Therefore, by Lemma 22, we must have
+E = p −1 (p(E )). Moreover, if y is a general point in p(E ), then there exists a curve T ⊆ p (E ) passing
+through y such that q(p −1 (t 1 )) = q(p −1 (t 2 )) for general points t 1 and t 2 in T . Now, there exists a
+positive integer t such that the cycle theoretic fiber p [−1] (y) is t [p −1 (y)] for a general point y in
+p(E ). It follows that the restriction of the map Y → Chow(X ) to p(E ) has positive dimensional
+fibers, yielding a contradiction. This finishes the proof of the theorem.                                  □
+
+Remark 24. In the setup of Theorem 17, let p : Z → Y be the family of leaves, and let q : Z → X
+be the natural morphism. If X is only assumed to have klt singularities, then the same argument
+used in the proof of the theorem shows that q is a small birational map. We have
+
+                                                  K Z /Y − R(p) ∼Q q ∗ K F ,
+
+where R(p) denotes the ramification divisor of p. In particular, if F denotes the normalization of
+the closure of a general leaf of F , then
+
+                                                          K F |F ∼Q K F .
+114                           Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+4.3. A splitting theorem
+
+The following theorem, advertised in the introduction as Theorem C, is the main result of this
+section.
+
+Theorem 25. Let X be a normal projective variety, and let
+                                                  Fi
+                                              M
+                                        TX =
+                                                     i ∈I
+be a decomposition of T X into involutive subsheaves with algebraic leaves. Suppose that there
+exists a Q-divisor ∆ such that (X , ∆) is klt. Then there exists a quasi-étale cover f : Y → X as well as
+a decomposition                                        Y
+                                                  Y ≃ Yi
+                                                       i ∈I
+of Y into a product of normal projective varieties such that the decomposition T X = i ∈I Fi lifts
+                                                                                            L
+
+to the canonical decomposition                         M ∗
+                                           TQi ∈I Yi =      pri TYi .
+                                                     i ∈I
+
+Proof. To prove the theorem, it is obviously enough to consider the case where I = {1, 2}. Set
+τ(i ) = 3 − i for each i ∈ {1, 2}.
+
+Step 1. Reduction to the case where X is Q-factorial with klt singularities. Let π : Z → X be a
+Q-factorialization, whose existence is established in [31, Cor. 1.37]. Recall that π is a small
+birational projective morphism and that Z is Q-factorial with klt singularities. Then we have
+the decomposition
+                                     T Z = π−1 F1 ⊕ π−1 F2
+into involutive subsheaves with algebraic leaves.
+   Suppose that there exist normal projective varieties W1 and W2 and a quasi-étale cover
+                                             g : W1 × W2 → Z
+such that the decomposition T Z = π    −1
+                                            F1 ⊕ π−1 F2 lifts to the canonical decomposition
+                                     TW1 ×W2 = pr∗1 TW1 ⊕ pr∗2 TW2 .
+The Stein factorization
+                                                 f : Y →X
+of π ◦ g is then a quasi-étale cover, and the natural map
+                                               W1 × W2 → Y
+is a small birational morphism. Moreover, by [30, Prop. 3.16], Y has klt singularities. In particular,
+it has rational singularities. Lemma 26 below applied to Y 99K W1 × W2 then implies that X
+satisfies the conclusion of Theorem 25.
+    Therefore, replacing X by Z , if necessary, we may assume without loss of generality that X is
+Q-factorial with klt singularities.
+
+Step 2. Covering construction. By Lemma 12, Fi is a weakly regular foliation. Therefore, by
+Theorem 17, Fi is induced by a surjective equidimensional morphism p i : X → Ti onto a normal
+projective variety Ti . Moreover, p i has irreducible fibers over a big open set contained in Ti . Let
+F i be a general fiber of p τ(i ) .
+    Let M i denote the normalization of the product F i ×Ti X , and let M i → Ni → X denote the
+Stein factorization of the natural morphism M i → X . We will show that Ni → X is a quasi-étale
+cover. Notice that for any prime P on Ti , p i∗ P is well-defined (see [16, §2.7]) and has irreducible
+support.
+                               Stéphane Druel, Henri Guenancia and Mihai Păun                          115
+
+
+
+     Write p i∗ P = mQ for some prime divisor Q on X and some integer m ≥ 1. Set n := dim X , and
+s := dim Ti . By general choice of F i , we may assume that F i \ X reg has codimension at least 2 in
+F i . In particular, F i ∩ Q ∩ X reg ̸= ;. Let x ∈ F i ∩ Q ∩ X reg be a general point. Since F1 and F2 are
+regular foliations at x and T X = F1 ⊕ F2 , there exist local analytic coordinates centered at x and
+p i (x) respectively such that p i is given by
+                                     (x 1 , x 2 , . . . , x n ) 7→ (x 1m , x 2 . . . , x s ),
+and such that F i is given by the equations
+                                                x s+1 = · · · = x n = 0.
+A straightforward local computation then shows that Ni → X is a quasi-étale cover over the
+generic point of p i−1 (P ). This immediately implies that Ni → X is a quasi-étale cover.
+    Let Y be the normalization of X in the compositum of the function fields C(Ni ), and let
+f : Y → X be the natural morphism. Set Gi := f −1 Fi . By construction, f is a quasi-étale cover,
+and Gi is induced by a surjective equidimensional morphism q i : Y → R i with reduced fibers
+over a big open set contained in R i . Moreover, there exists a subvariety G i ⊆ f −1 (F i ) such that the
+restriction G i → R i of q i to G i is a birational morphism.
+
+Step 3. End of proof. Let R i◦ denote the smooth locus of R i , and set Yi◦ := q i−1 (R i◦ ). Let Zi◦ ⊆ Yi◦
+be the open set where q i |Y ◦ is smooth. Notice that Zi◦ has complement of codimension at least 2
+                               i
+in Yi◦ since q i has reduced fibers over a big open set contained in R i .
+     The restriction of the tangent map
+                                                            ¡       ¢∗
+                                       T q i |Y ◦ : T Y ◦ → q i |Y ◦ T R ◦
+                                               i       i          i      i
+                                                                               ¢∗
+to Gτ(i ) | Z ◦ ⊆ T Z ◦ then induces an isomorphism Gτ(i ) | Z ◦ ≃ q i | Z ◦ TR ◦ . Since Gτ(i ) |Y ◦ and
+                                                                           ¡
+¡         ¢∗ i       i                                                 i     i    i                 i
+  q i |Y ◦ TR ◦ are both reflexive sheaves, we finally obtain an isomorphism
+        i      i
+                                                                ¢∗
+                                         Gτ(i ) |Y ◦ ≃ qi |Y ◦ TR ◦ .
+                                                          ¡
+                                                        i              i          i
+
+A classical result of complex analysis says that complex flows of vector fields on analytic spaces
+exist (see [27]). It follows that q i |Y ◦ is a locally trivial analytic fibration for the analytic topology.
+                                        i
+   The morphism q 1 × q 2 : Y → R 1 × R 2 then induces an isomorphism
+                                       q 1−1 (R 1◦ ) ∩ q 2−1 (R 2◦ ) ≃ R 1◦ × R 2◦
+since G 1 · G 2 = 1 and q i is locally trivial over R i◦ . In particular, q 1 × q 2 is a small birational
+morphism. By [30, Prop. 3.16] again, Y has klt singularities. Hence, it has rational singularities.
+Lemma 26 below applied to q 1 × q 1 then implies that X satisfies the conclusion of Theorem 25,
+completing the proof of the theorem.                                                                   □
+Lemma 26 ([32, Prop. 18]). Let X , Y1 and Y2 be normal projective varieties, and let π : X 99K
+Y1 × Y2 be a birational map that does not contract any divisor. Suppose in addition that X has
+rational singularities. Then X decomposes as a product X ≃ X 1 × X 2 and there exist birational
+maps πi : X i 99K Yi such that π = π1 × π2 .
+
+
+5. Proof of Theorem A
+
+The present section is devoted to the proof of Theorem A.
+
+Proof of Theorem A. We have seen in Theorem 6 that the tangent sheaf of X is polystable. By
+definition it means that we have a decomposition
+                                                 Fi
+                                               M
+                                         TX =
+                                                                i ∈I
+116                                 Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+where the Fi are stable with respect to c 1 (X ) and have the same slope. Moreover, each subsheaf
+Fi defines on X reg a parallel subbundle of T X reg with respect to the Kähler–Einstein metric
+ωKE | X reg . This immediately implies that Fi | X reg is involutive.
+Claim 27. Each foliation Fi has algebraic leaves.
+Proof. Let m be a positive integer such that −mK X is very ample, and let C ⊂ X be a general
+complete intersection curve of elements in |−mK X |. By general choice of C , we may assume that
+C ⊂ X reg and that Fi is locally free in a neighborhood of C . If m is large enough, then the vector
+bundle Fi |C is semistable by [19, Thm. 1.2]). We conclude that it is ample since it has positive
+slope. Then [5, Fact 2.1.1] says that Fi has algebraic leaves. Alternatively, one can apply [7,
+Thm. 1.1] to the foliation F
+                           ci on the resolution Xb (cf. Notation 5) induced by Fi by pullback over
+X reg and saturation inside T Xb .                                                                □
+                                                     Q
+    Let f : Y → X be the quasi-étale cover and Y = i ∈I Yi be the splitting that are both provided
+by Theorem 25. The decomposition                 M ∗
+                                            TY =   pri TYi                                      (37)
+                                                           i ∈I
+is a decomposition of TY into summands of maximal slope. If there exists i ∈ I such that
+TYi is not stable with respect to c 1 (Yi ), then it means that the polystable decomposition of TY
+provided by Theorem 6 via f ∗ ωKE refines strictly the decomposition (37). By applying Theorem 25
+again, we can find another quasi-étale cover Y ′ → Y which splits according to the polystable
+decomposition of TY and one can then compare again the polystable decomposition of TY ′ to the
+one coming from TY . After finitely many such steps, one can find a quasi-étale cover g : Z → X
+such that
+      (i) There exists a splitting Z = k∈K Zk into a product of Q-Fano varieties.
+                                       Q
+
+     (ii) For any k ∈ K , the tangent sheaf T Zk is stable with respect to c 1 (Zk ).
+    (iii) The variety Z admits a Kähler–Einstein metric given by g ∗ ωKE .
+Theorem A is a consequence of the Claim below.
+Claim 28. There exists a Kähler–Einstein metric ωk on each variety Zk such that g ∗ ω =
+  k∈K prk ωk .
+P       ∗
+
+
+Proof of Claim 28. We set n k := dim Zk . As the saturated subsheaf Fk := pr∗k T Zk ⊂ T Z is stable
+with maximal slope with respect to c 1 (Z ), it has to coincide with one of the factors in the
+decomposition of T Z provided by Theorem 6 (one can see that by looking at the projections on
+each factor and use stability). In particular, the Fk | Zreg are mutually orthogonal with respect
+                                                                                    reg
+to g ∗ ωKE , which enables one to define a smooth hermitian metric ωk on Zk such that g ∗ ωKE =
+  k∈K prk ωk on Zreg . Since g ωKE is closed and d commutes with prk , it follows that ωk is a Kähler
+P        ∗                      ∗                                          ∗
+
+metric on Zreg .
+                                      reg
+   Clearly, one has Ric ωk = ωk on Zk . In order to check that ωk defines a Kähler–Einstein metric
+                                                                             n
+on Zk in the sense of Definition 2, it is sufficient to check that Z reg ωk k = c 1 (Zk )nk by Remark 3.
+                                                                    R
+                                                                        k
+                                                         nk
+By [2, Prop. 3.8] we always have the inequality Z reg ωk ≤ c 1 (Zk )nk and therefore
+                                                  R
+                                                    k
+                                    Z             YZ         n
+                                 n        ∗ n
+                                        g ωKE =             ωk k ≤    c 1 (Zk )nk .
+                                                                   Y
+                         c 1 (Z ) =                     reg
+                                            Zreg       k∈K Zk              k∈K
+            n                      nk                          n
+                                        , one must have Z reg ωk k = c 1 (Zk )nk for all k ∈ K .
+                   Q                                      R
+Since c 1 (Z ) =   k∈K c 1 (Zk )                                                                     □
+                                                         k
+
+Theorem A is now proved.                                                                             □
+                              Stéphane Druel, Henri Guenancia and Mihai Păun                      117
+
+
+
+References
+
+ [1]   C. Araujo, S. Druel and S. J. Kovács, “Cohomological characterizations of projective spaces
+       and hyperquadrics”, Invent. Math. 174 (2008), no. 2, pp. 233–253.
+ [2]   R. J. Berman, S. Boucksom, P. Eyssidieux, V. Guedj and A. Zeriahi, “Kähler-Einstein metrics
+       and the Kähler–Ricci flow on log Fano varieties”, J. Reine Angew. Math. 751 (2019), pp. 27–
+       89.
+ [3]   R. J. Berman, S. Boucksom and M. Jonsson, “A variational approach to the Yau–Tian–
+       Donaldson conjecture”, J. Am. Math. Soc. 34 (2021), no. 3, pp. 605–652.
+ [4]   R. J. Berman and H. Guenancia, “Kähler–Einstein metrics on stable varieties and log
+       canonical pairs”, Geom. Funct. Anal. 24 (2014), no. 6, pp. 1683–1730.
+ [5]   F. Bogomolov and M. McQuillan, “Rational curves on foliated varieties”, in Foliation theory
+       in algebraic geometry, Springer, 2016, pp. 21–51.
+ [6]   L. Braun, “The local fundamental group of a Kawamata log terminal singularity is finite”,
+       Invent. Math. 226 (2021), no. 3, pp. 845–896.
+ [7]   F. Campana and M. Păun, “Foliations with positive slopes and birational stability of orbifold
+       cotangent bundles”, Publ. Math., Inst. Hautes Étud. Sci. 129 (2019), pp. 1–49.
+ [8]   X. Chen, S. Donaldson and S. Sun, “Kähler-Einstein metrics on Fano manifolds. I: Approxi-
+       mation of metrics with cone singularities”, J. Am. Math. Soc. 28 (2015), no. 1, pp. 183–197.
+ [9]   X. Chen, S. Donaldson and S. Sun, “Kähler-Einstein metrics on Fano manifolds. II: Limits
+       with cone angle less than 2π”, J. Am. Math. Soc. 28 (2015), no. 1, pp. 199–234.
+[10]   X. Chen, S. Donaldson and S. Sun, “Kähler-Einstein metrics on Fano manifolds. III: Limits
+       as cone angle approaches 2π and completion of the main proof”, J. Am. Math. Soc. 28
+       (2015), no. 1, pp. 235–278.
+[11]   J.-P. Demailly, “Regularization of closed positive currents and intersection theory”, J. Algebr.
+       Geom. 1 (1992), no. 3, pp. 361–409.
+[12]   J.-P. Demailly, “Complex Analytic and Differential Geometry”, 2012. OpenContent Book,
+       freely available from the author’s web site http://www-fourier.ujf-grenoble.fr/~demailly/
+       books.html.
+[13]   E. Di Nezza and C. H. Lu, “Complex Monge–Ampère equations on quasi-projective vari-
+       eties”, J. Reine Angew. Math. 727 (2017), pp. 145–167.
+[14]   S. Druel, “On foliations with nef anti-canonical bundle”, Trans. Am. Math. Soc. 369 (2017),
+       no. 11, pp. 7765–7787.
+[15]   S. Druel, “A decomposition theorem for singular spaces with trivial canonical class of
+       dimension at most five”, Invent. Math. 211 (2018), no. 1, pp. 245–296.
+[16]   S. Druel, “Codimension one foliations with numerically trivial canonical class on singular
+       spaces”, Duke Math. J. 170 (2021), no. 1, pp. 95–203.
+[17]   I. Enoki, “Stability and negativity for tangent sheaves of minimal Kähler spaces”, in Geom-
+       etry and analysis on manifolds (Katata/Kyoto, 1987), Springer, 1988, pp. 118–126.
+[18]   P. Eyssidieux, V. Guedj and A. Zeriahi, “Singular Kähler–Einstein metrics”, J. Am. Math. Soc.
+       22 (2009), pp. 607–639.
+[19]   H. Flenner, “Restrictions of semistable bundles on projective varieties”, 59 (1984), no. 4,
+       pp. 635–650.
+[20]   D. Greb, H. Guenancia and S. Kebekus, “Klt varieties with trivial canonical class: holonomy,
+       differential forms, and fundamental groups”, Geom. Topol. 23 (2019), pp. 2051–2124.
+[21]   D. Greb, S. Kebekus, S. J. Kovács and T. Peternell, “Differential forms on log canonical
+       spaces”, Publ. Math., Inst. Hautes Étud. Sci. (2011), no. 114, pp. 87–169.
+[22]   D. Greb, S. Kebekus and T. Peternell, “Movable curves and semistable sheaves”, Int. Math.
+       Res. Not. (2016), no. 2, pp. 536–570.
+118                           Stéphane Druel, Henri Guenancia and Mihai Păun
+
+
+
+
+[23]   D. Greb, S. Kebekus and T. Peternell, “Projective flatness over klt spaces and uniformisation
+       of varieties with nef anti-canonical divisor”, J. Algebr. Geom. 31 (2022), no. 3, pp. 467–496.
+[24]   V. Guedj and A. Zeriahi, “Stability of solutions to complex Monge–Ampère equations in big
+       cohomology classes”, Math. Res. Lett. 19 (2012), no. 5, pp. 1025–1042.
+[25]   H. Guenancia, “Semistability of the tangent sheaf of singular varieties”, Algebr. Geom. 3
+       (2016), no. 5, pp. 508–542.
+[26]   A. Höring and T. Peternell, “Algebraic integrability of foliations with numerically trivial
+       canonical bundle”, Invent. Math. 216 (2019), no. 2, pp. 395–419.
+[27]   W. Kaup, “Infinitesimale Transformationsgruppen komplexer Räume”, Math. Ann. 160
+       (1965), pp. 72–92.
+[28]   S. Kebekus, “Pull-back morphisms for reflexive differential forms”, Adv. Math. 245 (2013),
+       pp. 78–112.
+[29]   S. Kobayashi, Differential geometry of complex vector bundles., Princeton University Press;
+       Iwanami Shoten Publishers, 1987.
+[30]   J. Kollár, “Singularities of pairs”, in Algebraic Geometry (Santa Cruz, 1995), American Math-
+       ematical Society, 1997, pp. 221–287.
+[31]   J. Kollár, Singularities of the minimal model program, Cambridge University Press, 2013,
+       pp. x+370. with a collaboration of Sándor Kovács.
+[32]   J. Kollár and M. Larsen, “Quotients of Calabi–Yau varieties”, in Algebra, Arithmetic, and
+       Geometry: in honor of Yu. I. Manin. Vol. II, Birkhäuser, 2009, pp. 179–211.
+[33]   J. Kollár and S. Mori, Birational geometry of algebraic varieties, Cambridge University Press,
+       1998, pp. viii+254. with the collaboration of C. H. Clemens and A. Corti, Translated from the
+       1998 Japanese original.
+[34]   C. Li, “Yau-Tian–Donaldson correspondence for K-semistable Fano manifolds”, J. Reine
+       Angew. Math. 733 (2017), pp. 55–85.
+[35]   C. Li, “On the stability of extensions of tangent sheaves on Kähler–Einstein Fano/Calabi–
+       Yau pairs”, Math. Ann. 381 (2021), no. 3-4, pp. 1943–1977.
+[36]   C. Li, G. Tian and F. Wang, “The uniform version of Yau–Tian–Donaldson conjecture for
+       singular Fano varieties”, Peking Math. J. 5 (2022), no. 2, pp. 383–426.
+[37]   G. Tian, “On stability of the tangent bundles of Fano varieties”, Int. J. Math. 3 (1992), no. 3,
+       pp. 401–413.
+[38]   G. Tian, “K-stability and Kähler–Einstein metrics”, Commun. Pure Appl. Math. 68 (2015),
+       no. 7, pp. 1085–1156.
+[39]   S.-T. Yau, “On the Ricci curvature of a compact Kähler manifold and the complex Monge–
+       Ampère equation. I.”, Commun. Pure Appl. Math. 31 (1978), pp. 339–411.
+
