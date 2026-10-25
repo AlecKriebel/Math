@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-25T08:21:59.270740+00:00",
+  "early_seal_sha256": "4f1141cc3e42a000f6485bcc4c00b53ad5723cb614415e806f30c2467da91a27",
+  "steps": [
+    {
+      "step": "Factorcritical rank equivalence",
+      "check": "Union ofnonemptyalloddopenprefix is2vertexconnected andfactorcritical byclaimedLovasz input. Initialcircuitcontributes|E|-|V|+1=1; eachlateropenear adds edgesl andnewverticesl-1, rankincrement1 includingone-edgeears. Conversely2connectedfactorcriticalH admitsalloddopenears bysameinput; extension toG viaoutsidesectioncomponentwith2distinctneighbors (onewouldcutG), choosepath throughcomponent withnewinterior anddistinctoldends; iterategrowsvertices, leftoveredgestrivialears. Addedinducededges preserveconnectivity andeverydeletionmatching, raiserank. NeedauthenticateexactLovasz openearinterface externally."
+    },
+    {
+      "step": "Coneidentity",
+      "check": "Bconnectedbipartite>=2vertices impliescone2connected. Anodd-order2connectedfactorcriticalH cannotbebipartite:deletefromsmaller nonemptyclassleavesunbalancedclasses. ThusinducedeligibleHcontainsz andequalsconeB[S]. Deletingz demandsB[S]connectedandperfectlymatchable. ConverselyMperfectmatchingB[S], deleteu matchitsmatewithz andretainotherM;deletez useM. Rank=allinducedBedges, NOTmatchingedges; nonemptyfeasibleS>=2."
+    },
+    {
+      "step": "All preprocessing andpolynomialencoding",
+      "check": "NegativebudgetNOevenemptyU; nonnegativebudgetemptyUYES; nonemptyU withnosets/uncoveredelement/s0NO; coveredand s>=nYES. Trianglebeta1 mapsYESthreshold1 andNOthreshold2, alloutputs inpromisedconeclass. Remainingm,n>=1,1<=s<=n,covered; empty/repeatedsetsallowed. T=sum(1+|A|),k=T+n+3,M=(m+1)k²,F=M-ks; k>T,k>s,k(k-s)>T,F>0. Explicitencoding andaftercoverage m,n,T=O(L), verticesO(L²),edgesO(L³),thresholdbinarypoly. No hiddenbinarysize block parameter."
+    },
+    {
+      "step": "Allsizeforwardreduction",
+      "check": "Shrinkanycover<=s toinclusion-minimalJ. Eachselectedsethasprivateelementelse redundant; privatesdistinct. Selectallblockvertices plusJconnectors,omitoneleftvertexineachprivateelementblock. Matchconnectorctoitsdistinguishedprivateq, remainingK(k-1,k-1) internally,otherblocksK(k,k). Fullvertexcoverageanddisjointness; eachretainedblockconnectedk>=2; selectedsetscoverallelementblocksandallconnectorsmeetroot. ExactedgecountM-kr+selectedincidences>=M-ks."
+    },
+    {
+      "step": "Reversewithoutwholeblockassumption",
+      "check": "ForarbitraryconnectedperfectlymatchableB[S]withedges>=F, eachblockmustretaininternaledge:otherwiseedgecount<=M-k²+T<F. Letai,bi omittedleft/right,includingdistinguishedrightq omissions; di=k(ai+bi)-aibi exactlostinternaledges. Matchingbalance sum(ai-bi)=r(selectedleftconnectors). Exactidentitydi-k(ai-bi)=bi(2k-ai)>=0 forall0<=ai,bi<=k. ThusM-ks<=edges<=M-kr+T, k(r-s)<=T<k⇒integerr<=s. ForEVERYelementblock, connectivitytorootblock (eachretainsedge) requiresselectedconnectoradjacentfromitsdistinguishedq, hence selectedsetscoverelement. Arbitrarypartialblocksandmissingqi permitted."
+    },
+    {
+      "step": "NPmembership",
+      "check": "t>0 certificateHedges/vertices+perfectmatchingH-v foreachv. Check|H|>=3,graphmembership,H/H-v connectivity,eachmatchingdeletiongraphvalid/disjoint/fullcover,rank>=t. O(n²) matchingedges withvertex/edgeidentitybits, polytime; no need computeallbeta/solveNPproblem. Equivalence viafactorcriticalranklemma. t<=0validinputYES; invalidgraphdetectablepoly. Largepositivebinaryt failsrankinequalitynaturally."
+    },
+    {
+      "step": "Objectiveandfinitecontrolseparation",
+      "check": "ThreeK3,3 blocks and2leftconnectors: disconnectedallblocksselection27edgesperfectmatching; connectedallblocks requires2connectors, loss>=3*2 andincidences<=4⇒<=25, attainedprivateleftomissions. Ifoneblocknoedge <=22. Thusconnectivitymaterial. Matchingedge-weight objective differsfromcountallinducededges. Needactualpriorpaperinterfaces toboundcredit."
+    }
+  ],
+  "boundary_attacks": [
+    "BipartiteG nooddcycle givesbeta0, consistentemptyfactorcriticalfamily.",
+    "Parallel2cycles areeven; simpleoddtrianglebase remainsvalid.",
+    "Thresholdsignedbinary/noattainedoptimizationrequirement.",
+    "s0/negative/hugebudget,emptyuniverse/no sets/uncoveredU.",
+    "Empty/repeatedsets,distinguishedqomissions,partialblocks,unselectedblocks,connectivityrootmissing.",
+    "Do not replaceperfectmatchingwithbalancedbipartition; balanceusedonlynecessary reverseinequality, fullMconstructedforward.",
+    "FixedparameteralgorithmsconsistentwithvariablethresholdNPcomplete."
+  ],
+  "expanded_proof": "ANALYTIC_CHECK.md",
+  "postseal_classical_interface": "Actual BSv1 Section1.1/Theorem3.2/Prop1.13/Q3.3 confirms precise openear/factorcritical/rank formulation; original Lovasz1972 proof not recovered. Actual Karp MainTheorem SetCovering/NodeCovermap read.",
+  "central_gap_detected": null,
+  "universal_from_finite_cases": false
+}
