@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-25T15:15:09.769623+00:00",
+  "status": "PASS",
+  "candidate": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/ambient-block-modulus-navigation-correction-sol-20261025/final-content-check.proposed.py",
+    "bytes": 231314,
+    "sha256": "60fdabc716e9dbf887f197aa1d5e726df8675cb646404ba79603995e54ed6a80"
+  },
+  "old_stage_checker": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/local-ambient-block-modulus-stage-sol-20261025/final-content-check.proposed.py",
+    "bytes": 230642,
+    "sha256": "81ca32b424e66d536a3f96344c44d1f5a7b47b3617a74abf5791c8727bec8fa0"
+  },
+  "exact_added_lines": 6,
+  "inserted_text": "  heading_fragments=re.findall(r'<h1>(.*?)</h1>',h,re.S)\n  heading_anchors=ABMBodyText('<body>'+''.join(heading_fragments)+'</body>').anchors\n  test('exact_h1_selflink_destination',len(heading_fragments)==1 and [(attrs.get('href'),label) for attrs,label in heading_anchors]==[('/research/'+c['slug']+'/',c['title'])])\n  main_navigation=re.findall(r'<nav aria-label=\"Main navigation\">(.*?)</nav>',h,re.S)\n  research_anchors=[(attrs.get('href'),label) for attrs,label in ABMBodyText('<body>'+''.join(main_navigation)+'</body>').anchors if label=='Research']\n  test('exact_main_Research_destination',len(main_navigation)==1 and research_anchors==[('/research/','Research')])\n",
+  "insertion_first_line": 1224,
+  "AST_enclosing_branch_first_line": 1220,
+  "AST_enclosing_branch_last_line": 1260,
+  "ABM_IDS": [
+    "23333353",
+    "23416806",
+    "23441617"
+  ],
+  "all_other_checker_bytes_exactly_preserved": true,
+  "private_execution_file": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/ambient-block-modulus-navigation-correction-sol-20261025/final-content-check.stage.py",
+    "bytes": 231349,
+    "sha256": "9f8e50a0cf42737f514fddf7c359bad6114cecf77b63a60b4b680158b8128d3a"
+  },
+  "private_execution_difference_only_explicit_programme_R_assignment": true,
+  "old_shared_diff_regeneration_matches": true,
+  "renderer_helper_body_contract_modified": false
+}

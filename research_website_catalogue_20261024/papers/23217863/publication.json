@@ -1,0 +1,1612 @@
+{
+  "title": "Ordinary Banach–Mazur rigidity of von Neumann algebras",
+  "description": "For each von Neumann algebra, a sufficiently small ordinary Banach–Mazur distance fixes its Jordan structure. Read the full paper and sources.",
+  "abstract": "Using OpenAI's all-algebra bounded Hochschild vanishing theorem, we derive local ordinary complex Banach–Mazur rigidity for every von Neumann algebra and its canonical predual. The threshold depends on the algebra; the conclusion is Jordan *-isomorphism. Roydor announced the general cohomological implication in 2020, while his published Theorem 1.2 assumes separable predual. We give an explicit extension of his geometric argument using deformation stability on two fixed source algebras and reconstruction of odd finite type-I summands from full abelian projections. This avoids separability, moving-corner perturbation constants, and enumeration of infinite cardinal degrees. The cohomological input and geometric machinery are attributed external results; no new solution of the underlying cohomology problem or universal numerical threshold is claimed.",
+  "plain_language": [
+    "A von Neumann algebra carries both a norm and a multiplication. Banach–Mazur distance measures how closely two spaces can match through an invertible linear map, using only their norms. The question is whether a sufficiently close match also determines their algebraic structure.",
+    "For each fixed complex von Neumann algebra, this paper obtains a neighborhood in which every other von Neumann algebra has the same Jordan structure. The size of that neighborhood may depend on the fixed algebra. The same conclusion holds when the comparison uses the canonical preduals."
+  ],
+  "result": [
+    "For every complex von Neumann algebra M, there exists ε_M>0 such that, for every complex von Neumann algebra N, either d_BM(M,N)<1+ε_M or d_BM(M_*,N_*)<1+ε_M implies that M and N are Jordan *-isomorphic. Here M_* and N_* are the canonical preduals, and ordinary complex Banach–Mazur distance is the infimum of ||T||·||T⁻¹|| over bounded invertible complex-linear maps T between the spaces.",
+    "At this threshold, the two strict distance conditions are equivalent to Jordan *-isomorphism, to a surjective complex-linear isometry between the algebra spaces, and to one between the canonical preduals. The statement includes arbitrary nonseparable centers and preduals, every von Neumann type and every infinite type-I cardinal dimension.",
+    "A Jordan *-isomorphism preserves adjoints and the symmetrized product x∘y=(xy+yx)/2. It need not preserve the orientation of the associative product: an algebra and its opposite have the same relevant norm geometry."
+  ],
+  "why_it_works": [
+    "The essential input is OpenAI’s bounded Hochschild vanishing theorem for all complex von Neumann algebras. In the ordinary bounded, actual-coboundary sense, its degree-two and degree-three cases provide the estimates needed to correct a small multiplication defect on a fixed source algebra.",
+    "The proof extends Roydor’s geometric argument using two fixed source algebras. It handles the part whose unit splits into two equivalent projections, then reconstructs the remaining finite odd type-I degrees using full abelian projections. This treats unbounded finite odd degrees together and avoids constants attached to moving corners. Infinite cardinal dimensions are already included in the first part.",
+    "Taking Banach adjoints preserves the norms of a predual isomorphism and its inverse, giving the predual implication. The resulting exact Jordan isomorphism is normal and induces an isometry of the canonical preduals."
+  ],
+  "limitations": [
+    "The threshold depends on M; the paper gives no universal numerical constant. The comparison spaces must be complex von Neumann algebras or their canonical preduals. The initial near-isometry is measured in ordinary operator norm and need not be normal or completely bounded.",
+    "The conclusion is Jordan structure, not recovery of a chosen associative orientation or a claim that the original near-isometry is multiplicative. The inequalities are strict; no threshold-equality result or theorem for arbitrary Banach target spaces is asserted.",
+    "The result uses the attributed cohomology theorem and classical geometric machinery. Roydor had already announced the unrestricted conditional formulation; this note supplies an explicit fixed-source extension and records its consequence from the cohomology input. No first-discovery claim is made."
+  ],
+  "background": [
+    {
+      "title": "OpenAI (2026), Vanishing of higher bounded Hochschild cohomology",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/paper.pdf",
+      "note": "Theorem 1.1 is the essential all-algebra ordinary bounded cohomology input. The pinned manuscript is dated 23 September 2026. The present paper derives a consequence; it does not claim a new solution of that cohomology problem."
+    },
+    {
+      "title": "Jean Roydor (2020 online; 2022 issue), Banach–Mazur stability of von Neumann algebras",
+      "url": "https://doi.org/10.1142/S1793525321500151",
+      "note": "Provides the geometric approach and a conditional ordinary-distance theorem with separable predual. The current note extends the fixed-source argument beyond that hypothesis."
+    },
+    {
+      "title": "Jean Roydor (2020), CIRM lecture slides",
+      "url": "https://www.cirm-math.fr/RepOrga/2169/Slides/Roydor_Slides.pdf",
+      "note": "Theorem 2 on PDF pages 28–29 already announces the unrestricted conditional formulation. That earlier announcement receives explicit credit."
+    },
+    {
+      "title": "Éric Ricard and Jean Roydor (2014), A non-commutative Amir–Cambern theorem for von Neumann algebras and nuclear C*-algebras",
+      "url": "https://doi.org/10.1016/j.jfa.2014.05.018",
+      "note": "Their unconditional theorem uses completely bounded distance. Its predual observation and conditional two-matrix-level result are prior work; small ordinary distance does not by itself supply their stronger metric hypothesis."
+    },
+    {
+      "title": "Iain Raeburn and Joseph L. Taylor (1977), Hochschild cohomology and perturbations of Banach algebras",
+      "url": "https://doi.org/10.1016/0022-1236(77)90072-6",
+      "note": "Together with Johnson’s classical perturbation theory, this is prior work on the fixed-algebra deformation mechanism. The note writes out the involution-preserving iteration and its algebra-dependent constants."
+    },
+    {
+      "title": "David Sherman, Noncommutative Lp structure encodes exactly Jordan structure",
+      "url": "https://arxiv.org/abs/math/0309365v2",
+      "note": "Gives the exact isometry–Jordan structure connection, including the algebra and predual endpoints used here."
+    }
+  ],
+  "ai_disclosure": "AI tools were used extensively in the research, proof development, checks and writing. AI-agent checks are not human peer review. This is an unrefereed preprint, without formal proof-assistant certification. Alec Kriebel is responsible for the work.",
+  "collaboration": "Independent proof checks, counterexamples and precise comparisons with prior work are welcome. Further work toward a journal paper would require substantive research contributions; authorship and acknowledgments would reflect actual contributions and mutual agreement.",
+  "slug": "ordinary-banach-mazur-rigidity-von-neumann-algebras",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "follow_up": null,
+  "followup_rationale": "Default none under separate root authority.",
+  "AA": null,
+  "canonical_url": null,
+  "publication_date": "2026-10-07",
+  "version": null,
+  "version_field_present": false,
+  "doi": "10.5281/zenodo.23217863",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "paper.pdf",
+  "pdf_pages": 7,
+  "supplement_filename": "source-and-verification.zip",
+  "supplement_label": "Complete original source and verification archive (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original complete seven-page paper",
+      "url": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete source and verification ZIP",
+      "url": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+    }
+  ],
+  "status": "Unrefereed preprint.",
+  "license": "CC BY 4.0 for original manuscript, prose and verification code",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_note": "Unchanged OpenAI family-295 material in the complete source archive retains Apache License 2.0, its original OpenAI attribution, LICENSE and manuscript-specific README citation. CC BY 4.0 does not relicense it. Other linked literature retains its own terms.",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "No version number supplied",
+  "citation_edition_label": "No version number supplied",
+  "edition_note": "Manuscript and declared publication date: 7 October 2026. The deposit supplies no version number.",
+  "reader_intro": "Read the complete seven-page deposited paper in the on-page PDF reader.",
+  "bibtex_note": "Unrefereed preprint; no version number supplied",
+  "prepared_bibtex": "@misc{Kriebel2026OrdinaryBanachMazurRigidity,\n  author = {Kriebel, Alec},\n  title = {Ordinary Banach--Mazur rigidity of von Neumann algebras},\n  year = {2026},\n  month = {oct},\n  day = {7},\n  date = {2026-10-07},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23217863},\n  url = {https://zenodo.org/records/23217863},\n  note = {Unrefereed preprint; no version number supplied},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": 23217863,
+    "concept_record_id": "23217862",
+    "record_url": "https://zenodo.org/records/23217863",
+    "doi": "10.5281/zenodo.23217863",
+    "version": null,
+    "version_field_present": false,
+    "zenodo_version": null,
+    "manuscript_version": null,
+    "zenodo_publication_date": "2026-10-07",
+    "manuscript_date": "2026-10-07",
+    "record_created_utc": "2026-10-07T16:02:31.793312+00:00",
+    "record_updated_utc": "2026-10-10T21:22:47.772873+00:00",
+    "metadata_path": "sources/normalized-metadata.json",
+    "metadata_sha256": "782dc8f5b0f2d2c2bfe296c1145dca84c04c1e6adb694731bcaef72c5d383859",
+    "metadata_original": {
+      "utc": "2026-10-25T08:32:24.060774+00:00",
+      "derivative_not_raw_API": true,
+      "record_id": 23217863,
+      "conceptrecid": "23217862",
+      "metadata": {
+        "title": "Ordinary Banach–Mazur rigidity of von Neumann algebras",
+        "doi": "10.5281/zenodo.23217863",
+        "publication_date": "2026-10-07",
+        "description": "For every fixed complex von Neumann algebra M, an algebra-dependent positive ordinary complex Banach–Mazur threshold ensures that every von Neumann algebra N within that threshold is Jordan *-isomorphic to M. The same threshold works for the canonical preduals. This consequence uses OpenAI's family-295 ordinary bounded self-coefficient Hochschild vanishing theorem at pinned commit adc7f1241b42e322a6451854ab7e4b4c146bf78a and Roydor's established geometric machinery. Roydor announced the general conditional implication in 2020, while his published Theorem 1.2 assumes separable predual. The note gives an explicit proof extension using deformation stability on two fixed source algebras and reconstruction of odd finite type-I summands from full abelian projections. The cohomology input, multiplication-stability mechanism, geometric estimates and predual reduction are attributed inherited results; no firstness, independently new cohomology solution, universal numerical threshold or reproduced formal verification is claimed. AI tools were used extensively in research, proof development, drafting and verification. Internal adversarial AI audits are not conventional human peer review, and the preprint has not undergone conventional human refereeing. The PDF is separately downloadable; the source supplement contains the standalone TeX source, precise dependency and priority records, proof audits and finite exact mechanism checks, with unchanged Apache-2.0 upstream material retaining its original license. Primary sources: https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026 ; https://doi.org/10.1142/S1793525321500151 ; https://arxiv.org/abs/1108.1970v2 .",
+        "access_right": "open",
+        "creators": [
+          {
+            "name": "Kriebel, Alec",
+            "affiliation": null,
+            "orcid": "0009-0001-9320-500X"
+          }
+        ],
+        "keywords": [
+          "von Neumann algebras",
+          "Banach–Mazur distance",
+          "bounded Hochschild cohomology",
+          "Jordan isomorphism",
+          "canonical preduals",
+          "operator algebras",
+          "Banach space geometry",
+          "ordinary complex Banach–Mazur distance",
+          "Jordan *-isomorphism",
+          "local rigidity",
+          "nonseparable von Neumann algebras",
+          "deformation stability",
+          "multiplication perturbations",
+          "type I von Neumann algebras",
+          "full abelian projections"
+        ],
+        "related_identifiers": [
+          {
+            "identifier": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026",
+            "relation": "isDerivedFrom",
+            "scheme": "url"
+          },
+          {
+            "identifier": "10.1142/S1793525321500151",
+            "relation": "references",
+            "scheme": "doi"
+          },
+          {
+            "identifier": "https://arxiv.org/abs/1108.1970v2",
+            "relation": "references",
+            "scheme": "url"
+          }
+        ],
+        "language": "eng",
+        "resource_type": {
+          "title": "Preprint",
+          "type": "publication",
+          "subtype": "preprint"
+        },
+        "license": {
+          "id": "cc-by-4.0"
+        },
+        "relations": {
+          "version": [
+            {
+              "index": 0,
+              "is_last": true,
+              "parent": {
+                "pid_type": "recid",
+                "pid_value": "23217862"
+              }
+            }
+          ]
+        }
+      },
+      "version_field_present": false,
+      "version_value": null,
+      "created": "2026-10-07T16:02:31.793312+00:00",
+      "updated": "2026-10-10T21:22:47.772873+00:00",
+      "latest_record_id": 23217863,
+      "all_original_API_file_objects": [
+        {
+          "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+          "key": "paper.pdf",
+          "size": 83877,
+          "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+          }
+        },
+        {
+          "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+          "key": "source-and-verification.zip",
+          "size": 617532,
+          "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+          }
+        }
+      ],
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+            "key": "paper.pdf",
+            "size": 83877,
+            "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+            "links": {
+              "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+          "bytes": 83877,
+          "md5": "34af03472260d79b95754fe76c87be3c",
+          "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b"
+        },
+        {
+          "original_api_file_object": {
+            "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+            "key": "source-and-verification.zip",
+            "size": 617532,
+            "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+            "links": {
+              "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/source-and-verification.zip",
+          "bytes": 617532,
+          "md5": "99e23bdb2182e5f04d0643d14f147053",
+          "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0"
+        }
+      ],
+      "all_TeX_candidates": [
+        {
+          "container": "source-and-verification.zip",
+          "member": "manuscript/main.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/manuscript/main.tex",
+          "bytes": 22215,
+          "sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "bytes": 1673,
+          "sha256": "59716075e2dff1fc1a65bc89996a2db5576f5e9409087d61360a1dc987a660b5"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "bytes": 1965,
+          "sha256": "61e1696d7f1413e492de8d7f5516312506d062297fc1e7fe485056ee88c0042d"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "bytes": 6534,
+          "sha256": "5f16fcade93ab16083b30bb9611d54d600f0e9e90ce75f5587c4ef915fd05b5c"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "bytes": 10451,
+          "sha256": "ddec01dc15fa257e3f1e85004b54225dd43df633bbdfa957de98353c069ce4b2"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "bytes": 17639,
+          "sha256": "3d1015a1c20d2cfc8a4c8991652d93eed756763cd982cbc28a53fd625b7b3314"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "bytes": 14230,
+          "sha256": "7782c390e534a15d35d7aee470ff425fcb6823c4073b29886f3dbffbc8d31622"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "bytes": 23124,
+          "sha256": "9cf9cf2b11fc838326321b4c0384904a303ecec43d732cd748c9204059f4ea60"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "bytes": 19966,
+          "sha256": "c6c8e63bac0e543624ac63fd50a046878ba7082a531115111563455682e4d437"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "bytes": 2151,
+          "sha256": "3638ce1e708d4c62bc859a856cc1a3edcd7f165e5bbb0bb7a9568330f13bf867"
+        }
+      ]
+    },
+    "raw_record_path": "sources/record.raw.json",
+    "raw_record_sha256": "33086ae723cbb8d2e6f5c440efbf63e0bd5ac317f9b552b6edad26d605d03b47",
+    "raw_record_original": {
+      "created": "2026-10-07T16:02:31.793312+00:00",
+      "modified": "2026-10-10T21:22:47.772873+00:00",
+      "id": 23217863,
+      "conceptrecid": "23217862",
+      "doi": "10.5281/zenodo.23217863",
+      "conceptdoi": "10.5281/zenodo.23217862",
+      "doi_url": "https://doi.org/10.5281/zenodo.23217863",
+      "metadata": {
+        "title": "Ordinary Banach–Mazur rigidity of von Neumann algebras",
+        "doi": "10.5281/zenodo.23217863",
+        "publication_date": "2026-10-07",
+        "description": "For every fixed complex von Neumann algebra M, an algebra-dependent positive ordinary complex Banach–Mazur threshold ensures that every von Neumann algebra N within that threshold is Jordan *-isomorphic to M. The same threshold works for the canonical preduals. This consequence uses OpenAI's family-295 ordinary bounded self-coefficient Hochschild vanishing theorem at pinned commit adc7f1241b42e322a6451854ab7e4b4c146bf78a and Roydor's established geometric machinery. Roydor announced the general conditional implication in 2020, while his published Theorem 1.2 assumes separable predual. The note gives an explicit proof extension using deformation stability on two fixed source algebras and reconstruction of odd finite type-I summands from full abelian projections. The cohomology input, multiplication-stability mechanism, geometric estimates and predual reduction are attributed inherited results; no firstness, independently new cohomology solution, universal numerical threshold or reproduced formal verification is claimed. AI tools were used extensively in research, proof development, drafting and verification. Internal adversarial AI audits are not conventional human peer review, and the preprint has not undergone conventional human refereeing. The PDF is separately downloadable; the source supplement contains the standalone TeX source, precise dependency and priority records, proof audits and finite exact mechanism checks, with unchanged Apache-2.0 upstream material retaining its original license. Primary sources: https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026 ; https://doi.org/10.1142/S1793525321500151 ; https://arxiv.org/abs/1108.1970v2 .",
+        "access_right": "open",
+        "creators": [
+          {
+            "name": "Kriebel, Alec",
+            "affiliation": null,
+            "orcid": "0009-0001-9320-500X"
+          }
+        ],
+        "keywords": [
+          "von Neumann algebras",
+          "Banach–Mazur distance",
+          "bounded Hochschild cohomology",
+          "Jordan isomorphism",
+          "canonical preduals",
+          "operator algebras",
+          "Banach space geometry",
+          "ordinary complex Banach–Mazur distance",
+          "Jordan *-isomorphism",
+          "local rigidity",
+          "nonseparable von Neumann algebras",
+          "deformation stability",
+          "multiplication perturbations",
+          "type I von Neumann algebras",
+          "full abelian projections"
+        ],
+        "related_identifiers": [
+          {
+            "identifier": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026",
+            "relation": "isDerivedFrom",
+            "scheme": "url"
+          },
+          {
+            "identifier": "10.1142/S1793525321500151",
+            "relation": "references",
+            "scheme": "doi"
+          },
+          {
+            "identifier": "https://arxiv.org/abs/1108.1970v2",
+            "relation": "references",
+            "scheme": "url"
+          }
+        ],
+        "language": "eng",
+        "resource_type": {
+          "title": "Preprint",
+          "type": "publication",
+          "subtype": "preprint"
+        },
+        "license": {
+          "id": "cc-by-4.0"
+        },
+        "relations": {
+          "version": [
+            {
+              "index": 0,
+              "is_last": true,
+              "parent": {
+                "pid_type": "recid",
+                "pid_value": "23217862"
+              }
+            }
+          ]
+        }
+      },
+      "title": "Ordinary Banach–Mazur rigidity of von Neumann algebras",
+      "links": {
+        "self": "https://zenodo.org/api/records/23217863",
+        "self_html": "https://zenodo.org/records/23217863",
+        "preview_html": "https://zenodo.org/records/23217863?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.23217863",
+        "self_doi": "https://doi.org/10.5281/zenodo.23217863",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23217863",
+        "reserve_doi": "https://zenodo.org/api/records/23217863/draft/pids/doi",
+        "parent": "https://zenodo.org/api/records/23217862",
+        "parent_html": "https://zenodo.org/records/23217862",
+        "parent_doi": "https://doi.org/10.5281/zenodo.23217862",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23217862",
+        "self_iiif_manifest": "https://zenodo.org/api/iiif/record:23217863/manifest",
+        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:23217863/sequence/default",
+        "files": "https://zenodo.org/api/records/23217863/files",
+        "media_files": "https://zenodo.org/api/records/23217863/media-files",
+        "thumbnails": {
+          "10": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E10,/0/default.jpg",
+          "50": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E50,/0/default.jpg",
+          "100": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E100,/0/default.jpg",
+          "250": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E250,/0/default.jpg",
+          "750": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E750,/0/default.jpg",
+          "1200": "https://zenodo.org/api/iiif/record:23217863:paper.pdf/full/%5E1200,/0/default.jpg"
+        },
+        "latest": "https://zenodo.org/api/records/23217863/versions/latest",
+        "latest_html": "https://zenodo.org/records/23217863/latest",
+        "versions": "https://zenodo.org/api/records/23217863/versions",
+        "draft": "https://zenodo.org/api/records/23217863/draft",
+        "access_links": "https://zenodo.org/api/records/23217863/access/links",
+        "access_grants": "https://zenodo.org/api/records/23217863/access/grants",
+        "access_users": "https://zenodo.org/api/records/23217863/access/users",
+        "access_request": "https://zenodo.org/api/records/23217863/access/request",
+        "access": "https://zenodo.org/api/records/23217863/access",
+        "communities": "https://zenodo.org/api/records/23217863/communities",
+        "communities-suggestions": "https://zenodo.org/api/records/23217863/communities-suggestions",
+        "request_deletion": "https://zenodo.org/api/records/23217863/request-deletion",
+        "file_modification": "https://zenodo.org/api/records/23217863/file-modification",
+        "quota_increase": "https://zenodo.org/api/records/23217863/quota-increase",
+        "requests": "https://zenodo.org/api/records/23217863/requests"
+      },
+      "updated": "2026-10-10T21:22:47.772873+00:00",
+      "recid": "23217863",
+      "revision": 4,
+      "files": [
+        {
+          "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+          "key": "paper.pdf",
+          "size": 83877,
+          "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+          }
+        },
+        {
+          "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+          "key": "source-and-verification.zip",
+          "size": 617532,
+          "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+          }
+        }
+      ],
+      "swh": {},
+      "owners": [
+        {
+          "id": "1789874"
+        }
+      ],
+      "status": "published",
+      "stats": {
+        "downloads": 6,
+        "unique_downloads": 6,
+        "views": 17,
+        "unique_views": 14,
+        "version_downloads": 6,
+        "version_unique_downloads": 6,
+        "version_unique_views": 14,
+        "version_views": 17
+      },
+      "state": "done",
+      "submitted": true
+    },
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "11f2d44b667633686e28dbcfc51020e006499b7021f01dec800d2a023998bd0b",
+    "source_receipt_schema": "Native all_assets/original_api_file_object and lowercase md5/sha256; metadata nested under metadata; version absent; genuine five-entry api-receipts; SOURCE_FINAL_MANIFEST dict and nested SOURCE_FINAL_SEAL manifest object. No aliases.",
+    "source_receipt_original": {
+      "utc": "2026-10-25T08:32:24.061125+00:00",
+      "status": "SOURCE_READY_FRESH_COMPLETE_PUBLIC_OBJECTS_RECURSIVE_CUSTODY",
+      "record_id": 23217863,
+      "sheet_row": 103,
+      "title": "Ordinary Banach–Mazur rigidity of von Neumann algebras",
+      "version_field_present": false,
+      "version": null,
+      "publication_date": "2026-10-07",
+      "created": "2026-10-07T16:02:31.793312+00:00",
+      "updated": "2026-10-10T21:22:47.772873+00:00",
+      "doi": "10.5281/zenodo.23217863",
+      "conceptrecid": "23217862",
+      "latest_record_id": 23217863,
+      "versions_total_original": 1,
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+            "key": "paper.pdf",
+            "size": 83877,
+            "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+            "links": {
+              "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+          "bytes": 83877,
+          "md5": "34af03472260d79b95754fe76c87be3c",
+          "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b"
+        },
+        {
+          "original_api_file_object": {
+            "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+            "key": "source-and-verification.zip",
+            "size": 617532,
+            "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+            "links": {
+              "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/source-and-verification.zip",
+          "bytes": 617532,
+          "md5": "99e23bdb2182e5f04d0643d14f147053",
+          "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0"
+        }
+      ],
+      "actual_standalone_readers": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+          "bytes": 83877,
+          "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b",
+          "pages": 7,
+          "actual_standalone_API_asset": true
+        }
+      ],
+      "selected_actual_PDF": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+        "bytes": 83877,
+        "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b",
+        "pages": 7,
+        "actual_standalone_API_asset": true
+      },
+      "regular_archive_member_occurrences": 41,
+      "archive_containers": 1,
+      "nested_archives": 0,
+      "expanded_bytes_all_depths": 845899,
+      "all_TeX_candidates": [
+        {
+          "container": "source-and-verification.zip",
+          "member": "manuscript/main.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/manuscript/main.tex",
+          "bytes": 22215,
+          "sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "bytes": 1673,
+          "sha256": "59716075e2dff1fc1a65bc89996a2db5576f5e9409087d61360a1dc987a660b5"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "bytes": 1965,
+          "sha256": "61e1696d7f1413e492de8d7f5516312506d062297fc1e7fe485056ee88c0042d"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "bytes": 6534,
+          "sha256": "5f16fcade93ab16083b30bb9611d54d600f0e9e90ce75f5587c4ef915fd05b5c"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "bytes": 10451,
+          "sha256": "ddec01dc15fa257e3f1e85004b54225dd43df633bbdfa957de98353c069ce4b2"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "bytes": 17639,
+          "sha256": "3d1015a1c20d2cfc8a4c8991652d93eed756763cd982cbc28a53fd625b7b3314"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "bytes": 14230,
+          "sha256": "7782c390e534a15d35d7aee470ff425fcb6823c4073b29886f3dbffbc8d31622"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "bytes": 23124,
+          "sha256": "9cf9cf2b11fc838326321b4c0384904a303ecec43d732cd748c9204059f4ea60"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "bytes": 19966,
+          "sha256": "c6c8e63bac0e543624ac63fd50a046878ba7082a531115111563455682e4d437"
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "bytes": 2151,
+          "sha256": "3638ce1e708d4c62bc859a856cc1a3edcd7f165e5bbb0bb7a9568330f13bf867"
+        }
+      ],
+      "local_candidate_used_instead_of_fresh_download": false,
+      "historical_or_current_opinions_or_foreign_primary_bodies_read": false,
+      "manuscript_mathematics_not_yet_read": true,
+      "originals_now_immutable": true
+    },
+    "source_assets_field": "all_assets",
+    "all_assets": [
+      {
+        "original_api_file_object": {
+          "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+          "key": "paper.pdf",
+          "size": 83877,
+          "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+        "bytes": 83877,
+        "md5": "34af03472260d79b95754fe76c87be3c",
+        "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b"
+      },
+      {
+        "original_api_file_object": {
+          "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+          "key": "source-and-verification.zip",
+          "size": 617532,
+          "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+          "links": {
+            "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/source-and-verification.zip",
+        "bytes": 617532,
+        "md5": "99e23bdb2182e5f04d0643d14f147053",
+        "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0"
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "88917de8-fa39-4b30-b041-dcbed3006fb1",
+        "key": "paper.pdf",
+        "size": 83877,
+        "checksum": "md5:34af03472260d79b95754fe76c87be3c",
+        "links": {
+          "self": "https://zenodo.org/api/records/23217863/files/paper.pdf/content"
+        }
+      },
+      {
+        "id": "b6e5e4db-367f-4631-a68f-8548df2512b7",
+        "key": "source-and-verification.zip",
+        "size": 617532,
+        "checksum": "md5:99e23bdb2182e5f04d0643d14f147053",
+        "links": {
+          "self": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "actual_asset_order": [
+      "paper.pdf",
+      "source-and-verification.zip"
+    ],
+    "recursive_archive_inventory_path": "sources/archive-members.json",
+    "recursive_archive_inventory_sha256": "6e6a4c1cc858624ae930f8d6872cc85ff0b7b8946e832b7ccecb5f20af8cfb97",
+    "recursive_archive_inventory_original": {
+      "utc": "2026-10-25T08:32:24.059721+00:00",
+      "archive_containers": [
+        {
+          "container": "source-and-verification.zip",
+          "kind": "zip",
+          "depth": 0,
+          "bytes": 617532,
+          "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0",
+          "extraction_root": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source"
+        }
+      ],
+      "members": [
+        {
+          "container": "source-and-verification.zip",
+          "member": "APPROACHES.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/APPROACHES.md",
+          "bytes": 6270,
+          "sha256": "de70dcc130d032f29646a7684991a32b40080a4dbe7bd1fa68768f25a7f1811e",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "8f40d027",
+          "compressed_bytes": 2845
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "DEPENDENCY_LEDGER.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/DEPENDENCY_LEDGER.md",
+          "bytes": 9483,
+          "sha256": "bc2a57da2ce7e85c1499076926aa309af38d9f0022084737de2d05af1a74e309",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "90cc6e42",
+          "compressed_bytes": 4280
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "LICENSES.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/LICENSES.md",
+          "bytes": 1356,
+          "sha256": "03055842c2fbf85b14fde5588220fd4ae0f951efe0902433a58e3635a6a0cf80",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "aaeacde6",
+          "compressed_bytes": 748
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "README.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/README.md",
+          "bytes": 3537,
+          "sha256": "ed8456f1bf90e1832bdbd3654c2f412525c39fdd173537ba3dd2f6b2bff5815e",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "99040508",
+          "compressed_bytes": 1853
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "SOURCE_MANIFEST.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/SOURCE_MANIFEST.json",
+          "bytes": 7781,
+          "sha256": "520ebb239d8da123f5eb2ebf7262f1d04f5e2051252790cc5462fc26479af886",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "445cbf7e",
+          "compressed_bytes": 2658
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "SOURCE_VERSIONS.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/SOURCE_VERSIONS.json",
+          "bytes": 1403,
+          "sha256": "8f9f24d5960a29d8c15e19c91619e563043500706818ec005599d25d805ead58",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "8b45d600",
+          "compressed_bytes": 719
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "THEOREM_LEDGER.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/THEOREM_LEDGER.md",
+          "bytes": 5778,
+          "sha256": "18646b25efe35446014edf26ceb4ac5e174cbdd196f3e45de892284399a1b8bb",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "97426389",
+          "compressed_bytes": 2629
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "VALIDATION_SCOPE.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/VALIDATION_SCOPE.md",
+          "bytes": 2251,
+          "sha256": "185d13d7eec33a1b65b121f3152b49e9548d87cdf9daac2932a8c421e8f2b4ef",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "7cc5a9c3",
+          "compressed_bytes": 1155
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "manuscript/main.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/manuscript/main.tex",
+          "bytes": 22215,
+          "sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "4791178d",
+          "compressed_bytes": 8947
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "publication/README.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/publication/README.md",
+          "bytes": 5381,
+          "sha256": "59a001967d0b2f73c8fb0c4e02bdb175aa32ff2ccf2713350ddd96078a045ffe",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "34438087",
+          "compressed_bytes": 2522
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "publication/build_upload_kit.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/publication/build_upload_kit.py",
+          "bytes": 15890,
+          "sha256": "70fa3749b16ffc49c89e7f0ff403c948857f23af4839bcb08250992e748c749a",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "cb13de5f",
+          "compressed_bytes": 5969
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "receipts/pinned_sources.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/receipts/pinned_sources.json",
+          "bytes": 3596,
+          "sha256": "1a77a2169c27dfd5bec440e8f6e08ed6f68fa460e66e8b6c72712a57452f84e3",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "72e11800",
+          "compressed_bytes": 1114
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "reproducibility/README.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/reproducibility/README.md",
+          "bytes": 9275,
+          "sha256": "1ce17781120daa448a673507880615edd740361340c30a73a391e5036067e882",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "0348a150",
+          "compressed_bytes": 4024
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "reproducibility/build_paper.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/reproducibility/build_paper.py",
+          "bytes": 2855,
+          "sha256": "edf605ca654421464eedeb841fd99011c96b280b23accc1a3d14371e4df438b2",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "200ec677",
+          "compressed_bytes": 1158
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/cohomology_adversary_checks.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/cohomology_adversary_checks.json",
+          "bytes": 5281,
+          "sha256": "67a249db71560408880f9a769a89868e59260e535eebd43084aea3c0c38138d2",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "f0547e28",
+          "compressed_bytes": 608
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/cohomology_adversary_checks.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/cohomology_adversary_checks.py",
+          "bytes": 4404,
+          "sha256": "8521a1cbb0dc7e847c7a7fec85de1166f159ab2faf941a9a4ef332a001150c1f",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "67af169a",
+          "compressed_bytes": 1620
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/draft_whole_review_1_checks.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/draft_whole_review_1_checks.json",
+          "bytes": 671,
+          "sha256": "7294b14966d6aa8e2220a1292e706bd11123aa6501d3dff385e242cb807c4cc1",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "2808562c",
+          "compressed_bytes": 235
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/draft_whole_review_1_checks.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/draft_whole_review_1_checks.py",
+          "bytes": 2778,
+          "sha256": "d98993fb72b37b59f42d878015d2f970692a9c46bc6d1e2dd4478eda48c3b108",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "76a85ac6",
+          "compressed_bytes": 1172
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/involutive_deformation_adversary_20261007.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/involutive_deformation_adversary_20261007.md",
+          "bytes": 13247,
+          "sha256": "e7111f5e42e134ea9ea16f6c55cc0db0a8c42d23ceff1931ea68ebfa014040b6",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "ae926dce",
+          "compressed_bytes": 5544
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/nonseparable_typei_extension_20261007.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/nonseparable_typei_extension_20261007.md",
+          "bytes": 16389,
+          "sha256": "dbf2f609cd9d27b45265af9951d0f058b05c9a9619b29d2a08245dfa36e465f3",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "d7cd354b",
+          "compressed_bytes": 6685
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/priority_audit_20261007.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/priority_audit_20261007.md",
+          "bytes": 37018,
+          "sha256": "20547284b6f72c892b12cfc13fa0092cfd2a0bfe1e76af9e0afb1337221503f1",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "7408c597",
+          "compressed_bytes": 14116
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/revised_checkpoint_review_symbolic_central_homotopy/original_symbolic_check.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/revised_checkpoint_review_symbolic_central_homotopy/original_symbolic_check.py",
+          "bytes": 1807,
+          "sha256": "b64d2fe2904f74861835718de311dd1788a757c34957675d13d6131747c66b8d",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "3af89e03",
+          "compressed_bytes": 726
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/roydor_full_conventions_20261007.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/roydor_full_conventions_20261007.md",
+          "bytes": 24475,
+          "sha256": "18f305e072e390cf327ea34c783c141b416bfdfd9d9dc8fff89cdd3946dd8b0d",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "0811f3e7",
+          "compressed_bytes": 10135
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "research/roydor_full_proof_scope_attack_20261007.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/research/roydor_full_proof_scope_attack_20261007.md",
+          "bytes": 28936,
+          "sha256": "399a86004e38f81325b4c29a3ab8e68ed9c8d113082f7b90c9fae555686544a2",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "baa75ae0",
+          "compressed_bytes": 11319
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "reviews/cohomology_adversary.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/reviews/cohomology_adversary.md",
+          "bytes": 16429,
+          "sha256": "12fa399a4ee4b3ee0c8b264537ee5708f26bc3ada488fa40d2f3170df9b06e2d",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "0fd012dd",
+          "compressed_bytes": 6916
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/ATTRIBUTION.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/ATTRIBUTION.md",
+          "bytes": 305,
+          "sha256": "a74bb7907189d5b7d6cd834cc21ffde6d9d33d8c8ea3fd119827615685e13fd0",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "17c5ee6e",
+          "compressed_bytes": 232
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/LICENSE",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/LICENSE",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "7b5d04bc",
+          "compressed_bytes": 3950
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/README.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/README.md",
+          "bytes": 631,
+          "sha256": "d1305a1c1c16c51f6165e32c37c90911379ed1b4505b179a5ff77c7eb422e70f",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c1f676a6",
+          "compressed_bytes": 300
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex",
+          "bytes": 1673,
+          "sha256": "59716075e2dff1fc1a65bc89996a2db5576f5e9409087d61360a1dc987a660b5",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c1094ab2",
+          "compressed_bytes": 829
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex",
+          "bytes": 1965,
+          "sha256": "61e1696d7f1413e492de8d7f5516312506d062297fc1e7fe485056ee88c0042d",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "4a0ee3e0",
+          "compressed_bytes": 876
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.bib",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.bib",
+          "bytes": 9326,
+          "sha256": "c176b67594bb8852e2dd2dbb93e622e576092fbf3ad6e20a2939de0806d800f1",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c031d42f",
+          "compressed_bytes": 2717
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex",
+          "bytes": 6534,
+          "sha256": "5f16fcade93ab16083b30bb9611d54d600f0e9e90ce75f5587c4ef915fd05b5c",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "b257d06f",
+          "compressed_bytes": 2396
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex",
+          "bytes": 10451,
+          "sha256": "ddec01dc15fa257e3f1e85004b54225dd43df633bbdfa957de98353c069ce4b2",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c63d5fec",
+          "compressed_bytes": 4214
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex",
+          "bytes": 17639,
+          "sha256": "3d1015a1c20d2cfc8a4c8991652d93eed756763cd982cbc28a53fd625b7b3314",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "933bdba9",
+          "compressed_bytes": 6849
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex",
+          "bytes": 14230,
+          "sha256": "7782c390e534a15d35d7aee470ff425fcb6823c4073b29886f3dbffbc8d31622",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c000c898",
+          "compressed_bytes": 5431
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex",
+          "bytes": 23124,
+          "sha256": "9cf9cf2b11fc838326321b4c0384904a303ecec43d732cd748c9204059f4ea60",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "ccc37755",
+          "compressed_bytes": 8792
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex",
+          "bytes": 19966,
+          "sha256": "c6c8e63bac0e543624ac63fd50a046878ba7082a531115111563455682e4d437",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "0f0e8506",
+          "compressed_bytes": 7597
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex",
+          "bytes": 2151,
+          "sha256": "3638ce1e708d4c62bc859a856cc1a3edcd7f165e5bbb0bb7a9568330f13bf867",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "c5f7a6b5",
+          "compressed_bytes": 400
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/paper.pdf",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/paper.pdf",
+          "bytes": 474519,
+          "sha256": "56ec913df9fbe4a2daf371eec1cb06ddc5b544cf9defc838aab540f33171f753",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "e4a9b815",
+          "compressed_bytes": 463917
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "sources/upstream/lean_scope_295.md",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/sources/upstream/lean_scope_295.md",
+          "bytes": 949,
+          "sha256": "e9d070126e226f55f07cdbaee5ce5ced8c660c7cda31ca0c7868c722f874f629",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "242dbb89",
+          "compressed_bytes": 500
+        },
+        {
+          "container": "source-and-verification.zip",
+          "member": "zenodo-deposit.json",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/published-source/zenodo-deposit.json",
+          "bytes": 2573,
+          "sha256": "6ba70c83463b4128180fca31aa475b0524825f23c48f9d0ec612b17cfbb36b95",
+          "safe_regular_member": true,
+          "nested_archive": null,
+          "CRC32": "2ef6901d",
+          "compressed_bytes": 1269
+        }
+      ],
+      "regular_member_occurrences": 41,
+      "container_count": 1,
+      "nested_archive_count": 0,
+      "expanded_bytes_all_depths": 845899,
+      "all_members_safely_read_and_extracted": true
+    },
+    "transport_receipt_path": "sources/api-receipts.json",
+    "transport_receipt_sha256": "fcdf12b6da8e3a565a88e53b0ee226fdb392f02252572801a2aa1f109535aea5",
+    "transport_receipt_original": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23217863",
+        "started_utc": "2026-10-25T08:30:30.744518+00:00",
+        "completed_utc": "2026-10-25T08:30:31.438408+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23217863",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:30:31 GMT",
+          "content-type": "application/json",
+          "content-length": "6968",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23217863> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792917092",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/record.raw.json",
+        "bytes": 6968,
+        "sha256": "33086ae723cbb8d2e6f5c440efbf63e0bd5ac317f9b552b6edad26d605d03b47"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23217863/versions/latest",
+        "started_utc": "2026-10-25T08:32:19.568373+00:00",
+        "completed_utc": "2026-10-25T08:32:20.745747+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23217863",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:32:20 GMT",
+          "content-type": "application/json",
+          "content-length": "6968",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23217863> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "131",
+          "x-ratelimit-reset": "1792917201",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/latest.raw.json",
+        "bytes": 6968,
+        "sha256": "33086ae723cbb8d2e6f5c440efbf63e0bd5ac317f9b552b6edad26d605d03b47"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23217863/versions",
+        "started_utc": "2026-10-25T08:32:20.747042+00:00",
+        "completed_utc": "2026-10-25T08:32:21.288287+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23217863/versions",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:32:21 GMT",
+          "content-type": "application/json",
+          "content-length": "7103",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "130",
+          "x-ratelimit-reset": "1792917201",
+          "retry-after": "59",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/versions.raw.json",
+        "bytes": 7103,
+        "sha256": "0f7af375004834d57ec63d826c383359d433c5e6937016fb100365016b5d5ee4"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23217863/files/paper.pdf/content",
+        "started_utc": "2026-10-25T08:32:21.288694+00:00",
+        "completed_utc": "2026-10-25T08:32:22.161889+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23217863/files/paper.pdf/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:32:21 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "83877",
+          "content-disposition": "attachment; filename=paper.pdf",
+          "oc-checksum": "MD5:34af03472260d79b95754fe76c87be3c",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792917201",
+          "retry-after": "59",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/paper.pdf",
+        "bytes": 83877,
+        "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content",
+        "started_utc": "2026-10-25T08:32:22.162681+00:00",
+        "completed_utc": "2026-10-25T08:32:23.986969+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:32:22 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "617532",
+          "content-disposition": "attachment; filename=source-and-verification.zip",
+          "oc-checksum": "MD5:99e23bdb2182e5f04d0643d14f147053",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792917201",
+          "retry-after": "58",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23217863/sources/source-and-verification.zip",
+        "bytes": 617532,
+        "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0"
+      }
+    ],
+    "transport_receipt_entry_count": 5,
+    "source_ready_manifest_path": "sources/SOURCE_READY_MANIFEST.json",
+    "source_ready_manifest_sha256": "4c6f4084f386eb8e20985b73828ac9cabc9b92c8e9122017895ae392ef29d1e5",
+    "source_ready_seal_path": "sources/SOURCE_READY_SEAL.json",
+    "source_ready_seal_sha256": "8d98d2c9a263caf67730208c61dca6e68fbe6d406cdcf648893fabcffecfc0ce",
+    "source_final_manifest_path": "sources/SOURCE_FINAL_MANIFEST.json",
+    "source_final_manifest_sha256": "9563960191f7c61ebf382fcd819ea888b8a253322950278f2dd13e15798292aa",
+    "source_final_manifest_original": {
+      "utc": "2026-10-25T14:56:38.453870+00:00",
+      "status": "FINAL_ORIGINAL_SOURCE_CUSTODY",
+      "source_ready_manifest_sha256": "4c6f4084f386eb8e20985b73828ac9cabc9b92c8e9122017895ae392ef29d1e5",
+      "source_ready_seal_sha256": "8d98d2c9a263caf67730208c61dca6e68fbe6d406cdcf648893fabcffecfc0ce",
+      "files": {
+        "SOURCE_READY.json": {
+          "bytes": 8128,
+          "sha256": "11f2d44b667633686e28dbcfc51020e006499b7021f01dec800d2a023998bd0b"
+        },
+        "SOURCE_READY_MANIFEST.json": {
+          "bytes": 9969,
+          "sha256": "4c6f4084f386eb8e20985b73828ac9cabc9b92c8e9122017895ae392ef29d1e5"
+        },
+        "SOURCE_READY_SEAL.json": {
+          "bytes": 393,
+          "sha256": "8d98d2c9a263caf67730208c61dca6e68fbe6d406cdcf648893fabcffecfc0ce"
+        },
+        "api-receipts.json": {
+          "bytes": 9003,
+          "sha256": "fcdf12b6da8e3a565a88e53b0ee226fdb392f02252572801a2aa1f109535aea5"
+        },
+        "archive-members.json": {
+          "bytes": 23211,
+          "sha256": "6e6a4c1cc858624ae930f8d6872cc85ff0b7b8946e832b7ccecb5f20af8cfb97"
+        },
+        "latest.raw.json": {
+          "bytes": 6968,
+          "sha256": "33086ae723cbb8d2e6f5c440efbf63e0bd5ac317f9b552b6edad26d605d03b47"
+        },
+        "normalized-metadata.json": {
+          "bytes": 11176,
+          "sha256": "782dc8f5b0f2d2c2bfe296c1145dca84c04c1e6adb694731bcaef72c5d383859"
+        },
+        "paper.pdf": {
+          "bytes": 83877,
+          "sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b"
+        },
+        "published-source/APPROACHES.md": {
+          "bytes": 6270,
+          "sha256": "de70dcc130d032f29646a7684991a32b40080a4dbe7bd1fa68768f25a7f1811e"
+        },
+        "published-source/DEPENDENCY_LEDGER.md": {
+          "bytes": 9483,
+          "sha256": "bc2a57da2ce7e85c1499076926aa309af38d9f0022084737de2d05af1a74e309"
+        },
+        "published-source/LICENSES.md": {
+          "bytes": 1356,
+          "sha256": "03055842c2fbf85b14fde5588220fd4ae0f951efe0902433a58e3635a6a0cf80"
+        },
+        "published-source/README.md": {
+          "bytes": 3537,
+          "sha256": "ed8456f1bf90e1832bdbd3654c2f412525c39fdd173537ba3dd2f6b2bff5815e"
+        },
+        "published-source/SOURCE_MANIFEST.json": {
+          "bytes": 7781,
+          "sha256": "520ebb239d8da123f5eb2ebf7262f1d04f5e2051252790cc5462fc26479af886"
+        },
+        "published-source/SOURCE_VERSIONS.json": {
+          "bytes": 1403,
+          "sha256": "8f9f24d5960a29d8c15e19c91619e563043500706818ec005599d25d805ead58"
+        },
+        "published-source/THEOREM_LEDGER.md": {
+          "bytes": 5778,
+          "sha256": "18646b25efe35446014edf26ceb4ac5e174cbdd196f3e45de892284399a1b8bb"
+        },
+        "published-source/VALIDATION_SCOPE.md": {
+          "bytes": 2251,
+          "sha256": "185d13d7eec33a1b65b121f3152b49e9548d87cdf9daac2932a8c421e8f2b4ef"
+        },
+        "published-source/manuscript/main.tex": {
+          "bytes": 22215,
+          "sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4"
+        },
+        "published-source/publication/README.md": {
+          "bytes": 5381,
+          "sha256": "59a001967d0b2f73c8fb0c4e02bdb175aa32ff2ccf2713350ddd96078a045ffe"
+        },
+        "published-source/publication/build_upload_kit.py": {
+          "bytes": 15890,
+          "sha256": "70fa3749b16ffc49c89e7f0ff403c948857f23af4839bcb08250992e748c749a"
+        },
+        "published-source/receipts/pinned_sources.json": {
+          "bytes": 3596,
+          "sha256": "1a77a2169c27dfd5bec440e8f6e08ed6f68fa460e66e8b6c72712a57452f84e3"
+        },
+        "published-source/reproducibility/README.md": {
+          "bytes": 9275,
+          "sha256": "1ce17781120daa448a673507880615edd740361340c30a73a391e5036067e882"
+        },
+        "published-source/reproducibility/build_paper.py": {
+          "bytes": 2855,
+          "sha256": "edf605ca654421464eedeb841fd99011c96b280b23accc1a3d14371e4df438b2"
+        },
+        "published-source/research/cohomology_adversary_checks.json": {
+          "bytes": 5281,
+          "sha256": "67a249db71560408880f9a769a89868e59260e535eebd43084aea3c0c38138d2"
+        },
+        "published-source/research/cohomology_adversary_checks.py": {
+          "bytes": 4404,
+          "sha256": "8521a1cbb0dc7e847c7a7fec85de1166f159ab2faf941a9a4ef332a001150c1f"
+        },
+        "published-source/research/draft_whole_review_1_checks.json": {
+          "bytes": 671,
+          "sha256": "7294b14966d6aa8e2220a1292e706bd11123aa6501d3dff385e242cb807c4cc1"
+        },
+        "published-source/research/draft_whole_review_1_checks.py": {
+          "bytes": 2778,
+          "sha256": "d98993fb72b37b59f42d878015d2f970692a9c46bc6d1e2dd4478eda48c3b108"
+        },
+        "published-source/research/involutive_deformation_adversary_20261007.md": {
+          "bytes": 13247,
+          "sha256": "e7111f5e42e134ea9ea16f6c55cc0db0a8c42d23ceff1931ea68ebfa014040b6"
+        },
+        "published-source/research/nonseparable_typei_extension_20261007.md": {
+          "bytes": 16389,
+          "sha256": "dbf2f609cd9d27b45265af9951d0f058b05c9a9619b29d2a08245dfa36e465f3"
+        },
+        "published-source/research/priority_audit_20261007.md": {
+          "bytes": 37018,
+          "sha256": "20547284b6f72c892b12cfc13fa0092cfd2a0bfe1e76af9e0afb1337221503f1"
+        },
+        "published-source/research/revised_checkpoint_review_symbolic_central_homotopy/original_symbolic_check.py": {
+          "bytes": 1807,
+          "sha256": "b64d2fe2904f74861835718de311dd1788a757c34957675d13d6131747c66b8d"
+        },
+        "published-source/research/roydor_full_conventions_20261007.md": {
+          "bytes": 24475,
+          "sha256": "18f305e072e390cf327ea34c783c141b416bfdfd9d9dc8fff89cdd3946dd8b0d"
+        },
+        "published-source/research/roydor_full_proof_scope_attack_20261007.md": {
+          "bytes": 28936,
+          "sha256": "399a86004e38f81325b4c29a3ab8e68ed9c8d113082f7b90c9fae555686544a2"
+        },
+        "published-source/reviews/cohomology_adversary.md": {
+          "bytes": 16429,
+          "sha256": "12fa399a4ee4b3ee0c8b264537ee5708f26bc3ada488fa40d2f3170df9b06e2d"
+        },
+        "published-source/sources/upstream/ATTRIBUTION.md": {
+          "bytes": 305,
+          "sha256": "a74bb7907189d5b7d6cd834cc21ffde6d9d33d8c8ea3fd119827615685e13fd0"
+        },
+        "published-source/sources/upstream/LICENSE": {
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/README.md": {
+          "bytes": 631,
+          "sha256": "d1305a1c1c16c51f6165e32c37c90911379ed1b4505b179a5ff77c7eb422e70f"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/figures/proof-map.tex": {
+          "bytes": 1673,
+          "sha256": "59716075e2dff1fc1a65bc89996a2db5576f5e9409087d61360a1dc987a660b5"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/paper.tex": {
+          "bytes": 1965,
+          "sha256": "61e1696d7f1413e492de8d7f5516312506d062297fc1e7fe485056ee88c0042d"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.bib": {
+          "bytes": 9326,
+          "sha256": "c176b67594bb8852e2dd2dbb93e622e576092fbf3ad6e20a2939de0806d800f1"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/references.tex": {
+          "bytes": 6534,
+          "sha256": "5f16fcade93ab16083b30bb9611d54d600f0e9e90ce75f5587c4ef915fd05b5c"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/01-introduction.tex": {
+          "bytes": 10451,
+          "sha256": "ddec01dc15fa257e3f1e85004b54225dd43df633bbdfa957de98353c069ce4b2"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/02-walk.tex": {
+          "bytes": 17639,
+          "sha256": "3d1015a1c20d2cfc8a4c8991652d93eed756763cd982cbc28a53fd625b7b3314"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/03-liouville.tex": {
+          "bytes": 14230,
+          "sha256": "7782c390e534a15d35d7aee470ff425fcb6823c4073b29886f3dbffbc8d31622"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/04-rigidity.tex": {
+          "bytes": 23124,
+          "sha256": "9cf9cf2b11fc838326321b4c0384904a303ecec43d732cd748c9204059f4ea60"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/sections/05-cohomology.tex": {
+          "bytes": 19966,
+          "sha256": "c6c8e63bac0e543624ac63fd50a046878ba7082a531115111563455682e4d437"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/build/supporting/typography-mappings.tex": {
+          "bytes": 2151,
+          "sha256": "3638ce1e708d4c62bc859a856cc1a3edcd7f165e5bbb0bb7a9568330f13bf867"
+        },
+        "published-source/sources/upstream/Vanishing-of-higher-bounded-Hochschild-cohomology-September-23-2026/paper.pdf": {
+          "bytes": 474519,
+          "sha256": "56ec913df9fbe4a2daf371eec1cb06ddc5b544cf9defc838aab540f33171f753"
+        },
+        "published-source/sources/upstream/lean_scope_295.md": {
+          "bytes": 949,
+          "sha256": "e9d070126e226f55f07cdbaee5ce5ced8c660c7cda31ca0c7868c722f874f629"
+        },
+        "published-source/zenodo-deposit.json": {
+          "bytes": 2573,
+          "sha256": "6ba70c83463b4128180fca31aa475b0524825f23c48f9d0ec612b17cfbb36b95"
+        },
+        "record.raw.json": {
+          "bytes": 6968,
+          "sha256": "33086ae723cbb8d2e6f5c440efbf63e0bd5ac317f9b552b6edad26d605d03b47"
+        },
+        "source-and-verification.zip": {
+          "bytes": 617532,
+          "sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0"
+        },
+        "versions.raw.json": {
+          "bytes": 7103,
+          "sha256": "0f7af375004834d57ec63d826c383359d433c5e6937016fb100365016b5d5ee4"
+        }
+      },
+      "file_count": 52,
+      "unchanged_ready_originals": 50,
+      "safe_unique_archive_members_recompared": 41,
+      "deposited_internal_manifest_entries_recompared": 40,
+      "no_original_rewritten": true
+    },
+    "source_final_seal_path": "sources/SOURCE_FINAL_SEAL.json",
+    "source_final_seal_sha256": "7a4affd82eaf6f41509a2d0810bd88db492b442581dbcaa9f4758f147702c88b",
+    "source_final_seal_original": {
+      "utc": "2026-10-25T14:56:38.454189+00:00",
+      "status": "IMMUTABLE_FINAL_SOURCE_CUSTODY",
+      "manifest": {
+        "path": "SOURCE_FINAL_MANIFEST.json",
+        "bytes": 9930,
+        "sha256": "9563960191f7c61ebf382fcd819ea888b8a253322950278f2dd13e15798292aa"
+      },
+      "all_original_ready_bindings_unchanged": true
+    },
+    "asset_root_path": "sources",
+    "pdf_sha256": "64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b",
+    "supplement_sha256": "c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0",
+    "source_tex_path": "sources/published-source/manuscript/main.tex",
+    "source_tex_sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4",
+    "abstract_tex": "\nUsing OpenAI's all-algebra bounded Hochschild vanishing theorem, we derive\nlocal ordinary complex Banach--Mazur rigidity for every von Neumann\nalgebra and its canonical predual. The threshold depends on the algebra;\nthe conclusion is Jordan $*$-isomorphism. Roydor announced the general\ncohomological implication in 2020, while his published Theorem~1.2 assumes\nseparable predual. We give an explicit extension of his geometric argument\nusing deformation stability on two fixed source algebras and reconstruction\nof odd finite type-I summands from full abelian projections. This avoids\nseparability, moving-corner perturbation constants, and enumeration of\ninfinite cardinal degrees. The cohomological input and geometric machinery\nare attributed external results; no new solution of the underlying\ncohomology problem or universal numerical threshold is claimed.\n",
+    "abstract_source": "sources/published-source/manuscript/main.tex",
+    "abstract_source_sha256": "46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4",
+    "abstract_normalization": "Complete original TeX abstract, whitespace folded; Banach--Mazur to en dash, $*$ to *, and nonbreaking ~ to space only. No omissions.",
+    "public_page_reader_pdf_count": 1,
+    "archive_regular_member_occurrences": 41,
+    "archive_container_count": 1,
+    "nested_archive_count": 0,
+    "archive_embedded_pdf_count": 1,
+    "embedded_PDF_role": "Distinct28-page OpenAI upstream supporting manuscript; not an alternative target reader.",
+    "total_distinct_target_reader_pdf_count": 1,
+    "reader_intro": "Read the complete seven-page deposited paper in the on-page PDF reader.",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "ca6fdc29e616f23460a046cd994a05837c1c170ec070fe86aef923a8048767bc",
+    "publication_state": "PRIVATE_EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "review_boundary": "Separate authenticated root scientific clearance already complete. Every later editorial/render/local/live/browser/native/public gate remains false; no source alias or shared-helper integration performed."
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T15:37:15.333223+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_scientific_status": "PASS_AT_DECLARED_EXTERNAL_THEOREM_LEVEL",
+    "root_clearance_file": "verification/root-clearance-23217863-20261025.json",
+    "root_clearance_sha256": "b8f379a432a6866d611b929b8c91a410312a36943b99051574edc135598b280a",
+    "publication_state": "PRIVATE_EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "browser_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "native_sheet_aa_url": null,
+    "root_editorial_clearance_received": false
+  }
+}

@@ -1,0 +1,40 @@
+"""Independent text contract assembled from approved fields and fixed template labels.
+This is a semantic text/anchor contract, not a CSS or browser visibility proof.
+"""
+from datetime import date
+from html.parser import HTMLParser
+import re
+class BodyText(HTMLParser):
+    def __init__(self,html):
+        super().__init__(convert_charrefs=True);self.inbody=False;self.bodies=0;self.skip=0;self.parts=[];self.anchors=[];self.current=None;self.headings=[];self.h1=None;self.feed(html)
+    def handle_starttag(self,t,attrs):
+        if t=='body':self.inbody=True;self.bodies+=1
+        if not self.inbody:return
+        if t in ('script','style'):self.skip+=1
+        if self.skip:return
+        self.parts.append(' ')
+        if t=='a':self.current=[dict(attrs),[]]
+        if t=='h1':self.h1=[]
+    def handle_endtag(self,t):
+        if not self.inbody:return
+        if t in ('script','style') and self.skip:self.skip-=1;return
+        if self.skip:return
+        self.parts.append(' ')
+        if t=='a' and self.current:self.anchors.append((self.current[0],' '.join(''.join(self.current[1]).split())));self.current=None
+        if t=='h1' and self.h1 is not None:self.headings.append(' '.join(''.join(self.h1).split()));self.h1=None
+        if t=='body':self.inbody=False
+    def handle_data(self,s):
+        if self.inbody and not self.skip:
+            self.parts.append(s)
+            if self.current:self.current[1].append(s)
+            if self.h1 is not None:self.h1.append(s)
+    @property
+    def text(self):return ' '.join(''.join(self.parts).split())
+def expected_body(c):
+    dt=date.fromisoformat(c['publication_date']);day=f'{dt.day} {dt.strftime("%B %Y")}';doi='https://doi.org/'+c['doi'];author='; '.join(c.get('authors',[c['author']]))
+    words=['Skip to content','Alec Kriebel','Research | Blog | ORCID',c['title'],f"By {author}, independent researcher. {c['publication_date_label']} {day} · {c['edition_label']} · Unrefereed preprint",f"Read the paper (PDF, {c['pdf_pages']} pages) · {c['supplement_label']} · Zenodo record · CC BY 4.0",'Plain-English explanation · Read on this page · Collaboration',c['abstract_heading'],c['abstract'],'The idea in plain English',*c['plain_language'],'The precise result',*c['result'],'Why the result holds',*c['why_it_works'],'Scope and limitations',*c['limitations'],'Status and AI use',c['status'],c['ai_disclosure']]
+    if c.get('edition_note'):words.append(c['edition_note'])
+    words+=['Read the paper',c['reader_intro'],'Open PDF in a full window · Download PDF · Download the original from Zenodo','Supporting materials',c['supplement_label']+' · Zenodo original complete ZIP','Collaborate on this result',c['collaboration'],'Authorship and responsibilities would be discussed in relation to the substantive contributions made.','Contact Alec','Cite this paper',f"{author}. ({dt.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. {doi}",'Download BibTeX','Background and prior work']
+    words += [x['title']+(' : '+x['note'] if x.get('note') else '') for x in c['background']]
+    words+=['Research home | me@aleckriebel.com','© 2013–2026 Kriebel LLC.']
+    return ' '.join(' '.join(words).split())
