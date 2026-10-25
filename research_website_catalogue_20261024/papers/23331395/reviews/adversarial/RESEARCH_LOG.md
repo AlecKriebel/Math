@@ -1,0 +1,4 @@
+# Independent adversarial review log
+
+- 2026-10-24T23:43:30Z — Began the independent review. Read the complete published manuscript and source, without consulting archived or current reviewer conclusions. Bound the review to PDF SHA-256 `f3e5619c7e1560c45f7793b0f7e4dabfbbf66d08f568f3478b5bb8f35779ea17`. Completion estimate: 20%.
+- 2026-10-24T23:45:25Z — Inspected the active primary-source statements and proofs, including same-point curve existence and arbitrary-characteristic Fano characterization, stable-map moduli, algebraic-space/scheme passage, base change/descent, and ampleness. Completed the adversarial argument review and independent boundary controls. No substantive defect identified; source-package integrity passed. Completion estimate: 100% of this review subtask, not of the overall publication goal.

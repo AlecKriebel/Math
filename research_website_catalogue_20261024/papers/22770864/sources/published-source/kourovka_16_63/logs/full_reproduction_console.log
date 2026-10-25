@@ -1,0 +1,245 @@
+$ /usr/bin/c++ --version
+c++ (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ /opt/pyvenv/bin/python3 -c import numpy, sympy; print("numpy", numpy.__version__, "sympy", sympy.__version__)
+numpy 2.3.5 sympy 1.14.0
+$ /opt/pyvenv/bin/python3 scripts/lie31.py
+{
+  "dimension": 31,
+  "nonzero_bracket_terms": 149,
+  "jacobi_basis_triples": 4495,
+  "adapted_jacobi_basis_triples": 4495,
+  "adapted_basis": [
+    "x=h",
+    "y=e+f+U1+V0+R2",
+    "t=U0",
+    "f",
+    "U1",
+    "U2",
+    "U3",
+    "U4",
+    "U5",
+    "U6",
+    "V0",
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "W0",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "W5",
+    "W6",
+    "T0",
+    "T1",
+    "T2",
+    "R0",
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "Z0"
+  ],
+  "weights": [
+    0,
+    0,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "max_abs_coefficient": 518400,
+  "max_abs_adapted_coefficient": 518400,
+  "elapsed_seconds": 0.37456246399960946,
+  "status": "Jacobi and skew symmetry passed over the integers"
+}
+$ /opt/pyvenv/bin/python3 scripts/exact_linear.py
+{
+  "prime": 1009,
+  "dimension": 31,
+  "derived_dimension": 31,
+  "centre_dimension": 1,
+  "derivation_matrix_shape": [
+    14415,
+    961
+  ],
+  "derivation_matrix_rank": 931,
+  "derivation_dimension": 30,
+  "inner_derivation_dimension": 30,
+  "Lie_subalgebra_generated_by_x_y_dimension": 31,
+  "infinitesimal_flag_stabilizer_dimension": 0,
+  "first_congruence_stabilizer_dimension": 0,
+  "elapsed_seconds": 0.7138524379997762,
+  "algorithm": "deterministic sparse modular Gaussian elimination"
+}
+$ /opt/pyvenv/bin/python3 scripts/smith_local.py --precision 12
+{"pivots": 100, "last_valuation": 1, "remaining_rows": 7204, "remaining_nnz": 17850, "seconds": 0.9734983029998148}
+{"pivots": 200, "last_valuation": 2, "remaining_rows": 7048, "remaining_nnz": 19426, "seconds": 2.157834974999787}
+{"pivots": 300, "last_valuation": 2, "remaining_rows": 6827, "remaining_nnz": 18263, "seconds": 3.35553463999986}
+{"pivots": 400, "last_valuation": 2, "remaining_rows": 6408, "remaining_nnz": 16790, "seconds": 4.45211419899988}
+{"pivots": 500, "last_valuation": 2, "remaining_rows": 5728, "remaining_nnz": 14766, "seconds": 5.4420475570000235}
+{"pivots": 600, "last_valuation": 2, "remaining_rows": 4461, "remaining_nnz": 11920, "seconds": 6.2867611749998105}
+{"pivots": 700, "last_valuation": 2, "remaining_rows": 2219, "remaining_nnz": 5739, "seconds": 6.919114815999819}
+{"pivots": 800, "last_valuation": 2, "remaining_rows": 920, "remaining_nnz": 3460, "seconds": 7.188958982999793}
+{"pivots": 900, "last_valuation": 2, "remaining_rows": 489, "remaining_nnz": 1942, "seconds": 7.441730834999817}
+{
+  "prime": 1009,
+  "precision": 12,
+  "rank": 931,
+  "scaled_smith_valuation_multiplicities": {
+    "0": 87,
+    "1": 55,
+    "2": 758,
+    "3": 6,
+    "4": 25
+  },
+  "unscaled_smith_valuation_multiplicities": {
+    "-2": 87,
+    "-1": 55,
+    "0": 758,
+    "1": 6,
+    "2": 25
+  },
+  "sum_unscaled_smith_valuations": -173,
+  "maximum_unscaled_smith_valuation": 2,
+  "elapsed_seconds": 7.566528471000311,
+  "mode": "construct_plan"
+}
+$ /opt/pyvenv/bin/python3 scripts/smith_local.py --verify-plan --precision 6
+{"pivots": 100, "last_valuation": 1, "remaining_rows": 7079, "remaining_nnz": 17203, "seconds": 0.15471423000008144}
+{"pivots": 200, "last_valuation": 2, "remaining_rows": 6923, "remaining_nnz": 18762, "seconds": 0.3967336499999874}
+{"pivots": 300, "last_valuation": 2, "remaining_rows": 6702, "remaining_nnz": 17599, "seconds": 0.5912131509999199}
+{"pivots": 400, "last_valuation": 2, "remaining_rows": 6283, "remaining_nnz": 16126, "seconds": 0.7644636939999145}
+{"pivots": 500, "last_valuation": 2, "remaining_rows": 5603, "remaining_nnz": 14102, "seconds": 0.9222171269998398}
+{"pivots": 600, "last_valuation": 2, "remaining_rows": 4336, "remaining_nnz": 11256, "seconds": 1.0633362950002265}
+{"pivots": 700, "last_valuation": 2, "remaining_rows": 2122, "remaining_nnz": 5150, "seconds": 1.165836444999968}
+{"pivots": 800, "last_valuation": 2, "remaining_rows": 893, "remaining_nnz": 2991, "seconds": 1.2278625869998905}
+{"pivots": 900, "last_valuation": 2, "remaining_rows": 423, "remaining_nnz": 1202, "seconds": 1.2626564430001963}
+{
+  "prime": 1009,
+  "precision": 6,
+  "rank": 931,
+  "scaled_smith_valuation_multiplicities": {
+    "0": 87,
+    "1": 55,
+    "2": 758,
+    "3": 6,
+    "4": 25
+  },
+  "unscaled_smith_valuation_multiplicities": {
+    "-2": 87,
+    "-1": 55,
+    "0": 758,
+    "1": 6,
+    "2": 25
+  },
+  "sum_unscaled_smith_valuations": -173,
+  "maximum_unscaled_smith_valuation": 2,
+  "elapsed_seconds": 1.3808493920000728,
+  "mode": "verify_plan"
+}
+$ /opt/pyvenv/bin/python3 scripts/export_presentation.py
+{
+  "file": "data/group_lie_presentation.json",
+  "bracket_terms": 199,
+  "pivot_plan_records": 931,
+  "group_order_exponent": 52359,
+  "full_automorphism_order_exponent": 52359
+}
+$ /opt/pyvenv/bin/python3 scripts/sanity_groups.py
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "results": [
+    {
+      "prime": 3,
+      "group_order": 27,
+      "full_automorphism_order": 54,
+      "all_generator_image_pairs_examined": 729,
+      "relator_satisfying_pairs": 135
+    },
+    {
+      "prime": 5,
+      "group_order": 125,
+      "full_automorphism_order": 500,
+      "all_generator_image_pairs_examined": 15625,
+      "relator_satisfying_pairs": 1125
+    },
+    {
+      "prime": 7,
+      "group_order": 343,
+      "full_automorphism_order": 2058,
+      "all_generator_image_pairs_examined": 117649,
+      "relator_satisfying_pairs": 4459
+    }
+  ]
+}
+$ /usr/bin/c++ -std=c++17 -O2 -Wall -Wextra -Werror -o /mnt/data/kourovka_16_63/build/independent_verify scripts/independent_verify.cpp
+$ /mnt/data/kourovka_16_63/build/independent_verify data/smith_pivot_plan.txt
+original_integer_jacobi_checks=4495
+adapted_integer_jacobi_checks=4495
+inner_rank=30 centre_dimension=1 perfect_rank=31 infinitesimal_flag_stabilizer_dimension=0 first_congruence_stabilizer_dimension=0 generated_dimension=31
+H1 highest_weight=0 cocycle_dimension=0 coboundary_dimension=0 H1_dimension=0
+H1 highest_weight=2 cocycle_dimension=3 coboundary_dimension=3 H1_dimension=0
+H1 highest_weight=4 cocycle_dimension=5 coboundary_dimension=5 H1_dimension=0
+H1 highest_weight=6 cocycle_dimension=7 coboundary_dimension=7 H1_dimension=0
+unscaled_derivation_rank_mod_p=931 derivation_dimension=30
+verified_pivots=100 valuation=1
+verified_pivots=200 valuation=2
+verified_pivots=300 valuation=2
+verified_pivots=400 valuation=2
+verified_pivots=500 valuation=2
+verified_pivots=600 valuation=2
+verified_pivots=700 valuation=2
+verified_pivots=800 valuation=2
+verified_pivots=900 valuation=2
+smith_valuation=0 multiplicity=87
+smith_valuation=1 multiplicity=55
+smith_valuation=2 multiplicity=758
+smith_valuation=3 multiplicity=6
+smith_valuation=4 multiplicity=25
+prime=1009 precision=6 modulus=1055229678769825441 derivation_rank=931 nullity=30 sum_smith_valuations=1689
+candidate_quotient_depth=1689 candidate_group_order_exponent=52359 predicted_aut_order_exponent=52359
+elapsed_seconds=0.491151
+ALL_CHECKS_PASSED
+{
+  "changed_record": 0,
+  "original_valuation": 0,
+  "corrupted_valuation": 5,
+  "exit_code": 1,
+  "stderr": "VERIFICATION_FAILED: pivot valuation mismatch",
+  "corrupted_certificate_rejected": true
+}
+
+REPRODUCTION_PASSED: exact certificate checks and corrupted-certificate rejection.
+The mathematical proof is in report/kourovka_16_63.pdf.

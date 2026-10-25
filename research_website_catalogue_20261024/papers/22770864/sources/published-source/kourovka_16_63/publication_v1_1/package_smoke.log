@@ -1,0 +1,72 @@
+$ /usr/bin/c++ --version
+Apple clang version 21.0.0 (clang-2100.1.1.101)
+Target: arm64-apple-darwin25.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/sanity_groups.py
+{
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "results": [
+    {
+      "prime": 3,
+      "group_order": 27,
+      "full_automorphism_order": 54,
+      "all_generator_image_pairs_examined": 729,
+      "relator_satisfying_pairs": 135
+    },
+    {
+      "prime": 5,
+      "group_order": 125,
+      "full_automorphism_order": 500,
+      "all_generator_image_pairs_examined": 15625,
+      "relator_satisfying_pairs": 1125
+    },
+    {
+      "prime": 7,
+      "group_order": 343,
+      "full_automorphism_order": 2058,
+      "all_generator_image_pairs_examined": 117649,
+      "relator_satisfying_pairs": 4459
+    }
+  ]
+}
+$ /usr/bin/c++ -std=c++17 -O2 -Wall -Wextra -Werror -o /Users/alec/Documents/Math/kourovka_16_63/audit/computation_work/revision_smoke_6ar_1ti4/kourovka_16_63/build/independent_verify scripts/independent_verify.cpp
+$ /Users/alec/Documents/Math/kourovka_16_63/audit/computation_work/revision_smoke_6ar_1ti4/kourovka_16_63/build/independent_verify data/smith_pivot_plan.txt
+original_integer_jacobi_checks=4495
+adapted_integer_jacobi_checks=4495
+inner_rank=30 centre_dimension=1 perfect_rank=31 infinitesimal_flag_stabilizer_dimension=0 first_congruence_stabilizer_dimension=0 generated_dimension=31
+H1 highest_weight=0 cocycle_dimension=0 coboundary_dimension=0 H1_dimension=0
+H1 highest_weight=2 cocycle_dimension=3 coboundary_dimension=3 H1_dimension=0
+H1 highest_weight=4 cocycle_dimension=5 coboundary_dimension=5 H1_dimension=0
+H1 highest_weight=6 cocycle_dimension=7 coboundary_dimension=7 H1_dimension=0
+unscaled_derivation_rank_mod_p=931 derivation_dimension=30
+verified_pivots=100 valuation=1
+verified_pivots=200 valuation=2
+verified_pivots=300 valuation=2
+verified_pivots=400 valuation=2
+verified_pivots=500 valuation=2
+verified_pivots=600 valuation=2
+verified_pivots=700 valuation=2
+verified_pivots=800 valuation=2
+verified_pivots=900 valuation=2
+smith_valuation=0 multiplicity=87
+smith_valuation=1 multiplicity=55
+smith_valuation=2 multiplicity=758
+smith_valuation=3 multiplicity=6
+smith_valuation=4 multiplicity=25
+prime=1009 precision=6 modulus=1055229678769825441 derivation_rank=931 nullity=30 sum_smith_valuations=1689
+candidate_quotient_depth=1689 candidate_group_order_exponent=52359 predicted_aut_order_exponent=52359
+elapsed_seconds=0.216848
+ALL_CHECKS_PASSED
+{
+  "changed_record": 0,
+  "original_valuation": 0,
+  "corrupted_valuation": 5,
+  "exit_code": 1,
+  "stderr": "VERIFICATION_FAILED: pivot valuation mismatch",
+  "corrupted_certificate_rejected": true
+}
+
+REPRODUCTION_PASSED: exact certificate checks and corrupted-certificate rejection.
+The mathematical proof is in report/kourovka_16_63.pdf.

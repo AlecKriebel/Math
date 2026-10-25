@@ -1,0 +1,169 @@
+--- original/report/kourovka_16_63.tex
++++ publication/report/kourovka_16_63.tex
+@@ -7,8 +7,16 @@
+ \usepackage{microtype}
+ \usepackage{xcolor}
+ \usepackage{hyperref}
++\usepackage{fancyhdr}
++\pagestyle{fancy}
++\fancyhf{}
++\fancyhead[L]{\small Alec Kriebel}
++\fancyhead[R]{\small Kourovka Notebook 16.63}
++\fancyfoot[C]{\thepage}
++\setlength{\headheight}{14pt}
+ \hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,
+  pdftitle={An explicit odd-order p-group with as many automorphisms as elements},
++ pdfauthor={Alec Kriebel},
+  pdfsubject={Computer-assisted solution to Kourovka Notebook problem 16.63}}
+ \newtheorem{theorem}{Theorem}[section]
+ \newtheorem{lemma}[theorem]{Lemma}
+@@ -33,9 +41,12 @@
+ \newcommand{\TT}{\mathcal T}
+ \newcommand{\FF}{\mathcal F}
+ \setlength{\emergencystretch}{2em}
++\AtBeginDocument{\setlength{\abovedisplayshortskip}{7pt}}
+ \title{An explicit odd-order $p$-group with as many\\automorphisms as elements\\[5pt]
+ \large A computer-assisted solution to Kourovka Notebook problem 16.63}
+-\author{}
++\author{Alec Kriebel\\[3pt]
++\small Independent researcher\\
++\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+ \date{14 September 2026}
+ \begin{document}
+ \maketitle
+@@ -50,15 +61,29 @@
+ integral logarithm--exponential neighborhood. This gives a bijection between the
+ \emph{full} automorphism set and the kernel of a linear derivation matrix.
+ Exact independently implemented Python and C++ computations establish the
+-Smith valuations of that matrix. This is a proof with reproducible computational
+-certificates, not a catalogue search or a count of a restricted automorphism
+-subgroup. No external peer review or proof-assistant formalization is claimed.
++Smith valuations of that matrix. The resulting computer-assisted proof answers the existence question
++affirmatively. The construction and all exact certificates are supplied
++with separately implemented verification software.
+ \end{abstract}
++\medskip
++\noindent\textbf{Mathematics Subject Classification (2020):} 20D45, 20D15, 17B40.\\
++\textbf{Keywords:} finite $p$-groups; automorphism groups; Lie lattices;
++Lazard correspondence; Smith normal form.
++
++\medskip
++\noindent\textbf{AI attribution.} ChatGPT-6 Astra Pro solved the problem and
++developed the construction, proof, and supporting scripts, as attributed by
++the author. This edition was independently checked by Codex using separate
++AI review agents and exact computational reproduction. These checks are not
++external human peer review or a proof-assistant formalization.
++
++\clearpage
+ {\small\tableofcontents}
++\clearpage
+ 
+ \section{Statement, sources, and scope}
+-The question attributed to D. MacHale in the September 2026 version of the
+-\emph{Kourovka Notebook}, problem 16.63, asks for a nontrivial finite $p$-group of
++Problem 16.63, attributed to D. MacHale in the September 2026 version of the
++\emph{Kourovka Notebook}, asks for a nontrivial finite $p$-group of
+ odd order with $|\Aut(G)|=|G|$ \cite{KN}. It appears on printed page 102 and
+ cross-refers to Archive 12.77 on printed page 255. The latter is the separate,
+ now-disproved divisibility conjecture. The notebook website identifies its
+@@ -288,7 +313,8 @@
+ \begin{equation}\label{eq:block}
+  M^T M=a^3 I_2,\qquad wM=a^2w.
+ \end{equation}
+-As $ww^T=2\ne0$, these imply $2a^4=2a^3$, hence $a=1$.
++Since $M$ is invertible, also $MM^T=a^3I_2$. As $ww^T=2\ne0$,
++these imply $2a^4=2a^3$, hence $a=1$.
+ An orthogonal matrix fixing $w$ acts by $+1$ or $-1$ on its one-dimensional
+ orthogonal complement. Thus $M=I$ or the swap matrix. The $Z$ bracket gives
+ $d=\det M$. Consequently $\phi=1$ or $\tau$.
+@@ -392,7 +418,9 @@
+ Lie subring, $L$ is one: $[L,L]\subset p^4B\subset p^2A=L$.
+ For $i\ge1$ write $\bar L_i=L/p^iL$.
+ The basis $\ell_j=p^{2+w_j}b_j$ identifies its additive group with
+-$(\mathbb Z/p^i\mathbb Z)^{31}$.
++$(\mathbb Z/p^i\mathbb Z)^{31}$. Every additive endomorphism of this
++finite Lie ring is automatically $\mathbb Z/p^i\mathbb Z$-linear,
++so the matrix description includes every Lie-ring automorphism.
+ 
+ Let $\mu$ be the bracket of $B$ and let $\nu=p^2\mu$ on the module $A$.
+ Under $a\mapsto p^2a$, $(A,\nu)$ is isomorphic to $L$.
+@@ -503,6 +531,9 @@
+ \begin{proof}
+ Let $Q$ act on bracket tensors by
+ $\rho_\TT(Q)\eta=Q\eta(Q^{-1}\cdot,Q^{-1}\cdot)$.
++The condition $\rho_\TT(Q)\nu-\nu\in p^i\TT$ is equivalent to the
++ordinary bracket-preservation condition: precompose both inputs with $Q$,
++which is invertible on $A$ and preserves $p^i\TT$.
+ Its differential $X=\rho_{\TT,*}(D)$ is the operator
+ \[
+  X\eta=D\eta-\eta(D\cdot,\cdot)-\eta(\cdot,D\cdot).
+@@ -711,12 +742,22 @@
+ \end{verbatim}
+ The bundle includes executed logs, the coefficient tables, both independent
+ implementations, the Smith pivot plan, and the unscaled rank certificate.
+-The verified software versions were Python 3.13.5, NumPy 2.3.5, SymPy 1.14.0,
+-and g++ 14.2.0 (Debian 14.2.0-19). The strict verification build used
++The original supplied run used Python 3.13.5, NumPy 2.3.5, SymPy 1.14.0,
++and g++ 14.2.0 (Debian 14.2.0-19). Independent full regeneration for this
++edition used Python 3.12.14, NumPy 2.3.5, SymPy 1.14.0, and Apple Clang
++21.0.0 on macOS 26.6.2 (arm64). The only verifier repair was an
++indentation-only portability correction for Clang. The strict build used
+ \texttt{-std=c++17 -O2 -Wall -Wextra -Werror}.
+ The C++ local modulus was the exact integer
+ $1009^6=1055229678769825441$; products use 128-bit arithmetic.
+-The measured times in the logs describe this environment only.
++The measured times in each log describe its recorded environment only.
++Fresh records are in \texttt{audit/reproduction/}. A third implementation
++using arbitrary-precision Python integers independently reconstructs the
++brackets, checks the exported presentation and a $931$-square rank minor,
++and verifies the Smith data at precision five. A separate implementation
++checks the finite-field generation, involution, cohomology, and flag ranks.
++The C++ verifier also passes an address- and undefined-behavior-sanitized
++build. The independent audit reports record the scope of each check.
+ 
+ \subsection{What the computations do and do not certify}
+ The finite computations verify Jacobi, generation, cohomology dimensions,
+@@ -734,6 +775,7 @@
+ input, not independent human peer review. No formal proof assistant or
+ external reviewer is claimed.
+ 
++\clearpage
+ \appendix
+ \section{Selected inspected output}
+ The final independent C++ run includes
+@@ -764,7 +806,7 @@
+ \emph{The Kourovka Notebook: Unsolved Problems in Group Theory},
+ 21st edition, update of 1 September 2026. Problem 16.63, p. 102;
+ Archive 12.77, p. 255.
+-\url{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf}.
++\href{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf}{September 2026 edition (PDF)}.
+ 
+ \bibitem{GSJ}
+ J. Gonz\'alez-S\'anchez and A. Jaikin-Zapirain,
+@@ -777,8 +819,8 @@
+ \emph{On equality of order of a finite $p$-group and order of its automorphism group},
+ Bull. Malaysian Math. Sci. Soc. 38 (2015), 461--466.
+ \url{https://doi.org/10.1007/s40840-014-0030-z}.
+-Author-accepted version inspected:
+-\url{https://math.usm.my/bulletin/pdf/acceptedpapers/2012-10-027-R1.pdf}.
++Also available as the
++\href{https://math.usm.my/bulletin/pdf/acceptedpapers/2012-10-027-R1.pdf}{author-accepted manuscript (PDF)}.
+ 
+ \bibitem{OR}
+ B. Omirov and J. Ruan,
+@@ -790,13 +832,13 @@
+ M. Lazard,
+ \emph{Sur les groupes nilpotents et les anneaux de Lie},
+ Ann. Sci. \'Ecole Norm. Sup. (3) 71 (1954), 101--190.
+-\url{https://www.numdam.org/item/?id=ASENS_1954_3_71_2_101_0}.
++\href{https://www.numdam.org/item/?id=ASENS_1954_3_71_2_101_0}{NUMDAM archive}.
+ 
+ \bibitem{CDV}
+ S. Cical\`o, W. A. de Graaf and M. Vaughan-Lee,
+ \emph{An effective version of the Lazard correspondence},
+ J. Algebra 352 (2012), 430--450, especially pp. 430, 433--434.
+ \url{https://doi.org/10.1016/j.jalgebra.2011.11.031}.
+-\url{https://iris.unitn.it/retrieve/e3835192-3015-72ef-e053-3705fe0ad821/lazard.pdf}.
++\href{https://iris.unitn.it/retrieve/e3835192-3015-72ef-e053-3705fe0ad821/lazard.pdf}{author-hosted manuscript (PDF)}.
+ \end{thebibliography}
+ \end{document}

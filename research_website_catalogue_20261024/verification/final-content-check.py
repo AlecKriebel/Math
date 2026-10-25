@@ -1,0 +1,107 @@
+"""Verify rendered research content. Supported source layouts: the four IDs in TEX_PATHS.
+Uses Python standard library plus an existing pdftotext executable; installs nothing.
+"""
+from pathlib import Path
+from html.parser import HTMLParser
+from urllib.parse import urlsplit,urljoin,unquote
+import json,hashlib,re,datetime,subprocess,zipfile,unicodedata,argparse
+from html import unescape
+parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+parser.add_argument('--output-stem',default='final-content-check')
+args=parser.parse_args()
+if not re.fullmatch(r'[a-zA-Z0-9_-]+',args.output_stem):parser.error('output-stem must be a simple filename stem')
+R=Path(__file__).resolve().parents[1]
+S=args.site
+TEX_PATHS={
+ '23539283':'free-product-tensor-core-verification/manuscript/main.tex',
+ '23577484':'main.tex',
+ '23310484':'manuscript.tex',
+ '23331395':'paper.tex',
+}
+LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim'}
+def abstract_tokens(tex):
+ for old,new in LATEX_WORDS.items():tex=tex.replace(old,new)
+ commands=re.findall(r'\\[A-Za-z]+',tex)
+ if commands:raise ValueError('Unrecognized abstract TeX commands: '+repr(commands))
+ return wt(tex)
+class Doc(HTMLParser):
+ def __init__(self,p):
+  super().__init__();self.a=[];self.text=[];self.feed(p.read_text())
+ def handle_starttag(self,t,a):self.a.append((t,dict(a)))
+ def handle_data(self,t):self.text.append(t)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def wt(t):return re.findall('[A-Za-z0-9]+|[\u0370-\u03ff]',unicodedata.normalize('NFKC',t))
+result={'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),'papers':{},'issues':[]}
+index=(S/'research/index.html').read_text(); sitemap=(S/'research/sitemap.xml').read_text()
+for rid in args.record_ids:
+ p=R/'papers'/rid;c=json.loads((p/'publication.json').read_text());f=S/'research'/c['slug']/'index.html';h=f.read_text();d=Doc(f);base='https://aleckriebel.com/research/'+c['slug']+'/';checks={}
+ def test(k,v):
+  checks[k]=bool(v)
+  if not v:result['issues'].append(rid+': '+k)
+ meta={a.get('name',a.get('property')):a.get('content') for t,a in d.a if t=='meta'}
+ test('title',unescape(re.search('<title>(.*?)</title>',h).group(1))==c['title']+' | Alec Kriebel')
+ for k,v in {'description':c['description'],'citation_title':c['title'],'citation_author':c['author'],'citation_publication_date':c['publication_date'].replace('-','/'),'citation_doi':c['doi'],'citation_pdf_url':base+c['pdf_filename'],'citation_author_orcid':'0009-0001-9320-500X','og:title':c['title'],'og:description':c['description'],'og:url':base,'article:published_time':c['publication_date']}.items():test(k,meta[k]==v)
+ test('canonical',[a['href'] for t,a in d.a if t=='link' and a.get('rel')=='canonical']==[base])
+ schemas=[json.loads(x) for x in re.findall('<script type="application/ld\\+json">(.*?)</script>',h,re.S)]
+ art=next(x for x in schemas[0]['@graph'] if x['@type']=='ScholarlyArticle')
+ test('jsonld',all(art[k]==c[k] for k in ['description','abstract','version']) and art['name']==c['title'] and art['datePublished']==c['publication_date'] and art['sameAs']=='https://doi.org/'+c['doi'] and art['encoding']['contentUrl']==base+c['pdf_filename'] and art['author'][0]['name']==c['author'] and art['identifier']['value']==c['doi'])
+ for sec,key in [('abstract','abstract'),('plain-language','plain_language'),('result','result'),('proof','why_it_works'),('limits','limitations')]:
+  segment=re.search('<section id="'+sec+'">(.*?)</section>',h,re.S).group(1)
+  paras=[unescape(x) for x in re.findall('<p>(.*?)</p>',segment,re.S)]
+  test(sec,paras==(c[key] if isinstance(c[key],list) else [c[key]]))
+ textpath=p/'sources/published-source'/TEX_PATHS[rid]
+ a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',textpath.read_text(),re.S).group(1)
+ test('abstract_full_source_words',abstract_tokens(a)==wt(c['abstract']))
+ test('no_noindex','noindex' not in meta.get('robots',''))
+ test('no_audit_replay',not any(x in ''.join(d.text).lower() for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
+ test('no_followup',c['follow_up'] is None and 'id="further-research"' not in h)
+ test('authorship_once',h.count('Authorship and responsibilities would be discussed in relation to the substantive contributions made.')==1)
+ ids=[a['id'] for t,a in d.a if 'id' in a];test('unique_ids',len(ids)==len(set(ids)))
+ local=[]
+ for tag,attrs in d.a:
+  for key in ['href','src']:
+   if key not in attrs:continue
+   u=urlsplit(urljoin(base,attrs[key]))
+   if u.netloc!='aleckriebel.com':continue
+   q=S/unquote(u.path).lstrip('/')
+   if q.is_dir():q=q/'index.html'
+   good=q.is_file()
+   if good and q.suffix=='.html' and u.fragment:good=unquote(u.fragment) in [b['id'] for _,b in Doc(q).a if 'id' in b]
+   local.append(good)
+ test('local_links_anchors',all(local))
+ receipt=json.loads((p/'sources/receipt.json').read_text()); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
+ for key in ['pdf_filename','supplement_filename']:
+  name=c[key];actual=sha(f.parent/name);hashes[name]=actual
+  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if x['name']==name))
+ with zipfile.ZipFile(f.parent/c['supplement_filename']) as z:test('zip_integrity',z.testzip() is None)
+ texts=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/c['pdf_filename']),'-'],text=True).split('\f')
+ if not texts[-1].strip():texts.pop()
+ test('pdf_searchable',all(len(t.strip())>100 for t in texts));test('page_count',f'PDF, {len(texts)} pages' in h)
+ frames=[a for t,a in d.a if t=='iframe'];test('iframe',len(frames)==1 and frames[0]['src']==c['pdf_filename']+'#view=FitH' and bool(frames[0].get('title')))
+ test('index_entry',f'href="/research/{c["slug"]}/"' in index and c['description'] in unescape(index))
+ ix=json.loads(re.search('<script type="application/ld\\+json">(.*?)</script>',index,re.S).group(1));items=ix['mainEntity']['itemListElement'];test('index_jsonld',len([x for x in items if x['url']==base and x['name']==c['title']])==1 and ix['mainEntity']['numberOfItems']==len(items))
+ test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
+ bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],c['author'],c['doi'],'version '+c['version']]))
+ test('background_links',all(x['url'] in h and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
+ record=json.loads((p/'sources/record.json').read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','version','publication_date']))
+ if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
+ if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
+ if rid=='23331395':test('scope_complete',all(x in unescape(h) for x in ['smooth integral projective variety','arbitrary characteristic','one closed point','mult_x(ρ_*Γ)','inseparable degree']))
+ result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
+result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
+result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'
+try:
+ target=R/'verification'/args.output_stem
+ target.with_suffix('.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+ lines=['# Final content QA','',result['time'],'','Status: '+result['status'],'','Completion: 100% of requested checks executed.','',
+ 'Read-only checks of generated content against approved publication data and published source. Browser rendering and external HTTP checks are separate.','']
+ for rid,item in result['papers'].items():
+  lines += [rid+': '+str(sum(item['checks'].values()))+'/'+str(len(item['checks']))+' checks passed; '+str(item['local_links_checked'])+' local links/anchors; '+str(item['pdf_pages'])+' searchable PDF pages.','']
+ lines += ['Issues: '+('; '.join(result['issues']) or 'None.'),'','SHA-256 bindings and individual checks are recorded in the accompanying JSON.']
+ target.with_suffix('.md').write_text('\n'.join(lines)+'\n')
+ result['saved']=True
+except OSError as error:result['saved']=False;result['save_error']=str(error)
+print(json.dumps(result,ensure_ascii=False))
+raise SystemExit(0 if result['status']=='PASS' and result['saved'] else 1)

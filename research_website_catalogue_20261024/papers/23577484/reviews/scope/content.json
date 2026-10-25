@@ -1,0 +1,132 @@
+{
+  "slug": "logarithmic-bray-sampling",
+  "pdf": "bray-sp-o.pdf",
+  "zip": "bray-sp-o-source-and-verification.zip",
+  "seo_description": "Logarithmic sample bounds for Bray’s involution-centraliser construction in large symplectic and orthogonal groups over odd finite fields. Paper and proofs.",
+  "plain_language": [
+    "An involution is a symmetry that undoes itself when applied twice. Its centraliser consists of the symmetries that commute with it. Finding generators for this centraliser is an important step in algorithms that recognize finite matrix groups.",
+    "Bray’s construction produces commuting elements from random group elements. This paper studies how many random selections are sufficient when the starting involution splits the underlying space into two reasonably balanced eigenspaces.",
+    "For symplectic and orthogonal groups over odd finite fields, in sufficiently large dimension n, the paper proves that the number of independent uniform samples needed grows logarithmically with n at fixed confidence. The generated subgroup contains the centraliser’s second derived subgroup. The two eigenspaces are treated separately; the same output need not be strong on both."
+  ],
+  "central_result": "For all sufficiently large natural dimensions n, every odd prime power q, and every actual strong involution t in Sp(V), O(V), SO(V), or Ω(V), each separately specified t-eigenspace receives a strong restriction of z(g)=inv(tt^g) with probability at least c/log n under uniform g. One may take c=1/40000 in the symplectic case and c=1/5000000 in the orthogonal cases. For every 0<δ<1, O(log n · (1+log(1/δ))) independent uniform samples produce outputs generating a subgroup containing C_G(t)″ with probability at least 1−δ.",
+  "exact_result_tex": "\\mathbb P\\!\\left(z(g)|_{E_\\varepsilon(t)}\\text{ is strong}\\right)\\ge\\frac{c}{\\log n}\\quad(\\varepsilon\\in\\{+,-\\}\\text{ separately}),\\qquad O\\!\\left(\\log n\\left(1+\\log(1/\\delta)\\right)\\right)\\text{ samples suffice for }C_G(t)^{\\prime\\prime}.",
+  "why_it_matters": "The theorem supplies the logarithmic even-branch sampling bounds for symplectic and orthogonal groups requested in the 2016 Oberwolfach problem. Analogous linear and unitary results are prior work.",
+  "limits": [
+    "The result is asymptotic in natural dimension and assumes independent, exactly uniform samples. It does not give a total running-time bound or a method for certifying when generation has succeeded.",
+    "The marginal thresholds are n≥49152 for symplectic groups and n≥98304 for orthogonal groups. The generation theorem also depends on an unspecified absolute constant in a published maximal-subgroup bound.",
+    "The two eigenspace events are separate. Simultaneous strength can be impossible even in arbitrarily large dimensions.",
+    "The theorem does not cover every dimension, characteristic two, similitude groups, projective involutions, or order-four lifts.",
+    "This is an unrefereed preprint. Finite diagnostics support selected interfaces; the universal conclusion depends on the written proof and its stated structural inputs. Bounded literature comparison does not establish worldwide firstness."
+  ],
+  "prior_work": [
+    {
+      "title": "John N. Bray, An improved method for generating the centralizer of an involution (2000)",
+      "url": "https://doi.org/10.1007/s000130050437",
+      "role": "The underlying centraliser construction."
+    },
+    {
+      "title": "Cheryl E. Praeger, Finding strong involutions in finite classical groups in odd characteristic (2016)",
+      "url": "https://ems.press/content/serial-article-files/46642",
+      "role": "Pages 2160–2161 state the logarithmic even-branch sampling problem, with one specified eigenspace at a time."
+    },
+    {
+      "title": "Dixon, Praeger and Seress, Strong involutions in finite special linear groups of odd characteristic (2018)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2017.11.047",
+      "role": "Establishes the linear marginal result and antecedent distinguished-2-part methods."
+    },
+    {
+      "title": "Glasby, Praeger and Roney-Dougal, Involution centralisers in finite unitary groups of odd characteristic (2020)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2019.09.009",
+      "role": "Establishes the unitary marginal and linear/unitary generation results; its separate-block and final diagonal-escape strategy is a credited antecedent."
+    },
+    {
+      "title": "Timothy C. Burness, Fixed point ratios in actions of finite classical groups, I (2007)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2006.05.024",
+      "role": "The fixed-point-ratio input for non-subspace maximal subgroup actions."
+    },
+    {
+      "title": "Liebeck, Pyber and Shalev, On a conjecture of G. E. Wall (2007)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2006.10.047",
+      "role": "The maximal-subgroup count used in the generation argument."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on independent verification of the group-theoretic and sampling arguments, especially the orthogonal cases and the passage from component generation to the full centraliser target, or on developing a journal submission. Authorship would reflect the contributions made to that work.",
+  "followup_questions": [],
+  "followup_rationale": "None recommended. Sharper constants and lower dimension thresholds alone do not meet the requested significance bar. Near-uniform sampling is closely related to prior methods and is not a credible new headline. Projective lifts and total-complexity questions would require a separate precise literature and algorithmic study before being presented as substantial new follow-ups.",
+  "proof_summary": [
+    "Represent selected conjugate involutions by graph subspaces and convert their unconditional probability masses into counts of squarefree polynomials and self-adjoint operators.",
+    "Select a distinguished polynomial factor whose eigenvalue orders have a larger 2-part than all the others, forcing a strong Bray restriction on the chosen eigenspace. In the orthogonal case retain determinant and spinor constraints.",
+    "Use prescribed-class generation, independent blocks of samples, and a separate quotient-graph argument to obtain the centraliser target at the stated confidence."
+  ],
+  "record_id": "23577484",
+  "title": "Logarithmic Bray sampling in symplectic and orthogonal groups",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "publication_date": "2026-10-22",
+  "version": "1.0.0",
+  "doi": "10.5281/zenodo.23577484",
+  "zenodo_url": "https://zenodo.org/records/23577484",
+  "status": "Unrefereed preprint",
+  "abstract_tex": "Let $t$ be an actual involution in a natural finite symplectic or orthogonal group over a field of odd order, with both eigenspaces of dimension between one third and two thirds of the natural dimension $n$. For each eigenspace separately we prove an unconditional $c/\\log n$ lower bound for the probability that the even branch of Bray's construction induces a strong involution on that eigenspace. A graph chart reduces the problem to squarefree polynomials and self-adjoint operators. In the orthogonal case the argument retains all four determinant-character sectors, including $q=3$ and zero-dimensional complements, and gives a square-spinor refinement. We prove a uniform theorem on 192 independently prescribed strong-involution classes using established fixed-point-ratio and maximal-subgroup bounds. A separate quotient-graph argument then proves that $O(\\log n(1+\\log(1/\\delta)))$ independent uniform samples generate a subgroup containing $C_G(t)''$, with probability at least $1-\\delta$, for all sufficiently large $n$. This addresses the symplectic and orthogonal parts of the sampling problem recorded in 2016. The corresponding linear and unitary results are prior work. The assertion concerns sample count in natural matrix groups, not total running time or all dimensions.",
+  "abstract_source": "Verbatim wording of the published PDF abstract; line-break hyphenation and ligatures normalized, mathematical notation represented in Unicode/plain text. Exact TeX retained separately.",
+  "ai_disclosure": "AI tools were used extensively in the research, proof development, computation, literature review, and writing. This is an unrefereed preprint and has not undergone formal independent human peer review.",
+  "reviewed_utc": "2026-10-24T23:36:06.327334+00:00",
+  "citation": "Kriebel, Alec (2026). Logarithmic Bray sampling in symplectic and orthogonal groups. Version 1.0.0. Zenodo. https://doi.org/10.5281/zenodo.23577484",
+  "source_binding": {
+    "pdf_sha256": "2384d12cb9335141d01e0093297e2d6e7efa6e1e9e7ddc6f6e7af4b40b4287a4",
+    "manuscript_sha256": "a875aa501657f38c0086a4353abd7555e140c2acf5b4e69bfb560482e04f6da7"
+  },
+  "description": "Logarithmic sample bounds for Bray’s involution-centraliser construction in large symplectic and orthogonal groups over odd finite fields. Paper and proofs.",
+  "abstract": "Let t be an actual involution in a natural finite symplectic or orthogonal group over a field of odd order, with both eigenspaces of dimension between one third and two thirds of the natural dimension n. For each eigenspace separately we prove an unconditional c/log n lower bound for the probability that the even branch of Bray’s construction induces a strong involution on that eigenspace. A graph chart reduces the problem to squarefree polynomials and self-adjoint operators. In the orthogonal case the argument retains all four determinant-character sectors, including q = 3 and zero-dimensional complements, and gives a square-spinor refinement. We prove a uniform theorem on 192 independently prescribed strong-involution classes using established fixed-point-ratio and maximal-subgroup bounds. A separate quotient-graph argument then proves that O(log n(1+log(1/δ))) independent uniform samples generate a subgroup containing C_G(t)″, with probability at least 1−δ, for all sufficiently large n. This addresses the symplectic and orthogonal parts of the sampling problem recorded in 2016. The corresponding linear and unitary results are prior work. The assertion concerns sample count in natural matrix groups, not total running time or all dimensions.",
+  "result": [
+    "For all sufficiently large natural dimensions n, every odd prime power q, and every actual strong involution t in Sp(V), O(V), SO(V), or Ω(V), each separately specified t-eigenspace receives a strong restriction of z(g)=inv(tt^g) with probability at least c/log n under uniform g. One may take c=1/40000 in the symplectic case and c=1/5000000 in the orthogonal cases. For every 0<δ<1, O(log n · (1+log(1/δ))) independent uniform samples produce outputs generating a subgroup containing C_G(t)″ with probability at least 1−δ.",
+    "The theorem supplies the logarithmic even-branch sampling bounds for symplectic and orthogonal groups requested in the 2016 Oberwolfach problem. Analogous linear and unitary results are prior work."
+  ],
+  "limitations": [
+    "The result is asymptotic in natural dimension and assumes independent, exactly uniform samples. It does not give a total running-time bound or a method for certifying when generation has succeeded.",
+    "The marginal thresholds are n≥49152 for symplectic groups and n≥98304 for orthogonal groups. The generation theorem also depends on an unspecified absolute constant in a published maximal-subgroup bound.",
+    "The two eigenspace events are separate. Simultaneous strength can be impossible even in arbitrarily large dimensions.",
+    "The theorem does not cover every dimension, characteristic two, similitude groups, projective involutions, or order-four lifts.",
+    "This is an unrefereed preprint. Finite diagnostics support selected interfaces; the universal conclusion depends on the written proof and its stated structural inputs. Bounded literature comparison does not establish worldwide firstness."
+  ],
+  "background": [
+    {
+      "title": "John N. Bray, An improved method for generating the centralizer of an involution (2000)",
+      "url": "https://doi.org/10.1007/s000130050437",
+      "note": "The underlying centraliser construction."
+    },
+    {
+      "title": "Cheryl E. Praeger, Finding strong involutions in finite classical groups in odd characteristic (2016)",
+      "url": "https://ems.press/content/serial-article-files/46642",
+      "note": "Pages 2160–2161 state the logarithmic even-branch sampling problem, with one specified eigenspace at a time."
+    },
+    {
+      "title": "Dixon, Praeger and Seress, Strong involutions in finite special linear groups of odd characteristic (2018)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2017.11.047",
+      "note": "Establishes the linear marginal result and antecedent distinguished-2-part methods."
+    },
+    {
+      "title": "Glasby, Praeger and Roney-Dougal, Involution centralisers in finite unitary groups of odd characteristic (2020)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2019.09.009",
+      "note": "Establishes the unitary marginal and linear/unitary generation results; its separate-block and final diagonal-escape strategy is a credited antecedent."
+    },
+    {
+      "title": "Timothy C. Burness, Fixed point ratios in actions of finite classical groups, I (2007)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2006.05.024",
+      "note": "The fixed-point-ratio input for non-subspace maximal subgroup actions."
+    },
+    {
+      "title": "Liebeck, Pyber and Shalev, On a conjecture of G. E. Wall (2007)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2006.10.047",
+      "note": "The maximal-subgroup count used in the generation argument."
+    }
+  ],
+  "follow_up": null,
+  "pdf_filename": "bray-sp-o.pdf",
+  "supplement_filename": "bray-sp-o-source-and-verification.zip",
+  "why_it_works": [
+    "Represent selected conjugate involutions by graph subspaces and convert their unconditional probability masses into counts of squarefree polynomials and self-adjoint operators.",
+    "Select a distinguished polynomial factor whose eigenvalue orders have a larger 2-part than all the others, forcing a strong Bray restriction on the chosen eigenspace. In the orthogonal case retain determinant and spinor constraints.",
+    "Use prescribed-class generation, independent blocks of samples, and a separate quotient-graph argument to obtain the centraliser target at the stated confidence."
+  ]
+}

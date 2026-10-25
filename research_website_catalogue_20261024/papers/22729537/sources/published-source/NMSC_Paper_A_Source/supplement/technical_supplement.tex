@@ -1,0 +1,1093 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor,microtype,hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage[numbers,sort&compress]{natbib}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\CCR}{\operatorname{CCR}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cK}{\mathcal K}
+
+\title{\textbf{Technical Supplement}\\Canonical Coalescent-Response Behavior and Finite Determination}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}\quad DOI: \href{https://doi.org/10.5281/zenodo.22729537}{10.5281/zenodo.22729537}}
+\date{September 5, 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This supplement supplies the complete foundational proofs used in the main paper.  We formalize the chronologically constrained typed response category of a finite temporal NMSC presentation, prove finite timed-Hankel rank, construct the canonical future-response spaces, establish reachable--observable minimality and unique typed realization, prove coordinate and event-refinement invariance, give a finite breakpoint-jet and proposed-model equality criterion, derive the confluent ordered-simplex formulas without rate-difference localization, apply the Frisch--Siu compact-germ theorem to finite locus determination, and prove the strict arbitrary-order two-taxon JC collision by an exact Vandermonde transversality calculation.  The supplement also expands the Borel sequence--genealogy inverse, one-reticulation port quotient, and increasing-order consistency arguments.
+\end{abstract}
+
+\section{Genealogy and tensor spaces}
+
+Fix a finite labelled sampled set $S$, $|S|=M\ge2$, and a finite alphabet of size $\kappa$.  Let $\mathfrak T_S$ be the finite set of rooted labelled binary tree topologies.  For $T\in\mathfrak T_S$, its open metric cone is $(0,\infty)^{E(T)}$ subject to the contemporaneous ultrametric equations.  Allowing zero edge lengths and identifying trees after every zero-edge contraction produces the canonical genealogy space $\cG_S$ of additive pseudometrics.  It is a finite quotient of closed polyhedral cones and hence a locally compact standard Borel space.
+
+For a fixed finite generator $Q$ and stationary distribution $\pi$, the pruning map on a topology cone is obtained by multiplying entries of $e^{Qt_e}$ and summing finitely many hidden states.  It is real analytic in the positive edge lengths and continuous on contracted-edge faces.  Therefore
+\[
+V_Q:\cG_S\longrightarrow\Delta_{\kappa^M-1}
+\]
+is Borel.  Its image lies in the compact simplex, and its closure there is compact, although genealogy times are unbounded.
+
+\begin{lemma}[Canonical additive-tree inverse]
+\label{lem:borel-tree}
+Let $\mathcal D_S$ be the set of finite additive pseudometrics on $S$.  There is a Borel map from $\mathcal D_S$ to canonical contracted unrooted metric trees that is inverse to the leaf-distance map.
+\end{lemma}
+
+\begin{proof}
+For each candidate split $A\mid A^c$, the Buneman isolation index is a minimum of finitely many linear combinations of distance entries.  It is therefore continuous.  The positive isolation indices select a compatible split system; zero indices are omitted.  A deterministic lexicographic rule handles equality faces.  Edge lengths are the isolation indices and pendant lengths are finite linear expressions.  This defines a map by finitely many continuous formulas on a finite Borel stratification, hence a Borel map.  Uniqueness of the additive-tree representation proves inversion.
+\end{proof}
+
+\begin{lemma}[Ultrametric rooting]
+\label{lem:rooting}
+A finite unrooted additive tree metric that is induced by a contemporaneous rooted genealogy has a unique point equidistant from all labelled leaves, after suppressing zero edges.  This point and all rooted vertex times are Borel functions of the distance matrix.
+\end{lemma}
+
+\begin{proof}
+Let $i,j$ be a lexicographically selected diameter pair.  In an ultrametric tree their path length is twice the common root height, and the root is its midpoint.  For every other leaf $k$, the ultrametric inequalities force the path from $k$ to meet the $i$--$j$ path at the unique location giving the same radius.  Thus the midpoint is independent of the selected diameter pair.  Midpoints and path intersections are piecewise linear in recovered edge lengths, proving Borel measurability.  For $M=2$ the statement is exactly the midpoint rule.
+\end{proof}
+
+\section{Two independent shared-generator inversions}
+
+Assume stationarity and reversibility.  For a pair joint matrix $J$ at realized pair distance $d$,
+\[
+J=D_\pi e^{Qd},\qquad
+s=-\log\det(D_\pi^{-1}J)=(-\tr Q)d,
+\qquad
+D_\pi^{-1}J=e^{Q_0s}.
+\]
+The strict root population gives an interval $s>s_0$ in the support.
+
+\begin{theorem}[Differential semigroup inversion]
+If an open tail of the graph $s\mapsto M(s)=e^{As}$ is known and $M(s)$ is nonsingular, then $A=M'(s)M(s)^{-1}$ is uniquely determined.
+\end{theorem}
+
+\begin{proof}
+The derivative exists because the graph is analytic.  Differentiating $e^{As}$ gives $M'=AM$, and right multiplication by $M^{-1}$ gives the formula.  If a second generator produced the same graph on an interval, both derivatives would agree there.
+\end{proof}
+
+\begin{theorem}[Principal-logarithm inversion]
+Let $A$ be similar to a real symmetric matrix and have spectrum in $(-\infty,0]$.  If $M(s)=e^{As}$ is known at two parameters $s_2>s_1$, then
+\[
+A=\frac{1}{s_2-s_1}\operatorname{Log}\bigl(M(s_2)M(s_1)^{-1}\bigr),
+\]
+where $\operatorname{Log}$ is the principal matrix logarithm.
+\end{theorem}
+
+\begin{proof}
+The product equals $e^{A(s_2-s_1)}$.  Similarity to a symmetric matrix gives a diagonalization over $\R$ with eigenvalues $e^{\lambda_i(s_2-s_1)}\in(0,1]$.  The principal logarithm is defined and returns the unique real logarithm whose spectrum lies on the real principal branch, namely $A(s_2-s_1)$.  Repeated eigenvalues change neither existence nor uniqueness.
+\end{proof}
+
+The determinant parameter is intrinsic, so no nonlinear reparameterization of the support tail is available.  The argument handles JC, K2P, K3P, and repeated-eigenvalue GTR without choosing eigenvectors.
+
+\section{Raw typed response category}
+\label{sec:raw}
+
+Let $0=t_0<t_1<\cdots<t_J$ be the finite population-event list and append the root epoch $e=J$ on $(t_J,\infty)$.  In an epoch $e$, let $P_e$ be the finite population set.  A genealogy partition $\cP$ is a partition of $S$ into current lineage blocks.  Define
+\[
+\Omega_{e,\cP}=\{\omega:\cP\to P_e:\omega\text{ is compatible with the raw population presentation}\}
+\]
+and $H_{e,\cP}=\R^{\Omega_{e,\cP}}$ as a row-vector space.  It is harmless to use all maps $\cP\to P_e$ and let unreachable assignments be removed later.
+
+The no-mark generator $A_{e,\cP}$ is diagonal with
+\[
+A_{e,\cP}(\omega,\omega)
+=-\sum_{p\in P_e}\binom{|\omega^{-1}(p)|}{2}\lambda_p.
+\]
+For an unordered pair of distinct blocks $B,C\in\cP$, the marked merger arrow
+\[
+C^{B,C}_{e,\cP}:H_{e,\cP}\to H_{e,\cP/(B\sim C)}
+\]
+has the rate $\lambda_p$ in the unique output assignment if $\omega(B)=\omega(C)=p$, and zero otherwise.
+
+At $t_j$, deterministic population continuation and all reticulation choices define a stochastic rectangular matrix
+\[
+R_{j,\cP}:H_{j-1,\cP}\to H_{j,\cP}.
+\]
+Under independent routing, if $m$ blocks occupy a reticulation child population and a chosen output assignment sends $k$ to parent 1, the contribution is $\gamma^k(1-\gamma)^{m-k}$.  Multiple simultaneous population events are composed in the fixed temporal convention; the resulting map is the only behaviorally relevant object.
+
+\subsection{Admissible timed words}
+
+An object is a triple $(e,\cP,t)$ with $t$ in the interior of epoch $e$.  An elementary arrow is one of:
+\begin{enumerate}[label=(\alph*)]
+\item a no-mark duration $u>0$ staying inside one epoch and partition;
+\item a labelled merger mark $(B,C)$ at the endpoint of such a duration;
+\item a population boundary at a fixed event time;
+\item the terminal functional once one partition block remains.
+\end{enumerate}
+A timed word is admissible if times increase, each merger mark applies to blocks present in the current partition, and source/target types match.  Arbitrary formal concatenations are not permitted.
+
+A complete word $w$ evaluates to
+\[
+b(w)=\alpha\Phi(w)\beta,
+\]
+where $\Phi$ replaces durations by $e^{Au}$ and marks or boundaries by their rectangular matrices.  For every ranked history, $b$ is its density relative to Lebesgue measure on the corresponding absolute-time chamber.
+
+\section{Timed Hankel rank and canonical residuals}
+
+Fix an object $(q,t)$, with $q=(e,\cP)$.  Let $\mathrm{Pre}(q,t)$ and $\mathrm{Suf}(q,t)$ be the admissible timed prefixes and suffixes meeting there.  Define the timed Hankel kernel
+\[
+H_{q,t}(p,z)=b(pz).
+\]
+
+\begin{theorem}[Finite timed-Hankel rank]
+\label{thm:hankel-rank}
+For every $(q,t)$,
+\[
+\rank H_{q,t}\le \dim H_q<\infty.
+\]
+More precisely, every finite submatrix factors as a prefix-state matrix times a suffix-output matrix.
+\end{theorem}
+
+\begin{proof}
+A prefix $p$ reaches $x_p=\alpha\Phi(p)\in H_q$, while a suffix $z$ supplies $y_z=\Phi(z)\beta\in H_q^*$.  Hence $H_{q,t}(p,z)=x_py_z$.  Any finite submatrix is $XY$ with inner dimension $\dim H_q$.
+\end{proof}
+
+\begin{definition}[Residual state]
+The residual of prefix $p$ is the literal function
+\[
+r_{p,t}:\mathrm{Suf}(q,t)\to\R,\qquad r_{p,t}(z)=b(pz).
+\]
+Set $V_{q,t}=\operatorname{span}\{r_{p,t}\}$.
+\end{definition}
+
+\begin{proposition}[Operations on residuals]
+Extending a prefix by an admissible duration, merger mark, or population boundary defines a linear map between the corresponding residual spaces.  The initial state is the residual of the empty prefix; terminal evaluation is evaluation at the empty suffix.
+\end{proposition}
+
+\begin{proof}
+For an elementary arrow $a$, define $T_a r_{p}=r_{pa}$.  If $\sum c_ir_{p_i}=0$, then for every compatible suffix $z$, $\sum c_i b(p_i a z)=0$ because $az$ is a compatible suffix at the earlier object.  Thus $T_a$ is well defined and linear.
+\end{proof}
+
+\subsection{Interior trivialization}
+
+\begin{lemma}[Backward propagation of nullity]
+\label{lem:null-backward}
+Let $t<t'$ lie in one open epoch and let $x$ be a reachable raw row state at $t$.  If $xe^{A(t'-t)}$ pairs to zero with every suffix beginning at $t'$, then $x$ pairs to zero with every suffix beginning at $t$.
+\end{lemma}
+
+\begin{proof}
+Fix an entire admissible suffix merger pattern in the current epoch and fix everything after the next population boundary, if any.  If the pattern has $k$ marks, their ordered absolute times range over a connected open $k$-simplex.  The scalar response of $x$ is a product of matrix exponentials and fixed rectangular marks, hence is jointly real analytic on that simplex.  By hypothesis it vanishes on the nonempty open sub-simplex on which every current-epoch mark occurs after $t'$.  The multivariate real-analytic identity theorem makes it vanish on the entire simplex, including configurations with any or all marks in $(t,t')$.  Mark-free suffixes are handled by the same one-variable flow argument.  There are finitely many merger-label patterns, so every suffix beginning at $t$ has zero pairing.
+\end{proof}
+
+For a target type $q$ let $R_q(t)$ denote the span of all raw row states reached by prefixes ending at $q$ at time $t$.
+
+\begin{lemma}[Prefix-span saturation]
+\label{lem:prefix-span-supp}
+For interior times $t<t'$ in one epoch,
+\[
+R_q(t')=R_q(t)e^{A_q(t'-t)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Fix a complete merger-mark pattern that ends in $q$, with ordered free merger times $s=(s_1,\ldots,s_k)$.  If $G(s)$ is the row immediately after its last mark, write the row at target time $u$ as
+\[
+G(s)e^{A_q(u-s_k)}=H(s)e^{A_qu},
+\qquad H(s):=G(s)e^{-A_qs_k}.
+\]
+After a last fixed boundary at time $a$, use $H(s):=G(s)e^{-A_qa}$; empty patterns have constant $H$.  Thus $H$ is real analytic and, crucially, independent of the target time.  The sub-simplex in which all current-epoch marks occur before $t$ is nonempty and open whenever the pattern is admissible before $t'$; the absence of a minimum holding time lets the marks be compressed toward the epoch's lower endpoint.  If a linear functional annihilates $H$ on that smaller simplex, the real-analytic identity theorem makes it annihilate $H$ throughout the larger simplex.  The two $H$-value sets therefore have the same span.  Taking the finite union over patterns and multiplying by $e^{A_qt}$ or $e^{A_qt'}$ proves
+\[
+R_q(t')=R_q(t)e^{-A_qt}e^{A_qt'}.
+\]
+\end{proof}
+
+\begin{corollary}[Canonical interior transport]
+No-mark extension from $t$ to $t'$ induces an isomorphism $V_{q,t}\to V_{q,t'}$.
+\end{corollary}
+
+\begin{proof}
+Surjectivity on reachable spans is \cref{lem:prefix-span-supp}.  Injectivity on observational quotients is \cref{lem:null-backward}.  Therefore the induced residual map is an isomorphism.
+\end{proof}
+
+\begin{example}[A later prefix requiring an intervening mark]
+Let the pre-mark row space have generator $J=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$, initial row $(1,0)$, and let the rectangular merger mark be the identity into a target type with zero generator.  A mark at time $s$ reaches the target state $(1,s)$.  At $t=1$, the two prefixes with marks at $s=1/4$ and $s=3/4$ span the target.  At $t'=2$, the prefix with a mark at $s=3/2$ did not exist at time $t$ and is not the no-mark extension of either selected earlier prefix, but
+\[
+(1,3/2)=-\frac32(1,1/4)+\frac52(1,3/4).
+\]
+This is the regression example used by the exact test suite and illustrates why span saturation, not individual-prefix truncation, is the correct statement.
+\end{example}
+
+Thus one may choose an arbitrary reference time inside each open epoch; any two choices are canonically isomorphic through residual transport.
+
+\begin{proposition}[Finite analytic bundle coordinates]
+\label{prop:supp-bundle}
+Fix one interior anchor $a$ in a raw epoch, and fixed bases for every quotient $R_q(a)/N_q(a)$.  Then
+\[
+R_q(t)=R_q(a)e^{A_q(t-a)},\qquad
+N_q(t)=N_q(a)e^{A_q(t-a)}.
+\]
+In the coordinates obtained by this transport, no-mark maps are identities and a merger $q\to q'$ at $t$ is induced by
+\[
+\widetilde C_{q,q'}(t)=e^{A_q(t-a)}C_{q,q'}e^{-A_{q'}(t-a)}.
+\]
+At a boundary $h$ between anchors $a_-,a_+$ the induced map is represented by
+\[
+e^{A_-(h-a_-)}R_he^{-A_+(h-a_+)}.
+\]
+Together with transported initial and terminal data these are a finite analytic encoding of the residual system.  One finite anchor also covers the entire unbounded root epoch, at every finite time.
+\end{proposition}
+
+\begin{proof}
+The reachable identity is prefix-span saturation.  If $x$ is null at $a$, its forward image is null at $t>a$ because every later suffix gives an earlier suffix; the backward-nullity lemma proves the converse.  The identities for $t<a$ follow by reversing these equalities, since the raw exponentials are invertible.  Thus both subspaces transport as stated.  The conjugated merger sends $R_q(a)$ into $R_{q'}(a)$ and $N_q(a)$ into $N_{q'}(a)$ because it is the actual map at $t$ followed and preceded by these identifications.  Fixed quotient bases express its entries as finite linear combinations of the displayed raw exponential products.  The boundary and endpoint formulas follow in the same way.  There are finitely many matrices and quotient bases, so this is a finite description of the time dependence, not merely a list of finite fiber dimensions.  No limit at infinity is used.
+\end{proof}
+
+The dimensions in the minimality theorem are dimensions at a fixed absolute time.  They do not bound the number of exponential terms in the analytic dependence of $\widetilde C(t)$.  For two sampled lineages the no-merger prefix is unique at a fixed cut and its residual span has dimension at most one, even when the waiting-time density mixes arbitrarily many distinct hidden-route hazards.  Autonomous derivative recurrences must therefore be derived from the raw formulas, as below.
+
+\section{Reachable--observable reduction and uniqueness}
+
+For a raw type $q$, choose an interior reference time.  Let
+\[
+R_q=\operatorname{span}\{\alpha\Phi(p):p\text{ reaches }q\}
+\]
+and let
+\[
+N_q=\{x\in R_q:x\Phi(z)\beta=0\text{ for every suffix }z\}.
+\]
+
+\begin{theorem}[Raw reduction]
+\label{thm:raw-reduction}
+Every flow, mark, and boundary sends observational null vectors to observational null vectors.  The quotient system $R_q/N_q$ is reachable and observable and is canonically isomorphic to $V_q$ by
+\[
+x+N_q\longmapsto[z\mapsto x\Phi(z)\beta].
+\]
+\end{theorem}
+
+\begin{proof}
+If $x\in N_q$ and $a$ is an admissible arrow, every suffix after $a$ yields a suffix $az$ before it, so $(x\Phi(a))\Phi(z)\beta=0$.  Thus operations descend.  The displayed map is well defined by the definition of $N_q$, injective, and surjective because every residual has a raw prefix representative.  Reachability and observability are immediate.
+\end{proof}
+
+\begin{theorem}[Unique minimal typed realization]
+\label{thm:unique-minimal}
+Let $\mathcal X$ and $\mathcal Y$ be two finite typed realizations of the same timed behavior.  If both are reachable and observable, there is a unique family of linear isomorphisms $T_q:X_q\to Y_q$ such that
+\[
+T_{q'}\Phi_{\mathcal X}(a)=\Phi_{\mathcal Y}(a)T_q
+\]
+for every typed duration, mark, or boundary arrow, and such that initial and terminal data are preserved.
+\end{theorem}
+
+\begin{proof}
+For every prefix $p$ ending in $q$, set
+\[
+T_q(x_p^{\mathcal X})=x_p^{\mathcal Y}
+\]
+and extend linearly.  Suppose $\sum c_ix_{p_i}^{\mathcal X}=0$.  Pairing with any suffix gives zero.  Equal behavior gives zero for the corresponding combination in $\mathcal Y$, and observability forces that combination to vanish.  Hence $T_q$ is well defined.  The same argument with the realizations reversed gives injectivity; reachability gives surjectivity.  Extension by an arrow proves intertwining.  Every state is a linear combination of prefix states, so no other intertwiner can differ from $T_q$.
+\end{proof}
+
+Minimality follows: any realization maps its reachable quotient onto the residual system, so no realization has smaller type dimensions than the timed Hankel ranks.
+
+\section{Coordinate invariance}
+
+Consider an epoch $(a,b)$ of duration $\Delta=b-a$ containing $m$ ranked mergers.  Absolute times satisfy
+\[
+a<s_1<\cdots<s_m<b.
+\]
+Complete gaps are
+\[
+u_0=s_1-a,\quad u_i=s_{i+1}-s_i,\quad u_m=b-s_m,
+\qquad \sum_{i=0}^m u_i=\Delta.
+\]
+The absolute-time/gap map is affine with unit Jacobian after one gap is omitted.
+
+\begin{lemma}[Affine exponent quotient]
+A complete-gap exponential term $ce^{-\langle\rho,u\rangle}$ defines on the simplex only the class
+\[
+(c,\rho)\sim(ce^{a\Delta},\rho+a\one).
+\]
+If gap $u_j$ is omitted, the intrinsic reduced term is
+\[
+ce^{-\rho_j\Delta}\exp\!\left[-\sum_{i\ne j}(\rho_i-\rho_j)u_i\right].
+\]
+Changing $j$ gives the pullback under an invertible affine coordinate change.
+\end{lemma}
+
+\begin{proof}
+Substitute $\sum u_i=\Delta$ and then $u_j=\Delta-\sum_{i\ne j}u_i$.  Both identities follow by direct algebra.
+\end{proof}
+
+\begin{theorem}[Coordinate independence of CCR]
+The residual spaces, timed Hankel ranks, minimal realization, analytic continuation, and visible breakpoint set are unchanged by absolute-time/gap conversion, by changing the omitted gap, or by any invertible affine change between admissible chamber coordinates.
+\end{theorem}
+
+\begin{proof}
+Each coordinate change is a real-analytic diffeomorphism of chamber interiors.  Pullback is an invertible linear map on scalar response functions and preserves all linear relations, products with prefix/suffix operations, and equality of analytic germs.  The residual construction is defined from the scalar behavior before any basis or exponential expansion, so its typed isomorphism class is unchanged.
+\end{proof}
+
+\section{Visible breakpoints and finite jet tests}
+
+Let $h$ be a raw population event.  Fix a complete ranked labelled merger history with absolute merger coordinates $s=(s_1,\ldots,s_m)$.  Its raw event list partitions the ordered simplex into finitely many chambers.  Two chambers adjacent across an open face $s_j=h$ have raw scalar density formulas $f_-(s),f_+(s)$.  Their finite matrix-exponential expressions extend to entire functions of $s$; the negative durations in an extension are analytic coordinates, not physical waiting times.  Other coordinates of a point $s^*$ in the open face are distinct and avoid all raw events.
+
+\begin{theorem}[Breakpoint jet criterion]
+\label{thm:jet}
+A raw event time is invisible if and only if every compatible pair of side formulas above has equal analytic extensions.  For each merger coordinate $s_i$, let $n_{\epsilon,i}^-,n_{\epsilon,i}^+$ be the raw dimensions on the two sides of that merger in formula $f_\epsilon$, and put
+\[
+D_i=n_{-,i}^-n_{-,i}^++n_{+,i}^-n_{+,i}^+.
+\]
+It is enough to compare the finite mixed box
+\[
+\partial_1^{k_1}\cdots\partial_m^{k_m}(f_--f_+)(s^*)=0,
+\qquad 0\le k_i<D_i,
+\]
+at one point of each open face.  The verdict is basis independent and stable under insertion of identity boundaries.  The sufficient order is a raw-formula bound and is not a bound in terms of minimal fixed-time residual dimensions.
+\end{theorem}
+
+\begin{proof}
+In coordinate $s_i$, each side formula has, up to independent outer factors, the form $e^{A^-s_i}Ce^{-A^+s_i}$.  On its $n^-n^+$-dimensional matrix space differentiation applies the Sylvester operator $\mathcal L(X)=A^-X-XA^+$.  For the signed difference use the direct sum $\mathcal L_{-,i}\oplus\mathcal L_{+,i}$, of dimension $D_i$.  Its characteristic polynomial supplies a constant-coefficient recurrence for derivatives in $s_i$, uniformly in every other coordinate.  For an arbitrary mixed derivative, use these recurrences successively to reduce each coordinate index into its finite range.  Thus the box determines every Taylor coefficient at $s^*$.  Zero Taylor series implies equality near $s^*$ and then equality of the entire extensions.  Necessity is immediate.
+
+There are finitely many complete merger-label patterns and refined temporal chambers.  Equality on each open face makes all formulas connected through those faces identical analytic extensions.  Intersections of faces introduce no further comparison: the same entire functions already agree there.  Inadmissible histories have the identically zero raw formula and are included in this argument.  The finite test is therefore equivalent to the scalar definition of invisibility.  Basis changes or identity refinements can alter the sufficient numerical bound but cannot alter that scalar property.
+\end{proof}
+
+\begin{example}[Arbitrarily delayed breakpoint derivatives]
+\label{ex:supp-high-order-breakpoint}
+Fixed-time residual rank alone cannot control breakpoint detection order.  For an integer $r\ge2$, partition $\{1,\ldots,2^r\}$ into $A_r,B_r$ according to the even or odd binary digit sum of $a-1$.  The identity
+\[
+\sum_{a\in A_r}z^a-\sum_{b\in B_r}z^b
+=z\prod_{j=0}^{r-1}(1-z^{2^j})
+\]
+has a zero of order $r$ at $z=1$.  Applying $(z\,\mathrm d/\mathrm dz)^k$ there gives equal power sums for $0\le k<r$, and a nonzero difference at $k=r$.  At $r=5$, the lists are
+\[
+\begin{split}
+A_5=(1,4,6,7,10,11,13,16,18,19,21,24,25,28,30,31),\\
+B_5=(2,3,5,8,9,12,14,15,17,20,22,23,26,27,29,32),
+\end{split}
+\]
+with fifth-power difference $-122880$.
+
+To realize these germs in the strict principal class, sample two lineages in one terminal taxon and route them independently through a finite binary router into $2^{r-1}$ separate private corridors.  Above the tested interval let the corridors reconverge through a finite tree into the positive-rate root population.  At a cut $a$ after the last routing event, let $r_i>0$ be the unmerged probability in same-corridor sector $i$.  Choose $0<c<\min_i r_i e^{-A_{r,i}}$.  Give corridor $i$ the rate $\log(r_i/c)-A_{r,i}>0$ for one unit interval and then rate $A_{r,i}$ for one unit interval.  At $h=a+2$ every same-corridor survivor mass is exactly $c$.  Change its rate at $h$ to $B_{r,i}$ for another positive interval.  Split-route sectors occupy distinct populations and have zero merger hazard throughout these private intervals.  All router probabilities, durations, and population rates can remain strictly positive.
+
+Writing $u=t-h$, the side density germs are
+\[
+f_-(h+u)=c\sum_{a\in A_r}a e^{-au},\qquad
+f_+(h+u)=c\sum_{b\in B_r}b e^{-bu}.
+\]
+Their derivatives agree through order $r-2$ and disagree at order $r-1$.  For two lineages the unmerged residual space at a fixed cut has dimension one because its no-merger prefix is unique.  The already merged residual space also has dimension one.  Taking $r$ arbitrarily large proves the claimed absence of a bound in terms of these fixed-time ranks.  The raw Sylvester test detects every member of the family.
+\end{example}
+
+\begin{proposition}[Deletion of an invisible boundary]
+\label{prop:supp-delete-boundary}
+If a boundary is invisible, no-mark extension across it induces an isomorphism between the canonically transported one-sided residual fibers.  Under these identifications the time-indexed marked maps glue analytically.  Hence deleting the boundary produces one well-defined analytic typed response interval, without asserting a constant minimal generator.
+\end{proposition}
+
+\begin{proof}
+Let $(a,b)$ contain the boundary $h$ and no other retained boundary.  By \cref{thm:jet}, every complete scalar history formula glues analytically across $h$ in all merger coordinates in $(a,b)$.  Fix $a<t<t'<b$.  At the target fiber $V_{q,t'}$, compare the residual span of all prefixes with that of prefixes whose marks in $(a,t')$ all occur before $t$, extended without a mark to $t'$.  Any linear functional on $V_{q,t'}$ is a finite linear combination of suffix evaluations: those evaluations separate points and the space is finite dimensional.  If such a functional annihilates the latter prefix family, then, for each prefix mark pattern and its fixed earlier history, it annihilates an analytic function of the ordered merger times on a nonempty open sub-simplex.  The identity theorem makes it annihilate that entire prefix family.  Zero raw histories are included, so a formerly impossible pattern cannot create a new nonzero direction after an invisible boundary.  The two spans therefore coincide.  This proves surjectivity of no-mark extension.
+
+For injectivity, suppose a reachable residual at $t$ becomes zero after no-mark extension to $t'$.  Fix each suffix mark pattern and its history above $b$.  Its scalar pairing vanishes on the nonempty open sub-simplex whose marks in $(a,b)$ all lie after $t'$.  The same continued analytic formula and identity theorem make it vanish on the whole suffix simplex, including marks between $t$ and $t'$.  Empty patterns are already covered by the no-mark hypothesis.  Thus the original residual is zero by observability.  These arguments also apply with one cut equal to $h$ and mergers strictly on either side, giving the asserted boundary identification.
+
+For analytic marked maps, choose transported prefix bases for a source and target partition at a cut below a small neighborhood of $h$, and suffix evaluations above that neighborhood forming an invertible target Hankel submatrix $H$.  Such a finite nonsingular submatrix exists by observability and no-mark isomorphism.  For a marked merger at variable $u$ in that neighborhood, the matrix of its pairings with these suffixes has entries that are continued scalar history densities, hence are analytic in $u$.  The marked matrix in the transported target basis is this pairing matrix times the constant matrix $H^{-1}$.  It is therefore analytic across $h$.  This establishes the claimed gluing of all operations.
+\end{proof}
+
+Deleting an invisible boundary means identifying the two minimal fibers by $\bar B$.  The merged interval has one analytic canonical transport.  It need not correspond to one positive raw population epoch; it is a minimal linear behavior.
+
+\section{Finite exact behavior equivalence}
+
+Assume an exact input domain in which arithmetic, the finitely many required matrix exponentials, and equality of their entries have terminating procedures.  This includes rational/algebraic coefficient systems when the required exponential entries are supplied in a zero-test field.  It excludes arbitrary oracle reals and makes no complexity claim.
+
+Refine two raw systems to a common event list and take their signed direct sum.  For each common ranked-history chamber $c$, choose an interior absolute-time vector $s^c$.  At the $j$th merger coordinate, let $d^-_{c,j}$ and $d^+_{c,j}$ be the adjacent signed state dimensions and put $D_{c,j}=d^-_{c,j}d^+_{c,j}$.
+
+\begin{theorem}[Chamberwise finite-jet equivalence]
+The two timed behaviors are equal if and only if every signed chamber density $f_c$ satisfies
+\[
+\partial_1^{k_1}\cdots\partial_m^{k_m}f_c(s^c)=0
+\qquad (0\le k_j<D_{c,j}).
+\]
+There are finitely many such equations, and each is a chronologically admissible matrix product.
+\end{theorem}
+
+\begin{proof}
+Holding all other merger times fixed, the dependence on $s_j$ around its merger map is, up to independent outer factors,
+\[
+e^{A^-_js_j}C_je^{-A^+_js_j}.
+\]
+After vectorization, differentiation applies powers of the Sylvester operator $\mathcal L_j(X)=A^-_jX-XA^+_j$ on a $D_{c,j}$-dimensional space.  Cayley--Hamilton gives an order-$D_{c,j}$ recurrence for the $s_j$ derivatives, uniformly in the other coordinates.  Successively applying these recurrences shows that the displayed box determines every mixed Taylor coefficient at $s^c$.  Vanishing of the box therefore makes $f_c$ zero near $s^c$, then on the connected chamber by analytic continuation.  The converse is immediate.  The finite collection of chamber densities determines the law.  Notice that this proof never replaces chronologically admissible products by an unrestricted generator-power closure.
+\end{proof}
+
+\subsection{Uniform jets for local parameter fibers}
+
+\begin{lemma}[First-variation Sylvester recurrence]
+\label{lem:supp-first-variation}
+Let $f_\theta(s)$ be a raw chamber density on a fixed finite presentation, analytic in the parameter $\theta$.  Suppose its Sylvester space in coordinate $s_i$ has dimension $d_i=n_i^-n_i^+$.  Its directional parameter derivative at $\theta_0$ satisfies a constant-coefficient recurrence in $s_i$ of order at most $2d_i$, uniformly in the other merger coordinates.  For a signed pair of raw formulas replace $d_i$ by the sum of their two Sylvester dimensions.  The finite box of those enlarged orders determines all first-variation germs.
+\end{lemma}
+
+\begin{proof}
+Write the coordinate-dependent matrix factor after vectorization as $e^{s_iL_i(\theta)}c_i(\theta)$, with all other factors independent of $s_i$.  For a direction $v$, write dots for derivatives at $\theta_0$.  Direct multiplication of power series, or differentiation of the matrix differential equation, gives
+\[
+\exp\!\left[s_i\begin{pmatrix}L_i&\dot L_i\\0&L_i\end{pmatrix}\right]
+=\begin{pmatrix}e^{s_iL_i}&\displaystyle\left.\partial_v e^{s_iL_i(\theta)}\right|_{\theta_0}\\0&e^{s_iL_i}\end{pmatrix}.
+\]
+The derivative of $c_i$ and the derivatives of the outer factors pair with base blocks of the same matrix.  Cayley--Hamilton on this $2d_i$-dimensional block matrix therefore gives the required recurrence for the complete scalar derivative.  Its coefficients depend on $\theta_0,v$ but not on any merger coordinate.  A signed difference uses the direct sum of the constituent blocks.  Applying these recurrences successively in all coordinates reduces every mixed index to the finite box, exactly as in the chamberwise equality proof.
+\end{proof}
+
+For the local fiber construction, choose a small fixed event-order neighborhood of a reference parameter.  In each reference reduced chamber choose a point avoiding every raw event; shrink the neighborhood until its raw chamber assignment stays fixed.  A pair of copies of that raw chamber has signed state dimensions $2n_i^-,2n_i^+$, so the order $4n_i^-n_i^+$ used in the main paper covers both pairwise equality and the $2n_i^-n_i^+$ first-variation recurrence.  For each reference-invisible raw boundary, the side-difference jet box enlarged from $D_i$ to $2D_i$ covers its first variations.  Face evaluation points depend analytically on the corresponding raw boundary time, with the remaining coordinates fixed away from other boundaries.  Because the entire side difference is zero at the reference parameter, the chain rule contributes no moving-point term to the derivative of these matching equations.
+
+The finite response map includes the reference-visible raw event times, those chamber and side-difference jets, and $\pi,Q_0$.  Its level set enforces every invisible-boundary gluing and aligns every remaining boundary.  The ordinary pair-comparison recurrence then establishes equality of the complete genealogy behavior; the bridge gives equality of all indexed sequence laws.  Conversely sequence equality fixes $\pi,Q_0$, the intrinsic visible times, and all these jets.  Nearby equal laws cannot assign a reference-visible time to another raw event, because the raw times remain separated on the chosen neighborhood.  The reference-invisible equations permit their raw times to vary while enforcing their invisibility.  The resulting level set is therefore precisely the local sequence fiber, with no preassigned invisible-time values.  The augmented recurrence proves equality of its linearized equation kernel with vanishing of the full scalar first variations; this conclusion does not follow from a pointwise finite separation theorem alone.
+
+\section{Ordered-simplex integration and resonance}
+
+For nodes $a_0,\ldots,a_m$ and $\Delta>0$, define
+\[
+I_m=\int_{u_i\ge0,\,\sum u_i=\Delta}e^{-\sum a_iu_i}\,\dd u_0\cdots\dd u_{m-1}.
+\]
+Use the divided-difference convention
+\[
+f[a_0,\ldots,a_m]
+=\frac{f[a_1,\ldots,a_m]-f[a_0,\ldots,a_{m-1}]}{a_m-a_0}.
+\]
+
+\begin{theorem}[Hermite--Genocchi response formula]
+\[
+I_m=(-1)^m[a_0,\ldots,a_m]e^{-\Delta x}.
+\]
+For distinct nodes this is the usual partial-fraction exponential sum.  At a node of multiplicity $r$, the corresponding contribution is a polynomial in $\Delta$ of degree at most $r-1$ times the exponential.  In particular,
+\[
+I_m(A,\ldots,A)=\frac{\Delta^m}{m!}e^{-A\Delta}.
+\]
+\end{theorem}
+
+\begin{proof}
+After $u_i=\Delta t_i$, the domain is the standard simplex and the Jacobian is $\Delta^m$.  The Hermite--Genocchi identity says
+\[
+f[a_0,\ldots,a_m]=\int_{\Delta_m}f^{(m)}\left(\sum t_ia_i\right)\dd t.
+\]
+For $f(x)=e^{-\Delta x}$, $f^{(m)}=(-\Delta)^mf$, yielding the formula.  Confluent nodes are defined by continuous extension, equivalently by replacing repeated evaluations with derivatives.  The full repeated-node value is $(-1)^mf^{(m)}(A)/m!$.  General partial multiplicities follow from Hermite interpolation.
+\end{proof}
+
+For $m=1$ this fixes the sign:
+\[
+I_1(A,B;\Delta)=\frac{e^{-B\Delta}-e^{-A\Delta}}{A-B},
+\quad A\ne B,
+\qquad
+I_1(A,A;\Delta)=\Delta e^{-A\Delta}.
+\]
+No expression containing $(A-B)^{-1}$ is used at $A=B$.
+
+\subsection{Analyticity of the physical locus map}
+
+\begin{theorem}[Chartwise real analyticity]
+For a fixed finite NMSC presentation and fixed locus word, the direct sequence probability is real analytic on a neighborhood of every strict physical parameter point, including repeated substitution eigenvalues, equal coalescent hazards, and coalescent--substitution resonance.
+\end{theorem}
+
+\begin{proof}
+Work directly with matrix exponentials.  Their entries are entire functions of matrix entries and duration.  On each finite ranked-history chamber, use normalized simplex coordinates to put the domain on a fixed compact simplex; the integrand and all parameter derivatives are uniformly bounded on a sufficiently small parameter neighborhood.  Standard parameter-dependent integration preserves real analyticity.  There are finitely many chambers and routing histories.  In the root epoch, transient no-merger generators have spectrum bounded in the left half-plane near a strict point; the improper semigroup integral converges locally uniformly and equals the analytic stable resolvent.  No spectral projector or rate-difference denominator is introduced.
+
+This includes irreducible reversible substitution generators with zero off-diagonal entries.  Use positive stationary coordinates $\pi$ and symmetric conductances $w_{ab}=\pi_aQ_{ab}\ge0$ with connected support.  The formulas $Q_{ab}=w_{ab}/\pi_a$ and $Q_{aa}=-\sum_{b\ne a}Q_{ab}$ extend analytically to signed conductances near the physical point.  With at least two states, the trace-normalization denominator is nonzero there and remains nonzero on a neighborhood.  At the physical point the root transient spectrum is strictly stable because each transient coalescent block has a positive exit hazard and its substitution component is a Markov generator.  Stability and invertibility persist on a sufficiently small ambient neighborhood, including across a zero-conductance face.  Thus compact semianalytic physical generator families are subsets of legitimate ambient analytic charts; their zero-conductance faces do not require a narrower principal model.
+\end{proof}
+
+\section{Compact analytic finite separation}
+
+Let $K=\bigsqcup_{i=1}^mK_i$ be a finite union of compact semianalytic normalized presentation charts.  Each $K_i$ lies in an open real-analytic parameter manifold for one fixed raw presentation.  For an ordered chart pair $C_{ij}=K_i\times K_j$, let $\cA(C_{ij})$ denote the ring of real-analytic germs along the compact set: two functions defined on neighborhoods of $C_{ij}$ represent the same germ if they agree on some neighborhood of the whole compact set.
+
+\begin{theorem}[Frisch--Siu real compact-germ Noetherianity]
+For compact semianalytic $C_{ij}$, the ring $\cA(C_{ij})$ is Noetherian.
+\end{theorem}
+
+\begin{proof}[Applicability to the real chart pair]
+Regard $C_{ij}$ as a compact semianalytic subset of the smooth
+finite-dimensional real-analytic chart-pair manifold.  A real-analytic
+manifold is a coherent real-analytic space, so the ambient hypothesis in
+Siu's real theorem is satisfied.  That theorem says that
+$\Gamma(C_{ij},\mathcal O)$ is Noetherian exactly when
+$Z\cap C_{ij}$ has only finitely many connected components for every
+real-analytic subvariety $Z$ defined near $C_{ij}$ by a coherent ideal
+sheaf \citep[Theorem~2]{Siu1969}.  Such an intersection is compact
+semianalytic, and semianalytic triangulation gives it finitely many connected
+components \citep{Lojasiewicz1964}.  Hence Siu's criterion applies.  Equivalently,
+this is precisely the compact-semianalytic consequence stated in his
+final Remark concerning statement~(1) \citep[final Remark]{Siu1969}, tracing back to Frisch's
+Theorem~I.9 \citep[Theorem~I.9]{Frisch1967}.  Therefore
+$\cA(C_{ij})=\Gamma(C_{ij},\mathcal O)$ is Noetherian.  This is the
+real-analytic theorem itself, not an inference from the title of the
+holomorphic paper; semianalyticity and coherence are essential, and no claim
+is made for arbitrary compact sets.
+\end{proof}
+
+We use this theorem only in the following elementary ideal argument.
+
+For every sequence word $a$ of length $L$, write
+\[
+f_{L,a}(\theta,\theta')=P_\theta^{(L)}(a)-P_{\theta'}^{(L)}(a).
+\]
+
+\begin{theorem}[Finite coordinate separation on $K$]
+For every ordered chart pair there is a finite set $F_{ij}$ of actual sequence-coordinate differences such that
+\[
+\bigl(f=0\ \forall f\in F_{ij}\bigr)
+\quad\Longleftrightarrow\quad
+\bigl(f_{L,a}=0\ \forall L,a\bigr).
+\]
+The union of these finite families over the finitely many chart pairs yields one length $L_*(K)$ that determines the complete indexed family.
+\end{theorem}
+
+\begin{proof}
+Fix $C=C_{ij}$.  The ideal $I$ generated in $\cA(C)$ by all $f_{L,a}$ is finitely generated because the ring is Noetherian.  Let $g_1,\ldots,g_r$ be finite generators.  Each $g_j$ belongs to the ideal generated by the original family and therefore is a finite analytic linear combination of finitely many original $f_{L,a}$.  Collect those finitely many original coordinates into $F_{ij}$.  They generate $I$.
+
+If all elements of $F_{ij}$ vanish at $(\theta,\theta')\in C$, any $f_{L,a}$, represented near the entire compact set by a finite combination of $F_{ij}$, also vanishes there.  The reverse implication is trivial.  Take the union over finitely many ordered chart pairs.  Let $L_*$ be the maximum selected length.  Equality of the single length-$L_*$ law implies equality of every selected shorter coordinate by marginalization, completing the proof.
+\end{proof}
+
+This argument is stronger and safer than choosing finite generators in each local stalk and then intersecting infinitely many representation neighborhoods.  The compact-germ ring supplies one neighborhood of the entire chart pair for every germ identity.
+
+\section{Exact high-order demographic collision}
+
+Let $Y$ be the ancestral waiting time after a fixed positive divergence time $\tau$.  For $0<a_1<\cdots<a_m$ and small $\theta\in\R^m$, define
+\[
+\lambda_\theta(t)=\lambda_0+\sum_{j=1}^m\theta_j\mathbf1_{[a_j,\infty)}(t).
+\]
+The strict parameter neighborhood is
+\[
+U=\left\{\theta:\lambda_0+\sum_{a_j\le t}\theta_j>0\text{ for every epoch}\right\}.
+\]
+Its survival function is
+\[
+S_\theta(t)=\exp\left[-\lambda_0t-\sum_j\theta_j(t-a_j)_+\right].
+\]
+For $s>0$,
+\[
+L_\theta(s)=\int_0^\infty e^{-st}\lambda_\theta(t)S_\theta(t)\dd t
+=1-s\int_0^\infty e^{-st}S_\theta(t)\dd t.
+\]
+
+\begin{lemma}[Moment Jacobian]
+At $\theta=0$,
+\[
+\frac{\partial L_\theta(s)}{\partial\theta_j}
+=\frac{s}{(s+\lambda_0)^2}e^{-(s+\lambda_0)a_j}.
+\]
+\end{lemma}
+
+\begin{proof}
+Since
+\[
+\partial_{\theta_j}S_\theta(t)|_0=-(t-a_j)_+e^{-\lambda_0t},
+\]
+differentiate the survival integral and calculate
+\[
+s\int_{a_j}^\infty(t-a_j)e^{-(s+\lambda_0)t}\dd t
+=\frac{s}{(s+\lambda_0)^2}e^{-(s+\lambda_0)a_j}.
+\]
+Uniform exponential domination justifies differentiation.
+\end{proof}
+
+Let $X=e^{-\beta(\tau+Y)}$ and $m_k(\theta)=\mathbb E[X^k]=e^{-k\beta\tau}L_\theta(k\beta)$.
+
+\begin{theorem}[Vandermonde transversality]
+For $m=L+1$, the Jacobian of $(m_1,\ldots,m_{L+1})$ at $0$ is nonsingular.  The Jacobian of $(m_1,\ldots,m_L)$ has rank $L$, and the differential of $m_{L+1}$ does not vanish on its one-dimensional kernel.
+\end{theorem}
+
+\begin{proof}
+Remove the nonzero row factors
+\[
+e^{-k\beta\tau}\frac{k\beta}{(k\beta+\lambda_0)^2}
+\]
+and column factors $e^{-\lambda_0a_j}$.  The remaining matrix is
+\[
+(e^{-k\beta a_j})_{k,j=1}^{L+1}=(x_j^k),
+\qquad x_j=e^{-\beta a_j}.
+\]
+Its determinant is $(\prod_jx_j)\prod_{i<j}(x_j-x_i)$, nonzero because the $a_j$ are distinct.  The first $L$ rows therefore have rank $L$.  If $dm_{L+1}$ vanished on their kernel, the augmented row would lie in their row span, contradicting nonsingularity.
+\end{proof}
+
+\begin{theorem}[Strict exact collision curve]
+There is a neighborhood $W\subset U$ of $0$ in which the level set
+\[
+\{\theta:(m_1,\ldots,m_L)(\theta)=(m_1,\ldots,m_L)(0)\}
+\]
+is a one-dimensional real-analytic submanifold, and $m_{L+1}$ is nonconstant on it.  Hence it contains two distinct strict physical parameter points matching the first $L$ moments exactly and separating at the next moment.
+\end{theorem}
+
+\begin{proof}
+\begingroup
+\sloppy
+The analytic implicit-function theorem applies to the map above.  Its rank is $L$, so the level set is a one-dimensional analytic manifold with tangent equal to the Jacobian kernel.  The preceding theorem makes the derivative of $m_{L+1}$ nonzero on that tangent, so $m_{L+1}$ is locally nonconstant.  Parameterize the level curve analytically as $c(u)$ with $c(0)=0$ and $c'(0)$ spanning the kernel.  That kernel vector has no zero coordinate: if one coordinate vanished, the remaining $L$ columns of the first $L$ Vandermonde rows would give an invertible square system.  Thus each coordinate of $c(u)$ has a nonzero linear term and is nonzero for all sufficiently small $u\ne0$.  Shrink $W$ so every cumulative hazard is positive and choose two such parameters with different $m_{L+1}$ values.  The resulting points have every step increment nonzero, finite positive rates, and the fixed positive epoch durations.
+\endgroup
+\end{proof}
+
+For normalized JC, each pair-pattern probability is affine in $X$.  A length-$\ell$ word is a degree-$\ell$ polynomial, and $X=4(d-o)$ recovers the moment coordinates.  The collision therefore matches every direct law through $L$ and separates at $L+1$.
+
+\section{One-reticulation interface theorem}
+\label{sec:supp-intrinsic-port}
+
+An arbitrary raw reticulation time need not be a canonical interface, even when the clock is invisible.  The invariant here uses a common time defined by the law and a finite coefficient encoding of every all-partition prefix/suffix kernel.  The class includes a zero-reticulation species tree obtained by contracting a sample-unary corridor.
+
+\subsection{Common intrinsic sectors and finite coefficient matrices}
+
+Let $T_\mu$ be the finite visible-time set of the complete normalized metric-genealogy law, and choose $a=\frac12\min T_\mu$ when this set is nonempty and $a=1$ otherwise.  Equality of laws determines the same $T_\mu$ by comparing densities on the common raw refinement and taking their analytic continuations.  In particular, a hidden raw boundary at $a$ does not prevent evaluation of the continued law kernel there.
+
+For a labelled partition $q$ of $S$, consider every ranked prefix from the discrete partition to $q$ with merger times below $a$, and every ranked suffix completing $q$ to one block with times above $a$.  Record which intervals of $T_\mu\cup\{a\}$ contain those merger times.  These finite pattern/interval choices define prefix and suffix sectors, including impossible sectors with density zero.  Each sector is an open ordered polyhedron in its free time coordinates.  Given $q$, a prefix sector and suffix sector have a Cartesian-product domain, because their times are on opposite sides of $a$ and their only remaining compatibility condition is the common labelled partition.  Write
+\[
+H_{q,a}(p,z)=b(pz).
+\]
+For a one-block $q$ the suffix has no free coordinate and is the empty completion.  No conditional normalization is made: $H$ is the density of the complete concatenated history.
+
+\begin{lemma}[Finite intrinsic exponential-polynomial table]
+\label{lem:supp-port-table}
+On every nonempty product sector, $H_{q,a}$ has a unique finite expansion
+\[
+\sum_{\alpha,\beta,\rho,\sigma}
+ c_{\alpha,\beta,\rho,\sigma}\,
+ s^\alpha e^{\langle\rho,s\rangle}
+ t^\beta e^{\langle\sigma,t\rangle},
+\]
+after equal exponent vectors are combined and polynomial coefficients are written in the ordinary monomial basis.  There are finitely many such expansions.  In the diagonal raw NMSC realization all polynomial degrees can be taken to be zero.
+\end{lemma}
+
+\begin{proof}
+A raw complete response is a finite matrix product with diagonal no-mark generators; expanding the finite occupancy sum gives a finite sum of exponentials of affine functions of the absolute merger times.  More general finite matrix-exponential coordinates can give polynomial factors at repeated eigenvalues, which are included in the displayed notation.  No division by differences of rates is used.
+
+A chamber defined by the visible times is subdivided by finitely many invisible raw times.  Each adjacent pair of entire raw formulas has the same analytic continuation near its intervening face; hence the formulas agree on a nonempty open set and, by the identity theorem, as entire functions.  The finite raw subdivision of the connected intrinsic chamber has connected adjacency graph.  Therefore one raw exponential-polynomial expression represents the entire intrinsic chamber, including a raw boundary at the artificial cut.
+
+For uniqueness, a finite sum of polynomials times distinct real exponentials cannot vanish on an open set unless every polynomial coefficient vanishes.  Choose a line direction distinguishing the finitely many exponent vectors.  Along each nearby parallel line, apply products of the operators $D-\lambda$ to annihilate all but one exponential term, with orders larger than the polynomial degrees.  On the remaining polynomial factor the nonmatching operators are invertible triangular operators, so its vanishing is forced.  Varying the line's base point gives vanishing of that multivariate polynomial.  Repeat for all exponent vectors and compare ordinary monomial coefficients.  This proves uniqueness; finiteness follows from the finite raw expansions and finite sector list.
+\end{proof}
+
+For each $q$, take the union of the prefix features occurring in nonzero coefficients across every suffix sector, and the analogous union of suffix features.  Extend each feature by zero outside its sector.  The resulting finite lists $\phi_q,\psi_q$ are linearly independent: different sector interiors are disjoint, and the preceding lemma handles each sector.  There is consequently a unique finite matrix $C_q$ such that
+\begin{equation}
+H_{q,a}(p,z)=\phi_q(p)C_q\psi_q(z).
+\label{eq:supp-port-matrix}
+\end{equation}
+All-zero types are retained with a zero matrix and zero-dimensional interface.
+
+\begin{lemma}[Minimal finite port factorization]
+The rank of $H_{q,a}$ is the ordinary finite-matrix rank of $C_q$.  If $C_q=L_qR_q$ is a rank factorization, then $\phi_qL_q$ is a reachable prefix map and $R_q\psi_q$ is an observable suffix map.  Any two such factorizations are related by a unique invertible interface map intertwining every prefix and suffix function.
+\end{lemma}
+
+\begin{proof}
+Independence of a finite function list implies its evaluation vectors span the full coefficient space: a vector annihilating all evaluations would give a forbidden function relation.  Evaluating the two feature lists on finite spanning sets therefore proves $\operatorname{rank}H=\operatorname{rank}C$.  A rank factorization has full column and row ranks.  Thus its prefix states span the interface and its suffix evaluations separate it.  Map the state of each prefix in one factorization to the state of the same prefix in the other.  Equality of all kernel pairings and observability make this map well defined and injective, and reachability makes it surjective.  Its values on a spanning set give uniqueness.
+\end{proof}
+
+\begin{theorem}[Intrinsic interface factorization]
+The finite record consisting of $T_\mu$, $a$, the labelled sector domains, and the feature/matrix data of \eqref{eq:supp-port-matrix}, modulo the displayed typed minimal-factorization isomorphisms, is a complete invariant of the normalized metric-genealogy law on all finite at-most-one-reticulation presentations.
+\end{theorem}
+
+\begin{proof}
+Equal laws have the same visible set and anchor.  Equality almost everywhere of the complete densities implies equality everywhere on each common open chamber by analyticity.  All $H_{q,a}$ and their unique coefficient tables are therefore equal, and minimal factorization gives the intertwiners.  Conversely, a complete strict genealogy has no merger at $a$ almost surely.  It has exactly one partition $q$ at that time, one prefix below it and one suffix above it.  This includes complete histories with all mergers before $a$ or after $a$.  Every complete density is consequently one of the matrix pairings in \eqref{eq:supp-port-matrix}.  Preserving those pairings gives equality of every complete density and therefore of the laws.  No assumption about survival of a raw reticulation after reduction appears in either direction.
+\end{proof}
+
+\subsection{What cut relocation actually transports}
+
+A raw cut at $h$ remains a useful computational factorization, but it is not distinguished in the invariant.  To relocate a cut from $t$ to $t'>t$, refine their intervening strip by the finite raw event list and all possible labelled merger patterns $w$.  The identical complete density is expressed as
+\[
+H_{q,t}(p,wz)=b(pwz)=H_{q',t'}(pw,z),
+\]
+where $w$ may change the partition from $q$ to $q'$.  Every complete history belongs to exactly one such pattern/sector case off the boundary null set.  Re-expanding the finitely many exponential-polynomial expressions at the new split gives the new finite coefficient table.  This is reversible repartitioning of scalar histories, not a same-$q$ linear isomorphism across an arbitrary event.  A strip can create reachable types by a positive merger, as the examples below show.  No-mark transport alone would omit those histories.  Simultaneous raw maps use the stipulated composite-boundary convention, and an invisible raw face is treated by its common analytic continuation.
+
+\subsection{Full demographic fibers and polynomial inheritance}
+
+Let $\theta,\theta'$ include the normalized times, rates, inheritance parameters and every finite demographic word on their identified physical parent incidences.  The complete fiber is equality of the intrinsic visible-time and sector records together with
+\begin{equation}
+C_q(\theta)=C_q(\theta')\quad\text{for every labelled partition }q,
+\label{eq:supp-full-port-fiber}
+\end{equation}
+where the two feature lists are embedded in their union and absent coefficients are zero.  This compares exposed exterior parameters and parent-corridor words as well as inheritance.  Nothing is silently held fixed.  When arbitrary finite word lengths are allowed, the comparison is finite for every supplied pair; it is not a uniform finite-dimensional chart for their unbounded union.
+
+There is an equivalent synchronized raw formulation that does not require solving for parameter-dependent coefficient supports.  On each combined event-order cell, refine the two raw boundary lists to their union.  For every common ranked-history chamber $c$, choose one interior vector $s^c$.  Let $f_c$ be the signed difference of complete raw densities, and let $D_{c,j}$ be the corrected raw signed Sylvester bound in merger coordinate $j$.  The complete fiber is precisely
+\[
+\partial_1^{k_1}\cdots\partial_m^{k_m}
+ f_c(\theta,\theta';s^c)=0
+ \qquad\text{for every }c,\quad 0\le k_j<D_{c,j}.
+\]
+The finite-jet theorem proves both directions.  These constrained matrix equations include every initial/exterior factor, parent word, labelled mark and final continuation.  They are real analytic in rates and times on each order cell, and polynomial in inheritance when the other parameters are fixed.  Coincident event strata use the already-declared composite map.  A single raw-$h$ boundary intertwining equation is sufficient only after common time and all its exterior feature maps have actually been synchronized.
+
+\begin{corollary}[Fixed-geometry inheritance fibers]
+Fix the incidences, reticulation time $h$, all rate words and every parameter except inheritance.  For every labelled partition $q$ at $h$, choose a finite basis $A_q$ of raw reachable prefix rows below routing and a finite basis $D_q$ of raw future columns above it.  Then
+\[
+K_q(\gamma)=A_qB_{h,q}(\gamma)D_q
+\]
+is a polynomial matrix of degree at most $|q|$, and the exact inheritance fiber is $K_q(\gamma)=K_q(\gamma')$ for every $q$.
+\end{corollary}
+
+\begin{proof}
+There is no routing boundary in either exterior piece, so the bases can be fixed independently of $\gamma$.  For an incoming assignment with $m$ child blocks, independent routing contributes $\gamma^k(1-\gamma)^{m-k}$, of degree at most $m\le|q|$.  Thus the finite basis pairing matrix is polynomial.  Every actual prefix and suffix is in the corresponding span, so equality of these matrix entries preserves every complete history.  Conversely each basis row and column is a finite linear combination of actual ones, so equality of all complete densities gives equality of every matrix entry.  Quotienting null directions after these fixed raw coordinates are chosen preserves this criterion.  A parameter-dependent minimal basis need not itself have polynomial entries and is not used to make the polynomial claim.
+\end{proof}
+
+Parent exchange sends $\gamma$ to $1-\gamma$ and permutes the fixed incidences.  Inheritance is absent exactly when every $K_q$ is constant; its nonconstant polynomial coefficients supply a finite test of that statement.  If one reachable block has two distinct known parent futures, its affine coefficient is nonzero and the weight is unique up to exchange.  Coincident one-block futures remove only that affine witness.  The pair test below and all higher-partition matrix entries remain part of the complete fiber.
+
+\subsection{Exact cut-placement regressions}
+\label{sec:supp-port-regressions}
+
+Write $L=\log2$.  First take $R\to U,V$, parallel arms $U\to H$, $H\to x$, and $V\to y,z$, with ages $R=5L$, $U=4L$, $V=2L$, all rates one and $\gamma=1/2$.  Compare $H=L$ with $H=3L$.  Every arc has positive length.  One $x$ lineage traverses the whole corridor to $U$, so routing has total weight one and no coalescent effect.  Conditioning on the common exterior process proves equality of the complete laws, also with the zero-reticulation tree obtained by contracting that corridor.
+
+For the raw-cut partition $q=\{\{y,z\},\{x\}\}$ the earlier reachable space is zero.  At the later cut its prefix probability is $1-e^{-L}=1/2$; a deterministic occupancy and a positive future completion give rank one.  The common anchor is $a=L$, and its $q$-rank is zero for both presentations.  Between the anchors $L$ and $3L$, the full strip has no-merger and $yz$-merger masses $1/2$ and $1/2$, so retaining only its no-mark map would miss exactly the new type.
+
+The full three-label density is also explicit.  Let $s<t$ be its two merger times.  The first pair $yz$ in $2L<s<5L<t$ has density $128e^{-s-t}$.  For each of the three possible first pairs in $5L<s<t$, the density is $4096e^{-2s-t}$.  All other sectors have zero density.  The coefficients follow directly from unit-rate survival before and after the root; neither $h$ nor $\gamma$ appears.  Their integrated masses are $7/8$ for the first sector and $1/24$ for each root-tail sector, totaling one.
+
+A retained-reticulation example shows that funnel preprocessing alone is insufficient.  Use the binary arc list
+\[
+R\to D,W;\quad D\to U,V;\quad U\to H,y;\quad V\to H,z;
+\quad H\to x;\quad W\to w_1,w_2,
+\]
+with ages $(R,D,U,V,W)=(7,6,4,5,2)L$, all rates one and $\gamma=1/2$.  Again compare $H=L$ and $H=3L$.  Neither x-route can meet another lineage before $4L$, so conditioning on its eventual parent gives identical exterior input laws and hence identical complete genealogy laws.  The private side entries at $U,V$ precede reconvergence at $D$, so the retained gall is not a sample-unary two-terminal corridor.  Nevertheless the raw-cut partition
+\[
+q=\{\{w_1,w_2\},\{x\},\{y\},\{z\}\}
+\]
+has ranks zero and one.  Below the later routing boundary the x-state is deterministic; above it the state is its fixed positive parent mixture.  On either side every prefix with this partition is a scalar multiple of that row, and a positive completion makes it observable.  The earlier/later prefix masses are zero and $1/2$, whereas the two common-anchor ranks agree.  The accompanying exact regression recomputes these quantities and the preceding full three-label coefficient table; these finite checks support the examples rather than substitute for the general proof.
+
+\subsection{Pair-exposed inheritance}
+
+\begin{lemma}[Pair-only inheritance recovery]
+If two labelled child blocks survive separately to $h$, then on the first open parent chamber
+\[
+S(u)=2\gamma(1-\gamma)+\gamma^2e^{-\lambda_1u}+(1-\gamma)^2e^{-\lambda_2u}.
+\]
+This scalar germ identifies $\{\gamma,1-\gamma\}$ even when $\lambda_1=\lambda_2$.
+\end{lemma}
+
+\begin{proof}
+Different-parent assignments give the constant term and same-parent assignments give the two positive-rate exponentials.  Uniqueness of positive finite exponential sums recovers the mass $r=2\gamma(1-\gamma)$ at exponent zero.  Hence the unordered weights are
+\[
+\left\{\frac{1-\sqrt{1-2r}}2,\frac{1+\sqrt{1-2r}}2\right\}.
+\]
+When the two positive exponents coincide, their combined coefficient is $1-r$ and the same conclusion follows.
+\end{proof}
+
+\subsection{A common finite child-certificate decoder}
+
+\begin{lemma}[Finite pair moments and child-clique decoding]
+\label{lem:supp-finite-child-decoder}
+The finite shifted-Hankel manifest in the main paper decodes the child cluster and routing time in every pair-exposed one-reticulation presentation.  Its output is a function of the law, independently of which admissible finite certificate manifest is supplied.
+\end{lemma}
+
+\begin{proof}
+Use the pair restriction's own survival function $S_{ij}(t)=\Pr(T_{ij}>t)$; no full-sample no-merger conditioning is used.  On either side of a cut in the common refinement of two supplied finite presentations, the frozen local extension has one zero exponent for separated assignments and finitely many distinct positive exponents for co-occupied populations.  Equal positive rates are combined.  Let $w_k>0$ denote the positive-atom masses and $\lambda_k>0$ their rates.  For $m_j=(-1)^j S_{ij}^{(j)}(t)$,
+\[
+m_j=\sum_k w_k\lambda_k^j\quad(j\ge1).
+\]
+For the actual positive-atom count $r$, put $V_{ak}=\lambda_k^a$, $0\le a<r$.  Then
+\[
+H_r=(m_{a+b+2})=V\operatorname{diag}(w_k\lambda_k^2)V^{\mathsf T},
+\qquad v_r=(m_{a+1})=V(w_k\lambda_k)_k.
+\]
+Invertibility of the distinct-rate Vandermonde matrix gives
+\[
+v_r^{\mathsf T}H_r^{-1}v_r=\sum_k w_k=q_{ij}(t).
+\]
+This is the unnormalized surviving co-occupancy mass.  If there were more than $r$ distinct positive atoms, the next shifted moment matrix would be positive definite; if fewer, $H_r$ would be singular.  Thus $H_r>0$ and $\det H_{r+1}=0$ certify the count exactly.  For zero atoms, positivity makes $m_1=0$ an exact certificate.  The manifest uses finitely many derivatives through order $2r+2$; its size can depend on the supplied finite law.  There is no uniform numerical-stability or bounded-complexity inference claim.
+
+In a one-reticulation graph the child region contains no other routing event.  Every surviving descendant pair is therefore in the child population at the routing boundary, with positive mass $S_{ij}(h)$.  Independent choices remove the split mass $2\gamma(1-\gamma)S_{ij}(h)$ from its co-occupancy.  All child pairs give negative jumps and no other pair loses co-occupancy at this event.  An ordinary deterministic tree boundary, even a multifurcation, merges populations and gives nonnegative jumps.  A demographic rate change leaves occupancy unchanged.  Simultaneous disconnected tree events involve different active populations and cannot offset a negative child-pair entry.  The positive-duration temporal convention and the prior composition of zero-time presentation refinements are sufficient; separate absolute ages for unrelated biological events are unnecessary.  Since the graph has only one reticulation, the negative jump time is unique.  Its negative-pair clique yields exactly $C$.
+
+For the explicit anchor-free example with $x,y$ in one taxon, $z$ outside, all rates one, inheritance $1/2$, routing $h=\log2$, reconvergence $2\log2$ and root $3\log2$, the $xy$ left moments $m_1,\ldots,m_4$ at $h$ are all $1/2$, and their right counterparts are all $1/4$.  Each one-by-one shifted matrix is positive and each two-by-two next matrix is singular.  The decoded masses are $1/2,1/4$, so the sole negative entry is $\Delta q_{xy}=-1/4$.  The $xz,yz$ pairs have $m_1=0$ on both sides.  This complete three-pair manifest decodes $(\{x,y\},h)$.  At reconvergence the $xy$ mass instead rises from $1/8$ to $3/8$, so that boundary is not a competing routing certificate.
+
+A singleton child supplies no such negative clique and has a freely relocatable raw clock before its parental contacts.  A support predicate from an unrelated cherry can share that clock's numerical value without identifying the reticulation event.  Requiring the fixed decoder excludes that false inference while retaining every pair-exposed case.  Singleton behavior remains in the complete intrinsic coefficient-kernel quotient.
+\end{proof}
+
+\subsection{Balanced continuation fibers}
+
+Here a parent corridor is \emph{side free} when no sampled side lineage can enter either parent population or share a population with a routed one-block sector before the parents' first common reconvergence.
+
+At a type-compatible parent cut $t$, let $\sigma_t$ exchange the two upper continuation roles.  For every labelled partition $q$, write $\mathcal R_{t,q}$ for the span of actual reachable rows and $\mathcal O_{t,q}$ for the span of actual future columns.
+
+\begin{lemma}[Balanced-switch criterion]
+Exchanging the two continuation suffixes at $t$ preserves the complete marked behavior if and only if
+\[
+r(\sigma_t-I)o=0
+\quad\text{for all }r\in\mathcal R_{t,q},\ o\in\mathcal O_{t,q},\ q.
+\]
+\end{lemma}
+
+\begin{proof}
+Insert the proposed exchange at the fixed cut of each complete prefix--suffix product.  Equality of every scalar response is precisely the displayed condition.  Thus the criterion is basis independent and uses all actual partition types, not separately chosen latent parent states.
+\end{proof}
+
+For a side-free parent corridor carrying at most two child blocks, the same-route survivor weights at a chamber boundary are
+\[
+w_1=\gamma^2e^{-A_1(t)},\qquad
+w_2=(1-\gamma)^2e^{-A_2(t)}.
+\]
+The next chamber has response
+\[
+2\gamma(1-\gamma)+w_1e^{-\lambda_1u}+w_2e^{-\lambda_2u}.
+\]
+Positive exponential uniqueness recovers the unordered weighted atoms.  Unequal $w_1,w_2$ link them to their prefixes; equal weights permit a balanced exchange of the two complete continuation words.
+
+\begin{theorem}[Exact strict balance-switch witness]
+Let $\gamma=1/3$.  Use a side-free first parent chamber of length $\log4$ and rates $(1,2)$.  Compare suffix rates $(3,4)$ with $(4,3)$ on a second positive chamber, keeping all other strict parameters fixed.  The two complete local marked kernels agree, although the parent words
+\[
+\{(1,3),(2,4)\},\qquad \{(1,4),(2,3)\}
+\]
+are not related by a global parent exchange.
+\end{theorem}
+
+\begin{proof}
+The first-chamber no-merger response is
+\[
+\frac49+\frac19e^{-u}+\frac49e^{-2u}.
+\]
+At $u=\log4$, the two same-route survivor weights are both $1/36$.  The next response in both models is therefore
+\[
+\frac49+\frac1{36}e^{-3v}+\frac1{36}e^{-4v},
+\]
+and its negative derivative is the common marked merger density.  A previous merger leaves one block, for which the side-free parent role is invisible; split survivors reconverge into one common population.  Composition with any common surrounding response proves contextual equality.
+\end{proof}
+
+This is a complete behavioral classification, an incidence/$\gamma$ result under the main paper's scalar certificates, and a sharp warning about demographic linkage.  For arbitrary higher-block positive decompositions, the exact fiber remains the finite all-partition intertwining equation; no exhaustion by role permutations is asserted.
+
+\subsection{Scalar separators for qualified level one}
+
+For a labelled cluster $C$, fixed cut time $t$, and labelled partition $q$ of $C$, let
+\[
+H_{C,t,q}(p,z)=b(pz)
+\]
+be the common-chamber density kernel of admissible timed $C$-prefix histories ending at the common cut $(t,q)$ against compatible full continuations, with complementary lower lineages integrated under their common law.  For a suffix cylinder $A$ put
+\[
+H_{C,t,q}(p,A)=\int_A b(pz)\,\dd z,
+\qquad
+\one_{C,t,q}=\mathcal Z_{C,t,q}.
+\]
+
+\begin{lemma}[All-completions normalization]
+\label{lem:supp-canonical-continuation}
+If $H_{C,t,q}$ is nonzero and rank one, then
+\[
+\alpha_{C,t,q}(p)=H_{C,t,q}(p,\one_{C,t,q}),
+\qquad
+\beta_{C,t,q}(A)=
+\frac{H_{C,t,q}(p,A)}{\alpha_{C,t,q}(p)}
+\]
+are the unique positive factors for which $\beta_{C,t,q}(\one_{C,t,q})=1$.  In particular $\beta$ is independent of the positive prefix row $p$.  Conversely, this independence for every suffix cylinder is equivalent to rank one.
+\end{lemma}
+
+\begin{proof}
+For $H(p,A)=a(p)c(A)$, integration over all completions gives $\alpha(p)=a(p)c(\one)$ and $\beta(A)=c(A)/c(\one)$.  This is independent of $p$, has total mass one, and fixes the reciprocal rank-one gauge.  Conversely the displayed product $H=\alpha\beta$ has rank one.  Because $H$ is a marked-history density kernel, these factors are determined by the law and not by a latent population basis.
+\end{proof}
+
+For $s<t$, a labelled merger word
+\[
+\omega=((e_1,u_1),\ldots,(e_m,u_m)),
+\qquad s<u_1<\cdots<u_m<t,
+\]
+specifies the current pair $e_j$ merged at $u_j$ and specifies that no other $C$-merger occurs on $(s,t)$.  If $q\mathbin{\cdot}\omega=q'$, put $u_0=s$, $u_{m+1}=t$.  For a positive finite piecewise-constant pair rate $\lambda$ define
+\begin{equation}
+\mathsf K_{\lambda;s,t}(q,\omega)=
+\left(\prod_{j=1}^m\lambda(u_j)\right)
+\exp\!\left\{-\sum_{j=0}^{m}\binom{|q|-j}{2}
+\int_{u_j}^{u_{j+1}}\lambda(v)\,\dd v\right\}.
+\label{eq:supp-kingman-word}
+\end{equation}
+The binomial coefficient is the total number of possible current pairs, while each specified target pair contributes one factor $\lambda(u_j)$.  Thus target labels cannot be discarded.
+
+\begin{definition}[Law-scalar interval and continuation cocycle]
+Fix $2\le |C|\le |S|$.  An open interval $J$ is law scalar for $C$ precisely when: no $C$--$S\setminus C$ merger has positive support below any cut in $J$ (vacuously for $C=S$); every feasible $H_{C,t,q}$ is nonzero and rank one; and one positive finite piecewise-constant $\lambda_J$ satisfies
+\begin{equation}
+\beta_{C,s,q}(\omega A)
+=\mathsf K_{\lambda_J;s,t}(q,\omega)\,
+\beta_{C,t,q'}(A)
+\label{eq:supp-continuation-cocycle}
+\end{equation}
+for all $s<t$ in $J$, all feasible labelled words $q\mathbin{\cdot}\omega=q'$, and every compatible suffix cylinder $A$.  A starting partition is feasible when it has a positive prefix row.  Every label-compatible merger word from it is tested, including zero-density words; a vanishing terminal kernel fails the test because the positive Kingman word has positive total continuation mass.  A complete scalar-separator component is a maximal connected such interval with nonempty interior.  It is keyed by
+\[
+\kappa_\mu(P)=
+\bigl(C,J,\inf J,\sup J,\lambda_J,
+(\alpha_{C,t,q},\beta_{C,t,q})_{t\in J,q}\bigr),
+\]
+with the entire interval retained as an occurrence identifier.  The unique component with unbounded upper endpoint is the root record $\Omega$ and has cluster $S$; finite full-$S$ components are retained.  A proper cluster cannot have unbounded upper endpoint because it eventually has supported cross-mergers in the ancestral population.  Terminal atoms $A_x$ carry the known nonempty blocks $S_x=\mathfrak s^{-1}(x)$.  Multiple samples in one taxon do not create separate species leaves, and no unexposed singleton demographic word is inserted.
+\end{definition}
+
+\begin{lemma}[Law-only composition across an endpoint]
+\label{lem:supp-cocycle-composition}
+Let $J_-=(a,d)$ and $J_+=(d,b)$ be law-scalar intervals for the same $C$.  They lie in one maximal component if and only if their rate words concatenate and \eqref{eq:supp-continuation-cocycle} holds for every spanning $s<d<t$.  A check on one two-sided neighborhood of $d$ suffices.  The conclusion is unchanged by an unequal rate jump at $d$ and does not use a raw boundary map or a population-port name.
+\end{lemma}
+
+\begin{proof}
+For a feasible partition with at least two blocks, division of the density of one specified target-pair merger by the corresponding no-merger density recovers $\lambda$ almost everywhere.  Hence the rate word is unique on non-unary support.  The Kingman factors are multiplicative: split $\omega$ at $d$, apply the two within-interval identities, and multiply.  Therefore a local spanning identity extends to every spanning $s<t$.  Conversely any common law-scalar interval gives all spanning identities by restriction.
+
+If a spanning measure equality fails, a marked suffix cylinder witnesses the failure because these cylinders generate the continuation sigma-field.  In a finite presentation an attempted extension of a maximal interval must therefore encounter supported cross-merger history, a nonzero rank minor, or a failed labelled-word cylinder identity on one of finitely many analytic strata.  This proves that the finite endpoint and the decision to glue are functions of the law.  Isolated rank-one resonances do not create a component.
+\end{proof}
+
+A graph bridge obeys the continuation cocycle by the strong Markov property at a cut of its one-population Kingman process.  Piecewise demographic changes merely concatenate the recovered rate word.  A nonidentity latent boundary is absorbed only if it acts as the same scalar cocycle on every labelled word and every continuation cylinder; then it is observationally a scalar refinement.  Scalar-separator faithfulness is the separate physical hypothesis that the non-unary proper-cluster bridge corridors correspond, preserving incidence and finite component/terminal boundaries, to their maximal law-scalar records.  The full-$S$ correspondence is automatic by the next lemma.  The rooted bridge/blob tree contracts nontrivial blobs but retains unary blobs, ordinary branching vertices, terminal taxa, and the root corridor.  It suppresses demographic degree-two graph vertices while retaining their words.  Thus its vertices need not each have one event time or a positive temporal span.
+
+\begin{lemma}[Full-sample completion test]
+\label{lem:supp-full-s-corridor}
+In a strict sampled-complete level-1 presentation, a law-scalar interval for $S$ lies on a full-$S$ physical bridge corridor.  Conversely every such corridor has the scalar continuation cocycle.  The maximal components include exactly one unbounded root record $\Omega$.
+\end{lemma}
+
+\begin{proof}
+Choose a cut $s$ in the proposed interval away from the finite raw event list and the finite scalar-rate breakpoints.  The observed prefix with no sample merger has positive probability.  Given this prefix, each reachable raw no-merger route assignment still has positive posterior probability: every independent route weight and every survival factor over a finite positive-rate interval is positive.
+
+On a sufficiently short following interval, repeated application of the scalar cocycle to all labelled merger words gives the complete constant-rate Kingman law on the $|S|$ initial blocks.  Freeze the actual population configuration and rates on this boundary-free interval.  Its completion probability
+\[
+F(u)=\Pr(\hbox{all initial blocks form one block by elapsed time }u)
+\]
+is a finite matrix-exponential function of $u$, hence entire.  The constant-rate Kingman completion probability is entire as well.  Their equality for all sufficiently small positive $u$ gives equality for every positive $u$ by the analytic identity theorem.  In particular $F(u)\longrightarrow1$.
+
+An initial raw assignment occupying two or more frozen populations can never complete: mergers change blocks within populations but cannot transfer blocks between them.  Its positive posterior probability would therefore leave a positive deficit in the limit of $F$.  Hence every reachable assignment at $s$ is co-occupied.  Although conditioning on no merger changes the relative route weights, it removes none of the reachable assignments.  Their support remains the Cartesian product of the individual labelled lineages' reachable route choices.  Since at least two samples are present, that product can be entirely co-occupied only if every lineage's accessible-population set is the same singleton.
+
+In a level-1 graph a nonbridge arc belongs to one arm of a nontrivial cycle.  The cycle has a sampled descendant below its reticulation, by sampled completeness.  Between the reticulation and the upper reconvergence, that descendant can follow either arm with positive probability, and each arm crosses the temporal cut.  This contradicts the singleton accessible-population set.  Thus the common population arc is a bridge, carrying all of $S$.  This proves the converse direction.  The forward direction is the strong Markov property on one Kingman population.  Taking maximal intervals and applying \cref{lem:supp-cocycle-composition} concatenates demographic words but does not bridge a nontrivial cycle.  The eventual ancestral population gives one unbounded component; two different maximal intervals cannot both be unbounded.
+
+The proof compares finite presentations on common boundary-free neighborhoods; it does not require a latent boundary list as observed input.  Analytic continuation of the frozen completion probability establishes exact population-law identification, without a stability assertion for estimates.
+\end{proof}
+
+\begin{lemma}[Law-defined occurrence order and incident lists]
+\label{lem:supp-occurrence-incidence}
+Write $J_P=(a_P,b_P)$.  On complete records and known terminal atoms define
+\[
+P\prec Q\quad\Longleftrightarrow\quad
+C_P\subsetneq C_Q\ \text{ or }\
+(C_P=C_Q\ \text{and}\ b_P\le a_Q),
+\qquad
+A_x\prec P\quad\Longleftrightarrow\quad S_x\subseteq C_P,
+\]
+with distinct atoms incomparable.  On the scalar-separator-faithful class this is precisely the physical corridor ancestry order and has unique maximum $\Omega$.  Its covers reconstruct the rooted bridge/blob tree and each incident port list before local response extraction.
+\end{lemma}
+
+\begin{proof}
+Contract each physical nontrivial blob while retaining unary blobs.  In this rooted tree, two corridors with intersecting sampled clusters must lie on one root path.  Otherwise their disjoint descendant subtrees would have disjoint nonempty clusters, since every terminal taxon is sampled.  On one path, inclusion is monotone.  Strict inclusion therefore specifies the direction.  Equal clusters can occur repeatedly, but the distinct nonempty corridor intervals on that path are disjoint and time ordered, so $b_P\le a_Q$ specifies the direction exactly.  Different corridors cannot have both equal cluster and equal open interval.  A terminal atom is below a corridor precisely when its entire known sampling block is contained in that corridor's cluster.  This proves the displayed order and its partial-order properties without assuming strict cluster inclusion along a root path.
+
+Every nonmaximal record has a unique least older record: its older physical corridors form a finite chain containing $\Omega$.  The same is true of an atom.  This is a property proved from a supplied faithful realization, so the law-defined reconstruction can take the unique covers without being supplied that realization or its incidence lists.
+
+Make one vertex $v_P$ for every record, and add all atoms $A_x$.  Join each nonmaximal object to its unique least older record.  Identify $A_x$ with $v_P$ only when its cover is $P$, $a_P=0$, and $C_P=S_x$.  The last step removes an artificial zero-time link at a multisampled terminal population; it contracts no positive-duration corridor or blob.
+
+To prove that this is the physical tree, associate $P$ with the younger endpoint vertex of its corridor.  Every retained nonterminal vertex has at least two sampled descendants.  A branching vertex has a sampled descendant in two branches.  A unary nontrivial blob with only one sampled descendant is a sample-unary two-terminal funnel with no interior side entry, and was removed by the universal reduction.  Thus every retained nonterminal vertex has an upper non-unary record; the top vertex uses $\Omega$.  Each multisampled terminal population also has a non-unary pendant record, whereas a singleton terminal is supplied directly by its atom.  If a physical vertex intervened between two purported adjacent record vertices, its upper record would be strictly intermediate in the displayed order.  Conversely an intermediate record must lie on their physical path.  Hence covers are exactly physical adjacency, with the specified terminal identification.
+
+In particular, for each nonterminal $v_P$ its upper incident port is $P$, and the lower list consists of exactly the records and singleton atoms covered by $P$.  Their disjoint sampled blocks partition $C_P$.  This establishes the lists using complete time-keyed records alone, before taking any local kernel.
+
+This construction never tests whether a component has positive temporal span.  At an ordinary tree vertex it allows $b_Q=a_P$ for all lower records $Q$.  Equal-cluster scalar pieces separated only by a demographic degree-two boundary have already concatenated by the spanning-cocycle lemma; a positive-duration unary gall remains between distinct occurrences.  Independent branches may have overlapping intervals or simultaneous unrelated events because their disjoint clusters remain incomparable.  Zero-time presentational refinements are composed by the pre-existing universal reduction, rather than promoted to observable edges.
+\end{proof}
+
+For a concrete repeated-cluster case, put $x,y$ in one terminal taxon and $z$ in another, with all rates one, inheritance $1/2$, routing $h=\log2$, reconvergence $d=2\log2$, and root age $r=3\log2$.  The pair survival within the gall is
+\[
+S_{xy}(h+u)=\frac12\left(\frac12+\frac12e^{-u}\right),
+\qquad 0<u<\log2.
+\]
+Its hazard $e^{-u}/(1+e^{-u})$ has strictly negative derivative, so it cannot be a finite piecewise-constant Kingman word on any open subinterval.  The distinct scalar records $(\{x,y\},(0,h))$ and $(\{x,y\},(d,r))$ therefore remain separate, and the occurrence order retains their intervening unary blob.  Any number of nested galls gives a longer ordered chain.  The same construction works for full-$S$ galls above all taxa, ending in $\Omega$; a bare root atom or a set of cluster sets would erase their multiplicity.
+
+A concrete sufficient nonbridge certificate is as follows.  Let child labels $x,y$ route at $h$, let a private label $z$ occupy parent $P$ of rate $\lambda>0$, and take $C=\{x,y,z\}\subsetneq S$ with an outside label $w$.  Fix $t=h+D$ before the next boundary of $P$, choose $0<u_1<u_2<D$, and choose $\delta>0$ so that $t+\delta$ precedes the next relevant population/demographic boundary and the parent reconvergence.  Let $p_u$ record that $xz$ is the first merger at $h+u$ and that no second merger occurs before the common cut, so all rows end in $q=\{\{x,z\},\{y\}\}$.  Throughout $[t,t+\delta]$ the two $q$-blocks are co-occupied in $P$ at rate $\lambda$ in the co-occupied sector and cannot meet in the split sector.  Marginalizing $w$ over all compatible future histories contributes one common factor and leaves the minor unchanged.  Put
+\[
+a(u)=\gamma(1-\gamma)\lambda e^{-\lambda u},\qquad
+c(u)=\gamma^2\lambda e^{-\lambda D-2\lambda u}.
+\]
+For suffixes specifying merger or survival over this common interval,
+\[
+H(p_u,z_M)=c(u)(1-e^{-\lambda\delta}),\qquad
+H(p_u,z_S)=a(u)+c(u)e^{-\lambda\delta}.
+\]
+The two actual rows have determinant
+\[
+(1-e^{-\lambda\delta})\bigl(c(u_1)a(u_2)-c(u_2)a(u_1)\bigr)>0.
+\]
+This is an actual-density witness at one fixed cut, not a latent-state rank, and proves that a nontrivial rank certificate is realizable.  It is not advertised as an exhaustive converse for arbitrary level one.
+
+\begin{lemma}[Canonical keyed assembly]
+\label{lem:supp-keyed-assembly}
+The marked-history law determines the family $\cP_\mu^{\rm sep}$, all complete keys, and the rooted tree with every incident list reconstructed by \cref{lem:supp-occurrence-incidence}.  It determines the typed response of each resulting component from the joint kernel cut at that recovered list.  These local responses have at most one global behavioral assembly.
+\end{lemma}
+
+\begin{proof}
+The kernels $H$ determine $\alpha$, $\beta$, every cocycle decision, maximality, all keys, and therefore the occurrence order and its incident lists.  Choose a cut in each incident record's interior and time zero at a known terminal atom.  Unexposed singleton pendant transport stays with the local kernel and contributes no demographic factor.  Ordinary branching vertices may have a zero-span deterministic response.  At every feasible tuple of incident partitions strict positivity supplies a joint positive no-merger entry cylinder.  For the already recovered list $\mathbf P_v$, form directly from the original law the simultaneous multi-cut kernel $H_{\mathbf P_v}(\mathbf p,A)$.  The Markov property of the faithful bridge decomposition makes it rank one between the joint lower histories and the conditioned local response.  Its canonical factors are
+\[
+\alpha_{\mathbf P_v}(\mathbf p)
+=H_{\mathbf P_v}(\mathbf p,\one),
+\qquad
+\beta_{\mathbf P_v}(A)
+=H_{\mathbf P_v}(\mathbf p,A)/
+ \alpha_{\mathbf P_v}(\mathbf p).
+\]
+Thus no product of separately marginalized entry factors is assumed.  Integrating every nonlocal future against $\beta_{\mathbf P_v}(\one)=1$ extracts the local typed response without selecting a latent basis and retains every incident module as a synthetic port labelled by its law key.
+
+Suppose two keyed assemblies first differ on a local marked cylinder at a blob.  Attach the common positive joint entry cylinder at its lower keys, attach all-completions columns at its upper keys, and integrate every disjoint module over its normalized completions.  Joint rank one and \eqref{eq:supp-continuation-cocycle} make all attached factors common and positive.  The resulting global marked-cylinder densities would then differ, contradicting equality of the original law.  Thus disjoint blobs cannot compensate, and reattachment is canonical.  This proves the qualified level-1 assembly without deleting samples or assuming hereditary certificates.
+\end{proof}
+
+To apply the child decoder to a component, first fix a feasible tuple of
+arriving partitions at its recovered lower port keys.  The conditional local
+response is independent of the histories inside lower modules by the bridge
+Markov property and the joint normalization just proved.  Each arriving
+block is one local lineage with its member labels and port key retained.
+Marginalizing other blocks gives the pair's own local law: Kingman mergers
+and independent reticulation routing are consistent under this restriction.
+Entry times need not be equal.  Before a local label enters, assign it a
+distinct isolated placeholder, with no possible merger with another label;
+this only extends the typed response's bookkeeping to earlier cuts.  Its
+subsequent injection gives a nonnegative co-occupancy jump.
+
+The all-singleton tuple is feasible because every lower finite no-merger
+entry cylinder has positive probability.  In that tuple, every descendant
+label of the local reticulation has entered its child corridor before the
+routing boundary.  There is no other routing event in this level-1 blob's
+local response.  The finite one-sided moment decoder therefore gives the
+same negative clique on the arriving child labels; their keys identify the
+corresponding incident child port.  A single port may carry several such
+labels, and must not be replaced by a single synthetic lineage.  Conversely,
+a nonsingleton arriving block routes once as one lineage, not independently
+for each of its member labels.  The private-side, nested-parent, or
+anchor-free parent certificate is then read in this same keyed local law.
+This proves the local invocation of the incidence corollary for the stated
+locally incidence-separated class, without a hereditary sampling assumption
+or a new restriction on the lower attached modules.
+
+\section{Statistical details}
+
+Let $d=\kappa^M$.  For loci of common length $L_K$, the complete alignment alphabet has $D_K=d^{L_K}$ categories.  If $\widehat P_K$ is the empirical law from $K$ independent loci, then
+\[
+\Pr(\|\widehat P_K-P_K\|_\infty>\epsilon)
+\le 2D_K e^{-2K\epsilon^2}.
+\]
+The bound $\mathbb E\|\widehat P_K-P_K\|_1\le\sqrt{D_K/K}$ follows from Cauchy--Schwarz.  The $\ell^1$ error is $2/K$-Lipschitz in the observations, so McDiarmid's inequality and Borel--Cantelli give almost-sure retained-law convergence whenever $D_K/K\to0$.  Every shorter law is an exact marginal of $\widehat P_K$.
+
+Let
+\[
+d_\infty(P,Q)=\sum_{\ell\ge1}2^{-\ell}\|P^{(\ell)}-Q^{(\ell)}\|_1.
+\]
+Write $d_{\le L}$ for the same sum truncated at $\ell=L$, and let $\delta_K$ denote the $d_{\le L_K}$ distance between the empirical marginal vector and the true truncated vector.  Marginalization is an $\ell^1$ contraction, so convergence of the retained length-$L_K$ empirical law implies $\delta_K\to0$ under the displayed growth condition.
+The contribution of unretained orders is at most $2^{-L_K+1}$.  Therefore the empirical indexed law converges in $d_\infty$.
+
+On one compact model image, minimum distance is strongly consistent by the usual compact argument.  On increasing finite-presentation sieves, let $\delta_K$ be the retained-law empirical error and $\varepsilon_K$ the optimization error.  Once the active sieve contains the true finite model, it is an available competitor, so every approximate minimizer $\widehat y_K$ obeys directly
+\[
+d_{\le L_K}(\widehat y_K,P_0)\le 2\delta_K+\varepsilon_K,
+\qquad
+d_\infty(\widehat y_K,P_0)
+\le 2\delta_K+\varepsilon_K+2^{-L_K+1}\longrightarrow0.
+\]
+Compactness is needed only to guarantee exact minimizers within each active sieve, not compactness of their increasing union.
+
+The moment-measure inverse is continuous on its compact image: probability measures on the compact simplex form a compact Hausdorff space, and the full moment map is continuous and injective.  The inverse is therefore continuous.  On a fixed compact principal model class, the bijection from the normalized triple $(\pi,Q_0,\bar\mu)$ to the sequence-law image is likewise a homeomorphism onto its image.  Globally, without compactness or separation from singular strata, only the Borel inverse is claimed.
+
+\section{Exact-input and positivity caveats}
+
+The residual cone at $(q,t)$ is the intersection of the half-spaces $f(z)\ge0$ over all compatible suffixes.  It is closed and convex, pointed because suffix evaluations separate residual functions, and generating because actual nonnegative prefix residuals span the fiber.  Every legal prefix-extension map preserves this compatible family of cones.  The construction does not supply a simplicial cone or a stochastic occupancy basis in the minimal dimension.  Consequently it does not provide an NMSC network realization of the abstract minimal response.  Positivity as an ordered function space and a finite biological occupancy realization are different assertions.
+
+The finite equivalence algorithm assumes exact finite flow matrices over a domain with a terminating zero test.  General symbolic equality of arbitrary elementary real expressions is not claimed.  The mathematical equality theorem itself is independent of that computational representation.
+
+\section{Proof guide}
+
+\begingroup
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.62\textwidth}@{}}
+\toprule
+Issue & Mathematical construction \\
+\midrule
+Ambient exponent vectors on an affine simplex & Absolute times primary; complete-gap exponents quotient by $\R\one$. \\
+Rectangular and constrained response maps & Explicit typed category and admissible timed words. \\
+Unproved automata analogy & Finite Hankel factorization, raw quotient, and unique minimal typed realization proved directly. \\
+Invisible event handling & Scalar analytic continuation and raw Sylvester mixed-jet test. \\
+Division by rate differences & Hermite--Genocchi confluent divided differences and matrix-exponential analyticity. \\
+Unsafe local analytic compactness & Frisch--Siu Noetherian ring of germs along the whole compact chart pair. \\
+Finite-length overclaim & Exact unbounded-epoch JC collision by Vandermonde transversality. \\
+Moment determinacy called an algorithm & Separated Borel inverse, approximation, exact proposed-model testing, and statistical estimators. \\
+Behavior called a network & Explicit positivity and realizability disclaimer. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\bibliographystyle{plainnat}
+\bibliography{../manuscript/references}
+\end{document}

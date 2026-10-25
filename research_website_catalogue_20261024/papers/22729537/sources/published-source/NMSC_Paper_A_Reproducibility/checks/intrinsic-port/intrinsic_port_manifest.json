@@ -1,0 +1,22 @@
+{
+  "schema": "nmsc-intrinsic-port-regression-v1",
+  "date": "2026-09-05",
+  "nodes": ["NMSA-005"],
+  "time_unit": "log(2)",
+  "pair_rate": 1,
+  "inheritance": [1, 2],
+  "cuts": [1, 3],
+  "referee_example": {
+    "arcs": [["R", "U"], ["R", "V"], ["U", "H"], ["U", "H"], ["H", "x"], ["V", "y"], ["V", "z"]],
+    "ages_without_H": {"R": 5, "U": 4, "V": 2, "x": 0, "y": 0, "z": 0},
+    "labels": ["x", "y", "z"],
+    "partition_at_issue": [["y", "z"], ["x"]]
+  },
+  "retained_reticulation_example": {
+    "arcs": [["R", "D"], ["R", "W"], ["D", "U"], ["D", "V"], ["U", "H"], ["U", "y"], ["V", "H"], ["V", "z"], ["H", "x"], ["W", "w1"], ["W", "w2"]],
+    "ages_without_H": {"R": 7, "D": 6, "U": 4, "V": 5, "W": 2, "x": 0, "y": 0, "z": 0, "w1": 0, "w2": 0},
+    "labels": ["x", "y", "z", "w1", "w2"],
+    "partition_at_issue": [["w1", "w2"], ["x"], ["y"], ["z"]]
+  },
+  "limits": "Exact checks of two examples and finite reanchoring; the universal analytic-factorization proof is in A1_REPAIR.md."
+}
