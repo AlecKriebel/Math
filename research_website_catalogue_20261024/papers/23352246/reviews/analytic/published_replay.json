@@ -1,0 +1,374 @@
+{
+  "status": "PASS",
+  "baseline_runs": 9,
+  "actual_source_mutation_runs": 15,
+  "complete_stdout_stderr_exit_codes_match": true,
+  "interpreter": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "historical_uid1000_permission_harness_replayed": false,
+  "limits": [
+    "Finite exact enumeration corroborates formulas and boundary cases, not a polynomial implementation or universal theorem.",
+    "All original arithmetic sources are unchanged; faults are applied only in child memory.",
+    "Isolated flags are not a general security sandbox.",
+    "No formal proof-assistant, human peer-review or exhaustive priority certificate."
+  ],
+  "runs": [
+    {
+      "program": "checks/exact_checks.py",
+      "optimization": 0,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS_FINITE_DIAGNOSTICS\",\n  \"python_optimize\": 0,\n  \"counts\": {\n    \"instances\": 24,\n    \"slice_lps\": 5380,\n    \"submodular_pairs\": 65014,\n    \"proximity_steps\": 1723,\n    \"layer_vectors\": 1000,\n    \"ring_checks\": 1692,\n    \"negative_checks\": 9\n  },\n  \"limitations\": \"Exact finite tests only. No production SFM or ellipsoid implementation; universal and bit-complexity claims rely on the written proof.\"\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "d05fb84dff9f21e40bc66611a5b537cea4cd0b71db7c8d71f852d2b7865efb63",
+      "stdout_sha256": "d9fc6ea737f364ebe008be4a8fa1f2ab15f8266bba73285e3c113e41a7e5f17c"
+    },
+    {
+      "program": "checks/independent_exact_check.py",
+      "optimization": 0,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"boundary_checks\": 21, \"coordinate_checks\": 84368, \"difference_checks\": 331696, \"exact_denominator_checks\": 4624, \"large_number_checks\": 4, \"layers\": 21600, \"model_instances\": 45, \"nearest_sublevel_checks\": 1497, \"oracle_value_bit_checks\": 2994, \"removable_layers\": 2474, \"slice_lps\": 2095, \"submodular_pairs\": 199661, \"unsupported_generalizations_rejected\": 4, \"vectors\": 7380}, \"limitations\": \"Finite exact diagnostics, not an implementation of rational LP, SFM, or GLS and not a complexity proof.\", \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "3338d2793a9b894216e766ec5f681f979407d8de79b179a68b8a8293e6bd2df9",
+      "stdout_sha256": "3f685e88e5aba4351c42450528cff10a499b276e2e418ffdcdab3027e931c2a2"
+    },
+    {
+      "program": "checks/independent_ring_value_checks.py",
+      "optimization": 0,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"seed\": 102530001102,\n  \"ring_families\": 1789,\n  \"nonempty_families\": 1507,\n  \"empty_families\": 282,\n  \"feasible_encoded_assignments\": 5925,\n  \"candidate_sets_examined\": 12354,\n  \"hybrid_instances\": 112,\n  \"exact_slice_LPs\": 598,\n  \"submodular_pairs\": 8888,\n  \"controls\": [\n    \"omitted_base_threshold\",\n    \"large_signed_bit_endpoints\",\n    \"LP_vs_mixed_hull_boundary\",\n    \"fractional_hull_boundary\",\n    \"fractional_recession_interpolation\",\n    \"both_lineality_signs\"\n  ],\n  \"limitations\": \"Finite diagnostics only; no polynomial SFM, GLS, or universal theorem implementation.\",\n  \"optimization_mode\": 0\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "7938415b972fa8ed90e3aeeebfd91480d62dda007d3f0d42edb88cc0bc0d1e63",
+      "stdout_sha256": "b90224a4bd31935a8f7ba36e40088e0b31c693a2570e71334cc30d23f01f5f7b"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 0,
+      "args": [
+        "omit_negative_layers"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "omit_negative_layers",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"omit_negative_layers\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "9f048fc9a1de9d6fca3feda87dba0f46b5fe0a277d59cb7540b16f46ca0f1316",
+      "mutated_checker_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 0,
+      "args": [
+        "strict_threshold"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "strict_threshold",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"strict_threshold\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "4a3a6a51e5729fe295241a80c6b3e81ba30db487d99d57e7423832d51a40c5fc",
+      "mutated_checker_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 0,
+      "args": [
+        "reverse_lp_sign"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_lp_sign",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_lp_sign\", \"reason\": \"LP layer objective sign\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "8d8564c45f056771ff60f009f05ea5cce569dc6fca3cde424a3542ae3403b086",
+      "mutated_checker_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 0,
+      "args": [
+        "remove_small_layer"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "remove_small_layer",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"remove_small_layer\", \"reason\": \"strict l1 decrease\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "3c24331c375a80c5d4de98b9d3673cce4efb60909a22d1d401f7167df31acfaa",
+      "mutated_checker_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 0,
+      "args": [
+        "reverse_submodularity"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_submodularity",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_submodularity\", \"reason\": \"exact partial LP submodularity\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "0714e44c400e332aef0e350c05c7aee10e3b99dce9d09e60a5f7efa328ce40ab",
+      "mutated_checker_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2"
+    },
+    {
+      "program": "checks/exact_checks.py",
+      "optimization": 1,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS_FINITE_DIAGNOSTICS\",\n  \"python_optimize\": 1,\n  \"counts\": {\n    \"instances\": 24,\n    \"slice_lps\": 5380,\n    \"submodular_pairs\": 65014,\n    \"proximity_steps\": 1723,\n    \"layer_vectors\": 1000,\n    \"ring_checks\": 1692,\n    \"negative_checks\": 9\n  },\n  \"limitations\": \"Exact finite tests only. No production SFM or ellipsoid implementation; universal and bit-complexity claims rely on the written proof.\"\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "d05fb84dff9f21e40bc66611a5b537cea4cd0b71db7c8d71f852d2b7865efb63",
+      "stdout_sha256": "72e7b34c84a69b311ae661ccf8b7237e598bf1038bd30f8ff9a88bf4b689dd1e"
+    },
+    {
+      "program": "checks/independent_exact_check.py",
+      "optimization": 1,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"boundary_checks\": 21, \"coordinate_checks\": 84368, \"difference_checks\": 331696, \"exact_denominator_checks\": 4624, \"large_number_checks\": 4, \"layers\": 21600, \"model_instances\": 45, \"nearest_sublevel_checks\": 1497, \"oracle_value_bit_checks\": 2994, \"removable_layers\": 2474, \"slice_lps\": 2095, \"submodular_pairs\": 199661, \"unsupported_generalizations_rejected\": 4, \"vectors\": 7380}, \"limitations\": \"Finite exact diagnostics, not an implementation of rational LP, SFM, or GLS and not a complexity proof.\", \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "3338d2793a9b894216e766ec5f681f979407d8de79b179a68b8a8293e6bd2df9",
+      "stdout_sha256": "3f685e88e5aba4351c42450528cff10a499b276e2e418ffdcdab3027e931c2a2"
+    },
+    {
+      "program": "checks/independent_ring_value_checks.py",
+      "optimization": 1,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"seed\": 102530001102,\n  \"ring_families\": 1789,\n  \"nonempty_families\": 1507,\n  \"empty_families\": 282,\n  \"feasible_encoded_assignments\": 5925,\n  \"candidate_sets_examined\": 12354,\n  \"hybrid_instances\": 112,\n  \"exact_slice_LPs\": 598,\n  \"submodular_pairs\": 8888,\n  \"controls\": [\n    \"omitted_base_threshold\",\n    \"large_signed_bit_endpoints\",\n    \"LP_vs_mixed_hull_boundary\",\n    \"fractional_hull_boundary\",\n    \"fractional_recession_interpolation\",\n    \"both_lineality_signs\"\n  ],\n  \"limitations\": \"Finite diagnostics only; no polynomial SFM, GLS, or universal theorem implementation.\",\n  \"optimization_mode\": 1\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "7938415b972fa8ed90e3aeeebfd91480d62dda007d3f0d42edb88cc0bc0d1e63",
+      "stdout_sha256": "b5ca4837e68f4885a1297d6bef3d2bc32365139585e3380df7b25b9d747c99a4"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 1,
+      "args": [
+        "omit_negative_layers"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "omit_negative_layers",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"omit_negative_layers\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "9f048fc9a1de9d6fca3feda87dba0f46b5fe0a277d59cb7540b16f46ca0f1316",
+      "mutated_checker_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 1,
+      "args": [
+        "strict_threshold"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "strict_threshold",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"strict_threshold\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "4a3a6a51e5729fe295241a80c6b3e81ba30db487d99d57e7423832d51a40c5fc",
+      "mutated_checker_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 1,
+      "args": [
+        "reverse_lp_sign"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_lp_sign",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_lp_sign\", \"reason\": \"LP layer objective sign\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "8d8564c45f056771ff60f009f05ea5cce569dc6fca3cde424a3542ae3403b086",
+      "mutated_checker_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 1,
+      "args": [
+        "remove_small_layer"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "remove_small_layer",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"remove_small_layer\", \"reason\": \"strict l1 decrease\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "3c24331c375a80c5d4de98b9d3673cce4efb60909a22d1d401f7167df31acfaa",
+      "mutated_checker_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 1,
+      "args": [
+        "reverse_submodularity"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_submodularity",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_submodularity\", \"reason\": \"exact partial LP submodularity\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "0714e44c400e332aef0e350c05c7aee10e3b99dce9d09e60a5f7efa328ce40ab",
+      "mutated_checker_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2"
+    },
+    {
+      "program": "checks/exact_checks.py",
+      "optimization": 2,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS_FINITE_DIAGNOSTICS\",\n  \"python_optimize\": 2,\n  \"counts\": {\n    \"instances\": 24,\n    \"slice_lps\": 5380,\n    \"submodular_pairs\": 65014,\n    \"proximity_steps\": 1723,\n    \"layer_vectors\": 1000,\n    \"ring_checks\": 1692,\n    \"negative_checks\": 9\n  },\n  \"limitations\": \"Exact finite tests only. No production SFM or ellipsoid implementation; universal and bit-complexity claims rely on the written proof.\"\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "d05fb84dff9f21e40bc66611a5b537cea4cd0b71db7c8d71f852d2b7865efb63",
+      "stdout_sha256": "8a7b0cd31f3771f9b1a043a0d5a36e7483d8458bf157f5e3bb8c43dae0ebfc7c"
+    },
+    {
+      "program": "checks/independent_exact_check.py",
+      "optimization": 2,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"boundary_checks\": 21, \"coordinate_checks\": 84368, \"difference_checks\": 331696, \"exact_denominator_checks\": 4624, \"large_number_checks\": 4, \"layers\": 21600, \"model_instances\": 45, \"nearest_sublevel_checks\": 1497, \"oracle_value_bit_checks\": 2994, \"removable_layers\": 2474, \"slice_lps\": 2095, \"submodular_pairs\": 199661, \"unsupported_generalizations_rejected\": 4, \"vectors\": 7380}, \"limitations\": \"Finite exact diagnostics, not an implementation of rational LP, SFM, or GLS and not a complexity proof.\", \"status\": \"PASS\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "3338d2793a9b894216e766ec5f681f979407d8de79b179a68b8a8293e6bd2df9",
+      "stdout_sha256": "3f685e88e5aba4351c42450528cff10a499b276e2e418ffdcdab3027e931c2a2"
+    },
+    {
+      "program": "checks/independent_ring_value_checks.py",
+      "optimization": 2,
+      "args": [],
+      "kind": "baseline",
+      "mutation": null,
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"seed\": 102530001102,\n  \"ring_families\": 1789,\n  \"nonempty_families\": 1507,\n  \"empty_families\": 282,\n  \"feasible_encoded_assignments\": 5925,\n  \"candidate_sets_examined\": 12354,\n  \"hybrid_instances\": 112,\n  \"exact_slice_LPs\": 598,\n  \"submodular_pairs\": 8888,\n  \"controls\": [\n    \"omitted_base_threshold\",\n    \"large_signed_bit_endpoints\",\n    \"LP_vs_mixed_hull_boundary\",\n    \"fractional_hull_boundary\",\n    \"fractional_recession_interpolation\",\n    \"both_lineality_signs\"\n  ],\n  \"limitations\": \"Finite diagnostics only; no polynomial SFM, GLS, or universal theorem implementation.\",\n  \"optimization_mode\": 2\n}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "7938415b972fa8ed90e3aeeebfd91480d62dda007d3f0d42edb88cc0bc0d1e63",
+      "stdout_sha256": "2f3ea12dc4352971675ea8d218058966cf8cacdbd9ecc1ea5ef465b7fc745ec1"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 2,
+      "args": [
+        "omit_negative_layers"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "omit_negative_layers",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"omit_negative_layers\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "9f048fc9a1de9d6fca3feda87dba0f46b5fe0a277d59cb7540b16f46ca0f1316",
+      "mutated_checker_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 2,
+      "args": [
+        "strict_threshold"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "strict_threshold",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"strict_threshold\", \"reason\": \"threshold exact reconstruction\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "4a3a6a51e5729fe295241a80c6b3e81ba30db487d99d57e7423832d51a40c5fc",
+      "mutated_checker_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 2,
+      "args": [
+        "reverse_lp_sign"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_lp_sign",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_lp_sign\", \"reason\": \"LP layer objective sign\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "8d8564c45f056771ff60f009f05ea5cce569dc6fca3cde424a3542ae3403b086",
+      "mutated_checker_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 2,
+      "args": [
+        "remove_small_layer"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "remove_small_layer",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"remove_small_layer\", \"reason\": \"strict l1 decrease\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "3c24331c375a80c5d4de98b9d3673cce4efb60909a22d1d401f7167df31acfaa",
+      "mutated_checker_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0"
+    },
+    {
+      "program": "checks/check_mutated_case.py",
+      "optimization": 2,
+      "args": [
+        "reverse_submodularity"
+      ],
+      "kind": "actual_source_mutation",
+      "mutation": "reverse_submodularity",
+      "exit_code": 1,
+      "stdout": "{\"mutation\": \"reverse_submodularity\", \"reason\": \"exact partial LP submodularity\", \"status\": \"INTENDED_REJECTION\"}\n",
+      "stderr": "",
+      "complete_reference_match": true,
+      "source_sha256": "81c93a7406a8007902e88fe189ed50e9b2248e882f9c298537e6826698b10c0f",
+      "stdout_sha256": "0714e44c400e332aef0e350c05c7aee10e3b99dce9d09e60a5f7efa328ce40ab",
+      "mutated_checker_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Independent publication-scope review log
+
+2026-10-25T00:37:00.033569+00:00 — 5% complete. Current acquisition helper inspected. Fresh Zenodo records and all supported published asset types requested. Independent full-paper, primary-literature and publication-scope review begins without consulting sibling or archived mathematical review opinions.
+
+2026-10-25T00:37:43.478939+00:00 — 65% complete. Full five-page published note and full original authored proof read. Primary Benjamini–Tassion Question 1 confirms ordinary finite-energy target; Timar Theorem 1 confirms all-dimensional factor-of-iid one-ended tree input; Haggstrom–Mester section 2 and Lemma 3.1 inspected directly. Independent scope conclusion: automorphism-invariant translation-mixing ordinary-finite-energy bond construction with unique infinite cluster and quenched internal site/bond thresholds one. Strong prior credit required: planar mechanism is HM; supplied bounded-cutset consequence is not a theorem stated in the inspected antecedent. No uniform-energy, everywhere-percolating, or verified-first-resolution claim. No scope defect identified; mathematical gate separate. No sibling or archived review verdicts consulted.
+
+2026-10-25T00:40:03.796287+00:00 — 85% complete. Exact abstract and edition preserved in source-bound public content, with limitations and prior credit, separate AI status, and no speculative follow-up. Final integrity receipt and review summary remain.
+
+2026-10-25T00:40:54.080960+00:00 — 100% complete. Independent scope, primary-literature and source-bound content review finished. All published asset checksums, byte counts, ZIP CRC and main manifest entries pass. Full original abstract retained; precise assumptions and attribution limits documented; follow_up is null. REVIEW.md and verdict.json are complete. This is not the separate mathematical publication gate. Content SHA-256: 8c0ad473a71d7ae0a3db7d618908c502ac95eb5cc3f0e16068d636c67d1069c4.

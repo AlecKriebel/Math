@@ -1,0 +1,5 @@
+# Independent publication-scope review log
+
+2026-10-25T00:43:23.845741+00:00 — 5% complete. Current acquisition script inspected and fresh record/assets acquisition started. Independent full-paper and primary-literature review begins without consulting archived or sibling mathematical review verdicts.
+
+2026-10-25T00:44:27.287899+00:00 — 60% complete. Full nine-page published PDF and complete original SPARSE_CANDIDATE_DERIVATION.md read. Own scope conclusion: output-sensitive deterministic sparse-to-dense reduction, with distinct factors returned densely and multiplicities binary. It does not make sparse-output, arbitrary-circuit, numeric-degree-free construction or practical-runtime claims. Unconditional corollary imports the pinned OpenAI prime-field theorem and its general cyclotomic Hecke zero-free input; those original source theorem statements freshly acquired and checked, not re-proved here. Classical residue/Cartier/reconstruction and dense/irreducible reductions require explicit credit. No scope defect found; source-dependency mathematical gate and remaining primary comparisons separate.

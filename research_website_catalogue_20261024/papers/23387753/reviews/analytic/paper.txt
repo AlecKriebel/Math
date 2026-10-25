@@ -1,0 +1,220 @@
+PAGE 1
+Finite-energy lattice percolation with
+internal critical probability one
+Alec Kriebel
+Independent researcher
+ORCID: 0009-0001-9320-500X
+October 15, 2026 — Version 1.0.0
+Abstract
+For every integer d ≥ 2 we construct a bond percolation on Zd that is invariant under all
+lattice automorphisms, mixing under translations, and has ordinary ﬁnite energy. Almost surely
+it has a unique inﬁnite component, yet every independent Bernoulli thinning with retention p < 1
+destroys all inﬁnite components. The construction perturbs a one-ended spanning tree, using the
+maximum ﬁnite-past size along each non-tree edge’s tree path to suppress every bypass of large
+tree cuts. This answers the historical ordinary-energy question of Benjamini, Häggström and
+Schramm. We also make explicit a planar threshold-one consequence of Häggström–Mester’s
+earlier construction. No ﬁrst-priority claim is made.
+1 Statement and context
+Write Ed for the nearest-neighbor edges of Zd. A bond conﬁguration X ⊆ Ed has ordinary ﬁnite
+energy if, for every edge e,
+0 < P(e ∈ X | σ(1{f ∈X} : f ̸= e)) < 1 almost surely . (1)
+No common positive lower bound is required. For a ﬁxed countable graph H, deﬁne pc(H) as
+the inﬁmum of retention parameters at which independent bond thinning of H has an inﬁnite
+component with positive probability. The internal site threshold is deﬁned analogously. These
+deﬁnitions apply to disconnected graphs as well.
+Benjamini, Häggström and Schramm asked whether an automorphism-invariant, ﬁnite-energy
+bond percolation can percolate almost surely while satisfying pc(X) = 1 [1, Question 1.1]. Their
+ﬁnite-energy convention is ( 1). The question reappears in Benjamini’s lecture notes [ 2, Open
+problem 8.15, p. 61 of the notes version] and Benjamini–Tassion [ 3, Question 1]. Finite components
+are allowed: almost-sure percolation means existence of an inﬁnite component.
+Theorem 1. For every integer d ≥ 2, there is a bond law on (Zd, Ed) invariant under every graph
+automorphism and mixing under translations, satisfying (1), such that almost surely X has a unique
+inﬁnite component C and
+pc(X) = pc(C) = 1 .
+The internal site thresholds of X and C also equal one. All threshold assertions are quenched: the
+realized graph is ﬁxed before introducing independent thinning.
+1
+
+PAGE 2
+The construction develops the summable ﬁnite-past perturbations of Häggström and Mester
+[4, Section 2], using established spanning-tree inputs of Pemantle and Timár [ 5, 6]. Its speciﬁc
+rule controls all non-tree bypasses in any bounded-degree graph with a one-ended spanning tree.
+Section 4 shows that the planar existence conclusion also follows from an exact midpoint projection
+of the older HM model, with an additional bounded-cutset argument. That deduction is not stated
+in the inspected HM paper. The distinction precludes attributing a wholly new planar mechanism
+to this note, or claiming a veriﬁed ﬁrst resolution of the historical question. The ﬁrst occurrence
+of the present rule and all-dimensional conclusion is not certiﬁed by the accompanying bounded
+literature audit.
+2 A perturbation of a one-ended spanning tree
+Let G = ( V, E) be a countably inﬁnite connected simple graph with degree at most ∆ < ∞, and
+let T be a one-ended spanning tree. For t ∈ T , deleting t leaves exactly one ﬁnite component ST (t);
+set sT (t) = |ST (t)| ≥ 1. For e = {x, y} /∈ T , let PT (e) be the unique ﬁnite tree path between its
+endpoints and put
+MT (e) = max
+t∈PT (e)
+sT (t).
+Conditionally on T , choose the output edges independently with probabilities
+rT (e) =
+{
+1 − 2−sT (e), e ∈ T,
+2−MT (e), e / ∈ T. (2)
+All these parameters lie strictly between zero and one.
+Proposition 2. For any possibly random one-ended spanning-tree input T , the output of (2) has
+ordinary ﬁnite energy. Almost surely it has a unique inﬁnite component, and its internal bond and
+site thresholds, and those of that component, equal one. The kernel is measurable and commutes
+with every automorphism of G.
+Proof. Fix a good deterministic input tree. From every v ∈ V there is a unique inﬁnite tree ray,
+with successive edges t0, t1, . . .. Write Sn = ST (tn) and sn = |Sn|. The Sn contain v and increase
+strictly: the next ray vertex belongs to Sn+1 \ Sn. Thus the sn are distinct positive integers. Rays
+in a one-ended tree coalesce, and consequently the Sn exhaust V .
+The only tree edge crossing Sn is tn. If a non-tree edge e crosses Sn, its tree path uses tn, so
+MT (e) ≥ sn. There are at most ∆sn ambient crossing edges. Let Bn be the event that tn is deleted
+or some non-tree crossing edge is inserted. The union bound gives
+∑
+n
+P(Bn | T ) ≤
+∑
+m≥1
+(1 + ∆m)2−m = 1 + 2∆ < ∞. (3)
+The ﬁrst Borel–Cantelli lemma requires no independence between the Bn. It yields, eventually
+along the ray,
+tn ∈ X, ∂ X Sn = {tn}. (4)
+Intersect over countably many starting vertices and then integrate over T . We obtain one joint
+probability-one event on which ( 4) holds eventually at every vertex.
+On that event the retained tree R = X ∩ T contains inﬁnite ray tails. Their coalescence shows
+that R has a unique inﬁnite component CR: any other inﬁnite component would contain a tree ray
+and hence meet a common retained tail. Every inﬁnite X-component starting at v must leave each
+2
+
+PAGE 3
+ﬁnite Sn. At a suﬃciently late cut it must cross tn, both of whose endpoints belong to CR. Thus
+every inﬁnite X-component meets CR, proving uniqueness of the inﬁnite component C of X.
+Now ﬁx a good pair (T, X ) and introduce independent bond thinning with retention p < 1.
+An inﬁnite path from v must retain every suﬃciently late tn. These are distinct ﬁxed thinning
+coordinates, so the probability of such a path is at most pk for every k, and is zero. A countable
+union over vertices excludes all inﬁnite thinned components. The same deterministic witness works
+for every real p < 1, without intersecting an uncountable collection of probability-one events. At
+p = 1 the graph percolates. For C, the late cut identity is
+∂C(Sn ∩ C) = {tn},
+since both endpoints lie in CR ⊆ C. This proves both bond thresholds. An inﬁnite site-thinned
+path must retain inﬁnitely many distinct vertices of the same ray, giving the identical pk obstruction
+and both site thresholds.
+For completeness, the witness-to-output step is measurable. At ﬁxed rational p and vertex
+v, the thinning probability of an inﬁnite connection is a decreasing limit of measurable ﬁnite-
+ball connection probabilities. Requiring these limits to vanish for countably many p, v is Borel;
+monotonicity supplies all real p < 1. Alternatively, the bond obstruction has the graph-only Borel
+certiﬁcate that, for every v and k, there are ﬁnite sets containing v with singleton boundaries at k
+pairwise distinct edges. No measurable selection of a hidden tree from X is needed.
+To prove energy after forgetting T , realize ( 2) by independent uniforms Ue, independent of T .
+Put Fe = σ(Xf : f ̸= e) and He = σ(T, Uf : f ̸= e). Then Fe ⊆ H e, Ue is independent of He, and
+P(Xe = 1 | F e) = E[rT (e) | F e], P(Xe = 0 | F e) = E[1 − rT (e) | F e]. (5)
+Both conditional expectations are strictly positive almost surely. Indeed a conditional expectation
+of a strictly positive integrable random variable cannot vanish on a set of positive probability, by
+integration over that set. Countability of edges gives a common null set. Conditional versions may
+be assigned value 1/2 on excluded conditioning conﬁgurations.
+Finally, the ﬁnite-side and path functions are Borel: enumerate ﬁnite connected vertex sets with
+their ﬁnite incident boundaries and ﬁnite paths. Connectedness, acyclicity and one-endedness of a
+spanning tree also have countable Borel descriptions. Assigning rates 1/2 outside the probability-
+one good input domain gives a globally measurable kernel. Finite-side cardinalities and tree paths
+commute with automorphisms, so the kernel does too.
+3 Lattice input and symmetry
+Timár’s one-ended spanning-tree theorem [ 6, Theorem 1 and Corollary 2] supplies a one-ended span-
+ning tree as a measurable isomorphism-equivariant factor of iid vertex labels on an ergodic amenable
+one-ended unimodular random graph. We use the precise inspected version arXiv:1805.10690v1.
+The deterministic rooted lattice Zd, d ≥ 2, meets these hypotheses. The mass-transport identity
+follows by summing over displacement vectors; invariant uniformly shifted ﬁnite box partitions ver-
+ify amenability; and the complement of a suﬃciently large box is connected, verifying one-endedness.
+Its rooted isomorphism class is deterministic and hence ergodic.
+This factor input and independent iid edge marks have a joint law invariant under every lattice
+automorphism. Proposition 2 therefore gives the required full symmetry. The joint iid ﬁeld is mixing
+under translations: ﬁnite-coordinate events are independent after suﬃciently large translations, and
+approximation in probability by such events proves the assertion for arbitrary measurable events.
+An equivariant measurable factor inherits mixing. Proposition 2 now proves Theorem 1.
+3
+
+PAGE 4
+For 2 ≤ d ≤ 4, Pemantle’s one-ended UST gives an older alternative input [ 5, Theorems 2.3
+and 4.3]. In higher dimensions that UST limit is disconnected, so its substitution into ( 2) would
+leave some connecting tree paths undeﬁned. Timár’s connected input avoids this issue. No uniform
+energy bound, ﬁnite coding radius or quantitative mixing rate is asserted.
+4 The planar antecedent
+We record explicitly why the older HM construction deserves stronger credit than similarity of its
+ﬂip rule. In the square lattice let T be the primal UST and T ∗ its complementary one-ended dual
+tree, as in [ 4, Section 2]. The exact ﬁxed-phase midpoint coordinates of HM’s scale-two site model,
+interpreted as coarse bonds with all coarse vertices present, have conditional probabilities
+qT (e) =
+{
+1 − 4−sT (e), e ∈ T,
+4−sT ∗ (e∗), e / ∈ T. (6)
+Indeed HM ﬂips a site x with probability 2−b(x)−1, where b(x) counts the ﬁnite vertices separated
+from monochromatic inﬁnity by removing x. A midpoint with a ﬁnite coarse side of s vertices has
+b(x) = s + (s − 1) = 2 s − 1. Taking these coordinates preserves their conditional independence.
+This is a coordinate marginal of the ﬁxed-phase construction, not the induced graph on its ﬁnally
+open site set. The random parity phase of the full site model is absent from the coarse bond law.
+Here is the additional threshold argument. Along a ﬁnite simple path in a one-ended tree, every
+ﬁnite-side edge size occurs at most twice: the path is two increasing ancestor chains meeting at
+their common ancestor. For the ray cuts Sn of Section 2, the duals of ∂GSn form exactly the
+fundamental cycle obtained by adding t∗
+n to T ∗. To see this directly, a ﬁnite primal cut is an even
+dual edge set; all its edges but t∗
+n lie in the dual tree, so its only possible cycle is the simple path
+in T ∗ between the endpoints of t∗
+n together with that edge. No additional even component can lie
+in a tree.
+Thus the non-tree edges crossing Sn correspond to one ﬁnite dual-tree path. If Y denotes the
+output of ( 6),
+E[|∂Y Sn| | T ] ≤ 1 + 2
+∑
+m≥1
+4−m = 5
+3 .
+Conditional Fatou implies lim infn |∂Y Sn| < ∞ almost surely. Since Sn exhaust the lattice, their
+boundaries escape every ﬁnite edge set. For each good output, choose inﬁnitely many pairwise edge-
+disjoint boundaries of size at most some ﬁnite K. If a boundary is empty there is no inﬁnite escape
+from its interior. Otherwise a Bernoulli- p thinning deletes each entire boundary with probability
+at least (1 − p)K. Independence on the disjoint boundaries bounds the probability of crossing k of
+them by [1 − (1 − p)K]k → 0. Every ﬁxed vertex lies in all suﬃciently late Sn, so this quenched
+argument excludes every inﬁnite component for every p < 1.
+Conversely, summable deletions along primal rays leave inﬁnite retained tails. The coarse law
+is fully automorphism invariant, and the conditional-expectation argument ( 5) proves its ordinary
+ﬁnite energy. Consequently this exact HM midpoint projection already gives the historical bond
+existence conclusion in dimension two, once the bounded-cutset deduction is supplied. The actual
+post-ﬂip HM site model also has internal site threshold one: its surrounding ﬁne-lattice circuits
+have one initially open midpoint and a dual-tree path whose expected number of ﬂipped-open sites
+is at most 2 ∑
+m≥0 2−m−1 = 2 . Fatou and disjoint surrounding circuits give the same thinning
+obstruction. The internal bond threshold follows from [ 4, Lemma 3.1]; that lemma by itself does
+not convert an external site law into a bond law with ﬁnite energy.
+4
+
+PAGE 5
+The inspected HM paper states ﬁnite-energy coexistence and discusses threshold one for its
+pre-ﬂip model; it does not state the post-ﬂip deduction above. The inspected 2015 version of [ 3]
+still poses the exact bond question. We neither erase this chronology nor infer a previously printed
+solution from our deduction. The present rule ( 2) uses no planar dual tree and gives eventual
+singleton cuts, a stronger structural conclusion than the bounded-cutset subsequence used here.
+Its mathematical validity is independent of the unresolved historical-priority question.
+V eriﬁcation and disclosure. The accompanying archive contains editable source, the frozen
+original proof and reviews, independent analytical audits of the theorem and planar antecedent, a
+bounded priority audit with source/version locators, and reproducible byte-integrity checks. These
+checks do not certify the inﬁnite mathematical proof or priority. Downloaded publications are not
+redistributed. OpenAI tools were used extensively in solving, proof development, drafting, and
+adversarial veriﬁcation. This is an unrefereed preprint; no completed external human peer review
+or formal proof-assistant veriﬁcation is claimed.
+References
+[1] I. Benjamini, O. Häggström and O. Schramm, On the eﬀect of adding ε-Bernoulli perco-
+lation to everywhere percolating subgraphs of Zd, J. Math. Phys. 41 (2000), 1294–1297.
+doi:10.1063/1.533187; inspected arXiv:math/9906002v1 (1999).
+[2] I. Benjamini, Coarse Geometry and Randomness , Lecture Notes in Mathematics 2100, Springer,
+2013. The problem locator here refers to the author’s lecture-notes version, Open problem 8.15,
+p. 61, in the archived PDF.
+[3] I. Benjamini and V. Tassion, Homogenization via sprinkling, Ann. Inst. Henri Poincaré Probab.
+Stat. 53 (2017), 997–1005. doi:10.1214/16-AIHP746; inspected arXiv:1505.06069v1 (2015).
+[4] O. Häggström and P. Mester, Some two-dimensional ﬁnite energy percolation processes, Elec-
+tron. Commun. Probab. 14 (2009), 42–54. doi:10.1214/ECP.v14-1446; inspected published PDF.
+[5] R. Pemantle, Choosing a spanning tree for the integer lattice uniformly, Ann. Probab. 19 (1991),
+1559–1574. Inspected arXiv:math/0404043v1 (deposited 2004).
+[6] Á. Timár, One-ended spanning trees in amenable unimodular graphs, Electron. Commun.
+Probab. 24 (2019), paper 72, 12 pp. doi:10.1214/19-ECP274; theorem used in the inspected
+10-page arXiv:1805.10690v1 (2018).
+5

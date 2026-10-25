@@ -1,0 +1,5 @@
+# Independent publication-scope review log
+
+2026-10-25T00:43:23.846214+00:00 — 5% complete. Current acquisition script inspected and fresh record/assets acquisition started. Independent full-paper and primary-literature review begins without consulting archived or sibling mathematical review verdicts.
+
+2026-10-25T00:44:27.288298+00:00 — 60% complete. Full six-page published manuscript and complete author SUPPLEMENT.md read. Own scope conclusion: exact rational mixed-integer bipartite covers, unrestricted signs, arbitrary selected integer coordinates and denominators; polynomial binary-input optimization, actual closed hull, strong separation and exact boundary membership. Classical proximity, partial minimization and ring/GLS mechanisms credited. No claim of strongly polynomial total algorithm, compact formulation, subtree-hull resolution, arbitrary-real interface or implemented full optimizer. No scope defect found; mathematical gate separate. The authored supplement includes embedded historical audit-status assertions; encountered while reading requested source, but not used as evidence and no dedicated archived or sibling review report consulted.

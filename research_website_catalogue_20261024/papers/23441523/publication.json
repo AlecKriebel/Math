@@ -1,0 +1,113 @@
+{
+  "title": "A polynomial versus superpolynomial gap in vertex-distribution-free graph testing",
+  "slug": "vertex-distribution-free-graph-testing-gap",
+  "description": "A fixed graph property has polynomial testing cost under uniform vertex sampling but superpolynomial cost with arbitrary vertex weights.",
+  "abstract": "We give a negative answer to the comparison question of Gishboliner and Shapira in Oberwolfach Report 19/2019, Problem 5, and their later Problem 5.6. The fixed property consisting of K₄-free graphs that become 3-colorable after deleting at most one vertex has a polynomial classical canonical tester, for every input size. In the vertex-distribution-free model, every adaptive two-sided tester has superpolynomial total sample-plus-adjacency cost as the proximity parameter tends to zero. The lower bound follows by an elementary tripartite-cover and heavy-apex reduction from the established two-sided triangle-testing lower bound. All distances allow arbitrary edge additions and deletions. The reduction remains valid when the tester is given the vertex set, its size, the full positive rational distribution, and the heavy vertex. A self-contained classical sampling argument and exact finite verification materials accompany the note.",
+  "plain_language": [
+    "Graph property testing asks whether a large network has a specified feature, or is far from having it, while inspecting only a small part of the network. Usually every vertex receives equal weight. The vertex-distribution-free model allows vertices to have very different weights, which affect both sampling and the cost of changing edges.",
+    "This paper constructs one fixed feature that is relatively cheap to test with uniform samples but much more expensive with arbitrary vertex weights. The feature has two conditions: no four vertices form a complete clique, and deleting at most one vertex makes the graph colorable with three colors.",
+    "The key example gives a single vertex half of the sampling weight. Its connections force the rest of the graph to obey a difficult triangle-free condition. That one vertex has little influence under uniform sampling in a large graph, yet it is expensive to disconnect under the weighted distance.",
+    "The separation persists even if the tester is told every vertex name and the entire distribution. The obstruction is therefore not just ignorance of the sampling weights. The result measures how many samples and adjacency questions are required; it makes no claim of a polynomial running-time algorithm."
+  ],
+  "result": [
+    "Fix the property P of finite simple undirected K₄-free graphs that become 3-colorable after deleting at most one vertex. It is hereditary, closed under edge deletion, and extendable by adding an isolated vertex.",
+    "For every nonempty input size, a one-sided classical canonical tester uses O(ε⁻⁶ log(1/ε)) independent uniform samples and O(ε⁻¹² log²(1/ε)) adjacency queries. It does not need to know the number of vertices.",
+    "Along a sequence of positive rational ε tending to zero, every randomized adaptive two-sided vertex-distribution-free tester has worst-case total sample-plus-adjacency cost exp(Ω(log²(1/ε))). This remains true with the full vertex set, its size, the complete positive rational weight vector, and the distinguished heavy vertex supplied.",
+    "The distance is the sum of D(u)D(v) over unordered changed vertex pairs, minimized over graphs with the property on the same vertex set; additions and deletions are both allowed. For uniform D this is the number of changed edges divided by n². Testers accept members and reject ε-far inputs with probability at least 2/3.",
+    "Consequently no fixed polynomial in classical canonical complexity and 1/ε can bound the VDF complexity for every extendable hereditary property, even after a fixed positive constant rescaling of the classical proximity parameter. This addresses the comparison question in Gishboliner–Shapira Problem 5.6 and the earlier Oberwolfach problem."
+  ],
+  "limitations": [
+    "This is a separation for one fixed property. It does not classify which other properties have a gap, or settle every question about forbidding one fixed subgraph.",
+    "The lower bound counts samples and adjacency queries together. It is not a sample-only bound when unlimited arbitrary-name adjacency queries are free. Its displayed quantitative bound is stated along a sequence of proximity parameters.",
+    "The classical tester can use exhaustive membership checking on the sampled graph. Polynomial oracle complexity does not imply polynomial running time.",
+    "The proof imports the established two-sided triangle-testing lower bound of Alon and Shapira. The contribution is the property and the reduction that place known triangle hardness against a polynomial classical tester, not a new triangle lower bound.",
+    "The literature comparison is bounded. No claim of exhaustive priority certification, independent human peer review, or formal proof verification is made. The finite programs supplement the written proof and its cited theorem."
+  ],
+  "background": [
+    {
+      "title": "Gishboliner and Shapira, Testing Graphs against an Unknown Distribution",
+      "url": "https://arxiv.org/abs/1905.09903v5",
+      "note": "Defines the VDF framework and states the uniform-versus-VDF comparison as Problem 5.6. Its positive result for blowup-avoidable properties does not cover every extendable hereditary property."
+    },
+    {
+      "title": "Gishboliner, joint work with Shapira, Oberwolfach Report 19/2019",
+      "url": "https://ems.press/content/serial-article-files/46798",
+      "note": "The original comparison appears as Problem 5 on printed page 1139. The model counts vertex samples and edge queries."
+    },
+    {
+      "title": "Alon and Shapira (2004), Testing subgraphs in directed graphs",
+      "url": "https://doi.org/10.1016/j.jcss.2004.04.008",
+      "note": "Theorem 4(ii) and its two-sided lower-bound argument supply the classical triangle-testing hardness used by the reduction."
+    },
+    {
+      "title": "Alon and Krivelevich (2002), Testing k-colorability",
+      "url": "https://doi.org/10.1137/S0895480199358655",
+      "note": "Part of the established polynomial colorability-testing theory. The note includes a conservative sampling proof that explicitly handles every input size."
+    },
+    {
+      "title": "Fei (2026), Testing Properties of Edge Distributions",
+      "url": "https://arxiv.org/abs/2603.22702v2",
+      "note": "Studies distributions on edges with a different default sampling oracle and arbitrary edge weights. Those results should not be conflated with vertex-product distance and counted adjacency access here."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent review of the testing models, the all-size classical bound, and the adaptive lower-bound reduction, or on preparing the result for journal submission. Expertise in graph property testing and removal lemmas would be particularly useful.",
+  "follow_up": null,
+  "followup_rationale": "No new follow-up meets the requested high bar. Classifying other separating properties, improving quantitative bounds, or restricting distributions are broad existing directions. This review establishes neither a new precise conjecture with evidence nor an exceptional reason to advertise one on this page.",
+  "publication_date": "2026-10-17",
+  "version": "1.0.0",
+  "doi": "10.5281/zenodo.23441523",
+  "author": "Alec Kriebel",
+  "pdf_filename": "vdf-testing-gap.pdf",
+  "supplement_filename": "vdf-testing-gap-source-and-verification.zip",
+  "additional_assets": [],
+  "why_it_works": [
+    "The classical tester looks for two disjoint subgraphs that each fail 3-colorability. Deleting one vertex cannot remove both obstructions. A color-list sampling argument finds these witnesses in large inputs; sufficiently many samples collect every vertex of a small input.",
+    "For the lower bound, a tripartite cover makes any graph 3-colorable while preserving triangle-freeness and retaining a constant fraction of its distance from that property. After adding a universal vertex with weight 1/2, the new graph’s distance from P is exactly one quarter of the tail’s triangle-free distance.",
+    "The composition loses only a factor of 36 in proximity. Sampling the constructed graph needs no access to the original edges, and each adjacency query costs at most one original adjacency query. The established adaptive two-sided triangle lower bound therefore transfers to the weighted testing problem."
+  ],
+  "status": "Unrefereed research note, version 1.0.0, developed with extensive AI assistance. Independent specialist review welcome.",
+  "ai_disclosure": "AI tools were used extensively in development, verification, literature review, and writing. The author is responsible for the claims. AI-assisted reviews and finite verification programs are not independent human peer review or formal proof certification.",
+  "source_binding": {
+    "record_id": "23441523",
+    "concept_record_id": "23441522",
+    "record_url": "https://zenodo.org/records/23441523",
+    "doi": "10.5281/zenodo.23441523",
+    "version": "1.0.0",
+    "zenodo_publication_date": "2026-10-17",
+    "manuscript_date": "2026-10-17",
+    "printed_edition": "17 October 2026 · Version 1.0.0",
+    "source_retrieved_utc": "2026-10-25T00:23:23.993622+00:00",
+    "pdf_sha256": "a9d81e3b765adc8ee9bee044d23008515e31bbeb57a916358f32e8d3c021a1f0",
+    "supplement_sha256": "4367fad39640b11fb1809c2302a91947a9343dd8179590a51ef87e5756caa5cb",
+    "files": [
+      {
+        "name": "vdf-testing-gap.pdf",
+        "url": "https://zenodo.org/api/records/23441523/files/vdf-testing-gap.pdf/content",
+        "bytes": 80465,
+        "sha256": "a9d81e3b765adc8ee9bee044d23008515e31bbeb57a916358f32e8d3c021a1f0",
+        "zenodo_checksum": "md5:d57086014dd6d8928b459391f092e0ad"
+      },
+      {
+        "name": "vdf-testing-gap-source-and-verification.zip",
+        "url": "https://zenodo.org/api/records/23441523/files/vdf-testing-gap-source-and-verification.zip/content",
+        "bytes": 301162,
+        "sha256": "4367fad39640b11fb1809c2302a91947a9343dd8179590a51ef87e5756caa5cb",
+        "zenodo_checksum": "md5:0225c01aca4742083946b7334b023bcd"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "vdf-testing-gap.pdf",
+        "pages": 5,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": [
+      "Complete original authored audit/inputs/PROOF.md, including the direct rational hard-family construction.",
+      "Package README and manifest structure; archived review verdicts not used to form scope conclusion."
+    ],
+    "abstract_source": "Full published PDF page 1 abstract, cross-checked against published-source/main.tex; whitespace and mathematical typography normalized, no editorial disclosure appended.",
+    "archive_pdf_identity": "Uploaded PDF is byte-identical to output/pdf/vdf-testing-gap.pdf inside the published ZIP. The archive has no other PDF and the record has no separately published supplementary PDF.",
+    "review_boundary": "Independent publication scope and literature review only. Mathematical promotion requires the separately assigned analytic and adversarial gates. No exhaustive novelty certification."
+  }
+}

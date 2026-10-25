@@ -24,9 +24,16 @@ TEX_PATHS={
  '21699161':'related-records/21699181/published-source/main.tex',
  '22089551':'published-source/bimolecular_positive_recurrence_submission_v1_2_4/manuscript/paper_content.tex',
  '22729545':'published-source/NMSC_Paper_B_Source/manuscript/main.tex',
+ '23441523':'published-source/main.tex',
+ '23356680':'published-source/note.tex',
+ '23445342':'published-source/main.tex',
+ '23387753':'published-source/note.tex',
 }
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex):
+ tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
+ tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
+ tex=re.sub(r'\\ge(?![A-Za-z])','≥',tex)
  for old,new in LATEX_WORDS.items():tex=tex.replace(old,new)
  commands=re.findall(r'\\[A-Za-z]+',tex)
  if commands:raise ValueError('Unrecognized abstract TeX commands: '+repr(commands))
@@ -67,6 +74,14 @@ for rid in args.record_ids:
   abstract_source=branch.group(2)
  a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',abstract_source,re.S).group(1)
  test('abstract_full_source_words',abstract_tokens(a)==wt(c['abstract']))
+ if rid in ('23441523','23356680'):
+  normalized_abstract=a.replace('$K_4$','K₄').replace('$3$','3').replace(r'$4+\sqrt{17}$','4 + √17').replace('--','–').replace('~',' ')
+  test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid in ('23445342','23387753'):
+  normalized_abstract=a.replace(r'$\ZZ$','Z').replace(r'$\Z^d$','Zᵈ').replace(r'$d\ge2$','d ≥ 2').replace('$p<1$','p < 1').replace(r'\textbf{Priority qualification:}','Priority qualification:').replace(r'H\"aggstr\"om','Häggström').replace(r'\ ',' ').replace('$','').replace('~',' ').replace('--','–').replace("'",'’')
+  test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  test('no_noindex','noindex' not in meta.get('robots',''))
  test('no_audit_replay',not any(x in ''.join(d.text).lower() for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
  test('no_followup',c['follow_up'] is None and 'id="further-research"' not in h)
@@ -123,6 +138,9 @@ for rid in args.record_ids:
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
+  if rid in ('23441523','23356680','23445342','23387753'):
+   test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+   test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
  if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
  if rid=='23331395':test('scope_complete',all(x in unescape(h) for x in ['smooth integral projective variety','arbitrary characteristic','one closed point','mult_x(ρ_*Γ)','inseparable degree']))
@@ -139,6 +157,18 @@ for rid in args.record_ids:
   companion=R/'papers/22729537/promotion.json'
   test('companion_gate_binding',gate['companion_import']['status']=='PASS' and gate['companion_import']['promotion_sha256']==sha(companion) and json.loads(companion.read_text())['status']=='PASS')
   test('all_four_published_materials',all(name in [x.get('href') for t,x in d.a if t=='a'] for name in ['NMSC_Paper_B_Main.pdf','NMSC_Paper_B_Supplement.pdf','NMSC_Paper_B_Source.zip','NMSC_Paper_B_Reproducibility.zip']))
+ if rid=='23441523':
+  test('scope_complete',all(x in unescape(h) for x in ['every nonempty input size','sequence of positive rational ε','total sample-plus-adjacency cost','complete positive rational weight vector','unordered changed vertex pairs','not a sample-only bound','does not imply polynomial running time','established two-sided triangle-testing lower bound of Alon and Shapira']))
+  test('heavy_apex_distance_direction','new graph’s distance from P is exactly one quarter of the tail’s triangle-free distance' in unescape(h))
+ if rid=='23356680':
+  test('scope_complete',all(x in unescape(h) for x in ['every Lipschitz domain Ω compactly contained in U','Competitors need not be continuous','positive area','not Korevaar–Schoen harmonic','not a global minimizer','complete metric target','4 + √17','2√2 + √6','revised journal body was not available','neither unchanged final wording nor continued open status','First priority and optimal constants are not claimed']))
+  test('pinned_question_history',any(x['url']=='https://arxiv.org/abs/2503.08553v1' for x in c['background']))
+ if rid=='23445342':
+  test('scope_complete',all(x in unescape(h) for x in ['fixed iid space-time environment law','every deterministic real sequence M_N','uniformly in each deterministic alignment','twice the usual total variation distance','may diverge nonmonotonically and arbitrarily slowly','not a simultaneous assertion for partitions selected after observing the environment','Novelty and historical priority remain unresolved','four relevant older original full texts could not be accessed']))
+  test('credited_methods',all(x in unescape(h) for x in ['Dunlap–Gu','Barraquand–Rychnovsky','auxiliary polynomial rate']))
+ if rid=='23387753':
+  test('scope_complete',all(x in unescape(h) for x in ['ordinary finite energy','every integer d ≥ 2','Finite components are allowed','quenched: X is fixed','internal site thresholds','maximum finite-side size','connected one-ended spanning tree','not the induced bond graph','factor-of-iid','No first-priority claim']))
+  test('credited_planar_antecedent',all(x in unescape(h) for x in ['planar perturbation mechanism is due to Häggström and Mester','additional bounded-cutset deduction']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

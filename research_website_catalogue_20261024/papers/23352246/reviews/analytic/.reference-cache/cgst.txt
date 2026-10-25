@@ -1,0 +1,663 @@
+Mathematical Programming 34 (1986) 251-264
+North-Holland
+
+
+
+      SENSITIVITY T H E O R E M S IN INTEGER LINEAR
+      PROGRAMMING
+
+      W. COOK*
+      Institut fiir C)konometrie und Operations Research, University of Bonn, FR Germany**
+
+      A.M.H. GERARDS
+      Department of Econometrics, Tilburg University, Holland
+
+      A. SCHRIJVER***
+      Department of Econometrics, Tilburg University, Holland, and Mathematical Centre, Kruislaan 412,
+      Amsterdam, Holland
+
+      1~. TARDOS*
+      lnstitat fiir Okonometrie and Operations Research, University of Bonn, FR Germany
+
+      Received 15 March 1985
+      Revised manuscript received 22 August 1985
+
+
+         We consider integer linear programming problems with a fixed coefficient matrix and varying
+      objective function and right-hand-side vector. Among our results, we show that, for any optimal
+      solution to a linear program max{wx: Ax <~b}, the distance to the nearest optimal solution to the
+      corresponding integer program is at most the dimension of the problem multiplied by the largest
+      subdeterminant of the integral matrix A. Using this, we strengthen several integer programming
+      'proximity' results of Blair and Jeroslow; Graver; and Wolsey. We also show that the Chv~ital
+      rank of a polyhedron {x: Ax ~ b} can be bounded above by a function of the matrix A, independent
+      of the vector b, a result which, as Blair observed, is equivalent to Blair and Jeroslow's theorem
+      that 'each integer programming value function is a Gomory function.'
+
+        Key words: Integer Linear Programming, Chvfital Rank, Cutting Planes, Sensitivity Analysis.
+
+
+
+I. Introduction
+
+  For a given integer program max{wx: A x ~ b , x integral}, how does the set of
+optimal solutions change as the vectors w and b are varied? Early work on this
+topic was carried out by Gomory [14, 15], who considered the connection between
+optimal solutions to an integer program and its linear programming relaxation for
+a range of right-hand-side vectors b. His work was continued and extended by
+Wolsey [28]. Other studies have been made by Blair and Jeroslow [1, 2, 3].
+
+     * Supported by a grant from the Alexander von Humboldt Stiftung.
+    ** Since September 1985: Department of Operations Research, Upson Hall, Cornell University,
+Ithaca, NY 14853, USA.
+   *** Partially supported by the Sonderforschungbereich 21 (DFG), Institut fiir C)konometrie und
+Operations Research of the University of Bonn, FR Germany.
+                                                  251
+252                          W. Cook et al. / Sensitivity theorems in IP
+
+   In this paper, we consider several different aspects of the problem. We first show
+(Theorem 1) that, for any optimal solution to a linear program max{wx: A x ~ b},
+where A is an integral matrix, the distance to the nearest optimal solution to the
+corresponding integer program is at most the number of variables multiplied by the
+largest subdeterminant of A. This implies results of Blair and Jeroslow [2], von zur
+Gathen and Sieveking [10], and Wolsey [28]. Next (Theorem 5), we sharpen a result
+of Blair and Jeroslow [1], which implies that a change in the right-hand-side vector
+cannot produce more than an affine change in the optimal value of an integer
+program. We then show (Theorem 6) that for any nonoptimal integral solution to
+max{wx: Ax<~ b, x integral} there exists an integral solution nearby (for a fixed
+matrix A) which has a greater objective value. This improves a result of Graver
+[16] and Blair and Jeroslow [3]. Finally, we show (Theorem 10) that the Chv~ital
+rank of a polyhedron {x: A x <~b} Can be bounded above by a function of the matrix
+A, independent of the vector b.
+   We assume throughout the paper that all polyhedra, matrices, and vectors are
+rational. The l~-norm of a vector x = ( x l , . . . , x , )        is denoted by Ilxll~:
+max{[x~[: i = 1 , . . . , n} and the l~-norm is denoted by Ilxlll =Y~{[Xil: i = 1. . . . , n}. For
+a matrix A, we denote by A ( A ) the maximum of the absolute values of the
+determinants of the square submatrices of A. If A is an m x n matrix and b is an
+m-component vector, then (AIb) denotes the matrix obtained by adjoining b, as an
+n + 1St column, to A. The greatest integer less than or equal to a number 13 is denoted
+by [/3].
+   For basic results in the theory of polyhedra and integer linear programming, the
+reader is referred to Schrijver [26] and Stoer and Witzgall [27].
+
+
+2. Proximity results
+
+  We begin with a theorem on the distance between optimal solutions to an integer
+program and its linear programming relaxation.
+
+Theorem 1. Let A be an integral m × n matrix and let b and w be vectors such that
+Ax<~ b has an integral solution and max{wx: Ax<~ b} exists. Then
+   (i) for each optimal solution ~ to max{wx: A x ~ b} there exists an optimal solution
+        z* to max{wx: ax<~ b, x integral} with I1~-z*[l~<~ n a ( a )
+and
+   (ii) for each optimal solution ~ to max{wx: A x <~b, x integral} there exists an optimal
+         solution x* to max{wx: A x ~ b} with II~-x*[[~<~ n a ( a ) .
+
+Proof. Let ~ and g be optimal solutions to max{wx: Ax<~b} and max{wx: Ax<~
+b, x integral} respectively. Split A into submatrices A1, A2 such that Aa~ ~>AI~ and
+A2ff < A22. Since ai~ < bi for each inequality a~x <~ bl, of A x <~ b, with a~ a row of
+A2, the dual variables corresponding to the rows of A2 are equal to zero in every
+                                    w. Cook et al. / Sensitivity theorems in IP                                       253
+
+optimal solution to the dual linear program of max{wx: A x <~ b}. So there exists a
+vector y l > 0 such that y I A 1 = w. This implies that w~ >I 0 for each vector ~ in the
+cone C - - { x : A ~ x ~ O , A2x~<0}. Let G be a finite set of integral vectors which
+generates C (so C is the set of vectors which can be written as a nonnegative linear
+combination of vectors in G). Using Cramer's rule, we may assume that IIg [Iv ~< A (A)
+for each g c G. As x - z ~ C, there exists, by Carath6odory's theorem, a set
+{gl . . . . , gt} c_ G and numbers Ai >~0, i = 1 , . . . , t, such that E - ~ = Alg 1+" • • + Atg t,
+where t is the dimension of C.
+  To verify (i), let
+
+           z * = ~ + [ A l J g l + .. . + [ A ~ J g t = E - ( A ~ - LA~J)g ~. . . . .             ( A t - [AtJ)g t.   (1)
+
+Since ~ is integral and g ~ , . . . , gt are integral, z* is also integral. Furthermore,
+
+           A 2 z * = A 2 ~ + [A1]A2g ~+" • "+ LAtJA2g t <~A2~                          and
+          A~z* = AlE - - ( A 1 - [ A I ]    )mlg    ~.....        (At -- [AtJ )A~g t <~A ~ .
+
+So A z * <~ b. Now since wg i ~>0 for i --- 1 , . . . , t, we have that wz* >~ w~ and, hence,
+that z* is an optimal solution to max{wx: Ax<~ b, x integral}. (This implies that
+wg ~= 0 for all i c { 1 , . . . , t} with )ti/> 1, a fact which is used below.) Finally,
+
+       I[~-z*ll~ = II('~l- [AlJ)g 1 + ' " " + ( A t - [AtJ)gtll~ ~ Ilglll~+ .- -+llgtll~.                             (2)
+So IIE-z*ll~ t,a(A) <~n,a(A).
+  To verify (ii), let
+          x*=E-        Lx,] g' . . . . .    [AtJ g t - = i f + (A, - L A , j ) g l +     "" " + ( A t -   tA,J)g t.
+                                                                                                                      (3)
+Using the above arguments, it follows that A x * ~ b and I]~-x*ll~<~ h A ( A ) . Since
+wg ~ = 0 for all i c { 1 , . . . , t} with A~> 1, we have w x * = wE. So x* is an optimal
+solution to max{wx: Ax<~ b}. []
+
+   This result strengthens a theorem of Blair and Jeroslow [2, Theorem 1.2], who
+showed that for any fixed matrix A and fixed vector w, there exists a constant T
+such that for any optimal solution E to max{wx: Ax<~ b}, there exists an optimal
+solution ~ to max{wx: Ax<~ b, x integral} such that I I E - ~ I I ~< T (assuming that
+A x <~ b has an integral solution). (In fact, an analysis of Blair and Jeroslow's p r o o f
+(see also the p r o o f of [1, Theorem 2.1(1)]) will show that T is independent of w.)
+Similarly, the following consequence of Theorem 1 strengthens a result of Blair and
+Jeroslow [1, Theorem 2.1(2), 3, Corollary 4.7] on the difference between the optimal
+value of an integer program and its linear p r o g r a m m i n g relaxation.
+
+Corollary 2. L e t A be an integral m × n m a t r i x a n d let b and w be vectors such that
+Ax<~ b has an integral solution and max{wx: A x -       <<b} exists. Then
+
+          max{wx: A x ~ b } - m a x { w x :         A x <~ b, x integral} <<-nA(A)llwlD1.                      []     (4)
+254                                w. Cook et al. / Sensitivity theorems in IP
+
+  Another consequence of Theorem 1 is the following result of von zur Gathen and
+Sieveking [10] (which implies that integer programming (feasibility) is in the class
+NP).
+
+Corollary 3. L e t A be an integral m × n matrix and b an integral m-component vector.
+Then i f A x <~b has an integral solution, then it has one with components at most
+( n + 1 ) A ( ( A ] b ) ) in absolute value.
+
+Proof. Suppose that A x <-b has an integral solution. There exists a vector ~ with
+A2 ~< b such that the nonzero components of ~ are given by B -~/~ for some submatrix
+B of A and some part/~ of b. We have [[~[[o~< A ( ( A [ b ) ) . By Theorem 1, there exists
+an integral vector ~ such that A~<~ b and []£-ff[[~< n A ( A ) . So
+
+             II~l[~ < ~ l l ~ - x l l ~ + I l x l l ~ n A ( A ) + A ( ( A j b ) ) < ~ ( n + l ) a ( ( A j b ) ) .   []   (5)
+
+  A third consequence of Theorem 1 is a result of Wolsey [28], which shows that
+an integer program can be solved by first solving its linear programming relaxation
+and then checking a finite set of lower dimensional 'correction vectors'. Wolsey [28]
+works with linear programs of the form max{wx: A x = b, x >10}, where A is an m x n
+matrix of rank m. If such a linear program has an optimal solution, then it has one
+of the form xB = B -Ib, X N = 0 where B is a basis of A (that is, a m × m nonsingular
+submatrix of A), xB are those variables corresponding to columns of B and XN are
+those variables corresponding to columns of N (the submatrix of A formed by those
+columns not in B). Such a basis B is an optimal basis.
+
+Corollary 4. L e t A be an integral m × n matrix o f rank m. Then there exists a finite
+set V o f nonnegative, integral ( n - m ) - c o m p o n e n t vectors such that: For any vectors
+b and w f o r which max{wx: A x = b, x >~0} has an optimal solution and any.optimal
+basis B, i f A x = b, x >i 0 has an integral solution then f o r some vector v c V a n optimal
+solution to max{wx: A x = b, x >10, x integral} is "~N = V, XB = B - l b - B- ~Nv.
+
+Proof. Let V = {v ~ Z " m: [Ivl[oo nA (A), v 1> 0}. Suppose that B is an optimal basis
+for max{wx: A x = b, x >-0} and let fib = B - l b , Xu = 0 be the corresponding optimal
+solution. By Theorem 1, there exists an optimal solution ~ to max{wx: A x = b,
+x ~>0, x integral} with ]ly - ~ll~ ~< nA (A). Thus II~N fl~ ~< n~a (A), which implies that
+ZNCV. []
+
+   For a fixed matrix A, Theorem 1 shows that optimal solutions to an integer
+program max{wx: A x <~ b, x integral} and its linear programming relaxation are near
+to each other. Our next theorem, which is a sharpened form of the integer program-
+ming 'strong proximity result' of Blair and Jeroslow [1], shows that for small changes
+in the right-hand-side vector b, optimal solutions to the corresponding integer
+programs are near to each other. Assertion (i) extends results of Hotiman [19] and
+Mangasarian [23].
+                                W. Cook et al. / Sensitivity theorems in IP                           255
+
+Theorem 5. Let A be an integral m x n matrix and let b, b', and w be vectors such
+that max{wx: Ax<~ b} and max{wx: Ax<~ b'} each have optimal solutions. Then
+    (i) f o r each optimal solution £ to max{wx: A x <~ b} there exists an optimal solution
+£' to max{wx: Ax<~ b'} with ] ] £ - ~ ' ] J ~ < nA(A)llb-b'llo~ , and
+   (ii) if A x <~ b and A x <~b ' each have integral solutions, then for each optimal solution
+  to max{wx: A x <~b, x integral} there exists an optimal solution ~' to max{wx: A x ~ b ',
+x integral} with II~ - ~'11oo<~ nA (a)(ll b - b'lloo + 2).
+
+Proof. We first show part (i) in the case where w is the zero vector, that is, if £ is
+a solution of A x < - b then A£'<~b ' for some £' with I I £ - £ ' l l ~ < ~ n A ( A ) [ I b - b ' [ [ ~ .
+Suppose such an £' does not exist. Then the system
+
+           A x <~ b ',
+
+           x~X+el,                                                                                    (6)
+
+           -x<~-£+el
+(where e = n A ( A ) l l b - b'[[~ and 1 = ( 1 , . . . , 1) T) has no solution. By Farkas' Lemma,
+we have
+
+           yA+u-v=O,               yb'+u(£+el)+v(-~+el)<O                                             (7)
+
+for some nonnegative vectors y, u, v. As A x <~b' has a solution, we have u + v # 0.
+We may assume IIu + v II1 = 1. We may also assume, by Carath6odory's theorem, that
+the positive components of y correspond to linearly independent rows of A. So the
+positive part of y is equal to B - I ( - J + ~ ) for some parts ~, ~ of u, v and some
+submatrix B of A. Hence, Ilylll <~ n A ( A ) l l u - viii <~ n A ( A ) l l u + viii = n A ( A ) . Now we
+have the contradiction
+
+           O> y b ' + u(£ + e l ) + v ( - £ + e l ) = y b ' - y A £ + ellu+ vll 1
+
+               >1y ( b ' - b) + e >~-Ily[[,[lb - b'llo~+ e >~O.                                       (8)
+  We next show part (i) in general. Let ~ be an optimal solution to max{wx: A x <~ b}
+and let x* be any optimal solution to max{wx: Ax<~ b'}. Let A o x ~ bo be those
+inequalities from A x <~b that are satisfied by ff with equality. Then yAo = w for
+some y/> 0 (by the duality theorem of linear programming). Since £ satisfies:
+
+            A£~b,          Ao£>-Aox*-[[b-h'll~l                                                       (9)
+
+and since x* is a solution of [ A x <- b', Aox>~ Aox*], we have from above that
+[A£'<~b',ao~'>~Aox *] for some £' with IIX-~'llo~<~na(A)llb-b'llo~. As w~Z'=
+yAo£'>~yAox * = wx*, we have that ~' is an optimal solution to max{wx: Ax<~ b'}.
+  Finally, we show part (ii). Suppose that A x <~ b and A x <~ b' each have integral
+solutions and let ~ be an optimal solution to max{ wx: A x <~ b, x integral}. By Theorem
+1(ii), there exists an optimal solution x* to max{ wx: A x <~ b} with [[~ - x* ~ na (A).
+Part (i), above, implies that there exists an optimal solution £' to max{wx: A x <~ b'}
+with IIx*- z'll      n A ( a ) l l b - b ' ] l ~ . Now, by Theorem l(i), there exists an optimal
+256                                  w. Cook et al. / Sensitivity theorems in IP
+
+solution 5' to max{wx: A x <- b', x integral} w i t h ]l~'-e'll~<~ n a ( A ) . Putting this
+together, we have
+
+          lie- e'll         lie- x*ll + IIx*-                    + I1 '- e'll
+                        < ~ n A ( A ) ( [ [ b - b ' H ~ + 2 ).       []                                            (10)
+
+    A result related to T h e o r e m 1 was p r o v e n by G r a v e r [16] (see also Blair and
+Jeroslow [3, L e m m a 4.3]), who showed that for every integral matrix A there exists
+a finite 'test set' L of integral vectors such that: For any objective vector w and
+right-hand-side vector b and any n o n o p t i m a l feasible solution z to the integer
+p r o g r a m max{wx: A x <-b, x integral} there exists a vector I c L such that z + l is a
+feasible solution w i t h g r e a t e r objective value. The following result shows that if A
+is an m × n integral matrix, then we can take as a 'test set' simply the set of integral
+vectors with c o m p o n e n t s at most n A ( A ) in absolute value. (An analysis of Blair
+and Jeroslow's p r o o f [3, L e m m a 4.3] will give a similar result.)
+
+Theorem 6. L e t max{wx: A x <~ b, x integral} be an integer program with A an integral
+m × n matrix. Then, f o r each integral solution z o f A x ~ b, either z is an optimal solution
+to the integer program or there exists an integral solution ~ o f A x ~ b with IIz - el]~ <~
+n A ( A ) and w e > wz.
+
+
+Proof. Let z be an integral solution of A x <~ b. I f z is not an optimal solution to
+max{wx: A x ~ b, x integral}, then there exists an integral solution z* of A x <~ b with
+wz* > wz. Split A into submatrices A~ , A2 such that A~z* >~A~z and A2z* < A2z. As
+in the p r o o f of T h e o r e m 1, we have z * - z = A~g ~+ . • • + A,g' for some numbers
+Ai~>0, i = l , . . . , t , and integral vectors g ~ , . . . , g t contained in the cone C =
+{x: A~x>~O, A 2 x ~ O } with [[gill~<A(A) for i = 1 , . . . , t, where t is the dimension
+o f C.
+   If A~ ~> 1, then we have that z + ga -- z* - (A1 - 1)g ~- A2g 2 . . . . . Atg t is an integral
+solution of Ax<~b. So if Aa~>l and wg~>O, then we m a y set e = z + g 1. Thus, we
+m a y assume that wg ~<~0 for all i c { 1 , . . . , t} such that A~/> 1. Let
+           e=Z   : ~ - [/~lJ g I . . . . .     [AtJgt=z+(A1 - L/~lJ)gl+            -.   . + ( t ~ t - [l~tJ)g t.
+                                                                                                                   (11)
+
+We have that e is an integral solution of A x <~ b with
+           Ilz-e[]~         (A~- [A~J)[[gl[[oo+ ." . + ( A , -            [AtJ)llgt[[oo~nA(A).                     (12)
+
+Since wgi<~O for each i e { 1 , . . . ,            t} such that [AiJ > 0 , we have w~>~wz *. Thus
+we > wz. []
+
+   For a linear system A x <~ b, let {x: A x <~b}i denote the convex hull of its integral
+solutions. The following result of Wolsey [28, T h e o r e m 2'], on the defining systems
+o f {x: A x ~ b}~ as b varies, will be used in the next section. We use the p r o o f
+                             W. Cook et al, / Sensitivity theorems in IP                     257
+
+technique of Blair and Jeroslow [3, Theorem 6.2], together with Theorem 6 to prove
+this result, as this allows us to bound the size of certain coefficients, as stated below.
+
+Theorem 7. For each integral m x n matrix A, there exists an integral matrix M, with
+entries at most n2"A ( A ) ~ in absolute value, such that for each vector b for which A x <~ b
+has an integral solution there exists a vector db such that {x: Ax <~ b}i = {x: M x <~db}.
+
+Proof. We may assume that A ~ 0. Let K be the cone generated by the rows of A.
+I f b is a vector such that A x <~b has an integral solution, then, by linear programming
+duality, m a x { w x : A x < ~ b , xintegral} exists if and only if w e K .            Let L =
+{z e Z " : IIz [Ioo~< nA (A)} and for each T c L let G ( T ) be a finite set of integral vectors
+which generates the cone C ( T ) = {w: wz <~0 for all z e T} n K. Finally, let M be
+the matrix with rows ~_J {G(T): T _ L}.
+    Suppose that b is a fixed vector such that A x <-b has an integral solution. By
+replacing b by [bJ if necessary, we may assume that b is integral. Let db be the
+minimal vector (with respect to the <~ ordering) such that { x : A x < ~ b } t c_
+{x: Mx<~db}. (Since each row of M is in the cone K, each component of db is
+finite.) To prove that {x: A x <- b}~ D {x: Mx<~ rib}, we will show that each valid
+inequality for {x: Ax<~ b}r is implied by M x ~ rib.
+    Let fix ~< t be an inequality such that ff ¢ 0 and {x: A x <~ b}i c_ {x: ~x<~ t}. We
+may assume that t = max{r~x: A x <<-b, x integral}. Let ~ be an integral solution of
+Ax<~b such that ff~=t. Now let T = { z e L : A ( ~ + z ) < ~ b } .     Since ~ is an optimal
+solution to max{~x: A x <- b , x integral}, we have that ~ e C(2P). So there exist
+nonnegative numbers ;tg, for g e G ( T ) , such that ~ {)tgg: g e G ( T ) } = ~. By Theorem
+6, ~ is an optimal solution to max{gx: A x <~b, x integral} for each g e G ( T ) . Thus,
+letting g ( b ) = max{gx: A x <-b, x integral} for each g e G ( T ) , we have
+
+          E {)tgg(b): g e G ( T ) } =Y, {Xgg£: g e G ( T ) } = ~£ = t.                     (13)
+
+So ~x <~ t is a nonnegative linear combination of inequalities in M x <<-db, and, hence,
+is implied by M x ~ db.
+   To bound the size of the entries in M, notice that Cramer's rule implies that there
+exists an integral matrix D such that K = {x: D x <<-0} and each entry of D having
+absolute value at most A ( A ) . Thus, for each T_c L the cone C ( T ) is defined by a
+linear system Fx<~O for some integral matrix F with entries at most n A ( A ) in
+absolute value. Using Cramer's rule, it follows that for each T ~ L the cone C ( T )
+can be generated by a finite set of integral vectors, each of which has components
+which are at most n ! ( n A ( A ) ) " ~ n2"A(A)" in absolute value. []
+
+   For an integral matrix A, the bound given above on the size of the entries in M
+is polynomial in n and the size of the largest entry in A, and is independent of the
+number of rows of A. Thus, this bound implies the result, of Karp and Papadimitriou
+[21], that if a polyhedron P c Q" can be defined by a system of integral linear
+inequalities, each of which has size at most o~, then the convex hull of the integral
+258                        W. Cook et al. / Sensitivity theorems in IP
+
+points in P can be defined by a system of linear inequalities, each of which has
+size bounded above by a polynomial function of n and ~r.
+
+Remarks. (1) Blair and Jeroslow [1, 2] proved their results in the more general
+context of mixed integer programming. It is straightforward, however, to modify
+the proof of Theorem 1 to obtain the following mixed integer programming result:
+   Let A be an integral m x k matrix, B an integral m x ( n - k) matrix, and w, v,
+and b vectors such that max{wx+ vy: A x + By <<-b,x integral} has an optimal sol-
+ution. Then, for each optimal solution (x 1, yl) to max{wx+ vy: Ax+By<~ b}, there
+exists an optimal solution (x 2, y2) to max{wx + vy: Ax + By <~b, x integral} such that
+I](x',y')-(x2, y2)[[~<-nA((A]B)). And, for each optimal solution (x3, y 3) to
+max{wx+vy: Ax+By<~b, xintegral}, there exists an optimal solution (x4, y 4) to
+max{wx + vy: Ax+By<~ b} such that II(x3, y 3 ) _ ( x 4, y4)]]~ ~< nA((AIB)).
+
+   Using this, one can prove the mixed integer programming analogues of Corollary
+2, Corollary 3, and Theorem 5(ii).
+   In a similar way, one can obtain an analogue of Theorem 6. Note, however, that
+the mixed integer programming version of Theorem 6 does not imply a finite 'test
+set' result for mixed integer programs. This is due to the fact that, unlike the integer
+programming case, there may exist infinitely many vectors in {(x,y): x in-
+tegral, II(x, y)11oo~< nA (A[B)}. Thus one cannot use the proof of Theorem 7 to obtain
+an analogous result for mixed integer programming. (In fact, the mixed integer
+programming analogue of Theorem 7 is not true, since, for example, the convex
+hull of {(Xl, x2): xl >i O, x2 >~O, x~ + x2 <~1, x2 <~a, x~ integral}, for any o~ such that
+0 < a < 1, has xa + (1/a)x2 ~< 1 as a facet-inducing inequality.) Similarly, the mixed
+integer programming version of Theorem 1 does not imply a mixed integer analogue
+of Corollary 4.
+   However, observe that if A, B and b are integral and max{wx+vy: A x + B y ~
+b, x integral} has an optimal solution then it has one such that the denominator of
+each component of the vector y is the determinant of a square submatrix of B. This
+observation can be used to prove a mixed integer analogue of Corollary 4 and a
+finite 'test set' consequence of Theorem 6 for the case where b is integral. This latter
+finite 'test set' result can be used to modify the proof of Theorem 7 to obtain the
+following:
+  Let A be an integral m x k matrix and let B be an integral m × ( n - k) matrix.
+Then there exist integral matrices M and N, each with entries at most
+n2"A (B)2"A ((AIB))" in absolute value, such that for each integral vector b for which
+{(x,y): A x + B y ~ b , x integral} is nonempty, there exists a vector db such that
+{(x, y): M x + Ny <~db} is equal to the convex hull of {(x, y): A x + By ~ b, x integral}.
+
+   (2) The proof of Theorem 5(i) remains valid, even when A is an irrational matrix,
+if we replace a (A) by A'(A), the maximum, over all invertible submatrices B of A,
+of the absolute values of the entries of B -a.
+                               W. Cook et al. / Sensitivity theorems in IP                         259
+
+3. The Chv~ital rank of matrices
+
+   I f all vectors in a p o l y h e d r o n P satisfy the linear inequality ax ~/3, where a is
+an integral vector and /3 is a number, then each integral vector in P satisfies the
+Chvdtal cut ax <~ [/3J. Denote by P ' the set of vectors which satisfy every Chv~ital
+cut o f P. It is easy to see that G c p ' , where ,°i denotes the convex hull o f integral
+vectors in P. Schrijver [24], continuing the work o f Chv~ital [5] and G o m o r y [13],
+proved that P ' is a p o l y h e d r o n and that P~') = P / f o r some natural n u m b e r t, where
+p~O) = p and pU) = pU 1)' for all i >~ 1. The least n u m b e r t such that p~t~ = Px is the
+Chvdtal rank o f P. Results on the Chwital rank of combinatorially described
+polyhedra can be f o u n d in Boyd and Pulleyblank [4] and Chv~tal [5, 6, 7].
+   We define the Chvdtal rank of matrix A to be the s u p r e m u m over all integral
+vectors b o f the Chvfital rank of {x: A x ~ b}. It is convenient also to define the
+strong Chvdtal rank of A, which is the Chv[ttal rank o f the matrix
+
+
+
+           l:il
+Then the well-known theorem of H o f f m a n and Kruskal [20] is that an integral
+matrix has strong Chvfital rank 0 if and only if it is totally unimodular. Moreover,
+H o t t m a n and Kruskal showed that an integral matrix A has Chv~ital rank 0 if and
+only if A r is unimodular. (A matrix C is called unimodular if for each submatrix
+B consisting o f r (:= rank C) linearly i n d e p e n d e n t columns o f C, the g.c.d, o f the
+subdeterminants of B o f order r is 1.) In E d m o n d s and J o h n s o n [9] and Gerards
+and Schrijver [11], characterisations of classes o f matrices having Chvfital rank 1
+are given. The main result of this section is that every matrix has a finite Chv~ital rank.
+    To prove this result we need the following t h e o r e m o f Cook, Coullard, and Tur~in
+[8]. For completeness, a p r o o f of this result is given below. In the proof, we use a
+lemma of Schrijver [24] which implies that if F is a face of a p o l y h e d r o n P then
+p(k) C~F c_ F (k) for all k/> 0. We also use the fact that if T is an affine transformation
+f r o m Q" to Q" which maps Z ~ onto Z ~, then for any p o l y h e d r o n P c Q n we have
+T ( P (k)) = T ( P ) (k) for all k>~0.
+
+
+Theorem 9. I f P ~ Qn is a polyhedron with P n Z " = 0, then P ~":"2"~) = 0.
+
+Proof. The p r o o f is by induction on n. It is easy to see that the result is true for
+n = 1. Suppose n > t 2 and that for all p o l y h e d r a G c Q" ~ with G n Z " - 1 = 0 , we
+have G ~o 0 = 0, where yn-~ = (n - 1)2("-~)2 ~n-1)~.
+   Let P _ Q" be a p o l y h e d r o n with P n Z " = 0. It follows from a result o f Gr6tschel,
+Lov~isz, and Schrijver [18] that there exists a n o n z e r o integral vector w such that
+I w ( x - x ' ) l < n ( n + l ) 2 (1/2)"2 for all x, x ' e P . (In the case where P is a b o u n d e d
+p o l y h e d r o n , the existence of such a vector w was shown by Lenstra [22], see also
+260                                  W. Cook et al. / Sensitivity theorems in I P
+
+GrStschel, Lov~isz, and Schrijver [17].) Let
+            ")In =       n2n2n3~ n ( n + 1)2(1/2)'~(y,_~ + 1) + 1.                                    (14)
+We will complete the proof by showing that P~v-~= 0.
+   We may assume that the components of w are relatively prime integers. Let
+/3 = [max{wx: x c P}]. It follows that p~l~ _c {x: wx <~/3}. If pO) = 0 we are finished,
+so suppose not. Let G = P ~ ) c ~ { x : w x = / 3 } . Since {x: w x = / 3 } contains integral
+vectors, there exists an affine transformation T which maps Z " onto Z " and
+{x: wx =/3} onto {x: x, = 0}. Let t~ = ( ( x 1 . . . . . , x,-1) e Q,-I: ( x l , . . . , X,_l, 0) e
+ T(G)}. By assumption, ( ~ " - P = 0 . But this implies that T(G)¢V--P=0 and hence
+that G ~o 1)= 0. Thus, by the lemma of Schrijver [24] mentioned above, we have
+ p~.+~+l~ c~ G = 0.       So     p(~._,+2) _~{x: wx <~/3 - 1}:       Since           p c {x: wx >
+/3 - n ( n + 1)2°/2)'2}, repeating this procedure at most n ( n + 1)2 ~1/2~":- 1 times, we
+obtain the empty set. Hence P¢v°~= 0. []
+
+      We will also make use of the following consequence of this theorem.
+
+Corollary 9. L e t P c_ Q" be a polyhedron such that P c~ Z " # 0 and let w be an integral
+vector such that q = max{wx: x ~ PI} exists• Then P ~ c_ {x: wx <~q}, where r =
+(nZ"Zn~+ 1)( [max{wx: x ~ P}J - q) + 1.
+
+Proof. Let /3 = [max{wx: x c P } J , which exists since q exists. We have p¢~_c
+{x: wx ~</3}. If q =/3 we are finished, so suppose q </3. Let G = P¢~) c~ {x: wx =/3}.
+  •                  n                    (nZn2 n3 )                             •
+Since G c~ Z = 0, we have G         = ~1,by Theorem 8. Using the lemma of Schrijvel:
+                           2  3
+[24], this implies that pC,-2° +l~c~{x: wx=/3}--0. So P~":"z"3+2)~ {x: w x < ~ / 3 - 1 } .
+Repeating this operation (/3 - q - 1) times, we have P~) ___{x: wx <- q}. []
+
+      We are now ready to prove our finite Chv~ital rank theorem.
+
+Theorem 10. The Chvdtal                    rank        o f an   integral m x n       matrix A   is at most
+2n3+lnS.A(A) n+l.
+
+
+Proof. Let M be an integral matrix satisfying the conditions given in Theorem 7,
+for the matrix n. We have max{llm]]l: m is a row of M } ~< n2"+la(a) ". Let
+             k = (n2"2"3 + 1)(n2"+2A (A) "+1) + 1                                                     (15)
+
+and let P = {x: Ax<~ b} for some vector b. Since k ~< 2"3+~nS"a(A) "+~, it suffices to
+show that p~k~= Pt- If P c~ Z " =~), then, by Theorem 8, p~k)=0 = p~. Suppose
+P c ~ Z " ~ O . We have PI ={x: Mx<~db} for some vector db. Let m be a row of M
+and let q = max{rex: x ~ P~}. By Corollary 2,
+            max{rex: x ~ P} - q <~ nA(a)]] mll I <~ n2"+2A(a) "+~.                                    (16)
+Thus, by Corollary 9, p¢k~ _c {x: m x <<-q}. So p~k) c_ {X: M X <~db}, which implies that
+p(k) = p~. []
+                                W. Cook et al. / Sensitivity theorems in IP                  261
+
+Remarks. (1) A consequence of Theorem 10 is that the number of Chvfital cuts that
+must be added to a linear system Ax <~ b to obtain a defining system for {x: Ax <~ b}~
+can be b o u n d e d above by a function of the matrix A, independent of the right-hand-
+side vector b. Indeed, for each linear system Ax <~ b with A an integral m × n matrix
+of Chv~ttal rank t, the polyhedron {x: A x <~ b}~ is the solution set of a system of
+inequalities
+           Ax<~ b,
+                                                                                           (17)
+           aix<~fli       (i=1 .... ,N)
+
+where N <- 2 " t n " S " (with S denoting the m a x i m u m of the absolute values of the
+entries of A) and for each k = 1, . . . , N, the inequality O~kX~k is a Chvfital cut for
+the polyhedron {x: A x <~ b, aix <~fli, i = 1 , . . . , k - 1}. To prove this, we use the result
+of Schrijver [24] that if P = {x: M x <~d}, where M is integral and M x <~ d is a totally
+dual integral system, then P ' = { x : Mx<~ [d J}. (A linear system Mx<~ d is a totally
+dual integral system if min{yd: y M = w, y >I 0} can be achieved by an integral vector
+for each integral w for which the minimum exists.) Giles and Pulleyblank [15]
+proved that every polyhedron can be defined by such a totally dual integral system
+(see also Schrijver [25]). Their proof, together with Carath6odory's theorem, implies
+that if D x <~f is a linear system with D an integral m x n matrix, each entry of
+which has absolute value at most T, then there exists a totally dual integral system
+D ' x < - f ' with {x: D ' x < ~ f ' } = { x : Dx<~f} such that each entry of D ' is an integer
+with absolute value at most nT. This implies that if P = { x : A x ~ b}, then for each
+i - 1 , . . . , t the polyhedron p~0 can be defined by a linear system M~x<~ b ~ where
+each inequality is a Chvfital cut for P(~-~) and where M ~is an integral matrix having
+at most ( 2 # S ) " rows. (This technique for bounding the size of M ~ is also used in
+Boyd and Pulleyblank [4].)
+    (2) Professor C. Blair pointed out to us several relations of his and Jeroslow's
+work with our results. Especially, the fact that each matrix has a finite Chvfital rank
+can be seen to be equivalent to their result that 'each integer programming value
+function is a G o m o r y function'. Here we shall discuss this relation.
+    A function f : Qm_> Q is a Gomory function if there exist rational matrices
+M1,. • •, Mt so that M1,. •., Mt-x are nonnegative, and so that, for each b c Qm,
+
+          f ( b ) = m a x ( M l [M2 [ ' ' " [M,b ] ' . "] ])~                              (18)
+                      J
+
+(here [, ] denotes component-wise upper integer parts; M, has m columns, and M~
+has the same number of rows as M H has columns ( i = 2 , . . . , t); the m a x i m u m
+ranges over all coordinates j of the vector (Mi [ME [" • • [Mtb ]" • • ] ]).)
+
+   Blair and Jeroslow [3, Theorems 5.1 and 5.2] showed:
+
+Blair--Jeroslow Theorem. For each rational m × n-matrix A and row vector c ~ ~n with
+min{cx: A x = O, x >i 0} finite, there exist Gomory functions f, g: Qm -~ Q so that, f o r
+262                                W. Cook et al. / Sensitivity theorems in IP
+
+each b ~ Q~,
+
+             (i)     f ( b ) < ~ O i f a n d only i f {x[x~>0; A x = b; x i n t e g r a l } is nonempty;
+                                                                                                           (19)
+            (ii)     g ( b ) = m i n { c x [ x >~0; A x = b; x integral}        i f f ( b ) <~O.
+
+Proposition. The B l a i r - J e r o s l o w theorem is equivalent to each rational m a t r i x having
+finite C h v d t a l rank.
+
+Proof (sketch). 1. We first show that the Blair-Jeroslow theorem implies that each
+rational matrix has a finite Chvfital rank. One easily checks that it suffices to derive
+from the Blair-Jeroslow theorem that for each rational matrix A and vector b, the
+Chvfital rank of the p o l y h e d r o n {x Ix/> 0; A x = b} has an u p p e r b o u n d only depend-
+ing on A.
+   Choose a rational matrix A. By Theorem 7, there exists a matrix C so that for
+each vector b there exists a vector db with { x l x ~ 0; A x = h}r = { x Ix >~0; C x <~ d~}.
+   Take any row c of C. By the Blair-Jeroslow theorem there exist G o m o r y functions
+f and g with the properties described in (19). Hence there exist matrices M1 . . . . , Mt
+ and N 1 , . . . , No, so that M1 . . . . , M, 1, N 1 , . . . , N,,-11>0 and, for each b c Q m ,
+
+             m i n { c x l x >i 0; A x = b; x integral} = max{uM1 [M2" • • [M,b ] • • • ]
+
+                    -~- VN1 I N 2 " " " [N,'b]''" ] I U ~ > 0 ; V~>0; V l = 1}.                            (20)
+
+Without loss o f generality, t = t' (otherwise add some matrices I). By taking for b
+any column o f A one sees that for each u i> 0, v ~>0 with v l = 1 one has:
+
+             uMx[Mz'.         • [M,A]. • • ]+vN,{-N2..          • [ N , A ] . • • ] ~ c.                   (21)
+
+Hence, for each b,
+
+             m i n { c x l x >~0; A x = b; x integral}
+
+                   ~<max{w[P2... [P~b]...]lw>~O;w[P2                   ...      [P,A]...]<~c},             (22)
+
+where
+
+
+             ei:=            Ni                   '                        Nt
+
+((22) follows by taking w := ( u M l v N l ) ) .
+   By applying LP-duality to the m a x i m u m in (22) we see that for each b:
+
+             min{cx [x i> 0; A x = b; x integral}
+
+                   <~min{cxlx>~O; [P2" " • [PtA] " " I x <~ [P2" " " [Ptb] " " ]}.                         (24)
+
+Hence equality follows.
+  Let tmax be the m a x i m u m o f the t above when c runs over all rows o f C. Then
+we know that the Chv~ital rank o f { x l x >I 0; A x = b} is at most t . . . . for each b c Q".
+                                 W. Cook et al. / Sensitivity theorems in IP                        263
+
+  II. We next show the reverse implication. C h o o s e matrix A and vector c. As, by
+assumption, the matrix
+
+
+
+
+has finite Chvfital rank, we know that there exist matrices P 1 , - . . , P, so that
+P1, • • •, P,-I ~> 0 and so that, for each b ~ Qm,
+
+           {xlx~>0 ; A x = b } I = { x I x ~ > 0 ;   [PI['"[P~A]'"]x
+
+              > / [ P , [ " " " I-P~bl "'" 1}.                                                     (2S)
+Hence, with LP-duality,
+
+           min{cxlx >!O; Ax = b; x integral}
+              =min{cxlx>-O; [ P ~ . . . [ P , A ] . . . ] x ~ > [ P I " ' " [ P , b ] . . - ] }
+              =max{y[Pl'''[Ptb]'. "]ly~O;y[Pl'." IN,A 1 ' ' "                             1<~c}.   (26)
+
+Let the rows of the matrix M, say, be the vertices o f the p o l y h e d r o n { y )
+01Y [P1 " • " [P,A] • • • ] <~ c}, and let the rows o f the matrix N, say, be the extremal
+(infinite) rays o f this polyhedron. Then the m a x i m u m in (26) is equal to:
+
+           m a x { u N r P , . . . [P,b]... ] + v M [ P , . . . [ P , b ] . . . lJu~>0; v~o; ~1= 1}.
+                                                                                                   (27)
+Hence defining, for b c Q " ,
+
+          f(b):=max(N[P~.. • [Ptb] • • • ])j,
+                       J
+                                                                                                   (28)
+           g(b):=max(M[nl... [P,b]... ]);,
+                       J
+gives G o m o r y functions satisfying (19).            []
+
+
+References
+
+ [1] C.E. Blair and R.G. Jeroslow, "The value function of a mixed integer program: I", Discrete
+     Mathematics 19 (1977) 121-138.
+ [2] C.E. Blair and R.G. Jeroslow, "The value function of a mixed integer program: II", Discrete
+     Mathematics 25 (1979) 7-19.
+ [3] C.E. Blair and R.G. Jeroslow, "The value function of an integer program", Mathematical Program-
+     ming 23 (1982) 237-273.
+ [4] S.C. Boyd and W.R. Pulleyblank, "Facet generating techniques", in preparation.
+ [5] V. Chv~ital, "Edmonds polytopes and a hierarchy of combinatorial problems", Discrete Mathematics
+     4 (1973) 305-337.
+ [6] V. Chv~ital, "Edmonds polytopes and weakly hamiltonian graphs", Mathematical Programming 5
+     (1973) 29-40.
+ [7] V. Chv~ital, "Cutting-plane proofs and the stability number of a graph", Report No. 84326-OR,
+     Institut fiir Okonometrie und Operations Research, Universit/it Bonn, FR Germany, 1984.
+264                             IV.. Cook et al. / Sensitivity theorems in IP
+
+  [8] W. Cook, C. Coullard and Gy. Turfin, "On the complexity of cutting-plane proofs", in preparation.
+  [9] J. Edmonds and E.L. Johnson, "Matching: a well-solved class of integer linear programs", in: R.K.
+      Guy, et al., eds., Combinatorial structures and their applications (Gordon and Breach, New York,
+      1970) pp. 89-92.
+[10] J. von zur Gathen and M. Sieveking, "A bound on solutions of linear integer equalities and
+      inequalities", Proceedings of the American Mathematical Society 72 (1978) 155-158.
+[ 11] A.M.H. Gerards and A. Schrijver, "Matrices with the Edmonds-Johnson property", to appear.
+[12] F.R. Giles and W.R. Pulleyblank, "Total dual integrality and integer polyhedra", Linear Algebra
+      and its Applications 25 (1979) 191-196.
+[13] R.E. Gomory, "An algorithm for integer solutions to linear programs", in: R.L. Graves and P.
+      Wolfe (eds.), Recent advances in mathematical programming (McGraw-Hill, New York, 1963) pp.
+      269-302.
+[14] R.E. Gomory, "On the relation between integer and noninteger solutions to linear programs",
+      Proceedings of the National Academy of Science 53 (1965) 260-265.
+[ 15] R.E. Gomory, "Some polyhedra related to combinatorial problems", Linear Algebra and its Applica-
+      tions 2 (1969) 451-558.
+[16] J.E. Graver, "On the foundations of linear and integer linear programming I", Mathematical
+      Programming 8 (1975) 207-226.
+[17] M. Gr6tschel, L. Lovfisz and A. Schrijver, "Geometric methods in combinatorial optimization", in:
+      W.R. Pulleyblank, ed., Progress in combinatorial optimization (Academic Press, New York, 1984)
+      pp. 167-183.
+[18] M. Gr6tschel, L. LovS_sz and A. Schrijver, The ellipsoid method and combinatorial optimization
+      (Springer-Verlag, Berlin), to appear.
+[19] A.J. Hottman, "On approximate solutions of systems of linear inequalities", Journal of Research
+      of the National Bureau of Standards 49 (1952) 263-265.
+[20] A.J. Hoffman and J.B. Kruskal, "Integral boundary points of convex polyhedra", in: H.W. Kuhn
+      and A.W. Tucker, eds., Linear inequalities and related systems, Annals of Mathematics Study 38
+      (Princeton University Press, Princeton, 1956) pp. 223-247.
+[21] R.M. Karp and C.H. Papadimitriou, "On linear characterizations of combinatorial optimization
+      problems", S I A M Journal on Computing 11 (1982) 620-632.
+[22] H.W. Lenstra, "Integer programming with a fixed number of variables", Mathematics of Operations
+      Research 8 (1983) 538-548.
+[23] O.L. Mangasarian, "A condition number for linear inequalities and linear programs", in: G. Bamberg
+      and O. Opitz, eds., Proe. of 6th Symposium iiber Operations Research, Universitiit Augsburg, September
+       7-9 (1981) (Verlagsgruppe Athen~ium/Hain/Scriptor/Hanstein, K6nigstein, 1981) pp. 3-15.
+[24] A. Schrijver, "On cutting planes", Annals of Discrete Mathematics 9 (1980) 291-296.
+[25] A. Schrijver, "On total dual integrality", Linear Algebra and its Applications 38 (1981) 27-32.
+[26] A. Schrijver, Theory of linear and integer programming (Wiley, Chichester, 1986).
+[27] J. Stoer and C. Witzgall, Convexity and optimization infinite dimensions I (Springer-Verlag, Berlin,
+       1970).
+[28] L.A. Wolsey, "The b-hull of an integer program", Discreet Applied Mathematics 3 (1981) 193-201.
+

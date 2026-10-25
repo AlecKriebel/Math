@@ -1,0 +1,7 @@
+# PR239 independent priority audit log
+
+2026-10-18T02:26:55Z: Began independent source-strength comparison after the three mathematical families reported no mandatory defects; mathematical acceptance is not mine to infer. Read the full exact candidate proof and both source-credit records. Completion estimate: 10% of bounded priority audit.
+
+2026-10-18T02:30:12.572027+00:00: Fresh primary search located Dunlap-Gu2022 and Drillick-Parekh2025, followed actual theorem text and references. Classical late-layer local-equilibrium/corrector ideas predate candidate; their stated model/observable/tail differences require explicit comparison. Institutional BMP1999 record has no full text; official journal access returned403 and Mathnet survey paths failed/reset/timed out. No outside outreach. Completion estimate: 50%.
+
+2026-10-18T02:32:57.874266+00:00: Completed the bounded priority audit. Directly inspected modern2025 theorem1.13 and official2026 theorem1.5/Remark6.2 plus closer beta local-limit and coalescence passages. Added exact logical nonimplications, selected-query ledger,15-source comparison with reading limits, and native input pins. No exact full anticipation identified; inaccessible older originals and historical priority remain unresolved. Completion estimate: 100% of this bounded audit, not a claim of100% novelty clearance or mathematical/global-goal completion. No external effects.

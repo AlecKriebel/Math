@@ -1,0 +1,4 @@
+# Independent adversarial review log — Zenodo 23205034
+
+- 2026-10-25T00:43:41Z — 0%: Started fresh adversarial review. Scope: nine-page published sparse factorization theorem, finite-field/oracle and bit-cost hypotheses, multiplicity/Cartier descent, dense output accounting, primary imports and independent controls. No archived/current sibling opinions consulted; no external publication actions authorized.
+- 2026-10-25T00:44:30Z — 30%: Read all nine PDF pages including all statements and proofs. The output-sensitive reduction is explicitly separate from its very strong upstream unconditional prime-field theorem; independent primary verification of that dependency has been delegated. Sparse multiplicity recursion, exact Padé certificate, and signed Cartier descent are under direct audit. No defect established yet.

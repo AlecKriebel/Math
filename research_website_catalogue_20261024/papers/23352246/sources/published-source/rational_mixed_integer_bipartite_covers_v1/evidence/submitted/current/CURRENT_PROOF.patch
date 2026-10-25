@@ -1,0 +1,57 @@
+--- a/CANDIDATE_PROOF.md
++++ b/CURRENT_PROOF.md
+@@ -1,6 +1,6 @@
+ # Polynomial bit complexity for the rational mixed-integer bipartite system
+ 
+-**Status: full candidate for independent review; not an acceptance or novelty certificate.**
++**Status: accepted complete polynomial-bit solution for the stated rational binary-input target, following independent mathematical audit. No novelty or journal-acceptance certificate.**
+ 
+ Target: 30001102 / OWR-2489-008, Conforti, *Combinatorial Mixed-Integer Programming*, OWR 51/2008, pp. 2904–2905, Problem 1. This packet uses one substantive approach. Its two main ingredients are a signed-threshold proximity argument and submodular minimization on a finite ring family. Neither enumeration of denominator residues nor a fixed-dimensional assumption is used.
+ 
+@@ -12,7 +12,7 @@
+ 
+ There are no sign restrictions on x. For a rational objective c, also encoded in binary, the minimization task is to return either (a) the statement that the infimum is -infinity, together with a feasible point and an improving integral recession direction, or (b) an exact rational minimizer in S and its value. Maximization is handled by replacing c with -c. The membership task takes a rational query point q and decides q in conv(S). Arbitrary real oracle data are not claimed to be a finite bit-complexity instance.
+ 
+-**Candidate theorem.** Both tasks are solvable in time polynomial in the total binary input size. Strong separation for conv(S) is polynomial as well. Dimension, the number of integer coordinates, and all denominators vary with the input.
++**Theorem.** Both tasks are solvable in time polynomial in the total binary input size. Strong separation for conv(S) is polynomial as well. Dimension, the number of integer coordinates, and all denominators vary with the input.
+ 
+ The cases n=0, E empty, and I empty are allowed. The zero-dimensional case is immediate; below assume n>=1. E empty can either be handled directly or by the same LP boundedness check.
+ 
+@@ -30,7 +30,7 @@
+ 
+ ## 3. An elementary proximity lemma
+ 
+-We prove that the mixed problem has a minimizer z with ||z-y*||_infinity<n. The argument works for any nonempty system of difference inequalities with any subset of integer coordinates; here only the specified P is needed.
++We prove that the mixed problem has a minimizer z with ||z-y*||_infinity<n. More generally, the argument works for a system of difference inequalities with any subset of integer coordinates, provided its mixed feasible set is nonempty and its continuous relaxation has a finite optimum; here only the specified P is needed.
+ 
+ ### 3.1 Signed threshold decomposition
+ 
+@@ -173,11 +173,11 @@
+ 
+ ## 8. Exact membership
+ 
+-The preceding algorithm is a strong rational linear-optimization oracle for conv(T): finite minima are attained at explicit rational points of T, and unboundedness is detected with an improving ray. Section 7 supplies a polynomially computable facet-complexity bound for this rational polyhedron. Hence the strong optimization/strong separation theorem for well-described rational polyhedra applies (Grötschel–Lovász–Schrijver, *Geometric Algorithms and Combinatorial Optimization*, second edition, Theorem 6.4.9). Its oracle complexity is polynomial in n, phi, and the rational query encoding length. A strong separation call at the sign-changed query either confirms membership or returns a valid strict separator. This proves exact membership in polynomial time.
++The preceding algorithm is a strong rational linear-optimization oracle for conv(T): finite minima are attained at explicit rational points of T, and unboundedness is detected with an improving ray. Section 7 supplies a polynomially computable facet-complexity bound for this rational polyhedron. Hence the strong optimization/strong separation theorem for well-described rational polyhedra applies (Grötschel–Lovász–Schrijver, *Geometric Algorithms and Combinatorial Optimization*, 1988 edition, Definitions 6.2.1–6.2.2, printed pp. 162–163, and Theorem 6.4.9 with its proof, printed pp. 179–180; [inspected author-hosted book](https://www.zib.de/userpage/groetschel/pubnew/paper/groetschellovaszschrijver1988.pdf)). The independent audit verified this edition directly. Its strong-optimization interface permits an exact optimizing point that need not be a vertex and improving recession directions for unbounded polyhedra; the ray above can be rescaled to the requested normalization. This is a verified edition/interface of the same established dependency, not an additional theorem assumption. Its oracle complexity is polynomial in n, phi, and the rational query encoding length. A strong separation call at the sign-changed query either confirms membership or returns a valid strict separator. This proves exact membership in polynomial time.
+ 
+ Only the optimization-to-separation direction is needed. No unsupported claim that an arbitrary strong-membership oracle automatically supplies strong optimization is used. The original report's informal equivalence is not a substitute for these checked hypotheses.
+ 
+-## 9. Boundaries and audit requests
++## 9. Boundaries and audited qualifications
+ 
+ - This is the original free-sign, arbitrary-rational-demand problem, with all n and |I| variable.
+ - Pseudopolynomial dependence on k is absent: the algorithm's finite ground set is O(n^2), from proximity, not O(nk).
+@@ -187,11 +187,12 @@
+ - Feasibility alone does not settle optimization. Sections 3–6 supply the actual optimization reduction.
+ - There is no claim of a polynomial-size extended formulation, a facet characterization, the separate subtree-hull conjecture, or worldwide novelty.
+ - Standard dependencies are exact polynomial-time rational LP, finite submodular minimization with Schrijver's explicitly checked ring-family interface, elementary polyhedral separation/recession facts, and GLS exact optimization/separation for well-described polyhedra.
+-- Independent review should especially challenge the all-layer proximity step, preservation of integer coordinates, the finite domain's base implications, oracle bit lengths, the uniform bounded-core hull argument, and the cofactor bound.
++- The full independent audit checks the all-layer proximity step, preservation of integer coordinates, the finite domain's base implications, oracle bit lengths, the uniform bounded-core hull argument, and the cofactor bound.
++- The overall algorithm is polynomial in binary input length, not claimed strongly polynomial. Imported rational LP, submodular minimization and GLS algorithms are not implemented by these finite checkers.
+ 
+ ## 10. Computational support and limitations
+ 
+-`checks/exact_checks.py` uses Fraction arithmetic and explicit exceptions, not Python assertions. It checks tiny instances by complete LP vertex enumeration and finite integer enumeration. It is a diagnostic checker, not a polynomial SFM or ellipsoid implementation and not a substitute for the proof.
++`exact_checks.py` uses Fraction arithmetic and explicit exceptions, not Python assertions. It checks tiny instances by complete LP vertex enumeration and finite integer enumeration. It is a diagnostic checker, not a polynomial SFM or ellipsoid implementation and not a substitute for the proof.
+ 
+ Normal, -O, and -OO executions each passed: 24 small bipartite instances, 5,380 slice LPs, 65,014 submodular pairs, 1,723 large-layer removal checks, 1,000 exact random threshold decompositions, 1,692 ring-family equivalence checks, and nine negative/guard checks. The same deterministic seed is used in all modes. The negatives reject malformed/non-bipartite endpoints, floating-point data, invalid integer indices, and a deliberately failed check; they also distinguish ceiling from floor, sign-flipped from unflipped min-closure, missing base implications, and LP relaxation from the mixed hull.
+ 

@@ -1,0 +1,386 @@
+A combinatorial algorithm minimizing submodular
+     functions in strongly polynomial time
+
+                                      Alexander Schrijver1
+
+Abstract. We give a strongly polynomial-time algorithm minimizing a submodular function f
+given by a value-giving oracle. The algorithm does not use the ellipsoid method or any other linear
+programming method. No bound on the complexity of the values of f is needed to be known a
+priori. The number of oracle calls is bounded by a polynomial in the size of the underlying set.
+
+1. Introduction
+
+   A submodular function on a (finite) set V is a function f defined on the collection of
+subsets of V such that
+
+(1)        f (Y ) + f (Z) ≥ f (Y ∩ Z) + f (Y ∪ Z)
+
+for all Y, Z ⊆ V .
+    Examples of submodular functions are the rank functions of matroids and the cut func-
+tions, which are functions f given by a directed graph D = (V, A), with capacity function
+c : A → R+ , where f (U ) is equal to the total capacity of the arcs leaving U .
+    The importance of submodular functions for optimization was discovered by Edmonds
+[4], who found several important results on the related “polymatroids” and their inter-
+sections. For an introduction to submodular functions, with more examples, see Lovász
+[11], where it is also argued that submodular functions form a discrete analogue of convex
+functions.
+    Grötschel, Lovász, and Schrijver [7], [8] showed that a set U minimizing f (U ) can be
+found in strongly polynomial time, if f is given by a value-giving oracle, that is, an oracle
+that returns f (U ) for any given U ⊆ V . In [7], [8] it is assumed that f is rational-valued and
+that an upper bound β is known on the absolute values of the numerators and denominators
+of all f (U ). The algorithm in [7], [8] is based on the ellipsoid method, and uses therefore a
+heavy framework of division, rounding, and approximation; moreover, it is not practical.
+    The strongly polynomial-time algorithm presented in this paper is combinatorial, and
+no upper bound β as above is required to be known. Our algorithm is inspired by earlier
+work of Schönsleben [15], Lawler and Martel [10], Cunningham [2], [3], Bixby, Cunningham,
+and Topkis [1], and Frank [5], in particular by the combinatorial, strongly polynomial-time
+algorithm of [2] to minimize r(U ) − x(U ), where r is the rank function of a matroid on
+                                                                           P
+V , where x ∈ RV is a given vector, and where as usual x(U ) := v∈U x(v). Basic in
+Cunningham’s method is to apply a lexicographic shortest path selection rule. Schönsleben
+[15] and Lawler and Martel [10] had shown that, for polymatroid intersection, this rule
+gives a polynomial bound on the number of iterations. The selection rule we give in our
+algorithm (the choice of t and s at the beginning of “Case 2” in Section 4 below) is in fact
+a simplified version of the lexicographic rule.
+   1
+     CWI, Kruislaan 413, 1098 SJ Amsterdam, The Netherlands, and Department of Mathematics, University
+of Amsterdam, Plantage Muidergracht 24, 1018 TV Amsterdam, The Netherlands.
+
+
+                                                  1
+    In [3], Cunningham extended the method to a pseudopolynomial-time algorithm for
+minimizing an arbitrary submodular function (for integer-valued submodular functions, it
+is polynomial-time in |V |+β). The reader familiar with Cunningham’s papers will recognize
+several elements of them in the present paper.
+    For cut functions f and x ∈ RV , the problem of minimizing f (U ) − x(U ) can be solved
+combinatorially with classical max-flow techniques (Rhys [14], Picard [12]).
+    Related is the combinatorial, strongly polynomial-time algorithm of Queyranne [13]
+that minimizes a symmetric submodular function f over the nonempty proper subsets. (f
+is symmetric if f (U ) = f (V \ U ) for each U ⊆ V .)
+    The algorithm described below compares, adds, subtracts, multiplies and divides func-
+tion values (among other, we solve certain systems of linear equations). One would wish
+to have a “fully combinatorial” algorithm, in which the function values are only compared,
+added, and subtracted. That is, one wishes to restrict the operations to ordered group op-
+erations, instead of ordered field operations. This requirement does not seem unreasonable
+for minimizing submodular functions, given what is known about such functions and related
+polyhedra (like the greedy method). The existence of such an algorithm is left open by this
+paper. (Both the algorithms of Cunningham [2] and Queyranne [13] are fully combinatorial,
+while that of Cunningham [3] is not.)
+    A useful reference for background on submodular functions is Fujishige [6]. The present
+paper is however self-contained.
+
+2. Preliminaries
+
+   Let f be a submodular set function on a set V . That is, f is a real-valued function on
+the collection of all subsets of V , satisfying
+
+(2)       f (Y ) + f (Z) ≥ f (Y ∩ Z) + f (Y ∪ Z)
+
+for all Y, Z ⊆ V . In finding the minimum value of f , we can assume f (∅) = 0, as resetting
+f (X) := f (X) − f (∅) for all X ⊆ V does not change the problem. So throughout we assume
+that f (∅) = 0.
+    Moreover, we assume that any submodular function f on V is given by a value-giving
+oracle, that is, an oracle that returns f (U ) for any given subset U of V . We also assume
+that the numbers returned by the oracle are rational (or belong to any ordered field in which
+we can perform the operations algorithmically).
+    With a submodular function f on V , we associate the polytope Bf given by:
+
+(3)       Bf := {x ∈ RV |x(U ) ≤ f (U ) for all U ⊆ V, x(V ) = f (V )}
+
+(the ‘base polytope’). Here, as usual,
+                     X
+(4)       x(U ) :=         x(v)
+                     v∈U
+
+for U ⊆ V .
+    Consider any total order ≺ on V . For any v ∈ V , denote
+
+(5)       v≺ := {u ∈ V |u ≺ v}.
+
+
+                                             2
+Define a vector b≺ in RV by:
+
+(6)        b≺ (v) := f (v≺ ∪ {v}) − f (v≺ )
+
+for v ∈ V . Note that b≺ (U ) = f (U ) for each lower ideal U of ≺ (where a lower ideal of ≺
+is a subset U of V such that if u ∈ U and w ≺ u implies w ∈ U ).
+    The vector b≺ can be considered as the output of the greedy method. It can be shown
+that b≺ is a vertex of Bf , and that each vertex of Bf can be obtained in this way.
+    However, in this paper, we do not need the geometric or algorithmic background of
+the b≺ — we only need that any b = b≺ constructed as above, belongs to Bf . This is
+not hard to derive from the submodularity of f . (Indeed, b(U ) ≤ f (U ) can be proved by
+induction on |U |: If U = ∅ it is trivial. If U 6= ∅, let v be the largest (with respect to
+≺) element in U . Then, with the induction hypothesis and by the submodularity of f ,
+f (U ) ≥ f (U ∩ v≺ ) + f (U ∪ v≺ ) − f (v≺ ) = f (U \ {v}) + f (v≺ ∪ {v}) − f (v≺ ) ≥ b(U \ {v}) +
+b(v≺ ∪ {v}) − b(v≺ ) = b(U \ {v}) + b(v) = b(U ).)
+
+3. A subroutine
+
+    In this section we describe a subroutine that is important in our algorithm. It replaces
+a total order ≺ by other total orders, thereby reducing some interval (s, t]≺ , where
+
+(7)        (s, t]≺ := {v|s ≺ v  t},
+
+for s, t ∈ V .
+    Let ≺ be a total order on V . For any s, u ∈ V with s ≺ u, let ≺s,u be the total order on
+V obtained from ≺ by resetting v ≺ u to u ≺ v for each v satisfying s  v ≺ u. Thus in the
+ordering, we move u to the position just before s. (So (s, t]≺ = (s, t]≺s,u \ {u} if u ∈ (s, t]≺ .)
+                        s,u
+    We first compare b≺ with b≺ . We show that for each v ∈ V :
+              s,u
+(8)        b≺ (v) ≤ b≺ (v) if s  v ≺ u,
+             s,u
+           b≺ (v) ≥ b≺ (v) if v = u,
+             s,u
+           b≺ (v) = b≺ (v) otherwise.
+To prove this, observe that if X ⊆ Y ⊆ V , then for any v ∈ V \ Y we have by the
+submodularity of f :
+
+(9)        f (Y ∪ {v}) − f (Y ) ≤ f (X ∪ {v}) − f (X),
+
+as the union and intersection of X ∪ {v} and Y are equal to Y ∪ {v} and X respectively.
+    To see (8), if s  v ≺ u, then by (9),
+                s,u
+(10)       b≺         (v) = f (v≺s,u ∪ {v}) − f (v≺s,u ) ≤ f (v≺ ∪ {v}) − f (v≺ ) = b≺ (v),
+
+since v≺s,u = v≺ ∪ {u} ⊃ v≺ .
+    Similarly,
+                s,u
+(11)       b≺         (u) = f (u≺s,u ∪ {u}) − f (u≺s,u ) ≥ f (u≺ ∪ {u}) − f (u≺ ) = b≺ (u),
+
+since u≺s,u = s≺ ⊂ u≺ .
+                                                              s,u
+    Finally, if v ≺ s or u ≺ v, then v≺s,u = v≺ , and hence b≺ (v) = b≺ (v). This shows (8).
+
+                                                      3
+   Let, for any u ∈ V , χu be the incidence vector of u. That is, χu (v) = 1 if v = u and = 0
+otherwise.
+   Then we claim that there is a subroutine doing the following:
+
+(12)       for any s, t ∈ V with s ≺ t, we can find δ ≥ 0 and describe b≺ + δ(χt − χs ) as a
+                                         s,u
+           convex combination of the b≺ for u ∈ (s, t]≺ , in strongly polynomial time.
+To describe the subroutine, we can assume that b≺ = 0 (by replacing (temporarily) f (U )
+by f (U ) − b≺ (U ) for each U ⊆ V ).
+                                   s,u
+   By (8), the matrix M = (b≺ (v))u,v with rows indexed by u ∈ (s, t]≺ and columns
+indexed by v ∈ V , in the order given by ≺, has the following, partially ‘triangular’, shape,
+where a + means that the entry is ≥ 0, and a − that the entry is ≤ 0:
+
+                                           s                                                     t
+                   0        ···   0        −      +      0      ···     ···      ···      0      0      0        ···   0
+                   ..             ..                            ..                          ..     ..       ..             ..
+                    .              .       −      −      +         .                         .      .        .              .
+                    ..             ..                           ..      ..                ..     ..      ..              ..
+                     .              .      −      −      −         .         .             .      .       .               .
+                     ..             ..     ..     ..     ..     ..      ..       ..        ..     ..      ..            ..
+                      .              .      .      .      .        .         .        .     .      .       .             .
+                      ..             ..     ..     ..     ..            ..       ..                     ..             ..
+                       .              .      .      .      .                 .        .   0      0       .              .
+                       ..             ..     ..     ..     ..                    ..                        ..             ..
+                        .              .      .      .      .                      .      +      0          .              .
+               t   0        ···   0        −      −      −      ···     ···      ···      −      +      0        ···   0
+                                                                  s,u
+     As each row of M represents a vector b≺ , to obtain (12) we must describe δ(χt − χs )
+as a convex combination of the rows of M , for some δ ≥ 0.
+     We call the + entries in the matrix the ‘diagonal’ elements. Now for each row of M ,
+                                  s,u
+the sum of its entries is 0, as b≺ (V ) = f (V ) = b≺ (V ) = 0. Hence, if a ‘diagonal’ element
+   s,u
+b≺ (u) is equal to 0 for some u ∈ (s, t]≺ , then the corresponding row of M is all-zero. So
+in this case we can take δ = 0 in (12).
+          s,u
+     If b≺ (u) > 0 for each u ∈ (s, t]≺ (that is, if each ‘diagonal’ element is strictly positive),
+then χt − χs can be described as a nonnegative combination of the rows of M (by the sign
+pattern of M and since the entries in each row of M add up to 0). Hence δ(χt − χs ) is a
+convex combination of the rows of M for some δ > 0, yielding again (12).
+
+4. Algorithm to minimize a submodular function f
+
+   Let f be a submodular set function on V . To minimize f , we can assume f (∅) = 0. We
+assume also that V = {1, . . . , n}.
+   We iteratively update a vector x ∈ Bf , given as a convex combination
+
+(13)       x = λ1 b≺1 + · · · + λk b≺k ,
+
+where the ≺i are total orders of V , and where the λi are positive and sum to 1. Initially,
+we choose an arbitrary total order ≺ and set x = b≺ .
+   We describe the iteration. Consider the directed graph D = (V, A), with
+
+(14)       A := {(u, v)|∃i = 1, . . . , k : u ≺i v}.
+
+                                                                   4
+Define
+(15)        P := {v ∈ V |x(v) > 0} and N := {v ∈ V |x(v) < 0}.
+Case 1: D has no path from P to N . Then let U be the set of vertices of D that can
+reach N by a directed path. So N ⊆ U and U ∩ P = ∅; that is, U contains all negative
+components of x and no positive components. Hence x(W ) ≥ x(U ) for each W ⊆ V . As no
+arcs of D enter U , U is a lower ideal of ≺i , and hence b≺i (U ) = f (U ), for each i = 1, . . . , k.
+Therefore for each W ⊆ V :
+                                         X
+                                         k
+(16)        f (W ) ≥ x(W ) ≥ x(U ) =           λi b≺i (U ) = f (U );
+                                         i=1
+
+so U minimizes f .
+Case 2: D has a path from P to N . Let d(v) denote the distance in D from P to v (=
+minimum number of arcs in a directed path from P to v). Choose s, t ∈ V as follows.
+    Let t be the element in N reachable from P with d(t) maximum, such that t is largest.
+Let s be the element with (s, t) ∈ A, d(s) = d(t) − 1, and s largest. Let α be the maximum
+of |(s, t]≺i | over i = 1, . . . , k. Reorder indices such that |(s, t]≺1 | = α.
+    By (12), we can find δ ≥ 0 and describe
+(17)        b≺1 + δ(χt − χs )
+                                       s,u
+as a convex combination of the b≺1           for u ∈ (s, t]≺1 . Then with (13) we obtain
+(18)        y := x + λ1 δ(χt − χs )
+                                                              s,u
+as a convex combination of b≺i (i = 2, . . . , k) and b≺1 (u ∈ (s, t]≺1 ).
+    Let x0 be the point on the line segment xy closest to y with x0 (t) ≤ 0. (So x0 (t) = 0
+                                                                                             s,u
+or x0 = y.) We can describe x0 as a convex combination of b≺i (i = 1, . . . , k) and b≺1
+(u ∈ (s, t]≺1 ). Moreover, if x0 (t) < 0 then we can do without b≺1 .
+    We reduce the number of terms in the convex decomposition of x0 to at most |V | by linear
+algebra: any affine dependence of the vectors in the decomposition yields a reduction of the
+number of terms in the decomposition, as in the standard proof of Carathéodory’s theorem
+(subtract an appropriate multiple of the linear expression giving the affine dependence,
+from the linear expression giving the convex combination, so that all coefficients remain
+nonnegative, and at least one becomes 0). As all b≺ belong to a hyperplane, this reduces
+the number of terms to at most |V |.
+    Then, after resetting x := x0 , we iterate. This finishes the description of the algorithm.
+
+5. Running time of the algorithm
+
+    We show that the number of iterations is at most |V |6 . Consider any iteration. Let
+(19)        β := number of i ∈ {1, . . . , k} with |(s, t]≺i | = α.
+Let x0 , d0 , A0 , P 0 , N 0 , t0 , s0 , α0 , β 0 be the objects x, d, A, P , N , t, s, α, β in the next
+iteration. Then
+(20)        for all v ∈ V , d0 (v) ≥ d(v),
+
+                                                     5
+and
+
+(21)       if d0 (v) = d(v) for all v ∈ V , then (d0 (t0 ), t0 , s0 , α0 , β 0 ) is lexicographically less than
+           (d(t), t, s, α, β).
+Since each of d(t), t, s, α, β is at most |V |, and since (if d(v) is unchanged for all v) there
+are at most |V | pairs (d(t), t), (21) implies that in at most |V |4 iterations d(v) increases
+for some v. Any fixed v can have at most |V | such increases, and hence the number of
+iterations is at most |V |6 .
+    Notice that
+
+(22)       for each arc (v, w) ∈ A0 \ A we have s 1 w ≺1 v 1 t.
+
+Indeed, as (v, w) 6∈ A we have w ≺1 v. As (v, w) ∈ A0 , we have v ≺s,u 1 w for some u ∈ (s, t]≺1 .
+Hence the definition of ≺s,u
+                           1  gives   v = u and s  1 w  ≺  1 u. This shows (22).
+                                    0
+    If (20) does not hold, then A \ A contains an arc (v, w) with d(w) ≥ d(v) + 2 (using
+that P 0 ⊆ P ). By (22), s 1 w ≺1 v 1 t, and so d(w) ≤ d(s) + 1 = d(t) ≤ d(v) + 1, a
+contradiction. This shows (20).
+    To prove (21), assume that d0 (v) = d(v) for all v ∈ V . As x0 (t0 ) < 0, we have x(t0 ) < 0
+or t0 = s. So by our criterion for choosing t (maximizing (d(t), t) lexicographically), and
+since d(s) < d(t), we know that d(t0 ) ≤ d(t), and that if d(t0 ) = d(t) then t0 ≤ t.
+    Next assume also that d(t0 ) = d(t) and t0 = t. As (s0 , t) ∈ A0 , and as (by (22)) A0 \ A
+does not contain any arc entering t, we have (s0 , t) ∈ A, and so s0 ≤ s, by the maximality
+of s.
+    Finally assume also that s0 = s. As (s, t]≺s,u  1
+                                                         is a proper subset of (s, t]≺1 for each
+u ∈ (s, t]≺1 , we know that α ≤ α. Moreover, if α = α, then β 0 < β, since ≺1 does not
+                               0                       0
+
+occur anymore among the linear orders making the convex combination, as x0 (t) < 0. This
+proves (21).
+Note. Above we have chosen t and s largest possible, in some fixed order of V . To obtain
+the above running time bound it only suffices to choose t and s in a consistent way. That
+is, if the set of choices for t is the same as in the previous iteration, then we should choose
+the same t — and similarly for s.
+
+6. Ring families
+
+    Any algorithm minimizing a submodular function, can be transformed to an algorithm
+minimizing a submodular function defined on a ring family C, that is, a collection C of
+subsets of V closed under union and intersection (where the submodular inequality (2) is
+required only for sets in C). For this, we need to know in advance for each v ∈ V the minimal
+set Mv in C containing v (if any), and we need to know the smallest set M in C. This fully
+describes C. (Obviously, we need to have some information on C in advance. Otherwise, it
+may take exponential time until the oracle will return to us any (finite) value.)
+    We can assume that M = ∅, V ∈ C, and that Mu 6= Mv for all u 6= v (otherwise we
+can identify u and v). Thus we can represent C as the collection of all lower ideals of some
+partial order on V .
+
+
+
+
+                                                     6
+    For each v ∈ V , define Lv to be the largest set in C not containing v (so Lv is the union
+of those Mu not containing v), and
+(23)       c(v) := max{0, f (Lv ) − f (Lv ∪ {v})}.
+(We can find c by 2|V | oracle calls.)
+  Then for all X, Y ∈ C with X ⊆ Y one has
+(24)       f (Y ) + c(Y ) ≥ f (X) + c(X).
+To show this, we can assume that Y = X ∪ {v} for some v 6∈ X. So Y ∪ Lv = Lv ∪ {v} and
+Y ∩ Lv = X, and
+(25)       f (X) = f (Y ∩ Lv ) ≤ f (Y ) + f (Lv ) − f (Y ∪ Lv ) ≤ f (Y ) + c(v).
+This shows (24). So the function f (X) + c(X) is monotone in X.
+   For any subset X of V let X be the smallest set in C containing X, and define g by
+(26)       g(X) := f (X) + c(X)
+for X ⊆ V . Then g is submodular, since for X, Y ⊆ V :
+(27)       g(X) + g(Y ) = f (X) + c(X) + f (Y ) + c(Y ) ≥ f (X ∩ Y ) + f (X ∪ Y ) + c(X) + c(Y )
+           = f (X ∩ Y ) + f (X ∪ Y ) + c(X ∩ Y ) + c(X ∪ Y )
+           ≥ f (X ∩ Y ) + c(X ∩ Y ) + f (X ∪ Y ) + c(X ∪ Y ) = g(X ∩ Y ) + g(X ∪ Y ),
+where the first inequality follows from the submodularity of f , and the last inequality from
+(24) (note that X ∪ Y = X ∪ Y and X ∩ Y ⊇ X ∩ Y ).
+   Now with our algorithm we can find a subset U of V minimizing g(U ) − c(U ). Then for
+each T ∈ C we have f (T ) = g(T ) − c(T ) ≥ g(U ) − c(U ) = f (U ) + c(U ) − c(U ) ≥ f (U ), as
+c ≥ 0. Thus U minimizes f over C.
+
+Notes. Simultaneously with us, also Iwata, Fleischer, and Fujishige [9] found a non-
+ellipsoidal algorithm to minimize a submodular function.
+    I thank András Frank and Bert Gerards for stimulating discussion and suggestions, and
+Lisa Fleischer for helpful remarks on an earlier draft of this paper and for showing me that
+the number of iterations is bounded by |V |6 (instead of |V |7 ). I thank Bianca Spille for
+carefully reading the manuscript and for pointing out some errors. I also thank the referees
+for very useful suggestions improving the presentation.
+
+References
+
+[1] R.E. Bixby, W.H. Cunningham, D.M. Topkis, The partial order of a polymatroid extreme point,
+    Mathematics of Operations Research 10 (1985) 367–378.
+[2] W.H. Cunningham, Testing membership in matroid polyhedra, Journal of Combinatorial Theory,
+    Series B 36 (1984) 161–188.
+[3] W.H. Cunningham, On submodular function minimization, Combinatorica 5 (1985) 185–192.
+[4] J. Edmonds, Submodular functions, matroids, and certain polyhedra, in: Combinatorial Struc-
+    tures and Their Applications (Proceedings Calgary International Conference on Combinatorial
+    Structures and Their Applications, Calgary, Alberta, June 1969; R. Guy, H. Hanani, N. Sauer,
+    J. Schönheim, eds.), Gordon and Breach, New York, 1970, pp. 69–87.
+
+                                                7
+[5] A. Frank, Finding feasible vectors of Edmonds-Giles polyhedra, Journal of Combinatorial Theory,
+    Series B 36 (1984) 221–239.
+[6] S. Fujishige, Submodular Functions and Optimization [Annals of Discrete Mathematics, 47],
+    North-Holland, Amsterdam, 1991.
+[7] M. Grötschel, L. Lovász, A. Schrijver, The ellipsoid method and its consequences in combinatorial
+    optimization, Combinatorica 1 (1981) 169–197 [corrigendum: Combinatorica 4 (1984) 291–295].
+[8] M. Grötschel, L. Lovász, A. Schrijver, Geometric Algorithms and Combinatorial Optimization,
+    Springer, Berlin, 1988.
+[9] S. Iwata, L. Fleischer, S. Fujishige, A strongly polynomial-time algorithm for minimizing sub-
+    modular functions, preprint, 1999.
+[10] E.L. Lawler, C.U. Martel, Computing maximal “polymatroidal” network flows, Mathematics of
+    Operations Research 7 (1982) 334–347.
+[11] L. Lovász, Submodular functions and convexity, in: Mathematical Programming — The State
+    of the Art (Bonn, 1982; A. Bachem, M. Grötschel, B. Korte, eds.), Springer, Berlin, 1983, pp.
+    234–257.
+[12] J.-C. Picard, Maximal closure of a graph and applications to combinatorial problems, Manage-
+    ment Science 22 (1976) 1268–1272.
+[13] M. Queyranne, Minimizing symmetric submodular functions, Mathematical Programming 82
+    (1998) 3–12.
+[14] J.M.W. Rhys, A selection problem of shared fixed costs and network flows, Management Science
+    17 (1970) 200–207.
+[15] P. Schönsleben, Ganzzahlige Polymatroid-Intersektions-Algorithmen, Ph.D. Thesis, Eidgenössi-
+    sche Technische Hochschule Zürich, 1980.
+
+
+
+
+                                                  8
+

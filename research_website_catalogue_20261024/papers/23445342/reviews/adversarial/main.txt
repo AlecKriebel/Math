@@ -1,0 +1,610 @@
+         Coarse endpoint concentration at every diverging scale
+             for one-dimensional space-time random walks
+                                              Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                           18 October 2026
+
+
+                                                Abstract
+         For a nearest-neighbor walk on Z in a ﬁxed i.i.d. space-time environment with transition
+     probabilities strictly between zero and one, we prove that its quenched and averaged endpoint
+     laws agree, after coarse graining into deterministic intervals of any diverging length, outside an
+     environment event of probability smaller than every inverse power of time. No uniform ellipticity
+     or quantitative rate of divergence of the interval length is required. This is the aﬃrmative
+     one-dimensional assertion contrary to Conjecture 1 in Berger’s contribution to Oberwolfach
+     Report 38/2009. The proof combines replica overlap estimates, environmental martingales,
+     same-parity coalescence and concentration over a short ﬁnal segment. Priority qualiﬁcation:
+     novelty and historical priority remain unresolved. A bounded literature audit established no
+     exact full anticipation, but four relevant older original full texts could not be accessed. We
+     make no claim of ﬁrstness, independent discovery or that the conjecture remained open until
+     this work. Established late-layer and coalescing methods, including those of Dunlap–Gu and
+     Barraquand–Rychnovsky, are explicitly credited.
+
+
+1    Statement, interpretation and prior work
+Let ω = (ps,x : s ≥ 0, x ∈ Z) have i.i.d. coordinates with
+                                   0 < ps,x < 1        P-almost surely.                                   (1)
+In a ﬁxed environment the walk starts at X0 = 0 and at time s jumps from x to x + 1 with
+probability ps,x and to x − 1 otherwise. Write P ω for this quenched law, µωn (x) = P ω (Xn = x),
+and αn (x) = Eµωn (x). The environment expectation and probability are E and P. We suppress ω
+in intermediate calculations. For a deterministic partition P of Z deﬁne
+                                               X
+                                      Ln,P =         |µn (I) − αn (I)|.
+                                               I∈P
+
+This uses the full ℓ1 distance, twice the usual total variation distance. For real M > 0 and b ∈ R,
+the intervals [b + jM, b + (j + 1)M ), j ∈ Z, intersected with Z, deﬁne a partition; empty cells are
+harmless.
+Theorem 1. For every ﬁxed environment law satisfying (1), every deterministic sequence MN > 0
+with MN → ∞, and every ε, K > 0, there are ﬁnite Cε,K and N0 such that, for N ≥ N0 and every
+deterministic alignment bN ,
+        P(LN,PN > ε) ≤ Cε,K N −K ,         PN = {[bN + jMN , bN + (j + 1)MN ) ∩ Z : j ∈ Z}.               (2)
+
+                                                      1
+The constants may depend on the ﬁxed environment law. The eventual threshold may also depend
+on the sequence MN . The bound is uniform in each deterministic alignment.
+
+    Here and below superpolynomially small means O(N −K ) for every ﬁxed K > 0, with its own
+constant and eventual threshold. The theorem includes biased averaged walks, nearest-neighbor
+parity, integer cells containing MN sites, real interval lengths and arbitrarily slowly diverging
+nonmonotone scales. It does not assert a simultaneous bound for environment-selected partitions,
+a law-uniform bound as ellipticity degenerates, or a result for static or correlated environments.
+    Berger’s report [1, pp. 2151–2152, Theorem 1 and Conjecture 1] states the analogous concen-
+tration assertion in transverse dimension at least two and conjectures its failure in dimension one.
+Theorem 1 gives the aﬃrmative assertion for its i.i.d., nearest-neighbor, elliptic one-dimensional
+model. A deterministic elliptic law has µN = αN ; the theorem also covers every nondegenerate law
+under (1), so its conclusion is not based on that trivial special case.
+    The diﬀerence-walk and quenched-mean mechanisms already occur in Balázs–Rassoul-Agha–
+Seppäläinen [2]. Independent particles and coupling in dynamical environments are treated in
+Joseph–Rassoul-Agha–Seppäläinen [5]. Dunlap–Gu [3] isolate a short ﬁnal layer in a Gaussian-times-
+stationary-corrector local limit theorem for a continuum stochastic ﬂow with molecular Brownian
+noise. Barraquand–Rychnovsky [4, Section 1.4, Proposition 1.13 and Section 4.5] prove a full-space
+beta-environment local limit theorem and use ﬁnal-layer decomposition and ordered coalescence.
+Those mechanisms, as well as replica calculations, martingale exposure and bounded diﬀerences,
+are established methods. All analytic inputs needed here are proved below.
+    The modern distribution-valued ﬂuctuation limits of Drillick–Parekh [6] and Parekh [7] are also
+relevant. The inspected statements concern diﬀerent observables and convergence topologies and
+do not state (2)’s shrinking-cell ℓ1 conclusion with a superpolynomial environment tail. Nearest-
+neighbor parity is not a reason to exclude that framework: Parekh [7, Section 6.1, Remark 6.2]
+handles it by two-step kernels on 2Z. A qualitative local or weak limit does not, by itself, supply
+every inverse-power probability bound.
+    The bounded audit veriﬁed no earlier theorem with the full quantiﬁers of (2); it did not establish
+novelty. The complete original texts of Boldrighini–Minlos–Pellegrinotti (1999) [8], Boldrighini–
+Pellegrinotti (2001) [9], Boldrighini–Minlos–Pellegrinotti (2004) [10], and Bérard (2004) [11] could
+not be accessed. Their metadata, abstracts or later primary discussions were available, but do
+not exclude stronger estimates in the original proofs. None of these four sources is represented
+as fully eliminated as an anticipation. The accompanying priority ledger records exact access and
+reading limits. Accordingly this note reports a veriﬁed self-contained theorem with originality and
+historical priority unresolved; it does not assert ﬁrstness, independent discovery, a new method or
+present-day open status.
+    Put
+
+          q = Ep,   a = q(1 − q),   δ = E[p(1 − p)],   σ 2 = Var(p) = a − δ,   v = 2q − 1.        (3)
+
+Then 0 < δ ≤ a ≤ 1/4. The averaged walk has independent sign increments of mean v and variance
+4a. This follows by successively averaging fresh time layers even when a path revisits an old spatial
+location. Constants C, c > 0 below may change from line to line and depend on the ﬁxed law. Let
+                                                                              P
+Fs contain the environment layers with time index less than s, and put Is = x µs (x)2 .
+
+
+
+
+                                                  2
+2    Replica returns and occupation moments
+Lemma 2. There is C < ∞ such that, for all deterministic integers s, t ≥ 0,
+                                                                    C
+                                              E[Is+t | Fs ] ≤ √         .                                   (4)
+                                                                    t+1
+For L, k ≥ 1 integers,                                        
+                                                  k
+                                       X
+                                         L−1
+                                                                
+                                     E      Is+j            Fs  ≤ k!C k Lk/2 .                           (5)
+                                             j=0
+                                                                                    P                  √
+Consequently, for every ﬁxed η > 0, L ≤ N and deterministic s, the event            j<L Is+j > N
+                                                                                                   η       L is
+superpolynomially unlikely.
+
+Proof. Take two independent walks conditional on the same environment. Their half-diﬀerence D =
+(X − Y )/2 is integral because the positions have the same parity. On environmental averaging its
+transition probabilities to each neighbor are a away from zero and δ at zero; its holding probabilities
+are 1 − 2a and 1 − 2δ, respectively. Indeed diﬀerent current sites use independent fresh variables,
+whereas at a shared site the probabilities of the two opposite step pairs are both E[p(1 − p)]. In
+particular,
+                                       EIt = P0 (Dt = 0) =: gt .
+    We derive a pointwise return bound. For 0 < z < 1, the hitting transform from d ≥ 1 to zero
+is ρ(z)d , where the root in (0, 1) solves
+
+                                      azρ2 − [1 − (1 − 2a)z]ρ + az = 0.
+
+The other root exceeds one; the bounded solution of the hitting recurrence is the stated one. First-
+return decomposition at zero gives
+                          X                           1
+                G(z) :=         gt z t =
+                          t≥0
+                                           1 − (1 − 2δ)z − 2δzρ(z)
+                                                             1
+                                     =                        p
+                                      (1 − δ/a)(1 − z) + (δ/a) (1 − z)(1 − (1 − 4a)z)
+                                         √
+                                           a
+                                     ≤ √       .                                                            (6)
+                                      2δ 1 − z
+
+The square root is positive on (0, 1); the last inequality uses δ ≤ a and 1 − (1 − 4a)z ≥ 4a.
+    To pass from this generating-function bound to individual coeﬃcients, use reversibility with
+weights π(0) = a/δ and π(d) = 1 for d ̸= 0. The transition operator P is a self-adjoint contraction on
+ℓ2 (π): contraction follows from Jensen’s inequality and invariance of π. Every holding probability is
+at least 1/2, so 2P −Id is also a self-adjoint Markov contraction. Thus the spectrum of PR lies in [0, 1].
+The spectral measure of 1{0} , divided by π(0), is a probability measure ν with gt = [0,1] λt dν(λ).
+Therefore gt decreases with t. For n ≥ 1 this implies
+
+                                                    1 − z n+1
+                                               gn             ≤ G(z).
+                                                      1−z
+                                                                                           √
+Set z = n/(n+1), note z n+1 ≤ e−1 , and apply (6). After including n = 0, we obtain gn ≤ C/ n + 1.
+
+
+
+                                                          3
+   We also need the backward return proﬁle ut (d) = Pd (Dt = 0) to be maximal at zero. It is
+symmetric. Write bt (d) = ut (d) − ut (d + 1) for d ≥ 0. The backward transition equation gives
+
+              bt+1 (0) = (1 − 2δ − a)bt (0) + abt (1),
+              bt+1 (d) = abt (d − 1) + (1 − 2a)bt (d) + abt (d + 1),                          d ≥ 1.
+
+All coeﬃcients are nonnegative, since 1 − 2δ − a ≥ 1 − 3a ≥ 1/4. Initially b0 (0) = 1 and all other
+b0 (d) = 0. Induction proves ut (d) ≤ ut (0) = gt . Conditioning on Fs now ﬁxes the starting replica
+law µs ⊗ µs and leaves later layers fresh, so
+                                             X
+                          E[Is+t | Fs ] =          µs (x)µs (y)ut ((x − y)/2) ≤ gt .
+                                             x,y
+
+Every half-diﬀerence here is√ integral.
+              P
+    Let AL = j<L gj ≤ C L. Expand the kth power in (5) and order its time indices, overcounting
+by at most k!. In each resulting nonnegative ordered sum, condition at its penultimate selected
+time. The sum of conditional expectations of the last overlap is at most AL . Iterating removes all
+indices and costs at most AkL . Repeated indices are included: at a zero time gap use It ≤ 1 = g0 .
+This proves (5) without independence of overlaps. Markov’s inequality gives k!C k N −kη for the
+stated tail. For each desired power choose a ﬁxed suﬃciently large k.
+
+
+3    Environmental martingales and coarse expectation
+Let Tt f (x) be the averaged expectation of f for a t-step walk started at x. For deterministic
+bounded f , the exposure martingale for µn (f ) is µs (Tn−s f ), 0 ≤ s ≤ n. Its next increment is
+exactly                     X
+                  Ds (f ) =   µs (x)(ps,x − q)[Tn−s−1 f (x + 1) − Tn−s−1 f (x − 1)].          (7)
+                              x
+
+If hs (x) denotes the bracket, independence within the next layer gives
+                                                                             X
+                 |Ds (f )| ≤ sup |hs (x)|,         E[Ds (f )2 | Fs ] = σ 2       µs (x)2 hs (x)2 .     (8)
+                                  x                                          x
+
+All sums at a ﬁxed horizon have ﬁnite support. For a 1/r-Lipschitz f , the translation semigroup
+preserves its Lipschitz constant; thus the increment bound is 2/r and the predictable quadratic
+                          P
+variation is at most Cr−2 s<n Is .
+    We use two elementary scalar concentration estimates, recorded here to ﬁx their conditional
+                                                           P
+meaning. If martingale diﬀerences satisfy |Dj | ≤ b and Q = j E[Dj2 | Gj−1 ], then
+                                                                 (                  )
+                              X                          u2
+                        P   Dj ≥ u, Q ≤ w ≤ 2 exp −                                     .            (9)
+                           j
+                                                      4(w + bu)
+                                                       P
+Indeed ex ≤ 1 + x + x2 for |x| ≤ 1 makes exp(λ i≤j Di − λ2 Qj ) a nonnegative supermartingale for
+λb ≤ 1. Markov’s inequality on the joint event, with λ = u/[2(w + bu)], and the same argument for
+negative sums prove (9). We never condition the martingale law on a future small-variation event.
+   We will also use the following bounded-increment estimate. For independent centered incre-
+ments with range length at most two,
+                                                             2
+                                               EeλZ ≤ eλ /2 .
+
+                                                        4
+To check this, the second derivative of the log moment-generating function is a variance under an
+exponential tilt, bounded by one for any variable supported on an interval of length two. Integrate
+twice, using the zero mean. The corresponding exponential supermartingale, stopped at the ﬁrst
+crossing and then bounded at the terminal time, gives
+                                                                 
+                                            P max |St | ≥ u ≤ 2e−u /(2h)
+                                                                           2
+                                                                                                       (10)
+                                                  t≤h
+
+for centered partial sums of such independent increments. The same argument, applied to condi-
+tional ranges of martingale increments, gives the independent-input bounded-diﬀerences inequality
+                                                                      (         )
+                                                                2u2
+                                          P(F − EF > u) ≤ exp − P 2                                    (11)
+                                                                 j cj
+
+when altering input j changes F by at most cj . For completeness, exposing independent inputs
+yields martingale increments of conditional range at most cj ; the preceding log-moment argument
+                                          2 2
+after rescaling gives E(eλDj | Gj−1 ) ≤ eλ cj /8 . Multiplication and optimization prove (11).
+
+Lemma 3. Uniformly in real interval lengths M ≥ 1, deterministic alignments, n ≥ 2 and B ≥ 1,
+                                     s                 
+                                          B                              √    C
+                   ELn,P ≤ C                + n−1/2 1 + log(1 + min(M + 1, n)) + 2 .                   (12)
+                                          M                                     B
+
+In particular there is a deterministic bound ρ(n, M ) ≤ 2, uniform in alignment, with ρ(n, M ) → 0
+whenever both n, M → ∞.
+
+Proof. On its parity lattice the averaged kernel is the binomial mass bt (j) = P(Bin(t, q) = j). For
+ϕ(θ) = 1 − q + qeiθ ,
+
+                                                                 |ϕ(θ)|t ≤ e−2atθ /π ,
+                                                                                 2   2
+                       |ϕ(θ)|2 = 1 − 4a sin2 (θ/2),                                      |θ| ≤ π.
+
+Fourier inversion, with and without the factor |eiθ − 1| ≤ |θ|, proves
+
+                max bt (j) ≤ C(t + 1)−1/2 ,                 max |bt (j + 1) − bt (j)| ≤ C(t + 1)−1 .
+                   j                                         j
+                                                                 P
+Unimodality and zeros outside the support give j |bt (j + 1) − bt (j)| = 2 maxj bt (j). These are
+physical shifts by two, not one.
+    For hI (x) = Tt 1I (x + 1) − Tt 1I (x − 1), summing over the contiguous parity sites of an interval
+telescopes to at most two endpoint masses. Alternatively bound its at most M + 1 site terms by
+the adjacent-mass bound. The partition cannot increase the ℓ1 norm of a signed measure, so
+
+                           max |hI (x)| ≤ C min((t + 1)−1/2 , (M + 1)(t + 1)−1 ),
+                             I
+                             X
+                                     |hI (x)| ≤ C(t + 1)−1/2 ,
+                              I
+                             X
+                                     hI (x)2 ≤ C min((t + 1)−1 , (M + 1)(t + 1)−3/2 ).
+                                 I
+
+Orthogonality of (7) in time and EIs = gs therefore imply
+              X                            X
+                   Var(µn (I)) ≤ C               (s + 1)−1/2 min((n − s)−1 , (M + 1)(n − s)−3/2 ).
+               I                           s<n
+
+
+                                                              5
+For s ≤ n/2 the sum is at most Cn−1/2 . For s > n/2, bound (s + 1)−1/2 ≤ Cn−1/2 and split the
+remaining sum over k = n − s at k = (M + 1)2 . This yields
+                       X                C                        √
+                          Var(µn (I)) ≤ √ [1 + log(1 + min(M + 1, n))].                         (13)
+                        I
+                                         n
+                    √          √                         √
+The window [vn − B n, vn + B n] intersects at most 2B n/M + 2 cells. Cauchy–Schwarz and
+(13) bound the expected discrepancy on them by the square-root term in (12). All other cells lie
+outside this window. Their expected discrepancy is at most twice its averaged tail, which is at
+most C/B 2 by the variance 4an. For ﬁxed B, the square-root term tends to zero as n, M → ∞: if
+      √                                             √
+M ≤ n, use log(1 + M )/M → 0; otherwise use log n/ n → 0. Then let B → ∞. The inﬁmum of
+the displayed bounds over B ≥ 1, capped at two, deﬁnes a suitable ρ.
+
+
+4    A polynomial auxiliary coarse scale
+The next estimate is used only at an auxiliary scale, not at the possibly much slower target scale
+MN .
+Proposition 4. For ﬁxed γ > 1/4, u > 0 and K > 0,
+
+                                       P(Ln,P > u) = O(n−K )
+
+uniformly over integer cell lengths M ≥ nγ and all deterministic alignments.
+Proof. It suﬃces to treat 1/4 < γ < 1/2, since a ﬁxed exponent in that range also covers all larger
+γ. Put                                                      $          %
+                                                                n2β
+            d = γ − 4, β = 4 + 2, η = 4, r = n , h =
+                    1        1   d        d         β
+                                                                         , m = n − h.
+                                                              (log n)2
+Eventually 1 ≤ h ≤ n/2. Average just the ﬁnal h layers: νn = E[µn | Fm ] = µm Th . For any
+deterministic |f | ≤ 1, the gradient bound in the preceding proof gives
+                                           √                    X     Is
+                             |Ds (f )| ≤ C/ h,         Qf ≤ C             .
+                                                                s<m n − s
+
+Divide these indices into deterministic consecutive dyadic blocks Bj on which 2j h ≤ n−s−1 < 2j+1 h.
+Their lengths are at most hj = 2j h, and there are O(log n) nonempty blocks. By Lemma 2, the
+common event                                                      
+                                       X              q              
+                                En =           Is ≤ nη hj for all j
+                                                                     
+                                        s∈Bj
+
+has superpolynomially small complement. A shorter last  √ block can be bounded by extending its
+deterministic interval to length hj . On En , Qf ≤ Cnη / h. Equation (9), applied to the joint event,
+yields, for each ﬁxed t > 0,
+
+                       P(|νn (f ) − αn (f )| > t, En ) ≤ 2 exp{−ct nβ−η / log n}.               (14)
+                                 √                √
+   The window Wn = [vn − n log n, vn + n log n] meets J ≤ Cn1/2−γ log n + 2 cells. On
+those complete cells the ℓ1 discrepancy is the maximum over their 2J deterministic sign tests, each
+bounded by one. Union bound (14) over the signs and charge P(Enc ) once. Since
+
+                                  β − η − (1/2 − γ) = 5d/4 > 0,
+
+                                                   6
+the negative exponential dominates J log 2. The averaged mass outside Wn is at most Ce−c(log n)
+                                                                                                    2
+
+
+by (10) (or its terminal bound). The expectation of νn (Wnc ) is this same mass. Markov’s inequality
+therefore controls the remaining cells with a superpolynomial ﬁxed-threshold tail. We have proved
+
+                       P(∥νn (P) − αn (P)∥1 > t) is superpolynomially small.                      (15)
+
+    We restore the ﬁnal layers by controlling boundary crossings. Represent the integer cells as real
+intervals with boundary grid b + M Z. Let
+
+                              Bn = {x ∈ Z : dist(x + vh, b + M Z) ≤ r}.
+
+Choose the deterministic periodic majorant
+
+                      fB (x) = max{0, min{1, 2 − dist(x + vh, b + M Z)/r}}.
+
+It is 1/r-Lipschitz, equals one on Bn , and vanishes outside the radius-2r boundary strips. Those
+strips are eventually disjoint because r/M → 0 uniformly for M ≥ nγ .
+    For a unimodal probability sequence (bj ) and integer D ≥ 1, its mass on one residue class
+modulo D is at most D−1 + 2 max bj . To see this, discard at most two sampled points next to
+the mode and compare each remaining sampled value with the average of a disjoint D-term block
+toward the mode, where the values are larger. The sum of these block averages is at most D−1 . A
+physical residue class modulo M for −m + 2j corresponds, when nonempty, to one binomial-index
+class modulo M/ gcd(2, M ). Its mass is therefore at most 2/M + 2 max bj . The support of fB has
+at most C(r + 1) physical residues in one period, uniformly in the real shift. The peak estimate
+gives                                                         √
+                          Eµm (fB ) ≤ C(r + 1)/M + C(r + 1)/ m = o(1).
+For this Lipschitz test, (8) and Lemma 2 bound the predictable variation, oﬀ a superpolynomially
+unlikely event, by Cnη+1/2−2β , with increment bound 2n−β . For a ﬁxed positive deviation, (9) has
+exponent at least
+                                                    c
+                                                             ,
+                                            n η+1/2−2β + n−β
+which grows as a positive power since 2β −1/2−η = 3d/4 > 0. Thus µm (Bn ) has a superpolynomial
+ﬁxed-threshold tail.
+    Let Dnω = P ω (|Xn − Xm − vh| > r). By averaging fresh ﬁnal layers and (10), EDnω ≤ Ce−cr /h ≤
+                                                                                              2
+
+
+Ce−c(log n) . Its ﬁxed-threshold tail is superpolynomial by Markov’s inequality. Compare the actual
+           2
+
+
+endpoint and an averaged ﬁnal endpoint with the real position Xm + vh under the same old law. If
+the start is outside Bn and the displacement error is at most r, the two compared positions belong
+to the same cell. The coupling inequality gives
+
+                        ∥µn (P) − νn (P)∥1 ≤ 4µm (Bn ) + 2Dnω + Ce−c(log n) .
+                                                                             2
+
+
+
+Half-open endpoint conventions cause no exception because equality with a boundary is included
+in Bn . Combining this bound with (15) proves the proposition.
+
+
+5    Final-segment smoothing and independent strips
+We now prove the all-scale assertion. Set, for large N ,
+
+ ℓ = ⌊N 3/4 ⌋,   m = N − ℓ,    H = ⌈N 5/16 ⌉,   r = N 3/8 ,   R = ⌈N 3/8 log N ⌉,   η = κ = 1/32. (16)
+
+Here m ≥ N/2 eventually. All partitions and intervals introduced below are deterministic.
+
+                                                  7
+Lemma 5. For any prescribed family of at most CN intervals, each containing at most 10R + 10
+integer sites,                           
+                        P max µm (J) > N −κ        is superpolynomially small.
+                              J
+
+Proof. For each interval choose a [0, 1] majorant equal to one on it, tapering linearly to zero
+over distance r on each side. It is 1/r-Lipschitz. The averaged binomial peak bound gives its
+                             √
+mean at most C(R
+               √   + r + 1)/ m = O(N −1/8 log N ) = o(N −1/32 ). By Lemma 2, the single event
+P
+  s<m Is ≤ N
+              η N has superpolynomially small complement. On it the predictable variation for
+
+every majorant is at most CN −7/32 and the increment bound is 2N −3/8 . With u = N −1/32 /2,
+(9) bounds each joint tail by 2e−cN
+                                    5/32
+                                         . Union bound over the prescribed intervals, charging the
+common overlap failure only once.
+
+   Write Kℓω (x, ·) for the last-ℓ-step kernel in the fresh environment after time m.
+
+Lemma 6. For starts x, y of the same parity,
+                                                                       √
+                         Efuture ∥Kℓω (x, ·) − Kℓω (y, ·)∥1 ≤ C|x − y|/ ℓ + 1.                    (17)
+
+Both sides may be capped by two.
+
+Proof. In each ﬁxed environment use independent transition coins until the two paths meet and
+common coins thereafter. This preserves each quenched marginal. Same-parity nearest-neighbor
+paths cannot cross without meeting. Before meeting, environmental averaging makes the positive
+half-gap a homogeneous lazy walk, killed at zero, with neighbor probabilities a, a and holding
+probability 1 − 2a. If pℓ (j) is its unrestricted mass from zero, the killed kernel from d ≥ 1 to z ≥ 1
+is pℓ (z − d) − pℓ (z + d). This follows either by reﬂection, which leaves holding steps unchanged, or
+by checking its transition recursion, zero boundary and initial values. Its survival probability is
+
+                       X                                  X
+                                                          d                  √
+                           [pℓ (z − d) − pℓ (z + d)] =           pℓ (j) ≤ Cd/ ℓ + 1.
+                       z≥1                               j=1−d
+
+The last bound follows by Fourier inversion: 1−2a+2a cos θ is nonnegative for a ≤ 1/4 and at most
+e−ca θ on [−π, π]. The coupling inequality in full ℓ1 distance supplies factor two, and 2d = |x − y|.
+      2
+
+
+The case x = y is zero.
+
+   Condition on the old environment and write µ = µm . In a ﬁxed H-site partition PH , replace
+the conditional distribution within each cell by the conditional αm distribution, keeping µ’s cell
+mass:
+                                          αm (x)
+                            µ′ (x) = µ(J)        ,  x ∈ J, αm (J) > 0.
+                                          αm (J)
+Null αm cells also have zero µm mass: every reachable parity site has positive αm mass. Omit those
+cells. Couple starts of µ and µ′ within each cell; their distance is less than H. Lemma 6 gives
+                                                   √
+                    Efuture µKℓ − µ′ Kℓ 1 ≤ CH/ ℓ,           µ′ − αm 1 = Lm,PH .
+
+The latter identity is an exact cellwise calculation. Markov kernels and partitioning contract ℓ1
+distance. Moreover, convexity and Lemma 3 give
+
+                             Efuture ∥αm Kℓ (PN ) − αN (PN )∥1 ≤ ρ(ℓ, MN ).
+
+
+                                                    8
+Indeed each start in the αm mixture only translates the deterministic target partition alignment.
+Thus, for
+                                F = ∥µm Kℓ (PN ) − αN (PN )∥1 ,
+we have                                                √
+                               E[F | Fm ] ≤ Lm,PH + CH/ ℓ + ρ(ℓ, MN ).                             (18)
+          √
+Here H/ ℓ = O(N −1/16 ) and ρ(ℓ, MN ) → 0 without a rate assumption on MN . Proposition 4
+applies at the ﬁxed auxiliary exponent 5/16: H ≥ m5/16 and m ≥ N/2.
+    It remains to concentrate F over the future. From a start x at time m, kill a path after its ﬁrst
+step t ∈ {1, . . . , ℓ} with
+                                       |Xm+t − x − vt| > R,
+and let K † (x, ·) be its surviving endpoint subprobability kernel. Averaging and (10) yield, uniformly
+in x,
+                           Efuture [1 − K † (x, Z)] ≤ dN := Ce−cR /ℓ ≤ Ce−c(log N ) .
+                                                                 2                 2
+                                                                                                    (19)
+This is a maximum over the entire segment.
+   Partition the fresh environmental coordinates into deterministic moving strips
+
+                    Sk = {(t, y) : 0 ≤ t < ℓ,     kR ≤ y − vt < (k + 1)R},       k ∈ Z.
+
+Only ﬁnitely many reachable coordinates are needed in each strip. These disjoint input vectors are
+independent and independent of Fm , including when v is irrational. An alive path from x can use
+only sites satisfying y − vt ∈ [x − R, x + R]. Consequently changing strip k aﬀects K † (x, ·) only if
+
+                             x ∈ Jk = [kR − R − 1, (k + 1)R + R + 1] ∩ Z.
+
+This statement holds in both the original and the altered environment, since the allowed tube is
+deterministic. No environmental variable at a killed destination is consulted.
+    Put wk = µm (Jk ) and F † = µm K † (PN ) − αN (PN ) . Changing strip k changes F † by at
+                                                           1
+most 2wk , because each aﬀected row is a subprobability measure and the norm satisﬁes the reverse
+triangle inequality. Each integer start belongs to at most six Jk : its admissible real interval of
+indices has length 3 + 2/R ≤ 5. Therefore
+                                   X                 X
+                                        wk ≤ 6,           wk2 ≤ 6 max wk .
+                                                                   k
+                                    k                 k
+
+Only O(N ) strips can inﬂuence starts in [−m, m]; choose a deterministic ﬁnite index range con-
+taining them all. Their Jk contain at most 10R + 10 integer sites. Conditional on Fm , (11) now
+gives
+                     P(F † − E[F † | Fm ] > t | Fm ) ≤ exp{−t2 /(12 max wk )}.              (20)
+                                                                             k
+
+If the denominator is zero the function is constant and the tail is zero. Lemma 5 bounds maxk wk
+by N −1/32 oﬀ an old-environment event of superpolynomially small probability. Thus each ﬁxed
+positive upper deviation in (20) has cost at most e−ct N
+                                                          1/32
+                                                               . The independent objects here are the
+strip vectors; no independence of endpoint masses or overlapping starting cones is assumed.
+    Finally let D = 1 − µm K † (Z). Positivity of Kℓ − K † gives |F − F † | ≤ D. By (19), for every old
+environment,
+
+              E[D | Fm ] ≤ dN ,   E[F † | Fm ] ≤ E[F | Fm ] + dN ,     P(D > t | Fm ) ≤ dN /t.     (21)
+
+
+                                                      9
+                                                             √
+Proof of Theorem 1. Fix ε > 0. For suﬃciently large N , CH/ ℓ + ρ(ℓ, MN ) + dN < ε/8. By
+Proposition 4, outside a superpolynomially unlikely event, Lm,PH ≤ ε/8. Equations (18) and
+(21) then give E[F † | Fm ] ≤ ε/4. Outside another superpolynomially unlikely event, Lemma 5
+supplies the strip weight bound. If also D ≤ ε/4, then F > ε implies F † − E[F † | Fm ] > ε/2.
+Equations (20)–(21) therefore give, for every ﬁxed K,
+
+                            P(F > ε) ≤ O(N −K ) + e−cε N
+                                                           1/32
+                                                                  + 4dN /ε.
+
+Both explicit errors are superpolynomial. Since F = LN,PN , this proves (2). All uses of the target
+partition were in norms, contraction and the real-interval expectation estimate; the auxiliary integer
+partition imposes no restriction on MN .
+
+
+6    Scope, veriﬁcation and disclosure
+The proof uses the ﬁxed-law inequalities 0 < δ ≤ a ≤ 1/4, fresh space-time independence and
+bounded nearest-neighbor jumps. It uses neither inverse moments of p or 1 − p nor a common
+positive lower support bound. Same-parity coupling is suﬃcient because the old quenched and
+averaged laws have the same reachable parity. An arrow law with p ∈ {0, 1} has δ = 0 and is
+excluded; constants and thresholds need not remain bounded as a family of elliptic laws approaches
+such a law.
+    The asymptotic claim follows from the proofs above. The accompanying veriﬁcation package
+includes ﬁnite exact calculations of replica transitions, overlap moments, martingale identities,
+parity residue bounds, coalescing kernels and strip inﬂuences; such calculations check identities
+and edge cases and are not a substitute for the analytic argument.
+    AI tools were used extensively in solving, drafting and checking this work. Separate adversarial
+AI reviews of the underlying argument and exact veriﬁcation calculations informed this note. It is
+unrefereed and has not undergone conventional human peer review. The author is responsible for
+the statements and for any remaining errors. The bounded priority audit leaves the explicit full-text
+access gaps described in the introduction. The manuscript does not certify a novel discovery or
+establish when the historical conjecture was ﬁrst resolved.
+
+
+References
+ [1] N. Berger, Quenched Local Limit Theorem for Space-time Random Walk in Random Environ-
+     ment, pp. 2151–2152, in Scaling Limits in Models of Statistical Mechanics, Oberwolfach Report
+     38/2009. doi:10.4171/OWR/2009/38.
+
+ [2] M. Balázs, F. Rassoul-Agha and T. Seppäläinen, The random average process and random walk
+     in a space-time random environment in one dimension, Commun. Math. Phys. 266 (2006),
+     499–545. Author manuscript.
+
+ [3] A. Dunlap and Y. Gu, A quenched local limit theorem for stochastic ﬂows, J. Funct. Anal.
+     (2022). doi:10.1016/j.jfa.2021.109372.
+
+ [4] G. Barraquand and M. Rychnovsky, Random walk on nonnegative integers in beta dis-
+     tributed random environment, Commun. Math. Phys. (2023). doi:10.1007/s00220-022-04536-1;
+     arXiv:2201.07270v3, Sections 1.4 and 4.5.
+
+
+
+                                                 10
+ [5] M. Joseph, F. Rassoul-Agha and T. Seppäläinen, Independent Particles in a Dynamical Ran-
+     dom Environment, in Probability and Analysis in Interacting Physical Systems, Springer Pro-
+     ceedings in Mathematics & Statistics 283 (2019), 75–121. doi:10.1007/978-3-030-15338-0_4.
+
+ [6] H. Drillick and S. Parekh, Random walks in space-time random media in all spatial dimensions:
+     the full subcritical ﬂuctuation regime (2025). arXiv:2510.22155v1.
+
+ [7] S. Parekh, Hierarchy of KPZ limits arising from directed random walk models in random media,
+     Forum Math. Sigma (2026). doi:10.1017/fms.2026.10220.
+
+ [8] C. Boldrighini, R. A. Minlos and A. Pellegrinotti, Central limit theorem for a random walk
+     in dynamical environment: integral and local, Theory Stoch. Process. 5(21) (1999), nos. 3–4,
+     16–28. Original full text unavailable in the present audit.
+
+ [9] C. Boldrighini and A. Pellegrinotti, T −1/4 -Noise for random walks in dynamic environment on
+     Z, Mosc. Math. J. 1 (2001), no. 3, 365–380. doi:10.17323/1609-4514-2001-1-3-365-380. Original
+     full text unavailable in the present audit.
+
+[10] C. Boldrighini, R. A. Minlos and A. Pellegrinotti, Random walks in quenched i.i.d. space-time
+     random environment are always a.s. diﬀusive (2004). doi:10.1007/s00440-003-0331-x. Original
+     full text unavailable in the present audit.
+
+[11] J. Bérard, The almost sure central limit theorem for one-dimensional nearest-neighbour random
+     walks in a space-time random environment (2004). doi:10.1239/jap/1077134669. Original full
+     text unavailable in the present audit.
+
+
+
+
+                                               11
+
