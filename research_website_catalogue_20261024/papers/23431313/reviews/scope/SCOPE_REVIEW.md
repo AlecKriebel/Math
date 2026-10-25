@@ -1,0 +1,63 @@
+# Acquisition and scope — Zenodo 23431313
+
+Completed 2026-10-25T02:29:40.829367+00:00; scope 100%. Mathematical verdict: **not issued**. No publication, site, spreadsheet, Git, deploy, UI or outreach actions.
+
+## Exact edition and custody
+
+Frozen queue row 63, work Z-23431312, identifies version-specific record 23431313, *A torus-collar proof of the real-spectrum compact-support classification for Nijenhuis operators*, version 1.0. This is an expressly published manuscript with its own five-page PDF. Alec Kriebel, independent researcher; ORCID 0009-0001-9320-500X; CC BY 4.0. Cite DOI 10.5281/zenodo.23431313 for this edition, not the concept DOI 23431312.
+
+The paper and metadata are dated 15 October 2026; the metadata notes say that date was local preparation before publication. Fresh API creation time is 2026-10-17T05:41:33.490188+00:00. Do not turn the preparation date into a claim of public availability on 15 October.
+
+Both public assets were freshly fetched and checked against API and frozen-queue size and MD5. PDF SHA256: `a1e2da77dd739bcc7ddc4dd8ba916c99010450e4224ae7a52d01d34c98960e72`. ZIP SHA256: `21de02dcdc08c6cd804ccf6345ede97edbfe734469dcdd83ff3b7a65c3c20f02`. Sources/receipt.json binds original/resolved URLs, timestamps, bytes and every extracted member. All 129 regular outer-archive members passed path/type/duplicate and CRC checks, and were compared byte-for-byte again at completion.
+
+Magic scanning found one nested historical pre-repair support ZIP with 74 safely checked regular members, no further nested archives, and a paper.pdf identical to the operative PDF. The outer archive’s paper.pdf is also identical. Thus there is one distinct five-page reader and no additional reader supplement. Nested archive contents were hashed and mapped without opening historical opinion bodies; see nested_archive_map.json. No submitted bytes were changed.
+
+## Reading coverage and independence
+
+Read all five published pages, all 315 lines of paper.tex, the complete current README, and the full portable exact-polynomial checker scripts/run_checks.py. All five PDF pages were rendered and visually inspected. The current manuscript contains the complete all-dimensional proof; its mathematical program is corroborative and not an outsourced proof certificate. No submitted checker, historical result or build was executed or adopted.
+
+Historical directories contain dedicated reports, verdicts, acceptance files and old administrative snapshots; those bodies remain opaque. The current README appends captured repair/accounting summaries reporting prior acceptance and pending states, and these were incidentally visible during reading of current execution instructions. Current metadata and paper also summarize prior bounded reviews. These are disclosed authored history, not fresh evidence. The checker contains a PASS output template, but stored NEW_CONTROLS_RESULT and historical outputs were not opened. No sibling review or conclusion was read. Raw primary source locations and hash receipts only were shared with the parent for independent reviewers.
+
+## Exact claim and boundaries
+
+Theorem 1 classifies realizable Jordan types, not all globally defined operators up to equivalence. A smooth real (1,1)-tensor L is Nijenhuis when N_L(X,Y)=L²[X,Y]+[LX,LY]−L[LX,Y]−L[X,LY] vanishes for every pair of vector fields. The existence claim covers every n≥1 and every real Jordan matrix J with entirely real spectrum, fixing numerical real eigenvalues as well as block sizes and their eigenvalue grouping. It includes repeated eigenvalues, multiple blocks for the same eigenvalue, nonsemisimple blocks, nilpotent blocks, singleton blocks and J=0.
+
+The resulting tensor is globally C∞ and compactly supported on ℝⁿ. Its matrix is J in a smooth commuting local frame on some nonempty open domain. A coordinate box inside the central band supplies a local domain; no global real-valued angular coordinate system is claimed. The ambient Cartesian matrix is not prescribed. The domain is chosen by the construction, not arbitrarily preassigned. Rank, type and eigenvalues may change elsewhere and the tensor becomes zero. Global algebraic/gl-regularity is not asserted; here regularity in that algebraic sense is distinct from smoothness. There is no nonzero real-analytic compact-support claim.
+
+Conversely, every eigenvalue at every point of a compactly supported smooth real Nijenhuis field on ℝⁿ must be real. This is a global compact-support obstruction, not a prohibition on local nonreal models or on fields without compact support. The paper credits the obstruction to prior literature.
+
+## Construction and proof interface map
+
+For n≥2, use T^(n−1)×(−1,1) with commuting invariant angular fields and a transverse field. In block form L=[[A(t),b(t)],[0,λ(t)]], angular-pair torsions vanish and mixed torsion is precisely (A−λI)A′. The factor order matters. b′ and λ′ have no separate constraint in this ansatz; this does not license an arbitrary position-dependent cutoff of a general tensor.
+
+Lemma 1 chooses a terminal vector of one Jordan block as transverse. The remaining hyperplane is invariant, the distinguished block is shortened, and the lost terminal arrow is retained in b so that the initial matrix is exactly J. After clearing b with A fixed, one processes angular blocks. Move λ to the active eigenvalue with A fixed; remove superdiagonal arrows in predecessor-first order so KK′=0; then move the scalar block to zero with λ matched. Other blocks stay fixed during that stage. Finitely many C∞ switches with genuine endpoint plateaus allow smooth concatenation, including repeated/zero eigenvalues and size-one blocks. There is no division by an eigenvalue or a spectral gap.
+
+The even smooth parameter q(t)=S(2(t²−1/16)) gives the requested J on the central |t|≤1/4 band and exact zero on the |t|≥3/4 bands. This produces real zero neighborhoods for extension, rather than only pointwise zero at the boundary. The torus hypersurface construction is same-dimensional: embed T^d in ℝ^(d+1) by taking the boundary of a small rank-two normal disk bundle of T^(d−1). The displayed normal frame and compact tubular-neighborhood theorem supply the induction. A thin collar of T^(n−1) in ℝⁿ is then an n-dimensional open set. The support lies in the image of the compact interior subcollar, so pushing forward and extending by zero is globally smooth; Nijenhuis torsion is natural and local. n=1 is handled separately by a scalar plateau bump because the alternating two-form torsion vanishes in one dimension.
+
+The necessity argument is the weaker zero-point Lemma 2 on a closed connected manifold. A positive maximum of the imaginary part of a nonreal eigenvalue, then maximal algebraic multiplicity at that maximum, defines a nonempty closed locus. Local spectral splitting and a canonical complex structure give holomorphic characteristic coefficients. The maximum principle makes the sum of imaginary parts constant, then shifted real-root polynomial coefficients constant, making the locus open. Connectedness forces the nonreal eigenvalue at a zero point, a contradiction. Compactly supported L extends by zero near infinity to Sⁿ, where the lemma applies. The paper does not assert real analyticity, gl-regularity or semisimplicity as hypotheses for this lemma.
+
+These mechanisms have been read and mapped, not independently approved here. Standard tubular-neighborhood, smooth-switch, root-continuity and maximum-principle facts are background imports. The paper’s explicit same-dimensional embedding and all boundary/gluing deductions remain with the mathematical reviewers.
+
+## Original problem and fresh primary interfaces
+
+Seven primary PDFs were freshly acquired and hashed: both historical problem author editions, BKM author-v2, Geometry III author-v1/online-first/final issue versions, and Geometry IV author-v1. Exact URLs and read scopes are in primary-source-receipts.json and primary_interfaces.json.
+
+The original question is Problem 5.11, p.29, in arXiv:1804.03737v2 (14 January 2020); in author-v1 (10 April 2018) it is Problem 4.10, p.37. Both actual question bodies and adjacent remarks were inspected. The target is compact support together with unchanged prescribed algebraic type on an open domain. The question already states real semisimple and two-dimensional Jordan examples and the nonreal obstruction. The adjacent everywhere-regular closed-manifold problem is separate. The question’s historical wording supplies no claim of worldwide openness in 2026.
+
+BKM arXiv:1903.04603v2, pp.18–24, supplies admissible coprime local splitting and the canonical complex/holomorphic structure without assuming an algebraically generic point. The splitting block coefficients are independent of complementary coordinates. Its pp.27–28 Theorem 4.5 and remark realize arbitrary types at local points, generically semisimple nearby. This does not by itself give a fixed nonsemisimple type throughout an open domain with compact support. Its pp.41–43 Theorem 6.1 states the stronger persistence of a nonreal eigenvalue with constant multiplicity on a closed connected manifold. The entire source proof was inspected at this interface. The current paper uses the local splitting/holomorphic mechanism for a separate weaker deduction and explicitly avoids adopting a final polynomial-reduction sentence as proof of the whole stronger theorem. Its example under z↦z²+1 concerns that sentence’s literal pair count, not a counterexample to spectral persistence. No conclusion about an unread Advances in Mathematics publisher proof is inferred from author-v2 bytes.
+
+Geometry III’s final issue Theorem 1.10 (p.161; proof interface p.173) corresponds to author-v1 Theorem 1.4, p.7. Definitions and the real-analytic convention were inspected. It concerns regular layers (one Jordan block per eigenvalue) near a nilpotent block and is not a compact-support theorem. The online-first copy also uses 1.10; it has its own hash and pagination. Geometry IV author-v1, Theorems 1.2/1.4 and Lemma 2.3, allows singular or zero symmetry outputs from a gl-regular generator but imposes differential compatibility on functional coefficients. The local triangular formula can involve unwrapped coordinates; it does not by itself ensure periodic angular coefficients or compact zero bands. The paper’s comparison does not exclude every alternative use of that framework.
+
+No exhaustive novelty search is claimed. Older works and later 2025/2026 bodies mentioned as unread in the paper have not been silently certified or equated to consulted versions. Full-result and construction-method priority remain unknown.
+
+## Computational support, candidate and limitations
+
+The current standard-library program encodes rational univariate polynomial stages, ordered block schedules over compositions in dimensions2–6 and several larger examples, independent coordinate first-jet torsion comparisons, and deliberately invalid arrow order, raw cutoffs and unmatched scalar changes. Code review establishes what it attempts to check; no result from it is reported as freshly reproduced. Polynomial stages need the manuscript’s smooth plateau reparameterization argument to become the advertised C∞ glued field. The program does not verify all dimensions, torus embeddings, holomorphicity or the maximum principle.
+
+The complete original abstract is preserved in abstract_original.tex and abstract_original.txt with a source-bound receipt. CONTENT_CANDIDATE.md explains the result and credits earlier work without a firstness claim. It preserves smooth versus analytic, local frame versus Cartesian matrix, chosen domain versus arbitrary domain, and local fixed type versus changing global type. It keeps the manuscript date distinct from the record creation date. Follow-up:null; no unvalidated variant is listed merely to fill a section.
+
+## Strongest verified scope result and remaining gap
+
+The exact five-page current edition and all129 outer members are authenticated unchanged. The74-member nested historical kit has been safely mapped and adds no distinct reader. Complete current mathematics and necessary code support were read; original question and theorem interfaces were checked against fresh primary versions with exact assumptions and numbering. This completes acquisition and editorial scope.
+
+Independent mathematical review must still validate the universal collar schedule, embedding/extension and zero-point argument and reproduce meaningful controls. This scope supplies no mathematical PASS, journal-readiness decision, priority certification or permission to publish. The completed WARM scope and all preceding finalized evidence remain unchanged.

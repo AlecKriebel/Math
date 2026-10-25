@@ -1,0 +1,121 @@
+{
+  "completed_utc": "2026-10-25T02:30:45.542193+00:00",
+  "python": "3.9.6",
+  "sympy": "1.14.0",
+  "numpy": "2.0.2",
+  "status": "pass",
+  "checks": {
+    "arbitrary_first_jet_identity": {
+      "dimensions": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "components": 85,
+      "status": "pass",
+      "covers": "all independent A,A-prime,b,b-prime,lambda,lambda-prime symbols"
+    },
+    "noncartesian_pushforward": {
+      "matrix": "Matrix([[x**2 - x*y + y**2, -y**2], [x**2, x**2 + x*y + y**2]])",
+      "torsion": {
+        "(0, 0, 1)": "0",
+        "(1, 0, 1)": "0"
+      },
+      "domain": "r>0; polynomial extension also zero torsion",
+      "status": "pass"
+    },
+    "exact_affine_stage_paths": {
+      "dimensions": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "ordered_compositions": "all",
+      "distinguished_blocks": "all",
+      "eigenvalue_families": [
+        "all 0",
+        "all 3",
+        "cycling -2,0,3"
+      ],
+      "paths": 3069,
+      "stages": 34362,
+      "status": "pass"
+    },
+    "negative_controls": {
+      "reverse_arrow_order": "Matrix([[0, 0, -1], [0, 0, 0], [0, 0, 0]])",
+      "reverse_product_of_valid_stage": "Matrix([[0, 0, -1], [0, 0, 0], [0, 0, 0]])",
+      "nilpotent_scalar_cutoff": "Matrix([[0, 0, u], [0, 0, 0], [0, 0, 0]])",
+      "unmatched_scalar": "Matrix([[u, 0], [0, 0]])",
+      "nonreal_scalar_cutoff_torsion": {
+        "(0, 0, 1)": "0",
+        "(1, 0, 1)": "2*x"
+      },
+      "all_rejected": true
+    },
+    "torus_differential_control": [
+      {
+        "dimension": 1,
+        "radii": [
+          "16"
+        ],
+        "ambient_dimension": 2,
+        "unit_normal": true,
+        "orthogonality": true,
+        "injectivity_scope": "analytic tubular-neighborhood proof, not inferred from samples"
+      },
+      {
+        "dimension": 2,
+        "radii": [
+          "16",
+          "4"
+        ],
+        "ambient_dimension": 3,
+        "unit_normal": true,
+        "orthogonality": true,
+        "injectivity_scope": "analytic tubular-neighborhood proof, not inferred from samples"
+      },
+      {
+        "dimension": 3,
+        "radii": [
+          "16",
+          "4",
+          "1"
+        ],
+        "ambient_dimension": 4,
+        "unit_normal": true,
+        "orthogonality": true,
+        "injectivity_scope": "analytic tubular-neighborhood proof, not inferred from samples"
+      },
+      {
+        "dimension": 4,
+        "radii": [
+          "16",
+          "4",
+          "1",
+          "1/4"
+        ],
+        "ambient_dimension": 5,
+        "unit_normal": true,
+        "orthogonality": true,
+        "injectivity_scope": "analytic tubular-neighborhood proof, not inferred from samples"
+      }
+    ],
+    "boundary_algebra": {
+      "q_argument": "2*u**2 - 1/8",
+      "inner_threshold": "1/4",
+      "outer_threshold": "3/4",
+      "rotation_polynomial_image": "Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 3/4, 0], [0, 0, 0, 3/4]])",
+      "interpretation": "source stronger theorem not refuted; its terminal literal pair count is not used"
+    }
+  },
+  "limitations": [
+    "Finite dimensional indexing controls do not establish all-dimensional proof.",
+    "C-infinity gluing and global injectivity are justified analytically, not by sampling.",
+    "No stochastic/numerical evidence or prior helper code used."
+  ]
+}

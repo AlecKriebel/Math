@@ -128,3 +128,12 @@ Root accepted actual desktop/mobile/PDF/download evidence for nine previously pe
 The chip-firing page passed final root content inspection and was deployed at site fd270b86 / Firebase b79e0f64ba5f0a63. Full content regression passes1669of1669checks across33generated pages; the pilot makes34index entries. A transitional live check disagreed only on the shared index/sitemap while the next page was local and not yet deployed; no scientific page asset failed. Fresh current-deployment checks now pass34+14requested live files.
 
 Completion estimate:30of203finalized or deferred(14.78%), comprising26fully verified pages and four precise defect deferrals. Eight live pages still await display gates, two verification holds remain separate, and the Nevo report set awaits root disposition. The full203-work goal remains active.
+
+
+## 2026-10-25T02:33:03.839545+00:00 — all34live pages fully verified and authoritative tracker synchronized
+
+All17pending display gates passed actual desktop/390px rendering, all20readerPDFs, canonical/index links and applicable downloads. Global browser evidence binds162files. Seven native Sheet screenshots confirm updated AA:AD rows30–63 at100%zoom, and native connector readback verifies all34canonical URLs and22edited rows. Original inventory columns A:Z were not rewritten. The17new completion links are now recorded in AA.
+
+Kourovka16.45correspondence was established by exact old/new manuscript identity. Its old article,index and sitemap were updated in isolated-index commit08eabd31d7. The first Pages job was cancelled by the next programme push; that failed pre-build live check is preserved. Confirmed Pages run40154576530 subsequently completed successfully for98359be1e2. All3deployed old-site files now match their expected bytes, and an actual browser navigation from the old URL reached the exact canonical article. No unrelated old article or Keller work was redirected.
+
+The newly completed brace report set is recorded as awaiting root disposition alongside JC,Nevo and WARM. Nijenhuis mathematical reviews continue. No pending report set is counted as a root-approved publication. Completion estimate:38of203finalized or defect-deferred(18.72%):34fully verified live pages and4precise defect dispositions. Two verification holds remain separate;158works are unstarted. The full203-paper goal remains active and cannot be marked complete.

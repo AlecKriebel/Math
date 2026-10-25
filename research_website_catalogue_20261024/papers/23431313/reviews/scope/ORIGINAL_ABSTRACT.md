@@ -1,0 +1,5 @@
+# Complete original abstract
+
+We give a complete smooth compact-support proof of the classification asked for in the historical integrable-systems problem source: a real Jordan type occurs on a nonempty open subset of ℝⁿ for a compactly supported smooth Nijenhuis operator exactly when its spectrum is real. The construction realizes arbitrary specified numerical real Jordan data in a commuting local frame. On a same-dimensional torus collar, the torsion equation reduces to (A-λ I)A'=0; an ordered finite path removes every Jordan block and reaches an exact zero band. The nonreal obstruction and earlier semisimple and two-dimensional examples are prior results. We include the precise zero-point rigidity deduction needed for necessity. The historical priority of the full result and of this construction remains unestablished. Extensive AI tools assisted solving, verification and writing. This preprint is unrefereed and has no external human peer review or formal proof-assistant certification.
+
+Exact source and output bindings: abstract_receipt.json.
