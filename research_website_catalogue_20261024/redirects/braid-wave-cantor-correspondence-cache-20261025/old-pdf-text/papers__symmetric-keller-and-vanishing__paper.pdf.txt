@@ -1,0 +1,314 @@
+                     An explicit 44-variable vanishing witness
+                       from a 22-variable cubic Keller map
+                                           Alec Kriebel
+                           with heavy assistance from ChatGPT 5.6 Sol
+
+                         First public release: 21 July 2026, 14:42:57 UTC
+                         Priority correction: 21 July 2026, 15:20:23 UTC
+                           Canonical consolidated version: 21 July 2026
+
+
+                                                        Abstract
+          Starting from the recently announced three-dimensional noninjective Keller map, a rank-
+      compressed homogenization of a 13-variable stable model gives a 22-variable cubic homogeneous
+      noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a 44-
+      variable homogeneous quartic Hessian-nilpotent polynomial with 538 monomials and an exact
+      collision. Expanded potentials and collisions are supplied as machine-readable exact certificates.
+      For reuse we also record a normalized six-variable gradient lift. A post-release priority audit
+      found that Cassidy had already executed the equivalent six-dimensional symmetric transport;
+      no novelty is claimed for that construction. An appendix preserves the uniform rational collision
+      from the archived first exploration while crediting the earlier, stronger monodromy theorem for
+      the full weighted-lift family.
+
+Verification disclaimer. The author is a complete amateur and cannot independently verify
+these claims. This is an experiment in the limits of AI-assisted mathematics, not an established
+result. Every argument, attribution, and novelty claim requires independent expert review. Exact
+checks are evidence, not peer review.
+
+
+1    A six-variable symmetric Keller map
+Let i2 = −1. The identity-linear normalization of the announced map [2] is
+                                         3       1
+                                Φ1 = x − x2 y − x3 z,
+                                         2       2
+                                Φ2 = y + 3x(1 + xy)2 z + 3xy 2 (4 + 3xy),                                  (1)
+                                                    3       2
+                                Φ3 = (1 + xy) z + y (1 + xy)(4 + 3xy).
+
+It satisfies det JΦ = 1 and maps
+
+                         p0 = (0, 0, − 41 ),    p1 = (1, − 23 , 13
+                                                                 2 ),   p2 = (−1, 23 , 13
+                                                                                        2 )                (2)
+
+to q = (0, 0, − 41 ). For A, B ∈ C3 , put
+
+                                                    A − iB
+                      X = A + iB,              Λ=          ,        S(A, B) = ΛT Φ(X).                     (3)
+                                                      2
+
+
+                                                           1
+Theorem 1. The gradient map ∇S : C6 → C6 has symmetric Jacobian, identity linear part, and
+Jacobian determinant one. The three distinct points
+
+                                     zj = (pj /2, −ipj /2) ∈ Q(i)6                                 (4)
+
+all map to (q/2, −iq/2) = (0, 0, −1/8, 0, 0, i/8). The potential S has degree eight and 204 monomials
+when expanded.
+
+Proof. For f (X, Λ) = ΛT Φ(X),
+                                            (∑                          )
+                                                 k Λk Hess(Φk )   JΦT
+                               Hess(f ) =                                   .                      (5)
+                                                     JΦ            0
+
+Swapping the two blocks of three columns makes this matrix block upper triangular, so det Hess(f ) =
+(−1)3 (det JΦ)2 = −1. Equation (3) is the pullback of f by
+                                     (          )
+                                       I    iI
+                                 C= 1             ,     det C = i.                               (6)
+                                       2I −2I
+                                              i
+
+
+Hessians transform by congruence, giving det Hess(S) = (det C)2 (−1) = 1. Since JΦ(0) = I,
+direct multiplication gives Hess(S)(0) = I6 . Finally, ∇f (pj , 0) = (0, q); applying C T proves the
+collision.
+
+    This is Meng’s classical gradient lift [4, 5], specialized to the new map and normalized over Q(i).
+
+
+2    Rank-compressed homogenization
+Lemma 2. Let
+
+                     Ψ(X) = X + H2 (X) + H3 (X) : Cn → Cn ,             det JΨ = 1,                (7)
+
+where Hd is homogeneous of degree d. Suppose H3 = BK for a constant n × r matrix B and a
+cubic homogeneous K : Cn → Cr . Define
+                                       (                        )
+                          h(X, U, t) = tH2 (X) + t2 BU, −K(X), 0 .                    (8)
+
+Then h is cubic homogeneous and Jh is nilpotent. If p 6= q and Ψ(p) = Ψ(q), then (p, K(p), 1) and
+(q, K(q), 1) collide under W 7→ W + h(W ).
+
+Proof. For an indeterminate s, a Schur complement in I + sJh gives
+                                             (                     )
+                          det(I + sJh) = det I + stJH2 + s2 t2 BJK
+                                            = det JΨ(stX) = 1.                                     (9)
+
+Thus the characteristic polynomial of Jh is T n+r+1 . At t = 1,
+
+                           (X, K(X), 1) + h(X, K(X), 1) = (Ψ(X), 0, 1),                           (10)
+
+which proves the collision statement.
+
+   The standard homogenization [1] takes r = n. Lemma 2 retains only the constant coeﬀicient
+span of the cubic components.
+
+                                                    2
+3   The 22-variable cubic map
+The factor-reusing stable reduction in [10] produces
+
+                             Ψ = X + H2 + H3 : C13 → C13 ,                     det JΨ = 1,             (11)
+
+in the variable order
+                              X = (x, y, z, a1 , b1 , a2 , b2 , a3 , b3 , a4 , b4 , a5 , b6 ).         (12)
+The six triangular degree-reduction operations and final output shear are reproduced in the human-
+readable source accompanying this PDF. They lift the collision (2) to
+
+                        π0 = (0, 0, − 41 , 0, 0, 0, 21 , 0, 0, 0, 0, 0, 0),
+                                         2 , −1, −2, 2 , −10, 2 , 4 , − 4 , −6, − 8 , 2 ).
+                        π1 = (1, − 23 , 13           9        3 3       9        27 9
+                                                                                                       (13)
+
+   Exact coeﬀicient row reduction shows that the thirteen components of H3 span an eight-
+dimensional space. Take K = (K1 , . . . , K8 ) with
+
+               K1 = 21 x(a1 z + b1 x),
+               K2 = a2 a3 z − 3a2 y 2 + 3b2 a3 x + b3 xy + 12xy 2 ,
+               K3 = − b1 a3 a4 + a3 b4 y − 3a4 xz + a5 xz − b6 xy + 3xyz,
+               K4 = 3x2 y,
+               K5 = 2b1 a3 a4 − 2a3 b4 y + 6a4 xz − 2a5 xz + 2b6 xy − 5xyz,                            (14)
+                         2
+               K6 = xy ,
+               K7 = − b1 xy − 7a2 a3 z + 21a2 y 2 − 21b2 a3 x − a3 xz − 7b3 xy − 84xy 2 ,
+               K8 = a4 xy.
+
+Then H3 = BK, where
+
+                  B(U1 , . . . , U8 ) = (U1 , U2 , U3 , 0, −3U2 , U4 , U5 , 0, 0, U6 , U7 , U8 , 0).   (15)
+
+The verifier checks (15) coeﬀicient by coeﬀicient and checks rank B = 8. Lemma 2 therefore gives
+a 22-variable map with 72 cubic monomials across 21 active nonlinear coordinates. Its collision
+points are (πj , K(πj ), 1), where
+
+                                                     4 , − 8 , 16 , − 2 , − 8 , 4 , 8 , 8 ).
+                                        K(π1 ) = (− 17    45 99       9    177 9 213 27
+                    K(π0 ) = 0,                                                                        (16)
+
+
+4   The 44-variable quartic
+For the 22-variable map h, define
+
+                                                         ∑
+                                                         22
+                                        P(A, B) = i              hj (A + iB)Bj .                       (17)
+                                                         j=1
+
+
+The de Bondt–van den Essen characteristic-polynomial identity [3] implies that Hess(P) is nilpotent
+exactly when Jh is nilpotent. Hence
+
+                                      Γ(Z) = Z − ∇P(Z) : C44 → C44                                     (18)
+
+                                                             3
+has Jacobian determinant one.
+   The cubic collision transports explicitly. If r0 , r1 collide under x 7→ x + h(x), let Mj = I +
+Jh(rj )T , set                                      (                 )
+                            y1 = 0,     y0 = M0−1 −ih(r1 ) + ih(r0 ) ,                        (19)
+and define zj = (rj − iyj , yj ). Direct differentiation gives Γ(z0 ) = Γ(z1 ). The two 44-tuples are in
+output/collision.json. Their coordinates are in Q(i), with numerator at most 261 in absolute
+value and denominator at most 16.
+
+Theorem 3. The polynomial P is a homogeneous quartic in 44 variables with 538 monomials and
+nilpotent Hessian. The map Z − ∇P(Z) is noninjective. Moreover,
+
+                              ∆m P m = 0 (m ≥ 1),          ∆m P m+1 6= 0                           (20)
+
+for infinitely many m.
+
+Proof. Only the last assertion remains. Zhao [6] proved that Hessian nilpotence is equivalent to
+∆m P m = 0 for all m ≥ 1, and that the formal inverse of Z − t∇P is governed by
+                                        ∑          tm
+                                 Qt =                       ∆m P m+1 .                             (21)
+                                              2m m!(m + 1)!
+                                        m≥0
+
+Eventual vanishing would make the inverse polynomial, contradicting the explicit collision.
+
+
+5    Certificates, scope, and priority
+The expanded files and SHA-256 hashes are
+
+            file                                    SHA-256
+            symmetric_potential_sparse.json         1e0c97e1c4965c3e...498015c3c3f5fdd4
+            symmetric_collision.json                6b5b546f24e839a1...89936a711addd0
+            potential_sparse.json                   2a91272816188884...2a65e0751789f4
+            collision.json                          aeab7adb021c07de...89936a711addd0
+
+The full hashes are in MANIFEST.md. The symbolic verifier checks the Hessian congruence, the
+rank-eight factorization, identity (9), exact nilpotence guards, and both collisions. A dependency-
+free checker reads only the JSON, differentiates both sparse potentials, and verifies the six-variable
+identity linear part and both finite fibers. A separate Node.js checker independently implements
+exact rational complex arithmetic with JavaScript BigInt and repeats the exported-certificate
+checks. Neither certificate checker is a stand-alone proof of Hessian nilpotence.
+    The six-variable result is an explicit instance of Meng’s known reduction, not a new reduction
+theorem. Cassidy’s public repository commit [9], authored at 14:46:10 UTC on 20 July 2026, had
+already executed the equivalent de Bondt–van den Essen/Meng transport in C6 , checked symmetry,
+and transported the same three-point fiber. Our determinant-one, identity-linear formula is a
+normalized presentation, not an independent discovery. The first version of this note failed to find
+that artifact and overstated this part of its novelty claim.
+    Zhang [7] left the Vanishing Conjecture consequence existential. Our earlier note [10] gave a
+54-variable certificate. That note is now an archival derivation subsumed by the present paper.
+Thompson [8] posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026.
+His work contains the same rank-compression principle in executed form and has priority for that
+
+                                                    4
+idea. Thompson’s map has 24 variables, 54 cubic monomials, and 23 active nonlinear coordinates;
+ours has 22 variables, 72 monomials, and 21 active nonlinear coordinates. Both are over Q with
+rational collisions. Thus ours is smaller only in ambient dimension, while Thompson’s is sparser.
+The narrower candidate contribution is the different 13 + 8 + 1 = 22 construction and its 44-variable
+quartic.
+     Searches of arXiv, MathOverflow, and public GitHub code on 21 July 2026 found no earlier pub-
+lic 22-variable cubic certificate or executed 44-variable quartic certificate. This is not an exhaustive
+claim of worldwide priority. The literature is changing by the hour and all novelty statements are
+provisional.
+
+
+A A uniform rational collision in a weighted-lift specialization
+This appendix preserves the only potentially new explicit certificate from Exploration 01. It is
+not used in the 22- or 44-variable constructions above. Gallagher introduced the weighted-lift
+family [11], and Mikhail Szh and Fable [12] publicly proved full Sn monodromy for the entire
+family before Exploration 01 appeared. No monodromy or deck-group novelty is claimed here.
+   For n ≥ 3, put
+                                                n
+                      u = 1 + xy,     γ =1−        xy + x2 z,      w = uγ,
+                                              n−1
+                                   2w − nwn−1                        w2 − (n − 1)wn
+                        pn (w) =              ,           qn (w) =                  ,
+                                      n−2                                n−2
+and define                           (                                   )
+                                         u + qn (w)/γ 2 1 + pn (w)/γ
+                              Fn =                     ,             , xγ .                        (22)
+                                              x2             x
+The apparent denominators cancel and det JFn = 1. Let
+                                4 − 2n               n + 2 − 2n
+                         sn =          ,      g1 =              ,        g2 = 2n−1 .
+                                n−2                    n−2
+For r ∈ {1, 2}, let gr denote the corresponding displayed value and set
+                               (                   [             (      )])
+                                  1                           n    r
+                        Xn,r =      , r − gr , g r gr − 1 +
+                                                 2
+                                                                     −1     .                      (23)
+                                 gr                         n − 1 gr
+Both g1 and g2 are nonzero for every n ≥ 3, and direct exact substitution gives
+                                   Fn (Xn,1 ) = Fn (Xn,2 ) = (sn , sn , 1).                        (24)
+For example,
+                         F3 (−1/3, 4, −54) = F3 (1/4, −2, 36) = (−4, −4, 1).
+The archived Exploration 01 checker verifies polynomiality, the determinant, and (24) in exact
+rational arithmetic. This formula is a compact reusable certificate inside the broader Gallagher–
+Mikhail family, not an independent theorem.
+
+
+AI-assistance and verification disclosure
+The constructions, searches, proofs, programs, website, and drafts were developed with heavy
+assistance from ChatGPT 5.6 Sol. Alec Kriebel is a complete amateur and cannot independently
+verify the claims. The note has not been peer reviewed; independent expert scrutiny is essential.
+
+                                                      5
+References
+ [1] H. Bass, E. H. Connell, and D. Wright, The Jacobian conjecture: reduction of degree and
+     formal expansion of the inverse, Bull. Amer. Math. Soc. 7 (1982), 287–330.
+ [2] L. Alpöge, X post announcing the three-dimensional map, crediting Akhil Mathew for posing
+     the question and Claude Fable for producing the example, 20 July 2026; https://x.com/__
+     alpoge__/status/2079028340955197566.
+ [3] M. de Bondt and A. van den Essen, A reduction of the Jacobian conjecture to the symmetric
+     case, Proc. Amer. Math. Soc. 133 (2005), 2201–2205.
+ [4] G. Meng, Legendre transform, Hessian conjecture and tree formula, Appl. Math. Lett. 19 (2006),
+     503–510.
+ [5] M. de Bondt, Symmetric Jacobians, Open Math. 11 (2013), 1621–1634; https://arxiv.org/
+     abs/1206.2865.
+ [6] W. Zhao, Hessian nilpotent polynomials and the Jacobian conjecture, Trans. Amer. Math. Soc.
+     359 (2007), 249–274; https://arxiv.org/abs/math/0409534.
+ [7] Z. Zhang, Direct consequences of the three-dimensional counterexample to the Jacobian con-
+     jecture, 20 July 2026; https://zzhang-iu.github.io/papers/direct-consequences-jac
+     obian/.
+ [8] W. Thompson,     An explicit 24-variable cubic-homogeneous reduction of the
+     Alpöge–Fable  Jacobian   counterexample,  public   GitHub   repository, commit
+     45a7616fdf5a20c065564f2676190093722696b9, 21 July 2026; https://github.com/w
+     tho704/explicit-cubic-homogeneous-jacobian-counterexample.
+ [9] E. Cassidy, THM-1430: An explicit symmetric-case Keller counterexample on C6 , public
+     GitHub repository, commit 40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc, 20 July 2026;
+     https://github.com/eliottcassidy2000/math/blob/40e1e20f9ee113245f8e4e4b2
+     2ecd798fa1ffbfc/01-canon/theorems/THM-1430-explicit-symmetric-keller-counter
+     example-on-C6.md.
+[10] A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, An explicit Hessian-nilpotent quartic
+     in 54 variables witnessing the failure of Zhao’s Vanishing Conjecture, provisional note, 21 July
+     2026.
+[11] A. Gallagher, An infinite family of counterexamples to the Jacobian Conjecture in dimension
+     three: every generic fiber degree n ≥ 3 occurs, weighted-lift construction, 20 July 2026; https:
+     //jacobianfun.org/.
+[12] Mikhail Szh and Claude Fable, The Antiderivative Resolvent of the Weighted-Lift Family of
+     Keller Maps, initial public commit f8a6d6794febb551050d73b8cf6ffab9da52d047, 21 July
+     2026; https://github.com/MikhailSzh/weighted-lift-galois.
+
+
+Suggested citation
+Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, An explicit 44-variable vanishing witness
+from a 22-variable cubic Keller map, provisional research note, first posted 21 July 2026, priority
+correction 21 July 2026; project page.
+
+                                                 6
+

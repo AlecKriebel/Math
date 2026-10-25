@@ -1,0 +1,1108 @@
+     Low-Schmidt rigidity and tensor-local constraints
+    in the exceptional unitary Hecke Yang–Baxter class
+                                                Alec Kriebel∗
+
+                                       Version 1.0.1 – 29 July 2026
+
+
+
+                                                   Abstract
+                     iπ/3
+          Let q = e      . The unresolved exceptional family of unitary two-eigenvalue Yang–Baxter
+        matrices has parameters                         
+                                                     1
+                                                   q, , d ,
+                                                     2
+        with existence known when 4 | d and open when d ≡ 2 (mod 4). We derive exact structural
+        constraints on this unresolved spectrum.
+           First, every matrix in the exceptional class is automatically standard and faithfully repre-
+        sents the Jones–Wenzl trace quotient Hn (3, 6). Its simple tensor-space multiplicities are
+                                                n
+                                                 d
+                                     mλ,n = Dλ        ,      Dλ ∈ {1, 2, 3}.
+                                                 2
+        Thus all simple-multiplicity, central-rank, Markov-weight, and branching arithmetic permits
+        every even d. Any further divisibility obstruction must use the repeated realization of adjacent
+        generators by one common two-site tensor.
+            We then prove low-Schmidt rigidity: an exceptional reflection of operator-Schmidt rank at
+        most three exists exactly when 4 | d. At rank four, projecting the full cubic relation modulo the
+        intrinsic Schmidt supports yields two joint-sandwich identities. If either associated sandwich
+        map is injective, then 4 | d; hence every rank-four candidate in d ≡ 2 (mod 4) has nonzero
+        Hermitian traceless common annihilators on both tensor legs.
+            Finally, any hypothetical dimension-six solution is nonrestrictable, satisfies
+
+                                            CL (P ) ∩ CR (P ) = C16 ,
+
+        and lies outside the primitive-Weyl Bell-diagonal and four-product Clifford-frame mechanisms.
+        A four-dimensional one-sided square restriction is not excluded. Thus the complete spectrum
+        remains open. Any dimension-six witness must have OSR(H) ≥ 4, and at rank four it must
+        exhibit simultaneous sandwich degeneracy.
+
+Status. This is an unrefereed, AI-assisted research note. The proofs, exact verifiers, adversarial
+audits, and computational provenance are public. Priority claims are provisional and no specialist
+peer review is claimed.
+
+
+1       Introduction and main results
+Let V ∼
+      = Cd . A unitary R ∈ End(V ⊗ V ) is a Yang–Baxter operator when
+
+                                    R12 R23 R12 = R23 R12 R23       on V ⊗3 .                               (1)
+    ∗
+     This work was developed with substantial assistance from OpenAI ChatGPT. The exact scope of that assistance
+is disclosed at the end of the paper.
+
+
+                                                       1
+Exceptional Hecke constraints                                                              A. Kriebel
+
+
+Lechner [6] classified the possible characters of unitary Yang–Baxter matrices with two eigenvalues,
+leaving one potentially empty family:
+                                                
+                                         iπ/3 1
+                                       e     , ,d ,     d > 2 even.
+                                              2
+
+The notation records the nonnegative Hecke phase, the normalized rank of the (−1)-spectral pro-
+jection, and the local dimension.
+    The dimension-two class is empty. In [5] we constructed an exact 16×16 unitary representative
+in local dimension four. Identity stabilization then gives representatives in every dimension divisible
+by four. The unresolved part of the spectrum is therefore
+
+                                            d = 6, 10, 14, . . . .
+
+This question is also the strict ordinary-localization problem associated with the C(sl3 , 6) Jones–
+Wenzl braid representations studied by Galindo, Hong, and Rowell [4].
+    It is tempting to seek the missing factor of two in the representation theory of Hn (3, 6). One
+of the main conclusions of this paper is that this cannot work at the level of abstract simple
+multiplicities, central ranks, or their branching recurrences: all of that arithmetic is compatible
+with every even local dimension. The extra restriction, if it exists, must come from realizing every
+adjacent Hecke generator by the two shifts of one common two-site matrix.
+    We summarize the results in two theorems. Precise definitions appear in Section 2.
+
+Theorem 1.1 (Automatic tower structure and its limitation). Let P ∈ End(V ⊗ V ) be an excep-
+tional projection in local dimension d. Then:
+
+  (i)
+                                                             d
+                                            Tr1 P = Tr2 P =    1d .
+                                                             2
+        No finite-dimensional irreducibility assumption is needed.
+
+ (ii) The normalized tensor trace is the η = 1/2 Markov trace at every level, and the local Hecke
+      representation induces an injection
+
+                                           Hn (3, 6) −→ End(V ⊗n ).
+
+        Equivalently, the kernel of the raw Hecke representation is exactly the Markov-trace annihi-
+        lator.
+
+ (iii) If Sλ,n is a simple Hn (3, 6)-module and Dλ ∈ {1, 2, 3} is the associated quantum dimension,
+       then its tensor-space multiplicity is
+                                                        n
+                                                         d
+                                             mλ,n = Dλ         .
+                                                         2
+
+        These multiplicities and all their restriction recurrences are integral exactly when d is even.
+
+Thus ordinary Hecke simple-block, central-rank, Markov-trace, and branching arithmetic cannot
+force 4 | d.
+
+Theorem 1.2 (Tensor-local frontier). Let H = 1 − 2P be the reflection associated with an excep-
+tional projection.
+
+                                                      2
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+    (i) If a rank-r projection belongs to either one-leg commutant of P , then
+
+                                                   8 | rd2 .
+
+ (ii) An exceptional reflection with OSR(H) ≤ 3 exists in dimension d if and only if 4 | d. Hence
+      every hypothetical solution in d ≡ 2 (mod 4) has OSR(H) ≥ 4.
+
+(iii) Suppose OSR(H) = 4, with intrinsic Schmidt supports A, B. If either joint-sandwich map
+
+                                          SB|C1+A      or    SA|C1+B
+
+       is injective, then 4 | d. Consequently, in d ≡ 2 (mod 4), both maps have nonzero Hermitian
+       traceless coeﬀicient-matrix annihilators.
+
+ (iv) Every square-invariant local subspace inherits a balanced exceptional solution and has even
+      dimension. A least-dimensional solution with d ≡ 2 (mod 4) is nonrestrictable. In particular,
+      no dimension-six solution is restrictable.
+
+ (v) In dimension six,
+                                           CL (P ) ∩ CR (P ) = C16 .
+       This does not assert that either individual leg commutant is scalar.
+
+ (vi) A primitive-Weyl Bell-diagonal exceptional reflection, and every reflection in the four-product
+      Clifford-frame class defined in Section 8, has 4 | d.
+
+   Theorem 1.2(iii) is the outcome of a final bounded attack on unrestricted operator-Schmidt
+rank four. It uses the full cubic, not a Clifford or symmetry ansatz. It does not prove that either
+sandwich map is always injective.
+   The exact dimension-six conclusion is therefore narrower than “tensor-locally irreducible.” A
+rank-two square-invariant subspace is impossible, while a rank-four one-sided square-invariant
+subspace remains possible in principle; if it exists, its two-dimensional orthogonal complement
+cannot also have invariant tensor square.
+
+
+2     Exceptional projections and conventions
+Fix throughout
+                                               q = eiπ/3 .
+An exceptional projection is an orthogonal projection
+
+                                                                           d2
+                           P = P ∗ = P 2 ∈ End(V ⊗ V ),         rank P =      ,
+                                                                           2
+such that, with P1 = P ⊗ 1 and P2 = 1 ⊗ P ,
+                                                        1
+                                   P1 P2 P1 − P2 P1 P2 = (P1 − P2 ).                              (2)
+                                                        3
+The associated reflection and unitary Hecke operator are
+                                                                q−1    q+1
+                      H = 1 − 2P,       R = q1 − (1 + q)P =         1+     H.                     (3)
+                                                                 2      2
+
+                                                   3
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+A direct expansion shows that (2) is equivalent to
+                                                    1
+                               H1 H2 H1 − H2 H1 H2 = (H1 − H2 ),                                  (4)
+                                                    3
+and that (4) is equivalent to the Yang–Baxter equation for R. Moreover,
+
+                                  H = H ∗,   H 2 = 1,      Tr H = 0,
+
+and R is unitary with eigenvalues −1, q, each of multiplicity d2 /2.
+   The operator-Schmidt rank of X ∈ Md ⊗ Md , denoted OSR(X), is the least r for which
+
+                                              X
+                                              r
+                                         X=         Aj ⊗ B j .
+                                              j=1
+
+Our rank statements concern the reflection H, not R. Once automatic standardness is proved,
+the Schmidt supports of H consist of traceless matrices. Hence the identity term in (3) adds one
+independent Schmidt direction:
+                                   OSR(R) = OSR(H) + 1.                                       (5)
+    Define the two one-leg commutants
+
+                                CL (P ) = {x ∈ Md : [x ⊗ 1, P ] = 0},
+                                                                                                  (6)
+                                CR (P ) = {x ∈ Md : [1 ⊗ x, P ] = 0}.
+
+These are two subalgebras of the same Md , after identifying the two copies of the local space. Their
+intersection is meaningful, but it must not be confused with either algebra individually.
+
+Definition 2.1. A nonzero subspace W ⊆ V is square-invariant when
+
+                                      R(W ⊗ W ) ⊆ W ⊗ W.
+
+The solution is restrictable when there is a proper nonzero W ⊂ V for which both W ⊗2 and
+(W ⊥ )⊗2 are invariant.
+
+   Because R is unitary, every invariant tensor square is automatically reducing. Definition 2.1
+agrees with the use in Conti–Lechner [3, §6.1].
+
+
+3    Automatic standardness and the faithful trace quotient
+The first theorem removes a potentially serious hypothesis from the dimension problem.
+
+Theorem 3.1 (Automatic standardness). Every exceptional projection satisfies
+
+                                                           d
+                                       Tr1 P = Tr2 P =       1d .                                 (7)
+                                                           2
+Proof. The Hecke operator R in (3) has spectrum {−1, q}. It has no pair of opposite eigenvalues,
+since that would require q = 1. Lechner’s no-opposite-spectrum theorem [6, Proposition 2.4 and
+Lemma 3.1] therefore makes the associated braid character a Markov trace. This derives the needed
+subfactor irreducibility; it is not an assumption on the finite matrix representation.
+
+
+                                                 4
+Exceptional Hecke constraints                                                              A. Kriebel
+
+
+     Lechner’s partial-trace criterion [6, Proposition 2.3] says that the Markov property is equivalent
+to
+                                                               1
+                                 ϕ(R) = τ (R)1d ,         ϕ=     (Tr ⊗ id),
+                                                               d
+where τ is normalized matrix trace. Put
+                                                      rank P  1
+                                       η = τ (P ) =       2
+                                                             = .
+                                                        d     2
+Using R = q1 − (1 + q)P and 1 + q 6= 0, comparison gives
+                                                       1
+                                          ϕ(P ) = η1d = 1d .
+                                                       2
+This is the first identity in (7).
+    For completeness, apply the same argument to the tensor-flipped operator F RF . Reversal of
+the three tensor positions preserves the Yang–Baxter equation, and F RF has the same spectrum.
+Its first partial trace is the second partial trace of R, proving the second identity. One may instead
+use the equality of the two partial traces proved in [3, Theorem 5.10].
+
+Corollary 3.2. Every exceptional reflection satisfies
+
+                                         Tr1 H = Tr2 H = 0.
+
+In every minimal Schmidt decomposition of H, both intrinsic Schmidt supports consist of traceless
+matrices.
+                                                                         P
+Proof. The first claim follows from H = 1 −P
+                                           2P . For the second, write H = j Aj ⊗ Bj with each
+family linearly independent. Then Tr2 H = j (Tr Bj )Aj = 0, so every Tr Bj = 0; the other leg is
+identical.
+
+   Let Hn (q) be the specialized Hecke algebra generated by projections e1 , . . . , en−1 , with braid
+generators
+                                      gi = q1 − (1 + q)ei .
+The local representation is
+
+                              ρn : Hn (q) −→ End(V ⊗n ),          ei 7−→ Pi .
+
+Write τn = d−n Tr for normalized matrix trace.
+
+Proposition 3.3 (Faithful trace quotient). For every n, τn ◦ ρn is the Markov trace µ1/2 . If
+
+                      Annn = {x ∈ Hn (q) : µ1/2 (yx) = 0 for every y ∈ Hn (q)},
+
+then
+                                            ker ρn = Annn .
+Consequently ρn induces an injection
+
+                               Hn (3, 6) = Hn (q)/ Annn ,→ End(V ⊗n ).
+
+
+
+
+                                                      5
+Exceptional Hecke constraints                                                              A. Kriebel
+
+
+Proof. For x ∈ Hn (q), Theorem 3.1 gives
+
+                        τn+1 ((ρn (x) ⊗ 1)Pn ) = d−(n+1) Tr(ρn (x) Trn+1 (Pn ))
+                                                 1
+                                               = τn (ρn (x)).
+                                                 2
+Thus the Markov property holds at every level; it is not inferred merely from a two-strand trace
+coincidence. Uniqueness identifies this trace with µ1/2 .
+    Wenzl’s positive-trace parameter in the present convention is
+                                                    sin(π(k − 1)/`)
+                                       ηℓ,k =                         .
+                                                 2 cos(π/`) sin(πk/`)
+At (`, k) = (6, 3), it is 1/2, identifying the quotient with Hn (3, 6); see [6, Theorem 3.3] and [7].
+   If x ∈ Annn , choose y = x∗ . Then
+
+                                   0 = µ1/2 (x∗ x) = τn (ρn (x)∗ ρn (x)).
+
+Faithfulness of ordinary matrix trace gives ρn (x) = 0. The reverse inclusion is immediate. This
+proves equality of the kernel and annihilator. Notice that the raw specialized Hecke representation
+need not be faithful; faithfulness is asserted only after passage to the trace quotient.
+
+
+4    Complete tower multiplicities and their exact limitation
+The simple Hn (3, 6)-modules are indexed by admissible Young diagrams. Equivalently, after sub-
+tracting the third row, their labels lie in the ten-point alcove
+
+                                     (a, b),       a, b ≥ 0,   a + b ≤ 3.
+
+The associated quantum dimensions are
+                              sin((a + 1)π/6) sin((b + 1)π/6) sin((a + b + 2)π/6)
+                     Da,b =                                                       .                     (8)
+                                              sin(π/6)2 sin(2π/6)
+Their values are
+                              Da,b                     (a, b)
+                               1               (0, 0), (3, 0), (0, 3)
+                               3                       (1, 1)
+                               2   (1, 0), (0, 1), (2, 0), (0, 2), (2, 1), (1, 2).
+Adding a box gives the usual alcove branching, and direct substitution in (8) yields
+                                        X
+                                             Dν = 2Dλ .                                                 (9)
+                                               ν:λ↗ν
+
+Theorem 4.1 (All simple multiplicities). Decompose the tensor representation as
+                                          M
+                                  V ⊗n ∼=    Sλ,n ⊗ Cmλ,n .
+                                                    λ
+
+Then                                                      n
+                                                          d
+                                               mλ,n = Dλ      .                                     (10)
+                                                          2
+
+                                                        6
+Exceptional Hecke constraints                                                             A. Kriebel
+
+
+Proof. Let fλ,n = dim Sλ,n . In the C(sl3 , 6) normalization, the generating object X has quantum
+dimension 2. The categorical trace of a minimal projection onto the simple label λ is its quantum
+dimension divided by 2n ; see [4, §5.6] and [7, §§2–3]. Thus the Wenzl trace weight is
+                                                        Dλ
+                                               tλ,n =      ;
+                                                        2n
+the identification is Hn (3, 6) ∼
+                                = EndC (X ⊗n ). The recursion for these weights is exactly (9) divided
+by 2 n+1 .
+    Under ρn , a minimal projection in the λ-block has ordinary matrix rank mλ,n , hence normalized
+trace mλ,n /dn . Proposition 3.3 equates this with Dλ /2n , proving (10).
+
+Corollary 4.2 (Exact arithmetic limitation). All simple multiplicities, central-idempotent ranks,
+and represented restriction recurrences are integral if and only if d is even. In particular, this com-
+plete simple-multiplicity, central-rank, Markov-weight, and branching arithmetic cannot distinguish
+d = 6 from d = 4.
+Proof. If d = 2s, formula (10) is mλ,n = Dλ sn , an integer at every level. Moreover, (9) gives
+                                       X
+                                           mν,n+1 = d mλ,n ,
+                                       ν:λ↗ν
+
+which is exactly the tensor-space restriction recurrence. If d is odd, already the two-strand negative
+spectral rank d2 /2 is not an integer.
+
+Remark 4.3 (What the limitation proves). For d = 2s, the abstract modules
+                                      M                n
+                                          Sλ,n ⊗ CDλ s
+                                           λ
+
+have the required dimensions, traces, and restriction multiplicities. At d = 6, the three-strand
+common-one, common-zero, and generic two-projection multiplicities are 27, 27, 81. Exact four-
+strand models also realize the expected simple corners and pairings with the odd multiplicity 81.
+    These are abstract Hecke modules, not a Yang–Baxter matrix on C6 ⊗ C6 . They do not
+realize P12 = P ⊗ 16 and P23 = 16 ⊗ P for one common two-site projection. The insuﬀiciency
+conclusion is therefore precisely that ordinary Hecke block data and their branching cannot prove
+four-divisibility; strict same-P tensor coherence remains available as an obstruction.
+
+
+5    Leg-commutant arithmetic and low-Schmidt rigidity
+We first isolate the arithmetic consequence of a genuine one-leg projection. This is the bridge from
+tensor-local structure to four-divisibility.
+Lemma 5.1 (Two exceptional projections). Let a, b be projections on a D-dimensional Hilbert
+space such that
+                                             1
+                                 aba − bab = (a − b),
+                                             3
+                                           D                 D
+                        rank a = rank b = ,        Tr(ab) = .
+                                           2                  4
+Then
+                                                                D
+                     dim(ran a ∩ ran b) = dim(ker a ∩ ker b) = .
+                                                                8
+
+                                                   7
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+Proof. Put
+                                                 1           1
+                                     z = aba − a = bab − b.
+                                                 3           3
+Projection identities give az = za = z and bz = zb = z. Thus the range of z lies in the common
+range of a, b, where z = 21/3. Self-adjointness therefore gives z = (2/3)e, with e the common-range
+projection. Taking traces,
+                                           Tr(ab) − 31 Tr a    D
+                                    Tr e =                  = .
+                                                  2/3           8
+Equal half ranks make the common-range and common-kernel dimensions equal; this also follows
+by applying the same argument to 1 − a, 1 − b.
+
+Theorem 5.2 (Invariant leg projection). If a rank-r projection z belongs to either CL (P ) or CR (P ),
+then
+                                            8 | rd2 .
+
+Proof. Suppose z ∈ CL (P ), put W = zV , and let Q be the restriction of P to W ⊗ V . Theorem 3.1
+gives
+                                                                    rd
+                           rank Q = Tr((z ⊗ 1)P ) = Tr(z Tr2 P ) = .
+                                                                     2
+Restrict P1 , P2 to W ⊗ V ⊗ V . The resulting projections a = Q ⊗ 1, b = 1W ⊗ P act on a space of
+dimension D = rd2 , obey the exceptional relation, and both have rank D/2. Their overlap trace is
+
+                                 Tr(ab) = TrW ⊗V [Q(1W ⊗ Tr2 P )]
+                                            d        rd2
+                                        =     Tr Q =     .
+                                            2         4
+Lemma 5.1 makes their common-range dimension rd2 /8, an integer. The right-leg case follows
+after tensor flip.
+
+Corollary 5.3. If d ≡ 2 (mod 4), every projection in either leg commutant has even rank. In
+particular, either leg containing a rank-one projection forces 4 | d.
+
+    We next show that low operator-Schmidt rank supplies such a projection. The subtle point
+is that the known rank-two and rank-three unitary structure theorems use four independent local
+pre- and post-unitaries. That equivalence does not preserve the Yang–Baxter equation.
+
+Theorem 5.4 (Twisted control). Let H ∈ End(V ⊗ V ) be a Hermitian unitary which is locally
+equivalent, through independent product unitaries before and after, to a controlled bipartite unitary.
+Suppose
+                                H1 H2 H1 − H2 H1 H2 = c(H1 − H2 )                                 (11)
+with |c| 6= 1. Then one true one-leg commutant of H contains a rank-one projection.
+
+Proof. Assume first that the supplied control is on the first factor. There are unitaries Q, R, S, T ,
+rank-one coordinate projections Ei , and unitaries Ui such that
+                                                          !
+                                              X
+                              H = (Q ⊗ S)         Ei ⊗ Ui (R ⊗ T ).                             (12)
+                                                i
+
+
+
+
+                                                    8
+Exceptional Hecke constraints                                                             A. Kriebel
+
+
+We do not insert the controlled operator in parentheses into (11). Instead, apply the valid same-site
+conjugacy
+                                    He = (Q∗ ⊗ Q∗ )H(Q ⊗ Q).
+It preserves (11) and gives the twisted controlled form
+                             X
+                       He =      Ei K ⊗ V i ,   K = RQ,         Vi = Q∗ SUi T Q.                 (13)
+                              i
+
+                   e is Kij Vi . Hermiticity is therefore
+   The ij block of H
+
+                                           Kij Vi = Kji Vj∗ .                                    (14)
+
+Define the support graph of K to have vertices i and an edge i−j whenever Kij 6= 0. Equation (14)
+makes it undirected. Loops are retained and count as odd cycles. Its component projections reduce
+K, hence reduce H  e on the first leg. Along each edge the projective classes of the target unitaries
+alternate between [W ] and [W ∗ ].
+    If a connected component of this graph is nonbipartite, an odd cycle identifies these two classes.
+On that component,
+                                           e C = AC ⊗ W
+                                           H
+for a unitary AC . A rank-one spectral projection of the normal matrix AC , extended by zero across
+the other graph components, commutes with the full H    e on its first leg.
+    Suppose instead that every component C = LC t RC is bipartite. On this component,
+                                                              
+                                                0     K L C RC
+                                   KC =                          .
+                                            K RC L C      0
+Unitarity makes the off-diagonal blocks square unitaries, so the two parts have equal dimension.
+Equation (14) says that, after absorbing phases, all Vi on one part are multiples of a unitary WC
+and all those on the other part are multiples of WC∗ . Consequently
+                                    e C = JC ⊗ WC + JC∗ ⊗ WC∗ ,
+                                    H
+
+where JC : RC → LC is unitary and vanishes on the orthogonal complement. Choose an orthonor-
+                                                                                              e in
+mal basis rC,u of RC and put `C,u = JC rC,u . Pairing rC,u with `C,u over all components puts H
+the fixed-point-free form           X
+                               e =
+                               H        |x̄ihx| ⊗ Ux ,    Ux̄ = Ux∗ ,                         (15)
+                                       x
+where x 7→ x̄ is an involution without fixed points.
+    Apply the first-leg functional ϕx (A) = hx̄|A|xi to (11). Products of two first-leg coeﬀicients in
+(15) are diagonal whenever nonzero. Hence the H     e1He2He 1 coeﬀicient vanishes, whereas the other
+cubic word contributes
+                                            e x ⊗ 1)H.
+                                           H(U          e
+The two linear terms contribute Ux ⊗ 1 and zero. We obtain
+                                     e x ⊗ 1)H
+                                    −H(U     e = c(Ux ⊗ 1),
+
+which equates a unitary with an operator of norm |c| 6= 1, a contradiction. Thus a nonbipartite
+component exists and yields the claimed rank-one projection. Conjugating back preserves its rank.
+   If the original controlled side is the second factor, tensor flip interchanges the two legs and
+preserves (11); the same argument applies.
+
+                                                   9
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+    Cohen–Yu prove that every bipartite unitary of operator-Schmidt rank two is locally equivalent
+to a controlled unitary [2, Theorem 6]. Chen–Yu prove the analogous statement in rank three
+[1, Theorem 11]. Their hypotheses allow arbitrary finite bipartite dimensions and the four-local
+equivalence used in (12).
+Theorem 5.5 (Complete low-Schmidt spectrum). There exists an exceptional reflection with
+OSR(H) ≤ 3 in local dimension d if and only if
+
+                                                  4 | d.
+
+Proof. For necessity, apply Theorem 5.4 with c = 1/3 and then Corollary 5.3. Rank one is
+immediate, and ranks two and three are covered by the cited controlled-unitary theorems.
+    For suﬀiciency, the published d = 4 reflection has operator-Schmidt rank three [5]. If d = 4m,
+identity stabilization replaces each Schmidt factor Aj , Bj by Aj ⊗ 1m , Bj ⊗ 1m , preserving both
+the exceptional relations and Schmidt rank three.
+
+Remark 5.6. Theorem 5.5 does not claim that four-local equivalence preserves Yang–Baxter local-
+ity. The only such transformation used in the proof is the same-site conjugacy leading to (13).
+Hermiticity and the cubic relation then provide the new argument.
+
+
+6   The unrestricted Schmidt-rank-four sandwich obstruction
+Let H be an exceptional reflection with OSR(H) = 4. Its intrinsic left and right Schmidt supports
+are the slice spaces
+                                     A = {(id ⊗ω)(H) : ω ∈ Md∗ },
+                                     B = {(ω ⊗ id)(H) : ω ∈ Md∗ }.
+They are four-dimensional and independent of a chosen Schmidt decomposition. Put
+                                   OA = C1 + A,            OB = C1 + B.
+For T ∈ Md , write [T ]A and [T ]B for its cosets in Md /OA and Md /OB , respectively.
+   For subspaces X , Y ⊆ Md , define the intrinsic joint-sandwich map
+                                                                     "              #
+                                                      X                    X
+             SY|X : Y ⊗ Y −→ HomC (X , Md ),              yℓ ⊗ zℓ 7−→ x 7→    yℓ xzℓ .         (16)
+                                                            ℓ                        ℓ
+
+   Because H is Hermitian, a real singular-value decomposition in the real Hilbert spaces of
+Hermitian matrices gives
+                                   X4
+                              H=      σ i Ai ⊗ B i , σi > 0,                            (17)
+                                          i=1
+where Ai , Bi are Hermitian and Hilbert–Schmidt orthonormal. Corollary 3.2 makes every Ai , Bi
+traceless. Thus OA , OB are five-dimensional operator systems.
+Lemma 6.1 (Full-cubic quotient identities). For every x ∈ OA and y ∈ OB ,
+                    X
+                        σi σk [Ai Ak ]A ⊗ Bi xBk = 0 in (Md /OA ) ⊗ Md ,                       (18)
+                        i,k
+                        X
+                              σi σk Ai yAk ⊗ [Bi Bk ]B = 0      in Md ⊗ (Md /OB ).             (19)
+                        i,k
+
+
+                                                    10
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+Proof. It is clearest to begin with an arbitrary minimal factorization
+                                                     X
+                                                     4
+                                              H=             a i ⊗ bi .
+                                                     i=1
+
+The two cubic words expand as
+                                                    X
+                                 H12 H23 H12 =              a i a k ⊗ bi a j bk ⊗ bj ,
+                                                    i,j,k
+                                                    X
+                                 H23 H12 H23 =              a j ⊗ a i bj a k ⊗ bi bk .
+                                                    i,j,k
+
+Project the first tensor leg of (4) to Md /(C1 + A). The second cubic word and both linear terms
+vanish there. Applying an arbitrary functional to the third leg, and using that the bj and aj are
+bases of the two Schmidt supports, gives
+                                 X
+                                     [ai ak ]A ⊗ bi xbk = 0 (x ∈ A).
+                                  i,k
+
+Projecting the first leg of H 2 = 1 supplies the same identity at x = 1. This proves the all-x
+statement on OA . Tensor reversal gives the symmetric identity. Substituting (17) yields (18)–
+(19).
+
+Theorem 6.2 (Joint-sandwich divisibility). If either
+                                            SB|OA       or      SA|OB
+is injective, then 4 | d.
+Proof. Suppose SB|OA is injective. Apply a linear functional ϕ on Md /OA to the first factor of
+(18). The coeﬀicient matrix
+                                    cik = σi σk ϕ([Ai Ak ]A )
+satisfies                          X
+                                          cik Bi xBk = 0            (x ∈ OA ).
+                                    i,k
+
+Injectivity makes every cik zero. Since ϕ was arbitrary,
+                                        Ai Ak ∈ C1 + A           for all i, k.
+Therefore the five-dimensional operator system C1 + A is closed under multiplication. It is a
+finite-dimensional C ∗ -subalgebra of Md .
+    The only complex C ∗ -algebras of dimension five are
+                                            C5 ,        M2 (C) ⊕ C,
+because their dimensions are sums of squares. Every faithful unital concrete representation of
+either algebra has a rank-one projection in its commutant: take a rank-one subprojection in a
+nonzero multiplicity space, using the nonzero scalar summand in the second case.
+    Independence of the Bi gives
+                            [X ⊗ 1, H] = 0         ⇐⇒        [X, Ai ] = 0 for every i.
+Thus this rank-one projection lies in CL (P ). Theorem 5.2 forces 8 | d2 , hence 4 | d. The other
+sandwich map is handled with the legs exchanged.
+
+                                                        11
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+Corollary 6.3 (Simultaneous rank-four degeneracy). Suppose d ≡ 2 (mod 4) and OSR(H) = 4.
+Then both maps in Theorem 6.2 are noninjective. More precisely, in the Hermitian Schmidt
+gauge (17), each kernel contains a nonzero tensor whose 4 × 4 coeﬀicient matrix is Hermitian and
+traceless.
+Proof. Neither OA nor OB can be an algebra, since the five-dimensional C ∗ -algebra argument in
+the preceding proof would again give a rank-one leg projection and contradict d ≡ 2 (mod 4).
+   The quotient-product span generated by [Ai Ak ]A is therefore nonzero and is closed under
+adjoint. Choose a nonzero functional on this span satisfying ϕ(z ∗ ) = ϕ(z), and extend it to
+Md /OA with the same star-reality property by extending a real basis of the self-adjoint part.
+Then
+                                     Cik = σi σk ϕ([Ai Ak ]A )
+is a nonzero Hermitian coeﬀicient matrix, and (18) says
+                                 X
+                                    Cik Bi xBk = 0 (x ∈ OA ).
+                                   i,k
+
+At x = 1, take ordinary trace. Hilbert–Schmidt orthonormality of the Bi gives
+                                      X
+                                  0=     Cik Tr(Bi Bk ) = Tr C.
+                                         i,k
+
+The symmetric argument gives the annihilator on the other leg.
+
+Corollary 6.4 (A low-Kraus-rank boundary map). Under the hypotheses of Corollary 6.3, there
+is on each leg a unital completely positive map of Kraus rank at most three which acts as −1/3 on
+the opposite four-dimensional Schmidt support.
+Proof. Let D = diag(σ12 , . . . , σ42 ) > 0, and let C = C ∗ 6= 0 be a traceless annihilator from the
+preceding proof. Move from D along the line D + tC to a nonzero boundary point
+
+                              G = D + t∗ C ≥ 0,            1 ≤ rank G ≤ 3.
+
+The endpoint cannot be zero, since that would make C proportional to the positive matrix D,
+contradicting Tr C = 0. Define
+                                           1X
+                                  ΨB (x) =     Gik Bi xBk .
+                                           d
+                                                     i,k
+
+Positivity of G makes this completely positive with Kraus rank at most three. The contraction of
+H 2 = 1 gives
+                                        1X 2 2
+                                               σi Bi = 1,
+                                        d
+                                                 i
+while a partial trace of the cubic gives
+                                      1X                       1
+                                               σi2 Bi Aj Bi = − Aj .
+                                     d                         3
+                                         i
+
+The C-direction vanishes on C1+A, so ΨB has the same two actions. The other leg is identical.
+
+Remark 6.5. The map in Corollary 6.4 is not automatically trace preserving. That would require
+the transpose coeﬀicient direction to annihilate the identity as well. No such transpose invariance
+is assumed or proved.
+
+                                                     12
+Exceptional Hecke constraints                                                             A. Kriebel
+
+
+7    Square inheritance and the dimension-six leg intersection
+The following four-strand calculation makes balance hereditary under a square restriction.
+Lemma 7.1 (The two one-dimensional four-strand traces). Let µη be the Hecke Markov trace with
+µη (ei ) = η, at q = eiπ/3 . If e+ and e− are the four-strand q-symmetrizer and q-antisymmetrizer,
+then
+                                            (1 − η)(2 − 3η)(1 − 2η)
+                                 µη (e+ ) =                         ,
+                                                       2                                        (20)
+                                            η(3η − 1)(2η − 1)
+                                 µη (e− ) =                   .
+                                                    2
+Their unique common zero is η = 1/2.
+Proof. Use braid generators satisfying
+                            (gi − q)(gi + 1) = 0,          gi2 = (q − 1)gi + q.
+For w ∈ S4 , let gw be a reduced product and `(w) its length. The two idempotents are
+                               P                     P          −1 ℓ(w) g
+                                 w∈S4 gw                w∈S4 (−q )        w
+                        e+ = P         ℓ(w)
+                                            ,  e − =     P        −ℓ(w)
+                                                                            .
+                                w∈S4 q                     w∈S4 q
+Their denominators are nonzero at the sixth root used here. Put
+                                        z = µη (gi ) = q − (1 + q)η.
+Reducing the 24 terms by the quadratic relation, cyclicity, and the Markov rule gives
+                                      (z + 1)((q + 1)z + 1)((q 2 + q + 1)z + 1)
+                         µη (e+ ) =                                             ,
+                                            (q + 1)2 (q 2 + 1)(q 2 + q + 1)
+                                      (z − q)((q + 1)z − q 2 )((q 2 + q + 1)z − q 3 )
+                       µη (e− ) = −                                                   .
+                                             (q + 1)2 (q 2 + 1)(q 2 + q + 1)
+Substitute z = q − (1 + q)η and use q 2 − q + 1 = 0. This gives (20). The common-zero assertion
+is immediate from the displayed factors. The finite reduction is also replayed exactly by the
+accompanying verifier.
+
+Theorem 7.2 (Square-restriction inheritance). If 0 6= W ⊆ V is square-invariant, then dim W is
+even and the restricted operator satisfies
+                                                          
+                                              iπ/3 1
+                                   R|W ⊗W ∈ e     , , dim W .
+                                                   2
+In particular, the restriction is non-scalar.
+Proof. Square invariance makes W ⊗n invariant under every local generator, at every n. Proposi-
+tion 3.3 and Lemma 7.1 show that the ambient representation kills both e+ and e− , because their
+images are orthogonal projections of trace zero. Their restrictions to W ⊗4 also vanish.
+    Put r = dim W and let ηW be the normalized negative spectral rank of R|W ⊗W , allowing
+temporarily the scalar values zero and one. The restricted unitary again has no opposite eigenvalue
+pair, so its normalized tensor trace is Markov. Applying (20) to the two zero restricted idempotents
+makes ηW a common zero of the displayed polynomials. Hence ηW = 1/2. Its negative spectral
+rank is r2 /2, so r is even.
+
+                                                      13
+Exceptional Hecke constraints                                                           A. Kriebel
+
+
+Corollary 7.3 (Restrictable descent). If a solution in dimension d ≡ 2 (mod 4) is restrictable,
+its two diagonal restrictions are balanced exceptional solutions of smaller even dimensions, exactly
+one of which is again congruent to 2 (mod 4). Consequently a least-dimensional solution in the
+unresolved congruence class is nonrestrictable, and no dimension-six solution is restrictable.
+Proof. Apply Theorem 7.2 to W and W ⊥ . Their even dimensions sum to 2 mod 4, so exactly one
+is 2 mod 4. For d = 6, a proper even split is 2 + 4, but the dimension-two exceptional class is
+empty [6].
+
+Remark 7.4 (The one-sided gap). Theorem 7.2 rules out a two-dimensional square-invariant sub-
+space in d = 6, since it would inherit the empty dimension-two class. It does not rule out a
+four-dimensional square-invariant W . Corollary 7.3 says only that, if such W exists, (W ⊥ )⊗2 is
+not invariant.
+   We now identify the precise common-leg algebra in dimension six.
+Lemma 7.5 (No common rank-two projection). If d = 6, there is no rank-two projection in
+CL (P ) ∩ CR (P ).
+Proof. Suppose z is such a projection and put W = zV , so dim W = 2. Both tensor legs reduce
+H, and
+                                         K = H|W ⊗W
+is a Hermitian involution satisfying the exceptional cubic on W ⊗3 . Let Q = (1 − K)/2 and
+r = rank Q.
+    Ranks r = 1, 3 are impossible by a short determinant gap. In the rank-one case write
+
+                               Q = | vec Sihvec S|,      Tr(S ∗ S) = 1.
+
+On ran Q12 , the two-projection relation makes the compression Q12 Q23 Q12 have eigenvalues in
+{1, 1/3}. Its determinant is therefore at least 1/9. Vectorization computes the same determinant
+as | det S|4 , while the arithmetic–geometric mean inequality gives
+                                                       1  1
+                                        | det S|4 ≤      < .
+                                                      16  9
+Complementation excludes rank three. Rank two would be a member of the empty balanced
+dimension-two class. Hence r = 0 or 4, and
+
+                                   K = ε1W ⊗W ,         ε ∈ {±1}.
+
+   Now restrict the cubic to W ⊗ W ⊗ V . This space is invariant because z lies in both leg
+commutants. The first adjacent copy is X = ε1; call the second Y . Since X is scalar and Y 2 = 1,
+
+                                     XY X − Y XY = Y − X.
+
+The exceptional cubic instead makes this (X − Y )/3, so Y = X. Therefore
+
+                                        H|W ⊗V = ε1W ⊗V .
+
+Taking the second partial trace contradicts Corollary 3.2:
+
+                                      0 = z(Tr2 H)z = 6ε1W .
+
+
+
+                                                 14
+Exceptional Hecke constraints                                                                   A. Kriebel
+
+
+Theorem 7.6 (Scalar intersection of the two leg commutants). Every dimension-six exceptional
+projection satisfies
+                                   CL (P ) ∩ CR (P ) = C16 .
+
+Proof. A non-scalar finite-dimensional C ∗ -subalgebra of M6 contains a nontrivial projection. The-
+orem 5.2 makes its rank even, hence two or four. In the latter case the complement has rank two.
+Both alternatives contradict Lemma 7.5.
+
+Remark 7.7. Theorem 7.6 concerns the intersection after identifying the two local copies of M6 .
+It does not prove CL (P ) = C16 or CR (P ) = C16 separately. Exact relative-position models show
+that two non-scalar even-atom subalgebras of M6 may have scalar intersection, so this distinction
+is genuine.
+
+
+8     Primitive-Weyl Bell and four-product Clifford-frame classes
+We record two invariant model classes which are broad enough to include many natural roots-of-
+unity constructions, but which still force four-divisibility.
+
+8.1   Primitive-Weyl Bell-diagonal reflections
+Let
+                          X|ji = |j + 1i,       Z|ji = ζ j |ji,         ζ = e2πi/d ,
+and define the generalized Bell basis
+                                                1 X bj
+                                     |Φa,b i = √       ζ |j, j + ai.
+                                                 d j∈Z
+                                                         d
+
+
+The pair X, Z is primitive: ZX = ζXZ, and the displayed Bell lines are the simple joint eigenspaces
+of X ⊗ X and Z −1 ⊗ Z.
+
+Theorem 8.1 (Bell-diagonal divisibility). Let
+                       X                                                    X
+                H=         ha,b |Φa,b ihΦa,b |,              ha,b ∈ {±1},           ha,b = 0.
+                          a,b∈Zd                                              a,b
+
+If H satisfies the exceptional cubic, then 4 | d.
+
+Proof. Each Bell line is maximally entangled, so the balance condition gives Tr1 H = Tr2 H = 0.
+Put
+                              S = H12 ,    T = H23 ,     U = ST.
+The operator U commutes with
+
+                                   X = X1 X2 X3 ,        Z = Z1−1 Z2 Z3−1 .
+
+These obey
+                                     XZ = ζ ZX,          Xd = Zd = 1.
+Primitivity implies that their generated algebra is isomorphic to Md (C). One direct check is that
+the d2 monomials Xr Zs are trace orthogonal. Its representation on the d3 -dimensional three-site
+
+
+                                                    15
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+space is therefore a direct sum of d2 copies of the unique d-dimensional simple module. Since U
+commutes with this algebra, every eigenvalue multiplicity of U is divisible by d.
+   Using S 2 = T 2 = 1, the exceptional cubic gives
+                                                        
+                                                  2
+                                  (U − 1) U 2 + U + 1 = 0.
+                                                  3
+
+The roots are                                             √
+                                                       1 2 2
+                                       1,        λ± = − ±    i.
+                                                       3  3
+Conjugation by S sends U to U −1 , so the λ+ - and λ− -multiplicities agree. Call the three multi-
+plicities m1 , m, m. The zero marginals give
+
+                                      Tr(U ) = Tr(H12 H23 ) = 0.
+
+Since λ+ + λ− = −2/3,
+                                      2
+                                  m1 − m = 0,                m1 + 2m = d3 .
+                                      3
+Hence
+                                                 d3               3d3
+                                       m1 =         ,        m=       .
+                                                 4                 8
+Divisibility of m by d gives 8 | 3d2 , and therefore 4 | d.
+
+Corollary 8.2. The complete primitive-Weyl Bell-diagonal branch is empty in dimension six.
+
+Remark 8.3. Primitivity is essential: it is what makes the common three-site Weyl algebra a full
+matrix algebra. The theorem does not assert that an arbitrary exceptional reflection admits Bell
+stabilizers. A separate exact enumeration shows that all 12,870 balanced sign tables also fail in
+the fixed d = 4 Bell basis; that finite calibration is recorded in the supplement rather than used
+here.
+
+8.2     Four-product Clifford frames
+Theorem 8.4 (Clifford-frame divisibility). Let d be even and suppose
+
+                                      X
+                                      4
+                                H=          c j Aj ⊗ B j ,      cj ∈ R \ {0},
+                                      j=1
+
+where every Aj , Bj is a traceless Hermitian involution and the four product involutions
+
+                                                   Aj ⊗ B j
+
+anticommute pairwise. Then 4 | d.
+
+Proof. For i 6= j, product anticommutation says
+
+                               (Ai Aj ) ⊗ (Bi Bj ) = −(Aj Ai ) ⊗ (Bj Bi ).
+
+Equality of nonzero simple tensors gives a scalar ij . Involutivity forces 2ij = 1. Thus each local
+pair commutes or anticommutes, and the choices on the two legs are complementary.
+
+
+                                                        16
+Exceptional Hecke constraints                                                            A. Kriebel
+
+
+   Let GA , GB be the alternating 4 × 4 binary matrices which record local anticommutation. If
+K4 denotes the adjacency matrix of the complete four-vertex graph, then
+
+                                      GA + GB = K4        over F2 .
+
+If a family of Hermitian involutions has binary commutation matrix of rank 2r, symplectic Gram–
+Schmidt produces r mutually commuting Weyl pairs. They generate M2r (C), so 2r | d.
+    Suppose d = 2s with s odd. Neither GA nor GB can have rank four. Since K4 has binary rank
+four and alternating ranks are even, the rank inequality forces
+
+                                     rankF2 GA = rankF2 GB = 2.
+
+We use the following elementary four-vertex fact: if an alternating binary matrix G and its com-
+plement K4 + G both have rank two, then one of the two graphs has an isolated vertex. To see
+this, write the six edge variables as a, b, c, d, e, f . Rank two gives
+
+                                           af + be + cd = 0,
+
+and the complement gives
+
+                           1 + (a + b + c + d + e + f ) + (af + be + cd) = 0.
+
+Thus G has an odd number of edges. A three-edge graph without an isolated vertex is a path or
+a star; the path has nonzero Pfaﬀian and the star has an isolated vertex in the complement. A
+five-edge graph has isolated vertices in its complement.
+    Let U0 be an isolated generator on the resulting leg. The same rank-two graph contains an
+anticommuting pair C, D. On C2s , such a pair is unitarily equivalent to
+
+                                    C = Z ⊗ 1s ,        D = X ⊗ 1s .
+
+Since U0 commutes with both, U0 = 12 ⊗ L for a Hermitian involution L ∈ Ms . But s is odd, so
+Tr L 6= 0, contradicting the assumed tracelessness of U0 .
+
+Remark 8.5. The load-bearing hypothesis is pairwise anticommutation of the four product terms.
+The theorem does not say that either local family is pairwise anticommuting, nor does it classify
+arbitrary operator-Schmidt-rank-four involutions. Their Schmidt factors need not be involutions
+and involutivity may result from cancellations among nonzero cross anticommutators.
+
+
+9         The surviving dimension-six branch and open spectrum
+Combining the preceding results gives the promised exact frontier.
+
+Corollary 9.1 (Exact dimension-six frontier). Let P be an exceptional projection on C6 ⊗ C6 , let
+H = 1 − 2P , and let R be given by (3). Then:
+
+    (i)
+                                      OSR(H) ≥ 4,          OSR(R) ≥ 5.
+          If OSR(H) = 4, both intrinsic joint-sandwich maps in Theorem 6.2 are singular and have
+          nonzero Hermitian traceless coeﬀicient-matrix annihilators.
+
+ (ii) R is nonrestrictable. It has no two-dimensional square-invariant local subspace.
+
+                                                   17
+Exceptional Hecke constraints                                                             A. Kriebel
+
+
+(iii)
+                                          CL (P ) ∩ CR (P ) = C16 .
+
+ (iv) H is not diagonal in a primitive generalized Bell basis and is not a four-product Clifford-frame
+      reflection of Theorem 8.4.
+
+Proof. Part (i) is Theorem 5.5, (5), and Corollary 6.3. Part (ii) is Theorem 7.2 and Corollary 7.3.
+Part (iii) is Theorem 7.6. Part (iv) follows from Theorems 8.1 and 8.4.
+
+Remark 9.2 (What “primitive” means here). Corollary 9.1 does not assert irreducibility in every
+tensor-local sense. It leaves open a four-dimensional square-invariant subspace W , provided that
+the complementary square (W ⊥ )⊗2 is not invariant. It also leaves open non-scalar individual
+algebras CL (P ) and CR (P ) with scalar intersection. Thus the safe summary is that a dimension-six
+solution would be nonrestrictable and would have no common one-leg symmetry, in the precise
+senses of Definition 2.1 and (6).
+
+Supplementary bounded reductions. The supplement records an additional exact d = 4
+sitewise-unitary orbit, which is not a new class under Lechner’s equivalence, and the exact color-
+block reduction for extensions with a four-dimensional invariant square. The latter retains genuine
+leakage blocks and yields no nonexistence theorem. Neither result is used in the main theorem
+package.
+
+9.1     Dimension table and open problem
+The exact status after this work is:
+             local dimension   status reason
+                  d odd       empty   d2 /2 ∈
+                                            /Z
+                     2        empty   Lechner’s dimension-two exclusion
+               4m, m ≥ 1     nonempty d = 4 witness and identity stabilization
+             4m + 2, m ≥ 1      open  no universal obstruction or exact witness
+
+Open problem 9.3 (Exceptional dimension spectrum). Determine whether
+                                           
+                                   iπ/3 1
+                                 e     , , d 6= ∅ ⇐⇒ 4 | d,
+                                        2
+
+or construct an exact solution in some dimension d ≡ 2 (mod 4), beginning with d = 6.
+    Theorem 1.1 says that the abstract Jones–Wenzl tower cannot decide Problem 9.3 through
+simple multiplicities, central ranks, Markov weights, or their represented branching recurrences.
+Corollary 9.1 identifies what a first counterexample must avoid. The rank-four sandwich identities
+are the only result here which applies to unrestricted Schmidt supports at the first surviving rank;
+they leave open the simultaneous-degeneracy branch.
+
+
+10      Exact verification, limitations, and disclosure
+All theorem statements have human-readable proofs above. Computation is used only to replay
+finite algebraic reductions, calibrate formulas, and document limitation models. The public repos-
+itory contains:
+
+
+                                                 18
+Exceptional Hecke constraints                                                               A. Kriebel
+
+
+  (i) a theorem-dependency graph separating imported results, proved lemmas, and exact compu-
+      tational certificates;
+
+ (ii) a verifier manifest specifying the claim, arithmetic domain, and scope of each program;
+
+ (iii) a one-command exact verifier suite for the central results;
+
+ (iv) a supplementary catalogue separating exact ansatz theorems from numerical evidence and
+      failed construction mechanisms;
+
+ (v) seeds, commands, dependency information, raw outputs, and claim statuses for every new
+     numerical experiment.
+
+    The central exact programs independently replay the Hecke multiplicities, two-projection block
+arithmetic, invariant-leg divisibility, the low-Schmidt contraction identities, finite calibrations of
+the unrestricted rank-four quotient and sandwich identities, the four-strand restriction polynomials,
+the dimension-six commutant block analysis, primitive-Weyl coeﬀicient formulas, and the four-
+product Clifford parity calculation. They are checks of finite identities, not substitutes for the
+logical implications proved here.
+    The original numerical search which discovered the published d = 4 five-Pauli support was
+not preserved and is not described as reproducible. Every computation performed for the present
+paper has a retained source, command, seed when applicable, raw result, and commit history.
+
+
+Priority and limitations
+Targeted searches covered unitary Hecke tensor-space representations, controlled bipartite unitaries
+of Schmidt ranks two and three, generalized Yang–Baxter operators, quaternionic and Clifford real-
+izations, Ocneanu cell systems, and the operator-algebraic theory of Yang–Baxter endomorphisms.
+We found no prior statement of the automatic-standardness consequence in this exceptional matrix
+class, the exact all-level multiplicity limitation, the twisted-control four-divisibility theorem, or the
+joint-sandwich rank-four obstruction. These results should therefore be described as apparently
+new pending specialist review.
+    The paper does not settle Problem 9.3, exclude the simultaneously singular rank-four branch,
+exclude a one-sided four-dimensional square restriction in d = 6, classify all operator-Schmidt-rank-
+four unitaries, or classify all d = 4 solutions. Negative numerical searches and the supplementary
+finite ansatz exclusions are not evidence of global nonexistence.
+
+
+AI-assistance disclosure
+OpenAI language models were used extensively to propose proof routes, derive and check symbolic
+identities, write and review code, search the literature, draft prose, and conduct adversarial audits.
+The author directed the research program and accepts responsibility for every claim. Central
+results were rederived in human-readable form and, where finite algebra was involved, replayed
+by exact programs with retained outputs. No model residual, confidence score, or unsupported
+model assertion is treated as mathematical evidence. The complete work trace, including failed
+approaches and proof repairs, is published with the paper.
+
+
+
+
+                                                   19
+Exceptional Hecke constraints                                                        A. Kriebel
+
+
+References
+[1] L. Chen and L. Yu, On the Schmidt-rank-three bipartite and multipartite unitary operator,
+    Ann. Physics 351 (2014), 682–703. https://doi.org/10.1016/j.aop.2014.09.026
+
+[2] S. M. Cohen and L. Yu, All unitaries having operator Schmidt rank 2 are controlled unitaries,
+    Phys. Rev. A 87 (2013), 022329. https://doi.org/10.1103/PhysRevA.87.022329
+
+[3] R. Conti and G. Lechner, Yang–Baxter endomorphisms, J. London Math. Soc. 103 (2021),
+    633–671. https://doi.org/10.1112/jlms.12387
+
+[4] C. Galindo, S.-M. Hong, and E. C. Rowell, Generalized and quasi-localizations of braid group
+    representations, Int. Math. Res. Not. IMRN 2013, no. 3, 693–731. https://doi.org/10.
+    1093/imrn/rnr269
+
+[5] A. Kriebel,   A minimal unitary localization of the C(sl3 , 6) Jones–Wenzl representa-
+    tions, unrefereed research note, 2026. https://aleckriebel.github.io/Math/papers/
+    exceptional-ybe-d4/
+
+[6] G. Lechner, The classification problem for unitary R-matrices with two eigenvalues,
+    arXiv:2603.20158v1, 2026. https://arxiv.org/abs/2603.20158
+
+[7] H. Wenzl, Hecke algebras of type An and subfactors, Invent. Math. 92 (1988), 349–383.
+    https://doi.org/10.1007/BF01404457
+
+
+
+
+                                              20
+

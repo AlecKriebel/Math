@@ -1,0 +1,369 @@
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+Full wreath-product monodromy through the third iterate · Alec Kriebel Research
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+    
+
+      
+Alec Kriebel Research
+
+      
+Abstract
+Results
+Certificates
+Scope
+Source
+
+    
+
+    
+
+      
+Discovery 04 · Public research draft · Not peer reviewed
+
+      
+Full wreath-product monodromy through the third iterate of an explicit Keller map
+
+      
+Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol
+
+      
+First public repository release: 
+21 July 2026, 18:44:48 UTC
+ (21 July 2026, 11:44:48 PDT)
+
+      
+Strengthened site edition: 
+22 July 2026, 02:24:28 UTC
+ (21 July 2026, 19:24:28 PDT)
+
+      
+Third-iterate upgrade: 
+22 July 2026
+
+    
+
+  
+
+
+  
+
+    
+
+      
+!
+
+      
+Do not treat these claims as established mathematics.
+Alec Kriebel is a complete amateur and cannot independently verify this note. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, attribution, and novelty claim requires independent expert review. Exact checks are evidence about the encoded algebra, not peer review.
+
+    
+
+
+    
+
+      
+Open PDF
+
+      
+Full note
+
+      
+Symbolic verifier
+
+      
+Independent finite-field checker
+
+      
+GAP certificate
+
+      
+W
+3
+ certificate
+
+      
+Separate W
+4
+ certificate
+
+      
+Priority audit
+
+    
+
+
+    
+
+      
+
+        
+Abstract
+
+        
+Let \(F:\mathbb C^3\to\mathbb C^3\) be the announced noninjective polynomial map with constant Jacobian determinant \(-2\) and geometric monodromy \(S_3\). This note provisionally determines the geometric monodromy of its second and third iterates as the full imprimitive wreath products \(W_2=S_3\wr S_3\) and \(W_3=S_3\wr S_3\wr S_3\). It also proves that every iterate \(F^{\circ m}\) has a full \(3^m\)-cycle in its geometric inertia at infinity.
+
+        
+
+          
+Degrees
+9 sheets and 27 sheets
+
+          
+Exact groups
+\(W_2\) and \(W_3\)
+
+          
+All iterates
+One full \(3^m\)-cycle for every \(m\ge1\)
+
+        
+
+      
+
+
+      
+
+        
+1. The map and theorem
+
+        
+With (u=1+xy), define
+
+        
+\[
+          F(x,y,z)=\bigl(u^3z+y^2u(4+3xy),\ y+3xu^2z+3xy^2(4+3xy),\ 2x-3x^2y-x^3z\bigr).
+        \]
+
+        
+Exact expansion gives (det JF=-2), and the three distinct rational points ((0,0,-1/4)), ((1,-3/2,13/2)), and ((-1,3/2,13/2)) have the same image.
+
+        
+Provisional theorem.
+ The second and third iterates have generic degrees 9 and 27, and
+\[
+          \operatorname{Mon}(F^{\circ2})=W_2=S_3\wr S_3,\qquad
+          \operatorname{Mon}(F^{\circ3})=W_3=S_3\wr S_3\wr S_3.
+        \]
+The corresponding orders are \(1296\) and \(13{,}060{,}694{,}016\).
+
+
+        
+2. Exact eliminant and function-field tower
+
+        
+On the target line ((1,2,s)), two inverse-resolvent cubics eliminate to a primitive degree-nine polynomial (P(r,s)). The strengthened edition does more than record the resultant: exact denominator resultants show that the rational reconstruction is defined generically, and a linear subresultant (lambda(r,s)t+mu(r,s)) has (gcd(P,lambda)=1). Therefore (t=-mu/\lambda) is recovered at the generic point and
+
+        
+\[
+          \mathbb C(s)\subset\mathbb C(s)(t)\subset
+          \mathbb C(s)(t,r)=\mathbb C(s)(r),
+          \qquad 3\cdot3=9.
+        \]
+
+        
+This rules out an extraneous generic branch introduced by clearing denominators or taking the resultant.
+
+
+        
+3. Three inertia elements force the wreath product
+
+        
+The Newton polygon of (P) at (s=\infty) has one edge from ((0,0)) to ((9,7)), producing a 9-cycle. Its exact discriminant factors as
+
+        
+\[
+          \operatorname{disc}_r(P)=2^{38}q(s)^8A(s)B(s)^2,
+        \]
+
+        
+where the degree-12 factor (A) is squarefree and coprime to the other displayed factors and the leading coefficient. A loop around a root of (A) gives one within-block transposition. The outer cubic has discriminant (-4q(s)), producing a transposition of the three blocks. A short group lemma then forces all of (S_3^3\rtimes S_3).
+
+
+        
+4. Full-cycle inertia for all iterates
+
+        
+Over (K=\mathbb C((1/s))), the revised proof tracks an inverse tower in a Puiseux closure. At level (k), the cubic coefficient valuations are ((-c_k,0,-a_k,a_k)). The strict inequality (c_k>5a_k) gives a single endpoint Newton edge, while explicit dominance inequalities rule out cancellation in every reconstruction formula. The recurrence
+
+        
+\[
+          a_{k+1}=\frac{c_k-2a_k}{3},\qquad c_{k+1}=2(c_k-a_k)
+        \]
+
+        
+makes the new parameter valuation have exact denominator (3^{k+1}). Each cubic step is therefore totally ramified of degree three. The level-(m) branch exhausts the (3^m)-sheet slice and tame inertia acts as a single (3^m)-cycle. This does 
+not
+ prove the full iterated wreath product at every level.
+
+
+        
+5. The third-iterate certificate
+
+        
+Three inverse-resolvent cubics eliminate to a primitive polynomial \(Q(q,s)\) of degree 27 in \(q\). Its normalized lower Newton polygon is the single edge from \((0,0)\) to \((27,34)\), giving irreducibility and a 27-cycle. Exact PARI arithmetic factors the degree-1612 discriminant by multiplicity and isolates a squarefree degree-76 divisor that occurs exactly once and is coprime to the leading coefficient and both reconstruction-denominator norms.
+
+        
+Local inertia at a root of that divisor is a single transposition in one bottom block. The proved \(W_2\) quotient, the 27-cycle, and this transposition generate the full kernel \(S_3^9\), hence all of \(W_3\). The verifier recomputes the eliminant invariants and checks the group lemma without enumerating the more than ten million elements of the kernel.
+
+
+        
+6. Unit-Jacobian normalization
+
+        
+Since (det J(F\circ F)=4), postcomposing by (operatorname{diag}(1/4,1,1)) gives a noninjective polynomial self-map of (mathbb C^3) with Jacobian determinant one and the same degree-nine wreath-product monodromy.
+
+      
+
+
+      
+
+        
+7. Exact certificates
+
+        
+
+          
+verify_symbolic.py
+ — Jacobian, collisions, resolvent reconstruction, exact resultant, denominator control, linear subresultant, Newton edge, discriminant, squarefreeness, and coprimality.
+
+          
+verify_modular.py
+ — dependency-free finite-field arithmetic and three Frobenius cycle types.
+
+          
+verify_iterate_inertia.py
+ — exact recurrence, Newton-edge inequalities, and all reconstruction dominance inequalities.
+
+          
+verify_pari.gp
+ — independent PARI/GP discriminant and arithmetic Galois checks.
+
+          
+verify_group.g
+ — exhaustive GAP subgroup exclusion inside (S_3\wr S_3).
+
+          
+verify_level3_newton.py
+ — independent degree-27 Newton edge for the third iterate.
+
+          
+verify_level3_wreath.py
+ — primitive degree-27 eliminant, multiplicity-one discriminant divisor, denominator guards, and \(W_3\) kernel lemma.
+
+          
+w4_search/RESULT.md
+ — separate bounded-memory proof of \(W_4\), including good reduction, norm-to-inertia, a direct sheet derivative, and the \(S_3^{27}\) kernel lemma.
+
+        
+
+      
+
+
+      
+
+        
+8. Scope and priority
+
+        
+The closest public weighted-lift monodromy note states only the containment \(\operatorname{Mon}(F\circ F)\le S_3\wr S_3\) and calls the exact group a natural next computation. A timestamped audit of 23 repositories, arXiv, MathOverflow, and web sources found no earlier exact determination of \(W_2\) or \(W_3\) for this map. That is source-specific evidence, not a guarantee of worldwide priority.
+
+        
+A separate four-variable construction already claims a different imprimitive degree-eight group of order 192. This note therefore does not claim the first imprimitive or first non-symmetric Keller monodromy. Its narrow candidate contribution is the exact second- and third-iterate groups, the pairs \((9,W_2)\) and \((27,W_3)\), and the all-iterate full-cycle statement. The subsequently certified \(W_4\) computation is intentionally kept as a separate proof artifact rather than folded into this paper.
+
+      
+
+
+      
+
+        
+AI-assistance and verification disclosure
+
+        
+The exploratory algebra, source search, proof drafting, verification programs, and website were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently verify the claims. The note has not been peer reviewed.
+
+      
+
+
+      
+
+        
+Suggested citation
+
+        
+Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “Full wreath-product monodromy through the third iterate of an explicit Keller map,” provisional research note, first repository release 21 July 2026, third-iterate upgrade 22 July 2026.
+
+      
+
+    
+
+
+    
+
+      
+Typeset paper
+
+      
+Your browser cannot display the embedded PDF. 
+Open it directly.
+
+      
+The complete human-readable note, audit, and all verification source are public in the repository.
+
+    
+
+  
+
+  
+Alec Kriebel Research
+ · 
+Source repository
+
+
+
+
+

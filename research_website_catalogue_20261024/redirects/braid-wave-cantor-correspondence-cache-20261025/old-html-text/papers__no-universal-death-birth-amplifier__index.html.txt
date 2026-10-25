@@ -1,0 +1,397 @@
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+No universal death–birth amplifier · Alec Kriebel Research
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+    
+
+      
+Alec Kriebel Research
+
+      
+
+        
+Abstract
+
+        
+Results
+
+        
+Verification
+
+        
+Scope
+
+        
+Paper
+
+        
+Contact
+
+      
+
+    
+
+    
+
+      
+Unrefereed manuscript · Version 1.0.0 · 1 August 2026
+
+      
+No universal death–birth amplifier on a finite weighted population structure
+
+      
+Alec Kriebel · Independent Researcher
+
+      
+Version 1.0.0 · released 
+1 August 2026
+
+      Archived as 
+doi:10.5281/zenodo.21753405
+ · 
+universal-db-obstruction-v1.0.0
+
+    
+
+  
+
+
+  
+
+    
+
+      
+!
+
+      
+
+        
+Research status
+
+        
+Exact proofs and symbolic verification artifacts are available for specialist review. The manuscript has not been peer reviewed. It concerns fixed finite weighted structures; the distinct growing-family question is treated separately.
+
+      
+
+    
+
+
+    
+
+      
+Open publication PDF
+
+      
+Zenodo DOI
+
+      
+Tagged release
+
+      
+Versioned source
+
+      
+Claims ledger
+
+      
+Asymptotic report
+
+    
+
+
+    
+
+      
+
+        
+Abstract
+
+        
+Can one finite weighted population structure increase the fixation probability of every beneficial mutation under death–birth updating? No. For complete directed support, the first strong-selection deficit from the complete graph is an exact sum of squares over incoming weight columns. The only zero-defect weightings have the complete-graph chain itself. A source-component bound and the prior noncomplete-support theorem close every remaining directed support.
+
+        
+
+          
+Fixed directed graphs
+Eventually dB-suppressing, or exactly tied to the complete baseline
+
+          
+Three vertices
+Every nonuniform positive weighted triangle suppresses for every \(r>1\)
+
+          
+Four vertices
+The full symmetric \(1+3\) and \(2+2\) orbit families have the same classification
+
+        
+
+      
+
+
+      
+
+        
+Main results
+
+        
+
+          
+Directed complete-support correction.
+ With \(w_{uv}\) the weight from reproducing source \(u\) into dead target \(v\),
+
+          
+
+          \[
+            \rho_{\mathrm{dB}}(K_n,r)-\rho_{\mathrm{dB}}(G,r)
+            =\frac{1}{n^2(n-2)r}
+              \sum_v\sum_{\substack{u<z\\u,z\ne v}}
+              \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}
+              +O(r^{-2}).
+          \]
+          
+
+          
+The expansion is for each fixed graph as \(r\to\infty\). The defect vanishes exactly when every incoming target column is constant. Independent column scaling then cancels from every replacement competition, so the entire dB chain equals the complete-graph chain for every fitness.
+
+        
+
+        
+Directed supports split exhaustively into three cases. Non-strong supports obey an elementary source-component bound; strongly connected noncomplete supports are covered by the earlier theorem of Tkadlec, Pavlogiannis, Chatterjee, and Nowak; complete supports obey the displayed sum of squares. Thus no fixed finite loopless directed weighting with positive incoming degrees strictly amplifies dB fixation for every \(r>1\).
+
+        
+For undirected support degree \(s_i\), the exact strong-selection limit is
+
+        
+
+        \[
+          \lim_{r\to\infty}\rho_{\mathrm{dB}}(G,r)
+          =\frac1n\sum_i\frac{s_i}{s_i+1}.
+        \]
+        
+
+        
+This also yields a finite-fitness upper bound by monotonicity. Any family that eventually amplifies dB at every fixed fitness must have support degree tending to infinity in probability.
+
+      
+
+
+      
+
+        
+Exact low-dimensional classification
+
+        
+For every positive weighted triangle, exact elimination of the six transient equations gives
+
+        
+
+        \[
+          \rho_{\mathrm{dB}}(G,r)-\rho_{\mathrm{dB}}(K_3,r)
+          =-\frac{r(r-1)H}{3(r+1)P},
+        \]
+        
+
+        
+where \(P>0\) and a homogeneous square certificate proves \(H>0\) exactly away from equal edge weights. Hence every nonuniform positive triangle is a strict suppressor for every beneficial fitness.
+
+        
+Two exact orbit calculations prove the same conclusion for the complete \(1+3\) core–satellite family and the complete \(2+2\) paired-class family on four vertices. The unrestricted six-edge weighted \(K_4\) problem and the arbitrary-\(n\) complete-support classification remain open.
+
+      
+
+
+      
+
+        
+Exact verification
+
+        
+
+          
+Literal subset chains:
+ Bd and dB transitions are reconstructed from the update rules and every row is checked exactly.
+
+          
+Directed audit:
+ asymmetric three- and four-vertex instances check the incoming-column orientation, scaling invariance, and strong coefficient.
+
+          
+Triangle certificate:
+ independent symbolic and no-import implementations reproduce the rational comparison and every polynomial identity.
+
+          
+Symmetric \(K_4\) certificate:
+ orbit chains, full 14-state solves, determinant positivity, and the global \((g,d,t)\) coefficient decomposition agree exactly.
+
+          
+One-command replay:
+ 
+make paper1
+ runs the complete verifier suite and rebuilds the manuscript.
+
+          
+Website integrity:
+ the served publication PDF is pinned by SHA-256.
+
+        
+
+        
+Finite checks validate the implementations. The all-graph quantifiers are discharged by the displayed support and sum-of-squares identities, not by enumeration or sampled fitness values.
+
+      
+
+
+      
+
+        
+Scope and open problems
+
+        
+
+          
+The paper rules out a fixed finite graph required to amplify at every \(r>1\), and therefore rules out a family with one population threshold that works uniformly for every fitness.
+
+          
+It does not decide whether one fitness-independent family can amplify Bd and dB at each fixed \(r>1\) once the population is sufficiently large by an \(r\)-dependent threshold.
+
+          
+A companion report excludes bounded-support candidates and fixed irreducible dense finite-type blow-ups with unequal limiting weighted degrees. Diffuse asymptotically regular and mesoscopic regimes remain open.
+
+          
+The currently proved simultaneous-amplification benchmark \((1,1.2)\) from prior work is not enlarged or shown optimal here.
+
+        
+
+      
+
+
+      
+
+        
+AI-assisted research disclosure
+
+        
+OpenAI language models were used extensively in exploration, proof development, software generation, verification design, literature organization, and drafting. Alec Kriebel directed the work, selected the released claims, and is responsible for the decision to publish these materials. Model output was not treated as evidence by itself.
+
+      
+
+
+      
+
+        
+Suggested citation
+
+        
+Alec Kriebel, “No universal death–birth amplifier on a finite weighted population structure,” version 1.0.0, 1 August 2026. 
+doi:10.5281/zenodo.21753405
+.
+
+      
+
+
+      
+
+        
+Contact
+
+        
+Alec Kriebel
+
+        
+Independent Researcher
+
+        
+Technical correspondence: 
+me@aleckriebel.com
+
+        
+ORCID 0009-0001-9320-500X
+
+      
+
+    
+
+
+    
+
+      
+Typeset paper
+
+      
+Your browser cannot display the embedded PDF. 
+Open it directly.
+
+      
+Version 1.0.0 · exact source and verification materials are linked above · not peer reviewed.
+
+    
+
+  
+
+  
+Alec Kriebel Research
+ · 
+me@aleckriebel.com
+ · 
+ORCID
+ · 
+GitHub
+
+
+
+
+

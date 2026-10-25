@@ -1,0 +1,833 @@
+        A Certiﬁed Order-Twelve Extension of the γ–θ Frontier
+                  in One-Guard Eternal Domination
+                                             Alec Kriebel
+
+                                             July 26, 2026
+
+
+                                               Abstract
+         In the one-guard-moves eternal domination game, each attack is made at an unoccupied
+     vertex and exactly one adjacent guard moves to the attacked vertex. The γ–θ conjecture asserts
+     that γ(G) = γ ∞ (G) implies γ(G) = θ(G). MacGillivray, Mynhardt, and Virgile reported an
+     exhaustive computation excluding counterexamples through order 11. We extend that published
+     frontier by proving that no counterexample has order 12. The order-12 proof has three sepa-
+     rately delimited parts: an independently replayed three-template certiﬁcate excludes common
+     parameter 3; an exact 18,381-variable formula and a 228,381,671-byte LRAT refutation exclude
+     connected graphs with common parameter 4; and a simplicial closed-neighborhood reduction,
+     combined with the McCuaig–Shepherd domination bound, excludes common parameter 5. A
+     classical half-order characterization proves that these are the only possible parameters. Conse-
+     quently, subject explicitly to the published through-order-11 computation, every counterexample
+     has at least 13 vertices. The campaign has not independently reproduced the all-graph coverage
+     at orders 10 and 11. As a structural byproduct, we give an unrestricted, family-level general-
+     ization of a planar independent-antineighborhood lemma of Taletskii. This ﬁnite result neither
+     proves the universal conjecture nor constructs a counterexample.
+
+
+1    Introduction
+Let G be a ﬁnite simple graph. The domination number γ(G) is the minimum size of a set whose
+closed neighborhood is all of V (G), and the clique cover number θ(G) is the minimum number
+of parts in a partition of V (G) into cliques. In the standard one-guard eternal domination game,
+guards initially occupy a dominating set. After an attack at an unoccupied vertex, exactly one
+adjacent guard moves to the attacked vertex, and the new guard set must again be capable of
+defending every future attack. The least suﬃcient number of guards is γ ∞ (G).
+    Klostermeyer and MacGillivray stated the implication
+
+                                γ(G) = γ ∞ (G)     =⇒      γ(G) = θ(G),                                 (1.1)
+
+with a proof that was later found to be incomplete [4, 5]. Klostermeyer and Mynhardt subsequently
+formulated the question as the existence problem
+
+                                        γ(G) = γ ∞ (G) < θ(G)                                           (1.2)
+
+[5, 6]. We call (1.1) the γ–θ conjecture.
+    MacGillivray, Mynhardt, and Virgile reported an exhaustive computation ﬁnding no counterex-
+ample through order 11 [7, Observation 5.6]. Their paper also catalogs all 56 graphs of order at
+most 11 for which γ ∞ < θ. The present work independently reproduced the parameters of that
+
+                                                    1
+catalog and independently enumerated connected graphs through order 9, but it did not repeat the
+original cluster-scale all-graph enumeration at orders 10 and 11. We therefore keep the published
+lower-order computation visible as an explicit premise.
+
+Theorem 1.1 (order-12 frontier). Assume the published exhaustive result of MacGillivray, Myn-
+hardt, and Virgile that no counterexample to (1.1) has order at most 11. Then no ﬁnite simple
+graph G of order at most 12 satisﬁes
+
+                                      γ(G) = γ ∞ (G) < θ(G).
+
+Equivalently, every counterexample, if one exists, has order at least 13.
+
+    The order-12 extension in Theorem 1.1 is assembled from the following results.
+
+    1. A complete, certiﬁcate-backed exclusion of all 12-vertex graphs with γ = γ ∞ = 3 < θ (Theo-
+       rem 4.1).
+
+    2. A complete, certiﬁcate-backed exclusion of connected 12-vertex graphs with γ = γ ∞ = 4 < θ
+       (Theorem 5.1).
+
+    3. A structural theorem for simplicial vertices (Theorem 3.1) and the McCuaig–Shepherd bound,
+       which exclude the order-12 parameter-ﬁve case relative to the same published lower-order
+       premise (Corollary 3.6).
+
+    4. A classical half-order characterization, which shows that a connected order-12 counterexample
+       has common parameter only 3, 4, or 5 (Corollary 2.12).
+
+    5. An independent-antineighborhood projection theorem for arbitrary equality graphs and ar-
+       bitrary eternal families (Theorem 3.7), recorded as a generalization of Taletskii’s planar
+       minimum-counterexample lemma rather than as a wholly new antineighborhood idea.
+
+   Every computational implication is separated into a graph-to-formula coverage theorem, an
+exact byte binding, a proof-certiﬁcate replay, and an independent audit. Section 2 ﬁxes the model
+and elementary reductions. Section 3 proves the structural reduction. Sections 4 and 5 give the
+two certiﬁed slices. Section 6 assembles the frontier, and Section 7 gives reproduction details.
+Remark 1.2 (scope). Theorem 1.1 is a ﬁnite extension of a published computational frontier. It is
+not a campaign-only exhaustive enumeration through order 12, it says nothing about orders at least
+13, and it does not resolve the universal conjecture. We also make no literature-novelty claim for
+the simplicial reduction; one potentially relevant 2018 manuscript could not be obtained during the
+audit. The antineighborhood theorem below has direct accessible overlap with Taletskii’s Lemma
+13 [10], and its prior-art boundary is stated explicitly.
+
+
+2     Model and elementary reductions
+All graphs in this paper are ﬁnite, simple, and undirected. For v ∈ V (G), write N (v) and N [v]
+for its open and closed neighborhoods. A set D ⊆ V (G) is dominating if N [D] = V (G). Let α(G)
+denote the independence number and i(G) the minimum size of a maximal independent set. We
+use
+                                          θ(G) = χ(G).                                     (2.1)
+
+
+                                                  2
+                                                                                       (V (G))
+Deﬁnition 2.1. An eternal dominating family of size k is a nonempty family D ⊆            k      such
+that:
+  1. every D ∈ D dominates G; and
+
+  2. for every D ∈ D and every unoccupied attacked vertex r ∈ V (G) − D, there is a guard
+     u ∈ D ∩ N (r) for which
+                                    (D − {u}) ∪ {r} ∈ D.                             (2.2)
+
+The minimum such k is γ ∞ (G).
+   Thus attacks at occupied vertices are not required, and a response in (2.2) moves exactly one
+guard along exactly one edge. No all-guards-move parameter is used anywhere in this paper.
+Lemma 2.2 (independent-set forcing). Let D be an eternal dominating family of k-sets, and let I
+be an independent set. Starting from any state in D, successive attacks at unoccupied vertices of I
+force a state D′ with
+                                      |D′ ∩ I| = min{|I|, k}.
+In particular, every independent k-set belongs to every eternal k-family.
+Proof. When an unoccupied r ∈ I is attacked, no guard already on I can respond because I is
+independent. Every legal response therefore increases the number of guards on I by one. Repeat
+until no further such attack is possible.
+
+Proposition 2.3 (parameter chain). For every nonempty graph G,
+
+                              γ(G) ≤ i(G) ≤ α(G) ≤ γ ∞ (G) ≤ θ(G).                               (2.3)
+
+Consequently, if γ(G) = γ ∞ (G) = k, then
+
+                                γ(G) = i(G) = α(G) = γ ∞ (G) = k,                                (2.4)
+
+and G is well-covered.
+Proof. Every maximal independent set dominates, and every maximum independent set is maximal.
+If an eternal family used fewer than α(G) guards, Lemma 2.2 would put all guards on a maximum
+independent set while leaving another vertex of it unoccupied; an attack there would have no
+adjacent guard. Thus α ≤ γ ∞ .
+    Given a clique partition, place one guard in each part. An attack is answered by moving the
+unique guard within the attacked vertex’s clique. This proves γ ∞ ≤ θ. The equality collapse and
+well-coveredness follow by squeezing.
+
+Lemma 2.4 (induced-subgraph monotonicity). If J is a nonempty induced subgraph of G, then
+γ ∞ (J) ≤ γ ∞ (G).
+Proof. Fix an eternal family in G, let m be the maximum number of guards that any family state
+places in V (J), and retain the states attaining m. An attack inside J cannot be answered by
+moving a guard from outside J, since the successor would contain more than m guards in J. Thus
+every response stays within J, preserves m, and projects to a legal response in the induced graph
+J. The projected states dominate J: each unoccupied vertex has an adjacent responding guard
+in J, while occupied vertices dominate themselves. Also m > 0, since otherwise any attack in the
+nonempty graph J would force a guard into J. The projections therefore form an eternal family in
+J.
+
+                                                 3
+Lemma 2.5 (component additivity). If G1 , . . . , Gt are the nonempty components of G, then
+                   ∑                            ∑                       ∑
+            γ(G) =    γ(Gj ),     γ ∞ (G) =          γ ∞ (Gj ),  θ(G) =    θ(Gj ).          (2.5)
+                          j                         j                          j
+
+Proof. The assertions for γ and θ follow by restriction and union. Products of componentwise
+eternal families prove the upper bound for γ ∞ .
+    For the reverse bound, ﬁx a guard-count vector (|D ∩ V (G1 )|, . . . , |D ∩ V (Gt )|) occurring in an
+eternal family and retain all states with that vector. A one-edge move cannot cross components,
+so this subfamily remains closed. Projection to each component is an eternal family with the
+corresponding number of guards. Summing the componentwise lower bounds proves equality.
+
+Corollary 2.6 (connected reduction). If a counterexample to (1.1) exists, then a connected coun-
+terexample exists. Every minimum-order counterexample is connected.
+Proof. If γ(G) = γ ∞ (G), additivity and γ(Gj ) ≤ γ ∞ (Gj ) force equality on every component. If
+also γ ∞ (G) < θ(G), at least one component has the same strict gap.
+
+   We next record why the common parameter of a counterexample is at least three. The following
+two small values use exactly the model of Deﬁnition 2.1.
+Lemma 2.7. For every odd ℓ ≥ 5,
+                                             γ ∞ (Cℓ ) = 3.                                        (2.6)
+Proof. Since θ(Cℓ ) = χ(Cℓ ) = 3, the upper bound follows from (2.3). Label Cℓ cyclically by
+0, . . . , ℓ − 1. A pair fails to dominate Cℓ exactly when its vertices have cyclic distance two.
+      Suppose an eternal two-family existed. The independent pair {0, 1} belongs to it by Lemma 2.2.
+From {0, d}, for odd 1 ≤ d ≤ ℓ − 6, attack d + 2. Moving the guard at 0 leaves the nondominating
+pair {d, d + 2}, so closure forces {0, d + 2}. Iteration reaches {0, ℓ − 4}. Attacking ℓ − 2 then leaves
+a cyclic-distance-two pair whichever guard moves. For ℓ = 5, this last attack applies to the initial
+pair.
+
+Lemma 2.8. γ ∞ (C7 ) = 4.
+Proof. A partition into three edges and one singleton gives the upper bound four. Suppose an
+eternal family of dominating triples existed. A dominating triple has cyclic gap multiset {2, 1, 1}
+or {2, 2, 0}. A triple of the second type is equivalent to {0, 1, 4}; attacking 3 forces the guard at 4
+to move, after which vertex 5 is undominated. Hence no second-type triple belongs to the family.
+    The maximum independent set {0, 2, 4} belongs to the family by Lemma 2.2. Attack 1. Moving
+the guard at 0 leaves vertex 6 undominated, while moving the guard at 2 produces the forbidden
+triple {0, 1, 4}, a contradiction.
+
+Proposition 2.9 (minimum parameter). Every counterexample satisﬁes
+
+                                     γ(G) = α(G) = γ ∞ (G) ≥ 3.                                    (2.7)
+
+Proof. The equalities follow from Proposition 2.3. Common value one forces α = 1, so G is complete
+and θ = 1.
+   Suppose the common value is two and put H = G. Then ω(H) = 2 < χ(H). By the Strong
+Perfect Graph Theorem [1], H contains an induced odd hole or odd antihole. An odd hole in H
+induces an odd antihole in G, contradicting Lemmas 2.4 and 2.7. An odd antihole in H induces an
+odd hole in G. At length at least seven this contradicts α(G) = 2; at length ﬁve it again contradicts
+Lemma 2.7, since C5 is self-complementary.
+
+                                                   4
+2.1     The half-order restriction
+We use the characterization, due independently to Payan–Xuong and to Fink–Jacobson–Kinch–
+Roberts, of graphs without isolated vertices whose domination number is half their order [9, 2]:
+every component is either C4 or a corona F ◦ K1 , where one leaf is attached to each vertex of a
+connected graph F .
+
+Proposition 2.10. If G has no isolated vertices and γ(G) = |V (G)|/2, then γ(G) = θ(G).
+
+Proof. For C4 , both parameters are two. If Q = F ◦K1 and |V (F )| = m, every dominating set must
+contain a member of each support–leaf pair, while all supports form a dominating m-set. Hence
+γ(Q) = m. The m support–leaf edges partition Q into cliques, so θ(Q) ≤ m, while the m leaves
+are independent and give θ(Q) ≥ m. Thus the two parameters agree on every component in the
+characterization, and additivity completes the proof.
+
+Corollary 2.11. If a connected graph G of order n ≥ 2 is a counterexample with common parameter
+k, then
+                                           n ≥ 2k + 1.                                     (2.8)
+
+Proof. A spanning tree of G is bipartite, and its smaller color class is a dominating set of the
+tree and hence of G. Thus γ(G) ≤ n/2. Equality would contradict Proposition 2.10, so k < n/2.
+Integrality gives (2.8).
+
+Corollary 2.12. A connected order-12 counterexample has common parameter
+
+                                            k ∈ {3, 4, 5}.                                      (2.9)
+
+Proof. Proposition 2.9 gives k ≥ 3, and Corollary 2.11 gives 12 ≥ 2k + 1, hence k ≤ 5.
+
+
+3       The simplicial closed-neighborhood reduction
+A vertex v is simplicial if N [v] is a clique. The next theorem strengthens the leaf reduction needed
+later. Its proof is included both for completeness and to expose where the one-guard dynamics
+enter.
+
+Theorem 3.1 (simplicial reduction). Let G satisfy
+
+                                        γ(G) = γ ∞ (G) = k,
+
+let v be simplicial, and suppose Q = G − N [v] is nonempty. Then Q is well-covered and
+
+                                  γ(Q) = α(Q) = γ ∞ (Q) = k − 1,                                (3.1)
+
+while
+                                         θ(G) = θ(Q) + 1.                                       (3.2)
+
+Proof. By Proposition 2.3, G is well-covered with γ(G) = α(G) = k. If I is a maximal independent
+set of Q, then I ∪ {v} is a maximal independent set of G: the vertex v blocks N (v), and I blocks
+Q − I. Hence every maximal independent set of Q has size k − 1, and
+
+                                       i(Q) = α(Q) = k − 1.                                     (3.3)
+
+
+                                                  5
+In particular, γ(Q) ≤ k − 1. If a set A of size at most k − 2 dominated Q, then A ∪ {v} would
+dominate G, contradicting γ(G) = k. Therefore γ(Q) = k − 1.
+   Fix an eternal k-family D in G, and choose a maximum independent set I of Q. Lemma 2.2
+places I ∪ {v} in D. Deﬁne
+                                E = {D − {v} : D ∈ D, v ∈ D}.                            (3.4)
+This family is nonempty. No state D ∈ D containing v can also contain a vertex u ∈ N (v). If it
+did, D − {v} would still dominate G: because N [v] is a clique, u dominates everything that v could
+dominate, while v has no neighbor in Q. This would contradict γ(G) = k.
+    Thus each member of E is a (k − 1)-subset of Q, and it dominates Q. Let B = D − {v} ∈ E and
+attack r ∈ V (Q) − B. In D = B ∪ {v}, the responding guard cannot be v, since v has no neighbor
+in Q. The response therefore keeps v occupied and projects to
+
+                                       (B − {u}) ∪ {r} ∈ E.
+
+Consequently E is an eternal (k − 1)-family in Q. Together with (3.3) and α ≤ γ ∞ , this proves
+(3.1).
+    The clique N [v], together with a minimum clique partition of Q, gives θ(G) ≤ θ(Q) + 1.
+Conversely, start with a minimum clique partition of G. Replace all parts meeting N [v] by the
+single clique N [v] and the nonempty remainders after deleting N [v]. The old part containing v has
+empty remainder, so the replacement does not increase the number of parts. By minimality it is
+again a minimum partition. Deleting its N [v] part leaves a partition of Q into θ(G) − 1 cliques.
+Hence θ(Q) ≤ θ(G) − 1, proving (3.2).
+
+Corollary 3.2 (counterexample preservation). Under the hypotheses of Theorem 3.1, if
+
+                                    γ(G) = γ ∞ (G) = k < θ(G),
+
+then Q = G − N [v] is a smaller counterexample with common parameter k − 1.
+
+Proof. Theorem 3.1 gives γ(Q) = γ ∞ (Q) = k − 1 and θ(Q) = θ(G) − 1 ≥ k.
+
+Corollary 3.3 (leaf–support reduction). Let x be a leaf with unique neighbor y, and suppose
+G − {x, y} is nonempty. If γ(G) = γ ∞ (G) = k, then G − {x, y} is well-covered,
+
+                    γ(G − {x, y}) = α(G − {x, y}) = γ ∞ (G − {x, y}) = k − 1,
+
+and
+                                     θ(G) = θ(G − {x, y}) + 1.
+A strict γ–θ gap is preserved.
+
+Proof. The leaf x is simplicial and N [x] = {x, y}, so this is Theorem 3.1 and Corollary 3.2.
+
+Corollary 3.4. Every minimum-order counterexample is connected, has no simplicial vertex, and
+has minimum degree at least two. Moreover, the two neighbors of every degree-two vertex are
+nonadjacent.
+
+Proof. Connectedness is Corollary 2.6. A simplicial vertex would give a smaller counterexample by
+Corollary 3.2, unless G − N [v] were empty; in that case G = N [v] would be complete. Hence there
+is no simplicial vertex. In a connected nontrivial graph, a leaf is simplicial, so the minimum degree
+is at least two. A degree-two vertex whose neighbors are adjacent is also simplicial.
+
+
+                                                 6
+    McCuaig and Shepherd proved that every connected n-vertex graph R with δ(R) ≥ 2, except
+for seven graphs of orders four and seven, satisﬁes
+                                                      2n
+                                             γ(R) ≤                                              (3.5)
+                                                       5
+[8]. The exception inventory is explicitly restated as F4 ∪ F7 by Henning, Schiermeyer, and Yeo [3,
+Theorem 1].
+
+Theorem 3.5 (minimum-order bound). Assume the published absence of counterexamples through
+order 11. If G is a minimum-order counterexample of order n, with
+
+                                        k = γ(G) = γ ∞ (G),
+
+then                                             ⌈ ⌉
+                                                5k
+                                             n≥      .                                           (3.6)
+                                                 2
+Proof. The published premise gives n ≥ 12, so G is not one of the seven exceptions of orders four
+and seven. Corollary 3.4 gives connectedness and minimum degree at least two. Apply (3.5) and
+rearrange:
+                                                    2n
+                                        k = γ(G) ≤     .
+                                                     5
+Integrality gives (3.6).
+
+Corollary 3.6 (parameter ﬁve at order 12). Assume the published absence of counterexamples
+through order 11. There is no order-12 graph satisfying
+
+                                    γ(G) = γ ∞ (G) = 5 < θ(G).
+
+Proof. Such a graph would have minimum possible order, so Theorem 3.5 would give
+                                          ⌈ ⌉
+                                           25
+                                     12 ≥       = 13,
+                                            2
+
+a contradiction.
+
+3.1    A general independent-antineighborhood projection
+The simplicial hypothesis is needed for the clique-cover identity (3.2), but not for projecting the
+three equality parameters or the one-guard strategy. For A ⊆ V (G), write
+                                                 ∪
+                                        N [A] =     N [a].
+                                                  a∈A
+
+Theorem 3.7 (independent-antineighborhood projection). Let γ(G) = γ ∞ (G) = k, let A be an
+independent set of size t < k, and put Q = G − N [A]. Then Q is nonempty and well-covered, and
+
+                                  γ(Q) = α(Q) = γ ∞ (Q) = k − t.                                 (3.7)
+
+Moreover, every eternal k-family on G has an explicit restricted slice that is an eternal (k−t)-family
+on Q.
+
+
+                                                  7
+Proof. By Proposition 2.3, every maximal independent set of G has size k. If I is any maximal
+independent set of Q, then I ∪ A is maximal in G: A blocks N [A] − A, and I blocks Q − I. Hence
+every maximal independent set of Q has size k − t. Thus Q is nonempty and well-covered, with
+
+                                           i(Q) = α(Q) = k − t.                                    (3.8)
+
+If B dominated Q with at most k − t − 1 vertices, then A ∪ B would dominate G with at most k − 1
+vertices. Consequently γ(Q) = k − t.
+    Fix an arbitrary eternal k-family D on G. Choose a maximum independent set I of Q.
+Lemma 2.2 gives A ∪ I ∈ D, so
+
+                            E = {D − A : D ∈ D, A ⊆ D, D − A ⊆ V (Q)}                              (3.9)
+
+is nonempty. If C ∈ E, then A ∪ C dominates G. No member of A has a neighbor in Q, so C
+dominates Q.
+    For an arbitrary unoccupied attack r ∈ V (Q) − C, closure of D supplies a guard u ∈ (A ∪ C) ∩
+N (r) whose one-edge move to r stays in D. Again no member of A is adjacent to r, so u ∈ C; the
+successor retains A and all other guards remain in Q. It therefore projects to
+
+                                           (C − {u}) ∪ {r} ∈ E.
+
+This proves the exact ∀C ∀r ∃u closure condition on Q, using one guard and one edge. Hence
+γ ∞ (Q) ≤ k − t, while α(Q) ≤ γ ∞ (Q) and (3.8) give equality.
+
+Corollary 3.8. If G is a minimum-order counterexample with common parameter k, then for every
+nonempty independent t-set A, t < k,
+
+              γ(G − N [A]) = α(G − N [A]) = γ ∞ (G − N [A]) = θ(G − N [A]) = k − t.               (3.10)
+
+Equivalently, if H = G, then for every t-clique A of H,
+
+                                   χ(H[NH (A)]) = ω(H[NH (A)]) = k − t,                           (3.11)
+                 ∩
+where NH (A) =       a∈A NH (a).
+
+Proof. Theorem 3.7 gives every equality in (3.10) except the one involving θ. If θ(G−N [A]) > k −t,
+the proper induced graph G − N [A] would be a smaller counterexample. Minimality gives equality.
+Complementation translates G − N [A] to H[NH (A)], proving (3.11).
+
+Remark 3.9 (prior-art and strength boundary). Taletskii’s Lemma 13 already proves essentially
+(3.10) for a minimum-order planar counterexample [10]. Theorem 3.7 removes planarity and the
+hypothesis that the graph is a minimum counterexample from the γ, α, γ ∞ projection and explicitly
+projects every eternal family. It is therefore presented as an unrestricted, family-level generalization,
+not as a wholly new antineighborhood idea. Its full independent set form is also obtained by
+iterating the t = 1 case. For k = 3, (3.11) is exactly local bipartiteness together with the well-
+covered clique structure, so it gives no new pruning beyond the odd-wheel obstruction already
+used in the parameter three analysis. Novelty relative to the unavailable 2018 manuscript remains
+unresolved.
+
+
+
+
+                                                    8
+4     The certiﬁed order-12 parameter-three slice
+Theorem 4.1. There is no ﬁnite simple graph G of order 12 satisfying
+
+                                        γ(G) = γ ∞ (G) = 3 < θ(G).                                (4.1)
+
+This assertion includes disconnected graphs.
+   We summarize the complete coverage proof and exact certiﬁcates. Full proof details and all
+bindings are in the accompanying archive.
+
+4.1   The exhaustive complement split
+Call a vertex outside an induced cycle a hub if it is adjacent to every rim vertex. A cycle is hub-free
+if it has no hub.
+Proposition 4.2 (odd-wheel obstruction). If γ ∞ (G) = 3, then G contains no induced odd wheel.
+Proof. If G induces K1 ∨ C2q+1 , then G induces K1 ˙∪ C2q+1 . Lemmas 2.5 and 2.7 give eternal
+domination number four for this induced subgraph, contradicting Lemma 2.4.
+
+Proposition 4.3 (three-template split). If G satisﬁes (4.1), then G is connected and H = G
+contains a hub-free induced Cℓ for some
+
+                                               ℓ ∈ {5, 7, 9}.                                     (4.2)
+
+Proof. If G were disconnected, component additivity would give a counterexample component.
+Proposition 2.9 says that component has parameter at least three, so it consumes the entire domi-
+nation budget; hence G is connected.
+   Proposition 2.3 gives
+                               ω(H) = α(G) = 3 < χ(H) = θ(G).                                (4.3)
+The Strong Perfect Graph Theorem supplies an induced odd hole or odd antihole. An odd antihole
+of length 2q + 1 has clique number q, so its length is ﬁve or seven. The ﬁve-antihole is C5 . An
+induced C7 in H induces C7 in G, contradicting Lemmas 2.4 and 2.8. Thus H contains an odd
+hole.
+    It is hub-free by Proposition 4.2. Since no pair dominates G, every pair in H has a common
+H-neighbor. The endpoints of a rim edge have no common neighbor on an induced rim, so they
+have one outside it. If only one vertex lay outside the hole, it would be a hub. At least two vertices
+therefore lie outside, and the odd rim has length at most ten. This gives (4.2).
+
+4.2   Exact formulas and coverage
+Fix ℓ ∈ {5, 7, 9}, label an induced cycle of H = G by 0, . . . , ℓ −1, and label one common H-neighbor
+of rim edge 01 as vertex ℓ. The formula has 6,886 variables:
+
+                      66   :   euv       (uv ∈ E(H)),
+                     660   :   wab,c     (c witnesses a common H-neighbor of a, b),
+                                               ( )                                                (4.4)
+                     220   :   fD        (D ∈ [12]
+                                                 3  is selected),
+                  5, 940   :   mD,r,u    (u ∈ D responds to r ∈ / D).
+
+The clauses assert: no K4 in H; a common H-neighbor for every pair; the labeled hub-free cycle
+template; connectedness of G; a nonempty selected family of dominating triples; one legal successor
+
+                                                     9
+for every selected state and every unoccupied attack; and selection of every H-triangle. In particu-
+lar, a move literal implies ¬eur , because a legal move uses an edge of G, not H. It also selects the
+state (D − {u}) ∪ {r}, whose own clauses require domination.
+    For every normalized map c : [12] → {0, 1, 2} proper on the forced template, the coloring
+obstruction is                                     ∨
+                                           Cc =         euv .                                   (4.5)
+                                                  u<v
+                                               c(u)=c(v)
+
+It is false exactly when c is a proper coloring of H. The C5 and C7 formulas contain complete
+banks of respectively 3,645 and 1,701 such clauses. The C9 formula contains 170 valid coloring
+clauses obtained during counterexample-guided reﬁnement. No completeness claim is needed for
+that subset: every graph with χ(H) > 3 satisﬁes every clause (4.5).
+    The C5 branch also lexicographically orders the six undistinguished outer signatures. The
+formula is invariant under their full permutation group, so every model has an orbit representative
+satisfying the order.
+
+Lemma 4.4 (parameter-three graph-to-formula coverage). Every graph satisfying (4.1) induces a
+satisfying assignment of at least one of the three exact formulas in Table 1.
+
+Proof. Use Proposition 4.3 and label the resulting template as above. Set edge and witness vari-
+ables from H. Equation (4.3) supplies the no-K4 and coloring clauses; failure of every pair to
+dominate supplies the common-neighbor clauses; and connectedness and hub-freeness supply the
+corresponding template clauses.
+    Set fD on an actual nonempty eternal three-family and choose one one-guard response for each
+selected state and unoccupied attack. Lemma 2.2 selects every H-triangle. If ℓ = 5, permute
+undistinguished vertices and all associated semantic variables to satisfy the signature order. Thus
+the exact branch formula is satisﬁed.
+
+4.3     Certiﬁcates
+
+
+      Table 1: Exact parameter-three branch formulas and accepted addition-only RUP proofs.
+                                                  C5           C7        C9
+                          variables             6,886        6,886     6,886
+                          clauses              23,968       21,718    20,200
+                          literals            192,169      148,551   117,841
+                          CNF bytes           754,323      621,864   530,053
+                          proof additions     247,981      284,317     4,705
+                          proof bytes       6,337,621   18,093,724    65,906
+
+
+   In C5 , C7 , C9 order, the formula SHA-256 values are
+  c6a0811c718ff8e9352f253e4ce225ce2826def9c3e4a9cd55f0b0152703d104
+  6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7
+  2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d
+The corresponding addition-only proof SHA-256 values are
+  c6c24853e30073e66fb396441edb176a0160d062a8558e25fa18a955f33927c3
+  e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9
+  24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab
+
+                                                 10
+    Each proof is an addition-only sequence of reverse-unit-propagation (RUP) consequences ending
+in the empty clause, so it is a directly checkable unsatisﬁability certiﬁcate [11]. Strict replays
+reported zero RAT lemmas. The C5 binary proof was independently parsed and replayed; the
+C7 proof passed two warning-fatal RUP-only replays; and the C9 proof passed both a separately
+written standard-library checker and a pinned external checker. Two independent reviews audited
+the three-branch coverage theorem.
+
+Proof of Theorem 4.1. A putative graph gives a satisfying assignment of one exact formula by
+Lemma 4.4. The corresponding accepted RUP refutation proves that formula unsatisﬁable, a
+contradiction.
+
+
+5     The certiﬁed connected order-12 parameter-four slice
+Theorem 5.1. There is no connected ﬁnite simple graph G of order 12 satisfying
+
+                                        γ(G) = γ ∞ (G) = 4 < θ(G).                           (5.1)
+
+    Put H = G, and let euv = 1 mean uv ∈ E(H). Equality collapse gives
+
+                                 γ(G) = α(G) = γ ∞ (G) = 4 < θ(G).                           (5.2)
+
+5.1    An exact anchored synthesis formula
+Proposition 5.2 (static characterization). Up to relabeling vertices, γ(G) = α(G) = 4 if and only
+if:
+
+    1. A = {0, 1, 2, 3} is a K4 in H;
+
+    2. H has no K5 ; and
+
+    3. every three-set S has a common H-neighbor outside S.
+
+Proof. If γ = α = 4, label a maximum independent four-set of G as A. It is a K4 of H, and
+α(G) = 4 forbids a K5 in H. No three-set dominates G, so every three-set has a vertex adjacent in
+G to none of it, equivalently a common H-neighbor.
+   Conversely, the anchor and no-K5 clauses give α(G) = 4. The common-neighbor condition says
+that no three-set dominates G, so γ(G) ≥ 4. The independent four-set A is maximum and hence
+maximal, so it dominates G and γ(G) ≤ 4.
+
+    The exact formula uses the following 18,381 variables.
+
+                 role                                                family    count
+                 complement edges                             euv , u < v     66
+                 triple common-neighbor witnesses  wS,x , |S| = 3, x ∈/ S 1, 980
+                                                                                             (5.3)
+                 selected guard states                       fD , |D| = 4    495
+                 one-guard responses              mD,r,u , r ∈
+                                                             / D, u ∈ D 15, 840
+                 total                                                        18, 381
+
+
+
+
+                                                   11
+Its static clauses encode Proposition 5.2 and connectedness of G. For every nonempty proper cut
+S containing vertex 0, the connectedness clause is
+                                             ∨
+                                                ¬euv ,                                    (5.4)
+                                                  u∈S
+                                                   ∈S
+                                                  v/
+
+where a negative H-edge is a G-edge.
+   For each four-set D and x ∈
+                             / D, domination is
+                                               ∨
+                                     ¬fD ∨       ¬eux .                                       (5.5)
+                                                        u∈D
+
+At least one fD is true. For each selected D and unoccupied attack r ∈
+                                                                     / D, the clauses require at
+least one mD,r,u , and each true response implies
+                                      ¬eur      and f(D−{u})∪{r} .                            (5.6)
+Thus the encoded quantiﬁer is exactly
+                                       ∀D ∈ D ∀r ∈
+                                                 / D ∃u ∈ D,
+with one named guard moving along one G-edge to a selected successor. Every H-K4 is also
+selected, a sound strengthening by Lemma 2.2.
+    The anchored K4 ﬁxes four distinct colors in any proper four-coloring of H. Normalize them
+by c(j) = j for j ∈ A. For each of the 48 = 65, 536 colorings of the remaining vertices, append
+                                                 ∨
+                                         Cc =          euv .                                  (5.7)
+                                                       u<v
+                                                    c(u)=c(v)
+
+The full bank is equivalent to χ(H) > 4, hence to θ(G) > 4.
+   Finally, lexicographically order the four-bit anchor signatures
+                               (e0v , e1v , e2v , e3v ),      v = 4, . . . , 11.              (5.8)
+Permuting the eight outer vertices and all semantic variables preserves the base formula and per-
+mutes the complete coloring bank, so every orbit has an ordered representative.
+Proposition 5.3 (parent coverage). The resulting anchored parent formula is satisﬁable if and
+only if, up to relabeling one maximum independent four-set, there is a connected 12-vertex graph
+satisfying (5.2).
+Proof. Given such a graph, Proposition 5.2 supplies the static assignment, an actual eternal family
+supplies (5.5)–(5.6), and χ(H) > 4 supplies (5.7). Relabel outer vertices to satisfy (5.8).
+   Conversely, the static clauses give γ = α = 4, the selected-state clauses give an eternal four-
+family and hence γ ∞ = 4, the cut clauses give connectedness, and the complete bank gives θ > 4.
+
+   The exact parent DIMACS ﬁle has
+                                           variables         =   18, 381,
+                                             clauses         =   114, 742,
+                                                                                              (5.9)
+                                literal occurrences          =   1, 180, 016,
+                                               bytes         =   3, 992, 947.
+Its SHA-256 is
+          adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac.
+
+                                                        12
+5.2   DoubleLex orbit reduction
+Form the 8-by-4 anchor–outer incidence matrix
+
+                             Mv,j = ejv ,     v ∈ {4, . . . , 11}, j ∈ A.                    (5.10)
+
+The group S8 × S4 permutes its rows and columns. Relabeling vertices simultaneously in all graph,
+witness, family, and move variables preserves the formula. Under an anchor permutation, permuting
+the four color names restores the normalized anchor colors, so the complete bank is also invariant.
+Proposition 5.4 (DoubleLex equisatisﬁability). The parent formula is satisﬁable if and only if it
+has a model in which both the rows and columns of M are lexicographically nondecreasing.
+Proof. Choose, among the ﬁnite S8 × S4 orbit of a parent model, an image whose row-major matrix
+word is lexicographically least. If an earlier row exceeded a later row, swapping those rows would
+decrease the word. Hence the rows are ordered. If adjacent columns were inverted, swap them.
+At their ﬁrst diﬀering row, the row-major word changes from 1 to 0, with all earlier entries ﬁxed,
+again a contradiction. Thus the same least image has both orders. The reverse implication is
+immediate.
+
+    Three auxiliary-free eight-bit comparators impose the column order. They add 765 clauses and
+10,758 literals. The exact strengthened formula D therefore has
+
+                                          variables   =   18, 381,
+                                            clauses   =   115, 507,
+                                                                                             (5.11)
+                               literal occurrences    =   1, 190, 774,
+                                              bytes   =   4, 030, 657.
+
+The exact SHA-256 binding is
+          14284db1f0b9cfb37b91d834fbabac1d0ca06d36e0d2782683e35cbd04a976e7.
+An independent reconstruction reproduced both the complete parent preﬁx and the 37,710-byte
+comparator suﬃx byte for byte. Exhaustive comparator tests and semantic mutation tests checked
+the symmetry and one-guard encoding.
+
+5.3   The exact LRAT refutation
+A complete solver proof was normalized to an addition-only RUP stream of 15,783,377 bytes with
+SHA-256
+          2741335a5ed9af769f0db4bd0c03a70e414d0568681d5b8261a5667ed30b6686.
+Warning-fatal forward and backward replays both veriﬁed the stream and reported zero RAT
+lemmas. Conversion produced a 228,381,671-byte LRAT certiﬁcate with SHA-256
+          0e04eb639a3f7f7d335126d56040abb4ef11e8548770262c316a608390659263.
+The pinned, separately checked lrat-check executable accepted it.
+   The independent hostile audit reconstructed D and the normalized proof byte for byte, reran
+both RUP directions, generated a fresh byte-identical LRAT, replayed both retained and fresh
+LRATs, and rejected six mutated artifacts. Its exact verdict was
+                          ACCEPT_EXACT_DOUBLELEX_CNF_UNSAT_ONLY.
+
+                                                13
+A separate implication audit checked the transfer from exact D-UNSAT through Propositions 5.3
+and 5.4.
+
+Proof of Theorem 5.1. If a connected graph satisﬁed (5.1), equality collapse would give (5.2), and
+Proposition 5.3 would give a parent model. Proposition 5.4 would then give a model of D. The
+accepted LRAT certiﬁcate proves D unsatisﬁable, a contradiction.
+
+Remark 5.5 (connected scope). Theorem 5.1 is a connected exclusion. It does not, by itself, exclude
+every disconnected parameter-four graph of order 12. In the proof of Theorem 1.1, the published
+absence of smaller counterexamples makes a putative order-12 counterexample minimum-order, and
+Corollary 2.6 then supplies connectedness.
+
+
+6     Assembly of the order-12 frontier
+Proof of Theorem 1.1. Orders at most 11 are excluded by the explicitly assumed published com-
+putation. Suppose an order-12 counterexample G exists. It then has minimum possible order and
+is connected by Corollary 2.6. Put
+                                     k = γ(G) = γ ∞ (G).
+Corollary 2.12 leaves exactly
+                                             k ∈ {3, 4, 5}.
+Theorem 4.1 excludes k = 3; Theorem 5.1 excludes the connected k = 4 case; and Corollary 3.6
+excludes k = 5. No parameter remains.
+
+Remark 6.1 (evidentiary boundary). The k = 3 and connected k = 4 order-12 slices are backed by
+campaign certiﬁcates and independent replays. The k = 5 slice is analytic, relative to the classical
+McCuaig–Shepherd theorem and the published through-order-11 computation. The all-parameter
+statement through order 12 additionally imports that published computation at orders at most 11.
+The campaign’s audit of the published 56-graph appendix is a regression check, not a replacement
+for the original all-graph coverage.
+
+
+7     Certiﬁcates, reproduction, and provenance
+All paths below are relative to the archive root gamma_theta_eternal_domination/.
+
+7.1    Parameter-three replay
+The accepted theorem note and its two independent composition reviews are:
+    math/lemmas/order12_k3_exclusion.md
+    reviews/order12_k3_exclusion_hostile_review.md
+    reviews/order12_k3_exclusion_second_review.md.
+The claim-level acceptance record is
+
+                       results/order12_k3_exclusion_acceptance.json.
+
+From the archive root, the fail-closed full replay is:
+
+python3 -I -B repro/c035/replay.py --mode full \
+  --output /fresh/path/c035-full-replay.json
+
+                                                  14
+It validates exact source, formula, proof, checker, review, and manifest bindings before running the
+three proof replays in fresh private directories. A successful record says PASS_FULL_C035_REPLAY
+and proofs_freshly_replayed=true. The fast mode checks metadata only and explicitly returns
+no mathematical claim.
+
+7.2   Parameter-four replay
+The compact publication package is
+              certificates/order12_k4_doublelex_seed0_lrat_publication/.
+It contains the 64,288,636-byte compressed LRAT with SHA-256
+          edc0f6b76bc96b2b26677f399566ae437cc47a6fc0cc921eaff81d77b72a50da.
+Decompression is accepted only if the result has the size and hash in Section 5. From the archive
+root, the one-command replay is:
+python3 \
+  certificates/order12_k4_doublelex_seed0_lrat_publication/\
+verify_publication.py
+The veriﬁer hashes the formula, package metadata, compressed and recovered proofs, checker,
+author package, and independent review before invoking lrat-check. Its accepted terminal verdict
+is VERIFIED_EXACT_DOUBLELEX_CNF_UNSAT_ONLY. The graph transfer is separately recorded in:
+  math/lemmas/order12_k4_synthesis_target.md
+  math/lemmas/order12_k4_doublelex.md
+  reviews/order12_k4_doublelex_conditional_implication_audit/
+    REVIEW.md.
+
+7.3   Frontier and structural reviews
+The assembled theorem and the hash-bound independent review are:
+  math/lemmas/order12_frontier.md
+  reviews/order12_frontier_second_review/REVIEW.md.
+Their SHA-256 values are respectively
+          adb27204d33feb47933f2a4b1e381485b2e1b80c22b56a67b18586c4933c2b75
+and
+          875447d219e5670d66be7d6e4b7ec9f9b3b03bba4d2b169b836706b624a92926.
+The review’s exact verdict is ACCEPT_ORDER12_FRONTIER_WITH_EXPLICIT_PUBLISHED_PREMISE.
+The simplicial theorem was separately audited in
+                   reviews/simplicial_neighborhood_reduction_hostile/.
+That review found no mathematical defect and exhaustively tested the reduction on all 13,598
+graphs in the retained small-graph universe through order 8. Finite testing is supporting regression
+evidence; the proof of Theorem 3.1 is the mathematical evidence.
+    The independent-antineighborhood theorem, its exact prior-art audit, and its clean-room falsi-
+ﬁcation probe are:
+
+                                                15
+  math/lemmas/independent_antineighborhood_projection.md
+  reviews/general_neighborhood_projection_independent/REVIEW.md
+  reviews/general_neighborhood_projection_independent/probe.py.
+The probe imports no campaign evaluator and checks all 13,598 unlabeled graphs through order
+8, including 14,421 eligible independent sets and 56,166 one-guard attack obligations. Its role is
+falsiﬁcation and regression; the proof of Theorem 3.7 is the unbounded-order evidence.
+
+7.4   Research and veriﬁcation provenance
+This manuscript and the associated research artifacts were produced with substantial assistance
+from autonomous AI systems. No theorem or ﬁnite claim was accepted on model output alone.
+Mathematical reductions were assigned to separate adversarial proof reviews; exact formulas were
+independently reconstructed; proof streams were replayed by checkers that do not import the
+search implementation’s graph-transition core; and mutation tests were used to detect complement-
+sign, occupied-attack, all-guards-move, missing-successor, and malformed-certiﬁcate errors. These
+procedures reduce, but do not eliminate, the need for human inspection. Human authors remain
+responsible for any submitted version and for the archived evidence.
+
+
+Data availability
+The formulas, proofs, veriﬁers, manifests, reviews, literature-source identiﬁers, and exact hashes
+cited above are publicly archived in the tagged release gamma-theta-order12-frontier-v1.0.0.
+The corresponding human-readable project page records the active campaign status.
+
+
+Acknowledgment of limitations
+No external expert was contacted during this independent campaign. The universal conjecture
+remains open in this work. The strongest conclusion is the explicitly delimited order-12 frontier
+theorem, and its lower-order part relies on the published computation of MacGillivray–Mynhardt–
+Virgile.
+
+
+References
+ [1] Maria Chudnovsky, Neil Robertson, Paul Seymour, and Robin Thomas. The strong perfect
+     graph theorem. Annals of Mathematics, 164(1):51–229, 2006.
+
+ [2] J. F. Fink, M. S. Jacobson, L. F. Kinch, and J. Roberts. On graphs having domination number
+     half their order. Periodica Mathematica Hungarica, 16(4):287–293, 1985.
+
+ [3] Michael A. Henning, Ingo Schiermeyer, and Anders Yeo. A new bound on the domination
+     number of graphs with minimum degree two. Electronic Journal of Combinatorics, 18(1):P12,
+     2011.
+
+ [4] William F. Klostermeyer and Gary MacGillivray. Eternal dominating sets in graphs. Journal
+     of Combinatorial Mathematics and Combinatorial Computing, 68:97–111, 2009.
+
+ [5] William F. Klostermeyer and C. M. Mynhardt. Domination, eternal domination, and clique
+     covering. Discussiones Mathematicae Graph Theory, 35(2):283–300, 2015.
+
+
+                                               16
+ [6] William F. Klostermeyer and C. M. Mynhardt. Protecting a graph with mobile guards. Ap-
+     plicable Analysis and Discrete Mathematics, 10(1):1–29, 2016.
+
+ [7] Gary MacGillivray, C. M. Mynhardt, and V. Virgile. Eternal domination and clique covering.
+     Electronic Journal of Graph Theory and Applications, 10(2):603–624, 2022.
+
+ [8] William McCuaig and Bruce Shepherd. Domination in graphs with minimum degree two.
+     Journal of Graph Theory, 13(6):749–762, 1989.
+
+ [9] Charles Payan and Nguyen Huy Xuong. Domination-balanced graphs. Journal of Graph
+     Theory, 6(1):23–32, 1982.
+
+[10] Dmitrii Taletskii. The gamma-theta conjecture holds for planar graphs, 2024. Version 2.
+
+[11] Nathan Wetzler, Marijn J. H. Heule, and Warren A. Hunt, Jr. DRAT-trim: Eﬃcient check-
+     ing and trimming using expressive clausal proofs. In Theory and Applications of Satisﬁabil-
+     ity Testing—SAT 2014, volume 8561 of Lecture Notes in Computer Science, pages 422–429.
+     Springer, 2014.
+
+
+
+
+                                               17
+

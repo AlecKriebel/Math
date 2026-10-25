@@ -1,0 +1,653 @@
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+Erdős Problem 84 · Alec Kriebel Research
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+    
+
+      
+Alec Kriebel Research
+
+      
+
+        
+Problem
+
+        
+Route
+
+        
+Findings
+
+        
+Pause
+
+        
+Reproduce
+
+        
+Source
+
+      
+
+    
+
+    
+
+      
+Research notebook · Paused 24 July 2026 · Problem remains open
+
+      
+How many cycle-length sets can graphs have?
+
+      
+An intensive research run on Erdős Problem 84 by Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol
+
+      
+Checkpoint prepared: 
+24 July 2026
+
+    
+
+  
+
+
+  
+
+    
+
+      
+!
+
+      
+
+        
+No solution or asymptotic improvement is claimed.
+
+        
+The target \(f(n)/2^{n/2}\to\infty\) remains open. This page is an unreviewed research checkpoint, not a paper announcing a result. It separates all-\(m\) lemmas, exact finite computations, conjectures, and refuted ideas.
+
+      
+
+    
+
+
+    
+
+      
+
+    
+
+
+    
+
+      
+
+        
+The problem, in plain language
+
+        
+For a graph \(G\) on \(n\) vertices, its cycle set records exactly which lengths \(3,\ldots,n\) occur among its cycles. Let \(f(n)\) count how many different cycle sets are possible.
+
+        
+Erdős and Faudree asked two asymptotic questions. The upper-bound question \(f(n)=o(2^n)\) is solved. The lower-bound question is still open:
+
+        
+
+          \[
+          \frac{f(n)}{2^{n/2}}\longrightarrow\infty\;?
+          \]
+        
+
+        
+The classical fan construction gives the \(2^{n/2}\) scale: take a path, add one apex, and choose its spokes. The remaining challenge is to obtain a factor that grows without bound.
+
+        
+
+          
+Recognized status
+Open lower-bound problem
+
+          
+Our global result
+No bound improved
+
+          
+Program state
+Paused after a bounded test
+
+        
+
+      
+
+
+      
+
+        
+The protected-signature route
+
+        
+For \(X\subseteq\{0,\ldots,N\}\), write
+        \(\Delta(X)=\{|x-y|:x,y\in X,\ x\ne y\}\). A fan whose spokes meet a path at the positions in \(X\) has cycle-length set exactly \(\Delta(X)+2\). The graph problem can therefore be attacked by constructing many distinct positive-difference supports.
+
+        
+The program used a protected central interval to encode finite signature families \(\mathcal F_m(P)\). With
+        \(q_m(P)=|\mathcal F_m(P)|\) and
+        \(S_m=\sum_{P\subseteq[2m]}q_m(P)\), the geometric construction proves that divergence of \(T_m=S_m/8^m\) would solve the Erdős lower-bound problem.
+
+        
+
+          
+Proved recurrence in this framework.
+
+          
+
+            \[
+            S_{m+1}\geq8S_m+2E_m,\qquad
+            T_{m+1}\geq T_m+\frac{E_m}{4\cdot8^m},
+            \]
+          
+
+          
+where \(E_m\) is an exact union-shadow gain. Thus any proof that \(\sum_m E_m/8^m\) diverges would finish this route.
+
+        
+
+
+        
+The dependency chain
+
+        
+
+          
+
+            
+Stage
+Status
+Role
+
+            
+
+              
+Fan and protected-signature reduction
+Proved internally
+Turns difference supports into graph cycle sets.
+
+              
+\(S_{m+1}\geq8S_m+2E_m\)
+Proved internally
+Converts shadow gain into normalized growth.
+
+              
+\(\sum_{P\ni1}R_m(P)\gg8^m/m\)
+Missing
+Would provide trace mass at the necessary scale.
+
+              
+Trace-to-excess down-set inequality
+Missing
+Would transport trace mass into \(E_m\).
+
+              
+\(E_m\gg8^m/m\)
+Conjectural
+Would make the normalized gain nonsummable and solve the problem.
+
+            
+
+          
+
+        
+
+        
+The last experiment addressed only the fourth row. Even a complete success there would leave the third row as a separate theorem-strength gap.
+
+      
+
+
+      
+
+        
+What survived the internal audit
+
+
+        
+An all-\(m\) twin-boundary identity
+
+        
+Fix \(P\ni1\). Let \(\mathcal A_P\) be the signatures avoiding the bottom marker \(-m\), let \(\mathcal H_P\) be the traces obtained from signatures containing \(-m\), and put \(U=V(P)=m+1-P\). Define
+
+        
+
+          \[
+          \mathcal B_P=(\mathcal H_P\vee U)\setminus\mathcal H_P,
+          \qquad
+          d(P)=|\mathcal A_P|-|\mathcal A_P\vee U|.
+          \]
+        
+
+        
+
+          
+Twin-boundary lemma.
+ For every \(m\) and every \(P\ni1\), the two positive boundary families in the safe/unsafe decomposition are the same underlying family, and
+
+          
+
+            \[
+            g_m(P)=2|\mathcal B_P|-d(P).
+            \]
+          
+
+          
+Moreover, \(A\mapsto A\cup\{m\}\) canonically embeds each safe collision fibre into the corresponding unsafe fibre and commutes with union by \(U\).
+
+        
+
+        
+The proof is short. The universal bottom generator is
+        \(G_{m,P}(-m)=\{-m,m\}\), so a safe signature \(A\) maps to
+        \(A\cup\{m\}\in\mathcal H_P\). Because \(1\in P\), we have \(m\in U\), hence
+        \((A\cup\{m\})\cup U=A\cup U\). Therefore
+        \(\mathcal A_P\vee U\subseteq\mathcal H_P\vee U\), which identifies the two positive boundary families and gives the formula.
+
+        
+This is an all-\(m\) structural simplification within the framework, but it does not perform the required downward transport between different parameters \(P\). At \(m=3\), a collision deficit can already occur while \(\mathcal B_P\) is empty.
+
+
+        
+Exact finite counts
+
+        
+Independent implementations reproduced the reference values through \(m=7\); specialized exact programs extended the full shadow totals through \(m=10\). The trace column is \(\sum_{P\ni1}R_m(P)\).
+
+        
+
+          
+
+            
+\(m\)
+\(S_m\)
+\(E_m\)
+Trace total
+\(mE_m/S_m\)
+
+            
+
+              
+5
+93,198
+30,527
+4,986
+1.637750
+
+              
+6
+854,156
+234,374
+35,594
+1.646355
+
+              
+7
+7,674,138
+1,698,857
+254,496
+1.549620
+
+              
+8
+67,615,730
+12,335,479
+1,751,168
+1.459480
+
+              
+9
+586,193,940
+89,453,245
+11,921,862
+1.373401
+
+              
+10
+5,021,202,766
+626,972,078
+83,431,916
+1.248649
+
+            
+
+          
+
+        
+
+        
+The inequality \(mE_m\geq S_m\) holds in every exact case \(2\leq m\leq10\). If it held eventually, the recurrence would give \(T_m\gg m^{1/4}\) and solve the problem. Nine cases are evidence, not an asymptotic theorem.
+
+
+        
+The bounded Hall experiment
+
+        
+The twin-boundary lemma turns the desired bridge into a congestion-two charge on one boundary family. We tested whether each collision unit could be matched to a boundary unit after deleting at most one parameter and making a bounded edit to its selected generator rows.
+
+        
+
+          
+
+            
+\(m\)
+Collision units
+One-local-edit match
+Deficiency
+Hamming-two match
+Repair depth
+
+            
+
+              
+6
+11,155
+11,135
+20
+11,155 — full
+At most 2
+
+              
+7
+101,623
+101,355
+268
+101,623 — full
+At most 3
+
+            
+
+          
+
+        
+
+        
+The one-local-edit mechanism is therefore exactly false. The experiment's sole enlargement, row-selection Hamming distance at most two, has exact full matchings for \(3\leq m\leq7\). We retain the all-\(m\) Hamming-two statement as a conjecture.
+
+        
+What did not appear was the required uniform rule. From \(m=6\) to \(m=7\), the Hall deficiency grew \(20\to268\), maximum repair depth \(2\to3\), coarse repair templates \(7\to32\), and alternating transition types \(3\to21\). Double additions appeared in addition to double removals. The finite matchings became less canonical, not more.
+
+      
+
+
+      
+
+        
+Specific claims falsified, and routes weakened
+
+        
+Negative results were recorded as aggressively as positive ones:
+
+        
+
+          
+The attractive collision estimate \(Q_m\leq mW_m\) fails at \(m=8\). More broadly, \(Q_m/W_m=8.28,15.58,30.39\) at \(m=8,9,10\), making the proposed \(O(mW_m)\) route empirically implausible.
+
+          
+The complementary-rank inequality fails at \(m=9\); surplus must move across more than one paired rank.
+
+          
+The proposed orbit constant \(c=1/2\) fails at \(m=10\). The normalized orbit ratios for explicit four-run words are consistent with decay of order \(1/m\), threatening the existence of any fixed positive constant.
+
+          
+The pointwise bridge \(e_0(P)\geq R_m(P)\) is false, as is a stronger “skew shadow” condition tested later.
+
+          
+The representation-aware one-local-edit Hall graph fails exactly at both prescribed gates.
+
+        
+
+        
+None of these finite trends disproves every possible argument of the same broad kind. They do disprove the specific recorded claims and explain why the program did not continue by increasing \(m\).
+
+      
+
+
+      
+
+        
+Why the program is paused
+
+        
+The experiment met its diagnostic goal: it found a correct all-\(m\) identity, falsified an overly local mechanism, and isolated a sharper conjecture. It did not produce the canonical rule, bounded-congestion theorem, or infinite Hall lemma required for another tranche.
+
+        
+More importantly, even a proof of the Hamming-two conjecture would address only the trace-to-excess bridge. The separate trace lower bound would remain open. This is not one hard lemma away from Erdős Problem 84; it is at least two global mechanisms away.
+
+
+        
+Retain
+
+        
+
+          
+the twin-boundary lemma and canonical fibre embedding;
+
+          
+the exact falsification of the one-local-edit mechanism;
+
+          
+the all-\(m\) Hamming-two matching as a clearly labeled conjecture;
+
+          
+the proof program, exact data, independent checks, and claims ledger.
+
+        
+
+
+        
+Stop
+
+        
+
+          
+\(m=8\) Hall enumeration;
+
+          
+larger edit radii;
+
+          
+more repair-template mining.
+
+        
+
+
+        
+Resume only if
+
+        
+
+          
+an abstract Hall or uncrossing theorem proves the Hamming-two matching uniformly;
+
+          
+a direct canonical congestion-two charge appears;
+
+          
+the trace lower bound is proved, making the bridge the final missing step; or
+
+          
+a quantitatively large class already yields a nonsummable contribution to \(E_m/8^m\).
+
+        
+
+
+        
+Why there is no new paper
+
+        
+The twin-boundary identity is clean but short and has no independent asymptotic consequence. The Hall success is finite. The central bound remains unproved, and construction-level novelty has not been cleared against the closely related 2026 Dunås thesis. Publishing a standalone paper now would overstate the contribution, so the appropriate artifact is this versioned research report.
+
+      
+
+
+      
+
+        
+Reproduce and inspect
+
+        
+The public dossier includes discovery programs, independent verifiers, machine-readable reference values, and research logs. Start with:
+
+        
+
+          
+STATUS.md
+ — paused-state report, published frontier, exact findings, and unresolved gaps.
+
+          
+RESUME.md
+ — precise stop boundary and theorem-level restart criteria.
+
+          
+CLAIMS_LEDGER.md
+ — every central statement labeled proved, exactly verified, conjectural, refuted, or not established.
+
+          
+proofs/PROTECTED_CONSTRUCTION.md
+ — fan reduction, protected realization, and shadow recurrence.
+
+          
+proofs/SHADOW_PROGRAM.md
+ — global target, down-set bridge, twin-boundary proof, and Hall formulation.
+
+          
+experiments/hall_matching/CONCLUSION.md
+ — bounded experiment verdict and publication classification.
+
+          
+outputs/reference_counts.json
+ — machine-readable exact reference values.
+
+          
+erdos_084_cycle_sets/
+ — complete source dossier.
+
+        
+
+        
+The reference Python and independent C++ implementations agree through \(m=7\). The full Hall graph at \(m=6\) was independently reconstructed in Python using different set representations and a different matching algorithm. The \(m=7\) representation graph used about 715 MB of memory, so no additional hardware is needed to reproduce the bounded checkpoint.
+
+      
+
+
+      
+
+        
+Published context and novelty boundary
+
+        
+
+          
+Erdős Problem 84
+ records both questions, the classical \(2^{n/2}\)-scale lower bound, and the lower-bound problem's open status.
+
+          
+Jacques Verstraëte, 
+“On the number of sets of cycle lengths”
+ (2004), solved the upper-bound question.
+
+          
+Rajko Nenadov, 
+“Improved bound on the number of cycle sets”
+ (2026), proved the current upper bound \(f(n)\leq2^{\,n-\Omega(\sqrt n/\log^{3/2}n)}\) and states on article page 2 that the best known lower bound remains Faudree's construction.
+
+          
+Alvin Dunås, 
+“The number of sets of cycle lengths for graphs on \(n\) vertices”
+ (2026), studies a closely related computable lower-bound route and is the principal overlap risk.
+
+        
+
+        
+The Dunås record and indexed abstract were accessible during this checkpoint, but repeated direct attempts to retrieve the full thesis timed out. Accordingly, this report makes no originality or priority claim for the difference-support reduction, protected signature family, sequence \(S_m\), recurrence, shadow statistic \(E_m\), or associated diagnostics. The twin-boundary lemma is described only as an all-\(m\) theorem established within this program, pending a full literature comparison.
+
+      
+
+
+      
+
+        
+Scope and AI-assistance disclosure
+
+        
+This page is a checkpoint, not a paper or a claim of priority. The exploratory mathematics, proof drafting, programs, audits, and website were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently validate the mathematics. The work has not been peer reviewed.
+
+      
+
+    
+
+  
+
+
+  
+
+    
+Alec Kriebel Research
+ · 
+Research source
+ · Paused and unresolved
+  
+
+
+
+
+

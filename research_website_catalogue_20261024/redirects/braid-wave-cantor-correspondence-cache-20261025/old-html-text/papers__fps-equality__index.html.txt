@@ -1,0 +1,255 @@
+
+
+
+
+
+
+
+
+Equality in the Fradelizi–Paouris–Schütt second-moment inequality
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Alec Kriebel Research
+Verify & download
+
+
+Convex geometry · Unrefereed preprint
+
+
+Equality in the Fradelizi–Paouris–Schütt second-moment inequality
+
+
+Alec Kriebel · 
+ORCID
+ · Version 1.0.0 · 23 September 2026
+
+
+The equality case for arbitrary convex bodies is exactly the one conjectured: a simplex with every vertex on the sphere.
+
+
+Read the 4-page proof
+Proof & verification package
+Zenodo upload kit
+
+
+
+
+
+
+
+
+The complete equality class
+
+
+Let 
+K
+ be a compact convex body with nonempty interior in ℝ
+n
+, with 
+n
+ ≥ 1 and 
+r
+ > 0. Suppose every extreme point has Euclidean norm at least 
+r
+. Write 
+g
+K
+ for its volume centroid and 
+C
+2
+(
+K
+) for the average squared Euclidean norm of a point chosen uniformly from 
+K
+.
+
+
+C
+2
+(K) ≥ [r² + (n + 1) ‖g
+K
+‖²] / (n + 2)
+Equality holds if and only if
+ 
+K
+ is a nondegenerate simplex whose vertices all have norm 
+r
+.
+
+
+The inequality and the polytope equality case are due to 
+Fradelizi, Paouris, and Schütt
+. This note proves the conjecture following their Theorem 1.1 for general convex bodies, also recorded in the 
+2009 Oberwolfach report, p. 2908
+ and catalogued as 
+OWR-4136-011
+.
+
+
+
+
+
+
+Why equality forces one simplex
+
+
+Partition the body.
+ Add a dense finite or countable collection of extreme points one at a time. Triangulate each visible facet of the previous hull, then cone its simplices to the new point. The pieces have disjoint interiors, use only extreme-point vertices, and cover the body up to a set of volume zero.
+Keep the deficit exactly.
+ It splits into two nonnegative quantities: the excess of the vertices' squared norms over 
+r
+², and the variance of the simplices' centroids.
+Use disjoint interiors.
+ Equality makes every simplex centroid equal to 
+g
+K
+. A simplex contains its centroid in its interior, so two distinct pieces cannot share that centroid. Only one simplex remains.
+
+
+
+
+Two simplex pieces have distinct interior centroids
+A square is divided into two triangles by a diagonal. Each triangle's centroid is in its own interior, and the centroids are separated. This creates a positive variance contribution.
+
+
+
+
+
+
+
+
+c₁
+c₂
+
+
+Two pieces → distinct centroids
+Distinct centroids → positive deficit
+Equality leaves just one simplex.
+
+
+
+
+The square illustrates strictness. For a convex body satisfying the theorem’s hypotheses, two fixed pieces retained in the partition give a positive lower bound that survives approximation.
+
+
+
+
+Regularity is unnecessary. Even the nonregular triangle with vertices (1, 0), (0, 1), (−1, 0) attains the bound: its centroid is (0, ⅓) and its second moment is ⅓. For the weaker bound 
+C
+2
+(
+K
+) ≥ 
+r
+²/(
+n
+ + 2), equality additionally requires centroid zero.
+
+
+
+
+
+
+A short proof, with checkable support
+
+
+The universal result follows from the written proof. The accompanying script independently integrates simplex polynomials and polygon boundary moments, then checks the finite deficit and shell identities using exact rational arithmetic.
+
+
+python3 verification/verify.py
+
+
+Extract the proof package and run this from its project folder. Python 3.9+ is sufficient; no packages or network are needed. 
+298 checks across 18 cases pass
+, including dimensions 1–6 and an auxiliary coplanar-facet test. These finite checks do not prove the infinite geometric argument.
+
+
+Material
+Purpose
+
+
+Paper
+ · 
+LaTeX source
+Complete theorem and proof, four pages
+
+
+Second proof route
+A fixed positive deficit through finite approximation
+
+
+Verification report
+ · 
+Exact checker
+Proof obligations, finite checks, and their limits
+
+
+Preprint review record
+ · 
+Round 1
+ · 
+Round 2
+Fresh adversarial reviews and the final readiness assessment
+
+
+Priority audit
+ · 
+Source match
+Primary-source comparison and dated search record
+
+
+Complete proof package
+Manuscript, code, audit notes, licenses, and hashes
+
+
+Zenodo kit
+ · 
+Upload instructions
+Paper and supporting archive, ready for manual deposit
+
+
+Zenodo metadata
+ · 
+Checksums
+Reusable fields and file integrity
+
+
+
+
+
+
+Status and attribution
+
+
+Two additional fresh adversarial reviews, completed sequentially on 23 September 2026, found no actionable mathematical or preprint-presentation issues. The four-page paper and exact checker are unchanged. The 
+review record
+ includes the scope, both reports, and the disposition of optional suggestions.
+
+
+Independent AI proof audits found no mathematical gap. A bounded literature search completed on 23 September 2026 found no earlier resolution, including in four citing papers identified through citation indexes. It does not certify global priority or exclude unpublished work.
+
+
+This is an unrefereed, AI-assisted preprint, prepared with OpenAI Codex from prior AI-assisted work supplied by the author. The audits are not external human peer review or proof-assistant certification. FPS receive credit for the inequality, simplex identity, and polytope classification. The new conclusion is the equality classification for arbitrary convex bodies. The Zenodo kit has not been deposited; no DOI has been assigned.
+
+
+
+
+© 2026 Alec Kriebel · Text: CC BY 4.0 · Code: MIT · 
+Repository and audit trail
+
+
+

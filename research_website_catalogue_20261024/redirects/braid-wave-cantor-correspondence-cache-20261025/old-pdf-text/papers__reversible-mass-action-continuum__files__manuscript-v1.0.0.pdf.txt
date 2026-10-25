@@ -1,0 +1,448 @@
+       A reversible three-species mass-action continuum without a
+                              common factor
+
+                                                 Alec Kriebel
+
+            Version 1.0.0 — 2 August 2026 UTC — DOI: 10.5281/zenodo.21753316
+
+
+Contents
+1 Abstract                                                                                                      1
+
+2 Theorem                                                                                                       2
+
+3 The exact network                                                                                             2
+
+4 Mass-action vector field                                                                                      3
+
+5 Graph and stoichiometry                                                                                       3
+
+6 The positive algebraic equilibrium continuum                                                                  3
+
+7 Exact vanishing identities                                                                                    5
+
+8 No common factor and the steady ideal                                                                         5
+
+9 Why this is not a disguised common-factor example                                                             6
+
+10 Minimality and structural obstructions                                                                       7
+   10.1 Three species are necessary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+   10.2 Why full stoichiometric rank is necessary here . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
+   10.3 Complex and reaction counts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     7
+
+11 Post-solution priority note                                                                                  8
+
+12 Exact verification                                                                                           8
+
+
+1    Abstract
+We give a reversible mass-action system on three species with one linkage class, ten complexes, twenty
+directed reactions, and positive integer rate constants. Its stoichiometric subspace is all of ℝ3 . The unique
+positive compatibility class therefore contains an entire positive algebraic ellipse of equilibria. Nevertheless,
+the three coordinate polynomials of the mass-action vector field have greatest common divisor 1 over ℚ[𝑥, 𝑦, 𝑧].
+The equilibrium continuum is a height-two component of the steady-state ideal, rather than a hypersurface
+shared by the vector-field coordinates. In fact, the steady-state ideal is radical: over the algebraic closure
+its variety is the conic together with fifteen reduced isolated points. We also prove that three is the smallest
+possible number of species and that, for three species and one linkage class, stoichiometric rank two would
+force a common factor.
+
+
+
+
+                                                        1
+Reversible mass-action equilibrium continuum                                                     Version 1.0.0
+
+
+2     Theorem
+There is a reversible mass-action system on species 𝑋, 𝑌 , 𝑍 with:
+    • one linkage class;
+    • ten complexes and ten reversible pairs (twenty directed reactions);
+    • positive integer rate constants;
+    • stoichiometric subspace 𝑆 = ℝ3 ;
+    • a compact positive real algebraic curve of equilibria; and
+    • gcd(𝐹1 , 𝐹2 , 𝐹3 ) = 1 in ℚ[𝑥, 𝑦, 𝑧].
+Its steady-state ideal is radical of dimension one and has exactly two minimal primes over ℚ: the conic prime
+and one maximal ideal of degree fifteen.
+In particular, with
+
+                                                      3 1
+                                                𝑥0 = ( , , 1) ,
+                                                      2 2
+
+the compatibility class 𝑃 (𝑥0 ) = ℝ3>0 contains infinitely many distinct positive equilibria and a connected
+positive-dimensional algebraic continuum.
+
+
+3     The exact network
+Index the complexes as follows.
+
+                                    index    exponent vector    complex
+                                         0          (0, 0, 0)   0
+                                         1          (0, 0, 1)   𝑍
+                                         2          (0, 0, 3)   3𝑍
+                                         3          (0, 1, 1)   𝑌 +𝑍
+                                         4          (0, 3, 0)   3𝑌
+                                         5          (1, 0, 1)   𝑋+𝑍
+                                         6          (1, 1, 0)   𝑋+𝑌
+                                         7          (1, 1, 1)   𝑋+𝑌 +𝑍
+                                         8          (2, 1, 0)   2𝑋 + 𝑌
+                                         9          (3, 0, 0)   3𝑋
+
+
+For every row below, both displayed directions are reactions. The third column is the rate in the left-to-right
+direction, and the fourth is the rate in the right-to-left direction.
+
+            indices               reversible pair                              𝜅𝑖→𝑗                       𝜅𝑗→𝑖
+              0,1                 0⇄𝑍                                        845740                   7732494
+              0,4                 0 ⇄ 3𝑌                                     702464                      3920
+              0,6                 0⇄𝑋+𝑌                                      437290                   4380128
+              1,7                 𝑍 ⇄𝑋+𝑌 +𝑍                                 1405575                      5600
+              2,4                 3𝑍 ⇄ 3𝑌                                    706384                    900816
+              2,7                 3𝑍 ⇄ 𝑋 + 𝑌 + 𝑍                            1518755                   6873328
+              2,9                 3𝑍 ⇄ 3𝑋                                      3920                    896896
+              3,4                 𝑌 + 𝑍 ⇄ 3𝑌                                3863552                      3920
+              5,9                 𝑋 + 𝑍 ⇄ 3𝑋                                3863552                     15680
+              8,9                 2𝑋 + 𝑌 ⇄ 3𝑋                               4346496                    658560
+
+
+
+                                                           2
+Reversible mass-action equilibrium continuum                                                   Version 1.0.0
+
+
+This table is also supplied as network.csv, with one row per directed reaction.
+
+
+4     Mass-action vector field
+Directly summing
+
+
+                                                𝜅𝑦→𝑦′ 𝑥𝑦 (𝑦′ − 𝑦)
+
+over the twenty directed reactions gives 𝐹 = (𝐹1 , 𝐹2 , 𝐹3 ), where
+
+                    𝐹1 = − 3380608𝑥3 + 4346496𝑥2 𝑦 − 6878928𝑥𝑦𝑧 − 4380128𝑥𝑦
+                         + 7727104𝑥𝑧 + 1530515𝑧 3 + 1405575𝑧 + 437290,
+
+                    𝐹2 = 658560𝑥3 − 4346496𝑥2 𝑦 − 6878928𝑥𝑦𝑧 − 4380128𝑥𝑦
+                         − 2722048𝑦3 + 7727104𝑦𝑧 + 3637907𝑧 3 + 1405575𝑧 + 2544682,
+
+                    𝐹3 = 2706368𝑥3 + 13746656𝑥𝑦𝑧 − 3863552𝑥𝑧 + 2706368𝑦3
+                         − 3863552𝑦𝑧 − 5168422𝑧 3 − 7732494𝑧 + 845740.
+
+The field is visibly not identically zero; for example,
+
+
+                                  𝐹 (1, 1, 1) = (807316, −2353772, −622888).
+
+
+5     Graph and stoichiometry
+Every undirected edge in the table occurs in both directions, so the network is reversible. The underlying
+graph is connected. For example, starting at complex 0 one reaches 1, 4, and 6; from 1 one reaches 7; from
+7 one reaches 2; from 2 one reaches 9; and 4 and 9 lead to the remaining vertices 3, 5, and 8. Thus there
+is exactly one linkage class. The graph has ten vertices and ten undirected edges, so it has one undirected
+cycle.
+Three reaction differences are
+
+
+                    0 → 𝑍 = (0, 0, 1),      0 → 3𝑌 = (0, 3, 0),       0 → 𝑋 + 𝑌 = (1, 1, 0).
+
+Their determinant is −3. Hence
+
+
+                                                    𝑆 = ℝ3 .
+
+There are no conservation laws, and every positive compatibility class is the whole positive orthant.
+
+
+6     The positive algebraic equilibrium continuum
+Define
+
+
+                                               𝐿=𝑧−𝑥−𝑦+1
+
+and
+
+
+                                   𝑄 = 7𝑥2 − 2𝑥𝑦 − 16𝑥 + 7𝑦2 − 16𝑦 + 16.
+
+
+                                                          3
+Reversible mass-action equilibrium continuum                                                       Version 1.0.0
+
+
+The ideal 𝔭 = (𝐿, 𝑄) is prime of height two. Indeed, eliminating 𝑧 using 𝐿 leaves the plane conic 𝑄 = 0. Its
+homogenized symmetric matrix is
+
+                                                7 −1 −8
+                                              ⎛
+                                              ⎜−1 7 −8⎞  ⎟,
+                                              ⎝ −8 −8 16 ⎠
+
+whose determinant is −256. Thus the projective conic is nonsingular and irreducible, even over the algebraic
+closure.
+An exact parametrization is
+
+                                               𝑑(𝑡) = 𝑡2 − 𝑡 + 1,
+                                                      𝑡2 + 3
+                                               𝑥(𝑡) =        ,
+                                                      2𝑑(𝑡)
+                                                      3𝑡2 + 1                                                 (1)
+                                               𝑦(𝑡) =          ,
+                                                       2𝑑(𝑡)
+                                                      𝑡2 + 𝑡 + 1
+                                               𝑧(𝑡) =            .
+                                                         𝑑(𝑡)
+
+Direct expansion gives
+
+
+                                  𝐿(𝑥(𝑡), 𝑦(𝑡), 𝑧(𝑡)) = 𝑄(𝑥(𝑡), 𝑦(𝑡), 𝑧(𝑡)) = 0.
+
+The positivity is exact:
+
+                                    1 2 3                                  1 2 3
+                         𝑑(𝑡) = (𝑡 − ) + > 0,             𝑡2 + 𝑡 + 1 = (𝑡 + ) + > 0,
+                                    2   4                                  2   4
+
+and the other two numerators are 𝑡2 + 3 and 3𝑡2 + 1. Thus every point in (1) is positive for every real 𝑡. On
+the open interval 𝐼 = (−1, 1),
+
+                                                        2(1 − 𝑡2 )
+                                             𝑧′ (𝑡) =              > 0,
+                                                          𝑑(𝑡)2
+
+so the parametrized points are pairwise distinct. The image of 𝐼 is connected and one-dimensional, and it
+contains 𝑥(0) = (3/2, 1/2, 1) = 𝑥0 .
+In fact the entire real conic is positive. On 𝐿 = 0, write 𝑠 = 𝑥 + 𝑦 = 𝑧 + 1 and 𝑎 = 𝑥 − 𝑦. The equation
+𝑄 = 0 is equivalently
+
+
+                                         4(𝑎2 + (𝑧 − 1)2 ) = (𝑧 + 1)2 .
+
+It follows that 1/3 ≤ 𝑧 ≤ 3 and |𝑎| ≤ (𝑧 + 1)/2, which implies 𝑥, 𝑦, 𝑧 > 0. Its real locus is therefore a compact
+positive ellipse.
+
+
+
+
+                                                          4
+Reversible mass-action equilibrium continuum                                                    Version 1.0.0
+
+
+7     Exact vanishing identities
+The continuum is not certified merely by sampling. For the following polynomials 𝐴𝑖 , 𝐵𝑖 , exact expansion
+gives
+
+                                      𝐹𝑖 = 𝐴𝑖 𝐿 + 𝐵𝑖 𝑄        (𝑖 = 1, 2, 3).                               (2)
+
+They are
+
+                          𝐴1 = 1530515𝑥2 − 3817898𝑥𝑦 + 1530515𝑥𝑧 + 4666074𝑥
+                               + 1530515𝑦2 + 1530515𝑦𝑧 − 3061030𝑦
+                               + 1530515𝑧 2 − 1530515𝑧 + 2936090,
+                          𝐵1 = − 264299𝑥 + 218645𝑦 − 156175,
+                          𝐴2 = 3637907𝑥2 + 396886𝑥𝑦 + 3637907𝑥𝑧 − 7275814𝑥
+                               + 3637907𝑦2 + 3637907𝑦𝑧 + 451290𝑦
+                               + 3637907𝑧 2 − 3637907𝑧 + 5043482,
+                          𝐵2 = 613781𝑥 + 130837𝑦 − 156175,
+                          𝐴3 = − 98(52739𝑥2 − 34794𝑥𝑦 + 52739𝑥𝑧 − 66054𝑥
+                                   + 52739𝑦2 + 52739𝑦𝑧 − 66054𝑦
+                                   + 52739𝑧 2 − 52739𝑧 + 131642),
+                          𝐵3 = − 98(3589𝑥 + 3589𝑦 − 8767).
+
+Combining (1) and (2) proves 𝐹𝑖 (𝑥(𝑡)) = 0 identically for every real 𝑡, and hence in particular on (−1, 1).
+
+
+8     No common factor and the steady ideal
+An exact multivariate gcd computation over ℚ gives
+
+
+                                gcd(𝐹1 , 𝐹2 ) = gcd(𝐹1 , 𝐹3 ) = gcd(𝐹2 , 𝐹3 ) = 1.
+
+Consequently
+
+
+                                              gcd(𝐹1 , 𝐹2 , 𝐹3 ) = 1.
+
+As an independent factorization check, each coordinate is, up to a nonzero rational constant, an irreducible
+cubic in ℚ[𝑥, 𝑦, 𝑧]. The verifier performs both the gcd calculation and the exact factorization.
+Let
+
+
+                                        𝐾 = (𝐹1 , 𝐹2 , 𝐹3 ) ⊂ ℚ[𝑥, 𝑦, 𝑧].
+
+Identity (2) says 𝐾 ⊂ 𝔭 = (𝐿, 𝑄), where 𝔭 is a height-two prime. Thus ht 𝐾 ≤ 2. On the other hand, in the
+UFD ℚ[𝑥, 𝑦, 𝑧], a height-one prime containing 𝐾 would be generated by a nonconstant irreducible divisor of
+all three 𝐹𝑖 . The gcd calculation rules this out, so ht 𝐾 ≥ 2. Therefore
+
+
+                                     ht 𝐾 = 2,       dim ℚ[𝑥, 𝑦, 𝑧]/𝐾 = 1.
+
+
+
+
+                                                        5
+Reversible mass-action equilibrium continuum                                                       Version 1.0.0
+
+
+Moreover, 𝔭 is a minimal prime of 𝐾, so the positive conic is an actual irreducible steady-state component.
+At (3/2, 1/2, 1), the exact Jacobian 𝐷𝐹 has rank two. Hence the component is smooth and reduced locally
+at that point.
+The full radical can also be determined exactly. Put
+
+                                                              7 2 1    7
+                                     𝐷 = 𝑦2 − 𝑦𝑧 − 𝑦 +           𝑧 − 𝑧+ .
+                                                              16    8  16
+
+Modulo 𝐿, this is 𝑄/16, so 𝔭 = (𝐿, 𝐷). The unique reduced lexicographic Gröbner basis of 𝐾, for 𝑥 > 𝑦 > 𝑧,
+has the exactly verified form
+
+
+                                            𝐺0 ,        𝐷𝐻,        𝐷𝑅,
+
+where 𝐺0 is monic linear in 𝑥, 𝐻 is linear in 𝑦 with nonzero constant leading coeﬀicient, and 𝑅 ∈ ℚ[𝑧] is an
+irreducible polynomial of degree fifteen. Define
+
+
+                                                   𝔮 = (𝐺0 , 𝐻, 𝑅).
+
+Its reduced lexicographic basis is triangular of the form 𝑥 + 𝑟𝑥 (𝑧), 𝑦 + 𝑟𝑦 (𝑧), 𝑅(𝑧), so 𝔮 is maximal of degree
+fifteen. The exact verifier checks that 𝐷 ∉ 𝔮, hence 𝔭 + 𝔮 = (1), and reduces every product of a generator of
+𝔭 with a generator of 𝔮 to zero modulo the Gröbner basis of 𝐾. Since also 𝐾 ⊆ 𝔭 ∩ 𝔮, these checks certify
+
+                                                                   √
+                                            𝐾 = 𝔭𝔮 = 𝔭 ∩ 𝔮 =           𝐾.
+
+Because 𝑅 is separable in characteristic zero, over the algebraic closure the second component consists of
+fifteen distinct points. Thus the full complex steady-state variety is the nonsingular conic, disjoint from
+fifteen reduced isolated points. The large coeﬀicients of 𝐺0 , 𝐻, 𝑅 are not printed; the verifier derives them
+canonically from the displayed 𝐹𝑖 and checks this decomposition using exact rational arithmetic.
+
+
+9     Why this is not a disguised common-factor example
+The mechanism is genuinely height two:
+
+
+                                                    𝐹𝑖 ∈ (𝐿, 𝑄),
+
+but no nonconstant polynomial divides all coordinates. In particular:
+    • the stoichiometric class is three-dimensional, not a lower-dimensional plane on which the field vanishes
+      identically;
+    • every species occurs in the reactions and the reaction differences span all three coordinate directions;
+    • the three coordinate polynomials are linearly independent and pairwise coprime;
+    • the field is not identically zero—for example, 𝐹 (1, 1, 1) ≠ 0 at a point off the conic; and
+    • the Jacobian has rank two at a point of the conic, so two independent steady equations cut out the
+      local equilibrium curve.
+Thus the continuum does not come from an absent species, a duplicated coordinate, a zero vector field on a
+class, or multiplication of a smaller field by one common polynomial.
+
+
+
+
+                                                          6
+Reversible mass-action equilibrium continuum                                                        Version 1.0.0
+
+
+10 Minimality and structural obstructions
+10.1    Three species are necessary
+No system on one or two species can satisfy the continuum-plus-gcd-one target. For one species, a positive-
+dimensional equilibrium set forces the single coordinate polynomial to vanish identically. For two species:
+  • if dim 𝑆 = 1, all reaction vectors are collinear, so 𝐹 = 𝑣 𝑓(𝑥, 𝑦) for a fixed vector 𝑣 and one scalar
+    polynomial 𝑓; any equilibrium makes 𝑓 a common nonconstant factor, unless the whole field is zero;
+  • if dim 𝑆 = 2, the compatibility class is open in ℝ2 . A positive-dimensional semialgebraic common-zero
+    set implies dim ℚ[𝑥, 𝑦]/(𝐹1 , 𝐹2 ) ≥ 1. Unless both coordinates vanish, a height-one prime contains the
+    steady ideal. Factoriality of ℚ[𝑥, 𝑦] then gives a nonconstant irreducible polynomial dividing both
+    coordinates.
+The construction therefore attains the minimum possible number of species.
+
+10.2    Why full stoichiometric rank is necessary here
+Suppose a three-species network has one linkage class and dim 𝑆 = 2. Choose a primitive integer vector 𝑤
+spanning 𝑆 ⟂ . Connectivity of the complex graph implies that 𝑤 ⋅ 𝑦 = 𝑑 is the same integer for every complex.
+Consequently, under
+
+
+                                    𝑇𝜆 (𝑥1 , 𝑥2 , 𝑥3 ) = (𝜆𝑤1 𝑥1 , 𝜆𝑤2 𝑥2 , 𝜆𝑤3 𝑥3 ),
+
+every coordinate satisfies
+
+
+                                                𝐹𝑖 (𝑇𝜆 𝑥) = 𝜆𝑑 𝐹𝑖 (𝑥).
+
+The torus action therefore preserves the equilibrium set. Its infinitesimal direction at a positive point 𝑝 is
+(𝑤1 𝑝1 , 𝑤2 𝑝2 , 𝑤3 𝑝3 ). Its inner product with the compatibility-class normal 𝑤 is
+
+                                                    ∑ 𝑤𝑖2 𝑝𝑖 > 0.
+                                                     𝑖
+
+
+Hence this scaling direction is transverse to every positive compatibility class. Choose a smooth one-
+dimensional semialgebraic stratum of an equilibrium continuum in one class. The torus-action map on
+this stratum has differential rank two by transversality, so its equilibrium image has semialgebraic dimen-
+sion two. It follows that dim ℚ[𝑥, 𝑦, 𝑧]/(𝐹1 , 𝐹2 , 𝐹3 ) ≥ 2. Either the dimension is three, in which case every 𝐹𝑖
+is zero, or a height-one prime contains the steady ideal. Since ℚ[𝑥, 𝑦, 𝑧] is a UFD, that prime is generated by a
+nonconstant irreducible polynomial dividing every 𝐹𝑖 . Thus a one-linkage, rank-two construction necessarily
+has a nonconstant common factor (or the zero field). Rank one is already excluded by collinearity. The full
+rank 𝑆 = ℝ3 of the example is therefore forced under the one-linkage requirement.
+
+10.3    Complex and reaction counts
+For a one-linkage, weakly reversible, full-rank three-species network, four complexes cannot give an equilib-
+rium continuum. With four complexes, the incidence Laplacian has rank three, and the map from its image to
+the stoichiometric subspace is an isomorphism. A positive equilibrium must therefore be complex-balanced.
+Two such equilibria would have proportional monomial vectors; because the complex differences span ℝ3 ,
+taking logarithms forces the concentrations to be identical. Thus at least five complexes are necessary.
+The present construction uses ten complexes and ten reversible pairs. It has maximum complex degree three
+and deficiency
+
+
+                                                   10 − 1 − 3 = 6.
+
+
+                                                           7
+Reversible mass-action equilibrium continuum                                                  Version 1.0.0
+
+
+The proved lower bound is five complexes. No claim that ten complexes or ten reversible pairs is globally
+minimal is made.
+
+
+11 Post-solution priority note
+This construction and its exact verifier were completed before any literature search. A subsequent targeted
+primary-source audit found that Boros, Craciun, and Yu explicitly asked whether a weakly reversible mass-
+action system could have infinitely many positive steady states without a common factor. Their examples,
+including their reversible connected example, use a common-factor hypersurface. The construction above
+answers that published question by a height-two component.
+The latest closely related generic-geometry work revisits the earlier common-factor example and proves that
+infinitely many compatible steady states cannot persist on an open set of rate constants and totals. That
+result does not exclude an exceptional exact parameter choice such as the integer point used here. No
+prior example with the conjunction proved here was found in the targeted audit through 2026-08-01; this
+is a conservative search report, not an exhaustive priority claim. Full citations and scope are recorded in
+PRIORITY_AUDIT.md.
+
+
+12 Exact verification
+Run
+.venv/bin/python weakly_reversible_continuum_no_common_factor/verify_construction.py
+from the repository root. The verifier reconstructs 𝐹 from the raw reaction list and checks, using exact
+rational polynomial arithmetic:
+  1. distinct nonnegative complexes and positive integer rates;
+  2. reverse support for every reaction;
+  3. graph connectivity and one linkage class;
+  4. stoichiometric rank three, maximum complex degree three, and deficiency six;
+  5. equality with the displayed vector field;
+  6. the identities 𝐹𝑖 = 𝐴𝑖 𝐿 + 𝐵𝑖 𝑄;
+  7. irreducibility of the conic;
+  8. direct rational-parametrization substitution;
+  9. the positivity and injectivity certificates;
+ 10. all pairwise and total gcd assertions;
+ 11. exact irreducibility of the primitive coordinate cubics; and
+ 12. Jacobian rank two on the equilibrium curve; and
+ 13. the complete radical decomposition into the conic prime and a degree-15 maximal ideal.
+Every asserted construction property is reconstructed from exact data; no floating-point result is used as
+evidence for the theorem.
+
+
+
+
+                                                    8
+

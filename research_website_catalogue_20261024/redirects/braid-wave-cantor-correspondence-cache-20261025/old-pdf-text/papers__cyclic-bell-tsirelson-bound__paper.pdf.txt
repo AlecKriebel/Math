@@ -1,0 +1,475 @@
+   The exact quantum value of a cyclic Bell operator
+                  A sharp polar-decomposition certificate for all dimensions
+
+                                               Alec Kriebel
+                              with heavy assistance from ChatGPT 5.6 Sol
+
+                                               26 July 2026
+
+
+                                                 Abstract
+         Perito, D’Avino, Jung, Mironowicz, Acin, and Augusiak recently introduced a cyclic family
+     of Bell operators and conjectured that its Tsirelson bound is 2 csc(π/(2d)) for every integer
+     d ≥ 2. We prove the conjecture. In fact, the operator upper bound holds after relaxing every
+     observable to an arbitrary unitary and even in the commuting-operator model; the order-d
+     relations and tensor-product representation are not needed for the upper bound. The proof
+     combines an exact positive-factor identity from polar decomposition with the sharp scalar
+     formula
+                                        X
+                                        d−1                         π
+                                  max       |1 + e2πiy/d z| = 2 csc     .
+                                  |z|=1
+                                        y=0
+                                                                     2d
+
+     We characterize equality in the scalar formula, give an explicit functional-calculus certificate for
+     the operator inequality, and include a self-contained verification that the known d-dimensional
+     strategy is admissible and saturates the bound. This determines the quantum value only; it
+     does not establish uniqueness, self-testing, or all-dimensional randomness certification.
+
+Status. This is an unrefereed, AI-assisted research note. The analytic argument is accompanied
+by symbolic and numerical checks, but has not received independent expert review.
+
+
+1 Introduction
+Let d ≥ 2 and ω = e2πi/d . For unitary observables A0 , A1 for Alice and B0 , . . . , Bd−1 for Bob,
+Perito et al. [1] consider
+
+                        1 X X xy                X
+                           1 d−1                            d−1
+                 Id =        ω Ax ⊗ By + h.c. =   Re((A0 + ω y A1 ) ⊗ By ) .                                (1)
+                        2
+                          x=0 y=0                           y=0
+
+
+In the Bell scenario the observables obey Adx = Byd = 1. The originating paper constructs a
+d-dimensional strategy with value                    π
+                                          τd = 2 csc     ,                                    (2)
+                                                      2d
+                                                                                 √
+and conjectures that this is optimal. It proves the weaker general upper bound d 2 in Appendix
+A.2, Proposition 3, and reports numerical tightness of (2) through d = 6 using the NPA hierarchy
+[10, 11].
+    The d = 3 member has the structure of the Buhrman–Massar functional [2] with one Alice
+setting removed [1]. Nearby exact-bound constructions include the SATWAP family tailored to
+maximally entangled states [3], a modified Buhrman–Massar family with an SOS certificate and
+mutually unbiased bases [4], and a recent exact certificate and robust self-test for the original
+
+                                                      1
+Exact cyclic Bell bound                                                                         A. Kriebel
+
+
+CHSH mod 3 functional [5]. Recent contemporaneous work on global randomness [6, 7] and
+a general SOS framework for high-dimensional Bell inequalities [8] does not supply the bound
+proved here.
+   Our contribution is the missing analytic upper bound. The essential point is that the Bob
+operators can be optimized term by term by polar decomposition without destroying the coupling
+between A0 and A1 . That coupling is then entirely encoded by the relative unitary A†0 A1 , reducing
+the problem to a scalar trigonometric extremum on the unit circle.
+Theorem 1.1 (Sharp commuting-operator bound). Let d ≥ 2. On an arbitrary complex Hilbert
+space, let A0 , A1 , B0 , . . . , Bd−1 be unitaries such that [Ax , By ] = 0 for every x, y, and interpret Id
+by replacing Ax ⊗ By in (1) with Ax By . Then
+                                                              π
+                                                 Id ≤ 2 csc          1                                     (3)
+                                                                2d
+as an operator inequality. Consequently, with the order-d relations imposed, the finite-dimensional
+tensor-product, approximate, and commuting-operator values all coincide:
+                                                                      π
+                             βq (Id ) = βqa (Id ) = βqc (Id ) = 2 csc          (d ≥ 2).
+                                                                       2d
+   Here q denotes the finite-dimensional tensor model, qa its closure, and qc the commuting-
+operator model. We use the standard inclusions
+                                             Qq ⊆ Qqa ⊆ Qqc .
+Together with the finite-dimensional attaining strategy, they give the equality of the three values.
+Thus both relaxing the order relations and passing to commuting operators leave the optimum
+unchanged.
+
+
+2 A polar-decomposition identity
+For a bounded operator C, write |C| = (C † C)1/2 and |C † | = (CC † )1/2 .
+Lemma 2.1 (Polar positive-factor identity). Let A, B ⊆ B(H) be commuting unital ∗-algebras,
+let C ∈ A, let C = V |C| be its polar decomposition, and let B ∈ B be unitary. Define
+                                       PC,B = |C † |1/2 − V |C|1/2 B.
+Then
+                              |C| + |C † |                1 †
+                                           − Re(CB) = PC,B      PC,B .                             (4)
+                                  2                       2
+Proof. The polar factor V may be a partial isometry. Its initial projection is the support projection
+of |C|, so
+                                     |C|1/2 V † V |C|1/2 = |C|.
+Polar functional calculus also gives
+                             |C † |1/2 V = V |C|1/2 ,       |C † |1/2 V |C|1/2 = C.
+The polar operators belong to the von Neumann algebra generated by A, so they commute with
+B. Expanding with all factors displayed gives
+        †
+       PC,B PC,B = |C † | + B † |C|1/2 V † V |C|1/2 B − CB − B † C † = |C| + |C † | − CB − (CB)† .
+Dividing by two proves (4).
+
+                                                        2
+Exact cyclic Bell bound                                                                     A. Kriebel
+
+
+Remark 2.2. No invertibility or finite-dimensional unitary extension of V is needed. This is useful
+because some of the operators A0 + ω y A1 may be singular for general strategies. The tensor-
+product identity follows by representing C as C ⊗ 1 and B as 1 ⊗ B.
+
+
+3 The scalar roots-of-unity extremum
+Lemma 3.1 (Sharp scalar bound and equality set). For every d ≥ 2 and every z ∈ C with |z| = 1,
+
+                                        X
+                                        d−1                         π
+                                              |1 + ω y z| ≤ 2 csc         .                        (5)
+                                                                    2d
+                                        y=0
+
+Equality holds if and only if
+                                                 z d = (−1)d−1 .                                   (6)
+
+Proof. Write z = e2is , put h = π/d and a = h/2 = π/(2d). Then the left side of (5) is 2Gd (s),
+where
+                                            X
+                                            d−1
+                                   Gd (s) =     |cos(s + yh)|.
+                                                    y=0
+
+The function Gd has period h.
+   First suppose d = 2m + 1 is odd. We may take −a ≤ s ≤ a, an interval of length 2a = h,
+and reindex the summands by k = −m, . . . , m. Every angle s + kh lies in [−π/2, π/2], since
+a + mh = π/2, hence
+
+                                X
+                                m
+                                                          sin(dh/2)
+                    Gd (s) =           cos(s + kh) =                cos s = csc(a) cos s.
+                                                           sin(h/2)
+                                k=−m
+
+The maximum is csc(a), attained exactly when s ≡ 0 (mod h). Equivalently, z d = 1 = (−1)d−1 .
+    Now suppose d = 2m is even. Take 0 ≤ s ≤ h. The first m cosines are nonnegative and the
+last m are nonpositive, so the finite cosine-sum formula gives
+
+                                        X
+                                        m−1                     X
+                                                               2m−1
+                            Gd (s) =           cos(s + yh) −          cos(s + yh)
+                                        y=0                     y=m
+
+                                    = csc(a) cos(s − a).
+
+Its maximum is attained exactly at s ≡ a (mod h). This is equivalent to z d = −1, again giving
+(6). Multiplying the maximum of Gd by two proves (5).
+
+
+4 Proof of the upper bound
+Proof of Theorem 1.1. Set
+
+                      C y = A0 + ω y A1 ,           U = A†0 A1 ,         My = 1 + ω y U.
+
+Then Cy = A0 My . The operator My is normal, since
+
+                                My† My = My My† = 21 + ω y U + ω −y U † .
+
+                                                          3
+Exact cyclic Bell bound                                                             A. Kriebel
+
+
+It follows that
+                              |Cy | = |My |,       |Cy† | = A0 |My |A†0 .                    (7)
+Define
+                                                 X
+                                                 d−1
+                                    Fd (U ) =          |1 + ω y U |.
+                                                 y=0
+
+The continuous functional calculus for the unitary U , together with Lemma 3.1, yields
+
+                                        0 ≤ Fd (U ) ≤ τd 1.                                  (8)
+
+   Apply Lemma 2.1 to Cy and By , sum over y, and use (7):
+
+                                      1X                
+                                         d−1
+                                 Id ≤    |Cy | + |Cy† |
+                                      2
+                                         y=0
+                                      1                       
+                                    = Fd (U ) + A0 Fd (U )A†0
+                                      2
+                                    ≤ τd 1.
+
+This proves the commuting-operator upper bound. Proposition 5.1 gives a matching finite-
+dimensional tensor-product strategy. The inclusions of correlation sets stated after Theorem 1.1
+complete the proof of all three equalities.
+
+4.1    An explicit positive-factor certificate
+The preceding proof can be packaged as a single exact identity. Let Cy = Vy |Cy | be the polar
+decomposition, and set
+
+                                  Py = |Cy† |1/2 − Vy |Cy |1/2 By ,
+                                                       1/2
+                                  G = τd 1 − Fd (U )        .
+
+Then
+                                                1X †
+                                                  d−1
+                                 τd 1 − I d =     Py Py
+                                                2
+                                                  y=0
+                                                 1                                           (9)
+                                                + G† G
+                                                 2
+                                                 1
+                                                + (GA†0 )† (GA†0 ).
+                                                 2
+The square roots in (9) are ordinary positive square roots from functional calculus. Thus (9) is
+an exact operator-level positive-factor certificate, not a finite-level NPA approximation.
+
+
+5 Tightness and the order-d strategy
+The lower bound and the Weyl-based strategy are due to Perito et al. [1]. For completeness, this
+section records a compact polar form of the same saturating choice and proves directly that its
+Bob operators satisfy the order relation. This also makes the equality mechanism in Lemma 3.1
+transparent.
+
+                                                  4
+Exact cyclic Bell bound                                                                 A. Kriebel
+
+
+Proposition 5.1 (Self-contained lower certificate). On Cd , let
+
+                             Z|ji = ω j |ji,       X|ji = |j + 1 mod di,
+
+and use
+                                                                     1 X
+                                                                         d−1
+                          A0 = Z,        A1 = X,            |Φd i = √       |j, ji.
+                                                                      d j=0
+For 0 ≤ y < d, put
+
+                              Wy = ω y Z † X,  Hy = |1 + Wy |,                                  (10)
+                                     −1      †
+                               Qy = Hy (1 + Wy )Z † ,  By = QTy .                               (11)
+
+Then every By is unitary, Byd = 1, and
+
+                                          hΦd |Id |Φd i = τd .
+
+Proof. The Weyl relations give Z d = X d = 1 and ZX = ωXZ. The action of Wy is a weighted
+cyclic shift:
+                                Wy |ji = ω y−j−1 |j + 1 mod di.
+Hence
+                      Wyd = (−1)d−1 1,         spec(Wy ) = {λ : λd = (−1)d−1 }.                 (12)
+Indeed, the first d orbit vectors of |0i are nonzero multiples of the standard basis vectors. Thus
+the minimal polynomial has degree d; because it divides td − (−1)d−1 , whose roots are distinct,
+the displayed spectrum is simple and complete. In particular, −1 ∈  / spec(Wy ), so Hy is invertible.
+                    y
+    Let Cy = Z + ω X = Z(1 + Wy ). Since Wy is normal,
+
+                                      Cy = Z(1 + Wy )Hy−1 Hy
+                                           |     {z     }
+                                                       Vy
+
+is its polar decomposition. Thus Qy = Vy† , proving that Qy , and hence By , is unitary.
+     It remains to prove the order relation. On the spectrum in (12), define
+                                                        1+z
+                                           p(z) =              .
+                                                       |1 + z|
+Then
+                                          Qy = p(Wy )† Z † ;
+the adjoint is essential because (11) contains 1 + Wy† . Since Z † Wy Z = ω −1 Wy ,
+
+                                                Y
+                                                d−1
+                                       Qdy =          p(ω −r Wy )† .                            (13)
+                                                r=0
+
+For every eigenvalue λ of Wy , the corresponding scalar in (13) equals
+
+                                Y
+                                d−1             Qd−1
+                                                     (1 + ω −r λ)
+                                    p(ω −r λ) = Qr=0
+                                                 d−1        −r
+                                r=0              r=0 |1 + ω λ|
+
+                                                    1 − (−λ)d    2
+                                               =                = = 1,
+                                                   |1 − (−λ)d |  2
+
+                                                      5
+Exact cyclic Bell bound                                                                  A. Kriebel
+
+
+                Q
+where we used d−1 r=0 (1 + aω ) = 1 − (−a) after noting that r 7→ −r permutes the residues modulo
+                              r            d
+
+d, and used λ = (−1) . Therefore Qdy = 1 and Byd = 1. In fact, Qy is a nonzero weighted
+               d          d−1
+
+d-cycle in an eigenbasis of Wy , so its characteristic polynomial is td − 1; every d-th root occurs.
+    Finally,
+                                                       1
+                                  hΦd |M ⊗ N |Φd i = Tr(M N T ).
+                                                       d
+Since ByT = Qy = Vy† ,
+                                              1              1
+                           hΦd |Cy ⊗ By |Φd i = Tr(Cy Vy† ) = Tr(Hy ),
+                                              d              d
+                                                   y
+which is real and nonnegative. Multiplication by ω permutes the spectrum in (12), so every Hy
+has the same trace. For any λd0 = (−1)d−1 ,
+
+                                                X
+                                                d−1
+                                   Tr(H0 ) =          |1 + ω r λ0 | = τd
+                                                r=0
+                                                                              P
+by the equality case of Lemma 3.1. Summing over y therefore gives d−1             y Tr(Hy ) = τd , as
+claimed.
+
+Remark 5.2. Because Cy is invertible in this construction, equality in the trace polar bound fixes
+ByT to be Vy† . The Bob observables in (11) therefore give a polar-decomposition representation of
+an attaining strategy. The strategy in Ref. [1] reaches the sum of these termwise trace bounds, so
+the same equality condition identifies its Bob observables with this polar form. A direct convention
+check gives
+                     X
+                     d−1                   X
+                                           d−1                            π
+                         By = α d Z † ,        ω y By = αd X,    αd = csc       ,               (14)
+                                                                            2d
+                    y=0                   y=0
+
+which are Eqs. (14)–(17) of Ref. [1]; in particular, τd = 2αd . For d = 3, (11) reduces exactly to
+                                      1                             
+                               By =     2Z 2 + 2ω 2y X − ω y+1 X 2 Z ,
+                                      3
+the explicit formula in that reference, with α3 = 2. The two Fourier constraints in (14) alone
+leave the remaining Fourier component undetermined; the termwise saturation condition supplies
+the identification. No new lower-bound strategy is claimed here.
+
+
+6 Consequences and scope
+Corollary 6.1 (The barred functional). With the convention
+
+                                      I d = Id + Re(A0 ⊗ Bd ),
+
+where Bd is a further unitary (and tensor product is replaced by operator product in the commuting
+model), its three quantum values are
+                                                                       π
+                           βq (I d ) = βqa (I d ) = βqc (I d ) = 2 csc     + 1.
+                                                                        2d
+Proof. Theorem 1.1 and Re(A0 Bd ) ≤ 1 give the commuting-operator upper bound. Proposi-
+tion 5.1, augmented by Bd = Z † , saturates the extra term on |Φd i.
+
+                                                      6
+Exact cyclic Bell bound                                                                  A. Kriebel
+
+
+    This corollary determines a Bell value. It does not prove uniqueness of the maximizing corre-
+lation, self-testing, or the maximal-global-randomness claim posed separately in Ref. [1]. Those
+questions require additional rigidity information not supplied by the value alone.
+    For the first five dimensions, Theorem 1.1 gives
+
+                                         d        βq (Id )
+                                                     √
+                                         2         2 2
+                                         3      p 4 √
+                                         4     2 4 +√  2 2
+                                         5      2(1
+                                                 √  +   √5)
+                                         6     2( 6 + 2)
+
+The d = 2 case is the usual CHSH value; the theorem supplies one uniform argument for all d.
+
+
+7 Verification artifacts
+The accompanying source package contains:
+• a deterministic verifier for the finite-dimensional matrix identities, including deliberately sin-
+  gular polar factors;
+
+• exact symbolic checks of the displayed low-dimensional radical values and finite trigonometric
+  identities;
+
+• matrix checks of the Weyl spectrum, Bob unitarity and order, saturation, and the operator
+  certificate over a documented range of dimensions;
+
+• direct-sum commuting-operator certificate checks, plus explicit checks of the phase adjoint,
+  both Fourier constraints in (14), and the displayed qutrit formula;
+
+• a machine-readable claim and dependency ledger; and
+
+ • SHA-256 hashes for the released sources and rendered paper.
+                                      P
+The default strategy sweep covers all 12d=2 d = 77 Bob observables in that range. These checks are
+secondary validation of the analytic proof. They are not a formal proof assistant verification of the
+all-dimensional theorem, and the floating-point matrix tests cannot substitute for the arguments
+above.
+
+
+Priority, attribution, and disclosure
+The Bell family, the conjectured formula, the Weyl construction, the admissible Bob observables,
+and the matching lower bound are due to Perito, D’Avino, Jung, Mironowicz, Acin, and Augusiak
+[1]. The narrow contribution claimed here is the analytic upper bound, including its commuting-
+operator strengthening and the associated exact certificate.
+    As of 26 July 2026, a focused search found no public proof of Conjecture 1 and no older
+theorem located in that search that directly supplies this bound. Because the conjecture is recent,
+that search cannot rule out unindexed, unpublished, or concurrent work. Any priority statement
+is therefore made only “to the best of our knowledge.”
+
+                                                 7
+Exact cyclic Bell bound                                                                A. Kriebel
+
+
+    The proof architecture, derivations, manuscript, verification code, and literature audit were
+developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel’s direction. No orig-
+inating author or other researcher was contacted. The work is public to enable checking and
+remains unrefereed.
+
+
+References
+ [1] I. Perito, R. D’Avino, M. Jung, P. Mironowicz, A. Acín, and R. Augusiak, Bell inequalities
+     tailored to optimal global randomness certification, arXiv:2606.21362v3 (2026), https:
+     //arxiv.org/abs/2606.21362.
+
+ [2] H. Buhrman and S. Massar, Causality and Tsirelson’s bounds, Physical Review A 72, 052103
+     (2005), https://doi.org/10.1103/PhysRevA.72.052103.
+
+ [3] A. Salavrakos, R. Augusiak, J. Tura, P. Wittek, A. Acín, and S. Pironio, Bell inequalities
+     tailored to maximally entangled states, Physical Review Letters 119, 040402 (2017), https:
+     //doi.org/10.1103/PhysRevLett.119.040402.
+
+ [4] J. Kaniewski, I. Šupić, J. Tura, F. Baccari, A. Salavrakos, and R. Augusiak, Maxi-
+     mal nonlocality from maximal entanglement and mutually unbiased bases, and self-testing
+     of two-qutrit quantum systems, Quantum 3, 198 (2019), https://doi.org/10.22331/
+     q-2019-10-24-198.
+
+ [5] I. Klep, N. Leijenhorst, and V. Magron,     Robust self-testing with CHSH mod 3,
+     arXiv:2604.03700v1 (2026), https://arxiv.org/abs/2604.03700.
+
+ [6] M. Farkas, P. Mironowicz, and R. Augusiak, Maximal global device-independent randomness
+     from projective measurements in every dimension, arXiv:2606.21369v2 (2026), https://
+     arxiv.org/abs/2606.21369.
+
+ [7] R. D’Avino, I. Perito, P. Mironowicz, A. Acín, and R. Augusiak, Noise robustness of three
+     outcome Bell certified quantum randomness, arXiv:2606.21371v2 (2026), https://arxiv.
+     org/abs/2606.21371.
+
+ [8] L. Coccia, M. Padovan, and G. Vallone, Systematic derivation of Tsirelson bounds in arbitrary
+     dimensions, arXiv:2606.21626v1 (2026), https://arxiv.org/abs/2606.21626.
+
+ [9] B. S. Tsirelson, Quantum generalizations of Bell’s inequality, Letters in Mathematical Physics
+     4, 93–100 (1980).
+
+[10] M. Navascués, S. Pironio, and A. Acín, Bounding the set of quantum correlations, Physical
+     Review Letters 98, 010401 (2007).
+
+[11] M. Navascués, S. Pironio, and A. Acín, A convergent hierarchy of semidefinite programs
+     characterizing the set of quantum correlations, New Journal of Physics 10, 073013 (2008).
+
+
+
+
+                                                8
+

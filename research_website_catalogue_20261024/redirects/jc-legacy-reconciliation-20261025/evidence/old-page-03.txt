@@ -1,0 +1,55 @@
+identiﬁcation or degree-two cleanup is part of sd0 . An isomorphism preserves labels, undirected
+edges, and retained arrowheads. An admissible rooting of a semi-directed network is an LSA-valid
+rooted binary network whose sd0 reduction is exactly the given mixed graph. Thus a root site may
+be an undirected edge or a compatible edge entering a reticulation: inserting the root on u → r
+replaces that edge by ρ → u and ρ → r, and suppressing ρ recovers u → r. This is the simple,
+root-suppression convention of Deﬁnitions 2.1–2.2 in Englander et al. [4], written here as an explicit
+map. In particular, it is not the broader cleanup operation sometimes used after taking induced
+subnetworks: such a cleanup may merge parallel edges or erase reticulation vertices and is not used
+to deﬁne the rooting universe here.
+We distinguish
+
+              RTC = {rooted tree-child presentations},
+              WTC = {semi-directed networks with at least one tree-child rooting},
+                 STC = {semi-directed networks for which every rooting is tree-child}.
+
+Thus STC ⊆ WTC , while RTC is a property of a chosen rooted presentation.
+A cut edge is an edge whose deletion disconnects the underlying graph. A blob is a maximal
+connected subgraph containing no cut edge. (For the simple binary mixed graphs used here, this
+agrees with the nontrivial biconnected-block convention.) A network is level two if each blob
+contains at most two reticulations.
+
+Deﬁnition 2.1 (Ordinary triangle redirection). Suppose a semi-directed network has a triangle ∆.
+An ordinary triangle redirection T changes the reticulation vertex and the two incoming arrowheads
+within ∆ while leaving the labelled underlying graph and every arrowhead outside ∆ unchanged.
+
+In particular, T cannot move a labelled pendant component from one vertex of the underlying
+graph to another.
+
+
+2.2   Fourier parameterization
+
+Identify the four states with G = Z2 × Z2 . Every edge e has one nontrivial Fourier multiplier
+xe ∈ (0, 1); equivalently, its JC transition matrix has entries
+                                                 (
+                                                    (1 + 3xe )/4, a = b,
+                                   Te (a, b) =
+                                                    (1 − xe )/4, a 6= b.
+
+Every reticulation r has an inheritance probability λr ∈ (0, 1). The root state is uniform on G.
+Independently at each reticulation, retain one incoming parent with probability λr and the other
+with probability 1 − λr ; conditional on those choices, states evolve down the resulting displayed
+tree. This is the open positive-deﬁnite parameter space Θ0 ; no multiplier is zero or one, and no
+inheritance probability is zero or one.
+For a displayed tree T and a character assignment g = (gi )i∈X ∈ GX , Fourier diagonalization of
+the JC transition matrices gives
+                                          Y  1[⊕   g 6=0]
+                                         
+                                            xe i∈Ae i ,          ⊕i∈X gi = 0,
+                             pbT (g) =    e∈E(T )                                                 (1)
+                                         
+                                         
+                                          0,                      otherwise,
+
+
+                                                       3

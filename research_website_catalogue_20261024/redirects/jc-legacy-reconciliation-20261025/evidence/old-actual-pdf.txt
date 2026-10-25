@@ -1,0 +1,510 @@
+                 Full-Dimensional Jukes–Cantor Ambiguity in
+                     Weakly Tree-Child Level-2 Networks
+                   An exact four-leaf construction and an all-taxa extension
+
+                                              Alec Kriebel
+                                         Independent Researcher
+
+                                              August 2026
+
+
+                                                Abstract
+         We give two explicit four-leaf binary level-2 semi-directed phylogenetic networks whose la-
+     belled mixed graphs are nonisomorphic and cannot be related by redirecting their unique tri-
+     angle, but whose open Jukes–Cantor model images share a regular relatively open subset of
+     full dimension eight. Each network has a tree-child rooting, but neither is strongly tree-child
+     in the semi-directed sense that every admissible rooting is tree-child. The proof is exact: on
+     the physical locus, both models lie on the same irreducible eight-dimensional component cut
+     out by six Fourier equations; an algebraic common point lies strictly inside the positive-deﬁnite
+     stochastic parameter space; and rank-eight Jacobian minors are nonzero on both parameteriza-
+     tions. An independent veriﬁer checks all 256 Fourier coordinates in a quadratic number ﬁeld.
+     Replacing corresponding leaves by identical rooted binary trees has a positive analytic inverse.
+     Consequently, for every n ≥ 4 there is such a non-triangle ambiguity on n leaves, with a com-
+     mon regular open region of dimension 2n. The result supplies an exact negative instance among
+     same-type four-leaf level-2 comparisons and proves that generic identiﬁability fails over the full
+     weakly tree-child level-2 class, even modulo ordinary triangle redirection.
+
+Keywords. phylogenetic networks; identiﬁability; Jukes–Cantor model; level-2 networks; tree-
+child networks; algebraic statistics.
+
+MSC 2020. 92B10, 62R01, 14P10, 05C05.
+
+
+1    Introduction
+A phylogenetic-network topology is scientiﬁcally recoverable from exact site-pattern data only when
+distinct topologies cannot generate the same generic distribution. For trees this question has a long
+algebraic history; for networks, mixtures over displayed trees introduce additional nonidentiﬁability.
+Triangle orientation is one familiar source: under group-based models, redirecting the reticulation
+inside a small triangle can preserve a full-dimensional part of the model.
+This paper exhibits a diﬀerent phenomenon at level two. The two networks have the same unlabelled
+theta core, but exchange two labelled pendant components between a vertex on the unique triangle
+and a vertex oﬀ that triangle. Their standard semi-directed graphs are therefore not related by
+triangle redirection. Nevertheless, their Jukes–Cantor (JC) images meet in full dimension on the
+open stochastic parameter space.
+
+
+                                                     1
+The pair’s location in the tree-child hierarchy is important for the scope of the result. Following
+the semi-directed terminology of Holtgrefe et al. [6], a semi-directed topology is weakly tree-child
+if it has at least one tree-child rooting and strongly tree-child if every admissible rooting is tree-
+child. The pair below is weakly but not strongly tree-child. It therefore does not contradict the
+triangle-free strongly tree-child identiﬁability theorem of Englander et al. [4]. It proves failure over
+the full weakly tree-child class even modulo ordinary triangle redirection, but because the pair also
+contains a triangle, it does not settle the triangle-free weakly tree-child subclass.
+Ardiyansyah [1] classiﬁed several four-leaf simple level-2 comparisons algebraically and identiﬁed
+same-type comparisons that were not resolved by those calculations. The construction below sup-
+plies an exact negative instance for one labelled pair of the triangle-containing type. It is distinct
+from the three-leaf semialgebraic triangle-orientation overlap studied by Currie et al. [3], and from
+the stacked-reticulation and two-blob local modiﬁcations studied by Sullivant [8]. Brits et al. [2]
+prove full identiﬁability for level-1 networks modulo triangle redirection and analyze tree–network
+separation in the presence of speciﬁed two-sub-blob phenomena; the construction here is a level-2
+comparison and uses no two-sub-blob suppression.
+The main result is deliberately local in scope.
+
+Theorem 1.1 (All-taxa full-dimensional ambiguity). For every n ≥ 4, there are two leaf-labelled
+binary standard semi-directed level-2 networks Nn , Nn0 ∈ WTC \ STC such that:
+  (i) Nn and Nn0 are nonisomorphic and are not related by ordinary triangle redirection T;
+ (ii) their open JC model images have dimension 2n; and
+(iii) their images share a regular relatively open subset of dimension 2n.
+In particular, the nonidentiﬁable parameter set contains a nonempty Euclidean-open subset of the
+full parameter space and cannot be conﬁned to a proper algebraic exceptional set.
+
+The proof starts from an exact four-leaf certiﬁcate and then uses a leaf-substitution map with an
+analytic inverse. Equality of complex model closures alone is never used as evidence of stochastic
+overlap.
+
+
+2     Networks and the JC model
+2.1   Rooted and semi-directed conventions
+
+Let X be a ﬁnite set of taxon labels. A rooted binary phylogenetic network on X is a ﬁnite directed
+acyclic graph without parallel arcs in which the root has bidegree (0, 2), a tree vertex has bidegree
+(1, 2), a reticulation has bidegree (2, 1), and each leaf has bidegree (1, 0) and a unique label in X.
+We additionally require the root to be the lowest stable ancestor of X. A vertex is a stable ancestor
+of X if it lies on every directed path from the root to each labelled leaf; thus no proper descendant
+of the root may have this property. A rooted network is tree-child if every internal vertex has a
+child that is a tree vertex or a leaf.
+We use the following narrow, reticulation-preserving semi-directed reduction, denoted sd0 . Mark
+every arc whose head is a reticulation and undirect every unmarked arc. Delete the root and replace
+its two incident edges by one edge joining its two children, retaining at either endpoint exactly the
+arrowhead that was present there before deletion. A rooted presentation is admitted only if this
+operation produces a simple binary mixed graph: it creates neither a loop nor a parallel edge,
+and every reticulation vertex and every retained incoming arrowhead survives. No further parallel
+
+
+                                                   2
+identiﬁcation or degree-two cleanup is part of sd0 . An isomorphism preserves labels, undirected
+edges, and retained arrowheads. An admissible rooting of a semi-directed network is an LSA-valid
+rooted binary network whose sd0 reduction is exactly the given mixed graph. Thus a root site may
+be an undirected edge or a compatible edge entering a reticulation: inserting the root on u → r
+replaces that edge by ρ → u and ρ → r, and suppressing ρ recovers u → r. This is the simple,
+root-suppression convention of Deﬁnitions 2.1–2.2 in Englander et al. [4], written here as an explicit
+map. In particular, it is not the broader cleanup operation sometimes used after taking induced
+subnetworks: such a cleanup may merge parallel edges or erase reticulation vertices and is not used
+to deﬁne the rooting universe here.
+We distinguish
+
+              RTC = {rooted tree-child presentations},
+              WTC = {semi-directed networks with at least one tree-child rooting},
+                 STC = {semi-directed networks for which every rooting is tree-child}.
+
+Thus STC ⊆ WTC , while RTC is a property of a chosen rooted presentation.
+A cut edge is an edge whose deletion disconnects the underlying graph. A blob is a maximal
+connected subgraph containing no cut edge. (For the simple binary mixed graphs used here, this
+agrees with the nontrivial biconnected-block convention.) A network is level two if each blob
+contains at most two reticulations.
+
+Deﬁnition 2.1 (Ordinary triangle redirection). Suppose a semi-directed network has a triangle ∆.
+An ordinary triangle redirection T changes the reticulation vertex and the two incoming arrowheads
+within ∆ while leaving the labelled underlying graph and every arrowhead outside ∆ unchanged.
+
+In particular, T cannot move a labelled pendant component from one vertex of the underlying
+graph to another.
+
+
+2.2   Fourier parameterization
+
+Identify the four states with G = Z2 × Z2 . Every edge e has one nontrivial Fourier multiplier
+xe ∈ (0, 1); equivalently, its JC transition matrix has entries
+                                                 (
+                                                    (1 + 3xe )/4, a = b,
+                                   Te (a, b) =
+                                                    (1 − xe )/4, a 6= b.
+
+Every reticulation r has an inheritance probability λr ∈ (0, 1). The root state is uniform on G.
+Independently at each reticulation, retain one incoming parent with probability λr and the other
+with probability 1 − λr ; conditional on those choices, states evolve down the resulting displayed
+tree. This is the open positive-deﬁnite parameter space Θ0 ; no multiplier is zero or one, and no
+inheritance probability is zero or one.
+For a displayed tree T and a character assignment g = (gi )i∈X ∈ GX , Fourier diagonalization of
+the JC transition matrices gives
+                                          Y  1[⊕   g 6=0]
+                                         
+                                            xe i∈Ae i ,          ⊕i∈X gi = 0,
+                             pbT (g) =    e∈E(T )                                                 (1)
+                                         
+                                         
+                                          0,                      otherwise,
+
+
+                                                       3
+where Ae | Ace is the split induced by e. A network coordinate is the inheritance-weighted sum of
+(1) over all parent selections. This follows directly from the character calculation for group-based
+models [5, 7].
+      N be the image of Θ0 in pattern-probability space and VN its complex Zariski closure.
+Let MJC                                                         JC
+
+A point is regular when the parameterization has its generic Jacobian rank there. We say two
+model images have a full-dimensional regular overlap when their intersection contains a relative
+neighborhood of a common point whose dimension equals the dimension of both images.
+For the two semi-directed topologies below, MJC
+                                             N is computed from the displayed LSA-valid rooting
+in (2). Root suppression combines the two root-edge multipliers into the single eﬀective multiplier
+xAC = xρA xρC . Conversely, every xAC ∈ (0, 1) has strict factorizations in (0, 1)2 (for example,
+√      √
+  xAC xAC ). Thus this eﬀective parameterization has exactly the same local stochastic image as
+the rooted presentation; no root-boundary parameter is introduced.
+
+
+3    The four-leaf pair
+Let the internal vertices be a root ρ, tree vertices A, B, D, E, and reticulations C, F . Both rooted
+networks have the internal arcs
+
+          ρ → A,    ρ → C,       A → B,          B → C,       C → D,    D → E,     A → F,          E → F.   (2)
+
+Their pendant arcs are
+
+                              N : B → 1,              D → 2,    F → 3,    E → 4,                            (3)
+                                 0
+                             N : E → 1,               D → 2,    F → 3,    B → 4.                            (4)
+
+
+                                     N                                           N0
+
+                             A           3                                 A           3
+                                         F                                             F
+                   1 B                                            4 B
+
+                             C               E                             C               E
+                                                  4                                            1
+                                     D                                             D
+
+                                     2                                             2
+
+Figure 1: The standard semi-directed reductions. Double circles are reticulations, and arrowheads
+are retained only on incoming reticulation edges. The unique triangle is A–B–C.
+
+After the root is suppressed, the nontrivial blob is the theta graph with three A–C paths
+
+                          A − C,          A − B − C,            A − F − E − D − C.
+
+Its simple cycles have lengths 3, 5, 6.
+In the formulas below, xAC = xρA xρC is the eﬀective edge created by root suppression. The
+probability λC selects that A–C parent edge and 1 − λC selects B → C; similarly, λF selects
+A → F and 1 − λF selects E → F .
+
+                                                          4
+Proposition 3.1 (Combinatorial certiﬁcation). The rooted presentations (2)–(4) are binary, level
+two, and tree-child. Their standard reductions lie in WTC \ STC . The two reductions are noniso-
+morphic and are not T-equivalent.
+
+Proof. The bidegrees in the displayed arc lists are (0, 2) at ρ, (1, 2) at A, B, D, E, (2, 1) at C, F ,
+and (1, 0) at the leaves. The lists are acyclic. In each rooted presentation every internal vertex has
+a tree-or-leaf child, so the presentation is tree-child. The unique blob has the three paths above
+and contains exactly the two reticulations C, F ; hence it is level two.
+The displayed rooting proves weak tree-childness. To see directly that the mixed graph is not
+strongly tree-child, insert a new root on the retained arc B → C. The internal arcs of the resulting
+presentation are
+         ρ0 → B,    ρ0 → C,    B → A,    A → C,       A → F,   C → D,     D → E,     E → F.
+The pendant arcs are those in (3) or (4), respectively. This is binary and acyclic, its root is the
+LSA (the pendant leaf at B and the pendant leaf at D lie on opposite root branches), and applying
+sd0 recovers the mixed graph. But A has the two reticulations C, F as its children and hence
+is not tree-child. In the terminology of Holtgrefe et al. [6], A is an omnian. Exhaustive rooting
+enumeration ﬁnds ﬁve admissible rootings in total, only two of which are tree-child.
+In N , leaf 1 is adjacent to B, which lies on the unique triangle. In N 0 , leaf 1 is adjacent to
+E, which lies on no triangle. This leaf-labelled graph property is unchanged by isomorphism
+or by a redirection conﬁned to the triangle. Thus the reductions are neither isomorphic nor T-
+equivalent.
+
+
+4    The common eight-dimensional variety
+The automorphism group of G permutes its three nonzero characters. The zero-sum four-leaf
+coordinates have ﬁfteen JC symmetry orbits, including normalization. We denote the fourteen
+nonconstant orbits by
+                           (A, B, C, D, E, F, G, H, J, K, L, M, N, O).
+One explicit choice of representatives is recorded in appendix A. Equality of these fourteen entries
+is equivalent to equality of the complete Fourier tensor.
+Proposition 4.1 (Six common equations). The complete displayed-tree Fourier parameterizations
+of both N and N 0 satisfy
+                                               J − K − M + N = 0,                                  (5)
+                                          J − AH − BF + CE = 0,                                    (6)
+                                                       GL − EN = 0,                                (7)
+                                                      L − BEH = 0,
+                                                       2
+                                                                                                   (8)
+                                     BM − DL − B 2 F + BCE = 0,                                    (9)
+                                BEO − BGH − CEL + DEH = 0.                                        (10)
+
+Proof. Each network has four displayed trees. Substitute their split monomials from (1), sum with
+the two inheritance parameters, and expand the six left-hand sides. Every coeﬃcient is zero. The
+release veriﬁer performs this calculation from the graph encodings rather than accepting (5)–(10)
+as input.
+
+                                                  5
+Lemma 4.2 (Implicit geometry). On BE 6= 0, equations (5)–(10) deﬁne an irreducible eight-
+dimensional variety. Its positive real locus is smooth.
+
+Proof. Five equations reconstruct
+
+                J = AH + BF − CE,                                    N = GL/E,                     (11)
+                M = (DL + B F − BCE)/B,
+                               2
+                                                                     K = J + N − M,                (12)
+                O = (BGH + CEL − DEH)/(BE).                                                        (13)
+
+The remaining equation is L2 = BEH. The localized coordinate ring is
+
+                         C[A, B, C, D, E, F, G, H, L, (BE)−1 ]/(L2 − BEH).
+
+The deﬁning quadratic is irreducible over the rational function ﬁeld in A, . . . , H, so the ring is an
+integral domain of dimension eight. Since ∂(L2 − BEH)/∂H = −BE, it is smooth on BE 6= 0. On
+the open stochastic locus every Fourier coordinate
+                                               √ here is a positive sum of positive monomials, so
+B, E, H, L > 0 and the physical sheet is L = + BEH.
+
+
+5     An exact common interior point
+The two root edges are represented after root suppression by the eﬀective multiplier xAC = xρA xρC .
+The strict rooted realization
+                                             2             3
+                                      xρA = ,       xρC =
+                                             3             4
+gives xAC = 1/2.
+For N , set
+                          1             2        3         1     1
+                     xD2 = ,     xDE = , xE4 = , xEF = , xF 3 = ,
+                          2             5        8         3     2
+                                        9         3         1
+                                xCD = , xAB = , xB1 = ,                                            (14)
+                                       20         5         5
+                                              1               1
+                             xAC = xAF = xBC = ,    λ C = λF = .
+                                              2               2
+Let β be the smaller root of
+                                                                 441       3529
+                 43337075β 2 − 36083110β + 7336259 = 0,               <β<       .                  (15)
+                                                                 1250     10000
+For N 0 , set
+                               1              171               10339
+                         xD2 = ,      xDE =       ,    xAF =          ,
+                               2              775              53010β
+                             24835β                  1767               9934
+                   xAB =                ,     xF 3 =      ,     xCD =         ,
+                         20678 − 24835β              4832               12215                      (16)
+                                         31                3
+                                 xE1 =      ,     xB4 =      ,
+                                        190              20β
+                                                1                  1
+                          xAC = xEF = xBC = ,          λ C = λF = .
+                                                2                  2
+The polynomial in (15) has opposite signs at the rational endpoints, and the interval lies strictly
+below its axis of symmetry. It therefore isolates the smaller root. Exact rational interval arithmetic
+
+                                                  6
+then proves that every multiplier in (16) lies strictly in (0, 1); no boundary or merely entrywise-
+positive transition matrix is used.
+At these two parameter points the common orbit vector is
+                                                                                                 
+                                     277 3 67       127    27     81   153    9
+                 (A, . . . , H) =        , ,      ,      ,    ,      ,      ,     ,                       (17)
+                                     8000 40 2400 16000 5000 5000 160000 500
+                                                                             
+                                      27     261    27     27      153   183
+                  (J, . . . , O) =        ,      ,      ,       ,      ,        .                         (18)
+                                     16000 320000 10000 20000 320000 80000
+
+To certify regularity, ﬁx
+                                                                                1
+                                        xAC = xAF = xBC = λC = λF =
+                                                                                2
+for N and use
+
+                  (P, s, Q, t, R, u, v, S) = (xD2 , xDE , xE4 , xEF , xF 3 , xCD , xAB , xB1 ).
+
+The Jacobian determinant of (A, . . . , H) is
+
+                                    P 3 s3 Q4 tR4 u3 vS 3 (s − 1)2 (v − 1)(v + 1)2
+                                −                                                  ,                      (19)
+                                                         16384
+which is nonzero throughout the open gauge cube.
+For N 0 , ﬁx
+                                                                                1
+                                      xAC = xEF = xBC = λC = λF =
+                                                                                2
+and use
+                (P 0 , x, y, z, R0 , w, S 0 , Q0 ) = (xD2 , xDE , xAF , xAB , xF 3 , xCD , xE1 , xB4 ).
+The determinant is
+                            (P 0 )3 x2 y 2 z(R0 )4 w4 (S 0 )3 (Q0 )4 (x − 1)2 (z − 1)(z + 1)3
+                        −                                                                     ,           (20)
+                                                            32768
+which is also nonzero on the open cube.
+
+Proposition 5.1 (Four-leaf stochastic overlap). The complete JC Fourier tensors of N at (14)
+and N 0 at (16) agree exactly. The two stochastic model images share a regular relatively open
+eight-dimensional neighborhood.
+
+Proof. Direct displayed-tree evaluation in Q(β) gives (17)–(18) for both networks. The exact veriﬁer
+checks all 256 Fourier entries, including the forced zero coordinates; invertibility of the Fourier
+transform gives equality of all pattern probabilities.
+By proposition 4.1 and lemma 4.2, each model lies in the same irreducible eight-dimensional vari-
+ety. The nonzero determinants (19) and (20) show that each image is an eight-dimensional local
+submanifold at the common point. The Zariski closure of each parameterized image is irreducible;
+containment in an irreducible eight-dimensional locus together with rank eight therefore makes
+both closures equal to that locus. Moreover, the ﬁrst eight coordinates of each stochastic image
+                     √ of the vector in (17). Intersect the two neighborhoods. Positivity forces
+contain a neighborhood
+the same value L = + BEH, and the ﬁve reconstruction formulas in the proof of lemma 4.2 force
+J, K, M, N, O. Hence the intersection contains a relative open eight-dimensional neighborhood.
+
+
+                                                           7
+Corollary 5.2. The set of parameters of N admitting a realization on N 0 contains a nonempty
+Euclidean-open subset of the full parameter space. It is not contained in any proper algebraic subset.
+
+Proof. The full parameterization has rank eight at the source point because the restricted gauge map
+has rank eight. The submersion theorem maps a neighborhood of the source point onto a relative
+neighborhood of the common variety. The inverse image of the open overlap in proposition 5.1
+is therefore nonempty and open. A nonzero real polynomial cannot vanish on a Euclidean-open
+parameter set.
+
+
+6    Leaf substitution
+Let X be nonempty, and let P be a normalized Fourier tensor on X ∪ {a} whose zero-total coor-
+dinates are strictly positive. Replace the leaf a by a cherry with leaves a1 , a2 and new pendant
+multipliers u, v ∈ (0, 1). The former pendant edge becomes the stem of the cherry. The new tensor
+is
+                            Pe (gX , g1 , g2 ) = P (gX , g1 ⊕ g2 )u1[g1 6=0] v 1[g2 6=0] .    (21)
+Lemma 6.1 (Positive analytic inverse). The map (P, u, v) 7→ Pe in (21) is a positive real-analytic
+embedding. Its inverse is real analytic on its image. Consequently, substituting a cherry adds exactly
+two model dimensions and preserves full-dimensional regular overlap.
+
+Proof. Fix h ∈ G \ {0}. With all characters on X equal to zero,
+                                           uv = Pe (0, h, h),
+because P (0, 0) = 1. Choose any gX with total character h. Strict positivity of the zero-total JC
+Fourier coordinates permits division, and
+                                          u   Pe (gX , h, 0)
+                                            =                .
+                                          v   Pe (gX , 0, h)
+Thus u and v are recovered uniquely by the positive square root. Every zero-total coordinate of
+P is then recovered from (21) by division by a positive monomial in u, v. These formulas are real
+analytic. Therefore the image is analytically isomorphic to the product of the base tensor image
+with (0, 1)2 , proving the dimension and regularity assertions.
+
+Proof of theorem 1.1. The case n = 4 is propositions 3.1 and 5.1. For m = 5, . . . , n, replace leaf 2
+in both networks by a cherry whose children retain label 2 and receive the new label m. Equation
+(21) carries every common base distribution and every common pair (u, v) to the same enlarged
+distribution. By lemma 6.1, a common regular open region gains exactly two dimensions at each
+step. Starting from dimension eight gives
+                                         8 + 2(n − 4) = 2n.
+
+The displayed tree-child rootings extend through each inserted cherry, so the enlarged semi-directed
+topologies remain in WTC . The original omnian at A is unchanged, so they remain outside STC .
+Leaf 1 remains adjacent to a triangle vertex in Nn and to a nontriangle vertex in Nn0 . This labelled
+property is preserved by mixed-graph isomorphism and by T. Thus the two enlarged topologies
+remain nonisomorphic and non-T-equivalent. Repeating the construction proves the theorem for
+every n ≥ 4.
+
+                                                   8
+7    Scope and biological interpretation
+The theorem separates three notions that can otherwise be conﬂated. The two models have equal
+complex closures, they have a full-dimensional regular stochastic overlap, and the exhibited pa-
+rameter correspondence is strictly inside Θ0 . We do not claim equality of the complete stochastic
+images, nor that the overlap is dense in either image.
+The ambiguity is also not root relocation or triangle orientation. It changes which labelled de-
+scendant component is attached to the triangle. Consequently, even an exact inﬁnite-data JC
+distribution cannot always determine that attachment in the weakly tree-child level-2 class. The
+construction settles neither identiﬁability inside STC nor identiﬁability in the triangle-free subclass
+of WTC ; both remain outside the scope of this paper.
+
+
+8    Exact veriﬁcation
+The accompanying reproducibility package contains two implementations. The primary symbolic
+veriﬁer derives displayed-tree Fourier parameterizations from machine-readable rooted arc lists,
+checks the six identities, veriﬁes the two Jacobian factorizations, isolates β, proves strict positivity,
+and checks all 256 coordinates. The independent veriﬁer shares no graph, Fourier, isomorphism,
+or number-ﬁeld code with the primary implementation. It additionally enumerates all admissible
+rootings and veriﬁes the all-n substitution argument at the level of exact formulas.
+Every released certiﬁcate is regenerated from source. Hashes and exact commands are recorded
+in the package manifest. Finite graph regressions for several values of n are included only as
+error-detection tests; the quantiﬁed all-n result is the proof of lemma 6.1 and induction, not ﬁnite
+enumeration.
+
+
+A     Fourier orbit convention and algebraic data
+Represent the nonzero elements of G by 1, 2, 3. The fourteen nonconstant JC orbits can be repre-
+sented by
+
+                         symbol     tuple   name        symbol   tuple   name
+                            A       0011    r34          B       0101    r24
+                            C       0110    r23          D       0123    t234
+                            E       1001    r14          F       1010    r13
+                            G       1023    t134         H       1100    r12
+                            J       1111    u1111        K       1122    u1122
+                            L       1203    t124         M       1212    u1212
+                            N       1221    u1221        O       1230    t123
+
+The ﬁeld is Q(β) with the minimal polynomial in (15). Reduction uses
+                                          36083110       7336259
+                                    β2 =           β−             .
+                                          43337075      43337075
+The independent veriﬁer represents every ﬁeld element uniquely as a + bβ with a, b ∈ Q. Equality is
+coeﬃcient equality after this reduction. Order is never inferred from the algebraic representation;
+all stochastic inequalities are proved separately using the rational isolating interval in (15).
+
+                                                    9
+Data and code availability
+The exact graph encodings, veriﬁers, generated certiﬁcates, source, and deterministic reproduc-
+tion command accompany this manuscript in the project repository. No specialized phylogenetic-
+classiﬁcation software is needed.
+
+
+Use of generative AI
+Generative AI systems assisted with exploratory algebra, implementation, drafting, and adversarial
+review. Earlier automated drafts overclaimed a global positive classiﬁcation and used an incorrect
+bridge-coordinate argument; those claims were withdrawn. The present manuscript contains only
+the theorem supported by the exact, independently replayed certiﬁcates. The author is responsible
+for the statement, proof, code, and ﬁnal submission.
+
+
+References
+ [1] M. Ardiyansyah, Distinguishing Level-2 Phylogenetic Networks Using Phylogenetic Invariants,
+     arXiv:2104.12479 (2021).
+
+ [2] J. Brits, N. Holtgrefe, L. van Iersel, and S. Martin, On Tree–Network Distinguishability and
+     Full Identiﬁability of Phylogenetic Networks, arXiv:2607.12919v2 (2026).
+
+ [3] B. Currie, A. K. Englander, J. A. Esparza-Lozano, E. Gross, M. Hill, C. Long, D. Olds, K.
+     O’Connor, U. Ranasinghe, and C. Sum, Semialgebraic Conditions for Identifying Triangles in
+     Phylogenetic Networks, arXiv:2606.26673 (2026).
+
+ [4] A. K. Englander, M. Frohn, E. Gross, N. Holtgrefe, L. van Iersel, M. Jones, and S. Sulli-
+     vant, Identiﬁability of Phylogenetic Level-2 Networks under the Jukes–Cantor Model, bioRxiv
+     2025.04.18.649493, version 4 (2026), https://doi.org/10.1101/2025.04.18.649493.
+
+ [5] S. N. Evans and T. P. Speed, Invariants of Some Probability Models Used in Phylogenetic
+     Inference, Ann. Statist. 21 (1993), 355–377.
+
+ [6] N. Holtgrefe, K. T. Huber, L. van Iersel, M. Jones, and V. Moulton, Characterizing Semi-
+     Directed Phylogenetic Networks and Their Multi-Rootable Variants, Theory Biosci. 145 (2026),
+     article 4, https://doi.org/10.1007/s12064-025-00453-8.
+
+ [7] B. Sturmfels and S. Sullivant, Toric Ideals of Phylogenetic Invariants, J. Comput. Biol. 12
+     (2005), 204–228.
+
+ [8] S. Sullivant, Phylogenetic Network Models as Graphical Models, arXiv:2507.23056v2 (2026).
+
+
+
+
+                                               10
+

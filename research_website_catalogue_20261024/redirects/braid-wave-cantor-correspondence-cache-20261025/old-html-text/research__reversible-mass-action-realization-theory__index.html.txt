@@ -1,0 +1,408 @@
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+Reversible Mass-Action Realization Theory · Alec Kriebel Research
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+    
+
+      
+Alec Kriebel Research
+
+      
+
+        
+Problem
+
+        
+Progress
+
+        
+Verified seed
+
+        
+Why paused
+
+        
+Inspect
+
+      
+
+    
+
+    
+
+      
+Research program · Paused 2 August 2026 · No paper
+
+      
+Reversible mass-action realization theory
+
+      
+A research run by Alec Kriebel, with heavy assistance from OpenAI Codex
+
+      
+Checkpoint prepared: 
+2 August 2026
+
+    
+
+  
+
+
+  
+
+    
+
+      
+!
+
+      
+
+        
+The general realization theorem remains open.
+
+        
+This program produced an exact framework and one fully checked seed, but it did not prove that every positive rational ellipse—or even an open family of them—has the desired realization. The workstream is paused, and this checkpoint is not a paper.
+
+      
+
+    
+
+
+    
+
+      
+
+    
+
+
+    
+
+      
+Source dossier
+
+      
+Exact framework
+
+      
+Verifier and log
+
+    
+
+
+    
+
+      
+
+        
+The question, in plain language
+
+        
+When can a prescribed smooth closed curve in the positive concentration region be exactly the equilibrium set of a small reversible chemical reaction network?
+
+        
+The restricted target was a positive ellipse cut out in three variables by one affine-linear equation \(L=0\) and one quadratic equation \(Q=0\). The desired network had to be finite, connected, reversible, full-dimensional in stoichiometry, and equipped with strictly positive rational rates. Its three coordinate polynomials also had to be coprime, while the ellipse appeared as a reduced equilibrium component.
+
+        
+
+          
+Geometry
+A positive plane ellipse
+
+          
+Dynamics
+One reversible linkage class
+
+          
+Outcome
+Framework and one seed
+
+        
+
+        
+This followed the separate, immutable Version 2 release of 
+A reversible three-species mass-action continuum without a common factor
+. Nothing in this program changes that earlier result or release.
+
+      
+
+
+      
+
+        
+Important progress preserved
+
+
+        
+An exact geometric input test
+
+        
+After parametrizing the affine plane as \(x=p+Bu\), the restricted quadratic becomes \(u^{\mathsf T}Au+2b^{\mathsf T}u+c\). Rational inequalities in \(A,b,c,p,\) and \(B\) certify that the conic is a smooth nonempty ellipse and that every point on it lies strictly inside the positive orthant. This separates the geometry of the requested curve from the reaction-network search.
+
+
+        
+Fixed-support realization becomes linear algebra
+
+        
+
+          
+Fixed-support theorem.
+ For any chosen reversible support, reduce each unit-rate reaction contribution modulo a Gröbner basis of \((L,Q)\). The resulting rational matrix \(M\) satisfies
+          \[
+          F_i\in(L,Q)\ \text{for all }i
+          \quad\Longleftrightarrow\quad
+          Mk=0.
+          \]
+          Thus every conic-preserving rate vector on that support is captured by one exact rational kernel.
+
+        
+
+        
+Strictly positive rates are then an exact cone-feasibility problem: decide whether \(\ker M\) meets the positive orthant. A rational positive point is a direct certificate; a Stiemke-type dual vector is an exact obstruction.
+
+
+        
+Local algebraic checks after feasibility
+
+        
+Writing each coordinate field as \(F_i=A_iL+B_iQ\) gives a concise reducedness test. If a \(2\times2\) minor of the coefficient matrix \([A\ B]\) is nonzero at a smooth conic point, the localized steady ideal equals \((L,Q)\) there and the Jacobian has rank two. A separate projective argument shows that coordinate coprimality is a Zariski-open condition inside a fixed conic-preserving rate family once one exact coprime witness exists.
+
+
+        
+A proof-producing search architecture
+
+        
+The framework organizes bounded-support exploration into finite exact stages: graph and stoichiometric filters, construction of \(M\), rational positive-kernel or dual certificates, coordinate gcd checks, local reducedness, and only then saturation or residual-component analysis. The reusable implementation preserves row labels and exact arithmetic for this pipeline.
+
+      
+
+
+      
+
+        
+The independently verified seed
+
+        
+A standalone verifier reconstructs one known positive ellipse and one reversible support from frozen integer data. It imports no code or data from the earlier continuum project.
+
+        
+
+          
+
+            
+Exact seed checkpoint
+
+            
+Feature
+Verified value
+
+            
+
+              
+Network support
+10 complexes and 10 reversible pairs
+
+              
+Stoichiometry
+Rank 3; one positive compatibility class
+
+              
+Remainder matrix
+\(21\times20\), rank 16, nullity 4
+
+              
+Positive rate family
+A full four-dimensional strict-positive cone
+
+              
+Clean integer witness
+Parameters \((653,1,70,915)\)
+
+              
+Equilibrium curve
+Positive rational parametrization; distinct points for \(-1<t<1\)
+
+              
+Algebraic checks
+Coordinate gcd 1 and Jacobian rank 2 at an exact conic point
+
+            
+
+          
+
+        
+
+        
+This seed validates the framework’s layers simultaneously in one instance. It does not show that the same support works for a neighboring ellipse, much less for every positive rational ellipse.
+
+      
+
+
+      
+
+        
+Exact claim boundary
+
+        
+
+          
+Established:
+ conic preservation on a fixed support is exactly a rational kernel problem.
+
+          
+Established:
+ strict positive feasibility has exact primal witnesses and dual obstructions.
+
+          
+Established:
+ the stated local minor condition certifies a reduced conic near a chosen smooth point.
+
+          
+Established:
+ one ten-complex support realizes one positive ellipse with a four-dimensional positive cone of rates and coprime coordinate fields.
+
+          
+Not established:
+ persistence for an open family of ellipses, a finite catalog or bounded-degree universal support, or exclusion of all residual positive-dimensional steady components.
+
+        
+
+      
+
+
+      
+
+        
+Why the program is paused
+
+        
+The foundational reductions succeeded, but the central leap from one exact seed to a genuine realization theory did not. General affine normalization does not preserve mass-action monomials, positivity of a fixed kernel may change across Gröbner strata, and the local reducedness criterion alone does not control every residual curve elsewhere in the steady-state variety.
+
+        
+Continuing immediately would mean launching broader support enumeration before proving the structural lemmas that could make such a search informative. We are instead freezing the clean checkpoint and producing no manuscript.
+
+        
+If the workstream is ever resumed, the meaningful gates are a compatible normalization theorem, an exact open-region result for the seed support, a support-extension operation, or a local-to-global criterion controlling residual components. More blind graph enumeration by itself is not a resumption criterion.
+
+      
+
+
+      
+
+        
+Inspect and reproduce
+
+        
+The complete checkpoint is small and exact. These are the main entry points:
+
+        
+
+          
+README.md
+ — objective, paused status, contents, and claim boundary.
+
+          
+FRAMEWORK.md
+ — exact reductions, proofs, search architecture, and open gates.
+
+          
+verify_seed.py
+ — standalone exact reconstruction and verification of the seed.
+
+          
+remainder_map.py
+ — reusable fixed-support remainder-map implementation.
+
+          
+RESEARCH_LOG.md
+ — timestamped program opening, verified checkpoint, claim boundaries, and pause decision.
+
+        
+
+        
+The verifier uses exact integer and rational arithmetic through SymPy. Its final status line is 
+PASS: standalone realization-theory seed verification succeeded
+.
+
+      
+
+
+      
+
+        
+Scope and AI-assistance disclosure
+
+        
+This page is a research checkpoint, not a paper or a claim of a general theorem. The exploratory mathematics, proofs, programs, verification, and website were developed with heavy assistance from OpenAI Codex under Alec Kriebel's direction. The work has not been peer reviewed.
+
+      
+
+    
+
+  
+
+
+  
+
+    
+Alec Kriebel Research
+ · 
+Research source
+ · Paused without a paper
+  
+
+
+
+
+

@@ -1,0 +1,94 @@
+          Exact Quantum Values and Permutation-Blind Maximizers
+                        in Cyclic Bell Inequalities
+            Sharp operator bounds, equality structure, and limits of Bell-value randomness certification
+                      Alec Kriebel, Independent Researcher             –   Version 1.1, 9 August 2026
+
+Source credit and result. Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak introduced √         the two
+cyclic Bell families, supplied canonical strategies and lower bounds, proved the first-family bound d 2, and
+conjectured their sharper attained value. Their NPA bounds through d = 6 agree with it to the reported
+precision; they also SOS-proved the second reduced value. These source results are credited, not reclaimed.
+                          P
+For ω = e2πi/d and Id = y Re[(A0 + ω y A1 )By ], version 1.1 proves
+                                          π                                          π
+                             Id ≤ 2 csc         I,            βq = βqa = βqc = 2 csc         .
+                                           2d                                           2d
+The upper bound uses only cross-party commutation; the source’s finite order-d strategy gives attainment.
+The first Hermitian augmentation has value one more.
+Polar and scalar mechanism. For the canonical polar decomposition C = V |C| and commuting unitary
+B,
+                         |C| + |C † |           1
+                                      − Re(CB) = P † P,     P = |C † |1/2 − V |C|1/2 B.
+                             2                  2
+An explicit strong-limit argument puts V in Alice’s generated von Neumann algebra, hence in Bob’s commu-
+tant. Support projections handle kernels; no inverse or unitary polar extension is used. Functional calculus
+for U = A†0 A1 reduces the remaining gap to
+                            X                          π
+                                 |1 + ω y z| ≤ 2 csc      ,         equality iff z d = (−1)d−1 .
+                             y
+                                                       2d
+
+Finite-dimensional support rigidity. Every attained finite-dimensional tensor-product exact maximizer
+of the first augmented family has the following property: if K = supp ρA , then K reduces U , every one of the d
+equality roots occurs in U |K with equal multiplicity, and d | dim K. The proof uses the augmented stabilizer,
+Schmidt-support and kernel-safe polar cancellation, adjacent-phase reflections, and a rank bound. It says
+nothing about K ⊥ , approximate or general commuting-operator maximizers, or a complete classification/self-
+test.
+Conditional permutation orbit. Under the displayed product-one and paired polar-phase hypotheses,
+any permutation κ gives A0 = X, A1 = X diag(zκj ) and matching Bob weighted shifts that remain full-
+spectrum order-d exact maximizers. All local first moments and complex first-harmonic correlators are
+permutation-independent. This is a suﬀicient family, not a classification.
+
+
+
+
+                                                                1
+Nonuniform maximizers and exact d = 4 entropy. With q0 = 1, qj+1 = zκj qj ,
+
+                                                               |b
+                                                                q−(a+b) |2
+                                          pκ (a, b | 1, d) =               .
+                                                                   d3
+Both marginals are uniform. For every d ≥ 4, swapping the final two roots gives |R2 | = 4 sin(π/d) sin(3π/d) >
+0, hence a nonuniform exact maximizer of both augmented families and
+
+                                          1     2 sin(π/d) sin(3π/d)   1
+                                    G≥        +                      > 2.
+                                          d 2         d (d − 1)
+                                                       2              d
+
+At d = 4, exact Q(ζ16 ) arithmetic gives probabilities 1/32 and 3/32, so G = 3/32. The displayed trivial-
+Eve realization has Hmin = 5 − log2 3 = 3.415037 . . . bits, not four. This is an upper bound on value-only
+worst-case min-entropy, not its exact optimized value.
+Precise Conjecture 2 consequence. Using the displayed first augmented operator, whose maximum is
+Md + 1, the construction disproves exactly
+
+                          hI d i = Md + 1 =⇒ G(AB | 1, d, E) = 1/d2            (d ≥ 4).
+
+Thus scalar maximum alone does not certify the proposed 2 log2 d bits or identify the canonical behavior.
+This does not challenge an SDP fixing the complete canonical behavior, show that the canonical strategy
+lacks maximal randomness, or determine the worst-case guessing probability.
+Second-family convention. The SOS of Perito et al., Eqs. (22)–(23), with prefactor 1/(2d), supplies
+global optimality. The exact compression B bℓ = dλℓ Dℓ and Aℓ = Dℓ annihilate every factor. The alternative
+source- appendix convention adjoints all Bob observables and changes the target table only by b 7→ −b; value,
+nonuniformity, guessing, and entropy are unchanged.
+                                                                                       √
+Secondary benchmarks. The prior-art binary 2 × 2 score has q = qa = qc = 3 3 by a two-square SOS;
+every attaining finite-dimensional tensor-product strategy satisfies σE ab = ρ /4 at the target pair. Separately,
+                                                                               E
+the private-MUB lemma is only a suﬀicient composition criterion: a private reference PVM, perfect Bob
+                                                     a,π(b)
+matching, and a supported MUB sandwich imply σE             = ρE /d2 . It is not a low-setting existence theorem.
+Focused replay.
+
+                                 python3 verification/verify_rigidity.py
+                             python3 verification/verify_exact_benchmarks.py
+                            python3 verification/verify_private_mub_binary.py
+                                             ./reproduce.sh
+
+Canonical page. Open the manuscript and complete artifact index.
+
+
+
+
+                                                        2
+

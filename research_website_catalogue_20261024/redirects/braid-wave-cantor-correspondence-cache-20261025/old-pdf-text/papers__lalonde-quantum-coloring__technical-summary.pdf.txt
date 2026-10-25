@@ -1,0 +1,125 @@
+                            Technical summary: the G19 join family
+                              Alec Kriebel • Independent Researcher • Revised August 2, 2026
+
+Result. Lalonde’s Section 4.2 family is Gn = G19 ∨ Kn−3 ; write it as Jn to avoid overloading the fixed 19-vertex base
+graph. The base graph has graph6 string RxLAKA@AgYAWDGO?O?@??A?W@@OC@_. For every n ≥ 3 and d, s ≥ 1, with ξ
+denoting complex orthogonal rank,
+
+                              ξ(Jn ) = n < χq (Jn ) = n + 1,          χ[d]        (s)
+                                                                       q (Jn ) = χq (Jn ) = n + 1.
+
+
+This confirms Lalonde’s candidate finite witnesses, removes the rank-one restriction, and gives an alternative finite-
+witness proof that χq (SCn−1 ) ≥ n+1. The n = 3 equality was already known; the new unrestricted cases begin with the
+one-apex graph H = J4 , for which χq (H) = 5. Zero projectors, nonuniform original ranks, arbitrary finite dimension,
+and noncommuting projectors are all allowed.
+Uniformization and clique saturation. Suppose Jn has a quantum n-coloring in dimension d. Direct-sum over
+all color permutations:                                  M
+                                                 Pev,c =     Pv,π(c) .
+                                                              π∈Sn
+
+The new dimension is D = n!d = nr, and every projector has common positive rank r = (n − 1)!d. Thus uniformity
+is a theorem-level reduction, not an ansatz. For an n-clique, each fixed-color column consists of pairwise orthogonal
+projections. Its trace is at most D; summing over all colors and using the row partitions makes all n inequalities
+equalities. Hence every clique column sums to ID .
+Fix a color c. Let Rc be the sum of its projections on the joined clique and Qc = I − Rc . Each of 123, 189, 345, and
+267, joined with Kn−3 , is an n-clique. Therefore
+                                                             X
+                                           dim Qc = 3r,          Pv,c = Qc .
+                                                                     v∈Tj
+
+
+On Qc , write ev = Pv,c |Qc . These are rank-r projections giving a projective orthogonal representation of G19 .
+Exact core SOS. Set X = e10 + e11 + e12 + e13 ,
+
+                         H1 = e10 + e11 − e12 − e13 ,
+                         H2 = e10 − e11 + e12 − e13 ,        (d1 , d2 , d3 ) = (e5 − e4 , e7 − e6 , e9 − e8 ).
+                         H3 = e10 − e11 − e12 + e13 ,
+
+Projection, edge, and triangle relations give
+                            X                      X                           X
+                                d2i = 2I,     X2 +   Hi2 = 4X,                      {di , Hi } = −4X.
+                               i                         i                      i
+
+The final identity is graph-specific: for each j = 10, . . . , 13, the positive Walsh signs select exactly the three neighbors
+of j among 4, . . . , 9. Expanding the following factors now gives the exact rational identity
+
+                                       X   3                            
+                              4                              1         4                   2      1
+                                I −X =   fj∗ fj ,       f0 =         X− I ,         fi =     d i + Hi .
+                              3                              2         3                   3      2
+                                          j=0
+
+Both sides have trace zero, since dim Qc = 3r and each ej has rank r. Faithfulness of finite matrix trace forces every
+fj = 0 .
+
+
+
+
+                                                                 1
+Put A = e4 − e5 , B = e6 − e7 , and C = e8 − e9 . Walsh inversion and e2j = ej yield
+                                     {B, C} = A,       {A, C} = B,          {A, B} = C.
+Relative to Qc = ran e1 ⊕ ran e2 ⊕ ran e3 , support restrictions put A, B, C on coordinate pairs 12, 13, 23. The an-
+ticommutator equations kill their diagonal blocks; the remaining blocks are unitaries with one cocycle relation. A
+block-diagonal gauge makes all three blocks Ir . Thus vertices 1, . . . , 13 are exactly the scalar sign-vector core tensored
+with a multiplicity space Kc ∼
+                             = Cr .
+Exhaustive
+            tail. The remaining ranges are encoded by an arbitrary r-plane Mc ⊂ Kc ⊕ Kc invariant under Jc =
+   0 I
+  −I 0   :
+                                    v        14       15          16
+                                                                               (a, b) ∈ Mc ,
+                                 ran ev (a, 0, b) (0, a, b) (a, −b, 0)
+                                  v       17         18          19
+                                                                          (x, z) ∈ Mc⊥ .
+                               ran ev (x, x, z) (x, −z, z) (x, −z, x)
+The six core–tail edges supply the displayed ambient frames. Pulling back the six tail–tail edges gives five identity
+maps and one −Jc , proving both exhaustiveness and Jc Mc = Mc . This formulation includes non-graph planes;
+Mc = ran(I, Sc ) with Sc2 = −I is only a transverse chart. For r = 2, the plane span{(u, 0), (0, u)} has coincident
+sign-sector parameter spaces, an invariant which shows that it is not core-gauge-equivalent to a direct sum of scalar
+representations. At r = 1, Mc = span(1, σi) and the six displayed frames recover Lalonde’s Theorem 4.5 normal form
+with sign b = σ .
+Cross-color sector packing. Choose a core unitary Wc : Kc3 → Qc . For c ̸= d, same-vertex orthogonality at vertices
+1, . . . , 9 forces                                                 
+                                                         0     X Y
+                                            Wd∗ Wc = −X       0    Z .
+                                                        −Y −Z 0
+The lower blocks are negatives,
+                               not adjoints, because the matrix maps the c coordinate space to the d coordinate
+                    0 L
+space. With ΩL = −L   0 , the six tail compressions are
+
+                                         ΩY , ΩZ , −ΩX , ΩY +Z , ΩY −X , ΩZ−X .
+Their invertible coeﬀicient transform implies, for L = X, Y, Z ,
+                                             ΩL Mc ⊆ Md⊥ ,       ΩL Mc⊥ ⊆ Md .
+
+Since Mc reduces Jc , write
+                              Mc ∩ ker(Jc − σiI) = {(x, σix) : x ∈ Ec,σ },      ec,+ + ec,− = r.
+                                                                ⊥
+Each ΩL intertwines Jc and Jd , so the plane flip says LEc,σ ⊆ Ed,σ . For fixed σ , the n physical spaces
+                                                  Wc (Ec,σ ⊕ Ec,σ ⊕ Ec,σ )
+are pairwise orthogonal in dimension nr. Hence
+                                          X                          X
+                                        3   ec,+ ≤ nr,           3       ec,− ≤ nr.
+                                              c                      c
+
+Adding gives 3nr ≤ 2nr, impossible for r > 0. Thus no quantum n-coloring exists. The explicit classical four-coloring
+of G19 and fresh colors on the joined clique give the matching (n + 1) upper bound.
+Verification. Two standard-library exact obstruction verifiers and a separate graph checker accompany the proof.
+They decode the graph6 checksum, verify the published four-coloring and exhaustive non-three-colorability, replay
+independent rational noncommutative SOS expansions, check the Walsh and skew-block systems, multiply all six
+tail compressions, invert their coeﬀicient transform, and check the symbolic all-n dimension gap. No floating-point
+computation enters the theorem. The gauge, subspace/complement semantics, and final packing remain human linear
+algebra rather than formalized steps.
+Scope and relation to prior work. The known rank-one theorem motivates the sign frame, but it is not used as a
+reduction: the SOS proves the module-valued core directly, and the invariant plane analysis handles genuinely higher-
+rank tails. The contradiction excludes every finite-dimensional representation of the n-coloring relations, reducible or
+irreducible. No finite local dimension supports n colors. At n + 1 colors, the classical solution lifts to fixed dimension
+d by tensoring with Id and to fixed rank s by taking the direct sum of its cyclic color relabelings and tensoring with Is .
+No claim is made about infinite-dimensional or commuting-operator colorings. The proof answers the three obstacles
+identified at the end of Lalonde’s Section 4.2: it classifies all fixed-color higher-rank branches, replaces the role of
+Lemma 4.6 by a plane-flip lemma, and works for every n with one rational SOS rather than large n-specific SDPs.
+
+                                                             2
+
