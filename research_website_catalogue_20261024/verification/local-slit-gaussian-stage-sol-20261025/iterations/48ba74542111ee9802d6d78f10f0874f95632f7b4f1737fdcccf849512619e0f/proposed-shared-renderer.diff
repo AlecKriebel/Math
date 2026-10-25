@@ -1,0 +1,34 @@
+--- a/scripts/render_page.py
++++ b/scripts/render_page.py
+@@ -50,16 +50,19 @@
+ schema={'@context':'https://schema.org','@graph':[{'@type':'WebPage','@id':url+'#page','url':url,'name':c['title'],'dateCreated':today,'dateModified':today,'mainEntity':{'@id':url+'#article'}},article]}
+ def section(anchor,title,paragraphs):
+     return f'<section id="{anchor}"><h2>{h(title)}</h2>'+''.join(f'<p>{h(p)}</p>' for p in paragraphs)+'</section>'
+-sections=section('abstract','Abstract',c['abstract'].split('\n\n'))+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
++abstract_heading=c.get('abstract_heading','Abstract') if paper.name in ('23383961','23430906') else 'Abstract'
++sections=section('abstract',abstract_heading,c['abstract'].split('\n\n'))+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
+ if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
+ sections+=section('limits','Scope and limitations',c['limitations'])
+ status_paragraphs=[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')]
+ if c.get('edition_note'): status_paragraphs.append(c['edition_note'])
+ sections+=section('status','Status and AI use',status_paragraphs)
+ if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])
+-pdf_download=f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a> · ' if paper.name=='23203100' else ''
++pdf_download=f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a> · ' if paper.name in ('23203100','23383961','23430906') else ''
+ sections+=f'<section id="paper"><h2>Read the paper</h2><p><a href="{h(c["pdf_filename"])}">Open PDF in a full window</a> · {pdf_download}<a href="https://zenodo.org/records/{record_id}/files/{h(c["pdf_filename"])}">Download the original from Zenodo</a></p><iframe class="paper-pdf" src="{h(c["pdf_filename"])}#view=FitH" title="{h(c["title"])} — full paper PDF" loading="lazy"></iframe></section>'
+-if c.get('related_resources'):
++if paper.name in ('23383961','23430906'):
++    sections+=f'<section id="materials"><h2>Supporting materials</h2><ul><li><a href="{h(c["supplement_filename"])}" download>{h(c["supplement_label"])}</a> · <a href="https://zenodo.org/records/{record_id}/files/{h(c["supplement_filename"])}">Zenodo original ZIP</a></li></ul></section>'
++elif c.get('related_resources'):
+     sections+='<section id="materials"><h2>Supporting materials</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["label"])}</a>'+(' · DOI '+h(x['doi']) if x.get('doi') else '')+'</li>' for x in c['related_resources'])+'</ul></section>'
+ sections+=section('collaborate','Collaborate on this result',[c['collaboration'],'Authorship and responsibilities would be discussed in relation to the substantive contributions made.'])+'<p><a href="mailto:me@aleckriebel.com">Contact Alec</a></p>'
+ citation_edition_label=c['citation_edition_label'] if 'citation_edition_label' in c else ('Version '+c['version'] if c['version'] is not None else 'No version number supplied')
+@@ -68,7 +71,7 @@
+ author_meta='\n'.join(f'<meta name="citation_author" content="{h(a)}">' for a in authors)
+ pages=len(PdfReader(out/c['pdf_filename']).pages)
+ download_links = [f'<a href="{h(c["pdf_filename"])}">Read the paper (PDF, {pages} pages)</a>']
+-if paper.name=='23203100':
++if paper.name in ('23203100','23383961','23430906'):
+     download_links.append(f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a>')
+ if c.get('supplement_filename'):
+     download_links.append(f'<a href="{h(c["supplement_filename"])}" download>{h(c.get("supplement_label", "Source and verification (ZIP)"))}</a>')

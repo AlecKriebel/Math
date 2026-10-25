@@ -1,0 +1,123 @@
+{
+  "record_id": "23224103",
+  "work_id": "Z-23224102",
+  "sheet_row": 84,
+  "inventory_index": 96,
+  "title": "An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "publication_date": "2026-10-07",
+  "version": "1.0",
+  "status": "Unrefereed preprint",
+  "doi": "10.5281/zenodo.23224103",
+  "zenodo_url": "https://zenodo.org/records/23224103",
+  "pdf_filename": "brownian_first_visit.pdf",
+  "supplement_filename": "brownian_first_visit_support.zip",
+  "candidate_status": "HELD_CANDIDATE_ONLY_PENDING_SEPARATE_MATHEMATICAL_GATE",
+  "mathematical_verdict": null,
+  "publication_clearance": false,
+  "slug": "brownian-first-visit-cell-lengths-circle-joint-laplace-transform",
+  "description": "A deterministic integral-series formula for the full joint Laplace transform of first-visit territory lengths of independent Brownian particles on a circle.",
+  "abstract_source": "Complete original single-paragraph abstract from deposited brownian_first_visit.tex, matched to published PDF p1. Exact TeX preserved in abstract-source.tex; prose below only joins line wraps and normalizes an apostrophe. No sentence, claim or qualification omitted.",
+  "abstract_original_tex": "We give a complete analytic-transform answer to Georgakopoulos's\nquestion about the lengths of the sets first visited by independent\nBrownian particles on a circle, with uniform random or equally spaced\nstarting points. For every finite number of particles, the joint\nLaplace transform is an absolutely convergent series whose coefficients\nare finite sums of ordinary integrals of explicit interval-exit kernels.\nThe integration regions are specified linear inequalities in cumulative\nphysical hitting times. The outer series has a uniform factorial\nremainder bound and uniquely determines the probability measure.\nThe result also applies to arbitrary fixed distinct starting points.\nThe construction uses classical heat kernels, strong Markov iteration,\nand bounded-support moments. Earlier competing-walk painting results\nare credited and distinguished. No compact density, efficient numerical\nalgorithm, or absolute historical priority is asserted.\n",
+  "abstract": "We give a complete analytic-transform answer to Georgakopoulos’s question about the lengths of the sets first visited by independent Brownian particles on a circle, with uniform random or equally spaced starting points. For every finite number of particles, the joint Laplace transform is an absolutely convergent series whose coefficients are finite sums of ordinary integrals of explicit interval-exit kernels. The integration regions are specified linear inequalities in cumulative physical hitting times. The outer series has a uniform factorial remainder bound and uniquely determines the probability measure. The result also applies to arbitrary fixed distinct starting points. The construction uses classical heat kernels, strong Markov iteration, and bounded-support moments. Earlier competing-walk painting results are credited and distinguished. No compact density, efficient numerical algorithm, or absolute historical priority is asserted.",
+  "abstract_paragraphs": [
+    "We give a complete analytic-transform answer to Georgakopoulos’s question about the lengths of the sets first visited by independent Brownian particles on a circle, with uniform random or equally spaced starting points. For every finite number of particles, the joint Laplace transform is an absolutely convergent series whose coefficients are finite sums of ordinary integrals of explicit interval-exit kernels. The integration regions are specified linear inequalities in cumulative physical hitting times. The outer series has a uniform factorial remainder bound and uniquely determines the probability measure. The result also applies to arbitrary fixed distinct starting points. The construction uses classical heat kernels, strong Markov iteration, and bounded-support moments. Earlier competing-walk painting results are credited and distinguished. No compact density, efficient numerical algorithm, or absolute historical priority is asserted."
+  ],
+  "plain_language": [
+    "Imagine several independent particles moving randomly around a circle. Every point belongs to the particle that reaches it first. The question is how the resulting territory lengths vary together. The particles keep moving through encounters and already visited territory.",
+    "This paper gives the joint law in the form of a Laplace transform. Each coefficient is a finite sum of deterministic integrals built from classical Brownian interval-exit formulas. Tracking each particle’s full sequence of elapsed times preserves the dependence between its visits to different points.",
+    "The formula covers every finite number of particles, arbitrary fixed distinct labeled starting points, equally spaced starts and independent uniform labeled starts. It has a uniform bound for truncating the outer series and determines the entire joint probability measure. The high-dimensional integrals are still to be evaluated; a compact density or fast numerical method is not claimed."
+  ],
+  "result": [
+    "On the circle ℝ/ℤ, take k≥1 independent Brownian motions with generator ½d²/dx² and fixed distinct labeled starts p. Let T_i(x) be the first time particle i reaches x, let I(x) be the least label attaining the minimum hitting time, and put L_i=∫_𝕋1_{I(x)=i}dx. Theorem 1 states that L lies almost surely in the simplex {l_i≥0:∑l_i=1}.",
+    "For θ_i≥0 and θ_*=max_i θ_i, the joint Laplace transform is ℒ_p(θ)=E_p exp(−∑θ_iL_i)=∑_{m=0}∞(−1)^m M_m(θ;p)/m!. The coefficients in equations (2)–(9) contain only explicit interval-exit kernels, finite permutation and label sums, and ordinary deterministic integrals over cumulative physical-clock inequalities.",
+    "The theorem states absolute convergence, 0≤M_m≤θ_*^m, and |ℒ_p−∑_{m=0}^N(−1)^mM_m/m!|≤θ_*^(N+1)/(N+1)! for every N≥0. The coefficients uniquely determine the full joint measure.",
+    "Equally spaced starts use p_i=(i−1)/k. For independent uniform labeled starts, integrate every fixed-p coefficient over 𝕋^k; the same outer remainder bound holds."
+  ],
+  "why_it_works": [
+    "Until a particle first reaches one of the remaining query points, it moves inside an arc. Lifting that arc to an interval gives explicit endpoint exit-time densities from the Dirichlet heat kernel. If only one query remains, both lifted endpoints represent it and their fluxes are added.",
+    "Successive applications of the strong Markov property give a density for each particle’s visit order and elapsed increments. Comparing cumulative sums of those increments across particles gives all finite-query ownership probabilities without replacing one particle’s dependent hitting times by independent clocks.",
+    "Spatial integration yields the moments of Z=∑θ_iL_i. Since 0≤Z≤θ_*, the exponential series converges absolutely and Taylor’s theorem gives the factorial outer bound. Compact-simplex moment determinacy identifies the full joint law."
+  ],
+  "limitations": [
+    "The model uses finitely many independent continuing Brownian particles with a common diffusivity. Stopping, coalescing, absorbing at previously visited territory, or different per-particle diffusivities are outside the theorem.",
+    "The fixed-seed theorem assumes distinct labeled starting points. Coincident independent-uniform seeds and repeated/seed query configurations are excluded only on null sets. Independently uniform labels differ from labels assigned after circular ordering.",
+    "Tie locations have zero spatial measure almost surely. The paper does not assert that ties are absent simultaneously at every point of the circle.",
+    "The spectral kernels are summed at each positive time before improper integration near time zero. Absolute convergence of the outer transform does not certify signed Fourier termwise time integration.",
+    "The factorial bound controls the outer series only. It does not bound inner kernel-series truncation, numerical quadrature error or computational cost. No compact or named density, efficient evaluator or large-k asymptotic is claimed.",
+    "Equally spaced labeled starts have cyclic and dihedral symmetry; full permutation exchangeability is not asserted. Independent uniform labeled starts are exchangeable.",
+    "The painting model, interval kernels, strong Markov property, moment expansion and moment determinacy are established antecedents. The manuscript credits earlier lattice painting, interfaces, competitive ranges and temporal moment/span methods. Absolute historical priority, exhaustive absence and independent discovery are not established.",
+    "The full Gomes 1996 article and Dicker thesis remain uninspected in this fresh review; direct publisher/index access returned 403. The Mörters–Peres theorem was read in an authenticated actual 2010 author-book cache because a fresh author download timed out; its custody is distinguished from fresh retrieval.",
+    "This preprint was prepared with extensive AI assistance and is unrefereed. Deposited exact finite-model and high-precision diagnostics are supplementary; they do not prove a Brownian scaling limit or certify numerical error. This scope lane read the code statically and did not execute it."
+  ],
+  "background": [
+    {
+      "title": "Agelos Georgakopoulos, Voronoi-like decomposition of S¹ with randomness",
+      "url": "https://doi.org/10.4171/OWR/2018/23",
+      "note": "The finite-particle joint cell-length question appears on printed p1452 of the 2018 report; EMS records publication on 12 April 2019. Historical wording does not certify present-day openness."
+    },
+    {
+      "title": "Steven Lalley, Brownian Motion course notes",
+      "url": "https://galton.uchicago.edu/~lalley/Courses/312/BrownianMotion312.pdf",
+      "note": "Exercise 6(A)–(C) supplies the classical killed unit-interval eigenfunction expansion."
+    },
+    {
+      "title": "Peter Mörters and Yuval Peres, Brownian Motion (2010)",
+      "url": "https://www.mi.uni-koeln.de/~moerters/book/book.pdf",
+      "note": "Theorem 2.16, printed pp43–44, is the strong Markov property. Actual theorem and proof read in the authenticated author-book cache."
+    },
+    {
+      "title": "Philip Ernst and Larry Shepp, On the Time for Brownian Motion to Visit Every Point on a Circle",
+      "url": "https://arxiv.org/abs/1312.4632v2",
+      "note": "Equation (5) records the standard two-endpoint interval exit transforms. Its main observable is a single particle’s circle cover time."
+    },
+    {
+      "title": "S. R. Gomes Júnior and coauthors, Coloring of a one-dimensional lattice by two independent random walkers (1996)",
+      "url": "https://doi.org/10.1016/0378-4371(95)00424-6",
+      "note": "Earlier periodic first-arrival painting is credited. This fresh review could not inspect the article’s full text; later primary papers describe its one-point and interface calculations."
+    },
+    {
+      "title": "Jason Miller, Painting a graph with competing random walks",
+      "url": "https://arxiv.org/abs/1003.2168v2",
+      "note": "Earlier first-visitor ownership, correlation analysis and asymptotic volume variance on graph families; not presented here as a new model."
+    },
+    {
+      "title": "Chatterjee, Nabahi and Terlov, Interface between competing random walks on a cycle",
+      "url": "https://arxiv.org/abs/2608.21312v1",
+      "note": "Theorem 1.1 concerns expected interface size for two walkers on a discrete cycle."
+    },
+    {
+      "title": "Maxence Baccara, On the range of competing random walks",
+      "url": "https://arxiv.org/abs/2607.02406v1",
+      "note": "Section 6, Proposition 8 gives joint competitive-range convergence to a finite-horizon Brownian functional on the real line."
+    },
+    {
+      "title": "Ian Meng Si, Strategic geometry of competing first-passage random walks",
+      "url": "https://arxiv.org/abs/2608.24837v1",
+      "note": "Section 7 studies expected strategic payoffs for reflected Brownian motions on an interval."
+    },
+    {
+      "title": "Fitzsimmons and Pitman, Kac’s moment formula and the Feynman–Kac formula for additive functionals of a Markov process",
+      "url": "https://doi.org/10.1016/S0304-4149(98)00081-7",
+      "note": "Classical temporal additive-functional moments and product-moment permutation formulas."
+    },
+    {
+      "title": "Régnier, Dolgushev, Redner and Bénichou, Complete visitation statistics of one-dimensional random walks",
+      "url": "https://doi.org/10.1103/PhysRevE.105.064104",
+      "note": "Prior multitime single-walker span laws built from exit increments; a related explicit-transform mechanism with a different observable."
+    }
+  ],
+  "citation": "Kriebel, Alec. An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle. Version 1.0, 7 October 2026. Unrefereed preprint. https://doi.org/10.5281/zenodo.23224103.",
+  "collaboration": "Independent verification, substantial extensions with a clear mathematical payoff, and work toward a journal submission are welcome. Authorship would reflect actual contributions.",
+  "ai_disclosure": "AI tools were used extensively in developing, drafting, reproducing and adversarially verifying this work. Independent AI reviews are not conventional human peer review. This preprint is unrefereed and has not undergone conventional human peer review.",
+  "follow_up": null,
+  "followup_rationale": "No exceptionally well-supported additional question was established in this bounded primary review. A compact density, faster evaluator, asymptotic limit or new diffusivity regime is not advertised as a substantial new research question merely because it is untreated.",
+  "source_binding": {
+    "pdf_sha256": "acf262d707c9faa466f30a86a8347ae7cbff0ad5a48fbb38893e460c0e3ec2e5",
+    "supplement_sha256": "8835f8ea3be4e25eb25b7663a2da0d56ee4afbc3dbe60843b02436a66dc237ab",
+    "main_tex_sha256": "f5a71902a30c386de29a372427d928273ea50e3ff833bd8b6e74ce5f34e9fd9f"
+  },
+  "prepared_utc": "2026-10-25T05:37:33.349738+00:00",
+  "mathematical_clearance": false
+}

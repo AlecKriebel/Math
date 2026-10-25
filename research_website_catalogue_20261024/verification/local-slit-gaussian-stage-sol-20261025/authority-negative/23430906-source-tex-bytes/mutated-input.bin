@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\G}{\mathcal G}
+\newcommand{\K}{\mathcal K}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{A localized Gaussian-witness lower bound\newline for fractional iterated area on uniform grids}
+\author{Alec Kriebel\\Independent Researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{14 October 2026\quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For two independent standard fractional Brownian motions with the same fixed Hurst parameter $H\in(1/4,1)$, we give a localized Gaussian-witness proof that every square-integrable estimator of the canonical iterated integral $X_T=\int_0^T B^1_s\,dB^2_s$, based on both complete uniform grids of $n$ observations on $[0,T]$, has root mean-square error at least $c_HT^{2H}n^{1/2-2H}$. The positive constant is explicit and depends only on $H$; the inequality holds for every $T>0$ and integer $n\ge1$, including nonlinear estimators. Smooth compactly supported covariance paths, a Fourier periodization upper Gram bound, and an exact deterministic area pairing provide the witness. The Brownian optimum and the smooth asymptotic rate are prior results. Fourier localization and Gaussian projection have established antecedents; historical theorem and method priority, full novelty, and worldwide current-open status remain unverified. The note uses canonical-area existence and sufficient $L^2$ convergence, without endorsing exact Euler-error coefficients of the pinned arXiv v1.
+\end{abstract}
+\noindent\textbf{Keywords:} fractional Brownian motion; iterated integral; Gaussian projection; approximation lower bound; uniform sampling.
+
+\section{Statement, convention, and attribution}
+Fix $H\in(1/4,1)$. Let $B^1,B^2$ be independent centered standard fractional Brownian motions (fBm), with covariance
+\[
+R_H(s,t)=\tfrac12\bigl(s^{2H}+t^{2H}-|s-t|^{2H}\bigr),\qquad s,t\ge0.
+\]
+Let $X_T=\int_0^T B^1_s\,dB^2_s$ denote the canonical \emph{iterated} integral, defined by the $L^2$ limit of piecewise linear lifts. This construction exists for $H>1/4$ \cite{ntu}. Put
+\[
+\G_{T,n}=\sigma\bigl(B^i_{jT/n}: i=1,2,\ j=1,\ldots,n\bigr).
+\]
+Both component grids are complete, the observations include $T$, and $B^i_0=0$ is deterministic.
+
+For later use define $\phi(x)=x^4(1-x)^4$ on $[0,1]$, zero elsewhere, $f=\phi'$, $g=\phi$, and
+\begin{align}
+D_H&=\int_{\R}|e^{i\xi}-1|^2|\xi|^{-1-2H}\,d\xi,&
+a&=\int_0^1(\phi')^2\,dx=\frac4{45045},\label{eq:constants}\\
+L_r&=\norm{r}_{L^1(\R)},&N_r&=\norm{r'''}_{L^1(\R)}\quad(r=f,g),\nonumber\\
+\alpha&=2H+1,&
+\overline P_r&=\pi^\alpha L_r^2+2N_r^2\pi^{\alpha-6}
+\left(1+\frac1{2(5-\alpha)}\right).\label{eq:pbar}
+\end{align}
+The derivatives here are weak derivatives of the zero extensions. These finite integrals specify the constants completely. In particular $L_f=1/128$, $L_g=1/630$, and $N_g=113/196$; $N_f$ is the integral of the absolute value of the displayed polynomial below.
+
+\begin{theorem}\label{thm:main}
+For every fixed $H\in(1/4,1)$, every $T>0$, every integer $n\ge1$, and every $F\in L^2(\G_{T,n})$,
+\begin{equation}
+\norm{X_T-F}_{L^2}\ge c_HT^{2H}n^{1/2-2H},\qquad
+c_H=\frac{2\pi a}{D_H\sqrt{\overline P_f\overline P_g}}>0.
+\label{eq:target}
+\end{equation}
+Thus the same bound holds for $F=\E[X_T\mid\G_{T,n}]$.
+\end{theorem}
+This is a direct finite-$n$ lower inequality. It asserts no sharp constant, exact normalized-error limit, limiting law, endpoint result, constant uniform in $H$, nonuniform or adaptive sampling, unequal Hurst parameters, or correlated components.
+
+Neuenkirch's 2012 contribution \cite{owr} formulates this positive lower-rate question with the same iterated integral and vector observations. Its historical conjecture does not establish present-day worldwide openness. The exact Brownian optimum is $T/(2\sqrt n)$, in the Clark--Cameron lineage as recorded in \cite{owr,ns}; our constant at $H=1/2$ is weaker. Neuenkirch--Shalaiko \cite{ns} prove positive normalized liminf and finite limsup for $H>1/2$. An earlier 2009 primary announcement \cite{dagstuhl} and Shalaiko's thesis \cite{thesis} provide historical context. The all-$n$ qualitative smooth extension follows from that liminf and finite-$n$ nonrecoverability, by taking a finite minimum; it is not a newly established smooth asymptotic rate.
+
+Local Fourier covariance bumps and Gaussian projection are standard antecedents, exemplified by Wu--Xiao \cite{wuxiao} and Xiao \cite{xiao}. This note presents an attributed witness proof, without claiming a new general method or first solution. A bounded source audit found no matching rough conditional lower theorem among its inspected primary controls. Historical priority, full novelty and worldwide current-open status remain UNKNOWN. Incompletely accessible Dickinson and Jackowski method bodies \cite{dickinson,jackowski} leave potential general implications unverified; their applicability is not excluded. See the support package for precise read boundaries and comparisons.
+
+\section{The only stochastic-area input}
+We will use
+\begin{equation}
+L_m:=\sum_{k=0}^{m-1}B^1_{kT/m}
+\bigl(B^2_{(k+1)T/m}-B^2_{kT/m}\bigr)\longrightarrow X_T
+\quad\hbox{in }L^2.\label{eq:euler}
+\end{equation}
+For clarity we record a sufficient derivation, rather than relying on exact Euler-error asymptotic coefficients. The journal-formatted institutional author copy of \cite{ntu}, Proposition 6, printed p.229, constructs the analytic area with $L^p$ convergence and Chen's relation. Remark 10 and Theorem 2 identify the piecewise linear/trapezoid limit. Standard joint self-similarity and stationarity and the separated-cell covariance calculation yield the following interface. At $H=1/2$, independent-component It\^o integration is used separately.
+
+Write $I_j=\int_j^{j+1}(B^1_s-B^1_j)\,dB^2_s$ and $c_r=\E[I_0I_r]$. Existence gives $c_0<\infty$ and $|c_1|\le c_0$. Chen's relation, scaling and stationarity give the finite identity
+\begin{equation}
+\E|X_T-L_m|^2=T^{4H}m^{-4H}
+\left[mc_0+2(m-1)c_1+2\sum_{r=2}^{m-1}(m-r)c_r\right].\label{eq:lag}
+\end{equation}
+For $r\ge2$, smooth approximation and the differentiated covariance may be passed to the limit away from the diagonal. Component independence gives
+\begin{align}
+c_r={}&H^2(2H-1)^2\int_0^1\int_r^{r+1}\int_0^s\int_r^t
+|u-v|^{2H-2}|s-t|^{2H-2}\,dv\,du\,dt\,ds,\nonumber\\
+0\le c_r\le{}&\tfrac14H^2(2H-1)^2(r-1)^{4H-4}.\label{eq:separated}
+\end{align}
+The distances are at least $r-1$ and the two triangle volumes multiply to $1/4$. Singular same-cell or adjacent-cell kernels are not integrated in this step. Consequently, with empty sums interpreted as zero,
+\begin{equation}
+\E|X_T-L_m|^2\le T^{4H}m^{-4H}
+\left[3mc_0+\tfrac12H^2(2H-1)^2m\sum_{q=1}^{m-2}q^{4H-4}\right].\label{eq:coarse}
+\end{equation}
+Decreasing-series integral bounds give $O_H(T^{4H}m^{1-4H})$ for $H<3/4$, $O_H(T^3m^{-2}(1+\log m))$ at $H=3/4$, and $O_H(T^{4H}m^{-2})$ for $H>3/4$. All vanish for $H>1/4$. Brownian It\^o isometry gives $\E|X_T-L_m|^2=T^2/(2m)$.
+
+To check the canonical convention, let $P_m$ be the integral of the linear interpolations. Direct cell integration gives
+\begin{equation}
+P_m=L_m+Q_m,\qquad Q_m=\tfrac12\sum_{k=0}^{m-1}\Delta_k B^1\Delta_k B^2.\label{eq:polygon}
+\end{equation}
+Independence and stationary increment covariance give exactly
+\begin{align}
+\E Q_m^2&=\frac{T^{4H}m^{-4H}}4
+\left[m+2\sum_{r=1}^{m-1}(m-r)\rho_H(r)^2\right],\label{eq:correction}\\
+\rho_H(r)&=\tfrac12\bigl(|r+1|^{2H}+|r-1|^{2H}-2|r|^{2H}\bigr).\nonumber
+\end{align}
+For $r\ge2$, the integral second-difference formula yields
+$|\rho_H(r)|\le H|2H-1|(r-1)^{2H-2}$. The $r=1$ value is finite. Squaring and counting lags gives the same three vanishing regimes as above. Thus $Q_m\to0$ in $L^2$ and the analytic and canonical polygonal limits coincide. In the Brownian case all nonzero-lag $\rho$ vanish and $\E Q_m^2=T^2/(4m)$; independent components have zero mutual quadratic variation, so It\^o and Stratonovich conventions coincide.
+
+\begin{remark}[Source-version boundary]
+The pinned arXiv:0902.0497v1, Eq.(27), printed p.12, incorrectly discards \emph{all} lags beyond 1 at the leading rough scale: Eq.(26) gives
+$c_2\ge H^2(2H-1)^2 3^{4H-4}/4>0$ for $H\ne1/2$, and the $2(m-2)$ lag-2 pairs have a positive normalized liminf. The institutional \emph{journal-formatted} copy has a materially different proof: Theorem 1 retains $c_0+2\sum_{r\ge1}c_r$, Eq.(29) keeps lags 2 through $\log n$, and Eq.(30) discards only the tail beyond $\log n$. The specific v1 defect therefore is not a journal-error claim. Intermediate factor-2 displays and all exact coefficients have not been independently certified. Our dependency is existence and the sufficient convergence proof above. Historical source records retain their original bytes; the current dated addendum governs this version.
+\end{remark}
+
+\section{Normalized Gaussian representation and covariance paths}
+Let $\K$ be the real Hilbert space of $L^2(\R;\mathbb C)$ functions satisfying $u(-\xi)=\overline{u(\xi)}$, with inner product
+$\langle u,v\rangle=\int_{\R}u(\xi)\overline{v(\xi)}\,d\xi$.
+The integral is real by conjugate symmetry. In \eqref{eq:constants}, integrability powers $1-2H$ at zero and $-1-2H$ at infinity prove $0<D_H<\infty$ for $0<H<1$.
+Put
+\[
+K_t(\xi)=D_H^{-1/2}(e^{it\xi}-1)|\xi|^{-H-1/2}.
+\]
+A change of variable gives $\norm{K_t-K_s}^2=|t-s|^{2H}$; since $K_0=0$, real polarization gives $\langle K_s,K_t\rangle=R_H(s,t)$. Independent real isonormal processes $W_1,W_2$ on $\K$ realize $B^i_t=W_i(K_t)$ with the required standard law.
+
+Use $\widehat h(\xi)=\int_{\R}e^{-it\xi}h(t)\,dt$. For real compactly supported $h$ of the regularity below define
+\begin{equation}
+u_h(\xi)=\frac{\sqrt{D_H}}{2\pi}|\xi|^{H+1/2}
+\overline{\widehat h(\xi)}.\label{eq:dual}
+\end{equation}
+When $\int|\xi|^{2H+1}|\widehat h|^2<\infty$, this lies in $\K$. Absolute Fourier inversion gives the exact covariance
+\begin{equation}
+\E[B^i_tW_i(u_h)]=\langle K_t,u_h\rangle
+=\frac1{2\pi}\int_{\R}(e^{it\xi}-1)\widehat h(\xi)\,d\xi
+=h(t)-h(0).\label{eq:covpath}
+\end{equation}
+The conjugation in \eqref{eq:dual} is essential for this Fourier sign.
+
+For $f=\phi'$ and $g=\phi$, the endpoint zeros of $\phi$ through derivative 3 imply $r,r',r''$ have zero endpoint traces. Their zero extensions lie in $W^{3,1}(\R)$, with no boundary masses in their third weak derivatives. A jump in $f'''$ is allowed. Explicitly,
+\begin{align*}
+f'''(x)&=24-480x+2160x^2-3360x^3+1680x^4,\\
+g'''(x)&=24x-240x^2+720x^3-840x^4+336x^5
+\qquad(0<x<1).
+\end{align*}
+Three integrations by parts give, for $r=f,g$,
+\begin{equation}
+|\widehat r(\eta)|\le L_r,\qquad
+|\widehat r(\eta)|\le N_r|\eta|^{-3}\quad(\eta\ne0).\label{eq:fourierbound}
+\end{equation}
+Thus their transforms are absolutely integrable, and their weighted squared transforms are integrable for the whole $\alpha\in(3/2,3)$. Polynomial integration gives the positive pairing $a$ in \eqref{eq:constants}.
+
+\section{Periodization gives a simultaneous upper Gram bound}
+Define
+\[
+P_r(\theta)=\sum_{\ell\in\mathbb Z}|\theta+2\pi\ell|^\alpha
+|\widehat r(\theta+2\pi\ell)|^2,\qquad |\theta|\le\pi.
+\]
+The central summand is at most $\pi^\alpha L_r^2$. For $|\ell|\ge1$, \eqref{eq:fourierbound} and $|\theta+2\pi\ell|\ge\pi(2|\ell|-1)$ give the bound
+$N_r^2[\pi(2|\ell|-1)]^{\alpha-6}$. The decreasing odd-power series satisfies
+\[
+\sum_{\ell=1}^{\infty}(2\ell-1)^{\alpha-6}
+\le1+\int_1^\infty(2x-1)^{\alpha-6}\,dx
+=1+\frac1{2(5-\alpha)}.
+\]
+Therefore $P_r\le\overline P_r<\infty$, with \eqref{eq:pbar} valid over the entire claimed $H$ interval.
+
+For $\Delta>0$ and integer $j$, put $r_j(t)=\Delta^H r(t/\Delta-j)$ and $u_j^r=u_{r_j}$. Their Fourier transforms are
+$\widehat r_j(\xi)=\Delta^{H+1}e^{-ij\Delta\xi}\widehat r(\Delta\xi)$. The powers cancel as $2H+2-\alpha-1=0$, giving
+\begin{equation}
+\langle u_j^r,u_k^r\rangle=
+\frac{D_H}{4\pi^2}\int_{\R}|\eta|^\alpha|\widehat r(\eta)|^2
+ e^{i(j-k)\eta}\,d\eta.\label{eq:gram}
+\end{equation}
+For any finitely supported real vector $(b_j)$, nonnegative-integrand Tonelli, periodization and Parseval for its finite trigonometric polynomial imply
+\begin{align}
+\norm{\sum_j b_j u_j^r}_{\K}^2
+&\le\frac{D_H\overline P_r}{4\pi^2}
+\int_{-\pi}^{\pi}\left|\sum_j b_j e^{ij\theta}\right|^2\,d\theta\nonumber\\
+&=M_r\sum_jb_j^2,\qquad M_r=\frac{D_H\overline P_r}{2\pi}.\label{eq:bessel}
+\end{align}
+This upper bound is uniform in cell size and count. It is not increment lower coercivity: for $H<1/2$, all-one coefficients in $n$ unit increments have variance $n^{2H}$, precluding a positive lower multiple of $n$. Integer translation is used here, so this argument does not cover arbitrary meshes.
+
+\section{An invisible quadratic witness and its exact pairing}
+Fix $T,n$ and $\Delta=T/n$. For $j=0,\ldots,n-1$, take
+\[
+U_j=W_1(u_j^f),\quad V_j=W_2(u_j^g),\qquad
+Y=\sum_{j=0}^{n-1}U_jV_j.
+\]
+All $f_j,g_j$ vanish at every observation time, including both endpoints. By \eqref{eq:covpath} and component independence, every witness coordinate has zero covariance with every observed coordinate. The complete vector is jointly Gaussian, so the entire witness vector is independent of the entire observation vector. Therefore $Y$ is independent of $\G_{T,n}$ and $\E Y=0$.
+
+Let $A=(\E U_jU_k)$ and $C=(\E V_jV_k)$. These real symmetric positive semidefinite matrices obey $A\le M_fI$, $C\le M_gI$ by \eqref{eq:bessel}. Component independence gives
+\begin{equation}
+\E Y^2=\sum_{j,k}A_{jk}C_{jk}=\operatorname{tr}(AC)
+\le M_f\operatorname{tr}(C)\le nM_fM_g.\label{eq:variance}
+\end{equation}
+The first inequality follows from
+$\operatorname{tr}(C^{1/2}(M_fI-A)C^{1/2})\ge0$.
+It permits signed off-diagonal covariances and does not assume that different cells are independent or that $A,C$ commute.
+
+For each fixed $j$, finite left sums and independence give exactly
+\begin{equation}
+\E[L_mU_jV_j]=\sum_{k=0}^{m-1}f_j(kT/m)
+\bigl[g_j((k+1)T/m)-g_j(kT/m)\bigr].\label{eq:finitepair}
+\end{equation}
+Since $U_jV_j\in L^2$, \eqref{eq:euler} and Cauchy--Schwarz pass the left side to its limit. The right side is an ordinary deterministic Riemann--Stieltjes sum of continuously differentiable functions. Its limit is
+\[
+\E[X_TU_jV_j]=\int_0^T f_j(t)g'_j(t)\,dt=\Delta^{2H}a.
+\]
+Only fixed $n,T,j$ are held during this limit. There is no simultaneous exchange of $m,n$ limits or stochastic Fubini step. Summing the finite $n$ identities gives
+\begin{equation}
+\E[X_TY]=na\Delta^{2H}.\label{eq:exactpair}
+\end{equation}
+For every $F\in L^2(\G_{T,n})$, independence and centering give $\E[FY]=0$, including nonlinear $F$. Equations \eqref{eq:variance}--\eqref{eq:exactpair} yield
+\[
+na\Delta^{2H}=\E[(X_T-F)Y]
+\le\norm{X_T-F}_{L^2}\sqrt{nM_fM_g}.
+\]
+This proves Theorem~\ref{thm:main} with exactly the stated positive constant.
+
+The auxiliary isonormal directions need not be path-measurable in an originally supplied model. To justify the transfer, finite left sums and observations have the same joint law in the representation and the original model; their $L^2$ limits preserve that joint law. Every $L^2$ variable measurable with respect to the finite observation vector is a Borel function of it up to null sets. The proved bound transfers for every such function, so availability of $Y$ on the enlarged representation is sufficient.
+
+\section{Boundaries and verification status}
+The proof includes $n=1$ directly and every $T>0$ through cell scaling. At $H=1/4$, the diagonal in \eqref{eq:correction} is $T/4$, so this canonical bridge does not extend there. At $H=1$, $D_H$ diverges and fBm is linear, making the iterated integral recoverable from endpoints. These different mechanisms preclude endpoint extrapolation. No uniform positivity as $H$ approaches an endpoint is asserted.
+
+The polygonal identity gives $I_{12}+I_{21}=B^1_TB^2_T$. The halved antisymmetric area $A_T=(I_{12}-I_{21})/2=X_T-B^1_TB^2_T/2$ has the same optimal conditional residual, since the product is observed. The unhalved antisymmetric difference has twice that residual. Theorem~\ref{thm:main} uses $X_T$ throughout.
+
+This note was prepared with extensive AI assistance. Two mathematically distinct AI review families independently reconstructed and challenged the proof before comparison; a separate bounded AI priority review qualified its attribution. These are not human referee reports or formal proof-assistant certification. The support package preserves the nine original historical records, current root qualifications and selected authored review receipts byte-for-byte. A fresh isolated execution of the original finite checker and explicit normal/optimized-mode guards supplies reproducible finite evidence; it does not establish universal analytic claims or interval-certified quadrature. Raw third-party bodies, extracts, images, environment binaries and raw service responses are not redistributed. Publication readiness and external submission status are recorded in the dated preparation status, subject to later whole-package review. No external communication was initiated.
+
+\begin{thebibliography}{99}
+\bibitem{owr} A. Neuenkirch, A conjecture on the optimal approximation of the fractional L\'evy area, in \emph{Rough Paths and PDEs}, Oberwolfach Reports 41/2012, pp.2524--2525. \href{https://doi.org/10.4171/owr/2012/41}{doi:10.4171/owr/2012/41}.
+\bibitem{ntu} A. Neuenkirch, S. Tindel and J. Unterberger, Discretizing the fractional L\'evy area, \emph{Stochastic Processes and their Applications} 120 (2010), 223--254. \href{https://doi.org/10.1016/j.spa.2009.10.007}{doi:10.1016/j.spa.2009.10.007}. Inspected institutional journal-formatted author copy: \href{https://www.math.purdue.edu/~stindel/publication/papers-online/discretize-levy-area.pdf}{Purdue publication link}. Separate pinned version: arXiv:0902.0497v1.
+\bibitem{ns} A. Neuenkirch and T. Shalaiko, The maximum rate of convergence for the approximation of the fractional L\'evy area at a single point, \emph{Journal of Complexity} 33 (2016), 107--117. \href{https://doi.org/10.1016/j.jco.2015.09.008}{doi:10.1016/j.jco.2015.09.008}. Complete inspected author mathematical text dated 14 July 2015; journal-byte identity unverified.
+\bibitem{dagstuhl} A. Neuenkirch, Optimal Pointwise Approximation of SDEs driven by Fractional Brownian Motion, \emph{Dagstuhl Seminar Proceedings 09391} (2009), abstract p.15. \href{https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol09391/DagSemProc.09391.1/DagSemProc.09391.1.pdf}{Primary seminar report}.
+\bibitem{thesis} T. Shalaiko, \emph{Stochastic analysis of mixed models}, thesis, Kyiv, 2015; defended 29 February 2016, registry 0416U000568, Sec.3.2 and Theorem 3.3. \href{https://uacademic.info/download/file/0416U000568/dis.pdf}{Primary thesis repository}.
+\bibitem{wuxiao} D. Wu and Y. Xiao, \emph{Geometric Properties of Fractional Brownian Sheets}, institutional author version dated 26 February 2006, Theorem 2.1 and proof pp.5--6. \href{https://www.stt.msu.edu/~xiaoyimi/XW91.pdf}{Primary author version}.
+\bibitem{xiao} Y. Xiao, Properties of local-nondeterminism of Gaussian and stable random fields and their applications, \emph{Annales de la Facult\'e des Sciences de Toulouse} 15 (2006), 157--193, Theorem 3.1, pp.174--175. \href{https://doi.org/10.5802/afst.1117}{doi:10.5802/afst.1117}.
+\bibitem{dickinson} A. S. Dickinson, Optimal Approximation of the Second Iterated Integral of Brownian Motion, \emph{Stochastic Analysis and Applications} 25 (2007), 1109--1128. \href{https://doi.org/10.1080/07362990701540592}{doi:10.1080/07362990701540592}. Full method body not obtained in the bounded audit; broader implications UNKNOWN. See also \emph{On the Diagonalization and Simulation of L\'evy Area}, SSRN 5031388 (2024/2025), full body unavailable.
+\bibitem{jackowski} T. Jackowski, Complexity of multilinear problems in the average case setting, \emph{Journal of Complexity} 7 (1991), 98--120. \href{https://doi.org/10.1016/0885-064X(91)90047-2}{doi:10.1016/0885-064X(91)90047-2}. Partial primary journal OCR inspected; complete formula body and rough-space implications UNKNOWN.
+\end{thebibliography}
+\vspace{1ex}\noindent\small Copyright 2026 Alec Kriebel. This authored note and newly authored support material are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Third-party publications are cited, not relicensed or redistributed.
+\end{document}
+

@@ -1,0 +1,252 @@
+{
+  "title": "A negative-curvature normal barrier on an algebraic cone that is not a hyperbolicity cone",
+  "slug": "negative-curvature-normal-barrier-nonhyperbolicity-cone",
+  "description": "An explicit normal barrier with a third-derivative sign certificate on a known algebraic cone that has no defining hyperbolic polynomial in three variables.",
+  "abstract": "We give an explicit affirmative answer to Tunçel’s 2017 existential question about algebraic convex cones with negative-curvature normal barriers. The one-sided power cone K = {(x,y,z) ≥ 0: xy² ≥ z³} admits the barrier F = −25 log(z(xy² − z³)) with parameter 100 and D³F(a)[h,u,u] ≤ 0 for every a ∈ int K, h ∈ K, and u ∈ ℝ³. Exact polynomial and positive-semidefinite certificates prove the curvature inequality, including its degenerate directions. A boundary divisibility argument rules out every homogeneous hyperbolic polynomial defining K in ℝ³. The cone itself is a known member of Hildebrand’s classification; the contribution here is the explicit barrier certificate and its verification for the stated existential problem.",
+  "plain_language": [
+    "Barrier functions grow without bound near the boundary of a feasible region and help optimization methods stay inside it. This paper studies the additional derivative-sign property called negative curvature in conic optimization.",
+    "The region is the known cone of nonnegative triples satisfying xy²≥z³. The paper gives a particular logarithmic barrier and proves its sign condition at every interior point, for every direction in the closed cone and every real test vector, including degenerate directions.",
+    "It also proves that no homogeneous polynomial of any degree can have this cone as its hyperbolicity cone in the original three-dimensional space. Together, these properties provide the kind of example requested in Tunçel’s 2017 existential question.",
+    "The cone and earlier self-concordant barriers were already known. The contribution presented here is the explicit additional third-derivative certificate and the accompanying obstruction, with no first-discovery claim."
+  ],
+  "result": [
+    "Let K={(x,y,z)∈ℝ³:x,y,z≥0, xy²≥z³}. It is a regular algebraic convex cone: closed, pointed and convex, with nonempty interior, defined by homogeneous polynomial inequalities. Its interior is {x,y,z>0:xy²>z³}.",
+    "On the entire interior, F(x,y,z)=−25 log(z(xy²−z³)) is a logarithmically homogeneous self-concordant normal barrier with parameter 100. In particular, F(λa)=F(a)−100 log λ for λ>0, and its squared dual Hessian gradient norm is exactly 100.",
+    "For every a∈int K, every h∈K and every u∈ℝ³, D³F(a)[h,u,u]≤0. The direction h ranges over the closed cone, including zero and its boundary; the claim is semidefinite and includes the degenerate cases.",
+    "There is no homogeneous real polynomial H of any degree in the same ℝ³ for which K is its hyperbolicity cone. This is an obstruction for every possible defining H and interior hyperbolicity direction, rather than only for the displayed cubic xy²−z³."
+  ],
+  "why_it_works": [
+    "The weighted geometric mean x^(1/3)y^(2/3) is concave, so its nonnegative hypograph is convex. Writing g=z³/y² and δ=x−g gives a positive Hessian-norm decomposition for f=−log(xy²−z³)−log z. A mixed third-derivative estimate becomes self-concordance after scaling by 25. The degree-four product z(xy²−z³) gives logarithmic homogeneity with parameter 100, and the product tends to zero at every finite boundary point.",
+    "A fixed positive diagonal change of coordinates sends any interior base point to (r,1,1), retaining r>1. Every cone direction is a nonnegative combination of (t³,1,t), t≥0, and the x-axis direction. This reduces the mixed sign assertion to an explicit symmetric matrix.",
+    "Exact leading-minor and square identities give a positive matrix for t≠1. A separate lower-block certificate at t=1 and a Gram certificate for the x-axis direction supply the semidefinite cases. The reduction includes t=0, h=0 and directions with h_y=0; no strict-definiteness claim is needed there.",
+    "Any proposed defining hyperbolic polynomial must vanish on the curved boundary. Substitution x=z³/y² and Gauss’s lemma force the factor p=xy²−z³ to divide it. For every prospective interior direction e, set A=(e_xe_y²)^(1/3)>B=e_z>0. Along v=(0,0,1), the factor p(v+te) has a quadratic factor with discriminant −3A²<0. Multiplication cannot cancel that nonreal root pair, contradicting hyperbolicity."
+  ],
+  "limitations": [
+    "Negative curvature here means the mixed third-derivative inequality D³F(a)[h,u,u]≤0, equivalently concavity of a↦DF(a)[h] for each fixed h∈K. It does not assert nonpositive sectional curvature of a Hessian metric. Boundary base points are outside the barrier’s domain, while boundary cone directions are included.",
+    "The theorem concerns this one-sided nonnegative cone. It makes no assertion for the sign-symmetric power cone, arbitrary exponents or all regular cones. The broader every-regular-cone barrier question remains a separate credited question.",
+    "The cone is already in Hildebrand’s classification. Roy–Xiao give a parameter-3 self-concordant barrier on the same cone. Parameter 100 is an explicit sufficient certificate for the displayed barrier and its additional sign property, with no parameter improvement or optimality claim.",
+    "The all-degree polynomial obstruction concerns the original three-dimensional ambient space. It does not exclude projections or higher-dimensional lifts. No general new barrier method or practical algorithmic improvement is asserted.",
+    "Historical priority, full novelty and worldwide current-open status remain unverified. Bounded literature coverage does not exclude every predecessor or broader method implication; the full 2026 Hildebrand article and related prepublication remain coverage limits.",
+    "The universal statements rest on the analytic proof and exact symbolic identities. Finite rational checks are supplementary evidence. This preprint was prepared with extensive AI assistance and is unrefereed, without human or journal peer review or formal proof-assistant certification."
+  ],
+  "background": [
+    {
+      "title": "Levent Tunçel, Polynomial optimization with a focus on hyperbolic polynomials (OWR14/2017)",
+      "url": "https://doi.org/10.4171/OWR/2017/14",
+      "note": "Open Problem 1 on printed p. 799 asks for the existential algebraic-cone example. This historical wording does not certify present-day openness."
+    },
+    {
+      "title": "Yu. Nesterov and Levent Tunçel, Local Superlinear Convergence of Polynomial-Time Interior-Point Methods for Hyperbolic Cone Optimization Problems",
+      "url": "https://arxiv.org/abs/1412.1857",
+      "note": "Provides normal-barrier and negative-curvature conventions and established closure/background results."
+    },
+    {
+      "title": "Joachim Dahl, Levent Tunçel and Lieven Vandenberghe, New complexity bounds for primal–dual interior-point algorithms in conic optimization",
+      "url": "https://arxiv.org/abs/2509.10263v2",
+      "note": "Sections 2.2 and 3.1 give the matrix self-concordance and directional-gradient concavity conventions; Section 6 asks the broader universal cone question. The cited edition is arXiv v2."
+    },
+    {
+      "title": "Roland Hildebrand, Analytic formulas for complete hyperbolic affine spheres",
+      "url": "https://arxiv.org/abs/1305.4814v1",
+      "note": "Theorem 3.2, family 5 already contains this cone with exponents 3 and 3/2 and coordinates (x₁,x₂,x₃)=(x,z,y). Hyperbolic affine-sphere terminology is distinct from polynomial hyperbolicity."
+    },
+    {
+      "title": "Scott Roy and Lin Xiao, On self-concordant barriers for generalized power cones (2018)",
+      "url": "https://optimization-online.org/2018/01/6441/",
+      "note": "Theorem 2 supplies a parameter-3 self-concordant barrier on the same nonnegative cone for weights (1/3,2/3). That theorem supplies prior barrier credit; it does not assert the additional cone-direction third-derivative sign proved here."
+    }
+  ],
+  "collaboration": "Substantive collaboration on independent verification, extensions with a clear mathematical payoff, or development toward journal submission is welcome. Authorship and responsibilities would be discussed by mutual agreement and would reflect actual research and writing contributions.",
+  "follow_up": null,
+  "followup_rationale": "No additional question meets the requested exceptional-strength threshold on the present bounded primary review. The general every-regular-cone problem is already credited prior work; parameter optimization and exponent variants are not advertised as new questions solely because they are untreated.",
+  "publication_date": "2026-10-17",
+  "version": "1.0.0",
+  "doi": "10.5281/zenodo.23440119",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "negative-curvature-cone.pdf",
+  "supplement_filename": "negative-curvature-cone-source-and-verification.zip",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "supplement_label": "Complete source and verification materials (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Download the complete source and verification materials (ZIP)",
+      "url": "https://aleckriebel.com/research/negative-curvature-normal-barrier-nonhyperbolicity-cone/negative-curvature-cone-source-and-verification.zip"
+    },
+    {
+      "label": "Zenodo original source and verification materials (ZIP)",
+      "url": "https://zenodo.org/records/23440119/files/negative-curvature-cone-source-and-verification.zip"
+    }
+  ],
+  "status": "Unrefereed preprint; version 1.0.0, dated 17 October 2026. Prepared with extensive AI assistance; no human or journal peer review or formal proof-assistant certification is claimed.",
+  "ai_disclosure": "AI tools were used extensively in mathematical development, research, checking and writing. Internal AI-assisted review does not constitute independent human or journal peer review. This preprint is unrefereed and has no formal proof-assistant certification. The named author is responsible for its claims, materials and citations.",
+  "license": "CC BY 4.0",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.0.0",
+  "citation_edition_label": "Version 1.0.0, 17 October 2026",
+  "edition_note": "The manuscript and Zenodo’s declared publication date are 17 October 2026, version 1.0.0. Zenodo created the record on 17 October 2026 UTC. These edition dates do not establish historical priority.",
+  "bibtex_note": "Unrefereed preprint; version 1.0.0, dated 17 October 2026. Zenodo record created 17 October 2026 UTC. Prepared with extensive AI assistance.",
+  "canonical_url": "https://aleckriebel.com/research/negative-curvature-normal-barrier-nonhyperbolicity-cone/",
+  "pdf_pages": 5,
+  "keywords": [
+    "negative-curvature normal barrier",
+    "self-concordant barriers",
+    "power cones",
+    "algebraic convex cones",
+    "hyperbolic polynomials",
+    "conic optimization",
+    "mixed third derivatives"
+  ],
+  "source_binding": {
+    "record_id": "23440119",
+    "concept_record_id": "23440118",
+    "record_url": "https://zenodo.org/records/23440119",
+    "doi": "10.5281/zenodo.23440119",
+    "concept_doi": "10.5281/zenodo.23440118",
+    "version": "1.0.0",
+    "zenodo_version": "1.0.0",
+    "manuscript_version": "1.0.0",
+    "zenodo_publication_date": "2026-10-17",
+    "manuscript_date": "17 October 2026",
+    "record_created_utc": "2026-10-17T17:44:20.489806+00:00",
+    "record_updated_utc": "2026-10-17T17:44:21.017669+00:00",
+    "source_retrieved_utc": "2026-10-25T05:22:38.577833+00:00",
+    "metadata_path": "sources/record.json",
+    "record_path": "sources/record.json",
+    "receipt_path": "sources/receipt.json",
+    "metadata_sha256": "c497c66c005c838a906f5a67a69e3a03c1435967b1614772a00f96b6ef4a5818",
+    "record_sha256": "c497c66c005c838a906f5a67a69e3a03c1435967b1614772a00f96b6ef4a5818",
+    "record_raw_path": "sources/record-raw.json",
+    "record_raw_sha256": "5bd50929ec74a1f59373a01d7a07c970fded3fef0febc1da8915e96903255a4b",
+    "receipt_sha256": "fbbc18e72f43b188e31791b2e97e759d3e1128f043646328a6adcd89cfd0ff00",
+    "source_receipt_sha256": "fbbc18e72f43b188e31791b2e97e759d3e1128f043646328a6adcd89cfd0ff00",
+    "pdf_sha256": "ad9864c08642737e4459673749c1db6d2e3dafb521f323fb1071f157f8110eb0",
+    "supplement_sha256": "d97ba7ed1057518e3bd499d88182c64767e912d589ed8574092c0ebc7a27c06e",
+    "files": [
+      {
+        "url": "https://zenodo.org/api/records/23440119/files/negative-curvature-cone.pdf/content",
+        "final_url": "https://zenodo.org/api/records/23440119/files/negative-curvature-cone.pdf/content",
+        "http_status": 200,
+        "retrieved_utc": "2026-10-25T05:22:37.446838+00:00",
+        "started_utc": "2026-10-25T05:22:36.565132+00:00",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 05:22:37 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "73062",
+          "content-disposition": "attachment; filename=negative-curvature-cone.pdf",
+          "oc-checksum": "MD5:c664b4d2cbdf03da6d7f834c472e931a",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "130",
+          "x-ratelimit-reset": "1792905816",
+          "retry-after": "58",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "bytes": 73062,
+        "md5": "c664b4d2cbdf03da6d7f834c472e931a",
+        "sha256": "ad9864c08642737e4459673749c1db6d2e3dafb521f323fb1071f157f8110eb0",
+        "name": "negative-curvature-cone.pdf",
+        "zenodo_checksum": "md5:c664b4d2cbdf03da6d7f834c472e931a",
+        "verified_against_api": true,
+        "verified_against_queue": true
+      },
+      {
+        "url": "https://zenodo.org/api/records/23440119/files/negative-curvature-cone-source-and-verification.zip/content",
+        "final_url": "https://zenodo.org/api/records/23440119/files/negative-curvature-cone-source-and-verification.zip/content",
+        "http_status": 200,
+        "retrieved_utc": "2026-10-25T05:22:38.577532+00:00",
+        "started_utc": "2026-10-25T05:22:37.447025+00:00",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 05:22:38 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "134250",
+          "content-disposition": "attachment; filename=negative-curvature-cone-source-and-verification.zip",
+          "oc-checksum": "MD5:23e2b648d17781a14378173566e6fe73",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792905816",
+          "retry-after": "57",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "bytes": 134250,
+        "md5": "23e2b648d17781a14378173566e6fe73",
+        "sha256": "d97ba7ed1057518e3bd499d88182c64767e912d589ed8574092c0ebc7a27c06e",
+        "name": "negative-curvature-cone-source-and-verification.zip",
+        "zenodo_checksum": "md5:23e2b648d17781a14378173566e6fe73",
+        "verified_against_api": true,
+        "verified_against_queue": true
+      }
+    ],
+    "source_tex_path": "sources/support/main.tex",
+    "source_tex_sha256": "03f685e09a10a140915acfcaa1e4fcda9197a9a8a6f8800f2a3330c9532a101b",
+    "abstract_source": "sources/support/main.tex",
+    "abstract_source_sha256": "03f685e09a10a140915acfcaa1e4fcda9197a9a8a6f8800f2a3330c9532a101b",
+    "abstract_pdf_source": "sources/negative-curvature-cone.pdf#page=1",
+    "abstract_tex": "We give an explicit affirmative answer to Tun\\c{c}el's 2017 existential\nquestion about algebraic convex cones with negative-curvature normal\nbarriers. The one-sided power cone\n$K=\\{(x,y,z)\\geq0:xy^2\\geq z^3\\}$ admits the barrier\n$F=-25\\log\\bigl(z(xy^2-z^3)\\bigr)$ with parameter $100$ and\n$D^3F(a)[h,u,u]\\leq0$ for every $a\\in\\inter K$, $h\\in K$, and\n$u\\in\\R^3$. Exact polynomial and positive-semidefinite certificates prove\nthe curvature inequality, including its degenerate directions. A boundary\ndivisibility argument rules out every homogeneous hyperbolic polynomial\ndefining $K$ in $\\R^3$. The cone itself is a known member of Hildebrand's\nclassification; the contribution here is the explicit barrier certificate\nand its verification for the stated existential problem.",
+    "abstract_tex_sha256": "076cca1ae154cd28e4ce8e7145fc6b1a385686390991afd4884b0359cbff3753",
+    "abstract_normalization": "Complete original one-paragraph abstract from deposited main.tex; matched to published PDF p1. TeX preserved verbatim in abstract-source.tex. Unicode/plain-text notation changes only; no claim or qualification omitted.",
+    "original_abstract_field": "abstract",
+    "abstract_display_heading": "Original abstract",
+    "frozen_scope_content_path": "reviews/scope/content.json",
+    "frozen_scope_content_sha256": "f28202e99a8eb975ce1f04d58066d965b64cb46865b281fc790a479ebf2f275d",
+    "frozen_scope_abstract_field": "abstract",
+    "frozen_scope_gate": "Original mathematical_verdict=null, page_promotion_permission=false, HELD_PENDING_SEPARATE_FULL_MATHEMATICAL_GATE and candidate status remain unchanged; later root authority is separate.",
+    "reviewed_documents": [
+      {
+        "source": "standalone",
+        "source_relative_path": "negative-curvature-cone.pdf",
+        "pages": 5,
+        "bytes": 73062,
+        "sha256": "ad9864c08642737e4459673749c1db6d2e3dafb521f323fb1071f157f8110eb0",
+        "editorial_read_scope": "Complete actual deposited PDF text freshly extracted and read, plus complete deposited TeX. No rendering, browser or live verification in this assignment."
+      }
+    ],
+    "unique_reader_pdf_count": 1,
+    "archive_regular_file_count": 26,
+    "nested_archive_count": 0,
+    "archive_embedded_pdf_count": 1,
+    "embedded_assets": [],
+    "additional_reader_pdfs": [],
+    "archive_reader_note": "The sole embedded reader equals the standalone five-page PDF. Copy the complete deposited ZIP unchanged; ignored third-party primary-cache texts are not website assets.",
+    "review_boundary": "All original sources, receipts, scope candidate, reports, full custom verdicts and seals remain unchanged. Later root scientific disposition resolves the gate separately.",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING"
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T05:42:58.868869+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23440119-20261025.json",
+    "root_clearance_sha256": "8b51684b5e6cd6b36d8dd3302e2bbc5f29f261eb29affa753636812fb15cba56",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "editor_authorization": "Previously absent paper-specific publication/promotion configs and new reviews/editorial artifacts only. No source/review/seal/shared-script/site/Git/Sheet/release/deploy/UI/external-communication mutation. Root retains rendered-copy, local/live HTTP, browser and native publication gates."
+  }
+}

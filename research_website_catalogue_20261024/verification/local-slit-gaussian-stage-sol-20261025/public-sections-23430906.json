@@ -1,0 +1,176 @@
+{
+  "abstract": {
+    "heading": "Original abstract",
+    "paragraphs": [
+      "For two independent standard fractional Brownian motions with the same fixed Hurst parameter H ∈ (1/4,1), we give a localized Gaussian-witness proof that every square-integrable estimator of the canonical iterated integral X_T = ∫₀ᵀ B¹_s dB²_s, based on both complete uniform grids of n observations on [0,T], has root mean-square error at least c_H T^(2H)n^(1/2−2H). The positive constant is explicit and depends only on H; the inequality holds for every T > 0 and integer n ≥ 1, including nonlinear estimators. Smooth compactly supported covariance paths, a Fourier periodization upper Gram bound, and an exact deterministic area pairing provide the witness. The Brownian optimum and the smooth asymptotic rate are prior results. Fourier localization and Gaussian projection have established antecedents; historical theorem and method priority, full novelty, and worldwide current-open status remain unverified. The note uses canonical-area existence and sufficient L² convergence, without endorsing exact Euler-error coefficients of the pinned arXiv v1."
+    ],
+    "links": []
+  },
+  "plain-language": {
+    "heading": "The idea in plain English",
+    "paragraphs": [
+      "Suppose two independent fractional Brownian paths are recorded at equally spaced times. How accurately can those observations determine the integral of one path against changes in the other?",
+      "This note gives a positive lower bound on the root mean-square error of every estimator using both sampled paths. It applies to nonlinear estimators as well as linear ones, and to the conditional expectation that minimizes the error. There are n observations in each component, including the final time T.",
+      "For each fixed Hurst parameter H between 1/4 and 1, the lower bound is c_H T^(2H)n^(1/2−2H), with an explicit positive constant depending only on H. The statement holds for every positive T and every integer n ≥ 1.",
+      "The proof constructs an auxiliary Gaussian witness that the sampled values cannot detect but that still pairs with the iterated integral. The exact Brownian optimum and the smooth-range asymptotic rate were known previously; this note presents an attributed localized-witness proof."
+    ],
+    "links": []
+  },
+  "result": {
+    "heading": "The precise result",
+    "paragraphs": [
+      "Fix H ∈ (1/4,1). Let B¹ and B² be independent centered standard fractional Brownian motions with the same Hurst parameter and covariance R_H(s,t) = (s^(2H) + t^(2H) − |s−t|^(2H))/2. Let X_T = ∫₀ᵀ B¹_s dB²_s be the canonical iterated integral, defined by the L² limit of piecewise-linear lifts.",
+      "For T > 0 and an integer n ≥ 1, let G_(T,n) = σ(Bⁱ_(jT/n): i=1,2; j=1,…,n). Thus both complete deterministic uniform grids are observed, including T, with n observations per component and deterministic Bⁱ_0 = 0. Every F ∈ L²(G_(T,n)), including every nonlinear square-integrable estimator, satisfies ‖X_T−F‖₂ ≥ c_H T^(2H)n^(1/2−2H).",
+      "The explicit positive constant is c_H = 2πa/(D_H√(P̄_fP̄_g)), where a = 4/45045 and D_H = ∫_ℝ |e^(iξ)−1|²|ξ|^(−1−2H) dξ. Put φ(x) = x⁴(1−x)⁴ on [0,1], zero elsewhere, f = φ′, g = φ, α = 2H+1, L_r = ‖r‖₁ and N_r = ‖r‴‖₁, using weak derivatives of the zero extensions. Then P̄_r = π^α L_r² + 2N_r²π^(α−6)(1 + 1/[2(5−α)]) for r=f,g.",
+      "Taking F = E[X_T | G_(T,n)] gives the same bound for the optimal conditional root mean-square error. The theorem uses this iterated-integral convention throughout."
+    ],
+    "links": []
+  },
+  "proof": {
+    "heading": "Why the result holds",
+    "paragraphs": [
+      "Two polynomial covariance paths are placed inside each grid cell and vanish at every observation time. The joint Gaussian structure makes the resulting witness vector independent of both complete observation grids.",
+      "A Fourier periodization estimate controls the variance of the sum of witness products by a quantity proportional to n. The argument allows dependence between cells and signed off-diagonal covariances.",
+      "For a fixed observation grid, refinement of finite left sums gives an exact deterministic pairing with the iterated integral. That pairing is n a(T/n)^(2H). Cauchy–Schwarz converts the nonzero pairing and variance bound into the displayed error inequality.",
+      "Canonical-area existence and identification with the polygonal lift are established external inputs. The paper gives sufficient L² convergence without relying on exact Euler-error coefficients from the pinned arXiv v1 of Neuenkirch–Tindel–Unterberger. It distinguishes that version from the journal-formatted author copy."
+    ],
+    "links": []
+  },
+  "limits": {
+    "heading": "Scope and limitations",
+    "paragraphs": [
+      "The theorem assumes independent standard components with the same fixed H ∈ (1/4,1), observed on both complete deterministic uniform grids. It does not cover unequal Hurst parameters, correlated components, or nonuniform or adaptive sampling.",
+      "The positive constant depends on H. No sharp constant, exact normalized-error limit, limiting law, constant uniform in H, or endpoint result is asserted. The statement includes n=1 and all T>0.",
+      "The halved antisymmetric area A_T = (I₁₂−I₂₁)/2 equals X_T−B¹_TB²_T/2. The endpoint product is observed, so A_T has the same optimal conditional residual as X_T. The unhalved antisymmetric difference has twice that residual.",
+      "The exact Brownian optimum T/(2√n), the smooth H>1/2 asymptotic rate, and Fourier-localization and Gaussian-projection methods are credited prior work. Historical theorem and method priority, full novelty, and worldwide current-open status remain unverified. Broader implications of the Dickinson and Jackowski methods remain unverified; they are attribution limits rather than missing steps in this direct proof.",
+      "This is an unrefereed preprint prepared with extensive AI assistance. Finite checks supplement the analytic argument; they do not constitute human peer review or formal proof-assistant certification."
+    ],
+    "links": []
+  },
+  "status": {
+    "heading": "Status and AI use",
+    "paragraphs": [
+      "AI tools were used extensively in mathematical development, checking, literature review and writing. Internal AI-assisted review is not independent human or journal peer review. This is an unrefereed preprint without formal proof-assistant certification. The named author is responsible for its claims, materials and citations.",
+      "The manuscript and Zenodo’s declared publication date are 14 October 2026, version 1.0. Zenodo created the record on 17 October 2026 UTC. These dates identify the archived edition and do not establish historical priority."
+    ],
+    "links": []
+  },
+  "paper": {
+    "heading": "Read the paper",
+    "paragraphs": [
+      "Read the full seven-page paper in the on-page PDF reader.",
+      "<a href=\"paper.pdf\">Open PDF in a full window</a> · <a href=\"paper.pdf\" download>Download PDF</a> · <a href=\"https://zenodo.org/records/23430906/files/paper.pdf\">Download the original from Zenodo</a>"
+    ],
+    "links": [
+      {
+        "label": "Open PDF in a full window",
+        "href": "paper.pdf",
+        "download": false
+      },
+      {
+        "label": "Download PDF",
+        "href": "paper.pdf",
+        "download": true
+      },
+      {
+        "label": "Download the original from Zenodo",
+        "href": "https://zenodo.org/records/23430906/files/paper.pdf",
+        "download": false
+      }
+    ]
+  },
+  "materials": {
+    "heading": "Supporting materials",
+    "paragraphs": [],
+    "links": [
+      {
+        "label": "Manuscript source and supporting materials (ZIP)",
+        "href": "PR1071_preprint_v1_0_support.zip",
+        "download": true
+      },
+      {
+        "label": "Zenodo original ZIP",
+        "href": "https://zenodo.org/records/23430906/files/PR1071_preprint_v1_0_support.zip",
+        "download": false
+      }
+    ]
+  },
+  "collaborate": {
+    "heading": "Collaborate on this result",
+    "paragraphs": [
+      "I welcome substantive collaboration on independent verification of the Gaussian-witness argument, a meaningful extension with a clear mathematical payoff, or development of a journal submission. Authorship and responsibilities would be discussed by mutual agreement and would reflect actual research and writing contributions.",
+      "Authorship and responsibilities would be discussed in relation to the substantive contributions made."
+    ],
+    "links": []
+  },
+  "cite": {
+    "heading": "Cite this paper",
+    "paragraphs": [
+      "Alec Kriebel. (2026). <i>A localized Gaussian-witness lower bound for fractional iterated area on uniform grids</i> (Version 1.0, 14 October 2026) [Preprint]. Zenodo. <a href=\"https://doi.org/10.5281/zenodo.23430906\">https://doi.org/10.5281/zenodo.23430906</a>",
+      "<a href=\"citation.bib\">Download BibTeX</a>"
+    ],
+    "links": [
+      {
+        "label": "https://doi.org/10.5281/zenodo.23430906",
+        "href": "https://doi.org/10.5281/zenodo.23430906",
+        "download": false
+      },
+      {
+        "label": "Download BibTeX",
+        "href": "citation.bib",
+        "download": false
+      }
+    ]
+  },
+  "background": {
+    "heading": "Background and prior work",
+    "paragraphs": [],
+    "links": [
+      {
+        "label": "Neuenkirch (2012), A conjecture on the optimal approximation of the fractional Lévy area",
+        "href": "https://doi.org/10.4171/owr/2012/41",
+        "download": false
+      },
+      {
+        "label": "Neuenkirch, Tindel and Unterberger (2010), Discretizing the fractional Lévy area",
+        "href": "https://doi.org/10.1016/j.spa.2009.10.007",
+        "download": false
+      },
+      {
+        "label": "Neuenkirch and Shalaiko (2016), The maximum rate of convergence for the approximation of the fractional Lévy area at a single point",
+        "href": "https://doi.org/10.1016/j.jco.2015.09.008",
+        "download": false
+      },
+      {
+        "label": "Neuenkirch (2009), Optimal Pointwise Approximation of SDEs driven by Fractional Brownian Motion",
+        "href": "https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol09391/DagSemProc.09391.1/DagSemProc.09391.1.pdf",
+        "download": false
+      },
+      {
+        "label": "Shalaiko (2015), Stochastic analysis of mixed models",
+        "href": "https://uacademic.info/download/file/0416U000568/dis.pdf",
+        "download": false
+      },
+      {
+        "label": "Wu and Xiao, Geometric Properties of Fractional Brownian Sheets",
+        "href": "https://www.stt.msu.edu/~xiaoyimi/XW91.pdf",
+        "download": false
+      },
+      {
+        "label": "Xiao (2006), Properties of local-nondeterminism of Gaussian and stable random fields and their applications",
+        "href": "https://doi.org/10.5802/afst.1117",
+        "download": false
+      },
+      {
+        "label": "Dickinson (2007), Optimal Approximation of the Second Iterated Integral of Brownian Motion",
+        "href": "https://doi.org/10.1080/07362990701540592",
+        "download": false
+      },
+      {
+        "label": "Jackowski (1991), Complexity of multilinear problems in the average case setting",
+        "href": "https://doi.org/10.1016/0885-064X(91)90047-2",
+        "download": false
+      }
+    ]
+  }
+}

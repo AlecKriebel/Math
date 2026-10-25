@@ -1,0 +1,217 @@
+{
+  "record_id": "23224103",
+  "state": "PROPOSED_PUBLIC_COPY_NOT_RENDERED",
+  "canonical_url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/",
+  "header": {
+    "title": "An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle",
+    "author": "Alec Kriebel",
+    "orcid": "https://orcid.org/0009-0001-9320-500X",
+    "publication_date": "2026-10-07",
+    "version": "1.0",
+    "edition_label": "Zenodo metadata version 1.0",
+    "status": "Unrefereed preprint",
+    "description": "An explicit deterministic integral series determines the joint law of first-visit territory lengths for any finite number of Brownian particles on a circle."
+  },
+  "metadata": {
+    "title": "An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle",
+    "description": "An explicit deterministic integral series determines the joint law of first-visit territory lengths for any finite number of Brownian particles on a circle.",
+    "canonical": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/",
+    "citation_title": "An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle",
+    "citation_author": "Alec Kriebel",
+    "citation_author_orcid": "https://orcid.org/0009-0001-9320-500X",
+    "citation_publication_date": "2026/10/07",
+    "citation_doi": "10.5281/zenodo.23224103",
+    "citation_pdf_url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/brownian_first_visit.pdf",
+    "scholarly_type": "ScholarlyArticle",
+    "abstract": "We give a complete analytic-transform answer to Georgakopoulos’s question about the lengths of the sets first visited by independent Brownian particles on a circle, with uniform random or equally spaced starting points. For every finite number of particles, the joint Laplace transform is an absolutely convergent series whose coefficients are finite sums of ordinary integrals of explicit interval-exit kernels. The integration regions are specified linear inequalities in cumulative physical hitting times. The outer series has a uniform factorial remainder bound and uniquely determines the probability measure. The result also applies to arbitrary fixed distinct starting points. The construction uses classical heat kernels, strong Markov iteration, and bounded-support moments. Earlier competing-walk painting results are credited and distinguished. No compact density, efficient numerical algorithm, or absolute historical priority is asserted.",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "creativeWorkStatus": "Unrefereed preprint"
+  },
+  "sections": [
+    {
+      "id": "abstract",
+      "heading": "Original abstract",
+      "paragraphs": [
+        "We give a complete analytic-transform answer to Georgakopoulos’s question about the lengths of the sets first visited by independent Brownian particles on a circle, with uniform random or equally spaced starting points. For every finite number of particles, the joint Laplace transform is an absolutely convergent series whose coefficients are finite sums of ordinary integrals of explicit interval-exit kernels. The integration regions are specified linear inequalities in cumulative physical hitting times. The outer series has a uniform factorial remainder bound and uniquely determines the probability measure. The result also applies to arbitrary fixed distinct starting points. The construction uses classical heat kernels, strong Markov iteration, and bounded-support moments. Earlier competing-walk painting results are credited and distinguished. No compact density, efficient numerical algorithm, or absolute historical priority is asserted."
+      ]
+    },
+    {
+      "id": "plain-language",
+      "heading": "The idea in plain English",
+      "paragraphs": [
+        "Imagine several independent particles moving randomly around a circle. Each point belongs to the particle that reaches it first. The question is how all their territory lengths vary together. The particles keep moving through encounters and already visited territory.",
+        "This paper describes the entire joint distribution through a Laplace transform. Its coefficients are finite sums of ordinary deterministic integrals built from classical Brownian interval-exit kernels. Tracking a particle’s cumulative elapsed time preserves the correlations between its visits to different points.",
+        "The formula covers every finite number of particles, arbitrary fixed distinct labeled starting points, equally spaced starts and independent uniform labeled starts. A uniform factorial bound controls truncation of the outer series. The coefficient integrals can be high-dimensional; no fast evaluator or compact density is claimed."
+      ]
+    },
+    {
+      "id": "result",
+      "heading": "The precise result",
+      "paragraphs": [
+        "Let k≥1 be a finite integer and let p₁,…,p_k be distinct fixed labeled points on the unit circle 𝕋=ℝ/ℤ. The particles are independent standard Brownian motions with generator ½d²/dx² and continue through every encounter and prior visit. Write T_i(x) for particle i’s first physical hitting time of x, assign x to the least label attaining min_i T_i(x), and let L_i be the Lebesgue length of its territory. Almost surely, L lies in the compact simplex {l_i≥0:∑_i l_i=1}.",
+        "For real θ_i≥0, set θ_*=max_i θ_i. The joint Laplace transform is ℒ_p(θ)=E_p exp(−∑_i θ_iL_i)=∑_{m=0}∞(−1)^m M_m(θ;p)/m!, with M₀=1. Every coefficient is completely specified by finite permutation and label sums and ordinary spatial/time integrals of explicit scalar interval-exit kernels in equations (2)–(9). No unknown Brownian hitting probability or conditional law remains inside those definitions.",
+        "For m queries, a particle’s ordered density is the product of its successive remaining-target kernels. If its discovery order is π_i and elapsed increments are u_ir, its physical hitting time of query j is h_ij=∑_{r≤π_i⁻¹(j)}u_ir. The integration region for owner labels a_j is given by h_(a_j,j)<h_ij for every competing i. These are explicit strict linear inequalities in cumulative clocks, retaining dependence among one walker’s query visits.",
+        "For every m≥0, 0≤M_m≤θ_*^m, and the series converges absolutely. For every integer N≥0, |ℒ_p(θ)−∑_{m=0}^N(−1)^m M_m(θ;p)/m!|≤θ_*^(N+1)/(N+1)!. This outer-series bound is uniform over all admissible seed vectors. The entire family of homogeneous coefficient polynomials determines all mixed moments and hence the full joint Borel probability measure on the simplex.",
+        "Equally spaced starts use p_i=(i−1)/k. For independent uniform labeled seeds, integrate each fixed-p coefficient over 𝕋^k; the same outer bound holds. Sorting the seeds before assigning labels instead requires the corresponding ordered seed law."
+      ]
+    },
+    {
+      "id": "proof",
+      "heading": "Why the result holds",
+      "paragraphs": [
+        "Before reaching the next unvisited query point, one walker stays in an arc whose lift is an interval. The classical killed heat kernel gives its two endpoint exit-time densities. With a single query left, both lifted endpoints represent the same target and their fluxes are added, with total mass one.",
+        "The strong Markov property at successive finite discovery times gives each walker’s joint order-and-increment density. Removing a reached query changes only the auxiliary stopping targets: the actual particle continues and can cross earlier queries. Products across independent walkers and comparisons of their cumulative physical clocks give every finite-query ownership probability.",
+        "Joint measurability and Fubini show that tie locations have zero spatial measure almost surely; the least-label convention still specifies an owner. Spatial integration gives M_m=E_p Z^m for Z=∑_i θ_iL_i. Since 0≤Z≤θ_*, the exponential expansion is absolutely convergent and Taylor’s theorem gives the exact factorial outer remainder.",
+        "All homogeneous moment polynomials recover every mixed moment. Polynomial density on the compact simplex then makes the joint measure unique. The uniform bounds also justify averaging over independent uniform labeled seeds. These are classical heat-kernel, strong-Markov, moment and determinacy tools applied to the explicit cumulative-clock construction."
+      ]
+    },
+    {
+      "id": "limits",
+      "heading": "Scope and limitations",
+      "paragraphs": [
+        "The model uses finitely many independent continuing Brownian particles with a common diffusivity. Stopping, coalescing or absorption at painted territory changes the model. Common positive diffusivity changes rescale all clocks equally; invariance under different per-particle diffusivities is not asserted.",
+        "Fixed starting points must be distinct and labeled. No extension to deterministically coincident seeds is claimed. Random-seed collisions, repeated query points and query/seed coincidences are discarded only on their appropriate Lebesgue-null sets.",
+        "Ties have zero spatial measure almost surely. This does not say that ties are absent simultaneously at every point. One particle’s different query hitting times remain correlated throughout.",
+        "The scalar spectral kernels are summed at each positive time before improper time integration. The factorial bound controls only the outer series for real nonnegative θ; it supplies no inner Fourier-tail, numerical quadrature or coefficient-evaluation certificate.",
+        "No compact or named density, efficient numerical algorithm, large-k asymptotic or discrete-to-Brownian convergence theorem is claimed. The Brownian result follows directly from the analytic construction; finite-model and high-precision diagnostics are supplementary evidence.",
+        "Independent uniform labeled starts have full permutation exchangeability. Equally spaced labeled starts have cyclic and dihedral symmetry; unrestricted permutation symmetry is not asserted. Both have mean territory length 1/k. A circle of circumference c has lengths cL_i, so its transform uses cθ.",
+        "First-arrival painting, interval kernels, strong Markov iteration, moment expansion and compact-support determinacy are established prior methods. Earlier lattice painting, interface, competitive-range and multitime span results receive credit. Historical priority, full novelty, independent discovery and worldwide current-open status remain unverified; incomplete coverage of the Gomes article and Dicker thesis does not support an exhaustive absence claim.",
+        "This preprint was prepared with extensive AI assistance and is unrefereed. Internal AI-assisted checks are neither independent human or journal peer review nor formal proof-assistant certification."
+      ]
+    },
+    {
+      "id": "status",
+      "heading": "Status and AI use",
+      "paragraphs": [
+        "AI tools were used extensively in mathematical development, research, checking and writing. Internal AI-assisted review does not constitute independent human or journal peer review. This preprint is unrefereed and has no formal proof-assistant certification. The named author is responsible for its claims, materials and citations.",
+        "The manuscript and Zenodo’s declared publication date are 7 October 2026. Version 1.0 is recorded in Zenodo and support metadata; the manuscript prints the date without a version number. Zenodo created the record on 7 October 2026 UTC. Its later metadata update does not identify a different manuscript edition. These edition dates do not establish historical priority."
+      ]
+    },
+    {
+      "id": "paper",
+      "heading": "Read the paper",
+      "paragraphs": [
+        "Read the complete six-page paper in the on-page PDF reader."
+      ],
+      "links": [
+        {
+          "label": "Open the PDF",
+          "url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/brownian_first_visit.pdf"
+        },
+        {
+          "label": "Download the PDF",
+          "url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/brownian_first_visit.pdf",
+          "download": true
+        },
+        {
+          "label": "Zenodo original PDF",
+          "url": "https://zenodo.org/records/23224103/files/brownian_first_visit.pdf"
+        }
+      ],
+      "iframe": {
+        "src": "brownian_first_visit.pdf#view=FitH",
+        "title": "An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle — complete paper PDF",
+        "loading": "lazy"
+      }
+    },
+    {
+      "id": "materials",
+      "heading": "Supporting materials",
+      "links": [
+        {
+          "label": "Complete source and supporting materials (ZIP)",
+          "url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/brownian_first_visit_support.zip",
+          "download": true
+        },
+        {
+          "label": "Zenodo original ZIP",
+          "url": "https://zenodo.org/records/23224103/files/brownian_first_visit_support.zip"
+        }
+      ]
+    },
+    {
+      "id": "collaborate",
+      "heading": "Collaborate on this result",
+      "paragraphs": [
+        "Substantive collaboration on independent verification, extensions with a clear mathematical payoff, or development toward journal submission is welcome. Authorship and responsibilities would be discussed by mutual agreement and would reflect actual research and writing contributions."
+      ]
+    },
+    {
+      "id": "cite",
+      "heading": "Cite this paper",
+      "paragraphs": [
+        "Kriebel, Alec. (2026). An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle (Version 1.0, 7 October 2026) [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.23224103"
+      ],
+      "links": [
+        {
+          "label": "Download BibTeX",
+          "url": "https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/citation.bib"
+        }
+      ]
+    },
+    {
+      "id": "background",
+      "heading": "Background and prior work",
+      "references": [
+        {
+          "title": "Agelos Georgakopoulos, Voronoi-like decomposition of S¹ with randomness",
+          "url": "https://doi.org/10.4171/OWR/2018/23",
+          "note": "The finite-particle joint cell-length question appears on printed p1452 of the 2018 report; EMS records publication on 12 April 2019. Historical wording does not certify present-day openness."
+        },
+        {
+          "title": "Steven Lalley, Brownian Motion course notes",
+          "url": "https://galton.uchicago.edu/~lalley/Courses/312/BrownianMotion312.pdf",
+          "note": "Exercise 6(A)–(C) supplies the classical killed unit-interval eigenfunction expansion."
+        },
+        {
+          "title": "Peter Mörters and Yuval Peres, Brownian Motion (2010)",
+          "url": "https://www.mi.uni-koeln.de/~moerters/book/book.pdf",
+          "note": "Theorem 2.16 in the 2010 book gives the classical strong Markov property used at successive finite query-discovery times."
+        },
+        {
+          "title": "Philip Ernst and Larry Shepp, On the Time for Brownian Motion to Visit Every Point on a Circle",
+          "url": "https://arxiv.org/abs/1312.4632v2",
+          "note": "Equation (5) records the standard two-endpoint interval exit transforms. Its main observable is a single particle’s circle cover time."
+        },
+        {
+          "title": "S. R. Gomes Júnior and coauthors, Coloring of a one-dimensional lattice by two independent random walkers (1996)",
+          "url": "https://doi.org/10.1016/0378-4371(95)00424-6",
+          "note": "Prior periodic first-arrival painting and one-point/interface calculations are credited. Its full text remains outside the bounded literature coverage supporting the historical comparison."
+        },
+        {
+          "title": "Jason Miller, Painting a graph with competing random walks",
+          "url": "https://arxiv.org/abs/1003.2168v2",
+          "note": "Earlier first-visitor ownership, correlation analysis and asymptotic volume variance on graph families; not presented here as a new model."
+        },
+        {
+          "title": "Chatterjee, Nabahi and Terlov, Interface between competing random walks on a cycle",
+          "url": "https://arxiv.org/abs/2608.21312v1",
+          "note": "Theorem 1.1 concerns expected interface size for two walkers on a discrete cycle."
+        },
+        {
+          "title": "Maxence Baccara, On the range of competing random walks",
+          "url": "https://arxiv.org/abs/2607.02406v1",
+          "note": "Section 6, Proposition 8 gives joint competitive-range convergence to a finite-horizon Brownian functional on the real line."
+        },
+        {
+          "title": "Ian Meng Si, Strategic geometry of competing first-passage random walks",
+          "url": "https://arxiv.org/abs/2608.24837v1",
+          "note": "Section 7 studies expected strategic payoffs for reflected Brownian motions on an interval."
+        },
+        {
+          "title": "Fitzsimmons and Pitman, Kac’s moment formula and the Feynman–Kac formula for additive functionals of a Markov process",
+          "url": "https://doi.org/10.1016/S0304-4149(98)00081-7",
+          "note": "Classical temporal additive-functional moments and product-moment permutation formulas."
+        },
+        {
+          "title": "Régnier, Dolgushev, Redner and Bénichou, Complete visitation statistics of one-dimensional random walks",
+          "url": "https://doi.org/10.1103/PhysRevE.105.064104",
+          "note": "Prior multitime single-walker span laws built from exit increments; a related explicit-transform mechanism with a different observable."
+        }
+      ]
+    }
+  ],
+  "bibtex": "@misc{kriebel2026brownianfirstvisit,\n  author = {Kriebel, Alec},\n  title = {An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle},\n  year = {2026},\n  month = oct,\n  doi = {10.5281/zenodo.23224103},\n  url = {https://aleckriebel.com/research/brownian-first-visit-cell-lengths-circle-joint-laplace-transform/},\n  version = {1.0},\n  publisher = {Zenodo},\n  note = {Unrefereed preprint; version 1.0, manuscript dated 7 October 2026. Zenodo record created 7 October 2026 UTC. Prepared with extensive AI assistance.}\n}\n",
+  "follow_up": null,
+  "native_sheet_aa_url": null
+}

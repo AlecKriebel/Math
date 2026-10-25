@@ -1,0 +1,55 @@
+{
+  "recorded_utc": "2026-10-25T05:38:37.023794+00:00",
+  "precise_failure_times_not_retained": true,
+  "ordered_browser_failures": [
+    {
+      "order": 1,
+      "observed": "Detached while handling command",
+      "context": "After index-to-bosonic navigation and viewport restore; same tab URL revalidated and desktop gates then completed.",
+      "resolved": true
+    },
+    {
+      "order": 2,
+      "observed": "js execution timed out; kernel reset, rerun your request",
+      "duration_seconds": 30,
+      "context": "Multi-action call began with saved settled bosonic index frame at05:31:18.849Z; later intended click/narrow actions were not logged.",
+      "resolved": false
+    },
+    {
+      "order": 3,
+      "observed": "js execution timed out; kernel reset, rerun your request",
+      "duration_seconds": 30,
+      "context": "Post-reset browser.nameSession/tabs.list metadata request before explicit disk failure.",
+      "resolved": false
+    },
+    {
+      "order": 4,
+      "observed": "failed to write kernel assets: No space left on device (os error28)",
+      "context": "cua.getState bootstrap; no user UI action.",
+      "resolved": "Disk space later recovered by own lossless baseline compression and parent runtime cleanup."
+    },
+    {
+      "order": 5,
+      "observed": "js execution timed out; kernel reset, rerun your request",
+      "duration_seconds": 30,
+      "context": "After disk recovery, browser.nameSession/tabs.list still unresponsive.",
+      "resolved": false
+    },
+    {
+      "order": 6,
+      "observed": "js execution timed out; kernel reset, rerun your request",
+      "duration_seconds": 30,
+      "context": "Direct documented cua.getTab(963520718,{browser:2}) after disk recovery.",
+      "resolved": false
+    }
+  ],
+  "filesystem_recovery_failures": [
+    "Writing separate compressed baseline failed ENOSPC.",
+    "Shell here-document creation failed ENOSPC.",
+    "Opening the existing baseline for truncation failed ENOSPC."
+  ],
+  "successful_recovery": "Verified compressed baseline in RAM, removed only owned redundant unsealed original and partial gzip, wrote verified6.27MBgzip; original39,401,330B content preserved losslessly.",
+  "browser_control_remained_unresponsive_after_disk_recovery": true,
+  "UI_released_to_parent_before_utc": "2026-10-25T05:37:26Z",
+  "no_further_browser_attempts_after_release": true
+}
