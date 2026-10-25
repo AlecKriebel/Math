@@ -1,0 +1,1 @@
+2026-10-25T06:36:57.745338+00:00 — Exact accepted proposals installed; only2 authorized renderers executed. Target and old54 content checks pass; actual2HTML/assets/index/sitemap identical to full root-read private stage. Only8newfiles/index/sitemapsite changes;462oldsitefiles exact. Bounded local integration100%; publication gates pending; all203goalcontinues.
