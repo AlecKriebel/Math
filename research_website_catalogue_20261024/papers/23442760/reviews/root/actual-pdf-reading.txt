@@ -1,0 +1,265 @@
+                Quadratic convergence of SOS-density bounds
+                             on convex bodies
+                                               Alec Kriebel
+                                      ORCID: 0009-0001-9320-500X
+
+                                             17 October 2026
+
+
+                                                  Abstract
+        For every ﬁxed compact convex body K ⊂ Rn with nonempty interior and every real poly-
+     nomial f , the normalized Lebesgue sum-of-squares density bound of degree at most 2r has error
+     OK,f (r−2 ) for every integer r ≥ 1. We give a self-contained proof and an explicit constant, using
+     one global square. A quadratic Taylor upper estimator reduces the objective to a scalar endpoint
+     problem. Homothetic contraction compares every sublevel shell with the same core mass that
+     normalizes a ﬁxed power of a Dirichlet polynomial; that mass cancels before summation. This
+     proves the quadratic upper rate in the convex-body/Lebesgue regime of the 2018 Oberwolfach
+     question. A classical interval example shows that the exponent is sharp in the worst case. The
+     proxy and the broad localization and relative-mass mechanisms have established precedents; no
+     ﬁrstness or new-method claim is made.
+
+
+1    Statement and source context
+All integrals over K use n-dimensional Lebesgue measure. Let Σr be the set of polynomials that
+are sums of squares of real polynomials of degree at most r. These are exactly the global sum-of-
+squares polynomials of degree at most 2r: the highest-degree homogeneous squares cannot cancel.
+For a compact set K of positive volume and a real polynomial f , deﬁne
+                                     {∫                                 ∫                  }
+                   Hr (f, K) = inf          f (x)q(x) dx : q ∈ Σr ,          q(x) dx = 1 .                 (1)
+                                        K                                K
+
+The constant density makes this set nonempty, and positivity gives Hr (f, K) ≥ f∗ := minK f .
+Theorem 1. Let n ≥ 1, let K ⊂ Rn be compact and convex with nonempty interior, and let
+f ∈ R[x1 , . . . , xn ]. Choose any a ∈ K with f (a) = f∗ . Set
+
+             H = max k∇2 f (x)kop ,                                   γ = 1 + H/2,
+                    x∈K
+           g(x) = ∇f (a) · (x − a) + γkx − ak2 ,                  G = max g(x),
+                                                                            x∈K
+                                                                                  ( )2L
+                                                                              2    π
+              L = n + 2,                                         Cn = 4L                  (1 + 2n+2 ).
+                                                                                   2
+Then 0 < G < ∞ and, for every integer r ≥ 1,
+                                                                Cn G
+                                       0 ≤ Hr (f, K) − f∗ ≤          .                                     (2)
+                                                                 r2
+A single global square, normalized on the whole of K, witnesses the upper bound.
+
+                                                      1
+    No smoothness or semialgebraicity of the boundary is assumed, and f need not be convex. The
+constant is deliberately coarse. If D = diam(K) and B = maxK k∇f k, then G ≤ BD+(1+H/2)D2 ,
+so a bound independent of the choice of minimizer is available. The construction is an existence
+proof; it does not give an eﬃcient method for locating a.
+    Laurent’s contribution, joint work with de Klerk, to the 2018 Oberwolfach report asks for the
+convergence regime for general convex bodies with Lebesgue measure [1]. Its displayed density
+constraints (3)–(4) omit the value of the integral. We explicitly use unit mass, as required by
+its probability formulation and by the full hierarchy deﬁnition (1) in Slot–Laurent [2, Eq. (3)].
+Thus our statement concerns the normalized problem, rather than a literal unnormalized inﬁmum.
+Slot–Laurent’s Theorem 11 gives O(log2 r/r2 ) for this convex-body/Lebesgue hierarchy, and their
+concluding questions ask whether the logarithm can be removed. Theorem 1 supplies the quadratic
+upper rate in that precise setting.
+    The constrained-gradient and quadratic-upper-estimator reductions are already present in de
+Klerk–Laurent [3, preprint Cor. 4.3] and Slot–Laurent [2, Lemmas 1 and 4]. Endpoint polynomial
+concentration is classical. In particular, Totik–Varga [4, Thm. 2.1], with endpoint parameter a = 0
+              √
+and ψ(v) = v, supplies degree-m polynomials equal to 1 at zero, bounded by 2 on [0, 1], and
+bounded by A exp[−c(m2 t)1/4 ] for t > 0, with A, c > 0 independent of m. Markov’s inequality
+gives a positive core of width proportional to m−2 ; the relative-mass estimate below then gives
+another deduction of our theorem from those older ingredients. Totik–Varga also compare shell
+masses with local core mass in their Christoﬀel-function arguments. We assign no originality to
+the proxy, endpoint localization, or broad shell/core cancellation mechanism.
+    Our proof instead uses an explicit ﬁnite trigonometric identity and imports no approximation-
+theory convergence theorem. The accompanying source audit distinguishes a deduction assembled
+here from an earlier explicitly printed resolution. Its bounded search found no such full-target
+theorem in the inspected passages; this does not establish ﬁrstness, historical disclosure, or current
+worldwide openness. The weaker rate recorded in the ﬁnal 2026 overview [5, Table 1] is evidence
+about that source’s contents, not an openness certiﬁcate.
+
+
+2    An elementary concentration proof
+Quadratic proxy and relative sublevel mass
+For x ∈ K, convexity places a + s(x − a) in K for 0 ≤ s ≤ 1. The right derivative at zero of
+f (a + s(x − a)) is nonnegative, so
+
+                                    ℓ(x) := ∇f (a) · (x − a) ≥ 0.
+
+Taylor’s formula on this segment gives
+                                                        H
+                           0 ≤ f (x) − f (a) ≤ ℓ(x) +     kx − ak2 ≤ g(x).
+                                                        2
+The added positive quadratic ensures g(x) > 0 for x ∈ K \ {a}. Full dimension and compactness
+therefore give 0 < G < ∞. The polynomial u = g/G has degree at most two and takes values in
+[0, 1] on K. For 0 ≤ α ≤ 1,
+
+                         g(a + α(x − a)) = αℓ(x) + α2 γkx − ak2 ≤ αg(x).                           (3)
+
+For every t > 0 put St = {x ∈ K : u(x) ≤ t} and F (t) = voln (St ), so that F (t) = voln (K) for t ≥ 1.
+If 0 < s ≤ t, the homothety x 7→ a + (s/t)(x − a) maps St into Ss by (3). Its Jacobian is (s/t)n ,
+
+                                                  2
+hence
+                                  F (t) ≤ (t/s)n F (s)           (0 < s ≤ t).                              (4)
+In particular F (h) ≥ hn vol
+                           n (K) > 0 for 0 < h ≤ 1. The estimate also holds when t > 1, as needed
+for an outer shell. No density formula or diﬀerentiation of F is used.
+
+A polynomial endpoint kernel
+For an integer m ≥ 1, let N = 2m + 1 and deﬁne
+                                                        ∑m
+                                                  1+2        j=1 Tj (1 − 2t)
+                                     Am (t) =                    ,                             (5)
+                                                      N
+where Tj (cos θ) = cos(jθ) is the Chebyshev
+                                      √      polynomial. Thus Am is a real polynomial of degree m
+and Am (0) = 1. Writing v = arcsin t for 0 < t ≤ 1, the ﬁnite Dirichlet-sum identity gives
+                                                                 √
+                                         sin(N v)   sin(N arcsin t)
+                                Am (t) =          =        √         .                         (6)
+                                          N sin v         N t
+The deﬁning sum and the sine quotient respectively imply
+                                                  √
+                             |Am (t)| ≤ min{1, (N t)−1 },     0 < t ≤ 1.                       (7)
+Put h = N −2 . Convexity of arcsine gives arcsin z ≤ πz/2
+                                                     √    on [0, 1]. For 0 < t ≤ h we consequently
+have N v ≤ π/2. Using sin w ≥ 2w/π there, and v ≥ t, in (6) yields
+                                         Am (t) ≥ 2/π         (0 ≤ t ≤ h),                                 (8)
+including t = 0 since Am (0) = 1.
+
+Cancellation of the core mass
+Take L = n + 2 and Qm (x) = Am (u(x))2L . This is the global square [Am (u(x))L ]2 , regardless of its
+values oﬀ K. Equations (7)–(8) give
+                     ∫
+            Zm :=        Qm dx ≥ (2/π)2L F (h) > 0,              Qm ≤ min{1, (h/u)L }          (u > 0).    (9)
+                     K
+                                                        ∫
+The core {u ≤ h} contributes at most hF (h) to              K uQm dx. For the pairwise disjoint shells
+                         Ej = {x ∈ K : 2j h < u(x) ≤ 2         j+1
+                                                                  h},      j = 0, 1, . . . ,
+equation (4) gives
+                                 ∫
+                                         uQm dx ≤ 2j+1 h 2−jL F (2j+1 h)
+                                  Ej
+
+                                                   ≤ hF (h) 2n+1 2j(n+1−L) .
+Only ﬁnitely many shells meet K. Extending their nonnegative bounds to an inﬁnite sum is
+                               ∑
+legitimate, and L = n + 2 gives j≥0 2j(n+1−L) = 2. Thus
+                                     ∫
+                                             uQm dx ≤ hF (h)(1 + 2n+2 ).
+                                         K
+Dividing by (9) cancels the same F (h):
+                                     ∫                  ( )2L
+                                         K uQm dx        π        1 + 2n+2
+                                                    ≤                      .                              (10)
+                                             Zm          2       (2m + 1)2
+Zeros and oscillation of Am away from the core cause no diﬃculty; the denominator uses its positive
+core and the tails use absolute upper bounds over the whole body.
+
+                                                         3
+Degree and every integer order
+For r ≥ 2L choose m = br/(2L)c ≥ 1. Since deg u ≤ 2,
+
+                          deg(Am (u)L ) ≤ 2mL ≤ r,                    deg Qm ≤ 4mL ≤ 2r.
+
+The density
+                                                                 [              ]2
+                                            Qm (x)   Am (u(x))L
+                                   qr (x) =        =   √
+                                             Zm          Zm
+is therefore feasible for (1). As f − f (a) ≤ Gu, (10) bounds its error. Also 2br/(2L)c + 1 ≥ r/(2L),
+giving (2) with the stated Cn . For 1 ≤ r < 2L, use qr = 1/ voln (K), whose error is at most G.
+Here Cn /r2 ≥ 1, so the same bound holds. This proves Theorem 1 for every integer r ≥ 1.           □
+
+
+3    The known worst-case exponent
+Interval linear objectives already give matching quadratic lower rates in de Klerk–Laurent [6,
+preprint Thm. 3.1 and Cors. 3.2–3.3]. The following elementary, coarse bound recalls why the
+universal exponent cannot be improved.
+Proposition 1. For K = [0, 1] and f (t) = t,
+                                                          1
+                                   Hr (f, K) ≥                             (r ≥ 1).
+                                                      4(r + 1)2
+The same lower bound holds for K = [0, 1] × [−1, 1]n−1 and f (t, y) = t in every ﬁxed dimension
+n ≥ 1.
+Proof. Let Pj be the Legendre polynomial normalized by Pj (1) = 1. The classical identities
+                   ∫ 1
+                                                2δjk
+                          Pj (x)Pk (x) dx =           ,              |Pj (x)| ≤ 1    (−1 ≤ x ≤ 1)
+                     −1                        2j + 1
+can be obtained directly from Rodrigues’ formula Pj (x) = (2j j!)−1 (d/dx)j (x2 − 1)j : integration by
+parts gives orthogonality and the norm. For the supremum bound, expand the ﬁnite-polynomial
+identity                           ∫
+                                 1 π(        √            )j
+                        Pj (x) =        x + ι 1 − x2 cos θ dθ,      ι2 = −1;
+                                 π 0
+                                                         √
+the base has modulus at most 1. Consequently ℓj (t) = 2j + 1Pj (2t − 1) is an orthonormal basis
+on [0, 1] for polynomials of degree at most r when 0 ≤ j ≤ r. Cauchy–Schwarz gives, for each such
+polynomial p,                            
+                                   ∑
+                                   r                 ∫ 1                            ∫ 1
+                     |p(t)|2 ≤          ℓj (t)2          p(s)2 ds ≤ (r + 1)2            p(s)2 ds.
+                                   j=0                0                               0
+      ∑
+If q = j p2j is feasible, summing
+                             ∫α
+                                  shows 0 ≤ q(t) ≤ M , where M = (r + 1)2 , since its integral is 1.
+With α = 1/(2M ), we have 0 q ≤ 1/2; hence
+                                   ∫ 1                      ∫ 1
+                                                                               1
+                                          tq(t) dt ≥ α            q(t) dt ≥      .
+                                     0                       α                4M
+Taking the inﬁmum proves the interval assertion. On the product body, apply the polynomial
+bound with y ﬁxed to every pj (t, y), then sum and integrate over y. The resulting marginal density
+in t has integral 1 and is bounded by M , so the same argument applies.
+
+                                                             4
+   Together with Theorem 1, this gives one ﬁxed instance with error Θ(r−2 ) in each dimension. It
+does not give a positive matching lower rate for each objective or each body; constant objectives
+have zero error.
+
+
+4    Scope, supporting material, and review status
+The reference measure in Theorem 1 is Lebesgue measure. The homothety identity is not asserted
+for arbitrary reference measures. The construction also uses a quadratic proxy g, rather than
+densities constrained to be polynomials of the original objective f ; it therefore does not settle the
+same rate for that more restrictive hierarchy for general nonconvex f . The proof extends to f of
+class C 2 on an open neighborhood of K, since the same Taylor bound applies and the density still
+uses only the quadratic proxy.
+    The accompanying veriﬁcation package contains proof and source audits, independent deriva-
+tions and adversarial reviews, exact arithmetic consistency checks, and an exact moment-matrix
+formulation at the nonsimple apex of a square pyramid. These computations and ﬁnite checks sup-
+plement the analytic proof; they do not certify its universal quantiﬁers. Source retrieval, passages
+actually read, and bounded literature-search limitations are recorded separately.
+    AI tools were used extensively in developing the solution, derivations, source checks, veriﬁcation,
+drafting, and adversarial reviews. Independent reviewing agents were AI systems, not human peer
+reviewers. This research note is unrefereed; it has not received external human peer review and is
+not a proof-assistant or other machine-formalized proof certiﬁcate. The author is responsible for
+its mathematical claims and presentation.
+
+
+References
+[1] M. Laurent (joint work with E. de Klerk), Convergence analysis of Lasserre measure-based ap-
+    proximations for polynomial optimization, in Combinatorial Optimization, Oberwolfach Reports
+    15(4), report 50/2018 (2018), 2991–2993. doi:10.4171/owr/2018/50.
+[2] L. Slot and M. Laurent, Improved convergence analysis of Lasserre’s measure-based upper
+    bounds for polynomial minimization on compact sets, Mathematical Programming 193 (2022),
+    831–871. arXiv:1905.08142v2 (2020). doi:10.1007/s10107-020-01468-3. Theorem and lemma
+    numbers cited here refer to this preprint version.
+[3] E. de Klerk and M. Laurent, Comparison of Lasserre’s measure-based bounds for polynomial
+    optimization to bounds obtained by simulated annealing, Mathematics of Operations Research
+    43(4) (2018), 1317–1325. doi:10.1287/moor.2017.0906. arXiv:1703.00744v1.
+[4] V. Totik and T. Varga, Non-symmetric fast decreasing polynomials and applications, Journal of
+    Mathematical Analysis and Applications 394 (2012), 378–390. doi:10.1016/j.jmaa.2012.03.006.
+[5] M. Laurent and L. Slot, An overview of convergence rates for sum of squares hierarchies
+    in polynomial optimization, in Recent Developments in Industrial and Applied Mathematics,
+    ICIAM2023 Springer Series 1 (2026), 149–176. doi:10.1007/978-981-95-1446-5_8. Author-hosted
+    ﬁnal text.
+[6] E. de Klerk and M. Laurent, Worst-case examples for Lasserre’s measure-based hierarchy for
+    polynomial optimization on the hypercube, Mathematics of Operations Research 45(1) (2020),
+    86–98. doi:10.1287/moor.2018.0983. arXiv:1804.05524v1.
+
+
+                                                  5
+

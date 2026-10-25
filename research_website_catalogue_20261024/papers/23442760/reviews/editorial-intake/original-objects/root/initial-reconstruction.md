@@ -1,0 +1,13 @@
+2026-10-25T07:31:25.289486+00:00
+
+Root read whole actual5pp before complete current family reports, historical audits or primarybodies. Favorable progressmessages had beenseen, not a fullyblindedrootclaim.
+
+Literal normalizedLebesgueSOSdensity of totaldegree<=2r oncompactconvexfull-dimensionalK, anyrealpolynomialf,n>=1,allintegerr>=1. Witha globalmin, constrainedfirstvariationalongsegment givesell=gradientf(a)dot(x-a)>=0; Taylor HmaxHessianopnormK finite, f-f*<=ell+H/2distance²<=g=ell+(1+H/2)distance². Thusg>0offa, Gmaxg>0finite(fullD),u=g/G∈[0,1], degree<=2 evenifdegfhuge. No convexf orboundarysmoothnessneeded. g(a+alpha(x-a))<=alphag(x) foralpha∈[0,1]. Homothety ofsublevelt into sublevels hasJacobian(s/t)^n, givingF(t)<=(t/s)^nF(s) for0<s<=t, event>1. F(h)>=h^nvolK>0, withsamemassFh latercanceled.
+
+A_m=(1+2sum_{j=1}^mTj(1-2t))/(2m+1),degree m,A0=1. SetN=2m+1,v=arcsinsqrt(t);finiteDirichletidentity givesA=sinNv/(Nsinv). Normalizedcosinesum<=1inabsolutevalue;quotient<=1/(Nsqrt(t)). For0<=t<=h=N^-2, Nv<=pi/2 byconvexarcsin z<=pi*z/2; sinNv>=2Nv/pi andv>=sqrt(t) giveA>=2/pi. L=n+2, Q=A(u)^{2L} is ONEglobalsquare withZ>= (2/pi)^{2L}Fh. TailQ<=min(1,(h/u)^L). Coreu<=h givesnumerator<=hFh; shell2^jh<u<=2^{j+1}h gives<=hFh*2^{n+1}*2^{j(n+1-L)}. Sumgeometric=2; numerator<=hFh(1+2^{n+2}), divideZsamecoremasscancels exactly. No densityderivative/smoothFneeded.
+
+r>=2L takefloor m=r/(2L)>=1, degree squarebase<=2mL<=r, densitydegree<=4mL<=2r. N>=r/(2L), soerror<=4L²G(pi/2)^{2L}(1+2^{n+2})/r², literalCn. 1<=r<2L constantdensityerror<=G andCn/r²>=1. Arbitrarilyconstantfalsofine, boundcoarse; no constructivealgorithmforlocatinga. C2open-neighborhoodobjectivesextension usesonlyTaylorandquadraticdensity, supported.
+
+Interval/productlower: Legendrebasisell_j=sqrt(2j+1)Pj(2t-1) orthonormal, |Pj|<=1 fromLaplacefinitepolynomialintegralwithcomplexbase modulus<=1. CauchySchwarz givesp(t)²<=(r+1)²∫p². SumSOSnormalizedq<=M=(r+1)², mass[0,1/(2M)]<=1/2;error∫tq>=1/(4M). Forproductbodyfixothercoordinatesapplybound to eachp(t,y), sum/integrate; normalizedtmarginalboundedM, identicallower. ThisgivesonefixedworstcasepernTheta(r^-2), notallf/bodies. GlobalSOS vs K-nonnegative essential; arbitrarymeasures/objective-onlyunivariatedensityhierarchiesnotclaimed.
+
+No internalproofgapfound. Historicalsourcecontexts(normalizationtypo/SlotLaurentlog²bound/TotikVargaolderdeduction/overview) andall3completefinalreports/customverdicts/sourcecustodystillpendingroot. Selfcontainedupperproofdoesnotimporta sourceconvergencetheorem. Rootscientificreview55%; sourceunchanged/no pageapproval/followup; all203ongoing.

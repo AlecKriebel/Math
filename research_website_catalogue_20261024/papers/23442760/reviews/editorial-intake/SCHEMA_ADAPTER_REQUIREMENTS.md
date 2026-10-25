@@ -1,0 +1,19 @@
+# Private schema/consumer requirements — pending root clearance
+
+This is a future consumer specification only. No helper, renderer, checker or publication configuration was changed. Present scientific/publication adoption gates remain false. Canonical site URL, AA and follow-up remain null. The selected Zenodo source URL is bibliographic metadata, not an assigned site canonical.
+
+## Exact source shape and authority
+
+Use actual `sources/record.raw.json` together with the existing authenticated source-intake `normalized-metadata.json`, preserving both complete originals. The normalized object is itself an authenticated original of this intake; it is not permission to invent a replacement `record.json`. Its `all_actual_file_objects` and `assets` preserve the two actual file objects and full asset identities.
+
+The original `api-receipts.json` is a five-entry list. It retains record/latest/versions endpoint transports and two file transports, with original `requested_url`, `final_url`, `http_status`, full `response_headers`, `path`, `bytes`, lowercase `md5`/`sha256` and actual start/completion times. These entries do not contain an `api_file_object` field. A read-only in-memory view may authenticate the actual record's complete `files` objects and join them to existing receipt facts by their exact actual URL/filename/size/checksum. It must not insert file objects or rename fields inside the original receipt, fabricate a guessed HTTP transport event, drop endpoint entries, make a filesystem alias, or create a new on-disk normalized record.
+
+Keep every original custom verdict object verbatim under `original-objects/reviews/{scope,analytic,adversarial}`, including source pending/false/null history and unique status strings. Future exact root scientific and editorial authority must be separate objects. No default PASS, inherited approval from another record, or synthetic generic disposition may be inserted to satisfy a consumer. Root's present initial-reconstruction snapshot explicitly says scientific clearance false; it is not a final clearance.
+
+## Reader, archive and mathematical rendering
+
+The unchanged complete five-page `Convex_Body_SOS_Density_Note_v1.0.pdf` is the only selected reader. The complete 152-member `Convex_Body_SOS_Density_Verification_v1.0.zip` is the required source/support download. There is no embedded PDF in this ZIP. Its internal `original_submitted` and `current_edition` histories are preserved inside the archive; they must not select another reader, edition or public authority.
+
+After separate authorization, expose one local full-PDF iframe, a direct local open link, explicit local and actual-original-Zenodo PDF downloads, and both links for the entire unchanged ZIP. The visible original abstract must remain complete, one paragraph and indexable; expand source-defined `\R` to its exact `\mathbb R` definition for standard rendering, while retaining the untouched original TeX substring. This is a mathematical macro expansion, not a summary or sentence edit. Preserve declared 17 October 2026, version 1.0, sole actual author/ORCID, CC BY 4.0 header/schema and the prepared selected-record BibTeX. Exact API creation time is separate provenance, not a priority assertion.
+
+The future checker must retain n>=1, compact convex K with nonempty interior, unit-mass Lebesgue global SOS degree<=2r, every integer r>=1, full C_n and G definitions, one global square, C2-neighborhood extension and the interval/product worst-case lower result. Preserve proxy/Totik–Varga older-ingredient credit and the arbitrary-measure/original-objective-only/algorithmic/priority limits. It must not replace the all-body theorem with finite examples or certify a new method. No rendering or live consumer compatibility has been claimed at this pending intake stage.

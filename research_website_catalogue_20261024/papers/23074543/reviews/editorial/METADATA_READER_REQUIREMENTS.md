@@ -5,13 +5,13 @@ These are requirements for a later authorized consumer. This packet performs no 
 | Field | Exact requirement |
 |---|---|
 | Title | Irreducibility of exposed-point varieties of discotopes |
-| Author | Alec Kriebel; Independent researcher; ORCID0009-0001-9320-500X |
-| Selected edition | Zenodo23074543, version1.0, DOI10.5281/zenodo.23074543 |
-| Declared date | 30September2026, retained as the paper's edition date |
+| Author | Alec Kriebel; Independent researcher; ORCID 0009-0001-9320-500X |
+| Selected edition | Zenodo 23074543, version 1.0, DOI 10.5281/zenodo.23074543 |
+| Declared date | 30 September 2026, retained as the paper's edition date |
 | API creation | 2026-10-01T04:23:09.001448+00:00, retained separately |
 | API update | 2026-10-10T21:31:45.659191+00:00, retained separately |
 | Complete original abstract | `ORIGINAL_ABSTRACT.tex`, matching the full config abstract and visible abstract in `PUBLIC_COPY.md`; whitespace/dash rendering only |
-| Reader | Entire current4pp `sources/paper.pdf`; actual API file object from original actual_assets; no rebuild, partial transcript or historical substitution |
+| Reader | Entire current four-page `sources/paper.pdf`; actual API file object from original actual_assets; no rebuild, partial transcript or historical substitution |
 | Complete support | Entire unchanged `sources/source-and-verification.zip`, including historical content and all original notices; no subset or editorial-packet substitution |
 | Citation | `citation.bib`; sole actual author; selected-record DOI and declared date/version; unrefereed status |
 | Canonical site URL | null until independently authorized and verified live |

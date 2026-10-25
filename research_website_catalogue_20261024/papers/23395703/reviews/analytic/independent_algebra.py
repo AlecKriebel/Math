@@ -1,7 +1,10 @@
 """Exact own algebra controls; no coordinate calculation is called a gin certificate."""
 import sympy as A
-import json,math,functools
+import json,math,functools,itertools
 x,y,z,w,s,t,u=A.symbols('x y z w s t u');Q=x*y*(x-y)*(x-2*y)*z*w*(x+z+w);polars=[A.diff(Q,v) for v in [x,y,z,w]]
+factor_rows=A.Matrix([[A.diff(q,v) for v in [x,y,z,w]] for q in [x,y,x-y,x-2*y,z,w,x+z+w]])
+rank2_triples=[c for c in itertools.combinations(range(7),3) if factor_rows[list(c),:].rank()==2]
+assert rank2_triples==list(itertools.combinations(range(4),3)) and factor_rows.rank()==4
 fs2=[A.Poly(f.subs({x:s,y:t,z:2*s+3*t,w:7*s+11*t},simultaneous=True),s,t).as_expr() for f in polars]
 fs3=[A.Poly(f.subs({x:s,y:t,z:u,w:s+2*t+3*u},simultaneous=True),s,t,u).as_expr() for f in polars]
 def mons(vs,d):
@@ -44,7 +47,7 @@ for degree in [1,2,3]:
   if base.row_join(v).rank()>oldrank:
    forms=as_tuple(v,degree);den=A.ilcm(*[A.denom(c) for f in forms for c in A.Poly(f,s,t).coeffs()]);forms=[A.expand(den*f) for f in forms];gcd=A.igcd(*[int(c) for f in forms for c in A.Poly(f,s,t).coeffs()]);forms=[f/gcd for f in forms];syz.append(forms);break
  else:raise AssertionError('missingnewsyzygy')
-HB=A.Matrix(4,3,lambda i,j:syz[j][i]);signed=[A.expand((-1)**i*HB.minor_submatrix(i,3-1).det()) for i in []] # no unusedminorcomputation
+HB=A.Matrix(4,3,lambda i,j:syz[j][i])
 signed=[A.expand((-1)**i*HB.extract([j for j in range(4) if j!=i],range(3)).det()) for i in range(4)]
 ratios=[A.cancel(a/b) for a,b in zip(signed,fs2)];assert len(set(ratios))==1 and ratios[0]!=0 and not ratios[0].free_symbols
 rows=[(1,0),(0,1),(1,-1),(1,-2),(2,3),(7,11),(10,14)];dets=[a*d-b*c for i,(a,b) in enumerate(rows) for c,d in rows[i+1:]];assert len(dets)==21 and all(dets)
@@ -56,4 +59,4 @@ Q2=A.expand(Q.subs({x:s,y:t,z:2*s+3*t,w:7*s+11*t},simultaneous=True));Q3=A.expan
 wrong2=matrix([A.diff(Q2,v) for v in [s,t]],[s,t],6).rank();wrong3=matrix([A.diff(Q3,v) for v in [s,t,u]],[s,t,u],6).rank();assert wrong2==2 and wrong3==3
 hs=[A.expand((1-4*A.Symbol('T')**6+A.Symbol('T')**7+A.Symbol('T')**8+A.Symbol('T')**9)*sum((i+1)*A.Symbol('T')**i for i in range(13))).coeff(A.Symbol('T'),k) for k in range(10)]
 assert hs[6:9]==[3,1,0]
-print(json.dumps({'status':'own_exact_algebra_passed','matrix_records':records,'binary_syzygy_basis':[[str(q) for q in v] for v in syz],'signed_HB_minor_common_ratio':str(ratios[0]),'binary_pair_determinants':dets,'flag_bad_primes_only_not_theorem_characteristics':badprimes,'char7_ternary_degree7_rank':rankmod(matrices[3,7],7),'restrict_then_differentiate_degree6_generator_ranks':[wrong2,wrong3],'binary_Hilbert_values_0_to9':[int(a) for a in hs],'limits':'Finiteexactcontrols, notfullgin/positivecharacteristic/genericity/prioritycertificate.'},indent=2))
+print(json.dumps({'status':'own_exact_algebra_passed','matrix_records':records,'rank_two_factor_triples':rank2_triples,'ambient_rank':4,'binary_syzygy_basis':[[str(q) for q in v] for v in syz],'signed_HB_minor_common_ratio':str(ratios[0]),'binary_pair_determinants':dets,'flag_bad_primes_only_not_theorem_characteristics':badprimes,'char7_ternary_degree7_rank':rankmod(matrices[3,7],7),'restrict_then_differentiate_degree6_generator_ranks':[wrong2,wrong3],'binary_Hilbert_values_0_to9':[int(a) for a in hs],'limits':'Finiteexactcontrols, notfullgin/positivecharacteristic/genericity/prioritycertificate.'},indent=2))

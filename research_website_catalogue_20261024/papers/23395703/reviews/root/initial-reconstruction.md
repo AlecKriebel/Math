@@ -1,0 +1,17 @@
+2026-10-25T07:37:50.991763+00:00
+
+Whole actualsixpages read beforecomplete currentfamilyreports/historicalaudits/primarybodies. Progressmessagesfromfamiliesalreadyseen; thisisnotfullyblinded. Rootreconstructionretainsfulloriginalchar0claim.
+
+Q=xy(x-y)(x-2y)zw(x+z+w), all7distinctandessential. Jfourambientdegree6polars; Euler7Q inJ soaddingQdoesnothingchar0. Use revlexx1>x2>x3>x4, purex2cutoffp8, someMINIMALdegree7generatorlargestx3. Needactualconjecturesecondvariableandgenericsectionprimaryinterfaces beforeauthority.
+
+Restrictedambientpolarsfx..fw (notgradientofrestrictedQ). RequireX,Yindep,all7restrictedLi nonzero/pairnonprop; ternaryalsoX,Z,Windep. Forlinearcoefficientrelationuf=0, reduceambientgradientproductformula moduloeachLi; domainandotherLi nonzeroforcesLi|ai.u, henceai.u=lambda_iLi. Conversegives(sumlambda)prodLi. Firstpencilfour scalarscoincidea; remainingb,c,d. ux=aX,uy=aY,uz=bZ,uw=cW; (a-d)X+(b-d)Z+(c-d)W0and4a+b+c+d0. Constantrelationforcesai.u0allcoordinatefactors=>u0, so4minimaldegree6generators.
+
+Ternaryindependence forcesa=b=c=d;7a0 givesnolinearsyzygy.H3degree5,6,7=21,24,24. BinaryX,Z,W rank2 (pairnonprop) has1dimrelationrho. a=d+t*rhoX,b=d+t*rhoZ,c=d+t*rhoW. Trace7d+t(4rhoX+rhoZ+rhoW)0alwaysrank1char0 EVENIFtcoefficient0. Paramto uinjective: u0 forcesa=b=c0andd(X+Z+W)0=>d0then t0. Exactly1linearbinarysyzygy.
+
+BinaryIheight2: afteralgebraicclosurecommonpolarzero projectivepoint viarestrictedEuler impliesQ0;pairnonpropbinary factorsmeansONEvanishingLi only, andgradientvectorai*othernonzeroproductisnonzero, contradiction. Finitequotientheight2inregularbinaryringgivesgradedHilbertBurchresolution4degree6gens,3syzygydegrees6+e_j,e_j>=1. Hilbertnumeratordoublezeroat1 givesΣe6; exactlyonelinearsyzygy=>e=(1,2,3). H2(6,7,8)=(3,1,0).
+
+Compatibleexampleternaryx=s,y=t,z=u,w=s+2t+3u;binaryu=2s+3t. Binaryfactorrows(1,0),(0,1),(1,-1),(1,-2),(2,3),(7,11),(10,14) haveallpairdetnonzero overchar0. C0 first2/3columns realizethisflaganddet1. AllconditionsnonemptyZaropenoncompatibleflags/liftGL4; dimensionsconstanttherebyuniversalproofnotpointnumericalinference. GL4irreducibleandgenerictheoremopenintersection rationalpointsexistovereveryinfiniteK. NeedtrustedGalligo/revlexsection sourceinterfacescheck.
+
+Assumingclassicalrevlexsectionidentity givesHr=HilbertK[first r]/(ginJ∩first r). Strongstabilitychar0:x2^k inB forcesALLbinarydegreekmonomialsinB; H2(7)positive=>x2^7absent,H2(8)zero=>x2^8present,idealclosureexcludesearlierpowers,p8. Kernelofx3mapdegree k-1tok inA3 hasdimH3(k-1)-H3(k)+H2(k); at6zero,at7one. Bnoelementsbelow6. degree6minimalgeneratorinvolvingx3woulddividebyx3toakilledstandarddegree5monomial, impossible. Positivekernelat7givesstandardmdegree6withx3m∈B;minimaldivisorv mustinvolvex3orelsevmviolatesstandardness; degv<=7andno6=>7. Divisorofx3mcontainsnox4sofirst3minimalityalsoglobal. No fullgin/exponentvector claimneeded.
+
+Priorparallelconnection/MiglioreNagelJtop5generatorresolution vsJ4distinction doesnotchangeproof,butmustactualcreditinterfacechecked. No rank3counterexample:restrictthen differentiateternaryyields3polars whileoursectionretains4ambientones. No minimumhyperplanecount/positivecharacteristic/firstness/independentdiscovery inferred. MathevidenceuniversalconditionalonlyonstandardHB/genericinitial/sectionfacts; nointernalgapfound. Sourcecustody/all3completefamilies/actualcriticalprimariespending; boundedrootreview55%,AAblank/nopageauthority/no repairorfollowup. All203ongoing.

@@ -1,0 +1,13 @@
+2026-10-25T07:30:57.013835+00:00
+
+Root read the whole actual4pp before complete current family reports, historical audit opinions or criticalprimarybodies. Progress messages were seen; not blinded to existence of favorable reviews. The root derivation does not use those opinions.
+
+Literal all-root problem: one finite connected simple graph/common undirectedtree; explicitly binaryencodedindependentnonnegativearccostvector perroot, charging every arc of that tree's orientation away from root. DecisionthresholdK. N1allowed membership. A certificate hasN-1edges; connectivity/cycle andNtraversals/sums polynomial in fulltable/bitlength. Inward convention is exact transpose, not separate problem.
+
+Sanitize3CNF by delete repeatedliteral, discardtautology, immediateemptyclauseno/no-clausesyes, deleteunusedvariables/denselabel. Every retainedclause1–3distinctvariables with unique sign, n,m>=1. Build t,f,vi,qj, hubedge,2nhub-variable and atmost3moccurrenceedges. Simple/connected. Symmetric t-rootedgecost0hub,1variable,2clause. Atclause-rootqj only occurrencevariable-to-hub arcs charged0iftruthconsistent1otherwise; allreversehub-to-var0; otherroots0. Explicit table2NE entries in0,1,2.
+
+For any tree, letp=#hub-variableedges,q=#clauseedges,h=hubindicator. q>=m, p+q+h=n+m+1. Ft=p+2q=2m+n+(1-h)+(q-m). WithK=2m+n andotherrootsnonnegative, F<=K forces h1,qm. Allclausevertices degree1. Deleteleaves, remaininghub/variabletreewithhubedge: everyvariable attachedatleastonehub andatmostone (elsetriangle). Thus tree encodesoneassignmentandselectedliteral/clause. Forrootqj itschosenvariablevi alone hasarcvi→selectedhub; everyothervariable enteredfromhub, so onlyselectedliteral'sfalsecost contributes. F=K+#falseselectedliterals forstructuredtrees. Satisfyingassignmentchooseone true literal eachgivescostK; cost<=K yieldsallselectedtrueandCNFsatisfied. Bothwaysproof; no statement unrestrictedOPT=K+minUNSAT.
+
+Preprocessing/graph/fulltable polynomial, K<=2N. Thus strongNPcompletealreadycost0,1,2, no reliance on finiteenumerations. Uniform+1everyarccost contributesN(N-1)constantindependenttree, givingpositive1,2,3 andthresholdshift; transposeidentical. B>=2historicalextensionbaseformula valid, B1losesforcing andoutsidecurrentclaim.
+
+Exactprimitive trivialno:twoverticesedge, eachrootusesoneunitarc,total2>K1; yesallzero. No circular optimization/integralitytheorem needed: polynomial projection description does not giveintegralall-rootliftunderarbitraryzobjective. Rootcurrentwholeproofhasnogap; sourcecustody/completefinalfamilies/actualKaibelmodel andotherprimarycredit stillpending. Scientificreview55%; no pageapproval, no repair/followup; all203ongoing.

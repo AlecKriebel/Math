@@ -14,7 +14,7 @@ The complete proposed page is ordinary readable prose with the established plain
 
 ## Exact edition, reader, support and citation
 
-The edition is version1.0, declared30September2026. The distinct API record-created timestamp is `2026-10-01T04:23:09.001448+00:00`, with update `2026-10-10T21:31:45.659191+00:00`. Creation/updated timestamps are provenance, not a first-availability or discovery claim. `citation.bib` identifies Alec Kriebel as the sole actual author and uses selected DOI10.5281/zenodo.23074543. His ORCID is retained.
+The edition is version 1.0, declared 30 September 2026. The distinct API record-created timestamp is `2026-10-01T04:23:09.001448+00:00`, with update `2026-10-10T21:31:45.659191+00:00`. Creation/updated timestamps are provenance, not a first-availability or discovery claim. `citation.bib` identifies Alec Kriebel as the sole actual author and uses selected DOI 10.5281/zenodo.23074543. His ORCID is retained.
 
 The reader is the entire actual four-page `sources/paper.pdf`, 79,805 bytes, SHA256 `c13dc861e8e5b5c1d980bdd78d14aff8e4b1a130800c4f942b3bedafbc5f6b2a`. The controlling source is `sources/published-source/paper.tex`, SHA256 `3576dcc78bf1a9188ee8a8b5c56f5914357d90d437767e29dc42e3a85ceedab4`. The complete support download is the unchanged 692,895-byte `sources/source-and-verification.zip`, SHA256 `55941d26dbadc3b244a6ba191e9e4503201c0deb3e2cde43178d5f0799564027`.
 
@@ -32,4 +32,4 @@ The pending intake and all previous source/review baseline bytes remain unchange
 
 Scientific page/config preparation is complete. Every public-copy/render/local HTTP/live HTTP/browser/native Sheet/public-publication gate is **false**, canonical site URL is **null**, and AA/follow-up are **null**. No page was staged or rendered, no browser or native UI was used, and no shared/core/site/Git/deployment/redirect/release/outreach action occurred. The existing source-PDF reading renders are not staged website pages.
 
-`verify_handoff.py` performs read-only exact source, full-object, abstract, gate and sibling-preservation checks without network or staging. Manifests and the final seal bind this complete packet. Root retains the subsequent editorial reading and any combined private-stage authorization. This bounded editorial assignment is complete; the overall203-paper programme remains ongoing. No follow-up is proposed by default.
+`verify_handoff.py` performs read-only exact source, full-object, abstract, gate and sibling-preservation checks without network or staging. Manifests and the final seal bind this complete packet. Root retains the subsequent editorial reading and any combined private-stage authorization. This bounded editorial assignment is complete; the overall 203-paper programme remains ongoing. No follow-up is proposed by default.
