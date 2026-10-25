@@ -1,0 +1,49 @@
+# Private final editorial handoff — 23124601, row 106
+
+The complete original fixed-generator classification is retained in this editorial packet. The new publication.json and promotion.json, full PUBLIC_COPY.md, public-sections.json, prepared CITATION.bib and source-consumer requirements are ready for root's independent editorial reading. No page was rendered or published, no shared consumer was adapted, and no later publication/native authority is implied.
+
+## Authority, actual readings and preserved objects
+
+Scientific authority was complete before intake: `verification/root-clearance-23124601-20261025.json`, SHA256 `61b359b6474c370fa985cac952d391134815e7af8ae243f025417343b470b626`, literal status **PASS_WITH_CLASSICAL_IMPORTS_AND_EXPLICIT_CHECKER_RUNTIME_LIMITS**. I read the entire clearance, full ROOT_REVIEW and root custody receipt, all three complete final REPORTs and whole custom verdicts. An initial combined display truncated; later bounded displays completed every missing portion. No historical pending scientific phase was fabricated.
+
+All six actual PDF pages and the entire 20,847-byte controlling TeX were read, including the complete abstract, theorem, proof, references and disclosure. Fresh extraction is a private text view of the actual selected reader; no new PDF render or browser view is claimed. The native record/readiness, full six-entry transport list, richer files endpoint objects, original README and complete archive custody were inspected. READ_LEDGER.json records exact extents and limits. This is editorial adoption of completed scientific authority, not another independent primary-proof review.
+
+The entire original source-ready object is embedded unchanged in both configs. All three custom verdicts are embedded whole in promotion.reviews, separately from each exact complete root review entry and the whole root-clearance object. Original scope recommendations, false/null history, access limits and checker-runtime qualification remain intact. Fifteen original source/authority/verdict objects are additionally copied byte for byte under original-objects for custody. They are not aliases in the original source interface.
+
+## Mathematical and public-copy decisions
+
+The copy states the exact group G=B6/normal(ch^-1), all five fixed standard positive input generators, the definitions of c,h,z, and the target c². It retains every allowed length20/30/40; strict class counts1/1/2 and all four displayed representatives; the exact ten literal cyclic rotations ofh² at20; and simultaneous-conjugation class counts1/1/1. Intermediate Hurwitz tuples may contain generator conjugates. The quantification over inputs is not broadened to arbitrary conjugate factors or arbitrary geometric factorizations.
+
+The proof explanation distinguishes the classical maximum-length import, signed linking as necessary data, quotient-compatible rejection from separate acceptance at20, full-edge free-word path induction at30, and the endpoint chain embedding/subgroup invariant at40. It does not substitute count vectors for braid equality. The full original abstract is one indexable paragraph labelled **Original abstract**; ORIGINAL_ABSTRACT.tex preserves its entire exact controlling substring. Only the recorded mathematical display replacements and whitespace folding are used. No original word, sentence or qualification is omitted.
+
+The 1,113-word PUBLIC_COPY was read in full after preparation. It gives plain-English context, full precise scope, concise extensive-AI/unrefereed/no-external-human-peer-review/no-formal-certification disclosure, and passive collaboration wording tied to actual contributions and mutual agreement. Follow-up remains null. Public text has no private audit/replay/date/hash/custody/control narrative and makes no blanket supplied-software verification claim.
+
+Prior credit includes Wajnryb's exact question, Auroux's separate equivalences, Matsumoto's classical quotient, Sato's already-known length spectrum, Baykur–Monden–Van Horn-Morris, the cited Perron–Vannier chain embedding, González-Meneses's Artin/positive-monoid interfaces and Casson's assertion as reported by Elrifai–Morton. No new general crossing theorem, firstness, new underlying mechanism or current worldwide-open-problem claim is made. The scientific reviews' original Perron–Vannier/final Matsumoto-body access limits remain private and explicit; they are not hidden by invented access facts.
+
+## Exact metadata, native interface and license
+
+The title is **Fixed-generator positive factorizations in Wajnryb's Artin A5 quotient**, sole author Alec Kriebel, ORCID0009-0001-9320-500X, selected DOI10.5281/zenodo.23124601. API version1.0 is genuine; the actual PDF/TeX print **October3,2026** with no version. Visible edition and citation say **Zenodo version1.0**. Declared/manuscript date3October2026, actual creation2026-10-03T16:52:00.285180+00:00 and update2026-10-10T21:31:18.724445+00:00 remain distinct. CITATION.bib equals publication.prepared_bibtex exactly.
+
+Native SOURCE_READY uses assets/native_file_object/relative paths, metadata_version, declared_publication_date and actual_created/actual_updated. Order is ZIP then PDF; lowercase hash fields stay lowercase. There is no normalized-metadata file or record.json alias. The six genuine transport entries remain complete and unchanged, including ordered/duplicate headers and the last entry's missing elapsed_seconds. Compact record file objects and richer files-endpoint entries retain their distinct shapes. SCHEMA_ADAPTER.md describes a future narrow authenticated in-memory resolver only; no shared helper or source alias was written.
+
+The actual native metadata declares cc-by-4.0. The original README contains no separate grant, and no separate LICENSE member appears among the 60 outer files. The visible header/schema requirement is **CC BY4.0** as the Zenodo deposit license, with the exact Creative Commons URL. No README grant or third-party relicensing is invented.
+
+## Exact reader and support requirements
+
+The one selected six-page PDF is unchanged fixed_generator_classification.pdf,90,692bytes,SHA256 `7999e21014583fb9ae09a3c1d50b864cb65efa810863b805e0045f84ecc0570c`. Complete support is unchanged wajnryb-artin-a5-verification.zip,1,239,838bytes,SHA256 `755ceb4b566bf69dfed1a3c947c37418fa864ad861f2dabda409f9b288657443`.
+
+The ZIP has60 regular outer members and seven standalone gzip-stream bodies,67 recursive regular payload occurrences. There is no embedded PDF or nested ZIP/tar. The seven gzip streams are not omitted by a false “no nested archives” shorthand. Every actual outer/gzip payload was compared statically against the frozen extracted bytes; no member programme, supplied mathematical control, compiler, large action proof or source wrapper was executed.
+
+READER_REQUIREMENTS specifies one local PDF iframe, local open and explicit download links, an explicit original-Zenodo PDF download, local/original complete ZIP downloads and exact prepared BibTeX. Only HTML, unchanged PDF, full ZIP and citation.bib are proposed article assets. No rebuilt PDF, selected source subset or extra reader/cache is proposed. Layout remains the established white Arial/Helvetica single-column blog. SEO/metadata requirements include exact title/description/author/ORCID/date/edition/DOI/license, full abstract/prose/status, self canonical/h1/schema/OG URL and named Research navigation to /research/. Canonical and AA remain null until separate gates.
+
+## Private operational qualification
+
+The original supplied assert-based checker can print PASS for a wrong-terminal mutation under explicit Python -O. Normal-mode exact executions and the independently authored full validators support the mathematical theorem. C++ compilation did not produce a usable binary in the fresh scientific reviews; no compiled or whole historical-wrapper/ranks1–5 reproduction is claimed. These noncentral operational limits are preserved whole in the qualified root authority and all custom verdicts. No source guard was repaired and the theorem was not narrowed. This editorial lane performed no mathematical replay.
+
+## Checks, preservation and final handoff
+
+The read-only verify_editorial.py checks all280 frozen original/prior-seal bindings and30 separately protected prior manifests/seals,15 exact original object copies, source/native object equality and hashes, all67 recursive original payloads, complete abstract normalization, literal claim anchors, prose/citation/metadata/reader contracts and false/null gates. Twenty-nine in-memory changed-input controls reject, including exact strict/global distinctions, ten literal words, input widening, manufactured review status/authority, schema aliases, changed transport fields, lost gzip custody, truncated abstract, wrong metadata/license/citation, missing original downloads and advanced native/publication/follow-up state. Normal and optimized Python agree. No altered fixture directory was made.
+
+Original source/review files, prior editorial packets and prior private stages are unchanged. Preservation binds owned earlier immutable manifests/seals without following their stale mutable site/core baselines. The only new writes are this fresh editorial folder and the two previously absent paper configs. No source/shared/core/site/Sheet/UI/Git/HTTP/deployment/redirect/release/outreach action occurred.
+
+Root must read the full report, complete PUBLIC_COPY, public sections, schema adapter, unique metadata/config prose and exact original-object adoption, then rehash before separately authorizing staging. Root editorial approval, render/public-copy/local/live/browser/native/publication gates remain false; AA, canonical and follow-up remain null. This bounded editorial assignment is complete at100%; all203 programme work remains ongoing.

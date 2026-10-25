@@ -90,9 +90,14 @@ def verify(mutant):
     require(dm*dm == s.zeros(2), 'M differential squares to zero')
     require(dm*s.Matrix([1,0]) == s.Matrix([0,1]), 'M explicit primitive')
     labels.append('M kernel=image=R0*(0,1), by solving a=0')
-    if mutant == 'full_H1_zero':
-        # 1+z at z=0 is 1: the full-module invariant is not a boundary.
-        require(1 == 0, 'full module has nonzero R0/z class')
+    # All full-module boundaries specialize to zero at z=0, whereas the
+    # invariant generator (1,1) does not. Test actual image membership of
+    # this specialization, including the deliberately false vanishing claim.
+    boundary_at_zero = (t*s.Matrix([[1,1],[1,1]])).subs(t,0)
+    generator = s.Matrix([1,1])
+    in_image = boundary_at_zero.row_join(generator).rank() == boundary_at_zero.rank()
+    require(in_image == (mutant == 'full_H1_zero'),
+            'full module has nonzero R0/z class')
     labels.append('full module kernel=R0*(1,1), image=z*R0*(1,1)')
     A = list(itertools.product(range(4), repeat=2))
     B = list(itertools.product(range(4), repeat=3))
