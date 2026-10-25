@@ -1,0 +1,96 @@
+"""Authenticated read-only view of the original Zenodo 23390551 source layout.
+
+No aliases, normalized receipts or HTTP fields are persisted or invented.
+The independent ephemeral asset view retains every original file-entry field.
+"""
+from copy import deepcopy
+from pathlib import Path
+import hashlib
+import json
+from bosonic_source import contained_file, digest
+
+PINS = {
+    'publication': '1d7df178ea6f314425bcb1a6a0bc5373ebdb120dcf6b9c21ff4c6198bed4c10c',
+    'promotion': 'fe19f1d535b20f4dc2bbeb71a4d91593a168194c4d7b6ce4fb9e8dfbdf67857d',
+    'science': '4c727e1b34afddf6804c9b0954f6706868f45b697bdad9697471d8205eedd16a',
+    'editorial': '48d1e4cc76a09d099aa614b37c9dec8c4d64bbd89668e8fffe94f176465de6e3',
+    'receipt': 'a2ee05395c76c0478ba4b06671cc7fbdd466604a12446e92495597106880a81f',
+    'metadata': '006d05e2d9db6331bf5ea07716fd79b59a2f998cdaaf9951ba38ca079e15e532',
+}
+
+
+def dipole_source_view(paper, config, gate):
+    """Return (complete original receipt, independent asset view, cache root)."""
+    paper = Path(paper)
+    if paper.name != '23390551':
+        raise ValueError('Adapter is restricted to Zenodo 23390551')
+    assert digest(contained_file(paper, 'publication.json')) == gate['publication_sha256'] == PINS['publication']
+    assert digest(contained_file(paper, 'promotion.json')) == PINS['promotion']
+    binding = config['source_binding']
+    assert binding['record_id'] == gate['record_id'] == '23390551'
+    assert gate['status'] == 'PASS' and gate['disposition_by'] == 'root'
+    assert binding['receipt_path'] == gate['source_receipt_path'] == 'sources/acquisition_receipt.json'
+    assert binding['metadata_path'] == binding['record_path'] == gate['metadata_path'] == 'sources/zenodo_record.json'
+    assert binding['asset_root_path'] == 'sources/cache' and binding['embedded_assets'] == []
+    assert not (paper/'sources/receipt.json').exists() and not (paper/'sources/record.json').exists()
+    receipt_path = contained_file(paper, binding['receipt_path'])
+    metadata_path = contained_file(paper, binding['metadata_path'])
+    raw = json.loads(receipt_path.read_bytes())
+    api = json.loads(metadata_path.read_bytes())
+    assert digest(receipt_path) == binding['receipt_sha256'] == binding['source_receipt_sha256'] == gate['source_receipt_sha256'] == PINS['receipt']
+    assert digest(metadata_path) == binding['record_sha256'] == binding['metadata_sha256'] == gate['metadata_sha256'] == raw['sha256'] == PINS['metadata']
+    assert metadata_path.stat().st_size == raw['bytes'] == 6902
+    assert raw['origin'] == raw['final_url'] == 'https://zenodo.org/api/records/23390551'
+    assert raw == gate['source_receipt_record'] and raw['files'] == gate['source_files'] == binding['files']
+    assert 'record_id' not in raw and 'record_sha256' not in raw and 'http_status' not in raw
+    assert len(raw['files']) == len(api['files']) == 2
+    metadata = api['metadata']
+    assert str(api['id']) == '23390551' and str(api['conceptrecid']) == binding['concept_record_id'] == '23390550'
+    assert api['status'] == 'published'
+    assert all(config[k] == metadata[k] for k in ('title', 'doi', 'publication_date', 'version'))
+    assert config['author'] == 'Alec Kriebel' and metadata['creators'][0]['name'] == 'Kriebel, Alec'
+    assert metadata['creators'][0]['orcid'] == '0009-0001-9320-500X'
+    assert metadata['license']['id'] == 'cc-by-4.0' and config['license'] == 'CC BY 4.0'
+    assert config['version'] == binding['zenodo_version'] == binding['manuscript_version'] == '1.0'
+    assert config['publication_date'] == binding['zenodo_publication_date'] == '2026-10-15'
+    assert api['created'] == binding['record_created_utc'] == '2026-10-15T09:25:22.728191+00:00'
+    assert api['updated'] == binding['record_updated_utc']
+    programme = paper.parents[1]
+    clearance_path = contained_file(programme, gate['root_clearance_file'])
+    assert gate['root_clearance_file'] == config['review_metadata']['root_clearance_file'] == 'verification/root-clearance-23390551-20261025.json'
+    assert digest(clearance_path) == gate['root_clearance_sha256'] == config['review_metadata']['root_clearance_sha256'] == PINS['science']
+    clearance = json.loads(clearance_path.read_bytes())
+    assert clearance == gate['root_clearance_record'] and clearance['status'] == 'PASS'
+    assert clearance['approved_scope'] == gate['approved_scope'] and clearance['scope_gate_resolution'] == gate['scope_gate_resolution']
+    assert clearance['source_receipt_sha256'] == PINS['receipt'] and clearance['metadata_sha256'] == PINS['metadata']
+    editorial_path = contained_file(programme, 'verification/root-editorial-23390551-20261025.json')
+    assert digest(editorial_path) == PINS['editorial']
+    editorial = json.loads(editorial_path.read_bytes())
+    assert editorial['publication_sha256'] == PINS['publication'] and editorial['promotion_sha256'] == PINS['promotion']
+    assert editorial['scientific_authority_sha256'] == PINS['science'] and editorial['staging_authorized'] is True
+    assert set(gate['reviews']) == set(clearance['reviews']) == {'scope', 'analytic', 'adversarial'}
+    for role, item in gate['reviews'].items():
+        authority = clearance['reviews'][role]
+        assert authority['report'] == 'papers/23390551/' + item['report']
+        assert authority['verdict'] == 'papers/23390551/' + item['verdict_file']
+        assert digest(contained_file(paper, item['report'])) == item['sha256'] == authority['report_sha256']
+        verdict_path = contained_file(paper, item['verdict_file'])
+        assert digest(verdict_path) == item['verdict_sha256'] == authority['verdict_sha256']
+        assert json.loads(verdict_path.read_bytes()) == item['verdict']
+        assert item['root_disposition'] == ('SCOPE_COMPLETE' if role == 'scope' else 'PASS')
+    assert {x['filename'] for x in raw['files']} == {x['key'] for x in api['files']} == {'dipole_spectrum.pdf', 'dipole_spectrum_verification.zip'}
+    for item in raw['files']:
+        name = item['filename']
+        api_item = next(x for x in api['files'] if x['key'] == name)
+        assert item['record_file_metadata'] == api_item
+        assert item['request_url'] == item['final_url'] == api_item['links']['self']
+        assert item['origin'] == 'fresh public asset fetch' and item['fetch_error'] is None
+        assert 'http_status' not in item and 'name' not in item
+        asset = contained_file(paper, 'sources/cache/' + name)
+        data = asset.read_bytes()
+        assert len(data) == item['bytes'] == api_item['size']
+        assert hashlib.md5(data).hexdigest() == item['md5'] and api_item['checksum'] == 'md5:' + item['md5']
+        assert item['headers']['oc-checksum'].lower() == api_item['checksum']
+        key = 'pdf_sha256' if name == config['pdf_filename'] else 'supplement_sha256'
+        assert digest(asset) == item['sha256'] == binding[key] == gate[key] == clearance[key]
+    return raw, {'record_id': '23390551', 'files': deepcopy(raw['files'])}, contained_file(paper, 'sources/cache/dipole_spectrum.pdf').parent

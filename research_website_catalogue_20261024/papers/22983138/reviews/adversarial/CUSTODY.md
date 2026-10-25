@@ -1,0 +1,11 @@
+# Review custody and independence
+
+The early falsification ledger was sealed after the captured2026-10-24T23:19:08-07:00 clock and by23:19:53. SHA256`37d646503a92eaf48c4ca0f4fb1b42bb97f90624dbce85cedd93401ec7ffc601`. The entire actual four-page PDF and full TeX had been read. No primary-source search, support checker, historical review, current sibling/root report or opinion had been read before sealing.
+
+After sealing, actual primary bodies were independently acquired. The entire published eleven-page FPS article and full three-page OWR contribution were read. The countable-shell proof and retained-pair mechanism were reconstructed before opening the supplied verifier. Relevant README files were read after sealing; the package README mentions earlier review outcomes. This exposure is recorded, not counted as independent evidence. No historical audit/report file, including audit/independent-proof.md, and no current sibling/root report was opened.
+
+Fresh PDF/ZIP/TeX hashes independently matched the worker's SOURCE_READY identities, listed in READ_LEDGER.json. Third-party bodies, extracted texts and all renders reside only in ignored cache/. They are not public-package payload. No assumption identifying a preprint with the final journal article was needed: the independently acquired Cambridge PDF is the eleven-page version of record with printed pp498–508 and matching DOI.
+
+The independent computation imports none of the supplied programs. Its first retained run exposed a local Boolean-type harness issue: SymPy BooleanFalse was compared with Python False using identity. No mathematical comparison failed. The failure record and traceback were preserved as initial_harness_bounded_run.json and initial_harness_independent_stderr.txt. An explicit bool conversion fixed the harness; the final bounded run completed in1.67seconds with empty stderr. Every run used a25-second deadline, a new process group and cleanup in finally. No supplied verifier was executed, and no source tree was used for replay output.
+
+All writes were confined to this paper's reviews/adversarial directory. Main was confirmed at handoff. Sealed Basin and Langlands reviews were not modified. No original source, sibling report, shared script/config, site, native Sheet, branch/commit, release, external communication or outreach draft was changed or initiated.
