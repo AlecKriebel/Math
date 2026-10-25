@@ -1,0 +1,117 @@
+Browser tab: 963520582, Title: "A counterexample to Kourovka Notebook Problem 16.45 | Alec Kriebel", URL: "https://aleckriebel.com/research/kourovka-problem-16-45-counterexample/".
+0 AXWebArea A counterexample to Kourovka Notebook Problem 16.45 | Alec Kriebel, URL: aleckriebel.com/research/kourovka-problem-16-45-counterexample/
+	1 link Description: Skip to content, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/#main
+	2 container
+		3 link Description: Alec Kriebel, Value: aleckriebel.com/
+		4 container Main navigation
+			5 link Description: Research, Value: aleckriebel.com/research/
+			6 text  | 
+			7 link Description: Blog, Value: aleckriebel.com/blog/
+			8 text  | 
+			9 link Description: ORCID, Value: orcid.org/0009-0001-9320-500X
+	10 container
+		11 heading A counterexample to Kourovka Notebook Problem 16.45, Value: 1
+			12 link Description: A counterexample to Kourovka Notebook Problem 16.45, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/
+		13 container
+			14 text By Alec Kriebel, independent researcher.
+			15 text Published  23 September 2026  · Version 1.0.1 ·  Unrefereed preprint
+		16 container
+			17 link Description: Read the paper (PDF, 9 pages), Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/Kourovka_16_45_Counterexample_v1.0.1.pdf
+			18 text  · 
+			19 link Description: Source and verification (ZIP), Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/Kourovka_16_45_Source_and_Verification_v1.0.1.zip
+			20 text  · 
+			21 link Description: Zenodo record, Value: doi.org/10.5281/zenodo.22929486
+		22 container
+			23 link Description: Plain-English explanation, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/#plain-language
+			24 text  · 
+			25 link Description: Read on this page, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/#paper
+			26 text  · 
+			27 link Description: Collaboration, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/#collaborate
+		28 container abstract
+			29 heading Abstract, Value: 2
+				30 text Abstract
+			31 text Let b(G) be the largest size of an inclusion-minimal base, over all permutation representations of a finite group G, with bases taken for the permutation image. Let μ′(G) be the largest size of an independent subset of G, not necessarily generating G. We construct an explicitly specified affine group of order 100920 for which b(G) = 3 < 4 = μ′(G). The upper bound covers faithful and nonfaithful actions and does not depend on enumerating the subgroups of the affine group. Exact, independently implemented Python and C++ verifiers certify the small matrix-group inputs and the explicit witnesses. The obstruction is a subgroup of order two that is central in the complement but not normal in the ambient affine group.
+		32 container plain-language
+			33 heading The idea in plain English, Value: 2
+				34 text The idea in plain English
+			35 text There are two ways to measure how much independent information a finite group can contain. One asks how many group elements can be chosen so that none can be generated from the others. The other looks at actions by permutations and asks how large a set of observed points can be when every observation is essential to distinguish the permutations.
+			36 text Peter Cameron asked whether the largest possible values always agree. This paper gives an explicit group with an independent set of four elements, while every inclusion-minimal permutation base has at most three points, across all actions. It also constructs an action that attains three, so both values are exact.
+			37 text The obstruction is a small subgroup that behaves differently inside the matrix part of the construction and inside the full affine group. It is central in the former but not normal in the latter. This realizes the precise normality obstruction in Cameron’s earlier formulation of the question.
+			38 text The official Kourovka Notebook now records the negative answer, cites this Zenodo paper and reports confirmation by P. J. Cameron. The paper remains an unrefereed preprint; that recorded confirmation is distinct from journal publication.
+		39 container result
+			40 heading The precise result, Value: 2
+				41 text The precise result
+			42 text The group is G = F₂₉² ⋊ H, where H is generated over F₂₉ by A = [[0,28],[1,0]] and B = [[2,7],[12,28]]. This specifies the actual matrix action. H is isomorphic to SL₂(5), and |G| = 29² · 120 = 100920.
+			43 text For this group, b_f(G) = b(G) = 3 and μ′(G) = 4. Here b_f uses faithful permutation actions, b allows all actions, and μ′ is the maximum size of an independent subset, whether or not it generates G.
+			44 text Minimal means inclusion-minimal: every selected point is essential. For a possibly nonfaithful action, a base has pointwise stabilizer equal to the action kernel, or equivalently trivial stabilizer in the permutation image.
+			45 text The paper gives an independent generating four-set and a faithful inclusion-minimal three-point base in a disjoint-union coset action. Structural subgroup and normal-subgroup arguments supply the upper bounds for every action.
+			46 text The four omission subgroups of the independent set have a nonnormal intersection of order two. The corresponding Boolean meet-semilattice has rank four, but no rank-four realization can have normal bottom. This gives the negative answer to Problem 16.45.
+		47 container proof
+			48 heading Why the result holds, Value: 2
+				49 text Why the result holds
+			50 text The complement H has a unique involution. Every even-order subgroup contains it, which sharply limits families of subgroups whose intersection is trivial, while the quotient H/{±I} supplies a larger base in a nonfaithful action.
+			51 text Over F₂₉, a line stabilizer in H is cyclic of order dividing four. This bounds the faithful base invariant of every subgroup of G that does not contain the full translation subgroup.
+			52 text A faithful irredundant intersection family must contain such a subgroup. Restricting the other members to it gives the upper bound of three. Every nontrivial normal subgroup of G contains the translation subgroup, so nonfaithful actions reduce to the already controlled complement.
+			53 text Explicit matrix and translation elements give the independent four-set, and three explicit affine subgroups give the faithful three-point base. Their omission intersection is central only in the complement. Taking normal cores destroys the four-way irredundancy rather than converting it into a larger base.
+		54 container limits
+			55 heading Scope and limitations, Value: 2
+				56 text Scope and limitations
+			57 text The construction is not claimed to have the smallest possible group order. It does not classify all counterexamples or determine the largest possible gap between the invariants.
+			58 text The result concerns inclusion-minimal bases maximized over all actions. It should not be described as a result only about transitive actions, minimum-size bases in one fixed action, or ordered irredundant bases.
+			59 text Faithful and arbitrary actions must remain distinct. For the complement H itself, b_f(H) = 2 while b(H) = 3; omitting nonfaithful actions would change the problem.
+			60 text The characteristic matters. The paper exhibits a related characteristic-11 construction with a faithful minimal base of size four, so the same conclusion is not established for every finite field.
+			61 text Finite exact verifiers check the explicit matrix groups and witnesses. The upper bound for every subgroup and action of the full affine group relies on the structural proof, rather than exhaustive enumeration of its subgroup lattice.
+			62 text The official notebook’s reported confirmation is evidence of external recognition, not a journal acceptance or proof-assistant certificate. This page does not claim an exhaustive priority search beyond the cited primary sources.
+		63 container status
+			64 heading Status and AI use, Value: 2
+				65 text Status and AI use
+			66 text The publication revision and verification were prepared with extensive OpenAI Codex assistance, including separate AI agents and exact Python/C++ checks. Those internal checks are distinct from the confirmation reported in the official notebook and from journal peer review.
+		67 container paper
+			68 heading Read the paper, Value: 2
+				69 text Read the paper
+			70 container
+				71 link Description: Open PDF in a full window, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/Kourovka_16_45_Counterexample_v1.0.1.pdf
+				72 text  · 
+				73 link Description: Download the original from Zenodo, Value: zenodo.org/records/22929486/files/Kourovka_16_45_Counterexample_v1.0.1.pdf
+			74 container A counterexample to Kourovka Notebook Problem 16.45 — full paper PDF
+				75 AXWebArea aleckriebel.com/research/kourovka-problem-16-45-counterexample/Kourovka_16_45_Counterexample_v1.0.1.pdf#view=FitH
+		76 container collaborate
+			77 heading Collaborate on this result, Value: 2
+				78 text Collaborate on this result
+			79 text I welcome substantive collaboration on placing the counterexample within the broader theory of permutation bases and subgroup lattices, checking the exposition and exact certificates, and preparing it for journal review. Expertise in finite groups or computational group theory would be particularly useful.
+			80 text Authorship and responsibilities would be discussed in relation to the substantive contributions made.
+		81 link Description: Contact Alec, Value: mailto:me@aleckriebel.com
+		82 container cite
+			83 heading Cite this paper, Value: 2
+				84 text Cite this paper
+			85 container
+				86 text Alec Kriebel. (2026).  A counterexample to Kourovka Notebook Problem 16.45  (Version 1.0.1) [Preprint]. Zenodo. 
+				87 link Description: https://doi.org/10.5281/zenodo.22929486, Value: doi.org/10.5281/zenodo.22929486
+			88 link Description: Download BibTeX, Value: aleckriebel.com/research/kourovka-problem-16-45-counterexample/citation.bib
+		89 container background
+			90 heading Background and prior work, Value: 2
+				91 text Background and prior work
+			92 content list
+				93 container
+					94 AXListMarker • 
+					95 link Description: Kourovka Notebook, 21st edition, current Problem 16.45 entry, Value: kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf
+					96 text : Printed page 105 states Cameron’s question and records its negative solution, citing Zenodo 22929486 and reporting confirmation by P. J. Cameron.
+				97 container
+					98 AXListMarker • 
+					99 link Description: Cameron, Some measures of finite groups related to permutation bases, Value: arxiv.org/abs/1408.0968v1
+					100 text : Propositions 3.1–3.2 and Corollary 3.3 give the subgroup and Boolean-semilattice formulations and the inequality. The normality condition is already the identified obstacle.
+				101 container
+					102 AXListMarker • 
+					103 link Description: Cameron, Independence and bases: Theme and variations, Value: doi.org/10.2140/mt.2024.3.417
+					104 text : Section 6 treats all permutation representations, including nonfaithful ones, and restates the equality question with notation b₂ and μ↑.
+				105 container
+					106 AXListMarker • 
+					107 link Description: Cameron, The symmetric group, 7, Value: cameroncounts.wordpress.com/2010/07/22/the-symmetric-group-7/
+					108 text : The author’s earlier exposition distinguishes minimal bases from ordered irredundant bases and explains the normal-bottom semilattice condition.
+	109 container
+		110 link Description: Research home, Value: aleckriebel.com/research/
+		111 text  | 
+		112 link Description: me@aleckriebel.com, Value: mailto:me@aleckriebel.com
+		113 text © 2013–2026 Kriebel LLC.
+
+The focused UI element is 0 AXWebArea A counterexample to Kourovka Notebook Problem 16.45 | Alec Kriebel, URL: aleckriebel.com/research/kourovka-problem-16-45-counterexample/

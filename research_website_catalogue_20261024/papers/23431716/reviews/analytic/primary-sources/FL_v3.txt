@@ -1,0 +1,653 @@
+                                                                           COEULERIAN GRAPHS
+
+
+
+
+arXiv:1502.04690v3 [math.CO] 11 Sep 2015
+                                                                    MATTHEW FARRELL AND LIONEL LEVINE
+
+
+
+
+                                                   Abstract. We suggest a measure of “Eulerianness” of a finite directed graph and
+                                                   define a class of “coEulerian” graphs. These are the graphs whose Laplacian lattice
+                                                   is as large as possible. As an application, we address a question in chip-firing posed
+                                                   by Björner, Lovász, and Shor in 1991, who asked for “a characterization of those
+                                                   digraphs and initial chip configurations that guarantee finite termination.” Björner
+                                                   and Lovász gave an exponential time algorithm in 1992. We show that this can
+                                                   be improved to linear time if the graph is coEulerian, and that the problem is
+                                                   NP-complete for general directed multigraphs.
+
+
+
+                                                                                  1. Introduction
+                                             In this paper G = (V, E) will always denote a finite directed graph, with loops and
+                                           multiple edges permitted. We assume throughout that G is strongly connected: for
+                                           each v, w ∈ V there are directed paths from v to w and from w to v. Trung Van
+                                           Pham [22] introduced the quantity
+                                                                               MG = gcd{κ(v)|v ∈ V }
+                                           where κ(v) is the number of spanning trees of G oriented toward v. We will see that
+                                           MG , which we will call the Pham index of the graph G, can be interpreted as a
+                                           measure of “Eulerianness”.
+                                              A finite directed multigraph G is called Eulerian if it has an Eulerlian tour (a
+                                           closed path that traverses each directed edge exactly once). We are going to take the
+                                           view that Eulerianness is an algebraic property of the graph Laplacian ∆ acting
+                                           on integer-valued functions f ∈ ZV by
+                                                                                        X
+                                                                   ∆f (v) = dv f (v) −         f (tail(e)).                  (1)
+                                                                                              head(e)=v
+
+                                           Here dv is the outdegree of vertex v. The context is the following well-known equiv-
+                                           alence, where 1 denotes the constant function 1(v) = 1 for all v ∈ V .
+
+
+                                              Date: September 4, 2015.
+                                              2010 Mathematics Subject Classification. 05C05, 05C20, 05C45, 05C50, 68Q25.
+                                              Key words and phrases. chip-firing, critical group, Eulerian digraph, Laplacian lattice, oriented
+                                           spanning tree, period vector, Pham index, sandpile group.
+                                              This research was supported by NSF grants DMS-1243606 and DMS-1455272 and a Sloan
+                                           Fellowship.
+                                                                                             1
+2                       MATTHEW FARRELL AND LIONEL LEVINE
+
+Proposition 1.1. The following are equivalent for a strongly connected directed
+multigraph G = (V, E).
+   (1) ker(∆ : ZV → ZV ) = Z1.
+   (2) MG = κ(s) for all s ∈ V .
+   (3) G is Eulerian.
+   Our main result is in some sense dual to Proposition 1.1: it gives several equivalent
+characterizations of the graphs with Pham index 1. These coEulerian graphs are
+the farthest from being Eulerian.
+   Our motivation for considering coEulerian graphs and the Pham index comes from
+chip-firing, which we now describe. A chip configuration on G, or simply configu-
+ration for short, is a function σ : V → Z. If σ(v) > 0 we think of a pile of σ(v) chips
+at vertex v, and if σ(v) < 0 we think of a hole waiting to be filled by chips. Denoting
+by dv the outdegree of vertex v, we say that v is stable for σ if σ(v) < dv , and active
+for σ otherwise. A vertex v can fire by sending one chip along each outgoing edge,
+resulting in the new configuration
+                                      σ ′ = σ − ∆δv
+where ∆ is the graph Laplacian (1) and δv (w) is 1 if v = w and 0 otherwise. Con-
+cretely, we may think of σ, σ ′ as column vectors and ∆δv as a column of the matrix
+                                       (
+                                         −dwv ,     v 6= w
+                               ∆vw =
+                                         dv − dvv , v = w
+where dwv denotes the number of directed edges of G from w to v. More generally,
+we can specify a firing vector x ∈ NV and fire each vertex v a total of x(v) times,
+resulting in the configuration σ ′ = σ − ∆x. Here and throughout, N = {0, 1, 2, . . .}.
+   A legal firing sequence is a finite sequence of configurations σ0 , . . . , σk such that
+each σi for i = 1, . . . , k is obtained from σi−1 by firing a vertex that is active for
+σi−1 . A configuration σ is called stable if σ(v) < dv for all v ∈ V . We say that
+σ stabilizes if there is legal firing sequence σ = σ0 , . . . , σk such that σk is stable.
+Björner, Lovász, and Shor posed the following problem in 1991 [6].
+    The halting problem for chip-firing:
+     Given the adjacency matrix of a finite, strongly connected multigraph G
+     and a chip configuration σ on G with σ ≥ 0,
+     Decide whether σ stabilizes.
+                P
+  Write |σ| = v∈V σ(v) for the total number of chips. This quantity is conserved
+by firing (since |∆δv | = 0 for all v ∈ V ). The maximal stable configuration
+                                    σmax (v) = dv − 1
+has |σmax | = #E − #V . By the pigeonhole principle, any configuration σ with
+|σ| > #E − #V has at least one unstable vertex, so such σ does not stabilize. A
+natural question arises: Which directed graphs have the property that every chip
+configuration of #E − #V chips stabilizes? These graphs are the subject of our main
+result.
+                                COEULERIAN GRAPHS                                     3
+
+  We write ZV0 for the set of σ ∈ ZV such that |σ| = 0.
+Theorem 1.2. The following are equivalent for a strongly connected directed multi-
+graph G = (V, E).
+    (1) Im(∆ : ZV → ZV ) = ZV0 .
+    (2) MG = 1.
+    (3) A chip configuration σ on G stabilizes if and only if |σ| ≤ #E − #V .
+    (4) For all s ∈ V , the sandpile group K(G, s) is cyclic with generator βs .
+    (5) For some s ∈ V , the sandpile group K(G, s) is cyclic with generator βs .
+   Items (1) and (2) are in some sense dual to their counterparts in Proposition 1.1,
+so we propose the term coEulerian for a graph satisfying the equivalent conditions
+of Theorem 1.2. The sandpile group K(G, s) and βs are defined below in Section 2.
+For a dual counterpart to item (4), see Proposition 2.12(4).
+
+                            3             3              3
+                     0             1            ···            n
+                            2             2              2
+
+       Figure 1. Example of a coEulerian graph: a path of length n with
+       edge multiplicities 2 to the right and 3 to the left. It has κ(v) =
+       π(v) = 2v 3n−v spanning trees oriented toward v, so its Pham index is
+       MG = gcd(2n , 2n−1 3, . . . , 3n ) = 1.
+
+
+1.1. History. Let us call a graph bidirected if it is obtained from an undirected graph
+by replacing each undirected edge {u, v} by a pair of directed edges (u, v) and (v, u).
+All bidirected graphs are Eulerian.
+   One of the earliest results in chip-firing is the following observation of Tardos.
+Lemma 1.3. [26, Lemma 4] Let σ be a configuration on a bidirected graph G. If
+there is a legal firing sequence for σ in which every vertex of G fires at least once,
+then σ does not stabilize.
+  Tardos used Lemma 1.3 to prove that for any configuration σ on a simple bidirected
+n-vertex graph, if σ stabilizes then it does so in O(n4 ) firings. Eriksson showed,
+however, that on a general directed graph a configuration may require an exponential
+number of firings to stabilize [13]. Björner and Lovász [5] generalized the “at least
+once” condition of Lemma 1.3 to directed graphs as follows.
+Lemma 1.4. [5] For every strongly connected multigraph G there is a unique primi-
+tive π ∈ NV such that ∆π = 0. If there is a legal firing sequence for σ in which every
+vertex v fires at least π(v) times, then σ does not stabilize.
+   This gives a procedure for deciding the halting problem for chip-firing: per-
+form legal firings in any order until either you reach a stable configuration or the
+criterion of Lemma 1.4 certifies that σ will not stabilize. There is only one problem:
+4                       MATTHEW FARRELL AND LIONEL LEVINE
+
+the values π(v) may be exponentially large. Figure 1 shows a coEulerian graph on
+vertex set {0, 1, . . . , n} with π(v) = 2v 3n−v . The algorithm just described would run
+for exponential time on this graph, but Theorem 1.2 gives a much faster algorithm to
+decide the halting problem for chip-firing on any coEulerian graph: count the total
+number of chips and compare to #E − #V . As far as we are aware, this is the first
+progress on the halting problem for chip-firing on directed graphs since the work of
+Björner and Lovász [5].
+1.2. Related work. Pham [22] introduced the index MG to answer a question posed
+in [17]: Which directed graphs G have the property that all unicycles of G lie in the
+same orbit of the rotor-router operation? He showed that G has this property if and
+only if MG = 1, and that in general the number of orbits is MG .
+   The halting problem for chip-firing is a special case of the halting problem
+for a class of automata networks called abelian networks. A polynomial time algorithm
+to decide if a given abelian network halts on all inputs appears in [8], where it is
+remarked that the problem of deciding whether a given abelian network halts on a
+given input is a subtler problem. The halting problem for chip-firing is of this
+latter type (the “input” to the abelian network is the chip configuration σ).
+1.3. Outline. The next section is devoted to the proofs of Proposition 1.1 and Theo-
+rem 1.2, and concludes with Proposition 2.13 characterizing the graphs that are both
+Eulerian and coEulerian. In Section 3 we show that despite its being easy for Euler-
+ian graphs and coEulerian multigraphs, the halting problem for chip-firing on
+finite directed multigraphs is NP-complete in general. One ingredient in the proof is
+Theorem 3.1, which expresses an arbitrary (n − 1)-dimensional lattice in Zn0 as the
+Laplacian lattice of a strongly connected multigraph.
+
+                     2. Sandpiles and the halting problem
+   To prove Theorem 1.2 we will compare chip-firing with and without a sink vertex.
+This kind of comparison appears also in the study of the abelian sandpile threshold
+state [19], and in the extension of the Biggs-Merino polynomial to Eulerian graphs
+[21] and to all strongly connected graphs [10]. Sections 2.1 and 2.2 review the rele-
+vant background on chip-firing and the sandpile group. In Section 2.3 we relate the
+sandpile groups with and without sink, and in Section 2.4 we prove the results stated
+in the introduction.
+2.1. Background. The following result frees us from considering only legal firing
+sequences in looking for an answer to the halting problem for chip-firing.
+Lemma 2.1. (Least Action Principle, [7, Lemma 4.3]) Let σ be a chip configuration
+on a finite directed graph. Then σ stabilizes if and only if there exists an x ∈ NV
+such that σ − ∆x is stable.
+  A sizable portion of the ground soon to be covered is motivated by the following
+principle: in looking for a stabilizing firing sequence, instead of firing willy-nilly we
+can establish some structure by designating a special vertex s as the sink, which fires
+only if no other vertex is active. We fire active, nonsink vertices until all nonsink
+                                 COEULERIAN GRAPHS                                     5
+
+vertices are stable. At this point if the sink is stable we are done; otherwise, we fire
+the sink (once) and repeat.
+   The reduced Laplacian ∆s is the matrix obtained by deleting the row and column
+of ∆ corresponding to the sink s. To emphasize the distinction between ∆ and ∆s , we
+will sometimes refer to ∆ as the total Laplacian. In what follows we will sometimes
+identify the vertex set V with {1, . . . , n} and set s = n.
+Definition 2.2. Let G = (V, E) be a finite strongly connected multigraph and fix
+s ∈ V . The sandpile group of G with sink s is the group quotient
+                               K(G, s) = Zn−1 /∆s Zn−1
+where ∆s Zn−1 is the integer column-span of ∆s .
+   A sandpile is a chip configuration η ∈ Zn−1 indexed by the nonsink vertices.
+When we wish to emphasize that a chip configuration is defined also at the sink, we
+call it a total configuration. One can imagine that a sandpile is composed of sand
+grains which behave just like chips except that they are small enough to disappear
+down the sink. The definitions “stable” and “firing vector” have obvious analogues
+for sandpiles: a sandpile η is stable if η(i) < di for all vi 6= s; and firing vectors
+for sandpiles live in Zn−1 . The sandpile group treats two sandpiles as equivalent if
+one can be obtained from the other by firing nonsink vertices. We write η for the
+equivalence class of η in K(G, s).
+   On a strongly connected graph, every sandpile stabilizes, and its stabilization does
+not depend on the order of firings [17, Lemmas 2.2 and 2.4]; we denote the stabi-
+lization of η by η ◦ . Next we recall the connection between sandpiles and spanning
+trees.
+Definition 2.3. An oriented spanning tree of a directed graph G = (V, E) rooted
+at s ∈ V is a spanning subgraph T = (V, A) such that
+   (1) Every vertex v 6= s has outdegree 1 in T .
+   (2) s has outdegree 0 in T .
+   (3) T has no oriented cycles.
+Hence an oriented spanning tree has as its limbs edges that point toward the root.
+Let κ(s) denote the number of oriented spanning trees in G rooted at s.
+Theorem 2.4. (Matrix tree theorem [25, Theorem 5.6.8] and [17, Lemma 2.8]) For
+a finite strongly connected multigraph G and a vertex s,
+                             κ(s) = det ∆s = #K(G, s).
+   Note that if G is strongly connected then it has at least one spanning tree rooted
+at s, so ∆s is invertible; since the rows of ∆ sum to 0, this implies that ∆ has rank
+n − 1.
+   There is a natural representative for each equivalence class of K(G, s). To describe
+this representative, we say that a sandpile η is accessible if from any other sandpile
+it is possible to obtain η by adding a nonnegative number of sand grains at each
+vertex and then selectively firing active vertices. A sandpile that is both stable and
+accessible is called recurrent.
+6                       MATTHEW FARRELL AND LIONEL LEVINE
+
+Theorem 2.5. [17, Cor. 2.16] The set Rec(G, s) of all recurrent sandpiles is an
+abelian group under the operation
+                                    η ⊕ ξ := (η + ξ)◦
+and it is isomorphic via the inclusion map to the sandpile group K(G, s).
+   The recurrent identity element es ∈ Rec(G, s) is the unique recurrent sandpile
+in ∆s Zn−1 . The recurrent representative ηrec of a sandpile η can be found by adding
+the identity and stabilizing:
+                                    ηrec = (η + es )◦ .
+Dhar’s burning test [11] determines whether a given sandpile on an Eulerian graph
+is recurrent. Speer [24] generalized the burning test to directed graphs. Dhar’s and
+Speer’s tests are closely related to Lemmas 1.3 and 1.4 respectively.
+2.2. Cyclic subgroups of the sandpile group. For s, v ∈ V let βs (v) = dsv , the
+number of directed edges from s to v. In accordance with our principle of controlled
+sink firing, given a recurrent sandpile η we are interested in
+                              Cη = {(η + kβs )◦ : k ∈ N},
+the set of sandpiles obtainable from η by firing the sink s some nonnegative number
+of times and then stabilizing. Note that starting with a recurrent sandpile, adding
+sand grains to the nonsink vertices and then stabilizing results in another recurrent
+sandpile; so all sandpiles in Cη are recurrent. Note that
+                          (η + βs )◦ = (η + es + βs )◦ = η ⊕ γs
+where γs = (es + βs )◦ is the recurrent representative of βs . It follows that
+                                     Cη = η ⊕ hγs i
+where hγs i denotes the cyclic subgroup of Rec(G, s) generated by γs .
+  To investigate these cosets of hγs i, we recall the period vector introduced by Björner
+and Lovász.
+Definition 2.6. [5] Given a graph G with total Laplacian ∆, a vector p ∈ Nn is
+called a period vector for G if p 6= 0 and ∆p = 0. A period vector is primitive if
+the greatest common divisor of its entries is 1.
+   In other words, a period vector p has the property that firing each vertex v ∈ V a
+total of p(v) times results in no net movement of chips. The following lemma sums
+up some useful properties of period vectors.
+Lemma 2.7. [5, Prop. 4.1] A strongly connected multigraph G has a unique primitive
+period vector πG . All entries of πG are strictly positive, and all period vectors of G
+are of the form kπG for k = 1, 2, . . .. Moreover, if G is Eulerian, then πG = 1.
+   A consequence of the strict positivity of πG that we will use several times is that
+∆Zn = ∆Nn .
+   We now introduce a very special period vector. Recall that κ(v) denotes the number
+of spanning trees of G oriented toward v.
+                                    COEULERIAN GRAPHS                                   7
+
+Lemma 2.8 ([1, 9]). ∆κ = 0.
+   Recall the Pham index M = MG , defined as the greatest common divisor of the
+                                                                                  1
+spanning tree counts {κ(v)|v ∈ V }. By Lemmas 2.7 and 2.8, the vector π = M         κ is
+the unique primitive period vector of G.
+   Next we argue that π(s) = ord(γs ), the order of γs in the group Rec(G, s). Fixing
+a positive integer m, we have that mβs is trivial in K(G, s) if and only if there exists
+y ∈ Zn−1 such that mβs = ∆s y. Setting x = (y, 0) ∈ Zn and noting that βs is the
+restriction of −∆δs to the nonsink vertices, such y exists if and only if there is a
+vector x ∈ Zn such that x(s) = 0 and ∆(x + mδs ) = 0. (The equality in the sink
+coordinate of the first equation follows from the equality in the nonsink coordinates
+because the sum of all the coordinates is 0.) Setting p = x + mδs , such x exists if
+and only if there is a vector p ∈ Zn such that
+                              ∆p = 0       and    p(s) = m.
+By Lemma 2.8, since the kernel of ∆ is one-dimensional and m is positive, such p
+must be a positive integer multiple of the primitive period vector π. Such p exists
+if and only if π(s) divides m. Thus π(s) is the order of βs in K(G, s), which by
+Theorem 2.5 is the order of γs in Rec(G, s). Recalling that π(s) = κ(s)/M , we
+conclude the following.
+Lemma 2.9. [22, Lemma 6] For any choice of sink s, we have that
+                           ord(γs ) = κ(s)/M = # Rec(G, s)/M
+Thus, M = # Rec(G, s)/ hγs i is the number of distinct cosets of hγs i in Rec(G, s).
+2.3. Comparison of sandpile groups with and without sink. We now investi-
+gate the structure of the quotient group Rec(G, s)/ hγs i. Recall that βs is the sandpile
+βs (v) = dsv , where s is the designated sink vertex and that βs is the equivalence class
+of βs in K(G, s). As before we write Zn0 for the group of vectors in Zn with coordinates
+summing to 0.
+Theorem 2.10. For any strongly connected multigraph G and any vertex s,
+                                       = K(G, s)/ βs ∼
+                      Rec(G, s)/ hγs i ∼             = Zn0 /∆Zn .
+   The meat of the proof for this theorem is packaged in the following workhorse
+lemma. To translate between sandpiles and total configurations, we introduce some
+notation: Given a vector x ∈ Zn , we denote by x̃ the restriction of x to the nonsink
+vertices; and given η ∈ Zn−1 , we write ηk for the extension of η to Zn such that
+|ηk | = k.
+Lemma 2.11. Let σ, τ ∈ Zn with |σ| = |τ |. Then the following are equivalent.
+   (1) σ ≡ τ mod ∆Zn
+   (2) σ̃ ≡ τ̃ mod ∆s Zn−1 + Zβs
+   (3) (σ̃ + es )◦ ∈ (τ̃ + es )◦ ⊕ hγs i
+8                       MATTHEW FARRELL AND LIONEL LEVINE
+
+Proof. (1 ⇐⇒ 2) Assume (1), and let m = |σ| = |τ |. Recall that σk denotes the
+extension of σ to Zn such that |σk | = k. We observe that (1) holds if and only if
+there is an x ∈ Zn such that σ = τ − ∆x. If σ = τ − ∆x, then
+                                                          
+                                x̃          0            ∆s x̃
+          σ = τ − ∆x = τ − ∆         −∆           =τ−            − x(s)cs
+                                0         x(s)             a
+where cs denotes the column of ∆ corresponding with the sink and a is the dot product
+of the nth row of ∆ with (x̃, 0). Since βs (i) = −cs (i) for each i 6= s, it follows that
+σ̃ = τ̃ − ∆s x̃ + x(s)βs . Going the other way, we assume that σ̃ = τ̃ − kβs − ∆s x̃ for
+some k ∈ N and x̃ ∈ Nn−1 . Let σ ′ be the total configuration
+                                                   
+                                                 x̃
+                                   σ′ = τ − ∆         .
+                                                 k
+Then σ ′ (i) = σ̃(i) for all i 6= s and |σ ′ | = |τ |. Since σ(s) is determined by |σ| and
+|σ| = |τ |, we have that σ ′ = σ.
+   (2 ⇐⇒ 3) Note that (3) is equivalent to the existence of an x such that
+                                                                   ˜ s x̃
+                    (σ̃ + es )◦ ≡ (τ̃ + es )◦ + x(s) (βs + es )◦ − ∆
+                                                          ˜ s Zn−1 + Zβs .
+which in turn is equivalent to the congruence σ̃ ≡ τ̃ mod ∆                             
+Proof of Theorem 2.10. Define a map φ : K(G, s)/ βs → Zn0 /∆Zn sending
+                           η mod βs         7→    η0 mod ∆Zn .
+Let η, ξ ∈ Zn−1 . If η ≡ ξ mod βs , then by Lemma 2.11 we have that η0 ≡
+ξ0 mod ∆Zn , so that φ is well-defined. The equation η0 + ξ0 = (η + ξ)0 is immediate
+from the definition, so that φ is a homomorphism. The map φ is also surjective,
+since for each σ ∈ Zn0 there is a corresponding σ̃ ∈ Zn−1 , and φ σ̃ mod βs =
+                                                                                
+
+σ mod ∆Zn . We now show that φ is injective to complete the proof that φ is an
+isomorphism. Suppose that σ ≡ τ mod ∆Zn . Then by Lemma 2.11 we have that
+σ̃ ≡ τ̃ mod βs and the theorem is proved.                                         
+2.4. Eulerian and CoEulerian Graphs. We now prove the two results stated in
+the introduction. We also supplement Proposition 1.1 with three equivalent condi-
+tions about the sandpile group.
+Proposition 2.12. The following are equivalent for a strongly connected directed
+multigraph G = (V, E).
+   (1) ker(∆ : ZV → ZV ) = Z1.
+   (2) MG = κ(s) for all s ∈ V .
+   (3) G is Eulerian.
+   (4) For all s ∈ V , the element βs is trivial in the sandpile group K(G, s).
+   (5) K(G, s) ∼= ZV0 /∆ZV for all s ∈ V .
+   (6) K(G, s) ∼= K(G, s′ ) for all s, s′ ∈ V .
+Proof. (1 ⇐⇒ 3) We have ∆1 = 0 if and only if the indegree of each vertex equals
+its outdegree. By [25, Theorem 5.6.1], for G strongly connected this degree condition
+is equivalent to the existence of an Eulerian tour.
+                                 COEULERIAN GRAPHS                                      9
+
+   (1 =⇒ 4) By definition, P  βs is the restriction ofP−∆δs to the nonsink coordinates.
+If ∆1 = 0 then −∆δs = ∆( v6=s δv ), so βs = ∆s ( v6=s δv ) ∈ ∆s Zn−1 .
+   (4 =⇒ 5) This follows directly from Theorem 2.10.
+   (5 =⇒ 6) Trivial.
+   (6 =⇒ 2) If K(G, s) ∼  = K(G, s′ ), then equating orders yields κ(s) = κ(s′ ). If this
+holds for all vertices s and s′ , then MG := gcd{κ(v)|v ∈ V } = κ(s) for all s ∈ V .
+   (2 =⇒ 1) If all coordinates of κ are equal, then ∆1 = 0 by Lemma 2.8.               
+
+  In particular, the sandpile group K(G, s) is independent of the choice of sink if
+and only if G is Eulerian (the “if” direction is well known [17, Lemma 4.12]).
+
+Proof of Theorem 1.2. (3 =⇒ 4) We prove the contrapositive. Assume there is
+a sink s such that K(G, s) 6= β s , and fix the number of chips on G to be m =
+#E − #V . Our assumption implies that there are two distinct cosets C1 and C2 of
+hγs i such that σ̃max ∈ C1 . Choosing an η ∈ C2 , we remark that ηm stabilizes if and
+only if ηm ≡ σmax mod ∆Zn (since σmax is the only stable total configuration with
+m chips). By Lemma 2.11, this congruence holds if and only if η ∈ σ̃max ⊕ hγs i = C1 ,
+so we see that ηm does not stabilize.
+   (4 =⇒ 5) Trivial.
+   (5 =⇒ 3) Let σ be a total configuration with |σ| ≤ #E − #V . We first write
+σ = τ − δ for some τ, δ ∈ Zn where |τ | = #E − #V and δ ≥ 0. Now if βs = K(G, s)
+for some vertex s, then τ̃ ≡ σ̃max mod ∆s Zn−1 + Zβs so that τ ≡ σmax mod ∆Zn by
+Lemma 2.11. It follows that σ ≡ σmax − δ mod ∆Zn . Using that ∆Zn = ∆Nn , we
+conclude from Lemma 2.1 that σ stabilizes.
+   (1 ⇐⇒ 5) This equivalence follows from Theorem 2.10.
+   (2 ⇐⇒ 5) This equivalence follows from Lemma 2.9.                                
+
+2.5. Graphs that are both Eulerian and coEulerian. We conclude this section
+by characterizing the graphs that are both Eulerian and coEulerian. A strongly
+connected graph G without loops is called a directed cactus [28, 23] if each edge
+of G is contained in a unique simple directed cycle. Let us call this the “unique
+cycle property” (UCP). As the proof of the next Proposition will show, the UCP is
+equivalent to the following “unique path property” (UPP): For any pair of vertices
+x, y ∈ V there is a unique simple directed path in G from x to y. (A simple cycle or
+path is one with no repeated vertices; in particular, a 2-cycle consisting of an edge
+and its reversal is simple.)
+   Directed cacti are in some sense analogous to trees. In particular, a bidirected
+graph has the UCP if and only if it is a bidirected tree.
+Proposition 2.13. Let G be a strongly connected finite graph without loops. Then
+G is both Eulerian and coEulerian if and only if G is a directed cactus.
+Proof. Supposing that G is both Eulerian and coEulerian, we have κ(y) = 1 for
+all y ∈ V . By Wilson’s algorithm [27], any oriented spanning forest, one of whose
+components is oriented toward y, can be completed to a spanning tree oriented toward
+y. Given x, y ∈ V and a simple path P from x to y, completing P in this manner
+10                       MATTHEW FARRELL AND LIONEL LEVINE
+
+results in the unique spanning tree Ty oriented toward y. Therefore all simple paths
+from x to y are contained in Ty , so G has the UPP.
+   Next observe that for each directed edge e = (y, x) there is a bijection between
+simple directed paths P from x to y and simple directed cycles P ∪ {e} containing e.
+Hence the UPP implies the UCP.
+   Finally, supposing that G has the UCP, we will compete the proof by showing that
+for each vertex y there is a unique spanning tree of G oriented toward y, so that G
+is both Eulerian and coEulerian. Let C be the set of simple directed cycles in G, and
+consider the undirected bipartite graph T on vertex set V ∪ C whose edges are the
+pairs {v, C} such that vertex v lies on cycle C. The UCP implies that T is a tree.
+Now we can manifestly describe the unique spanning tree of G oriented toward y.
+Namely, for each cycle C let eC be the outgoing edge from x in C, where (C, x, . . . , y)
+is the unique path from C to y in T. The remaining edges E − {eC |C ∈ C} form
+a spanning tree of G oriented toward y. Moreover any such spanning tree T must
+contain all edges of G of the form (x, x′ ) where (C, x, C ′ , . . . , y) is the path from any
+cycle C to y in T and x′ ∈ C ′ , else there would be no path from x to y in T . By the
+UCP, edges eC and (x, x′ ) are distinct since they belong to distinct cycles. Therefore
+T must omit all of the edges eC , and hence T is unique.                                     
+
+
+                           3. Computational complexity
+   Björner and Lovász [5, Corollary 4.9] showed that the halting problem for chip-firing
+can be decided in polynomial time for simple Eulerian graphs. By Theorem 1.2, it
+can be decided in linear time for coEulerian multigraphs. The purpose of this section
+is to show that despite these two easy cases, the problem is NP-complete for general
+directed multigraphs.
+   To see that it is in NP, let σ be a nonnegative halting chip configuration on a
+strongly connected directed multigraph G = (V, E), and let x(v) be the number of
+times vertex v fires. By Lemma 2.1 the vector x is a certificate that σ halts. Why
+does this certificate have polynomial size? By Lemma 1.4 we have x(v) < π(v) for
+some vertex v. Moreover for any directed edge (u1 , u2 ) the vertex u2 receives at least
+x(u1 ) chips from u1 and so u2 fires at least x(u1 )/du2 times. For any vertex  Q u, by
+inducting along a path from u to v we find that x(u) ≤ Dx(v) where D = w∈V dw
+is the product of all outdegrees. By Lemmas 2.7 and 2.8 relating the primitive period
+vector π to the spanning tree count vector κ, we     P have π(v) ≤ κ(v) ≤ D, so all
+entries of x are at most D 2 . Noting that log D ≤ u,v∈V log duv , which is the size of
+description of the adjacency matrix, we conclude that the halting problem for
+chip-firing is in NP.
+   To show that it is also NP-hard, our starting point is the following decision problem
+considered by Amini and Manjunath [2].
+
+     Nonnegative rank:
+      Given a basis of an (n − 1)-dimensional lattice L ⊂ Zn0 and a vector σ ∈ Zn ,
+      Decide whether there is a vector τ ∈ Nn such that σ − τ ∈ L.
+                                COEULERIAN GRAPHS                                   11
+
+If there exists such a τ , then σ is said to have nonnegative rank relative to L. In
+[2, Theorem 7.2] nonnegative rank is shown to be NP-hard by reducing from the
+problem of deciding whether a given simplex with rational vertices contains an integer
+point. (To give a little context, the term “rank” is inspired by the Riemann-Roch
+theorem of Baker and Norine [4]. Asadi and Backman [3] extend parts of the Baker-
+Norine theory to directed graphs. Kiss and Tóthmérész [18] show that computing
+the Baker-Norine rank—a harder problem than deciding whether it is nonnegative—is
+already NP-hard when L is the Laplacian lattice of a simple undirected graph.)
+   The link between chip-firing and nonnegative rank is provided by the following
+variant of a theorem of Perkinson, Perlman and Wilmes [20].
+Theorem 3.1. Given an (n − 1)-dimensional lattice L ⊂ Zn0 , there exists a strongly
+connected multigraph with Laplacian ∆ such that
+                                     L = ∆Zn .
+Moreover, ∆ can be computed from a basis of L in polynomial time, and all entries
+of ∆ are bounded in absolute value by nd where d = det L.
+   The inspiration for Theorem 3.1 is [20, Theorem 4.11], which expresses an arbitrary
+(n − 1)-dimensional lattice in Zn−1 as a reduced Laplacian lattice ∆s Zn−1 . Modifying
+its proof to express L ⊂ Zn0 as a total Laplacian lattice is straightforward; we give
+the details below.
+   In our application it will be essential to compute the Laplacian matrix ∆ from a
+basis of L in polynomial time (in the length of description of the basis). It is not
+evident whether [20, Algorithm 4.13] runs in polynomial time, due to possible blow up
+of the matrix entries in repeated applications of the Euclidean algorithm [14, 15]. As
+detailed below, this numerical blow up can be avoided by the usual trick of computing
+modulo the determinant d.
+   To see how we will apply Theorem 3.1, note that strong connectivity implies
+                                    ∆Zn = ∆Nn
+since the period vector of Lemma 2.7 is strictly positive. Thus, a vector σ ∈ Zn has
+nonnegative rank relative to L = ∆Zn if and only if there exists x ∈ Nn such that
+                                    σ + ∆x ≥ 0.
+Now by Lemma 2.1, such an x exists if and only if the chip configuration σmax − σ
+stabilizes. To summarize, a polynomial time computation of ∆ given a basis for L
+yields a polynomial time Karp reduction from nonnegative rank to the halting
+problem for chip-firing on a finite directed multigraph, showing that the latter
+is NP-hard.
+Corollary 3.2. the halting problem for chip-firing is NP-complete.
+  It remains to prove Theorem 3.1. Recall that an m × m integer matrix U is called
+unimodular if det U = ±1. Any nonsingular square integer matrix A has a Hermite
+normal form
+                                    H = AU
+12                       MATTHEW FARRELL AND LIONEL LEVINE
+
+where U is a unimodular integer matrix, and H = (hij ) is lower-triangular with
+integer entries satisfying
+                  0 < hii ,                                1≤i≤m
+                  0 ≤ hij < hii ,                          1 ≤ j < i ≤ m.
+The existence and uniqueness of H was proved by Hermite [16]. The Hermite normal
+form is useful to us because H can be computed from A in polynomial time [12] and
+HZm = A(U Zm ) = AZm by the unimodularity of U . Let
+                                                   m
+                                                   Y
+                            d = | det A| = det H =   hii .
+                                                        i=1
+We will use the following observations about the column span AZm .
+Lemma 3.3. [12, Cor. 2.3] Let B be a lower triangular m × m matrix whose columns
+are in AZm and whose diagonal entries satisfy bii = hii for all i. Then BZm = AZm .
+Lemma 3.4. [12, Prop. 2.5] dZm ⊂ AZm .
+   We will apply these lemmas with m = n − 1. Note that an n × n integer matrix
+is the total Laplacian of a directed multigraph if and only if (i) the entries of each
+column sum to zero, (ii) the diagonal entries are nonnegative, and (iii) the off-diagonal
+entries are nonpositive.
+   Given an n × (n − 1) integer matrix whose columns are a Z-basis of the (n − 1)-
+dimensional lattice L ⊂ Zn0 , let A be the result of removing the last row of M . Since
+each column of M sums to zero, A is nonsingular. Let H = AU be the Hermite
+normal form of the (n − 1) × (n − 1) nonsingular matrix A.
+   The hypotheses of Lemma 3.3 are trivially satisfied when B = H; and if B satisfies
+the hypotheses of Lemma 3.3 then by Lemma 3.4 it will continue to do so if we
+subtract d from an entry below the diagonal. Using this operation we can make the
+entries immediately below the diagonal sufficiently negative so that the sum of the
+entries in each column is nonpositive. Namely, let B = (bij ) where
+                                    (
+                                     hij − kj d, i = j + 1
+                              bij =
+                                     hij ,        else
+and kj for each j = 1, . . . , n − 2 is a nonnegative integer such that
+                                             m
+                                             X
+                               (kj − 1)d <         hij ≤ kj d.                       (2)
+                                             i=1
+Now let
+                   +d −h11  0    0     0                         ···     0
+                                                                              
+                  0   +   −h22  0     0                         ···     0     
+                  0   −    +   −h33   0                         ···     0
+                                                                              
+                                                                               
+                  0   −    −    +   −h44                        ···     0
+                                                                              
+               ∆= .
+                                                                               
+                  .   ..   ..   ..   ..                         ..      ..    
+                  .    .    .    .      .                          .     .
+                                                                               
+                                                                               
+                                                                ..            
+                  0   −    −    −    −                             .   −hmm   
+                   −d  −    −    −    −                          ···    +hmm
+                                   COEULERIAN GRAPHS                                         13
+
+be the n×n matrix with upper right corner −B, the column vector de1 −den appended
+on the left, and a row appended on the bottom such that the entries of each column
+sum to zero. By the choice of kj in (2), the bottom row of ∆ is nonpositive, except
+for its rightmost entry hmm . Therefore ∆ satisfies the conditions (i)-(iii) above. Since
+the entries immediately above the diagonal of ∆ are negative, as is ∆n1 , the matrix
+∆ is the Laplacian of a strongly connected multigraph (it has the Hamiltonian cycle
+1 → n → n − 1 → · · · → 1). By Lemma 3.4 the first column of ∆ belongs to L.
+Moreover, since both L and ∆Zn are contained in Zn0 and BZn−1 = AZn−1 , the
+integer span of the remaining
+                       Q       columns of ∆ is L. Thus L = ∆Zn . Since each entry
+of H is at most d = hii , each entry of ∆ has magnitude at most nd, completing
+the proof of Theorem 3.1.
+3.1. Simple directed graphs. Let us point out a sense in which the NP-hardness of
+Corollary 3.2 is rather weak: the directed graphs for which the halting problem for chip-firing
+is hard may have large edge multiplicities. This is because the Laplacian ∆ of The-
+orem 3.1 may have large entries, which in turn is because the lattice L in a hard
+instance of nonnegative rank has large determinant. An interesting question is
+whether the halting problem for chip-firing remains NP-hard when restricted
+to simple directed graphs, those with edge multiplicities in {0, 1}. Does the hardness
+arise from directedness or from large edge multiplicities (or both)? The following
+table summarizes what is known.
+                               simple graphs               multigraphs
+            coEulerian         P (Theorem 1.2)             P (Theorem 1.2)
+             bidirected        P (Tardos [26])             ?
+             Eulerian          P (Björner-Lovász [5])    ?
+        strongly connected     ?                           NP-complete (Cor. 3.2)
+        Table 1. Complexity of the halting problem for chip-firing for
+        eight different classes of strongly connected directed graphs.
+
+
+
+                                  Acknowledgements
+   The authors thank Spencer Backman, Swee Hong Chan, Daniel Jerison, Robert
+Kleinberg, Claire Mathieu and John Wilmes for inspiring discussions. We thank
+Bálint Hujter, Viktor Kiss and Lilla Tóthmérész for pointing out to us the two open
+cases in the right column of Table 1. Finally, we thank the referee for comments that
+meaningfully improved the paper, and in particular for leading us to Propostion 2.13.
+
+                                       References
+ [1] David Aldous, The random walk construction of uniform spanning trees and uniform labelled
+     trees. SIAM J. Disc. Math. 3, 450–465, 1990.
+ [2] Omid Amini and Madhusudan Manjunath, Riemann-Roch for sublattices of the root lattice An ,
+     Electronic J. Combin., 17(1), 2010. arXiv:1007.2454
+ [3] Arash Asadi and Spencer Backman, Chip-firing and Riemann-Roch theory for directed graphs,
+     Electronic Notes Discrete Math. 38:63–68, 2011. arXiv:1012.0287
+14                         MATTHEW FARRELL AND LIONEL LEVINE
+
+ [4] Matthew Baker and Serguei Norine, Riemann-Roch and Abel-Jacobi theory on a finite graph,
+     Adv. Math. 215(2):766–788, 2007. arXiv:math/0608360
+ [5] Anders Björner and László Lovász, Chip-firing games on directed graphs, J. Algebraic Combin.
+     Vol 1. 305-328, 1992.
+ [6] Anders Björner, László Lovász and Peter Shor, Chip-firing games on graphs, European J. Com-
+     bin. 12(4):283–291, 1991.
+ [7] Benjamin Bond and Lionel Levine. Abelian networks I. Foundations and examples, 2013.
+     arXiv:1309.3445
+ [8] Benjamin Bond and Lionel Leivne, Abelian networks II. Halting on all inputs, Selecta Math., to
+     appear, 2015. arXiv:1409.0169
+ [9] Andrei Broder, Generating random spanning trees. In Symp. Foundations of Computer Sci.,
+     IEEE, New York, 442–447, 1989.
+[10] Swee Hong Chan, Abelian sandpile model and Biggs-Merino polynomial for directed graphs,
+     2014. arXiv:1412.4837
+[11] Deepak Dhar, Self-organized critical state of sandpile automaton models, Phys. Rev. Lett.
+     64:1613–1616, 1990.
+[12] P.D. Domich, R. Kannan, and L.E. Trotter, Jr., Hermite normal form computation using modulo
+     determinant arithmetic, Math. Oper. Res., Vol. 12, No.1, 50–59, 1987.
+[13] Kimmo Eriksson, No polynomial bound for the chip firing game on directed graphs, Proc. Amer.
+     Math. Soc. 112(4):1203–1205, 1991.
+[14] M. A. Frumkin, Polynomial time algorithms in the theory of linear Diophantine equations, in
+     Fundamentals of Computation Theory, Lecture Notes in Computer Science, 386–392, 1977.
+[15] James L. Hafner and Kevin S. McCurly, Asymptotically fast triangularization of matrices over
+     rings, Siam J. Comput., Vol. 20, No. 6: 1068–1083, 1991.
+[16] Charles Hermite, Sur l’introductiondes variables continues dans la théorie des nombres, J. Reine
+     Angew. Math. 4:191–216, 1851.
+[17] Alexander E. Holroyd, Lionel Levine, Karola Mészáros, Yuval Peres, James Propp and David B.
+     Wilson, Chip-firing and rotor-routing on directed graphs, In and Out of Equilibrium 2, Progress
+     in Probability, Vol. 60, 331–364, 2008. arXiv:0801.3306
+[18] Viktor Kiss and Lilla Tóthmérész, Chip-firing games on Eulerian digraphs and NP-hardness
+     of computing the rank of a divisor on a graph, Discrete Applied Math. 193:48–56, 2015.
+     arXiv:1407.6958
+[19] Lionel Levine, Threshold state and a conjecture of Poghosyan, Poghosyan, Priezzhev and Ruelle.
+     Comm. Math. Phys. 335:1003–1017, 2015. arXiv:1402.3283
+[20] David Perkinson, Jacob Perlman and John Wilmes, Primer for the algebraic geometry of sand-
+     piles. Contemporary Mathematics, Vol. 605, 2014. arXiv:1112.6163
+[21] Kévin Perrot and Trung Van Pham, Chip-firing and partial Tutte polynomial for Eulerian
+     digraphs, 2013. arXiv:1306.0294
+[22] Trung Van Pham, Orbits of rotor-router operation and stationary distribution of random walks
+     on directed graphs, Adv. Applied Math. 70:45–53, 2015. arXiv:1403.5875
+[23] Günter Schaar, Remarks on Hamiltonian properties of powers of digraphs, Discrete Applied
+     Math. 51.1:181–186, 1994.
+[24] Eugene R. Speer, Asymmetric abelian sandpile models. J. Stat. Phys. 71:61–74, 1993.
+[25] Richard P. Stanley, Enumerative Combinatorics, vol. 2, Cambridge University Press, 1999.
+[26] Gábor Tardos. Polynomial bound for a chip firing game on graphs. Siam J. Disc. Math. Vol. 1,
+     No. 3, 1988.
+[27] David B. Wilson, Generating random spanning trees more quickly than the cover time, 28th
+     Annual ACM Symposium on the Theory of Computing (STOC ’96), pages 296–303, 1996.
+[28] Bohdan Zelinka, Centers of directed cacti. (English). Časopis pro pěstovánı́ matematiky
+     114.3:225–229, 1989. http://dml.cz/dmlcz/118370
+
+  Matthew Farrell, Department of Mathematics, Cornell University, Ithaca, NY
+14850. msf235@cornell.edu
+                               COEULERIAN GRAPHS                                15
+
+   Lionel Levine, Department of Mathematics, Cornell University, Ithaca, NY 14850.
+http://www.math.cornell.edu/~ levine/
+

@@ -1,0 +1,942 @@
+      ABELIAN NETWORKS II. HALTING ON ALL INPUTS
+
+                         BENJAMIN BOND AND LIONEL LEVINE
+
+
+        Abstract. Abelian networks are systems of communicating automata satisfy-
+        ing a local commutativity condition. We show that a finite irreducible abelian
+        network halts on all inputs if and only if all eigenvalues of its production matrix
+        lie in the open unit disk.
+
+
+
+
+                                     1. Introduction
+   Automata networks in general are nondeterministic: the same input can produce
+many different outputs depending on the order of events at different nodes of the
+network. However, there is a sizable class of automata networks, proposed by
+Dhar in [Dha99] and termed abelian networks in [BL13], for which the output is
+uniquely determined by the input.
+   If we take the view that an abelian network is a kind of asynchronous computer,
+then one of the most fundamental questions is its halting problem. A countably
+infinite abelian network can emulate a Turing machine with infinite tape [Cai15],
+so the question of whether a given abelian network halts on a given input is un-
+decidable. However, for a finite abelian network it is decidable (below we give an
+argument using Dickson’s lemma) and its computational complexity is an inter-
+esting question.
+   The first halting criterion in an abelian network that we know of is due to
+Tardos [Tar88], who found an efficient check for finite termination of chip-firing
+on an undirected graph. Chip-firing belongs to a subclass of abelian networks
+called toppling networks, which can be described informally as follows. Let L
+be an integer square matrix with positive diagonal entries nonpositive off-diagonal
+entries. Each vertex v has a number of chips cv and is allowed to topple if cv ≥ Lvv ;
+the result of toppling v is that v loses Lvv chips and each other vertex u 6= v gains
+−Luv chips. Halting means that there exists a finite sequence of topplings after
+which cv < Lvv for all v.
+   The Tardos halting criterion applies when L is the Laplacian of an undirected
+(or Eulerian directed) graph. The Laplacian of a general directed graph is more
+difficult because there exist directed graphs with chip configurations c that require
+exponentially many topplings to halt. Björner, Lovász and Shor [BLS91] remarked,
+
+   Date: August 4, 2015.
+   2010 Mathematics Subject Classification. 68Q10, 37B15, 20M14, 20M35, 05C50,
+   Key words and phrases. abelian distributed processors, asynchronous computation, automata
+network, chip-firing, commutative monoid action, Dickson’s lemma, least action principle, M-
+matrix, sandpile, torsor.
+                                                1
+2                       BENJAMIN BOND AND LIONEL LEVINE
+
+“one can ask for a characterization of those digraphs and initial chip configura-
+tions that guarantee finite termination.” This is a difficult problem: Björner and
+Lovász [BL92] gave an algorithm that takes exponential time in the worst case.
+Polynomial time algorithms are available for Eulerian and coEulerian graphs, but
+the problem is NP-complete for a general directed multigraph [FL15].
+   The halting problem for abelian networks is at least as hard as the problem
+posed by Björner, Lovász and Shor. In this paper we address the softer question
+of characterizing which finite abelian networks N halt on all inputs. We associate
+to N a production matrix P whose entries are nonnegative rational numbers, and
+show that N halts on all inputs if and only if the Perron-Frobenius eigenvalue of P
+is strictly less than 1. This result generalizes an unpublished theorem of Gabrielov
+[Gab94], who considered the case of a toppling network.
+Outline. Section 2 contains mathematical background on commutative monoid
+actions, Dickson’s lemma and toppling matrices. Theorem 2.5 is of some indepen-
+dent interest: it gives a general mechanism for how torsors (free transitive actions)
+of abelian groups arise from monoid actions.
+   After reviewing the definition of an abelian network in Section 3, we define
+two basic algebraic objects associated to an abelian network, the total kernel and
+production matrix, in Section 4. We then examine two ways of decomposing an
+abelian network: local components and strong components. The former have a
+smaller state space, the latter a smaller alphabet.
+   In Section 5 we prove our criterion for halting on all inputs.
+   In Section 6 we define the sandpilization S(N) of an abelian network N, and
+show that N halts on all inputs if and only if S(N) does.
+   We conclude in Section 7 with a short discussion of further research directions.
+
+                        2. Mathematical background
+2.1. Commutative monoid actions. Any finite commutative monoid M con-
+tains an abelian group whose identity element is the minimal idempotent of M .
+Every monoid action of M induces a corresponding group action. The main result
+of this section is Theorem 2.5 relating these two actions. We have not seen this
+theorem stated explicitly in the literature, but some of the lemmas in this section
+are well-known in the semigroup community. They trace their origins to the work
+of Green [Gre51] and Schützenberger [Sch57]; see [Gri01, Ste10] for modern treat-
+ments. We include their short proofs here in order to highlight the beauty and
+simplicity of the commutative case. For refinements of some of the lemmas below,
+and extensions to a certain class of infinite semigroups (π-regular semigroups) see
+[Gri07].
+   Let M be a commutative monoid, that is, a set equipped with a commuta-
+tive and associative operation (m, m0 ) 7→ mm0 with an identity element  ∈ M
+satisfying m = m for all m ∈ M . Let
+                                 µ:M ×X →X
+                                      (m, x) 7→ mx
+                                ABELIAN NETWORKS                                 3
+
+be a monoid action of M on a set X; that is, x = x and m(m0 x) = (mm0 )x for
+all m, m0 ∈ M and all x ∈ X. We say that µ is irreducible if there does not exist
+a partition of X into nonempty subsets X1 and X2 such that M X1 ⊂ X1 and
+M X2 ⊂ X2 . Consider the relation ∼ on X defined by
+                 x ∼ x0 :      ∃m, m0 ∈ M such that mx = m0 x0                 (1)
+Lemma 2.1. ∼ is an equivalence relation, and µ is irreducible if and only if ∼
+has just one equivalence class.
+Proof. Clearly x ∼ x, and x ∼ y implies y ∼ x. To check transitivity, note that if
+mx = m0 x0 and m00 x0 = m000 x00 , then
+                     m00 mx = m00 m0 x0 = m0 m00 x0 = m0 m000 x00
+where the middle equality uses commutativity of M . Hence x ∼ x00 .
+   If X1 is any equivalence class of ∼ then M X1 ⊂ X1 . Hence if µ is irreducible
+then ∼ has just one equivalence class. Conversely, if ∼ has just one equivalence
+class then for any partition of X into nonempty subsets X1 and X2 , we have
+m1 x1 = m2 x2 for some x1 ∈ X1 , x2 ∈ X2 and m1 , m2 ∈ M . If M X1 ⊂ X1 then
+m1 x1 ∈ X1 and hence M X2 6⊂ X2 .                                              
+
+   Assume now that M is finite. An idempotent is an element f ∈ M such that
+f f = f . Among the powers of any element m ∈ M is an idempotent: by the
+pigeonhole principle, mj = mk for some j < k, and then m` = m2` where ` is
+any integer multiple of k − j such that ` ≥ j. Now consider the product of all
+idempotents in M :
+                                       Y
+                               e :=           f.
+                                      f idempotent
+
+Note that e is again an idempotent since M is commutative. This minimal idem-
+potent e is accessible from all of M : that is, e ∈ mM for all m ∈ M .
+Lemma 2.2. eM is an abelian group with identity element e.
+Proof. Since e is an idempotent we have e(em) = (ee)m = em for all m ∈ M ,
+which verifies the identity axiom. Since e is accesible from all of M , we have
+e ∈ (eme)M = (em)(eM ) which verifies existence of inverses.                 
+
+  In particular, e 6=  unless M itself is a group.
+Lemma 2.3. (Recurrent Elements Of A Monoid Action) Let M be a finite com-
+mutative monoid and µ : M × X → X an irreducible action. The following are
+equivalent for x ∈ X:
+   (1) x ∈ M y for all y ∈ X
+   (2) x ∈ M (mx) for all m ∈ M
+   (3) x ∈ mX for all m ∈ M
+   (4) x ∈ eX
+   (5) x = ex
+4                        BENJAMIN BOND AND LIONEL LEVINE
+
+Proof. (1) ⇒ (2): trivial.
+(2) ⇒ (3): Since M is commutative, M (mx) = (M m)x = (mM )x ⊂ M x.
+(3) ⇒ (4): trivial.
+(4) ⇒ (5): If x = ey, then ex = e(ey) = (ee)y = ey = x.
+(5) ⇒ (1): Here we use irreducibility. By Lemma 2.1, given x, y ∈ X there exist
+m, m0 ∈ M such that mx = m0 y. Let m00 be such that m00 m = e. If x = ex, then
+x = m00 mx = m00 m0 y ∈ M y.                                                 
+    Any action of a finite commutative monoid
+                                   µ:M ×X →X
+induces by restriction a corresponding group action
+                                   eM × eX → eX.
+To see this, note that for any m ∈ M and x ∈ X we have m(ex) = (me)x =
+(em)x = e(mx) ∈ eX, so the action of M on X restricts to a monoid action of M
+on eX. Since e(ex) = (ee)x = ex, the element e acts by identity on eX. Since
+eM is a group with identity element e, it follows that eM × eX → eX is a group
+action.
+  In fact slightly more is true. We say that m ∈ M acts invertibly on a subset
+Y ⊂ X if the map y 7→ my is a bijection Y → Y .
+Lemma 2.4. Let M be a finite commutative monoid and µ : M × X → X a
+monoid action. Then every m ∈ M acts invertibly on eX.
+Proof. For any m ∈ M and x ∈ X we have (em)(ex) = (eme)x = (mee)x =
+(me)x = m(ex), so em and m have the same action on eX. Since eM × eX → eX
+is a group action, em and hence m acts invertibly on eX.                
+   We say that a monoid action µ : M × X → X is faithful if there do not exist
+distinct elements m, m0 ∈ M such that mx = m0 x for all x ∈ X. The next theorem
+shows that relatively weak properties of a monoid action (faithful and irreducible)
+imply stronger properties of the corresponding group action (free and transitive).
+   Let G be a group with identity element e. Recall that a group action G×Y → Y
+is called transitive if Gy = Y for all y ∈ Y , and is called free if for all g 6= e there
+does not exist y ∈ Y such that gy = y. If the action is both transitive and free,
+then for any two elements y, y 0 ∈ Y there is a unique g ∈ G such that gy = y 0 ; in
+particular, #G = #Y .
+Theorem 2.5. (Group Actions Arising From Monoid Actions) Let M be a finite
+commutative monoid and µ : M × X → X an irreducible monoid action. Then
+the restriction of µ to eM × eX is a transitive group action
+                                 eµ : eM × eX → eX.
+If µ is also faithful, then eµ is free.
+                                          T
+Proof. To show transitivity, let R =      y∈X (M y). Then for any x ∈ eX we have
+
+               R ⊂ M x = M (ex) = (M e)x = (eM )x = e(M x) ⊂ eX.
+                                 ABELIAN NETWORKS                                       5
+
+But R = eX by the equivalence of (1) and (4) in Lemma 2.3, so the above inclusions
+are equalities. In particular, (eM )x = eX for all x ∈ eX, which shows that eM
+acts transitively on eX.
+  To show freeness, suppose that g(ex) = ex for some g ∈ eM and some x ∈ X.
+Now fix y ∈ X. By transitivity, ey = h(ex) for some h ∈ eM , hence
+                        gy = gey = ghex = hgex = hex = ey.
+If µ is faithful, it follows that g = e. Hence eM acts freely on eX.                   
+
+2.2. Dickson’s Lemma. The following lemma can be proved by induction on k
+using the infinite pigeonhole principle. We remark that it is also a case of the
+Hilbert basis theorem applied to the monomial ideal (tx1 , tx2 , . . .) in the polyno-
+mial ring Q[t] = Q[t1 , . . . , tk ] (In fact the proof of the basis theorem now found in
+many textbooks, due to Gordan in 1900, uses this special case as a stepping stone;
+see [Eis95, Ex. 15.15] and [DdJ98] for some history.)
+Lemma 2.6. (Dickson’s Lemma, [Dic13]) Let k ≥ 1 be an integer. For any
+sequence x1 , x2 , . . . ∈ Nk , there exist indices m < n such that xm ≤ xn in the
+coordinatewise partial ordering.
+   See [FFSS11] for an effective version, giving bounds on n in terms of k and
+the largest jump in the sequence xi . Another bound is obtained in [BS15] from a
+formalization of an existence proof.
+
+2.3. Toppling matrices. We will use the following form of the Perron-Frobenius
+theorem (see [HJ90, §8] for part (i) and [Ash87] for part (ii)).
+Lemma 2.7. (Perron-Frobenius) Let P be a square matrix with nonnegative real
+entries.
+    (i) P has a nonnegative real eigenvector x with nonnegative real eigenvalue λ,
+         such that the absolute values of all other eigenvalues of P are ≤ λ.
+   (ii) If P has rational entries and λ is rational, then x can be taken to have
+         integer entries.
+   Following [PS04], we call L a toppling matrix if it satisfies the equivalent con-
+ditions of the following lemma. See [FK62, Theorem 4.3] for a proof of the equiv-
+alence. Such matrices are also known as “M -matrices.”
+   For a vector x, we write x > 0 to mean that all coordinates of x are nonnegative
+and x 6= 0.
+Lemma 2.8. (Toppling Matrices) Let L be a square matrix with real entries such
+that Lij ≤ 0 for all i 6= j. The following are equivalent.
+    (1) All principal minors of L are positive.
+    (2) All eigenvalues of L have positive real part.
+    (3) There exists a vector x > 0 such that Lx > 0.
+    (4) There exists a vector y > 0 such that LT y > 0.
+    (5) L is invertible, and all entries of L−1 are nonnegative.
+6                        BENJAMIN BOND AND LIONEL LEVINE
+
+                 3. Abelian networks; Halting Dichotomy
+   We now recall the definition of an abelian network, refering the reader to [BL13]
+for details. In an abelian network on a directed graph G = (V, E), each vertex
+v ∈ V has a processor Pv which is an automaton with input alphabet Av and state
+space Qv . For each letter a ∈ Av there is a state transition map ta : Qv → Qv ,
+and these maps are required to commute: ta tb = tb ta for all a, b ∈ Av . For each
+edge (v, u) ∈ E there is a message-passing function Av × Qv → A∗u specifying the
+word (possibly empty) sent to processor Pu in the event that Pv in state q ∈ Qv
+processes letter a ∈ Av . Each message-passing function is required to satisfy a
+commutativity condition: namely, if two input words to Pv are permutations of
+one another, then for each outgoing edge (v, u) the resulting messages passed to
+Pu must be permutations of one another.
+   To give a concrete example, let L be an integer V × V matrix with positive
+diagonal entries nonpositive off-diagonal entries. The (locally recurrent) toppling
+network Topp(L) has Av = {v} and Qv = Z/Lvv Z. The state transition is tv (q) =
+q + 1 (mod Lvv ). Whenever processor Pv transitions from state Lvv − 1 to state
+0 it sends −Luv letters u to each processor Pu for u ∈ V . The sandpile network
+Sand(G) of a directed graph G without self-loops is the special case where Lvv
+is the outdegree of vertex v and −Luv is the number of edges from v to u. The
+commutativity conditions in the previous paragraph hold vacuously for a toppling
+network because it is unary: each alphabet Av has just one letter. See [BL13] for
+many other examples of abelian networks, including non-unary examples.
+   The totalQstate of an abelian network N = (Pv )v∈V is described by an element
+q ∈ Q := v∈V Qv giving the internal states of the processors, together with a
+vector x ∈ ZA where A = tv∈V Av indicating how many letters of each type are
+waiting to be processed. We use the notation x.q for this pair. Note that A is a
+disjoint union, so x also specifies the locations of the letters (the xa letters a are
+located at the unique vertex v such that a ∈ Av ).
+   An execution is a word w = a1 · · · ar ∈ A∗ . It prescribes an order in which letters
+are to be processed. We write πw (x.q) for the result of executing w starting from
+x.q. By definition πw is the composition πa1 ◦ · · · ◦ πar . Each πa has three effects:
+change the internal state qv to ta qv , where v is the unique vertex such that a ∈ Av ;
+decrement xa by one; and increment each coordinate xb by the number of letters
+b passed (as specified by the message passing function T(v,u) where b ∈ Au ). Note
+that decrementing xa may cause it to become negative, which is the reason for
+taking x in ZA rather than NA . Writing πa1 ···ai (x.q) = xi .qi , we say that w is
+legal for x.q if xi−1
+                  ai ≥ 1 for all i = 1, . . . , r. We say that w is complete for x.q if
+xr ≤ 0. The least action principle [BL13, Lemma 4.3] says that if w is any legal
+execution for x.q and w0 is any complete execution for x.q, then |w|a ≤ |w0 |a for
+all a ∈ A, where |w|a is the number of letters a in the word w. A consequence of
+particular importance in this paper is the following.
+Lemma 3.1. (Halting Dichotomy, [BL13, Lemma 4.4]) For a given initial state
+q and input x to an abelian network N, either
+   (1) There does not exist a finite complete execution for x.q; or
+                                ABELIAN NETWORKS                                    7
+
+   (2) Every legal execution for x.q is finite, and any two complete legal execu-
+       tions w, w0 for x.q satisfy |w| = |w0 |.
+  It follows readily from the axioms of an abelian network (see [BL13, Lemma 4.2])
+that πa ◦πb = πb ◦πa for all a, b ∈ A and hence πw depends only on |w|. For y ∈ NA ,
+write πy to mean πw for any word w such that |w| = y. We record here two basic
+properties of πy .
+
+Lemma 3.2. For all y, z ∈ NA we have
+    (i) πy+z = πy ◦ πz .
+   (ii) For all x, w ∈ ZA and all q ∈ Q, if πy (x.q) = x0 .q0 , then
+                           πy ((x + w).q) = (x0 + w).q0 .
+Proof. For part (i), if |w| = y and |w0 | = z then πy+z = πww0 = πw ◦ πw0 = πy ◦ πz .
+Part (ii) is immediate from [BL13, eq. (4)]; it says that any additional letters w
+present during an execution affect neither the messages passed x0 − x nor the final
+state q0 .                                                                        
+
+                  4. Total kernel and production matrix
+   In this section we continue the development of the foundations of abelian net-
+works begun in [BL13]. We associate two algebraic objects to an abelian network,
+the total kernel K and production matrix P . Only P figures in our criterion for
+halting on all inputs, but we will see that K is the natural domain of P considered
+as a Z-linear map. In the sequel [BL14], both K and P play an essential role in
+analyzing the critical group of an abelian network that halts on all inputs.
+
+4.1. The local action. Given x ∈ NA and q ∈ Q, define
+                                 x . q := πx (x.q).
+In words, x . q ∈ NA ×Q is the result of performing the following operation starting
+from state q: “for each a ∈ A add xa letters of type a and process each letter
+once.” If x . q = y.r then message passing produced a total of ya letters of type
+a for each a ∈ A, and the resulting state of the processor at vertex v was rv for
+each v ∈ V .
+   For any z ∈ ZA we also write
+                             x .(z.q) := πx ((x + z).q).
+The next lemma shows that . defines a monoid action of NA on ZA × Q. We call
+this the local action because each processor Pv processes only the letters xv that
+were added at v.
+Lemma 4.1. For any x, y ∈ NA and z ∈ ZA and any q ∈ Q,
+                          x .(y .(z.q)) = (x + y) .(z.q).
+8                      BENJAMIN BOND AND LIONEL LEVINE
+
+Proof. Write y . q = y0 .q0 . By Lemma 3.2(i), since πx+y = πx ◦ πy , we have
+                     (x + y) .(z.q) = πx+y ((x + y + z).q)
+                                    = πx (πy ((x + y + z).q))
+                                    = πx ((x + y0 + z).q0 )
+                                    = x .((y0 + z).q0 )
+                                    = x .(y .(z.q))
+where in the third and last equalities we have used Lemma 3.2(ii).                
+  The local monoid Mv of a vertex v is the set of maps Qv → Qv generated by
+the maps ta for a ∈ Av under composition. Write tv : NAv → Mv for the monoid
+homomorphism sending 1a 7→ ta for a ∈ Av . Denote by
+                                        Y
+                               t : NA →    Mv
+                                           v∈V
+the Cartesian product of the maps tv . Each tv is surjective by the definition
+                                                                           Q of Mv ,
+so t is surjective. Note that if y . q = z.r, then r = t(y)q. Given m ∈ v∈V Mv ,
+write mq = (mv qv )v∈V . In general, knowing y . q = z.r does not determine
+y .(mq), but the next lemma shows that it does in the case r = q.
+                                                                     Q
+Lemma 4.2. If y . q = z.q, then y .(mq) = z.(mq) for all m ∈ v∈V Mv .
+Proof. Since t is surjective there exists u ∈ NA such that t(u) = m. Then u . q =
+w.mq for some w ∈ NA . By Lemma 4.1,
+         y .(w.mq) = y .(u . q) = u .(y . q) = u .(z.q) = (w + z).mq.
+From Lemma 3.2(ii) it follows that y . mq = z.mq.                                 
+4.2. Production matrix. From here on we assume that N is a finite abelian
+network: that is, the underlying graph G = (V, E) is finite, and the alphabet
+and state space of each vertex are finite sets. The main ingredients that rely on
+finiteness are the results from §2.1.
+   Let ev be the minimal idempotent of the local monoid Mv . The recurrent
+elements (Lemma 2.3) of the monoid action Mv × Qv → Qv play a special role in
+this section.
+Definition 4.3. A state q ∈ Q is locally recurrent if qv ∈ ev Qv for all v ∈ V .
+(Equivalently, qv = ev qv for all v ∈ V .)
+  By Lemma 2.4, every m ∈ Mv acts invertibly on ev Qv . Thus for each a ∈ Av
+the map q 7→ Tv (a, q) is a permutation of ev Qv , so we have a group action
+                               ZAv × ev Qv → ev Qv .
+Let Kv be the set of vectors in ZAv that act as the identity on ev Qv .
+Definition 4.4. The total kernel of N is the subgroup of ZA given by
+                                      Y
+                                 K=       Kv .
+                                        v∈V
+                                 ABELIAN NETWORKS                                    9
+
+Lemma 4.5. If N is finite, then K is a subgroup of finite index in ZA . In partic-
+ular, K is generated as a group by K ∩ NA .
+Proof. Since each ev Qv is a finite set, for any x ∈ ZAv we have nx ∈Q  Kv for some
+n ≥ 1. Thus Kv has finite index in ZAv . Since V is a finite set, K = v∈V Kv has
+finite index in ZA . In particular, K contains a vector with all coordinates strictly
+positive, which implies that K is generated as a group by K ∩ NA .                 
+  Note that
+         K ∩ NA = {x ∈ NA | t(x)q = q for all locally recurrent q ∈ Q}.           (2)
+Fix a locally recurrent state q ∈ Q. For any k ∈ K ∩ NA we have
+                                   k . q = Pq (k).q                               (3)
+for some vector Pq (k) ∈ NA . Next we show that
+                                 Pq : K ∩ NA → NA
+extends to a group homomorphism.
+Lemma 4.6. Let N be a finite abelian network. Then Pq extends to a group
+homomorphism K → ZA .
+Proof. Write P = Pq . Let k1 , k2 ∈ K ∩ NA . By Lemma 4.1,
+                (k1 + k2 ) . q = k1 .(P (k2 ).q) = (P (k1 ) + P (k2 )).q
+hence
+                          P (k1 + k2 ) = P (k1 ) + P (k2 ).                   (4)
+  By Lemma 4.5, every k ∈ K can be written as k1 − k2 for k1 , k2 ∈ K ∩ NA .
+Define P (k) = P (k1 ) − P (k2 ). Equation (4) now implies that this extension is
+well defined and a group homomorphism.                                         
+   By tensoring Pq : K → ZA with Q, we obtain a linear map Pq : QA → QA . To
+be more explicit, for any x ∈ QA , by Lemma 4.5 there is an integer n ≥ 1 such
+that nx ∈ K, and we define
+                                           1
+                                 Pq (x) := Pq (nx).
+                                           n
+So far we have defined Pq only for locally recurrent q. We extend the definition
+to all states q = (qv )v∈V by setting Pq := Pqb , where q
+                                                        b = (ev qv )v∈V .
+Definition 4.7. The production matrix of a finite abelian network N with initial
+state q is the matrix of the linear map Pq : QA → QA .
+   The (a, b) entry pab of the production matrix says “on average” how many
+letters a are created by processing the letter b: specifically, if n1b ∈ K, then
+pab = n1 pab (n), where pab (n) = N(bn , q)a is the number of a’s created by executing
+the word bn . We have chosen the term “production matrix” to evoke [DFR05].
+Indeed the succession rules studied in that paper can be modeled by an abelian
+network whose underlying graph is a single vertex with a loop.
+10                      BENJAMIN BOND AND LIONEL LEVINE
+
+  We remark that the production matrix can be also defined for some networks
+that are not finite by setting
+                                               1
+                                 pab := lim        pab (n)
+                                        n→∞ n
+
+if this limit exists.
+
+4.3. Local components. An abelian finite automaton P with state space Q and
+alphabet A is specified by transition maps ta : Q → Q for a ∈ A, such that
+ta ◦ tb = tb ◦ ta for all a, b ∈ A. The transition monoid of P is the submonoid
+M ⊂ End (Q) generated by {ta }a∈A , where End (Q) denotes the monoid of all set
+maps Q → Q under composition. (For example, the local monoid Mv of §4.1 is
+the transition monoid of Pv .)
+   By construction, the transition monoid of P has a faithful action M × Q →
+Q. We say that P is irreducible if this monoid action is irreducible (§2.1). The
+irreducible components Pα of P are the automata with alphabet A and state space
+Qα , where Q = tQα is the partition of Q into equivalence classes under the relation
+q ∼ q 0 if there exist m, m0 ∈ M such that mq = m0 q 0 (see Lemma 2.1).
+   We say that an abelian network N = (Pv )v∈V is locally irreducible if each
+processor Pv is irreducible. The local components of N are the abelian networks
+Nα = (Pvαv )v∈V where each Pvαv is an irreducible component of Pv . Note that
+the local components have the same underlying graph G and alphabet A, with a
+possibly smaller state space at each vertex.
+   The next lemma should be compared with (2).
+Lemma 4.8. If N is finite and locally irreducible, then for any fixed locally recur-
+rent q ∈ Q we have
+                      K ∩ NA = k ∈ NA | t(k)q = q .
+                                 
+
+Proof. By Theorem 2.5 the action of ev Mv on ev Qv is free. If k ∈ NA and t(k)q = q
+for one locally recurrent q, then for all v ∈ V
+                            tv (kv )ev qv = tv (kv )qv = qv .
+By freeness it follows that tv (kv )ev = ev , so t(k)r = r for all locally recurrent r.
+Hence k ∈ K.                                                                         
+
+   For q, r ∈ Q we write q ∼ r if q and r belong to the same local component (that
+is, qv ∼ rv for all v ∈ V ). We denote by Nq the local component of N containing
+state q. The next lemma shows that within a local component all states have the
+same production matrix.
+Lemma 4.9.
+      (i) In a locally irreducible finite abelian network, the production matrix Pq
+          does not depend on the initial state q.
+     (ii) In any finite abelian network, if q ∼ r then Pq = Pr .
+                                 ABELIAN NETWORKS                                   11
+
+Proof. (i) Let q1 , q2 ∈ Q be locally recurrent states. By Theorem 2.5 each group
+action ev Mv × ev Qv → ev Qv is transitive, so there exists x ∈ NA such that
+t(x)q1 = q2 . Let z be such that
+                                    x . q1 = z.q2 .
+Fix k ∈ K ∩ NA , and let y   i = Pqi (k) for i = 1, 2. Then
+                       x .(k . q1 ) = x .(y1 .q1 ) = (y1 + z).q2
+while
+                       k .(x . q1 ) = k .(z.q2 ) = (y2 + z).q2 .
+By Lemma 4.1,
+                              k .(x . q) = x .(k . q)
+hence y1 + z = y2 + z, and hence y1 = y2 . Since k ∈ K ∩ NA was arbitrary we
+conclude that Pq1 = Pq2 .
+  Part (ii) follows by applying part (i) to the local component Nq .       
+4.4. Strong components. Let N be a locally irreducible finite abelian network
+with production matrix P = (pab )a,b∈A . In this section we describe another way
+to break N into smaller pieces by reducing its alphabet A. (The results of this
+section are not used anywhere else in this paper, so the reader who wishes to skip
+to the halting problem in §5 can safely do so.)
+Definition 4.10. The production graph Γ = Γ(N) of N is the directed graph with
+vertex set A and edge set {(a, b) | pba > 0}.
+   Write a 99K b if there is a directed path in Γ from a to b. The strong components
+of Γ are the equivalence classes of the relation {(a, b) | a 99K b and b 99K a}.
+Definition 4.11. The strong components of N are the subnetworks N1 , . . . , Ns
+with alphabets A1 , . . . , As , where A1 , . . . , As are the strong components of Γ.
+   Note that the local components of §4.3 are defined by restricting the state
+space, whereas the strong components are defined by restricting the alphabet. The
+strong components of a locally irreducible network need not be locally irreducible
+(Figure 1). However, Lemma 4.13 below shows that the local components of a
+strong component do not decompose any further. Moreover, all local components
+of a given strong component are homotopic.
+Definition 4.12. (Homotopy) Locally irreducible abelian networks N and N0 on
+the same graph with the same total alphabet are called homotopic, written N ≈ N0 ,
+if they have the same total kernel K and the same production matrix P .
+   The reason for calling this homotopy comes from a method of diagraming states
+described in [BL13]. The locally recurrent states of each processor correspond to
+points on the discrete torus ZAv /Kv , with state transitions given by adding a
+basis vector 1a for a ∈ Av . Message passing can be visualized by surfaces cutting
+between the states, with each surface labeled by the letter to be passed. If N
+and N0 have the same total kernel K, then for each vertex v the state diagrams
+of processors Pv and Pv0 live on the same discrete torus. Then N and N0 have
+12                       BENJAMIN BOND AND LIONEL LEVINE
+
+
+                                              abelian network
+
+
+
+
+                            M                      N     local components
+
+
+
+
+                  M1        M2          N1         N2    strong components
+
+
+
+
+            M1q ≈ M1q0           Nr1 ≈ Nr10              local subcomponents
+
+         Figure 1. The local components of an abelian network may de-
+         compose into strong components, which may further decompose
+         further into local subcomponents. Solid arrows represent restric-
+         tions of the state space, and dashed arrows represent restrictions
+         of the alphabet.
+
+
+the same production matrix if and only if for each v the state diagram of Pv0 can
+be obtained from the state diagram of Pv by altering message surfaces without
+changing the homotopy type of any surface.
+
+Lemma 4.13. Let N be a locally irreducible finite abelian network with strong
+components Ni , total kernel K and production matrix P . Let Nqi be the local
+component of Ni containing state q. The following hold for all q, q0 ∈ Q.
+                                                                     i
+       (i) The total kernel of Nqi is the group generated by K ∩ NA .
+      (ii) The production matrix of Nqi is the Ai × Ai submatrix Pii of P .
+     (iii) Nqi has only one strong component.
+     (iv) Nqi ≈ Nqi 0 .
+
+Proof. Since Nqi = Nqib where q
+                              b = (eiv qv )v∈V , we may assume that q is a locally
+recurrent state of Ni .
+                                ABELIAN NETWORKS                                    13
+
+                                                                                    i
+  (i) By Lemma 4.5, the total kernel Kqi of Nqi is generated as a group by Kqi ∩NA .
+                                                                                  i
+Since both Nqi and N are locally irreducible, by Lemma 4.8 we have for k ∈ NA
+                     k ∈ Kqi ⇐⇒ t(k)q = q ⇐⇒ k ∈ K.
+Hence
+                                        i             i
+                               Kqi ∩ NA = K ∩ NA .
+   (ii) Write . for the local action of N and .i for the local action of Ni . For
+        i
+k ∈ NA the only difference between these actions is that k . q may produce some
+letters in A − Ai in addition to the letters in Ai produced by k .i q. Hence, writing
+                                                         i
+Pqi for the production matrix of Nqi , if k ∈ K ∩ NA then k . q = y.q, where
+                                   i
+y = Pqi k + z for some z ∈ NA−A . Letting r = (ev qv )v∈V , we have k . r = y.r by
+Lemma 4.2. Since r is locally recurrent for N, it follows that y = P k. Writing ρi
+                              i
+for the projection NA → NA , we conclude that
+                               Pqi k = ρi (P k) = Pii k
+and hence Pqi = Pii .
+   (iii) By part (ii), the production graph of Nqi is the strong component Ai of Γ,
+so Nqi has only one strong component.
+   (iv) By parts (i) and (ii), Kqi and Pqi do not depend on q, so all local components
+of Ni are homotopic.                                                                
+   The strong components are partially ordered by the accessibility relation 99K.
+If we label them so that Ai 99K Aj implies i ≥ j, then the production matrix is
+block triangular                                    
+                                P11 P12 · · · P1s
+                              0 P22 · · · P2s 
+                         P =  ..      ..         .. 
+                                                    
+                                           . .
+                              .        .      .   . 
+                                    0       0   ···   Pss
+and the diagonal block Pii is the production matrix of Ni .
+
+                              5. Halting criterion
+   Let N be an abelian network with total state space Q, and fix a state q ∈ Q.
+If case (2) of Lemma 3.1 holds for all inputs x ∈ NA , then we say that N halts
+on all inputs to initial state q. If this is the case for all q ∈ Q, then we say that
+N halts on all inputs. The main result of this section is Theorem 5.6, which gives
+an efficient way to decide whether a finite abelian network halts on all inputs to a
+given initial state.
+   If x ≤ y, then any legal execution for x.q is a legal execution for y.q. It follows
+that halting is a monotone property:
+        If N halts on input y.q, then N halts on all inputs x.q for x ≤ y.        (5)
+  Recall the equivalence relation ∼ on Q introduced in §4.3.
+14                      BENJAMIN BOND AND LIONEL LEVINE
+
+Lemma 5.1. If q1 ∼ q2 , then N halts on all inputs to initial state q1 if and only
+if N halts on all inputs to initial state q2 .
+Proof. If q1 ∼ q2 then t(y1 )q1 = t(y2 )q2 for some y1 , y2 ∈ NA . Thus it suffices
+to show for all y ∈ NA and all q ∈ Q that N halts on all inputs to initial state q
+if and only if N halts on all inputs to initial state t(y)q.
+   Let y . q = z.r. Then r = t(y)q. For any x ∈ NA , we have
+                         (x + y) . q = x .(y . q) = x .(z.r)
+so both (x + y).q and (x + z).r have legal executions resulting in (x + y) . q.
+Thus N halts on input (x + y).q if and only if N halts on input (x + z).r. By
+monotonicity (5), it follows that N halts on all inputs to initial state q if and only
+if N halts on all inputs to initial state r.                                        
+Definition 5.2. A state x.q is an amplifier if x ∈ NA and there exists a nonempty
+legal execution w from x.q such that πw (x.q) = y.q for some y ≥ x.
+Definition 5.3. A state x.q is a strong amplifier if x ∈ NA − {0} and x . q = y.q
+for some y ≥ x.
+   In words, a strong amplifier is a pair x.q with the property that after processing
+all letters once, the network has returned to the same state q with at least as many
+letters of each type as before.
+Example. In the sandpile network Sand(G) of an undirected graph with no sink,
+let x = (dv )v∈V be the configuration where each vertex has the same number of
+letters (“chips”) as its degree. For any initial state q, processing all letters once
+causes each vertex to topple once, so that each vertex v receives one letter from
+each of its dv neighbors. Hence x . q = x.q, and x.q is a strong amplifier.
+Lemma 5.4. The following are equivalent for a finite abelian network N.
+  (1) N has an amplifier.
+  (2) N has a strong amplifier.
+  (3) N fails to halt on some input.
+Proof. If N has an amplifier x.q, then there is a legal execution πu (x.q) = y.q for
+some y ≥ x and u ∈ NA − {0}. Then u . q = πu (u.q) = (u + y − x).q, where the
+second equality follows from Lemma 3.2(ii). Therefore u.q is a strong amplifier,
+which shows that (1) ⇒ (2).
+   Next if N has a strong amplifier u.q, then there is a legal execution w with
+|w| = u ∈ NA − {0} starting with u.q and ending with (u + v).q for some v ≥ 0.
+Then for any n ≥ 0 the same w is a legal execution starting with (u + nv).q and
+ending with (u + (n + 1)v).q. Hence wn is a legal execution starting from u.q
+for all n ≥ 0. Since there exist arbitrarily long legal executions, we conclude from
+Lemma 3.1 that N does not halt on input u.q, which shows that (2) ⇒ (3).
+   Lastly, suppose that N fails to halt on some input y.q. Then there is an infinite
+word w1 w2 · · · such that w1 · · · wn is a legal execution for all n ≥ 1. Let yn .qn =
+πw1 ···wn (y.q). Since the total state space Q is finite, there exists q ∈ Q such that
+qn = q for infinitely many n. By Dickson’s Lemma 2.6, there exist indices j < k
+                                ABELIAN NETWORKS                                   15
+
+such that qj = qk = q and yj ≤ yk . This yj .qj is an amplifier, which shows that
+(3) ⇒ (1).                                                                     
+  The next lemma is a variant of Lemma 5.4 with distinguished initial state.
+Recall from §4.3 the local component Nq containing state q.
+Lemma 5.5. The following are equivalent for a finite abelian network N and
+state q.
+    (1) Nq has an amplifier.
+    (2) Nq has a strong amplifier.
+    (3) N fails to halt on some input to initial state q.
+Proof. By Lemma 5.4 it suffices to show that (3) is equivalent to the statement
+that Nq fails to halt on some input. Any execution for x.q in N is also an execution
+for x.q in Nq , so (3) is equivalent to the statement that Nq fails to halt on some
+input to initial state q. By Lemma 5.1, if Nq fails to halt on some input, then Nq
+fails to halt on some input to initial state q, which completes the proof.         
+Theorem 5.6. (Halting Criterion 1) A finite abelian network N halts on all inputs
+to initial state q if and only if every eigenvalue of the production matrix Pq has
+absolute value strictly less than 1.
+Proof. Let P = Pq , and let x and λ be the Perron-Frobenius eigenvector and
+eigenvalue of P ; if λ = 1 then we may take x to have integer entries (Lemma 2.7).
+By Lemma 5.5 it suffices to show that (1) if λ ≥ 1, then Nq has an amplifier; and
+(2) if Nq has a strong amplifier, then λ ≥ 1.
+   (1) If λ ≥ 1, then there is a vector y ∈ QA such that x ≤ y ≤ λx. Then P y ≥
+P x = λx ≥ y. Choosing n ≥ 1 such that ny ∈ K, we have ny . q = P (ny).q, so
+ny.q is an amplifier.
+   (2) If Nq has a strongQ amplifier y.q0 , then by Lemma 4.2, y.mq0 is also a strong
+amplifier for any m ∈ v∈V Mv . In particular, taking m = (ev )v∈V we obtain
+a strong amplifier y.r with r locally recurrent and r ∼ q0 ∼ q. By Lemma 4.9,
+Pq (y) = Pr (y) ≥ y, which shows that λ ≥ 1.                                       
+Remark. In the case that N is locally irreducible, the production matrix Pq does
+not depend on q by Lemma 4.9. In this case Theorem 5.6 gives a criterion for N
+to halt on all inputs regardless of initial state.
+   If Pq has Perron-Frobenius eigenvalue λ ≥ 1, then N runs forever on some
+inputs to initial state q. In the next section we examine how to tell whether this
+is the case for a given input.
+
+                    6. Laplacian matrix; Sandpilization
+   An abelian network N is called locally finite if the state space and alphabet of
+each processor are finite. Let N be a locally finite and locally irreducible
+                                                                  Q          abelian
+network with total alphabet A = tAv and total kernel K =             Kv . Then each
+Kv has finite index in ZAv . For each letter a ∈ Av , let ra be the smallest positive
+integer such that ra 1a ∈ Kv .
+16                     BENJAMIN BOND AND LIONEL LEVINE
+
+  Denote by D the A × A diagonal matrix with diagonal entries ra , and by I the
+A × A idenity matrix. Let P be the production matrix of N, which is well defined
+by Lemma 4.9.
+Definition 6.1. The Laplacian of N is the A × A matrix
+                                  L = (I − P )D.
+Lemma 6.2. L has integer entries.
+Proof. If x ∈ NA then Dx ∈ K, so (Dx) . q = (P Dx).q by the definition of the
+production matrix P . In particular, P Dx ∈ NA . It follows that Lx ∈ NA for all
+x ∈ NA , so L has integer entries.                                            
+  The class of toppling matrices, defined in §2.3, is one of several extensions of
+the notion of “positive definite” to non-symmetric matrices. The next lemma
+encapsulates how toppling matrices arise in our setting.
+Lemma 6.3. Let L = (I − P )D, where P is a nonnegative n × n matrix, D is an
+n × n positive diagonal matrix, and I is the n × n identity matrix. Then L is a
+toppling matrix if and only if the Perron-Frobenius eigenvalue of P is strictly less
+than 1.
+Proof. The off-diagonal entries of L are nonpositive, so Lemma 2.8 applies. Let x
+and λ be a Perron-Frobenius eigenvector and eigenvalue of P , and let y = D−1 x.
+Then y > 0 and
+                           Ly = (I − P )x = (1 − λ)x.                         (6)
+If λ < 1, then Ly > 0, so L is a toppling matrix. Conversely, if L is a toppling
+matrix, then L−1 has nonnegative entries. Applying L−1 to (6) yields y = (1 −
+λ)L−1 x. Since L−1 x > 0 and y > 0, we conclude that λ < 1.                    
+   If N is any finite abelian network and q ∈ Q, let Lq = (I − Pq )Dq be the Lapla-
+cian of the local component Nq . Using Lemma 6.3, we can rephrase Theorem 5.6
+in terms of the Laplacian as follows. The case of a toppling network is due to
+Gabrielov [Gab94].
+Corollary 6.4. (Halting Criterion 2) A finite abelian network N halts on all inputs
+to initial state q if and only if Lq is a toppling matrix.
+Example. Let N be a toppling network with three vertices a, b, c and thresholds
+ra = 3, rb = 4, rc = 5. For the messages passed we have:
+               a topples →     b receives 2 chips, c receives 2 chips.
+               b topples →     a receives 1 chip,s c receives 2 chips.
+               c topples →     a receives 0 chips, b receives 2 chips.
+Note that no vertex is a sink, and vertex a is productive (it “creates” a chip each
+time it topples). The production matrix and Laplacian of this network are:
+                        0 41 0
+                                                             
+                                                  3 −1 0
+                P =  32 0 25  ,        L =  −2 4 −2  .
+                        2   1                     −2 −2 5
+                        3   2 0
+                                 ABELIAN NETWORKS                                    17
+
+Since all principal minors of L are positive, L is a toppling matrix. Therefore N
+halts on all inputs. 
+  To any locally finite, locally irreducible abelian network N we associate a unary
+network S(N) called its sandpilization.
+
+
+
+
+b                                             b
+                                    c                                            c
+      a                             d              a                             d
+
+          Figure 2. Left: State diagram of an abelian processor with 5
+          states, input alphabet {a, b} and output alphabet {c, d}; the boxed
+          dots all represent the same state. Right: State diagram of its
+          sandpilization, which has 25 states.
+
+
+Definition 6.5. (Sandpilization) Let N be a locally finite and locally irreducible
+abelian network N with Laplacian L. The sandpilization S(N) of N is Topp(L),
+the locally recurrent toppling network with Laplacian L.
+   The underlying graph of S(N) is the production graph of N (Definition 4.10),
+which may be larger than the underlying graph of N. For each a ∈ A the processor
+Pa of S(N) has state space Qa = {0, 1, . . . , ra − 1} with transition ta (q) = q + 1
+(mod ra ). It passes no messages except during transitions from state ra − 1 to
+state 0, when it passes ra Pba letters b to each processor Pb . For example, if N is
+a simple rotor network Rotor(G), then S(N) is the sandpile network Sand(G).
+   Since N and S(N) have the same Laplacian, the following is immediate from
+Corollary 6.4.
+Corollary 6.6. Let N be a finite locally irreducible abelian network. Then N halts
+on all inputs if and only if S(N) halts on all inputs.
+6.1. Certifying that a network never halts. How long must we run an abelian
+network until we can be sure it will not halt? The next lemma shows that any
+strong amplifier gives an upper bound.
+18                       BENJAMIN BOND AND LIONEL LEVINE
+
+   Recall the least action principle [BL13, Lemma 4.3], which says that if w is a
+legal execution for x.r and w0 is a complete execution for x.r, then |w| ≤ |w0 |. If
+N halts on input x.r, then the odometer of x.r is defined as [x.r] = |w|, where w
+is any complete legal execution for x.r.
+Lemma 6.7. Let N be a locally irreducible finite abelian network. Suppose that
+α.q is a strong amplifier for N. If r is locally recurrent and N halts on input x.r,
+then any legal execution w for x.r satisfies |w|a < αa for some a ∈ A.
+Proof. Suppose for a contradiction that N halts on input x.r but [x.r] ≥ α. Write
+u = [x.r] = α + v for some v ≥ 0. Write πv (x.r) = y.s where s = t(v)r. We
+will show that y ≤ 0, so there is a complete execution w0 for x.r with |w0 | = v.
+However, by the definition of the odometer there is also a legal execution w for
+x.r with |w| = u. This contradicts the least action principle since u − v = α ∈
+NA − {0}.
+   Since α.q is a strong amplifier we have α . q = β.q for some β ≥ α. Now by
+Lemma 2.3(1) (which applies to each local action of Mv on Qv , as N is finiteQ and
+locally irreducible) since r is locally recurrent we have r = mq for some m ∈ Mv .
+So s = (t(v)m)q, and by Lemma 4.2 it follows that α . s = β.s. By the definition
+of the odometer, no messages remain after executing w, so πu (x.r) = 0.s0 for some
+state s0 . Using πu = πα ◦ πv , we have
+                           0.s0 = πα (y.s) = (y + β − α).s
+where the last equality uses Lemma 3.2(ii). Hence y = α − β ≤ 0 as desired.        
+   In the special case of a locally recurrent toppling network Topp(L), if y ∈
+NV − {0} and Ly ≤ 0 then (Dy).0 is a strong amplifier. In this case Lemma 6.7
+implies that if for a particular input x.r there is a legal execution in which each
+vertex v processes at least Lvv yv letters, then Topp(L) does not halt on input x.r.
+In particular, we recover the criterion of Björner and Lovász [BL92, Prop. 4.4]:
+for the sandpile network Sand(G) on a directed graph G, if y ∈ NV − {0} and
+Ly = 0 and each vertex v topples at least yv times, then toppling persists forever.
+When G is undirected (or Eulerian directed) we can take y = 1 and we recover the
+criterion of Tardos [Tar88, Lemma 4]: if each vertex topples at least once, then
+toppling persists forever.
+
+                             7. Concluding Remarks
+     We indicate here a few directions for further research on abelian networks.
+
+Halting problem for a given input. Theorem 5.6 gives a polynomial time
+algorithm to check whether a finite abelian network N halts on all inputs. Under
+what conditions is there an efficient algorithm to check whether N halts on a given
+input x0 .q0 ?
+   An inefficient algorithm runs as follows. Let xn .qn = xn−1 . qn−1 for n ≥ 1. By
+Dickson’s Lemma 2.6 there exist m < n such that qm = qn and xm ≤ xn . Each
+time we generate a new state xn .qn , exhaustively check for such an m < n. When
+                               ABELIAN NETWORKS                                  19
+
+we find one, if xn = 0 then N has already halted, and if xn 6= 0 then N will never
+halt.
+   Bounds obtained from Dickson’s Lemma grow very quickly [FFSS11]. Lemma 6.7
+suggests a possibly more efficient approach. Given a strong amplifier α.q, what
+is a bound for the time it takes for N either to halt or be certified by Lemma 6.7
+to run forever? With such a bound in hand, there remains the question of which
+abelian networks have small (i.e. polynomial in the size of description of N) strong
+amplifiers.
+
+Infinite abelian networks. Questions about the recurrence or transience of ro-
+tor walk [LL09, AH11a, AH11b, FGLP14, FLP14] and the explosiveness of sand-
+piles [FLP10] are cases of the halting problem for spatially infinite abelian net-
+works. In this setting, “halting” means that each processor processes only finitely
+many letters, even though the total number of letters processed may be infinite.
+Generalizing the least action principle to infinite executions, along the lines of
+[FMR09], may be useful in approaching these and related questions.
+   Among the many hard questions in this area, let us single out one. Suppose N
+is a toppling network whose underlying graph is the square grid Z2 . Let q be an
+initial state, and suppose that N and q are periodic in the sense that there is a
+full rank sublattice Λ ⊂ Z2 such that Pv and qv depend only on v + Λ. Given the
+finite data of Pv and qv on a fundamental domain, is it decidable whether there
+exists an input x with finite support such that N does not halt on x.q? Cairns
+[Cai15], using sandpile circuits designed by Moore and Nilsson [MN99], has shown
+that the analogous problem in Z3 is undecidable.
+
+Homotopy via embedding. Does Lemma 4.13 have a converse? Given irre-
+ducible, strongly connected abelian networks N1 and N2 with N1 ≈ N2 is there an
+irreducible N such that N1 and N2 are local components of a strong component of
+N?
+
+Abelian networks with coefficients. We can define an abelian network purely
+in terms of monoids and without any reference to automata. The free commutative
+monoid NA played an important role in our theory. In particular, we used heavily
+the fact that NA is cancellative (for instance in the proof of Lemma 4.9). What
+happens if we replace NA by a different monoid?
+   To make this question more precise, suppose M and M 0 are commutative
+monoids, written additively. Define an action of M on Q metered by M 0
+as a monoid action ν : M × Q → Q together with a map
+                                 µ : M × Q → M0
+satisfying µ(0, q) = 00 and
+                       µ(x + y, q) = µ(x, ν(y, q)) + µ(y, q)                    (7)
+for all x, y ∈ M and all q ∈ Q. The interpretation is that µ(x, q) measures the
+“cost” (or “byproduct”) of x acting on q, and that costs are additive.
+20                         BENJAMIN BOND AND LIONEL LEVINE
+
+   An example of a metered action is the local action . of an abelian network
+(§4.1): we take M = M 0 = NA with µ and ν defined by
+                                  x . q = µ(x, q).ν(x, q).
+The byproduct of x acting on q is that some messages are passed, namely µ(x, q).
+   Let us define an abstract abelian network on a directed graph G = (V, E) as
+a collection of 4-tuples (Mv , Qv , µv , νv ) indexed by v ∈ V , such that Mv is a
+commutative monoid, Qv is a set, and (µv , νv ) is an action of Mv on Qv metered
+by
+                                         Y
+                                               Mu .
+                                         (v,u)∈E
+As a special case, fix a commutative monoid C and an alphabet A = tv∈V Av .
+An abelian network with coefficients in C is an abstract abelian network with
+Mv = C Av for all v ∈ V .
+   It would be interesting to compare the computational power of such networks
+for different monoids C. For example, taking C = Z we obtain the class of locally
+recurrent abelian networks (i.e., those satisfying Qv = ev Qv for all v ∈ V ). Taking
+C = R+ gives a class of networks with continuous input, which includes the
+abelian avalanche model of [Gab93] and the divisible sandpile of [LP09]. The latter
+computes the linear program relaxation of the integer programs that sandpiles
+compute [BL13, Remark 4.9]. Other R+ -networks (analogous to the oil-and-water
+model of [BL13]) should compute the linear programs of [Tse90]. What about
+C = Z/pZ?
+   Let us point out that the definition (7) of a metered action makes sense for ar-
+bitrary monoids M and M 0 , which allows us to define networks with coefficients in
+an arbitrary monoid C. Are there interesting examples with C noncommutative?
+
+                                  Acknowledgments
+ This research was supported by an NSF postdoctoral fellowship and NSF grants
+DMS-1105960 and DMS-1243606, and by the UROP and SPUR programs at MIT.
+
+                                       References
+[AH11a] Omer Angel and Alexander E. Holroyd, Rotor walks on general trees. SIAM J. Discrete
+   Math. 25(1):423–446, 2011. arXiv:1009.4802
+[AH11b] Omer Angel and Alexander E. Holroyd, Recurrent rotor-router configurations. 2011.
+   arXiv:1101.2484
+[Ash87] Jonathan Ashley, On the Perron-Frobenius eigenvector for nonnegative integral matrices
+   whose largest eigenvalue is integral, Lin. Alg. Appl. 94:103–108, 1987.
+[BS15] Josef Berger and Helmut Schwichtenberg, A bound for Dickson’s lemma.
+   arXiv:1503.03325
+[BLS91] Anders Björner, László Lovász and Peter Shor, Chip-firing games on graphs, European
+   J. Combin. 12(4):283–291, 1991.
+[BL92] Anders Björner and László Lovász, Chip-firing games on directed graphs, J. Algebraic
+   Combin. 1(4)305–328, 1992.
+[BL13] Benjamin Bond and Lionel Levine, Abelian networks I. Foundations and examples.
+   arXiv:1309.3445
+                                    ABELIAN NETWORKS                                        21
+
+[BL14] Benjamin Bond and Lionel Levine, Abelian networks III. The critical group.
+    arXiv:1409.0170
+[Cai15] Hannah Cairns, Some halting problems for abelian sandpiles are undecidable in dimension
+    three. arXiv:1508.00161
+[DdJ98] Wolfram Decker and Theo de Jong, “Gröbner bases and invariant theory.” In Buchberger,
+    B., Winkler, F. eds, Gröbner Bases and Applications, LNS 251, pp. 61–89, 1998.
+[DFR05] Emeric Deutsch, Luca Ferrari and Simone Rinaldi, Production matrices, Adv. Appl.
+    Math. 34(1):101–122, 2005.
+[Dha99] Deepak Dhar, The abelian sandpile and related models, Physica A 263:4–25, 1999.
+    arXiv:cond-mat/9808047
+[Dic13] Leonard E. Dickson, Finiteness of the odd perfect and primitive abundant numbers with
+    distinct prime factors, Amer. J. Math. 35(4):413–422, 1913.
+[Eis95] David Eisenbud, Commutative Algebra With A View Toward Algebraic Geometry,
+    Springer, 1995.
+[FL15] Matthew Farrell and Lionel Levine, CoEulerian graphs. arXiv:1502.04690
+[FLP10] Anne Fey, Lionel Levine and Yuval Peres, Growth rates and explosions in sandpiles, J.
+    Stat. Phys. 138:143–159, 2010. arXiv:0901.3805
+[FMR09] Anne Fey, Ronald Meester, and Frank Redig, Stabilizability and percolation in the
+    infinite volume sandpile model, Ann. Probab. 37(2):654-675, 2009. arXiv:0710.0939
+[FK62] M. Fiedler and V. Ptak, On matrices with non-positive off-diagonal elements and positive
+    principal minors, Czechoslovak Math. J. 12:382–400, 1962.
+[FFSS11] Diego Figueira, Santiago Figueira, Sylvain Schmitz, and Philippe Schnoebelen, Acker-
+    mannian and primitive-recursive bounds with Dickson’s lemma, 26th Annual IEEE Sympo-
+    sium on Logic in Computer Science, 2011. arXiv:1007.2989
+[FGLP14] Laura Florescu, Shirshendu Ganguly, Lionel Levine and Yuval Peres, Escape rates
+    for rotor walks in Zd , SIAM Journal on Discrete Mathematics 28(1):323–334, 2014.
+    arXiv:1301.3521.
+[FLP14] Laura Florescu, Lionel Levine and Yuval Peres, The range of a rotor walk.
+    arXiv:1408.5533
+[Gab93] Andrei Gabrielov, Abelian avalanches and Tutte polynomials, Physica A 195:253–274,
+    1993.
+[Gab94] Andrei Gabrielov, Asymmetric abelian avalanches and sandpiles. Preprint, 1994. http:
+    //www.math.purdue.edu/~agabriel/asym.pdf
+[Gre51] J. A. Green, On the structure of semigroups, Ann. of Math. 54:163–172, 1951.
+[Gri01] Pierre A. Grillet, Commutative semigroups, Klower Academic Publishers, 2001.
+[Gri07] Pierre A. Grillet, Commutative actions, Acta Sci. Math. (Szeged) 73:91–112, 2007.
+[HJ90] Roger A. Horn and Charles R. Johnson, Matrix Analysis, Cambridge Univ. Press, 1990.
+[LL09] Itamar Landau and Lionel Levine, The rotor-router model on regular trees, J. Combin.
+    Theory A 116: 421–433, 2009. arXiv:0705.1562
+[LP09] Lionel Levine and Yuval Peres, Strong spherical asymptotics for rotor-router aggregation
+    and the divisible sandpile, Potential Anal. 30:1–27, 2009. arXiv:0704.0688
+[MN99] Cristopher Moore and Martin Nilsson. The computational complexity of sandpiles. J.
+    Stat. Phys. 96:205–224, 1999.
+[PS04] Alexander Postnikov and Boris Shapiro, Trees, parking functions, syzygies, and
+    deformations of monomial ideals. Trans. Amer. Math. Soc. 356(8):3109–3142, 2004.
+    arXiv:math.CO/0301110
+[Sch57] Marcel-Paul Schützenberger, D représentation des demi-groupes, C. R. Acad. Sci. Paris
+    244:1994–96, 1957.
+[Ste10] Benjamin Steinberg, A theory of transformation monoids: combinatorics and representa-
+    tion theory, Electr. J. Combin. 17:R164, 2010. arXiv:1004.2982
+[Tar88] Gábor Tardos, Polynomial bound for a chip firing game on graphs, SIAM J. Disc. Math.
+    1(3):1988.
+22                        BENJAMIN BOND AND LIONEL LEVINE
+
+[Tse90] Paul Tseng, Distributed computation for linear programming problems satisfying a cer-
+   tain diagonal dominance condition, Mathematics of Operations Research 15(1):33–48, 1990.
+
+   Benjamin Bond, Department of Mathematics, Stanford University, Stanford, Cal-
+ifornia 94305. http://stanford.edu/~benbond
+
+   Lionel Levine, Department of Mathematics, Cornell University, Ithaca, NY 14853.
+http://www.math.cornell.edu/~levine
+

@@ -1,0 +1,258 @@
+                           A negative answer to Nevo’s
+                      homology-sphere decomposition question
+                                                 Alec Kriebel
+                                              Independent researcher
+                                          ORCID: 0009-0001-9320-500X
+
+                                    17 October 2026          (version 1.0.0)
+
+                                                    Abstract
+        We construct a ﬁnite two-dimensional abstract simplicial complex that is doubly Cohen–Macaulay
+     over every ﬁeld of characteristic zero, but contains no two-dimensional homology-sphere subcomplex over
+     any ﬁeld. This gives a negative answer to Nevo’s question asking whether every doubly Cohen–Macaulay
+     complex admits a decomposition into homology spheres with speciﬁed overlap properties. We use a
+     ﬁnite quotient of an aﬃne building, with all links equal to the incidence graph of the projective plane of
+     order eleven. A direct spectral estimate controls the links after any vertex deletion; a weighted cocycle
+     argument veriﬁes the required homology vanishing. The sphere obstruction is an Euler-characteristic
+     count. The construction and the spectral and curvature mechanisms build on established work, credited
+     below.
+
+
+1    The question and the result
+All complexes in this note are ﬁnite abstract simplicial complexes unless a building is explicitly being dis-
+cussed. A pure complex K is Cohen–Macaulay over a ﬁeld k if, for every face σ, including the empty
+face,
+                                e i (lkK σ; k) = 0
+                                H                    for all i < dim(lkK σ).
+It is doubly Cohen–Macaulay, or 2-CM, if it is Cohen–Macaulay and the deletion K − v of every vertex is
+Cohen–Macaulay of the same dimension.
+    Nevo proved that a d-dimensional 2-CM complex can be expressed as a union of minimal d-cycle complexes
+with overlaps containing a d-face and a reordering condition, for d ≥ 1 [1, Theorem 7] [2, Theorem 3.4]. He
+then asked whether the pieces could instead be homology spheres [1, Problem 8, p. 961] [2, Problem 3.7,
+p. 417]. We use the standard local-link convention for a homology sphere: a d-dimensional homology sphere
+S over k satisﬁes                            (
+                            He i (lkS σ; k) = k, i = d − |σ|, for every face σ,
+                                              0, i ̸= d − |σ|
+including σ = ∅. Here {∅} is the sphere of dimension −1. This convention, also used in the surrounding
+sphere and ear decomposition literature, is explicitly stated in [3, Section 4]. Having the homology of a
+sphere only globally is a weaker condition.
+Theorem 1. There exists a ﬁnite pure two-dimensional abstract simplicial complex K which is 2-CM over
+every characteristic-zero ﬁeld and has no two-dimensional homology-sphere subcomplex over any ﬁeld. Con-
+sequently Nevo’s homology-sphere decomposition question has a negative answer.
+    A single such complex over Q disproves the universal question. The ﬁnite ﬁeld F11 used in the geometry
+is distinct from the homology coeﬃcient ﬁeld; no claim of 2-CM over every positive-characteristic ﬁeld is
+made. No subdivision, immersion, or enlarged ambient complex is used.
+    The substantial ingredients are classical. Lubotzky–Samuels–Vishne [4, Sections 2–4] provide the aﬃne
+building, a vertex-regular lattice and a faithful polynomial matrix representation. The method comparing
+
+
+                                                         1
+polynomial degree with congruence divisibility to obtain large displacement already appears in Lubotzky–
+Meshulam [5, Proposition 3.3]; we give the particular matrix reduction needed here. The link spectral
+vanishing criterion is a Garland-type result, for example [6, Theorem 1]; we include its elementary ﬁnite
+two-dimensional proof. The curvature obstruction to triangulated two-spheres with links of length at least
+six is recorded in [7, Example 1.8(5)]. The point of this note is their application to the precise 2-CM sphere
+question, with every vertex-deletion condition veriﬁed.
+
+
+2    A ﬁnite quotient with projective-plane links
+Let F = F11 ((y)) and O = F11 [[y]]. The aﬃne building B of PGL3 (F ) is two-dimensional. Its vertices are
+homothety classes of O-lattices in F 3 ; chains of intermediate lattices deﬁne its faces. At a vertex represented
+by L, the neighbors correspond to nonzero proper subspaces of L/yL =     ∼ F3 . An edge in its link is an incident
+                                                                            11
+point–line pair. Thus every vertex link is the bipartite incidence graph G of PG(2, 11).
+   We recall the exact features of [4, Sections 3–4] used here. Their Cartwright–Steger group Γ ≤ PGL3 (F )
+acts simply transitively on the vertices of B. One description starts with the nine-dimensional cyclic algebra
+over F11 (y) generated by E = F113 and z, with
+
+                                     za = a11 z   (a ∈ E),         z 3 = 1 + y.
+
+This algebra splits over F . The group is generated by the projective classes of bu = u(1 − z −1 )u−1 , for
+u ∈ E × /F×
+          11 . Conjugation on the algebra gives a faithful representation
+
+                                      ρ : Γ −→ GL9 (F11 [t]),        t = 1/y.
+
+The kernel before taking projective classes consists of central elements, so this representation is faithful on
+Γ. In the basis used in [4, Equation (9) and Deﬁnition 4.7], the matrices ρ(bu ) have degree at most one.
+Corollary 4.6 and Proposition 4.8 there show that each neighbor of a ﬁxed base vertex o is bu o or bu bu′ o for
+some generators. This covers both lattice-index types, 11 and 112 , and hence every undirected neighbor. All
+group matrices and their inverses lie in the stated general linear group over the polynomial ring. We reduce
+this faithful matrix representation, rather than attempting to deﬁne the original cyclic algebra over F11 [t].
+None of the later global Ramanujan spectral assertions of [4] is used.
+    Deﬁne the normal ﬁnite-index subgroup
+                                       ρ                                       
+                             Γ9 = ker Γ − → GL9 (F11 [t]) −→ GL9 (F11 [t]/(t9 )) .
+
+If d(o, γo) ≤ 4 in the building’s edge graph, follow a path and use simple transitivity at its consecutive
+vertices. Each step is represented by a product of at most two generators, so ρ(γ) has degree at most eight.
+For γ ∈ Γ9 , every entry of ρ(γ) − I is divisible by t9 . The degree bound forces ρ(γ) = I, and faithfulness
+forces γ = 1. Normality and vertex transitivity therefore imply
+
+                           d(x, γx) > 4    for every vertex x and every 1 ̸= γ ∈ Γ9 .                         (1)
+
+This is a direct polynomial argument for the nonreduced quotient ring F11 [t]/(t9 ). It does not invoke the
+irreducible-polynomial hypotheses in the diﬀerent arithmetic quotient of [5, Proposition 3.3].
+     Let K have as vertices the Γ9 -orbits of building vertices, and as faces exactly the images of building
+faces. We add no further faces by completing cliques. The vertex set is ﬁnite because Γ9 has ﬁnite index in
+the vertex-regular group. By (1), distinct vertices in any face remain distinct, and distinct neighbors of a
+vertex x have distinct images: their distance is at most two. Every quotient edge or triangle incident to [x]
+lifts to one incident to x, by translating a chosen lift with an element of Γ9 . Its other vertices are uniquely
+determined among the neighbors of x. It follows both on vertices and on edges that
+                                                            ∼ G.
+                                                  lkK ([x]) =                                                 (2)
+
+The quotient is a connected pure two-dimensional abstract simplicial complex.
+
+
+
+                                                        2
+3     Cohen–Macaulayness after every vertex deletion
+For a ﬁnite graph H with positive degrees, write
+                          X                                                                     EH (f )
+           EH (f ) =                (f (u) − f (v))2 ,        λ(H) =         inf              P                    .
+                                                                                              v H (v)(f (v) − c)
+                                                                         f nonconstant minc    d                 2
+                       {u,v}∈E(H)
+
+For a connected graph this is the ﬁrst positive normalized Laplacian eigenvalue.
+   The graph G has 133 points and 133 lines, and is 12-regular. If M is its point–line incidence matrix,
+uniqueness of the line through two distinct points gives
+
+                                             M M T = 11I + J.
+                                             √                                                         √
+Thus its adjacency eigenvalues are ±12 and ± 11; it is connected, and its ordinary Laplacian gap is 12− 11.
+Bipartiteness and uniqueness of a line through two points exclude cycles of length less than six.
+   For a vertex w of G, put H = G − w. Its degrees are eleven or twelve. Extend any unweighted-mean-zero
+function x on H by zero at w. The extension remains mean zero on G, and removing the incident edges
+costs at most ∥x∥2 . Consequently                       √
+                                         EH (x) ≥ (11 − 11)∥x∥2 .                                       (3)
+This also proves that H is connected. For an arbitrary nonconstant f , let f¯ be its unweighted mean on H.
+Then                      X                       X
+                      min    dH (v)(f (v) − c)2 ≤   dH (v)(f (v) − f¯)2 ≤ 12∥f − f¯∥2 .
+                          c
+                              v                                v
+
+Together with (3) this proves
+                                         √                                             √
+                                     11 − 11    7  1                               12 − 11  1
+                          λ(G − w) ≥         >    > ,                       λ(G) =         > .                         (4)
+                                        12     12  2                                  12    2
+The distinction between ordinary mean and degree-weighted variance is necessary for the irregular graph
+G − w.
+Lemma 2. Let X be a ﬁnite pure two-dimensional simplicial complex. If all vertex links are connected and
+have normalized Laplacian gap greater than 1/2, then H 1 (X; R) = 0.
+Proof. For an edge e, let m(e) > 0 be the number of incident triangles. Represent
+                                                                              P      a real cohomology
+                                                                                             2
+class by an antisymmetric edge cocycle a of minimum squared norm E(a) =         {u,w} m(uw)auw among
+its representatives. Such a minimum exists by orthogonal projection onto the ﬁnite-dimensional space of
+coboundaries. Variation by a coboundary supported at v gives
+                                          X
+                                              m(vu)avu = 0.
+                                                         u
+
+The function fv (u) = avu on lkX v therefore has weighted mean zero, since dlkX v (u) = m(vu). For a triangle
+vuw, the cocycle equation gives fv (u) − fv (w) = −auw . If λ > 1/2 is the minimum of the ﬁnitely many link
+gaps, the link Poincare inequalities, summed over v, give
+                                         X       X
+                                E(a) =                    a2uw
+                                                 v   {u,w}∈E(lkX v)
+                                                 X           X
+                                            ≥λ                         m(vu)a2vu = 2λE(a).
+                                                     v   u∈V (lkX v)
+
+
+Thus E(a) = 0, and the original cohomology class is zero.
+    We apply the lemma to K and to every deletion K − z. Each edge of K belongs to twelve triangles by
+(2). A surviving edge loses at most one triangle when z is removed, so it still belongs to at least eleven. Each
+surviving vertex has at least 265 neighbors, hence lies in a triangle. Thus K − z remains nonempty, pure and
+
+
+                                                                   3
+two-dimensional. It is connected: a path in K that passes through z can bypass z along its connected link
+G, whose edges are surviving edges of K. For v ̸= z, the link of v in K − z is G if vz was not an edge, and
+is G − w for the corresponding neighbor w otherwise. Equations (2)–(4) and Lemma 2 give H 1 (X; R) = 0
+for X = K or K − z. Finite-dimensional duality gives H1 (X; R) = 0. The boundary matrices have integer
+entries, whose ranks agree over Q, R, and every characteristic-zero ﬁeld. Hence the same vanishing holds
+over every such ﬁeld.
+    For completeness, these facts check all faces in the Cohen–Macaulay criterion. At the empty face, connect-
+edness and H1 = 0 give all the required below-top reduced homology vanishing. Vertex links are nonempty
+connected one-dimensional complexes. Edge links are nonempty zero-dimensional complexes. Facet links
+are {∅} of dimension −1, with no required below-top nonzero homology. Nonemptiness covers the negative-
+degree conventions. This proves Cohen–Macaulayness of K and all K − z, of the same dimension, and
+therefore the 2-CM assertion of Theorem 1.
+
+
+4    There are no homology-sphere pieces
+Suppose that a two-dimensional homology sphere S over some ﬁeld is a subcomplex of K. Its edge links
+have the reduced homology of S 0 , so every edge belongs to exactly two triangles of S. Every vertex link in
+S is connected, and each of its vertices has degree two by that edge condition. It is therefore a simple cycle.
+It embeds as a subgraph of the corresponding link G in K, so its length is at least six. Writing fi = fi (S),
+we obtain
+                                                                         f1
+                             2f1 ≥ 6f0 ,     3f2 = 2f1 ,    χ(S) = f0 −     ≤ 0.
+                                                                         3
+Global sphere homology, over any ﬁeld, instead gives χ(S) = 2. This contradiction proves the sphere
+exclusion. Neither orientability nor a classiﬁcation of surfaces is needed, and S need not be induced. In
+particular K cannot even be covered by permitted sphere subcomplexes; the further overlap and reordering
+requirements cannot be met. This completes the proof of Theorem 1.
+
+
+Veriﬁcation, priority, and review disclosure
+The accompanying source and veriﬁcation archive contains the paper source, authored audit records, and
+reproducible ﬁnite checks. The default standard-library veriﬁer constructs the projective-plane incidence
+graph, checks its exact Gram identity and all single-vertex deletions, and checks a triangulated torus at
+the strict 1/2 spectral boundary using rational homology and exact cocycle energies. Actual corrupted
+constructions are required to fail in normal and optimized Python modes. A separate optional NumPy
+diagnostic checks the explicit polynomial neighbor matrices and local adjacency; it is not required by the
+oﬄine default veriﬁer. None of these programs enumerates the ﬁnite quotient, replaces the symbolic proof,
+or independently constructs building theory. Historical review programs and later packaged replays are
+distinguished in the archive.
+    An extensive bounded priority search, including three separate adversarial literature reviews, did not
+verify an earlier recorded full answer to this speciﬁc question. This is not a certiﬁcate of ﬁrstness or a
+claim that all literature has been inspected. The construction and the spectral, congruence, and curvature
+tools have substantial antecedents, as credited above. Recent work on related algebraic and numerical
+consequences, including [8], does not itself assert the sphere-subcomplex decomposition considered here.
+Material access gaps remain for the full bodies of Chari’s 1997 convex-ear paper and Baclawski’s 1982 paper;
+some other original bodies, books, theses, versions, and subscription indexes were uninspected. The exact
+primary versions, selective reading scopes, query inputs, near matches, and gaps are recorded in the authored
+audit ﬁles. Third-party source bodies and extracts are not redistributed.
+    AI tools were used extensively in developing and checking the argument, writing, literature research,
+computation, and adversarial review. This preprint is unrefereed. Internal reviews by AI agents do not
+constitute independent external human peer review, journal refereeing, or formal proof veriﬁcation.
+
+
+
+
+                                                      4
+References
+[1] E. Nevo, contribution to Discrete Geometry, Oberwolfach Reports 17/2005, pp. 959–962; Problem 8 on
+    p. 961. Original workshop report.
+
+[2] E. Nevo, Rigidity and the lower bound theorem for doubly Cohen–Macaulay complexes, Discrete Comput.
+    Geom. 39 (2008), 411–418. doi:10.1007/s00454-007-9017-y. ArXiv math/0505334v2 and the published
+    question were inspected; Problem 3.7 is on published p. 417.
+[3] E. Swartz, g-elements, ﬁnite buildings and higher Cohen–Macaulay connectivity, J. Combin. Theory Ser.
+    A 113 (2006), 1305–1320. Inspected version: math/0512086v1.
+                                                                                                 ed , Euro-
+[4] A. Lubotzky, B. Samuels and U. Vishne, Explicit constructions of Ramanujan complexes of type A
+    pean J. Combin. 26 (2005), 965–993. doi:10.1016/j.ejc.2004.06.007. Inspected version: math/0406217v2.
+[5] A. Lubotzky and R. Meshulam, A Moore bound for simplicial complexes, Bull. London Math. Soc. 39
+    (2007), 353–358. doi:10.1112/blms/bdm003. Proposition 3.3 was checked in the ten-page author version.
+
+[6] W. Ballmann and J. Świątkowski, On L2 -cohomology and property (T) for automorphism groups of
+    polyhedral cell complexes, Geom. Funct. Anal. 7 (1997), 615–645. Inspected version: MPI preprint 96-
+    127 (1996), primary preprint record.
+[7] T. Januszkiewicz and J. Świątkowski, Simplicial nonpositive curvature, Publ. Math. Inst. Hautes Études
+    Sci. 104 (2006), 1–85. Published article.
+
+[8] M. Larson and A. Stapledon, Complementary vectors of simplicial complexes, Forum Math. Sigma 14
+    (2026), e133. doi:10.1017/fms.2026.10288. Inspected versions: arXiv:2504.20264v2 and the published in-
+    troduction, with additional scopes recorded in the archive.
+
+
+
+
+                                                    5
+

@@ -1,0 +1,120 @@
+proceedings of the
+american mathematical society
+Volume 112, Number 4, August 1991
+
+
+
+
+         NO POLYNOMIAL BOUND FOR THE CHIP FIRING GAME
+                     ON DIRECTED GRAPHS
+
+                                         KIMMO ERIKSSON
+
+                                (Communicated by Thomas H. Brylawski)
+
+
+           Abstract.    Tardos has proved a polynomial bound on the length of a convergent
+           chip firing game on an undirected graph. This paper demonstrates a game with
+           exponential growth on a directed graph.
+
+
+                                         Introduction
+   The chips game for general graphs was formulated by Björner, Lovász, and
+Shor [1]. For undirected graphs, G. Tardos [2] gave an upper limit, 0(nA), on
+the number of moves in a game for which the number of nodes is bounded by
+n . In this note we prove that for directed graphs no polynomial bound on the
+number of moves exists. In fact, we give an example of a sequence of games
+with exponential growth.
+Definitions. The chips game is played in the following way. Place a pile of chips
+on each node of a connected finite graph. A move now consists of selecting a
+node with at least as many chips in its pile as it has outgoing edges, and firing
+that node by moving one chip to each of its neighbors (respecting the direction
+of edges). Consequently, a position where each node has too few chips to be
+fired is a final position. This game is known to be strongly convergent [1], that
+is, either every legal game from the initial position is infinite or every legal game
+terminates with the same final position in the same number of moves, whatever
+choices have been made during play.
+The exponential game. We define a game for every even positive number «.
+Take a bidirected circuit of « - 1 nodes and add a center node with edges to all
+other nodes, all but one bidirected, the last one directed from the center node.
+The initial position is 3« - 5 chips on the center node and no chips on the
+circuit nodes. This game is convergent, as will be seen later.
+   Only one distribution of 3« - 5 chips will do as a final position: « - 2 on
+the center node, 1 on the node with the directed edge (call this node the top
+node), and 2 on all the others.
+   Received by the editors July 29, 1989.
+   1980 Mathematics Subject Classification (1985 Revision). Primary 05C35.
+   Key words and phrases. Graph, game, chip firing.
+                                                                     © 1991 American Mathematical Society
+                                                                      0002-9939/91 $1.00+$.25 per page
+
+                                                1203
+1204                               KIMMO ERIKSSON
+
+
+
+
+                                Figure 1. The graph.
+
+
+    We want to compute the length of this game. Observe that if there is at least
+one chip on every circuit node then the following sequence of moves is legal:
+fire the center node, the top node, and clockwise the other circuit nodes. In this
+operation every node is fired once, transporting one chip from the center node
+to the top node. Firing all nodes once again followed by an additional firing
+of the top node results in a net flow of two chips from the center node, one
+to each of the neighbors of the top node. This operation, consisting of 2« + 1
+moves, can be done over and over again with a few intermediate moves, thereby
+constructing the total solution of the game.
+    Starting from the initial position, let us look at the circuit nodes near the top
+node.
+
+       Fire the center node                                  1111111        (P0)
+       2« + 1 moves                                          1121211        (Pi)
+       2« + 1 moves                                          1131311
+       Fire the top node's neighbors and the top node        1211121
+       2« + 1 moves                                          1221221        (P2)
+   In this way we can create the whole game by induction. Let Pi denote
+a ■.• 12— 212 — 21 • • • position, with i twos on each side of the top node.
+Assume that for i— 1,2, ... , k— 1 we know sequences of a¡ moves leading
+from P(._, to Pi. Play from Pk_x to Pk:
+
+        ak_x moves                                132- •-212-- -231•• •
+        Fire all nodes from left 3 to right 3     211 - -111 - -112 - - -
+        (2k - 1 moves)
+        Rebuild the inner twos,
+        £a(. moves, i = 1,2, ... ,k-        1   ••-222-•-212-•-222-• • (Pk)
+  Letting ak be the number of moves from Pk x to Pk we get a recurrence:
+                                      k-\
+             at = gt_f + (2k- 1) + Y^a,-,       for k > 2, ax -2n+     I.
+                                   ¡=i
+  Let s, be the total number of moves from the initial position to P, . Then
+                        THE CHIP FIRING GAME ON DIRECTED GRAPHS                            1205
+
+
+sk = i + Eti    ai »so
+         s,t - 3sfc_, + sk_2 - 2k - 2 for k > 2, s0 = 1, sx - 2n + 2.
+This recurrence has the solution
+
+
+
+
+and 50 and sx give
+
+                    ,   2«    1 + v^5      D     2«        2
+                       v^        2               v^5 1+v^
+The final position is achieved when all nodes except the top node and the center
+node has two chips, i.e., after sm moves, with m = (n - 2)/2.                       With t =
+(1 + v/5)/2 we have, asymptotically,
+
+                                sm~(2n/j5        + T)xin-2),
+clearly showing that the growth is exponential.
+
+                                        References
+    1. A. Björner, L. Lovász, and P. Shor, Chip-firing games on graphs, preprint, 1987.
+    2. G. Tardos, Polynomial bound for a chip firing game on graphs, SIAM J. Discrete Math. 1
+      (1988), 397-398.
+
+  Department    of Mathematics,     Royal Institute    of Technology,     S-100 44 Stockholm,
+Sweden
+

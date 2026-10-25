@@ -1,0 +1,5 @@
+# Complete published abstract
+
+We construct a finite two-dimensional abstract simplicial complex that is doubly Cohen–Macaulay over every field of characteristic zero, but contains no two-dimensional homology-sphere subcomplex over any field. This gives a negative answer to Nevo's question asking whether every doubly Cohen–Macaulay complex admits a decomposition into homology spheres with specified overlap properties. We use a finite quotient of an affine building, with all links equal to the incidence graph of the projective plane of order eleven. A direct spectral estimate controls the links after any vertex deletion; a weighted cocycle argument verifies the required homology vanishing. The sphere obstruction is an Euler-characteristic count. The construction and the spectral and curvature mechanisms build on established work, credited below.
+
+Source: main PDF, page 1; `main.tex`, abstract environment. Only line wrapping and TeX double-hyphen typography were normalized. No sentences were omitted.

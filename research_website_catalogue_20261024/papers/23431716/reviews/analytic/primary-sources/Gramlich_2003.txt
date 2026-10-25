@@ -1,0 +1,526 @@
+        Probabilistic and Nondeterministic Unary Automata
+
+                                             Gregor Gramlich?
+
+                                          Institut für Informatik
+                               Johann Wolfgang Goethe–Universität Frankfurt
+                                        Robert-Mayer-Straße 11-15
+                                    60054 Frankfurt am Main, Germany
+                                gramlich@thi.informatik.uni-frankfurt.de
+                                         Fax: +49 - 69 - 798-28814
+
+
+                                       c Springer-Verlag
+                                         Published in
+         Proceedings of Mathematical Foundations of Computer Science 2003, pp. 460–469.
+                            Lecture Notes in Computer Science 2747
+
+
+        Abstract. We investigate unary regular languages and compare deterministic finite au-
+        tomata (DFA’s), nondeterministic finite automata (NFA’s) and probabilistic finite automata
+        (PFA’s) with respect to their size.
+        Given a unary PFA with n states and an -isolated cutpoint, we show that the minimal
+                                        1
+        equivalent DFA has at most n 2 states in its cycle. This result is almost optimal, since for
+        any α < 1 a family of PFA’s can be constructed such that every equivalent DFA has at least
+          α
+        n 2 states. Thus we show that for the model of probabilistic automata with a constant error
+        bound, there is only a polynomial blowup for cyclic languages.
+        Given a unary NFA with n states, we show     √ that efficiently approximating the size of a
+        minimal equivalent NFA within the factor ln nn is impossible unless P = N P . This result
+        even holds under the promise that the accepted language is cyclic. On the other hand we
+        show that we can approximate a minimal NFA within the factor ln n, if we are given a cyclic
+        unary n-state DFA.
+
+
+1     Introduction
+
+Regular languages and finite state automata as their acceptance devices, are well studied objects.
+We consider DFA’s, NFA’s and PFA’s with isolated cutpoint and compare their sizes.
+                                                                                                1 n−1
+    For an n-state PFA with -isolated cutpoint, the equivalent DFA needs at most (1 + 2         )
+                                                                                           √
+                                                                                    1    Θ( n ln n)
+states [10]. For a unary alphabet, Milani and Pighizzini [9] show the tight bound of e              for
+the number of states in the cycle of the minimal DFA. This result does not depend on the size of
+the isolation  and the proof of the lower bound actually relies on an isolation that tends to zero.
+We show that the isolation  plays a crucial role, namely that L can be accepted by a DFA with at
+        1
+most n 2 states in its cycle. Thus, for constant isolation , we improve the upper bound of Milani
+and Pighizzini to be a polynomial in n.
+    The minimization problem for DFA’s can be efficiently solved. But for a given DFA, the problem
+of determining the minimal number of states of an equivalent NFA is P SP ACE-complete [6].
+A result of Stockmeyer and Meyer [11] shows that the problem of minimizing a given NFA is
+P SP ACE-complete for a binary alphabet and N P -complete for a unary alphabet.
+    We show that, given an n-state NFA accepting L, it is impossible √
+                                                                       to efficiently approximate the
+number of states of a minimal NFA accepting L within a factor of ln nn unless P = N P . This result
+holds even under the promise that L is a unary cyclic language and can be extended to PFA’s
+with isolated cutpoint. On the other hand we show that if we are given a unary cyclic n-state DFA
+accepting L, then we can efficiently construct an equivalent NFA with at most k · (1 + ln n) states,
+where k is the number of states of a minimal NFA accepting L. This contrasts with a result of
+?
+    partially supported√ by DFG project SCHN503/2-1
+1
+    The bound of Θ(e n ln n ) stated in the article had to be corrected, due to [2].
+Jiang et al. [5] who show that the number of states of a minimal NFA, equivalent to a given unary
+DFA, cannot be computed in polynomial time, unless N P ⊆ DT IM E(nO(ln n) ). This result even
+holds, if we restrict the DFA to accept only cyclic languages.
+   The next section gives a short introduction into unary NFA’s and unary PFA’s. Unary PFA’s
+with -isolated cutpoint, resp. unary NFA’s, are investigated in sections 3 and 4 respectively.
+
+
+2     Preliminaries
+We consider unary languages L ⊆ {a}∗ . A unary regular language is recognized by a DFA that
+starts with a possibly empty path and ends in a non-empty cycle.
+    A language L is ultimately d-cyclic, if there is a µ ∈ IN0 , so that (aj ∈ L ⇔ aj+d ∈ L) holds
+for any j ≥ µ and we say that d is an ultimate period of L. A smallest ultimate period is called
+the minimal ultimate period c(L) and any ultimate period is a multiple of the minimal ultimate
+period. L is called cyclic, if the path of the minimal DFA for L is empty. For cyclic languages we
+use the term period instead of ultimate period and d-cyclic (resp. minimally d-cyclic) instead of
+ultimately d-cyclic (resp. minimally utimately d-cyclic).
+    The size of an automaton A is the number of states of A. For a given regular language L, we
+use nsize(L) as the minimal size of an NFA accepting L.
+    A normal form for unary NFA’s is established by Chrobak in [1]. His construction converts
+a given NFA N with n states into an equivalent NFA N 0 consisting of a deterministic path and
+several deterministic cycles. Only the last state of the path branches nondeterministically into one
+state of each cycle. The path of N 0 has length O(n2 ), and the number of all states in the cycles
+is bounded by n. Chrobak proves, that L(N 0 ) is ultimately d-cyclic, where d is the least common
+multiple of the length of the cycles in N 0 . For cyclic languages we introduce union automata as
+automata in Chrobak normal form with an empty path.
+
+Definition 1. A union automaton U is described by a collection (A1 , . . . , Ak ) of cyclic DFA’s. U
+                                                                                             Pk
+accepts an input w iff there is an Ai , such that Ai accepts w. The size of U is defined as i=1 si ,
+where si is the number of states of Ai .
+
+To convert a union automaton U into an NFA with a single inital state, we simply add one state q0
+and transitions from q0 to each state that succeeds an initial state of the deterministic automata
+that U consists of.
+   Jiang, McDowell and Ravikumar [5] show a structural result about minimal unary NFA’s ac-
+cepting cyclic languages.
+
+Fact 1. [5] Let L be a minimally D-cyclic unary language.
+   Every minimal NFA accepting L can be obtained by converting some minimal union automaton
+U accepting L into an NFA. Moreover D is the least common multiple of the cycle lengths of U .
+   Consider the prime factorization of D = pα            αr
+                                            1 · . . . · pr , where the pi are distinct and αi ∈ IN,
+                                              1
+
+                                         α1           αr
+then every NFA accepting L has at least p1 + . . . + pr states.
+    This result offers some clues about the composition of the (ultimate) period of a unary language
+which also apply to probabilistic finite automata which we define as follows. A unary PFA M with a
+set Q of n states is described by a stochastic n × n matrix A, a stochastic row vector π representing
+the initial distribution, and a column vector η ∈ {0, 1}n indicating the final states. Observe that
+πAj η is the acceptance probability for input aj . The language accepted by M with respect to a
+cutpoint λ ∈ [0, 1] is L(M, λ) = {aj |πAj η > λ}. We call cutpoint λ -isolated, if for any j ∈ IN0 :
+|πAj η − λ| ≥ . We call a cutpoint isolated, if there is an  > 0, so that it is -isolated.
+    We regard A as the stochastic matrix of a finite Markov chain M, with rows and columns
+indexed by states, and consider the representation of M as a directed graph GA = (V, E) with
+V = Q. An arc from state q to state p exists in GA , if Ap,q > 0. We call a strongly connected
+component B ⊆ Q in GA ergodic2 , if starting in any state q ∈ B, we cannot reach any state outside
+of B. States within an ergodic component are called ergodic states, non-ergodic states are called
+transient. For an ergodic component B, the period of q ∈ B is defined as
+2
+    Unlike some authors we do not require an ergodic component to be aperiodic.
+                  dq = gcd{j| starting in q one can reach q with exactly j steps}.
+All states q ∈ B have the same period d = dq , which we call the period of B.
+    Factorization and primality play an important role for (ultimate) periods. To estimate the size
+of the i-th prime number we use the following fact.
+Fact 2. [4] If pi is the i-th prime number, then i ln i ≤ pi ≤ 2i ln i for i ≥ 3.
+
+3   Unary PFA’s with -Isolated Cutpoint
+In [9] Milani and Pighizzini show, that the ergodic components of a unary PFA with isolated
+cutpoint basically play the same role as the cycles of an NFA in Chrobak normal form. The least
+common multiple D of the periods of these components is an ultimate period of the language
+L(M, λ) accepted by the PFA.
+    This result does not take the isolation into√account and yields an exponential upper bound for
+the ultimate period, namely c(L(M, λ)) = eO( n ln n) where n is the number of states in the PFA.
+We show that the ultimate period c(L(M, λ)) decreases significantly with increasing isolation and
+this results in a polynomial upper bound for c(L(M, λ)), if  is a constant.
+    As a first step, Lemma 1 shows that the period di of an ergodic component Bi with absorption
+probability ri < 2, where
+                       X
+            ri := lim     (πAt )p = prob(a random walk is eventually absorbed into Bi ),
+                t→∞
+                      p∈Bi
+
+does not play a role for c(L(M, λ)), neither do periods of collections of ergodic components with
+small combined absorption probability.
+Lemma 1. Let B1 , . . . , Bm be the ergodic components of a Markov chain with periods di and
+absorption probabilities ri , respectively. If the corresponding
+                                                          P      PFA M accepts L := L(M, λ) with
+-isolated cutpoint, then for any I ⊆ {1, . . . , m} with i∈I ri > 1 − 2, D(I) := lcm{di |i ∈ I} is
+an ultimate period of L and thus is a multiple of c(L).
+Proof (Sketch). For an ultimate period D of L the limit A∞ := limt→∞ (AD )t exists, where we
+require convergence in each entry of the matrix. This can be shown by bringing the matrix A into a
+normal form (see Gantmacher [3]), so that the stochastic submatrix Ai for each ergodic component
+Bi forms a block within A. If Bi has period di , then limt→∞ (Adi i )t exists. Since D is a multiple of
+every di , the limit of (AD )t exists. As a consequence from [9] and from the existence of this limit,
+for every δ there must be a µδ ∈ IN, such that for every j ≥ µδ , aj ∈ L ⇔ aj+D ∈ L and
+                                 X
+                                     |(πAj )q − (πA(j mod D) A∞ )q | < δ.
+                                    q∈Q
+                                                   P
+    Let I ⊆ {1, . . . , m} be a set of indices with i∈I ri > 1 − 2. Assume that D(I) is not an
+ultimate period of L. Then there is some j > µδ with aj ∈ L and aj+D(I) 6∈ L. So πAj η ≥ λ + 
+and πAj+D(I) η ≤ λ − , and thus π Aj − Aj+D(I) η ≥ 2. Let (x)+S= x if x > 0, and let (x)+ = 0
+otherwise. Remember, that η ∈ {0, 1}n . Then we have with QI := i∈I Bi ∪ {q|q transient}
+                             X
+                        2 ≤   (π(Aj − Aj+D(I) ))q
+                             q∈Q
+                             X                              X
+                        ≤           (π(Aj − Aj+D(I) ))+
+                                                      q +           (π(Aj − Aj+D(I) ))+
+                                                                                      q .          (1)
+                             q∈QI                           q6∈QI
+
+   The proof of the existence of A∞ also shows that if we restrict the matrix A to all the states
+                                                                               D(I)
+in QI and call the resulting
+                      P      substochastic matrix AI , then the limit limt→∞ (AI )t exists as well.
+And so, for δ = 2 − i6∈I ri and for any j ≥ µδ , we get
+                                    X
+                                       (π(Aj − Aj+D(I) ))+ q < δ.                              (2)
+                                          q∈QI
+   But on the other hand, for any j ≥ 0
+                    X                        X           X
+                       (π(Aj − Aj+D(I) ))+
+                                         q ≤   (πAj )q ≤   ri = 2 − δ.                                     (3)
+                     q6∈QI                                  q6∈QI                i6∈I
+
+The second inequality follows, since the absorption probability is the limit of a monotonically
+increasing sequence. So we have reached a contradiction, since the sum of (3) and (2) does not
+satisfy (1).                                                                                 t
+                                                                                             u
+
+   We can now exclude some prime powers as potential divisors of c(L(M, λ)).
+
+Definition 2. Let M be a PFA with ergodic periods di and absorption probabilities ri . We call a
+prime power q = ps -essential (for M ), if
+                          X                            X
+                                   ri ≥ 2  and                ri < 2.
+                        i: q divides di                              i: q·p divides di
+
+Lemma 2. If λ is -isolated for a PFA M , then
+                                                             Y
+                                                D=                          q.
+                                                       q is −essential
+
+is an ultimate period of L = L(M, λ). Hence D is a multiple of c(L).
+
+Proof. Assume that c(L) is a multiple of a prime power pk which does not divide any -essential
+prime power. Let J = {i|pk divides di }, and let I = {1, . . . , m} \ J be the complement of J. Then
+pk does not divide any di with i ∈ I and thus pk does notPdivide D(I) = lcm{dP       i |i ∈ I}.Since p
+                                                                                                       k
+
+does not divide any -essential prime power, we have that i∈J ri < 2, and so i∈I ri > 1 − 2.
+According to Lemma 1, D(I) is a multiple of c(L). But on the other hand D(I) is not a multiple
+of pk . This is a contradiction, since pk was assumed to divide c(L).                                 t
+                                                                                                      u
+
+   Now we show the tight upper bound for the minimal ultimate period of a language accepted
+by an -isolated PFA.
+
+Theorem 1. a) For any unary PFA M with n states and -isolated cutpoint λ
+                                                                        1
+                                                c(L(M, λ)) ≤ n 2 .
+                                    1
+b) For any 0 ≤ α < 1 and any  = 2m     with m ∈ IN, there is a PFA M with n states and -isolated
+                                      α
+cutpoint λ, such that c(L(M, λ)) > n 2 .
+                                                                                  Q
+Proof. a) Let M have Pm ergodic components with periods d1 , . . . , dm . Set D := q is −essential q
+and remember, that i: q divides di ri ≥ 2 for any -essential q, then
+                                                              P
+                       2
+                                Y
+                                           2
+                                                    Y                          ri
+                     D =                  q ≤                q i: q divides di
+                              q is −essential             q is −essential
+                                                           Ym         Y                     m
+                                                                                            Y
+                                                       =                           q ri ≤         dri i .
+                                                           i=1 q is −essential,            i=1
+                                                                 q divides di
+
+              Pm
+  Now, since i=1 ri = 1, the weighted arithmetic mean is at least as large as the geometric
+mean, and thus
+                                   Xm          m
+                                               Y
+                                      ri d i ≥   dri i .
+                                                 i=1              i=1
+
+   Since D ≥ c(L(M, λ)) with Lemma 2, we obtain
+                             m
+                             X            m
+                                          X                m
+                                                           Y
+                       n≥          di ≥         ri d i ≥         dri i ≥ D2 ≥ c(L(M, λ))2 .
+                             i=1          i=1              i=1
+And the claim follows.
+  b) Let p1 , p2 , . . . be the sequence of prime numbers. We define the languages
+                                         (                k+m−1
+                                                                   !)
+                                                            Y
+                                             j
+                                  Lk,m = a j ≡ 0 mod            pi
+                                                                     i=k
+                                       Qk+m−1
+for k, m ≥ 1. Obviously c(Lk,m ) = i=k              pi ≥ pm             m
+                                                           k ≥ (k ln k) .
+                                                                                     1
+    On the other hand Lk,m can be accepted by a PFA with isolation  = 2m               and cutpoint λ = 1 −
+ 1
+2m  as follows. We  define   a   “union  automaton    with  an initial distribution” by setting up m disjoint
+cycles of length pk , pk+1 , . . . , pk+m−1 , respectively. The transition probability from one state to the
+next in a cycle is 1. There is exactly one final state in each cycle and the initial distribution places
+              1
+probability m   on each final state. For every word az ∈ Lk,m we have z ≡ 0(mod pi ) for every
+k ≤ i ≤ k + m − 1 and for every word az 6∈ Lk,m there is at least one i with z 6≡ 0(mod pi ). Thus a
+                                                                                                          1
+word is either accepted with probability 1, or it can reach acceptance probability at most 1 − m            .
+    Applying Fact 2, the number of states in the PFA is
+                              k+m−1
+                               X               k+m−1
+                                                X                   Z k+m
+                     nk,m =           pi ≤ 2           i ln i ≤ 2           x ln x dx
+                               i=k              i=k                  k
+                                                         x=k+m
+                                                      x2
+                                            2
+                                            x
+                                        =2     ln x −
+                                             2        4 x=k
+                                        ≤ (k 2 + 2km + m2 ) ln(k + m) − k 2 ln k
+                                                    m
+                                        = k 2 ln 1 +    + (2km + m2 ) ln(k + m).
+                                                     k
+                              m k
+But since k ln 1 + m
+                               
+                   k = ln 1 + k   ≤ ln em = m,
+
+                    nk,m ≤ km + (2km + m2 ) ln(k + m) ≤ (3km + m2 ) ln(k + m).
+                                         1
+Thus for any 0 ≤ α < 1, any constant m = 2 and a sufficiently large k, we have
+                                                                                        α
+                      c(Lk,m ) ≥ (k ln k)m > ((3km + m2 ) ln(k + m))αm ≥ nk,m
+                                                                          2
+                                                                              ,
+and the claim follows.                                                                                     t
+                                                                                                           u
+   Our result shows that for a fixed isolation , the ultimate period of the language accepted by
+the PFA M with n states is only polynomial in n.
+
+
+4    Approximating the Size of a Minimal NFA
+Stockmeyer and Meyer [11] show, that the universe problem L(N ) 6= Σ ∗ is N P -complete for regular
+expressions and NFA’s N , even if we consider only unary languages. Since our argument is based
+on their construction, we show the proof.
+Fact 3. [11] For a unary NFA N , it is N P -hard to decide, if L(N ) 6= {a}∗ .
+Proof. We reduce 3SAT to the universe problem for unary NFA’s. Let Φ be Q         a 3CNF-formula over
+                                                                                    n
+n variables with m clauses. Let p1 , . . . , pn be the first n primes and set D := i=1 pi . According to
+                                                                  n
+the chinese remainder theorem, the function µ : IN0 → IN0 with µ(x) = (x mod p1 , . . . , x mod pn )
+is injective, if we restrict the domain to {0, . . . , D − 1}. We call x a code (for an assignment), if
+µ(x) ∈ {0, 1}n .
+     We construct a union automaton NΦ that accepts {a}∗ iff Φ is not satisfiable. We first make
+sure, that L0,Φ = {ak |k is not a code} is accepted. Therefore, for every prime pi (pi > 2) we
+construct a cycle that accepts the words aj with j 6≡ 0(mod pi ) ∧ j 6≡ 1(mod pi ). So there are
+2 non-final states and (pi − 2) final states in the cycle. For every clause C of Φ with variables
+xi1 , xi2 , xi3 we construct a cycle C ∗ of length pi1 pi2 pi3 . C ∗ will accept
+               {ak | the assignment k mod pij for xij (j = 1, 2, 3) does not satisfy C}.
+Since the falsifying assignment is unique for the three variables in question, exactly one state is
+accepting in C ∗ .
+   The construction can be done in time polynomial in the length of Φ. If there is a word aj 6∈
+L(NΦ ), then j is a code for a satisfying assignment. On the other hand every satisfying assignment
+has a code j and aj is not accepted by NΦ .                                                      t
+                                                                                                 u
+    We set LΦ = L(NΦ ) for the automaton NΦ constructed above. Observe that LΦ is a union of
+cyclic languages and hence itself cyclic. Obviously if Φ 6∈ 3SAT , then the minimal NFAP
+                                                                                       for LΦ
+                                                                                        n
+has size 1. We will show, that for Φ ∈ 3SAT every NFA accepting LΦ must have at least i=2 pi
+states, which implies Theorem 2.
+Theorem 2. Given   √
+                      an NFA Nwith nstates, it is impossible to efficiently approximate nsize(L(N ))
+                     n
+within a factor of ln n unless P = N P .
+   We first determine a lower bound for the period of LΦ .
+Lemma 3. For any given 3CNF-formula Φ ∈ 3SAT the minimal period of LΦ is either D :=
+Q n
+  i=2 pi or 2D.
+
+Proof. LΦ is 2D-cyclic, since 2D is the least common multiple of the cycle lengths of NΦ . Assume
+that neither D nor 2D is the minimal period of LΦ . Then there is i ≥ 2, such that d = pDi is a
+period of LΦ . We know that aqpi +2 ∈ L0,Φ for every q ∈ IN, because qpi + 2 does not represent a
+code. Since L0,Φ ⊆ LΦ and we assume that LΦ is d-cyclic, aqpi +2+rd belongs to LΦ for every r ∈ IN
+as well.
+    On the other hand, since LΦ 6= {a}∗ , there is an al 6∈ LΦ , and so al+td 6∈ LΦ for every t ∈ IN.
+It is a contradiction, if we find q, r, t ∈ IN0 , so that qpi + 2 + rd = l + td, since the corresponding
+word has to be in LΦ because of the left-hand side of the equation and cannot be in LΦ because of
+the right-hand side.
+
+              ∃q, r, t : qpi + 2 + rd = l + td ⇔ ∃q, r, t : qpi = l − 2 + (t − r)d
+                                               ⇔     ∃q : qpi ≡ l − 2              (mod d)
+                                               ⇔     ∃q : q ≡ (l − 2)p−1  i        (mod d)
+
+   The multiplicative inverse of pi modulo d exists, since gcd(pi , d) = 1, and we have obtained the
+desired contradiction.                                                                             t
+                                                                                                   u
+   We will need a linear relation between the number of clauses and variables in the CNF-formula.
+Fact 4. Let E3SAT − E5 be the satisfiability problem for formulae with exactly 3 literals in every
+clause and every variable appearing in exactly 5 distinct clauses, then E3SAT −E5 is N P -complete.
+    The following Lemma determines a lower bound for the size of an NFA equivalent to NΦ , if Φ
+is satisfiable.
+Lemma 4. Let Φ ∈ E3SAT − E5 and assume that Φ consists of m clauses. Then nsize(L(NΦ )) ≥
+cm2 ln m for some constant c.
+Proof.
+Qn       We know from Lemma 3, that L(NΦ ) is either minimally D-cyclic or 2D-cyclic with D =
+  i=2 p i where n is the P
+                         number of variables in Φ. Applying Fact 1 the size of a minimal NFA
+                           n
+accepting LΦ is at least i=2 pi . We observe that
+                             n            n                Z n
+                             X            X                                    n2
+                                   pi ≥         i ln i ≥         x ln x dx ≥      ln n
+                             i=2          i=1               1                  4
+
+   We have 5n = 3m and thus nsize(LΦ ) ≥ cm2 ln m for some constant c.                                t
+                                                                                                      u
+   Finally we determine an upper bound for the size of the NFA NΦ .
+Lemma 5. Let Φ be a 3CNF formula with m clauses
+                                               and exactly 5 appearances
+                                                                         of every variable.
+Then the NFA NΦ has size at most O m4 (ln m)3 and at least Ω m2 ln m .
+Proof. The number of states in a cycle for a clause is a product of three primes. So there are
+              3                 3
+Pnmost m · pn 2= O(m (m ln m) ) states in all of these cycles. The cycles recognizing L0,Φ have
+at
+   i=2 pi = Θ(n ln n) states, where n is the number of variables of Φ. Since n = Θ(m) the claim
+follows.                                                                                      t
+                                                                                              u
+
+Proof (of Theorem 2). Assume that √
+                                      the polynomial time deterministic algorithm A approximates
+nsize(L(N )) within the factor ln ss for an NFA N with s states. We show that the satisfiablity
+problem can be decided in polynomial time.
+    Let Φ be the given input for the E3SAT − E5 problem, where we assume that Φ has n variables
+and m clauses. We construct the NFA NΦ as in fact 3. If Φ is not satisfiable, then nsize(LΦ ) = 1,
+and according to Lemma 5 the algorithm A claims that an equivalent NFA with at most
+                               √      p
+                                 s       (O(m4 (ln m)3 ))
+                                    =                     = o(m2 ln m)
+                               ln s    ln(Ω(m2 (ln m)))
+                    Pn
+states exists. Since i=2 pi = Θ(m2 ln m), the claimed number of states is asymptotically smaller
+than nsize(LΨ ) for any satisfiable formula Ψ with the same number of clauses as Φ. Hence with
+the help of A, we can decide if Φ is satisfiable within polynomial time.                        t
+                                                                                                u
+
+Remark 1. For every 0 <  ≤ 1 the same construction as in the proof of Theorem 2 can be used to
+show that it is not possible to approximate the size of a minimal   √
+                                                                      PFA with isolation  equivalent
+                                                1
+to a given n-state PFA with isolation c · n− 4 within the factor ln nn .
+    For a given formula Φ with m clauses we construct the PFA MΦ with m cycles3 and uniform
+                                                                                          1
+initial distribution for the initial states of each cycle. We define the cutpoint as λ = 2m . Hence a
+word is accepted by MΦ iff it is accepted by at least one cycle. Thus the cutpoint λ is δ-isolated
+                         1
+with δ = 2m  1
+                ≥ c · n− 4 for some appropriate c, and MΦ behaves like a union automaton. Since
+L(MΦ , λ) is the
+               Qmsame language as considered before, it is 1-cyclic if Φ is not satisfiable and has
+period D = i=2 pi or    Qm2D if Φ is satisfiable.
+                                               Pm Every PFA with isolated cutpoint that accepts a
+language with period i=2 pi has at least i=2 pi states [8], independent of the actual isolation.
+
+    The approximation complexity changes if a unary cyclic language is specified by a DFA M ,
+although the decision problem, namely to decide whether there is a k-state NFA accepting the
+cyclic language L(M ), is not efficiently solvable unless N P ⊆ DT IM E(nO(ln n) ) [5].
+
+Theorem 3. Given a unary cyclic DFA accepting L with D states, an NFA for L with at most
+nsize(L)
+        · (1 + ln D) states can be computed in polynomial time. Observe that nsize(L) · (1 + ln D) =
+              3p
+O nsize(L) 2 ln nsize(L) .
+
+Proof. We reduce the optimization problem for a given cyclic DFA M to an instance of the weighted
+set cover problem. We can assume M to be a minimal cyclic D-state DFA with the set of states
+Q = {0, . . . , D − 1}, 0 as the initial state, and final states F ⊆ Q. Then L(M ) = {aj+kD |j ∈ F, k ∈
+IN0 }.
+    For every dl that divides D we construct a deterministic cycle Cl with period dl . The union
+automaton consisting of these cycles will accept L(M ), if we choose the final states of Cl as follows:
+For each aj ∈ L with 0 ≤ j < dl , we let Cl accept aj , iff aj+k·dl ∈ L(M ) for any 0 ≤ k < dDl .
+Remember, that we don’t have to check for ax with x ≥ D, since L(M ) is D-cyclic and dl divides
+D.
+    At this stage the union automaton will have a lot of unnecessary cycles. Therefore we define
+an instance of the set cover problem, where we introduce a set
+
+                                Tl := {j|0 ≤ j < D, aj is accepted by Cl }
+
+of weight wl := dl for every cycle Cl . The universe is {j|0 ≤ j < D, aj ∈ L(M )}. The instance can
+be constructed in polynomial time, since the number of divisors of D is less than D and thus the
+set cover problem consists of at most D sets with at most D elements.
+3
+    To check the validity of a code we can also use the clause cycles.
+   If N is a minimal NFA accepting L(M ), then we know from Fact 1 that N is a union automaton
+(with an additional initial state) that consists of cycles with periods that divide D. Every cycle C ∗
+of N corresponds to a set Tl and the accepted words of C ∗ up to length D − 1 are contained in Tl .
+   So a minimal union automaton with n states can be expressed by a set cover of weight n. On
+the other hand, every set cover can be considered to be a union automaton. Thus a minimal set
+cover corresponds to a minimal NFA.
+   The greedy algorithm for  Pkthe 1weighted set cover problem approximates the optimal set cover
+within the factor H(k) =        i=1 k ≤ 1 + ln k, where k is the size of the largest set [7]. For an
+n-state NFA
+        √
+               N   Chrobak  [2]  bounds the size of c(L(N )) by the Landau function and receives
+      O( n ln n)
+D=e              .                                                                                  t
+                                                                                                    u
+
+
+5   Conclusions and Open Problems
+In Theorem 1 we have shown that PFA’s with constant isolation lead to only polynomially smaller
+automata in comparison to cyclic unary DFA’s. It is not hard to observe that PFA’s with constant
+isolation are negatively exponentially smaller than DFA’s for non-cyclic unary languages. The size
+relation between minimal PFA’s and minimal DFA’s for non-cyclic unary languages is to be further
+explored.
+    The
+     √
+           hardness result of Theorem 2 for minimizing unary NFA’s is tight within a square, since
+size ln nn is excluded for a given NFA of size n. Is Theorem 2 “essentially” optimal?
+    Jiang and Ravikumar [6] state the open problem of approximating a minimal NFA given a
+DFA. Specifically to determine the complexity of designing an NFA accepting L(M ) with at most
+nsize(L(M ))k states for a given DFA M and a given k. We have answered the question for the case
+of unary cyclic DFA’s and k > 23 in Theorem 3.
+
+
+References
+ 1. Chrobak, M.: Finite automata and unary languages, Theoretical Computer Science 47, 1986, pp. 149-
+    158.
+ 2. Chrobak, M.: Errata to: “Finite automata and unary languages”, Theoretical Computer Science 302,
+    2003, pp. 497-498.
+ 3. Gantmacher, F.R.: Theory of Matrices, Vol. II, Chelsea, New York, 1959.
+ 4. Graham, R., Knuth, D., Patashnik, O.: Concrete Mathematics, Addison Wesley, Reading, Mas-
+    sachusetts, 1989.
+ 5. Jiang, T., McDowell, E., Ravikumar, B.: The structure and complexity of minimal NFA’s over a unary
+    alphabet, Int. J. Found. of Comp. Sci., 2, 1991, pp. 163-182.
+ 6. Jiang, T., Ravikumar, B.: Minimal NFA problems are hard, SIAM Journal on Computing, 22 (1), 1993,
+    pp. 1117-1141.
+ 7. Hochbaum, D. (editor): Approximation algorithms for N P -hard problems, PWS Publishing Company,
+    Boston, 1997.
+ 8. Mereghetti, C., Palano, B., Pighizzini, G.: On the succinctness of deterministic, nondeterministic,
+    probabilistic and quantum finite automata, DCAGRS 2001.
+ 9. Milani, M., Pighizzini, G.: Tight bounds on the simulation of unary probabilistic automata by deter-
+    ministic automata, DCAGRS 2000.
+10. Rabin, M.: Probabilistic automata, Information and Control, 1963, pp. 230-245.
+11. Stockmeyer, L., Meyer, A.: Word Problems Requiring Exponential Time, Proc. of the 5th Ann. ACM
+    Symposium on Theory of Computing, New York, 1973, pp. 1-9.
+

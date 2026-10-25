@@ -1,0 +1,663 @@
+                        Word Problems Requiring Exponential Time~     Preliminary Report
+
+
+                                          L.J. Stockmeyer and A.R. Meyer
+                                       Massachusetts Institute of Technology
+
+
+
+
+                 I. INTRODUCTION                                  For any set ~ of letters and set of operations
+                                                               c [., U, *, m, 2), define
+     The equivalence problem for Kleene's regular
+expressions has several effective solutions, all of               MEMBER(~,~ ) = [(x, E) I x E ~ , E is a regu-
+which are computationally inefficient.   In [I], we          lar-like expression over ~ containing only opera-
+showed that this inefficiency is an inherent pro-            tions i n ~ , and x E L(E)],
+perty of the problem by showing that the problem
+of membership in any arbitrary context-sensitive                  INEQ(~, e) = ((El, E 2) I E 1 and E 2 are regu-
+language was easily reducible to the equivalence
+problem for regular expressions.  We also showed             lar-llke expressions over ~ containing only opera-
+that with a squaring abbreviation ( writing (E) 2            tions i n ~ and L(E I) ~ L(E2) }.
+for E.E) the equivalence problem for expressions
+required computing space exponential in the size                  Integer expressions are well-formed parenthe-
+of the expressions.                                          sized expressions involving nonegatlve integer
+                                                             constants written in radix notation (say base two),
+     In this paper we consider a number of similar           binary operations + (addition), U (union), and the
+decidable word problems from automata theory and             unary operation m (complement relative to N ). For
+logic whose inherent computational complexity can            any integer expression E, the set L(E) c N
+be precisely characterized in terms of time or               described by E is defined inductively as follows:
+space requirements on deterministic or nondetermin-
+istic Turing machines.   The definitions of the word
+problems and a table summarizing their complexity                      L(m) = [m] for m E N ,
+appears in the next section. More detailed comments
+                                                                       L((E 1 U E2)) = L(E l) U L(E2),
+and an outline of some of the proofs follows in the
+remaining sections.   Complete proofs will appear in
+                                                                       L((~ I + E2)) = [m+n I m E L(E I) and
+the forthcoming papers [9, I0, 13]. In the final
+section we describe some open problems.
+                                                                                           n ~ L(E2)) ,
+         2. WORD PROBLEMS AND REDUCIBILITIES                           L(-I(E)) =    N-   L(E).
+     We consider word problems involvSng (I) regu-
+la=-like expressions for subsets of ~ , where ~ is                For any set of operations ~ c [+, U , m l ,
+a finite set of letters, (2) similar expressions             define
+for subsets of the nonnegative integers N, and (3)
+certain closed formulas related to the predicate                  __~_-MEMBER(~) = [(x, E) Ixls the binary repr
+calculus.                                                                          resentatlon of some integer n,
+                                                                                   E is an integer expression
+      Regular-llke expressions over ~ are well-formed                              containing only operations in
+parenthesized expressions involving constants ~ E                                  o,and n E L(E).},
+~, and the empty string k, binary operations •
+(concatenation), U (union), and unary operations
+                                                                  __N-INE~,~)   = [ (El, E 2) I E 1 and E 2 are integer
+• (Kleene star), m(complement relative to ~ ) , and
+                                                                                    expressions containing only oper-
+2(squaring).   For any regular-like expression E,
+                                                                                    ations i n ~ and L(Ei) ~ L(E2) }.
+the set L(E) c ~ * described by E is defined induc-
+tively in the obvious way, e.g.,
+                                                             %Work reported here was supported in part by Project
+          e(~) = [~) for ~ E ~,                               MAC, an MIT research program sponsored by the
+                                                              Advanced Research Projects Agency, Department of
+        L((Ei. E2) ) = L(Ei).L(E2) ,                          Defense, under Office of Naval Research Contract
+                                                              Number NO0014-70-A-0362-0006 and the National Science
+        L((E) 2) = L(E).L(E),
+                                                              Foundation under contract number GH00-4327.   Repro-
+                                                              duction in whole or in part is permitted for any
+        L~(E))   = ~   - L(E), etc.
+                                                              purpose of the United States Goverrmnent.
+      Finally, we consider Boolean expressions                   input x, and (2) x 6 A = there is an accepting
+involving doubly subscripted Boolean variables x. .              computation of 90~ on x of length ~ t(Ixl). Similar
+                                                   l,j
+                                                                 definitions apply for space.
+with i,j ~ 1 written in base two notation, and the
+usual Boolean operations, A (and), V (or), ~ (nega-
+                                                                     The main properties of these reducibilities
+tion), m (equivalence), D (implication), and Boolean
+                                                                 are stated in the next two lemmas.
+constants 0, I. In describing Boolean expressions
+we write X i for the sequence of variablesx.    ,x.,z ,
+                                             1,1 l               Lemma 2.1.   ~log and ~log-lin are transitive
+xi,3'  ...; ZXi for Zx .   .  .  .
+                         l~Xi,2 ~xi,3    ; etc.  These           relations.
+abbreviations  do not appear in the Boolean expres-
+sions themselves.   We use the notation A(Xi,...,Xk)             Lemma 2.2.   If A ~log B (A ~log-lin B) and there is
+                                                                    ~deterministic
+to indicate a Boolean expression containing no                   a [nondetermlnistic2 Turing machine accepting B in
+variable xi, j such that i > k.
+                                                                 time ~ t and space ~ s, then there is a polynomial
+     Define for k ~ I,                                           p (and constant c > 0) such that A is accepted by
+                                                                   (deterministic    )~ .
+                                                                 a                    luring machine in time ~ t'
+                                                                   ~nondeterministic>
+                                                                 where
+            B__k = [A(X 1 ..... ~ )    ! ~I   VX2 ~X3 "'"
+                                                                          t'(n) = p(n)omax[t(j)     I J ~ p(n))
+                    QkXk[A(Xi ..... % )       = i]}
+                                                                         (t'(n) = p(n)omax[t(j)     I J ~ c'n])
+where Qk = Z if k is odd and Qk = V if k is even.
+For example, B I corresponds          to the satisfiable         and space ~ s' where
+formulas of propositional calculus.              Define
+
+                      co                                                  s'(n) = log2n + maxis(j)     [ j ~ p(n)]
+            B~ =      U Bk.
+            --       k=l
+                                                                         (s'(n) = log2n + max[s(j)     I J ~ c.n]).
+
+     Let IEQ denote the set of valid sentences in
+                                                                     To outline the proof of Lemma 2.1, suppose
+the first order theoTy-of equality.
+                                                                 A c ~ , B c 4 , C c F   and A ~log-lin B via f:
+     We shall classify the complexity of sets of
+words in terms of two binary relations ~log and                  ~* 4 A* and B glog-lln C via g: A* 4 F .         Clearly
+~log-lin'   called log-space reducibility,            and log-   x c A = g(f(x)) 6 F , so one need only show that
+linear reducibility,       respectively.                         g oo~ [~%og-e~a~= computable.   The difficulty is
+                                                                 that the obvious Turing machine which given x on
+     Let ~, 4 be finite sets of letters and f:                   its input tape prints g(f(x)) on its output tape
+                                                                 must write f(x) on its work tape and so may use
+~* 4 4" a function. We say that f is l ~ - s p a c e                            I   i
+
+
+computable iff there is a deterministic Turlng                   more than log21x I tape squares. However, instead
+machine with a two-way read-only input tape, a one-              of writing f(x) on its work-tape, a machine with
+way output tape and one two-way re~d-wrlte working               input x can simulate the computation of g at argu-
+tape, which started with any x 6 ~ on its input                  ment f(x) by recording on its work tape an instant-
+tape will halt having written f(x) on its output                 aneous description of the computation of g and the
+tape and having visited at most log21x I tape                    position j in f(x) which the input head would
+squares on its work tape, where Ix| is the length                occupy if the input were actually f(x). Since j
+of x.                                                               lfCx) 1 ~ c.]x], only log2]x ] + log 2 c extra
+               w       ,                                         squares on the work tape are ~equi~ed Co r ~ c ~ d j
+      Let A c ~ , B c 4 be sets of words.                        To simulate another step in the computation of
+                                                                 g(f(x)), the machine with input x computes the
+Definition.      A ~log B iff there is a log-space oom-          jth digit of f(x) using only log2[x [ work tape
+                                                                 squares, which is possible since f can be computed
+putable function f such that (Vx 6 ~ )[x 6 A = f(x)
+                                                                 in log space. Hence, from x on the input =ape,
+6 B]. If in addition there is a constant c > 0
+                                                                 f(g(x)) can be printed on the output tape using
+such that If(x) I ~ e. lxl for all x 6 ~*, then                  proportional to log21x I work tape squares.     The
+A Nl0~.li n B.                                                   compgt@tion can then actually be done using only
+                                                                 log2[x I work-tape squares using a larger set of
+     We assume the reader is familiar with the
+notion of nondeterministic Turing machines [of. 2].              symbols on the work-tape   (of.   [2]).
+Briefly, the time required for a nondeterministlc
+machine to accept an input x is the length (number                   Note that if f is log-space computable, then f
+of steps) in the shortest accepting computation; a               is necessarily polynomial time computable.   So in
+set A of inputs words is said to be accepted in time             particular, If(x)I ~ p(Ix]) for some polynomial p.
+  t by a nondeterministic Turing machine~, where                 With this observation, the preceding argument may
+t: N 4 N , iff for all input words x, (I) x 6 A                  also be used to show that Klog is transitive.
+there is an accepting computation of ~ started on
+    The proof of Lemma 2.2 is similar, and is                        II
+                                                                    b 'x' for infinitely many inputs Ixl . In fact,
+omitted.
+                                                                    Seiferas [5], extending methods of Ibarra [6] and
+     We remark that A ~log B = A ~ B where ~ is                     Cook [7], has shown that for I ~ a I < a2, there
+                                                                    exists a set B recognizable in nondetermlnistlc
+polynomial time reducibility defined by Karp [4].
+We believe that all of the particular polynomial                    time ~ a2n but not in nondeterminlstic         time ~ aln ,
+time reductions described in [4] are actually log
+space reducibilities, although it would be surpris-                 so that C requires time k b n for some constant b >
+ing if log space and polynomial time were the same                  1 and infinitely many n even on nondeterministic
+in general.                                                         machines.
+
+    Let ~ be a family of sets of words, and ~ a                          In general, from the fact that $ is reducible
+transitive relation on all sets of words. We say                    to C by a computationally efficient reducibility,
+                                                                    one can immediately deduce that the computational
+that ~ K C iff B ~ C for all B E ~. C is i-complete
+                                                                    complexity of C must be approximately as large as
+in ~ iff ~ ~ C and C 6 ~. For example, let ~ be
+                                                                    the computational complexity of any member of ~.
+the family of sets recognizable in nondeterministie
+                                                                    Additional properties about the complexity of C,
+exponential time, i.e., A 6 ~ iff there is a con-
+stant a > I and a nondeterminlstic Turing machine                   for example that any machine recognizing C can be
+                                                                    "sped-up" effectively on infinitely many inputs in
+which accepts A in time ~ an; let C be a set such                   the sense of Blum [8], can also be proved in most
+that ~ ~log-lin C. Standard diagonal arguments                      cases. A full treatment of these properties of
+imply the existence of a set A E ~ such that any                    efficient redueibilities will appear in subsequent
+                                                                    papers.
+deterministic Turing machine accepting A requires
+               I   !
+time ~ 2 ~xl for infinitely many inputs x. The                          The following table summarizes our main results
+                                                                    on the word problems defined above. For each set C
+contrapositive of Lemma 2 immediately implies that
+                                                                    and family ~ in the tabl~ ~ is reducible to C by
+there is a constant b > 1 such that any determin-
+                                                                    the indicated reducibility, and an upper bound on
+istic Turing machine accepting C requires time
+                                                                    the complexity of C appears in the final column.
+
+
+                                                   Complexity of Word Problems
+
+
+                                      I~ reducible to C I                                              Upper Bound on C
+                                                                                           2
+INEQ({0, I], [U,. ,-~])                  log-lin                          space 222"" " ) l o g 2 n           space ~2."
+INEQ([e, 11, {U,.,2,*))                 log-lin                           exponential          space        complete
+
+INEQ((O,II, (U,.,2))                                                      nondeterminls tlc
+                                        log-lin                                                             complete
+                                                                           exponential time
+
+INEQ([0, i], [U,',*] )                                                    nondeterminis tic
+                                        log-lin                                                             complete
+                                                                           linear space
+INEQ({O, I), [U,.] )                    log                                      ~P                         complete
+
+MEMBER([O,I],          (U,',2 ,_~})                                                                           P
+         BtO                            log                               polynomial space                  complete
+
+         IEQ                            log                               polynomial space                  complete
+
+         Bk                             log                                                                complete
+
+N-INEQ ([ U,+,-~] )                     log                               ~o lynam,ta 1- -~p,,~c e          complete
+
+N-MEMBER([ U,+,~} )                     log                               polynomial space                 complete
+
+N-INEQ([ U,+] )                         log                                                                complete
+
+N-MEMBER ( [ U, +] )                    log                                      NIP                       complete
+
+INEQ ({ O], [U,. ,2,-~) )               log                               polynomial space                 complete
+
+INEQ([01, [O, ",*} )                    log                                      ~P                        complete
+
+i ~ Q ( [ o ) ,. [u,. ,~})                                                                                     P
+    Following Cook [3] and Karp [4], we let ~                for a certain integer b(n) ~ a(n).              Hence,
+denote the family of sets of words A such that A
+is accepted by a deterministic (nondeterministic)                 x E A = Comps(x) ~ # ~ L(E x) @ (~ U k)b(n!
+Turing machine in time bounded by a polynomial.
+The classes ~     for k ~ 0 are defined in [I] and               Moreover, it will be apparent from the con-
+discussed in section ~ below.                                struction that the function mapping x to the pair
+                                                             (Ex, expression for (~ U k)b(n)) is log-space
+                                                             computable and that the length of these expressions
+      3. REGULAR-LIKE EXPRESSIONS OVER {0,I}                 is proportional to n. Hence A ~log-lin INEQ(~,
+    The proofs that INEQ({O,I}, {U,o,2,*]) is log-           {U,.,2]).
+linear complete in exponential space, and that
+INEQ([O,II, [U,',*}) is log-linear complete in non-              To construct E  we wish to describe a finite
+                                                                               x
+deterministic linear space have appeared in [I].             set of words containing all words in ~ of length
+Complete proofs of all the results concerning regu-            a(n) except those in Comps(x). Let s = rz-(~]
+lar-like expressions over {0,I~ (i.e. the first six
+table entries) will appear in [9] and [I0]. Here             for any c 6 ~ and say x = XlX 2 ... x               where x. 6
+                                                                                                             n          i
+we shall indicate the proof of only the following            [0,1~.
+Theorem 3.1. The family of sets of words recogni-                Now words may f a i l      t o be i n Comps(X) because
+zable in nondeterministic exponential time is log-           they "start wrong".          These words can be described
+linear reducible to INEQ({0,1}, (U,.,2}).                    as follows:
+
+    Note that regular-like expressions involving                 "too short":         (~ U k) 2"2n+2
+                        2
+only the operations U,', can define only finite
+sets of words, so that the decidability of INEQ([0,              "doesn't start with ~":            ~.(~ U k) a(n)
+I}, {U,',2])    is trivial. Todescri~elarge   finite sets,
+ one can use the identftles A n+l = An.A and A 2n =              "doesn't start with enough blanks":
+     2                                                                     #'(~ U k)2P-l°~'(~ U k) a(n),
+( A ) ~aowrlte a regular-like expression F such that
+ L(F) = L(E) t~, IF1 iS bounded by a constant times
+  IEI'logpn,. and F involves only U,°, 2 and the                                               2n
+ 0peratiDns in E for any regular-like expression                 "doesn't start with ~              q0 x":
+ E and n ~ O.
+                                                                           2n     ~                 ~
+    Let ~ be a nondeterministic Turing machine                        ~         "(q0 U q0"(~l U Xl'(X 2 U x2' (.. • (Xn. 1
+which accepts a set A c (0,11 * in time ~ 2 n" It
+will he sufficient to show that A ~log-lin INEQ(~,                              U Xn.l'X n) ...))))'(~ U k) a(n),
+[U,.,21), where ~ is a finite set of letters in-                 "not enough blanks following x":
+cluding symbols for the states and symbols of ~
+  contains a symbol # denoting a blank tape squar~
+and ~ contains a symbol ~ which serves as an end                          ~2n+n+2.(~u x)2n-n-l.~.(~u x)a(n),
+marker.
+
+    As in [I], let Comps(x) be the set of accepting              "missing the second ~":            ~'2n+2"~'(~ U k) a(n).
+computations of ~ on x, that is, Comps(x) consists
+of words of the form #I I #12 ~ ... #Ik# where I I               A word may also fall to be in Comps(x) because
+is the initial instantaneous description (i.d.) of           it "ends: wrong".        These words can be descirbed as
+~ O n input x, Ik contains an accepting state, and           follows:
+lj+ I is a possible next i.d. following in one step              "doesn't halt in the accepting state qa ii.
+from I. for I ~ j < k ~ 2 !xl. No i.d. of ~ need be
+      J
+                                                                          ( ~ U k)a(n).~. ((~ U k)-{~,qa])
+                                                                                                                 2.2n+I .#,
+longer than 2.2 n + i, so there is no loss of gen-
+erality in adding the technical requirement that
+each of the i.d.'s be surrounded by blanks to be
+of exactly length 2.2 n + I.                                     "doesn't end with @":           (~ U k)a(n)'~.
+                                            2n
+    Thus, the initial i.d. for x would be ~ 'qO'~"
+  n                                                              Finally, a word may fail to be in ComB(X)
+62 -n where qO is the start state of ~ and n = Ix I.         because the consecutive i.d.'s do not conform to
+                                                             the possible moves of ~. In particular, the defin-
+    Note that no word in ComB(x)     is longer than          ition of ~ determines for every three symbols ~I'
+a(n) = 4 n+2. We shall show how to construct from            ~2' ~3 E ~ a set N(~i~2~3) of words of length three
+x a regular-like expression E over ~ involving
+                             x    k)b(n)                     such that if ~i~2~3 appears in a word in ComB(x),
+only U,.,2 such that L(Ex) = (~ U        -Comps(x)
+then only words in N(C~l~2Cr3) may appear one i.d.
+length to the right of crlc;2~3•         The words not in
+                                                                       A = [x I ZYl VY2 ~Y3 "'" QkYk[P(X'Yl ..... Yk )]]
+Comps(x) because they "move wrong" can now be des-
+cribed as follows:
+                                                                 where the quantifiers range over Yi 6 ~* such that
+    (~ U k)a(n).u.(~ U k) a(n)
+where
+                                                                 lyll p(Ixl>.
+                                                                     The following theorem was stated and proved in
+    U =      U        ~i'(Y2'~3"~ ° 2n-l" (~-N(c~icr2cT3) )      slightly weaker form in [i].
+          cYi,~2,~3
+            6Z                                                   Theorem 4.2.    For k ~ I, the set B k is Klog-Compl-
+                                                                 ere in ~k"
+    The union of the sets given by the expressions
+                                                                     In fact, the construction given in [II] for
+above contains all words over ~ of length ~ a(n)
+                                                                 converting an arbitrary propositional formula to
+except those in Comps(x).  It also contains certain
+                                                                 disjunctive form in polynomial time while preser-
+longer words, none of which however is longer than               vlng validity may be extended to show that the set
+                                                                 of disjunctive (conjunctive) form formulas in B k
+b(n) = 2.a(n) + 2.2 n + 5.         Thus, the words which
+are "too long" are                                               is log-space complete when k is even (odd).
+
+                                                                       It remains an open question whether the con-
+           ~a(n) + I • (~ U k) b(n)-a(n)'l.
+                                                                 tainment of ~      in ~ + I    is proper.     Nevertheless,
+                                                                 we   believe the "hierarchy" of ~           classes is tech-
+    The regular-like expression E    is thus simply
+                                 x                               nleally useful for classifying           the complexity of
+the union of the regular-like expressions corres-
+                                                                 problems.    In the next section we describe a word
+pondlng to the words which "start w r ong ,i , ."end
+wrong", "move wrong", or are "too long". T                       problem which is complete in ~,p.    m
+
+
+
+
+                                                                       The set Bco = 0         B k is the natural analogue to
+            4. POLYNOMIAL TIME QUANTIFIERS                                          k=l
+                                                                 the c0-Jump of the empty set in reeurslve function
+    In [I] we defined an analogue to the arithmetic              theory. The following theorem reveals a surprising
+                                                                 relationship between the polynomial time hierarchy
+hierarchy in which P plays the role of the recursive
+                                                                 and polynomial space.
+sets ~i was defined to be ~            and ~ + I   was defined
+                                                                 Theorem 4.3.      Bco is ~log-Complete       in polynomial
+as the family of sets of words accepted in non-
+                                                                 space.
+deterministic polynomial time by Turing machines
+with oracles for sets i n ~ .          The analogy to the        Proof.    To show that polynomial space is ~log Bco,
+arithmetic hierarchy is made more explicit in the                let ~ be a Turing machine which accepts some set
+next theorem, which is stated without proof.                                  w
+                                                                 L c [0,I}       in space K p(n) for some polynomial p.
+                                                                 In the computation of ~ on input x, no instantan.-
+    Let P(x I .... ,Xk) be a predicate on words in
+                                                                 eous description is longer than 1 + p(Ixl). We
+for some ~. We say that P is polynomial time com-                choose an encoding of the states and symbols of
+putable if [Xl~X2~ ... ~ k I e(x I ..... Xk)}                    into words in [0,I]*, so that any instantaneous
+                                                                 description of ~ in its computation on input x will
+is a set of words recognizable in deterministic
+                                                                 be a w o r d y £ [0,I]* such that IYl = q( x ) for some
+polynomial time where ~ is a symbol not in ~.
+                                                                 polynomial q depending on ~ p, and the encoding,
+Theorem 4.1.     For k ~ I, aset of words A is i n ~             but not depending on x.
+
+iff there is a deterministic polynomial time com-                    As in [I] z _[3], one can construct a Boolean
+putable predicate P(X,Yl,Y2,...,y k) and a polynomial            formula AO,n(U,V ) where U = Ul, u 2 ..... Un and V =
+p such that
+                                                                 Vl,V2,...,v n are sequerces         of Boolean variables
+                                                                 and n = q(Ixl)such that
+%Theorem I was stimulated by John Brzozowski's
+ remark that our use of Kleene * in [I] was very
+ restricted and might therefore be removable.  We
+                                                                       AO,n(U,V)       UlU2...u n and VlV 2 ... v n are the
+                                                                                       encodings of i.d.'s of ~ and
+ are also grateful to Harry Hunt who pointed out
+ that the function N used in [I] should actually                                       VlV2...v  follows from UlU2...u
+                                                                                               n                       n
+ have been a mapping from words to sets of words
+                                                                                       in at most one step of ~JJL
+ as in the construction given here.
+
+                                                                 Moreover, for fixed ~, the length of A0, n is
+                                                                 bounded by a polynomial in n.
+    By quantifying over some of the_variables, one                                   5. INTEGER EXPRESSIONS
+can now construct formulas A k    (U,V) for k ~ 0
+such that                      ,n                                      We shall prove in this section that N-MEMBER
+                                                                   ({U,+)) ~s ~. -co=pleta in ~     and that
+                                                                                log
+            A k ,n (~,~) ~ UlU2...u n and VlV2...v n are           N-INEQ({U,+}) is Nlog-eomplete in ~2. The latter
+                           the encodings of i.d.'s of ~I           is an example of ~ reasonably n~tural deelsion
+                           and VlV2...v n follows from
+                                        •       k                  proD~em for which the ~      classes provide a precise
+                           UlU 2...u n ~n g 2       steps of !~.
+                                                                   complexity characterization.
+
+Moreover,    the length of Ak, n(U,V ) is bounded by                    The proofs that N-INEQ({U,+,m]) and N-MEMBER
+                                                                    ({U,+,~)) are ~log-Complete in polynomial space
+k+l times a polynomial in n.           This follows by in-
+duction from the equivalence                                       involve a combination of the techniques used in
+                                                                   Theorem 5.2 below and Theorem 4.2, but are too
+                                                                   long to present here. They will appear in [13].
+            Ak+l,n(B,9) = (~)(V~)(V~)[((~=~             ^ ~ =
+                                                                       For simplicity we shall identify nonnegative
+                           v (~ = ~ ^ ~ = ~)) =A~,n~% ~)],         integers with their binary representations, e.g.,
+                                                                   Ixl for x E N means the number of digits in the
+                                                                   binary representation of x.
+
+                                                                   Lenmma 5.1.     N-MEMBER([U,+})   6 o~.
+where we have used U = Y as an abbreviation for the
+formula (u I ~ yl) A (u 2 ~ y2) A ... A (un ~ yn).                 Proof. Let x be a nonnegatlve integer, and let E
+                                                                   be an integer expression.  Define a "proof" that
+(We note the similarity of this construction to
+                                                                   (x,E) E N-MEMBER([U,+}) reeurslvely as follows:
+Sa~itch's proof that nondeterminlstlc space n is
+contained in deterministic space n2[12].)                          (x,x) is a proof of (x,x); if P1 is a proof of
+                                                                   (Xl,El) and P2 is a proof of ~2,E2),        then (Pi,P2)
+    Now since ~ requires space ~ p, there is a
+constant c > I such that ~ accepts an input word x                 is a proof of (Xl+X2,(El+E2));       if P1 is a proof of
+iff ~ accepts x in time ~ c p(Ixl). Let Ix(U ) be .                (x,E), then P1 is also a proof of (x,(E U F)) and
+a Boolean formula which equals one Iff UlU2...u n is               of (x,(F U E)) for any integer expression F. Let
+the encoding of initial i.d. of ~ on x, and let                    Q(x,E,P) be the predicate which is true iff P is a
+F(V) be the Boolean formula which equals one iff                   proof of (x,E).  It is not hard to see that Q is
+VlV2...v n is the encoding of an accepting i.d. of                 computable in deterministic polynomial time, and
+                                                                   that if Q(x,E,P). then IPI is bounded by a poly-
+~.   Then, x 6 L ~ ~ a c c e p t s   x in ~ c P(IXT) steps
+                                                                   nomial in Ixl + IEI. It follows that x E L(E) iff
+                                                                   ZP[Q(x,E,P) and IP I ~ polynomial (Ixl + IEI)], so
+
+      =   (~)(Z~)[Ix(U)     A F(V) A Alog2c, p(Ixl),n(U,v)] .      by Theorem 4.1, N-MEMBER({U,+})       E ~I = ~
+
+                                                                   Theorem 5. I.    N-MEMBER({U,+] ) is ~log-Complete
+     The Boolean formula on the righthand side of the              in ~ P .
+above equivalence is of length bounded by a poly-
+nomial in Ixl, and can be rewritten as a formula                   Proof.     Karp [4] has shown that KNAPSACK ~log-COm-
+E X such that x 6 L = E X E B by renaming the vari-
+                                                                   plete in ~ ,    where KNAPSACK = {(al,a 2 ..... an,b) I
+ables appropriately.   We shall leave it to the
+                                                                   n > O, a i 6 N for I ~ i ~ n, b 6 N, and i~ I alz i =
+reader to convince himself that the functlonmapping
+x to E x is log-space computable.  Hence L ~log B .                b for some integers z i E [0,11 for I ~ i ~ n}.
+It is also not hard to show that B           is recognizable
+                                                                       But (al,a2,...,an, b ) E KNAPSACK =
+in deterministic      linear space, which completes the
+proof.                                                             (b,(a I U 0)+(a 2 U 0) +...+ (a n U 0)) E N-MEMBER
+                                                                   ((u,+}):
+    Essentially the same constructlon may be used
+to prove that polynomial space is ~log IEQ. A                          Hence, KNAPSACK ~log N-MEMBER({U,+} ), which
+polynomial space upper bound on IEQ follows from                   completes the proof.
+the well-known fact that a first-order formula
+with n quantlfiers and no predicates other than                    Theorem 5.2•     N-INEQ([U,+~)    is Klog-Complete   in
+equality is valid iff it is valid for domains of
+all cardinalities between 1 and n.
+                                                                   4
+                                                                   Proof. A simple induction on the length of integer
+Corollary 4.4.      IEQ is ~log-eomplete      in polynomial        expressions implies that if L(E) ~ L(F), then there
+space.                                                             is a z E N such that z E L(E) ~ z ~ L(F), and Izl
+                                                                   IEI + IFI. Hence, e(E) ~ L(F) ~ ~z[~Pi[Q(z,E,P~]=
+                                                                   -~qP2[Q(z,F,P#]] where Q is the predicate defined in
+Lemma 5.1, and all quantifiers range over words                      6. REGULAR-LIKE EXPRESSIONS OVER {01
+whose length is bounded by a polynomial in IEI +
+IFI. Thus, Theorem 4.1 and standard manipulation                  Regular-like expressions over [0] resemble
+                                                              integer expressions in that if we define for A c
+of quantifiers implies that N-INEQ({U,+])         6 ~2"
+                                                              0   the set N(A) d~f [Ixl     I x E A} c N, then N(Ai.A 2)
+    To complete the proof, we shall show that B 2
+                                                              = N(A) + N(B), N(-A) = N-N(A), etc. Using squaring
+~log N-INEQ({U,+) ).                                          and concatenation, one can construct for any n E N
+                                                              a regular-like expression E over [01 such that
+    Let A(Xi,X2)      be a Boolean formula, which by the      N(L(E)) = {hi and IEI is proportional to log2n,
+remark following Theorem 4.2 may be assumed to be             which yields a log-llnear reduction from integer
+in disjunctive form.                                          expression problems to regular-like expression
+                                                              problems.   For example,      the proof that INEQ([0],
+     For simplicity assume the variables in A are
+xi, j for i = 1,2 and I K j ~ n. Let D k be the set           [U,',2,~}) is ~log-COmplete       in polynomial space is
+of literals (variables or their negations)in the              a simple corollary of the fact that N-INEQ([u,+,~])
+k th disjunct of A for I K k ~ m.         Let [G E D k] = I   is ~log-COmplete in polynomial space. A detailed
+                                                              proof will appear in [131.
+if G E Dk;    [G E D k] = 0 if G ~ D k.     For each liter-
+al G, define I(~) E N to be                                       The contrast between regular-like expressions
+                                                              over [0~ and those over [0,I I is best illustrated
+                                                              by the ease involving the operations U, ", and 9.
+      I(G) = k~l [G 6 Dklbk where b = 22+Fl°g2 n].            Inequivalence over [0,11 with these operations is
+                                                              enormously hard to decide, while inequivalence over
+         m     bk '                                           [0) with these operations is trivial from our point
+Let a = k~l           and for I ~ i ~ m let F i be the        of view, i.e., is decidable in deterministic poly-
+integer expression                                            nomial tlme, because a regular-like expression of
+                                                              length n over [01 with operations U, ", ~ defines
+                                                              a finite set of words or the complement of a
+      F i = (b i U 0) + (b i U 0) +...+ (b i U O)             finite set of words of length at most n. Details
+                                                              will appear in [13].
+
+where the term (b i U 0) occurs 2n-I times.         Finall~       When the squaring operation is not used, word
+define integer expressions                                    problems for regular-like expressions over {01 seem
+                                                              to require somewhat different methods from either
+                                                              integer expressions or regular-like expressions
+                       n                                      over [0,I}. The following theorem is an example.
+      E 1 = na +      k~l ((a-I(Xl;k)) U (a-I~-~l,k))),
+                                                              Theorem 6.1.      INEQ([0 I, [U,.,*}) is ~log-Complete
+              n                             m                 in~
+      E 2 = (k~ I (l(x2, k) U l(-~2,k)))+ (i~l Fi)"
+                                                              Proof. By "expression" in this proof we shall mean
+                                                              regular-like expression over [0} involving only
+    mote that if y E L(E I) then y = k~l akbk where           the operations., U, *.
+n K a k ~ 2n, and there is an assignment to the
+                                                                  To test whether L(E) # L(F) in nondeterminlstlc
+Boolean variables XI in A such that for i ~ k K m,            polynomial time, construct~ro~ expresslons ~ a ~ d F
+a k = 2n iff no Xi literal in D k is assigned the             nondeterministic finite automata A E with at most
+
+value 0. Similarl[, for any assignment to the                 !E I states and    AFWlthat     most IFI states.   If
+Boolean variables X 2 in A, there is a y E L(E 2)             L(E) ~ L(F), then standard results i~ ~utoma~a
+               m akbk where a k = 2n if some X2               theory imply that there is an n ~ 2 |E| + 2 IF
+such that y = k~l
+                                                              such that O n 6 L(E) = O n ~ L(F). Nondeterminis-
+literal in D k is assigned value O, and a k may have
+                                                              tically "guess" the binary representation of n,
+any value < 2n otherwise.                                     and test whether there is a path in the transition
+                                                              graph of A E and A F of length n to accepting
+    One can now show that
+                                                              states.   This latter test can be carried out deter-
+                                                              ministically in time bounded by a polynomial in
+         A(XI'X2) ~ B2 ~ ~ i      ~2[A(XI'X2)     = 0]        Inl by successively squaring and multiplying the
+                                                              connection matrices for the transition graphs of
+                              L(Ei) c L(E2)
+                                                                A E and A F. The entire procedure thus can be
+                              ((E 1 U E2),E 2) ~ N-INEQ       carried out in nondeterminlstic       time bounded by a
+                                                 ((U,+]).     polynomial in IEI + IFI.
+
+                                                                   To prove completeness, let SAT be the set of
+We note that the function mapping A(Xi,X2)         to         satisfiable Boolean formulas in conjunctive form
+((E I U E2),E p) is log-space computable, which               with exactly three literals per conjunct.        Cook
+~Ompletes the proof.                                           [3] has shown t h a t ~ K l o g SAT, and we shall show
+that SAT ~log INEQ([0],         [U,',*}).                                that moreover with the exception of the proposi-
+                                                                         tional calculus and some theories resembling the
+       Let A(X I) be a Boolean formula in conjunctive                    first order theory of equality, all these decidable
+                                                                         theories can be proved to require exponential or
+form with three literals per conjunct.           Let C k be              greater time• Although certain of the word problems
+the set of literals in the k th conjunct, I ~ k ~ m.                     considered in this paper are somewhat arbitrarily
+Say that A has n distinct variables, so that an                          constructed, we have studied them in the hope that
+assigmnent to the variables can be represented as                        the methods of proof will extend to algebra, topo-
+a binary vector of length n. Let pl,P2,...,pn be                         logy and other areas where decision procedures
+                                                                         arise, and will curtail wasted effort in searching
+the first n primes.  If z 6 N is congruent to 0 or
+                                                                         for efficient procedures when none exist.
+I modulo Pi for i ~ i ~ n, we shall say z satisfies
+A if the assigrmnent      (z mod PI' z mod P 2 " ' "       z modp~           One can easily generate several dozen word
+                                                                         problems which are variants of those considered in
+satisfies A.                                                             this paper by considering different subsets of the
+                                                                         operations we have defined or inventing similar
+       Let E 0 be the expression such that L(E0) =                       ones. We hesitate to reco~mlend this entire class
+[ 0z I z E N does not encode an assigr~ent]            =                 of problems as an interesting research topic, but
+                                                                         two problems we are interested in are
+[ 0~ I (Zk ~ ~ [ z   ~ 0(mOdPk) and z ~ I mod(Pk)]            ].
+
+                     n   Pk'l                                            Open Problem:   Characterize   the computational
+            E0 = kQ1 jQa [0J'(0Pk)*]                                     complexity of INEQ([O}, [ U , ' , * , 2 ] ) and INEQ([O],
+                                                                         [U,',*,~]).   In particular are they recognizable in
+                                                                                     .2 n
+       For each conjunct Ck~ we construct an expression                  time K 22..   "~k for any fixed k? We conjecture
+E k such that if 0 z E L(Ek) and z is an asslgr~nent                     an affirmative answer to the latter question by
+                                                                         reducing these problems to Presburger arithmetic
+then z does not assign the value 1 to any literal
+                                                                         (cf. 17).
+in C k. For example, if C k = [Xl, r, -~l,s' Xl,t]
+for 1 ~ r,s,t ~ n and r~s,t distinct~          let zk be                      Define polynomial expressions over finite sets
+                                                                         o_~ integers recursively as follows: (Xl,X2,...,x n)
+the unique integer such that 0 K zk < prPsPt ,
+                                                                         is an expression and ~(Xl,...,Xn))     = Ix I .... ,Xn]
+z k ~ O(mod pr ), zk ~ 1 (mod p~), and z k ~ 0 (modPt),
+                                                                         where n ~ I and Xl,.. • ,x n are nonnegative integers
+Then
+                                                                         expressed in binary notation; if E and F are
+                                                                         expressions and n E N is expressed in binary nota-
+            E k = 0Zk.(0PrPsPt) *.                                       tion, then (E + F), (E-F), (ExF)I and (E) n are
+                                                                         expressions and L((E+F)~ = [x+y ~ x 6 L(E) and y 6
+                                                                         L(F)}, L((E-F)) ~ [x-y | x 6 L(E) and y 6 L(F)],
+       Now it is not hard to show that A(Xi) is sat-                     L((EXF)) = [xXy I x 6 L(E) and y E L(F)}, and
+isfiable = (Zz 6 N)[z encodes an assigrm~ent               to A          L((E) n) = [xn I x 6 L(E)].
+and 0 z ~ L(E k) for I ~ k ~ m] ~ L(E 0 U k~ I E k) ¢                    Open problem: Characterize the computational
+ w
+0 .                                                                      complexity of the equivalence problem for poly-
+                                                                         nomial expressions over finite sets of integers•
+       The reader can verify that the mapping from
+
+A(Xl) to (E 0 U k~ I Ek, 0") is log-space computable,                                          REFERENCES
+which completes the proof.                                                    Meyer, A.R. and L.J. Stockmeyen. The Equivalence
+                                                                         I.
+                                                                              Problem for Regular Expressions with Squaring Requires
+                                                                              Exponential Space, 13th Annual IEEE Symp. on
+            7. CONCLUSIONS AND OPEN PROBLEMS                                  Switchir~ and Automata Theory, Oct., 1972,125-129.
+    We have demonstrated that the inherent compu-
+                                                                         2.   Hopcroft, J. and J. U]iman.   Formal Languages
+tational complexity of a large selection of word
+                                                                              and their Relation t__oAutomata, Addison-Wesley,
+problems from automata theory, logic and arithmetic
+                                                                              c. 1969~ 242pp.
+can be characterized precisely.  Our results to
+date are summarized in the table in section 2.
+                                                                         3.   Cook, S. The Complexity of Theorem-Proving
+                                                                              Procedures, Conf. Rec. 3rd ACM Symp. o__nTheory
+    We believe that the methods used here will have
+                                                                              of Computing, 1970, 151-158.
+wide applicability in computational mathematics.
+Our results already imply that previous efforts to
+                                                                         4.   Karp, R. Reducibility Among Combinatorial
+find efficient procedures for testing equivalence                             Problems, in Complexity of Computer Computations,
+of regular expressions or minimizing nondetermin-
+                                                                              R.E. Miller and J.W. Thatcher, ed., Plenum Press,
+istic finite automata (cf. [14], [15], [16]) were
+                                                                              N.Y., 85-104.
+foredoomed•  Recent studies by ourselves and co-
+workers of decision procedures for logical theories
+                                                                         5.   Seiferas, J. Translations in the Nondeterministic
+show that our methods are applicable to nearly all
+                                                                              Tape and Time Hierarchies, i_~ preparation.
+of the classical decidability results in logic,and
+
+
+
+                                                                     B
+6.   Ibarra, O. A Note Conuerning Nondeterministic
+     Tape Complexities, JACM, Vol. 19, 1972, 608-612.
+
+7.   Cook, S. A Hierarchy for Nondeterministic Time
+     Complexity, Conf. Rec. 4th ACM Symp. o__nTheory
+     o_~ Computing, 1972, 187-192.
+
+8.   Blum, M. On Effective Procedures for Speeding
+     Up Algorithms, JACM Vol. 18, 1971, 290-305.
+
+9.   Meyer, A. and Stockmeyer, L. Some Inherently
+     Difficult Word Problems, Part I, to appear i n
+     Journal of Computer an_~ System Sciences.
+
+I0. Meyer, A. and Stockmeyer, L. Nonelementary Word
+    Problems in Automata and Logic, to be presented
+    at the Amer. Math. Soc. Symp. on the Complexity
+    of Computation, New York, April 1973.
+
+II. Bauer, M., D. Brand, M. Fischer, A. Meyer, and
+    M. Paterson. A Note on Disjunctive Form Taut-
+    ologies, SIGACT NEWS, 1973, to appear.
+
+12. Savitch, W. Relationships Between Nondeter-
+    ministic and Deterministic Tape Complexities,
+    J. Computer and System Sciences Vol. 4, 1970,
+    Y77-192.
+
+13. Stochneyer, L. Some Inherently Difficult Word
+    Problems, Part II, i__npreparation.
+
+14. Brzozowski, J.A. Derivatives of Regular
+    Expressions, JACM Vol. l!, 1964, 481-494.
+
+15. Wiener, P. and T. Kameda. On the Reduction of
+    Non-Deterministic Automata, Tech. Report No. 57,
+    Dept. of Electrical Engineering, Princeton
+    University, 1968.
+
+16. Ginzburg, A. A Procedure for Checking Equality
+    of Regular Expressions, JACM, Vol 14, 355-362.
+
+17. Oppen, D.C. Elementary Bounds for Presburger
+    Arithmetic, this volume.
+

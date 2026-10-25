@@ -1,6 +1,6 @@
 # Independent analytic review: Zenodo 22089373
 
-**Status: PENDING final semantic and sharpness replay.** This draft is not a promotion clearance. Review started 2026-10-25T01:47:48Z. The assessed edition is the 33-page main manuscript and 7-page supplement, printed August 2026, archive v1.1.7 (2026-08-23). This is an independent AI mathematical review, not human peer review or novelty certification.
+**Verdict: PASS at the exact stated scope.** No substantive mathematical defect was found. Review completed 2026-10-25T02:24:01.100670+00:00; started 2026-10-25T01:47:48Z. Publication disposition remains the root reviewer’s responsibility. The assessed edition is the 33-page main manuscript and 7-page supplement, printed August 2026, archive v1.1.7 (2026-08-23). This is an independent AI mathematical review, not human peer review or novelty certification.
 
 ## Exact source and reading scope
 
@@ -61,7 +61,21 @@ Finite successful examples alone do not prove the universal classification. The 
 
 The authenticated companion tar was safely extracted into an own scratch working copy, retaining its regular-file executable modes. The wrapper then used its own isolated temporary run. Shared originals stayed read-only. The actual command was `bash replay-work/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh full`, with Python 3.11.8, SymPy 1.14.0, NetworkX 3.2.1 and mpmath 1.3.0. The complete current-run output is `evidence/full-replay.log`.
 
-**This section is pending the remaining full-run gates and final exit code.** Thus far the new replay has passed package integrity and mutation tests, standard-convention/root/incoming/submersion checks, both cut implementations, global cut/fiber audits, the regenerated three-outgoing universe, bounded directed relations, four-outgoing signatures and canonical transports, exact fixed-full restoration base audits, and direct-anchor extension tests. The provisional `probe_extension_status: UNRESOLVED` emitted by the narrow four-outgoing base checker is not treated as a global pass; the full semantic extension gate must complete separately.
+The complete current run exited **0**. It printed `VERIFIED: all exact mathematical gates (full)` and, after checking all 241 bound payload files again, `VERIFIED: certificate bundle mode=full`. `evidence/full-replay-result.json` records the observed completion and log/commitment hashes. Six fresh result JSON bodies were copied before automatic cleanup and independently matched to the current commitment file; Omega stdout-derived bodies are separately labelled, with the rank-readability body byte-identical to its output commitment.
+
+| Full replay stage | Observed result |
+|---|---|
+| Integrity/conventions | All 241 payload files, 27 package mutations, twelve primitive supports, 100 rootings and eight convention mutations verified. |
+| Incoming roles/submersions | Independent incoming-boundary choices retained; 42,908 product-map completions checked with no row-rank failure. The false common-incoming shortcut was rejected. |
+| Cut palettes and fibers | 808,642 balanced words compressed; 379,742 valid independent palette presentations, zero survivors; endpoint dichotomy, 204 one-active minors, two-active identities and bridge/fiber mutation controls verified. |
+| Three-outgoing universe/base | Fresh 10,826 raw / 10,466 canonical relations; cleanroom bounded-relation audit with no failures; all 225 exact symbolic bodies and restoration audit verified. |
+| Four-outgoing universe/base | Signature and all 192 presentation transports verified; full exact audit of 132 roots and 2,106 states, thirteen mutations and additional base audit verified. |
+| Direct anchors | All 2,642 one-port and 18,224 two-port extensions of 62 anchors, plus twelve directed/label/parent mutation controls, verified. |
+| Complete semantic probes | All 101,148 n3 and 168,582 theta2-n4 relations over 276 paths verified from graph-derived semantics; maximum ten ports; nine mutation controls and fifty tracked-input checks passed. |
+| Triangle converse | Exact common-germ certificate comparison and mutation suite verified. |
+| Theta/Omega | Theta symbolic and separate standard-library implementations passed; Omega orbit convention, producer, standard-library replay, cleanroom equality/topology/rank and generic-rank readability all passed. |
+
+The narrow four-outgoing base checker prints `probe_extension_status: UNRESOLVED` because it does not certify extensions. This was not counted as an extension proof. The separate complete semantic gate subsequently verified both families and all 269,730 relations, closing that distinct dependency. No historical success was substituted for the current run.
 
 This review does not claim a fresh `regenerate-all` run. Full mode recomputes the stated mathematical verification gates against the complete bound proof objects and regenerates selected universes. It is distinct from the archive's separate two-copy end-to-end primitive regeneration mode. Historical logged success was not used to fill an unexecuted gate.
 
@@ -80,4 +94,8 @@ A complete fresh copy of Bochnak–Coste–Roy's 1998 textbook was not acquired.
 
 No current sibling mathematical report or dedicated historical referee prose was read. Required manuscript, supplement and proof-bundle crosswalk contain incidental historical status phrases, including “FINAL OUTCOME A — PROVED” and “sealed and completely regenerated”; current published verifier output also includes inherited stage labels. These were encountered after the initial independent checks and are not adopted as evidence. Names of archive `reviews/` directories identify published mathematical programs, not sibling review reports.
 
-The exact remaining task is completion and inspection of this current full replay, followed by a final source-custody check. No substantive mathematical defect has been established so far. A final conclusion must remain limited to the hypotheses above, exact source hashes, the finite computer-assisted proof objects and ordinary trusted arithmetic/software dependencies. It will not certify novelty, priority, journal acceptance, human peer review or absence of every conceivable error.
+**Strongest verified conclusion:** the stated strong-class directed-containment classification and generic topology recovery modulo ordinary triangle redirection, with the stated positive incidence fiber and both all-n weak-class sharpness families, are supported by the analytic reductions, distinct exact controls and the completed full mathematical replay at these immutable source bytes. **Exact remaining mathematical gap identified by this review: none.**
+
+The final read-only custody check rehashed all fourteen public assets and all 261 extracted regular files; all original bytes are unchanged. No sources were repaired. No site, spreadsheet, Git, Zenodo or outreach actions were performed.
+
+The PASS remains limited to the hypotheses above, exact source hashes, finite computer-assisted proof objects and ordinary trusted arithmetic/software dependencies. It does not certify novelty, priority, journal acceptance, human peer review or absence of every conceivable error. The unacquired original BCR wording, omission of a fresh `regenerate-all` run, and absence of a line-by-line audit of every archive file are explicit review limits, not silently filled claims.

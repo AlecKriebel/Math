@@ -1,0 +1,1586 @@
+                                                                      ABELIAN LOGIC GATES
+
+                                                  ALEXANDER E. HOLROYD, LIONEL LEVINE, AND PETER WINKLER
+
+
+
+
+arXiv:1511.00422v2 [cs.DM] 10 Apr 2018
+                                                 Abstract. An abelian processor is an automaton whose output is indepen-
+                                                 dent of the order of its inputs. Bond and Levine have proved that a network
+                                                 of abelian processors performs the same computation regardless of processing
+                                                 order (subject only to a halting condition). We prove that any finite abelian
+                                                 processor can be emulated by a network of certain very simple abelian pro-
+                                                 cessors, which we call gates. The most fundamental gate is a toppler, which
+                                                 absorbs input particles until their number exceeds some given threshold, at
+                                                 which point it topples, emitting one particle and returning to its initial state.
+                                                 With the exception of an adder gate, which simply combines two streams of
+                                                 particles, each of our gates has only one input wire, which sends letters (“par-
+                                                 ticles”) from a unary alphabet. Our results can be reformulated in terms of the
+                                                 functions computed by processors, and one consequence is that any increasing
+                                                 function from Nk to N` that is the sum of a linear function and a periodic func-
+                                                 tion can be expressed in terms of (possibly nested) sums of floors of quotients
+                                                 by integers.
+
+
+
+
+                                                                              1. Introduction
+                                            Consider a network of finite-state automata, each with a finite input and output
+                                         alphabet. What can such a network reliably compute if the wires connecting its
+                                         components are subject to unpredictable delays? The networks we will consider
+                                         have a finite set of k input wires and ` output wires. These wires are unary (each
+                                         carries letters from a 1-letter alphabet), and even they are subject to delays, so
+                                         the network computes a function Nk → N` : The input is a k-tuple of natural
+                                         numbers (N = {0, 1, 2, . . .}) indicating how many letters are fed along each input
+                                         wire, and the output is an `-tuple indicating how many letters are emitted along
+                                         each output wire.
+                                            The essential issue such a network must overcome is that the order in which
+                                         input letters arrive at a node must not affect the output. To address this issue,
+                                         Bond and Levine [BL16a], following Dhar [Dha99, Dha06], proposed the class of
+                                         abelian networks. These are networks each of whose components is a special type
+                                         of finite automaton called an abelian processor.
+
+                                            Date: Revised April 9, 2018.
+                                            2010 Mathematics Subject Classification. 68Q10, 68Q45, 68Q85, 90B10.
+                                            Key words and phrases. abelian network, eventually periodic, finite automaton, floor function,
+                                         recurrent abelian processor.
+                                            The second author is supported by NSF grant DMS-1455272 and a Sloan Fellowship. The
+                                         third author is supported by NSF grant DMS-1162172.
+                                                                                        1
+2                          HOLROYD, LEVINE, AND WINKLER
+
+   Certain abelian networks such as sandpile [Ost03, SD12] and rotor [LP09, HP10,
+FL13] networks produce intricate fractal outputs from a simple input. Abelian
+networks can be used to solve certain integer programs asynchronously [BL16a]
+and to detect graph planarity [CCG14]. From the point of view of computational
+complexity, predicting the final state of a sandpile on a finite simple graph can be
+done in polynomial time [Tar88], and in fact this problem is P-complete [MN99].
+But on finite directed multigraphs, deciding whether a sandpile halts is already
+NP-complete [FL15]. (Whether a sandpile halts is independent of the order of
+topplings.) For further complexity results, see [MM09, MM11, CL13, HKT15,
+KT15, PP15]. Analogous problems on infinite graphs are undecidable: An abelian
+network whose underlying graph is Z2 , or a sandpile network whose underlying
+graph is the product of Z2 with a finite path, can emulate a Turing machine
+[Cai15].
+   The following definition is equivalent to that in [BL16a] but simpler to check.
+A processor with input alphabet A, output alphabet B and state space Q is a
+collection of transition maps and output maps
+
+                           ti : Q → Q and oi : Q → NB
+
+indexed by i ∈ A. The processor is abelian if
+
+                       ti tj = tj ti   and oi + oj ti = oj + oi tj                (1)
+
+for all i, j ∈ A. The interpretation is that if the processor receives input letter
+i while in state q, then it transitions to state ti (q) and outputs oi (q). The first
+equation in (1) above asserts that the processor moves to the same state after
+receiving two letters, regardless of their order. The second guarantees that it
+produces the same output. The processor is called finite if both the alphabets
+A, B and the state space Q are finite. In this paper, all abelian processors are
+assumed to be finite and to come with a distinguished starting state q 0 that can
+access all states: each q ∈ Q can be obtained by a composition of a finite sequence
+of transition maps ti applied to q 0 .
+   We say that an abelian processor computes the function F : NA → NB if
+inputting xa letters a for each a ∈ A results in the output of (F (x))b letters b for
+each b ∈ B. Our convention that the various inputs and outputs are represented by
+different letters is useful for notational purposes. An alternative viewpoint would
+be to regard all inputs and outputs as consisting of indistinguishable “particles”,
+whose roles are determined by which input or output wire they pass along.
+   An abelian network is a directed graph with an abelian processor located
+at each node, with outputs feeding into inputs according to the graph structure,
+and some inputs and outputs designated as input and output wires for the entire
+network. (We give a more formal definition below in §2.3.) An abelian network
+can compute a function as follows. We start by feeding some number of letters
+along each input wire. Then, at each step, we choose any processor that has at
+least one letter waiting at one of its inputs, and process that letter, resulting in a
+new state of that processor, and perhaps some letters emitted from its outputs. If
+                                ABELIAN LOGIC GATES                                     3
+
+after finitely many steps all remaining letters are located on the output wires of
+the network, then we say that the computation halts.
+   The following is a central result of [BL16a], generalizing the “abelian property”
+of Dhar [Dha90] and Diaconis and Fulton [DF91, Theorem 4.1] (see [H+ 08] for
+further background). Provided the computation halts, it does so regardless of the
+choice of processing order. Moreover, the letters on the output wires and the final
+states of the processors are also independent of the processing order. Thus, a
+network that halts on all inputs computes a function from Nk to N` (where k and
+` are the numbers of input and output wires respectively). This function is itself
+of a form that can be computed by some abelian processor, and we say that the
+network emulates this processor.
+   The main goal of this paper is to prove a result in the opposite direction. Just
+as any boolean function {0, 1}A → {0, 1}B can be computed by a circuit of AND,
+OR and NOT gates, we show that any function NA → NB computed by an abelian
+processor can be computed by a network of simple abelian logic gates, specified
+below. Furthermore (as in the boolean case), the network can be made directed
+acyclic, which is to say that the graph has no directed cycles.
+   For example, a sandpile or rotor-router process (see, e.g. [H+ 08, HP10]) defined
+on a finite graph can be thought of as a computer whose input is particles placed
+on vertices, and whose output constitutes particles collected at designated points.
+It is thus an abelian processor, and our theorems show that it can be emulated by
+a directed acyclic network of simple abelian gates.
+Theorem 1.1. Any finite abelian processor can be emulated by a finite directed
+acyclic network of adders, splitters, topplers, delayers and presinks.
+   If the processor satisfies certain additional conditions, then some gates are not
+needed. An abelian processor is called bounded if the range of the function that
+it computes is a finite subset of NB .
+Theorem 1.2. Any bounded finite abelian processor can be emulated by a finite
+directed acyclic network of adders, splitters, delayers and presinks.
+   An abelian processor P is called recurrent if for every pair of states q, q 0 there
+is a finite sequence of input letters that causes it to transition from q to q 0 . An
+abelian processor that is not recurrent is called transient.
+Theorem 1.3. Any recurrent finite abelian processor can be emulated by a finite
+directed acyclic network of adders, splitters and topplers.
+
+1.1. The gates. Table 1 lists our abelian logic gates, along with the symbols
+we will use when illustrating networks. A splitter has one incoming edge, two
+outgoing edges, and a single internal state. When it receives a letter, it sends one
+letter along each outgoing edge. On the other hand, an adder has two incoming
+edges, one outgoing edge, and again a single internal state. For each letter received
+on either input, it emits one letter. The rest of our gates each have just one input
+and one output.
+   For integer λ ≥ 2, a λ-toppler has internal states 0, 1, . . . , λ−1. If it receives a
+letter while in state q < λ−1, it transitions to state q+1 and sends nothing. If it
+4                         HOLROYD, LEVINE, AND WINKLER
+
+                                   Single state
+
+               adder                                            (x, y) 7→ x + y
+
+
+
+             splitter                                             x 7→ (x, x)
+
+                                    Recurrent
+                                                                         jxk
+         toppler (λ ≥ 2)                       λ                  x 7→
+                                                                          λ
+
+                                           q                           jx + q k
+    primed toppler (1 ≤ q < λ)                 λ                x 7→
+                                                                          λ
+
+                                     Transient
+
+             delayer                                         x 7→ max(x − 1, 0)
+
+
+
+             presink                                           x 7→ min(x, 1)
+
+
+            Table 1. Abelian gates and the functions they compute.
+
+
+
+
+receives a letter while in state λ−1, it “topples”: it transitions to state 0 and emits
+one letter. A λ-toppler that begins in state 0 computes the function x 7→ bx/λc; if
+begun in state q > 0 it computes the function x 7→ b(x+q)/λc. A toppler is called
+unprimed if its initial state is 0, and primed otherwise.
+   The above gates are all recurrent. Finally, we have two transient gates whose
+behaviors are complementary to one another. A delayer has two internal states
+0, 1. If it receives an input letter while in state 0, it moves permanently to state
+1, emitting nothing. In state 1 it sends out one letter for every letter it receives.
+Thus, begun it state 0, it computes the function x 7→ max(x−1, 0) = (x − 1)+ .
+A presink has two internal states 0, 1. If it receives a letter while in state 0, it
+transitions permanently to state 1 and emits one letter. All subsequent inputs are
+ignored. From initial state 0 it computes x 7→ min(x, 1) = 1[x > 0].
+   The topplers form an infinite family indexed by the parameter λ ≥ 2. If we
+allow our network to have feedback (i.e., drop the requirement that it be directed
+acyclic) then we need only the case λ = 2, and in particular our palette of gates is
+                               ABELIAN LOGIC GATES                                   5
+
+
+                                                 0
+                                                     3
+
+
+                                                 1
+                                                     3
+
+
+                                                 2
+                                                     3
+
+       Figure 1. Emulating a rotor of degree 3 with topplers. To emulate
+       a sandpile node, prime the three topplers identically (and optionally
+       combine them into one toppler preceding a splitter). For a rotor
+       aggregation node, insert a delayer between the adder and the split-
+       ter.
+
+reduced to a finite set. Feedback also allows us to eliminate one further gate, the
+delayer.
+Proposition 1.4. For any λ ≥ 3, a λ-toppler can be emulated by a finite abelian
+network of adders, splitters and 2-topplers. So can a delayer.
+   The toppler is a very close relative of the two most extensively studied abelian
+processors: the sandpile node and the rotor node. Specifically, for a node of degree
+k, either of these is easily emulated by k suitably primed topplers in parallel, as
+in Figure 1. (Sandpiles and rotors are typically considered on undirected graphs,
+in which case the k inputs and k outputs of a vertex are both routed along its k
+incident edges). Rotor aggregation [LP09] can also be emulated, by inserting a
+delayer into the network for the rotor.
+
+1.2. Unary input. A processor has unary input if its input alphabet A has size
+1 (so that it computes a function N → N` ). It is easy to see from the definition that
+any finite-state processor with unary input is automatically abelian. Indeed, the
+same holds for any processor with exchangeable inputs, i.e. one whose transition
+maps and output maps are identical for each input letter. (Such a processor
+can be emulated by adding all its inputs and feeding them into a unary-input
+processor). Note that all our gates have unary input except for the adder, which
+has exchangeable inputs.
+   Theorems 1.1–1.3 have rather straightforward proofs if we restrict to unary-
+input processors. (See Lemmas 4.1 and 6.1.) Our main contribution is that unary-
+input gates (and adders) suffice to emulate processors with any number of inputs.
+(In contrast, elementary considerations will show that there is no loss of generality
+in restricting to processors with unary output; see Lemma 3.2.)
+
+1.3. Function classes. An important preliminary step in the proofs of Theo-
+rems 1.1–1.3 will be to characterize the functions that can be computed by abelian
+6                         HOLROYD, LEVINE, AND WINKLER
+
+
+
+
+        Figure 2. Left: the graph of a ZILP function f : N2 → N. The
+        height of a bar gives the value of the function, and the origin is at
+        the front of the picture. The periodic component has periods 4 and
+        5 in the two coordinates, as indicated by the highlighted bars; the
+        linear part has slopes 2/4 and 4/5 respectively. Right: A ZILEP
+        function comprising the same “recurrent part” together with added
+        “transient margins.”
+
+
+processors (as well as by the bounded and recurrent varieties). The characteriza-
+tions turn out to be quite simple. A function F : Nk → N` is computed by some
+finite abelian processor if and only if: (i) it maps the zero vector 0 ∈ Nk to 0 ∈ N` ;
+(ii) it is (weakly) increasing; and (iii) it can be expressed as a linear function plus
+an eventually periodic function (see Definition 2.3 for precise meanings). We call a
+function satisfying (i)–(iii) ZILEP (zero at zero, increasing, linear plus eventually
+periodic). On the other hand, a function is computed by some recurrent finite
+abelian processor if it is ZILP: eventually periodic is replaced with periodic. Fig-
+ure 2 shows examples of ZILP and ZILEP functions of two variables, illustrating
+some of the difficulties to be overcome in computing them by networks.
+   Our main theorems may be recast in terms of functions rather than processors.
+Table 2 summarizes our main results from this perspective. For instance, the
+following is a straightforward consequence of Theorem 1.3.
+Corollary 1.5. (Recurrent abelian functions) Let R be the smallest set of func-
+tions F : Nk → N containing the constant function 1 and the coordinate functions
+x1 , . . . , xk , and closed under addition and compositions of the form F 7→ bF/λc
+for integer λ ≥ 2. Then R is the set of all increasing functions Nk → N expressible
+as L + P where L, P : Nk → Q with L linear and P periodic.
+                                   ABELIAN LOGIC GATES                               7
+
+           Components                    L      +          P          Theorem(s)
+    (splitter and adder only)         linear    +        zero         Lemma 2.8
+         presink, delayer             linear    + eventually constant  1.2, 5.3
+             λ-toppler                linear    +      periodic        1.3, 2.5
+   λ-toppler, presink, delayer        linear    + eventually periodic  1.1, 2.4
+       Table 2. Four different classes of abelian network. The second
+       column indicates the class of increasing functions L + P : Nk →
+       N` computable by a finite, directed acyclic abelian network whose
+       components are splitters, adders and the gates listed in the first
+       column. In the first two lines L and P take values in N` , while in
+       the last two lines L and P take values in Q` .
+
+
+1.4. Outline of article. Section 2 identifies the classes of functions computable
+by abelian processors, as described above, and formalizes the definitions and claims
+relating to abelian networks. Section 3 contains a few elementary reductions in-
+cluding the proof of Proposition 1.4. The core of the paper is Sections 4, 5 and 6,
+which are devoted respectively to the proofs of Theorems 1.3, 1.2 and 1.1. These
+proofs are by induction on the number of inputs to the processor; Theorem 1.1
+is by far the hardest. A recurring theme in the proofs is meagerization, which
+amounts to use of the easily verified identity
+                         j x k x + 1            
+                                                    x+m−1
+                                                              
+                    x=         +          + ··· +                                 (2)
+                           m        m                  m
+for positive integers x and m. A key step in the proof of the general emula-
+tion result, Theorem 1.1, is the introduction of a ZILP function that computes
+the minimum of its n arguments provided they are not too far apart (Proposi-
+tion 6.3). That this function in turn can be emulated follows from the recurrent
+case, Theorem 1.3.
+   In Section 7 we show that no gates can be omitted from our list. We conclude
+by posing some open problems in Section 8.
+
+     2. Functions computed by abelian processors and networks
+   In preparation for the proofs of the main results about emulation, we begin by
+identifying the classes of functions that need to be computed.
+
+2.1. Abelian processors. If P is an abelian processor with input alphabet A,
+and w = i1 · · · i` is a word with letters in A, then we define the transition and
+output maps corresponding to the word:
+                                       tw := ti` · · · ti1 ;
+                 ow := oi1 + oi2 ti1 + oi3 ti2 ti1 + · · · + oi` ti`−1 · · · ti1 .
+Lemma 2.1. For any words w, w0 such that w0 is a permutation of w, we have
+tw = tw0 and ow = ow0 .
+8                             HOLROYD, LEVINE, AND WINKLER
+
+Proof. This follows from the definition of an abelian processor, by induction on
+the length of w.                                                               
+   The function f = fP computed by an abelian processor P with initial state q 0
+is given by
+                        f (x) = ow(x) (q 0 ), x ∈ NA ,
+where w(x) is any word that contains xi copies of the letter i for all i ∈ A.
+We denote vectors by boldface lower-case letters, and their coordinates by the
+corresponding lightface letter, subscripted.
+Lemma 2.2. Let f = fP . If ty (q 0 ) = ty0 (q 0 ) then for any x, y, y0 ∈ Nk
+                           f (x + y) − f (y) = f (x + y0 ) − f (y0 ).
+Proof. Let ty (q 0 ) = ty0 (q 0 ) = q; then f (x + y) = f (y) + ow(x) (q) and f (x + y) =
+f (y0 ) + ow(x) (q). In other words, since y and y0 leave P in the same state q, the
+subsequent input of x has the same effect.                                              
+Definition 2.3. A function f : Nk → N` is (weakly) increasing if x ≤ y implies
+f (x) ≤ f (y) where ≤ denotes the coordinatewise partial ordering. A function
+P : Nk → Q` is periodic if there is a subgroup Λ ⊂ Zk of finite index such that
+P (x) = P (y) whenever x − y ∈ Λ. A function P is eventually periodic if there
+exist λ1 , . . . , λk ≥ 1 and r1 , . . . , rk such that for each i = 1, . . . , k, if x ≥ ri ei then
+                                     P (x) = P (x + λi ei ).                                    (3)
+Here ei is the ith standard basis vector.
+   Note that given λ and r, an eventually periodic function is determined by its
+values on the box [0, r1 + λ1 ] × · · · × [0, rk + λk ]. This notion of eventually periodic
+is intermediate in strength. A stronger requirement would be that P agrees with
+some periodic function outside a finite set. A weaker requirement would be that
+(3) holds only for x ≥ r.
+   An eventually periodic function is not generally periodic outside any finite box.
+The reason is that there are typically infinitely many grid points x (that would,
+e.g., be red in Figure 2) which satisfy x ≥ ri ei for some but not all i.
+Theorem 2.4. Let k, ` ≥ 1. A function f : Nk → N` can be computed by a finite
+abelian processor if and only if f satisfies all of the following.
+   (i) f (0) = 0.
+  (ii) f is increasing.
+ (iii) f = L + P for a linear function L and an eventually periodic function P .
+    As mentioned earlier, we call a function satisfying (i)–(iii) ZILEP. Note that L
+and P need not have integer-valued coordinates, and P need not be nonnegative.
+For example, the function f (x) = bx/2c is ZILEP (in fact ZILP) with L(x) = x/2
+and P (x) = −1[x is odd]/2.
+Proof of Theorem 2.4. Any f = fP trivially satisfies f (0) = 0. To see that f is
+increasing, given x ≤ y there are words w(x) and w(y) (where the number of
+                                  ABELIAN LOGIC GATES                                       9
+
+occurrences of letter i in w(z) is zi ) for which w(x) is a prefix of w(y). Then
+                                 ow(x) + ou tw(x) = ow(y) .
+Since the second term on the left is nonnegative, ow(x) (q) ≤ ow(y) (q).
+   To prove (iii), note that since Q is finite, some power of ti is idempotent, that
+is
+                                      t2λ
+                                       i
+                                         i
+                                           = tλi i
+for some λi ≥ 1. Let L : Nk → N` be the linear function sending
+                                λi ei 7→ f (2λi ei ) − f (λi ei )
+for each i = 1, . . . , k. Now we apply Lemma 2.2 with y = λi ei and y0 = 2y to get
+           f (z + λi ei ) − f (z) = f (2λi ei ) − f (λi ei )        for all z ≥ λi ei ,   (4)
+which shows that f − L is eventually periodic. Thus f satisfies (i)–(iii).
+   Conversely, given an increasing f = L + P , define an equivalence relation on Nk
+by y ≡ y0 if f (y + z) − f (y) = f (y0 + z) − f (y0 ) for all z ∈ Nk . If L is linear and
+P is eventually periodic, then there are only finitely many equivalence classes: if
+yi ≥ ri + λi then y ≡ y − λi ei , so any y ∈ Nk is equivalent to some element of the
+cuboid [0, λ1 + r1 ] × · · · × [0, λk + rk ].
+   Now consider the abelian processor on the finite state space Nk / ≡ with ti (x) =
+x + ei and oi (x) = f (x + ei ) − f (x). Note that ti and oi are well-defined. With
+initial state 0, this processor computes f .                                            
+2.2. Recurrent abelian processors. Recall that an abelian processor is called
+recurrent if for any states q, q 0 ∈ Q there exists x ∈ Nk such that q 0 = tx (q).
+Since we assume that every state is accessible from the initial state q 0 , this is
+equivalent to the assertion that for every q ∈ Q and y ∈ Nk there exists z ∈ Nk
+such that q = ty+z (q). Our next result differs from Theorem 2.4 in only two words:
+recurrent has been added and eventually has been removed! As mentioned earlier,
+we call a function satisfying (i)–(iii) below ZILP.
+Theorem 2.5. Let k, ` ≥ 1. A function f : Nk → N` can be computed by a
+recurrent finite abelian processor if and only if f satisfies all of the following.
+   (i) f (0) = 0.
+  (ii) f is increasing.
+ (iii) f = L + P for a linear function L and a periodic function P .
+Proof. By Theorem 2.4, f satisfies (i) and (ii) and f = L + P with L linear and
+P eventually periodic. To prove (iii) we must show that equation (4) holds for all
+z ∈ Nk . By recurrence, for any y ∈ Nk and any i ∈ A there exists y0 ≥ λi ei such
+that ty0 (q) = ty (q). Now taking x = λi ei in Lemma 2.2, the linear terms cancel,
+leaving
+                     P (y + λi ei ) − P (y) = P (y0 + λi ei ) − P (y0 ).
+The right side vanishes since P is eventually periodic. Since y ∈ Nk was arbitrary,
+P is in fact periodic.
+   Conversely, given an increasing f = L + P , we define an abelian processor P on
+state space Nk / ≡ as in the proof of Theorem 2.4. If L is linear and P is periodic,
+10                        HOLROYD, LEVINE, AND WINKLER
+
+then for each i = 1, . . . , k we have y ≡ y − λi ei whenever yi ≥ λi . Now given any
+x, y ∈ Nk we find x0 ≡ x with x0 ≥ y, so P is recurrent.                            
+
+2.3. Abelian networks. An abelian network N is a directed multigraph G =
+(V, E) along with specified pairwise disjoint sets I, O, T ⊂ E of input, output
+and trash edges respectively. These edges are dangling: the input edges have
+no tail, while the output and trash edges have no head. The trash edges are for
+discarding unwanted letters. Each node v ∈ V is labeled with an abelian processor
+Pv whose input alphabet equals the set of incoming edges to v and whose output
+alphabet is the set of outgoing edges from v. In this paper, all abelian networks
+are assumed finite: G is a finite graph and each Pv is a finite processor.
+    An abelian network operates as follows. Its total state is given by the internal
+states (qv )v∈V of all its processors Pv , together with a vector x = (xe )e∈E ∈ NE
+that indicates the number of letters sitting on each edge, waiting to be processed.
+Initially, x is supported on the set of input edges I. At each step, any non-output
+non-trash edge e with xe > 0 is chosen, and a letter is fed into the processor at
+its endnode v. Thus, xe is decreased by 1, the state of Pv is updated from qv to
+te (qv ), and x is increased by oe (qv ) (interpreted as a vector in NE supported on
+the outgoing edges from v). Here t and o are the maps associated to Pv . The
+sequence of choices of the edges e at successive steps is called a legal execution.
+The execution is said to halt if, after some finite number of steps, x is supported
+on the set of output and trash edges (so that there are no letters left to process).
+    The following facts are proved in [BL16a, Theorem 4.7]. Fixing the initial
+internal states q0 = (qv0 )v∈V and an input vector x ∈ NI , if some execution halts
+then all legal executions halt. In the latter case, the final states of the processors
+and the final output vector do not depend on the choice of legal execution.
+    Suppose for a given q0 that the network halts on all input vectors. Then, since
+the final output vector depends only on the input vector, the abelian network
+computes a function NI → NO . If a network N and a processor P compute the
+same function, then we say that N emulates P.
+Proposition 2.6. If a finite abelian network halts on all inputs, then it emulates
+some finite abelian processor.
+
+Proof. We can regard the entire network as a processor, with its state given by
+the vector of internal states q = (qv )v∈V . Its transition and output maps are
+determined by feeding in a single input letter, performing any legal execution
+until it halts, and observing the resulting state and output letters. Feeding in
+two input letters and using (a special case of) the insensitivity to execution order
+stated above, we see that the relations (1) hold, so the processor is abelian.    
+
+  The abelian networks that halt on all inputs are characterized in [BL16b, The-
+orem 5.6]: they are those for which a certain matrix called the production matrix
+has Perron-Frobenius eigenvalue strictly less than 1. An abelian network is called
+directed acyclic if its graph G has no directed cycles; such a network trivially
+halts on all inputs. This paper is mostly concerned with directed acyclic networks,
+                              ABELIAN LOGIC GATES                                 11
+
+together with some networks with certain limited types of feedback; all of them
+halt on all inputs.
+
+2.4. Recurrent abelian networks. The next lemma follows from [BL16c, Theo-
+rem 3.9], but we include a proof for the sake of completeness. A processor is called
+immutable if it has just one state, and mutable otherwise. Among the abelian
+logic gates in Table 1, splitters and adders are immutable; topplers, delayers and
+presinks are mutable.
+   Recall (from Proposition 1.4 or Figure 3) that if feedback is permitted, then the
+transient delayer gate can be emulated by a network of recurrent gates, namely
+a 2-toppler and a splitter. The next result shows that without feedback, no
+transient processor can be emulated by a network of recurrent processors.
+Proposition 2.7. A directed acyclic network N of recurrent processors emulates
+a recurrent processor.
+Proof. We proceed by induction on the number m of mutable processors in N. In
+the case m = 0, the network N has only one state, so it is trivially recurrent.
+   For the inductive step, suppose m ≥ 1. Since N is directed acyclic, it has
+a mutable processor P such that no other mutable processor feeds into anything
+upstream of P. If N has k inputs, we can regard the remainder N −P as a network
+with m−1 mutable processors and k+k 0 inputs, where k 0 is the number of edges
+from P to N − P. For each state q of N, the function f = fN,q has the form
+                             f (x) = g(x, h(x)) + j(x)
+where g : N k+k0 → N` is the function computed by N − P in initial state q; and
+              0
+h : N → N and j : Nk → N` are the functions sent by P in initial state q to
+     k      k
+
+N − P and the output of N, respectively.
+  By Theorem 2.5 and the inductive hypothesis, each of g, h, j is the sum of a
+periodic and a linear function. Writing g(y) = P (y) + b · y and h(x) = Q(x) + c · x
+we have
+             f (x) = P (x, Q(x) + c · x) + b · (x, Q(x) + c · x) + j(x).
+The first term is periodic and the second is a linear function plus a periodic
+function. Since q is arbitrary the proof is complete by Theorem 2.5.        
+
+2.5. Varying the initial state. We remark that the emulation claims of our main
+theorems can be strengthened slightly, in the following sense. Our definition of a
+processor P included a designated initial state q 0 , but one may instead consider
+starting P from any state q ∈ Q, and it may compute a different function from
+each q. All of these functions can be computed by the same network N, by varying
+the internal states of the gates in N. To set up the network N to compute the
+function fP,q , we simply choose an input vector x that causes P to transition from
+q 0 to q, then feed x to N and observe the resulting gate states. In the recurrent
+case, this amounts to adjusting the priming of topplers. In the transient case, a
+“used” delayer can be replaced with a wire, while a used presink becomes a trash
+edge.
+12                        HOLROYD, LEVINE, AND WINKLER
+
+2.6. Splitter-adder networks. In this section we show that splitter-adder net-
+works compute precisely the increasing linear functions. Using this, we will see
+how Theorem 1.3 implies Corollary 1.5.
+Lemma 2.8. Let k, ` ≥ 1. The function f : Nk → N` can be computed by a
+network of splitters and adders if and only if f (x) = Lx for some nonnegative
+integer ` × k matrix L.
+
+Proof. If a network of splitters and adders has a directed cycle, then it does not halt
+on all inputs, and so does not “compute a function” according to our definition.
+If the network is directed acyclic then by Proposition 2.7 and Theorem 2.5 it
+computes a ZILP function. Since the network is immutable, the periodic part of
+any linear + periodic decomposition must be zero. Conversely, consider a network
+of k splitters Si and ` adders Aj , with Lji edges from Si to Aj . Feed each input i
+into Si , and feed each Aj into output j.                                            
+
+Proof of Corollary 1.5. Given a function F ∈ R, the function x 7→ F (x)−F (0) can
+be computed by a finite, directed acyclic network of splitters, adders and (possibly
+primed) topplers. By Proposition 2.7 any such network emulates a recurrent finite
+abelian processor, so F has the desired form by Theorem 2.5.
+   Conversely if F = L + P with L linear and P periodic, then F (x) − F (0) is
+computable by a finite directed acyclic network of splitters, adders and topplers
+by Theorem 1.3. We induct on the number of topplers to show that F ∈ R. In the
+base case there are no topplers, N is a splitter-adder network, so by Lemma 2.8,
+F is an increasing linear function of its inputs x1 , . . . , xk .
+   Assume now that at least one component of N is a toppler. Since N is directed
+acyclic, there is a toppler T such that no other toppler is downstream of T . Write
+D for the portion of N downstream of T , and U = N − T − D for the remainder
+of the network. Suppose U sends outputs r, s, u respectively to the output of N,
+to T , and to D; and that the toppler T sends output t to D.
+   The downstream part D consists of only splitters and adders, so it computes a
+linear function
+                                 L(t, u) = at + b · u
+for some a ∈ N and b ∈ Nj , where j is the number of edges from U to D. The
+total output of N is
+                                                     jsk
+                 F (x) − F (0) = r + L(t, u) = r + a     + b · u.
+                                                      λ
+Each of r, s, u is a function of the input x = (x1 , . . . , xk ). By induction, r and s
+and each ui belongs to the class R, so F does as well.                                
+
+
+                               3. Basic reductions
+     In this section we describe some elementary network reductions.
+                               ABELIAN LOGIC GATES                                  13
+
+3.1. Multi-way splitters and adders. An n-splitter computes the function
+N → Nn sending x 7→ (x, . . . , x). It is emulated by a directed binary tree of n − 1
+splitters with the input node at the root and the n output nodes at the leaves.
+Similarly, an n-adder computes the function Nn → N given by (x1 , . . . , xn ) 7→
+x1 + · · · + xn . It is emulated by a tree of n − 1 adders.
+
+3.2. The power of feedback.
+
+Proof of Proposition 1.4. To emulate an unprimed λ-toppler, let r = dlog2 λe and
+let
+                                 r−2
+                                 X
+                          r
+                         2 −λ=       bi 2i , bi ∈ {0, 1}
+                                   i=0
+                                 r
+be the binary representation of 2 − λ. Consider r 2-topplers H0 , H1 , . . . , Hr−1 in
+series: the input node is H0 , and each Hi feeds into Hi+1 for 0 ≤ i < r−1. For
+i < r − 1 the 2-toppler Hi is primed with
+                                      Pr−1bi . The last 2-toppler Hr−1 is unprimed,
+and feeds into an s-splitter (s = 1 + i=0 bi ) which feeds one letter each into the
+output node o and the nodes Hi such that bi = 1. This network repeatedly counts
+in binary from 2r − λ to 2r − 1, and it sends output precisely when it transitions
+from 2r − 1 back to 2r − λ. Hence, it emulates a λ-toppler. See Figure 3 for
+examples.
+   We can emulate a q-primed λ-toppler using the same network, but with different
+initial states for its 2-topplers. The required states are simply those that result
+from feeding q input letters into the network described above.
+   A delayer is constructed by splitting the output of a 2-toppler and adding one
+branch back in as input to the 2-toppler (Figure 3).                             
+
+3.3. Primed topplers. The following shows that we can also do without primed
+topplers (at the expense of using a transient gate: the presink).
+Lemma 3.1. A primed λ-toppler can be emulated by a directed acyclic network
+comprising an unprimed λ-toppler, adders, splitters, and a presink.
+
+Proof. See Figure 4. For 0 ≤ q < λ we have b(x + q)/λc = b(x + q(x − 1)+ )/λc,
+so we can emulate a q-primed λ-toppler by splitting the input, feeding it into a
+presink, and adding q copies of the result into the original input before sending it
+to an unprimed λ-toppler.                                                         
+
+
+3.4. Reduction to unary output. Let P be an abelian processor that computes
+f : Nk → N` . If ` = 1 then we say that P has unary output. All of the logic gates
+in Table 1 have unary output with the exception of the splitter. The next lemma
+shows that, for rather trivial reasons, it is enough to emulate processors with unary
+output.
+Lemma 3.2. Any abelian processor can be emulated by a directed acyclic network
+of splitters and processors with unary output.
+14                         HOLROYD, LEVINE, AND WINKLER
+
+
+                                            1
+           3         ⇐⇒                         2           2
+
+
+
+
+           4         ⇐⇒                         2           2
+
+
+                                    1               1
+           5         ⇐⇒                 2               2           2
+
+
+
+
+                     ⇐⇒                             2
+
+
+       Figure 3. Emulating a 3-toppler, 4-toppler, 5-toppler and delayer
+       by networks of 2-topplers.
+
+
+                 4             ⇐⇒                               λ
+                     λ
+
+
+
+
+       Figure 4. Emulating a primed toppler with an unprimed toppler.
+
+
+                          a1                        P1
+
+
+
+                          a2                        P2
+
+       Figure 5. Emulating a 2-output abelian processor with two
+       unary-output processors.
+
+
+Proof. Let P compute f = (f1 , . . . , f` ) : Nk → N` . By ignoring all outputs of
+P except the jth, we obtain an abelian processor Pj that computes fj . Each Pj
+has unary output, and P is emulated by a network that sends each input into an
+`-splitter that feeds into P1 , . . . , P` (Figure 5).                          
+                                  ABELIAN LOGIC GATES                                     15
+
+  In the subsequent proofs we can thus assume that the processors to be emulated
+have unary output. By a k-ary processor we mean one with k inputs. A 1-ary
+processor is sometimes called unary.
+
+                               4. The recurrent case
+  In this section we prove Theorem 1.3. By Lemma 3.2 we may assume that
+the recurrent processor to be emulated has unary output. We will proceed by
+induction on the number of inputs.
+
+4.1. Unary case. We start with the unary case (i.e. one input), which will form
+the base of our induction. An alternative would be to start the induction with the
+trivial case of zero inputs, but the simplicity of the unary case is illustrative.
+   By Theorem 2.5, a recurrent unary processor computes an increasing function
+f : N → N of the form f (x) = cx + P (x), where c ∈ Q≥0 and P : N → Q is
+periodic.
+Lemma 4.1. Let P be a recurrent unary processor that computes f (x) = cx+P (x),
+where P is periodic of period λ. Then P can be emulated by a network of adders,
+splitters and (suitably primed) λ-topplers.
+
+Proof. Observe first that cλ is an integer: since f (0) = 0, we have P (λ) = P (0) = 0
+thus f (λ) = cλ ∈ N. We construct a network of cλ parallel λ-topplers as follows:
+the (unary) input is split (by a cλ-splitter) into cλ streams, each of which feeds
+into a separate λ-toppler. The outputs of the topplers are then combined (by a
+cλ-adder) to a single output (Figure 6).
+   After mλ letters are input to this network, m ∈ N, each toppler will return to
+its original state having output m letters, for a total output of m × cλ = c(mλ);
+thus the network does compute cx + Q(x) where Q has period λ or some divisor
+of λ. To force Q = P it suffices to choose the initial state q in such a way that the
+network’s output for x = 1, 2, . . . , λ matches f (1), . . . , f (λ). This is easily done by
+setting di = f (x) − f (x−1), and for each i with 1 ≤ i ≤ λ, starting di topplers in
+state λ−i.                                                                                  
+
+   Figure 6 illustrates the network constructed to compute the function f = 34 x +
+P (x) where P has period 4 with P (0) = 0, P (1) = 14 , P (2) = 64 and P (3) = 34 .
+The values of f begin 0, 1, 3, 3, 3, 4, 6, 6, 6, 7, 9, 9, 9, . . . . The “I/O diagram” of f
+is shown at the top of the figure; dots represent input letters and bars are output
+letters; the unfilled circle represents the initial state.
+
+4.2. Reduction to the meager case. A recurrent k-ary processor computes a
+function f : Nk → N of the form f (x) = b · x + P (x) where P is periodic.
+Definition 4.2. A recurrent processor is nondegenerate if bi 6= 0 for all i.
+   Note that if bi = 0 then f (x) does not depend on the coordinate xi . In this
+case, by Theorem 2.5 there is a finite (k−1)-ary recurrent processor that computes
+f.
+16                        HOLROYD, LEVINE, AND WINKLER
+
+
+
+
+                                        3
+                                            4
+
+
+                                        2
+                                            4
+
+
+                                        2
+                                            4
+
+     Figure 6. Emulating a unary processor with a network of primed topplers.
+
+   Denote the lattice of periodicity of P by Λ ⊂ Zk . Let λi be the smallest positive
+integer such that λi ei ∈ Λ. For the purposes of the forthcoming induction, we focus
+on the last coordinate.
+Definition 4.3. We say that a k-ary processor P is meager if fP (λk ek ) = 1.
+   Note that if P is meager then for all x ∈ Nk we have
+                             fP (x + λk ek ) = fP (x) + 1.
+Next we emulate a nondegenerate recurrent processor by a network of meager
+processors.
+Lemma 4.4. Let P be a nondegenerate recurrent k-ary processor and let m =
+fP (λk ek ) = λk bk . Then P can be emulated by a network of m − 1 splitters, m − 1
+adders, and m meager recurrent k-ary processors.
+Proof. For each j = 0, . . . , m − 1 consider the function
+                                                      
+                                             f (x) + j
+                                  fj (x) =               .
+                                                 m
+We claim that fj = fPj for some recurrent processor Pj . One way to prove this is
+to use Theorem 2.5, checking from the above formula that since f is ZILP, fj is
+also ZILP. Another route is to note that fj is computed by a network in which the
+output of P is fed into a j-primed m-toppler. By Proposition 2.7, fj is therefore
+computed by some recurrent processor. (Note however that this network itself will
+not help us to emulate P using gates, since it contains P!) Figure 7 illustrates an
+example of the reduction.
+   Now we use the meagerization identity (2):
+                                                        
+                          f       f +1              f +m−1
+                    f=        +          + ··· +
+                          m         m                  m
+                                  ABELIAN LOGIC GATES                                  17
+
+
+
+
+        Figure 7. Left: Example state diagram of a recurrent binary pro-
+        cessor P with λ = (4, 5) and b = ( 21 , 45 ). (The function is the same
+        as the one in Figure 2 (left)). A dot with coordinates x = (x1 , x2 )
+        represents the state of the processor after it has received input x.
+        (The initial state (0, 0) is an unfilled circle.) Each solid contour line
+        between two adjacent dots indicates that a letter is emitted when
+        making that transition. Right: The highlighted contours form the
+        state diagram of the corresponding meager processor P3 , obtained
+        by keeping every fourth contour (starting from the first) of the
+        left picture. The vertical period is still 5, although the horizontal
+        period has increased.
+
+Thus, P is emulated by an m-splitter that feeds into P0 , . . . , Pm−1 , with the results
+fed into an m-adder. It remains to check that each Pj is meager. We have
+                                                                
+                          f (x + λk ek ) + j     f (x) + λk bk + j
+      fj (x + λk ek ) =                       =                      = fj (x) + 1.     
+                                 m                      m
+
+4.3. Reducing the alphabet size. Now we come to the main reduction.
+Lemma 4.5. Let P be a meager recurrent k-ary processor satisfying fP (x +
+λk ek ) = fP (x)+1. Then P can be emulated by a network of a recurrent (k−1)-ary
+processor, a λk -toppler, and an adder.
+Proof. Let P compute f . By Theorem 2.5, f is ZILP. Its representation as a linear
+plus a periodic function makes sense as a function on all of Zk . Now consider the
+increasing function
+             g(x1 , . . . , xk−1 ) = −c − min{xk ∈ Z : f (x1 , . . . , xk ) ≥ 0}.
+where c = − min{xk ∈ Z : f (0, . . . , 0, xk ) ≥ 0}. Note that g is an increasing
+function of (x1 , . . . , xk−1 ) ∈ Nk−1 , and g(0) = 0.
+18                             HOLROYD, LEVINE, AND WINKLER
+
+
+                         x1
+                          ..
+                           .          Q
+                                                      c
+                        xk−1                              λk
+
+
+                          xk
+
+          Figure 8. Emulating a meager recurrent k-ary processor via a
+          recurrent (k−1)-ary processor.
+
+
+
+     If λ ∈ λ1 Z × · · · × λk−1 Z × {0}, then
+
+         g(x + λ) = −c − min{xk ∈ Z : f (x1 , . . . , xk ) + b · λ ≥ 0}
+                   = −c − min{xk ∈ Z : f (x1 , . . . , xk−1 , xk + λk (b · λ)) ≥ 0}
+                   = g(x) + λk (b · λ)
+
+where the second equality holds because P is meager. Hence g is ZILP. Let Q be
+the (k − 1)-ary processor that computes g (which exists by Theorem 2.5).
+  Note that for any integer j we have that f (x1 , . . . , xk ) ≥ j if and only if f (x −
+jλk ek ) ≥ 0, which in turn happens if and only if g(x1 , . . . , xk−1 ) + xk + c ≥ jλk .
+Hence
+                                                                          
+                                            g(x1 , . . . , xk−1 ) + xk + c
+                   f (x1 , . . . , xk ) =                                    .
+                                                            λk
+
+The definition of c gives that 0 ≤ c < λk , since f (0) = 0 and f (−λk ek ) = −1. So
+P is emulated by the network that feeds the last input letter ak into a λk -toppler
+T primed with c, and a1 , . . . , ak−1 into Q which feeds into T .                 
+
+
+     Now we can prove the main result in the recurrent case.
+
+
+Proof of Theorem 1.3. Let P be a recurrent abelian processor to be emulated. By
+Lemma 3.2 we can assume that it has unary output. We proceed by induction
+on the number of inputs k. The base case k = 1 is Lemma 3.2. For k > 1,
+we first use Lemma 4.4 to emulate the processor by a network of meager k-ary
+processors. Then we replace each of these with a network of (k −1)-ary processors,
+by Lemma 4.5, and then apply the inductive hypothesis to each of these.         
+                                ABELIAN LOGIC GATES                                   19
+
+4.4. The number of gates. How many gates do our networks use? For sim-
+plicity, consider the case of a recurrent k-ary abelian processor with λi = 2 and
+bi = 1/2 for all i. It is not difficult to check that our construction uses O(ck ) gates
+as k → ∞ for some c. In fact, a counting argument shows that exponential growth
+with k is unavoidable, as follows. Consider networks of only adders, splitters, and
+2-topplers, but suppose that we allow feedback (so that a λ-toppler can be replaced
+with O(log λ) gates, by Proposition 1.4). The number of networks with at most n
+                     0
+gates is at most nc n for some c0 (we choose the type of each gate, together with
+the matching of inputs to outputs). On the other hand, the number of different
+ZILP functions f that can be computed by a processor of the above-mentioned
+                       k
+form is at least 2(bk/2c) , since we may choose an arbitrary value f (x) ∈ {0, 1} for
+                k
+                      elements x of the middle layer {x ∈ {0, 1}k : i xi = bk/2c}
+                                                                       P
+each of the bk/2c
+of the hypercube. If all k-ary processors can be emulated with at most n gates
+                  k
+then nc n > 2(bk/2c) . It follows easily that some such processor requires at least
+         0
+
+
+C k gates, for some fixed C > 1.
+   If we consider the dependence on the quantities λi and bi as well as k, our
+construction apparently leaves more room for improvement in terms of the number
+of gates, since repeated meagerization tends to increase the periods λi . One might
+also investigate whether there is an interesting theory of k-ary functions that can
+be computed with only polynomially many gates as a function of k.
+   Our construction of networks emulating transient processors (Section 6) will
+be much less efficient than the recurrent case, since the induction will rely on a
+ZILP function of a potentially large number of arguments (Proposition 6.3) that is
+emulated by appeal to Theorem 1.3. It would be of interest to reduce the number
+of gates here.
+
+                               5. The bounded case
+   In this section we prove Theorem 1.2. Moreover, we identify the class of func-
+tions computable without topplers.
+Lemma 5.1. Let f : Nk → {0, 1} be increasing with f (0) = 0. There is a directed
+acyclic network of adders, splitters, presinks and delayers that computes f .
+Proof. Let M be the set of m ∈ Nk that are minimal (in the coordinate partial
+order) in f −1 (1). By Dickson’s Lemma [D13], M is finite; and f (x) = 1 if and
+only if x ≥ m for some m ∈ M . Thus
+                                         1[xi ≥ mi ].
+                                   _ ^
+                           f (x) =
+                                     m∈M i∈A
+The function 1[xi ≥ mi ] is computed by mi − 1 delayers in series followed by a
+presink. The minimum (∧) or maximum (∨) of a pair of boolean ({0, 1}-valued)
+inputs is computed by adding the inputs and feeding the result into a delayer or
+a presink respectively. The minimum or maximum of any finite set of boolean
+inputs is computed by repeated pairwise operations. See Figure 9. The lemma
+follows.                                                                      
+20                          HOLROYD, LEVINE, AND WINKLER
+
+
+
+
+                           b1
+
+                           b2
+
+                           b3
+
+                           b1
+
+                           b2
+
+                           b3
+
+        Figure 9. Networks computing 1[x ≥ 4], and min(b1 , b2 , b3 ) and
+        max(b1 , b2 , b3 ) for boolean inputs bi ∈ {0, 1}.
+
+Lemma 5.2. Suppose f : Nk → N is increasing and bounded with f (0) = 0. Then
+there is a directed acyclic network of adders, splitters, presinks and delayers that
+computes f .
+Proof. By Lemma 5.1, for each j ∈ N there is a network of theP desired type that
+                                                                j=0 1[f (x) > j],
+computes x 7→ 1[f (x) > j]. If f is bounded by J, then f (x) = J−1
+so we add the outputs of these J networks.                                     
+Proof of Theorem 1.2. Let P be a bounded abelian processor. By Lemma 3.2 we
+can assume that it has unary output. The function that it computes is increasing
+and bounded, and maps 0 to 0. Therefore, apply Lemma 5.2.                      
+    What is the class of all functions computable by a network of adders, splitters
+presinks and delayers? Let us call a function P : Nk → N` eventually constant
+if it is eventually periodic with all periods 1; that is, there exist r1 , . . . , rk ∈ N such
+that P (x) = P (x + ei ) whenever xi ≥ ri . (Note the relatively weak meaning of
+this term: Such a function may admit multiple limits as some arguments tend to
+infinity while the others are held constant, as in our remark following the definition
+of eventually periodic.)
+Theorem 5.3. Let k ≥ 1. A function f : Nk → N can be computed by a finite,
+directed acyclic network of adders, splitters, presinks and delayers if and only if it
+satisfies all of the following.
+   (i) f (0) = 0.
+  (ii) f is increasing.
+ (iii) f = L + P for a linear function L and an eventually constant function P .
+                                 ABELIAN LOGIC GATES                                     21
+
+Proof. Let N be such a network, and let it compute f . Since adders and splitters
+are immutable, and presinks and delayers become immutable after receiving one
+input, the internal state of N can change only a bounded number of times. In fact,
+for each i = 1, . . . , k we have tri = tr+1
+                                         i   where r is the total number of presinks and
+delayers in N. Letting bi := f ((r + 1)ei ) − f (rei ), it follows from Lemma 2.2 that
+                                 f (x + ei ) − f (x) = bi                               (5)
+whenever xi ≥ r. Note that bi ∈ N. Letting P (x) := f (x) − b · x, we find that
+P (x + ei ) = P (x) whenever xi ≥ r, so P is eventually constant.
+   Conversely, suppose that f satisfies (i)-(iii). Write f = L + P for a linear
+function L(x) = b · x with b ∈ Nk , and an eventually constant function P . Then
+there exist r1 , . . . , rk such that (5) holds for all i = 1, . . . , k and all x ∈ Nk such
+that xi ≥ ri . In particular, the function
+                                              k
+                                              X
+                            g(x) := f (x) −         bi (xi − ri )+
+                                              i=1
+is ZILP and bounded. By Theorem 1.2 there is a network N of adders, splitters,
+presinks and delayers that computes g. To compute f , feed each input xi into a
+splitter which feeds into N and into an ri -delayer followed by a bi -splitter. 
+
+                                6. The general case
+  In this section we prove Theorem 1.1. As in the recurrent case, the proof will
+be by induction on the number of inputs, k, of the abelian processor. We identify
+Nk with Nk−1 × N, and write (y, z) = y + zek . Meagerization will again play a
+crucial role. A major new ingredient is “interleaving of layers”.
+6.1. The unary case. As before, we first prove the case of unary input, although
+an alternative would be to start the induction with the trivial zero-input processor.
+Lemma 6.1. Any abelian processor with unary input and output can be emulated
+by a directed acyclic network of adders, splitters, topplers, presinks and delayers.
+Proof. Let the processor P compute F : N → N. Since F is ZILEP, it is linear
+plus periodic when the argument is sufficiently large; thus, there exists R ∈ N such
+that the function G given by
+                        G(x) := F (x + R) − F (R),             x∈N
+is ZILP. We have
+                                     R−1
+                                          F (i + 1) − F (i) 1[x > i]
+                                   X
+                F (x) = G (x − R)+ +
+                                                          
+
+                                           i=0
+as is easily checked by considering two cases: when x ≤ R the first term vanishes
+and the second telescopes; when x ≥ R, the second term is F (R) and we use the
+definition of G.
+   By Lemma 4.1, the function G can be computed by a network of adders, splitters
+and topplers. Now to compute F , we feed the input x into R delayers in series.
+For each 0 ≤ i < R, the output after i of them is also split off and fed to a delayer,
+22                        HOLROYD, LEVINE, AND WINKLER
+
+
+                                                      ···
+
+
+
+                                                                         G
+
+
+
+
+       Figure 10. Emulating a transient unary processor. (In this ex-
+       ample, the difference F (i + 1) − F (i) takes values 0, 3, . . . , 1 for
+       i = 0, 1, . . . , R − 1).
+
+to give 1[x > i] (as in the proof of Lemma 5.2); this is split into F (i + 1) − F (i)
+copies, while the output (x−R)+ of the last delayer is fed into a network emulating
+G, and all the results are added. See Figure 10 for an example.                    
+
+6.2. Two-layer functions. We now proceed with a simple case of the inductive
+step, which provides a prototype for the main argument, and which will also be
+used as a step in the main argument.
+Lemma 6.2. Let P be a k-ary abelian processor that computes a function F , and
+suppose that
+                         F (y, z) = F (y, z 0 ) if z, z 0 ≥ 1.              (6)
+Then P can be emulated by a network of topplers, presinks, and (k −1)-ary abelian
+processors.
+Proof. Define
+                          W := sup F (y, 1) − F (y, 0),
+                                 y∈Nk−1
+and note that W < ∞, because the difference inside the supremum is an eventually
+periodic function of y, and is thus bounded. If W = 0, then F is constant in z,
+and therefore P can be emulated by a single (k − 1)-ary processor.
+   Suppose W ≥ 1. We reduce toP       the case W = 1 by the meagerization identity
+                                          −1
+(2). Specifically, we express F as W   i=0 Fi , where Fi := b(F + i)/W c. Each Fi is
+ZILEP (this can be checked directly, or by Proposition 2.6, since Fi is computed
+by feeding the output of F into a toppler). Each Fi satisfies the condition (6), but
+now has Fi (y, 1) − Fi (y, 0) ≤ 1 for all y, as promised. If we can find a network to
+compute each Fi then the results can be fed to an adder to compute F .
+   Now we assume that W = 1. Define the two (k − 1)-ary functions (“layers”):
+                  f0 (y) := F (y, 0),
+                  f1 (y) := F (y, 1) − u,     where u := F (0, 1).
+                                   ABELIAN LOGIC GATES                                        23
+
+
+                                          f0
+
+                     y
+                                                                u
+                                          f1                        2
+
+                     z
+
+
+
+
+        Figure 11. Inductive step for emulating a two-layer function.
+        (Here the solid disk represents k − 1 parallel splitters that split
+        each of the k − 1 entries of the vector y into two.)
+
+Each of f0 , f1 is ZILEP. Therefore, by Theorem 2.4, they are computed by suitable
+(k − 1)-ary abelian processors P0 , P1 . Note that since W = 1, we have u ∈ {0, 1}.
+We now claim that
+                                   f0 (y) + f1 (y) + u + 1[z > 0]
+                                                                 
+                      F (y, z) =                                   .            (7)
+                                                  2
+Once this is proved, the lemma follows: we split y and feed it to both P0 and P1 ,
+while feeding z into a presink. The three outputs are added and fed into a primed
+2-toppler in initial state u. See Figure 11.
+   It suffices to check (7) for z = 0 and z = 1, since both sides are constant in
+z ≥ 1. Write ∆(y) = F (y, 1) − F (y, 0), so that ∆(y) ∈ {0, 1} for each y. For
+z = 0, the right side of (7) is
+                                              
+                              2F (y, 0) + ∆(y)
+                                                 = F (y, 0).
+                                      2
+On the other hand, for z = 1 we obtain
+                                              
+                        2F (y, 1) + (1 − ∆(y))
+                                                 = F (y, 1),
+                                   2
+as required.                                                                                  
+
+6.3. A pseudo-minimum and interleaving. The proof of Theorem 1.1 fol-
+lows similar lines to the proof above, but is considerably more intricate. Again
+we will start by using the meagerization identity to reduce to a simpler case.
+The last step of the above proof can be interpreted as relying on the fact that
+b(a + b)/2c = min{a, b} if a and b are integers with |a − b| ≤ 1. We need a general-
+ization of this fact involving the minimum of n arguments. The minimum function
+(x1 , . . . , xn ) 7→ min{x1 , . . . , xn } itself is increasing but only piecewise linear. Since
+it has unbounded difference with any linear function, it cannot be expressed as the
+sum of a linear and an eventually periodic function, and thus cannot be computed
+by a finite abelian processor. The next proposition states, however, that there
+                                            6
+24
+                                         5 6 6
+                          HOLROYD, LEVINE, AND WINKLER
+                                     4 5 5        6
+                                  3 4 4         5 6 6
+                               2 3 3        4 5 5      6
+                            1 2 2        3 4 4       5 6 6
+                        0 1 1        2 3 3        4 5 5
+                        0 0       1 2 2         3 4 4
+                               0 1 1        2 3 3
+                               0 0       1 2 2
+                                     0 1 1
+        Figure 12. Part of the function
+                                     0 0M c when n = 2. The origin is at
+        the bottom left, and the region L is shaded.
+
+exists a ZILP function that agrees with min near the diagonal. For the proof, it
+will be convenient to extend the domain of the function from Nn to Zn . Theo-
+rem 1.3 implies that the restriction of such a function to Nn can be computed by
+a recurrent abelian network of gates.
+Proposition 6.3 (Pseudo-minimum). Fix n ≥ 1. There exists an increasing
+function M : Zn → Z with the following properties:
+  (i) M (x + n2 ej ) = M (x) + n, for all x ∈ Zn and 1 ≤ j ≤ n;
+ (ii) if x ∈ Zn is such that maxj xj − minj xj ≤ n − 1 then M (x) = minj xj .
+   The case n = 1 of the above result is trivial, since we can take M to be the
+identity. When n = 2 we can take M (x) = b(x1 + x2 )/2c (which satisfies the
+stronger periodicity condition M (x + 2ej ) = M (x) + 1 than (i)). The result is
+much less obvious for n ≥ 3. Our proof is essentially by brute force. Our M will
+in addition be symmetric in the coordinates. The period n2 appearing in (i) is
+relatively unimportant. We do not know whether it can be reduced to order n.
+Any period suffices for our application.
+Proof of Proposition 6.3. We start by defining a function M
+                                                          c that satisfies the given
+conditions but is not defined everywhere. Then we will fill in the missing values.
+Let
+      L := x ∈ Zn : minj xj = 0, maxj xj ≤ n−1 = [0, n−1]n \ [1, n−1]n .
+           
+
+(This is the set on which (ii) requires M to be 0.) Write 1 = (1, . . . , 1) ∈ Zn . Let
+c : Zn → Z ∪ {} be given by
+M
+             ( P
+                                         2                         n
+    c(x) = n j uj + s if x ∈ L + n u + s1 for some u ∈ Z , s ∈ Z,
+    M                                                                               (8)
+                             otherwise.
+Here the symbol  means “undefined”. See Figure 12 for an illustration.
+  We first check that the above definition is self-consistent. Suppose that x ∈
+L + n2 u + s1 and x ∈ L + n2 v + t1; we need to check that the assigned values
+agree. First suppose that u−v does not have all coordinates equal. Then
+                                                                        n2
+            (n2 u + s1) − (n2 v + t1) ∞ = n2 (u−v) + (s−t)1 ∞ ≥            ,
+                                                                        2
+                               ABELIAN LOGIC GATES                                  25
+
+since two coordinates of n2 (u−v) differ by at least n2 , and the same quantity s−t is
+added to each. This gives a contradiction since L has k · k∞ -diameter n−1 < n2 /2.
+Therefore, u−v has all coordinates equal, i.e. u−v = w1 for some w ∈ Z. Since
+L + a1 and L + b1 are disjoint for a 6= b, we must have n2 u + s1 = n2 v + t1, so
+n2 w = t−s. But then the two values assigned to M   c(x) by (8) are n P uj + s and
+                                                                          j
+   P
+n( j uj − nw) + t, which are equal.
+   Next observe that Mc satisfies an analogue of (i). Specifically,
+                                                                  X
+              c(x) 6=  implies M
+              M                      c(x + n2 v) = M  c(x) + n       vj .         (9)
+                                                                    j
+
+This is immediate from (8). Note also that M
+                                           c satisfies (ii), i.e.
+
+                max xj − min xj ≤ n−1      implies   M
+                                                     c(x) = min xj ,             (10)
+                 j         j                                    j
+
+since the assumption is equivalent to x ∈ L + (minj xj )1.
+   The key claim is that M
+                         c is increasing where it is defined:
+
+             x ≤ y and M
+                       c(x) 6=  6= M
+                                    c(y)              c(x) ≤ M
+                                                imply M      c(y).               (11)
+To prove this, suppose that x ∈ L + n2 u + s1 and y         ∈ L + n2 v + t1 satisfy
+x ≤ y. If u−v has all coordinates equal then we again write u−v = w1, so
+y ∈ L + n2 u + (t − n2 w)1. For a < b, no element of L + a1 is ≥ any element
+of L + b1. Therefore x ≤ y implies s ≤ t − n2 w, which yields M
+                                                              c(x) ≤ Mc(y) in
+this case.PNow suppose w := u−v does not have all coordinates equal, and write
+w = n−1 j wj . Since 0 ≤ L ≤ (n−1)1 ≤ n1,
+                        n2 u + s1 ≤ x ≤ y ≤ n2 v + t1 + n1,
+which gives n2 w ≤P(t − s + n)1. P  Suppose for a contradiction that M
+                                                                     c(x) > Mc(y),
+                                                            2
+which is to say n j uj + s > n j vj + t, i.e. t − s < n w. Combined with the
+previous inequality, this gives n2 w < (n+n2 w)1 (where < denotes strict inequality
+in all coordinates). That is
+                                        1
+                             wj − w < ,        1≤j≤n
+                                        n
+which is impossible by the assumption on w. Thus (11) is proved.
+   Now we fill in the gaps: define M by
+                                 
+                   M (x) := sup M   c(z) : z ≤ x and M
+                                                     c(z) 6=  ,
+where the supremum is −∞ if the set is empty and +∞ if it is unbounded above.
+(But these possibilities will in fact be ruled out below).
+  If x ≤ y then the set in the definition of M (x) is contained in that for M (y).
+So M is increasing. If Mc(x) 6=  then taking z = x and using (11) gives M (x) =
+M
+c(x). In particular M satisfies (ii) by (10). It is easily seen that for every x there
+exist u ≤ x ≤ v such that M    c(u) 6=  6= M  c(v). Therefore monotonicity of M
+shows that M (x) is finite. Finally, the definition of M and (9) immediately imply
+that F satisfies the same equality as M c in (9) (now for all x), which is (i).     
+26                        HOLROYD, LEVINE, AND WINKLER
+
+                                                        z3
+                                                        z2
+                                                        z1
+                                                        z0
+
+
+
+
+                                                             z
+
+             Figure 13. The interleaving functions zi (z) for n = 4.
+
+  The above result will be applied as follows.
+Lemma 6.4. (Interleaving) Fix n, k ≥ 1. Let F : Nk−1 × N → N be an increasing
+function satisfying
+                        F (y, z) ≤ F (y, z+1) ≤ F (y, z) + 1.                   (12)
+for all y ∈ Nk−1 and all z ∈ N. Then
+                                                                   
+                      F (y, z) = M F (y, z0 ), . . . , F (y, zn−1 )
+where M is the function from Proposition 6.3, and
+                                                 
+                                          z+n−i−1
+                       zi = zi (z) := n             + i.
+                                             n
+   The idea is that the function (y, z) 7→ F (y, zi (z)) appearing in Lemma 6.4 picks
+out every nth layer of F , starting from the ith (with each such layer repeated n
+times after an appropriate initial offset). Figure 13 illustrates the functions zi .
+The lemma says that we can recover F from these functions by “interleaving”
+their layers, thus reducing the computation of F to potentially simpler functions.
+Note that the functions (y, z) 7→ F (y, zi (z)) do not necessarily map 0 to 0 (even
+if F does), and so cannot themselves be computed by abelian processors. We will
+address this issue with appropriate adjustments (akin to the use of the quantity u
+in the proof of Lemma 6.2) when we apply the lemma in the proof of Theorem 1.1.
+Proof of Lemma 6.4. As i ranges from 0 to n−1, note that zi takes on each of
+the values z, z+1, . . . , z+n−1 exactly once. Thus, the increasing rearrangement
+of (F (y, zi ))n−1                n−1
+               i=0 is (F (y, z+j))j=0 . By (12) it follows that
+
+                 M ((F (y, zi ))n−1                    n−1
+                                i=0 ) = min(F (y, zi ))i=0 = F (y, z).             
+6.4. Proof of main result.
+Proof of Theorem 1.1. By Lemma 3.2 we may assume that the processor P to be
+emulated has unary output. Suppose that P computes F : Nk → N, and recall
+                               ABELIAN LOGIC GATES                             27
+
+from Theorem 2.4 that F is ZILEP. We will use induction on k, with Lemma 6.1
+providing the base case. We therefore suppose that k ≥ 2 and focus on the kth
+coordinate. Suppose that
+            F (y, z + L) = F (y, z) + SL for all y ∈ Nk−1 and z ≥ R.        (13)
+We call L the period, S the slope, and R the margin (the width of the non-
+periodic part) of F with respect to the kth coordinate. (In the notation of Sec-
+tion 4, one choice is to take L = λk , S = bk and R = rk . Note that L is defined
+only up to positive integer multiples, and R can always be increased. On the
+other hand, S is uniquely defined.) Motivated by the proof of Lemma 6.2, we also
+consider the parameter
+                       W :=     sup F (y, z + 1) − F (y, z),                (14)
+                              (y,z)∈Nk
+
+which we call the roughness of F . Since the difference inside the supremum is
+an eventually periodic function of (y, z), we have W < ∞.
+  If W = 0 then F does not depend on the kth coordinate, so we are done by
+induction. Assuming now that W > 0, we will first reduce to functions satisfying
+(13) and (14) with parameters satisfying one of the following:
+                    Case 0: W = 1, L = R = n, S = 0;
+                    Case 1: W = 1, L = R = n, S = 1/n,
+where in both cases, n is a positive integer.
+Reduction to Case 0. Suppose that the original function F has  P slope   S = 0.
+                                                                    −1
+We use the meagerization identity (2) to express F as the sum W  j=0   Fj where
+Fj = b(F + j)/W c. Each Fj is ZILEP by Proposition 2.6 or Theorem 2.4. We
+will emulate each Fj separately and use an adder. Note that Fj has roughness 1.
+Moreover, since S = 0 we have
+                        Fj (y, z) = Fj (y, R)   for all z ≥ R.              (15)
+Therefore we can set n = R, and Fj satisfies (13) and (14) with the claimed
+parameters for case 0.
+Reduction to Case 1. Suppose on the other hand that F has slope S > 0. Take
+R larger if necessary so that R ≥ W L. We use the meagerization identity (2) to
+express F as Sn−1
+              P
+                j=0 Fj where
+                             j R k                  jF + j k
+                        n :=        W L;     Fj :=           .
+                              WL                      Sn
+Note that n ≥ 1. We will again emulate each Fj separately and add them. Note
+that since Sn ≥ max(R, SL), each Fj has roughness 1. Next we check that n can
+be taken as both the period and the margin for each Fj . Since L divides n and
+n ≥ R, we have
+                                                  
+                                 F (y, z) + Sn + j
+                 Fj (y, z+n) =                       = Fj (y, z) + 1
+                                         Sn
+for all y ∈ Nk−1 and all z ≥ n. Finally, Fj has slope 1/n as desired.
+28                        HOLROYD, LEVINE, AND WINKLER
+
+Inductive step. Assume now that F satisfies (13) and (14) with parameters as
+given in case 0 or case 1 in the above table. Also assume that the result of the
+theorem holds for all processors with k − 1 inputs. We will apply the interleaving
+result, Lemma 6.4, rewritten in terms of functions that map 0 to 0. To this end,
+define for i = 0, . . . , n − 1,
+                             jz + n − i − 1k
+                ζi (z) :=                   ,                  z ∈ N;
+                                    n
+                     ui := F (0, i);
+            Gi (y, ζ) := F (y, nζ + i) − ui ,            y ∈ Nk−1 , ζ ∈ N;
+and
+             Mu (v) := M (v + u),                                 v ∈ Nn ,
+where u := (u0 , . . . , un−1 ) ∈ Zn and M is the function from Proposition 6.3. Then
+we have                                                           
+               F (y, z) = Mu G0 y, ζ0 (z) , . . . , Gn−1 y, ζn−1 (z) .            (16)
+This follows from Lemma 6.4: the condition (12) is satisfied because W = 1.
+   Note that u0 = 0 and ui+1 − ui ≤ 1 (also because W = 1), so by Proposi-
+tion 6.3 we have Mu (0) = M (u) = 0. Moreover, the function Mu is increasing
+and periodic, so by Theorem 2.5 there is an recurrent abelian processor Mu that
+computes it, and by Theorem 1.3 there exists a network (of topplers, adders and
+splitters) that emulates Mu . Also note that the function z 7→ ζi (z) is computed
+by a primed toppler.
+   For each i, the function Gi is increasing, and can be expressed as a linear plus
+an eventually periodic function (by Theorem 2.4). And we have
+                             Gi (0, 0) = F (0, i) − ui = 0.
+So our task is reduced to finding a network to compute Gi . For all y and ζ ≥ 1
+we have
+                                                                   (
+                                                                    0 in case 0
+   Gi (y, ζ + 1) − Gi (y, ζ) = F (y, nζ + i + n) − F (y, nζ + i) =
+                                                                    1 in case 1.
+   Thus, in case 0, Gi is ZILEP and satisfies the condition (6), so by Lemma 6.2
+it can be computed by a network of gates and (k − 1)-ary processors. By the
+inductive hypothesis, each (k − 1)-ary processor can be replaced with a network
+of gates that emulates it.
+   On the other hand, in case 1 we can write
+                           Gi (y, ζ) = Hi (y, ζ) + (ζ − 1)+ ,
+for a function Hi (which can be written Hi (y, ζ) := Gi (y, 1[ζ > 0])), that is
+ZILEP and satisfies (6). By Lemma 6.2 and the inductive hypothesis, Hi can be
+computed by a network of gates. Thus, we can compute Gi by feeding ζ into a
+splitter, sending one output to a delayer and the other to a processor Hi that
+computes Hi , and adding the results. See Figure 14.
+                                ABELIAN LOGIC GATES                                   29
+
+
+                                  y                      Hi
+
+                  Gi     ⇐⇒
+
+                                  ζ
+
+                  Figure 14. The additional reduction in case 1.
+
+                                                   G0
+
+                                  n−1
+                                           n
+              y                                    G1            Mu
+
+                                  n−2               ..
+                                           n         .
+
+
+              z                                    Gn
+
+                                       0
+                                           n
+
+                       Figure 15. The main inductive step.
+
+    Finally, (16) and Figure 15 show how to complete the emulation of F in either
+case: z is split and fed into various primed topplers that compute the functions
+ζi (z), which are combined with y and fed into networks emulating the Gi . The
+results are combined using Mu .                                                
+
+                           7. Necessity of all gates
+   In this section we study the classes of functions computable by various subsets
+of the abelian logic gates in Table 1. The following observation will be useful: A
+function on Nk can be decomposed in at most one way as the sum of a linear and
+an eventually periodic function. Indeed, the difference of two linear functions is
+either zero or unbounded on Nk , so if
+                                 L1 + P1 = L2 + P2
+for some linear functions L1 , L2 and some eventually periodic functions P1 , P2 ,
+then L1 − L2 is bounded on Nk and hence L1 = L2 , which in turn implies P1 = P2 .
+7.1. Necessity of infinitely many component types. We have seen that 2-
+topplers, splitters and adders suffice to emulate any finite recurrent abelian pro-
+cessor if feedback is permitted. The goal of this section is to show that no finite list
+30                        HOLROYD, LEVINE, AND WINKLER
+
+of components will suffice to emulate all finite recurrent processors by a directed
+acyclic network.
+   The exponent of a recurrent abelian processor is the smallest positive integer
+m such that inputting m copies of any letter acts as the identity: tm i (q) = q for
+all recurrent states q and all input letters i.
+Lemma 7.1. Let N be a finite, directed acyclic network of recurrent abelian com-
+ponents. The exponent of N divides the product of the exponents of its components.
+Proof. Induct on the number of components. Since N is directed acyclic, it has at
+least one component P such that no other component feeds into P. Let m be the
+exponent of P, and let M be the product of the exponents of all components of N.
+For any letter i in the input alphabet of P, if we input M letters i to P, then P
+returns to its initial recurrent state and outputs a nonnegative integer multiple of
+M/m letters of each type. By induction, the exponent of the remaining network
+N − P is divisible by M/m, so all other processors also return to their initial
+recurrent states.                                                                 
+Lemma 7.2. Let N be a finite, directed acyclic network of recurrent abelian com-
+ponents that emulates a λ-toppler. Then λ divides the exponent of N.
+Proof. If m is the exponent of N, then x 7→ FN (mx) is a linear function. Equating
+the linear parts of the L + P decomposition of N and the λ-toppler, we obtain
+                                   FN (mx)    x
+                                            =
+                                      m       λ
+for all x ∈ N. Setting x = 1 gives λ divides m.                                     
+   Lemmas 7.1 and 7.2 immediately imply the following.
+Corollary 7.3. Let L be any finite list of finite recurrent abelian processors. There
+exists p ∈ N such that a finite, directed acyclic network of components from L
+cannot emulate a p-toppler.
+Proof. Let p be a prime that does not divide the exponent of any member of L. 
+
+7.2. Necessity of primed topplers in the recurrent case. A directed acyclic
+network of adders, splitters and unprimed topplers computes a function L + P
+with L linear and P periodic with P ≤ 0. The inequality follows from converting
+each toppler bx/λc into its linear part x/λ. Recall however that we can do away
+with primed topplers if we allow presinks (Lemma 3.1).
+
+7.3. Necessity of delayers and presinks. Lemma 2.7 implies that a directed
+acyclic network of recurrent components is itself recurrent, so at least one transient
+gate is needed in order to emulate an arbitrary finite abelian processor. But why
+do we have two transient gates, the delayer and the presink? In this section we
+will show that neither can be used along with recurrent components to emulate
+the other.
+Lemma 7.4. If G : N → N is both ZILP and bounded, then G ≡ 0.
+                               ABELIAN LOGIC GATES                               31
+
+Proof. Write G = L + P for L linear and P periodic. In particular, P is bounded,
+so if G is bounded then L is both bounded and linear, hence zero. But then
+G = P , and the only increasing periodic function is the zero function.       
+Proposition 7.5. Let N be a finite directed acyclic network of recurrent compo-
+nents and delayers. Then N cannot emulate a presink.
+Proof. Let A be the total alphabet of N, and let F = FN : NA → N. Let D ⊂ A
+the set of incoming edges to the delayers. Note that inputting 1D converts all
+delayers to wires, and has no other effect (in particular, no output is produced:
+F (1D ) = 0). The resulting network with delayers converted to wires is recurrent
+by Lemma 2.7, so the function
+                                Fe(x) := F (x + 1D )
+is ZILP by Theorem 2.5.
+   Now suppose for a contradiction that N emulates a presink; that is, for some
+letter a ∈ A we have F (n1a ) = 1{n > 0}. Then the function
+                              G(n) := F (n1a + 1D )
+is bounded (by 1 + maxq FN,q (1D ), where the maximum is over the finitely many
+states q of N). Since G is the restriction of the ZILP function Fe to a coordinate
+ray, G is ZILP, which implies G ≡ 0 by Lemma 7.4. But G(1) ≥ F (1a ) = 1, which
+gives the required contradiction.                                               
+   The proof shows a bit more: If N is a directed acyclic network of recurrent com-
+ponents and delayers, then FN is either zero or unbounded along any coordinate
+ray.
+Lemma 7.6. If G : N → N is ZILP, say G = L + P with L linear and P periodic,
+then G(x) = L(x) for infinitely many x.
+Proof. Since G(0) = L(0) = 0 we have P (0) = 0. Since P is periodic, P (x) = 0
+for infinitely many x.                                                      
+Proposition 7.7. Let N be a finite, directed acyclic network of recurrent compo-
+nents and presinks. Then N cannot emulate a delayer.
+Proof. Let A be the total alphabet of N, and let F = FN : NA → N. Let S ⊂ A
+the set of incoming edges to the presinks. Note that inputting 1S converts all
+presinks to sinks. However, unlike the input 1D of the previous proposition, the
+input 1S may have other effects: It may change the states of other components,
+and may produce a nonzero output F (1S ).
+   Denote by q0 the initial state of N and by q1 the state resulting from input
+1S . The resulting network R with presinks converted to sinks is recurrent by
+Lemma 2.7, so the function
+                          FR,q1 (x) = F (x + 1S ) − F (1S )
+is ZILP by Theorem 2.5.
+32                        HOLROYD, LEVINE, AND WINKLER
+
+   Now we relate FR,q1 to FR,q0 . Since R is recurrent, there is an input u ∈ NA
+such that inputting u to R in state q1 results in state q0 . Since converting presinks
+to sinks without changing the states of any other components cannot increase the
+output, we have
+                 F (x) = FN,q0 (x) ≥ FR,q0 (x)
+                                   = FR,q1 (x + u) − FR,q1 (u)
+                                   = F (x + u + 1S ) − F (u + 1S ).
+   Finally, suppose for a contradiction that N emulates a delayer; that is, for some
+letter a ∈ A we have F (n1a ) = (n − 1)+ . Then the function
+                      G(n) := F (n1a + u + 1S ) − F (u + 1S ),
+is ZILP with linear part L(n) = n. By Lemma 7.6, G(n) = n for infinitely many n.
+This yields the required contradiction, since n > F (n1a ) ≥ G(n) for all n ≥ 1. 
+
+                                8. Open problems
+8.1. Floor depth. Let us define the floor depth of a ZILP function as the mini-
+mum number of nested floor functions in a formula for it. More precisely, let R0
+be the set of N-affine functions Nk → N, and for n ≥ 1 let Rn be the smallest set
+of functions closed under addition and containing all functions of the form bf /λc
+for f ∈ Rn−1 and positive integer λ. The floor depth of f is defined as the smallest
+n such that f ∈ Rn .
+   If f is computed by a directed acyclic network of splitters, adders and topplers,
+then the proof of Corollary 1.5 in Section 2.6 shows that the floor depth of f is at
+most the maximum number of topplers on a directed path in the network. Hence,
+by the construction of the emulating network in Section 4, every ZILP function
+Nk → N has floor depth at most k. Is this sharp?
+
+8.2. Unprimed topplers. What class of functions Nk → N can be computed by
+a directed acyclic network of splitters, adders and unprimed topplers?
+
+8.3. Conservative gates. Call a finite abelian processor conservative if, in the
+matrix of the linear part of the function it computes, each column sums to 1. We
+can think of the input and output letters of such a processor as indistinguish-
+able physical objects (balls) that are conserved, as in a sandpile or rotor-router
+model with no sources or sinks. An internal state represents a configuration of
+(a bounded number of) balls stored inside the processor. Splitters and topplers
+are not conservative: splitters create balls while topplers consume them. But a
+sandpile node – which distributes k particles each time it receives k – is conserva-
+tive, even though we would ordinarily emulate one using a toppler and splitters.
+A finite network of conservative abelian processors with no trash edges emulates
+a single conservative processor (provided the network halts). Find a minimal set
+of conservative gates that allow any finite conservative abelian processor to be
+emulated.
+                                  ABELIAN LOGIC GATES                                       33
+
+
+                                 L                  P
+                              linear              zero
+                         piecewise linear  eventually constant
+                           polynomial           periodic
+                      piecewise polynomial eventually periodic
+        Table 3. Sixteen (4 × 4) types of L + P decomposition for an
+        increasing function Nk → N` .
+
+
+8.4. Gates with infinite state space. Each of the following functions N2 → N
+                                    (x, y) 7→ min(x, y)
+                                    (x, y) 7→ max(x, y)
+                                    (x, y) 7→ xy
+can be computed by an abelian processor with an infinite state space. In the case of
+min and max the state space N suffices, with transition function t(x,y) (q) = q+x−y.
+The product (x, y) 7→ xy requires state space N2 , as well as unbounded output: for
+example, when it receives input e1 in state (x, y) it transitions to state (x+1, y) and
+outputs y letters. What class of functions can be computed by an abelian network
+(with or without feedback) whose components are finite abelian processors and a
+designated subset of the above three? Such functions have an L+P decomposition
+where the L part is piecewise linear, polynomial or piecewise polynomial (Table 3).
+
+                                  Acknowledgments
+   We thank Ben Bond, Sergey Fomin and Jeffrey Lagarias for inspiring conversa-
+tions, and Swee Hong Chan for carefully reading an early draft.
+
+                                       References
+[BL16a] Benjamin Bond and Lionel Levine, Abelian networks I. Foundations and examples. SIAM
+   J. Discrete Math. (2016) 30:856–874. arXiv:1309.3445v2
+[BL16b] Benjamin Bond and Lionel Levine, Abelian networks II. Halting on all inputs. Selecta
+   Math. (2016) 22:319–340. arXiv:1409.0169
+[BL16c] Benjamin Bond and Lionel Levine, Abelian networks III. The critical group. J. Alg.
+   Combin. (2016) 43:635–663. arXiv:1409.0170
+[Cai15] Hannah Cairns, Some halting problems for abelian sandpiles are undecidable in dimension
+   three. arXiv:1508.00161
+[CL13] Robert Cori and Yvan Le Borgne, The Riemann-Roch theorem for graphs and the rank
+   in complete graphs, 2013. arXiv:1308.5325
+[CCG14] Melody Chan, Thomas Church and Joshua A. Grochow, Rotor-routing and spanning
+   trees on planar graphs. Int. Math. Res. Not. (2014): rnu025. arXiv:1308.2677
+[DF91] P. Diaconis and W. Fulton, A growth model, a game, an algebra, Lagrange inversion,
+   and characteristic classes, Rend. Sem. Mat. Univ. Pol. Torino, 49 (1991) no. 1, 95–119.
+[Dha90] Deepak Dhar, Self-organized critical state of sandpile automaton models, Phys. Rev.
+   Lett. 64:1613–1616, 1990.
+[Dha99] Deepak Dhar, The abelian sandpile and related models, Physica A 263:4–25, 1999.
+   arXiv:cond-mat/9808047
+34                            HOLROYD, LEVINE, AND WINKLER
+
+[Dha06] Deepak Dhar, Theoretical studies of self-organized criticality, Physica A 369:29–70,
+   2006.
+[D13] Leonard Eugene Dickson, Finiteness of the odd perfect and primitive abundant numbers
+   with n distinct prime factors, Amer. J. Math 35 #4 (1913), 413–422.
+[FL15] Matthew Farrell and Lionel Levine, CoEulerian graphs, Proc. Amer. Math. Soc. (2016)
+   144:2847–2860. arXiv:1502.04690
+[FLP10] Fey, Anne, Lionel Levine, and Yuval Peres, Growth rates and explosions in sandpiles,
+   J. Stat. Phys. (2010) 138:143–159.
+[FL13] Tobias Friedrich and Lionel Levine, Fast simulation of large-scale growth models, Random
+   Structures & Algorithms (2013) 42.2:185–213. arXiv:1006.1003.
+[H+ 08] Alexander E. Holroyd, Lionel Levine, Karola Mészáros, Yuval Peres, James Propp and
+   David B. Wilson, Chip-firing and rotor-routing on directed graphs, in In and out of equilibrium
+   2, pages 331–364, Progress in Probability 60, Birkhäuser, 2008. arXiv:0801.3306
+[HP10] Alexander E. Holroyd and James G. Propp, Rotor walks and Markov chains, in Algorith-
+   mic Probability and Combinatorics, American Mathematical Society, 2010. arXiv:0904.4507
+[HKT15] Bálint Hujter, Viktor Kiss and Lilla Tóthmérész, On the complexity of the chip-firing
+   reachability problem, Proc. Amer. Math. Soc. (2017) 145:3343–3356. arXiv:1507.03209
+[KT15] Viktor Kiss and Lilla Tóthmérész, Chip-firing games on Eulerian digraphs and NP-
+   hardness of computing the rank of a divisor on a graph, Discrete Applied Math. (2015)
+   193:48–56. arXiv:1407.6958
+[LP09] Lionel Levine and Yuval Peres, Strong spherical asymptotics for rotor-router aggregation
+   and the divisible sandpile, Potential Anal. 30:1–27, 2009. arXiv:0704.0688
+[MM11] Carolina Mejı́a and J. Andrés Montoya, On the complexity of sandpile critical avalanches,
+   Theoretical Comp. Sci. 412.30: 3964–3974, 2011.
+[MM09] J. Andrés Montoya and Carolina Meja, On the complexity of sandpile prediction prob-
+   lems, Electronic Notes in Theoretical Comp. Sci. 252:229–245, 2009.
+[MN99] Cristopher Moore and Martin Nilsson. The computational complexity of sandpiles. J.
+   Stat. Phys. 96:205–224, 1999. arXiv:cond-mat/9808183
+[Ost03] Srdjan Ostojic, Patterns formed by addition of grains to only one site of an abelian
+   sandpile, Physica A 318:187–199, 2003.
+[PP15] Kévin Perrot and Trung Van Pham, Feedback arc set problem and NP-hardness of mini-
+   mum recurrent configuration problem of chip-firing game on directed graphs, Ann. Combin.
+   (2015) 19.2: 373–396. arXiv:1303.3708
+[SD12] Tridib Sadhu and Deepak Dhar, Pattern formation in fast-growing sandpiles, Phys. Rev.
+   E 85.2 (2012): 021107. arXiv:1109.2908
+[Tar88] Gábor Tardos, Polynomial bound for a chip firing game on graphs, SIAM J. Disc. Math.
+   1(3):1988.
+
+   Alexander E. Holroyd, Microsoft Research, Redmond, WA 98052, USA.
+http://research.microsoft.com/~holroyd
+
+   Lionel Levine, Cornell University, Ithaca, NY 14853, USA.
+http://www.math.cornell.edu/~levine
+
+   Peter Winkler, Dartmouth College, Hanover, NH 03755, USA.
+http://math.dartmouth.edu/~pw
+

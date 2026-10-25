@@ -1,0 +1,2779 @@
+      Linear Extensions of Rotor-Routing in Directed
+             Graphs: Reachability Problems”
+
+           David Auger              Pierre Coucheney            Kossi Roland Etse
+           Submitted: Nov 15, 2024; Accepted: Mar 3, 2026; Published: Apr 14, 2026
+           © The authors. Released under the CC BY-ND license (International 4.0).
+
+
+
+                                               Abstract
+           We develop a unified framework for rotor-routing that extends the classical
+        model to a broad class of multigraphs equipped with Generalized Rotor Mecha-
+        nisms (GRM). This perspective places rotor-routing on the same footing as abelian
+        sandpiles by interpreting both as conservative instances of Vector Addition Systems
+        (VAS). Within this framework, routing becomes a linear transformation governed
+        by arc mechanisms, while legality is enforced through non-negativity constraints.
+           We introduce four routing models —free routing, standard rotor-routing, cyclic
+        GRM routing, and fully general GRM routing— and study their reachability prob-
+        lems in both the linear and legal settings. Our results generalize previous char-
+        acterizations for standard rotor-routing and extend them to the GRM setting. In
+        particular, we show that legal reachability in GRM multigraphs is NP-complete,
+        whereas the cyclic GRM routing model, which includes the classical rotor-router,
+        admits a polynomial-time algorithm.
+        Mathematics Subject Classifications: 05C20,05C25,05C50,68Q17,37B15
+
+
+1     Introduction and related works
+1.1     The rotor-routing model
+The rotor-routing model, also known as rotor-router or rotor-walk (see [13] for a compre-
+hensive overview), was first introduced by Priezzhev in 1996 as Eulerian walkers [21, 20].
+Independently, in 1996, Propp and Wilson proposed it for generating random spanning
+trees in graphs [25], and it relates to Yanovski et al.’s patrolling algorithms [26]. This
+model is closely associated with abelian sandpiles (or chip-firing) model [2, 13]. For
+general introductions to abelian sandpiles, see [9] and [13], and Section 1.2 hereafter.
+    In the basic rotor-routing model, a single particle (or pebble, chip) moves determin-
+istically on the vertices of a graph. When the particle is at a vertex v, it follows a
+    Laboratoire DAVID, Université de Versailles-Saint-Quentin-En-Yvelines, France,
+    (david.auger@uvsq.fr, pierre.coucheney@uvsq.fr, kossi-roland.etse@uvsq.fr)
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5     https://doi.org/10.37236/13580
+predetermined sequence of arcs: the first time it visits v, it takes arc 1; the next time,
+arc 2; and so on, cycling back to arc 1 after all arcs have been used. This deterministic
+movement is applied at every vertex. On average, each arc (or transition) is crossed with
+the same frequency as in a random walk.
+    This simple rule defines the rotor-routing model, which exhibits many intriguing prop-
+erties. For example, in an eulerian and strongly connected graph, the particle will even-
+tually circulate repeatedly on an eulerian tour [21]. In sufficiently connected graphs, the
+particle will ultimately reach target vertices, called sinks, although the exploration time
+can be exponential in the number of vertices. The problem of determining the first sink
+reached, given a starting arc configuration and an initial vertex, is known as the Arrival
+problem. Defined in [5], it was shown to belong to the complexity class NP ∩ co-NP.
+While it is not known to be in P, it was proved to lie in the smaller class UP ∩ co-UP
+[10]. Additionally, a subexponential algorithm based on computing a Tarski fixed point
+was proposed in [11].
+
+1.2    Abelian sandpiles and rotor-routing as special Vector Addition Systems
+In this paper, we will show how, similarly to the abelian sandpiles model, we may envision
+the model of rotor-routing as special case of Vector Addition Systems (VAS) [15], which
+are for reachability issues equivalent to Petri Nets.
+    A VAS is defined by a finite set of transitions T ⊂ Zd where d ⩾ 1. The states of the
+system are elements of Nd . A transition t ∈ T from a state v ∈ Nd is legal, if v + t ⩾ 0,
+i.e. v + t is a state. This defines an elementary legal transition from v to v + t, and
+the reachability problem consists of deciding the existence of a finite sequence of legal
+transitions (ti ) from some state v0 to another state v1 , i.e. v1 = v0 + t1 + t2 + · · · + tk and
+every intermediate step v0 + t1 + t2 + · · · + ti for i ⩽ k is nonnegative.
+    As an elementary example of reachability in VAS, consider d = 2 and
+
+                                       T = {(1, −1), (−1, 2)}.
+
+Then state (1, 1) can legally reach state (2, 1) by the sequence of transitions
+
+                                      ((−1, 2), (1, −1), (1, −1)),
+
+but (0, 0) cannot reach legally (1, 0), since applying any transition in (0, 0) would violate
+the nonnegativity constraint.
+     Reachability in VAS thus consists of determining whether an algebraic, linear relation
+(i.e. v1 − v0 belongs to the subgroup of Zn generated by T ) can be decomposed as a
+sequence of legal transitions – which is what we call a legal sequence in this work. The
+problem of deciding reachability has been an important question in the field of VAS, and
+it is known that reachability is decidable [17].
+     Now, let us turn our attention to abelian sandpiles, a model which is intrinsically linked
+to rotor-routing and is a special case of VAS. Consider a finite directed graph G = (V, A).
+A state is an element of NV , and is called a particle (or chip) configuration. It is interpreted
+as the quantity of particles lying on every vertex of G. Transitions, here called firings, are
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                      2
+defined for every vertex v ∈ V , and consist of adding one particle to every outneighbour
+of v, and removing those particles from v. This transition is called a firing at v, and such
+a firing is legal if the resulting configuration is nonnegative, which amounts to saying that
+before firing, v must have more particles than its number of outneighbours. See Fig. 1 for
+an example of firing in an abelian sandpile graph. Note that this model is a special case
+of VAS, with conservative transitions (i.e. the total number of particles remain constant).
+It is known that in the general case, legal reachability for abelian sandpiles is not likely
+to be in complexity class P [23].
+    The definition of legal firings in abelian sandpiles has been extended by several authors
+[8, 23] to particle configurations in ZV , i.e. not necessarily nonnegative. In this more
+general context, we require for a legal firing that before firing at v, the configuration has
+enough particles on v to remain nonnegative at v after firing (i.e. more particles than its
+outdegree). During such a process, a vertex containing a negative number of particles, can
+only receive particles and not emit them. As was the case for VAS, the legal reachability
+issues in abelian sandpiles (even in this generalized context) involve determining whether
+an algebraic relation between configurations of particles can be decomposed into a legal
+sequence of firings, which amounts to checking non-negativity conditions.
+    In this paper, we show that standard rotor-routing in graphs, even in its generalized
+form with negative particles [9, 22], can be viewed as a special case of a more general
+model, namely Generalized Rotor Mechanisms (GRM) multigraphs, where rotor-routing
+is a special case of conservative VAS, similar to abelian sandpiles. Legal reachability in
+this model also involves determining whether a linear relation between rotor and particle
+configurations can be decomposed into a series of legal transitions (routing steps). As in
+all previous cases, legality is determined by verifying non-negativity conditions.
+
+                         1                                                    2
+
+
+
+           0             5            4                           1           2           5
+        (a) Initial configuration.                       (b) Configuration obtained after the central
+                                                         vertex has fired.
+
+               Figure 1: Example of a transition in an abelian sandpile graph.
+               The values represent the number of particles at each vertex.
+
+
+1.3    Different notions of routing
+In this paper, we consider the movement of particles in a directed graph with vertex set V
+and arc set A (specifically, a multigraph). The term ’particle’ can be replaced by pebble,
+chip, or counter, and has no physical significance. The positions of multiple particles
+are represented by a map σ : V → N, which counts the number of particles at each
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                             3
+vertex. This is called a particle configuration. Notably, particles are indistinguishable
+and characterized solely by their positions.
+    In this paper, the term routing refers to the process of moving particles along the arcs
+of a graph according to specific rules that vary depending on the context. Mathemati-
+cally, routing is defined as a rule that transforms one particle configuration into another
+one. Elementary routing operations involve moving a single particle along an arc: the
+particle count at the head of the arc is incremented by 1, while the count at the tail is
+decremented by 1. If these rules can be applied to all particle configurations without addi-
+tional constraints, the routing is termed linear. Conversely, if certain conditions (typically
+non-negativity constraints) must be satisfied, the routing is referred to as legal.
+    In this work, we outline four distinct notions of routing, each with both a linear and
+a legal variant:
+
+      • Standard rotor-routing in rotor multigraphs: This refers to the classical con-
+        cept of rotor-routing with standard cyclic rotor mechanisms. In this context, a
+        configuration consists of both the particle configuration and the rotor configuration,
+        where each non-sink vertex is associated with an outgoing arc.
+
+      • Free routing in multigraphs: This is the most basic form of routing, where
+        particles move through a multigraph without the involvement of rotor mechanisms
+        or rotor configurations. While free routing is not rotor-routing per se, it serves as a
+        foundational tool for rotor-routing in GRM multigraphs.
+
+      • Rotor-routing in cyclic GRM multigraphs: This type of routing occurs in a
+        subclass of GRM multigraphs, where the arc mechanism operates cyclically, which
+        simulates the case of standard rotor-routing. However, it diverges from standard
+        rotor-routing by allowing any formal sums of arcs instead of rotor configurations.
+
+      • Rotor-routing in GRM multigraphs: In this more general context, mechanisms
+        of rotors are no more limited to a cyclic behavior.
+
+1.4     Reachability problems
+The reachability problem we address in this paper is whether, given an initial and a
+final configuration, there exists a routing from the initial to the final configuration. This
+problem is examined across all the routing types we previously mentioned, for both the
+linear and legal cases, extending the result given in [23] for standard rotor-routing. We
+also solve these problems in two scenarios: when the routing vector (i.e., the number of
+elementary operations at each vertex or arc) is specified, and when it is not. The results
+are summarized in the following table.
+
+1.5     Organization of the paper
+The paper is organized as follows. In Section 2, we introduce the standard rotor-routing
+framework and present significant results from prior research. Here, multiple particles
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                   4
+                                    Routing vector not specified   Routing vector specified
+                         Linear        [23], Proposition 3.3                 (∗)
+    Standard rotor
+                         Legal           [23], Theorem 3.4             Proposition 19
+                         Linear            Proposition 7                     (∗)
+      Free routing
+                         Legal             Proposition 11               Theorem 14
+                         Linear            Proposition 16                    (∗)
+      Cyclic GRM
+                         Legal              Theorem 29                 Proposition 19
+                         Linear            Proposition 16                    (∗)
+          GRM
+                         Legal              Theorem 21                  Theorem 17
+
+             Table 1: This table presents the results concerning routing reach-
+             ability problems and/or their computational complexity in the dif-
+             ferent cases. All of these problems are in P, except for legal rotor-
+             routing in GRM multigraphs, which is NP-complete. Cases marked
+             with a star (∗) correspond to computing the result of a linear op-
+             erator using the specified routing vector, which can be efficiently
+             done via matrix multiplication.
+
+
+are routed legally within a graph following standard rotor rules. This section is crucial
+as it establishes the notation used throughout the paper. While most of the standard
+rotor-routing results are not directly applied, they are generalized within the context of
+GRM multigraphs in Section 4.
+    In Section 3, we explore free routing and introduce the boundary operator, a key tool
+for Section 4. The focus of this section is on characterizing legal free routings within the
+framework of free routing.
+    Section 4 formally defines rotor-routing in multigraphs with generalized rotor mecha-
+nisms (GRM), extending the standard ’cyclic’ mechanism. Two generalizations are pre-
+sented: the method for updating arcs in each rotor and the notion of arc configurations
+that replace rotor configurations.
+    In Section 5, we characterize legal routings in GRM multigraphs when the routing
+vector is given as input. We then provide a simplified characterization for the cyclic case,
+which includes the standard rotor-routing model.
+    Finally, in Section 6, we address the reachability problem in cases where the routing
+vector is not specified a priori. We demonstrate that this problem is NP-complete in
+general, and present a polynomial-time algorithm for the cyclic case.
+    In a forthcoming paper, we will explore the algebraic properties of the GRM model,
+demonstrating how it enables a symmetric treatment of the rotor group and sandpile
+group, while also offering new insights into the Arrival problem.
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                   5
+Index of notations
+
+                                    Table 2: Notation summary
+
+        Symbol                       Meaning                                      Reference
+        G                            multigraph                                   2.1
+        V                            vertex set                                   2.1
+        A                            arc set                                      2.1
+        S                            set of sink vertices                         2.4
+        F (v)                        set/sum of faces in A+ (v)                   4.3, 6.3.2
+        F                            set of all faces                             4.3
+        W                            connected components of G                    3.1
+        A(V1 , V2 )                  arcs with tail in V1 and head in V2          2.1
+        A+ (v)                       A(v, V )                                     2.1
+        A− (v)                       A(V, v)                                      2.1
+        GA (v)                       multigraph (A+ (v), F (v), headA , tailA )   4.3
+        GA                           union of all GA (v)                          4.3
+        head, tail                   maps A → V or CA → CV                        2.1, 3.1
+        headV , tailV , GV , degV    see head, tail, G, deg                       4.3
+        headA , tailA                maps CF → CA                                 4.3
+        deg                          degree map CV → CW                           3.1
+        degA                         degree map for GA                            4.3
+        CX                           free group on X                              2.2
+          +
+        CX                           nonnegative elements of CX                   2.2
+        BV                           boundaries (kernel of deg)                   3.1
+        ZA                           cycle space (kernel of ∂)                    3.1
+        ∆, L                         Laplacian operator and matrix                2.3
+        θ                            circular ordering: A+ (v) → A+ (v)           2.4
+        ∂                            boundary operator CA → CV                    3.1
+        ∂V                           see ∂                                        3.1
+        ∂A                           boundary operator CF → CA                    4.1
+                                                               α
+        Trans(α, σ ′ )               transitory vertices for σ ∼ σ ′              3.4
+                                                                   ∂
+        L                            GRM routing operator                         6.3.2
+          α
+        σ ∼ σ′                       σ ′ = σ + ∂(α)                               3.2
+           ∂
+           ∗
+        σ ∼ σ′                       linear equivalence modulo ∂                  3.2
+           ∂
+           α
+        σ → σ′                       legal sequence with routing vector α         3.2
+           ∂
+           ∗
+        σ → σ′                       existence of legal sequence                  3.2
+           ∂
+                ϕ
+        (r, σ) ∼ (r′ , σ ′ )         (r′ , σ ′ ) = (r, σ) + L(ϕ)                  6.3.2
+                L
+                ∗
+        (r, σ) ∼ (r′ , σ ′ )         linear equivalence modulo L                  6.3.2
+                L
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    6
+        Symbol                        Meaning                                Reference
+                ϕ
+        (r, σ) → (r′ , σ ′ )          legal sequence with routing vector ϕ   6.3.2
+                L
+                ∗
+        (r, σ) → (r′ , σ ′ )          existence of legal sequence            6.3.2
+                L
+
+
+
+                               Table 3: Typical elements and notations
+
+                    Symbol      Meaning                      Type / Space
+                    σ           particle configuration       CV
+                    σv          coefficient of σ             Z
+                    r           arc configuration            CA
+                    ra          coefficient of r             Z
+                    α           routing vector modulo ∂      CA
+                                                          A
+                    ϕ           routing vector modulo ∂ or L CF
+                    ρ           rotor configuration          CA+
+                    F           directed / guiding forest    ⊂A
+
+
+2     Standard rotor-routing context and background
+In this section, we recall the framework of directed graphs and rotor-routing, together
+with some known results that we use or generalize in the rest of the paper. We call the
+model of rotor-routing that is presented here the standard rotor-routing context, which
+is the model that can be found in most articles on the subject. For simplicity, we leave
+out the case of linear rotor-routing [22] and focus here solely on the case where positive
+particles are routed, according to a so-called rotor configuration.
+
+2.1    Graphs
+Multigraphs. A directed multigraph G is a tuple G = (V, A, head, tail) where V
+and A are respectively finite sets of vertices and arcs, and head and tail are maps from A
+to V defining the incidence between arcs and vertices. An arc with tail x and head y is
+said to be from x to y. Note that multigraphs can have multiple arcs with the same head
+and tail, as well as loops.
+    For two sets V1 , V2 ⊂ V , define A(V1 , V2 ) as the set of arcs with tail in V1 and head
+in V2 . For a vertex u ∈ V , we denote by A+ (u) the subset of arcs going out of u, i.e.
+A+ (u) = A(u, V ), as well as A− (u) = A(V, u).
+
+Paths and connectedness. If x, y ∈ V , a directed path from x to y is a finite
+sequence of arcs a1 , a2 · · · ak such that head(ai ) = tail(ai+1 ) for 1 ⩽ i ⩽ k − 1, and also
+tail(a1 ) = x and head(ak ) = y (note that such a path is usually defined as a sequence of
+vertices, but both definitions are equivalent). This definition includes the empty sequence
+from x to x. The graph is said to be strongly connected if there is a directed path from
+any vertex to any other vertex. A directed cycle is a nonempty directed path from a
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                   7
+vertex x to the same vertex x. This includes the case of a single arc (a loop) with the
+same tail and head.
+    The strongly connected components of G are the equivalence classes of the equiv-
+alence relation on vertices, where x and y are considered equivalent if there is a directed
+path from x to y and a directed path from y to x in G. A strongly connected component
+C ⊂ V is a leaf component if A(C, V \ C) = ∅. In particular, if v is a sink vertex of
+G, i.e. A+ (v) = ∅, then {v} is a leaf component of G.
+    We define an undirected path from x to y as a finite sequence of arcs a1 , a2 · · · ak
+such that there is a sequence v0 , v1 , · · · , vk of vertices with v0 = x, vk = y and such that
+for all 1 ⩽ i ⩽ k we have
+      • either tail(ai ) = vi−1 and head(ai ) = vi ;
+      • or tail(ai ) = vi and head(ai ) = vi−1 .
+In the first case we say that ai is forward oriented in the path, and in the second case that
+it is backward oriented. Note that an undirected path corresponds to a path with the
+usual definition in the undirected graph where we replace every arc of G by an undirected
+edge.
+    A weakly connected component of G is a maximal subset of vertices V1 ⊂ V such
+that there is an undirected path from any vertex of V1 to any other vertex of V1 . The
+graph is said to be weakly connected if there is only one connected component which
+is V itself.
+Directed Forests. If X ⊂ V , a directed forest with domain X is a set of arcs
+F ⊂ A(X, V ) such that:
+  (i) for every v ∈ X, there is exactly one arc a ∈ F such that tail(a) = v ;
+ (ii) F contains no directed cycles.
+    Note that such a directed forest exists if and only if for every vertex v ∈ X, there is a
+directed path from v to some s ∈ / X.
+
+2.2     Free abelian groups
+We refer to [16] for standard notions of abelian groups. We use additive notation. An
+abelian group (H, +) is free if it admits a basis, i.e. a family
+                                                               P      (hi )i∈I of elements such
+that each h ∈ H can be written uniquely as a sum h = i∈I ci hi with integers ci ∈ Z,
+where all but finitely many of the ci are zero. If there is a finite basis, then all basis have
+the same cardinal which is called the rank of H.
+    The universal property of free abelian groups says that if f : X → R is a map
+from the elements of a basis X of H to an abelian group R, then f extends uniquely to a
+group homomorphism from H to R. Indeed, if (hi )i∈I is a basis of H, and f (hi ) = ri , we
+define an homomorphism by
+                                              !
+                                     X             X
+                                 f       ci hi =       ci ri ,
+                                            i∈I           i∈I
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    8
+where all but finitely many ci are zero.
+    If X is a finite set, the free abelian group on X is the set of formal sums with
+integer coefficients                      X
+                                       c=    cx · x
+                                                  x∈X
+
+where cx ∈ Z for every x ∈ X, with pointwise sum of coefficients. It can also be viewed
+as ZX , the set of maps from X to Z together with standard pointwise sum. We denote
+this group as CX . Elements of X are identified with particular elements of CX , and X
+can be viewed as a basis of CX , which is called the canonical basis. If x ∈ X, we write cx
+for the coordinates in the canonical basis of some c ∈ CX .
+    We say that c ∈ CX is nonnegative, and write c ⩾ 0, if cx ⩾ 0 for all x ∈ X. Likewise,
+                                            +                                             +
+we say that c1 ⩽ c2 if c2 − c1 ⩾ 0. Let CX    the set of c ∈ CX such that c ⩾ 0. If c ∈ CX
+                                                                                  +
+and cx > 0, we say that x is an element of c and write x ∈ c. Indeed, c ∈ CX         can be
+identified with a multiset on X.
+    If G = (V, A, head, tail) is a directed multigraph, we denote by CV the free group on
+V ; its elements are called particle configurations. Likewise, CA denotes the free group
+on A and its elements are arc configurations. In the whole paper, instead of considering
+vectors or sets like ZV and ZA , we consider formal sums CV and CA . This allows more
+concise notation: for instance, the element of CV with coefficient 3 on v1 and −5 on v2
+and 0 elsewhere will be simply denoted by 3v1 − 5v2 .
+
+2.3    Laplacian homomorphism and matrix
+Let G = (V, A, head, tail) be a directed multigraph. The Laplacian homomorphism is the
+homomorphism ∆ from CV to itself whose value on every vertex v ∈ V (viewed as an
+element of CV ) is
+                                        X
+                            ∆(v) = −        (head(a) − tail(a))
+                                            a∈A+ (v)
+
+   The Laplacian matrix L is the matrix of ∆ in the canonical basis of CV . Its rows
+and columns are indexed by V , and its entries are given by
+                                  
+                                  |A(v, V \ v)| if v ′ = v,
+                          Lv ,v =
+                            ′
+                                  −|A(v, v ′ )|    if v ′ ̸= v.
+
+    Let S ⊂ V . The S-reduced Laplacian matrix is the matrix L′ obtained by removing
+from L the rows and columns corresponding to S. The following result is classic for
+undirected graphs and known as Kirchoff ’s matrix-tree theorem, but the directed version
+is a bit less common (see [19] for a proof).
+
+Theorem 1. Let S ⊂ V and let L′ be the S-reduced Laplacian matrix. Then the deter-
+minant of L′ is the number of directed forests with domain V \ S.
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                               9
+    Of particular interest to us is also the kernel (null space) of ∆, which is given by the
+following result whose proof can be found in [1].
+Theorem 2. Let k ⩾ 0 be the number of leaf components of G. Denote by S1 , S2 , . . . Sk
+these components. Then there exist σ 1 , σ 2 , . . . , σ k ∈ CV such that
+  (i) (σ 1 , σ 2 , . . . , σ k ) is a basis of the kernel of ∆;
+ (ii) for all 1 ⩽ i ⩽ k, σvi > 0 for all v ∈ Si and σvi = 0 for all v ∈ V \ Si .
+This basis (σ 1 , σ 2 , . . . , σ k ) is unique and its elements are called primitive period vectors
+of G.
+   In particular, if G is strongly connected, it admits a unique primitive period vector
+and the kernel of ∆ has rank 1. Moreover, ifPG is eulerian, i.e. |A+ (v)| = |A− (v)| for
+every v ∈ V , then the only primitive vector is v∈V v, i.e. its coordinates in the canonical
+basis are all 1. This is the case for the graph G1 of Fig. 2.
+
+2.4     Rotor structure
+Let G = (V, A, head, tail) be a directed multigraph.
+
+Rotor orders and rotor graphs. A circular ordering on a finite set X is a map
+θ : X → X such that, for all x ∈ X, the sequence of iterates x, θ(x), θ2 (x), . . . generates
+the whole set X.
+    If G is a multigraph, a rotor at v ∈ V is a circular ordering on A+ (v). A rotor
+multigraph G = (V, A, head, tail, θ) is such that:
+      • (V, A, head, tail) is a multigraph;
+      • for all vertices v ∈ V , the restriction of θ to A+ (v) is a rotor at v.
+   If v is a sink vertex, i.e. A+ (v) = ∅, then the second condition is trivial. When the
+rotor multigraph G is fixed, we denote by S the set of its sinks. Depending on the context,
+S can be empty or not. A directed multigraph is stopping if for every vertex u, there is
+a directed path from u to a sink.
+   A rotor configuration in a rotor multigraph is a map ρ that associates to every
+v ∈ V \ S an arc ρ(v) P  ∈ A+ (v). We can identify rotor configurations with particular
+elements of CA , namely v∈V \S ρ(v).
+   Two examples of rotor multigraphs are given on Fig. 2 and 3. The first one is strongly
+connected and sinkless, while the second is stopping.
+
+2.5     Standard rotor-routing
+Let G = (V, A, head, tail, θ) be a rotor multigraph. Classically, rotor-routing is concerned
+with so-called chip configurations, namely nonnegative particle configurations with our
+current terminology. If σ ∈ CV and σv > 0, we interpret σv as the number of particles
+on vertex v. Routing these particles consists of moving them along an arc of a rotor
+configuration.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                       10
+                                                         v0
+                                 a0,1
+                                             a′0,1
+                                                                a0,2
+
+
+                                                                               a′2,0         a2,0
+                                      a1,0
+
+
+                                v1                               a2,1              v2
+                                               a′1,2
+
+                                             a1,2
+
+             Figure 2: A rotor multigraph G1 with no sinks, which is strongly
+             connected. Every vertex has out-degree 3 and in-degree 3. As an
+             example, we have head(a2,0 ) = v0 and tail(a2,0 ) = v2 . The ro-
+             tor order at every vertex is given by anticlockwise ordering; e.g.
+             θ(a2,0 ) = a′2,0 , θ(a′2,0 ) = a2,1 and θ(a2,1 ) = a2,0 . A rotor config-
+             uration ρ1 with ρ1 (v0 ) = a0,1 , ρ1 (v1 ) = a′1,2 and ρ1 (v2 ) = a2,1 is
+             depicted in bold.
+
+
+                                                              v3
+
+
+
+                                        a3,4                                      a2,3
+                                                        a4,3
+                                                                     a3,2
+
+                                                              a2,4
+                                     v4                                                 v2
+                                                              a4,2
+                                a4,0                                    a4,1
+                                                       a2,0                                  a2,1
+
+
+                          s0                                                                        s1
+
+             Figure 3: A stopping rotor multigraph G2 , with two sinks s0 and
+             s1 .
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                              11
+Rotor-routing operation and rotor walks. Consider a rotor configuration ρ and a
+nonnegative particle configuration σ ∈ CV+ . A rotor-routing operation at v ∈ V \ S is
+valid, only if σv > 0. In this case, the routing operation transforms (ρ, σ) into (ρ′ , σ ′ )
+where:
+
+    • ρ′ is equal to ρ except on v where ρ′ (v) = θ(ρ(v));
+
+    • σ ′ is equal to σ except σv′ = σv − 1 and σv′ 1 = σv1 + 1 where v1 = head(ρ(v)).
+
+    We interpret this as a particle moving along the arc ρ(v) from v to v1 , then the
+rotor configuration at v being updated to the next arc in the rotor ordering. Note that
+the resulting particle configuration σ ′ is also nonnegative. A rotor walk is a finite or
+infinite sequence of configurations (ρ0 , σ0 ), (ρ1 , σ1 ), (ρ2 , σ2 ), . . . such that each new couple
+of configurations is obtained from the previous one by a routing operation. This sequence
+starts at (ρ0 , σ0 ), and if finite ends at some (ρk , σk ). Such a rotor walk is maximal if
+it is infinite or ends in a configuration (ρk , σk ) where no valid routing operation can be
+applied, i.e. σk is 0 on v for all v ∈ V \ S. Fig. 4 shows an example of routing.
+    If there is a single particle (i.e. σ = v for some vertex v ∈ V ), then there is a unique
+maximal rotor walk starting in (ρ, σ). If there are several particles, there is a choice in
+the next particle to be routed. The first fundamental result is the following [13, 22]:
+
+Theorem 3. If G is stopping, all maximal rotor walks are finite. Moreover, from a
+starting configuration (ρ, σ) where ρ is a rotor configuration and σ ⩾ 0, all maximal rotor
+walks end in the same configuration (ρ′ , σ ′ ), and for every vertex v ∈ V \ S, the number
+of times that a routing operation is performed at v does not depend on the choice of the
+maximal rotor walk.
+    If G is strongly connected, all maximal rotor walks are infinite. Moreover, in the case
+of a single particle configuration σ, let p ∈ CV be the unique primitive period vector of
+G. Then all maximal rotor walks that start in (ρ, σ) are ultimately periodic, and during
+a least period the number of times that a routing is performed at a vertex v is equal to
+|A+ (v)| · p(v).
+
+    A more general result describing the asymptotic structure of maximal rotor walks,
+when the graph is neither stopping nor strongly connected, can be found in [6] (Thm.
+2.5.10).
+
+Arrival Problem. Suppose that G is a stopping rotor multigraph. The Arrival
+Problem, introduced in [5], consists of determining the final configuration σ ′ when apply-
+ing a maximal rotor walk from (σ, ρ), where σ ∈ CV+ and ρ is a rotor configuration. The
+configuration σ ′ is then uniquely determined by Theorem 3. Equivalently, one can ask
+how many particles will settle on a given sink or use a decision version of the problem.
+   No polynomial-time algorithm is currently known for solving the Arrival problem,
+even when σ consists of a single particle. In particular, routing such a particle may
+require an exponential number of steps. The most efficient algorithm known to date is
+subexponential, as described in [11].
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                         12
+                          v0 : 2                                                                 v0 : 1
+     a0,1                                                                   a0,1
+              a′0,1            a0,2                                                   a′0,1           a0,2
+
+                                      a′2,0     a2,0                                                         a′2,0     a2,0
+            a1,0                                                                   a1,0
+                                                     routing at v0 and v1
+
+
+
+     v1 : 1                   a2,1     v2 : 0                               v1 : 1                   a2,1     v2 : 1
+                    a′1,2                                                                  a′1,2
+
+                   a1,2                                                                   a1,2
+
+              Figure 4: With the same graph G1 as in Fig 2: on the left, a rotor
+              configuration ρ1 (arcs in bold) and a particle configuration σ0 (num-
+              bers in vertices) are given. The rotor walk (ρ1 , σ1 ), (ρ2 , σ2 ), (ρ3 , σ3 )
+              is legal, and consists of routing a particle in v0 and a particle in v1 .
+              The resulting configurations (ρ3 , σ3 ) are given on the right.
+
+
+Flows. Let G be a stopping multigraph, ρ a rotor configuration and σ ∈ CV+ , such that
+all maximal rotor walks that start from (ρ, σ) end in (ρ′ , σ ′ ), with σv′ = 0 for all v ∈
+                                                                                          / S, as
+stated in Theorem 3.
+    Define the run of (ρ, σ) as the map f : A → N where f (a) is the number of times that a
+particle travels along arc a during such a maximal walk (this number is also independent
+of the choice of the maximal walk, by the same result). Then the run f satisfies the
+following equations:
+
+    • for all v ∈ V , flow conservation at v:
+                                 X                  X
+                                       f (a) + σv =   f (a) + σv′                                                         (1)
+                                          a∈A− (v)                     a∈A+ (v)
+
+
+    • for all v ∈ V \ S, rotor condition at v:
+
+            f (ρ(v)) ⩾ f (θ(ρ(v))) ⩾ · · · f (θi (ρ(v))) ⩾ f (θi+1 (ρ(v))) ⩾ · · · ⩾ f (ρ(v)) − 1                         (2)
+
+    Conversely, we call a flow for (ρ, σ, σ ′ ) a map f : A → N satisfying all equations
+(1) and (2); hence the run of (ρ, σ) is a flow for (ρ, σ, σ ′ ). Appendix A.1 gives detailed
+examples of run and flows in the graph G2 of Fig. 3. It turns out that these equations
+are sufficient to characterize σ ′ , by the following result, due to Dohrau et al [5].
+
+Theorem 4. Suppose that G is stopping, and that all maximal rotor walks that start from
+(ρ, σ) end in (ρ′ , σ ′ ). Let σ1 ∈ CV with σ1 (v) = 0 for all v ∈ V \ S, then σ1 = σ ′ if and
+only if there exists a flow for (ρ, σ, σ1 ).
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                                   13
+    This result proves that Arrival belongs to the complexity class NP and to the class
+co-NP. Indeed, one can certify that the ending configuration is σ ′ by giving a flow for
+(ρ, σ, σ ′ ), and one can also certify that the ending configuration is not σ ′ by giving a flow
+for (ρ, σ, σ ′′ ) where σ ′′ ̸= σ ′ .
+    We can note that if f is the run for (ρ, σ), then it is easy to compute σ ′ with equations
+(1). It is also possible to compute ρ′ with equations (2), since for all v ∈ V \ S:
+
+    • either f (a) is constant on A+ (v), which implies that ρ′ (v) = ρ(v);
+
+    • or there is i > 0 such that f (θi (ρ(v))) < f (ρ(v)), and then the minimal such i gives
+      ρ′ (v) = θi (ρ(v)).
+
+    If f is a flow for (ρ, σ, σ ′ ) but not the run for (ρ, σ), we can also build from f a
+corresponding rotor configuration ρ′′ by equations (1), with the same relations. However,
+this configuration will not be ρ′ . If we want to give a certificate for ρ′ , we need to
+characterize the run among flows by additional conditions. The following result is due to
+Gärtner et al [10] and implies in particular that Arrival belongs to UP and co-UP.
+
+Theorem 5. Let G be a stopping rotor multigraph. Let f be a flow for (ρ, σ, σ ′ ) and ρ′
+the rotor configuration built from f and ρ. Let V1 ⊂ V the set of active vertices for f , i.e.
+v ∈ V such that a∈A+ (v) f (a) > 0, and let A1 ⊂ A the set of arcs θ−1 (ρ′ (v)) for v ∈ V1 .
+                 P
+
+Then f is the run for (ρ, σ) if and only if (V, A1 , head, tail) contains no directed cycles.
+
+    The idea behind this result is that A1 is the set of traces of the run, i.e. the arcs
+corresponding to the last time a particle is routed at each vertex, and following these arcs
+must lead to a sink.
+    This result was generalized by Tóthmérész [23] to the case of graphs that are not
+necessarily stopping and allow the presence of negative particles. The main results of this
+paper, notably Theorem 17, Proposition 19, Theorem 21 and Theorem 29, can be viewed
+as further generalizations of Theorem 5.
+
+Recurrent configurations. Let G be a strongly connected rotor multigraph. A config-
+uration (ρ, σ) is called recurrent if there exists a non-empty rotor walk that returns from
+(ρ, σ) to itself. Such configurations exist since, by Theorem 3, any maximal rotor walk
+on G is infinite. Characterization of recurrent configurations has been analyzed in [22]:
+
+Theorem 6. Let G be a strongly connected multigraph. Let A1 ⊂ A be the set of arcs
+θ−1 (ρ(v)) for v ∈ V \ S. Then configuration (ρ, σ) is recurrent if and only if for every
+directed cycle C in A1 , there is an arc in C whose head v satisfies σv > 0.
+
+Turn and Move routing. We note that another definition of rotor-routing exists and is
+also widely used in the literature, which we refer to as Turn and Move routing (in contrast
+with the Move and Turn routing that we use). In this version, when a routing step at v
+for (ρ, σ) is processed, the rotor ρ(v) is first updated to θ(ρ(v)) and then a particle moves
+along the latter arc. This definition is also quite standard, and both definitions have
+their merits and flaws in terms of description of properties of routing. Ultimately, they
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                   14
+are equivalent, as they are conjugate by the turn operator θ, as shown by the following
+commutative diagram, which provides a correspondence between two rotor walks, routed
+either with Move and Turn rotor (M&T) routing as used in this paper, or Turn and Move
+(T&M) as just described.
+
+                                T &M (v0 )                T &M (v1 )         T &M (vk−1 )
+                   (ρ0 , σ0 )                (ρ1 , σ1 )                ...                  (ρk , σk )
+                        θ×id                      θ×id                                           θ×id
+                                M &T (v0 )                M &T (v1 )         M &T (vk−1 )
+                   (ρ+
+                     0 , σ0 )                (ρ+
+                                               1 , σ1 )                ...                  (ρ+
+                                                                                              k , σk )
+
+
+
+3     Free routing in multigraphs
+In this section, we study the free routing of particles in a graph without any constraints,
+notably without rotors. In this model, a particle can always move along any arc, hence
+the term ’free’. We first introduce the boundary operator and highlight its key properties.
+This operator is central to our analysis, enabling us to count how many particles traverse
+each arc, thereby extending the concept of run/flow from Section 2.5. The terminology
+for the boundary operator, boundaries, and cycles is derived from standard simplicial
+homology of graphs (see, for instance, [12]) (Section 3.1).
+    We then introduce linear and legal routing: moving particles along arcs according to a
+routing vector α. Linear routing is fully governed by the image of ∂, whereas legal routing
+additionally enforces local non-negativity constraints (Section 3.2).
+    Next, we address the central question of the existence of a legal routing. We provide
+a necessary and sufficient characterization in terms of a nonnegative routing vector satis-
+fying specific structural conditions, and explain how such a vector yields a legal routing
+sequence (Section 3.3). This leads to a polynomial-time reduction to a classical flow or
+weighted matching problem to determine the existence of such a vector.
+    Finally, when a routing vector α is prescribed, we analyze when it can be fully realized
+by a legal sequence in Theorem 14, the main result of this section. We identify the possible
+obstructions and introduce additional criteria ensuring that the entire vector α can be
+legally executed (Section 3.4).
+
+3.1    Boundary operator
+Let G = (V, A, head, tail) be a multigraph. Recall from Subsection 2.2 that CV is the free
+group on V and CA the free group on A, and their elements are respectively called particle
+configurations and arc configurations. By the universal property of free groups, note that
+head and tail extend in a unique way as homomorphisms from CA to CV . Denote by
+W the set of weakly connected components of G and by CW the free group on W. The
+connected component of a vertex v is denoted by deg(v), and we keep the same notation
+for the extension of deg as an homomorphism called degree from
+                                                            P CV to CW . If we denote
+by degw (σ) the coefficient of w in deg(σ), then degw (σ) = v∈w σv is the sum of all σv
+for all v ∈ V in the component w. This degree measures the total number of particles
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                              15
+in each component, and for all particle routing definitions used in this paper, it remains
+invariant. As particles move along arcs, they stay within the same connected components,
+ensuring the degree is preserved.
+    Routing involves moving particles along arcs in both forward and backward directions,
+requiring careful tracking of the arcs used. To this end, we introduce the boundary
+operator ∂ : CA → CV , defined as
+                                               ∂ = head − tail.
+    For a particle configuration σ ∈ CV and an arc a, σ + ∂(a) represents the configuration
+obtained by moving a particle from tail(a) to head(a), while σ + ∂(−a) represents the
+reverse movement. This movement is algebraic, meaning σ does not need to be positive
+where particles are taken. More generally, σ +∂(α) for α ∈ CA consists of moving particles
+of σ along the arcs appearing in α.
+    If P = (a1 , a2 , ·P
+                       · · , ak ) is an undirected path in G from x to y, we associate to this
+path the sum α = ki=1 αi ai with coefficient αi = 1 if ai is forward-oriented in the path,
+and αi = −1 if it is backward-oriented. If α ∈ CA is constructed from an undirected path
+P from x to y in this way, we say that it represents the path P . In this case, we have
+                                              Xk
+                                     ∂(α) = ∂(   αi ai ) = y − x.
+                                                      i=1
+
+The rest of this section is devoted to studying some properties of ∂.
+    The image of ∂, i.e. the set of σ ∈ CV such that there is α ∈ CA with ∂(α) = σ,
+is denoted by BV . It is a subgroup of CV whose elements are called boundaries. The
+following is well known and easy:
+Proposition 7. The image BV ⊂ CV of ∂ is the kernel of deg.
+    The kernel of ∂, i.e. the subgroup of arc configurations α ∈ CA such that ∂(α) = 0V ,
+is denoted as ZA . Its elements are called cycles and ZA the cycle space.
+Proposition 8. Elements of ZA are characterized by Kirchoff ’s Law at every v ∈ V , i.e.
+for α ∈ CA                      X           X
+                                     αa =         αa
+                                          a∈A+ (v)          a∈A− (v)
+
+    If αa is interpreted as a flow along arc a, this equation means that the algebraic sum
+of flows leaving every vertex v is equal to the sum of entering flows.
+Proof. We have for any α ∈ CA ,
+                                               X
+                                 ∂(α) =              αa (head(a) − tail(a))
+                                               a∈A
+                                                                            
+                                    X          X                 X
+                                =                       αa −              αa  · v,
+                                    v∈V       a∈A− (v)          a∈A+ (v)
+
+hence the result.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                 16
+3.2     Linear and legal free routings
+In the multigraph G, a linear free routing with routing vector α ∈ CA is the operation
+of transforming σ ∈ CV into σ + ∂(α). This amounts to moving simultaneously |αa |
+particles along each arc a ∈ A, forward if αa > 0 and backward if αa < 0. This routing
+can always be applied without further conditions.
+                                              P      A routing sequence for α is a finite
+sequence (ai )0⩽i⩽k−1 of arcs, such that α = 0⩽i⩽k−1 ai . It describes an order in which
+we can route along arcs in α one by one. A routing sequence from σ to σ ′ is a routing
+sequence such that σ ′ = σ + ∂(α), where α is the routing vector of the sequence.
+                                                               α
+    If σ ′ = σ + ∂(α) with σ, σ ′ ∈ CV and α ∈ CA , we write σ ∼ σ ′ and say that there is a
+                                                                           ∂
+                                                                                    ∗
+linear routing from σ to σ with routing vector α. Alternatively, we write σ ∼ σ ′ if there
+                               ′
+                                                                                    ∂
+                                    α                                                   ∗
+exists an α ∈ CA such that σ ∼ σ ′ . This clearly defines an equivalence relation ∼ on CV .
+                                    ∂                                                   ∂
+                                                                   ∗
+From the results of Sections 3.1 and 3.1, it follows that σ ∼ σ ′ if and only if σ ′ − σ ∈ BV ,
+                                                                   ∂
+                                               ′           α   ′
+which is equivalent to deg(σ) = deg(σ ). If σ ∼ σ , then the set of all possible routing
+                                                           ∂
+vectors from σ to σ ′ is α + ZA .
+    Among these linear routings, we want to identify those that correspond to legal rout-
+ings, which we now define. Once again, this is not to be confused with rotor-routing as
+defined in Sec. 2.5: here there are neither rotor orderings nor rotor configurations, and we
+simply move particles along arcs of the graph. We say that the linear free routing from
+σ with routing vector a ∈ A is legal for σ if σtail(a) ⩾ 1. A routing sequence (ai )0⩽i⩽k−1
+from σ to σ ′ is legal if for every i, routing along ai is legal for σi , where σ0 = σ and
+σi+1 = σi + ∂(ai ) for 0 ⩽ i ⩽ k − 1 (and consequently σk = σ ′ ). If there exists a legal
+                                              ∗                           α
+routing sequence from σ to σ ′ , we write σ → σ ′ , and use notation σ → σ ′ if we want to
+                                                       ∂                       ∂
+point out that there is a legal sequence with routing vector α. Note that by definition,
+  α               α           ∗                               ∗
+σ → σ ′ implies σ ∼ σ ′ and σ → σ ′ , either of which imply σ ∼ σ ′ .
+   ∂                   ∂           ∂                                   ∂
+    With these definitions, we observe that legal free routing is a special case of VAS as
+discussed in Sec. 1.2, which is conservative in the total number of particles. The legal
+reachability problem, in this context, involves decomposing a linear relation into a legal
+sequence.
+
+3.3     Existence of a legal free routing
+                                                   ∗
+We now study how we can decide if σ → σ ′ and compute a legal sequence. A necessary
+                                                   ∂
+condition for its existence is that there is a nonnegative routing vector from σ to σ ′ , i.e.
+                 α
+α ∈ CA+ with σ ∼ σ ′ . In the case where σ, σ ′ ⩾ 0, the problem reduces to moving particles
+                   ∂
+in any order from V + = {v ∈ V : σv > σv′ } to V − = {v ∈ V : σv < σv′ } and can be viewed
+as a flow or matching problem, by deciding which particle in V + will be routed to which
+vertex in V − , counted with multiplicities. However, in presence of vertices with negative
+values, the situation is a little more complicated, as shows the example on Fig. 5.
+
+      The first problem is that vertices v with σv′ < 0 can never be involved in a legal routing:
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    17
+                       0                                                  1
+
+                           a2                                                 a2
+
+                       -2                                                 -1
+
+                           a1                                                 a1
+
+                       2                                                  0
+               (a) σ configuration                                (b) σ ′ configuration
+
+             Figure 5: A graph with σ given on the left and σ ′ on the right.
+             There is a single linear routing vector α from σ to σ ′ which is 2a1 +
+             a2 . However, none of the three sequences (a1 , a1 , a2 ), (a1 , a2 , a1 ),
+             (a2 , a1 , a1 ) are legal because the middle vertex remains nonpositive
+             at all times.
+
+
+they must remain inactive. These vertices act like an obstacle to legal routing operations
+and could as well be turned into sinks. However, vertices can begin with σv < 0, receive
+particles and become active during the sequence.
+    In the rest of this section, we suppose that G, σ, σ ′ are given and that we want to
+find a legal routing sequence from σ to σ ′ . If α is the routing vector of a legal routing
+sequence, then α ∈ CA+ . We recall that if α ∈ CA+ , we say that a is an element of α and
+write a ∈ α, if αa ⩾ 1.
+    We solve the problem in two steps:
+                                  ∗                                                        α
+    • first, we show that σ → σ ′ is equivalent to the existence of α ∈ CA+ with σ ∼ σ ′ ,
+                                  ∂                                                        ∂
+        satisfying additional properties (Proposition 9). We call such a vector a legal routing
+        vector from σ to σ ′ , since it asserts the existence of the legal routing sequence. We
+        also describe how to construct greedily a legal routing sequence from a legal routing
+        vector (Lemma 10).
+
+    • Second, we show that deciding existence and computing a legal routing vector can be
+      decided by standard weighted matching or network flow algorithms (Proposition 11)
+      (hence in polynomial time).
+
+3.3.1     From legal vectors to legal sequences
+If α, α′ ∈ CA+ , we write α ⩽ α′ if for all a ∈ A, we have αa ⩽ αa′ . A vertex v is active
+in α if there is an element a ∈ α with tail(a) = v. An active vertex is a vertex that will
+emit particles during a routing with routing vector α.
+                                                              α
+    A legal routing vector from σ to σ ′ is α ∈ CA+ with σ ∼ σ ′ , such that every active
+                                                                     ∂
+vertex v in α satisfies σv′ ⩾ 0.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    18
+                                                  ∗
+Proposition 9. Let σ, σ ′ ∈ CV . Then σ → σ ′ if and only if there is a legal routing vector
+                                                 ∂
+                                                              α′
+α from σ to σ ′ . In this case there is α′ ∈ CA+ with σ → σ ′ and α′ ⩽ α.
+                                                              ∂
+
+    The proof is based on the following lemma, which explains how to construct greedily
+a legal routing sequence from a legal routing vector. We say that a routing sequence is
+α-bounded, if the routing vector α′ of the sequence satisfies α′ ⩽ α. Let S(σ, α) be the
+set of α-bounded routing sequences that are legal for σ. If s1 , s2 ∈ S(σ, α), we say that
+s1 ⩽ s2 if s1 is a prefix of s2 .
+
+Lemma 10. Suppose α ∈ CA+ is a legal routing vector from σ to σ ′ . Let s ∈ S(σ, α)
+with routing vector αs such that σ s = σ + ∂(αs ) ̸= σ ′ . Then the set of arcs a ∈ α − αs
+whose routing is legal for σ s is nonempty, and adding any such arc a to s extends s into
+s · a ∈ S(σ, α).
+
+Proof. Since deg(σ s ) = deg(σ) = deg(σ ′ ), there is a vertex v such that σvs > σv′ . Since
+   α−αs
+σ s ∼ σ ′ , there is a ∈ A+ (v) with a ∈ α − αs . Then a ∈ α, which is a legal routing
+     ∂
+vector, so σv′ ⩾ 0 and σvs ⩾ 1. Routing along a is legal for σ s , hence s · a ∈ S(σ, α).
+Proof of Proposition 9. Lemma 10 shows that the condition is sufficient. Conversely, sup-
+pose that there is a legal routing sequence (ai )0⩽i⩽k−1 from σ to σ ′ , and let α ∈ CA+ be its
+routing vector. If v is an active vertex in α, then
+                                                 Pi−1there is ai with tail(ai ) = v; consider the
+                                        i
+last such arc, denoted by aℓ . Let σ = σ + ∂( j=0 aj ). Since the routing is legal, we have
+σvℓ ⩾ 1 and σvℓ+1 ⩾ 0. All arcs ai for i > ℓ satisfy tail(ai ) ̸= v, hence σvi cannot decrease
+for i = ℓ + 1, . . . , k − 1. Hence σv′ ⩾ 0. We proved that α is legal.
+
+3.3.2    Existence of legal routing vectors
+We now reduce the problem of deciding the existence, and computing a legal routing
+vector from σ to σ ′ , to the following problem:
+
+       Bipartite Weighted Degree Constraint Problem (BWDC)
+     input:     a simple bipartite undirected graph (V1 , V2 , E) and a weight
+                function w : V1 ∪ V2 → N.
+     question: is there a weight function on edges f : E → N such that for
+                every vertex v ∈ V1 ∪ V2 , the sum of all weights f (e) of edges
+                incident to v is equal to w(v) ?
+
+    This problem is a classic network flow problem which can be solved by standard
+strongly polynomial algorithms like Edmond-Karp’s or Dinic’s algorithms [7, 4].
+    For the reduction, suppose that G, σ, σ ′ are given. Let V + = {v ∈ V : σv > σv′ } and
+V = {v ∈ V : σv < σv′ }, and consider the following instance (V + , V − , E1 , w) of BWDC
+  −
+
+where:
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    19
+    • E1 contains an edge e between v + ∈ V + and v − ∈ V − if and only if there is a
+      directed path from v + to v − in G′ , where G′ is obtained from G by removing all
+      arcs with tail in {v ∈ V : σv′ < 0}
+
+    • (V + , V − , E1 ) is the bipartite graph
+
+    • the weight of v + ∈ V + is w(v + ) = σv+ − σv′ + and the weight of v − ∈ V − is
+      w(v − ) = σv′ − − σv−
+
+Proposition 11. There is a legal routing vector from σ to σ ′ in G if and only if BWDC
+has a solution on instance (V + , V − , E1 , w). From any solution, a legal routing vector can
+be computed in polynomial time.
+
+Proof. First suppose that there is a legal routing vector α. Let M = v∈V + (σv − σv′ ).
+                                                                             P
+A consequence of the existence of a legal routing sequence (Proposition 9) is P   that we can
+find a legal routing vector α ⩽ α from σ to σ , that can be written as α = M
+                               ′                    ′                         ′          ′
+                                                                                    i=1 αi and
+  ′                                      +       −
+αi represents a directed path from V to V . We now define the weight f (e) of an edge
+of E1 from v + to v − as the number of directed paths from v + to v − among αi′ ; then f is
+a solution to the BWDC instance.
+    Conversely, if f is a solution of the BWDC problem, we consider for every edge e ∈ E
+from v + to v − , an arc configuration αe ∈ CA representing a directed path from v + to v −
+in G′ . Then                                  X
+                                       α=         f (e) · αe
+                                                e∈E1
+
+is a routing vector from σ to σ , which is legal since all its elements belong to G′ .
+                                     ′
+
+
+    Before ending this section, remark that the existence of a legal routing vector α just
+                 α′                                                    α
+certifies that σ → σ ′ with some α′ ⩽ α, and does not imply that σ → σ ′ , as shows the
+                   ∂                                                       ∂
+example on Fig. 6. The situation is very similar to the notion of flows and runs for
+rotor-routing as explained in Sec. 2.5.
+
+
+                  a2        -1                                    a2      0
+
+                                a1                                            a1
+
+                            1                                             0
+               (a) σ configuration                            (b) σ ′ configuration
+
+             Figure 6: Graph G with σ on the left and σ ′ on the right. The
+             vector α = a1 + a2 is a legal routing vector from σ to σ ′ , but the
+             only legal routing sequence is (a1 ) with routing vector α′ = a1 < α.
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                 20
+3.4     Existence of legal routing with given routing vector.
+We just mentioned that legal routing vectors characterize the existence of legal routing
+sequences, but that not every legal routing vector can be obtained as the routing vector
+                                                            α         α
+of a legal sequence. We now state conditions that ensure σ → σ ′ if σ ∼ σ ′ with α ∈ CA+ .
+                                                                    ∂             ∂
+This is analogous to the characterization of runs for rotor-routing in Section 2.5 but for
+free routing in graphs.
+                                                       α
+    In the proof of Proposition 9, we showed that if σ ∼ σ ′ with α ∈ CA+ and every active
+                                                              ∂
+vertex v in α satisfies σv′ ⩾ 0, we can build greedily a legal routing sequence from σ to σ ′
+whose routing vector α′ satisfies α′ ⩽ α. However, if we construct this sequence without
+additional precaution, this process can end with α ̸= α′ as shown in the example in Fig. 7.
+
+                           0                                                  1
+
+                               c                                                  c
+
+                    b      0                                            b     0
+
+                               a                                                  a
+
+                           1                                                  0
+               (a) σ configuration                                (b) σ ′ configuration
+
+             Figure 7: A graph with σ given on the left and σ ′ on the right.
+             We want to route a particle from bottom to top. Clearly σ ′ =
+             σ + ∂(a + b + c), and (a, b, c) is a legal routing sequence from σ to
+             σ ′ . However, if we try to construct greedily a routing legal sequence
+             and do not select b before c, we obtain the legal sequence (a, c) from
+             σ to σ ′ , which is legal but cannot be extended in a longer legal
+             sequence: we forgot to use arc b before using c.
+
+     To ensure that the whole routing vector α corresponds to a legal routing sequence, we
+need an additional condition on α, which is met on the example in Fig. 7. We need a
+little more terminology to describe the condition nicely.
+                                             α
+     Consider σ, σ ′ and α ∈ CA+ such that σ ∼ σ ′ . In this context, a vertex v is transitory
+                                                   ∂
+if it is active in α and if σv′ = 0. A transitory vertex is an active vertex in which particles
+will not settle in the end. We denote by Trans(α, σ ′ ) the set of transitory vertices in the
+                α
+context of σ ∼ σ ′ .
+               ∂
+                                                                        α
+      Likewise, we say that a set of arcs R ⊂ A is guiding for σ ∼ σ ′ if:
+                                                                        ∂
+
+  (i) R contains only elements of α;
+ (ii) for every transitory vertex v ∈ Trans(α, σ ′ ), there is a directed path with all arcs in
+      R from v to a vertex v ′ ∈
+                               / Trans(α, σ ′ ) (i.e. v ′ is not active, or σv′ ⩾ 1).
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                  21
+It follows that a guiding set R which is minimal for inclusion contains exactly one arc
+a ∈ α with tail(a) = v for every transitory vertex v, and contains no directed cycles:
+hence such an R is a directed forest with domain Trans(α, σ ′ ). Conversely, any directed
+forest with domain Trans(α, σ ′ ) is guiding, and we call it a guiding forest. For a guiding
+forest F and a transitory vertex v ∈ Trans(α, σ ′ ), we denote by F(v) the arc a in F with
+tail(a) = v.
+     Consider as an example Fig. 7 once again. Both a + c and a + b + c are routing vectors
+that admit a legal routing sequence. In each case, the two vertices whose value is 0 in
+σ ′ (middle and down) are transitory since they are active in the routing, and the unique
+guiding forest is {a, c}.
+                                      α
+     Let F be a guiding forest for σ ∼ σ ′ and consider an α-bounded legal routing sequence
+                                          ∂
+s = (ai )0⩽i⩽k−1 for σ, with routing vector α′ . We say that s is guided by (σ, α, F) if for
+every transitory vertex v ∈ Trans(α, σ ′ ):
+
+     • if v is not an active vertex of α − α′ , then the last arc with tail v in s is F(v);
+
+     • if v is an active vertex of α − α′ , then F(v) ∈ α − α′ .
+
+    The main idea in this definition is that if a legal routing sequence has routing vector
+ ′
+α = α, then saying that it is guided by F is just saying that F(v) is the last arc of the
+sequence with tail v, for every transitory vertex v; otherwise if the routing vector α′ is
+such that α′ ⪇ α, the condition ensures F(v) remains available in order to extend the
+sequence. Note that by construction, a prefix of legal routing sequence that is guided by
+(σ, α, F), is also guided by (σ, α, F). In the example in Fig. 7, a legal sequence guided
+by F = {a, c} for α = a + b + c will have to use arc b before arc c.
+                                                                             α
+Lemma 12. Let (ai )0⩽i⩽k−1 be a legal routing sequence for σ → σ ′ . For any transitory
+                                                                             ∂
+vertex v ∈ Trans(α, σ ′ ), let F(v) be the last arc with tail v appearing in the sequence.
+                                                                   α
+Then F := {F(v) for v ∈ Trans(α, σ ′ )} is a guiding forest for σ ∼ σ ′ , and (ai )i is guided
+                                                                                 ∂
+by F.
+
+Proof. Let (σ i )0⩽i⩽k be the sequence of particle configurations in the legal sequence. Con-
+sider a transitory vertex v. By construction F contains exactly one arc of α with tail v;
+let iv be the last index with aiv = F(v) and let v ′ = head(F(v)). If v ′ is also transitory
+then iv′ > iv : indeed, suppose that iv′ ⩽ iv : then σviv′ ⩾ 0 and then σviv′ +1 ⩾ 1. By
+definition of iv′ , all arcs ai for i > iv + 1 satisfy tail(ai ) ̸= v ′ , so that σv′ ′ ⩾ σviv′ +1 ⩾ 1. This
+contradicts the fact that σv′ ′ = 0. It follows that there can be no directed cycle in F, and
+no undirected cycle as well, so F is a guiding forest.
+    The next lemma proves that under conditions of Lemma 10, together with the existence
+of a guiding forest F, we can build greedily a legal routing sequence from σ to σ ′ that will
+have a routing vector exactly α. The difference with Lemma 10 is that we must make sure
+for transitory vertices that the last routing in which they are involved is the arc F(v).
+Hence, the guiding forest is the “last exit” of a particle in a transitory vertex, and will
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                              22
+guide the particle to its final position. This is very similar to the correspondence between
+Eulerian circuits and directed forests in an Eulerian directed graph (see for instance [24]).
+    Let S(σ, α, F) be the set of α-bounded legal sequences for σ that are guided by
+(σ, α, F ).
+                                                         α
+Lemma 13. Let α ∈ CA+ . Suppose that σ ∼ σ ′ , that every active vertex v of α satisfies
+                                                         ∂
+σv′ ⩾ 0, and that there exists a guiding forest F for the routing. Let s ∈ S(σ, α, F) with
+routing vector αs such that αs ̸= α. Let σ s = σ + ∂(αs ).
+    Then there is an active vertex v of α − αs with σvs ⩾ 1. Define an arc a ∈ A+ (v) by:
+
+    • if v ∈
+           / Trans(α, σ ′ ), let a be any arc a ∈ α − αs with tail v;
+
+    • if v ∈ Trans(α, σ ′ ) and F(v) is the only arc in α − αs with tail v, let a = F(v);
+
+    • if v ∈ Trans(α, σ ′ ) and there are at least two distinct arcs in α − αs with tail v, let
+      a be any such arc that is not F(v).
+
+Then s · a ∈ S(σ, α, F).
+
+Proof. We prove first that there is an active vertex v of α − αs , such that σvs ⩾ 1. Suppose
+that there is no such vertex and consider the set Vs of active vertices of α − αs . We then
+have                                    X
+                                             σvs = 0.
+                                                  v∈Vs
+
+Since elements of Vs are also active for α, we see by hypothesis that σv′ ⩾ 0 for every
+v ∈ Vs . We prove that from σ s to σ ′ , the total number of particles in Vs cannot increase:
+indeed, for every active arc of α − αs , one particle is lost in Vs and at most one is gained
+(in the case where the arc has also its head in Vs ). Precisely:
+                              X           X
+                                  σv′ =      (σvs + ∂(α − αs )v ),
+                                  v∈Vs            v∈Vs
+
+with             X                       X                              X
+                        ∂(α − αs )v =           (head(α − αs ))v −            (tail(α − αs ))v .
+                 v∈Vs                    v∈Vs                          v∈Vs
+
+We have                        X                              X
+                                      (tail(α − αs ))v =              (α − αs )a
+                               v∈Vs                          a∈α−αs
+
+since every arc of α − αs has its tail in Vs by definition of Vs . On the other hand, we see
+that                      X                         X
+                             (head(α − αs ))v ⩽          (α − αs )a                      (3)
+                              v∈Vs                           a∈α−αs
+
+thus                                       X
+                                                  ∂(α − αs )v ⩽ 0,
+                                           v∈Vs
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                        23
+hence                                      X              X
+                                      0⩽          σv′ ⩽          σvs = 0,
+                                           v∈Vs           v∈Vs
+
+the last equality following from our hypothesis. It follows that σv′ = 0 for every v ∈ Vs so
+(3) is an equality, i.e. for every arc a ∈ α − αs , head(a) ∈ Vs . Also note that Vs contains
+only transitory vertices, in Trans(α − αs , σ ′ ), hence also in Trans(α, σ ′ ). By hypothesis
+s ∈ S(σ, α, F), so for every v ∈ Vs , we have F(v) ∈ α − αs . Since arcs a ∈ α − αs are such
+that head(a) ∈ Vs and tail(a) ∈ Vs , it implies that F contains a directed cycle, which is
+a contradiction.
+     Finally, we proved that there is an active vertex v 1 of α − αs , such that σvs1 ⩾ 1.
+Choosing any arc a ∈ α − αs with tail v 1 will result in extending s into a sequence s · a
+which is α-bounded and legal. It remains to see how to choose a such that s · a will
+still be guided by (σ, α, F). If v 1 ∈/ Trans(α, σ ′ ), any such arc a will work. Otherwise,
+     1          s
+F(v ) ∈ α − α since s ∈ S(σ, α, F). Consider two cases:
+
+      • if F(v 1 ) is the only arc with tail v 1 in α−αs , then we choose a = F(v 1 ). If v 1 becomes
+        inactive for α − αs − F(v 1 ) then the last arc with tail v 1 in s · a is F(v 1 ), as required;
+        otherwise v 1 is active in α − αs − F(v 1 ) and we still have F(v 1 ) ∈ α − αs − F(v 1 );
+
+      • otherwise, let a be another arc with tail v 1 . Then v 1 is active in α − αs − a and we
+        still have F(v 1 ) ∈ α − αs − a.
+
+
+
+      Here is the main result of this section:
+                         α                                 α
+Theorem 14. If σ ∼ σ ′ with α ∈ CA+ , then σ → σ ′ if and only if
+                         ∂                                 ∂
+
+  (i) every active vertex v satisfies σv′ ⩾ 0, and
+
+ (ii) the set of arcs which are elements of α is guiding.
+                                                                     α
+Proof. If the set of elements of α is guiding, then σ ∼ σ ′ admits a guiding forest so by
+                                                                     ∂
+Lemma 13, the conditions are sufficient.
+    Conversely if there is a legal routing sequence with routing vector α, then Condition
+(i) is necessary by Proposition 9 and Condition (ii) is necessary by Lemma 12.
+      Figure 8 illustrates this result.
+
+3.5     Summary of complexity results for reachability questions in free routing
+We can sum up the algorithmic complexities underlying the reachability problems studied
+in this section by the following result. Polynomial here means polynomial in sizes of G,
+σ, σ ′ or α (configurations being encoded in binary, i.e. strongly polynomial).
+
+Proposition 15. Let G be a multigraph. Let σ, σ ′ ∈ CV and α ∈ CA+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                          24
+                   b        -1                                      b      0
+
+                                a                                              a
+
+                            1                                              0
+               (a) σ configuration                             (b) σ ′ configuration
+
+             Figure 8: A graph with σ given on the left and σ ′ on the right.
+                        a
+             Consider σ ∼ σ ′ : the unique transitory vertex is the bottom one
+                            ∂
+             since the top one is not active. Then {a} is a guiding forest for that
+             routing and there is a legal routing sequence with routing vector a.
+                              a+b
+             Consider now σ ∼ σ ′ . Both vertices are transitory, but there is no
+                                    ∂
+             guiding forest for a + b. One can easily check that there is no legal
+             routing sequence from σ with routing vector a + b.
+
+                                            ∗
+    (i) the complexity of deciding if σ ∼ σ ′ is polynomial – by checking if deg(σ) = deg(σ ′ );
+                                           ∂
+
+                                            ∗
+ (ii) the complexity of deciding if σ → σ ′ is polynomial – by reduction to a network flow
+                                            ∂
+       algorithm (Proposition 11);
+                                           α
+(iii) the complexity of deciding if σ → σ ′ is polynomial – check conditions of Theorem 14.
+                                           ∂
+
+   Note however that in (ii) and (iii), legal routing sequences can be obtained easily from
+appropriate routing vectors, but they can have exponential length.
+
+
+4      Rotor-routing in Generalized Rotor Mechanisms multigraphs
+Having defined the necessary tools in previous sections, we can define the generalization
+of standard rotor-routing. The generalization is twofold: first, the graphs where we study
+rotor-routing will not be limited to standard rotor multigraphs with a cyclic rotor on every
+vertex. Every vertex will be allowed to have a more complex mechanism for updating
+arcs, leading to the model of generalized rotor mechanisms (GRM) multigraphs. Second,
+the linear routing takes place simultaneously in the space CA × CV of arcs and vertices,
+whereas in the previous section we considered just vertices. We will interpret this as
+free routing, in the sense of Section 3, simultaneously in two graphs. The motivation is
+that it puts the emphasis on the symmetry between transformations in configurations of
+vertices (particles) and arcs (rotors) during rotor-routing. Furthermore, some important
+reachability results, developed in Section 5, are valid in the generalized case.
+    As an introduction to GRMs, we reinterpret a single rotor step as two simultaneous
+free routings (one on the vertex-graph GV , one on the arc-graph GA ) (Section 4.1). We
+then formalize this construction (Section 4.2), introduce the linear rotor-routing operator
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                   25
+L : CF → CA × CV that defines linear rotor-routing in GRMs (Section 4.3), and then
+the legal version of rotor-routing in GRMs (Section 4.4). We single out the cyclic GRM
+subclass and show that it exactly recovers standard rotor-routing; this identifies the bridge
+between classical results and their GRM generalization (Section 4.5). We finally address
+algorithmic questions: how to decide and compute routing vectors in this context in
+polynomial time via linear-algebraic tools (matrix/Smith decomposition) (Section 4.6).
+
+4.1    Introducting GRMs
+Consider once again the rotor multigraph G1 of Fig. 2 and suppose that there is a single
+particle σ = v2 on the vertex v2 , together with a rotor configuration ρ such that ρ(v2 ) =
+a2,1 , as depicted on the right side of Fig. 9. If we proceed in a routing step at v2 , in the
+sense of standard rotor-routing, the particle will be transferred to v1 , so that σ becomes
+σ + ∂(ρ(v2 )) = σ + ∂(a2,1 ), where ∂ is the boundary operator in G as defined in Sec. 3. At
+                                                        ′
+the same time,P ρ is updated so that ρ(v2 ) becomes ρ (v2 ) = a2,0 . If we see ρ as a formal
+sum of arcs v∈V ρ(v), we can write this transformation as ρ + a2,0 − a2,1 . We interpret
+this as the routing of an ’arc particle’ in the graph GA depicted in the left side of Fig. 9.
+     In order to distinguish the graphs used to route ’vertex particles’ and ’arc particles’,
+we denote by GV the graph G1 and ∂ V its boundary operator. On the other hand, let us
+denote by ∂ A the boundary operator of the graph GA . The vertices of GA correspond to
+arcs of GV , and the arcs of GA join every arc a of GV to its successor θ(a) in the rotor
+ordering; hence GA is a collection of disjoint directed cycles. To avoid confusion, while
+we keep using the standard terminology of vertices and arcs for GV , we respectively use
+the terms ’arcs’ and ’faces’ for formal vertices and arcs of GA .
+     With this notation, the rotor-routing step described just above can be written as
+
+                               (ρ′ , σ ′ ) = (ρ, σ) + (∂ A (f2,1 ), ∂ V (a2,1 )).
+
+Note that a2,1 = tailA (f2,1 ), where tailA is the tail operator in GA .
+   We can then see a rotor step as two simultaneous free routings, in the sense of Sec. 3, in
+graphs GA and GV . In what follows, we define a generalized rotor mechanisms multigraph,
+where the graph GA no longer required to be a collection of disjoint directed cycles.
+
+4.2    Definition of Generalized Rotor Mechanisms multigraphs
+We generalize the standard rotor mechanism, where GA consists of the union of directed
+cycles simply by allowing any multigraph on every A+ (v) instead of a directed cycle.
+    More precisely, let GV = (V, A, headV , tailV ) be a multigraph (for particles). Choose
+for every v ∈/ S, where S is the set of sinks in GV , a multigraph GA (v) = (A+ (v), F (v),
+head , tail ) where F (v) is any abstract finite set, and headA , tailA are defined from F (v)
+     A     A
+
+to A+ (v) without restriction.
+    Let GA be the union of the graphs GA (v), and let F be the union of all F (v) for
+v ∈ V \ S, so that GA = (A, F, headA , tailA ) is a multigraph. The elements of F are called
+faces.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                 26
+                               Graph GA                                                           Graph GV
+                                     a0,2
+                        f0,2                                                                            v0 : 0
+                                                    ′
+                                                   f0,1                            a0,1
+                                                                                            a′0,1            a0,2
+                      a0,1           f0,1          a′0,1
+
+                                                                                                                       a′2,0     a2,0
+               a1,3                                        a′2,0                          a1,0
+                                               ′
+     f1,3                     ′
+                                              f2,0
+                             f1,2                                      f2,0
+                                                                                   v1 : 0                   a2,1        v2 : 1
+ a1,2          f1,2          a′1,2          a2,1           f2,1        a2,0                       a′1,2
+
+                                                                                                 a1,2
+
+                Figure 9: The rotor multigraph G1 of Fig. 2 defined as a generalized
+                rotor mechanisms (GA , GV ). In particular, the face in bold f2,1 and
+                the arc in bold a2,1 are coupled.
+
+   We call a couple of multigraphs (GA , GV ) built like this, a Generalized Rotor Mech-
+anism (GRM from now on). We denote as degV and degA the degree mappings in graphs
+GV and GA as defined in Sec. 3. An example of GRM multigraph is given on Fig. 10.
+
+4.3         Definition of linear rotor-routing in GRM multigraphs
+Let (GA , GV ) be a GRM multigraph as defined above with GA = (A, F, headA , tailA ) and
+GV = (V, A, headV , tailV ). Formal sums of faces are denoted CF . Define
+
+                                                       L : CF → CA × CV
+by
+                                                     L = ∂ A × (∂ V ◦ tailA ).
+    Let (r, σ) ∈ CA × CV . We define the linear rotor-routing along ϕ ∈ CF as the
+operation that transforms (r, σ) into (r, σ) + L(ϕ), and ϕ is called the routing vector of
+the routing operation. Note that if ϕ is a single face, with a′ = headA (ϕ) and a = tailA (ϕ),
+this transformation adds a′ − a to r, and adds v ′ − v to σ, where v ′ = headV (a) and
+v = tailV (a).
+    We say that (r, σ) and (r′ , σ ′ ) are equivalent (modulo linear routing), denoted by
+                                                                   ∗
+                                                           (r, σ) ∼ (r′ , σ ′ ),
+                                                                   L
+        ′       ′
+if (r − r, σ − σ) ∈ Im(L), i.e. if there is a routing vector that transforms (r, σ) into
+                                                                                                                   ϕ
+(r′ , σ ′ ). If we want to specify that the routing vector is ϕ, we write (r, σ) ∼ (r′ , σ ′ ). Note
+                                                                                                                 L
+that the linear routing operation is purely algebraic and can be computed by forming the
+matrix of L. An example of this matrix is given in Appendix A.2.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                                         27
+4.4     Definition of legal rotor-routing in GRM multigraphs
+An elementary linear routing is the routing along a face f ∈ CF . Such a linear routing is
+said legal for (r, σ) ∈ CA × CV if ra ⩾ 1 and σv ⩾ 1, where a = tailA (f ) and v = tailV (a).
+The interpretation is that there is a real ’vertex particle’ on v in σ and a real ’arc particle’
+on a in r, as it is the case in standard rotor-routing: adding L(f ) consists of moving
+respectively these particles along a, from v to headV (a), and along f from a to headA (f ).
+    Consider the special case of (r, σ) = (ρ, σ) where ρ is a rotor configuration, viewed as
+a sum of arcs. In this case, for every non-sink vertex v, there is exactly one arc a ∈ A+ (v)
+such that ρa > 0, namely ρ(v). If σv > 0 and we want to apply a GRM legal routing in
+order to move the particle on v, the process is similar to the routing in a standard rotor
+multigraph, with the the following differences:
+      • when we want to move the particle from v along the arc ρ(v) ∈ A+ (v), we may
+        sometimes choose the update on ρ(v). Choosing a face f ∈ F (v) with tailA (f ) = ρ(v)
+        transforms ρ into ρ + headA (f ) − ρ(v), simultaneously with the movement of the
+        particle;
+      • it can also happen that there is no face f with tailA (f ) = ρ(v). In this case, no
+        legal routing is available: the particle cannot legally move anymore, because ρ(v)
+        acts like a sink in the set of arcs.
+    Some basic generalized rotor mechanisms could be for instance, a rotor multigraph
+where every arc a can be updated to the next arc θ(a), or to the previous arc θ−1 (a), for
+every routing along a, or a rotor multigraph with an arc-sink for every vertex, e.g. GA (v)
+is a directed path for every non sink vertex instead of a cycle.
+                                                                                     ∗
+    It can be noted that linear routing preserves degrees. In other words, if (r, σ) ∼ (r′ , σ ′ ),
+                                                                                            L
+then degA (r) = degA (r′ ) and degV (σ) = degV (σ ′ ). This means that the total algebraic
+number of particles should be the same in every connected component of GV , and that
+the sum of arcs should be the same in every mechanism GA (v) (or in each of the weakly
+connected components of the mechanism, if not connected).
+     A routing sequence forPa routing vector ϕ ∈ CF is a finite sequence of faces
+f0 , f1 , . . . , fk such that ϕ = i fi . This sequence is legal for (r, σ) if, when applying
+in order elementary routing steps along f0 , f1 , . . . , fk , every step is legal.
+     For legal routings, we use notation akin to the case of free routing, namely
+                                                    ∗
+                                            (r, σ) → (r′ , σ ′ )
+                                                    L
+
+                                                                              ϕ
+if there is a legal routing sequence from (r, σ) to (r′ , σ ′ ), and (r, σ) → (r′ , σ ′ ) if there is a
+                                                                              L
+legal sequence with routing vector exactly ϕ.
+
+4.5     Cyclic GRM multigraphs
+If G = (V, A, head, tail, θ) is a rotor multigraph, we can associate to G a GRM multigraph
+(GA , GV ) defined as follows:
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                         28
+                          v                                                         v
+
+                         f54    f44
+       f55 a5      a3          a4                                   a5      a3            a4
+
+                   f11         f23
+   x                      u                    y              x                     u                  y
+            a1                       a2                                a1                      a2
+                         f12
+
+(a) Generalized rotor mechanisms in one                   (b) Graph GV = (V, A, headV , tailV ), with
+picture: the dashed red arcs represent the                V = {x, y, u, v} and A = {a1 , a2 , a3 , a4 , a5 }
+possible evolution of arcs when routed.
+
+
+
+       f11                                                        f55             f44
+                  f12           f23                                         f54
+          a1              a2              a3                         a5              a4
+
+(c) Graph GA (u) on A+ (u) with face set                  (d) Graph GA (v) on A+ (v) with face set
+F (u) = {f11 , f12 , f23 }                                F (v) = {f44 , f54 , f55 }
+
+                Figure 10: a GRM multigraph G. In Fig. (a): representation in
+                one picture of the GRM, with arcs in full black and faces in dashed
+                red. The other figures corresponds to graphs GV (Fig. (b)) and GA
+                respectively, the last graph being split into graph GA (u) (Fig. (c))
+                and GA (v) (Fig. (d)).
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                29
+      • GV = (V, A, head, tail)
+
+      • GA = (A, F, headA , tailA ) where F = {(a, θ(a)) : a ∈ A}, and headA ((a, θ(a)) =
+        θ(a), tailA ((a, θ(a)) = a for all a ∈ A.
+
+    A GRM multigraph built from a rotor multigraph like this is called a cyclic GRM
+multigraph, since GA (v) is a directed cycle on the ’vertex’ set A+ (v) for every v ∈ V \ S
+(notation S will always refer to the sinks of GV ). We say that a cyclic GRM multigraph
+is stopping, or strongly connected, or any other property of rotor multigraphs, if the
+corresponding rotor multigraph satisfies the property.
+    In this context, a rotor configuration is an element ρ ∈ CA such that for any
+v ∈ V \ S, there is unique a ∈ A+ (v) such that ρa = 1, and ρa = 0 for the other arcs in
+A+ (v).
+    In a cyclic GRM multigraph, if ρ is a rotor configuration and σv > 0, the linear rotor-
+routing along the face (ρ(v), θ(ρ(v)) matches the standard definition of rotor-routing.
+Hence, the notion of legal routing in cyclic GRM multigraphs completely emulates stan-
+dard rotor-routing as defined in Section 2.5. In the following, we speak of cyclic GRM
+multigraphs instead of rotor multigraphs to avoid clashes in definitions of rotor-routing,
+as the settings of cyclic GRM multigraphs and rotor multigraphs are essentially the same,
+but the definitions of rotor-routing differ.
+
+4.6     Computing routing vectors
+Given a routing vector ϕ ∈ CF , the matrix of L allows us to compute the linear rotor-
+routing along ϕ in polynomial time (see Appendix A.2 for a detailed example). Conversely,
+if r, r′ ∈ CA and σ, σ ′ ∈ CV are given as input, one may seek to decide if a routing
+vector ϕ such that (r′ , σ ′ ) = (r, σ) + L(ϕ) exists, and if so, compute such a routing
+vector. As mentioned before, a necessary condition is that degV (σ) = degV (σ ′ ) and
+degA (r) = degA (r′ ).
+    In what follows, the term ’polynomial’ means polynomial in the size of G, together
+with r, r′ ∈ CA and σ, σ ′ ∈ CV (encoded in binary).
+
+Proposition 16. Let r, r′ ∈ CA and σ, σ ′ ∈ CV . There is a polynomial time algorithm
+                            ∗
+that decides whether (r, σ) ∼ (r′ , σ ′ ), and if so, returns a routing vector ϕ ∈ CF such that
+                                L
+(r′ , σ ′ ) = (r, σ) + L(ϕ) and ϕ has polynomial size.
+
+Proof. This amounts to computing an integral solution of a system of linear diophantine
+equations, if it exists. This can be achieved by using the Smith decomposition of the
+matrix of L (see Appendix B for details on how to use the decomposition in order to solve
+the system). It remains to compute effectively the decomposition of the matrix, which
+can be done in polynomial time [14].
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                  30
+5      Legal rotor-routings in GRM multigraphs with specified rout-
+       ing vector
+We explore the concept of legal rotor-routing within GRM multigraphs, as defined in the
+preceding section, and characterize the subset of linear routings that correspond to legal
+sequences, following an approach similar to that in Section 3.2, but specifically adapted
+for linear rotor-routing in GRM multigraphs.
+    In a GRM multigraph (GA , GV ), every legal rotor-routing induces legal (free) routings
+in both GA and GV , but the converse generally fails: compatibility requires a specific
+interaction between the two components. In particular, certain special faces that appear
+in the free routing in GA , called terminal elements, must correctly guide the free routing
+in GV . This leads to a complete characterization of legal GRM routings with a prescribed
+routing vector ϕ (Section 5.1).
+    In the cyclic case, terminal elements in GA admit an explicit description in terms of
+transitory arcs, yielding a simplified legality criterion for cyclic GRMs. This provides in
+turn a clean legality criterion for standard rotor-routing (Section 5.2).
+    The main results of this section are Theorem 17 and Proposition 19.
+
+5.1     General case
+We consider a GRM multigraph (GA , GV ) as defined in Sec. 4.2, with the same notations.
+   With our definition (see Sec. 4.4), a legal routing sequence in a GRM moves legally
+and simultaneously ’arc particles’ in GA and ’vertex particles’ in GV . It is easy to check
+with our definitions that if (fi )0⩽i⩽k−1 , with fi ∈ F for every 0 ⩽ i ⩽ k − 1, is a legal
+routing sequence for (r, σ) in the GRM (GA , GV ) (in the sense of legal routing in GRMs),
+then
+      • (fi )0⩽i⩽k−1 is formally also a legal routing sequence for r in GA (in the sense of legal
+        free routing, see Sec. 3.2);
+
+      • the coupled routing of ’vertex particles’, given by the sequence (tailA (fi ))0⩽i⩽k−1
+        (where tailA (fi ) ∈ A for all i), is a legal routing sequence for σ in GV (also in the
+        sense of free legal routing).
+In particular,
+                                  ϕ                    ϕ         tailA (ϕ)
+                          (r, σ) → (r′ , σ ′ ) =⇒ r → r′ and σ     →         σ′.
+                                 L                    ∂A           ∂V
+
+     The opposite direction is more tricky: it is not enough to suppose that there is a legal
+sequence in GA for r with routing vector ϕ, and a legal sequence in GV for σ with vector
+tailA (ϕ), to obtain a legal sequence for (r, σ) in the GRM. A counterexample is given in
+Figure 11.
+     To ensure compatibility between legal sequences in GA and GV , we must note an
+important necessary condition. Suppose once again that (fi )0⩽i⩽k−1 is a legal routing
+sequence for (r, σ) in (GA , GV ) with vector ϕ. Let ai = tailA (fi ) and α = tailA (ϕ); then
+(ai )0⩽i⩽k−1 a legal sequence in GV for σ as we just established. For any transitory vertex
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                    31
+                                  v                                               0→1
+                               f12 a1
+                                                                                         1→0
+
+                      f22 a2      u                               0→1             1→0
+
+        (a) Names of vertices, arcs and faces.              (b) Configurations (r, σ) and (r′ , σ ′ ).
+
+             Figure 11: (a) A GRM (GA , GV ) with two vertices u, v with v
+             a sink, two arcs a1 , a2 and two faces f12 , f22 both in F (u), with
+             f12 from a1 to a2 , and f22 a loop on a2 . (b) Starting and ending
+             configurations (r, σ) and (r′ , σ ′ ). One can check that the routing
+                                                f12 +f22                                    f12 +f22
+             vector f12 +f22 satisfies (r, σ)        ∼     (r′ , σ ′ ). In GA , we have r     →
+                                                     L                                        ∂A
+             r′ , and the only legal sequence for this is (f12 , f22 ). We note that
+                                                                         a +a
+             tailA (f12 + f22 ) = a1 + a2 , and that in GV we have σ 1→ 2 σ ′ but
+                                                                                    ∂V
+             that the only legal sequence is (a2 , a1 ), which does not correspond
+             to (f12 , f22 ). As a consequence, there is no legal sequence from (r, σ)
+             to (r′ , σ ′ ) with routing vector f12 + f22 in the sense of GRMs.
+
+
+v ∈ Trans(α, σ ′ ) (in the sense of legal free routing in GV , see Section 3.4), let iv be the last
+index such that v is the tail of v = tailV (ai ), i.e. the last time that a particle moves out
+of v during the sequence. By Lemma 12, the set of the arcs aiv for all transitory vertices
+                                              α
+in Trans(α, σ ′ ) is a guiding forest for σ → σ ′ . At the same time, for such a transitory v,
+                                                ∂V
+the face fiv must be the last element of F (v) appearing in the sequence (fi ).
+                                                                             ϕ
+    Let us define a terminal element of the free routing r → r′ in GA as a face f ∈ ϕ
+                                                                            ∂A
+                                                                    ϕ
+such that there is a legal sequence ending by f for r → r′ . We just established that for
+                                                                    ∂A
+every transitory vertex v ∈ Trans(α, σ ′ ), the face fiv is the last element of F (v) appearing
+in the sequence (fi ) ; since F (v) is a connected component of GA , we could move fiv to
+the end of the sequence, and the routing would still be legal. Hence, fiv is a terminal
+              ϕ
+element of r → r′ . This implies in particular the following: if T is the set of terminal
+                ∂A
+                  ϕ                                                                                α
+elements for r → r′ , then the set of arcs {tailA (f ), f ∈ T } is guiding for σ ∼ σ ′ .
+                 ∂A                                                                             ∂V
+    This necessary condition turns out to be sufficient, and gives a criteria for the existence
+of a legal routing in a GRM with a specified routing vector.
+
+Theorem 17. Consider a GRM multigraph (GA , GV ). Let r, r′ ∈ CA and σ, σ ′ ∈ CV . Let
+                                                ϕ
+ϕ ∈ CF+ with α = tailA (ϕ). Then (r, σ) → (r′ , σ ′ ) if and only if:
+                                                L
+
+         ϕ
+  (i) r → r′ in the sense of free routing;
+        ∂A
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                              32
+         α
+ (ii) σ → σ ′ in the sense of free routing;
+         ∂V
+
+                                                       ϕ
+(iii) if T is the set of terminal elements of r → r′ , then {tailA (f ) : f ∈ T } is guiding for
+                                                      ∂A
+         α    ′
+      σ ∼ σ.
+         ∂V
+
+    Note that (i) and (ii) are characterized by Theorem 14. Before proving the result, let
+                                                                                               ϕ
+us note that (iii) can also be checked with repeated use of Theorem 14. Indeed, if r → r′ ,
+                                                                                              ∂A
+let f ∈ ϕ and consider two cases:
+                                                                ϕ
+    • if f is a loop, then f is a terminal element of r → r′ if and only if rf′ ⩾ 1;
+                                                                ∂A
+
+                                                      ϕ                  ϕ−f
+    • otherwise, f is a terminal element of r → r′ if and only if r → r′ − ∂ A (f ).
+                                                      ∂A                 ∂A
+
+    It follows that these conditions can be checked in polynomial time.
+Proof of Theorem 17. Let us make the convention that a sequence of elements of F (resp.
+of A) is said legal for r ∈ CA , (resp. for σ ∈ CV ) if it is legal in the sense of free routing
+in GA (resp. in GV ), as per Section 3.2; and that a sequence of elements of F is said
+legal for (r, σ), if it is legal in the sense of linear rotor-routing in (GA , GV ) as described
+in Section 4.3.
+     Let us introduce some notation for the proof. Since GA is the union of the weakly
+connected     components GA (v) for v ∈ V \ S, we decompose any routing vector ϕ in GA as
+ϕ = v∈V \S ϕ|v , where ϕ|v ∈ CF (v) . Define also the restrictions of r, r′ ∈ CA to A+ (v) by
+       P
+                                                       ϕ                                  ϕ|v
+       ′
+          so that r = v r|v and r′ = v r|v
+                                         P ′
+                                                . If r ∼ r′ then for every v we have r|v ∼ r|v′
+                       P
+r|v , r|v                                                                                       .
+                                                           ∂A                               ∂A
+For a routing sequence s = (fi )i , we can as well decompose the sequence as subsequences
+s|v for each non sink vertex v, where faces appearing in s|v belong to F (v); then clearly s
+is legal for r if and only if all s|v are legal for r|v .
+    We now show the necessity of conditions (i)-(iii): suppose the existence of the legal
+routing sequence (fi )0⩽i⩽k−1 for (r, σ). We denote ai = tailA (fi ) for 0 ⩽ i ⩽ k − 1. By
+definition of legality in GRM multigraphs, (fi )0⩽i⩽k−1 and (ai )0⩽i⩽k−1 are respectively legal
+                             ϕ             α
+routing sequences for r → r′ and σ → σ ′ , which proves (i) and (ii). Then, by Lemma 12,
+                            ∂A             ∂V
+                                       α    ′
+for any transitory vertex v of σ ∼ σ , if t(v) denotes the last arc with tail v appearing in
+                                      ∂V
+the sequence (ai )0⩽i⩽k−1 , then the set of all t(v) forms a guiding forest for this routing.
+For such a transitory vertex v, let i(v) be the last index of t(v) in that sequence. Then
+                                                                                            ϕ|v
+                                                                                               ′
+fi(v) is the last element of F (v) appearing in (fi )i , so it is a terminal element of r|v → r|v .
+                                                                                              ∂A
+         A                                                                                A
+Since G (v) is disjoint from the rest of the graph, we could move routings in G (v) to
+                                                                               ϕ
+the end of the sequence, hence F (v) is also a terminal element of r → r′ , so that (iii) is
+                                                                           ∂A
+true.
+   Conversely, suppose that conditions (i)-(iii) are satisfied. By (iii), we can suppose for
+every v ∈ Trans(α, σ ′ ), that there is f (v) ∈ F (v), so that if t(v) = tailA (f (v)) :
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                        33
+                                               ϕ
+    • f (v) is a terminal element of r → r′ , and
+                                               ∂A
+
+                                                α
+    • {t(v)}v is a guiding forest for σ ∼ σ ′ .
+                                               ∂V
+
+    For every vertex v ∈ V \ S, we can consider a (possibly empty) legal routing sequence
+                                     ϕ|v
+                                        ′
+s(v) = (f0v , . . . , fkvv ) for r|v → r|v , such that, if v ∈ Trans(α, σ ′ ) then fkvv = f (v). This
+                                     ∂A
+sequence describes an ordering of all routing steps that must be done in F (v) for every
+v. Our strategy is to construct recursively a legal routing sequence s = (fi )0⩽i⩽k for
+        ϕ
+(r, σ) → (r′ , σ ′ ) that coincides with s(v) for every active vertex v, i.e. s|v = s(v). This
+       L
+will ensure that the routing of particles will be guided by t and that the sequence can be
+extended.
+    Suppose that ℓ ⩾ 0 and let sℓ = (fi )0⩽i⩽ℓ−1 is a routing sequence with routing vector
+ ℓ
+ϕ , such that:
+                                ϕℓ
+    • sℓ is legal for (r, σ) → (rℓ , σ ℓ ) ;
+                                L
+
+    • ϕℓ ⩽ ϕ ;
+
+    • sℓ|v is a prefix of s(v) for every vertex v.
+
+     Suppose that ϕℓ ̸= ϕ, and let αℓ = tailA (ϕℓ ). By construction of s(v), the sequence
+(ai )0⩽i⩽ℓ−1 with ai = tailA (fi ) is guided by (σ, α, t) and is α-bounded. Then, by Lemma 13,
+there is an active vertex v of α − αℓ , such that σvℓ ⩾ 1. Then we choose the face f ∈ F (v)
+with f ∈ ϕ − ϕℓ such that sℓ|v appended with f is still a prefix of s(v). Then, the extended
+sequence sℓ+1 = (f0 , . . . , fℓ−1 , f ) satisfies
+
+    • sℓ+1 is legal for (r, σ) since by construction σvℓ ⩾ 1 and sℓ+1
+                                                                  |v  is a prefix of a legal
+                          ϕ|v
+                          ′
+      sequence for r|v → r|v ;
+                          ∂A
+
+    • ϕℓ+1 ⩽ ϕ ;
+
+    • sℓ+1
+       |v  is a prefix of s(v) for every vertex v by construction also.
+
+   Finally, starting from the empty sequence, we obtain recursively a sequence sℓ with
+                                                                                ϕ
+ϕℓ = ϕ satisfying the three properties above, hence a legal sequence for (r, σ) → (r′ , σ ′ ).
+                                                                                         L
+
+
+
+    This theorem is illustrated in an example of the GRM multigraph in Figure 12. An
+example where conditions (i) and (ii) of the theorem are satisfied, but not condition (iii)
+is shown in Figure 11.
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                        34
+                             v
+                                                                         3→0
+                       f54             f44
+            f55 a5    a3              a4
+                                                              1→0                0→1
+                                                                      0→1
+                      f11             f23
+        x                    u                   y     0→4               3→0                0→1
+                 a1                         a2                  1→0               0→0
+                            f12
+                                                     (b) Configurations (r, σ) and (r′ , σ ′ ) on arcs
+        (a) Names of vertices, arcs and faces.       and vertices.
+
+             Figure 12: (a) Same GRM multigraph as in Fig. 10. (b) Start-
+             ing and ending configurations (r, σ) and (r′ , σ ′ ) of arcs and ver-
+             tices. Consider ϕ = f11 + f12 + f23 + f44 + f54 + f55 and α =
+             tailA (ϕ) = 2a1 + a2 + a4 + 2a5 , then (r′ , σ ′ ) = (r, σ) + L(ϕ). Clearly
+                α                 ϕ
+             σ ∼ σ ′ and r ∼ r′ admit legal routing sequences with routing vec-
+               ∂V                ∂A
+                                                                                        ϕ
+             tors α and ϕ respectively. The set of terminal elements of r → r′
+                                                                                       ∂V
+                                                                         α   ′
+             is {f23 , f44 }. Transitory vertices for the routing σ ∼ σ are u and v
+                                                                        ∂V
+             and tailA (f23 ) + tailA (f44 ) = a2 + a4 which is guiding for this rout-
+             ing. Hence there is a legal routing sequence with routing vector ϕ.
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                              35
+5.2     Cyclic case
+In this section, we characterize the routing vectors that admit a legal routing sequence in
+a cyclic GRM multigraph, which provides a condition easier to check than the general one
+in Theorem 17. We recall that a cyclic GRM multigraph is equivalent to a standard rotor-
+routing graph, except that it allows routing with any arc configuration (see Section 4.5).
+    We begin with a useful lemma that characterizes terminal elements in the legal free
+routing of arcs in the multigraph GA .
+Lemma 18. Suppose that (GA , GV ) is a cyclic GRM multigraph. Consider a legal free
+                ϕ
+routing r → r′ in GA . Let f0 ∈ ϕ, and let a0 = tailA (f0 ) so that headA (f0 ) = θ(a0 ).
+            ∂A
+Then f0 is a terminal element of this routing if and only if θ(a0 ) ̸∈ Trans(ϕ, r′ ), i.e. if
+ ′
+rθ(a0)
+       ⩾ 1, or there is no f ∈ F with ϕf ⩾ 1 and tailA (f ) = θ(a0 ).
+                                                        ϕ−f0
+Proof. If f0 is a terminal element, then r → r′′ , where r′′ = r′ − ∂ A (f0 ). If a0 = θ(a0 ),
+                                                         ∂A
+                          V
+which means that tail (a0 ) has outdegree 1 in GV , then ra0 = ra′ 0 = ra′′0 ; since a0 is active
+in ϕ, we must have from the beginning ra0 ⩾ 1 so that ra′ 0 ⩾ 1, therefore θ(a0 ) = a0 ∈         /
+Trans(ϕ, r′ ). If a0 ̸= θ(a0 ), and θ(a0 ) is active in ϕ, then it is also active in ϕ − f0 , then
+ ′′
+rθ(a0)
+                 ′
+       ⩾ 0, so rθ(a 0)
+                       ⩾ 1, and θ(a0 ) ∈ / Trans(ϕ, r′ ).
+     Conversely, suppose that θ(a0 ) ∈     / Trans(ϕ, r′ ). Since f0 ∈ ϕ, a0 is active in ϕ. If
+a0 ̸= θ(a0 ), we have ra0 ⩾ 0 so ra0 ⩾ 1. If a0 = θ(a0 ), then ra0 = ra′ 0 = ra′′0 ⩾ 1. In all
+                          ′           ′′
+
+                                                ϕ−f0
+cases, ra′′0 ⩾ 1. So if we prove that r ∼ r′′ admits a legal routing sequence, it will be
+                                                  ∂A
+legal to add f0 at the end, proving that f0 is a terminal element. To see the existence of
+a legal sequence with routing vector ϕ − f0 , we check the conditions of Theorem 14.
+                                                               ϕ
+    First, for any active arc a in ϕ, we have ra′ ⩾ 0, since r → r′ . The active arcs in ϕ − f0
+                                                                         ∂A
+are those in ϕ, possibly excluding arc a0 . Meanwhile, the only possible arc a such that
+                           ′             ′′       ′
+ra′′ < ra′ is θ(a0 ), and rθ(a 0)
+                                  − 1 ⩽ rθ(a0)
+                                               ⩽ rθ(a0)
+                                                        . If θ(a0 ) is active in ϕ − f0 , then it is also
+active in ϕ. However, we assumed that θ(a0 ) ∈        / Trans(ϕ, r′ ), which implies rθ(a  ′
+                                                                                             0)
+                                                                                                ⩾ 1, and
+              ′′                                                               ′′
+therefore rθ(a0 ) ⩾ 0. Hence, every arc a active in ϕ − f0 satisfies ra ⩾ 0.
+                                                                              ϕ−f0
+      Second, we check the existence of a guiding forest for r ∼ r′′ . Let v0 = tailV (a0 ).
+                                                                              ∂A
+          ϕ−f0            ϕ
+Since r ∼ r′′ and r ∼ r′ only differ in GA (v0 ), the only remaining task is to verify the
+           ∂A             ∂A
+                                             ϕ|v0 −f0
+                                                         ′′
+existence of a guiding forest for r|v0         ∼        r|v 0
+                                                              (we recall that notation r|v0 means the part
+                                               ∂A
+of r with arcs in A+ (v0 )).
+    If F (v0 ) ∩ Trans(ϕ − f0 , r′′ ) = ∅, then there is nothing to check, the empty set is a
+                          ϕ|v0 −f0
+                                      ′′                                          ′′
+guiding forest for r|v0       ∼      r|v 0
+                                           . Otherwise let a ∈ Trans(ϕ|v0 − f0 , r|v 0
+                                                                                       ) and suppose that
+                              ∂A
+the set of faces which are elements of ϕ|v0 − f0 is not guiding. Since GA (v0 ) is a directed
+                                                 ′′                                  ′′
+cycle, we also have θ(a) ∈ Trans(ϕ|v0 − f0 , r|v    0
+                                                      ), θ2 (a) ∈ Trans(ϕ|v0 − f0 , r|v 0
+                                                                                          ) and so on,
+          +                           ′′                                                     ′′
+so that A (v0 ) ⊂ Trans(ϕ|v0 − f0 , r|v0 ), and in particular a0 ∈ Trans(ϕ|v0 − f0 , r|v        0
+                                                                                                  ). This
+contradicts the fact that ra′′0 ⩾ 1, which was proved above.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                             36
+    We checked the two conditions of Theorem 14.
+                                                     ϕ        ϕ
+    Consider now a free linear routing r ∼ r′ . If r → r′ , by Lemma 18, the terminal
+                                                     ∂A       ∂A
+elements of this routing are exactly the faces f ∈ ϕ such that tailA (f ) belongs to the
+following set TA :
+                                     ′
+                      TA = {a ∈ α : rθ(a) > 0} ∪ {a ∈ α : θ(a) ∈
+                                                               / α},
+where α = tailA (ϕ). Note that terminal elements are entirely characterized by the values
+ϕ and r′ .
+   Based on this characterization, we can derive the following result as an adaptation
+of Theorem 17 for GRM multigraphs. Unlike Theorem 17, which relied on applying
+the characterization from Theorem 14 several times as a subroutine, this result is self-
+contained.
+                                                                                     ϕ
+Proposition 19. Suppose that (GA , GV ) is a cyclic GRM multigraph and (r, σ) ∼ (r′ , σ ′ )
+                                                                                     L
+for some ϕ ∈ CF+ . Let α = tailA (ϕ) and
+                                         ′
+                          TA = {a ∈ α : rθ(a) > 0} ∪ {a ∈ α : θ(a) ∈
+                                                                   / α}.
+
+               ϕ
+Then (r, σ) → (r′ , σ ′ ) if and only if
+               L
+
+  (i) σv′ ⩾ 0 for every vertex v active in α;
+
+ (ii) ra′ ⩾ 0 for every arc a active in ϕ;
+
+(iii) TA ∩ A+ (v) ̸= ∅ for every vertex v active in α;
+                              α
+(iv) TA is guiding for σ ∼ σ ′ .
+                              ∂V
+
+Proof. By Theorem 17, there is a legal routing sequence from (r, σ) to (r′ , σ ′ ) with routing
+vector ϕ if and only if
+        α
+(1) σ → σ ′
+       ∂V
+
+       ϕ
+(2) r → r′
+       ∂A
+
+                                                α
+(3) {tailA (f ) : f ∈ TF } is guiding for σ → σ ′ where TF is the set of terminal elements of
+                                                ∂V
+       ϕ
+    r → r′ .
+       ∂A
+
+   First suppose that (i), (ii), (iii) and (iv) are satisfied. By Theorem 14 conditions (i)
+and (iv) of the proposition imply condition (1), since the set of arcs TA is contained in α.
+   Let v be active in α. By (iii), there is a ∈ A+ (v) ∩ TA . By definition of TA we have
+                                                                           ϕ|v
+     / Trans(ϕ, r′ ). We show the existence of a guiding forest for r|v ∼ r|v
+θ(a) ∈                                                                     ′
+                                                                              .
+                                                                           ∂A
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                  37
+    If F (v) ∩ Trans(ϕ, r′ ) = ∅, then there is nothing to check and the empty set is suitable.
+                                   ′
+Otherwise let â ∈ Trans(ϕ|v , r|v   ) and suppose that the set of faces that are elements of
+                                A                                                            ′
+ϕ|v is not guiding. Since G (v) is a directed cycle, we also have θ(â) ∈ Trans(ϕ|v , r|v      ),
+ 2                    ′                         +                  ′
+θ (â) ∈ Trans(ϕ|v , r|v ) and so on, so that A (v) ⊂ Trans(ϕ|v , r|v ). This is a contradiction
+                                                                              ϕ
+with θ(a) not being transitory. Hence, the support of ϕ is guiding r ∼ r. This together
+                                                                             ∂A
+                                                ϕ
+with (ii) implies by Theorem 14 that r → r′ . Hence condition (2) is satisfied. Finally, by
+                                               ∂A
+                                   A
+Lemma 18, we have TA = tail (TF ), hence (iv) and (3) are equivalent.
+   Conversely, suppose that condition (1), (2) and (3) are satisfied. We already showed
+that (3) implies (iv).
+   By (2), for every active vertex v in α there must be an arc a ∈ A+ (v) which is not
+                   ϕ
+transitory for r → r′ . This corresponds to condition (iii).
+                   ∂A
+   Finally, condition (1) implies (i), and condition (2) implies (ii), hence the equivalence
+between the two sets of conditions.
+   To conclude this section, we show how to apply these results to the case of standard
+rotor-routing. We suppose that σ, σ ′ ∈ CV+ , and that ρ, ρ′ are rotor configurations (see
+Section 4.5).
+                                                                                                 ϕ
+Corollary 20. Suppose that (GA , GV ) is a cyclic GRM multigraph and that (ρ′ , σ ′ ) ∼
+                                                                                                 L
+(ρ, σ), with ϕ ∈ CF+ , with ρ, ρ′ rotor configurations and σ, σ ′ ∈ CV+ . Let α = tailA (ϕ) ∈ CA+ .
+               ϕ
+Then (ρ, σ) → (ρ′ , σ ′ ) if and only if
+               L
+
+                                          {a ∈ α : θ(a) ∈ ρ′ }
+                    α
+is guiding for σ ∼ σ ′ .
+                   ∂V
+
+Proof. Recall that in this context TA as defined in Proposition 19 can be expressed as
+
+                         TA = {a ∈ α : θ(a) ∈ ρ′ } ∪ {a ∈ α : θ(a) ∈
+                                                                   / α}.
+
+We prove that TA = {a ∈ α : θ(a) ∈ ρ′ }. Let a ∈ α such that θ(a) ∈             / α. Then
+ ′                                       ′                    ′
+ρθ(a) = ρθ(a) + αa which implies that ρθ(a) ⩾ 1 and then ρθ(a) = 1. Thus, {a ∈ α : θ(a) ∈    /
+                       ′
+α} ⊂ {a ∈ α : θ(a) ∈ ρ }.
+                                                       α
+    Suppose that {a ∈ α : θ(a) ∈ ρ′ } is guiding for σ ∼ σ ′ . We check conditions (i) to (iv)
+                                                              ∂V
+of Proposition 19.
+    Since σ ′ ∈ CV+ and ρ′ ∈ CA+ , conditions (i) and (ii) are satisfied. Moreover, for every
+vertex v ∈/ S there is a ∈ A+ (v) such that ρ′a > 0. Hence {a ∈ α : ρ′θ(a) > 0} ∩ A+ (v)
+is nonempty for every active vertex v in α and condition (iii) is satisfied. Condition (iv)
+follows from TA = {a ∈ α : θ(a) ∈ ρ′ }.
+                                                                                  α
+    Conversely, condition (iv) implies that {a ∈ α : θ(a) ∈ ρ′ } is guiding for σ ∼ σ ′ .
+                                                                                      ∂V
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                      38
+    In the special case where GV is stopping, and we aim to simulate maximal rotor walks
+(see Sec. 2.5) in GRM multigraphs, the previous result leads to the characterization of
+runs among flows, as stated in Theorem 5.
+
+
+6       Legal reachability in GRM multigraphs
+In the previous section, we developed a procedure to decide whether a legal routing exists
+in GRM multigraphs when a routing vector is specified, and we derived a simplified
+characterization for the cyclic case; both can be verified in polynomial time. In this
+section, we extend the analysis to the setting where no routing vector is given.
+    In full generality, the problem becomes computationally hard: we prove that legal
+reachability in GRM multigraphs is NP-complete (Section 6.1). Since the proof is lengthy,
+we present it separately for clarity (Section 6.2).
+    In contrast, the cyclic case admits an explicit structural description. Periodic routing
+vectors form a computable lattice, and every reachability instance reduces to checking a
+small set of canonical candidates. This yields a complete polynomial-time criterion for
+legal reachability without a prescribed routing vector in cyclic GRMs (Section 6.3), which
+in particular encompasses standard rotor-routing.
+    The main results of this section are Theorem 21 and Theorem 29.
+
+6.1      General Case
+Let us define formally the Legal reachability in GRM multigraph problem as
+follows:
+
+             Legal reachability in GRM multigraph (LR-GRMM)
+        input:     (GA , GV ) a GRM multigraph, r, r′ ∈ CA and σ, σ ′ ∈ CV .
+                                ∗
+        question: does (r, σ) → (r′ , σ ′ ) ?
+                                   L
+
+
+     The challenge lies in the fact that multiple routing vectors ϕ may satisfy the equation
+(r , σ ′ ) = (r, σ) + L(ϕ). Among these, some routing vectors may admit a legal routing
+    ′
+
+sequence, while others may not. We prove:
+
+Theorem 21. Legal Reachability in GRM multigraph problem is NP-complete.
+
+6.2      Proof of Theorem 21
+                                           ϕ
+A routing vector ϕ ∈ CF+ with (r, σ) → (r′ , σ ′ ) is a certificate that ((GA , GV ), r, r′ , σ, σ ′ ) is a
+                                           L
+positive instance of LR-GRMM, which can be checked in polynomial time by Theorem 17.
+Hence LR-GRMM is in NP. The rest of the section is dedicated to the proof of NP-
+hardness by polynomial reduction from a boolean satisfiability problem.
+    We consider a special version of the 3-SAT problem, where boolean formulas are given
+in conjunctive normal form with clauses of 3 literals, where each variable appears exactly
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                             39
+twice unnegated and exactly twice negated, as in the formula
+
+               (x1 ∨ x2 ∨ x3 ) ∧ (x1 ∨ x2 ∨ x3 ) ∧ (x1 ∨ x2 ∨ x3 ) ∧ (x1 ∨ x2 ∨ x3 ).
+
+     This restriction of 3-SAT, which we will call 3-SAT-(2,2), has been proved NP-
+complete [3]. An instance of 3-SAT-(2,2) is then a boolean formula made of n variables
+x1 , x2 , . . . , xn and m clauses of three literals c1 , c2 , . . . , cm , such that for all i, xi appears
+in exactly two clauses cj , and xi appears in exactly two clauses cj as well.
+     To an instance of 3-SAT-(2,2), we will associate an instance ((GA , GV ), r, r′ , σ, σ ′ )
+of LR-GRMM, where (GA , GV ) is a GRM multigraph. We shall first define a core
+multigraph, consisting only of arcs and vertices. Then, the clause gadgets will add some
+faces to the core multigraph, and then the variable gadgets will add more vertices and
+arcs, as well as faces. Finally, we will define r, r′ , σ and σ ′ .
+
+Core multigraph. We begin by defining the core multigraph:
+
+    • the set of vertices is V = Vvar ∪ Vclause ∪ S with
+
+          – the set of variable vertices, Vvar = {xi }i∈{1,...,n}
+          – the set of clause vertices, Vclause = {cj }j∈{1,...,m}
+          – the set of sinks S = {s, ssat }
+
+    • the set of arcs is A = A+      −
+                              var ∪ Avar ∪ Aclause,s ∪ Aclause,sat with
+
+          – A+var contains an arc from every variable vertex to each of the two clause vertices
+                                                                        +
+            where it appears unnegated; more precisely A+       var = {ai,j }i∈{1,...,n},j∈{1,2} , where
+            tail(a+                      +            +
+                   i,j ) = xi and {head(ai,1 ), head(ai,2 )} are the two clause vertices c such
+            that xi appears unnegated in c;
+          – A−
+             var contains an arc from every variable vertex to each of the two clause vertices
+                                                       −                                     −
+            where it appears negated; A−      var = {ai,j }i∈{1,...,n},j∈{1,2} , where tail(ai,j ) = xi
+            and {head(a−              −
+                         i,1 ), head(ai,2 )} are the two clause vertices c such that xi appears
+            negated in c;
+          – Aclause,s contains an arc from every clause vertex to s; more precisely Aclause,s =
+            {aj,1 }j∈{1,...,m} with (tail(aj,1 ), head(aj,1 )) = (cj , s);
+          – Aclause,sat contains an arc from every clause vertex to ssat ; more precisely
+            Aclause,sat = {aj,0 }j∈{1,...,m} with (tail(aj,0 ), head(aj,0 )) = (cj , ssat ).
+
+Figure 13 shows an example of this core multigraph.
+    In the following, we extend this graph by adding two gadgets called respectively clause
+gadget and variable gadget that will ensure that any legal routing for the LR-GRMM in-
+stance is coherent with the choice of a satisfying assignment of the 3-SAT-(2,2) instance,
+if any.
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                             40
+                                 x1                    x2                       x3
+
+
+
+
+                       c1                   c2                     c3                  c4
+
+
+
+
+                                           ssat                     s
+
+             Figure 13: Core multigraph built from the 3-sat-(2,2) instance
+             c1 ∧ c2 ∧ c3 ∧ c4 = (x1 ∨ x2 ∨ x3 ) ∧ (x1 ∨ x2 ∨ x3 ) ∧ (x1 ∨ x2 ∨ x3 ) ∧
+             (x1 ∨ x2 ∨ x3 ). The graph does not differentiate among unnegated
+             and negated variables.
+
+
+Clause gadget. In the core multigraph, for each clause vertex cj , j ∈ {1, . . . , m}, we
+have A+ (cj ) = {aj,0 , aj,1 }. We add for every j a set of faces F (cj ) = {fj01 , fj11 } where
+(tailA (fj01 ), headA (fj01 )) = (aj,0 , aj,1 ) and (tailA (fj11 ), headA (fj11 )) = (aj,1 , aj,1 ). See Fig. 14
+for an illustration of the clause gadget.
+
+                                                        ci
+                                                                         fi11
+
+                                           ai,0       fi01        ai,1
+
+
+                                ssat                                            s
+
+             Figure 14: The clause gadget for ci . Faces are represented by dashed
+             red arcs.
+
+
+Variable gadget. For every xi , i ∈ {1, . . . , n}, we add two sink vertices sstart
+                                                                               i    and send
+                                                                                         i ,
+              start      end                           start      end
+and two arcs ai     and ai , respectively from xi to si      and si . At this point, we have
+                                                          +      +      −      −
+                               A+ (xi ) = {astart
+                                            i     , aend
+                                                     i , ai,1 , ai,2 , ai,1 , ai,2 }
+
+where:
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                  41
+    • a+      +           −      −
+       i,1 , ai,2 (resp. ai,1 , ai,2 ) are arcs whose heads are the clause vertices where xi appears
+      unnegated (resp. negated)
+
+    • astart
+       i     is such that head(astart
+                                i     ) = sstart
+                                           i
+
+    • aend
+       i   is such that head(aend    end
+                              i ) = si .
+
+                                                                +    +      +      −      −      −
+    We now add for every i the sets of faces F (xi ) = {fi,1      , fi,2 , fi,3 , fi,1 , fi,2 , fi,3 }, as illus-
+                          +      +      +                                               −      −      −
+trated in Fig. 15. Faces fi,1 , fi,2 , fi,3 are the positive faces of xi and fi,1 , fi,2 , fi,3          are the
+negative faces of xi .
+
+                                 c1                  sstart
+                                                      i
+                                                                            c3
+
+                                                   +         −
+                                                  fi,1      fi,1
+                                           a+
+                                            i,1       astart
+                                                       i         a−
+                                                                  i,1
+                                          +                          −
+                                         fi,2                       fi,2
+                                 c2        a+
+                                            i,2        xi        a−
+                                                                  i,2       c4
+
+                                            +                    −
+                                           fi,3                 fi,3
+                                                      aend
+                                                       i
+
+
+
+                                                      send
+                                                       i
+
+
+              Figure 15: The variable gadget for xi which is assumed to appear
+              unnegated in clauses c1 and c2 , and negated in clause c3 and c4 .
+              Faces are represented by dashed red arcs. The positive faces are
+               +      +      +                                 −      −      −
+              fi,1 , fi,2 , fi,3 , and the negative faces are fi,1 , fi,2 , fi,3 .
+
+
+Full specification of the LR-GRMM instance. Finally, to a 3-SAT-(2,2) instance,
+we associate the LR-GRMM problem ((GA , GV ), r, r′ , σ, σ ′ ) defined by
+
+    • (GA , GV ) is the GRM multigraph as described above by union of the core multigraph,
+      and all variable and clause gadgets;
+
+    • σ = 3 ni=1 xi (i.e. three particles on each variable vertex) ;
+             P
+
+    • σ ′ = mssat + (2n − m)s + ni=1 sstart
+                                   P
+                                        i    ;
+
+    • r = ni=1 astart  + m
+           P             P
+                   i       j=1 aj,0 ;
+
+    • r′ = ni=1 aend   + m
+            P            P
+                    i     j=1 aj,1 .
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                   42
+Proof of the reduction. It is given in two separate lemmas.
+
+Lemma 22. If the 3-SAT-(2,2) instance is satisfiable, then the corresponding instance
+of LR-GRMM has a solution.
+
+Proof. Assume that the 3-SAT-(2,2) instance has a satisfiable assignment. We will
+construct a solution for the corresponding LR-GRMM problem ((GA , GV ), r, r′ , σ, σ ′ )
+by giving a routing vector ϕ = ϕvar + ϕclause , where the supports of ϕvar and ϕclause are
+respectively contained in the union of the faces set F (xi ) for all variable vertices xi , and
+                                                                                    ϕ
+in the union of F (ci ) for all clause vertices ci . We will prove that (r, σ) → (r′ , σ ′ ).
+                                                Pn                                 L
+                                                                             +         +     +
+    Let ϕvar ∈ CF be defined as ϕvar =                 ϕvar
+                                                    i=1 i   , where ϕvar
+                                                                     i   = f i,1 +  fi,2 + fi,3  if the
+                                                var     −      −    −
+satisfying assignment of xi is true, and ϕi = fi,1 + fi,2 + fi,3 if it is false. In both cases,
+note that ∂ A (ϕvar
+                i ) = ai
+                           end
+                                − astart
+                                   i     .
+    If we define (r0 , σ0 ) = (r, σ) + L(ϕvar ), then it follows that r0 = ni=1 aend     + m
+                                                                           P               P
+                                                                                     i        j=1 aj,0 .
+On the other hand, all particles were transferred in this routingP         from variablePvertices
+xi to clause vertices cj and sinks sstart  i , and we can write σ0 = m             start
+                                                                              i=1 si P   + m   j=1 ℓj cj
+for some integers ℓ1 , . . . , ℓm satisfying 1 ⩽ ℓj ⩽ 3 for all 1 ⩽ j ⩽ m, and m          i=1 i = 2n
+                                                                                              ℓ
+(the fact that ℓj ⩾ 1 follows from the assignment satisfying the formula). Note that this
+routing can be done legally, simply by following the order 1, 2, 3 on faces.
+    Then, consider ϕclause as the routing vector consisting of legally routing from (r0 , σ0 ) all
+particles ℓj from clause vertices cj to sinks ssat and s, for all 1 ⩽ j ⩽ m. Since 1 ⩽ ℓj ⩽ 3
+for all 1 ⩽ j ⩽ m, at least one outgoing arc of each clause vertex ci is routed and will emit
+one particle to ssat , whereas the other routed arcs in A+ (cj ), if any, will emit particles to
+sink s. Then we have (r′ , σ ′ ) = (r, σ) + L(ϕvar + ϕclause ) and the whole routing can be
+done legally.
+
+Lemma 23. Let ((GA , GV ), r, r′ , σ, σ ′ ) be the LR-GRMM problem associated to a given
+3-SAT-(2,2) instance. If ((GA , GV ), r, r′ , σ, σ ′ ) has a solution, then the 3-SAT-(2,2)
+instance is satisfiable.
+
+Proof. Assume that ((GA , GV ), r, r′ , σ, σ ′ ) has a solution and consider a legal routing se-
+quence from (r, σ) to (r′ , σ ′ ).
+    Consider a variable vertex xi with i ∈ {1, . . . , n}: since there are 3 particles on xi in
+σ, that in r the only arc of A+ (xi ) is astart
+                                             i   , and that in r′ the only arc of A+ (xi ) is aend i ,
+                                                                                   +    +      +
+we see that the only possible legal routings in A+ (xi ) are in that order (fi,1     , fi,2 , fi,3 ) or
+   −      −     −
+(fi,1 , fi,2 , fi,3 ) (consider Fig. 15). Hence, one particle is routed to sstart
+                                                                             i    , and the other
+two are either routed to the 2 clause vertices where xi appears negated, or to the 2 clause
+vertices where xi appears unnegated.
+    Consider now a clause vertex cj with j ∈ {1, . . . , m}: since the only arc in r of A+ (cj )
+is aj,0 , and in r′ the only arc of A+ (cj ) is aj,1 , we see that there must be at least one
+particle routed from a variable vertex to ci during the routing sequence.
+    From this, we can built a truth assignment, by letting xi be true if and only if two of
+its 4 particles were routed to the 2 clauses where xi is unnegated. We then see that the
+3-SAT-(2,2) problem is satisfiable.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                          43
+6.3     Cyclic case
+We now consider the case where the GRM multigraph is cyclic. We will demonstrate that
+the Legal Reachability in Cyclic GRM Multigraph problem can be solved in
+polynomial time. To achieve this, a deeper understanding of the set of routing vectors
+between the two configurations in question is required.
+
+6.3.1    Periodicity in cyclic GRM multigraphs
+Consider a cyclic GRM Multigraph. We define a periodic routing vector to be a vector
+ϕ ∈ CF , such that
+                                          ϕ
+                                   (r, σ) ∼ (r, σ)
+                                                    L
+
+for any (r, σ) ∈ CA × CV (note that by linearity, this is independent on the choice of
+configurations). The intuition behind this notion is clear: it is a way of routing particles
+so that we come back to the initial configuration. In this section, we describe the structure
+of periodic routing vectors.
+    Some partial results are known. For instance, in classical rotor-routing mechanics of
+a Eulerian directed graph, it is possible to come back to (ρ, σ) after routing exactly once
+along every arc of G and this is the only way to do so, up to repeating this process. The
+same is true in a general strongly connected directed graph, but some arcs should be
+routed different number of times, depending on the graph.
+    Let us come back to cyclic GRM Multigraphs and suppose that we have
+                                                    ϕ
+                                            (r, σ) ∼ (r, σ).
+                                                    L
+
+
+It follows that L(ϕ) = 0, i.e. ∂ A (ϕ) = 0 and ∂ V ◦ tailA (ϕ) = 0. The set of periodic routing
+vectors is then exactly equal to ker(∂ A ) ∩ ker(∂ V ◦ tailA ).
+    With a slight abuse of notation,    let us define for all v ∈ V the sum F (v) ∈ CF as the
+sum of faces in GA (v), i.e. f ∈F (v) f , and extend F to an homomorphism F : CV → CF .
+                             P
+
+For p ∈ CV , F (p) can be thought as a routing vector that makes pv full turns on the cyclic
+rotor at v, for every v ∈ V . We can then use the following result (recall that primitive
+period vectors are defined in Theorem 2).
+
+Proposition 24. Let (GA , GV ) be a cyclic GRM multigraph and let k be the number of
+leaf components of GV that are not singletons {s} where s ∈ S is a sink. Then the rank of
+ker(∂ A )∩ker(∂ V ◦tailA ) is k. More precisely, let p1 , p2 , . . . , pk ∈ CV be the primitive period
+vectors of GV corresponding to these components. A basis of ker(∂ A ) ∩ ker(∂ V ◦ tailA ) is
+then (F (p1 ), F (p2 ), . . . , F (pk )).
+
+Proof. With notation above, it is easy to see that the Laplacian operator ∆ is ∆ =
+−∂ V ◦ tailA ◦ F .
+   Because of the cyclic structure of GA (v) for every v ∈ V \ S, by Proposition 8 it is
+easy to see that (F (v))v∈V \S is a basis of ker(∂ A ), and that F induces an isomorphism
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                         44
+from CV \S ⊂ CV onto ker(∂ A ). An element F (σ) ∈ ker(∂ A ), with σ ∈ CV \S , is then in
+ker(∂ V ◦ tailA ) if and only if ∂ V ◦ tailA (F (σ)) = −∆(σ) = 0. Hence,
+
+                                 ker(∂ A ) ∩ ker(∂ V ◦ tailA ) = F (ker(∆)).
+
+By Theorem 2, a basis for ker(∆) is given by p1 , p2 , . . . , pk together with each element of
+S, and so (F (pi ))1⩽i⩽k is a basis of F (ker(∆)).
+    Interpreting this result for standard rotor-routing, we can state that:
+
+Corollary 25. Let (GA , GV ) be a cyclic rotor multigraph. Then:
+                                                   ∗
+    • if (GA , GV ) is stopping and (r, σ) ∼ (r′ , σ ′ ) then the routing vector from (r, σ) to
+                                                  L
+        (r′ , σ ′ ) is unique;
+                                                              ϕ
+    • if (GA , GV ) is strongly connected and (r, σ) ∼ (r′ , σ ′ ) then routing vectors are of the
+                                                              L
+        form ϕ + kp1 with k ∈ Z, and ker(∂ A ) ∩ ker(∂ V ◦ tailA ) = Z · F (p1 ), with p1 > 0,
+        p1 ∈ CV .
+
+Proof. In the first case, note that all leaf components are of the form {s} with s ∈ S,
+hence ker(∂ A ) ∩ ker(∂ V ◦ tailA ) is trivial.
+   In the second case, there is a single primitive vector p1 > 0 and ker(∂ A )∩ker(∂ V ◦tailA )
+has rank 1.
+    In the case of a strongly connected multigraph, the existence of p1 implies that if
+       ∗
+(r, σ) ∼ (r′ , σ ′ ) then there is a minimal routing vector ϕ1 ⩾ 0 from (r, σ) to (r′ , σ ′ ). In
+        L
+other words, if ϕ ⩾ 0 is a routing vector from (r, σ) to (r′ , σ ′ ) then ϕ1 ⩽ ϕ.
+                                                                                       ϕ
+    To compute ϕ1 , one can start with any routing vector ϕ such that (r, σ) ∼ (r′ , σ ′ ),
+                                                                               L
+which can be found using Proposition 16. Then ϕ1 = ϕ + k ∗ p1 , where k ∗ is the smallest
+integer k such that ϕ + kF (p1 ) is nonnegative.
+
+6.3.2        Legal reachability in strongly connected cyclic GRM multigraphs
+Let (GA , GV ) be a strongly connected cyclic GRM multigraph and let p ∈ CV+ be the
+primitive period vector. We say that (r, σ) ∈ CA × CV is recurrent if there is a legal
+                                                                               F (p)
+routing sequence to itself with routing vector F (p), i.e. (r, σ) → (r, σ). Note that by
+                                                                                L
+Proposition 19, determining if (r, σ) is recurrent can be done in polynomial time.
+
+Lemma 26. Let (GA , GV ) be a strongly connected cyclic GRM multigraph. Suppose that
+        ϕ1
+(r, σ) → (r′ , σ ′ ) for some routing vector ϕ1 ∈ CF+ such that ϕ1 ⩾ F (p). Let ϕ0 ∈ CF+ be
+         L
+the smallest nonnegative routing vector from (r, σ) to (r′ , σ ′ ). Then (r′ , σ ′ ) is recurrent
+              ϕ0 +F (p)
+and (r, σ) −→ (r′ , σ ′ ).
+                 L
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                     45
+                                                         ϕ
+Proof. Let ϕ ∈ CF satisfy ϕ ⩾ F (p) and (r, σ) ∼ (r′ , σ ′ ).
+                                                         L
+                                                              ϕ
+    According to Proposition 19, we have (r, σ) → (r′ , σ ′ ) if and only if the following
+                                                              L
+conditions hold, where α = tailA (ϕ) and TA = {a ∈ α : rθ(a)
+                                                        ′
+                                                             > 0} ∪ {a ∈ α : θ(a) ∈
+                                                                                  / α}:
+  (i) σv′ ⩾ 0 for every vertex v active in α;
+ (ii) ra′ ⩾ 0 for every arc a ∈ α;
+(iii) TA ∩ A+ (v) ̸= ∅ for every vertex v active in α;
+                              α
+ (iv) TA is guiding for σ ∼ σ ′ .
+                          ∂V
+                P
+    Given that v∈V v ⩽ p, and F (p) ⩽ ϕ, it follows that all arcs are in α and all vertices
+                                                                                   ′
+are active in α. Hence {a ∈ α : θ(a) ∈   / α} is an empty set, i.e. TA = {a ∈ α : rθ(a) > 0}.
+Then the set of conditions (i), (ii), (iii) and (iv) can be simplified as:
+(1) r′ ∈ CA+ ;
+(2) σ ′ ∈ CV+ ;
+(3) for every vertex v ∈ V , there is a ∈ A+ (v) with ra′ ⩾ 1;
+(4) for every v ∈ V such that σ ′ (v) = 0, there is a directed path within the set {a ∈ A :
+     ′
+    rθ(a) > 0} to a vertex v ′ where σ ′ (v ′ ) > 0.
+    Therefore, these conditions do not depend on the initial configuration (r, σ), but only
+                                                                                   F (p)
+on (r′ , σ ′ ). Since they are satisfied with ϕ = ϕ1 , it follows that (r′ , σ ′ ) → (r′ , σ ′ ) is also
+                                                                                    L
+                         ϕ0 +F (p)   ′   ′
+true, as well as (r, σ) −→ (r , σ ).
+                             L
+
+
+
+   The contrapositive of this lemma indicates that any legal routing sequence from (r, σ)
+to a non-recurrent configuration (r′ , σ ′ ) with routing vector ϕ ∈ CF+ must satisfy the
+condition that there exists a face f ∈ F such that ϕf < pa where p is the primitive period
+routing vector and a = tailA (f ). This is stated in the following corollary.
+Corollary 27. Let (GA , GV ) be a strongly connected cyclic GRM multigraph. Assume
+                                                                            ϕ
+that (r′ , σ ′ ) is not recurrent. If there is ϕ ∈ CF+ such that (r, σ) → (r′ , σ ′ ), then ϕ is the
+                                                                            L
+                                                     ϕ
+smallest nonnegative vector such that (r, σ) ∼ (r′ , σ ′ ).
+                                                     L
+
+    It has been shown in [23] that, in the classical routor-routing framework, if there is a
+legal routing sequence from (ρ, σ) to (ρ′ , σ ′ ), then there is a legal routing sequence with
+the smallest nonnegative routing vector, known as reduced routing vector. However, this
+does not hold in the more general context of cyclic GRM multigraphs, as illustrated in
+Figure 16.
+    Based on these results, the following proposition provides a unique routing vector that
+can be used to determine whether a legal routing sequence exists.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                          46
+                                                    a
+                                                                   fb
+                                                        v     fa
+
+                                               fc       c   b
+
+                                                        u
+
+              Figure 16: This is an example to prove that for strongly connected
+                                                                        ϕ
+              cyclic GRM multigraphs, the smallest ϕ such that (r, σ) → (r′ , σ ′ )
+                                                                                 L
+                                                                                         ϕ0
+              is not always the smallest nonnegative vector ϕ0 such that (r, σ) ∼
+                                                                                          L
+              (r′ , σ ′ ); however ϕ1 = ϕ0 + F (p) always works if (r′ , σ ′ ) is recurrent.
+              In the case above, the primitive period vector is p = u + v and
+              tailA (F (u + v)) = a + b + c. Let σ = σ ′ = u, r = 2a + c and r′ =
+              a+b+c. We have (r′ , σ ′ ) = (r, σ)+L(fa ). The smallest nonnegative
+              routing vector from (r, σ) to (r′ , σ ′ ) is fa . However, there does not
+              exist a legal sequence with this routing vector. Instead, a legal
+              routing sequence from (r, σ) to (r′ , σ ′ ) exists with the routing vector
+              fa + (fa + fb + fc ), which corresponds to routing the sequence of
+              faces fc , fa , fa , and fb respectively. Note that (r′ , σ ′ ) is a recurrent
+              configuration.
+
+
+Proposition 28. Let (GA , GV ) be a strongly connected cyclic GRM multigraph. Let
+                                             ∗
+(r, σ) and (r′ , σ ′ ) such that (r′ , σ ′ ) ∼ (r, σ). Let p ∈ CV+ be the primitive period vector
+                                           L
+and ϕ0 ∈ CF+ be the smallest nonnegative routing vector from (r, σ) to (r′ , σ ′ ). Let ϕ =
+                                                                         ∗
+ϕ0 + F (p) if (r′ , σ ′ ) is recurrent, or ϕ = ϕ0 otherwise. Then (r, σ) → (r′ , σ ′ ) if and only
+                                                                                L
+          ϕ     ′   ′
+if (r, σ) → (r , σ ).
+          L
+
+    The previous result shows that we can determine in polynomial time whether
+                                                    ∗
+                                            (r, σ) → (r′ , σ ′ )
+                                                    L
+
+in a strongly connected cyclic GRM Multigraph. Indeed, one just has to:
+                                                                        F (p)
+    • determine if (r′ , σ ′ ) is recurrent by checking if (r′ , σ ′ ) → (r′ , σ ′ ) by Proposition 19;
+                                                                         L
+
+    • compute p then ϕ0 ; both can be done by using Smith Normal Form (see Appendix B);
+
+    • compute the corresponding ϕ depending on the case;
+                         ϕ
+    • check if (r, σ) → (r′ , σ ′ ) once again by Proposition 19.
+                        L
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                         47
+6.3.3    General cyclic case
+We can now state the main result of this section, i.e. the existence of a polynomial algo-
+rithm for legal reachability in the general case of cyclic GRM. This extends Theorem 3.4
+from Tóthmérész [23] to the context of linear rotor-routing, and to the case where the
+starting arc configuration is not a rotor configuration.
+Theorem 29. The restriction of Legal Reachability in GRM multigraph to cyclic
+GRM multigraphs is in P .
+Proof. Let (GA , GV ) be a cyclic GRM multigraph and let (r, σ), (r′ , σ ′ ) ∈ CA × CV such
+            ∗
+that (r, σ) ∼ (r′ , σ ′ ). We shall prove that we can construct in polynomial time a routing
+             L
+                                       ∗                                   ϕ̃
+vector ϕ̃ ∈ CF such that (r, σ) → (r′ , σ ′ ) if and only if (r, σ) → (r′ , σ ′ ).
+                                      L                                    L
+    To do this, we consider the k leaf components V1 , V2 , · · · , Vk of GV , and decompose
+faces and arcs in (GA , GV ) as F1 , F2 , · · · Fk and A1 , A2 , · · · , Ak , according to which com-
+ponent they belong to. Define V0 , A0 and F0 for elements that do not belong to a leaf
+component. This partitions F, A and V in k + 1 subsets each.
+    Thus, we obtain strongly connected cyclic GRM multigraphs (GA                     V              A    V
+                                                                                 1 , G1 ), . . . , (Gk , Gk ).
+                            V                                                                         A    V
+We also denote by (GA  0 , G0 ) the stopping cyclic GRM multigraph induced by (G , G )
+                                      A       V
+on the arc set A0 . The faces of (G0 , G0 ) are F0 , its arcs are A0 , and its vertices are V0
+together with headV (a) for every a ∈ A0 . If headV (a) ∈     / V0 , then it is a sink of (GA             V
+                                                                                                     0 , G0 ).
+                                                                ϕ
+     Assume that there is ϕ ∈ CF+ such that (r, σ) → (r′ , σ ′ ). For every 0 ⩽ i ⩽ k, let ϕi ∈
+                                                         L
+CF such that ϕf = ϕf if f ∈ Fi and ϕf = 0 otherwise, so that ϕ = ki=0 ϕi . By definition
+   +               i                         i
+                                                                         P
+of leaf components, any routing in a leaf component will not change configurations outside
+of that component. Hence, there is a legal routing sequence that routes all faces of ϕ0
+first, then all faces of ϕ1 , ϕ2 and so on until ϕk . For 0 ⩽ i ⩽ k, let ri (resp. σi ) be equal
+to r′ (resp. σ ′ ) for arcs (resp. vertices) in Aj (resp. Vj ) for j ⩽ i, and to r (resp. σ) for
+arcs (resp. vertices) in Aj (resp. Vj ) for k ⩾ j > i. We note that (r0 , σ0 ) = (r, σ) + L(ϕ0 ),
+and (ri , σi ) = (ri−1 , σi−1 ) + L(ϕi ) for all 1 ⩽ i ⩽ k. By identifying the routing along ϕi
+                                                                               Vi
+for 1 ⩽ i ⩽ k to a routing in the strongly connected cyclic GRM (GA       i , Gi ), we obtain by
+                                                                           i
+
+                                                        +
+Proposition 28 a canonical routing vector ϕ̃i ∈ CF , computable in polynomial time, such
+                                                            ϕ̃i
+that the support of ϕ̃i is in Fi , and (ri−1 , σi−1 ) → (ri , σi ). Then, by Corollary 25, there
+                                                            L
+                                                                                  V
+is a unique routing vector from (r, σ) to (r0 , σ0 ), namely ϕ0 , since (GA0 , G0 ) is stopping.
+Hence, there is a legal routing sequence with routing vector ϕ̃ = ϕ + ϕ̃ + · · · + ϕ̃k .
+                                                                       0     1
+
+    All in all, deciding whether there is a legal routing sequence from (r, σ) to (r′ , σ ′ ) is
+equivalent to checking if there is a legal routing sequence from (r, σ) to (r′ , σ ′ ) with routing
+vector ϕ̃. This can be checked in polynomial time according to Proposition 19.
+
+References
+ [1] A. Björner and L. Lovász. Chip-firing games on directed graphs. Journal of Algebraic
+     Combinatorics, 1:305–328, 1992. Publisher: Springer.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                48
+ [2] A. Björner, L. Lovász, and P. W. Shor. Chip-firing games on graphs. European
+     Journal of Combinatorics, 12(4):283–291, 1991. Publisher: Elsevier.
+ [3] A. Darmann and J. Döcker. On simplified NP-complete variants of Monotone 3-Sat.
+     Discrete Applied Mathematics, 292:45–58, 2021.
+ [4] E. A. Dinic. Algorithm for solution of a problem of maximum flow in networks with
+     power estimation. In Soviet Math. Doklady, volume 11, pages 1277–1280, 1970.
+ [5] J. Dohrau, B. Gärtner, M. Kohler, J. Matoušek, and E. Welzl. ARRIVAL: A zero-
+     player graph game in NP ∩ coNP. In A Journey Through Discrete Mathematics,
+     pages 367–374. Springer, 2017.
+ [6] L. Duhaze-Pradines. Reachability Problems for General Rotor Walks in Graphs. PhD
+     thesis, Université Paris-Saclay, 2023.
+ [7] J. Edmonds and R. M. Karp. Theoretical improvements in algorithmic efficiency for
+     network flow problems. Journal of the ACM (JACM), 19(2):248–264, 1972.
+ [8] M. Farrell and L. Levine. CoEulerian graphs. Proceedings of the American Mathe-
+     matical Society, 144(7):2847–2860, 2016.
+ [9] G. P. Giacaglia, L. Levine, J. Propp, and L. Zayas-Palmer. Local-to-global principles
+     for the hitting sequence of a rotor walk. Electronic Journal of Combinatorics, Volume
+     19(1):#P5, 2012.
+[10] B. Gärtner, T. D. Hansen, P. Hubácek, K. Král, H. Mosaad, and V. Slı́vová. AR-
+     RIVAL: Next Stop in CLS. In 45th International Colloquium on Automata, Lan-
+     guages, and Programming (ICALP 2018). Schloss Dagstuhl-Leibniz-Zentrum fuer
+     Informatik, 2018.
+[11] B. Gärtner, S. Haslebacher, and H. P. Hoang. A Subexponential Algorithm for
+     ARRIVAL. In ICALP 2021, volume 198, pages 69:1–69:14, 2021.
+[12] A. Hatcher. Algebraic Topology. Cambridge University Press, 2002.
+[13] A. E. Holroyd, L. Levine, K. Mészáros, Y. Peres, J. Propp, and D. B. Wilson. Chip-
+     Firing and Rotor-Routing on Directed Graphs. In In and Out of Equilibrium 2, pages
+     331–364. Springer, 2008.
+[14] R. Kannan and A. Bachem. Polynomial algorithms for computing the Smith and
+     Hermite normal forms of an integer matrix. SIAM Journal on Computing, 8(4):499–
+     507, 1979.
+[15] R. M. Karp and R. E. Miller. Parallel program schemata. Journal of Computer and
+     System Sciences, 3(2):147–195, 1969.
+[16] S. Lang. Algebra, volume 211. Springer Science & Business Media, 2012.
+[17] E. W. Mayr. An algorithm for the general Petri net reachability problem. In Pro-
+     ceedings of the Thirteenth Annual ACM Symposium on Theory of Computing, pages
+     238–246, 1981.
+[18] M. Newman. The Smith normal form. Linear Algebra and its Applications, 254(1-
+     3):367–381, 1997.
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                             49
+[19] J. Pitman and W. Tang. Tree formulas, mean first passage times and Kemeny’s
+     constant of a Markov chain. Bernoulli, 24(3):1942–1972, 2018.
+[20] A. Povolotsky, V. Priezzhev, and R. Shcherbakov. Dynamics of Eulerian walkers.
+     Physical Review E, 58(5):5449, 1998. Publisher: APS.
+[21] V. B. Priezzhev, D. Dhar, A. Dhar, and S. Krishnamurthy. Eulerian walkers as
+     a model of self-organized criticality. Physical Review Letters, 77(25):5079, 1996.
+     Publisher: APS.
+[22] L. Tóthmérész. Algorithmic aspects of rotor-routing and the notion of linear equiv-
+     alence. Discrete Applied Mathematics, 236:428–437, 2018. Publisher: Elsevier.
+[23] L. Tóthmérész. Rotor-routing reachability is easy, chip-firing reachability is hard.
+     European Journal of Combinatorics, 101:103466, 2022.
+[24] T. van Aardenne-Ehrenfest and N. G. de Bruijn. Circuits and trees in oriented linear
+     graphs. Classic Papers in Combinatorics, pages 149–163, 1987.
+[25] D. B. Wilson and J. G. Propp. How to get an exact sample from a generic Markov
+     chain and sample a random spanning tree from a directed graph, both within the
+     cover time. In SODA, pages 448–457. Citeseer, 1996.
+[26] V. Yanovski, I. A. Wagner, and A. M. Bruckstein. A Distributed Ant Algorithm for
+     Efficiently Patrolling a Network. Algorithmica, 37(3):165–186, Nov. 2003.
+
+A     Additional examples
+A.1       Standard rotor-routing and flows
+
+                        v3 : 6                                                        v3 : 0
+
+
+            a3,4                        a2,3                                 a3,4                     a2,3
+                        a4,3                                                         a4,3
+                                a3,2                                                          a3,2
+                         a2,4                         maximal rotor walk               a2,4
+          v4 : 3                        v2 : 3                             v4 : 0                     v2 : 0
+                         a4,2                                                          a4,2
+          a4,0                   a4,1                                      a4,0                a4,1
+                      a2,0                     a2,1                                 a2,0                     a2,1
+
+ s0 : 0                                          s1 : 0           s0 : 6                                       s1 : 6
+
+                 Figure 17: Initial configurations (ρ, σ) and result of a maximal rotor
+                 walk (ρ′ , σ ′ ) in G2 .
+
+    A maximal rotor walk is processed on the graph G2 of Fig. 3. with starting configura-
+tions (ρ, σ) where ρ(v2 ) = a2,4 , ρ(v3 ) = a3,4 , ρ(v4 ) = a4,2 together with σ = 3v2 +6v3 +3v4 .
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                         50
+The walk ends in (ρ′ , σ ′ ), with ρ′ (v2 ) = a2,3 , ρ′ (v3 ) = a3,2 , ρ′ (v4 ) = a4,2 together with
+σ ′ = 6s0 + 6s1 , as depicted on Fig. 17.
+    Let us state the equations satisfied by flows for (ρ, σ, σ ′ ):
+
+
+            f (a4,0 ) + f (a2,0 ) = 6                                                       (flow at s0 )
+            f (a4,1 ) + f (a2,1 ) = 6                                                       (flow at s1 )
+       f (a3,2 ) + f (a4,2 ) + 3 = f (a2,0 ) + f (a2,1 ) + f (a2,3 ) + f (a2,4 )            (flow at v2 )
+       f (a2,3 ) + f (a4,3 ) + 6 = f (a3,2 ) + f (a3,4 )                                    (flow at v3 )
+       f (a2,4 ) + f (a3,4 ) + 3 = f (a4,0 ) + f (a4,1 ) + f (a4,2 ) + f (a4,3 )            (flow at v4 )
+           f (a2,4 ) ⩾ f (a2,0 ) ⩾ f (a2,1 ) ⩾ f (a2,3 ) ⩾ f (a2,4 ) − 1                   (rotor at v2 )
+           f (a3,4 ) ⩾ f (a3,2 ) ⩾ f (a3,4 ) − 1                                           (rotor at v3 )
+           f (a4,2 ) ⩾ f (a4,3 ) ⩾ f (a4,0 ) ⩾ f (a4,1 ) ⩾ f (a4,2 ) − 1                   (rotor at v4 )
+
+
+   We give the values of the run for (ρ, σ) (left of Fig. 18 ) and a flow (which is not the
+run) for (ρ, σ, σ ′ ) (right of Fig. 18).
+
+                       6→0                                                         6→0
+
+
+              6                      2                                  6                       3
+                       3                                                           3
+                               5                                                           6
+                           3                                                           4
+        3→0                          3→0                         3→0                            3→0
+                           3                                                           4
+         3                     3                                   3                       3
+                      3                     3                                  3                      3
+
+  0→6                                       0→6           0→6                                          0→6
+
+             Figure 18: On the left, the values on each arc of the run corre-
+             sponding to the maximal rotor walk of Fig. 17. The dashed arcs
+             correspond to the last routed particle on every vertex and contain
+             no cycles, which characterizes the run by Theorem 5. On the right,
+             the values of a flow, which also certifies final configuration σ ′ , but
+             is not the run.
+
+
+A.2     Computing routing vectors
+We consider here an example of linear routing in a cyclic GRM multigraph, and show how
+to compute a routing vector. Namely, we consider the cyclic GRM version of the standard
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                                 51
+rotor-routing between (ρ, σ) and (ρ′ , σ ′ ) in the cyclic GRM Multigraph corresponding to
+G2 , as in A.1. We know that the solution is unique by Corollary 25 and corresponds to
+the flow given in Fig.18 (left). For every arc ai,j , we denote by fi,j the unique face that
+has ai,j as a tail.
+    Let us form the matrix L of L in the canonical basis of CF and CA × CV . The first 10
+lines correspond to ∂ A and the last 5 to ∂ V ◦ tail. We write only nonzero coefficients.
+
+                            f    f   f   f   f   f   f   f   f   f
+                            2,0 2,1 2,3 2,4 3,2 3,4 4,0 4,1 4,2 4,3 
+                      a2,0 −1             1
+                            1 −1
+                      a2,1                                          
+                                                                     
+                      a2,3 
+                                 1 −1                               
+                                                                     
+                      a2,4 
+                                     1  −1                          
+                                                                     
+                      a3,2 
+                                            −1 1                    
+                                                                     
+                      a3,4 
+                                             1  −1                  
+                                                                     
+                      a4,0 
+                                                    −1           1 
+             L=       a4,1 
+                                                     1  −1          
+                                                                     
+                      a4,2 
+                                                         1  −1      
+                                                                     
+                      a4,3 
+                                                             1 −1  
+                       s0  1                        1              
+                                                                     
+                       s1       1                       1          
+                                                                     
+                       v2  −1 −1 −1 −1 1
+                                                             1      
+                                                                     
+                       v3            1      −1 −1                1 
+                       v4                 1       1 −1 −1 −1 −1
+    We want to solve L · ϕ = (ρ′ − ρ, σ ′ − σ) with
+
+                (ρ′ − ρ, σ ′ − σ) = (0, 0, 1, −1|1, −1|0, 0, 0, 0|6, 6, −3, −6, −3)T .
+
+Since the solution is unique, the system can be solved in Q, and it can be checked that
+
+                                    ϕ = (3, 3, 2, 3|5, 6|3, 3, 3, 3)T
+
+is the unique solution to this system. Note that this routing vector, in the context of
+cyclic GRM multigraphs, corresponds exactly to the run obtained in Fig. 18 (left) in the
+context of standard rotor-routing.
+
+
+B     Smith normal form
+Integer linear systems can be solved by Gaussian elimination, but the so-called Smith
+normal form is a useful tool to understand the results. We use the following [18]:
+
+Proposition 30. Let A be a n × m integer matrix. There exist invertible matrices S ∈
+GLn (Z), T ∈ GLm (Z), such that the product SAT is of the form
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                               52
+                                                                       
+                                  α1 0 0 · · ·           0 ··· 0
+                                  0 α2 0                               
+                                        ..                ..       ..
+                                                                       
+                                 0 0       .              .        .
+                                                                       
+                                                                        
+                                 .                                     
+                                  ..         αr                        
+                                                                       
+                                 0
+                                       · · ·            0 ···     0    
+                                                                        
+                                 .                      ..        ..
+                                  ..
+                                                                        
+                                                          .         .   
+                                   0    ···              0 ··· 0
+where diagonal elements satisfy αi ⩾ 1 for 1 ⩽ i ⩽ r and αi is a divisor of αi+1 for
+1 ⩽ i ⩽ r − 1. Moreover r is the rank of A, and all αi are uniquely determined by these
+properties, since
+                                           di (A)
+                                    αi =
+                                          di−1 (A)
+where di (A) is the gcd of all i × i minors of A, and d0 (A) = 1.
+
+    Coefficients α1 , α2 , . . . , αr are called the invariant factors of A. We use this result
+to compute the solution of a system of linear diophantine equations.
+
+Lemma 31. Let A be an n × m integral matrix. Let D = SAT be the normal Smith form
+of A and α1 , α2 , · · · , αr be the invariant factors of A. Let x be an m × 1 integral vector
+and b an n × 1 integral vector, the system of linear equations Ax = b admits an integral
+solution if and only if              
+                                        0 mod (αi ) if 1 ⩽ i ⩽ r
+                                ci =
+                                        0              if r < i ⩽ n
+where c = Sb. In this case, the set of solutions is obtained by all the vectors x = T y with
+y ∈ Zm of dimension (m, 1), where
+
+                                       yi = ci /αi if 1 ⩽ i ⩽ r.
+
+Proof. We have the following equivalences:
+
+                                Ax = b
+                              ⇔ SAT (T −1 x) = Sb
+                              ⇔ Dy = c with y = T −1 x and c = Sb
+In particular, since T has an integer inverse, there is a solution to Ax = b if and only
+if there is one to Dy = c. There is a solution to the last equation if and only if ci = 0
+for r < i ⩽ n and ci = 0 mod (αi ) for 1 ⩽ i ⩽ r. In this case, a particular solution
+is ȳ = (c1 /α1 , . . . , cr /αr , 0, . . . , 0)⊺ , and one obtains a solution to Ax = b by choosing
+x̄ = T ȳ. The other solutions are of the form y = (c1 /α1 , . . . , cr /αr , yr+1 , . . . , yn )⊺ for all
+choices of yr+1 , . . . , yn , and x is obtained by T y.
+
+
+
+
+the electronic journal of combinatorics 33(2) (2026), #P2.5                                            53
+

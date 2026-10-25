@@ -1,0 +1,668 @@
+The halting problem for chip-firing on finite directed graphs
+                                           Cornell University
+                          Mathematics Department Senior Thesis
+
+                                Matthew Farrell∗          Lionel Levine†
+
+                                              December 2, 2014
+
+
+We consider a chip-firing game on finite directed graphs and give an answer to a question posed by
+Bjorner, Lovasz, and Shor in 1991: given an initial configuration of chips, when does it stabilize?
+The approach they took to address this halting problem involves computing a period vector p with
+the property that toppling the vertices according to p results in the original configuration, and then
+checking if it is possible to topple according to p legally (without any of the vertices ever having
+negative chips). This approach is problematic because the entries of p can grow exponentially in
+the number of vertices. We make precise a measure of “Eulerianness” and show that, in addition
+to graphs with a high degree of Eulerianness, for relatively “anti-Eulerian” graphs you can do
+much better. In addition, we take steps toward a potential proof that the problem is NP-Hard
+by reducing an NP-Hard problem in the context of another chip-firing game, called the dollar
+game, to our problem (where the number of edges making up the graphs could be a very fast-
+growing function of the number of vertices). The ideas developed in the course of answering this
+stabilization question give rise to a natural generalization of the BEST theorem to general directed
+graphs.
+
+
+1      Introduction
+Chip-firing on directed graphs belongs to an interesting class of network automaton known as
+abelian networks. In an abelian network we define an action on the vertices of a graph such that
+changing the order in which we apply the action does not affect the end state. Despite this step
+down from the full complexity of automata, the dynamics of chip-firing are still rich and many
+open questions remain that probe at fundamental aspects of system order and behavior. This
+paper gives an answer to one such question.
+Before we can pose the question, we need to describe the chip-firing model. Given a finite, directed,
+strongly connected multigraph G = (V, E) with |V | = n and a collection of indistinguishible chips,
+we distribute the chips among the vertices. Labeling vertices as V = {v1 , v2 , ..., vn }, to keep track
+of these chips we define a full chip configuration σ, or full configuration for short, to be a
+vector in Zn , where the value of σ(i) is meant to represents the number of chips on the vertex vi .
+For additional flexibility, given a vertex v with v = vi we abuse notation and write σ(v) to mean
+σ(i).
+We let di denote the outdegree of vertex vi , and we say vi is stable with respect to σ if σ(i) < di
+and active otherwise. We say that σ is stable if every vertex is stable with respect to σ. Given
+vertices vi and vj , we let dij denote the number of edges from vi to vj . We commit an abuse of
+    ∗ Arts and Sciences, Class of (January) 2015
+    † Senior Thesis Advisor
+
+
+
+
+                                                     1
+notation similar to before, writing dv to mean the outdegree of vertex v, dvw to denote the number
+of edges from v to w, and sometimes we mix notation, letting div denote the number of edges from
+vi to v. When we write N, we include 0. Given a vector x, we let |x| = 1 · x and call |x| the degree
+of x.
+The action on the vertices in this model is known as toppling, wherin a vertex sends one chip
+along each of its outgoing edges to its neighbors. To more succinctly describe this toppling action,
+we define the Laplacian of G to be the matrix ∆ = D − AT where D is the diagonal matrix whose
+(i, i) entry is di and A = (dij ) is the adjacency matrix of G. That is,
+                                             (
+                                               −dji     for i 6= j
+                                       ∆ij =                       .
+                                               di − dii for i = j
+
+Now given a configuration σ with active vertex vi , let σ 0 be the result of toppling vi . We have that
+                                         (
+                                  0       σ(j) + dij for i 6= j
+                                σ (j) =                             ,
+                                          σ(i) − di      for i = j
+
+or more succinctly σ 0 = σ − ∆ei . We can specify a sequence of topplings with a toppling vector
+x ∈ Nn , with x(i) being the number of times we topple vi . Since our toppling action is abelian
+([9]), if we start with a configuration σ and write σ 0 as the result of toppling according to x, we
+have that σ 0 is uniquely determined by x; that is, σ 0 = σ − ∆x. In other words, the order in which
+we topple vertices does not matter, only the number of times we topple each vertex. We say that
+toppling v is legal if v is active, and illegal if v is not active. We say that σ is stabilizable if
+there is a legal sequence of topplings resulting in a configuration σ 0 such that σ 0 is stable.
+
+
+1.1    Sandpiles and the halting problem
+
+The goal of this paper is to address a question asked by Björner, Lovász, and Shor ([10, 3]): given
+a finite, directed multigraph G and a full configuration σ with σ ≥ 0 , when does σ stabilize? We
+call the problem of computing whether or not σ stabilizes the halting problem for chip-firing on
+finite directed multigraphs, or simply halting problem if there is no confusion.
+In this paper we restrict our consideration to strongly connected multigraphs, that is, graphs
+for which there is a directed path from each vertex v to every other vertex w. As Björner and
+Lovász demonstrate in [3], G can be broken into strongly connected components in such a way
+that the halting problem on G reduces to considering the problem for each of the components, so
+we lose little generality in requiring that G be strongly connected. We hence pose our problem as
+follows.
+Problem. The halting problem for chip-firing on finite, strongly connected multigraphs.
+
+Input: A finite, strongly connected multigraph G and a full chip configuration σ with σ ≥ 0.
+Output: A decision on whether or not σ stabilizes.
+
+The following result frees us from considering only legal toppling sequences in looking for an answer
+to the halting problem on finite directed graphs.
+Lemma 1 ([9]). (Least Action Principle) A full configuration σ is stabilizable if and only if there
+exists an x ∈ Nn such that σ − ∆x is stable.
+
+A sizeable portion of the ground soon to be covered is motivated by the following principle: in
+looking for a stabilizing toppling sequence, instead of toppling willy-nilly we can establish some
+structure by choosing a special vertex s that we “topple last” (in a sense to be made more explicit),
+
+
+                                                  2
+and we will call this vertex the sink. The process is as follows: we topple active, nonsink vertices
+until each of the nonsink vertices are stable. At this point we then topple the sink (once), repeat
+the non-sink stabilization, topple the sink, and repeat, paying attention to what shows up as we
+go along.
+Specifying a sink gives rise to a familiar object in the context of chip-firing games, the abelian
+sandpile. We begin by defining the sandpile analogue of the Laplacian, the reduced Laplacian
+∆s which is gotten by deleting the row and column of ∆ corresponding with the sink.
+Definition 2. Let G = (V, E) be a finite directed strongly connected multigraph. Specify a global
+sink s. The sandpile group of G is the group quotient
+
+                                        S(G, s) = Zn−1 /∆s Zn−1
+
+where ∆s Zn−1 is the integer column-span of ∆s .
+
+If the choice of sink is clear, we sometimes write S(G, s). We call a chip configuration η ∈ Zn−1
+indexed by the nonsink nodes of G a sandpile chip configuration, or sandpile for short (as
+opposed to full chip configurations belonging to Zn ). The definitions “stable” and” toppling vector”
+have direct analogues in the context of sandpiles: a sandpile η is stable if η(i) < di for all vi 6= s, and
+we have toppling vectors x ∈ Zn−1 . On strongly connected graphs, every sandpile is stabilizable
+[1], and we denote the stabilization of η as η ◦ . The sandpile group treats as equivalent sandpiles
+such that one can be gotten from the other by toppling nonsink vertices.
+To help us go back and forth between sandpiles and full configurations, we make the following
+definitions: given σ ∈ Zn , we let σ̃ denote the restriction of σ to the nonsink vertices. Given a
+η ∈ Zn−1 , we let ηk denote the extension of η to Zn such that |ηk | = k. Note that η and k together
+uniquely determine ηk , since |η| + ηk (s) = k.
+We begin with some useful properties of sandpiles.
+Lemma 3 ([5]). The order of S(G, s) is the determinant of ∆s .
+
+There is another interesting and useful connection with what are called the oriented spanning trees
+of G.
+Definition 4. An oriented spanning tree of a digraph G = (V, E) rooted at r ∈ V is a spanning
+subgraph T = (V, A) such that
+
+   1. Every vertex v 6= r has outdegree 1.
+   2. r has outdegree 0.
+   3. T has no oriented cycles.
+
+Hence an oriented spanning tree has as its limbs edges that point toward the root. Let TG (v)
+denote the number of oriented spanning trees in G rooted at v.
+Theorem 5 ([8]). (Kirchhoff’s matrix tree theorem) Let G be a directed graph. Then TG (s) is the
+determinant of the reduced laplacian for S(G, s).
+
+To summarize, we have that |S(G, s)| = det ∆s = TG (s). In particular, if G is strongly connected
+then ∆s is invertible and ∆ has rank n − 1.
+It turns out that there is a natural representative for each equivalence class of S(G, s). To describe
+these, we say that a sandpile η is accessible if from any other sandpile it is possible to obtain
+η by a combination of adding chips and selectively firing active vertices. A sandpile that is both
+stable and accessible is called recurrent.
+We then have the following:
+
+
+                                                    3
+Theorem 6 ([5]). The set of all recurrent chip configurations on G is an abelian group under
+the operation (σ, η) 7→ (σ + η)◦ , and it is isomorphic via the inclusion map to the sandpile group
+S(G, s).
+
+Despite this isomorphism, it will be convenient to consider the set of recurrent chip configurations
+on G as an individual entity, so we give it the notation Sr (G, s). We denote the group operation
+on recurrent sandpiles by ⊕ (we will write the operation additively).
+Let σmax denote the maximal (sometimes called “saturated”) stable full configuration, so σmax (i) =
+di − 1 for all i, and let mG = |σmax |. Clearly if the number of chips on G exceeds mG , then it
+is possible to topple active vertices indefinitely. We consider a natural question that arises: what
+conditions on G will ensure that toppling ceases if the number of chips on G is exactly mG ?
+Graphs with this property will turn out to be in some senses opposite to Eulerian graphs. With
+this in mind, we call a graph co-Eulerian if it has the property that V0 /∆Zn is trivial, where
+V0 = {x ∈ Zn : |x| = 0}. Our main result shows that co-Eulerian graphs have the property we seek
+(the reasoning behind the name “co-Eulerian” will become clearer as we develop more theory). Let
+βs be the sandpile such that βs (i) = dsi , and let es denote the identity of Sr (G, s).
+
+Theorem 7. Let G be a strongly connected, directed multigraph. Then the following are equivalent.
+
+    1. Every full configuration σ with|σ| = mG stabilizes.
+    2. For some choice of sink s, S(G, s) is cyclic with generator β. Equivalently, Sr (G, s) is cyclic
+                                     ◦
+       with generator γs = (βs + es ) .
+
+    3. The greatest common divisor M of the numbers {|S(G, v)|v ∈ V } is 1.
+    4. G is co-Eulerian.
+
+
+2     Cyclic Subgroups of the Sandpile Group
+In accordance with our principle of controlled sink toppling, given a recurrent sandpile σ we are
+interested in
+                                                    ◦
+                                   Cσ = {(σ + kβs ) : k ∈ N},
+the set of sandpiles that appear starting from σ when we topple the sink, stabilize, and repeat. It is a
+basic property of recurrent configurations that adding chips to the nonsink vertices and stabilizing
+results in another recurrent configuration ([1]), so that Cσ is a set of recurrent configurations.
+We want to consider recurrent configurations as equivalent if they are in the same Cσ for some
+recurrent σ (that is, if one can be reached from the other by repeatedly toppling the sink and then
+stabilizing). This is an equivalence relation, so Sr (G, s) is partitioned by the Cσ . Note that we
+can write
+                                          ◦                ◦
+                                 (σ + βs ) = (σ + es + βs ) = σ ⊕ γs
+where γs = (es + βs )◦ is recurrent. It follows that Cσ = σ ⊕ hγs i where hγs i denotes the cyclic
+subgroup of Sr (G, s) generated by γs . Then |Cσ | = ord(γs ) where ord(γs ) denotes the order of γs
+as an element of Sr (G, s).
+To investigate these cosets of the sandpile group, we will first need a concept introduced by ([3]),
+that of a period vector.
+Definition 8. Given a graph G with full laplacian ∆, a vector p ∈ Zn is called a period vector
+if it is non-negative and ∆p = 0. A period vector is primitive if its entries have no non-trivial
+common divisor.
+
+
+
+
+                                                   4
+In other words, a period vector p is a toppling vector such that starting with a full configuration σ
+and toppling each vertex v ∈ V a total ofp(v) times get us back to σ. The following Lemma sums
+up some useful properties of period vectors.
+Lemma 9 ([3]). We have the following:
+
+   1. Every strongly connected digraph G has a unique primitive period vector πG . It is strictly
+      positive, and all period vectors are of the form tπG , t = 1, 2, ....
+   2. If G is connected eulerian, then πG = 1.
+
+We now introduce a very special period vector. Recall that TG (v) denotes the number of oriented
+spanning trees in G rooted at v.
+Lemma 10 ([6, 7]). We have that (TG (v1 ), TG (v2 ), ..., TG (vn )) ∈ ker ∆.
+
+Let M be the greatest common divisor of the numbers in {TG (v)|v ∈ G}. By Lemma 9, the
+              1
+vector π = M    (TG (v1 ), TG (v2 ), ..., TG (vn )) is the unique primitive period vector of G. Recalling
+the definition γs = (es + βs )◦ , we have that ord(γs ) = π(s) since π(s) is the least positive integer
+                           ◦
+m such that (es + mβs ) = es ; that is, the least positive number of times we need to topple the
+sink, starting from es , before we can return to es . More explicitly, we have that es + π(s)βs ≡ es
+mod ∆s Zn−1 since, starting from the sandpilees + π(s)βs , we can topple each nonsink vertex vi
+a total of π(i) times and return to the configuration es . Since es is recurrent it follows that
+              ◦
+(es + π(s)βs ) = es . Upon observing that π(s) = TG (s)/M , from this discussion we conclude the
+following.
+Lemma 11. We have that
+
+                                 ord(γs ) = TG (s)/M = |S(G, s)|/M.
+
+so that M is the number of distinct cosets of hγs i in S(G, s); that is,
+
+                                         |S(G, s)/ hγs i| = M.
+
+The value M was originally studied in ([2]) as a way to count unicycles in the rotor-router model.
+We will demonstrate that it also serves as a measure of the “Eulerianness” of a graph.
+
+
+2.1    An Isomorphism of Groups
+
+We now investigate the structure of Sr (G, s)/ hγs i by using the isomorphism Sr (G, s)/ hγs i ∼
+                                                                                               =
+S(G, s)/ β , where for a sandpile σ we write σ ≡ σ mod ∆s Zn−1 . Recall that βs is the sandpile
+such that βs (i) = ds,i where s denotes the sink, and that V0 is the group of vectors in Zn with
+degree 0.
+Theorem 12. We have that
+
+                              Sr (G, s)/ hγs i ∼
+                                               = S(G, s)/ βs ∼
+                                                             = V0 /∆Zn .
+
+The meat of the proof for this Theorem is packaged in the following workhorse lemma.
+Lemma 13. The following are equivalent.
+
+   1. σ ≡ η mod ∆Zn
+   2. σ̃ ≡ η̃ mod ∆s Zn−1 + Zβs
+
+
+                                                   5
+               ◦            ◦
+   3. (σ̃ + es ) ∈ (η̃ + es ) ⊕ hγs i
+
+Proof. (1 ⇐⇒ 2) Let m = |σ| = |η|. Recall that σk denotes the extension of σ to Zn such that
+|σk | = k. We observe that σ̃ ∈ η̃ ⊕ hγs i if and only if there is an x̃ ∈ Zn−1 and a k ∈ Z such that
+σ̃ = η̃ − kβs − ∆s x̃. If σ = η − ∆x, then
+                                                                        
+                                          x̃           0               ∆s x̃
+                σ = η − ∆x = η − ∆             −∆             =η−              − x(s)cs
+                                          0          x(s)                a
+
+where cs denotes the column of ∆ corresponding with the sink and a is the dot product of the nth
+row of ∆ with (x̃, 0). Since βs (i) = −cs (i) for each i 6= s, it follows that σ̃ = η̃ − ∆s x̃ + x(s)βs .
+Note that if σ̃ and η̃ are recurrent, then we can drop the ∆s x̃ and so write σ̃ ∈ η̃ ⊕ hγs i. Going
+the other way, we assume that σ̃ = η̃ − kβs − ∆s x̃ for some k ∈ N and x̃ ∈ Nn−1 . Note that if σ̃
+and η̃ are recurrent, then this assumption is equivalent to the assumption that σ̃ ∈ η̃ ⊕ hγs i. Let
+σ 0 be the full configuration                             
+                                          0             x̃
+                                         σ =η−∆              .
+                                                        k
+Then σ 0 (i) = σ̃(i) for all i 6= s and |σ 0 | = |η|. Since σ(s) is determined by |σ 0 |, we have that σ 0 = σ.
+(2 ⇐⇒ 3) As can easily be checked, (es )0 ∈ ∆Zn . Hence σ + (es )0 ≡ η + (es )0 mod ∆Zn if and
+                                        ◦              ◦
+only if σ ≡ η mod ∆Zn . Since (σ̃ + es ) and (η̃ + es ) are recurrent, by the first part of the proof
+                                                  n                         ◦            ◦
+we conclude that σ + (es )0 ≡ η + (es )0 mod ∆Z if and only if (σ̃ + es ) ∈ (η̃ + es ) ⊕ hγs i, as
+desired.
+
+Proof. (Theorem 12) Define a map φ : S(G, s)/ βs → V0 /∆Zn by taking σ mod βs to σ0
+mod ∆Zn . If σ ≡ η mod βs , then by Lemma 13 we have that σ = η mod ∆Zn , so that φ
+is well-defined. The equation σ0 + η0 = (σ + η)0 is immediate from the definition, so that φ is
+a homomorphism. The map φ is also surjective, since for each σ ∈ V0 there is a corresponding
+σ̃ ∈ Zn−1 , and φ σ̃ mod βs = σ mod ∆Zn . We now show that φ is injective to complete
+the proof that φ is an isomorphism. Suppose that σ = η mod ∆Zn . Then by Lemma 13 we have
+that σ̃ = η̃ mod βs and the theorem is proved.
+
+With this machinery we may give a more succinct proof of the following result than that found in
+[1] .
+Lemma 14. Let G be an Eulerian graph. Then for any vertex s we have that S(G, s) ∼    = V0 /∆Zn .
+In particuar, the sandpile group of G is independent of choice of sink up to isomorphism.
+
+Proof. Since the outdegree and indegree of v are equal we see that toppling v and all of its neighbors
+once leaves v with the same number of chips as before. Hence 1 is the primitive period vector for
+G. Then βs is trivial and the isomorphism S(G, s) ∼    = V0 /∆Zn follows by Theorem 12 .
+
+Note that for Eulerian graphs, the greatest common divisor M of the numbers in {TG (v)|v ∈ G}
+is |S(G, s)| where s is any vertex.
+
+
+2.2     Co-Eulerian Graphs
+With the progress we’ve made we can now make short work of the proof of Theorem 7.
+
+Proof. (1 =⇒ 2) We prove the contrapositive. Assume there is a sink s such that S(G, s) 6= hγs i,
+and fix the number of chips on G to be m = mG . There are two distinct cyclic subgroups C1 and
+C2 of G such that σ̃max ∈ C1 . Choosing an η ∈ C2 , we remark that ηm stabilizes if and only
+if ηm ≡ σmax mod ∆Zn (since σmax is the only stable full configuration with degree m). This
+occurs if and only if η ∈ σ̃max ⊕ hγs i = C1 by Lemma 13, so we see that ηm does not stabilize.
+
+
+                                                      6
+(2 =⇒ 1) Suppose β = S(G, s), and let η be a full configuration with |η| = m = mG . Since
+η̃ = σ̃max mod ∆s Zn−1 + Zβ, we have that η ≡ σmax mod ∆Zn by Lemma 13, so that η
+stabilizes by the least action principle.
+(2 ⇐⇒ 3) This follows from our previous assertion that ord(γv ) = |S(G, v)|/M.
+(2 ⇐⇒ 4) This follows from Theorem 12.
+
+Theorem 12 gives us that the isomorphism of V0 /∆Zn with the entire sandpile group S(G, s) for
+Eulerian graphs is in a sense maximal. Theorem 15 characterizes the graphs for which V0 /∆Zn is
+minimal, and this dichotomy supplies the reasoning behind our naming them “co-Eulerian” graphs.
+Note that this theorem gives that the halting problem can be solved quickly for co-Eulerian graphs.
+
+
+3     Multi-Eulerian Tours
+We again build off of the counting of cyclic subgroups of unicycles conducted by [2], generalizing
+the BEST theorem to general strongly directed multigraphs. Let π be the primitive period vector
+of a directed graph G = (V, E). We define a multi-Eulerian tour of G to be a closed path that
+uses each directed edge (u, v) exactly π(u) times.
+
+Corollary 15. Let G = (V, E) be a strongly connected directed multigraph. Fix an edge e ∈ E and
+let tail(e) = w. Let TG (w) denote the number of oriented spanning trees in G rooted at w, and let
+(G, e) be the number of multi-Eulerian tours of G starting with the edge e. Then
+                                          Q          Q
+                                    TG (w) v∈V π(v) v∈V (dv π(v) − 1)!
+                          (G, e) =           Q            dv
+                                                                        .
+                                                v∈V (π(v)!)
+
+
+We start with the an observation. Note that by Dhar’s burning test, a sandpile σ on an Eulerian
+graph G is recurrent if and only if (σ + β)o = σ, and this is equivalent to 1 ∈ ker ∆. A converse
+is also true: if G is strongly connected and 1 ∈ ker ∆, then G is Eulerian. This can be seen as
+follows: let σ be a recurrent sandpile, and assume that G is not Eulerian. Then there is a vertex
+v with outdegree greater than indegree. After toppling v, we topple all neighbors of v, and notice
+that we are left with less chips on v than σ(v). Hence 1 ∈
+                                                         / ker ∆ .
+
+Proof. We define a graph G̃ to be G with every edge e0 ∈ E from u to v replaced by π(u) edges
+from u to v. We first relate the number of spanning trees of G̃ to those ofG. For edge e0 ∈ E from
+u to v, let Be0 denote the set of π(u) edges from u to v replacing e0 in G̃, where π is the primitive
+period vector of G̃. Given a graph H, letK(H, w) denote the set of oriented spanning trees rooted
+at w. Define a map φ : K(G̃, w) → K(G, w) taking a spanning tree in G̃ rooted at w to one in
+G rooted at w by mapping edges of Be0 onto the edge e0 in G . For each edgeQe0 of a tree Tw in
+K(G, w) from u to v, there are π(u) edges from u to v in G̃. Hence |φ−1 (Tw )| = u6=w π(u). Given
+a spanning tree Tw0 6= Tw , there is an edge e0 of Tw0 that is not an edge of Tw . Each tree in φ−1 (Tw0 )
+is mapped by φ to a tree with the edge e0 , and no tree in φ−1 (Tw ) is mapped    Q to a tree with edge
+e0 . Thus φ−1 (Tw0 ) ∩ φ−1 (Tw ) = ∅, and it follows that |K(G̃, w)| = |K(G, w)| u6=v π(u).
+               1
+Note that π = M  (|K(G, v1 )|, |K(G, v2 )|, ..., |K(G, vn )|) where M = gcd (|K(G, v1 )|, |K(G, v2 )|, ..., |K(G, vn )|).
+Since the quantity
+                                       Y                             Y 1
+                           |K(G, v)|          π(u)   =   |K(G, v)|              |K(G, u)|
+                                                                            M
+                                       u6=v                          u6=v
+
+
+is independent of choice of v, by Lemma (10) we have that the period vector for G̃ is 1, so that G̃
+is Eulerian by the observation preceding this proof.
+
+
+                                                         7
+The BEST theorem gives us the number of Eulerian tours of G̃, so to proceed we relate this
+quantity to the number of multi-Eulerian tours of G. By fixing an ordering of Be0 for each edge
+e0 ∈ E, we may take an Eulerian tour of G̃ as follows: begin a multi-Eulerian tour of G, and for
+the ith traversal of each edge e0 in G, traverse the ith edge in Be0 . Conversely, given an Eulerian
+tour of G̃, for each traversal of an edge in Be0 , where e0 is an edge from u to v, we may traverse
+the edge e0 in G. Since |Be0 | = π(u), this determines a multi-eulerian tour of G. Hence for each
+multi-Eulerian tour ei1 ei2 · · · eit there is a corresponding ordering Bei1 Bei2 · · · Beit . Note that this
+multi-Eulerian tour of G is determined only up to the order in which the Be0 are chosen (where Be0
+is chosen whenever an edge in Be0 is traversed), so that if π 6= 1 there are more Eulerian tours of
+G̃ than there are multi-Eulerian tours of G. To calculate the precise ratio, we fix a multi-Eulerian
+tour of G, say ei1 ei2 · · · eit as before. Observe that for each edge eij in the tour, there are |Beij |!
+corresponding Eulerian tours of G̃, as for each Beij in Bei1 Bei2 · · · Beit we assign one edge in Beij
+to be the edge taken in the tour (each edge is only assigned once, as each edge is traversed once in
+an Eulerian tour). Hence there are
+                                      Y            Y
+                                          |Be |! =    (π(v)!)dv
+                                            e∈E           v∈V
+
+
+Eulerian tours of G̃ starting at w for each multi-Eulerian tour of G starting at w. If we now fix a
+multi-eulerian tour eei2 · · · eit of G starting from e and an eulerian tour ẽBei2 · · · Beit of G̃ starting
+from an edge ẽ ∈ Be , we see that for each edge eij with tail(eij ) 6= w we have that there are |Beij |!
+corresponding Eulerian tours of G̃. For the dw − 1 edges e0 6= e with tail(e0 ) = w there are also
+|Be0 |! corresponding Eulerian tours of G̃, while there are only (|Be | − 1)! that correspond with e
+(since the first edge ẽ is fixed). Hence
+
+                                                                 (G̃, ẽ)
+                                                  (G, e) =
+                                                                    D
+where
+                                                                             Y
+                            D    =   (π(w)!)dw −1 (π(w) − 1)!                       (π(v)!)dv
+                                                                             v6=w
+                                                        dv              dw −1
+                                        Q
+                                            v∈V (π(v)!)      (π(w)!)                (π(w) − 1)!
+                                 =                                     dw
+                                                          (π(w)!)
+                                                        dv
+                                        Q
+                                            v∈V (π(v)!)
+                                 =                           .
+                                              π(w)
+
+
+
+
+By Corollary 4.10 of [1], the number of Eulerian tours in G̃ starting with ẽ is
+                                  Y                         Y       Y
+              (G̃, ẽ) = TG̃ (w)   (dv π(v) − 1)! = TG (w)   π(u)     (dv π(v) − 1)!.
+                                  v∈V                                        v6=w        v∈V
+
+It follows that
+
+                                         π(w)(G̃, ẽ)
+                       (G, e)   =      Q             dv
+                                          v∈V (π(v)!)
+                                                    Q           Q
+                                        π(w)TG (w) v6=w π(v) v∈V (dv π(v) − 1)!
+                                 =                     Q             dv
+                                                         v∈V (π(v)!)
+                                               Q           Q
+                                        TG (w) v∈V π(v) v∈V (dv π(v) − 1)!
+                                 =                 Q              dv
+                                                                           .
+                                                      v∈V (π(v)!)
+
+
+
+
+                                                          8
+4     Computational Aspects of Chip-Firing
+4.1    Methods for checking if a full configuration stabilizes
+The ideas developed thus far allow for more sophisticated methods for checking if a full configura-
+tion stabilizes. We will first need an efficient way to calculate when two recurrent sandpiles σ and
+η are equivalent modulus hγs i. This occurs when
+                                         σ − ∆s x + kβs = η
+for a nonnegative integer k and integral x. We can search for an integral x by inverting ∆s and
+looking for k such that
+                                               a1 + kb1
+                                               a2 + kb2
+                                                   ..
+                                                    .
+                                               an + kbn
+are all integral for the rational ai and bi , 1 ≤ i ≤ n, that result from multiplying η − σ − kβs by
+        −1
+− (∆s ) . Clearing denominators, this becomes a system of linear congruences, and we can check
+for the existence of a solution in polynomial time using the Chinese Remainder Theorem.
+Recall that ηk is the full configuration such that ηk (i) = η(i) for i 6= s and |ηk | = k, and that es
+is the identity of Sr (G, s). Consider a full configuration σ with |σ| = k and recurrent restrictionσ̃,
+                                              ◦                                                 ◦
+and let ξ be the recurrent sandpile(σ̃ + es ) . Since σ = ηk mod ∆Zn if and only if (η + es ) ∈ Cξ
+by Lemma 13, by the least action principle we have that σ stabilizes if and only if there is some
+recurrent configuration η ∈ Cξ such that ηk (s) < ds . Since ηk (s) + |η| = k, the latter inequality
+is equivalent to the condition that|η| > k − ds . Using this information, we develop a method for
+checking if σ stabilizes.
+We calculate the primitive period vector π of G, and if π(i) is small for some i ∈ [1, 2, ..., n] then
+we take s = vi as the sink and obtain a corresponding γs with ord(γs ) = π(i) small. We can
+then quickly generate Cξ , which by the recent discussion is enough to determine whether or not σ
+stabilizes. Note that, in particular, π(i) = 1 for all i in an Eulerian graph, so that our methods
+coincide with the work by Tardos [11] showing that the halting problem can be solved in polynomial
+time for Eulerian graphs.
+If ord(γs ) is large for all choices of sink s but the number of cosets M of hγs i is small, we can make
+use of the procedure for checking if two recurrent sandpiles are in the same coset to determine if
+σ stabilizes. Since we are looking for any η ∈ Cξ such that |η| > k − ds , we start with η = σ̃max
+and work our way down, checking for all η such that |η| = |σ̃max | − 1, then for all η such that
+|η| = |σ̃max | − 2, and so on, until for all cyclic subgroups C of S(G, s) we have checked for some
+η ∈ C. If after all this we have not found an η such that |η| > k − ds , we conclude that σ does not
+stabilize. Note that M gives a heuristic for the number of checks we need to make: in particular,
+for M a constant that does not depend on n and a certain class of graphs, we have that we will
+require only a constant number of checks before we have hit upon each of the M cyclic subgroups
+of S(G, s). In particular, our analysis coincides with the This class of graphs is defined by having
+the property that the degrees of recurrent configurations do not correlate too strongly with the
+cyclic subgroups – for instance, our method can be thwarted by a graph with a sandpile group
+having a cyclic subgroup that contains all of the highest degree sandpiles.
+We do not even have a heuristic for classes of graphs with large M and large |S(G, v)|/M for each
+vertex v. One example of such a class is the graph where we put four edges from vi to vi+1 and six
+from vi+1 to vi . Here M = 2n and min {TG (v)|v ∈ G} = 4n . It turns out that in this particular
+case we actually can use the ideas developed up to this point in clever ways to solve the halting
+problem on this class of graphs – in the interest of brevity we leave this to the reader. For more
+complicated graphs there may not be such tricks.
+
+
+                                                   9
+4.2    Reduction from an NP-Hard problem
+
+We’ve shown that if M or |S(G, v)|/M is appropriately small for some vertex v, then the halting
+problem can be tractable. We proceed by developing a reduction from an NP-hard problem to
+the halting problem for chip firing. However, in order to conclude that the halting problem is
+NP-Hard, we would require that the reduction be to a version of the halting problem such that
+the edges of the graph can be represented by a polynomial number of bits. The question remains
+open as to whether or not this is achievable.
+We begin by considering a closely related chip firing game (sometimes referred to as the dollar
+game) that goes as follows: given an initial full configuration we ask if there is some sequence of
+topplings that results in the number of chips on each node being at least zero. Chip configurations
+in this context are generally referred to as divisors in the literature.
+In this context, we translate the question of whether or not we can take every node out of debt to
+the following: given a sub-lattice L of V0 of full rank (that is, rank n − 1), we say that r(D) = −1
+if there is no E ∈ Zn with E ≥ 0 such that D − E ∈ L. This means we cannot bring D out of debt
+for all nodes. We will make use of the following Theorem by [5].
+
+Theorem 16 ([5]). For an arbitrary full rank sub-lattice L of An , the problem of deciding if
+r(D) = −1 given a point D ∈ Zn and a basis of L is NP-hard.
+
+We would like to translate this to a context more closely related to the halting problem, where we
+have a Laplacian to work with.
+Lemma 17. For any full rank sub-lattice L of V0 there exists a graph with Laplacian ∆ such that
+∆Zn = L, and ∆ can be computed in time polynomial in n.
+
+This Lemma follows almost immediately from the proof of Theorem 4.11 in ([4]), which says that
+for any lattice L of Zn having rank n, there exists a graph whose reduced Laplacian lattice ∆s is
+such that ∆s Zn−1 = L. The proof is constructive, and is paired with an algorithm that performs
+integer column operations to transform L into ∆s in polynomial time. The algorithm terminates
+with |c1 | > 0 and |cj | = 0 for j > 1 where ci denotes column i of ∆s .
+
+Proof. Let M be an integer matrix such that M Zn = L. We show that there exists a Laplacian
+∆ of a graph with the same integer column span as M . We remark that necessary and sufficient
+conditions for a matrix A to be a full graph laplacian are that the degree of the columns of A be
+zero, the diagonal entries of A be nonpositive, and the offdiagonal entries of A be nonnegative.
+Since M has rank n − 1, there is a sequence of legal column operations that puts the last column
+of M to zero. More explicitly, we can use the Euclidean algorithm, adding one column to another,
+on the upper triangular portion of each of the first rows n − 1 rows of M in turn. Once we are
+done with this, each of the entries of the first n − 1 rows above the diagonal are zero. Since the
+degree of the last column of the resulting matrix is zero, we conclude that the last column is all
+zeros. With this done we apply the algorithm of Theorem 4.11 of ([4]) to the matrix M 0 gotten
+by discarding the bottom row and rightmost column of M , where the column operations specified
+by the algorithm are extended to column operations of M . Note that M 0 is an (n − 1) × (n − 1)
+matrix of rank n − 1, so that the conditions of Theorem 4.11 are fulfilled. Since all of the columns
+of M have degree 0, the integer column operations do not change the degree of the columns of M .
+Letting ci denote the ith column of M 0 , we have that |c1 | > 0 and |cj | = 0 for j > 1. It follows
+that the bottom left entry of M is now negative, while the remaining entries in the bottom row
+are zero. Since M 0 is a reduced laplacian, we have that M is the full laplacian of a graph.
+
+We now observe a useful connection between divisors and sandpiles:
+
+
+
+
+                                                10
+Lemma 18. Given a full rank sub-lattice L of An and a full configuration σ, we have that r(σ) ≥ 0
+if and only if there is a graph laplacian ∆ with ∆Zn = L and a vector x ≥ 0 such that σmax − σ −
+∆x ≤ σmax .
+
+Proof. By Lemma 17 we can find a laplacian ∆ of some graph such that ∆Zn = L. Then r(σ) ≥ 0
+if and only if there is a firing script x such that σ−∆x ≥ 0. We observe that the condition
+σ − ∆x ≥ 0 is equivalent to the condition that σ − σmax − ∆x ≥ −σmax and negating both sides
+yields σmax − σ − ∆(−x) ≤ σmax . Since ∆(−x + p) = ∆ for p a period vector, we can find a
+period vector p such that −x + p ≥ 0 and subtract ∆p from both sides to get a nonnegative firing
+vector.
+
+We would like to say that, given an oracle for solving the halting problem on finite directed graphs,
+we can solve whether or not r(σ) = −1. This is not the case in general, since we could have
+(σmax − σ) (i) < 0 for some i, and the halting problem oracle can only take as input nonnegative
+full configurations. This problem can be averted if we can find a nonnegative configuration η such
+that η = σmax − σ mod ∆Zn , as stabilization of this sandpile implies that r(σ) ≥ 1. If we cannot
+find such an η, it turns out not to be a problem as computing r(σ) in this case is trivial.
+Lemma 19. Let ∆ be an n × n graph laplacian of rank n − 1 with σ ∈ Zn , and suppose that for
+all x ∈ Zn there exists an i such that (σmax − σ − ∆x) (i) < 0. Then r(σ) ≥ 0.
+
+Proof. The condition (σmax − σ − ∆x) (i) < 0 is equivalent to the condition that σ(i) + ∆x >
+σmax , so that the condition of the Lemma gives us that for any sequence of topplings, there
+will always be a vertex vi with greater than σmax (i) chips. Since we may topple such vertices
+indefinitely, we suppose that we do so, letting H ⊆ V denote the set of vertices that are toppled
+infinitely many times. To be more precise, on each step we topple every currently active vertex,
+and we continue taking steps indefinitely. Since G is finite, we have that H 6= ∅. Suppose that
+H 6= V ; we will draw a contradiction. Note that G is strongly connected: this follows at once
+from the matrix tree theorem, as choosing any vertex v as a sink yields a reduced laplacian ∆v of
+rank n − 1, so that there is at least one spanning tree rooted at v. Since G is strongly connected,
+there is a vertex v ∈ V − H and a vertex w ∈ H with dwv > 0. Since w topples infinitely many
+times in the process, so too does v, giving us our contradiction. Hence H = V . We can thus carry
+out our toppling procedure until every vertex has become active and subsequently toppled (note
+that in our procedure we never topple inactive vertices). At this point we have reached the desired
+nonnegative configuration, so that r(σ) ≥ 0.
+
+
+
+We can thus restrict the configurations σ in Lemma 16 to those such that σmax − σ − ∆x ≥ 0 for
+some x and retain the NP-Hardness. Lemmas 17 through 19, along with Theorem 16 give us the
+following.
+Conjecture 20. The problem of computing if r(D) = −1 reduces to the halting problem for finite,
+directed, strongly connected graphs.
+
+Proof. Given an arbitrary full rank sub-lattice L of An and a full configuration σ ∈ Zn such that
+σmax − σ − ∆x = η ≥ 0 for some x, we can decide if r(σ) = −1 by computing the full laplacian ∆
+with ∆Zn = L and checking to see if η is equivalent to a stable configuration modulo ∆Zn . The
+least action principle gives us that this is equivalent to checking if η is stabilizable, and so we have
+a reduction from the dollar game problem to the halting problem.
+
+One issue remains: the Laplacian ∆ we compute may have very large entries, corresponding with
+many edges existing between vertices in the underlying graph. For our efforts to bear fruit, we will
+need to be able to encode these edges with a polynomial number of bits. To make this precise, we
+define the following.
+
+
+                                                  11
+Problem. The halting problem for chip-firing on finite, strongly connected graphs with
+O(2n ) edges between each pair of vertices.
+
+Input: A finite, strongly connected multigraph G with O(2n ) edges between each pair of vertices
+    and a full chip configuration σ with σ ≥ 0.
+
+Output: A decision on whether or not σ stabilizes.
+
+The question remains: does the NP-Hard problem of computing if r(D) = −1 reduce to this, or a
+similar, more restrictive halting problem?
+
+
+References
+ [1] Alexander E. Holroyd, Lionel Levine, Karola Mészáros, Yuval Peres, James Propp and David
+     B. Wilson, Chip-Firing and Rotor-Routing on Directed Graphs, In and Out of Equilibrium 2,
+     Progress in Probability (2008), Vol. 60, 331–364
+ [2] Trung Van Pham, Period of rotor-router operation, arXiv:1403.5875v3 (2014).
+
+ [3] Anders Björner and László Lovász, Chip-Firing games on directed graphs, J. Algebraic Combin
+     (1992) Vol 1. 305-328
+ [4] D. Perkinson, J. Perlman, and J. Wilmes, Primer for the algebraic geometry of sandpiles.
+     Contemporary Mathematics (2014) Vol. 605.
+ [5] O. Amini and M. Manjunath, Riemann-Roch for Sublattices of the Root Lattice An , Electronic
+     Journal of Combinatorics (2010), 17(1)
+ [6] Aldous, D. The random walk construction of uniform spanning trees and uniform labelled
+     trees. SIAM J. Disc. Math. 3, (1990) 450–465.
+ [7] Broder, A. Generating random spanning trees. In Symp. Foundations of Computer Sci., IEEE,
+     New York, (1989) 442–447.
+ [8] John Harris, Jeffry Hirst, and Michael Mossinghoff, Combinatorics and Graph Theory, Un-
+     dergraduate Texts in Mathematics (2nd ed.), Springer (2008).
+ [9] Benjamin Bond and Lionel Levine. Abelian Networks:           Foundations and Examples.
+     arXiv:1309.3445 (2014)
+
+[10] Anders Björner and László Lovász, Chip-Firing games on directed graphs, European Journal
+     of Combinatorics (1991) Vol. 12 Issue 4, 283–291
+[11] Gábor Tardos. Polynomial bound for a chip firing game on graphs. Siam J. Disc. Math. (1988)
+     Vol. 1, No. 3.
+
+
+
+
+                                              12
+

@@ -119,3 +119,12 @@ Mass-action paper 21753997 is deferred for a demonstrated missing rate-domain hy
 A fresh CUA inventory still reports the native Mac locked, but an actual Chrome-extension screenshot successfully displayed the spectral PDF. The previous blanket browser-block assumption was too broad; extension-only display checks have resumed with exclusive ownership assigned to the publication editor. No visual PASS is inferred from the inventory or static content tests. Nevo source intake began next in queue.
 
 Completion estimate: 21 of 203 finalized or deferred (10.34%); root-passed or defect-disposed 37 of 203 (18.23%). The full goal remains active.
+
+
+## 2026-10-25T02:24:38.869324+00:00 — nine display gates accepted and third new page deployed
+
+Root accepted actual desktop/mobile/PDF/download evidence for nine previously pending pages. The Vlasov background note initially overflowed at390px; a narrow wording correction preserved its exact pinned source URL and mathematical bindings, and the deployed recheck passed with no overflow. Before/after evidence is retained. The W4 deposit has eight separate published files and no archive, so a distinct read-only live retrieval authenticated every linked file by size,MD5,SHA256 rather than inventing a ZIP check. The additional19-page Turing reader was opened and checked separately.
+
+The chip-firing page passed final root content inspection and was deployed at site fd270b86 / Firebase b79e0f64ba5f0a63. Full content regression passes1669of1669checks across33generated pages; the pilot makes34index entries. A transitional live check disagreed only on the shared index/sitemap while the next page was local and not yet deployed; no scientific page asset failed. Fresh current-deployment checks now pass34+14requested live files.
+
+Completion estimate:30of203finalized or deferred(14.78%), comprising26fully verified pages and four precise defect deferrals. Eight live pages still await display gates, two verification holds remain separate, and the Nevo report set awaits root disposition. The full203-work goal remains active.

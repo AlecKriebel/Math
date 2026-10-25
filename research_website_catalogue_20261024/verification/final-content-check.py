@@ -49,6 +49,7 @@ TEX_PATHS={
  '23127955':'published-source/paper.tex',
  '23430642':'published-source/rank_one_uniqueness_v1_0/paper.tex',
  '23387814':'published-source/seshadri_counterexample_verification/seshadri_counterexample.tex',
+ '23431716':'published-source/paper.tex',
 }
 GAME_SESHADRI_IDS={'23430642','23387814'}
 def normalized_game_seshadri_abstract(rid,body):
@@ -406,6 +407,24 @@ for rid in args.record_ids:
   test('scope_limits_and_credit',all(x in unescape(h) for x in ['does not determine its exact value','very-general-point','Picard-rank-one','canonical or adjoint polarization bounds','Miranda’s classical pencil construction','does not list explicit coefficients','Historical priority']))
   test('printed_edition_date_binding',r'\date{October 14, 2026}' in source and c['source_binding']['manuscript_version'] is None and record['version']==c['version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-14' and c['edition_label']=='Zenodo version 1.0')
   test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/candidate-content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/candidate-content.json'))
+ if rid=='23431716':
+  normalized_abstract=' '.join(a.replace('--','–').split())
+  test('abstract_full_source_text',normalized_abstract==c['abstract'])
+  test('abstract_full_142_words',len(c['abstract'].split())==142)
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==142)
+  test('scope_complete',all(x in unescape(h) for x in ['finite loopless simple strongly connected digraph with at least two vertices','arbitrary nonnegative integer chip configuration encoded in binary','actual outdegree','There is no dissipative sink','deterministic polynomial-time many-one reductions','oriented subclass','forbids antiparallel arcs','acyclic graph with no directed path of two arcs','polynomial numerical total initial chips','written in unary','without a fairness assumption']))
+  test('complexity_limits_and_credit',all(x in unescape(h) for x in ['Unless P = NP','does not give a polynomial-time simulation','does not claim bounded-degree or Eulerian hardness','Holroyd–Levine–Winkler','Stockmeyer–Meyer','Gramlich','NP-membership method of Farrell–Levine','Exact full-result and realization priority remain unknown']))
+  test('printed_edition_date_binding',r'\date{Version 1.0, 16 October 2026}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-16')
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)==7 and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+  test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False)
+  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['supplement_sha256']==gate['supplement_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/CONTENT_CANDIDATE.md' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/CONTENT_CANDIDATE.md'))
+  test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_verdict'] is None and bool(gate['scope_gate_resolution']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

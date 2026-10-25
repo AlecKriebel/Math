@@ -1,0 +1,153 @@
+Browser tab: 963520582, Title: "Asymptotic LOCC dense coding with the symmetric four-qubit W state | Alec Kriebel", URL: "https://aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/".
+1 AXWebArea Asymptotic LOCC dense coding with the symmetric four-qubit W state | Alec Kriebel, URL: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/
+	2 link Description: Skip to content, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/#main
+	3 container
+		4 link Description: Alec Kriebel, Value: aleckriebel.com/
+		5 container Main navigation
+			6 link Description: Research, Value: aleckriebel.com/research/
+			7 text  | 
+			8 link Description: Blog, Value: aleckriebel.com/blog/
+			9 text  | 
+			10 link Description: ORCID, Value: orcid.org/0009-0001-9320-500X
+	11 container
+		12 heading Asymptotic LOCC dense coding with the symmetric four-qubit W state, Value: 1
+			13 link Description: Asymptotic LOCC dense coding with the symmetric four-qubit W state, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/
+		14 container
+			15 text By Alec Kriebel, independent researcher.
+			16 text Published  4 October 2026  · Version 1.0 ·  Unrefereed preprint
+		17 container
+			18 link Description: Read the paper (PDF, 5 pages), Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/w4_locc_dense_coding.pdf
+			19 text  · 
+			20 link Description: Zenodo record, Value: doi.org/10.5281/zenodo.23147866
+		21 container
+			22 link Description: Plain-English explanation, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/#plain-language
+			23 text  · 
+			24 link Description: Read on this page, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/#paper
+			25 text  · 
+			26 link Description: Collaboration, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/#collaborate
+		27 container abstract
+			28 heading Abstract, Value: 2
+				29 text Abstract
+			30 text The distributed dense-coding question posed by Bruß and collaborators asks whether the symmetric four-qubit W state gives a strict advantage when two independent senders each transmit one qubit to a different receiver and the receivers decode using local operations and classical communication (LOCC). We give an affirmative answer in their asymptotic unitary-encoding model. Independent Pauli encodings followed by a complete Bell measurement at one receiver produce a finite classical–quantum multiple-access channel whose entire output is local to the other receiver. Winter’s coding theorem gives an achievable sum-rate supremum of 3/2 + h₂(1/4) = 2.311278… bits per resource copy. In particular, both senders can transmit 9/8 bits per copy with vanishing average error. This settles the stated W-state classification question using established measurement and coding ingredients; it does not determine the optimal LOCC capacity or assert a one-copy advantage.
+		31 container plain-language
+			32 heading The idea in plain English, Value: 2
+				33 text The idea in plain English
+			34 text Two senders and two receivers share a four-qubit W state. Each sender encodes an independent message and sends one qubit to their own receiver. The receivers can exchange ordinary classical messages, but cannot send quantum systems to each other.
+			35 text The paper shows that, by coding across many copies, they can transmit more than the two-bit total available without the shared entangled resource. Its protocol approaches a combined rate of about 2.311278 bits per copy. A concrete rate safely inside the proven region is 1.125 bits per sender, or 2.25 bits in total.
+			36 text One receiver measures in the Bell basis and forwards the outcome. The other keeps their quantum systems and decodes them together across many copies. Keeping those systems quantum until the final decoding step is what allows a standard multiple-access coding theorem to be used.
+			37 text The result answers the specified W-state classification question in an asymptotic unitary-encoding model. It does not say that a single copy beats two bits, or that 2.311278 is the best possible rate for all allowed protocols.
+		38 container result
+			39 heading The precise result, Value: 2
+				40 text The precise result
+			41 text For the symmetric state |W₄⟩ = (|1000⟩ + |0100⟩ + |0010⟩ + |0001⟩)/2 in the order A₁A₂B₁B₂, sender i initially holds Aᵢ and receiver i holds Bᵢ. Each sender transmits their encoded qubits noiselessly to their corresponding receiver.
+			42 text With independent uniformly distributed messages, separate fixed codebooks and local unitary encoders, every nonnegative rate pair with R₁ < 3/2, R₂ < 3/2 and R₁ + R₂ < 3/2 + h₂(1/4) is achievable with vanishing uniform average decoding error.
+			43 text The protocol’s achievable sum-rate supremum is 3/2 + h₂(1/4) ≈ 2.311278 bits per resource copy, giving a lower bound on the optimal LOCC capacity. In particular, R₁ = R₂ = 9/8 gives a total rate of 9/4 bits per copy.
+			44 text Independent single-qubit Pauli operations suffice for encoding. A complete Bell measurement at the first receiver, classical forwarding and a collective local measurement at the second receiver implement the decoder; no extra shared entanglement or quantum communication between receivers is supplied.
+			45 text This places the symmetric W₄ state in the LOCC-dense-codeable class of the stated original unitary-encoding model. The paper also connects its vanishing-error rate statement to the source’s asymptotic accessible-information formulation.
+		46 container proof
+			47 heading Why the result holds, Value: 2
+				48 text Why the result holds
+			49 text A paired Bell decomposition makes the effect of independent Pauli encodings explicit. The first receiver performs a complete Bell measurement and forwards every outcome, without postselecting successful events.
+			50 text That measurement produces a finite classical–quantum multiple-access channel. The classical outcome and remaining quantum state are both held by the second receiver, so Winter’s ordinary single-output coding theorem applies to this channel.
+			51 text The channel output entropy is 3/2 for each input pair. Averaging over either sender gives entropy 3, while averaging over both gives 3 + h₂(1/4). These yield the two individual bounds 3/2 and the sum bound 3/2 + h₂(1/4).
+			52 text The many-copy decoder can be conditioned on the forwarded classical outcome string, leaving its quantum measurement entirely inside the second receiver’s laboratory. Separate Pauli codebooks implement independent senders.
+			53 text The rate pair (9/8,9/8) lies strictly inside the achievable region and exceeds the two-bit classical benchmark. A Fano inequality transfers reliable message decoding to the accessible-information formulation of the original question.
+		54 container limits
+			55 heading Scope and limitations, Value: 2
+				56 text Scope and limitations
+			57 text The rate is asymptotic over many independent resource copies and allows collective quantum decoding inside a receiver’s laboratory. It is not a one-copy advantage, a finite-block performance guarantee or an explicit practical family of codebooks.
+			58 text The theorem gives a capacity lower bound. It does not prove that 3/2 + h₂(1/4) is the optimal LOCC capacity, characterize every achievable rate pair or rule out better protocols.
+			59 text The error criterion is uniform average error over independent messages. Zero-error and maximal-error coding are not established.
+			60 text The ownership and routing are fixed: each independent sender sends one qubit per copy to their own receiver, and receiver operations are local across A₁B₁ : A₂B₂. There is no sender message disclosure, feedback to senders, additional shared entanglement or quantum communication between receivers.
+			61 text The two-bit calculation when both receivers immediately use Bell measurements concerns that particular one-copy measurement and input ensemble. It is not a converse bound for arbitrary one-copy LOCC strategies.
+			62 text Bell forwarding and multiple-access dense coding have earlier precedents. The claimed addition is the specific retained-quantum-output channel and its achievable region for this W₄ problem, using Winter’s established coding theorem. This bounded comparison does not certify worldwide first priority, formal proof verification or completed human peer review.
+		63 container status
+			64 heading Status and AI use, Value: 2
+				65 text Status and AI use
+			66 text AI tools were used extensively in developing the solution, checking the proof, reviewing the literature and preparing the paper. Internal AI reviews do not constitute conventional human peer review or refereeing; exact finite channel checks supplement the mathematical argument.
+		67 container paper
+			68 heading Read the paper, Value: 2
+				69 text Read the paper
+			70 container
+				71 link Description: Open PDF in a full window, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/w4_locc_dense_coding.pdf
+				72 text  · 
+				73 link Description: Download the original from Zenodo, Value: zenodo.org/records/23147866/files/w4_locc_dense_coding.pdf
+			74 container Asymptotic LOCC dense coding with the symmetric four-qubit W state — full paper PDF
+				75 AXWebArea about:blank
+		76 container materials
+			77 heading Supporting materials, Value: 2
+				78 text Supporting materials
+			79 content list
+				80 container
+					81 AXListMarker • 
+					82 link Description: Original TeX source, Value: zenodo.org/records/23147866/files/w4_locc_dense_coding.tex?download=1
+				83 container
+					84 AXListMarker • 
+					85 link Description: Exact channel verification script, Value: zenodo.org/records/23147866/files/verify_channel.py?download=1
+				86 container
+					87 AXListMarker • 
+					88 link Description: Published source and reproduction notes, Value: zenodo.org/records/23147866/files/README.md?download=1
+				89 container
+					90 AXListMarker • 
+					91 link Description: Published file checksums, Value: zenodo.org/records/23147866/files/SHA256SUMS.txt?download=1
+				92 container
+					93 AXListMarker • 
+					94 link Description: Published verification results, Value: zenodo.org/records/23147866/files/verification_results.json?download=1
+				95 container
+					96 AXListMarker • 
+					97 link Description: Published literature and attribution audit, Value: zenodo.org/records/23147866/files/PRIORITY_AUDIT.md?download=1
+				98 container
+					99 AXListMarker • 
+					100 link Description: License for the published material, Value: zenodo.org/records/23147866/files/LICENSE.txt?download=1
+		101 container collaborate
+			102 heading Collaborate on this result, Value: 2
+				103 text Collaborate on this result
+			104 text I welcome substantive collaboration on independent verification of the channel and coding argument, comparison with earlier distributed dense-coding protocols, and preparation for journal review. Expertise in quantum Shannon theory, multiple-access coding or LOCC measurements would be especially useful.
+			105 text Authorship and responsibilities would be discussed in relation to the substantive contributions made.
+		106 link Description: Contact Alec, Value: mailto:me@aleckriebel.com
+		107 container cite
+			108 heading Cite this paper, Value: 2
+				109 text Cite this paper
+			110 container
+				111 text Alec Kriebel. (2026).  Asymptotic LOCC dense coding with the symmetric four-qubit W state  (Version 1.0) [Preprint]. Zenodo. 
+				112 link Description: https://doi.org/10.5281/zenodo.23147866, Value: doi.org/10.5281/zenodo.23147866
+			113 link Description: Download BibTeX, Value: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/citation.bib
+		114 container background
+			115 heading Background and prior work, Value: 2
+				116 text Background and prior work
+			117 content list
+				118 container
+					119 AXListMarker • 
+					120 link Description: Bruß and collaborators, Distributed quantum dense coding, Value: arxiv.org/abs/quant-ph/0407037v3
+					121 text : Introduces the distributed task, unitary-encoding framework and usefulness classification. Several-receiver bounds must be distinguished from achieved rates.
+				122 container
+					123 AXListMarker • 
+					124 link Description: Bruß, distributed dense-coding contribution, Oberwolfach Report 4/2005, Value: ems.press/content/serial-article-files/45978
+					125 text : Printed pages 203–205 explicitly ask whether the four-qubit W state belongs to the LOCC-dense-codeable class.
+				126 container
+					127 AXListMarker • 
+					128 link Description: Winter, The capacity of the quantum multiple-access channel, Value: arxiv.org/abs/quant-ph/9807019v3
+					129 text : Theorem 9 gives product-prior multiple-access achievability with separate encoder maps and vanishing uniform average error. Its single quantum output must be available in one receiver’s laboratory.
+				130 container
+					131 AXListMarker • 
+					132 link Value: arxiv.org/abs/0705.1917v1, Description: Pradhan, Agrawal and Pati, Teleportation and superdense coding with genuine quadripartite entangled states
+					133 text : Section 4.2.3 already uses Bell measurements and classical forwarding for a two-bit W-state protocol. The present protocol retains the second receiver’s quantum output for many-copy decoding.
+				134 container
+					135 AXListMarker • 
+					136 link Description: Cao and Song, Quantum secure direct communication with W state, Value: doi.org/10.1088/0256-307X/23/2/005
+					137 text : An earlier W-state communication scheme using Bell measurements and classical communication, credited by the manuscript for its paired Bell decomposition. Its security task is distinct from the independent-message rate theorem here.
+				138 container
+					139 AXListMarker • 
+					140 link Description: Huang, Zhang and Hou, Classical capacity of a quantum multiple-access channel, Value: arxiv.org/abs/quant-ph/9911120v5
+					141 text : Earlier work already connects multiple-access coding with dense coding. That general connection is not claimed as a new idea here.
+				142 container
+					143 AXListMarker • 
+					144 link Description: Hayashi and Wang, Dense Coding with Locality Restriction on Decoders, Value: doi.org/10.1103/PRXQuantum.3.030346
+					145 text : Studies a sender, receiver and helper with a different ownership and transmission arrangement. Its capacity formula cannot be imported without checking the receiver partition used here.
+	146 container
+		147 link Description: Research home, Value: aleckriebel.com/research/
+		148 text  | 
+		149 link Description: me@aleckriebel.com, Value: mailto:me@aleckriebel.com
+		150 text © 2013–2026 Kriebel LLC.
+
+The focused UI element is 1 AXWebArea Asymptotic LOCC dense coding with the symmetric four-qubit W state | Alec Kriebel, URL: aleckriebel.com/research/symmetric-four-qubit-w-state-locc-dense-coding/

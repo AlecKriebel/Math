@@ -1,0 +1,3146 @@
+    Decidability and complexity of Petri net problems – an
+                        introduction
+
+                                         Javier Esparza
+
+                     Institut für Informatik, Technische Universität München,
+                             Arcisstr. 21, D-80290 München, Germany
+
+
+
+          Abstract. A collection of 10 “rules of thumb” is presented that helps to deter-
+          mine the decidability and complexity of a large number of Petri net problems.
+
+
+1 Introduction
+
+The topic of this paper is the decidability and complexity of verification problems for
+Petri nets. I provide answers to questions like “is there an algorithm to decide if two
+Petri nets are bisimilar?”, or “how much time is it needed (in the worst case) to decide
+if a 1-safe Petri net is deadlock-free?”
+     My intended audience are people who work on the development of algorithms and
+tools for the analysis of Petri net models and have some basic understanding of com-
+plexity theory. More precisely, I assume that the reader is familiar with the notion of
+undecidable problem, with the definitions of deterministic and nondeterministic com-
+plexity classes like NP or PSPACE, with the notion of hard and complete problems for
+a complexity class, and with the use of reductions to prove hardness and completeness
+results. Theoreticians acquainted with the topic of this paper are warned: They won’t
+find much in it that they didn’t know before.1 On the other hand, they might be inter-
+ested in the paper’s unified view of complexity questions for 1-safe and general Petri
+nets, and in a few simplifications in the presentation of some proofs.
+     When I was invited to write this paper, I hesitated for a while. I remembered the
+statement of the Greek scepticist Gorgias:
+
+       Nothing exists;
+       if anything does exist, it is unknowable;
+       if anything can be known, knowledge of it is incommunicable.
+
+and imagined a Greek chorus advising me not to write the paper because, in their opin-
+ion:
+
+       All results about decidability and complexity of Petri nets were already ob-
+       tained in the early eighties;
+
+
+
+
+
+      Work partially supported by the Sonderforschungsbereich 342 “Werkzeuge und Methoden für
+      die Nutzung paralleler Rechnerarchitekturen”.
+    1
+      Only one result has not been published before, namely a PSPACE algorithm for the model-
+      checking problem of CTL and 1-safe Petri nets, presented in Section 4.
+    if there are new results, you have included them for sure in the paper “Decid-
+    ability issues for Petri nets – a survey” you wrote with Mogens Nielsen in 1994
+    [10];
+    if you haven’t included them in the survey, they are only of interest for spe-
+    cialists; moreover, these results just show that all interesting problems are in-
+    tractable – finer classifications, like NP-, PSPACE- or EXPSPACE-hardness
+    have no practical relevance.
+
+   Since, as you can see, I still decided to write the paper, I would like to anticipate my
+answer to these three possible criticisms.
+
+   There have been important recent developments about decidability and complexity
+questions, of interest for the whole Petri net community.
+     During the late seventies and early eighties there was an outburst of theoretical work
+on decidability and complexity problems for (Place/Transition) Petri nets. Well-known
+computer scientists, like Rabin, Rackoff, Lipton, Mayr, Meyer, and Kosaraju, just to
+mention a few, obtained a very impressive collection of results. The decidability of
+most problems, like boundedness, liveness, reachability, language equivalence, etc. was
+settled, and in many cases tight complexity bounds were obtained.
+     However, while these results were being obtained, two developments in computer
+science opened new problems:
+       In the late seventies, temporal logic was proposed as a query language for the
+specification of reactive and distributed systems; a few years later, model-checking was
+introduced as a technique for the verification of arbitrary temporal properties. How-
+ell, Rosier, and Yen were the first to study the decidability and complexity of model-
+checking problems for Petri nets in the second half of the eighties [17, 19, 20]. Today
+most questions in this research field have been answered [9, 14].
+      In the early eighties, process algebras were introduced for the formal description
+of concurrent and reactive systems. It was seen that language equivalence was not an
+adequate equivalence notion for this class of systems, since for instance it may consider
+deadlock-free systems as equivalent to systems with deadlocks. New equivalence rela-
+tions were introduced, like bisimulation and failures equivalence. In the early nineties,
+the decidability of these equivalences for systems with infinite state spaces started to
+receive a lot of attention, and led to renewed interest in Petri nets. Jančar proved only
+a few years ago a fundamental result showing the undecidability for Petri nets of all
+equivalence notions described in the literature [22, 21].
+     These two developments still had another effect. During the eighties, many re-
+searchers started to study the relationship of process algebras to Petri nets. Net models
+in which a place can carry at most one token, like condition/event systems or elemen-
+tary net systems, turned out to be particularly useful for these studies. These nets, which
+have by definition a finite number of states, became even more interesting after the in-
+troduction of automatic model-checkers, when it was realised that they could be used to
+model a large number of interesting systems which were within the reach of automatic
+verification. The questions that had been asked and mostly solved for Place/Transition
+nets were now asked again for these models. In the last years the complexity of classical
+properties (reachability, liveness  ), model-checking problems for different temporal
+logics, and equivalence problems for different equivalence notions, has been completely
+determined [2, 23, 31].
+
+   This paper has a different approach than the ’94 survey paper, and has been written
+to complement it.
+     Research on the decidability and complexity of verification problems for Petri nets
+has produced well over 100 papers, maybe even 150. Many of them have been published
+in well-known journals, and are thus available in any good library. My survey paper with
+Mogens Nielsen [10] summarises many results, and provides a rather comprehensive
+list of references.
+     Petri net researchers often need information about the complexity of a particular
+problem (the Petri net mailing list receives now and then postings with this kind of
+requests). In most cases, a similar problem has already been studied in the literature,
+and pointers to relevant papers can be found in [10]. If one is familiar with a number
+of basic techniques, it is easy to apply these existing results to the new problem. How-
+ever, acquiring this familiarity is at the moment a rather hard task, specially for Ph. D.
+students: one has to go through many papers and distill an understanding which is not
+explicitly contained in the papers themselves. The purpose of these pages is to make
+this task a bit easier. Instead of listing results and references, I concentrate on a few
+general results of broad applicability. I also provide “rules of thumb”, which I think can
+be more useful than formal theorems.
+
+   All researchers interested in the development and implementation of analysis algo-
+rithms for Petri nets can greatly profit from some basic knowledge on the computational
+complexity of analysis problems.
+    All researchers are regularly confronted with the problem of having to prove or
+disprove a conjecture. Should one first try to find a proof or a counterexample? The
+wrong choice can make one lose precious time. Complexity theory can often help by
+showing that the truth or falsity of the conjecture implies an unlikely fact, like P NP
+or NP PSPACE. I present here some examples in the form of three stories taken from
+my personal experience:
+
+Story I. After graduating in Physics, I became a Ph. D. student of computer science.
+At that time I knew very little about theoretical computer science, and there were no
+theoreticians in my environment. I started to work on the analysis of free-choice Petri
+nets, a net class for which there was hope of finding efficient verification algorithms, and
+more precisely I began to investigate the liveness problem. My hope was to efficiently
+transform the problem into a set of linear inequations that could be solved using linear
+programming. ‘Efficiently’ meant for me that the number and size of the equations
+should grow quadratically, say, in the size of the net.
+    During the next four months I could not find any encoding, but I read some text-
+books on theoretical computer science. I came across Garey and Johnson’s book on
+the theory of NP-completeness [12], and I found the problem I was working on (more
+precisely, its complement) in the list of NP-complete problems at the end of the book.
+Since there exist polynomial algorithms for Linear Programming but the complement of
+the liveness problem for free-choice nets was NP-complete, the existence of an efficient
+encoding would imply P NP, and so it was highly unlikely.
+    The NP-completeness of the non-liveness problem for free-choice Petri nets is proved
+in Section 10.
+
+Story II. Some years ago I refereed a paper submitted to the Petri net conference.
+The paper contained a conjecture on the reachability problem for Petri nets that can
+be stated as follows. Let        be a net, and let    and          
+                                                              be markings of    such that
+   is reachable from        
+                             . Conjecture:     
+                                              can be reached from                
+                                                                      through a sequence
+of transition firings which only visits intermediate markings of size                   
+                                                                                        ,       
+where          
+                    are the sizes of ,                
+                                             and , respectively. The author of the paper
+had constructed a random generator of nets and markings and had tested the conjecture
+in one thousand cases, always with a positive answer.
+     It is certainly possible to disprove the conjecture by exhibiting a counterexample,
+but it is faster to use a complexity argument. I show this argument in Section 7.
+
+Story III. I have recently come across a paper containing a characterisation of the set
+of reachable markings of 1-safe Petri nets. A simple complexity analysis shows that the
+characterization is most probably wrong, although I haven’t found a counterexample
+yet. In order to formulate the characterisation we need some definitions and notations.
+A siphon of a net is a subset of places satisfying                  
+                                                                      . A trap is a subset of
+              '&
+places satisfying             
+                                 . Given a net              !"
+                                                                and a set              #$%
+                                                                                  , we define
+the net      as the result of first removing all transitions of      not belonging to , and       #
+then removing all places that are not connected to any transition anymore.
+    Now, let          ()*"
+                               be a net, and let       
+                                                     and          
+                                                            be markings of such that the
+Petri net        !+
+                    is 1-safe. The characterization states       
+                                                                is reachable from           
+                                                                                       if and
+only if there exists a mapping   ,.-/102 3   satisfying the following three properties:
+
+(1) for every place 4 , 5647 8  4+9 :%;=<?>@6A BC!47DEA64F*BG,H B ,
+(2) every nonempty siphon of >JI is marked at  , and
+(3) every nonempty trap of >KI is marked at  .
+
+where LKM is the set of transitions B such that ,HNBPOQ .
+    I strongly believe that the proof of this result contains a mistake, and that a coun-
+terexample exists. I show why in Section 3.2
+
+  The classification of a problem as NP-, PSPACE- or EXPSPACE-hard does have
+practical relevance
+    The complexity of Petri nets was first studied in the seventies, when NP-complete
+problems were really intractable: computer scientists were unable to deal even with very
+small instances due to the lack of computing power and of good theoretical results.
+At that time it probably didn’t make so much difference for a practitioner whether a
+problem was PSPACE-hard or only NP-complete. In my opinion, today’s picture is
+very different:
+    2
+        After I wrote this paper, but before its publication, Stephan Melzer found a counterexample
+        with 5 places and 3 transitions.
+ – NP-complete problems are no longer “intractable”. It is certainly true that all known
+   algorithms that solve them have exponential worst-case complexity. However, to-
+   day there exist commercial systems for standard NP-complete problems, like sat-
+   isfiability of propositional logic formulas or integer linear programming problems,
+   that routinely solve instances of large size.
+ – The last years have witnessed a proliferation of model-checking tools, like COSPAN,
+   PEP, PROD, SMV, SPIN, and others (see [11] and [30] for comprehensive informa-
+   tion). Although the problems they solve are PSPACE-complete, they have been suc-
+   cessfully applied to the verification of many interesting finite state systems. Com-
+   mercial versions are starting to appear.
+ – Experimental tools for the analysis of timed-systems are starting to emerge. Ex-
+   amples are Hy-Tech, KRONOS, UPPAAL [11]. Many of the problems solved by
+   these tools are EXPSPACE-complete. The size of the instances they can handle is
+   certainly much smaller than in the case of model-checkers, but the results are very
+   promising.
+ – Theorem provers like HOL, Isabelle, PVS, and others are being applied with good
+   success to the verification of systems with infinite state spaces. They use heuristics
+   to try to solve particular instances of undecidable analysis problems.
+
+    My conclusion is that the old “tractable – intractable” classification has become too
+rough. A finer analysis provides very valuable information about the size of instances
+that can be handled by automatic tools, and about the possibility of applying existing
+tools to a particular problem.
+
+
+Organisation of the paper
+
+The paper is divided into two parts. The first is devoted to 1-safe Petri nets, which are
+Place/Transition Petri nets having the property that no reachable marking puts more
+                                                            
+than one token in any place. Nearly all results hold for -safe Petri nets (at most       
+                                                                
+tokens on a place) too, assuming that the algorithms receive as part of the input, which
+                           
+implies in particular that must be known in advance. The second part is devoted to
+general Place/Transition nets. Both parts are divided into the same four sections. Each
+section contains one or more “rules of thumb”. These are general informal statements
+which try to summarise a number of formal results in a concise, necessarily informal,
+but informative way. They could also be called “useful lies”: statements which do not
+tell all the truth and nothing but the truth, but are more useful than a complicated formal
+theorem with many ifs and buts. There is a total of 10 rules of thumb in the paper;
+with their help I can solve most of the complexity questions I come across in my own
+research.
+     Rules of thumb are displayed in the text like this:
+
+
+        Rule of thumb 0:
+        To find the rules of thumb, look for pieces of text within a box.
+This is only a rule of thumb, because other pieces of text are also surrounded by a box,
+in fact by a double box. They are fundamental formal results used to derive the rules of
+thumb.
+
+
+                Fundamental results are displayed within a double box.
+
+
+     The first section contains a universal lower bound for “interesting” Petri net prob-
+lems. The second section deals with upper bounds: for 1-safe Petri nets it is possible
+to give an almost universal upper bound, whereas the case of general Petri nets is more
+delicate. The third section deals with equivalence problems: are two given nets equiva-
+lent with respect to a given equivalence notion? Upper and lower bounds are considered
+simultaneously. Finally, the fourth section gives information about how far one can go
+with polynomial time algorithms.
+     Only some of the results mentioned in the paper are proved; for others the reader
+is referred to the literature. The results with a proof are those fulfilling two conditions:
+they are very general, applicable to a variety of problems, and admit relatively simple,
+non-technical proofs. I have devoted special effort to presenting proofs in the simplest
+possible way. My goal was to produce a paper that could be read straight through from
+beginning to end. I don’t know if the goal has been achieved, but I tried my best.
+                                      Table of Contents
+
+
+Decidability and complexity of Petri net problems – an introduction                               1
+   Javier Esparza
+
+
+I 1-safe Petri nets
+
+
+II   General Petri nets
+
+
+2 Preliminaries
+
+We assume that the reader is acquainted with the basic notions of net theory, like firing
+rule, reachable marking, liveness, boundedness, etc., and also with other basic compu-
+tation models like Turing machines. This section just fixes some notations.
+
+Petri nets. A net is a triple                       ()*"          
+                                          , where and are finite sets of places and
+transitions, and               6   N  
+                                          is the flow relation. We identify with its
+characteristic function             6      @0 +Q 
+                                             . The preset and postset of a place
+or transition are denoted by                         
+                                   and , respectively. Given a set              , we     ,   
+denote           ,
+               and        <?I               ,            <?I K
+                                    . A marking is a mapping                        .        -  0 23
+A (Place/Transition) Petri net is a pair                 , where 3   
+                                                                     is a net and      is               
+                                                       B
+the initial marking. A transition is enabled at a marking       if                    54+ O$Q
+                                                                               for every
+ 4 ' B B                                 
+ . If is enabled at , then it can fire or occur, and its firing leads to the successor
+                    
+marking  which is defined for every place by                        4
+                                              647 15647 HA BC 4+D A4?*B
+                                   ;
+The expression  DK0  denotes that  enables transition B , and that the marking
+reached by the occurrence of B is  . A finite or infinite sequence  D 0  DK0
+                                                                                                 ;       ;
+   G GG is called a firing sequence. The maximal firing sequences of a Petri net (i.e.,
+the infinite firing sequences plus the finite firing sequences which end with a marking
+that does not enable any transition) are called runs. Given a sequence  (B  B! *B!" ,
+    DK# 0   denotes               that there exist markings   !   ! "%$ such that    D
+                                                                                                         K  ;0
+  * "&$' DK;0 (  .
+          A Petri net is 1-safe if 54+*)+ for every place 4 and every reachable marking  .
+          We encode a net )*" as two , -,  , , binary matrices .*/10 and .325476 . The entry
+    .*/10 64F*B is  if there is an arc from 4 to B , and Q otherwise. The entry .3284 6 4?*B is  if
+there is an arc from B to 4 , and Q otherwise. The size of a net is the number of bits needed
+to write down these two matrices, and is therefore 1, -, G9, ,  . The size of a Petri net is
+the size of the net plus the size of its initial marking. Markings are encoded as vectors
+of natural numbers. The size of a marking is defined as the number of bits needed to
+write it down as a vector, where each component is written in binary. Observe that the
+                                         G  
+size of a 1-safe Petri net is 1, -, , , , since the initial marking has size 1, -, .
+                                             , where                                               
+      A labelled net is a fourtuple         )*  
+                                                taken from some 6**"
+                                                                  is a net and is a mapping
+ 6 . Given    6 , we denote by
+that associates to each transition a label      B          NB         given set of actions
+
+                      . A labelled Petri net    DJ0                                            B
+ DJ0; 
+                                                 that there is some transition such that
+           and             NB                is a pair              !  
+                                                                      , where is a labelled
+net and      is the initial marking.
+
+Turing machines. In the paper we use single tape Turing machines with one-way infinite
+tapes, i.e., the tape has a first but not a last cell. For our purposes it suffices to consider
+Turing machines starting on empty tape, i.e., on tape containing only blank symbols. So
+we define a (nondeterministic) Turing machine as a tuple                          A P  +?*"
+                                                                                        , where
+ is the set of states,  the set of tape symbols (containing a special blank symbol),
+9-9         0
+                                  7                                         
+                                3 the transition function, the initial state, and the
+set of final states. The size of a Turing machine is the number of bits needed to encode
+its transition relation.
+
+Linearly and exponentially bounded automata. We work several times with Turing
+machines that can only use a finite tape fragment, or equivalently, with Turing machines
+whose tape has both a first and a last cell. We call them bounded automata. If a bounded
+automaton tries to move to the right from the last tape cell it just stays in the last cell.
+    A function          -J2 3 0 2 3
+                              induces the class of                     
+                                                          -bounded automata, which con-
+tains for all    1Q
+                   the bounded automata of size  that can use   tape cells. Notice      
+that we deviate from the standard definition, which says that an automaton is               -                
+                                             
+bounded if it can use at most   tape cells for an input word of length  . Since we
+only consider bounded automata working on empty tape, the standard definition is not
+appropriate for us. When                 
+                                         and                N 
+                                                       " we get the classes of linearly
+bounded and exponentially bounded automata, respectively.
+
+Complexity classes and reductions. In the paper we use some of the most basic com-
+plexity classes, like P, NP, and PSPACE. We also use the class EXPSPACE, defined
+by3                        "!#$      "!#$
+                                                        %&('                    ",+ 
+                                                              *)
+We always work with polynomial reductions, i.e., given an instance of a problem A
+we construct in polynomial time an instance - of a problem . . Many of the results
+also hold for logspace reductions, or even log-lin reductions, but we do not address this
+point.
+
+
+
+
+    /10325462 789/;:=<?>A@CB DE462 789/FHGIAJLKNM
+3
+    Notice that some books (for instance [1]) define
+                                              .
+     Part I
+
+1-safe Petri nets
+    We study the complexity of analysis problems for 1-safe Petri nets. Given a 1-safe
+Petri net !    , where        6**"
+                                            , we say that the possible markings of       or
+just the markings of      are the set of markings that put at most one token in a place.
+Clearly, there are   possible markings. Each of the markings can be identified with
+the set of places marked at it. Observe that the size of a marking is linear in the size of
+the net.
+
+
+3 A universal lower bound
+In this section we obtain a universal lower bound for the complexity of deciding whether
+a 1-safe Petri net satisfies an interesting behavioural property:
+
+        Rule of thumb 1:
+        All interesting questions about the behaviour of 1-safe Petri nets are
+        PSPACE-hard.
+
+     Notice that a rule of thumb is not a theorem. There are behavioural properties of 1-
+safe Petri nets that can be solved in polynomial time. For instance, the question “Is the
+initial marking a deadlock?” can be answered very efficiently; however, it is so trivial
+that hardly anybody would consider it really interesting. So a more careful formulation
+of the rule of thumb would be that all questions described in the literature as interesting
+are at least PSPACE-hard. Here are 14 examples:
+ – Is the Petri net live?
+ – Is some reachable marking a deadlock?
+ – Is a given marking reachable from the initial marking?
+ – Is there a reachable marking that puts a token in a given place?
+ – Is there a reachable marking that does not put a token in a given place?
+ – Is there a reachable marking that enables a given transition?
+ – Is there a reachable marking that enables more than one transition?
+ – Is the initial marking reachable from every reachable marking?
+ – Is there an infinite run?
+ – Is there exactly one run?
+ – Is there a run containing a given transition?
+ – Is there a run that does not contain a given transition?
+ – Is there a run containing a given transition infinitely often?
+ – Is there a run which enables a transition infinitely often but contains it only finitely
+   often?
+   The PSPACE-hardness of all these problems is a consequence of one single funda-
+mental fact, first observed by Jones, Landweber and Lien in 1977 [24]:
+
+
+                                                  
+        A linearly bounded automaton of size can be simulated by a 1-safe
+        Petri net of size  
+                             . Moreover, there is a polynomial time procedure
+        which constructs this net.
+        The notion of simulation used here is very strong: a 1-safe Petri net simulates a Tur-
+ing machine if there is bijection  between configurations of the machine and markings
+of the net such that the machine can move from a configuration  to a configuration 
+                                                                                      
+in one step if and only if the Petri net can move from the marking  5 to the marking
+ +
+  through          the firing of exactly one transition.
+        Let
+             
+                 @    *"
+                                                                                        
+                                               be a linearly bounded automaton of size . The compu-
+                                            
+tations of  visit at most the cells    " . Let  be this set of cells. The simulating
+Petri net3                          4 
+                          contains a place                                               4 
+                                                       for each state   , a place  for each cell
+                       4  K 
+       , and a place                  for each symbol             and for each cell   . A token
+on 4                                                                   4  
+               signals that the machine is in state . A token on  signals that the machine
+reads the cell . A token on     4F K             signals that the cell contains the symbol  . The
+total number of places is ,  ,    G? P               , , .
+        The transitions of 3         
+                                            are determined by the state transition relation of . If
+                                                                                                             
+
+  * /  /
+                                                                                 B   K 
+                                , then we have for each cell a transition  whose input
+places are  4   4   4  K 
+                         ,  , and   and whose output places are                4   4           4 
+                                                                                             ,    and   ,
+where  is the cell to the right of (this signals that the tape head has moved to the right)
+unless is the last cell, in which case                        . The last cell is an exception, because by
+assumption the machine cannot move to the right from there. If  &                  6 6  /          
+then we add a similar set of transitions; this time the first cell is the exception. The total
+                                           G
+number of transitions is at most  &,  , , ,      G       G    , and soN    , because the size of 
+    G 
+is 1,  , , , .
+                      
+        The initial marking of    3       
+                                                 puts one token on 4  +7 4  
+                                                                               , on 9 , and on the place
+4F        1
+    .  for  )-) , where . denotes the blank symbol. The total size of the Petri
+net is         .                                                                     
+        It follows immediately from this definition that each  move of corresponds to the
+firing of one transition. The configurations reached by along a computation corre-
+spond to the markings reached along its corresponding run. These markings put one
+token in exactly one of the places            74          +,        , in exactly one of the places
+74  
+   , , and in exactly one of the places                 74  K         ,3 for each cell
+    . So  3            is 1-safe.                                                           
+        In order to answer          a question about a linearly bounded automaton                    we can con-
+struct the net  3         
+                                 , which is only polynomially
+                                                       
+                                                                       larger than
+                                                                                      
+                                                                                        ,    and solve  the corre-
+sponding question               about  the  runs  of       . For  instance, the  question       “does  any  of the
+                           
+computations of terminate?” corresponds to “has the Petri net                       3      
+                                                                                                  a deadlock?”
+        It turns out that most questions about the computations of linearly bounded au-
+tomata are PSPACE-hard. To begin with, the (empty tape) acceptance problem is PSPACE-
+complete:
+                                                        
+     Given: a linearly
+                  
+                       bounded automaton .
+     To decide: if accepts the empty input.
+
+   Moreover, the PSPACE-hardness of this problem is very robust: it remains PSPACE-
+complete if we restrict it to
+
+  – deterministic bounded automata,
+  – bounded automata having one single accepting state,
+  – bounded automata having one single accepting configuration.
+
+   Many other problems can be easily reduced to the acceptance problem in polyno-
+mial time, and so are PSPACE-hard too. Examples are:
+              
+  – does          halt?,
+         
+  – does          visit a given state?,
+           
+  – does          visit a given configuration?
+             
+  – does          visit a given configuration infinitely often?
+
+    We obtain in this way a large
+                              
+                                   variety of PSPACE-hard problems. Since             is    3  
+
+only polynomially larger than , all the corresponding Petri net problems
+                                                                   
+                                                                          are PSPACE-
+hard as well. For instance, a reduction from the problem “does ever visit a given
+configuration?” proves PSPACE-hardness of the reachability problem for 1-safe Petri
+nets. Furthermore, once we have some PSPACE-hard problems for 1-safe Petri nets we
+can use them to obtain new ones by reduction. For instance, the following problems can
+be easily reduced to the problem of deciding if there is a reachable marking that puts a
+token on a given place:
+
+  – is there a reachable marking that concurrently enables two given transitions  and        B
+     B
+     ?
+                                 B
+  – can a given transition ever occur?
+                                                        B
+  – is there a run containing a given transition infinitely often?
+
+    13 out of the 14 problems at the beginning of the section (and many others) can be
+easily proved PSPACE-hard using these techniques. The liveness problem, the first in
+our list, is a bit more complicated. The interested reader can find the reduction in [2].
+
+
+The solution to Story III
+
+Recall the conjecture of Story III: Let             6!" be a net, and let   and  be
+markings of     such that the Petri net            is 1-safe.  is reachable from   in
+   if and only if there exists a mapping        ,.-  0 2 3 satisfying the following three
+properties:
+
+                    4 5647 8  4+9 : ;=<?>@6A BC!47DEA64F*BG,H B ,
+                                    >JI is marked at  , and
+(1) for every place ,
+
+                                >KI is marked at  .
+(2) every nonempty siphon of
+(3) every nonempty trap of
+
+where , is the set of transitions B such that ,  B O Q .
+    We show that if the conjecture is true, then the reachability problem for 1-safe Petri
+nets belongs to NP. Since we know that this problem is PSPACE-hard, the truth of
+the conjecture implies NP PSPACE, which is highly unlikely. So, very probably, the
+conjecture is false; one should look for a counterexample instead of trying to prove it.
+    We need a well-known result (see for instance [16]):
+     There is a polynomial time nondeterministic algorithm Feasible( ) for the                       
+                                                                              
+     problem of deciding if a system of linear equations with integer coefficients
+     has a solution in the natural numbers.
+
+
+     It is easy to decide if every siphon of a net     is marked at a given marking .                        
+The following (deterministic) algorithm, due to Starke [33, 5], does it for you. It first
+                                        
+computes the largest siphon contained in the set of places not marked at . Clearly,                      
+all nonempty siphons are marked at                   
+                                         if and only if is empty.      
+                   Algorithm All Siphons Marked( ,                     ):
+                   variable:          of type set of places;
+                   begin
+                          (-                             3
+                                set of places of unmarked under ;                     
+                          while there is   4  and *        B +4
+                                                       such that                        B  do
+                                     -   4
+                          od;
+                          if    
+                                 then return true
+                          else return false
+                   end
+
+    The algorithm All Traps Marked is very similar: just change the loop condition to:
+         4 
+there is        and       B 47
+                               such that               B 5 
+                                                   . Clearly, these two algorithms run in
+polynomial time.
+    The following nondeterministic algorithm checks conditions (1), (2) and (3). It first
+guesses the set     LKM
+                     of transitions, and checks that (2) and (3) hold. Then, it checks if
+condition (1) holds for a vector such that     ,           LKM ,        +B H J,H B O Q
+                                                                               . For that, it
+checks if the system of equations  containing the equations of condition (1) plus the
+equation ,HNB
+              $+ for every *             B %LKM
+                                       , and the equation                    ,HNB %Q
+                                                                     for every *           B  LKM
+has a solution.
+
+                            Algorithm Check Conditions( ,                      ,  ):
+                            begin
+                                                                          LKM
+                                                                       >KI E
+                                guess a subset of transitions    of ;
+
+                                                                           >KI 
+                                if All Siphons Marked(        ,   )
+                                   and All Traps Marked(        , )
+                                   and Feasible( )
+                                then return true fi
+                            end
+
+                                                                                  3
+Since the system of equations  has linear size in the net , Feasible( ) runs in poly-
+nomial time in the size of the net. So Check Conditions runs in polynomial time, and
+the problem of checking if conditions (1), (2), and (3) hold belongs to NP.
+Remark Even if we didn’t know about the All Siphons Marked algorithm, we could
+still conclude that the conjecture is probably false. Only from the existence of the pro-
+cedure Feasible( ) we can already conclude that the reachability problem for 1-safe
+                
+nets belongs to   , the second level of the polynomial-time hierarchy (see for instance
+                                                           
+[1]). The general opinion of complexity theorists is that        PSPACE is almost as
+unlikely as NP PSPACE.
+
+
+4 A nearly universal upper bound
+In this section we obtain a nearly universal upper bound matching the PSPACE-hard
+lower bound of the last section:
+
+        Rule of thumb 2:
+        Nearly all interesting questions about the behaviour of 1-safe Petri nets
+        can be decided in polynomial space.
+
+    Observe that the rule of thumb says “nearly all” and no longer “all”. The reason is
+that the literature contains at least one interesting question requiring more than polyno-
+mial space. This exception to the rule is described at the end of the section.
+    We substantiate the rule of thumb with the help of temporal logics. Since their first
+application to computer science in the late seventies by Pnueli and others, temporal
+logics have become the standard query languages used to express properties of reactive
+and distributed systems. A good introduction to the application of temporal logics to
+computer science can be found in [6].
+    Temporal logics can be linear-time and branching-time: linear-time logics are in-
+terpreted on the single computations of a system, while branching-time logics are in-
+terpreted on the tree of all its possible computations. The most popular linear and
+branching-time temporal logics are LTL (linear-time propositional temporal logic) and
+CTL (computation tree logic). Most of the safety and liveness properties of interest
+for practitioners, like deadlock-freedom, reachability, liveness (in the Petri net sense),
+starvation-freedom, strong and weak fairness, etc. can be expressed in LTL or in CTL
+(often in both).
+    We show that all the properties expressible in LTL and CTL can be decided in poly-
+nomial space. Actually, we even show that they can be uniformly decided in polynomial
+                                                                                  
+space, i.e., we prove that the degree of the polynomial does not depend on the property
+                                   3                                      3
+we consider. More precisely, let , , denote the size of a Petri net , and let , , denote
+                        
+                                                                      
+the length of a formula (its number of symbols). For each of LTL and CTL we give
+an algorithm that accepts as input a Petri net  3     and a formula , and answers “yes”
+
+9 3                                                                
+or “no” according to whether the net satisfies the formula or not; the algorithm uses
+                               
+      , , +, , space, where is a polynomial independent of and .  3
+4.1 Linear-time propositional temporal logic
+The formulas of LTL are built from a set Prop of atomic propositions, and have the
+following syntax:
+                           - -   . /12 
+                                     
+                                        
+                                  ,   ( holds at the next state)
+                                         #  (  holds until  holds)
+        Usual abbreviations are B
+                                                ,  6/ 0 #  (eventually  ), and  
+      (always ).
+    LTL formulas are interpreted on computations. A computation is a finite or infinite
+sequence                ANQ  A 7 A ?
+                     !    of sets of atomic propositions. Intuitively,   is the                                                   A 
+set of propositions that hold in the computation after  steps. For a computation  and a
+point  in the computation, we have that:
+
+
+               ,                             
+                                          iff                     A 
+                ,                  iff not  3,                                       
+                 ,                iff  *,     and   ,                       
+               , %,                   iff there exists a point                                           in the computation, and
+                                 #                                ,                                              
+               ,                                                                                   ,  and
+                                                                 
+                                          iff for some  
+                                                                                           , we have  ,  
+                                                                                           , we have
+                                              for all  ,  )
+
+    We say that a computation  satisfies a formula , denoted  ,         , if    , .
+                                                                                                                                       !Q          
+    The atomic propositions are intended to be propositions on the states of a system.
+They can only be chosen after the class of systems on which the logic is to be applied
+has been fixed. In the case of 1-safe Petri nets the states of the system are the markings,
+and so the atomic propositions are predicates on the possible markings of the net. It
+is then natural to have one atomic proposition per place. The markings satisfying the
+                                    4
+atomic proposition are those that put a token in . Observe that a computation is now             4
+a sequence of sets of places, and so a sequence of markings. In particular, the sequences
+                                                                              3
+of markings obtained from the runs of by removing the intermediate transitions are
+                                                                                  
+computations. Abusing language, we also call these particular computations runs. We
+now define that a Petri net                    3
+                                 satisfies if all its runs satisfy . Here are some LTL
+                                                                                                                                 
+formulas that can be interpreted on the Petri net of Figure 1, which models a variation
+of Lamport’s 1-bit mutual exclusion algorithm for two processes [26]:
+(1) All runs are infinite (true for the net of Figure 1):   .                                         , B
+                                          4
+(2) All runs mark place  infinitely often (false):        .                                             4
+(3) In all runs, if place  8 becomes marked then place  will eventually become                                   4
+    marked (true):   8       A
+                                     5 .       4 
+    Formula (1) expresses deadlock-freedom; formula (3) expresses that the requests of
+the first process to the critical section are eventually granted.
+                                                             
+    The model-checking problem for LTL and 1-safe Petri nets consists of, given a 1-
+                       3
+safe Petri net and a formula , deciding whether satisfies or not.                                     3                      
+    The solution to the model-checking problem we give here         makes use of automata
+theory. We have to introduce automata on infinite words. Let
+                                                                  
+                                                                                be a                                        .     *"
+                           cs_1                                           req_2
+
+                                           nid_1
+
+
+
+
+                         idle_1                                           cs_2
+
+
+
+
+                                                id_1
+
+                          req_1                                           idle_2
+
+
+
+
+                                                id_2
+
+
+
+
+                    First process                                 Second process
+
+
+                   Fig. 1. A Petri net model of Lamport’s 1-bit mutex algorithm
+
+
+
+nondeterministic automaton, where  is a finite alphabet,  is a finite set of states, is    
+                     
+the initial state,       is  the transition relation, and is a set of finite states.
+The
+
+       language of , denoted by            , is defined as the set of finite
+                                                                          
+                                                                                words accepted by
+    . We  define now the  language       of infinite words  accepted  by    , which we denote by
+  
+    . A word                                            
+                          L     belongs to   if there is an infinite sequence of
+                                 
+states 9   such that    *             for every  .Q
+      When we are interested in the language of infinite words of an automaton, then we
+call it Büchi automaton.
+      We have the following important result:
+
+
+                                                                                  
+                                                                                   
+            Given an LTL formula    , one canbuild
+                                                     a finite automaton       and a
+            Büchi automaton . such that          )  
+                                                      .           
+                                                                 is exactly the set of
+            computations satisfying the formula .
+
+
+
+                   are sequences of sets of atomic  propositions, the alphabet of the
+    Since computations
+automata      and .   is the set       . In our case .*/12 is the set of places of the net,
+and so the alphabet of the automata is the set of all markings.
+                                    
+    The construction of       and .     exceeds the scope of this paper (see for instance
+[37]). For our purposes, it suffices to know the following facts:
+                                        
+                            are sets of subformulas of ; the states of .
+                                                                                                          
+        – The states of
+                                                                                            of
+                                                                             are pairs of sets
+
+          .  may have exponentially  many states
+          subformulas   of . Since  there are exponentially
+                                                       , ,
+                                                             many  sets of subformulas,
+                                                                                             and
+                                               
+                                                                                                  
+                                                    in     .
+        – Given two states    of       or . and a marking , there  is an algorithm which
+          decides using polynomial space whether              *; .                     !  
+   We also need two automata
+                                                                
+                                                                
+                                                                                       *   and .               *  
+obtained from the Petri net , as follows:               3
+        –                                                                          3
+                                                               
+               is the set of reachable markings of ;
+
+                                                                                                             DK;0   for some
+        –      is the initial marking    ;
+        –     contains the triples of markings       such that                ! ! 
+                       B
+                                                                                                 3
+          transition   ;
+        –  is the set of deadlocked
+                             
+                                                                                                     3
+                                        reachable markings of ;
+        –          , i.e., is the set of reachable markings of .
+Loosely speaking, both automata correspond to the reachability graph             of , with the                       3
+                                                                                  and .
+                                                                             
+peculiarity that edges are labelled with    the marking   they  come   from.             differ
+only in their final states. Clearly, 
+                                         
+                                                                           
+                                              is the set of all finite runs of , and  .                       3            
+                                                                                                         3 
+the set of all infinite runs.                                                  
+    In order to solve  the  model-checking  problem for input , , let be the prod-      
+                                        , and let . be the product of the automata .
+                                     
+uct of the automata              and
+and . , where the product                                  A   !"
+                                                   of two automata               and                    * 
+         * 
+           is defined in the usual way:
+                           
+                      (   7
+                 9  +CJ+    *3,/ 8 K  * 9 and  F K   * 5
+               % 
+Clearly, we have                  ;    and   .    .   ;   .  . So
+                                                                              
+                                                                                                                             4
+
+the union of )  and   .  is the set of runs of 3 that do not satisfy ; in other
+                                
+                      
+words, 3 satisfies if and only if )   and   . 
+                                                                           
+                                                                              .
+     We have reduced the model checking problem to the following one: Given 3 and
+ , decide if )  and   .  are empty. We have to solve this problem using only
+                            
+                                                                
+polynomial storage space in the size of 3 and . The first natural idea is to construct
+   and . , and then use the standard algorithms for emptiness of automata for finite and
+
+
+
+       words. Unfortunately, both and . may have exponentially many states in , 3,
+                                                                      
+infinite
+and , , .
+    At this point, complexity theory helps us by means of Savitch’s construction. Recall
+that a nondeterministic decision procedure for a problem is an algorithm which can
+return “yes” or fail, and satisfies the following property: the answer to the problem is
+“yes” if and only if some (not necessarily all) execution of the algorithm returns “yes”.
+A deterministic decision procedure always answers “yes” or ”no“.
+
+    4
+        The product of two Büchi automata doesn’t always accept the intersection of the languages,
+        but this is so in our case.
+         Savitch’s construction:
+         Given a nondeterministic decision procedure for a given problem using
+            
+          space, Savitch’s construction   yields a deterministic procedure for
+         the same problem using 
+                                      space.N 
+
+    This construction makes our life easier: it suffices to give a nondeterministic algo-
+rithm for the emptiness problem of and . running in polynomial space. Actually, it
+also suffices to give a nondeterministic algorithm for the nonemptiness problem: by Sav-
+itch’s construction there exists a deterministic algorithm for the nonemptiness problem,
+and by reversing the answer of this algorithm we obtain another one for the emptiness
+problem.
+                                                                       constructs and .
+                                                                                  
+    The nondeterministic algorithm for the nonemptiness problem
+“on the fly”. The algorithm keeps track of a current state of or . , which is initially
+                                                                 
+
+set to the initial state. The algorithm repeatedly guesses a next state, checks that there
+is a transition leading
+                          from the current state to the next state, and updates the current
+state. In the case of , the algorithm returns “true” when (and if) it reaches a final state:
+
+           Algorithm Nonempty A( , )    3 
+           variables: of type state of 
+                                                   ;
+                                                 
+
+                        
+                       of type state of                   (i.e., of type marking);
+
+                !. -     !   ;
+           begin
+
+               while  !. is not a final
+                                                              
+                                              state of do
+                                                  such that  ! 5 *
+                                                                           
+                   choose a state 5 of
+                                                           ;
+                   and a marking   such that  DK0  for some transition B ;
+                     . - ( 5!  ;
+             od;
+             return true
+           end
+
+    In order to estimate the space used by Nonempty A, observe that all the operations
+and tests can
+  
+    
+               and
+                 be performed in polynomial space. For that, recall that given two states
+                        ;   , there is an algorithm which decides using polynomial   
+                                                                                                space
+whether    !                             
+                                     . The algorithm    needs  to store one  state   of        and  a
+marking
+          3  of . Since the states of
+size in , , . Since
+                                                     are sets of subformulas of , has quadratic
+                                                     3
+                        has linear size in , , , polynomial space suffices.
+    The case of . is a bit more complicated. Since . has finitely many states,                   
+                                                                                                   .
+is nonempty if and only if there exists a reachable final state such       
+                                                                                 that there is a loop
+from to itself. So the algorithm proceeds as in the case of , but, at some point,
+it guesses that the current final state will be revisited; it then stores the current state
+to be able to check if the guess is true. The rest of the algorithm checks the guess
+nondeterministically.
+Algorithm Nonempty B( , ): 3 
+variables:    ! of type state of .  (i.e., of type marking);
+               of type state of . ;
+             flag of type boolean;
+                   !. - .    !   ;   -  4 0 ;
+              begin
+
+                  while           40 do                              
+                                                    such that  ! 5  ;
+                                           
+                      choose a state 5 of
+                                                                 ;
+                      and a marking   such that  DK0  for some B ;
+                        . -   !   ;
+                      if  !. is a final state then
+                          choose between   -  4 0 and   - 6/ 0
+                     fi
+                  od;
+                   !  -   .    ;
+                  repeat                   
+                                                            ! 5  ;  
+                                                      DK0;  for some B ;
+                     choose a state 5 of       such that
+                                     
+                     and a marking  such that
+                       . -   !  
+                  until   . ( ?!  ;
+                return true
+              end
+                              3 
+    Again, Nonempty B( , ) uses only polynomial space. Since the deterministic al-
+gorithm obtained after the application of Savitch’s construction to Nonempty A and
+Nonempty B also needs polynomial space, the model-checking problem for LTL be-
+longs to PSPACE.
+    Observe that the only properties of 1-safe nets we have used in order to obtain this
+result are:
+                                                               3
+                                                                                    DJ0; 
+ – a state has polynomial size (actually, even linear) in , , , and
+ – given two markings          !
+                                , it can be decided in polynomial space if
+   for some transition .  B
+     These conditions are very weak, and so the PSPACE result can be extended to a
+number of other models. As observed in [35], conditions (1) and (2) hold for other Petri
+net classes, like condition/event systems, elementary net systems, but also for process
+algebras with certain limitations to recursion, and for several other models based on a
+finite number of state machines communicating by finite means. The conditions also
+hold for bounded Petri nets, assuming that the bound is also given to Nonempty A and
+Nonempty B as part of the input. This assumption is necessary, because the bound of a
+bounded Petri net (the maximal number of tokens a place can contain under a reachable
+marking) can be much bigger than the size of the net, and so we may need more than
+polynomial space in order to just write down a reachable marking.
+     The PSPACE result can also be extended to more general logics, like the linear-time
+mu-calculus, for which the translation into automata still works (see for instance [4]).
+
+4.2 Computation Tree Logic
+Some interesting properties of Petri nets cannot be expressed in LTL. An example is
+liveness (in the Petri net sense). Recall that a transition is live if it can always occur
+again. One possibility to express this to allow existential or universal quantification on
+the set of computations starting at a marking. CTL introduces this quantification on top
+of LTL’s syntax The syntax of CTL is
+                                    - -   . /12 
+                                           
+                                             
+                                              ,                 existential next operator
+                                          ,   universal next operator
+                                              
+
+
+                                                 ##   existential until operator
+                                                                  universal until operator
+      Disjunction and implication are defined as usual. Other abbreviations are B 
+   ,    B #   (possibly    ),      (always  ), 
+                                                                                                              
+
+   B  #  (eventually ) and     ( holds at every state of some com-
+                                                             
+
+
+putation).
+    CTL formulas are interpreted on computation trees, which are possibly infinite trees
+                       
+where each node is labelled with a set of atomic propositions             . A path of a              A  
+computation tree that cannot be extended to a larger path is called a computation; notice
+that it is a computation in the LTL sense. The intuition is that the nodes of the tree
+correspond to the states of a system; a state may have an arbitrary number of successors,
+corresponding to different computations.               A  
+                                                   is the set of atomic propositions that
+                                                     
+hold at node (state) . For a tree and a node we have that:   
+                 ,                iff   AN 
+                                                               
+                  ,                iff not   * ,
+                   ,     iff   ,  and   ,  
+                                                        
+                                                                                    
+                      , , 
+                                         iff for every child   of  ,    , 
+                    , ,              iff for some child   of  ,    ,
+                                              ( must have at least one child)
+                     ,   +#    iff for all computations  %   C'  
+                               
+
+
+                                              there exists Q such that  ,  
+                                              and for every  , Q )  ,   ,
+                                                                       
+                                                                                        
+                ,    #    iff for some computation  %       
+                                                                                       
+
+
+                                              there exists Q such that  ,  
+                                              and for every  , Q )  ,   ,
+                                                                       
+                                                                                         
+                                                                                     
+    If the tree  is clear from    the context  we. shorten  *, to  , . We say that a
+tree  satisfies a formula if  7B    ,
+    Observe that ,
+                            is equivalent to  ,   , i.e., , and , are dual operators. 
+
+
+So actually we could remove , from the syntax without losing expressive power. It
+                                                  
+
+might seem that the existential and universal until operators are also dual of each other,
+                  
+but this is not true. The dual operator of the universal until is the existential weak until,
+with syntax               , and the following semantics:
+                    ,      iff  * ,    #                                
+                                                                                               A  
+It holds that
+                                    #          
+                                          
+    In order to use CTL to specify properties of a 1-safe Petri net , we choose again                      3
+                         3
+the places of as atomic propositions. With this choice a computation tree is a tree of
+sets of places, and so a set of markings. We can associate to a computation tree      3   as                                               
+follows: the root is labelled with the initial marking                           ;
+                                                           ; the children of a node labelled
+by     are labelled with the markings  such that
+                                                                              DJ0 
+                                                                      for some transition .                                                   B
+                     3
+We say that satisfies if the tree          satisfies .
+    The computation tree corresponding to the the net of Figure 1 is shown in Figure
+2. Essentially, the tree is just the unfolding into a tree of the reachability graph of the
+net. Different nodes in the tree can be labelled with the same marking, but all subtrees
+
+                                                {idle_1,id_1,idle_2,id_2}
+
+
+
+
+                         {req_1,nid_1,idle_2,id_2}                       {idle_1,id_2,req_2,nid_2}
+
+
+
+
+                     {cs_1,nid_1,              {req_1,nid_1,             {req_1,nid_1,                 {idle_1,id_1,
+                      idle_2,id_2}              req_2,nid_2}              req_2,nid_2}                  cs_2,nid_2}
+
+                             ...                    ...                        ...                                 ...
+
+                                Fig. 2. Computation tree of the Petri net of Figure 1
+
+                                                                                                                                       
+whose roots are labelled with the same marking are isomorphic. Given a formula and
+                                                                                                             
+                                       
+a marking , either all or none of the nodes labelled by
+to say that      
+              satisfies , meaning that all nodes labelled by
+                                                            satisfy . So it makes sense
+                                                                 satisfy .                                              
+    Here are some CTL queries on the Petri net of Figure 1:
+ – No reachable marking puts tokens in  and  (true):               4         4
+                                                                                  .
+                                                                                                   
+                                                                                                       A 4                      4 
+ – The output transition of the place /10  is live (true): 
+                                                                      
+                                                                               !/ 0    .       A                    
+ – The       initial  marking      is reachable    from every reachable   marking   (true):
+   
+           A     0       0           
+                                   4
+ – Eventually place  becomes marked (false):
+                                                                 
+                                                                                      4
+ – There is a run that never marks  (true):        4                          4
+ – If    /10  becomes                                                  4
+                              marked, then eventually  becomes marked (false):
+       A /10                  4
+                          
+
+
+
+    We show that the model checking problem for CTL is in PSPACE. It follows from
+the discussion above that it suffices to give a polynomial space algorithm for the syntax
+               - - 84 ,    ,      , ,  ,    #   ,      
+                                                   
+We give a (deterministic) algorithm Check(  , ) with a marking  and a formula
+                                                                                               
+as parameters which answers “true” if  satisfies , and “false” otherwise. The model-
+checking problem is then solved by Check(   , ).
+                                                     
+                                                                                                   
+    Check(  , ) is a recursive procedure on the structure  of , i.e., Check(  ,   9    "  ),
+where   is some operator of the logic, calls Check(  ,  ),  , Check(  , " ).
+        Algorithm Check(          ,  ):
+        begin
+          if
+                14 then
+                if 5 647     then
+                                      then return true else return  false fi
+            elseif                                          
+                                   then return Check( ,   ) and Check( ,   ))
+                                          return not Check(     ,     )
+            elseif
+                                ,   then
+                                                        DJ0; 
+            elseif
+                             
+             for every  such that           for some transition do                 B
+                                  
+                 if Check(  ,  ) then return true fi
+             od
+                           #  
+                            then return EU( ,  ,  )              
+          elseif
+          elseif
+                             
+                                  then return EWU( ,  ,  )       
+          fi
+        end
+
+                                                           
+It remains to define the procedures EU( ,  ,  ) and EWU( ,  ,  ). We start with  
+       
+EU( ,  ,  ).
+                                                                           # 
+     It is not possible to deterministically explore the infinitely many computations start-
+        
+ing at , and check directly if one of them satisfies                . The reader might feel
+tempted to give a nondeterministic algorithm which explores one of the computations,
+and then apply Savitch’s technique. This seems to be a good idea, but in fact doesn’t
+work! There is a rather subtle problem. Consider the formulas
+                            "                   4 #45    #49"&$'  #49" 
+                                               
+                                                                                     
+where 4    4 " are places. We obtain a checking algorithm " through  applications
+ Savitch’s
+of                technique. It is easy to give a  , 3 ,  -space nondeterministic algorithm for
+   4 #45  . Unfortunately,                            4+ #45  #49   , 3,   space, and the
+                                  the deterministic algorithm obtained by Savitch’s technique
+requires  , 3 ,  space, the algorithm for
+                      
+algorithm for " no less than  , 3 ,  space. So the degree of the polynomial in , 3,
+                                             1
+                                              "
+depends on the formula we are considering.
+    We proceed in a different way. In a fist step we reduce the problem to the explo-
+          
+ration of a finite number of finite paths. We extend the syntax of CTL with new op-
+  #   # 
+erators         , one for each natural number  . Loosely speaking, a node satisfies
+        if in at least one of the computations starting at it we find a node satisfying
+                                                                     
+   after at most  steps, and all nodes before it satisfy  . Formally:
+
+          * ,    #   iff for some computation  %      
+                                                    , Q)    )PD  such that
+                                       ,   and   ,   for every  , Q )  
+                                      there exists               
+                                                                                                
+
+
+It follows immediately from this  definition     that if   satisfies
+                                                                             +#     for some
+number  then it also satisfies
+                                            
+                                         #  .
+    Now, let  be an arbitrary node of  , and let  be the number of places of 3 . We
+
+                               ,    #       #  +  
+prove
+It suffices to prove that ,
+             #                          #  
+                                       implies ,                                    
+                                                                 +  . Assume that sat-
+                                                                                                          #  
+                                                                                                                                          # 
+                                          
+              . Then, contains a computation                      satisfying
+                                                                                  &  :    
+                                         $Q     
+isfies
+    ,  for some   and ,  for every  , )   . If  )  + , then              # Q                                         D
+        &
+this computation                             +#
+                     satisfies   +  , and so ,      
+                                                      +  . Let us now consider the case
+E                           + 
+       . Let    be the sequence of markings  & corresponding to  '  .                                            9  
+                3
+Since is 1-safe and has  places, it has at most  reachable markings. So there are
+                                    Q
+indices 5 and 9 , ) 5 9)  , such that                                 1 
+                                                            . Since the markings labelling
+the successors of a node are completely determined but the marking labelling the node
+itself,     
+            contains another computation starting at     and labelled by                
+                                                          E !           ' 
+ Loosely speaking, the sequence of markings of the new computation is obtained from
+ the old sequence by “cutting out” the piece                                    
+                                                        and “glueing” the two ends         ! 
+                       
+       and    . In this new sequence the marking appears at the position                                                         DE D
+                                        
+8 , and so closer to than in the original computation.      & We now iterate the “cutting
+ and glueing” procedure until            +#  
+                                      appears before the  -th position. The computation
+ so obtained satisfies   +  , and so ,         + .                       +# 
+       So we have solved our first problem: instead of a potentially infinite &  number of
+ computations, it suffices to explore finitely many paths containing at most  nodes,
+                                                                                 # 
+ and check that at least one of them satisfies   +  (more precisely, that at least one          # 
+ of them can be extended to a computation satisfying   +  ).
+                                           
+       We construct EU( ,  ,  ) with the help of another algorithm Path( ,  , , ,                                             
+  ), still to be designed, with the following specification:
+
+                       
+          Path( ,  , , , ) returns “true” if and only if                                                has a path        such
+          that
+            –        
+                is labelled by                
+                                and  is labelled by  ,                                
+            –       
+                , for every  , )   , and       Q
+            –  , .
+          We can take:
+
+                                Algorithm EU(               ,  ,  )
+                                constant:                 number of places of                3 ;
+                                begin                                                                                 &
+                                  for every marking                      of 3 and every Q )                          do
+                                      if Path( ,  ,                      ,  , ) then return true
+                                  od;
+                                  return false
+                                end
+
+
+                                                                             
+     Since each iteration of the for loop can reuse the same space, the space used by
+EU( ,  ,  ) is the space used by Path( ,  ,  , ) plus the space needed to store
+                                                   
+&  and . So Path( ,  ,  , ) should use at most polynomial space for every 
+ . A backtracking algorithm, which would be the obvious choice, does not meet this
+requirement, because it stores all the nodes of the computation being currently explored
+having still unexplored branches, and there can be exponentially many of those.
+    A trick frequently applied in complexity theory5 helps us out of the problem. Loosely
+                                                   
+speaking, for each reachable marking   , we explore all paths leading from
+                  
+                                                                                     to                    
+and containing       nodes, and then, reusing the same space, all paths leading from
+             
+  to  and containing     nodes. This trick of splitting the paths into two parts
+is applied recursively until paths having at most 2 nodes are reached.
+
+                  Algorithm Path(      , , , , )
+                  constant:         number of places of    3 ;
+                  begin
+                    if      1Q   then
+                           if %   and Check(         , )
+                           then return true fi
+                     fi;
+
+                                 DK0;  for some
+                     if          then
+                           if                    transition B
+                                and Check(  , ) and Check(   , )
+                        then return true fi
+                    fi;
+                    for every marking   of         3  do                              
+                                     
+                        if Path( ,   , , true,           ) and Path(   , 
+                                                                                                   
+                                                                                          , , ,    )
+                        then return true fi
+                    od;
+                    return false
+                  end
+
+    In order to estimate the space complexity of Path( ,  , , ), let                                
+                                                                                     
+                                                                           be the
+maximum over all markings                 
+                                of the space needed by Check( , ), and let                               9  ) 
+                                                             
+be the maximum over all pairs of markings ,  of the space needed by Path( ,                                    
+ 
+ , , , ). Then we have
+                           9   )*Q  1   
+                                              
+
+                            9   ) 7 1     C ?  &, 3,  
+                             9  )  1                 &, 3, 
+                                                                             
+and so, in particular
+                &
+          %    C ?   G&, 3 ,  1     C  7 +, 3,       
+
+                                          
+    It remains to construct EWU(  ,  ,  ). The interested reader can easily prove that
+for every node  of 
+
+                          ,             +   
+    5
+        In fact, this trick lies at the heart of Savitch’s technique.
+where the semantics of
+                                   is given by
+              ,       iff  ,    #    or
+                                           there exists a path             * 
+                                                               for every
+                                           such that  ,                      Q ) )        
+
+
+
+                                                    ,  ,  )
+So we can take
+                    Algorithm EWU(
+                    constant:             number of places of          3 ;
+                                 
+                    begin
+                      if EU( ,  ,  ) then return true
+                      else
+                          for every marking  of                   3
+                                                         &
+                                                           do
+                             if Path( ,  ,  , 6 / 0 ,  ) then return true
+                          od;
+                      return false
+
+                                                               
+                    end
+
+                           
+   This completes the definition of Check( , ). It is easy to see that it runs in polyno-
+                3
+mial space in , , and , , , but let us determine the space complexity a bit more precisely.
+We have:
+
+                     ? 6477 %  , 3 ,   
+                                     %   ?     77 , 3, 
+                            %   *
+                +#     % 9  ?  F  &  +, 3,  
+                                           
+
+
+
+
+                                 %   ?      77 , 3,  &
+              #   %   ?   #      9   6/ 0? 7 +, 3 , 
+                                     %   ?      7 , 3, 
+                                 
+and so we finally get   1 , ,?G , 3,  .
+                                                     
+
+4.3 An exception
+The most interesting exception to Rule of Thumb 2 is the controllability property. Let
+Kbe a subset of transitions of a 1-safe Petri net             3 (6**  +
+                                                                       , and let *    .  B  
+We say    
+          that    controls   by  aB sequence         if for   5 
+                                                               every occurrence   sequence
+   DK0      such that the projection of onto                  
+                                                      is  , the transition cannot occur B
+    
+at . The intuition is that                                  B
+                                 can control in the sense that once the sequence  has
+occurred, possibly interleaved with transitions of                 B
+                                                          , cannot occur until transitions
+of    occur again. We say that                   
+                                       can control if              B 
+                                                            can control by at least oneB
+sequence  .
+   The controllability problem is defined as follows:
+    Given: a 1-safe Petri net with a set                   of transitions,   H , B   P 
+    To decide: if     
+                    can control .              B
+Jones, Landweber and Lien show in [24] that controllability is EXPSPACE-complete.
+4.4 A remark on action-based temporal logics
+
+We have defined LTL and CTL as state-based logics, because in order to know if a run
+satisfies a property one only needs information about the states – the markings – visited
+during its execution, and not about which transitions lead from a marking to the next.
+It is possible to define action-based versions of these logics, in which the identities of
+the markings visited during the execution of a run is irrelevant, while the information
+is carried by the sequence of transitions that occur. These action-based versions are
+particularly useful for labelled Petri nets.
+     The action-based version of LTL – tailored for labelled Petri nets – looks as follows:
+the set of basic propositions contains only one element, namely the proposition true.
+                      ,           #
+The operators and are replaced by a set of relativised operators                , , where                          , #
+                                                                 
+is a subset of a certain finite set of actions Act. A computation is now a finite or infinite
+                          
+sequence   L  &  of actions. Let             . We have:
+
+           , %B                    always                                        
+            , %,                        
+                                      iff       ,    , and 
+                                                                   ,
+                                                                                              and
+          , #                       iff for some        Qwe have   ,                                            &                
+                                                        Q
+                                          for all  , )  )  , we have                         and                         ,
+      In order to interpret the logic on a 1-safe labelled Petri net , we choose Act as                     3                                                
+the set of labels carried by the transitions of . We say that              3  satisfies a formula   3
+                              
+if all the sequences of transition labels obtained from the runs of                by removing the              3
+markings satisfy .
+ C# Similarly, in the            # 
+                             action-based version of CTL the operators of the logic              ,
+                                                                                                   
+                                                                                                     ,                                       ,           ,
+ C#
+                   
+             , and 
+                                    C#
+                                   are replaced by sets of relativised operators        ,
+                                                                                               
+                                                                                                     ,                              ,                ,
+                     
+                , and         
+                                         . Computation trees are now trees whose edges are la-
+belled with actions. The semantics is exactly what one expects.
+      It is easy to prove that the model-checking problem for these two new logics can be
+                                                                                    
+reduced to the model-checking problem for their state-based versions. More precisely:
+                                                3
+given a labelled 1-safe Petri net                and a formula of action-based LTL (CTL), one
+can construct in polynomial time an unlabelled 1-safe Petri net  and a formula  of                    3                                        
+                                                    3                  
+state-based LTL (CTL) such that satisfies if and only if  satisfies  . It follows             3                           
+that the model-checking problem for the action-based LTL and CTL is also in PSPACE.
+      In Section 8 we study the model checking problems for temporal logics and arbitrary
+Petri nets. There, the distinction between state-based and action-based logics plays a
+much more important rôle.
+
+
+5 Deciding equivalences
+
+In this section we investigate the complexity of deciding if two labelled 1-safe Petri nets
+are equivalent with respect to a given equivalence notion.
+    Since the early eighties many different equivalence notions have been presented
+in the literature. Van Glabbeek has classified them in several papers, e.g. [36]. Most of
+these equivalences fit between the so-called trace equivalence, which is a process theory
+counterpart of the classical language equivalence used in formal language theory, and
+bisimulation equivalence. An equivalence notion X fits between trace and bisimulation
+equivalence if bisimilar systems are X-equivalent, and X-equivalent systems are trace
+equivalent.
+    Trace and bisimulation equivalences are defined as follows. Let                             3
+                                                                                     be a labelled
+Petri net, where transitions are labelled with the elements of a set of actions
+                          3
+set of traces of , denoted by                    N3 
+                                         is the set of words      " ( 
+                                                                                   6  such
+                                                                                          Act. The
+                                                                                               that
+                                     7 
+there exist markings   " satisfying                      D 0  D 0
+                                                                                   D0 
+                                                                                    " . Two Petri
+                                                                                      6
+
+      3           3
+nets  and  are trace equivalent if                     N3   N3 
+                                                         .
+                                                          6 ,is a (strong) bisimulation if
+                 6    
+    A relation between the sets of markings of two nets
+for every pair      *       and for every action  
+
+  – if   DJ 0   , then   DK 0   for some marking    such that   !  - ,
+
+  – if   DJ 0   , then  D  0   for some marking    such that 6  !  * .
+    and
+
+
+Two Petri nets 3  and 3  are (strongly) bisimilar if there exists a (strong) bisimulation
+ containing the pair        of initial markings of 3  and 3  .
+     We have the following
+
+          Rule of thumb 3:
+          Equivalence problems for 1-safe Petri nets are harder to solve than
+          model-checking problems, but they need at most exponential space.
+
+    We provide a first piece of evidence for this rule of thumb by showing that the
+equivalence problem for 1-safe Petri nets and any equivalence notion fitting between
+trace and bisimulation equivalence is PSPACE-hard. It turns out that all the concrete
+equivalences mentioned in the literature have at least DEXPTIME-hard equivalence
+problems, and so this general PSPACE-hardness lower bound can possibly be improved.
+    We proceed by reduction from the following PSPACE-hard problem
+
+                                           3
+      Given: a 1-safe Petri net , a place of              4 3
+      To decide: if some reachable marking of                        3 puts a token on 4 .
+     We start by labelling each transition of                    3
+                                                  with the same label, say  .     is now            3
+a labelled net. We put               3
+                            side by side with the labelled net  consisting of a loop   3
+                                                         3P3
+containing one single place marked with one token and one single transition labelled by
+ . We denote the resulting Petri net by       .
+     Now, we consider two labelled nets. The first one is                       33
+                                                                  ; the second is a small
+modification of it obtained by adding a new output transition to the place of . The                 4 3
+                                4
+new transition has as unique input place, no output places, and carries a label different
+from  , say  .
+     The following holds:
+                                                                       4
+    – If some reachable marking puts a token on , then the two nets are not trace equiv-
+      alent: the second one can do a  , while the first one can’t.
+6
+    Recall:                   denotes that there is a transition  labelled by  such that    .
+                                                 4
+ – If no reachable marking puts a token on , then the two nets are bisimilar: the
+   relation containing all pairs   6             
+                                    , where  is a reachable marking of the
+                 
+   first net and  a reachable marking of the second net, is clearly a bisimulation.
+
+     Therefore, given any equivalence notion X fitting between trace and bisimulation
+equivalence, we can solve the PSPACE-hard problem above by constructing the two
+nets and deciding if they are X-equivalent. So the equivalence problem for any such
+notion is PSPACE-hard.
+     Apart from this little result, the real evidence supporting the rule of thumb above is
+the work of Rabinovich [31] and Jategaonkar and Meyer [23]. This last paper contains a
+table with the complexity of 18 equivalence notions. Bisimilarity and many variants of
+it are DEXPTIME-complete, while trace equivalence, failures equivalence, and several
+variants of them are EXPSPACE-complete. They also consider so-called partial order
+equivalences, for which the concurrent execution of two actions is not equivalent to their
+interleaved execution (i.e., a system that executes  and  in parallel is not considered
+to be equivalent to a system which chooses between executing  and then  , or  and
+then  ). The complexity results (up to some open problems) are similar.
+
+
+6 Can anything be done in polynomial time?
+
+We have seen that all interesting problems for arbitrary 1-safe Petri nets are at least
+PSPACE-hard, and so that there is very little hope of finding polynomial algorithms for
+them. The natural question to ask is if there are important subclasses of 1-safe Petri nets
+for which one could solve at least some problems in polynomial time. In this section
+we get some general answers in the form of rules of thumb.
+    A first rule, which tends to be surprising for many people is
+
+
+        Rule of thumb 4:
+        Most interesting questions about the behaviour of acyclic 1-safe Petri
+        nets are NP-hard.
+
+
+    Here, as in Section 3, a word of warning is required about the meaning of “inter-
+esting”. Liveness is certainly an interesting question for arbitrary 1-safe nets, but not
+for the acyclic ones: 1-safe acyclic Petri nets are always non-live, because no transition
+can fire more than once. Interesting questions for 1-safe acyclic Petri nets, all of them
+NP-hard, are
+
+ – Is a given marking reachable from the initial marking?
+ – Is there a reachable marking which marks a given place?
+ – Is there a reachable marking which does not mark a given place?
+ – Is there a reachable marking which enables a given transition?
+ – Is the initial marking reachable from every reachable marking?
+ – Is there a run containing a given transition?
+ – Is there a run that does not contain a given transition?
+    Let us prove NP-hardness of the second problem: Is there a reachable marking
+which marks a given place? We present a polynomial time construction which asso-
+ciates to a boolean formula in conjunctive normal form an acyclic 1-safe Petri net. The
+net nondeterministically selects a truth assignment for the variables of the formula, and
+then checks if the formula is true under the assignment. The construction is illustrated
+in Figure 3 by means of an example.
+
+
+                     A1                              A2                               A3
+
+
+
+                    x1      -
+                            x1                   x2            -
+                                                               x2                    x3     -
+                                                                                            x3
+
+
+
+
+                                                          C2
+                     C1                                                              C3
+
+
+
+
+                                               True
+
+     Fig. 3. Acyclic net corresponding to the formula
+                                                          F AM F         M F  M
+                                                                                      
+
+
+
+
+    It seems7 that in order to obtain classes with polynomial decision algorithms one
+has to impose local constraints on the net’s structure. Here “local constraint” means a
+constraint which can be shown not to hold by looking at only a small part of the net.
+For instance, “every transition has exactly one input place” is a local constraint; if the
+constraint does not hold, then one can always point at a particular transition in the net,
+together with its input places, and show that the constraint is not satisfied because of
+this transition. A constraint like “the net is acyclic” is not local, because the smallest
+circuit of the net may be the net itself.
+    The two following local constraints have been very intensely studied in the litera-
+ture:
+
+    – the conflict-freeness constraint:  4   74                        4
+                                                  for every place with more than one output
+      transition; in the case of 1-safe Petri nets this constraint is equivalent to “every place
+      has at most one output transition” for nearly all purposes;
+7
+    Although I don’t know of any formal proof.
+ – the free-choice constraint: if      64FB
+                                    is an arc from a place to a transition, then so is
+    64 B                4    B
+    9 ! for every place 9 and for every transition ' .  B '47
+    Unfortunately, it is not possible to summarise the results of the research on conflict-
+free and free-choice Petri nets in a concise and general rule of thumb. But we can still
+say:
+
+
+          Rule of thumb 5:
+          Many interesting questions about 1-safe conflict-free Petri nets are solv-
+          able in polynomial time.
+          Some interesting questions about live 1-safe free-choice Petri nets are
+          solvable in polynomial time (and liveness of 1-safe free-choice Petri
+          nets is decidable in polynomial time too).
+          Almost no interesting questions for 1-safe net classes substantially
+          larger than free-choice Petri nets are solvable in polynomial time.
+
+
+    Among the “many” interesting polynomial questions for conflict-free nets are all
+those that can be expressed in the fragment of CTL with syntax
+                           - - 14 ,   ,      , ,  ,     
+(see [7]). Among the “some” interesting polynomial questions for live free-choice nets
+are the following [5]:
+ – Is there a reachable marking which marks a given place?
+ – Is there a reachable marking which does not mark a given place?
+ – Is there a reachable marking which enables a given transition?
+ – Is the initial marking reachable from every reachable marking?
+ – Is there a run that does not contain a given transition?
+    Interestingly, the reachability problem for 1-safe live free-choice nets is NP-complete
+[8], and so it is unlikely that it will ever be added to this list.
+      Part II
+
+General Petri nets
+    In this second part of the paper we consider arbitrary (finite) Place/Transition Petri
+nets. The possible markings of a net         or just the markings of    are now the set of
+all mappings   0 2 3             
+                         , where is the set of places of . Observe that, contrary to
+the 1-safe case, there is no a priori relation between the size of a net and the size of its
+markings. Notice also that the set of reachable markings may be infinite.
+
+
+7 A universal lower bound
+
+This section is the counterpart of Section 3 for Place/Transition Petri nets. The rule of
+thumb is now:
+
+
+      Rule of thumb 6:
+                                                                         
+      All interesting questions about the behaviour of (Place/Transition)
+                                                                  
+                                                                          Petri nets
+                                                                      " -space.
+      are EXPSPACE-hard. More precisely, they require at least 
+
+
+    In particular, all the questions we asked about 1-safe Petri nets can be reformulated
+for Petri nets, and turn out to have at least this space complexity. As in the case of 1-safe
+Petri nets, this is a consequence of one single fundamental fact:
+
+
+                                                                    
+      A deterministic, exponentially bounded automaton of size can be simulated
+      by a Petri net of size  
+                                  . Moreover, there is a polynomial time procedure
+      which constructs this net.
+
+
+    In order to answer    a question about the computation of an exponentially space
+                      
+bounded automaton , we can construct the net that simulates , which has size
+                                                                           "
+                                                                                       
+                                                                                        ,
+and solve the corresponding question. If the original question requires  space, as is
+          
+the case for many properties, then the corresponding question about nets requires at
+            " -space.
+least 
+    The fundamental fact above was first proved by Lipton [27]. Mayr and Meyer
+proved in [29] that it is possible to make the simulating net reversible (a net is re-
+                               B                               B
+versible if for each transition there is a reverse transition which “undoes” the effect
+  B
+of ). Since reversible nets are equivalent to commutative semigroups, the construction
+by Mayr and Meyer has important applications in mathematics.
+    Since Mayr and Meyer’s construction is more involved than Lipton’s, and since
+reversibility is not a main concern for this paper, we consider Lipton’s construction in
+detail. It would have been easier to refer to Lipton’s paper, but unfortunately it only
+exists as an old Yale report, quite difficult to find.
+    Bounded automata and general Place/Transition Petri nets do not “fit” well. It is not
+appropriate to model a cell of a bounded automaton as a place, as we did in the 1-safe
+case, because the cell contains one out of a finite number of possible symbols, while the
+place can contain infinitely many tokens, and so the same information as a nonnegative
+integer variable. So we use an intermediate model, namely counter programs. It is well-
+known that so-called bounded counter programs can simulate bounded automata (see
+below), and we show that Petri nets can simulate bounded counter programs.
+    A counter program is a sequence of labelled commands separated by semicolons.
+Basic commands have the following form, where l, l  , l are labels or addresses taken
+from some arbitrary set, for instance the natural numbers, and is a variable over the
+natural numbers, also called a counter:
+
+                    l:'-        
+                    l:'- D         
+                    l: goto l                     unconditional jump
+                    l: if%Q      then goto l      conditional jump
+                       else goto l 
+                    l: halt
+
+    A program is syntactically correct if the labels of commands are pairwise different,
+and if the destinations of jumps correspond to existing labels. For convenience we can
+also require the last command to be a halt command.
+    A program can only be executed once its variables have received initial values. In
+                                                            Q
+this paper we assume that the initial values are always . The semantics of programs
+is that suggested by the syntax. The only point to be remarked is that the command
+  - -         D
+            + fails if        Q
+                               , and causes abortion of the program. Abortion must be
+distinguished from proper termination, which corresponds to the execution of a halt
+command. Observe in particular that counter programs are deterministic.
+    A counter program  is  -bounded if after any step in its unique execution the
+contents of all counters are smaller than or equal to  . We make use of a well known
+construction of computability theory:
+
+
+         There is a polynomial   time procedure which accepts a deterministic
+                               
+                                              
+         bounded automaton of size and returns a counter        program  with
+           commands
+                    
+                           simulating  the  computation of
+                                                           
+                                                             on   empty
+                                                                  
+                                                                        tape; in
+                                    (
+         particular, halts if and only   if  halts. Moreover, if   is exponen-
+         tially bounded, then  is  -bounded.
+
+
+                                         (
+     Now, it suffices to show that a  -bounded counter program of size        N  can be
+simulated by a Petri net of size   N 
+                                        . This is the goal of the rest of this section.
+     Since a direct description of the sets of places and transitions of the simulating net
+would be very confusing, we introduce a net programming notation with a very simple
+net semantics. It is very easy to obtain the net corresponding to a program, and execution
+of a command corresponds exactly to the firing of a transition. So we can and will look
+at the programming notation as a compact description language for Petri nets.
+     A net program is rather similar to a counter program, but does not have the possi-
+bility to branch on zero; it can only branch nondeterministically. However, it has the
+possibility of transferring control to a subroutine. The basic commands are as follows:
+                         l:    -       
+                         l:    - AD      
+                         l: goto l                     unconditional jump
+                         l: goto l  or goto l         nondeterministic jump
+                         l: gosub l                    subroutine call
+                         l: return                      end of subroutine
+                         l: halt
+
+    Syntactical correctness is defined as for counter programs. We also assume that
+programs are well-structured. Loosely speaking, a program is well-structured if it can
+be decomposed into a main program that only calls first-level subroutines, which in
+turn only call second-level subroutines, etc., and the jump commands in a subroutine
+can only have commands of the same subroutine as destinations. 8 We do not formally
+define well-structured programs, it suffices to know that all the programs of this section
+are well-structured.
+    We sketch a (Place/Transition) Petri net semantics of well-structured net programs.
+The Petri net corresponding to a program has a place for each label, a place for each
+variable, a distinguished halt place, and some additional places used to store the call-
+ing address of a subroutine call. There is a transition for each assignment and for each
+unconditional jump, and two transitions for each nondeterministic jump, as shown in
+Figure 4. We illustrate the semantics of the subroutine command by means of the pro-
+gram
+                                        1: gosub 4;
+                                        2: gosub 4;
+                                        3: halt;
+                                        4: goto 5 or goto 6;
+                                        5: return;
+                                        6: return
+The corresponding Petri net is shown in Figure 5. Observe that the places 1 calls 4 and
+2 calls 4 are used to remember the address from which the subroutine was called.
+    Clearly, the Petri net corresponding to a net program with  commands has                
+places and                                                               
+                  (transitions, and its initial marking has size  . So it is of size   . 
+                  
+    Let  be a  -bounded counter program with                     N 
+                                                                commands. We show that 
+can be simulated by a net program  with      3       
+                                                          commands, which corresponds to
+a Petri net of size                                                       3 
+                           . Unfortunately, the construction of  requires quite a bit
+of low-level programming. But the reward is worth the hacking effort.
+    The notion of simulation is not as strong as in the case of 1-safe Petri nets. In
+particular, net programs are nondeterministic, while counter programs are deterministic.
+A net program        3simulates a counter program  if the following property holds: 
+halts (executes the command halt) if and only if some computation of                    3
+                                                                                 halts (other
+computations may fail).
+    Each variable of               3
+                               (be it a variable from  or an auxiliary ( variable) has an
+auxiliary complement variable .            3
+                                           takes care of setting       at the beginning
+8
+    Here we consider the main program as a zero-level subroutine, i.e., jump commands in the
+    main program can only have commands of the main program as destinations.
+             l                         l
+
+
+                      x                         x
+
+
+             l1                        l1
+
+    l : x:=x+1;              l : x:=x-1;
+    l1: ...                  l1: ...
+
+
+      l                     l                        l
+
+
+
+
+      l1               l1         l2                 halt
+
+l: goto l1         l: goto l 1              l: halt
+                       or
+                      goto l 2
+
+    Fig. 4. Net semantics of assignments and jumps
+        1
+
+
+
+
+1_calls_4                                     4
+
+
+
+
+        2                          5              6
+
+
+
+
+2_calls_4                                 return_4
+
+
+
+
+        3
+
+
+
+
+     halt
+
+       Fig. 5. Net semantics of subroutines
+                                                                   3 ;  
+of the program. We call the code that takes care of this "  .9 The rest( of  ,                       3H 
+called     3   
+                   , simulates  and takes care of keeping the invariant          .                D
+                        3   
+                
+    We design                first. This program is obtained through replacement of each
+                                                                                         - A                 -
+                        
+command of  by an adequate net program. Commands of the form +                   (
+    D ) are replaced by the net program            '-   '-   (       D '-
+                                                                                      D  '-
+                                                                                       ).
+Unconditional jumps are replaced by themselves. Let us now design a program
+
+                                           Test " ( ,ZERO, NONZERO)
+
+to replace a conditional jump of the form
+
+                                          l: if %Q     then goto ZERO
+                                             else goto NONZERO
+
+        The specification of Test " is as follows:
+
+        If   Q  ( )
+                                     (
+                          )  ), then some execution of the program leads to ZERO
+        (NONZERO), and no computation leads to NONZERO (ZERO); moreover the
+        program has no side-effects: after any execution leading to ZERO or NONZERO
+        no variable has changed its value.
+
+    Actually, it is easier to design a program Test " ( ,ZERO, NONZERO) with the same
+specification but a side-effect: after an execution leading to ZERO, the values of and
+  are swapped.10 Once Test " has been designed, we can take:
+
+                            Program Test " ( , ZERO, NONZERO):
+                                       Test" ( , continue, NONZERO);
+                                       Test " ( , ZERO, NONZERO)
+                                continue:
+
+
+because the values of and are swapped times if           Q        HO Q
+                                                               or twice if     , and so          Q
+Test " has no side effects.
+              to the design of Test " lies in the following observation: Since never
+           (
+   The key
+exceeds  , testing             1Q
+                            can be replaced by nondeterministically choosing
+
+    – to decrease          by  , ( and if we succeed then we know that    'O Q , or (
+    – to decrease
+                                
+                           by  , and if we succeed then we know that                    , and so         %Q .
+If we choose wrongly, that is, if for instance               1Q
+                                                      holds and we try to decrease by  ,
+then the program fails; this is not a problem, because we only have to guarantee that the
+program may (not must!) terminate, and that if it terminates then it provides the right
+                                                    ( is the difficult part. We leave it for
+answer.
+    Decreasing by  is easy. Decreasing by 
+a routine Dec " to be designed, which must satisfy the following specification:
+9
+                                                                     
+   Recall that by definition all variables of have initial value . Therefore, if we need
+                                                                                                          :=J (
+   initially, then we have to design preprocessing code for it.
+10
+   Executions leading to NONZERO must still be free of side-effects.
+                                      4
+    If the initial value of is smaller than  , then
+                                                                               (
+                                                       every execution of Dec " fails.
+                         4                         (
+    If the value of is greater than or equal to  , then all executions
+                                                                    (             (
+    with a return command have the same effect as              
+                                                                         terminating
+                                                                                 ; in     4- %4 D                4- 4
+    particular, there are no side-effects. All other executions fail.
+Test " proceeds by transferring the value of ( to a special variable " , and then calling                          4
+                                                           4
+the routine Dec " , which decreases " by  . In this way we need one single routine
+Dec" , instead of one for each different variable to be decreased, which leads to a smaller
+net program.
+
+                Program Test " ( , ZERO, NONZERO):
+                                                                               (
+                          4 " 1Q and 4 "   **
+                  ** initially
+                          goto nonzero or goto  ;
+                 nonzero: '-     D ; -        ; goto NONZERO;
+                    loop: '-      D ; -        ; 4 " - 84 "  ; 4 " - 4 " D  ;
+                             goto exit or goto loop
+                     exit: gosub   ; goto ZERO
+                  ** the routine called at   is Dec " ( 9" ) **                    4
+     It is easy to see that Test " meets its specification: if      , then( we may choose              8O5Q
+the( nonzero branch and reach NONZERO. If
+                                                                          
+                                                             , then  . After looping         Q
+ times on    the values of , and 8" , " have been swapped. The values of4 4
+4       4
+" and 9" are swapped again by the subroutine Dec " , and then the program moves to
+ZERO. Moreover, if                   Q
+                               then no execution reaches the NONZERO branch, because
+the program fails at         -            D                      O%Q
+                                     . If ( , then no execution reaches the ZERO branch,
+            4                              
+because " cannot reach the value  , and so Dec " fails.
+     The next step is to design Dec " . We proceed by induction on , starting with Dec .                                    
+This is easy, because it suffices to decrease by                          4
+                                                         . So we can take
+
+                                              Subroutine Dec ( ):   4
+                                                    4- 14D  ; 4"- 4                             ;
+                                                     4- 14D  ; 4"- 4                            ;
+                                                    return
+
+Now we design Dec   under the assumption that Dec is already known. The definition
+of Dec   contains two copies of a program Test  , called with different parameters. We
+                                                                       
+define this program by substituting  for everywhere in Test " . Test  calls the routine
+Dec at the address          . Notice that this is correct, because we are assuming that the
+
+                                                                    amounts to decreasing
+routine Dec has already been defined.
+      The key to the design of Dec   is that decreasing by 
+  times by   , because
+                                                        
+                                                          (               GL 
+                                 
+                      can be implemented by two nested loops, each of which is
+So decreasing by 
+executed 
+           
+             times, such that the body of the inner loop decreases by  . The loop                                    4
+                               
+variables have initial values  , and termination of the loops is detected by testing the
+                        Q
+loop variables for . This is done by the Test  programs.
+
+                     Subroutine Dec   ( ):       4
+                       ** Initially -            ,- %Q      **
+                                                                                      ;
+                       ** The initialisation is carried out by N " **
+                     outer loop: - -          - D  ;-   -- ;
+                                               - D
+                                                  ;    -       ;
+                                           4- 84 D 4- 4
+                     inner loop:
+                                                ;           ;
+                                      Test ( , inner exit , inner loop);
+                     inner exit: Test (- , outer exit, outer loop);
+                     outer exit: return
+
+Observe also that both instances of Test  call the same routine at the same label.
+    It could seem that Dec   swaps the values of - , - and , , which would be
+a side-effect contrary to the specification. But this is not the case. These swaps are
+compensated by the side-effects of the ZERO branches of the Test  programs! Notice
+that these branches are now the inner exit and outer exit branches. When the
+program leaves the inner loop, Test  swaps the values of and . When the program
+leaves the outer loop, Test  swaps the values of - and - .
+    This concludes the description of the program Test " , and so the description of the
+program     3                                              3 ;  
+                    . It remains to design "  . Let us first make a list of the initial-
+                                                            3   
+                
+isations that have to be carried out.         contains
+
+ – the variables      
+                               of  with
+                                      (                                           Q
+                                            initial value ; their complementary variables
+            
+        with initial value   ;
+                                                                                               (
+                 4                              Q
+ – a variable with initial value ; its complementary variable with initial value  ;      4
+ – two variables -          
+                          for each  , ) )            Q              D
+                                                       , with initial value   ; their comple-
+   mentary variables -           
+                               for each  , )  )                Q           D
+                                                            , with initial value .           Q
+Now, the specification of            3 " ;   is simple
+                                           
+
+
+    3 ;  
+       "  uses only the variables in the list above; every successful execution
+    leads to a state in which the variables have the correct initial values.
+
+3 " ;   calls programs Inc (  ,  ,   ) with the following specification:
+       
+
+
+    All successful executions have the same effect as
+
+                                                               -      ;
+                                                                     ;
+                                                              -    
+    In particular, there are no side-effects.
+
+These programs are defined by induction on  , and are very similar to the family of Dec
+programs. We start with Inc :          
+                                Program Inc (                      ):
+                                     -  @  ;   -    ;
+                                      
+                                     .-    ;  (-   
+and now give the inductive definition of Inc   :
+                                           ):
+                Program Inc   (  
+                  ** Initially -           , - %Q                                **
+                outer loop: - -           - D  ;- - -                              ;
+                                           - D  ; -                                ;
+                                      -    ;
+                inner loop:
+
+                                       
+                                      (-    ;
+                            Test ( , inner exit , inner loop);
+                inner exit: Test (- ,      , outer loop);
+                outer exit: 
+
+     ;                                                                                                
+     It is easy to see that these programs satisfy their specifications. Now, let us consider
+N "   . Apparently, we face a problem: in order to initialise the variables  
+to 
+       the variables - and must have already been initialised to    ! Fortunately,
+we find a solution by just carrying out the initialisations in the right order:
+                                     Program N "                   ;   :
+                                                                    
+
+                                           Inc (-    ??+ );
+                                           Inc  (-&   7  );
+                                            
+                                                 
+                                           Inc "&$ (- "&$' "&$' );
+                                          4?  
+                                           Inc " (         )
+   This concludes the description of 3  , and it is now time to analyse its size.
+Consider 3    first. It contains two assignments for each assignment of , an un-
+                                                         
+                                                                                                         
+conditional jump for each unconditional jump in  , and a different instance of Test &
+for each conditional jump. Moreover, it contains (one single instance of) the routines
+                            
+Dec" , Dec "&$ ,  , Dec (notice that Test " calls Dec " , which calls Dec "%$ , etc.). Both
+Test " and the routines have constant length. So the number of commands of                                     3  
+    
+                                                                                                 
+
+
+    3 ;  
+is      .
+       "  contains (one single instance of) the programs Inc  )  ) . The                                      
+programs Inc  ,  , Inc "&$' have constant size, since they initialise a constant number of
+variables. The number of commands of Inc " is                       
+                                                             , since it initialises                
+                                                                                          variables.
+                                  3H 
+    So we have proved that  contains                          
+                                                           commands. It follows that its corre-
+sponding Petri net has size       
+                                       , which concludes our presentation of Lipton’s result.
+
+The solution to Story II
+Recall the conjecture of Story II: given a net                                                      ;   ;  is
+                                                                         and two markings  and  , if
+                  
+reachable from  then it is reachable from                               through a sequence    DK0  DK0
+                                                                                                      
+G G G DK; 0 (  " 8 such that all the markings  7   " have size   H    ,
+where  ? are the sizes of ,  and  respectively.
+      Let be the constant such that ?   " have size at most /G= P     . If the
+conjecture is true, then the following nondeterministic algorithm solves the reachability
+problem, since it may always answer “true” when  is reachable:
+                  Algorithm Reachable( ,   ,  ):
+                  variable:  of type marking;
+                begin
+                   - 1   ;
+                  while   8
+                                    do
+                                                                                G?N    
+                              DJ0; 
+                     choose a marking   of size at most
+                     such that           for some transition ;                   B
+                     if there is no such marking then stop;
+                       - 8
+                        ;
+                  od;
+                  return true
+                end
+   Since the algorithm only visits markings of size                       G     H'
+                                                                        , it runs in linear
+space. By Savitch’s construction there is a deterministic algorithm which uses quadratic
+space. Since the reachability problem requires exponential space, the conjecture is false.
+
+8 Upper bounds
+The general exponential space lower bound of the last section is almost the best we can
+hope for, because Rackoff gave in [32] an almost matching exponential space upper
+                                                                          
+bound for the covering and boundedness problems for Petri nets. More precisely, the
+                    "  " space, very close to the    " lower bound. The covering
+upper bound is 
+problem consists of deciding if there exists a reachable marking    such that                                   
+                            
+for a given marking  , i.e., if there exists a reachable marking     covering  ; the                        
+boundedness problem consists of deciding if the number of reachable markings is finite.
+    Yen showed some years later in [38] that the same upper bound holds for the prob-
+lem of deciding if there exists a firing sequence
+                              DK# 0   DK# 0  G G G DJ# 0 +  &
+satisfying a given predicate A6 7   & 1   1 &  constructed using the follow-
+ing syntax:11
+                 - - 8 *6473 ,  647 O
+                        647 O F6 473,  647    ?647-,  647 1 F647
+                          #
+                                B O  , #  NB   , #    B
+                            #
+                                 B O # NB  3, #  NB  #  B  3,  #   B  # NB  
+                              ,?               
+11
+     The syntax is actually more general, see [38] for the details.
+                                                                         
+       4                B       B
+where is a place, and  are transitions, is a constant, and                       B
+                                                                                 denotes the
+                            B
+number of times that occurs in  . Both the covering and the boundedness     #         prob-
+lem can be reduced to Yen’s problem. The covering problem for a marking                        
+ 7      * 
+      " corresponds to deciding if there exists a firing sequence             #   H DK0 
+                                                                                            
+             4 
+such that  5                           4 
+                                    9"       " . The boundedness problem can be
+          
+easily shown     to  be equivalent to the problem of deciding if there exists a sequence
+E DK0  DK0 
+        #  #                             64   ?4 
+                           such that  5                          64   64 
+                                                        8     9"       9" and
+  4  O  4 
+ 8            5                 64  O8 F64 
+                             9"           9" . Observe however that the reachability
+problem cannot be reduced to Yen’s problem, because the predicate         547
+                                                                                 does not
+belong to the syntax. The reachability problem was shown to be decidable by Mayr [28]
+and shortly after with a simpler proof by Kosaraju [25], but all known algorithms are
+non-primitive recursive. Closing the gap between the exponential space lower bound
+and the non-primitive recursive upper bound is one of the most relevant open problems
+of net theory.
+     Is it possible to give more general results about the properties that are decidable,
+and the properties that are decidable in exponential space? In particular, we would like
+to show that all the properties of a certain temporal logic are decidable, or decidable in
+exponential space. As we are going to see, there is a very significant difference between
+state-based logics and action-based logics, and so we consider them separately.
+
+
+8.1 The state-based case
+
+We have the following very general rule of thumb:
+
+
+           Rule of thumb 7:
+           The model-checking problems of all interesting state-based logics are
+           undecidable.
+
+
+    As in the 1-safe case, we first have to choose a set of atomic propositions. We
+take again .*/ 2                                                          3
+                        , i.e., the atomic propositions are the places of . We say that a
+marking     satisfies the proposition if  4                4
+                                               is marked at . Observe that a computation
+is no longer a sequence of markings; a computation is a sequence of sets of places, as in
+the 1-safe case, but the markings of general Place/transition nets are not sets of places
+anymore.
+    With this choice of atomic propositions we can only express that a place is marked
+or not; we can say nothing about the number of tokens it contains. Unfortunately, even
+with this restricted expressive power the model checking problems for LTL and CTL
+turn out to be undecidable.
+    The proof is in both cases by reduction from the following problem, which is known
+to be undecidable:
+
+    Given: a counter program  with counters initialised to .    Q
+    To decide: if  halts.
+   We simulate once again counter programs by net programs. Given a counter pro-
+                                                         3 6 
+gram  , we obtain a net program   through replacement of each counter com-
+mand
+                                   l: if            1Q then goto l else goto l
+by the net program
+                                     l: goto test l  or goto test l  ;
+                                test l  :goto l  ;
+                                test l  :goto l
+while other commands are replaced by themselves.
+                                3  
+    The net program   simulates  in a much weaker sense than that of Section
+     3  
+7.   has a honest run that exactly mimics the (unique) execution of  : whenever
+                                          3  
+   executes the command ,   chooses the same branch as  . However, it also has
+many other runs that “cheat”, i.e., runs that at some point choose the wrong branch. The
+labels test l  and test l correspond to two places of   which can be used                 3  
+to test if the program has cheated or not when executing the conditional jump.
+    Suppose that there exists a temporal logic formula Halt with the following property:
+       3   satisfies Halt if and only if the honest execution of 3   halts.
+                                                                                                 
+                                                                                                        12
+
+
+Since the honest run exactly mimics the execution of the counter program  ,                              3  
+satisfies Halt if and only if  halts. Therefore, the problem of deciding if Halt is satisfied
+by a given Petri net        3
+                          is undecidable. It follows that the model-checking problem of
+those logics in which Halt was expressed is undecidable as well.
+     We construct in CTL and LTL very simple formulas LTL-Halt and CTL-Halt. We
+first define a formula Cheat without temporal operators. Cheat is the conjunction over
+all conditional jumps l: if                     Q
+                                     then goto l  else goto l  of the formulas:
+
+                                                      K                   
+If a run visits a marking satisfying Cheat, then we know that it is dishonest: if the
+                        
+marking satisfies    %                   K
+                                  , then at some conditional jump the run has taken the
+l  branch even though           O Q
+                              ; if                                   K
+                                                  , then the run has taken the l  branch
+even though        1Q
+                   . Now, we define
+                                     
+                                           L  D  6 A   B   B
+                                                                         
+
+where halt is the place in the net semantics corresponding to all the halt commands.
+A run satisfies LTL-Halt if at some point it cheats or it halts.   satisfies LTL-Halt       3 6 
+iff every run satisfies LTL-Halt. Since the honest run is the only one that doesn’t cheat,
+3  
+     satisfies LTL-Halt iff the honest run halts.
+     The formula CTL-Halt is :
+
+                                          L  D   6
+                                                 A FB   B
+
+
+12
+     Since 
+             F M is just a shorthand description of a Petri net, it makes sense to ask if 
+                                                                                            F M
+     satisfies a property formalised as a temporal formula.
+    It follows immediately from the semantics of formulae that   satisfies CTL-                                           3  
+Halt if and only if it satisfies LTL-Halt.                    
+    Since the formula CTL-Halt only contains the operator          , the  fragment of CTL
+that extends propositional logic with the operators      and its dual  could still be
+decidable. Unfortunately, a different proof [9] shows that this is not the case.
+
+8.2 The action-based case
+As mentioned above, the action-based case is very different from the state-based case:
+
+
+      Rule of thumb 8:
+      The model-checking problems of all interesting branching-time, action-based
+      logics are undecidable. The model-checking problems of all interesting linear-
+      time, action-based logics are decidable.
+
+
+       The undecidability of branching-time logics in the action-based case is an immedi-
+
+ate consequence of the following fact: given an unlabelled Petri net                                  and a formula
+                                                                                                                                 3
+    of state-based CTL there is a labelled net  and a formula  of action-based CTL
+                                                                                                 3 
+             3
+such that satisfies if and only if  satisfies  .                            3
+                     3
+       The net  is obtained by labelling the transitions of                                                    3
+                                                                                          with some label, say  ,
+                                                                 4
+and then adding for each place a new transition having as only input place, no                              B       4
+                                                                          4
+output place at all, and labelled by . The formula  is obtained through replacement
+ C#                                                    4             ,
+                                                         6  / 0 , and of each temporal operator
+                                                                                                                         
+                                                                                                                                  # ,  ,
+                   #                                               ,  ,   C#  
+of each atomic proposition by                                                                                       ,       ,
+        ,          by            ,
+                                                    transition        , 
+                                                                                   
+                                                                                                
+                                                                                        , and                , re-
+spectively. Observe that holds iff the 4                                        B
+                                                                              can occur, i.e., iff        6 / 0 holds.                      ,
+       We cannot use the same technique to prove the undecidability of the model-checking
+problem for LTL, because the problem is decidable! As in the 1-safe case, the model-
+checking algorithm is based on automata theory.  Given an LTL formula
+                                                                                                                                      
+                                                                                                         can build
+                                                                                                      , one
+a finite automaton               and a Büchi automaton . such that                         %  . is  exactly
+                                                                                                                     
+                                                                                                                                                  
+the set of computations satisfying the formula . In the action-based case both                                            and
+. are automata over the alphabet Act.                                                                   
+                such
+       In the 1-safe                                                  3
+                         case, given a net and  a formula , we first constructed two automata
+         and .
+                             that              .                                       
+                                                                     is exactly the set of computations violating
+the formula . In the general case we proceed                           exactly in the same way. The second step
+was to construct two finite automata
+                                                       
+                                                                  and .       from the Petri net , which were                             3
+both essentially        equal    to   the   reachability       graph     of the net. Here we have a problem: the
+automata
+               
+                     and .         can be defined just as in the 1-safe case, but since may now                                                    3
+have infinitely many reachable markings, they are not guaranteed to be finite. 
+       The solution to this problem is easy: instead of constructing two
+  . out of the Petri               3                                                             automata
+                                                                                                                     and
+                                         in the following obvious way:
+                               net      ,  we  construct        two    labelled  Petri nets           and                  out
+of the automata                 and .
+                                                                                       
+    – the places of
+    – for each transition
+                          are the states of
+                                         
+                                            ;
+                                                   DK0
+                                5 in add a transition to                                                             , labelled by  , with
+      and 5 as input and output place.
+        
+                                      Now we construct the products 3 
+                                                                              and 3 
+        is constructed analogously.
+          , where the product 3   3  of two Petri nets 3  and 3  is another Petri net
+defined in the following way:
+                                      3
+     – the set of places of is the union of the sets of places of  and  ;                   3           3
+                                                  B        3           B   3
+     – for each pair of transitions  of  and  of  labelled by a same action  , the
+                        3                                 NB B 
+       product contains a transition   also labelled by  ; the input (output) places
+                 B B 
+       of   are the union of the input (output) places of  and  .              B               B
+       The two following results are easy to prove:
+
+             
+     –  .       .  holds if and only if the Petri net   
+                                                                                      3
+                                                                              has a run which
+                                                                                                       
+                                                            .
+                        holds if and only if the Petri net    has a reachable
+       marks some  place corresponding  to a final state of     infinitely often.
+       )    
+     – 
+         
+                                                                                          3
+       dead marking which marks some place corresponding to a final state of           .
+                                              
+    Finding a run of         3      that marks some place from a given set                  
+                                                                                      of final                 "
+                                                                                                                      DK0
+ DK0  DJ0  
+places  infinitely often is equivalent to deciding
+                                                   if there exists a firing sequence      #
+ #           #         in the net     . such that3        3
+                               <   4+   647  <    647$+7
+                                                                              
+            
+where denotes the set of all places. By Yen’s result, introduced at the beginning of   
+this section, the problem can be solved in exponential space in the size of             .                     3
+In a more detailed analysis [14], Habermehl shows that this problem is EXPSPACE-
+                                  3                                                                
+complete in the size of and PSPACE-complete
+    Finding a dead reachable marking of 
+                                                   inthat
+                                                        the length of .
+                                                                   3
+                                                            marks some place from a given
+set    "of final places can be reduced to and is at least as hard as the reachability
+problem. Therefore, there exist so far no primitive recursive algorithms for it.
+    As in the 1-safe case, these results can be generalised to any logic for which the
+translation into automata theory holds [9].
+
+
+9 All equivalence problems are undecidable
+This section’s rule of thumb has a rather negative flavour:
+
+
+                 Rule of thumb 9:
+                 All equivalence problems for Petri nets are undecidable.
+
+
+This rule is supported by a recent and very nice result due to Jančar, showing that every
+equivalence notion between trace and bisimulation equivalence is undecidable for Petri
+nets.13 Jančar himself has presented his result very clearly in [22]; here we do it in a
+slightly different way. We proceed by reduction from the problem
+13
+     Actually, the result is a bit stronger, since bisimulation can be replaced by an even finer equiv-
+     alence.
+          Given: a counter program  ,
+          To decide: if  halts (recall that all counters are initialised to ).           Q
+which is known to be undecidable.
+    Although the result can be presented directly by constructing two Petri nets out of
+  (and this is the way the proof in [22] goes), we prefer to use again a net programming
+language with a very simple net semantics, this time a language of guarded commands.
+
+                                                            
+A program is a sequence of instructions, and instructions are expressions of the form
+
+                                l:[        guard    D?DFD?DF D  D  0 command
+                                              guard  D?DFD?DFD D 0 command 
+                                        
+                                                               (
+                                              guard " D?D?DFD?DJD/0 command " ]
+
+where l is a label, action  ,  , action " are actions, a guard is either the special string
+true or a conjunction of expressions of the form                       8O Q
+                                                                  (no guards of the form
+Q                                          
+   are allowed), and the possible commands are skip, goto l , halt, or a sequence of
+assignments          -   "                    -
+                                                  "  , where the are pairwise different.
+     Operationally, an instruction is executed as follows: one of the guards that evaluate
+to true at the current state is nondeterministically selected (if no guard evaluates to true,
+the program aborts). Then, two things happen: the action of the selected guard is sent to
+the environment, and its command is executed (if the command contains the assignment
+      -
+    +  and  D            8Q
+                          holds, then the program aborts). If the command is a jump goto
+l, then execution continues at the instruction with label l. If the command is skip or an
+assignment, then execution continues with the next instruction. An observer can only
+see the actions executed by the program, but not the values of its variables, or the label
+of the instruction being currently executed.
+     Guarded command programs can be easily translated into labelled Petri nets. Figure
+6 shows the labelled net corresponding to the instruction
+
+                                    1:[            OQ  DK0 - AD 
+                                                true DK0      -      
+                                                    O Q  - OQ DK0 goto 3
+                                                true DK0 halt ]
+(where we assume that the instruction following 1 in the program is labelled by 2).
+There is a place for each variable and each label, plus a special place halt. There is
+a transition for each alternative, labelled by the alternative’s action. The semantics of
+a program is obtained by merging places of the nets corresponding to its instructions
+carrying the same label. We identify a program with its corresponding labelled Petri net.
+In particular, two programs are trace or bisimulation equivalent if their corresponding
+labelled nets are.
+    Given a counter program  , we construct two net programs              and         3     3 ? 
+satisfying the following two properties:
+    (1) if  halts, then   3    and 3    are not trace equivalent, and
+                                               
+                         1
+
+
+                                                    a
+                                                                       x
+                                                    b
+
+                         2                          a
+                                                                       y
+                         3                          c
+
+
+                      halt
+
+                         Fig. 6. Net corresponding to an instruction
+
+
+(2) if  does not halt, then   3    and 3    are bisimilar.
+                                             
+
+     For the proof of these properties it is very useful to characterise trace and bisimula-
+tion equivalences in terms of two-person games. We describe first the features common
+to both trace and the bisimulation games. The board of the games are the two programs
+3         3  
+     and   in their initial states. The games are played by two players, Alice
+and Bob, who alternate moves. Alice makes the first move. A move is the execution of
+                                                        3   3  
+(one of the alternatives of) an instruction in either   or   , and is named after
+the action corresponding to the executed alternative. That is, an  -move is the execution
+                                       DK0
+of an alternative of the form guard  command. If Alice makes an  -move in one of
+the programs, then Bob can only answer with an  -move in the other program. It may
+help your intuition to imagine that Alice wishes the programs to be non-equivalent,
+while Bob wishes them to be equivalent. The winner of a game is decided as follows:
+ – if Alice has no move available, then Bob wins;
+ – if Bob cannot answer to Alice’s move, then Alice wins;
+ – if the game does not terminate, then Bob wins.
+    If you find the idea of a non-terminating game awkward, think of chess without the
+50-move rule. If a position with only the two kings on the board is reached, then the
+game goes on forever. In the trace and bisimulation games a situation like this is not a
+draw, but a win for Bob. Bob only wins after infinite time, which can make the game
+rather tedious, but that’s his problem: the winning condition is well defined, and every
+game has a winner.
+    We describe now the differences between the trace and bisimulation games, which
+are surprisingly small. In a trace game, Alice chooses one of the programs at the be-
+ginning of the game, and makes all her moves in this program; Bob must make all his
+moves in the other program. In a bisimulation game, Alice chooses one of the programs
+before each move, and makes her next move in this program. For instance, in the bisim-
+ulation game Alice can make her first move in the first program (Bob must answer in
+the second), and her second move in the second program (Bob must answer in the first).
+    A strategy for a player is a function which gets the list of moves played so far and
+yields the player’s next move. A strategy is winning if a player that sticks to it wins all
+games. We have the following nice result (see for instance [34]), which at least in the
+case of the trace game is intuitively very plausible:
+
+
+                                                       3  
+        In the trace and bisimulation games for   and   :      3  
+        if Alice has a winning strategy, then the two programs are not equivalent; if
+        Bob has a winning strategy, then the two programs are equivalent.
+
+
+    So the properties (1) and (2) that       3   and 3    – both to be constructed – have
+                                                                
+to satisfy can be reformulated as follows:
+(1) if  halts, then Alice has a winning strategy in the trace game, and
+(2) if  does not halt, then Bob has a winning strategy in the bisimulation game.
+                                                       3          3  
+    It is time to start with the definition of   and   . To make things a bit
+simpler, assume without loss of generality that the counter program  contains one
+single halt instruction, and that this instruction is the last one.14 The programs      3  
+       3  
+and   look as follows:
+
+             3    :                           Program 3    :
+     Program        
+                             
+      start:[ true D?D?DJD 0 - - -       ];
+                                                                       
+                                                                       
+
+
+                                                     start:[ true DFD?DJD 0 A-        ];
+              3   ;   
+                                                          3   ;   
+                                                                       
+
+      halt: [ - O Q DFD?D D 0 halt ]                 halt: [ - OQ D?DFD D 0 halt ]
+
+where the program 3  still has to be defined. Observe that the two programs differ
+                                                                          ? Q in 3    ,
+                               
+only in the first instruction. After this instruction is executed, -
+and - %Q          in 3    .
+                                                                                              
+
+
+   The program 3  is obtained by replacing each command of but the unique
+                                    
+                                                                              
+halt command through an instruction of the new language. The instructions correspond-
+ing to assignments and jumps are:
+
+       l:   -   is replaced by l: [  D?D?DJ" D 0 '-             ]
+       l: -        D  is replaced by l: [ D?D? DJD  0 '- D  ]
+                                            
+
+       l: goto l      is replaced by l: [
+                                             
+                                                    D?D?DJD 0 goto l ]
+Conditional jumps are the delicate part. A command of the form
+                                        l: if %Q     then goto ZERO
+                                           else goto NONZERO
+is replaced by the following sequence of two instructions:
+14
+     If there are several halt instructions, we can replace them by jumps to a new label at the end
+     of the program, and place there a unique halt command.
+                                O Q D?DF" D?1"DF D D 0 goto NONZERO
+                                l:[
+                             true D?DFD D 0 skip
+                                 O Q  - OQ D?D? DJD 0 - - - D  ; A-   ]
+                                  O Q  AOQ DFD?D D 0 - - -  ; - D  ];
+                                     
+                   l : [ true D?DFD D 0 goto ZERO ]
+This completes the description of 3    and 3?  . Before going on, we observe
+that the program 36  has an honest run that mimics the execution of , and looks
+                                                                           
+
+
+as follows: whenever executes a command, 3   executes its corresponding in-
+                                                                                               
+                                                                            
+struction. If the command is a conditional jump and                       takes the NONZERO-branch,
+then 3    chooses the nonzero alternative of the corresponding instruction; if takes
+                                                                                   
+
+
+the ZERO branch, then 3 6  chooses the first of the two zero alternatives, namely
+                                                                                                  
+                                                   
+            
+true DFD?D D 0 skip, and then it executes the goto ZERO instruction.
+       There is an important difference between 3    and 3?  . Assume that in both
+3    and 3?  we execute the start action, followed by the honest execution of
+                                                                                          
+
+
+ 3 6  . If and when the honest execution terminates, we can execute the halt action
+                               
+
+
+in 3    , because - has been set to  by the start action, but we cannot execute it in
+       
+
+
+  3 ?  , because - still has the value Q there.
+                   
+           
+    We are now ready to describe the winning strategies for Alice and Bob in the differ-
+ent games.
+
+Assume that  halts. Here is the strategy for Alice in the trace game. Alice chooses to
+                       3                                         3  
+play on   , and so Bob is forced to play on   . Alice sticks to the following
+sequence of moves, completely disregarding Bob’s answers: she plays the start-move,
+                                                                         3  
+continues with the moves of the honest execution of   , and – if the honest run
+terminates – finishes with a halt-move.
+     We show in the first place that, if Alice follows this strategy, then from the second
+move on Bob is forced to play exactly the same moves as Alice (i.e., exactly the same
+alternatives in the same commands). When Alice plays a nonzero move, Bob can only
+answer with a unique nonzero move, so this case is easy. When Alice plays a zero move,
+it seems that Bob can choose between three zero-answers, namely
+                                
+                     true          skip       DFD?DJD/0
+                             -
+                                          
+                                          O Q O Q DFD?DJD 0
+                                                - -  ;        -       D             A- 
+                             
+                                         
+                                           O Q AOQ D?DFD D 0
+                                               - - ;           -                    - D
+But remember: Alice is playing the honest run, and so she only plays a zero-move when
+               Q
+        . So, whenever Alice plays a zero move, Bob observes that the guard
+                                                         
+                                                                                                        O Q
+evaluates to false, and so that his only move is true          skip.          D?DFD D 0
+    Let us now see that Alice’s strategy is winning. Since  halts, the honest run termi-
+nates, and so eventually Alice plays a halt move.15 All along the game Bob has patiently
+15
+     Incidentally, observe that Alice can indeed play halt, because she set  to  with her start move,
+     and she never touched  during the honest execution.
+repeated Alice’s moves, waiting for a chance, but his efforts are in vain: he cannot reply
+                                                       3  
+to Alice’s halt move, because in his program   the variable - has the value , and              Q
+so the guard -    OQ
+                   of the halt move evaluates to false. So Bob loses.
+
+ Assume that  does not halt. Here is the strategy for Bob in the bisimulation game.
+Alice has to play the start move in one of the two programs, and Bob just replies with the
+start move in the other program. Then, as long as Alice plays the honest run of               3  
+(possibly switching between the two programs), Bob patiently repeats her moves in the
+other program.16 If Alice deviates from the honest run by playing one of
+                                         
+                          O Q O Q DFD?DJD 0
+                              -              - -  ;  -      D    A- 
+                                                                     
+                                        
+                           O Q O Q DFD?D D 0
+                                              - - ;   -         -  D
+in one of the programs, Bob replies with
+
+                                        true    DFD? DJD 0 skip
+in the other program. If Alice deviates from the honest run by playing
+                                            
+                                   true       DFD?DJD 0
+                                                 skip
+
+in one of the programs at a point in which O Q , Bob replies with one of
+
+                      O Q  - O Q DFD? DJD 0 - - - D  ; A-  
+                       O Q  O Q DFD?D D 0 - - -  ; -  D 
+in the other program, depending on which guard is enabled. 17 After this move, Bob
+goes on playing exactly the same moves as Alice.
+    Let us see that Bob wins all games. If Alice sticks to the honest execution, then,
+since  does not halt, she never plays a halt-move, and since all other moves can be
+mimicked by Bob without problems, the game never terminates: a win for Bob. So
+
+                                         ? Q 3  
+Alice’s only chance to win is to deviate from the honest run at some point. Observe that
+just before deviating we have -                 in   and -                Q
+                                                                         in   . We     3 F 
+show that by deviating Alice digs her own grave: she allows Bob to reply in such a way
+                                                                           3  
+that after his move all variables have exactly the same value in   and   ! Bob       3  
+then wins easily by playing the same moves as Alice.
+    Alice can deviate from the honest run in three different ways. She can play
+
+                          O Q
+                             -
+                                         
+                                     O Q DFD?DJD 0
+                                               - -  ; -      D    A- 
+                                                                     
+to which Bob replays true
+                                  
+                                 DFD?DJD 0
+                                         skip, and then we have -                   Q 
+                                                                                in both
+programs. She can also play
+                                        
+                          O Q O Q DFD?D D 0
+                                               - - ;  -         -  D
+16
+     He has no choice anyway!
+
+               :
+17
+     Observe that exactly one of the two guards is enabled, because the start action makes the
+     assertion         true, and the other actions keep this assertion invariant.
+and after Bob’s reply we have -     F %Q in both programs. Finally, she can play
+                                   true   DFD? DJD 0 skip
+                     OQ   , and after Bob’s reply we have either -                Q          or
+     F 1Q
+at a state in which
+-           in both programs, depending on his answer.
+
+9.1 Partial-order equivalences are also undecidable
+As we mentioned in Section 5, the literature contains many so-called partial-order
+equivalence notions which do not fit between trace and bisimulation equivalence. So
+Jančar’s result might seem not to apply for them. But it does. Say that two transitions
+B      B
+   and  are concurrently enabled at a marking if           5647 1A4?*B  A64FB 
+                                                                                 for
+              4
+every place , and say that a Petri net is sequential if no reachable marking enables two
+                                                                    3   3  
+transitions concurrently. It is easy to see that the Petri nets   and   we have
+constructed above are sequential. So, actually, we have just proved that any equivalence
+relation which fits between trace and bisimulation equivalence for the class of sequen-
+tial Petri nets is undecidable. Partial-order equivalences turn out to fit between trace
+and bisimulation equivalence for sequential nets. Actually, this is what one would ex-
+pect: partial-order equivalences should distinguish concurrency from interleaving, but
+if there is no concurrency at all then there is also nothing to distinguish.
+
+
+10 Can anything be done in polynomial time?
+The general EXSPACE-hardness bound of Section 7 raises the question if there are
+better results (PSPACE, NP, polynomial problems) for classes of Place/Transition Petri
+nets. Since a complete treatment of this question is out of the scope of this paper, we
+concentrate on how far can one go with polynomial algorithms. Obviously, we cannot
+expect to go further than for 1-safe Petri nets. So the first question is if at least some
+problems for conflict-free nets and free-choice nets that are not necessarily 1-safe can
+still be solved in polynomial time. The answer is a qualified “no”. Even though [18, 39]
+contain some polynomial algorithms for conflict-free Petri nets, most of the important
+problems for these two classes become at least NP-hard. For instance, the reachability
+problem for conflict-free Petri nets is NP-complete [8], and the liveness problem for
+free-choice Petri nets is co-NP-complete (i.e., it is the complement of an NP-complete
+problem) [24, 5] (the proof is sketched below as the solution to Story I). Notice that the
+liveness and reachability problems for arbitrary Petri nets are much harder, and so these
+NP-completeness results can also be seen as positive results.
+     Is there any interesting constraint leading to polynomial algorithms for many prob-
+lems? There seems to be essentially a single non-trivial one: every place has exactly
+one input transition and exactly one output transition (“exactly” can also be generalised
+to “at most”) The Petri nets satisfying this constraint have been called marked graphs,
+synchronisation graphs, and T-systems. Two of the oldest papers in net theory show that
+many problems for these nets can be solved using simple graph algorithms or linear
+programming [3, 13]. So let us formulate our last rule of thumb:
+           Rule of thumb 10:
+           Many interesting problems about marked graphs are solvable in polyno-
+           mial time. Almost no interesting problems about Petri net classes sub-
+           stantially larger than marked graphs are solvable in polynomial time.
+
+The solution to Story I
+The non-liveness problem for free-choice Petri nets can be formulated as follows:
+       Given: a free-choice Petri net       3 ,
+                      3
+       To decide: if is non-live.
+    Membership in NP is non-trivial; it follows from Commoner’s theorem [15, 5]. NP-
+hardness, on the contrary, is very easy to prove by a reduction, first presented in [24],
+from the satisfiability problem for boolean formulas in conjunctive normal form. 18 Fig-
+ure 7 shows the Petri net corresponding to the formula
+                                   +              +            +
+and we explain the construction on this example. Loosely speaking, the Petri net works
+as follows: first, the variables are nondeterministically assigned truth values by firing
+either the transition or for each variable . Once all variables have been assigned
+                              
+a value, a transition  is enabled if and only if the assignment makes the clause              
+false. For instance,   is enabled if and only if the transitions '                  
+                                                                                  have fired; this
+corresponds to the assignment '           -
+                                          4 0 ,    -
+                                                       6 / 0 ,            -
+                                                                     4 0 , which is the only
+assignment making   false. So we have that the place False gets tokens if and only if
+the formula is false under the assignment. If the formula is satisfiable, then there is an
+assignment making the formula true, and for this assignment the place False never gets
+marked. So the Petri net is not live. On the contrary, if the formula is unsatisfiable, then
+the place False can always get marked again, and the net is live.
+Since the formula is satisfiable, the Petri net of Figure 7 is non-live.
+
+11 Conclusions
+I’d like to conclude by listing the 10 rules of thumb of the paper. You can find them
+in Table 11. I’ve allowed myself to suppress the word “interesting” from all the rules,
+since it should no longer lead to confusion.
+
+Acknowledgments
+Many thanks to Eike Best, Peter Habermehl, Ernst Mayr, Richard Mayr, Peter Ros-
+manith, P.S. Thiagarajan, Antti Valmari and Frank Wallner for helpful suggestions,
+discussions, and informations. Many thanks also to Serge Haddad and Zdenek Sawa
+found a mistake in the version of this paper which appeared in LNCS 1491: the pro-
+          3            3  
+grams   and   given in Section 9 were incorrect. They suggested the correct
+programs of this version. Zdenek Sawa also found some more mistakes. The PSPACE-
+algorithm for CTL of Section 4 is joint work with Peter Rossmanith.
+18
+     It is interesting to compare this reduction with the one of Section 6.
+                             A1                         A2                   A3
+
+                       x1         -
+                                  x1             x2          -
+                                                             x2                   x3              -
+                                                                                                  x3
+
+
+
+
+                                                        C2
+                        C1                                                            C3
+
+
+                                                        False
+
+
+
+
+  Fig. 7. Petri net corresponding to the formula
+                                                   F        M F                   M F
+                                                                                                          M
+
+
+                                       The 10 Rules of Thumb
+
+ 1. All questions about the behaviour of 1-safe Petri nets are PSPACE-hard.
+ 2. Nearly all questions about the behaviour of 1-safe Petri nets can be solved in polynomial
+    space.
+ 3. Equivalence problems for 1-safe Petri nets are harder to solve than model-checking prob-
+    lems. They need at most exponential space.
+ 4. Most questions about the behaviour of acyclic 1-safe Petri nets are NP-hard.
+ 5. Many questions about 1-safe conflict-free Petri nets are solvable in polynomial time.
+    Some questions about live 1-safe free-choice Petri nets are solvable in polynomial time
+    (and liveness of 1-safe free-choice Petri nets is decidable in polynomial time too).
+    Almost no questions for 1-safe net classes substantially larger than free-choice Petri nets
+    are solvable in polynomial time.
+ 6. All questions about the behaviour of Petri nets are EXPSPACE-hard.
+ 7. The model-checking problems for Petri nets and all state-based logics are undecidable.
+ 8. The model-checking problems for Petri nets and all branching-time, action-based logics
+    are undecidable.
+    The model-checking problems for Petri nets and all linear-time, action-based logics are
+    decidable.
+ 9. All equivalence problems for Petri nets are undecidable.
+10. Many questions about marked graphs are solvable in polynomial time.
+    Almost no questions about Petri net classes substantially larger than marked graphs are
+    solvable in polynomial time.
+
+                                             Table 1.
+References
+ 1. J.L. Balcázar, J. Dı́az, and J. Gabarró. Structural Complexity I, volume 11 of Monographs in
+    theoretical Computer Science. Springer-Verlag, 1988.
+ 2. A. Cheng, J. Esparza, and J. Palsberg. Complexity Results for 1-safe Nets. Theoretical
+    Computer Science, 147:117–136, 1995.
+ 3. F. Commoner, A. W. Holt, S. Even, and A. Pnueli. Marked Directed Graphs. Journal of
+    Computer and System Sciences, 5:511–523, 1971.
+ 4. M. Dam. Fixpoints of Büchi automata. In Proceedings of the 12th International Conference
+    of Foundations of Software Technology and Theoretical Computer Science, volume 652 of
+    Lecture Notes in Computer Science, pages 39–50, 1992,
+    Also: LFCS Report, ECS-LFCS-92-224, University of Edinburgh.
+ 5. J. Desel and J. Esparza. Free-choice Petri Nets, volume 40 of Cambridge Tracts in Theoret-
+    ical Computer Science. Cambridge University Press, 1995.
+ 6. E. A. Emerson. Temporal and Modal Logic. In Handbook of Theoretical Computer Science
+    Volume B, pages 995–1027, 1990.
+ 7. J. Esparza. Model Checking Using Net Unfoldings. Science of Computer Programming,
+    23:151–195, 1994.
+ 8. J. Esparza. Reachability in Live and Safe Free-Choice Petri Nets is NP-Complete. Technical
+    Report SFB-Bericht Nr. 342/12/96 A, Technische Universität München, 1996. To appear in
+    Theoretical Computer Science.
+ 9. J. Esparza. Decidability of Model-Checking for Infinite-State Concurrent Systems. Acta
+    Informatica, 34:85–107, 1997.
+10. J. Esparza and M. Nielsen. Decidability Issues for Petri Nets – a Survey. In Bulletin of the
+    EATCS, volume 52, pages 245–262, 1994
+    Also: Journal of Information Processing and Cybernetics 30(3):143–160, 1995.
+11. Formal        methods         page       of        the     WWW        Virtual    Library      at
+    http://www.comlab.ox.ac.uk/archive/formal-methods.html#notations.
+12. M. R. Garey and D. S. Johnson. Computers and Intractability: A Guide to the Theory of
+    NP-completeness. Freeman, 1979.
+13. H. J. Genrich and K. Lautenbach. Synchronisationsgraphen. Acta Informatica, 2:143–161,
+    1973.
+14. P. Habermehl. On the Complexity of the Linear-Time Mu-Calculus for Petri Nets. In
+    P. Azéma and G. Balbo, editors, Application and Theory of Petri Nets, volume 1248 of Lec-
+    ture Notes in Computer Science, pages 102–116. Springer-Verlag, 1997.
+15. M. H. T. Hack. Analysis of Production Schemata by Petri Nets. M.s. thesis, Cambridge,
+    Mass.: MIT, Dept. Electronical Engineering, 1972.
+16. J. E. Hopcroft and J. Ullman. Introduction to Automata Theory, Languages and Computation.
+    Addison-Wesley, 1979.
+17. R. R. Howell and L. Rosier. On Questions of Fairness and Temporal Logic for Conflict-free
+    Petri Nets. In G. Rozenberg, editor, Advances in Petri Nets, volume 340 of Lecture Notes in
+    Computer Science, pages 200–220, 1988.
+18. R. R. Howell and L. E. Rosier. An
+                                           F  M 
+                                                       Algorithm to Decide Boundedness for Conflict-
+    free Vector Replacement Systems. Information Processing Letters, 25(1):27–33, 1987.
+19. R. R. Howell and L. E. Rosier. Problems Concerning Fairness and Temporal Logic for
+    Conflict-free Petri Nets. Theoretical Computer Science, 64:305–329, 1989.
+20. R. R. Howell, L. E. Rosier, and H. Yen. A Taxonomy of Fairness and Temporal Logic
+    Problems for Petri Nets. Theoretical Computer Science, 82:341–372, 1991.
+21. P. Jančar. All Action-based Behavioural Equivalences are Undecidable for Labelled Petri
+    Nets. Bulletin of EATCS, 56:86–88, 1995.
+22. P. Jančar. Undecidability of Bisimilarity for Petri Nets and Some Related Problems. Theo-
+    retical Computer Science, 148:281–301, 1995.
+23. L. Jategaonkar and A. Meyer. Deciding True Concurrency Equivalences on Safe, Finite Nets.
+    Theoretical Computer Science, 154(1):107–143, 1996.
+24. N. D. Jones, L. H. Landweber, and Y. E. Lien. Complexity of Some Problems in Petri Nets.
+    Theoretical Computer Science, 4:277–299, 1977.
+25. S.R. Kosaraju. Decidability of Reachability in Vector Addition Systems. In 14th Annual
+    ACM Symposium on Theory of Computing, pages 267–281, San Francisco, 1982.
+26. L. Lamport. The Mutual Exclusion Problem. Part II – Statement and Solutions. Journal of
+    the ACM, 33(2), 1986.
+27. R. Lipton. The Reachability Problem Requires Exponential Space. Technical Report 62,
+    Yale University, 1976.
+28. E. W. Mayr. An Algorithm for the General Petri Net Reachability Problem. SIAM Journal
+    on Computing, 13:441–460, 1984.
+29. E.W. Mayr and A.R. Meyer. The Complexity of the Word Problems for Commutative Semi-
+    groups and Polynomial Ideals. Advances in Mathematics, 46:305–329, 1982.
+30. WWW page on Petri net tools at http://www.daimi.aau.dk/petrinets/tools/.
+31. A. Rabinovich. Complexity of Equivalence Problems for Concurrent Systems of Finite
+    Agents. Information and Computation, 127(2):164–185, 1997.
+32. C. Rackoff. The Covering and Boundedness Problem for Vector Addition Systems. Theo-
+    retical Computer Science, 6:223–231, 1978.
+33. P. Starke. Analyse von Petri-Netz-Modellen. Teubner, 1990.
+34. C. Stirling. Bisimulation, Model Checking and Other Games. Notes for Mathfit
+    instructional meeting on games and computation, Edinburgh, June 1977. Available at
+    http://www.dcs.ed.ac.uk/home/cps/.
+35. A. Valmari. State Space Generation: Efficiency and Practicality. Phd thesis, Tampere Uni-
+    versity of Technology, 1988.
+36. R. J. van Glabbeek. The Linear Time – Branching Time Spectrum. In Proceedings of
+    CONCUR ’90, volume 458 of Lecture Notes in Computer Science, pages 278–297, 1990.
+37. M. Vardi. An Automata-Theoretic Approach to Linear temporal Logic. In Logics for Con-
+    currency: Structure versus Automata, volume 1043 of Lecture Notes in Computer Science,
+    pages 238–265, 1996.
+38. H. C. Yen. A Unified Approach for Deciding the Existence of Certain Petri Nets Paths.
+    Information and Computation, 96(1):119–137, 1992.
+39. H. C. Yen. A Polynomial Time Algorithm to Decide Pairwise Concurrency of Transitions
+    for 1-Bounded Conflict Free Petri Nets. Information Processing Letters, 38:71–76, 1991.
+

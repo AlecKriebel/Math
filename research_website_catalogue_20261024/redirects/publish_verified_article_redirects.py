@@ -14,11 +14,14 @@ PUBLIC = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public')
 CONFIG = {
     '21699161': ('minimum-bell-setting-complexity', 'paper.pdf'),
     '22089551': ('bimolecular-positive-recurrence', 'paper-v1.2.4.pdf'),
+    '22929486': ('kourovka-16-45', 'paper.pdf'),
 }
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('record_ids', nargs='+', choices=CONFIG)
+parser.add_argument('--receipt-stem', default='verified-article-redirects')
 args = parser.parse_args()
 assert len(set(args.record_ids)) == len(args.record_ids)
+assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.receipt_stem)
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -98,11 +101,11 @@ try:
     assert set(git('diff', '--cached', '--name-only', parent, env=env).decode().splitlines()) == set(paths)
     git('diff', '--cached', '--check', parent, '--', *paths, env=env)
     tree = git('write-tree', env=env).decode().strip()
-    commit = subprocess.check_output(['git', '-c', 'gc.auto=0', 'commit-tree', tree, '-p', parent], input=b'Redirect verified Bell and reaction-network articles to canonical research pages\n', cwd=REPO, env=env).decode().strip()
+    commit = subprocess.check_output(['git', '-c', 'gc.auto=0', 'commit-tree', tree, '-p', parent], input=b'Redirect verified research articles to canonical pages\n', cwd=REPO, env=env).decode().strip()
     git('push', 'origin', commit+':refs/heads/main')
 finally:
     if os.path.exists(index_path):
         os.unlink(index_path)
 result = {'utc': datetime.now(timezone.utc).isoformat(), 'commit': commit, 'parent': parent, 'redirects': redirects, 'paths': paths, 'before_sha256': {p: sha(v) for p,v in before.items()}, 'after_sha256': {p: sha(v) for p,v in after.items()}, 'shared_index_and_local_branch_untouched': True, 'live_redirect_verification': 'pending GitHub Pages build'}
-(PROGRAM/'redirects/verified-article-redirects.json').write_text(json.dumps(result, indent=2)+'\n')
+(PROGRAM/'redirects'/(args.receipt_stem+'.json')).write_text(json.dumps(result, indent=2)+'\n')
 print(json.dumps(result))
