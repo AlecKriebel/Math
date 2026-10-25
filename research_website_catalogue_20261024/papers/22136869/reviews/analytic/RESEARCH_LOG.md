@@ -1,0 +1,13 @@
+# Analytic research log: 22136869
+
+## 2026-10-25T01:22:06.994822+00:00 — 3%
+Started independent analytic review from exact queue-bound published PDF; verified all expected hash/size pins. Parent scope agent owns fresh source acquisition. No sibling or historical verdicts read. Exact target is mathematical claim, not assumed truth; metadata version1.2.6 differs from manuscript filename1.2.7. Work confined to this review directory; no publication or outreach.
+
+## 2026-10-25T01:24:30.969952+00:00 — 100% of bounded defect disposition; approximately 35% of full certificate review
+Read all20 published main pages and both2-page reader supplements. Independently derived core-factorization conditions from the paper before opening supplied code or certificates. Confirmed the p12 forced e/d=6/5 statement is false under the displayed ansatz without an additional constraint: e/d=1 is an exact strict-interior factorization. Fresh exact control passed225 assertions including all16 core identities, literal retained-graph equality in64 Fourier coordinates, and all64 normalized positive pattern probabilities. Visually authenticated publishedp12 and bound TeXlines414–422. Stopping further global certificate validation per defect protocol; no repair and no claim main theorems are false. No current sibling findings or dedicated historical verdicts read. Manuscript acknowledgments onp19 state prior external confirmation; that incidental opinion is not evidence used here.
+
+## 2026-10-25T01:25:27.611471+00:00 — 100% bounded disposition
+Final REVIEW.md and hash-bound verdict.json complete. Final counterexample source/result match; all acquired asset hashes remain unchanged. 225 exact assertions passed on the final recorded script. Disposition DEFER_NONCENTRAL_FALSE_NECESSITY_CLAIM; main theorem falsity explicitly not established. Remaining certificate review is uncompleted by design under stopping protocol.
+
+## 2026-10-25T01:26:17.270649+00:00 — 35% full review, resumed
+Parent requested strongest plausible contextual reading. Independently confirmed Eq17 imposes equal nontrivial B entries, under which M_CC=4d²/5=M_TT=5e²/9 forces positive e/d=6/5. Thus the counterexample refutes general factorization, but does not establish an unequivocal substantive defect in context. Reclassified as boundary/clarity note; full main theorem/support/certificate review resumes. No paper repair. Parent reported no sibling mathematical findings.

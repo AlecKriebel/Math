@@ -33,9 +33,29 @@ TEX_PATHS={
  '23390181':'published-source/note.tex',
  '23410944':'published-source/paper.tex',
  '23422055':'published-source/paper/note.tex',
+ '23203334':'published-source/source-and-verification/main.tex',
+ '22929486':'published-source/kourovka_16_45/proof.tex',
+ '23088066':'published-source/paper.tex',
+ '23353160':'published-source/grassmann_calibrations_v1/research_note.tex',
+ '23147866':'w4_locc_dense_coding.tex',
+ '23157237':'published-source/spectral-tensor-consistency/spectral_tensor_consistency.tex',
+ '22729355':'published-source/Exact_Diffusion_Design_Source_v1.0.11/main.tex',
 }
+ADDED_IDS={'23203334','22929486','23088066','23353160','23147866','23157237','22729355'}
+def asset_name(item):
+ name,filename=item.get('name'),item.get('filename')
+ if name is not None and filename is not None and name!=filename:raise ValueError('Conflicting receipt name and filename')
+ value=name if name is not None else filename
+ if not isinstance(value,str) or not value:raise ValueError('Receipt asset has no valid name or filename')
+ return value
+def decode_added_abstract(tex):
+ tex=tex.replace(r'Rei\ss{}','Reiß').replace('$L^2$','L²')
+ for old,new in {r'\ge':'≥',r'\sum':'∑',r'\chi':'χ',r'\Theta':'Θ',r'\sqrt n':'√n','n-1':'n−1','n-2':'n−2','n-3':'n−3'}.items():tex=tex.replace(old,new)
+ for old,new in {r'\mup':'μ′',r'\Sep':'Sep',r'\mathbb R^{12}':'R¹²',r'K\"ahler':'Kähler','Bru\\ss\\':'Bruß',r'\hbin':'h₂',r'\ldots':'…','C_{4,12}':'C₄,₁₂',r'C_b^\infty\cap L^2':'C_b^∞ ∩ L²',r'e_a e_b/m_a':'eₐe_b/mₐ'}.items():tex=tex.replace(old,new)
+ return tex.replace(r'\[','').replace(r'\]','').replace('$','').replace('--','–').replace("'",'’')
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
-def abstract_tokens(tex):
+def abstract_tokens(tex,record_id=None):
+ if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
  tex=tex.replace(r"Krej\v{c}\'i\v{r}\'ik",'Krejčířík')
  tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
  tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
@@ -80,7 +100,11 @@ for rid in args.record_ids:
   test('non_jap_abstract_source_selected',branch is not None and r'\input{paper_content}' in main_source and 'japsubmission' not in main_source)
   abstract_source=branch.group(2)
  a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',abstract_source,re.S).group(1)
- test('abstract_full_source_words',abstract_tokens(a)==wt(c['abstract']))
+ test('abstract_full_source_words',abstract_tokens(a,rid)==wt(c['abstract']))
+ if rid in ADDED_IDS:
+  compact=lambda text: re.sub(r'\s+','',unicodedata.normalize('NFKC',text))
+  test('abstract_full_source_text',compact(decode_added_abstract(a))==compact(c['abstract']))
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  if rid in ('23441523','23356680'):
   normalized_abstract=a.replace('$K_4$','K₄').replace('$3$','3').replace(r'$4+\sqrt{17}$','4 + √17').replace('--','–').replace('~',' ')
   test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
@@ -101,7 +125,9 @@ for rid in args.record_ids:
   expected_dates={'23390181':r'October 15, 2026\quad (version 1.0.0)','23410944':r'15 October 2026\\ \small Research note, version 1.0','23422055':r'October 16, 2026 \quad Version 1.0'}
   test('printed_version_date',printed_date==expected_dates[rid] and c['source_binding']['manuscript_version']==c['version']==c['source_binding']['zenodo_version'])
  test('no_noindex','noindex' not in meta.get('robots',''))
- test('no_audit_replay',not any(x in ''.join(d.text).lower() for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
+ visible_text=''.join(d.text).lower()
+ novelty_checked_text=visible_text.replace('does not certify worldwide first priority','').replace('does not establish worldwide first priority','')
+ test('no_audit_replay',not any(x in novelty_checked_text for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
  test('no_followup',c['follow_up'] is None and 'id="further-research"' not in h)
  test('authorship_once',h.count('Authorship and responsibilities would be discussed in relation to the substantive contributions made.')==1)
  test('ai_disclosure',c.get('ai_disclosure','') in unescape(h))
@@ -124,7 +150,7 @@ for rid in args.record_ids:
  assets += [('additional_asset_'+asset['filename'],asset['filename']) for asset in c.get('additional_assets',[])]
  for key,name in assets:
   actual=sha(f.parent/name);hashes[name]=actual
-  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if x['name']==name) and name in [a.get('href') for t,a in d.a if t=='a'])
+  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if asset_name(x)==name) and name in [a.get('href') for t,a in d.a if t=='a'])
   if name.endswith('.zip'):
    with zipfile.ZipFile(f.parent/name) as z:test('zip_integrity_'+name,z.testzip() is None)
   if key.startswith('additional_asset_') and name.endswith('.pdf'):
@@ -141,7 +167,7 @@ for rid in args.record_ids:
  test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
  bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],c['author'],c['doi'],c.get('bibtex_note','Unrefereed preprint, version '+c['version'])]))
  test('background_links',all(x['url'] in h and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
- record=json.loads((p/'sources/record.json').read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid=='21699161' and c['source_binding']['zenodo_version'] is None))
+ record=json.loads((p/'sources/record.json').read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334') and c['source_binding']['zenodo_version'] is None))
  if c.get('edition_label'):test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
  if c.get('related_resources'):
   materials=re.search('<section id="materials">(.*?)</section>',h,re.S).group(1)
@@ -150,15 +176,17 @@ for rid in args.record_ids:
   for related in c['source_binding'].get('related_records',[]):
    rp=p/'sources/related-records'/related['record_id'];rr=json.loads((rp/'receipt.json').read_text())
    related_bound=related_bound and rr['record_id']==related['record_id'] and rr['files']==related['files']
-   related_bound=related_bound and all(sha(rp/x['name'])==x['sha256'] for x in rr['files'])
+   related_bound=related_bound and all(sha(rp/asset_name(x))==x['sha256'] for x in rr['files'])
   test('related_resource_source_bindings',related_bound)
  if (p/'promotion.json').exists():
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
-  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055'):
+  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055') or rid in ADDED_IDS:
    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
    test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
+  if rid in ADDED_IDS:
+   test('all_published_source_assets_bound',gate['source_files']==receipt['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
  if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
  if rid=='23331395':test('scope_complete',all(x in unescape(h) for x in ['smooth integral projective variety','arbitrary characteristic','one closed point','mult_x(ρ_*Γ)','inseparable degree']))
@@ -202,6 +230,39 @@ for rid in args.record_ids:
  if rid=='23422055':
   test('scope_complete',all(x in unescape(h) for x in ['at least three independent','one fixed coordinate ball','Three fixed, linearly independent classes','h⁻_Jε ≥ 3','not an exact dimension','unrestricted compact-four-manifold integrability conjecture','real dimension two','no common positive compatible metric','not closed']))
   test('credited_geometry_antecedents',all(x in unescape(h) for x in ['prior work of Tan–Wang–Zhang–Zhu','pluricanonical sections','different invariant','bounded comparison does not certify exhaustive novelty']))
+ if rid=='23203334':
+  test('scope_complete',all(x in unescape(h) for x in ['Fix a finite number of species in three space dimensions','positive mass and a real charge, including zero charge','compact support in position and momentum','every spatial derivative is bounded','Maxwell divergence constraints','smooth on every finite time interval','No smallness, symmetry or neutrality condition','No uniform infinite-species or zero-mass limit','pinned OpenAI family 362','no independently reproduced proof-assistant certificate'.capitalize()]))
+  test('no_invented_numbered_version','version' not in record and c['source_binding']['manuscript_version'] is None and 'Version 6 October' not in h and c['edition_label']=='Manuscript dated 6 October 2026')
+  extra=gate['additional_reviews']['primary_adversarial'];gap=gate['gap_resolution'];old=gate['reviews']['adversarial']['verdict']
+  test('additional_primary_review_binding',extra['sha256']==sha(p/extra['report']) and extra['verdict_sha256']==sha(p/extra['verdict_file']) and extra['verdict']==json.loads((p/extra['verdict_file']).read_text()) and extra['verdict']['status']=='PASS')
+  test('conditional_review_preserved',old['status']=='conditional_multispecies_transfer_supported_upstream_global_verification_incomplete' and old['disposition']=='verification_coverage_dependency_hold' and old['unconditional_global_theorem_independently_verified'] is False)
+  test('root_gap_resolution_binding',gate['disposition_by']=='root' and gap['additional_review_key']=='additional_reviews.primary_adversarial' and gap['additional_report_sha256']==extra['sha256'] and gap['additional_verdict_sha256']==extra['verdict_sha256'] and gap['upstream_pdf_sha256']==extra['verdict']['upstream']['pdf_sha256'] and gap['upstream_commit']==extra['verdict']['upstream']['commit'])
+ if rid=='22929486':
+  test('scope_complete',all(x in unescape(h) for x in ['G = F₂₉² ⋊ H','100920','b_f(G) = b(G) = 3 and μ′(G) = 4','inclusion-minimal','faithful and nonfaithful','not claimed to have the smallest','characteristic-11','not a journal acceptance']))
+  test('notebook_confirmation_scoped',all(x in unescape(h) for x in ['reports confirmation by P. J. Cameron','distinct from journal publication']) and c['external_status']['doi_cited']==c['doi'] and c['external_status']['url'] in h)
+ if rid=='23088066':
+  test('scope_complete',all(x in unescape(h) for x in ['e_PL(K) = 3','e_lin(K) = 5','first barycentric subdivision','need not be arithmetic barycenters','including nongeneric placements','n = 2²⁵⁶','not a displayed small model','no explicit list of facets','need not be a surface or manifold']))
+  test('credited_embedding_antecedents',all(x in unescape(h) for x in ['Brehm–Sarkaria','Newman','Lee–Nevo','withdrawn odd-dimensional claim']))
+ if rid=='23353160':
+  test('scope_complete',all(x in unescape(h) for x in ['C₄,₁₂','including both orientations','normalized complex Sep(3,3)','arbitrary auxiliary variables and affine equalities','affine-linear polynomials modulo the full real vanishing ideal','coefficients of the unnormalized ℓ can be rational','No coefficient list, exact comass','No claim is made that this is the least dimension']))
+  test('credited_nonrepresentability_antecedents',all(x in unescape(h) for x in ['Fawzi’s established result','prior tensor-to-wedge lemma','Question 6.5','not the failing form']))
+ if rid=='23147866':
+  test('scope_complete',all(x in unescape(h) for x in ['independent uniformly distributed messages','R₁ < 3/2, R₂ < 3/2','vanishing uniform average decoding error','A₁B₁ : A₂B₂','R₁ = R₂ = 9/8','lower bound on the optimal LOCC capacity','not a one-copy advantage','Zero-error and maximal-error coding are not established','no extra shared entanglement']))
+  test('eight_files_no_invented_zip',len(receipt['files'])==8 and all(not asset_name(x).endswith('.zip') for x in receipt['files']) and c['supplement_filename'] is None and 'Source and verification (ZIP)' not in h)
+  links=[a['href'] for t,a in d.a if t=='a' and 'href' in a]
+  test('all_eight_original_files_linked',all(any(link==asset_name(x) or '/files/'+asset_name(x) in link for link in links) for x in receipt['files']))
+ if rid=='23157237':
+  test('scope_complete',all(x in unescape(h) for x in ['known bounded connected C∞ domain','d ≥ 2','L = μ⁻¹ div(S∇)','conormal reflection n·S∇u = 0','stationary exact positions','every positive empirical eigenpair','Fourth powers of the transition eigenvalues','Any strictly positive deterministic ridge sequence tending to zero','separately fitted vector','density estimate converges in C² on the closure','globally in L²(D)','not a claim about differentiating the estimated tensor']))
+  test('scope_limits_preserved',all(x in unescape(h) for x in ['Ordinary normal reflection is not an interchangeable','No convergence rate, finite-sample guarantee','different estimator obtained from classical variational regularization','does not prove consistency of the main spectral fit']))
+  test('metadata_printed_version_distinction',record['version']==c['version']=='1.0' and c['source_binding']['manuscript_version'] is None and r'\date{October 5, 2026}' in source and c['edition_label']=='Zenodo version 1.0')
+ if rid=='22729355':
+  test('scope_complete',all(x in unescape(h) for x in ['For every n ≥ 4','every positive-equilibrium realization','d_Z > 8h_Z ∑_{j=2}^{n−2} d_j/h_j','strictly positive diffusion coefficients','not attained','χ_Dχ_H > 8(n−3)','one-dimensional Neumann interval','locally exponentially stable in H¹','fixed-integrated-mass class defined by the semipositive conservation law','Both contrasts are Θ(√n)']))
+  test('scope_limits_preserved',all(x in unescape(h) for x in ['networks are synthetic','stationary zero-eigenvalue crossings','conserved quantity has zero weight on X₁','do not give global attraction','exponent-optimal only within this topology','does not claim intrinsic finite wavelength selection']))
+  test('printed_month_edition_date_distinction',record['version']==c['version']=='1.0.11' and record['publication_date']=='2026-09-12' and c['source_binding']['manuscript_date']=='August 2026' and r'\date{August 2026}' in source and c['edition_label']=='Zenodo version 1.0.11')
+  test('both_reader_pdfs_labelled',len(texts)==19 and 'Mathematical supplement (PDF, 19 pages)' in unescape(h))
+  links=[a['href'] for t,a in d.a if t=='a' and 'href' in a]
+  test('all_eight_published_assets_linked',len(receipt['files'])==8 and all(any(link==asset_name(x) or '/files/'+asset_name(x) in link for link in links) for x in receipt['files']))
+  test('companion_software_doi_distinct','https://doi.org/10.5281/zenodo.22625980' in links and c['doi']=='10.5281/zenodo.22729355')
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

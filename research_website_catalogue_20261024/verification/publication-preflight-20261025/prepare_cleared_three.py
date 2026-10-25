@@ -1,0 +1,21 @@
+from pathlib import Path
+import json,hashlib,datetime
+R=Path(__file__).resolve().parents[2]
+scopes={
+'22929486':"For the explicit affine group G = F_29^2 semidirect H of order 100920, b_f(G)=b(G)=3<4=mu'(G), covering faithful and nonfaithful permutation actions and inclusion-minimal bases. Preserve the nonnormal-bottom obstruction, explicit witnesses and structural all-actions bounds. No smallest-order, all-characteristic or priority claim. The current official Kourovka Notebook records a negative answer and reports confirmation by P. J. Cameron; attribute this as Notebook editorial status, not journal peer review or acceptance.",
+'23088066':"Existence of a finite two-dimensional simplicial complex K with exact e_PL(K)=3 and original-simplex linear embedding dimension e_lin(K)=5; its first abstract barycentric subdivision embeds linearly in R3 with freely positioned new vertices. Preserve deletion-uniform random obstruction, nongeneric-placement coverage and original-simplex/subdivision distinction. General complexes, not a surface theorem; no explicit facet list, practical small witness, minimal vertex count, arbitrary-gap result or priority claim. Credit Brehm-Sarkaria, Newman, Lee-Nevo and other stated inputs.",
+'23353160':"For the oriented real Grassmann mass ball C_4,12, no finite projected semidefinite lift exists via the explicitly credited published Fawzi obstruction for normalized complex Sep(3,3). Preserve affine-linear SOS modulo the full real vanishing ideal, existential rational unnormalized support functional and a constant comass-one four-form with no pointwise/local norm completion. No explicit coefficients, exact comass, rational normalized form, least-dimension or priority claim; this is not the quadratic Grassmann representation. Established Kahler faces, fermionic projector body and tensor-to-wedge inputs remain credited."
+}
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+for rid,scope in scopes.items():
+ p=R/'papers'/rid;cp=p/'reviews/scope/content.json';content=json.loads(cp.read_text());receipt=json.loads((p/'sources/receipt.json').read_text())
+ if (p/'publication.json').exists() or (p/'promotion.json').exists():raise FileExistsError(rid+' publication already exists')
+ for f in receipt['files']:
+  name=f.get('name',f.get('filename'));assert sha(p/'sources'/name)==f['sha256']
+ (p/'publication.json').write_bytes(cp.read_bytes())
+ def bind(family):
+  rp=p/'reviews'/family/'REVIEW.md';vp=rp.with_name('verdict.json');return dict(report=str(rp.relative_to(p)),sha256=sha(rp),verdict_file=str(vp.relative_to(p)),verdict_sha256=sha(vp),verdict=json.loads(vp.read_text()))
+ gate={'status':'PASS','record_id':rid,'reviewed_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'disposition_by':'root','authorization':'Root explicitly approved the exact stated theorem after reading all three complete current report sets. This records root clearance; original report dispositions and independence disclosures are preserved verbatim in their bindings. AI review is not journal peer review, formal proof certification or an exhaustive novelty determination.','pdf_sha256':content['source_binding']['pdf_sha256'],'source_receipt_sha256':sha(p/'sources/receipt.json'),'source_record_sha256':sha(p/'sources/record.json'),'source_files':receipt['files'],'publication_sha256':sha(p/'publication.json'),'scope_content_sha256':sha(cp),'exact_scope':scope,'editorial_changes_from_scope_content':[],'reviews':{f:bind(f) for f in ['analytic','adversarial','scope']},'independence_qualification':'Review-specific historical opinion exposure remains disclosed in the bound reports; no blanket strict-blindness claim is made.'}
+ if rid=='22929486':gate['external_status']=content['external_status'];gate['external_status_source']=content['source_binding']['external_status_source'];gate['receipt_compatibility']='Original receipt filename/record_checksum schema preserved; renderer reads name or filename without changing source metadata or published bytes.'
+ (p/'promotion.json').write_text(json.dumps(gate,indent=2,ensure_ascii=False)+'\n')
+ print(json.dumps({'record':rid,'publication_sha256':gate['publication_sha256'],'status':'PASS'}))

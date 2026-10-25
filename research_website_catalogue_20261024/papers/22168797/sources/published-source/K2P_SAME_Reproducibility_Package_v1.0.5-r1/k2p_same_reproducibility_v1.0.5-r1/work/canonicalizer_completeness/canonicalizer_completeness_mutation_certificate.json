@@ -1,0 +1,61 @@
+{
+  "atlas_sha256": "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742",
+  "auditor_sha256": "0e4f2315d836053d1f50742af163668d243b086afda84515d197a2da09756bda",
+  "clean_baseline": {
+    "artifact_contract": "The semantic-only auditor reports PASS on stdout and intentionally must not create the supplied --output success artifact.",
+    "mode": "semantic-only",
+    "returncode": 0,
+    "semantic_mutation_contract": {
+      "nonordinary_triangle": {
+        "atlas_ordinary_candidates": 0,
+        "conclusion": "rejected",
+        "independent_ordinary_candidates": 0,
+        "legacy_all_three_cycles_would_accept": true
+      },
+      "selected_triangle_mismatch": {
+        "atlas_marked_relation": "none",
+        "conclusion": "rejected",
+        "independent_marked_relation": "none",
+        "unmarked_head_erasure_relation": "triangle"
+      }
+    },
+    "signal": false,
+    "status": "PASS",
+    "success_artifact_absent": true,
+    "timeout": false
+  },
+  "diagnostic_contract": {
+    "accept_nonordinary_split_heads": "CANONICALIZER_COMPLETENESS_FAIL:NONORDINARY_ATLAS_ACCEPTED",
+    "erase_without_marking_selected_triangle": "CANONICALIZER_COMPLETENESS_FAIL:SELECTED_TRIANGLE_ATLAS_ACCEPTED: triangle"
+  },
+  "mutation_runner_sha256": "102ee7a85ef8207fd85fa96506c0e41e96696804448ddf8d94545b2c89893f36",
+  "mutations": [
+    {
+      "exit_code": 1,
+      "expected_diagnostic": "CANONICALIZER_COMPLETENESS_FAIL:NONORDINARY_ATLAS_ACCEPTED",
+      "mutated_atlas_sha256": "4726488183d5943657ed293c683a915271a4219a64c699bea0826ae48f1bfacd",
+      "name": "accept_nonordinary_split_heads",
+      "observed_diagnostic": "CANONICALIZER_COMPLETENESS_FAIL:NONORDINARY_ATLAS_ACCEPTED",
+      "rejected": true,
+      "signal": false,
+      "success_artifact_absent": true,
+      "timeout": false
+    },
+    {
+      "exit_code": 1,
+      "expected_diagnostic": "CANONICALIZER_COMPLETENESS_FAIL:SELECTED_TRIANGLE_ATLAS_ACCEPTED: triangle",
+      "mutated_atlas_sha256": "c05cb39ea96c8c8190ad295863cd307396845509fcd0923ee3c6434df472c522",
+      "name": "erase_without_marking_selected_triangle",
+      "observed_diagnostic": "CANONICALIZER_COMPLETENESS_FAIL:SELECTED_TRIANGLE_ATLAS_ACCEPTED: triangle",
+      "rejected": true,
+      "signal": false,
+      "success_artifact_absent": true,
+      "timeout": false
+    }
+  ],
+  "payload_sha256": "eb57b8edae21e0f9cc4f90a30fea520196ab964e0878d36e31d90f9b80c570b2",
+  "rejected": 2,
+  "schema": "k2p-canonicalizer-completeness-mutations-v2",
+  "status": "PASS",
+  "survived": 0
+}

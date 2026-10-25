@@ -1,0 +1,124 @@
+{
+  "title": "A counterexample to Kourovka Notebook Problem 16.45",
+  "slug": "kourovka-problem-16-45-counterexample",
+  "description": "An explicit group of order 100920 separates minimal permutation bases from independent sets, answering Cameron’s Kourovka Notebook Problem 16.45.",
+  "abstract": "Let b(G) be the largest size of an inclusion-minimal base, over all permutation representations of a finite group G, with bases taken for the permutation image. Let μ′(G) be the largest size of an independent subset of G, not necessarily generating G. We construct an explicitly specified affine group of order 100920 for which b(G) = 3 < 4 = μ′(G). The upper bound covers faithful and nonfaithful actions and does not depend on enumerating the subgroups of the affine group. Exact, independently implemented Python and C++ verifiers certify the small matrix-group inputs and the explicit witnesses. The obstruction is a subgroup of order two that is central in the complement but not normal in the ambient affine group.",
+  "plain_language": [
+    "There are two ways to measure how much independent information a finite group can contain. One asks how many group elements can be chosen so that none can be generated from the others. The other looks at actions by permutations and asks how large a set of observed points can be when every observation is essential to distinguish the permutations.",
+    "Peter Cameron asked whether the largest possible values always agree. This paper gives an explicit group with an independent set of four elements, while every inclusion-minimal permutation base has at most three points, across all actions. It also constructs an action that attains three, so both values are exact.",
+    "The obstruction is a small subgroup that behaves differently inside the matrix part of the construction and inside the full affine group. It is central in the former but not normal in the latter. This realizes the precise normality obstruction in Cameron’s earlier formulation of the question.",
+    "The official Kourovka Notebook now records the negative answer, cites this Zenodo paper and reports confirmation by P. J. Cameron. The paper remains an unrefereed preprint; that recorded confirmation is distinct from journal publication."
+  ],
+  "result": [
+    "The group is G = F₂₉² ⋊ H, where H is generated over F₂₉ by A = [[0,28],[1,0]] and B = [[2,7],[12,28]]. This specifies the actual matrix action. H is isomorphic to SL₂(5), and |G| = 29² · 120 = 100920.",
+    "For this group, b_f(G) = b(G) = 3 and μ′(G) = 4. Here b_f uses faithful permutation actions, b allows all actions, and μ′ is the maximum size of an independent subset, whether or not it generates G.",
+    "Minimal means inclusion-minimal: every selected point is essential. For a possibly nonfaithful action, a base has pointwise stabilizer equal to the action kernel, or equivalently trivial stabilizer in the permutation image.",
+    "The paper gives an independent generating four-set and a faithful inclusion-minimal three-point base in a disjoint-union coset action. Structural subgroup and normal-subgroup arguments supply the upper bounds for every action.",
+    "The four omission subgroups of the independent set have a nonnormal intersection of order two. The corresponding Boolean meet-semilattice has rank four, but no rank-four realization can have normal bottom. This gives the negative answer to Problem 16.45."
+  ],
+  "limitations": [
+    "The construction is not claimed to have the smallest possible group order. It does not classify all counterexamples or determine the largest possible gap between the invariants.",
+    "The result concerns inclusion-minimal bases maximized over all actions. It should not be described as a result only about transitive actions, minimum-size bases in one fixed action, or ordered irredundant bases.",
+    "Faithful and arbitrary actions must remain distinct. For the complement H itself, b_f(H) = 2 while b(H) = 3; omitting nonfaithful actions would change the problem.",
+    "The characteristic matters. The paper exhibits a related characteristic-11 construction with a faithful minimal base of size four, so the same conclusion is not established for every finite field.",
+    "Finite exact verifiers check the explicit matrix groups and witnesses. The upper bound for every subgroup and action of the full affine group relies on the structural proof, rather than exhaustive enumeration of its subgroup lattice.",
+    "The official notebook’s reported confirmation is evidence of external recognition, not a journal acceptance or proof-assistant certificate. This page does not claim an exhaustive priority search beyond the cited primary sources."
+  ],
+  "background": [
+    {
+      "title": "Kourovka Notebook, 21st edition, current Problem 16.45 entry",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf",
+      "note": "Printed page 105 states Cameron’s question and records its negative solution, citing Zenodo 22929486 and reporting confirmation by P. J. Cameron."
+    },
+    {
+      "title": "Cameron, Some measures of finite groups related to permutation bases",
+      "url": "https://arxiv.org/abs/1408.0968v1",
+      "note": "Propositions 3.1–3.2 and Corollary 3.3 give the subgroup and Boolean-semilattice formulations and the inequality. The normality condition is already the identified obstacle."
+    },
+    {
+      "title": "Cameron, Independence and bases: Theme and variations",
+      "url": "https://doi.org/10.2140/mt.2024.3.417",
+      "note": "Section 6 treats all permutation representations, including nonfaithful ones, and restates the equality question with notation b₂ and μ↑."
+    },
+    {
+      "title": "Cameron, The symmetric group, 7",
+      "url": "https://cameroncounts.wordpress.com/2010/07/22/the-symmetric-group-7/",
+      "note": "The author’s earlier exposition distinguishes minimal bases from ordered irredundant bases and explains the normal-bottom semilattice condition."
+    }
+  ],
+  "why_it_works": [
+    "The complement H has a unique involution. Every even-order subgroup contains it, which sharply limits families of subgroups whose intersection is trivial, while the quotient H/{±I} supplies a larger base in a nonfaithful action.",
+    "Over F₂₉, a line stabilizer in H is cyclic of order dividing four. This bounds the faithful base invariant of every subgroup of G that does not contain the full translation subgroup.",
+    "A faithful irredundant intersection family must contain such a subgroup. Restricting the other members to it gives the upper bound of three. Every nontrivial normal subgroup of G contains the translation subgroup, so nonfaithful actions reduce to the already controlled complement.",
+    "Explicit matrix and translation elements give the independent four-set, and three explicit affine subgroups give the faithful three-point base. Their omission intersection is central only in the complement. Taking normal cores destroys the four-way irredundancy rather than converting it into a larger base."
+  ],
+  "collaboration": "I welcome substantive collaboration on placing the counterexample within the broader theory of permutation bases and subgroup lattices, checking the exposition and exact certificates, and preparing it for journal review. Expertise in finite groups or computational group theory would be particularly useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is proposed. Minimum-order counterexamples, larger gaps and a classification of suitable affine groups are plausible directions, but this review has not established a new mechanism or enough evidence to justify a specific substantial conjecture.",
+  "publication_date": "2026-09-23",
+  "version": "1.0.1",
+  "doi": "10.5281/zenodo.22929486",
+  "author": "Alec Kriebel",
+  "pdf_filename": "Kourovka_16_45_Counterexample_v1.0.1.pdf",
+  "supplement_filename": "Kourovka_16_45_Source_and_Verification_v1.0.1.zip",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, version 1.0.1, developed with extensive AI assistance. The official Kourovka Notebook records the negative solution and reports confirmation by P. J. Cameron. Journal peer review and formal verification are not claimed.",
+  "ai_disclosure": "The publication revision and verification were prepared with extensive OpenAI Codex assistance, including separate AI agents and exact Python/C++ checks. Those internal checks are distinct from the confirmation reported in the official notebook and from journal peer review.",
+  "external_status": {
+    "description": "The official Kourovka Notebook records the negative solution and reports confirmation by P. J. Cameron.",
+    "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf",
+    "printed_page": 105,
+    "doi_cited": "10.5281/zenodo.22929486",
+    "boundary": "Reported external confirmation, not evidence of journal acceptance or a reproduced human review process."
+  },
+  "source_binding": {
+    "record_id": "22929486",
+    "concept_record_id": "22929485",
+    "record_url": "https://zenodo.org/records/22929486",
+    "doi": "10.5281/zenodo.22929486",
+    "zenodo_version": "1.0.1",
+    "manuscript_version": "1.0.1",
+    "manuscript_date": "23 September 2026",
+    "publication_date": "2026-09-23",
+    "archive_version_label": "1.0.1",
+    "version_source": "Zenodo metadata and the printed manuscript agree on edition and date.",
+    "source_retrieved_utc": "2026-10-25T01:02:56.802292+00:00",
+    "pdf_sha256": "6225ed0ba605c1014c0e5e4954d97011f33eb8fa4c2b6243e4d071d5d82122df",
+    "supplement_sha256": "16495c3c54db97c6cbba4a1688a876e400902f90cfd3034debff7187316aaf11",
+    "files": [
+      {
+        "name": "Kourovka_16_45_Source_and_Verification_v1.0.1.zip",
+        "url": "https://zenodo.org/api/records/22929486/files/Kourovka_16_45_Source_and_Verification_v1.0.1.zip/content",
+        "bytes": 384549,
+        "sha256": "16495c3c54db97c6cbba4a1688a876e400902f90cfd3034debff7187316aaf11",
+        "zenodo_checksum": "md5:6b702c77851f48845cc6d512bfa753e2"
+      },
+      {
+        "name": "Kourovka_16_45_Counterexample_v1.0.1.pdf",
+        "url": "https://zenodo.org/api/records/22929486/files/Kourovka_16_45_Counterexample_v1.0.1.pdf/content",
+        "bytes": 97496,
+        "sha256": "6225ed0ba605c1014c0e5e4954d97011f33eb8fa4c2b6243e4d071d5d82122df",
+        "zenodo_checksum": "md5:586d2d9aab4aa009e14535a15164b56f"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "Kourovka_16_45_Counterexample_v1.0.1.pdf",
+        "pages": 9,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "Complete original Python finite-certificate source read. No dedicated archived audit or sibling mathematical findings consulted. The manuscript contains historical internal-review claims; those were not used as validation. Current official problem status was checked independently as primary literature.",
+    "abstract_source": "Complete original page 1 abstract, cross-checked against TeX and visually rendered PDF. Only whitespace and mathematical typography normalized; status/AI prose is separate.",
+    "archive_pdf_identity": "The only internal PDF, kourovka_16_45/proof.pdf, is byte-identical to the separately published nine-page paper. No additional supplement PDF or nested archive.",
+    "review_boundary": "Independent publication-scope and bounded primary-literature review; not a mathematical gate, exhaustive novelty certification or journal peer review.",
+    "external_status_source": {
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf",
+      "pdf_sha256": "f133b4547caae29822fb65455b2115c4af075aa168983996a2aac1c2b21bc118",
+      "retrieved_utc": "2026-10-25T01:04:34.262989+00:00",
+      "pdf_page": 105,
+      "printed_page": 105,
+      "boundary": "Current official notebook status, distinct from the unchanged historical preprint and from journal peer review."
+    }
+  }
+}

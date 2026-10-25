@@ -1,0 +1,120 @@
+{
+  "title": "A two-dimensional complex with embedding-dimension gap two",
+  "slug": "two-dimensional-complex-embedding-dimension-gap-two",
+  "description": "A finite two-dimensional simplicial complex that embeds piecewise linearly in R³ but needs R⁵ when every original triangle must remain flat.",
+  "abstract": "We prove that a finite two-dimensional simplicial complex can have minimum piecewise-linear embedding dimension three and minimum original-simplex linear embedding dimension five. This answers affirmatively the minimum-dimension question posed by Brehm in 2006, already in dimension two. The construction makes the random affine obstruction used by Newman uniform under small facet deletions, then removes triangles sharing an edge. The resulting linear hypergraph admits a PL embedding in three dimensions. We include an elementary embedding of its first barycentric subdivision and a finite parameter choice with exact arithmetic checks. The existence proof does not generate an explicit facet list.",
+  "plain_language": [
+    "A finite simplicial complex is built by joining vertices, edges and triangles along specified faces. There are two different embedding rules: keep each original triangle flat, or first divide the triangles into smaller pieces and place those pieces consistently. The second rule is called a piecewise-linear embedding.",
+    "This paper proves the existence of a two-dimensional complex whose minimum ambient dimension drops from five to three when subdivision is allowed. Four dimensions do not suffice under the original-triangle rule, while the first barycentric subdivision already embeds in three dimensions.",
+    "The construction starts with a random family of triangles whose crossings cannot all be avoided in four dimensions. It strengthens that obstruction so it survives every small deletion. Triangles sharing an edge can then be removed, leaving a family that can be embedded piecewise linearly in three dimensions.",
+    "This is an existence proof with finite numerical parameters, not a displayed small model. The argument uses an enormous number of possible vertices and does not produce a list of the final triangles. Its exact calculations check the probability bounds rather than enumerate the complex."
+  ],
+  "result": [
+    "There exists a finite two-dimensional simplicial complex K with minimum piecewise-linear embedding dimension e_PL(K) = 3 and minimum original-simplex affine embedding dimension e_lin(K) = 5.",
+    "The first barycentric subdivision of K admits a linear embedding in R³. Its new vertices are freely assigned positions in space; they need not be arithmetic barycenters of the images of original vertices.",
+    "The construction gives a family of triangles in which distinct triangles share at most one vertex. The generated complex has a nonplanar one-skeleton, forcing the lower bound e_PL(K) ≥ 3.",
+    "A random affine obstruction uniform over all small facet deletions rules out every original-simplex linear embedding in R⁴, including nongeneric placements. A general-position placement in R⁵ gives the matching upper bound.",
+    "The finite existence calculation uses n = 2²⁵⁶ vertex labels, triangle-selection probability p = 2⁻³⁸⁴ and deletion allowance m = 2³²⁰. It establishes a positive-probability outcome without generating its facet list."
+  ],
+  "limitations": [
+    "The complex is general and need not be a surface or manifold. The result does not answer a version restricted to manifolds or to a prescribed topology.",
+    "The proof supplies no explicit list of facets, practical small example, efficient construction algorithm or minimal vertex count. Exact finite parameters do not make the enormous witness explicitly enumerated.",
+    "Original-simplex linear embedding fixes the original triangulation and is affine on each of its simplices. Piecewise-linear embedding permits subdivision. These different rules are essential to the dimension gap.",
+    "The result is the exact gap two for one existence construction. It does not establish arbitrarily large gaps, a classification of embedding dimensions or a new threshold theorem in odd ambient dimensions.",
+    "Brehm–Sarkaria already separated the two embedding notions in fixed ambient dimensions, Newman supplied the random affine-obstruction method, and Lee–Nevo proved the relevant PL hypergraph embeddability mechanism. The added claim is a deletion-resistant obstruction combined with cleanup and exact minimum dimensions.",
+    "The finite arithmetic and geometric tests supplement the universal probabilistic and embedding arguments. They are not a proof by exhaustive testing, a formal proof certificate or completed human peer review. The bounded source comparison does not certify exclusive historical first priority."
+  ],
+  "background": [
+    {
+      "title": "Brehm, Linear versus piecewise linear embeddability of simplicial complexes, Oberwolfach Report 12/2006",
+      "url": "https://ems.press/content/serial-article-files/46044",
+      "note": "Printed pages 701–702 distinguish the established fixed-ambient separation from the open question whether the two minimum embedding dimensions can differ by more than one."
+    },
+    {
+      "title": "Brehm and Sarkaria, Linear vs. piecewise-linear embeddability of simplicial complexes",
+      "url": "https://archive.mpim-bonn.mpg.de/id/eprint/1946/1/preprint_1992_52.pdf",
+      "note": "Theorem A gives fixed-ambient separation even after any prescribed number of derived subdivisions; Theorem B gives a manifold-with-boundary separation. Neither statement itself supplies the minimum-dimension pair (3,5)."
+    },
+    {
+      "title": "Newman, Linear embeddings of random complexes",
+      "url": "https://arxiv.org/abs/2212.09576v3",
+      "note": "The even-dimensional proof combines balanced Radon partitions, order types and a probability bound. The present argument adds uniformity over deletion sets; it does not rely on the withdrawn odd-dimensional claim in an earlier version."
+    },
+    {
+      "title": "Lee and Nevo, On colorings of hypergraphs embeddable in Rᵈ",
+      "url": "https://arxiv.org/abs/2307.14195v3",
+      "note": "Lemma 3.1 establishes the relevant PL embedding mechanism for linear uniform hypergraphs. That lemma was already present in the July 2023 first version, before the 2026 journal publication."
+    },
+    {
+      "title": "Goodman and Pollack, Upper bounds for configurations and polytopes in Rᵈ",
+      "url": "https://doi.org/10.1007/BF02187696",
+      "note": "Theorem 1 bounds labeled simple order types by n^{d(d+1)n}, giving n^{20n} in dimension four. This turns a continuum of vertex placements into a finite union bound."
+    },
+    {
+      "title": "Frieze and Karoński, Introduction to Random Graphs",
+      "url": "https://www.math.cmu.edu/~af1p/BOOK.pdf",
+      "note": "Section 34.6, Theorem 34.13 gives the Janson lower-tail bound. The dependence sum counts pairs sharing an entire selected triangle, with the diagonal contribution included."
+    }
+  ],
+  "why_it_works": [
+    "Every seven generic points in R⁴ contain two disjoint triples with intersecting convex hulls. This supplies many potential crossing pairs in every placement, whose pattern is determined by the labeled order type.",
+    "Select triangles independently. A Janson inequality bounds the chance that no crossing pair survives, and a union bound covers both all order types and every deletion set of the allowed size. That second quantifier permits cleanup after the random sample is observed.",
+    "There are few selected triangle pairs sharing an edge. Deleting one triangle from each such pair leaves a family whose facets meet only at vertices, while preserving the obstruction to a linear embedding in R⁴.",
+    "A straight embedding of the incidence graph in R³ can be thickened into small six-triangle fans representing the first barycentric subdivision. Finite distance and angle bounds keep different fans disjoint except at their prescribed common vertices.",
+    "Enough triangles survive that the one-skeleton is nonplanar, so the piecewise-linear minimum is exactly three. General position in R⁵ gives the original-simplex upper bound, making that minimum exactly five."
+  ],
+  "collaboration": "I welcome substantive collaboration on independent verification of the deletion-resistant probability argument and the first-subdivision embedding, the relationship to earlier embedding constructions, and preparation for journal review. Expertise in geometric topology, discrete geometry or random complexes would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is proposed. Smaller explicit witnesses, manifold restrictions and larger gaps are natural directions, but the present review provides neither a concrete new construction nor enough evidence to justify a focused conjecture at the requested high bar.",
+  "publication_date": "2026-10-01",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23088066",
+  "author": "Alec Kriebel",
+  "pdf_filename": "paper.pdf",
+  "supplement_filename": "source-and-verification.zip",
+  "additional_assets": [],
+  "status": "Unrefereed research note, version 1.0, developed with extensive AI assistance. No completed human peer review or formally machine-verified proof is claimed.",
+  "ai_disclosure": "AI tools were used extensively in problem solving, proof checking, literature review and preparation. Internal AI adversarial reviews and exact computations supplement the argument; they are not external human peer review or formal verification.",
+  "source_binding": {
+    "record_id": "23088066",
+    "concept_record_id": "23088065",
+    "record_url": "https://zenodo.org/records/23088066",
+    "doi": "10.5281/zenodo.23088066",
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "manuscript_date": "1 October 2026",
+    "publication_date": "2026-10-01",
+    "archive_version_label": "1.0",
+    "version_source": "Zenodo metadata and the printed manuscript agree on edition and date.",
+    "source_retrieved_utc": "2026-10-25T01:03:24.791557+00:00",
+    "pdf_sha256": "5325fceeed4352f74b531a033e8474ca1fabeeff0a6b6ecb54337e17dadb4dd6",
+    "supplement_sha256": "b1e4a1c22fc3eec24c9d8f479b48110ddf6d72052181995037de64b99d46791f",
+    "files": [
+      {
+        "name": "source-and-verification.zip",
+        "url": "https://zenodo.org/api/records/23088066/files/source-and-verification.zip/content",
+        "bytes": 120059,
+        "sha256": "b1e4a1c22fc3eec24c9d8f479b48110ddf6d72052181995037de64b99d46791f",
+        "zenodo_checksum": "md5:75974a29fc91c3fdb26339c62b593854"
+      },
+      {
+        "name": "paper.pdf",
+        "url": "https://zenodo.org/api/records/23088066/files/paper.pdf/content",
+        "bytes": 75140,
+        "sha256": "5325fceeed4352f74b531a033e8474ca1fabeeff0a6b6ecb54337e17dadb4dd6",
+        "zenodo_checksum": "md5:b3a7b4fb152cf7be9dba0637202246d5"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "paper.pdf",
+        "pages": 5,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "Complete first-subdivision supplement, probability derivation and original exact-bound code read. The probability derivation is historical audit prose as well as mathematical support, and exposed a PASS assessment before the scope conclusion. This is explicitly disclosed and not used as validation; no current sibling mathematical findings consulted.",
+    "abstract_source": "Complete original page 1 abstract, cross-checked against TeX and visually rendered PDF. Only whitespace and mathematical typography normalized; status/AI prose is separate.",
+    "archive_pdf_identity": "The source ZIP contains no PDF or nested archive. The separately published five-page paper is the complete reader manuscript.",
+    "review_boundary": "Publication-scope and bounded primary-literature review with disclosed historical audit-opinion exposure; not a mathematical gate, exhaustive novelty certification or human peer review."
+  }
+}

@@ -1,0 +1,116 @@
+===== PAGE 1 =====
+K2P Displayed-Tree Clariﬁcation
+Exact edge placement and four-switching derivation
+Alec Kriebel me@aleckriebel.com ORCID: 0009-0001-9320-500X August 2026
+This note removes a compressed wording ambiguity in the exact Q(
+√
+71) tree–theta-trinet witness. It changes no vector,
+matrix entry, factorization, or conclusion. The rooted network has arcs
+ρ → 1, ρ → u, u → p, u → q, p → r2, p → r3, q → r2, q → r3, r 2 → 2, r 3 → 3,
+and both inheritance probabilities are 1/ 2.
+Unambiguous edge placement.
+arc Fourier vector arc Fourier vector
+ρ → 1 K ρ → u K
+u → p U u → q V
+p → r2 S p → r3 S
+q → r2 T q → r3 T
+r2 → 2 K r3 → 3 K
+Thus both arcs out of p carry S, and both arcs out of q carry T .
+Let (x, y, z ) be the Fourier labels on leaves 1, 2, 3. Consistency gives x + y + z = A, hence x = y + z. Every displayed tree
+has the following four common K-edge factors.
+edge labelled descendants Fourier factor
+ρ → 1 {1} Kx
+ρ → u {2, 3} Ky+z = Kx
+r2 → 2 {2} Ky
+r3 → 3 {3} Kz
+Their common product is
+KxKy+zKyKz = K 2
+xKyKz.
+F our switchings. Deleting one incoming edge at each reticulation gives:
+parent
+at r2
+parent
+at r3 desc(u → p) desc( u → q) core monomial
+p p {2, 3} ∅ SySzUy+z
+p q {2} {3} SyTzUyVz
+q p {3} {2} TySzUzVy
+q q ∅ {2, 3} TyTzVy+z
+If an edge has no labelled descendant, its Fourier label is A, so its factor is UA = 1 or VA = 1 . Equivalently, that dangling
+branch disappears when the displayed tree is pruned to the labelled leaves. Any resulting degree-two vertex may then be
+suppressed: composing its two incident K2P or K3P transition matrices multiplies their Fourier eigenvalues coordinatewise
+and leaves the displayed-tree monomial unchanged. Each row has inheritance weight 1/ 4, so after extracting the four common
+K-edge factors,
+My,z = 1
+4 (SySzUy+z + SyTzUyVz + TySzUzVy + TyTzVy+z) .
+1
+
+===== PAGE 2 =====
+Exact compact witness. In order (A, C, G, T ), use
+K = (1, 1
+2 , 1
+2 , 1
+2 ), U = (1, 4
+5 , 19
+30 , 4
+5 ), V = (1, 7
+240 , 239
+360 , 7
+240 ),
+S = (1, 1
+4 , 1
+2 , 1
+4 ), T = (1, 1
+3 , 1
+27 , 1
+3 ).
+Every transition entry is positive. Direct substitution into the graph-derived formula gives
+M =
+
+
+1 151/ 1440 3317 / 19440 151 / 1440
+151/ 1440 71 / 1600 4681 / 172800 7597 / 259200
+3317/ 19440 4681 / 172800 961 / 14400 4681 / 172800
+151/ 1440 7597 / 259200 4681 / 172800 71 / 1600
+
+ .
+In particular,
+MA,C = 151
+1440 , M C,C = 71
+1600 .
+Writing η =
+√
+71 and
+P = (1, 151
+36η , 107
+162 , 151
+36η ), R = (1, η
+40 , 31
+120 , η
+40 ),
+exact arithmetic gives My,z = Py+zRyRz for all y, z . The comparison-tree vectors are
+α = K ⊙2 ⊙ P = (1, 151η
+10224 , 107
+648 , 151η
+10224 ), β = γ = K ⊙ R = (1, η
+80 , 31
+240 , η
+80 ).
+Hence for every consistent (x, y, z ),
+qNθ
+xyz = K 2
+xKyKzMy,z = αxβyγz = qT⋆
+xyz .
+All 64 Fourier coordinates and all 64 pattern probabilities agree exactly, the source invariant Q vanishes, and the exact
+minimum pattern probability is
+1188799
+79626240 > 0.
+Independent checks. The veriﬁer literally deletes the unselected incoming reticulation edges, reconstructs each retained
+graph, computes every edge label from its labelled descendants, and recovers the four monomials above. Independently of
+that Fourier factorization, it performs ordinary-state Markov pruning with the exact 4 × 4 K2P transition matrices on each
+of the four displayed rooted trees, averages their distributions, and compares with both the comparison tree and Fourier
+inversion. All 64 probabilities agree exactly. As a source-convention check, the same descendant-label rule reproduces all
+ﬁve explicit 3-sunlet Fourier coordinates displayed in Lemma 4.1 of arXiv:2607.12919v2; that level-one result is retained in
+Version 3.
+The calculation is replayed with Python 3.10 or newer and the standard library:
+python3 verify_k2p_displayed_trees.py .
+2

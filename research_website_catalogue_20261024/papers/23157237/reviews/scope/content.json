@@ -1,0 +1,124 @@
+{
+  "title": "Consistent spectral recovery of smooth reversible diffusion tensors at a fixed lag",
+  "slug": "spectral-recovery-reversible-diffusion-tensors",
+  "description": "A consistency theorem recovers a smooth anisotropic diffusion tensor from stationary observations at one fixed lag using all positive empirical spectral modes.",
+  "abstract": "We give an almost surely consistent spectral-equation estimator for a general smooth symmetric diffusion tensor and an unknown smooth invariant density on a known bounded connected smooth domain. Observations are stationary exact positions at one known fixed positive lag; reflection is conormal, and fixed ellipticity and density bounds are known. A symmetric finite-rank estimate of the stationary pair kernel supplies all its positive empirical eigenpairs. Transition-eigenvalue fourth powers and vanishing ridge regularization give a basis-invariant fit. We prove full spectral-jet excitation and construct the required derivative-consistent kernels from the dependent data. The tensor and its separately fitted divergence converge locally uniformly; an ellipticity-clipped tensor converges globally in L². This provides a convergence analysis for the spectral reconstruction question posed by Reiß in OWR24/2017, in the explicit smooth model stated here. No rate or numerical implementation is claimed. Spectral fitting and eigenvalue-power weighting have established predecessors.",
+  "plain_language": [
+    "Suppose a particle moves randomly inside a known smooth region, with its direction and speed of spreading depending on location. You see its exact position at regular time intervals, but never the path between observations. The paper studies how to recover the matrix that governs this spatially varying, direction-dependent motion.",
+    "The method estimates the transition pattern between successive observations and uses all of its positive spectral modes to fit the unknown coefficients. It proves that the fitted tensor approaches the true one as the observation record grows, under smoothness, reversibility, reflection and known positive-bound assumptions.",
+    "Reversible dynamics were already known to be identifiable from one fixed observation lag. The contribution here is a convergence proof for a particular spectral reconstruction method, including repeated eigenvalues and dependence between consecutive observations.",
+    "The result gives eventual consistency rather than a usable sample-size guarantee. It does not provide a numerical implementation, an error rate, or a theorem for noisy positions, an unknown boundary or arbitrary nonreversible motion."
+  ],
+  "result": [
+    "Let D be a known bounded connected C∞ domain in Rᵈ, d ≥ 2. The unknown symmetric tensor S and invariant density μ are smooth up to the boundary, with known positive ellipticity and density bounds. The reversible generator is L = μ⁻¹ div(S∇), with conormal reflection n·S∇u = 0.",
+    "From stationary exact positions observed at one known fixed lag Δ > 0, the estimator uses a symmetric finite-rank stationary pair-kernel estimate, a density estimate and every positive empirical eigenpair. Fourth powers of the transition eigenvalues weight a ridge-regularized spectral-equation fit.",
+    "Almost surely, on every compact subset of the interior, the tensor estimate converges uniformly to S and a separately fitted vector converges uniformly to div(S). The density estimate converges in C² on the closure; after clipping eigenvalues to the known ellipticity interval, the tensor converges globally in L²(D).",
+    "The physical interior covariance is Σ = 2S/μ and drift is β = div(S)/μ, so their fitted versions converge locally uniformly as well. The fitted divergence is a separate estimate, not a claim about differentiating the estimated tensor.",
+    "The construction is basis-invariant and measurable through a finite-feature formula. Repeated eigenvalues, changing rank and eigenvalues crossing zero do not require consistent labeling of individual eigenvectors."
+  ],
+  "limitations": [
+    "The model assumes stationarity, reversibility, exact positions, a known fixed lag, a known smooth domain, smooth coefficients and known positive bounds. Nonreversible dynamics, measurement noise, unknown geometry and weaker regularity are not covered.",
+    "Reflection is conormal and depends on the tensor. Ordinary normal reflection is not an interchangeable boundary condition for anisotropic diffusion.",
+    "The raw tensor and separately fitted divergence converge locally uniformly in the interior. The global tensor conclusion is L² convergence after ellipticity clipping, not uniform boundary convergence or convergence of tensor derivatives.",
+    "No convergence rate, finite-sample guarantee, class-uniform conditioning bound, efficient numerical scheme or general-domain implementation is supplied. The all-mode estimator is a mathematical construction involving known-domain integrals.",
+    "Fixed-lag identification, spectral fitting and eigenvalue-power weighting have established predecessors. The claimed addition is consistency of this specific fit in the stated general tensor model, rather than the first multidimensional diffusion estimator.",
+    "The supplement also discusses a different estimator obtained from classical variational regularization. That argument does not prove consistency of the main spectral fit, and internal AI audits or finite controls do not constitute human peer review or formal proof certification."
+  ],
+  "background": [
+    {
+      "title": "Reiß, with Chorowski, Gobet and Hoffmann: SDE estimation from discrete observations as inverse problems",
+      "url": "https://doi.org/10.4171/OWR/2017/24",
+      "note": "The contribution on printed pages 1507–1509 asks for convergence analysis of matrix-coefficient spectral reconstruction. The present paper specifies an estimator and an explicitly smooth reversible model."
+    },
+    {
+      "title": "Hansen and Scheinkman, Back to the Future: Generating Moment Implications for Continuous-Time Markov Processes",
+      "url": "https://www.nber.org/papers/t0141",
+      "note": "Proposition 5.5 of the 1993 working paper identifies a selfadjoint generator from its fixed-lag transition operator. This reversible identification result is prior work."
+    },
+    {
+      "title": "Crommelin and Vanden-Eijnden, Reconstruction of diffusions using spectral data from timeseries",
+      "url": "https://doi.org/10.4310/CMS.2006.v4.n3.a9",
+      "note": "An established spectral-fitting approach to diffusion reconstruction, including nonparametric formulations."
+    },
+    {
+      "title": "Crommelin and Vanden-Eijnden, Diffusion estimation from multiscale data by operator eigenpairs",
+      "url": "https://ir.cwi.nl/pub/18934/18934B.pdf",
+      "note": "The inspected 2011 author manuscript includes eigenvalue-power weighting and discusses finite-expansion estimation. The publisher-final body was not assumed identical without inspection."
+    },
+    {
+      "title": "Nickl, Consistent inference for diffusions from low frequency measurements",
+      "url": "https://doi.org/10.1214/24-AOS2357",
+      "note": "Earlier multidimensional low-frequency consistency in a scalar-diffusivity setting. It prevents treating multidimensional consistency itself as new."
+    },
+    {
+      "title": "Giordano and Wang, Statistical algorithms for low-frequency diffusion data: A PDE approach",
+      "url": "https://doi.org/10.1214/25-AOS2496",
+      "note": "Develops low-frequency inference algorithms and discusses anisotropic extensions. Its setting and computational contribution differ from the present tensor-estimator theorem."
+    },
+    {
+      "title": "Alberti, Barnes, Jambhale and Nickl, On low frequency inference for diffusions without the hot spots conjecture",
+      "url": "https://arxiv.org/abs/2410.19393v2",
+      "note": "Lemma 3.8 supplies a close predecessor for spectral excitation of gradients. Here the fitted vector requires the full Hessian-and-gradient jet."
+    }
+  ],
+  "why_it_works": [
+    "A boundary-corrected symmetric kernel estimate learns the stationary pair law from dependent, overlapping observation pairs. Smoothness and reversible mixing allow the required mixed derivatives to converge almost surely.",
+    "The spectral equations are rewritten using continuous functions of the estimated transition operator. Their behavior at zero controls small eigenvalues and avoids choosing matching eigenvectors across repeated eigenvalues.",
+    "Completeness of the true eigenfunctions and elliptic regularity let compactly supported affine and quadratic test functions prescribe every needed gradient and Hessian direction. This gives full local excitation of the tensor and divergence coefficients.",
+    "The limiting local normal matrix is positive definite. Convergence of its estimated entries and a vanishing ridge then give local uniform consistency; ellipticity clipping supplies a bounded global estimate for the L² conclusion."
+  ],
+  "collaboration": "I welcome substantive collaboration on independent verification of the spectral and boundary arguments, comparison with existing diffusion estimators, and preparation for journal review. Expertise in inverse problems, diffusion statistics or elliptic spectral theory would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is proposed. Rates, noisy observations and practical discretization are meaningful directions, but this review establishes no new mechanism or sufficiently supported conjecture that meets the requested high bar.",
+  "publication_date": "2026-10-05",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23157237",
+  "author": "Alec Kriebel",
+  "pdf_filename": "spectral_tensor_consistency.pdf",
+  "supplement_filename": "spectral_tensor_verification.zip",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, Zenodo version 1.0, developed with extensive AI assistance. The manuscript is dated October 5, 2026 and does not print a version label. No completed human peer review or proof-assistant certification is claimed.",
+  "ai_disclosure": "AI tools were used extensively in deriving, checking and writing the work, including internal adversarial mathematical and priority audits. Those checks are AI-assisted verification rather than independent human peer review; finite controls supplement the analytic proof.",
+  "source_binding": {
+    "record_id": "23157237",
+    "concept_record_id": "23157236",
+    "record_url": "https://zenodo.org/records/23157237",
+    "doi": "10.5281/zenodo.23157237",
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "printed_title_page_version": null,
+    "manuscript_date": "October 5, 2026",
+    "publication_date": "2026-10-05",
+    "version_source": "Version 1.0 is supplied by Zenodo; the manuscript prints October 5, 2026 but no version label.",
+    "source_retrieved_utc": "2026-10-25T01:14:04.782445+00:00",
+    "pdf_sha256": "8ecd8528e17260fc14ff5d9b5de9006e4d3d472ba8c5a14e2c659c399dd29162",
+    "supplement_sha256": "66ac1726139e20493cb8179e0786eef45a624a64ec7dc46221740cdbf8df03e2",
+    "files": [
+      {
+        "name": "spectral_tensor_verification.zip",
+        "url": "https://zenodo.org/api/records/23157237/files/spectral_tensor_verification.zip/content",
+        "bytes": 76086,
+        "sha256": "66ac1726139e20493cb8179e0786eef45a624a64ec7dc46221740cdbf8df03e2",
+        "zenodo_checksum": "md5:df06ce114bf6522228054f56139d9528"
+      },
+      {
+        "name": "spectral_tensor_consistency.pdf",
+        "url": "https://zenodo.org/api/records/23157237/files/spectral_tensor_consistency.pdf/content",
+        "bytes": 107695,
+        "sha256": "8ecd8528e17260fc14ff5d9b5de9006e4d3d472ba8c5a14e2c659c399dd29162",
+        "zenodo_checksum": "md5:4fee799f3633d990e2a6589d39bbf11d"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "spectral_tensor_consistency.pdf",
+        "pages": 8,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "Full classical_regularization_application.md and independent_classical_derivation.md mathematical derivations read. The latter also exposed historical AI audit dispositions/final verdict; SOURCE_EDITIONS.md exposed historical priority assertions. These were not used as validation. No current sibling mathematical findings consulted.",
+    "abstract_source": "Complete original page 1 abstract, cross-checked against TeX and visually rendered PDF. Only whitespace and mathematical typography normalized; AI/status prose is separate.",
+    "archive_pdf_identity": "No PDF or nested archive inside the verification ZIP.",
+    "review_boundary": "Publication-scope and bounded primary-literature review with disclosed historical authored-support opinion exposure; not a mathematical gate, global priority certification or human peer review."
+  }
+}

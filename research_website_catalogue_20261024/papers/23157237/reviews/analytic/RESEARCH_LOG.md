@@ -1,3 +1,11 @@
 # Analytic review — 23157237
 
 - 2026-10-25T01:14:23.601954+00:00 — 3%: Starting from queue-bound local published PDF after verifying exact MD5, SHA256 and size. Fresh primary acquisition delegated to scope agent; shared sources remain untouched. No historical or sibling opinions read.
+
+## 2026-10-25T01:18:01.359670+00:00 — 78%
+Full 8-page manuscript and TeX reconstructed; all mathematical supplemental text read; Grubb conormal graph regularity/Sobolev embedding, Hansen–Scheinkman p26 visually, Alberti Lemma3.8, Lenzen–Scherzer Section3/Theorem3.2, Hansen KDE Assumptions1–3/Theorem3, and Reiss OWR pp1507–1509 checked in fresh primary sources. Fresh exact reviewer controls pass 60 assertions. First control invocation lacked SymPy in bundled runtime; rerun with existing project venv Python3.9.6/SymPy1.14.0 passed unchanged. All eight supplied control implementations inspected; replay is running. No substantive defect found.
+
+Independence qualification: main proof was reconstructed before reading supplemental bodies. Required classical_regularization_application.md and independent_classical_derivation.md contain historical audit dispositions embedded in their mathematical derivations; they became visible on full reading before the final verdict. SOURCE_EDITIONS.md and README.md additionally disclose earlier acceptance/status text. The last standalone Verdict subsection was read only after the current main and supplementary analytic reconstruction was complete. No current sibling reports were read or exchanged. This is not a wholly blind review. These old statements are not evidence for the current verdict.
+
+## 2026-10-25T01:19:32.374075+00:00 — 100%
+Completed analytic review: PASS within the exact stated model, with not-wholly-blind qualification. All 60 fresh exact checks and all eight published suites passed. Source rebuild succeeded with exactly equal extracted layout text to the actual eight-page PDF. Fresh metadata/PDF/ZIP and all reviewed source hashes were rebound and rechecked unchanged. Full report/verdict record every proof interface, supplementary route, boundary and remaining scope limitation. No repair, sibling verdict access, external outreach, source modification, Git, sheet or publication action.

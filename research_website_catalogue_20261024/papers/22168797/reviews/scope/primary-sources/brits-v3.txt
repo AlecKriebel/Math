@@ -1,0 +1,1857 @@
+                                              ON TREE-NETWORK DISTINGUISHABILITY AND FULL IDENTIFIABILITY OF
+                                                                PHYLOGENETIC NETWORKS
+
+
+                                                             JARI BRITS1 , NIELS HOLTGREFE1 , LEO VAN IERSEL1 , AND SAMUEL MARTIN2
+
+
+
+
+                                                    Abstract. Phylogenetic networks generalize phylogenetic trees to evolutionary histories that include retic-
+
+
+
+
+arXiv:2607.12919v3 [q-bio.PE] 25 Aug 2026
+                                                    ulate events such as recombination, horizontal gene transfer, and hybridization. Under a Markov model of
+                                                    nucleotide substitution, a phylogenetic network determines a distribution of leaf-patterns. Here, we study
+                                                    the identifiability of the network topology from this distribution under the Jukes-Cantor (JC), Kimura 2-
+                                                    parameter (K2P), and Kimura 3-parameter (K3P) models. Our first result is that the semi-directed network
+                                                    parameter of a level-1 phylogenetic network (modulo redirecting triangles) is fully identifiable under all three
+                                                    models, on a biologically reasonable parameter space in which substitution rates are probabilistic and mixing
+                                                    parameters are non-trivial (i.e., not 0 or 1). In contrast to the generic identifiability established in prior
+                                                    work, this holds at every point of the parameter space, not merely off of a measure-zero subset. Our second
+                                                    result distinguishes phylogenetic networks from phylogenetic trees, on the same parameter space, under JC.
+                                                    We prove that no phylogenetic network and phylogenetic tree can induce the same leaf-pattern distribution
+                                                    unless the network is a tree, possibly augmented with certain substructures called 2-blobs. This means
+                                                    the presence of reticulate evolution creates, in most cases, a detectable signature in the leaf-pattern distri-
+                                                    bution. More broadly, these results have consequences for identifiability beyond the models and network
+                                                    classes studied here, including for several coalescent-based models.
+
+                                                                                                1. Introduction
+                                               In evolutionary biology, phylogenetic trees are trees (i.e., connected graphs with no cycles) that describe
+                                            the evolution of a set of species or other taxa. However, trees are unable to capture reticulate evolution
+                                            events such as recombination, horizontal gene transfer, and hybridization, which are now known to have
+                                            occurred across the tree of life. Phylogenetic networks are graphs that generalize phylogenetic trees, and are
+                                            able to describe these reticulate events.
+                                               We place a statistical model of nucleotide evolution on a phylogenetic network in the form of a Markov
+                                            model. These models allow us to formulate the probabilities of observing patterns of nucleotides at the species
+                                            represented by the leaves in the phylogenetic network, which we call leaf-patterns (also called site-patterns),
+                                            and which we observe in real life through DNA sequencing and subsequent sequence alignment. By viewing
+                                            the set of all leaf-patterns as the image of a polynomial map from the parameter space to the appropriate
+                                            probability simplex (called the parameterization map), and then allowing all parameters to vary freely over
+                                            C, we can view the observable part of our model as an algebraic variety. This is the fundamental observation
+                                            of algebraic statistics. Here, we restrict the parameter space to a semi-algebraic set that corresponds to
+                                            biologically reasonable parameters, and study the image of this set under the parameterization map.
+                                               Understanding which parts of a model are identifiable from data is essential if the model is to be used for
+                                            statistical inference. We focus on identifying the phylogenetic network topology (i.e., the underlying graph
+                                            without edge lengths) from the leaf-pattern distribution of the model. Generic identifiability of phyloge-
+                                            netic networks has been well studied for the Jukes-Cantor (JC) model [28], the Kimura 2-parameter (K2P)
+                                            model [29], and the Kimura 3-parameter (K3P) model [30] on a class of phylogenetic networks called level-1
+                                            [20, 21, 23], and has been extended in some cases to the larger class of arbitrary group-based models through
+                                            dimension arguments [10, 19]. Recently, generic identifiability results on level-2 phylogenetic networks have
+                                            been obtained for the JC model [14]. Generic identifiability of a class of phylogenetic networks tells us that,
+                                            within that class, the phylogenetic network topology is identifiable except on a subset of Lebesgue measure
+                                              1 Delft Institute of Applied Mathematics, Delft University of Technology, Delft, The Netherlands
+                                              2 European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Genome
+
+                                            Campus, Cambridgeshire, UK
+                                               E-mail addresses: j.brits@student.tudelft.nl, n.a.l.holtgrefe@tudelft.nl, l.j.j.vaniersel@tudelft.nl,
+                                            samuel.martin@ebi.ac.uk.
+                                               Date: August 26, 2026.
+                                                                                                           1
+2                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+zero. In algebraic-geometric terms, this is equivalent to the intersection of the varieties corresponding to any
+two different phylogenetic networks in the class (under the same substitution model) having strictly smaller
+dimension than that of either model.
+   For methods such as [8, 11, 31, 32] that attempt to infer a phylogenetic network from aligned DNA
+sequence data through analysis of the distribution of leaf-patterns, it is important to know exactly if and
+where the corresponding varieties intersect. If, for a class of models, the varieties do not intersect at all on
+some region of interest, we say that the model is fully identifiable on this region. We use the adjective fully
+to emphasize the distinction between this and generic identifiability. Here, we extend the full identifiability
+results of [14] by giving further full identifiability results for the JC and K2P models, and extending these
+results to the K3P model.
+   In Section 4 we give a series of full identifiability results for small level-1 phylogenetic networks, which we
+then use to give a full identifiability result for all level-1 phylogenetic networks on a set of biologically rea-
+sonable parameters (defined in Section 2). We find that on this set, two level-1 phylogenetic network models
+with n leaves intersect exactly on the models of their maximal shared displayed networks (Corollary 4.10).
+   In Section 5, we consider tree-network distinguishability. Roughly speaking, this means we aim to dis-
+tinguish trees from networks, based on leaf-pattern distributions. We show that we can do that, under JC,
+unless the network is a tree augmented with 2-blobs, which are reticulated components of the network with
+only two incident edges (see Figure 1 for an example and Section 2.1 for a formal definition). We start by
+giving identifiability results for small level-k phylogenetic networks with 3 leaves (called trinets) for arbitrary
+k ∈ N. In particular, we show that under JC, the three-leaf star tree is distinguishable from every trinet
+with at least one reticulation and no 2-blob, positively answering Conjecture 2.16 in [14]. We then generalize
+these results to networks with more leaves, showing that reticulate evolution is almost always statistically
+visible (Corollary 5.7) in the sense that no phylogenetic tree can induce the same leaf-pattern distribution
+as a phylogenetic network, unless the network is a tree possibly augmented with 2-blobs.
+
+
+
+                            T                                  N1                                 N2
+
+
+
+
+         1    2    3    4         5         1    2    3    4         5         1    2    3    4         5
+
+        Figure 1. Three rooted phylogenetic networks T , N1 , and N2 on the set of taxa X =
+        {1, 2, 3, 4, 5}. T is also a rooted phylogenetic tree, whereas N1 and N2 are not. N1 can
+        be obtained from T by augmenting it with a 2-blob (in bold). N2 cannot be obtained by
+        augmenting a rooted phylogenetic tree with 2-blobs (since it contains a 3-blob). Hence, by
+        Corollary 5.7 we can distinguish T and N1 from N2 , but not T from N1 .
+
+   In Section 6, we discuss some consequences of our results under different evolutionary models. Coalescent-
+based models describe how gene trees arise within a phylogenetic network through the multispecies coalescent,
+thereby accounting for incomplete lineage sorting (ILS); see [1, 2] and references therein. The substitution
+models we consider here do not incorporate ILS. A reticulation is instead treated as a mixture over its
+parent edges, so that the leaf-pattern distribution of the network is a convex combination of the leaf-pattern
+distributions of its displayed trees. Nevertheless, some of our combinatorial results imply similar results for
+models with ILS based on [1].
+
+                                                2. Preliminaries
+  In this section, we lay out the background needed for the main results. We review phylogenetic networks
+and Markov models of evolution (in particular, group-based models).
+                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                       3
+
+
+2.1. Phylogenetic Networks. Our first definitions concern phylogenetic networks. These are graphs that
+generalize phylogenetic trees by allowing edges that describe reticulate events such as recombination, hy-
+bridization, and gene transfer.
+
+Definition 2.1. A binary rooted phylogenetic network N on a set of taxa X is a directed acyclic graph with
+no parallel edges that satisfies the following.
+      • There is a distinguished vertex called the root that has indegree 0 and outdegree 2.
+      • All vertices of outdegree 0 have indegree 1. These vertices are called leaves and are in one-to-one
+        correspondence with the elements of X .
+      • All other vertices have either indegree 1 and outdegree 2 (called tree vertices), or indegree 2 and
+        outdegree 1 (called reticulation vertices). The incoming edges of a reticulation vertex are called
+        reticulation edges.
+      • The root is the only vertex that is on all directed paths from the root to a leaf.
+
+   In applications, the set X is a set of taxa (e.g., species, sub-species, populations) that label the leaves.
+Here, we will frequently use the set [n] = {1, . . . , n} to label the leaves of N . We identify each leaf with its
+label. The internal vertices of N represent ancestral taxa to the taxa at the leaves. Thus N represents a
+possible evolutionary history of the taxa in X , and is therefore an explicit phylogenetic network (see e.g. [27]).
+The motivation for the last condition in Definition 2.1 is that the evolutionary history before the last stable
+ancestor (the lowest vertex that is on all root-leaf paths) is generally not expected to be recoverable from
+leaf-data. Note that a binary rooted phylogenetic tree is a binary phylogenetic network with no reticulation
+vertices.
+   A split of X is a partition of X into two subsets, typically written A | B, where A, B ⊊ X and A ⊔ B = X .
+A cut edge is an edge whose removal disconnects the graph. A split A | B is said to be displayed on a
+phylogenetic tree or network if there exists a cut edge e that splits A and B; that is, the edge e lies on every
+path between any element of A and any element of B. A split A | B is said to be trivial if either A or B
+consists of a single leaf. For a given set of taxa X , all trivial splits are displayed on all phylogenetic trees
+and networks on X .
+   The class of all phylogenetic networks is exceedingly large, so analyses are often restricted to certain
+classes of phylogenetic networks. A phylogenetic network is level -k if each connected subgraph without cut
+edges has at most k reticulation vertices, see Figure 2(a). In Section 4, we will restrict our analysis to
+level-1 phylogenetic networks. In Section 5, we will consider level-k phylogenetic networks for arbitrarily
+large k ∈ N. A phylogenetic network is strictly level-k if the maximum number of reticulation vertices in a
+connected subgraph without cut edges is equal to k.
+   For the evolutionary models we will consider here, it is only possible to identify, at most, the semi-
+directed phylogenetic network from the leaf-pattern distribution of the network. This is a mixed graph (i.e.
+a graph that may contain both undirected and directed edges, but no parallel edges) that is obtained from
+a phylogenetic network N by undirecting all edges except the reticulation edges, suppressing the root and
+exhaustively suppressing any resulting parallel edges and degree two vertices. We call N a rooting of the
+semi-directed phylogenetic network. Rootings of a semi-directed phylogenetic network are limited; the root
+cannot be placed on any edge of a semi-directed network, since the reticulation edges must be directed away
+from the root. Note that two distinct phylogenetic networks may have the same semi-directed network.
+Indeed, it is well known for the substitution models we study here that the leaf-pattern distribution of all
+rootings of a fixed semi-directed network is the same. Therefore, the best we can hope to identify from a
+leaf-pattern distribution is a semi-directed phylogenetic network. In the case that a phylogenetic network
+is a phylogenetic tree, then the corresponding semi-directed network is the corresponding unrooted tree.
+Semi-directed networks with 3 or 4 leaves are called trinets and quarnets, respectively. The notion of level
+naturally extends to semi-directed phylogenetic networks. See Figure 2(b) for an example. A semi-directed
+level-0 phylogenetic network is also called an unrooted binary phylogenetic tree.
+   It is helpful to consider the semi-directed phylogenetic networks that have no non-trivial cut edges, where
+a cut edge is trivial if it induces a trivial split. These form the building blocks for larger networks, and for
+level-1 they are 3-star trees and sunlets. Here, an n-sunlet is a semi-directed phylogenetic network consisting
+of a single (undirected) cycle of n vertices, and one leaf adjacent to each vertex in the cycle. Exactly one
+of the cycle vertices is a reticulation vertex, and the corresponding reticulation edges are the incident edges
+4                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+                                                                                 1
+
+
+
+
+                                                                                                    4
+                                                                      2
+
+
+                        1         2          3          4                              3
+                                       (a)                                           (b)
+
+         Figure 2. (a) A 4-leaf, level-2 binary rooted phylogenetic network on the set of taxa
+         X = {1, 2, 3, 4}. Reticulation edges are drawn as dashed lines. (b) The corresponding semi-
+         directed phylogenetic network. In this case, this consists of a single 4-blob (containing all
+         internal vertices, highlighted in bold) and leaves adjacent to the blob.
+
+
+that form part of the cycle. See N2 of Figure 3 for an example of a 4-sunlet. For level-2 (and higher), the
+picture is more complex (see e.g. [14]).
+    A blob of a (semi-directed) phylogenetic network N is a maximal connected subgraph of N without any cut
+edges, see Figures 1 and 2. A blob is called an m-blob for m ∈ N when there are exactly m edges incident to
+the blob but not in the blob. A blob is non-trivial if it contains at least 2 vertices. For level-1 (semi-directed)
+phylogenetic networks, the only non-trivial blobs are subgraphs consisting of a single cycle. For example,
+an n-sunlet consists of a single n-blob with one leaf adjacent to each vertex in the blob. A triangle is an
+undirected cycle of three vertices and three edges. The tree-of-blobs of a semi-directed phylogenetic network
+is the tree obtained by contracting each blob to a single vertex and then suppressing degree-2 vertices. Note
+that the tree-of-blobs is an unrooted (not necessarily binary) phylogenetic tree.
+    An up-down path between two vertices i and j in a semi-directed phylogenetic network is a path in which,
+for some ℓ ∈ N, the first ℓ edges are directed towards i or undirected, and the remaining edges are directed
+towards j or undirected. Similarly, a semi-directed path from i to j in a semi-directed phylogenetic network
+is a path in which all edges are directed towards j or undirected. Throughout this work, one of the main
+tools we will use is restriction. This enables us to answer questions about a phylogenetic network by looking
+at smaller networks.
+Definition 2.2. Let N be a semi-directed phylogenetic network on a leaf set X , and let Y ⊂ X . The
+restricted network N |Y of N (also called the subnetwork of N induced by Y) is the semi-directed phylogenetic
+network on the leaf set Y obtained from N by taking all up-down paths on N between all pairs of leaves in
+Y and exhaustively suppressing any degree two vertices and identifying parallel edges.
+   It is clear that the level of N |Y is less than or equal to the level of N . Thus, in some cases the restricted
+network N |Y may be a phylogenetic tree. Note that here, unlike [14, Definition 2.4], we do not necessarily
+suppress 2-blobs in a restricted network. In the case that N is a level-1 semi-directed phylogenetic network,
+the only 2-blobs that can appear during the restriction process are parallel edges, and for the models we will
+consider (which are closed under convex combinations), suppressing parallel edges does not affect the leaf-
+pattern distribution of the network, so these 2-blobs are suppressed. For higher levels however, 2-blobs can
+become more complex and need to be considered carefully. We investigate higher-level 2-blobs in Section 5
+(see also [3, 14, 24, 37]).
+Definition 2.3. Let N and N ′ be two semi-directed phylogenetic networks on a leaf set X . We say that N ′
+is displayed by N if it can be obtained from N by removing the reticulation edges e1 , . . . , ek , where no two
+ei and ej are directed into the same reticulation vertex, then taking the union of all up-down paths between
+leaves in X , and then exhaustively suppressing degree-2 vertices and identifying parallel edges. We call N ′
+the displayed network of N induced by e1 , . . . , ek , and denote it by N − {e1 , . . . , ek }. In the case k = 1, we
+denote it by N − e1 . We allow the set of reticulation edges to be empty, so that N displays itself.
+                            ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                           5
+
+
+   Observe that the relation between a network and a displayed network is transitive, that is, if N ′ is
+displayed by N , and N ′′ is displayed by N ′ , then N ′′ is displayed by N . Furthermore, the number of
+reticulation vertices of a displayed network N ′ is strictly less than the number of reticulation vertices of N ,
+except for the case that N = N ′ . Thus the relation is also antisymmetric, and by definition it is reflexive.
+We therefore have a partial order on the set of displayed networks of N .
+   Let N be a semi-directed phylogenetic network with r reticulation vertices, and let e1 , . . . , er be a set
+of reticulation edges, one from each reticulation vertex. Then the displayed network N − {e1 , . . . , er } is an
+unrooted phylogenetic tree, called a displayed tree of N . The displayed trees are minimal with respect to
+the partial order on the displayed networks of N .
+
+                       3                                   3
+                                                                                          4            3
+
+                                   2
+                                              4                          2
+         4
+
+
+
+                       1                                   1                              1            2
+
+                      N1                                  N2                                    N3
+
+         Figure 3. Three semi-directed phylogenetic networks on the set of taxa X = {1, 2, 3, 4}.
+         Reticulation edges are drawn with dashed lines. The network N1 is a level-2 network, N2 is
+         level-1, and N3 is level-0 (i.e., a tree). Both N2 and N3 are displayed networks of N1 , whilst
+         N3 is also a displayed network of N2 . In terms of the partial order, we have N1 > N2 > N3 .
+         Since it is minimal, the network N3 is a displayed tree of N1 and N2 .
+
+
+2.2. Markov Models of Evolution. To study evolution at the molecular level, we can place a type of
+Markov model, called a substitution model, on a phylogenetic tree or network. In this work we consider
+three specific DNA substitution models, called the Jukes-Cantor (JC) model [28], the Kimura 2-parameter
+(K2P) model [29], and the Kimura 3-parameter (K3P) model [30]. These models are examples of group-based
+models, which are particularly amenable to study from the algebraic perspective. We will model evolution
+on a phylogenetic network using a displayed tree model. This is a mixture model of the corresponding
+substitution model on the displayed trees of the network.
+   To place a substitution model on a rooted phylogenetic tree T with n leaves, we model the evolution of
+a nucleotide at a single genomic site on T . Thus, our state space is the set of nucleotides Ω = {A, C, G, T}.
+First, we label the leaves with the integers 1, . . . , n. We associate a random variable Xv ∈ Ω to each
+vertex v ∈ V (T ), and a 4 × 4 transition matrix M e to each directed edge e = (u, v) ∈ E(T ) such that
+   e
+Mi,j  = P (Xv = j|Xu = i). Lastly, we associate a distribution π of states to the root ρ of T . This enables us
+to write down the probability of an assignment of states to the vertices of T . If X = {xv ∈ Ω | v ∈ V (T )}
+is such an assignment (sometimes called a character ), then
+                                                                 Y
+                              P (Xv = xv ∀ v ∈ V (T )) = πxρ            Mx(u,v)
+                                                                            u ,xv
+                                                                                  .
+                                                                    (u,v)∈E(T )
+
+In applications, we typically only observe the random variables at the leaves of T , which usually represent
+extant species. We can determine the probability of observing a joint state (x1 , . . . , xn ) ∈ Ωn at the leaves
+of T , where xi is the state observed at leaf i, by marginalizing over the internal nodes of T . We write
+down an expression for this in the following manner. Let X(x1 , . . . , xn ) ⊂ Ω|V (T )| be the set of all possible
+assignments of states at all vertices in T that have states x1 , . . . , xn assigned to leaves 1, . . . , n respectively.
+For x ∈ X(x1 , . . . , xn ) and u ∈ V (T ), let xu denote the state assigned to vertex u. Then the probability of
+6                            ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+observing the joint state (x1 , . . . , xn ) ∈ Ωn is
+                                                                          X                      Y
+                  px1 x2 ...xn := P (X1 = x1 , . . . , Xn = xn ) =                      πxρ                 Mx(u,v)
+                                                                                                               u ,xv
+                                                                                                                     ,
+                                                                     x∈X(x1 ,...,xn )         (u,v)∈E(T )
+
+where X1 , . . . , Xn are the random variables associated to the leaves of T . We call an assignment of states
+to the leaves of T a leaf-pattern.
+   Let θ be a set of numerical parameters associated to our model (i.e., the entries of the transition matrices
+M e and the distribution of states πρ at the root), and let Θ be the space of all such parameter sets. The
+parameterization map φT associated to our model is the map
+                                                       n
+                                     φT : Θ −→ ∆4 −1
+                                           θ 7−→ (px1 ...xn | xi ∈ Ω, i = 1, . . . , n),
+                                                                                                                         n
+which takes the parameter space Θ of our model to the (4n − 1)-dimensional probability simplex ∆4 −1 . In
+algebraic phylogenetics it is typical to drop the restrictions on parameters and think of them as independent
+                                                                                    n
+variables over C. Then, the map φT is viewed as a rational map from Cm to C4 , where m is the number
+of numerical parameters in the model. The Zariski closure of the image of this map is called the variety
+associated to T , which we will denote VT , and this object is studied from an algebraic perspective (see e.g.
+[4, 5, 13, 15, 33]).
+   Different substitution models place restrictions on the form of the transition matrices. For example, for
+the Jukes-Cantor model, transition matrices have the form
+                                                                         
+                                       1 − 3α      α         α       α
+                                      α        1 − 3α       α       α   .
+(1)                                  
+                                      α           α      1 − 3α     α 
+                                          α        α         α     1 − 3α
+   To place a substitution model on a phylogenetic network N with leaf set X , we will use a displayed
+tree model. This is a mixture model of the models for the trees displayed by the network. First, label the
+reticulation vertices of N as 1, . . . , r. Assign a random variable Xv ∈ Ω to each vertex v ∈ V (N ), a transition
+matrix M e to each edge e ∈ E(N ), a distribution of states at the root πρ , and to each reticulation vertex i
+a mixing parameter δi ∈ [0, 1]. We encode a choice of reticulation edge for each reticulation vertex with a
+vector σ ∈ {0, 1}r , and denote the resulting displayed tree by Tσ . Then the parameterization map associated
+to N is
+                                                 X       r
+                                                         Y
+                                                           δiσi (1 − δi )1−σi φTσ .
+                                                                             
+(2)                                      φN =
+                                              σ∈{0,1}r     i=1
+
+Here, the parameters assigned to the model of the displayed tree Tσ are inherited from N . In this work
+we only consider group-based substitution models (see next section), and these are multiplicatively closed,
+splittable, and closed under convex combinations [37]. Therefore, when suppressing vertices of degree 2 and
+identifying parallel edges in the process of obtaining displayed trees, there are transition matrices within
+the model that we can assign to the new edges that give the same leaf-pattern distribution as if we had not
+performed these operations [37, Proposition 4.6, Proposition 5.4]. In the following sections, we specifically
+do not allow mixing parameters δi to be 0 or 1 (see next section).
+   As in the case for trees, we can view φN as a rational map between two affine spaces over C and consider
+the Zariski closure of the image of this map. This is the variety associated to N , and we denote it VN .
+
+2.3. Group-based Models. A group-based substitution model is a time-reversible substitution model for
+which the state space is associated with an abelian group. The JC, K2P, and K3P models are all group-based
+models, where the state space {A, C, G, T} is associated with the Klein-4 group G = Z/2Z × Z/2Z. This
+association enables the use of a discrete Fourier transformation that greatly simplifies the parameterization
+[16, 22], and thereby makes them much more amenable to study from an algebraic perspective. Often,
+probabilistic requirements, such as the rows of transition matrices summing to 1 and transition matrix
+entries being real numbers in [0, 1], are relaxed when viewed from the algebraic perspective.
+   The discrete Fourier transformation is applied to the parameterization of the model. The transition
+matrices of the model are diagonalized, and so the new parameters are the eigenvalues of the transition
+                             ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                             7
+
+
+matrices. For an edge e in a phylogenetic tree or network, we will denote these new parameters by aeA , aeC , aeG ,
+and aeT .
+   The transformed probability px1 ,...,xn is typically denoted by qx1 ,...,xn . For a phylogenetic tree T , in the
+new coordinates it is given by the monomial expression
+                                               Y
+                                              
+                                                      aexe x1 + · · · + xn = 0
+(3)                              qx1 ,...,xn = e∈E(T )
+                                              
+                                               0           otherwise,
+where each edge e is labelled by an element xe ∈ G, defined to be the sum (in G) of all leaf states xi for
+those leaves i in the subtree below e. The qualifier ‘below’ is determined by the direction of the edge e,
+but for the group Z/2Z × Z/2Z this direction has no effect on the parameterization, because the sum of
+states assigned to all leaves is 0, and each element of this group is self-inverse. In the context of group-based
+models, leaf-patterns (x1 , . . . , xn ) for which x1 + · · · + xn = 0 (i.e., those where qx1 ,...,xn ̸= 0) are often called
+consistent leaf labellings. For further details the reader may consult [36, Section 15.3]. As in equation (2),
+the phylogenetic network parameterization map in Fourier coordinates, denoted ψN , is given as a mixture
+of the Fourier parameterizations of the displayed trees, as follows.
+                                                 X        r
+                                                          Y
+                                                                  δiσi (1 − δi )1−σi ψTσ .
+                                                                                    
+(4)                                    ψN =
+                                               σ∈{0,1}r   i=1
+
+
+
+                                                 1                              2
+
+                                                     a            f
+                                                                            b
+
+                                                          d            e
+
+
+                                                              c
+
+                                                                  3
+
+                              Figure 4. A leaf and edge-labelled 3-sunlet network.
+
+
+Example 2.4. Consider the semi-directed phylogenetic network N in Figure 4. This has a single reticulation
+vertex and therefore has two displayed trees, each a 3-star tree. Let T1 be the 3-star tree got by deleting the
+edge e, and let T2 be the 3-star tree got by deleting the edge d. For ease of notation, we will not suppress
+vertices of degree 2 here. In T1 , the Fourier coordinate qx1 x2 x3 for any x1 , x2 , x3 ∈ G with x1 + x2 + x3 = 0,
+is given by
+                                           qx1 x2 x3 = ax1 bx2 cx3 dx3 fx2 ,
+where we are reusing edge labels as parameter labels. For T2 we have
+                                             qx1 x2 x3 = ax1 bx2 cx3 ex3 fx2 +x3 .
+The Fourier parameterization of N is therefore given by
+                              qx1 x2 x3 = δax1 bx2 cx3 dx3 fx2 + (1 − δ)ax1 bx2 cx3 ex3 fx2 +x3
+                                      = ax1 bx2 cx3 (δdx3 fx2 + (1 − δ)ex3 fx2 +x3 ).
+                                                                                                                         △
+   We have described phylogenetic network models as mixture models of the corresponding displayed tree
+models. Equivalently, one can also think of them recursively as mixture models of the displayed networks,
+as the following lemma demonstrates.
+8                               ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+Lemma 2.5. Let N be a semi-directed phylogenetic network. For any reticulation vertex v in N with
+corresponding reticulation edges e1 and e2 , and mixing parameter δ, let N1 and N2 be the displayed networks
+of N , got by removing reticulation edges e2 and e1 , respectively. Then
+                                                  ψN = δψN1 + (1 − δ)ψN2 .
+Proof. First observe that the set of displayed trees of N is equal to the union of the sets of displayed trees
+of N1 and N2 , which we denote T1 and T2 respectively. For each displayed tree T , let Q   δT be the product of
+                                                                                             r
+mixing parameters for that tree (that is, if T = Tσ as in equation (4), then we have δT = i=1 δiσi (1−δi )1−σi ).
+                                                                              ′
+Since δ is the mixing parameter for v, for trees in T1 we can write δT = δδT , and similarly for trees in T2 we
+can write δT = (1 − δ)δT′ . Here, δ ′ is the product of mixing parameters for all reticulation vertices except v,
+i.e., those in N1 and N2 . Then we have
+                                              X
+                                     ψN =           δT ψT
+                                                  T ∈T1 ∪T2
+                                                     X                         X
+                                               =δ           δT′ ψT + (1 − δ)           δT′ ψT
+                                                    T ∈T1                      T ∈T2
+                                               = δψN1 + (1 − δ)ψN2 .
+                                                                                                                                   □
+
+   As in [14], we will only consider parameters from a restricted parameter set. First, we will require that
+our transition matrices are indeed transition matrices, that is, they have real entries in [0, 1] and rows that
+sum to 1. Under this requirement, each transition matrix has 1 as an eigenvalue, so for each edge e we set
+aeA = 1. We further do not allow transition matrices to be the identity matrix (which would correspond to a
+branch of length zero in the corresponding tree or network), and require that transition matrices are positive
+definite. (These restrictions are those that we would have on transition matrices from a continuous-time
+Markov model with symmetric rate matrices.) Then, the remaining eigenvalues aeC , aeG , and aeT all lie in the
+open interval (0, 1). Finally, we require that all mixing parameters δi lie in the open interval (0, 1). We
+denote by Θ0 (N ) this set of restricted parameters for the phylogenetic network N . We will simply use Θ0
+when N is clear from context.
+   The requirement that transition matrices are positive definite places reasonable restrictions on the prob-
+abilities of mutation events along edges in the network. For example, in the JC model, this requirement is
+equivalent to the restriction that 0 ≤ α < 14 , where α is as in (1), although here we further require that
+α ̸= 0. This means that the probability of a mutation event occurring along a particular edge is between
+0 and 34 , which certainly contains the biologically plausible range. Under the JC model, for any transition
+matrix, there is only a single eigenvalue distinct from 1, that is aeC = aeG = aeT for each edge e. Under the
+K2P model, we have two eigenvalues distinct from 1. Here, we choose to identify those corresponding to C
+and T, that is, aeC = aeT for each edge e.
+   For a semi-directed phylogenetic network N on n leaves and a fixed substitution model, we define the
+model MN to be the image of the parameterization map ψN on the restricted set of parameters Θ0 ,
+                                                                               n
+                                                   MN = ψN (Θ0 ) ⊂ ∆4 −1 .
+Note that this differs from other works (e.g. [20]), where MN denotes the image of the parameterization
+map over Cm , i.e., no restrictions are placed on the numerical parameters. Observe that for any phylogenetic
+network N and any of the JC, K2P, or K3P substitution models, the set Θ0 is semi-algebraic. Then, as a
+consequence of the Tarski-Seidenberg theorem (see e.g. [9]), since ψN is a polynomial mapping, the set MN
+is also semi-algebraic.
+   We say that the network parameter of a class of phylogenetic networks is fully identifiable on a parameter
+set Θ, if given any two networks N1 and N2 in the class, the intersection of the images of Θ(N1 ) and Θ(N2 )
+under the respective parameterization maps is empty, that is ψN1 (Θ) ∩ ψN2 (Θ) = ∅.
+Lemma 2.6. Let N be a semi-directed phylogenetic network on a set of n taxa X = [n], with a reticulation
+vertex r and corresponding reticulation edges e′ and e′′ , and a leaf (say, the leaf labelled 1) adjacent to r. Let
+N ′ and N ′′ be the displayed networks of N got by removing reticulation edges e′′ and e′ respectively. For a
+consistent leaf labelling x1 , . . . , xn , let qx1 ,...,xn , qx′ 1 ,...,xn and qx′′1 ,...,xn be the Fourier coordinates corresponding
+                                 ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                                 9
+
+
+to N , N ′ and N ′′ respectively for the JC, K2P, or K3P substitution model. Then on the parameter space
+Θ0 (N ), we have
+                                                       ′              ′′
+                                       qA,x2 ...,xn = qA,x2 ...,xn
+                                                                   = qA,x 2 ...,xn
+                                                                                   ,
+for all x2 , . . . , xn ∈ G.
+Proof. By Lemma 2.5 we can write the Fourier coordinates of N as
+                                                        ′                     ′′
+                                       qA,x2 ...,xn = δqA,x2 ...,xn
+                                                                    + (1 − δ)qA,x 2 ...,xn
+                                                                                           ,
+                                                                                                       ′              ′′
+where δ is the mixing parameter associated to r. Thus, it is sufficient to show that qA,x                 2 ...,xn
+                                                                                                                   = qA,x2 ...,xn
+                                                                                                                                  .
+   Let N1 , . . . , Nℓ be the displayed networks of N whose only reticulation vertex is r. For each i = 1, . . . , ℓ let
+Ti′ and Ti′′ be the displayed trees of Ni , got by removing reticulation edges e′′ and e′ respectively. It follows
+that T1′ , . . . , Tℓ′ are the displayed trees of N ′ , and T1′′ , . . . , Tℓ′′ are the displayed trees of N ′′ . Therefore the
+Fourier coordinates of N ′ and N ′′ are given by
+                                               ℓ
+                                               X                                                ℓ
+                                                                                                X
+                               ′                         ′i                ′′                             ′′i
+(5)                           qA,x2 ...,xn
+                                           =         δi qA,x 2 ...,xn
+                                                                      ,   qA,x 2 ...,xn
+                                                                                        =             δi qA,x 2 ...,xn
+                                                                                                                       ,
+                                               i=1                                              i=1
+                                                                                                                ′i
+where δi is the product of mixing parameters associated to the removed reticulation edges in Ni , and qA,x         2 ...,xn
+      ′′i                                             ′          ′′
+and qA,x  2 ...,xn
+                   are the Fourier coordinates  of T i   and  T i   respectively.
+   Next, for each pair of trees Ti′ and Ti′′ , let Ei be the set of shared edges, so that E(Ti′ ) = Ei ∪ {e′ } and
+E(Ti′′ ) = Ei ∪ {e′′ }. Then for a fixed leaf labelling x1 = A, x2 , . . . , xn , the Fourier coordinates of Ti′ and Ti′′
+are given by
+                                                                    ′ Y
+                                                ′i
+                                               qA,x 2 ,...,xn
+                                                              = aeA       aex′e
+                                                                                e∈Ei
+and
+                                                                           ′′   Y
+                                                       ′′i
+                                                      qA,x 2 ,...,xn
+                                                                     = aeA             aex′′e
+                                                                                e∈Ei
+respectively. Observe that for each edge e ∈ Ei , the split induced by e in Ti′ differs from the split induced
+by e in Ti′′ only by the placement of leaf 1. That is, if A | B is the split induced by e in Ti′ , and supposing
+                                                                      ′′
+(without loss of generality) that 1 ∈ A, the split induced by e in TPi is either A|B or (A \ {1})|(B ∪ {1}). In
+                                                               ′
+both cases, since x1 = A (the identity of G), we must have xe = i∈A xi = x′′e .
+                                    ′     ′′
+                                                                             ′i                ′′i
+   Finally, since in Θ0 we have aeA = aeA = 1, the Fourier coordinates qA,x     2 ,...,xn
+                                                                                          and qA,x 2 ,...,xn
+                                                                                                             are equal.
+The result then follows by equation (5).                                                                             □
+Remark 2.7. It is clear that Lemma 2.6 holds for any group-based model for an arbitrary group G. The only
+condition is that the parameters ae0 are 1 for each edge e, where 0 is the identity element of the group. Even
+                                                                                            ′            ′′
+if this condition is not satisfied, the above proof shows that we can take a factor of (δae0 + (1 − δ)ae0 ) out of
+q0,x2 ,...,xn . For networks with a single reticulation, this makes the Fourier coordinate essentially monomial
+(cf. the proof of [19, Proposition 12]).
+
+                                                           3. Restrictions
+   In this section we give a fundamental result that we use to obtain identifiability results in later sections.
+Our main strategy is to reduce the question of identifiability to networks with a small number of leaves by
+looking at restricted networks. We begin with a definition.
+                             n                                                                                                n
+Definition 3.1. Let C4 be indexed by leaf-patterns for n taxa. The ith marginalization map mni on C4 is
+the map
+                                                           n          n−1
+                                               mni : C4 −→ C4
+given by marginalizing over the ith leaf, that is, the (x1 , . . . , xi−1 , xi+1 , . . . , xn )-component of mni (p) is given
+by                                                                   X
+                               mni (p) x1 ,...,xi−1 ,xi+1 ,...,xn =
+                                       
+                                                                          px1 ,...,xi ,...,xn ,
+                                                                                 xi ∈Ω
+           4n
+for p ∈ C with components px1 ,...,xn . When it is clear from context, we will drop the superscript n and
+simply write mi .
+10                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+     For a subset of leaves Y = {y1 , . . . , yk }, the marginalization map over Y is the map
+                                                                  n             n−k
+                                                      mnY : C4 −→ C4
+given by mnY = mn−k+1
+                yk    ◦ · · · ◦ mny1 .
+                                   n                                     n−k
+     It is clear that when p ∈ ∆4 −1 we have mnY (p) ∈ ∆4                      −1
+                                                                                    .
+Remark 3.2. The marginalization maps for two distinct leaves i and j commute, in the sense that mn−1
+                                                                                                 i   ◦mnj =
+ n−1    n
+mj ◦ mi . Explicitly, we have
+                              (mn−1
+                                i   ◦ mnj (p))x1 ,...,xi−1 ,xi+1 ,...,xj−1 xj+1 ,...,xn
+                                       X
+                                    =       (mnj (p))x1 ,...,xj−1 ,xj+1 ,...,xn
+                                           xi ∈Ω
+                                           X X                            X X
+                                       =                 px1 ,...,xn =                   px1 ,...,xn
+                                           xi ∈Ω xj ∈Ω                   xj ∈Ω xi ∈Ω
+                                           X
+                                       =           (mni (p))x1 ,...,xi−1 ,xi+1 ,...,xn
+                                           xj ∈Ω
+
+                                       = (mn−1
+                                           j   ◦ mni (p))x1 ,...,xi−1 ,xi+1 ,...,xj−1 xj+1 ,...,xn ,
+for all xk ∈ Ω with k ∈ [n] \ {i, j}. Here we have assumed, without loss of generality, that i < j. It follows
+that the ordering of leaves in the subset Y does not matter in the definition of mnY .
+   Observe that the marginalization maps are linear, so that when we marginalize over a leaf in a phylogenetic
+network with a displayed tree model, we obtain the mixture of the marginal points from the displayed trees.
+The core result we will need says that marginalizing over a leaf in a tree gives us a point in the model of the
+tree in which that leaf has been pruned. This result is well-known, but we give a full proof in the appendix
+for completeness.
+Proposition 3.3. Let T be an unrooted binary phylogenetic tree on a set of taxa X , and let M be the
+corresponding model for a multiplicatively closed substitution model. For a leaf x ∈ X , let T ′ = T |X \{x} be
+the restricted tree obtained from T by pruning the leaf x and suppressing the resulting degree two vertex, and
+let M′ be the corresponding model for the same substitution model. If p ∈ M then the point p′ obtained
+from p by marginalizing over the leaf x is in M′ .                                                           □
+     A natural consequence is that we can perform this restriction for many leaves at once.
+Corollary 3.4. Let T be an unrooted binary phylogenetic tree on a set of taxa X , and let M be the corre-
+sponding model for a multiplicatively closed substitution model. For a subset Y ⊂ X , let T ′ = T |X \Y be the
+restricted tree of T , obtained by pruning all leaves in Y and suppressing any resulting degree two vertices,
+and let M′ be the corresponding model for the same substitution model. If p ∈ M then the point p′ obtained
+from p by marginalizing over all leaves y ∈ Y is in M′ .
+Proof. The proof is by induction on the size of the set Y, with the base case |Y| = 0 being trivial. For the
+induction step, first observe that both marginalization and tree pruning are commutative operations (i.e.,
+they can be done in any order to give the same result, see Remark 3.2). Write Y = Y0 ∪ {y} for a subset
+Y0 ⊂ Y with |Y0 | = |Y| − 1. By the induction hypothesis, if p ∈ M, then marginalizing over all leaves in
+Y0 gives a point mY0 (p) = p0 in the model M0 of the tree T0 obtained from T by pruning the leaves in Y0
+(and suppressing any resulting degree two vertices). Now, by Proposition 3.3, marginalizing p0 over the leaf
+y gives a point in the model M′ .                                                                         □
+Corollary 3.5. Let T1 and T2 be two binary, phylogenetic trees on a set of taxa X , and let M1 and M2
+be the corresponding models for a multiplicatively closed substitution model. Consider the models M′1 and
+M′2 on the restricted trees T1′ = T1 |X \Y and T2′ = T2 |X \Y for some subset Y ⊂ X . If M′1 ∩ M′2 = ∅, then
+M1 ∩ M2 = ∅.
+Proof. Suppose not, and that there exists a point p ∈ M1 ∩ M2 . Then by Corollary 3.4 the marginal point
+mY (p) is contained in M′1 ∩ M′2 , a contradiction.                                                   □
+                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                      11
+
+
+  Next we apply our results to phylogenetic networks.
+Theorem 3.6. Let N1 and N2 be two phylogenetic networks on a set of taxa X , and let M1 and M2 be
+the corresponding models for a multiplicatively closed substitution model. Consider the models M′1 and M′2
+on the restricted networks N1′ = N1 |X \Y and N2′ = N2 |X \Y for some subset Y ⊂ X . If M′1 ∩ M′2 = ∅, then
+M1 ∩ M2 = ∅.
+Proof. Suppose not, and that we have a point p ∈ M1 ∩ M2 . For each network Ni for i = 1, 2 we can write
+p as a sum of points coming from the displayed trees Tji of Ni for a fixed set of parameters and mixing
+weights                                          X
+                                             p=     δji pij ,
+                                                   j
+       i                                 i
+where pj is the point coming from tree Tj . Now restricting to the leaf set X \ Y by marginalizing over the
+leaves in Y we obtain the point                        X
+                                            mY (p) =        δji mY (pij ),
+                                                        j
+where mY (pij ) is the marginal point from the tree Tji , which lies in the model of the restricted tree Tji |X \Y
+by Proposition 3.3. Now, since the displayed trees of a restricted network are precisely the restrictions of
+the displayed trees of the original network [18, Proposition A.1], it is clear that mY (p) lies in the model M′i .
+Thus we have mY (p) ∈ M′1 ∩ M′2 , a contradiction.                                                               □
+
+                    4. Full Identifiability of Level-1 Phylogenetic Networks
+   In this section we give identifiability results on level-1 phylogenetic networks, restricting our attention
+to group-based models on the parameter space Θ0 , for which transition matrices are probabilistic and can
+be obtained by the usual continuous-time Markov process. This subset of transition matrices forms a Lie-
+Markov model [38], and so is multiplicatively closed. We may therefore apply the restriction results from the
+previous section. In Section 4.3 we use Theorem 3.6 to reduce arbitrarily large level-1 phylogenetic networks
+to the small cases dealt with in Sections 4.1 and 4.2.
+4.1. Trinet Inequality (Level-1). In [14, Proposition 2.15] the authors showed that, for the JC substitu-
+tion model, the intersection of a 3-star tree model and a 3-sunlet model on the restricted parameter set Θ0
+is empty. They called this result the ‘trinet inequality’, since 3-sunlets are the only (strictly) level-1 trinets.
+Here, we extend the trinet inequality to the K2P and K3P models. For the JC and K2P models, we further
+generalize these inequalities to trinets of arbitrary level in Section 5.
+Lemma 4.1. Let N1 be the 3-star unrooted tree and N2 be a 3-sunlet semi-directed network, and let M1
+and M2 be the associated models under the K2P substitution model with parameter values in Θ0 (N1 ) and
+Θ0 (N2 ) respectively. Then the polynomial
+                                                   2                2
+                                    Q = qAGG qGAG qCCA − qAAA qGGA qTCG
+is zero on M1 and strictly positive on M2 . In particular, M1 ∩ M2 = ∅.                                          □
+   The proof of Lemma 4.1 is analogous to the proof of [14, Proposition 2.15] and given in the appendix.
+For the K3P model we could not find a single invariant like Q that distinguishes between the two models.
+However, we can find several invariants for the 3-star tree that cannot be simultaneously zero for a point on
+the 3-sunlet model under the restricted parameters.
+Lemma 4.2. Let N1 be the 3-star unrooted tree and N2 be a 3-sunlet semi-directed network, and let M1
+and M2 be the associated models under the K3P substitution model with parameter values in Θ0 (N1 ) and
+Θ0 (N2 ) respectively. Then M1 ∩ M2 = ∅.
+Proof. Consider the polynomials
+                                    Q1 = qAAA qCTG qTGC − qAGG qCAC qTTA ,
+                                    Q2 = qAAA qGTC qTCG − qACC qGAG qTTA ,
+                                    Q3 = qATT qCCA qTGC − qACC qCGT qTTA ,
+                                    Q4 = qACC qGGA qTAT − qAAA qGCT qTGC .
+12                         ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+   The reader can check that each of these polynomials lies in IN1 by looking at the multisets of labels for
+each leaf position, as in the proof of Lemma 4.1 (see appendix). We will show that for any point x ∈ M2
+we cannot have Qi (x) = 0 for all i = 1, 2, 3, 4, and therefore x ̸∈ M1 .
+   As in the proof of Lemma 4.1, we label the edges of the 3-sunlet as in Figure 4. For each edge a, we have
+the associated parameters aA , aC , aG , and aT , which are subject to the constraint aA = 1. We substitute a
+generic point x into Q using the parameterization of the model, which is given by
+                               qx1 x2 x3 = ax1 bx2 cx3 (δdx3 fx2 + (1 − δ)ex3 fx2 +x3 ),
+for x1 , x2 , x3 ∈ G with x1 + x2 + x3 = 0. We have
+                          Q1 = qAAA qCTG qTGC − qAGG qCAC qTTA
+                             = aC aT bG bT cC cG δ(1 − δ)(fC fG − fT )(dC eG − dG eC fT )
+and
+                         Q2 = qAAA qGTC qTCG − qACC qGAG qTTA
+                             = aG aT bC bT cC cG δ(1 − δ)(fC fG − fT )(dG eC − dC eG fT ).
+Since all parameters lie in (0, 1), we have Q1 (x) = 0 if and only if either fC fG −fT = 0, or dC eG −dG eC fT = 0.
+On the other hand Q2 (x) = 0 if and only if either fC fG −fT = 0 or dG eC −dC eG fT = 0. Now if fC fG −fT ̸= 0
+then
+                                           dC eG − dG eC fT = 0            and
+                                           dG eC − dC eG fT = 0.
+
+Then dC eG (1−fT2 ) = 0, but this is impossible since all parameters lie in (0, 1), so we must have fC fG −fT = 0.
+  Next consider Q3 and Q4 . We have
+                       Q3 = qATT qCCA qTGC − qACC qCGT qTTA
+                           = aC aT bC bG bT cC cT δ(1 − δ)(fC fT − fG )(dT eC fT − dC eT fC )
+and
+                         Q4 = qACC qGGA qTAT − qAAA qGCT qTGC
+                             = aG aT bC bG cC cT δ(1 − δ)(fG − fC fT )(dT eC − dC eT fG ).
+As before we have Q3 (x) = 0 if and only if fC fT − fG = 0 or dT eC fT − dC eT fC = 0. Similarly Q4 (x) = 0 if
+and only if fC fT − fG = 0 or dT eC − dC eT fG = 0.
+   Now if fC fT − fG = 0, since we also have fC fG − fT = 0 we obtain fG (fC2 − 1) = 0. But this is not
+possible since fC , fG ∈ (0, 1). Then we must have dT eC fT − dC eT fC = 0 and dT eC − dC eT fG = 0. But then
+                                                                                                  2
+dC eT (fG fT − fC ) = 0 so fG fT − fC = 0. But combining this with fC fG − fT = 0 we get fC (fG      − 1) = 0.
+Again, this is impossible. Thus there are no points in M2 that simultaneously satisfy Q1 , Q2 , Q3 and Q4 . It
+follows that M1 ∩ M2 = ∅.                                                                                   □
+
+4.2. Level-1 Quarnets. In this section we determine identifiability results for level-1 semi-directed phylo-
+genetic networks with four leaves, or level-1 quarnets. Our first result shows that, for the K3P model on the
+parameter space Θ0 , the three unrooted quartet trees are identifiable, extending [14, Proposition 2.9].
+Lemma 4.3. Let T1 , T2 , and T3 be the three unrooted quartet trees with splits 12|34, 13|24, and 14|23 re-
+spectively. Let M1 , M2 , and M3 be the corresponding models under the K3P substitution model on the
+parameter sets Θ0 (N1 ), Θ0 (N2 ) and Θ0 (N3 ) respectively. Then the polynomial
+                                     Q12|34 = qAAAA qTTTT − qAATT qTTAA
+evaluates to zero on M1 and is strictly positive on M2 and M3 .
+Proof. We substitute into Q12|34 generic points x using the parameterizations of the models. For T1 we have
+
+                                        qx1 x2 x3 x4 = a1x1 a2x2 a3x3 a4x4 a5x1 +x2 ,
+                              ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                              13
+
+
+giving
+                 Q12|34 (x) = (a1A a2A a3A a4A a5A )(a1T a2T a3T a4T a5A ) − (a1A a2A a3T a4T a5A )(a1T a2T a3A a4A a5A )
+                              = a1T a2T a3T a4T − a1T a2T a3T a4T
+                              = 0,
+where we make the usual identification aiA = 1. On the other hand, for T2 we have
+                                               qg1 g2 g3 g4 = a1g1 a2g2 a3g3 a4g4 a5g1 +g3 ,
+giving
+                 Q12|34 (x) = (a1A a2A a3A a4A a5A )(a1T a2T a3T a4T a5A ) − (a1A a2A a3T a4T a5T )(a1T a2T a3A a4A a5T )
+                              = a1T a2T a3T a4T (1 − (a5T )2 ).
+Since aiT ∈ (0, 1), we have that Q12|34 (x) is strictly positive. Similarly, Q12|34 is strictly positive on M3 .            □
+
+Remark 4.4. By permuting the leaf labels we can obtain invariants for T2 and T3 that are strictly positive
+on the models of the other quartet trees. We have
+                                           Q13|24 = qAAAA qTTTT − qATAT qTATA
+and
+                                          Q14|23 = qAAAA qTTTT − qATTA qTAAT .
+Thus we have that Mi ∩ Mj = ∅ for all i, j ∈ {1, 2, 3} with i ̸= j.
+   In [14] the authors use invariants for the quartet trees to distinguish between networks with different
+displayed quartets. The quartet tree invariants they found are linear, and so when applied to points in MN ,
+for some network N with 4 leaves, they apply linearly across the mixture of points from the displayed quartet
+models, and are therefore able to pick out the displayed quartets. Here however, our K3P invariants are
+quadratic (there are no linear invariants for K3P, because it is a general group-based model for Z/2Z×Z/2Z),
+and so when applied to mixtures of points from the quartet tree models we get cross-terms that do not cancel.
+Thus, we cannot use them to pick out displayed quartets.
+
+
+
+
+         Figure 5. The four level-1 quarnet topologies. From left to right: a quartet tree, a single
+         triangle, a double triangle, a 4-sunlet. Note that reticulation edges are not identifiable in
+         triangles. In the 4-sunlet, reticulation edges are dashed. Only the 4-sunlet does not have a
+         non-trivial split.
+
+   Given a quarnet, we are able to determine its topology (i.e. the underlying graph without leaf labels)
+by considering its induced trinets. We have four distinct level-1 quarnet topologies: the quartet tree, the
+quartet with a single triangle, the quartet with a double triangle, and the 4-sunlet (see Figure 5). In each
+case we have 4 ways of restricting to 3 leaves. The topologies of the induced trinets can be determined using
+the trinet inequalities from Section 4.1, and each level-1 quarnet has a different induced trinet signature (see
+Table 1).
+Lemma 4.5. Let N1 and N2 be level-1 quarnets with different topologies, and let M1 and M2 be the
+corresponding models on the parameter sets Θ0 (N1 ) and Θ0 (N2 ) respectively, for either JC, K2P, or K3P.
+Then M1 ∩ M2 = ∅.
+14                        ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+Proof. By Table 1, there exists a subset of 3 taxa S for which N1 |S and N2 |S are a 3-star tree and a 3-sunlet
+(possibly not in that order). By the appropriate trinet inequality ([14, Proposition 2.15], Lemma 4.1, or
+Lemma 4.2) we have M1 |S ∩ M2 |S = ∅. Then the result follows by Theorem 3.6.                                □
+
+
+
+                              Quartet Tree       Single Triangle     Double Triangle       4-Sunlet
+                    3-Star         4                    2                  0                  1
+                   3-Sunlet        0                    2                  4                  3
+
+        Table 1. The number of each type of induced trinet from the four level-1 quarnet topolo-
+        gies. Note that each column is distinct.
+
+
+   Observe that the only level-1 quarnet without a non-trivial split is the 4-sunlet. Then by Lemma 4.5, we
+are able to determine whether or not a level-1 quarnet has a non-trivial split. By [14, Proposition 2.9] and
+Lemma 4.3 we are able to determine the non-trivial split in a quartet tree. In our next result, we show that
+we can also determine the non-trivial split in a single or double triangle quarnet.
+
+Lemma 4.6. Let N1 be a level-1 quarnet with split 12|34, and let N2 be a level-1 quarnet without the split
+12|34. Let M1 and M2 be the corresponding models for either the JC, K2P, or K3P models on the parameter
+sets Θ0 (N1 ) and Θ0 (N2 ) respectively. Then M1 ∩ M2 = ∅.
+
+Proof. For the JC and K2P models, the result is a special case of [14, Theorem 2.11]. We will prove the result
+for K3P. First, if N1 and N2 have different underlying topologies, then the result is given by Lemma 4.5, so
+we may assume that N1 and N2 have the same underlying topology. Since we are assuming that N1 has a
+non-trivial split, we may exclude the 4-sunlet topology.
+   We show that the polynomial Q12|34 = qAAAA qTTTT − qAATT qTTAA is an invariant for N1 . We restrict our
+attention to the subgroup of Z/2Z × Z/2Z generated by A = (0, 0) and T = (1, 1) (isomorphic to Z/2Z), and
+the subalgebra C = C[qx1 x2 x3 x4 | xi ∈ {A, T}, x1 + x2 + x3 + x4 = A]. The ideal for the general group-based
+model for Z/2Z, known as the Cavender-Farris-Neyman (CFN) model, on N1 embeds naturally into this
+subalgebra. Furthermore, we have that
+                                                I CFN ∼
+                                                  N1  = I K3P ∩ C.
+                                                            N1
+
+                                              CFN
+Thus, it is sufficient to show that Q12|34 ∈ IN1
+                                                  . Consider the flattening matrix
+
+                                               AA              TT         AT         TA
+                                         AA qAAAA             qAATT        0          0
+                                                                                       
+
+                          Flat(12, 34) = TT  qTTAA           qTTTT        0          0 .
+                                         AT  0                 0       qATAT      qATTA
+                                                                                        
+                                         TA     0               0       qTAAT      qTATA
+
+
+Since N1 has split 12|34, a single edge disconnects N1 into two subgraphs with leaf sets {1, 2} and {3, 4}
+respectively. Then by [37, Theorem 7.8], for any point p ∈ M1 we have rank Flat(12, 34)(p) ≤ 2. It follows
+that each block diagonal has rank 1. In particular, the determinant of the upper left block is zero, i.e.,
+Q12|34 (p) = 0.
+   It remains to show that for any point p ∈ M2 we have Q12|34 (p) ̸= 0. We have already shown this
+for the quartet trees with splits 13|24 and 14|23 in the proof of Lemma 4.3, so we may assume that N2 is
+either a single-triangle or double-triangle quarnet. There are 4 single-triangle quarnets and 2 double-triangle
+quarnets without the split 12|34. We will show the result for one single-triangle quarnet, and defer the
+remaining cases to the appendix.
+   Let N2 be the single-triangle quarnet with split 13|24 pictured in Figure 6, and label the edges of N2
+therein. The parameterization of N2 is given by
+
+                        qx1 x2 x3 x4 = ax1 bx2 cx3 dx4 ex1 +x3 (δfx1 hx1 +x3 + (1 − δ)kx1 hx3 ).
+                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                    15
+
+
+                                              1                                   3
+
+                                                  a               f           c
+
+                                                          k           h
+
+
+                                                              e
+
+                                                      b                   d
+
+                                             2                                    4
+
+                    Figure 6. A leaf and edge-labelled directed single-triangle quarnet.
+
+Then for a point p ∈ M2 we have
+           Q12|34 (p) = aT bT cT dT (δfT + (1 − δ)kT hT ) − cT dT eT hT × aT bT eT (δfT hT + (1 − δ)kT )
+                     = aT bT cT dT (δfT + (1 − δ)kT hT ) − aT bT cT dT e2T hT (δfT hT + (1 − δ)kT )
+                     = aT bT cT dT (δfT + (1 − δ)kT hT − e2T hT (δfT hT + (1 − δ)kT ))
+                     = aT bT cT dT (δfT (1 − e2T h2T ) + (1 − δ)hT kT (1 − e2T hT )) > 0.
+                                                                                                               □
+   By permuting the leaves as in Remark 4.4, given any two quarnets N1 and N2 with different splits, we
+have M1 ∩ M2 = ∅. Thus, in this section we have so far shown that we can identify whether a quarnet is
+a 4-sunlet or has a split (Lemma 4.5), and if it has a split we can identify which one (Lemma 4.6). This is
+enough to identify the tree-of-blobs. In order to identify a semi-directed phylogenetic network, however, we
+must also be able to identify the blobs themselves. For level-1 phylogenetic networks, the blobs correspond
+to sunlet networks.
+   We now show that we can identify n-sunlets for n ≥ 4. We start with the case n = 4. For the JC and
+K2P substitution models, we already have the results to show this.
+Lemma 4.7. Let N1 and N2 be two distinct 4-sunlet networks. Let M1 and M2 be the corresponding models
+for either the JC or K2P substitution models on the parameter sets Θ0 (N1 ) and Θ0 (N2 ) respectively. Then
+M1 ∩ M2 = ∅.
+Proof. First, assume that N1 and N2 have different leaves under the reticulation vertex. Without loss of
+generality, assume that 1 is the leaf under the reticulation vertex for N1 , and that leaves 1, 2 and 3 are not
+under the reticulation vertex for N2 . Restricting to the leaf set Y = {1, 2, 3} we have that N1 |Y is a 3-sunlet
+and N2 |Y is an unrooted 3-leaf tree. Let M′1 and M′2 be the corresponding models. By Lemma 4.1 we have
+M′1 ∩ M′2 = ∅. Then the result follows by Theorem 3.6.
+   Next, assume that N1 and N2 have the same leaf under the reticulation vertex. Then since N1 and N2
+are distinct, they must have different displayed quartets. The result follows by [14, Theorem 2.11].           □
+  Whilst we cannot use results on displayed trees for the K3P model, the result still holds.
+Lemma 4.8. Let N1 and N2 be two distinct 4-sunlet networks. Let M1 and M2 be the corresponding models
+for the K3P model on the parameter sets Θ0 (N1 ) and Θ0 (N2 ) respectively. Then M1 ∩ M2 = ∅.
+Proof. In the case that N1 and N2 have different leaves under the reticulation vertex, we can restrict to a
+suitable set of three leaves as in the proof of Lemma 4.7.
+   We therefore assume that N1 and N2 have the same leaf under the reticulation vertex, and thus have
+different circular orders (see e.g. [34]). We will assume that the leaf under the reticulation vertex is 1. The
+other cases can be obtained by symmetry. Here, we will show that if N1 has circular order (1, 2, 3, 4) and N2
+has circular order (1, 3, 2, 4), as in Figure 7, then M1 ∩ M2 = ∅. The remaining cases can be reduced to this
+one as follows. The case where N1 has circular order (1, 2, 3, 4) and N2 has circular order (1, 2, 4, 3) can be
+16                        ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+reduced to the above case by applying the permutation (24) (in cycle notation). This leaves N1 unchanged
+(it merely changes the presentation of the graph) and changes N2 to the network in Figure 7(b). The final
+case where N1 has circular order (1, 3, 2, 4) and N2 has circular order (1, 2, 4, 3) can be reduced to the above
+case by applying the permutation (34).
+
+
+                                 3                                                    2
+
+                                                                                          c
+                                                                                k             f
+                                                                          d                       b
+                 4                               2                  4                                 3
+
+                                                                                h             e
+                                                                                          a
+
+                                 1                                                    1
+                             (a) N1                                                 (b) N2
+
+        Figure 7. Two 4-sunlets with circular orders (a) (1,2,3,4) and (b) (1,3,2,4). Note that N2
+        is directed and edge-labelled to determine the parameterization.
+
+
+   Now, let N1 be the 4-sunlet with circular order (1, 2, 3, 4) and let N2 be the 4-sunlet with circular order
+(1, 3, 2, 4), as in Figure 7. Consider the polynomial
+
+(6)                  Q = qAGAG qTCTC − qAGTC qTCAG + qACAC qTGTG − qACTG qTGAC .
+
+The reader can check that Q ∈ IN1 . As usual, we substitute the parameterization of N2 into Q and show
+that the resulting expression is strictly positive. The parameterization of N2 is given by
+
+                      qx1 x2 x3 x4 = ax1 bx3 cx2 dx4 (δex1 fx1 +x3 kx4 + (1 − δ)fx3 kx1 +x4 hx1 ),
+
+with variables corresponding to edges as shown in Figure 7.b. Thus we have
+
+                                qAGAG = cG dG kG ,
+                                qTCTC = aT bT cC dC (δeT kC + (1 − δ)fT kG hT ),
+                                qAGTC = bT cG dC fT kC ,
+                                qTCAG = aT cC dG (δeT fT kG + (1 − δ)kC hT ),
+                                qACAC = cC dC kC ,
+                                qTGTG = aT bT cG dG (δeT kG + (1 − δ)fT kC hT ),
+                                qACTG = bT cC dG fT kG ,
+                                qTGAC = aT cG dC (δeT fT kC + (1 − δ)kG hT )
+
+Substituting these into equation (6) gives
+
+                            Q =aT bT cC cG dC dG kG (δeT kC + (1 − δ)fT kG hT )
+                                 − aT bT cC cG dC dG fT kC (δeT fT kG + (1 − δ)kC hT )
+                                 + aT bT cC cG dC dG kC (δeT kG + (1 − δ)fT kC hT )
+                                 − aT bT cC cG dC dG fT kG (δeT fT kC + (1 − δ)kG hT )
+                               =2aT bT cC cG dC dG eT kC kG δ(1 − fT2 ) > 0.
+
+                                                                                                              □
+                          ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                   17
+
+
+4.3. Level-1 Phylogenetic Networks. Using the results developed in the previous two sections, we are
+now ready to prove our main result on the full identifiability of level-1 phylogenetic networks under the JC,
+K2P and K3P models.
+Theorem 4.9. Let N1 and N2 be two level-1, semi-directed phylogenetic networks on a set of n taxa X , with
+n ≥ 3. Let M1 and M2 be the corresponding models for either the JC, K2P, or K3P substitution models on
+the parameter sets Θ0 (N1 ) and Θ0 (N2 ) respectively. If N1 and N2 are distinct, modulo the placement of the
+reticulation vertices in any triangles, then M1 ∩ M2 = ∅.
+Proof. We may assume that n > 3, otherwise the result follows directly from [14, Proposition 2.15] (JC),
+Lemma 4.1 (K2P), or Lemma 4.2 (K3P).
+    We will show that for N1 and N2 to be distinct (modulo the placement of the reticulation vertices in
+the triangles), there is a set Y ⊆ X with |Y| ∈ {3, 4} such that M′1 ∩ M′2 = ∅, where M′i is the model
+corresponding to Ni |Y , i ∈ {1, 2}. The result then follows from Theorem 3.6.
+    First suppose that N1 and N2 are distinct, modulo the placement of the reticulation vertices in any
+triangles and contracting triangles to single vertices. It then follows from [17, Theorem 14(b)], that there is
+some Y ⊆ X with |Y| = 4 such that one of the following holds:
+      (1) N1 |Y and N2 |Y induce a different non-trivial split;
+      (2) one of N1 |Y and N2 |Y induces a non-trivial split and the other one does not;
+      (3) N1 |Y and N2 |Y both do not induce a non-trivial split; in particular, they are distinct 4-sunlets.
+In the first two cases, M′1 ∩ M′2 = ∅ by Lemma 4.6. In the last case, this follows from Lemma 4.7 (JC and
+K2P) or Lemma 4.8 (K3P).
+    It remains to consider the case where N1 and N2 are isomorphic when considered modulo the placement
+of the reticulation vertices in any triangles and contracting triangles to single vertices, but they become
+distinct when only comparing them modulo the placement of the reticulation vertices in the triangles. Then,
+there is a triangle in one of N1 and N2 that corresponds to a single vertex in the other network. Thus, there
+is some set Y with |Y| = 3, such that one of N1 and N2 is a 3-sunlet and the other is a 3-star unrooted tree.
+The result again follows from [14, Proposition 2.15] (JC), Lemma 4.1 (K2P), or Lemma 4.2 (K3P).               □
+   For the next result we make the following definitions. Let N1 and N2 be two semi-directed phylogenetic
+networks with n leaves. A semi-directed phylogenetic network N is a maximal shared network of N1 and
+N2 if it is displayed by both N1 and N2 and there is no other semi-directed phylogenetic network N ′ such
+that N ′ is also displayed by both N1 and N2 and N < N ′ . We denote the set of all such networks as
+max(N1 , N2 ).
+   For a semi-directed phylogenetic network N , let Θ+  0 (N ) be the parameter set Θ0 (N ) expanded to allow
+mixing parameters δi to be in the range [0, 1], and let M+            +                        ′
+                                                           N = ψN (Θ0 ). We observe that if N is a displayed
+                        +       +
+network of N , then MN ′ ⊂ MN (got by setting the corresponding mixing parameters to either 0 or 1 in
+the parameterization ψN ).
+Corollary 4.10. Let N1 and N2 be two n-leaf, level-1, semi-directed phylogenetic networks for n ≥ 3
+(considered modulo the placement of the reticulation vertex in any triangles). Let M+          +
+                                                                                     1 and M2 be the
+corresponding models for either the JC, K2P, or K3P substitution models on the respective parameter sets
+Θ+             +
+  0 (N1 ) and Θ0 (N2 ). Then                           [
+                                     M+      +
+                                        1 ∩ M2 =               M+N
+                                                     N ∈max(N1 ,N2 )
+where max(N1 , N2 ) is the set of maximal shared displayed networks of N1 and N2 .
+Proof. First, observe that if N1 = N2 then max(N1 , N2 ) = N1 and so the result holds. We may therefore
+assume that N1 ̸= N2 .
+   Let Nj have rj reticulation vertices for j = 1, 2. We proceed by induction on max(r1 , r2 ). For the base
+case, suppose max(r1 , r2 ) = 0, so that r1 = r2 = 0 and N1 and N2 are unrooted trees. Since neither N1
+nor N2 has any non-trivial displayed networks and N1 ̸= N2 , we have max(N1 , N2 ) = ∅. Since these trees
+are distinct, there exists a subset of 4 taxa Y such that N1 |Y and N2 |Y are distinct quartets. By either [14,
+Proposition 2.9] (JC, K2P) or Remark 4.4 (K3P) and Proposition 3.3 we have M1 ∩ M2 = ∅. Now since
+neither N1 nor N2 has any reticulation vertices, we have Θ0 (Ni ) = Θ+    0 (Ni ) for i = 1, 2. It follows that
+   +      +
+M1 ∩ M2 = ∅.
+18                         ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+   For the induction step, suppose max(r1 , r2 ) = r and assume, without loss of generality, that r1 = r, so
+                                                                          i       i
+r2 ≤ r. Let v1 , . . . , vr be the reticulation vertices of N1 , and let N11 and N12 be the displayed networks
+of N1 obtained by removing one of the pair of reticulation edges incident to vi for i = 1, . . . , r. For each
+reticulation vertex vi , by Lemma 2.5 we can write the parameterization of N1 as
+                                                       i + (1 − δi )ψN i ,
+                                            ψN1 = δi ψN11             12
+
+where δi is the mixing parameter associated to vi . Then it is clear that
+                                                         r
+                                                         [
+                                      M+                        (Mi11 )+ ∪ (Mi12 )+ .
+                                                                                   
+(7)                                    1 = M1 ∪
+                                                         i=1
+
+Here, the (Mi1j )+ are the models of the displayed networks N1j i
+                                                                  on the parameter set Θ+   i
+                                                                                        0 (N1j ), viewed as a
+           +                                   +
+subset of Θ0 (N1 ). They are the points in M1 got when δi is 0 or 1. It follows that
+                                                 [r
+                   M+       +              +
+                                                     ((Mi11 )+ ∩ M+          i +      +
+                                                                                        
+(8)                  1  ∩ M 2 = (M  1 ∩ M  2 ) ∪                   2 ) ∪ ((M12 ) ∩ M2 ) .
+                                                 i=1
+
+We claim that M1 ∩ M+   2 = M1 ∩ M2 . We will prove this by induction on r2 . For the base case r2 = 0, we
+have that N2 is a tree and therefore M+
+                                      2 = M2 . For the induction step (on r2 ) we write
+                                                         r2
+                                                         [
+                                      M+                        (Mi21 )+ ∪ (Mi22 )+ ,
+                                                                                   
+(9)                                    2 = M2 ∪
+                                                         i=1
+
+analogously to equation (7). Then we have
+                                                        r2
+                                                        [
+                     M1 ∩ M+                                   (M1 ∩ (Mi21 )+ ) ∪ (M1 ∩ (Mi22 )+ ) .
+                                                                                                  
+                           2 = (M1 ∩ M2 ) ∪
+                                                        i=1
+            i
+Now, each N2j has r2 − 1 reticulation vertices, for i = 1, . . . , r2 and j = 1, 2. By induction then, we have
+M1 ∩(M2j ) = M1 ∩Mi2j . Since N2j
+        i +                         i
+                                      has strictly fewer reticulation vertices than N1 , they must be distinct.
+Then by Theorem 4.9 we have M1 ∩ Mi2j = ∅. It follows that M1 ∩ M+        2 = M1 ∩ M2 , so the claim is proved.
+     Returning to the main proof, we can now write equation (8) as
+                                                        r
+                                                        [
+                    M+    +
+                                                               ((Mi11 )+ ∩ M+        i +     +
+                                                                                                
+                     1 ∩ M2 = (M1 ∩ M2 ) ∪                                  2 ) ∪ ((M12 ) ∩ M2 ) .
+                                                        i=1
+
+By Theorem 4.9, since N1 and N2 are distinct, we have M1 ∩ M2 = ∅. It follows that
+                                             r
+                                             [
+                           M+    +
+                                                  ((Mi11 )+ ∩ M+        i +     +
+                                                                                   
+(10)                        1 ∩ M2 =                           2 ) ∪ ((M12 ) ∩ M2 ) .
+                                            i=1
+                                                                                                          i
+We now consider two cases. First, suppose that r2 < r1 = r. Since for each i = 1, . . . , r the networks N11
+     i
+and N12 have r − 1 reticulation vertices, by the induction hypothesis we have
+                                                           [
+                                   (Mi11 )+ ∩ M+ 2 =               M+ N
+                                                                        i ,N )
+                                                                N ∈max(N11  2
+
+                   i
+and similarly for N12 . It follows then that
+                                      r 
+                                     [                  [                         [                
+                      M+         +
+                                                                   M+                         M+
+                                                                      
+                         1  ∩ M  2 =                                N ∪                        N
+                                      i=1             i ,N )
+                                              N ∈max(N11  2
+                                                                                     i ,N )
+                                                                             N ∈max(N12  2
+                                                            [
+                                  =                                           M+
+                                                                               N.
+                                      N ∈∪ri=1 (max(N11
+                                                     i ,N )∪max(N i ,N ))
+                                                         2       12   2
+
+
+Next we observe that since N1 ̸= N2 , any shared maximal displayed network of N1 and N2 is strictly smaller
+                                                              i      i
+than N1 . It must therefore be a displayed network of either N11 or N12 for some i ∈ {1, . . . , r}, so we have
+                                                  r
+                                                  [
+                                                             i                i
+                                                                                       
+                             max(N1 , N2 ) ⊆            max(N11 , N2 ) ∪ max(N12 , N2 ) ,
+                                                  i=1
+                            ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                          19
+
+
+and it follows that
+                                 [                                     [
+                                             M+
+                                              N ⊆                                                  M+
+                                                                                                    N.
+                           N ∈max(N1 ,N2 )                          i ,N )∪max(N i ,N ))
+                                                     N ∈∪ri=1 (max(N11  2       12   2
+
+                               i
+On the other hand, if N ∈ max(N1j , N2 ) for j ∈ {1, 2} then N is a displayed network of N1 and N2 so there
+must exist some N ∈ max(N1 , N2 ) with N ≤ N ′ (possibly N ′ = N ). It follows then that
+                  ′
+
+                                                      [
+                                       M+  N ⊆                M+ N′,
+                                                      N ′ ∈max(N1 ,N2 )
+
+                   i
+for all N ∈ max(N1j  , N2 ) for j ∈ {1, 2}, thereby proving the result for the case r2 < r1 .
+   For the case that r1 = r2 = r, we substitute equation (9) into equation (10) to obtain
+                                       r h
+                                       [                                 i
+                      M+    +
+                                              (Mi11 ) ∩ M2 ∪ (Mi12
+                                                  1 +            1 +
+                                                          
+                       1 ∩ M2 =                                    ) ∩ M2 ∪
+                                      i1 =1
+                                       [r   r h
+                                            [
+                                                    (Mi11 ) ∩ (Mi21
+                                                        1 +
+                                                                    ) ∪ (Mi11
+                                                                  2 +
+                                                                              ) ∩ (Mi22
+                                                                            1 +       2 +
+                                                                                         
+                                                                                        )
+                                      i1 =1 i2 =1
+                                                                              i
+                                      ∪ (Mi12 ) ∩ (Mi21
+                                            1 +
+                                                        ) ∪ (Mi12
+                                                      2 +
+                                                                  ) ∩ (Mi22
+                                                                1 +       2 +
+                                                          
+                                                                            )    .
+
+By our previous claim we have that (Mi1j1 )+ ∩ M2 = Mi1j1 ∩ M2 for i1 = 1, . . . , r and j = 1, 2. Now in
+               i1
+each case N1j     has strictly fewer reticulation vertices than N2 , and so these networks must be distinct. By
+Theorem 4.9 it follows that (Mi1j1 )+ ∩ M2 = ∅. Next we apply the induction hypothesis to all terms of the
+form (Mi1j1 1 )+ ∩ (Mi2j2 2 )+ (since in all cases the two networks have strictly fewer than r reticulation vertices).
+We thus have
+                                                                    [
+                                     (Mi1j1 1 )+ ∩ (Mi2j2 2 )+ =               M+ N.
+                                                                           i         i
+                                                               N ∈max(N1j1 ,N2j2 )
+                                                                               1         2
+
+We finally observe that since N1 ̸= N2 , any maximal shared displayed network of N1 and N2 is neither N1
+nor N2 . Furthermore, since both N1 and N2 have r reticulation vertices, any maximal shared displayed
+network of N1 and N2 must have at most r − 1 reticulation vertices, and is therefore a maximal displayed
+             i1           i2
+network of N1j 1
+                 and N2j    2
+                              for some i1 , i2 ∈ {1, . . . , r} and j1 , j2 ∈ {1, 2}. It follows that the set of maximal
+                                                                                                                      i1
+displayed networks of N1 and N2 is a subset of the union of the set of maximal displayed networks of N1j                1
+       i2
+and N2j2 over all i1 , i2 = 1, . . . , r and j1 , j2 = 1, 2, that is,
+                                         [                    [             [
+                                                   M+N ⊆                               M+ N.
+                               N ∈max(N1 ,N2 )          i1 ,i2 ,j1 ,j2 N ∈max(N i1 ,N i2 )
+                                                                                   1j1       2j2
+
+
+                                          i1     i2
+As in the previous case, for any N ∈ max(N1j1
+                                              , N2j2
+                                                     ) we also have
+                                                      [
+                                       M+N ⊆                   M+N′
+                                                       N ′ ∈max(N1 ,N2 )
+
+thereby proving the result.                                                                                           □
+
+                                     5. Tree-Network Distinguishability
+   In this section we extend our view to more general phylogenetic networks by removing the level-1 re-
+striction. In particular, we extend the trinet inequality from Section 4.1 to trinets of any level, under the
+JC model. We then prove a lemma that allows us to lift this result from trinets to networks with an arbi-
+trary number of leaves, ultimately yielding a general tree-network distinguishability result: no phylogenetic
+tree and non-tree phylogenetic network (modulo suppressing 2-blobs) can produce identical leaf-pattern
+distributions. To this end, we first show that we can disregard certain substructures in a network called
+2-sub-blobs [6].
+20                         ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+5.1. Suppressing 2-sub-blobs. Let N = (V, E) be a semi-directed phylogenetic network, let W ⊆ V , and
+let B = N [W ] be the subgraph induced by W . We call B a 2-sub-blob of N if
+       (i) B is connected;
+      (ii) B contains no edge that is a cut-edge of N ;
+     (iii) W contains exactly two vertices that are adjacent to a vertex in V \ W in N .
+Observe that a 2-blob is also a 2-sub-blob, but a 2-sub-blob need not necessarily be a 2-blob, as it can be
+contained in a k-blob, k ≥ 2. See for example Figure 8.
+   A 2-sub-blob B of a semi-directed phylogenetic network N traps the root if in any rooting of N , the root
+is contained in the 2-sub-blob (or in a larger blob that is suppressed into the 2-sub-blob when obtaining the
+semi-directed network).
+   By suppressing a 2-sub-blob B, we mean contracting all vertices in B to a single vertex, and then sup-
+pressing that vertex. Note that the mixed graph obtained by this operation is also a semi-directed network.
+See again Figure 8.
+
+                 y                    z     y                     z    y                     z
+
+
+
+
+                     N1                         N2                         N3
+                           x                          x                           x
+
+         Figure 8. Three trinets with leaf set {x, y, z}. N1 and N2 both have a 2-sub-blob (in
+         bold). The 2-sub-blob in N2 traps the root and the one in N1 does not. The trinet N3 is
+         the one obtained from N1 or N2 by suppressing their respective 2-sub-blobs.
+
+   The following result follows by a straightforward generalization of the results in Section 5 of [37] from
+2-blobs to 2-sub-blobs. The arguments given there do not rely on the considered subgraph being a blob itself.
+In particular, they apply equally to a 2-sub-blob that is contained within a larger k-blob, for some k ≥ 2.
+We note that our models and restricted parameter set Θ0 also satisfy the assumptions required for those
+results (multiplicative closure, closure under marginal convex combinations, time-reversibility, splittability,
+and being a semi-algebraic set; see also Section 2).
+Lemma 5.1. Let N be a semi-directed phylogenetic network with a 2-sub-blob B and let N ′ be the semi-
+directed phylogenetic network obtained from N by suppressing B. Let M and M′ be the corresponding models
+under JC, K2P, or K3P on the parameter set Θ0 (N ).
+      (i) If B traps the root, then M ⊆ M′ and M, M′ have the same topological closure.
+     (ii) If B does not trap the root, then M = M′ .
+                                                                                                             □
+   It remains an open question whether part (i) can be strengthened to yield equality [37]. However, the
+lemma suffices to prove the following corollary, which lets us consider only networks with suppressed 2-sub-
+blobs for identifiability purposes. See again Section 5 of [37] for the 2-blob analogue.
+Corollary 5.2. Let N1 and N2 be two n-leaf, semi-directed phylogenetic networks for n ≥ 3 and let N1′ and
+N2′ be the corresponding networks obtained by suppressing all 2-sub-blobs. Let M1 , M2 , M′1 , and M′2 be
+the corresponding models under JC, K2P, or K3P on the parameter sets Θ0 (N1 ) and Θ0 (N2 ) respectively.
+If M′1 ∩ M′2 = ∅, then M1 ∩ M2 = ∅.
+Proof. By Lemma 5.1, if N ′ is obtained from a semi-directed network N by suppressing a single 2-sub-blob,
+then MN ⊆ MN ′ and the two models have the same topological closure. Consequently, if a third network
+N ′′ satisfies MN ′ ∩ MN ′′ = ∅, then also MN ∩ MN ′′ = ∅.
+   Applying this argument iteratively over all suppressed 2-sub-blobs yields the result.                □
+                             ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                  21
+
+
+5.2. Trinet Inequality (Level-k). We first prove the following lemma. The proof uses Lemma 1 and
+Theorem 1 of [25], which provide a characterization of when a mixed graph is a semi-directed phylogenetic
+network. In particular, they imply that any semi-directed phylogenetic network either contains a leaf adjacent
+to a reticulation or contains a cherry, that is, a pair of leaves adjacent to the same vertex.
+Lemma 5.3. Let N be a semi-directed phylogenetic network on X with n = |X |. If N has a non-trivial
+n-blob, then there exists a reticulation vertex that is adjacent to a leaf.
+Proof. Since N has a non-trivial n-blob, the n leaves of N are each adjacent to distinct vertices. In particular,
+N contains no cherry. Hence, by Lemma 1 and Theorem 1 of [25], N must contain a leaf adjacent to a
+reticulation vertex.                                                                                           □
+   Before we prove a lemma which will be crucial in our inductive proof of the two main results of this
+section, we require some further terminology.
+   Let N be a semi-directed phylogenetic network with leaf set X = {x, y, z} and with a reticulation vertex r
+that is adjacent to leaf x ∈ X . Let W ⊆ V be the set of all vertices on at least one up-down path between y
+and z; set U = V \ W . We call the induced subgraph N [W ] the basin (of x) and—following [1]—the induced
+subgraph N [U ] the funnel (of x). The attachment points of the basin are its vertices adjacent to a vertex in
+the funnel. See Figure 9 for an example. Observe that N [W ] is a semi-directed network with leaf set {y, z}
+in a slightly more general sense, since it may have degree-2 vertices. For the following proof, we extend the
+definition of 2-(sub)-blobs naturally to these slightly more general networks.
+
+                 y                             z
+
+                                                      y
+
+                                                                       z
+                     W                                                          y             z
+                     U
+                               e′       e′′
+
+                         N                            N − e′                  N − e′′
+                                    x                            x                      x
+
+        Figure 9. Left: A level-5 trinet N with the vertices W in the basin for x and the vertices U
+        in the funnel for x. The three thick red vertices are the attachment points of the basin.
+        Right: The two displayed networks N ′′ = N − e′ and N ′ = N − e′′ .
+
+
+Lemma 5.4. Let N be a trinet with a non-trivial 3-blob. Let r be a reticulation vertex that is adjacent to
+a leaf and let e′ and e′′ be the corresponding reticulation edges. If N is strict level-k, k ≥ 2, and it has no
+2-sub-blobs, then at least one of N − e′ and N − e′′ has a non-trivial 3-blob.
+Proof. Let x be the leaf adjacent to r. Let y and z denote the other two leaves of N = (V, E). Set
+N ′ := N − e′′ and N ′′ := N − e′ , where e′ = (u′ , r) and e′′ = (u′′ , r). Let W ⊆ V be the vertices in the
+basin of x and U = V \ W the vertices in the funnel of x. See also Figure 9. We now distinguish two cases.
+   Case 1: W contains a reticulation vertex of N . In this case, the basin N [W ] has at least one non-trivial
+2-blob Q. We claim that Q has at least one attachment point a. Otherwise, Q would form a 2-sub-blob
+in N , a contradiction. Let π be an up-down path between a and x in N [U ∪ {a}]; assume without loss of
+generality that it uses e′ . Now consider N ′ (which retains e′ ) and any up-down path P between y and z that
+contains at least one vertex (and hence at least one edge) of Q. Then P contains vertex-disjoint up-down
+paths between a vertex of Q and y and between a different vertex of Q and z. Together with π, this gives
+vertex-disjoint up-down paths from Q to all three leaves. Thus, Q is part of some non-trivial 3-blob B of N ′ .
+(Note that B contains Q but is not necessarily equal to Q.)
+   Case 2: W contains no reticulation vertex of N . In this case N [W ] is a path between y and z. Since k ≥ 2,
+there exist at least two reticulation vertices in the funnel. Consider a lowest reticulation not equal to r. This
+must be a parent of r, say u′ (without loss of generality).
+22                           ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+   First suppose that there exist at least two attachment points with semi-directed paths to u′ , not using
+any edges of the basin. Then the blob of N ′ containing u′ is a non-trivial 3-blob.
+   Now suppose that there exists only one attachment point a with a semi-directed path to u′ , not traversing
+any edges of the basin. Let A be the union of all such paths. Since A is not a 2-sub-blob, there is a
+semi-directed path Pa from a vertex of A to r traversing e′′ .
+   Now observe that there exists a different attachment point b ̸= a because otherwise the funnel edge incident
+to a would be a cut edge and hence there would be a 2-blob. Moreover, there exists at least one semi-directed
+path Pb from b to r traversing e′′ but no basin edges. The first vertex that is on both paths Pa , Pb is a
+reticulation vertex r∗ . It follows that, in this case the blob of N ′′ containing r∗ is a non-trivial 3-blob. □
+
+   We now give the level-k trinet inequality under the JC model. Note that for the case where N2 is level-2,
+the following lemma was proved in [14]. Our generalization positively answers their Conjecture 2.16.
+
+Lemma 5.5. Let N1 be a trinet without a non-trivial 3-blob and N2 a trinet with a non-trivial 3-blob, and
+let M1 and M2 be the associated models under the JC evolutionary model with parameter values in Θ0 (N1 )
+and Θ0 (N2 ) respectively. Then the polynomial
+                                                                       2
+                                            Q = qACC qCAC qCCA − qAAA qTCG
+is zero on M1 and strictly positive on M2 . Thus M1 ∩ M2 = ∅.
+
+Proof. For simplicity, we explicitly make the substitution qAAA = 1. By Corollary 5.2, we may assume that
+N1 has no 2-sub-blobs, and in particular no 2-blobs, so it is an unrooted 3-leaf tree (i.e., a 3-star tree). It
+was shown in [14, Proposition 2.15] that Q evaluates to zero on M1 . For completeness, if N1 is a 3-star
+tree with pendant edges a, b and c, then under the JC Fourier parameterization qTCG = aT bC cG = aC bC cC ,
+qCCA = aC bC , qCAC = aC cC , and qACC = bC cC . Under the JC model, we have eC = eT = eG for every
+edge e, so Q = 0 on M1 .
+   Let x be a leaf adjacent to a reticulation vertex r of N2 , with reticulation edges e′ and e′′ , whose existence
+is guaranteed by Lemma 5.3. We also assume that the leaf x corresponds to the last position in the indices
+of the Fourier coordinates. We can assume this without loss of generality because, in the JC model, the
+polynomial Q is invariant under leaf permutations (recall that for JC all leaf permutations of qTCG all lie
+in the same equivalence class). Let δ ′ be the mixing parameter corresponding to e′ and let δ ′′ := 1 − δ ′ be
+the mixing parameter corresponding to e′′ . Define N2′ := N2 − e′′ and N2′′ := N2 − e′ . See Figure 9 for an
+example. By Corollary 5.2, we may assume that N2 , N2′ , and N2′′ contain no 2-sub-blobs.
+   Let
+                      Q′ = qACC
+                            ′    ′
+                                qCAC  ′
+                                     qCCA     ′
+                                          − (qTCG )2 ,                  Q′′ = qACC
+                                                                               ′′   ′′
+                                                                                   qCAC  ′′
+                                                                                        qCCA     ′′
+                                                                                             − (qTCG )2
+be the corresponding polynomials for N2′ and N2′′ . Each Fourier coordinate decomposes as quvw = δ ′ quvw
+                                                                                                      ′
+                                                                                                          +
+ ′′ ′′                                               ′      ′′
+δ quvw . Moreover, by Lemma 2.6 we have qCCA = qCCA = qCCA . Using this and expanding Q gives
+                                                2
+(11)                      Q = qACC qCAC qCCA − qTCG
+                             = (δ ′ qACC
+                                     ′
+                                         + δ ′′ qACC
+                                                 ′′
+                                                     )(δ ′ qCAC
+                                                            ′
+                                                                + δ ′′ qCAC
+                                                                        ′′
+                                                                            )(δ ′ qCCA
+                                                                                   ′
+                                                                                       + δ ′′ qCCA
+                                                                                               ′′
+                                                                                                   )
+                                   − (δ ′ qTCG
+                                           ′
+                                               + δ ′′ qTCG
+                                                       ′′
+                                                           )2
+                             = (δ ′ )2 Q′ + (δ ′′ )2 Q′′ + δ ′ δ ′′ C
+where
+                                            ′    ′′     ′′   ′         ′    ′′
+(12)                             C = qCCA (qACC qCAC + qACC qCAC ) − 2qTCG qTCG .
+We now prove a claim regarding the cross term C, which will form the basis of our inductive proof below.
+  Claim. Suppose that Q′ , Q′′ ≥ 0. Then,
+        (i) C ≥ 0; and
+                       ′    ′′      ′′   ′
+       (ii) C > 0, if qACC qCAC ̸= qACC qCAC .
+Proof of claim. From the definitions of Q′ and Q′′ we obtain
+                                  ′    ′       ′                              ′′   ′′      ′′
+                            qCCA qACC qCAC ≥ (qTCG )2 ,                 qCCA qACC qCAC ≥ (qTCG )2 ,
+                            ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                        23
+
+
+if Q′ , Q′′ ≥ 0. Applying the AM–GM inequality1 to qACC
+                                                     ′   ′′
+                                                        qCAC      ′′
+                                                               + qACC  ′
+                                                                      qCAC  gives
+                                                     q
+                           ′    ′′     ′′   ′                ′      ′          ′′   ′′
+                    qCCA (qACC qCAC + qACC qCAC ) ≥ 2 (qCCA qACC  qCAC )(qCCA qACC qCAC )
+                                                          ′    ′′
+                                                      ≥ 2qTCG qTCG ,
+                                                            ′     ′′      ′′     ′
+with equality holding in the first line if and only if qACC      qCAC  = qACC   qCAC . Using the bounds above, and
+the fact that the Fourier coordinates are positive, this concludes the proof of the claim.                         ⋄
+      We now prove that Q is strictly positive on M2 by induction on the number of reticulation vertices in
+N2 . Since N2 is a trinet with a 3-blob, the number of reticulation vertices is equal to the level, k ≥ 1. The
+base case (and the case k = 2) was already established in [14], but we provide an alternative proof based on
+the above Claim.
+      Case: k = 1. Then, N2 is a 3-sunlet, with N2′ and N2′′ being 3-star trees, and hence Q′ = Q′′ = 0. Since
+  ′ ′′                                                                                                 ′     ′′
+δ , δ ∈ (0, 1), it suffices by 11 to show that C > 0. By the Claim above, we only need to show qACC         qCAC  ̸=
+  ′′       ′                                                                                      ′
+qACC qCAC . We now use the edge labelling from Figure 4, where we identify edges d and e , and edges e and
+e′′ (i.e. the mixing parameter δ ′ corresponds to d = e′ and δ ′′ to e = e′′ ). We then have qACC  ′
+                                                                                                      = bC cC dC fC ,
+  ′′                    ′                    ′′                        ′     ′′        ′′  ′
+qACC = bC cC eC , qCAC = aC cC dC and qCAC = aC cC eC fC . So, qACC qCAC = (qACC qCAC ) · fC2 , and the result
+follows since the Fourier parameters are in (0, 1).
+      Case: k ≥ 2. By Lemma 5.4, we may assume that N2′ has a non-trivial 3-blob (with strictly fewer
+reticulation vertices than N2 ) and thus Q′ > 0 by the induction hypothesis. Moreover, Q′′ ≥ 0, as either
+the induction hypothesis also applies (in which case Q′′ > 0) or N2′′ is a tree (in which case Q′′ = 0). Since
+δ ′ , δ ′′ ∈ (0, 1), and since C ≥ 0 by the claim, the result follows from (11).                                   □
+   Note that the proof of Lemma 5.5 cannot readily be adapted to K2P since the polynomial Q in Lemma
+4.1 is not invariant under all leaf permutations in K2P (take, for example, σ = (123) in cycle notation).
+Therefore, even though one could assume that the last leaf in the ordering is incident to a reticulation in N2 ,
+this cannot again be assumed for the network N2′ , so the induction hypothesis would not apply.
+
+5.3. Distinguishing Phylogenetic Trees from Phylogenetic Networks. Before proving the next propo-
+sition, we require the following terminology and auxiliary results.
+   A cycle C in a semi-directed network is called good if there exists a unique reticulation vertex r, called
+the sink of C, such that C contains both reticulation edges entering r. A good cycle is called excellent if its
+sink is adjacent to a leaf. Call a semi-directed network simple if it contains at most one m-blob with m ≥ 3.
+   By Lemma 5.4 of [26], after suppressing all 2-blobs, every non-cut-edge of a simple, semi-directed network
+is contained in an excellent cycle.
+Lemma 5.6. Let N be a semi-directed network on X containing a non-trivial m-blob, where m ≥ 3. Then
+there exist leaves a, b, c ∈ X such that the trinet N |{a,b,c} contains a non-trivial 3-blob.
+Proof. Since N contains a non-trivial m-blob B, there exists a subset Y ⊆ X of size m such that N |Y is
+simple and contains a non-trivial m-blob. Indeed, removing B disconnects N into exactly m components,
+each containing at least one leaf. By choosing one leaf from each such component and letting Y be the
+resulting set of leaves, the subnetwork N |Y retains the blob B as a non-trivial m-blob. Thus, replacing N
+by N |Y if necessary, we may assume that N is simple.
+    We next note that only the structure of the network in and around the non-trivial m-blob B is relevant
+for the argument. Any 2-blobs attached to B do not affect the presence or absence of non-trivial 3-blobs in
+trinets. Hence, we may assume without loss of generality that N has no 2-blobs.
+    Let e be an edge in the non-trivial m-blob B. By [7, Lemma 17], there exist leaves x, y ∈ X such that
+e lies on an up-down path between x and y. This lemma is stated for rooted networks, but the result for
+semi-directed networks follows directly by considering any rooting. By [26, Lemma 5.4] (mentioned above),
+it then follows that the edge e is contained in an excellent cycle C. Let a ∈ X be the leaf incident to the
+sink of C.
+    We claim that there exist two disjoint up-down paths from C to leaves not equal to a. The up-down path
+between x and y traversing e contains disjoint up-down paths from C to x and y. This proves the claim if
+a∈ / {x, y}.
+
+  1The AM–GM inequality states that for x, y ≥ 0 we have x + y ≥ 2√xy, where equality holds if and only if x = y.
+24                         ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+   Hence, assume a ∈ {x, y}, say a = x. If every up-down path from y to a leaf in X \ {x, y} avoids C, this
+would imply that the blob containing C is a 2-blob, contradicting our assumption that B is a non-trivial
+m-blob, m ≥ 3. Hence there exists a leaf c ∈ X \ {x, y} such that some up-down path from y to c uses
+an edge of C. This path then contains two disjoint up-down paths from C to y and c with y, c ̸= a. This
+concludes the proof of the claim.
+   Thus, we have shown that B contains an excellent cycle C with a leaf a incident to the unique sink of C
+and with disjoint up-down paths from C to leaves b, c ̸= a. Observe that each vertex v of C lies on at least
+one up-down path between leaves in {a, b, c}. To see this, note that there exist up-down paths from v to b
+and c (by [25, Corollary 1]) and a semi-directed path from v to a. Hence, the trinet N |{a,b,c} contains a
+cycle with disjoint paths between this cycle and a, b and c. Hence, N |{a,b,c} contains a nontrivial 3-blob. □
+
+  Clearly, a network without a non-trivial m-blob, m ≥ 3, cannot induce a trinet that has a non-trivial
+m-blob. Hence, by combining Theorem 3.6 with Lemma 5.5, the previous lemma implies the following result.
+Corollary 5.7. Let N1 and N2 be two semi-directed phylogenetic networks on a set of n taxa X , with n ≥ 3.
+Let M1 and M2 be the corresponding models under the JC model on the parameter sets Θ0 (N1 ) and Θ0 (N2 )
+respectively. If N1 contains at least one non-trivial m-blob, m ≥ 3, and N2 does not, then M1 ∩ M2 = ∅. □
+   Observe that the presence or absence of a non-trivial m-blob, m ≥ 3, is preserved when passing from
+a rooted phylogenetic network to its associated semi-directed network. Hence Corollary 5.7 also holds for
+rooted phylogenetic networks (see Figure 1).
+
+                                                 6. Discussion
+   We have shown that, under the JC, K2P, and K3P models, the semi-directed network parameter of level-1
+phylogenetic networks is fully identifiable from the leaf-pattern distribution, provided all mixing parameters
+are non-trivial. A key structural insight underlying this result is that two level-1 network models overlap
+exactly in the union of models of their maximal shared displayed networks—the largest networks displayed
+by both. As an example, the intersection of two sunlet models is exactly the model of their common displayed
+tree. This proves that the method for identifying 4-leaf unrooted trees used in [32] is statistically consistent.
+More generally, our result shows that phylogenetic network reconstruction methods based on leaf-pattern
+probabilities should be statistically consistent on level-1 phylogenetic networks, up to the semi-directed
+phylogenetic network and placement of reticulations in triangles, under the JC, K2P, and K3P models.
+Furthermore, our result is a necessary condition for the statistical consistency of maximum likelihood as an
+estimator for a level-1 semi-directed phylogenetic network topology under those models. To the best of our
+knowledge, it is not known whether different phylogenetic networks have different leaf-pattern probability
+distributions for more popular but more complex models, such as the generalized time-reversible (GTR)
+model.
+   Our identifiability results are up to the placement of the reticulation vertex in any triangles in the network.
+This is because, for group-based models, the leaf-pattern distribution of 3-sunlets is the same regardless of the
+placement of the reticulation vertex [20]. In recent work, however, semi-algebraic conditions were given under
+which the placement of the reticulation vertex in a triangle is identifiable from the leaf-pattern distribution
+for the JC model [12]. These conditions are valid on the same parameter set Θ0 that we consider here.
+   The second contribution of this paper is tree-network distinguishability under the JC model. Lemma 5.5
+establishes that trinets of arbitrary level can be distinguished from trees under this model. The extension
+to arbitrary level is new: [14] established the trinet inequality only for level-1 and level-2 networks. This
+shows that, modulo suppressing 2-blobs, any phylogenetic network can be distinguished from any phyloge-
+netic tree—that is, no network and tree can produce the same leaf-pattern distributions when the mixing
+parameters of the network are non-trivial. Beyond substitution models, Lemma 5.6, in combination with the
+proof of the ‘A-3blob’ assumption from [1], can be used to establish tree-network distinguishability under
+several coalescent-based models as well.
+   The trinet inequality has several further identifiability consequences. One concerns a class of galled tree-
+child networks satisfying topological restrictions on cycle sizes and hybrid attachment; see Remark 5 of [1]
+for precise conditions. Quartet distinguishability [14, Proposition 8] verifies assumptions ‘A-4circ’ and ‘A-
+ToB’ of [1], and our trinet results verify ‘A-3blob’, so that Lemma 4.2, Theorem 4.3, and Remark 5 of [1]
+yield identifiability for a class of networks of arbitrary level under JC. In a related direction, [24] showed
+                              ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                              25
+
+
+identifiability of outer-labelled planar level-2 networks from quartets, subject to cycle-size restrictions—
+notably excluding 4-cycles. Since our trinet results may provide a means to locate smaller cycles, it is
+conceivable that some of these restrictions can be relaxed.
+   Several questions remain open. It is natural to ask whether the high-level trinet inequality extends to
+the K2P and K3P models, whether quartet distinguishability extends to the K3P model, and whether the
+identifiability results for level-2 networks in [14, 24] can then be fully lifted to K2P and K3P. Even though
+we have already shown the level-1 trinet inequality for K2P and K3P, it is not clear how to adapt the proof
+of Lemma 5.5 to the cases of K2P and K3P, since this proof relies on the single invariant found for the level-1
+trinet inequality in that case, and that this invariant is itself invariant under permuting the leaves.
+   More generally, we could ask whether our results hold for the more general class of equivariant substitution
+models. This class includes the group-based models, but also includes the strand-symmetric model and the
+general Markov model. These models maintain many of the nice properties of the models that we have used
+here (see [37]), so it seems plausible that our results could extend to these models.
+   Here we considered the parameter space Θ0 , and extended this to Θ+      0 , allowing mixing parameters to be
+either 0 or 1. This enabled a description of the intersection of two level-1 phylogenetic networks in terms
+of their displayed networks. In Θ0 the transition matrix parameters aex lie in the open interval (0, 1). We
+could also consider extending this to the interval (0, 1]. Having aex = 1 for all x ∈ {A, C, G, T} corresponds
+to a branch of length 0. In phylogenetic applications branches of length 0 can correspond to uncertainty
+in the order of branching events. We would then expect to find further intersections between phylogenetic
+network models, since, for example, the variety corresponding to a single triangle quarnet is contained in
+four 4-sunlet varieties, and these containments occur when a branch in the 4-sunlet is shrunk to have length
+0 (see [20, Example 4.10]).
+   Along similar lines, another direction is the extension of our results to non-binary trees and networks.
+These are phylogenetic trees and networks in which the in-degree and out-degree of the internal vertices
+are not restricted (recall that in this work, the sum of in-degree and out-degree for each non-root internal
+vertex is three). Such vertices are often called multifurcations, and can represent uncertainty in the order of
+events represented by a phylogenetic tree or network. In early work for this project, we found that on the
+parameter space Θ0 , we can distinguish between a 4-star tree and a 4-leaf unrooted binary tree (result not
+shown), suggesting that further full identifiability results may be possible in this direction.
+
+                                                  Acknowledgments
+   We thank Seth Sullivant, Vincent Moulton and Guuske Kouwenhoven for interesting discussions related
+to the questions discussed in this paper. We thank Alec Kriebel for pointing us at a mistake in an earlier
+version of this paper.
+
+                                                         Funding
+  NH & LvI were supported by grant OCENW.M.21.306 of the Dutch Research Council (NWO). SM was
+supported by the European Molecular Biology Laboratory (EMBL).
+
+                                                       References
+ [1] Elizabeth S Allman, Cécile Ané, Hector Baños, and John A Rhodes. Beyond level-1: identifiability of a class of galled
+     tree-child networks. Bulletin of Mathematical Biology, 87(11):1–26, 2025.
+ [2] Elizabeth S Allman, Hector Baños, Marina Garrote-Lopez, and John A Rhodes. Identifiability of level-1 species networks
+     from gene tree quartets. Bulletin of Mathematical Biology, 86(9):110, 2024.
+ [3] Elizabeth S Allman, Hector Baños, Jonathan D Mitchell, and John A Rhodes. The tree of blobs of a species network:
+     identifiability under the coalescent. Journal of Mathematical Biology, 86, 2023.
+ [4] Elizabeth S Allman and John A Rhodes. Phylogenetic invariants. In Olivier Gascuel and Mike Steel, editors, Reconstructing
+     Evolution. Oxford University Press, 2007.
+ [5] Elizabeth S Allman and John A Rhodes. Phylogenetic ideals and varieties for the general Markov model. Advances in
+     Applied Mathematics, 40:127–148, 2008.
+ [6] Cécile Ané, John Fogg, Elizabeth S Allman, Hector Baños, and John A Rhodes. Anomalous networks under the multispecies
+     coalescent: theory and prevalence. Journal of Mathematical Biology, 88(3), 2024.
+ [7] Hector Baños. Identifying species network features from gene tree quartets under the coalescent model. Bulletin of Math-
+     ematical Biology, 81(2):494–534, 2019.
+ [8] Travis Barton, Elizabeth Gross, Colby Long, and Joseph Rusinko. Statistical learning with phylogenetic network invariants.
+     Bulletin of the Society of Systematic Biologists, 4(1), 2026.
+26                            ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+ [9] Jacek Bochnak, Michel Coste, and Marie-Françoise Roy. Real Algebraic Geometry, volume 36 of A Series of Modern
+     Surveys in Mathematics. Springer-Verlag, 1998.
+[10] Shelby Cox, Elizabeth Gross, and Samuel Martin. Group-based phylogenetic models on 3-sunlet networks. Bulletin of
+     Mathematical Biology, 87, 2025.
+[11] Joseph Cummings, Elizabeth Gross, Benjamin Hollering, Samuel Martin, and Ikenna Nometa. The Pfaffian structure of
+     CFN phylogenetic networks. Journal of Mathematical Biology, 92(1), 2026.
+[12] Bryan Currie, Aviva K Englander, Jose A Esparza-Lozano, Elizabeth Gross, Max Hill, Colby Long, Devon Olds, Kawika
+     O’Connor, Udani Ranasinghe, and Christin Sum. Semialgebraic conditions for identifying triangles in phylogenetic net-
+     works. arXiv preprint arXiv:2606.26673, 2026.
+[13] Jan Draisma and Jochen Kuttler. On the ideals of equivariant tree models. Mathematische Annalen, 344:619–644, 2009.
+[14] Aviva K Englander, Martin Frohn, Elizabeth Gross, Niels Holtgrefe, Leo van Iersel, Mark Jones, and Seth Sullivant.
+     Identifiability of phylogenetic level-2 networks under the Jukes-Cantor model. bioRxiv 2025.04.18.649493, 2025.
+[15] Nicholas Eriksson, Kristian Ranestad, Bernd Sturmfels, and Seth Sullivant. Phylogenetic algebraic geometry. In Ciro
+     Cilliberto, Anthony V. Geramita, Brian Harbourne, Rosa Maria Miró-Roig, and Kristian Ranestad, editors, Projective
+     varieties with unexpected properties. de Gruyter, 2005.
+[16] Steven N Evans and T P Speed. Invariants of some probability models used in phylogenetic inference. The Annals of
+     Statistics, 21(1):355–377, 1993.
+[17] Martin Frohn, Niels Holtgrefe, Leo van Iersel, Mark Jones, and Steven Kelk. Reconstructing semi-directed level-1 networks
+     using few quarnets. Journal of Computer and System Sciences, 152, 2025.
+[18] Martin Frohn, Niels Holtgrefe, Leo van Iersel, Mark Jones, and Steven Kelk. Bounds on the sequence length sufficient to
+     reconstruct binary level-1 phylogenetic networks under the CFN model. Annals of Combinatorics, 2026.
+[19] Elizabeth Gross, Robert Krone, and Samuel Martin. Dimensions of level-1 group-based phylogenetic networks. Bulletin of
+     Mathematical Biology, 86, 2024.
+[20] Elizabeth Gross and Colby Long. Distinguishing phylogenetic networks. SIAM Journal on Applied Algebra and Geometry,
+     2(1):72–93, 2018.
+[21] Elizabeth Gross, Leo van Iersel, Remie Janssen, Mark Jones, Colby Long, and Yukihiro Murakami. Distinguishing level-1
+     phylogenetic networks on the basis of data generated by Markov processes. Journal of Mathematical Biology, 83, 2021.
+[22] Michael D Hendy and David Penny. Complete families of linear invariants for some stochastic models of sequence evolution,
+     with and without the molecular clock assumption. Journal of Computational Biology, 3(1):19–31, 1996.
+[23] Benjamin Hollering and Seth Sullivant. Identifiability in phylogenetics using algebraic matroids. Journal of Symbolic
+     Computation, 104:142–158, 2021.
+[24] Niels Holtgrefe, Elizabeth S Allman, Hector Baños, Leo van Iersel, Vincent Moulton, John A Rhodes, and Kristina Wicke.
+     Distinguishing phylogenetic level-2 networks with quartets and inter-taxon quartet distances. Bulletin of Mathematical
+     Biology, 87(12):1–35, 2025.
+[25] Niels Holtgrefe, Katharina T Huber, Leo van Iersel, Mark Jones, and Vincent Moulton. Characterizing semi-directed
+     phylogenetic networks and their multi-rootable variants. Theory in Biosciences, 145(1), 2026.
+[26] Katharina T Huber, Leo van Iersel, Mark Jones, Vincent Moulton, and Leonie Veenema-Nipius. When are quarnets
+     sufficient to reconstruct semi-directed phylogenetic networks? Bulletin of Mathematical Biology, 87(10), 2025.
+[27] Daniel H Huson, Regula Rupp, and Celine Scornavacca. Phylogenetic Networks. Cambridge University Press, 2010.
+[28] Thomas H Jukes and Charles R Cantor. Evolution of protein molecules. In H N Munro, editor, Mammalian Protein
+     Metabolism, chapter 24. Academic Press, 1969.
+[29] Motoo Kimura. A simple method of estimating evolutionary rates of base substitutions through comparative studies of
+     nucleotide sequences. Journal of Molecular Evolution, 16:111–120, 1980.
+[30] Motoo Kimura. Estimation of evolutionary distances between homologous nucleotide sequences. Proceedings of the National
+     Academy of Sciences of the United States of America, 78:454–458, 1981.
+[31] Sungsik Kong, David L Swofford, and Laura S Kubatko. Inference of phylogenetic networks from sequence data using
+     composite likelihood. Systematic Biology, 74(1):53–69, 2025.
+[32] Samuel Martin, Niels Holtgrefe, Vincent Moulton, and Richard M Leggett. Algebraic invariants for inferring 4-leaf semi-
+     directed phylogenetic networks. Systematic Biology, 75(4):657–672, 2026.
+[33] Claudiu Raicu. Secant varieties of Segre-Veronese varieties. Algebra and Number Theory, 6(8):1817–1868, 2012.
+[34] John A Rhodes, Hector Banos, Jingcheng Xu, and Cécile Ané. Identifying circular orders for blobs in phylogenetic networks.
+     Advances in Applied Mathematics, 163 Part A, 2025.
+[35] Bernd Sturmfels and Seth Sullivant. Toric ideals of phylogenetic invariants. Journal of Computational Biology, 12(4):457–
+     481, 2005.
+[36] Seth Sullivant. Algebraic statistics, volume 194 of Graduate Studies in Mathematics. American Mathematical Society, 2018.
+[37] Seth Sullivant. Phylogenetic network models as graphical models. arXiv preprint arXiv:2507.23056, 2025.
+[38] Jeremy G Sumner, Jesús Fernández-Sánchez, and Peter D Jarvis. Lie Markov models. Journal of Theoretical Biology,
+     298:16–31, 2012.
+                                 ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                                          27
+
+
+                                                Appendix A. Further Proofs
+   In this appendix we give proofs left out of the main document, and complete proofs for some results in
+the main document that were left incomplete.
+Proposition 3.3. Let T be an unrooted binary phylogenetic tree on a set of taxa X , and let M be the
+corresponding model for a multiplicatively closed substitution model. For a leaf x ∈ X , let T ′ = T |X \{x} be
+the restricted tree obtained from T by pruning the leaf x and suppressing the resulting degree two vertex, and
+let M′ be the corresponding model for the same substitution model. If p ∈ M then the point p′ obtained
+from p by marginalizing over the leaf x is in M′ .                                                           □
+Proof. We assume, without loss of generality, that X = {1, . . . , n} and that we restrict to the set X ′ =
+{1, . . . , n − 1}. Consider an element p ∈ M. We can write the coordinates of p as
+                                      px1 ,...,xn : = P (X1 = x1 , . . . , Xn = xn )
+                                                          X                   Y
+                                                    =               πxρ              Mx(u,v)
+                                                                                        u ,xv
+                                                                                              ,
+                                                          x∈X(x1 ,...,xn )              (u,v)∈E(T )
+
+for some choice of matrices M (u,v) for each edge (u, v) ∈ E(T ). Marginalizing over states at the leaf n we
+obtain
+                                     X
+               mn (p) x ,...,x  :=        px1 ,x2 ,...,xn
+                             1     n−1
+                                                xn ∈Ω
+                                                X              X                             Y                   
+                                            =                                 πxρ                         Mx(u,v)
+                                                                                                              ,x
+                                                                                                             u v
+                                                                                                                    Mxep(n) ,xn
+                                                xn ∈Ω x∈X(x1 ,...,xn )                  (u,v)∈E(T )\{e}
+                                                         X                               Y                       X
+                                            =                           πxρ                           Mx(u,v)
+                                                                                                         u ,xv
+                                                                                                                         Mxep(n) ,xn
+                                                x∈X(x1 ,...,xn−1 )                (u,v)∈E(T )\{e}                xn ∈Ω
+
+where the edge e is the edge leading to leaf n, and xp(n) is the state at the vertex p(n), the parent of n, in
+the assignment x (see Figure 10(A)). In the third line we sum over all assignments of states at the vertices
+                                                                                                   e
+of T for which leaves
+                 P 1, . . . , n − 1 are assigned states x1 , . . . , xn−1 respectively. Now since M is a Markov
+matrix, we have xb ∈Ω Mxea ,xb = 1, so
+                                                   X                       Y
+                                                                                   Mx(u,v)
+                                 
+                         mn (p) x1 ,...,xn−1 =                  πxρ                    u ,xv
+                                                                                             .
+                                                            x∈X(x1 ,...,xn−1 )             (u,v)∈E(T )\{e}
+
+Next, let X (x1 , . . . , xn−1 ) be the set of all assignments of states at the vertices of T ′ for which leaves
+             ′
+
+1, . . . , n − 1 are assigned states x1 , . . . , xn−1 respectively. Observe that the vertices of T ′ are exactly those
+of T , except for n and p(n) (see Figure 10), so we may write
+                                      X                          Y                   X
+                                                                            Mx(u,v)       Mxep(e       Mxea2 ,xp(e ) .
+                   
+             mn (p) x1 ,...,xn−1 =                   πxρ                       u ,xv
+                                                                                              1
+                                                                                                 ) ,xa                     1           2
+                                  x∈X ′ (x1 ,...,xn−1 )           (u,v)∈E(T )\{e,e1 ,e2 }                   xa ∈Ω
+
+   Now, since the substitution model is multiplicatively closed, the product of transition matrices M e1 M e2
+                                                 ′
+is also a transition matrix in the model. Let M e be this matrix. Then we have
+                                         X                    Y                   ′
+                                                                         Mx(u,v)   Mxep(e ) ,xp(e )
+                      
+                mn (p) x ,...,x  =                 πxρ                      u ,xv
+                         1        n−1                                                                                          1   2
+                                            x∈X ′ (x1 ,...,xn−1 )             (u,v)∈E(T )\{e,e1 ,e2 }
+                                                    X                             Y
+                                        =                              πxρ                   Mx(u,v)
+                                                                                                u ,xv
+                                            x∈X ′ (x   1 ,...,xn−1 )         (u,v)∈E(T ′ )
+                                        = px1 ,x2 ,...,xn−1 ,
+  where we write e′ for the edge in T ′ got by suppressing the vertex p(n) in T . Thus we have shown that
+by marginalizing over leaf n, we obtain a point in the model of the restricted tree T ′ .              □
+
+Lemma 4.1. Let N1 be the 3-star unrooted tree and N2 be a 3-sunlet semi-directed network, and let M1
+and M2 be the associated models under the K2P substitution model with parameter values in Θ0 (N1 ) and
+Θ0 (N2 ) respectively. Then the polynomial
+                                                           2                2
+                                            Q = qAGG qGAG qCCA − qAAA qGGA qTCG
+28                             ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+                S1                                  S2
+
+
+
+                                p(n)
+                          e1             e2                                                    e′
+                                                                          S1                                S2
+
+                                     e
+
+                                 n
+                                (a)                                                            (b)
+
+         Figure 10. (A) A phylogenetic tree T , focussed on the leaf n, its parent vertex p(n), and
+         the incident edges leading to the subtrees S1 and S2 . (B) The corresponding restricted tree
+         T ′ = T |[n−1] . Subtrees S1 and S2 remain unchanged.
+
+is zero on M1 and strictly positive on M2 . In particular, M1 ∩ M2 = ∅.
+Proof. First, we have that Q ∈ IN1 . This is clear by looking at the multiset of labels for each leaf position
+under the K2P labelling (see e.g. [35]). For example, in the first leaf position we have {A, G, C, C} for the
+monomial on the left and {A, G, T, T} for the monomial on the right. For a star tree, these multisets describe
+the parameters for a particular edge in the parameterization of each Fourier coordinate. Since for K2P we
+identify the Fourier parameters corresponding to C and T for each edge, the parameters corresponding to
+these multisets are the same.
+   To show that Q is strictly positive on N2 , we label the edges of the 3-sunlet as in Figure 4 of the main
+document. For each edge a, we have the associated parameters aA , aC , aG , aT which are subject to the
+constraints aA = 1 and aC = aT . We substitute a generic point into Q using the parameterization of the
+model, which is given by (see Example 2.4)
+                                  qx1 x2 x3 = ax1 bx2 cx3 (δdx3 fx2 + (1 − δ)ex3 fx2 +x3 ),
+for x1 , x2 , x3 ∈ G with x1 + x2 + x3 = 0. We have
+                                              qAGG = bG cG (δdG fG + (1 − δ)eG ),
+                                              qCCA = aC bC fC ,
+                                              qGAG = aG cG (δdG + (1 − δ)eG fG ),
+                                              qGGA = aG bG fG ,
+                                              qTCG = aC bC cG fC (δdG + (1 − δ)eG ).
+Expanding monomials in Q we have
+                      2
+           qAGG qGAG qCCA = a2C aG b2C bG c2G fC2 (δ 2 d2G fG + δ(1 − δ)(dG eG + dG eG fG
+                                                                                        2
+                                                                                          ) + (1 − δ)2 e2G fG )
+and
+                         2
+                   qGGA qTCG  = a2C aG b2C bG c2G fC2 fG (δ 2 d2G + 2δ(1 − δ)dG eG + (1 − δ)2 e2G ).
+Taking the difference we obtain
+                                2          2
+                     qAGG qGAG qCCA −qGGA qTCG
+                                          = a2C aG b2C bG c2G fC2 δ(1 − δ)(dG eG + dG eG fG
+                                                                                          2
+                                                                                            − 2dG eG fG )
+                                          = a2C aG b2C bG c2G fC2 δ(1 − δ)dG eG (1 + fG
+                                                                                      2
+                                                                                        − 2fG )
+                                          = a2C aG b2C bG c2G dG eG fC2 δ(1 − δ)(1 − fG )2 .
+Since all parameters lie in (0, 1), this is strictly positive.                                                    □
+Lemma 4.6. Let N1 be a level-1 quarnet with split 12|34, and let N2 be a level-1 quarnet without the split
+12|34. Let M1 and M2 be the corresponding models for either the JC, K2P, or K3P models on the restricted
+parameter set. Then M1 ∩ M2 = ∅.
+                              ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS                                                  29
+
+
+Proof. In the main document we reduced the proof to showing that the polynomial Q12|34 = qAAAA qTTTT −
+qAATT qTTAA is strictly positive for the single-triangle quarnets and double-triangle quarnets without the
+split 12|34. We showed this for the single-triangle quarnet with split 13|24 in Figure 11 (a). It remains to
+show that Q12|34 is strictly positive for the single-triangle quarnets in Figure 11 (b), (c), and (d), and the
+double-triangle quarnets in Figure 12 (a) and (b). Note that the placement of the reticulation vertex in
+the triangle does not affect the underlying model [20], so these are all remaining quarnets without the split
+12|34, for which the model is distinct.
+
+     1                3                   1             4               2                 4                   2             3
+
+
+
+
+     2                4                   2             3               1                 3                   1             4
+            (a)                                   (b)                          (c)                                (d)
+
+                          Figure 11. All single-triangle quarnets without the split 12|34.
+
+
+   First we show that Q12|34 is strictly positive on the quarnets in Figure 11 (b), (c), and (d). We begin with
+(b). Observe that (b) can be obtained from (a) via the leaf-permutation (34) (written in cycle notation).
+Now Q12|34 is invariant under (34) (where for a permutation θ ∈ S4 we define θ(qg1 g2 g3 g4 ) = qgθ(1) gθ(2) gθ(3) gθ(4)
+and extend as a ring homomorphism), so it follows that Q12|34 is strictly positive on (b). For the quarnets
+(c) and (d) we observe that (a) can be obtained from (c) via the leaf permutation (12)(34) and (b) can be
+obtained from (d) by the same permutation. Since Q12|34 is invariant under this permutation too, it follows
+that Q12|34 is strictly positive on (c) and (d).
+   Next we consider the double-triangle quarnets shown in Figure 12.
+
+                          1                   3                                      1                    4
+
+                          a           f       c                                      a            f       c
+
+                              k           h                                              k            h
+
+                                  e                                                           e
+
+                              m           ℓ                                              m            ℓ
+                          b           n       d                                      b            n       d
+
+                          2                   4                                      2                    3
+                                  (a)                                                         (b)
+
+                          Figure 12. All double-triangle quarnets without the split 12|34.
+
+
+   As in the single-triangle case, we have that (a) can be obtained from (b) with the leaf-permutation (34),
+so it is sufficient to prove that Q12|34 is strictly positive on the quarnet in (a). The parameterization is given
+by
+         qg1 g2 g3 g4 = ag1 bg2 cg3 dg4 eg2 +g4 (δ1 fg1 hg1 +g3 + (1 − δ1 )kg1 hg3 )(δ2 ng2 ℓg2 +g4 + (1 − δ2 )mg2 ℓg4 ).
+30                      ON FULL IDENTIFIABILITY OF PHYLOGENETIC NETWORKS
+
+
+We have
+                  qAAAA = 1,
+                   qTTTT = aT bT cT dT (δ1 fT + (1 − δ1 )kT hT )(δ2 nT + (1 − δ2 )mT ℓT ),
+                   qAATT = cT dT eT hT ℓT ,
+                   qTTAA = aT bT eT (δ1 fT hT + (1 − δ1 )kT )(δ2 nT ℓT + (1 − δ2 )mT ).
+This gives
+             Q12|34 = aT bT cT dT (δ1 fT + (1 − δ1 )kT hT )(δ2 nT + (1 − δ2 )mT ℓT )
+                         − aT bT cT dT e2T hT ℓT (δ1 fT hT + (1 − δ1 )kT )(δ2 nT ℓT + (1 − δ2 )mT )
+                    = aT bT cT dT (δ1 fT (1 − eT h2T ) + (1 − δ1 )kT hT (1 − eT ))
+                         × (δ2 nT (1 − eT ℓ2T ) + (1 − δ2 )mT ℓT (1 − eT )) > 0.
+                                                                                                      □
+

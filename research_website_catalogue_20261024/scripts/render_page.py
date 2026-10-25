@@ -5,6 +5,15 @@ from html import escape
 import hashlib, json, re, shutil, sys
 from pypdf import PdfReader
 
+def asset_name(item):
+    name, filename = item.get('name'), item.get('filename')
+    if name is not None and filename is not None and name != filename:
+        raise ValueError('Conflicting receipt name and filename')
+    value = name if name is not None else filename
+    if not isinstance(value, str) or not value:
+        raise ValueError('Receipt asset has no valid name or filename')
+    return value
+
 ROOT = Path(__file__).resolve().parents[1]
 SITE = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public/research')
 paper = ROOT / 'papers' / str(int(sys.argv[1]))
@@ -17,8 +26,8 @@ if gate.get('publication_sha256'):
 if gate.get('source_receipt_sha256'):
     assert gate['source_receipt_sha256'] == hashlib.sha256((paper/'sources/receipt.json').read_bytes()).hexdigest()
 for item in receipt['files']:
-    assert hashlib.sha256((paper/'sources'/item['name']).read_bytes()).hexdigest() == item['sha256']
-assert gate['pdf_sha256'] == next(x['sha256'] for x in receipt['files'] if x['name']==c['pdf_filename'])
+    assert hashlib.sha256((paper/'sources'/asset_name(item)).read_bytes()).hexdigest() == item['sha256']
+assert gate['pdf_sha256'] == next(x['sha256'] for x in receipt['files'] if asset_name(x)==c['pdf_filename'])
 slug = c['slug']; assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',slug)
 out = SITE/slug; out.mkdir(exist_ok=True)
 asset_names = [c['pdf_filename']]
@@ -27,7 +36,7 @@ asset_names += [asset['filename'] for asset in c.get('additional_assets', [])]
 assert len(asset_names) == len(set(asset_names))
 for name in asset_names:
     assert Path(name).name == name
-    assert name in {item['name'] for item in receipt['files']}
+    assert name in {asset_name(item) for item in receipt['files']}
     shutil.copyfile(paper/'sources'/name,out/name)
 h=escape
 url=f'https://aleckriebel.com/research/{slug}/'

@@ -1,0 +1,47 @@
+        A counterexample to Kourovka Notebook Problem 16.45
+                                               Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                           23 September 2026
+                                      Version 1.0.1; unrefereed preprint
+
+
+
+                                                  Abstract
+          Let b(G) be the largest size of an inclusion-minimal base, over all permutation representations
+      of a ﬁnite group G, with bases taken for the permutation image. Let µ0 (G) be the largest size of
+      an independent subset of G, not necessarily generating G. We construct an explicitly speciﬁed
+      aﬃne group of order 100920 for which
+
+                                           b(G) = 3 < 4 = µ0 (G).
+
+      The upper bound covers faithful and nonfaithful actions and does not depend on enumerating
+      the subgroups of the aﬃne group. Exact, independently implemented Python and C++ veriﬁers
+      certify the small matrix-group inputs and the explicit witnesses. The obstruction is a subgroup
+      of order two that is central in the complement but not normal in the ambient aﬃne group.
+
+
+1     Introduction and conventions
+Cameron’s Problem 16.45 in the Kourovka Notebook asks whether two invariants of every ﬁnite
+group coincide: the largest size of an inclusion-minimal permutation base, and the largest size
+of an independent subset. The inequality b(G) ≤ µ0 (G) is known. We give a negative answer by
+constructing an aﬃne group G = F229 ⋊H, where H = ∼ SL2 (5) acts through explicitly given matrices,
+and proving
+                                 bf (G) = b(G) = 3 < 4 = µ0 (G).
+Here bf restricts the base invariant to faithful actions. No minimum-order assertion is made.
+    The distinction between faithful and arbitrary actions is essential to the proof: for the comple-
+ment, bf (H) = 2 whereas b(H) = 3. Every subgroup of G not containing its translation subgroup
+has faithful base invariant at most two. Restricting an irredundant intersection family to such a
+subgroup bounds faithful bases in G; the normal-subgroup structure then covers all nonfaithful
+actions. The upper bound is structural and requires no enumeration of the subgroup lattice of the
+order-100920 aﬃne group.
+
+1.1   Deﬁnitions and relation to earlier work
+A subset S of a ﬁnite group X is independent if x ∈/ hS \ {x}i for each x ∈ S; the empty subset is
+allowed. Write µ0 (X) for its maximum possible size. For an action ρ : X → Sym(Ω), a base has
+pointwise stabilizer ker ρ in X. Minimal means inclusion-minimal. Write b(X) for the maximum
+size of a minimal base over all actions, and bf (X) for the corresponding maximum restricted to
+
+
+                                                      1
