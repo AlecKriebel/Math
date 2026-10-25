@@ -1,0 +1,37 @@
+# SUGGESTION ONLY: four explicitly scoped insertion pieces; do not execute this concatenation.
+
+# 1. TEX_PATHS entry
+'23328912': 'published-source/aim_5_2_source/preprint.tex',
+
+# 2. Module helper
+def normalized_cubulation_abstract(body):
+ body=body.replace(r'\CAT','CAT').replace(r'\mapsto','→').replace('$','').replace('~',' ')
+ return ' '.join(body.split())
+
+# 3. Inside abstract_tokens before generic commands
+if record_id=='23328912':return wt(normalized_cubulation_abstract(tex))
+
+# 4. Inside existing record loop, after receipt/record/gate/texts
+if rid=='23328912':
+ test('abstract_full_source_text',normalized_cubulation_abstract(a)==c['abstract'])
+ test('abstract_full_source_word_count',len(c['abstract'].split())==97)
+ test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==1)
+ test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==len(c['abstract'].split()))
+ test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+ test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+ test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+ clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+ test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['formal_machine_verification'] is False)
+ test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
+ test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/CONTENT_CANDIDATE.md' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/CONTENT_CANDIDATE.md'))
+ test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict'].get('mathematical_verdict') is None and gate['reviews']['scope']['root_disposition']=='SCOPE_COMPLETE' and bool(gate['scope_gate_resolution']))
+ test('no_unjustified_follow_up',c['follow_up'] is None and gate['follow_up'] is None)
+ test('metadata_version_not_printed_version',record['version']==c['version']==c['source_binding']['zenodo_version']=='1.0' and c['source_binding']['manuscript_version'] is None and c['edition_label']=='Zenodo version 1.0')
+ test('record_creation_exact',json.loads((p/'sources/record.json').read_text())['created']==c['source_binding']['record_created_utc']=='2026-10-13T00:50:56.980394+00:00')
+ test('date_qualification_visible',c['publication_date_label']=='Manuscript dated' and all(x in unescape(h) for x in [c['edition_note'],'Manuscript dated','not verified public availability','Neither date establishes first priority']))
+ test('scope_complete',all(x in unescape(h) for x in ['φ(a)=a, φ(b)=ab and φ(c)=bcb','the final b in bcb is positive','cell counts (1,7,8,2)','full group F⋊φZ','free, proper and cocompact','general cube-complex convention','before subdivision']))
+ test('limits_and_credit',all(x in unescape(h) for x in ['b↦aba','distinct from the b↦ab target','No minimum dimension, minimum cell count, virtual specialness','no historical-firstness or absolute-novelty claim','does not establish current worldwide openness','WPD, Morse and cubical-completion theorems','Leary','Minasyan and Osin','Hagen and Wise']))
+ test('printed_manuscript_date',r'\date{October 12, 2026}' in source and record['publication_date']==c['publication_date']=='2026-10-12')
+ test('all_three_original_assets_one_reader',len(receipt['files'])==3 and len(texts)==6 and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={'aim_5_2_two_cube_cubulation.pdf','aim_5_2_source.zip','aim_5_2_verification.zip'})
+ test('separate_source_verification_links',c['supplement_filename'] is None and len(c['additional_assets'])==2 and {x['filename'] for x in c['additional_assets']}=={'aim_5_2_source.zip','aim_5_2_verification.zip'} and all(x['kind']=='zip' for x in c['additional_assets']) and all(name in [x.get('href') for t,x in d.a if t=='a'] for name in ['aim_5_2_source.zip','aim_5_2_verification.zip']))
+ test('no_single_primary_supplement',gate['supplement_sha256'] is None and c['source_binding']['supplement_sha256'] is None)

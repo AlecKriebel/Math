@@ -185,3 +185,10 @@ Root also read all three complete cubulation reports and full manuscript source,
 All three complete final reports and full six-page manuscript source were read. Root rehashed both publicassets and compared all92extractedmembers unchanged. The all-fixed-positive-real-load six-rate CTMC theorem passes, with full pointwise drift interfaces and continuous-time recurrence justified. Unbounded aggregate seed upload, invisible waiting rooms and exact rates are mandatory scope; no performance/moment/capped-seed claim. Retained source editions remain labelled and neither full historical wrapper nor priority is certified. No repair or follow-up. Publication preparation pending active display batch.
 
 Completion remains38of203(18.72%)while five newlive pages awaitdisplay;45of203(22.17%)root-passed or defect-deferred. Full203scope active.
+
+
+## 2026-10-25T03:04:53.767121+00:00 — five live display gates accepted
+
+Root accepted allfive complete actualChrome desktop/390px/PDF/download/link records, rehashing115currentbindings and79artifacts, including51screenshots. Main33-pageJC and7-page reader both rendered. Brace/Nijenhuis initial lazy-frame blanks are retained; fresh normal top-to-anchor navigation rendered correctPDFs withoutreload. Existingcacheused, no cold-cache claim. Representative screenshots were directly viewed by root. No source/style change.
+
+39pages are now liveverified;4actualdefects deferred,2verificationholds separate. Completion43of203(21.18%);45of203(22.17%)root-passed or defect-disposed includingcube/DFCpreparations. The6earliestpages have historical article/desktopPDF/sourceHTTPevidence but are receiving uniform modern browsercoverage rather than inferredmissinggates. Full203scope remainsactive.
