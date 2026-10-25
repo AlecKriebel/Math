@@ -1,0 +1,48 @@
+Proposition 8.1 The problem of deciding whether for a given digraph H, the property Py has
+
+an ¢-tester whose query complexity is polynomial in 1/e, is NP-complete.
+
+Therefore, there is no polynomially testable characterization of the digraphs H for which Py
+is easily testable (though for every small, fixed H, Theorem 2 can be easily used to decide if
+HZ is such a digraph). One interesting class of digraphs for which the problem is solvable in
+polynomial time, is the class of oriented cycles. An oriented cycle is balanced if the number
+of forward edges is equal to the number of backward edges. It is not difficult to see that if
+an oriented cycle C is not balanced, then the core of C is C itself, (see, e.g., Figure 1 (b)).
+However the converse is not true, and while there are balanced cycles whose core is a path,
+(see, e.g., Figure 1 (a)), there are also balanced cycles C' whose core is C itself, (see, e.g., Figure
+1 (d)). It is therefore interesting to observe that the problem of deciding whether the core of
+a given cycle C is C itself or an induced path in it, can be solved in polynomial time using
+
+dynamic programming. The details are left to the reader.
+
+A digraph H is balanced iff every oriented cycle in it is balanced. It is not difficult to see that
+a digraph H is balanced iff there is a homomorphism mapping H into an oriented tree, and
+this happens iff there is a homomorphism mapping H into a directed path. It thus follows, by
+Theorem 2, that if H is not balanced then Py cannot be tested by a polynomial number of
+
+queries (but the converse is not true in general.)
+
+Lemma 5.1 implies that if G is e-far from satisfying Py, and the core of H is a tree K of size k,
+then G contains Q(e*n*) copies of K. Having this, we could have used results from the theory
+of supersaturated graphs and hypergraphs (see [18]) to conclude that there exists a one-sided
+error ¢-tester for Py which uses a sample of size O((1/e)O)). (An alternative way to deduce
+this, is to change the statement of Lemma 7.1 and prove that G contains c(y)n" copies of H for
+some constant c(y), and not just one). However, our proof of Theorem 2 part (ii) given here
+provides a far more efficient ¢-tester that uses a sample of size only O((1/6)"”). By applying
+the techniques of [18] we can show that for every fixed digraph H with h vertices whose core
+K (which is not necessarily a tree) has k vertices, any digraph on n vertices containing at least
+
+dn* copies of the core K, contains at least (500) nh) copies of H.
+
+Lemma 5.1 implies that if G is «far from satisfying Py, and H is a tree of size h, then G
+contains Q(c’n") copies of H. This can be seen to be essentially optimal by considering an
+
+appropriate random digraph. We omit the details.
+
+As there are many copies of H, we conclude that sampling h vertices finds a copy of H with
+probability Q(c). It follows that one can test Py simply by sampling @((1/e)”) samples of h
+vertices each. However, in Theorem 3 we show that a sample of size O(1/e) suffices. The reason
+
+is that sampling h vertices in O((1/e)”) rounds fails to take into account all the h-tuples that
+
+27

@@ -1,0 +1,45 @@
+create G2 by taking an s blow up of F20 adding isolated vertices, if needed. Finally, D2 consists of all
+randomly permuted copies of such digraphs G2 , which are clearly H-free.
+     Now consider a set of vertices S in G1 (or G2 ) and its natural projection to a subset of V (F ),
+which we also denote by S with a slight abuse of notation. Suppose S has the property that it does
+not contain more than two vertices from any one of the copies of C that belong to C.
+     If this property holds, then each edge spanned by S is contained in a different copy of C ∈ C (if
+it is contained in such a cycle at all). Therefore, each edge that lies in such a cycle, has probability
+       1
+1 − r+1    of being in F10 , and these probabilities are mutually independent. Similarly, each such edge
+                         1
+has probability 1 − r+1       of being in F20 and these probabilities are also mutually independent. It
+follows that sampling a digraph G from D1 , and looking at the induced digraph on a set S with the
+above property, has exactly the same distribution as sampling a digraph G from D2 , and looking at
+the induced digraph on S.
+     To complete the proof we have to show that no deterministic algorithm can distinguish between
+the distributions D1 and D2 with constant probability. To this end, it is clearly enough to show that
+                                                                                      0
+any deterministic algorithm that looks at a digraph spanned by less than (1/²)c log 1/² vertices, has
+essentially the same probability of seeing any digraph regardless of the distribution from which the
+digraph was chosen. By the discussion in the previous paragraph, this can be proved by establishing
+that, with high probability, a small set of vertices does not contain three vertices from the same copy
+of C. For a fixed ordered set of three vertices in S, consider the event that they all belong to the same
+copy of C. The first two vertices determine all the vertices of one of these copies uniquely. Now, the
+conditional probability that the third vertex is also a vertex of the same copy is (r+1)/|V (F )| ≤ r/m.
+By the union bound, the probability that the required property is violated is at most
+
+                                       r|S|3 /m ≤ r|S|3 ²c log 1/² .
+                                                  c
+This quantity is o(1) as long as |S| = o((1/²) 3 log 1/² ), where here we applied the lower bound on
+                                                                                           0
+the size of m given in (8). Therefore, if the algorithm has query complexity o((1/²)c log 1/² ) for
+some absolute positive constant c0 , it has probability 1 − o(1) of looking at a subset on which the
+distributions D1 and D2 are identical, thus, the probability that it distinguishes between D1 and D2
+is o(1).
+
+    A slightly more complicated argument than the above can give two distributions D1 and D2 ,
+such that the digraphs in D1 are always ²-far from being H-free, while the digraphs in D2 are always
+H-free. The idea is to first partition the m|X| copies of C into pairs, assuming for simplicity that
+m|X| is even. To create D1 , we randomly pick from each pair of copies of C a single copy, and
+delete two randomly chosen edges from this copy. To create D2 , we do exactly the same as we did
+in the proof above. It is easy to appropriately modify the proof above in order to show that any
+deterministic algorithm with query complexity o((1/²)c log 1/² ) cannot distinguish between D1 and D2
+
+
+                                                      27

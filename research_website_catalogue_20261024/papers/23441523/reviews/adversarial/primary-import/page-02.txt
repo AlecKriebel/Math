@@ -1,0 +1,44 @@
+1 Preliminaries
+
+1.1 Definitions
+
+All directed graphs (=digraphs) considered here are finite and have no loops and no parallel directed
+edges. They may have anti-parallel edges, i.e., directed cycles of length 2, or in short, 2-cycles. We
+call a cycle obtained from an undirected cycle by directing its edges an oriented cycle. An oriented
+cycle in which all edges point to the same direction is a directed cycle. Oriented paths and directed
+paths are defined in an analogous manner. A digraph is an oriented tree if it does not contain any
+oriented cycle. A digraph is bipartite if it does not contain any oriented cycle of odd length.
+
+Let P be a property of digraphs, that is, a family of digraphs closed under isomorphism. A
+digraph G with n vertices is e-far from satisfying P if no digraph G with the same vertex set, which
+differs from G in no more than en? places, (i.e., can be constructed from G by adding and removing
+no more than en? directed edges), satisfies P. An ¢-tester, or property tester, for P is a randomized
+algorithm which, given the quantity n and the ability to make queries whether a desired pair of
+vertices of an input digraph G with n vertices are adjacent or not, distinguishes with probability at
+least 3 between the case of G satisfying P and the case of G being e-far from satisfying P. Such
+an €-tester is a one-sided e-tester if when G satisfies P the e-tester determines that this is the case
+(with probability 1). Obviously, the probability 3 appearing above can be replaced by any constant
+smaller than 1, by repeating the algorithm an appropriate number of times.
+
+The property P is called strongly-testable, if for every fixed € > 0 there exists a one-sided ¢-tester
+for P whose total number of queries is bounded only by a function of €, which is independent of the
+size of the input digraph. This means that the running time of the algorithm is also bounded by a
+
+function of € only, and is independent of the input size.
+
+1.2 Related work
+
+The general notion of property testing was first formulated by Rubinfeld and Sudan [29], who were
+motivated mainly by its connection to the study of program checking. The study of the notion of
+testability for combinatorial objects, and mainly for labelled graphs, was introduced by Goldreich,
+Goldwasser and Ron [21], who showed that all graph properties describable by the existence of a
+partition of a certain type, and among them k-colorability, have efficient testers. The fact that
+k-colorability is strongly testable is, in fact, implicitly proven already in [13] for k = 2 and in [27] (see
+also [2]) for general k, using the Regularity Lemma of Szemerédi [30], but in the context of property
+testing it is first studied in [21], where far more efficient algorithms are described. These have been
+further improved in [7].
+
+In [5] it is shown that every first order graph property without a quantifier alternation of type
+“/3” has e-testers whose query complexity is independent of the size of the input graph (but has
+
+a huge dependence on ¢). In [1] it is shown that there is a onesided error tester for checking

@@ -11,3 +11,13 @@ Exact target: generic structural identifiability modulo ordinary triangle redire
 First analytic reconstruction finds the physical-domain inequalities, relative H14 smooth-germ argument, directed cut quantifiers, bridge normalization, semialgebraic section argument and cherry extension coherent. The finite graph/algebra obligations remain load-bearing and require direct certificate/replay inspection; no final verdict yet. Extracted compact verifier into this review's isolated workspace. Next: source/PDF binding, primary imports and independent exact controls.
 
 Percentages measure completion of this assigned review, not a new discovery. No publication, website, spreadsheet, Git/Zenodo or outreach action.
+
+## 2026-10-25T00:19:10Z — Defect established (55% full validation; terminal deferral)
+
+Both published documents rebuilt byte for byte. Inspected and executed the independent rational Krawczyk replay: passed. Compact binding gate passed 86 bindings with zero fresh replays. The topology/all-n replay was launched before the defect; its completed log was preserved afterward. Direct cut replay lacked an input omitted from the compact archive, and full four-port replay initially lacked networkx. These are execution/packaging scope issues, not counterexamples. No full classification approval was reached.
+
+Concrete published proof-text error: Proposition 13.1, PDF p.31, says the displayed rooting supplies a tree-child witness. The literal p.30 W arcs give U exactly children V and X, both reticulations; the W-prime arcs give V exactly children X0 and X1, both reticulations. Both fail Definition 3.1 on p.5. This shows the displayed witness assertion is false, not that the semi-directed graphs lack other tree-child rootings or that the theorem is false. Parent notified; stop-and-defer instruction applied. No replacement rooting sought in response, no repair attempted.
+
+## 2026-10-25T00:20:52.943300+00:00 — Deferral documented (100% defect-handling completion; full validation remains 55%)
+
+Completed REVIEW.md, an independent literal-arc checker, its hash-bound output, exact source/PDF binding, replay summaries and verdict.json. Preserved the distinction between an erroneous displayed witness and theorem falsity. Remaining scope: complete semantic cut/atlas/restoration/probe replay and remaining primary import checks. No outreach, repository publication, website, spreadsheet or Zenodo changes. Generated dependency/certificate workspaces are ignored; deposited archives remain canonical reproducible inputs.

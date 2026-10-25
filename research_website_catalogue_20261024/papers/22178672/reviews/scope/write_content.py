@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 p=Path(__file__).resolve().parents[2];s=p/'sources';out=p/'reviews/scope'
+if (out/'PUBLICATION_HOLD.json').exists(): raise RuntimeError('Publication hold: do not regenerate promotional content; preserve existing scope draft.')
 r=json.loads((s/'record.json').read_text());receipt=json.loads((s/'receipt.json').read_text());files={f['name']:f for f in receipt['files']}
 pdf='K3P_Level2_Identifiability_Article_v1.0.0.pdf';src='K3P_Level2_Article_Source_v1.0.0.zip'
 c={

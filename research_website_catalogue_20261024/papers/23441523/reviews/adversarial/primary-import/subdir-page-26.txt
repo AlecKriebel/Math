@@ -1,0 +1,41 @@
+are H-free. To finish the proof we must show that no deterministic algorithm that samples less than
+Ω(1/²) vertices (adaptively) can tell the difference between these two distributions with probability
+that exceeds, say, 1/3. Recall that by the definition of GH and G0H , as long as the algorithm does
+not look at a vertex from Vk , it sees the same digraph. As Vk is of size ²2kn, the probability that
+a deterministic algorithm that samples less than, say, 1/(10²k) vertices finds a vertex from Vk is
+smaller than 1/3. Therefore, with probability at least 2/3 the two distributions D1 , D2 will look
+identical to any deterministic algorithm sampling less than Ω(1/²) vertices, as needed.
+    The proof for the case of K being a 2-cycle is analogous, and involves taking a permutation of a
+complete bi-directed bipartite graph on vertex sets of sizes ²4n and n − ²4n, and a digraph with no
+edges. The rest of the details are left to the reader.
+
+    A close inspection at the proofs of Theorem 3 and Theorem 2 part (i), shows that if G is ²-far
+from being H-free, and the core of H, K, is either a 2-cycle or an oriented tree, then sampling O(1/²)
+vertices finds a copy of K with probability 1 − o(1) where the o(1) term tends to 0 as ² tends to zero.
+On the other, the proof of Theorem 4, part (i), shows that if G is H-free, then the algorithm does
+not find a copy of K with probability 1 − o(1) where the o(1) term tends to 0 as n tends to infinity
+(even if ² > 0 is relatively large). Therefore, in some sense the test has ”almost” one-sided error, as
+even for large values of ² the failure probability in case G is H-free is still o(1), as n tends to infinity.
+
+Proof of Theorem 4, part (ii): Let H be a fixed digraph whose core K is neither a directed
+2-cycle nor an oriented tree. We apply Yao’s principle again in order to prove the lower bound.
+    Given n and ², let X, m and the sets Vi be as in the proof of Lemma 6.4. Construct the digraph
+F just as in the proof of Lemma 6.4, and remember that it consists of m|X| pairwise edge disjoint
+copies of K (though it may well contain additional copies of K). Recall, also, that K contains a
+cycle C of length r + 1 ≥ 3, and that each copy of K in F contains a copy of this cycle in which the
+i-th vertex lies in Vi for all 1 ≤ i ≤ r + 1. Let C denote the set of these edge disjoint copies of C,
+and note that by Lemma 6.2 there are no other copies of C in F , in which the i-th vertex lies in Vi ,
+besides the m|X| members of C.
+    To construct D1 which consists of digraphs that are ²-far from being H-free with probability
+1 − o(1), we first construct F10 by removing each of the m|X| edge disjoint cycles that belong to C
+                     1
+with probability r+1    . We then create G1 by taking an s blow up of F10 adding isolated vertices, if
+needed. Finally, D1 consists of all randomly permuted copies of such digraphs G1 . It follows from
+a standard Chernoff bound, that with probability 1 − o(1), at least m|X|(1 − 2/(r + 1)) copies of C
+are left in F10 , where the o(1) term tends to 0, as ² tends to 0. Similar to the derivation of (10), it is
+easy to show that if m|X|/2(r + 1) of these copies of C are left in F10 , the digraph G1 is ²-far from
+being H-free. It follows that with probability 1 − o(1), a member of D1 is ²-far from being H-free.
+The distribution D2 of digraphs that are H-free, is defined by first constructing F20 by removing
+from each member C ∈ C one randomly chosen edge (out of the r + 1 edges of the cycle). We then
+
+                                                     26

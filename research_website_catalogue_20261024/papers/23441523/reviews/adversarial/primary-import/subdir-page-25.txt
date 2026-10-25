@@ -1,0 +1,41 @@
+Proof: Let ϕ be a homomorphism from V (H) to V (K), denote by t1 , . . . , tk the vertices of K,
+and let S1 , . . . , Sk be the sets ϕ−1 (t1 ), . . . , ϕ−1 (tk ), respectively. Define a k-uniform hypergraph T
+as follows: take a random partition of V (G) into k subsets, V1 , . . . , Vk , where each vertex of G
+is chosen uniformly and independently to be in one of the groups. For each copy of K in G, in
+which the vertices ui1 , . . . , uik play the role of t1 , . . . , tk respectively, put an edge in T that contains
+ui1 , . . . , uik if and only if ui1 ∈ V1 , . . . , uik ∈ Vk . Observe, that by linearity of expectation, if G
+contains γnk copies of K, the expected number of edges in T is γk −k nk . Therefore, one partition
+which defines at least this many edges must exist. Fix one such partition, and the hypergraph T 0
+which it defines. In [20] it is proved that any k-uniform hypergraph on n vertices with at least
+        1−k
+nk−h          edges, contains a copy of a complete k-partite k-uniform hypergraph, where each partition
+class is of size h. It follows that for large enough n, T 0 contains a copy of such hypergraph on some
+hk vertices {v11 , . . . , vh1 } ⊆ V1 , . . . , {v1k , . . . , vhk } ⊆ Vk . It is now easy to see that G must contain a
+copy of H where for the role of the vertices of Si we can choose any |Si | vertices from {v1i , . . . , vhi }.
+
+
+Proof of Theorem 4, part (i): Let H be a fixed digraph with core K, and let k be the size of
+K. If K is a 2-cycle, then a two-sided error ²-tester for testing PH with query complexity O(1/²)
+was described in the comment following the proof of Theorem 2 part (i). Assume now that K is an
+oriented tree. Our two-sided error ²-tester for PH works as follows: Given a digraph G, the algorithm
+samples c/² vertices, for an appropriate c, and reports that the digraph is not H-free if and only
+if they span a copy of K. We turn to show that the algorithm answers correctly with probability
+at least 2/3. Assume G is ²-far from being H-free. Then it is clearly also ²-far from being K-free,
+therefore applying Theorem 3 to PK , we conclude that a randomly chosen set of c/² vertices, with
+an appropriate c, finds a copy of K with probability at least 2/3. Assume G does not contain a copy
+of H. It follows from Lemma 7.1 that it contains o(nk ) copies of K, and therefore a randomly chosen
+set of any constant size (independent of n), and in particular of size O(1/²), has probability o(1) of
+finding a copy of K.
+    To show that the result is optimal, we apply Yao’s principle [34]. We first prove the case of K
+being an oriented tree. Applying Yao’s principle to our setting, we first have to define for every
+n, two distributions of digraphs D1 , D2 , where all the digraphs in D1 are ²-far from being H-free,
+and all the digraphs in D2 are H-free. In order to define the two distributions we use the digraph
+GH whose description appears at the end of the proof of Theorem 3. Note that this digraph is
+constructed using the core K, which is a tree. D1 is a uniform distribution on all the n! digraphs
+that are obtained from GH by a permutation of its vertices. By the computation at the end of the
+proof of Theorem 3 it follows that all the digraphs in D1 are ²-far from being H-free. To define
+D2 we first define G0H to be the digraph that is obtained from GH by removing all the edges that
+touch Vk (see the definition of GH ). D2 is now a uniform distribution on all the n! digraphs that are
+obtained from G0H by a permutation of its vertices. As G0H is clearly H-free, all the digraphs in D2
+
+                                                          25

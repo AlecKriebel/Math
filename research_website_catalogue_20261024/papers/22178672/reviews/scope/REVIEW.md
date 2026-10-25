@@ -1,5 +1,7 @@
 # Independent publication-scope review — Zenodo 22178672
 
+**Publication hold:** the preserved content draft must not be published pending the reported Proposition 13.1 mathematical defect. See the final section and PUBLICATION_HOLD.json.
+
 This is a scope, attribution, and public-description review of the published v1.0.0 edition. It is not a mathematical promotion gate, novelty certificate, or independent human peer review. The independent scope conclusion was reached before reading any new or archived analytic/adversarial review verdict.
 
 ## Source and reading boundary
@@ -45,3 +47,7 @@ A possible apparent bibliography discrepancy was checked and dismissed: Sturmfel
 No substantive scope or attribution defect was identified. `content.json` is ready only subject to the separate mathematical promotion gate. It retains the exact original abstract, the model and domain assumptions, generic and quotient qualifications, and an explicit unrefereed/AI-assisted status. The collaborator invitation seeks substantive expert review and journal development without promising authorship. No internal dated verification replay is included in the public text.
 
 No follow-up is listed. A full semialgebraic K3P triangle-image description, finite-data inference, and higher-level networks are plausible but insufficiently developed here, and the first is already identified as a direction in existing literature. No new conjecture with a sufficiently justified mechanism emerged from this bounded review.
+
+## Subsequent mathematical-gate hold
+
+2026-10-25T00:20:25.982548+00:00 — After the independent scope conclusion and draft were complete, the parent relayed an analytic-review finding in §13, Proposition 13.1 (main pp.30–31). The displayed W rooting has arcs U→V and U→X, where V and X are both reticulations; the displayed W′ rooting has V→X0 and V→X1, both reticulation children. These fail the paper’s tree-child definition, despite the proof statement that the displayed rooting supplies a tree-child witness. Independent adversarial confirmation was requested by the parent. The preserved public-content draft is **not for publication pending the mathematical gate**. This track does not assert that the whole theorem is false and performs no repair or replacement-rooting search. Only the already-running source acquisition and integrity receipts continue.

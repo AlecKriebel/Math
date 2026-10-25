@@ -25,10 +25,14 @@ try:
     assert all(p.startswith(PROGRAM.name+'/') for p in files)
     if not files:
         print('No new programme changes'); raise SystemExit(0)
-    # Archived source is retained byte for byte, including original whitespace.
+    # Archived sources, PDF extractions and raw tool output retain their bytes.
     git('diff','--cached','--check',parent,'--',PROGRAM.name+'/',
         ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',
-        ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',env=env)
+        ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.log',
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stderr',
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stdout',
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.txt',env=env)
     tree=git('write-tree',env=env)
     message=sys.argv[1] if len(sys.argv)>1 else 'Checkpoint Zenodo research website catalogue'
     commit=subprocess.check_output(['git','-c','gc.auto=0','commit-tree',tree,'-p',parent],input=message+'\n',cwd=REPO,env=env,text=True).strip()

@@ -1,0 +1,1476 @@
+                         Testing Subgraphs in Directed Graphs∗
+                                    Noga Alon †              Asaf Shapira ‡
+
+
+
+                                                    Abstract
+
+          Let H be a fixed directed graph on h vertices, let G be a directed graph on n vertices and
+      suppose that at least ²n2 edges have to be deleted from it to make it H-free. We show that in this
+      case G contains at least f (², H)nh copies of H. This is proved by establishing a directed version
+      of Szemerédi’s regularity lemma, and implies that for every H there is a one-sided error property
+      tester whose query complexity is bounded by a function of ² only for testing the property PH of
+      being H-free.
+          As is common with applications of the undirected regularity lemma, here too the function
+      1/f (², H) is an extremely fast growing function in ². We therefore further prove a precise char-
+      acterization of all the digraphs H, for which f (², H) has a polynomial dependency on ². This
+      implies a characterization of all the digraphs H, for which the property of being H-free has a
+      one sided error property tester whose query complexity is polynomial in 1/². We further show
+      that the same characterization also applies to two-sided error property testers as well. A special
+      case of this result settles an open problem raised by the first author in [1]. Interestingly, it turns
+      out that if PH has a polynomial query complexity, then there is a two-sided ²-tester for PH that
+      samples only O(1/²) vertices, whereas any one-sided tester for PH makes at least (1/²)d/2 queries,
+      where d is the average degree of H. We also show that the complexity of deciding if for a given
+      directed graph H, PH has a polynomial query complexity, is N P -complete, marking an interesting
+      distinction from the case of undirected graphs.
+          For some special cases of directed graphs H, we describe very efficient one-sided error property-
+      testers for testing PH . As a consequence we conclude that when H is an undirected bipartite graph,
+      we can give a one-sided error property tester with query complexity O((1/²)h/2 ), improving the
+                                                   2
+      previously known upper bound of O((1/²)h ). The proofs combine combinatorial, graph theoretic
+      and probabilistic arguments with results from additive number theory.
+  ∗
+     A preliminary version of this paper appeared in the Proc. of the 35th Annual ACM Symposium on Theory of
+Computing (STOC), ACM Press (2003), pp. 700-709.
+   †
+     Schools of Mathematics and Computer Science, Raymond and Beverly Sackler Faculty of Exact Sciences, Tel Aviv
+University, Tel Aviv, Israel. Email: noga@math.tau.ac.il. Research supported in part by a USA-Israeli BSF grant, by
+the Israel Science Foundation and by the Hermann Minkowski Minerva Center for Geometry at Tel Aviv University.
+   ‡
+     School of Computer Science, Raymond and Beverly Sackler Faculty of Exact Sciences, Tel Aviv University, Tel
+Aviv, Israel. Email: asafico@math.tau.ac.il. This work forms part of the author’s Ph.D. Thesis. Research supported
+by the Deutsch institute.
+
+
+
+                                                        1
+1     Preliminaries
+1.1    Definitions
+All directed graphs (=digraphs) considered here are finite and have no loops and no parallel directed
+edges. They may have anti-parallel edges, i.e., directed cycles of length 2, or in short, 2-cycles. We
+call a cycle obtained from an undirected cycle by directing its edges an oriented cycle. An oriented
+cycle in which all edges point to the same direction is a directed cycle. Oriented paths and directed
+paths are defined in an analogous manner. A digraph is an oriented tree if it does not contain any
+oriented cycle. A digraph is bipartite if it does not contain any oriented cycle of odd length.
+    Let P be a property of digraphs, that is, a family of digraphs closed under isomorphism. A
+digraph G with n vertices is ²-far from satisfying P if no digraph G̃ with the same vertex set, which
+differs from G in at most ²n2 places, (i.e., can be constructed from G by adding and removing at
+most ²n2 directed edges), satisfies P . An ²-tester, or property tester, for P is a randomized algorithm
+which, given the quantity n and the ability to make queries whether a desired pair of vertices of an
+input digraph G with n vertices are adjacent or not, distinguishes with probability at least 32 between
+the case of G satisfying P and the case of G being ²-far from satisfying P . Such an ²-tester is a
+one-sided ²-tester if when G satisfies P the ²-tester determines that this is the case (with probability
+1). The ²-tester is a two-sided ²-tester if it may determine that G does not satisfy P even if G satisfies
+it. Obviously, the probability 23 appearing above can be replaced by any constant larger than 1/2,
+by repeating the algorithm an appropriate number of times.
+    The property P is called strongly-testable, if for every fixed ² > 0 there exists a one-sided ²-tester
+for P whose total number of queries is bounded only by a function of ², which is independent of the
+size of the input digraph. This means that the running time of the algorithm is also bounded by a
+function of ² only, and is independent of the input size.
+
+1.2    Related work
+The general notion of property testing was first formulated by Rubinfeld and Sudan [32], who were
+motivated mainly by its connection to the study of program checking. The study of the notion of
+testability for combinatorial objects, and mainly for labelled graphs, was introduced by Goldreich,
+Goldwasser and Ron [24], who showed that all graph properties describable by the existence of a
+partition of a certain type, and among them k-colorability, have efficient ²-testers. The fact that
+k-colorability is strongly testable is, in fact, implicitly proven already in [16] for k = 2 and in [30] (see
+also [2]) for general k, using the Regularity Lemma of Szemerédi [33], but in the context of property
+testing it is first studied in [24], where far more efficient algorithms are described. These have been
+further improved in [7].
+    In [5] it is shown that every first order graph property without a quantifier alternation of type
+“∀∃” has ²-testers whose query complexity is independent of the size of the input graph (but has
+
+                                                     2
+a huge dependence on ²). In [1] it is shown that there is a one-sided error ²-tester for checking
+H-freeness for undirected graphs H, whose query complexity is polynomial in 1/², if and only
+if H is bipartite.
+    The notion of property testing has been investigated in other areas as well, including the context
+of regular languages, [6], functions [23], [9], [3], computational geometry [18], [4] as well as graph
+and hypergraph coloring [17], [9], [15]. See [31] and [22] for surveys on the topic.
+
+
+2    The Main Results
+For a fixed connected digraph H (with at least one edge), let PH denote the property of being H-free.
+Therefore, G satisfies PH if and only if it contains no (not necessarily induced) subgraph isomorphic
+to H. Our first result is that for each fixed digraph H, the property PH is strongly-testable.
+
+Theorem 1 For every fixed digraph H, the property PH is strongly-testable.
+
+    The proof relies on a variant of the regularity lemma of Szemérédi [33] adapted for directed
+graphs, which we formulate and prove. This version of the regularity lemma might prove useful for
+other problems. The application for getting the strong-testability of each property PH is similar to
+the proof for the undirected case, given (implicitly) in [2], see also [5], [1].
+    The one-sided ²-tester for PH for arbitrary digraphs H, has query-complexly bounded by a
+function which, though independent of the size of the input digraph G, has a huge dependency on ²
+and the size of H. For some digraphs H, however, there are more efficient ²-testers; for example, if
+H is a single directed edge, it is easy to see that there is a one-sided ²-tester for PH , which makes
+only Θ(1/²) queries. A natural question is therefore, to decide for which digraphs H can one design
+a one-sided error property tester for PH , whose query complexity would be bounded by a polynomial
+in 1/². In what follows we call PH easily testable if there is a one-sided error property-tester for PH
+whose query complexity is polynomial in 1/². If such a property tester does not exist we say that
+PH is hard to test.
+    Our main result here is a precise characterization of all digraphs H for which PH is easily testable.
+We further show that the same characterization applies to two-sided error ²-testers as well. As a
+special case of the argument we conclude that for an undirected graph H, PH has a two-sided ²-
+tester whose query complexity is polynomial in 1/² if and only if H is bipartite. This settles an open
+problem raised in [1]. Somewhat surprisingly, it turns out that if PH is easily testable, then it has
+a two-sided error property-tester that samples only Θ(1/²) vertices, although any one-sided error
+²-tester for PH has to sample at least (1/²)d/2 vertices, where d is the average degree of H.
+    The characterization of the digraphs H, for which PH is easily testable, relies on some properties of
+digraph homomorphisms and cores of digraphs. Let H and K be two digraphs. A function ϕ mapping
+vertices of H to vertices of K is a homomorphism if it satisfies (u, v) ∈ E(H) ⇒ (ϕ(u), ϕ(v)) ∈ E(K).
+
+                                                   3
+The core of a digraph H is the subgraph K of H with the smallest number of edges, for which there
+is a homomorphism from H to K. We can clearly assume that the core does not contain isolated
+vertices. It is also easy to see that this notion is well defined in the sense that up to isomorphism the
+core is unique. We refer the reader to [13] and [28] for more background and references on digraph
+homomorphisms, and to [27] for more information and references on cores of graphs. Our main
+result is the following precise characterization of the digraphs H for which testing PH with one-sided
+error, has query complexity polynomial in 1/². Here, and throughout the paper, we measure query-
+complexity by the number of vertices sampled, assuming we always examine all edges spanned by
+them.
+
+Theorem 2 Let H be a fixed connected digraph on h vertices, and let K be its core.
+(i) If K is a 2-cycle, then for every ² > 0, there is a one-sided error ²-tester for PH whose query-
+complexity is bounded by
+                                             O((1/²)h/2 ).
+
+(ii) If K is an oriented tree, then for every ² > 0 there is a one-sided error ²-tester for PH whose
+query-complexity is bounded by
+                                                      2
+                                             O((1/²)h ).
+
+(iii) If H is not as in (i), (ii), then there exists a constant c = c(H) > 0 such that the query-complexity
+of any one-sided error ²-tester for PH is at least
+                                              µ ¶c log(1/²)
+                                               1
+                                                              .
+                                                ²
+
+    A special case of the first part of the above theorem improves the previous result from [1] which
+                                 2
+had query complexity O((1/²)h ).
+    We also prove the following theorem, that says that in case H is a tree, we can design an optimal
+²-tester for PH .
+
+Theorem 3 If H is an oriented tree, then there is a one-sided error ²-tester for PH , with optimal
+query complexity
+                                           Θ(1/²).
+
+   The result in the last part of Theorem 2 can be extended to two-sided error ²-testers as well.
+
+Theorem 4 Let H be a fixed digraph on h vertices, and let K be its core.
+(i) If K is a 2-cycle or an oriented tree, then the property PH has a two-sided error ²-tester with
+optimal query complexity
+                                               Θ(1/²).
+
+
+
+                                                    4
+(ii) If K is neither a directed 2-cycle, nor an oriented tree, then there exists a constant c = c(H) > 0
+such that the query-complexity of any two-sided error ²-tester for PH is at least
+                                             µ ¶c log(1/²)
+                                              1
+                                                             .
+                                               ²
+
+     It is not difficult to show, by considering an appropriate random digraph, that the one-sided error
+query complexity of PH for any digraph H with average degree d is at least ( 1² )d/2 . Therefore, the
+first part of the theorem exhibits an interesting difference between the query complexity of the best
+one-sided and the best two-sided error ²-testers of PH for many digraphs H. The second part of
+Theorem 4 implies a similar result for undirected non bipartite graphs, thus solving a problem raised
+in [1].
+     As is apparent from the statement of Theorem 2, the characterization of the digraphs H for which
+PH is easily testable, is far more complicated than the characterization for undirected graphs, which
+states that PH is easily testable if and only if H is bipartite. The characterization for undirected
+graphs is also simple in the sense that one can check it in polynomial time. It turns out that the
+characterization for digraphs is not complicated by chance, and in fact we show that the problem of
+deciding whether for a given digraph H, the property PH is easily testable, is NP-complete. This
+fact follows easily by combining Theorem 2 with a theorem of Hell, Nesetril, and Zhu [28] about
+cores of digraphs.
+     Note, that although this implies that the problem of deciding if PH is easily testable is hard
+for large digraphs H, this problem is interesting for small fixed digraphs as well, and for those the
+decision is simple. Thus, for example, Theorem 2 implies that the property PC has a polynomial
+query complexity in 1/² for the oriented cycle C on the vertices v1 , . . . , v2k , that consists of two
+edge-disjoint directed paths from v1 to vk+1 (see Figure 1 (a)), as each path is a core of C. Theorem
+2 also implies that the property PC 0 has a non-polynomial query complexity in 1/² for every oriented
+cycle C 0 that is obtained from the above cycle C, by changing the direction of any single edge (see
+Figure 1 (b)), because in this case the core of C 0 is the entire digraph. This example shows that
+the testability of PH does not rely solely on the structure of H as an undirected graph. Additional
+comments on this subject appear in Section 8.
+
+2.1   Organization
+The paper is organized as follows: In Section 3, we modify some of the ideas used in the proof of
+Szemerédi’s regularity lemma for undirected graphs, in order to prove a more general result that
+applies also to digraphs. In Section 4 we apply the above lemma in order to prove Theorem 1.
+    The main result consists of two parts. The first one (Theorem 2, parts (i),(ii)) appears in Section
+5, and is proved using probabilistic arguments and tools from extremal graph theory. Unlike the
+corresponding result for undirected graphs, the techniques required here are rather complicated, and
+
+
+                                                   5
+                    (a)            (b)            (c)
+
+
+
+                                                                       (d)
+
+Figure 1: (a) Core is a path (b) Core is the entire digraph (c) Core is a triangle (d) Core is the entire
+digraph although the graph is balanced.
+
+
+
+apply some delicate arguments. In this section we also prove Theorem 3. To prove the third part
+of Theorem 2, we have to construct, for any digraph H as in (iii) and any small ² > 0, a digraph G
+which is ²-far from being H-free and yet contains relatively few copies of H. The proof of this part,
+described in Section 6, uses the approach of [1], but requires some additional ideas. It applies some
+properties of digraph homomorphisms as well as certain constructions in additive number theory,
+based on (simple variants of) the construction of Behrend [14] of dense subsets of the first n integers
+without three-term arithmetic progressions. In Section 7 we describe the proof of Theorem 4. We
+assume, throughout these three sections, that the underlying undirected graph of the digraph H
+considered is connected. In the final section, Section 8, we observe that it is easy to extend the
+results to the disconnected case and discuss the complexity of the problem of deciding whether for
+a given input digraph H, PH is polynomially testable. This final section contains some concluding
+remarks and open problems as well.
+    Throughout the paper we assume, whenever this is needed, that the number of vertices n of
+the digraph G is sufficiently large, and that the error parameter ², is sufficiently small. In order
+to simplify the presentation, we omit all floor and ceiling signs whenever these are not crucial, and
+make no attempt to optimize the absolute constants.
+
+
+3     A Regularity Lemma for Digraphs
+3.1   Statement of the Lemma
+In this section we prove a regularity lemma for digraphs, by using some of the ideas in the proof of
+Szemerédi’s regularity lemma for undirected graphs. For the proof of Szemerédi’s regularity lemma
+the reader is referred to the original proof in [33], and to [19] which was used as a reference for the
+
+
+                                                    6
+proof here. In order to state the lemma we need some definitions. Let G = (V, E) be a digraph, and
+                               −
+                               →                                                           ←
+                                                                                           −
+let X, Y ⊆ V be disjoint. Let E (X, Y ) denote the set of edges going from X to Y, and let E (X, Y )
+denote the set of edges going from Y to X. Let E(X, Y ) denote the set of pairs of edges that form
+2-cycles between X and Y . Define
+                           −
+                           →                              ←−
+             −
+             →            | E (X, Y )|      ←
+                                            −            | E (X, Y )|                   |E(X, Y )|
+             d (X, Y ) :=              ,    d (X, Y ) :=              ,   d(X, Y ) :=
+                             |X||Y |                        |X||Y |                       |X||Y |
+
+the directed densities of the pair (X, Y ). Observe that all three densities of any pair are real numbers
+between 0 and 1. Given some ² > 0, we call a pair (A, B) of disjoint sets A, B ⊆ V ²-regular if all
+X ⊆ A and Y ⊆ B with
+                                      |X| ≥ ²|A| and |Y | ≥ ²|B|,
+
+satisfy
+           −
+           →           →
+                       −                    ←−          ←−
+          | d (X, Y ) − d (A, B)| ≤ ²,     | d (X, Y ) − d (A, B)| ≤ ²,   |d(X, Y ) − d(A, B)| ≤ ².
+
+We will later need the following trivial claim about a regular pair (A, B). The claim simply says that
+if we take a large enough subset Y ⊆ B, then for most vertices in the other side, Y behaves almost
+like B. In order to state the claim we need the following notation which will be used later as well:
+−
+→                                                          ←
+                                                           −
+N Y (v) is the set of vertices y ∈ Y for which (v, y) ∈ E, N Y (v) is the set of vertices y ∈ Y for which
+(y, v) ∈ E and N Y (v) is the set of vertices y ∈ Y for which (v, y) is a 2-cycle.
+                                                            → ←
+                                                            −   −
+Claim 3.1 Let (A, B) be an ²-regular pair with densities d , d and d, and let Y ⊆ B be of size
+                                                                               −
+                                                                               →          →
+                                                                                          −
+at least ²|B|. Then for all but at most 3²|A| vertices v ∈ A, the inequalities N Y (v) ≥ ( d − ²)|Y |,
+←
+−           ←
+            −
+N Y (v) ≥ ( d − ²)|Y | and N Y (v) ≥ (d − ²)|Y | hold.
+
+Proof. Assume that for some X, such that |X| ≥ 3²|A|, for all v ∈ X at least one of the inequalities
+does not hold. Then for some Z ⊆ X, such that |Z| ≥ ²|A|, for all v ∈ Z the same inequality does
+not hold. Hence, the pair (Z, Y ) contradicts the ²-regularity of the pair (A, B).
+
+    Consider a partition {V0 , V1 , . . . , Vk } of V in which one set V0 has been singled out as an excep-
+tional set (V0 may be empty). We call such a partition an ²-regular partition of a digraph G if it
+satisfies the following three conditions:
+
+(i) |V0 | ≤ ²|V |;
+
+(ii) |V1 | = . . . = |Vk |;
+
+(iii) all but at most ²k 2 of the pairs (Vi , Vj ) with 1 ≤ i < j ≤ k are ²-regular.
+
+    Our objective is to prove the following generalization of Szemerédi’s regularity lemma.
+
+                                                       7
+Lemma 3.1 For every ² > 0 and every m ≥ 1 there exists an integer DM = DM (m, ²) such that
+every digraph of order at least m admits an ²-regular partition {V0 , V1 , . . . , Vk } with m ≤ k ≤ DM .
+
+
+    The statement of the lemma for symmetric digraphs, that is, digraphs in which (u, v) is a directed
+edge if and only if (v, u) is a directed edge, is equivalent to the statement of the regularity lemma
+for undirected graphs.
+
+3.2   The Regularity Lemma for Undirected Graphs
+We start with the regularity lemma for undirected graphs, and some of the definitions used in the
+course of its proof. In the context of undirected graphs there is only one density between a pair of
+disjoint subsets A, B ⊆ V , and it is defined as d(A, B) := |E(A, B)|/|A||B|, where E(A, B) is the
+set of edges between A and B. A pair of disjoint sets A, B ⊆ V is ²-regular if all X ⊆ A and Y ⊆ B
+with |X| ≥ ²|A| and |Y | ≥ ²|B|, satisfy |d(X, Y ) − d(A, B)| ≤ ².
+    An ²-regular partition is defined in a way analogous to the definition of a regular partition for
+digraphs. The following is Szemerédi’s regularity lemma for undirected graphs
+
+Lemma 3.2 [33] For every ² > 0 and every m ≥ 1 there exists an integer M = M (m, ²) such that
+every graph of order at least m admits an ²-regular partition {V0 , V1 , . . . , Vk } with m ≤ k ≤ M .
+
+
+   The proof for undirected graphs uses the following definitions that will be used in our proof as
+well. Let G = (V, E) be a graph and n = |V |. For disjoint sets A, B ⊆ V we define
+                                                     |A||B| 2
+                                       q(A, B) =           d (A, B).
+                                                       n2
+   For a partition P = {C1 , . . . , Ck } of V we let
+                                                     X
+                                           q(P ) =          q(Ci , Cj ).
+                                                     i<j
+
+However, if P = {C0 , C1 , . . . , Ck } has an exceptional set C0 , we treat C0 as a set of singletons and
+define
+                                                q(P ) = q(P 0 ),
+where P 0 = {C1 , . . . , Ck } ∪ {{v} : v ∈ C0 }.
+   It can be easily shown that for any partition P ,
+
+                                                        1
+                                               q(P ) ≤ .                                             (1)
+                                                        2
+   We say that a partition P 0 refines a partition P , if any (non exceptional) set in P is the union of
+some sets in P 0 . We will also need the following lemmas from [19] that establish relations between
+partitions and their refinements.
+
+                                                        8
+Lemma 3.3 If P and P 0 are partitions of V , and P 0 refines P , then q(P 0 ) ≥ q(P ).
+
+Lemma 3.4 Let 0 ≤ ² ≤ 1/4 and let P = {C0 , C1 , . . . , Ck } be a partition of V , with exceptional
+set C0 , of size |C0 | ≤ ²n and |C1 | = . . . = |Ck |. If P is not ²-regular, then there is a partition
+P 0 = {C00 , C10 , . . . , C`0 } of V with exceptional set C00 , where k ≤ ` ≤ k4k , such that |C00 | ≤ |C0 | +
+n/2k ,C0 ⊆ C00 , all other sets Ci0 have equal size, and
+
+                                            q(P 0 ) ≥ q(P ) + ²5 /2.
+
+
+Comment: Although the above claim in [19] does not explicitly state it, the partition P 0 is a re-
+finement of P .
+
+    Note that combining Lemma 3.4 with (1), the proof of the regularity lemma for undirected graphs
+is immediate (up to some technicalities). We can apply Lemma 3.4 over and over again until we get
+an ²-regular partition. This must happen after at most 1/²5 iterations.
+
+3.3    The Proof of Lemma 3.1
+Given a digraph G = (V, E), and a partition of V , P = {C1 , . . . , Ck }, consider a partition of E into
+3 (not necessarily disjoint) sets
+                                 −
+                                 →
+                                 E = {(u, v) ∈ E : u ∈ Ci , v ∈ Cj , i < j},
+                                 ←
+                                 −
+                                 E = {(u, v) ∈ E : u ∈ Ci , v ∈ Cj , i > j},
+
+                           E = {(u, v) ∈ E : (v, u) ∈ E, u ∈ Ci , v ∈ Cj , i 6= j}.
+                                                                      → ←
+                                                                      −    −
+     Now we can view a partition P as three different partitions P , P , P , of undirected graphs (all
+three partition V in the same way, but the sets of edges among the partition sets are different). The
+                                                                   −
+                                                                   →
+first is obtained by removing any edge that does not belong to E , and considering the directed edges
+                                                                                          ←
+                                                                                          −
+as undirected. The second is obtained by removing any edge that does not belong to E , and again
+considering the directed edges as undirected. The third is obtained by removing any edge that does
+not belong to E, and considering each cycle of length 2 as an undirected edge. We can also define
+               −
+               →     ←−                                                                      −
+                                                                                             → ← −
+the values q( P ), q( P ) and q(P ), as the function q(·) on a partition of V with edge sets E , E and
+E respectively, by considering the directed edges and cycles of length 2, as undirected edges.
+     The key observation now, is that if the above three partitions are ²-regular in the context of
+undirected graphs, then P is an ²-regular partition in the context of directed graphs. Thus we can
+view the task of obtaining an ²-regular partition in a digraph, as the task of obtaining a partition
+                                                                                                  −
+                                                                                                  → ←−
+that is ²-regular in the sense of undirected graphs, over three subsets of E. We next refer to P , P
+                                                                                  −
+                                                                                  → ←
+                                                                                    −
+and P sometimes not as a specific partition, but as the set of partitions of E , E and E respectively,
+
+                                                       9
+obtained in the course of creating the ²-regular partition.
+
+Proof (of Lemma 3.1): Let G = (V, E) be given. For any partition P of V , we can define the
+             → ←
+             −    −                                                               →
+                                                                                  −     ←−
+partitions P , P and P as described above. Also note that all three values q( P ), q( P ) and q(P ) are
+always at most 1/2 by (1). Thus we can apply Lemma 3.4, circularly once for each partition until all
+                                                                      −
+                                                                      →
+three are ²-regular. For example, when we apply Lemma 3.4 to E , we choose a new partition of V ,
+                               −
+                               →                                       ←
+                                                                       −
+according to the previous P , and this induces a new partition of P and P as well. By the condition
+of Lemma 3.4 and the comment following it, this cannot happen more than s = 3 · 1/²5 = 3/²5 times,
+before we obtain an ²-regular partition of the digraph G. Observe that, for example, when we apply
+                  −
+                  →                                       ←−
+Lemma 3.4 to P , we do not necessarily increase q( P ) by ²5 /2 (In fact, it might even be the case
+      ←−                                   ←
+                                           −
+that P was an ²-regular partition of E and now it is not!), but by Lemma 3.3 and the comment
+following Lemma 3.4, we also do not decrease its value. Hence, in each iteration one of the values
+  −
+  →       ←−
+q( P ), q( P ), q(P ) is increased by at least ²5 /2, while the other two do not decrease. An important
+                                                              −
+                                                              → ← −
+technicality is that as the definitions of the partitions P , P and P depend on the serial numbers
+given to the partition sets of V (G) (see beginning of the subsection), we must make sure that if, for
+                                                −
+                                                →                                                   ←−
+example, edge (u, v) was part of partition P then it does not ”move” to another partition, say, P .
+To this end, we can simply give consecutive serial numbers in the new partition, to all the subsets
+of a set that belongs to the previous partition.
+    We are left only with the simple technicalities of making sure that C0 does not get too large, and
+of defining the function DM (m, ²). These are straightforward, and are left to the reader. See ,e.g.,
+[19] pages 159-160.
+
+    Note that our process for obtaining the regular partition does not apply the regularity lemma
+for undirected graphs recursively, and that the bound for the function DM (², k) in the lemma for
+digraphs is similar to the bound of the function M (², k) in the lemma for undirected graphs, that
+is, both are towers of 2’s of height O(1/²5 ). By a result of Gowers [26], both functions must grow at
+least as fast as a tower of 2’s of height poly(1/²).
+
+
+4    Testing for Arbitrary Subgraphs
+In this section we use our version of Szemerédi’s regularity lemma, Lemma 3.1 from the previous
+section, in order to prove Theorem 1. To this end, we prove the following lemma, which is similar to
+previously known results for undirected graphs. See, for example, Theorem 2.1 in [29], and Lemma
+3.2 in [5].
+
+Lemma 4.1 For every fixed ² and h, there is a positive constant c(h, ²) with the following property:
+for every fixed digraph H of size h, and for every digraph G of a large enough size n that is ²-far
+from being H-free, G contains at least c(h, ²)nh copies of H.
+
+                                                  10
+Proof. Let ²1 be a constant whose value will be decided later. On inputs 1/²1 and ²1 , Lemma
+3.1 returns an ²1 -regular partition with |V0 | ≤ ²1 n and partition sets V1 , . . . , Vt , |Vi | = k such that
+1/²1 ≤ t ≤ DM (1/²1 , ²1 ). Obtain from G the digraph G0 by removing the following sets of edges:
+
+    • Edges that touch V0 . There are at most (²1 n)2 + 2²1 n2 < 3²1 n2 edges of this type.
+
+    • Edges within some set Vi . There are at most t(n/t)2 = n2 /t ≤ ²1 n2 such edges.
+
+    • Edges between non ²1 -regular sets. There are at most ²1 t2 · 2n2 /t2 ≤ 2²1 n2 such edges.
+                                                               → ←
+                                                               −   −
+    • If for some pair of partition sets, one of the densities d , d , d is less than ²/4, remove all
+                                                                                          ¡ ¢
+      corresponding edges (i.e. all edges that define that density). There are at most 2t ²n2 /t2 ≤
+      ²n2 /2 such edges.
+
+    Altogether we have removed less than ²n2 /2 + 6²1 n2 edges from G. Thus, as G is ²-far from being
+H-free, for any ²1 ≤ ²/13 the digraph G0 is obtained from G by removing less that ²n2 edges, and
+therefore still contains a copy of H. Moreover, for each directed edge (u, v) in H, u and v belong
+                                                         −
+                                                         →
+to an ²1 -regular pair (U, V ), u ∈ U, v ∈ V , such that d (U, V ) ≥ ²/4. The same applies to a pair of
+edges (u, v), (v, u) in H but this time with respect to the density d(U, V ).
+    Having established the existence of one such H, we show that there are actually many more
+copies of H, provided that ²1 is sufficiently small. Let u1 , . . . , uh be the vertices of the copy of H
+in G, and assume that ui ∈ Vσ(i) . We wish to show that for a small enough ²1 ≤ ²/13 we can build
+c(h, ²1 )nh copies of H, where for each copy, ui will belong to Vσ(i) . This would imply the lemma.
+    For our scheme to work we need to take ²1 ≤ ²/13 small enough that it satisfies,
+
+                                            (3h + 1)²1 ≤ (²/4 − ²1 )h .                                          (2)
+
+    Note, that we must also take ²1 ≤ ²/13 so that we will be able to assume the properties of G0
+discussed above. Also, note that the value of ²1 is a function of ² and h only, and is independent of
+n.
+    The idea is to build the copies iteratively, where in iteration 1 ≤ i ≤ h, we find many candidates
+to play the role of ui . To this end, we keep a set Ci,j ⊆ Vσ(i) , which includes the vertices that may
+play the role of ui after we have already found vertices for u1 , . . . , uj . Initially, Ci,0 = Vσ(i) , |Ci,0 | = k.
+Consider the stage when we come to select the vertices that will play the role of uj . When we select
+a vertex to be uj we have to update the sets Ci,j . For example, if for i > j (uj , ui ) is an edge of H,
+                                                             →
+                                                             −
+then after selecting v to be uj we have to update Ci,j = N Ci,j−1 (v). The updates are equivalent for
+the other two cases where there is an edge (ui , uj ) and when there are two edges (ui , uj ), (uj , ui ).
+    The crucial observation now, is that we made sure that all edges of H go between ²1 -regular
+pairs, and moreover we have a relatively high density in the direction of these edges. Therefore, if
+
+
+
+                                                         11
+|Ci,j−1 | ≥ ²1 |Vσ(i) | then by Claim 3.1 all but at most 3²1 |Vσ(j) | vertices in Vσ(j) are such that the
+three inequalities of Claim 3.1 hold (with d = ²/4 and ² = ²1 ). That is,
+
+                                         |Ci,j | ≥ (²/4 − ²1 )|Ci,j−1 |.                                (3)
+
+As H contains h vertices, and each i > j excludes at most 3²1 |Vσ(j) | from being uj , then altogether
+we have at least |Cj,j−1 | − 3²1 h|Vσ(j) | candidates for the role of uj . For our scheme to work we must
+make sure that |Ci,j | ≥ ²1 |Vσ(i) | so that we may apply Lemma 3.1. But, by our previous assumptions
+the following holds for any i > j,
+
+                           |Ci,j | − 3²1 h|Vσ(j) | ≥ (²/4 − ²1 )h k − 3²1 hk ≥ ²1 k.
+
+The first inequality follows from (3) and the second from (2). We thus get that |Ci,j | ≥ ²1 k = ²1 |Vσ(i) |
+as needed. In particular |Cj,j−1 | ≥ ²1 k, thus we have ²1 k choices when we come to choose uj . Finally
+as Lemma 3.1 partitions V into a constant number of sets we get that,
+
+                                            n − |V0 |    n(1 − ²1 )
+                                      k=              ≥
+                                               t        DM (1/²1 , ²1 )
+
+Thus, for each iteration i, we have at least
+
+                                                      ²1 (1 − ²1 )n
+                                            ²1 k =
+                                                     DM (1/²1 , ²1 )
+
+choices for ui . Therefore, as ²1 is a function of ² and h only by (2), G0 contains at least
+                                    µ                     ¶h
+                                         ²1 (1 − ²1 )
+                                                               nh = c(h, ²)nh
+                                        DM (1/²1 , ²1 )
+
+copies of H. As G0 is a subgraph of G, G contains at least as many copies.
+
+    The proof of Theorem 1 now follows easily.
+
+Proof (of Theorem 1): The tester simply picks, say, 4/c(h, ²) sets of vertices of G, where each set
+consists of h vertices, at random. If at least one of these sets spans a copy of H, it reports that G is
+not H-free, else, it declares that G is H-free. If G is H-free, then the algorithm will certainly report
+that this is the case. If G is ²-far from being H-free then, by the above lemma, the algorithm will
+find a copy of H with probability at least 2/3.                                                        .
+
+
+5    Easily Testable Digraphs
+In this section we prove parts (i) and (ii) of Theorem 2 as well as Theorem 3. We first show that the
+property of being H-free is easily testable, whenever the core of H is a 2-cycle. We then prove the
+
+                                                       12
+same for all digraphs H for which the core of H is a tree. In Section 6 we show that for any other
+digraph H, the property of being H-free is hard to test.
+    We next prove that if the core of a digraph H is a 2-cycle, then testing H-freeness has query
+complexity polynomial in 1/². Observe, that the core of a digraph cannot be a bipartite digraph with
+at least one 2-cycle, and not be a 2-cycle, because there is a homomorphism from any such digraph
+to a 2-cycle.
+
+Proof of Theorem 2, part (i) Let H be a bipartite digraph with at least one 2-cycle, with color
+classes of size s and t, and assume s ≤ t. Our tester samples some c/²s vertices, for an appropriate
+c = c(s, t), and reports that G is not H-free if and only if there is a copy of H spanned by a subset
+of these vertices. Clearly, if G is H-free, the algorithm will report this is the case. If G is ²-far from
+being H-free it must contain at least ²n2 cycles of length 2, as otherwise we can remove an edge from
+each of these 2-cycles and obtain an H-free digraph (using the fact that H contains a 2-cycle), while
+removing less than ²n2 edges. Now, consider the undirected graph G0 , obtained from G by putting
+an edge (u, v) in G0 if and only if (u, v) is a 2-cycle in G. We show how to find in G0 a set of vertices
+that spans a copy of Ks,t . From the definition of G0 , it implies that in G the same set spans a copy
+of H.
+    Randomly and independently, pick s vertices (with repetitions). The expected number of vertices
+that are connected to all the chosen vertices is
+                                   X µ dv ¶s        µP       ¶s
+                                                        v dv
+                                               ≥n         2
+                                                                ≥ n(2²)s ,
+                                    v    n              n
+where dv is the degree of v, the first inequality follows from convexity of the function xs , and the
+second from our assumption that G0 contains at least ²n2 edges.
+    It follows that with probability at least 12 (2²)s , at least 12 (2²)s n vertices are adjacent to all the s
+chosen vertices, as otherwise the expectation would have been smaller than n(2²)s . Therefore, after
+10/(2²)s rounds in which s vertices are chosen, with probability at least 15/16 at least 21 (2²)s n of
+the vertices are adjacent to all the s vertices chosen in one of the rounds. Fix these s vertices. If we
+now choose another vertex, it has probability at least 21 (2²)s of being adjacent to all these s vertices.
+We conclude that the expected number of additional vertices that we need to sample, in order to
+find t vertices that are connected to the s fixed ones, is at most 2t/(2²)s . By Markov’s inequality,
+after sampling 8t/(2²)s vertices, the probability of not finding a set of t vertices that is connected
+to all the s vertices is at most 1/4. The algorithm has probability at most 1/16 of failing to find
+the s vertices in the first step, a probability of at most 1/4 of failing to find the t vertices in the
+second step, and a probability of o(1) that in each of the two steps, the chosen set does not consist of
+distinct vertices (notice that we sampled with repetitions). Altogether, the failure probability is at
+most 1/3, hence, the algorithm finds a copy of Ks,t with probability at least 2/3. As for the sample
+size, the first part uses a sample of size 10s/(2²)s , while the second is of size 8t/(2²)s . Altogether,
+we use a sample of size O((1/²)s ) = O((1/²)h/2 ). This completes the proof of Theorem 1, part (i).
+
+                                                      13
+Comment: By the above proof, every digraph G on sufficiently many vertices with Ω(n2 ) 2-cycles,
+contains a copy of every fixed bipartite digraph. Therefore there is a very simple and efficient two-
+sided error algorithm for testing PH , for every H whose core is a 2-cycle, which simply samples
+O(1/²) pairs of vertices and accepts iff they span no edge.
+
+    We now proceed with the proof of Theorem 2 part (ii). In the proof we will use the following
+construction of a digraph G0 obtained from a digraph G which is ²-far from being H-free. The process
+is described with respect to some tree K, which is a connected subgraph of H. We therefore denote
+G0 = G0 (G, K). The reason to make the description general is that we will later use it with respect
+to different trees. Let G be a digraph that is ²-far from being H-free, and let K be some subtree
+of H. Let us also name the vertices of K as 1, . . . , t. We define the digraph G0 = G0 (G, K) in the
+following constructive manner with respect to K: assign each vertex v of G a list L(v) containing
+the numbers 1, . . . , t. This list should eventually contain i ∈ {1, 2, . . . , t} if and only if there is a
+homomorphism ϕ : K 7→ G0 in which ϕ(i) = v. We also define N + (v, i) to be the set of vertices u,
+for which there is an edge (v, u), and i ∈ L(u). We define N − (v, i) analogously only with respect
+to incoming edges into v. The process executes the following two operations while it can: (i) If for
+some directed edge (i, j) in K, there is a vertex v in G, for which i ∈ L(v) and |N + (v, j)| < 2t² n,
+remove all edges {(v, u) : u ∈ N + (v, j)}, remove i from L(v), and update all the sets N − (·, i) of
+vertices in G. (ii) If for some directed edge (i, j) in K, there is a vertex v in G, for which j ∈ L(v)
+and |N − (v, i)| < 2t² n, remove all edges {(u, v) : u ∈ N − (v, i)}, remove j from L(v), and update all
+the sets N + (·, j) of vertices in G.
+
+Lemma 5.1 If G is ²-far from being H-free, and K is a connected subgraph of H which is a tree,
+then the digraph G0 = G0 (G, K) described above satisfies the following properties: (1) It contains a
+copy of K. (2) i ∈ L(v) if and only if there is a homomorphism ϕ : K 7→ G0 for which ϕ(i) = v.
+
+Proof. As K is a subgraph of H, and G is ²-far from being H-free, we may show that G0 satisfies
+(1), simply by showing that the above process for obtaining G0 , does so by removing less than ²n2
+edges. To this end, consider any vertex v. Each execution of items (i) and (ii) removes an element
+from L(v), therefore we can execute them at most t times on v. As in each execution we remove less
+than 2t² n edges, it follows that the process removes less than ²n edges that touch v, and altogether
+less than ²n2 edges.
+    To prove (2) we first prove the implication that asserts that if i ∈   / L(v) then there is no homo-
+                        0
+morphism ϕ : K 7→ G for which ϕ(i) = v. We proceed by induction on m, the number of steps of the
+process. At the beginning, all the lists are full, therefore the desired property trivially holds. Assume
+it holds for m steps and consider step m + 1: if we execute (i), then some i was removed from some
+L(v), after removing all edges that go from v to vertices N + (v, j) for some j that is a neighbor of i in
+K. It follows from the induction hypothesis, that no homomorphism can map j to an out-neighbor
+
+
+                                                     14
+of v, and therefore, as i and j are neighbours in K, no homomorphism can map i to v. The case of
+executing (ii) is identical. To prove the second implication, assume that at the end of the process,
+for some vertex v, we have i ∈ L(v) but there is no homomorphism ϕ : K 7→ G0 for which ϕ(i) = v.
+Let K 0 be the largest connected subgraph of K that contains i, for which there is a homomorphism
+ϕ : K 0 7→ G0 that satisfies ϕ(i) = v and for all j ∈ K 0 j ∈ L(ϕ(j)). As K is connected, there is some
+vertex i0 ∈ K 0 that is connected by an edge to j 0 ∈ K \ K 0 in K. By the maximality of K 0 , there is
+no edge connecting ϕ(i0 ) to a vertex q for which j 0 ∈ L(q). This is impossible, as it means that the
+process should have removed i0 from L(ϕ(i0 )).
+
+    We now turn to the proof of Theorem 2, part (ii). The proof is based on a variant of a powerful
+probabilistic technique, which may be called dependent random choice, and which has already found
+several recent combinatorial applications. See, e.g., [8] and some of its references. Given a subset of
+vertices Vi ⊆ V (G) and a vertex v ∈ V (G), let N (v, i) denote the set of neighbors of v within Vi . We
+need the following lemma.
+
+
+Lemma 5.2 Let G = (V, E) be an undirected graph on n vertices, and let V1 , V2 , . . . , Vd+1 be (not
+necessarily disjoint) subsets of V . Put α = |V1 |/n. Assume that for every vertex v ∈ V1 and for
+every 2 ≤ k ≤ d + 1, |N (v, k)| ≥ ²|Vk |. Then, sampling 32h log(1/δ)/(α²d ) vertices from G, finds
+with probability at least 1 − δ, an h-tuple of distinct vertices s = {v1 , . . . , vh } ⊆ V1 , that satisfies
+                              ¯             ¯
+                              ¯\h           ¯  1
+                              ¯             ¯
+                              ¯   N (vi , k)¯ ≥ ²dh |Vk |, ∀ 2 ≤ k ≤ d + 1.                              (4)
+                              ¯             ¯  4
+                               i=1
+
+Proof. The result is trivial for h = 1, and we thus assume that h ≥ 2. For 2 ≤ k ≤ d + 1, choose
+uniformly and independently a vertex tk from each set Vk . Let X be the set of vertices v ∈ V1 , for
+which tk ∈ N (v, k) for all 2 ≤ k ≤ d + 1. For each v ∈ V1 , let Xv be an indicator random variable
+for the event that v ∈ X. It follows from the assumption on the large number of neighbours of each
+vertex of V1 in each set Vk , that
+                                                 X
+                                      E(|X|) =          E(Xv ) ≥ ²d |V1 |.
+                                                 v∈V1
+
+By Jensen’s inequality, it follows that
+
+                                     E(|X|h ) ≥ E(|X|)h ≥ ²dh |V1 |h .
+
+Therefore, there is an expected number of at least ²dh |V1 |h h-tuples s = (v1 , . . . , vh ) (where the
+vertices vi are not necessarily distinct) of vertices in V1 , with the property that tk ∈ N (vi , k), for all
+2 ≤ k ≤ d + 1 and 1 ≤ i ≤ h. We now turn to show, that the expected number of these h-tuples that
+violate (4) is small. To this end, define Z to be the set of all h-tuples s ∈ V1h , that do not satisfy (4),
+
+                                                        15
+and let Y be the set of all members of Z that lie in X h . For each s ∈ Z let Ys denote the indicator
+                                                              P
+random variable for the event that s ∈ X h . Note that |Y | = s∈Z Ys . Thus
+                                                            ¯T            ¯
+                                                            ¯ h           ¯
+                             X                          Y ¯ i=1 N (vi , k)¯
+                                                      X d+1                       X 1         1
+           E(|Y |) =                       E(Ys ) =                           ≤          ²dh ≤ ²dh |V1 |h ,
+                       s=(v1 ,...,vh )∈Z              s∈Z k=2
+                                                                     |Vk |           h
+                                                                                       4      4
+                                                                                  s∈V1
+                                                                                         ¯T             ¯
+                                                                                         ¯ h            ¯    1 dh
+where the first inequality follows from our assumption that for some k, ¯                  i=1 N (vi , k)¯ < 4 ² |Vk |.
+We conclude that,
+               1              1                    1            1            1
+             E( |X|h − |Y |) = E(|X|h ) − E(|Y |) ≥ ²dh |V1 |h − ²dh |V1 |h = ²dh |V1 |h .
+               2              2                    2            4            4
+Therefore, there is some choice of t2 , . . . , td+1 , for which the sets X and Y satisfy,
+                                                         1      1
+                                            |X|h − |Y | ≥ |X|h + ²dh |V1 |h .
+                                                         2      4
+Fix one such choice of t2 , . . . , td+1 . The above inequality implies that more than half of the h-tuples
+in X h satisfy (4), and that X is of size at least 41/h  1 d
+                                                            ² |V1 | ≥ α2 ²d n. Therefore, a randomly chosen
+vertex from G, has probability at least α2 ²d to lie in X. It follows that the expected number of
+samples needed to find an h-tuple from X is at most 2h/(α²d ). Hence, by Markov’s inequality,
+choosing 8h/(α²d ) random vertices, finds an h-tuple from X with probability at least 34 . As at least
+half of the h-tuples in X h satisfy (4), it follows that with probability at least 83 we find an h-tuple
+satisfying (4). This is not necessarily an h-tuple of distinct vertices. But the probability of finding
+an h-tuple with non distinct vertices is o(1), as |X| = Ω(n). Therefore with probability at least 14 we
+find an h-tuple of distinct vertices satisfying (4). Thus, choosing 32h log(1/δ)/(α²d ) vertices finds
+such an h-tuple with probability at least 1 − δ as needed.
+
+Proof of Theorem 2, part (ii) As in the proof of part (i), (and as can be done for any one-sided
+property tester for a problem which is closed under taking induced subgraphs), the algorithm simply
+samples the stated number of vertices randomly and reports that G is H-free if and only if it finds no
+copy of H on them. Clearly, if G is H-free, the answer is correct. Let G be ²-far from being H-free,
+and let K denote the core of H which is, by assumption, a tree. Number the vertices of K by 1, . . . , k
+in a BF S order, and let hi be the number of vertices of H that are mapped to i ∈ {1, 2, . . . , k}. Note
+that if i and j are neighbors in K, it does not necessarily hold, that all the vertices of H that are
+mapped to i, are adjacent to all the vertices of H that are mapped to j, but it does hold, that all
+existing edges are in the same direction. We will show however, that we can find a subgraph of G
+whose vertex set consists of subsets |U1 | = h1 , . . . , |Uk | = hk such that if (i, j) ∈ E(K) then all the
+vertices of Ui are connected to all the vertices of Uj . Such a subgraph clearly contains a copy of H.
+    Let N (i) be the neighbours of vertex i in K, that appear after it in the BF S order, and di = |N (i)|.
+Apply the process described before the proof of Lemma 5.1 with respect to K, that is, obtain
+
+                                                                16
+G0 = G0 (G, K). It follows from Lemma 5.1 that G0 contains a copy of K. Let v1 , . . . , vk be such
+a copy. By Lemma 5.1, for all 1 ≤ i ≤ k, i ∈ L(vi ). Denote by Vi the set of vertices ui for which
+i ∈ L(ui ). Clearly vi ∈ Vi . In order to make the presentation simple, from now until the end of the
+proof, we will not specify the direction of an edge between ui ∈ Vi and uj ∈ Vj , although we will
+always be speaking about an edge that is directed as the direction of an edge between i and j in K.
+     Let N (1) = {2, . . . , d1 + 1} be the d1 neighbors of vertex 1 in K, hence, G0 contains the edges
+(v1 , v2 ), . . . , (v1 , vd1 +1 ). From the definition of the process for obtaining G0 , it follows that for every
+                                                 ²
+2 ≤ i ≤ d1 + 1, there are at least 2h               n vertices u1 ∈ V1 , for which there is an edge (u1 , vi ) and
+                                                   ²
+1 ∈ L(u1 ), and in particular, |V1 | ≥ 2h n. It follows again from the definition of the process, that
+                                                                                       ²
+for every u1 ∈ V1 , and for every 2 ≤ i ≤ d1 + 1, u1 has at least 2h                     n neighbors in Vi , implying that
+           ²                                                                                   ²
+|Vi | ≥ 2h n. As |Vi | ≤ n, it follows that, each vertex in V1 has at least 2h                   |Vi | neighbours in each Vi .
+                                                                                       ²
+We can continue this way to conclude that for 1 ≤ i ≤ k, |Vi | ≥ 2h n, and that every ui ∈ Vi has at
+         ²
+least 2h    |Vj | neighbors in Vj , for every j ∈ N (i). Finally note that as G0 is a subgraph of G, all of the
+above applies also to G.
+     The previous paragraph implies, that we can apply Lemma 5.2 on the sets V1 , . . . , Vd1 +1 , with
+       1             ²
+δ = 4h    , α = 2h     , h = h1 and ² being ²/(2h), to conclude that sampling some c1 (h)/(²d1 +1 ) vertices of
+                                                     1
+G, finds, with probability at least 1 − 4h               , an h1 -tuple s1 , of distinct vertices from V1 , such that for
+2 ≤ j ≤ d1 +1 they have at least c1 (h)²    0     h  1 d1 |Vj | ≥ c”1 (h)²h1 d1 +1 n common neighbors in Vj . The actual
+constants c1 (h), c01 (h), c001 (h) as well as the constants that will appear at the rest of this proof can be
+derived from the statement of Lemma 5.2 and are omitted in order to keep the presentation simple.
+For 2 ≤ j ≤ d1 + 1, denote by Vj0 this set of common neighbors of the vertices of s1 . Now each Vj0 is of
+                                                                                                            ²
+size at least c”1 (h)²h1 d1 +1 n. By construction of G0 , every vertex in Vj , has at least 2h                |Vt | neighbours
+                                          0                                                             0
+in Vt , for every t ∈ N (j). As Vj ⊆ Vj , the same also applies to the vertices of Vj . For 2 ≤ j ≤ d1 + 1,
+                                                                                1
+we can now apply Lemma 5.2 to Vj0 as follows. Take δ = 4h                         , α = |Vj0 |/n ≥ c”1 (h)²h1 d1 +1 , h = hj ,
+d = dj and ² as before. We conclude that sampling c2 (h)/(²dj +d1 h1 +1 ) finds, with probability at least
+       1
+1 − 4h   , an hj -tuple sj of distinct vertices from Vj0 , with the property, that all the vertices of s1 are
+adjacent to all the vertices of sj , and the vertices of sj have at least c02 (h)²dj hj |Vt | common neighbors
+in Vt , for every t ∈ N (j).
+     We now turn to generalizing the above for all 1 ≤ i ≤ k, but before doing so we must take care
+of the following minor technicality; we must make sure that we do not sample the same vertex twice
+when we look for the copy of H, as it must consist of distinct vertices. We therefore remove from
+each Vj0 the previously used vertices. As H is of fixed size, each Vj0 is still of essentially its previous
+size.
+                                                                   ²
+     Observe, that as each vertex in Vi has at least 2h              |Vt | neighbours in Vt , for every required t, and we
+made sure that we do not sample the same vertex twice, we can safely generalize the above sampling
+technique as follows. For every 2 ≤ i ≤ k, let pi be the (single) neighbor of i in K that precedes it in
+the BF S order. Therefore, for every 2 ≤ i ≤ k we can sample some c3 (h)/(²di +dpi hpi +1 ) vertices, to
+
+
+                                                             17
+                                            1
+find, with probability at least 1 − 4h        , an hi -tuple si , with the properties, that every member in spi is
+adjacent to every member of si , and the vertices of si have at least c03 (h)²di hi |Vt | common neighbors
+in Vt for every t ∈ N (i). Observe, that as k ≤ h, the probability that at least one of these k samples
+failed is at most k/4h ≤ 1/4. Therefore, with probability at least 3/4 we have found k sets s1 , . . . , sk
+of sizes h1 , . . . , hk , respectively, such that for every edge (i, j) in K, we have all the edges going from
+si to sj . This digraph clearly contains a copy of H, as needed. As for the total number of vertices
+sampled, note that we do not sample more than h times the size of the largest sample we use. The
+first sample, the one used to find s1 is of size c1 (h)/(²d1 +1 ) = O((1/²)d1 +1 ). For 2 ≤ i ≤ k, we use a
+sample of size O((1/²)di +dpi hpi +1 ). If we define h = max2≤i≤k {di + dpi hpi + 1}, then the total sample
+size is O((1/²)h ). As it is clear that for every tree of size h, h ≤ h2 , we conclude that our ²-tester
+                                                      2
+has indeed a query complexity of O((1/²)h ).
+
+    It is worth observing that in the proof of Theorem 2 part (ii), we did not explicitly use the fact
+that the core of the considered digraph H is a tree. Rather, we only needed the fact that V (H) can
+be homomorphically mapped to some subgraph which is a tree. However, one can easily see that if
+such a homomorphism exists, then the core of H must also be a tree. We now turn to prove Theorem
+3, that states that in case H is an oriented tree, we can design an optimal one-sided error ²-tester
+that simply samples a subset of O(1/²) vertices, and checks if they span a copy of H.
+
+Proof of Theorem 3 If G is H-free, the algorithm clearly reports it. Let G be ²-far from being
+H-free. Consider a DF S ordering of the vertices of H, and number the vertices of H accordingly
+1, . . . , h. It follows that vertex i has exactly one neighbor from 1, . . . , i − 1. Apply the process
+described before the proof of Lemma 5.1 with respect to H itself, that is, obtain G0 = G0 (G, H). It
+follows from Lemma 5.1 that G0 contains a copy of H. Let v1 , . . . , vh be such a copy. By Lemma 5.1,
+for all 1 ≤ i ≤ h, i ∈ L(vi ). Without loss of generality, assume H contains the edge (1, 2). Therefore
+G0 contains an edge (v1 , v2 ), and by Lemma 5.1 1 ∈ L(v1 ) and 2 ∈ L(v2 ). From the definition of the
+                                                                    ²
+process for obtaining G0 , it follows that there are at least 2h      n vertices u1 , for which there is an edge
+(u1 , v2 ) and 1 ∈ L(u1 ). It follows again from the definition of the process, that for each such u1 ,
+                        ²
+there are at least 2h     n vertices u2 for which there is an edge (u1 , u2 ) and 2 ∈ L(u1 ). We can continue
+this way inductively to conclude that for every homomorphism mapping the subgraph of H spanned
+                                                           ²
+by the vertices 1, . . . , i into G0 , there are at least 2h n possibilities for extending this homomorphism,
+to a homomorphism from the subgraph of H spanned by 1, . . . , i + 1 into G0 . As H is of fixed size,
+and n is assumed to be large enough, it follows that for each injective homomorphism mapping the
+                                                                                    ²        ²
+subgraph of H spanned by the vertices 1, . . . , i into G0 , there are at least 2h    n−i ≥ 3h n possibilities for
+extending this injective homomorphism, to an injective homomorphism from the subgraph spanned
+by 1, . . . , i + 1 into G0 . Finally, observe that as G0 is a subgraph of G, all the above applies also to
+G.
+      We now turn to the actual proof. We show that a random subset of 9h2 /² vertices, contains a
+
+                                                       18
+copy of H with probability at least 2/3. We choose this set one vertex at a time (with repetitions).
+From the above discussion, it follows that each randomly chosen vertex v, has probability at least
+²/3h of having the property that there is a copy of H in G in which v plays the role of vertex 1.
+More generally, it follows from the above discussion, that for every 1 ≤ i ≤ h − 1, if we have found
+vertices v1 , . . . , vi−1 having the property that there is a copy of H in G in which v1 , . . . , vi−1 play
+                                                                  ²
+the role of vertices 1, . . . , i − 1, then there are at least 3h   n vertices u in G, such that there is a copy
+of H in G, in which v1 , . . . , vi−1 play the role of 1, . . . , i − 1 respectively, and u plays the role of vi .
+Therefore, each randomly chosen vertex has probability at least ²/3h of decreasing the number of
+vertices that are required in order to complete a copy of H, regardless of any history. By linearity
+of expectation, and the fact that the expected number of trials needed to find each new vertex is
+geometrically distributed, it follows that the expected number of trials needed to find a copy of H is
+3h2 /². By Markov’s inequality, it follows that the probability of not finding a copy of H after 9h2 /²
+trials, is at most 1/3, as needed. Note, that the failure probability is in fact exponentially small in
+h/², but we do not need this stronger estimate here.
+    To show that the result is optimal, we show how to construct, for every tree H, a digraph GH ,
+that is ²-far from being H-free, yet in order to find a copy of H, one must sample Ω(1/²) vertices of
+GH . Given a tree H of size h, construct a digraph GH as follows: Let K be the core of H (which
+is obviously a tree), and let k denote its size. We also denote by t the number of vertices that are
+mapped to vertex k of K in a homomorphism from H to K. The digraph GH contains k − 1 sets
+of vertices V1 , . . . , Vk−1 of size n−²2kn
+                                        k−1   each, and one subset Vk of size ²2kn. For each edge (i, j) in
+K, GH contains an edge (vi , vj ) for every vi ∈ Vi and vj ∈ Vj . To show that GH is ²-far from being
+H-free, observe that there are
+                                                      µ             ¶
+                                                        n − ²2kn h−t
+                                              (²2kn)t
+                                                          k−1
+natural homomorphisms from H into GH , and at least half of them are injective (there are o(nh )
+homomorphisms that are not injective), that is, at least half of them define a copy of H. On the
+other hand, each edge e in GH , is in the image of at most
+                                                      µ              ¶h−t−1
+                                                t−1       n − ²2kn
+                                         (²2kn)
+                                                            k−1
+of these homomorphisms from H to K. Therefore, for a large enough n, one must remove at least
+                       µ            ¶h−t                  µ              ¶1−h+t
+             1         n − ²2kn                               n − ²2kn                    n − ²2kn
+               (²2kn)t                     · (²2kn)1−t
+                                                                                  ≥ ²kn            ≥ ²n2
+             2           k−1                                    k−1                         k−1
+edges, in order to make GH H-free, and hence GH is ²-far from being H-free. The first multiplicand
+comes from the number of copies of H in GH which is at least half of the number of homomorphisms
+from H to GH , while the second comes from the number of copies of H which share a given edge.
+In order to establish that a digraph is not H-free, a one-sided error property-tester must find a copy
+
+
+                                                          19
+of H. Now, by the minimality of K, each copy of H in GH must have a vertex from Vk . Therefore,
+in order to find a copy of H with probability 2/3, one must find a vertex in Vk with at least this
+probability. As proved by Goldreich and Trevisan in [25], we may assume without loss of generality
+that any one sided error property tester for PH samples uniformly at random a subset of vertices,
+and answers by only inspecting edges spanned by this set. Finally, to find a vertex from Vk with
+probability at least 2/3, one must sample uniformly at random at least Ω(1/²) vertices. Thus, we
+obtain a lower bound of Ω(1/²) as required.
+
+
+6    Hard to Test Digraphs
+In this section we apply the approach used in [1], together with some additional ideas, in order to
+prove Theorem 2 part (iii). This approach uses techniques from additive number theory, based on
+the construction of Behrend [14] of dense sets of integers with no three-term arithmetic progressions,
+together with some properties of homomorphisms of digraphs.
+    A linear equation with integer coefficients
+
+                                                 X
+                                                     ai xi = 0                                             (5)
+                                           P
+in the unknowns xi is homogeneous if        ai = 0. If X ⊆ M = {1, 2, . . . , m}, we say that X has no
+                                                     P
+non-trivial solution to (5), if whenever xi ∈ X and ai xi = 0, it follows that all xi are equal. Thus,
+for example, X has no nontrivial solution to the equation x1 − 2x2 + x3 = 0 if and only if it contains
+no three-term arithmetic progression. The following lemma is proved in [1] (Lemma 3.1), following
+the method of [14]:
+
+Lemma 6.1 For every fixed integer r ≥ 2 and every positive integer m, there exists a subset X ⊂
+M = {1, 2, . . . , m} of size at least
+                                                    m
+                                         |X| ≥    √
+                                               e10 log m log r
+with no non-trivial solution to the equation
+
+                                        x1 + x2 + . . . + xr = rxr+1 .                                     (6)
+
+    Let C = (v1 , . . . , vr+1 , v1 ) be an arbitrary oriented cycle of length r + 1. We next apply the
+construction in the above lemma to construct, for every integer r + 1 ≥ 3, a relatively dense digraph
+consisting of pairwise edge disjoint copies of C, which does not contain too many copies of C of a
+special structure (see statement of lemma below). Let m be an integer, let X ⊂ {1, 2, . . . m} be a
+set satisfying the assertion of Lemma 6.1, and define, for each 1 ≤ i ≤ r + 1, the set Vi to consist
+of the vertices {1, 2, . . . im} where, with a slight abuse of notation, we think on the sets V1 , . . . , Vr+1
+as being pairwise disjoint. The reason we use this notation is that we will next refer to the vertices
+
+
+                                                      20
+of these sets as integers. In order to avoid confusion, when we will later on refer to a vertex we will
+always state to which of the sets V1 , . . . , Vr+1 it belongs.
+      Let T = T (X, C) be the family of all r+1-partite digraphs on the classes of vertices V1 , V2 , . . . , Vr+1 ,
+whose edges are defined as follows: For each j, 1 ≤ j ≤ m, and for each x ∈ X the vertices
+j ∈ V1 , j + x ∈ V2 , j + 2x ∈ V3 , . . . , j + rx ∈ Vr+1 form an oriented cycle of length r + 1 in this order,
+whose edges are directed as the edges of C. Therefore, if C contains the directed edge (vi , vi+1 ),
+then (j + (i − 1)x, j + ix) is an edge from Vi to Vi+1 for all 1 ≤ j ≤ m, x ∈ X, in any member of
+T . If C contains the reverse edge (vi+1 , vi ), then (j + ix, j + (i − 1)x) is an edge from Vi+1 to Vi for
+all 1 ≤ j ≤ m, x ∈ X in any member of T . The same applies to the edges between V1 and Vr+1 . If
+(vi , vi+1 ) is an edges in C, then any digraph in T does not contain any additional edges going from
+Vi to Vi+1 . If (vi+1 , vi ) is an edge in C, then any digraph in T does not contain any additional edges
+going from Vi+1 to Vi . The same applies to V1 , Vr+1 . Besides the above set of edges and restrictions,
+the members of T may contain any other edges between Vi , Vj .
+
+Lemma 6.2 For every integer r ≥ 2, and every m, any member of T (X, C) defined above has
+precisely m|X| ( < m2 ) copies of the cycle C, such that the vertex that plays the role of vi in the
+copy of C, belongs to Vi .
+
+Proof: We only have to show that any member of T does not contain any additional copies of C, for
+which the vertex that plays the role of vi in the copy of C, belongs to Vi . Let C 0 be such a copy of C.
+Therefore, there are j ≤ m and elements x1 , x2 , . . . , xr+1 ∈ X, such that the vertices of the cycle are
+j ∈ V1 , j + x1 ∈ V2 , j + x1 + x2 ∈ V3 , . . . , j + x1 + x2 + . . . + xr ∈ Vr+1 and x1 + x2 + . . . + xr = rxr+1
+(remember that all edges between V1 and Vr+1 are of the form (j, j + rx) or (j + rx, j)). However,
+by the definition of X this implies that x1 = x2 = . . . = xr+1 , implying the desired result.
+
+Comment: Note that the members of T (X, C) may contain many additional copies of C, which do
+not satisfy the restriction described in the statement of the lemma.
+
+    An s-blow-up of a digraph K = (V (K), E(K)) is the digraph obtained from K by replacing each
+vertex of K by an independent set of size s, and each edge e of K by a complete bipartite directed
+subgraph whose vertex classes are the independent sets corresponding to the ends of the edge, and
+whose edges are directed according to the direction of e.
+
+Lemma 6.3 Let H = (V (H), E(H)) be a digraph with h vertices, let K = (V (K), E(K)) be another
+digraph on at most h vertices, and let T = (V (T ), E(T )) be an s-blow-up of K. Suppose there is a
+homomorphism
+                                        ϕ : V (H) 7→ V (K)
+
+
+
+
+                                                        21
+from H to K and suppose s ≥ h. Let R ⊂ E(T ) be a subset of the set of edges of T , and suppose
+that each copy of H in T contains at least one edge of R. Then
+
+                                                   |E(T )|     |E(T )|
+                                        |R| ≥                >         .
+                                                |E(K)||E(H)|     h4
+
+Proof: Let g : V (H) 7→ V (T ) be a random injective mapping obtained by defining, for each vertex
+v ∈ V (K), the images of the vertices in ϕ−1 (v) ∈ V (H) randomly, in a one-to-one fashion, among all
+s vertices of T in the independent set that corresponds to the vertex v. Obviously, g maps adjacent
+vertices of H into adjacent vertices of T , and hence the image of g contains a copy of H in T . Each
+edge of H is mapped to one of the corresponding s2 edges of T according to a uniform distribution,
+and hence the probability it is mapped onto a member of R does not exceed |R|/s2 . It follows
+that the expected number of edges of H mapped to members of R is at most |R||E(H)|   s2
+                                                                                          , and as, by
+                                                                           |R||E(H)|
+assumption, this random variable is always at least 1, we conclude that        s2
+                                                                                     ≥ 1. The desired
+result follows, since s2 = |E(T )|/|E(K)|.
+
+
+Claim 6.1 If K, the core of H, is neither a tree nor a 2-cycle, then K contains an oriented cycle
+C of length at least 3. Moreover, any homomorphism from H to K, maps a copy of C from H to
+the copy of C in K.
+
+Proof: Let k denote the number of vertices of K, and let us number its vertices {v1 , v2 , . . . , vk } such
+that the first r + 1 ≥ 3 vertices v1 , v2 , . . . vr+1 form an oriented cycle C in this order. One such cycle
+must exist as K is by assumption neither a tree nor a 2-cycle. Remember, that as was explained in the
+discussion before the proof of Theorem 2, part (i), the core cannot have only 2-cycles, and not be a
+2-cycle. By the minimality of K, every homomorphism ϕ of K into itself must be an automorphism,
+that is (u, v) ∈ E(K) ⇔ (ϕ(u), ϕ(v)) ∈ E(K) (otherwise H would have a homomorphism into a
+subgraph with a smaller number of edges). We claim that any homomorphism of H into K maps
+a copy of C from H to the vertices v1 , v2 , . . . vr+1 of K. Indeed, any homomorphism of H into K,
+induces also a homomorphism of K into K. Therefore, some r + 1 vertices of K are mapped to
+v1 , v2 , . . . , vr+1 , and these vertices must span a cycle in K and therefore in H, as this homomorphism
+is an automorphism from K to K by the previous argument.
+
+Lemma 6.4 For every fixed digraph H = (V (H), E(H)) on h vertices whose core is neither an
+oriented tree nor a 2-cycle, there is a constant c = c(H) > 0, such that for every positive ² < ²0 (H)
+and every integer n > n0 (²), there is a digraph G on n vertices which is ²-far from being H-free, and
+yet contains at most ²c log (1/²) nh copies of H.
+
+Proof: Let K be the core of H, and let k denote the number of vertices of K. Also, let us number its
+vertices {v1 , v2 , . . . , vk } such that the first r + 1 ≥ 3 vertices v1 , v2 , . . . vr+1 form an oriented cycle C
+
+                                                         22
+in this order as guaranteed by Claim 6.1. Given a small ² > 0, let m be the largest integer satisfying
+                                                           1
+                                           ²≤             √              .                              (7)
+                                                  h8 e10   log m log h
+
+   It is easy to check that this m satisfies
+                                                    µ ¶c log(1/²)
+                                                     1
+                                               m≥                                                       (8)
+                                                       ²
+
+for an appropriate c = c(h) > 0. Let X ⊂ {1, 2, . . . , m} be as in Lemma 6.1. We next define a
+digraph F from K in a way similar to the one described in the paragraph preceding Lemma 6.2.
+Let V1 , V2 , . . . Vk be pairwise disjoint sets of vertices, where |Vi | = im and we denote the vertices of
+Vi by {1, 2, . . . , im}. For each j, 1 ≤ j ≤ m, for each x ∈ X and for each directed edge (vp , vq ) of
+K, let j + (p − 1)x ∈ Vp have an outgoing edge pointed to j + (q − 1)x ∈ Vq . In other words, F
+consists of m|X| copies of K, where the vertices of each copy form an arithmetic progression whose
+first element is j and whose difference is x. It follows that each pair of these copies shares at most
+one vertex in F . In particular, these copies are edge disjoint. It thus follows that the number of
+edges in F satisfies
+                                             |E(F )| = m|X||E(K)|.
+
+Note that the induced subgraph of F on the union of the first (r + 1) vertex classes, belongs to the
+family of digraphs T (X, C) considered in Lemma 6.2, where C = (v1 , . . . , vr+1 , v1 ) is the oriented
+cycle on the first r + 1 vertices of K, which was defined above. Finally, define
+                                           ¹          º        ¹             º
+                                                  n           2n
+                                      s=                =
+                                               |V (F )|   k(k + 1)m
+
+and let G be the s-blow-up of F (together with some isolated vertices, if needed, to make sure that
+the number of vertices is precisely n). Note that the number of edges of G satisfies,
+
+                          4n2 |E(F )|     4n2 |X||E(K)|     n2 |X||E(K)|        n2 |E(K)|
+             |E(G)| =                   =                 ≥              ≥        √                     (9)
+                        k 2 (k + 1)2 m2    k 2 (k + 1)2 m        k4 m      k 4 e10 log m log r
+where the last inequality follows from the lower bound on |X| that is guaranteed by Lemma 6.1.
+   Since F consists of m|X| edge disjoint copies of K, G consists of pairwise edge disjoint s-blow-ups
+of K, hence, by Lemma 6.3, one has to delete at least a fraction of 1/h4 of its edges to destroy all
+copies of H in it. Therefore, one must delete at least
+
+                        1                n2 |E(K)|              n2 |E(K)|
+                           · |E(G)| ≥         √            ≥      √            ≥ ²n2                   (10)
+                        h4             4 4
+                                      h k e 10 log m log r    8
+                                                             h e10 log m log h
+
+
+edges in order to destroy all copies of H. The first inequality follows from (9), the second from the
+fact that r ≤ h and k ≤ h and the third from (7). We conclude that G is ²-far from being H-free.
+
+
+                                                          23
+    We next claim that any copy of H in G must contain a copy of C such that for 1 ≤ i ≤ r + 1, the
+vertex that plays the role of vi belongs to the blow-up of the vertices of Vi . To see this, note that
+there is a natural homomorphism of G onto K, obtained by first mapping G homomorphically onto
+F (by mapping each class of s vertices into the vertex of F to which it corresponds), and then by
+mapping all vertices of Vi to vi . This homomorphism maps each copy of H in G homomorphically
+into K, and hence, by Claim 6.1, maps a copy of C that belongs to the considered digraph H, to
+the first r + 1 vertices of K. The definition of the homomorphism thus implies the assertion of the
+claim.
+    As the vertex that plays the role of vi in the copy of C must belong to the blow-up of the vertices
+of Vi for 1 ≤ i ≤ r + 1, it follows from Lemma 6.2 that the number of such cycles is at most
+                                              µ               ¶r+1
+                                                      2n
+                               m2 sr+1 = m2                          ≤ nr+1 /m,
+                                                  k(k + 1)m
+and this implies that the total number of copies of H in G does not exceed nh /m = ²c log(1/²) nh ,
+implying the desired result.
+
+Proof of Theorem 2, part (iii): Let H be a digraph on h vertices whose core is neither an
+oriented tree nor a 2-cycle, and suppose ² > 0. Given a one-sided error ²-tester for testing H-freeness
+we may assume, without loss of generality, that it queries all pairs of a uniformly at random chosen
+set of vertices (otherwise, as explained in [5], every time the algorithm queries about a vertex pair
+we make it query also about all pairs containing a vertex of the new pair and a vertex from previous
+queries. See also [25] for a more detailed proof of this statement.) As the algorithm is a one-sided-
+error algorithm, it can report that G is not H-free only if it finds a copy of H in it. By Lemma
+6.4 there is a digraph G on n vertices which is ²-far from being H-free and yet contains at most
+²c log (1/²) nh copies of H. The expected number of copies of H inside a uniformly at random chosen
+set of x vertices in such a digraph is at most xh ²c log (1/²) , which is far smaller than 1 unless x exceeds
+         0
+(1/²)c log(1/²) for some c0 = c0 (H) > 0, implying the desired result.
+
+
+7    Two-Sided Error ²-Testers
+In this section we present the proof of Theorem 4. Applying the second part of the theorem for the
+case of undirected graphs, shows that if H is an undirected, non-bipartite graph, then there is no
+two-sided ²-tester for testing H-freeness whose query complexity is smaller than (1/²)c log 1/² for an
+appropriate c = c(H) > 0. This settles an open problem raised in [1]. For the proof we need the
+following easy application of a theorem of Erdős from [20].
+
+Lemma 7.1 Let H be a fixed digraph on h vertices, let K be its core, and denote by k the size of
+K. For every constant 0 < γ < 1 and for every sufficiently large n, every digraph G on n vertices
+that contains γnk copies of K, contains also a copy of H.
+
+                                                     24
+Proof: Let ϕ be a homomorphism from V (H) to V (K), denote by t1 , . . . , tk the vertices of K,
+and let S1 , . . . , Sk be the sets ϕ−1 (t1 ), . . . , ϕ−1 (tk ), respectively. Define a k-uniform hypergraph T
+as follows: take a random partition of V (G) into k subsets, V1 , . . . , Vk , where each vertex of G
+is chosen uniformly and independently to be in one of the groups. For each copy of K in G, in
+which the vertices ui1 , . . . , uik play the role of t1 , . . . , tk respectively, put an edge in T that contains
+ui1 , . . . , uik if and only if ui1 ∈ V1 , . . . , uik ∈ Vk . Observe, that by linearity of expectation, if G
+contains γnk copies of K, the expected number of edges in T is γk −k nk . Therefore, one partition
+which defines at least this many edges must exist. Fix one such partition, and the hypergraph T 0
+which it defines. In [20] it is proved that any k-uniform hypergraph on n vertices with at least
+        1−k
+nk−h          edges, contains a copy of a complete k-partite k-uniform hypergraph, where each partition
+class is of size h. It follows that for large enough n, T 0 contains a copy of such hypergraph on some
+hk vertices {v11 , . . . , vh1 } ⊆ V1 , . . . , {v1k , . . . , vhk } ⊆ Vk . It is now easy to see that G must contain a
+copy of H where for the role of the vertices of Si we can choose any |Si | vertices from {v1i , . . . , vhi }.
+
+
+Proof of Theorem 4, part (i): Let H be a fixed digraph with core K, and let k be the size of
+K. If K is a 2-cycle, then a two-sided error ²-tester for testing PH with query complexity O(1/²)
+was described in the comment following the proof of Theorem 2 part (i). Assume now that K is an
+oriented tree. Our two-sided error ²-tester for PH works as follows: Given a digraph G, the algorithm
+samples c/² vertices, for an appropriate c, and reports that the digraph is not H-free if and only
+if they span a copy of K. We turn to show that the algorithm answers correctly with probability
+at least 2/3. Assume G is ²-far from being H-free. Then it is clearly also ²-far from being K-free,
+therefore applying Theorem 3 to PK , we conclude that a randomly chosen set of c/² vertices, with
+an appropriate c, finds a copy of K with probability at least 2/3. Assume G does not contain a copy
+of H. It follows from Lemma 7.1 that it contains o(nk ) copies of K, and therefore a randomly chosen
+set of any constant size (independent of n), and in particular of size O(1/²), has probability o(1) of
+finding a copy of K.
+    To show that the result is optimal, we apply Yao’s principle [34]. We first prove the case of K
+being an oriented tree. Applying Yao’s principle to our setting, we first have to define for every
+n, two distributions of digraphs D1 , D2 , where all the digraphs in D1 are ²-far from being H-free,
+and all the digraphs in D2 are H-free. In order to define the two distributions we use the digraph
+GH whose description appears at the end of the proof of Theorem 3. Note that this digraph is
+constructed using the core K, which is a tree. D1 is a uniform distribution on all the n! digraphs
+that are obtained from GH by a permutation of its vertices. By the computation at the end of the
+proof of Theorem 3 it follows that all the digraphs in D1 are ²-far from being H-free. To define
+D2 we first define G0H to be the digraph that is obtained from GH by removing all the edges that
+touch Vk (see the definition of GH ). D2 is now a uniform distribution on all the n! digraphs that are
+obtained from G0H by a permutation of its vertices. As G0H is clearly H-free, all the digraphs in D2
+
+                                                          25
+are H-free. To finish the proof we must show that no deterministic algorithm that samples less than
+Ω(1/²) vertices (adaptively) can tell the difference between these two distributions with probability
+that exceeds, say, 1/3. Recall that by the definition of GH and G0H , as long as the algorithm does
+not look at a vertex from Vk , it sees the same digraph. As Vk is of size ²2kn, the probability that
+a deterministic algorithm that samples less than, say, 1/(10²k) vertices finds a vertex from Vk is
+smaller than 1/3. Therefore, with probability at least 2/3 the two distributions D1 , D2 will look
+identical to any deterministic algorithm sampling less than Ω(1/²) vertices, as needed.
+    The proof for the case of K being a 2-cycle is analogous, and involves taking a permutation of a
+complete bi-directed bipartite graph on vertex sets of sizes ²4n and n − ²4n, and a digraph with no
+edges. The rest of the details are left to the reader.
+
+    A close inspection at the proofs of Theorem 3 and Theorem 2 part (i), shows that if G is ²-far
+from being H-free, and the core of H, K, is either a 2-cycle or an oriented tree, then sampling O(1/²)
+vertices finds a copy of K with probability 1 − o(1) where the o(1) term tends to 0 as ² tends to zero.
+On the other, the proof of Theorem 4, part (i), shows that if G is H-free, then the algorithm does
+not find a copy of K with probability 1 − o(1) where the o(1) term tends to 0 as n tends to infinity
+(even if ² > 0 is relatively large). Therefore, in some sense the test has ”almost” one-sided error, as
+even for large values of ² the failure probability in case G is H-free is still o(1), as n tends to infinity.
+
+Proof of Theorem 4, part (ii): Let H be a fixed digraph whose core K is neither a directed
+2-cycle nor an oriented tree. We apply Yao’s principle again in order to prove the lower bound.
+    Given n and ², let X, m and the sets Vi be as in the proof of Lemma 6.4. Construct the digraph
+F just as in the proof of Lemma 6.4, and remember that it consists of m|X| pairwise edge disjoint
+copies of K (though it may well contain additional copies of K). Recall, also, that K contains a
+cycle C of length r + 1 ≥ 3, and that each copy of K in F contains a copy of this cycle in which the
+i-th vertex lies in Vi for all 1 ≤ i ≤ r + 1. Let C denote the set of these edge disjoint copies of C,
+and note that by Lemma 6.2 there are no other copies of C in F , in which the i-th vertex lies in Vi ,
+besides the m|X| members of C.
+    To construct D1 which consists of digraphs that are ²-far from being H-free with probability
+1 − o(1), we first construct F10 by removing each of the m|X| edge disjoint cycles that belong to C
+                     1
+with probability r+1    . We then create G1 by taking an s blow up of F10 adding isolated vertices, if
+needed. Finally, D1 consists of all randomly permuted copies of such digraphs G1 . It follows from
+a standard Chernoff bound, that with probability 1 − o(1), at least m|X|(1 − 2/(r + 1)) copies of C
+are left in F10 , where the o(1) term tends to 0, as ² tends to 0. Similar to the derivation of (10), it is
+easy to show that if m|X|/2(r + 1) of these copies of C are left in F10 , the digraph G1 is ²-far from
+being H-free. It follows that with probability 1 − o(1), a member of D1 is ²-far from being H-free.
+The distribution D2 of digraphs that are H-free, is defined by first constructing F20 by removing
+from each member C ∈ C one randomly chosen edge (out of the r + 1 edges of the cycle). We then
+
+                                                     26
+create G2 by taking an s blow up of F20 adding isolated vertices, if needed. Finally, D2 consists of all
+randomly permuted copies of such digraphs G2 , which are clearly H-free.
+     Now consider a set of vertices S in G1 (or G2 ) and its natural projection to a subset of V (F ),
+which we also denote by S with a slight abuse of notation. Suppose S has the property that it does
+not contain more than two vertices from any one of the copies of C that belong to C.
+     If this property holds, then each edge spanned by S is contained in a different copy of C ∈ C (if
+it is contained in such a cycle at all). Therefore, each edge that lies in such a cycle, has probability
+       1
+1 − r+1    of being in F10 , and these probabilities are mutually independent. Similarly, each such edge
+                         1
+has probability 1 − r+1       of being in F20 and these probabilities are also mutually independent. It
+follows that sampling a digraph G from D1 , and looking at the induced digraph on a set S with the
+above property, has exactly the same distribution as sampling a digraph G from D2 , and looking at
+the induced digraph on S.
+     To complete the proof we have to show that no deterministic algorithm can distinguish between
+the distributions D1 and D2 with constant probability. To this end, it is clearly enough to show that
+                                                                                      0
+any deterministic algorithm that looks at a digraph spanned by less than (1/²)c log 1/² vertices, has
+essentially the same probability of seeing any digraph regardless of the distribution from which the
+digraph was chosen. By the discussion in the previous paragraph, this can be proved by establishing
+that, with high probability, a small set of vertices does not contain three vertices from the same copy
+of C. For a fixed ordered set of three vertices in S, consider the event that they all belong to the same
+copy of C. The first two vertices determine all the vertices of one of these copies uniquely. Now, the
+conditional probability that the third vertex is also a vertex of the same copy is (r+1)/|V (F )| ≤ r/m.
+By the union bound, the probability that the required property is violated is at most
+
+                                       r|S|3 /m ≤ r|S|3 ²c log 1/² .
+                                                  c
+This quantity is o(1) as long as |S| = o((1/²) 3 log 1/² ), where here we applied the lower bound on
+                                                                                           0
+the size of m given in (8). Therefore, if the algorithm has query complexity o((1/²)c log 1/² ) for
+some absolute positive constant c0 , it has probability 1 − o(1) of looking at a subset on which the
+distributions D1 and D2 are identical, thus, the probability that it distinguishes between D1 and D2
+is o(1).
+
+    A slightly more complicated argument than the above can give two distributions D1 and D2 ,
+such that the digraphs in D1 are always ²-far from being H-free, while the digraphs in D2 are always
+H-free. The idea is to first partition the m|X| copies of C into pairs, assuming for simplicity that
+m|X| is even. To create D1 , we randomly pick from each pair of copies of C a single copy, and
+delete two randomly chosen edges from this copy. To create D2 , we do exactly the same as we did
+in the proof above. It is easy to appropriately modify the proof above in order to show that any
+deterministic algorithm with query complexity o((1/²)c log 1/² ) cannot distinguish between D1 and D2
+
+
+                                                      27
+(see [10] for more details). As this argument has no qualitative advantage, we described the simpler
+one given above.
+    Observe that for digraphs H whose core K is neither an oriented tree nor a 2-cycle, we can give
+the above lower bound for testing PH , but no better upper bound than the one given by Theorem 1.
+However, following the arguments in the proof of Theorem 4 (i), it follows that the query complexity
+of testing PH with two-sided error is at most the query complexity of testing PK with two-sided
+error. Thus, for example, the query complexity of testing the digraph in Figure 1 (c) with two-sided
+error, is at most the query complexity of testing its induced oriented triangle with two-sided error.
+
+
+8    Concluding Remarks and Open Problems
+    • We have shown that for any digraph H, the property PH of being H-free is strongly testable. In
+      order to prove this result we have first proved a regularity lemma for digraphs, which generalizes
+      Szemerédi’s regularity lemma for undirected graphs. This lemma might prove useful for tackling
+      other problems as well. We also gave a precise characterization of all digraphs H for which PH
+      is easily testable, and showed that the same characterization applies to two-sided error ²-testers
+      as well, where here the complexity is polynomial in 1/² if and only if it is Θ(1/²). We have
+      addressed the case when H is an oriented tree, and gave an optimal one-sided error ²-tester
+      with query complexity Θ(1/²) for this case.
+
+    • It is not difficult to generalize Theorem 2 to the case of disconnected digraphs. Let H be a
+      disconnected graph whose components we denote by H1 , . . . , Ht , and whose cores we denote by
+      K1 , . . . , Kt . Note that if G is ²-far from being H-free, then for all i, it is also ²-far from being
+      Hi -free. If K1 , . . . , Kt are all either trees or 2-cycles, then running the testers for H1 , . . . , Ht
+      will find disconnected copies of each of H1 , . . . , Ht , and therefore a copy of H. This test will
+      obviously have query complexity polynomial in 1/², and therefore in this case PH is easily
+      testable. If at least one of the cores is neither a tree nor a 2-cycle then the core of H is neither
+      a tree nor a 2-cycle, hence, it follows directly from the proof of Theorem 2 part (iii) (note that
+      Lemma 6.4 and the proof of Theorem 2 part (iii) do not assume that H is connected) that PH
+      is not easily testable. Note finally that the above applies also to the case of two-sided error,
+      thus Theorem 4 can also be extended to the case of disconnected digraphs.
+
+    • An intriguing problem is that of estimating the best possible (one-sided and two-sided) query
+      complexity of the property PH∗ of not containing any induced copy of a fixed digraph H. Very
+      recently we have proved that for any fixed H with at least 5 vertices, the query complexity of
+      any one-sided or two-sided ²-tester for PH∗ is not polynomial in 1/². The details appear in a
+      subsequent paper [11]. These results have been further extended to hypergraphs is [12].
+
+
+
+                                                       28
+• Hell, Nesetril and Zhu proved in [28] that the problem of deciding if the core of a given input
+  digraph is a tree is N P -complete. This, together with Theorem 2 imply the following.
+
+  Proposition 8.1 The problem of deciding whether for a given digraph H, the property PH is
+  easily testable, is N P -complete.
+
+  Therefore, there is no polynomially testable characterization of the digraphs H for which PH
+  is easily testable (though for every small, fixed H, Theorem 2 can be easily used to decide if
+  H is such a digraph). One interesting class of digraphs for which the problem is solvable in
+  polynomial time, is the class of oriented cycles. An oriented cycle is balanced if the number
+  of forward edges is equal to the number of backward edges. It is not difficult to see that if
+  an oriented cycle C is not balanced, then the core of C is C itself, (see, e.g., Figure 1 (b)).
+  However the converse is not true, and while there are balanced cycles whose core is a path,
+  (see, e.g., Figure 1 (a)), there are also balanced cycles C whose core is C itself, (see, e.g., Figure
+  1 (d)). It is therefore interesting to observe that the problem of deciding whether the core of
+  a given cycle C is C itself or an induced path in it, can be solved in polynomial time using
+  dynamic programming. The details are left to the reader.
+  A digraph H is balanced iff every oriented cycle in it is balanced. It is not difficult to see that
+  a digraph H is balanced iff there is a homomorphism mapping H into an oriented tree, and
+  this happens iff there is a homomorphism mapping H into a directed path. It thus follows, by
+  Theorem 2, that if H is not balanced then PH cannot be tested by a polynomial number of
+  queries (but the converse is not true in general.)
+
+• Lemma 5.1 implies that if G is ²-far from satisfying PH , and the core of H is a tree K of size k,
+  then G contains Ω(²k nk ) copies of K. Having this, we could have used results from the theory
+  of supersaturated graphs and hypergraphs (see [21]) to conclude that there exists a one-sided
+                                                                 k
+  error ²-tester for PH which uses a sample of size O((1/²)O(h ) ). (An alternative way to deduce
+  this, is to change the statement of Lemma 7.1 and prove that G contains c(γ)nh copies of H for
+  some constant c(γ), and not just one). However, our proof of Theorem 2 part (ii) given here
+                                                                                   2
+  provides a far more efficient ²-tester that uses a sample of size only O((1/²)h ). By applying
+  the techniques of [21] we can show that for every fixed digraph H with h vertices whose core
+  K (which is not necessarily a tree) has k vertices, any digraph on n vertices containing at least
+                                                      k
+  δnk copies of the core K, contains at least Ω(δ O(h ) nh ) copies of H.
+
+• Lemma 5.1 implies that if G is ²-far from satisfying PH , and H is a tree of size h, then G
+  contains Ω(²h nh ) copies of H. This can be seen to be essentially optimal by considering an
+  appropriate random digraph. We omit the details.
+  As there are many copies of H, we conclude that sampling h vertices finds a copy of H with
+  probability Ω(²h ). It follows that one can test PH simply by sampling Θ((1/²)h ) samples of
+
+                                                29
+     h vertices each. However, in Theorem 3 we show that a sample of size O(1/²) suffices. The
+     reason is that sampling h vertices in O((1/²)h ) rounds fails to take into account all the h-tuples
+     that lie in the sample. In a sample of size Θ(1/²) there are Θ((1/²)h ) subsets of size h, and
+     it turns out that if we consider all of them, we get essentially the same result as sampling
+     Θ((1/²)h ) subsets of size h. In general, showing that if G is ²-far from being H-free then it
+     contains f (²)nh copies of H, and then designing a ²-tester that samples 1/f (²) subsets of size
+     h, usually fails to achieve the query complexity of more efficient ²-testers. In many cases, the
+     difference can be substantial, as in our case. In addition, our proof of a test that uses a sample
+     of size O(1/²) gives a somewhat different proof that for any oriented tree H with h vertices, a
+     digraph that is ²-far from being H-free, contains Ω(²h nh ) copies of H.
+
+   • Testing H-freeness for H being the complete bipartite undirected graph Ks,t , is another ex-
+     ample of the above mentioned phenomenon. In [1], an ²-tester for Ks,t -freeness which uses a
+     sample of size O((1/²)st ) has been established, simply by showing that the graph must contain
+     Ω(²st ns+t ) copies of Ks,t . Our method here improves this result and shows that a sample of size
+     O((1/²)min(s,t) ) suffices. This nearly matches a lower bound of Ω((1/²)min(s,t)/2 ) which follows
+     by considering an appropriate random graph (see the full version of [9].)
+
+
+Acknowledgements: We would like to thank one of the referees for a thorough and careful reading
+of this paper, as well as for valuable comments which significantly improved the presentation of our
+results.
+
+
+
+References
+ [1] N. Alon, Testing subgraphs in large graphs, Proc. 42nd IEEE FOCS, IEEE (2001), 434-441.
+
+ [2] N. Alon, R. A. Duke, H. Lefmann, V. Rödl and R. Yuster, The algorithmic aspects of the
+     Regularity Lemma, Proc. 33rd IEEE FOCS, Pittsburgh, IEEE (1992), 473-481. Also: J. of
+     Algorithms 16 (1994), 80-109.
+
+ [3] N. Alon, W. F. de la Vega, R. Kannan and M. Karpinski, Random Sampling and Approximation
+     of MAX-CSP Problems, Proc. of the 34th ACM STOC, ACM Press (2002), 232-239.
+
+ [4] N. Alon, S. Dar, M. Parnas and D. Ron, Testing of clustering, Proc. 41 IEEE FOCS, IEEE
+     (2000), 240-250.
+
+ [5] N. Alon, E. Fischer, M. Krivelevich and M. Szegedy, Efficient testing of large graphs, Proc.
+     40th Annual Symp. on Foundations of Computer Science (FOCS), New York, NY, IEEE (1999),
+     656–666. Also: Combinatorica 20 (2000), 451-476.
+
+                                                  30
+ [6] N. Alon, M. Krivelevich, I. Newman and M. Szegedy, Regular languages are testable with a
+     constant number of queries, Proc. 40th Annual Symp. on Foundations of Computer Science
+     (FOCS), New York, NY, IEEE (1999), 645–655. Also: SIAM J. on Computing 30 (2001), 1842-
+     1862.
+
+ [7] N. Alon and M. Krivelevich, Testing k-colorability, SIAM J. Discrete Math., 15 (2002), 211-227.
+
+ [8] N. Alon, M. Krivelevich and B. Sudakov, Turán numbers of bipartite graphs and related Ramsey-
+     type questions, Combinatorics, Probability and Computing 12 (2003), 477-494.
+
+ [9] N. Alon and A. Shapira, Testing satisfiability, Proc. of the 13th Annual ACM-SIAM SODA,
+     ACM Press (2002), 645-654. Also: Journal of Algorithms, 47 (2003), 87-103.
+
+[10] N. Alon and A. Shapira, Testing subgraphs in directed graphs, Proc. of the 35th Annual Symp.
+     on Theory of Computing (STOC), San Diego, California, 2003, 700–709.
+
+[11] N. Alon and A. Shapira, A characterization of easily testable induced subgraphs, Proc. of the
+     15th Annual ACM-SIAM SODA, ACM Press (2004), 935-944.
+
+[12] N. Alon and A. Shapira, Linear equations, arithmetic progressions and hypergraph property
+     testing, manuscript, 2004.
+
+[13] J. Bang-Jensen and P. Hell, The effect of two cycles on the complexity of colorings by directed
+     graphs, Discrete Applied Math. 26 (1990), 1-23.
+
+[14] F. A. Behrend, On sets of integers which contain no three terms in arithmetic progression, Proc.
+     National Academy of Sciences USA 32 (1946), 331–332.
+
+[15] A. Bogdanov, K. Obata and L. Trevisan, A Lower Bound for Testing 3-Colorability in Bounded-
+     degree Graphs, Proc. 43rd IEEE FOCS, IEEE (2002), 93-102.
+
+[16] B. Bollobás, P. Erdös, M. Simonovits and E. Szemerédi, Extremal graphs without large forbidden
+     subgraphs, Annals of Discrete Mathematics 3 (1978), 29–41.
+
+[17] A. Czumaj and C. Sohler, Testing hypergraph coloring, Proc. of ICALP 2001, 493-505.
+
+[18] A. Czumaj and C. Sohler, Property testing in computational geometry, Proceedings of the 8th
+     Annual European Symposium on Algorithms (2000), 155–166.
+
+[19] Reinhard Diestel, Graph Theory, Second Edition, Springer-Verlag, New York, 2000.
+
+[20] P. Erdős, P. On extremal problems of graphs and generalized graphs. Israel J. Math. 2 1964
+     183-190.
+
+
+                                                 31
+[21] P. Erdős and M. Simonovits, Supersaturated graphs and hypergraphs, Combinatorica 3 (1983),
+     181-192.
+
+[22] E. Fischer, The art of uninformed decisions: A primer to property testing, The Computational
+     Complexity Column of The Bulletin of the European Association for Theoretical Computer
+     Science 75 (2001), 97-126.
+
+[23] A. Frieze and R. Kannan, Quick approximation to matrices and applications, Combinatorica 19
+     (1999), 175-220.
+
+[24] O. Goldreich, S. Goldwasser and D. Ron, Property testing and its connection to learning and
+     approximation, Proceedings of the 37th Annual IEEE FOCS (1996), 339–348. Also: Journal of
+     the ACM 45 (1998), 653–750.
+
+[25] O. Goldreich and L. Trevisan, Three theorems regarding testing graph properties, Random
+     Structures and Algorithms, 23(1):23-57, 2003.
+
+[26] W. T. Gowers, Lower bounds of tower type for Szemerédi’s Uniformity Lemma, Geometric and
+     Functional Analysis 7 (1997), 322-337.
+
+[27] P. Hell and J. Nesetril, The core of a graph, Discrete Math 109 (1992), 117-126.
+
+[28] P. Hell, J. Nesetril, and X. Zhu, Duality of graph homomorphisms, in : Combinatorics, Paul
+     Erdős is Eighty, (D. Miklós et. al, eds.), Bolyai Society Mathematical Studies, Vol.2, 1996, pp.
+     271-282.
+
+[29] J. Komlós and M. Simonovits, Szemerédi’s regularity lemma and its applications in graph theory,
+     in : Combinatorics, Paul Erdős is Eighty, (D. Miklós et. al, eds.), Bolyai Society Mathematical
+     Studies, Vol.2, 1996, pp. 295-352.
+
+[30] V. Rödl and R. Duke, On graphs with small subgraphs of large chromatic number, Graphs and
+     Combinatorics 1 (1985), 91–96.
+
+[31] D. Ron, Property testing, in: P. M. Pardalos, S. Rajasekaran, J. Reif and J. D. P. Rolim, editors,
+     Handbook of Randomized Computing, Vol. II, Kluwer Academic Publishers, 2001, 597–649.
+
+[32] R. Rubinfeld and M. Sudan, Robust characterization of polynomials with applications to pro-
+     gram testing, SIAM J. on Computing 25 (1996), 252–271.
+
+[33] E. Szemerédi, Regular partitions of graphs, In: Proc. Colloque Inter. CNRS (J. C. Bermond,
+     J. C. Fournier, M. Las Vergnas and D. Sotteau, eds.), 1978, 399–401.
+
+[34] A. C. Yao, Probabilistic computation, towards a unified measure of complexity. Proc. of the
+     18th IEEE FOCS (1977), 222-227.
+
+
+                                                  32
+

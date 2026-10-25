@@ -1,0 +1,43 @@
+    We next claim that any copy of H in G must contain a copy of C such that for 1 ≤ i ≤ r + 1, the
+vertex that plays the role of vi belongs to the blow-up of the vertices of Vi . To see this, note that
+there is a natural homomorphism of G onto K, obtained by first mapping G homomorphically onto
+F (by mapping each class of s vertices into the vertex of F to which it corresponds), and then by
+mapping all vertices of Vi to vi . This homomorphism maps each copy of H in G homomorphically
+into K, and hence, by Claim 6.1, maps a copy of C that belongs to the considered digraph H, to
+the first r + 1 vertices of K. The definition of the homomorphism thus implies the assertion of the
+claim.
+    As the vertex that plays the role of vi in the copy of C must belong to the blow-up of the vertices
+of Vi for 1 ≤ i ≤ r + 1, it follows from Lemma 6.2 that the number of such cycles is at most
+                                              µ               ¶r+1
+                                                      2n
+                               m2 sr+1 = m2                          ≤ nr+1 /m,
+                                                  k(k + 1)m
+and this implies that the total number of copies of H in G does not exceed nh /m = ²c log(1/²) nh ,
+implying the desired result.
+
+Proof of Theorem 2, part (iii): Let H be a digraph on h vertices whose core is neither an
+oriented tree nor a 2-cycle, and suppose ² > 0. Given a one-sided error ²-tester for testing H-freeness
+we may assume, without loss of generality, that it queries all pairs of a uniformly at random chosen
+set of vertices (otherwise, as explained in [5], every time the algorithm queries about a vertex pair
+we make it query also about all pairs containing a vertex of the new pair and a vertex from previous
+queries. See also [25] for a more detailed proof of this statement.) As the algorithm is a one-sided-
+error algorithm, it can report that G is not H-free only if it finds a copy of H in it. By Lemma
+6.4 there is a digraph G on n vertices which is ²-far from being H-free and yet contains at most
+²c log (1/²) nh copies of H. The expected number of copies of H inside a uniformly at random chosen
+set of x vertices in such a digraph is at most xh ²c log (1/²) , which is far smaller than 1 unless x exceeds
+         0
+(1/²)c log(1/²) for some c0 = c0 (H) > 0, implying the desired result.
+
+
+7    Two-Sided Error ²-Testers
+In this section we present the proof of Theorem 4. Applying the second part of the theorem for the
+case of undirected graphs, shows that if H is an undirected, non-bipartite graph, then there is no
+two-sided ²-tester for testing H-freeness whose query complexity is smaller than (1/²)c log 1/² for an
+appropriate c = c(H) > 0. This settles an open problem raised in [1]. For the proof we need the
+following easy application of a theorem of Erdős from [20].
+
+Lemma 7.1 Let H be a fixed digraph on h vertices, let K be its core, and denote by k the size of
+K. For every constant 0 < γ < 1 and for every sufficiently large n, every digraph G on n vertices
+that contains γnk copies of K, contains also a copy of H.
+
+                                                     24

@@ -1,0 +1,38 @@
+1     Preliminaries
+1.1    Definitions
+All directed graphs (=digraphs) considered here are finite and have no loops and no parallel directed
+edges. They may have anti-parallel edges, i.e., directed cycles of length 2, or in short, 2-cycles. We
+call a cycle obtained from an undirected cycle by directing its edges an oriented cycle. An oriented
+cycle in which all edges point to the same direction is a directed cycle. Oriented paths and directed
+paths are defined in an analogous manner. A digraph is an oriented tree if it does not contain any
+oriented cycle. A digraph is bipartite if it does not contain any oriented cycle of odd length.
+    Let P be a property of digraphs, that is, a family of digraphs closed under isomorphism. A
+digraph G with n vertices is ²-far from satisfying P if no digraph G̃ with the same vertex set, which
+differs from G in at most ²n2 places, (i.e., can be constructed from G by adding and removing at
+most ²n2 directed edges), satisfies P . An ²-tester, or property tester, for P is a randomized algorithm
+which, given the quantity n and the ability to make queries whether a desired pair of vertices of an
+input digraph G with n vertices are adjacent or not, distinguishes with probability at least 32 between
+the case of G satisfying P and the case of G being ²-far from satisfying P . Such an ²-tester is a
+one-sided ²-tester if when G satisfies P the ²-tester determines that this is the case (with probability
+1). The ²-tester is a two-sided ²-tester if it may determine that G does not satisfy P even if G satisfies
+it. Obviously, the probability 23 appearing above can be replaced by any constant larger than 1/2,
+by repeating the algorithm an appropriate number of times.
+    The property P is called strongly-testable, if for every fixed ² > 0 there exists a one-sided ²-tester
+for P whose total number of queries is bounded only by a function of ², which is independent of the
+size of the input digraph. This means that the running time of the algorithm is also bounded by a
+function of ² only, and is independent of the input size.
+
+1.2    Related work
+The general notion of property testing was first formulated by Rubinfeld and Sudan [32], who were
+motivated mainly by its connection to the study of program checking. The study of the notion of
+testability for combinatorial objects, and mainly for labelled graphs, was introduced by Goldreich,
+Goldwasser and Ron [24], who showed that all graph properties describable by the existence of a
+partition of a certain type, and among them k-colorability, have efficient ²-testers. The fact that
+k-colorability is strongly testable is, in fact, implicitly proven already in [16] for k = 2 and in [30] (see
+also [2]) for general k, using the Regularity Lemma of Szemerédi [33], but in the context of property
+testing it is first studied in [24], where far more efficient algorithms are described. These have been
+further improved in [7].
+    In [5] it is shown that every first order graph property without a quantifier alternation of type
+“∀∃” has ²-testers whose query complexity is independent of the size of the input graph (but has
+
+                                                     2

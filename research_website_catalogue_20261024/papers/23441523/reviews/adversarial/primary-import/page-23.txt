@@ -1,0 +1,44 @@
+of vertices (otherwise, as explained in [5], every time the algorithm queries about a vertex pair we
+make it query also about all pairs containing a vertex of the new pair and a vertex from previous
+queries. This may only square the number of queries. See also [22] for a more detailed proof of this
+statement.) As the algorithm is a one-sided-error algorithm, it can report that G is not H-free only
+if it finds a copy of H in it. By Lemma 6.4 there is a digraph G on n vertices which is e-far from
+being H-free and yet contains at most ¢°!°8@/9n" copies of H. The expected number of copies of
+H inside a randomly chosen set of x vertices in such a digraph is at most (;) clog @/9), which is far
+
+smaller than 1 unless x exceeds (1/¢)” !°8C/®) for some c! = c'(H) > 0, implying the desired result. i
+
+7 Two-Sided Error c-Testers
+
+In this section we present the proof of theorem 4. Applying the second part of the theorem for the
+case of undirected graphs, shows that if H is an undirected, non-bipartite graph, then there is no
+two-sided e-tester for testing H-freeness whose query complexity is smaller than (1/e)e 8 t/e for an
+appropriate c = c(H) > 0. This settles an open problem raised in [1]. For the proof we need the
+
+following easy application of a theorem of Erdés from [17].
+
+Lemma 7.1 Let H be a fixed digraph, let K be its core, and denote by k the size of K. For every
+constant 1 > y > 0 and for every sufficiently large n, every digraph G on n vertices that contains
+yn* copies of K, contains also a copy of H.
+
+Proof: Let y be a homomorphism from V(H) to V(K), denote by t),...,t, the vertices of K, and
+let S1,...,S, be the sets y—!(t)),..., 97! (tq), respectively. Let also A denote max; |Sj|. Define a
+k-uniform hypergraph H as follows: take a random partition of V(G) into k subsets, Vi,..., Ve,
+where each vertex of G is chosen uniformly and independently to be in one of the groups. For each
+copy of K in G, in which the vertices uj,,..., uj, play the role of t),...,¢,, put an edge in H that
+contains uj,,..., uj, if and only if uj, €Vi,..., wi, € Ve. Observe, that by linearity of expectation, if
+G contains yn* copies of K, the expected number of edges in H is yk~*n*. Therefore, one partition
+which defines at least this many edges must exist. Fix one such partition, and the hypergraph H’
+which it defines. In [17] it is proved that any k-uniform hypergraph on n vertices with at least
+nk-AL™ edges, contains a copy of a complete k-partite k-uniform hypergraph, where each partition
+
+class is of size A. It follows that for large enough n, H' contains a copy of such hypergraph on some
+
+Ak vertices {v},...,vh} C Vi,..., {of,...,0K} C Vi. It is now easy to see that G must contain a
+copy of H where for the role of the vertices of S$; we can choose any |S;| vertices from {vj,..., vy}.
+a
+
+Proof of Theorem 4, part (i): Let H bea fixed digraph with core K, and let k be the size of
+K. If K is a 2-cycle, then a two-sided error e-tester for testing Py with query complexity O(1/e)
+
+23

@@ -12,6 +12,10 @@ c = json.loads((paper/'publication.json').read_text())
 gate = json.loads((paper/'promotion.json').read_text())
 assert gate['status'] == 'PASS'
 receipt = json.loads((paper/'sources/receipt.json').read_text())
+if gate.get('publication_sha256'):
+    assert gate['publication_sha256'] == hashlib.sha256((paper/'publication.json').read_bytes()).hexdigest()
+if gate.get('source_receipt_sha256'):
+    assert gate['source_receipt_sha256'] == hashlib.sha256((paper/'sources/receipt.json').read_bytes()).hexdigest()
 for item in receipt['files']:
     assert hashlib.sha256((paper/'sources'/item['name']).read_bytes()).hexdigest() == item['sha256']
 assert gate['pdf_sha256'] == next(x['sha256'] for x in receipt['files'] if x['name']==c['pdf_filename'])
@@ -39,13 +43,16 @@ def section(anchor,title,paragraphs):
 sections=section('abstract','Abstract',c['abstract'].split('\n\n'))+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
 if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
 sections+=section('limits','Scope and limitations',c['limitations'])
-sections+=section('status','Status and AI use',[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')])
+status_paragraphs=[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')]
+if c.get('edition_note'): status_paragraphs.append(c['edition_note'])
+sections+=section('status','Status and AI use',status_paragraphs)
 if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])
 sections+=f'<section id="paper"><h2>Read the paper</h2><p><a href="{h(c["pdf_filename"])}">Open PDF in a full window</a> · <a href="https://zenodo.org/records/{record_id}/files/{h(c["pdf_filename"])}">Download the original from Zenodo</a></p><iframe class="paper-pdf" src="{h(c["pdf_filename"])}#view=FitH" title="{h(c["title"])} — full paper PDF" loading="lazy"></iframe></section>'
 if c.get('related_resources'):
     sections+='<section id="materials"><h2>Supporting materials</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["label"])}</a>'+(' · DOI '+h(x['doi']) if x.get('doi') else '')+'</li>' for x in c['related_resources'])+'</ul></section>'
 sections+=section('collaborate','Collaborate on this result',[c['collaboration'],'Authorship and responsibilities would be discussed in relation to the substantive contributions made.'])+'<p><a href="mailto:me@aleckriebel.com">Contact Alec</a></p>'
-sections+=f'<section id="cite"><h2>Cite this paper</h2><p>{h("; ".join(authors))}. ({published.year}). <i>{h(c["title"])}</i> (Version {h(c["version"])}) [Preprint]. Zenodo. <a href="{doi}">{doi}</a></p><p><a href="citation.bib">Download BibTeX</a></p></section>'
+citation_edition_label=c.get('citation_edition_label', 'Version '+c['version'])
+sections+=f'<section id="cite"><h2>Cite this paper</h2><p>{h("; ".join(authors))}. ({published.year}). <i>{h(c["title"])}</i> ({h(citation_edition_label)}) [Preprint]. Zenodo. <a href="{doi}">{doi}</a></p><p><a href="citation.bib">Download BibTeX</a></p></section>'
 sections+='<section id="background"><h2>Background and prior work</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["title"])}</a>{": "+h(x["note"]) if x.get("note") else ""}</li>' for x in c['background'])+'</ul></section>'
 author_meta='\n'.join(f'<meta name="citation_author" content="{h(a)}">' for a in authors)
 pages=len(PdfReader(out/c['pdf_filename']).pages)
@@ -74,7 +81,7 @@ document=f'''<!DOCTYPE html>
 <header><p class="site-title"><a href="/">Alec Kriebel</a></p><nav aria-label="Main navigation"><a href="/research/">Research</a> | <a href="/blog/">Blog</a> | <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></nav></header>
 <main id="main"><article><header>
 <h1><a href="/research/{slug}/">{h(c['title'])}</a></h1>
-<p class="entry-meta">By {h('; '.join(authors))}, independent researcher.<br>Published <time datetime="{c['publication_date']}">{display_date}</time> · Version {h(c['version'])} · <strong>Unrefereed preprint</strong></p>
+<p class="entry-meta">By {h('; '.join(authors))}, independent researcher.<br>Published <time datetime="{c['publication_date']}">{display_date}</time> · {h(c.get('edition_label', 'Version '+c['version']))} · <strong>Unrefereed preprint</strong></p>
 <p>{' · '.join(download_links)}</p>
 <p><a href="#plain-language">Plain-English explanation</a> · <a href="#paper">Read on this page</a> · <a href="#collaborate">Collaboration</a></p>
 </header><hr>{sections}</article></main>
@@ -82,7 +89,8 @@ document=f'''<!DOCTYPE html>
 </body></html>
 '''
 (out/'index.html').write_text(document)
-bib=f'@misc{{kriebel{published.year}_{slug.replace("-","_")},\n  author = {{{" and ".join(authors)}}},\n  title = {{{c["title"]}}},\n  year = {{{published.year}}},\n  doi = {{{c["doi"]}}},\n  url = {{{doi}}},\n  note = {{Unrefereed preprint, version {c["version"]}}}\n}}\n'
+bibtex_note=c.get('bibtex_note', 'Unrefereed preprint, version '+c['version'])
+bib=f'@misc{{kriebel{published.year}_{slug.replace("-","_")},\n  author = {{{" and ".join(authors)}}},\n  title = {{{c["title"]}}},\n  year = {{{published.year}}},\n  doi = {{{c["doi"]}}},\n  url = {{{doi}}},\n  note = {{{bibtex_note}}}\n}}\n'
 (out/'citation.bib').write_text(bib)
 # Extend the existing plain list without changing the user's other site content.
 index=(SITE/'index.html').read_text()

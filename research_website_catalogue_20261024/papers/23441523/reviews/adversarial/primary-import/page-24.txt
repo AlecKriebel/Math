@@ -1,0 +1,43 @@
+was described in the comment following the proof of Theorem 2 part (i). Assume now that K is an
+oriented tree. Our two-sided error e-tester for Py works as follows: Given a digraph G, the algorithm
+samples c/e vertices, for an appropriate c, and reports that the graph is not H-free if and only if
+they span a copy of K. We turn to show that the algorithm answers correctly with probability at
+least 2/3. Assume G is e-far from being H-free. Then it is clearly also e-far from being K-free,
+therefore applying Theorem 3 to Px, we conclude that a randomly chosen set of c/e vertices, with
+an appropriate c, finds a copy of K with probability at least 2/3. Assume G does not contain a copy
+of H. It follows from lemma 7.1 that it contains o(n") copies of K, and therefore a randomly chosen
+set of any constant size (independent of n), and in particular of size O(1/e), has probability o(1) of
+finding a copy of K.
+
+To show that the result is optimal, we apply Yao’s principle [31]. We first prove the case of K
+being an oriented tree. Applying Yao’s principle to our setting, we first have to define for every n,
+two distributions of digraphs D,, D2, where all the digraphs in D, are e-far from being H-free, and
+all the digraphs in D2 are H-free. In order to define the two distributions we use the digraph Gy
+whose description appears at the end of the proof of Theorem 3. Note that this graph is constructed
+using the core K, which is a tree. Dj, is a uniform distribution on all the n! digraphs that are
+obtained from Gy by a permutation of its vertices. By the computation at the end of the proof
+of Theorem 3 it follows that all the digraphs in D; are e-far from being H-free. To define D2 we
+first define G'y to be the digraph that is obtained from Gy by removing all the edges that touch
+Vz (see the definition of Gy). Dz is now a uniform distribution on all the n! digraphs that are
+obtained from G', by a permutation of its vertices. As G', is clearly H-free, all the digraphs in Do
+are H-free. To finish the proof we must show that no deterministic algorithm that samples less than
+Q(1/e) vertices (adaptively) can tell the difference between these two distributions with probability
+that exceeds, say, 1/3. Recall that by the definition of Gy and Gj, as long as the algorithm does
+not look at a vertex from Vz, it sees the same digraph. As V, is of size e2kn, the probability that
+a deterministic algorithm that samples less than, say, 1/(10ek) vertices finds a vertex from Vz is
+smaller than 1/3. Therefore, with probability at least 2/3 the two distributions D,, D2 will look
+identical to any deterministic algorithm sampling less than Q(1/e) vertices, as needed.
+
+The proof for the case of K being a 2-cycle is analogous, and involves taking a permutation of a
+complete bi-directed bipartite graph on vertex sets of sizes e4n and n — €4n, and a digraph with no
+edges. The rest of the details are left to the reader. a
+
+A close inspection at the proofs of Theorem 3 and Theorem 2 part (i), shows that if G is e-far
+from being H-free, and the core of H, K, is either a 2-cycle or an oriented tree, then sampling O(1/e)
+vertices finds a copy of K with probability 1— (1) where the o(1) term tends to 0 as € tends to zero.
+On the other, the proof of Theorem 4, part (i), shows that if G is H-free, then the algorithm does
+not find a copy of K with probability 1 — o(1) where the o(1) term tends to 0 as n tends to infinity
+
+(even if € > 0 is relatively large). Therefore, in some sense the test has ”almost” one-sided error, as
+
+24
