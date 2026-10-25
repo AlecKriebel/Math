@@ -292,3 +292,7 @@ Root read all five bosonic final reports, full published manuscript and actual c
 ### 2026-10-25T04:40:16.415473+00:00 — Amplifier review families complete
 
 All three complete final report sets received; root disposition not yet performed. Native status should become reviews complete / awaiting disposition. 143 eligible works remain unstarted; all 203 remain in scope. Finalized estimate stays 23.65%; scientific dispositions 26.11%. Current actual browser PDF full-window access still reports Mac locked after the human unlock relay; preserve partial evidence and do independent work.
+
+## 2026-10-25T04:43:54.355532+00:00 — Amplifier actual-proof root disposition
+
+All3 complete final reports/verdicts and all21 published pages read by root, along with actual primary model/baseline and older-release identity interfaces. Root assessed gain-scale stopped probability estimates, reciprocal renewal, macro sweep and effective diagonal quantifiers directly. All98 review-seal bindings rehashed,2 public assets/23 tar members/1662 nested wheel CRCs/1660 RECORD payload hashes checked. No substantive gap identified; cleared exact pointwise-fitness lower bound and limited response optimum. No formal/priority claim; no follow-up.54/203 scientific dispositions=26.60%;48/203 finalized=23.65%. Native row81 publication-preparation status update still pending.

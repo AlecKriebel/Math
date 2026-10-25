@@ -1,0 +1,187 @@
+{
+  "title": "Failure of strong quadratic growth in unregularized sparse control of a critical wave equation",
+  "slug": "critical-wave-sparse-control-quadratic-growth",
+  "description": "A critical-wave sparse-control example has a unique optimizer but no strong L² quadratic growth after removal of the quadratic control penalty.",
+  "abstract": "We give an explicit counterexample to retaining ordinary critical-cone strict positivity and strong control-L² quadratic growth after removing quadratic control regularization from the energy-critical quintic-wave problem of Kunisch and Meinlschmidt. On the three-dimensional unit ball, zero is the unique global optimizer for a sufficiently small positive pointwise control cap. Its ordinary critical cone is {0}, so the strict condition is vacuous, but feasible controls converging in L∞ have objective gap o(‖u‖²L²). Nearby radial terminal targets admit global optimizers, and every such optimizer has L² displacement divided by target displacement tending to infinity. Local L¹ quadratic growth survives. The construction realizes the established concentration and noncoercivity mechanism in the actual nonlinear source model, using classical wave estimates.",
+  "plain_language": [
+    "In optimal control, a control is an input chosen to make a system behave as desired. This paper studies a nonlinear wave equation, where the objective balances a desired final wave profile against penalties on the state and on the amount of control used.",
+    "A useful stability property says that moving away from the best control raises the objective by at least a fixed multiple of the squared distance. In this example, doing nothing is the unique global optimum, but increasingly short, small pulses have an objective penalty much smaller than their squared L² size. Uniqueness therefore does not supply that stronger growth property.",
+    "The striking feature is that the ordinary critical-cone test still holds: its cone contains only zero, so there are no nonzero directions on which the strict test can fail. The concentrating pulses reveal what this test misses. A weaker L¹ quadratic-growth estimate survives, and the paper also bounds how optimizers respond to nearby terminal targets."
+  ],
+  "result": [
+    "The model is the real defocusing quintic wave equation yₜₜ − Δy + y⁵ = u on the three-dimensional unit ball B, with zero position and velocity initially, homogeneous Dirichlet boundary conditions and final time 1. Let H=L²(B). Controls lie in L²(0,1;H) and obey ‖u(t)‖H ≤ ρ almost everywhere in time. There is ρ*>0 such that the conclusions hold for every fixed 0<ρ≤ρ* and every fixed finite ν≥0.",
+    "The objective Jd,ν retains one half of the squared terminal-position tracking error, one quarter of the fourth power of the L⁴(0,1;L¹²(B)) state norm, and the L¹(0,1;H) sparse-control penalty: γ=β₁=1. Only the quadratic control penalty is removed, β₂=0. The optional terminal-velocity term is ν‖yₜ(1)‖²H⁻¹(B)/2.",
+    "For target d=πe, with e the normalized first radial Dirichlet eigenfunction, zero is the unique global optimizer over all admissible controls. With A=‖u‖L¹(0,1;H), the objective gap Δ(u)=Jπe,ν(u)−Jπe,ν(0) satisfies Δ(u)≥A³/(12ρ²). The ordinary critical cone is {0}, so the strict substitute second-variation condition is vacuous. The cap threshold and this lower bound can be chosen independently of ν.",
+    "The actual nonlinear feasible pulses uₕ=he·1{|t−1/2|<h}, for 0<h<min(ρ,1/2), satisfy ‖uₕ‖L∞(0,1;H)=h, ‖uₕ‖²L²(0,1;H)=2h³ and Δ(uₕ)=(π²/3+2/π²)h⁴+O(h⁶). Strong control-L² quadratic growth therefore fails in both L² and L∞ neighborhoods of zero.",
+    "Global optimizers exist for every terminal target d∈H in this fixed small-cap setting. Along dε=(π+ε)e, as ε decreases to zero through positive values, every choice of global optimizers satisfies ‖uε‖L²/ε→∞. No uniqueness of perturbed optimizers is required.",
+    "Corollary 3 retains local weaker-norm growth: Δ(u)≥‖u‖²L¹/(4π²) for every admissible control with sufficiently small L¹ norm. For an arbitrary nearby target πe+w, put ε=‖w‖H. Every global optimizer, compared with the fixed zero optimizer, satisfies ‖u‖L¹=O(ε) and ‖u‖L²=O(√ε). The constants and this upper-bound neighborhood can be chosen uniformly over all finite ν≥0.",
+    "On the positive radial ray w=εe, every global optimizer satisfies ‖uε‖L¹=Θ(ε) and cε³ᐟ⁴≤‖uε‖L²≤C√ε for sufficiently small ε. The lower-comparison neighborhood may depend on the fixed ν. These bounds do not assert a sharp L² response exponent."
+  ],
+  "why_it_works": [
+    "Classical energy and Strichartz estimates make the nonlinear state close to the linear wave for small control mass: the state is O(‖u‖L¹), and the nonlinear remainder is O(‖u‖⁵L¹). This estimate is in a compatible energy-and-Strichartz state space; it does not assume that the nonlinear solution stays in one eigenmode.",
+    "The first eigenmode gives an explicit sine kernel for the terminal linear response. At the midpoint in time, the tracking gain exactly meets the sparse-control threshold. A cap-constrained moment estimate proves global optimality of zero, while pulses concentrating at that midpoint make the quadratic-growth quotient vanish.",
+    "The terminal tracking square also provides a weaker L¹ quadratic lower bound. A separate pulse comparison for perturbed targets yields the lower response bounds for every optimizer. These arguments use analytic estimates; the accompanying finite algebra checks are not a numerical solution of the nonlinear PDE."
+  ],
+  "limitations": [
+    "This is a counterexample to retaining the ordinary critical-cone implication unchanged when the quadratic control penalty is removed. It does not rule out adapted sufficient conditions, enlarged cones, nondegeneracy assumptions or growth in weaker norms.",
+    "The ordinary critical cone is zero, so strict positivity there is vacuous. The result should not be described as a counterexample with a uniformly positive Hessian on every control direction.",
+    "The control cap is pointwise in time on the spatial L² norm. It is not a pointwise bound on |u(t,x)|. Here L¹ and L∞ mean time norms with values in L²(B), while control L² is the time-space L² norm. The state penalty remains present; “unregularized” refers to removing the quadratic control term.",
+    "The construction uses the three-dimensional unit ball, the defocusing quintic, zero initial data, a small positive cap and a particular target. It does not assert the same failure for every domain, every target, arbitrary large caps, Neumann conditions or boundary control.",
+    "The cap and base-target lower bounds can be chosen independently of ν. Upper target-response estimates and their neighborhood are uniform in finite ν; the radial lower-comparison neighborhood may depend on the fixed ν. No assertion concerns ν = ∞.",
+    "The response estimates compare optimizers with the fixed zero optimizer. They do not prove perturbed-optimizer uniqueness, a pairwise Lipschitz selection, L∞ convergence of perturbed optimizers, or a sharp exponent for the L² response.",
+    "The paper gives no certified numerical PDE constant or numerical value of the small-cap threshold. Its finite checks do not replace the analytic proof. The historical question and earlier mechanisms are attributed without a worldwide-firstness or present-day-openness claim.",
+    "The failure is specific to the selected target. For target d=0 in the same model, J0,ν(u)≥‖u‖L¹≥‖u‖²L²/ρ, so strong quadratic growth does hold. The theorem does not assert failure for all targets or all control caps."
+  ],
+  "background": [
+    {
+      "title": "Kunisch and Meinlschmidt, Optimal control of an energy-critical semilinear wave equation in 3D with spatially integrated control constraints",
+      "url": "https://arxiv.org/abs/1907.02744v1",
+      "note": "The inspected author preprint is arXiv:1907.02744v1 (5 July 2019). Lemma 2.9 gives the wave estimate; Theorem 4.17 requires a positive quadratic control coefficient. This author edition is distinct from the related 2020 journal publication, whose final body was not inspected."
+    },
+    {
+      "title": "Meinlschmidt and Kunisch, Optimal Control of a Semilinear Critical Wave Equation (Oberwolfach2021)",
+      "url": "https://doi.org/10.4171/OWR/2021/9",
+      "note": "Printed pp.438–440 state the historical question about zero quadratic control regularization, and include the optional terminal-velocity term. This paper addresses the unchanged implication, not every possible unregularized theory."
+    },
+    {
+      "title": "Blair, Smith and Sogge, Strichartz estimates for the wave equation on manifolds with boundary",
+      "url": "https://doi.org/10.1016/j.anihpc.2008.12.004",
+      "note": "The classical bounded-domain wave estimates underlying the source model; the L⁴-time/L¹²-space estimate applies in three dimensions."
+    },
+    {
+      "title": "Herzog, Stadler and Wachsmuth, Directional Sparsity in Optimal Control of Partial Differential Equations",
+      "url": "https://doi.org/10.1137/100815037",
+      "note": "Prior group-sparsity and subgradient calculus. The present construction does not claim that threshold mechanism as new."
+    },
+    {
+      "title": "Casas and Tröltzsch, Second Order Optimality Conditions and Their Role in PDE Control",
+      "url": "https://doi.org/10.1365/s13291-014-0109-3",
+      "note": "Example 4.16 reproduces Dunn’s earlier counterexample to exact-cone sufficiency. Dunn is credited through this inspected source; the concentration and noncoercivity mechanism predates the present nonlinear-wave realization."
+    },
+    {
+      "title": "Christof and Wachsmuth, No-Gap Second-Order Conditions via a Directional Curvature Functional",
+      "url": "https://doi.org/10.1137/17M1140418",
+      "note": "Prior nondegeneracy conditions account for normalized directions that converge weakly to zero."
+    },
+    {
+      "title": "Borchard and Wachsmuth, Second-order conditions for spatio-temporally sparse optimal control via second subderivatives",
+      "url": "https://doi.org/10.46298/jnsao-2024-12604",
+      "note": "A second-subderivative framework distinguishing positivity from the additional nondegeneracy condition; original preprint arXiv2311.14538v1."
+    },
+    {
+      "title": "Wachsmuth and Wachsmuth, Second-order conditions for non-uniformly convex integrands: quadratic growth in L¹",
+      "url": "https://doi.org/10.46298/jnsao-2022-8733",
+      "note": "Prior weaker-norm quadratic-growth theory. The paper’s fixed-basepoint estimate is an explicit estimate within its chosen wave example."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration from researchers in PDE-constrained optimization, critical wave equations and nonsmooth analysis on independent verification, comparison with prior results and development toward journal review. Substantive mathematical verification or a meaningful extension could support a joint submission. Authorship would reflect actual research contributions.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed. The exponent bracket is not claimed sharp, and this scope pass establishes neither a compelling new mechanism nor novelty for a sharpened result. Generic boundary-condition or parameter variations do not meet the requested bar.",
+  "publication_date": "2026-10-14",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23358014",
+  "author": "Alec Kriebel",
+  "pdf_filename": "critical_wave_growth.pdf",
+  "supplement_filename": "critical_wave_verification.zip",
+  "supplement_label": "Source and supporting verification materials (ZIP)",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, version 1.0, manuscript dated 14 October 2026. Developed with extensive AI assistance; no external human peer review or formal proof-assistant certification is claimed.",
+  "ai_disclosure": "AI tools were used extensively in construction, derivation, computation, source comparison and writing. This is an unrefereed preprint; internal AI examinations are not external human peer review or proof-assistant certification.",
+  "source_binding": {
+    "record_id": "23358014",
+    "concept_record_id": "23358013",
+    "record_url": "https://zenodo.org/records/23358014",
+    "doi": "10.5281/zenodo.23358014",
+    "metadata_version": "1.0",
+    "manuscript_version": "1.0",
+    "manuscript_date": "2026-10-14",
+    "publication_date": "2026-10-14",
+    "record_created": "2026-10-14T05:39:12.680683+00:00",
+    "source_receipt_sha256": "8f0fb5b950d0b62c8bf31c5d7d7a6bc754e742ef8c08aa775b58fcb8d487cc8f",
+    "record_metadata_sha256": "596becdb3295769ec6295df3a5d13a9c7e74980a951e59cdde960bcabf5ca14d",
+    "pdf_sha256": "a68d8d47dcf625f9ab8818924071200bff2b2280d67665e1e67dd7b83effe988",
+    "supplement_sha256": "1da933750640177045808de748dd7f5732c33277377285b688a411f9f89771a0",
+    "files": [
+      {
+        "name": "critical_wave_growth.pdf",
+        "url": "https://zenodo.org/api/records/23358014/files/critical_wave_growth.pdf/content",
+        "resolved_url": "https://zenodo.org/api/records/23358014/files/critical_wave_growth.pdf/content",
+        "bytes": 88702,
+        "md5": "aa742b791c3aa23961e786c94c47530a",
+        "sha256": "a68d8d47dcf625f9ab8818924071200bff2b2280d67665e1e67dd7b83effe988",
+        "retrieved_utc": "2026-10-25T02:56:10.057100+00:00"
+      },
+      {
+        "name": "critical_wave_verification.zip",
+        "url": "https://zenodo.org/api/records/23358014/files/critical_wave_verification.zip/content",
+        "resolved_url": "https://zenodo.org/api/records/23358014/files/critical_wave_verification.zip/content",
+        "bytes": 241890,
+        "md5": "c46cf8f4d3c75cd3429f621afe8dc764",
+        "sha256": "1da933750640177045808de748dd7f5732c33277377285b688a411f9f89771a0",
+        "retrieved_utc": "2026-10-25T02:56:11.239672+00:00"
+      }
+    ],
+    "primary_tex_path": "sources/published-source/critical_wave_verification/manuscript/critical_wave_growth.tex",
+    "primary_tex_sha256": "bf4e13509ee738d1c5f73555e322ce77b9f2041b2306e4f80dfc588c98289584",
+    "abstract_source": "sources/published-source/critical_wave_verification/manuscript/critical_wave_growth.tex",
+    "main_pdf_pages": 6,
+    "unique_reader_pdf_count": 1,
+    "additional_reader_pdfs": [],
+    "archive_regular_file_count": 113,
+    "archive_embedded_pdf_count": 0,
+    "nested_archive_count": 0,
+    "hidden_file_count": 0,
+    "review_boundary": "Exact original report/verdict objects and hashes are retained in promotion.json. The custom scope-only pending status remains frozen; the later FINAL root clearance resolves only the exact theorem. Internal AI review is not external human peer review or formal certification.",
+    "zenodo_version": "1.0",
+    "zenodo_publication_date": "2026-10-14",
+    "record_created_utc": "2026-10-14T05:39:12.680683+00:00",
+    "record_sha256": "596becdb3295769ec6295df3a5d13a9c7e74980a951e59cdde960bcabf5ca14d",
+    "receipt_sha256": "8f0fb5b950d0b62c8bf31c5d7d7a6bc754e742ef8c08aa775b58fcb8d487cc8f",
+    "source_tex_path": "sources/published-source/critical_wave_verification/manuscript/critical_wave_growth.tex",
+    "source_tex_sha256": "bf4e13509ee738d1c5f73555e322ce77b9f2041b2306e4f80dfc588c98289584",
+    "abstract_source_sha256": "bf4e13509ee738d1c5f73555e322ce77b9f2041b2306e4f80dfc588c98289584",
+    "abstract_tex_sha256": "01d1ece3dea5bfb2b6edad42fc480376cee9669436a10bcc7ddce6656ad8dda1",
+    "abstract_word_count": 116,
+    "abstract_normalization": "Complete original six-sentence one-paragraph abstract, exactly equal to frozen scope content. Only TeX mathematical typography and whitespace normalized.",
+    "embedded_assets": [],
+    "frozen_scope_content_path": "reviews/scope/content.json",
+    "frozen_scope_content_sha256": "db6cba5cbff1d438da38fbb65d0cfc7b0016eca4b8ddd749322fce8f97cdb200",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "receipt_asset_list_policy": "Original sources/receipt.json retains its assets key and unchanged bytes; shared normalized_receipt_view supplies an independent files view without modifying the receipt.",
+    "reviewed_documents": [
+      {
+        "filename": "critical_wave_growth.pdf",
+        "pages": 6,
+        "read_scope": "Complete actual six-page PDF/current TeX and existing original page images read, plus all three complete final reports and FINAL root clearance; editorial review only, no submitted math execution."
+      }
+    ],
+    "publication_date_policy": {
+      "publication_date": "2026-10-14",
+      "publication_date_label": "Manuscript dated",
+      "manuscript_version": "1.0",
+      "zenodo_version": "1.0",
+      "record_created_utc": "2026-10-14T05:39:12.680683+00:00",
+      "required_note": "The manuscript and Zenodo edition are dated 14 October 2026 and identify version 1.0. The Zenodo record was created on the same date. These dates identify this edition; they do not establish first priority."
+    }
+  },
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "license": "CC BY 4.0",
+  "publication_date_label": "Manuscript dated",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0",
+  "canonical_url": "https://aleckriebel.com/research/critical-wave-sparse-control-quadratic-growth/",
+  "pdf_pages": 6,
+  "edition_note": "The manuscript and Zenodo edition are dated 14 October 2026 and identify version 1.0. The Zenodo record was created on the same date. These dates identify this edition; they do not establish first priority.",
+  "bibtex_note": "Unrefereed preprint, version 1.0; manuscript and declared Zenodo date 14 October 2026; Zenodo record created 14 October 2026 UTC",
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T03:53:34.658124+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23358014-20261025.json",
+    "root_clearance_sha256": "7ecd074783bbf82d6a7a6f31074cd6c6e0bf22fa9180400cc96949c259a5b8cf",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "editor_authorization": "Paper-specific publication/promotion and owned editorial artifacts only. Root must inspect actual public copy after local rendering, integrate source/model checks, and finish live HTTP/browser/native Sheet gates. No rendering, shared script/site edit, Git, Sheet, UI, deployment, redirect, release or outreach action is authorized to this editor."
+  }
+}
