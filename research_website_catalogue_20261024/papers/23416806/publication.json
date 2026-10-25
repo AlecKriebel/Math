@@ -1,0 +1,478 @@
+{
+  "title": "An effective criterion for prescribed block-code extensions",
+  "slug": "prescribed-block-code-extensions",
+  "description": "A finite canonical test decides extension of a specified onto block self-code on an irreducible sofic shift, using the published locally testable separator bound.",
+  "abstract": "Given an onto block self-map of a nonempty two-sided irreducible sofic shift, we give a finite, computable criterion for extending that same map from a containing shift of finite type into the original shift. This answers the specified-map question in Boyle's Problem 16.3, including its mixing case. The criterion is locally testable separation of the allowed language from a regular bad-word ideal. An irreducibility argument converts the published Place–van Rooijen–Zeitoun separator bound into a single canonical finite-type approximation test. The result covers every choice of extension radius and local-rule completion. It uses that published theorem; it does not assert a new general separation theorem, historical firstness, or a solution of the separate existence-over-all-maps and cellular-automaton stability questions.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "plain_language": [
+    "A block code updates a symbolic sequence using a fixed finite window. This paper asks whether one specified onto update rule on an irreducible sofic shift can be extended to a larger shift described by finitely many forbidden patterns, while every output still belongs to the original shift.",
+    "The answer is determined by one finite canonical approximation. The proof converts an existing theorem about locally testable languages into a test for forbidden outputs. Success supplies the extension; failure excludes every other choice of completion, radius and containing finite alphabet.",
+    "The test is finite and computable, but its monoid and graph can be enormous. The result specifies a decision procedure, without claiming an efficient implementation."
+  ],
+  "result": [
+    "Let T be a nonempty two-sided irreducible sofic shift over a finite alphabet A, and let f:T→T be a specified onto block code with memory a, anticipation b and window length ℓ=a+b+1. Choose any total completion F:A^ℤ→A^ℤ of its local rule on the ℓ-words absent from T. The extension question concerns this same specified f.",
+    "Let L=Lang(T), including ε. For a finite input word w, let F_*(w) be its consecutive local-rule outputs, or ε when |w|<ℓ. Set B={w∈A*:F_*(w)∉L}. This is a regular two-sided bad-word ideal disjoint from L. Choose any finite monoid M and morphism α:A*→M recognizing both L and B; minimality of M is not required.",
+    "For n≥2, define T[n] to contain exactly those two-sided A-sequences whose every length-n block belongs to Lang_n(T). Put k=4(|M|+1) and N=max{2,ℓ,4(|M|+1)}. Then T[N] is one explicitly determined shift of finite type containing T.",
+    "Four statements are equivalent: (1) f extends to a block map G:S→T for some shift of finite type S⊇T; (2) a locally testable language C contains L and avoids B; (3) Lang(T[N])∩B=∅; (4) F(T[N])=T. Containment S⊇T is non-strict. A locally testable language is determined by bounded factors and bounded prefixes and suffixes.",
+    "On success, the chosen completion F restricted to T[N] is an extension of f into T. On failure, no other local-rule completion, extension radius or containing finite alphabet can provide an extension. Thus choosing a different completion can change M and N, but cannot change whether an extension exists.",
+    "The uniform separator bound is an explicit published input: Place–van Rooijen–Zeitoun, Theorem 4.2 (2014), states that regular languages recognized by a common finite monoid M are locally testably separable if and only if they are LT[k]-separable for k=4(|M|+1). The relevant equivalence records sets of position profiles, without multiplicities. The paper uses this theorem and does not reprove its general algebraic separation argument.",
+    "Finite reachability decides condition (3). Enumerate a common transition monoid, the allowed N-words and their overlap graph, mark every vertex initial and final, and label each edge by its appended letter. Its finite-path language is exactly Lang(T[N]), including ε and short words. Product with the bad-word automaton decides emptiness by all-path accepting-state reachability, with no empirical word-length cutoff."
+  ],
+  "why_it_works": [
+    "Any proposed extension on a larger alphabet can first be restricted to the original alphabet. Its containing shift of finite type contains every sufficiently high canonical T[n]. Write its local rule and the chosen completion on a common finite interval: they agree on allowed T-words, so agree on sufficiently high T[n]. This normalization closes the quantifier over every possible extension radius and alphabet.",
+    "A finite transducer remembers the last ℓ−1 inputs and sends new output letters to an automaton for L, proving regularity of B. Padding a bad input retains its forbidden output as a factor, proving the ideal property. A forbidden output block is equivalent to a bad occurring input interval, so F(T[n])⊆T exactly when Lang(T[n])∩B=∅. Onto f turns that image inclusion into equality.",
+    "Irreducibility makes the canonical overlap graph strongly connected, including periodic nonmixing cases. Its paths extend in both directions, and short allowed words have preceding contexts. Consequently Lang(T[n]) is locally testable. A successful canonical extension therefore gives a separator.",
+    "For the converse, choose a word U in T containing every allowed n-word. If a bad word w occurred in T[n], overlap paths would place it in W=UcwdU. Independently, irreducibility gives V=UeU in T. For n≥k, these long words have all allowed k-factors and the same long endpoints, so every full or endpoint-truncated k-profile agrees as a set. They have length at least 2k, excluding doubly truncated profiles. A separator cannot distinguish V from W. This saturation argument combines with the published PRZ bound to give the single order N.",
+    "The overlap graph and bad-word automaton are finite, so their product search terminates without restricting the length of a witness path. The proof distinguishes profile sets used for LT from profile multiplicities used for locally threshold testable languages. Finite examples support the constructions; the all-word argument and published theorem supply the universal conclusion."
+  ],
+  "limitations": [
+    "The theorem assumes a nonempty two-sided irreducible sofic target, a finite alphabet and a promised specified onto self-code. Irreducibility suffices; mixing is not required. Empty targets and arbitrary reducible sofic shifts are outside the claim.",
+    "Onto is used only to turn F(T[n])⊆T into equality. A constant code to a fixed point can extend from a full shift while its image is only one point, so the image-equality conclusion cannot silently be applied without onto.",
+    "If T is already of finite type, S=T is allowed. Conversely, an automorphism is extendible in the stated sense only if T is of finite type: its completed inverse forces T=T[n] once an approximation succeeds. For the mixing non-SFT even shift, every n admits an odd-gap periodic sequence (01^m)^∞ with odd m and m+2>n in T[n] but outside T; its identity therefore has no extension. Periodic irreducible targets and unused alphabet letters are compatible with the theorem.",
+    "The result addresses Boyle's specified-map Problem 16.3. It does not select a suitable map as in the separate existence-over-all-maps Problem 16.2, solve Dykstra's broader reducible-sofic homomorphism problem, classify stable cellular-automaton limit sets or extend to higher dimensions.",
+    "The decision procedure can involve an enormous monoid and graph. No practical complexity improvement or implemented arbitrary-input solver is claimed. Example programs and finite word tests do not replace unrestricted finite reachability or prove the imported general separation theorem.",
+    "Prior machinery is substantial: PRZ supplies the general separator theorem and exact bound; Ballier uses canonical-approximation normalization and develops closing, continuing and cover-based criteria; Dykstra and Barth–Dykstra supply earlier steadiness context. Historical first priority, originality, independent discovery and current worldwide open status are not certified. Possible overlap in the unread final Barth–Dykstra and Ballier journal bodies remains unexcluded; the actual Dykstra thesis and Ballier's version 1 author manuscript are distinct sources."
+  ],
+  "background": [
+    {
+      "title": "T. Place, L. van Rooijen and M. Zeitoun, On Separation by Locally Testable and Locally Threshold Testable Languages, LMCS 10(3:24) (2014), 1–28",
+      "url": "https://doi.org/10.2168/LMCS-10(3:24)2014",
+      "note": "Theorem 4.2 supplies the indispensable common-monoid bound k=4(|M|+1), with the position-profile conventions of Sections 2–4. It is published prior mathematics explicitly imported here."
+    },
+    {
+      "title": "M. Boyle, Open Problems in Symbolic Dynamics, Contemporary Mathematics 469 (2008), 69–118",
+      "url": "https://doi.org/10.1090/conm/469/09161",
+      "note": "Section 16, Problem 16.3 asks about a specified onto mixing-sofic self-map, separately from Problem 16.2. The criterion retains the specified map and permits irreducible targets."
+    },
+    {
+      "title": "A. Dykstra, Two Equivalence Relations in Symbolic Dynamics, Ph.D. thesis, University of Maryland (2007)",
+      "url": "https://drum.lib.umd.edu/items/66faa056-fc9f-4423-a340-1311e1a4ed6b",
+      "note": "Section 3.6, printed pages 46–48, gives earlier steadiness terminology and the broader Problem 3.6.8. The present self-map/irreducible theorem does not settle that unrestricted problem."
+    },
+    {
+      "title": "J. Barth and A. Dykstra, Weak equivalence for shifts of finite type, Indagationes Mathematicae 18(4) (2007), 495–506",
+      "url": "https://doi.org/10.1016/S0019-3577(07)80058-9",
+      "note": "Earlier terminology is credited through Ballier. The journal body is an explicit remaining source-access limit, distinct from Dykstra's thesis."
+    },
+    {
+      "title": "A. Ballier, Limit sets of stable cellular automata, ETDS 35(3) (2015), 673–690; online 2013",
+      "url": "https://doi.org/10.1017/etds.2013.72",
+      "note": "Lemma 2.1 supplies prior canonical-approximation normalization; Sections 2–4 give substantial closing/continuing and cover-based results with their stated additional hypotheses."
+    },
+    {
+      "title": "Ballier, arXiv:1301.3790v1",
+      "url": "https://arxiv.org/abs/1301.3790v1",
+      "note": "Versioned author manuscript for the stated predecessor interfaces, kept distinct from the unread final journal body."
+    }
+  ],
+  "ai_disclosure": "AI tools were used extensively in development, literature work, writing, computation, reproduction and internal adversarial checking. This is an unrefereed preprint without external human peer review or formal proof-assistant certification. The named author is responsible for the work. Finite controls supplement the written proof and do not certify the imported theorem or historical priority.",
+  "collaboration": "Substantive proof checks, counterexamples and precise comparisons with prior work are welcome. Authorship and acknowledgments would reflect actual research contributions and mutual agreement. Citations credit prior work and imply no participation or endorsement.",
+  "follow_up": null,
+  "followup_rationale": "Default none; no independently supported substantial research follow-up added.",
+  "AA": null,
+  "canonical_url": null,
+  "publication_date": "2026-10-16",
+  "version": "1.0",
+  "version_field_present": true,
+  "doi": "10.5281/zenodo.23416806",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "paper.pdf",
+  "pdf_pages": 4,
+  "supplement_filename": "source-and-verification.zip",
+  "supplement_label": "Complete source and verification archive (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original PDF",
+      "url": "https://zenodo.org/api/records/23416806/files/paper.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete ZIP",
+      "url": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content"
+    }
+  ],
+  "status": "Unrefereed preprint, version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0",
+  "edition_note": "Manuscript and declared publication date: 16 October 2026; version 1.0.",
+  "reader_intro": "Read the complete 4-page deposited paper in the on-page PDF reader.",
+  "bibtex_note": "Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification",
+  "prepared_bibtex": "@misc{Kriebel2026PrescribedBlockCodeExtensions,\n  author = {Kriebel, Alec},\n  title = {An effective criterion for prescribed block-code extensions},\n  year = {2026},\n  month = {oct},\n  day = {16},\n  date = {2026-10-16},\n  version = {1.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23416806},\n  url = {https://zenodo.org/records/23416806},\n  note = {Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": "23416806",
+    "concept_record_id": "23416805",
+    "record_url": "https://zenodo.org/records/23416806",
+    "doi": "10.5281/zenodo.23416806",
+    "version": "1.0",
+    "version_field_present": true,
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "zenodo_publication_date": "2026-10-16",
+    "manuscript_date": "16 October 2026",
+    "record_created_utc": "2026-10-16T11:30:08.825717+00:00",
+    "record_updated_utc": "2026-10-16T11:30:09.153546+00:00",
+    "metadata_path": "sources/normalized-metadata.json",
+    "metadata_sha256": "6c56e61193cfd8c750e0889f14d9975cdc499cf27087359406153c47a1135bd4",
+    "raw_record_path": "sources/record.raw.json",
+    "raw_record_sha256": "359da8a8bdaa0f8beb9841b2ef4012b1406ef84bc2267883ac9f4bfdcbb4533f",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "603d9a23bf5876d12fd7d0b6caf50f9e16e5734380383c7afa61b2c560dff5c3",
+    "source_receipt_schema": "Original all_assets/original_api_file_object/lowercasemd5sha256, ZIP-then-PDF order,195readybindings and recursive archive occurrence mapping. No aliases or invented transports.",
+    "source_receipt_original": {
+      "utc": "2026-10-25T07:50:37.019026+00:00",
+      "status": "SOURCE_READY_FRESH_COMPLETE_PUBLIC_OBJECTS_AND_RECURSIVE_ARCHIVES",
+      "record_id": 23416806,
+      "sheet_row": 98,
+      "title": "An effective criterion for prescribed block-code extensions",
+      "version": "1.0",
+      "publication_date": "2026-10-16",
+      "created": "2026-10-16T11:30:08.825717+00:00",
+      "updated": "2026-10-16T11:30:09.153546+00:00",
+      "doi": "10.5281/zenodo.23416806",
+      "conceptrecid": "23416805",
+      "latest_record_id": 23416806,
+      "versions_total": 1,
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "1ce5774c-e79f-41e8-9a64-9a904a5c7a6d",
+            "key": "source-and-verification.zip",
+            "size": 316892,
+            "checksum": "md5:eee6055510bdb5bb33e948f9fbd3267c",
+            "links": {
+              "self": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/source-and-verification.zip",
+          "bytes": 316892,
+          "sha256": "093b4464977a90b616b49adb41cd3a8a484e3d1035f87eef30be18421680c1ca",
+          "md5": "eee6055510bdb5bb33e948f9fbd3267c"
+        },
+        {
+          "original_api_file_object": {
+            "id": "08510c69-b062-4e6e-b7b8-8ce30a8cec9f",
+            "key": "paper.pdf",
+            "size": 59427,
+            "checksum": "md5:7c21f4493d9e6407d601c3add34de8e4",
+            "links": {
+              "self": "https://zenodo.org/api/records/23416806/files/paper.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/paper.pdf",
+          "bytes": 59427,
+          "sha256": "cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6",
+          "md5": "7c21f4493d9e6407d601c3add34de8e4"
+        }
+      ],
+      "PDF_pages": 4,
+      "safe_recursive_archive_members": 186,
+      "top_level_members": 150,
+      "expanded_bytes_all_depths": 815561,
+      "nested_archives": 3,
+      "top_level_TeX_candidates": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/published-source/paper.tex",
+          "bytes": 13007,
+          "sha256": "cf0d28a357dc5032e1bc0d68f81d2413577f807afbf8876d76499f0ca58edf53"
+        }
+      ],
+      "all_depth_TeX_candidates": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/published-source/paper.tex",
+          "bytes": 13007,
+          "sha256": "cf0d28a357dc5032e1bc0d68f81d2413577f807afbf8876d76499f0ca58edf53"
+        }
+      ],
+      "local_candidate": {
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr781_4600024/preprint/output/pdf/paper.pdf",
+        "exists": true,
+        "sha256": "cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6",
+        "matches_fresh_actual_PDF": true,
+        "used_instead_of_fresh_download": false
+      },
+      "originals_now_immutable": true,
+      "no_historical_or_current_review_opinions_read": true
+    },
+    "source_assets_field": "all_assets",
+    "all_assets": [
+      {
+        "original_api_file_object": {
+          "id": "1ce5774c-e79f-41e8-9a64-9a904a5c7a6d",
+          "key": "source-and-verification.zip",
+          "size": 316892,
+          "checksum": "md5:eee6055510bdb5bb33e948f9fbd3267c",
+          "links": {
+            "self": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/source-and-verification.zip",
+        "bytes": 316892,
+        "sha256": "093b4464977a90b616b49adb41cd3a8a484e3d1035f87eef30be18421680c1ca",
+        "md5": "eee6055510bdb5bb33e948f9fbd3267c"
+      },
+      {
+        "original_api_file_object": {
+          "id": "08510c69-b062-4e6e-b7b8-8ce30a8cec9f",
+          "key": "paper.pdf",
+          "size": 59427,
+          "checksum": "md5:7c21f4493d9e6407d601c3add34de8e4",
+          "links": {
+            "self": "https://zenodo.org/api/records/23416806/files/paper.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/paper.pdf",
+        "bytes": 59427,
+        "sha256": "cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6",
+        "md5": "7c21f4493d9e6407d601c3add34de8e4"
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "1ce5774c-e79f-41e8-9a64-9a904a5c7a6d",
+        "key": "source-and-verification.zip",
+        "size": 316892,
+        "checksum": "md5:eee6055510bdb5bb33e948f9fbd3267c",
+        "links": {
+          "self": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content"
+        }
+      },
+      {
+        "id": "08510c69-b062-4e6e-b7b8-8ce30a8cec9f",
+        "key": "paper.pdf",
+        "size": 59427,
+        "checksum": "md5:7c21f4493d9e6407d601c3add34de8e4",
+        "links": {
+          "self": "https://zenodo.org/api/records/23416806/files/paper.pdf/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "recursive_archive_inventory_path": "sources/archive-members.json",
+    "recursive_archive_inventory_sha256": "2ea704e1558971536fbeec13556829b310cd61f77c9fa0a86029a1acca816d6d",
+    "transport_receipt_path": "sources/api-receipts.json",
+    "transport_receipt_sha256": "5a7534bc5ed310b5b4358a7803dc0ca8c8ebe46d5682ed48411176407e5d8071",
+    "transport_receipt_original": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23416806",
+        "started_utc": "2026-10-25T07:49:50.524469+00:00",
+        "completed_utc": "2026-10-25T07:49:51.130223+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23416806",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:49:51 GMT",
+          "content-type": "application/json",
+          "content-length": "7967",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23416806> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792914651",
+          "retry-after": "59",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/record.raw.json",
+        "bytes": 7967,
+        "sha256": "359da8a8bdaa0f8beb9841b2ef4012b1406ef84bc2267883ac9f4bfdcbb4533f"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23416806/versions/latest",
+        "started_utc": "2026-10-25T07:49:51.136560+00:00",
+        "completed_utc": "2026-10-25T07:49:52.289230+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23416806",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:49:52 GMT",
+          "content-type": "application/json",
+          "content-length": "7967",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23416806> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "130",
+          "x-ratelimit-reset": "1792914651",
+          "retry-after": "58",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/latest.raw.json",
+        "bytes": 7967,
+        "sha256": "359da8a8bdaa0f8beb9841b2ef4012b1406ef84bc2267883ac9f4bfdcbb4533f"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23416806/versions",
+        "started_utc": "2026-10-25T07:49:52.289624+00:00",
+        "completed_utc": "2026-10-25T07:49:52.809970+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23416806/versions",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:49:52 GMT",
+          "content-type": "application/json",
+          "content-length": "8102",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792914651",
+          "retry-after": "58",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/versions.raw.json",
+        "bytes": 8102,
+        "sha256": "ab2691d5177f290837489878be294f2300e89b58fb0edc39bea51e102f889e84"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content",
+        "started_utc": "2026-10-25T07:49:52.810361+00:00",
+        "completed_utc": "2026-10-25T07:49:54.619056+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:49:53 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "316892",
+          "content-disposition": "attachment; filename=source-and-verification.zip",
+          "oc-checksum": "MD5:eee6055510bdb5bb33e948f9fbd3267c",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792914651",
+          "retry-after": "57",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/source-and-verification.zip",
+        "bytes": 316892,
+        "sha256": "093b4464977a90b616b49adb41cd3a8a484e3d1035f87eef30be18421680c1ca"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23416806/files/paper.pdf/content",
+        "started_utc": "2026-10-25T07:49:54.620336+00:00",
+        "completed_utc": "2026-10-25T07:49:55.485691+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23416806/files/paper.pdf/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:49:55 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "59427",
+          "content-disposition": "attachment; filename=paper.pdf",
+          "oc-checksum": "MD5:7c21f4493d9e6407d601c3add34de8e4",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "127",
+          "x-ratelimit-reset": "1792914651",
+          "retry-after": "55",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23416806/sources/paper.pdf",
+        "bytes": 59427,
+        "sha256": "cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6"
+      }
+    ],
+    "transport_receipt_entry_count": 5,
+    "asset_root_path": "sources",
+    "pdf_sha256": "cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6",
+    "supplement_sha256": "093b4464977a90b616b49adb41cd3a8a484e3d1035f87eef30be18421680c1ca",
+    "source_tex_path": "sources/published-source/paper.tex",
+    "source_tex_sha256": "cf0d28a357dc5032e1bc0d68f81d2413577f807afbf8876d76499f0ca58edf53",
+    "abstract_tex": "\nGiven an onto block self-map of a nonempty two-sided irreducible sofic\nshift, we give a finite, computable criterion for extending that same\nmap from a containing shift of finite type into the original shift.\nThis answers the specified-map question in Boyle's Problem 16.3,\nincluding its mixing case. The criterion is locally testable\nseparation of the allowed language from a regular bad-word ideal.\nAn irreducibility argument converts the published\nPlace--van Rooijen--Zeitoun separator bound into a single canonical\nfinite-type approximation test. The result covers every choice of\nextension radius and local-rule completion. It uses that published\ntheorem; it does not assert a new general separation theorem,\nhistorical firstness, or a solution of the separate\nexistence-over-all-maps and cellular-automaton stability questions.\n",
+    "abstract_source": "reviews/editorial/ORIGINAL_ABSTRACT.tex",
+    "abstract_source_sha256": "b68a436fa5542c3e7ec138a2766717a7f7a4fb521a6516fc545ffc360f27bf1d",
+    "abstract_normalization": {
+      "whitespace": "fold consecutive whitespace into one ordinary space",
+      "exact_presentational_replacements": {
+        "Place--van Rooijen--Zeitoun": "Place–van Rooijen–Zeitoun"
+      },
+      "no_word_or_sentence_omission": true
+    },
+    "public_page_reader_pdf_count": 1,
+    "archive_outer_regular_file_count": 150,
+    "archive_regular_member_occurrences": 186,
+    "archive_container_count": 4,
+    "nested_archive_count": 3,
+    "archive_embedded_pdf_count": 0,
+    "total_distinct_reader_pdf_count": 1,
+    "reader_intro": "Read the complete 4-page deposited paper in the on-page PDF reader.",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "e0958022426a28eae534ede959f77f8e0a0733e375c34ac323139e12982b1460",
+    "publication_state": "EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "review_boundary": "Exact completed root scientific authority separately adopted; every original source and custom review object remains whole."
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T08:09:39.779476+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23416806-20261025.json",
+    "root_clearance_sha256": "2fb0c7b2d3402e58c75aba0493699f76e0b9f3b4770b6a2a3c2a489375dc1489",
+    "publication_state": "EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "browser_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "native_sheet_aa_url": null,
+    "root_editorial_clearance_received": false
+  }
+}

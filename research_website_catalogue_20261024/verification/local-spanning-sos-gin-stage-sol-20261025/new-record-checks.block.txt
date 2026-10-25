@@ -1,0 +1,37 @@
+ if rid in SG_IDS:
+  binding=c['source_binding'];pin=SG_PINS[rid]
+  section_text={sid:' '.join(unescape(re.sub(r'<[^>]+>',' ',re.sub(r'<h2>.*?</h2>','',seg,flags=re.S))).split()) for sid,seg in re.findall(r'<section id="([^"]+)">(.*?)</section>',h,re.S)}
+  shown=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
+  from datetime import date
+  declared=date.fromisoformat(c['publication_date']);declared_text=f'{declared.day} {declared.strftime("%B %Y")}'
+  entry_meta=re.findall(r'<p class="entry-meta">(.*?)</p>',h,re.S)
+  expected_entry=f"By {'; '.join(c.get('authors',[c['author']]))}, independent researcher. {c['publication_date_label']} {declared_text} · {c['edition_label']} · Unrefereed preprint"
+  test('visible_exact_byline_declared_date_header_edition',len(entry_meta)==1 and shown(entry_meta[0])==expected_entry and [attrs.get('datetime') for tag,attrs in d.a if tag=='time']==[c['publication_date']])
+  cite=re.search(r'<section id="cite">(.*?)</section>',h,re.S);paras=re.findall(r'<p>(.*?)</p>',cite.group(1),re.S) if cite else []
+  expected_citation=f"{'; '.join(c.get('authors',[c['author']]))}. ({declared.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. https://doi.org/{c['doi']}"
+  test('visible_exact_citation_edition',len(paras)==2 and shown(paras[0])==expected_citation and shown(paras[1])=='Download BibTeX')
+  status=re.search(r'<section id="status">(.*?)</section>',h,re.S)
+  status_paragraphs=[unescape(x) for x in re.findall(r'<p>(.*?)</p>',status.group(1),re.S)] if status else []
+  test('all_exact_approved_status_paragraphs',status_paragraphs==[c['status'],c['ai_disclosure']]+([c['edition_note']] if c.get('edition_note') else []))
+  test('whole_original_abstract',normalize_sg_abstract(rid,a)==c['abstract']==art['abstract'] and section_text['abstract']==c['abstract'] and '<h2>Original abstract</h2>' in h)
+  test('all_body_math_readable',not any(x in ' '.join(section_text.values()) for x in ['\\','$']) and all(section_text[sid]==' '.join(' '.join(display_sg_text(rid,x) for x in c[key]).split()) for sid,key in [('plain-language','plain_language'),('result','result'),('proof','why_it_works'),('limits','limitations')]))
+  test('source_ready_original_shape',raw_receipt==binding['source_receipt_record']==gate['source_receipt_record'] and binding['source_assets_field'] in raw_receipt and 'files' not in raw_receipt)
+  test('complete_raw_and_transport_objects',len(receipt['files'])==binding['published_asset_count']==(3 if rid=='23395703' else 2) and json.loads((p/binding['transport_receipt_path']).read_text())==binding['transport_receipt_record']==gate['transport_receipt_record'])
+  test('all_complete_custom_verdicts',all(x['verdict']==json.loads((p/x['verdict_file']).read_text()) and sha(p/x['verdict_file'])==x['verdict_sha256'] for x in gate['reviews'].values()))
+  test('exact_full_prepared_BibTeX',bib==c['prepared_bibtex']==(p/binding['prepared_bibtex_path']).read_text())
+  test('complete_actual_reader',len(texts)==c['pdf_pages']=={'23181280':4,'23442760':5,'23395703':6}[rid] and c['reader_intro'] in section_text['paper'])
+  test('only_four_article_outputs',{x.name for x in f.parent.iterdir() if x.is_file()}=={'index.html','citation.bib',c['pdf_filename'],c['supplement_filename']})
+  original_urls={x['name']:x['url'] for x in receipt['files']}
+  test('exact_original_and_local_PDF_downloads',len([x for t,x in d.a if t=='a' and x.get('href')==c['pdf_filename'] and 'download' in x])==1 and len([x for t,x in d.a if t=='a' and x.get('href')==original_urls[c['pdf_filename']] and 'download' in x])==1)
+  test('complete_ZIP_local_and_actual_original',all(any(t=='a' and x.get('href')==u for t,x in d.a) for u in [c['supplement_filename'],original_urls[c['supplement_filename']]]))
+  test('all_related_actual_original_links',all(any(t=='a' and x.get('href')==r['url'] for t,x in d.a) for r in c['related_resources']))
+  test('CC_BY_header_and_schema',art['license']=='https://creativecommons.org/licenses/by/4.0/' and any(t=='a' and x.get('href')==art['license'] for t,x in d.a))
+  test('unchanged_private_stage_gates',c['canonical_url'] is gate['canonical_url'] is gate['AA'] is c['follow_up'] is gate['follow_up'] is None and all(gate[x] is False for x in ['rendered_copy_verified','live_verified','browser_verified','native_verified']))
+  with zipfile.ZipFile(asset_root/c['supplement_filename']) as z:
+   members=[x for x in z.infolist() if not x.is_dir()];pdf_members=[x for x in members if x.filename.lower().endswith('.pdf')]
+   test('entire_original_archive_extraction',len(members)==binding['archive_regular_file_count'] and all((p/'sources/published-source'/x.filename).read_bytes()==z.read(x) for x in members))
+   test('archive_current_reader_identity',len(pdf_members)==binding['archive_embedded_pdf_count'] and (all(z.read(x)==(f.parent/c['pdf_filename']).read_bytes() for x in pdf_members) if rid=='23181280' else not pdf_members))
+   if rid=='23395703':test('all_three_assets_and_ordinary_TeX_link',len(receipt['files'])==3 and any(t=='a' and x.get('href')==original_urls['seven_plane_gin.tex'] for t,x in d.a) and not (f.parent/'seven_plane_gin.tex').exists() and sum(x.filename.endswith('.tex') for x in members)==1 and all(z.read(x)==(asset_root/'seven_plane_gin.tex').read_bytes() for x in members if x.filename.endswith('.tex')))
+  if rid=='23181280':test('whole_common_tree_explicit_binary_constant_alphabets_and_limits',all(x in section_text['result'] for x in ['same underlying tree','all edges in all these rooted orientations','2N|E|','in binary','strong NP-completeness','{0,1,2}','{1,2,3}','N(N−1)','transposed']) and all(x in section_text['limits'] for x in ['Problem 2','unencoded real inputs','unrestricted optimum','first discovery']))
+  elif rid=='23442760':test('whole_normalized_Lebesgue_all_order_constant_C2_product_and_credit',all(x in section_text['result'] for x in ['nonempty interior','n≥1','global sums of squares','∫_K q dx=1','r≥1','Cₙ=4(n+2)²(π/2)^(2n+4)(1+2^(n+2))','C²']) and all(x in section_text['proof'] for x in ['same core mass','1/[4(r+1)²]','[0,1]×[−1,1]^(n−1)','constant objectives have zero error']) and all(x in section_text['limits'] for x in ['Totik–Varga','Markov','arbitrary reference measures','locate one']))
+  else:test('whole_characteristic_zero_four_polar_generic_cutoff_full_ring_and_priority_limits',all(x in section_text['result'] for x in ['characteristic zero','all four partial derivatives before','degree-reverse-lexicographic','x₁>x₂>x₃>x₄','p=min{d≥0:x₂ᵈ∈B}=8','degree-seven minimal generator']) and all(x in section_text['limits'] for x in ['Migliore–Nagel','Ilardi','five-generated','four-generated','positive-characteristic','smallest possible']) and c['version'] is None and 'version' not in art and 'version =' not in bib)

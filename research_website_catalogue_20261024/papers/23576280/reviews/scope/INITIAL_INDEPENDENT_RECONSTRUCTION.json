@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-25T08:14:59.352045+00:00",
+  "status": "EARLY_SUBSTANTIVE_INDEPENDENT_RECONSTRUCTION",
+  "independence": "Entire actual6pp/full controllingTeX and6raw page renders read; no foreign primary bodies, archived scientific opinions or current sibling/root mathematical evaluations read. Source API metadata contains original author claims, retained but not accepted as validation.",
+  "full_original_abstract_TeX": "For a finite 2-vertex-connected graph \\(G\\), let \\(\\beta(G)\\) be the largest\nnumber of consecutive odd ears at the beginning of an open ear decomposition,\ncounting its initial circuit and its one-edge ears. We prove that deciding\n\\(\\beta(G)\\ge t\\), with \\(t\\) part of the input, is NP-complete even for simple\ngraphs with a universal vertex whose deletion leaves a connected bipartite\ngraph. This answers the variable-threshold complexity question posed by\nSeb\\H{o} and by Benchetrit--Seb\\H{o}. The reduction is from explicitly encoded\nSet Cover. It uses the classical factor-critical formulation of \\(\\beta\\),\na cone identity, and a block-loss inequality that permits arbitrary partial\nblocks. In particular, it does not assume an optimal subgraph is a union of\nwhole blocks.",
+  "literal_problem": {
+    "graphs": "Finite undirected loopless, parallel edges allowed, at least3vertices, remainsconnected after deletinganyvertex. Hardness outputs simple withspecifieduniversalz andconnectedbipartiteG-z.",
+    "ears": "Initialcircuit connected2regular; lateropenpaths have distinctoldendpoints/newinternalvertices; each edge exactlyonce, one-edgeears allowed. Oddparity=edgecount; initialcircuit counts.",
+    "parameter": "Maximum INITIAL CONSECUTIVE oddprefix; firstevenear stops count, lateroddears donot count; nooddinitialcircuit gives0.",
+    "decision": "Variable signedinteger t inbinary, languagevalid(G,t) andbeta(G)>=t; t<=0 automaticallyYESonvalidgraphs,invalidgraphsrejected. Notfixedthreshold/closedears/totaloddcount/P!=NP claim."
+  },
+  "independent_derivation": [
+    {
+      "step": "Factorcritical rank equivalence",
+      "check": "Union ofnonemptyalloddopenprefix is2vertexconnected andfactorcritical byclaimedLovasz input. Initialcircuitcontributes|E|-|V|+1=1; eachlateropenear adds edgesl andnewverticesl-1, rankincrement1 includingone-edgeears. Conversely2connectedfactorcriticalH admitsalloddopenears bysameinput; extension toG viaoutsidesectioncomponentwith2distinctneighbors (onewouldcutG), choosepath throughcomponent withnewinterior anddistinctoldends; iterategrowsvertices, leftoveredgestrivialears. Addedinducededges preserveconnectivity andeverydeletionmatching, raiserank. NeedauthenticateexactLovasz openearinterface externally."
+    },
+    {
+      "step": "Coneidentity",
+      "check": "Bconnectedbipartite>=2vertices impliescone2connected. Anodd-order2connectedfactorcriticalH cannotbebipartite:deletefromsmaller nonemptyclassleavesunbalancedclasses. ThusinducedeligibleHcontainsz andequalsconeB[S]. Deletingz demandsB[S]connectedandperfectlymatchable. ConverselyMperfectmatchingB[S], deleteu matchitsmatewithz andretainotherM;deletez useM. Rank=allinducedBedges, NOTmatchingedges; nonemptyfeasibleS>=2."
+    },
+    {
+      "step": "All preprocessing andpolynomialencoding",
+      "check": "NegativebudgetNOevenemptyU; nonnegativebudgetemptyUYES; nonemptyU withnosets/uncoveredelement/s0NO; coveredand s>=nYES. Trianglebeta1 mapsYESthreshold1 andNOthreshold2, alloutputs inpromisedconeclass. Remainingm,n>=1,1<=s<=n,covered; empty/repeatedsetsallowed. T=sum(1+|A|),k=T+n+3,M=(m+1)k²,F=M-ks; k>T,k>s,k(k-s)>T,F>0. Explicitencoding andaftercoverage m,n,T=O(L), verticesO(L²),edgesO(L³),thresholdbinarypoly. No hiddenbinarysize block parameter."
+    },
+    {
+      "step": "Allsizeforwardreduction",
+      "check": "Shrinkanycover<=s toinclusion-minimalJ. Eachselectedsethasprivateelementelse redundant; privatesdistinct. Selectallblockvertices plusJconnectors,omitoneleftvertexineachprivateelementblock. Matchconnectorctoitsdistinguishedprivateq, remainingK(k-1,k-1) internally,otherblocksK(k,k). Fullvertexcoverageanddisjointness; eachretainedblockconnectedk>=2; selectedsetscoverallelementblocksandallconnectorsmeetroot. ExactedgecountM-kr+selectedincidences>=M-ks."
+    },
+    {
+      "step": "Reversewithoutwholeblockassumption",
+      "check": "ForarbitraryconnectedperfectlymatchableB[S]withedges>=F, eachblockmustretaininternaledge:otherwiseedgecount<=M-k²+T<F. Letai,bi omittedleft/right,includingdistinguishedrightq omissions; di=k(ai+bi)-aibi exactlostinternaledges. Matchingbalance sum(ai-bi)=r(selectedleftconnectors). Exactidentitydi-k(ai-bi)=bi(2k-ai)>=0 forall0<=ai,bi<=k. ThusM-ks<=edges<=M-kr+T, k(r-s)<=T<k⇒integerr<=s. ForEVERYelementblock, connectivitytorootblock (eachretainsedge) requiresselectedconnectoradjacentfromitsdistinguishedq, hence selectedsetscoverelement. Arbitrarypartialblocksandmissingqi permitted."
+    },
+    {
+      "step": "NPmembership",
+      "check": "t>0 certificateHedges/vertices+perfectmatchingH-v foreachv. Check|H|>=3,graphmembership,H/H-v connectivity,eachmatchingdeletiongraphvalid/disjoint/fullcover,rank>=t. O(n²) matchingedges withvertex/edgeidentitybits, polytime; no need computeallbeta/solveNPproblem. Equivalence viafactorcriticalranklemma. t<=0validinputYES; invalidgraphdetectablepoly. Largepositivebinaryt failsrankinequalitynaturally."
+    },
+    {
+      "step": "Objectiveandfinitecontrolseparation",
+      "check": "ThreeK3,3 blocks and2leftconnectors: disconnectedallblocksselection27edgesperfectmatching; connectedallblocks requires2connectors, loss>=3*2 andincidences<=4⇒<=25, attainedprivateleftomissions. Ifoneblocknoedge <=22. Thusconnectivitymaterial. Matchingedge-weight objective differsfromcountallinducededges. Needactualpriorpaperinterfaces toboundcredit."
+    }
+  ],
+  "attack_cases": [
+    "BipartiteG nooddcycle givesbeta0, consistentemptyfactorcriticalfamily.",
+    "Parallel2cycles areeven; simpleoddtrianglebase remainsvalid.",
+    "Thresholdsignedbinary/noattainedoptimizationrequirement.",
+    "s0/negative/hugebudget,emptyuniverse/no sets/uncoveredU.",
+    "Empty/repeatedsets,distinguishedqomissions,partialblocks,unselectedblocks,connectivityrootmissing.",
+    "Do not replaceperfectmatchingwithbalancedbipartition; balanceusedonlynecessary reverseinequality, fullMconstructedforward.",
+    "FixedparameteralgorithmsconsistentwithvariablethresholdNPcomplete."
+  ],
+  "initial_assessment": "Complete all-size reduction andNP certificate reconstructed without detectedcentralalgebra/graphgap, conditional on exactclassical alloddOPENear/factorcriticalinterface. Full primaryscope/supportcode checks remain; no finalnovelty/opennessverdict."
+}

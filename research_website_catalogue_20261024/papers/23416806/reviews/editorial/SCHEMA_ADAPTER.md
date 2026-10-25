@@ -1,0 +1,41 @@
+# Source-consumer specification — record 23416806
+
+This is a private editorial handoff, not an implemented source helper, renderer or checker. Root scientific authority was complete before intake. Root editorial review and every rendered/local/live/browser/native/publication gate remain separate and false. Canonical, AA and follow-up remain null.
+
+## Preserve the actual source interface
+
+The authoritative receipt is `sources/SOURCE_READY.json`, SHA256 `603d9a23bf5876d12fd7d0b6caf50f9e16e5734380383c7afa61b2c560dff5c3`. Retain its **all_assets** array, each complete **original_api_file_object**, original absolute path, bytes and lowercase **md5/sha256**. Its order is **source-and-verification.zip then paper.pdf**. It is neither row97's all_actual_assets/api_file_object interface nor a generic files/assets receipt. Do not insert those aliases or reserialize the original objects to fit an old consumer.
+
+The unchanged actual raw record is `sources/record.raw.json`. The existing derivative `sources/normalized-metadata.json` explicitly retains `derivative_not_raw_API`, full `metadata`, `all_original_API_file_objects`, `all_assets`, timestamps and TeX candidates. Preserve its complete original field names and values. The original five-entry `sources/api-receipts.json` list uses requested_url/started_utc/completed_utc/status/final_url/headers/path/bytes/lowercase sha256, with ZIP transport before PDF transport. Preserve every literal header and genuine transport fact. No HTTP field, MIME value, response header, API object or standalone checksum field is invented inside those originals.
+
+The ready manifest binds 195 original files. The additive final source manifest binds 197 files, with that final manifest and its seal completing the199-file source package. The ready manifest's relative paths and final manifest's original absolute paths remain unchanged. No receipt.json/record.json alias is created. Both configurations embed the complete original receipt, transports, genuine file objects and whole custom family verdicts; verbatim original JSON copies remain under original-objects. Their actual status fields and false/null/history values are preserved, with exact current root authority adopted separately. No default PASS is inserted into a scientific object.
+
+The exact separate root authority is verification/root-clearance-23416806-20261025.json, SHA256 `2fb0c7b2d3402e58c75aba0493699f76e0b9f3b4770b6a2a3c2a489375dc1489`. Each family retains its whole original verdict and a separate complete root_authority_entry. INTAKE_RECORD.json correctly records root science complete before editorial intake; no fake pending phase is created or historical pending note rewritten.
+
+A later authorized consumer may authenticate exact source/config/authority/report/verdict/TeX/asset bytes and the original recursive inventory, then derive a temporary in-memory view. It must never persist a normalized files projection into source receipts or use a different record's schema aliases. This package specifies that requirement without claiming current shared-consumer compatibility.
+
+## Exact assets and recursive archive
+
+The sole selected reader is the complete four-page `paper.pdf`, 59427 bytes,SHA256 `cb18c7e8627574d625d9b4d1d471ae499a9d5aeef5b6f5e52be671daf152a7d6`. Complete support is unchanged `source-and-verification.zip`, 316892 bytes,SHA256 `093b4464977a90b616b49adb41cd3a8a484e3d1035f87eef30be18421680c1ca`. The sole controlling TeX is `sources/published-source/paper.tex`, 13007 bytes, 271 lines,SHA256 `cf0d28a357dc5032e1bc0d68f81d2413577f807afbf8876d76499f0ca58edf53`.
+
+The complete outer ZIP has 150 regular members, including three original nested ZIPs. Across four ZIP containers there are186 regular member occurrences,815561 expanded bytes. Preserve each complete container's original bytes, its qualified identity and its existing extraction mapping in `sources/archive-members.json`. Equal names or hashes in separate containers are not one occurrence. There is no embedded PDF at any depth and no alternative controlling TeX. No nested archive becomes a separately published Zenodo asset. No re-extraction into original paths, repack or selected-script bundle is needed.
+
+After separate staging authority, require one full local PDF iframe, direct local open, explicit local and actual-original Zenodo PDF downloads, and both local and actual-original complete ZIP links. Exact original URLs come from the two genuine API file objects and are retained in METADATA_READER_SUPPORT_REQUIREMENTS.json. Keep all original archive license notices. The local article assets are HTML, unchanged PDF, complete unchanged outer ZIP and prepared BibTeX. No primary cache, nested expanded support tree or extra reader is exported.
+
+CITATION.bib equals publication.prepared_bibtex exactly and is the source for public citation.bib. Retain selected DOI 10.5281/zenodo.23416806, version 1.0, declared 16 October 2026, sole author Alec Kriebel and ORCID 0009-0001-9320-500X. API creation 16 October 2026,11:30:08.825717 UTC and update 11:30:09.153546 UTC remain separate provenance, not verified first-disclosure facts. Require CC BY 4.0 in header and article schema, while retaining per-file notices.
+
+## Full abstract and scientific scope
+
+Keep the whole original abstract as one visible/indexable paragraph labeled Original abstract. ORIGINAL_ABSTRACT.tex is the exact controlling-source substring. Only whitespace folding and the exact name formatting Place--van Rooijen--Zeitoun→Place–van Rooijen–Zeitoun are changed. No original word, sentence, assumption, imported-dependency statement or limit is dropped. The introductory explanation is additional prose.
+
+Retain every nonempty two-sided irreducible sofic T, specified onto self-code f, any local-rule completion F and any common finite recognizing monoid M. Keep epsilon/short-output conventions, regular bad-word ideal B, exact k=4(|M|+1), N=max{2,ℓ,4(|M|+1)}, canonical T[n] and the entire four-way equivalence. Failure excludes every alternative completion/radius/containing finite alphabet. S⊇T is non-strict. Do not turn the theorem into a fixed-radius, implemented-example, sufficient-only or selected-map-existence result.
+
+Published PRZ 2014 Theorem 4.2 is an indispensable explicitly credited import, not a new general separation theorem. Keep profile sets versus LTT multiplicities, endpoint-truncated profiles, irreducible saturation and complete all-path finite reachability with every overlap vertex initial/final and appended edge labels. No empirical word-length cutoff replaces the finite-state procedure.
+
+Retain SFT/automorphism/even-shift/constant-nononto/periodic/unused-letter controls, and exclusions for empty/reducible/higher-dimensional targets, Problem 16.2, Dykstra's broader problem, cellular-automaton stability classification, useful complexity bounds and an implemented arbitrary-input solver. Preserve Boyle/Dykstra/Barth–Dykstra/Ballier/PRZ prior credit and the unread final-journal access limits. No originality/firstness/independent-discovery/current-worldwide-open assertion is authorized.
+
+## Human presentation and later gate
+
+Use the established white Arial/Helvetica single-column blog layout with no new framework. Preserve every paragraph in PUBLIC_COPY.md/public-sections.json, readable mathematical notation, concise extensive-AI/unrefereed/no-external-human-refereeing/no-formal-certification status, passive actual-research-contribution/mutual-agreement collaboration, and no follow-up or outreach. Exact visible date, edition/citation labels and full status paragraph list must be checked in any future renderer. SEO/citation/canonical/schema metadata must match the final config; correct machine metadata alone does not certify visible text.
+
+Public prose excludes private review dates/counts, hashes, replay/custody stories and reviewer/gate narratives. Necessary manuscript and bibliographic dates remain public metadata. Root must read the full report, actual complete public draft, source requirements and unique config metadata/prose, then independently rehash before staging. No rendering/shared compatibility, local/live/browser/native verification or production authority is asserted here.

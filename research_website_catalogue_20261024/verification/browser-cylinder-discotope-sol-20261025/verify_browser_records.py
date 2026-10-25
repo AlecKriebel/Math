@@ -24,6 +24,7 @@ def main():
             if len(found)!=1:issues.append('observation:'+s['record']+':'+width);continue
             o=found[0]
             if o['url']!=s['url']:issues.append('observation_url:'+s['record'])
+            if ' '.join(o['body'].split())!=' '.join(Path(s['public_copy']).read_text().split()):issues.append('complete_public_copy:'+s['record']+':'+width)
             for t in s['accepted_sections']:
                 actual=next((r for r in o['sections'] if r['id']==t['id']),None);section_checks+=1
                 if actual is None or any(actual.get(k)!=t[k] for k in ['id','heading','paragraphs','list_items']):issues.append('section:'+s['record']+':'+t['id'])

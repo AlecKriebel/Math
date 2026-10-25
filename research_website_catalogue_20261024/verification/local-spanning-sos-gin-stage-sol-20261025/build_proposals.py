@@ -1,0 +1,43 @@
+"""Create narrowly dispatched proposals without editing any installed file."""
+from pathlib import Path
+import ast,difflib,hashlib,json
+O=Path(__file__).resolve().parent;P=O.parents[1]
+def once(s,a,b):
+    if s.count(a)!=1:raise RuntimeError('expected_one:'+a[:90])
+    return s.replace(a,b,1)
+r0=(O/'inputs/render_page.py').read_text();c0=(O/'inputs/final-content-check.py').read_text()
+imp='from spanning_sos_gin_source import SG_IDS, PINS as SG_PINS, spanning_sos_gin_source_view, normalize_sg_abstract, display_sg_text'
+r=once(r0,'from cylinder_discotope_source import CD_IDS, cylinder_discotope_source_view, display_cd_abstract','from cylinder_discotope_source import CD_IDS, cylinder_discotope_source_view, display_cd_abstract\n'+imp)
+r=once(r,'if paper.name in CD_IDS:\n    raw_receipt, receipt, asset_root = cylinder_discotope_source_view',"if paper.name in SG_IDS:\n    raw_receipt, receipt, asset_root = spanning_sos_gin_source_view(paper,c,gate)\n    receipt_path=paper/c['source_binding']['source_receipt_path']\nelif paper.name in CD_IDS:\n    raw_receipt, receipt, asset_root = cylinder_discotope_source_view")
+r=once(r,'h=escape',"h=escape\nsg_asset_urls={x['name']:x['url'] for x in receipt['files']} if paper.name in SG_IDS else {}")
+r=once(r,'record_id=receipt[\'record_id\']',"record_id=receipt['record_id']\noriginal_pdf_url=sg_asset_urls[c['pdf_filename']] if paper.name in SG_IDS else f'https://zenodo.org/records/{record_id}/files/{c[\"pdf_filename\"]}'")
+r=once(r,"f'<p>{h(p)}</p>'","f'<p>{h(display_sg_text(paper.name,p) if paper.name in SG_IDS else p)}</p>'")
+r=once(r,"else 'Abstract'","or paper.name in SG_IDS else 'Abstract'")
+r=r.replace('or paper.name in CD_IDS','or paper.name in CD_IDS or paper.name in SG_IDS')
+r=once(r,"if paper.name in CD_IDS: status_paragraphs.insert(0,c['status'])","if paper.name in CD_IDS or paper.name in SG_IDS: status_paragraphs.insert(0,c['status'])")
+r=once(r,"paper_intro_html=f'<p>{h(paper_intro)}</p>' if paper_intro else ''","if paper.name in SG_IDS:paper_intro=c['reader_intro']\npaper_intro_html=f'<p>{h(paper_intro)}</p>' if paper_intro else ''")
+r=once(r,'href="https://zenodo.org/records/{record_id}/files/{h(c["pdf_filename"])}"','href="{h(original_pdf_url)}"')
+r=once(r,'if paper.name in CFH_IDS or paper.name in CD_IDS or paper.name in SG_IDS:\n    checksum_link=',"if paper.name in SG_IDS:\n    tex_link=(f'<li><a href=\"{h(sg_asset_urls[\"seven_plane_gin.tex\"])}\">Zenodo original published TeX source</a></li>' if paper.name=='23395703' else '')\n    sections+=f'<section id=\"materials\"><h2>Supporting materials</h2><ul><li><a href=\"{h(c[\"supplement_filename\"])}\" download>{h(c[\"supplement_label\"])}</a> · <a href=\"{h(sg_asset_urls[c[\"supplement_filename\"]])}\">Zenodo original complete ZIP</a></li>{tex_link}</ul></section>'\nelif paper.name in CFH_IDS or paper.name in CD_IDS:\n    checksum_link=")
+r=once(r,"if paper.name in ('23444606','23440119','23224103','23390551','23430326','23204952','22983138','23409904') or paper.name in CD_IDS or paper.name in SG_IDS: bib=(paper/'reviews/editorial/citation.bib').read_text()","if paper.name in SG_IDS: bib=(paper/c['source_binding']['prepared_bibtex_path']).read_text()\nelif paper.name in ('23444606','23440119','23224103','23390551','23430326','23204952','22983138','23409904') or paper.name in CD_IDS: bib=(paper/'reviews/editorial/citation.bib').read_text()")
+c=once(c0,'from cylinder_discotope_source import CD_IDS, PINS as CD_PINS, cylinder_discotope_source_view, normalized_cd_abstract, display_cd_abstract','from cylinder_discotope_source import CD_IDS, PINS as CD_PINS, cylinder_discotope_source_view, normalized_cd_abstract, display_cd_abstract\n'+imp)
+c=once(c,'TEX_PATHS={',"TEX_PATHS={\n '23181280':'published-source/source_preparation/root_dependent_spanning_trees.tex',\n '23442760':'published-source/manuscript/main.tex',\n '23395703':'seven_plane_gin.tex',")
+c=once(c,'def abstract_tokens(tex,record_id=None):','def abstract_tokens(tex,record_id=None):\n if record_id in SG_IDS:return wt(normalize_sg_abstract(record_id,tex))')
+c=once(c,"if rid=='23203100' else art['version']==c['version']","if rid in ('23203100','23395703') else art['version']==c['version']")
+c=once(c,"  test(sec,paras==expected)","  if rid in SG_IDS:expected=[display_sg_text(rid,x) for x in expected]\n  test(sec,paras==expected)")
+c=once(c," if rid in CD_IDS:\n  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=cylinder_discotope_source_view(p,c,gate)"," if rid in SG_IDS:\n  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=spanning_sos_gin_source_view(p,c,gate);receipt_file=p/c['source_binding']['source_receipt_path']\n elif rid in CD_IDS:\n  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=cylinder_discotope_source_view(p,c,gate)")
+bibline=next(x for x in c.splitlines() if x.startswith(' bib=(f.parent'))
+first,check=bibline.split(';test(',1)
+c=once(c,bibline,first+"\n if rid in SG_IDS:test('bibtex',bib==c['prepared_bibtex'])\n else:test("+check)
+c=c.replace('or rid in CD_IDS else','or rid in CD_IDS or rid in SG_IDS else')
+c=once(c," if rid in CD_IDS:record_file=p/'sources/zenodo-record.raw.json'"," if rid in SG_IDS:record_file=p/c['source_binding']['raw_record_path']\n elif rid in CD_IDS:record_file=p/'sources/zenodo-record.raw.json'")
+c=once(c,"rid in ('21699161','23203334','23203100')","rid in ('21699161','23203334','23203100','23395703')")
+c=once(c,'and rid not in CD_IDS:\n  materials=','and rid not in CD_IDS and rid not in SG_IDS:\n  materials=')
+c=once(c," result['papers'][rid]=",(O/'new-record-checks.block.txt').read_text()+" result['papers'][rid]=")
+for n,s in [('render_page.proposed.py',r),('final-content-check.proposed.py',c)]:ast.parse(s);(O/n).write_text(s)
+rs=once(r,'ROOT = Path(__file__).resolve().parents[1]','ROOT = Path('+repr(str(P))+')');rs=once(rs,"SITE = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public/research')",'SITE = Path('+repr(str(O/'public/research'))+')')
+cs=once(c,'R=Path(__file__).resolve().parents[1]','R=Path('+repr(str(P))+')')
+for n,s in [('render_page.stage.py',rs),('final-content-check.stage.py',cs)]:ast.parse(s);(O/n).write_text(s)
+for a,b,n in [(r0,r,'shared-renderer'),(c0,c,'shared-checker'),(r,rs,'renderer-private-overrides'),(c,cs,'checker-private-overrides')]:
+    (O/(n+'.diff')).write_text(''.join(difflib.unified_diff(a.splitlines(True),b.splitlines(True),fromfile='current' if n.startswith('shared') else 'proposed',tofile='proposed' if n.startswith('shared') else 'private-only')))
+(O/'new-helper.diff').write_text(''.join(difflib.unified_diff([], (O/'spanning_sos_gin_source.py').read_text().splitlines(True),fromfile='/dev/null',tofile='scripts/spanning_sos_gin_source.py')))
+print(json.dumps({'status':'PROPOSED_ONLY','new_IDs':['23181280','23442760','23395703'],'no_installed_file_written':True}))

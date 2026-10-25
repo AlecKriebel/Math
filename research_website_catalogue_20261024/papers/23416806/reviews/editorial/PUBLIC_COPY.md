@@ -1,0 +1,93 @@
+# An effective criterion for prescribed block-code extensions
+
+Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X)
+
+Manuscript and declared publication date: 16 October 2026 · Version 1.0 · Unrefereed preprint · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+## Original abstract
+
+Given an onto block self-map of a nonempty two-sided irreducible sofic shift, we give a finite, computable criterion for extending that same map from a containing shift of finite type into the original shift. This answers the specified-map question in Boyle's Problem 16.3, including its mixing case. The criterion is locally testable separation of the allowed language from a regular bad-word ideal. An irreducibility argument converts the published Place–van Rooijen–Zeitoun separator bound into a single canonical finite-type approximation test. The result covers every choice of extension radius and local-rule completion. It uses that published theorem; it does not assert a new general separation theorem, historical firstness, or a solution of the separate existence-over-all-maps and cellular-automaton stability questions.
+
+## In plain language
+
+A block code updates a symbolic sequence using a fixed finite window. This paper asks whether one specified onto update rule on an irreducible sofic shift can be extended to a larger shift described by finitely many forbidden patterns, while every output still belongs to the original shift.
+
+The answer is determined by one finite canonical approximation. The proof converts an existing theorem about locally testable languages into a test for forbidden outputs. Success supplies the extension; failure excludes every other choice of completion, radius and containing finite alphabet.
+
+The test is finite and computable, but its monoid and graph can be enormous. The result specifies a decision procedure, without claiming an efficient implementation.
+
+## The precise result
+
+Let T be a nonempty two-sided irreducible sofic shift over a finite alphabet A, and let f:T→T be a specified onto block code with memory a, anticipation b and window length ℓ=a+b+1. Choose any total completion F:A^ℤ→A^ℤ of its local rule on the ℓ-words absent from T. The extension question concerns this same specified f.
+
+Let L=Lang(T), including ε. For a finite input word w, let F_*(w) be its consecutive local-rule outputs, or ε when |w|<ℓ. Set B={w∈A*:F_*(w)∉L}. This is a regular two-sided bad-word ideal disjoint from L. Choose any finite monoid M and morphism α:A*→M recognizing both L and B; minimality of M is not required.
+
+For n≥2, define T[n] to contain exactly those two-sided A-sequences whose every length-n block belongs to Lang_n(T). Put k=4(|M|+1) and N=max{2,ℓ,4(|M|+1)}. Then T[N] is one explicitly determined shift of finite type containing T.
+
+Four statements are equivalent: (1) f extends to a block map G:S→T for some shift of finite type S⊇T; (2) a locally testable language C contains L and avoids B; (3) Lang(T[N])∩B=∅; (4) F(T[N])=T. Containment S⊇T is non-strict. A locally testable language is determined by bounded factors and bounded prefixes and suffixes.
+
+On success, the chosen completion F restricted to T[N] is an extension of f into T. On failure, no other local-rule completion, extension radius or containing finite alphabet can provide an extension. Thus choosing a different completion can change M and N, but cannot change whether an extension exists.
+
+The uniform separator bound is an explicit published input: Place–van Rooijen–Zeitoun, Theorem 4.2 (2014), states that regular languages recognized by a common finite monoid M are locally testably separable if and only if they are LT[k]-separable for k=4(|M|+1). The relevant equivalence records sets of position profiles, without multiplicities. The paper uses this theorem and does not reprove its general algebraic separation argument.
+
+Finite reachability decides condition (3). Enumerate a common transition monoid, the allowed N-words and their overlap graph, mark every vertex initial and final, and label each edge by its appended letter. Its finite-path language is exactly Lang(T[N]), including ε and short words. Product with the bad-word automaton decides emptiness by all-path accepting-state reachability, with no empirical word-length cutoff.
+
+## Why it works
+
+Any proposed extension on a larger alphabet can first be restricted to the original alphabet. Its containing shift of finite type contains every sufficiently high canonical T[n]. Write its local rule and the chosen completion on a common finite interval: they agree on allowed T-words, so agree on sufficiently high T[n]. This normalization closes the quantifier over every possible extension radius and alphabet.
+
+A finite transducer remembers the last ℓ−1 inputs and sends new output letters to an automaton for L, proving regularity of B. Padding a bad input retains its forbidden output as a factor, proving the ideal property. A forbidden output block is equivalent to a bad occurring input interval, so F(T[n])⊆T exactly when Lang(T[n])∩B=∅. Onto f turns that image inclusion into equality.
+
+Irreducibility makes the canonical overlap graph strongly connected, including periodic nonmixing cases. Its paths extend in both directions, and short allowed words have preceding contexts. Consequently Lang(T[n]) is locally testable. A successful canonical extension therefore gives a separator.
+
+For the converse, choose a word U in T containing every allowed n-word. If a bad word w occurred in T[n], overlap paths would place it in W=UcwdU. Independently, irreducibility gives V=UeU in T. For n≥k, these long words have all allowed k-factors and the same long endpoints, so every full or endpoint-truncated k-profile agrees as a set. They have length at least 2k, excluding doubly truncated profiles. A separator cannot distinguish V from W. This saturation argument combines with the published PRZ bound to give the single order N.
+
+The overlap graph and bad-word automaton are finite, so their product search terminates without restricting the length of a witness path. The proof distinguishes profile sets used for LT from profile multiplicities used for locally threshold testable languages. Finite examples support the constructions; the all-word argument and published theorem supply the universal conclusion.
+
+## Scope and limitations
+
+The theorem assumes a nonempty two-sided irreducible sofic target, a finite alphabet and a promised specified onto self-code. Irreducibility suffices; mixing is not required. Empty targets and arbitrary reducible sofic shifts are outside the claim.
+
+Onto is used only to turn F(T[n])⊆T into equality. A constant code to a fixed point can extend from a full shift while its image is only one point, so the image-equality conclusion cannot silently be applied without onto.
+
+If T is already of finite type, S=T is allowed. Conversely, an automorphism is extendible in the stated sense only if T is of finite type: its completed inverse forces T=T[n] once an approximation succeeds. For the mixing non-SFT even shift, every n admits an odd-gap periodic sequence (01^m)^∞ with odd m and m+2>n in T[n] but outside T; its identity therefore has no extension. Periodic irreducible targets and unused alphabet letters are compatible with the theorem.
+
+The result addresses Boyle's specified-map Problem 16.3. It does not select a suitable map as in the separate existence-over-all-maps Problem 16.2, solve Dykstra's broader reducible-sofic homomorphism problem, classify stable cellular-automaton limit sets or extend to higher dimensions.
+
+The decision procedure can involve an enormous monoid and graph. No practical complexity improvement or implemented arbitrary-input solver is claimed. Example programs and finite word tests do not replace unrestricted finite reachability or prove the imported general separation theorem.
+
+Prior machinery is substantial: PRZ supplies the general separator theorem and exact bound; Ballier uses canonical-approximation normalization and develops closing, continuing and cover-based criteria; Dykstra and Barth–Dykstra supply earlier steadiness context. Historical first priority, originality, independent discovery and current worldwide open status are not certified. Possible overlap in the unread final Barth–Dykstra and Ballier journal bodies remains unexcluded; the actual Dykstra thesis and Ballier's version 1 author manuscript are distinct sources.
+
+## Background and prior work
+
+[T. Place, L. van Rooijen and M. Zeitoun, On Separation by Locally Testable and Locally Threshold Testable Languages, LMCS 10(3:24) (2014), 1–28](https://doi.org/10.2168/LMCS-10(3:24)2014) Theorem 4.2 supplies the indispensable common-monoid bound k=4(|M|+1), with the position-profile conventions of Sections 2–4. It is published prior mathematics explicitly imported here.
+
+[M. Boyle, Open Problems in Symbolic Dynamics, Contemporary Mathematics 469 (2008), 69–118](https://doi.org/10.1090/conm/469/09161) Section 16, Problem 16.3 asks about a specified onto mixing-sofic self-map, separately from Problem 16.2. The criterion retains the specified map and permits irreducible targets.
+
+[A. Dykstra, Two Equivalence Relations in Symbolic Dynamics, Ph.D. thesis, University of Maryland (2007)](https://drum.lib.umd.edu/items/66faa056-fc9f-4423-a340-1311e1a4ed6b) Section 3.6, printed pages 46–48, gives earlier steadiness terminology and the broader Problem 3.6.8. The present self-map/irreducible theorem does not settle that unrestricted problem.
+
+[J. Barth and A. Dykstra, Weak equivalence for shifts of finite type, Indagationes Mathematicae 18(4) (2007), 495–506](https://doi.org/10.1016/S0019-3577(07)80058-9) Earlier terminology is credited through Ballier. The journal body is an explicit remaining source-access limit, distinct from Dykstra's thesis.
+
+[A. Ballier, Limit sets of stable cellular automata, ETDS 35(3) (2015), 673–690; online 2013](https://doi.org/10.1017/etds.2013.72) Lemma 2.1 supplies prior canonical-approximation normalization; Sections 2–4 give substantial closing/continuing and cover-based results with their stated additional hypotheses.
+
+[Ballier, arXiv:1301.3790v1](https://arxiv.org/abs/1301.3790v1) Versioned author manuscript for the stated predecessor interfaces, kept distinct from the unread final journal body.
+
+## Research status
+
+Unrefereed preprint, version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.
+
+AI tools were used extensively in development, literature work, writing, computation, reproduction and internal adversarial checking. This is an unrefereed preprint without external human peer review or formal proof-assistant certification. The named author is responsible for the work. Finite controls supplement the written proof and do not certify the imported theorem or historical priority.
+
+## Contributions
+
+Substantive proof checks, counterexamples and precise comparisons with prior work are welcome. Authorship and acknowledgments would reflect actual research contributions and mutual agreement. Citations credit prior work and imply no participation or endorsement.
+
+## Read the paper
+
+Read the complete 4-page deposited paper in the on-page PDF reader.
+
+[Open the original PDF](https://zenodo.org/api/records/23416806/files/paper.pdf/content) · [Download the original complete ZIP](https://zenodo.org/api/records/23416806/files/source-and-verification.zip/content) · [Selected Zenodo edition](https://zenodo.org/records/23416806)
+
+## Cite this paper
+
+Alec Kriebel. (2026). An effective criterion for prescribed block-code extensions (Version 1.0) [Preprint]. Zenodo. [DOI 10.5281/zenodo.23416806](https://doi.org/10.5281/zenodo.23416806).
