@@ -1,0 +1,1928 @@
+                                                No-Gap Second-Order Conditions via a
+                                                  Directional Curvature Functional∗
+                                                         Constantin Christof†                Gerd Wachsmuth‡
+
+                                                                             September 2, 2022
+
+
+
+
+arXiv:1707.07579v1 [math.OC] 24 Jul 2017
+                                                    This paper is concerned with necessary and sufficient second-order condi-
+                                                 tions for finite-dimensional and infinite-dimensional constrained optimization
+                                                 problems. Using a suitably defined directional curvature functional for the
+                                                 admissible set, we derive no-gap second-order optimality conditions in an
+                                                 abstract functional analytic setting. Our theory not only covers those cases
+                                                 where the classical assumptions of polyhedricity or second-order regularity
+                                                 are satisfied but also allows to study problems in the absence of these require-
+                                                 ments. As a tangible example, we consider no-gap second-order conditions
+                                                 for bang-bang optimal control problems.
+
+                                           Keywords: second-order condition, bang-bang control, polyhedricity, second-order reg-
+                                           ularity, no-gap optimality condition
+                                           MSC: 49J53, 49K20, 49K27, 49K30
+
+
+                                           1 Introduction
+                                           The aim of this paper is to develop a theoretical framework for necessary and sufficient
+                                           second-order optimality conditions (henceforth referred to as SNC and SSC, respec-
+                                           tively). The main feature of our approach is that we use a suitably defined “directional”
+                                           curvature functional to take into account the influence of the admissible set. Our defini-
+                                           tion of curvature allows us to derive no-gap second-order conditions that provide more
+                                           flexibility than classical results. In particular, our approach makes it possible to exploit
+                                           additional information about the gradient of the objective functional. Such information
+                                            ∗
+                                              This research was supported by the German Research Foundation (DFG) under grant numbers ME
+                                               3281/7-1 and WA 3636/4-1 within the priority program “Non-smooth and Complementarity-based
+                                               Distributed Parameter Systems: Simulation and Hierarchical Optimization” (SPP 1962).
+                                            †
+                                              Technische Universität Dortmund, Faculty of Mathematics, LS X, 44227 Dortmund, Germany
+                                            ‡
+                                              Technische Universität Chemnitz, Faculty of Mathematics, Professorship Numerical Mathemat-
+                                               ics (Partial Differential Equations), 09107 Chemnitz, Germany, http://www.tu-chemnitz.de/
+                                               mathematik/part_dgl/people/wachsmuth/, gerd.wachsmuth@mathematik.tu-chemnitz.de
+
+
+
+
+                                                                                         1
+is, e.g., often available in the optimal control of partial differential equations (PDEs)
+where the gradient of the objective is typically characterized by an adjoint equation
+and, as a consequence, enjoys additional regularity properties.
+   The analysis found in this paper originated from the idea to extend the results of
+[Casas et al., 2017b]. In this paper, the authors derived an SSC for a class of bang-bang
+optimal control problems that does not fit into the classical setting of polyhedricity and
+second-order regularity, cf. [Bonnans and Shapiro, 2000]. Our results turned out to be of
+relevance for other problems as well and ultimately gave rise to the abstract framework
+of Section 4 that not only covers large parts of the classical SNC and SSC theory but
+also allows to study situations where the admissible set exhibits a singular or degenerate
+curvature behavior, cf. Section 6. We hope that with the subsequent analysis we can, on
+the one hand, offer an alternative view on well-known SNC and SSC results and, on the
+other hand, also provide some new ideas for the study of problems that do not satisfy
+the classical assumptions of polyhedricity and second-order regularity.
+   Let us give some references: There are several contributions addressing second-order
+optimality conditions for optimization problems posed in infinite-dimensional spaces.
+We mention exemplarily [Maurer and Zowe, 1979; Bonnans et al., 1999; Bonnans and
+Zidani, 1999; Bonnans and Shapiro, 2000; Casas and Tröltzsch, 2012; 2015]. No-gap
+optimality conditions in the infinite-dimensional case can be found, e.g., in [Bonnans
+and Zidani, 1999, Theorems 2.7, 2.10], [Casas and Tröltzsch, 2012, Theorems 2.2, 2.3],
+and [G. Wachsmuth, 2016, Theorem 5.7]. Note that the latter results all rely on the
+concept of polyhedricity (in contrast to our Theorem 4.5).
+   Before we begin with our analysis, we give a short overview over the contents and the
+structure of this paper:
+   In Section 2, we clarify the notation, make our assumptions precise and recall several
+definitions that are needed for our investigation.
+   In Section 3, we define the directional curvature functional that is at the heart of our
+SNC and SSC analysis. Here, we also discuss basic properties of the curvature functional
+as, e.g., positivity and lower semicontinuity, that are used in the remainder of the paper.
+   Section 4 addresses SNC and SSC for constrained optimization problems on an ab-
+stract functional analytic level. The main results of this section (and of the paper as
+a whole) are Theorems 4.3 to 4.5. These theorems illustrate the advantages of working
+with the directional curvature functional and demonstrate that our approach allows for
+a very short and elegant derivation of the second-order theory.
+   In Section 5, we demonstrate that the framework of Section 4 indeed covers the classical
+SNC and SSC theory for optimization problems with polyhedric or second-order regular
+sets. Here, we further comment on how the assumptions (NDC) and (MRC) appearing
+in our second-order conditions can be verified in practice and interpreted in the context
+of generalized Legendre forms and Tikhonov regularization. Section 5 also includes two
+tangible examples that demonstrate the usefulness of the theorems in Section 4.
+   Section 6 is devoted to problems that are covered by our analysis but do not fall under
+the scope of the classical SNC- and SSC-framework. The first example that we consider
+here is a finite-dimensional optimization problem whose admissible set exhibits a singular
+curvature behavior. In Section 6.2, we then study no-gap second-order conditions for
+
+
+
+                                            2
+bang-bang optimal control problems in the measure space M(Ω). The results obtained
+in this subsection extend those of [Casas et al., 2017b], see Theorems 6.4 and 6.12.
+   Section 7 summarizes our findings and gives some pointers to further research.
+
+
+2 Notation, Preliminaries and Basic Concepts
+Throughout this paper, we always consider the following situation.
+Assumption 2.1 (Standing Assumptions and Notation).
+  (i) X is the (topological) dual of a separable Banach space Y ,
+ (ii) ι : Y → X ? denotes the canonical embedding of Y into the dual X ? of X,
+(iii) the admissible set C is a closed, non-empty subset of X.
+   Note that, under the above assumptions, X is necessarily a Banach space with a
+weak-? sequentially compact unit ball, cf. the Banach–Alaoglu theorem. We remark
+that the overwhelming majority of our results also holds when the space Y is assumed
+to be reflexive instead of separable. We restrict our analysis to the above setting since
+it allows to study more interesting practical examples, see Section 6.2. For our analysis,
+we need the following classical concepts (cf. [Bonnans and Shapiro, 2000, Section 2.2.4]).
+Definition 2.2. Let x ∈ C be given. We define the radial cone, the strong outer tangent
+cone and the weak-? outer tangent cone to C at x, respectively, by
+             RC (x) := {h ∈ X | ∃T > 0 ∀t ∈ [0, T ], x + th ∈ C},
+                                                              xk − x
+                                                                      
+             TC (x) := h ∈ X ∃tk & 0, ∃xk ∈ C such that              →h ,
+                                                                tk
+                                                              xk − x ?
+                                                                      
+              ?
+             TC (x) := h ∈ X ∃tk & 0, ∃xk ∈ C such that              *h .
+                                                                tk
+Moreover, we define the weak-? (outer) normal cone to x by
+                    NC? (x) := {x? ∈ ι(Y ) | ∀h ∈ TC? (x) : hx? , hi ≤ 0}.
+Finally, given a ϕ ∈ −NC? (x), we define the weak-? critical cone by
+                                  ?
+                                 KC (x, ϕ) := TC? (x) ∩ ϕ⊥ .
+  We emphasize that NC? (x) is defined to be a subset of ι(Y ) and may thus be identified
+with a subset of the predual space Y . Note that all “cones” in the above are indeed
+cones in the mathematical sense, i.e., h ∈ RC (x) implies αh ∈ RC (x) for all α ≥ 0 etc.
+We point out that RC (x) ⊂ TC (x) ⊂ TC? (x). If C is convex, then [Bonnans and Shapiro,
+2000, Proposition 2.55]
+                 RC (x) = R+ (C − x),       TC (x) = cl(RC (x)) ∀x ∈ C.
+If, in addition, X is reflexive, then we have TC? (x) = TC (x) by Mazur’s lemma. We
+remark that TC? (x) is in general not closed since the weak-? topology is not sequential
+on infinite-dimensional spaces, cf. [Mehlitz and G. Wachsmuth, 2017, Example 5.9].
+
+
+
+                                              3
+3 The Directional Curvature Functional
+The basic idea of our SNC and SSC approach is to not discuss the curvature properties
+of the admissible set C separately, i.e., independently of the optimization problem at
+hand, but to develop a second-order analysis that takes into account the gradient of the
+objective. To accomplish the latter, we introduce the directional curvature functional.
+Definition 3.1. Let x ∈ C and ϕ ∈ −NC? (x) be given. The weak-? directional curvature
+functional Qx,ϕ  ?
+            C : KC (x, ϕ) → [−∞, ∞] associated with the triple (x, ϕ, C) is defined by
+                                                                                         
+                                                                                ?
+                   
+                                      {rk } ⊂ X, {tk } ⊂ R+ : tk & 0, tk rk * 0,    
+                                                                                     
+   Qx,ϕ
+    C (h) := inf lim inf hϕ, rk i                                          1           .        (1)
+                    k→∞
+                                                              x + tk h + t2k rk ∈ C 
+                                                                                     
+                                                                           2
+   Note that Qx,ϕC (·) is precisely that function whose epigraph coincides with the weak-?
+limes superior (in the sense of Kuratowski) of the epigraphs of the second-order difference
+quotients associated with the characteristic function of the set C, the point x, and the
+element ϕ ∈ −NC? (x), cf. [Do, 1992, Sections 1, 4]. The functional Qx,ϕ        C (·) may thus be
+identified with a second-order weak-? lower epiderivative.
+   Definition 3.1 can be motivated as follows: Consider an optimization problem of the
+form min J(x) := hϕ, xi s.t. x ∈ C, where ϕ satisfies ϕ ∈ −NC? (x̄) for some x̄ ∈ C, i.e.,
+hϕ, hi ≥ 0 for all h ∈ TC? (x̄). Then x̄ is a critical point and we have to study perturbations
+into the critical directions h ∈ KC ? (x̄, ϕ) to decide whether x̄ is a local minimizer or not.
+
+If we fix a critical direction h ∈ KC? (x̄, ϕ), then the definition of T ? (x̄) yields the existence
+                                                                        C
+                                                             ?
+of sequences {rk } ⊂ X, {tk } ⊂ R with tk & 0, tk rk * 0 and xk := x̄+tk h+ 21 t2k rk ∈ C,
+                                    +
+
+and we may calculate that J(xk ) − J(x̄) = 12 t2k hϕ, rk i. This identity suggests that the
+limiting behavior of the dual pairing hϕ, rk i between the gradient ϕ of the objective J
+and the second-order correction rk is a decisive factor in the study of the optimality of
+the critical point x̄. Since the directional curvature functional Qx̄,ϕ  C (·) allows to estimate
+the limes inferior of precisely that quantity for all possible sequences {rk } and {tk }, it is
+only natural to consider it an adequate tool for the derivation of optimality conditions.
+Note that, instead of looking at the accumulation points of the corrections rk , which
+is the idea of second-order tangent sets, cf. Definition 5.2, we only study accumulation
+points of the scalar sequences hϕ, rk i when working with the functional Qx̄,ϕ         C (·). Thus,
+it is possible to obtain information even when the second-order corrections rk diverge
+or cannot be analyzed properly. Before turning our attention to SNC and SSC, in
+what follows, we first state some preliminary results on the properties of the directional
+curvature functional that are needed for our investigation.
+Lemma 3.2. Let x ∈ C be given. Then the following assertions hold.
+                                 ? (x, ϕ) and α > 0, we have Qx,ϕ (αh) = α2 Qx,ϕ (h).
+  (i) For all ϕ ∈ −NC? (x), h ∈ KC                            C              C
+
+ (ii) If C is convex, then Qx,ϕ                     ?              ?
+                            C (h) ≥ 0 for all ϕ ∈ −NC (x) and h ∈ KC (x, ϕ).
+
+Proof. Assertion (i) can be checked by a simple scaling argument. To prove (ii), suppose
+                           ? (x, ϕ) and ϕ ∈ −N ? (x) be arbitrary but fixed, and let {r },
+that C is convex, let h ∈ KC                   C                                       k
+
+
+
+
+                                                 4
+{tk } be sequences as in the definition of Qx,ϕ                   2                  ?
+                                            C (h). Then it holds tk h+rk ∈ RC (x) ⊂ TC (x)
+due to the convexity of C and, consequently, hϕ, rk i = ϕ, t2k h + rk ≥ 0. Taking the
+limes inferior for k → ∞ and the infimum over all {rk }, {tk } now yields the claim.
+
+  In addition to Lemma 3.2, we have the following weak-? lower semicontinuity result.
+
+Lemma 3.3. Let x ∈ C and ϕ ∈ −NC? (x) be given. Let {hn } ⊂ KC  ? (x, ϕ) be a sequence
+              ?
+such that hn * h holds for some h ∈ X and such that there exist sequences {rn,k } ⊂ X
+and {tn,k } ⊂ R+ and a constant M > 0 with
+                                 ?
+      tn,k & 0,         tn,k rn,k * 0,   hϕ, rn,k i → Qx,ϕ
+                                                       C (hn )    for all n as k → ∞ and
+                                                       1
+              ktn,k rn,k kX ≤ M,         x + tn,k hn + t2n,k rn,k ∈ C for all n, k.
+                                                       2
+                                            ? (x, ϕ) and it holds
+Then, h is an element of the critical cone KC
+
+                                     Qx,ϕ              x,ϕ
+                                      C (h) ≤ lim inf QC (hn ).                                           (2)
+                                                 n→∞
+
+Proof. Consider a countable dense subset {yi } of Y and choose a sequence kn such that
+              1                                  1                                       1
+    tn,kn ≤     ,   hϕ, rn,kn i ≤ Qx,ϕ
+                                   C (hn ) +             and   |hyi , tn,kn rn,kn i| ≤       ∀i ≤ n       (3)
+              n                                  n                                       n
+holds for all n ∈ N. Then, our assumptions on rn,k imply ktn,kn rn,kn kX ≤ M , and we
+may deduce from (3) that the sequences tn := tn,kn and rn := rn,kn + t2n (hn − h) satisfy
+
+                    ?                      1 2
+ tn & 0,   tn rn * 0,         x + tn h +    t rn ∈ C       and    lim inf hϕ, rn i ≤ lim inf Qx,ϕ
+                                                                                              C (hn ).
+                                           2 n                      n→∞                  n→∞
+
+The above yields h ∈ TC? (x) and, since we trivially have h ∈ ϕ⊥ , h ∈ KC
+                                                                        ? (x, ϕ). Moreover,
+
+we obtain (2) from the definition of Qx,ϕ
+                                        C (h). This proves the claim.
+                                                                             ? (x, ϕ) we
+   We point out that Lemma 3.3 is in particular applicable if for every h ∈ KC
+can find sequences {rk } ⊂ X and {tk } ⊂ R+ that realize the infimum in (1) with strong
+convergence tk rk → 0. Since sets C with the latter property prove to be useful also in
+different contexts, we introduce the following concept.
+
+Definition 3.4 (Mosco Regularity Condition (MRC)). We say that C is Mosco regular
+in (x, ϕ) ∈ C × −NC? (x) if
+            ?
+     ∀h ∈ KC  (x, ϕ) ∃{rk } ⊂ X, {tk } ⊂ R+ :
+                                          1                                                           (MRC)
+         tk & 0, tk rk → 0, x + tk h + t2k rk ∈ C, Qx,ϕ      lim hϕ, rk i .
+                                                    C (h) = k→∞
+                                          2
+Remark 3.5. It is easy to see that (MRC) holds in (x, ϕ) ∈ C × −NC? (x) if and only if
+
+                                            {rk } ⊂ X, {tk } ⊂ R+ : tk & 0, tk rk → 0,
+                                                                                                     
+                                                                                         
+     Qx,ϕ
+      C (h) = inf lim inf hϕ, rk i                                              1
+                         k→∞                                       x + tk h + t2k rk ∈ C 
+                                                                                2
+
+
+                                                     5
+for all h ∈ KC? (x, ϕ), i.e., if and only if the functional Qx,ϕ (·) remains unchanged when
+                                                             C
+we replace the weak-? convergence of tk rk with strong convergence. In the context of
+Kuratowski limits, the latter means that the weak-? limes superior and the strong limes
+superior of the epigraphs of the second-order difference quotients associated with the
+characteristic function of the set C, the point x, and the element ϕ ∈ −NC? (x) coincide.
+We again refer to [Do, 1992] for details.
+  We will see in the following section that the condition (MRC) is also of significance
+for the study of second-order optimality conditions as it allows to weaken the regularity
+assumptions on the objective needed for the derivation of SNC. Note that (MRC) is
+always satisfied when X is finite-dimensional. Further conditions ensuring (MRC) can
+be found in Lemmas 5.3 and 5.7.
+
+
+4 Necessary and Sufficient Second-Order Conditions
+Having introduced the directional curvature functional Qx,ϕ
+                                                        C (·), we now turn our atten-
+tion to SNC and SSC for minimization problems of the form
+                           Minimize J(x), such that x ∈ C.                                      (P)
+In the remainder of this paper, when discussing optimality conditions for a problem of
+the type (P), we always require that (in addition to our standing Assumption 2.1) the
+following assumption holds.
+Assumption 4.1.
+  (i) x̄ is a fixed element of the set C (the minimizer/candidate for a minimizer),
+ (ii) J : C → R is a function such that there exist a J 0 (x̄) ∈ ι(Y ) and a bounded bilinear
+      J 00 (x̄) : X × X → R with
+                        J(x̄ + tk hk ) − J(x̄) − tk J 0 (x̄) hk − 21 t2k J 00 (x̄) h2k
+                     lim                                                               =0       (4)
+                    k→∞                           t2k
+                                                                   ?
+      for all {hk } ⊂ X, {tk } ⊂ R+ satisfying tk & 0, hk * h ∈ X and x̄ + tk hk ∈ C.
+  Note that we use the abbreviations J 0 (x̄) h := hJ 0 (x̄), hi and J 00 (x̄) h2 := J 00 (x̄)(h, h)
+for all h ∈ X in (4), and that (4) is automatically satisfied if J admits a second-order
+Taylor expansion of the form
+                                       1 00
+           J(x̄ + h) − J(x̄) − J 0 (x̄) h −
+                                         J (x̄) h2 = o(khk2X ) as khkX → 0.                     (5)
+                                       2
+We begin our investigation by stating necessary conditions of first order.
+Theorem 4.2 (First-Order Necessary Condition). Suppose that x̄ is a local minimizer
+of (P), i.e., assume that there is an ε > 0 with
+                              J(x) ≥ J(x̄)        ∀x ∈ C ∩ BεX (x̄),
+where BεX (x̄) denotes the closed ball of radius ε in X around x̄. Then, J 0 (x̄) ∈ −NC? (x̄).
+
+
+
+                                                  6
+Proof. Let h ∈ TC? (x̄) be given. By definition, there are sequences {xk } ⊂ C, {tk } ⊂ R+
+                                ?
+with tk & 0 and (xk − x̄)/tk * h. We set hk := (xk − x̄)/tk . Then for large enough k,
+we have (due to (4) and the boundedness of weakly-? convergent sequences)
+             J(xk ) − J(x̄)   J(x̄ + tk hk ) − J(x̄)
+        0≤                  =                        = J 0 (x̄) hk + O(tk ) → J 0 (x̄) h.
+                   tk                   tk
+The above and our assumption J 0 (x̄) ∈ ι(Y ) yield J 0 (x̄) ∈ −NC? (x̄) as claimed.
+
+  Using Theorem 4.2, we can provide second-order optimality conditions for (P).
+Theorem 4.3 (SNC Involving the Directional Curvature Functional). Suppose that x̄
+is a local minimizer of (P) such that
+                                               c
+                      J(x) ≥ J(x̄) +             kx − x̄k2X                  ∀x ∈ C ∩ BεX (x̄)                                   (6)
+                                               2
+holds for some c ≥ 0 and some ε > 0. Assume further that one of the following conditions
+is satisfied.
+  (i) The map h 7→ J 00 (x̄) h2 is weak-? upper semicontinuous.
+ (ii) The admissible set C satisfies (MRC) in (x̄, J 0 (x̄)) ∈ C × −NC? (x̄).
+Then
+                     x̄,J 0 (x̄)
+                    QC             (h) + J 00 (x̄) h2 ≥ c khk2X                    ?
+                                                                             ∀h ∈ KC (x̄, J 0 (x̄)).                             (7)
+                                                                                                         x̄,J 0 (x̄)
+Proof. We first consider the case with (i): From the definition of QC        (·), it follows
+that for every h ∈ KC? (x̄, J 0 (x̄)) and every δ > 0 we can find sequences {r } ⊂ X and
+                                                                              k
+                                        ?
+{tk } ⊂ R+ such that tk & 0, tk rk * 0, xk := x̄ + tk h + 21 t2k rk ∈ C and
+                                                                     x̄,J 0 (x̄)
+                                      lim hJ 0 (x̄), rk i ≤ QC                     (h) + δ.                                      (8)
+                                      k→∞
+
+Since xk → x̄ strongly in X, (6) entails J(xk ) ≥ J(x̄) + 2c kxk − x̄k2X for large enough
+k. Hence, we may use (4), J 0 (x̄)h = 0 and the weak-? lower semicontinuity of the norm
+k · kX to obtain
+                                                                                                                    2
+                 J(xk ) − J(x̄) − tk J 0 (x̄) h + 21 tk rk − 21 t2k J 00 (x̄) h + 12 tk rk
+       0 = lim
+           k→∞                                                     t2k
+                                                                                                                         2
+                    c 2       1        2       0                         1
+                                                                                        − 21 t2k J 00 (x̄) h + 12 tk rk
+                    2 tk kh + 2 tk rk kX − tk J (x̄)                     2 tk rk                                                 (9)
+        ≥ lim sup
+             k→∞                                                          t2k
+         c       1                         1                             2 
+        ≥ khk2X − lim inf hJ 0 (x̄), rk i − lim sup J 00 (x̄) h + 12 tk rk .
+         2       2 k→∞                     2 k→∞
+From (8), (9) and the weak-? upper semicontinuity of h 7→ J 00 (x̄) h2 , it follows
+                                                 x̄,J 0 (x̄)
+                                    ckhk2X ≤ QC                (h) + δ + J 00 (x̄) h2 .
+Passing to the limit δ & 0 in this inequality yields the claim in the first case.
+
+
+
+                                                               7
+  It remains to prove (7) under assumption (ii). To this end, we note that, if (MRC)
+holds in (x̄, J 0 (x̄)) ∈ C × −NC? (x̄), then for every h ∈ KC
+                                                             ? (x̄, J 0 (x̄)) we can find sequences
+
+{rk } ⊂ X, {tk } ⊂ R such that tk & 0, tk rk → 0, xk := x̄ + tk h + 12 t2k rk ∈ C and
+                         +
+
+                                                                 x̄,J 0 (x̄)
+                                          lim hJ 0 (x̄), rk i = QC             (h).
+                                          k→∞
+
+Now, the second-order condition (7) follows analogously to case (i).
+
+Theorem 4.4 (SSC Involving the Directional Curvature Functional). Assume that the
+map h 7→ J 00 (x̄) h2 is weak-? lower semicontinuous, that J 0 (x̄) ∈ −NC? (x̄) and that
+                       x̄,J 0 (x̄)
+                     QC              (h) + J 00 (x̄) h2 > 0         ?
+                                                              ∀h ∈ KC (x̄, J 0 (x̄)) \ {0}.               (10)
+Suppose further that
+                                                                                      ?
+         for all {hk } ⊂ X, {tk } ⊂ R+ with x̄ + tk hk ∈ C, hk * 0, tk & 0
+         and khk kX = 1, it is true that
+                                                                                                     (NDC)
+                                                              1
+                                 lim inf hJ 0 (x̄), hk /tk i + J 00 (x̄) h2k > 0.
+                                                                            
+                                  k→∞                         2
+Then x̄ satisfies the growth condition (6) with some constants c > 0 and ε > 0.
+Proof. We argue by contradiction. Assume that there are no c > 0, ε > 0 such that (6)
+holds. Then there are sequences {xk } ⊂ C and {ck } ⊂ R+ such that
+                                                            ck
+          ck & 0, kxk − x̄kX → 0, and J(xk ) < J(x̄) +         kxk − x̄k2X .
+                                                            2
+Define tk := kxk − x̄kX and hk := (xk − x̄)/tk . Then khk kX = 1 for all k and we may
+                                                    ?
+extract a subsequence (not relabeled) such that hk * h ∈ TC? (x̄). From (4), it follows
+           J(x̄ + tk hk ) − J(x̄) − tk J 0 (x̄) hk − 21 t2k J 00 (x̄) h2k
+  0 = lim
+       k→∞                           t2k
+              ck            2            0              1 2 00       2
+               2 kxk − x̄kX − tk J (x̄) hk − 2 tk J (x̄) hk
+    ≤ lim inf                              2
+       k→∞                               tk
+                                                                                                          (11)
+              −J 0 (x̄) hk − 21 tk J 00 (x̄) h2k
+    = lim inf
+       k→∞                  tk
+                    0
+                 J (x̄) hk                  1
+                                              tk J 00 (x̄) h2k             J 0 (x̄) hk  1
+    ≤ − lim sup             − lim inf 2                        ≤ − lim sup             − J 00 (x̄) h2 .
+          k→∞         tk         k→∞              tk                 k→∞        tk      2
+Hence, lim supk→∞ J 0 (x̄) hk ≤ 0. Together with J 0 (x̄) ∈ −NC? (x̄) we find J 0 (x̄) h = 0.
+Using h ∈ TC? (x̄), this yields h ∈ KC ? (x̄, J 0 (x̄)). Setting r := 2 (h − h)/t and using
+                                                                  k       k      k
+       0
+(11), J (x̄) h = 0 and Definition 3.1, we obtain
+                              J 0 (x̄) hk                                                     x̄,J 0 (x̄)
+J 00 (x̄) h2 ≤ −2 lim sup                 = − lim sup J 0 (x̄) rk ≤ − lim inf J 0 (x̄) rk ≤ −QC           (h).
+                    k→∞            tk           k→∞                    k→∞
+
+From (10), we may now deduce that h is zero. This is a contradiction with (NDC), see
+the properties of the sequences {hk }, {tk } and (11).
+
+
+
+                                                          8
+  The acronym (NDC) stands for “non-degeneracy condition”. Comments on (NDC)
+are provided in Section 5.1. By combining the previous two theorems, we arrive at our
+main theorem on no-gap second-order conditions.
+Theorem 4.5 (No-Gap Second-Order Optimality Condition). Assume that the map
+h 7→ J 00 (x̄) h2 is weak-? lower semicontinuous, that J 0 (x̄) ∈ −NC? (x̄), that (NDC) holds,
+and that one of the conditions (i) and (ii) in Theorem 4.3 is satisfied. Then, the condition
+                      x̄,J 0 (x̄)
+                    QC              (h) + J 00 (x̄) h2 > 0         ?
+                                                             ∀h ∈ KC (x̄, J 0 (x̄)) \ {0}
+is equivalent to the quadratic growth condition (6) with constants c > 0 and ε > 0.
+  Some remarks regarding Theorems 4.3 to 4.5 are in order.
+Remark 4.6.
+  (i) Note that Theorem 4.3 yields that there are two ways to obtain the second-order
+      necessary condition (7) in the situation of Assumption 4.1: We can assume either
+      that the second derivative of J at x̄ has additional (semi)continuity properties (this
+      is case (i)) or that the set C is sufficiently well-behaved at x̄ (this is case (ii)). The
+      observation that one has the choice to impose additional assumptions either on the
+      appearing sets or the appearing functions can be made frequently when working
+      with the directional curvature functional.
+ (ii) We point out that the regularity condition (MRC) is not helpful in the derivation
+      of the SSC in Theorem 4.4. At the heart of the proof of Theorem 4.4 is, after all,
+      the contradiction argument which only provides a weak-? convergent subsequence.
+(iii) It is easy to see that the differentiability assumptions on J in Assumption 4.1 can
+      be weakened when one is interested in only one of the results in Theorems 4.3
+      and 4.4. To derive the necessary condition (7) in case (ii) of Theorem 4.3, for
+      example, it suffices to assume that
+       h ∈ X, {rk } ⊂ X, {tk } ⊂ R+ , tk & 0, tk rk → 0 in X
+                J(x̄ + tk h + 12 t2k rk ) − J(x̄) − tk J 0 (x̄)(h + 21 tk rk ) − 21 t2k J 00 (x̄)h2
+                                                                                                      !
+       ⇒ max 0,                                                                                           →0
+                                                     t2k
+      holds for some bounded, linear mapping J 0 (x̄) : X → R and some bilinear form
+      J 00 (x̄) : X×X → R. We refrain from stating the minimal differentiability properties
+      in each of the Theorems 4.3 to 4.5 since this would just obscure the basic ideas of
+      our analysis.
+ (iv) We point out that it is possible to modify the proofs of Theorems 4.3 and 4.4 to
+      obtain second-order conditions in the setting of two-norms discrepancy, i.e., in the
+      situation where the objective J only satisfies a second-order Taylor expansion à la
+      (5) w.r.t. some norm k · kZ that is stronger than k · kX . We leave it to the interested
+      reader to work out this easy extension of our analysis in detail.
+ (v) In the finite-dimensional setting, results similar to Theorems 4.3 to 4.5 have been
+     obtained in [Rockafellar and Wets, 1998, Theorem 13.24].
+
+
+
+                                                         9
+5 How to Apply and Interpret the Results of Section 4 in the
+  Context of the Classical Theory
+In this section, we comment on the verification and interpretation of the conditions
+(NDC) and (MRC) appearing in our second-order conditions, see Section 5.1, Lemma 5.3,
+and Lemma 5.7. Further, we address the computation of the directional curvature func-
+tional for polyhedric and second-order regular sets, see Section 5.2. Finally, we compare
+our theorems of Section 4 with classical results. In Section 5.3, we use the observa-
+tions of Sections 5.1 and 5.2 to state two corollaries of Theorem 4.5 that reproduce (and
+slightly extend) classical results found, e.g., in [Bonnans and Shapiro, 2000] and [Casas
+and Tröltzsch, 2015]. We conclude this section with two examples that illustrate the
+usefulness of Theorems 4.3 to 4.5.
+
+5.1 Remarks on the Non-Degeneracy Condition (NDC)
+The condition (NDC) appearing in our SSC can be interpreted as a generalized Legendre
+condition, cf. [Bonnans and Shapiro, 2000, Section 3.3.2] and Lemma 5.1 (ii). In contrast
+to a classical Legendre condition, our requirement (NDC) is a condition on the interplay
+between the curvature of C in x̄ in the direction J 0 (x̄) and the properties of J 00 (x̄). In
+practice, (NDC) can be ensured, e.g., by assuming ellipticity of the second derivative
+J 00 (x̄) or by assuming that the admissible set C has “positive” curvature at x̄ (or some
+combination of the both). Some sufficient criteria can be found in the following lemma.
+Lemma 5.1. Each of the following conditions is sufficient for (NDC).
+  (i) C is a convex subset of X, J 0 (x̄) ∈ −NC? (x̄), and J 00 (x̄)h2 ≥ r > 0 for all h ∈ X
+      with khkX = 1.
+
+ (ii) C is a convex subset of X, J 0 (x̄) ∈ −NC? (x̄), and J 00 (x̄) is a Legendre form in the
+      sense that h 7→ J 00 (x̄) h2 is weak-? lower semicontinuous and
+                             ?
+                         hk * h and J 00 (x̄) h2k → J 00 (x̄) h2   ⇒   hk → h
+
+      holds for all sequences {hk } ⊂ X.
+
+(iii) There exist c, ε > 0 with J 0 (x̄) (x − x̄) ≥ 2c kx − x̄k2 for all x ∈ BεX (x̄) ∩ C and the
+      map h 7→ J 00 (x̄)h2 is weak-? lower semicontinuous.
+
+ (iv) X is finite-dimensional.
+Proof. Case (iv) is trivial. To prove (NDC) in the cases (i) to (iii), we have to show
+                                                             ?
+that for all sequences {tk }, {hk } satisfying tk & 0, hk * 0 for k → ∞ and khk kX = 1,
+x̄ + tk hk ∈ C for all k, it holds lim inf k→∞ hJ (x̄), hk /tk i + 12 J 00 (x̄) h2k > 0. Therefore,
+                                                    0
+
+we assume that sequences {tk }, {hk } with the above properties are given.
+   We first discuss the case that C is convex. For such a C, it holds hk ∈ RC (x̄) and,
+as a consequence, J 0 (x̄) hk ≥ 0, so it suffices to prove lim inf k→∞ J 00 (x̄) h2k > 0 to obtain
+the claim. The latter is trivially true under assumption (i). Similarly, in case (ii), we
+
+
+
+                                                 10
+have lim inf k→∞ J 00 (x̄) h2k ≥ 0 by lower semicontinuity. Moreover, if we had J 00 (x̄) h2k → 0
+(along a subsequence), we would obtain the contradiction hk → 0 (along a subsequence).
+Hence, lim inf k→∞ J 00 (x̄) h2k > 0 and (NDC) is proved for (ii).
+  In case (iii), we have
+                                                                 c −2             c
+                   hJ 0 (x̄), hk /tk i = t−2  0
+                                          k hJ (x̄), tk hk i ≥     tk ktk hk k2 =
+                                                                 2                2
+for k large enough. Together with lim inf k→∞ J 00 (x̄)  h2k ≥ 0, the above yields the desired
+                         0                 1 00      2
+                                                       
+inequality lim inf k→∞ hJ (x̄), hk /tk i + 2 J (x̄) hk > 0. This completes the proof.
+
+  Note that in case (iii) of Lemma 5.1, the second derivative J 00 (x̄) is allowed to be
+negative definite. This effect occurs whenever the curvature of the set C at x̄ is such
+that it can compensate for negative curvature of the objective J. In Section 6.2, we will
+see an example, where the latter actually happens. We further point out that, under the
+assumptions of Lemma 5.1 (iii), the directional curvature functional is coercive in the
+sense that
+                        x̄,J 0 (x̄)
+                      QC            (h) ≥ c khk2X       ?
+                                                  ∀h ∈ KC (x̄, J 0 (x̄)),           (12)
+                                                             ? (x̄, J 0 (x̄)), t & 0,
+where c is the constant in Lemma 5.1 (iii). Indeed, for h ∈ KC                  k
+      ?
+tk rk * 0 and xk := x̄ + tk h + 21 t2k rk ∈ C, we have
+
+                                                 xk − x̄
+        lim inf J 0 (x̄) rk = lim inf J 0 (x̄)    1 2
+                                                  2 tk
+         k→∞                   k→∞
+
+                                         kxk − x̄k2X                 1
+                           ≥ lim inf c               = lim inf c kh + tk rk k2X ≥ c khk2X .
+                               k→∞           t2k        k→∞          2
+
+The above gives a lower estimate for the directional curvature functional that is often
+also interesting for its own sake. We will get back to this topic in Section 6.2.
+
+5.2 Directional Curvature, Polyhedricity and Second-Order Regularity
+In this section, we discuss how the notion of directional curvature is related to the classi-
+cal concepts of polyhedricity and second-order regularity, and how these properties can
+be used to calculate the functional Qx,ϕ                                        ?
+                                      C (·) for a given tuple (x, ϕ) ∈ C × −NC (x). Recall
+the following definitions, cf. [Bonnans and Shapiro, 2000, Section 3.2.1, Definitions 3.51,
+3.85], [Mignot, 1976], and [G. Wachsmuth, 2016, Lemma 4.1].
+
+Definition 5.2 (Polyhedricity and Second-Order Regularity).
+
+  (i) The set C is said to be polyhedric at x ∈ C if C is convex and
+
+                               TC (x) ∩ ϕ⊥ = cl RC (x) ∩ ϕ⊥            ∀ϕ ∈ X ? .
+                                                                   
+
+
+ (ii) The strong (outer) second-order tangent set to a tuple (x, h) ∈ C × TC (x) is given
+      by                   n                                                    o
+              TC2 (x, h) := r ∈ X ∃tn & 0, dist x + tn h + 12 t2n r, C = o(t2n ) .
+                                                                      
+
+
+
+
+                                                      11
+(iii) The set C is called (outer) second-order regular at x ∈ C if for all h ∈ TC (x) and
+      all xn ∈ C of the form xn := x + tn h + 12 t2n rn with tn & 0 and tn rn → 0 it holds
+                                                                
+                                     lim dist rn , TC2 (x, h) = 0.
+                                    n→∞
+
+  First, we show that the boundary of polyhedric sets is not curved.
+Lemma 5.3 (Curvature of Polyhedric Sets). Assume that X is reflexive and that C is
+polyhedric at x ∈ C. Then (MRC) is satisfied in (x, ϕ) for all ϕ ∈ −NC? (x) and
+                              Qx,ϕ
+                               C (h) = 0
+                                                             ?
+                                                       ∀h ∈ KC (x, ϕ).
+Proof. From the reflexivity, Mazur’s lemma and the convexity and closedness of C, it
+                                         ? (x, ϕ) = T (x) ∩ ϕ⊥ for every ϕ ∈ −N ? (x).
+follows TC? (x) = TC (x). Consequently, KC            C                          C
+                     ⊥
+For h ∈ RC (x) ∩ ϕ the choice tk = 1/k, k ∈ N sufficiently large, and rk = 0 shows
+Qx,ϕ                                                    ?                  ⊥
+  C (h) = 0, see also Lemma 3.2 (ii). Now, let h ∈ KC (x, ϕ) = TC (x) ∩ ϕ be given.
+Owing to the polyhedricity of C at x, there exists a sequence {hk } ⊂ RC (x) ∩ ϕ⊥ with
+hk → h in X. Now, we can apply Lemma 3.2 (ii) and Lemma 3.3 (with M = 0) to
+obtain
+                           0 ≤ Qx,ϕ               x,ϕ
+                                C (h) ≤ lim inf QC (hk ) = 0.
+                                                   k→∞
+The recovery sequence in (MRC) can be constructed straightforwardly from {hk }.
+
+  Lemma 5.3 shows that, for a polyhedric set C, the directional curvature functional is
+always identical zero. This is, of course, exactly what one would expect (cf. also with
+[Do, 1992, Example 2.10] in this context). The situation is different when C possesses
+curvature in the sense of second-order regularity – a concept that is promoted and
+extensively used in [Bonnans and Shapiro, 2000]. The curvature of second-order regular
+sets is addressed in the next lemma.
+Lemma 5.4 (Curvature of Second-Order Regular Sets). Assume that C is outer second-
+order regular at x ∈ C, that ϕ ∈ −NC? (x), and that (MRC) is satisfied in (x, ϕ). Then
+                       Qx,ϕ
+                        C (h) =        inf        hϕ, ri           ?
+                                                             ∀h ∈ KC (x, ϕ).
+                                    r∈TC2 (x,h)
+
+Proof. Let h ∈ KC  ? (x, ϕ) be given. Then (MRC) yields that we can find sequences
+
+{rk } ⊂ X, {tk } ⊂ R+ such that tk & 0, tk rk → 0, x + tk h + 12 t2k rk ∈ C and
+                                    Qx,ϕ
+                                     C (h) = lim hϕ, rk i .
+                                                    k→∞
+
+Note that the above implies in particular that h ∈ TC (x). From the outer second-order
+regularity of C in x, we now obtain
+                                                            
+                                 lim dist rk , TC2 (x, h) = 0,
+                                 k→∞
+
+i.e., there exists a sequence {r̃k } ⊂ TC2 (x, h) with
+                  Qx,ϕ
+                   C (h) = lim hϕ, rk i = lim hϕ, r̃k i ≥               inf        hϕ, ri .   (13)
+                              k→∞                 k→∞                r∈TC2 (x,h)
+
+
+
+
+                                                    12
+  If, on the other hand, r ∈ TC2 (x, h) is arbitrary but fixed, then we know that there are
+sequences {tk } ⊂ R+ , {sk } ⊂ X with
+                                             1
+                       tk & 0,     x + tk h + t2k (r + sk ) ∈ C,            sk → 0,
+                                             2
+and we obtain from the definition of Qx,ϕ
+                                      C (h) that
+
+                                     {rk } ⊂ X, {tk } ⊂ R+ : tk & 0, tk rk → 0,
+                                                                                                       
+                                                                                   
+      x,ϕ
+     QC (h) ≤ inf lim inf hϕ, rk i                                       1
+                  k→∞                                        x + tk h + t2k rk ∈ C 
+                                                                         2
+            ≤ lim inf hϕ, r + sk i = hϕ, ri .
+                 k→∞
+
+This yields
+                                    Qx,ϕ
+                                     C (h) ≤          inf        hϕ, ri
+                                                   r∈TC2 (x,h)
+
+which, together with (13), proves the claim.
+
+  We would like to point out that Lemma 5.3 cannot be obtained as a corollary of
+Lemma 5.4. The reason for this is that polyhedric sets do not necessarily have to be
+second-order regular. In fact, we have the following result.
+Lemma 5.5 (Necessary Condition for Second-Order Regularity). Assume that C is
+outer second-order regular at x ∈ C. Then, for all h ∈ TC (x), it holds TC2 (x, h) 6= ∅ and
+there exists a positive sequence tk & 0 such that dist(x + tk h, C) = O(t2k ) as k → ∞.
+Proof. Let h ∈ TC (x) be given. Then, by the definition of TC (x), there exist sequences
+{tk } ⊂ R+ and {xk } ⊂ C with tk & 0 and (xk −x)/tk → h. Set rk := 2 t−2      k (xk −x−tk h).
+                                       1 2
+Then rk satisfies xk = x + tk h + 2 tk rk and tk rk → 0, and the second-order regularity
+of C at x yields dist(rk , TC2 (x, h)) → 0. This proves TC2 (x, h) 6= ∅.
+   Now, let r ∈ TC2 (x, h) be given.   By definition, there is a positive sequence tk & 0 such
+                       1 2
+that dist x + tk h + 2 tk r, C = o(t2k ). Using the latter and the triangle inequality, we
+                                
+
+obtain
+                                          1        1
+    dist(x + tk h, C) ≤ dist x + tk h + t2k r, C + t2k krkX = o(t2k ) + O(t2k ) = O(t2k ).
+                                           2            2
+This finishes the proof.
+
+  Using Lemma 5.5, we can prove that even the most elementary examples of infinite-
+dimensional polyhedric sets can lack the property of second-order regularity.
+Example 5.6. Let (0, 1) be equipped with Lebesgue’s measure. Define X := L2 (0, 1) and
+C := {v ∈ L2 (0, 1) : v ≥ 0}, and let x be the unique element of X with x(ξ) = 1 for a.a.
+ξ ∈ (0, 1). Then, C is polyhedric at x and it holds TC (x) = L2 (0, 1). Consider now an
+arbitrary but fixed α ∈ (−1/2, −1/4) and let h ∈ L2 (0, 1) be defined via h(ξ) = −ξ α for
+a.a. ξ ∈ (0, 1). Then, for all sequences tk & 0, it holds
+                                 Z t−1/α
+                                     k
+                                                                1/2
+                                                                               −1/(2 α)
+         dist(x + tk h, C) =                (1 − tk ξ α )2 dξ          = cα1/2 tk         6= O(t2k ),
+                                   0
+
+
+
+
+                                                   13
+                   α2
+where cα = (α+1)2 (2                    2
+                     α+1) > 0. Hence, TC (x, h) = ∅ and, consequently, C cannot be outer
+second-order regular at x by Lemma 5.5. Using similar arguments, we can show that C
+fails to be outer second-order regular at all x ∈ C \ {0}.
+  Note that, due to the effects appearing in Example 5.6, the concept of second-order
+regularity is typically not suited for the analysis of optimal control problems with point-
+wise control or state constraints. It is, however, quite useful when the optimization
+problem at hand is finite-dimensional or involves constraints of the form G(x) ∈ K,
+where K ⊂ Rn is a closed, convex, non-empty set, cf. Example 5.13. To simplify the
+derivation of second-order optimality conditions for problems of the latter type, we pro-
+vide a calculus rule for the curvature of preimages.
+Lemma 5.7. Let Z be a Banach space. Assume that C = G−1 (K) holds for some twice
+continuously Fréchet differentiable function G : X → Z and some closed, convex, non-
+empty set K ⊂ Z. Suppose further that a tuple (x, ϕ) ∈ C × −NC? (x) is given such that
+the Zowe-Kurcyusz constraint qualification
+
+                                 G0 (x) X − RK (G(x)) = Z                             (ZKCQ)
+
+is satisfied in x, such that K is second-order regular in G(x), and such that the maps
+h 7→ G0 (x)h and h 7→ G00 (x)h2 are weak-?-to-strong continuous. Then, C satisfies
+(MRC) in (x, ϕ), it holds KC ? (x, ϕ) = ϕ⊥ ∩G0 (x)−1 T (G(x)), and for every h ∈ K? (x, ϕ)
+                                                      K                           C
+it is true that
+                    Qx,ϕ
+                     C (h) =                     inf                       hϕ, ri .        (14)
+                                            2 (G(x),G0 (x)h)−G00 (x)h2
+                               r∈G0 (x)−1 (TK                          )
+
+Proof. The proof of Lemma 5.7 follows the lines of that of [Bonnans and Shapiro, 2000,
+Proposition 3.88]: Let h ∈ KC? (x, ϕ) be fixed, and let {r } ⊂ X, {t } ⊂ R+ be sequences
+                                                          k          k
+                         ?
+satisfying tk & 0, tk rk * 0 and x + tk h + 21 t2k rk ∈ C, i.e., G(x + tk h + 12 t2k rk ) ∈ K.
+Then, by a Taylor expansion of G, cf. [Cartan, 1967, Theorem 5.6.3], and using our
+assumptions on G00 (x), we obtain
+                1 2                          1                           1      2 
+ G x + tk h +     tk rk = G(x) + tk G0 (x)h + t2k G0 (x)rk + G00 (x) h + tk rk         + o(t2k )
+                2                             2                            2
+                                              1
+                        = G(x) + tk G0 (x)h + t2k G0 (x)rk + G00 (x)h2 + ϕk ∈ K
+                                                                              
+                                              2
+                                                                                          (15)
+with some ϕk satisfying ϕk → 0 in Z. Since G0 (x) is weak-?-to-strong continuous,
+(15) implies G0 (x)h ∈ TK (G(x)) and, by [Bonnans and Shapiro, 2000, Corollary 2.91],
+h ∈ TC (x) = G0 (x)−1 TK (G(x)). This yields KC   ? (x, ϕ) = ϕ⊥ ∩ G0 (x)−1 T (G(x)) and
+                                                                                K
+shows that it makes sense to talk about the second-order tangent sets TC2 (x, h) and
+TK2 (G(x), G0 (x)h) in the following. Next, we will prove that dist(rk , TC2 (x, h)) → 0. We
+start by observing that
+                                                                      
+       0 ≤ Dk := dist G0 (x)rk , TK2 (G(x), G0 (x)h) − G00 (x)h2
+                                                                              
+                ≤ dist G0 (x)rk + G00 (x)h2 + ϕk , TK2 (G(x), G0 (x)h) + kϕk kZ → 0,
+
+
+
+                                                14
+where we used (15), tk G0 (x)rk → 0 and the outer second-order regularity of K at G(x).
+  Now, let {ηk } ⊂ Z be a sequence with G0 (x)rk + G00 (x)h2 + ηk ∈ TK2 (G(x), G0 (x)h)
+and kηk kZ ≤ Dk + 1/k. From [Zowe and Kurcyusz, 1979, Theorem 2.1] and [Bonnans
+and Shapiro, 2000, Proposition 2.95], we obtain that there exists a ρ > 0 with
+                           BρZ (0) ⊂ G0 (x)B1X (0) − (K − G(x)) ∩ B1Z (0).
+In particular, we may find sequences µk ∈ X and λk ∈ RK (G(x)) such that
+                         ηk = G0 (x)µk − λk        and        kµk kX ≤ ρ−1 kηk kZ .                     (16)
+From (16) and the inclusions
+                                           RK (G(x)) ⊂ TTK (G(x)) (h),                              (17a)
+               TK (G(x), G (x)h) + TTK (G(x)) (G0 (x)h) ⊂ TK2 (G(x), G0 (x)h),
+                2         0
+                                                                                                    (17b)
+which follow from the fact that TK (G(x)) is a closed convex cone and [Bonnans and
+Shapiro, 2000, Proposition 3.34], we obtain
+  G0 (x)(rk + µk ) ∈ TK2 (G(x), G0 (x)h) + λk − G00 (x)h2 ⊂ TK2 (G(x), G0 (x)h) − G00 (x)h2 .
+Using the identity
+                                                                                 
+          TC2 (x, h) = G0 (x)−1 TK2 (G(x), G0 (x)h) − G00 (x)(h, h)                   ∀h ∈ TC (x)       (18)
+
+that is found, e.g., in [Bonnans and Shapiro, 2000, Proposition 3.33], we infer
+                                                                                 
+              rk + µk ∈ G0 (x)−1 TK2 (G(x), G0 (x)h) − G00 (x)h2 = TC2 (x, h).
+
+The above implies that we indeed have
+             dist(rk , TC2 (x, h)) ≤ kµk kX ≤ ρ−1 kηk kZ ≤ ρ−1 Dk + 1/k → 0.
+                                                                                        
+
+Arguing as in the first part of the proof of Lemma 5.4, we now obtain
+                                   lim inf hϕ, rk i ≥         inf      hϕ, ri ,
+                                    k→∞                 r∈TC2 (x,h)
+
+and, as a consequence,
+                                        Qx,ϕ
+                                         C (h) ≥        inf         hϕ, ri .
+                                                   r∈TC2 (x,h)
+
+On the other hand, an argumentation analogous to that employed in the second part of
+the proof of Lemma 5.4 yields
+                                           {rk } ⊂ X, {tk } ⊂ R+ : tk & 0, tk rk → 0,
+                                                                                                   
+                                                                                        
+    Qx,ϕ
+     C (h) ≤ inf lim inf hϕ, rk i                                             1 2
+                   k→∞                                              x + tk h + tk rk ∈ C 
+                                                                               2
+             ≤       inf       hϕ, ri ≤ Qx,ϕ
+                                         C   (h).
+                 r∈TC2 (x,h)
+
+Hence, equality holds everywhere, (14) is valid (cf. (18)) and (MRC) is satisfied in (x, ϕ)
+by the observation in Remark 3.5. This completes the proof.
+
+
+
+                                                    15
+  Under stronger assumptions on x and G, the right-hand side of (14) is directly related
+to the directional curvature functional of K.
+Lemma 5.8. In the situation of Lemma 5.7, assume that Z is the dual of a separable
+                                          ? (G(x)) with ϕ + G0 (x)? λ = 0 such that
+Banach space and that there exists a λ ∈ NK
+(MRC) of K holds in (G(x), −λ) and
+
+                                      Z = G0 (x)X − RK (G(x)) ∩ λ⊥ .                                               (19)
+
+Then,
+                                 G(x),−λ
+               Qx,ϕ
+                C (h) = QK                 (G0 (x) h) + hλ, G00 (x) h2 i                   ?
+                                                                                     ∀h ∈ KC (x, ϕ).               (20)
+Proof. Let h ∈ KC ? (x, ϕ) be arbitrary but fixed. From (17), (19) and [Zowe and Kurcyusz,
+
+1979, Theorem 2.1], it follows (analogously to the proof of Lemma 5.7) that for every
+w ∈ TK2 (G(x), G0 (x) h) − G00 (x) h2 there exist an r ∈ X and an η ∈ RK (G(x)) ∩ λ⊥ with
+
+        w = G0 (x) r − η        and       G0 (x) r = w + η ∈ TK2 (G(x), G0 (x) h) − G00 (x) h2 .
+
+Note that an r with the latter properties necessarily satisfies h−λ, wi = h−λ, G0 (x)ri
+and G0 (x) r ∈ G0 (x)X ∩ TK2 (G(x), G0 (x) h) − G00 (x) h2 . Consequently, we may deduce
+
+                 inf                  h−λ, wi ≥                            inf                       h−λ, wi.      (21)
+      2 (G(x),G0 (x) h)−G00 (x)h2                                   2 (G(x),G0 (x) h)−G00 (x)h2
+   w∈TK                                                 w∈G0 (x)X∩(TK                           )
+On the other hand, we trivially have
+
+                   inf                  h−λ, wi ≤                            inf                       h−λ, wi,
+        2 (G(x),G0 (x) h)−G00 (x)h2                                   2 (G(x),G0 (x) h)−G00 (x)h2
+     w∈TK                                                 w∈G0 (x)X∩(TK                           )
+so equality has to hold in (21). Using this equality, (18), Lemmas 5.4 and 5.7, the
+identity ϕ + G0 (x)? λ = 0 and a straightforward calculation, we obtain
+
+Qx,ϕ
+ C (h) =        inf        hϕ, ri =                          inf                         −λ, G0 (x)r
+             r∈TC2 (x,h)              r∈G0 (x)−1   (    2 (G(x),G0 (x)h)−G00 (x)h2
+                                                       TK                            )
+         =                       inf                           h−λ, wi =                      inf             h−λ, wi
+                         2 (G(x),G0 (x) h)−G00 (x)h2                            2 (G(x),G0 (x) h)−G00 (x)h2
+             w∈G0 (x)X∩(TK                           )                       w∈TK
+                                                                             G(x),−λ
+         =             inf         h−λ, wi + hλ, G00 (x) h2 i = QK                        (G0 (x) h) + hλ, G00 (x) h2 i.
+                2 (G(x),G0 (x)h)
+             w∈TK
+
+This proves the claim.
+
+  Several things are noteworthy regarding Lemma 5.8 and its assumptions.
+Remark 5.9.
+  (i) The pull-back formula (20) is, in fact, valid in a setting that is far more general
+      than the one considered in Lemmas 5.7 and 5.8. It holds, e.g., also for polyhedric
+      sets K provided the strengthened Zowe-Kurcyusz condition (19) is satisfied, cf. [G.
+      Wachsmuth, 2016, Theorem 5.7]. It is further remarkable that the estimate
+                                      G(x),−λ
+                   Qx,ϕ
+                    C (h) ≥ QK                  (G0 (x) h) + hλ, G00 (x) h2 i                   ?
+                                                                                          ∀h ∈ KC (x, ϕ),
+
+
+
+                                                             16
+      which yields an SSC for the problem (P), can often be proved without any constraint
+      qualifications at all. To avoid overloading this paper, we leave a detailed discussion
+      of the latter topics for future research.
+
+ (ii) A possible interpretation of the formula (20) is that the (directional) curvature of
+      the set C has its origin in the nonlinearity of G or in the curvedness of K.
+
+(iii) The condition (19) is well-known and appears, e.g., also in the study of the unique-
+      ness of Lagrange multipliers. It is precisely the ordinary Zowe-Kurcyusz constraint
+      qualification for the set K̃ := {u ∈ K : (u − G(x)) ∈ λ⊥ }. We refer to [Shapiro,
+      1997, Theorem 2.2] for details on this topic.
+
+5.3 Two Corollaries of Theorem 4.5 and Some Tangible Examples
+If we combine the findings of Sections 5.1 and 5.2 with the analysis of Section 4, then
+we arrive, e.g., at the following two results.
+
+Theorem 5.10 (No-Gap Second-Order Condition for Polyhedric Sets). Suppose that X
+is reflexive and that C is polyhedric at x̄. Assume that J 0 (x̄) ∈ −NC? (x̄) holds and that
+J 00 (x̄) is a Legendre form in the sense of Lemma 5.1 (ii). Then, the condition
+
+                               J 00 (x̄) h2 > 0             ?
+                                                      ∀h ∈ KC (x̄, J 0 (x̄)) \ {0}
+
+is equivalent to the quadratic growth condition (6) with constants c > 0 and ε > 0.
+
+Proof. Use Lemmas 5.1 and 5.3 in Theorem 4.5.
+
+Theorem 5.11 (No-Gap Second-Order Condition for Second-Order Regular Sets). Let
+Z be a Banach space. Assume that C = G−1 (K) holds for some twice continuously
+Fréchet differentiable function G : X → Z and some closed, convex, non-empty set
+K ⊂ Z. Assume further that J 0 (x̄) ∈ −NC? (x̄) holds, that J 00 (x̄) is weak-? lower semi-
+continuous, that (NDC) holds, that the maps h 7→ G0 (x̄)h and h 7→ G00 (x̄)h2 are weak-?-
+to-strong continuous, that K is second-order regular in G(x̄), and that the constraint
+qualification
+                               G0 (x̄) X − RK (G(x̄)) = Z
+is satisfied. Then, the condition
+
+           J 00 (x̄) h2 +                       inf                         J 0 (x̄), r > 0
+                                          2 (G(x̄),G0 (x̄)h)−G00 (x̄)h2
+                            r∈G0 (x̄)−1 (TK                             )                         (22)
+                                                    ∀h ∈ J 0 (x̄)⊥ ∩ G0 (x̄)−1 TK (G(x̄)) \ {0}
+
+is equivalent to the quadratic growth condition (6) with constants c > 0 and ε > 0. If,
+moreover, we know that Z is the dual of a separable Banach space and that there exists
+a Lagrange multiplier λ ∈ NK  ? (G(x̄)) satisfying J 0 (x̄) + G0 (x̄)? λ = 0 such that (MRC)
+
+holds in (G(x̄), −λ) and such that
+
+                                    Z = G0 (x̄)X − RK (G(x̄)) ∩ λ⊥ ,
+
+
+
+                                                         17
+then (22) is equivalent to
+                      G(x̄),−λ
+   ∂xx L(x, λ)h2 + QK            (G0 (x̄)h) > 0        ∀h ∈ J 0 (x̄)⊥ ∩ G0 (x̄)−1 TK (G(x̄)) \ {0},
+
+where L(x, λ) := J(x) + hλ, G(x)i is the Lagrangian associated with (P).
+
+Proof. Use Lemmas 5.4, 5.7 and 5.8 in Theorem 4.5.
+
+   We remark that no-gap second-order conditions for specific classes of optimization
+problems with polyhedric admissible sets (in particular, optimal control problems with
+box constraints) can be found frequently in the literature. We only mention [Bonnans,
+1998, Theorem 2.7], [Casas and Tröltzsch, 2012, Theorems 2.2, 2.3], and [Casas and
+Tröltzsch, 2015, Theorem 4.13] as examples here. Theorem 5.10 reproduces these results
+on an abstract level.
+   Second-order conditions similar to those in Theorem 5.11, on the other hand, have been
+studied extensively in [Bonnans and Shapiro, 2000] in various formats and settings, see
+ibidem Theorems 3.45, 3.83, 3.86, 3.109, 3.137, 3.145, 3.148, 3.155 and Proposition 3.46.
+It should be noted that the no-gap conditions derived in [Bonnans and Shapiro, 2000,
+Section 3.3.3] all require X to be finite-dimensional and, in addition, all need further
+assumptions on, e.g., the second-order tangent set TK2 (G(x̄), G0 (x̄)h). Such assumptions
+are not needed for the derivation of our second-order condition (22), but may be required
+for reformulations of (22) as we have seen in the second part of Theorem 5.11.
+   We conclude this section with two simple examples that demonstrate the usefulness
+of Theorems 5.10 and 5.11.
+
+Example 5.12 (A Simple Optimal Control Problem with Control Constraints). Con-
+sider a minimization problem of the form
+                                     γ
+                                         Z
+               Minimize      j(y) +      u2 dLd
+                                     2 Ω                                                              (23)
+                such that    u ∈ L2 (Ω), −1 ≤ u ≤ 1 a.e. in Ω,                S(u) = y,
+
+where Ω ⊂ Rd is a bounded domain, j : L∞ (Ω) → R is twice continuously differentiable,
+γ > 0 is a Tikhonov parameter, Ld is the Lebesgue measure, and S : L2 (Ω) → L∞ (Ω) is
+(for simplicity) linear and compact. In this situation, the space X := L2 (Ω) is obviously
+reflexive, the set C := L2 (Ω, [−1, 1]) is closed, non-empty and polyhedric at every point,
+and the reduced objective J(u) := j(Su) + γ2 Ω u2 dLd is a C 2 -function with
+                                                R
+
+
+                J 0 (u)h = j 0 (Su)(Sh) + γ(u, h)L2 (Ω)                    ∀u, h ∈ L2 (Ω),
+         J 00 (u)(h1 , h2 ) = j 00 (Su)(Sh1 , Sh2 ) + γ(h1 , h2 )L2 (Ω) ∀u, h1 , h2 ∈ L2 (Ω).
+
+Note that the map h 7→ J 00 (u) h2 is weakly lower semicontinuous for all u ∈ L2 (Ω), and
+that J 00 (u) is a Legendre form for all u ∈ L2 (Ω) since
+
+    hk * h and J 00 (u) h2k → J 00 (u) h2         ⇒        hk * h and khk k2L2 (Ω) → khk2L2 (Ω)
+                                                                                                      (24)
+                                                  ⇒        hk → h.
+
+
+
+                                                      18
+Consequently, Theorem 5.10 is applicable in case of problem (23), and we may deduce
+that, given some ū ∈ C with p̄ + γ ū ∈ −NC? (ū), where p̄ = S ? (j 0 (S ū)) is the adjoint
+state, the condition
+
+                j 00 (S ū)(Sh, Sh) + γkhk2L2 (Ω) > 0 ∀h ∈ KC
+                                                            ?
+                                                              (ū, p̄ + γ ū) \ {0}
+
+is equivalent to the quadratic growth condition
+                                    c                                             2
+                   J(u) ≥ J(ū) +     ku − ūk2L2 (Ω)             ∀u ∈ C ∩ BεL (Ω) (ū)
+                                    2
+with c > 0 and some ε > 0. Note that the Tikhonov regularization is of particular
+importance in the above setting: The condition γ > 0 ensures (in combination with the
+compactness of S) that the derivative J 00 (u) is a Legendre form for all u ∈ L2 (Ω) and
+thus guarantees (NDC). We will see in Section 6.2 that the situation changes drastically
+when the regularization parameter γ equals zero.
+
+Example 5.13 (A Simple Optimal Control Problem with a State Constraint). Consider
+a minimization problem of the form
+                                            γ
+                                                 Z
+                      Minimize      j(y) +      u2 dLd
+                                            2 Ω
+                      such that     u ∈ L2 (Ω), Su = y,                T u ∈ B1H (0),
+
+where Ω ⊂ Rd is a bounded domain, j : L∞ (Ω) → R is twice continuously differentiable,
+γ > 0 is a Tikhonov parameter, Ld is the Lebesgue measure, H is some Hilbert space,
+and S : L2 (Ω) → L∞ (Ω), T : L2 (Ω) → H are (for simplicity) linear and compact.
+Define X := L2 (Ω),    Z := R, G(u) := kT uk2H − 1, K := (−∞, 0], C := G−1 (K), and
+J(u) := j(Su) + γ2 Ω u2 dLd . Then X and Z are Hilbert spaces, C is non-empty, convex
+                     R
+
+and closed, K is non-empty, convex and closed, G is twice continuously differentiable
+with G0 (u)h = 2(T u, T h)H and G00 (u)(h1 , h2 ) = 2(T h1 , T h2 )H for all u ∈ L2 (Ω), J is
+twice continuously differentiable with the same derivatives as in Example 5.12, the map
+h 7→ J 00 (u) h2 is weakly lower semicontinuous for all u ∈ L2 (Ω), J 00 (u) is a Legendre
+form for all u ∈ L2 (Ω) (cf. Example 5.12), (ZKCQ) is satisfied in every u ∈ C (just use
+a distinction of cases), and K is second-order regular at every z ∈ K with
+                                                                  
+           (
+                                                                  R
+                                                                                 if z ∈ (−∞, 0), h ∈ R,
+                         if z ∈ (−∞, 0),
+                                                                  
+            R
+TK (z) =                                        TK2 (z, h) = R                    if z = 0, h ∈ (−∞, 0),
+            (−∞, 0]      if z = 0,                               
+                                                                  (−∞, 0]        if z = 0, h = 0.
+
+Now, let ū ∈ C be given, such that p̄+γ ū ∈ −NC? (ū), where p̄ = S ? (j 0 (S ū)) is the adjoint
+state. Using the above observations and (22), we obtain that the condition
+
+   j 00 (S ū)(Sh, Sh) + γkhk2L2 (Ω) +                      inf                       hp̄ + γ ū, ri > 0
+                                                       2 (G(ū),G0 (ū)h)−2kT hk2
+                                         r∈G0 (ū)−1 (TK                        H)                         (25)
+                                                      ⊥          0   −1
+                                    ∀h ∈ p̄ + γ ū         ∩ G (ū)        TK (G(ū)) \ {0}
+
+
+
+                                                     19
+is equivalent to the quadratic growth condition (6) with constants c > 0 and ε > 0. Note
+that G0 (ū) : L2 (Ω) → R is surjective if kT ūkH > 0. Consequently, if 0 < kT ūk ≤ 1, we
+may use the second part of Theorem 5.11 to simplify (25). This yields the condition
+                                                                        ⊥
+                j 00 (S ū)(Sh, Sh) + γkhk2L2 (Ω) > 0    ∀h ∈ p̄ + γ ū      \ {0}
+
+for the case 0 < kT ūk < 1 and the condition
+        j 00 (S ū)(Sh, Sh) + γkhk2L2 (Ω) + 2λkT hk2H > 0
+                                             ⊥     n                                      o
+                              ∀h ∈ p̄ + γ ū      ∩ h ∈ L2 (Ω) \ {0} : (T u, T h)H ≤ 0
+
+for the case kT ūkH = 1. Here, λ ≥ 0 is the (in this case necessarily unique) Lagrange
+multiplier associated with ū.
+
+
+6 Advantages of our Approach
+Having demonstrated that the framework of Section 4 indeed allows to reproduce classical
+results for minimization problems with polyhedric and second-order regular sets, we now
+turn our attention to the benefits offered by our approach in comparison with the classical
+theory. The main advantages of our method are the following.
+
+  (i) Our approach splits the task of proving no-gap second-order optimality conditions
+      for problems of the type (P) into subproblems that can be tackled independently
+      from each other (namely, verifying (NDC), checking the differentiability of J, and
+      computing the directional curvature functional Qx,ϕ
+                                                        C (·)). We can further state our
+      second-order conditions without imposing any preliminary assumptions (as, e.g.,
+      polyhedricity or second-order regularity) on the admissible set C, cf. Theorem 4.5.
+      All of this makes our method more flexible than the classical “all-at-once” ap-
+      proach.
+ (ii) Our results can also be employed in situations where the admissible set exhibits a
+      singular or degenerate curvature behavior, cf. the examples in Sections 6.1 and 6.2.
+(iii) Our approach does not require a detailed analysis of the curvature of the set C.
+      To obtain the second-order condition in Theorem 4.5, we only have to study the
+      behavior        of the quantity hJ 0 (x̄), rk i that appears in the definition of the functional
+        x̄,J 0 (x̄)
+      QC            (·), i.e., we only have to analyze how the derivative J 0 (x̄) acts on the second-
+      order corrections rk and not how the rk behave in detail. This is a major difference
+      to the concept of second-order regularity, cf. Definition 5.2 (iii), and often very
+      advantageous since it allows to exploit additional information about the gradient
+      of the objective. We will see this effect in Section 6.2 below.
+
+   In the following, we demonstrate by means of two tangible examples that the above
+points are not only of academic interest but also of relevance in practice. We begin
+with a simple finite-dimensional optimization problem whose admissible set exhibits a
+singular curvature behavior.
+
+
+
+                                                  20
+6.1 Singular Curvature in Finite Dimensions
+Consider a two-dimensional optimization problem of the form
+            Minimize J(x), such that x ∈ C = {(x1 , x2 ) ∈ R2 | x2 ≥ |x1 |α }                            (26)
+with a twice continuously differentiable objective J : R2 → R and some α ∈ (1, 2). Set
+x̄ := (0, 0) and suppose that x̄ is a critical point of (26) with a non-vanishing gradient,
+i.e., J 0 (x̄) = (0, β) ∈ −NC? (x̄) = {0} × [0, ∞) for some β > 0. Then, for every critical
+direction h ∈ KC    ? (x̄, J 0 (x̄)) = {(h , h ) ∈ R2 | h = 0} and all sequences {t } ⊂ R+ and
+                                          1 2            2                         k
+{rk } ⊂ R satisfying tk & 0, tk rk → 0 and x̄ + tk h + 12 t2k rk ∈ C, it holds
+             2
+
+
+      lim inf hJ 0 (x̄), rk i
+       k→∞
+                                          x̄ + tk h + 21 t2k rk              (x̄ + tk h + 12 t2k rk )2
+              = 2 lim inf J 0 (x̄)>                             = 2β lim inf                             (27)
+                       k→∞                         t2k                k→∞              t2k
+                              |(x̄ + tk h + 12 t2k rk )1 |α                   1
+              ≥ 2β lim inf                 2                = 2β lim inf |(h + tk rk )1 |α tα−2
+                                                                                            k   .
+                          k→∞             tk                      k→∞         2
+The above implies
+      x̄,J 0 (x̄)
+    QC              (h) = +∞                  ?
+                                        ∀h ∈ KC (x̄, J 0 (x̄)) \ {0} = {h ∈ R2 | h1 6= 0, h2 = 0}.       (28)
+Using (28), Theorem 4.5 and the fact that the conditions (MRC) and (NDC) are trivially
+satisfied for (26), we obtain (analogous to [Bonnans and Shapiro, 2000, Example 3.84])
+the following result.
+Theorem 6.1. If x̄ = (0, 0) is a critical point of (26) with J 0 (x̄) 6= 0, then x̄ is a local
+minimizer of (26) and there exist parameters c > 0 and ε > 0 such that the quadratic
+growth condition (6) is satisfied.
+   Note that the second derivative J 00 (x̄) is not important for local optimality of x̄. The
+reason for this is that the curvature of the boundary ∂C is singular at the origin and
+can thus compensate for any negative curvature that the objective J might have at
+x̄. It should be noted further that the set C in (26) is neither polyhedric (trivially)
+nor second-order regular at x̄ (since TC2 (x̄, h) = ∅ for all h ∈ KC    ? (x̄, J 0 (x̄)) \ {0}, cf.
+
+Lemma 5.5, and the estimate (27)). This demonstrates that (26) does not fall under the
+setting of Theorems 5.10 and 5.11 and is indeed not covered by what is typically seen
+as the classical second-order theory.
+   We remark that, given an optimization problem of the form
+            Minimize J(x), such that x ∈ C = {(x1 , x2 ) ∈ R2 | x2 ≤ |x1 |α }                            (29)
+with J ∈ C 2 (R2 ), J 0 (x̄) = (0, −β) ∈ −NC? (x̄) = {0} × (−∞, 0], β > 0, x̄ := (0, 0), we
+can use exactly the same arguments as for (26) to prove
+                      x̄,J 0 (x̄)
+                     QC             (h) = −∞            ?
+                                                  ∀h ∈ KC (x̄, J 0 (x̄)) = {h ∈ R2 | h2 = 0}.
+The above yields in combination with Theorems 4.2 and 4.3 that x̄ = (0, 0) can never
+be a local minimizer of (29) unless the derivative J 0 (x̄) is identical zero.
+
+
+
+                                                           21
+6.2 No-Gap Second-Order Conditions for Bang-Bang Problems
+In this section, we demonstrate that the analysis of Section 4 is not only relevant for
+finite-dimensional toy problems à la (26) and (29), but also applicable in more compli-
+cated situations. In what follows, we will use it to derive no-gap second-order conditions
+for bang-bang optimal control problems. As a motivation, let us consider the optimiza-
+tion problem (23) in Example 5.12 with γ = 0, i.e., the problem
+
+                 Minimize j(y)
+                                                                                                  (30)
+                 such that u ∈ L2 (Ω),        −1 ≤ u ≤ 1 a.e. in Ω,        S(u) = y.
+
+From Theorem 4.2, we obtain that every minimizer ū of (30) satisfies p̄ ∈ −NC? (ū), where
+p̄ = S ? (j 0 (S ū)) is the adjoint state. In particular, this implies that a minimizer ū with
+Ld ({p̄ = 0}) = 0 can only take the values ±1 a.e. in Ω. Such a solution ū is called
+bang-bang.
+     The major problem that arises when SSC for a bang-bang control ū are considered is
+the verification of the non-degeneracy condition (NDC). Recall that in Example 5.12
+the latter is satisfied since the Tikhonov regularization causes the second derivative
+of the reduced objective to be a Legendre form in L2 (Ω), cf. (24). For (30) such an
+argumentation is obviously not possible and this is not an artificial problem: It can be
+shown that quadratic growth in L2 (Ω) is in general not possible for a bang-bang solution
+ū of (30), i.e., the growth condition (6) typically does not hold with X = L2 (Ω) and
+c, ε > 0, cf. [Casas, 2012, end of Section 2].
+     Hence, Theorem 4.5 cannot be applicable when we work with the space X = L2 (Ω).
+Note that, if we calculate the critical cone KC          ? (ū, p̄) for a bang-bang control ū in the
+
+L -setting, then we end up with KC (ū, p̄) = TC (ū) ∩ p̄⊥ = {0} so that the conditions
+   2                                          ?
+
+j 00 (S ū)(Sh, Sh) > 0 ∀h ∈ KC    ? (ū, p̄) \ {0} and j 00 (S ū)(Sh, Sh) ≥ 0 ∀h ∈ K? (ū, p̄), which
+                                                                                      C
+are the natural candidates for the SSC and SNC, respectively, are both void. This also
+indicates that it is not useful to discuss (30) as a problem in X = L2 (Ω).
+     The above discussion shows that, if we want to derive no-gap second-order conditions
+for a bang-bang optimal control problem of the type (30), then we have to work with a
+space X that is different from L2 (Ω). As it turns out, the right choice is the measure
+space X = M(Ω). Therefore, we consider the following setting.
+
+Assumption 6.2 (Standing Assumptions and Notation for the Bang-Bang Setting). We
+suppose that Ω ⊂ Rd , d ≥ 1, is a domain with a Lipschitz boundary, cf. [Grisvard, 1985,
+Definition 1.2.1.1]. We define the space Y := C0 (Ω) = clk.k∞ (Cc (Ω)) endowed with the
+usual supremum norm. Its dual space can be identified with X := M(Ω) which is the
+space of signed finite Radon measures on Ω endowed with the norm kµkM(Ω) := |µ|(Ω),
+cf. [Ambrosio, 2000, Theorem 1.54]. The space L1 (Ω) is identified with a closed subspace
+of M(Ω) via the isometric embedding x 7→ xLd , where Ld is Lebesgue’s measure. Finally,
+C := L∞ (Ω, [−1, 1]) = {x ∈ L∞ (Ω) : −1 ≤ x ≤ 1 a.e. in Ω} ⊂ M(Ω).
+
+   The reason for using the space X = M(Ω) is the following observation, cf. [Casas
+et al., 2017b, Proposition 2.7].
+
+
+
+                                                  22
+Lemma 6.3. Let x̄ ∈ C and ϕ̄ ∈ −NC? (x̄) be given. Define
+                                   1                          s
+                                                                        
+                           K(ϕ̄) := lim inf              d
+                                                                             ∈ [0, +∞].                      (31)
+                                   4 s&0                L ({|ϕ̄| ≤ s})
+Then, there exists a family of constants {cε } satisfying cε & 0 as ε & 0 such that
+                                    1
+                                               
+           hϕ̄, x − x̄i ≥             K(ϕ̄) − cε kx − x̄k2X          ∀x ∈ C ∩ BεX (x̄)        ∀ε > 0.        (32)
+                                    2
+Proof. We adapt the proof of [Casas et al., 2017b, Proposition 2.7]. Define K := K(ϕ̄).
+If K = 0, then the claim is trivially true. If K > 0, then it necessarily holds that
+Ld ({ϕ̄ = 0}) = 0 and we obtain from ϕ̄ ∈ −NC? (x̄) that x̄ is bang-bang with x̄ = −sgn ϕ̄
+a.e. in Ω. Using the latter and NC? (x̄) ⊂ C0 (Ω), we may calculate that for all h ∈ X and
+all t > 0 with x̄ + th ∈ C and khkX = khkL1 (Ω) = 1, it holds
+      h                        |h| d                           |h| d
+  Z             Z                        Z                               Z                Z
+    ϕ̄ dLd =            |ϕ̄|      dL ≥                  |ϕ̄|      dL ≥       K|h|dLd −                  K|h|dLd
+   Ω t              Ω           t          {|ϕ̄|>Kt}            t        Ω          {|ϕ̄|≤Kt}
+
+                                                                     ≥ K − KkhkL∞ (Ω) Ld ({|ϕ̄| ≤ Kt}).
+By using t := kx − x̄kX , h := (x − x̄)/kx − x̄kX and khkL∞ (Ω) ≤ 2/t, this implies
+                                                                                 !
+                                                     Ld ({|ϕ̄| ≤ Kt})
+                hϕ̄, x − x̄i ≥                   2
+                                        K − 2K sup                    kx − x̄k2X
+                                               0<t≤ε        Kt
+
+for all x ∈ C ∩ BεX (x̄) \ {x̄} and all ε > 0. Note that the coefficient on the right-hand
+side of the last estimate satisfies
+                                                 !                                                 !
+                2 Ld ({|ϕ̄| ≤ Kt})                                   2           Ld ({|ϕ̄| ≤ t})         1
+ lim K − 2K sup                                         = K − 2K         lim sup                        = K.
+ ε&0        0<t≤ε        Kt                                                t&0          t                2
+This proves the claim.
+
+  Lemma 6.3 shows that Lemma 5.1 (iii) is applicable when we consider a bang-bang
+solution x̄ whose gradient ϕ̄ := J 0 (x̄) satisfies K(ϕ̄) > 0. This allows us to verify (NDC)
+and to obtain the following result from Theorem 4.5.
+Theorem 6.4 (No-Gap Second-Order Condition for Bang-Bang Problems). Consider
+an optimization problem of the form (P) with C, X etc. as in Assumption 6.2. Assume
+that x̄ ∈ C is fixed, that J satisfies the conditions in Assumption 4.1, that the map
+X 3 h 7→ J 00 (x̄) h2 ∈ R is weak-? continuous, that ϕ̄ := J 0 (x̄) ∈ −NC? (x̄), and that the
+constant K(ϕ̄) in (31) is positive. Then, the condition
+                           Qx̄, ϕ̄   00     2
+                            C (h) + J (x̄) h > 0
+                                                                       ?
+                                                                 ∀h ∈ KC (x̄, ϕ̄) \ {0}                      (33)
+is equivalent to the quadratic growth condition
+                                    c
+                     J(x) ≥ J(x̄) + kx − x̄k2L1 (Ω)                   ∀x ∈ C ∩ BεX (x̄)                      (34)
+                                    2
+with constants c > 0 and ε > 0.
+
+
+
+                                                           23
+Proof. We only need to check that Theorem 4.5 is applicable. The setting in Assump-
+tion 6.2 clearly fits into that of Assumption 2.1, and Assumption 4.1 is trivially satisfied.
+From K(ϕ̄) > 0 and Lemma 6.3, we further obtain that there exist constants c, ε > 0
+with J 0 (x̄) (x − x̄) ≥ 2c kx − x̄k2 for all x ∈ BεX (x̄) ∩ C. This yields, in combination with
+the weak-? continuity of h 7→ J 00 (x̄)h2 and Lemma 5.1 (iii), that (NDC) holds. Note
+that the weak-? continuity of h 7→ J 00 (x̄)h2 also implies (i) in Theorem 4.3. This shows
+that Theorem 4.5 is applicable and proves the claim.
+
+  Some remarks concerning Lemma 6.3 and Theorem 6.4 are in order.
+
+Remark 6.5.
+
+  (i) Theorem 6.4 provides no-gap second-order conditions even in the case that we
+                                                                x̄,ϕ̄
+      cannot characterize the directional curvature functional QC     (·) precisely.
+
+ (ii) Recall that the condition in Lemma 5.1 (iii) not only implies (NDC) but also yields
+      a coercivity estimate for the functional Qx̄, ϕ̄
+                                                 C (·), see (12). Using this estimate and
+      (32), we obtain that, in the situation of Theorem 6.4,
+
+                            Qx̄, ϕ̄           2
+                             C (h) ≥ K(ϕ̄) khkX
+                                                                   ?
+                                                             ∀h ∈ KC (x̄, ϕ̄).             (35)
+
+      Here, K(ϕ̄) > 0 is again defined by (31). We point out that (35) implies that the
+      set C = L∞ (Ω, [−1, 1]) possesses positive curvature as a subset of the space M(Ω).
+      This is not true if C is considered as a subset of the space L2 (Ω) as we have seen
+      in Example 5.12 (in L2 (Ω), C is polyhedric and the curvature functional is zero).
+
+(iii) From (35), it follows that J 00 (x̄) h2 > −K(ϕ̄) khk2X for all h ∈ KC ? (x̄, ϕ̄) \ {0}
+
+      is a sufficient condition for quadratic growth in the situation of Theorem 6.4, cf.
+      (33). We point out that this SSC is sharper than that found in [Casas et al.,
+      2017b, Corollary 2.15]. In this contribution the authors work with the slightly
+      more restrictive “global” level set assumption
+                                                 s
+                                  K̃ ≤                         ∀s > 0
+                                         4 Ld ({|ϕ̄| ≤ s})
+
+      for some K̃ > 0. Note that such a K̃ necessarily satisfies K̃ ≤ K(ϕ̄). We further
+      point out that the SSC in [Casas et al., 2017b, Corollary 2.15] can be improved to
+
+                                 J 00 (x̄) h2 ≥ − K̃ − ε khk2X            ?
+                                                       
+                     ∃ε > 0 :                                       ∀h ∈ KC (x̄, ϕ̄),
+
+      cf. [Casas et al., 2017a, Theorem 2.4].
+
+ (iv) We expect that the SSC J 00 (x̄) h2 > −K(ϕ̄) khk2X ∀h ∈ KC
+                                                               ? (x̄, ϕ̄) \ {0} can also be
+
+      formulated as an inequality on the so-called extended critical cone introduced in
+      [Casas, 2012], cf. [Casas et al., 2017b, Theorem 2.14] and [Casas et al., 2017a,
+      Theorem 2.4]. We do not pursue this approach here.
+
+
+
+
+                                               24
+  The next step is the calculation of the curvature functional Qx̄,    ϕ̄
+                                                                      C (·) for a bang-bang
+solution x̄ in order to obtain a no-gap optimality condition that is more explicit than (33).
+Hence, we have to compute the (directional) curvature of the set C := L∞ (Ω, [−1, 1])
+as a subset of the space M(Ω). In the remainder of this section, we will consider a
+bang-bang solution x̄ whose gradient ϕ̄ := J 0 (x̄) ∈ −NC? (x̄) is in C 1 (Ω). Let us first fix
+our assumptions on the x̄ under consideration.
+                                                                          x̄,ϕ̄
+Assumption 6.6 (Assumptions and Notation for the Calculation of QC              (·)).
+   In addition to Assumption 6.2, we suppose that x̄ ∈ C and ϕ̄ ∈ −NC? (x̄) are given.
+We require ϕ̄ ∈ ι(C0 (Ω) ∩ C 1 (Ω)) and define Z := {z ∈ Ω : ϕ̄(z) = 0}. We assume
+Z ⊂ {z ∈ Ω : |∇ϕ̄(z)| 6= 0}. Here and in the sequel, |∇ϕ̄(z)| denotes the Euclidean norm
+of ∇ϕ̄(z) ∈ Rd .
+   Finally, we denote by Hd−1 the (d−1)-dimensional Hausdorff measure, which is scaled
+as in [Evans and Gariepy, 2015, Definition 2.1].
+
+   In the above situation, the set Z is a (d − 1)-dimensional C 1 -submanifold of Rd due
+to the implicit function theorem, cf. [Holm et al., 2009, Theorem 2.32]. This implies
+in particular that Ld (Z) = Ld ({ϕ̄ = 0}) = 0 and that x̄ is indeed bang-bang with
+                                      x̄,ϕ̄
+x̄ = −sgn ϕ̄ a.e. in Ω. To calculate QC     (·), we need the following directional Taylor-like
+expansion of the L1 (Ω)-norm.
+
+Lemma 6.7 ([Christof and Meyer, 2016, Corollary 5.10]). Given Assumption 6.6, for
+all v ∈ Cc (Ω) ∩ H 1 (Ω) and all sequences tk ∈ (0, ∞) with tk & 0, it is true that
+
+                                                                                                    v2
+           Z                         Z                         Z                           Z
+                                 d                d                            d
+                 |−ϕ̄ + tk v|dL =         |ϕ̄|dL + tk                  x̄vdL       + t2k                 dHd−1 + o(t2k ).
+             Ω                        Ω                        Ω                           Z       |∇ϕ̄|
+  The next lemma provides a link between the curvature of C and ∇ϕ̄.
+                                        ? (x̄, ϕ̄), and all α > 0, it holds
+Lemma 6.8. For all v ∈ Cc (Ω), all h ∈ KC
+
+                                α2 x̄,ϕ̄                                     v2
+                                                                       Z
+                                  Q (h) − α hh, vi +                              dHd−1 ≥ 0.                                    (36)
+                                2 C                                     Z   |∇ϕ̄|
+
+Proof. Let α > 0 and h ∈ KC    ? (x̄, ϕ̄) be given. From the cone property of K? (x̄, ϕ̄), it
+                                                                               C
+               ?
+follows αh ∈ KC (x̄, ϕ̄). This implies that there exist sequences {rk } ⊂ X, {tk } ⊂ R+
+                    ?
+with tk & 0, tk rk * 0 and x + tk αh + 12 t2k rk ∈ C. Fix such sequences {rk }, {tk } and
+                                                                          ?
+define hk := αh + 12 tk rk . Then, it holds hk ∈ RC (x̄) ⊂ L∞ (Ω) and hk * αh in X, and
+Lemma 6.7 yields
+
+            v2
+      Z
+t2k              dHd−1 + o(t2k )
+      Z    |∇ϕ̄|
+                            Z                          !       Z                           Z
+  =              sup            (−ϕ̄ + tk v)qdL    d
+                                                           −                   d
+                                                                       |ϕ̄|dL − tk                 x̄vdLd
+          q∈L∞ (Ω,[−1,1])   Ω                                      Ω                           Ω
+                                             Z                                                 !       Z                  Z
+                                                                                           d
+  =                    sup                       (−ϕ̄ + tk v)(x̄ + tk p)dL                         −       |ϕ̄|dLd − tk       x̄vdLd
+          p∈L∞ (Ω) : x̄+tk p∈L∞ (Ω,[−1,1])   Ω                                                         Ω                  Ω
+
+
+
+
+                                                               25
+                                              Z                                   !
+                                                                              d
+  =                    sup                         (−ϕ̄ + tk v)(tk p)dL
+          p∈L∞ (Ω) : x̄+tk p∈L∞ (Ω,[−1,1]) Ω
+      Z
+  ≥        (−ϕ̄ + tk v)(tk hk )dLd                     ∀v ∈ Cc (Ω) ∩ H 1 (Ω).                                      (37)
+      Ω
+
+If we divide (37) by t2k and let k → ∞, then we obtain (with hϕ̄, hk i = hϕ̄, 21 tk rk i)
+
+          1                                              v2
+                                                  Z
+            lim inf hϕ̄, rk i − hαh, vi +                     dHd−1 ≥ 0                   ∀v ∈ Cc (Ω) ∩ H 1 (Ω).
+          2 k→∞                                    Z    |∇ϕ̄|
+
+Taking the infimum over all sequences {rk }, {tk }, using the positive homogeneity of the
+functional Qx̄, ϕ̄
+            C (·), and employing a density argument, we now arrive at
+
+                     α2 x̄,ϕ̄                                v2
+                                                       Z
+                       Q (h) − hαh, vi +                          dHd−1 ≥ 0                  ∀v ∈ Cc (Ω).
+                     2 C                                Z   |∇ϕ̄|
+
+This is the desired estimate.
+
+  We are now in the position to prove a lower bound for the curvature of C.
+                              ? (x̄, ϕ̄) with Qx̄,ϕ̄ (h) < ∞ there exists a g such that
+Proposition 6.9. For all h ∈ KC                C
+                                                                                                   
+                     h = gHd−1 |Z ,               g ∈ L1 Z, Hd−1 ∩ L2 Z, |∇ϕ̄|Hd−1 ,
+                                      1
+                                          Z
+                                                                    x̄,ϕ̄
+                                                  g 2 |∇ϕ̄|dHd−1 ≤ QC     (h).
+                                      2   Z
+
+                ? (x̄, ϕ̄) ⊂ M(Ω) with Qx̄,ϕ̄ (h) < ∞ be given. Then, for all v ∈ C (Ω)
+Proof. Let h ∈ KC                       C                                          c
+with v = 0 on Z, we obtain from (36) that
+                                      α x̄,ϕ̄
+                                       Q (h) ≥ hh, vi                   ∀α > 0,
+                                      2 C
+i.e., hh, vi = 0. This implies that the map
+
+                       h̃ : Cc (Z) → R,                ṽ 7→ hh, vi ,       v ∈ Cc (Ω), v|Z = ṽ
+
+is well-defined as it is independent of the extension v of ṽ appearing in its definition.
+Note that, given a ṽ ∈ Cc (Z), we can always find a v ∈ Cc (Ω) with v|Z = ṽ, cf. the
+submanifold property of Z. From (36) with
+                                                       !1/2
+                                  ṽ 2
+                             Z
+                     α=                dHd−1                    β,   β > 0 arbitrary but fixed,
+                             Z   |∇ϕ̄|
+
+it now follows
+                                                                      !1/2
+                     β x̄,ϕ̄    1                      ṽ 2
+                                      Z
+                       QC (h) +                             dHd−1            ≥ h̃, ṽ         ∀ṽ ∈ Cc (Z).
+                     2          β             Z       |∇ϕ̄|
+
+
+
+                                                                26
+Using Hahn-Banach,              h̃ can be extended from Cc (Z) to the weighted
+                   we obtain that                                        
+Lebesgue-space L Z, H /|∇ϕ̄| , i.e., there exists an f ∈ L2 Z, Hd−1 /|∇ϕ̄| with
+                2     d−1
+
+                                                  !1/2
+       β x̄,ϕ̄    1                ṽ 2                                     ṽf
+                      Z                                              Z
+         QC (h) +                       dHd−1             ≥ h̃, ṽ =             dHd−1    ∀ṽ ∈ Cc (Z).
+       2          β           Z   |∇ϕ̄|                                Z   |∇ϕ̄|
+                                                                                                   
+Note that f is independent of β due to the density of Cc (Z) in L2 Z, Hd−1 /|∇ϕ̄| . We
+thus arrive at
+                                           vf
+                                       Z
+                    hh, vi = h̃, v|Z =           dHd−1 ∀v ∈ Cc (Ω)
+                                        Z |∇ ϕ̄|
+with                                       !1/2
+                           f2                             β x̄,ϕ̄    1
+                   Z                                                      
+                                dHd−1             ≤         QC (h) +            ∀β > 0.
+                      Z   |∇ϕ̄|                           2          β
+Choosing β = (2/Qx̄,    ϕ̄
+                      C (h))
+                             1/2 for Qx̄,ϕ̄ (h) > 0 and β arbitrarily large for Qx̄,ϕ̄ (h) = 0,
+                                       C                                              C
+defining g := f /|∇ϕ̄| and
+                           using the density   of C c (Ω) in C 0 (Ω) now yields the claim. Note
+that g ∈ L1 Z, Hd−1 follows trivially from h = gHd−1 |Z ∈ M(Ω).
+
+  Next, we address the reverse estimate to that in Proposition 6.9.
+Lemma 6.10. Let g ∈ Cc (Z) be given and let h := gHd−1 |Z ∈ M(Ω). Then, h is an
+                              ? (x̄, ϕ̄), it holds
+element of the critical cone KC
+                                   1
+                                       Z
+                                                             x̄,ϕ̄
+                                           g 2 |∇ϕ̄|dHd−1 = QC     (h),
+                                   2   Z
+
+and for every sequence {tk } ⊂ R+ with tk & 0 there exists a sequence {rk } ⊂ X such
+                                                                   ?
+that x̄ + tk h + 12 t2k rk ∈ C holds for all k and such that tk rk * 0, kh + 12 tk rk kX → khkX
+                    x̄,ϕ̄
+and hϕ̄, rk i → QC (h) holds for k → ∞.
+Proof. We proceed in several steps:
+  (a): Since ϕ̄ ∈ C0 (Ω) and Z = {ϕ̄ = 0}, it trivially holds hϕ̄, hi = 0, i.e., h ∈ ϕ̄⊥ .
+  (b): Assume that a point p ∈ Z, an open ball B ⊂ Rd−1 , an open interval J := (a, b),
+and a map γ ∈ C 1 (B) are given such that
+
+             p ∈ B × J,           B × J ⊂ Ω,              Z ∩ (B × J) = {(z, γ(z)) : z ∈ B}
+                          0                0
+           W := {(z, z ) : z ∈ B, |z − γ(z)| < ε} ⊂ B × J,                     ∂d ϕ̄(p) > 0
+
+for some ε ∈ (0, 1). Let 0 ≤ ψ ∈ C(W ) and g ∈ C(Z ∩ (B × J)) be continuous and
+bounded functions and let tk ∈ (0, ∞) be a sequence with tk & 0. Assume w.l.o.g. that
+                                                  q
+                                    tk kgkL∞ k 1 + |∇γ|2 kL∞ ≤ ε
+
+for all k (else consider {tk }k≥K , K ∈ N sufficiently large) and extend ψ by zero outside
+of W . With some abuse of notation, we extend the sign of g from Z ∩ W to W by
+
+                                   sign(g)(z, z 0 ) := sign g(z, γ(z)).
+
+
+
+                                                         27
+We further define the sets
+                               g − (z, γ(z))    z 0 − γ(z)        g + (z, γ(z))
+                                                                                                                          
+                        0
+      Gk := (z, z ) ∈ B × J tk               ≤p             ≤ t k                                                              ⊂ W,
+                                     2         1 + |∇γ(z)|2             2
+
+where g + and g − are abbreviations for max(0, g) and min(0, g), respectively. Now, we
+set
+                                        2 sign(g)
+                                 hk :=            1Gk ,
+                                            tk
+where 1A denotes the indicator function of a set A. Next, we show the relations
+                                 Z                                  Z
+                                                         d
+                        lim               hk ψvdL                =                     gψv dHd−1        ∀v ∈ C0 (Ω),              (38)
+                        k→∞           Ω                               Z∩(B×J)
+                                 Z                                  Z
+                        lim               |hk |ψdLd =                                  |g|ψdHd−1 ,                                (39)
+                     k→∞             Ω                                Z∩(B×J)
+and
+                                  2hk          1
+                             Z                                          Z
+                   lim                ϕ̄ψdLd =                                           g 2 ψ|∇ϕ̄|dHd−1 .                        (40)
+                  k→∞            Ω tk          2                            Z∩(B×J)
+
+This can be seen as follows: Given a v ∈ C0 (Ω), we may calculate (using the abbrevia-
+tions dz := dLd−1 (z) and dz 0 := dL1 (z 0 ))
+                                          Z Z γ(z)+tk g+ (z,γ(z)) √1+|∇γ(z)|2
+                         2
+         Z
+                                                           2
+               hk ψvdL =     d
+                                                                 g − (z,γ(z))
+                                                                                √                sign(g)vψdz 0 dz
+             Ω           tk                B    γ(z)+tk                2
+                                                                                    1+|∇γ(z)|2
+                                         Z Z g+ (z,γ(z)) √1+|∇γ(z)|2
+                                                         2
+                                 =2            g − (z,γ(z))
+                                                                  √                   (sign(g)vψ)|(z,γ(z)+tk z 0 ) dz 0 dz
+                                          B          2
+                                                             1+|∇γ(z)|2
+                                                   +
+                                                  g (z,γ(z))
+                                                                     √
+                                          Z Z
+                                                         2
+                                                                          1+|∇γ(z)|2
+                                 →2             g − (z,γ(z))
+                                                                  √                    (sign(g)vψ)|(z,γ(z)) dz 0 dz
+                                          B           2
+                                                                      1+|∇γ(z)|2
+                                     Z q                                                           Z
+                                 =            1 + |∇γ(z)|2 (gvψ)|(z,γ(z)) dz =                                   gψv dHd−1 .
+                                      B                                                              Z∩(B×J)
+
+This yields (38). To obtain (39), we can use exactly the same calculation as above (just
+replace v with sign(g)). It remains to prove (40). To this end, we compute
+                                  Z Z g+ (z,γ(z)) √1+|∇γ(z)|2
+   2hk              4
+ Z
+                                                 2
+       ϕ̄ψdLd =                           g − (z,γ(z))
+                                                         √                         (sign(g)ϕ̄ψ)|(z,γ(z)+tk z 0 ) dz 0 dz
+  Ω tk              tk               B          2
+                                                                 1+|∇γ(z)|2
+    Z Z g+ (z,γ(z)) √            1+|∇γ(z)|2 Z 1
+                    2
+ =4           g − (z,γ(z))
+                            √                            (∂d ϕ̄)(z, γ(z) + stk z 0 )ds (sign(g)ψ)|(z,γ(z)+tk z 0 ) z 0 dz 0 dz
+         B          2
+                              1+|∇γ(z)|2             0
+                 g + (z,γ(z))
+                              √
+        Z Z
+                    2
+                                  1+|∇γ(z)|2
+ →4           g − (z,γ(z))
+                             √                    z 0 dz 0 (sign(g)∂d ϕ̄ ψ)|(z,γ(z)) dz
+         B          2
+                                 1+|∇γ(z)|2
+   1
+        Z                            
+ =            1 + |∇γ(z)|2 (g 2 ∂d ϕ̄ ψ)|(z,γ(z)) dz.
+   2     B
+
+
+
+
+                                                                              28
+Differentiating ϕ̄(z, γ(z)) w.r.t. zi yields ∂d ϕ̄(z, γ(z)) ∂i γ(z) = −∂i ϕ̄(z, γ(z)) for all i =
+1, . . . , d − 1. Thus,
+                                             q
+                           ∂d ϕ̄(z, γ(z)) 1 + |∇γ(z)|2 = |∇ϕ̄(z, γ(z))|                    ∀z ∈ B.
+Hence, we arrive at
+                         2hk          1
+                       Z                  q           Z
+                             ϕ̄ψdLd →       1 + |∇γ(z)|2 (|∇ϕ̄|g 2 ψ)|(z,γ(z)) dz
+                        Ω tk          2 B
+                                      1
+                                        Z
+                                    =            g 2 ψ|∇ϕ̄|dHd−1 .
+                                      2 Z∩(B×J)
+This proves (40).
+  (c): From the implicit function theorem and the definition of Z, it follows that for
+every p ∈ Z there exist an orthogonal transformation R ∈ O(d), an open ball B ⊂ Rd−1 ,
+an open interval J := (a, b), and a map γ ∈ C 1 (B) with values in J such that
+     p ∈ R(B × J),                    R(B × J) ⊂ Ω,                Z ∩ R(B × J) = R({(z, γ(z)) : z ∈ B}),
+                             W := {(z, z ) : z ∈ B, |z 0 − γ(z)| < ε} ⊂ B × J,
+                                                 0
+
+                                 R({(z, z 0 ) ∈ B × J : γ(z) < z 0 }) ⊂ {ϕ̄ > 0},
+                                     R({(z, z 0 ) ∈ B × J : z 0 < γ(z)}) ⊂ {ϕ̄ < 0}
+for some ε > 0. Since supp(g) is compact, we may find points p1 , . . . , pL ∈ Z with
+associated Rl , Bl etc. such that the sets Rl (Wl ), l = 1, . . . , L, cover supp(g). Define
+                                                            L
+                                                            [
+                                                     U :=         Rl (Wl ) ⊂ Ω
+                                                            l=1
+
+and choose a partition of unity (ψl )L
+                                     l=1 subordinate to the Rl (Wl )-cover of the set U , i.e.,
+a collection of continuous functions ψl ∈ C(U, [0, 1]) such that
+                                                                    X
+                                          supp(ψl ) ⊂ Wl ,                 ψl = 1 on U.
+                                                                       l
+
+Consider now an arbitrary but fixed sequence tk ∈ (0, ∞) with tk & 0, extend the
+functions ψl by zero and define (for k large enough)
+ signl (g)(Rl (z, z 0 )) := sign g Rl (z, γl (z))                      ∀(z, z 0 ) ∈ Wl ,
+                                                            
+
+                                              g − (Rl (z, γl (z)))    z 0 − γl (z)        g + (Rl (z, γl (z)))
+                                                                                                            
+                   0
+Gl,k := (z, z ) ∈ Bl × Jl                  tk                      ≤p               ≤ t k                      ,
+                                                       2             1 + |∇γl (z)|2                2
+        L
+        X 2 signl (g)
+hk :=                         1Rl (Gl,k ) ψl .
+        l=1
+                   tk
+
+Then, it holds x̄ + tk hk ∈ C = L∞ (Ω, [0, 1]) (cf. the signs of the involved functions and
+khk kL∞ ≤ 2/tk ), and we may deduce from (b) that
+           Z                           L Z
+                                         X
+                             d
+     lim           hk vdL            =                            gψl v dHd−1 = hh, vi      ∀v ∈ C0 (Ω),    (41)
+    k→∞        Ω                         l=1 Z∩Rl (Bl ×Jl )
+
+
+
+
+                                                                  29
+            Z                     L Z
+                                    X
+      lim           |hk |dLd =                           |g|ψl dHd−1 = khkX                                         (42)
+      k→∞       Ω                   l=1 Z∩Rl (Bl ×Jl )
+and
+                            L
+             2hk         1X                                       1
+          Z                             Z                                                 Z
+    lim          ϕ̄dLd =                      g 2 ψl |∇ϕ̄|dHd−1 =                                   g 2 |∇ϕ̄|dHd−1 . (43)
+ k→∞        Ω tk         2 l=1 Z∩Rl (Bl ×Jl )                     2                             Z
+
+
+The above proves h ∈ TC? (x̄) and h ∈ KC ? (x̄, ϕ̄), see (a). From (41), (42) and (43), we
+
+obtain further that rk := 2(hk − h)/tk satisfies x̄ + tk h + 12 t2k rk ∈ C for all k and
+
+                                    1                                               1
+                                                                                        Z
+                      ?
+               tk rk * 0,       kh + tk rk kX → khkX ,                hϕ̄, rk i →           g 2 |∇ϕ̄|dHd−1
+                                    2                                               2   Z
+
+as k → ∞. If we combine this with Proposition 6.9 and Definition 3.1, then the claim
+follows immediately.
+
+  Using Proposition 6.9 and Lemma 6.10, we finally arrive at an explicit formula for the
+directional curvature functional in the bang-bang case.
+
+Theorem 6.11. For every tuple (x̄, ϕ̄) ∈ C × −NC? (x̄) that satisfies the conditions in
+Assumption 6.6, it holds
+n                                         o   n                                                                  o
+       ?
+  h ∈ KC (x̄, ϕ̄) Qx̄, ϕ̄
+                   C (h) < ∞ = gH
+                                  d−1
+                                      |Z g ∈ L1 Z, Hd−1 ∩ L2 Z, |∇ϕ̄|Hd−1                                              .
+                                                                                                                    (44)
+Moreover, for every element h = gHd−1 |Z of the above set, it is true that
+                                                 1
+                                                         Z
+                                        Qx̄, ϕ̄
+                                         C (h) =                  g 2 |∇ϕ̄|dHd−1 .                                  (45)
+                                                    2    Z
+
+Proof. Proposition 6.9 yields that “⊂” holds in (44) and that “≥” holds in (45). To
+obtain the reverse inclusion/inequality,
+                                    we consider an arbitrary
+                                                                but fixed h = gHd−1 |Z ∈
+M(Ω) with some g ∈ L1 Z, Hd−1 ∩ L2 Z, |∇ϕ̄|Hd−1 . Using a compact exhaustion
+of the domain Ω and mollification,
+                                             to see that we can find a sequence (gn ) ⊂
+                                    it is easy
+                         1
+Cc (Z) with gn → g in L Z, H    d−1   ∩ L Z, |∇ϕ̄|Hd−1 . The latter implies that hn :=
+                                           2
+                                ?
+gn Hd−1 |Z satisfies hn * h in X and that
+                                1                                 1
+                                    Z                                 Z
+                                        gn2 |∇ϕ̄|dHd−1 →                  g 2 |∇ϕ̄|dHd−1 .
+                                2   Z                             2   Z
+
+On the other hand, we obtain from Lemma 6.10 that hn ∈ KC     ? (x̄, ϕ̄) holds for all n and
+
+that there exist sequences {rn,k } ⊂ X and {tn,k } ⊂ R+ with x̄ + tn,k hn + 21 t2n,k rn,k ∈ C
+for all n, k and
+                             ?                         x̄,ϕ̄                          1
+  tn,k & 0,         tn,k rn,k * 0,      hϕ̄, rn,k i → QC     (hn ) and           khn + tn,k rn,k kX → khn kX
+                                                                                      2
+for all n as k → ∞. Note that, since the sequence khn kX is bounded and since the norms
+khn + 21 tn,k rn,k kX converge to khn kX , in the above situation, we may assume w.l.o.g.
+
+
+
+                                                             30
+that ktn,k rn,k kX ≤ M holds for some constant M that is independent of n and k (just
+shift the index k appropriately for each n). From Lemmas 3.3 and 6.10, we may now
+                                                  ? (x̄, ϕ̄) and that
+deduce that h is an element of the critical cone KC
+                                         1                                             1
+                                               Z                                           Z
+  Qx̄, ϕ̄           x̄,ϕ̄
+   C (h) ≤ lim inf QC (hn ) = lim inf                   gn2 |∇ϕ̄|dHd−1 =                       g 2 |∇ϕ̄|dHd−1 < ∞.
+                 n→∞                 n→∞ 2         Z                                   2   Z
+
+This proves “⊃” in (44) and “≤” in (45).
+
+  We combine Theorems 6.4 and 6.11 and arrive at the main result of this section.
+Theorem 6.12 (Explicit No-Gap Second-Order Condition for Bang-Bang Problems).
+Consider an optimization problem of the form (P) with C, X etc. as in Assumption 6.2.
+Assume that x̄ ∈ C is fixed, that J satisfies the conditions in Assumption 4.1, that the
+map X 3 h 7→ J 00 (x̄) h2 ∈ R is weak-? continuous, that x̄ and ϕ̄ satisfy the conditions in
+Assumption 6.6, and that the constant K(ϕ̄) in (31) is non-zero. Then, the condition
+             1
+                 Z                                                   2
+                      g 2 |∇ϕ̄|dHd−1 + J 00 (x̄) gHd−1 |Z                  >0
+             2    Z                                                                                              (46)
+                                                                                                  
+                                           1                d−1            2                   d−1
+                                    ∀g ∈ L         Z, H               ∩L           Z, |∇ϕ̄|H             \ {0}
+
+is equivalent to the quadratic growth condition (34) with constants c > 0 and ε > 0.
+  We conclude this section with some remarks.
+Remark 6.13.
+  (i) The inequality (46) with “≥” instead of “>” is still a necessary optimality condition
+      when K(ϕ̄) = 0.
+
+ (ii) Theorem 6.12 is still valid when Z = ∅ and (46) is empty. In this case, the only
+      thing that has to be checked to obtain (34) is the level-set condition K(ϕ̄) > 0.
+
+(iii) We expect that the assumptions on ϕ̄ in Theorem 6.12 can be weakened (the Taylor
+      expansion in Lemma 6.7, for example, also holds in a far more general setting, see
+      [Christof and Meyer, 2016, Proposition 5.9]).
+
+ (iv) The techniques used in the proofs of Lemma 6.8 and Proposition 6.9 might be use-
+      able in other situations as well (e.g., the idea to exploit the subdifferential structure
+      of the admissible set C, cf. (37)).
+
+ (v) We point out that (MRC) does not hold in the situation of Theorem 6.12 (from
+     C ⊂ L1 (Ω) it follows TC (x̄) ∩ ϕ̄⊥ = {0} 6= KC
+                                                   ? (x̄, ϕ̄) and this is incompatible with
+
+     the condition (MRC), cf. Remark 3.5).
+
+ (vi) The first addend on the left-hand side of (46) measures the curvature of the set C
+      in x̄ (compare, e.g., with Theorem 5.11). Note that the surface integral in (46) is
+      only meaningful for a C 1 -function ϕ̄. This shows that exploiting the regularity of
+      the gradient ϕ̄ = J 0 (x̄) is essential for the derivation of Theorem 6.12.
+
+
+
+                                                       31
+(vii) Theorem 6.12 can, e.g., be used to obtain no-gap second-order conditions for bang-
+      bang optimal control problems governed by semilinear PDEs, cf. [Casas et al.,
+      2017b].
+
+
+7 Conclusion
+Given the examples and applications in Sections 5 and 6, we may conclude that the
+theoretical framework of Section 4 is indeed a handy tool in the derivation of (no-gap)
+second-order optimality conditions for problems of the type (P). Our results are not
+only applicable in those situations where the classical assumptions of polyhedricity and
+second-order regularity are satisfied (see Theorems 5.10 and 5.11) but also allow to
+study problems with more complicated admissible sets. This is underlined by the no-
+gap second-order conditions which were derived in the bang-bang setting of Section 6.2.
+Further investigation is needed for the study of the directional curvature functional in
+the presence of pointwise state constraints, cf. the comments after Example 5.6. We
+plan to discuss this topic in a forthcoming paper.
+
+
+References
+Ambrosio, L. (2000). Functions of Bounded Variation and Free Discontinuity Problems.
+  Oxford & New York: Oxford University Press.
+Bonnans, J.F. (1998). “Second-order analysis for control constrained optimal control
+  problems of semilinear elliptic systems”. In: Applied Mathematics and Optimization.
+  An International Journal with Applications to Stochastics 38.3, pp. 303–325. issn:
+  0095-4616. doi: 10.1007/s002459900093.
+Bonnans, J.F., Cominetti, R., and Shapiro, A. (1999). “Second order optimality condi-
+  tions based on parabolic second order tangent sets”. In: SIAM Journal on Optimization
+  9.2, pp. 466–492. issn: 1052-6234. doi: 10.1137/S1052623496306760.
+Bonnans, J.F. and Shapiro, A. (2000). Perturbation Analysis of Optimization Problems.
+  New York: Springer Verlag.
+Bonnans, J.F. and Zidani, H. (1999). “Optimal control problems with partially poly-
+  hedric constraints”. In: SIAM Journal on Control and Optimization 37.6, pp. 1726–
+  1741. issn: 0363-0129. doi: 10.1137/S0363012998333724.
+Cartan, H. (1967). Calcul différentiel. Paris: Hermann, p. 178.
+Casas, E. (2012). “Second Order Analysis for Bang-Bang Control Problems of PDEs”.
+  In: SIAM Journal on Control and Optimization 50.4, pp. 2355–2372. doi: 10.1137/
+  120862892.
+Casas, E. and Tröltzsch, F. (2012). “Second order analysis for optimal control problems:
+  improving results expected from abstract theory”. In: SIAM Journal on Optimization
+  22.1, pp. 261–279. issn: 1052-6234. doi: 10.1137/110840406.
+Casas, E. and Tröltzsch, F. (2015). “Second Order Optimality Conditions and Their Role
+  in PDE Control”. In: Jahresbericht der Deutschen Mathematiker-Vereinigung 117.1,
+  pp. 3–44. issn: 1869-7135. doi: 10.1365/s13291-014-0109-3.
+
+
+
+                                          32
+Casas, E., Wachsmuth, D., and Wachsmuth, G. (2017a). Second order analysis and nu-
+  merical approximation for bang-bang bilinear control problems. Preprint. arXiv: 1707.
+  06880.
+Casas, E., Wachsmuth, D., and Wachsmuth, G. (2017b). “Sufficient second-order condi-
+  tions for bang-bang control problems”. In: SIAM Journal on Control and Optimization.
+  To appear.
+Christof, C. and Meyer, C. (2016). “Differentiability properties of the solution operator to
+  an elliptic variational inequality of the second kind”. In: Ergebnisberichte des Instituts
+  für Angewandte Mathematik, TU Dortmund 527.
+Do, C.N. (1992). “Generalized Second-Order Derivatives of Convex Functions in Reflex-
+  ive Banach Spaces”. In: Transactions of the American Mathematical Society 334.1,
+  pp. 281–301. doi: 10.2307/2153983.
+Evans, L.C. and Gariepy, R.F. (2015). Measure theory and fine properties of functions.
+  Revised. Boca Raton, FL: CRC Press.
+Grisvard, P. (1985). Elliptic Problems in Nonsmooth Domains. Boston: Pitman.
+Holm, D.D., Schmah, T., and Stoica, C. (2009). Geometric Mechanics and Symmetry.
+  Oxford: Oxford University Press.
+Maurer, H. and Zowe, J. (1979). “First and Second Order Necessary and Sufficient Opti-
+  mality Conditions for Infinite-Dimensional Programming Problems”. In: Mathematical
+  Programming 16.1, pp. 98–110. doi: 10.1007/BF01582096.
+Mehlitz, P. and Wachsmuth, G. (2017). “The weak sequential closure of decomposable
+  sets in Lebesgue spaces and its application to variational geometry”. In: Preprint, TU
+  Chemnitz.
+Mignot, F. (1976). “Controle dans les inéquations variationelles elliptiques”. In: Journal
+  of Functional Analysis 22, pp. 130–185.
+Rockafellar, R.T. and Wets, R.J. (1998). Variational Analysis. Berlin: Springer Verlag.
+Shapiro, A. (1997). “On uniqueness of Lagrange multipliers in optimization problems
+  subject to cone constraints”. In: SIAM Journal on Optimization 7.2, pp. 508–518.
+  issn: 1052-6234. doi: 10.1137/S1052623495279785.
+Wachsmuth, G. (2016). “A guided tour of polyhedric sets”. In: Preprint, TU Chemnitz.
+Zowe, J. and Kurcyusz, S. (1979). “Regularity and stability for the mathematical pro-
+  gramming problem in Banach spaces”. In: Applied Mathematics and Optimization 5.1,
+  pp. 49–62. doi: 10.1007/BF01442543.
+
+
+
+
+                                            33
+

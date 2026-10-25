@@ -46,9 +46,9 @@ def derive(a,dx,dy):
             out=add(out,mul(const(f),mul(powop(y,i),mul(dy,powop(y,n-1-i)))))
     return out
 def polynomial_coefficients(a):
-    return all(s.denom(s.cancel(v))==1 for v in a.values())
+    return all(s.cancel(v).is_polynomial(x) for v in a.values())
 def in_A(a,h):
-    return all(s.denom(s.cancel(v/h**j))==1 for j,v in a.items())
+    return all(s.cancel(v/h**j).is_polynomial(x) for j,v in a.items())
 def monomials(a):
     terms=[]
     for j,f in a.items():
@@ -84,7 +84,7 @@ def bar_comparison(h,Y):
 
 def main():
     started=datetime.now(timezone.utc).isoformat(); rows=[]
-    polynomials=[1,2,x,3*(x*x+1),x*(x-1),x*x,x**3,2*(x-1)**3,(x*x+1)**2,3*(x*x+1)**2*(x-2)**3]
+    polynomials=[1,2,s.Rational(1,2),s.Rational(1,2)*(x-1)**2,x,3*(x*x+1),x*(x-1),x*x,x**3,2*(x-1)**3,(x*x+1)**2,3*(x*x+1)**2*(x-2)**3]
     for raw in polynomials:
         h=s.expand(raw);d=s.Poly(s.gcd(h,s.diff(h,x)),x).monic().as_expr();pi=s.cancel(h/d)
         Y=mul(y,const(h));ck(comm(Y,X)==const(h),'embedded_relation')
@@ -105,7 +105,7 @@ def main():
         for u,e in s.factor_list(h)[1]:
             if e<2:continue
             u=s.Poly(u,x).monic().as_expr();g=s.cancel(d/u);L=s.cancel(pi*s.diff(d,x)/d)
-            ck(s.denom(L)==1,'L_polynomial')
+            ck(L.is_polynomial(x),'L_polynomial')
             dy=add(mul(const(-s.diff(pi,x)),y),const((L*s.diff(h,x)-pi*s.diff(h,x,2))/h))
             def b(a):return derive(a,pi,dy)
             def Dg(a):return derive(a,0,const(g/h))
@@ -138,7 +138,6 @@ def main():
             ck(s.expand(-s.diff(g*f,x)+g*s.diff(f,x)+f*s.diff(g,x))==0,'embedded_zero_degree_0_1_BV')
             ck(s.expand(-s.diff(f,x)*g+s.diff(g,x)*f-(f*s.diff(g,x)-g*s.diff(f,x)))==0,'embedded_zero_degree_1_1_BV')
             zero_cases+=1
-    ck(s.diff(x**3,x).subs(x,x)%3==0,'characteristic_three_derivative_failure_control')
     ck(s.Poly(s.diff(x**3,x),x,modulus=3).is_zero,'characteristic_three_squarefree_test_not_transferred')
     # At h=1 the constant is invisible in normalized bars; in h=0 embedded algebra Y=0.
     ck(mul(y,const(0))=={},'embedded_zero_has_no_second_generator')

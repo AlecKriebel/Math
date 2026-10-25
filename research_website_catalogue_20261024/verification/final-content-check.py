@@ -51,7 +51,22 @@ TEX_PATHS={
  '23387814':'published-source/seshadri_counterexample_verification/seshadri_counterexample.tex',
  '23431716':'published-source/paper.tex',
  '22089373':'published-source/Strong_Tree_Childness_Sharp_Level2_JC_source/paper/main.tex',
+ '23444839':'published-source/main.tex',
+ '23592692':'published-source/main.tex',
+ '23441906':'published-source/simple-brace-counterexample-source-and-verification/main.tex',
+ '23431313':'published-source/paper.tex',
 }
+BRACE_NIJENHUIS_IDS={'23441906','23431313'}
+def normalized_brace_nijenhuis_abstract(rid,body):
+ if rid=='23441906':body=body.replace("Ced\\'o",'Cedó').replace('~',' ').replace('\\,',' ').replace('$','').replace('\\ne','≠').replace('^3','³')
+ else:body=body.replace('$','').replace('\\R^n','ℝⁿ').replace('\\lambda','λ')
+ return ' '.join(body.split())
+NEVO_WARM_IDS={'23444839','23592692'}
+def normalized_nevo_warm_abstract(rid,body):
+ if rid=='23444839':body=body.replace('Cohen--Macaulay','Cohen–Macaulay')
+ else:
+  for old,new in {r'$\alpha>1$':'α>1',r'$\alpha$':'α',r'$\alpha>4/3$':'α>4/3','$4/3$':'4/3',r'$\alpha\ge17/4$':'α≥17/4','$m$':'m',r'$\alpha>\sec^2(\pi/(2m))$':'α>sec²(π/(2m))'}.items():body=body.replace(old,new)
+ return ' '.join(body.split())
 def normalized_jc_abstract(body):
  body=body.replace('Jukes--Cantor','Jukes–Cantor').replace('$n\\ge4$','n ≥ 4').replace('$2n+1$','2n + 1')
  return '\n\n'.join(' '.join(x.split()) for x in re.split(r'\n\s*\n',body.strip()))
@@ -92,6 +107,8 @@ def decode_added_abstract(tex):
  return tex.replace(r'\[','').replace(r'\]','').replace('$','').replace('--','–').replace("'",'’')
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex,record_id=None):
+ if record_id in BRACE_NIJENHUIS_IDS:return wt(normalized_brace_nijenhuis_abstract(record_id,tex))
+ if record_id in NEVO_WARM_IDS:return wt(normalized_nevo_warm_abstract(record_id,tex))
  if record_id=='22089373':return wt(normalized_jc_abstract(tex))
  if record_id in GAME_SESHADRI_IDS:return wt(normalized_game_seshadri_abstract(record_id,tex))
  if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
@@ -453,6 +470,58 @@ for rid in args.record_ids:
   test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['supplement_pdf_sha256']==c['source_binding']['reader_pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()) and all(sha(p/name)==v['sha256'] for name,v in clearance['source_receipts'].items()))
   test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/content.json'))
   test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_gate']=='NOT_PERFORMED_BY_SCOPE_REVIEWER' and bool(gate['scope_gate_resolution']))
+ if rid in NEVO_WARM_IDS:
+  test('abstract_full_source_text',normalized_nevo_warm_abstract(rid,a)==c['abstract'])
+  test('abstract_full_source_word_count',len(c['abstract'].split())=={'23444839':116,'23592692':162}[rid])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==1)
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==len(c['abstract'].split()))
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)=={'23444839':5,'23592692':7}[rid] and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+  test('archive_main_pdf_identity',sha(p/'sources/published-source/output/pdf'/c['pdf_filename'])==sha(p/'sources'/c['pdf_filename']))
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+  test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False)
+  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/CONTENT_CANDIDATE.md' and c['source_binding']['frozen_scope_content_sha256']==sha(p/'reviews/scope/CONTENT_CANDIDATE.md'))
+  test('frozen_scope_chronology_preserved',bool(gate['scope_gate_resolution']))
+ if rid=='23444839':
+  test('scope_complete',all(x in unescape(h) for x in ['finite pure two-dimensional abstract simplicial complex','every field of characteristic zero','over any field','both globally and in every face link','need not be induced','after every vertex deletion','not a claim over every field of positive characteristic','without subdivision or an enlarged ambient complex','each of its edges belongs to twelve triangles']))
+  test('credited_methods_and_limits',all(x in unescape(h) for x in ['Nevo’s earlier decomposition into minimal cycle complexes','Lubotzky, Samuels and Vishne','modulo t⁹','weighted-cocycle','Euler characteristic two','not a certificate of worldwide priority']))
+  test('printed_version_date',r'\date{17 October 2026 \quad (version 1.0.0)}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0.0' and record['publication_date']==c['publication_date']=='2026-10-17')
+ if rid=='23592692':
+  test('scope_complete',all(x in unescape(h) for x in ['finite simple undirected loopless graph','fixed positive finite rate','fixed positive integer count','α > 4/3','α ≥ 17/4','rates are equal','tree of diameter at most three','1 < α < 4/3','positive probability','unit counts','no assertion at α = 4/3']))
+  test('limits_and_prior_credit',all(x in unescape(h) for x in ['uniform bare-cycle spectrum','even-cycle method','least-weight and champion methods','unequal-rate whisker conclusions are false','noninteger initial offsets','not establish the suggested sharp equal-rate whisker conclusion','α > 24','without claiming the first possible numerical improvement of 25','does not certify worldwide priority']))
+  test('original_abstract_disclosure_retained',c['abstract'].endswith('AI tools were extensively involved. This is an unrefereed preprint.'))
+  test('printed_version_date',r'\date{21 October 2026 \quad Version 1.0.0 \quad Preprint}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0.0' and record['publication_date']==c['publication_date']=='2026-10-21')
+ if rid in BRACE_NIJENHUIS_IDS:
+  test('abstract_full_source_text',normalized_brace_nijenhuis_abstract(rid,a)==c['abstract'])
+  test('abstract_full_source_word_count',len(c['abstract'].split())=={'23441906':105,'23431313':141}[rid])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==1)
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==len(c['abstract'].split()))
+  test('two_original_assets_one_reader',len(receipt['files'])==2 and len(texts)==5 and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+  duplicate=p/'sources'/({'23441906':'published-source/simple-brace-counterexample-source-and-verification/output/pdf/simple-brace-counterexample.pdf','23431313':'published-source/paper.pdf'}[rid])
+  test('archive_main_pdf_identity',sha(duplicate)==sha(p/'sources'/c['pdf_filename']))
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files']==c['source_binding']['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
+  test('root_clearance_binding',clearance['record_id']==rid and clearance['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and gate['root_clearance_sha256']==sha(clearance_path) and gate['root_clearance_record']==clearance and gate['approved_scope']==clearance['approved_scope'] and gate['source_repair'] is False and gate['human_peer_review'] is False)
+  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] for k,v in gate['reviews'].items()))
+  candidate={'23441906':'reviews/scope/content.json','23431313':'reviews/scope/CONTENT_CANDIDATE.md'}[rid]
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']==candidate and c['source_binding']['frozen_scope_content_sha256']==sha(p/candidate))
+  test('frozen_scope_chronology_preserved',bool(gate['scope_gate_resolution']))
+ if rid=='23441906':
+  test('scope_complete',all(x in unescape(h) for x in ['20,000-element counterexample','additive group C₅⁴ × C₂⁵','(C₅³ ⋊ C₂) × (C₂⁴ ⋊ C₅)','metabelian with all Sylow subgroups abelian','two trivial braces','full admissible symmetric-cocycle definition','(x∗x)∗x = x³ ≠ 0','left-associated product','same additive primary part']))
+  test('limits_and_prior_credit',all(x in unescape(h) for x in ['no smallest-order claim','does not classify all finite simple braces','does not exclude asymmetric products with nontrivial factors','general matched-product descriptions','does not assert that every mixed-primary triple product vanishes','does not claim a new general construction formalism','Problem 9, printed page 3228']))
+  test('printed_version_date',r'\date{17 October 2026 \quad Version 1.0.0}' in source and record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0.0' and record['publication_date']==c['publication_date']=='2026-10-17')
+ if rid=='23431313':
+  test('scope_complete',all(x in unescape(h) for x in ['For every integer n ≥ 1','every prescribed numerical real Jordan matrix J','globally C∞, compactly supported real Nijenhuis operator on ℝⁿ','smooth commuting local frame','nonempty open domain','every eigenvalue at every point','multiple blocks belonging to the same eigenvalue','negative or zero eigenvalues and the zero matrix','In dimension one','same dimension']))
+  test('limits_and_prior_credit',all(x in unescape(h) for x in ['does not give a nonzero real-analytic','arbitrarily preassigned realization domain are not prescribed','Global algebraic regularity and a single global Jordan type are not guaranteed','does not forbid local models with nonreal eigenvalues','Earlier work supplies the nonreal obstruction','Historical priority of the full result or this construction is not established','Problem 5.11']))
+  policy=clearance['publication_date_policy']
+  test('declared_date_not_record_creation',r'\date{15 October 2026, version 1.0}' in source and record['publication_date']==c['publication_date']==policy['publication_date']=='2026-10-15' and c['publication_date_label']==policy['publication_date_label']=='Manuscript dated' and c['source_binding']['record_created_utc']==policy['record_created_utc']=='2026-10-17T05:41:33.490188+00:00' and '<br>Manuscript dated <time datetime="2026-10-15">15 October 2026</time>' in h and all(x in c['edition_note'] for x in ['created on 17 October 2026','not verified public availability','Neither date establishes first priority']))
+  test('printed_version_binding',record['version']==c['version']==c['source_binding']['manuscript_version']=='1.0')
+  test('original_abstract_limits_and_disclosure_retained',c['abstract'].endswith('This preprint is unrefereed and has no external human peer review or formal proof-assistant certification.'))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

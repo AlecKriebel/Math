@@ -1,0 +1,2426 @@
+                                                   Second-order conditions for
+                                           spatio-temporally sparse optimal control via
+                                                     second subderivatives
+                                                               Nicolas Borchard∗                     Gerd Wachsmuth∗
+
+
+
+
+arXiv:2311.14538v1 [math.OC] 24 Nov 2023
+                                                                                 November 27, 2023
+
+
+
+                                                       We address second-order optimality conditions for optimal control problems
+                                                    involving sparsity functionals which induce spatio-temporal sparsity patterns.
+                                                    We employ the notion of (weak) second subderivatives. With this approach, we
+                                                    are able to reproduce the results from Casas, Herzog, and Wachsmuth (ESAIM
+                                                    COCV, 23, 2017, p. 263–295). Our analysis yields a slight improvement of
+                                                    one of these results and also opens the door for the sensitivity analysis of this
+                                                    class of problems.
+
+                                           Keywords: no-gap second order conditions, second subderivative, sparse control
+                                           MSC: 49K27, 49K20
+
+
+                                           1 Introduction
+                                           We are interested in second-order optimality condition for optimization problems of the
+                                           form
+                                                                 Minimize F (u) + µji (u)     w.r.t. u ∈ Uad ,               (1.1)
+                                           where F : Uad → R is assumed to be smooth,
+
+                                                                      Uad := {u ∈ L2 (Ω × (0, T )) | α ≤ u ≤ β a.e.}
+
+                                           is the feasible set with constants α < 0 < β, µ > 0 is a scaling parameter and ji is one of
+                                           the sparsity functionals
+                                                                                             Z
+                                                                  j1 (u) := ∥u∥L1 (ΩT ) :=              |u(x, t)| d(x, t),                 (1.2a)
+                                                                                             Ω×(0,T )
+
+                                            ∗
+                                                Brandenburgische Technische Universität Cottbus-Senftenberg, Institute of Mathematics, 03046 Cott-
+                                                 bus, Germany, gerd.wachsmuth@b-tu.de
+
+
+
+
+                                                                                                 1
+                                                      "Z                            #1/2
+                                                         T
+                   j2 (u) := ∥u∥L2 (0,T ;L1 (Ω)) :=           ∥u(·, t)∥2L1 (Ω) dt          ,   (1.2b)
+                                                          0
+                                                      Z
+                   j3 (u) := ∥u∥L1 (Ω;L2 (0,T )) :=        ∥u(x, ·)∥L2 (0,T ) dx.              (1.2c)
+                                                       Ω
+
+For a special choice of F , problem (1.1) has been considered in [Casas, Herzog, and G.
+Wachsmuth, 2017]. Therein, the smooth part F involves the solution map of a semilinear
+parabolic equation, see Section 4 for details.
+   Sufficient optimality conditions of second-order typically provide quadratic growth in
+the neighborhood of a minimizer. This is of uttermost importance for the stability of
+the minimizer under perturbations, for the convergence of optimization methods and
+for the numerical analysis of discretization schemes, see [Casas and Tröltzsch, 2014]
+and the references therein. Another important role is played by necessary conditions of
+second-order. They will be satisfied by every local minimizer and the “distance” between
+the necessary and the sufficient conditions can serve as a judgement concerning their
+sharpness.
+   There is a rich literature for second-order conditions for PDE-constrained optimal
+control problems. We refer again to [Casas and Tröltzsch, 2014] and the references therein.
+The first contribution concerning second-order conditions for optimal control problems
+with nonsmooth sparsity functionals is [Casas, Herzog, and G. Wachsmuth, 2012]. Therein,
+the L1 -norm (as in (1.2a)) was considered, which has a significantly simpler structure
+than the functionals ji from (1.2). As already said, the other functionals from (1.2) were
+already investigated in [Casas, Herzog, and G. Wachsmuth, 2017]. Further contributions
+which address more complicated state equations are [Casas, Ryll, and Tröltzsch, 2015;
+Sprekels and Tröltzsch, 2023].
+   The structure of second-order conditions depend crucially on the presence of an L2 -
+Tikhonov term in the objective. If such a term is included, the problem can be analyzed in
+L2 , one obtains a quadratic growth condition in L2 for the control and the gap between the
+necessary and sufficient conditions of second order is as small as possible, see, e.g., [Casas
+and Tröltzsch, 2012]. In absence of the Tikhonov term, the first contribution for PDE
+control is [Casas, 2012]. Therein, the author proves a second-order sufficient condition
+which guarantees a quadratic growth in the state variable, but necessary conditions of
+second order are not available. Under a structural assumption on the adjoint state, [Casas,
+D. Wachsmuth, and G. Wachsmuth, 2017] provides a second-order condition which gives
+quadratic growth in L1 for the control, again, no necessary conditions of second order
+were addressed. By using the notion of second subderivatives, it was demonstrated in
+[Christof and G. Wachsmuth, 2018], that (under the structural assumption) the problem
+should be analyzed in the space of measures and the authors were able to characterize
+quadratic growth in L1 for the control via second-order conditions.
+   In the present paper, we focus on the situation in which a Tikhonov term is present
+(within the smooth part F ) and enables us to analyze the problem in L2 . In this setting,
+we mainly reproduce the results of [Casas, Herzog, and G. Wachsmuth, 2017]. However,
+our approach has three advantages. First, we were able to prove quadratic growth in an
+L2 (Ω × (0, T ))-ball in the case of j = j3 , whereas the growth was only known to hold
+
+
+
+                                                 2
+in an L∞ (Ω; L2 (0, T ))-ball before. This is important for the numerical analysis of such
+problems. Second, our sufficient condition in the case ū = 0 and j = j2 seems to be weaker.
+More comments concerning these two points can be found in Section 4. Finally, since we
+prove second-order epi-differentiability of the functionals ji (under mild assumptions), the
+sensitivity analysis from [Christof and G. Wachsmuth, 2020] is applicable to the problem
+at hand and can be used to prove (directional) differentiability of the solution w.r.t.
+possible perturbations of the data. We also mention that we identified two issues with the
+analysis in [Casas, Herzog, and G. Wachsmuth, 2017], see Lemma 3.8 and Example 3.14.
+  In order to analyze problem (1.1), we use the reformulation
+
+                   Minimize F (u) + Gi (u)                 w.r.t. u ∈ L2 (Ω × (0, T )),               (1.3)
+
+where
+                                          Gi (u) = δUad (u) + µji (u)                                 (1.4)
+with the indicator function δUad : L2 (Ω × (0, T )) → {0, ∞} of the feasible set. Since
+the functionals Gi are nonsmooth (and even discontinuous everywhere), it is not clear
+how (directional) second-order derivatives should be defined. In [Casas, Herzog, and
+G. Wachsmuth, 2017], the authors used an ad-hoc approach, i.e., they defined reasonable
+expressions for the second-order derivatives and proved that they can be used to arrive
+at second-order optimality conditions. We follow the approach of [Christof and G.
+Wachsmuth, 2018; D. Wachsmuth and G. Wachsmuth, 2022] and utilize the weak second-
+order subderivative of Gi at ū w.r.t. w ∈ L2 (Ω×(0, T )) defined for all directions v ∈ L2 (Ω)
+via
+                              (                                                                 )
+                                          Gi (ū + tk vk ) − Gi (ū) − tk ⟨w, vk ⟩
+     G′′i (ū, w; v) := inf       lim inf                                          tk ↘ 0, vk ⇀ v .
+                                   k→∞                      t2k /2
+
+We prove that this weak second subderivative coincides with the expressions given in
+[Casas, Herzog, and G. Wachsmuth, 2017]. Further, we prove that the functionals Gi are
+strongly twice epi-differentiable (see Definition 2.4) and this enables us to use abstract
+results concerning second-order optimality conditions. Due to these preparations, one
+can easily apply the theory to obtain second-order conditions for problems in which, e.g.,
+the functional F is defined via different PDEs.
+   The paper is structured as follows. In Section 2 we give details concerning no-gap second-
+order conditions via the calculus of subderivatives. We review the second-order theory
+(Section 2.1) and also give some new results of first and second order (Section 2.2 and
+Section 2.3). Section 3 is devoted to the computation of the weak second subderivatives
+of Gi and to the verification of the strong twice epi-differentiability of Gi . Finally, these
+findings are applied to a semilinear parabolic control problem in Section 4.
+
+
+2 No-Gap Second-Order Conditions
+In this section, we consider the minimization problem
+
+                      Minimize Φ(x) := F (x) + G(x)                   w.r.t. x ∈ X.                    (P)
+
+
+
+                                                       3
+Here, G : X → R̄ := (−∞, ∞] and F : dom(G) → R are given. We are going to provide
+optimality conditions for (P) by using subderivatives of G.
+  We are interested in necessary and sufficient conditions of second order, such that the
+gap between both conditions is as small as in finite dimensions. In Section 2.1, we present
+the second-order theory from [D. Wachsmuth and G. Wachsmuth, 2022], which is a slight
+generalization of the theory from [Christof and G. Wachsmuth, 2018]. Afterwards, we
+introduce a first-order subderivative in Section 2.2 and provide associated results and
+calculus rules. Finally, in Section 2.3, we present some new results of second order.
+  Throughout this section, we always consider the following situation.
+Assumption 2.1 (Standing Assumptions and Notation).
+  (i) X is the (topological) dual space of a separable Banach space Y ,
+ (ii) x̄ ∈ dom(G) is fixed,
+(iii) There exist F ′ (x̄) ∈ Y and a bounded bilinear form F ′′ (x̄) : X × X → R with
+                          F (x̄ + tk hk ) − F (x̄) − tk F ′ (x̄)hk − 12 t2k F ′′ (x̄)h2k
+                      lim                                                                =0           (2.1)
+                      k→∞                            t2k
+                                                                                              ⋆
+      for all sequences (tk ) ⊂ R+ := (0, ∞), (hk ) ⊂ X satisfying tk ↘ 0, hk ⇀ h ∈ X
+      and x̄ + tk hk ∈ dom(G).
+   Note that we use the abbreviations F ′ (x̄)h := ⟨F ′ (x̄), h⟩ and F ′′ (x̄)h2 := F ′′ (x̄)(h, h)
+for all h ∈ X in (2.1), and that (2.1) is automatically satisfied if F admits a second-order
+Taylor expansion of the form
+                                              1
+             F (x̄ + h) − F (x̄) − F ′ (x̄)h − F ′′ (x̄)h2 = o(∥h∥2X )       as ∥h∥X → 0.             (2.2)
+                                              2
+
+2.1 Review of second-order theory
+First, we review the theory from [Christof and G. Wachsmuth, 2018; D. Wachsmuth and
+G. Wachsmuth, 2022]. As a second derivative for the functional G, we use the so-called
+weak-⋆ second subderivative.
+Definition 2.2 (Weak-⋆ Second Subderivative). Let x ∈ dom(G) and w ∈ Y be given.
+The weak-⋆ second subderivative G′′ (x, w; ·) : X → [−∞, ∞] of G at x for w is defined via
+                            (                                                                     )
+        ′′                       G(x + tk hk ) − G(x) − tk ⟨w, hk ⟩            ⋆
+      G (x, w; h) := inf lim inf                                    tk ↘ 0, hk ⇀ h .
+                          k→∞                   t2k /2
+  In the case that G is convex, the parameter w in G′′ (x, w; ·) will often be taken from
+the convex subdifferential ∂G(x) ⊂ X ⋆ . In the case that X is not reflexive, we identify
+Y with a proper subspace of X ⋆ = Y ⋆⋆ (in the canonical way). In [D. Wachsmuth and
+G. Wachsmuth, 2022, Remark 2.3] an example is given which shows that the existence of
+w ∈ Y ∩ ∂G(x) is an additional regularity assumption, since it requires the existence of
+subgradients of G in the smaller pre-dual space Y .
+  We review some properties of G′′ (x, w; ·).
+
+
+
+                                                    4
+Lemma 2.3 ([D. Wachsmuth and G. Wachsmuth, 2022, Lemma 2.4]). We assume that
+G is convex and x ∈ dom(G). For w ∈ Y ∩ ∂G(x) we have
+
+                                 ∀h ∈ X :         G′′ (x, w; h) ≥ 0,
+
+whereas in case w ∈ Y \ ∂G(x) we have
+
+                          ∃h ∈ X \ {0} :          G′′ (x, w; h) = −∞.
+
+  In the next definition, we ensure the existence of recovery sequences.
+Definition 2.4 (Second-Order Epi-Differentiability). Let x ∈ dom(G) and w ∈ Y be
+given. The functional G is said to be weak-⋆ twice epi-differentiable (respectively, strictly
+twice epi-differentiable, respectively, strongly twice epi-differentiable) at x for w in a
+direction h ∈ X, if for all (tk ) ⊂ R+ with tk ↘ 0 there exists a sequence (hk ) ⊂ X
+               ⋆                      ⋆
+satisfying hk ⇀ h (respectively, hk ⇀ h and ∥hk ∥X → ∥h∥X , respectively, hk → h) and
+                                        G(x + tk hk ) − G(x) − tk ⟨w, hk ⟩
+                   G′′ (x, w; h) = lim                                     .            (2.3)
+                                    k→∞                t2k /2
+
+The functional G is called weak-⋆/strictly/strongly twice epi-differentiable at x for w if it
+is weak-⋆/strictly/strongly twice epi-differentiable at x for w in all directions h ∈ X.
+   We note that a slightly weaker property would be sufficient to apply the second-
+order theory below. In fact, for every h ∈ X we only need one pair of sequences (tk )
+and (hk ) with the properties as in Definition 2.4, see [Christof and G. Wachsmuth,
+2018, Definition 3.4, Theorem 4.3]. However, many functionals G are actually weak-
+⋆/strictly/strongly twice epi-differentiable and this stronger property is also useful for a
+differential sensitivity analysis, see [Christof and G. Wachsmuth, 2020].
+   Next, we state the second-order optimality conditions for (P). We start with the
+necessary condition from [D. Wachsmuth and G. Wachsmuth, 2022, Theorem 2.8].
+Theorem 2.5 (Second-Order Necessary Condition). Suppose that x̄ is a local minimizer
+of (P) such that
+                                c
+                  Φ(x) ≥ Φ(x̄) + ∥x − x̄∥2X             ∀x ∈ X, ∥x − x̄∥X ≤ ε           (2.4)
+                                2
+holds for some c ≥ 0 and some ε > 0. Assume further that one of the following conditions
+is satisfied.
+  (i) The map h 7→ F ′′ (x̄)h2 is sequentially weak-⋆ upper semicontinuous.
+
+ (ii) The functional G is strongly twice epi-differentiable at x̄ for −F ′ (x̄).
+Then
+                    F ′′ (x̄)h2 + G′′ (x̄, −F ′ (x̄); h) ≥ c∥h∥2X      ∀h ∈ X.          (2.5)
+  We continue with the sufficient condition, see [D. Wachsmuth and G. Wachsmuth,
+2022, Theorem 2.9].
+
+
+
+                                                 5
+Theorem 2.6 (Second-Order Sufficient Condition). Assume that the map h 7→ F ′′ (x̄)h2
+is sequentially weak-⋆ lower semicontinuous and that
+
+                         F ′′ (x̄)h2 + G′′ (x̄, −F ′ (x̄); h) > 0    ∀h ∈ X \ {0}.                  (2.6)
+
+Suppose further that
+                                                               ⋆
+    for all (tk ) ⊂ R+ , (hk ) ⊂ X with tk ↘ 0, hk ⇀ 0 and ∥hk ∥X = 1, we have
+                   
+                       1                                                1
+                                                                                        
+                                                                                                   (NDC)
+                          G(x̄ + tk hk ) − G(x̄) + ⟨F ′ (x̄), hk /tk ⟩ + F ′′ (x̄)h2k
+                                                
+         lim inf        2                                                                   > 0.
+          k→∞          tk                                               2
+
+Then x̄ satisfies the growth condition (2.4) with some constants c > 0 and ε > 0.
+   In case G is convex, a first-order condition is actually hidden in (2.6), see Lemma 2.3 and
+also Corollary 2.22 below. The acronym (NDC) stands for “non-degeneracy condition”,
+see [Christof and G. Wachsmuth, 2018, Theorem 4.4]. Sufficient conditions for (NDC)
+are given in [Christof and G. Wachsmuth, 2018, Lemma 5.1]. A slight generalization of
+their case (ii) applies to our problem (1.3).
+Lemma 2.7. Suppose that G is convex, X is a Hilbert space and −F ′ (x̄) ∈ ∂G(x). We
+further require that h 7→ F ′′ (x̄)h2 is a Legendre form, i.e., it is sequentially weakly lower
+semicontinuous and
+
+                   hk ⇀ h       and     F ′′ (x̄)h2k → F ′′ (x̄)h2   =⇒        hk → h
+
+holds for all sequences (hk ) ⊂ X. Then, (NDC) is satisfied.
+Proof. Let sequences (tk ) and (hk ) as in (NDC) be given. Due to convexity, we have
+                            1
+                               G(x̄ + tk hk ) − G(x̄) + ⟨F ′ (x̄), hk /tk ⟩ ≥ 0.
+                                                     
+                             2
+                            tk
+
+Thus, it is sufficient to verify lim inf k→∞ F ′′ (x̄)h2k > 0. From the sequential weak
+lower semicontinuity and hk ⇀ 0, we already get lim inf k→∞ F ′′ (x̄)h2k ≥ 0. The case
+lim inf k→∞ F ′′ (x̄)h2k = 0 cannot appear, since this would lead to hk → 0 (at least on a
+subsequence) in contradiction to ∥hk ∥X = 1. This finishes the proof.
+
+   We note that [Christof and G. Wachsmuth, 2018, Lemma 5.1(ii)] is also formulated for
+so-called Legendre-⋆ forms on dual spaces of reflexive spaces (see [Harder, 2021, Defini-
+tion 4.1.2] for the terminology). However, it was shown in [Harder, 2021, Theorem 4.3.9]
+that this setting already implies that the underlying space is (isomorphic to) a Hilbert
+space.
+   Finally, we recall a result which is helpful for the calculation of second subderivatives
+via dense subsets.
+Lemma 2.8 ([Christof and G. Wachsmuth, 2020, Lemma 3.2]). Let x ∈ dom(G) and
+w ∈ Y be given. We suppose the existence of a set V ⊂ X and a functional Q : X →
+[∞, ∞] such that
+
+
+
+                                                        6
+  (i) for all h ∈ X we have G′′ (x, w; h) ≥ Q(h),
+
+ (ii) for all h ∈ V and all (tk ) ⊂ R+ with tk ↘ 0, there exists a sequence (hk ) ⊂ X
+                    ⋆
+      satisfying hk ⇀ h, ∥hk ∥X → ∥h∥X , and
+
+                                G(x + tk hk ) − G(x) − ⟨w, hk ⟩
+                    Q(h) = lim                                  ∈ [−∞, ∞],
+                            k→∞               t2k /2
+
+                                                                                        ⋆
+ (iii) for all h ∈ X with Q(h) < ∞ there exists a sequence (hl ) ⊂ V with hl ⇀ h,
+       ∥hl ∥X → ∥h∥X and Q(h) ≥ lim inf l→∞ Q(hl ).
+
+Then, Q = G′′ (x, w; ·) and G is strictly twice epi-differentiable at x for w. If, moreover,
+the sequences in (ii) and (iii) can be chosen strongly convergent, then G is even strongly
+twice epi-differentiable at x for w.
+
+  Since we use a setting which is slightly different from [Christof and G. Wachsmuth,
+2020, Lemma 3.2], we give a sketch of the proof.
+
+Proof. Let h ∈ X be given. From (i) and (ii), we immediately get that Q(h) = G′′ (x, w; h)
+for all h ∈ V .
+   From (i) we further get G′′ (x, w; h) = ∞ if Q(h) = ∞. For such sequences, we can take
+hk ≡ h to obtain (2.3). Now, let h ∈ X with Q(h) < ∞ and (tk ) ⊂ R+ with tk ↘ 0 be
+arbitrary. Let (hl ) ⊂ V be the sequence from (iii). According to (ii), we find sequences
+                     ⋆
+(hlk )k ⊂ X with hlk ⇀ hl , ∥hlk ∥X → ∥hl ∥X , and
+
+                              G(x + tk hlk ) − G(x) − ⟨w, hlk ⟩
+                 Q(hl ) = lim                                   ∈ [−∞, ∞].
+                          k→∞                t2k /2
+
+In order to handle the limits ±∞, we equip [−∞, ∞] with the metric d(x           ¯ 1 , x2 ) =
+|atan(x1 )−atan(x2 )|. Now we can continue as in the proof of [Christof and G. Wachsmuth,
+                                                                               ⋆
+2020, Lemma 3.2], and create a diagonal sequence (ĥk ) ⊂ V such that ĥk ⇀ h, ∥ĥk ∥X →
+∥h∥X and
+                                           G(x + tk ĥk ) − G(x) − ⟨w, ĥk ⟩
+              Q(h) ≥ lim inf Q(hl ) ≥ lim                                    .
+                        l→∞           k→∞                 t2k /2
+Finally, (i) allows to bound the left-hand side by G′′ (x, w; h) from above, while the
+right-hand side is bounded from below by this term via its definition. This shows that
+(ĥk ) is a strictly convergent recovery sequence. Since h ∈ X and (tk ) ⊂ R+ were arbitrary,
+this shows that G is strictly twice epi-differentiable at x for w.
+   The strong twice epi-differentiability can be proven along the same lines.
+
+2.2 New results of first order
+In this section, we define a subderivative of first order and investigate its relations with
+the second subderivative from Definition 2.2. We start with the definition.
+
+
+
+
+                                             7
+Definition 2.9 (Weak-⋆ (First) Subderivative). Let x ∈ dom(G) be given. The weak-⋆
+(first) subderivative of G at x in a direction h ∈ X is defined by
+                                     G(x + tk hk ) − G(x)
+                                                                          
+               ↓                                                     ⋆
+             G (x; h) := inf lim inf                      tk ↘ 0, hk ⇀ h .            (2.7)
+                              k→∞             tk
+  We note that a similar derivative is the “lower directional epiderivative” in [Bonnans
+and Shapiro, 2000, (2.68)] if we apply this definition to the space X equipped with its
+weak-⋆ topology. However, this definition cannot be stated by using sequences, but one
+has to use weak-⋆ convergent nets, which is inconvenient, since weak-⋆ convergent nets
+can be unbounded.
+  In [D. Wachsmuth and G. Wachsmuth, 2022, Lemma 2.5] it was shown that the
+implication
+                 G′ (x; h) > ⟨w, h⟩ ⇒ G′′ (x, w; h) = +∞       ∀h ∈ X
+holds under the assumptions that G is convex and that the directional derivative G′ (x; ·)
+is sequentially weak-⋆ lower semicontinuous.
+   By utilizing the weak-⋆ first subderivative, we are able to circumvent these additional
+assumptions. The finite-dimensional analogue was considered in [Benko and Mehlitz,
+2023, (2.5)].
+Lemma 2.10. For all x ∈ dom(G) and w ∈ Y we have
+
+                   G↓ (x; h) > ⟨w, h⟩ ⇒ G′′ (x, w; h) = +∞      ∀h ∈ X,
+                   G↓ (x; h) < ⟨w, h⟩ ⇒ G′′ (x, w; h) = −∞      ∀h ∈ X.
+
+Proof. Let h ∈ X with G↓ (x; h) > ⟨w, h⟩ be arbitrary. For all sequences (tk ) ⊂ R+ ,
+                  ⋆
+(hk ) ⊂ X with hk ⇀ h and tk ↘ 0 we have
+       G(x + tk hk ) − G(x) − tk ⟨w, hk ⟩           G(x + tk hk ) − G(x)
+  lim inf                                 = lim inf                      − lim ⟨w, hk ⟩
+   k→∞                 tk                    k→∞             tk           k→∞
+                                              ↓
+                                          ≥ G (x; h) − ⟨w, h⟩ > 0,
+
+where we used Definition 2.9 for “≥”. Since an additional factor t−1     k appears in the
+definition of G′′ (x, w; h), this implies G′′ (x, w; h) = +∞. The other implication follows
+by a similar argument.
+
+  The next lemma provides some properties of the subderivative. In particular, it
+shows that the subderivative coincides with the directional derivative under certain
+assumptions on G. Interestingly, these are the conditions appearing in [D. Wachsmuth
+and G. Wachsmuth, 2022, Lemma 2.5] and, therefore, this result follows from Lemmas 2.10
+and 2.11.
+Lemma 2.11. Let x ∈ dom(G) be given.
+  (i) Let a direction h ∈ X be given, for which the directional derivative G′ (x; h) ∈
+      [−∞, ∞] exists. Then,
+                                   G′ (x; h) ≥ G↓ (x; h).
+
+
+
+                                            8
+ (ii) If G is convex, then G↓ (x; ·) : X → [−∞, ∞] is convex.
+
+(iii) If G is convex, then for all w ∈ Y we have
+
+                       w ∈ ∂G(x)           ⇔          G↓ (x; h) ≥ ⟨w, h⟩   ∀h ∈ X.
+
+ (iv) Suppose that G is convex and that G′ (x; ·) : X → [−∞, ∞] is sequentially weak-⋆
+      lower semicontinuous. Then,
+
+                                   G′ (x; h) = G↓ (x; h)        ∀h ∈ X.
+
+Proof. (i): The inequality G′ (x; h) ≥ G↓ (x; h) follows directly from the definitions.
+  (ii): Let h1 , h2 ∈ X and λ ∈ (0, 1) be given. We have to show
+
+                  G↓ (x; λh1 + (1 − λ)h2 ) ≤ λG↓ (x; h1 ) + (1 − λ)G↓ (x; h2 ),
+
+where we use the convention ∞ + (−∞) := (−∞) + ∞ := ∞. Let (t̃j,k )k ⊂ R+ and
+                                       ⋆
+(h̃j,k )k ⊂ X with t̃j,k ↘ 0 and h̃j,k ⇀ hj be arbitrary, where j ∈ {1, 2}. We select
+subsequences, denoted by (tj,k )k and (hj,k )k , such that
+
+             G(x + t̃j,k h̃j,k ) − G(x)       G(x + tj,k hj,k ) − G(x)
+        lim inf                         = lim                          ∈ [−∞, ∞]
+         k→∞            t̃j,k            k→∞            tj,k
+
+for j ∈ {1, 2}, i.e., these subsequences realize the limit inferior. We define tk :=
+                                                              ⋆
+(λ/t1,k + (1 − λ)/t2,k )−1 ↘ 0 and gk := λh1,k + (1 − λ)h2,k ⇀ λh1 + (1 − λ)h2 . By
+convexity of G we get
+                                                                                !
+                                   λtk                 (1 − λ)tk
+             G(x + tk gk ) = G x +      (t1,k h1,k ) +           (t2,k h2,k )
+                                   t1,k                   t2,k
+                                 λtk                      (1 − λ)tk
+                             ≤        G(x + t1,k h1,k ) +           G(x + t2,k h2,k ).
+                                 t1,k                        t2,k
+
+Together with the definition of the subderivative, we find
+
+    G↓ (x; λh1 + (1 − λ)h2 )
+                   G(x + tk gk ) − G(x)
+         ≤ lim inf
+             k→∞             tk
+                                                                                  !
+                      G(x + t1,k h1,k ) − G(x)           G(x + t2,k h2,k ) − G(x)
+         ≤ lim inf λ                           + (1 − λ)
+             k→∞                 t1,k                              t2,k
+                    G(x + t1,k h1,k ) − G(x)               G(x + t2,k h2,k ) − G(x)
+         ≤ λ lim                             + (1 − λ) lim
+             k→∞              t1,k                    k→∞            t2,k
+                       G(x + t̃1,k h̃1,k ) − G(x)                   G(x + t̃2,k h̃2,k ) − G(x)
+         = λ lim inf                              + (1 − λ) lim inf                            .
+              k→∞                 t̃1,k                      k→∞               t̃2,k
+
+
+
+
+                                                  9
+In the last inequality, the convention ∞ + (−∞) = ∞ is crucial. Since this holds for all
+sequences as above, we can take the infimum over these sequences and this yields the
+desired convexity.
+                                                                ⋆
+  (iii): “⇒”: Let (tk ) ⊂ R+ and (hk ) ⊂ X with tk ↘ 0 and hk ⇀ h ∈ X be arbitrary.
+The definition of the subdifferential yields
+
+                               G(x + tk hk ) − G(h)
+                                                    ≥ ⟨w, hk ⟩.
+                                        tk
+Due to w ∈ Y , we can pass to the limit inferior k → ∞. Afterwards, we take the infimum
+over all such sequences (tk ), (hk ) and this yields the claim.
+  “⇐”: If w ≤ G↓ (x; ·), we get w ≤ G′ (x; ·) from (i) and (together with the convexity of
+G) this implies ⟨w, h⟩ ≤ G′ (x; h) ≤ G(x + h) − G(x) for arbitrary h ∈ X, i.e., w ∈ ∂G(x).
+   (iv): In view of (i), it is sufficient to prove “≤”. Let (tk ) ⊂ R+ and (hk ) ⊂ X with
+                ⋆
+tk ↘ 0 and hk ⇀ h ∈ X be arbitrary. We get
+
+                                                        G(x + tk hk ) − G(x)
+                G′ (x; h) ≤ lim inf G′ (x; hk ) ≤ lim inf                    ,
+                             k→∞                    k→∞          tk
+
+by the sequential weak-⋆ lower semicontinuity of G′ (x; ·) and the convexity of G. Taking
+the infimum over all sequences yields the desired inequality.
+
+  A simple argument leads to a first-order condition.
+
+Theorem 2.12 (First-Order Necessary Condition). Suppose that x̄ is a local minimizer
+of (P). Then, F ′ (x̄)h + G↓ (x̄; h) ≥ 0 for all h ∈ X. If G is additionally convex,
+−F ′ (x̄) ∈ ∂G(x̄) follows.
+                                                                     ⋆
+Proof. Let sequences (tk ) ⊂ R+ , (hk ) ⊂ X with tk ↘ 0 and hk ⇀ h be given. From (2.1)
+we get
+                            F (x̄ + tk hk ) − F (x̄) − tk F ′ (x̄)hk
+                       lim                                           = 0.
+                      k→∞                     tk
+Thus,
+
+     G(x̄ + tk hk ) − G(x̄)           F (x̄) − F (x̄ + tk hk )
+lim inf                     ≥ lim inf                          = lim −F ′ (x̄)hk = −F ′ (x̄)h.
+ k→∞           tk              k→∞              tk              k→∞
+
+The first part of the claim follows by taking the infimum w.r.t. all these sequences. The
+second claim follows from Lemma 2.11(iii), since F ′ (x̄) ∈ Y .
+
+  Next, we provide a sum rule for G↓ .
+
+Lemma 2.13. Suppose that G = g1 + g2 with g1 , g2 : X → R̄. For all x ∈ dom(G) we
+have
+                        G↓ (x; h) ≥ g1↓ (x; h) + g2↓ (x; h)
+for all h ∈ X for which the right-hand side is not ∞+(−∞) (or (−∞)+∞). Additionally,
+assume that X is reflexive and
+
+
+
+                                               10
+  (i) g1 Lipschitz continuous in a neighborhood of x and convex,
+
+ (ii) g2 is strongly (once) epi-differentiable at x in the sense that for all h ∈ X and
+      sequences (tk ) ⊂ R+ with tk ↘ 0 there exists a sequence (hk ) ⊂ X with hk → h in
+      X such that
+                                             g2 (x + tk hk ) − g2 (x)
+                            g2↓ (x; h) = lim                          .
+                                        k→∞             tk
+Then,
+                         G↓ (x; h) = g1↓ (x; h) + g2↓ (x; h)    ∀h ∈ X.
+Proof. The inequality “≥” follows by the definition of the first subderivative by using
+lim inf n→∞ (an + bn ) ≥ lim inf n→∞ an + lim inf n→∞ bn , whenever the right-hand side is
+not ∞ + (−∞).
+  We show the other inequality under the additional assumptions. Let (tk ) ⊂ R+ be
+arbitrary with tk ↘ 0 and let (hk ) ⊂ X with hk → h be given according to (ii). We have
+    g1 (x + tk hk ) − g1 (x)           g1 (x + tk h) − g1 (x)       g1 (x + tk hk ) − g1 (x + tk h)
+ lim                         = lim                            + lim
+k→∞            tk              k→∞               tk            k→∞                 tk
+                             = g1′ (x; h) + 0,
+
+where we used the convexity for the existence of the directional derivative and the
+Lipschitz continuity is applied for the second addend. Thus,
+                             G(x + tk hk ) − G(x)
+           G↓ (x; h) ≤ lim inf
+                         k→∞            tk
+                           g1 (x + tk hk ) − g1 (x)           g2 (x + tk hk ) − g2 (x)
+                     = lim                          + lim inf
+                      k→∞             tk               k→∞               tk
+                     = g1′ (x; h) + g2↓ (x; h).
+
+Finally, we note that g1′ (x; ·) is convex and Lipschitz continuous, thus sequentially
+weakly lower semicontinuous. Since X is reflexive, this implies sequential weak-⋆ lower
+semicontinuity and Lemma 2.11(iv) implies g1′ (x; h) = g1↓ (x; h) for all h ∈ X.
+
+  Finally, we give two lemmas in reflexive spaces. The first of these results is similar to
+[Mohammadi and Mordukhovich, 2021, Proposition 6.2].
+Lemma 2.14. We assume that the space X is reflexive and that G : X → R̄ is convex.
+For all x ∈ dom(G) and h ∈ X we have
+                                     G(x + tk hk ) − G(x)
+                                                                                 
+                ↓
+              G (x; h) = inf lim inf                      tk ↘ 0, hk → h .                    (2.8)
+                              k→∞             tk
+Moreover, there exist sequences (tk ) ⊂ R+ and (hk ) ⊂ X with tk ↘ 0, hk → h and
+                                              G(x + tk hk ) − G(x)
+                            G↓ (x; h) = lim                        .
+                                          k→∞          tk
+In particular, G↓ (x; ·) is lower semicontinuous.
+
+
+
+                                                  11
+   Note that (2.8) shows that the weak-⋆ subderivative coincides with the strong subderiva-
+tive (defined as in Definition 2.9 with strong convergence instead of weak-⋆ convergence).
+
+Proof. We denote the right-hand side of (2.8) by R(h). It is clear that R ≥ G↓ (x; ·). By
+arguing as in Lemma 2.11(ii), we can check that R is convex. Next, we verify that the
+infimum in the definition of R is attained. For an arbitrary h ∈ X, the definition of R(h)
+implies the existence of double sequences (tk,n ) ⊂ R+ , (hk,n ) ⊂ X and (rk ) ⊂ [−∞, ∞]
+such that
+
+                    lim ∥hk,n − h∥X = 0            ∀k ∈ N,           lim tk,n = 0       ∀k ∈ N,
+                    n→∞                                             n→∞
+          G(x + tk,n hk,n ) − G(x)
+       lim                         = rk            ∀k ∈ N,            lim rk = R(h).
+      n→∞           tk,n                                              k→∞
+
+                                                  ¯ 1 , x2 ) = |atan(x1 ) − atan(x2 )| on
+To handle the limits ±∞, we again use the metric d(x
+[−∞, ∞]. For each k ∈ N, we select n(k) ∈ N such that
+
+                         1                   1          G(x + tk,n(k) hk,n(k) ) − G(x)                1
+                                                                                             
+    ∥hk,n(k) − h∥X ≤       ,   tk,n(k) ≤       ,   d¯                                  , rk       ≤     .
+                         k                   k                     tk,n(k)                            k
+
+This shows that the sequences (tk ) := (tk,n(k) ), (hk ) := (hk,n(k) ) satisfy
+
+                                                          G(x + tk hk ) − G(x)
+             hk → h,               tk ↘ 0,                                     → R(h).
+                                                                   tk
+Hence, the infimum in the definition of R is always attained.
+  The lower semicontinuity of R follows by a similar diagonal-sequence argument. To-
+gether with the convexity, we get that R is weakly lower semicontinuous.
+  Now, let the sequences (tk ) ⊂ R+ , (hk ) ⊂ X with tk ↘ 0 and hk ⇀ h be arbitrary.
+From the convexity of G and the definition of R we get
+                G(x + tk hk ) − G(x)           G(x + shk ) − G(x)
+                                     ≥ lim inf                    ≥ R(hk ).
+                         tk              s↘0           s
+The weak lower semicontinuity of R implies
+                           G(x + tk hk ) − G(x)
+                    lim inf                     ≥ lim inf R(hk ) ≥ R(h).
+                       k→∞          tk             k→∞
+
+Taking the infimum over all such sequences shows G↓ (x; h) ≥ R(h) for all h ∈ X. This
+shows G↓ (x; ·) = R and the claim follows.
+
+  The reflexivity of X is only used to get the equivalence of weak-⋆ convergence and
+weak convergence. This is needed in order to apply the result that convex and lower
+semicontinuous functionals are weakly lower semicontinuous. Without reflexivity, we
+would get a similar assertion for the weak subderivative of G defined via
+                                     G(x + tk hk ) − G(x)
+                                                                                     
+                ∼
+              G (x; h) = inf lim inf                      tk ↘ 0, hk ⇀ h .                              (2.9)
+                              k→∞             tk
+
+
+
+                                                   12
+However, if X is not reflexive, we cannot extract weakly convergent subsequences and,
+consequently, G∼ seems to be of little use.
+  Lemma 2.14 enables us to prove a very interesting characterization of nonemptyness of
+the subdifferential.
+
+Lemma 2.15. Let X be reflexive and G : X → R̄ convex. For all x ∈ dom(G), the
+assertions
+
+  (i) G↓ (x; 0) = 0.
+
+ (ii) ∂G(x) ̸= ∅.
+
+are equivalent. In case that these assumptions hold, we also have
+
+                       G↓ (x; h) = sup{⟨w, h⟩X | w ∈ ∂G(x)}      ∀h ∈ X.               (2.10)
+
+Proof. “(i)⇒(ii)”: From Lemma 2.11(ii) and Lemma 2.14, we know that G↓ (x; ·) is convex
+and lower semicontinuous. Further, for all h ∈ X we have
+                                                              
+                                                              +∞
+                                                              
+                                                                     if G↓ (x; h) = +∞,
+                                 1            1
+   0 = G↓ (x; 0) ≤ lim inf G↓ (x; h) = lim inf G↓ (x; h) = 0          if G↓ (x; h) ∈ R,
+                    n→∞          n      n→∞ n             
+                                                          −∞         if G↓ (x; h) = −∞.
+                                                          
+
+
+This implies that G↓ (x; ·) never attains the value −∞. Thus, we can invoke [Ekeland
+and Témam, 1999, Proposition I.3.1, p. 14] and get
+
+     G↓ (x; h) = sup c + ⟨w, h⟩X | c ∈ R, w ∈ Y, ∀ĥ ∈ X : c + ⟨w, ĥ⟩X ≤ G↓ (x; ĥ) ,
+                       
+
+
+i.e., G↓ (x; ·) is the pointwise supremum of its continuous, affine minorants. Since G↓ (x; ·)
+is positively homogeneous, one can check
+
+             G↓ (x; h) = sup{⟨w, h⟩X | w ∈ Y, ∀ĥ ∈ X : ⟨w, ĥ⟩X ≤ G↓ (x; ĥ)}.
+
+In order to conclude, it remains to check that w ∈ ∂G(x) if and only if w ≤ G↓ (x; ·), and
+this is precisely the assertion of Lemma 2.11(iii). This shows (ii). Note that this part of
+the proof also shows validity of (2.10).
+  “(ii)⇒(i)”: This follows directly from Lemma 2.11(iii).
+
+   One might wonder whether (2.10) implies the conditions Lemma 2.15(i), (ii). It is
+clear that a linear and unbounded functional G satisfies (2.10), but Lemma 2.15(i), (ii)
+are violated. The next example shows that lower semicontinuity also does not help. It
+provides a convex and lower semicontinuous function on a Hilbert space such that its
+subderivative at 0 is identically −∞. This example is similar to [D. Wachsmuth and
+G. Wachsmuth, 2022, Remark 2.3].
+
+
+
+
+                                              13
+Example 2.16. We consider the Hilbert space ℓ2 and the closed, convex set
+
+                              C := x ∈ ℓ2 |xn | ≤ n−2 ∀n ∈ N .
+                                      
+
+
+We define the function f : ℓ2 → R̄ via
+                                                ∞
+                                            (P
+                                                n=1 xn        for x ∈ C
+                                f (x) :=
+                                              +∞              else.
+
+It is clear that f is convex. Since n−2 is summable, we have dom(f ) = C and this set is
+closed. Next, we show that f is continuous on its domain and this implies that f is lower
+semicontinuous. To this end, let a sequence (xm ) ⊂ C be given such that xm → x0 in ℓ2 .
+Clearly, x0 ∈ C. For an arbitrary ε > 0, there exists N ∈ N with ∞           −2 ≤ ε. Due
+                                                                  P
+                                                                    n=N +1 n
+                                      PN
+to xm → x0 , there exists M ∈ N with n=1 |(xm − x0 )n | ≤ ε for all m ≥ M . This implies
+                                    N
+                                    X                         ∞
+                                                              X
+            |f (xm ) − f (x0 )| ≤       |(xm − x0 )n | +              |(xm )n | + |(x0 )n | ≤ 3ε.
+                                    n=1                      n=N +1
+
+for all m ≥ M . Since ε > 0 was arbitrary, this shows f (xm ) → f (x0 ), i.e., f is continuous
+on its domain. Together with the closedness of dom(f ), the lower semicontinuity of f
+follows.
+   As announced, we demonstrate that f ↓ (0; ·) ≡ −∞. We start by considering h0 ∈ cc ,
+where cc ⊂ ℓ2 is the (dense) subspace consisting of finite sequences. We choose tm :=
+m−3 ↘ 0 and
+                                                  m2
+                                              1 X
+                                hm := h0 −             en ,
+                                             m n=m+1
+
+where en is the n-th unit sequence. Note that ∥hm −h0 ∥2ℓ2 = 1−1/m and (hm −h0 , v)ℓ2 → 0
+for all v ∈ cc . Thus, hm ⇀ h0 . For m large enough, we have tm hm ∈ C. Thus,
+                                                             ∞
+        ↓                  f (0 + tm hm ) − f (0)           X
+      f (0; h0 ) ≤ lim inf                        = lim inf    (hm )n
+                    m→∞             tm               m→∞
+                                                            n=1
+                                                                      ∞
+                                                                      X              m2 − m
+                                                          = lim inf       (h0 )n −          = −∞.
+                                                             m→∞
+                                                                      n=1
+                                                                                       m
+
+Thus, f ↓ (0; ·) equals −∞ on the dense subspace cc . Since f ↓ (0; ·) is lower semicontinuous
+due to Lemma 2.14, we get f ↓ (0; ·) ≡ −∞. Finally, we can apply Lemma 2.15 to get
+∂f (0) = ∅, although this can be also seen by elementary considerations. We also note
+that (2.10) still holds, since sup ∅ = −∞.
+  A simple example shows that (2.10) can also fail.
+Example 2.17. Let X = R and consider f : R → R̄,
+                                                (
+                                                    +∞       if x < 0,
+                                     f (x) :=        √
+                                                    − x      if x ≥ 0.
+
+
+
+                                                     14
+It is clear that f is convex and lower semicontinuous. Further, we can check that
+                                                    (
+                                         ↓              +∞   if h < 0,
+                                      f (0; h) =
+                                                        −∞   if h ≥ 0.
+
+Thus, Lemma 2.15(i) is violated. Consequently, Lemma 2.15 implies ∂f (0) = ∅. We also
+see that (2.10) fails.
+
+2.3 New results of second order
+Finally, we present some new results concerning the second-order optimality conditions.
+  Surprisingly, one can check that the quadratic growth condition implies (NDC). Note
+that this has not been realized in the previous works [Christof and G. Wachsmuth, 2018;
+D. Wachsmuth and G. Wachsmuth, 2022].
+
+Theorem 2.18 (Quadratic Growth Implies (NDC)). We assume that the quadratic
+growth condition (2.4) is satisfied at x̄ with some constants c > 0 and ε > 0. Then,
+(NDC) is satisfied.
+
+Proof. Let sequences (tk ) ⊂ R+ , (hk ) ⊂ X as in (NDC) be given. From (2.4) we get
+
+           c   1 c                           F (x̄ + tk hk ) − F (x̄) G(x̄ + tk hk ) − G(x̄)
+                                    
+             = 2    ∥tk hk ∥2X           ≤                           +
+           2   tk 2                                     t2k                     t2k
+
+for k large enough. Taking the limit inferior and using (2.1), we get
+
+          c           F (x̄ + tk hk ) − F (x̄) G(x̄ + tk hk ) − G(x̄)
+                                                                               
+            ≤ lim inf                         +
+          2    k→∞               t2k                     t2k
+                         tk F ′ (x̄)hk + 12 t2k F ′′ (x̄)h2k   G(x̄ + tk hk ) − G(x̄)
+                                                                                       
+             = lim inf                  2                    +
+                k→∞                    tk                                t2k
+                         1                                                       1 ′′
+                                                                                       
+                                                               ′                     2
+             = lim inf 2 G(x̄ + tk hk ) − G(x̄) + ⟨F (x̄), hk /tk ⟩ + F (x̄)hk .
+                k→∞      tk                                                      2
+
+Since this holds for all sequences (as above), we obtain that (NDC) is satisfied.
+
+   This theorem even shows that the limit inferior in (NDC) is uniformly positive. It is
+also interesting to note that this is always the case whenever (NDC) is satisfied.
+
+Lemma 2.19 (Uniform Positivity in (NDC)). Suppose that (NDC) is satisfied. Then,
+there exists c > 0 such that
+                                                             ⋆
+   for all (tk ) ⊂ R+ , (hk ) ⊂ X with tk ↘ 0, hk ⇀ 0 and ∥hk ∥X = 1, we have
+                   
+                       1                                                1
+                                                                                        
+                                                                                                c   (NDC’)
+                          G(x̄ + tk hk ) − G(x̄) + ⟨F ′ (x̄), hk /tk ⟩ + F ′′ (x̄)h2k
+                                                
+         lim inf        2                                                                   ≥
+          k→∞          tk                                               2                       2
+
+holds.
+
+
+
+                                                        15
+Proof. We define
+         (                                                                                         ⋆   )
+ c                G(x̄ + tk hk ) − G(x̄) ⟨F ′ (x̄), hk ⟩ 1 ′′                         tk ↘ 0, hk ⇀ 0,
+                                                                                
+   := inf lim inf                       +               + F (x̄)h2k                                        .
+ 2         k→∞              t2k                tk        2                            ∥hk ∥X = 1
+
+In case c = ∞, there is nothing to show. Otherwise, we have c ∈ [0, ∞). By definition,
+                                                                                    ⋆
+there are sequences of sequences ((tk,n )n )k , ((hk,n )n )k with tk,n ↘ 0 and hk,n ⇀ 0 as
+n → ∞ and ∥hk,n ∥X = 1 such that
+
+          ck            G(x̄ + tk,n hk,n ) − G(x̄) ⟨F ′ (x̄), hk,n ⟩ 1 ′′
+                                                                                              
+             := lim inf                           +                 + F (x̄)h2k,n
+          2      n→∞               t2k,n                 tk,n        2
+
+satisfies ck → c. Now, we can argue as in the proof of [Christof and G. Wachsmuth, 2020,
+Lemma 2.12(ii)] to obtain diagonal sequences (tk,n(k) ) and (hk,n(k) ) with tk,n(k) ↘ 0 and
+         ⋆
+hk,n(k) ⇀ 0 as k → ∞, ∥hk,n(k) ∥X = 1 and
+
+                 G(x̄ + tk,n(k) hk,n(k) ) − G(x̄)   F ′ (x̄), hk,n(k)  1                   c
+                                                                                          
+       lim                    2                   +                   + F ′′ (x̄)h2k,n(k) = .
+      k→∞                    tk,n(k)                     tk,n(k)       2                   2
+
+From (NDC), we infer c > 0 and this yields the claim.
+
+  By combining the previous theorem with Theorems 2.5 and 2.6, we arrive at our main
+theorem on no-gap second-order conditions.
+
+Theorem 2.20 (No-Gap Second-Order Optimality Condition). Assume that the map
+h 7→ F ′′ (x̄)h2 is sequentially weak-⋆ lower semicontinuous and that one of the conditions
+(i) and (ii) in Theorem 2.5 is satisfied. Then, the second-order condition (2.6) and (NDC)
+hold if and only if the quadratic growth condition (2.4) is satisfied at x̄ with constants
+c > 0 and ε > 0.
+
+   We can recast the above second-order conditions in a familiar form including the
+first-order condition and a critical cone.
+
+Corollary 2.21. Let the assumptions of Theorem 2.20 and (NDC) be satisfied. The
+quadratic growth condition (2.4) with constants c > 0 and ε > 0 is satisfied if and only if
+
+                                         F ′ (x̄)h + G↓ (x̄; h) ≥ 0   ∀h ∈ X,                      (2.11a)
+                           ′′        2      ′′       ′
+                          F (x̄)h + G (x̄, −F (x̄); h) > 0            ∀h ∈ K \ {0},                (2.11b)
+
+where the critical cone K is defined via
+
+                                    K := {h ∈ X | F ′ (x̄)h + G↓ (x̄; h) = 0}.
+
+Moreover, if x̄ is a local minimizer of (P), then (2.11) holds with “ ≥” instead of “ >” in
+(2.11b).
+
+
+
+
+                                                         16
+Proof. Let (2.4) be satisfied with c ≥ 0 and ε > 0. From Theorem 2.5, we get (2.5).
+Clearly, (2.11b) (with “≥” instead of “>” in case c = 0) follows. Since (2.5) implies
+G′′ (x̄, −F ′ (x̄); h) > −∞ for all h ∈ X, Lemma 2.10 can be applied to obtain (2.11a).
+This shows the “only if” part of the first assertion and the second assertion.
+   It remains to prove the “if” part of the first assertion. To this end, let (2.11) be
+satisfied. We show that this implies (2.6). Let h ∈ X \ {0} be given. In case h ∈ K \ {0},
+(2.6) follows from (2.11b). Otherwise, h ̸∈ K and (2.11a) give F ′ (x̄)h + G↓ (x̄; h) > 0.
+Thus, (2.6) is implied by Lemma 2.10. Finally, Theorem 2.6 shows that (2.4) holds.
+   In the case that G is convex, we can use the assertions of Lemma 2.11 to reformulate
+(2.11a) via the subdifferential.
+Corollary 2.22. In addition to the assumptions of Theorem 2.20, we assume that (NDC)
+holds and that G is convex. The quadratic growth condition (2.4) with constants c > 0
+and ε > 0 is satisfied if and only if
+                                    F ′ (x̄) + ∂G(x̄) ∋ 0                                (2.12a)
+                    F ′′ (x̄)h2 + G′′ (x̄, −F ′ (x̄); h) > 0      ∀h ∈ K \ {0},          (2.12b)
+where the critical cone K is defined via
+                           K := {h ∈ X | F ′ (x̄)h + G↓ (x̄; h) = 0}.
+Moreover, if x̄ is a local minimizer of (P), then (2.12) holds with “ ≥” instead of “ >” in
+(2.12b).
+Proof. We just have to check that (2.11a) and (2.12a) are equivalent, and this follows
+from Lemma 2.11(iii).
+  In the situation of Corollary 2.22, let the first-order condition (2.12a) be satisfied.
+Using the equivalence with (2.11a), we get K = {h ∈ X | F ′ (x̄)h + G↓ (x̄; h) ≤ 0}. Since
+G↓ (x̄; ·) is convex by Lemma 2.11(ii), this results in the convexity of K. In case that
+G↓ (x̄; ·) is additionally (sequentially) weak-⋆ lower semicontinuous, K is also (sequentially)
+weak-⋆ closed.
+  For later reference, we remark that the proofs of the last two corollaries show that
+                          G′′ (x̄, −F ′ (x̄); h) = +∞          ∀h ∈ X \ K                 (2.13)
+holds whenever G is convex and −F ′ (x̄) ∈ ∂G(x̄).
+  Finally, we also provide a sum rule for G′′ .
+Lemma 2.23 (Sum Rule for Weak-⋆ Second Subderivative). Let g1 , g2 : X → (−∞, ∞]
+and x ∈ dom(g1 ) ∩ dom(g2 ). Furthermore h ∈ X and w1 , w2 ∈ Y .
+  Then, it holds
+                  (g1 + g2 )′′ (x, w1 + w2 ; h) ≥ g1′′ (x, w1 ; h) + g2′′ (x, w2 ; h),    (2.14)
+whenever the right-hand side is not ∞ + (−∞).
+Proof. This follows from the definitions, see also the first part of the proof of Lemma 2.13.
+
+
+
+
+                                                  17
+3 Second Subderivatives of Sparsity Functionals
+Our plan is to apply the theory from Section 2 to the problem (1.3). Throughout, we are
+using the spaces X = Y = L2 (ΩT ). Here, ΩT := Ω × (0, T ), where Ω ⊂ Rd is assumed
+to be non-empty, open, and bounded, and T > 0. Since the space L2 (ΩT ) is reflexive,
+the weak topology and the weak-⋆ topology coincide. Thus, we will work with weak
+convergence throughout. In particular, vk ⇀ v always refers to weak convergence in
+L2 (ΩT ) (unless stated otherwise). Note that we will also write ū ∈ Uad instead of x̄ to
+denote the potential minimizer, which is fixed throughout.
+  We use the functions Gi from (1.4), i.e.,
+
+                                   Gi (u) = µji (u) + δUad .
+
+Here, δUad : L2 (ΩT ) → {0, ∞} is the indicator function (in the sense of convex analysis) of
+the feasible set Uad and ji is one of the functionals defined in (1.2), scaled by µ > 0. Since
+the functions ji are finite everywhere on L2 (ΩT ), we get dom(Gi ) = Uad . At this point,
+we do not specify the function F , we just require that F together with F ′ (ū) ∈ L2 (ΩT )
+and the bounded bilinear form F ′′ (ū) : L2 (ΩT ) × L2 (ΩT ) → R satisfies the Taylor-like
+expansion (2.1).
+  We further recall that the set of feasible controls is defined by
+
+                 Uad = {u ∈ L2 (ΩT ) | α ≤ u(x, t) ≤ β f.a.a. (x, t) ∈ ΩT },
+
+where α, β ∈ R are given with α < 0 < β. This set is convex, closed and bounded. It is
+well known that the tangent cone (in the sense of convex analysis) of Uad ⊂ L2 (ΩT ) at
+ū ∈ Uad is given by
+
+  TUad (ū) = {v ∈ L2 (ΩT ) | v(x, t) ≥ 0 if ū(x, t) = α and v(x, t) ≤ 0 if ū(x, t) = β} (3.1)
+
+and concerning the normal cone we have for all v ∈ L2 (ΩT ) the equivalence
+                             
+                             v(x, t) ≤ 0 if ū(x, t) = α,
+                             
+                             
+           v ∈ NUad (ū) ⇔     v(x, t) ≥ 0 if ū(x, t) = β,                           f.a.a. (x, t) ∈ ΩT .    (3.2)
+                             
+                             v(x, t) = 0 if ū(x, t) ∈ (α, β)
+                             
+
+
+We expect that the results below can be extended to the case in which the bounds α
+and β are not constants. For simplicity of the presentation, we only consider the case of
+constant control bounds.
+  We start with the first-order analysis of problem (1.3). Since these preliminary results
+hold for all ji or Gi , i ∈ {1, 2, 3}, we will just write j or G.
+
+Lemma 3.1. It holds
+                                     δU↓ ad (ū; ·) = δTU        (ū)                                        (3.3a)
+                                                            ad
+
+and
+                               G↓ (ū; ·) = µj ′ (ū; ·) + δTU               (ū) .                          (3.3b)
+                                                                        ad
+
+
+
+
+                                                18
+Proof. In order to check (3.3a), we use Lemma 2.14 and get
+                                            δUad (ū + tk vk )
+                                                                                             
+                 δU↓ ad (ū; v) = inf lim inf                  tk ↘ 0, vk → v .
+                                        k→∞         tk
+Now, it is straightforward to check that the right-hand side coincides with δTU (ū) (v).
+                                                                               ad
+  To show (3.3b), we can apply Lemma 2.13 with g1 = µj and g2 = δUad . We verify the
+needed required properties. The space L2 (ΩT ) is reflexive. Lemma 2.13(i) holds due to
+
+       |ji (u2 ) − ji (u1 )| ≤ ji (u2 − u1 ) ≤ Ci ∥u2 − u1 ∥L2 (ΩT )             ∀u1 , u2 ∈ L2 (ΩT ).
+
+For the convex and closed set Uad , the Bouligand tangent cone TUad (ū) coincides with
+the so-called inner tangent cone, see [Bonnans and Shapiro, 2000, Proposition 2.55]. By
+the definition of the inner tangent cone, this result reads
+                  n                                                                                     o
+     TUad (ū) = v ∈ L2 (ΩT ) ∀(tk ) ⊂ R+ , tk ↘ 0 : ∃(uk ) ⊂ Uad : (uk − ū)/tk → v
+
+and this is precisely property Lemma 2.13(ii).
+  Applying Lemma 2.13 and (3.3a) yields
+
+                 G↓ (ū; v) = µj ↓ (ū; v) + δU↓ ad (ū; v) = µj ′ (ū; v) + δTU         (ū) (v),
+                                                                                    ad
+
+where the last equality follows from a similar argument as in the proof of Lemma 2.13.
+
+  Next, we see that the critical cone K from Corollary 2.22 coincides with the critical
+cone Cū as defined in [Casas, Herzog, and G. Wachsmuth, 2017, (4.1)].
+Lemma 3.2. Let ū ∈ Uad be given. Then the sets
+
+                          K := {v ∈ L2 (ΩT ) | F ′ (ū)v + G↓ (ū; v) = 0},
+                         Cū := {v ∈ TUad (ū) | F ′ (ū)v + µj ′ (ū; v) = 0}
+
+coincide.
+Proof. For v ∈ K, (3.3b) yields F ′ (ū)v +µj ′ (ū; v)+δTU (ū) (v) = 0. We have δTU (ū) (v) ∈
+                                                           ad                        ad
+{0, ∞}, but the value ∞ would contradict the previous equality. This shows v ∈ Cū .
+  Now, let v ∈ Cū be given. From v ∈ TUad (ū) and by using (3.3b) again, we get
+
+     0 = F ′ (ū)v + µj ′ (ū; v) = F ′ (ū)v + µj ′ (ū; v) + δTU                    ′         ↓
+                                                                          (ū) (v) = F (ū)v + G (ū; v).
+                                                                     ad
+
+
+  We transfer the first-order necessary conditions (2.12a) for ū ∈ Uad to our situation.
+Since j is continuous, the sum rule for the subdifferential applies, i.e.,
+
+                      ∂G(ū) = µ∂j(ū) + ∂δUad (ū) = µ∂j(ū) + NUad (ū).
+
+Thus, the first-order condition (2.12a) is equivalent to the existence of λū ∈ ∂j(ū) with
+
+                                    0 ∈ F ′ (ū) + µλū + NUad (ū).                                        (3.4)
+
+  Finally, we characterize the directions from the critical cone.
+
+
+
+                                                    19
+Lemma 3.3. Suppose that λū ∈ ∂j(ū) satisfies (3.4) and let v ∈ TUad (ū) be given. Then,
+v ∈ Cū if and only if
+
+                                  (F ′ (ū) + µλū )v = 0              a.e. in ΩT ,                            (3.5a)
+                                              ′
+                                             j (ū; v) = ⟨λū , v⟩.                                            (3.5b)
+
+Proof. Let v ∈ Cū be given. With w := (F ′ (ū) + µλū )v ∈ L1 (ΩT ) we have
+                                                                                  Z
+                        ′            ′                 ′
+              0 = F (ū)v + µj (ū; v) ≥ ⟨F (ū) + µλū , v⟩ =                          w d(x, t) ≥ 0
+                                                                                  ΩT
+
+by definition of Cū , the properties of the subdifferential, and (3.4) as v ∈ TUad (ū). This
+shows (3.5b) and that the integral over w is zero. From the characterizations of the
+tangent cone and the normal cone, we get w ≥ 0 a.e. in ΩT . Thus, (3.5a) follows.
+  The converse implication follows immediately.
+
+3.1 Second Subderivative of j1
+At the beginning, we recall the subdifferential of j1 . For a functional λ ∈ L2 (ΩT ) we
+have λ ∈ ∂j1 (ū) if and only if
+
+                            λ(x, t) ∈ Sign(ū(x, t))                f.a.a. (x, t) ∈ ΩT ,                        (3.6)
+
+with the set-valued signum function
+                                                  
+                                                  {+1}if θ > 0,
+                                                  
+                                                  
+                                   Sign(θ) := {−1}     if θ < 0,                                                (3.7)
+                                             
+                                             
+                                             [−1, +1] if θ = 0.
+
+Moreover, the directional derivative j1 (ū; ·) : L2 (ΩT ) → R is given by
+                              Z                        Z                          Z
+              j1′ (ū; v) =              v d(x, t) −                v d(x, t) +                |v| d(x, t).     (3.8)
+                               {ū>0}                      {ū<0}                     {ū=0}
+
+In order to apply the characterization of the critical cone from Lemma 3.3, we analyze
+condition (3.5b) for j = j1 .
+Lemma 3.4. Let λū ∈ ∂j1 (ū) be given. For v ∈ L2 (ΩT ), we have ⟨λū , v⟩ = j1′ (ū; v) if
+and only if
+                        (
+                            +1,    if ū(x, t) = 0 and v(x, t) > 0
+         λū (x, t) =                                                                   f.a.a. (x, t) ∈ ΩT .
+                            −1,    if ū(x, t) = 0 and v(x, t) < 0
+
+Proof. This follows easily from
+                                                           Z
+                             j1′ (ū; v) − ⟨λū , v⟩ =               |v| − λū v d(x, t),
+                                                            {ū=0}
+
+since the integrand is non-negative a.e. due to (3.6).
+
+
+
+                                                           20
+   For the verification of the strong twice epidifferentiability, we use the recovery sequence
+from [Casas, Herzog, and G. Wachsmuth, 2012, Theorem 3.7].
+
+Lemma 3.5. Assume −F ′ (ū) ∈ ∂G1 (ū) and let v ∈ Cū be given. Furthermore, let
+(tk ) ⊂ R+ be an arbitrary sequence with tk ↘ 0. Then, the sequence (vk ) ⊂ L2 (ΩT )
+defined (pointwise) via
+                                                     √                 √               √             √
+         0
+                                     ū ∈ (α, α +        tk ) ∪ (β −       tk , β) ∪ (− tk , 0) ∪ (0, tk ),
+ vk :=     Ph        i (v)            else                                                                       (3.9)
+          − √1 , √1
+         
+                  tk   tk
+
+
+satisfies
+
+                                                           vk → v       in L2 (ΩT ),                           (3.10a)
+                                                           vk ∈ Cū ,                                         (3.10b)
+                                                   ū + tk vk ∈ Uad ,                                          (3.10c)
+                                  j1 (ū + tk vk ) − j1 (ū) = tk j1′ (ū; vk ).                              (3.10d)
+
+Proof. It holds vk (x, t) → v(x, t) pointwise and |vk (x, t)| ≤ |v(x, t)|. Due to v ∈ L2 (ΩT ),
+Lebesgue’s dominated convergence theorem yields (3.10a).
+   By construction, we get (3.10c).
+   To show (3.10b) we first note that vk ∈ TUad (ū) follows from (3.10c). Next, we fix
+λū ∈ ∂j(ū) such that (3.4) holds. From Lemma 3.3, we get that v satisfies (3.5). Using
+{vk ̸= 0} ⊂ {v ̸= 0} by construction, we immediately get that (3.5a) holds with v replaced
+by vk . Next, (3.5b) enables us to apply Lemma 3.4 to v. Due to {vk > 0} ⊂ {v > 0}
+and {vk < 0} ⊂ {v < 0}, we can consequently invoke Lemma 3.4 with vk to obtain
+⟨λū , vk ⟩ = j1′ (ū; vk ). Thus, Lemma 3.3 can be applied to vk to get vk ∈ Cū .
+   Lastly, we prove (3.10d). Easy calculations show that ū(x, t) > 0 implies ū(x, t) +
+tk vk (x, t) ≥ 0. Analogously, ū(x, t) + tk vk (x, t) < 0 holds whenever ū(x, t) < 0. This
+yields
+                                  Z
+   j1 (ū + tk vk ) − j1 (ū) =          |ū + tk vk | − |ū| d(x, t)
+                                    ΩT
+                                         Z                        Z                         Z                    !
+                            = tk                   vk d(x, t) −              vk d(x, t) +            |vk | d(x, t) ,
+                                          {ū>0}                    {ū<0}                  {ū=0}
+
+which shows the claim.
+
+Theorem 3.6. We assume −F ′ (ū) ∈ ∂G1 (ū). Then,
+
+                                      G′′1 (ū, −F ′ (ū); v) = 0       ∀v ∈ Cū
+
+holds and G1 is strongly twice epi-differentiable at ū for −F ′ (ū).
+
+
+
+
+                                                           21
+Proof. Lemma 2.3 yields G′′1 (ū, −F ′ (ū); v) ≥ 0. Now, let v ∈ Cū and (tk ) ⊂ R+ with
+tk ↘ 0 be arbitrary. For the sequence (vk ) ⊂ L2 (ΩT ) defined in (3.9) we get
+       G1 (ū + tk vk ) − G1 (ū) − tk ⟨−F ′ (ū), vk ⟩
+    lim
+   k→∞                        t2k /2
+                2
+       = lim 2 δUad (ū + tk vk ) + µj1 (ū + tk vk ) − 0 − µj1 (ū) + tk ⟨F ′ (ū), vk ⟩
+                                                                                         
+        k→∞ tk
+                2
+                    µj1′ (ū; vk ) + ⟨F ′ (ū), vk ⟩
+                                                     
+       = lim                                                       (by (3.10c) and (3.10d))
+        k→∞ tk
+                2
+       = lim      0 = 0.                                                           (by (3.10b))
+        k→∞ tk
+
+This shows G′′1 (ū, −F ′ (ū); v) = 0 and also the strong twice epi-differentiability in direction
+v ∈ Cū . For v ∈ L2 (ΩT ) \ Cū , we have G′′1 (ū, −F ′ (ū); v) = ∞, see (2.13), and, hence, we
+can use vk ≡ v as a recovery sequence.
+
+3.2 Second Subderivative of j2
+As in [Casas, Herzog, and G. Wachsmuth, 2017, Section 3.2], we define jΩ : L2 (Ω) → R
+via                                             Z
+                          jΩ (u) := ∥u∥L1 (Ω) =   |u(x)| dx.
+                                                   Ω
+                            ′           2
+The directional derivative jΩ (u; ·) : L (Ω) → R is given by
+                             Z                      Z                    Z
+                ′
+               jΩ (u; v) =            v(x) dx −              v(x) dx +                  |v(x)| dx.   (3.11)
+                             {u>0}                   {u<0}                      {u=0}
+
+Now we can write j2 as
+                                              Z T                   1/2
+                                   j2 (u) =          jΩ (u(t))2 dt          .                        (3.12)
+                                                0
+
+The directional derivative j2′ (u; ·) : L2 (ΩT ) → R is given by
+                             
+                             j (v),                                                    if u = 0,
+                               2
+                j2′ (u; v) =       RT ′                                                              (3.13)
+                              1     j (u(t); v(t))∥u(t)∥L1 (Ω) dt,                     if u ̸= 0,
+                                 j2 (u) 0   Ω
+
+see [Casas, Herzog, and G. Wachsmuth, 2017, Proposition 3.5]. Furthermore, it holds
+λ ∈ ∂j2 (u) if and only if λ ∈ L2 (0, T ; L∞ (Ω)) and
+                                                             ∥u(t)∥L1 (Ω)
+                   u ̸= 0 : λ(x, t) ∈ Sign(u(x, t))                       a.e. in ΩT
+                                                                j2 (u)                               (3.14)
+                   u=0:          ∥λ∥L2 (0,T ;L∞ (Ω)) ≤ 1,
+
+see [Casas, Herzog, and G. Wachsmuth, 2017, Proposition 3.4]. Note that L2 (0, T ; L∞ (Ω))
+is not a Bochner–Lebesgue space, but the (canonical) dual of L2 (0, T ; L1 (Ω)), which
+consists of weak-⋆ measurable functions. Here, we used the set-valued signum function
+from (3.7). Next, we recall a lower Taylor expansion of j2 (ū + v).
+
+
+
+                                                        22
+Lemma 3.7 ([Casas, Herzog, and G. Wachsmuth, 2017, Lemma 5.7]). We assume ū ̸= 0.
+There exist C > 0 and ε > 0 such that
+                                                                                                                 ∥v∥3L2 (ΩT )
+                                                   (Z                                                   )
+                                          1                T
+                                                                                 2
+j2 (ū + v) ≥ j2 (ū) + j2′ (ū; v) +                           ′
+                                                               jΩ (ū(t); vk (t)) dt − j2′ (ū; vk )2       −C
+                                        2j2 (ū)       0                                                           j2 (ū)2
+                                                                                                                       (3.15)
+holds for all ∥v∥L2 (ΩT ) ≤ ε.
+
+  We provide a corrected version of [Casas, Herzog, and G. Wachsmuth, 2017, Lemma 5.6].
+
+Lemma 3.8. Let (vk ) ⊂ L2 (ΩT ) be a sequence with vk ⇀ v in L2 (ΩT ) and j2′ (ū; vk ) →
+j2′ (ū; v). Then, the functions wk ∈ L2 (0, T ), defined via wk (t) = χM (t)jΩ
+                                                                              ′ (ū(t), v (t)),
+                                                                                         k
+                        2                       2                       ′
+converge weakly in L (0, T ) towards w ∈ L (0, T ), w(t) = χM (t)jΩ (ū(t), v(t)), where
+M := {t ∈ (0, T ) | ∥ū(t)∥L1 (Ω) ̸= 0}.
+
+Proof. It is sufficient to consider the case ū ̸= 0 since M = ∅ if ū = 0. We define the
+functions
+
+            ŵk := χN+ vk − χN− vk + χN0 |vk |,                           ŵ := χN+ v − χN− v + χN0 |v|,
+
+with the sets
+
+                        N+ := {(x, t) ∈ ΩT | ∥ū(t)∥L1 (Ω) ̸= 0, ū(x, t) > 0},
+                         N0 := {(x, t) ∈ ΩT | ∥ū(t)∥L1 (Ω) ̸= 0, ū(x, t) = 0},
+                        N− := {(x, t) ∈ ΩT | ∥ū(t)∥L1 (Ω) ̸= 0, ū(x, t) < 0}.
+
+Our first goal is to check ŵk ⇀ ŵ in L2 (ΩT ). Clearly, we already have weak convergence in
+the first two addends and it remains to consider χN0 |vk |. Since this sequence is bounded in
+the reflexive space L2 (ΩT ), we get weak convergence of a subsequence (without relabeling),
+i.e., χN0 |vk | ⇀ z in L2 (ΩT ). For an arbitrary measurable set Q ⊂ ΩT , this yields
+    Z                        Z                                        Z                         Z
+          z d(x, t) = lim        χN0 |vk | d(x, t) ≥ lim                    χN0 vk d(x, t) =          χN0 v d(x, t) .
+      Q                k→∞ Q                                    k→∞     Q                         Q
+
+Consequently, z ≥ χN0 |v| a.e. on ΩT . Utilizing the formula for j2′ and the assumption,
+we get
+                                           1
+                                                   Z
+      lim j2′ (ū; vk ) = j2′ (ū; v) =
+                                                                                           
+                                                               χN+ v − χN− v + χN0 |v| ∥ū(t)∥L1 (Ω) d(x, t).
+     k→∞                                j2 (ū)    ΩT
+
+On the other hand,
+                                    1
+                                           Z
+          lim j2′ (ū; vk ) = lim
+                                                                      
+                                           χN+ vk − χN− vk + χN0 |vk | ∥ū(t)∥L1 (Ω) d(x, t)
+        k→∞                k→∞ j2 (ū) ΩT
+                              1
+                                  Z
+                                                       
+                         =            χN+ v − χN− v + z ∥ū(t)∥L1 (Ω) d(x, t).
+                           j2 (ū) ΩT
+
+
+
+
+                                                                23
+Since the limit is unique, we get
+                                        Z
+                                   0=         (z − χN0 |v|)∥ū(t)∥L1 (Ω) d(x, t).
+                                         ΩT
+
+Since the integrand is nonnegative, it has to vanish a.e. on ΩT . The function z satisfies
+z = 0 a.e. on ΩT \ N0 and we have ∥ū(t)∥L1 (Ω) > 0 for a.a. (x, t) ∈ N0 . Hence,
+z = χN0 |v| a.e. on ΩT . This shows that the weak limit z of χN0 |vk | is uniquely determined,
+consequently, the usual subsequence-subsequence argument yields the convergence of the
+entire sequence. Thus, have shown that ŵk ⇀ ŵ in L2 (ΩT ).
+   Finally, the sequence wk is just the image     of ŵk under the continuous linear mapping
+            2         2
+R                                             R
+  Ω · dx : L (ΩT ) → L (0, T ), i.e., wk (t) = Ω ŵk (x, t) dx. Thus, we get the desired wk ⇀ w
+in L2 (0, T ).
+
+   Let us briefly comment on the flaw in [Casas, Herzog, and G. Wachsmuth, 2017,
+Lemma 5.6]. Therein, the assertion of Lemma 3.8 was proved for M being the entire
+interval (0, T ). This cannot be true since the assumptions do not contain any information
+on vk (·, t) if ∥ū(t)∥L1 (Ω) = 0, see (3.13). Concerning the proof, note that [Casas, Herzog,
+and G. Wachsmuth, 2017, (5.24)] reads “0 − 0 → 0” for all (x, t) with ∥ū(t)∥L1 (Ω) = 0,
+but afterwards, the authors divide by 0. Finally, we mention that [Casas, Herzog, and
+G. Wachsmuth, 2017, Lemma 5.6] is only used in the proof of [Casas, Herzog, and G.
+Wachsmuth, 2017, Theorem 5.5] and this proof can be repaired by using Lemma 3.8
+above, see also the arguments in the proof of Lemma 3.9 below. Thus, [Casas, Herzog,
+and G. Wachsmuth, 2017, Theorem 5.5] remains correct.
+   The next lemma will be used to provide a lower bound for the second subderivative.
+
+Lemma 3.9. Let (vk ) ⊂ L2 (ΩT ) be a sequence which satisfies vk ⇀ v ∈ Cū and
+µj2′ (ū; vk ) + F ′ (ū)vk → 0. Then
+                  Z T                                              Z T
+                         ′                2                                                  2
+        lim inf         jΩ (ū(t); vk (t)) dt − j2′ (ū; vk )2 ≥            ′
+                                                                           jΩ (ū(t); v(t)) dt − j2′ (ū; v)2 .
+         k→∞       0                                                   0
+
+Proof. It holds
+
+µ|j2′ (ū; vk ) − j2′ (ū; v)| ≤ |µj2′ (ū; vk ) + F ′ (ū)vk | + |F ′ (ū)(v − vk )| + |−F ′ (ū)v − µj2′ (ū; v)|.
+
+The first addend converges to zero by assumption, the second one by the weak convergence
+and the third one is zero as v ∈ Cū . This implies j2′ (ū; vk ) → j2′ (ū; v). Hence, the
+subtrahend in the postulated inequality converges. For the minuend we use
+            Z T                                Z                                Z
+                   ′                2                ′                2                ′              2
+                  jΩ (ū(t); vk (t)) dt =           jΩ (ū(t); vk (t)) dt +           jΩ (ū(t); vk (t)) dt,
+             0                                  M                                 A
+
+with M as in Lemma 3.8 and A := (0, T ) \ M . Combining Lemma 3.8 with the sequential
+weak lower semicontinuity of ∥·∥2L2 (M ) yields
+                                   Z                               Z
+                                         ′                2                 ′               2
+                         lim inf        jΩ (ū(t); vk (t)) dt ≥            jΩ (ū(t); v(t)) dt.
+                          k→∞      M                               M
+
+
+
+
+                                                          24
+                             ′ simplifies on the remaining set A and we get
+Taking into account (3.11), jΩ
+                   Z                                                  Z Z                          2
+                           ′               2
+         lim inf          jΩ (u(t); vk (t)) dt = lim inf                           |vk (x, t)| dx        dt
+          k→∞           A                         k→∞                  A       Ω
+                                                        Z Z                            2          Z
+                                                                                                          ′                 2
+                                                    ≥                 |v(x, t)| dx           dt =        jΩ (u(t); v(t)) dt.
+                                                            A     Ω                                  A
+
+The inner integral is continuous and convex as is also the square, leading to sequential
+weak lower semicontinuity. Adding both inequalities completes the proof.
+
+  One could ask why we did it this way because 0T jΩ        ′ (ū(t); v (t))2 dt looks convex but
+                                                                                R
+                                                                       k
+this is not true. The reason is that jΩ    ′ (ū(t); v (t)) is convex w.r.t. v , but squaring
+                                                      k                           k
+                          ′ (ū(t); v (t)) can be negative.
+destroys convexity since jΩ          k
+  The next lemma is similar, but it provides an equality whenever the sequence vk
+converges strongly.
+                                                                              RT ′                RT ′
+Lemma 3.10. For vk → v in L2 (ΩT ) we have                                                   2                 2
+                                                                               0 jΩ (ū; vk ) dt → 0 jΩ (ū; v) dt.
+
+Proof. The estimates |jΩ ′ (ū; v ) − j ′ (ū; v)| ≤ ∥v − v∥              ′
+                                 k     Ω               k     L1 (Ω) and |jΩ (ū; v)| ≤ ∥v∥L1 (Ω)
+follow easily by (3.11). Using those estimates, we get
+   Z T                              Z T                          Z T
+          ′                                ′                                ′               ′
+         jΩ (ū; vk )2 dt −               jΩ (ū; v)2 dt ≤                 jΩ (ū; vk )2 − jΩ (ū; v)2 dt
+    0                                0                            0
+              Z T                                                               Z T
+                         ′              ′            ′                                   ′              ′          ′
+          ≤             jΩ (ū; vk ) − jΩ (ū; v)   jΩ (ū; vk ) dt +                   jΩ (ū; vk ) − jΩ (ū; v) jΩ (ū; v) dt
+              s0                                                  s                 0
+                                                                                                        s                            !
+                   Z T                                                Z T                                Z T
+          ≤                 ′ (ū; v ) − j ′ (ū; v)|2 dt
+                          |jΩ                                                  ′ (ū; v )|2 dt +
+                                                                             |jΩ                                    ′ (ū; v)|2 dt
+                                                                                                                  |jΩ
+                                    k     Ω                                            k
+                    0                                                  0                                      0
+              s                                   s                                     s                          !
+                   Z T                                Z T                                Z T
+          ≤               ∥vk − v∥2L1 (Ω) dt                    ∥vk ∥2L1 (Ω) dt +                ∥v∥2L1 (Ω) dt
+                    0                                   0                                    0
+
+          = j2 (vk − v)(j2 (vk ) + j2 (v)).
+
+The second inequality follows from the binomial formula, the third one by Hölder’s
+inequality, the fourth one uses our previous estimates. Since vk → v, j2 (vk ) is bounded
+and j2 (vk − v) converges to zero. This finishes the proof.
+
+  The next lemma enables us to invoke Lemma 3.3 for the characterization of the critical
+cone Cū .
+
+Lemma 3.11. Let λū ∈ ∂j2 (ū) be given. For v ∈ L2 (ΩT ), we have ⟨λū , v⟩ = j2′ (ū; v) if
+and only if
+                                                                ∥ū(t)∥L1 (Ω)
+                        ū ̸= 0 :    λū (x, t) ∈ Sign(v(x, t))               a.e. in {ū = 0}                                  (3.16a)
+                                                                    j2 (ū)
+                                                                ∥v(t)∥L1 (Ω)
+          ū = 0, v ̸= 0 :           λū (x, t) ∈ Sign(v(x, t))               a.e. in ΩT .                                      (3.16b)
+                                                                    j2 (v)
+
+
+
+                                                                      25
+Proof. We first consider the case ū ̸= 0. From (3.14) we already know λū (x, t) =
+sū (x, t)∥ū(t)∥L1 (Ω) /j2 (ū) with sū (x, t) ∈ Sign(ū(x, t)) for a.a. (x, t) ∈ ΩT . Further,
+                                          Z T
+                                   1
+                                                                        Z                       
+    j2′ (ū; v) − ⟨λū , v⟩ =                   ′
+                                               jΩ (ū(t); v(t)) −            sū (x, t)v(x, t) dx ∥ū(t)∥L1 (Ω) dt.
+                                j2 (ū)    0                             Ω
+
+Since the condition on sū can be rewritten as sū (t) ∈ ∂jΩ (ū(t)), we can argue exactly as
+in Lemma 3.4.
+   It remains to consider ū = 0, v ̸= 0. Due to ū = 0, we get j2′ (ū; v) = j2 (v). Considering
+(3.14) again, the condition in (3.16b) is equivalent to λū ∈ ∂j2 (v). Thus, it remains to
+show the equivalence of ⟨λū , v⟩ = j2 (v) and λū ∈ ∂j2 (v).
+  “⇒”: From (3.14), we get ∥λū ∥L2 (0,T ;L∞ (Ω)) ≤ 1. Thus, j2 (w) ≥ ⟨λū , w⟩ for all
+w ∈ L2 (ΩT ). Consequently, j2 (w) − j2 (v) ≥ ⟨λū , w − v⟩ for all w ∈ L2 (ΩT ).
+  “⇐”: This follows from taking w = 2v and w = 0 in the subgradient inequality.
+
+  The final lemma addresses the construction of a recovery sequence.
+Lemma 3.12. Assume ū ̸= 0, −F ′ (ū) ∈ ∂G2 (ū) and let v ∈ Cū be given. For an
+arbitrary sequence (tk ) ⊂ R+ with tk ↘ 0, the sequence (vk ) ⊂ L2 (ΩT ) defined in (3.9)
+satisfies
+
+                                                     vk → v         in L2 (ΩT ),                               (3.17a)
+                                                     vk ∈ Cū ,                                                (3.17b)
+                                           ū + tk vk ∈ Uad ,                                                  (3.17c)
+                                                        ′
+                       jΩ (ū + tk vk ) − jΩ (ū) = tk jΩ (ū; vk )             a.e. on (0, T ).               (3.17d)
+
+Proof. As the sequence is the same as in Lemma 3.5, (3.17a) and (3.17c) have already
+been proven there, and (3.17d) can be shown analogously.
+    It remains to verify (3.17b). As in Lemma 3.5, we argue via Lemma 3.3 and we
+analogously get that (3.5a) is valid with v replaced by vk . It remains to show that
+j2′ (ū; v) = ⟨λū , v⟩ implies j2′ (ū; vk ) = ⟨λū , vk ⟩. To this end, we can argue as in Lemma 3.5
+by utilizing (3.16a) from Lemma 3.11.
+
+  Note that the case ū = 0 has been excluded in Lemma 3.12. The reason is that
+condition (3.16b) is incompatible with pointwise changes of v, see also Example 3.14
+below.
+  Now, we are able to prove the main result of this section.
+Theorem 3.13. We assume −F ′ (ū) ∈ ∂G2 (ū). In case ū ̸= 0, we have
+                                                           Z T
+                                                   µ
+                                                                                                        
+                 G′′2 (ū, −F ′ (ū); v) =                         ′
+                                                                  jΩ (ū(t); v(t))2 dt − j2′ (ū; v)2
+                                                 j2 (ū)     0
+
+for all v ∈ Cū and G2 is strongly twice epi-differentiable at ū for −F ′ (ū).
+  In case ū = 0, we have
+
+G′′2 (ū, −F ′ (ū); v) ≥ 0     ∀v ∈ Cū            and           G′′2 (ū, −F ′ (ū); v) = ∞    ∀v ∈ L2 (ΩT ) \ Cū .
+
+
+
+                                                             26
+Proof. We first consider ū ̸= 0. Let v ∈ Cū be given. The first step is to show that the
+above right-hand side is a lower bound for the expression
+                                    G2 (ū + tk vk ) − G2 (ū) − tk ⟨−F ′ (ū), vk ⟩
+                         L := lim inf
+                                k→∞                     t2k /2
+
+for every pair of sequences (tk ) ⊂ R+ and (vk ) ⊂ L2 (ΩT ) with tk ↘ 0 and vk ⇀ v. It
+is clear that we only have to consider sequences with ū + tk vk ∈ Uad . As (tk ) is a zero
+sequence and (vk ) converges weakly, (3.15) holds k large enough. We use the abbreviation
+                                             Z T
+                                      1
+                                                                                              
+                                                      ′                2
+                     Θ(ū, vk ) :=                   jΩ (ū(t); vk (t)) dt − j2′ (ū; vk )2       .
+                                   j2 (ū)       0
+
+Note that Θ(ū, vk ) ≥ 0 due to Hölder’s inequality. With Lemma 3.7, we get
+                2                                          ′
+                                                                         
+       L = lim inf µ[j 2 (ū + tk v k ) − j 2 (ū)] + tk ⟨F   (ū), vk ⟩
+            k→∞ t2
+                 k
+                            "                                        3
+                                                         Ctk ∥vk ∥L2 (ΩT )  3       #                      !
+                   2                     t2
+         ≥ lim inf 2 µ tk j2′ (ū; vk ) + k Θ(ū, vk ) −                   + tk ⟨F ′ (ū), vk ⟩ .
+            k→∞ tk                        2                  j2 (ū)2
+
+As ∥vk ∥L2 (ΩT ) is bounded and j2 (ū) > 0 holds, the cubic term in brackets vanishes as
+k → ∞. This yields
+                                       2 ′
+                                                                                            
+                     L ≥ lim inf          µj2 (ū; vk ) + ⟨F ′ (ū), vk ⟩ + µΘ(ū, vk ) .
+                            k→∞        tk
+Note that −F ′ (ū) ∈ ∂G2 (ū) and ū + tk vk ∈ Uad yield µj2′ (ū; vk ) + ⟨F ′ (ū), vk ⟩ ≥ 0. Now,
+we distinguish two cases.
+   Case 1: lim inf k→∞ µj2′ (ū; vk ) + ⟨F ′ (ū), vk ⟩ > 0. Because of the factor 2/tk we get
+L = ∞. The desired inequality is fulfilled.
+   Case 2: lim inf k→∞ µj2′ (ū; vk ) + ⟨F ′ (ū), vk ⟩ = 0. We choose subsequences of (tk ) and
+(vk ) (without relabeling) which realize the limit inferior, i.e., µj2′ (ū; vk ) + ⟨F ′ (ū), vk ⟩ → 0.
+In this situation, Lemma 3.9 can be applied and yields the desired
+                                         Z T
+                                 µ
+                                                                                      
+                                                  ′              2
+                            L≥                   jΩ (ū(t); v(t)) dt − j2′ (ū; v)2     .
+                               j2 (ū)       0
+
+  We will now show that this lower bound is realized for an arbitrary sequence (tk ) ⊂ R+
+with tk ↘ 0 if (vk ) is chosen as in Lemma 3.12. For the purpose of shortening, let
+S(ū, k) := j2 (ū + tk vk ) + j2 (ū). We note that 2/S(ū, k) → 1/j2 (ū). We get
+     G2 (ū + tk vk ) − G2 (ū) − tk ⟨−F ′ (ū), vk ⟩
+ lim
+ k→∞                     t2k /2
+              2
+     = lim 2 µ[j2 (ū + tk vk ) − j2 (ū)] + tk F ′ (ū)vk
+                                                           
+                                                                                                      (by (3.17c))
+      k→∞ tk
+
+             2 µ j2 (ū + tk vk )2 − j2 (ū)2 + tk S(ū, k)F ′ (ū)vk
+                                                                              
+       = lim
+        k→∞                         t2k S(ū, k)
+
+
+
+                                                         27
+                     µ 0T jΩ (ū + tk vk )2 − jΩ (ū)2 dt + tk S(ū, k)F ′ (ū)vk
+                            R
+           1
+      =          lim                                                                                  (by (3.12))
+        j2 (ū) k→∞                              t2k
+                     µ 0T tk jΩ
+                              ′ (ū; v )2 + 2j (ū)j ′ (ū; v ) dt + S(ū, k)F ′ (ū)v
+                            R
+           1                          k       Ω     Ω        k                         k
+      =          lim                                                                     (by (3.17d))
+        j2 (ū) k→∞                                tk
+                       TR     ′ (ū; v )2 + 2j (ū)j ′ (ū; v ) dt − S(ū, k)j ′ (ū; v )
+          µ              tk jΩ         k          Ω      Ω       k                   2     k
+      =          lim 0                                                                              (by (3.17b))
+        j2 (ū) k→∞                                       tk
+                        Z T
+          µ           1
+                                                                                          
+                                     ′          2                               ′
+      =          lim             tk jΩ (ū; vk ) dt + [2j2 (ū) − S(ū, k)]j2 (ū; vk )               (by (3.13))
+        j2 (ū) k→∞ tk 0
+                     Z T
+          µ                                       j2 (ū + tk vk ) − j2 (ū) ′
+                                                                                        
+                             ′
+      =          lim       jΩ   (ū; vk )2 dt −                             j2 (ū; vk ) .
+        j2 (ū) k→∞ 0                                         tk
+
+The expression j2′ (ū; ·) is continuous and j2 (ū+tk vtkk )−j2 (ū) → j2′ (ū; v) holds (cf. Lemma 2.13
+as j2 is convex and Lipschitz continuous and therefore Hadamard differentiable). Together
+with Lemma 3.10, this yields the claim.
+  In case ū = 0, the assertion directly follows from Lemma 2.3 and (2.13).
+
+   The next example shows that the situation ū = 0 is surprisingly difficult, even in case
+F ′ (ū) ∈ L∞ (ΩT ).
+
+Example 3.14. We use the setting T = 1, Ω = (0, 1), i.e., ΩT = (0, 1)2 . Further, we set
+
+                                  D := {(x, t) ∈ ΩT | 0 < x < t < 1}.
+
+Next, we fix ū = 0 and we assume that the smooth part of the objective satisfies F ′ (ū) ≡ −1
+on D while |F ′ (ū)| < 1 on ΩT \ D. Finally, we set α := −1, β := 1 and µ = 1.
+  First, we show that the critical cone is nonempty. We define v ∈ L2 (ΩT ) via
+                                                        (
+                                                          1/t     if (x, t) ∈ D
+                                      v(x, t) :=
+                                                          0       else.
+
+Now, we can check
+                                                        Z T                      1/2
+                            j2′ (ū; v) = j2 (v) =              ∥v(t)∥2L1 (Ω) dt         =1
+                                                            0
+
+and                                                                Z TZ t
+                                                                           1
+                                           Z
+                            −F ′ (ū)v =           v d(x, t) =               dx dt = 1.
+                                               D                    0    0 t
+
+Thus, F ′ (ū)v + j2′ (ū; v) = 0 and we trivially have v ∈ TUad (ū) = L2 (ΩT ). Hence, v ∈ Cū .
+  Next, we show that every ṽ ∈ Cū \ {0} is unbounded, i.e., ṽ ̸∈ L∞ (ΩT ). Indeed, for an
+arbitrary ṽ ∈ Cū \ {0} we have
+                                               Z T
+      j2 (ṽ) = j2′ (ū; ṽ) = −F ′ (ū)ṽ ≤           ∥ṽ(t)∥L1 (Ω) dt ≤ ∥∥ṽ(t)∥L1 (Ω) ∥L2 (0,T ) = j2 (ṽ).
+                                                   0
+
+
+
+
+                                                            28
+Hence, both inequalities are actually equalities. This implies ṽ ≥ 0 a.e. on D, ṽ = 0
+a.e. on ΩT \ D and that ∥ṽ(t)∥L1 (Ω) is a constant, say, c > 0. For a.e. t ∈ (0, 1),
+we get c = Ω ṽ(x, t) dx = 0t ṽ(x, t) dx and this shows λ1 ({x ∈ Ω | ṽ(x, t) ≥ c/t}) > 0.
+           R               R
+
+Consequently, Fubini implies that for any τ ∈ (0, 1), we have
+                                                               Z T
+            λ2 ({(x, t) ∈ ΩT | ṽ(x, t) ≥ c/τ }) =                   λ1 ({x ∈ Ω | ṽ(x, t) ≥ c/τ }) dt
+                                                                0
+                                                               Z τ
+                                                           ≥         λ1 ({x ∈ Ω | ṽ(x, t) ≥ c/t}) dt > 0.
+                                                                0
+
+This shows that ṽ ̸∈ L∞ (ΩT ). In particular, for any ṽ ∈ Cū \ {0} and any t > 0, we have
+ū + tṽ ̸∈ Uad .
+   Finally, let (tk ) ⊂ R+ with tk ↘ 0 be arbitrary and we consider the approximation
+vk := P[−1/tk ,1/tk ] (v) of the above v. It is clear that vk → v in L2 (ΩT ) and ū + tk vk ∈ Uad .
+However, a simple calculation shows
+              Z t                              Z 1                          1/2       Z t                      Z 1           1/2
+                     k                                                                        k
+ j2 (vk ) =              ∥vk (t)∥2L1 (Ω) dt +         ∥vk (t)∥2L1 (Ω) dt            =             (t/tk )2 dt +          1 dt
+                 0                               tk                                       0                         tk
+                                      1/2                    1/2
+          = (tk /3 + 1 − tk )               = (1 − 2tk /3)
+
+and
+                         Z 1Z                   Z tk                 Z 1
+    −F ′ (ū)vk =                 vk dx dt =           t/tk dt +             1 dx dt = tk /2 + 1 − tk = 1 − tk /2.
+                          0   Ω                   0                     tk
+
+Thus, the curvature term is
+
+          G2 (ū + tk vk ) − G2 (ū) + tk F ′ (ū)vk        (1 − 2tk /3)1/2 − (1 − tk /2)  1
+      lim                                            =  lim                               = .
+      k→∞                   t2k /2                     k→∞              tk /2              3
+
+However, the value of G′′2 (ū, −F ′ (ū); v) is (currently) not known, i.e., we do not know
+whether this sequence (vk ) is a recovery sequence and whether G2 is strongly twice
+epi-differentiable at ū for −F ′ (ū).
+
+3.3 Second Subderivative of j3
+As in [Casas, Herzog, and G. Wachsmuth, 2017, p. 273, 292], we define the sets
+
+                              Ωū := {x ∈ Ω | ∥ū(x)∥L2 (0,T ) ̸= 0},                                                      (3.18a)
+                              Ω0ū := {x ∈ Ω | ∥ū(x)∥L2 (0,T ) = 0} = Ω \ Ωū ,                                           (3.18b)
+                              Ωσ := {x ∈ Ω | ∥ū(x)∥L2 (0,T ) ≥ σ},                      ∀σ > 0.                           (3.18c)
+
+From [Casas, Herzog, and G. Wachsmuth, 2017, Proposition 3.8], we recall the directional
+derivative of j3
+                                                                                                  Z T
+                                                                               1
+                                  Z                                 Z
+                 j3′ (ū; v) =            ∥v(x)∥L2 (0,T ) dx +                                          ūv dt dx           (3.19)
+                                   Ω0ū                              Ωū ∥ū(x)∥L2 (0,T )          0
+
+
+
+
+                                                               29
+and λ ∈ ∂j3 (ū) is equivalent to λ ∈ L∞ (Ω; L2 (0, T )) and
+
+         ∥λ(x)∥L2 (0,T ) ≤ 1                                            f.a.a. x ∈ Ω0ū                                             (3.20a)
+                                       ū(x, t)
+                    λ(x, t) =                                           f.a.a. x ∈ Ωū and t ∈ (0, T ).                             (3.20b)
+                                   ∥ū(x)∥L2 (0,T )
+
+Lemma 3.15. For any measurable M ⊂ Ωū , the mapping qM : L2 (ΩT ) → R given by
+                                                                                                                         !2 
+                                         T                                            Z T
+                          1                                                                  ū(x, t)v(x, t)
+                       Z                               Z
+        qM (v) :=                         v 2 (x, t) dt −                                                    dt              dx
+                  M ∥ū(x)∥L2 (0,T )   0                                               0     ∥ū(x)∥L2 (0,T )
+
+is convex, lower semicontinuous, and therefore sequentially weakly lower semicontinuous.
+Proof. For fixed σ > 0, we define Mσ := M ∩ Ωσ and bσ : L2 (ΩT )2 → R,
+                                              "Z                                                                ! Z                 !#
+               Z
+                       1                              T                 1
+                                                                                               Z T                  T
+ bσ (v, w) :=                                             vw dt −                                    ūv dt                ūw dt        dx.
+              Mσ ∥ū(x)∥L2 (0,T )                 0               ∥ū(x)∥2L2 (0,T )             0                     0
+
+This is a symmetric and real-valued bilinear form. From Hölder’s inequality we get
+                                         
+                                                                        Z T                                 !2 
+                         1            T   Z
+                                                                                ū(x, t)v(x, t)
+                                       v 2 (x, t) dt −                                          dt                 ≥0              (3.21)
+                   ∥ū(x)∥L2 (0,T ) 0                                       0   ∥ū(x)∥L2 (0,T )
+
+for all x ∈ Ωū . Hence, bσ (v, v) ≥ 0 and, therefore, v 7→ bσ (v, v) is convex. For the
+continuity of bσ , we note
+                                                  Z          ∥v∥2L2 (0,T )                  ∥v∥2L2 (ΩT )
+                               |bσ (v, v)| ≤                                     dx ≤                       .
+                                                   Mσ ∥ū(x)∥L2 (0,T )                           σ
+
+Together with the symmetry, we get that bσ is bounded, hence continuous.
+  The monotone convergence theorem yields q(v) = limσ↘0 bσ (v, v) = supσ>0 bσ (v, v).
+Since the supremum of convex and lower semicontinuous functions is again convex and
+lower semicontinuous, this establishes the claim.
+
+  The next lemma follows since L2 (0, T ) is a Hilbert space.
+Lemma 3.16. We define the function Ψ : L2 (0, T ) → R by Ψ(f ) := ∥f ∥L2 (0,T ) . For
+every f ̸= 0 and g ∈ L2 (0, T ), we have
+                                   Z T
+                           1
+    Ψ′ (f )g =                            f g dt,                                                                                   (3.22a)
+                   ∥f ∥L2 (0,T )     0
+                                                                                             !2 
+                                   Z T                                         Z T
+                           1                                       1                             
+  Ψ′′ (f )g 2 =                               g 2 dt −                                f g dt            ,                           (3.22b)
+                   ∥f ∥L2 (0,T )  0                        ∥f ∥2L2 (0,T )       0                  
+                                                                         !3                         ! Z                   !
+                                                             Z T                      Z T                T
+                           3                 1                                                                             
+  Ψ′′′ (f )g 3 =                                                   f g dt       −             g 2 dt                f g dt       . (3.22c)
+                   ∥f ∥3L2 (0,T )  ∥f ∥2L2 (0,T )            0                         0                       0            
+
+
+
+
+                                                                   30
+Furthermore,
+                                             ′′′    3
+                                                            6∥g∥3L2 (0,T )
+                                          Ψ (f )g       ≤                     .                          (3.22d)
+                                                             ∥f ∥2L2 (0,T )
+
+  The next lemma will be used to show a lower bound for the second subderivative of j3 .
+Lemma 3.17. We assume ū ̸= 0 and let sequences (tk ) ⊂ R+ and (vk ) ⊂ L2 (ΩT ) be
+given such that tk ↘ 0 and vk ⇀ v. Then, it holds
+           j3 (ū + tk vk ) − j3 (ū) − tk j3′ (ū; vk )
+      lim inf
+       k→∞                   t2k /2
+                                                                                             2
+                                                                                                          (3.23)
+                                                                   R
+                                                                        T
+                Z
+                        1                Z T
+                                         
+                                                                        0 ū(x, t)v(x,  t)  dt   
+                                                                                                 
+            ≥                          v(x, t)2 dt −                                               dx.
+              Ωū ∥ū(x)∥  2
+                          L (0,T )  0
+                                                                         ∥ū(x)∥2L2 (0,T )      
+                                                                                                 
+
+Proof. First we extract subsequences that realize the limit inferior, afterwards we extract
+subsequences (again without relabeling) such that
+                                                                   1
+                                               ∀k ∈ N : tk ≤          .                                   (3.24)
+                                                                   k4
+For every N ∈ N we define the set MN and the functional j3,N via
+                                                                                         −1/4
+                                  n                                                             o
+                        MN := x ∈ Ω1/N ∀k ≥ N : ∥vk (x)∥L2 (0,T ) ≤ tk                          ,
+                                  Z
+                    j3,N (u) :=          ∥u(x, ·)∥L2 (0,T ) dx.
+                                   MN
+
+Our first goal is to show that the analogue of (3.23) holds for the functional j3,N for fixed
+N ∈ N with N ≥ 2. For all x ∈ MN , k ≥ N and θ ∈ [0, 1] we get with (3.18c) and (3.24)
+
+    ∥ū(x) + θtk vk (x)∥L2 (0,T ) ≥ ∥ū(x)∥L2 (0,T ) − θ∥tk vk (x)∥L2 (0,T )
+                                     1                            1      3/4 1   1    1
+                                  ≥     − tk ∥vk (x)∥L2 (0,T ) ≥    − tk ≥     − 3 ≥
+                                    N                            N           N  k    2N
+and therefore
+                                           tk ∥vk (x)∥3L2 (0,T )                  1/4
+                              0≤                                          ≤ 4N 2 tk .
+                                      ∥ū(x) + θtk vk (x)∥2L2 (0,T )
+Using Ψ from Lemma 3.16 we perform a Taylor expansion and obtain θ ∈ [0, 1] (depending
+on k ≥ N and x ∈ MN ) such that
+
+                    Ψ(ū(x) + tk vk (x)) − Ψ(ū(x)) − tk Ψ′ (ū(x))vk (x)
+                             t2k ′′               t3
+                         =      Ψ (ū(x))vk (x)2 + k Ψ′′′ (ū(x) + θtk vk (x))vk (x)3 .
+                             2                     6
+Together with (3.22d) and the above estimate, we get
+
+                                                                          t2k ′′                          1/4
+   Ψ(ū(x) + tk vk (x)) − Ψ(ū(x)) − tk Ψ′ (ū(x))vk (x) ≥                   Ψ (ū(x))vk (x)2 − 4t2k N 2 tk .
+                                                                          2
+
+
+                                                        31
+Since this estimate holds for all x ∈ MN , we can integrate and obtain
+                                                                t2k
+                                                                                                 Z
+                                            ′                                            1/4
+       j3,N (ū + tk vk ) − j3,N (ū) − tk j3,N (ū)vk ≥            qM (vk ) − 4t2k N 2 tk              1 dx
+                                                                2 N                               MN
+
+with qMN from Lemma 3.15. Now, we divide by t2k /2 and, using Lemma 3.15, we pass to
+the limit k → ∞ to obtain
+                                                              ′ (ū)v
+                         j3,N (ū + tk vk ) − j3,N (ū) − tk j3,N     k
+                    lim inf                                             ≥ qMN (v).
+                     k→∞                      t2k /2
+Since j3 − j3,N is a convex function, we get
+                   j3 (ū + tk vk ) − j3 (ū) − tk j3′ (ū)vk
+             lim inf
+              k→∞                    t2k /2
+                                                                 ′ (ū)v
+                            j3,N (ū + tk vk ) − j3,N (ū) − tk j3,N     k
+                 ≥ lim inf                          2                      ≥ qMN (v).
+                    k→∞                           tk /2
+It remains to pass to the limit N → ∞. Note that the set MN is increasing in N .
+Moreover, for the Lebesgue measure of Ωū \ MN we get
+                                                               
+  λd (Ωū \ MN ) = λd Ωū \ Ω1/N + λd Ω1/N \ MN
+                                                                                                               −1/4
+                                             n                                                                     o
+                    = λd Ωū \ Ω1/N + λd            x ∈ Ω1/N ∃k ≥ N : ∥vk (x)∥L2 (0,T ) > tk
+                                                                                               −1/4
+                                            X          n                                           o
+                    ≤ λd Ωū \ Ω1/N +               λd       x ∈ Ω ∥vk (x)∥L2 (0,T ) > tk                  .
+                                              k≥N
+
+Next, we use Chebyshev’s inequality and (3.24) to get
+                                                             X 1/2 Z
+                d                     d
+              λ (Ωū \ MN ) ≤ λ Ωū \ Ω1/N +                         tk         ∥vk (x)∥2L2 (0,T ) dx
+                                                               k≥N          Ω
+                                                        
+                                                                     k −2 ∥vk ∥2L2 (ΩT ) .
+                                                               X
+                                      d
+                                ≤ λ Ωū \ Ω1/N +
+                                                               k≥N
+
+The first addend trivially vanishes for N → ∞. Furthermore, ∥vk ∥L2 (ΩT ) is bounded due
+to weak convergence and the series n≥1 n−2 converges absolutely. Therefore, we get
+                                      P
+
+the convergence λd (Ωū \ MN ) → 0 for N → ∞.
+  In order to finish the proof, we write
+                j3 (ū + tk vk ) − j3 (ū) − tk j3′ (ū; vk )
+           lim inf
+            k→∞                   t2k /2
+                                                                                          2
+                                                                                 R           
+                                                                                T
+                                                                               0 ūv dt
+                                  Z
+                                          χMN (x)             Z T
+                                                                                             
+                                                                                              
+                                                                      2
+                    ≥ qMN (v) =                                      v dt −                     dx
+                                   Ωū ∥ū(x)∥L2 (0,T ) 
+                                                         0                 ∥ū(x)∥2L2 (0,T ) 
+                                                                                              
+
+It is easy to see by (3.21) that the integrand is nonnegative for every N ∈ N. Since MN
+is increasing, the sequence of integrands converges monotonely towards the integrand in
+(3.23). An application of the monotone convergence theorem finishes the proof.
+
+
+
+                                                         32
+   The next lemma prepares the application of Lemma 3.3, in particular, it characterizes
+(3.5b) for j = j3 . For convenience, we recall that the directional derivative of j3 was
+given in (3.19).
+Lemma 3.18. Let λū ∈ ∂j3 (ū) be given. For v ∈ L2 (ΩT ), we have ⟨λū , v⟩ = j3′ (ū; v) if
+and only if
+                                      v(x, t)
+              λū (x, t) =                               f.a.a. x ∈ Ω0ū with ∥v(x)∥L2 (0,T ) ̸= 0.             (3.25)
+                                   ∥v(x)∥L2 (0,T )
+Proof. The implication “⇐” is clear.
+  Let ⟨λū , v⟩ = j3′ (ū; v) be fulfilled. With (3.20) to get
+                                                Z                            Z T
+           0 = j3′ (ū; v) − ⟨λū , v⟩ =                ∥v(x)∥L2 (0,T ) −          λū v dt dx
+                                                 Ω0ū                         0
+                                                Z
+                                            ≥           ∥v(x)∥L2 (0,T ) (1 − ∥λū (x)∥L2 (0,T ) ) dx ≥ 0.
+                                                 Ω0ū
+                                                        RT
+Hence, ∥v(x)∥L2 (0,T ) ∥λū (x)∥L2 (0,T ) =             0    λū v dt and ∥v(x)∥L2 (0,T ) (1 − ∥λū (x)∥L2 (0,T ) ) = 0
+for a.a. x ∈ Ω0ū . This yields (3.25).
+  For j3 , we cannot use the same construction (3.9) as for j1 and j2 , since this would lead
+to problems on the set Ω0ū , cf. Example 3.14. In order to get vk ∈ Cū , we have to modify
+the construction. We follow [Casas, Herzog, and G. Wachsmuth, 2017, Theorem 4.3,
+Case III].
+Lemma 3.19. We assume −F ′ (ū) ∈ ∂G(ū) ∩ L∞ (ΩT ). Let (tk ) ⊂ R+ be an arbitrary
+sequence with tk ↘ 0 and v ∈ Cū . We define the sequence (vk ) ⊂ L2 (ΩT ) on the set
+Ωū × (0, T ) via
+                                            √         √            √             √
+           0               if ū ∈ (α, α + tk ) ∪ (β − tk , β) ∪ (− tk , 0) ∪ (0, tk ),
+                                                 √
+         
+         
+                            if ∥ū(x)∥L2 (0,T ) < tk ,
+         
+   vk := 0
+         P
+         
+             h       i (v) else
+                  1 1
+         
+               −√        ,√
+                    tk        tk
+
+
+and on Ω0ū × (0, T ) we define
+                                                
+                                                0       if ∥v(x)∥L2 (0,T ) > √1t
+                                       vk :=                                         k
+                                                v       else.
+Then, this sequence satisfies satisfies (for k large enough)
+                                                            vk → v       in L2 (ΩT ),                         (3.26a)
+                                                            vk ∈ Cū ,                                        (3.26b)
+                                                ū + tk vk ∈ Uad ,                                            (3.26c)
+                                                                     RT
+                                                            2ūvk + tk vk2 dt
+   ∥ū(x) + tk vk (x)∥L2 (0,T ) − ∥ū(x)∥L2 (0,T ) = tk 0                     for x ∈ Ωū ,                   (3.26d)
+                                                               Kk (x)
+   ∥ū(x) + tk vk (x)∥L2 (0,T ) − ∥ū(x)∥L2 (0,T ) = tk ∥vk (x)∥L2 (0,T ) for x ∈ Ω0ū ,                      (3.26e)
+
+
+
+                                                               33
+where Kk (x) := ∥ū(x) + tk vk (x)∥L2 (0,T ) + ∥ū(x)∥L2 (0,T ) .
+
+Proof. For (3.26a), we argue like in Lemma 3.5. We have pointwise convergence vk → v
+and v ∈ L2 (ΩT ) dominates vk . The dominated convergence theorem yields the claim.
+  Next we address (3.26c). The case Ωū × (0, T ) can be handled as in the proof of
+Lemma 3.5. The only interesting case is (x, t) ∈ Ω0ū × (0, T ) if vk (x, t) ̸= 0. In this case
+we have ū(x, t) = 0, vk (x, t) = v(x, t) and ∥v(x)∥L2 (0,T ) ≤ √1t . With (3.25), we get
+                                                                            k
+
+                                                                                 √
+   |ū(x, t) + tk vk (x, t)| = tk |v(x, t)| = tk |λū (x, t)|∥v(x)∥L2 (0,T ) ≤       tk ∥λū ∥L∞ (Ω0ū ×(0,T )) .
+
+By combining (3.4) with (3.2), we get λū = −F ′ (ū)/µ on the set Ω0ū . Together with
+F ′ (ū) ∈ L∞ (ΩT ), we get |ū(x, t) + tk vk (x, t)| ≤ min(|α|, |β|) for k large enough. This
+verifies (3.26c) and we also get vk ∈ TUad (ū).
+   In order to obtain (3.26b), we use Lemma 3.3 in combination with Lemma 3.18. As in
+the proof of Lemma 3.5, we analogously get that (3.5a) is valid with v replaced by vk .
+From Lemma 3.3, we get that (3.25) holds. The special definition of vk on Ω0ū × (0, T )
+ensures that (3.25) is also satisfied if we replace v by vk . Thus, j3′ (ū; vk ) = ⟨λū , vk ⟩ and
+Lemma 3.3 gives (3.26b).
+   The identities (3.26d) and (3.26e) hold as L2 (0, T ) is a Hilbert space.
+
+  Finally, the next lemma provides the convergence of some integrals.
+
+Lemma 3.20. We assume −F ′ (ū) ∈ ∂G(ū) ∩ L∞ (ΩT ). Let v ∈ Cū be given such that
+                                     Z       ∥v(x)∥2L2 (0,T )
+                                                                dx < ∞.                                     (3.27)
+                                         Ωū ∥ū(x)∥L2 (0,T )
+
+For a given sequence (tk ) ⊂ R+ with tk ↘ 0 we consider the sequence (vk ) ⊂ L2 (ΩT ) as de-
+fined in Lemma 3.19. We further denote Kk (x) := ∥ū(x) + tk vk (x)∥L2 (0,T ) + ∥ū(x)∥L2 (0,T ) .
+Then, it holds
+                                             RT 2                       RT 2
+                                              0 vk dt                    0 v dt
+                                     Z                          Z
+                                                        dx →                             dx,              (3.28a)
+                                       Ωū   Kk (x)              Ωū 2∥ū(x)∥L2 (0,T )
+                                R            2                 R          2
+                                   T                                T
+                        Z
+                                  0   ūvk dt              Z
+                                                                    0 ūv dt
+                                   2 ∥ū(x)∥ 2
+                                                      dx →               3         dx,                    (3.28b)
+                        Ωū Kk (x)           L (0,T )       Ωū 4∥ū(x)∥ L2 (0,T )
+                             RT 2 RT
+                              0 vk dt 0 ūvk dt
+                        Z
+                   tk             2
+                                                dx → 0.                                                    (3.28c)
+                        Ωū Kk (x) ∥ū(x)∥L2 (0,T )
+
+Proof. In the proof of Lemma 3.19, we have seen that vk → v pointwise almost everywhere.
+Let us denote by N ⊂ ΩT the null set on which the sequence does not converge. Then,
+we know that for almost all x ∈ Ω, the set {t ∈ (0, T ) | vk (x, t) ̸→ v(x, t)} is measurable
+and also a null set. Together with |vk | ≤ |v| pointwise a.e. and ∥v(x)∥L2 (0,T ) < ∞ for a.a.
+x ∈ Ω we get ∥vk (x) − v(x)∥L2 (0,T ) → 0 for a.a. x ∈ Ω from the dominated convergence
+theorem. This shows that the integrands in (3.28) converge pointwise a.e. on Ωū .
+
+
+
+                                                        34
+  In order to apply the dominated convergence theorem, we only need integrable bounds.
+These can be easily obtained with |vk | ≤ |v|, the estimates Kk (x) ≥ tk ∥vk (x)∥L2 (0,T ) ,
+Kk (x) ≥ ∥ū(x)∥L2 (0,T ) and (3.27).
+
+Theorem 3.21. We assume −F ′ (ū) ∈ ∂G3 (ū) ∩ L∞ (ΩT ). For all v ∈ Cū we have
+                                                         "                                     2 #
+                              R              µ               RT 2        RT       ūv
+                                                               0 v dt −    0 ∥ū(x)∥L2 (0,T ) dt      dx,    ū ̸= 0,
+                              
+  G′′3 (ū, −F ′ (ū); v) =        Ωū ∥ū(x)∥L2 (0,T )
+                              
+                                  0,                                                                         ū = 0.
+                              
+
+
+Moreover, G3 is strongly twice epi-differentiable at ū for −F ′ (ū).
+
+  Note that the value G′′ (ū, −F ′ (ū); v) = ∞ is possible for ū ̸= 0 and v ∈ Cū .
+
+Proof. We first consider the case ū ̸= 0. We are going to use Lemma 2.8 with
+                                                                                                      !2 
+                                                    T                          Z T
+                                     µ                                                     ūv
+                               Z                               Z
+        Q(v) := δCū (v) +                           v 2 dt −                                        dt     dx
+                           Ωū ∥ū(x)∥L2 (0,T )   0                              0   ∥ū(x)∥L2 (0,T )
+
+and V = {v ∈ Cū | (3.27) holds.}. We have to check the assumptions of Lemma 2.8.
+   Step 1, Lemma 2.8(i): For v ̸∈ Cū , we have G′′3 (ū, −F ′ (ū); v) = ∞ = Q(v), see
+Lemma 2.10. Let v ∈ Cū be arbitrary and consider sequences (tk ) ⊂ R+ and (vk ) ⊂
+L2 (ΩT ) with tk ↘ 0 and vk ⇀ v. We use −F ′ (ū) ∈ ∂G3 (ū) to get 0 ≤ ⟨F ′ (ū), vk ⟩ +
+G′3 (ū; vk ) = ⟨F ′ (ū), vk ⟩ + δU′ ad (ū; vk ) + µj3′ (ū; vk ). Consequently,
+
+             G3 (ū + tk vk ) − G3 (ū) − tk ⟨−F ′ (ū), vk ⟩
+     lim inf
+        k→∞                      t2k /2
+                      2
+           = lim inf 2 µ[j3 (ū + tk vk ) − j3 (ū)] + δUad (ū + tk vk ) + tk ⟨F ′ (ū), vk ⟩
+                                                                                              
+              k→∞ tk
+
+                      2
+                                                            n                              o
+           ≥ lim inf 2 µ[j3 (ū + tk vk ) − j3 (ū)] + tk δU′ ad (ū; vk ) + ⟨F ′ (ū), vk ⟩ .
+              k→∞ tk
+                     2µ
+           ≥ lim inf 2 j3 (ū + tk vk ) − j3 (ū) − tk j3′ (ū; vk )
+                                                                     
+              k→∞ tk
+                                                                      R                      2
+                                                                         T
+                Z
+                          µ               Z T
+                                          
+                                                                         0 ū(x, t)v(x,  t)  dt   
+                                                                                                  
+            ≥                           v(x, t)2 dt −                                               dx = Q(v),
+                Ωū ∥ū(x)∥ 2
+                           L (0,T )  0
+                                                                          ∥ū(x)∥2L2 (0,T )      
+                                                                                                  
+
+where we used (3.23) in the last step. Taking the infimum with respect to the sequences
+(tk ), (vk ) yields G′′3 (ū, −F ′ (ū); v) ≥ Q(v) for all v ∈ L2 (ΩT ).
+   Step 2, Lemma 2.8(ii): We consider arbitrary v ∈ V and (tk ) ⊂ R+ with tk ↘ 0. Let
+(vk ) ⊂ L2 (ΩT ) be defined as in Lemma 3.19. We have
+
+     G3 (ū + tk vk ) − G3 (ū) − tk ⟨−F ′ (ū), vk ⟩
+  lim
+ k→∞                     t2k /2
+
+
+
+                                                                 35
+         2
+            µ[j3 (ū + tk vk ) − j3 (ū)] − tk µj3′ (ū; vk )
+                                                             
+ = lim    2                                                                                                           (by (3.26b), (3.26c))
+     k→∞ tk
+                                                                                         RT
+       2µ                                                                                ūvk dt
+               Z
+                                                                                             0
+ = lim 2                ∥ū + tk vk ∥L2 (0,T ) − ∥ū∥L2 (0,T ) − tk                                dx                  (by (3.19), (3.26e))
+  k→∞ tk          Ωū                                                                ∥ū∥L2 (0,T )
+                         RT
+                              2tk ūvk + t2k vk2 dt
+                                                                                     Z T
+       2µ                                                 tk
+               Z
+                          0
+ = lim 2                                            −                                            ūvk dt dx                    (by (3.26d))
+  k→∞ tk          Ωū               Kk                ∥ū∥L2 (0,T )                      0
+                        RT 2                                                     !Z
+                                                                                             T
+                         0 vk dt          1          2         1
+              Z
+ = lim 2µ                               +               −                                        ūvk dt dx
+     k→∞          Ωū         Kk          tk         Kk   ∥ū∥L2 (0,T )                  0
+                        RT 2                                                                             !Z
+              Z
+                         0 vk dt          1          ∥ū∥L2 (0,T ) − ∥ū + tk vk ∥L2 (0,T )                       T
+ = lim 2µ                               +                                                                             ūvk dt dx
+     k→∞          Ωū         Kk          tk                   Kk ∥ū∥L2 (0,T )                               0
+                        RT 2                    RT                              !Z
+                         0 vk dt                      2ūvk + tk vk2 dt                  T
+              Z
+                                                 0
+ = lim 2µ                               −                                                    ūvk dt dx                        (by (3.26d))
+     k→∞          Ωū         Kk                     Kk2 ∥ū∥L2 (0,T )               0
+                                                R                  2
+                        RT 2                       T                            RT 2 RT
+                         0 vk dt
+                                            2     0 ūvk dt                      0 vk dt 0 ūvk dt
+              Z
+ = lim 2µ                               −                                − tk                                 dx
+     k→∞          Ωū         Kk            Kk2 ∥ū∥L2 (0,T )                     Kk2 ∥ū∥L2 (0,T )
+                                                                                    !2 
+                            Z T                        Z T
+               µ                                                      ūv
+     Z
+ =                             v 2 dt −                                        dt            dx.                                 (by (3.28))
+      Ωū ∥ū∥L2 (0,T )        0                          0       ∥ū∥L2 (0,T )
+
+  Step 3, Lemma 2.8(iii): For arbitrary v ∈ Cū we define the sequence (v l ) ⊂ L2 (ΩT ) via
+                                                      (
+                                    l                   0       if 0 < ∥ū(x)∥L2 (0,T ) < 1l ,
+                                   v (x, t) :=
+                                                        v(x, t) else.
+
+It is clear that v l → v in L2 (ΩT ) and v l ∈ TUad (ū). We are going to use Lemmas 3.4
+and 3.18 to check v l ∈ Cū . The property (3.5a) holds for v l by construction. Lemma 3.18
+yields (3.25) for v. Now, it is straightforward to check that (3.25) also holds for v replaced
+by v l . Therefore, Lemma 3.18 yields ⟨λū , v l ⟩ = j3′ (ū; v l ). Lemma 3.3 yields v l ∈ Cū for
+all l ∈ N.
+   Due to
+              Z         ∥v l (x)∥2L2 (0,T )                   Z          ∥v(x)∥2L2 (0,T )
+                                                 dx =                                             dx ≤ l∥v∥2L2 (ΩT ) < ∞,
+                Ωū ∥ū(x)∥L2 (0,T )                          Ω1/l ∥ū(x)∥L2 (0,T )
+
+
+we have v l ∈ V .
+  From (3.21) we get Q(v) ≥ Q(v l ) and therefore Q(v) ≥ lim inf l→∞ Q(v l ).
+  Now, we are in position to apply Lemma 2.8 and this yields the claim in case ū ̸= 0.
+  Finally, it remains to consider the case ū = 0. Lemma 2.3 yields G′′3 (0, −F ′ (0); v) ≥ 0.
+We consider an arbitrary sequence (tk ) ⊂ R+ with tk ↘ 0 and choose (vk ) ⊂ L2 (ΩT ) as
+
+
+
+
+                                                                           36
+in Lemma 3.19. We get
+
+          G3 (0 + tk vk ) − G3 (0) − tk ⟨−F ′ (0), vk ⟩        µtk j3 (vk ) + tk ⟨F ′ (0), vk ⟩
+       lim                                              =  lim
+      k→∞                    t2k /2                       k→∞                t2k /2
+                                                               µj3′ (0; vk ) + ⟨F ′ (0), vk ⟩
+                                                        = lim
+                                                          k→∞               tk /2
+                                                        = 0,
+
+using (3.26c), j3 (vk ) = j3′ (0; vk ) (see (3.19)) and (3.26b). This finishes the proof.
+
+
+4 Application to a parabolic control problem
+In this section, we apply the findings from Section 3 to the optimal control problem
+
+                                Minimize J(u) = F (u) + µj(u),
+                                                                                              (OCP)
+                                    w.r.t. u ∈ Uad ,
+
+where the smooth part F is given by
+                                                                ν
+                                Z
+                      F (u) =       L(x, t, yu (x, t)) d(x, t) + ∥u∥2L2 (ΩT )
+                                 ΩT                             2
+
+and yu ∈ W (0, T ) := {y ∈ L2 (0, T ; H01 (Ω)) | ∂t y ∈ L2 (0, T ; H −1 (Ω))} is the (weak)
+solution of the state equation
+
+     ∂t yu + Ayu + a(·, yu ) = u in ΩT ,        yu = 0 on ΣT ,         yu (·, 0) = y0 in Ω        (4.1)
+
+As in Section 3, ΩT := Ω × (0, T ), where Ω ⊂ Rd is assumed to be non-empty, open,
+and bounded, and T > 0. Moreover, ΣT := Γ × (0, T ). The nonsmooth part j is one
+of the functionals in (1.2) and we define G as in (1.4), i.e., G := δUad + µj. Note that
+dom(G) = Uad . We further assume µ > 0, , ν ≥ 0 and the bounds α, β ∈ R satisfy
+α < 0 < β.
+   The above control problem has been analyzed in [Casas, Herzog, and G. Wachsmuth,
+2017]. In order to compare our results, we rely on the same standing assumptions, which
+are assumed to hold throughout this section.
+
+Assumption 4.1. We assume that A, a, L together with exponents p̂, q̂ ∈ [2, ∞] satisfy
+[Casas, Herzog, and G. Wachsmuth, 2017, Assumptions 1–3]. In particular, A is an
+elliptic differential operator and the Nemytskii operators a and L satisfy the usual
+continuity, differentiability and growth conditions depending on p̂ and q̂.
+
+  From this assumption, we get the following two differentiability results.
+
+Lemma 4.2 ([Casas, Herzog, and G. Wachsmuth, 2017, Theorem 2.1]). For all u ∈
+Lp̂ (0, T ; Lq̂ (Ω)) the equation (4.1) has a unique solution yu ∈ W (0, T ) ∩ L∞ (ΩT ). More-
+over, the solution mapping H : Lp̂ (0, T ; Lq̂ (Ω)) → W (0, T ) ∩ L∞ (ΩT ), defined by
+
+
+
+                                                 37
+H(u) := yu , is of class C 2 . For all elements u, v ∈ Lp̂ (0, T ; Lq̂ (Ω)), the function
+zv = H ′ (u)v is the solutions of the problem
+         ∂z        ∂a
+            + Az +    (·, yu )z = v in ΩT ,            z = 0 on ΣT ,        z(·, 0) = 0 in Ω,          (4.2)
+         ∂t        ∂y
+respectively.
+Lemma 4.3 ([Casas, Herzog, and G. Wachsmuth, 2017, Theorem 2.3]). The map
+F : Lp̂ (0, T ; Lq̂ (Ω)) → R is of class C 2 . Moreover, for all u, v, v1 , v2 ∈ Lp̂ (0, T ; Lq̂ (Ω))
+we have
+                        Z
+           F ′ (u)v =         (φu + νu)v d(x, t)                                                   (4.3a)
+                         ΩT
+                              (                                     !                  )
+                                  ∂2L                    ∂2a
+                        Z
+    ′′
+  F (u)(v1 , v2 ) =                    (x, t, y u ) − φu      (x, t, yu ) zv1 zv2 + νv1 v2 d(x, t), (4.3b)
+                         ΩT       ∂y 2                   ∂y 2
+
+where zvi = H ′ (u)vi , i = 1, 2, and φu ∈ W (0, T ) ∩ L∞ (ΩT ) is the solution of
+         ∂φ          ∂a              ∂L
+     −      + A∗ φ +    (·, yū )φ =    (·, yū ),         φ = 0 on ΣT ,          φ(·, T ) = 0 in Ω,
+         ∂t          ∂y              ∂y
+where A∗ is the adjoint operator of A.
+   In view of Theorem 3.21, we note that φu , u ∈ L∞ (ΩT ) implies F ′ (u) ∈ L∞ (ΩT ).
+   For later reference, we state the following very important estimate and the compactness
+of the mapping v 7→ zv .
+Lemma 4.4. Let ū ∈ Uad be given. Then, there exists CZ > 0 satisfying
+
+                              ∥zv ∥L2 (ΩT ) ≤ CZ ∥v∥L2 (ΩT )     ∀v ∈ L2 (ΩT ).                        (4.4)
+
+Additionally, if vk ⇀ v in L2 (ΩT ) holds, then zvk → zv in L2 (ΩT ).
+   The norm estimate (4.4) follows from standard parabolic estimates and the compactness
+is a consequence of the celebrated Aubin–Lions lemma, see, e.g., [Simon, 1986].
+   Finally, we cite the next continuity result for the second derivative of F .
+Lemma 4.5 ([Casas, Herzog, and G. Wachsmuth, 2017, Lemma 5.2]). Let ū ∈ Uad be
+given. For all ρ > 0 there exists ε > 0 such that
+
+    |F ′′ (u)v 2 − F ′′ (ū)v 2 | ≤ ρ∥zv ∥2L2 (ΩT )   ∀v ∈ L2 (ΩT ), u ∈ Uad , ∥u − ū∥L2 (ΩT ) ≤ ε,
+
+where zv = H ′ (ū)v.
+  Now, we are in position to check that Assumption 2.1 is satisfied.
+Theorem 4.6. The functional F maps dom(G) = Uad to R. Let ū ∈ Uad be fixed.
+The (bi)linear functionals F ′ (ū) and F ′′ (ū) defined on Lp̂ (0, T ; Lq̂ (Ω)) can be extended
+to continuous (bi)linear functionals on L2 (ΩT ). Then, F satisfies the assumptions in
+Assumption 2.1 with X = L2 (ΩT ) and x̄ = ū ∈ Uad .
+
+
+
+                                                      38
+Proof. Since X = L2 (ΩT ) is a separable Hilbert space, Assumption 2.1(i) holds.
+  It remains to check Assumption 2.1(iii). We already mentioned that φū , ū ∈ L∞ (ΩT ),
+thus F ′ (ū) ∈ L∞ (ΩT ) ⊂ L2 (ΩT ). Next, we check that the bilinear form F ′′ (ū) can be
+extended to L2 (ΩT ). Due to the assumptions made on L and a, one can show that the
+term in parentheses in (4.3b) belongs to L∞ (ΩT ). Thus, together with Lemma 4.4, we
+get
+             |F ′′ (ū)(v1 , v2 )| ≤ C∥zv1 ∥L2 (ΩT ) ∥zv2 ∥L2 (ΩT ) + ν∥v1 ∥L2 (ΩT ) ∥v2 ∥L2 (ΩT )
+                                                                                                   (4.5)
+                                   ≤ CCZ2 + ν ∥v1 ∥L2 (ΩT ) ∥v2 ∥L2 (ΩT ) .
+                                                
+
+Together with the density of Lp̂ (0, T ; Lq̂ (Ω)) in L2 (ΩT ), we can extend F ′′ (ū) continuously
+to L2 (ΩT ).
+  We still have to check (2.1). Let (tk ) ⊂ R+ and (vk ) ⊂ L2 (ΩT ) with tk ↘ 0, vk ⇀
+v ∈ L2 (ΩT ) and ū + tk vk ∈ dom(G) = Uad be given. For an arbitrary ρ > 0, we utilize
+Lemmas 4.4 and 4.5 (together with tk ↘ 0 and the boundedness of (vk ) in L2 (ΩT )) to get
+
+                                  |F ′′ (ū + θk tk vk )vk2 − F ′′ (ū)vk2 | ≤ ρ
+
+for all θk ∈ [0, 1] and all k large enough (depending on ρ). Next, we use a second-order
+Taylor expansion and obtain intermediate points (θk ) ⊂ [0, 1] such that
+
+    F (ū + tk vk ) − F (ū) − tk F ′ (ū)vk − 12 t2k F ′′ (ū)vk2  1
+                                2                                  = |F ′′ (ū + θk tk vk )vk2 − F ′′ (ū)vk2 |
+                               tk                                   2
+                                                                   ≤ρ
+
+for all k large enough (depending on ρ). Since ρ > 0 was arbitrary, this shows (2.1).
+
+  Moreover, the following holds for the nonsmooth part of the objective. As in Section 3,
+the functional G can represent any of the functionals Gi , i = 1, 2, 3.
+Lemma 4.7. Let ū be given such that −F ′ (ū) ∈ ∂G(ū). In case j = j2 , we additionally
+assume ū ̸= 0. Then, the functional G is strongly twice epidifferentiable at ū w.r.t.
+−F ′ (ū). Moreover, G′′ (ū, −F ′ (ū); v) = ∞ for all v ∈ L2 (ΩT ) \ Cū .
+Proof. The strong twice epidifferentiability follows from Theorems 3.6, 3.13 and 3.21. In
+case G = G3 we also need −F ′ (ū) ∈ L∞ (ΩT ), which was provided after Lemma 4.3. The
+final assertion is (2.13).
+
+  Now we can prove the second-order necessary conditions. Recall that expressions for
+G′′ (ū, −F ′ (ū); ·) where given in Theorems 3.6, 3.13 and 3.21.
+Theorem 4.8 (Second-Order Necessary Conditions). Let ν ≥ 0 be given and let ū ∈
+L2 (ΩT ) be a local minimizer of (OCP). In case j = j2 , we additionally assume ū ̸= 0.
+Then, −F ′ (ū) ∈ ∂G(ū) and F ′′ (ū)v 2 + G′′ (ū, −F ′ (ū); v) ≥ 0 holds for all v ∈ Cū .
+Proof. We apply Theorem 2.5 with the setting X = L2 (ΩT ), x̄ := ū, F := F , G :=
+δUad + µji , for some i = 1, 2, 3, c := 0. Hence, (2.4) holds. The first-order condition
+Theorem 2.12 yields −F ′ (ū) ∈ ∂G(ū). Additionally, Theorem 2.5 (ii) is satisfied, see
+Lemma 4.7.
+
+
+
+                                                       39
+   Let us compare this result with [Casas, Herzog, and G. Wachsmuth, 2017, Theorem 4.3].
+We have already seen that the critical cones in both results coincide, see Lemma 3.2.
+Further, it can be checked that the expressions for G′′ (ū, −F ′ (ū); v) given in Theorems 3.6,
+3.13 and 3.21 coincide with the corresponding expressions for ji′′ (ū; v 2 ) given in [Casas,
+Herzog, and G. Wachsmuth, 2017, (4.5)–(4.7)]. Hence, both results coincide. Note that
+[Casas, Herzog, and G. Wachsmuth, 2017, Theorem 4.3] also addresses the case ū = 0 if
+j = j2 , but the proof is flawed. Indeed, it is claimed (without any justification) that for
+arbitrary v ∈ Cū we have vk := P[−k,k] (v) ∈ Cū , but Example 3.14 shows that this might
+fail.
+   In order to apply the second-order sufficient assumptions, we need an additional lemma.
+
+Lemma 4.9. In case ν > 0, the mapping
+                                                                                 !
+                                          ∂2L                       ∂2a
+                                  Z
+  2                ′′        2
+L (ΩT ) ∋ v 7→ F (ū)v =                       (x, t, y ū ) − φ ū      (x, t, yū ) zv2 d(x, t) + ν∥v∥2L2 (ΩT )
+                                    ΩT    ∂y 2                      ∂y 2
+
+is a Legendre form.
+
+Proof. Due to the compactness result Lemma 4.4, the first addend in F ′′ (ū)v 2 is sequen-
+tially weakly continuous. Applying [Bonnans and Shapiro, 2000, Proposition 3.76] yields
+the claim.
+
+  In case ν > 0, the map v 7→ F ′′ (ū)v 2 is sequentially weakly continuous and, thus, not
+a Legendre form.
+
+Theorem 4.10 (Second-Order Sufficient Condition). We assume ν > 0. Further suppose
+that ū ∈ Uad satisfies −F ′ (ū) ∈ ∂G(ū) and
+
+                        F ′′ (ū)v 2 + G′′ (ū, −F ′ (ū); v) > 0     ∀v ∈ Cū \ {0}.                       (4.6)
+
+Then, there exist ε, δ > 0 such that
+                           δ
+             J(u) ≥ J(ū) + ∥u − ū∥2L2 (ΩT )                ∀u ∈ Uad , ∥u − ū∥L2 (ΩT ) ≤ ε.               (4.7)
+                           4
+Proof. We will show the requirements for the application of Theorem 2.6. Lemma 4.9
+yields the sequential weak lower semicontinuity of v 7→ F ′′ (ū)v 2 . Condition (2.6) follows
+from (4.6) and −F ′ (ū) ∈ ∂G(ū), cf. the proof of Corollary 2.21. Lemma 4.9 in combination
+with Lemma 2.7 shows that (NDC) holds. Now, the claim follows from Theorem 2.6.
+
+  Let us compare this result with the second-order results in [Casas, Herzog, and G.
+Wachsmuth, 2017, Section 5] in the case ν > 0. For the functional j1 we obtain an
+identical result.
+  For the functional j2 , we get the same result in case ū ̸= 0. Note that Theorem 2.6 is still
+applicable in case ū = 0, although we do not know the precise values of G′′2 (ū, −F ′ (ū); ·).
+Our sufficient condition reads
+
+                        F ′′ (ū)v 2 + G′′ (ū, −F ′ (ū); v) > 0      ∀v ∈ Cū \ {0}
+
+
+
+                                                       40
+and due to G′′ (ū, −F ′ (ū); v) ≥ 0, this condition is weaker than the sufficient condition
+
+                              F ′′ (ū)v 2 > 0        ∀v ∈ Cū \ {0}
+
+given in [Casas, Herzog, and G. Wachsmuth, 2017, Theorem 5.8], see also [Casas, Herzog,
+and G. Wachsmuth, 2017, (4.6)].
+   For the functional j3 , [Casas, Herzog, and G. Wachsmuth, 2017, Theorem 5.12] shows
+the quadratic growth only in an L∞ (Ω; L2 (0, T ))-ball, whereas our result implies the
+growth in the larger L2 (ΩT )-ball.
+   We also note that [Casas, Herzog, and G. Wachsmuth, 2017, Section 5] contains
+sufficient optimality conditions in case ν = 0 which were not under investigation here.
+In fact, in this case, the theory from Section 2 cannot be applied in the space L2 (ΩT ),
+since (NDC) cannot be satisfied. For a similar problem with µ = 0, i.e., without a
+sparsity-inducing term, it was shown in [Christof and G. Wachsmuth, 2018] that (under
+a certain regularity assumption) a second-order analysis can be performed in a space of
+measures. In [D. Wachsmuth and G. Wachsmuth, 2022, Section 5.1], this analysis was
+extended to µ > 0 in case of the functional j1 . The extension to j2 and j3 is subject to
+future work.
+
+
+References
+Benko, M. and Mehlitz, P. (2023). “Why second-order sufficient conditions are, in a
+  way, easy – or – revisiting calculus for second subderivatives”. In: Journal of Convex
+ Analysis 30.2, pp. 541–589. url: https://www.heldermann.de/JCA/JCA30/JCA302/
+  jca30031.htm.
+Bonnans, J. F. and Shapiro, A. (2000). Perturbation Analysis of Optimization Problems.
+  Berlin: Springer. doi: 10.1007/978-1-4612-1394-9.
+Casas, E. (2012). “Second Order Analysis for Bang-Bang Control Problems of PDEs”.
+  In: SIAM Journal on Control and Optimization 50.4, pp. 2355–2372. doi: 10.1137/
+  120862892.
+Casas, E., Herzog, R., and Wachsmuth, G. (2012). “Optimality Conditions and Error
+  Analysis of Semilinear Elliptic Control Problems with L1 Cost Functional”. In: SIAM
+ Journal on Optimization 22.3, pp. 795–820. doi: 10.1137/110834366.
+Casas, E., Herzog, R., and Wachsmuth, G. (2017). “Analysis of Spatio-Temporally Sparse
+  Optimal Control Problems of Semilinear Parabolic Equations”. In: ESAIM: Control,
+ Optimisation and Calculus of Variations 23.1, pp. 263–295. doi: 10 . 1051 / cocv /
+  2015048.
+Casas, E., Ryll, C., and Tröltzsch, F. (2015). “Second Order and Stability Analysis for
+  Optimal Sparse Control of the FitzHugh–Nagumo Equation”. In: SIAM Journal on
+ Control and Optimization 53.4, pp. 2168–2202. doi: 10.1137/140978855.
+Casas, E. and Tröltzsch, F. (2012). “Second Order Analysis for Optimal Control Problems:
+  Improving Results Expected From Abstract Theory”. In: SIAM Journal on Optimization
+  22.1, pp. 261–279. doi: 10.1137/110840406.
+
+
+
+
+                                                 41
+Casas, E. and Tröltzsch, F. (2014). “Second Order Optimality Conditions and Their Role
+  in PDE Control”. In: Jahresbericht der Deutschen Mathematiker-Vereinigung 117.1,
+  pp. 3–44. doi: 10.1365/s13291-014-0109-3.
+Casas, E., Wachsmuth, D., and Wachsmuth, G. (2017). “Sufficient Second-Order Condi-
+  tions for Bang-Bang Control Problems”. In: SIAM Journal on Control and Optimization
+  55.5, pp. 3066–3090. doi: 10.1137/16m1099674.
+Christof, C. and Wachsmuth, G. (2018). “No-gap second-order conditions via a directional
+  curvature functional”. In: SIAM Journal on Optimization 28.3, pp. 2097–2130. doi:
+  10.1137/17M1140418.
+Christof, C. and Wachsmuth, G. (2020). “Differential Sensitivity Analysis of Varia-
+  tional Inequalities with Locally Lipschitz Continuous Solution Operators”. In: Applied
+  Mathematics & Optimization 81.1, pp. 23–62. doi: 10.1007/s00245-018-09553-y.
+Ekeland, I. and Témam, R. (1999). Convex Analysis and Variational Problems. Society
+  for Industrial and Applied Mathematics. doi: 10.1137/1.9781611971088.
+Harder, F. (2021). “On bilevel optimization problems in infinite-dimensional spaces”.
+  PhD thesis. doi: 10.26127/BTUOPEN-5375.
+Mohammadi, A. and Mordukhovich, B. S. (2021). “Variational Analysis in Normed Spaces
+  with Applications to Constrained Optimization”. In: SIAM Journal on Optimization
+  31.1, pp. 569–603. doi: 10.1137/20m1342215.
+Simon, J. (1986). “Compact sets in the space Lp (0, T ; B)”. In: Annali di Matematica
+  Pura ed Applicata 146 (1), pp. 65–96. doi: 10.1007/BF01762360.
+Sprekels, J. and Tröltzsch, F. (2023). Second-order sufficient conditions for sparse optimal
+  control of singular Allen–Cahn systems with dynamic boundary conditions. arXiv:
+  2303.16708.
+Wachsmuth, D. and Wachsmuth, G. (2022). “Second-order conditions for non-uniformly
+  convex integrands: quadratic growth in L1 ”. In: Journal of Nonsmooth Analysis and
+  Optimization Volume 3. doi: 10.46298/jnsao-2022-8733.
+
+
+
+
+                                            42
+

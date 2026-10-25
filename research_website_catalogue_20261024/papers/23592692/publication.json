@@ -1,0 +1,129 @@
+{
+  "title": "A sharp forest bound and an improved whisker bound for finite WARM graphs",
+  "slug": "finite-warm-forest-whisker-bounds",
+  "description": "A finite WARM graph preprint gives the sharp strict forest bound α > 4/3 and an equal-rate whisker bound α ≥ 17/4, with source files and limitations.",
+  "abstract": "Consider power reinforcement with exponent α>1 on a finite simple loopless graph: vertices fire at positive rates and select an incident edge proportionally to its current count to the power α. We prove that the infinitely reinforced edges almost surely form a forest for α>4/3, for arbitrary positive vertex rates and positive integer initial counts. The known triangle obstruction shows that the constant 4/3 cannot be decreased; its equality case is excluded. For equal rates we prove that every surviving component has diameter at most three when α≥17/4. The main deterministic step excludes an arbitrary weighted odd support cycle of length m when α>sec²(π/(2m)); the corresponding uniform cycle threshold and the even-cycle method are known. We use the published finite WARM convergence and support theorems, and credit the earlier least-weight and champion arguments. The forest result answers the forest-bound improvement requested in Oberwolfach Reports 12/2023; the suggested sharp whisker bound remains open. AI tools were extensively involved. This is an unrefereed preprint.",
+  "plain_language": [
+    "Imagine a finite network in which each vertex has its own clock. When a clock rings, one incident edge is reinforced. An edge chosen often becomes more likely to be chosen again; the exponent α controls how strongly past choices are favored.",
+    "The paper studies the edges that continue to be reinforced forever. When α is greater than 4/3, those surviving edges almost surely contain no cycles, even when vertices fire at different rates. This strict threshold cannot be lowered: for 1 < α < 4/3, an equal-rate triangle starting with one count on every edge can keep all three edges with positive probability.",
+    "When all vertices fire at the same rate and α is at least 17/4, each surviving component is a tree whose farthest vertices are at most three edges apart, a shape called a whisker. A whisker can still have many leaves; the bound concerns diameter rather than the number of vertices."
+  ],
+  "result": [
+    "The model is a finite simple undirected loopless graph. Each nonisolated vertex has an independent Poisson clock with a fixed positive finite rate. Each edge starts with a fixed positive integer count. At a firing, an incident edge is selected with probability proportional to its current count raised to α, and that count increases by one.",
+    "For every such graph and initial count vector, α > 4/3 implies that the edges reinforced infinitely often almost surely form a forest. If the vertex rates are equal, α ≥ 17/4 implies that every surviving component is a tree of diameter at most three.",
+    "The forest constant is sharp as a strict sufficient bound. The known equal-rate triangle obstruction has positive probability of retaining all three edges for every 1 < α < 4/3 when initialized at unit counts. The paper makes no assertion at α = 4/3.",
+    "The deterministic contribution excludes an arbitrary weighted odd support cycle of length m from a limiting equilibrium when α > sec²(π/(2m)). It allows unequal rates, chords and attachments. The triangle sets the largest odd-cycle threshold, 4/3; the corresponding uniform bare-cycle spectrum and the even-cycle method come from earlier work."
+  ],
+  "why_it_works": [
+    "A weighted cycle inequality supplies a positive direction for the Hessian of the reinforcement potential. For odd cycles, paired sine and cosine perturbations give the stated threshold independently of the equilibrium weights. The resulting positive Jacobian eigenvalue excludes the equilibrium even when other directions are critical.",
+    "Published finite WARM convergence and support-identification theorems turn this equilibrium exclusion into an almost-sure statement about surviving edges. A finite prescribed sequence of reinforcements transfers the required almost-sure tail conclusions from unit initialization to any fixed positive integer initial counts.",
+    "For equal rates, the whisker argument sharpens the earlier least-weight and champion methods. Exact interval estimates and an analytic bound for all sufficiently large α force internal support edges to form a matching. This rules out cycles and paths of four edges, leaving trees of diameter at most three."
+  ],
+  "limitations": [
+    "The claims concern finite simple undirected graphs with positive rates and fixed positive integer initial edge counts. Loops, infinite graphs, zero initial counts and noninteger initial offsets are outside the stated model.",
+    "The stochastic equality case α = 4/3 is unresolved here. The paper also does not establish the suggested sharp equal-rate whisker conclusion throughout 4/3 < α < 17/4.",
+    "Equal rates are essential to the whisker claim; unequal-rate whisker conclusions are false in general. The triangle obstruction is a positive-probability statement from unit counts, not almost-sure triangle survival or a claim about every initialization.",
+    "These are asymptotic structural results. The paper gives no finite-time convergence rate, general survival probabilities or unique limiting shape, and makes no empirical biological claim.",
+    "The stochastic convergence and support theorems, uniform cycle spectrum, triangle obstruction, even-cycle method and least-weight/champion arguments have earlier sources. The bounded literature comparison does not certify worldwide priority. Finite checks supplement the universal proof rather than establish it."
+  ],
+  "background": [
+    {
+      "title": "Kleptsyn, Graph-based interacting Pólya urns, Oberwolfach Reports 12/2023",
+      "url": "https://doi.org/10.4171/owr/2023/12",
+      "note": "Open Problems 1–2 on printed page 655 request improvements to the finite arbitrary-rate forest bound and the equal-rate whisker bound. The report separately suggests 4/3 as a sharp bound for both conclusions; the present paper does not settle that full whisker suggestion."
+    },
+    {
+      "title": "Hirsch, Holmes and Kleptsyn, Infinite WARM graphs III: strong reinforcement regime",
+      "url": "https://doi.org/10.1088/1361-6544/acc9a0",
+      "note": "The finite WARM convergence and support-identification results provide the stochastic input. The even-cycle cancellation method is also established in this work. These results are imported rather than reproved."
+    },
+    {
+      "title": "van der Hofstad, Holmes, Kuznetsov and Ruszel, Strongly reinforced Pólya urns with graph-based competition",
+      "url": "https://doi.org/10.1214/16-AAP1153",
+      "note": "The uniform bare odd-cycle spectrum and the triangle obstruction are known from this work. The new cycle estimate concerns arbitrary equilibrium weights with unequal rates, chords and attachments."
+    },
+    {
+      "title": "Holmes and Kleptsyn, Proof of the WARM whisker conjecture for neuronal connections",
+      "url": "https://doi.org/10.1063/1.4978683",
+      "note": "This work supplies the earlier forest and whisker bounds and the least-weight/champion arguments. Its stated whisker bound was 25; its displayed proof, together with the later stochastic input, already gives a weaker improvement for α > 24. The present paper claims the stronger 17/4 bound, without claiming the first possible numerical improvement of 25."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent mathematical review, comparison with the reinforced stochastic processes literature, or preparation for journal submission. Expertise in reinforced urns, stochastic approximation or dynamical systems would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No new follow-up question or conjecture is proposed. The unresolved equality case and suggested sharper whisker interval are stated as limitations, but no sufficiently developed new mechanism or evidence warrants advertising a research direction.",
+  "publication_date": "2026-10-21",
+  "version": "1.0.0",
+  "doi": "10.5281/zenodo.23592692",
+  "author": "Alec Kriebel",
+  "pdf_filename": "finite-warm-thresholds.pdf",
+  "supplement_filename": "finite-warm-thresholds-source-and-verification.zip",
+  "supplement_label": "Source and verification (ZIP)",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, version 1.0.0, developed with extensive AI assistance. Worldwide priority is not certified.",
+  "ai_disclosure": "AI tools were used extensively in mathematical research, proof development, symbolic and computational checks, adversarial auditing, literature investigation and writing. Internal AI reviews are not independent human peer review, journal acceptance or proof-assistant certification. This is an unrefereed preprint.",
+  "source_binding": {
+    "record_id": "23592692",
+    "concept_record_id": "23592691",
+    "record_url": "https://zenodo.org/records/23592692",
+    "doi": "10.5281/zenodo.23592692",
+    "zenodo_version": "1.0.0",
+    "manuscript_version": "1.0.0",
+    "manuscript_date": "21 October 2026",
+    "publication_date": "2026-10-21",
+    "version_source": "Zenodo metadata and the printed manuscript date line specify version 1.0.0; the printed date is 21 October 2026.",
+    "source_retrieved_utc": "2026-10-25T02:21:05.235162+00:00",
+    "source_receipt_sha256": "f30b5b667c1794683b0832223046c4e04eab39cca8175e4a69b5cca549aab3f9",
+    "record_sha256": "d3d7d39facd7a8984640409aba5e4faa22f953901da53c9e8b4a41b7ccb80200",
+    "pdf_sha256": "42c5c632de7e942df6b7c407fb95d877a165281f215e4aa7d1dfa862b08b2157",
+    "supplement_sha256": "e92f6fa13245686525a0dd8fc4c5327bd03e58a1f02ae7dcae918668c16c5fee",
+    "files": [
+      {
+        "name": "finite-warm-thresholds.pdf",
+        "url": "https://zenodo.org/api/records/23592692/files/finite-warm-thresholds.pdf/content",
+        "resolved_url": "https://zenodo.org/api/records/23592692/files/finite-warm-thresholds.pdf/content",
+        "bytes": 91613,
+        "md5": "845715d7fffb5aba43baddb039692933",
+        "zenodo_checksum": "md5:845715d7fffb5aba43baddb039692933",
+        "sha256": "42c5c632de7e942df6b7c407fb95d877a165281f215e4aa7d1dfa862b08b2157",
+        "retrieved_utc": "2026-10-25T02:21:05.069950+00:00",
+        "integrity": "PASS"
+      },
+      {
+        "name": "finite-warm-thresholds-source-and-verification.zip",
+        "url": "https://zenodo.org/api/records/23592692/files/finite-warm-thresholds-source-and-verification.zip/content",
+        "resolved_url": "https://zenodo.org/api/records/23592692/files/finite-warm-thresholds-source-and-verification.zip/content",
+        "bytes": 211840,
+        "md5": "513e0c50bc16dfe669473fb83695dbca",
+        "zenodo_checksum": "md5:513e0c50bc16dfe669473fb83695dbca",
+        "sha256": "e92f6fa13245686525a0dd8fc4c5327bd03e58a1f02ae7dcae918668c16c5fee",
+        "retrieved_utc": "2026-10-25T02:21:05.225949+00:00",
+        "integrity": "PASS"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "finite-warm-thresholds.pdf",
+        "pages": 7,
+        "read_scope": "all pages"
+      }
+    ],
+    "embedded_assets": [],
+    "archive_pdf_identity": "The ZIP contains output/pdf/finite-warm-thresholds.pdf, byte-identical to the separately deposited main PDF. There is no distinct supplementary reader PDF.",
+    "abstract_source": "sources/published-source/main.tex",
+    "abstract_source_sha256": "c38cd59fafe43e0637c2c89a60389c7f59940a95e86bb6ba749fe97d4de5def1",
+    "abstract_word_count": 162,
+    "abstract_normalization": "Complete original abstract, with only whitespace and inline mathematical notation normalized. Its original AI and unrefereed disclosure is retained; no editorial sentence is appended.",
+    "review_boundary": "Independent scope, analytic and adversarial reports are preserved unchanged. Root’s separately bound clearance approves only the exact stated scope; it is not human peer review, formal proof verification or worldwide priority certification.",
+    "frozen_scope_content_path": "reviews/scope/CONTENT_CANDIDATE.md",
+    "frozen_scope_content_sha256": "7fff31604635e94cb3351cd4c00f2a256961710f93e1a3a9ce9f5c76d8974497"
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T02:51:39.325585+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23592692-20261025.json",
+    "root_clearance_sha256": "975c343e2657f4a57b37646205d4f242e97a74cfbbd2a135d4e2627b8d31aef2",
+    "publication_state": "LOCAL_READY_PENDING_ROOT_CONTENT_INSPECTION",
+    "deployment_authorized_to_editor": false
+  }
+}

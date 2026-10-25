@@ -1,0 +1,2093 @@
+ESAIM: COCV 23 (2017) 263–295                      ESAIM: Control, Optimisation and Calculus of Variations
+DOI: 10.1051/cocv/2015048                                                               www.esaim-cocv.org
+
+
+
+
+        ANALYSIS OF SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL
+            PROBLEMS OF SEMILINEAR PARABOLIC EQUATIONS ∗
+
+
+                 Eduardo Casas1 , Roland Herzog2 and Gerd Wachsmuth2
+
+         Abstract. Optimal control problems with semilinear parabolic state equations are considered. The
+         objective features one out of three diﬀerent terms promoting various spatio-temporal sparsity patterns
+         of the control variable. For each problem, ﬁrst-order necessary optimality conditions, as well as second-
+         order necessary and suﬃcient optimality conditions are proved. The analysis includes the case in which
+         the objective does not contain the squared norm of the control.
+
+         Mathematics Subject Classification. 49K20, 49J52, 35K58, 65K10.
+
+         Received March 20, 2015. Revised June 24, 2015. Accepted September 10, 2015.
+
+
+
+
+                                                    1. Introduction
+   In this paper, we analyze some optimal control problems governed by semilinear parabolic equations where the
+cost functional involves a functional j acting on the control which promotes the sparsity of the optimal control.
+We present three diﬀerent choices for the functional j. Each of these choices induces a diﬀerent spatio-temporal
+sparsity pattern for the optimal control, all of them being interesting. The control problems are formulated as
+follows
+                                  ⎧
+                                  ⎨ Minimize Jν (u) = Fν (u) + μ j(u)
+                            (Pν )
+                                  ⎩ α ≤ u(x, t) ≤ β for a.a. (x, t) ∈ Ω = Ω × (0, T )
+                                                                       T
+
+
+where
+                                                                                
+                                                                             ν
+                               Fν (u) =         L(x, t, yu (x, t)) dx dt +            u2 (x, t) dx dt,
+                                           ΩT                                2   ΩT
+
+
+
+  Keywords and phrases. Optimal control, directional sparsity, second-order optimality conditions, semilinear parabolic equations.
+  ∗ The first author was partially supported by Spanish Ministerio de Economı́a y Competitividad under the project MTM2011-
+  22711.
+  1 Departamento de Matemática Aplicada y Ciencias de la Computación, E.T.S.I. Industriales y de Telecomunicación, Univer-
+  sidad de Cantabria, Av. Los Castros s/n, 39005 Santander, Spain. eduardo.casas@unican.es
+  2 Technische Universität Chemnitz, Faculty of Mathematics, Professorship Numerical Methods (Partial Diﬀerential Equations),
+  09107 Chemnitz, Germany. roland.herzog@mathematik.tu-chemnitz.de; gerd.wachsmuth@mathematik.tu-chemnitz.de
+
+Article published by EDP Sciences                                                                         EDP Sciences, SMAI 2016
+                                                                                                         c
+264                                            EDUARDO CASAS ET AL.
+
+
+j : L2 (ΩT ) → R is a Lipschitz continuous and convex but not Fréchet diﬀerentiable function, ν ≥ 0, μ > 0. The
+state yu is the solution of the semilinear, parabolic equation
+                                     ⎧
+                                     ⎨ ∂t yu + Ayu + a(x, t, yu ) = u in ΩT ,
+                                        yu = 0 on ΣT = Γ × (0, T ),                                         (1.1)
+                                     ⎩ y (0) = y in Ω.
+                                         u       0
+
+Here, A is the linear elliptic operator
+                                                      
+                                                      n
+                                            Ay = −           ∂xj [aij (x) ∂xi y].
+                                                     i,j=1
+
+We mention that it is possible to replace the Dirichlet boundary condition yu = 0 by a Neumann boundary
+condition ∂nA yu = g with g ∈ Lp (Σ), provided that p is suﬃciently large, so that L∞ estimates for the solution
+of the boundary value problem are obtained.
+   The goal of this paper is to carry out the ﬁrst and the second-order analysis of (Pν ). This analysis will be
+done for each of the three following choices for the functional j
+                                                           
+                       1
+                 j1 : L (ΩT ) → R, j1 (u) = uL (ΩT ) =
+                                                  1            |u(x, t)| dx dt,
+                                                                  ΩT
+                                                                                                             1/2
+                                                                                       T
+                        2          1
+                  j2 : L (0, T ; L (Ω)) → R, j2 (u) = uL2 (0,T ;L1 (Ω)) =                 u(t)2L1 (Ω) dt          ,
+                                                                                        0
+                                                                                    
+                        1      2
+                  j3 : L (Ω; L (0, T )) → R, j3 (u) = uL1 (Ω;L2 (0,T )) =              u(x)L2 (0,T ) dx.
+                                                                                     Ω
+
+When we take j = j1 , the corresponding problem (Pν ) will be denoted by (P1ν ). Analogously, we deﬁne the the
+control problems (P2ν ) and (P3ν ) corresponding to the other two functionals j2 and j3 .
+   Problems with the functional j1 and linear elliptic equations were ﬁrst analyzed in [15]. Later on, a second-
+order analysis in the presence of semilinear elliptic state equations was provided in [5] and adapted to measure-
+valued controls in [4]. Note that the functional j1 does not provide control over the structure of the spatio-
+temporal sparsity pattern of the optimal control.
+   Problems involving the functional j2 have been studied in [6], again with measure-valued controls in place
+of L1 . The term j2 promotes optimal controls which are spatially sparse, for almost all points in time. The
+spatial sparsity pattern may change over time.
+   Finally, the functional j3 promotes sparsity patterns which are spatially sparse and constant throughout
+the time interval. Corresponding optimal control problems with linear elliptic and parabolic equations have
+been studied in [11], and the term directionally sparse controls was coined there. An extension of this work to
+measure-valued controls can be found in [13].
+   The motivation for considering measure-valued controls in some of the above references is that problem (Pν )
+is not well-posed in L2 (ΩT ) in case ν = 0, provided that control constraints are also absent (i.e. α = −∞,
+β = ∞). In this situation, minimizing sequences will converge in the weak-∗ topology of an appropriate measure
+space. Due to the presence of the control bounds in (Pν ), we can obtain solutions in L2 (ΩT ) even when ν = 0,
+see Theorem 2.4 below.
+   Unless stated otherwise, the references above pertain to problems with linear state equations and convex
+objectives, hence no second-order analysis is necessary.
+   Besides the ﬁrst-order necessary conditions, we derive in this paper second-order necessary and suﬃcient
+conditions for the non-convex problems (P1ν )–(P3ν ), which, in case ν > 0, both use the same cone of critical
+directions and thus provide the minimal gap between second-order necessary and suﬃcient conditions. Note
+that the second-order directional derivatives v → j  (u; v 2 ) of the above functionals do not exist in all directions.
+                             SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                 265
+
+It is therefore necessary to deﬁne suitable substitutes, see (4.5)–(4.7). It was already shown in [5] that j1 = 0
+can be used in case of the ﬁrst functional. This is however not true for j2 and j3 .
+   The paper is organized as follows. We summarize our assumptions and some preliminary results in the
+following section. Section 3 is devoted to the derivation of ﬁrst-order optimality conditions. As a corollary, we
+analyze the sparsity structure of the solution in all three cases, see Remark 3.11 and Figure 1. In Section 4 we
+address second-order necessary optimality conditions and in Section 5 the second-order suﬃcient conditions.
+   We point out that the case ν = 0 is explicitly included in the analysis. The only problem that remains open
+is the second-order suﬃcient condition for problem (P30 ). We comment on this case at the end of Section 5.
+
+                              2. Assumptions and preliminary results
+   Throughout the paper, Ω denotes an open, bounded subset of Rn , 1 ≤ n ≤ 3, with a Lipschitz boundary Γ ;
+see ([14], Sect. 1.3). The ﬁnal time T > 0 is given and ﬁxed. We make the following assumptions on the functions
+and parameters involved in the control problem (Pν ).
+
+Assumption 1. The coeﬃcients of A have the following regularity properties: aij ∈ L∞ (Ω) and
+                                              
+                                              n
+                    ∃Λ > 0 such that                  aij (x) ξi ξj ≥ Λ |ξ|2 for a.a. x ∈ Ω and ∀ξ ∈ Rn .     (2.1)
+                                              i,j=1
+
+Assumption 2. The initial datum y0 ∈ L∞ (Ω) and a : ΩT × R −→ R is a Carathéodory function of class C 2
+with respect to the last variable, satisfying the following assumptions
+
+                          ∃ψa ∈ Lp̂ (0, T ; Lq̂ (Ω)) and Ca ∈ R such that
+                                                                                                              (2.2)
+                          a(x, t, y)y ≥ ψa (x, t) + Ca y 2 for a.a. (x, t) ∈ ΩT and ∀y ∈ R,
+                       ⎧
+                       ⎨ a(·, ·, 0) ∈ Lp̂ (0, T ; Lq̂ (Ω)) and ∀M > 0 ∃CM > 0 such that
+                          ∂j a                                                                                (2.3)
+                       ⎩        (x, t, y) ≤ CM for a.a. (x, t) ∈ ΩT , ∀|y| ≤ M, with j = 1, 2
+                          ∂y j
+                       ⎧
+                       ⎨ ∀ρ > 0 and ∀M > 0 ∃εM,ρ > 0 such that for a.a. (x, t) ∈ ΩT
+                          ∂2a                 ∂2a                                                             (2.4)
+                       ⎩      2
+                                (x, t, y2 ) − 2 (x, t, y1 ) ≤ ρ, ∀|yi | ≤ M, and |y2 − y1 | ≤ εM,ρ ,
+                          ∂y                  ∂y
+
+where p̂, q̂ ∈ [2, +∞], with 1p̂ + 2q̂
+                                   n
+                                       < 1.
+
+Assumption 3. We also assume −∞ < α < 0 < β < +∞, μ > 0, ν ≥ 0, and L : ΩT × R −→ R is a
+Carathéodory function of class C 2 with respect to the last variable such that L(·, ·, 0) ∈ L1 (ΩT ). Furthermore,
+for every M > 0 there exists a function ψM ∈ Lp̂ (0, T ; Lq̂ (Ω)) satisfying
+                     ⎧
+                     ⎪
+                     ⎪ ∀M > 0 ∃ψM ∈ Lp̂ (0, T ; Lq̂ (Ω)) and CM > 0 such that
+                     ⎪
+                     ⎪
+                     ⎨ ∂L (x, t, y) ≤ ψM (x, t) ∀|y| ≤ M and for a.a. (x, t) ∈ ΩT ,
+                     ⎪
+                        ∂y                                                                                    (2.5)
+                     ⎪
+                     ⎪
+                     ⎪
+                     ⎪   2
+                        ∂ L
+                     ⎪
+                     ⎩       (x, t, y) ≤ CM ∀|y| ≤ M and for a.a. (x, t) ∈ ΩT ,
+                        ∂y 2
+                     ⎧
+                     ⎨ ∀ρ > 0 and ∀M > 0 ∃εM,ρ > 0 such that for a.a. (x, t) ∈ ΩT
+                        ∂2L                 ∂2L                                                               (2.6)
+                     ⎩       (x, t, y 2 ) −      (x, t, y1 ) ≤ ρ, ∀|yi | ≤ M, and |y2 − y1 | ≤ εM,ρ .
+                        ∂y 2                ∂y 2
+  In the sequel, we will denote the set of feasible controls by
+
+                             K = u ∈ L∞ (ΩT ) : α ≤ u(x, t) ≤ β for a.a. (x, t) ∈ ΩT .
+266                                               EDUARDO CASAS ET AL.
+
+
+   As usual, we denote by W (0, T ) the space of functions y ∈ L2 (0, T ; H01 (Ω)) such that ∂t y ∈ L2 (0, T ; H −1 (Ω)).
+It is well-known that every function y ∈ W (0, T ) belongs, after a modiﬁcation on a set of zero Lebesgue measure,
+to C([0, T ], L2 (Ω)). Now, we analyze the existence, uniqueness and regularity of a solution of (1.1).
+
+Theorem 2.1. Under the Assumptions 1 and 2, for all u ∈ Lp̂ (0, T ; Lq̂ (Ω)) equation (1.1) has a unique solution
+yu ∈ W (0, T ) ∩ L∞ (ΩT ). Moreover, the mapping G : Lp̂ (0, T ; Lq̂ (Ω)) −→ W (0, T ) ∩ L∞ (ΩT ), defined by
+G(u) = yu , is of class C 2 . For all elements u, v, v1 and v2 of Lp̂ (0, T ; Lq̂ (Ω)), the functions zv = G (u) v and
+zv1 v2 = G (u)(v1 , v2 ) are the solutions of the problems
+                                      ⎧ ∂z        ∂a
+                                      ⎪
+                                      ⎪    + Az +    (x, t, yu )z = v       in ΩT ,
+                                      ⎪
+                                      ⎪
+                                      ⎨ ∂t        ∂y
+                                                                                                                   (2.7)
+                                      ⎪
+                                      ⎪                            z=0      on ΣT ,
+                                      ⎪
+                                      ⎪
+                                      ⎩
+                                                                z(0) = 0    in Ω,
+
+and                       ⎧
+                          ⎪
+                          ⎪ ∂z        ∂a               ∂2a
+                          ⎪
+                          ⎪    + Az +    (x, t, yu )z + 2 (x, t, yu )zv1 zv2 = 0        in ΩT ,
+                          ⎪
+                          ⎨ ∂t        ∂y               ∂y
+                                                                                                                   (2.8)
+                          ⎪
+                          ⎪                                                    z=0      on ΣT ,
+                          ⎪
+                          ⎪
+                          ⎪
+                          ⎩
+                                                                            z(0) = 0    in Ω,
+
+respectively.
+
+   The proof of the existence and uniqueness of a solution of (1.1) in W (0, T ) ∩ L∞ (ΩT ) is standard. The reader
+is referred, for instance, to [2] where the arguments used for a Robin boundary condition can be easily adapted
+to the Dirichlet case. For the proof of the diﬀerentiability we can proceed as follows. We set
+                                                                                             
+                                                               ∂y
+                          Y =     y ∈ W (0, T ) ∩ L∞ (ΩT ) :      + Ay ∈ Lp̂ (0, T ; Lq̂ (Ω)) ,
+                                                               ∂t
+
+endowed with the graph norm. Y is a Banach space and Y ⊂ C([0, T ], L2 (Ω)). Indeed, recall that
+Lp̂ (0, T ; Lq̂ (Ω)) ⊂ L2 (ΩT ) ⊂ L2 (0, T ; H −1 (Ω)). Then, we have y(0) = lim y(t) ∈ L∞ (Ω). Now, we deﬁne
+                                                                               t→0
+
+
+                              F : Y × Lp̂ (0, T ; Lq̂ (Ω)) −→ Lp̂ (0, T ; Lq̂ (Ω)) × L∞ (ΩT ),
+                                                                                    
+                                                  ∂y
+                                 F (y, u) =          + Ay + a(x, t, y) − u, y(0) − y0 .
+                                                  ∂t
+
+Using that y ∈ L∞ (ΩT ) and (2.3) we deduce that a(·, ·, y) ∈ Lp̂ (0, T ; Lq̂ (Ω)). Hence, F is well deﬁned and
+we can apply the implicit function theorem to deduce that G is of class C 2 and to show that (2.7) and (2.8)
+represent its ﬁrst and second derivatives, respectively.
+
+Remark 2.2. In Assumptions 2 and 3, the condition p̂, q̂ ≥ 2 is not necessary for Theorem 2.1. Indeed, it is
+enough to impose p̂, q̂ ∈ [1, +∞]. However, the assumption p̂, q̂ ∈ [2, +∞] is useful to get some extra regularity
+for yu and it will simplify our presentation, avoiding some technicalities.
+
+  Now, we have the following diﬀerentiability result.
+                            SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                       267
+
+Theorem 2.3. Under the Assumptions 1–3, Fν : Lp̂ (0, T ; Lq̂ (Ω)) −→ R is of class C 2 . Moreover, for all u, v, v1
+and v2 of Lp̂ (0, T ; Lq̂ (Ω)) we have
+                                                                          
+                                         ∂L
+                       Fν (u) v =          (x, t, yu ) zv + ν u v dx dt =        (ϕu + ν u) v dx dt,        (2.9)
+                                    ΩT   ∂y                                    ΩT
+                                          2                                                   
+                                          ∂ L                   ∂2a
+                 Fν (u)(v1 , v2 ) =              (x, t, yu ) − ϕu 2 (x, t, yu ) zv1 zv2 + ν v1 v2 dx dt,    (2.10)
+                                      ΩT    ∂y 2                  ∂y
+where zvi = G (u) vi , i = 1, 2, and ϕu ∈ W (0, T ) ∩ L∞ (ΩT ) is the solution of
+                               ⎧ ∂ϕ              ∂a               ∂L
+                               ⎪           ∗
+                               ⎨ − ∂t + A ϕ + ∂y (x, t, yu )ϕ = ∂y (x, t, yu ) in ΩT ,
+                               ⎪
+                                                                                                                 (2.11)
+                              ⎪
+                              ⎪                               ϕ=0                  on ΣT ,
+                              ⎩
+                                                          ϕ(T ) = 0                in Ω,
+ ∗
+A being the adjoint operator of A.
+  The fact that Fν is of class C 2 is an immediate consequence of Theorem 2.1 and the chain rule. On the other
+hand, since yu ∈ L∞ (ΩT ), we deduce from (2.5) that ∂L
+                                                      ∂y (·, ·, yu ) ∈ L (0, T ; L (Ω)), which implies that ϕu is well
+                                                                        p̂        q̂
+
+deﬁned and enjoys the indicated regularity. The formulas (2.9) and (2.10) follow from standard computations.
+  Analogously to Y , we deﬁne the space
+                                                                                              
+                                                          ∂ϕ
+                       Φ = ϕ ∈ W (0, T ) ∩ L∞ (ΩT ) : −          + A∗ y ∈ Lp̂ (0, T ; Lq̂ (Ω)) ,
+                                                           ∂t
+endowed with the graph norm. As established for Y , we also have the embedding Φ ⊂ C([0, T ], L2 (Ω)).
+  We conclude this section by stating the following theorem, whose proof follows from classical arguments by
+taking a minimizing sequence.
+Theorem 2.4. Problem (Pν ) has at least one solution ūν .
+
+                               3. First-order optimality conditions
+   Since (Pν ) is not a convex problem, we will deal with local solutions. We say that ūν is a local solution of
+(Pν ) if there exists ε > 0 such that Jν (ūν ) ≤ Jν (u) for all u ∈ Bε (ūν ), where Bε (ūν ) denotes the open ball in
+L2 (ΩT ) centered at ūν and with radius ε. Moreover, ūν is said a strict local minimum if the previous inequality
+is strict for every u ∈ Bε (ūν ) diﬀerent from ūν .
+   The next theorem states the ﬁrst-order optimality conditions satisﬁed by a local minimum of (Pν ). To this
+end, we recall that the tangent cone TK (ūν ) of K at ūν with respect to the L2 (ΩT )-topology is given by
+               TK (ūν ) = v ∈ L2 (ΩT ) : v(x, t) ≥ 0 if ūν (x, t) = α and v(x, t) ≤ 0 if ūν (x, t) = β ,       (3.1)
+see for instance ([1], Lem. 6.34).
+Theorem 3.1. If ūν is a local minimum of (Pν ), then there exist ȳν ∈ Y , ϕ̄ν ∈ Φ, and λ̄ν ∈ ∂j(ūν ) such that
+                          ⎧
+                          ⎨ ∂t ȳν + Aȳν + a(x, t, ȳν ) = ūν in ΩT ,
+                                                      ȳν = 0 on ΣT ,                                        (3.2)
+                          ⎩                      ȳν (0) = y0 in Ω,
+                          ⎧
+                          ⎪                      ∂a                     ∂L
+                          ⎨ −∂t ϕ̄ν + A∗ ϕ̄ν +       (x, t, ȳν ) ϕ̄ν =    (x, t, ȳν ) in ΩT ,
+                                                 ∂y                     ∂y                                   (3.3)
+                          ⎪
+                          ⎩                                       ϕ̄ν = 0               on ΣT ,
+                                                            ϕ̄ν (T ) = 0                in Ω,
+                          
+                              (ϕ̄ν + ν ūν + μ λ̄ν ) v dx dt ≥ 0 ∀v ∈ TK (ūν ).                             (3.4)
+                              ΩT
+268                                                EDUARDO CASAS ET AL.
+
+
+
+
+  In the theorem, ∂j(ūν ) denotes the subdiﬀerential in the sense of convex analysis of j at the point ūν .
+Proof. Since j is convex and Lipschitz, we have for every u ∈ K
+                                                                      Jν (ūν + ρ (u − ūν )) − Jν (ūν )
+                    Fν (ūν )(u − ūν ) + μ j(u) − μ j(ūν ) ≥ lim                                       ≥ 0.
+                                                                  ρ0                 ρ
+Therefore, ūν is a solution of the convex optimization problem
+                                         min       Iν (u) = Fν (ūν ) u + μ j(u) + IK (u),
+                                      u∈L∞ (ΩT )
+
+where IK denotes the indicator function of the convex set K. Since both, Fν (ūν ) and j are continuous, we can
+apply the Moreau−Rockafellar Theorem (see [9], Chap. I, Prop. 5.6), and obtain
+                                      0 ∈ ∂Iν (ūν ) = Fν (ūν ) + μ ∂j(ūν ) + ∂IK (ūν ).
+Therefore, there exists λ̄ν ∈ ∂j(ūν ) such that −[Fν (ūν ) + μ λ̄ν ] ∈ ∂IK (ūν ). Finally, from this relation and
+taking ȳν and ϕ̄ν solutions of (3.2) and (3.3), respectively, we deduce (3.4) with (2.9), (3.1) and the fact that
+ϕ̄ν + ν ūν + μ λ̄ν ∈ L2 (ΩT ).                                                                                     
+  Now, we use the optimality system (3.2)–(3.4) to deduce the sparse structure of ūν for the three choices of j.
+
+3.1. Problem (P1ν )
+  Recall the functional j1 : L1 (ΩT ) −→ R deﬁned by
+                                                   
+                                          j1 (u) =   |u(x, t)| dx dt.
+                                                             ΩT
+
+Let us state some properties of j1 . First, a simple computation shows that λ ∈ ∂j1 (u) if and only if λ ∈ L∞ (ΩT )
+and                                      ⎧
+                                         ⎨ λ(x, t) = +1       if u(x, t) > 0,
+                                            λ(x, t) = −1      if u(x, t) < 0,                                 (3.5)
+                                         ⎩ λ(x, t) ∈ [−1, +1] if u(x, t) = 0,
+
+holds a.e. in ΩT . Moreover, the directional derivatives of j1 are given by
+                                                                                          
+                      j1 (u + ρ v) − j1 (u)
+     j1 (u; v) = lim                       =        v(x, t) dt dx −        v(x, t) dt dx +        |v(x, t)| dt dx,   (3.6)
+                  ρ0           ρ               +
+                                               ΩT ,u
+                                                                       −
+                                                                      ΩT ,u
+                                                                                              0
+                                                                                             ΩT ,u
+
+       +      −         0
+where ΩT,u , ΩT,u and ΩT,u denote the set of points of ΩT where u is positive, negative or zero, respectively.
+  Now, taking j = j1 in Theorem 3.1, we deduce from the variational inequality (3.4) the following properties.
+Corollary 3.2. Let ūν , ϕ̄ν and λ̄ν be as in Theorem 3.1, then the following relations hold for almost all
+(x, t) ∈ ΩT
+                                     ⎧
+                                     ⎨ ūν (x, t) = 0 ⇔ |ϕ̄ν (x,
+                                                               t)| ≤ μ,                   
+                     if ν > 0 then                                1                                   (3.7)
+                                     ⎩ ūν (x, t) = Proj[α,β] − [ϕ̄ν (x, t) + μ λ̄ν (x, t)] ,
+                                                                  ν
+                                     ⎧
+                                     ⎨ |ϕ̄ν (x, t)| < μ ⇒ ūν (x, t) = 0,
+                     if ν = 0 then       ϕ̄ν (x, t) > μ ⇒ ūν (x, t) = α,                             (3.8)
+                                     ⎩ ϕ̄ (x, t) < −μ ⇒ ū (x, t) = β,
+                                           ν                 ν
+                                                                         
+                                                                  1
+                                     λ̄ν (x, t) = Proj[−1,+1] − ϕ̄ν (x, t) .                          (3.9)
+                                                                  μ
+                            SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                          269
+
+Here, Proj[a,b] (c) refers to the projection of c ∈ R onto the interval [a, b] ⊂ R. Moreover, λ̄ν ∈ L2 (0, T ; H01 (Ω))
+holds and it is unique. Finally, if ν > 0, we also have that ūν ∈ L2 (0, T ; H01 (Ω)).
+
+   The proofs of (3.7) and (3.9) were given in ([5], Cor.3.2) and (3.8) can be found in ([3], Thm. 3.1). In both
+cases, the control problems are elliptic, but there is no change in the proofs (up to the replacement of the
+argument x by (x, t)) with the parabolic case, since the above corollary is just a consequence of (3.4). In the
+case ν > 0, the ﬁrst equivalence of (3.7) shows the sparsity of ūν and the regularity follows from the second
+relation. For ν = 0, if the set of points (x, t) ∈ ΩT where |ϕ̄ν (x, t)| = μ has a zero Lebesgue measure (which
+is expected in many cases), then ūν (x, t) ∈ {α, 0, β} for almost all (x, t) ∈ ΩT , which means that the optimal
+control has a bang-bang-bang structure.
+
+Remark 3.3. From the state equation (3.2) we can get an estimate ȳν L∞ (ΩT ) ≤ M , with M depending on α
+and β, but independent of ūν . Using (2.5), we obtain from (3.3) a similar estimate ϕ̄ν L∞ (ΩT ) ≤ M  , with M 
+independent of ūν . Hence, from (3.7) and (3.8) we conclude that ūν ≡ 0 if μ > M  . Therefore, we may inﬂuence
+the size of an optimal control’s support by adjusting μ in the interval [0, M  ].
+
+3.2. Problem (P2ν )
+  We recall that j2 : L2 (0, T ; L1(Ω)) −→ R is deﬁned by
+                                                              1/2                                 2 1/2
+                                         T                                       T 
+                       j2 (u) =              u(t)2L1 (Ω) dt          =                   |u(x, t)| dx  dt    .
+                                     0                                       0         Ω
+
+
+Hereafter, ·L2 (L1 ) will denote this norm of the space L2 (0, T ; L1 (Ω)). For u ∈ L2 (ΩT ), we deﬁne
+                                                                        T
+                        u2L2 (L∞ ) = u2L2(0,T ;L∞ (Ω)) =                 ess sup |u(x, t)|2 dt ∈ [0, +∞]
+                                                                        0        x∈Ω
+
+and
+                                  L2 (0, T ; L∞ (Ω)) = u ∈ L2 (ΩT ) : uL2 (L∞ ) < ∞ .
+Note that L2 (0, T ; L∞ (Ω)) is not a Bochner−Lebesgue space, since its elements are only weakly-∗ measurable
+w.r.t. L∞ (Ω). From Theorem 8.20.3 of [8], we have that L2 (0, T ; L∞ (Ω)) is the dual space of L2 (0, T ; L1(Ω)).
+  Now, we study the properties of the elements of ∂j2 (u).
+
+Proposition 3.4. For u = 0, λ ∈ ∂j2 (u) is equivalent to λ ∈ L2 (0, T ; L∞(Ω)) and
+
+                                                                    u(t)L1 (Ω)
+                                    λ(x, t) ∈ Sign(u(x, t))                                a.e. in ΩT ,              (3.10)
+                                                                     uL2(L1 )
+
+where                                                           ⎧
+                                                                ⎨   +1 if θ > 0,
+                                                  Sign(θ) =         −1 if θ < 0,                                     (3.11)
+                                                                ⎩ [−1, +1] if θ = 0.
+
+In case u = 0, we have ∂j2 (u) = {λ ∈ L2 (0, T ; L∞ (Ω)) : λL2 (L∞ ) ≤ 1}. Moreover, for λ ∈ ∂j2 (u) we have
+
+                          supp u+ (t) ⊂ x ∈ Ω : λ(x, t) = +λ(t)L∞ (Ω)
+                                                                                                  a.e. in (0, T ).   (3.12)
+                          supp u− (t) ⊂ x ∈ Ω : λ(x, t) = −λ(t)L∞ (Ω)
+270                                                       EDUARDO CASAS ET AL.
+
+
+Proof. Since j2 is the norm of L2 (0, T ; L1 (Ω)), we have the characterization
+                                                                                                                                
+                 ∂j2 (u) =    λ ∈ L2 (0, T ; L∞(Ω)) : λL2 (L∞ ) ≤ 1 and                                 λ u dx dt = uL2 (L1 ) ,               (3.13)
+                                                                                                  ΩT
+
+see, e.g., ([12], p. 56, [10], Lem. 2.1).
+   Using this characterization, it is easy to check that (3.10) implies λ ∈ ∂j2 (u).
+   Now, we prove that (3.10) holds for λ ∈ ∂j2 (u) and u = 0. From (3.13), we obtain
+                                                                        T
+                             uL2 (L1 ) =           λ u dx dt ≤                λ(t)L∞ (Ω) u(t)L1 (Ω) dt                                      (3.14)
+                                             ΩT                             0
+                                                                               1/2                                 1/2
+                                                     T                                       T
+                                        ≤                λ(t)2L∞ (Ω) dt                        u(t)2L1 (Ω) dt
+                                                 0                                       0
+
+                                        = λL2 (L∞ ) uL2(L1 ) ≤ uL2 (L1 ) ,                                                                  (3.15)
+
+hence
+               T                                                                          1/2                                    1/2
+                                                                    T                                           T
+                     λ(t)L∞ (Ω) u(t)L1 (Ω) dt =                     λ(t)2L∞ (Ω) dt                            u(t)2L1 (Ω) dt          .
+                 0                                              0                                           0
+
+Therefore there exists a constant c > 0 such that λ(t)L∞ (Ω) = c u(t)L1 (Ω) for almost all t ∈ (0, T ). We
+infer from (3.15) that λL2 (L∞ ) = 1 holds, and thus we obtain c = u−1         L2 (L1 ) . From (3.14) we conclude
+
+  Ω
+    λ(x, t) u(x, t) dx = λ(t)L u(t)L . This shows (3.10).
+                                ∞         1
+
+    The characterization of ∂j2 (0) follows directly from (3.13). Finally, (3.12) follows from (3.10).             
+
+  Now, we compute the directional derivatives j2 (u; v). First, we deﬁne the auxiliary functional
+                                                                 
+                                jΩ : L1 (Ω) → R, jΩ (u) =           |u(x)| dx.                                                                    (3.16)
+                                                                                         Ω
+
+Analogously to (3.6), we obtain that the directional derivative of jΩ is given by
+                                                                    
+                             
+                            jΩ (u; v) =     v(x) dx −      v(x) dx +       |v(x)| dx.                                                             (3.17)
+                                                   +                             −                    0
+                                                  Ωu                            Ωu                   Ωu
+
+
+Note that
+                                                                                         1/2
+                                                                        T
+                                                                                     2
+                                                 j2 (u) =                   jΩ (u(t)) dt             .
+                                                                    0
+
+
+Proposition 3.5. For every u, v ∈ L2 (0, T ; L1(Ω)) we have either
+                                                                    T
+                                                          1
+                                  j2 (u; v) =                               
+                                                                            jΩ (u(t); v(t))u(t)L1 (Ω) dt                                        (3.18)
+                                                  uL2 (L1 )       0
+
+in case u = 0 or
+                                                              j2 (u; v) = j2 (v)                                                                 (3.19)
+
+in case u = 0.
+                               SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                               271
+
+Proof. Since j2 is positively homogeneous, (3.19) is obvious and we need to consider only the case u = 0. Let
+us take 0 < ρ < 1, then
+
+            j2 (u + ρ v) − j2 (u)   1                                1 u + ρ v2L2 (L1 ) − u2L2(L1 )
+                                  =    u + ρ vL2 (L1 ) − uL2(L1 ) =
+                      ρ             ρ                                      ρ u + ρ vL2 (L1 ) + uL2(L1 )
+                                     T
+                                                                      1                                 
+                                         jΩ (u(t) + ρ v(t)) + jΩ (u(t))      jΩ (u(t) + ρ v(t)) − jΩ (u(t)) dt
+                                                                         ρ
+                                  = 0                                                                          ·
+                                                          u + ρ vL2 (L1 ) + uL2(L1 )
+
+It is enough to take the limit when ρ  0 to deduce (3.18).                                                                      
+
+   Now, we deduce from Theorem 3.1 the following corollary in the case j = j2 .
+
+Corollary 3.6. Let ūν , ϕ̄ν and λ̄ν be as in Theorem 3.1, then the following relations hold for almost all
+(x, t) ∈ ΩT
+                                  ⎧                                                       
+                                  ⎪
+                                  ⎨ ūν (x, t) = Proj              1
+                                                        [α,β] − [ϕ̄ν (x, t) + μ λ̄ν (x, t)] ,
+                         if ν > 0                                  ν                                 (3.20)
+                                  ⎪
+                                  ⎩
+                                      ūν (x, t) = 0 ⇔ |ϕ̄ν (x, t)| ≤ μ γ̄ν (t),
+                                  ⎧
+                                  ⎪   |ϕ̄ (x, t)| < μ γ̄ν (t) ⇒ ūν (x, t) = 0,
+                                  ⎨ ν
+                         if ν = 0     ϕ̄ν (x, t) > +μ γ̄ν (t) ⇒ ūν (x, t) = α,                      (3.21)
+                                  ⎪
+                                  ⎩
+                                      ϕ̄ν (x, t) < −μ γ̄ν (t) ⇒ ūν (x, t) = β,
+                                                                                  
+                                                                          1
+                                  λ̄ν (x, t) = Proj[−γ̄ν (t),+γ̄ν (t)] − ϕ̄ν (x, t) ,                (3.22)
+                                                                          μ
+
+where                                           ⎧
+                                                ⎨     1
+                                                               ūν (t)L1 (Ω)   if ūν = 0
+                                      γ̄ν (t) = ūν L2 (L1 )
+                                               ⎩
+                                                 1                               if ūν = 0.
+
+Moreover, λ̄ν ∈ L2 (0, T ; H01 (Ω)) holds and it is unique. Finally, if ν > 0, we also have that ūν ∈ L2 (0, T ; H01 (Ω)).
+
+
+Proof. Let us assume that ūν = 0 and ν > 0. The ﬁrst identity of (3.20) is a straightforward consequence
+of (3.4). Let us prove the second relation of (3.20). First, we assume that ūν (x, t) = 0, then from the ﬁrst
+identity we deduce that ϕ̄ν (x, t) = −μ λ̄ν (x, t). Hence, (3.10) implies that |ϕ̄ν (x, t)| = |μ λ̄ν (x, t)| ≤ μ γ̄ν (t).
+To prove the converse implication we proceed as follows. Let us assume that ūν (x, t) > 0. Then, from the
+ﬁrst equality of (3.20) we get that ϕ̄ν (x, t) + μ λ̄ν (x, t) < 0. This inequality and (3.10) leads to ϕ̄ν (x, t) <
+−μ λ̄ν (x, t) = −μ γ̄ν (t). Therefore, we get |ϕ̄ν (x, t)| > μ γ̄ν (t). Analogously we prove |ϕ̄ν (x, t)| > μ γ̄ν (t) in case
+ūν (x, t) < 0. Consequently, |ϕ̄ν (x, t)| ≤ μ γ̄ν (t) implies that ūν (x, t) = 0.
+    We still assume that ūν = 0 and ν > 0. Let us prove (3.22). If − μ1 ϕ̄ν (x, t) ∈ [−γ̄ν (t), +γ̄ν (t)], then the second
+relation of (3.20) implies that ūν (x, t) = 0, and from the ﬁrst relation it follows that ϕ̄ν (x, t) + μ λ̄ν (x, t) = 0,
+which implies (3.22). If − μ1 ϕ̄ν (x, t) > γ̄ν (t), then with (3.10) we deduce that ϕ̄ν (x, t) + μ λ̄ν (x, t) ≤ ϕ̄ν (x, t) +
+μ γ̄ν (t) < 0. Hence, from the ﬁrst formula of (3.20) we get that ūν (x, t) > 0. Then, (3.10) leads to λ̄ν (x, t) = γ̄ν (t),
+and the projection formula (3.22) holds. Similarly we proceed for the case − μ1 ϕ̄ν (x, t) < −γ̄ν (t).
+    Now, we analyze the case ūν = 0 and ν = 0. First, we prove (3.21). Using once again (3.10), we have that
+|λ̄ν (x, t)| ≤ γ̄ν (t). Then, ϕ̄ν (x, t) > μ γ̄ν (t) implies that ϕ̄ν (x, t) > −μ λ̄ν (x, t), therefore ϕ̄ν (x, t)+μ λ̄ν (x, t) > 0.
+272                                                EDUARDO CASAS ET AL.
+
+
+From this inequality and (3.4) we infer that ūν (x, t) = α. Analogously we prove that ūν (x, t) = β if ϕ̄ν (x, t) <
+−μ γ̄ν (t). To prove the ﬁrst inequality of (3.21), we ﬁrst observe that (3.4) implies
+                                                       α if ϕ̄ν (x, t) + μ λ̄ν (x, t) > 0,
+                                        ūν (x, t) =                                                                 (3.23)
+                                                       β if ϕ̄ν (x, t) + μ λ̄ν (x, t) < 0.
+Now, if |ϕ̄ν (x, t)| < γ̄ν (t) and ūν (x, t) > 0, we obtain from (3.10) that ϕ̄ν (x, t) + μ λ̄ν (x, t) > 0. Then, (3.23)
+leads to the contradiction that ūν (x, t) = α < 0. Analogously we argue if ūν (x, t) < 0. All these arguments
+imply the ﬁrst relation of (3.21).
+    Finally, we prove (3.22) under the assumption ūν = 0 and ν = 0. First, let us consider the case − μ1 ϕ̄ν (x, t) >
+γ̄ν (t). Then, ϕ̄ν (x, t) < −μ γ̄ν (t), hence the third relation of (3.21) implies that ūν (x, t) = β. From (3.10)
+the identity λ̄ν (x, t) = γ̄ν (t) follows. Therefore, (3.22) holds in this case. Analogously we proceed for the case
+− μ1 ϕ̄ν (x, t) < −γ̄ν (t). Now, we consider the last case − μ1 ϕ̄ν (x, t) ∈ [−γ̄ν (t), +γ̄ν (t)]. Under this assumption, if
+in addition ūν (x, t) = α, then (3.10) and (3.23) imply that λ̄ν (x, t) = −γ̄ν (t) and ϕ̄ν (x, t) + μ λ̄ν (x, t) ≥ 0. Thus,
+we obtain
+                                                    1
+                                        −γ̄ν (t) ≤ − ϕ̄ν (x, t) ≤ λ̄ν (x, t) = −γ̄ν (t).
+                                                    μ
+Hence, λ̄ν (x, t) = − μ1 ϕ̄ν (x, t) and (3.22) holds. In the same way we prove this equality if ūν (x, t) = β. Finally,
+according to (3.23), if α < ūν (x, t) < β, then λ̄ν (x, t) = − μ1 ϕ̄ν (x, t) and (3.22) holds as well.
+    In the case ūν = 0 we can follow the same steps as above and replace the invocation of (3.10) by λ̄L2 (L∞ ) ≤ 1.
+Note that some of the implications in (3.20) and (3.21) become trivial in this case.
+    The regularity properties of λ̄ν and ūν are immediate consequences of (3.22) and (3.20), respectively.               
+Remark 3.7. Let us observe that ūν = 0 if μ is bigger than a certain value μ0 . Indeed, as pointed out in
+Remark 3.3, there exists a constant M  > 0 such that ϕ̄ν L∞ (ΩT ) ≤ M  with M  depending on α and β, but
+                                           √
+independent of μ. If we take μ0 = M  T , then ūν = 0 for every μ > μ0 . Let us prove it by contradiction. If
+ūν = 0, then the identity (3.22) holds, and consequently
+                                                                     √
+                                                 1                 M T   μ0
+                                 λ̄ν L2 (L∞ ) ≤ ϕ̄ν L2 (L∞ ) ≤      =    < 1.
+                                                 μ                  μ     μ
+But, (3.10) and the above inequality imply that ūν =   √ 0. Therefore, we may inﬂuence the size of an optimal
+control’s support by adjusting μ in the interval [0, M  T ].
+3.3. Problem (P3ν )
+  Now, we consider the functional j3 : L1 (Ω; L2 (0, T )) → R given by
+                                                                                             1/2
+                                                                               T
+                             j3 (u) =        u(x)L2 (0,T ) dx =                  u(x, t)2 dt          dx.
+                                         Ω                          Ω      0
+
+Let us study the properties of this functional. To this end, we introduce a new functional that will be used
+later in this paper. Let Ψ : L2 (0, T ) → R be deﬁned by Ψ (f ) = f L2(0,T ) . This functional is of class C ∞ in
+L2 (0, T ) \ {0} and we have for every f, g ∈ L2 (0, T ), with f = 0,
+                                               T
+                                       1
+                    Ψ  (f )g =                   f g dt,                                                        (3.24)
+                                 f L2(0,T ) 0
+                                              ⎧                                         2 ⎫
+                                       1      ⎨ T                  1            T           ⎬
+                  Ψ  (f )g 2 =                     g 2 dt −                      f g dt      ,                 (3.25)
+                                 f L2(0,T ) ⎩ 0             f 2L2 (0,T )   0             ⎭
+                                                                                                      
+                                       3             1        T          3         T            T
+                          3                                                            2
+                  Ψ (f )g =                                         f g dt −            g dt         f g dt    . (3.26)
+                                 f 3L2(0,T ) f 2L2(0,T ) 0                      0            0
+                            SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                     273
+
+  Given an element u ∈ L1 (Ω; L2 (0, T )), we denote
+                              Ωu = {x ∈ Ω : u(x)L2 (0,T ) = 0} and Ωu0 = Ω \ Ωu .
+Now we characterize ∂j3 (u) and compute j3 (u; v).
+Proposition 3.8. The following statements hold.
+(1) λ ∈ ∂j3 (u) is equivalent to λ ∈ L∞ (Ω; L2 (0, T )) and
+                              ⎧
+                              ⎨ λ(x)L2 (0,T ) ≤ 1
+                              ⎪                           for a.a. x ∈ Ωu0 ,
+                                               u(x, t)                                                         (3.27)
+                              ⎪
+                              ⎩ λ(x, t) =                 for a.a. x ∈ Ωu and t ∈ (0, T ).
+                                          u(x)L2 (0,T )
+(2) For every u, v ∈ L1 (Ω; L2 (0, T ))
+                                                                                        T
+                                                                           1
+                         j3 (u; v) =       v(x)L2 (0,T ) dx +                               u v dt dx.      (3.28)
+                                        0
+                                       Ωu                          Ωu u(x) L2 (0,T )    0
+
+
+Proof. Since L∞ (Ω; L2 (0, T )) is the dual space of L1 (Ω; L2 (0, T )), we have, similarly to (3.13), the characteri-
+zation                                                                   
+              ∂j3 (u) = λ ∈ L∞ (Ω; L2 (0, T )) : λL∞ (L2 ) ≤ 1 and          λ u dx dt = uL1 (L2 ) .        (3.29)
+                                                                              ΩT
+If λ ∈ ∂j3 (u), the ﬁrst relation of (3.27) is an obvious consequence of (3.29). Let us prove the identity of (3.27).
+Since                                             
+                    uL1 (L2 ) =      λ u dx dt ≤    λ(x)L2 (0,T ) u(x)L2 (0,T ) dx ≤ uL1(L2 ) ,
+                                  ΩT                 Ω
+we ﬁnd λ(x)L2 (0,T ) = 1 and λ(x, t) = c(x) u(x, t) with c(x) > 0 for a.a. x ∈ Ωu and t ∈ (0, T ). Now, (3.27)
+follows.
+   Conversely, suppose λ satisﬁes (3.27). Using (3.29), it is easy to check λ ∈ ∂j3 (u).
+   Finally (3.28) is obtained with (3.24) as follows
+                                                                            
+                      j3 (u + ρ v) − j3 (u)                                       Ψ (u + ρ v) − Ψ (u)
+                 lim                        =       v(x)L2 (0,T ) dx + lim                          dx
+                 ρ0            ρ              Ωu0                       ρ0 Ωu            ρ
+                                                                              T
+                                                                       1
+                             =       v(x)L2 (0,T ) dx +                          u v dt dx.                 
+                                   0
+                                  Ωu                        Ωu u(x)L2 (0,T ) 0
+
+Corollary 3.9. Let ūν , ϕ̄ν and λ̄ν be as in Theorem 3.1, then the following relations hold for almost all
+(x, t) ∈ ΩT
+                                  ⎧                                                             
+                                  ⎪
+                                  ⎨ ūν (x, t) = Proj              1
+                                                         [α,β]   −   [ϕ̄ν (x, t) +  μ λ̄ν (x, t)]  ,
+                         if ν > 0                                  ν                                 (3.30)
+                                  ⎪
+                                  ⎩
+                                      ūν (x)L2 (0,T ) = 0 ⇔ ϕ̄ν (x)L2 (0,T ) ≤ μ,
+                                  
+                                     ϕ̄ν (x)L2 (0,T ) < μ ⇒ ūν (x)L2 (0,T ) = 0,
+                         if ν = 0                                                                    (3.31)
+                                     ūν (x)L2 (0,T ) = 0 ⇒ ϕ̄ν (x)L2 (0,T ) ≤ μ,
+                                               ⎧        1
+                                               ⎪                                  0
+                                               ⎨ − μ ϕ̄ν (x, t) if x ∈ Ωūν ,
+                                               ⎪
+                                  λ̄ν (x, t) =                                                       (3.32)
+                                               ⎪
+                                               ⎪        ūν (x, t)
+                                               ⎩                       if x ∈ Ωūν .
+                                                   ūν (x)L2 (0,T )
+Moreover, λ̄ν is unique.
+274                                                 EDUARDO CASAS ET AL.
+
+
+Proof. The ﬁrst identity of (3.30) is standard. Let us prove the second relation. First we assume that
+ūν (x)L2 (0,T ) = 0, then (3.30) implies that ϕ̄ν (x, t) + μ λ̄ν (x, t) = 0 for almost all t ∈ (0, T ). Hence, us-
+ing (3.27) we get ϕ̄ν (x)L2 (0,T ) ≤ μ λ̄ν (x)L2 (0,T ) ≤ μ. To prove the converse implication we introduce the
+set
+                            E = {x ∈ Ω : ϕ̄ν (x)L2 (0,T ) ≤ μ and ūν (x)L2 (0,T ) = 0}.
+We have to prove that |E| = 0. Let us take in (3.4)
+                                                               −ūν (x, t) if x ∈ E,
+                                               v(x, t) =
+                                                                   0       otherwise.
+
+Note that v ∈ TK (ūν ) holds in view of α < 0 and β > 0. Then we have
+                                        T
+                                             (ϕ̄ν + μ λ̄ν + ν ūν ) ūν dt dx ≤ 0.
+                                           E    0
+
+Using the second relation of (3.27), we deduce from the above inequality
+                                                                                T
+                    μ    ūν (x)L2 (0,T ) dx + ν   ūν (x)2L2 (0,T ) dx ≤ −       ϕ̄ν ūν dt dx
+                         E                                 E                              E   0
+                                                                                
+                          ≤       ϕ̄ν (x)L2 (0,T ) ūν (x)L2 (0,T ) dx ≤ μ       ūν (x)L2 (0,T ) dx.
+                              E                                                  E
+Since ν > 0, the above inequality is possible only if |E| = 0.
+   Let us consider the case ν = 0. The second implication of (3.31) is proved as the corresponding implication
+to the case ν > 0. The ﬁrst implication is also proved arguing as above, the only diﬀerence is that the identity
+|E| = 0 does not follow from ν > 0, but from the strict inequality ϕ̄ν (x)L2 (0,T ) < μ.
+   Finally, (3.32) is an immediate consequence of (3.4) and (3.27). The uniqueness of λ̄ν follows from the
+representation (3.32).                                                                                        
+Remark 3.10. As in Remarks 3.3 and 3.7, we can obtain the existence of a constant M > 0 independent of μ
+such that ϕ̄ν L∞ (L2 ) ≤ M . Therefore, (3.30) and (3.31) imply that ūν = 0 if μ > M . Hence, we can inﬂuence
+the size of of an optimal control’s support by adjusting the parameter μ ∈ [0, M ].
+Remark 3.11. It is interesting to compare the sparsity properties of the local solutions ūν corresponding to
+the studied problems. From (3.7) and (3.8) we obtain that the local solutions ūν of (P1ν ) are sparse in space
+and time. However, the solutions of (P3ν ) are only sparse in space as proved by (3.30) and (3.31), the sparsity
+region remaining constant throughout time. When we look at (3.20) and (3.21), we observe that the sparsity
+region of the solutions of (P2ν ) can change with the time. Thus we conﬁrm the sparsity patterns as anticipated
+in the introduction. Any of the three formulations can be interesting with diﬀerent possible applications.
+   In Figure 1, we show the optimal controls in the linear case using T = 1, Ω = (0, 1) and the parameters
+                                  α = −10,                                            β = 20,
+                                  ν = 1e − 4,                                         μ = 4e − 3.
+The objective is Fν (u) = 12 yu − yd 2L2 (ΩT ) + ν2 u2L2(ΩT ) , where the desired state is given by
+                                                                                                     
+             yd (x, t) = exp − 20 [(x − 0.2)2 + (t − 0.2)2 ] + exp − 20 [(x − 0.7)2 + (t − 0.9)2 ] .
+The state equation is the one-dimensional linear parabolic equation
+                                                    ∂t yu − Δyu = u in ΩT
+
+with homogeneous initial and Dirichlet boundary conditions.
+                            SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                        275
+
+
+
+
+         Figure 1. Diﬀerent sparsity structures of optimal controls using j1 (top right), j2 (bottom left)
+         and j3 (bottom right). The desired state is shown top left. The problem parameters are given
+         in Remark 3.11.
+
+
+                      4. Second-order necessary optimality conditions
+  In this section, ūν denotes an element of K, with associated elements (ȳν , ϕ̄ν , λ̄ν ) ∈ Y × Φ × ∂j(ūν ), such that
+the optimality system (3.2)–(3.4) holds. In order to address the necessary second-order optimality conditions,
+we introduce the cone of critical directions as follows.
+
+                                  Cūν = {v ∈ TK (ūν ) : Fν (ūν ) v + μ j  (ūν ; v) = 0}.                     (4.1)
+
+Proposition 4.1. The set Cūν is a closed, convex cone in L2 (ΩT ).
+
+  Before proving this proposition we have to establish the following lemma.
+276                                                    EDUARDO CASAS ET AL.
+
+
+Lemma 4.2. Let v ∈ TK (ūν ) be given. Then,
+                                                                               
+                           Fν (ūν ) v + μ j  (ūν ; v) ≥ Fν (ūν ) v + μ        λ̄ν (x, t) v(x, t) dx dt ≥ 0.                 (4.2)
+                                                                               ΩT
+
+Moreover, if v ∈ Cūν , then
+                                                                                             
+                Fν (ūν ) v + μ        λ̄ν (x, t) v(x, t) dx dt = 0 and j  (ūν ; v) =            λ̄ν (x, t) v(x, t) dx dt.     (4.3)
+                                   ΩT                                                          ΩT
+
+
+Proof. It is well-known (see [1], Prop. 2.126(v)), that for any convex and Lipschitz function the following
+inequality holds
+                             
+                                                           j(u + ρ v) − j(u)
+                       max        λ v dx dt = j  (u; v) ≤                   ∀ 0 < ρ ≤ 1.              (4.4)
+                      λ∈∂j(u) ΩT                                   ρ
+
+Hence, the ﬁrst inequality of (4.2) is an immediate consequence of (4.4). The second inequality follows from (3.4)
+and (2.9). Identities (4.3) are an obvious consequence of (4.2) and the deﬁnition (4.1) of Cūν .               
+
+Proof of Proposition 4.1. It is obvious that Cūν is a closed cone of L2 (ΩT ), thanks to the continuity of v →
+j  (u; v). Let us prove that it is convex. Given v1 , v2 ∈ Cūν and 0 < t < 1, it is clear that v = t v1 + (1 − t) v2 ∈
+TK (ūν ). Moreover, using the convexity of v → j  (ūν ; v) we get
+                                                                                                                       
+             Fν (ūν ) v + μ j(ūν ; v) ≤ t Fν (ūν ) v1 + μ j  (ūν ; v1 ) + (1 − t) Fν (ūν ) v2 + μ j  (ūν ; v2 ) = 0.
+
+The contrary inequality is a consequence of Lemma 4.2, hence v ∈ Cūν .                                                              
+
+   Now, we are going to deﬁne replacements for the second directional derivatives of the functional j, denoted
+by j  , which are obtained by formal calculations. Note that the symbol j  does not mean that the respective
+terms are second-order directional derivatives. Indeed, those derivatives do not exist for all directions v. Given
+u, v ∈ L2 (ΩT ), we set Jν (u; v 2 ) = Fν (u) v 2 + μ j  (u; v 2 ), with Fν (u) deﬁned by (2.10) and j  (u; v 2 ) is deﬁned
+for the three diﬀerent functionals under investigation
+
+            j1 (u; v 2 ) = 0,                                                                                                   (4.5)
+                             ⎧                                                    
+                             ⎪
+                             ⎨       1          T
+                                                                   2            2
+                                                  jΩ (u(t); v(t)) dt − j2 (u; v)        if u = 0
+            j2 (u; v 2 ) = uL2 (L1 )      0                                                                                   (4.6)
+                             ⎪
+                             ⎩
+                                0                                                       if u = 0
+                             ⎧                        ⎡                                            2 ⎤
+                             ⎪                          T                    T
+                             ⎪
+                             ⎨            1                                       u(x, t) v(x, t)
+                                                      ⎣     v 2 (x, t) dt −                       dt ⎦ dx             if u = 0
+            j3 (u; v 2 ) =      Ωu u(x)L2 (0,T )     0                     0 u(x)L2 (0,T )                                  (4.7)
+                             ⎪
+                             ⎪
+                             ⎩
+                                0                                                                                     if u = 0.
+
+                     
+In (4.6) and (4.7), jΩ is given by (3.17) and Ωu is deﬁned in Section 3.3.
+   With this notation, we have the following second-order necessary optimality conditions valid for the three
+functionals ji .
+
+Theorem 4.3. Let ν ≥ 0 and ūν be a local minimum of (Pν ). Then Jν (ūν ; v 2 ) ≥ 0 for every v ∈ Cūν .
+
+   The rest of the section will be devoted to the proof of this theorem. We distinguish three cases.
+                             SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                        277
+
+Proof.
+Case I: j = j1 . The proof for this case is exactly as the one of (Thm. 3.7 of [5]), with obvious modiﬁcations.
+Case II: j = j2 . First we assume that ūν = 0. Given v ∈ Cūν we deﬁne for every k ∈ N
+                           ⎧                                                          
+                           ⎨0 if ū (x, t) ∈ α, α + 1 ∪ − 1 , 0 ∪ 0, + 1 ∪ β − 1 , β ,
+                                   ν
+               vk (x, t) =                            k        k            k            k
+                           ⎩
+                             Proj[−k,+k] (v(x, t)) otherwise,
+
+and ρk = 1/k 2 . Then, we have that ūν + ρ vk ∈ K for every 0 < ρ < ρk and vk → v in L2 (ΩT ). Moreover,
+from (3.17) we easily get that
+
+             jΩ (ūν (t) + ρ vk (t)) − jΩ (ūν (t))    
+                                                    = jΩ (ūν (t); vk (t)) for a.a. t ∈ (0, T ) and ∀ρ ∈ (0, ρk ).
+                               ρ
+Equivalently we can write
+                                                              
+                  jΩ (ūν (t) + ρ vk (t)) = jΩ (ūν (t)) + ρ jΩ (ūν (t); vk (t)) a.e. in (0, T ) ∀ρ ∈ (0, ρk ).     (4.8)
+
+Let us prove that vk ∈ Cūν . It is obvious that vk ∈ TK (ūν ). Since v ∈ Cūν , from (3.10), (3.17), (3.18) and (4.3)
+we infer that (recall ūν = 0 is assumed)
+                                                  ⎧
+                                                  ⎪   ūν (t)L1 (Ω)
+                                                  ⎪
+                                                  ⎪ +                  v(x, t) if ūν (x, t) > 0
+                                                  ⎪
+                                                  ⎪    ūν L2 (L1 )
+                                                  ⎪
+                                                  ⎨ ū (t) 1
+                                                         ν     L (Ω)
+                             λ̄ν (x, t) v(x, t) =   −                  v(x, t) if ūν (x, t) < 0
+                                                  ⎪
+                                                  ⎪    ūν L2 (L1 )
+                                                  ⎪
+                                                  ⎪
+                                                  ⎪
+                                                  ⎪  ūν (t)L1 (Ω)
+                                                  ⎩                   |v(x, t)| if ūν (x, t) = 0.
+                                                      ūν L2 (L1 )
+
+Taking into account the deﬁnition of vk , we also have the same identities for vk replacing v, which implies
+                                    
+                                          λ̄ν (x, t) vk (x, t) dx dt = j2 (ūν ; vk ).
+                                           ΩT
+
+  Observe that (3.4) implies that
+                                                               ⎧
+                                                               ⎨ ≥ 0 if ūν (x, t) = α,
+                                   (ϕ̄ν + ν ūν + μ λ̄ν )(x, t) ≤ 0 if ūν (x, t) = β,                               (4.9)
+                                                               ⎩ 0 if α < ū(x, t) < β.
+
+Therefore, (4.3) and (4.9) yield (ϕ̄ν + ν ūν + μ λ̄ν ) v = 0. Hence, we also have that (ϕ̄ν + ν ūν + μ λ̄ν ) vk = 0.
+All together implies that
+                                                             
+                         Fν (ūν ) vk + μ j2 (ūν ; vk ) =   (ϕ̄ν + ν ūν + μ λ̄ν ) vk dx dt = 0.             (4.10)
+                                                              ΩT
+
+Thus, we have that vk ∈ Cūν . Now, using (3.24) and (3.25), with f (t) = ūν (t)L1 (Ω) ≡ 0 and g(t) =
+jΩ (ūν (t); vk (t)), and taking into account (4.8), (3.18) and (4.6), we obtain
+
+                                                                                       ρ2 
+                          j2 (ū + ρ vk ) = Ψ (f + ρ g) = Ψ (f ) + ρΨ  (f )g +          Ψ (f + θρ g)g 2
+                                                                                       2
+                                                                             ρ2 
+                                         = j2 (ūν ) + ρ j2 (ūν , vk ) +     j (ūν + θρ vk ; vk2 ).
+                                                                             2 2
+278                                                              EDUARDO CASAS ET AL.
+
+
+Here θ ∈ (0, 1) depends on k. Using this identity and making a Taylor expansion of Fν (ūν + ρ vk ) we deduce for
+all ρ > 0 small enough with (4.10)
+                0 ≤ Jν (ūν + ρ vk ) − Jν (ūν )
+                                                                            ρ2                       ρ2
+                    = ρ Fν (ūν ) vk + μ j2 (ūν ; vk ) +                   Jν (ūν + θρ vk ; vk2 ) = Jν (ūν + θρ vk ; vk2 ).
+                                                                            2                          2
+Thus, we have Jν (ūν + θρ vk ; vk2 ) ≥ 0 for every ρ small enough and all k ∈ N. Taking the limit ﬁrst when
+ρ → 0 and later when k → ∞, we conclude that Jν (ūν ; v 2 ) ≥ 0 holds by continuity of v → Fν (ūν ) v 2 and
+v → j2 (ūν ; v 2 ) w.r.t. L2 (ΩT ).
+  Now, we consider the case ūν = 0. Given v ∈ Cūν we deﬁne vk = Proj[−k,+k] (v) ∈ Cūν and we take
+0 < ρ < min{|α|, β}/k. Then, it is easy to check that ūν + ρ vk = ρ vk ∈ K, and for ρ small enough we have
+                               0 ≤ Jν (ūν + ρ vk ) − Jν (ūν ) = Fν (ūν + ρ vk ) − Fν (ūν ) + ρ j2 (vk )
+                                                       ρ2 
+                        = ρ Fν (ūν ) vk + j2 (ūν ; vk ) +
+                                                         F (ūν + θρ vk ) vk2 = Fν (ūν + θρ vk ) vk2 ,
+                                                       2 ν
+for some θ ∈ (0, 1) (depending on k and ρ). Hence Fν (ūν + θρ vk ) vk2 ≥ 0. Taking the limit as ρ → 0, we get
+Fν (ūν ) vk2 ≥ 0. Finally, letting k → ∞ we conclude that Jν (ūν ) v 2 = Fν (ūν ) v 2 ≥ 0.
+Case III: j = j3 . We elaborate on the proof for the case ūν ≡ 0, the case ūν ≡ 0 can be handled analogously
+to j2 . First, we observe that
+                                                       2 
+                                 T
+                                   u(x, t) v(x, t)             T
+                                                      dt   ≤     v 2 (x, t) dt for x ∈ Ωūν .
+                               0   u(x)  L 2 (0,T )        0
+
+Hence, the integrand in (4.7) is nonnegative. Then, 0 ≤ j3 (ūν ; v 2 ) is well deﬁned for every v ∈ L2 (ΩT ), but it
+could be +∞ for some directions v. Let us take an element v ∈ Cūν such that
+                                              v(x)2L2 (0,T )
+                                                                 dx < +∞.                                        (4.11)
+                                         Ωūν ūν (x)L2 (0,T )
+
+We will get rid of this assumption later. As in Case II, we have that (ϕ̄ν + ν ūν + μ λ̄ν ) v = 0 in ΩT . Moreover,
+we have that (3.28) and (3.32) imply
+                                               T                 
+                              
+          0 = Fν (ūν ) v + μ j3 (ūν ; v) =       ϕ̄ν v dt dx + μ   v(x)L2 (0,T ) dx
+                                                          0
+                                                         Ωū      0                             0
+                                                                                               Ωū
+                                                            ν                                     ν
+                            T                                                T
+                                                                                        ūν
+                +                      (ϕ̄ν + ν ūν ) v dt dx + μ                                 v dt dx
+                    Ωūν       0                                         Ωūν 0   ū  
+                                                                                      ν L2 (0,T )
+                               T                                                                T
+             = −μ                        λ̄ν v dt dx + μ              v(x)L2 (0,T ) dx +              (ϕ̄ν + ν ūν + μ λ̄ν ) v dt dx
+                         0                                     0
+                        Ωūν
+                                   0                          Ωūν
+                                                                                                   Ωūν   0
+                               T                           
+             = −μ                        λ̄ν v dt dx + μ              v(x)L2 (0,T ) dx.
+                         0
+                        Ωū        0                           0
+                                                              Ωū
+                           ν                                     ν
+
+Hence, we get
+                                                        T                      
+                                                              λ̄ν v dt dx =                 v(x)L2 (0,T ) dx.
+                                                  0
+                                                 Ωū     0                            0
+                                                                                     Ωū
+                                                    ν                                   ν
+
+Taking into account (3.27), this leads to
+                                                      v(x, t)
+                                   λ̄ν (x, t) =                              if v(x, t) = 0 a.e. in Ωū0ν × (0, T ).                    (4.12)
+                                                   v(x)L2 (0,T )
+                                SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                              279
+
+Now, we deﬁne for every k ≥ 1 and (x, t) ∈ Ωūν × (0, T )
+                              ⎧                                                                    
+                              ⎪                            1        1               1           1
+                              ⎪
+                              ⎪ 0 if ū   (x, t) ∈ (α, α +   ) ∪  −   , 0   ∪ (0, +   ) ∪   β −   , β   ,
+                              ⎪
+                              ⎨
+                                        ν
+                                                           k        k               k           k
+                  vk (x, t) =                              1
+                              ⎪
+                              ⎪ 0 if ūν (x)L2 (0,T ) <
+                              ⎪
+                              ⎪                            k
+                              ⎩
+                                Proj[−k,+k] (v(x, t)) otherwise,
+
+and for (x, t) ∈ Ωū0ν × (0, T ) we set
+                                                           
+                                                            0 if v(x)L2 (0,T ) > k
+                                               vk (x, t) =
+                                                            v(x, t) otherwise.
+
+It is clear that vk ∈ TK (ūν ). For every k we have with (4.12)
+                                                   T                    
+                                                         λ̄ν vk dt dx =              vk (x)L2 (0,T ) dx,
+                                             0
+                                            Ωū     0                          0
+                                                                              Ωū
+                                               ν                                 ν
+
+
+
+and also (ϕ̄ν + ν ūν + μ λ̄ν ) vk = 0 in Ωūν × (0, T ). Thus, with (3.4), (3.28) and (3.32) we obtain that vk ∈ Cūν .
+Moreover, vk ∈ L∞ (ΩT ) holds. Indeed, it is enough to check that vk is essentially bounded in Ωū0ν × (0, T ).
+Since ϕ̄ν + μ λ̄ν = 0 in Ωū0ν × (0, T ) and ϕ̄ν ∈ L∞ (ΩT ), we infer that λ̄ν ∈ L∞ (Ωū0ν × (0, T )). Invoking (4.12)
+we get for (x, t) ∈ Ωū0ν × (0, T )
+
+                       if v(x)L2 (0,T ) ≤ k then |vk (x, t)| = |v(x, t)| ≤ |λ̄ν (x, t)|v(x)L2 (0,T )
+                                                         ≤ λ̄ν (x, t)L∞ (Ωū0 ν ×(0,T )) k,
+                       if v(x)L2 (0,T ) > k then vk (x, t) = 0.
+
+Thus, we have that α ≤ ū + ρ vk ≤ β for ρ > 0 suﬃciently small. Then, we can argue as in the previous
+case, using again (3.24) and (3.25), with f (t) = ūν (x, t) and g(t) = vk (x, t), and (3.28) and (4.7) to get for
+0 ≤ θk,ρ (x) ≤ 1 and 0 ≤ ϑk,ρ ≤ 1
+
+                0 ≤ Jν (ūν + ρ vk ) − Jν (ūν ) = Fν (ūν + ρ vk ) − Fν (ūν )
+                                                                                      
+                    +μ ρ           vk (x)L2 (0,T ) dx +       (Ψ (f + ρ g) − Ψ (f )) dx
+                                  0
+                                 Ωū                                  Ωūν
+                                    ν
+
+                                      ρ2
+                  = ρ Fν (ūν ) vk + Fν (ūν + ϑk,ρ ρ vk ) vk2
+                                     2                                                                                 
+                                                                                                                   
+                                                                                          ρ2
+                    +μ ρ             vk (x)L2 (0,T ) dx +                     ρΨ (f )g + Ψ  (f + θk,ρ ρ g)g 2
+                                                                                     
+                                                                                                                        dx
+                                  0
+                                 Ωū                                  Ωūν                2
+                                    ν
+
+                  = ρ Fν (ūν ) vk + μ j3 (ūν ; vk )
+                          ρ2 
+                      +     {F (ūν + ϑk,ρ ρ vk ) vk2 + μ j3 (ūν + θk,ρ ρ vk ; vk2 )}
+                          2 ν
+                      ρ2 
+                  =     {F (ūν + ϑk,ρ ρ vk ) vk2 + μ j3 (ūν + θk,ρ ρ vk ; vk2 )},
+                      2 ν
+hence,
+                                     Fν (ūν + ϑk,ρ ρ vk ) vk2 + μ j3 (ūν + θk,ρ ρ vk ; vk2 ) ≥ 0.                      (4.13)
+280                                                    EDUARDO CASAS ET AL.
+
+
+Now, we pass to the limit as ρ → 0 and k → ∞. Let us denote uρ,k = ūν + θk,ρ ρ vk . According to (4.7), we have
+                                                       ⎡                                                 2 ⎤
+                                                        T
+                                           1           ⎣
+                                                                                T
+                                                                                  u     (x, t) v  (x, t)
+         j3 (uρ,k ; vk2 ) =                               vk2 (x, t) dt −                              dt ⎦ dx.
+                                                                                    ρ,k         k
+
+                                Ωu uρ,k (x)L2 (0,T )   0                    0   uρ,k (x)L2 (0,T )
+                                    ρ,k
+
+
+Let us analyze the set Ωuρ,k . If x ∈ Ωū0ν and v(x)L2 (0,T ) > k, then we get from the deﬁnition of vk in
+Ωū0ν × (0, T ) that uρ,k (x)L2 (0,T ) = 0, hence x ∈ Ωuρ,k .
+    If x ∈ Ωū0ν ∩ Ωuρ,k , then v(x)L2 (0,T ) ≤ k holds, hence vk (x, t) = v(x, t) and uρ,k (x, t) = θk,ρ ρ v(x, t) for a.a.
+t ∈ (0, T ). This implies that
+                                    T                                                 2
+                                                             T
+                                                               u     (x, t) v  (x, t)
+                                         vk2 (x, t) dt −
+                                                                 ρ,k         k
+                                                                                      dt    = 0.
+                                     0                     0   uρ,k (x)L2 (0,T )
+
+  If x ∈ Ωūν ∩ Ωuρ,k and ūν (x)L2 (0,T ) < k1 , then vk (x, t) = 0 and the integrand in j3 (uρ,k ; vk2 ) vanishes again.
+Therefore, we have that
+                       j3 (uρ,k ; vk2 )
+                                                      ⎡                                                 2 ⎤
+                                                       T
+                                          1           ⎣
+                                                                               T
+                                                                                 u     (x, t) v  (x, t)
+                                                           vk2 (x, t) dt −                              dt ⎦ dx
+                                                                                   ρ,k         k
+                       =
+                             Ωρ,k uρ,k (x)L2 (0,T )   0                    0   uρ,k (x)L2 (0,T )
+
+with                                                                                          
+                                                                                          1
+                                           Ωρ,k =      x ∈ Ωuρ,k : ūν (x)L2 (0,T ) ≥           ·
+                                                                                          k
+Using that |vk (x, t)| ≤ k in Ωūν × (0, T ), we obtain for every 0 < ρ < 2k21√T and a.a. x ∈ Ωρ,k
+                                                                                         1    1   √     1
+                    uρ,k (x)L2 (0,T ) ≥ ūν (x)L2 (0,T ) − θk,ρ ρ vk L2 (0,T ) ≥     −   √ k T =    ·
+                                                                                         k 2 k2 T      2k
+Then, for k ﬁxed, we easily get that limρ→0 j3 (uρ,k ; vk2 ) = j3 (ūν ; vk2 ), and hence passing to the limit in (4.13) as
+ρ → 0 we deduce that Jν (ūν ; vk2 ) ≥ 0. Now, we can pass to the limit as k → ∞ using the Lebesgue dominated
+convergence theorem and taking into account that, by construction, vk (x, t) → v(x, t) a.e., (4.11) and the fact
+that
+                                               ⎡                                                      2 ⎤
+                                                  T
+                                       1       ⎣
+                                                                            T
+                                                                                ū   (x, t) v  (x, t)
+                                                     vk2 (x, t) dt −                                  dt ⎦
+                                                                                   ν         k
+                      0≤
+                            ūν (x)L2 (0,T )    0                       0     ūν (x)L2 (0,T )
+
+                                  vk (x)2L2 (0,T )       v(x)2L2 (0,T )
+                              ≤                        ≤                        ·
+                                  ūν (x)L2 (0,T )       ūν (x)L2 (0,T )
+Note that the latter term (as a function of x) belongs to L1 (Ωūν ) and provides an integrable majorant. Thus,
+we have that Jν (ūν ; v 2 ) ≥ 0 for every v ∈ Cūν satisfying (4.11). We ﬁnish the proof by removing the assump-
+tion (4.11). For an arbitrary element v ∈ Cūν , we deﬁne
+                                                   
+                                                                                     1
+                                       vk (x, t) =     0 if 0 < ūν (x)L2 (0,T ) <
+                                                                                     k
+                                                     v(x, t) otherwise.
+As above, we can prove that vk ∈ Cūν . Moreover, vk satisﬁes (4.11). Hence, Jν (ūν ; vk2 ) ≥ 0. We have that the
+integrands in j3 (ūν ; vk2 ) are nonnegative and they form an increasing sequence in k. Therefore, we can apply
+the Lebesgue monotone convergence theorem to pass to the limit and deduce that j3 (ūν ; v 2 ) = lim j3 (ūν ; vk2 ),
+                                                                                                                  k→∞
+and hence Jν (ūν ; v 2 ) = lim Jν (ūν ; vk2 ) ≥ 0.                                                                    
+                              k→∞
+                             SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                          281
+
+                      5. Second-order sufficient optimality conditions
+   Hereafter ūν will denote an element of K that along with (ȳν , ϕ̄ν , λ̄ν ) ∈ Y × Φ × ∂j(ūν ) satisﬁes the optimality
+system (3.2)–(3.4). Associated to ūν , we deﬁne the extended cones of critical directions for τ ≥ 0
+
+                             Cūτν = {v ∈ TK (ūν ) : Fν (ūν ) v + μ j  (ūν ; v) ≤ τ vL2 (ΩT ) }.               (5.1)
+
+Recall that Fν (ūν ) v + μ j  (ūν ; v) ≥ 0, due to Lemma 4.2. It is obvious that Cū0ν coincides with the cone Cūν
+deﬁned in (4.1), and Cūν ⊂ Cūτν for every τ > 0.
+
+5.1. Problem (P1ν )
+  For this problem we recall that, by deﬁnition, Jν (ūν ; v 2 ) = Fν (ūν ) v 2 ; see (4.5). Therefore we can formulate
+the second-order suﬃcient condition in terms of Fν . We will distinguish the cases ν > 0 and ν = 0. For ν > 0
+there are diﬀerent equivalent ways of formulating the second-order suﬃcient optimality conditions.
+Theorem 5.1. Let us assume that ν > 0. Then the following statements are equivalent
+
+                          Fν (ūν ) v 2 > 0 ∀v ∈ Cūν \ {0},                                                        (5.2)
+                          ∃δ > 0 and τ > 0 such that Fν (ūν ) v 2 ≥ δ v2L2 (ΩT ) ∀v ∈ Cūτν ,                    (5.3)
+                          ∃δ > 0 and τ > 0 such that Fν (ūν ) v 2 ≥ δ zv 2L2 (ΩT ) ∀v ∈ Cūτν .                  (5.4)
+
+where zv = G (ūν ) v is the solution of the linearized parabolic equation (2.7) corresponding to yu = ȳν .
+The implications (5.3) ⇒ (5.4) ⇒ (5.2) are obvious. Indeed, from (2.7) we know that zu,v = G (u) v satisﬁes
+
+                              zu,v L2 (ΩT ) ≤ CK vL2 (ΩT ) ∀u ∈ K and ∀v ∈ L2 (ΩT )                               (5.5)
+
+for some CK > 0. Therefore, it is immediate that (5.3) implies (5.4) with the same τ and replacing δ in (5.4) by
+δ/CK2 . The only delicate part is the proof that (5.2) implies (5.3). To this end, it is enough to proceed as in the
+elliptic case in ([5], Thm. 3.8).
+                                                                                                     1
+                           vk L2 (ΩT ) = 1,     vk  v in L2 (ΩT )         and Fν (ūν ) vk2 <     ·              (5.6)
+                                                                                                     k
+  Before establishing the theorem on the second-order suﬃcient conditions, we need to prove a technical lemma.
+
+
+Lemma 5.2. For every ρ > 0 there exists ε > 0 such that
+
+                    |[Fν (u) − Fν (ūν )]v 2 | ≤ ρ zv 2L2 (ΩT ) ∀v ∈ L2 (ΩT ) and ∀u ∈ K ∩ Bε (ūν ),           (5.7)
+
+where zv = G (ūν ) v and Bε (ūν ) denotes the ball of L2 (ΩT ) centered at ūν and with radius ε.
+
+Proof. First, we get from (1.1) and the boundedness of K in L∞ (ΩT )
+
+                                     ∃MK such that yu L∞ (ΩT ) ≤ MK ∀u ∈ K.                                         (5.8)
+
+Now, for every u ∈ K, subtracting the equations satisﬁed by yu and ȳν , and using the mean value theorem we
+obtain       ⎧
+             ⎪
+             ⎪  ∂(yu − ȳν )                  ∂a
+             ⎪
+             ⎨               + A(yu − ȳν ) +    (x, t, ȳν + θ(yu − ȳν ))(yu − ȳν ) = u − ūν in ΩT ,
+                    ∂t                        ∂y
+             ⎪
+             ⎪                                                               yu − ȳν = 0        on ΣT ,
+             ⎪
+             ⎩
+                                                                       (yu − ȳν )(0) = 0        in Ω.
+282                                                             EDUARDO CASAS ET AL.
+
+
+From here, it follows
+                                                                                                      2/3
+                          yu − ȳν L∞ (ΩT ) ≤ C u − ūν L3 (ΩT ) ≤ C1 u − ūν L2 (ΩT ) ∀u ∈ K.                                (5.9)
+
+We proceed with the adjoint states ϕu and ϕ̄ν in a similar way
+              ⎧
+              ⎪               ∂(ϕu − ϕ̄ν )                          ∂a
+              ⎪
+              ⎪            −               + A∗ (ϕu − ϕ̄ν ) +            (x, t, ȳν )(ϕu − ϕ̄ν )
+              ⎪
+              ⎪                     ∂t                              ∂y
+              ⎪
+              ⎪                                        %                                    &
+              ⎨ ∂L                   ∂L                  ∂a                 ∂a
+                 =     (x, t, yu ) −    (x, t, ȳν ) +      (x, t, ȳν ) −       (x, t, yu ) ϕu                          in ΩT ,
+              ⎪
+              ⎪     ∂y               ∂y                  ∂y                 ∂y
+              ⎪
+              ⎪
+              ⎪
+              ⎪                                                                      (ϕu − ϕ̄ν ) = 0                     on ΣT ,
+              ⎪
+              ⎩
+                                                                               (ϕu − ϕ̄ν )(T ) = 0                       in Ω.
+
+From (5.8) and (5.9) along with the assumptions (2.3) and (2.5) we obtain
+                                                                                                        2/3
+                         ϕu − ϕ̄ν L∞ (ΩT ) ≤ C yu − ȳν L∞ (ΩT ) ≤ C2 u − ūν L2 (ΩT ) ∀u ∈ K.                               (5.10)
+
+   Let us denote zu,v = G (u) v and zv = G (ūν ) v. We put z = zu,v − zv . Subtracting the equations satisﬁed by
+zu,v and zv we get
+                     ⎧                                %                            &
+                     ⎪
+                     ⎪ ∂z           ∂a                  ∂a           ∂a
+                     ⎨ ∂t + Az + ∂y (x, t, yu )z = ∂y (x, t, ȳν ) − ∂y (x, t, yu ) zv in ΩT ,
+                     ⎪
+
+                     ⎪
+                     ⎪                          z=0                                    on ΣT ,
+                     ⎪
+                     ⎩
+                                           z(0) = 0                                    in Ω.
+
+From the mean value theorem and (2.3) we deduce
+
+                   zu,v − zv L2 (ΩT ) ≤ C yu − ȳν L∞ (ΩT ) zv L2 (ΩT ) ∀u ∈ K and ∀v ∈ L2 (ΩT ).                            (5.11)
+
+Hence, we also have
+                                                             
+                   zu,v L2 (ΩT ) ≤ 1 + C yu − ȳν L∞ (ΩT ) zv L2 (ΩT ) ∀u ∈ K and ∀v ∈ L2 (ΩT ).                             (5.12)
+
+   From the expression (2.10) we infer
+                                                                                                  
+                                                                 ∂ 2L                 ∂2a
+                |[Fν (u) − Fν (ūν )]v 2 | ≤                                                       2
+                                                                      (x, t, yu ) − ϕu 2 (x, t, yu ) (zu,v − zv2 ) dx dt
+                                                       ΩT        ∂2y                  ∂ y
+                                                       
+                                                                 ∂2L                ∂2L
+                                                   +                 (x, t, y u ) −     (x, t, ȳν ) zv2 dx dt
+                                                           ΩT    ∂2y                ∂2y
+                                                       
+                                                                         ∂2a                ∂2a
+                                                   +            |ϕ̄ν |       (x, t, y u ) −     (x, t, ȳν ) zv2 dx dt
+                                                           ΩT            ∂2y                ∂2y
+                                                       
+                                                                               ∂2a
+                                                   +            |ϕu − ϕ̄ν |        (x, t, yu ) zv2 dx dt = I1 + I2 + I3 + I4 .
+                                                           ΩT                  ∂2y
+
+Let us estimate these four terms. First, (2.3), (2.5), (5.8), (5.11) and (5.12) imply
+                    ' 2                                   '
+                    '∂ L                   ∂2a            '
+               I1 ≤ '
+                    ' ∂2y (x, t, y u ) − ϕu 2  (x, t, y  )'
+                                                        u '         zu,v − zv L2 (ΩT ) zu,v + zv L2 (ΩT )
+                                           ∂ y             L∞ (ΩT )
+
+                    ≤ C3 yu − ȳν L∞ (ΩT ) zv 2L2 (ΩT ) .
+                             SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                            283
+                                                 3/2
+Using (5.9) and taking 0 < ε1 ≤            ρ
+                                         4C1 C3          , we deduce from the above inequality
+
+                                             ρ
+                                     I1 ≤      zv 2L2 (ΩT )     if u − ūν L2 (ΩT ) ≤ ε1 .
+                                             4
+Using again (5.9) along with Assumption (2.6), we infer the existence of ε2 > 0 such that I2 satisﬁes the above
+inequality for u − ūν L2 (ΩT ) ≤ ε2 . Analogously, using (5.9), (2.4) and the fact that ϕ̄ν ∈ L∞ (ΩT ), we deduce
+the same estimate for I3 for some ε3 > 0. Finally, from (5.8), (5.10) and (2.3) we get
+                                                       ' 2            '
+                                                       '∂ a           '
+                                                       '
+                              I4 ≤ ϕu − ϕ̄ν L∞ (ΩT ) ' 2 (x, t, yu )'        zv 2L2 (ΩT )
+                                                         ∂ y          ' ∞
+                                                                       L (ΩT )
+                                                     2/3
+                                 ≤ C4 u − ūν L2 (ΩT ) zv 2L2 (ΩT ) .
+                            3/2
+Now, taking 0 < ε4 ≤ 4C  ρ
+                           4
+                                  , we obtain the corresponding estimate for I4 . Adding the estimates for Ii , we
+conclude (5.7) for ε = min1≤i≤4 εi .                                                                             
+
+Theorem 5.3. Let ν > 0 and assume that ūν satisfies (5.3). Then there exists ε > 0 such that
+
+                                           δ
+                                Jν (ūν ) + u − ūν 2L2 (ΩT ) ≤ Jν (u) ∀u ∈ K ∩ Bε (ūν ),                            (5.13)
+                                           4
+where Bε (ūν ) denotes the ball of L2 (ΩT ) centered at ūν and with radius ε.
+
+Proof. Let us deﬁne ε. From (2.3), (2.5), (5.8), (5.5), and the expression (5.10), we obtain ∀u ∈ K and ∀v ∈
+L2 (ΩT )
+                    |F  (u) v 2 | ≤ C0 zu,v 2L2 (ΩT )2 + ν v2L2 (ΩT ) ≤ (C0 CK2 + ν)v2L2 (ΩT ) . (5.14)
+We take ε1 satisfying
+                                                                        4τ
+                                                   0 < ε1 ≤                        ·
+                                                                δ + 2 (C0 CK2 + ν)
+  On the other hand, applying Lemma 5.2 we obtain ε2 > 0 such that ∀u ∈ K ∩ Bε2 (ūν ) and ∀v ∈ L2 (ΩT )
+
+                                                                   δ                   δ
+                               |[Fν (u) − Fν (ūν )]v 2 | ≤        zv 2L2 (ΩT ) ≤ v2L2 (ΩT ) .                  (5.15)
+                                                                  2CK2                 2
+
+Finally, we set ε = min{ε1 , ε2 }. Let us take u ∈ K ∩ Bε (ūν ). We will distinguish two cases.
+Case I: u − ūν ∈ Cūτν .— Since u − ūν ∈ TK (ūν ), then from the deﬁnition (5.1) it follows
+
+                               Fν (ūν )(u − ūν ) + μ j1 (ūν ; u − ūν ) > τ u − ūν L2 (ΩT ) .
+
+Hence, making a Taylor expansion of Fν (u) around ūν , using (4.4), (5.14), and the above inequality we get
+
+                                                                                 1
+             Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j1 (ūν ; u − ūν ) + Fν (ūν + θ(u − ūν ))(u − ūν )2
+                                                                                 2
+                                                           1
+                                ≥ τ u − ūν L2 (ΩT ) − (C0 CK + ν)u − ūν 2L2 (ΩT )
+                                                                      2
+
+                                  %                       &2
+                                    τ      1
+                                ≥      − (C0 CK + ν) u − ūν 2L2 (ΩT ) .
+                                                   2
+                                    ε      2
+
+From the deﬁnition of ε and ε1 , we deduce (5.13) from the above inequality.
+284                                                    EDUARDO CASAS ET AL.
+
+
+Case II: u − ūν ∈ Cūτν .— Now, from (4.2), (5.3), and (5.15) we infer
+
+                                                                                    1
+                Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j1 (ūν ; u − ūν ) + Fν (ūν + θ(u − ūν ))(u − ūν )2
+                                                                                    2
+                                     1                         1 
+                                   ≥ Fν (ūν )(u − ūν ) + [Fν (ūν + θ(u − ūν )) − Fν (ūν )](u − ūν )2
+                                                           2
+                                     2                           2
+                                     δ                        δ                        δ
+                                   ≥ u − ūν L2 (ΩT ) − u − ūν 2L2 (ΩT ) = u − ūν 2L2 (ΩT ) .
+                                                   2
+                                                                                                                                          
+                                     2                        4                        4
+   Next we consider the case ν = 0. Under this assumption the relations (5.2)–(5.5) are not equivalent. It is
+known that (5.2) is not a suﬃcient second-order condition for local optimality, in general; see the example by
+Dunn [7]. On the other hand, (5.3) is never fulﬁlled for ν = 0. Indeed, the reader is referred to [3] for the
+proof of this statement in the case of an elliptic state equation, which can be reproduced in the parabolic case
+just replacing x by (x, t). Finally, we prove that the condition (5.4) is suﬃcient for the local optimality of ūν .
+However, the conclusion (5.13) does not hold. A weaker consequence is deduced from (5.4) for ν = 0.
+
+Theorem 5.4. Let ν = 0 and assume that ūν satisfies (5.4). Then there exists ε > 0 such that
+
+                                               δ
+                                    Jν (ūν ) + zu−ūν 2L2 (ΩT ) ≤ Jν (u) ∀u ∈ K ∩ Bε (ūν ),                                      (5.16)
+                                               4
+where zu−ūν = G (ūν )(u − ūν ) and Bε (ūν ) denotes the ball of L2 (ΩT ) centered at ūν and with radius ε.
+
+Proof. The proof follows the same steps as the preceding one, with minor modiﬁcations. Let us point out the
+changes. First, we take
+                                                         4τ
+                                           0 < ε1 ≤ 2             ,
+                                                    CK (δ + 2C0 )
+where C0 was introduced in (5.14). Second, using again Lemma 5.2 we obtain ε2 > 0 such that ∀u ∈ K ∩ Bε2 (ūν )
+and ∀v ∈ L2 (ΩT )
+                                                                     δ
+                                     |[Fν (u) − Fν (ūν )]v 2 | ≤ zv 2L2 (ΩT ) .                (5.17)
+                                                                     2
+Finally, we set ε = min{ε1 , ε2 }. Now, if u − ūν ∈ Cūτν , then we argue as in the proof of Theorem 5.3, using this
+time the ﬁrst inequality of (5.14) and later (5.5) to deduce
+
+                                                                                    1
+                Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j1 (ūν ; u − ūν ) + Fν (ūν + θ(u − ūν ))(u − ūν )2
+                                                                                    2
+                                                              1                 2
+                                   ≥ τ u − ūν L2 (ΩT ) − C0 zu−ūν L2 (ΩT )
+                                                              2
+                                     τ                        1
+                                   ≥ u − ūν L2 (ΩT ) − C0 zu−ūν 2L2 (ΩT )
+                                                    2
+                                     ε
+                                                            2
+                                          τ       1                               δ
+                                   ≥           − C0 zu−ūν 2L2 (ΩT ) ≥ zu−ūν 2L2 (ΩT ) .
+                                       εCK2       2                               4
+
+  If u − ūν ∈ Cūτν we proceed exactly as in the proof of Theorem 5.3 using (5.17) and (5.4) instead of (5.15)
+and (5.3).                                                                                                   
+
+5.2. Problem (P2ν )
+   For the problem (P2ν ) we have that Jν (ūν ; v 2 ) = Fν (ūν ) v 2 + μ j2 (ūν ; v 2 ), where j2 (ūν ; v 2 ) is deﬁned by (4.6).
+Though the term j2 (ūν ; v 2 ) can help to the coercivity of the second derivative Jν (ūν ; v 2 ), it makes the analysis
+of the second-order conditions technically more complicated, as we will see in the next theorem.
+                                   SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                                           285
+
+Theorem 5.5. Let us assume that ν > 0. Then the following statements are equivalent
+
+                                Jν (ūν ; v 2 ) > 0 ∀v ∈ Cūν \ {0},                                                                      (5.18)
+                                ∃δ > 0 and τ > 0 such that Jν (ūν ; v 2 ) ≥ δ v2L2 (ΩT ) ∀v ∈ Cūτν ,                                  (5.19)
+                                ∃δ > 0 and τ > 0 such that Jν (ūν ; v 2 ) ≥ δ zv 2L2 (ΩT ) ∀v ∈ Cūτν ,                                (5.20)
+
+where zv = G (ū) v is the solution of (2.7) corresponding to yu = ȳν .
+
+Proof. Analogously to the proof of Theorem 5.1, we have that (5.19) ⇒ (5.20) ⇒ (5.18), with the same τ
+in (5.10) and (5.20), and taking δ > 0 in (5.19) and Cδ2 in (5.20). The rest is dedicated to the proof of the
+                                                               K
+implication (5.18) ⇒ (5.19). We proceed by contradiction and assume that for every integer k > 0 there
+                         1/k
+exists an element vk ∈ Cūν such that Jν (ūν ) vk2 < k1 vk 2L2 (ΩT ) . Dividing vk by its L2 (ΩT )-norm and taking a
+subsequence, if necessary, we get for some v ∈ L2 (ΩT )
+
+                                                                                                                 1
+                                vk L2 (ΩT ) = 1,        vk  v in L2 (ΩT ) and Jν (ūν ; vk2 ) <               ,                        (5.21)
+                                                                                                                 k
+                                                                                                 1/k
+with v ∈ Cūν . Moreover, using (4.2) and (5.21), and the fact that vk ∈ Cūν we obtain
+
+                                 0 ≤ Fν (ūν ) v + μ j2 (ūν ; v) ≤ lim inf {F  (ūν ) vk + μ j2 (ūν ; vk )}
+                                                                        k→∞
+                                   ≤ lim sup{F  (ūν ) vk + μ j2 (ūν ; vk )} = 0.
+                                        k→∞
+
+Since Fν (ūν ) vk → Fν (ūν ) v, we deduce that limk→∞ j2 (ūν ; vk ) = j2 (ūν ; v). In case ūν = 0, we can apply
+                                                                                                  
+Lemma 5.6 below, and obtain that the sequence of functions t → jΩ                                   (ūν (t); vk (t)) converges weakly in L2 (0, T )
+                                                                               
+to t → jΩ (ūν (t); v(t)). From the expression (4.6) for j2 and these two convergence properties, we get that
+j2 (ūν ; v 2 ) ≤ lim inf k→∞ j2 (ūν ; vk2 ). In case ūν = 0 this also holds true, since j2 (0; ·) ≡ 0 by (4.6). Hence, (5.21)
+leads to
+                                                      Jν (ūν ; v 2 ) ≤ lim inf Jν (ūν ; vk2 ) ≤ 0.
+                                                                     k→∞
+
+This inequality and (5.18) imply that v = 0. Then, we deduce as in the proof of Theorem 5.1 that ν = 0, which
+contradicts our assumption.                                                                                
+
+Lemma 5.6. Let {vk }∞                     2                                                   2
+                               k=1 ⊂ L (ΩT ) be a sequence converging weakly to v in L (ΩT ) with v ∈ Cū . Further,
+assume that ūν = 0.
+   If j2 (ūν ; vk ) → j2 (ūν ; v), then the sequence t → jΩ
+                                                              
+                                                                (ūν (t); vk (t)) converges weakly in L2 (0, T ) towards t →
+ 
+jΩ (ūν (t); v(t)).
+
+Proof. For 0 < t < T we set
+
+                              Ωū+ν (t) = {x ∈ Ω : ūν (x, t) > 0}, Ωū−ν (t) = {x ∈ Ω : ūν (x, t) < 0},
+
+and
+                                                    Ωū0ν (t) = {x ∈ Ω : ūν (x, t) = 0}.
+
+Then we have for every w ∈ L2 (ΩT ) by (3.17)
+                                                                                                  
+                  
+                jΩ  (ūν (t); w(t)) =    w(x, t) dx −                                w(x, t) dx +              |w(x, t)| dx.
+                                                 +                          −                         0
+                                                Ωū (t)
+                                                                           Ωū (t)
+                                                                                                     Ωū (t)
+                                                    ν                         ν                         ν
+286                                                                EDUARDO CASAS ET AL.
+
+
+Hence, for every f ∈ L2 (0, T ) we have
+            T                                 T                                                                    T           
+                     
+               f (t)jΩ (ūν (t); vk (t)) dt =     f (t)                                     vk (x, t) dx dt −              f (t)              vk (x, t) dx dt
+                                                                             +                                                      −
+              0                                               0             Ωū (t)
+                                                                                                                      0            Ωū (t)
+                                                                                    ν                                                  ν
+                                                                 T             
+                                                         +             f (t)                  |vk (x, t)| dx dt = Ik+ + Ik− + Ik0 .
+                                                                  0              0
+                                                                                Ωū
+                                                                                   ν (t)
+
+
+The weak convergence vk  v in L2 (ΩT ) implies that
+                                                                       T               
+                                                 lim Ik+ =                  f (t)                    v(x, t) dx = I + .
+                                              k→∞                                          +
+                                                                       0                  Ωū
+                                                                                             ν (t)
+
+
+Analogously, we have that Ik− → I − . It remains to prove the convergence Ik0 → I 0 to conclude the proof. To
+this end, we observe that the convergence j2 (ūν ; vk ) → j2 (ūν ; v) means (recall (3.18))
+                               T                                                                 T
+                                    ūν (t)L1 (Ω)                                                      ūν (t)L1 (Ω) 
+                    lim                             j (ūν (t); vk (t)) dt =                                              j (ūν (t); v(t)) dt.
+                   k→∞         0     ūν L2 (L1 ) Ω                                                0     ūν L2 (L1 ) Ω
+
+Using again the weak convergence vk  v, we have
+                    T                                            T                 
+                       ūν (t)L1 (Ω)                                ūν (t)L1 (Ω)
+               lim                              vk (x, t) dx dt =                              v(x, t) dx dt,
+              k→∞ 0     ūν L2 (L1 ) Ωū+ (t)                    0   ūν L2 (L1 ) Ωū+ (t)
+                                                          ν                                                                        ν
+
+
+and                      T                                                                      T                         
+                               ūν (t)L1 (Ω)                                                            ūν (t)L1 (Ω)
+                  lim                                              vk (x, t) dx dt =                                                       v(x, t) dx dt.
+                  k→∞    0      ūν L2 (L1 )      −
+                                                   Ωū (t)
+                                                                                                     0     ūν L2 (L1 )      −
+                                                                                                                              Ωū (t)
+                                                          ν                                                                        ν
+
+The last three limits imply that
+                   T                                                                            T                         
+                       ūν (t)L1 (Ω)                                                                    ūν (t)L1 (Ω)
+              lim                                                 |vk (x, t)| dx dt =                                                      |v(x, t)| dx dt.     (5.22)
+             k→∞ 0      ūν L2 (L1 ) Ω 0                                                           0     ūν L2 (L1 )      0
+                                                                                                                              Ωū
+                                                      ūν (t)                                                                     (t)
+                                                                                                                                   ν
+
+
+   Since v ∈ Cūν , (4.3) implies that
+                                                                            
+                                                   j2 (ūν ; v) =                      λ̄ν (x, t) v(x, t) dx dt.
+                                                                             ΩT
+
+This equality and (3.10) lead to
+                         T                                                                      T
+                               ūν (t)L1 (Ω)
+                                                                   |v(x, t)| dx dt =                                 λ̄ν (x, t) v(x, t) dx dt.                  (5.23)
+                          0     ūν L2 (L1 )         0
+                                                      Ωū (t)
+                                                                                                     0      0
+                                                                                                           Ωū (t)
+                                                          ν                                                   ν
+
+
+Furthermore, the convergence vk  v in L2 (ΩT ) implies that
+                                                              
+                          lim     λ̄ν (x, t) vk (x, t) dx dt =                                            λ̄ν (x, t) v(x, t) dx dt.
+                                    k→∞     ΩT                                                       ΩT
+
+Therefore, this identity, (5.22) and (5.23) prove that
+                             T         %                                                   &
+                                           ūν (t)L1 (Ω)
+                       lim                                 |vk (x, t)| − λ̄ν (x, t) vk (x, t) dx dt = 0.
+                      k→∞ 0        0
+                                 Ωū (t)
+                                            ūν L2 (L1 )
+                                             ν
+                                SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                                     287
+
+Since
+                             ūν (t)L1 (Ω)
+                                             |vk (x, t)| − λ̄ν (x, t) vk (x, t) ≥ 0 for a.a. (x, t) ∈ ΩT0 ,
+                              ūν L2 (L1 )
+with
+                                                  ΩT0 = {(x, t) ∈ ΩT : x ∈ Ωū0ν (t) },
+we deduce
+                            ūν (t)L1 (Ω)
+                                            |vk (x, t)| − λ̄ν (x, t) vk (x, t) → 0 strongly in L1 (ΩT0 ).
+                             ūν L2 (L1 )
+Then, we can take a subsequence, denoted in the same way, such that
+
+                            ūν (t)L1 (Ω)
+                                            |vk (x, t)| − λ̄ν (x, t) vk (x, t) → 0 for a.a. (x, t) ∈ ΩT0 .                          (5.24)
+                             ūν L2 (L1 )
+
+Let us prove that
+                                |vk (x, t)| − sign(λ̄ν (x, t)) vk (x, t) → 0 for a.a. (x, t) ∈ ΩT0 .                                (5.25)
+According to (3.13), we distinguish three cases for λ̄ν (x, t).
+                           ūν (t) L1 (Ω)
+Case I: |λ̄ν (x, t)| <      ūν L2 (L1 ) . Then, from (5.24) we get
+
+                                                
+                   ūν (t)L1 (Ω)                              ūν (t)L1 (Ω)
+                                   − |λ̄ν (x, t)| |vk (x, t)| ≤                 |vk (x, t)| − λ̄ν (x, t) vk (x, t) → 0,
+                    ūν L2 (L1 )                               ūν L2 (L1 )
+
+hence |vk (x, t)| → 0. Then, (5.25) holds in this case.
+                              ūν (t) L1 (Ω)
+Case II: λ̄ν (x, t) = +        ūν L2 (L1 ) . In this case, (5.24) implies that |vk (x, t)| − vk (x, t) → 0, which coincides
+with (5.25).
+                               ūν (t) L1 (Ω)
+Case III: λ̄ν (x, t) = −        ūν L2 (L1 ) . Now, (5.24) implies that |vk (x, t)| + vk (x, t) → 0, which again coincides
+with (5.25).
+   Since, the functions |vk (x, t)| − sign(λ̄ν (x, t)) vk (x, t) are bounded in L2 (ΩT0 ) independently of k, we deduce
+from (5.25) that |vk (x, t)| − sign(λ̄ν (x, t)) vk (x, t)  0 weakly in L2 (Ω). Finally, writing
+
+                          |vk (x, t)| = [|vk (x, t)| − sign(λ̄ν (x, t)) vk (x, t)] + sign(λ̄ν (x, t)) vk (x, t),
+
+and using that sign(λ̄ν (x, t)) vk (x, t)  sign(λ̄ν (x, t)) v(x, t) weakly in L2 (ΩT0 ), we deduce that |vk |  sign(λ̄ν ) v
+weakly in L2 (ΩT0 ). Finally, from (5.23) and (3.13), it follows that |v(x, t)| = sign(λ̄ν ) v(x, t) for a.a. (x, t) ∈ ΩT0 .
+Therefore, the convergence |vk |  |v| weakly in L2 (ΩT0 ) holds, which proves the desired limit
+                                     T                                           T           
+                   lim Ik0 = lim          f (t)             |vk (x, t)| dx dt =         f (t)             |v(x, t)| dx dt = I 0 .       
+                k→∞           k→∞     0            0
+                                                  Ωū                              0             0
+                                                                                                Ωū
+                                                      (t)
+                                                      ν                                             (t)
+                                                                                                    ν
+
+
+   The next lemma shows that j2 satisﬁes a second-order Taylor (directional) expansion and is a preparation
+for Theorem 5.8.
+Lemma 5.7. Let u ∈ L2 (ΩT ) be arbitrary. For any δ > 0, there exists ε > 0 such that
+
+                                                                          1           δ
+                                  j2 (u + v) ≥ j2 (u) + j2 (u; v) +       j (u; v 2 ) − v2L2 (ΩT )
+                                                                          2 2           8
+holds for all vL2 (ΩT ) ≤ ε.
+288                                                   EDUARDO CASAS ET AL.
+
+
+Proof. In case u = 0, the assertion follows from j2 (0; v) = j2 (v) and j2 (0; v 2 ) = 0. Now, let u = 0. We set
+                                                                    2
+                                                                             
+                                                 uL2 (L1 ) δ uL2(L1 )
+                                      ε = min                ,                  ·                                  (5.26)
+                                                     2|Ω|         32|Ω|3
+
+First, we observe that
+                                                             
+                      u(t) + v(t)L1 (Ω) ≥ |u(t)L1 (Ω) + jΩ (u(t); v(t))|                    for a.a. t ∈ (0, T ).
+
+Let us deﬁne f, g ∈ L2 (0, T ) by f (t) = u(t)L1 (Ω) and g(t) = jΩ
+                                                                   
+                                                                     (u(t); v(t)). Then, using the function Ψ deﬁned
+in Section 3.3, the above estimate yields
+                                                                          1              1
+                    j2 (u + v) − j2 (u) ≥ Ψ (f + g) − Ψ (f ) = Ψ  (f )g + Ψ  (f )g 2 + Ψ  (fθ )g 3 ,              (5.27)
+                                                                          2              6
+where fθ = f + θg, for some 0 < θ < 1. According to (3.26) and applying Hölder’s inequality, we get
+
+                                                                          6 g3L2(0,T )
+                                                    |Ψ  (fθ )g 3 | ≤                     .                           (5.28)
+                                                                          fθ 2L2 (0,T )
+
+From the deﬁnition of g and using again the Hölder’s inequality, we get
+
+                                               gL2 (0,T ) ≤ |Ω|vL2 (ΩT ) < |Ω|ε.
+
+On the other hand, from (5.26) we get
+                                                               2                  2 1
+                 fθ 2L2 (0,T ) ≥ f L2 (0,T ) − θ gL2(0,T ) ≥ uL2 (L1 ) − |Ω|ε ≥ u2L2(L1 ) .
+                                                                                        4
+Therefore, using again (5.26), it follows
+
+                                                         6|Ω|3 ε                   3δ
+                                   |Ψ  (fθ )g 3 | ≤ 1    2
+                                                                     v2L2 (ΩT ) ≤ v2L2 (ΩT ) .
+                                                      4 u L2 (L1 )
+                                                                                   4
+
+   Now, from (3.18), (4.6), (3.24) and (3.25), and the deﬁnitions of f and g, it follows that Ψ  (f )g = j2 (u, v)
+and Ψ  (f )g 2 = j2 (u; v 2 ). Inserting this in (5.27) and using the above estimate for Ψ  (fθ )g 3 , we obtain the
+assertion.                                                                                                               
+
+  Now, we state the theorem on second-order suﬃcient optimality conditions analogous to Theorem 5.3.
+Theorem 5.8. Let ν > 0 and assume that ūν satisfies (5.19). Then there exists ε > 0 such that
+                                            δ
+                                 Jν (ūν ) + u − ūν 2L2 (ΩT ) ≤ Jν (u) ∀u ∈ K ∩ Bε (ūν ),                           (5.29)
+                                            4
+where Bε (ūν ) denotes the ball of L2 (ΩT ) centered at ūν and with radius ε.
+
+Proof. We take ε1 as in the proof of Theorem 5.3, and ε2 > 0 such that ∀u ∈ K ∩ Bε2 (ūν )
+                                                            δ                   δ
+                       |[Fν (u) − Fν (ūν )]v 2 | ≤         zv 2L2 (ΩT ) ≤ v2L2 (ΩT ) ∀v ∈ L2 (ΩT ),            (5.30)
+                                                           4CK2                 4
+
+and ε3 from Lemma 5.7. Then we deﬁne
+
+                                                     0 < ε ≤ min {ε1 , ε2 , ε3 } .                                      (5.31)
+                                SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                                     289
+
+Let us take an arbitrary element u ∈ K ∩ Bε (ūν ). If u − ūν ∈ Cūτν , then we can repeat the proof of Theorem 5.3
+to obtain (5.29). Let us consider the case u − ūν ∈ Cūτν . Making a Taylor expansion of Fν (u) around ūν , using
+Lemma 5.7 and (5.30), we obtain
+
+                  Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j2 (ūν ; u − ūν )
+                                          1                           1
+                                       + Fν (ūν )(u − ūν )2 + j2 (ūν ; (u − ūν )2 )
+                                          2                           2
+                                          1                                                   δ
+                                       + [Fν (ūν + θ(u − ūν )) − Fν (ūν )](u − ūν )2 − u − ūν 2L2 (ΩT )
+                                          2                                                   8
+                                       δ                        δ                       δ
+                                     ≥ u − ūν 2L2 (ΩT ) − u − ūν 2L2 (ΩT ) = u − ūν 2L2 (ΩT ) .                               
+                                       2                        4                       4
+  Finally, we analyze the case ν = 0. To this end, we need a Taylor expansion of j2 similar to Lemma 5.7, but
+we now have to estimate the remainder in terms of both j2 and j2 , since the second-order condition (5.20) only
+provides a growth w.r.t. zv L2 (ΩT ) .
+Lemma 5.9. Let u ∈ L2 (ΩT ) be arbitrary. There exists ε > 0 and C > 0, such that
+                                                              1                                                 
+                         j2 (u + v) − j2 (u) − j2 (u; v) −     j2 (u; v 2 ) ≤ C |j2 (u; v)|3 + j2 (u; v 2 )3/2
+                                                              2
+holds for all vL2 (ΩT ) ≤ ε.
+Proof. In case u = 0, the assertion follows from j2 (0; v) = j2 (v) and j2 (0; v 2 ) = 0. Now, let u = 0. We set
+                                                                  uL2 (L1 )
+                                                            ε=                ·
+                                                                    2|Ω|
+We proceed as in the proof of Lemma 5.7, and deﬁne f and g in the same way. Thus, (5.27) and (5.28) hold.
+Moreover, using the lower bound for fθ L2 (0,T ) proved there, we deduce from (5.28)
+                                                                      6
+                                              |Ψ  (fθ )g 3 | ≤ 1    2
+                                                                              g3L2(0,T ) .
+                                                                 4 u   2 1
+                                                                       L (L )
+
+It remains to compare the last terms with the ﬁrst and second directional derivative of j2 . To this end we need
+to compute Ψ  (f )g 2 . For convenience, we deﬁne
+                                                       T
+                                              1                                         ζ
+                         ζ = Ψ  (f )g =                  f (t)g(t) dt and h = g −               f·
+                                         f L2 (0,T ) 0                           f L2 (0,T )
+
+Then, it is easy to check that
+                  T
+                     f (t)h(t) dt = 0,         g2L2(0,T ) = h2L2 (0,T ) + ζ 2 and Ψ  (f )g 2 = h2L2(0,T ) .               (5.32)
+                     0
+
+Let us recall that ζ = Ψ  (f )g = j2 (u; v). This shows
+                              6                                               3/2
+      |Ψ  (fθ )g 3 | ≤ 1   2
+                                       g3L2(0,T ) = C h2L2 (0,T ) + ζ 2
+                         4 uL2 (L1 )
+                                                                                      3/2
+                                                    = C Ψ  (f ) g 2 + (Ψ  (f ) g)2
+                                                                                    3/2    √                                   
+                                                    = C j2 (u; v 2 ) + j  (u; v)2      ≤ C 2 j2 (u; v 2 )3/2 + |j  (u; v)|3
+
+The last inequality follows from the convexity of z → z 3/2 for z ≥ 0 and j2 (u; v 2 ) ≥ 0.                                          
+290                                                      EDUARDO CASAS ET AL.
+
+
+Theorem 5.10. Let ν = 0 and assume that ūν satisfies (5.20). Then there exists ε > 0 such that
+                                            δ
+                                 Jν (ūν ) + zu−ūν 2L2 (ΩT ) ≤ Jν (u) ∀u ∈ K ∩ Bε (ūν ),                             (5.33)
+                                            4
+where zu−ūν = G (ūν )(u − ūν ) and Bε (ūν ) denotes the ball of L2 (ΩT ) centered at ūν and with radius ε.
+
+Proof. Let us deﬁne τ  = CτK and
+                                
+                             Eūτ ν = {v ∈ TK (ūν ) : Fν (ūν ) v + μ j2 (ūν ; v) ≤ τ  zv L2 (ΩT ) }.
+                                                                                                                            
+Due to (5.5), we have τ  zv L2 (ΩT ) ≤ τ vL2 (ΩT ) , hence Eūτ ν ⊂ Cūτν . Therefore, (5.20) holds for all v ∈ Eūτ ν .
+                                                            
+Then, from (5.14) and (5.20) we get for every v ∈ Eūτ ν and all μ0 ∈ (0, μ)
+                                                         
+                        2              2         μ0                         μ0 
+               Fν (ūν ) v + μ0 j2 (ūν ; v ) = 1 −           Fν (ūν ) v 2 +   (F (ūν ) v 2 + μ j2 (ūν ; v 2 ))
+                                                      μ                         μ ν
+                                                             
+                                                         μ0                          μ0 δ
+                                              ≥− 1−              C0 zv 2L2 (ΩT ) +      zv 2L2 (ΩT ) .
+                                                          μ                           μ
+Taking
+                                                           3δ + 4C0
+                                                                    μ < μ0 < μ,
+                                                           4δ + 4C0
+we conclude
+                                                             3δ                          
+                                    Fν (ūν ) v 2 + μ0 j2 (ūν ; v 2 ) ≥
+                                                                zv 2L2 (ΩT ) ∀v ∈ Eūτ ν .               (5.34)
+                                                             4
+  Given ε > 0 to be ﬁxed later, we take an arbitrary element u ∈ Bε (ūν )∩K and we distinguish two cases. First,
+                               
+we assume that u − ūν ∈ Eūτ ν . Then, we argue similarly to the proof of Theorem 5.4 and use (5.5) and (5.14)
+
+                                                                                    1
+              Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j2 (ūν ; u − ūν ) + Fν (ūν + θ(u − ūν ))(u − ūν )2
+                                                                                    2
+                                                           1
+                                 ≥ τ  zu−ūν L2 (ΩT ) − C0 zu−ūν 2L2 (ΩT )
+                                                           2
+                                   τ                                             1
+                                 ≥ u − ūν L2 (ΩT ) zu−ūν L2 (ΩT ) − C0 zu−ūν 2L2 (ΩT )
+                                   ε                                           2
+                                        τ       1                  2
+                                 ≥           − C0 zu−ūν L2 (ΩT )
+                                       εCK      2
+                                                   
+                                        τ       1                  2            δ         2
+                                 =           −    C0 zu−ūν L2 (ΩT ) ≥ zu−ūν L2 (ΩT ) ,
+                                       εCK2     2                               4
+
+assuming that 0 < ε ≤ ε1 with ε1 chosen as in the proof of Theorem 5.4.
+                                       
+   Now, we suppose that u − ūν ∈ Eūτ ν . By using Lemma 5.9, we obtain the Taylor expansion
+
+                         Jν (u) − Jν (ūν ) ≥ Fν (ūν )(u − ūν ) + μ j2 (ūν ; u − ūν )
+                                                     1                           μ0 
+                                                + Fν (ūν )(u − ūν )2 +          j (ūν ; (u − ūν )2 )
+                                                     2                            2 2
+                                                     1                                        
+                                                + Fν (ūν + θ (u − ūν )) − Fν (ūν ) (u − ūν )2
+                                                     2
+                                                                                                          
+                                                − C |j2 (ūν ; u − ūν )|3 + j2 (ūν ; (u − ūν )2 )3/2
+                                                     μ − μ0 
+                                                +            j2 (ūν ; (u − ūν )2 ).
+                                                         2
+                                 SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                                    291
+
+The ﬁrst line on the right-hand side is non-negative, since ūν satisﬁes the ﬁrst-order condition (3.4). For the
+second line, we use (5.34). The third line is bounded by using (5.7) which holds with ρ = δ/4 for ε small enough.
+In the last two lines, we use
+                                                      μ − μ0 
+                                      C j2 (ūν ; (u − ūν )2 )3/2 ≤
+                                                             j2 (ūν ; (u − ūν )2 ),
+                                                         2
+which again holds for ε small enough. Now, the above inequality simpliﬁes to
+                                                 3δ                 δ
+                         Jν (u) − Jν (ūν ) ≥       zv 2L2 (ΩT ) − zv 2L2 (ΩT ) − C |j2 (ūν ; u − ūν )|3 .                  (5.35)
+                                                 4                  4
+                                                                                            
+It remains to bound j2 (ūν , u − ūν ) by zv L2 (ΩT ) . Since u − ūν ∈ Eūτ ν , we have
+                                 0 ≤ Fν (ūν )(u − ūν ) + μ j2 (ūν ; u − ūν ) ≤ τ  zu−ūν L2 (ΩT ) .
+This yields
+                                  μ |j2 (ūν , u − ūν )| ≤ τ  zu−ūν L2 (ΩT ) + |Fν (ūν )(u − ūν )|.                       (5.36)
+Now, from (2.9) we obtain
+                                                              
+                                                                   ∂L
+                                     Fν (ūν )(u − ūν ) =           (x, t, ȳν (x, t))zu−ūν dx dt.
+                                                                ΩT ∂y
+
+Then, it is enough to use (2.5) with M = ȳν L∞ (ΩT ) to deduce
+                                        |Fν (ūν )(u − ūν )| ≤ ψM L2 (ΩT ) zu−ūν L2 (ΩT ) .
+Using this estimate in (5.35), (5.36) we ﬁnd
+                                                           δ
+                                     Jν (u) + Jν (ūν ) ≥    zv 2L2 (ΩT ) − C |j2 (ūν ; u − ūν )|3
+                                                           2
+                                                           δ
+                                                          ≥ zv 2L2 (ΩT ) − C zv 3L2 (ΩT )
+                                                           2
+                                                           δ
+                                                          ≥ zv 2L2 (ΩT )
+                                                           4
+for ε small enough.                                                                                                                     
+
+5.3. Problem (P3ν )
+  For the problem (P3ν ) we have that Jν (ūν ; v 2 ) = Fν (ūν ) v 2 + μ j3 (ūν ; v 2 ), where j3 (ūν ; v 2 ) is given by (4.7).
+Analogously to Theorems 5.1 and 5.5 we have the next result.
+Theorem 5.11. Let us assume that ν > 0. Then the following statements are equivalent
+                              Jν (ūν ; v 2 ) > 0 ∀v ∈ Cūν \ {0},                                                               (5.37)
+                              ∃δ > 0 and τ > 0 such that Jν (ūν ; v 2 ) ≥ δ v2L2 (ΩT ) ∀v ∈ Cūτν ,                           (5.38)
+                              ∃δ > 0 and τ > 0 such that Jν (ūν ; v 2 ) ≥ δ zv 2L2 (ΩT ) ∀v ∈ Cūτν .                         (5.39)
+
+
+Proof. It is enough to prove that (5.37) implies (5.38). The proof follows the same steps of that of Theorem 5.5.
+The only diﬀerence is the way of obtaining the inequality
+                                                Jν (ūν ; v 2 ) ≤ lim inf Jν (ūν ; vk2 ) ≤ 0.
+                                                                    k→∞
+
+To prove this it is enough to observe that the mapping L2 (ΩT )  v → j3 (ūν ; v 2 ) ∈ R is convex and lower
+semicontinuous.                                                                                              
+292                                                   EDUARDO CASAS ET AL.
+
+
+  Now, we prove the theorem analogous to Theorems 5.3 and 5.8.
+
+Theorem 5.12. Let ν > 0 and assume that ūν satisfies (5.37). Then there exist ε > 0 and δ  > 0 such that
+
+                                                δ
+                                  Jν (ūν ) +      u − ūν 2L2 (ΩT ) ≤ Jν (u) ∀u ∈ K ∩ Bε (ūν ),                         (5.40)
+                                                2
+
+where Bε (ūν ) denotes the ball of L∞ (Ω; L2 (0, T ))) centered at ūν and with radius ε, i.e.
+
+                       Bε (ūν ) = {u ∈ L∞ (Ω; L2 (0, T )) : ess supx∈Ω u(x) − ūν (x)L2 (0,T ) < ε}.
+
+
+
+
+Proof. We assume that ūν ≡ 0, the case ūν ≡ 0 being immediate. We argue by contradiction. If (5.40) does not
+hold for any ε > 0 and δ  > 0, then for any integer k ≥ 1 there exists an element uk ∈ K such that
+
+                                                        1                             1
+                     uk − ūν L∞ (Ω;L2 (0,T )) <        and Jν (uk ) < Jν (ūν ) +    uk − ūν 2L2 (ΩT ) .              (5.41)
+                                                        k                            2k
+
+Let us deﬁne
+                                                            (
+                                                             |Ω|          1
+                                 ρk = uk − ūν L2 (ΩT ) <      and vk =    (uk − ūν ).                                   (5.42)
+                                                             k            ρk
+
+We take a subsequence, if necessary, such that vk  v in L2 (ΩT ). The proof is split into three steps.
+
+Step I. v ∈ Cūν . First we observe that vk ∈ TK (ūν ) for every k. Since TK (ūν ) is convex and closed in L2 (ΩT ),
+we have that v ∈ TK (ūν ) as well. On the other hand, since j3 is a Lipschitz and convex function we have that
+
+                                                                           j3 (ūν + ρk vk ) − j3 (ūν )
+                              j3 (ūν ; v) ≤ lim inf j3 (ūν ; vk ) ≤ lim inf
+                                             k→∞                     k→∞               ρk
+                                                    j3 (uk ) − j3 (ūν )
+                                          = lim inf                      ·
+                                             k→∞            ρk
+
+The last equality is an immediate consequence of the deﬁnition of vk in (5.42). Using this inequality and (5.41)
+we get
+
+                                                  1
+           Fν (ūν ) v + μ j3 (ūν ; v) ≤ lim inf  {[Fν (ūν + ρk vk ) − Fν (ūν )] + μ[j3 (ūν + ρk vk ) − j3 (ūν )]}
+                                            k→∞   ρk
+                                                  1
+                                        = lim inf [Jν (uk ) − Jν (ūν )]
+                                           k→∞ ρk
+                                                    1                                   ρk
+                                        ≤ lim inf       uk − ūν 2L2 (ΩT ) = lim inf     = 0.
+                                           k→∞ 2kρk                             k→∞ 2k
+
+
+This inequality and (4.2) imply that Fν (ūν ) v + μ j3 (ūν ; v) = 0, hence v ∈ Cūν .
+
+Step II. v = 0. For σ > 0 small we deﬁne
+                                                                                     
+                      Ωσ = {x ∈ Ω : ūν (x)L2 (0,T ) ≥ σ} and j3,σ (u) =                  u(x)L2 (0,T ) dx.
+                                                                                       Ωσ
+                                SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                                   293
+
+For f, g ∈ L2 (0, T ) deﬁned by f = ūν (x) and g = vk (x), making a Taylor expansion of Φ(f + ρk g) around f ,
+and using (3.24)–(3.26) we deduce
+                                                             T
+                                                   1
+j3,σ (ūν + ρk vk ) − j3,σ (ūν ) = ρk                           ūν (x, t) vk (x, t) dt dx
+                                        Ωσ ūν (x)L2 (0,T ) 0
+                                                               ⎧                                                           2 ⎫
+                                                              ⎨ T                                                             ⎬
+                                      ρ2k            1                                     T
+                                                                                                  ū   (x, t)
+                                                                      vk2 (x, t)dt −
+                                                                                                     ν
+                                    +                                                                           vk (x, t) dt      dx
+                                      2 Ωσ ūν (x)L2 (0,T ) ⎩ 0                         0 ūν (x)L2 (0,T )                  ⎭
+                                                                 ⎧                                                     3
+                                                                ⎨
+                                      ρ3k             3                      1                 T
+                                    +                                                            uϑk (x, t) vk (x, t) dt
+                                      6 Ωσ uϑk (x)3L2 (0,T ) ⎩ uϑk (x)2L2 (0,T )         0
+                                                                                     
+                                                 T                            T
+                                     −               vk (x, t)2 dt                uϑk (x, t) vk (x, t) dt      dx
+                                             0                            0
+
+                                                                ρ2k                 ρ3 
+                                 = ρk j3,σ (ūν ; vk ) +            j3,σ (ūν ; vk2 ) + k j3,σ (uϑk ; vk3 ),
+                                                                 2                      6
+where uϑk = ūν + ϑk ρk vk with 0 ≤ ϑk (x) ≤ 1. Observe that relations (5.42) and (5.41) lead to
+                                                                                                                         1  σ
+          uϑk (x)L2 (0,T ) ≥ σ − ϑk ρk vk (x)L2 (0,T ) ≥ σ − ϑk uk − ūν L∞ (Ω;L2 (0,T ) ≥ σ −                       ≥ >0
+                                                                                                                         k  2
+for all k ≥ σ2 . Hence, the above integrals are ﬁnite for every k ≥ σ2 .
+   Now, taking into account that Φ (f )g 2 ≥ 0 for every f, g ∈ L2 (0, T ), we get
+                                                   
+                j3 (ūν + ρk vk ) − j3 (ūν ) = ρk   vk (x)L2 (0,T )
+                                                               0
+                                                              Ωū
+                                                                ν
+
+
+                                                      +                (ūν + ρk vk )(x)L2 (0,T ) − ūν (x)L2 (0,T ) dx
+                                                          Ωūν \Ωσ
+                                                      + [j3,σ (ūν + ρk vk ) − j3,σ (ūν )]
+                                                                           ρ2k                 ρ3 
+                                                 ≥ ρk j3 (ūν ; vk ) +       j3,σ (ūν ; vk2 ) + k j3,σ (uϑk ; vk3 ).
+                                                                            2                     6
+From (5.41) we get
+
+                  ρ2k
+                      > Jν (ūν + ρk vk ) − Jν (ūν ) ≥ ρk {Fν (ūν ) vk + μ j3 (ūν ; vk )}
+                  2k
+                                                           ρ2
+                                                        + k {Fν (ūν ) vk2 + μ j3,σ
+                                                                                         (ūν ; vk2 )}
+                                                            2
+                                                           ρ2                                       ρ3 
+                                                        + k [Fν (uθk ) − Fν (ūν )]vk2 + μ k j3,σ      (uϑk ; vk3 ),
+                                                            2                                        6
+where uθk = ūν + θk ρk (uk − ūν ) with 0 ≤ θk ≤ 1. Since vk ∈ TK (ūν ), we deduce from (4.2)
+
+               ρ2k  ρ2                                          ρ2                                   ρ3 
+                   > k {Fν (ūν ) vk2 + μ j3,σ
+                                             
+                                                 (ūν ; vk2 )} + k [Fν (uθk ) − Fν (ūν )]vk2 + μ k j3,σ (uϑk ; vk3 ).
+               2k    2                                           2                                    6
+Dividing this expression by ρ2k /2 we obtain
+                                                                                                        ρk 
+                      Fν (ūν ) vk2 + μ j3,σ
+                                           
+                                               (ūν ; vk2 ) < |[Fν (uθk ) − Fν (ūν )]vk2 | + μ       |j (uϑk ; vk3 )|.       (5.43)
+                                                                                                         3 3,σ
+294                                                   EDUARDO CASAS ET AL.
+
+
+From Lemma 5.2 and the identity vk L2 (ΩT ) = 1 we deduce
+
+                                                 lim |[Fν (uθk ) − Fν (ūν )]vk2 | = 0.                               (5.44)
+                                                k→∞
+
+                                                                                              
+Let us estimate the last term of (5.43). By using Hölder’s inequality and the expression of j3,σ (uϑk ; vk3 ) we
+obtain                                                  
+                                            3
+                                                             vk (x)3L2 (0,T )
+                                 |j3,σ (uϑk ; vk )| ≤ 6                2        dx.
+                                                         Ωσ uϑk (x)L2 (0,T )
+
+Using that uϑk (x)L2 (0,T ) ≥ σ2 for every k large enough and vk L2 (ΩT ) = 1 we get
+                                                       
+                           ρk                   8μ
+                        μ |j3,σ    (uϑk ; vk3 )| ≤         vk (x)2L2 (0,T ) dx → 0 as k → ∞.                            (5.45)
+                            3                      kσ 2 Ωσ
+
+Now, from (5.43), (5.44) and (5.45) the following inequality follows
+
+                    Fν (ūν ) v 2 + μ j3,σ
+                                         
+                                             (ūν ; v 2 ) ≤ lim inf {Fν (ūν ) vk2 + μ j3,σ
+                                                                                          
+                                                                                              (ūν ; vk2 )} ≤ 0 ∀σ > 0.
+                                                          k→∞
+
+Hence, taking the limit as σ → 0 we conclude
+
+                                                  Fν (ūν ) v 2 + μ j3 (ūν ; v 2 ) ≤ 0.
+
+According to (5.37), this is possible only if v = 0.
+Step III. Contradiction. Since v = 0, then zvk → 0 strongly in L2 (ΩT ). Then, from the expression of Fν
+                                
+given by (2.10), the fact that j3,σ (ūν ; vk2 ) ≥ 0 and the identity vk L2 (ΩT ) = 1, we deduce from (5.43), (5.44)
+and (5.45)
+                                   ν ≤ lim inf {Fν (ūν ) vk2 + μ j3,σ
+                                                                     
+                                                                         (ūν ; vk2 )} ≤ 0,
+                                               k→∞
+
+which contradict the assumption ν > 0.                                                                                        
+     In the above proof, the fact that ν > 0 was crucial to get the contradiction. The proof of the suﬃcient second
+order conditions for the case ν = 0 is an open problem for us. An important diﬀerence between the cases j2 and
+j3 is that there is no singularity in j2 (u; v 2 ) if u = 0, however we can have singularities in the integral deﬁning
+j3 (u; v 2 ) for u = 0 when u(x)L2 (0,T ) → 0. The integrals in (4.7) can be +∞. This renders the handling of the
+remainder terms in the Taylor expansions of j3 (u) around ūν rather complicated. To be more precise, we were
+not able to show a remainder term estimate parallel to Lemma 5.9 for j3 . This estimate, however, was crucial
+in the proof of Theorem 5.10 since in the case of ν = 0, (5.39) only provides a growth in terms of zv 2L2 (ΩT )
+and not in terms of v2L2 (ΩT )
+
+                                                           References
+ [1] J.F. Bonnans and A. Shapiro, Perturbation analysis of optimization problems. Springer Series in Operations Research.
+     Springer-Verlag, New York (2000).
+ [2] E. Casas, Pontryagin’s principle for state-constrained boundary control problems of semilinear parabolic equations. SIAM J.
+     Control Optim. 35 (1997) 1297–1327.
+ [3] E. Casas, Second order analysis for bang-bang control problems of PDEs. SIAM J. Control Optim. 50 (2012) 2355–2372.
+ [4] E. Casas and K. Kunisch, Optimal Control of Semilinear Elliptic Equations in Measure Spaces. SIAM J. Control Optim. 52
+     (2014) 339–364.
+ [5] E. Casas, R. Herzog, and G. Wachsmuth, Optimality conditions and error analysis of semilinear elliptic control problems with
+     L1 cost functional. SIAM J. Optim. 22 (2012) 795–820.
+ [6] E. Casas, C. Clason, and K. Kunisch, Parabolic control problems in measure spaces with sparse solutions. SIAM J. Control
+     Optim. 51 (2013) 28–63.
+ [7] J. Dunn, On second order suﬃcient optimality conditions for structured nonlinear programs in inﬁnite-dimensional function
+     spaces, in Mathematical Programming with Data Perturbations, edited by A. Fiacco. Marcel Dekker (1998) 83–107.
+                              SPATIO-TEMPORALLY SPARSE OPTIMAL CONTROL PROBLEMS                                              295
+
+ [8] R.E. Edwards, Functional analysis. Theory and applications, Corrected reprint of the 1965 original. Dover Publications Inc.,
+     New York (1995).
+ [9] I. Ekeland and R. Temam, Convex Analysis and Variational Problems. In vol. 28 of Classics in Applied Mathematics. SIAM,
+     Philadelphia (1999).
+[10] R. Herzog, J. Obermeier, and G. Wachsmuth, Annular and sectorial sparsity in optimal control of elliptic equations. Comput.
+     Optim. Appl. 62 (2015) 157–180.
+[11] R. Herzog, G. Stadler, and G. Wachsmuth, Directional sparsity in optimal control of partial diﬀerential equations. SIAM J.
+     Control Optim. 50 (2012) 943–963.
+[12] A.D. Ioﬀe and V.M. Tichomirov, Theorie der Extremalaufgaben. VEB Deutscher Verlag der Wissenschaften, Berlin (1979).
+[13] K. Kunisch, K. Pieper, and B. Vexler, Measure valued directional sparsity for parabolic optimal control problems. SIAM J.
+     Control Optim. 52 (2014) 3078–3108.
+[14] J. Nečas, Les Méthodes Directes en Théorie des Equations Elliptiques. Editeurs Academia, Prague (1967).
+[15] G. Stadler, Elliptic optimal control problems with L1 -control cost and applications for the placement of control devices.
+     Comput. Optim. Appl. 44 (2009) 159–181.
+

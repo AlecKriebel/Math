@@ -171,3 +171,17 @@ Completion remains38of203(18.72%);41of203(20.20%) are root-passed or defect-defe
 Root read all six complete final reports and both full manuscript sources. All four public assets and208extracted members match the CRC-checked public archives unchanged. Brace clearance is the full all-admissible-two-trivial-factor theorem with every original group/simplicity hypothesis; no broader product exclusion/minimality/priority is authorized. Nijenhuis clearance covers both smooth local-frame classification directions, all-dimensional collar/zero extension and the sufficient zero-point lemma; no certification of the stronger source persistence proof is inferred. The Nijenhuis page must preserve the declared15October manuscript/metadata date with a Manuscript dated label and distinguish17October record creation. No backdating of public availability.
 
 Cubulation and file-sharing final report sets are now complete and await root disposition;BV/reachability independent mathematical reviews run separately. Completion remains38of203(18.72%);43of203(21.18%)root-passed or defect-deferred including five awaiting publication gates. Full203scope active.
+
+
+## 2026-10-25T02:56:23.124371+00:00 — five new pages live; cubulation cleared
+
+All five final public copies were read by root and48source/programme/site bindings checked. Site commitf918c7f3 is pushed and Firebaseversion057d4fa1e519b021 deployed successfully;25actualHTTPfiles match. Actual browser desktop/mobile/PDF/download gates remain pending, so no new canonical URL has entered the Sheet. Full content regression1972of1972passes. NativeSheet status rows53,60–68 read back exact; screenshots confirm60–68.
+
+Root also read all three complete cubulation reports and full manuscript source, rehashed3public assets and compared28extractedmembers. Exact marked group, general quotient counts, actual flag link and proper/cocompact action are cleared. Its publication preparation is pending while browserownership is exclusive. BV/reachability finalreportsets now await root;Satoh mathematics and braid/wave source intakes proceed independently. Completion remains38of203(18.72%);44of203(21.67%)root-passed or defect-deferred. Full203scope active.
+
+
+## 2026-10-25T02:57:11.916445+00:00 — file-sharing root scientific clearance
+
+All three complete final reports and full six-page manuscript source were read. Root rehashed both publicassets and compared all92extractedmembers unchanged. The all-fixed-positive-real-load six-rate CTMC theorem passes, with full pointwise drift interfaces and continuous-time recurrence justified. Unbounded aggregate seed upload, invisible waiting rooms and exact rates are mandatory scope; no performance/moment/capped-seed claim. Retained source editions remain labelled and neither full historical wrapper nor priority is certified. No repair or follow-up. Publication preparation pending active display batch.
+
+Completion remains38of203(18.72%)while five newlive pages awaitdisplay;45of203(22.17%)root-passed or defect-deferred. Full203scope active.

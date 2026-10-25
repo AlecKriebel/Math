@@ -1,0 +1,11 @@
+# Direct reconstruction of the integer-image interface
+
+This is reviewer evidence, not an edit of the manuscript. It explains why the standard polynomial integer-linear-algebra step used on pp.4–5 is appropriate in this exact strongly connected case. It was written after the submitted helper inspection; the separately sealed earlier proof/control artifacts remain unchanged.
+
+Let L be the column firing matrix of a strongly connected loopless digraph on n>=2 vertices. Its column sums vanish, rank is n-1, and its integer kernel is Zp for the positive primitive vector p obtained by tree cofactors divided by their gcd. Given an integer delta, first reject if its coordinate sum is nonzero. Deleting row and column 0 gives a nonsingular matrix. Set q_0=0 and solve the remaining equations over the rationals to obtain Lq=delta. All rational solutions are q+t p.
+
+Compute integer Bezout coefficients c_i with sum c_i p_i=1. If q+t p is integral, then sum c_i q_i+t is integral. Thus t differs by an integer from t_0=-sum c_i q_i. Conversely, if h=q+t_0 p is integral it is an integer solution. Consequently checking the denominators of this single candidate decides integer-image membership; there is no need to enumerate p_0 residues or an exponential firing trajectory. An integer shift in t preserves integrality because p is integral.
+
+Determinants, rational elimination, gcd/extended gcd and rational arithmetic have polynomial bit complexity here. Cofactor bit lengths are polynomial in the matrix input length, and successive Bezout coefficients also have polynomial bit length. Once h is available, subtract min_i floor(h_i/p_i) times p to obtain the unique nonnegative reduced g. The manuscript's independent cofactor bound for g also follows directly: choose w with 0<=g_w<p_w and solve the nonsingular deleted system. This is an audit of the stated standard interface; no stronger integer-programming oracle is being assumed.
+
+The accompanying exact control compares this direct construction with the independently written finite residue solver on 220 reproducible small cases, including signed endpoints and nonimage cases, and with known integer witnesses at 32-, 256- and 1024-bit adjacency sizes. It passes. These tests are supplementary evidence; the preceding argument establishes the general interface.

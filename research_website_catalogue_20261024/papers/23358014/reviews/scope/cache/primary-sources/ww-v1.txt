@@ -1,0 +1,2302 @@
+                                                Second-order conditions for non-uniformly
+                                                convex integrands: quadratic growth in L1
+
+                                                           Daniel Wachsmuth∗                    Gerd Wachsmuth†
+
+                                                                               November 22, 2021
+
+
+
+
+arXiv:2111.10238v1 [math.OC] 19 Nov 2021
+                                                   We study no-gap second-order optimality conditions for a non-uniformly
+                                                 convex and non-smooth integral functional. The integral functional is extended
+                                                 to the space of measures. The obtained second-order derivatives contain
+                                                 integrals on lower-dimensional manifolds. The proofs utilize the convex pre-
+                                                 conjugate, which is an integral functional on the space of continuous functions.
+                                                 Application to non-smooth optimal control problems are given.
+
+                                           Keywords: Second-order optimality conditions, twice epi-differentiability, bang-bang
+                                           control, sparse control
+                                           MSC: 49J53, 49J52, 49K30
+
+
+                                           1 Introduction
+                                           We consider optimization problems of the form
+
+                                                                   Minimize F (u) + G(u)            w.r.t. u ∈ L1 (λ),                      (1)
+                                                                                                                 R
+                                           where F : dom(G) → R is assumed to be smooth and G(u) = Ω g(u) dλ for some convex
+                                           but possibly non-smooth g : R → R̄ := R ∪ {∞}. Here, Ω ⊂ Rd is assumed to be open
+                                           and bounded and λ is the Lebesgue measure.
+                                             We are interested in deriving no-gap optimality conditions of second order in cases
+                                           where g is not uniformly convex. Here, the meaning of no-gap second-order optimality
+                                           conditions is: the difference between necessary and sufficient conditions is as small as
+                                           in the finite-dimensional case, i.e., positive semi-definiteness vs. positive definiteness of
+                                           second derivatives.
+                                            ∗
+                                              Universität   Würzburg,     Institut    für   Mathematik,       97074     Würzburg,      Germany,
+                                               daniel.wachsmuth@mathematik.uni-wuerzburg.de
+                                            †
+                                              Brandenburgische Technische Universität Cottbus-Senftenberg, Institute of Mathematics, 03046 Cott-
+                                               bus, Germany, gerd.wachsmuth@b-tu.de
+
+
+
+
+                                                                                            1
+   In this article, we follow the approach by [Christof and G. Wachsmuth, 2018] and
+interpret the problem in the space of measures M(Ω) = C0 (Ω)? . Under certain assump-
+tions on the problem data and on the possible minimizer ū ∈ L1 (λ), we obtain that the
+second-order condition
+
+                     F 00 (ū)µ2 + G00 (ū, −F 0 (ū); µ) ≥ 0   ∀µ ∈ M(Ω)
+
+is necessary for local optimality, while the second-order condition
+
+                     F 00 (ū)µ2 + G00 (ū, −F 0 (ū); µ) > 0   ∀µ ∈ M(Ω)
+
+is sufficient for local optimality (the latter with quadratic growth with respect to the
+L1 (λ)-norm). Here, F 00 (ū) is a weak-? continuous and quadratic form which allows for
+a second-order Taylor-like expansion of F while G00 (ū, −F 0 (ū); ·) is the so-called second
+subderivative of G00 . The focus of this article is two-fold: (1) prove these second-order
+conditions and (2) derive formulas for G00 (ū, −F 0 (ū); ·).
+   Let us put our work in perspective. We restrict the discussion to contributions to
+second-order conditions for optimal control problems in which the control lives in a
+d-dimensional set with d ≥ 2, since the one-dimensional case is significantly simpler.
+   First of all, the classical, smooth theory, see, e.g., [Casas and Tröltzsch, 2012; 2015], is
+not applicable. On the one hand, G might fail to be twice differentiable. On the other
+hand, even if G is twice differentiable, the second derivative G00 (ū) fails to be a Legendre
+form since G is not assumed to be uniformly convex. However, such an assumption is
+crucial, see, e.g., [Casas and Tröltzsch, 2012, Eq. (2.5)].
+   The first results for sufficient second-order conditions for problems with bang-bang
+solution structure can be found in [Casas, 2012]. Therein, the author proves quadratic
+growth w.r.t. the linearized states by assuming some coercivity on an extended critical
+cone. No necessary conditions of second order are given.
+   In [Casas et al., 2017], the authors use a structural assumption on the growth of
+the adjoint state ϕ̄ and this allows to formulate a second-order sufficient condition on
+measures living on the set {ϕ̄ = 0}. This implies quadratic growth in L1 (λ). Again, no
+second-order necessary conditions are given.
+   The first second-order necessary conditions for problems with bang-bang structure are
+given in [Christof and G. Wachsmuth, 2018]. Again, the structural assumption was used
+and the problem was analyzed in spaces of measures. The main observation of this paper
+is that (the boundary of) the set Uad = {u ∈ L∞ (λ) | −1 ≤ u ≤ 1} possesses “curvature”
+in the space M(Ω), although this space is polyhedric in all Lebesgue spaces Lp (λ), which,
+in some sense, means that it does not possess curvature. By employing a curvature term
+in the second-order conditions, no-gap conditions were given which are equivalent to a
+quadratic growth condition in L1 (λ).
+   A main application for second-order conditions is the derivation of discretization error
+estimates. In the bang-bang context, this was first studied in [Casas et al., 2018].
+   Second-order derivatives for non-smooth, convex integral functionals were studied by
+[Do, 1992] (Lp with 1 < p < ∞) and [Levy, 1993] (including L1 ). By extending the
+integral functional to the space of measures (and by using weak-? convergence and not
+
+
+
+                                                  2
+strong convergence as in [Levy, 1993]), we obtain second-derivatives that are smaller
+than those given in these works. Hence, second-order conditions based on our result are
+stronger than those based on earlier results. A characteristic feature of our results is the
+appearance of integrals on (d − 1)-dimensional manifolds in the expression of G00 . This
+was first observed in [Christof and Meyer, 2019], see their second-order expansion of the
+L1 -norm on H01 (Ω) in [Christof and Meyer, 2019, Corollary 4.10]. The interpretation
+of these additional lower-dimensional integrals as curvature in measure space is due to
+[Christof and G. Wachsmuth, 2018], where g was chosen to be the indicator function of
+the interval [−1, 1].
+   A characteristic motive in our work is the use of the pre-conjugate J : C0 (Ω) → R̄ of
+G, i.e., J ? = G. We derive second-order derivatives of J, and identify the second-order
+derivative of G as its convex conjugate. Interestingly, all assumptions that led to these
+results are given in terms of J.
+   The paper is structured as follows. We start by adapting the theory of [Christof and G.
+Wachsmuth, 2018] to the setting of (1) in Section 2. Afterwards, we study second-order
+derivatives of convex integral functionals on C0 (Ω) in Section 3. These results are utilized
+in Section 4 to obtain the expressions for G00 . The main results are Theorem 4.14 (No-gap
+second-order conditions) and Theorem 4.13 (Strictly twice epi-differentiability of G). Two
+applications are given in Section 5.
+
+
+2 No-Gap Second-Order Conditions
+In this section, we consider the minimization problem
+
+                   Minimize Φ(x) := F (x) + G(x)                w.r.t. x ∈ X.                  (P)
+
+Here, G : X → (−∞, ∞] and F : dom(G) → R are given. We are interested in necessary
+and sufficient conditions of second order, such that the gap between both conditions is as
+small as in finite dimensions. We transfer the results of [Christof and G. Wachsmuth,
+2018], in which the case G = δC for a set C ⊂ X was considered. The generalization to
+the above problem with a more general G is rather straightforward.
+  Throughout this section, we always consider the following situation.
+Assumption 2.1 (Standing Assumptions and Notation).
+  (i) X is the (topological) dual of a separable Banach space Y ,
+
+ (ii) x̄ is a fixed element of the set dom(G) (the minimizer/candidate for a minimizer),
+
+(iii) There exist a F 0 (x̄) ∈ Y and a bounded bilinear F 00 (x̄) : X × X → R with
+
+                       F (x̄ + tk hk ) − F (x̄) − tk F 0 (x̄)hk − 12 t2k F 00 (x̄)h2k
+                    lim                                                               =0       (2)
+                   k→∞                            t2k
+                                                                                           ?
+     for all sequences (hk ) ⊂ X, (tk ) ⊂ R+ := (0, ∞) satisfying tk & 0, hk * h ∈ X
+     and x̄ + tk hk ∈ dom(G).
+
+
+
+                                                 3
+  Note that we use the abbreviations F 0 (x̄)h := hF 0 (x̄), hi and F 00 (x̄)h2 := F 00 (x̄)(h, h)
+for all h ∈ X in (2), and that (2) is automatically satisfied if F admits a second-order
+Taylor expansion of the form
+                                                  1
+                 F (x̄ + h) − F (x̄) − F 0 (x̄)h − F 00 (x̄)h2 = o(khk2X )   as khkX → 0.       (3)
+                                                  2
+  As a second derivative for the functional G, we use the so-called weak-? second
+subderivative.
+Definition 2.2 (Weak-? Second Subderivative). Let x ∈ dom(G) and w ∈ Y be given.
+Then the weak-? second subderivative G00 (x, w; ·) : X → [−∞, ∞] of G at x for w is
+defined by
+                               (                                                            )
+        00                      G(x + tk hk ) − G(x) − tk hw, hk i            ?
+     G (x, w; h) := inf lim inf                                    tk & 0, hk * h .
+                         k→∞                   t2k /2
+
+Remark 2.3. We discuss some properties of G00 (x, w; h) for a convex function G. By
+convexity, we have G00 (x, w; h) ≥ 0 for w ∈ ∂G(x) and all h ∈ X. In case w 6∈ ∂G(x),
+then G00 (x, w; h) = −∞ for at least one h ∈ X: Due to w 6∈ ∂G(x), there exists h ∈ X
+such that G(x + h) − G(x) = hw, hi − τ for some τ > 0. By convexity again, one finds
+ G(x+tk h)−G(x)−tk hw,hi
+          t2 /2
+                         ≤ − t2k τ → −∞.
+             k
+   Let x ∈ int dom G. Then one has G0 (x; h) = supw∈∂G(x) hw, hi for all h ∈ X. Hence,
+one expects G00 (x, w; h) = +∞ if w ∈ ∂G(x) and G0 (x; h) > hw, hi. This is can be proven
+if X is finite-dimensional, since weak-? convergence is equivalent to strong convergence
+and h 7→ G0 (x; h) is Lipschitz continuous.
+   In general, this is not true: Let X = l∞ = (l1 )? , and define G(x) = lim sup(x) −
+lim inf(x), which is convex, globally Lipschitz continuous, but not weak-? lower semi-
+continuous. Let x := 0. Then x is a global minimum of G, so w := 0 ∈ ∂G(x).
+Define h = (+1, −1, +1, −1, . . . ). Then G(th) = 2t and G0 (x; h) = 2 6= hw, hi. Let
+                                                                                     ?
+hk := (+1, −1, +1, −1, . . . , 0, . . . ) with exactly 2k non-zero entries. Then hk * h,
+G(hk ) = 0, and G(x + tk hk ) − G(x) − tk hw, hk i = 0. Hence G00 (x, w; h) = 0.
+Definition 2.4 (Second-Order Epi-Differentiability). Let x ∈ dom(G) and w ∈ Y be
+given. The functional G is said to be weakly-? twice epi-differentiable (respectively, strictly
+twice epi-differentiable, respectively, strongly twice epi-differentiable) at x for w in a
+direction h ∈ X, if for all (tk ) ⊂ R+ with tk & 0 there exists a sequence (hk ) satisfying
+    ?                      ?
+hk * h (respectively, hk * h and khk kX → khkX , respectively, hk → h) and
+                                             G(x + tk hk ) − G(x) − tk hw, hk i
+                         G00 (x, w; h) = lim                                    .               (4)
+                                         k→∞                t2k /2
+
+The functional G is called weakly-?/strictly/strongly twice epi-differentiable at x for w if
+it is weakly-?/strictly/strongly twice epi-differentiable at x for w in all directions h ∈ X.
+  We provide second-order optimality conditions for (P). We start with the second-order
+necessary condition (SNC).
+
+
+
+                                                      4
+Theorem 2.5 (SNC Involving the Second Subderivative). Suppose that x̄ is a local
+minimizer of (P) such that
+                                        c
+                          Φ(x) ≥ Φ(x̄) + kx − x̄k2X                   ∀x ∈ BεX (x̄)           (5)
+                                        2
+holds for some c ≥ 0 and some ε > 0. Assume further that one of the following conditions
+is satisfied.
+  (i) The map h 7→ F 00 (x̄)h2 is sequentially weak-? upper semicontinuous.
+
+ (ii) The functional G is strongly twice epi-differentiable at x̄ for −F 0 (x̄).
+Then
+                      F 00 (x̄)h2 + G00 (x̄, −F 0 (x̄); h) ≥ ckhk2X          ∀h ∈ X.          (6)
+Proof. We first consider the case (i): Let h ∈ X be given. In case G00 (x̄, −F 0 (x̄); h) = ∞,
+(6) holds automatically. Otherwise, it follows from the definition of G00 (x̄, −F 0 (x̄); ·), that
+for every M > G00 (x̄; −F 0 (x̄); h) we can find sequences (hk ) ⊂ X and (tk ) ⊂ R+ such
+                 ?
+that tk & 0, hk * h, xk := x̄ + tk hk and
+                            G(x̄ + tk hk ) − G(x̄) + tk hF 0 (x̄), hk i
+                        lim                                             ≤ M.                  (7)
+                        k→∞                  t2k /2
+
+Since xk → x̄ strongly in X, (5) entails Φ(xk ) ≥ Φ(x̄) + 2c kxk − x̄k2X for large enough k.
+Adding (2) and (7) yields
+
+                                   Φ(x̄ + tk hk ) − Φ(x̄) − 12 t2k F 00 (x̄)h2k
+                        M ≥ lim
+                               k→∞                  t2k /2
+                                                                     
+                            ≥ lim sup ckhk k2 − F 00 (x̄)h2k
+                                 k→∞
+                                                                                  
+                            ≥ lim inf ckhk k2 + lim sup −F 00 (x̄)h2k
+                                k→∞                         k→∞
+                                                                              
+                            = lim inf ckhk k    2
+                                                        − lim inf F 00 (x̄)h2k
+                                k→∞                         k→∞
+                            ≥ ckhk2 − F 00 (x̄)h2 .
+
+Here, we used that the function h 7→ F 00 (x̄)h2 is sequentially weak-? upper semicontinuous.
+Since M > G00 (x̄, −F 0 (x̄); h) was arbitrary, we obtain (6).
+  It remains to prove (6) under assumption (ii). For every h ∈ X we can find sequences
+(hk ) ⊂ X, (tk ) ⊂ R+ such that tk & 0, hk → h, xk := x̄ + tk hk and
+
+                   G(x̄ + tk hk ) − G(x̄) + tk hF 0 (x̄), hk i
+                lim                                            = G00 (x̄, −F 0 (x̄); h)
+               k→∞                  t2k /2
+
+Now, the second-order condition (6) follows analogously to case (i). Note that here
+hk → h implies F 00 (x̄)h2k → F 00 (x̄)h2 .
+
+  We continue with the second-order sufficient condition (SSC).
+
+
+
+                                                        5
+Theorem 2.6 (SSC Involving the Second Subderivative). Assume that the map h 7→
+F 00 (x̄)h2 is sequentially weak-? lower semicontinuous and that
+
+                     F 00 (x̄)h2 + G00 (x̄, −F 0 (x̄); h) > 0       ∀h ∈ X \ {0}.                (8)
+
+Suppose further that
+                                                  ?
+    for all (hk ) ⊂ X, (tk ) ⊂ R+ with hk * 0, tk & 0
+    and khk kX = 1, it is true that
+                                                                                               (NDC)
+                 1                                               1
+                                                                                   
+         lim inf 2 G(x̄ + tk hk ) − G(x̄) + hF 0 (x̄), hk /tk i + F 00 (x̄)h2k
+                                         
+                                                                                        > 0.
+          k→∞    tk                                              2
+
+Then x̄ satisfies the growth condition (5) with some constants c > 0 and ε > 0.
+
+  Note that a first-order condition is hidden in (8), see Remark 2.3. The acronym (NDC)
+stands for “non-degeneracy condition”, compare [Christof and G. Wachsmuth, 2018,
+Theorem 4.4]. We will give a sufficient condition for (NDC) below in Lemma 2.8.
+
+Proof. We do not argue by contradiction. For a sequence (εk ) ⊂ (0, ∞) with εk & 0, we
+define
+                         Φ(x) − Φ(x̄)
+                                                          
+                                              X
+              ck := inf 1           2
+                                        x ∈ Bεk (x̄) \ {x̄} ⊂ [−∞, ∞].
+                          2 kx − x̄kX
+We have to show that ck > 0 for some k ∈ N. Note that ck is increasing and it is sufficient
+to prove that ĉ := limk→∞ ck > 0. By definition of ck , we can find a sequence (xk ) with
+xk → x̄ in X and
+                                         Φ(xk ) − Φ(x̄)
+                                ĉ = lim 1           2
+                                                         .
+                                          2 kxk − x̄kX
+                                    k→∞
+
+Define tk := kxk − x̄kX and hk := (xk − x̄)/tk . Then khk kX = 1 for all k and we may
+                                                    ?
+extract a subsequence (not relabeled) such that hk * h. Now, we utilize (2) and have
+
+                          F (x̄ + tk hk ) − F (x̄) + G(x̄ + tk hk ) − G(x̄)
+                ĉ = lim
+                     k→∞                          t2k /2
+                            G(x̄ + tk hk ) − G(x̄) + tk F 0 (x̄)hk
+                                                                             
+                                                                       00   2
+                    = lim                                          + F (x̄)hk .
+                     k→∞                    t2k /2
+
+In case that h = 0, the condition (NDC) implies that the right-hand side is positive and
+we are done. Otherwise, h 6= 0 and we can use the definition of G00 together with the
+sequential weak-? lower semicontinuity of F 00 (x̄). This leads to
+
+                                ĉ ≥ G00 (x̄, −F 0 (x̄); h) + F 00 (x̄)h2 .
+
+The right-hand side is non-negative by (8) and this finishes the proof.
+
+  By combining the previous two theorems, we arrive at our main theorem on no-gap
+second-order conditions.
+
+
+
+                                                      6
+Theorem 2.7 (No-Gap Second-Order Optimality Condition). Assume that the map
+h 7→ F 00 (x̄)h2 is sequentially weak-? lower semicontinuous, that (NDC) holds, and that
+one of the conditions (i) and (ii) in Theorem 2.5 is satisfied. Then, the condition
+
+                  F 00 (x̄)h2 + G00 (x̄, −F 0 (x̄); h) > 0     ∀h ∈ X \ {0}.
+
+is equivalent to the quadratic growth condition (5) with constants c > 0 and ε > 0.
+
+  We give a sufficient condition for (NDC).
+
+Lemma 2.8. Suppose that h 7→ F 00 (x̄)h2 is sequentially weak-? lower semicontinuous
+and that there exist c, ε > 0 such that
+                                               c
+              G(x) − G(x̄) + F 0 (x̄)(x − x̄) ≥ kx − x̄k2X           ∀x ∈ Bε (x̄).        (9)
+                                               2
+Then, (NDC) is satisfied.
+
+Proof. Let sequences as in (NDC) be given. Then,
+
+                     1                                              1
+                                                                                    
+            lim inf 2 G(x̄ + tk hk ) − G(x̄) + hF 0 (x̄), hk /tk i + F 00 (x̄)h2k
+                                            
+             k→∞     tk                                             2
+                           c 1 00             c                  c
+                                       
+               ≥ lim inf    + F (x̄)h2k ≥ + F 00 (x̄)02 = > 0.
+                   k→∞     2 2                2                  2
+
+3 Second-order derivatives of integral functionals over
+  continuous functions
+Our goal is to apply the theory of Section 2 in the setting X = M(Ω) and Y = C0 (Ω).
+We will see in Section 4 that second subderivatives of integral functionals on M(Ω) can
+be obtained by first studying the pre-conjugate functionals. Therefore, this section is
+devoted to integral functionals
+                                 Z
+                       J(w) :=         j(w(ω)) dλ(ω)         ∀w ∈ C0 (Ω),                (10)
+                                   Ω
+
+where j : R → R is a convex function, Ω ⊂ Rd is a bounded open set. We equip Ω with
+the Borel σ-algebra B(Ω) and the d-dimensional Lebesgue measure λ := λd (restricted to
+Ω). Note that J(w) ∈ R for all w ∈ C0 (Ω). Later, we will choose J such that its convex
+conjugate is equal to G.
+  The main goal of this section is to provide results for the functional J that allow to
+compute the weak-? second subderivative (in the sense of Definition 2.2) of the convex
+conjugate G = J ? , which is a mapping from M(Ω) = C0 (Ω)? to R̄. In particular, we
+are going to compute second-order derivatives of J in two different ways. First, we
+compute second subderivatives similar to Definition 2.2 (but w.r.t. the strong topology)
+in Section 3.1 and, second, we investigate difference quotients of subdifferentials in
+Section 3.2. We will see that (under appropriate assumptions) both approaches leads to
+
+
+
+                                                7
+the same object. These findings will be crucial in Section 4 to prove that G : M(Ω) → R̄
+is strictly twice epi-differentiable in the sense of Definition 2.4.
+   The analysis in this section relies heavily on the following characterization of the
+convex conjugate of integral functionals on continuous functions for finite Carathéodory
+integrands.
+Theorem 3.1 ([Rockafellar, 1971, Corollaries 4A, 4B]). Let Ω ⊂ Rd be open and let
+ν : B(Ω) → [0, ∞] be a σ-finite, regular Borel measure, where B(Ω) is the Borel σ-algebra
+on Ω. We suppose that ι : Ω × R → R is a convex Carathéodory function, i.e., ι(ω, ·) is
+convex and continuous for every ω ∈ Ω and ι(·, x) is measurable for all x ∈ R. Finally,
+we assume that ι(·, x) ∈ L1 (ν) for all x ∈ R. Then, the integral functional I : C0 (Ω) → R
+                                             Z
+                            I(u) :=                  ι(ω, u(ω)) dν(ω)      ∀u ∈ C0 (Ω)
+                                                 Ω
+
+is well-defined, convex and continuous. Its convex conjugate I ? : M(Ω) → R̄ is given by
+                                                    dµ
+                              Z                           
+                    ?                    ?
+                  I (µ) =            ι           ω,    (ω) dν(ω)         ∀µ ∈ M(Ω), µ  ν
+                                 Ω                  dν
+and I ? (µ) = +∞ if µ is not absolutely continuous w.r.t. ν, i.e., if µ  ν does not hold.
+Here, ι? (ω, ·) is the convex conjugate of ι(ω, ·) for every ω ∈ Ω.
+  In addition, µ ∈ ∂I(u) if and only if µ  ν and
+                             dµ
+                                (ω) ∈ ∂ι(ω, u(ω))                  for ν-almost all ω.
+                             dν
+  Note that the Fenchel–Young inequality implies that ι? (ω, ·) ≥ −ι(ω, 0). The right-
+hand side is integrable and thus, the integral in the definition of I ? is well defined (in the
+sense of quasi-integrability).
+
+3.1 Strong second subderivatives
+We start by giving the definition of the strong second subderivatives of J.
+Definition 3.2 (Strong Second Subderivative). Let w ∈ C0 (Ω) and x ∈ M(Ω) be given.
+Then the strong second subderivative J 00 (w, x; ·) : C0 (Ω) → [−∞, ∞] of J at w for x is
+defined by
+                             (                                                               )
+                                     J(w + tk zk ) − J(w) − tk hx, zk i
+       J 00 (w, x; z) := inf lim inf                                    tk & 0, zk → z .
+                              k→∞                  t2k /2
+
+In the case that J is Gâteaux differentiable at w, we will always use x = J 0 (w) and,
+consequently, omit the argument x of J 00 , i.e., we write J 00 (w; ·) instead of J 00 (w, x; ·). If
+for every z ∈ C0 (Ω) and every sequence tk & 0 there exists a sequence zk → z with
+                                                      J(w + tk zk ) − J(w) − tk hx, zk i
+                        J 00 (w, x; z) = lim                                             ,
+                                                  k→∞               t2k /2
+we say that J is strongly-strongly twice epi-differentiable at w for x.
+
+
+
+                                                               8
+   In order to obtain results for a large class of functions, we investigate two prototypical
+situations:
+  • j(w) = max(0, w) with a kink at w = 0,
+  • j ∈ C 1,1 (R) with directional derivatives of second order.
+  We start with the function j = max(0, ·). In order to motivate the upcoming result,
+we give a heuristic derivation based on the coarea formula
+                    Z                             Z Z
+                          ψ(x)|∇u(x)| dλ(x) =                  ψ(x) dHn−1 (x) ds,
+                      Ω                            R u−1 (s)
+
+which holds for Lipschitz continuous u and integrable ψ. Let w ∈ C 1 (Ω) ∩ C0 (Ω) be
+given such that {w = 0} is a compact subset of Ω and assume that ∇w(ω) 6= 0 holds for
+all ω ∈ {w = 0}. This implies that {w = 0} is a C 1 -manifold and has Lebesgue measure
+zero. Therefore, ∂J(w) = {x} with x = χ{w>0} , see Theorem 3.1. For a second function
+z ∈ C 1 (Ω) ∩ Cc (Ω), we are going to calculate
+                            J(w + tz) − J(w) − thx, zi
+                    I := lim
+                           t&0        t2 /2
+                              max(0, w + tz) − max(0, w) − tχ{w>0} z
+                           Z
+                     = lim                                           dλ,
+                       t&0 Ω                   t2 /2
+cf. Definition 2.2. It is easy to check that the integrand vanishes on the set {sign(w) =
+sign(w + tz)}. On its complement Ωt := {sign(w) 6= sign(w + tz)}, the integrand is equal
+to 2|w + tz|/t2 . Now, we formally apply the coarea formula with the functions u = −w/z,
+ψ = |w + tz|/|∇u| and obtain
+                          Z
+                            2|w + tz|            t  Z Z
+                                                               2|w + tz|
+              I = lim                 dλ = lim                           dHn−1 dε,
+                     t&0 Ωt    t2          t&0 0         {u=ε}  t2 |∇u|
+
+where we have used that x ∈ Ωt if and only if 0 < u(x) < t. Now, we plug in the values
+of u and ∇u = −∇w/z + w∇z/z 2 , and use w = −εz in the inner integral to obtain
+                                   2(1 − ε/t)z 2
+                    Z tZ                                                Z t
+                1                                               1                   ε
+                                                                                     
+       I = lim                                   dHn−1 dε = lim                1−     ξ(ε) dε,
+            t&0 t    0    {w+εz=0} |∇w + ε∇z|               t&0 t        0          t
+with
+                                                      2z 2
+                                          Z
+                                 ξ(ε) =                       dHn−1 .
+                                          {w+εz=0} |∇w + ε∇z|
+Since we integrate over a perturbation of the manifold {w = 0}, it is reasonable to expect
+the continuity ξ(ε) → ξ(0) as ε & 0. Consequently, we expect to find
+                                                                         z2
+                              Z t
+                         1                ε          1
+                                                               Z
+              I = lim                1−     ξ(ε) dε = ξ(0) =                 dHn−1 .
+                     t&0 t       0        t          2            {w=0} |∇w|
+
+Our first goal is to derive this equation rigorously and with the relaxed regularity
+requirement z ∈ C0 (Ω), see Lemma 3.7 below.
+   The upcoming theorem is prepared by the next lemma, which studies the one-dimen-
+sional case d = 1.
+
+
+
+                                                   9
+Lemma 3.3. Let w ∈ C 1 (R) be given such that {w = 0} = {0} and w0 (0) 6= 0. Further,
+for z ∈ Cc (R) and t > 0 we define the set
+
+                             Ωt := {sign(w) 6= sign(w + tz)}.
+
+  (i) For each ψ ∈ C(R) we have for t & 0
+
+                                        1            ψ(0)|z(0)|
+                                            Z
+                                                ψ dλ1 →            ,                  (11a)
+                                        t Ωt           |w0 (0)|
+                                1                    ψ(0)z(0)
+                                  Z
+                                     ψ sign(z) dλ1 →             ,                    (11b)
+                                t Ωt                  |w0 (0)|
+                                     1     |w| 1     1 z(0)2
+                                       Z
+                                               dλ →             .                     (11c)
+                                     t Ωt t          2 |w0 (0)|
+
+ (ii) If ε, δ, t0 > 0 are given such that ε < |w0 (0)| and such that
+
+                                                Ωt ⊂ [−δ, δ]    ∀t ∈ (0, t0 )         (12a)
+                                   |z(x) − z(0)| ≤ ε            ∀|x| ≤ δ              (12b)
+                                            0
+                        |w(x) − w(0) − w (0)x| ≤ ε|x|           ∀|x| ≤ δ              (12c)
+
+     hold, then for all t ∈ (0, t0 ) we have
+
+                                λ1 (Ωt )  |z(0)| + 2ε
+                                         ≤ 0          ,                               (13a)
+                                    t     |w (0)| − ε
+                           1   |w| 1 (|z(0)| + 2ε)2 (w0 (0) + ε)
+                             Z
+                                    dλ ≤                         .                    (13b)
+                           t Ωt t                (w0 (0) − ε)2
+
+Proof. W.l.o.g. we consider the case w0 (0) > 0, which implies sign(w(x)) = sign(x) for
+all x ∈ R. First, we will proof (ii). Let ε, δ, t0 > 0 satisfying the assumptions in (ii) be
+given. Further, let t ∈ (0, t0 ) be arbitrary. It is easy to check that
+
+        −z(0) − ε                                                   −z(0) + ε
+   0<x≤t                    ⇒     x ∈ Ωt ∩ (0, ∞)         ⇒    0<x≤t           ,      (14a)
+        w0 (0) + ε                                                  w0 (0) − ε
+        −z(0) + ε                                                   −z(0) − ε
+   0>x≥t 0                  ⇒     x ∈ Ωt ∩ (−∞, 0)        ⇒    0>x≥t 0         .      (14b)
+        w (0) + ε                                                   w (0) − ε
+
+Indeed, the second implication follows from the chain of inequalities
+
+   0 ≥ w(x) + tz(t) ≥ w(0) + w0 (0)x − εx + tz(0) − tε = (w0 (0) − ε)x + t (z(0) − ε)
+
+for x ∈ Ωt ∩ (0, ∞). The other implications follow similarly. From (14a) and (14b) we get
+
+             λ1 (Ωt )   max{0, ε − z(0)} + max{0, z(0) + ε}  |z(0)| + 2ε
+                      ≤                0
+                                                            ≤ 0          ,
+                 t                   w (0) − ε                w (0) − ε
+
+
+
+
+                                                10
+i.e., (13a). From (14a) and (14b) we have |w(x)| ≤ (w0 (0) + ε)|x| ≤ (w0 (0) + ε)t |z(0)|+ε
+                                                                                      w0 (0)−ε .
+Together with (13a), this shows (ii).
+   In order to validate (i), let ε ∈ (0, w0 (0)) be arbitrary. Then, there exists δ > 0, such
+that (12b) and (12c) are satisfied. Let K be the support of z and define
+
+       c := inf{|w(x)| | x ∈ K \ (−δ, δ)} > 0,                       C := sup{|z(x)| | x ∈ K} < ∞.
+
+Then, for t0 := c/C we have sign(w(x)) = sign(w(x) + tz(x)) for all x ∈ K \ (−δ, δ) and
+this shows (12a). Thus, the first part of the proof shows (14). From the continuity of
+ψ, (11a) and (11b) follow easily. It remains to show (11c). In case z(0) = 0, this follows
+directly from (13b). We focus on the case z(0) > 0, the remaining case z(0) < 0 is similar.
+W.l.o.g., we assume ε < z(0). Since the integrand is positive, (14) implies
+                                       2       Z t −z(0)−ε
+        1 0            −z(0) − ε
+                      
+                                                      w0 (0)+ε
+          (w (0) − ε) t 0                   =                    (w0 (0) − ε)x dλ1 (x)
+        2              w (0) + ε                 0
+                                                Z                     Z t −z(0)+ε
+                                                                             w0 (0)−ε
+                                            ≤         |w| dλ ≤   1
+                                                                                        (w0 (0) + ε)x dλ1 (x)
+                                                 Ωt                      0
+                                                                                          2
+                                             1              −z(0) + ε
+                                                                     
+                                            = (w0 (0) + ε) t 0                                 .
+                                             2              w (0) − ε
+
+After division by t2 , the left-hand side and the right-hand side converge to z(0)2 /(2w0 (0))
+as ε & 0. This shows (11c).
+
+  Using standard coordinate transform arguments, this result can be lifted to the d-
+dimensional situation.
+
+Theorem 3.4. Let w ∈ C 1 (Ω) be given such that ∇w 6= 0 on {w = 0}. Further, let
+z ∈ Cc (Ω) be given. For all t > 0, we define Ωt := {sign(w) 6= sign(w + tz)}. Then, for
+all ψ ∈ C(Ω) we have
+
+                                   1                  ψ|z|
+                                       Z                 Z
+                                            ψ dλ →         dHd−1 ,                                              (15a)
+                                   tΩt         {w=0} |∇w|
+                          1                           ψz
+                            Z                 Z
+                               ψ sign(z) dλ →              dHd−1 ,                                              (15b)
+                          t Ωt                 {w=0} |∇w|
+                               1     |w|      1                     z2
+                                   Z                         Z
+                                         dλ →                           dHd−1                                   (15c)
+                               t   Ωt t       2              {w=0} |∇w|
+
+as t & 0.
+
+  Here, Hd−1 is the usual (d − 1)-dimensional Hausdorff measure. Note that Hd−1d
+coincides with the surface measure on the manifold {w = 0}.
+
+Proof. We prove (15a), the remaining limits can be verified by analogous arguments. We
+start by a local result. We set Z = {w = 0} ∩ supp z, which is a compact subset of Ω. Let
+
+
+
+
+                                                       11
+a point p ∈ Z, a bounded open set B ⊂ Rd−1 , an open interval I = (a, b) and γ ∈ C 1 (B̄)
+be given such that
+               p ∈ B × I,             B × I ⊂ Ω,            Z ∩ (B × I) = {(x, γ(x)) | x ∈ B}            (16a)
+              W := {(x, y) | x ∈ B, |y − γ(x)| < ε} ⊂ B × I,                     ∂d w(p) > 0             (16b)
+for some ε > 0. Further, let ϕ ∈ Cc (B × I) be given.
+  For all x ∈ B we define the cross section
+      Ωt,x := {y ∈ I | (x, y) ∈ Ωt } = {y ∈ I | sign(w(x, y)) 6= sign((w + tz)(x, y))}.
+By Fubini, we have
+                  1                               1
+                       Z                        Z     Z
+                                    ψϕ dλ =                    ψ(x, y)ϕ(x, y) dλ1 (y) dλd−1 (x).
+                  t     Ωt ∩(B×I)               B t     Ωt,x
+
+Now, we can apply (11a) for all x ∈ B and obtain
+      1                                              ψ(x, γ(x))ϕ(x, γ(x))|z(x, γ(x))|
+          Z
+                  ψ(x, y)ϕ(x, y) dλ1 (y) →                                                     ∀x ∈ B.
+      t    Ωt,x                                              |∂d w(x, γ(x))|
+In order to pass to the limit in the outer integral, we need an upper bound. To this end,
+let 0 < ε < inf{|∂wd (x, γ(x))| | x ∈ B} be given. By uniform continuity, we find δ > 0,
+such that
+                                    |z(x, γ(x) + h) − z(x, γ(x))| ≤ ε                ∀|h| ≤ δ, x ∈ B
+          |w(x, γ(x) + h) − w(x, γ(x)) − ∂d w(x, γ(x))h| ≤ ε|h|                      ∀|h| ≤ δ, x ∈ B
+hold. Similarly to the proof of Lemma 3.3 (i), we find t0 > 0, such that Ωt,x ⊂ γ(x)+[−δ, δ].
+Thus, we can apply Lemma 3.3 (ii), and this yields the integrable bound
+              1                                1                 |z(x, γ(x))| + 2ε
+                  Z
+                       ψ(x, y)ϕ(x, y) dλ1 (y) ≤ λ1 (Ωt,x )M ≤ M
+              t   Ωt,x                         t                |∂d w(x, γ(x))| − ε
+
+where M is an upper bound for |ψϕ|. Thus, we can apply the dominated convergence
+theorem to obtain
+              1                                 ψ(x, γ(x))ϕ(x, γ(x))|z(x, γ(x))| d−1
+                  Z                         Z
+                                  ψϕ dλ →                                       dλ (x).
+              t       Ωt ∩(B×I)               B         |∂d w(x, γ(x))|
+By differentiating w(x, γ(x)) = 0, we obtain −∂i w(x, γ(x)) = ∂d w(x, γ(x))∂i γ(x) for all
+i = 1, . . . , d − 1. Thus,
+                               |∇w(x, γ(x))|2 = |∂d w(x, γ(x))|2 (|γ 0 (x)|2 + 1).
+This yields
+               ψϕ|z|                                      ψϕ|z|
+       Z                                            Z                 q
+                      |        dλd−1 (x) =                       |(x,γ(x)) 1 + |γ 0 (x)|2 dλd−1 (x)
+          B    |∂d w| (x,γ(x))                         B |∇w|
+                                                               ψϕ|z|
+                                                      Z
+                                                    =                 dHd−1 .
+                                                       Z∩(B×I) |∇w|
+
+
+
+
+                                                           12
+The compact set Z can be covered by finitely many, possibly rotated and translated
+sets B × I of type (16). The proof is then finished using a standard partition-of-unity
+argument.
+
+  As in Theorem 3.4, we will often work with w ∈ C 1 (Ω) such that {w = 0} ∩ {∇w =
+0} = ∅. This condition means ∇w 6= 0 everywhere on {w = 0}. From Stampacchia’s
+lemma, we have ∇w = 0 a.e. on {w = 0}. Thus, λ({w = 0}) = 0. We will now apply
+Theorem 3.4 to obtain a second-order expansion of w 7→ max(w, 0).
+Lemma 3.5. Define j : R → R by j(w) := max(w, 0). Let w ∈ C 1 (Ω) be given such that
+{w = 0} ∩ {∇w = 0} = ∅. Let zk → z in C(Ω̄) with supp zk ⊂ K for some compact
+K ⊂ Ω. Let tk & 0. Then we have
+       2                                                                      z2
+                  Z                                                   Z
+    lim                j(w + tk zk ) − j(w) − tk j 0 (w; zk ) dλ =                dHd−1 ∈ [0, ∞)            (17)
+   k→∞ t2
+        k          Ω                                                   {w=0} |∇w|
+for k → ∞.
+Proof. We first consider the situation that zk does not depend on k. We define the set
+Ωk := {sign(w) 6= sign(w + tk z)} and have
+      Z                                                     Z                      Z
+              j(w + tk z) − j(w) − tk j 0 (w; z) dλ =            |w + tk z| dλ =         tk |z| − |w| dλ.
+          Ω                                                 Ωk                      Ωk
+
+Now, the claim follows from (15b) and (15c).
+  For the general case, we consider
+          Z                                                      Z
+                                                0
+  Ik :=           j(w + tk zk ) − j(w) − tk j (w; zk ) dλ −           j(w + tk z) − j(w) − tk j 0 (w; z) dλ
+          ZΩ                                                      Ω
+
+     =            j(w + tk zk ) − j(w + tk z) − tk j 0 (w; zk − z) dλ.
+              Ω
+
+Here, we used λ({w = 0}) = 0, which implies j 0 (w; zk ) − j 0 (w; z) = j 0 (w; zk − z). The
+absolute value of the integrand can be estimated by 2tk |zk − z|, and it vanishes on the
+complement of Ak := {|w| ≤ (kzkL∞ (λ) + kzk kL∞ (λ) )tk } ∩ K. By [Deckelnick and Hinze,
+2012, Lemma 3.2], there exists c > 0 such that λ(Ak ) ≤ c(kzkL∞ (λ) +kzk kL∞ (λ) )tk . Hence,
+it follows
+                           2        4
+                           2 |Ik | ≤ λ(Ak )kzk − zkL∞ (λ) → 0,
+                          tk        tk
+which proves the claim for the general case.
+
+  In the next step, we want to drop the assumption that z is compactly supported in Ω.
+Interestingly, the result of the previous Lemma 3.5 is not valid anymore in this case. In
+particular, we can no longer choose zk ≡ z in (17), as the following example shows.
+Example 3.6. We take Ω = (0, 2) ⊂ R. On (0, 1), the functions w and z are given
+by w(s) = s3 and z(s) = −s. We extend these functions to (0, 2), such that w ∈
+C 1 (Ω) ∩ C0 (Ω), z ∈ C0 (Ω) and w > 0, w + z > 0 on (1, 2). For t ∈ (0, 1), we set
+                                                              √
+                         Ωt := {sign(w) 6= sign(w + tz)} = (0, t].
+
+
+
+                                                       13
+A short computation shows
+                                                                         Z √t
+                                                                                                     t2
+                 Z
+                                                    0
+                         j(w + tz) − j(w) − tj (w; z) dλ =                         ts − s3 dλ(s) =      .
+                     Ω                                                     0                         4
+Hence
+                                   2                                         1
+                                       Z
+                               lim 2      j(w + tz) − j(w) − tj 0 (w; z) dλ = .
+                               t→0 t    Ω                                    2
+                                           R          z2     d−1 vanishes due to {w = 0} = ∅. Hence,
+However, the boundary integral                 {w=0} |∇w| dH
+(17) is not true for zk ≡ z.
+
+   This example shows that we cannot expect (17) to hold for all sequences (zk ) converging
+to some non-compactly supported z. In the next lemma, we show that there exists a
+sequence (zk ) ⊂ Cc (Ω) with zk → z in C0 (Ω) such that equality holds in the limit (17).
+In the general case, we have to replace in (17) the limit by limit inferior and the equality
+sign by an inequality sign.
+
+Lemma 3.7. Define j : R → R by j(w) := max(w, 0). Let w ∈ C 1 (Ω) be given such that
+{w = 0} ∩ {∇w = 0} = ∅. Let z ∈ C0 (Ω) be given. For all sequences tk & 0 and zk → z
+in C0 (Ω), we have
+
+            2                                                                             z2
+                 Z                                                              Z
+      lim inf            j(w + tk zk ) − j(w) − tk j 0 (w; zk ) dλ ≥                          dHd−1 ∈ [0, ∞].
+        k→∞ t2
+             k       Ω                                                             {w=0} |∇w|
+
+Moreover, for every sequence tk & 0 there exists Cc (Ω) 3 zk → z in C0 (Ω), such that
+
+             2                                                                         z2
+                 Z                                                             Z
+                                                        0
+         lim         j(w + tk zk ) − j(w) − tk j (w; zk ) dλ =                             dHd−1 ∈ [0, ∞].
+        k→∞ t2
+             k   Ω                                                              {w=0} |∇w|
+
+Proof. Let tk & 0 and zk → z in C0 (Ω) be arbitrary. For every ψ ∈ Cc (Ω), 0 ≤ ψ ≤ 1,
+we have
+  Z                                                             Z
+        j(w + tk zk ) − j(w) − tk j 0 (w; zk ) dλ ≥                  ψ(j(w + tk zk ) − j(w) − tk j 0 (w; zk )) dλ
+    Ω                                                           ZΩ
+                                                            ≥        j(w + tk ψzk ) − j(w) − tk j 0 (w; ψzk ) dλ,
+                                                                Ω
+
+where we used the non-negativity of the integrand in the first inequality, and the convexity
+of j and positive homogeneity of j 0 in the second inequality. For the term on the right-hand
+side, we can apply Lemma 3.5 and obtain
+
+                2                                                                            (ψz)2
+                          Z                                                           Z
+           lim inf             j(w + tk zk ) − j(w) − tk j 0 (w; zk ) dλ ≥                         dHd−1 .
+            k→∞ t2
+                 k         Ω                                                           {w=0} |∇w|
+
+Taking the supremum over all possible ψ yields the first claim.
+   To address the second claim, we start by a sequence Cc (Ω) 3 ẑn → z such that |ẑn |
+is monotonically increasing. We use a diagonal sequence argument as in [Christof and
+
+
+
+                                                            14
+G. Wachsmuth, 2019, Lemma 2.12(ii)]: Due to Lemma 3.5, we find a strictly increasing
+sequence Kn such that
+
+             2                                                                     ẑn2         1
+                   Z                                                        Z
+                                                           0
+                         j(w + tk ẑn ) − j(w) − tk j (w; ẑn ) dλ −                    dHd−1 ≤
+             t2k    Ω                                                       {w=0} |∇w|          n
+
+holds for all n ∈ N and k ≥ Kn . We redefine K1 := 1 and set nk := sup{n ∈ N | Kn ≤ k}
+for all k ∈ N, which is finite, since Kn → ∞. Then, it holds k ≥ Knk for all k by definition
+and nk → ∞ monotonously for k → ∞. Now, we define zk := ẑnk and this yields
+
+       2                                                                       zk2         1
+             Z                                                          Z
+                                                       0
+                   j(w + tk zk ) − j(w) − tk j (w; zk ) dλ −                       dHd−1 ≤    → 0,
+       t2k    Ω                                                         {w=0} |∇w|         nk
+
+where the inequality holds for all k ∈ N with nk ≥ 2. Due to nk → ∞, we have zk → z
+in C0 (Ω). Since (nk ) is monotonically increasing, |zk | is monotonically increasing as well.
+Thus, the monotone convergence theorem yields
+
+                                           zk2                             z2
+                                  Z                                 Z
+                                               dHd−1 →                         dHd−1 .
+                                    {w=0} |∇w|                      {w=0} |∇w|
+
+This proves the second claim.
+
+  This lemma shows that J is strongly-strongly twice epi-differentiable in the sense of
+Definition 3.2 and the strong second subderivative is given by
+
+                                                                  z2
+                                                           Z
+                                         J 00 (w; z) =                dHd−1 .                             (18)
+                                                           {w=0} |∇w|
+
+  Next, we address a function j without kinks.
+
+Lemma 3.8. Let j ∈ C 1 (R) with locally Lipschitz continuous j 0 and such that
+                                                   2
+                              j 00 (w; z) := lim       (j(w + tẑ) − j(w) − tj 0 (w)ẑ) ∈ R
+                                           t&0 t2
+                                           ẑ→z
+
+exists for all w, z ∈ R.
+   Let w ∈ C 1 (Ω) be bounded. Let zk → z in C(Ω̄). Let tk & 0. Then we have
+                   2
+                         Z                                                      Z
+                              j(w + tk zk ) − j(w) − tk j 0 (w)zk dλ →              j 00 (w; z) dλ ∈ R.
+                   t2k    Ω                                                     Ω
+
+for k → ∞.
+
+Proof. By the boundedness of w and the Lipschitz continuity of j 0 , t22 (j(w +tk zk )−j(w)−
+                                                                                            k
+tk j 0 (w)zk ) is uniformly bounded. Then the claim follows by dominated convergence.
+
+
+
+
+                                                               15
+Remark 3.9. It is an open question, whether the integral functional in Lemma 3.8 is
+strongly-strongly twice epi-differentiable on C0 (Ω) if j is assumed to be second-order
+epi-differentiable, only. In particular, the existence of a recovery sequence seems to be
+impossible to prove. For differentiation of integral functionals on Lp -spaces, this was
+done in [Do, 1992, Section 5] for convex and in [Levy, 1993] for non-convex functions.
+In order to construct the recovery sequence, a selection theorem for measurable multi-
+functions was used [Levy, 1993, Thm. 1.4]. It is unclear, under which assumptions on
+j this multi-function allows for a continuous selection without assuming continuity of
+w 7→ j 00 (w; z).
+
+Remark 3.10. Since j : R → R, we can omit the limit ẑ → z in the definition of j 00 (w; z),
+i.e., it is sufficient to require
+                                       2
+                     j 00 (w; z) = lim 2 (j(w + tz) − j(w) − tj 0 (w)z) ∈ R.
+                                   t&0 t
+
+By construction, z 7→ j 00 (w; z) is positively 2-homogeneous. Hence, j 00 (w; ·) is determined
+by the values j 00 (w; z) for z ∈ {−1, +1}.
+
+   By combining the previous two lemmas, we obtain the convergence of a second-order
+difference quotient associated with piecewise smooth functions.
+
+Assumption 3.11. Let j0 ∈ C 1 (R) with locally Lipschitz continuous j00 be given such
+that
+                                 2
+              j000 (w; z) := lim 2 (j0 (w + tz) − j0 (w) − tj00 (w)z) ∈ R
+                             t&0 t
+
+exists for all w, z ∈ R. Let m ∈ N, positive numbers ai , i = 1 . . . m, and distinct numbers
+bi ∈ R, i = 1 . . . m be given. We define j : R → R and J : C0 (Ω) → R via
+                                      m
+                                      X                                           Z
+           j(w) := j0 (w) +                 ai |w − bi |,               J(w) :=        j(w(ω)) dλ(ω).
+                                      i=1                                          Ω
+
+
+Theorem 3.12. We consider the setting of Assumption 3.11. Let a bounded w ∈ C 1 (Ω)
+be given such that
+                   {w = bi } ∩ {∇w = 0} = ∅     ∀i = 1 . . . m.               (19)
+Then J is (Gâteaux) differentiable at w with
+                                            Z                m                    
+                            0
+                                                  j00 (w) +
+                                                              X
+                        J (w)z =                                    ai sign(w − bi ) z dλ.
+                                             Ω                i=1
+
+For z ∈ C0 (Ω), we define
+                                                       m
+                                                                             z2
+                            Z                                      Z
+           J 00 (w; z) :=           j000 (w; z) dλ +
+                                                       X
+                                                             2ai                 dHd−1 ∈ (−∞, ∞].       (20)
+                                Ω                      i=1          {w=bi } |∇w|
+
+
+
+
+                                                              16
+Let z ∈ C0 (Ω) be given. For all sequences tk & 0 and zk → z in C0 (Ω), we have
+
+                             J(w + tk zk ) − J(w) − tk J 0 (w)zk
+                        lim inf                                  ≥ J 00 (w; z).
+                         k→∞                t2k /2
+
+Moreover, for every sequence tk & 0 there exists Cc (Ω) 3 zk → z in C0 (Ω), such that
+
+                             J(w + tk zk ) − J(w) − tk J 0 (w)zk
+                          lim                                    = J 00 (w; z).
+                         k→∞                t2k /2
+
+Thus, J is strongly-strongly twice epi-differentiable at w for J 0 (w) with J 00 (w, J 0 (w); z) :=
+J 00 (w; z).
+
+Proof. We can write |w − bi | = 2 max(w − bi , 0) − (w − bi ). The functions wi := w − bi
+satisfy the requirements of Lemma 3.7. The first claim is now a direct consequence
+of Lemma 3.7 and Lemma 3.8. To prove the second claim, i.e., the existence of a
+recovery sequence, we use the diagonal sequence argument of the proof of Lemma 3.7.
+Let Cc (Ω) 3 ẑn → z be a sequence such that |ẑn | is monotonically increasing. Define
+ji (w) := max(w − bi , 0). Then define a strictly increasing sequence Kn ∈ N with the
+property that
+
+          2                                                                      ẑn2         1
+                Z                                                       Z
+                    ji (w + tk ẑn ) − ji (w) − tk ji0 (w; ẑn ) dλ −                 dHd−1 ≤
+          t2k   Ω                                                       {w=bi } |∇w|          n
+
+holds for all i = 1 . . . m, n ∈ N, and k ≥ Kn . This is possible due to Lemma 3.5. Now we
+can conclude as in the proof of Lemma 3.7. Due to Lemma 3.8 we get the convergence of
+the second-order difference quotients for the full functional J.
+
+Corollary 3.13. We consider the setting of Assumption 3.11 with a convex j0 . Let a
+bounded w ∈ C 1 (Ω) satisfy (19). Then the mapping z 7→ J 00 (w; z) is convex.
+
+  It remains to compute the convex conjugate of z 7→ J 00 (w; z). For a measurable subset
+Z ⊂ Ω, we utilize the measure Hd−1 |Z given by
+
+                             Hd−1 |Z (A) := Hd−1 (A ∩ Z)                ∀A ∈ B(Ω).
+
+Theorem 3.14. We consider the setting of Assumption 3.11 with a convex j0 . Let a
+bounded w ∈ C 1 (Ω) satisfy (19). We set
+                                                     m
+                                                     [
+                                              Z :=       {w = bi }                                (21)
+                                                     i=1
+
+and define a : Z → R by
+                                          a(ω) = ai if w(ω) = bi .
+Assume
+                                               1
+                                          Z
+                                                  dHd−1 < +∞.                                     (22)
+                                           Z |∇w|
+
+
+
+
+                                                       17
+Let µ ∈ M(Ω). If there exist densities v1 ∈ L1 (λ), v2 ∈ L1 (Hd−1 |Z ) such that µ =
+v1 λ + v2 Hd−1 |Z then
+                      ?                                                               ?
+           1 00             1                 |∇w| 2                      1 00
+                                       Z                         Z                 
+             J (w; ·) (µ) =                       v2 dHd−1 +                j0 (w; ·) (v1 ) dλ ∈ [0, +∞].
+           2                2                Z 2a                     Ω   2
+                           ?
+                 1 00
+otherwise        2 J (w; ·)      (µ) = +∞.
+
+Proof. We are going to apply Theorem 3.1. To this end, we have to write 12 J 00 (w; ·) as
+an integral functional. Therefore, we define the measure
+
+                                                   ν := λ + Hd−1 |Z
+
+and the integrand ι : Ω × R → R by
+                                                     
+                                                     2a(ω)
+                                                1  |∇w(ω)| z 2            if ω ∈ Z,
+                                     ι(ω, z) :=
+                                                2 j000 (w(ω); z)          if ω 6∈ Z.
+
+Note that we have λ(Z) = 0. Thus
+   Z                                 Z                            Z
+        ι(ω, z(ω)) dν(ω) =                ι(ω, z(ω)) dν(ω) +              ι(ω, z(ω)) dν(ω)
+    Ω                                Z                             Ω\Z
+                                     Z                                     Z
+                                                          d−1
+                                 =        ι(ω, z(ω)) dH         |Z (ω) +          ι(ω, z(ω)) dλ(ω)
+                                     Z                                      Ω\Z
+                                   1      2a(ω) 2                1
+                                         Z                                        Z
+                                 =              z dHd−1 |Z (ω) +          j 00 (w(ω), z(ω)) dλ(ω)
+                                   2 Z |∇w(ω)|                   2 Ω\Z 0
+                                   1      2a(ω) 2              1
+                                     Z                           Z
+                                 =                  d−1
+                                                z dH (ω) +         j 00 (w(ω), z(ω)) dλ(ω)
+                                   2 Z |∇w(ω)|                 2 Ω 0
+                                   1
+                                 = J 00 (w; z).
+                                   2
+It is clear that ν satisfies the assumptions of Theorem 3.1 and that ι is a convex
+Carathéodory function. The integrability ι(·, x) ∈ L1 (ν) for all x ∈ R is a consequence of
+(22). Thus, all assumptions of Theorem 3.1 are satisfied and therefore, we obtain
+                                                    R           
+                      
+                          1
+                                         ?          ι? ω, dµ (ω) dν(ω)              if µ  ν,
+                                                       Ω    dν
+                            J(w; ·)           (µ) =
+                          2                         +∞                               otherwise
+
+for all µ ∈ M(Ω). Next, we compute the conjugate of ι(ω, ·). From the definition of ι,
+we get                          
+                                 1 |∇w(ω)| y 2      if ω ∈ Z,
+                    ι? (ω, y) := 2 1 2a(ω)     ?
+                                 j 00 (w(ω); ·) (y) if ω 6∈ Z.
+                                    2 0
+
+Since the measures λ and Hd−1 |Z are singular, it is clear that µ  ν if and only if
+
+                                         µ|Ω\Z  λ       and    µ|Z  Hd−1 |Z .
+
+
+
+                                                           18
+This is, in turn, equivalent to the existence of densities v1 ∈ L1 (λ), v2 ∈ L1 (Hd−1 |Z ) such
+that µ = v1 λ + v2 Hd−1 |Z . In this case we have
+                           ?
+                 1
+                                 Z                                Z
+                   J(w; ·) (µ) =           ι? (ω, v1 (ω)) dλ(ω) +        ι? (ω, v2 (ω)) dHd−1 (ω).
+                 2                  Ω                               Z
+                                                                                           ?
+                                                                                1
+From the structure of ι? , the assertion of the structure of                    2 J(w; ·)        (µ) follows.
+                        ?
+  Since 21 j000 (w(ω); ·) (y) ≥ −j000 (w(ω); 0) = 0 by definition of convex conjugation, the
+                               ?
+non-negativity of 12 J 00 (w; ·) (µ) follows.
+
+Remark 3.15. As j0 : R → R, we have
+
+                                 j000 (w(ω); z) = j000 (w(ω); sign(z))z 2 ,
+
+which implies
+                                           
+                1 00           ?     1 00    1
+                                                         y2             if j000 (w(ω); sign(y)) 6= 0,
+                            
+                  j0 (w(ω); ·) (y) = 2 j0 (w(ω);sign(y))
+                2                   δ (y)
+                                       {0}                              otherwise.
+
+3.2 Difference quotients of subdifferentials
+Next, we study the limiting behaviour of a difference quotient of subdifferentials, i.e., we
+show that
+                                   ∂J(w + tk z) − ∂J(w)
+                              hk ∈
+                                              tk
+converges in an appropriate way towards an element from 12 ∂J 00 (w, x; ·)(z), where x ∈
+∂J(w) under appropriate assumptions on w and z. Again, we separate the smooth part
+in J from the kinks.
+
+Lemma 3.16. Let J be defined via (10) with j(w) := max(w, 0). Let w ∈ C 1 (Ω) be
+given such that {w = 0} ∩ {∇w = 0} = ∅ and choose x ∈ ∂J(w). Further, let z ∈ Cc (Ω)
+be arbitrary. Then, for every sequence (tk ) ⊂ R+ with tk & 0, we can select a sequence
+(hk ) ⊂ M(Ω) with
+                                 ∂J(w + tk z) − x
+                           hk ∈                       ∀k ∈ N
+                                       tk
+such that
+                                       ?
+                                 hk * h,           khk kM(Ω) → khkM(Ω) ,                                        (23)
+where h ∈ 21 ∂J 00 (w, x; ·)(z).
+
+  Note that the structural assumption on w implies that ∂J(w) and ∂J 00 (w, x; ·)(z)
+are a singletons, i.e., x and h are uniquely determined by w. Moreover, we even have
+hk ∈ L1 (λ), but the limit is, in general, only a measure.
+
+
+
+
+                                                       19
+Proof. We define
+                               xk := χ{w+tk z>0} + χ{w+tk z=0,w<0}
+and hk := (xk − x)/tk . Then, it is clear that xk ∈ ∂J(w + tk z) and an easy distinction
+by cases shows
+                                         1
+                                   hk = sign(z)χΩk ,
+                                         tk
+where Ωk := {sign(w) 6= sign(w + tk z)}. Further, we note that the measure h satisfies
+                                            ψz
+                                    Z
+                       hh, ψi =                 dHd−1              ∀ψ ∈ C0 (Ω),
+                                     {w=0} |∇w|
+
+see (18). In order to prove (23), we are going to apply Theorem 3.4. For an arbitrary
+ψ ∈ C0 (Ω), we apply (15b) to obtain
+                         1                                         ψz
+                               Z                            Z
+              hhk , ψi =            ψ sign(z) dλ →                     dHd−1 = hh, ψi.
+                         tk    Ωk                           {w=0} |∇w|
+The convergence of norms follows from
+                              |z|                                                      1
+                      Z                                                                     Z
+         khkM(Ω) =                dHd−1 ,              khk kM(Ω) = khk kL1 (λ) =                 1 dλ
+                       {w=0} |∇w|                                                      tk   Ωk
+
+and (15a).
+
+   Next, we address differentiable integrands. To this end, we show that the differentiability
+assumption on j from Lemma 3.8 is equivalent to the directional differentiability of the
+first derivative.
+Lemma 3.17. Let j ∈ C 1 (R) with locally Lipschitz continuous j 0 and w, z ∈ R be given.
+Then, the statements
+  (i) j 00 (w; z) := limt&0 t22 (j(w + tz) − j(w) − tj 0 (w)z) ∈ R exists
+                               0             0
+ (ii) D2 j(w; z) := limt&0 j (w+tz)−j
+                                  t
+                                      (w)
+                                          ∈ R exists
+are equivalent and we have j 00 (w; z) = D2 j(w; z)z.
+Proof. “(ii)⇒(i)”: From (ii) we have j 0 (w + sz) − j 0 (w) = D2 j(w; z)s + o(s) as s & 0.
+Thus, the fundamental theorem of calculus implies
+
+                                                                                                t2
+                                        Z t
+                           0
+                                                 j 0 (w + sz) − j 0 (w) z ds = D2 j(w; z)          z + o(t2 )
+                                                                     
+    j(w + tz) − j(w) − tj (w)z =
+                                         0                                                      2
+as t & 0. This proves (i) with j 00 (w; z) = D2 j(w; z)z.
+  “(i)⇒(ii)”: In case z = 0, the assertion is clear. It is sufficient to consider z 6= 0. We
+denote by L the Lipschitz constant of j 0 on [w − |z|, w + |z|]. Further, we define
+
+                                                                         t2 00
+                      q(t) := j(w + tz) − j(w) − tj 0 (w)z −               j (w; z).
+                                                                         2
+
+
+                                                       20
+Let ε ∈ (0, 1) be arbitrary. Due to (i), there exists t̂ = t̂ε ∈ (0, 1] such that
+
+                                       |q(t)| ≤ εt2         ∀t ∈ [0, t̂].
+                                                        √
+For an arbitrary t1 ∈ (0, t̂], we fix t0 := (1 −            ε)t1 ∈ (0, t1 ). Then we have
+
+     q(t1 ) − q(t0 )   j(w + t1 z) − j(w + t0 z)                               t1 − t0 00
+                     =                           − j 0 (w)z − t1 j 00 (w; z) +        j (w; z).
+        t1 − t0                 t1 − t0                                           2
+
+Using the Lipschitz continuity of j00 , we get
+                                                               Z t1 0
+         j(w + t1 z) − j(w + t0 z)                                 j (w + sz)z − j 0 (w + t1 z)z
+                                   − j 0 (w + t1 z)z =                                             ds
+                  t1 − t0                                       t0               t1 − t0
+                                                               L 2
+                                                           ≤     z (t1 − t0 ).
+                                                               2
+Putting these expressions together, we find
+    0
+    j (w + t1 z) − j 0 (w) z − t1 j 00 (w; z)
+                           
+
+                             j(w + t1 z) − j(w + t0 z) q(t0 ) − q(t1 ) t1 − t0 00
+        = j 0 (w + t1 z)z −                              +              −         j (w; z)
+                                         t1 − t0              t0 − t1       2
+          L                   t2 + t20 t1 − t0 00               L 2       1              √
+                                                                                       
+        ≤ z 2 (t1 − t0 ) + ε 1           +       |j (w; z)| ≤     z + 2 + |j 00 (w; z)|    εt1 .
+          2                   t1 − t0         2                 2         2
+
+Since t1 ∈ (0, t̂ε ], ε ∈ (0, 1) were arbitrary, (ii) follows with D2 j(w, z) = j 00 (w; z)/z.
+
+Remark 3.18. The statement (ii)⇒(i) in Lemma 3.17 holds without the Lipschitz
+assumption on j 0 and this follows directly from the proof. The example j(s) = s3 sin(s−1 )
+shows that the other direction may fail in absence of the Lipschitz assumption, since
+j 0 (s) = 3s2 sin(s−1 ) − s cos(s−1 ) fails to be differentiable at s = 0.
+
+Lemma 3.19. Let J be defined via (10) with j ∈ C 1 (R) with locally Lipschitz continuous
+j 0 , such that one of the assumptions of Lemma 3.17 is satisfied. Let w ∈ C 1 (Ω) be
+bounded and set x = J 0 (w). Further, let z ∈ C0 (Ω) be arbitrary. Then, for every sequence
+(tk ) ⊂ R+ with tk & 0, the sequence (hk ) ⊂ M(Ω) with
+
+                                           J 0 (w + tk z) − x
+                               hk :=                                 ∀k ∈ N
+                                                   tk
+satisfies
+                                   ?
+                               hk * h,           khk kM(Ω) → khkM(Ω) ,                                  (24)
+where h ∈ M(Ω) is defined via
+                                       Z
+                           hh, ψi =         D2 j(w; z)ψ dλ           ∀ψ ∈ C0 (Ω).
+                                        Ω
+
+
+
+
+                                                      21
+Proof. We take xk ∈ J 0 (w + tk z) and have
+                                      Z                                             Z
+                        hxk , ψi =         j 0 (w + tk z)ψ dλ,           hx, ψi =         j 0 (w)ψ dλ.
+                                       Ω                                              Ω
+Thus,
+                        j 0 (w + tk z) − j 0 (w)                                      j 0 (w + tk z) − j 0 (w)
+                  Z                                                               Z
+   hhk , ψi =                                    ψ dλ,            khk kM(Ω) =                                  dλ.
+                      Ω            tk                                               Ω            tk
+                                                       ?
+By dominated convergence, we get hk * h and khk kM(Ω) → khkM(Ω) .
+
+  In the setting of Lemma 3.19, we even have h, hk ∈ L1 (λ).
+  Now, we combine Lemmas 3.16 and 3.19.
+Theorem 3.20. We consider the setting of Assumption 3.11 with a convex j0 . Let a
+bounded w ∈ C 1 (Ω) be given such that (19) holds and choose x ∈ ∂J(w). Further, let
+z ∈ Cc (Ω) be arbitrary. Then, for every sequence (tk ) ⊂ R+ with tk & 0, we can select a
+sequence (hk ) ⊂ M(Ω) with
+                                                 ∂J(w + tk z) − x
+                                          hk ∈                                ∀k ∈ N                             (25)
+                                                       tk
+such that
+                                            ?
+                                       hk * h,         khk kM(Ω) → khkM(Ω) ,                                     (26)
+where h ∈ 21 ∂J 00 (w, x; ·)(z), i.e.,
+                                             m
+                      1 00                                              zψ
+                  Z                         X                Z
+    hh, ψi =            ∂j0 (w; ·)(z)ψ dλ +     2ai                         dHd−1               ∀ψ ∈ C0 (Ω).     (27)
+                    Ω 2                     i=1                {w=bi } |∇w|
+
+  Note that the second integral in (27) is well defined since w satisfies (19) and since z
+has a compact support.
+
+Proof. We define the functionals
+             Z              m
+                            X                                            Z
+J0 (w̃) :=        j(w̃) −          ai (w̃ − bi ) dλ,        Ji (w̃) :=        max(w̃ − bi , 0) dλ        ∀w̃ ∈ C0 (Ω),
+             Ω               i=1                                          Ω
+
+which implies with a0 := 12
+                                                            m
+                                                            X
+                                                  J(w̃) =         2ai Ji (w̃).
+                                                            i=0
+Due to (19), these functionals are differentiable at w and we select the unique elements xi ∈
+                                                                                              i
+∂Ji (w). From Lemmas 3.16 and 3.19 we obtain sequences (hik ) with hik ∈ ∂Ji (w+t    tk
+                                                                                       k z)−x
+
+         ?
+and hik * hi , khik kM(Ω) → khi kM(Ω) , where
+                              Z
+                 hh0 , ψi =        D2 j0 (w; z)ψ dλ                       ∀ψ ∈ C0 (Ω),
+                               Ω
+                                        zψ
+                              Z
+                 hhi , ψi =                 dHd−1                         ∀ψ ∈ C0 (Ω), i = 1, . . . , m.
+                               {w=bi } |∇w|
+
+
+
+
+                                                             22
+From the relation j000 (w; z) = D2 j0 (w; z)z, we get 12 ∂j000 (w; ·)(z) = D2 j0 (w; z). This
+implies
+                                         1
+                                  h0 = ∂J000 (w; ·)(z),
+                                         2
+see Theorem 3.1. The sum rule of convex analysis implies that hk := m              i   P
+                                                                          i=0 2ai hk satisfies
+(25). The first limit relation in (26) is clear. The second relation follows from
+                                                    m
+                                                    X                         m
+                                                                              X
+        khk ≤ lim inf khk k ≤ lim supkhk k ≤              lim 2ai khik k =          2ai khi k = khk.
+                k→∞                k→∞                    k→∞
+                                                    i=0                       i=0
+
+In the last equality, we have used the precise structure of hi .
+
+   For a similar result in Hilbert spaces, we refer to [Do, 1992, Theorem 3.9]. Therein, it
+is shown that the strong twice epi-differentiability of a functional J is equivalent to ∂J
+being proto-differentiable with maximally monotone proto-derivative. The proof utilizes
+Attouch’s theorem on the Mosco-convergence of functionals and this is not available in
+non-reflexive spaces, see [Combari and Thibault, 1998, Theorem 2.5] and the comment
+thereafter.
+
+3.3 A localized descent lemma
+As a last preparation, we state a localized descent lemma for J at a point w satisfying a
+structural assumption.
+
+Lemma 3.21. We consider the setting of Assumption 3.11. Further, let w ∈ C 1 (Ω) be
+given such that there exists C, η > 0 with
+                         m
+                         X
+                               λ({|w − bi | ≤ ε}) ≤ Cε            ∀ε ∈ [0, η].                         (28)
+                         i=1
+
+Then, J is (Gâteaux) differentiable at w and we set x = J 0 (w). Moreover, there exists a
+constant Λ > 0 such that
+                                    Λ
+  J(v) ≤ J(w) + hx, v − wi +          kv − wk2C0 (Ω)        ∀v ∈ C0 (Ω) : kv − wkC0 (Ω) ≤ η. (29)
+                                    2
+Proof. Due to (28), we have
+                                         m
+                                         X
+                                               λ({w = bi }) = 0
+                                         i=1
+
+and this is enough to ensure that ∂J(w) is a singleton. Consequently, J is (Gâteaux)
+differentiable at w.
+   Next, it is easy to see that it is sufficient to validate (29) for the components
+                              Z                                         Z
+                  J0 (v) :=        j0 (v(ω)) dλ(ω),         Ji (v) :=       |v − bi | dλ.
+                               Ω                                        Ω
+
+
+
+
+                                                    23
+Since j00 is assumed to be locally Lipschitz, there exists a constant L ≥ 0 such that
+                          |j00 (r) − j00 (s)| ≤ L|r − s|          ∀r, s ∈ [−T, T ]
+with T := kwkC0 (Ω) + η. Let v ∈ C0 (Ω) with kv − wkC0 (Ω) ≤ η be given. The Lipschitz
+estimate implies
+                              Z
+ |hJ00 (v) − J00 (w), zi| ≤       |j00 (v(ω)) − j00 (w(ω))||z| dλ(ω) ≤ Lλ(Ω)kv − wkC0 (Ω) kzkC0 (Ω) .
+                              Ω
+
+From Theorem 3.1 we know that J0 is (Gâteaux) differentiable on C0 (Ω). Hence, the
+fundamental theorem of calculus implies
+                                             Z 1
+  J0 (v) − J0 (w) − hJ00 (w), v − wi =             hJ00 (w + t (v − w)) − J00 (w), v − wiC0 (Ω) dt
+                                              0
+                                                       Z 1
+                                                                                     Lλ(Ω)
+                                          ≤ Lλ(Ω)            tkv − wk2C0 (Ω) dt =          kw − vk2C0 (Ω) .
+                                                         0                             2
+Next, we consider Ji for i = 1, . . . , m. By using the identities
+             |r| = |s| + sign(s)(r − s)                                   if sign(r) = sign(s)
+             |r| ≤ |s| + sign(s)(r − s) + 2|r − s|                        if sign(r) 6= sign(s)
+for all r, s ∈ R with s 6= 0, we obtain
+                                              Z
+    Ji (v) − Ji (w) − hJi0 (w), v − wi ≤                                       2|v − w| dλ
+                                                  {sign(v−bi )6=sign(w−bi )}
+                                           ≤ 2λ({sign(v − bi ) 6= sign(w − bi )})kv − wkC0 (Ω) .
+On {sign(v − bi ) 6= sign(w − bi )} we have |v − w| ≥ |w − bi |. Thus,
+   λ({sign(v − bi ) 6= sign(w − bi )}) ≤ λ({|w − bi | ≤ |v − w|})
+                                            ≤ λ({|w − bi | ≤ kv − wkC0 (Ω) }) ≤ Ckv − wkC0 (Ω)
+for kv − wkC0 (Ω) ≤ η. This shows
+
+                      Ji (v) ≤ Ji (w) + hJi0 (w), v − wi + 2Ckv − wk2C0 (Ω) .
+Combining the estimates for J0 and Ji yields the claim.
+
+   A condition similar to (28) was first used (almost simultaneously and independently)
+in [Deckelnick and Hinze, 2012; G. Wachsmuth and D. Wachsmuth, 2011]. This condition
+                            1
+is related to (22), i.e., |∇w| |Z ∈ L1 (Hd−1 |Z ), see Lemma 3.24 below.
+Remark 3.22. The condition (28) follows almost from (19). Indeed, let us assume that
+w ∈ C 1 (Ω) and its derivatives can be extended continuously to Ω̄, i.e., w ∈ C 1 (Ω̄) and
+that
+                       w(ω) = bi ⇒ ∇w(ω) 6= 0           ∀w ∈ Ω̄.
+Note that (19) is the same condition, but only for all ω ∈ Ω. Then, [Deckelnick and
+Hinze, 2012, Lemma 3.2] shows that (28) is satisfied.
+
+
+
+                                                       24
+Remark 3.23. Condition (28) implies
+                   m
+                   X
+                         λ({|w − bi | ≤ ε}) ≤ max{C, mλ(Ω)/ε0 }ε                 ∀ε ≥ 0.
+                   i=1
+
+If we assume improved regularity of j0 , i.e., if j00 is globally Lipschitz, we can show that
+(29) holds even for η = ∞.
+                                                             1
+  Let us discuss how condition (28) related to (22), i.e., |∇w| |Z ∈ L1 (Hd−1 |Z ).
+
+Lemma 3.24. Let w ∈ C 1 (Ω) satisfy (19). Then (28) implies (22). In fact,
+                                              1
+                                          Z
+                                      2          dHd−1 ≤ C
+                                          Z |∇w|
+
+with C from (28) and Z as in (21). In addition, (22) implies
+                              m
+                           1X                                   1
+                                                                         Z
+                   lim sup       λ(K ∩ {|w − bi | ≤ t}) ≤ 2        dHd−1 ,
+                     t&0   t i=1                            Z |∇w|
+
+for all compact K ⊂ Ω.
+Proof. Assume (28). Let t ∈ (0, η]. Let z ∈ Cc (Ω) with kzkC0 (Ω) ≤ 1 be given. Define
+
+                            Ω+
+                             t := {sign(w − bi ) 6= sign(w − bi + tz)},
+                            Ω+
+                             t := {sign(w − bi ) 6= sign(w − bi − tz)}.
+
+Then we find
+                                             −
+                                 Ωt := Ω+
+                                        t ∪ Ωt ⊂ {|w − bi | ≤ t}.
+
+By (28), we get λ(Ωt ) ≤ Ct. Then Theorem 3.4 (15a) implies
+                  1              1                                            |z|
+                                              Z                      Z
+                           −
+               C ≥ λ(Ω+
+                      t ∪ Ωt ) =                         dx → 2                   dHd−1 .
+                  t              t            Ω+
+                                               t ∪Ωt
+                                                       −
+                                                                     {w=bi } |∇w|
+
+                         1
+                            dHd−1 ≤ C, and (22) follows.
+               R
+This implies 2 {w=bi } |∇w|
+  Let (22) be satisfied. Take K ⊂ Ω compact. Let z ∈ Cc (Ω) with kzkC0 (Ω) ≤ 1 such
+that z = 1 on K. Then one easily verifies
+                                                             −
+                                 {|w − bi | ≤ t} ∩ K ⊂ Ω+
+                                                        t ∪ Ωt .
+
+Together with Theorem 3.4 (15a) we obtain
+             1                             1                                          |z|
+                                                            Z                Z
+      lim sup λ(K ∩ {|w − bi | ≤ t}) ≤ lim                         dλ = 2                 dHd−1
+        t&0  t                         t&0 t                Ω+   −
+                                                             t ∪Ωt           {w=bi } |∇w|
+                                                             1
+                                                   Z
+                                              ≤2                dHd−1 ,
+                                                   {w=bi } |∇w|
+
+which proves the claim.
+
+
+
+                                                       25
+Corollary 3.25. Let w ∈ C 1 (Ω) ∩ C0 (Ω) satisfy (19). Assume bi 6= 0 for all i. Then
+(28) and (22) are equivalent. In this case
+                             m
+                          1X                               1
+                                                              Z
+                  lim sup       λ({|w − bi | ≤ t}) = 2        dHd−1 .
+                    t&0   t i=1                        Z |∇w|
+
+Proof. Assume (22). The assumptions on bi imply that Z (as in (21)) has a positive
+distance to the boundary ∂Ω, and mi=1 {|w − bi | ≤ t} is a compact subset of Ω for t > 0
+                                S
+
+small enough. Then Lemma 3.24 implies
+                             m
+                          1X                               1
+                                                              Z
+                  lim sup       λ({|w − bi | ≤ t}) ≤ 2        dHd−1 ,
+                    t&0   t i=1                        Z |∇w|
+
+which in turn implies (28).
+
+
+4 Second order derivatives of integral functionals over
+  measures
+In this section, we are going to study integral functionals over the space of measures
+M(Ω). Recall that M(Ω) is the (topological) dual space of C0 (Ω). In contrast, L1 (λ)
+cannot be a dual space (unless Ω = ∅) and this is the reason for working in M(Ω).
+  The space L1 (λ) is considered as a subspace of M(Ω) in the sense that a function
+u ∈ L1 (λ) is identified with the measure uλ ∈ M(Ω) defined via
+                                           Z
+                              (uλ)(A) 7→        u dλ       ∀A ∈ B(Ω).
+                                            A
+
+Now, let the integral functional G be induced by a convex and lower semicontinuous
+function g : R → R̄, i.e.,
+                                  Z
+                       G(u) :=          g(u(ω)) dλ(ω)         ∀u ∈ L1 (λ).
+                                    Ω
+
+Note that G(u) ∈ (−∞, ∞] is well defined since g possesses an affine minorant and
+u ∈ L1 (λ). We extend this functional to M(Ω) via
+                                  dµ
+                         (R             
+                              Ω g dλ (ω) dλ(ω)         if µ  λ,
+               G(µ) :=                                                ∀µ ∈ M(Ω).
+                          +∞                           otherwise
+
+This definition coincides with the original definition of G on L1 (λ) since uλ  λ and
+
+                                  d(uλ)
+                                        =u             ∀u ∈ L1 (λ).
+                                   dλ
+Further, dom(G) ⊂ L1 (λ), since all µ ∈ M(Ω) are finite measures, and hence dµ/dλ ∈
+L1 (λ). Thus, we have extended G by ∞ on the set M(Ω) \ L1 (λ).
+
+
+
+                                                 26
+  The aim of this section is the computation of the second subderivative of G under
+some structural assumptions and the verification of its strict twice epi-differentiability.
+This will be done by deriving estimates from below and from above.
+  In order to apply the results from Section 3, we restrict ourselves to functions g whose
+conjugates fit into the setting of the previous section.
+
+Assumption 4.1. We assume that the conjugate g ? =: j satisfies the assumptions posed
+on j in Assumption 3.11. Moreover, for each bounded set W ⊂ R there exists a constant
+Cj ≥ 1 such that the smooth part j0 satisfies
+
+     j000 (w; −1) = 0 or j000 (w; +1) = 0 or Cj−1 j000 (w; −1) ≤ j000 (w; +1) ≤ Cj j000 (w; −1)
+
+for all w ∈ W .
+
+  We require that Assumption 4.1 holds throughout this Section 4.
+
+Remark 4.2. The second part of Assumption 4.1 is not very restrictive and is satisfied
+by many reasonable functions j0 . However, it is possible to construct some artificial
+counterexamples: We choose ζ ∈ L∞ (R) with
+                            (
+                                1/n     if t ∈ (1/n, 1/n + 2−n ) for some n ∈ N,
+                   ζ(t) =
+                                1       else.
+
+We set                                           Z tZ s
+                                        j(t) =                 ζ(r) dr ds.
+                                                     0    0
+It is clear that j is convex and differentiable, and that j 0 is globally Lipschitz. With
+Lemma 3.17 one can check that
+
+                    j 00 (t; 1) = 1/n    if t ∈ [1/n, 1/n + 2−n ) for some n ∈ N,
+                  j 00 (t; −1) = 1/n     if t ∈ (1/n, 1/n + 2−n ] for some n ∈ N,
+
+and in all other cases we have j 00 (t; ±1) = 1. Thus, the second part of Assumption 4.1 is
+violated.
+
+   As a preliminary result, we give a functional J : C0 (Ω) → R such that the conjugate of
+J is G. The computation of conjugate functions of integral functionals on continuous
+functions is addressed in [Rockafellar, 1971, Section 3], see in particular Theorem 3.1.
+Therefore, we expect that J can be obtained by integrating over the convex conjugate of
+g.
+
+Lemma 4.3. We define J : C0 (Ω) → R via
+                                                 Z
+                                      J(z) :=            g ? (z(ω)) dλ(ω).
+                                                  Ω
+
+Then, the conjugate of J is given by G.
+
+
+
+                                                          27
+Proof. This directly follows from Theorem 3.1 with the choices ι(ω, x) = g ? (x) and
+ν = λ.
+
+   It would be tempting to obtain the weak-? second subderivative by computing the
+second subderivative of J and a convex conjugation argument. For strongly twice epi-
+differentiable functions defined on reflexive Banach spaces, this is indeed possible, see [Do,
+1992, Theorem 2.5]. The argument in [Do, 1992, Theorem 2.5] uses the Wijsman–Mosco
+theorem on the continuity of the Legendre–Fenchel transform w.r.t. Mosco epi-convergence
+of convex functions, i.e. the Mosco epi-convergence of ϕn to ϕ is equivalent to the Mosco
+epi-convergence ϕ?n to ϕ? in reflexive spaces. In non-reflexive spaces, this theorem fails,
+see the discussion in [Zabell, 1992, Section 1] and [Beer and Borwein, 1990, Theorem 3.3].
+Hence, we have to use a direct argument which connects the weak-? second subderivative
+of G with the strong second subderivative of J.
+
+4.1 Estimates from below
+In this section, we are going to give a lower estimate for the second subderivative of G.
+The arguments are similar to those of [Christof and G. Wachsmuth, 2018, Lemma 6.8,
+Proposition 6.9]. To this end, we utilize the preconjugate function J. Note that the next
+lemma also works in a more general setting. Therefore, we state it with Y and X instead
+of C0 (Ω) and M(Ω).
+Lemma 4.4. Let J : Y → R̄ be convex, proper, lower semicontinuous such that J ? = G.
+Let x ∈ dom(G), w ∈ ∂G(x) ∩ Y be fixed such that J is strongly-strongly twice epi-
+differentiable at w for x. Then,
+                                                           ?
+                     1 00                    1 00
+                                                       
+                       G (x, w; h) ≥           J (w, x; ·) (h)    ∀h ∈ X.                 (30)
+                     2                       2
+Proof. Let z ∈ Y be arbitrary. Further, let (tk ) ⊂ (0, ∞) and (hk ) ⊂ X be arbitrary
+                                 ?
+sequences with tk & 0 and hk * h in X. Next, we choose a sequence (zk ) in Y with
+zk → z depending on (tk ), see (32) below. Since G is the convex conjugate of J, we have
+the Fenchel–Moreau inequality
+                    G(x + tk hk ) ≥ hx + tk hk , w + tk zk i − J(w + tk zk )              (31)
+and, due to w ∈ ∂G(x), we find
+                                      G(x) = hx, wi − J(w).
+Taking the difference of these two relations and dividing by t2k /2 yields
+    G(x + tk hk ) − G(x) − tk hhk , wi    J(w + tk zk ) − J(w) − tk hx, zk i
+                    2                  ≥−                                    + 2hhk , zk i.
+                   tk /2                                t2k /2
+Due to the strongly-strongly twice epi-differentiability of J, the sequence (zk ) can be
+chosen such that we have the convergence
+                                      J(w + tk zk ) − J(w) − tk hx, zk i
+               J 00 (w, x; z) = lim                                      ∈ [0, ∞].        (32)
+                              k→∞                   t2k /2
+
+
+
+                                                 28
+Then, we can pass to the limit in the above inequality and obtain
+                       G(x + tk hk ) − G(x) − tk hhk , wi
+             lim inf                                      ≥ −J 00 (w, x; z) + 2hh, zi.
+              k→∞                     t2k /2
+
+Since the right-hand side is independent of the sequences (hk ) and (tk ), we can take the
+                                            ?
+infimum over all sequences tk & 0 and hk * h in X. Thus,
+                               1 00             1
+                                 G (x, w; h) ≥ − J 00 (w, x; z) + hh, zi.                (33)
+                               2                2
+Since z ∈ Y was arbitrary, we can take the supremum w.r.t. z ∈ Y in the right-hand side.
+This yields (30).
+
+  We mention that the strongly-strongly twice epi-differentiable of J was investigated in
+Theorem 3.12, and an expression for the conjugate of the strong second subderivative of
+J is given in Theorem 3.14.
+
+4.2 Strictly twice epi-differentiability of G
+Next, we give an upper bound by considering sequences (zk ) and (hk ) for which we have
+equality in (31). This is possible due to Theorem 3.20.
+Lemma 4.5. Let x ∈ dom(G), w ∈ ∂G(x) ∩ C0 (Ω) be fixed such that w belongs to C 1 (Ω)
+and satisfies (19). For an arbitrary z ∈ Cc (Ω), we select
+                                           1
+                                        h ∈ ∂J 00 (w, x; ·)(z).
+                                           2
+Then,
+                                                                    ?
+                                1 00                  1 00
+                                                                   
+                                  G (x, w; h) =         J (w, x; ·) (h).
+                                2                     2
+Moreover, for every sequence (tk ) with tk & 0, we can select a sequence (hk ) ⊂ M(Ω)
+             ?
+such that hk * h, khk kM(Ω) → khkM(Ω) and
+
+                                           G(x + tk hk ) − G(x) − tk hhk , wi
+                       G00 (x, w; h) = lim                                    .
+                                       k→∞                t2k /2
+
+  We mention that h is uniquely determined by z, cf. (27).
+
+Proof. For an arbitrary sequence tk & 0, we use Theorem 3.20 to select
+                                              ∂J(w + tk z) − x
+                                       hk ∈                    .
+                                                    tk
+         ?
+with hk * h, khk kM(Ω) → khkM(Ω) . Due to x + tk hk ∈ ∂J(w + tk z), we have
+
+                        J(w + tk z) + G(x + tk hk ) = hx + tk hk , w + tk zi,
+                        J(w)         + G(x)             = hx, wi.
+
+
+
+                                                  29
+Taking the difference and dividing by t2k yields
+
+     1 G(x + tk hk ) − G(x) − tk hhk , wi 1 J(w + tk z) − J(w) − tk hx, zi
+                                         +                                 = hhk , zi.
+     2                t2k /2               2            t2k /2
+
+The right-hand side converges towards hh, zi. Via Lemmas 3.5 and 3.8, the second addend
+on the left-hand side converges towards J 00 (w; z). Thus, we have
+
+   1 00           1             1        G(x + tk hk ) − G(x) − tk hhk , wi 1 00
+     G (x, w; h) + J 00 (w; z) ≤ lim inf                                   + J (w; z)
+   2              2             2 k→∞                   t2k /2              2
+                                1        G(x + tk hk ) − G(x) − tk hhk , wi 1 00
+                               ≤ lim sup                                   + J (w; z)
+                                2 k→∞                    t2k /2              2
+                               ≤ hh, zi.
+
+Now, (33) implies that all three inequalities are satisfied with equality and together with
+(30) this shows the claim.
+
+  We remark that the arguments in the proof of Lemma 4.5 can also be utilized in a
+more general situation if the preconjugate J satisfies the assertion of Lemmas 3.5 and 3.8
+and Theorem 3.20 with Cc (Ω) replaced by some subspace of Y .
+  In order to prove the equality
+                                                       ?
+                   1 00                  1 00
+                                                    
+                     G (x, w; h) =         J (w, x; ·) (h)        ∀h ∈ M(Ω),
+                   2                     2
+
+we will utilize the density argument [Christof and G. Wachsmuth, 2019, Lemma 3.2].
+Therefore, we need to show that for each h ∈ M(Ω) there exists a sequence (hk ) with
+hk ∈ 21 ∂J 00 (w, x; ·)(zk ) for some zk ∈ Cc (Ω) such that
+                                         ?                             ?
+                           1 00                          1 00
+                                                                 
+                             J (w, x; ·) (hk ) →           J (w, x; ·) (h).
+                           2                             2
+In order to construct this sequence, we will use the following approximation result.
+
+Lemma 4.6. Let ν be a positive Borel measure on Ω such that ν(K) < ∞ for all compact
+subsets K ⊂ Ω. Let u ∈ L1 (ν)∩L2 (ν) be given. Then there exists a sequence (uk ) ⊂ Cc (Ω)
+such that uk → u in L1 (ν) ∩ L2 (ν) and pointwise almost everywhere. In addition, there
+exists g ∈ L1 (ν) ∩ L2 (ν) such that |uk | ≤ g.
+
+Proof. By [Rudin, 1987, Theorem 2.18], ν is regular. Suppose u ≥ 0. Due to [Rudin,
+1987, Theorem 3.14] there are sequences (vk ), (wk ) ⊂ Cc (Ω) such that vk → u in L1 (ν)
+and wk → u in L2 (ν). W.l.o.g. we can assume vk ≥ 0, wk ≥ 0, vk → u and wk → u
+pointwise almost everywhere and the existence of g1 ∈ L1 (ν), g2 ∈ L2 (ν) with vk ≤ g1 ,
+wk ≤ g2 . Define uk := min(vk , wk ). Then uk ≤ min(g1 , g2 ) =: g ∈ L1 (ν) ∩ L2 (ν) and
+uk → u in L1 (ν) ∩ L2 (ν) follows by the dominated convergence theorem. For general u,
+we can apply this construction to the positive and negative part of u.
+
+
+
+
+                                                30
+Lemma 4.7. Let x ∈ dom(G), w ∈ ∂G(x) ∩ C0 (Ω) be fixed such that w belongs to C 1 (Ω)
+                                                                    ?
+and (22) is satisfied. Let h ∈ M(Ω) be given with 12 J 00 (w, x; ·) (h) < +∞. Then there
+exists a sequence (hk ) with hk ∈ 12 ∂J 00 (w, x; ·)(zk ) for zk ∈ Cc (Ω) such that hk → h in
+M(Ω) and                              ?                          ?
+                         1 00                        1 00
+                                                  
+                           J (w, x; ·) (hk ) →         J (w, x; ·) (h).
+                         2                           2
+Proof. Due to Theorem 3.14, there exist densities v̂1 ∈ L1 (λ), v̂2 ∈ L1 (Hd−1 |Z ) such that
+h = v̂1 λ + v̂2 Hd−1 |Z and
+                       ?                                                            ?
+            1 00             1         |∇w| 2                           1 00
+                                  Z                            Z                  
+              J (w; ·) (h) =               v̂2 dHd−1 +                    j0 (w; ·) (v̂1 ) dλ < ∞.   (34)
+            2                2        Z 2a                         Ω    2
+
+From Remark 3.15, we get v̂1 = 0 λ-a.e. on {j000 (w; sign(v̂1 )) = 0}.
+   Next, we define the measure ν := λ + Hd−1 |Z . Note that ν is finite on compact subsets
+of Ω, since Z is locally a (d − 1)-dimensional submanifold. Thus, we can write h = vν,
+where v : Ω → R is given by
+                                               (
+                                               v̂1 (ω) if ω ∈ Ω \ Z,
+                                   v(ω) :=
+                                               v̂2 (ω) if ω ∈ Z.
+
+Similarly, we define a weight function ρ : Ω → R by
+                                     
+                                     max j 00 (w(ω); ±1)          if ω ∈ Ω \ Z,
+                                             0
+                           ρ(ω) :=
+                                      2a(ω)                       if ω ∈ Z.
+                                      |∇w(ω)|
+
+Here, max j000 (w(ω); ±1) := max{j000 (w(ω); +1), j000 (w(ω); −1)}. Finally, we set
+                   
+                   
+                   
+                   
+                     0                           if ω ∈ (Ω \ Z) ∩ {j000 (w; sign(v)) = 0},
+                                 1                                  00
+         z(ω) :=
+                    j 00 (w(ω);sign(v(ω))) v(ω) if ω ∈ (Ω \ Z) \ {j0 (w; sign(v)) = 0},
+                      0
+                    |∇w(ω)| v(ω)
+                   
+                                                       if ω ∈ Z.
+                         2a(ω)
+
+For ω ∈ Z we have                                                p−1
+                                                       |∇w(ω)|
+                                                   
+                                           p
+                                 ρ(ω)|z(ω)| =                           |v̂2 (ω)|p
+                                                        2a(ω)
+and this function belongs to L1 (Hd−1 |Z ) for all p ∈ {1, 2} due to v̂2 ∈ L1 (Hd−1 |Z )
+and (34). For ω ∈ (Ω \ Z) \ {j000 (w; sign(v)) = 0} we utilize Assumption 4.1 to obtain
+max j000 (w(ω); ±1) ≤ Cj j000 (w(ω); sign(v(ω))). Thus, we find
+
+                              max j000 (w(ω); ±1)
+       ρ(ω)|z(ω)|p =                               |v̂2 |p ≤ Cj j000 (w(ω); sign(v(ω)))1−p |v̂1 |p
+                          j000 (w(ω); sign(v(ω)))p
+
+Due to v̂1 ∈ L1 (λ) and (34) in conjunction with Remark 3.15, these functions belongs
+to L1 (λ). Hence, z ∈ L1 (ρν) ∩ L2 (ρν). Moreover, ρν is finite on compact sets. Via
+
+
+
+                                                        31
+Lemma 4.6 we get a sequence (zk ) ⊂ Cc (Ω) such that zk → z in Lp (ρν) for all p ∈ {1, 2}.
+Next, we set
+                      
+                       1 ∂j 00 (w(ω); ·)(z (ω)) = j 00 (w(ω); sign(z (ω)))z (ω)                      if ω ∈ Ω \ Z,
+                          20                     k            0                  k          k
+          vk (ω) :=
+                       2a(ω) zk (ω)                                                                  if ω ∈ Z,
+                       |∇w(ω)|
+
+
+which leads to hk := vk ν ∈ 21 ∂J 00 (w, x; ·)(zk ), see (27). From zk → z in L1 (ρν) we get
+
+                                                                                                       2a
+                                            Z                                         Z
+           0 ← kzk − zkL1 (ρν) =                |zk − z| max j000 (w; ±1) dλ +             |zk − z|        dHd−1
+                                            Ω                                          Z              |∇w|
+                                                                                             2a
+                Z                                                          Z
+            ≥       |j000 (w; sign zk )zk − j000 (w; sign z)z| dλ +              |zk − z|        dHd−1
+                Ω                                                            Z              |∇w|
+                Z                       Z
+            =       |vk − v| dλ +           |vk − v| dHd−1
+                Ω                       Z
+            = khk − hkM(Ω) .
+
+Similarly, from zk → z in L2 (ρν) we get
+                      ?
+        1 00                                                        1                         |∇w|
+                                  Z                                                            Z
+2         J (w, x; ·) (hk ) =                                                     2
+                                                            00 (w; sign(v )) |vk | dλ +            |vk |2 dHd−1
+        2                              00                 j
+                                     {j (w;sign(vk ))6=0} 0               k                 Z  2a
+                                    Z 0
+                                                                             2a
+                                                                        Z
+                                  =    j000 (w; sign(zk ))|zk |2 dλ +              |zk |2 dHd−1
+                                     Ω                                    Z |∇w|
+                                                                            2a
+                                    Z                                 Z
+                                           00
+                                  →     j0 (w; sign(z))|z| dλ +2
+                                                                                |z|2 dHd−1
+                                      Ω                                Z |∇w|
+                                                  1                        |∇w| 2
+                                    Z                                 Z
+                                  =       00 (w; sign(v)) |v|  2
+                                                                 dλ +           |v| dHd−1
+                                     Ω  j                               Z   2a
+                                      0               ?
+                                       1 00
+                                  = 2 J (w, x; ·) (h).
+                                       2
+For the convergence of the first integral, we used the dominated convergence theorem with
+the dominating function max j000 (w; ±1)g 2 ∈ L1 (λ), where g comes from Lemma 4.6.
+
+Theorem 4.8. Let Assumption 4.1 be satisfied. Let x ∈ dom(G), w ∈ ∂G(x) ∩ C0 (Ω) be
+fixed such that w belongs to C 1 (Ω) and satisfies (19) and (22). Then G is strictly twice
+epi-differentiable at x for w and
+                                                                       ?
+                              1 00                       1 00
+                                                                      
+                                G (x, w; h) =              J (w, x; ·) (h)           ∀h ∈ M(Ω).
+                              2                          2
+
+Proof.
+      We will apply
+                  ? [Christof and G. Wachsmuth, 2019, Lemma 3.2] with the setting
+       1 00
+Q = 2 J (w, x; ·) and Z = Cc (Ω). Condition (i) holds due to Lemma 4.4. Lemma 4.5
+yields condition (ii), while Lemma 4.7 verifies condition (iii). Then [Christof and G.
+Wachsmuth, 2019, Lemma 3.2] yields the claim.
+
+
+
+
+                                                                  32
+4.3 Localized ascent lemma
+By dualizing the descent lemma (Lemma 3.21), we obtain an ascent lemma.
+Lemma 4.9. We assume that J is (Gâteaux) differentiable at w and that (29) is satisfied
+with x = J 0 (w) and Λ, η > 0. Then,
+                                      1
+  G(y) ≥ G(x) + hy − x, wi +            ky − xk2L1 (λ)     ∀y ∈ L1 (λ), ky − xkL1 (λ) ≤ ηΛ. (35)
+                                     2Λ
+Proof. Let v ∈ C0 (Ω) with kv − wkC0 (Ω) ≤ η be arbitrary. We combine (29) with the
+Fenchel–Young inequality hy, vi ≤ J(v) + G(y) and hx, wi = J(w) + G(x) to obtain
+                                                                     Λ
+                  G(x) + hy − x, wi − G(y) ≤ hx − y, v − wi +          kv − wk2C0 (Ω) .
+                                                                     2
+Now, we can minimize the right-hand side w.r.t. v. Owing to the Hahn–Banach theorem,
+we have
+ kx − yk2L1 (λ)       kx − yk2M(Ω)
+                                           (                                                        )
+                                                                              kx − ykM(Ω)
+                  =                  = sup hy − x, di d ∈ C0 (Ω), kdkC0 (Ω) =             .
+       Λ                   Λ                                                       Λ
+
+Thus, we can choose a sequence (vk ) with
+
+                       kx − ykL1 (λ)                                             kx − yk2M(Ω)
+      kvk − wkC0 (Ω) =               ≤η          and     hx − y, vk − wi → −                    .
+                            Λ                                                         Λ
+This yields the desired
+                                                            1
+                         G(x) + hy − x, wi − G(y) ≤ −         ky − xk2L1 (λ) .
+                                                           2Λ
+Remark 4.10. If j0 is globally Lipschitz, one can show that (35) holds for η = ∞, see
+Remark 3.23.
+
+4.4 No-gap second-order optimality conditions
+Now we are ready to apply the theory Section 2 with the setting X = M(Ω) and
+Y = C0 (Ω).
+  We collect all assumptions on the structure of the optimization problem in one place.
+Assumption 4.11.            (i) The function G : M(Ω) → R̄ is defined by
+                              R       
+                               g dx (ω) dλ(ω)           if x  λ,
+                                Ω  dλ
+                      G(x) :=                                              ∀x ∈ M(Ω)
+                              +∞                        otherwise,
+
+      where g : R → R̄ is convex and lower semicontinuous.
+
+ (ii) The mapping F : dom(G) → R satisfies Assumption 2.1 (iii) with X = M(Ω),
+      Y = C0 (Ω), x̄ ∈ dom(G) ⊂ L1 (λ), w̄ = −F 0 (x̄) ∈ C 1 (Ω) ∩ C0 (Ω). Further, we
+      assume that h 7→ F 00 (x̄)h2 is sequentially weak-? continuous.
+
+
+
+                                                  33
+(iii) The conjugate of g has the form
+                                                   m
+                                                   X
+                                  ?
+                              g (w) = j0 (w) +            ai |w − bi |        ∀w ∈ R
+                                                    i=1
+
+      with m ∈ N, ai > 0, i = 1 . . . m, and distinct numbers bi ∈ R, i = 1 . . . m. In
+      addition, j0 is in C 1 (R) with locally Lipschitz continuous j00 such that
+                                           2
+                        j000 (w; z) := lim 2 (j0 (w + tz) − j0 (w) − tj00 (w)z) ∈ R
+                                       t&0 t
+
+      exists for all w, z ∈ R.
+ (iv) For each bounded set W ⊂ R there exists a constant Cj ≥ 1 such that the smooth
+      part j0 satisfies
+         j000 (w; −1) = 0 or j000 (w; +1) = 0 or Cj−1 j000 (w; −1) ≤ j000 (w; +1) ≤ Cj j000 (w; −1)
+      for all w ∈ W .
+Assumption 4.12.           (i) The function w̄ ∈ C 1 (Ω) satisfies
+                              {w̄ = bi } ∩ {∇w̄ = 0} = ∅                 ∀i = 1 . . . m.
+
+ (ii) There exists C, η > 0 with
+                              m
+                              X
+                                      λ({|w̄ − bi | ≤ ε}) ≤ Cε            ∀ε ∈ [0, η].
+                              i=1
+
+Theorem 4.13 (Strictly twice epi-differentiability of G). Let Assumptions 4.11 and 4.12
+be satisfied and assume w̄ ∈ ∂G(x̄). Then G is strictly twice epi-differentiable at x̄ for w̄.
+   Let µ ∈ M(Ω). If there exist densities v1 ∈ L1 (λ), v2 ∈ L1 (Hd−1 |Z ) such that
+µ = v1 λ + v2 Hd−1 |Z then
+                                                                             ?
+        1 00              1     |∇w̄| 2                         1 00
+                              Z                           Z                 
+          G (x̄, w̄; µ) =            v2 dHd−1 +                   j0 (w̄; ·) (v1 ) dλ ∈ [0, +∞].
+        2                 2    Z 2a                        Ω    2
+otherwise 21 G00 (x̄, w̄; µ) = +∞.
+  Here, Z := m     i=1 {w̄ = bi }, and a : Z → R is defined by a(ω) = ai if w̄(ω) = bi .
+                S
+
+Proof. The claim    of strict twice? epi-differentiability is Theorem 4.8 as well as the identity
+1 00                1 00
+2 G  (x̄, w̄; h) =  2 J  (w̄, x̄; ·)  (h). The form of the latter is given by Theorem 3.14.
+
+Theorem 4.14 (No-gap SOC for integral functionals). Let Assumptions 4.11 and 4.12
+be satisfied. Then
+                      F 00 (x̄)h2 + G00 (x̄, w̄; h) > 0         ∀h ∈ M(Ω) \ {0}                      (36)
+if and only if there are c > 0, ε > 0 such that
+                                            c
+           F (x) + G(x) ≥ F (x̄) + G(x̄) + kx − x̄k2M(Ω)                         ∀x ∈ BεM(Ω) (x̄).
+                                            2
+
+
+                                                   34
+Proof. The reverse implication follows directly from Theorem 2.5.
+   For the direct implication we are going to employ Theorem 2.6. By Remark 2.3,
+we have G00 (x̄, w̄; h) = −∞ for some h ∈ X \ {0} if w̄ 6∈ ∂G(x̄). Thus, (36) implies
+w̄ = −F 0 (x̄) ∈ ∂G(x̄). Now, we combine this with Lemmas 3.21 and 4.9 to obtain
+the growth condition (9). Consequently, Lemma 2.8 yields that condition (NDC) is
+fulfilled.
+
+  Note that, due to G ≡ +∞ on M(Ω) \ L1 (λ), the quadratic growth condition is
+equivalent to
+                                           c                                                  1
+            F (x) + G(x) ≥ F (x̄) + G(x̄) + kx − x̄k2L1 (λ)                        ∀x ∈ BεL (λ) (x̄).
+                                           2
+Remark 4.15. We mention that the knowledge of the precise structure of the subderivative
+G00 (x̄, w̄; ·) is not necessary for the formulation and verification of Theorem 4.14. Indeed,
+we only have to verify (NDC) in the proof.
+
+
+5 Applications
+We are going to apply the abstract theory to two non-smooth optimal control problems.
+Both problems share the same smooth functional
+                                          Z
+                            F (u) :=           L(·, yu ) dλ           ∀u ∈ L1 (λ),
+                                          Ω
+
+where yu is the weak solution of the nonlinear PDE
+
+                −∆yu + a(·, yu ) = u in Ω,                                    yu = 0 on ∂Ω.
+
+Here, Ω ⊂ Rd with d ∈ {1, 2, 3} is open and bounded. We require that the nonlinearities
+a, L : Ω × R → R and Ω satisfy the usual assumptions, see, e.g., [Casas et al., 2017,
+Section 2.1], such that F : L∞ (λ) → R is twice continuously Fréchet differentiable with
+                                      Z
+                       F 0 (u)v =         ϕu v dλ,                                                      (37)
+                                      Ω
+                                      Z h 2
+                                         ∂ L                      ∂2a              i
+               F 00 (u)(v1 , v2 ) =                2
+                                                     (·, yu ) −        (·, yu )ϕ u  zu,v1 zu,v2 dλ,     (38)
+                                      Ω       ∂y                  ∂y 2
+where the linearized states zu,vi and the adjoint state ϕu solve the linear equations
+                    ∂a
+         −∆zu,vi +     (·, yu )zu,vi = vi                         in Ω,            zu,vi = 0 on ∂Ω,
+                    ∂y
+                    ∂a                 ∂L
+         −∆ϕu     +    (·, yu )ϕu =       (·, yu )                in Ω,              ϕu = 0 on ∂Ω.
+                    ∂y                 ∂y
+In particular, the adjoint state ϕu is a representative for F 0 (u).
+  As in Section 4, we use the spaces Y = C0 (Ω), X = Y ? = M(Ω). As usual, we will
+continue to denote the controls by u, i.e., the symbols x from Section 2 will change to
+
+
+
+                                                         35
+u. In order to comply with Assumption 2.1, we have to extend the bilinear form F 00 (u)
+(which is defined on L∞ (λ)2 ) to M(Ω)2 and this is possible by regularity theory for
+elliptic equations due to d ≤ 3, see, e.g., [Casas et al., 2017, Section 2.5]. This extended
+bilinear form is even sequentially weak-? continuous on M(Ω)2 . It is now easy to see
+that the differentiability of F implies that Assumption 2.1 is satisfied at all ū ∈ L∞ (λ)
+as long as dom(G) is bounded in L∞ (λ). Thus, Assumption 2.1 is satisfied.
+
+5.1 Application to a bang-off-bang problem
+First, we consider an example with a bang-off-bang solution structure, see [Casas, 2012,
+Section 3]. This is accomplished by using the functional
+                         Z
+                G(u) =       g(u) dλ    with        g(u) := α|u| + δ[ua ,ub ] (u).
+                         Ω
+
+We assume that the constants satisfy α > 0 and ua < 0 < ub . The convex conjugate of g
+is given by
+
+            j(w) := g ? (w) = max{ub (w − α), ua (w + α), 0}
+                              |ua |          ub          ub + ua ua − ub
+                            =       |w + α| + |w − α| +         +        α.
+                               2             2               2      2
+It is easy to check that Assumption 4.11 is satisfied. Next, we choose a point ū ∈ dom(G)
+such that w̄ := −ϕ̄ := −ϕū satisfies Assumption 4.12 with b1 = −α, b2 = α. We
+set Z := {|ϕ̄| = α} and we define ua,b := |ua |χ{ϕ̄=−α} + ub χ{ϕ̄=α} . Consequently,
+Theorem 4.14 yields that
+
+                            F 0 (x̄) + ∂G(x̄) 3 0          and                           (39a)
+                        2   |∇ϕ̄| 2
+                            Z
+      F 00 (ū) vHd−1 |Z +          v dHd−1 > 0            ∀v ∈ L1 (Hd−1 |Z ) \ {0}      (39b)
+                           Z ua,b
+
+is equivalent to the existence of c, ε > 0 with
+                                          c                                   1
+           F (u) + G(u) ≥ F (ū) + G(ū) + ku − ūk2L1 (λ)          ∀u ∈ BεL (λ) (ū).
+                                          2
+  We briefly compare our result with [Casas, 2012, Theorem 3.6]. Therein, the author does
+not require Assumption 4.12 on the structure of w̄, but he only obtains a quadratic growth
+w.r.t. the L2 -norm of the linearized state zū,u−ū . Moreover, our second-order condition
+(39b) is different since the second term is not present in [Casas, 2012, Theorem 3.6] and
+we do not need an enlarged critical cone but we can work directly with measures on Z,
+similar to [Casas et al., 2017, Section 2.5].
+  The bang-bang case (α = 0) works similarly and we can reproduce the results from
+[Christof and G. Wachsmuth, 2018, Example 6.14]. In a similar spirit, control problems
+with the convexified multi-bang functional from [Clason and Kunisch, 2014] can be
+handled.
+
+
+
+
+                                               36
+5.2 Application to a relaxed L0 -problem
+As second application, we consider a problem with the following functional
+                                                                α 2
+                     Z
+           G̃(u) =        g̃(u) dλ     with          g̃(u) :=     u + β|u|0 + δ[−γ,γ] (u),
+                      Ω                                         2
+with positive constants α, β, γ, and
+                                               (
+                                                 1        if u 6= 0,
+                                     |u|0 :=
+                                                 0        if u = 0.
+Clearly, g̃ is not convex. As in [Casas and D. Wachsmuth, 2020], we will study second-
+order conditions for problems with the convex envelope of g̃. The convex envelope of g̃ is
+given by                         √                   p
+                                  2αβ|u| if |u| ≤ p2β/α,
+                                 
+                                 
+                          g(u) = α2 u2 + β if |u| ∈ [ 2β/α, γ],
+                                 
+                                             if |u| > γ.
+                                 
+                                 +∞
+            p
+In case γ ≤ 2β/α, g coincides with thepfunctional considered in the previous section.
+Hence, we we will focus on the case γ > 2β/α.
+Lemma 5.1. The convex conjugate of g is given by
+                                                                        √
+                                     0
+                                                               if |w| ≤ 2αβ,
+                                                                          √
+                                     
+                j(w) = g ? (w) =       w2
+                                       2α   −β                  if |w| ∈ [ 2αβ, αγ],
+                                     
+                                     γ|w| − α γ 2 − β
+                                     
+                                                                if |w| ≥ αγ.
+                                                 2
+
+Proof. We recall that the convex conjugate is defined via
+                               g ? (w) = sup{uw − g(u) | u ∈ R}.
+Since the effective
+            √       domain of g is compact, the supremum is always attained. In
+case |w| ≤ 2αβ, the supremum         is attained at u = 0 and, thus, ?
+                         √                                       p g (w) = 0. We
+consider the case |w| ∈ ( 2αβ, αγ). For u = w/α we have |u| ∈ ( 2β/α, γ) and, thus,
+0 = w − αu = w − g 0 (u). This yields
+                                           w2 α w2          w2
+                     g ? (w) = uw − g(u) =    −      − β  =     − β.
+                                            α   2 α2        2α
+Finally, for |w| ≥ αγ, the supremum is attained at u = sign(w)γ and the announced
+formula follows.
+                                                       √
+  Assumption 4.11 is satisfied with m = 2, b1 , b2 = ± 2αβ, a1 = a2 = 12 2β/α. The
+                                                                        p
+
+corresponding function j0 satisfies
+                            
+                              1            √
+                            
+                             α   if |w| = 2αβ and sign(w) = sign(z),
+                            
+                            
+                            1              √
+                                  if |w| ∈ ( 2αβ, αγ),
+                            
+                  00          α
+                 j0 (w; z) = 1
+                            
+                            
+                             α   if |w| = αγ and sign(z) = − sign(w),
+                            
+                            0
+                            
+                                  otherwise.
+
+
+
+                                                     37
+Its conjugate is given by
+                                     
+                                       α 2                           √
+                                     
+                                      2v                  if |w| ∈ ( 2αβ, αγ),
+                            ?
+                                     
+                                     
+                                      α v2 + δ                                 √
+                                                           if w = +αγ or w = − 2αβ,
+                                     
+                1 00
+                       
+                                           (−∞,0]
+                  j0 (w; ·) (v) := α2 2                                         √
+                2                  2 v + δ[0,+∞)
+                                  
+                                                          if w = −αγ or w = + 2αβ,
+                                     
+                                     δ
+                                        {0} (y)            else.
+                                     
+
+                      ?
+Note that 21 j000 (ϕ̄; ·) (v1 ) < +∞ implies sign conditions on v1 .
+  Now let a control ū ∈ dom(G) be given such    √that w̄ := −ϕ̄ := −ϕū satisfies w̄ ∈ ∂G(ū)
+and Assumption 4.12. We set Z := {|ϕ̄| = 2αβ}. Let µ ∈ M(Ω) be given. If there
+exist densities v1 ∈ L1 (λ), v2 ∈ L1 (Hd−1 |Z ) such that µ = v1 λ + v2 Hd−1 |Z and
+             v1 ≤ 0    λ-a.e. on {ϕ̄ = +αγ},             v1 ≥ 0 λ-a.e. on {ϕ̄ = −αγ},                   (40)
+then
+       1 00              1         α                   α
+                             Z r                             Z
+         G (x̄, ϕ̄; µ) =              |∇ϕ̄|v22 dHd−1 +               √              v12 dλ ∈ [0, +∞].
+       2                 2   Z     2β                  2       {|ϕ̄|∈(   2αβ,αγ]}
+           1 00
+       √ 2 G (x̄, ϕ̄; µ) = +∞. Note that (40) does not contain sign conditions on
+otherwise
+{|ϕ̄| = 2αβ} = Z, since this is a null set due to Assumption 4.12. Due to the same
+reason, we do not integrate over this set in the second integral above.
+   Using this second-order derivative of G, we can formulate second-order necessary
+and sufficient optimality conditions. We compare this to the results of [Casas and D.
+Wachsmuth, 2020]. There, the following second-order necessary condition [Casas and
+D. Wachsmuth, 2020, Theorem 4.11] was proven
+                                 F 00 (ū)(v1 λ)2 + G00 (x̄, ϕ̄; v1 λ) ≥ 0
+for all v1 satisfying the sign conditions (40). In addition, second-order sufficient conditions
+were obtained with a second-order expression G̃00 which is strictly smaller than the second
+derivative obtained in this work. Following the argument of [Casas and D. Wachsmuth,
+2020, Section 4.4], our no-gap conditions can be translated into no-gap conditions for
+problems with the non-smooth functional g̃.
+
+
+6 Conclusions and outlook
+We have derived no-gap second order conditions for optimal control problems of the form
+(1), in which F is smooth and depends only on the state variable and in which G is
+determined by a not uniformly convex integrand. Thus, the classical theory (e.g., [Casas
+and Tröltzsch, 2012; 2015]) cannot be utilized. We have seen that it is fruitful to discuss
+these problems in the space M(Ω) = C0 (Ω)? . The required weak-? second subderivatives
+can be obtained by dualizing results for the preconjugate function.
+   Our second order condition is equivalent to a linear growth in the space L1 (λ). This
+follows automatically since we have applied the results of Section 2 with the space M(Ω).
+We expect that a better growth estimate can be obtained by using a different space X
+which is tailored to the precise form of the functional G. This is subject to future work.
+
+
+
+                                                    38
+Acknowledgement
+This research was supported by the German Research Foundation (DFG) under grant
+numbers WA 3626/3-2 and WA 3636/4-2 within the priority program “Non-smooth and
+Complementarity-based Distributed Parameter Systems: Simulation and Hierarchical
+Optimization” (SPP 1962).
+
+
+References
+Beer, G. and Borwein, J. M. (1990). “Mosco convergence and reflexivity”. In: Proceedings
+  of the American Mathematical Society 109.2, pp. 427–427. doi: 10.1090/s0002-9939-
+  1990-1012924-9.
+Casas, E. (2012). “Second Order Analysis for Bang-Bang Control Problems of PDEs”.
+  In: SIAM Journal on Control and Optimization 50.4, pp. 2355–2372. doi: 10.1137/
+  120862892.
+Casas, E. and Tröltzsch, F. (2012). “Second order analysis for optimal control problems:
+  improving results expected from abstract theory”. In: SIAM Journal on Optimization
+  22.1, pp. 261–279. doi: 10.1137/110840406.
+Casas, E. and Tröltzsch, F. (2015). “Second Order Optimality Conditions and Their Role
+  in PDE Control”. In: Jahresbericht der Deutschen Mathematiker-Vereinigung 117.1,
+  pp. 3–44. doi: 10.1365/s13291-014-0109-3.
+Casas, E. and Wachsmuth, D. (2020). “First and second order conditions for optimal
+  control problems with an L0 term in the cost functional”. In: SIAM J. Control Optim.
+  58.6, pp. 3486–3507. doi: 10.1137/20M1318377.
+Casas, E., Wachsmuth, D., and Wachsmuth, G. (2017). “Sufficient second-order conditions
+  for bang-bang control problems”. In: SIAM Journal on Control and Optimization 55.5,
+  pp. 3066–3090. doi: 10.1137/16M1099674.
+Casas, E., Wachsmuth, D., and Wachsmuth, G. (2018). “Second order analysis and
+  numerical approximation for bang-bang bilinear control problems”. In: SIAM Journal
+  on Control and Optimization 56.6, pp. 4203–4227. doi: 10.1137/17m1139953.
+Christof, C. and Meyer, C. (2019). “Sensitivity analysis for a class of H01 -elliptic variational
+  inequalities of the second kind”. In: Set-Valued Var. Anal. 27.2, pp. 469–502. doi:
+  10.1007/s11228-018-0495-2.
+Christof, C. and Wachsmuth, G. (2018). “No-Gap Second-Order Conditions via a Direc-
+  tional Curvature Functional”. In: SIAM Journal on Optimization 28.3, pp. 2097–2130.
+  doi: 10.1137/17M1140418.
+Christof, C. and Wachsmuth, G. (2019). “Differential Sensitivity Analysis of Varia-
+  tional Inequalities with Locally Lipschitz Continuous Solution Operators”. In: Applied
+  Mathematics & Optimization 81.1, pp. 23–62. doi: 10.1007/s00245-018-09553-y.
+Clason, C. and Kunisch, K. (2014). “Multi-bang control of elliptic systems”. In: Annales
+  de l’Institut Henri Poincaré C, Analyse non linéaire 31.6, pp. 1109–1130. doi: 10.
+  1016/j.anihpc.2013.08.005.
+
+
+
+
+                                              39
+Combari, C. and Thibault, L. (1998). “On the graph convergence of subdifferentials
+  of convex functions”. In: Proceedings of the American Mathematical Society 126.8,
+  pp. 2231–2240. doi: 10.1090/s0002-9939-98-04724-8.
+Deckelnick, K. and Hinze, M. (2012). “A note on the approximation of elliptic control
+  problems with bang-bang controls”. In: Comput. Optim. Appl. 51.2, pp. 931–939. doi:
+  10.1007/s10589-010-9365-z.
+Do, C. N. (1992). “Generalized Second-Order Derivatives of Convex Functions in Reflexive
+  Banach Spaces”. In: Transactions of the American Mathematical Society 334.1, pp. 281–
+  301. doi: 10.2307/2153983.
+Levy, A. B. (1993). “Second-order epi-derivatives of integral functionals”. In: Set-Valued
+  Anal. 1.4, pp. 379–392. doi: 10.1007/BF01027827.
+Rockafellar, R. T. (1971). “Integrals which are convex functionals. II.” In: Pacific Journal
+  of Mathematics 39.2, pp. 439–469. url: https://projecteuclid.org:443/euclid.
+  pjm/1102969571.
+Rudin, W. (1987). Real and complex analysis. Third edition. McGraw-Hill Book Co., New
+  York.
+Wachsmuth, G. and Wachsmuth, D. (2011). “Convergence and Regularization Results
+  for Optimal Control Problems with Sparsity Functional”. In: ESAIM: Control, Optimi-
+  sation and Calculus of Variations 17.3, pp. 858–886. doi: 10.1051/cocv/2010027.
+Zabell, S. L. (1992). “Mosco convergence in locally convex spaces”. In: Journal of
+  Functional Analysis 110.1, pp. 226–246. doi: 10.1016/0022-1236(92)90047-m.
+
+
+
+
+                                            40
+

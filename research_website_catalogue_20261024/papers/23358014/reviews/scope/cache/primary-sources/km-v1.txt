@@ -1,0 +1,2462 @@
+                                          Optimal control of an energy-critical semilinear wave equation
+                                               in 3D with spatially integrated control constraints
+
+
+
+
+arXiv:1907.02744v1 [math.OC] 5 Jul 2019
+                                                                     Karl Kunischa,b , Hannes Meinlschmidtb,∗
+
+                                           a Institute for Mathematics and Scientific Computing, University of Graz, Heinrichstraße 36, 8010
+
+                                                                                    Graz, Austria
+
+                                          b Johann Radon Institute for Computational and Applied Mathematics (RICAM), Altenberger Straße
+
+                                                                                69, 4040 Linz, Austria
+
+
+
+
+                                          Abstract
+
+
+
+
+                                          This paper is concerned with an optimal control problem subject to the H1 -critical de-
+                                          focusing semilinear wave equation on a smooth and bounded domain in three spatial
+                                          dimensions. Due to the criticality of the nonlinearity in the wave equation, unique so-
+                                          lutions to the PDE obeying energy bounds are only obtained in special function spaces
+                                          related to Strichartz estimates and the nonlinearity. The optimal control problem is
+                                          complemented by pointwise-in-time constraints of Trust-Region type ku(t)kL2 (Ω) ≤ ω(t).
+                                          We prove existence of globally optimal solutions to the optimal control problem and
+                                          give optimality conditions of both first- and second order necessary as well as second
+                                          order sufficient type. A nonsmooth regularization term for the natural control space
+                                          L1 (0, T; L2 (Ω)), which also promotes sparsity in time of an optimal control, is used in
+                                          the objective functional.
+                                          Keywords: Optimal control of PDEs, Critical Wave Equation, Second-order optimality
+                                          conditions, Nonsmooth regularization,
+                                          2010 MSC: 35L05, 35L71, 49J20, 49K20
+
+
+
+                                            ∗ Corresponding author
+
+                                              Email addresses: karl.kunisch@uni-graz.at (Karl Kunisch),
+                                          hannes.meinlschmidt@ricam.oeaw.ac.at (Hannes Meinlschmidt)
+                                          Preprint submitted to Elsevier                                                         July 8, 2019
+1. Introduction
+
+   We consider the optimal control problem
+
+                             min    ℓ(y, u)
+                             y,u
+                                                                                                (OCP)
+                                    (
+                                                               u ∈ Uad ,
+                             s.t.
+                                         y is the solution to (CWE),
+
+where the underlying partial differential equation is the H1 -critical defocusing wave equa-
+tion on a bounded domain Ω with smooth boundary in three spatial dimensions over a
+finite interval (0, T), complemented with homogeneous Dirichlet boundary conditions, in
+the prototype form
+
+                       ∂t2 y − ∆y + y 5 = u
+                                                                        
+                                                     in (0, T) × Ω,     
+                                                                        
+                                       y=0           on (0, T) × ∂Ω,                 (CWE)
+                                                                       
+                          y(0), ∂t y(0) = (y0 , y1 ) in Ω.
+                                                                        
+
+We suppose that ξ0 := (y0 , y1 ) ∈ H10 (Ω) × L2 (Ω) =: E and u ∈ L1 (0, T; L2 (Ω)), which
+is the natural H1 -setting for the wave equation. The performance index ℓ for (CWE) is
+chosen to be
+               1                      γ
+  ℓ(y, u) :=     ky(T) − yd k2L2 (Ω) + kyk4L4 (0,T;L12 (Ω))
+               2                      4
+                                                                                β2
+                                                    + β1 kukL1 (0,T;L2 (Ω)) +      kuk2L2 (0,T;L2 (Ω))
+                                                                                2
+for yd ∈ L2 (Ω) and scaling parameters γ, β1 , β2 . The objective in (OCP) is thus to find
+a control u ∈ Uad such that the associated solution to (CWE) y(T) at time T matches
+a given profile yd as well as possible in the L2 -sense. The parameters γ, β1 and β2 in ℓ
+are nonnegative. It will be specifically mentioned if their positivity is required. While
+the L2 (0, T; L2 (Ω)) term describes a quadratic control cost, the L1 (0, T; L2 (Ω)) term is
+known to be sparsity enhancing. The purpose of the L4 (0, T; L12 (Ω)) norm term will
+become clear later. The constraint set Uad is of the form
+                      n                                                         o
+              Uad := v : (0, T) → L2 (Ω) : kv(t)kL2 (Ω) ≤ ω(t) f.a.a. t ∈ (0, T)
+
+for a measurable function ω which is nonnegative almost everywhere on (0, T). It models
+a maximum overall input power at every time t ∈ (0, T) for the controls u. We emphasize
+that ω is not assumed to be bounded away from 0 uniformly almost everywhere. It is
+thus possible to model e.g. a forced soft “shut-off” or decay to zero of ku(t)kL2 (Ω) as
+t ց T for some T ∈ (0, T].
+
+Context
+    The state equation (CWE) is a semilinear wave equation. Such equations are of
+interest in several areas of natural sciences, in particular in relation to mathematical
+physics [20, 23, 26, 32, 39, 40], in nonlinear elasticity [29], and the theory of vibrating
+strings [35].
+                                             2
+    The exponent 5 in the power-law nonlinearity y 5 in (CWE) is the H1 -critical one
+                        n+2
+since it satisfies 5 = n−2  , with n = 3 being the space dimension. This terminology stems
+from the case Ω = Rn where “critical” implies that (classical) solutions y to (CWE)
+                                                             n−2
+with u = 0 are invariant under the scaling λ 7→ λ− 2 y( λt , λx ) and thereby preserve
+kξ0 kE , cf. e.g. [41, Ch. 3.1]. A major difficulty here is that one does not obtain a bound
+on y ∈ L5 (0, T; L10 (Ω)) and thus on y 5 ∈ L1 (0, T; L2 (Ω)), which makes global-in-time
+existence difficult to prove. It turns out that a uniform bound on y ∈ L4 (0, T; L12 (Ω))
+is also sufficient due to interpolation and L∞ (0, T; L6 (Ω)) energy conservation. The
+nonlinearity is defocusing due to its sign, which does not play a role for local existence
+of solutions to (CWE), but is crucial for long-time, i.e., global-in-time, existence.
+    There is a large body of rather recent work about the analysis of solutions to critical
+wave equations and their global-in-time existence, including monographs (partially) ded-
+icated to the topic such as [41] or [38]. We focus on the works on space dimension 3. His-
+torically, global existence was proven first for Ω = R3 by Grillakis [19] in 1992 for smooth
+solutions and by Shatah and Struwe [33, 34] for energy space solutions in 1993/1994.
+Smith and Sogge were able to extend this result to the exterior of convex obstacles [37],
+and finally the case of a bounded domain Ω with Dirichlet conditions was treated by
+Burq, Lebeau, and Planchon [3] in 2008. This was followed by the treatment of the
+Neumann conditions case by Burq and Planchon [4]. By now, improved Strichartz es-
+timates compared to the ones which were available in [3] are proven by Blair, Smith
+and Sogge [2] and these allow for a slightly more convenient existence proof as outlined
+in [38, Ch. IV]. Of course, this is all for the defocusing case since the mentioned works
+establish global existence for initial data of arbitrary size. Extensions of the mentioned
+results and especially the focusing case are in the focus of current research; we mention
+exemplarily [11, 13, 14, 21, 25].
+    Semilinear wave equations have attracted significant interest in the classical control
+theory community and are a subject of ongoing research. Let us just mention for ex-
+ample [8, 9, 22, 27], where subcritical nonlinearities are considered, and the more recent
+works [6, 24] for the critical case. On the other hand, the literature regarding optimal
+control of semilinear wave equations and especially the one about stronger nonlinearities
+appears to be rather scarce. We refer to [31] and related works, where the focus lies more
+on the state constraints imposed on the system, or to [16] with a mild nonlinearity. We
+are not aware of any work related to the optimal control of a critical semilinear wave
+equation.
+    The contributions of this work are thus threefold:
+• Up to now, the proofs of global existence of solutions to (CWE) mentioned above do
+  not incorporate forcing terms or controls u. We thus explicitly revisit the proof in [3]
+  to obtain a global existence result including the control. Due to the lack of a uniform
+  bound on the nonlinearity, as mentioned above, the proof is quite sophisticated and
+  taylored to the critical nature of the problem.
+• We show existence of globally optimal solutions to (OCP) and derive optimality con-
+  ditions of both first-and second order type. Again, a particular point is that there is
+  no uniform bound on the L1 (0, T; L2 (Ω)) norm of y 5 for varying controls u from the
+  PDE (CWE) which we thus have to enforce using the cost functional ℓ with γ > 0.
+  The derivative of the associated term then enters the optimality conditions.
+                                             3
+• We consider the constraint set of pointwise-in-time Trust Region type Uad for the opti-
+  mal control problem which seems not to have received much attention in the available
+  literature so far. This plays a most prominent and demanding role in the derivation of
+  second order necessary optimality conditions for (OCP). It is of independent interest
+  and a novel contribution in its own right.
+Let us also point out that we could also consider more general nonlinearities f (y) in place
+of y 5 in (CWE), as long as they exhibit comparable growth and continuity properties.
+We have chosen to omit the technical details for the sake of exposition.
+
+Overview
+    We first establish several basic but fundamental results about solutions to (CWE)
+in Section 2. This includes the concept of mild and weak solutions to (CWE) and
+several important estimates for solutions to wave equations. It ends with local-in-time
+wellposedness of (CWE). As announced above, the solution regularity will then be
+(y, y ′ ) ∈ C([0, T • ); E) with y ∈ L4loc ([0, T • ); L12 (Ω)) for some T • ∈ (0, T] but there will be
+no uniform bound in the latter space. In Section 3, we establish that such local-in-time
+solutions in fact exist globally in time in the energy space class by incorporating the
+inhomogeneity u into the related proof in [3]. The optimal control problem is treated in
+Section 4. After some preparatory differentiability results, we prove existence of globally
+optimal controls for (OCP) as well as necessary optimality conditions of first and second
+order, and also second order sufficient conditions. For the latter, we need to assume that
+β2 > 0.
+
+Notation and conventions
+    We already mentioned above that we often consider the energy space E := H10 (Ω) ×
+L (Ω) and throughout equip H10 (Ω) with the norm kykH10 (Ω) := k∇ykL2 (Ω) . Moreover, for
+ 2
+
+a time-dependent function y, we write
+                                            2            2                2
+        ξy (t) := y(t), ∂t y(t) and   ξy (t) E := ∇y(t) L2 (Ω) + ∂t y(t) L2 (Ω) .
+
+We use (·, ·)Ω for the L2 (Ω) inner product and write A . B if there is a constant C > 0
+such that A ≤ C · B. If necessary, a dependency of the constant C on another quantity
+D will be denoted by A .D B. All other notation will be standard. We consider all
+function spaces to be real ones.
+      Lastly, the global time interval length T is given and fixed for this work, but we will
+sometimes have to deal with the theory of functions or solutions on intervals other than
+[0, T]. In these cases, let T ∈ (0, T], and consider, if necessary, implicitly a dilation of
+[t0 , t1 ] ⊆ [0, T] to [0, T ] via T := t1 − t0 .
+
+2. Existence and uniqueness of local solutions
+    The classical notion of a solution in the energy space E is that of a mild solution. For
+this, let us introduce the Laplacian operator ∆ in L2 (Ω) given by
+                n                                                                    o
+      D(∆) := ϕ ∈ H10 (Ω) : ∃f ∈ L2 (Ω) : ∇ϕ, ∇ψ Ω = f, ψ Ω for all ψ ∈ H10 (Ω) ,
+                                                              
+
+        ∆ϕ := −f.
+                                                  4
+Definition 2.1 (Mild solution). We say that the function y is a mild solution to (CWE)
+                                                                    Rt
+on [0, T ] if y ∈ L4 (0, T ; L12 (Ω)) and ξy ∈ C([0, T ]; E) with 0 ξy (s) ds ∈ D(∆) × H10 (Ω)
+for all t ∈ (0, T ] and
+                            Z t              Z t               
+                     0 Id                                0
+    ξy (t) = ξ0 +                  ξy (s) ds +                      ds for all t ∈ [0, T ] (2.1)
+                     ∆ 0         0              0  u(s) − y 5 (s)
+is satisfied.
+Remark 2.2. Let us briefly comment on the—at first glance—somewhat curious re-
+quirement y ∈ L4 (0, T ; L12(Ω)) in the definition of a mild solution. By Sobolev embed-
+ding, we have H10 (Ω) ֒→ L6 (Ω), so a mild solution y can be considered as an element of
+L∞ (0, T ; L6(Ω)) ∩ L4 (0, T ; L12 (Ω)). The Hölder inequality shows that
+                    kf k5L5 (0,T ;L10 (Ω)) ≤ kf k4L4 (0,T ;L12 (Ω)) kf kL∞ (0,T ;L6 (Ω))            (2.2)
+and thus
+                    kf 5 kL1 (0,T ;L2 (Ω)) ≤ kf k4L4 (0,T ;L12 (Ω)) kf kL∞ (0,T ;L6 (Ω))            (2.3)
+                4       12            ∞           6
+for all f ∈ L (0, T ; L (Ω)) ∩ L (0, T ; L (Ω)). This shows that for a mild solution y
+on [0, T ] we have y 5 ∈ L1 (0, T ; L2(Ω)) such that the second row in (2.1) is in fact self-
+consistent. Of course, we could have required the weaker condition y ∈ L5 (0, T ; L10 (Ω))
+instead at this point; we will see the benefit of the stronger requirement later.
+   Following [24], we moreover introduce the following concept of solution for the prob-
+lem (CWE) which is more suited to the optimal control problem. It is named after the
+authors of [33, 34].
+Definition 2.3 (Shatah-Struwe solution). We say that the function y is a Shatah-Struwe
+solution to (CWE) on [0, T ] if y ∈ L4 (0, T ; L12 (Ω)) and ξy ∈ L∞ (0, T ; E) with ξy (0) = ξ0
+satisfies the weak formulation
+      Z T                          Z T                      Z T
+                                                                 y 5 (t), ϕ(t) Ω dt
+                                                                            
+   −       ∂t y(t), ∂t ϕ(t) Ω dt +     ∇y(t), ∇ϕ(t) Ω dt +
+       0                              0                                0
+                                          Z T
+                                                                           for all ϕ ∈ C∞
+                                                                                                    
+                                      =         u(t), ϕ(t) Ω dt                         c (0, T ) × Ω .
+                                           0
+
+    Note that the notion of a Shatah-Struwe solution in fact also makes sense if y does not
+have the additional integrability property. It is also meaningful for initial data only from
+H−1 (Ω)×L2 (Ω), since the solution will be continuous with values in H−1 (Ω)×L2 (Ω), and
+for u ∈ L1 (0, T ; H−1 (Ω). For our purpose, we had supposed ξ0 ∈ E = H10 (Ω) × L2 (Ω) and
+u ∈ L1 (0, T ; L2(Ω)); thus, we can in fact show that Shatah-Struwe and mild solutions
+coincide and are unique. The additional integrability property y ∈ L4 (0, T ; L12 (Ω)) is also
+important here. The first step is to establish conservation of energy for Shatah-Struwe
+solutions, from which we immediately obtain continuity, and later also uniqueness of
+such solutions:
+Proposition 2.4 (Energy conservation, [24, Prop. 3.3]). Let y be a Shatah-Struwe so-
+lution of (CWE) on [0, T ]. Then the energy function Ey associated to y given by
+                                                   Z t
+                       1        2   1       6
+                                                                    
+             Ey (t) := kξy (t)kE + ky(t)kL6 (Ω) −      u(s), ∂t y(s) Ω ds
+                       2            6               0
+                                          5
+is absolutely continuous. Moreover, Ey (t) = Ey (0) = 21 kξ0 k2E + 61 ky0 k6L6 (Ω) for all t ∈
+[0, T ], and we have ξy ∈ C([0, T ]; E).
+    Here, the continuity of ξy follows from the continuity of Ey , cf. [30, Ch. 3, Thm. 8.2].
+The energy conservation gives us an a priori bound on the C([0, T ]; E) norm of ξy and on
+kykL∞ (0,T ;L6 (Ω)) which will prove very useful when proving that solutions exist globally-
+in-time:
+Lemma 2.5. Let y be a Shatah-Struwe solution to (CWE) on [0, T ]. Then we have
+
+   kξy k2C([0,T ];E) + kyk6L∞ (0,T ;L6 (Ω)) . kξ0 k2E + ky0 k6L6 (Ω) + kuk2L1 (0,T;L2 (Ω)) =: E0 .             (2.4)
+
+Proof. From Ey (t) = Ey (0), we clearly find
+
+  1             1
+    kξy (t)k2E + ky(t)k6L6 (Ω) − k∂t ykL∞ (0,t;L2 (Ω)) kukL1 (0,t;L2 (Ω))
+  2             6
+                                                                                 1          1
+                                                       ≤ Ey (t) = Ey (0) =         kξ0 k2E + ky0 k6L6 (Ω) ,
+                                                                                 2          6
+so for every ε > 0
+                                       
+             1         2  1      6
+    sup        kξy (t)kE + ky(t)kL6 (Ω)
+   t∈[0,T ] 2             6
+                                                                                     1
+                                         ≤ Ey (0) + εk∂t yk2L∞ (0,T ;L2 (Ω)) +          kuk2L1 (0,T ;L2 (Ω)) .
+                                                                                     4ε
+This implies
+
+  1                    1
+    kξy k2C([0,T ];E) + kyk6L∞ (0,T ;L6 (Ω))
+  2                    6
+                                                                                     1
+                                         . Ey (0) + εk∂t yk2L∞ (0,T ;L2 (Ω)) +          kuk2L1 (0,T ;L2 (Ω)) ,
+                                                                                     4ε
+and with ε small enough we can absorb the εk∂t yk2L∞ (0,T ;L2 (Ω)) term in the left-hand side
+to obtain (2.4).
+   Next we show that Shatah-Struwe and mild solutions coincide.
+Lemma 2.6. A function y is a mild solution to (CWE) if and only if it is a Shatah-
+Struwe solution.
+Proof. Let y be a mild solution to (CWE). Testing the second row in (2.1) with ψ ⊗ ζ ∈
+C∞            ∞
+ c (0, T ) ⊗ Cc (Ω), we find
+
+  Z T
+                         
+        ∂t y(t), ∂t ψ(t)ζ Ω dt
+    0
+                              Z T                 Z T Z t            
+                          
+                 = y1 , ζ Ω          ∂t ψ(t) dt +     ∆    y(s) ds, ζ   ∂t ψ(t) dt
+                                 0                 0            0               Ω
+                                                           Z T Z t                            
+                                                       +                u(s) − y 5 (s) ds, ζ           ∂t ψ(t) dt.
+                                                            0       0                              Ω
+                                                       6
+Using selfadjointness of the Laplacian on L2 (Ω) and Fubini’s theorem, we continue with
+
+       Z T Z t                                                   Z TZ T                                                  !
+                                                                                    u(s) − y 5 (s) ∂t ψ(t) dt, ζ
+                                                                                                  
+   =                 y(s) ds, ∆ζ           ∂t ψ(t) dt +                                                                            ds
+         0       0                     Ω                            0       s
+                                                                                                                               Ω
+                                           Z T                                            Z T
+                                                                                                  u(s) − y 5 (s), ζ Ω ψ(s) ds.
+                                                                                                                  
+                                       =               y(s), −∆ζ Ω ψ(t) dt −
+                                               0                                             0
+
+It remains to observe that y(s), −∆ζ Ω = ∇y(s), ∇ζ Ω , due to ζ ∈ C∞
+                                                                                        
+                                                                                c (Ω) ⊂ D(∆)
+and the definition of the Laplacian in L2 (Ω), and that C∞     c (0, T ) ⊗ C ∞
+                                                                             c (Ω)  is dense in
+C∞c ((0, T ) × Ω) ([17, Thm. 4.3.1]) to conclude  that  y is a weak  solution  to (CWE).
+    For the reverse assertion, let y be a Shatah-Struwe solution to (CWE). We need to
+show that the first row in (2.1) is satisfied in H10 (Ω). Writing
+                                                                   Z t
+                                               y(t) − y0 =                  ∂t y(s) ds,
+                                                                        0
+
+at first in L2 (Ω), we observe that the left-hand side is in fact a continuous function in
+H10 (Ω) due to Proposition 2.4. This gives the assertion.
+                                 Rt
+     For the second row and 0 y(s) ds ∈ D(∆), observe that from the definition of a weak
+solution, we have
+
+     ∂t2 y(t), ζ H−1 (Ω),H1 (Ω) = ∇y(t), ∇ζ Ω + u(t) − y 5 (t), ζ Ω for all ζ ∈ C∞
+                                                                
+                                                                                 c (Ω) (2.5)
+                           0
+
+
+for almost all t ∈ (0, T ). With ∂t y(t) ∈ L2 (Ω) for almost all t ∈ (0, T ) together with
+y1 ∈ L2 (Ω), we thus find
+                                
+                ∂t y(t) − y1 , ζ Ω = ∂t y(t) − y1 , ζ H−1 (Ω),H1 (Ω)
+                                                                0
+                                     Z t
+                                   =     ∂t2 y(s), ζ H−1 (Ω),H1 (Ω) ds
+                                                              0
+                                      0
+                                     Z t
+                                         ∇y(s), ∇ζ Ω + u(s) − y 5 (s), ζ Ω ds
+                                                                       
+                                   =
+                                                       0
+
+and so                                 Z t                                             Z t                    
+                                                   5
+                                                                                
+                     ∂t y(t) − y1 +            y (s) − u(s) ds, ζ Ω =                            y(s) ds, ∆ζ           .
+                                           0                                                 0                     Ω
+
+Since this equality extends from all ζ in C∞c (Ω) to all ζ ∈ D(∆), we have by definition
+of the adjoint operator and selfadjointness of ∆:
+       Z t                          Z t                          Z t
+           y(s) ds ∈ D(∆) and ∆         y(s) ds = ∂t y(t) − y1 +     y 5 (s) − u(s) ds.
+             0                                             0                                         0
+
+This is the second row in (2.1). Continuity of the Shatah-Struwe solution follows from
+the energy inequality as noted in Proposition 2.4.
+    Another consequence of the energy conservation for Shatah-Struwe and, per Propo-
+sition 2.4, mild solutions, is uniqueness:
+                                           7
+Proposition 2.7 (Shatah-Struwe uniqueness, [24, Cor. 3.4]). The Shatah-Struwe solu-
+tion of (CWE) is unique, if it exists.
+Corollary 2.8. If there exists a mild solution y to (CWE), then it is unique and coincides
+with the Shatah-Struwe solution.
+    Next, we establish some important estimates and finally local-in-time existence of
+solutions. For this purpose, consider the block operator in Definition 2.1 (mild solution)
+as a closed operator in H10 (Ω) × L2 (Ω) via
+                                     
+                                0 Id
+                       A :=             , D(A) := D(∆) × H10 (Ω).
+                               ∆ 0
+
+It can be shown that the operator A generates a C0 -semigroup t 7→ eAt on E, cf. [7,
+Ch. XVII §3 Sect. 3.4]. Thus, for ξ0,z = (z1 , z0 ) ∈ E and f ∈ L1 (0, T ; L2 (Ω)), the usual
+variation-of-constants formula
+                                             Z t              
+                                                            0
+                         ξz (t) = eAt ξ0,z +     eA(t−s)         ds.                    (2.6)
+                                              0           f (s)
+
+is well defined and gives the unique mild solution z ∈ C([0, T ]; E) to the linear wave
+equation
+                         ∂t2 z − ∆z = f
+                                                                  
+                                                 in (0, T ) × Ω,  
+                                                                  
+                                   z=0           on (0, T ) × ∂Ω,                (LWE)
+                                                                 
+                      z(0), ∂t z(0) = (z0 , z1 ) in Ω,
+                                                                  
+
+cf. [1, Prop. 3.1.16].
+     We state the fundamental estimates for z satisfying (2.6). While the first one is
+the standard energy space estimate which follows immediately from (2.6) and Sobolev
+embedding, the second one is a nontrivial Strichartz estimate as proven in [2]:
+Lemma 2.9 (Energy- and Strichartz estimates). Let f ∈ L1 (0, T ; L2(Ω)) as well as ξ0,z ∈
+E, and let ξz be given by (2.6) for t ∈ [0, T ]. Then there exist constants Ce (T ), Cs (T )
+such that the energy estimate
+                                                                            
+               ξz (t) E + ky(t)kL6 (Ω) ≤ Ce (T ) ξ0,z E + f L1 (0,T ;L2 (Ω))          (2.7)
+
+for all t ∈ [0, T ], and the Strichartz estimate
+                                                                               
+                      z L4 (0,T ;L12 (Ω)) ≤ Cs (T ) ξ0,z E + f L1 (0,T ;L2 (Ω))         (2.8)
+
+are satisfied.
+Remark 2.10. Suppose that ξ0,z = 0. Then it is easy to see that the constants Ce (τ )
+and Cs (τ ) associated to the estimates (2.7) and (2.8) for solutions on the intervals [0, τ ]
+are monotonously increasing in τ . In other words, given a function f ∈ L1 (0, T ; L2(Ω)),
+we have Ce (τ ) ≤ Ce (T ) and Cs (τ ) ≤ Cs (T ) for all τ ∈ [0, T ].
+
+
+                                                 8
+     Now, if ξy with y ∈ L4 (0, T ; L12 (Ω)) is given by (2.6) with f = u − y 5 and initial data
+ξ0 , so that                              Z t                         
+                                 At             A(t−s)       0
+                       ξy (t) = e ξ0 +        e                          ds,                (2.9)
+                                           0            u(s) − y 5 (s)
+then y is in fact the unique mild solution to (CWE) in the sense of Definition 2.1 on [0, T ]
+(see again [1, Prop. 3.1.16]) and thus also the Shatah-Struwe solution, recall Corollary 2.8.
+In particular, y satisfies the estimates in Lemma 2.9 for f = u − y 5 and initial data ξ0 .
+As explained in Remark 2.2, the integrability y 5 ∈ L1 (0, T ; L2 (Ω)) follows from the
+additional dispersion information y ∈ L4 (0, T ; L12 (Ω)).
+    Using the linear estimates in Lemma 2.9 together with the interpolation inequalities
+as in Remark 2.2, local existence and uniqueness of a function y satisfying (2.9)—which
+is then also the unique mild and Shatah-Struwe solution on the interval of existence—
+depending continuously on the given data follows from a standard fixed point argument.
+(See also [24, Prop. 3.1] for another explicit proof.)
+Theorem 2.11 (Local-in-time existence). There exists a maximal unique mild and
+Shatah-Struwe solution to (CWE) such that (CWE) is well posed with respect to E and
+L1 (0, T; L2 (Ω)). More precisely, there exists a maximal time T • ∈ (0, T] depending on
+ξ0 ∈ E and u ∈ L1 (0, T; L2 (Ω)) and a unique function y on [0, T • ) with ξy given by (2.9)
+such that
+                    ξy ∈ C [0, T • ); E   and y ∈ L4loc [0, T •); L12 (Ω) .
+                                                                        
+
+This function y is the unique mild and Shatah-Struwe solution to (CWE) on [0, T ] for
+every T ∈ (0, T • ). Moreover, there exists ε > 0 such that for every initial value ζ0 ∈
+Bε (ξ0 ) ⊂ E and every right-hand side v ∈ Bε (u) ⊂ L1 (0, T; L2 (Ω)) there exists a unique
+solution ȳ in the foregoing sense on the same intervals of existence and the mapping
+Bε (ξ0 ) × Bε (u) ∋ (ζ0 , v) → ȳ is continuous.
+Remark 2.12. The wellposedness of (CWE) allows to obtain certain classical proper-
+ties of more regular solutions to (CWE) and related equations also for Shatah-Struwe
+solutions by approximation. This includes in particular finite speed of propagation of
+such solutions, cf. e.g. [15, Ch. 2.4.3, Thm. 6].
+
+3. Global solutions
+    In this section, we establish that there indeed exists a unique global-in-time mild and
+Shatah-Struwe solution to (CWE) on [0, T] given by (2.9). The argument follows [3]
+which in turn builds upon [37], see also [38, Ch. IV, §3] or [41, Ch. 5.1]. We mostly
+outline the strategy and give a minimally invasive modification of the proof in [3]. The
+modification is necessary in the first place because on the one hand, only the case u = 0
+is treated in [3], and on the other hand, the improved Strichartz estimates in [2] as stated
+in Lemma 2.9 allow to simplify the proof at some places compared to [3]. The global
+existence result is also stated in [24, Thm. 3.8], however, without a proof.
+    The proof consists in principle of an ordinary extension argument via the energy
+space E: Let y be the maximal solution to (CWE) as in Theorem 2.11. We show that
+the limit limtրT • ξy (t) =: ξy (T • ) exists in E. Then we either have already T • = T, or we
+can extend the solution by re-applying Theorem 2.11 starting from T • with initial data
+ξy (T • ) until we have a solution on the whole [0, T].
+                                                  9
+    For this purpose, it is imperative to observe that, by the energy estimate (2.7), the
+limit of ξy (t) as t ր T • in (2.9) only fails to exist if y ∈
+                                                             / L5 (0, T • ; L10 (Ω)); so we want
+                             5      •   10
+to prove that in fact y ∈ L (0, T ; L (Ω)). Due to energy conservation (cf. Lemma 2.5)
+and (2.2), it is moreover sufficient to show that y ∈ L4 (0, T •; L12 (Ω)).
+    In the introduction it was mentioned several times that there is no direct bound on
+a local solution y in L4 (0, T • ; L12 (Ω)) in the critical case. This is in contrast to the
+subcritical case with a nonlinearity y p with 1 < p < 5. We give a quick demonstration
+of this and how it does not work for the critical case (cf. [38, Ch. IV.2]). Let y be the
+local-in-time solution of (CWE) as in Theorem 2.11 and let t ∈ [0, T •). The Hölder
+inequality yields the more general form of (2.3)
+                 y p L1 (t,T • ;L2 (Ω)) ≤ kykp−1
+                                             L4 (t,T • ;L12 (Ω)) kyk 5−p
+                                                                      4              12          .
+                                                                      L     (t,T • ;L 7−p (Ω))
+               12
+Now note that 7−p < p + 1 if and only if 1 < p < 5. Hence
+                                                             5−p
+                kyk 5−p
+                     4             12          .Ω T • − t      4
+                                                                    kykL∞ (t,T • ;Lp+1 (Ω)) .
+                    L     (t,T • ;L 7−p (Ω))
+
+If y p is the nonlinearity in (CWE), then kykL∞ (t,T • ;Lp+1 (Ω)) is present in Proposition 2.4
+instead of the corresponding L6 (Ω) terms. Accordingly, it is uniformly bounded by a
+power of E0 and we obtain from the above
+                                                          5−p
+                     y p L1 (t,T • ;L2 (Ω)) .Ω,E0 T • − t 4 kykp−1
+                                                               L4 (t,T • ;L12 (Ω)) .
+
+The Strichartz estimate (2.8) then shows that
+                                                       5−p
+             kykL4 (t,T • ;L12 (Ω)) .Ω,E0 E0 + T • − t 4 kykp−1
+                                         p
+                                                            L4 (t,T • ;L12 (Ω)) .
+
+Via Lemma A.1, this implies that there is t⋆ ∈ (0, T •) such that kykL4 (t⋆ ,T • ;L12 (Ω)) is
+finite. Unfortunately, the foregoing proof breaks down completely for the critical value
+p = 5 since we obtain
+                                      p
+             kykL4 (t,T • ;L12 (Ω)) .Ω E0 + kykL∞ (t,T • ;L6 (Ω)) kyk4L4 (t,T • ;L12 (Ω))
+                                                         1/6
+and kykL∞ (t,T • ;L6 (Ω)) , although bounded by E0 , does not go to zero as t ց T • in
+general. It is thus necessary to proceed differently. The idea is to replace the “full-
+spacetime” norm kykL∞ (t,T • ;L6 (Ω)) by a localized one which indeed goes to zero as t ց T • .
+This is done as follows.
+     We first show an L6 -non-concentration effect in T • , namely that the L6 norm of the
+solution cannot concentrate in a single point x0 , i.e., be greater than 0. This is the most
+involved and nontrivial result, but luckily we only need to make appropriate modifica-
+tions to incorporate the inhomogeneity u compared to the proof in [3, Prop. 3.3]; see
+Proposition 3.1. The non-concentration effect allows to prove that the solution must be
+in L4t L12                                                     •
+        x -integrable on a backwards light cone through (T , x0 ). (For precise definitions,
+see below.) This is done in Proposition 3.3. We then show in Proposition 3.6 that this
+L4t L12                                                  ∞ 6
+     x -integrability enables us to prove that the Lt Lx -norm of y becomes arbitrarily
+small on a slightly larger light cone as we approach T • . This allows to employ an argu-
+ment similar to the one displayed for the subcritical case above which then finally leads
+to boundedness of L4 (t⋆ , T • ; L12 (Ω)) for some t⋆ close to T • and thus finishes the proof
+of the main result, Theorem 3.7.
+                                                10
+3.1. Global existence
+    We fix x0 ∈ Ω for the following, if not stated otherwise, as well as the blowup time
+T • > 0. Frequently needed objects are the δ-enlarged backwards light cone through
+(s, x0 ) for 0 ≤ t0 ≤ s ≤ T • and δ ≥ 0 given by
+                                 n                                               o
+                  Λ(δ; t0 , s) := (t, x) ∈ [t0 , s] × Ω : |x − x0 | ≤ δ + T • − t .
+
+Moreover, we need its “time slice” at time level τ
+                           n                                        o
+                     Dτδ := (τ, x) : x ∈ Ω, |x − x0 | ≤ δ + T • − τ
+
+with Dτ := Dτ0 . Clearly, the sets Dτδ live in the four-dimensional space R × R3 , and we
+use Px Dτδ to denote the projection of this set onto the second coordinate block, so in R3 .
+We moreover use the mixed Lebesgue norm notation
+                                                   Z s   Z                       !p/q
+                      kwkpLp Lqx (Λ(δ;t0 ,s)) :=                          q
+                                                                  |w(t, x)| dx          dt,
+                           t
+                                                    t0   Px Dtδ
+
+
+with the usual modification for p = ∞. Finally, let us define the local energy of a function
+v on Dtδ for 0 ≤ t < T • by
+
+                                     |∇v(t, x)|2 + |∂t v(t, x)|2   |v(t, x)|6
+                             Z
+                Ev (δ; t) :=                                     +            dx.
+                              Px Dtδ             2                     6
+
+   The first result is the L6 -non-concentration effect:
+Proposition 3.1 (L6 -nonconcentration). There holds
+                                 Z
+                            lim•       |y(t, x)|6 dx = 0.
+                                      tրT     Px Dt
+
+Proof. We need only make appropriate modifications in the proof in [3, Prop. 3.3], whose
+strategy follows [37, Lem. 3.3] or [38, Ch. V, Prop. 3.2], to incorporate the inhomogeneity
+u. There are essentially three aspects:
+
+1. The estimate
+                                        k∂ν yk2L2 (0,s;L2 (∂Ω)) . E0
+is still satisfied uniformly for every 0 ≤ s < T • , where ∂ν is the trace of the outer unit
+normal on ∂Ω. This follows as in [3, Prop. 3.2] by taking care of the estimate
+                   Z sZ h                                            i
+                          (Zu)(t, x) · y(t, x) − (Zy)(t, x) · u(t, x) dx dt . E0
+                  0      Ω
+
+uniformly in s, where Z is a smooth scalar field on Ω which coincides with ∂ν on ∂Ω. (For
+this argument, we suppose u and y to be smooth and refer to the wellposedness of the
+equation, recall Remark 2.12.) Such an estimate follows immediately using integration
+by parts and the energy conservation (2.4).
+                                            11
+2. We refer to [3, Sect. 3.1], [37, Lem. 3.2] or [38, Ch. IV, §3] for the derivation of
+                                    Z
+      Ey (0, s) + Flux(y; τ0 , s) +          ∂t y(t, x) · u(t, x) d(t, x) = Ey (0, τ0 ) (3.1)
+                                             Λ(0;τ0 ,s)
+                           •
+for 0 ≤ τ0 ≤ s < T . Here,
+                                                    Z
+                               Flux(y; τ0 , s) :=          e(t, x) · ν(t, x) dσ(t, x),
+                                                    Mτs0
+
+where Mτs0 := (t, x) ∈ Λ(0; τ0 , s) : |x − x0 | = T • − t is the “mantle” and ν the unit
+               
+
+outer normal to Λ(0; τ0 , s), and the vector field e is given by
+                      |∂t y(t, x)|2 + |∇y(t, x)|2   |y(t, x)|6
+                                                                                   
+         e(t, x) :=                               +            , −∂t y(t, x)∇y(t, x) .
+                                    2                   6
+Thus, Flux(y; τ0 , s) is the energy transferred across Mτs0 during transition from Dτ0 to
+Ds , and we have Flux(y; τ0 , s) ≥ 0. As in the references for the proof, we show that
+limτ0 րT • Flux(y; τ0 , s) = 0.
+   Estimating the integral involving u in (3.1) from below and using the energy bound (2.7)
+we derive
+               Ey (0, s) + Flux(y; τ0 , s) ≤ Ey (0, τ0 ) + E0 kukL1 (τ0 ,s;L2 (Ω)) . (3.2)
+The nonnegativity of the flux now implies that the function f defined by t 7→ Ey (0, t) +
+E0 kukL1 (t,T • ;L2 (Ω)) is nonincreasing. Due to the energy bound (2.4), it is moreover uni-
+formly bounded for t ∈ (0, T • ), and thus admits a limit limtրT • f (t). Back in (3.2), we
+now have
+                                                                   τ0 րT •
+                             0 ≤ Flux(y; τ0 , s) ≤ f (τ0 ) − f (s) −−−−→ 0,
+so indeed limτ0 րT • Flux(y; τ0 , s) = 0.
+3. Lastly, in the proof in [3, Prop. 3.3], a Morawetz identity is used which can be formally
+derived by multiplying the state equation with (t · ∂t y(t, x) + x · ∇y(t, x) + y(t, x)). The
+identity is then integrated over Λ(0; τ0 , s) and a bound on the L6 (Px Dτ0 )-norm of y(τ0 )
+is derived; this is of course again for smooth solutions of the equation and the claim for
+mild solutions follows by approximation. To comply with the line of proof in [37] or [3],
+we need to make sure that
+           Z
+                                                                               τ0 ր0
+                      u(t, x) · t · ∂t y(t, x) + x · ∇y(t, x) + y(t, x) d(t, x) −−−→ 0.
+                 Λ(0;τ0 ,s)
+
+(Note that, in order to stay close to the referred works, we have shifted (T • , x0 ) to
+(0, 0) here, so now τ0 ≤ s < 0.) This however follows quite immediately from Hölder’s
+inequality and the energy bound (2.4), as the absolute value of the left-hand side can be
+estimated by
+   Z
+                                                               
+              u(t, x) · t · ∂t y(t, x) + x · ∇y(t, x) + y(t, x) d(t, x)
+    Λ(0;τ0 ,s)
+                   Z s
+                                                                                     
+             ≤            kukL2 (Ω) |τ0 |k∂t ykL2 (Ω) + diam(Ω)k∇ykL2 (Ω) + kykL2 (Ω) dt
+                     τ0
+                                                                                         . kukL1 (τ0 ,0;L2 (Ω)) .
+                                                          12
+With these three modifications, we can now repeat the proof of L6 -non-concentration
+verbatim as in [3, Prop. 3.3] with u inserted at the appropriate places.
+    To make use of the foregoing Proposition 3.1, we next establish a series of preliminary
+results. The first one is a technical result which allows us to localize functions to the
+“slices” Px Dtδ .
+Lemma 3.2 (Localization ([3, Lem. 3.3])). Let 1 ≤ p ≤ ∞. For every x0 ∈ Ω there exist
+numbers rext > 0 and Cext ≥ 0 with the following significance: For δ < rext , there exists
+t0 ∈ (0 ∨ T • + δ − rext , T • ) such that given v ∈ L1loc (0, T • ; Lp (Ω)), there exists a function
+v̌ ∈ L1loc (0, T • ; Lp (Ω)) such that
+
+                                      v(t) = v̌(t)         a.e. on Px Dtδ
+
+and
+                                 kv̌(t)kLp (Ω) ≤ Cext kv(t)kLp (Px Dtδ )                              (3.3)
+                  •
+for all t ∈ (t0 , T ).
+    The number rext in the next proposition is the one from Lemma 3.2.
+Proposition 3.3. Let 0 ≤ δ < rext and assume that for every ε > 0 there exists τ0 ∈
+(0, T • ) such that
+                             kykL∞   6
+                                  t Lx (Λ(δ;τ0 ,T ))
+                                                 •   <ε
+Then there is t0 ∈ (0, T • ) such that y ∈ L4t L12            •
+                                                x (Λ(δ; t0 , T )).
+
+Proof. Let t0 ∈ (0 ∨ T • + δ − rext , T • ) be fixed for now, to be chosen later. We use the
+assumption in conjunction with the Strichartz estimate (2.8). Let y̌ be the function from
+Lemma 3.2 coinciding with y on Λ(δ; t0 , T • ) and let w be given by
+                                            Z t                        
+                                                              0
+                   ξw (t) = eAt ξy (t0 ) +      eA(t−s)                   ds,
+                                             t0          u(s) − y̌ 5 (s)
+
+so the mild solution to the linear wave equation (LWE) on [t0 , T • ) with f = u − y̌
+and initial data ξy (t0 ). Then w coincides with y on Λ(δ; t0 , T • ) due to finite speed of
+propagation, cf. Remark 2.12. Using the Strichartz estimate (2.8) for this linear equation
+we obtain
+
+       kykL4t L12
+               x (Λ(δ;t0 ,T ))
+                           •   ≤ kwkL4 (t0 ,T • ;L12 (Ω))
+                               .T • ξy (t0 ) E + y̌ 5 L1 (t ,T • ;L2 (Ω)) + u L1 (t ,T • ;L2 (Ω)) .
+                                                                  0                     0
+
+
+The extension estimate (3.3) and the interpolation inequality (2.2) further yield
+
+                  y̌ 5 L1 (t0 ,T • ;L2 (Ω)) . y L5 L10 (Λ(δ;t0 ,T • ))
+                                                   t   x
+
+                                         . kyk4L4 L12 (Λ(δ;t0 ,T • )) kykL∞  6           • .
+                                                                          t Lx (Λ(δ;t0 ,T ))
+                                                   t   x
+
+
+Hence, choosing ε small enough (cf. Lemma A.1) and if necessary enlarging t0 to τ0 (ε),
+we obtain
+                  kykL4t L12
+                          x (Λ(δ;t0 ,T ))
+                                      •   . ξy (t0 ) E + kukL1 (t0 ,T • ;L2 (Ω)) .
+An application of the energy bound (2.4) then yields the claim.
+                                          13
+   An immediate consequence of Proposition 3.3 and its proof together with the inter-
+polation inequality (2.2) is the following:
+Corollary 3.4. Let the assumption of Proposition 3.3 hold true for some δ satisfying
+0 ≤ δ < rext . Then, for every ε > 0, there exists t0 ∈ (0, T • ) such that
+
+                                      y L5 L10 (Λ(δ;t0 ,T • )) < ε.
+                                             t       x
+
+
+    We will need a bound for the energy transfer from one time level to another in the
+light cones when we come close enough to T • . The following lemma states that this is
+possible and, crucially, even uniformly in δ.
+Lemma 3.5. For every ε > 0 there is t0 ∈ [0, T •) such that
+
+                                     Ey (δ; s) ≤ Ey (δ; τ0 ) + ε
+
+for all τ0 , s satisfying t0 ≤ τ0 ≤ s < T • , and all δ ≥ 0.
+Proof. Let 0 ≤ t0 ≤ τ0 ≤ s < T • . As in the proof of Proposition 3.6, we obtain for every
+δ≥0                        Z
+                  Ey (δ, s) +                ∂t y(t, x) · u(t, x) d(t, x) ≤ Ey (δ, τ0 ).
+                                Λ(δ;τ0 ,s)
+
+and so
+                         Ey (δ, s) ≤ Ey (δ, τ0 ) + E0 u L1 (t ,T • ;L2 (Ω)) .
+                                                                   0
+
+                                       •
+Choosing t0 sufficiently close to T , this gives the claim.
+   Finally, the next proposition shows that the L6 -non-concentration effect as proven in
+Proposition 3.1 in fact also holds in α-enlarged light cones for α > 0 sufficiently small.
+This will then immediately imply the main Theorem 3.7 below.
+Proposition 3.6. Let the assumption of Proposition 3.3 hold true for δ = 0. Then, for
+every ε > 0 there exist t0 ∈ (0, T • ) and 0 < α < rext such that
+
+                                    kykL∞  6
+                                        t Lx (Λ(α;t0 ,T ))
+                                                       •   < ε.
+
+Proof. Let ε > 0. We do explicit estimates to demonstrate that there are no implicit
+dependencies on the choice of t0 along the proof. Via Corollary 3.4 and Lemma 3.5,
+choose τ0 ∈ (0 ∨ T • − rext , T • ) such that
+
+                                       y L5 L10 (Λ(0;s,T • )) < ε
+                                                 t   x
+
+
+and
+                            Ey (δ; s) ≤ Ey (δ; η0 ) + Ce (T • )Cext
+                                                                5
+                                                                    ε5 ,
+as well as
+                                                            5
+                                   kukL1 (s,T • ;L2 (Ω)) ≤ Cext ε5 ,
+all for all τ0 ≤ η0 ≤ s < T • , and all δ ≥ 0, where Ce was the constant from Lemma 2.9.
+
+
+                                                         14
+    Let again y̌ be the function from Lemma 3.2 coinciding with y on Λ(0; τ0 , T • ). We
+split the local solution y on [τ0 , T • ) into a homogeneous part yh and an inhomogeneous
+part yi by
+                                                     Z t                        
+                         At                                A(t−s)       0
+             ξyh (t) := e ξy (τ0 ),       ξyi (t) :=     e                         ds.
+                                                      τ0           u(s) − y 5 (s)
+With wi defined by                         Z t                               
+                                                                 0
+                             ξwi (t) :=          eA(t−s)                          ds
+                                            τ0              u(s) − y̌ 5 (s)
+on [τ0 , T • ], we have wi = yi on Λ(0; τ0 , T • ). Thus, the estimates in Lemma 2.9 together
+with Remark 2.10, the choice of τ0 , and (3.3) imply
+
+  k∇yi kL∞  2
+         t Lx (Λ(0;τ0 ,T ))
+                        •   + k∂t yi kL∞  2
+                                       t Lx (Λ(0;τ0 ,T ))
+                                                      •   + kyi kL∞  6
+                                                                  t Lx (Λ(0;τ0 ,T ))
+                                                                                 •
+
+
+                           ≤ kwi kC([τ0 ,T • ];E) + kwi kL∞ (τ0 ,T • ;L6 (Ω))
+                                                                               
+                                  5
+                   ≤ Ce (T • ) y̌ L5 (τ ,T • );L10 (Ω) + kukL1 (τ0 ,T • ;L2 (Ω)) < 2Ce (T • )Cext
+                                                                                              5
+                                                                                                  ε5 .
+                                             0
+
+
+For the local energy of the homogeneous part yh of y, we find by yh ∈ C([0, T • ]; E) and
+conservation of energy
+  1
+    Z
+           |∇yh (t, x)|2 dx
+  2 Px Dt
+                                                          Z
+                                                 2                              tրT •
+                          . ∇yh (t) − ∇yh (T • ) L2 (Ω) +   |∇yh (T • , x)| dx −−−−→ 0.
+                                                                       Px Dt
+
+Treating the ∂t yh term in Eyh (0, t) analogously, we thus obtain
+                                             lim Eyh (0; t) = 0.
+                                            tրT •
+
+On the other hand, the inhomogeneous part was already estimated by
+                                      Eyi (0; t) < 2Ce (T • )Cext
+                                                              5
+                                                                  ε5
+for all t ∈ [τ0 , T • ], hence we can choose t0 ∈ [τ0 , T • ) to obtain
+                      Ey (0; t) ≤ 26 Eyh (0; t) + Eyi (0; t) < 129Ce (T • )Cext
+                                                                            5
+                                                                                ε5
+                                                            
+
+for all t ∈ [t0 , T • ]. The “homogeneous energy” kξy (t0 )kE +ky(t0 )kL6 (Ω) is an upper bound
+for Ey (δ; t0 ) for every δ, and finite by Lemma 2.5. Thus, the dominated convergence
+theorem, used with respect to δ, yields α = α(t0 ) > 0 such that
+                                     Ey (α; t0 ) < 130Ce (T • )Cext
+                                                                5
+                                                                    ε5
+and α < rext . We can then finally make use of the choice of τ0 done at the beginning of
+the proof and its uniformity w.r.t. δ to find
+
+  kykL∞  6
+      t Lx (Λ(α;t0 ,T ))
+                     •   ≤     sup       Ey (α; t)
+                             t0 ≤t<T •
+
+                                                 ≤ Ey (α; t0 ) + Ce (T • )Cext
+                                                                           5
+                                                                               ε5 < 131Ce (T • )Cext
+                                                                                                 5
+                                                                                                     ε5 .
+This completes the proof.
+                                                       15
+Theorem 3.7 (Global existence). For every u ∈ L1 (0, T; L2 (Ω)), the local solution y
+to (CWE) as given in Theorem 2.11 exists globally in time on the interval [0, T] and
+satisfies ξy ∈ C([0, T]; E) and y ∈ L4 (0, T; L12 (Ω)).
+Proof. We had already noted that it is sufficient to show that the local solution y satisfies
+y ∈ L4 (0, T • ; L12 (Ω)) since this allows to show that limtրT • ξy (t) exists in E via the
+variation of constants formula and the estimates as in Lemma 2.9 together with the
+energy conservation (2.4). Now, for this purpose, let x0 ∈ Ω be fixed. Proposition 3.1 tells
+us that the premise of Proposition 3.3 is satisfied for δ = 0. From there, Proposition 3.6
+implies, again via Proposition 3.3, that there are t0 ∈ (0, T • ) and α > 0 such that
+y ∈ L4t L12             •
+         x (Λ(α; t0 , T )).
+                                                                                       α(x ) 
+    This can be done for every x0 ∈ Ω. Then, the collection of sets Px DT • 0 x0 ∈Ω is
+a (relatively) open covering of Ω. Compactness of the latter gives a finite set of points
+                                           α(x ) 
+xi ∈ Ω, i = 1, . . . , n, such that Px DT • i i=1,...,n is still a (relatively) open covering of
+Ω. Setting t⋆0 := maxi=1,...,n t0 (xi ), we find y ∈ L4 (t⋆0 , T • ; L12 (Ω)), and since we already
+knew that y ∈ L4loc ([0, T • ); L12 (Ω)), this gives y ∈ L4 (0, T •; L12 (Ω)) as desired.
+
+4. Optimal control
+
+    We recall the setup of the optimal control problem. Let yd ∈ L2 (Ω) and nonnegative
+scaling parameters γ, β1 , β2 be given. We had
+
+               1                      γ
+  ℓ(y, u) :=     ky(T) − yd k2L2 (Ω) + kyk4L4 (0,T;L12 (Ω))
+               2                      4
+                                                                                β2
+                                                    + β1 kukL1 (0,T;L2 (Ω)) +      kuk2L2 (0,T;L2 (Ω))
+                                                                                2
+for y ∈ C([0, T]; L2 (Ω)) ∩ L4 (0, T; L12 (Ω)) and u ∈ Lr (0, T; L2 (Ω)), where r = 1 if β2 = 0
+and r = 2 if β2 > 0. We consider ℓ as a cost functional or performance index for (CWE),
+resulting in the associated optimal control problem
+
+                             min    ℓ(y, u)
+                             y,u
+                                                                                                (OCP)
+                                    (
+                                                               u ∈ Uad ,
+                             s.t.
+                                         y is the solution to (CWE).
+
+Here, Uad is a closed and convex, and thus weakly closed, nonempty set of the form
+                    n                                                           o
+            Uad := v ∈ Lr (0, T; L2 (Ω)) : kv(t)kL2 (Ω) ≤ ω(t) f.a.a. t ∈ (0, T)
+
+for a measurable function ω which is nonnegative almost everywhere on (0, T). We
+emphasize once more that ω is not assumed to be bounded away from 0 uniformly
+almost everywhere. Further, of course, the solution y in (OCP) is meant in the sense of
+Theorem 3.7.
+    We will proceed to establish existence of globally optimal solutions to (OCP) in the
+following. Moreover, we will give necessary optimality conditions of both first and second
+order, and also second order sufficient conditions.
+                                            16
+4.1. Existence of globally optimal controls
+   It now becomes convenient that a solution y associated to u—which we denote by
+yu from now on—in the sense of Theorem 3.7 is a Shatah-Struwe solution as noted in
+Lemma 2.6:
+Theorem 4.1 (Existence of optimal controls). Let β2 > 0 or let ω ∈ L1 (0, T), and let
+γ > 0. Then the optimal control problem (OCP) admits at least one globally optimal pair
+(yū , ū) with ū ∈ Uad such that the state yū is the unique global Shatah-Struwe solution
+to (CWE) for the right-hand side ū.
+Proof. Since Uad 6= ∅, and ℓ is bounded from below by zero, we obtain an infimal sequence
+(yk , uk ) with (uk ) ⊆ Uad , such that ℓ(yk , uk ) tends to inf u∈Uad ℓ(yu , u) > −∞ as k
+goes to infinity, where yk := yuk . Due to the assumptions, the sequence (uk ) admits
+a subsequence, denoted by the same name, which converges weakly in Lr (0, T; L2 (Ω))
+to some limit ū. (We will keep the notation for all convergent subsequences in the
+following.) Indeed, if β2 > 0, this is true because then the sequence (uk ) is bounded in
+L2 (0, T; L2 (Ω)). If ω ∈ L1 (0, T), then Uad is in fact weakly compact in L1 (0, T; L2 (Ω)),
+cf. [10, Cor. 2.6]. Due to weak closedness of Uad , we also have ū ∈ Uad .
+     We turn to (yk ): The boundedness of (uk ) implies that (ξyk ) must be bounded in
+L∞ (0, T; E) by the energy bound (2.4). This gives a weakly-∗ convergent subsequence of
+(ξyk ) with the weak-∗ limit denoted by ȳ ∈ L∞ (0, T; E). We need to show that ȳ = yū .
+     Looking at the definition of a Shatah-Struwe solution
+       Z T                               Z T                            Z T
+                                                                              yk5 (t), ϕ(t) Ω dt
+                                                                                         
+   −         ∂t yk (t), ∂t ϕ(t) Ω dt +          ∇yk (t), ∇ϕ(t) Ω dt +
+        0                                 0                              0
+                                     Z T
+                                                                  for all ϕ ∈ C∞
+                                                                                          
+                                 =            uk (t), ϕ(t) Ω dt                c (0, T) × Ω , (4.1)
+                                      0
+
+we observe that the linear terms are already dealt with. It remains to show that in fact
+ȳ ∈ L4 (0, T; L12 (Ω)), that ξȳ (0) = ξ0 , and that the nonlinear term involving yk5 converges
+to the correct one involving ȳ 5 .
+     For the latter, let 5 ≤ p < 6. Then boundedness of (ξyk ) in L∞ (0, T; E) and compact-
+ness of the embedding H10 (Ω) ֒−     ֒→ Lp (Ω) implies that (yk ) is in fact a precompact set in
+             p
+C([0, T]; L (Ω)), see [36, Cor. 4]. Accordingly, there is yet another subsequence of (yk )
+denoted by the same name such that (yk ) tends to ȳ in that space. This further means
+that (yk5 ) converges to ȳ 5 in C([0, T]; Lp/5 (Ω)).
+     The next step is to show that ξȳ (0) = ξ0 . We already know that (ξyk ) is bounded
+in L∞ (0, T; E). Further, (2.5) and boundedness of (uk ) in L1 (0, T; L2 (Ω)) show that
+(∂t2 yk ) is bounded in L1 (0, T; H−1 (Ω)). Using again [36, Cor. 4], we infer that (ξyk ) is
+precompact in C([0, T]; L2 (Ω) × H−1 (Ω)) and thus admits a convergent subsequence in
+that space, with the same name and the limit ȳ. Thus, in particular,
+
+                            ξ0 = ξyk (0) −→ ξȳ (0) in H−1 (Ω) × L2 (Ω)
+
+and we obtain ξȳ (0) = ξ0 , which by assumption even lies in E.
+
+
+
+                                                       17
+    We are now prepared to taking limits in (4.1) and obtain that ξȳ ∈ L∞ (0, T; E)
+satisfies ξȳ (0) = ξ0 and
+        Z T                                 Z T                           Z T
+                                                                                ȳ 5 (t), ϕ(t) Ω dt
+                                                                                            
+   −           ∂t ȳ(t), ∂t ϕ(t) Ω dt +           ∇ȳ(t), ∇ϕ(t) Ω dt +
+         0                                   0                             0
+                                            Z T
+                                                                      for all ϕ ∈ C∞
+                                                                                              
+                                        =         ū(t), ϕ(t) Ω dt                 c (0, T) × Ω . (4.2)
+                                             0
+
+    It only remains to show that ȳ ∈ L4 (0, T; L12 (Ω)). From γ > 0 we infer that (yk ) is
+also bounded in L4 (0, T; L12 (Ω)). Hence, there exists a weakly convergent subsequence
+with the limit ŷ in L4 (0, T; L12 (Ω)). This means that we have
+  Z T                             Z T
+                                                  
+             ȳ(t), φ(t) Ω dt =         ŷ(t), φ(t) Ω dt
+    0                              0
+                                                  for all φ ∈ L1 (0, T; L6/5 (Ω)) ∩ L4/3 (0, T; L12/11 (Ω))
+
+and thus
+
+                 ȳ = ŷ   in   L∞ (0, T; L6 (Ω)) + L4 (0, T; L12 (Ω)) ֒→ L4 (0, T; L6 (Ω)).
+
+But then ȳ = ŷ almost everywhere in (0, T) × Ω and in fact ȳ ∈ L4 (0, T; L12 (Ω)).
+    Since ȳ has now been shown to be a Shatah-Struwe solution to (CWE), uniqueness
+of such solutions as established in Corollary 2.8 then finally implies that indeed ȳ = yū .
+    It is now standard to use the convergences (yk ) → ȳ in C([0, T]; L2 (Ω)) and (yk ) ⇀ ȳ in
+L (0, T; L12 (Ω)) as well as (uk ) ⇀ ū in L1 (0, T; L2 (Ω)) together with lower semicontinuity
+ 4
+
+of norms in the objective ℓ to infer that
+
+                                             ℓ(ȳ, ū) = inf ℓ(yu , u).
+                                                         u∈Uad
+
+This shows that there indeed exists a globally optimal control to (OCP).
+    From the proof of Theorem 4.1 we obtain the following auxiliary result for the case γ =
+0, so the case where there is no additional L4 (0, T; L12 (Ω)) norm term in the objective. It
+underlines the role of this term in upgrading weak solutions to (unique) mild solutions:
+Proposition 4.2. Let β2 > 0 or ω ∈ L1 (0, T). Then the optimal control problem (OCP)
+admits at least one globally optimal pair (ȳ, ū) with ū ∈ Uad such that ȳ is a—possibly non-
+unique—weak solution to (CWE) with right-hand side ū. That means we have ξȳ (0) = ξ0
+and ξȳ ∈ L∞ ([0, T]; E), and ȳ satisfies the weak formulation (4.2).
+
+4.2. Optimality conditions
+    Let us set
+                  n                     o
+              Y := y : ξy ∈ C([0, T]; E)  and Y+ := L4 (0, T; L12 (Ω)) ∩ Y
+
+with
+                  kykY := kξy kC([0,T];E)         and kykY+ := kykY + kykL4 (0,T;L12 (Ω)) .
+                                                       18
+   As a first step towards optimality conditions, we show that the control-to-state map-
+ping u 7→ yu is twice continuously differentiable from L1 (0, T; L2 (Ω)) to Y+ . We recall
+the definition of yu in terms of the variation-of-constants (or Duhamel) formula in (2.9)
+and define the mapping
+
+                             e : Y+ × L1 (0, T; L2 (Ω)) → C([0, T]; E)
+
+as follows:
+                                              Z t                                
+                                                                      0
+                 e(y, u) (t) := eAt ξ0 +                A(t−s)
+                       
+                                                    e                                 ds − ξy (t).
+                                               0                 u(s) − y 5 (s)
+
+   By construction it is clear that e(yu , u) = 0 and of course it is our first goal to use
+the implicit function theorem to show the following:
+Theorem 4.3. The control-to-state operator S : u 7→ yu is twice continuously differen-
+tiable from L1 (0, T; L2 (Ω)) to Y+ . Its derivative S ′ (ū)h in ū in direction h ∈ L1 (0, T; L2 (Ω))
+is given by the mild solution zh ∈ Y+ of
+
+                           ∂t2 z − ∆z + 5ȳū4 z = h    in (0, T ) × Ω,
+                                               z=0      on (0, T ) × ∂Ω,
+                                               
+                                 z(0), ∂t z(0) = (0, 0) in Ω,
+
+on [0, T], i.e., zh satisfies
+                                      Z t                                    
+                                                                  0
+                           ξz (t) =         eA(t−s)                             ds
+                                       0                  h(s) − 5yū4 (s)z(s)
+
+for all t ∈ [0, T]. Its second derivative S ′′ (ū)(h1 , h2 ) in ū in directions h1 , h2 ∈ L1 (0, T; L2 (Ω))
+is given by the mild solution zh1 ,h2 ∈ Y+ of
+
+                      ∂t2 z − ∆z + 5ȳū4 z = −20ȳū3 zh1 zh2        in (0, T ) × Ω,
+                                          z=0                         on (0, T ) × ∂Ω,
+                                          
+                            z(0), ∂t z(0) = (0, 0)                    in Ω,
+
+on [0, T], where zhi = S ′ (ū)hi for i = 1, 2, i.e., zh1 ,h2 satisfies
+                        Z t                                                     
+                              A(t−s)                       0
+               ξz (t) =     e                                                      ds
+                         0             −20ȳū3 (s)zh1 (s)zh2 (s) − 5yū4 (s)z(s)
+
+for all t ∈ [0, T].
+Proof. We begin by showing that e is twice continuously differentiable. Clearly, y 7→ ξy
+is a continuous linear mapping from Y into C([0, T]; E), just as
+                                    Z t                
+                                           A(t−s)   0
+                           v 7→ t 7→     e                ds                        (4.3)
+                                      0            v(s)
+
+is a continuous linear mapping from L1 (0, T; L2 (Ω)) to C([0, T]; E). It is thus sufficient to
+show that y 7→ y 5 is twice continuously differentiable considered as a mapping from Y+
+                                            19
+to L1 (0, T; L2 (Ω)). This, however, follows immediately from the interpolation inequal-
+ity (2.2), which implies that
+
+               Y+ ֒→ L4 (0, T; L12 (Ω)) ∩ L∞ (0, T; L6 (Ω)) ֒→ L5 (0, T; L10 (Ω)),                      (4.4)
+
+together with twice continuous differentiability of the Nemytskii operator induced by the
+real function x 7→ x5 between L5 (0, T; L10 (Ω)) and L1 (0, T; L2 (Ω)), cf. [18, Thms. 7&9].
+Altogether e is twice continuously differentiable.
+    In order to use the implicit function theorem, it remains to show that ey (yu , u) is
+continuously invertible as a linear operator between Y+ and C([0, T]; E) for every u ∈
+L1 (0, T; L2 (Ω)). From the foregoing considerations and the chain rule, we obtain
+                                          Z t                     
+                                                             0
+                                              eA(t−s)
+                                
+                     ey (yu , u)z (t) = −                            ds − ξz (t).
+                                           0           5yu4 (s)z(s)
+
+Thanks to the open mapping theorem, it will be sufficient to prove that for every F ∈
+C([0, T]; E) there is a unique z ∈ Y+ such that ey (yu , u)z = F . We can again use a fixed
+point theorem to show that this is the case: Choose a partition 0 = t0 < t1 < · · · < tn = T
+such that
+                                                              1
+         5 Ce (T) + Cs (T) Cem kyu k4L4 (ti ,ti+1 ;L12 (Ω)) <
+                          
+                                                                    for all i = 0, . . . , n − 1,
+                                                              2
+where Cem is the embedding constant of H10 (Ω) ֒→ L6 (Ω); for the constants Cs , Ce , see
+Lemma 2.9. Let Y(ti , ti+1 ) and Y+ (ti , ti+1 ) be the spaces Y and Y+ on the interval
+[ti , ti+1 ], mutatis mutandis. Let further ξ i ∈ E for i = 0, . . . , n − 1 be given and consider
+the mappings Ti : Y(ti , ti+1 ) → Y(ti , ti+1 ) defined by Ti h = z such that
+                                   Z t                       
+                       A(t−ti ) i        A(t−s)        0
+            ξz (t) = e         ξ −     e                        ds − F (t) for t ∈ [ti , ti+1 ].
+                                    ti           5yu4 (s)h(s)
+
+Then, by the estimates (2.7) and (2.8), semigroup properties and Hölder’s inequality,
+
+   Ti h1 − Ti h2 Y+ (ti ,ti+1 )
+                   ≤ 5 Ce (T) + Cs (T) Cem kyu k4L4 (ti ,ti+1 ;L12 (Ω)) h1 − h2 C([ti ,ti+1 ];H1 (Ω)) .
+                                      
+                                                                                                    0
+
+
+The choice of the partition (ti ) and Banach’s fixed point theorem tell us that every
+mapping Ti possesses a unique fixed point zi ∈ Y+ (ti , ti+1 ), still depending on ξ i . If we
+iteratively choose ξ 0 = 0 and ξ i = zi−1 (ti ) for i = 1, . . . , n − 1 and glue together the
+resulting functions zi to a function z ∈ Y+ , then we obtain
+                      Z t                     
+                                         0
+             ξz (t) +     eA(t−s)                ds = −F (t) for all t ∈ [0, T],         (4.5)
+                       0           5yu4 (s)z(s)
+
+i.e., z ∈ Y+ satisfies ey (yu , u)z = F . Thus, ey (yu , u)−1 ∈ L(C([0, T]; E); Y+ ).
+     Finally, the expression for the derivative S ′ (ū) comes from the well known formula
+
+                              S ′ (ū)h = −ey (S(ū), ū)−1 eu (S(ū), ū)h,
+                                                   20
+the observation that eu (S(ū), ū) is given exactly by (4.3), and plugging this into (4.5)
+for F . For the second derivative S ′′ (ū), we take another derivative in the foregoing
+expression and use
+                                             Z t                               
+                                                                    0
+                                                 eA(t−s)
+                                   
+              eyy (yu , u)(z1 , z2 ) (t) = −                                      ds.
+                                              0           20yu3 (s)z1 (s)z2 (s)
+
+This gives the claim.
+   As usual, the control-to-state operator S allows us to define the reduced problem
+which we consider from now on:
+
+                                            min ℓr (u),                                       (ROCP)
+                                           u∈Uad
+
+where we set ℓr (u) := ℓ(yu , u). We decompose the objective function ℓr further into
+
+                                     ℓr (u) := F (u) + β1 j(u)                                  (4.6)
+
+with
+                   1                        γ                        β2
+         F (u) =     kyu (T) − yd k2L2 (Ω) + kyu k4L4 (0,T;L12 (Ω)) + kuk2L2 (0,T;L2 (Ω)) ,
+                   2                        4                        2
+which is smooth as we see below, and the non-differentiable part
+
+                                    j(u) := kukL1 (0,T;L2 (Ω)) .
+
+For the following derivation of necessary and sufficient optimality conditions, we use
+several ideas and results from [5]. The main difference between this work and the present
+one is that the constraints on u in [5] are classical box constraints.
+   We first quote the following result; it is a characterization of the subdifferential ∂j
+and a formula for the directional derivative of j:
+Proposition 4.4 ([5, Prop. 3.8]). Let u ∈ Uad and λ ∈ L∞ (0, T; L2 (Ω)). Then the
+following equivalence holds true:
+                                              
+                                                         u(t)
+                                              λ(t) =
+                                                      ku(t)kL2 (Ω) if ku(t)kL2 (Ω) 6= 0,
+      λ ∈ ∂j(u)    ⇐⇒     f.a.a. t ∈ [0, T] :
+                                              kλ(t)k 2
+                                                     L (Ω) ≤ 1     if ku(t)kL2 (Ω) = 0.
+
+Moreover, the directional derivative of j in u ∈ L1 (0, T; L2 (Ω)) exists in every direction
+v ∈ L1 (0, T; L2 (Ω)) and is given by
+                                                                                   
+                                                                         v(t), u(t) Ω
+                      Z                                Z
+            ′
+           j (u; v) =               kv(t)kL2 (Ω) dt +                              dt.
+                                                          kukL2 (Ω) 6=0 ku(t)kL2 (Ω)
+                                                                       
+                        kukL2 (Ω) =0
+
+
+    We next establish that F is twice continuously differentiable. For a concise form of
+its derivatives, it will be useful to define the adjoint state:
+
+
+                                                21
+Definition 4.5 (Adjoint state). Given ū ∈ Uad , we denote by p̄ the adjoint state defined
+by
+                p̄ := S ′ (ū)∗ δT∗ (yū (T) − yd ) + γψū ∈ L∞ (0, T; L2 (Ω)).
+                                                          
+
+Here ψū ∈ L4/3 (0, T; L12/11 (Ω)) is given by
+
+                             ψū (t) := kyū (t)kL−8
+                                                   12 (Ω) |yū (t)|
+                                                                    10
+                                                                       yū (t)                       (4.7)
+
+and δT∗ is the adjoint operator of the (continuous linear) point evaluation δT from C([0, T]; L2 (Ω))
+to L2 (Ω).
+   The function ψū is the L2 -gradient of Ψ(y) := 14 kyk4L4 (0,T;L12 (Ω) in yū , that is,
+                            Z T
+                ′
+                                                          for all h ∈ L4 0, T; L12 (Ω) .
+                                                                                     
+              Ψ (yū )h =          ψū (t), h(t) Ω dt                                                (4.8)
+                             0
+
+This is shown in Corollary A.4 in the appendix. This corollary is also important in the
+next and final result for this preparationary subsection:
+Lemma 4.6. The first summand F of the reduced objective function ℓr as in (4.6) is
+twice continuously differentiable from Lr (0, T; L2 (Ω)) to R. Its derivatives in ū are given
+by
+                                      Z T
+                          F ′ (ū)v =
+                                                                
+                                          p̄(t) + β2 ū(t), v(t) Ω dt
+                                            0
+and
+                                   Z T
+                       2
+  F ′′ (ū)v 2 = zv (T) L2 (Ω) −         p̄(t), 20yū3 (t)zv2 (t) Ω dt
+                                                                 
+                                    0
+                                                                                          2
+                                                                 + γΨ′′ (yū )zv2 + β2 v L2 (0,T;L2 (Ω))
+
+for all v ∈ Lr (0, T; L2 (Ω)), where p̄ is the adjoint state and zv = S ′ (ū)v.
+    Moreover, the quadratic form v 7→ F ′′ (ū)v 2 is weakly lower semicontinuous.
+
+   We recall that r = 1 if β2 = 0 and r = 2 otherwise.
+Proof of Lemma 4.6. Corollary A.4 in the appendix shows that Ψ is twice continuously
+differentiable on the whole L4 (0, T; L12 (Ω)), with the first derivative as in (4.8). The
+remaining differentiability assertions for F and the formula for F ′′ (ū) are derived by
+routine calculations.
+    The remainder of this proof is devoted to verifying the weak lower semicontinuity of
+the quadratic form induced by F ′′ (ū). Let vk ⇀ v in Lr (0, T; L2 (Ω)). It is clear that
+the quadratic L2 (0, T; L2 (Ω)) norm term in F ′′ (ū)v 2 is weakly lower semicontinuous in
+v. We show that the remaining terms are even weakly continuous as functions in v.
+From vk ⇀ v in Lr (0, T; L2 (Ω)) it follows that zk := S ′ (ū)vk ⇀ zv =: S ′ (ū)v in Y+ by
+Theorem 4.3. This implies that, cf. (4.4),
+
+                                  kzk kL5 (0,T;L10 (Ω)) . kzk kY . 1.                                (4.9)
+
+                                                    22
+By the compact embedding Y+ ֒→ C([0, T]; L2 (Ω)) as derived from [36, Cor. 4]), we
+further have zk → zv in C([0, T]; L2 (Ω)). Hence, zk (t) → zv (t) in L2 (Ω) for every
+t ∈ [0, T], and in particular kzk (T)k2L2 (Ω) → kzv (T)k2L2 (Ω as k → ∞. Moreover, there is a
+subsequence (zkℓ ) of (zk ) such that zk2ℓ converges to zv2 pointwise almost everywhere on
+(0, T) × Ω. Hölder’s inequality yields
+   Z     Z
+                 p̄(t, x) yū3 (t, x) zk2ℓ (t, x) dx dt
+    Et    Ex
+                                                                                    3                        2
+                                              ≤ p L∞ (0,T;L2 (Ω)) yū L5 (Et ;L10 (Ex )) zkℓ L5 (0,T;L10 (Ω))
+
+for every measurable subset Et × Ex of (0, T) × Ω. Due to (4.9), the integral on the
+left-hand side thus goes to zero uniformly in ℓ as |Et × Ex | → 0. We infer that the
+functions (p̄yū3 zk2ℓ ) are uniformly integrable and the Vitali convergence theorem ([12,
+Thm. III.3.6.6]) implies that
+                 Z T                                                           Z T
+                                                              ℓ→∞
+                       p̄(t), 20yū3 (t)zk2ℓ (t) Ω dt                                   p̄(t), 20yū3 (t)zv2 (t) Ω dt.
+                                                                                                               
+             −                                               −−−−−→        −
+                  0                                                             0
+
+A subsequence-subsequence argument shows that this convergence in fact holds true for
+the whole sequence (zk ).
+   We next turn to the sequence (Ψ′′ (yū )zk2 ) which is the last term in F ′′ (ū)vk2 . According
+to Corollary A.4 with p = 4 and q = 12, we have
+                          Z T
+  Ψ′′ (yū )zk2 = 11            kyū (t)kL−8                10 2
+                                                                      
+                                           12 (Ω) |yū (t)|   , zk (t) Ω dt
+                           0
+                                                        Z T
+                                                                                                        2
+                                                  −8          kyū (t)k−20              10
+                                                                       L12 (Ω) |yū (t)| yū (t), zk (t) Ω dt. (4.10)
+                                                         0
+
+The limit for the first term
+       Z T                                                Z T
+            kyū (t)k−8               10 2
+                                                              kyū (t)k−8               10 2
+                                                                                                
+   lim
+   k→∞
+                      12
+                     L (Ω) |y ū (t)|   , z k (t)  Ω
+                                                     dt =              L12 (Ω) |yū (t)| , zv (t) Ω dt
+             0                                                         0
+
+can be proven analogously to the above with Hölder’s inequality and the Vitali theorem
+due to boundedness of (zk ) in Y+ . For the second term in (4.10),                we first show that
+ |yū (t)|10 yū (t), zk (t) Ω converges towards |yū (t)|10 yū (t), zv (t) Ω pointwise a.e. on [0, T]
+                                                                            
+as k → ∞. Then convergence of the overall integral follows from Hölder’s inequality
+   Z
+                                                   2
+         kyū (t)k−20              10
+                  L12 (Ω) |yū (t)| yū (t), zk (t) Ω dt
+    Et
+                                                                  ≤ kyū (t)k2L4 (Et ;L12 (Ω)) kzk (t)k2L4 (0,T;L12 (Ω))
+
+for every measurable subset Et ⊆ (0, T) and yet another application of the Vitali theorem,
+using boundedness of (zk ) in Y+ .
+    Pointwise convergence of ( |yū (t)|10 yū (t), zk (t) Ω ) can be obtained as follows: We had
+                                                          
+
+seen that zk (t) → zv (t) in L2 (Ω) for every t ∈ [0, T]. Thus for every such t there exists
+                                                               23
+a subsequence (zkm (t)) such that zkm (t) → zv (t) almost everywhere on Ω. Moreover, we
+estimate for every measurable subset Ex ⊆ Ω
+        Z
+            |yū (t)|11 |zkm (t)| dx ≤ kyū (t)k1166 kzkm (t)kL6 (Ω) . kyū (t)k1166 ,
+          Ex                                      L 5 (Ex )                           L 5 (Ex )
+
+since (zkm ) is bounded in Y+ ֒→ C([0, T]; L6 (Ω)). The general form of the Strichartz
+                                                     11           66
+estimates (2.8) as in [2] shows that in fact yū ∈ L 3 (0, T; L 5 (Ω)). Since t was fixed,
+the foregoing expression thus goes to zero uniformly in m as |Ex | goes to zero. Hence,
+again the Vitali convergence theorem together with a subsequence-subsequence argument
+shows that
+              Z                                    Z
+                          10                 k→∞
+                 |yū (t)| yū (t)zk (t) dx −−−−−→     |yū (t)|10 yū (t)zv (t) dx.
+               Ω                                                 Ω
+                                       ′′
+This finally implies that overall Ψ         (yū )zk2 → Ψ′′ (yū )zv2 and finishes the proof.
+
+4.2.1. First-order necessary conditions
+    The tangent cone to Uad in a point u ∈ Uad is
+           n
+  T (u) := v ∈ Lr (0, T; L2 (Ω)) : v(t), u(t) Ω ≤ 0 if ku(t)kL2 (Ω) = ω(t) > 0,
+                                             
+                                                                                                   o
+                                                                v(t) = 0 if ku(t)kL2 (Ω) = ω(t) = 0 .
+
+We use it to state the basic first-order necessary optimality condition for (ROCP) in a
+concise form. We refer to [5, Thm. 3.1] for the routine proof.
+Theorem 4.7 (First-order necessary optimality condition). Let ū ∈ Uad be a locally
+optimal solution of (ROCP). Then there exists λ̄ ∈ ∂j(ū) ⊂ L∞ (0, T; L2 (Ω)) such that
+               Z T
+                                                    
+                   p̄(t) + β1 λ̄(t) + β2 ū(t), v(t) Ω dt ≥ 0 for all v ∈ T (ū).  (4.11)
+                   0
+
+    Note that since j is Lipschitz continuous and convex, λ̄ ∈ ∂j(ū) and (4.11) imply that
+(cf. [5, Lem. 4.2])
+                         F ′ (ū)v + β1 j′ (ū; v) ≥ 0 for all v ∈ T (ū).           (4.12)
+    We henceforth always consider a fixed locally optimal control ū ∈ Uad and the opti-
+mality condition (4.11) as given. Let us further subdivide (0, T) into active and inactive
+regions w.r.t. the constraint in (ROCP) by defining the following sets:
+                                                                         
+          I := kūkL2 (Ω) < ω , A+ := kūkL2 (Ω) = ω > 0 , A0 := ω = 0 .
+We first show that the integrated optimality condition (4.11) is equivalent to the pointwise
+one.
+Corollary 4.8. Condition (4.11) is equivalent to
+                                              
+             p̄(t) + β1 λ̄(t) + β2 ū(t), v(t) Ω ≥ 0 for almost all t ∈ (0, T)                    (4.13)
+for all v ∈ T (ū). It moreover follows that
+                       p̄(t) + β1 λ̄(t) + β2 ū(t) = 0        for almost all t ∈ I.               (4.14)
+                                                   24
+Proof. It is obvious that (4.13) implies (4.11). For the other way around, it suffices to
+observe that if v ∈ T (ū), then also χN v ∈ T (ū) for every measurable set N ⊆ (0, T), so
+one can do the usual proof by contradiction. Quite similarly, (4.14) follows from inserting
+±χI Lr (0, T; L2 (Ω)) ⊂ T (ū) into (4.13).
+    The next result is then an observation regarding sparsity and regularity of an optimal
+control ū, as well as uniqueness of the subgradient λ̄. The proof is analogous to the one
+in [5, Cor. 3.9] using (4.13) and (4.14).
+Corollary 4.9. The following properties hold true:
+• If β2 > 0: We have ū ∈ L∞ (0, T; L2 (Ω)) and thus ω ∈ L∞ (A+ ). Moreover, for almost
+  all t ∈ I, the following equivalence holds true:
+
+                           kū(t)kL2 (Ω) = 0       ⇐⇒         kp̄(t)kL2 (Ω) ≤ β1 .
+
+• If β2 = 0: For almost all t ∈ I, we have the implications
+
+           kp̄(t)kL2 (Ω) < β1      =⇒         kū(t)kL2 (Ω) = 0      =⇒      kp̄(t)kL2 (Ω) ≤ β1 .
+
+In both cases, λ̄ ∈ L∞ (0, T; L2 (Ω)) satisfies
+                      
+                       ū(t)         if kū(t)kL2 (Ω) 6= 0,
+                        kū(t)kL2 (Ω)
+              λ̄(t) =                                                f.a.a. t ∈ A+ ∪ I.
+                      − 1 p̄(t)      if kū(t)kL2 (Ω) = 0
+                           β1
+
+It is thus unique on A+ ∪ I.
+   Using Corollaries 4.8 and 4.9 we can show that a unique bounded Lagrange multiplier
+associated to Uad and the locally optimal control ū exists. We use the convention that
+0
+0 = 0.
+
+Definition 4.10 (Lagrange multiplier). We say that a measurable function µ̄ : A+ ∪I →
+[0, ∞) is a Lagrange multiplier associated to Uad if µ̄(t)(kū(t)kL2 (Ω) − ω(t)) = 0 for almost
+all t ∈ A+ ∪ I is satisfied (complementarity), and the gradient equation
+
+                                               ū(t)
+     p̄(t) + β1 λ̄(t) + β2 ū(t) + µ̄(t)                 =0     for almost all t ∈ A+ ∪ I           (4.15)
+                                           kū(t)kL2 (Ω)
+
+holds true.
+Lemma 4.11. There exists a unique Lagrange multiplier µ̄ ∈ L∞ (A+ ∪ I) associated to
+Uad .
+Proof. We set, of course, necessarily µ̄(t) = 0 for t ∈ I. Then the complementarity
+condition and (4.15) on I are already satisfied, the latter due to (4.14).
+   The next step is to show that there exists a Lagrange multiplier µ̄ ∈ L1 (A+ ) associated
+to Uad . This µ̄ is then necessarily already an element of L∞ (A+ ) and moreover unique,
+which we see as follows: From taking L2 (Ω) norms in (4.15) for t ∈ A+ it follows that
+
+                 p̄(t) + β1 λ̄(t) + β2 ū(t) L2 (Ω) = µ̄(t) for almost all t ∈ A+ .
+                                                   25
+The left-hand side is an L∞ (A+ ) function in t and unique due to Corollary 4.9.
+    It thus remains to show that the L1 (A+ ) Lagrange multiplier exists in the first place.
+Suppose the contrary, i.e., that p̄ + β1 λ̄ + β2 ū 6= −µkūk−1               1       2
+                                                               L2 (Ω) ū in L (A+ ; L (Ω)) for
+all µ ∈ L1 (A+ ) with µ ≥ 0 a.e.. Then the Hahn-Banach theorem yields a function
+ϕ ∈ L∞ (A+ ) such that
+                               
+               ϕ(t), −µ(t)ū(t) Ω
+         Z                                 Z
+                                                                                 
+                                  dt ≤ 0 <      ϕ(t), p̄(t) + β1 λ̄(t) + β2 ū(t) Ω dt.
+           A+    kū(t)kL2 (Ω)              A+
+
+From the first inequality it follows that −χA+ ϕ ∈ T (ū) (proof by contradiction) which
+however is incompatible with the second one by the first order necessary condition (4.11).
+Hence, there exists the searched-for µ̄ ∈ L1 (A+ ) satisfying µ̄ ≥ 0 and (4.15) on A+ . This
+finishes the proof
+    Henceforth, µ̄ will denote the unique Lagrange multiplier associated to Uad for the
+locally optimal control ū.
+
+4.2.2. Second order necessary conditions
+    We define the critical cone C(ū) associated to Uad in a locally optimal control ū to
+consist of tangential directions along which the directional derivative of ℓr vanishes, so
+                               n                                         o
+                      C(ū) := v ∈ T (ū) : F ′ (ū)v + β1 j′ (ū; v) = 0 .
+
+   Due to Lipschitz continuity of j, it is straightforward to show that C(ū) is a closed
+convex cone in Lr (0, T; L2 (Ω)).
+   A formal computation shows that the second derivatives of j in u in directions (v, v)
+should be given by
+                                                                               !2 
+                                                                    u(t), v(t)
+                      Z
+                                             −1            2
+      j′′ (u; v 2 ) :=               ku(t)kL2 (Ω) kv(t)kL2 (Ω) −             Ω    dt,
+                        kukL2 (Ω) 6=0                               ku(t)k L2 (Ω)
+
+
+where we consider the whole expression as 0 if u = 0. Clearly, this expression is always
+nonnegative, but there may be directions v ∈ Lr (0, T; L2 (Ω)) for which j′′ (u; v 2 ) = ∞.
+In this sense, j′′ (u; ·) should not be seen as a traditional derivative of j′ at u. We still
+set ℓ′′r (u; v 2 ) := F ′′ (u)v 2 + β1 j′′ (u; v 2 ) which is, any way, a useful object, as the following
+second order necessary conditions shows. Its proof will occupy the rest of this subsection:
+Theorem 4.12 (Second order necessary conditions). Assume that ω ∈ L1 (0, T). Let
+ū ∈ Uad be a locally optimal solution to (ROCP) and let µ̄ ∈ L∞ (A+ ∪I) be the associated
+Lagrange multiplier. Then there holds
+                                                                             !2 
+                                                                  ū(t), v(t)
+                          Z
+                                          −1
+        ℓ′′r (ū; v 2 ) +     µ̄(t) ū(t) L2 (Ω) kv(t)k2L2 (Ω) −             Ω    dt ≥ 0
+                           A+                                     kū(t)kL2 (Ω)
+
+for all v ∈ C(ū).
+
+                                                   26
+    The expression in Theorem 4.12 corresponds to ∂u2 L(ū, µ̄; v 2 ) ≥ 0 with the Lagrangian
+                                        Z T
+                                                                      
+                    L(u, µ) := ℓr (u) +     µ(t) ku(t)kL2 (Ω) − ω(t) dt,
+                                             0
+
+where in the theorem we have already inserted µ̄ = 0 a.e. on I. Both j′′ (ū; v 2 ) and the
+explicit integral in the substitute for the second derivative of the Lagrange penalty term
+in Theorem 4.12 may be infinite. We emphasize once more that we do not require ω to
+be bounded away from zero. In the case ū ≡ 0, the condition in Theorem 4.12 collapses
+to F ′′ (0)v 2 ≥ 0 for all v ∈ C(0).
+Remark 4.13. It is also possible to obtain an analogous result for the Lagrangian with
+a quadratic penalty term
+                                        Z T
+                                            µ(t) ku(t)k2L2 (Ω) − ω(t)2 dt.
+                                                                      
+                  L2 (u, µ) := ℓr (u) +
+                                             0
+
+Then the necessary condition in Theorem 4.12 becomes
+                                           Z          kv(t)k2L2 (Ω)
+                       ℓ′′r (ū2 ; v 2 ) +      µ̄(t)               dt ≥ 0
+                                             A+       kū(t)kL2 (Ω)
+with the same multiplier µ̄ as before. The integral in the foregoing expression may also
+be infinite. The proof works nearly exactly as the one for Theorem 4.12 presented below.
+   We next prepare for the proof of Theorem 4.12 with some auxiliary results. From [5,
+Prop. 4.1/Lem. 4.2] together with the pointwise first-order necessary condition (4.13) and
+the Lagrange gradient equation (4.15) we obtain the first lemma for critical directions:
+Lemma 4.14. For all v ∈ C(ū), there holds
+                                      Z T
+                           ′
+                                                     
+                          j (ū; v) =     λ̄(t), v(t) Ω dt
+                                                 0
+
+and thus                                                                      
+                                                                  ū(t), v(t) Ω
+                  0 = p̄(t) + β1 λ̄(t) + β2 ū(t), v(t) Ω = −µ̄(t)                    (4.16)
+                                                                   kū(t)kL2 (Ω)
+for almost all t ∈ A+ ∪ I.
+   Equation (4.16) also shows that if t ∈ A+ and (ū(t), v(t))Ω < 0 for some v ∈ C(ū),
+then µ̄(t) = 0 follows.
+   In the proof of Theorem 4.12, we will need properties of ℓ′r (ū; w) with directions w
+which are possibly not in the critical cone, but derived from some v ∈ C(ū). The next
+lemma gives the required results.
+Lemma 4.15. Let v ∈ C(ū) be given and let w ∈ Lr (0, T; L2 (Ω)) be another function
+such that for almost all t ∈ [kūkL2 (Ω) = 0], w(t) is either v(t) or zero. Then
+                                                                     
+                                                          ū(t), w(t) Ω
+                                               Z
+                     ′            ′
+                   F (ū)w + β1 j (ū; w) = −       µ̄(t)               dt.
+                                                A+        kū(t)kL2 (Ω)
+
+Further, there holds χM C(ū) ⊆ C(ū) for any measurable set M ⊆ (0, T).
+                                           27
+Proof. Let v ∈ C(ū). Arguing as for [5, (4.12)], we obtain that
+
+                            v(t)                                                     
+               λ̄(t) =                        f.a.a. t ∈ kūkL2 (Ω) = 0 ∩ kvkL2 (Ω) 6= 0 .                        (4.17)
+                         kv(t)kL2 (Ω)
+
+Now let w(t) be either v(t) or zero for almost all t ∈ [kūkL2 (Ω) = 0]. Then
+                                                                            
+            v(t), w(t) Ω = kv(t)kL2 (Ω) kw(t)kL2 (Ω) f.a.a. t ∈ kūkL2 (Ω) = 0 .
+
+Using this together with (4.17), we find
+                Z                               Z
+                                        
+                             λ̄(t), w(t) Ω dt =                                     kw(t)kL2 (Ω) dt
+                    [kūkL2 (Ω) =0]                               [kūkL2 (Ω) =0]
+
+
+and thus, with (4.14) and (4.15),
+                                 Z T                                                Z
+   F ′ (ū)w + β1 j′ (ū; w) =
+                                                                
+                                          p̄(t) + β2 ū(t), w(t) Ω dt + β1                             kw(t)kL2 (Ω) dt
+                                  0                                                  [kūkL2 (Ω) =0]
+                                            Z
+                                                                            
+                                     + β1                        λ̄(t), w(t) Ω dt
+                                              [kūkL2 (Ω) 6=0]
+                                 Z
+                                                                           
+                            =             p̄(t) + β1 λ̄(t) + β2 ū(t), w(t) Ω dt
+                                  A+
+                                                   
+                                        ū(t), w(t) Ω
+                                      Z
+                            =−    µ̄(t)               dt.                                                         (4.18)
+                               A+       kū(t)kL2 (Ω)
+
+(See Proposition 4.4 for the derivative formula for j′ (ū; w).) This was the first claim.
+    Let now w = χM v for some measurable set M ⊆ (0, T). Then (4.18) holds true.
+Moreover, µ̄(t)kū(t)k−1
+                      L2 (Ω) (ū(t), w(t))Ω = 0 for almost all t ∈ A+ by (4.17) which again
+in (4.18) shows that F ′ (ū)w + β1 j′ (ū; w) = 0, so w ∈ C(ū).
+      We further want to use second-order Taylor approximations for j. These are not
+immediate since we have already seen that the substitute for the second order derivative
+j′′ (ū; v 2 ) may be infinite for some directions v.
+      Consider Υ2 (f ) := kf kL2 (Ω) . We have
+
+                   Υ′2 (f )h = kf k−1
+                                              
+                                   L2 (Ω) f, h Ω ,
+                                                                      2
+                  Υ′′2 (f )h2 = kf k−1        2            −3
+                                    L2 (Ω) khkL2 (Ω) − kf kL2 (Ω) f, h Ω
+
+for f, h ∈ L2 (Ω) with f 6= 0, cf. the appendix, and we will also need
+                                        h               3                  i
+                         3         −3        −2
+                Υ′′′                                            2
+                  2 (f )h = 3 kf kL2 (Ω) kf kL2 (Ω) f, h Ω − khkL2 (Ω) f, h Ω
+
+
+now; this is obtained by the chain rule since Υ′′2 is composed of continuously differentiable
+functions away from zero.
+Lemma 4.16. Let M ⊆ (0, T) be a measurable set.
+                                     28
+1. Let f, h ∈ L1 (M ; L2 (Ω)). Then
+                  Z                                    Z
+                                                               Υ′2 (f (t))h(t) dt.
+                                      
+                       Υ2 f (t) + h(t) − Υ2 (f (t)) dt ≥
+                   M                                       M
+
+2. Let moreover η ∈ L∞ (M ). Suppose thatRthere is a number α > 0 such that kf (t)kL2 (Ω) ≥
+   α for almost all t ∈ M . Then h 7→ M η(t))Υ′′2 (f (t))h(t)2 dt defines a continuous
+   quadratic form on L2 (M ; L2 (Ω)). If η ≥ 0 a.e. on M , then the quadratic form is
+   convex.
+3. Consider further h ∈ L3 (M ; L2 (Ω)). If for all functions θ : M → [0, 1] there is αθ > 0
+   such that kf (t) + θ(t)h(t)kL2 (Ω) ≥ αθ for almost all t ∈ M , then we have the Taylor
+   expansion
+      Z                                  
+         η(t) Υ2 f (t) + h(t) − Υ2 f (t) dt
+       M
+                                         1
+              Z                                         
+                  η(t) Υ′2 f (t) h(t) + Υ′′2 f (t) h(t)2 dt + O khk3L3 (M;L2 (Ω)) . (4.19)
+                                                                                
+           =
+               M                         2
+
+Proof. 1. We consider the Taylor expansion for Υ2 (f (t) + h(t)) for almost every t ∈ M ,
+with a function ϑ : M → [0, 1]:
+                                                     1
+        Υ2 f (t) + h(t) − Υ2 f (t) = Υ′2 f (t) h(t) + Υ′′2 f (t) + ϑ(t)h(t) h(t)2 .
+                                                                        
+                                                     2
+Since Υ′′2 (g)w2 ≥ 0 for all g, w ∈ L2 (Ω), the claim follows from inserting this in the
+foregoing inequality and integrating over M . The integrals are finite due to f, h ∈
+L1 (M ; L2 (Ω)).
+2. Under the assumptions on f , we find
+             Z                                             Z
+                                                                        2
+                 η(t)Υ′′2 (f (t))h(t)2 dt ≤ 2α−1 kηkL∞ (M)        h(t) L2 (Ω) dt.
+               M                                             M
+This implies the continuity assertion. Moreover, a quadratic form is convex if and only
+if it is nonnegative, and the latter is ensured by η ≥ 0 a.e. on M .
+3. For the Taylor expansion for the integrated Υ2 , we again have from Taylor expansion
+for Υ2 (f (t) + h(t)) for almost every t ∈ M , with a function ϑ : M → [0, 1]:
+                              
+  Υ2 f (t) + h(t) − Υ2 f (t)
+                                           1                 1
+                        = Υ′2 f (t) h(t) + Υ′′2 f (t) h(t)2 + Υ′′′                      3
+                                                                                 
+                                                                 2 f (t) + ϑ(t)h(t) h(t) .
+                                           2                 6
+If f (t) + ϑ(t)h(t) L2 (Ω) ≥ αϑ > 0 for almost all t ∈ M , then
+  Z
+                                    3
+        η(t)Υ′′′
+                               
+             2 f (t) + ϑ(t)h(t) h(t) dt
+    M
+                                                Z
+                                                           3
+                              ≤ 6α−2                  h(t) L2 (Ω) dt ∈ O khk3L3 (M;L2 (Ω)) .
+                                                                                          
+                                  ϑ kηkL∞ (M)
+                                                  M
+
+The claim thus follows from multiplying the Taylor expansion for Υ2 (f (t) + h(t)) by η(t)
+and integrating over M .
+                                          29
+    We next give the proof of Theorem 4.12. The principal idea is to approximate the
+critical direction v ∈ C(ū) in multiple stages.
+Proof of Theorem 4.12. Let v ∈ C(ū). The proof is achieved as follows: We first suppose
+that v ∈ L∞ (0, T; L2 (Ω)) and that
+                                Z                  kv(t)k2L2 (Ω)
+                                                                     < ∞.                        (4.20)
+                                    [kūkL2 (Ω) 6=0] kū(t)kL2 (Ω)
+
+
+Since a multiple of this integral is an upper bound for j′′ (ū; v 2 ), (4.20) implies that
+j′′ (ū; v 2 ) is finite. We then construct two-staged approximations uρ,k of ū such that
+uρ,k → ū uniformly as ρ ց 0, as well as uρ,k ∈ Uad for ρ > 0 small enough and k
+fixed. Another property we need later is that kuρ,k (t)kL2 (Ω) = ω(t) for t ∈ A+ with
+(ū(t), v(t))Ω = 0. Since such constructed uρ,k is feasible and close to ū for ρ > 0
+sufficiently small, we then make the ansatz 0 ≤ L(uρ,k , µ̄) − L(ū, µ̄) and pass to the limit
+in ρ and k in the second order Taylor expansions there which gives the claim. For this, we
+need and establish that the derivative vk = limρց0 ρ−1 (uρ,k − ū) exists in L∞ (0, T; L2 (Ω))
+and satisfies vk → v in Lr (0, T; L2 (Ω)) as k → ∞. Finally, we remove the assumptions
+on v above.
+      Step 1: Construction of uρ,k . Let αk , ωk be arbitrary positive sequences converging
+monotonically to zero. We define
+       n
+  Nk := t ∈ (0, T) : 0 < kū(t)kL2 (Ω) < αk or (1 − αk )ω(t) < kū(t)kL2 (Ω) < ω(t)
+                                                                                            o
+                                                             or 0 ≤ ω(t) < ωk or ω(t) > ωk−1 .
+
+Note that A0 ⊂ Nk and |Nk \ A0 | → 0 as k → ∞. For t ∈
+                                                     / Nk , we moreover have
+ωk ≤ ω(t) ≤ ωk−1 . Set
+                  
+                  
+                  ū(t)                              if t ∈ Nk ,
+                   1 − ω k (ρ)ū(t) + ρv(t)
+                  
+                                                      if t ∈ A+ ∩ Nkc and (u(t), v(t))Ω = 0,
+                          t
+       uρ,k (t) =
+                  
+                  
+                  (1 −  ρα k )ū(t) + ρv(t)          if t ∈ A+ ∩ Nkc and (u(t), v(t))Ω < 0,
+                   ū(t) + ρv(t)                      elsewhere,
+                  
+
+with                       s
+                                ρ2 kv(t)k2L2 (Ω)
+          ωtk (ρ) := 1 −   1−                           where |ρ| < 21 ωk kvk−1
+                                                                             L∞ (0,T;L2 (Ω)) .
+                                        ω(t)2
+The function ωtk is chosen exactly such that kuρ,k (t)kL2 (Ω) = ω(t) for t ∈ A+ ∩ Nkc with
+(ū(t), v(t))Ω = 0.
+    We have uρ,k ∈ Uad for k fixed and ρ sufficiently small as we observe as follows:
+ • if t ∈ Nk , then uρ,k (t) = ū(t) which is feasible,
+        / Nk and kū(t)kL2 (Ω) ≤ (1 − αk )ω(t), then for ρ ≤ αk ωk kvk−1
+ • if t ∈                                                             L∞ (0,T;L2 (Ω)) :
+
+
+          uρ,k (t) L2 (Ω) = ū(t) + ρv(t) L2 (Ω) ≤ (1 − αk )ω(t) + ρkv(t)kL2 (Ω) ≤ ω(t),
+                                              30
+ • if t ∈ A+ ∩ Nkc and (u(t), v(t))Ω = 0, then kuρ,k (t)kL2 (Ω) = ω(t),
+ • if t ∈ A+ ∩ Nkc and (u(t), v(t))Ω < 0, then
+                    2                                      2
+           uρ,k (t) L2 (Ω) ≤ ω(t)2         ⇐⇒       1 − ραk ω(t)2 + ρ2 kv(t)k2L2 (Ω) ≤ ω(t)2
+                                                    −2αk + ρα2k ω(t)2 + ρkv(t)k22 ≤ 0
+                                                               
+                                           ⇐⇒
+   and the latter is satisfied uniformly in t for this case if
+                                                   2αk ωk
+                                     ρ≤     2  −2                     .
+                                           αk ωk + kvkL∞ (0,T;L2 (Ω))
+
+    Step 2: Limits as ρ ց 0 and k → ∞. It is clear that uρ,k (t) → ū(t) in L2 (Ω) as ρ ց 0
+for almost every t ∈ (0, T). We show that this convergence is in fact uniform. First, note
+that due to kū(t)kL2 (Ω) = ω(t) ≤ ωk−1 on A+ ∩ Nkc , we have ū ∈ L∞ (A+ ∩ Nkc ; L2 (Ω)). It
+follows that wρ,k := uρ,k − ū ∈ L∞ (0, T; L2 (Ω)). For t ∈ A+ ∩ Nkc , we have
+                               s
+                                     ρ2 kvk2L∞ (0,T;L2 (Ω))   ρ2 kvk2L∞ (0,T;L2 (Ω))
+            0 ≤ ωtk (ρ) ≤ 1 − 1 −                           ≤                        , (4.21)
+                                               ωk2                     ωk2
+so ωtk (ρ) tends to zero uniformly in t ∈ A+ ∩ Nkc as ρ ց 0 and hence
+                     wρ,k L∞ (0,T;L2 (Ω)) = uρ,k − ū L∞ (0,T;L2 (Ω)) ∈ O(ρ).              (4.22)
+
+   Next, set
+                        
+                        0
+                                             if t ∈ Nk ,
+               vk (t) := v(t) − αk ū(t)      if t ∈ A+ ∩ Nkc and (ū(t), v(t))Ω < 0,
+                        
+                          v(t)                elsewhere.
+                        
+
+Then
+                                       in Lr 0, T; L2 (Ω) as k → ∞.
+                                                         
+                             vk → v                                                        (4.23)
+Further, ωtk (·) is continuously differentiable with (ωtk )′ (0) = 0 = ωtk (0). Thus
+                     vk (t) = lim ρ−1 wρ,k (t) for almost every t ∈ (0, T).
+                               ρց0
+
+We again show that this convergence is uniform. In fact, for t ∈ A+ ∩ Nkc , we have
+ωtk (ρ) = ωtk (0) + (ωtk )′ (0)ρ + ωtk (ρ) and, via (4.21),
+                             ωtk (ρ) − ωtk (0)  ω k (ρ)   ρkvkL∞ (0,T;L2 (Ω))
+                        0≤                     = t      ≤                     .
+                                     ρ             ρ            ωk2
+Hence the difference quotients for (ωtk )′ (0) = limρց0 ρ−1 (ωtk (ρ) − ωtk (0)) converge uni-
+formly in t ∈ A+ ∩ Nkc . We obtain that
+                             vk = lim ρ−1 wρ,k      in L∞ (0, T; L2 (Ω)).                  (4.24)
+                                     ρց0
+
+   Step 3: Core of the proof. We first check that, for t ∈ A+ ,
+                                                             
+                       µ̄(t) kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) = 0.
+This is true because of the following:
+                                                   31
+ • for t ∈ A+ ∩ Nk , we have uρ,k (t) = ū(t),
+ • for t ∈ A+ ∩ Nkc with (u(t), v(t))Ω = 0, we have kuρ,k (t)kL2 (Ω) = kū(t)kL2 (Ω) by
+   construction,
+ • and for t ∈ A+ ∩ Nkc with (u(t), v(t))Ω < 0 we had already seen that µ̄(t) = 0 follows
+   from (4.16).
+For ρ small enough and fixed k, we have uρ,k ∈ Uad and ℓr (ū) ≤ ℓr (uρ,k ) due to local
+optimality of ū and (4.22). We thus make the ansatz
+                                       Z
+                                                                               
+            0 ≤ ℓr (uρ,k ) − ℓr (ū) +   µ̄(t) kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt. (4.25)
+                                                   A+
+
+We want to employ Taylor expansions for ℓr = F + β1 j and the multiplier term. The
+direction will be wρ,k := uρ,k − ū. For F , this is easily done since F is twice continuously
+differentiable on Lr (0, T; L2 (Ω)) by Lemma 4.6, but the nonsmooth terms require some
+justification in order to use Lemma 4.16. For both the reference point is ū. Consider
+                         Z
+  j(uρ,k ) − j(ū) =                         kuρ,k (t)kL2 (Ω) dt
+                           [kūkL2 (Ω) =0]
+                                                   Z
+                                                                                                         
+                                               +                         kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt. (4.26)
+                                                   [kūkL2 (Ω) 6=0]
+
+
+We focus on the second integral. By construction, uρ,k (t) = ū(t) if t ∈ [0 < kūkL2 (Ω) <
+αk ]. Hence
+  Z
+                                                       
+                       kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt
+    [kūkL2 (Ω) 6=0]
+                                                           Z
+                                                                                                                   
+                                                       =                           kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt.
+                                                               [kūkL2 (Ω) ≥αk ]
+
+
+Let t ∈ [kūkL2 (Ω) ≥ αk ] and let θρ,k (t) ∈ [0, 1]. Then, for ρ sufficiently small we estimate
+
+               uρ,k (t) + θρ,k (t)wρ,k (t) L2 (Ω) ≥ kū(t)kL2 (Ω) − θρ,k (t)kwρ,k (t)kL2 (Ω)
+                                                                              αk
+                                                  ≥ αk − kwρ,k (t)kL2 (Ω) ≥       ,
+                                                                               2
+since we had kwρ,k kL∞ (0,T;L2 (Ω)) ∈ O(ρ), cf. (4.22). Thus the prerequisites for the Taylor
+expansion in Lemma 4.16 are satisfied and we obtain, using (4.22),
+                                                                                                
+                                                                                 ū(t), wρ,k (t) Ω
+  Z                                                                        Z
+                                                                  
+                     kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt =                                         dt
+    [kūkL2 (Ω) 6=0]                                           [kūkL2 (Ω) 6=0]    kū(t)kL2 (Ω)
+                                                                                    !2 
+         1                                                          ū(t)   w    (t)
+            Z
+                                                                             ρ,k
+                            kū(t)k−1       wρ,k (t) 2 2                             Ω     dt + O ρ3 .
+                                                                                                      
+     +                             L 2 (Ω)
+                                                      L   (Ω)
+                                                              −
+         2 [kūkL2 (Ω) 6=0]                                          kū(t)kL2 (Ω)
+
+                                                                 32
+Re-inserting into (4.26), we finally get
+                       j(uρ,k ) − j(ū) = j′ (ū; wρ,k ) + j′′ (ū; wρ,k
+                                                                     2
+                                                                         ) + O(ρ3 ).
+For the multiplier term, we argue analogously (thereby using µ ∈ L∞ (A+ ) for Lemma 4.16)
+to show that
+                                                                                
+                                                                 ū(t), wρ,k (t) Ω
+   Z                                                 Z
+                                             
+       µ̄(t) kuρ,k (t)kL2 (Ω) − kū(t)kL2 (Ω) dt =        µ̄(t)                    dt
+    A+                                                A+           kū(t)kL2 (Ω)
+                                                                              !2 
+           1                                                  ū(t), w     (t)
+             Z
+                                                                       ρ,k
+                  µ̄(t)kū(t)k−1      wρ,k (t) 2 2                            Ω    dt + O ρ3 .
+                                                                                              
+        +                     L2 (Ω)
+                                                L   (Ω)
+                                                        −
+           2 A+                                                 kū(t)kL2 (Ω)
+
+We thus obtain from the ansatz (4.25), with some function ϑρ,k : (0, T) → [0, 1]:
+                                                                   
+                                                    ū(t), wρ,k (t) Ω
+                                      Z
+        ′               ′
+  0 ≤ F (ū)wρ,k + β1 j (ū; wρ,k ) +      µ̄(t)                       dt
+                                       A+             kū(t)kL2 (Ω)
+         1  ′′                  2                        
+      +     F ū + ϑρ,k wρ,k wρ,k     + β1 j′′ (ū; wρ,k
+                                                      2
+                                                          )
+         2                                                                     !2 
+         1                                                     ū(t), w     (t)
+           Z
+                                                 2                     ρ,k
+                µ̄(t)kū(t)k−1                                                  Ω    dt + O ρ3 .
+                                                                                               
+      +                     L2 (Ω)
+                                    wρ,k (t) 2
+                                                 L  (Ω)
+                                                         −
+         2 A+                                                    kū(t)kL (Ω)
+                                                                          2
+
+
+
+But for t ∈ [kūkL2 (Ω) = 0], wρ,k (t) equals either v(t) or 0, hence we have seen in (4.18)
+that                                                                         
+                                                              ū(t), wρ,k (t) Ω
+                                                    Z
+                 ′                 ′
+               F (ū)(wρ,k ) + β1 j (ū; wρ,k ) = −     µ̄(t)                   dt.
+                                                     A+         kū(t)kL2 (Ω)
+Inserting in the foregoing inequality and dividing by ρ2 /2, we find
+                             2
+    0 ≤ F ′′ ū + ϑρ,k wρ,k vρ,k   + β1 j′′ (ū; vρ,k
+                                                  2
+                                                      )
+                                                                            !2 
+                                                             ū(t), v    (t)
+              Z
+                                                     2               ρ,k
+                   µ̄(t)kū(t)k−1                                            Ω
+                                                                                           
+           +                   L2 (Ω)
+                                       vρ,k (t) 2
+                                                     L (Ω)
+                                                           −                      dt + O ρ ,
+                A+                                            kū(t)k   2
+                                                                      L (Ω)
+
+
+where we have set vρ,k (t) := ρ−1 wρ,k (t).
+   We let ρ ց 0. Recall that limρց0 wρ,k = 0 and limρց0 vρ,k = vk , both in L∞ (0, T; L2 (Ω))
+by (4.24) and (4.23). It is thus immediate from Lemma 4.6 that
+                         F ′′ (ū + ϑρ,k wρ,k )vρ,k
+                                                2
+                                                    → F ′′ (ū)vk2    as ρ ց 0.
+For the two other terms, we use again that if t ∈ [0 < kūkL2 (Ω) < αk ], then by construc-
+tion vρ,k (t) = 0 = vk (t). Hence it suffices to consider the integrals on [kūkL2 (Ω) ≥ αk ].
+Lemma 4.16 (2) shows that the substitutes for the second derivative induce continuous
+quadratic forms on L2 ([kūkL2 (Ω) ≥ αk ]; L2 (Ω)) and L2 ([kūkL2 (Ω) ≥ αk ] ∩ A+ ; L2 (Ω)),
+respectively. Using limρց0 vρ,k = vk , we thus obtain
+
+  0 ≤ F ′′ (ū)vk2 + β1 j′′ (ū; vk2 )
+                                                                                      !2 
+                                                                         ū(t), vk (t) Ω
+                        Z
+                     +          µ̄(t)kū(t)k−1             2
+                                            L2 (Ω) kvk (t)kL2 (Ω) −
+                                                                                           dt. (4.27)
+                         A+                                              kū(t)kL2 (Ω)
+
+                                                    33
+   We next pass to the limit in (4.27) as k → ∞, so vk → v. Now the preliminary
+assumption from (4.20) becomes important. Since vk → v in Lr (0, T; L2 (Ω)), we know
+                                             RT
+that the integrand ξk (t) in j′′ (ū; vk2 ) = 0 ξk (t) converges to the integrand in j′′ (ū; v 2 )
+pointwise almost everywhere on (0, T). It is moreover nonnegative and bounded by
+                                               kvk (t)k2L2 (Ω)
+             ξk (t) ≤ χ[kūkL2 (Ω) 6=0] (t)
+                                                kū(t)kL2 (Ω)
+                                                                                               2
+                                              kv(t)kL2 (Ω) + χ[(ū(t),v(t))Ω <0] ∩ A (t) · ω(t)
+                     ≤ χ[kūkL2 (Ω) 6=0] (t)
+                                                               kū(t)kL2 (Ω)
+                                                kv(t)k2L2 (Ω)
+                                                                      !
+                     ≤ 2χ[kūkL2 (Ω) 6=0] (t)                 + ω(t) .
+                                                kū(t)kL2 (Ω)
+
+By (4.20), the right-hand side is integrable over (0, T). Thus we can use the dominated
+convergence theorem to infer that j′′ (ū; vk2 ) → j′′ (ū; v 2 ) as k → ∞. We again argue
+analogously for the multiplier term in (4.27). Since F ′′ (ū) is a continuous bilinear form
+on Lr (0, T; L2 (Ω)), we also have F ′′ (ū)vk2 → F ′′ (ū)v 2 as k → ∞. Overall we obtain
+
+  0 ≤ F ′′ (ū)v 2 + β1 j′′ (ū; v 2 )
+                                                                                                        !2 
+                                                                                             ū(t), v(t) Ω
+                                         Z
+                                   +           µ̄(t)kū(t)k−1           2
+                                                           L2 (Ω) kv(t)kL2 (Ω) −
+                                                                                                             dt
+                                         A+                                                  kū(t)kL2 (Ω)
+
+for all v ∈ C(ū) ∩ L∞ (0, T; L2 (Ω)) satisfying (4.20).
+    Step 4: Removing the additional assumptions. To finally remove the assumptions on
+v ∈ C(ū), we do another approximation. Let v ∈ C(ū) and let νℓ be a positive sequence
+converging monotonically to zero. Define
+                   n                                                              o
+            Nℓ := t ∈ kūkL2 (Ω) 6= 0 : kv(t)kL2 (Ω) > νℓ−1 min(kū(t)kL2 (Ω) , 1)
+                                      
+
+
+and set vℓ := χNℓc v. Then for every ℓ, we have vℓ ∈ L∞ (0, T; L2 (Ω)) and
+    Z                 kvℓ (t)k2L2 (Ω)            Z    kv(t)k2L2 (Ω)                  Z
+                                         dt =                            dt ≤ νℓ−1         kv(t)kL2 (Ω) dt < ∞.
+      [kūkL2 (Ω) 6=0] kū(t)kL2 (Ω)              Nℓc kū(t)kL2 (Ω)                  Nℓc
+
+Moreover, by Lemma 4.15, vℓ ∈ C(ū), so by the above
+
+  0 ≤ F ′′ (ū)vℓ2 + β1 j′′ (ū; vℓ2 )
+                                                                                                         !2 
+                                                                                            ū(t), vℓ (t) Ω
+                                   Z
+                               +             µ̄(t)kū(t)k−1             2
+                                                         L2 (Ω) kvℓ (t)kL2 (Ω) −
+                                                                                                              dt.
+                                     A+                                                     kū(t)kL2 (Ω)
+
+We have vℓ → v in Lr (0, T; L2 (Ω)) as ℓ → ∞ due to |Nℓ | → 0. So F ′′ (ū)vℓ2 → F ′′ (ū)v 2
+as ℓ → ∞. Set moreover
+                                                                            !2 
+                                                               ū(t), vℓ (t)
+        ξℓ (t) := χNℓc (t) · kū(t)kL−1
+                                      2 (Ω)
+                                            kvℓ (t)k2L2 (Ω) −               Ω    dt.
+                                                               kū(t)kL2 (Ω)
+                                                          34
+Then 0 ≤ ξℓ (t) ≤ ξℓ+1 (t) for every t ∈ (0, T) due to Nℓ+1 ⊆ Nℓ . Thus, the monotone
+convergence theorem yields
+                                                   Z T              Z T
+                     lim j′′ (ū; vℓ2 ) = lim            ξℓ (t) =         lim ξℓ (t) = j′′ (ū; v 2 ).
+                    ℓ→∞                      ℓ→∞    0                0    ℓ→∞
+
+Again, we argue analogously for the multiplier term and finally obtain
+
+  0 ≤ F ′′ (ū)v 2 + β1 j′′ (ū; v 2 )
+                                                                                                        !2 
+                                                                                             ū(t), v(t) Ω
+                                         Z
+                                   +          µ̄(t)kū(t)kL−1
+                                                            2 (Ω)
+                                                                  kv(t)k2L2 (Ω) −                            dt
+                                         A+                                                  kū(t)kL2 (Ω)
+
+for all v ∈ C(ū). This was the claim.
+
+4.2.3. Second order sufficient conditions
+      We finally prove no-gap second order sufficient conditions for (ROCP) for strong local
+solutions, i.e., in the L∞ (0, T; L2 (Ω))-sense. The proof is fairly standard, but we again
+have to circumvent the possible singularity of the substitute for the second derivative
+j′′ (ū; v 2 ). We assume β2 > 0 to enforce coercivity of the problem. The case β2 = 0 is an
+open problem.
+Theorem 4.17 (Second order sufficient conditions). Let β2 > 0. Assume that ū ∈ Uad
+satisfies
+                     ℓ′′r (ū; v 2 ) > 0 for all v ∈ C(ū) \ {0}.             (4.28)
+Then ū is a strong local minimum, that is, there are ε, δ > 0 such that
+
+              δ        2
+  ℓr (ū) +     u − ū L2 (0,T;L2 (Ω)) ≤ ℓr (u)
+              2
+                                         for all u ∈ Uad with u − ū L∞ (0,T;L2 (Ω)) < ε. (4.29)
+
+Proof. Suppose not. Then there are positive nonincreasing sequences αk , ηk ց 0 and
+feasible controls (uk ) ⊂ Uad such that
+                                                              ηk          2
+    uk − ū L∞ (0,T;L2 (Ω)) ≤ αk                                  uk − ū L2 (0,T;L2 (Ω)) . (4.30)
+                                             and ℓr (uk ) < ℓr (ū) +
+                                                              2
+We set ρk := kuk − ūkL2 (0,T;L2 (Ω)) > 0 and vk := ρ−1
+                                                                      
+                                                           k   uk − ū . Then clearly ρk ց 0.
+Since vk is normalized in L2 (0, T; L2 (Ω)), we have vk ⇀ v ∈ L2 (0, T; L2 (Ω)), possibly
+after going over to a subsequence. The rest of the proof will consist of showing that
+v = 0 which then will lead to a contradiction with β2 > 0. In order to show v = 0, we
+establish that v ∈ C(ū) and ℓ′′r (ū; v 2 ) ≤ 0 and then conclude from (4.28).
+    Step 1: v ∈ C(ū). We first show that v ∈ T (ū). Since uk ∈ Uad for each k, we have
+kuk (t)k2L2 (Ω) ≤ ω(t)2 = kū(t)k2L2 (Ω) for almost all t ∈ A. Hence (uk (t) − ū(t), ū(t))Ω ≤ 0
+for t ∈ A+ and uk (t) = ū(t) = 0 for t ∈ A0 . This implies vk ∈ T (ū) and thus v ∈ T (ū),
+since T (ū) is weakly closed in L2 (0, T; L2 (Ω)).
+
+                                                            35
+   It remains to show that F ′ (ū)v+β1 j′ (ū; v) = 0. We argue as in [5, Proof of Thm. 5.12].
+The function j is Lipschitz continuous and convex, thus
+                                                           j(uk ) − j(ū)
+                                       j′ (ū; v) ≤ lim inf               .
+                                                       k→∞       ρk
+This inequality and (4.30) then show that
+                                             ℓr (uk ) − ℓr (ū)
+         F ′ (ū)v + β1 j′ (ū; v) ≤ lim inf
+                                      k→∞            ρk
+                                              ηk              2                      ρk ηk
+                                   ≤ lim inf       uk − ū L2 (0,T;L2 (Ω)) = lim inf       = 0.
+                                      k→∞ 2ρk                                 k→∞      2
+From the reverse inequality from the first order necessary optimality condition (4.12) we
+infer v ∈ C(ū).
+    Step 2: ℓ′′r (ū; v 2 ) ≤ 0: We again define approximations to v and vk to cope with the
+possible unboundedness of j′′ (ū; v 2 ). Let κℓ > 0 be a nonincreasing sequence converging
+to zero. Set                            (                                 
+                                          0      if t ∈ 0 < kūkL2 (Ω) < κℓ ,
+                            vk,ℓ (t) :=
+                                          vk (t) elsewhere
+and vℓ analogously. Then vk,ℓ ⇀ vℓ for ℓ fixed and k → ∞, and vℓ → v if ℓ → ∞, both
+in L2 (0, T; L2 (Ω)). We find for almost all t ∈ (0, T)
+                                                                  κℓ
+                            ū(t) + ρk vk,ℓ (t) L2 (Ω) ≥ κℓ − αk ≥ ,
+                                                                  2
+for ℓ fixed and k large enough, since from (4.30)
+                                 ρk kvk,ℓ (t)kL2 (Ω) ≤ ρk kvk (t)kL2 (Ω) ≤ αk .
+Hence we have integrated Taylor expansions of kū + ρk vk,ℓ kL2 (Ω) from Lemma 4.16 (3)
+at hand. Further, from Lemma 4.16 (1),
+   Z                                                       
+                     ū(t) + ρk vk (t) L2 (Ω) − ū(t) L2 (Ω) dt
+    [0<kūkL2 (Ω) <κℓ ]
+                                                                                                        
+                                                                                           ū(t), vk (t) Ω
+                                                                 Z
+                                                          ≥ ρk                                             dt. (4.31)
+                                                                     [0<kūkL2 (Ω) <κℓ ]   kū(t)kL2 (Ω)
+
+Using (4.30) and the definition of vk,ℓ , we expand
+           ηk ρ2k
+                  > ℓr (uk ) − ℓr (ū)
+             2                                          
+                  = F (uk ) − F (ū) + β1 j(uk ) − j(ū)
+                                             Z
+                  = F (uk ) − F (ū) + β1 ρk              kvk (t)kL2 (Ω) dt
+                                                       [kūkL2 (Ω) =0]
+                             Z                                                               
+                      + β1                             ū(t) + ρk vk (t) L2 (Ω) − ū(t) L2 (Ω) dt
+                             [0<kūkL2 (Ω) <κℓ ]
+                                             Z                                            
+                      + β1 j(ū + ρk vk,ℓ ) −                              kū(t)kL2 (Ω) dt .
+                                                       [kūkL2 (Ω) ≥κℓ ]
+
+                                                           36
+We insert Taylor expansions for F and j(ū + ρk vk,ℓ ) (cf. Lemma 4.16 (3)) as well as (4.31)
+to obtain, with a function ϑk : [0, T] → [0, 1],
+
+   ηk ρk                     ρ2
+                                                                  Z
+         > ρk F ′ (ū)vk + k F ′′ ū + ϑk ρk vk vk2 + β1 ρk
+                                                      
+                                                                                     kvk (t)kL2 (Ω) dt
+     2                        2                                     [kūkL2 (Ω) =0]
+                                                                                                            !
+                                               ū(t), vk (t) Ω                             ū(t), vk (t) Ω
+                       Z                                             Z
+           + β1 ρk                                             dt +                                        dt
+                         [0<kūkL2 (Ω) <κℓ ] kū(t)kL2 (Ω)             [kūkL2 (Ω) ≥κℓ ] kū(t)kL2 (Ω)
+                                                                                                    !2 
+              β1 ρ2k                                                                ū(t), v     (t)
+                      Z
+                                                                                             k,ℓ
+           +                             kū(t)k−1       vk,ℓ (t) 2 2      −                        Ω     dt
+                2                                L2 (Ω)            L (Ω)             kū(t)kL2 (Ω)
+                       [kūkL2 (Ω) ≥κℓ ]
+
+           + O ρ3k kvk k3L3 (0,T;L2 (Ω)) .
+                                            
+
+
+Note that ρk kvk k3L3 (0,T;L2 (Ω)) ≤ ρk kvk kL∞ (0,T;L2 (Ω)) ∈ O(αk ) by (4.30). Inserting this
+and rearranging, we arrive at
+
+   ηk ρ2k
+          > ρk F ′ (ū)vk + β1 j′ (ū; vk )
+                                           
+     2
+                                            ρ2
+                                        + k F ′′ ū + ϑk ρk vk vk2 + β1 j′′ (ū; vk,ℓ
+                                                                                  2
+                                                                                      ) + O αk ρ2k .
+                                                                                                
+                                            2
+Since vk ∈ T (ū), we have F ′ (ū)vk + β1 j′ (ū; vk ) ≥ 0 by first order optimality (4.12). It is
+thus practical to divide by ρ2k /2 and insert a zero to obtain
+
+     F ′′ (ū)vk2 + β1 j′′ (ū; vk,ℓ
+                                 2
+                                     ) ≤ F ′′ (ū)vk2 − F ′′ ū + ϑk ρk vk vk2 + O(αk ) + ηk .
+                                                                          
+                                                                                               (4.32)
+
+We had ρk vk → 0 in L∞ (0, T; L2 (Ω)) as k → ∞ by construction. Hence, since F is twice
+continuously differentiable by Lemma 4.6 and vk is normalized in L2 (0, T; L2 (Ω)),
+
+                     F ′′ (ū)vk2 − F ′′ ū + ϑk ρk vk vk2 → 0 as k → ∞.
+                                                      
+
+
+It follows from Lemma 4.6 and Lemma 4.16 (2) that the second derivatives on the left-
+hand side in (4.32) are both weakly lower semicontinuous with respect to their directions.
+We thus obtain from (4.32)
+
+              F ′′ (ū)v 2 + β1 j′′ (ū; vℓ2 ) ≤ lim inf F ′′ (ū)vk2 + β1 j′′ (ū; vk,ℓ
+                                                                                     2
+                                                                                          
+                                                                                         ) = 0.
+                                                  k→∞
+
+Finally, a monotone convergence argument as in the proof of Theorem 4.12 shows that
+
+                            ℓ′′r (ū; v 2 ) = F ′′ (ū)v 2 + β1 lim j′′ (ū; vℓ2 ) ≤ 0
+                                                              ℓ→∞
+
+so that v = 0 by (4.28).
+    Step 3: Contradiction to β2 > 0. From vk ⇀ v = 0, it follows that zvk ⇀ zv = 0
+in Y due to Theorem 4.3. Hence, setting G(u) := F (u) − β22 kuk2L2 (0,T;L2 (Ω)) and using
+Lemma 4.6 for β2 = 0, we find
+
+                                   0 = G′′ (ū)zv2 ≤ lim inf G′′ (ū)zv2k .
+                                                         k→∞
+                                                       37
+Since vk was normalized in L2 (0, T; L2 (Ω)) and j′′ (ū; vk,ℓ
+                                                           2
+                                                               ) ≥ 0 for every ℓ, we thus have
+
+                      β2 ≤ lim inf G′′ (ū)zv2k + β2
+                              k→∞
+                          = lim inf G′′ (ū)zv2k + β2 lim inf kvk kL2 (0,T;L2 (Ω))
+                              k→∞                                k→∞
+                          ≤ lim inf F ′′ (ū)vk2
+                              k→∞
+                          ≤ lim inf F ′′ (ū)vk2 + β1 lim inf j′′ (ū; vk,ℓ
+                                                                        2
+                                                                            )
+                             k→∞                       k→∞
+                          ≤ lim inf F ′′ (ū)vk2 + β1 j′′ (ū; vk,ℓ
+                                                                2
+                                                                     
+                                                                    ) = 0,
+                              k→∞
+
+where again (4.32) was used. This is the final contradiction and completes the proof.
+
+
+Appendix A. Auxiliary results
+
+   At several points we need the following growth lemma.
+Lemma A.1 ([38, Ch. IV, Lem. 2.2]). Let C0 > 0 and suppose that f ∈ C([a, b)) satisfies
+f (s) ≥ 0 for all s ∈ [a, b) and f (a) = 0 as well as
+
+                              f (s) ≤ C0 + εf (s)σ               for all s ∈ [a, b)
+
+for some σ > 0. If ε < 2−σ C01−σ , then it follows that
+
+                                   f (s) ≤ 2C0            for all s ∈ [a, b).
+
+   The remaining assertions are about the first and second derivatives of (powers of)
+norms on Banach spaces. We need the results for Lebesgue spaces for which the following
+result is a basic one.
+Proposition A.2 ([28, Thms. 3.3&3.9]). Let Υ ⊂ Rd for some d ∈ N and let X be
+a Banach space. Then the norm on Lp (Υ; X) for 2 < p < ∞ is twice continuously
+differentiable away from 0 if and only if the norm on X is twice continuously differentiable
+away from 0 and the second derivative is uniformly bounded on the unit sphere in X.
+The norm on L2 (Υ; X) is twice continuously differentiable away from 0 if and only if X
+is a Hilbert space.
+    The requirements in Proposition A.2 are clearly satisfied in the case X = R. Setting
+Υp (f ) := kf kLp(Ω) for 2 ≤ p < ∞, we have the following derivatives in f ∈ Lp (Ω) \ {0}:
+
+            Υ′p (f )h = kf k1−p         p−2
+                                                
+                            Lp (Ω) |f |     f, h Ω ,
+                                                                                         2
+                                                                                                                !
+                                    kf k1−p
+                                                                                         Y
+        Υ′′p (f )h1 h2 = (p − 1)                          p−2
+                                                                h1 , h2 Ω − kf k−1             Υ′p (f )hi
+                                                                                                           
+                                        Lp (Ω)     |f |                         Lp (Ω)
+                                                                                         i=1
+
+The Hölder inequality shows that |Υ′′p (f )h1 h2 | . kf k−1                                   ′′
+                                                          Lp (Ω) kh1 kLp (Ω) kh2 kLp (Ω) , so Υp is
+bounded on the unit sphere in Lp (Ω). This allows to invoke Proposition A.2 again for
+
+                                                          38
+Φp,q (f ) := kf kLp(0,T;Lq (Ω)) with 2 < p, q < ∞ or p = q = 2, and a straight forward
+calculation with the chain rule gives the derivatives in f 6= 0 as follows:
+                                               Z T
+           Φ′p,q (f )h = kf k1−p
+                             Lp (0,T;Lq (Ω))         kf (t)kp−1     ′
+                                                            Lq (Ω) Υq (f (t))h(t) dt,
+                                                0
+                                                          Z T                   2                  
+       Φ′′p,q (f )h1 h2 = (p − 1)kf k1−p                        kf (t)kp−2
+                                                                                Y
+                                     Lp (0,T;Lq (Ω))                   Lq (Ω)      Υ′q (f (t))hi (t) dt
+                                                           0                    i=1
+                                                           2 Z T
+                         − (p − 1)kf kL1−2p                            kf (t)kp−1
+                                                           Y
+                                                                                      ′
+                                        p (0,T;Lq (Ω))                        Lq (Ω) Υq (f (t))hi (t) dt
+                                                           i=1     0
+                                                     Z T
+                           + kf k1−p
+                                 Lp (0,T;Lq (Ω))           kf (t)kp−1     ′′
+                                                                  Lq (Ω) Υq (f (t))h1 (t)h2 (t) dt.
+                                                      0
+
+   We next consider powers of the norms Φp,q . The general result is as follows. It shows
+that with a sufficiently large power one can overcome the nondifferentiability in 0 of Φp,q .
+Lemma A.3. Let X be a Banach space and ν > 1. Consider f : X → R and set
+g(x) := |f (x)|ν−1 f (x).
+1. Suppose that f is locally Lipschitz continuous in 0 and continuously differentiable on
+   X \ {0}. Then g is continuously differentiable on X with g ′ (0) = 0.
+2. Suppose in addition that ν > 2 and that f is twice continuously differentiable on
+   X \ {0} with kf ′′ (x)kL(X×X;R) . kxk−1X as x → 0. Then g is twice continuously
+   differentiable on X with g ′′ (0) = 0.
+
+Proof. We can without loss of generality assume that f (0) = 0.
+1. It is clear that g is continuously differentiable on X\{0} with g ′ (x)h = ν|f (x)|ν−1 f ′ (x)h.
+Moreover, let R > 0 be such that f is Lipschitz continuous on a ball around 0 with radius
+R. We denote the Lipschitz constant by LR . Then we have for all h with khkX ≤ R
+
+                     g(h) − g(0) − 0 · h = |f (h)|ν ≤ LνR khkνX ∈ o khkX ,
+                                                                           
+
+
+so g is differentiable in 0 with derivative g ′ (0) = 0. Since kf ′ (x)kX ′ ≤ 1 for all X \ {0},
+we further find
+                                              ν−1      ν−1
+                               |g ′ (x)h| ≤ νLR    kxkX    khkX
+for all x with kxkX ≤ R. This shows that kg ′ (x)kX ′ → 0 as x → 0 in X, so g ′ is
+continuous in 0.
+2. Now g is even twice continuously differentiable on X \ {0} with
+
+      g ′′ (x)h1 h2 = ν(ν − 1)|f (x)|ν−2 f ′ (x)h1 f ′ (x)h2 + ν|f (x)|ν−1 f ′′ (x)h1 h2 .
+                                                           
+
+
+As above, we obtain, for all h2 ∈ X and h1 with h1 X ≤ R,
+
+                                                           ν−1                   ν−1
+                   g ′ (h1 )h2 − g ′ (0)h2 − 0 · h1 h2 ≤ νLR   h1 X                    h2 X ,
+
+                                                      39
+hence kg ′ (h1 ) − g ′ (0) − 0kX ′ ∈ o kh1 kX and g ′ is differentiable in 0 with g ′′ (0) = 0.
+                                               
+
+Here we have used that ν > 2 now. The claim that g ′′ is continuous in 0 follows from
+the observation that
+                               g ′′ (x)h1 h2 . kxkν−2 h1 X h2 X
+for all h1 , h2 ∈ X \ {0} as x → 0 by the assumption on f ′′ , and again ν > 2.
+    We set Ψp,q (y) := p1 kykpLp(0,T;Lq (Ω)) = p1 Φp,q (y)p and want to show that it is twice
+continuously differentiable for p > 2 using Lemma A.3 with f = Φp,q and ν = p. The
+Lipschitz condition in Lemma A.3 is clearly satisfied since Φp,q is a norm, and we had
+already seen that Proposition A.2 implies the differentiability assumptions. Moreover,
+repeated use of Hölder’s inequality in the foregoing formula for Φ′′p,q shows that
+
+              Φ′′p,q (f )h1 h2 . kf k−1
+                                     Lp (0,T;Lq (Ω)) kh1 kL (0,T;L (Ω)) kh2 kL (0,T;L (Ω)) .
+                                                           p      q           p      q
+
+
+
+Hence we can indeed apply Lemma A.3 with f = Φp,q and ν = p to obtain the following:
+Corollary A.4. For p > 2, the function Ψp,q is twice continuously differentiable as a
+mapping from Lp (0, T; Lq (Ω)) to R. Its derivatives are given by
+                 Z T
+  Ψ′p,q (y)h =         ky(t)kp−1     ′
+                             Lq (Ω) Υq (y(t))h(t) dt
+                  0
+                                                           Z T
+                                                                 ky(t)kp−q           q−2
+                                                                                                   
+                                                       =               Lq (Ω) |y(t)|     y(t), h(t) Ω dt
+                                                            0
+
+and
+                           Z T
+                                                           2
+  Ψ′′p,q (y)h2 = (p − q)         ky(t)kp−2     ′
+                                       Lq (Ω) Υq (y(t))h(t)   dt
+                             0
+                                                                Z T
+                                                                      ky(t)kp−q           q−2
+                                                                                              , h2 (t Ω dt.
+                                                                                                     
+                                                 + (q − 1)                  Lq (Ω) |y(t)|
+                                                                 0
+
+
+Acknowledgements
+
+  The work of Karl Kunisch was partly supported by the ERC advanced grant 668998
+(OCLOC) under the EU H2020 research program.
+
+
+References
+ [1] W. Arendt, C. J. Batty, M. Hieber, and F. Neubrander, Vector-valued Laplace Transforms
+     and Cauchy Problems, Springer Science + Business Media, 2011.
+ [2] M. D. Blair, H. F. Smith, and C. D. Sogge, Strichartz estimates for the wave equation on
+     manifolds with boundary, Annales de l’Institut Henri Poincaré (C) Non Linear Analysis, 26 (2009),
+     pp. 1817–1829.
+ [3] N. Burq, G. Lebeau, and F. Planchon, Global Existence for Energy Critical Waves in 3-D
+     Domains, Journal of the American Mathematical Society, 21 (2008), pp. 831–845.
+ [4] N. Burq and F. Planchon, Global existence for energy critical waves in 3-d domains: Neumann
+     boundary conditions, American Journal of Mathematics, 131 (2009), pp. 1715–1742.
+
+                                                   40
+ [5] E. Casas, R. Herzog, and G. Wachsmuth, Analysis of spatio-temporally sparse optimal con-
+     trol problems of semilinear parabolic equations, ESAIM: Control, Optimisation and Calculus of
+     Variations, 23 (2016), pp. 263–295.
+ [6] M. Cavalcanti, L. Fatori, and T. Ma, Attractors for wave equations with degenerate memory,
+     Journal of Differential Equations, 260 (2016), pp. 56–83.
+ [7] R. Dautray and J.-L. Lions, Mathematical Analysis and Numerical Methods for Science and
+     Technology. Vol. 5, Springer-Verlag, Berlin, 1992. Evolution problems. I, With the collaboration of
+     Michel Artola, Michel Cessenat and Hélène Lanchon, Translated from the French by Alan Craig.
+ [8] B. Dehman and G. Lebeau, Analysis of the HUM control operator and exact controllability for
+     semilinear waves in uniform time, SIAM Journal on Control and Optimization, 48 (2009), pp. 521–
+     550.
+ [9] B. Dehman, G. Lebeau, and E. Zuazua, Stabilization and control for the subcritical semilinear
+     wave equation, Annales Scientifiques de l’École Normale Supérieure, 36 (2003), pp. 525–551.
+[10] J. Diestel, W. M. Ruess, and W. Schachermayer, Weak compactness in L1 (µ, X), Proceedings
+     of the American Mathematical Society, 118 (1993), p. 447.
+[11] R. Donninger, Strichartz estimates in similarity coordinates and stable blowup for the critical
+     wave equation, Duke Mathematical Journal, 166 (2017), pp. 1627–1683.
+[12] N. Dunford and J. T. Schwartz, Linear Operators. I. General Theory, With the assistance of
+     W. G. Bade and R. G. Bartle. Pure and Applied Mathematics, Vol. 7, Interscience Publishers, Inc.,
+     New York, 1958.
+[13] T. Duyckaerts, C. Kenig, and F. Merle, Concentration-compactness and universal profiles for
+     the non-radial energy critical wave equation, Nonlinear Analysis, 138 (2016), pp. 44–82.
+[14]        , Global existence for solutions of the focusing wave equation with the compactness property,
+     Annales de l’Institut Henri Poincaré (C) Non Linear Analysis, 33 (2016), pp. 1675–1690.
+[15] L. C. Evans, Partial differential equations, Graduate studies in mathematics, American Mathe-
+     matical Society, Providence (R.I.), 1998.
+[16] M. Farahi, J. Rubio, and D. Wilson, The global control of a nonlinear wave equation, Interna-
+     tional Journal of Control, 65 (1996), pp. 1–15.
+[17] F. Friedlander and M. Joshi, Introduction to the Theory of Distributions, Cambridge University
+     Press, 1998.
+[18] H. Goldberg, W. Kampowsky, and F. Tröltzsch, On Nemytskij operators in Lp -spaces of
+     abstract functions, Mathematische Nachrichten, 155 (1992), pp. 127–140.
+[19] M. G. Grillakis, Regularity for the wave equation with a critical nonlinearity, Communications
+     on Pure and Applied Mathematics, 45 (1992), pp. 749–774.
+[20] W. Heisenberg, Mesonenerzeugung als Stoßwellenproblem, Zeitschrift für Physik A Hadrons and
+     Nuclei, 133 (1952), pp. 65–79.
+[21] H. Jia, B. Liu, W. Schlag, and G. Xu, Generic and non-generic behavior of solutions to defo-
+     cusing energy critical wave equation with potential in the radial case, International Mathematics
+     Research Notices, (2016), p. rnw181.
+[22] R. Joly and C. Laurent, Stabilization for the semilinear wave equation with geometric control
+     condition, Analysis & PDE, 6 (2013), pp. 1089–1119.
+[23] K. Jörgens, Über die nichtlinearen Wellengleichungen der mathematischen Physik, Mathematische
+     Annalen, 138 (1959), pp. 179–202.
+[24] V. Kalantarov, A. Savostianov, and S. Zelik, Attractors for damped quintic wave equations in
+     bounded domains, Annales Henri Poincaré, 17 (2016), pp. 2555–2584.
+[25] C. Kenig, The focusing energy-critical wave equation, in Harmonic Analysis, Partial Differential
+     Equations and Applications, Springer International Publishing, 2017, pp. 97–107.
+[26] N.-A. Lai, Blow up of critical semilinear wave equations on Schwarzschild spacetime, Journal of
+     Mathematical Analysis and Applications, 409 (2014), pp. 716–721.
+[27] I. Lasiecka and D. Tataru, Uniform boundary stabilization of semilinear wave equations with
+     nonlinear boundary damping, Differential Integral Equations, 6 (1993), pp. 507–533.
+[28] I. E. Leonard and K. Sundaresan, Geometry of Lebesgue-Bochner function spaces–smoothness,
+     Trans. Amer. Math. Soc., 198 (1974), pp. 229–229.
+[29] H. A. Levine, Minimal periods for solutions of semilinear wave equations in exterior domains
+     and for solutions of the equations of nonlinear elasticity, Journal of Mathematical Analysis and
+     Applications, 135 (1988), pp. 297–308.
+[30] J. L. Lions and E. Magenes, Non-Homogeneous Boundary Value Problems and Applications,
+     Springer Berlin Heidelberg, 1972.
+
+                                                   41
+[31] B. S. Mordukhovich and J.-P. Raymond, Neumann boundary control of hyperbolic equations with
+     pointwise state constraints, SIAM Journal on Control and Optimization, 43 (2004), pp. 1354–1372.
+[32] L. I. Schiff, Nonlinear meson theory of nuclear forces. I. neutral scalar mesons with point-contact
+     repulsion, Physical Review, 84 (1951), pp. 1–9.
+[33] J. Shatah and M. Struwe, Regularity results for nonlinear wave equations, The Annals of Math-
+     ematics, 138 (1993), p. 503.
+[34]        , Well-posedness in the energy space for semilinear wave equations with critical growth,
+     International Mathematics Research Notices, 1994 (1994), p. 303.
+[35] A. Shaw, T. Hill, S. Neild, and M. Friswell, Periodic responses of a structure with 3:1 internal
+     resonance, Mechanical Systems and Signal Processing, 81 (2016), pp. 19–34.
+[36] J. Simon, Compact sets in the space Lp (0, T ; B), Ann. Mat. Pura Appl. (4), 146 (1986), pp. 65–96.
+[37] H. F. Smith and C. D. Sogge, On the critical semilinear wave equation outside convex obstacles,
+     Journal of the American Mathematical Society, 8 (1995), pp. 879–879.
+[38] C. D. Sogge, Lectures on nonlinear wave equations, no. Bd. 2 in Monographs in analysis, Interna-
+     tional Press, 1995.
+[39] D. M. Stuart, The geodesic hypothesis and non-topological solitons on pseudo-Riemannian man-
+     ifolds, Annales Scientifiques de l’École Normale Supérieure, 37 (2004), pp. 312–362.
+[40]        , Geodesics and the Einstein nonlinear wave system, Journal de Mathématiques Pures et
+     Appliquées, 83 (2004), pp. 541–587.
+[41] T. Tao, Nonlinear Dispersive Equations: Local and Global Analysis, no. Nr. 106 in Conference
+     Board of the Mathematical Sciences. Regional conference series in mathematics, American Mathe-
+     matical Soc., 2006.
+
+
+
+
+                                                  42
+

@@ -1,0 +1,177 @@
+{
+  "title": "CoNP-completeness of binary directed chip-firing reachability",
+  "slug": "binary-directed-chip-firing-reachability",
+  "description": "Legal chip-firing reachability is coNP-complete for loopless strongly connected directed multigraphs with binary multiplicities and nonnegative chip counts.",
+  "abstract": "Ordinary legal chip-firing reachability is coNP-complete under deterministic polynomial-time many-one reductions for finite loopless strongly connected directed multigraphs, with binary adjacency entries and nonnegative binary initial and target configurations. We give an explicit reduction from the complement of the halting problem of Farrell and Levine. A finite-state cutoff controls an exact simulation, a gate supplies a cleanup reserve, and a marker forces that gate to have fired in every target-reaching word. Together with the prior coNP-membership theorem of Hujter, Kiss and Tóthmérész, this answers the historical general-digraph hardness question in the stated model. We credit earlier period, recurrence and reserve-simulation arguments. Exact-result, gadget and method priority, independence of discovery, and present-day openness remain unknown after a bounded source audit. This extensively AI-assisted note is unrefereed.",
+  "plain_language": [
+    "In a chip-firing game, a vertex with enough chips can send chips along all its outgoing arcs. This paper asks whether some finite sequence of legal moves can reach a specified final arrangement.",
+    "The result classifies this question as coNP-complete for a precise family of directed multigraphs. Arc multiplicities and chip counts are written in binary, so a compact input can describe very large numbers of parallel arcs and chips. The graph is loopless and strongly connected: every vertex can reach every other along directed paths.",
+    "The proof turns the question of whether legal play can continue indefinitely into a specified-target reachability question. It computes the new graph and target directly, without first finding a recurrent arrangement or writing out the potentially very long sequence of moves."
+  ],
+  "result": [
+    "For finite nonempty loopless strongly connected directed multigraphs, deciding whether a finite sequential legal firing word takes a nonnegative initial configuration to a specified nonnegative target is coNP-complete under deterministic polynomial-time many-one reductions.",
+    "The number of vertices varies with the input. Adjacency entries, including arc multiplicities, and both configurations are encoded in binary. The empty firing word is allowed, and a word may stop even when another move remains available. Malformed inputs are rejected.",
+    "The reduction supplies coNP-hardness. Prior work by Hujter, Kiss and Tóthmérész supplies coNP membership; the paper explains the earlier certificate argument with attribution."
+  ],
+  "why_it_works": [
+    "Conservation bounds the number of possible source configurations. A legal word that is long enough must repeat a state, so it can be continued forever. This cutoff can be numerically large while its binary representation stays short.",
+    "The new graph simulates the source until a gate has collected enough chips. Firing the gate releases a reserve that lets the remaining prescribed moves reach an explicitly calculated target. A marker ensures that every target-reaching word has fired the gate, even if its other firing counts differ from the intended ones.",
+    "The graph and target use polynomially many bits. The reduction computes them without executing the long simulation. The earlier coNP-membership argument gives polynomial-size certificates of nonreachability using reduced firing counts."
+  ],
+  "limitations": [
+    "Parallel arcs, large degrees and large chip counts are used. No corresponding classification is established for simple graphs, unary encodings, bounded degrees or bounded total chip counts.",
+    "The theorem concerns legal reachability of a specified target on a varying input graph. It is not a halting or rotor-routing classification, or a claim about all configurations on one fixed graph.",
+    "Both input configurations are nonnegative. Signed intermediate normalization in the hardness proof does not establish coNP membership for every signed formulation.",
+    "The cutoff bounds a simulation horizon, not the running time of a reachability algorithm. Finite verification controls supplement the written proof and do not certify it formally.",
+    "Source hardness, coNP membership, period deletion, recurrence and reserve-simulation arguments are earlier work. Priority of the complete result or gate/marker mechanism, independent discovery and present worldwide openness remain unestablished."
+  ],
+  "background": [
+    {
+      "title": "Farrell and Levine — CoEulerian graphs",
+      "url": "https://arxiv.org/abs/1502.04690v3",
+      "note": "Corollary 3.2 provides NP-completeness of the source HALTING problem and its total-Laplacian hardness interface."
+    },
+    {
+      "title": "Hujter, Kiss and Tóthmérész — On the complexity of the chip-firing reachability problem",
+      "url": "https://arxiv.org/abs/1507.03209v4",
+      "note": "Theorem 12 already establishes coNP membership. Problem 19 records the historical general-digraph hardness question; Theorem 14 retains a recurrent-target premise."
+    },
+    {
+      "title": "Björner and Lovász — Chip-firing games on directed graphs",
+      "url": "https://www.cs.elte.hu/~lovasz/morepapers/abacus.pdf",
+      "note": "Earlier period deletion and reduced-firing-count machinery underlie the credited certificate argument."
+    },
+    {
+      "title": "Tóthmérész — Rotor-routing reachability is easy, chip-firing reachability is hard",
+      "url": "https://arxiv.org/abs/2102.11970v2",
+      "note": "Earlier recurrence-to-reachability conversion and a polynomial-hierarchy barrier are distinct from the directly computed target used here."
+    },
+    {
+      "title": "Kiss and Tóthmérész — Chip-firing games on Eulerian digraphs and NP-hardness of computing the rank of a divisor on a graph",
+      "url": "https://arxiv.org/abs/1407.6958v3",
+      "note": "Earlier work uses large reserves for finite-horizon simulation. Scaling and reserve simulation in general are not claimed as new."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration from researchers in chip-firing, combinatorics and computational complexity on independent verification, comparison with earlier constructions and preparation for journal review. Any coauthorship would reflect actual research contributions.",
+  "publication_date": "2026-10-15",
+  "version": "1.0",
+  "ai_disclosure": "AI tools were used extensively in solving, checking, source comparison, programming and writing. Internal AI reviews and finite computational controls do not constitute external human peer review, journal acceptance or proof-assistant certification.",
+  "status": "Unrefereed preprint, Zenodo version 1.0. The manuscript is dated 15 October 2026; the Zenodo record was created on 17 October 2026. Developed with extensive AI assistance, without completed human peer review or formal proof-assistant certification.",
+  "doi": "10.5281/zenodo.23431676",
+  "author": "Alec Kriebel",
+  "publication_date_label": "Manuscript dated",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0",
+  "edition_note": "The manuscript and Zenodo metadata are dated 15 October 2026; the Zenodo record was created on 17 October 2026. The earlier date records manuscript preparation, not verified public availability. Neither date establishes first priority.",
+  "bibtex_note": "Unrefereed preprint, version 1.0; manuscript and declared Zenodo date 2026-10-15; Zenodo record created 2026-10-17",
+  "follow_up": null,
+  "followup_rationale": "No independently justified follow-up meeting the requested high bar was established.",
+  "pdf_filename": "paper.pdf",
+  "supplement_filename": null,
+  "additional_assets": [
+    {
+      "filename": "pr1097_support_v1_0.zip",
+      "label": "Source and verification package (ZIP)"
+    }
+  ],
+  "related_resources": [],
+  "candidate_only": true,
+  "candidate_gate": "DRAFT ONLY. Independent review reports are complete; root scientific disposition and publication clearance are pending. This draft does not authorize promotion, rendering, publication or deployment.",
+  "source_binding": {
+    "record_id": "23431676",
+    "concept_record_id": "23431675",
+    "record_url": "https://zenodo.org/records/23431676",
+    "doi": "10.5281/zenodo.23431676",
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "manuscript_date": "2026-10-15",
+    "zenodo_publication_date": "2026-10-15",
+    "record_created_utc": "2026-10-17T05:45:36.045033+00:00",
+    "receipt_sha256": "c4ecaf95a88e3cf418f6587396cdb1ad05f191cbe96c6546c990e523f29cb548",
+    "metadata_sha256": "f345ad9f30afd61b753a56a05b714b20a41c76ab42a73fdcb46afc6c7edbfc04",
+    "pdf_sha256": "6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d",
+    "all_public_assets": [
+      {
+        "filename": "pr1097_support_v1_0.zip",
+        "url": "https://zenodo.org/api/records/23431676/files/pr1097_support_v1_0.zip/content",
+        "bytes": 5658794,
+        "sha256": "94280d71c41617198e96f1f4b4aca043ff86c3feda3109e0af9a1a18e1db651d",
+        "md5": "60581e2e15f8f41ecd8828b629097e4e"
+      },
+      {
+        "filename": "paper.pdf",
+        "url": "https://zenodo.org/api/records/23431676/files/paper.pdf/content",
+        "bytes": 77187,
+        "sha256": "6ae840e0b2e1df73b204c2c293c3fbcfa39206654e775a75261515c693a6187d",
+        "md5": "9e92e1e40f65d803a2a717a4dedd1a4a"
+      }
+    ],
+    "source_tex_path": "sources/published-source/pr1097_support_v1_0/paper.tex",
+    "source_tex_sha256": "daaacbeb3b198a8c13208663a6e49fc417a5b7ec2e7a0bfa62a9a87e42ce7f5f",
+    "abstract_source": "sources/published-source/pr1097_support_v1_0/paper.tex",
+    "abstract_source_sha256": "daaacbeb3b198a8c13208663a6e49fc417a5b7ec2e7a0bfa62a9a87e42ce7f5f",
+    "abstract_word_count": 125,
+    "abstract_normalization": "Complete original abstract, preserving every sentence; mathematical typography, TeX accents and whitespace only normalized.",
+    "reviewed_documents": [
+      {
+        "filename": "paper.pdf",
+        "pages": 6,
+        "read_scope": "Complete current published manuscript and full corresponding TeX."
+      }
+    ],
+    "embedded_assets": [],
+    "archive_reader_note": "Embedded paper.pdf is byte-identical to the top-level six-page PDF, not a second publication.",
+    "frozen_scope_content_path": "reviews/scope/candidate.json",
+    "frozen_scope_content_sha256": "06b636e7b0c87366690bc0d93815f75f742e79370730caab42db21a499cad8c3",
+    "publication_date_policy": {
+      "publication_date": "2026-10-15",
+      "publication_date_label": "Manuscript dated",
+      "record_created_utc": "2026-10-17T05:45:36.045033+00:00",
+      "required_note": "The manuscript and Zenodo metadata are dated 15 October 2026; the Zenodo record was created on 17 October 2026. The earlier date records manuscript preparation, not verified public availability. Neither date establishes first priority.",
+      "citation_date_basis": "Preserve the manuscript and declared edition date, explicitly distinguish record creation, and do not infer first public availability or website publication date."
+    }
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T02:57:02.402890+00:00",
+    "completion_percent": 100,
+    "publication_state": "DRAFT_ONLY_PENDING_ROOT_DISPOSITION",
+    "scientific_clearance_received": false,
+    "publication_authorized": false,
+    "root_clearance_file": null,
+    "promotion_created": false,
+    "rendered": false,
+    "deployment_authorized_to_editor": false,
+    "review_report_bindings": [
+      {
+        "role": "analytic",
+        "path": "reviews/analytic/REVIEW.md",
+        "sha256": "731cd5d07d7e6089cc71d0ee24110290c531b682b50c4745ed1e49714212faca"
+      },
+      {
+        "role": "analytic",
+        "path": "reviews/analytic/verdict.json",
+        "sha256": "d13d0d75d916c22c5c197b7cd329920fe73ecfc632d0f027cb854683cbda2ff6"
+      },
+      {
+        "role": "adversarial",
+        "path": "reviews/adversarial/REVIEW.md",
+        "sha256": "e6e8f6b864c923600002cd4e82c2fffcddd3a1174c4a242dd926a0ab23ed5257"
+      },
+      {
+        "role": "adversarial",
+        "path": "reviews/adversarial/verdict.json",
+        "sha256": "c494677a69776a43d2932d5b311ce610c2451e6102264f251c1ca091dd1ee87d"
+      },
+      {
+        "role": "scope",
+        "path": "reviews/scope/REVIEW.md",
+        "sha256": "5a5be5a27eaa89707812dff03cde47af84654d05f3c6b6173e53a3ceffd1b8e2"
+      },
+      {
+        "role": "scope",
+        "path": "reviews/scope/verdict.json",
+        "sha256": "bb84ffec8191dedee60dbcc8497d244a0dcf794fd3400207ffa2d59348446fcd"
+      }
+    ]
+  }
+}

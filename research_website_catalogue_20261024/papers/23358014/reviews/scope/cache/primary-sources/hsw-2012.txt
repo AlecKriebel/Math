@@ -1,0 +1,1426 @@
+SIAM J. CONTROL OPTIM.                              2012 Society for Industrial and Applied Mathematics
+                                                   c
+Vol. 50, No. 2, pp. 943–963
+
+
+
+
+ DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PARTIAL
+               DIFFERENTIAL EQUATIONS∗
+            ROLAND HERZOG† , GEORG STADLER‡ , AND GERD WACHSMUTH†
+
+    Abstract. We study optimal control problems in which controls with certain sparsity patterns
+are preferred. For time-dependent problems the approach can be used to ﬁnd locations for control de-
+vices that allow controlling the system in an optimal way over the entire time interval. The approach
+uses a nondiﬀerentiable cost functional to implement the sparsity requirements; additionally, bound
+constraints for the optimal controls can be included. We study the resulting problem in appropriate
+function spaces and present two solution methods of Newton type, based on diﬀerent formulations of
+the optimality system. Using elliptic and parabolic test problems we research the sparsity properties
+of the optimal controls and analyze the behavior of the proposed solution algorithms.
+
+   Key words. sparsity, optimal control, control device placement, L1 -norm minimization, semi-
+smooth Newton
+
+    AMS subject classifications. 49K20, 65K10, 49M15, 49J52
+
+    DOI. 10.1137/100815037
+
+
+    1. Introduction. Optimal control problems with control costs of L1 -type are
+known to produce sparse solutions [8, 26], i.e., the control function is identically zero
+on parts of the domain. Since at these points no control needs to be applied, problems
+with sparsity terms naturally lend themselves to situations where the placement of
+control devices or actuators is not a priori given but is part of the problem.
+    In this paper, we analyze a general class of optimal control problems with a
+sparsity measure that promotes striped sparsity patterns. As a model problem in
+L2 (Ω), we consider
+
+                                      1               α
+                 Minimize      J(u) =   Su − yd 2H + u2L2(Ω) + β u1,2
+(P1 )                                 2               2
+                 subject to    ua ≤ u ≤ ub a.e. in Ω,
+
+where H is a Hilbert space corresponding to the state space of the controlled system,
+yd ∈ H is the desired state, and S : L2 (Ω) → H is the linear control-to-state mapping.
+Moreover, −∞ ≤ ua < 0 < ub ≤ ∞ are bound constraints for the optimal controls,
+α ≥ 0, β > 0, and u1,2 , which as speciﬁed below favors sparse solutions. To motivate
+the approach, in this introduction we assume that Ω = Ω1 × (0, T ) is a space-time
+cylinder, where Ω1 ⊂ Rn , n ≥ 1, and T > 0, in which case the directional sparsity
+term is given by
+
+                                                            1/2
+                                                    T
+(1.1)                         u1,2 :=                 u dt
+                                                         2
+                                                                      dx.
+                                            Ω1     0
+
+
+   ∗ Received by the editors November 15, 2010; accepted for publication (in revised form) November
+
+2, 2011; published electronically April 19, 2012.
+     http://www.siam.org/journals/sicon/50-2/81503.html
+   † Faculty of Mathematics, Chemnitz University of Technology, D–09107 Chemnitz, Germany
+
+(roland.herzog@mathematik.tu-chemnitz.de, gerd.wachsmuth@mathematik.tu-chemnitz.de).
+   ‡ Institute for Computational Engineering & Sciences, University of Texas at Austin, Austin, TX
+
+78712 (georgst@ices.utexas.edu). The work of this author was partly supported by National Science
+Foundation grant CCF-0427985.
+                                                 943
+
+
+
+
+     Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+944          ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+This term measures the L1 -norm in space of the L2 -norm in time. We will show that
+the term u1,2 leads to certain, in applications often desirable, sparsity patterns for
+the optimal controls u. We refer to (P1 ) as problem with a directional sparsity term.
+     To explain our interest in (P1 ), consider a modiﬁed problem (P0 ), in which u1,2
+is replaced by
+                                                                
+                                                            T
+(1.2)         u0,2 := μ(C)    with C :=    x ∈ Ω1 :       u2 dt > 0   ⊂ Ω1 ,
+                                                        0
+
+where μ denotes the Lebesgue measure. The term u0,2 accounts for costs originating
+from the sheer possibility to apply controls at certain locations. For example, this
+could be acquisition costs for control devices or actuators, in which case β is the price
+per control device unit. At a solution of (P0 ), C is the set where placing control
+devices is most eﬃcient. Terms such as (1.2) are also called “L0 -quasi-norms” since
+they can be found as (formal) limits of Lp -quasi-norms as p → 0. Unfortunately, using
+the sparsity term (1.2) results in a nonconvex, highly nonlinear, and to some extent
+combinatorial problem since the set C depends on the (unknown) solution.
+     However, the directional sparsity problem (P1 ) can be used as a convex relaxation
+of the L0 -problem. Partial theoretical justiﬁcation for this approximation can, for in-
+stance, be found in [4, 11, 12]. We point out that using the “undirected” sparsity term
+β uL1 (Ω) also results in a solution with a certain sparsity structure. However, this
+sparsity pattern changes over time. Compared to solutions based on the directional
+sparsity terms u0,2 or u1,2 , where the sparsity structure is ﬁxed over time, this is
+diﬃcult to realize in practice.
+     Besides the practical relevance of (P1 ) for ﬁnding optimal locations for control
+devices, studying (P1 ) is also of theoretical interest. Since the functional (1.1) cannot
+be diﬀerentiated in a classical sense, subdiﬀerentials have to be used and the con-
+struction of eﬃcient solution algorithms becomes challenging. Even though choosing
+α > 0 (which we mostly assume in this paper) allows us to formulate the problem
+in a Hilbert space framework, the problem structure and the characteristics of the
+solution are very diﬀerent from smooth optimal control problems.
+     Let us put our work into perspective. Nonsmooth terms in optimization prob-
+lems with PDEs are commonly being used for the purpose of regularization in in-
+verse problems in image processing; see, for instance, [6, 23, 24, 30]. Among the
+few papers where L1 -regularization is used in the context of optimal control of PDEs
+are [5, 8, 26, 31, 32]. In [5, 8, 26, 32] elliptic optimal control problems with the non-
+directional sparsity terms β uL1 (Ω) are analyzed. In [5, 26, 32], in additional to the
+sparsity term, the squared L2 -norm α/2 u2L2(Ω) is part of the cost functional, which
+allows the problem to be analyzed and solved by a Newton-type algorithm in a Hilbert
+space framework. On the contrary, in [8] the problem is posed and analyzed in L1 (Ω)
+or BV(Ω) and a Newton-type algorithm is proposed that applies to a regularized ver-
+sion of the problem. In [32], convergence rates as α → 0 are investigated. Compared
+to [8, 26, 32], in the problem (P1 ) under consideration here, points in the control
+space are directionally coupled, which leads to a stronger nonlinearity in the opti-
+mality system. Additional challenges arise from the combination of pointwise bound
+constraints with the nonlocal sparsity term. In [31], the authors use L1 -regularization
+for a system of ODEs, which is driven toward a desired state at ﬁnal time. Here,
+the nonsmooth objective is motivated by the physics of the problem (the control cost
+measures the consumption of fuel) rather than by the need for sparse optimal con-
+trols. Related research focuses on ﬁnding sparse solutions to ﬁnite-dimensional, linear
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+               DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                               945
+
+                         x2
+
+
+
+
+                                              Ω2 (x1 )
+
+
+
+                                         Ω1              x1         x1
+
+ Fig. 1.1. Two-dimensional example domain Ω, its projection Ω1 , and the cross section Ω2 (x1 ).
+
+
+inverse problems. For underdetermined problems, the convex relaxed l1 -norm prob-
+lem provably ﬁnds a near-optimal solution also with respect to l0 , i.e., the sparsest
+solution [4, 11, 12]; we refer to [29] for an overview of numerical methods employed in
+this context. In a diﬀerent interpretation of the sparsity approach, the authors in [15]
+ﬁnd optimal experimental designs for linear inverse problems. Here, a sparsity term
+is used to rule out experiments that do not contribute signiﬁcant information for the
+inversion. In practice, this can reduce the number of experiments or measurements
+to be made.
+     The main focus of this paper is twofold. First, we analyze (P1 ) in a function
+space framework, derive the optimality system, and study characteristics of the sparse
+optimal controls. Second, we propose two Newton-type algorithms for the numerical
+solution of (P1 ) and study their convergence behavior. To the authors’ knowledge,
+available algorithms for ﬁnite-dimensional counterparts of (P1 ) are based only on
+ﬁrst-order information; see, for example, [22, 25, 34].
+     The outline of the remainder of this paper is as follows. In section 2, we prove
+the existence and uniqueness of a solution for (P1 ) and derive necessary and suﬃcient
+optimality conditions. In section 3, we present a particular form of the optimality
+system that applies in the absence of pointwise control constraints. Local superlinear
+convergence of a semismooth Newton method based on this form is proved. Section 4
+is devoted to an alternative formulation of the optimality system, which allows tak-
+ing into account pointwise control constraints. We also derive a semismooth Newton
+method based on this formulation and study its properties in ﬁnite dimensions. Fi-
+nally, in section 5 properties of solutions of (P1 ) are studied using numerical examples,
+and the eﬃciency of the algorithms proposed in this paper is analyzed.
+
+     Notation. While a time-dependent problem has been used in the introduction
+for illustration purposes, in the remainder of this paper we allow for a more general
+split of coordinate directions, which contains the time-dependent problem as a special
+case (see Example 1.2). Throughout the paper, Ω ⊂ RN with N ≥ 2 is a bounded
+measurable set. The coordinate directions are partitioned according to RN = Rn ×
+RN −n for some 1 ≤ n < N . This induces the sets
+
+(1.3a)                Ω1 = {x1 ∈ Rn : ∃x2 ∈ RN −n with (x1 , x2 ) ∈ Ω},
+(1.3b)           Ω2 (x1 ) = {x2 ∈ RN −n : (x1 , x2 ) ∈ Ω} for x1 ∈ Ω1 .
+
+Hence, Ω1 can be interpreted as the projection of Ω onto Rn , whereas Ω2 (x1 ) is the
+cross section of Ω at position x1 ∈ Rn (see Figure 1.1). The general form for the
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+946          ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+directional sparsity term u1,2 is
+                                                                       1/2
+(1.4)                   u1,2 :=                      u (x1 , x2 ) dx2
+                                                            2
+                                                                              dx1 .
+                                            Ω1   Ω2 (x1 )
+
+We now give two examples of problems that ﬁt into our general framework.
+    Example 1.1 (elliptic PDE). The domain Ω ⊂ RN is a bounded domain with
+Lipschitz boundary, and S : L2 (Ω) → H := L2 (Ω) denotes the solution map u → y of
+the elliptic PDE
+                                 −Δy = u in Ω,                  y = 0 on Γ.
+    Example 1.2 (parabolic PDE). This is a particular case of the example described
+in the introduction. Suppose that Ω1 ⊂ Rn is a bounded domain with Lipschitz
+boundary Γ, Ω2 = (0, T ) for some T > 0, and Ω = Ω1 × Ω2 is the space-time cylinder.
+Moreover, for κ > 0, S : L2 (Ω) → H := L2 (Ω) denotes the solution operator u → y
+for
+        yt − ∇ · (κ∇)y = u in Ω,                 y = 0 on Γ × (0, T ),            y(·, 0) = 0 in Ω1 .
+     In both examples, the restriction to homogeneous boundary and initial data can
+be waived by modifying yd . Note that problems with vector-valued control variables
+u : Ω → Rn , or equivalently u : Ω × {1, 2, . . . , n} → R, are included in our setting
+if the inner integral in (1.4) is taken with respect to the counting measure. The
+regularization term then becomes u1,2 := Ω u(x)Rn dx, where ·Rn denotes the
+Euclidean norm in Rn . Problems of this type fall into the class of joint sparsity
+approaches; see [13, 14].
+     Function spaces. We denote by Lp (Ω), Lp (Ω1 ), and Lp (Ω2 (x1 )) the classical
+Lebesgue spaces on the respective domains (1 ≤ p ≤ ∞). The norm in these spaces
+is referred to as ·p , and the domain will be clear from the context. We write · , ·
+for the scalar product in L2 . For 1 ≤ p, q ≤ ∞, we denote by Lp,q (Ω) the space of
+(equivalence classes of) all measurable functions f : Ω → R whose norm
+                                                              
+                           f p,q := Ω1  x1 → f (x1 , ·)q               p
+
+is ﬁnite. In case Ω2 (x1 ) does not depend on x1 , this is the usual Bochner space
+Lp (Ω1 , Lq (Ω2 )). In the general case, it is a closed subspace of the latter with Ω2 =
+∪x1 ∈Ω1 Ω2 (x1 ) being the union of all cross sections. Nevertheless, we also refer to
+Lp,q (Ω) as a Bochner-type space. Finally, for functions u, v deﬁned on Ω we introduce
+the shorthand notation
+                                                 1/2
+               |u|x1 ,2 :=                  u2 (x1 , x2 ) dx2       = u(x1 , ·)2 ,
+                                 Ω2 (x1 )
+                             
+            u, v x1 ,2 :=               u(x1 , x2 ) · v(x1 , x2 ) dx2 = u(x1 , ·), v(x1 , ·) .
+                             Ω2 (x1 )
+
+That is, | · |x1 ,2 is the L2 -norm and · , · x1 ,2 the scalar product on the stripe {x1 } ×
+Ω2 (x1 ). Note that for u, v ∈ L2 (Ω), the relations |u|·,2 ∈ L2 (Ω1 ) as well as u, v ·,2 ∈
+L1 (Ω1 ) hold.
+    Standing assumptions. We consider problem (P1 ) under the following assump-
+tions. H is a Hilbert space, and yd ∈ H is the desired state. We assume that
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+               DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                            947
+
+S ∈ L(L2 (Ω), H) is a bounded linear map. For the analysis of the semismooth New-
+ton method in section 3, we require
+(1.5)        S  S : L2 (Ω) → L6,2 (Ω) to be bounded, and S  yd ∈ L6,2 (Ω).
+Here, we denoted by S  the adjoint of S. Moreover, let ua , ub ∈ L2 (Ω) and denote by
+(1.6)                 Uad := {u ∈ L2 (Ω) : ua ≤ u ≤ ub a.e. in Ω}
+the set of admissible controls. It is reasonable to suppose that ua < 0 < ub holds a.e.
+in Ω, which makes u ≡ 0 an admissible control. Finally, we assume α ≥ 0, β > 0.
+    Note that (1.5) is satisﬁed for the examples mentioned above in reasonable di-
+mensions. First we consider Example 1.1 with N ≤ 3. Due to the smoothing property
+of the control-to-state mapping, S  maps L2 (Ω) continuously into H01 (Ω). Sobolev’s
+embedding theorem ensures H01 (Ω) → L6 (Ω), and by Holder’s inequality we can infer
+L6 (Ω) → L6,2 (Ω). Altogether, S  maps L2 (Ω) continuously into L6,2 (Ω). Let us now
+consider Example 1.2 with n ≤ 3. The solution theory for parabolic equations yields
+the continuity of S  : L2 (Ω) → L2 (0, T ; H01(Ω1 )). By Sobolev’s embedding theorem
+we have L2 (0, T ; H01(Ω1 )) → L2 (0, T ; L6 (Ω1 )). For functions f ∈ L2 (0, T ; L6(Ω1 ))
+the continuous Minkowski inequality (see [9, p. 499]) yields f ∈ L6 (Ω1 ; L2 (0, T )) and
+moreover
+                            f L6(Ω1 ;L2 (0,T )) ≤ f L2 (0,T ;L6 (Ω1 )) .
+Therefore, we have L (0, T ; L6 (Ω1 )) → L6 (Ω1 ; L2 (0, T )) = L6,2 (Ω). Altogether we
+                       2
+
+infer the continuity of S  : L2 (Ω) → L6,2 (Ω).
+    2. Analysis of the problem. In this section, we prove the existence and
+uniqueness of an optimal solution for (P1 ) and derive necessary and suﬃcient op-
+timality conditions. We begin by computing the subdiﬀerential of u1,2.
+     2.1. Computation of the subdiﬀerential. Due to the separability of L2 (Ω2 )
+we can use a standard result [10, p. 282] to ﬁnd the dual of the Bochner-type space
+L1,2 (Ω). A direct proof can be found in [33, Satz 3.11].
+     Lemma 2.1. The dual space of L1,2 (Ω) can be identiﬁed with the Bochner-type
+space L∞,2 (Ω). This is the space (of equivalence classes) of all measurable functions
+ϕ deﬁned on Ω whose norm
+                                                            1/2
+                    ϕ∞,2 := ess sup                       ϕ2 (x1 , x2 ) dx2
+                                     x1 ∈Ω1      Ω2 (x1 )
+
+is ﬁnite. The dual pairing is given by
+                                                       
+                           u, ϕ L1,2 (Ω),L∞,2 (Ω) =             u · ϕ d(x1 , x2 ).
+                                                            Ω
+
+
+     Lemma 2.2. The subdiﬀerential of ·1,2 : L1,2 (Ω) → R at u ∈ L1,2 (Ω) is given
+by
+(2.1)      ∂·1,2(u) = {v ∈ L∞,2 (Ω) : v(x1 , ·) ∈ ∂·2 (u(x1 , ·)) for all x1 ∈ Ω1 }
+with the subdiﬀerential of the L2 (Ω2 (x1 ))-norm
+                                
+                                   s2 ≤ 1 if w = 0 a.e. on Ω2 (x1 ),
+               s ∈ ∂·2 (w) ⇔
+                                   s = ww
+                                            2
+                                               elsewhere,
+
+
+
+
+     Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+948          ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+where w ∈ L2 (Ω2 (x1 )). An equivalent characterization of the subdiﬀerential of ·1,2
+is given by
+                                            
+                                              |v|x1 ,2 ≤ 1           if |u|x1 ,2 = 0,
+        v ∈ ∂·1,2(u) ⇔ for a.a. x1 ∈ Ω1 :
+                                              v(x1 , ·) = u(x  1 ,·)
+                                                           |u|x ,2   if |u|x1 ,2 = 0.
+                                                                     1
+
+The subdiﬀerential remains the same if ·1,2 is considered a function of L2 (Ω) → R.
+   Proof. We begin by observing that (see [20, p. 56])
+(2.2)     ∂·1,2 (u) = {v ∈ L∞,2 (Ω) : v∞,2 ≤ 1, u, v L1,2 (Ω),L∞,2 (Ω) = u1,2}.
+To show that the right-hand sides in (2.2) and (2.1) coincide, let v ∈ ∂·1,2 (u)
+be given. The ﬁrst condition in (2.2) yields |v|x1 ,2 ≤ 1 for almost all x1 ∈ Ω1 .
+Furthermore, we have
+                                 
+                       u1,2 =            u · v dx2 dx1 .
+                                        Ω1   Ω2 (x1 )
+
+                                                 =:f (x1 )
+
+Now, for almost all x1 ∈ Ω1 it holds that f (x1 ) = u, v x1 ,2 ≤ |u|x1 ,2 |v|x1 ,2 ≤ |u|x1 ,2 .
+Therefore, we have
+                                            
+                 u1,2 =      f (x1 ) dx1 ≤     |u|x1 ,2 dx2 = u1,2 .
+                               Ω1                  Ω1
+
+Together, these relations imply that f (x1 ) = |u|x1 ,2 holds for almost all x1 ∈ Ω1 . This,
+in turn, shows v(x1 , ·) ∈ ∂·2 (u(x1 , ·)). The converse inclusion can be proved easily.
+    If ·1,2 is considered as a function from L2 (Ω) into R, the subdiﬀerential may
+become larger. However, it remains a subset of L∞,2 (Ω), and thus the density of L2 (Ω)
+in L1,2 (Ω) shows that the subdiﬀerentials coincide. Indeed, suppose vk → v in L1,2 (Ω)
+with vk ∈ L2 (Ω). Let g be a subgradient (w.r.t. L2 (Ω)) of ·1,2 at u ∈ L2 (Ω), i.e.,
+                    w1,2 ≥ u1,2 + g, w − u             for all w ∈ L2 (Ω).
+Using w = vk and passing to the limit shows the same inequality with w replaced by
+v ∈ L1,2 (Ω).
+     2.2. Existence, uniqueness, and optimality conditions.
+     Lemma 2.3. Problem (P1 ) has a unique solution for β ≥ 0 and α > 0. The same
+holds for α = 0 in case S is injective.
+     Proof. For α > 0 the objective J(u) is strictly convex and continuous. The
+same holds true in case α = 0, provided that S is injective. Furthermore, the
+set Uad ⊂ L2 (Ω) is convex and weakly compact and therefore the existence and
+uniqueness of the optimal control follows from standard arguments; see, for instance,
+[28, Thm. 2.14].
+     The variational inequality
+(2.3)                       u − ū, ∂J(ū) ≥ 0          for all u ∈ Uad
+is a necessary and suﬃcient optimality condition for (P1 ). Hence the Moreau–Rocka-
+fellar theorem [20, p. 57] implies the following lemma.
+     Lemma 2.4. The function ū ∈ L2 (Ω) solves (P1 ) if and only if
+(2.4)                            u − ū, −p̄ + β λ̄ + αū ≥ 0
+holds for all u ∈ Uad , where p̄ = S  (yd − S ū) is the adjoint state and λ̄ ∈ ∂·1,2 (ū)
+is a subgradient as deﬁned in (2.1).
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+              DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                                 949
+
+     With the introduction of a Lagrange multiplier μ̄ associated with the condition
+ū ∈ Uad , the variational inequality (2.4) becomes
+
+(2.5a)                              −p̄ + β λ̄ + αū + μ̄ = 0,
+
+where λ̄ and μ̄ satisfy
+                                                   ⎧
+                                                   ⎪
+                                                   ⎨≤ 0    if ū(x1 , x2 ) = ua (x1 , x2 ),
+(2.5b)         λ̄ ∈ ∂·1,2 (ū),      μ̄(x1 , x2 ) ≥ 0    if ū(x1 , x2 ) = ub (x1 , x2 ),
+                                                   ⎪
+                                                   ⎩
+                                                     =0    else
+
+in an almost everywhere sense. Sections 3 and 4 present two diﬀerent formulations of
+this optimality system, which lead to diﬀerent solution algorithms.
+     3. Semismooth Newton method I: The unconstrained case. Semismooth
+Newton methods are well studied in both ﬁnite-dimensional and function spaces, and
+they are commonly used for optimal control problems; see [2, 16, 21]. Under certain
+conditions, a local superlinear convergence rate and even global convergence can be
+proved. The aim of this section is to present a semismooth Newton method for the
+case that no bound constraints for the controls are present in (P1 ), i.e., Uad = L2 (Ω).
+For this case we can show local superlinear convergence of the method in function
+space. To this end we state an alternative form of the optimality system (2.5) that is
+tailored to the unconstrained case. In this section, α > 0 is assumed throughout.
+     Lemma 3.1. In the case Uad = L2 (Ω), ū ∈ L2 (Ω) is the optimal solution of (P1 )
+if and only if
+                                               
+                                            β     p̄
+(3.1)                   ū = max 0, 1 −               a.e. in Ω
+                                         |p̄|·,2 α
+holds, where p̄ = S  (yd − S ū) is the adjoint state.
+      Proof. Let us show the equivalence of (3.1) and (2.5). Note that Uad = L2 (Ω)
+implies μ̄ = 0 and let x1 ∈ Ω1 be given. If |ū|x1 ,2 = 0, both systems are equivalent to
+|p̄|x1 ,2 ≤ β. Suppose now that |ū|x1 ,2 > 0. Then both systems imply that ū(x1 , ·) is a
+multiple of p̄(x1 , ·). Now we have the equivalences
+
+         (2.5) ⇔ p̄(x1 , ·) = (α + β |u|−1
+                                        x1 ,2 ) u(x1 , ·) ⇔ |p̄|x1 ,2 = α |u|x1 ,2 + β
+                ⇔ |p̄|x1 ,2 − β = α |u|x1 ,2 ⇔ (3.1),
+
+which shows the equivalence.
+    This lemma gives rise to the deﬁnition of the nonlinear operator F : L2 (Ω) →
+L (Ω)
+ 2
+
+                                                       
+                                                  β       Pu
+                      F (u) := u − max 0, 1 −                ,
+                                               |P u|·,2   α
+where P u := S  (yd − Su) is the adjoint state belonging to u. As a direct consequence
+of Lemma 3.1, we have that F (u) = 0 if and only if u solves (P1 ).
+     In the remainder of this section we prove the Newton (or slant) diﬀerentiability
+[7, 16] of F and the invertibility of the derivative F  (u).
+     Lemma 3.2. The function G : L6,2 (Ω) → L2 (Ω) deﬁned by
+                                                        
+                                                    β
+                               p → max 0, 1 −              p
+                                                  |p|·,2
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+950           ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+is Newton diﬀerentiable on L6,2 (Ω) and a generalized derivative is given by
+                                                                             
+                               β                 β h, p ·,2                       1   if |p|·,2 > β,
+ G (p) h = max 0, 1 −                      h + χp            p   with   χp =
+                              |p|·,2                |p|3·,2                        0   else.
+
+
+       Proof. Let p, h ∈ L6,2 (Ω) be given. We deﬁne the remainder r(h) by
+
+  r(h) = G(p + h) − G(p) − G (p + h) h
+                                                                          
+                          β                       β             β h, p + h ·,2
+       = max 0, 1 −                − max 0, 1 −          − χp+h                  p
+                      |p + h|·,2                |p|·,2            |p + h|3·,2
+                                  
+                   β h, p + h ·,2
+           − χp+h                    h
+                     |p + h|3·,2
+          = (r1 + r2 + r3 ) p − r4 h,
+
+where
+                                                                      
+                                 β              β           h, p + h ·,2
+               r1 = χN1 1 −            − 1−            −β                  ,
+                            |p + h|·,2        |p|·,2         |p + h|3·,2
+                                  
+                              β
+               r3 = χN3 1 −          ,
+                            |p|·,2
+                                                       
+                                 β        h, p + h ·,2
+               r2 = χN2 1 −            −β                 ,
+                            |p + h|·,2     |p + h|3·,2
+                           β h, p + h ·,2
+               r4 = χp+h
+                             |p + h|3·,2
+
+with
+
+                         N1 := {x ∈ Ω : |p + h|·,2 > β, |p|·,2 ≥ β},
+                         N2 := {x ∈ Ω : |p + h|·,2 > β, |p|·,2 < β},
+                         N3 := {x ∈ Ω : |p + h|·,2 ≤ β, |p|·,2 > β}.
+
+Now we estimate the four parts of the sum for r(h) separately.
+   First part. On N1 we have
+                                                     
+                  1           1         h, p + h ·,2
+r1 = β −                 +          −
+           |p + h|·,2       |p|·,2       |p + h|3·,2
+           β                                                                       
+   =                     |p + h|2·,2 |p + h|·,2 − |p|·,2 − |p|·,2 h, p + h ·,2
+     |p + h|·,2 |p|·,2
+             3
+
+           β                                                                 
+   ≤                     |p +  h| ·,2  h, p + h   ·,2 − |p| ·,2 h, p +  h ·,2     by Cauchy–Schwarz
+     |p + h|3·,2 |p|·,2
+           β                                                             β                   |h|2·,2
+   =                     |p + h|·,2 − |p|·,2 h, p + h ·,2 ≤                           |h|2·,2 ≤ 2 .
+     |p + h|·,2 |p|·,2
+             3                                                      |p + h|·,2 |p|·,2
+                                                                            2                   β
+
+
+
+
+       Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+                  DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                                            951
+
+Similarly, we obtain the lower bound
+             β                                                                                  
+  r1 =                       |p + h|2·,2 |p + h|·,2 − |p|·,2 − |p|·,2 h, p + h ·,2
+       |p + h|·,2 |p|·,2
+               3
+                                                                                       
+             β                 |p + h|2·,2
+     ≥                                        p, h ·,2 − |p|·,2 h, p + h ·,2                   by Cauchy–Schwarz
+       |p + h|3·,2 |p|·,2         |p|·,2
+             β                                                                        
+     =                        |p   +  h| 2
+                                         ·,2 − |p| 2
+                                                   ·,2    p,  h   ·,2 −  |p| 2
+                                                                             ·,2 |h| 2
+                                                                                     ·,2
+       |p + h|3·,2 |p|2·,2
+             β                                                                         
+     =                        2    p, h   ·,2 + |h| 2
+                                                    ·,2    p,   h  ·,2 −  |p| 2
+                                                                              ·,2 |h| 2
+                                                                                      ·,2
+       |p + h|3·,2 |p|2·,2
+            −β                                                        |h|2·,2        |h|3·,2
+     ≥                       |p| 2
+                                 ·,2 |h| 2
+                                         ·,2 + |h| 3
+                                                   ·,2 |p| ·,2    ≥   −          −              .
+       |p + h|3·,2 |p|2·,2                                                β2         β |p|·,2
+
+This implies p r1 2L2 (Ω) ≤ 2 β −4 (p2L6,2 (Ω) h4L6,2 (Ω) + β 2 h6L6,2 (Ω) ).
+    Second part. On N2 we have
+                     β        |p + h|·,2 − β   |h|·,2                          | h, p + h ·,2 |   |h|·,2
+     0≤1−                   =                ≤                    and      β                    ≤        ,
+                 |p + h|·,2      |p + h|·,2      β                                |p + h|·,2
+                                                                                         3          β
+
+and hence |r2 | ≤ 2 β −1 |h|·,2 . Due to β > |p|·,2 > β − |h|·,2 we have μ(N2 ) → 0 as
+h → 0. This implies p r2 2L2 (Ω) ≤ 4 β −2 p2L6,2 (Ω) h2L6,2 (Ω) χN2 2L6,2 (Ω) .
+    Third part. On N3 we have
+                                             β      |p|·,2 − β   |h|·,2   |h|·,2
+                        0 ≤ r3 = 1 −              =            ≤        ≤        .
+                                           |p|·,2     |p|·,2     |p|·,2     β
+
+Due to β < |p|·,2 ≤ β + |h|·,2 we have μ(N3 ) → 0 as h → 0. This implies
+p r3 2L2 (Ω) ≤ β −2 p2L6,2 (Ω) h2L6,2 (Ω) χN3 2L6,2 (Ω) .
+    Fourth part. We have
+                                                            
+                                          β h, p + h 
+                                                        ·,2 
+                          |r4 | = χp+h                       ≤ β −1 |h|·,2 .
+                                          |p + h|3·,2 
+
+This implies h r4 2L2 (Ω) ≤ β −2 h4L4,2 (Ω) .
+    Combining the estimates. Due to the above estimates we obtain
+
+            r(h)L2 (Ω) ≤ p r1 L2 (Ω) + p r2 L2 (Ω) + p r3 L2 (Ω) + h r4 L2 (Ω)
+                            = o (hL6,2 (Ω) )      as hL6,2 (Ω) → 0,
+
+which proves that G is Newton diﬀerentiable with G as a derivative.
+    Due to F = I − α−1 G ◦ P and the assumption (1.5) that the aﬃne operator P
+maps L2 (Ω) continuously to L6,2 (Ω), we obtain the Newton diﬀerentiability of F .
+    Corollary 3.3. The function F : L2 (Ω) → L2 (Ω) is Newton diﬀerentiable and
+a generalized derivative is given by
+                                                    1 
+                                   F  (u) = I +      (G ◦ P )(u) ◦ S  S.
+                                                    α
+    This corollary shows that F  (u) is the sum of the identity operator and the com-
+position of two operators. To show the bounded invertibility of F  (u), we investigate
+
+
+
+
+     Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+952          ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+its spectrum. To this end, we cite the following lemma from [18, Prop. 1] and derive a
+corollary. Recall that an operator A on a Hilbert space is called positive if Av, v ≥ 0
+holds for all v.
+     Lemma √ 3.4. Let A and B be operators on a Hilbert space, let B be positive, and
+denote by B the positive square root of B. Then
+                                                  √   √
+                           σ(AB) = σ(BA) = σ( BA B).
+
+    Corollary 3.5. Let A and B both be positive operators on a Hilbert space with
+one of them self-adjoint. Then σ(AB) ⊂ [0, ∞).                         √
+    Proof. We ﬁrst assume  √ that√ B is self-adjoint.
+                                           √  √         Therefore, B is self-adjoint
+   well. √This implies that BA B = ( B) A B is positive, and thus σ(AB) =
+as √
+σ( BA B) ⊂ [0, ∞). The result for self-adjoint A follows analogously.
+    We shall apply this corollary to infer the invertibility of F  (u), using the settings
+
+(3.2)                           A = G (P (u)),     B = S  S,
+
+both considered as operators from L2 (Ω) into itself. Clearly, B is positive and self-
+adjoint. The positivity of A is shown as part of the proof of the following lemma.
+     Lemma 3.6. For every u ∈ L2 (Ω), the bounded linear mapping F  (u) : L2 (Ω) →
+L (Ω) is invertible and F  (u)−1  ≤ 1 holds.
+  2
+
+     Proof. In order to get a better understanding of the structure of F  (u) we deﬁne
+for p = P u the linear maps
+                                            
+                                              0           if |p|x1 ,2 < β,
+    χ : L (Ω) → L (Ω),
+         2         2
+                             (χv)(x1 , ·) =
+                                              v(x1 , ·) otherwise,
+                                            
+                                              0                      if |p|x1 ,2 < β,
+    Q : L (Ω) → L (Ω),
+         2         2
+                             (Qv)(x1 , ·) =        −1
+                                              β |p|x1 ,2 v(x1 , ·) otherwise,
+                                            
+                                              0                                 if |p|x1 ,2 < β,
+    R : L2 (Ω) → L2 (Ω),     (Rv)(x1 , ·) =
+                                              p(x1 , ·) |p|−2
+                                                           x1 ,2 v,  p  x1 ,2 otherwise.
+
+
+Note that R is the L2 (Ω)-orthogonal projector onto the subspace spanned by the
+stripes of p, i.e., onto the subspace
+            
+             u ∈ L2 (Ω) : ∃μ ∈ L2 (Ω1 ) : u(x1 , ·) = 0 if |p|x1 ,2 < β
+                                                                                    
+                                          and u(x1 , ·) = μ(x1 ) |p|−1
+                                                                     x1 ,2 p(x1 , ·) .
+
+With these deﬁnitions we have
+
+                               A = G (P (u)) = χ − Q + QR.
+
+In order to prove the invertibility of F  (u) we perform two steps.
+    First step. We show that A is a positive operator. Since R is a projector, I − R is
+a projector as well. In particular, this implies R − I ≤ 1. Due to Q ≤ 1 we have
+QR − Q ≤ 1. Therefore I + QR − Q is positive. Using χQ = Qχ = Q, Rχ = R,
+and the self-adjointness of χ, we see that χ + QR − Q = χ (I + QR − Q) χ is positive
+as well.
+    Second step. We apply Corollary 3.5 to infer the invertibility of F  (u) and the
+bound for F  (u)−1 . Applying Corollary 3.5 with the setting (3.2) yields σ(G (P (u)) ◦
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+              DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                         953
+
+S  S) ⊂ [0, ∞). By Corollary 3.3 we infer σ(F  (u)) ⊂ [1, ∞). This implies the invert-
+ibility of F  (u) as well as F  (u)−1  ≤ 1 independent of u ∈ L2 (Ω).
+     Using classical arguments (see, e.g., [7, Thm. 3.4]) the Newton diﬀerentiability of
+F and the uniform boundedness of F  (u)−1 imply the following result.
+     Theorem 3.7. The semismooth Newton method
+
+                               uk+1 = uk − F  (uk )−1 F (uk )
+
+converges locally to the unique solution of (3.1) with a superlinear convergence rate.
+    We remark that it is possible to include in (3.1) constraints of the form
+
+(3.3)                                    |u|·,2 ≤ ub ,
+
+where ub ∈ L1 (Ω1 ). This constraint bounds the norm of u on each stripe. For that
+case, the optimality system (3.1) has to be replaced by
+                                                       
+                                             |p̄|·,2 − β       p̄
+(3.4)                 ū = min ub , max 0,                          .
+                                                   α        |p̄|·,2
+The Newton diﬀerentiability and the bounded invertibility of the generalized deriva-
+tive of (3.4) can be shown as for the unconstrained case. We also mention that con-
+straints of the type (3.3) are the weakest constraints which ensure the solvability of
+(P1 ) without additional L2 -regularization, i.e., for α = 0: note that the solution space
+L1,2 (Ω) is not reﬂexive, but the set of admissible controls satisfying (3.3) is weakly
+compact, and the existence of a solution in L1,2 (Ω) follows by standard arguments.
+The inclusion of pointwise control bounds into an optimality system of the form (3.1)
+is not possible because the additional pointwise complementarity conditions interfere
+with the stripewise structure of (3.1).
+       4. Semismooth Newton method II: The constrained case. In this section,
+we propose an alternative approach to solving (P1 ), which is based on a diﬀerent
+reformulation of the optimality conditions. This form allows for the incorporation of
+pointwise bound constraints since it uses u and λ, while (3.1) is a reduced form that
+involves only the adjoint state. While being more ﬂexible, a drawback of the approach
+in this section is that it only applies to the discretized, ﬁnite-dimensional problem and
+permits only a limited analysis. Since the ﬁnite-dimensional min- and max-functions
+used in the reformulation are semismooth [7, 16], we can compute a slant derivative.
+However, the resulting semismooth Newton iteration is well deﬁned only under certain
+conditions (see Lemma 4.2). In numerical practice, we modify the semismooth Newton
+step to enforce these conditions and observe that these modiﬁcations are necessary
+only in the initial steps of the iteration. The equivalent form for the optimality system
+is given next.
+       Lemma 4.1. The function ū ∈ L2 (Ω) solves (P1 ) if and only if there exist
+λ̄, μ̄ ∈ L2 (Ω) such that the following equations are satisﬁed a.e. in Ω:
+
+(4.1a)                                                   −p̄ + β λ̄ + αū + μ̄ = 0,
+(4.1b)                             max(1, |λ̄ + c1 ū|·,2 ) λ̄ − (λ̄ + c1 ū) = 0,
+(4.1c)        μ̄ − max(0, μ̄ + c2 (ū − ub )) − min(0, μ̄ + c2 (ū − ua )) = 0,
+
+where c1 , c2 > 0 are arbitrary and p̄ = S  (yd − S ū).
+    Proof. The reformulation of optimality conditions originating from pointwise
+control constraints using complementarity functions is well known (see, e.g., [16, 21,
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+954           ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+26]). Thus, we skip the proof of the equivalence between (4.1c) and (2.5) and restrict
+ourselves to showing the equivalence between (4.1b) and λ̄ ∈ ∂·1,2 (ū), the latter
+meaning |λ̄|·,2 ≤ 1 and
+
+(4.2a)                         λ̄ = ū/|ū|·,2    on {x ∈ Ω : |λ̄|·,2 = 1},
+(4.2b)                         ū = 0             on {x ∈ Ω : |λ̄|·,2 < 1}.
+
+First, we show that (4.2) implies (4.1b). We ﬁrst consider the case x1 ∈ Ω1 with
+|λ̄ + c1 ū|x1 ,2 ≥ 1, and thus we are necessarily in case (4.2a). Hence, max(1, |λ̄ +
+c1 ū|x1 ,2 ) λ̄ − (λ̄ + c1 ū) = (|ū|−1                    −1
+                                       x1 ,2 + c1 )ū − (|ū|x1 ,2 + c1 )ū = 0. If, on the other hand,
+|λ̄+c1 ū|x1 ,2 < 1, then we are necessarily in case (4.2b) and (4.1b) follows immediately
+from ū = 0.
+      Conversely, let us assume that (4.1b) holds. We ﬁrst study x1 ∈ Ω1 with |λ̄ +
+c1 ū|x1 ,2 ≥ 1, in which case (4.1b) implies that |λ̄|x1 ,2 = 1 and that λ̄ = α ū for some α.
+Plugging this expression for λ̄ into (4.1b) shows that α = |ū|−1            x1 ,2 , yielding (4.2a). If on
+the other hand |λ̄ + c1 ū|x1 ,2 < 1, we obtain from (4.1b) that ū = 0 on {x1 } × Ω2 (x1 ),
+and thus also |λ̄|x1 ,2 < 1, resulting in (4.2b).
+      The form (4.1) of the optimality conditions motivates the application of a New-
+ton algorithm as in section 3. A formal computation of a semismooth Newton step
+for u, p, λ, and μ in (4.1) results in the following Newton iteration: Given current
+iterates (uk , pk , μk , λk ), compute the new iterates (uk+1 , pk+1 , μk+1 , λk+1 ) by solving
+the system
+
+(4.3a)                     pk+1 − S  (yd − Suk+1 ) = 0                       on Ω,
+(4.3b)       −p   k+1
+                        +βλ   k+1
+                                    + αu   k+1
+                                                 +μ   k+1
+                                                            =0                on Ω,
+(4.3c)                                    u    =0     k+1
+                                                                   on B k ,
+                          
+(4.3d)              I − M k λk+1 − c1 M k uk+1 = F k (λk + c1 uk ) on C k := Ω \ B k ,
+(4.3e)                                            uk+1 = ua                   on Aka ,
+(4.3f)                                            uk+1 = ub                   on Akb ,
+(4.3g)                                            μk+1 = 0                    on Ω \ (Aka ∪ Akb ).
+
+Above,
+
+                             B k = {(x1 , x2 ) ∈ Ω : |λk + c1 uk |x1 ,2 ≤ 1},
+(4.3h)                       Aka = {x ∈ Ω : μk + c2 (uk − ua ) < 0},
+                             Akb = {x ∈ Ω : μk + c2 (uk − ub ) > 0},
+
+I denotes the identity, and the linear operators F k , M k are given by
+
+(4.4)                   F k : v(x1 , x2 ) → γ k , v x1 ,2 |γ k |−1
+                                                                x1 ,2 λ (x1 , x2 ),
+                                                                       k
+                                                                                   
+                        M k : v(x1 , x2 ) → |γ k |−1
+                                                  x1 ,2 v(x1 , x2 ) − F v(x1 , x2 ) ,
+                                                                         k
+
+
+where γ k := λk + c1 uk . Next, we study various aspects of (4.3), which motivate
+modiﬁcations that lead to an inexact semismooth Newton method that converges
+globally in numerical practice. First, we restrict ourselves to the case without control
+constraints, which amounts to μ̄ = 0 in (4.1a) and omits (4.1c). We also assume that
+the problem has been discretized by ﬁnite diﬀerences or nodal ﬁnite elements in a way
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+                 DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                                        955
+
+that preserves the splitting of RN into Rn and RN −n . The discrete approximation
+or coeﬃcient vectors are denoted with the subscript “h.” For simplicity, we assume
+that these vectors are of size Ñ = N1 N2 , where N1 and N2 correspond to a tensorial
+discretization of the Ω1 and the Ω2 (x1 ) direction, respectively. The individual nodes
+of Ω1 are denoted by xj1 and we follow a discretize-then-optimize approach. The
+matrix Sh ∈ RÑ ×Ñ is the discretization of the operator S. For a vector vh ∈ RÑ , we
+denote by vhj ∈ RN2 the components of vh corresponding to {xj1 } × Ω2 (xj1 ), such that
+
+                                     vh , wh j := vhj Nhj whj ∈ R
+
+corresponds to the discretization of the inner product ·, · x1 ,2 . Here, Nhj ∈ RN2 ×N2
+is the symmetric mass matrix for the Ω2 (x1 ) direction, and the overall L2 -mass matrix
+                                                      N1
+Nh ∈ RÑ ×Ñ acts on vectors uh , wh by wh Nh uh = j=1     nj whj Nhj uhj with weights
+nj > 0. The mass matrix in H is denoted by Lh ∈ RÑ ×Ñ . Note that for a ﬁnite
+diﬀerence approximation, these mass
+                                   matrices are diagonal. The norm        corresponding
+to ·, · j is deﬁned by |vh |j :=    vh , vh j . Then, with ph = Sh (yd,h − Sh uh ) we
+obtain the discrete optimality condition
+
+(4.5a)      Sh Lh Sh uh + βNh λh + αNh uh − Sh Lh yd,h = 0,
+(4.5b)         max(1, |λh + c1 uh |j )λhj − (λhj + c1 uhj ) = 0               for j = 1, . . . , N1 .
+                      N1
+Note that Nh λh ∈ ∂( j=1      nj (u
+                                   hj N j u hj )
+                                                1/2
+                                                    ) holds. Computing a semismooth Newton
+step (see [16, 27]) for uh , λh in (4.5) results in the following iteration: Given ukh , λkh ,
+compute the new iterates uk+1  h , λh
+                                      k+1
+                                            by solving
+
+(4.6a)        −Sh Lh (yd,h − Sh uk+1
+                                  h ) + βNh λh
+                                             k+1
+                                                 + αNh uk+1
+                                                        h   = 0,
+(4.6b)                                                             uk+1
+                                                                    hj = 0             for j ∈ Bhk ,
+                                              
+(4.6c)                               Ihj − Mhkj λk+1
+                                                 hj − c1 M h j u hj = g hj
+                                                           k k+1        k
+                                                                                       for j ∈ Chk
+
+with Bhk = {j : |λkh + c1 ukh |j ≤ 1 for j = 1, . . . , N1 }, Chk := {1, . . . , N1 } \ Bhk , and
+
+                                              1 k k 
+(4.7a)                                Fhkj =       λ (γ ) Nhj ,
+                                            |γhk |j hj hj
+                                              1              
+(4.7b)                               Mhkj = k       Ihj − Fhkj ,
+                                            |γh |j
+                                              1
+(4.7c)                                ghkj = k Fhkj γhkj = λkhj ,
+                                            |γh |j
+
+where γhk := λkh + c1 ukh . We observe that (4.6) are the discretized form of (4.3b)–
+(4.3d) for μk+1 = 0 and after elimination of pk+1 using (4.3a). The following result
+concerns the existence of a solution for the discrete Newton step (4.6).
+    Lemma 4.2. We set c1 := α β −1 . Provided that for all j ∈ Chk holds |λkh |j ≤ 1
+and that
+                                                                                 
+(4.8)                γhk , λkh j > max 0, |γhk |j |λkh |j − 2 |γhk |2j + 2 |γhk |j ,
+
+the linear system (4.6) admits a unique solution.
+
+
+
+
+     Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+956           ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+      Proof. A straightforward computation shows that for j ∈ Chk ,
+                                                                                     
+                          |γ k
+                               |                         1
+      (Ihj − Mhkj )−1 = k h                                             λk (γ k ) Nhj .
+                                 j
+                                     Ihj − k 2
+                        |γh |j − 1        |γh |j − |γhk |j + γhk , λkh j hj hj
+
+Since |γhk |j > 1 and γhk , λkh j ≥ 0, the matrix (Ihj − Mhkj )−1 is well deﬁned. From
+(4.6c) follows
+                                                  
+                         −1             k −1                        k −1 k
+              λk+1
+               hj  = α β     (I h j − M h j
+                                            ) − Ih   uk+1
+                                                      hj + (Ihj − Mhj )  g hj ,
+
+where the fact that (Ihj − Mhkj )−1 Mhkj = (Ihj − Mhkj )−1 − Ih is used. Plugging this
+expression for λk+1
+                hj  into (4.6a) yields
+                                           
+(4.9)               Sh Lh Sh uk+1
+                               h   +α             nj Nhj (Ihj − Mhkj )−1 uk+1
+                                                                          hj = g̃h
+                                                                                 k
+
+                                              k
+                                           j∈Ch
+
+                             
+with g̃hk := Sh Lh yd,h − β j∈C k nj Nhj (Ihj − Mhkj )−1 ghkj . Since Sh LH Sh is positive
+                                  h
+semideﬁnite, it is suﬃcient to show that the matrix Nhj (Ihj − Mhkj )−1 is positive
+deﬁnite. For that purpose, we choose a discrete vector uh with uhi = 0 for i ∈ Bhk
+and a j ∈ Chk and obtain
+                                                                                                 
+                                    |γ k
+                                         |                       u    ,  λ k
+                                                                                u   , γ k
+ u                  k −1                  j                        h         j   h       j
+  hj Nhj ((Ihj − Mhj )    u hj = k h            |uh |2j − k 2              h            h
+                                |γh |j − 1                 |γh |j − |γhk |j + γhk , λkh j
+                                               ⎛                     k k                                ⎞
+                                    |γhk |j ⎝              |u   | 2
+                                                                        γ   , λ      +  |λk
+                                                                                            |   |γ k
+                                                                                                     |
+                                                                                                     ⎠
+                                                              h                   j           j        j
+                               ≥ k               |uh |2j −      j        h     h         h        h
+                                |γh |j − 1                   2 |γh |j − |γh |j + γh λhj
+                                                                       k  2       k         k    k
+
+                                                                                                           
+                                |uh |2j |γhk |j 2|γhk |2j − 2|γhk |j + γhk , λkh j − |λkh |j |γhk |j
+                               = k
+                                 |γh |j − 1               2(|γhk |2j − |γhk |j + γhk , λkh j )
+                                   > 0.
+
+Above, (4.8) has been used in the last estimate. This shows that the system matrix
+in (4.9) is positive deﬁnite. Since uk+1
+                                     hj   = 0 for j ∈ Bhk , there exists a unique uk+1
+                                                                                   h
+that solves (4.9). The corresponding λh is found from (4.6).
+                                        k+1
+
+    We continue with a series of remarks.
+      On the conditions of Lemma 4.2. The conditions from Lemma 4.2 are sat-
+isﬁed at the solution (ūh , λ̄h ) of the discretized version of (P1 ). First, λh satisﬁes
+|λ̄h |j ≤ 1 for all j ∈ {1, . . . , N1 }. Additionally, λ̄hj and γ̄hj are parallel vectors, as
+can be seen from (4.5b). Thus, γ̄h , λ̄h j = |γ̄h |j |λ̄h |j and, since |γ̄hk |j > 1, the condi-
+tion (4.8) holds. However, the assumptions from Lemma 4.2 are, in general, unlikely
+to hold for all j ∈ Chk . To guarantee stable convergence, we modify the linear map-
+pings Fhkj and Mhkj , as deﬁned in (4.7), in the semismooth Newton step by replacing
+them by the “damped” forms
+
+                     F#khj = min(1, |λkh |−1
+                                          j )Fhj ,
+                                                 k
+                                         k2                            
+(4.10)                                2 |γh |j − |γhk |j + γhk , λkh j
+                     $h = min 1,
+                     M  k
+                                                                            Mhkj .
+                          j
+                                           |λkh |j |γhk |j + λkh , γhk j
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+               DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                          957
+
+Note that F# khj only diﬀers from Fhkj for j ∈ Chkj , for which |λkh |j ≤ 1 is not satisﬁed.
+Similarly, the second modiﬁcation in (4.10) comes into play only if the angle between
+λkhj and γhkj is large. Thus, the modiﬁcations vanish as the iterates converge and
+we still expect local fast convergence of the semismooth Newton iterates. This is
+conﬁrmed by our numerical experiments. With the modiﬁed matrices F#khj , M         $k , one
+                                                                                     hj
+can follow the proof of Lemma 4.2 and show that the Newton iteration is well deﬁned.
+The proof of Lemma 4.2 also shows that the reduced system (4.9), which involves
+uh only, is positive deﬁnite. Similar modiﬁcations of semismooth Newton derivatives
+are employed in [19] for friction problems, which can be written as a nonsmooth
+optimization problem similar to (P1 ). In practice, the above modiﬁcations turn out
+to be important for reliable convergence of the algorithm.
+     Adding control constraints. In Lemma 4.2, the case without bound con-
+straints on the control is discussed. To extend the directional sparsity algorithm
+to the case with control constraints, we introduce the discrete active sets by Akh,a
+and Akh,b ; compare with (4.3h). Since we assume ua < 0 < ub , Bhk does not overlap
+with the active sets for the control constraints at the solution. However, during the
+iteration such an overlap is possible. This can lead to an unsolvable Newton system,
+which is a consequence of the independent treatment of the bound constraints and of
+the nondiﬀerentiable term (see [17] for a similar problem). To avoid this problem, we
+compute Akh,a and Akh,b as subsets of Chk in our numerical implementation.
+     Alternatively, one can employ a quadratic penalization to enforce the pointwise
+control constraints approximatively using the terms
+                  1                             1
+(4.11)               max(0, u − ub )2L2 (Ω) +  min(0, u − ua )2L2 (Ω) .
+                 2ρ                            2ρ
+This also has the advantage that the Newton linearization can be reduced to a system
+in the control variable u only, as in the case without bound constraints.
+    Comparison of Newton methods for diﬀerent reformulations. Using (4.1a)
+to eliminate λ̄ in (4.1b), neglecting the bound constraints, and choosing c1 = αβ −1
+results in
+
+(4.12)                     max(1, β −1 |p̄|·,2 )(p̄ − αū) − p̄ = 0.
+
+As (3.1), this formulation only involves ū and p̄. However, the two formulations
+lead to diﬀerent semismooth Newton methods that, in practice, also yield a diﬀerent
+convergence behavior (see section 5). Yet another formulation is obtained if (4.12)
+divided by max(1, |p̄|·,2 ) is used as a starting point for a Newton method. However,
+we found (4.1) and the reduced form (4.12) and (3.1) to be preferable in numerical
+practice.
+     5. Numerical results. In this section we analyze the structure of optimal con-
+trols arising from the directional sparsity formulation (P1 ). We also study the perfor-
+mance of the algorithms proposed in sections 3 and 4. We start with a presentation
+of the test examples.
+    5.1. Test examples and settings.
+    Example 5.1. We consider an elliptic state equation as in Example 1.1 with
+Ω = (0, 1) × (0, 1), i.e., N = 2 and n = 1. For the discretization we use an equidistant
+mesh and approximate the solution operator S of the Poisson equation with the
+standard ﬁve-point ﬁnite diﬀerence stencil. The remaining problem data are yd =
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+958                     ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+                                    optimal control                                                                          optimal state
+
+
+
+       40
+                                                                                    0.5
+       30
+
+       20
+
+       10
+
+        0
+                                                                                        0
+      −10
+
+      −20
+
+      −30
+
+      −40
+                                                                                   −0.5
+        1
+            0.8                                                              1
+                                                                                               0.8
+                  0.6                                                0.8
+                                                              0.6                                      0.6                                                          0.8
+                        0.4
+                                                        0.4                                                    0.4                                          0.6
+                              0.2
+                                                  0.2                                                                                               0.4
+                                    0    0                                                                             0.2
+                                                                                                                                            0.2
+
+
+                                        multiplier λ                                                                         multiplier μ
+
+
+                                                                                             −3
+                                                                                        x 10
+
+                                                                                  1.5
+
+       1
+                                                                                   1
+
+      0.5                                                                         0.5
+
+       0                                                                           0
+
+
+   −0.5                                                                          −0.5
+
+                                                                                  −1
+      −1
+
+                                                                                 −1.5
+
+
+            0.8                                                                             0.8
+                  0.6                                                  0.8                           0.6                                                          0.8
+                        0.4                                    0.6                                           0.4                                          0.6
+                                                        0.4                                                                                       0.4
+                              0.2                                                                                    0.2
+                                                  0.2                                                                                  0.2
+
+
+
+
+     Fig. 5.1. Solution of Example 5.1 with α = 10−6 , β = 10−3 on a 64 × 64 mesh: optimal control
+(upper left), optimal state (upper right), dual solutions/Lagrange multipliers λ (lower left), and μ
+(lower right).
+
+
+sin(2πx1 ) sin(2πx2 ) exp(2x1 )/6 and, unless stated otherwise, the control constraints
+−ua = ub = 35 are used. For α = 10−6 and β = 10−3 , the optimal control and state,
+as well as the dual solutions λ and μ (i.e., the Lagrange multipliers for (P1 )), are
+shown in Figure 5.1. Moreover, Figure 5.2 depicts the optimal controls for various
+choices of α and β.
+      Example 5.2. This is an example with a parabolic state equation (see Exam-
+ple 1.2) on the space-time cylinder Ω1 × (0, T ) with Ω1 = (0, 1) × (0, 1) and T = 1,
+i.e., N = 3 with n = 2 sparse spatial directions. Linear ﬁnite elements on a triangular
+mesh are used for the discretization in space and the implicit Euler method for the
+discretization in time. The thermal conductivity is κ = 0.1, the control bounds are
+−ua = ub ≡ 7, and the desired state is yd = sin(2πx1 ) sin(2πx2 ) sin(πt) exp(2x1 )/6.
+The parameters α and β are speciﬁed when needed. Snapshots of the optimal control
+and the diﬀerence between optimal and desired states at four time instances are shown
+in Figure 5.3.
+      Example 5.3. Here we consider the parabolic case on a three-dimensional spatial
+domain (see Figure 5.4), that is, N = 4, and we have n = 3 sparse directions. Further,
+T = 1, κ = 2, and H = L2 ((0.875, 1) × Ω2 ), i.e., only close to the ﬁnal time the state
+is tracked toward the desired state, which is given by yd ≡ 1 for x2 ≥ 1.2 and yd ≡ 0
+for x2 < 1.2. The state satisﬁes homogeneous Dirichlet conditions for x2 < 0.2 and
+homogeneous Neumann conditions for x2 ≥ 0.2, and no control bounds are employed
+in this example. The sparsity structure and the state at the ﬁnal time for α = 2 · 10−6
+and β = 0.02 can be seen in Figure 5.4.
+      In our implementation we follow a discretize-then-optimize approach, that is, we
+ﬁrst discretize the problem and then derive the optimality system to obtain a con-
+
+
+
+
+       Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+                            DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                                                                           959
+                                  optimal control                                                             optimal control
+
+
+
+
+     40                                                                    40
+
+     30                                                                    30
+
+     20                                                                    20
+
+     10                                                                    10
+
+      0                                                                     0
+
+    −10                                                                   −10
+
+    −20                                                                   −20
+
+    −30                                                                   −30
+
+    −40                                                                   −40
+      1                                                                     1
+          0.8                                                         1             0.8                                                           1
+                0.6                                             0.8                        0.6                                              0.8
+                      0.4                                 0.6                                     0.4                                 0.6
+                                                    0.4                                                                         0.4
+                            0.2                                                                         0.2
+                                              0.2                                                                         0.2
+                                  0   0                                                                       0   0
+
+
+
+
+                                  optimal control                                                             optimal control
+
+
+
+
+     80                                                                    150
+
+     60
+                                                                           100
+     40
+                                                                            50
+     20
+
+      0                                                                         0
+
+    −20
+                                                                           −50
+    −40
+                                                                          −100
+    −60
+
+    −80                                                                   −150
+      1                                                                      1
+          0.8                                                         1              0.8                                                          1
+                0.6                                             0.8                         0.6                                             0.8
+                      0.4                                 0.6                                     0.4                                 0.6
+                                                    0.4                                                                         0.4
+                            0.2                                                                         0.2
+                                              0.2                                                                         0.2
+                                  0   0                                                                       0   0
+
+
+
+
+     Fig. 5.2. Optimal controls for Example 5.1 for diﬀerent values of α and β. Upper row: α =
+10−6 , and β = 10−4 (left) and β = 2 · 10−3 (right). The optimal control for β = 10−3 can be seen
+in Figure 5.1. Lower row: Results without control constraints for β = 10−4 , and α = 10−6 (left)
+and α = 10−8 (right).
+
+
+
+
+        Fig. 5.3. Optimal control u (top) and residual yd − y (bottom) for Example 5.2 with α =
+3 · · · 10−4 , β = 5 · 10−3 at times t = 0.25, 0.5, 0.75 (from left to right).
+
+
+sistent discrete formulation. The linear systems for the elliptic problem are solved
+with a direct solver. The parabolic examples use the iterative generalized minimal
+residual method (GMRES) to solve the Newton linearizations. Since these linear
+
+
+
+
+     Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+960            ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+
+
+
+     Fig. 5.4. Example 5.3: Sparsity structure of optimal control (left; on gray elements the optimal
+control is identically zero) and temperature at ﬁnal time t = 1 (right).
+
+                                            Table 5.1
+     Results for Example 5.1 for various α and β on 64 × 64 mesh with and without control bounds.
+The fourth and ﬁfth columns show the sparsity of the optimal control (i.e., the percentage of Ω
+where the optimal control vanishes) and the L2 -norm of the diﬀerence between optimal and desired
+state, respectively. The number of iterations (#iter) needed by the method described in section 4
+is shown in the sixth column, where the iteration is terminated when the nonlinear residual drops
+below 10−8 . For the unconstrained case we give in brackets the iteration count for the semismooth
+Newton method from section 3. The last column points to the ﬁgure showing the optimal control.
+
+           β      α     ua , ub    Sparsity   y − yd L2 (Ω)   #iter    Plot of ū in Fig.
+           0     1e-6     yes         0%          5.00e-2         11
+          2e-3   1e-6     yes        69%          1.42e-1         18     5.2 (upper right)
+          1e-3   5e-5     yes        45%          1.00e-1         7
+          1e-3   1e-6     yes        55%          9.46e-2         14     5.1 (upper left)
+          1e-4   1e-6     yes        23%          5.22e-2         11     5.2 (upper left)
+          1e-4   1e-6     no         31%          1.33e-2        7(6)    5.2 (lower left)
+          1e-4   1e-8     no         43%          1.12e-2       16(15)   5.2 (lower right)
+
+
+
+systems are similar to optimality systems from linear-quadratic optimal control prob-
+lems, they can also be solved using advanced iterative algorithms such as multigrid
+methods [1, 3].
+     5.2. Qualitative study of solutions. First, we solve Example 5.1 for diﬀerent
+values of the parameters α and β to study structural properties of the solutions.
+Figure 5.1 allows a visual veriﬁcation of the complementarity conditions for u, λ, and
+μ. Note, in particular, that the multiplier λ satisﬁes |λ|x1 ,2 ≤ 1 for all x1 ∈ Ω1 but does
+not satisfy |λ| ≤ 1 in a pointwise sense. The results for Example 5.1 are summarized
+in Table 5.1 and can be seen in Figures 5.1 and 5.2. Also, for the parabolic problems
+(Examples 5.2 and 5.3) we study the inﬂuence of β on the solution. Results are shown
+in Figure 5.5 (sparsity patterns for Example 5.2 for diﬀerent values of β) and in Figure
+5.4. Recall that for time-dependent problems, our notion of sparsity implies that the
+optimal control vanishes for all t ∈ [0, T ] on parts of the spatial domain Ω1 . From the
+results we draw the following conclusions:
+       • As β increases, the optimal controls become sparser.
+       • As for problems without sparsity constraints, the parameter α controls the
+         smoothness of the optimal control.
+       • Even solutions with signiﬁcant sparsity are able to track the state close to
+         the desired state. This is particularly true for problems without control con-
+         straints.
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+                DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                                 961
+
+
+
+
+     Fig. 5.5. Mesh and sparsity structure of optimal controls for Example 5.2 using 1365 spatial
+degrees of freedom and 64 time steps for α = 3 · 10−4 and β = 5 · 10−4 (left), β = 5 · 10−3 (middle),
+β = 2 · 10−2 (right). At dark gray node points, the optimal controls vanish for all time steps.
+
+
+                                              Table 5.2
+     Example 5.2 with α = 10−4 , β = 10−3 , and ρ = 103 . Shown are the number of nonlinear itera-
+tions #iter for diﬀerent spatial resolution (#nodes denotes the number of spatial degrees of freedom
+of the triangulation) and numbers of time steps #tsteps. The nonlinear iteration is terminated as
+soon as the L2 -norm of the residual drops below 10−4 . With |B| we denote the number of points
+where the optimal control is zero for every time step and with |Aa | and |Aa | the number of points
+where the control constraints are active in the space-time domain.
+
+                         #nodes     #tsteps    #iter     |B|   |Aa |   |Ab |
+                            102          64     7         80     47      61
+                            102         256     7         80    184     237
+                            367          64     7       273     242     222
+                            367         256     7       273     941     862
+                           1365          64     8       992     864     869
+                           1365         256     8       994    3368    3403
+
+
+
+       • The lower right plot in Figure 5.2 suggests that as α → 0, the optimal con-
+         trols become concentrated on the boundary of the active region B in the
+         absence of pointwise control constraints. A theoretical analysis of this behav-
+         ior, which requires α = 0 and, hence, a diﬀerent choice of solution spaces (as,
+         for instance, in [8]) might be worthwhile.
+    5.3. Performance of semismooth Newton methods. Both algorithms based
+on semismooth Newton methods prove to be very eﬃcient to solve (P1 ) for large
+ranges of the parameters α and β. This can be seen from the number of iterations
+to solve Example 5.1 as shown in Table 5.1. Note that the iteration number for the
+directional sparsity approach is not signiﬁcantly larger than that for the solution of
+the problem with control constraints only (ﬁrst row in Table 5.1). In the absence of
+pointwise control bounds, both algorithms performed equally well (see the last two
+rows in Table 5.1) and converged for all initializations we tested. We found that the
+modiﬁcations (4.10) of the Newton derivative are important for stable convergence of
+the method presented in section 4.
+    For the solution of the parabolic problems (Examples 5.2 and 5.3), a reduced space
+approach is used for the numerical solution of (4.3) (using the modiﬁcation (4.10)),
+that is, y, p, and λ, are eliminated from the Newton step and the optimal control u is
+the only unknown. To allow for this reduction in Example 5.2, the control constraints
+are realized through the quadratic penalization (4.11) with penalization parameter
+ρ = 103 . In Table 5.2, we show the number of semismooth Newton iterations required
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+962          ROLAND HERZOG, GEORG STADLER, AND GERD WACHSMUTH
+
+                                           Table 5.3
+    Example 5.1 with α = 10−6 , β = 10−4 on a 64 × 64-mesh, solved with the semismooth Newton
+method in section 3. Shown is the L2 -norm of the nonlinear residual res k in the kth iteration.
+
+              k        0        1        2        3        4        5          6
+            res k   3.72e3   2.18e1   8.28e0   3.53e0   1.04e0   6.30e-2   7.93e-13
+
+
+
+to solve the problem for diﬀerent spatial and temporal resolutions. The iteration is
+terminated as soon as the L2 -norm of the nonlinear residual drops below 10−4 . Note
+that the number of Newton iterations (and thus linear solves) remains approximately
+constant as the spatial and the temporal resolution increases.
+    Finally, in Table 5.3 we show the iteration behavior of the nonlinear residual
+during the solution of Example 5.1 with α = 10−6 and β = 10−4 . Note that the result
+shows superlinear convergence of the semismooth Newton method.
+
+     6. Conclusion and discussion. In this paper we considered a new class of
+nonsmooth control cost (regularization) terms for optimal control problems for PDEs.
+These terms promote sparsity of the optimal control in preselected directions of the
+underlying domain of deﬁnition. This behavior is conﬁrmed by numerical examples.
+Two methods of semismooth Newton type were proposed for the solution of problems
+of this new class. In the absence of pointwise control bounds, a complete proof of
+local superlinear convergence was given for the ﬁrst method. Both methods proved
+to be very eﬃcient in practice.
+     Some questions are still open and provide opportunities for further research. A
+suitable formulation of the optimality system in the presence of pointwise control
+bounds which would allow a rigorous semismooth Newton analysis in function space
+is lacking. Related to this is the question of which reformulations of the optimality
+conditions lead to the most eﬃcient and stable algorithm. Moreover, a priori error
+estimates, as given, for instance, in [5, 32] for related problem classes involving the
+“undirected” sparsity term L1 (Ω), are not yet available for the problems considered
+here. Finally, the extension to semilinear PDEs and in particular the study of second-
+order optimality conditions present another challenge.
+
+                                        REFERENCES
+
+ [1] S. S. Adavani and G. Biros, Multigrid algorithms for inverse problems with linear parabolic
+         PDE constraints, SIAM J. Sci. Comput., 31 (2008), pp. 369–397.
+ [2] M. Bergounioux, K. Ito, and K. Kunisch, Primal-dual strategy for constrained optimal
+         control problems, SIAM J. Control Optim., 37 (1999), pp. 1176–1194.
+ [3] A. Borzı̀ and V. Schulz, Multigrid methods for PDE optimization, SIAM Rev., 51 (2009),
+         p. 361.
+ [4] E. Candès and Y. Plan, Near-ideal model selection by l1 minimization, Ann. Statist., 37
+         (2009), pp. 2145–2177.
+ [5] E. Casas, R. Herzog, and G. Wachsmuth, Optimality conditions and error analysis of semi-
+         linear elliptic control problems with L1 cost functional, SIAM J. Optim., to appear.
+ [6] T. F. Chan and X.-C. Tai, Identiﬁcation of discontinuous coeﬃcients in elliptic problems
+         using total variation regularization, SIAM J. Sci. Comput., 25 (2003), pp. 881–904.
+ [7] X. Chen, Z. Nashed, and L. Qi, Smoothing methods and semismooth methods for nondiﬀer-
+         entiable operator equations, SIAM J. Numer. Anal., 38 (2000), pp. 1200–1216.
+ [8] C. Clason and K. Kunisch, A duality-based approach to elliptic control problems in non-
+         reﬂexive Banach spaces, ESAIM Control Optim. Calc. Var., 17 (2011), pp. 243–266.
+ [9] A. Defant and K. Floret, Tensor Norms and Operator Ideals, North-Holland Math. Stud.
+         176, North-Holland, Amsterdam, 1993.
+[10] N. Dinculeanu, Vector Measures, Deutscher Verlag der Wissenschaften, Berlin, 1966.
+
+
+
+
+      Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+               DIRECTIONAL SPARSITY IN OPTIMAL CONTROL OF PDEs                               963
+
+[11] D. Donoho, Compressed sensing, IEEE Trans. Inform. Theory, 52 (2006), pp. 1289–1306.
+[12] D. Donoho, For most large underdetermined systems of linear equations the minimal 1 -norm
+         solution is also the sparsest solution, Comm. Pure Appl. Math., 59 (2006), pp. 797–829.
+[13] M. Fornasier, R. Ramlau, and G. Teschke, The application of joint sparsity and total
+         variation minimization algorithms in a real-life art restoration problem, Adv. Comput.
+         Math., 31 (2009), pp. 301–329.
+[14] M. Fornasier and H. Rauhut, Recovery algorithms for vector-valued data with joint sparsity
+         constraints, SIAM J. Numer. Anal., 46 (2008), pp. 577–613.
+[15] E. Haber, L. Horesh, and L. Tenorio, Numerical methods for experimental design of large-
+         scale linear ill-posed inverse problems, Inverse Problems, 24 (2008), p. 055012.
+[16] M. Hintermüller, K. Ito, and K. Kunisch, The primal-dual active set strategy as a semis-
+         mooth Newton method, SIAM J. Optim., 13 (2002), pp. 865–888.
+[17] M. Hintermüller, S. Volkwein, and F. Diwoky, Fast solution techniques in constrained
+         optimal boundary control of the semilinear heat equation, Internat. Ser. Numer. Math.,
+         155 (2007), pp. 119–147.
+[18] M. Hladnik and M. Omladič, Spectrum of the product of operators, Proc. Amer. Math. Soc.,
+         102 (1988), pp. 300–302.
+[19] S. Hüeber, G. Stadler, and B. I. Wohlmuth, A primal-dual active set algorithm for three-
+         dimensional contact problems with Coulomb friction, SIAM J. Sci. Comput., 30 (2008),
+         pp. 572–596.
+[20] A. D. Ioffe and V. M. Tichomirov, Theorie der Extremalaufgaben, VEB Deutscher Verlag
+         der Wissenschaften, Berlin, 1979.
+[21] K. Ito and K. Kunisch, The primal-dual active set method for nonlinear optimal control
+         problems with bilateral constraints, SIAM J. Control Optim., 43 (2004), pp. 357–376.
+[22] J. Liu, S. Ji, and J. Ye, SLEP: Sparse Learning with Eﬃcient Projections, Arizona State
+         University, Tempe, AZ, 2009.
+[23] M. Nikolova, Local strong homogeneity of a regularized estimator, SIAM J. Appl. Math., 61
+         (2000), pp. 633–658.
+[24] M. Nikolova, Analysis of the recovery of edges in images and signals by minimizing nonconvex
+         regularized least-squares, Multiscale Model. Simul., 4 (2005), pp. 960–991.
+[25] Z. Qin, K. Scheinberg, and D. Goldfarb, Eﬃcient Block-Coordinate Descent Algorithms
+         for the Group Lasso, Technical report 2806, Optimization Online, 2010.
+[26] G. Stadler, Elliptic optimal control problems with L1 -control cost and applications for the
+         placement of control devices, Comput. Optim. Appl., 44 (2009), pp. 159–181.
+[27] D. Sun and J. Han, Newton and quasi-Newton methods for a class of nonsmooth equations
+         and related problems, SIAM J. Optim., 7 (1997), pp. 463–480.
+[28] F. Tröltzsch, Optimal Control of Partial Diﬀerential Equations: Theory, Methods and Ap-
+         plications, Grad. Stud. Math. 112, American Mathematical Society, Providence, RI, 2010.
+[29] J. A. Tropp and S. J. Wright, Computational methods for sparse solution of linear inverse
+         problems, Proc. IEEE, 98 (2010), pp. 948–958.
+[30] C. R. Vogel, Computational Methods for Inverse Problems, SIAM, Philadelphia, 2002.
+[31] G. Vossen and H. Maurer, On L1 -minimization in optimal control and applications to
+         robotics, Optimal Control Appl. Methods, 27 (2006), pp. 301–321.
+[32] G. Wachsmuth and D. Wachsmuth, Convergence and regularization results for optimal con-
+         trol problems with sparsity functional, ESAIM Control Optim. Calc. Var., 17 (2011),
+         pp. 858–886.
+[33] G. Wachsmuth, Elliptische Optimalsteuerungsprobleme unter Sparsity-Constraints, Diploma
+         thesis, Technische Universität Chemnitz, 2008; also available online from http://www.tu-
+         chemnitz.de/mathematik/part dgl/publications.php.
+[34] S. J. Wright, R. D. Nowak, and M. A. T. Figueiredo, Sparse reconstruction by separable
+         approximation, IEEE Trans. Signal Process., 57 (2009), pp. 2479–2493.
+
+
+
+
+    Copyright © by SIAM. Unauthorized reproduction of this article is prohibited.
+
