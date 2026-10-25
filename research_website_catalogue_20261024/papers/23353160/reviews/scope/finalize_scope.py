@@ -1,0 +1,19 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import json,hashlib
+B=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/papers')
+for ident in ['23353160','23147866']:
+ p=B/ident/'reviews/scope';c=json.loads((p/'content.json').read_text());s=json.loads((p/'source_integrity.json').read_text());gr=ident=='23353160'
+ assert s['passed'] and s['all_public_record_assets_present'] and c['follow_up'] is None
+ assert c['version']==c['source_binding']['zenodo_version']
+ assert c['source_binding']['manuscript_version']==('1.0' if gr else None)
+ assert c['supplement_filename']==('grassmann_calibrations_source_verification_v1.zip' if gr else None)
+ assert (p/'REVIEW.md').is_file() and len(c['abstract'])>600 and c['additional_assets']==[]
+ assert len(c['source_binding']['files'])==(2 if gr else 8)
+ sha=hashlib.sha256((p/'content.json').read_bytes()).hexdigest();now=datetime.now(timezone.utc).isoformat()
+ note=('Authored PROOF.md acceptance/status sentences and the historical audit-summary portion of SUPPLEMENT.md were encountered before the own 60% conclusion. No dedicated archived verdict/report bodies or current sibling mathematical findings were consulted and no status claim was used as validation, but strict exclusion of archived opinions cannot be claimed.' if gr else 'Own 60% scope conclusion recorded without archived priority/audit verdict bodies or current sibling mathematical findings. PRIORITY_AUDIT.md and verification_results.json acquired and hash-checked as bytes only. Original manuscript/code internal-review and verification-count assertions were not used as validation.')
+ v=dict(record_id=ident,role='publication_scope_and_primary_literature_review_with_archived_support_exposure' if gr else 'independent_publication_scope_and_primary_literature_review',timestamp_utc=now,completion_percent=100,scope_verdict='no_publication_scope_defect_identified',publication_disposition='candidate_content_only_pending_separate_mathematical_gates',mathematical_gate=False,novelty_certified=False,independent_human_peer_review=False,full_published_paper_read=True,published_paper_pages=s['main_pdf_pages'],published_supplement_pdfs=[],all_published_assets_acquired=True,source_integrity_pass=True,strict_archived_opinion_independence=not gr,archived_review_opinion_exposure=gr,archived_or_sibling_review_verdicts_used=False,current_sibling_mathematical_findings_consulted=False,independence_note=note,content_sha256=sha,source_binding=c['source_binding'],follow_up=None,followup_rationale=c['followup_rationale'],defects=[],key_boundaries=c['limitations'],primary_source_review_limitations=(['The decisive Fawzi theorem was checked at its normalized-complex-state/projected-lift interface, not fully reproved.','Bounded primary-source comparison does not certify worldwide novelty; relevant predecessor passages rather than every page of each predecessor were read.'] if gr else ['Cao–Song original full text not obtained; publisher abstract confirms general precedent, while exact paired-decomposition attribution is retained as manuscript credit rather than independently certified against its body.','Bounded comparison uses the inspected versions of neighboring papers, not an exhaustive historical novelty search.','Winter coding theorem is an established external dependency; source interfaces checked without independently reproving the coding theorem.']))
+ (p/'verdict.json').write_text(json.dumps(v,indent=2,ensure_ascii=False)+'\n')
+ with (p/'RESEARCH_LOG.md').open('a') as f:f.write('\n## '+now+' — 100%\n\nSource-bound scope report, candidate content and verdict complete. All public-file hashes and package checksum entries pass. No scope defect identified; mathematical gates remain separate. Follow-up null. Content SHA-256 '+sha+'. '+note+' No repairs, external mutations or outreach.\n')
+ (p/'.gitignore').write_text('page1.png\n')
+ print(ident,sha)

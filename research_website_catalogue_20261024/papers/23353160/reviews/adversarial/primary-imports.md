@@ -1,0 +1,15 @@
+# Fresh primary-source interface audit
+
+See `primary-sources/receipt.json` for immutable bytes and hashes. The primary bodies were freshly retrieved, not taken from historical review opinions.
+
+| Primary source | Actual inspected scope | Role and boundary |
+|---|---|---|
+| Fawzi, published *Commun.Math.Phys.*386(2021),1319–1335, Cambridge repository final PDF | Printed1319 normalized complex product-projector definition;1320 Eqs.(2)–(3) arbitrary projected Hermitian LMI;1321 Theorem 1 and explicit(3,3) specialization | Sole non-elementary obstruction. It excludes all finite real-symmetric lifts too, since those are a subclass of Hermitian lifts. Uses trace-one normalized complex states. No inference about trivial one-dimensional factors or real separability. Full upstream theorem not reproved. |
+| Fawzi, arXiv1905.02575v1 | Pages1–3: definition, lift definition, Theorem 1 | Confirms public 2019 scope. Published version is the controlling citation. |
+| Harvey–Lawson, *Calibrated geometries*, Acta148(1982) | Printed67–71, especially68 Question 6.5/Eq.(6.6),70 Theorem 6.11, neighboring proof; p.68 rendered and visually inspected | Confirms finite collection of local p-forms, identity on all simple p-vectors, and classical Kähler normalization. The target's negative pointwise example defeats local completion directly. ProjectEuclid route returned a non-PDF challenge; actual final scan acquired from the Acta/YMSC archive. |
+| Sanyal, OWR13/2015 | Complete Grassmann-orbitope contribution, printed707–709 | Oriented mass ball, degree-one SOS support assertion, joint work/equivalence credit. Constants are allowed by the degree≤1 convention; restricting to homogeneous squares would be wrong. |
+| Rostalski,2010 BIRS slides | Slides7–15 and20, with surrounding definitions | Oriented Plücker/sphere model, projected lifts/theta bodies and prior norm-completion formulation. Credit/context; target moment proof is self-contained. |
+| Vrana–Lévay,0902.2269v2 | §3.1Eq.(25), lemma with proof and following theorem with proof, pp.8–10 | Complex direct-sum tensor-to-wedge map preserves/reflexively detects decomposability. Target isN=2,kA=kB=1,nA=nB=3. Target also supplies elementary independent proof. |
+| Grabowski–Kuś–Marmo,1111.4812v2 | Definitions around density matrices and normalized projectors; Theorem 4.1,Definition 4.2 and Theorem 5.1 | Standard mixed fermionic body. Their factorial normalization for antisymmetrized tensor wedges disappears after normalization of projector states; no mismatch with the target's induced exterior metric. |
+
+Target references7–9 are lineage for a moment/lift argument fully proved in the target; no uninspected theorem from them is necessary. References4,11–14 provide classical background and nearby-literature framing, not logical imports required for Theorem 1. This review does not certify the exhaustive priority claims or counts of the historical source audit. The main paper expressly describes that finding as bounded and does not claim certified worldwide priority.
