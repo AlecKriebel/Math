@@ -284,3 +284,7 @@ Native75/78/80exactreadbackandroot100%browserSheetcapturesPASS:44canonicalpublis
 
 ## 2026-10-25T04:29:16.917939+00:00 — Root independently reproduces browser index gap
 With browserownerreleased,rootcreatedseparateownChrometabfromactualnewbraidarticleandclickeditsResearchheaderlink. FreshnativeAXcounts44paperlistmarkers,all3newtitlesabsent;actualHTMLcaptureviewed,zeroreloads. OwnTabclosed. Thisconfirmsstaleuser-visiblecontentindependentlyofagentsDOMcapture;freshHTTP47doesnotresolveit. Old3600freshnesswindownotyetelapsed;nospeculativecache-clearing/settings/sourcechanges. Originalhandofftab963520672preservedforunlock;userSheetAD80leftopen. Goalremainsactive;auditscontinue.
+
+## 2026-10-25T04:38:52.460014+00:00 — Bosonic full-dependency disposition and quadratic private stage
+
+Root read all five bosonic final reports, full published manuscript and actual central pinned EPnI proof. All five seals, 92 source files and 40 archive members rechecked. No substantive gap identified; scientific clearance recorded without a formal-build or priority claim. Quadratic private stage full report, patch and actual public copy read; 5,654 input and 186 output bindings rehashed. No live/public mutation. Full programme remains 203 works; 44 verified published plus 4 deferred = 23.65% finalized. Scientific clearance/defect disposition now 53/203 = 26.11%; publication gates remain for cleared preparations. New 22089807 independent review active.

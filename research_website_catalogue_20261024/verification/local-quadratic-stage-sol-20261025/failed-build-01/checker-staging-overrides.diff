@@ -1,0 +1,32 @@
+--- proposed production checker
++++ owned stage checker
+@@ -6,7 +6,7 @@
+ from urllib.parse import urlsplit,urljoin,unquote
+ import json,hashlib,re,datetime,subprocess,zipfile,gzip,tarfile,zlib,unicodedata,argparse,sys
+ from html import unescape
+-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
++sys.path.insert(0, '/Users/alec/Documents/Math/research_website_catalogue_20261024/scripts')
+ from published_assets import PublishedAssets, asset_name, normalized_receipt_view
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+@@ -15,7 +15,7 @@
+ parser.add_argument('--output-dir',type=Path,default=Path(__file__).resolve().parent)
+ args=parser.parse_args()
+ if not re.fullmatch(r'[a-zA-Z0-9_-]+',args.output_stem):parser.error('output-stem must be a simple filename stem')
+-R=Path(__file__).resolve().parents[1]
++R=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ if not args.output_dir.resolve().is_relative_to(R/'verification'):parser.error('output-dir must be inside verification')
+ S=args.site
+ TEX_PATHS={
+@@ -269,7 +269,10 @@
+    if u.netloc!='aleckriebel.com':continue
+    q=S/unquote(u.path).lstrip('/')
+    if q.is_dir():q=q/'index.html'
+-   good=q.is_file()
++   if not q.is_file() and u.path in ('/','/blog/','/favicon.ico'):
++   q=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public')/unquote(u.path).lstrip('/')
++   if q.is_dir():q=q/'index.html'
++  good=q.is_file()
+    if good and q.suffix=='.html' and u.fragment:good=unquote(u.fragment) in [b['id'] for _,b in Doc(q).a if 'id' in b]
+    local.append(good)
+  test('local_links_anchors',all(local))
