@@ -4,8 +4,10 @@ Uses Python standard library plus an existing pdftotext executable; installs not
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,urljoin,unquote
-import json,hashlib,re,datetime,subprocess,zipfile,unicodedata,argparse
+import json,hashlib,re,datetime,subprocess,zipfile,unicodedata,argparse,sys
 from html import unescape
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
+from published_assets import PublishedAssets, asset_name
 parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
 parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
 parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
@@ -40,14 +42,10 @@ TEX_PATHS={
  '23147866':'w4_locc_dense_coding.tex',
  '23157237':'published-source/spectral-tensor-consistency/spectral_tensor_consistency.tex',
  '22729355':'published-source/Exact_Diffusion_Design_Source_v1.0.11/main.tex',
+ '22136869':'published-source/k2p-k3p-theta-collision-19cf11f65ed4/combined-paper-clarified.tex',
+ '23180194':'published-source/mass_stationarity_verification/paper.tex',
 }
 ADDED_IDS={'23203334','22929486','23088066','23353160','23147866','23157237','22729355'}
-def asset_name(item):
- name,filename=item.get('name'),item.get('filename')
- if name is not None and filename is not None and name!=filename:raise ValueError('Conflicting receipt name and filename')
- value=name if name is not None else filename
- if not isinstance(value,str) or not value:raise ValueError('Receipt asset has no valid name or filename')
- return value
 def decode_added_abstract(tex):
  tex=tex.replace(r'Rei\ss{}','Reiß').replace('$L^2$','L²')
  for old,new in {r'\ge':'≥',r'\sum':'∑',r'\chi':'χ',r'\Theta':'Θ',r'\sqrt n':'√n','n-1':'n−1','n-2':'n−2','n-3':'n−3'}.items():tex=tex.replace(old,new)
@@ -56,6 +54,7 @@ def decode_added_abstract(tex):
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex,record_id=None):
  if record_id in ADDED_IDS:tex=decode_added_abstract(tex)
+ if record_id=='23180194':tex=tex.replace(r'\xi','ξ').replace('$','').replace('--','–')
  tex=tex.replace(r"Krej\v{c}\'i\v{r}\'ik",'Krejčířík')
  tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
  tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
@@ -65,6 +64,8 @@ def abstract_tokens(tex,record_id=None):
  commands=re.findall(r'\\[A-Za-z]+',tex)
  if commands:raise ValueError('Unrecognized abstract TeX commands: '+repr(commands))
  return wt(tex)
+def normalized_kimura_abstract(tex):
+ return '\n\n'.join(' '.join(p.split()) for p in re.split(r'\n\s*\n',tex.replace('$','').replace('~',' ').replace('--','–').strip()))
 class Doc(HTMLParser):
  def __init__(self,p):
   super().__init__();self.a=[];self.text=[];self.feed(p.read_text())
@@ -101,6 +102,14 @@ for rid in args.record_ids:
   abstract_source=branch.group(2)
  a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',abstract_source,re.S).group(1)
  test('abstract_full_source_words',abstract_tokens(a,rid)==wt(c['abstract']))
+ if rid=='22136869':
+  test('abstract_full_source_text',normalized_kimura_abstract(a)==c['abstract'])
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid=='23180194':
+  normalized_abstract=' '.join(a.replace(r'\xi','ξ').replace('$','').replace('--','–').split())
+  test('abstract_full_source_text',normalized_abstract==c['abstract'])
+  test('abstract_full_113_words',len(c['abstract'].split())==113)
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  if rid in ADDED_IDS:
   compact=lambda text: re.sub(r'\s+','',unicodedata.normalize('NFKC',text))
   test('abstract_full_source_text',compact(decode_added_abstract(a))==compact(c['abstract']))
@@ -146,18 +155,24 @@ for rid in args.record_ids:
    local.append(good)
  test('local_links_anchors',all(local))
  receipt=json.loads((p/'sources/receipt.json').read_text()); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
+ resolver=PublishedAssets(p/'sources',receipt,c.get('source_binding',{}).get('embedded_assets',[]))
  assets=[(key,c[key]) for key in ['pdf_filename','supplement_filename'] if c.get(key)]
  assets += [('additional_asset_'+asset['filename'],asset['filename']) for asset in c.get('additional_assets',[])]
  for key,name in assets:
+  original=resolver.resolve(name)
   actual=sha(f.parent/name);hashes[name]=actual
-  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if asset_name(x)==name) and name in [a.get('href') for t,a in d.a if t=='a'])
+  test(key,actual==original.sha256 and name in [a.get('href') for t,a in d.a if t=='a'])
   if name.endswith('.zip'):
    with zipfile.ZipFile(f.parent/name) as z:test('zip_integrity_'+name,z.testzip() is None)
   if key.startswith('additional_asset_') and name.endswith('.pdf'):
    extra_text=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/name),'-'],text=True).split('\f')
    if not extra_text[-1].strip():extra_text.pop()
-   test('supplement_pdf_searchable',all(len(t.strip())>100 for t in extra_text))
-   test('supplement_pdf_page_label',f'PDF, {len(extra_text)} pages' in h)
+   test('supplement_pdf_searchable_'+name,all(len(t.strip())>100 for t in extra_text))
+   test('supplement_pdf_page_label_'+name,f'PDF, {len(extra_text)} pages' in h)
+   if original.pages is not None:
+    test('embedded_pdf_page_count_'+name,len(extra_text)==original.pages)
+    label=next(x['label'] for x in c['additional_assets'] if x['filename']==name)
+    test('embedded_pdf_individual_page_label_'+name,f'PDF, {len(extra_text)} pages' in label)
  texts=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/c['pdf_filename']),'-'],text=True).split('\f')
  if not texts[-1].strip():texts.pop()
  test('pdf_searchable',all(len(t.strip())>100 for t in texts));test('page_count',f'PDF, {len(texts)} pages' in h)
@@ -182,10 +197,10 @@ for rid in args.record_ids:
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
-  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055') or rid in ADDED_IDS:
+  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194') or rid in ADDED_IDS:
    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
    test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
-  if rid in ADDED_IDS:
+  if rid in ADDED_IDS or rid=='23180194':
    test('all_published_source_assets_bound',gate['source_files']==receipt['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
  if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
@@ -263,6 +278,32 @@ for rid in args.record_ids:
   links=[a['href'] for t,a in d.a if t=='a' and 'href' in a]
   test('all_eight_published_assets_linked',len(receipt['files'])==8 and all(any(link==asset_name(x) or '/files/'+asset_name(x) in link for link in links) for x in receipt['files']))
   test('companion_software_doi_distinct','https://doi.org/10.5281/zenodo.22625980' in links and c['doi']=='10.5281/zenodo.22729355')
+ if rid=='22136869':
+  test('scope_complete',all(x in unescape(h) for x in ['proper lower-dimensional subset','generic choice of parameters on the network is not tree-equivalent','theta admits no tree-child rooting','network multispecies coalescent','Jukes–Cantor tree–network theorem','no clock or global timing','one chosen vertex','fixed theta maps have ambient ranks 9 under K2P and 15 under K3P']))
+  test('record_manuscript_edition_distinction',record['version']==c['version']=='1.2.6' and record['publication_date']==c['publication_date']=='2026-08-28' and c['source_binding']['manuscript_version']=='1.2.7' and c['source_binding']['manuscript_date']=='August 2026' and r'\date{August 2026}' in source and 'v1.2.7' in source and '1.2.6' in c.get('edition_note','') and '1.2.7' in c.get('edition_note',''))
+  test('reader_pdf_provenance',len(c['source_binding']['embedded_assets'])==2 and all(x['archive_filename']==c['supplement_filename'] and x['pages']==2 for x in c['source_binding']['embedded_assets']))
+  test('all_published_source_assets_bound',gate['source_files']==receipt['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
+  test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
+  gap=gate['gap_resolution']
+  test('root_gap_resolution_file_binding',gate['disposition_by']=='root' and gap['disposition_by']=='root' and gap['status']=='RESOLVED_WITH_CONTEXTUAL_SCOPE' and gate['gap_resolution_sha256']==sha(p/gate['gap_resolution_file']) and gap==json.loads((p/gate['gap_resolution_file']).read_text()))
+  test('frozen_scope_hold_preserved',gate['reviews']['scope']['verdict']['publication_hold'] is True and all(x['sha256']==sha(p/x['path']) for x in [gap['frozen_scope_content'],gap['frozen_scope_report'],gap['frozen_scope_verdict']]) and json.loads((p/gap['frozen_scope_content']['path']).read_text())['publication_hold']==gap['original_scope_hold'] and gap['original_scope_hold']['active'] is True and not c.get('publication_hold',{}).get('active',False))
+  test('gap_independent_evidence_bindings',all(x['sha256']==sha(p/x['path']) for x in gap['analytic_evidence']+gap['adversarial_evidence']) and any(x['path']=='reviews/analytic/INTERPRETIVE_NOTE.md' for x in gap['analytic_evidence']) and any(x['path']=='reviews/analytic/counterexample_ratio_results.json' for x in gap['analytic_evidence']) and any(x['path']=='reviews/adversarial/structural_control_results.json' for x in gap['adversarial_evidence']) and any(x['path']=='reviews/adversarial/counterexample_results.json' for x in gap['adversarial_evidence']))
+  test('gap_original_context_binding',gap['source']['sha256']==sha(textpath) and gap['main_pdf_sha256']==sha(p/'sources'/c['pdf_filename']) and gap['equation_17_source'] in source and gap['construction_paragraph_source'] in source and gap['public_scope_note'] in unescape(h) and gap['broad_reading_counterexample_preserved'] is True and gap['no_source_repair'] is True)
+  test('main_mathematical_disposition_scoped',gate['reviews']['analytic']['verdict']['status']=='PASS' and gate['reviews']['adversarial']['verdict']['main_claims_supported_at_stated_hypotheses'] is True and gate['reviews']['adversarial']['verdict']['substantive_main_theorem_defect_identified'] is False)
+  links=[attrs['href'] for tag,attrs in d.a if tag=='a' and 'href' in attrs]
+  test('all_original_materials_linked',all(asset_name(x) in links for x in receipt['files']) and all(x['filename'] in links for x in c['source_binding']['embedded_assets']))
+  test('no_false_top_level_zenodo_reader_links',all(not any('/files/'+x['filename'] in link for link in links) for x in c['source_binding']['embedded_assets']))
+ if rid=='23180194':
+  test('scope_complete',all(x in unescape(h) for x in ['locally compact second countable Hausdorff Abelian group','acting jointly measurably on an arbitrary measurable space Ω','sigma-finite measure on Ω','covariant, locally finite Radon random measure','nonzero Q-almost everywhere','every invariant, pointwise ξ-preserving, ξ-measurable Markov transport kernel','each row has mass one','every nonnegative measurable function f on Ω','every nonnegative measurable g on Ω × G','joint Mecke identity, or Campbell reversal']))
+  test('scope_limits_preserved',all(x in unescape(h) for x in ['no assumption that the marginal law of ξ is sigma-finite','Invariance of the law of ξ alone is not a substitute','deterministic transports','Cox allocations','does not cover non-Abelian groups or the zero random measure','Standard Borel structure is used for the space of Radon measures; it is not imposed on Ω']))
+  test('credited_classical_imports',all(x in unescape(h) for x in ['classical Mecke/Palm and Palm/mass-stationarity equivalences','known converse transport invariance','Problem 7.3 from 2009','complete final journal body was unavailable','complete final journal body was not checked']))
+  test('printed_edition_date_binding',record['version']==c['version']=='1.0' and record['publication_date']==c['publication_date']=='2026-10-06' and c['source_binding']['manuscript_version'] is None and r'\date{6 October 2026\quad---\quad Unrefereed research note}' in source)
+  test('two_original_assets_only',len(receipt['files'])==2 and len(texts)==7 and c.get('additional_assets',[])==[] and c['source_binding'].get('embedded_assets',[])==[] and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']})
+  test('abstract_source_binding',c['source_binding']['abstract_source']=='sources/'+TEX_PATHS[rid] and c['source_binding']['abstract_source_sha256']==sha(textpath) and c['source_binding']['abstract_word_count']==113)
+  test('frozen_scope_candidate_binding',c['source_binding']['frozen_scope_content_path']=='reviews/scope/candidate-content.json' and c['source_binding']['frozen_scope_content_sha256']==sha(p/c['source_binding']['frozen_scope_content_path']))
+  test('root_disposition_at_stated_scope',gate['disposition_by']=='root' and gate['source_repair'] is False and gate['human_peer_review'] is False and gate['reviews']['analytic']['verdict']['status']=='SUPPORTED_AT_STATED_SCOPE' and gate['reviews']['adversarial']['verdict']['status']=='PASS' and gate['reviews']['scope']['verdict']['verdict']=='PASS_SCOPE_ONLY')
+  test('frozen_scope_chronology_preserved',gate['reviews']['scope']['verdict']['mathematical_clearance'] is False and bool(gate['scope_gate_resolution']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

@@ -1,0 +1,696 @@
+                                                     RESEARCH ARTICLE
+
+                                                     Limits on amplifiers of natural selection under
+                                                     death-Birth updating
+                                                     Josef Tkadlec ID1☯, Andreas Pavlogiannis2☯, Krishnendu Chatterjee1, Martin A. Nowak ID3*
+                                                     1 IST Austria, Klosterneuburg, Austria, 2 Lab for Automated Reasoning and Analysis, EPFL, Lausanne,
+                                                     Switzerland, 3 Program for Evolutionary Dynamics, Department of Organismic and Evolutionary Biology,
+                                                     Department of Mathematics, Harvard University, Cambridge, Massachusetts, United States of America
+
+                                                     ☯ These authors contributed equally to this work.
+                                                     * martin_nowak@harvard.edu
+a1111111111
+a1111111111
+a1111111111
+a1111111111                                          Abstract
+a1111111111
+                                                     The fixation probability of a single mutant invading a population of residents is among the
+                                                     most widely-studied quantities in evolutionary dynamics. Amplifiers of natural selection are
+                                                     population structures that increase the fixation probability of advantageous mutants, com-
+                                                     pared to well-mixed populations. Extensive studies have shown that many amplifiers exist
+    OPEN ACCESS                                      for the Birth-death Moran process, some of them substantially increasing the fixation proba-
+Citation: Tkadlec J, Pavlogiannis A, Chatterjee K,   bility or even guaranteeing fixation in the limit of large population size. On the other hand, no
+Nowak MA (2020) Limits on amplifiers of natural
+                                                     amplifiers are known for the death-Birth Moran process, and computer-assisted exhaustive
+selection under death-Birth updating. PLoS
+Comput Biol 16(1): e1007494. https://doi.org/        searches have failed to discover amplification. In this work we resolve this disparity, by
+10.1371/journal.pcbi.1007494                         showing that any amplification under death-Birth updating is necessarily bounded and
+Editor: Arne Traulsen, Max-Planck-Institute for      transient. Our boundedness result states that even if a population structure does amplify
+Evolutionary Biology, GERMANY                        selection, the resulting fixation probability is close to that of the well-mixed population. Our
+Received: June 3, 2019                               transience result states that for any population structure there exists a threshold r? such
+                                                     that the population structure ceases to amplify selection if the mutant fitness advantage r is
+Accepted: October 18, 2019
+                                                     larger than r ?. Finally, we also extend the above results to δ-death-Birth updating, which is a
+Published: January 17, 2020
+                                                     combination of Birth-death and death-Birth updating. On the positive side, we identify popu-
+Copyright: © 2020 Tkadlec et al. This is an open     lation structures that maintain amplification for a wide range of values r and δ. These results
+access article distributed under the terms of the
+                                                     demonstrate that amplification of natural selection depends on the specific mechanisms of
+Creative Commons Attribution License, which
+permits unrestricted use, distribution, and          the evolutionary process.
+reproduction in any medium, provided the original
+author and source are credited.
+
+Data Availability Statement: All the datasets used
+in this paper are available at https://doi.org/10.     Author summary
+6084/m9.figshare.8247527.v1.
+                                                       Extensive literature exists on amplifiers of natural selection for the Birth-death Moran
+Funding: J.T. and K.C. acknowledge support from
+ERC Start grant no. (279307: Graph Games),
+                                                       process, but no amplifiers are known for the death-Birth Moran process. Here we show
+Austrian Science Fund (FWF) grant no. P23499-          that if amplifiers exist under death-Birth updating, they must be bounded and transient.
+N23 and S11407-N23 (RiSE). A.P. acknowledges           Boundedness implies weak amplification, and transience implies amplification for only a
+support from FWF Grant No. J-4220. M.A.N.              limited range of the mutant fitness advantage. These results demonstrate that amplifica-
+acknowledges support from Office of Naval              tion depends on the specific mechanisms of the evolutionary process.
+Research grant N00014-16-1-2914 and from the
+John Templeton Foundation. The Program for
+Evolutionary Dynamics is supported in part by a
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                              1 / 13
+                                                                                                     Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+gift from B. Wu and E. Larson. The funders had no     Introduction
+role in study design, data collection and analysis,
+decision to publish, or preparation of the            The evolutionary rate of populations is determined by their ability to accumulate advantageous
+manuscript.                                           mutations [1–5]. Once a new mutant has been randomly generated in a population, its fate is
+Competing interests: The authors have declared
+                                                      governed by the dynamics of natural selection and random drift. The most important quantity
+that no competing interests exist.                    in this process is the fixation probability which is the probability that the invading mutant fix-
+                                                      ates in the population as opposed to being swept away. A classical mathematical framework for
+                                                      rigorous study of the mutant spread is the discrete-time Moran process [6]. Given a population
+                                                      of N individuals, at each time step, (1) an individual is chosen randomly for reproduction pro-
+                                                      portionally to its fitness and (2) an individual dies uniformly at random; then the offspring
+                                                      of the reproducing individual replaces the dead individual, and the population size remains
+                                                      constant.
+                                                          Many evolutionary properties are affected by the spatial arrangement of the population [7–
+                                                      15]. Evolutionary graph theory represents population structure of size N by a graph (network)
+                                                      GN [16–22]: each individual occupies a vertex, and neighboring vertices mark sites of spatial
+                                                      proximity (see Fig 1a). Mutant spread must respect the structure, in that the offspring of a
+                                                      reproducing individual in one vertex can only move to a neighboring vertex. The Moran pro-
+                                                      cess on graphs has two distinct variants:
+                                                      • In the Birth-death Moran process, the death event is conditioned on the Birth event. That is,
+                                                        first an individual is chosen for reproduction and then its offspring replaces a random neigh-
+                                                        bor (see Fig 1b).
+                                                      • In the death-Birth Moran process, the Birth event is conditioned on the death event. That is,
+                                                        first an individual is chosen for death and then its neighbors compete to fill the vacancy with
+                                                        their offspring (see Fig 1c).
+
+
+                                                         The fixation probability of the invading mutant is a function of its fitness r, as well as the
+                                                      graph GN. In alignment with most of the literature, we focus on advantageous mutants, where
+                                                      r > 1.
+                                                         The well-mixed population of size N is represented by a complete graph KN. In the Birth-
+                                                      death Moran process, the fixation probability in the well-mixed population is ρBd(KN, r) =
+                                                      (1 − 1/r)/(1 − 1/rN) [3]. Under death-Birth updating, the fixation probability is ρdB(KN, r) =
+                                                      (1 − 1/N) � (1 − 1/r)/(1 − 1/rN−1) [23]. Specifically, as N ! 1, both the expressions converge to
+                                                      1 − 1/r.
+                                                         Amplifiers of natural selection are graphs that increase the fixation probability of the advan-
+                                                      tageous mutants compared to the well-mixed population [16, 24]. Under Birth-death updating,
+                                                      many amplifying families of graphs have been constructed, such as the Star graph [25–27], the
+
+
+
+
+                    Fig 1. Moran process on graphs. a, The spatial structure is represented by a graph. Each vertex represents a site and is occupied either by a resident
+                    (red) with fitness 1 or by a mutant (blue) with relative fitness r > 1. Each edge can be one-way (arrow) or two-way. b, In each step of the Birth-death
+                    process, one individual is sampled for reproduction proportionally to fitness, and then its offspring replaces a random neighbor. c, In each step of the
+                    death-Birth process, a random individual dies and then it is replaced by a neighbor sampled proportionally to fitness.
+                    https://doi.org/10.1371/journal.pcbi.1007494.g001
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                               2 / 13
+                                                                                     Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                             Complete Bipartite graph [28] and the Comet graph [29], as well as families that guarantee
+                                             fixation in the limit of large population size [16, 30–33]. Extensive computer simulations on
+                                             small populations have also shown that many graphs have amplifying properties [34–37].
+                                             While the above results hold for the Birth-death Moran process, no amplifiers are known for
+                                             the death-Birth Moran process, and computer-assisted search has found that, under death-
+                                             Birth updating, most small graphs suppress the fixation probability rather than amplifying it
+                                             [35].
+                                                 Here we prove two negative results on the existence of amplifiers under death-Birth updat-
+                                             ing. Our first result states that the fixation probability in any graph is bounded by 1 − 1/(r + 1).
+                                             Hence, even if amplifiers do exist, they can provide only limited amplification. In particular,
+                                             there are no families of graphs that would guarantee fixation in the limit of large population
+                                             size. Our second result states that for any graph GN, there exists a threshold r? such that for all
+                                             r � r?, the fixation probability is bounded by ρdB(r, KN). Hence, even if some graphs amplify
+                                             for certain values of r, their amplifying property is necessarily transient, and lost when the
+                                             mutant fitness advantage r becomes large enough. We note that a companion work [38] identi-
+                                             fies transient amplifiers among graphs that have weighted edges. Finally, we also study the
+                                             mixed δ-death-Birth Moran process, for δ 2 [0, 1], under which death-Birth and Birth-death
+                                             updates happen with rate δ and 1 − δ, respectively [39]. We establish analogous negative results
+                                             for mixed δ-updating, for any fixed δ > 0. Note that as δ vanishes (δ ! 0), we approach (pure)
+                                             Birth-death Moran process for which both universal and super amplifiers exist. We find that
+                                             some of those amplifiers are less sensitive to variations in δ than others. In particular, certain
+                                             bipartite structures achieve transient amplification for δ as big as 0.5.
+
+
+                                             Model
+                                             The Moran process on graphs
+                                             In evolutionary graph theory, a population structure has traditionally been represented by a
+                                             graph GN = (V, E), where V is the set of N vertices representing sites and E � V × V is the set
+                                             of edges representing neighborships between the sites. We say that GN is undirected when all
+                                             edges are two-way, that is, (v, u) is an edge whenever (u, v) is. Since the focus of this work is on
+                                             death-Birth updating, we require that there are no self-loops in GN (that is, (u, u) is never an
+                                             edge). More generally, a population structure can be represented by a weighted graph. In that
+                                             case, every edge (u, v) is assigned a weight wu,v 2 [0, 1] which indicates the strength of interac-
+                                             tion from site u to site v. In full generality, we allow for non-symmetric weights (that is, possi-
+                                             bly wu,v 6¼ wv,u). The family of unweighted graphs is recovered when we insist that all edges
+                                             have weight 1. Even though our primary focus is on unweighted graphs, our results apply to
+                                             weighted graphs too. A population of N residents inhabits the graph GN with a single individ-
+                                             ual occupying each of the vertices of GN.
+                                                 In the beginning of the Moran process, one vertex is chosen uniformly at random to host
+                                             the initial mutant. The mutant has a fitness advantage r > 1, whereas each of the residents has
+                                             fitness normalized to 1. We denote by f(u) the fitness of the individual occupying the vertex
+                                             u. From that point on, the process proceeds in discrete time steps, according to one of the two
+                                             variants of updating:
+                                              1. Under death-Birth (dB) updating, first an individual is selected to die uniformly at ran-
+                                                 dom. This leaves a vacancy in the corresponding vertex v of GN and one neighbor of v is
+                                                 randomly chosen to fill it. The probability of choosing a particular neighbor depends on
+                                                 their fitnesses. Specifically, a neighbor u of v is chosen for reproduction with probability
+                                                 proportional to f(u) � wu,v, and the selected individual places a copy of itself on v.
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                         3 / 13
+                                                                                     Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                              2. Under Birth-death (Bd) updating, first an individual is selected to reproduce with proba-
+                                                 bility proportional to its fitness, that is, with probability proportional to f(u) for the indi-
+                                                 vidual occupying the vertex u. The offspring of u then replaces a random neighbor v of u
+                                                 with probability proportional to wu,v.
+                                             We also consider a combination of dB and Bd updating, which yields the mixed δ-death-Birth
+                                             Moran process.
+                                              3. Under δ-death-Birth (δ-dB) updating, for δ 2 [0, 1], in each step, the Moran process fol-
+                                                 lows a dB update with probability δ, and a Bd update with probability 1 − δ. In this nota-
+                                                 tion, δ = 1 corresponds to pure dB updating, and δ = 0 corresponds to pure Bd updating.
+                                             We only consider strongly connected graphs for which, with probability 1 in the long run, the
+                                             Moran process leads either to the fixation of the mutant in the population (all vertices are
+                                             eventually occupied by mutants) or to the extinction of the mutant (all vertices are eventually
+                                             occupied by residents). We denote by ρdB(GN, r), ρBd(GN, r) and ρδ(GN, r) the fixation probabil-
+                                             ity under dB, Bd and δ-dB updating, respectively.
+
+                                             Amplifiers
+                                             The well-mixed population is modelled by the undirected complete graph KN. When r 6¼ 1, the
+                                             fixation probability on KN under Bd updating is [3]
+                                                                                                    1 1=r
+                                                                                  rBd ðKN ; rÞ ¼          :                                          ð1Þ
+                                                                                                   1 1=rN
+
+                                             Similarly, the fixation probability on KN under dB updating is [23]
+                                                                                       �       �
+                                                                                             1      1 1=r
+                                                                         rdB ðKN ; rÞ ¼ 1        �            :                                      ð2Þ
+                                                                                            N      1 1=rN 1
+
+                                             Specifically, as N ! 1, both the expressions converge to 1 − 1/r when r > 1 and to 0 when
+                                             r < 1.
+                                                 Population structure can affect the fixation probability of invading mutants. Amplifiers are
+                                             population structures that exaggerate the effect of selection—they increase the fixation proba-
+                                             bility of advantageous mutants and decrease the fixation probability of disadvantageous
+                                             mutants. Formally, for fixed r > 1 we say that a graph GN is a Bd (resp., dB) r-amplifier if
+                                             ρBd(GN, r) > ρBd(KN, r) (resp., ρdB(GN, r) > ρdB(KN, r)). Conversely, for fixed r 2 (0, 1) we say
+                                             that a graph GN is a Bd (resp., dB) r-amplifier if ρBd(GN, r) < ρBd(KN, r) (resp., ρdB(GN, r) <
+                                             ρdB(KN, r)). If GN is an r-amplifier for all r > 0, then we say that GN is a universal amplifier. (In
+                                             the earlier literature, the word “amplifier” had typically been used to mean “universal ampli-
+                                             fier”.) If GN is an r-amplifier for only a limited range of r-values, that is, there exists a threshold
+                                             value r? such that GN does not increase the fixation probability for any r > r?, we say that GN is
+                                             a transient amplifier. (Note that, in principle, an amplifier could be neither universal nor tran-
+                                             sient—it could indefinitely alternate between amplifying and suppressing as r grows larger.) In
+                                             this work, we study advantageous mutants (r > 1) and provide upper bounds on their fixation
+                                             probability. Our results thus delimit possible behavior of amplifiers and generally of any other
+                                             graphs, regardless of how they behave when r < 1.
+                                                 A renowned example of a universal Bd amplifier is a Star graph SN (of any fixed size N � 3)
+                                             which consists of one central vertex connected to each of the N − 1 surrounding leaf vertices.
+                                             The fixation probability of an invading mutant with fitness advantage r depends on its initial
+                                             placement. When a mutant appears at a leaf, its fixation probability converges to 1 − 1/r2 as
+                                             N ! 1, whereas when a mutant appears at the center, its fixation probability converges to 0.
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                         4 / 13
+                                                                                                 Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+
+                               Fig 2. Linear interpolation for δ-dB updating. On a complete graph KN, the fixation probability ρδ(KN, r) under δ-dB updating is
+                               essentially indistinguishable from the linear interpolation r^ d ðKN ; rÞ between fixation probability under pure dB and pure Bd updating.
+                               a, The x-axis shows δ 2 [0, 1], the y-axis shows the fixation probability ρδ(KN, r) (marks) and the linear interpolation r^ d ðKN ; rÞ (lines)
+                               for several pairs (N, r). The marks lie almost exactly on the lines. b, The ratio r^ d ðKN ; rÞ=rd ðKN ; rÞ is well within 1%, typically even
+                               within 0.1% of 1. The interpolation is exact for N = 2.
+                               https://doi.org/10.1371/journal.pcbi.1007494.g002
+
+
+                                               Averaging over all N possible starting positions we get ρBd(SN, r)!N!1 1 − 1/r2. Effectively,
+                                               the Star population structure rescales the fitness of the mutant from r to r2. Under Bd updating,
+                                               there also exist population structures that amplify for only some values of r > 1 [40].
+                                                  Although there are simple formulas for fixation probability on KN under both dB and Bd
+                                               updating, there seems to be no similarly simple formula for ρδ(KN, r). One can still use the
+                                               standard method [3, 41] to write
+                                                                                                                  1
+                                                                                         rd ðKN ; rÞ ¼          PN 1 Qk               ;
+                                                                                                          1þ       k¼1     i¼1   gi
+
+                                               where γi is the bias towards decreasing the number of mutants as opposed to increasing it in
+                                               one step, but the right-hand side does not simplify. We have computed ρδ(KN, r) numerically
+                                               for various values of N and r and we observed that ρδ(KN, r) is essentially indistinguishable
+                                               from the linear interpolation
+
+                                                                            ^ d ðKN ; rÞ ¼ d � rdB ðKN ; rÞ þ ð1
+                                                                            r                                            dÞ � rBd ðKN ; rÞ                               ð3Þ
+
+                                               between ρBd(KN, r) and ρdB(KN, r) (see Fig 2a). In fact, the ratio r^ d ðKN ; rÞ=rd ðKN ; rÞ appears to
+                                               be well within 1% of 1, and most of the time even within 0.1% of 1 (see Fig 2b). Therefore, in
+                                               δ-dB updating we use r  ^ d ðKN ; rÞ as the baseline comparison, and say that for r > 1 a graph GN
+                                               is a δ-dB r-amplifier if rd ðGN ; rÞ > r ^ d ðKN ; rÞ.
+
+
+
+                                               Implied scale of fitness
+                                               Here we are interested in the fixation probability when the population size is large. This leads
+                                                                                           1
+                                               us to the study of families of graphs fGN gN¼1 of increasing population size, the fixation proba-
+                                               bility of which is taken in the limit of N ! 1. Graph families can be classified by amplification
+                                               strength. Given such a family, the implied scale of fitness for that family [24] is a function isf(r)
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                            5 / 13
+                                                                                                   Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+
+                Fig 3. Implied scale of fitness. The implied scale of fitness for several graph families. a, Complete graphs KN, Ring graphs RN, complete Bipartite graphs
+                Bpffiffi pffiffi and Star graphs SN. b, Under Birth-death updating, the Star graphs and the Bipartite graphs are quadratic amplifiers, whereas the Ring graphs
+                  N ;N   N
+                are equivalent to Complete graphs. There also exist super amplifiers that guarantee fixation with probability 1 for any r > 1. (To model the limit N ! 1
+                we show values for N = 400.) c, Under death-Birth updating, none of Bipartite graphs, Star graphs or Ring graphs amplify selection.
+                https://doi.org/10.1371/journal.pcbi.1007494.g003
+
+                                                  such that
+                                                                                         lim inf rdB ðGN ; rÞ ¼ 1           1=isfðrÞ
+                                                                                               N!1
+
+
+                                                  Specifically, for the family of complete graphs KN we have isf(r) = r, under both dB updating
+                                                  and Bd updating. We say that the family is (at most) a bounded amplifier if isf(r) � r + c0 for
+                                                  some constant c0. We say that the family is (at least) a linear amplifier if isf(r) � c1 r + c0 for
+                                                  some constants c1 > 1, c0. We say that the family is (at least) a quadratic amplifier if isf(r) �
+                                                  c2 r2 + c1 r + c0 for some constants c2 > 0, c1, c0. For instance, Star graphs are quadratic
+                                                  amplifiers under Bd updating [3], however they do not amplify under dB updating [23].
+                                                  Finally, the family is a super amplifier if isf(r) = 1 for any r > 1. That is, for any r > 1 we have
+                                                  ρdB(GN, r) ! 1 as N ! 1 and hence fixation is guaranteed in the limit of large population size
+                                                  (see Fig 3). The above definitions carry naturally to the δ-dB Moran process, where the implied
+                                                  scale of fitness is defined such that
+                                                                                          lim inf rd ðGN ; rÞ ¼ 1          1=isfðrÞ
+                                                                                               N!1
+
+
+
+
+                                                  Questions
+                                                  For the Bd Moran process, various results on amplifiers exist. The Star graph is a prominent
+                                                  example of a graph that is a quadratic amplifier for any r > 1 [25–29] and there exist super
+                                                  amplifiers, that is, families of graphs that guarantee fixation in the limit of large population
+                                                  size, for any fixed r > 1 [16, 30–33]. Furthermore, computer simulations on small populations
+                                                  have shown that many small graphs are amplifiers [34–37]. Given the vast literature on results
+                                                  under Bd updating, the following questions arise naturally.
+                                                  Q1: Do there exist universal amplifiers for the dB Moran process?
+                                                  Q2: Do there exist families that are amplifying for the dB Moran process? More specifically, do
+                                                    there exist linear, quadratic, or even super amplifiers?
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                             6 / 13
+                                                                                     Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                             The first question is concerned with small populations, and asks for a graph that amplifies for
+                                             all r > 1. The second question asks for amplification in the limit of large populations.
+
+                                             Results
+                                             Here we establish some useful observations about the dB Moran process, and then answer
+                                             questions Q1 and Q2.
+                                                First, consider the dB Moran process on any (fixed) graph GN. The fixation probability can
+                                             be bounded from above in terms of the number of neighbors of the vertex where the initial
+                                             mutant has appeared. As a simple example, consider that GN is unweighted and undirected,
+                                             and each vertex has precisely d neighbors (e.g. a square lattice where d = 4). Denote by v the
+                                             vertex that hosts the initial mutant. We observe that if v is selected for death before any of its d
+                                             neighbors then the mutants have just gone extinct. Since this event has probability 1/(d + 1),
+                                             the fixation probability is at most 1 − 1/(d + 1) = d/(d + 1), regardless of r. A more refined ver-
+                                             sion of this argument, which also accounts for arbitrary graphs, yields the following stronger
+                                             bound.
+                                                Lemma 1. Fix r > 1 and let GN be a graph (possibly with directed and/or weighted edges)
+                                             with average out-degree d. Then
+                                                                                                    d�r
+                                                                               rdB ðGN ; rÞ �                       :
+                                                                                                d�rþdþr         1
+
+                                                For large enough r and small (fixed) d, the bound of Lemma 1 coincides with the bound
+                                             we obtained with our intuitive argument above. Observe that even when r ! 1, the lemma
+                                             yields an upper-bound on the fixation probability that is strictly less than 1. On the other
+                                             hand, under Bd updating, the fixation probability tends to 1 as r ! 1, regardless of the graph.
+                                             Hence we have the following corollary, which states that for all population structures, Bd
+                                             updating favors fixation more than dB updating, provided that the fitness advantage is large
+                                             enough.
+                                                Corollary 1. For any graph GN, there exists some r?, such that for all r > r?, we have ρBd(GN, r)
+                                             > ρdB(GN, r).
+
+                                             Amplifiers of the dB Moran process
+                                             Here we answer the two questions Q1, Q2. We start with Q1 which asks for the existence of
+                                             universal amplifiers under dB updating. We show the following theorem.
+                                                 Theorem 1 (All dB amplifiers are transient). Fix a non-complete graph GN (possibly with
+                                             directed and/or weighted edges). Then there exists r? > 1 such that for all r > r? we have ρdB(GN, r)
+                                             < ρdB(KN, r), where KN is the complete graph on N vertices. In particular, we can take r? = 2N2.
+                                                 Since our baseline for amplifiers is the complete graph KN, Theorem 1 implies that, under
+                                             dB updating, every (unweighted) graph is, at best, a transient amplifier. Moreover, the only
+                                             graph that may be a universal (that is, non-transient) amplifier is a weighted version of the
+                                             complete graph KN. This is in sharp contrast to Bd updating, for which universal amplifiers
+                                             exist (e.g., the Star graph [28]).
+                                                 To sketch the intuition behind Theorem 1, consider again our toy example of an
+                                             unweighted undirected graph GN where each vertex has precisely d neighbors. Then the fixa-
+                                             tion probability is at most d/(d + 1), regardless of r. On the other hand, Eq 2 implies that the
+                                             fixation probability on a complete graph tends to 1 − 1/N as r ! 1. If d < N − 1, then 1 − 1/N
+                                             is strictly more than d/(d + 1), hence the graph GN ceases to amplify in the limit r ! 1. In
+                                             the proof, we use Lemma 1 which applies to possibly weighted, directed, and/or non-regular
+                                             graphs and which yields an explicit bound on the threshold r-value r? � 2N2.
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                         7 / 13
+                                                                                             Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+
+                                             Fig 4. Transient amplifiers under death-Birth updating. A companion work [38] identified certain weighted graphs
+                                             that are transient dB-amplifiers. a, The Fan graph FN,ε with N blades is a weighted graph obtained from a Star graph
+                                             S2N+1 by pairing up the 2N leaves and rescaling the weight of each edge coming from the center to ε < 1. b, The
+                                             implied scale of fitness of a large Fan (here N = 101 and ε = 10−5, values computed by numerically solving the
+                                             underlying Markov chain). If r is small enough then the Fan amplifies selection under dB updating. The level of
+                                             amplification is well within the scope allowed by Theorem 2 (shaded region). For comparison, we again show the
+                                             implied scale of fitness for the Complete, Bipartite, Star, and Ring graphs (N = 400).
+                                             https://doi.org/10.1371/journal.pcbi.1007494.g004
+
+                                                 Second, we turn our attention to question Q2, which asks for the existence of strong ampli-
+                                             fying families. We establish the following theorem, which answers Q2 in negative.
+                                                 Theorem 2 (All dB amplifiers are bounded). Fix r > 1. Then for any graph GN (possibly with
+                                             directed and/or weighted edges) we have rdB ðGN ; rÞ � 1 rþ1 1
+                                                                                                            .
+                                                 In particular, Theorem 2 implies that, under dB updating, the implied scale of fitness of
+                                             any graph is at most r + 1. Thus every graph is, at best, a bounded amplifier (see Fig 3b). In
+                                             particular, there exist no linear amplifiers, and thus no quadratic amplifiers or super amplifi-
+                                             ers. Again, this is in sharp contrast to Bd updating for which super amplifiers exist [16, 30,
+                                             31] and, in fact, are abundant [32].
+                                                 The proof again follows from Lemma 1: for any r > 1, the fraction on the right-hand side of
+                                             Lemma 1 is at most the desired 1 − 1/(r + 1), with equality when d ! 1.
+                                                 We remark that even though universal amplification is impossible by Theorem 1, some
+                                             population structures might achieve a certain level of amplification for a certain range of r-val-
+                                             ues. In fact, a companion work [38] presents weighted population structures called Fans that,
+                                                                                                                 pffiffi
+                                             in the appropriate limit, amplify selection in a range 1 < r < ð1 þ 5Þ=2. The extent to which
+                                             these structures amplify is well within the bounds provided by Theorem 2 (see Fig 4). It is not
+                                             known whether there exist unweighted graphs that provide transient amplification.
+
+
+                                             Extensions to δ-dB amplifiers
+                                             Given the negative answers to questions Q1 and Q2 above, we proceed with studying the δ-dB
+                                             Moran process, in which the death-Birth updates are interleaved with the Birth-death updates.
+                                             The insight of Corollary 1 is that mutants have a higher fixation probability under Bd updat-
+                                             ing, compared to dB updating (given a large enough fitness advantage r). Qualitatively, we
+                                             expect that given a fixed population structure under δ-dB updating, the fixation probability
+                                             increases as δ decreases. Fig 5 confirms this intuition numerically, for Complete graphs, Ring
+                                             graphs and Star graphs.
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                  8 / 13
+                                                                                                Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+
+                 Fig 5. Fixation probability under δ-dB updating. Three different graphs on N = 10 vertices: a Complete graph, b Ring graph, c Star graph. For
+                 each δ 2 {0, 0.25, 0.5, 0.75, 1} we show the fixation probability under δ-dB updating as a function of r. For reference, we show the Complete graph
+                 again in panels b, c (thick faint lines). On the latter two graphs, the dependence of the fixation probability on δ is more pronounced and not
+                 roughly linear as is the case for the Complete graph. Due to the isothermal theorem [16], the Complete graph and the Ring have the same fixation
+                 probability under Bd updating (δ = 0). The Star graph is an amplifier under Bd updating and also a δ-dB r-amplifier for small δ and r > 1 (e.g. for
+                 δ = 0.2 and r = 2 we have rd ðS10 ; rÞ > 0:494 > 0:491 > r^ d ðK10 ; rÞ) but ceases to be an amplifier for large δ (e.g. for δ = 0.5 and r = 2 we have
+                 rd ðS10 ; rÞ < 0:37 < 0:47 < r^ d ðK10 ; rÞ).
+                 https://doi.org/10.1371/journal.pcbi.1007494.g005
+
+
+
+                                                      The two extremes of the δ-dB Moran process are the pure Bd (δ = 0) and pure dB (δ = 1)
+                                                  Moran processes. It is known that under Bd updating, both universal amplifiers and super
+                                                  amplifiers exist. On the other hand, we have shown here that under pure dB updating, any
+                                                  amplification is inevitably transient and bounded. The next two natural questions are to inves-
+                                                  tigate whether universal or strong amplifiers exist for small values of δ 2 (0, 1), for which the
+                                                  process is heavily biased towards Bd updating. Perhaps surprisingly, we answer both questions
+                                                  in negative. Concerning universality, we show the following theorem.
+                                                      Theorem 3 (All δ-dB amplifiers are transient). Fix a non-complete graph GN on N vertices
+                                                  (possibly with directed and/or weighted edges) and δ 2 (0, 1]. Then there exists r? > 1 such that
+                                                  for all r > r? we have rd ðGN ; rÞ < r ^ d ðKN ; rÞ, where KN is the complete graph on N vertices.
+                                                      Theorem 3 is a δ-dB analogue of Theorem 1. It implies that, compared to the baseline given
+                                                  by a weighted average r  ^ d ðKN ; rÞ between ρdB(KN, r) and ρBd(KN, r), every unweighted graph
+                                                  is at best a transient amplifier, and a weighted graph can only be a universal amplifier if it is
+                                                  a weighted version of the complete graph KN. Hence for any positive δ > 0, no matter how
+                                                  small, universal amplification is impossible among unweighted graphs.
+                                                      Next, we turn our attention to the limit of large N, and ask whether strong amplification is
+                                                  possible for the δ-dB Moran process. We show the following theorem.
+                                                      Theorem 4 (All δ-dB amplifiers are at most linear). Fix r > 1 and δ 2 (0, 1]. Then for any
+                                                  graph GN (possibly with directed and/or weighted edges) we have rd ðGN ; rÞ � 1 ðr=dÞþ1    1
+                                                                                                                                                 .
+                                                     Theorem 4 implies that for fixed δ > 0, no matter how small, no better than linear amplifi-
+                                                  ers exist. In particular, there are no quadratic amplifiers and no super amplifiers. For δ ! 1
+                                                  (pure dB updating), the bound coincides with the one given in Theorem 2. For δ ! 0 (pure Bd
+                                                  updating), the bound becomes vacuous (it simplifies to ρBd(G, r) � 1) which is in alignment
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                       9 / 13
+                                                                                                  Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+
+                                                                                                                                                 pffiffiffiffi
+                Fig 6. Strength of amplification in terms of r and δ. a, Star graphs, b, complete Bipartite graphs with smaller part of size N , and c, Ring graphs, of
+                size either N = 10 (top row) or N = 100 (bottom row). For each of the six graphs, we plot the ratio rd ðGN ; rÞ=^
+                                                                                                                                r d ðKN ; rÞ as a function of the fitness
+                advantage r (x-axis) and the portion of dB-updates δ (y-axis). Red (blue) color signifies that the population structure amplifies (suppresses) selection for
+                the given regime (r, δ). Green curves denote regimes where the ratio equals 1. When r = 1, the fixation probability equals 1/N regardless of δ and the
+                population structure. By Theorem 3, all δ-amplifiers are transient, hence the “horizontal” green curves eventually hit the x-axis for r large enough.
+                Plotted values were obtained by numerically solving the underlying Markov chain for every r 2 {1, 1.025, . . ., 3} and δ 2 {0, 0.025, . . ., 1}.
+                https://doi.org/10.1371/journal.pcbi.1007494.g006
+
+                                                 with the existence of quadratic and super amplifiers under (pure) Bd updating. The proofs of
+                                                 Theorems 3 and 4 rely on a δ-analogue of Lemma 1.
+                                                    Even though universal amplification and super amplification are impossible for any δ > 0
+                                                 due to Theorems 3 and 4, some population structures do achieve reasonable levels of amplifi-
+                                                 cation for various combinations of r and δ. Specifically, we consider Star graphs, Bipartite
+                                                 graphs, and Ring graphs of fixed size N = 10 and N = 100 and show how strongly they amplify,
+                                                 depending on the fitness advantage r of the initial mutant and on the portion δ of dB updates
+                                                 (see Fig 6). We make several observations. First, when δ is small enough, both Star graphs and
+                                                 Bipartite graphs do amplify selection, for a certain range of r > 1. Interestingly, large Bipartite
+                                                 graphs are less sensitive to variations in δ than Star graphs, and for small r > 1 they maintain
+                                                 amplification even for δ almost as big as 0.5. On the other hand, if δ is small enough, Star
+                                                 graphs tend to achieve stronger amplification than Bipartite graphs. Second, for any of the six
+                                                 population structures and any fixed r, increasing δ diminishes any benefit that the population
+                                                 structure provides to advantageous mutants. Specifically, there appears to be no regime (r, δ)
+                                                 where a ring graph would amplify selection. This observation is consistent with Corollary 1.
+
+
+                                                 Discussion
+                                                 In this work, we have investigated the existence of amplifiers for the death-Birth (dB)
+                                                 Moran process. We have shown that such amplifiers, if they exist, must be both transient
+                                                 and bounded. Transience means that any population structure can amplify selection only in a
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                                           10 / 13
+                                                                                     Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                             limited range r 2 (1, r?) of relative fitness values r of the mutant. Boundedness means that even
+                                             when a population structure does amplify selection for a fixed r > 1, it can do so only to a lim-
+                                             ited extent. In particular, quadratic amplification which is achieved by the Star graphs under
+                                             Birth-death (Bd) updating is impossible to achieve under dB updating. As a consequence,
+                                             there are no super amplifiers under dB updating. These results are in sharp contrast to the Bd
+                                             Moran process, for which amplifiers and super amplifiers have been constructed repeatedly
+                                             [16, 28, 31, 33], and, in fact, can be abundant [35]. Our findings suggest that the existence
+                                             of amplifiers is sensitive to specific mechanisms of the evolutionary process, and hence their
+                                             biological realization depends on which process captures actual population dynamics more
+                                             faithfully.
+                                                 Note that the situation is more favorable in the broader family of weighted population
+                                             structures. Under Bd updating, super amplifiers are abundant [32], and under dB updating,
+                                             transient amplifiers have recently been constructed in a companion work [38]. It remains to
+                                             be seen whether transient amplification can be achieved by unweighted structures.
+                                                 To reconcile the apparent discrepancy in the results of the two processes, we have also
+                                             investigated the mixed δ-dB Moran process, which combines dB and Bd updating. On one
+                                             hand, we have extended our boundedness and transience results to δ-dB updating. Specifically,
+                                             our results imply that for any fixed δ > 0, any amplification is necessarily transient and that
+                                             there are no quadratic amplifiers or super amplifiers under δ-dB updating. In this sense, the
+                                             case of the (pure) Bd updating is singular. On the other hand, when δ is small, some population
+                                             structures that amplify for the pure Bd updating (δ = 0) maintain reasonable level of amplifica-
+                                             tion under δ-dB updating, for a wide range of fitness advantages r. Specifically, we find that
+                                             suitable Bipartite graphs are less sensitive to variations in δ than the Star graphs, and maintain
+                                             amplification for δ as big as 0.5, when r is close to 1.
+                                                 There is an interesting connection to the situation of evolutionary games on graphs. There,
+                                             the desirable population structures are those that promote cooperation. It is known that under
+                                             any δ-dB updating for δ > 0, population structures can promote cooperation [39], whereas for
+                                             pure Bd updating, no regular structure that promotes cooperation exists [42]. Therefore, in the
+                                             setting of games, the desirable structures exist for all δ > 0, whereas in our setting of constant
+                                             selection, the desirable structures (strong and/or universal amplifiers) exist only in the regime
+                                             δ = 0. In both settings, the case of pure Birth-death updating appears to be a singular one.
+
+
+                                             Supporting information
+                                             S1 Appendix. Supplementary information for “Limits on amplifiers of natural selection
+                                             under death-Birth updating”.
+                                             (PDF)
+
+
+                                             Author Contributions
+                                             Conceptualization: Krishnendu Chatterjee, Martin A. Nowak.
+                                             Formal analysis: Josef Tkadlec, Andreas Pavlogiannis.
+                                             Funding acquisition: Krishnendu Chatterjee.
+                                             Investigation: Josef Tkadlec, Andreas Pavlogiannis, Krishnendu Chatterjee, Martin A.
+                                                Nowak.
+                                             Software: Josef Tkadlec.
+                                             Supervision: Krishnendu Chatterjee, Martin A. Nowak.
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                        11 / 13
+                                                                                         Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                             Visualization: Josef Tkadlec, Martin A. Nowak.
+                                             Writing – original draft: Josef Tkadlec, Andreas Pavlogiannis.
+                                             Writing – review & editing: Josef Tkadlec, Krishnendu Chatterjee, Martin A. Nowak.
+
+
+
+                                             References
+                                              1.   Kimura M. Evolutionary Rate at the Molecular Level. Nature. 1968; 217(5129):624–626. https://doi.org/
+                                                   10.1038/217624a0 PMID: 5637732
+                                              2.   Ewens WJ. Mathematical Population Genetics 1: Theoretical Introduction. Interdisciplinary Applied
+                                                   Mathematics. Springer New York; 2004.
+                                              3.   Nowak MA. Evolutionary dynamics: exploring the equations of life. Cambridge, Massachusetts: Bel-
+                                                   knap Press of Harvard University Press; 2006.
+                                              4.   Desai MM, Fisher DS, Murray AW. The speed of evolution and maintenance of variation in asexual pop-
+                                                   ulations. Curr Biol. 2007; 17(5):385–394. https://doi.org/10.1016/j.cub.2007.01.072 PMID: 17331728
+                                              5.   McCandlish DM, Epstein CL, Plotkin JB. Formal properties of the probability of fixation: Identities,
+                                                   inequalities and approximations. Theor Popul Biol. 2015; 99:98–113. https://doi.org/10.1016/j.tpb.2014.
+                                                   11.004 PMID: 25450112
+                                              6.   Moran PAP. The statistical processes of evolutionary theory. Oxford University Press; 1962.
+                                              7.   Slatkin M. Fixation Probabilities and Fixation Times in a Subdivided Population. Evolution. 1981; 35
+                                                   (3):477–488. https://doi.org/10.1111/j.1558-5646.1981.tb04911.x PMID: 28563585
+                                              8.   Nowak MA, May RM. Evolutionary games and spatial chaos. Nature. 1992; 359(6398):826–829. https://
+                                                   doi.org/10.1038/359826a0
+                                              9.   Durrett R, Levin SA. Stochastic spatial models: a user’s guide to ecological applications. Philos Trans R
+                                                   Soc London Ser B Biol Sci. 1994; 343(1305):329–350. https://doi.org/10.1098/rstb.1994.0028
+                                             10.   Whitlock M. Fixation probability and time in subdivided populations. Genetics. 2003; 779(June):767–
+                                                   779.
+                                             11.   Hauert C, Doebeli M. Spatial structure often inhibits the evolution of cooperation in the snowdrift game.
+                                                   Nature. 2004; 428(6983):643–646. https://doi.org/10.1038/nature02360 PMID: 15074318
+                                             12.   Komarova NL. Spatial stochastic models for cancer initiation and progression. Bulletin of mathematical
+                                                   biology. 2006; 68(7):1573–1599. https://doi.org/10.1007/s11538-005-9046-8 PMID: 16832734
+                                             13.   Houchmandzadeh B, Vallade M. The fixation probability of a beneficial mutation in a geographically
+                                                   structured population. New J Phys. 2011; 13:073020. https://doi.org/10.1088/1367-2630/13/7/073020
+                                             14.   Frean M, Rainey PB, Traulsen A. The effect of population structure on the rate of evolution. Proc R Soc
+                                                   B Biol Sci. 2013; 280(1762):20130211. https://doi.org/10.1098/rspb.2013.0211
+                                             15.   Komarova NL, Shahriyari L, Wodarz D. Complex role of space in the crossing of fitness valleys by asex-
+                                                   ual populations. Journal of The Royal Society Interface. 2014; 11(95):20140014. https://doi.org/10.
+                                                   1098/rsif.2014.0014
+                                             16.   Lieberman E, Hauert C, Nowak MA. Evolutionary dynamics on graphs. Nature. 2005; 433(7023):312–
+                                                   316. https://doi.org/10.1038/nature03204 PMID: 15662424
+                                             17.   Broom M, Rychtář J. An analysis of the fixation probability of a mutant on special classes of non-directed
+                                                   graphs. Proc R Soc A Math Phys Eng Sci. 2008; 464(2098):2609–2627. https://doi.org/10.1098/rspa.
+                                                   2008.0058
+                                             18.   Broom M, Rychtář J, Stadler BT. Evolutionary Dynamics on Graphs—the Effect of Graph Structure and
+                                                   Initial Placement on Mutant Spread. J Stat Theory Pract. 2011; 5(3):369–381. https://doi.org/10.1080/
+                                                   15598608.2011.10412035
+                                             19.   Shakarian P, Roos P, Johnson A. A review of evolutionary graph theory with applications to game the-
+                                                   ory. Biosystems. 2012; 107(2):66–80. https://doi.org/10.1016/j.biosystems.2011.09.006 PMID:
+                                                   22020107
+                                             20.   Débarre F, Hauert C, Doebeli M. Social evolution in structured populations. Nat Commun. 2014; 5.
+                                                   https://doi.org/10.1038/ncomms4409 PMID: 24598979
+                                             21.   Allen B, Lippner G, Chen YT, Fotouhi B, Momeni N, Yau ST, et al. Evolutionary dynamics on any popu-
+                                                   lation structure. Nature. 2017; 544(7649):227–230. https://doi.org/10.1038/nature21723 PMID:
+                                                   28355181
+                                             22.   Monk T. Martingales and the fixation probability of high-dimensional evolutionary graphs. Journal of the-
+                                                   oretical biology. 2018; 451:10–18. https://doi.org/10.1016/j.jtbi.2018.04.039 PMID: 29727631
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                            12 / 13
+                                                                                         Limits on amplifiers of natural selection under death-Birth updating
+
+
+
+                                             23.   Kaveh K, Komarova NL, Kohandel M. The duality of spatial death–birth and birth–death processes and
+                                                   limitations of the isothermal theorem. Royal Society open science. 2015; 2(4):140465. https://doi.org/
+                                                   10.1098/rsos.140465 PMID: 26064637
+                                             24.   Adlam B, Chatterjee K, Nowak M. Amplifiers of selection. In: Proc. R. Soc. A. vol. 471; 2015.
+                                                   p. 20150114.
+                                             25.   Chalub FACC. An asymptotic expression for the fixation probability of a mutant in star graphs. Journal
+                                                   of Dynamics and Games. 2016; 3:217–223. https://doi.org/10.3934/jdg.2016011
+                                             26.   Hadjichrysanthou C, Broom M, Rychtář J. Evolutionary games on star graphs under various updating
+                                                   rules. Dynamic Games and Applications. 2011; 1(3):386. https://doi.org/10.1007/s13235-011-0022-7
+                                             27.   Askari M, Samani KA. Analytical calculation of average fixation time in evolutionary graphs. Physical
+                                                   Review E. 2015; 92(4):042707. https://doi.org/10.1103/PhysRevE.92.042707
+                                             28.   Monk T, Green P, Paulin M. Martingales and fixation probabilities of evolutionary graphs. Proc R Soc A
+                                                   Math Phys Eng Sci. 2014; 470(2165):20130730. https://doi.org/10.1098/rspa.2013.0730
+                                             29.   Pavlogiannis A, Tkadlec J, Chatterjee K, Nowak MA. Amplification on Undirected Population Structures:
+                                                   Comets Beat Stars. Scientific Reports. 2017; 7. https://doi.org/10.1038/s41598-017-00107-w PMID:
+                                                   28250441
+                                             30.   Giakkoupis G. Amplifiers and Suppressors of Selection for the Moran Process on Undirected Graphs.
+                                                   arXiv preprint arXiv:161101585. 2016.
+                                             31.   Galanis A, Göbel A, Goldberg LA, Lapinskas J, Richerby D. Amplifiers for the Moran process. Journal of
+                                                   the ACM (JACM). 2017; 64(1):5. https://doi.org/10.1145/3019609
+                                             32.   Pavlogiannis A, Tkadlec J, Chatterjee K, Nowak MA. Construction of arbitrarily strong amplifiers of natu-
+                                                   ral selection using evolutionary graph theory. Communications Biology. 2018; 1(1):71. https://doi.org/
+                                                   10.1038/s42003-018-0078-7 PMID: 30271952
+                                             33.   Goldberg LA, Lapinskas J, Lengler J, Meier F, Panagiotou K, Pfister P. Asymptotically optimal amplifiers
+                                                   for the Moran process. Theoretical Computer Science. 2019; 758:73–93. https://doi.org/10.1016/j.tcs.
+                                                   2018.08.005
+                                             34.   Hindersin L, Traulsen A. Counterintuitive properties of the fixation time in network-structured popula-
+                                                   tions. J R Soc Interface. 2014; 11(99). https://doi.org/10.1098/rsif.2014.0606 PMID: 25142521
+                                             35.   Hindersin L, Traulsen A. Most undirected random graphs are amplifiers of selection for birth-death
+                                                   dynamics, but suppressors of selection for death-birth dynamics. PLoS Comput Biol. 2015; 11(11):
+                                                   e1004437. https://doi.org/10.1371/journal.pcbi.1004437 PMID: 26544962
+                                             36.   Tkadlec J, Pavlogiannis A, Chatterjee K, Nowak MA. Population structure determines the tradeoff
+                                                   between fixation probability and fixation time. Communications biology. 2019; 2. https://doi.org/10.
+                                                   1038/s42003-019-0373-y PMID: 31044163
+                                             37.   Möller M, Hindersin L, Traulsen A. Exploring and mapping the universe of evolutionary graphs identifies
+                                                   structural properties affecting fixation probability and time. Communications biology. 2019; 2(1):137.
+                                                   https://doi.org/10.1038/s42003-019-0374-x PMID: 31044162
+                                             38.   Allen B, Sample C, Jencks R, Withers J, Steinhagen P, Brizuela L, et al. Transient amplifiers of selection
+                                                   and reducers of fixation for death-Birth updating on graphs. PLoS Comput Biol. 2020; 16(1): e1007529.
+                                                   https://doi.org/10.1371/journal.pcbi.1007529
+                                             39.   Zukewich J, Kurella V, Doebeli M, Hauert C. Consolidating birth-death and death-birth processes in
+                                                   structured populations. PLoS One. 2013; 8(1):e54639. https://doi.org/10.1371/journal.pone.0054639
+                                                   PMID: 23382931
+                                             40.   Cuesta FA, Sequeiros PG, Rojo ÁL. Evolutionary regime transitions in structured populations. PloS
+                                                   one. 2018; 13(11):e0200670. https://doi.org/10.1371/journal.pone.0200670
+                                             41.   Karlin S. A first course in stochastic processes. Academic press; 2014.
+                                             42.   Ohtsuki H, Hauert C, Lieberman E, Nowak MA. A simple rule for the evolution of cooperation on graphs
+                                                   and social networks. Nature. 2006; 441(7092):502. https://doi.org/10.1038/nature04605 PMID:
+                                                   16724065
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1007494 January 17, 2020                                                            13 / 13
+

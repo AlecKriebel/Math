@@ -1,0 +1,613 @@
+        Supplementary Information: Limits on amplifiers of natural
+                 selection under death-Birth updating
+Josef Tkadleca, 1 , Andreas Pavlogiannisb, 1 , Krishnendu Chatterjeea , and Martin A. Nowakc, ?
+                        a
+                          IST Austria, A-3400 Klosterneuburg, Austria
+    b
+     Lab for Automated Reasoning and Analysis, EPFL, CH-1015 Lausanne, Switzerland
+      c
+        Program for Evolutionary Dynamics, Department of Organismic and Evolutionary
+    Biology, Department of Mathematics, Harvard University, Cambridge, MA 02138, USA
+                       1
+                         J.T. and A.P. contributed equally to this work.
+     ?
+       To whom correspondence should be addressed. E-mail: martin nowak@harvard.edu
+
+
+
+Contents
+1 Organization                                                                                    1
+
+2 Model                                                                                           1
+
+3 Results                                                                                         4
+
+4 Proofs                                                                                          5
+  4.1 Theorems on dB updating . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+  4.2 Theorems on δ-dB updating . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+
+5 Further directions                                                                              9
+
+
+1       Organization
+This is supplementary information to the paper Limits on amplifiers of natural selection under
+death-Birth updating. The organization of this text is as follows. In Section 2, we formally
+introduce the model of Moran process on graphs with Birth-death (Bd) updating, death-Birth
+(dB) updating and δ-dB updating. We also introduce amplifiers of selection and classify them by
+universality and strength. In Section 3 we list our theoretical results and their significance. in
+Section 4 we present formal proofs. Finally, in Section 5 we list several interesting open questions
+for future research.
+
+
+2       Model
+Here we present the model of Moran process on graphs.
+
+
+                                                 1
+Population structure. In evolutionary graph theory, a population structure is represented by
+a graph that has N sites (nodes), some of which are connected by edges. Each site is occupied by
+a single individual. The edge from node u to node v represents that the individual at node u can
+replace the individual at node v.
+Directions and weights. The edges could be undirected (two-way) or directed (one-way) and
+they could be weighted. Formally, for a pair of nodes u, v, the weight of an edge (u, v) is denoted by
+wu,v . If the nodes u, v are not connected then wu,v = 0. In the special case of unweighted graphs,
+each edge is considered to have weight 1. In the special case of undirected graphs, each edge is
+two-way. In the most general case of directed graphs with weighted edges, two nodes u, v could be
+interacting in both directions with different weights wu,v 6= wv,u . We don’t allow self-loops, that is,
+wu,u = 0 for each node u.
+Mutant initialization. Initially, each site is occupied by a single resident with fitness 1. Then
+a single mutant with fitness r appears at a certain node. This initial mutant node can be selected
+uniformly at random (uniform initialization) or with probability proportional to the turnover rate of
+each node (temperature initialization). Unless specified otherwise, we assume that the initialization
+is uniform and that the mutation is advantageous (r > 1).
+Moran dB and Bd updating. Once a mutant has appeared, some version of Moran process takes
+place. Moran process is a discrete-time stochastic process. At each step, one individual is replaced
+by a copy of another (neighbouring) individual, hence the population size remains constant. Denote
+by f (v) the fitness of the individual at node v. The two prototypical updatings are:
+
+   • Moran death-Birth (dB) updating. An individual v is selected uniformly at random for death.
+     The individuals at the neighbouring sites then compete for the vacant spot. Specifically,
+     once v is fixed, an individual u is selected for placing a copy of itself on v with probability
+     proportional to f (u) · wu,v . Note that fitness of an individual doesn’t play a role in the death
+     step (thus “d” is lower case) but it does play a role in the birth step (thus “B” is upper case).
+
+   • Moran Birth-death (Bd) updating. An individual u is selected for reproduction with proba-
+     bility proportional to its fitness f (u). Then it replaces a random neighbor. Specifically, once
+     u is fixed, an individual v is replaced by a copy of u with probability proportional to wu,v .
+
+Mixed δ-dB updating. The two regimes dB and Bd can be understood as two extreme points
+of a spectrum. We also consider mixed updating where some steps of the process follow the dB
+updating while the other ones follow Bd updating. Generally, given a δ ∈ [0, 1], a δ-dB updating is
+an update rule in which each step is a dB event with probability δ and a Bd event with probability
+1 − δ, independently of all the other steps. With this notation, a 1-dB updating is the same as
+(pure) dB updating and 0-dB updating is the same as (pure) Bd updating.
+Fixation probability. Given a graph G, r > 1 and δ ∈ [0, 1], we denote by fpδ (G, r) the fixation
+probability of a δ-dB updating, when the first mutant is initialized uniformly at random. The
+complement, that is the probability that the evolutionary trajectory goes extinct, is denoted by
+epδ (G, r) = 1−fpδ (G, r). Specifically, for δ = 1 we denote the fixation (resp. extinction) probability
+under pure dB updating by fpdB (G, r) (resp. epdB (G, r)) and similarly for the pure Bd updating
+which corresponds to δ = 0.
+
+
+
+                                                   2
+Fixation probability on well-mixed populations. When studying the effect of population
+structure on the fixation probability, our baseline is the fixation probability on a well-mixed pop-
+ulation of the same size. A well-mixed population is modelled by a complete (unweighted) graph
+KN , without self-loops. Under pure dB and Bd updating there are exact formulas for fixation
+probability [1, 2]:
+
+                                    N −1     1 − 1r                                1 − 1r
+                  fpdB (KN , r) =        ·               and    fpBd (KN , r) =           .
+                                     N     1 − rN1−1                              1 − r1N
+
+For δ-dB updating, no analogous formula is known but numerical computations for various values
+of N and r show that fpδ (KN , r) is essentially indistinguishable from the linear interpolation
+
+                         b δ (KN , r) = δ · fpdB (KN , r) + (1 − δ) · fpBd (KN , r)
+                         fp
+
+between fpdB (KN , r) and fpBd (KN , r) (see Fig. 2 from the main text). Therefore, in δ-dB updating
+        b δ (KN , r) as the baseline comparison.
+we use fp
+Amplifiers of selection. Given r > 1, some population structures enhance the fixation probabil-
+ity of mutants, compared to the well-mixed population, whereas others decrease it. We refer to the
+former ones as amplifiers of selection and to the latter ones as suppressors of selection. Formally,
+given a graph GN with N nodes and some r > 1, we say that GN is an r-amplifier under dB
+updating if fpdB (GN , r) > fpdB (KN , r), where KN is a complete graph that represents a well-mixed
+population. If G is an r-amplifier under dB updating for all r > 1, we call it universal. In contrast,
+graphs that amplify only for some range of values r ∈ (1, r? ) are called transient. Similarly, we say
+that GN is an r-amplifier under Bd updating if fpBd (GN , r) > fpBd (KN , r) (note that the baseline
+is the complete graph KN under Bd updating) and, for a fixed δ ∈ [0, 1], we say that GN is an
+                                                   b δ (KN , r).
+r-amplifier under δ-dB updating if fpδ (GN , r) > fp
+Classification of amplifiers by strength: Implied scale of fitness. Amplifiers can be further
+classified by strength [3]. We single out bounded amplifiers, linear amplifiers, quadratic amplifiers
+and super amplifiers. The intuition behind the classification is that, in the limit of large population
+size, fixation probability can often be written as 1 − 1/ isf(r) for a suitable function isf(r) of r. For
+instance, for large well-mixed population we have isf(r) = r (under any of dB, Bd, δ-dB updating)
+and for large Star graphs under Bd updating we have isf(r) = r2 . The extent to which a large
+population structure G distorts this fixation probability can thus be classified by looking at the
+function isf(r).
+    Formally, given a family of graphs {GN }∞    N =1 of increasing population size, the implied scale of
+fitness of the family is a function isf(r) : (1, ∞) → R such that
+
+                                 lim inf fpdB (GN , r) = 1 − 1/ isf(r).
+                                      N →∞
+
+   We say that the family is
+
+  1. an (at most) bounded amplifier if isf(r) ≤ r + c0 for some constant c0 .
+
+  2. an (at least) linear amplifier if isf(r) ≥ c1 r + c0 for some constants c1 > 1, c0 .
+
+  3. an (at least) quadratic amplifier if isf(r) ≥ c2 r2 + c1 r + c0 for some constants c2 > 0, c1 , c0 .
+
+                                                     3
+    4. a super amplifier if isf(r) = ∞ for all r > 1.
+These definitions naturally carry over to Bd updating and δ-dB updating.
+Remark on the regimes considered. We intentionally restrict our attention to the following
+regimes:
+    1. r > 1. If r = 1 then fpδ (GN , r) = 1/N , regardless of the population structure. If r < 1 then
+       fpδ (GN , r) < 1/N →N →∞ 0 for any GN . Thus we focus on r > 1.
+
+    2. Uniform initialization. For dB updating, the notions of uniform and temperature initialization
+       coincide, since every node is, on average, selected for death and replaced equally often. Thus
+       we focus on uniform initialization only.
+
+    3. No self-loops. For dB updating, self-loops are not biologically realistic: An individual who
+       has just died can not replace itself. Thus we consider graphs with possibly directed and/or
+       weighted edges but without self-loops.
+
+
+3     Results
+Here we formally state our theorems and their consequences. The first two theorems concern pure
+dB updating, the other two concern mixed δ-dB updating.
+Theorem 1 (All dB amplifiers are bounded). Fix r > 1. Then for any graph GN (possibly with
+directed and/or weighted edges) we have fpdB (GN , r) ≤ 1 − r+1
+                                                             1
+                                                                .
+Theorem 2 (All dB amplifiers are transient). Fix a non-complete graph GN (possibly with directed
+and/or weighted edges). Then there exists r? > 1 such that for all r > r? we have fpdB (GN , r) <
+fpdB (KN , r), where KN is the complete graph on N vertices. In particular, we can take r? = 2N 2 .
+Theorem 3 (All δ-dB amplifiers are at most linear). Fix r > 1 and δ ∈ (0, 1]. Then for any graph
+G (possibly with directed and/or weighted edges) we have fpδ (G, r) ≤ 1 − (r/δ)+1
+                                                                             1
+                                                                                  .
+
+Theorem 4 (All δ-dB amplifiers are transient). Fix a non-complete graph G on N vertices (possibly
+with directed and/or weighted edges) and δ ∈ (0, 1]. Then there exists r? > 1 such that for all r > r?
+                      b δ (KN , r), where KN is the complete graph on N vertices.
+we have fpδ (G, r) < fp
+
+Significance of our results. Here we list the implications of our results.
+    1. Theorem 1 implies that, under dB updating, no unweighted graph is a universal amplifier and
+       a weighted graph can only be a universal amplifier if it is a weighted version of the complete
+       graph KN .
+
+    2. Theorem 2 implies that, under dB udpating, there are no superamplifiers and no quadratic
+       or even linear amplifiers.
+
+    3. Theorem 3 is a δ-dB analogue of Theorem 1. It implies that, compared to the baseline given by
+       a weighted average between fpdB (KN , r) and fpBd (KN , r), no unweighted graph is a universal
+       amplifier and a weighted graph can only be an r-universal amplifier if it is a weighted version
+       of KN .
+
+                                                   4
+    4. Theorem 4 is a δ-dB analogue of Theorem 2. It implies that if δ > 0 (i.e. we don’t have pure
+       Bd updating) then there are no quadratic amplifiers and no superamplifiers. For δ = 1 (pure
+       dB updating), the bound coincides with the one given in Theorem 2. For δ = 0 (pure Bd
+       updating), the bound is vacuous (in the limit δ → 0 it simplifies to fpBd (G, r) ≤ 1) which is
+       in alignment with the existence of quadratic amplifiers and superamplifiers under (pure) Bd
+       updating.
+
+
+4     Proofs
+Our proofs rely on Jensen’s inequality. For reference purposes, we state it here. Essentially, given a
+convex (or concave) function f and several real numbers x1 , . . . , xk , Jensen’s inequality bounds the
+(weighted) average of values f (x1 ), . . . , f (xk ) by the value that f takes at the (weighted) average
+of x1 , . . . , xk .
+
+Claim (Jensen’s inequality). Let a1 , . . . , an be non-negative real numbers that sum up to 1 and
+let f be a real continuous function. Then
+
+    • If f is convex then
+                                       k                        k
+                                                                                !
+                                       X                        X
+                                             ai · f (xi ) ≥ f         ai · xi
+                                       i=1                      i=1
+
+    • If f is concave then
+                                       k                        k
+                                                                                !
+                                       X                        X
+                                             ai · f (xi ) ≤ f         ai · xi
+                                       i=1                      i=1
+
+
+4.1    Theorems on dB updating
+The key to proving our theorems on dB updating is the following lemma that gives an upper bound
+on the fixation probability fpdB (G, r) on an arbitrary graph (possibly with directed and/or weighted
+edges), in terms of the average in-degree d and the relative fitness r > 1 of the mutant. Recall that
+given a graph G and its node v, the in-degree of v is the number of nodes u for which there is an
+edge (u, v). If G is undirected then the in-degree of a node is the same as the degree (the number
+of neighbors). For any graph G, the average in-degree is the same as the average out-degree (and
+as the average degree if G is undirected).
+
+Lemma 1. Fix r > 1 and let G be a graph (possibly with directed and/or weighted edges) with
+average out-degree d. Then
+                                                d·r
+                             fpdB (G, r) ≤                .
+                                           d·r+d+r−1
+Proof. Denote by u the initial node occupied by the mutant and recall that epdB (u) is the extinction
+                                                                                      1 P
+probability under dB updating if the initial mutant appears at u. Then ep (G, r) = N u epdB (u).
+                                                                           dB
+
+   Denote by E − (u) (resp. E + (u)) the event that in the next step of the dB updating the number
+of mutants decreases (resp. increases) and by p− (u) (resp. p+ (u)) the corresponding probability.
+Note that if neither of E − (u), E + (u) happens, the set of nodes occupied by the mutants stays
+
+
+
+                                                      5
+the same, and if E − (u) happens before E + (u), the mutants go extinct. Therefore the extinction
+probability epdB (u) starting from a configuration with a single mutant at node u satisfies
+
+                                                    p− (u)          1
+                                 epdB (u) ≥      −        +
+                                                              =       +    .
+                                                p (u) + p (u)   1 + p− (u)      p (u)
+
+    We now compute p− (u) and p+ (u). The number of mutants decreases if and only if we select
+the single mutant for death, i.e. p− (u) = 1/N , for any node u. The number of mutants increases if
+and only if for death we select some node that neighbors u and then we select u for producing an
+offspring. Hence                                    X
+                                          p+ (u) =     p+u,v ,
+                                                              v
+where
+                                           1           r · wu,v
+                                  p+
+                                   u,v =     ·                 P
+                                           N (r − 1) · wu,v + u0 wu0 ,v
+is the probability that v was selected for death and then u (the only mutant on G) was selected to
+place a copy of itself on v.
+    Now we bound epBd (G, r) in terms of p− (u) and p+ (u). In the last step we use Jensen’s
+inequality for a function f (x) = 1/(1 + x) which is convex on x ∈ (0, ∞):
+                                1 X dB       1 X   1              1
+               epdB (G, r) =        ep (u) ≥       p + (u) ≥                                     p+ (u)
+                                                                                                          .
+                                N u          N u 1+ −        1+ 1
+                                                                  P
+                                                                       p (u)              N    u p− (u)
+
+   Since p− (u) = 1/N for all u, the right-hand side simplifies and we get
+                                                                   1
+                                        epdB (G, r) ≥             P     + (u)
+                                                                                .
+                                                          1+       up
+
+In the rest, we find a tight upper bound on u p+ (u). We first rewrite each p+ (u) using p+
+                                            P
+                                                                                          u,v and
+interchange the sums to get
+                               X           XX          XX
+                                  p+ (u) =     p+u,v =        p+u,v .
+                                  u               u   v                 v   u
+                                                                                    P
+We focus on the inner sum. Fix a node v and denote by s(v) =                            u0 wu0 ,v the total weight of all
+edges incoming to v. Using the formula for p+
+                                            u,v we obtain
+
+                                 X              1 X       r · wu,v
+                                       p+
+                                        u,v =                             .
+                                   u
+                                                N u (r − 1) · wu,v + s(v)
+
+We make three observations. First, the summation  Phas at most din (v) terms, where din (v) is the
+number of incoming edges to v. Second, we have u wu,v = s(v). Third, for fixed r > 0 and any
+                              r·x
+s > 0, the function g(x) = (r−1)x+s is concave on x ∈ (0, s). Therefore, by another application of
+Jensen’s inequality we can write
+
+                X             1                   r · ds(v)
+                                                       in (v)          1      r · din (v)
+                     p+
+                      u,v ≤     · din (v) ·           s(v)
+                                                                     =   ·                  ,
+                 u
+                              N             (r − 1) ·         + s(v)   N   r −  1 + din (v)
+                                                      din (v)
+
+
+                                                          6
+Finally, summing up over v we obtain
+                     X              XX                 1 X r · din (v)        r·d
+                         p+ (u) =             p+
+                                               u,v ≤                       ≤       ,
+                     u               v    u
+                                                       N v r − 1 + din (v)   r−1+d
+
+                                                                                                  r·x
+where in the last step we yet again used Jensen’s inequality, this time for the function h(x) = r−1+x
+that is concave on x ∈ (0, ∞), and the fact that the average in-degree of a graph is the same as its
+average out-degree.
+   We conclude by observing that this upper bound on u p+ (u) yields
+                                                          P
+
+                                               1                    1              d+r−1
+                     epdB (G, r) ≥                          ≥               =                  ,
+                                                   p+ (u)             r·d
+                                              P
+                                     1+        u                1 + r−1+d       dr + d + r − 1
+
+hence
+                                                                            d·r
+                            fpdB (G, r) ≤ 1 − epdB (G, r) ≤
+                                                                        d·r+d+r−1
+as desired
+
+   With the lemma at hand, we can prove the first two Theorems.
+
+Theorem 1 (All dB amplifiers are transient). Fix a non-complete graph GN (possibly with directed
+and/or weighted edges). Then there exists r? > 1 such that for all r > r? we have fpdB (GN , r) <
+fpdB (KN , r), where KN is the complete graph on N vertices. In particular, we can take r? = 2N 2 .
+
+Proof. Recall that
+
+                                                       1 − 1/r
+                     fpdB (KN ) = (1 − 1/N )                     ≥ (1 − 1/N )(1 − 1/r),
+                                                     1 − 1/rN −1
+
+hence
+                                                   N +r−1
+                                           epdB (KN ) ≤        .
+                                                        Nr
+Using Lemma 1, it suffices to show that for all sufficiently large r we have
+                                             d+r−1         N +r−1
+                                                         >
+                                          dr + d + r − 1     Nr
+which, after clearing the denominators, is equivalent to
+
+                          r2 (N − 1 − d) − 2r(N − 1) − (d − 1)(N − 1) > 0.
+
+Since G is not complete, d < N − 1 (a strict inequality), hence the coefficient by r2 is positive and
+the inequality holds for all sufficiently large r.
+   In particular, it is straightforward to check that r = 2N 2 is large enough: If G misses at least
+one edge then d ≤ N − 1 − N1 hence for r ≥ 2N 2 the right-hand side is at least
+
+                                          1
+                             (2N 2 )2 ·     − 4N 2 (N − 1) − N 2 = 3N 2 > 0.
+                                          N
+
+
+
+                                                            7
+Theorem 2 (All dB amplifiers are bounded). Fix r > 1. Then for any graph GN (possibly with
+directed and/or weighted edges) we have fpdB (GN , r) ≤ 1 − r+1
+                                                             1
+                                                                .
+Proof. Using Lemma 1, it suffices to check that
+                                         d+r−1          1
+                                                     ≥
+                                      dr + d + r − 1   r+1
+which, after clearing the denominators, is equivalent to r(r − 1) ≥ 0. The equality holds for
+r = 1.
+
+4.2   Theorems on δ-dB updating
+In order to prove Theorems 4 and 3 we first use a similar technique as before to establish an
+analogue of Lemma 1 that applies to δ-dB updating.
+Lemma 2. Fix r > 1 and let G be a graph (possibly with directed and/or weighted edges) with
+average out-degree d. Then
+                                                         1
+                               epδ (G, r) ≥                                 .
+                                                    dr
+                                              1 + d+r−1 + 1−δ    Nr
+                                                           δ · N +r−1
+
+Proof. Denote the initial mutant node by u and, as in Lemma 1, let p− (u) (resp. p+ (u)) be the
+probability that after a single step of δ-dB updating, the number of mutants in the population
+decreases (resp. increases).
+   The values p− (u) and p+ (u) are weighted averages of the corresponding values under (pure) dB
+and Bd updating, with weights δ, 1 − δ. That is,
+                                   1               X       1          wt,u
+                      p− (u) = δ ·     + (1 − δ) ·                ·P
+                                   N                t
+                                                       N +r−1        u0 wt,u0
+
+and, using the notation p+
+                         u,v from Lemma 1,
+                                       X                              r
+                          p+ (u) = δ ·   p+
+                                          u,v + (1 − δ) ·                 .
+                                         v
+                                                                   N +r−1
+
+As in Lemma 1, we get
+                                                         1
+                                   epδ (G, r) ≥                p+ (u)
+                                                                        .
+                                                       1 P
+                                                  1+ N       u p− (u)
+
+For each fixed u, we bound p− (u) from below by ignoring the whole Bd-contribution. We get
+p− (u) ≥ Nδ which yields
+                                                           1
+                                        epδ (G, r) ≥     1P
+                                                     1 + δ u p+ (u)
+and it remains to bound u p+ (u) from above. In u p+ (u), the total Bd-contribution
+                             P                           P
+                                                                                            (summed
+                         Nr
+                               and, as in Lemma 1, the total dB-contribution is at most δ· u v p+
+                                                                                          P P
+over u) equals (1−δ) N +r−1                                                                     u,v ≤
+      rd
+δ · r−1+d . In total, this yields
+                                                         1
+                               epδ (G, r) ≥         dr
+                                              1 + d+r−1 + 1−δ    Nr
+                                                           δ · N +r−1
+
+as desired.
+
+                                                   8
+    Using Lemma 2 we present proofs of Theorems 3 and 4 from the main text.
+
+Theorem 3 (All δ-dB amplifiers are transient). Fix a non-complete graph G on N vertices (possibly
+with directed and/or weighted edges) and δ ∈ (0, 1]. Then there exists r? > 1 such that for all r > r?
+                      b δ (KN , r), where KN is the complete graph on N vertices.
+we have fpδ (G, r) < fp
+
+Proof. Let d be the average in-degree of G. Since G is not complete, we have d < N − 1 (a strict
+inequality).
+                                                                                   Bd
+    As in the proof of Theorem 1, recall that epdB (KN , r) ≤ N +r−1
+                                                                N r . Moreover, fp (KN , r) =
+ 1−1/r
+1−1/rN
+       ≥ 1 − 1/r, hence epBd (KN , r) ≤ 1r . This yields
+
+           b δ (KN , r) = b                                                         1      r−1
+       1 − fp             epδ (KN , r) = δ · epdB (KN , r) + (1 − δ) epBd (KN , r) ≤ + δ ·
+                                                                                    r       Nr
+and by Lemma 2 it suffices to show that for all sufficiently large r we have
+                                          1                   1     r−1
+                                                          ≥     +δ·     ,
+                                    dr
+                              1 + d+r−1 + 1−δ    Nr
+                                           δ · N +r−1
+                                                              r      Nr
+
+Since N , d and δ are all fixed, we can consider both sides as functions of r. As r → ∞, the left-hand
+side tends to 1+d+11−δ N while the right-hand side tends to Nδ . In order to conclude, it suffices to
+                    δ
+show strict inequality between the respective limits:
+                                             1      δ
+                                               1−δ
+                                                   > .
+                                          1+d+ δ N  N
+
+After clearing the denominators, this is equivalent to δ(N − 1 − d) > 0 which indeed holds for any
+δ > 0 and any non-complete graph KN .
+
+Theorem 4 (All δ-dB amplifiers are at most linear). Fix r > 1 and δ ∈ (0, 1]. Then for any graph
+G (possibly with directed and/or weighted edges) we have fpδ (G, r) ≤ 1 − (r/δ)+1
+                                                                             1
+                                                                                  .
+
+Proof. Since d ≤ N − 1 < N and r > 1, we have
+                                           dr      Nr
+                                               <        ,
+                                         d+r−1   N +r−1
+hence Lemma 2 gives
+                                     1                        1                δ        1
+           epδ (G, r) ≥                             >              Nr
+                                                                          ≥       =           ,
+                                dr
+                          1 + d+r−1 + 1−δ    Nr
+                                       δ · N +r−1       1 + 1δ · N +r−1       r+δ   (r/δ) + 1
+
+where the last inequality is equivalent to δ · r(r − 1) ≥ 0 after clearing the denominators. The result
+follows.
+
+
+5    Further directions
+Here we list several interesting open questions.
+
+
+                                                    9
+1. Unweighted transient amplifiers under dB updating. Weighted transient amplifiers
+   for dB updating have been constructed in a companion work [4]. Do there exist transient
+   amplifiers among unweighted graphs?
+
+2. Towards universal amplification under dB updating. The weighted transient amplifiers         √ .
+   constructed in the companion work [4] amplify for r less than a golden ratio φ = 21 (1 + 5) =
+   1.618. Does there exist a graph that amplifies for r > φ? If so, does for every r? exist a graph
+   that amplifies for all r ∈ (1, r? )? If so, does there exist a universal amplifier for dB updating?
+   Theorem 1 implies that if so, it has to be a weighted version of a complete graph.
+
+3. Towards universal amplification under δ-dB updating. How do the answers change
+   under δ-dB updating instead of (pure) dB updating? Specifically, do large complete Bipartite
+   graphs amplify on arbitrarily large intervals (1, r? ), provided that δ is small enough?
+
+4. Well-mixed populations with δ-updating. Is there a simple formula for fixation proba-
+   bility on a complete graph under δ-dB updating for δ ∈ (0, 1)?
+
+5. Monotonicity in δ. Is fpdB (GN , r) < fpBd (GN , r) for any fixed graph G and any fixed
+   r > 1? If so, is fpδ (GN , r) a decreasing function of δ, for any fixed graph G and any fixed
+   r > 1?
+
+6. Optimal graph for a given r. For fixed r > 1, what is the highest possible fixation
+   probability fpdB (G, r), attained by any graph G? Theorem 2 states that fpdB (G, r) ≤ 1 −
+   1/(r + 1) for any fixed r > 1 and any graph G. The bound is attained for r = 1 due to K2 and
+   is relatively tight for r → ∞ due to large Complete graphs which give fpdB (KN , r) →N →∞
+   1 − 1/r (see Fig A in S1 Text). Are those graphs optimal? Or does there exist r > 1 and a
+   graph G (of any size) such that fpdB (G, r) > max{ 21 , 1 − 1r }?
+
+7. Regime r < 1. Throughout this work we exclusively deal with regime r > 1. For r < 1,
+   a population structure is an r-amplifier if it decreases the fixation probability of (disad-
+   vatageous) mutants. Do there exist graphs that are r-amplifiers under dB updating for all
+   r ∈ (0, 1)?
+
+
+
+
+                                                10
+                                  1.0
+                                         ρ(K2 , r )
+                                         ρ(K3 , r )              Upper bound
+
+                                  0.8    ρ(K5 , r )
+
+
+
+
+           Fixation probability
+                                         ρ(K10 , r )
+                                         ρ(K100 , r )
+                                  0.6
+
+
+
+                                  0.4
+
+
+
+                                  0.2
+
+
+
+                                  0.0
+                                     0      1           2        3      4          5
+
+                                                             r
+Fig A. Additional figure: Tightness of the upper bound. We consider Complete graphs of
+sizes N ∈ {2, 3, 5, 10, 100} under dB updating. The fixation probability is always below the upper
+bound given by Theorem 2. For r = 1 the bound precisely matches the fixation probability on K2 .
+For large r, the bound is relatively tight with respect to large Complete graphs.
+
+
+
+
+                                                        11
+References
+[1] Kaveh K, Komarova NL, Kohandel M. The duality of spatial death–birth and birth–death pro-
+    cesses and limitations of the isothermal theorem. Royal Society open science. 2015;2(4):140465.
+
+[2] Lieberman E, Hauert C, Nowak MA.               Evolutionary dynamics on graphs.            Nature.
+    2005;433(7023):312.
+
+[3] Adlam B, Chatterjee K, Nowak M. Amplifiers of selection. Proc R Soc A Math Phys Eng Sci.
+    2015;471:20150114.
+
+[4] Allen B, et al. Transient amplifiers of selection and reducers of fixation for death-Birth updating
+    on graphs. 2019;.
+
+
+
+
+                                                  12
+
