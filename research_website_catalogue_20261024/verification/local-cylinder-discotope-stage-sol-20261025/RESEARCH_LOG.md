@@ -1,3 +1,5 @@
 # Private cylinder/discotope two-record stage
 
 * 2026-10-25T07:36:12.472582+00:00 — Protected baseline acquired before proposal:484 entire-public files (255research),60 index items,61 sitemap URLs, CSS/Firebase and current shared scripts/checker, both sources/configs/editorial/intake/review objects bound. The first no-write probe confused subtree and whole-public counts; the scope is corrected here. No production/core mutation allowed. Private-stage completion estimate5%.
+
+* 2026-10-25T07:49:00.682248+00:00 — Both actual private pages pass131 checks. One full59-record legacy suite passes3377 checks; all118 complete original/proposed renderer executions agree byte for byte in memory.54 actual-input rejections pass in normal and optimized Python;4 public-output fault controls reject. All1113 protected files, including484 production files, remain unchanged. Full actual public copies and changed code read. Private-stage completion100%; root rendered-copy review/integration authorization remain pending; overall203 programme ongoing.

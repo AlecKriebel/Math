@@ -1,0 +1,257 @@
+--- PAGE 1 ---
+A seven-hyperplane counterexample to a generic-initial degree
+bound
+Alec Kriebel
+Independent researcher
+ORCID: 0009-0001-9320-500X
+Research note, 15 October 2026
+Abstract
+For the characteristic-zero arrangement deﬁned by Q = xy(x − y)(x − 2y)zw(x + z + w),
+the degree-reverse-lexicographic generic initial ideal of the ambient Jacobian ideal has pure-
+second-variable cutoﬀ 8 and a degree- 7 minimal generator whose largest variable is the third.
+This explicitly contradicts the second-variable bound of Bigatti–Palezzato–Torielli, also stated
+in OWR Report 5/2021. We prove the generic sectional dimensions on a nonempty open set of
+compatible ﬂags, using scalar polar syzygies and Hilbert–Burch, and give exact rational checks.
+The arrangement is a classical parallel connection; the methods and the valid three-variable
+arrangement theorem are prior work. Historical novelty and independent discovery are not
+established. This unrefereed note was developed with extensive AI assistance and has not
+undergone conventional human peer review.
+1 Statement and conventions
+Let K be any ﬁeld of characteristic zero. Use the order x1 > x 2 > x 3 > x 4 for degree reverse
+lexicographic generic initial ideals. For an arrangement A with Jacobian ideal J, put
+B = gin revlex(J), p = min{d ≥ 0 : xd
+2 ∈ B}.
+Conjecture 5.7 of Bigatti–Palezzato–Torielli [ 1] asks that a minimal generator of B involving x3
+have degree at least p. Their notation is d0 = min {d : xd+1
+2 ∈ B}, so p = d0 + 1. The same
+second-variable statement appears as Conjecture 7 on printed page 234 of OWR Report 5/2021
+[2], and as Conjecture 7.9 in [ 3, 4]. A ﬁrst-variable exponent in an imported problem record was
+a transcription error; correcting it is source normalization, not a mathematical contribution.
+Theorem 1. In S = K[x, y, z, w], let
+Q = xy(x − y)(x − 2y)zw(x + z + w), J = (Qx, Qy, Qz, Qw).
+For B = gin revlex(J) ⊂ K[x1, x2, x3, x4], one has p = 8 , and B has a degree- 7 minimal generator
+in K[x1, x2, x3] divisible by x3. In particular its largest variable is x3 and its degree is strictly less
+than p.
+The seven factors are distinct, and the coordinate factors make the central arrangement essen-
+tial. Euler’s identity xQx + yQy + zQz + wQw = 7 Q shows that adjoining Q does not change J.
+The four polars have degree 6.
+1
+--- PAGE 2 ---
+The arrangement itself is a classical construction: it is the parallel connection along the shared
+factor x of the rank-two four-element pencil {x, y, x−y, x−2y} and the rank-three four-element cir-
+cuit {x, z, w, x+z +w}. Their matroids are U2,4 and U3,4. See Falk–Proudfoot [ 6, §4, Theorem 4.1]
+for the realization of parallel connections by identifying shared coordinates. No new-arrangement
+claim is made here.
+Marchesi–Palezzato–Torielli prove the conjecture for arrangements in K3 [5, Theorem 4.7]. Our
+ternary section retains four ambient polars . It is not the three-generated Jacobian ideal obtained
+by ﬁrst restricting Q and then diﬀerentiating in three variables. Theorem 1 therefore respects that
+result.
+2 Polar relations on an open set of sections
+For an injective map C : Kr → K4, r = 2 , 3, let Rr be its polynomial coordinate ring and write
+X, Y, Z, W for the four coordinate restrictions. Write L1, . . . , L7 for the restricted factors, ai ∈ K4
+for the ambient coeﬃcient row of the ith factor, and
+fj = Qj ◦ C (j = x, y, z, w), I r = (fx, fy, fz, fw) ⊂ Rr.
+Require that X, Y be independent and that all seven Li be nonzero and pairwise nonproportional.
+For r = 3 also require that X, Z, W be independent. These are open rank conditions. Nonemptiness
+for compatible sections is proved below.
+For a tuple u = ( ux, uy, uz, uw) of homogeneous linear forms in Rr, ambient diﬀerentiation
+gives
+∑
+j
+ujfj =
+7∑
+i=1
+(ai · u)
+∏
+h̸=i
+Lh. (1)
+Reduce a zero relation modulo Li. The quotient Rr/(Li) is a domain, and every other factor has
+nonzero image. Thus Li | ai · u. Since both have degree one, there is a scalar λi with ai · u = λiLi.
+Conversely, these proportionalities turn ( 1) into (∑
+i λi) ∏
+i Li. Consequently all linear syzygies
+are characterized by
+ai · u = λiLi (1 ≤ i ≤ 7),
+∑
+i
+λi = 0. (2)
+The same reduction for a constant tuple forces ai · u = 0 for every i. The coordinate-factor rows
+imply u = 0. Hence the four fj are linearly independent and minimally generate Ir in degree 6.
+This factor-divisibility calculation uses classical logarithmic-derivation ideas. Tohaneanu [ 7,
+§2.1] explains the linear case and explicitly traces its decomposition mechanism to Orlik–Terao [ 8,
+Proposition 4.29(3)]. We apply that elementary mechanism to restricted ambient polars; we do
+not assert a new general derivation theorem.
+The ﬁrst three factors X, Y, X − Y force their scalars in ( 2) to coincide; X − 2Y has the same
+scalar, say a. Call the remaining scalars b, c, d. The system becomes exactly
+ux = aX, u y = aY, u z = bZ, u w = cW,
+(a − d)X + (b − d)Z + (c − d)W = 0, 4a + b + c + d = 0. (3)
+For r = 3 , independence of X, Z, W gives a = b = c = d; the trace equation is 7a = 0 . Thus
+there is no linear syzygy. Writing Hr(k) = dim K(Rr/Ir)k, we obtain
+H3(5) = 21 , H 3(6) = 28 − 4 = 24 , H 3(7) = 36 − 12 = 24 . (4)
+2
+--- PAGE 3 ---
+For r = 2 , the relation space of X, Z, W is one-dimensional. Choose ρxX + ρzZ + ρwW = 0
+nonzero. All solutions of the vector equation in ( 3) are
+a = d + tρx, b = d + tρz, c = d + tρw, 7d + t(4ρx + ρz + ρw) = 0 .
+The last equation has rank one, even if its coeﬃcient of t vanishes. The map from its solution
+space to u is injective: u = 0 forces a = b = c = 0, and then d(X + Z + W ) = 0 forces d = 0 and
+t = 0. There is therefore exactly one independent linear binary syzygy.
+3 Binary Hilbert function and genericity
+The ideal I2 has height two. Indeed, work over an algebraic closure and suppose all four binary
+polars vanish at a projective point. Restricted Euler implies ∏
+i Li = 0 . Exactly one Li vanishes
+there, since nonproportional binary linear forms have distinct zeros. The ambient polar vector at
+that point is ai
+∏
+h̸=i Lh, a nonzero vector, which is a contradiction. Thus there is no projective
+common zero, and R2/I2 is Artinian. This conclusion descends to K by extension of scalars.
+The graded Hilbert–Burch theorem [ 9] gives a minimal resolution
+0 − →
+3⊕
+j=1
+R2(−6 − ej) − →R2(−6)4 − →I2 − →0, e j ≥ 1.
+The ﬁnite-length quotient has Hilbert numerator N (t) = 1 − 4t6 + ∑
+j t6+ej , which has a double
+zero at 1. The equation N ′(1) = 0 gives ∑
+j ej = 6. Exactly one linear syzygy means exactly one
+ej is 1; the other two are at least 2. Thus the coeﬃcient degrees are {1, 2, 3} and
+HS(R2/I2; t) = 1 − 4t6 + t7 + t8 + t9
+(1 − t)2 , (H2(6), H2(7), H2(8)) = (3 , 1, 0). (5)
+For completeness the open conditions above hold on a compatible ﬂag over every ﬁeld in scope.
+Take
+(x, y, z, w) = ( s, t, u, s + 2t + 3u), u = 2s + 3t. (6)
+In the ternary section, X, Y and X, Z, W have the required independence. The binary factor rows
+are
+(1, 0), (0, 1), (1, −1), (1, −2), (2, 3), (7, 11), (10, 14).
+They are nonzero with all pair determinants nonzero, as can be checked directly. Pairwise dis-
+tinctness also holds before the binary restriction. A compatible full basis is the column basis
+of
+C0 =
+
+
+1 0 0 0
+0 1 0 0
+2 3 1 0
+7 11 3 1
+
+ , det C0 = 1.
+Its ﬁrst two columns give the binary section and its ﬁrst three span the ternary section in ( 6).
+The conditions therefore deﬁne a nonempty open set of compatible ﬂags, whose lift to GL4 is
+nonempty open. The calculations ( 4)–( 5) hold throughout it. The variety GL4 is irreducible, so
+this open set intersects the nonempty generic-initial open set of Galligo’s theorem [ 10]; see also
+[1, Theorem 4.4]. Since a characteristic-zero ﬁeld is inﬁnite, the required nonempty opens admit
+K-rational choices. Hence the displayed dimensions are the generic sectional dimensions over every
+such K. The explicit ﬂag proves nonemptiness; favorable ranks at that ﬂag alone would not prove
+genericity.
+3
+--- PAGE 4 ---
+4 The generic-initial generator
+The classical reverse-lexicographic section identity, for example Conca [ 11, Lemma 1.2] and [ 1,
+Theorem 6.2], identiﬁes the generic dimensions with
+Hr(k) = dim K
+(
+K[x1, . . . , xr]/Br
+)
+k, B r = B ∩ K[x1, . . . , xr]. (7)
+In characteristic zero, B is strongly stable: if xj | m ∈ B and i < j , then xim/xj ∈ B. Thus
+xk
+2 ∈ B implies that every binary degree- k monomial belongs to B. By ( 5), x7
+2 /∈ B and x8
+2 ∈ B.
+Ideal closure rules out any earlier pure power, so p = 8.
+Put A3 = K[x1, x2, x3]/B3. The cokernel of x3 : (A3)k−1 → (A3)k is (K[x1, x2]/B2)k. Hence
+dimK ker
+(
+x3 : (A3)k−1 → (A3)k
+)
+= H3(k − 1) − H3(k) + H2(k). (8)
+This dimension is 21 − 24 + 3 = 0 at k = 6 and 24 − 24 + 1 = 1 at k = 7. There are no elements of B
+in degrees below 6, since taking an initial ideal preserves the graded Hilbert function. A degree- 6
+minimal generator of B3 divisible by x3 would, after division by x3, give a standard monomial in
+the ﬁrst kernel. Thus no generator of B3 involving x3 has degree at most 6.
+The second kernel is nonzero and is spanned by killed standard monomials. Choose a degree- 6
+standard monomial m with x3m ∈ B3, and let v be a minimal generator dividing x3m. If x3 ∤ v,
+then v | m, which contradicts standardness. Since v involves x3 and has degree at most 7, the
+preceding paragraph forces deg v = 7. It is also minimal in B, because a divisor of a monomial in
+the ﬁrst three variables cannot involve x4. This proves Theorem 1.
+Equation ( 8) is the classical sectional-matrix triangle calculation; compare [ 1, Theorem 6.6].
+We use it inside B3 and then prove minimality in B by divisibility. A row for the third truncation
+does not detect arbitrary full-ring generators involving later variables. No full generic initial ideal
+or particular exponent vector for v is needed.
+5 Exact veriﬁcation
+The accompanying standard-library Python veriﬁcation reconstructs Q over Q, diﬀerentiates in
+four variables before restriction, and builds exact homogeneous multiplication matrices for ( 6).
+Their ranks are corroboration of the open-set proof:
+Section variables Total degree Matrix shape Rank Quotient dimension
+3 6 4 × 28 4 24
+3 7 12 × 36 12 24
+2 6 4 × 7 4 3
+2 7 8 × 8 7 1
+2 8 12 × 9 9 0
+Rows are polynomial multiples of the four polars and columns are degree- k monomials. Exact
+nonzero minors and complete left-kernel bases certify both rank bounds. The binary syzygy is
+11sfx + 11tfy − 73(2s + 3t)fz + 25(7s + 11t)fw = 0.
+A constructive 4 × 3 Hilbert–Burch matrix with coeﬃcient degrees (1, 2, 3) is also certiﬁed by
+all its signed maximal minors. The ﬁles reproduce_exact.py and EXACT_CERTIFICATE.json
+reconstruct and verify these data; orthogonal_checks.py and ORTHOGONAL_CERTIFICATE.json
+add exact initial-ideal checks at speciﬁed rational coordinates and excluded-case controls. See the
+package README for commands requiring Python 3.11 or later. These ﬁnite coordinate checks
+make no additional genericity or full-gin claim.
+4
+--- PAGE 5 ---
+6 Prior overlap, priority limits, and disclosure
+An applicable prior family theorem deserves explicit credit. For this arrangement there is one
+codimension-two ﬂat of multiplicity four, with three hyperplanes outside the pencil. Migliore–
+Nagel [ 12, §8.2, Theorem 8.11 and Corollary 8.12] give
+0 − →S(−7)3 ⊕ S(−9) − →S(−6)5 − →J top − →0,
+where J top is the intersection of the codimension-two primary components of J. This is substantive
+prior information about this family. It concerns a ﬁve-generated ideal, whereas J has four minimal
+ambient polars. Their §3 also stresses the distinction between restricting an ambient Jacobian
+ideal and taking the Jacobian ideal of a restricted arrangement. The proof above concerns the
+successive sections of J.
+Historical priority remains unresolved. A bounded literature audit completed on 15 October
+2026 did not identify an earlier complete predecessor in its inspected corpus. In particular, the
+full text of Ilardi’s 2018 article [ 13] was not obtained: publisher retrieval failed and institutional
+access was restricted. Its abstract does not exclude a relevant theorem or family. No assertion of
+ﬁrstness, independent discovery, or present openness follows from the accessible literature. The
+audit did not exhaust parameter families, related nine-factor generic initial ideals, or historical
+code, and it did not authenticate the candidate’s ﬁrst public disclosure timestamp. The supported
+outcome here is an explicit counterexample with a checkable proof. We make no claim of smallest
+hyperplane count, a full generic initial ideal, or a positive-characteristic extension.
+Extensive AI tools were used in solving, drafting, literature inspection, exact-veriﬁcation de-
+velopment, and adversarial checking. The artifact has received multiple AI-assisted mathematical
+checks but no conventional human peer review and is unrefereed. Those checks are not evidence of
+historical priority or a substitute for such review. All cited construction and method credits apply
+regardless of the eventual priority determination.
+References
+[1] A. M. Bigatti, E. Palezzato, and M. Torielli, New characterizations of freeness for hyperplane arrange-
+ments, J. Algebraic Combin. 51 (2020), 297–315. doi:10.1007/s10801-019-00876-9; arXiv:1801.09868.
+[2] E. Palezzato (joint work with M. Torielli), Hyperplane arrangements and k-Lefschetz properties, pp.
+233–235 in Logarithmic Vector Fields and Freeness of Divisors and Arrangements: New perspec-
+tives and applications , Oberwolfach Reports 18 (2021), no. 1, Report 5/2021; Conjecture 7, p. 234.
+doi:10.4171/OWR/2021/5.
+[3] E. Palezzato and M. Torielli, Lefschetz properties and hyperplane arrangements , J. Algebra 555 (2020),
+289–304. doi:10.1016/j.jalgebra.2020.02.039.
+[4] E. Palezzato and M. Torielli, k-Lefschetz properties, sectional matrices and hyperplane arrangements ,
+J. Algebra 590 (2022), 215–233. doi:10.1016/j.jalgebra.2021.10.014.
+[5] S. Marchesi, E. Palezzato, and M. Torielli, Lefschetz properties and the Jacobian algebra of 3-
+dimensional hyperplane arrangements , Port. Math. 83 (2026), 1–18. doi:10.4171/PM/2155.
+[6] M. J. Falk and N. J. Proudfoot, Parallel connections and bundles of arrangements , Topology Appl.
+118 (2002), 65–83. arXiv:math/0002094.
+[7] S. O. Tohaneanu, Projective duality of arrangements with quadratic logarithmic vector ﬁelds ,
+arXiv:1405.2122v2 (2015), §2.1.
+5
+--- PAGE 6 ---
+[8] P. Orlik and H. Terao, Arrangements of Hyperplanes , Grundlehren Math. Wiss. 300, Springer, 1992.
+doi:10.1007/978-3-662-02772-1.
+[9] L. Burch, On ideals of ﬁnite homological dimension in local rings , Proc. Cambridge Philos. Soc. 64
+(1968), 941–948. doi:10.1017/S0305004100043620.
+[10] A. Galligo, À propos du théorème de préparation de Weierstrass , in Fonctions de plusieurs variables
+complexes, Lecture Notes in Math. 409, Springer, 1974, 543–579. doi:10.1007/BFb0068121.
+[11] A. Conca, Reduction numbers and initial ideals , Proc. Amer. Math. Soc. 131 (2003), 1015–1020.
+arXiv:math/0210064.
+[12] J. C. Migliore and U. Nagel, Jacobian Ideals of Hyperplane Arrangements and their Graded Betti
+Numbers, arXiv:2508.12113v1 (2025).
+[13] G. Ilardi, Jacobian ideals, arrangements and the Lefschetz properties , J. Algebra 508 (2018), 418–430.
+doi:10.1016/j.jalgebra.2018.04.029. Full text not obtained for the priority audit.
+6

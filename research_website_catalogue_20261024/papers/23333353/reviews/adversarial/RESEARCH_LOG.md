@@ -1,0 +1,7 @@
+# Ambient independence adversarial research log
+
+- 2026-10-25T07:43:00Z — Read complete actual three-page PDF and controlling TeX. Independently reconstructed the all-state/all-word proof, algebraic positivity/purity, non-lift and compact-face extension arguments. Fixed nine attack families before any foreign primary body or historical/current reviewing opinion. Critical original-definition interface and full free-product inclusion proof remain; no substantive defect found. Completion estimate:35% of bounded review; all 203-paper goal ongoing.
+
+- 2026-10-25T07:45:25.606387Z — 40%. Substantive ledger sealed before primary bodies/opinions. Early seal095533e59e69d121ed2115486ce5485e7df347221c8ca4ef0400a433256c9414. Raw primary custody requested only afterward.
+- 2026-10-25T07:47:31.639498Z — 80%. Original Liebscher contribution confirms literal definition; DKW interfaces confirm folding credit. Own353 checks verify 69 originals,60 ZIP members,3 primaries and 4 prior sealed packets. Fourteen finite diagnostics supplement independent universal proofs. Two-copy and fixed-marginal controls delineate changed claims. No substantive defect found.
+- 2026-10-25T07:49:49Z — 95%. D1–D10, full report, primary limits and attack/read ledgers drafted. Inspected final read-only replay mode succeeds with 353 checks and no writes. Historical priority remains unknown. Preparing final immutable bindings; no promotion authority.

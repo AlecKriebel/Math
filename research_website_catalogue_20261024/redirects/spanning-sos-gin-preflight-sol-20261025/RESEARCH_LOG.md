@@ -1,0 +1,2 @@
+* 2026-10-25T07:51:59.038008+00:00 — Fresh remote pin authenticated; exact cached blob tree will control, regardless of working-tree staleness. Ignored cache verified before body writes; original protected bytes bound. Completion estimate 10%.
+* 2026-10-25T07:52:13.481166+00:00 — Actual current3 full manuscript text and controlling TeX identified; exact pinned HTML/XML/text and all PDF byte/text inventories acquired. Candidate classification and actual-body reading remain. Completion estimate 65%.

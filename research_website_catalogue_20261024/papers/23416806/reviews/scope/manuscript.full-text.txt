@@ -1,0 +1,153 @@
+=== PAGE 1 ===
+An eﬀective criterion for prescribed block-code extensions
+Alec Kriebel
+Independent researcher
+ORCID: 0009-0001-9320-500X
+16 October 2026 Version 1.0
+Abstract
+Given an onto block self-map of a nonempty two-sided irreducible soﬁc shift, we give a ﬁnite,
+computable criterion for extending that same map from a containing shift of ﬁnite type into the
+original shift. This answers the speciﬁed-map question in Boyle’s Problem 16.3, including its
+mixing case. The criterion is locally testable separation of the allowed language from a regular
+bad-word ideal. An irreducibility argument converts the published Place–van Rooijen–Zeitoun
+separator bound into a single canonical ﬁnite-type approximation test. The result covers every
+choice of extension radius and local-rule completion. It uses that published theorem; it does
+not assert a new general separation theorem, historical ﬁrstness, or a solution of the separate
+existence-over-all-maps and cellular-automaton stability questions.
+1 The question and ﬁnite criterion
+A shift is a closed, shift-invariant subset of AZ for a ﬁnite alphabet A. Write L(T ) for its ﬁnite-word
+language, including ε. A shift of ﬁnite type (SFT) is speciﬁed by ﬁnitely many forbidden words; a
+soﬁc shift has a ﬁnite labelled-graph presentation. Irreducibility means that any two allowed words
+can be joined by an allowed word. All shifts below are nonempty and two-sided.
+Boyle’s Problem 16.3 [1, Section 16] asks when a speciﬁed surjective block code f : T → T on a
+mixing soﬁc shift has an extension G : S → T from some SFT S ⊇ T . Containment is non-strict,
+and the extension must agree with f on T . This property is called steadiness. Earlier terminology
+and a broader soﬁc-homomorphism question occur in Dykstra’s thesis [ 2, Section 3.6, especially
+Problem 3.6.8]; Ballier credits Barth–Dykstra [ 3] and develops substantial closing/continuing and
+cover-based results [ 4, Sections 2–4]. We retain these attributions.
+Present f with memory a, anticipation b and window length ℓ = a + b + 1. Complete its local
+rule arbitrarily on the ℓ-words absent from T , obtaining a block map F : AZ → AZ. For a ﬁnite
+word w, let F∗(w) be its consecutive local-rule outputs, or ε if |w|< ℓ. Set
+L = L(T ), B = {w ∈ A∗ : F∗(w) /∈ L}.
+The language B is regular: a ﬁnite automaton stores the most recent ℓ− 1 input letters and feeds
+each new output letter into a complete automaton for L. Moreover B is a two-sided ideal. Indeed,
+F∗(w) is a factor of F∗(uwv) for a bad word w, and L is factorial. Since F extends f , L ∩ B = ∅.
+Choose a ﬁnite monoid M and morphism α : A∗ → M recognizing both L and B. Eﬀectively
+one may enumerate the transition monoid of the disjoint union of their complete deterministic
+automata. For n ≥ 2 deﬁne
+T [n] = {x ∈ AZ : every length- n block of x belongs to Ln(T )}.
+1
+
+=== PAGE 2 ===
+This is a canonical SFT containing T .
+Theorem 1. Let T be an irreducible soﬁc shift and f : T → T an onto block code. With the data
+above, put
+k = 4(|M |+ 1), N = max{2, ℓ, k }.
+The following conditions are equivalent:
+1. f extends to a block map G : S → T for some SFT S ⊇ T ;
+2. some locally testable language C satisﬁes L ⊆ C and C ∩ B = ∅;
+3. L(T [N ]) ∩ B = ∅;
+4. F (T [N ]) = T .
+Consequently one ﬁnite-automaton reachability test decides the extension question. On success,
+T [N ] and the chosen F are a witness; on failure no diﬀerent completion, radius or containing
+alphabet can provide an extension.
+Here a language is locally testable if membership is determined by bounded-length factors and
+bounded preﬁxes and suﬃxes. The precise bound in the theorem is imported from Place–van
+Rooijen–Zeitoun [5, Theorem 4.2]: two regular languages recognized by a common ﬁnite monoid M
+are LT-separable if and only if they are LT[k]-separable for k = 4(|M |+ 1). Their LT[k] equivalence
+records the set of k-proﬁles, with no multiplicities. A proﬁle consists of at most ⌊k/ 2⌋letters before
+a position and at most ⌈k/ 2⌉ letters beginning there, truncated at endpoints [ 5, Sections 2–4]. We
+use the published theorem, without reproving its general algebraic argument.
+2 Proof
+Normalization. Suppose G : S → T is an extension. If its alphabet is larger than A, replace S
+by S ∩ AZ. This remains an SFT containing T . For all suﬃciently large n, T [n] ⊆ S: choose n at
+least the lengths of a ﬁnite forbidden list for S. Every such forbidden word is absent from T .
+Write F and G on one common ﬁnite interval. Their rules agree on every word of that interval
+appearing in T . Increasing n beyond its length makes F = G on T [n]. Hence an extension exists
+if and only if F (T [n]) ⊆ T for some n ≥ 2. Canonical approximation normalization is also used in
+[4, Lemma 2.1]. For every n,
+F (T [n]) ⊆ T ⇐ ⇒ L (T [n]) ∩ B = ∅. (1)
+A bad input word produces a forbidden output block; conversely any forbidden output block has
+a ﬁnite bad input interval. Since T ⊆ T [n] and f (T ) = T , image inclusion in (1) implies equality.
+This is the only use of surjectivity.
+A witness gives a separator. The n-block overlap graph, with vertices Ln−1(T ) and edges
+Ln(T ), is strongly connected by irreducibility. Thus any word of length at least n whose n-factors
+are allowed extends in both directions in T [n]. The allowed shorter words are exactly the words
+of L of those lengths. Therefore L(T [n]) is locally testable: for long words check the ﬁnite list of
+forbidden n-factors, and handle the ﬁnitely many short words separately. A successful canonical
+witness supplies condition 2.
+2
+
+=== PAGE 3 ===
+Lemma 1 (Saturation). If an LT[k] language contains L and avoids the ideal B, then L(T [n])∩B =
+∅ for every n ≥ max{2, k }.
+Proof. Suppose a bad word w occurs in T [n]. Irreducibility provides a word U ∈ L, of length at
+least n + k, containing every word of Ln(T ): concatenate that ﬁnite list using allowed connecting
+words, and extend if necessary. Strong connectivity of the overlap graph supplies connecting words
+c, d with
+W = U cwdU ∈ L(T [n]).
+Since B is an ideal, W ∈ B. Independently, irreducibility of T gives e with V = U eU ∈ L.
+Both V and W contain precisely all allowed n-words. They therefore have the same set of
+length-k factors, namely Lk(T ): use k ≤ n and extend each allowed k-word to an allowed n-word.
+Their preﬁxes and suﬃxes of length k − 1 agree because they both begin and end with U .
+Their proﬁle sets agree under the published convention. Full proﬁles are precisely the length- k
+factors split after ⌊k/ 2⌋ letters. Proﬁles truncated at either end are determined by the common
+preﬁxes and suﬃxes. There is no proﬁle truncated at both ends, since both words have length at
+least 2k. An LT[k] separator containing V must consequently contain W , contradicting W ∈ B.
+Apply the published LT-separation bound to condition 2 and then Lemma 1 with n = N to
+obtain condition 3. Equation (1) and surjectivity give condition 4. Its restriction is the extension
+in condition 1. This proves all equivalences.
+Eﬀectivity . All constructions use ﬁnite data. Build the overlap graph of T [N ], label each edge
+by its appended letter, and take every vertex as both initial and ﬁnal. Its ﬁnite-path language is
+exactly L(T [N ]): strong connectivity extends every path bi-inﬁnitely, and every occurring word can
+be read after a preceding (N − 1)-block. Product with the automaton for B reduces condition 3 to
+reachability of an accepting product state. No empirical word-length or radius cutoﬀ is used. The
+monoid and graph can be enormous; no useful complexity improvement or implemented arbitrary-
+input solver is claimed.
+3 Controls, scope and veriﬁcation
+If T is SFT, take S = T . Conversely an automorphism of T is steady only if T is SFT. Its inverse g is
+a block map, and the local identity gF = id on T holds on T [n] for large enough n. If F (T [n]) ⊆ T ,
+then x = gF (x) ∈ T for every x ∈ T [n], so T = T [n].
+For example, the binary even shift (between successive zeros there are evenly many ones) is
+mixing soﬁc and not SFT. For any n, choose odd m with m + 2 > n . The periodic point (01m)∞
+belongs to T [n] but not T , so its identity has no extension. Onto also matters for the image equality:
+a constant code to a ﬁxed point can extend from the full shift while having only a singleton image.
+The theorem answers the given-map question 16.3, with irreducibility suﬃcing in place of mix-
+ing. It does not decide whether some suitable self-code exists as in Problem 16.2, classify stable
+cellular-automaton limit sets, or solve Dykstra’s broader question for arbitrary reducible soﬁc shifts.
+The companion archive preserves all 48 ﬁles at the audited PR head, two independent math-
+ematical approach families, two independent priority reviews with a later peer challenge, source
+hashes and locators, and root reproduction receipts. Its ﬁnite automata and symbolic controls test
+examples, saturation proﬁles and boundary cases; they are not a formal proof of the general theo-
+rem or its imported ingredient. The source includes an optimization-safe custody checker replacing
+reliance on a historical assertion-based checker. The general-purpose decision procedure is speciﬁed
+by the proof, rather than implemented by those example programs.
+3
+
+=== PAGE 4 ===
+Bounded primary-source and citation searches through 16 October 2026 identiﬁed no full pre-
+decessor in the inspected statements. Originality, historical ﬁrstness and present worldwide open
+status are not certiﬁed. Source-access and manuscript/version gaps are documented in the archive;
+in particular the actual Dykstra thesis is distinct from the unread Barth–Dykstra journal body.
+The contribution claimed here is the complete mathematical criterion and its proof, with the cited
+prior machinery fully credited.
+Research disclosure. AI tools were used extensively in development, source investigation, writ-
+ing, computation, reproduction and adversarial review. This is an unrefereed preprint; no external
+human peer review or proof-assistant certiﬁcation is claimed. The note and authored companion
+material are licensed CC BY 4.0. No third-party full source bodies are redistributed.
+References
+[1] M. Boyle, Open Problems in Symbolic Dynamics , Contemporary Mathematics 469 (2008), 69–
+118. doi:10.1090/conm/469/09161. Problem 16.3, Section 16 (p. 17 of the inspected author
+manuscript).
+[2] A. Dykstra, Two Equivalence Relations in Symbolic Dynamics , Ph.D. thesis, University of Mary-
+land, 2007, Section 3.6, pp. 46–48. Institutional repository .
+[3] J. Barth and A. Dykstra, Weak equivalence for shifts of ﬁnite type , Indagationes Mathemati-
+cae 18(4) (2007), 495–506. doi:10.1016/S0019-3577(07)80058-9. Terminology attribution via [ 4];
+journal body not inspected.
+[4] A. Ballier, Limit sets of stable cellular automata , Ergodic Theory and Dynamical Sys-
+tems 35(3) (2015), 673–690; online 2013. doi:10.1017/etds.2013.72. Inspected manuscript:
+arXiv:1301.3790v1 (2013).
+[5] T. Place, L. van Rooijen and M. Zeitoun, On Separation by Locally Testable and Locally Thresh-
+old Testable Languages , Logical Methods in Computer Science 10(3:24) (2014), 1–28, Theorem
+4.2. doi:10.2168/LMCS-10(3:24)2014.
+4

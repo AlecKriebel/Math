@@ -67,6 +67,7 @@ sections=section('abstract',abstract_heading,rendered_abstract.split('\n\n'))+se
 if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
 sections+=section('limits','Scope and limitations',c['limitations'])
 status_paragraphs=[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')]
+if paper.name in CD_IDS: status_paragraphs.insert(0,c['status'])
 if c.get('edition_note'): status_paragraphs.append(c['edition_note'])
 sections+=section('status','Status and AI use',status_paragraphs)
 if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])

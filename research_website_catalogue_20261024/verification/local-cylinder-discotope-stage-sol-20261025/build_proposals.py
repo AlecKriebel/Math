@@ -21,6 +21,7 @@ r=once(r,'if paper.name in CFH_IDS:\n    raw_receipt, receipt, asset_root = cfh_
 r=once(r,"authors=c.get('authors',[c['author']])","authors=c.get('authors',[c['author']])\nrendered_abstract=display_cd_abstract(paper.name,c['abstract']) if paper.name in CD_IDS else c['abstract']")
 r=once(r,"'abstract':c['abstract']","'abstract':rendered_abstract")
 r=once(r,"c['abstract'].split('\\n\\n')","rendered_abstract.split('\\n\\n')")
+r=once(r,"if c.get('edition_note'): status_paragraphs.append(c['edition_note'])","if paper.name in CD_IDS: status_paragraphs.insert(0,c['status'])\nif c.get('edition_note'): status_paragraphs.append(c['edition_note'])")
 r=r.replace('or paper.name in CFH_IDS','or paper.name in CFH_IDS or paper.name in CD_IDS')
 r=once(r,"original_pdf_download=' download' if paper.name in CFH_IDS else ''","original_pdf_download=' download' if paper.name in CFH_IDS or paper.name in CD_IDS else ''")
 r=once(r,'if paper.name in CFH_IDS:\n    checksum_link=','if paper.name in CFH_IDS or paper.name in CD_IDS:\n    checksum_link=')

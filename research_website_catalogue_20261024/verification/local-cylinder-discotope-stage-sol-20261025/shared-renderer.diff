@@ -19,7 +19,7 @@
      raw_receipt, receipt, asset_root = cfh_source_view(paper, c, gate)
  elif paper.name == '23390551':
      raw_receipt, receipt, asset_root = dipole_source_view(paper, c, gate)
-@@ -52,37 +55,44 @@
+@@ -52,37 +55,45 @@
  published=date.fromisoformat(c['publication_date']); display_date=f'{published.day} {published.strftime("%B %Y")}'
  today=date.today().isoformat()
  authors=c.get('authors',[c['author']])
@@ -38,6 +38,7 @@
  if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
  sections+=section('limits','Scope and limitations',c['limitations'])
  status_paragraphs=[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')]
++if paper.name in CD_IDS: status_paragraphs.insert(0,c['status'])
  if c.get('edition_note'): status_paragraphs.append(c['edition_note'])
  sections+=section('status','Status and AI use',status_paragraphs)
  if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])
@@ -73,7 +74,7 @@
  author_meta='\n'.join(f'<meta name="citation_author" content="{h(a)}">' for a in authors)
  pages=len(PdfReader(out/c['pdf_filename']).pages)
  download_links = [f'<a href="{h(c["pdf_filename"])}">Read the paper (PDF, {pages} pages)</a>']
-@@ -94,7 +104,7 @@
+@@ -94,7 +105,7 @@
      assets.additional_asset_kind(asset)
      download_links.append(f'<a href="{h(asset["filename"])}">{h(asset["label"])}</a>')
  download_links.append(f'<a href="{doi}">Zenodo record</a>')
@@ -82,7 +83,7 @@
  document=f'''<!DOCTYPE html>
  <html lang="en">
  <head>
-@@ -113,7 +123,7 @@
+@@ -113,7 +124,7 @@
  <header><p class="site-title"><a href="/">Alec Kriebel</a></p><nav aria-label="Main navigation"><a href="/research/">Research</a> | <a href="/blog/">Blog</a> | <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></nav></header>
  <main id="main"><article><header>
  <h1><a href="/research/{slug}/">{h(c['title'])}</a></h1>
@@ -91,7 +92,7 @@
  <p>{' · '.join(download_links)}</p>
  <p><a href="#plain-language">Plain-English explanation</a> · <a href="#paper">Read on this page</a> · <a href="#collaborate">Collaboration</a></p>
  </header><hr>{sections}</article></main>
-@@ -123,7 +133,7 @@
+@@ -123,7 +134,7 @@
  (out/'index.html').write_text(document)
  bibtex_note=c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied')
  bib=f'@misc{{kriebel{published.year}_{slug.replace("-","_")},\n  author = {{{" and ".join(authors)}}},\n  title = {{{c["title"]}}},\n  year = {{{published.year}}},\n  doi = {{{c["doi"]}}},\n  url = {{{doi}}},\n  note = {{{bibtex_note}}}\n}}\n'
