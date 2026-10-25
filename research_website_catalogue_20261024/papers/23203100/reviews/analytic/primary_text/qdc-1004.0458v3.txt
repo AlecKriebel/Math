@@ -1,0 +1,1580 @@
+                                           Quantum Information Processing manuscript No.
+                                           (will be inserted by the editor)
+
+
+
+
+                                           The quantum dynamic capacity formula of a quantum channel
+
+                                           Mark M. Wilde · Min-Hsiu Hsieh
+
+
+
+
+                                           October 31, 2018
+
+
+
+                                           Abstract The dynamic capacity theorem characterizes the reliable communication rates of a quantum
+
+
+
+
+arXiv:1004.0458v3 [quant-ph] 25 Jun 2012
+                                           channel when combined with the noiseless resources of classical communication, quantum communication,
+                                           and entanglement. In prior work, we proved the converse part of this theorem by making contact with
+                                           many previous results in the quantum Shannon theory literature. In this work, we prove the theorem with
+                                           an “ab initio” approach, using only the most basic tools in the quantum information theorist’s toolkit:
+                                           the Alicki-Fannes’ inequality, the chain rule for quantum mutual information, elementary properties of
+                                           quantum entropy, and the quantum data processing inequality. The result is a simplified proof of the
+                                           theorem that should be more accessible to those unfamiliar with the quantum Shannon theory literature.
+                                           We also demonstrate that the “quantum dynamic capacity formula” characterizes the Pareto optimal
+                                           trade-off surface for the full dynamic capacity region. Additivity of this formula simplifies the computation
+                                           of the trade-off surface, and we prove that its additivity holds for the quantum Hadamard channels and
+                                           the quantum erasure channel. We then determine exact expressions for and plot the dynamic capacity
+                                           region of the quantum dephasing channel, an example from the Hadamard class, and the quantum erasure
+                                           channel.
+                                           PACS 03.67.Hk · 03.67.Pp
+
+
+                                           1 Introduction
+
+                                           Quantum Shannon theory is the study of the transmission capabilities of a noisy resource when a large
+                                           number of independent and identically distributed (IID) copies of the resource are available.1 An im-
+                                           portant task in this area of study is to determine how noiseless resources interact with a noisy quantum
+                                           channel. That is, we would like to know the reliable communication rates if a sender can use noiseless
+                                           resources in addition to a quantum channel to generate other noiseless resources. In prior work, we
+                                           have studied one such setting, where a sender and receiver generate or consume classical communication,
+                                           quantum communication, and entanglement along with the consumption of a noisy quantum channel [16,
+                                           15, 17]. The result of these efforts was a characterization of the “dynamic capacity region” of a noisy
+                                           quantum channel.2
+                                               One of the shortcomings of the characterization of the dynamic capacity region in Refs. [16, 15,
+                                           17] is that its computation for a general quantum channel requires regularized formulas (which are
+                                           over an infinite number of channel uses). Though, later, Brádler et al. demonstrated that the quantum
+                                           M.M.W. acknowledges support from the MDEIE (Québec) PSR-SIIRI international collaboration grant.
+
+                                           Mark M. Wilde is a postdoctoral fellow with the School of Computer Science, McGill University, Montreal, Quebec, Canada
+                                           H3A 2A7 E-mail: mark.wilde@mcgill.ca · Min-Hsiu Hsieh was with the ERATO-SORST Quantum Computation and Infor-
+                                           mation Project, Japan Science and Technology Agency 5-28-3, Hongo, Bunkyo-ku, Tokyo, Japan during the development
+                                           of this paper. He is now with the Statistical Laboratory, University of Cambridge, Wilberforce Road, Cambridge, UK CB3
+                                           0WB E-mail: minhsiuh@gmail.com
+                                            1 The first few chapters of Yard’s thesis provide an introductory and accessible overview of the subject [27].
+                                            2 “Dynamic” in this context and throughout this paper refers to the fact that a noisy channel is a dynamic resource, as
+                                           opposed to a “static” resource such as a shared bipartite state.
+Hadamard channels [18] are a natural class of channels for which the computation of one octant of the
+region simplifies [9] because the structure of these channels appears to be “just right” for this to hold.
+The proof considers special quadrants of the dynamic capacity region and employs several reductio ad
+absurdum arguments to characterize one octant of the full region. The work of Brádler et al. showed that
+we can claim a complete understanding of the abilities of an entanglement-assisted quantum Hadamard
+channel for the transmission of classical and quantum information.
+    The aim of the present work is two-fold: 1) to simplify the proof of the converse part of the dynamic
+capacity theorem in Ref. [17] and 2) to show that there is one important formula to consider for any
+task involving noiseless classical communication, noiseless quantum communication, noiseless entangle-
+ment, and many uses of a noisy quantum channel. Our previous proof of the converse in Ref. [17] relies
+extensively on prior literature in quantum Shannon theory, perhaps making our ideas inaccessible to an
+audience unfamiliar with this increasingly “tangled web.” Here, we apply an “ab initio” approach to the
+proof, using only four tools from quantum information theory: the Alicki-Fannes’ inequality [1], the chain
+rule for quantum mutual information, elementary properties of quantum entropy, and the quantum data
+processing inequality [23]. As such, the proof here should be more accessible to a broader audience and
+more streamlined because it is “disentangled” from the complex web that the quantum Shannon theory
+literature has become.
+    We also propose a new formula that characterizes any task involving classical communication, quan-
+tum communication, and entanglement in dynamic quantum Shannon theory.3 For this reason, we call
+this formula the “quantum dynamic capacity formula.” In particular, additivity of this formula implies a
+complete understanding of any task in dynamic quantum Shannon theory involving the three fundamen-
+tal noiseless resources. We find a simplified, direct proof that additivity holds for the Hadamard class of
+channels and for a quantum erasure channel. The additivity proof for the quantum erasure channel is
+different from that of the Hadamard channel—it exploits the particular structure of the quantum erasure
+channel.
+    We structure this work as follows. The next section reviews the minimal tools from quantum informa-
+tion theory necessary to understand the rest of the paper. Section 3 outlines the information processing
+task considered in this paper, defines what it means for a rate triple to be achievable, and provides a
+definition of the dynamic capacity region of a quantum channel. Section 4 states the dynamic capacity
+theorem, and Section 5 contains a brief review of the proof of the achievability part of the theorem. The
+main protocol for proving this part is the “classically-enhanced father protocol,” whose detailed proof
+we gave in Ref. [16]. Section 6 contains the converse proof, where we proceed with the minimal tools
+stated above. We then show in Section 7 how the quantum dynamic capacity formula characterizes the
+optimization task for computing the Pareto optimal trade-off surface for the dynamic capacity region.
+Section 8 proves that the quantum dynamic capacity formula is additive for the Hadamard class of chan-
+nels, and in Section 9, we directly compute and plot the region for a qubit dephasing channel, which is a
+channel that falls within the Hadamard class. Section 10 then shows that the quantum dynamic capacity
+is additive for the quantum erasure channel, and we compute and plot the region for this channel also.
+Finally, we conclude with a brief discussion.
+
+
+2 Definitions and notation
+
+We first establish some definitions and notation that we employ throughout the paper and review a few
+important properties of quantum entropy. Let ΦAB denote the maximally entangled state shared between
+two parties:
+                                                      D
+                                          AB      1 X A B
+                                       |Φi    ≡√        |ii |ii .
+                                                  D i=1
+                                                                 MA MB
+An ebit corresponds to the special case where D = 2. Let Φ          denote the maximally correlated state
+shared between two parties:
+                                               D
+                                   MA MB    1 X          M           M
+                                 Φ       ≡        |ii hi| A ⊗ |ii hi| B .
+                                            D i=1
+ 3  “Dynamic quantum Shannon theory” refers to the setting in which a sender and a receiver have access to many uses
+of a quantum channel connecting them.
+
+
+                                                         2
+A common randomness bit corresponds to the special case where D = 2.
+                                                         0
+   A completely-positive trace-preserving (CPTP) map N A →B is the most general map we consider
+that maps from a quantum system A0 to another quantum system B [22]. It acts as follows on any density
+operator ρ:
+                                          0
+                                                     Ak ρA†k ,
+                                                   X
+                                      N A →B (ρ) =
+                                                        k
+                                               P     †
+where the operators Ak satisfy the condition      k Ak Ak = I. A quantum channel admits an isometric
+            A0 →BE
+extension UN       , which is a unitary embedding into a larger Hilbert space. One recovers the original
+channel by taking a partial trace over the “environment” system E.
+    We consider a three-dimensional capacity region throughout this work (as in Ref. [17]), whose points
+(C, Q, E) correspond to rates of classical communication, quantum communication, and entanglement
+generation/consumption, respectively. For example, the teleportation protocol consumes two classical
+bits and an ebit to generate a noiseless qubit [3]. Thus, we write it as the following rate triple:
+
+                                              (−2, 1, −1) ,
+
+where we indicate consumption of a resource with a negative sign and generation of a resource with a
+positive sign. Also, the super-dense coding protocol consumes a noiseless qubit channel and an ebit to
+generate two classical bits [6]. It corresponds to the rate triple:
+
+                                              (2, −1, −1) .
+
+Another protocol that we exploit is entanglement distribution. It uses a noiseless qubit channel to estab-
+lish a noiseless ebit and corresponds to
+                                              (0, −1, 1) .
+   The entropy H (A)ρ of a density operator ρA on some quantum system A is as follows [22]:
+
+                                    H (A)ρ ≡ −Tr ρA log ρA ,
+                                                  
+
+where the logarithm is base two. The entropy can never exceed the logarithm of the dimension of A. The
+quantum mutual information I (A; B)σ of a bipartite state σ AB is as follows:
+
+                               I (A; B)σ ≡ H (A)σ + H (B)σ − H (AB)σ .
+                                                                            MA MB
+Observe that the quantum mutual information I (MA ; MB ) of the state Φ           is equal to log D bits,
+and the quantum mutual information I (A; B) of the state ΦAB is equal to 2 log D qubits. If one system is
+classical, then the quantum mutual information can never be greater than the logarithm of the dimension
+of the classical system. If both systems are quantum, then the quantum mutual information can never
+be greater than twice the minimum of the logarithms of the dimensions of the two quantum systems.
+The quantum mutual information vanishes if the bipartite state σ AB is a product state. The conditional
+quantum mutual information for three quantum systems A, B, and C is as follows:
+
+                         I (A; B|C) ≡ H (AC) + H (BC) − H (C) − H (ABC) ,
+
+and is always non-negative due to strong subadditivity [20]. The coherent information I (AiB)σ of a
+state σ AB is as follows [23]:
+                                  I (AiB)σ ≡ H (B)σ − H (AB)σ .
+Observe that the coherent information I (AiB) of the state ΦAB is equal to log D qubits. The chain rule
+for quantum mutual information gives the following relation for any three quantum systems A, B, and
+C:
+
+                                   I (AB; C) = I (B; C) + I (A; C|B)                                   (1)
+                                             = I (A; C) + I (B; C|A) .
+
+   A classical-quantum state σ XABE of the following form plays an important role throughout this
+paper:
+                                                         A0 →BE      0
+                                   X                 X
+                          σ XABE ≡     pX (x) |xi hx| ⊗ UN      (φAA
+                                                                  x    ),
+                                        x
+
+
+                                                    3
+                      0                                     0
+                                                       A →BE
+where the states φAA
+                   x   are pure bipartite states and UN         is the isometric extension of some noisy
+          A0 →B
+channel N       . Applying the above chain rule gives the following relation:
+
+                                 I (AX; B)σ = I (X; B)σ + I (A; B|X)σ .                                (2)
+
+Additionally, one can readily check that the following relation holds for a state of the above form:
+                                             1              1
+                              I (AiBX)σ =      I (A; B|X)σ − I (A; E|X)σ .                             (3)
+                                             2              2
+   The Alicki-Fannes’ inequality is a statement of the continuity of coherent information [1], and a simple
+variant of it gives continuity of quantum mutual information. First, suppose that two bipartite states
+ρAB and σ AB are -close in trace norm:
+
+                                             ρAB − σ AB 1 ≤ .
+
+Then the Alicki-Fannes’ inequality states that their respective coherent informations are close:
+
+                               |I(AiB)ρ − I(AiB)σ | ≤ 4 log |A| + 2H2 (),
+
+where |A| is the dimension of the system A and H2 is the binary entropy function. A simple “tweak” of
+the above inequality shows that the quantum mutual informations are close [16]:
+
+                               |I(A; B)ρ − I(A; B)σ | ≤ 5 log |A| + 3H2 ().
+
+    The quantum data processing inequality states that quantum correlations can never increase under
+the application of a noisy map [23, 22]. There are two important manifestations of it. Suppose that Alice
+possesses two quantum systems A and A0 in her lab. She sends A0 through a noisy quantum channel
+to Bob and he receives it in some system B. Then the following inequality applies to the coherent
+information:
+                                           I (AiA0 ) ≥ I (AiB) ,
+demonstrating that quantum correlations, as measured by the coherent information, can only decrease
+under noisy processing. The following inequality also applies to the quantum mutual information:
+
+                                           I (A; A0 ) ≥ I (A; B) ,
+
+demonstrating a similar notion for the quantum mutual information. Now suppose that Alice sends A to
+Christabelle and she receives it in some system C. Then the following inequality applies as well:
+
+                                     I (A; A0 ) ≥ I (C; A0 ) ≥ I (C; B) ,
+
+but a similar inequality does not hold for the coherent information, due to its asymmetry. We make
+extensive use of quantum data processing in our proofs.
+
+
+3 The information processing task
+
+We are interested in the most general protocol that generates classical communication, quantum commu-
+                                                                                        0
+nication, and entanglement by consuming many uses of a noisy quantum channel N A →B and the same
+respective resources (see Figure 1). We say that such a protocol is “catalytic” because we are allowing
+it to consume the same resources that it generates, though we are keeping track of the net rates of
+consumption or generation.
+    The protocol begins with Alice possessing two classical registers (each labeled by M and of dimension
+2nC̄ ), a quantum register A1 of dimension 2nQ̄ entangled with a reference system R, and another quantum
+register TA of dimension 2nẼ that contains her half of the shared entanglement with Bob:
+                                                     MM
+                                ω M M RA1 TA TB ≡ Φ       ⊗ ΦRA1 ⊗ ΦTA TB .
+
+She passes one of the classical registers and the registers A1 and TA into a CPTP encoding map
+            0n
+E M A1 TA →A SA LA2 that outputs a quantum register SA of dimension 2nĒ and a quantum register A2 of
+dimension 2nQ̃ , a classical register L of dimension 2nC̃ , and many quantum systems A0n for input to the
+
+
+                                                      4
+      Reference
+              R                                                     t                                           tf
+                                         SA
+                     A1
+                                         A’          B
+                                            N
+                     M                   A’   B
+                                            N
+      Alice                 E
+                                         A’   B
+                     TA                     N
+                                         A2
+
+                                         L                                                     B
+                     TB                                                                                    SB
+                                                                                               B
+      Bob                                                                                                  B1
+                                                                                               B      D M̂
+
+Fig. 1 (Color online) The most general protocol for generating classical communication, quantum communication, and
+entanglement with the help of the same respective resources and many uses of a noisy quantum channel. Alice begins with
+her classical register M , her quantum register A1 , and her half of the shared entanglement in register TA . She encodes
+according to some CPTP map E that outputs a quantum register SA , many registers A0n , a quantum register A2 , and
+a classical register L. She inputs A0n to many uses of the noisy channel N and transmits A2 over a noiseless quantum
+channel and L over a noiseless classical channel. Bob receives the channel outputs B n , the quantum register A2 , and the
+classical register L and performs a decoding D that recovers the quantum information and classical message. The decoding
+also generates entanglement with system SA . Many protocols are a special case of the above one. For example, the protocol
+is entanglement-assisted communication of classical and quantum information [16] if the registers L, SA , SB , and A2 are
+null.
+
+
+
+channel. The register SA is for creating entanglement with Bob. The state after the encoding map E is
+as follows:
+                                   0n                                 0n
+                            ωM A        SA LA2 RTB
+                                                     ≡ E M A1 TA →A        SA LA2
+                                                                                    (ω M M RA1 TA TB ).
+                                                              0n      n                                    0
+She sends the systems A0n through many uses N A →B of the noisy channel N A →B , transmits L over
+a noiseless classical channel, and transmits A2 over a noiseless quantum channel, producing the following
+state:
+                                          n                   0n                    0n
+                                                                   →B n
+                                 ω M B SA LA2 RTB ≡ N A                    (ω M A        SA LA2 RTB
+                                                                                                      ).
+
+The above state is a state of the form in (15) with A ≡ RTB A2 SA and X ≡ M L. Bob then applies a map
+    n
+DB A2 TB L→B1 SB M̂ that outputs a quantum system B1 , a quantum system SB , and a classical register
+M̂ . Let ω 0 denote the final state. The following condition holds for a good protocol:
+
+                                   M M̂                                     M B1 SB M̂ SA R
+                                 Φ            ⊗ ΦRB1 ⊗ ΦSA SB − (ω 0 )                              ≤ ,              (4)
+                                                                                                1
+
+
+implying that Alice and Bob establish maximal classical correlations in M and M̂ and maximal entangle-
+ment between SA and SB . The above condition also implies that the coding schemepreserves the entangle-
+ment with the reference system R. The net rate triple for the protocol is as follows: C̄ − C̃, Q̄ − Q̃, Ē − Ẽ .
+
+
+                                                               5
+The protocol generates a resource if its corresponding rate is positive, and it consumes a resource if its
+corresponding rate is negative. Such a protocol defines an (n, C, Q, E, ) code with
+                                              C = C̄ − C̃,                                             (5)
+                                              Q = Q̄ − Q̃,                                             (6)
+                                              E = Ē − Ẽ.                                             (7)
+Definition 1 (Achievability) A rate triple (C, Q, E) is achievable if there exists an (n, C, Q, E, ) code
+with error (as defined in (4)) smaller than  for all  > 0 and sufficiently large n.
+Definition 2 (Dynamic Capacity Region) The dynamic capacity region CCQE (N ) of a noisy quan-
+                  0
+tum channel N A →B is a three-dimensional region in the (C, Q, E) space defined by the closure of the
+set of all achievable rate triples (C, Q, E).
+
+
+4 The dynamic capacity theorem
+
+The dynamic capacity theorem gives bounds on the reliable communication rates of a noisy quantum
+channel when combined with the noiseless resources of classical communication, quantum communica-
+tion, and shared entanglement [17]. The theorem applies regardless of whether a protocol consumes the
+noiseless resources or generates them.
+Theorem 1 (Dynamic Capacity) The dynamic capacity region CCQE (N ) of a quantum channel N is
+equal to the following expression:
+                                                   ∞
+                                                   [ 1      (1)
+                                     CCQE (N ) =          C    (N ⊗k ),                                (8)
+                                                         k CQE
+                                                   k=1
+                                                                             (1)
+where the overbar indicates the closure of a set. The “one-shot” region CCQE (N ) is the union of the
+                               (1)
+“one-shot, one-state” regions CCQE,σ (N ):
+                                        (1)                (1)
+                                                     [
+                                       CCQE (N ) ≡       CCQE,σ (N ).
+                                                     σ
+                                  (1)
+The “one-shot, one-state” region CCQE,σ (N ) is the set of all rates C, Q, and E, such that
+
+                                     C + 2Q ≤ I(AX; B)σ ,                                              (9)
+                                      Q + E ≤ I(AiBX)σ ,                                             (10)
+                                 C + Q + E ≤ I(X; B)σ + I(AiBX)σ .                                   (11)
+The above entropic quantities are with respect to a classical-quantum state σ XAB where
+                                       X               X        0       0
+                              σ XAB ≡      p(x) |xi hx| ⊗ N A →B (φAAx    ),                         (12)
+                                         x
+                   0
+and the states φAA
+                 x    are pure. It is implicit that one should consider states on A0k instead of A0 when
+taking the regularization in (8).
+    The above theorem is a “multi-letter” capacity theorem because of the regularization in (8). Though,
+we show in Sections 8 and 10 that the regularization is not necessary for the Hadamard class of channels
+or the quantum erasure channels, respectively. We prove the above theorem in two parts:
+1. The direct coding theorem below shows that combining the “classically-enhanced father protocol”
+   with teleportation, super-dense coding, and entanglement distribution achieves the above region.
+2. The converse theorem demonstrates that any coding scheme cannot do better than the regulariza-
+   tion in (8), in the sense that a scheme with vanishing error should have its rates below the above
+   amounts. We prove the converse theorem directly in “one fell swoop,” by employing a catalytic,
+   information-theoretic approach. The converse proof is different from our earlier one [17] because we
+   employ straightforward information-theoretic arguments instead of making contact with prior quan-
+   tum Shannon theoretic literature.
+
+
+                                                     6
+5 Dynamic achievable rate region
+
+The unit resource achievable region is what Alice and Bob can achieve with the protocols entanglement
+distribution, teleportation, and super-dense coding [17]. It is the cone of the rate triples corresponding
+to these protocols:
+
+                        {α (0, −1, 1) + β (2, −1, −1) + γ (−2, 1, −1) : α, β, γ ≥ 0} .
+
+We can also write any rate triple (C, Q, E) in the unit resource capacity region with a matrix equation:
+
+                                                      
+                                          C      0 2 −2 α
+                                         Q = −1 −1 1  β  .                                      (13)
+                                          E      1 −1 −1   γ
+
+The inverse of the above matrix is as follows:
+                                                1             
+                                                − 2 −1 0
+                                                0 −1 −1 ,
+                                                        2    2
+                                                − 21 − 12 − 12
+
+and gives the following set of inequalities for the unit resource achievable region:
+
+                                                  C + 2Q ≤ 0,
+                                                   Q + E ≤ 0,
+                                               C + Q + E ≤ 0,
+
+by inverting the matrix equation in (13) and applying the constraints α, β, γ ≥ 0.
+   Now, let us include the classically-enhanced father protocol [16]. Ref. [16] proved that we can achieve
+                                                                                 0
+the following rate triple by channel coding over a noisy quantum channel N A →B :
+
+                                                                        
+                                             1               1
+                                  I (X; B)σ , I (A; B|X)σ , − I (A; E|X)σ ,
+                                             2               2
+
+for any state σ XABE of the form:
+
+                                         X                 X       0            0
+                                                                A →BE
+                             σ XABE ≡         pX (x) |xi hx| ⊗ UN     (φAA
+                                                                        x  ),                         (14)
+                                          x
+
+
+          0                                                                 0
+          A →BE
+where UN         is an isometric extension of the quantum channel N A →B . Specifically, we showed in
+Ref. [16] that one can achieve the above rates with vanishing error in the limit of large blocklength. Thus
+the achievable rate region is the following translation of the unit resource achievable region in (13):
+
+                                                                
+                              C     0 2 −2     α          I (X; B)σ
+                             Q = −1 −1 1  β  +  1 I (A; B|X)  .
+                                                       2            σ
+                              E     1 −1 −1    γ      − 21 I (A; E|X)σ
+
+We can now determine bounds on an achievable rate region that employs the above coding strategy. We
+apply the inverse of the matrix in (13) to the LHS and RHS. Then using (2), (3), and the constraints
+α, β, γ ≥ 0, we obtain the inequalities in (9-11), corresponding exactly to the one-shot, one-state region
+in Theorem 1. Taking the union over all possible states σ in (14) and taking the regularization gives the
+full dynamic achievable rate region.
+
+
+                                                      7
+6 Catalytic and information theoretic converse proof
+
+This section begins one of the main contributions of this work. We provide a catalytic, information theo-
+retic converse proof of the dynamic capacity region, showing that (8) gives a multi-letter characterization
+of it. The catalytic approach means that we are considering the most general protocol that consumes
+and generates classical communication, quantum communication, and entanglement in addition to the
+uses of the noisy quantum channel. This approach has the advantage that we can prove the converse
+theorem in “one fell swoop” rather than considering one octant of the (C, Q, E) space at a time as we did
+in Ref. [17]. Additionally, we do not need to make contact with prior work in quantum Shannon theory.
+We employ the Alicki-Fannes’ inequality, the chain rule for quantum mutual information, elementary
+properties of quantum entropy, and the quantum data processing inequality to prove the converse.
+    There are some subtleties in our proof for the converse theorem. We prove that the bounds in (9-
+11) hold for common randomness generation instead of classical communication because a capacity for
+generating common randomness can only be better than that for generating classical communication
+(classical communication can generate common randomness). We also consider a protocol that pre-
+serves entanglement with a reference system instead of one that generates quantum communication.
+Barnum et al. showed that this task is equivalent to the transmission of quantum information [2].
+    We prove that the converse theorem holds for a state of the following form
+                                          X               X          0       0
+                                σ XAB ≡        p(x) |xi hx| ⊗ N A →B (ρAA
+                                                                       x  ),                              (15)
+                                           x
+
+                      0
+where the states ρAA
+                   x    are mixed, rather than proving it for a state of the form in (14). Then we show in
+Section 6.1 that it is not necessary to consider an ensemble of mixed states—i.e., we can do just as well
+with an ensemble of pure states, giving the statement of Theorem 1.
+   We begin by proving the first bound in (9). All system labels are as given in Section 3, and we consider
+the most general protocol as outlined in that section. Consider the following chain of inequalities:
+                           
+                 n C̄ + 2Q̄ = I(M ; M̂ )Φ + I (R; B1 )Φ
+                              ≤ I(M ; M̂ )ω0 + I (R; B1 )ω0 + nδ 0
+                              ≤ I (M ; B n A2 LTB )ω + I (R; B n A2 LTB )ω
+                              ≤ I (M ; B n A2 LTB )ω + I (R; B n A2 LTB M )ω
+                              = I (M ; B n A2 LTB )ω + I (R; B n A2 LTB |M )ω + I (R; M )ω .
+
+                                                                                                          M M̂
+The first equality holds by evaluating the quantum mutual informations on the respective states Φ
+and ΦRB1 . The first inequality follows from the condition in (4) and an application of the Alicki-Fannes’
+inequality where δ 0 vanishes as  → 0. We suppress this term in the rest of the inequalities for conve-
+nience. The second inequality follows from quantum data processing, and the third follows from another
+application of quantum data processing. The second equality follows by applying the mutual information
+chain rule in (1). We continue below:
+
+ = I (M ; B n A2 LTB )ω + I (R; B n A2 LTB |M )ω
+ = I (M ; B n A2 LTB )ω + I (RA2 LTB ; B n |M )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω
+ = I (M ; B n )ω + I (M ; A2 LTB |B n )ω + I (RA2 LTB ; B n |M )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω
+ = I (RA2 LM TB ; B n )ω + I (M ; A2 LTB |B n )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω
+ ≤ I (RA2 TB SA LM ; B n )ω + I (M ; A2 LTB |B n )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω
+ = I (AX; B n )ω + I (M ; A2 LTB |B n )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω .
+
+The first equality follows because I (R; M )ω = 0 for this protocol. The second equality follows from
+applying the chain rule for quantum mutual information to the term I (R; B n A2 LTB |M )ω , and the third
+is another application of the chain rule to the term I (M ; B n A2 LTB )ω . The fourth equality follows by
+combining I (M ; B n )ω and I (RA2 LTB ; B n |M )ω with the chain rule. The inequality follows from an
+application of quantum data processing. The final equality follows from the definitions A ≡ RTB A2 SA
+
+
+                                                      8
+                                                       n                              n
+and X ≡ M L. We now focus on the term
+                                      I (M ; A2 LTB |B )ω + I (R; A2 LTB |M )ω − I (B ; A2 LTB |M )ω
+and show that it is less than n C̃ + 2Q̃ :
+
+              I (M ; A2 LTB |B n )ω + I (R; A2 LTB |M )ω − I (B n ; A2 LTB |M )ω
+               = I (M ; A2 LTB B n )ω + I (R; A2 LTB M )ω − I (B n ; A2 LTB M )ω − I (R; M )ω
+               = I (M ; A2 LTB B n )ω + I (R; A2 LTB M )ω − I (B n ; A2 LTB M )ω
+               = H (A2 LTB B n )ω + H (R)ω − H (RA2 LTB |M )ω − H (B n )ω
+               = H (A2 LTB B n )ω − H (A2 LTB |M R)ω − H (B n )ω
+               = H (A2 LTB |B n )ω − H (A2 LTB |M R)ω .
+The first equality follows by applying the chain rule for quantum mutual information. The second equality
+follows because I (R; M )ω = 0 for this protocol. The third equality follows by expanding the quantum
+mutual informations. The next two inequalities follow from straightforward entropic manipulations and
+that H (R)ω = H (R|M )ω for this protocol. We continue below:
+                = H (A2 L|B n )ω + H (TB |B n A2 L)ω − H (TB |M R)ω − H (A2 L|TB M R)ω
+                = H (A2 L|B n )ω + H (TB |B n A2 L)ω − H (TB )ω − H (A2 L|TB M R)ω
+                = H (A2 L|B n )ω − I (TB ; B n A2 L)ω − H (A2 L|TB M R)
+                ≤ H (A2 L)ω − H (A2 L|TB M R)ω
+                = I (A2 L; TB M R)ω
+                = I (L; TB M R)ω + I (A2 ; TB M R|L)ω
+                            
+                ≤ n C̃ + 2Q̃ .
+
+The first two equalities follow from the chain rule for entropy and the second exploits that H (TB |M R) =
+H (TB ) for this protocol. The third equality follows from the definition of quantum mutual information.
+The inequality follows from subadditivity of entropy and that I (TB ; B n A2 L)ω ≥ 0. The fourth equality
+follows from the definition of quantum mutual information and the next equality follows from the chain
+rule. The final inequality follows because the quantum mutual information I (L; TB M R)ω can never be
+larger than the logarithm of the dimension of the classical register L and because the quantum mutual
+information I (A2 ; TB M R|L)ω can never be larger than twice the logarithm of the dimension of the
+quantum register A2 . Thus the following inequality applies
+                                                                      
+                              n C̄ + 2Q̄ ≤ I (AX; B n )ω + n C̃ + 2Q̃ + nδ 0 ,
+                                        
+
+
+demonstrating that (9) holds for the net rates.
+   We now prove the second bound in (10). Consider the following chain of inequalities:
+                 
+        n Q̄ + Ē = I (RiB1 )Φ + I (SA iSB )Φ
+                    = I (RSA iB1 SB )Φ⊗Φ
+                    ≤ I (RSA iB1 SB )ω0 + nδ 0
+                    ≤ I (RSA iB1 SB M )ω0
+                    ≤ I (RSA iB n A2 TB LM )ω
+                    = H (B n A2 TB |LM )ω − H (RSA B n A2 TB |LM )ω
+                    ≤ H (B n |LM )ω + H (A2 |LM )ω + H (TB |LM )ω − H (RSA B n A2 TB |LM )ω
+                                                         
+                    ≤ I (RSA A2 TB iB n LM )ω + n Q̃ + Ẽ
+                                              
+                    = I (AiB n X)ω + n Q̃ + Ẽ .
+
+The first equality follows by evaluating the coherent informations of the respective states ΦRB1 and
+ΦSA SB . The second equality follows because ΦRB1 ⊗ ΦTA TB is a product state. The first inequality
+follows from the condition in (4) and an application of the Alicki-Fannes’ inequality with δ 0 vanishing
+when  → 0. We suppress the term nδ 0 in the following lines. The next two inequalities follow from
+
+
+                                                     9
+quantum data processing. The third equality follows from the definition of coherent information. The
+fourth inequality follows from subadditivity of entropy. The fifth inequality follows from the definition
+of coherent information and the fact that the entropy can never be larger than the logarithm of the
+dimension of the corresponding system. The final equality follows from the definitions A ≡ RTB A2 SA
+and X ≡ M L. Thus the following inequality applies
+                                                                     
+                                n Q̄ + Ē ≤ I (AiB n X) + n Q̃ + Ẽ ,
+                                         
+
+
+demonstrating that (10) holds for the net rates.
+   We prove the last bound in (11). Consider the following chain of inequalities:
+                      
+        n C̄ + Q̄ + Ē = I(M ; M̂ )Φ + I (RSA iB1 SB )Φ⊗Φ
+                           ≤ I(M ; M̂ )ω0 + I (RSA iB1 SB )ω0 + nδ 0
+                           ≤ I(M ; B n A2 TB L)ω + I (RSA iB n A2 TB LM )ω
+                           = I (M L; B n A2 TB )ω + I (M ; L)ω − I (A2 B n TB ; L)ω
+                                + H (B n |LM ) + H (A2 TB |B n LM )ω − H (RSA A2 TB B n |LM )ω
+                           = I (M L; B n )ω + I (M L; A2 TB |B n )ω + I (M ; L)ω − I (A2 B n TB ; L)ω
+                                + H (A2 TB |B n LM )ω + I (RSA A2 TB iB n LM )ω .
+                                                                                        M M̂
+The first equality follows from evaluating the mutual information of the state Φ        and the coherent
+information of the product state ΦRB1 ⊗ ΦSA SB . The first inequality follows from the condition in (4)
+and an application of the Alicki-Fannes’ inequality with δ 0 vanishing when  → 0. We suppress the
+term nδ 0 in the following lines. The second inequality follows from quantum data processing. The second
+equality follows from applying the chain rule for quantum mutual information to I(M ; B n A2 TB L)ω and
+by expanding the coherent information I (RSA iB n A2 TB LM )ω . The third equality follows from applying
+the chain rule for quantum mutual information to I (M L; B n A2 TB )ω and from the definition of coherent
+information. We continue below:
+
+             = I (M L; B n )ω + I (RSA A2 TB iB n LM )ω
+                  + I (M L; A2 TB |B n )ω + I (M ; L)ω − I (A2 B n TB ; L)ω + H (A2 TB |B n LM )ω
+             = I (M L; B n )ω + I (RSA A2 TB iB n LM )ω
+                  + H (A2 TB |B n )ω + I (M ; L)ω − I (A2 B n TB ; L)ω
+                                                                        
+             ≤ I (M L; B n )ω + I (RSA A2 TB iB n LM )ω + n C̃ + Q̃ + Ẽ
+                                                             
+             = I (X; B n )ω + I (AiB n X)ω + n C̃ + Q̃ + Ẽ .
+
+The first equality follows by rearranging terms. The second equality follows by canceling terms. The in-
+equality follows from subadditivity of the entropy H (A2 TB |B n )ω , the fact that the entropy H (A2 TB |B n )ω
+can never be larger than the logarithm of the dimension of the systems A2 TB , that the mutual infor-
+mation I (M ; L)ω can never be larger than the logarithm of the dimension of the classical register L,
+and because I (A2 B n TB ; L)ω ≥ 0. The last equality follows from the definitions A ≡ RTB A2 SA and
+X ≡ M L. Thus the following inequality holds
+                                                                                    
+                   n C̄ + Q̄ + Ē ≤ I (X; B n )ω + I (AiB n X)ω + n C̃ + Q̃ + Ẽ + nδ 0 ,
+                                 
+
+
+demonstrating that the inequality in (11) applies to the net rates. This concludes the catalytic proof of
+the converse theorem.
+
+
+6.1 Pure state ensembles are sufficient
+
+We prove that it is sufficient to consider an ensemble of pure states as in the statement of Theorem 1 rather
+than an ensemble of mixed states as in (15) in the proof of our converse theorem. Our argument relies on
+a classic trick exploited in quantum Shannon theory [11]. We first determine a spectral decomposition of
+
+
+                                                      10
+the mixed state ensemble, model the index of the pure states in the decomposition as a classical variable
+Y , and then place this classical variable Y in a classical register. It follows that the communication rates
+can only improve, and it is sufficient to consider an ensemble of pure states.
+    Consider that each mixed state in the ensemble in (15) admits a spectral decomposition of the
+following form:
+                                               0
+                                                                AA0
+                                                   X
+                                           ρxAA =      p (y|x) ψx,y .
+                                                      y
+
+We can thus represent the ensemble as follows:
+                                      X                             X        0       0
+                            ρXAB ≡           p(x)p (y|x) |xi hx| ⊗ N A →B (ψx,y
+                                                                            AA
+                                                                                ).                      (16)
+                                       x,y
+
+
+The inequalities in (9-11) for the dynamic capacity region involve the mutual information I(AX; B)ρ ,
+the Holevo information I(X; B)ρ , and the coherent information I(AiBX)ρ . As we show below, each of
+these entropic quantities can only improve in each case if make the variable y be part of the classical
+variable. This improvement then implies that it is only necessary to consider pure states in the dynamic
+capacity theorem.
+   Let θXY AB denote an augmented state of the following form:
+                                  X                        X             Y       0       0
+                      θXY AB ≡        p(x)p (y|x) |xi hx| ⊗ |yi hy| ⊗ N A →B (ψx,y
+                                                                               AA
+                                                                                   ).                   (17)
+                                  x
+
+This state is actually a state of the form in (12) if we subsume the classical variables X and Y into one
+classical variable. The following three inequalities each follow from an application of the quantum data
+processing inequality:
+
+                                   I(X; B)ρ = I(X; B)θ ≤ I(XY ; B)θ ,                                   (18)
+                                  I(AX; B)ρ = I(AX; B)θ ≤ I(AXY ; B)θ                                   (19)
+                                  I(AiBX)ρ = I(AiBX)θ ≤ I(AiBXY )θ .                                    (20)
+
+Each of these inequalities proves the desired result for the respective Holevo information, mutual infor-
+mation, and coherent information, and it suffices to consider an ensemble of pure states in Theorem 1.
+
+
+7 The quantum dynamic capacity formula
+
+We introduce the quantum dynamic capacity formula and show how additivity of it implies that the
+computation of the Pareto optimal trade-off surface of the capacity region requires just a single channel
+use, rather than an infinite number of them (as in regularized formulas). The Pareto optimal trade-off
+surface consists of all points in the capacity region that are Pareto optimal, in the sense that it is not
+possible to make improvements in one resource without offsetting another resource (these are essentially
+the boundary points of the region in our case). We then show how several important capacity formulas
+in the quantum Shannon theory literature are special cases of the quantum dynamic capacity formula.
+
+Definition 3 (Quantum Dynamic Capacity Formula) The quantum dynamic capacity formula of
+a quantum channel N is as follows:
+
+               Dλ,µ (N ) ≡ max I (AX; B)σ + λI (AiBX)σ + µ (I (X; B)σ + I (AiBX)σ ) ,                   (21)
+                              σ
+
+where λ, µ ≥ 0.
+
+Definition 4 The regularized quantum dynamic capacity formula is as follows:
+
+                                       reg                     1
+                                                                   Dλ,µ N ⊗n .
+                                                                            
+                                      Dλ,µ (N ) ≡ lim
+                                                     n→∞ n
+
+
+
+                                                          11
+Lemma 1 Suppose the quantum dynamic capacity formula is additive for any two channels N and M:
+
+                                    Dλ,µ (N ⊗ M) = Dλ,µ (N ) + Dλ,µ (M) .
+
+Then the regularized quantum dynamic capacity formula for N is equal to the quantum dynamic capacity
+formula for N :
+                                                 reg
+                                                Dλ,µ (N ) = Dλ,µ (N ) .
+
+In this sense, the regularized formula “single-letterizes” and it is not necessary to take the limit.
+
+Proof We prove the result using induction on n. The base case for n = 1 is trivial. Suppose the result
+holds for n: Dλ,µ (N ⊗n ) = nDλ,µ (N ). Then the following chain of equalities proves the inductive step:
+
+                                    Dλ,µ (N ⊗n+1 ) = Dλ,µ (N ⊗ N ⊗n )
+                                                      = Dλ,µ (N ) + Dλ,µ (N ⊗n )
+                                                      = Dλ,µ (N ) + nDλ,µ (N ).
+
+The first equality follows by expanding the tensor product. The second critical equality follows from the
+assumption that the formula is additive. The final equality follows from the induction hypothesis.
+
+Theorem 2 Single-letterization of the quantum dynamic capacity formula implies that the computation
+of the Pareto optimal trade-off surface of the quantum dynamic capacity region requires an optimization
+over a single channel use.
+
+Proof We employ ideas from Ref. [7] for the proof. We would like to characterize all the points in the
+capacity region that are Pareto optimal. Such a task is standard vector optimization in the theory of
+Pareto trade-off analysis (see Section 4.7 of Ref. [7]). We can phrase the optimization task as the following
+scalarization of the vector optimization task:
+
+                                              max          wC C + wQ Q + wE E                                   (22)
+                                          C,Q,E,p(x),φx
+
+
+subject to
+
+                                          C + 2Q ≤ I(AX; B n )σ ,                                               (23)
+                                                               n
+                                           Q + E ≤ I(AiB X)σ ,                                                  (24)
+                                    C + Q + E ≤ I(X; B n )σ + I(AiB n X)σ ,                                     (25)
+
+where the maximization is over all C, Q, and E and over probability distributions pX (x) and bipartite
+            0n
+states φAA
+        x      . The geometric interpretation of the scalarization task is that we are trying to find a
+supporting plane of the dynamic capacity region where the weight vector (wC , wQ , wE ) is the normal
+vector of the plane and the value of its inner product with (C, Q, E) characterizes the offset of the plane.
+    The Lagrangian of the above optimization problem is
+                            0n
+                                              
+     L C, Q, E, pX (x) , φAA
+                          x     , λ1 , λ2 , λ3 ≡ wC C + wQ Q + wE E + λ1 (I (AX; B n )σ − (C + 2Q))
+                                                          + λ2 (I (AiB n X)σ − (Q + E))
+                                                           + λ3 (I (X; B n )σ + I (AiB n X)σ − (C + Q + E)) ,
+
+and the Lagrange dual function g [7] is
+                                                                                  0n
+                                                                                                    
+                  g (λ1 , λ2 , λ3 ) ≡         sup          L C, Q, E, pX (x) , φAA
+                                                                                x     , λ1 , λ2 , λ3 ,
+                                                    AA0n
+                                        C,Q,E,p(x),φx
+
+
+                                                             12
+where λ1 , λ2 , λ3 ≥ 0. The optimization task simplifies if the Lagrange dual function does. Thus, we
+rewrite the Lagrange dual function as follows:
+
+g (λ1 , λ2 , λ3 ) =           sup         wC C + wQ Q + wE E + λ1 (I (AX; B n )σ − (C + 2Q))
+                                     0n
+                      C,Q,E,p(x),φAA
+                                  x
+
+                         + λ2 (I (AiB n X)σ − (Q + E))
+                         + λ3 (I (X; B n )σ + I (AiB n X)σ − (C + Q + E))
+                =             sup         (wC − λ1 − λ3 ) C + (wQ − 2λ1 − λ2 − λ3 ) Q + (wE − λ2 − λ3 ) E
+                                     0n
+                      C,Q,E,p(x),φAA
+                                  x
+                                                                                             
+                                             λ2              λ3
+                         + λ1 I (AX; B n )σ + I (AiB n X)σ +    (I (X; B n )σ + I (AiB n X)σ )
+                                             λ1              λ1
+                = sup (wC − λ1 − λ3 ) C + (wQ − 2λ1 − λ2 − λ3 ) Q + (wE − λ2 − λ3 ) E
+                      C,Q,E
+                                                                                                               !
+                                                             λ2              λ 3
+                         + λ1          max 0n I (AX; B n )σ + I (AiB n X)σ +     (I (X; B n )σ + I (AiB n X)σ ) .
+                                    p(x),φAA
+                                          x
+                                                             λ1              λ1
+
+The first equality follows by definition. The second equality follows from some algebra, and the last
+follows because the Lagrange dual function factors into two separate optimization tasks: one over C, Q,
+and E and another that is equivalent to the quantum dynamic capacity formula with λ = λ2 /λ1 and
+µ = λ3 /λ1 . Thus, the computation of the Pareto optimal trade-off surface requires just a single use of
+the channel if the quantum dynamic capacity formula in (21) single-letterizes.
+
+
+7.1 Special cases of the quantum dynamic capacity formula
+
+We now show how several capacity formulas of a quantum channel, including the entanglement-assisted
+classical capacity [5], the Lloyd-Shor-Devetak (LSD) formula for the quantum capacity [21, 25, 10], and
+the Holevo-Schumacher-Westmoreland (HSW) formula for the classical capacity [14, 24] are special cases
+of the quantum dynamic capacity formula.
+    We first give a geometric interpretation of these special cases before proceeding to the proofs. Recall
+that the dynamic capacity region has the simple interpretation as a translation of the three-faced unit
+resource capacity region along the classically-enhanced father trade-off curve (see Figure 2 for the example
+of the region of the dephasing channel). Any particular weight vector (wC , wQ , wE ) in (22) gives a set
+of parallel planes that slice through the (C, Q, E) space, and the goal of the scalar optimization task is
+to find one of these planes that is a supporting plane, intersecting a point (or a set of points) on the
+trade-off surface of the dynamic capacity region. We consider three special planes:
+
+1. The first corresponds to the plane containing the vectors of super-dense coding and teleportation.
+   The normal vector of this plane is (1, 2, 0), and suppose that we set the weight vector in (22) to
+   be this vector. Then the optimization program finds the set of points on the trade-off surface such
+   that a plane with this normal vector is a supporting plane for the region. The optimization program
+   singles out (23), and we can think of this as being equivalent to setting λ2 , λ3 = 0 in the Lagrange
+   dual function. We show below that the optimization program becomes equivalent to finding the
+   entanglement-assisted capacity [5], in the sense that the quantum dynamic capacity formula becomes
+   the entanglement-assisted capacity formula.
+2. The next plane contains the vectors of teleportation and entanglement distribution. The normal vector
+   of this plane is (0, 1, 1). Setting the weight vector in (22) to be this vector makes the optimization
+   program single out (24), and we can think of this as being equivalent to setting λ1 , λ3 = 0 in the
+   Lagrange dual function. We show below that the optimization program becomes equivalent to finding
+   the quantum capacity [21, 25, 10], in the sense that the quantum dynamic capacity formula becomes
+   the LSD formula for the quantum capacity.
+3. A third plane contains the vectors of super-dense coding and entanglement distribution. The normal
+   vector of this plane is (1, 1, 1). Setting the weight vector in (22) to be this vector makes the optimiza-
+   tion program single out (25), and we can think of this as being equivalent to setting λ1 , λ2 = 0 in
+   the Lagrange dual function. We show below that the optimization becomes equivalent to finding the
+
+
+                                                            13
+   classical capacity [21, 25, 10], in the sense that the quantum dynamic capacity formula becomes the
+   HSW formula for the classical capacity.
+
+Corollary 1 The quantum dynamic capacity formula is equivalent to the entanglement-assisted classical
+capacity formula when λ, µ = 0, in the sense that
+
+                                     max I (AX; B) = max0 I (A; B) .
+                                       σ                    φAA
+
+
+Proof The inequality maxσ I (AX; B) ≥ maxφAA0 I (A; B) follows because the state σ is of the form in
+                                                      0
+(14) and we can always choose pX (x) = δx,x0 and φAA
+                                                   x0   to be the state that maximizes I (A; B).
+    We now show the other inequality maxσ I (AX; B) ≤ maxφAA0 I (A; B). First, consider that the
+following chain of equalities holds for any state φABE resulting from the isometric extension of the
+channel:
+
+                                  I (A; B) = H (B) + H (A) − H (AB)
+                                              = H (B) + H (BE) − H (E)
+                                              = H (B) + H (B|E) .
+
+In this
+    n way,owe see that the mutual information is purely a function of the channel input density operator
+        0
+TrA φAA . Then consider any state σ of the form in (14). The following chain of inequalities holds
+
+                            I (AX; B)σ = H (A|X)σ + H (B)σ − H (E|X)σ
+                                           = H (BE|X)σ + H (B)σ − H (E|X)σ
+                                           = H (B|EX)σ + H (B)σ
+                                           ≤ H (B|E)σ + H (B)σ
+                                           ≤ max0 I (A; B) .
+                                             φAA
+
+
+The first equality follows by expanding the mutual information. The second equality follows because the
+state on ABE is pure when conditioned on X. The third equality follows from the entropy chain rule.
+The first inequality follows from strong subadditivity, and the last follows because the state after tracing
+out systems X and A is a particular state that arises from the channel and cannot be larger than the
+maximum.
+
+Corollary 2 The quantum dynamic capacity formula is equivalent to the LSD quantum capacity formula
+in the limit where λ → ∞ and µ is fixed, in the sense that
+
+                                     max I (AiBX) = max0 I (AiB) .
+                                       σ                    φAA
+
+
+Proof The inequality maxσ I (AiBX) ≥ maxφAA0 I (AiB) follows because the state σ is of the form in
+                                                     0
+(14) and we can always choose pX (x) = δx,x0 and φAA
+                                                  x0   to be the state that maximizes I (AiB).
+                                                                                 P
+   The inequality maxσ I (AiBX) ≤ maxφAA I (AiB) follows because I (AiBX) = x pX (x) I (AiB)φx
+                                           0
+
+and the maximum is always greater than the average.
+
+Corollary 3 The quantum dynamic capacity formula is equivalent to the HSW classical capacity formula
+in the limit where µ → ∞ and λ is fixed, in the sense that
+
+                           max I (AiBX)σ + I (X; B)σ =               max         I (X; B) .
+                             σ                                    {pX (x),ψx }
+
+
+   The inequality maxσ I (AiBX)σ + I (X; B)σ ≥ max{pX (x),ψx } I (X; B) follows by choosing σ to be
+the pure ensemble that maximizes I (X; B) and noting that I (AiBX)σ vanishes for a pure ensemble.
+
+
+                                                       14
+   We now prove the inequality maxσ I (AiBX)σ +I (X; B)σ ≤ max{pX (x),ψx } I (X; B). Consider a state
+ω XY BE obtained by performing a von Neumann measurement on the A system of the state σ XABE . Then
+
+                             I (AiBX)σ + I (X; B)σ = H (B)σ − H (E|X)σ
+                                                       = H (B)ω − H (E|X)ω
+                                                       ≤ H (B)ω − H (E|XY )ω
+                                                       = H (B)ω − H (B|XY )ω
+                                                       = I (XY ; B)ω
+                                                       ≤      max         I (X; B) .
+                                                           {pX (x),ψx }
+
+The first equality follows by expanding the conditional coherent information and the Holevo information.
+The second equality follows because the measured A system is not involved in the entropies. The first
+inequality follows because conditioning does not increase entropy. The third equality follows because the
+state ω is pure when conditioned on X and Y . The fourth equality follows by definition, and the last
+inequality follows for clear reasons.
+
+
+8 Single-letter dynamic capacity region for the quantum Hadamard channels
+
+Below we show that the regularization in (8) is not necessary if the quantum channel is a Hadamard
+channel. This result holds because a Hadamard channel has a special structure. The development of the
+proof is similar to that in Ref. [9], but simplified because we obtain the single-letter result more directly.
+
+Theorem 3 The dynamic capacity region CCQE (NH ) of a quantum Hadamard channel NH is equal to
+                     (1)
+its one-shot region CCQE (NH ).
+
+   The proof of the above theorem follows in two parts: 1) the below lemma shows the quantum dynamic
+capacity formula is additive when one of the channels is Hadamard and 2) the induction argument in
+Lemma 1 that proves single-letterization.
+
+Lemma 2 The following additivity relation holds for a Hadamard channel NH and any other channel
+N:
+                           Dλ,µ (NH ⊗ N ) = Dλ,µ (NH ) + Dλ,µ (N ).
+
+Proof We first note that the inequality Dλ,µ (NH ⊗N ) ≥ Dλ,µ (NH )+Dλ,µ (N ) holds for any two channels
+simply by selecting the state σ in the maximization to be a tensor product of the ones that individually
+maximize Dλ,µ (NH ) and Dλ,µ (N ).
+    So we prove that the non-trivial inequality Dλ,µ (NH ⊗N ) ≤ Dλ,µ (NH )+Dλ,µ (N ) holds when the first
+channel is a Hadamard channel. Since the first channel is Hadamard, it is degradable and its degrading
+map has a particular structure: there are maps D1B1 →Y and D2Y →E1 where Y is a classical register and
+such that the degrading map is D2Y →E1 ◦ D1B1 →Y [9, 18]. Suppose the state we are considering to input
+to the tensor product channel is
+                                       0 0                         AA0 A0
+                                             X                 X
+                                ρXAA1 A2 ≡       pX (x) |xi hx| ⊗ φx 1 2 ,
+                                               x
+
+and this state is the one that maximizes Dλ,µ (NH ⊗ N ). Suppose that the output of the first channel is
+                                               0     A0 →B1 E1             0   0
+                                   θXAB1 E1 A2 ≡ UNH1            (ρXAA1 A2 ),
+
+and the output of the second channel is
+                                                     A0 →B2 E2                     0
+                                 ω XAB1 E1 B2 E2 ≡ UN 2          (θXAB1 E1 A2 ).
+
+Finally, we define the following state as the result of applying the first part of the Hadamard degrading
+map (a von Neumann measurement) to ω:
+
+                                  σ XY AE1 B2 E2 ≡ D1B1 →Y (ω XAB1 E1 B2 E2 ).
+
+
+                                                      15
+In particular, the state σ on systems AE1 B2 E2 is pure when conditioned on X and Y . Then the following
+chain of inequalities holds:
+
+Dλ,µ (NH ⊗ N ) = I (AX; B1 B2 )ω + λI (AiB1 B2 X)ω + µ (I (X; B1 B2 )ω + I (AiB1 B2 X)ω )
+                   = H (B1 B2 E1 E2 |X)ω + λH (B1 B2 |X)ω + (µ + 1) H (B1 B2 )ω − (λ + µ + 1) H (E1 E2 |X)ω
+                   = H (B1 E1 |X)ω + λH (B1 |X)ω + (µ + 1) H (B1 )ω − (λ + µ + 1) H (E1 |X)ω +
+                       H (B2 E2 |B1 E1 X)ω + λH (B2 |B1 X)ω + (µ + 1) H (B2 |B1 )ω − (λ + µ + 1) H (E2 |E1 X)ω
+                   ≤ H (B1 E1 |X)θ + λH (B1 |X)θ + (µ + 1) H (B1 )θ − (λ + µ + 1) H (E1 |X)θ +
+                       H (B2 E2 |Y X)σ + λH (B2 |Y X)σ + (µ + 1) H (B2 )σ − (λ + µ + 1) H (E2 |Y X)σ
+                   = I (AA02 X; B1 )θ + λI (AA02 iB1 X)θ + µ (I (X; B1 )θ + I (AA02 iB1 X)θ ) +
+                       I (AE1 Y X; B2 )σ + λI (AE1 iB2 Y X)σ + µ (I (Y X; B2 )σ + I (AE1 iB2 Y X)σ )
+                   ≤ Dλ,µ (NH ) + Dλ,µ (N ) .
+
+The first equality follows by evaluating the quantum dynamic capacity formula Dλ,µ (NH ⊗ N ) on the
+state ρ. The next two equalities follow by rearranging entropies and because the state ω on systems
+AB1 E1 B2 E2 is pure when conditioned on X. The inequality in the middle is the crucial one and follows
+from the Hadamard structure of the channel: we exploit monotonicity of conditional entropy under
+quantum operations so that H (B2 |B1 X)ω ≤ H (B2 |Y X)σ and H (E2 |Y X)σ ≤ H (E2 |E1 X)ω . The next
+equality follows by rearranging entropies and the final one follows because θ is a state of the form (14)
+for the first channel while σ is a state of the form (14) for the second channel.
+
+
+9 The dynamic capacity region of a dephasing channel
+
+The below theorem shows that the full dynamic capacity region admits a particularly simple form when
+the noisy quantum channel is a qubit dephasing channel ∆p where
+
+                                     ∆p (ρ) ≡ (1 − p) ρ + p∆ (ρ) ,
+                                      ∆ (ρ) ≡ h0 |ρ| 0i |0i h0| + h1 |ρ| 1i |1i h1| .
+
+A dephasing channel is an example of a quantum Hadamard channel [9].4 Figure 2 plots this region for
+the case of a dephasing channel with dephasing parameter p = 0.2. The proof of the following theorem
+exploits the same techniques as in Ref. [9].
+
+Theorem 4 The dynamic capacity region CCQE (∆p ) of a dephasing channel with dephasing parameter
+p is the set of all C, Q, and E such that
+
+                                          C + 2Q ≤ 1 + H2 (ν) − H2 (γ (ν, p)),                         (26)
+                                           Q + E ≤ H2 (ν) − H2 (γ (ν, p)),                             (27)
+                                      C + Q + E ≤ 1 − H2 (γ (ν, p)),                                   (28)
+
+where ν ∈ [0, 1/2], H2 is the binary entropy function, and
+                                                    r
+                                            1 1                    p    p
+                                  γ (ν, p) ≡ +          1 − 16 ·      1−    ν(1 − ν).
+                                            2 2                    2     2
+
+Proof We first notice that it suffices to consider an ensemble of pure states whose reductions to A0 are
+diagonal in the dephasing basis (as in Lemma 11 of Ref. [9]). Next we prove below that it is sufficient to
+consider an ensemble of the following form to characterize the boundary points of the region:
+
+                                       1        X      0 1       X      0
+                                         |0i h0| ⊗ ψ0AA + |1i h1| ⊗ ψ1AA ,                             (29)
+                                       2                 2
+ 4   Brádler showed that cloning channels and an Unruh channel are also in the Hadamard class [8].
+
+
+                                                           16
+                                                          1.5
+
+
+
+
+                         Entanglement consumption rate
+                                                           1                           SD
+                                                                                                                                     TP
+                                                                     SD
+
+                                                          0.5
+
+
+                                                                                                        rve
+                                                                                                 CEF cu
+                                                           0
+
+
+
+                                                         −0.5
+                                                                                                      ED
+                                                                                  ED
+
+                                                          −1
+                                                          −1
+                                                                    0                                                                           −2
+                                                                                                                                          −1
+                                                                              1                                                  0
+                                                                                                                  1
+                                                                                             2                2
+                                                          Quantum communication rate              3                   Classical communication rate
+
+
+Fig. 2 (Color online) A plot of the dynamic capacity region for a qubit dephasing channel with dephasing parameter
+p = 0.2. The plot shows that the classically-enhanced father (CEF) trade-off curve lies along the boundary of the dynamic
+capacity region. The rest of the region is simply the combination of the CEF points with the unit protocols teleportation
+(TP), super-dense coding (SD), and entanglement distribution (ED).
+
+
+            0                                 0
+where ψ0AA and ψ1AA are pure states, defined as follows for ν ∈ [0, 1/2]:
+                                                    A0                 A0
+                               n      0
+                                        o
+                           TrA ψ0AA = ν |0i h0| + (1 − ν) |1i h1| ,                                                                                  (30)
+                                                         A0            A0
+                               n      0
+                                        o
+                           TrA ψ1AA = (1 − ν) |0i h0| + ν |1i h1| .                                                                                  (31)
+
+We now prove the above claim. We assume without loss of generality that the dephasing basis is the
+computational basis. Consider a classical-quantum state with a finite number N of conditional density
+              0
+operators φAA
+           x    whose reduction to A0 is diagonal:
+                                                                                   N −1
+                                                                              0    X                                         0
+                                                                        ρXAA ≡               pX (x) |xihx|X ⊗ φAA
+                                                                                                               x  .
+                                                                                       x=0
+
+We can form a new classical-quantum state with double the number of conditional density operators by
+“bit-flipping” the original conditional density operators:
+                                                            N −1
+                     0                                    1 X                       0                          0    0   0
+                                                                                                                           
+                σ XAA ≡                                         pX (x) |xihx|X ⊗ φAA
+                                                                                  x    + |x + N ihx + N |X ⊗ X A φAA
+                                                                                                                  x    XA ,
+                                                          2 x=0
+
+where X is the σX “bit-flip” Pauli operator. Consider the following chain of inequalities that holds for
+all λ, µ ≥ 0:
+                                                                      
+                I (AX; B)ρ + λI (AiBX)ρ + µ I (X; B)ρ + I (AiBX)ρ
+                    = H (A|X)ρ + (µ + 1) H (B)ρ + λH (B|X)ρ − (λ + µ + 1) H (E|X)ρ
+                    ≤ (µ + 1) H (B)σ + H (A|X)σ + λH (B|X)σ − (λ + µ + 1) H (E|X)σ
+                    = (µ + 1) + H (A|X)σ + λH (B|X)σ − (λ + µ + 1) H (E|X)σ
+                                X        h                                         i
+                    = (µ + 1) +    pX (x) H (A)φx + λH (B)φx − (λ + µ + 1) H (E)φx
+                                                                    x
+                                   h                                         i
+                    ≤ (µ + 1) + max H (A)φx + λH (B)φx − (λ + µ + 1) H (E)φx
+                                                                    x
+                    = (µ + 1) + H (A)φ∗x + λH (B)φ∗x − (λ + µ + 1) H (E)φ∗x .
+
+
+                                                                                                   17
+The first equality follows by standard entropic manipulations. The second equality follows because the
+conditional entropy H (B|X) is invariant under a bit-flipping unitary on the input state that commutes
+with the channel: H(B)XρB      xX
+                                    = H(B)ρB  x
+                                                . Furthermore, a bit flip on the input state does not change
+the eigenvalues for the output of the dephasing channel’s complementary channel: H(E)N c (XρA                0
+                                                                                                            x X)
+                                                                                                                  =
+                                                                                                  B
+H(E)N c (ρA  0 . The first inequality follows because entropy is concave, i.e., the local state σ
+            x )
+                                                                                                    is a mixed  ver-
+                                                                                                         1
+                                                                  P 1             B        B
+                                                                                                                      
+sion of ρB . The third equality follows because H(B)σB = H
+                                                                                                           P
+                                                                    x 2 pX (x) (ρx + Xρx X) = H 2            x pX (x) I =
+1. The fourth equality follows because the system X is classical. The second inequality follows because the
+maximum value of a realization of a random variable is not less than its expectation. The final equality
+simply follows by defining φ∗x to be the conditional density operator on systems A, B, and E that arises
+                                                                                             A0                  A0
+from sending through the channel a state whose reduction to A0 is of the form ν |0i h0| +(1 − ν) |1i h1| .
+Thus, an ensemble of the kind in (29) is sufficient to attain a point on the boundary of the region.
+    Evaluating the entropic quantities in Theorem 1 on a state of the above form then gives the expression
+for the region in Theorem 4.
+
+
+10 Single-letter dynamic capacity region for the quantum erasure channels
+
+Below we show that the regularization in (8) is not necessary if the quantum channel is a quantum erasure
+channel. The quantum erasure channel also has a special structure, but the proof proceeds differently
+from that for a quantum Hadamard channel.
+   A quantum erasure channel with erasure parameter  is the following map [13]:
+                                         N (ρ) ≡ (1 − ) ρ +  |ei he| .
+Notice that the receiver can perform a measurement {|0i h0| + |1i h1| , |ei he|} and can learn whether the
+channel erased the state. The receiver can do this without disturbing the state in any way. An isometric
+            A0 →BE                                             AA0                0
+extension UN 
+                    of it acts as follows on a purification |ψi    of the state ρA :
+                            A0 →BE      AA0   √          AB    E   √      AE    B
+                          UN 
+                                    |ψi     = 1 −  |ψi |ei +  |ψi |ei .
+In the above representation, we see that the erasure channel has the interpretation that it hands the
+input to Bob with probability 1 −  while giving an erasure flag |ei to Eve, and it hands the input to Eve
+with probability  while giving the erasure flag to Bob.
+
+Theorem 5 The dynamic capacity region CCQE (N ) of a quantum erasure channel N is the set of all
+C, Q, and E such that
+                                         C + 2Q ≤ (1 − ) (1 + H2 (p)) ,
+                                           Q + E ≤ (1 − 2) H2 (p) ,
+                                      C + Q + E ≤ 1 −  − H2 (p) ,
+where p ∈ [0, 1/2].
+
+    Figure 3 plots the dynamic capacity region of a quantum erasure channel with erasure parameter
+ = 1/4. It turns out that time-sharing is the optimal strategy here, and there is not an interesting
+trade-off curve for the quantum erasure channel.
+    We in fact proved Theorem 5 in Ref. [17] by employing a reductio ad absurdum argument reminiscent
+of the earliest arguments for proving capacities of quantum erasure channels [4]. This approach gives the
+correct answer, but suffers from two shortcomings:
+1. We do not learn much about how to exploit the structure of the quantum erasure channel with the
+   reductio ad absurdum approach. As an example, Smith and Yard exploited the simple structure of the
+   quantum erasure channel and discovered far reaching consequences [26]. In particular, they discovered
+   that the quantum capacity (and for that matter, any future proposed quantum capacity formula) can
+   never be generally additive, by combining the erasure channel with another one.
+2. The reductio ad absurdum argument rests on the assumption that several known capacity formulas
+   are continuous as a function of channels. Leung and Smith later showed that the known formulas are
+   indeed continuous [19], redeeming the original argument in Ref. [4].
+
+
+                                                       18
+                                                             1
+                                                                                          SD
+                                                                                                                                               TP
+
+
+
+
+                          Entanglement consumption rate
+                                                           0.8          SD
+                                                           0.6
+
+                                                           0.4
+
+                                                           0.2
+                                                                                                              rve
+                                                            0                                           CEF cu
+
+                                                          −0.2
+
+                                                          −0.4
+
+                                                          −0.6                                               ED
+                                                                                          ED
+                                                          −0.8
+                                                           −1
+                                                                 −0.5
+                                                                         0                                                                    −1    −1.5
+                                                                             0.5                                                 0     −0.5
+                                                                                      1                                1   0.5
+                                                                                                         2       1.5
+                                                                                          1.5     2.5
+                                  Quantum communication rate                                                           Classical communication rate
+
+Fig. 3 (Color online) A plot of the dynamic capacity region for a qubit erasure channel with erasure parameter  = 1/4.
+The plot shows that the classically-enhanced father (CEF) trade-off curve lies along the boundary of the dynamic capacity
+region and it is not actually a curve but rather a line because time-sharing is optimal. The rest of the region is simply the
+combination of the CEF points with the unit protocols teleportation (TP), super-dense coding (SD), and entanglement
+distribution (ED).
+
+
+
+
+   Here, we prove Theorem 5 above by carefully studying the structure of the quantum erasure channel
+and its additivity properties for the full dynamic capacity region. We prove the theorem in a few steps.
+First, we prove that the classical capacity of the quantum erasure channel admits a single-letter formula.5
+We then simplify the quantum dynamic capacity formula in (21) for the case of a quantum erasure channel
+and find that it is only necessary to consider certain values of the parameters µ and λ when we optimize.
+The proof of Lemma 7 exploits these conditions to show that the quantum dynamic capacity formula is
+additive for the case of two quantum erasure channels. It then follows by a trivial induction step (the
+same as in Lemma 1) that the full dynamic region single-letterizes and is of the form in Theorem 5.
+
+Lemma 3 (Bennett et al. [4]) The Holevo information of a quantum erasure channel is equal to 1 − :
+
+                                                                             χ (N ) ≡ max I (X; B) = 1 − 
+                                                                                                σ XB
+
+Proof We begin with an input ensemble of the following form:
+                                    0    X                X     0
+                                 ρXA ≡      pX (x) |xi hx| ⊗ φA
+                                                              x ,
+                                                                                          x
+                         0
+where the states φA    x are pure (it suffices to consider pure state ensembles for classical capacity).
+                 0
+Feeding  the  A    system   into the quantum erasure channel leads to a classical-quantum state σ XB =
+                                     0
+                   X      A0 →B
+                                 (φA
+P
+    p
+   x X  (x) |xi hx|   ⊗ N         x ). Bob can then measure his system B to learn whether the channel
+erases the qubit. Let XE denote a classical register where Bob places the result of the measurement so
+that we then have the state σ XBXE . It holds that any entropy evaluated on system B is equal to the
+joint entropy of B and XE because this measurement does not disturb the state in any way. Consider
+the following chain of inequalities:
+
+                                                                 I (X; B)σ = H (B)σ − H (B|X)σ
+                                                                                   = H (BXE )σ − H (BXE |X)σ
+                                                                                   = H (B|XE )σ − H (B|XE X)σ
+                                                                                   = (1 − ) H (A0 )ρ − (1 − ) H (A0 |X)ρ
+                                                                                   = (1 − ) I (X; A0 )ρ
+                                                                                   ≤ (1 − ) .
+ 5   The proof already appears in Ref. [4], but it again suffers from the aforementioned shortcomings.
+
+
+                                                                                                        19
+The first equality follows by expanding the mutual information and the second equality follows from
+the above fact regarding the joint entropy of B and XE . The third equality follows by expanding and
+canceling terms. The fourth equality follows by conditioning on the classical erasure flag register XE and
+realizing that the entropy of Bob’s system B is the entropy of the input state with probability 1 −  and
+otherwise is the entropy of the erasure state |ei (this latter entropy vanishes because this state is pure).
+Thus, the above sequence of steps reduces an optimization problem on the output of the channel to a
+simple optimization over the input ensemble. The Holevo information is then 1 −  because the quantity
+I (X; A0 )ρ can never be larger than unity for the case of a qubit erasure channel (it reaches unity for an
+ensemble of two orthogonal pure states chosen with equal probability).
+Lemma 4 The following additivity lemma holds for a quantum erasure channel N :
+                                    χ (N ⊗ N ) = χ (N ) + χ (N ) = 2 (1 − ) .
+Proof It suffices to prove the inequality χ (N ⊗ N ) ≤ χ (N ) + χ (N ) because the other inequality holds
+trivially. We define the following ensemble of states for the tensor product channel N ⊗ N :
+                                       0  0                           A0 A0
+                                              X                X
+                                   ρXA1 A2 ≡     pX (x) |xi hx| ⊗ φx 1 2 .                               (32)
+                                                      x
+
+We can also define the following augmented ensemble based on the above one:
+              0  0    1 X                   X         I         J    A0     A0    A0 A0   A0     A0
+       σ XIJA1 A2 ≡           pX (x) |xi hx| ⊗ |ii hi| ⊗ |ji hj| ⊗ (σi 1 ⊗ σj 2 )φx 1 2 (σi 1 ⊗ σj 2 ),   (33)
+                     16 x,i,j
+
+where σ0 ≡ I, σ1 ≡ σX , σ2 ≡ σY , and σ3 ≡ σZ . In particular, note that we obtain the maximally
+mixed state when tracing over classical registers I and J. Let ω XB1 B2 and θXIJB1 B2 denote the states
+                                                                          0 0              0 0
+obtained by sending systems A01 and A02 of the respective states ρXA1 A2 and σ XIJA1 A2 through two
+uses of the quantum erasure channel. Let XE,1 and XE,2 denote the classical variables Bob obtains by
+determining whether the channel erased his states (they also denote the registers where he places the
+results). Consider the following chain of inequalities that holds for any state ω XB1 B2 :
+    I (X; B1 B2 )ω = H (B1 B2 )ω − H (B1 B2 |X)ω
+                   = H (B1 B2 |XE,1 XE ,2 )ω − H (B1 B2 |XE,1 XE ,2 X)ω
+                                                                            
+                            2
+                   = (1 − ) H (A01 A02 )ρ + (1 − )  H (A01 )ρ + H (A02 )ρ
+                                                                                      
+                                2
+                       − (1 − ) H (A01 A02 |X)ρ − (1 − )  H (A01 |X)ρ + H (A02 |X)ρ
+                                                 2
+                   ≤ 2 (1 − ) − (1 − ) H (A01 A02 |XIJ)σ − (1 − )  (H (A01 |XIJ)σ + H (A02 |XIJ)σ )
+                   ≤ 2 (1 − ) .
+The first equality holds by expanding the mutual information. The next equality holds because an
+“erasure measurement” does not change entropy. The third equality follows by exploiting the properties
+of the erasure channels. The first inequality holds because the unconditional entropies of the A0 systems
+on the state ρ are always less than those for the state σ. The final inequality follows because the entropies
+in the previous line are non-negative. The statement of the theorem then follows.
+Lemma 5 The quantum dynamic capacity formula in (21) simplifies as follows for a quantum erasure
+channel N :
+           Dλ,µ (N ) ≡ max (1 − ) (1 + H2 (p)) + λ (1 − 2) H2 (p) + µ ((1 − ) − H2 (p)) .            (34)
+                         p∈[0,1/2]
+
+Thus, the “one-letter” dynamic capacity region of a quantum erasure channel is as Theorem 5 states.
+Proof We exploit the following classical-quantum states:
+                             0   X                 X      0
+                       ρXAA ≡        pX (x) |xi hx| ⊗ φAA
+                                                       x    ,
+                                        x
+                                0      X1                     X         I       0     0   0
+                        σ XIAA ≡                 pX (x) |xi hx| ⊗ |ii hi| ⊗ (σiA )φAA
+                                                                                   x  (σiA ),
+                                       x,i
+                                             4
+
+
+                                                             20
+and let ρXABE and σ XIABE be the states obtained
+                                              n by 0transmitting
+                                                     o           the A0 system through the isometric
+                                         0
+extension of the erasure channel. Let σxA ≡TrA φAA
+                                                 x    . Furthermore, let the eigenvalues of the state
+  0
+σxA with highest entropy on system A0 be p and 1 − p. Consider that the following chain of inequalities
+holds for any state ρXABE :
+                                                             
+         I (AX; B)ρ + λI (AiBX)ρ + µ I (X; B)ρ + I (AiBX)ρ
+         = H (A|X)ρ + (µ + 1) H (B)ρ + λH (B|X)ρ − (λ + µ + 1) H (E|X)ρ
+         = H (A0 |X)ρ + (µ + 1) H (B|XE )ρ + λH (B|XE X)ρ − (λ + µ + 1) H (E|XE X)ρ
+         = H (A0 |X)ρ + (µ + 1) (1 − ) H (A0 )ρ + λ (1 − ) H (A0 |X)ρ − (λ + µ + 1) H (A0 |X)ρ
+         ≤ (µ + 1) (1 − ) + (1 + λ (1 − ) − (λ + µ + 1) ) H (A0 |XI)σ
+                                                       X
+         = (µ + 1) (1 − ) + (1 −  + λ (1 − 2) − µ)     pX (x) H (A0 )σx
+                                                          x
+         ≤ (µ + 1) (1 − ) + (1 −  + λ (1 − 2) − µ) H (A0 )σx∗
+         = (1 − ) (1 + H2 (p)) + µ (1 −  − H2 (p)) + λ (1 − 2) H2 (p) .
+
+The first equality follows by standard entropic manipulations. The second equality follows by incorpo-
+rating the classical erasure flag variable. The third equality follows by exploiting the properties of the
+quantum erasure channel. The first inequality follows because the unconditional entropy of the state ρ is
+always less than that of the state σ. The next equality follows by expanding the conditional entropy. The
+second inequality follows because an average is always less than a maximum. The final equality follows
+by plugging in the eigenvalues of σx∗ . The form of the quantum dynamic capacity formula then follows
+because this chain of inequalities holds for any input ensemble.
+
+Lemma 6 It suffices to consider the set of λ, µ ≥ 0 for which
+
+                                         (1 − ) + λ (1 − 2) ≥ µ.
+
+Otherwise, we are just maximizing the classical capacity, which we know from Lemma 3 is equal to 1 − .
+
+Proof Consider rewriting the expression in (34) as follows:
+
+                       max (1 − ) + µ (1 − ) + [(1 − ) + λ (1 − 2) − µ] H2 (p) .
+                     p∈[0,1/2]
+
+Suppose that the expression in square brackets is negative, i.e.,
+
+                                         (1 − ) + λ (1 − 2) < µ.
+
+Then the maximization over p simply chooses p = 0 so that H2 (p) vanishes and the negative term
+disappears. The resulting expression for the quantum dynamic capacity formula is
+
+                                            (1 − ) + µ (1 − ) ,
+
+which corresponds to the following region
+
+                                               C + 2Q ≤ 1 − ,
+                                                Q + E ≤ 0,
+                                            C + Q + E ≤ 1 − .
+
+The above region is equivalent to a translation of the unit resource capacity region to the classical
+capacity rate triple (1 − , 0, 0). Thus, it suffices to restrict the parameters λ and µ as above for the
+quantum erasure channel.
+
+Lemma 7 The following additivity relation holds for two quantum erasure channels N with the same
+erasure parameter :
+                            Dλ,µ (N ⊗ N ) = Dλ,µ (N ) + Dλ,µ (N ).
+
+
+                                                     21
+Proof We prove the non-trivial inequality Dλ,µ (N ⊗N ) ≤ Dλ,µ (N )+Dλ,µ (N ). We define the following
+states:
+                                    0 0                          AA0 A0
+                                           X                 X
+                              ρXAA1 A2 ≡       pX (x) |xi hx| ⊗ φx 1 2 ,
+                                                  x
+                               XAB1 E1 B2 E2      A0 →B1 E1      A0 →B2 E2         0   0
+                           ω                   ≡ UN1         ⊗ UN2         (ρXAA1 A2 ),
+
+and we suppose that ρXAA1 A2 is the state that maximizes Dλ,µ (N ⊗N ). Consider the following equality:
+
+            I (AX; B1 B2 )ω + λI (AiB1 B2 X)ω + µ (I (X; B1 B2 )ω + I (AiB1 B2 X)ω )
+            = H (A|X)ω + H (B1 B2 )ω − H (E1 E2 |X)ω + λ (H (B1 B2 |X)ω − H (E1 E2 |X)ω )
+                   + µ (H (B1 B2 )ω − H (E1 E2 |X)ω ) .
+
+It follows simply by rewriting entropies. We continue below:
+                                                                                            
+                                            2
+                 = H (A01 A02 |X)ρ + (1 − ) H (A01 A02 )ρ +  (1 − ) H (A01 )ρ + H (A02 )ρ
+                       h                                                         i
+                    − 2 H (A01 A02 |X)ρ +  (1 − ) H (A01 |X)ρ + H (A02 |X)ρ
+                         h                                                                i
+                                   2
+                    + λ (1 − ) H (A01 A02 |X)ρ +  (1 − ) H (A01 |X)ρ + H (A02 |X)ρ
+                         h                                                         i
+                    − λ 2 H (A01 A02 |X)ρ +  (1 − ) H (A01 |X)ρ + H (A02 |X)ρ
+                          h                                                      i
+                                   2
+                    + µ (1 − ) H (A01 A02 )ρ +  (1 − ) H (A01 )ρ + H (A02 )ρ
+                          h                                                        i
+                    − µ 2 H (A01 A02 |X)ρ +  (1 − ) H (A01 |X)ρ + H (A02 |X)ρ .
+
+The above equality follows by exploiting the properties of the quantum erasure channel. Continuing, the
+above quantity is less than the following one:
+
+   ≤ 2 (1 − ) + 1 − 2 H (A01 A02 |XIJ)σ +  (1 − ) (H (A01 |XIJ)σ + H (A02 |XIJ)σ )
+                         
+
+        + λ (1 − 2) H (A01 A02 |XIJ)σ
+        + µ 2 (1 − ) − 2 H (A01 A02 |XIJ)σ −  (1 − ) (H (A01 |XIJ)σ − H (A02 |XIJ)σ )
+                                                                                        
+
+   = 2 (1 − ) + (1 − ) (H (A01 |XIJ)σ + H (A02 |XIJ)σ ) + λ (1 − 2) (H (A01 |XIJ)σ + H (A02 |XIJ)σ )
+      + µ [2 (1 − ) −  (H (A01 |XIJ)σ − H (A02 |XIJ)σ )]
+      − 1 − 2 + λ (1 − 2) − µ2 I (A01 ; A02 |XIJ)σ
+                                                    
+                              h                                              i
+   ≤ Dλ,µ (N ) + Dλ,µ (N ) − 1 − 2 + λ (1 − 2) − µ2 I (A01 ; A02 |XIJ)ρ
+                                                          
+
+   ≤ Dλ,µ (N ) + Dλ,µ (N ) .
+
+The first inequality follows from similar proofs we have seen for a state σ of the form in (33). The first
+equality follows by rearranging terms. The second inequality follows from the form of Dλ,µ in (34). The
+final inequality follows because Lemma 6 states that it is sufficient to consider (1 − ) + λ (1 − 2) ≥ µ.
+Note that this condition implies that
+
+                                           1 − 2 + λ (1 − 2) ≥ µ2 ,
+
+and hence that the quantity in square brackets in the line above the last one is positive.
+
+
+11 Conclusion
+
+We found a purely information theoretic approach to proving the converse part of the dynamic capacity
+region. This technique should be simpler to understand for those unfamiliar with the quantum Shannon
+theory literature. We also phrased the optimization task for the full dynamic capacity region in terms of
+the quantum dynamic capacity formula in (21) and proved its additivity (and hence single-letterization
+
+
+                                                        22
+of the dynamic capacity region) for the quantum Hadamard channels and quantum erasure channels. We
+note some open problems below.
+    There might be room for improvement in our formulas that characterize the dynamic capacity region
+when the channel is not of the Hadamard class or a quantum erasure channel. Though, our characteri-
+zation has the simple interpretation as the regularization of what one can achieve with the classically-
+enhanced father protocol [16] combined with teleportation, super-dense coding, and entanglement distri-
+bution. It is difficult to imagine a simpler characterization than this one, despite its multi-letter nature
+for the general case.
+    We would like to find other channels besides the Hadamard or erasure channels for which the region
+single-letterizes. We conjecture that additivity of the quantum dynamic capacity formula in (21) holds
+for channels that have hybrid Hadamard-erasure behavior such as the phase erasure channel in Ref. [4].
+It would also be interesting to find channels that are not hybrid Hadamard-erasure for which additivity
+of (21) holds.
+    There is also one interesting speculation to muse over that Professor David Avis suggested to us. Do
+each of the inequalities in Theorem 1 correspond to some fundamental physical law? This might shed
+further connections between information theory and physics that have not been elucidated yet.
+
+
+Acknowledgements
+
+We acknowledge the anonymous referee of Ref. [17], who encouraged us to find simpler proofs of the triple
+trade-off capacity regions, and the anonymous referee of Ref. [16] who questioned what the optimization
+task was for entanglement-assisted communication of classical and quantum information. MMW also
+acknowledges all of the useful discussions with Kamil Brádler, Patrick Hayden, and Dave Touchette
+during the development of Ref. [9] and useful discussions with David Avis and Patrick Hayden concerning
+the optimization task. We acknowledge Patrick Hayden for suggesting the catalytic approach for proving
+the converse theorem. MMW acknowledges support from the MDEIE (Québec) PSR-SIIRI international
+collaboration grant.
+
+
+References
+
+ 1. Robert Alicki and Mark Fannes. Continuity of quantum conditional information. Journal of Physics A: Mathematical
+    and General, 37(5):L55–L57, 2004.
+ 2. Howard Barnum, Emanuel Knill, and Michael A. Nielsen. On quantum fidelities and channel capacities. IEEE
+    Transactions on Information Theory, 46:1317–1329, 2000.
+ 3. Charles H. Bennett, Gilles Brassard, Claude Crépeau, Richard Jozsa, Asher Peres, and William K. Wootters. Tele-
+    porting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels. Physical Review Letters,
+    70:1895–1899, 1993.
+ 4. Charles H. Bennett, David P. DiVincenzo, and John A. Smolin. Capacities of quantum erasure channels. Physical
+    Review Letters, 78(16):3217–3220, April 1997.
+ 5. Charles H. Bennett, Peter W. Shor, John A. Smolin, and Ashish V. Thapliyal. Entanglement-assisted capacity of a
+    quantum channel and the reverse Shannon theorem. IEEE Transactions on Information Theory, 48:2637, 2002.
+ 6. Charles H. Bennett and Stephen J. Wiesner. Communication via one- and two-particle operators on Einstein-Podolsky-
+    Rosen states. Physical Review Letters, 69:2881–2884, 1992.
+ 7. Stephen Boyd and Lieven Vandenberghe. Convex Optimization. Cambridge University Press, The Edinburgh Building,
+    Cambridge, CB2 8RU, UK, 2004.
+ 8. Kamil Brádler. An infinite sequence of additive channels: the classical capacity of cloning channels. IEEE Transactions
+    on Information Theory, 57(8):5497–5503, August 2011. arXiv:0903.1638.
+ 9. Kamil Brádler, Patrick Hayden, Dave Touchette, and Mark M. Wilde. Trade-off capacities of the quantum Hadamard
+    channels. Physical Review A, 81:062312, June 2010. arXiv:1001.1732.
+10. Igor Devetak. The private classical capacity and quantum capacity of a quantum channel. IEEE Transactions on
+    Information Theory, 51(1):44–55, 2005.
+11. Igor Devetak, Aram W. Harrow, and Andreas Winter. A resource framework for quantum Shannon theory. IEEE
+    Transactions on Information Theory, 54(10):4587–4618, October 2008.
+12. Igor Devetak and Peter W. Shor. The capacity of a quantum channel for simultaneous transmission of classical and
+    quantum information. Communications in Mathematical Physics, 256(2):287–303, 2005.
+13. M. Grassl, Th. Beth, and T. Pellizzari. Codes for the quantum erasure channel. Physical Review A, 56(1):33–38, July
+    1997.
+14. Alexander S. Holevo. The capacity of the quantum channel with general signal states. IEEE Transactions on Infor-
+    mation Theory, 44:269–273, 1998.
+15. Min-Hsiu Hsieh and Mark M. Wilde. Theory of Quantum Computation, Communication, and Cryptography, vol-
+    ume 5906 of Lecture Notes in Computer Science, chapter Optimal Trading of Classical Communication, Quantum
+    Communication, and Entanglement, pages 85–93. Springer-Verlag, May 2009.
+
+
+                                                            23
+16. Min-Hsiu Hsieh and Mark M. Wilde. Entanglement-assisted communication of classical and quantum information.
+    IEEE Transactions on Information Theory, 56(9):4682–4704, September 2010. arXiv:0811.4227.
+17. Min-Hsiu Hsieh and Mark M. Wilde. Trading classical communication, quantum communication, and entangle-
+    ment in quantum Shannon theory. IEEE Transactions on Information Theory, 56(9):4705–4730, September 2010.
+    arXiv:0901.3038.
+18. Christopher King, Keiji Matsumoto, Michael Nathanson, and Mary Beth Ruskai. Properties of conjugate channels
+    with applications to additivity and multiplicativity. Markov Processes and Related Fields, 13(2):391–423, 2007. J. T.
+    Lewis memorial issue.
+19. Debbie Leung and Graeme Smith. Continuity of quantum channel capacities. Communications in Mathematical
+    Physics, 292(1):201–215, November 2009.
+20. Elliot H. Lieb and Mary Beth Ruskai. Proof of strong subadditivity of quantum-mechanical entropy. Journal of
+    Mathematical Physics, 14:1938, 1973.
+21. Seth Lloyd. The capacity of a noisy quantum channel. Physical Review A, 55:1613–1622, 1997.
+22. Michael A. Nielsen and Isaac L. Chuang. Quantum Computation and Quantum Information. Cambridge University
+    Press, New York, 2000.
+23. Benjamin Schumacher and Michael A. Nielsen. Quantum data processing and error correction. Physical Review A,
+    54:2629–2635, 1996.
+24. Benjamin Schumacher and Michael D. Westmoreland. Sending classical information via noisy quantum channels.
+    Physical Review A, 56:131–138, 1997.
+25. Peter W. Shor. The quantum channel capacity and coherent information. MSRI workshop on quantum computation,
+    2002.
+26. Graeme Smith and Jon Yard. Quantum communication with zero-capacity channels. Science, 321:1812–1815, Septem-
+    ber 2008.
+27. Jon Yard. Simultaneous classical-quantum capacities of quantum multiple access channels. PhD thesis, Stanford
+    University, Stanford, CA, 2005. quant-ph/0506050.
+
+
+
+
+                                                           24
+

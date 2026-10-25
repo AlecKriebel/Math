@@ -1,0 +1,1144 @@
+                                           PHYSICAL REVIEW A 97, 043824 (2018)
+
+
+
+Volume integral equation for electromagnetic scattering: Rigorous derivation and analysis for a set
+     of multilayered particles with piecewise-smooth boundaries in a passive host medium
+
+                                               Maxim A. Yurkin1,2,* and Michael I. Mishchenko3
+             1
+                 Voevodsky Institute of Chemical Kinetics and Combustion SB RAS, Institutskaya Str. 3, 630090, Novosibirsk, Russia
+                                     2
+                                       Novosibirsk State University, Pirogova Str. 2, 630090, Novosibirsk, Russia
+                             3
+                               NASA Goddard Institute for Space Studies, 2880 Broadway, New York, NY 10025, USA
+
+                                                   (Received 22 January 2018; published 12 April 2018)
+
+                     We present a general derivation of the frequency-domain volume integral equation (VIE) for the electric field
+                  inside a nonmagnetic scattering object from the differential Maxwell equations, transmission boundary conditions,
+                  radiation condition at infinity, and locally-finite-energy condition. The derivation applies to an arbitrary spatially
+                  finite group of particles made of isotropic materials and embedded in a passive host medium, including those
+                  with edges, corners, and intersecting internal interfaces. This is a substantially more general type of scatterer than
+                  in all previous derivations. We explicitly treat the strong singularity of the integral kernel, but keep the entire
+                  discussion accessible to the applied scattering community. We also consider the known results on the existence
+                  and uniqueness of VIE solution and conjecture a general sufficient condition for that. Finally, we discuss an
+                  alternative way of deriving the VIE for an arbitrary object by means of a continuous transformation of the
+                  everywhere smooth refractive-index function into a discontinuous one. Overall, the paper examines and pushes
+                  forward the state-of-the-art understanding of various analytical aspects of the VIE.
+
+                  DOI: 10.1103/PhysRevA.97.043824
+
+
+                          I. INTRODUCTION                                      potentially lead to ambiguities. On the other hand, rigorous
+                                                                               mathematical studies from the second group are typically
+    The frequency-domain volume integral equation (VIE) for
+                                                                               based on simplified assumptions of smooth particle boundaries
+the electric field inside a nonmagnetic scattering object has
+                                                                               and continuous interiors [2,9,12,14], whereas sharp edges and
+been known for more than 60 years [1]. It has traditionally been
+                                                                               vertices and internal interfaces are hardly mentioned [13].
+intended to be a rigorous formulation of the electromagnetic-
+                                                                               Moreover, mathematical rigor comes at the expense of various
+scattering problem equivalent to the more conventional one
+                                                                               limiting assumptions on the constitutive parameters, e.g., that
+based on the differential Maxwell equations subject to appro-
+                                                                               both the scatterer and the host medium are nonabsorbing
+priate boundary conditions [2–4]. Moreover, the VIE has been
+                                                                               dielectrics [14] or that the real part of the electric permittivity
+used as the fundamental basis for a number of “numerically
+                                                                               is positive [2,12,13]. As a result, the current understanding of
+exact” computational methods to simulate electromagnetic
+                                                                               the conditions guaranteeing the existence and uniqueness of
+scattering, the most popular one being the discrete dipole
+                                                                               the VIE solution, and that of the scattering problem in general,
+approximation (DDA) [5]. The latter has been used to calculate
+                                                                               remains fragmentary, especially in the case of an absorbing
+electromagnetic scattering by virtually all classes of scatterers,
+                                                                               host medium (see also Refs. [3,15,16]). Thus, gray zones exist,
+including those with sharp edges and internal interfaces [6–8].
+                                                                               where practical numerical simulations have been pursued, but
+    Despite the vast existing literature on the subject (see, e.g.,
+                                                                               a rigorous mathematical analysis is still not available.
+the monographs [2,4,9]), the theoretical understanding of the
+                                                                                   To fill these essential gaps, we present an accessible, self-
+VIE remains incomplete and incommensurate to the domain of
+                                                                               contained, and general derivation of the VIE from the differ-
+its actual practical applications. Indeed, the literature is largely
+                                                                               ential Maxwell equations, transmission boundary conditions,
+grouped around the following two extremes: (i) accessible
+                                                                               radiation condition at infinity, and locally-finite-energy condi-
+derivations with all complex issues swept under the rug with
+                                                                               tion with an explicit treatment of the kernel singularity. Our
+the intent to maximally shorten the path to practical compu-
+                                                                               derivation applies to a representative type of scattering object
+tations [4,10,11], and (ii) mathematically rigorous treatises
+                                                                               such as a spatially finite group of multilayered particles with
+that commence with concepts such as Banach spaces, Hölder
+                                                                               piecewise-smooth (intersecting) boundaries and internal inter-
+continuity, etc. and thus are hardly comprehensible to the
+                                                                               faces (with a smooth refractive index in between) immersed
+applied scattering community [2,9,12–14]. As a consequence,
+                                                                               in a passive unbounded host medium. To further demonstrate
+the publications from the first group tend to ignore funda-
+                                                                               the equivalence of the differential and integral formulations
+mental issues such as the strong singularity of the integral
+                                                                               of electromagnetic scattering, we derive the former from the
+kernel [4,10] and the explicit use of boundary conditions
+                                                                               latter. We also generalize the results of existing mathematical
+for a scatterer with a distinct boundary [11], which can
+                                                                               analyses of the VIE and formulate a conjecture about sufficient
+                                                                               conditions ensuring the existence and uniqueness of its solution
+                                                                               for this type of scatterer. Finally, we discuss an alternative way
+ *                                                                             of deriving the VIE for an arbitrary object with discontinuities
+     Corresponding author: yurkin@gmail.com
+
+2469-9926/2018/97(4)/043824(15)                                         043824-1                                   ©2018 American Physical Society
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                        PHYSICAL REVIEW A 97, 043824 (2018)
+
+by means of a continuous transformation of the everywhere                This definition applies to a general finite multiparticle scatterer,
+smooth refractive-index function into a discontinuous one.               with potentially multilayered components. The particular com-
+                                                                         plex values of m that are physically viable and/or required for
+     II. FORMULATION OF THE SCATTERING PROBLEM                           well posedness of the mathematical problem are discussed in
+                                                                         Sec. VII.
+    Following the lines of derivations in Chap. 4 of Ref. [4]               An essential further assumption is that Sint consists of
+and in Ref. [17], we start with the Maxwell curl equations               several disjoint components:
+for time-harmonic [with the implicit exp(−iωt) convention]
+electric and magnetic fields E and H assuming nonmagnetic                                           Sint = ∪i Si ,                       (6)
+isotropic materials throughout the entire space:                         each of which is a connected smooth closed surface. Then we
+                                        
+            ∇ × E(r) = iωμ0 H(r)                                         have the standard boundary conditions:
+                                             r ∈ Vext ,                                                         
+            ∇ × H(r) = −iωε1 E(r)                                                    n × [E1 (r) − E2 (r)] = 0
+                                                                   (1)
+            ∇ × E(r) = iωμ0 H(r)                                                                                  r ∈ Sint ,      (7)
+                                                r ∈ Vint ,                            n × [H1 (r) − H2 (r)] = 0
+            ∇ × H(r) = −iωε2 (r)E(r)
+            √                                                            where 1 and 2 label different sides of the specific component
+where i = −1, μ0 is the vacuum permeability, Vext is an                  of the boundary (the corresponding limits are implied) and n
+unbounded homogeneous external medium with a constant                    is the outward-pointing normal to Sint .
+electric permittivity ε1 = 0, and Vint is the interior of a scatterer       The total field [i.e., the solution of the inhomogeneous
+with a coordinate-dependent permittivity ε2 . The entire space           differential equation (2)] can be separated into the incident
+is assumed to be devoid of impressed (enforced) sources. Note            and scattered fields:
+that, generally, both ε1 and ε2 are complex and depend on
+the angular frequency ω. In particular, the external medium                                 E(r) = Einc (r) + Esca (r),                  (8)
+can be absorbing (lossy), but not active, i.e., we require that
+                                                                         where Einc (r) is the solution of the corresponding homoge-
+0 ⩽ arg ε1 < π discarding the nonphysical option of a negative
+                                                                         neous equation [Eq. (2) with a zero right-hand side], i.e., the
+real ε1 (see Chap. 1 of Ref. [3]).
+                                                                         field when no scatterer is present. Mathematically, the latter
+    Equations (1) can be rewritten as a single differential
+                                                                         can be formulated using a Silver-Müller radiation condition
+equation:
+                                                                         [2] to select a single specific solution of Eq. (2),
+        ∇ × ∇ × E(r) − k12 E(r) = j(r), r ∈ R3 \Sint ,            (2)                r × [∇ × Esca (r)] + ik1 rEsca (r) → 0,             (9)
+                                                                                                                          r→∞
+                        def
+                    j(r) = k12 [m2 (r) − 1]E(r),                  (3)    uniformly over all directions r/r. Note however that even a
+                √                                                        weaker condition (L2 convergence) is sufficient [18]:
+where k1 = ω ε1 μ0 with Re(k1 ) > 0 and Im(k1 ) ⩾ 0 is the                         
+wave number of the exterior, m(r) and ε(r) are the complex                      1
+                                                                           lim 2       d 2 r|r × [∇ × Esca (r)] + ik1 rEsca (r)|2 = 0,
+refractive index and permittivity relative to that of the external        →∞      S
+medium:1                                                                                                                                (10)
+                                
+                            def 1,             r ∈ Vext ,
+       m(r) = ε(r), ε(r) =                                     (4)       where S is the spherical surface with a radius  centered at
+                                  ε2 (r)/ε1 , r ∈ Vint ,                 the origin (r = n). The standard scattering problem consists
+and Sint = ∂Vint . The complex square root in Eq. (4) is poten-          in finding Esca (r) satisfying Eqs. (2), (7), (8), and (10) given a
+tially ambiguous, but this is not a problem as long as we only           physically viable Einc (r), i.e., the one satisfying the free-space
+use m2 . More generally, we assume that the support of m(r) − 1          Maxwell equations.
+is bounded; Vext can be defined as the largest unbounded
+open connected region with m(r) = 1; Vint is a union of open                  III. DYADIC GREEN’S FUNCTION AND THEOREM
+bounded regions in which m(r) is smooth2 [including internal
+voids with m(r) = 1]; and Sint is a closed surface containing all           Recall now the definition of the free-space dyadic Green’s
+discontinuities of m(r) or its derivatives, including the exterior       function (Cartesian Green’s tensor), e.g., from Appendix B of
+scatterer boundaries and internal interfaces. In particular, we          Ref. [4]:
+                                                                                                               
+have the following partition in which the components are                                               ∇⊗∇
+                                                                                   Ḡ(r,r ) = Ī +                 g(r,r )
+                                                                                             def
+pairwise disjoint:                                                                                        k12
+                     R3 = Vext ∪ Vint ∪ Sint .                    (5)                                                        
+                                                                                                 exp(ik1 R)            R⊗R
+                                                                                             =                   Ī −
+                                                                                                   4π R                  R2
+                                                                                                                               
+ 1
+    In the following discussion we will mostly employ m, as that is                                ik1 R − 1             R⊗R
+                                                                                                 +                Ī − 3          , (11)
+more common in the light-scattering community.                                                       k12 R 2                R2
+  2
+    Hereinafter we use “smooth” in the sense “sufficiently smooth”
+in an effort to keep the discussion relatively simple. However,          where R = r − r , R = |R|, Ī is the unity dyadic, and g(r,r )
+specific function spaces requiring boundedness or Hölder continuity      is the scalar Green’s function:
+of derivatives up to a certain order are discussed in the referenced                                      def exp(ik1 R)
+mathematical literature.                                                                  g(r,r ) = g(R) =                        (12)
+                                                                                                                4π R
+
+                                                                   043824-2
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                               PHYSICAL REVIEW A 97, 043824 (2018)
+
+satisfying
+
+                      ∇ 2 + k12 g(r,r ) = −δ(r − r ),            (13)
+
+where δ(R) is the three-dimensional delta function.
+   The essential property of the Green’s dyadic is that it
+satisfies
+                                                                                 FIG. 1. A simple single-body scatterer with a smooth boundary
+             ∇ × ∇ × Ḡ(r,r ) − k12 Ḡ(r,r ) = Īδ(r − r ).     (14)       and without internal interfaces.
+
+Also, it is symmetric with respect to both argument interchange
+and dyadic transposition (superscript T),                                     scalar premultiply Eq. (14) by Esca (r):
+
+                     Ḡ(r ,r) = Ḡ(r,r ) = [Ḡ(r,r )]T ,        (15)               [∇ × ∇ × Esca (r)] · Ḡ(r,r ) − k12 Esca (r) · Ḡ(r,r )
+                                                                                          = j(r) · Ḡ(r,r ),                                       (21)
+and satisfies the following radiation condition [cf. Eq. (9)]:
+                                                                                      Esca (r) · [∇ × ∇ × Ḡ(r,r )] − k12 Esca (r) · Ḡ(r,r )
+       r × [∇ × Ḡ(r,0)] + ik1 r Ḡ(r,0) → O(1/r).                 (16)
+                                                                                          = Esca (r)δ(r − r ).
+                                                 r→∞
+                                                                                                                                                    (22)
+In particular, it converges to zero uniformly over all directions
+r/r. In the limit of a very small R,
+                                                                              Subtracting Eq. (22) from Eq. (21) yields
+                                           
+                    Ḡ(r,r ) → Ḡst (r,r ) + O(1/R),               (17)         [∇ × ∇ × Esca (r)] · Ḡ(r,r ) − Esca (r) · [∇ × ∇ × Ḡ(r,r )]
+                                R→0
+                                                                                   = j(r) · Ḡ(r,r ) − Esca (r)δ(r − r ).                         (23)
+where the static Green’s dyadic is
+                                                                            A typical derivation of the VIE [4,10] would use Eq. (20) with
+                                   1            1               R⊗R           a = Esca ,3 Ā = Ḡ, and V = Vint , to be further simplified using
+Ḡst (r,r ) = (∇ ⊗ ∇)                   = −             Ī − 3      .
+                                4π k12 R     4π k12 R 3          R2           Eq. (23). However, this path is not completely rigorous (leads
+                                                                   (18)       to ambiguous results) due to the strong singularity of Ḡ(r,r )
+                                                                              at r = r [11]. Two different ways to address this problem
+Moreover,                                                                     are mentioned in the footnote on p. 98 of Ref. [9]: rigorous
+                                                                              treatment of delta functions and their derivatives or exclusion
+                                         R × Ī                               of the singularity.
+  ∇ × Ḡ(r,r ) = (∇g) × Ī =                   exp(ik1 R)(ik1 R − 1)            We choose the second option and define Vδ (and Sδ = ∂Vδ )
+                                         4π R 3
+                                                                              as a small volume around r which shrinks to r when δ → 0
+                                R × Ī
+                      → −              + O(1).                     (19)       while keeping the same shape.4 Then we can apply the above
+                      R→0       4π R 3                                        described combination of Eqs. (20) and (23) to V = Vint \Vδ
+   The Green’s dyadic and Eq. (14) are commonly used                          (assuming r ∈ Vint ) and let δ → 0:
+together with the dyadic Green’s theorem (Eq. (A4.75) of
+Ref. [9]):                                                                         lim               d 3 r[j(r) · Ḡ(r,r ) − Esca (r)δ(r − r )]
+                                                                                   δ→0 V \V
+                                                                                        int δ
+                                                                                                            
+       d 3 r[(∇ × ∇ × a) · Ā − a · (∇ × ∇ × Ā)]                                   =                − lim      d 2 r([n × Esca (r)] · [∇ × Ḡ(r,r )]
+   V                                                                                          Sint     δ→0 S
+                                                                                                           δ
+
+
+   =             d 2 r{(n × a) · (∇ × Ā) + [n × (∇ × a)] · Ā}, (20)                    + {n × [∇ × Esca (r)]} · Ḡ(r,r )).                       (24)
+            ∂V
+                                                                              If r ∈ Vext , no exclusion of the singularity is needed and
+where V is any bounded region, n is the outward surface                       Eq. (24) is valid with all the δ-related parts being removed
+normal, and a and Ā are an arbitrary vector and a dyadic                     (as discussed below).
+varying smoothly with r (i.e., at least, having integrable second                The δ-function term on the left-hand side of Eq. (24) always
+derivatives).                                                                 vanishes, which may seem counterintuitive, but it would be
+                                                                              compensated by the additional terms on the right-hand side. To
+                                                                              evaluate the first term in the integral over Sδ , we use Eq. (19).
+                  IV. DERIVATION OF THE VIE FOR
+                                                                              Since the latter has a R −2 singularity, we need to keep only the
+                       A SIMPLE SCATTERER
+    We first consider a simple single-body scatterer Vint without
+internal interfaces, i.e., the one having a connected boundary
+Sint (or, equivalently, connected Vint , see Fig. 1). Proceeding               3
+                                                                                  Smoothness of Esca (r) follows from smoothness of m(r), which is
+along the lines of Chap. 4.3 of Ref. [4] (but with an interchange             further discussed in Sec. IX.
+of r and r ), we scalar post-multiply Eq. (2) by Ḡ(r,r ) and                 4
+                                                                                  This δ should not be confused with the delta function.
+
+                                                                        043824-3
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                                                     PHYSICAL REVIEW A 97, 043824 (2018)
+
+zeroth order of Esca (r), which is Esca (r ). Thus,                                           where 0̄ is a zero dyadic, a(r) and b(r) are arbitrary smooth
+                                                                                              on S vector fields [in our case ∇ × Esca (r) and R/(4π R 3 ),
+        lim     d 2 r[n × Esca (r)] · [∇ × Ḡ(r,r )]                                          respectively], and the zeroing of the term in the middle follows
+          δ→0 S
+                                                                                               from the dyadic version of the Stokes theorem (Eq. (A4.70) of
+                                                
+               δ
+
+                                                                                               Ref. [9]) and the absence of a boundary for a closed surface.
+                 = −Esca (r ) · lim                      d 2 r{n × [∇ × Ḡ(r,r )]}              Before finalizing this derivation, let us define an auxiliary
+                                      δ→0 S
+                                           δ
+                                                                                              vector function based on the right-hand side of Eq. (24):
+                                                               n × (R × Ī)
+                 = Esca (r ) · lim                     d 2r                                                  X(r,r ) = [n × Esca (r)] · [∇ × Ḡ(r,r )]
+                                                                                                                       def
+                                  δ→0 S
+                                       δ
+                                                                  4π R 3
+                                                                                                                          + {n × [∇ × Esca (r)]} · Ḡ(r,r ),
+                                              R⊗n                                                                                                                   (30)
+                 = Esca (r ) ·             d r      2
+                                                      − Ī tr(L̄)
+                                        Sδ     4π R 3                                          which also implicitly depends on the normal n of the inte-
+                 = (L̄ − Ī) · Esca (r ),       
+                                                                                       (25)    gration surface S. Importantly, X(r,r ) is continuous when r
+                                                                                               crosses S (if r ∈
+                                                                                                                / S), owing to either the boundary conditions
+where the first and third transformations are based on the                                     (7) (and ∇ × E = iωμ0 H) or the continuity of all constituent
+dyadic identities                                                                              functions if m(r) is continuous across S. Thus, it does not matter
+                                                                                               which side of the surface the X(r,r ) is integrated over, as
+                       (a × b) · Ā = a · (b × Ā) and                                         long as the same normal is used. In the following, we always
+                      a × (b × Ā) = b ⊗ (a · Ā) − Ā(a · b),                         (26)    assume the outward normal n to any closed surface (considered
+                                                                                               individually), and the orientation of this normal with respect
+respectively, while                                                                            to an integration volume is accounted for by a sign before the
+                                                                                              surface integral, as in Eq. (24).
+                                      def                      n⊗R                                Another property of X(r,r ) is
+                                 L̄ =                   d 2r                           (27)
+                                                Sδ             4π R 3                                                    
+is the self-term dyadic (the source term) [11] (a.k.a. depolar-                                                     lim      d 2 rX(r,0) = 0,               (31)
+                                                                                                                        →∞ S
+                                                                                                                             
+ization dyadic—see Chap. 3.9 of Ref. [9]) which depends on
+the shape but not on the size of Sδ [the limit in the fourth part                              which follows from Eq. (10) [18], as briefly discussed in the
+of Eq. (25) was removed accordingly] and on the position of                                    following. First, Lemma 2 of Ref. [18] states that
+                                                                                                                 
+r inside Sδ . Importantly, this dyadic is always real symmetric
+with tr(L̄) = 1 [hence the last transformation in Eq. (25)]. For                                                    d|rEsca (r)|2 = O(1).              (32)
+                                                                                                                         S
+a sphere or a cube centered at r , it takes the simplest form
+L̄ = Ī/3 [11].                                                                                Second,
+                                                                                               
+    In the second term of the integral over Sδ in Eq. (24), Ḡ(r,r )
+can be replaced by Ḡst (r,r ) [cf. Eq. (17)]. Then                                              d 2 rX(r,0)
+                                                                                                S
+                                                                                                    
+    lim     d 2 r{n × [∇ × Esca (r)]} · Ḡ(r,r )                                                =            d{r × [∇ × Esca (r)] + ik1 rEsca (r)} · r Ḡ(r,0)
+  δ→0 S                                                                                                  S
+       δ
+                                                                                                  
+           1                                             R
+       = − 2 lim      d 2 r{n × [∇ × Esca (r)]} · ∇ ⊗                                            −            d rEsca (r) · {r × [∇ × Ḡ(r,0)]+ik1 r Ḡ(r,0)}. (33)
+          k1 δ→0 Sδ                                     4π R 3                                           S
+                  
+           1                                    n⊗R                                            Third, applying the Cauchy–Schwarz inequality to Eq. (33)
+       = − 2 lim      d 2 r[∇ × ∇ × Esca (r)] ·
+          k1 δ→0 Sδ                              4π R 3                                        and using Eqs. (10), (11), (16), and (32), we obtain Eq. (31).
+                                                                                            Note that nonzero absorption in the external medium would
+                j(r )
+       = −L̄ ·        + Esca (r ) ,                         (28)                              only make the derivation easier, since it causes Ḡ(r,0) to decay
+                 k12                                                                           exponentially when r → ∞.
+                                                                                                   Next, we combine Eqs. (24), (25), and (28) and interchange
+where the last transformation keeps only the zeroth order of
+                                                                                               r and r to shift the focus from the integration variable and
+∇ × ∇ × Esca (r) and uses Eqs. (2) and (27), while the second
+                                                                                               conform to a common notation [4]. This yields
+one is based on
+                                                                                                                                                   
+                                                                                                                                                      L̄ · j(r)
+     d 2 r(n × a) · (∇ ⊗ b)                                                                      lim          d 3 r j(r ) · Ḡ(r ,r) − χVint (r)             + Esca (r)
+                                                                                                 δ→0 V \V
+                                                                                                       int  δ
+                                                                                                                                                         k12
+   S
+                                                                                                    
+    =            d 2 r n · [a × (∇ ⊗ b)]                                                           =       d 2 r X(r ,r),                                            (34)
+             S                                                                                            Sint
+                                                                 
+                                                                                               where
+    =−                 d 2 r n · [∇ × (a ⊗ b)] + d 2 r n · [(∇ × a) ⊗ b]                                                               
+                     S
+                                              S                                                                               def       1, r ∈ V ,
+                                                                                                                        χV (r) =                                     (35)
+                                 0̄
+                                                                                                                                           0, otherwise
+         
+                                                                                               is the indicator function which allows for a single expression
+    =            d 2 r(∇ × a) · (n ⊗ b),                                               (29)
+             S
+                                                                                               for both the interior and the exterior of the scatterer. For the
+
+                                                                                         043824-4
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                                      PHYSICAL REVIEW A 97, 043824 (2018)
+
+latter, Eq. (34) follows directly from Eq. (24) with the δ-related
+parts being removed.
+    Repeating the derivation starting from Eq. (24) for Vext
+                                                   −
+instead of Vint and assuming ∂Vext = S ∪ Sint       , where the
+superscript “−” denotes the nonstandard direction of the
+normal, we obtain
+                                                              
+                                                                  L̄ · j(r)
+ lim             d 3 r j(r ) · Ḡ(r ,r) − χVext (r)                      + Esca (r)
+ δ→0 V \V
+      ext δ
+                                                                     k12
+                                     
+   =       lim           −               d 2 r X(r ,r).                           (36)
+           →∞ S                 Sint
+                
+                                                                                                FIG. 2. An example of a complex multibody multilayered scat-
+Adding up Eqs. (34) and (36) and employing Eqs. (3), (4), (15),                             terer with smooth interfaces. Each closed surface separates exactly
+                                                                                            two domains, one of which may be the external medium.
+and (31) along with χVext (r) + χVint (r) ≡ 1 (r ∈ R3 \Sint ) yields
+
+                                                                      L̄ · j(r)                        V. EXTENSION TO A SET OF SEVERAL
+   Esca (r) = lim                       d 3 r Ḡ(r,r ) · j(r ) −             ,   (37)                    MULTILAYERED PARTICLES
+                  δ→0 V \V
+                       int δ
+                                                                         k12
+                                                                                               We further consider a scatterer partitioned into several
+or equivalently                                                                             disjoint components,
+
+                                                                                                                       Vint = ∪j Vj ,                       (40)
+   E(r) = Einc (r) + k12 lim                         d 3 r [m2 (r ) − 1]Ḡ(r,r )
+                                    δ→0 V \V
+                                         int δ                                              each of which is a connected open region with a smooth
+                                                                                           m(r). Then Eq. (6) implies that each Si separates exactly two
+             · E(r ) − [m (r) − 1]L̄ · E(r),
+                                    2
+                                                                                    (38)
+                                                                                            regions from the list Vext , V1 , V2 , . . . and contributes to their
+                                                                                            boundaries with opposite signs of the surface normal (Fig. 2).
+where r ∈ R3 \Sint and Vint in the integrals can be replaced by                                 Using the results obtained in the preceding sections, it is
+R3 (assuming that Sint has a zero volume and is isolated in the                             trivial to generalize the VIE to such a scatterer. We write down
+actual integration). Note also that Eqs. (37) and (38) hold for                             Eq. (34) for each Vj and add them up together with Eq. (36).
+r ∈ R3 when m(r) is smooth in R3 but m2 (r) − 1 has a finite                                Then the integrals over each of the Si will occur exactly twice
+support; the latter effectively replaces Vint .                                             on the right-hand side and with opposite signs and thereby
+   The main advantage of the above derivation in comparison                                 will cancel each other. The left-hand side will lead exactly to
+with the more common ones [2,4] is that it treats the singularity                           Eq. (37) if one makes use of
+of Ḡ rigorously and explicitly. In this respect it is similar
+to the work by Yaghjian [11] and van Bladel (Chap. 7.9                                                                
+                                                                                                          χVext (r) +    χVj (r) = 1 − χSint (r),            (41)
+of Ref. [9]), but applies to the general boundary conditions
+                                                                                                                       j
+(7) and is more explicit in the employment of the radiation
+condition (10). The importance of a careful treatment of the                                which follows from Eqs. (5) and (40) as well as from χV (r)
+singularity was discussed in detail in Ref. [11]. More recently,                            being additive with respect to the union of disjoint sets. The
+it was further exemplified by the use of rectangular cuboid                                 possibility of such an extension was mentioned in Chap. VI
+elementary volumes (dipoles) in the DDA [19]. In this case                                  of Müller [2], but we are unaware of any previous explicit
+the nonsymmetric shape of Sδ implicitly leads to ambiguities                                derivation.
+which can only be settled through an explicit consideration.
+   We additionally note that the strong singularity can be
+avoided by considering a different integrodifferential equation,                                 VI. EQUIVALENCE OF VIE AND DIFFERENTIAL
+see, e.g., Chap. 12.5.2 of Ref. [9]:                                                                           EQUATIONS
+                                                                                               The goal of this section is to prove the equivalence of the
+            E(r) = Einc (r) + k12 Ī + ∇ ⊗ ∇                                                boundary-value problem for the differential Maxwell equa-
+                                                                                            tions and the VIE by explicitly deriving Eq. (2), the boundary
+                         ·          d 3 r [m2 (r ) − 1]g(r,r )E(r ).            (39)    conditions (7), and the radiation condition (9) from Eq. (38). In
+                             Vint                                                           principle, one can analyze the invertibility of all intermediate
+                                                                                            steps in the previous sections, but a direct derivation is both
+As noted in Ref. [11], the exclusion of Vδ and the L̄ term                                  simpler and more instructive.
+in Eq. (38) appear exactly from the proper interchange of                                      The derivation of Eq. (2) is completely trivial for r ∈ Vext ,
+differentiation and integration in Eq. (39) [cf. Eq. (11)]. Since                           where the third term (with L̄) in Eq. (38) vanishes and Vδ
+Eq. (39) is less commonly used as a basis of numerical methods,                             can be removed from the integral since Ḡ(r,r ) does not have
+we do not discuss it in detail. Most importantly, the equivalence                           singularities in the integration domain (r ∈ Vint ). Moreover,
+of Eqs. (38) and (39) holds as long as E(r) is smooth in Vint .                             differentiation and integration can be freely interchanged,
+
+                                                                                      043824-5
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                                                  PHYSICAL REVIEW A 97, 043824 (2018)
+
+leading to                                                                                based on
+                                                                                             
+     ∇ × ∇ × E(r) − k12 E(r)                                                                    d 2 r{n × [(∇ ⊗ b) · a]}
+                                                                                                 S
+       = ∇ × ∇ × Einc (r) − k12 Einc (r)                                                                                         
+                                                                                                  =         d 2 r [n × ∇(a · b)] − d 2 r {n × [(∇ ⊗ a) · b]}
+                                                     
+        +     d 3 r ∇ × ∇ × Ḡ(r,r ) − k12 Ḡ(r,r ) · j(r )                                           S
+                                                                                                                                 S
+               Vint                                                                                                   0̄
+                                                                                                      
+       = 0,                                                                    (42)
+                                                                                                  =           d 2 r{∇ a × [(n ⊗ b) · a]},                                (46)
+                                                                                                          S
+where we have used the homogeneous version of Eq. (2) for
+Einc (r) and Eq. (14).                                                                    where a(r) and b(r) are arbitrary smooth on S vector fields,
+   For r ∈ Vint the situation is more complicated owing to the                            while the zeroing out of the term in the middle again follows
+fact that the exclusion volume Vδ depends explicitly on the                               from the Stokes theorem (Eq. (A1.43) of Ref. [9]) and the
+differentiation variable r upon which ∇ × ∇× is acting. For-                              absence of a boundary for a closed surface. Note that the right-
+tunately, this dependence is simple (amounts to a translation);                           hand side of Eq. (45) exactly cancels the curl of the last term in
+hence, the Reynolds transport theorem (or multidimensional                                Eq. (38). This is expected since the remaining volume integral
+Leibnitz integral rule) implies                                                           in Eq. (44) does not depend on the shape of Sδ , owing to the
+                                                                                          weak (R −2 ) singularity of the integrand [cf. Eq. (19)].5
+                                                                                             Adding another curl and using Eqs. (43)–(45), we get
+  ∇×                     d 3 r a(r,r ) =                  d 3 r [∇ × a(r,r )]
+          Vint \Vδ (r)                       Vint \Vδ (r)                                      ∇ × ∇ × E(r) − k12 E(r)
+                                                 
+                                             −            d 2 r [n × a(r,r )],                = lim                d 3 r [∇ × ∇ × Ḡ(r,r ) − k12 Ḡ(r,r )] · j(r )
+                                                                                                     δ→0 V \V
+                                                 Sδ (r)                                                   int δ
+                                                                                                               
+                                                                               (43)
+                                                                                                     − lim         d 2 r {n × [∇ × Ḡ(r,r )]} · j(r ) + L̄ · j(r)
+                                                                                                       δ→0 S
+                                                                                                            δ
+where the minus sign appears due to the natural normal
+                                                                                                = (Ī − L̄) · j(r) + L̄ · j(r) = j(r),                                   (47)
+to Vint \Vδ pointing inside Sδ (in contrast to the used n).
+Next, Eq. (38) itself implies that the limit δ → 0 is well                                where the volume integral vanishes owing to Eq. (14) and the
+behaved (smooth over r); hence, it can be interchanged with                               surface integral is evaluated analogously to Eq. (25), but with
+differentiation, which together with Eq. (43) implies                                     Esca (r ) multiplied from the left replaced by j(r) multiplied
+                                                                                          from the right and with an extra minus sign due to the change
+                                                                                          of the integration variable.
+             ∇ × lim                  d 3 r Ḡ(r,r ) · j(r )
+                         δ→0 V \V
+                              int δ
+                                                                                             An alternative option is to start with Eq. (39), leading to
+
+                = lim                 d 3 r [∇ × Ḡ(r,r )] · j(r )                     ∇ × ∇ × E(r) − k12 E(r) = − ∇ 2 + k12                          d 3 r g(r,r )j(r )
+                      δ→0 V \V                                                                                                                    Vint
+                           int δ
+                              
+                                                                                                                              = j(r),                                    (48)
+                      − lim        d 2 r {n × [G(r,r ) · j(r )]}.           (44)
+                          δ→0 S
+                               δ                                                          where we have used Eq. (13) and
+
+The surface integral is transformed similarly to Eqs. (28) and                                  ∇ × ∇ × a − (∇ ⊗ ∇) · a = ∇ × ∇ × a − ∇(∇ · a)
+(29). Ḡ(r,r ) can be replaced by Ḡst (r,r ) [cf. Eq. (17)], leading                                                             = −∇ 2 a                             (49)
+to
+                                                                                          for an arbitrary smooth a(r). At first sight, the differentiation
+          
+                                                                                          and integration cannot be interchanged in Eq. (48), since the re-
+     lim       d 2 r {n × [Ḡ(r,r ) · j(r )]}                                          sulting singularity will be of order R −3 and thus nonintegrable.
+     δ→0 S
+          δ
+                                                                                    However, Appendix B of Ref. [20] shows that the interchange
+           1             2                   R                                        can be done, albeit without an explicit treatment of some
+       = − 2 lim       d r n× ∇ ⊗                        · j(r )
+          k1 δ→0 Sδ                         4π R 3                                        intermediate surface integrals. This reference also explains
+                                                                                      why a direct proof is important, and why many previous
+           1                            n ⊗ R
+       = − 2 lim       d 2 r ∇  j ×          · j(r 
+                                                       )                                  derivations do not fully demonstrate the equivalence of the
+          k1 δ→0 Sδ                     4π R 3                                            differential and integral Maxwell equations.
+               
+                 L̄ · j(r)                                                                   To derive the boundary conditions (7), we first note that the
+       = −∇ ×                ,                                   (45)                     limit of δ → 0 in Eq. (37) can be replaced by the requirement
+                    k12
+                                                                                          of a small enough exclusion volume V0 (not necessarily
+where R = r − r = −R; the subscript j indicates that ∇ acts
+only on the corresponding function to the right of it; the last
+transformation follows from Eq. (27) and leaves only the zeroth                            5
+                                                                                             Note also that the R −2 term is linear in R and hence vanishes when
+order of derivatives of j(r ); and the middle transformation is                          integrated over a small spherically symmetric volume.
+
+                                                                                    043824-6
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                                PHYSICAL REVIEW A 97, 043824 (2018)
+
+connected). In particular,                                                            discontinuities due to either L̄(∂V0 ,r) or j(r). However, L̄ is the
+                                                                                      sum of those for each prism; while for a strongly oblate prism
+        Esca (r) =               d 3 r Ḡ(r,r ) · j(r )                            it equals n ⊗ n and 0̄ for an arbitrary r inside and outside the
+                      Vint \V0
+                                                                                      prism, respectively [11]. Thus, L̄(∂V0 ,r) = n ⊗ n over the
+                                                                                      whole line,6 and we finally obtain
+                     +           d 3 r [Ḡ(r,r ) − Ḡst (r,r )] · j(r )
+                           V0
+                                                                                           E1 (r) − E2 (r) = n{n · [j2 (r) − j1 (r)]}, r ∈ Sint ,      (53)
+                       L̄(∂V0 ,r) · j(r)
+                     −                   ,                                    (50)    where we have used the continuity of Einc (r) across the
+                             k12
+                                                                                      interface. Equation (53) implies the continuity of both n × E(r)
+where                                                                                 and n · ε(r)E(r) across the interface. The above derivation is
+                                         
+                                                      n ⊗ R                          yet another example of the advantage of using an arbitrary (not
+                                             d 2 r
+                                   def
+                         L̄(S,r) =                                            (51)    necessarily spherical) exclusion volume.
+                                         S            4π R 3
+                                                                                         The continuity of H(r) or, equivalently, of ∇ × Esca (r)
+is a generalization of Eq. (27), and we have implicitly used                          across the interface follows from Eqs. (37), (44), and (45) and
+                                                                                      the regularity of the remaining volume integral as discussed
+                         d 3 r Ḡst (r,r ) = −L̄(∂V ,r)                     (52)    above. The radiation condition (9) immediately follows from
+                     V
+                                                                                      Eqs. (37) and (16) as a consequence of the regularity of the
+as a consequence of the dyadic Stokes theorem. The integral                           integrals for r ∈ Vext , as discussed in the case of Eq. (42).
+over V0 in Eq. (50) is regular, owing to Eq. (17) and the                                To conclude this section we note that the above derivations
+smoothness of j(r) (up to the boundary). It is related to the                         can in principle be made shorter using the calculus of distri-
+finite-size correction of the dipole polarizability (the so-called                    butions (generalized functions); see, e.g., Ref. [9]. But that
+M̄ term) in the DDA [5], and its magnitude is O[d 2 |j(r)|],                          would not necessarily be clearer, since then the singularities
+where d is the largest dimension (diameter) of V0 .                                   of the integrals would be handled implicitly. Moreover, the
+    Second, we consider r to be already very close to the                             above derivations apply automatically to the case of interfaces
+interface between the domains V1 and V2 (one of them can be                           with a finite number of vertices, edges, and even intersections,
+Vext ), so that the boundary is locally flat. Then we choose V0 to                    except for points r approaching a surface singular point (since
+consist of two strongly oblate rectangular prisms on both sides                       then the fields are not necessarily bounded, but integrable).
+of the interface with dimensions h × d × d (h           d) and the                    The boundary conditions (7) are then valid at all points on the
+smallest dimension oriented along the normal n to the interface                       surface except for the singular ones.
+(see Fig. 3). We also assume that d is much smaller than both
+the wavelength in the outer medium 2π/Re(k1 ) and the inter-
+face curvature. Next, consider the variation of r over the central                         VII. EXISTENCE AND UNIQUENESS OF SOLUTION
+line of the prisms along n at a distance not larger than h/2 from                         A detailed discussion of existence and uniqueness requires
+the interface (on either side of the interface, but not exactly on                    mathematical concepts that are beyond the scope of this
+it). The first volume integral in Eq. (50) is smooth over the                         paper. Thus we mostly consider and generalize the previously
+whole line and has no jump discontinuities over the interface,                        published results, which are somewhat fragmentary since each
+owing to r − r ⩾ h/2. The second integral is negligibly small                        publication imposes different limitations on the constitutive
+and also smooth over r. The remaining L̄ term may have                                parameters of the scatterer. And we switch to using ε (instead
+                                                                                      of m) to simplify the discussion of those limitations. Also note
+                                                                                      that owing to the equivalence shown in Sec. VI, we discuss the
+                                                                                      scattering problem in general (Sec. II), that is, not limited to a
+                                                                                      particular integral equation (38).
+                                                                                          The analysis of the VIE is the easiest when ε(r) is smooth
+                                                                                      in the whole R3 , i.e., there is no sharp boundary [15,21];
+                                                                                      then the classical Riesz-Fredholm theory of integral operators
+                                                                                      can be applied to prove both existence and uniqueness of
+                                                                                      solution. In Ref. [21], a positive Re(ε(r)) is assumed from
+                                                                                      the outset [in addition to the assumption Im(ε(r)) ⩾ 0], while
+                                                                                      Ref. [15] mentions without proof that a sufficient condition of
+                                                                                      uniqueness is Im(ε2 (r)) > 0 for any passive host medium.7 The
+                                                                                      latter condition is physically reasonable, since any nontrivial
+
+
+
+                                                                                       6
+    FIG. 3. An exclusion domain for deriving the boundary condition                       One can also start with a shape other than the prism (e.g., a
+for E(r) consisting of two oblate rectangular prisms. The width per-                  hemisphere), as long as it contains a flat part of the boundary. Then
+pendicular to the image (not shown) also equals d. Gaps between the                   as r approaches this flat part from inside, L̄ would approach the same
+prisms and the locally flat interface are shown solely for convenience.               limit.
+                                                                                        7
+The dashed central line denotes the variation of r used to calculate                      Note that here the absolute permittivity is used instead of the
+the limit when approaching the interface.                                             relative one.
+
+                                                                                043824-7
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                       PHYSICAL REVIEW A 97, 043824 (2018)
+
+solution of the homogeneous equation (38) (i.e., without Einc )         corresponding to static (k1 → 0) shape resonances, which
+would lose energy inside the particle.                                  follows from physical reasoning that a positive real ε cannot
+   For particles with smooth (potentially nested) surfaces, both        support resonances [23]. For instance, a sphere much smaller
+the existence and the uniqueness of solution have also been             than the wavelength has a resonance for ε = −2, thus the
+explicitly demonstrated [12,14], although those papers analyze          corresponding A has an eigenvalue for (ε + 2)/3 [22]. More
+the integrodifferential equation (39). Moreover, Ref. [14] con-         generally, Budko et al. [26] proved that the eigenvalues of
+siders only real positive k1 and ε(r), while Ref. [12] considers        the static scattering operator are contained in the convex hull
+an arbitrary passive host medium [Re(k1 ) > 0 and Im(k1 ) ⩾             of ε(R3 ), denoted hereinafter as Conv(ε(R3 )).10 To conclude,
+0] and Re(ε(r)) > c0 (an arbitrary positive constant)8 and              a practical solution of the VIE for a nonpositive real ε is at
+Im(ε(r)) ⩾ 0. If the latter inequality is strict almost everywhere      least problematic, so one may prefer to avoid this region as a
+in Vint then ε(r) does not need to be smooth. Similar conditions        necessary condition for a well-behaved solution.
+of smooth ε(r) with a strictly positive real part are used in              Additional eigenvalues of A appear with increasing |k1 |.
+Chap. VI of Ref. [2]. Chapter 3.5 of Ref. [3] proves that the           We are not aware of any general bounds on these “resonant”
+scattering problem has a unique solution for Im(ε(r)) > c0              eigenvalues for an arbitrary ε(r), apart from the uniqueness
+almost everywhere in Vint [with no limitations on Re(ε(r))],            conditions discussed at the beginning of this section. Thus, we
+but considers only a nonabsorbing host medium. Alternatively,           limit the discussion to a homogeneous scatterer with a relative
+a simple proof of uniqueness has been given in Chap. 9.1 of             permittivity ε. Then the integral operator A can be decomposed
+Ref. [16] using the Rellich lemma, but it applies only to a             as follows [cf. Eq. (38)]:
+positive real ε(r) and any passive host medium.
+                                                                                             A = J + (ε − 1)G(k1 ),                      (55)
+   It is important to note that all of the above conditions
+on constitutive parameters are sufficient, but not necessary            where G depends on the scatterer geometry and k1 , but not on
+for both uniqueness and existence. That is why there is no              ε. In particular, the spectrum of G(0) belongs to the interval
+contradiction in the differences between those conditions. The          [0,1], as discussed above. Discrete eigenvalues for such a scat-
+necessary conditions are intimately related to the spectrum of          terer are directly related to so-called morphology-dependent
+the linear integral operator A defined by Eq. (38):                     resonances, which are mostly studied in the framework of
+                                                                        the Lorenz-Mie theory for a single sphere [27]. The latter
+                            AE = Einc .                         (54)
+                                                                        reduces to finding the poles of the Mie coefficients an and
+Recall that the operator spectrum is a set of complex numbers           bn , or, equivalently, the zeroes of their denominators; this can
+λ such that (A − λI) does not have a bounded inverse, where I           be summarized as
+is the identity operator. This spectrum consists of a discrete
+                                                                                             ∃l ∈ N : ηl (m,x) = 0,                      (56)
+spectrum (isolated eigenvalues)9 for which there exists a
+bounded solution of AE = λE, and an essential spectrum for              where x = k1 a is the complex size parameter (a > 0 is the
+which (A − λI)−1 exists but is unbounded [15,22]. The lack              fixed sphere radius) and l numbers both the order and type
+of uniqueness and existence of the scattering problem is, then,         of the Mie coefficients. Each function ηl can be expressed
+equivalent to 0 belonging to the discrete and essential spectrum        in spherical Bessel and Hankel functions; importantly, it is
+of A, respectively.                                                     an analytic function of two complex variables. Any solution
+    For an everywhere smooth ε(r) (and a passive host                   (m,x) of Eq. (56) is equivalent to −1/(m2 − 1) belonging to
+medium), the essential spectrum exactly corresponds to the              the spectrum of G(x/a).
+image (set of all values) of the function ε(R3 ) [15], indepen-             Many simulations have shown that resonant values of m are
+dently of the size or shape of the scatterer. For homogeneous           in the fourth quadrant for x > 0 (real positive x) [23,28,29],11
+scatterers with sharp boundaries, there are certain indications         which naturally corresponds to the condition Im(ε) < 0. In
+that it spans a line from 1 to ε [15,23], as if there is a narrow       this case the eigenvalues of G(k1 ) have a negative imaginary
+smooth transition at the boundary. This is equivalent to Eq. (38)       part, which has been confirmed by direct calculations for the
+being not solvable for a negative real ε. Recently, Costabel et al.     discretized operator [23]. Alternatively, one may consider a
+[24] proved (by considering only a nonabsorbing host medium)            fixed m and search for zeroes of ηl as a function of x. For m > 0,
+that the essential spectrum consists only of points 1, ε, and           they are located in the fourth quadrant of the complex plane,
+(ε + 1)/2. Markkanen [22] generalized this result to a particle         which corresponds to Im(ε1 ) < 0 [30,31]. Both these special
+with edges and vertices, adding intermediate values determined          cases imply that xm is in the fourth quadrant [or Im(ε2 ) < 0]
+by the corresponding solid angles. However, the essential               at a pole.
+spectrum is not invariant to the pointwise multiplication [15],             Only several papers consider x poles for complex m.
+e.g., by ε(r) − 1, which is used to transition between several          Hunter et al. [32] studied the shifting of these poles when
+equivalent forms of the VIE, using the electric field, induced          a small imaginary part is added to a real m, using the Taylor
+current, or potential as the main variable [25]. Moreover,
+the remainder of the line from 1 to ε contains eigenvalues
+                                                                         10
+                                                                            The original proof is for an everywhere smooth ε(r), but it can be
+                                                                        extended to a piecewise-smooth one.
+  8                                                                      11
+    This condition is used to prove the coerciveness of a certain           Some of the cited papers use the exp(iωt) notation, which
+sesquilinear form.                                                      corresponds to a reverse sign of the imaginary parts of m, ε, k, etc.
+  9
+    This may also contain a continuous part, but we do not discuss it   When discussing their conclusions, we implicitly transform them to
+further.                                                                conform to the notation used in this paper.
+
+                                                                  043824-8
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                    PHYSICAL REVIEW A 97, 043824 (2018)
+
+
+(a)                                 (b)                                  ε or ε2 infinitely close, i.e.,
+                                                                           ∃c0 > 0 : ∀r ∈ R3 ,
+                                                                              0 ⩽ arg(ε2 (r)) < π + arg(ε1 ) − c0 and |ε2 (r)| > c0 (58)
+                                                                         or, equivalently, that the closure12 of the set of all values
+                                                                         of ε2 (r), denoted ε2 (Vint ), satisfy Eq. (57) pointwise, i.e.,
+                                                                         ε2 (Vint ) ⊂ Z2 . Consistent with the abovementioned results
+                                                                         of Budko et al. [26], we also require that Conv(ε2 (Vint ))
+                                                                         not contain the origin, which is equivalent to ε2 (Vint ) being
+    FIG. 4. Conjectured sufficient conditions for the existence and      contained in the ring sector centered at the origin of the
+uniqueness of the solution of the scattering problem in a passive host   complex plane (a circular sector excluding the neighborhood
+medium, described as blank areas (Z2 and Z) in the complex plane         of the origin) with an opening angle smaller than π , or to
+for (a) ε2 and (b) ε, respectively. The shaded areas contain different
+kinds of resonances (see text). The dashed lines in (a) and (b) extend   ∃c0 > 0 : ∀r,r ∈ Vint , |arg(ε2 (r)) − arg(ε2 (r ))| < π − c0 .
+from the origin through the values of ε1 and its complex conjugate,                                                                          (59)
+respectively.
+                                                                            Moreover, Eqs. (58) and (59) can be combined into the
+                                                                         single condition
+expansions. The calculations were performed for 12 specific
+poles (resonances), all close to the real positive axis in the                 Conv(ε2 (Vint )) ⊂ Z2 ⇔ Conv(ε(R3 \Sint )) ⊂ Z                (60)
+complex plane of x (for an initial real m). Interestingly,
+one can rewrite both the change of m and shifts of the                   where we have made use of the fact that in the first part ε2 (Vint )
+x poles as rotations (change of the complex arguments);                  may be augmented by ε1 ,13 so that the equivalence follows
+then the corresponding changes of the complex arguments                  from the rotation and scaling of the complex plane. We have
+satisfy  arg(x) ≈ − arg(m), implying arg(mx) ≈ const. In               also excluded all discontinuities from the image of ε, since the
+particular, the value of the ratio  arg(x)/ arg(m) is between          corresponding values ε(Sint ) are not relevant for the scattering
+0.90 and 0.98 for the resonances considered in Ref. [32]. This           problem and can be arbitrary. This is further discussed in
+value being slightly smaller than 1 is confirmed by formulas             Sec. IX.
+for the resonance width given by Eq. (47) of Ref. [33], which                It cannot be overstressed that the above is only a conjecture.
+is directly related to arg(x) at the pole. Unfortunately, the            While it conforms to all the conclusions of the above-discussed
+above first-order analysis cannot definitively answer whether            literature, and somewhat generalizes them, we are not aware of
+Im(mx) and Im(ε2 ) always stay negative (as they are for a real          any general proof. That should be the topic of future research.
+m). Videen et al. [34] showed that the second order of the               As an additional note, when the size and shape of a scatterer
+Taylor expansions may be significant for very small values of            are fixed, only a set of discrete points and, possibly, a line
+Im(m). Moreover, a direct calculation of the trajectory of a             in the shaded domain of ε [Fig. 4(b)] are actually singular.
+single specific pole (Fig. 4(a) of Ref. [34]) was consistent with        Thus, for most of the points in this domain the scattering
+Im(ε2 ) < 0.                                                             problem has a unique solution. However, if the shape and size
+    Similar results [negative-imaginary-part eigenvalues of              of the scatterer are arbitrarily varied, these discrete points will
+G(k1 ) for k1 > 0] have been shown for cubes [15,35]. More-              move through the whole singular domain and probably cover
+over, a single simulation of a vacuum cube inside an absorbing           it entirely. Thus, an additional hypothesis is that Eq. (57) is
+host medium with Re(ε1 ) = 1 led to the spectrum consistent              also a necessary condition if the uniqueness and existence of
+with both Im(ε2 ) < 0 and Im(ε) < 0 [15].                                solution are required for scatterers of all sizes and shapes.
+    To conclude this section, we put forward a conjecture that
+for any homogeneous scatterer inside a passive host medium                     VIII. PARTICLES WITH EDGES AND VERTICES
+the “singular” values of ε2 (corresponding to the essential,                In this section we further generalize the particle geometry
+static, and dynamic spectra) satisfy either ε < 0 or both                by allowing a finite number of edges and vertices, both as
+Im(ε2 ) < 0 and Im(ε) < 0. This is equivalent to ε2 belonging            singularities of an otherwise regular surface and as intersec-
+to the complex wedge: π + arg(ε1 ) ⩽ arg(ε2 ) < 2π , where we            tions of several regular surfaces. An example of such irregular
+assume the range of arg function to be [0,2π ) for convenience.          geometry is shown in Fig. 5, where sharp corners of the 2D
+Thus, the sufficient conditions for uniqueness and existence of          image can be interpreted both as point vertices and as sharp
+solution (for arbitrary size and shape) are conjectured to be            edges of the 3D particle shape. Importantly, we still define Si
+             0 ⩽ arg(ε2 ) < π + arg(ε1 ), |ε2 | > 0.             (57)    as maximal connected components of Sint , keeping Eqs. (5)
+                                                                         and (6) valid.
+Equation (57) is illustrated in Fig. 4, separately for ε2 and
+ε, defining the allowed regions Z2 and Z, respectivly. The
+negative real ε2 are nonphysical for the material properties,              12
+                                                                              The set plus all its limiting points (the boundary), further denoted
+but the VIE causes no issues with that if the host medium is             by the overline (not to be confused with the dyadics).
+absorbing.                                                                 13
+                                                                              In other words, the condition is equivalent to the same but with
+   For inhomogeneous scatterers, an additional condition is              ε2 (Vint ) ∪ {ε1 }, since the line from ε1 to any point in Z2 is always
+that the corresponding singular domains be not approached by             entirely within Z2 .
+
+                                                                   043824-9
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                          PHYSICAL REVIEW A 97, 043824 (2018)
+
+
+                                                                                  (a)                          (b)
+
+
+
+
+                                                                             FIG. 6. An example of the deformation of the integration surface
+                                                                         to circumvent the scatterer interfaces (shown by dashed curves), from
+                                                                         (a) to (b). The surface integral does not change for any integrand that
+                                                                         is continuous across the interfaces, while the volume integral is the
+    FIG. 5. An example of a multibody multilayered scatterer with        same for any integrable function.
+piecewise-smooth boundaries and interfaces (having a finite number
+of edges and vertices). Each Si is a closed connected surface, but not
+                                                                             Stronger conditions have also been proposed, e.g., the “tip
+necessarily a regular one; it separates at least two domains, one of
+                                                                         condition” that singularities of E and H be weaker than R −1
+which may be the external medium.
+                                                                         has been proven sufficient for an infinite cone [36]. Evidently,
+   The boundary conditions (7) are still valid for all parts             the tip condition also implies Eq. (61) and square integrability
+of Sint , except for singularities, but alone they are no longer         of the fields. To summarize, the fields can be unbounded when
+sufficient to make the problem unambiguous. Additional as-               approaching shape singularities, but only weakly so in the sense
+sumptions must be invoked, e.g., that the charges and currents           specified above.
+localized at shape singularities are zero, i.e., they do not radiate         In discussing the VIE in the presence of edges and vertices,
+any energy (Chap. 9.2 of Ref. [16]):                                     we first note that the above condition of locally square-
+                                                                        integrable fields is convenient to have anyway, since otherwise
+             lim     d 2 r n · Re[E(r) × H(r)∗ ] = 0,           (61)     the whole application of the VIE (the calculation of the inte-
+             δ→0 S                                                       grals involved) is ambiguous. Although we avoided function
+                  δ
+
+where the closed surface Sδ contracts around the edge or vertex,         spaces from the outset, any mathematically rigorous discussion
+e.g., having the shape of a capped curved cylinder and sphere,           of the VIE includes a specific function space in which the
+respectively. This has also been stated to be equivalent to the          solution is searched for. In terms of E(r) alone, it is typically the
+physically reasonable requirement of locally finite energy of            space in which both the function and its curl are locally square
+the electromagnetic field (i.e., the energy is finite inside any         integrable [13,14,37]. Thus, given this physical assumption,
+bounded volume) or that E(r) and H(r) are locally square                 the VIE seems to be directly applicable to particles with edges
+integrable [3,16], and guarantees finite charge and currents on          without any changes. In particular, this conclusion is supported
+the whole Sint . Unfortunately, we are not aware of a detailed           by the successful numerical application of the DDA to a cube,
+discussion of this equivalence in the literature. Thus, we further       exhibiting even better accuracy than that for smooth shapes [6].
+consider the locally square integrability of the fields as a             However, the above derivations connecting the VIE with the
+primary assumption and note that Eq. (61) follows from it and            differential Maxwell equations do require some modifications.
+the Poynting theorem [4]:                                                    First, we denote the δ neighborhoods of the shape singular-
+                                                                        ities as V1δ , V2δ , . . . , bounded by closed surfaces S1δ , S2δ , . . . ,
+               d 2 r n · [E(r) × H(r)∗ ]                                 respectively [cf. Eq. (61)]. Some complications arise from the
+            ∂V
+                                                                         fact that shape singularities may intersect (e.g., edges end up
+            = −iω         d 3 r [ε(r)∗ |E(r)|2 − μ0 |H(r)|2 ].   (62)    at vertices); in such cases we define the corresponding Siδ to
+                      V                                                  enclose the whole combined singularity, so that the minimum
+Importantly, Eq. (62) can be applied to surfaces ∂V crossing             distance from any point on the surface to the singularity equals
+the scatterer interfaces, since Eq. (7) implies the continuity of        δ. For instance, a cube will require only a single such surface,
+the integrand over the interfaces14 and the integration surface          being a union of 8 incomplete spheres and 12 side surfaces
+can be deformed to circumvent the interfaces (Fig. 6). The               of a cylinder. We further define the total volume around the
+integrability of the integrand on the right-hand side of Eq. (62)        singularities Vs and singularity-excluded domains Vi and Vext         
+                                                                                                                                                   ,
+implies that it can be considered both over the finite volume
+                                                                                    Vs = ∪i Viδ , Vi = Vi \Vs , Vext
+                                                                                                                   
+                                                                                        def             def                def
+enclosing the shape singularity (V ) and over the same volume                                                         = Vext \Vs ,            (63)
+with the singularity excluded (V \Vδ ), and the result is the
+same in the limit δ → 0. But the difference between these two
+approaches on the left-hand side of Eq. (62) is exactly Eq. (61)         Eq. (62) directly implies only integrability of Im(ε(r))|E(r)|2 , which
+before taking the real part.15                                           is not helpful if the medium is neither absorbing nor active in the
+                                                                         neighborhood of the shape singularity. In this case, one may assume
+                                                                         that Eq. (61) is valid before taking the real part, but that is unjustified
+ 14
+    n · (E × H∗ ) = −(n × E) · [n × (n × H∗ )].                          unless one relates the regularity of the real and imaginary parts of
+ 15
+    Proving the reverse implication [from Eq. (61) to square integra-    Eq. (61) using general properties of the electromagnetic field, e.g.,
+bility of the fields] is substantially more involved. The real part of   through the VIE. We leave the latter for future research.
+
+                                                                   043824-10
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                      PHYSICAL REVIEW A 97, 043824 (2018)
+
+                                                                                When we take the limit of Vs contracting to the shape
+                                                                            singularities, the volume integral in Eq. (65) behaves regularly
+                                                                            owing to E(r), and hence j(r), being square integrable inside
+                                                                            Vint . Therefore, the limiting result is the integral over Vint \Vδ
+                                                                            exactly as in Eq. (37). The only remaining proposition to prove
+                                                                            is that
+                                                                                                    
+                                                                                                lim     d 2 r X(r ,r) = 0,              (66)
+                                                                                                δ→0 S δ
+                                                                                                     i
+
+                                                                            where δ should not be mistaken for the parameter of the volume
+    FIG. 7. An example of the exclusion of shape singularities from         integral in Eq. (65). For a fixed r, Eq. (66) follows from
+the interfaces and volume domains. See the main text for an explana-        the trivial analysis of singularity orders. In particular, square
+tion of the symbols; the dashed lines denote the parts of the original      integrability of E and H inside Vs implies that
+irregular surfaces Si (cf. Fig. 5) falling inside the neighborhood of                                −1
+                                                                                                      o(δ ),      near edge,
+singularities. Each Sjr is a regular connected surface separating exactly                |E|,|H| =                                       (67)
+two domains, one of which may be the external medium.                                                 o(δ −3/2 ), near vertex,
+                                                                            where δ denotes the distance from the edge or vertex, re-
+and partition each interface with excluded singularities Si \Vs             spectively. Note that Eq. (67) is a weaker condition than the
+into several pairwise disjoint regular parts Sjr (the latter                abovementioned tip condition; still it implies
+                                                                                                                       
+are numbered sequentially throughout the whole scatterer).                                    
+Moreover, each Siδ is partitioned into two or more segments                        2            o(1),       near edge,
+                                                                               d r X(r ,r) =                               → 0. (68)
+  δ
+Si,1     δ
+     , Si,2 , … belonging to different domains (out of Vext , V1 ,             Siδ                o(δ 1/2 ), near vertex, δ→0
+V2 , …). Any two of these segments touch only on one of
+                                                                            For a combined shape singularity with edges and vertices,
+Sjr (if at all), which together with Eq. (7) implies that both
+                                                                            Eq. (68) is valid for each simple part of Siδ , while there is
+n × E(r) and n × H(r) are continuous across the whole Siδ .                 only finite number of such parts.
+An example of the described singularity exclusion is shown in                  To finalize the equivalence we note that the reverse path
+Fig. 7, illustrating the newly introduced definitions. To avoid             from the VIE (with a locally square-integrable solution) to
+ambiguity, we take the default orientation of the normal to                 the differential Maxwell equations and boundary conditions
+  δ
+Si,j  to coincide with the outward-pointing normal to Siδ , while           remains exactly the same as in Sec. VI.
+the orientation of the normal to Sjr is not relevant for further               The published literature on the existence and uniqueness of
+discussion.                                                                 the solution for particles with irregular boundaries is scarce
+    To derive the VIE from the differential Maxwell equations,              and was partly mentioned in Sec. VII. In particular, Chap. 9.2
+we proceed analogously to Sec. V. We write down Eq. (34)                    of Ref. [16] proves uniqueness for a positive real ε(r) and any
+for each Vi and add them up together with Eq. (36) for Vext     16
+                                                                  .         passive host medium, while Chap. 3.5 of Ref. [3] proves the
+                                           r                     δ
+Each ∂Vi is a union of one or more Sj and zero or more Sj,l         ,       uniqueness for a nonabsorbing host medium and Im(ε(r)) > c0
+              
+while ∂Vext     additionally includes S (in the limit  → ∞). In           almost everywhere in Vint . van Beurden and van Eijndhoven
+the final sum, each Sjr occurs exactly twice and with opposite              [13] also considered a nonabsorbing host medium and assumed
+                                               δ
+signs canceling each other, while each Si,j        occurs only once.        both Re(ε(r)) and Im(ε(r)) to be nonnegative and at least
+Applying additionally Eq. (31) and                                          one of them positive almost everywhere in Vint .17 Thus, the
+                                                                           entire Sec. VII and its concluding conjecture [Fig. 4 and
+                χVext (r) +   χVj (r) = 1 − χSint ∪Vs (r)     (64)        Eq. (60)] remain plausible for general scatterers with irregular
+                            j                                               boundaries.
+                            def                                                To conclude this section, let us reiterate that the VIE
+[cf. Eq. (41)], where Vs = Vs ∪ ∂Vs , we obtain                             is directly applicable to particles with edges and vertices
+                                                                            without any modification, and thus can be thought of as being
+          Esca (r) = lim                 d 3 r Ḡ(r,r ) · j(r )          superior to the differential formulation which requires extra
+                       δ→0 V \(V ∪V )
+                            int δ  s
+                                                                           assumptions. However, this is not a fundamental difference
+                           L̄ · j(r)                                       between the integral and differential formulations, but rather a
+                       −            +        d 2 r X(r ,r)         (65)
+                              k12     i  Si
+                                           δ                                consequence of a specific problem in which a natural assump-
+                                                                            tion of local square integrability of the VIE solution (a choice
+for r ∈ R3 \(Sint ∪ Vs ).                                                   of the solution space) is sufficient to eliminate the spurious
+                                                                            solutions of the original differential problem. Moreover, not
+
+ 16
+    Strictly speaking, the entire boundaries ∂Vi and ∂Vext
+                                                         
+                                                            must be
+                                                        r        δ            17
+smooth, which does not hold at junctions between Sj and Sj,l       .             There seems to be a minor error in their derivation: the absolute
+However, the corresponding junctions can be locally smoothed (at            value in Eq. (16) of Ref. [13] should be replaced by the real part
+a scale much smaller than δ) without changing any relevant integrals        for coerciveness to hold. This implies that ε(r) should not be purely
+due to the boundedness of the fields in a small neighborhood of a           imaginary as well. However, this is not essential, since this case is
+junction.                                                                   covered by Cessenat [3] anyway.
+
+                                                                      043824-11
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                    PHYSICAL REVIEW A 97, 043824 (2018)
+
+every possible VIE for electromagnetic scattering has this           where handwritten symbols denote functions in contrast to
+desirable property. It holds if Eq. (38) or (39) is reformulated     their values at a particular point [cf. Eq. (54)]. We do not
+                           def                                       give rigorous definitions here, but that is related to the space
+in terms of j(r) or D(r) = ε(r)E(r), requiring only that ε(r)
+be nonzero almost everywhere [13]. However, it is not so for         of smooth functions being dense inside L2 (R3 \Vext ) or a
+the so-called potential VIE (with scalar and vector potentials       similar space—a standard topic of functional analysis. At
+as unknowns). In particular, when applied to a homogeneous           a minimum, all scatterers with a finite number of irregular
+cube with ε close to certain negative real values, it leads to       interfaces discussed above can be represented in this way.
+spurious solutions localized at edges and vertices [22]. Those          Second, we note that the operator A in Eq. (54) implicitly
+solutions seem to have nonzero charges/currents on edges and         depends on m, hence the solution of this equation is given by
+vertices that should be avoided according to Eq. (61). This                                   E = A−1 (m)Einc .                       (70)
+can be explained by the fact that square integrability of the
+potentials (naturally occurring for the discretized solution of      The most important part of the whole derivation is the depen-
+the integral equation) does not imply square integrability of        dence of E on m for a fixed Einc , in particular, whether this
+the fields (due to the extra differentiation). Hopefully, this can   dependence can be assumed continuous. The conjecture is that
+be alleviated by a more careful choice of the testing functions                       lim A−1 (mn )Einc = A−1 (m)Einc                 (71)
+for the discretization of the integral operator, as mentioned in                     n→∞
+Ref. [22].                                                           in some domain of m, where we additionally assume that A−1
+                                                                     is well defined for m and each of mn , i.e., the solution of each
+                                                                     respective scattering problem exists and is unique (as discussed
+        IX. CONTINUITY WITH RESPECT TO m(r)
+                                                                     below). While the continuity seems reasonable for a smooth
+    All previous sections vividly demonstrate how complex-           resulting m, it is not at all evident for discontinuous ones which
+ities of the scatterer morphology result in complications of         represent our main interest. The potential failure of Eq. (71)
+the differential scattering problem (extra assumptions) and          may be caused by several factors: the limit may (i) not exist,
+                                                                                                        def
+derivations of its equivalence to the VIE. In the following,         (ii) be unbounded [i.e., each En =A−1 (mn )Einc is locally square
+we draft an alternative approach which mostly deals with the         integrable, but its limit is not], or (iii) be not equal to the right-
+simplest case of an everywhere smooth m(r), more specifically,       hand side.
+a Hölder-continuous one. In this case the VIE is equivalent to           The detailed rigorous analysis of the continuity conjecture
+the differential Maxwell equations (without boundary or any          in proper functional (Sobolev) space remains the subject of fu-
+additional conditions)—see the discussion following Eq. (38).        ture research. On one hand, it is further complicated by the fact
+The corresponding operator is well behaved [15,21], as dis-          that the dependence of A on m is of the form “identity + linear”
+cussed in Sec. VII, and the solution is smooth. So the main          [cf. Eq. (55)], which makes A−1 nonlinear with respect to m. On
+idea is to replace the solution for an arbitrary scatterer (with     the other hand, the nature of this dependence is multiplicative
+sharp and irregular interfaces) by the limit of solutions for a      [cf. Eq. (3)], thus making it easily invertible. Moreover, the VIE
+smooth m(r).                                                         is probably less sensitive to shape features than surface-integral
+    This idea has been mentioned in various forms in the             formulations (see, e.g., Chap. 5 of Ref. [39]). However, it is
+literature. For instance, Chap. 9.1 of Ref. [16] mentions that the   for the latter that certain continuity has actually been proven,
+result for an edge can be defined as a limit of the results for a    albeit only for perfect conductors with smooth surfaces (see
+smooth boundary, when the latter is transformed into an edge.        Chap. 7.2 of Ref. [21]).
+Kline [38] proposed a general way to generalize the differential         Third, if limn→∞ En exists, it is natural to postulate it as
+Maxwell equations to encompass discontinuous fields and/or           the definition for the solution of the scattering problem for an
+material properties, based on the postulation that the integral      irregular m. If, additionally, this limit equals E from Eq. (70)
+representation (not necessarily a VIE) derived for the smooth        (i.e., the continuity conjecture holds) then this solution can be
+case directly applies to the discontinuous case. Moreover, it is     obtained from the VIE with no modifications.
+postulated that the limit of solutions for the continuous case           While this concludes the template of a proof, we further
+is the proper solution for the discontinuous case, provided          discuss three related issues which give some additional confi-
+the latter allows several solutions. The boundary conditions         dence in the continuity conjecture.
+(7) naturally appear in this approach as an implication of the           We start with a discussion of the existence and uniqueness,
+VIE (see Sec. VI), which has been mentioned specifically in          i.e., whether A−1 (m) exists and is bounded and whether it
+Ref. [14] as a consequence of assuming that the Maxwell              follows from the regularity of A−1 (mn ). Most of the results
+equations are satisfied in R3 in the generalized-function sense.     from Sec. VII apply but require minor modifications to account
+However, we are not aware of any detailed description of this        for taking a limit. To this end, we analyze the general, albeit
+approach, not to mention a rigorous proof. Thus, we start filling    hypothetical condition (60). On one hand, whenever m is
+this gap in the following, although we may pose more questions       smooth, the L2 convergence of Eq. (69) implies a pointwise
+than we are currently able to answer.                                convergence, at least for a subsequence of mn (r); hence,
+    First, a wide class of discontinuous functions m(r) can be
+approximated by a sequence of everywhere smooth (Hölder                                  m(R3 \Sint ) ⊂ ∪n mn (R3 ).                  (72)
+continuous) {mn (r)} in some functional, e.g., L2 , norm, i.e.,      On the other hand, for any piecewise-smooth m, as considered
+                                                                     in Sec. VIII, we can construct mn to have only the same
+                          lim mn = m,                        (69)    values as those of m and “in between.” Specifically, we set
+                         n→∞
+
+
+                                                               043824-12
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                     PHYSICAL REVIEW A 97, 043824 (2018)
+
+mn (r) = m(r) for all r, except in a small neighborhood Un                 hold for those discrete eigenvalues, since the most problematic
+of Sint (Un → Sint ). Inside this neighborhood, mn (r) changes             part of Ḡ, and hence of A, is the strongly singular static part
+             n→∞
+smoothly from the value of m(r) on one side of the boundary                Ḡst which fully manifests itself in Ast . The continuity of the
+to that on the other. A particular S-shaped function to use is             convex hull of the spectrum is much weaker than that implied
+not important, but the corresponding intermediate values of                by Eq. (71), but does show some similarity of its left- and right-
+εn (r) = m2n (r) should all be on the line in the complex plane            hand sides, e.g., in terms of their numerical computation.21
+between the two values of ε.18 Near the interface intersections                Thus, we arrive at the convergence of the discretization
+(see, e.g., Fig. 5), mn (r) should smoothly connect three or more          schemes for the numerical solution of the VIE. The latter can
+values of m(r) on different sides of the shape singularity with            be the topic of a separate review (see, e.g., Refs. [5,22]); here
+the corresponding intermediate values of εn (r) limited to the             we only note that discretization effectively replaces the integral
+convex hull of the corresponding values of ε. Thus,19                      operator A with an operator AN having a finite rank N. It is
+                                                                           typically assumed that
+            ε(R3 \Un ) ⊂ εn (R3 ) ⊂ Conv(ε(R3 \Un ))
+                                                                                            lim A−1           −1
+                                                                                                 N (m)Einc = A (m)Einc ,                    (75)
+                        ⊂ Conv(ε(R3 \Sint )).                      (73)                    N→∞
+
+    Equations (72) and (73) imply the “continuity” of the                  which is a manifestation of so-called numerically exact solu-
+condition (60). If it is satisfied for all mn simultaneously               tions [37,40] and is realized in practice for the VIE discretized
+                                                                           with proper basis and testing functions. Importantly, any
+and with limiting points, i.e., Conv(∪n εn (R3 )) ⊂ Z, then the
+                                                                           bounded finite-rank linear operator is equivalent to the matrix
+limiting scattering problem is well defined. Conversely, for any
+                                                                           and, thus, is continuous:
+piecewise-smooth m satisfying Eq. (60), one can construct a
+converging sequence of smooth functions mn , for each of which                              lim A−1             −1
+                                                                                                 N (mn )Einc = AN (m)Einc .                 (76)
+                                                                                           n→∞
+the scattering problem is well defined. The latter supports the
+validity of using the VIE for such an m.                                   We may even choose a sequence of smooth functions mn such
+    Let us further consider the convergence of the spectrum                that22
+of A(mn ). On one hand, Sec. VII presents some controversial
+                                                                                             AN (mn ) ≡ AN (m), n ⩾ N,                      (77)
+evidence against such convergence. While considering the
+simplest case of a homogeneous sphere in a vacuum, different               but this is not required for the following.
+authors suggest that the essential spectrum is either a line from             An important hypothesis is the uniform convergence of the
+1 to ε [15] or only three points: 1, ε, and (1 + ε)/2 [24].                limiting sequence in Eq. (75) for all scatterer functions in the
+However, for any smooth approximation mn constructed above,                neighborhood of m, or at least for the sequence {mn }. It implies
+the essential spectrum is a line from 1 to ε [15]; hence, so               the possibility to interchange the limits leading, along with
+is its limit.20 This apparent difference remains for the whole             Eq. (76), to
+spectrum of the operator as well, since the latter differs from
+the essential spectrum only at a discrete set of points.                    lim En = lim lim A−1                 −1
+                                                                                              N (mn )Einc = lim AN (m)Einc = E,
+                                                                           n→∞         n→∞ N→∞                       N→∞
+    On the other hand, all these differences disappear if we
+                                                                                                                                            (78)
+take the convex hull of the spectrum. Moreover, according
+to Ref. [26] for an arbitrary piecewise-smooth scatterer the               which is exactly the continuity conjecture (71). It is not clear,
+convex hull of the essential spectrum Conv(ε(R3 \Sint )) con-              however, whether proving the uniform convergence of Eq. (75)
+tains the discrete spectrum in the static limit, and, thus, equals         is fundamentally easier. Conversely, a proof of Eq. (71) would
+the convex hull of the whole spectrum for the static operator              actually justify the use of the discussed numerical methods for
+    def                                                                    a discontinuous m, which may seem questionable since they
+Ast =Ak1 =0 . At the same time, Eq. (73) implies
+                                                                           make no distinction between m and mn (for a large enough n
+ Conv(εn (R3 )) = Conv(ε(R3 \Un )) → Conv(ε(R3 \Sint )).                   for a fixed N ). The latter has been discussed and practically
+                                         n→∞
+                                                                           justified in the DDA simulations of light scattering by a cube
+                                                                   (74)
+                                                                           [6]. Moreover, Eq. (78) can be generalized to describe the
+So we have a convergence of the convex hull of the spectrum of             convergence of the spectrum of the discretized operator which
+Ast . This does not tell us anything about the discrete spectrum           has been analyzed numerically for a few examples in the
+of the operator for k1 = 0, but we may expect the continuity to           framework of the DDA [19,41].
+
+
+ 18                                                                         21
+     εn (r) should not be confused with ε2 (r); the former is used only         The convergence of an iterative solver is determined by the
+with the subscript n.                                                      envelope of the spectrum [23], which is not necessarily the convex
+  19
+     The presented proof can be made rigorous for a piecewise-smooth       hull, but rather a simply connected superset of the spectrum. However,
+m by explicitly (and tediously) constructing the described smooth          the construction of smooth approximations before Eq. (73) can be
+junctions. However, we are not certain that this can be done for an        modified such that εn (R3 ) lies within this envelope.
+                                                                             22
+arbitrary m satisfying Eq. (69).                                                For instance, in the simplest case of the DDA with a cubical
+  20
+     The intermediate values on this line are thinned out in the sense     discretization and pointwise testing (the collocation method) only
+that they correspond to Un whose volume shrinks to zero. Hence, the        the values of m(r) in the centers of the cubes matter. Any smoothing
+effect of this part of the essential spectrum on the solution of the VIE   of m between these nodes does not change the discretized operator,
+in the L2 space is unclear.                                                e.g., as discussed before Eq. (73).
+
+                                                                    043824-13
+MAXIM A. YURKIN AND MICHAEL I. MISHCHENKO                                                        PHYSICAL REVIEW A 97, 043824 (2018)
+
+   To finalize this section, we stress once again that the rigorous      gaps. Importantly, we believe that the resulting description
+proof of the continuity conjecture (71) or, more specifically, the       is reasonably self-contained and complete, covering the VIE
+evaluation of specific conditions on the underlying functions            from all possible conceptual perspectives. As such, our paper
+that make it valid, remains to be done. However, there exists            could also be considered a review of the current state-of-the-art
+additional supporting physical reasoning. Since the physical             of this subject.
+properties of the materials are discontinuous at atomic scales,              Yet a lot of work remains to be done. First, in order to
+the macroscopic Maxwell equations (1) are typically derived              make the derivations widely accessible, we have refrained from
+from the microscopic ones by averaging over some finite size δ           complete mathematical rigor in certain places, e.g., in terms of
+[40]. Hence, Eq. (1) is valid only down to the scale of δ, and any       specific smoothness requirements for the fields and constitutive
+variation of m at a smaller scale should not affect the solution.        parameters. This issue seems to be a rather technical one and
+In other words, when using Eq. (1) we implicitly assume                  should be resolvable along the lines of the referenced rigorous
+that any such variation of m has negligible effect for large             accounts. Second, we formulated two important conjectures:
+enough scatterers, which is similar to assuming the uniform              (i) the general condition on the electric permittivity of the
+convergence of Eq. (75). The only other option is to rigorously          scatterer and the host medium to guarantee the existence
+average the microscopic Maxwell equations near the material              and uniqueness of solution, and (ii) the continuity of the
+discontinuities, considering a realistic placement of atoms, the         VIE solution with respect to the refractive-index function. To
+interaction of electrons, etc., which will be entirely daunting          attain the full predictive power, these conjectures need to be
+near the intersection of several interfaces. Surely this physical        rigorously proved with a specification of the function spaces in
+reasoning is not a substitute for a rigorous mathematical proof,         which they are satisfied. Third, it is highly desirable to extend
+but it helps achieve a certain level of mental comfort.                  this complete analysis to anisotropic and magnetic materials.
+                                                                         Accounting for material anisotropy is straightforward and
+                                                                         mostly amounts to replacing the scalar electric permittivity (or
+                        X. CONCLUSION                                    refractive index) by a dyadic one and tracing it appropriately
+                                                                         through all the derivations. The consideration of magnetic
+   Consistent with the objectives formulated in the Introduc-            materials should result in replacing a single VIE with a system
+tion, we have presented a general derivation of the VIE for              of two coupled VIEs, for the electric and magnetic fields,
+a very general type of scatterer in the form of an arbitrary             respectively. The derivation of such VIEs can be expected to
+spatially finite group of particles, including those with edges,         be lengthier, but not fundamentally more involved. However,
+corners, and intersecting internal interfaces, immersed in a pas-        the existence and uniqueness conditions will require a separate
+sive host medium. We have thoroughly discussed the existence             analysis.
+and uniqueness of the VIE solution related to the spectrum of
+the corresponding integral operator. Moreover, we have shown
+                                                                                            ACKNOWLEDGEMENTS
+that the conjectured continuity of the inverse integral operator
+with respect to the refractive-index function leads to an even              This work was supported by the Russian Foundation for
+simpler derivation of the VIE. Whenever possible, we have                Basic Research Grant No. 18-01-00502, the NASA Radiation
+closely followed previously published derivations and con-               Sciences Program, and the NASA Remote Sensing Theory
+structed a new derivation and new conjectures to fill the existing       Program.
+
+
+
+
+ [1] D. S. Saxon, Lectures on the Scattering of Light (Department         [8] M. A. Yurkin, K. A. Semyanov, V. P. Maltsev, and A. G. Hoekstra,
+     of Meteorology, University of California at Los Angeles, Los             Opt. Express 15, 16561 (2007).
+     Angeles, CA, 1955).                                                  [9] J. G. Van Bladel, Electromagnetic Fields, 2nd ed. (Wiley,
+ [2] C. Müller, Foundations of the Mathematical Theory of Electro-            Hoboken, NJ, 2007).
+     magnetic Waves (Springer, Berlin, 1969).                            [10] M. I. Sancer, K. Sertel, J. L. Volakis, and P. V. Alstine, IEEE
+ [3] M. Cessenat, Mathematical Methods in Electromagnetism:                   Trans. Antennas Propag. 54, 1488 (2006).
+     Linear Theory and Applications (World Scientific, Singapore,        [11] A. D. Yaghjian, IEEE Proc. 68, 248 (1980).
+     1996).                                                              [12] A. Kirsch, Inv. Probl. Imag. 1, 159 (2007).
+ [4] M. I. Mishchenko, Electromagnetic Scattering by Particles and       [13] M. C. van Beurden and S. J. L. van Eijndhoven, J. Eng. Math.
+     Particle Groups: An Introduction (Cambridge University Press,            62, 289 (2008).
+     Cambridge, UK, 2014).                                               [14] M. Costabel, E. Darrigrand, and E. H. Koné, J. Comput. Appl.
+ [5] M. A. Yurkin and A. G. Hoekstra, J. Quant. Spectrosc. Radiat.            Math. 234, 1817 (2010).
+     Transfer 106, 558 (2007).                                           [15] N. V. Budko and A. B. Samokhin, SIAM J. Sci. Comput. 28, 682
+ [6] M. A. Yurkin and M. Kahnert, J. Quant. Spectrosc. Radiat.                (2006).
+     Transfer 123, 176 (2013).                                           [16] D. S. Jones, The Theory of Electromagnetism (Pergamon,
+ [7] J. Liu, H. Cai, L. Kong, and X. Zhu, Mater. Sci. Technol. 31, 857        Oxford, 1964).
+     (2015).                                                             [17] M. I. Mishchenko, Opt. Express 15, 13188 (2007).
+
+
+
+                                                                  043824-14
+VOLUME INTEGRAL EQUATION FOR ELECTROMAGNETIC …                                                   PHYSICAL REVIEW A 97, 043824 (2018)
+
+[18] C. H. Wilcox, Commun. Pure Appl. Math. 9, 115 (1956).              [30] P. R. Conwell, P. W. Barber, and C. K. Rushforth, J. Opt. Soc.
+[19] D. A. Smunev, P. C. Chaumet, and M. A. Yurkin, J. Quant.                Am. A 1, 62 (1984).
+     Spectrosc. Radiat. Transfer 156, 67 (2015).                        [31] C. C. Lam, P. T. Leung, and K. Young, J. Opt. Soc. Am. B 9,
+[20] A. D. Yaghjian, A Direct Approach to the Derivation of Elec-            1585 (1992).
+     tric Dyadic Green’s Functions (National Bureau of Standards,       [32] B. A. Hunter, M. A. Box, and B. Maier, J. Opt. Soc. Am. A 5,
+     Washngton, DC, 1978).                                                   1281 (1988).
+[21] D. Colton and R. Kress, Inverse Acoustic and Electromagnetic       [33] B. R. Johnson, J. Opt. Soc. Am. A 10, 343 (1993).
+     Scattering Theory, 3rd ed. (Springer, New York, 2013).             [34] G. Videen, J. Li, and P. Chýlek, J. Opt. Soc. Am. A 12, 916
+[22] J. Markkanen, Radio Sci. 52, 1301 (2017).                               (1995).
+[23] J. Rahola, SIAM J. Sci. Comput. 21, 1740 (2000).                   [35] R. Fuchs and K. L. Kliewer, J. Opt. Soc. Am. 58, 319 (1968).
+[24] M. Costabel, E. Darrigrand, and H. Sakly, C. R. Acad. Sci. Paris   [36] D. S. Jones, Quart. J. Mech. Appl. Math. 50, 499 (1997).
+     Ser. I 350, 193 (2012).                                            [37] P. Yla-Oijala, S. P. Kiminki, J. Markkanen, and S. Jarvenpaa,
+[25] J. Markkanen and P. Ylä-Oijala, J. Quant. Spectrosc. Radiat.            IEEE Antennas Propag. Mag. 55, 310 (2013).
+     Transfer 178, 269 (2016).                                          [38] M. Kline, Commun. Pure Appl. Math. 4, 225 (1951).
+[26] N. V. Budko, A. B. Samokhin, and A. A. Samokhin, Diff. Equat.      [39] A. Kirsch and F. Hettlich, The Mathematical Theory of Time-
+     41, 1262 (2005).                                                        Harmonic Maxwell’s Equations: Expansion, Integral, and Vari-
+[27] S. S. Hill and R. E. Benner, in Optical Effects Associated with         ational Methods (Springer, New York, 2014).
+     Small Particles, edited by R. K. Chang and P. W. Barber (World     [40] M. I. Mishchenko, J. M. Dlugach, M. A. Yurkin, L. Bi, B. Cairns,
+     Scientific, Singapore, 1988), pp. 1–61.                                 L. Liu, R. L. Panetta, L. D. Travis, P. Yang, and N. T. Zakharova,
+[28] M. Gastine, L. Courtois, and J. L. Dormann, IEEE Trans.                 Phys. Rep. 632, 1 (2016).
+     Microw. Theory Tech. 15, 694 (1967).                               [41] M. A. Yurkin, M. Min, and A. G. Hoekstra, Phys. Rev. E 82,
+[29] V. A. Markel, J. Nanophoton. 4, 041555 (2010).                          036703 (2010).
+
+
+
+
+                                                                  043824-15
+

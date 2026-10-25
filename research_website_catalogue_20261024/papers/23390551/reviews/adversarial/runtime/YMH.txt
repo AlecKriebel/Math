@@ -1,0 +1,1313 @@
+2578    J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                                      Yurkin et al.
+
+
+
+
+         Convergence of the discrete dipole approximation.
+                      I. Theoretical analysis
+
+                                                              Maxim A. Yurkin
+         Faculty of Science, Section Computational Science, University of Amsterdam, Kruislaan 403, 1098 SJ, Amsterdam,
+           The Netherlands, and Institute of Chemical Kinetics and Combustion, Siberian Branch of the Russian Academy
+                                      of Sciences, Institutskaya 3, 630090 Novosibirsk, Russia
+
+
+                                                              Valeri P. Maltsev
+         Institute of Chemical Kinetics and Combustion, Siberian Branch of the Russian Academy of Sciences, Institutskaya
+                         3, 630090 Novosibirsk, Russia, and Novosibirsk State University, Pirogova Street 2,
+                                                    630090 Novosibirsk, Russia
+
+
+                                                          Alfons G. Hoekstra
+         Faculty of Science, Section Computational Science, University of Amsterdam, Kruislaan 403, 1098 SJ, Amsterdam,
+                                                        The Netherlands
+
+
+                       Received January 23, 2006; accepted April 18, 2006; posted May 5, 2006 (Doc. ID 67371)
+            We perform a rigorous theoretical convergence analysis of the discrete dipole approximation (DDA). We prove
+            that errors in any measured quantity are bounded by a sum of a linear term and a quadratic term in the size
+            of a dipole d when the latter is in the range of DDA applicability. Moreover, the linear term is significantly
+            smaller for cubically than for noncubically shaped scatterers. Therefore, for small d, errors for cubically shaped
+            particles are much smaller than for noncubically shaped ones. The relative importance of the linear term de-
+            creases with increasing size; hence convergence of DDA for large enough scatterers is quadratic in the common
+            range of d. Extensive numerical simulations are carried out for a wide range of d. Finally, we discuss a number
+            of new developments in DDA and their consequences for convergence. © 2006 Optical Society of America
+               OCIS codes: 290.5850, 260.2110, 000.4430.
+
+
+
+1. INTRODUCTION                                                          of errors in computational electromagnetics are known,
+The discrete dipole approximation (DDA) is a well-known                  e.g., Refs. 6 and 7; however, they typically consider the
+method to solve the light-scattering problem for arbitrary               surface-integral equations. To the best of our knowledge,
+shaped particles. Since its introduction by Purcell and                  such analysis has not been done for volume-integral equa-
+Pennypacker1 (PP), it has been improved constantly. The                  tions (such as DDA).
+formulation of DDA summarized by Draine and Flatau2                         Usually errors in DDA are studied as a function of the
+more than ten years ago is still the one most widely used                size parameter of the scatterer x (at a constant or few dif-
+for many applications,3 partly owing to the publicly avail-              ferent total numbers of dipoles N), e.g., Refs. 2 and 8.
+able high-quality and user-friendly code DDSCAT.4 Al-                    Only a small number of papers directly present errors
+though modern improvements of DDA (as discussed in de-                   versus discretization parameter (e.g., d—the size of a
+tail in Subsection 2.F) exist, they are still in the research            single dipole).9–17 The range of d typically studied in those
+stage because they are not widely used in real applica-                  papers is limited to a five-times difference between mini-
+tions.                                                                   mum and maximum values, with the exception of two
+   DDA directly discretizes the volume of the scatterer                  papers11,12 where it is 15 times. Those plots of errors ver-
+and hence is applicable to arbitrary shaped particles.                   sus discretization parameter are always used to illustrate
+However, the drawback of this discretization is the ex-                  the performance of a new DDA formulation and compare
+treme computational complexity of DDA, although it is                    it with others. No conclusions about the convergence
+significantly   decreased      by    advanced      numerical             properties of DDA, as a function of d, have been made on
+techniques.2,5 That is why the usual application strategy                the basis of these plots. To our knowledge, no theoretical
+for DDA is single computation, where a discretization is                 analysis of DDA convergence has been performed; only a
+chosen on the basis of available computational resources                 few limited empirical studies have appeared in the litera-
+and some empirical estimates of the expected errors.3,4                  ture.
+These error estimates are based on a limited number of                      In this paper we perform a theoretical analysis of DDA
+benchmark calculations3 and hence are external to the                    convergence when refining the discretization (Section 2).
+light-scattering problem under investigation. Such error                 We derive rigorous theoretical bounds on the error in any
+estimates have evident drawbacks; however, no better al-                 measured quantity for any scatterer. In Section 3 we
+ternative is available. Some results of analytical analysis              present extensive numerical results of DDA computations
+
+
+                                1084-7529/06/102578-14/$15.00          © 2006 Optical Society of America
+Yurkin et al.                                                                                 Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A                                   2579
+
+for five different scatterers using many different discreti-                                                                    exp共ikR兲
+zations. These results are discussed in Section 4 to sup-                                                         g共R兲 =                            .                                共3兲
+port conclusions of the theoretical analysis. We formulate                                                                             R
+the conclusions of the paper in Section 5. In a follow-up                              M is the following integral associated with the finiteness
+paper18 (which from now on we refer to as Paper 2), the                                of the exclusion volume V0:
+theoretical convergence results are used for an extrapola-
+tion technique to increase the accuracy of DDA computa-
+tions.                                                                                  M共V0,r兲 =   冕 V0
+                                                                                                           d3r⬘共Ḡ共r,r⬘兲␹共r⬘兲E共r⬘兲 − Ḡs共r,r⬘兲␹共r兲E共r兲兲,
+
+                                                                                                                                                                                     共4兲
+2. THEORETICAL ANALYSIS
+                                                                                       where Ḡs共r , r⬘兲 is the static limit 共k → 0兲 of Ḡ共r , r⬘兲:
+In this section we analyze theoretically the errors of DDA
+computations. We formulate the volume-integral equation
+for the internal electric field and its operator counterpart
+in Subsection 2.A and its discretization in Subsection 2.B.
+                                                                                                     Ḡs共r,r⬘兲 = ⵜˆ ˆⵜ
+                                                                                                                           1
+                                                                                                                           R
+                                                                                                                                =−
+                                                                                                                                       1
+                                                                                                                                       R   3   冉   Ī − 3
+                                                                                                                                                            R̂R̂
+                                                                                                                                                             R2
+                                                                                                                                                                        冊   .        共5兲
+
+Subsection 2.C contains integral and discretized formulas
+for measured quantities that are the final goal of any                                 L̄ is the so-called self-term dyadic:
+light-scattering simulation. We derive the main results in
+Subsection 2.D, where we consider errors of the tradi-
+tional DDA formulation2 without shape errors, which are
+considered separately in Subsection 2.E. Finally, in Sub-
+                                                                                                           L̄共⳵ V0,r兲 = −        冖   ⳵V0
+                                                                                                                                           d 2r ⬘
+                                                                                                                                                        n̂⬘R̂
+                                                                                                                                                        R3
+                                                                                                                                                                ,                    共6兲
+
+section 2.F we discuss some recent DDA improvements                                    where n̂⬘ is an external (as viewed from r) normal to the
+from the viewpoint of our convergence theory.                                          surface ⳵V0 at point r⬘.
+                                                                                         Equation (1) can be rewritten in operator form as fol-
+A. Integral Equation                                                                   lows:
+Throughout this paper we assume the exp共−i␻t兲 time de-
+pendence of all fields. The scatterer is assumed dielectric                                                             Ã · Ẽ = Ẽinc ,                                            共7兲
+but not magnetic (magnetic permittivity ␮ = 1), and the
+electric permittivity is assumed isotropic [nonisotropic                               where Ẽ 苸 H1 = L1共V → C3兲 represents functions from V to
+permittivity will significantly complicate the derivations
+                                                                                       C3 that have finite L1 norm and Ẽinc 苸 H2 is a subspace of
+but will not principally change the main conclusion of
+                                                                                       H1 containing all functions that satisfy Maxwell equa-
+Section 2—expressions (70) and (87)].
+   The general form of the integral equation governing the                             tions in free space. Ã is a linear operator: H1 → H2. Al-
+electric field inside the dielectric scatterer is the                                  though the Sobolev norm is physically sounder (based on
+following19,20:                                                                        the finiteness of energy of the electric field),6,21 we use the
+                                                                                       L1 norm. A detailed discussion of all assumptions made
+
+  E共r兲 = Einc共r兲 +   冕
+                     V\V0
+                            d3r⬘Ḡ共r,r⬘兲␹共r⬘兲E共r⬘兲 + M共V0,r兲
+                                                                                       for the electric field is performed in Subsection 2.D.
+
+                                                                                       B. Discretization
+                                                                                       To solve Eq. (1) numerically, a discretization is done in the
+          − L̄共⳵ V0,r兲␹共r兲E共r兲,                                                  共1兲
+                                                                                       following way.20 Let V = 艛i=1
+                                                                                                                  N
+                                                                                                                     Vi, Vi 艚 Vj = ”0 for i ⫽ j. N de-
+                                                                                       notes the number of subvolumes (dipoles). Assuming
+where Einc共r兲 , E共r兲 are the incident and total electric
+                                                                                       r 苸 Vi and choosing V0 = Vi, we can rewrite Eq. (1) as
+fields at location r and ␹共r兲 = 共⑀共r兲 − 1兲 / 4␲ is the suscepti-
+bility of the medium at point r [⑀共r兲 is relative permittiv-
+ity]. V is the volume of the particle (more generally, the
+volume that contains all points where the susceptibility is
+                                                                                               E共r兲 = Einc共r兲 +     兺
+                                                                                                                    j⫽i
+                                                                                                                           冕    Vj
+                                                                                                                                     d3r⬘Ḡ共r,r⬘兲␹共r⬘兲E共r⬘兲
+
+not zero), and V0 is a smaller volume such that V0 傺 V,
+                                                                                                        + M共Vi,r兲 − L̄共⳵ Vi,r兲␹共r兲E共r兲.                                              共8兲
+r 苸 V0 \ ⳵V0 . Ḡ共r , r⬘兲 is the free-space dyadic Green’s func-
+tion, defined as                                                                       The set of Eq. (8) (for all i) is exact. Further, one fixed
+                                                                                       point ri inside each Vi (its center) is chosen, and r = ri is
+                      ˆⵜ
+   Ḡ共r,r⬘兲 = 共k2Ī + ⵜ ˆ 兲g共R兲                                                        set.
+
+
+                     冋冉 冊                           冉                   冊册
+                                                                                         The usual approximation20 considers E and ␹ constant
+                              R̂R̂        1 − ikR                R̂R̂                  inside each subvolume:
+            = g共R兲 k2 Ī −        2
+                                      −         2
+                                                        Ī − 3               ,
+                              R             R                    R2
+                                                                                              E共r兲 = E共ri兲 = Ei,          ␹共r兲 = ␹共ri兲 = ␹i                     for r 苸 Vi .         共9兲
+                                                                                 共2兲
+                                                                                       Equation (8) can then be rewritten as
+where Ī is the identity dyadic, k = ␻ / c is the free-space
+wave vector, R = r − r⬘, R = 兩R兩, R̂R̂ is a dyadic defined as
+                                                                                                   Ei = Eiinc +   兺 Ḡ V ␹ E + 共M̄ − L̄ 兲␹ E ,
+                                                                                                                  j⫽i
+                                                                                                                           ij    j j   j                i           i   i       i   共10兲
+
+R̂R̂␮␯ = R␮R␯ (␮, ␯ are Cartesian components of the vector
+or tensor), and g共R兲 is the scalar Green’s function                                    where Eiinc = Einc共ri兲, L̄i = L̄共⳵Vi , ri兲,
+2580    J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                                                       Yurkin et al.
+
+
+
+            M̄i =   冕 Vi
+                           d3r⬘共Ḡ共ri,r⬘兲 − Ḡs共ri,r⬘兲兲,      共11兲                       Esca共r兲 =
+                                                                                                             exp共ikr兲
+                                                                                                                     − ikr
+                                                                                                                                 F共n兲,                    共19兲
+
+
+                                                                     where n = r / r is the unit vector in the scattering direction
+                    Ḡij =
+                              1
+                                  冕      d3r⬘Ḡ共ri,r⬘兲.       共12兲
+                                                                     and F is the scattering amplitude:
+
+
+                                                                                                        冕
+                             Vj     Vj
+
+
+A further approximation, which is used in almost all for-
+                                                                      F共n兲 = − ik3共Ī − n̂n̂兲   兺   i       Vi
+                                                                                                                 d3r⬘ exp共− ikr⬘ · n兲␹共r⬘兲E共r⬘兲.
+
+mulations of DDA, is
+                                                                                                                                                          共20兲
+
+                             Ḡij共0兲 = Ḡ共ri,rj兲.             共13兲   All other differential scattering properties, such as the
+                                                                     amplitude and Mueller scattering matrices, and asymme-
+This assumption is made implicitly by all formulations               try parameter 具cos ␪典 can be easily derived from F共n兲, cal-
+that start by replacing the scatterer with a set of point di-        culated for two incident polarizations.24 We consider an
+poles, as was done originally by PP.1 For a cubical (as well         incident polarized plane wave:
+as spherical) cell Vi with ri located at the center of the
+cell, L̄i can be calculated analytically, yielding22                                     Einc共r兲 = e0 exp共ik · r兲,                                        共21兲
+
+                                          4␲                         where k = ka, a is direction of incidence, and 兩e0 兩 = 1 is as-
+                                  L̄i =        Ī.            共14兲   sumed. The scattering and extinction cross sections
+                                          3                          共Csca , Cext兲 are derived from the scattering amplitude23:
+
+
+                                                                                                                 冕
+  Equation (10), together with Eqs. (13) and (14) and
+                                                                                                        1
+completely neglecting M̄i, is equivalent to the original                                 Csca =                       d⍀兩F共n兲兩2 ,                         共22兲
+DDA by PP.1 The diagonal terms in Eq. (10) are then                                                     k2
+equivalent to the well-known Clausius–Mossotti polariz-
+ability for point dipoles. Modifications introduced by other                                            4␲
+DDA prescriptions are discussed in Subsection 2.F.                                       Cext =              Re共F共a兲 · e0ⴱ兲,                              共23兲
+                                                                                                        k2
+  In matrix notation, Eq. (10) reads as
+                                                                     where * denotes complex conjugation. The expression for
+                             ĀdEd = Einc,d ,                 共15兲   the absorption cross section 共Cabs兲 directly uses the inter-
+                                                                     nal fields23:
+where Ed, Einc,d are elements of 共C3兲N [vectors of size N
+where each element is a three-dimensional (3D) complex
+vector] and Ād is a N ⫻ N matrix where each element is a
+3 ⫻ 3 tensor. d is the size of one dipole. In operator nota-
+                                                                               Cabs = 4␲k   兺   i
+                                                                                                        冕
+                                                                                                        Vi
+                                                                                                             d3r⬘ Im共␹共r⬘兲兲兩E共r⬘兲兩2 .                     共24兲
+
+tion Eq. (8) (for r = ri) is as follows:                               Since only values of the internal field in the centers of
+                                                                     dipoles are known, Eqs. (20) and (24) are approximated by
+                 共ÃẼ兲共ri兲 = Ẽinc共ri兲 = Eiinc,d .           共16兲   (PP)
+
+We define the discretization error function as                              F共n兲 = − ik3共Ī − n̂n̂兲          兺 V ␹ E exp共− ikr · n兲,
+                                                                                                                 i
+                                                                                                                           i i
+                                                                                                                                 d
+                                                                                                                                 i            i           共25兲
+
+                 hid = 共ÃẼ兲共ri兲 − 共ĀdE0,d兲i ,              共17兲
+
+where E0,d is the exact field at the centers of the dipoles,
+                                                                                      Cabs = 4␲k            兺 V Im共␹ 兲兩E 兩 .
+                                                                                                             i
+                                                                                                                       i             i
+                                                                                                                                         d2
+                                                                                                                                         i                共26兲
+
+Ei0,d = Ẽ共ri兲, in contrast to Ed that is only an approxima-
+tion obtained from the solution of Eq. (15) [here we ne-             Corrections to Eq. (26) are discussed in Subsection 2.F.
+glect the numerical error that appears from the solution                Both Eqs. (20) (for each component) and (24) can be
+of Eq. (15) itself, which is acceptable if this error is con-        generalized as ␾˜ 共Ẽ兲 (a functional that is not necessarily
+trolled to be much less than other errors]. Using Eqs.               linear), which is approximated as
+(15)–(17), one can immediately obtain the error in inter-
+nal fields due to discretization ␦Ed:                                                     ␾共Ẽ兲 = ␾d共Ed兲 + ␦␾d ,
+                                                                                          ˜                                                               共27兲
+
+                ␦Ed = Ed − E0,d = 共Ād兲−1hd .                 共18兲   where ␾d共Ed兲 corresponds to Eq. (25) or (26), and the er-
+                                                                     ror ␦␾d consists of two parts:
+
+C. Measured Quantities                                                      ␦␾d = 关␾
+                                                                                   ˜ 共Ẽ兲 − ␾d共E0,d兲兴 + 关␾d共E0,d兲 − ␾d共Ed兲兴.                              共28兲
+After having determined the internal electric fields, we
+can calculate scattered fields and cross sections. Scattered         The first one comes from discretization [similar to Eq.
+fields are obtained by taking the limit r → ⬁ of the integral        (17)], and the second comes from errors in the internal
+in Eq. (1) (see, e.g., Ref. 23):                                     fields.
+Yurkin et al.                                                             Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A                 2581
+
+
+D. Error Analysis                                                   faces inside V; therefore Ẽ should be a smooth function. 兩 · 兩
+In this subsection we perform error analysis for the PP             denotes the Euclidian 共L2兲 norm, which is used for all 3D
+formulation of DDA. Improvements of DDA are further                 objects: vectors and tensors. We use the L1 norm, 储 · 储1, for
+discussed in Subsection 2.F.                                        N-dimensional vectors and matrices as well as for func-
+   We assume cubical subvolumes with size d. We also as-            tions and operators. Expressions (30) immediately imply
+sume that the shape of the particle is exactly described by
+                                                                    that Ẽ 苸 L1共V兲. We require that ␹ satisfies expressions
+these cubical subvolumes (we call this cubically shaped
+                                                                    (30) with constants ␥7 – ␥11. Further, we will state an es-
+scatterer). Moreover, ␹ is a smooth function inside V (ex-
+act assumptions on ␹ are formulated below). An extension            timate for the norm of Ḡ共R兲 and its derivatives. One can
+of the theory to shapes that do not satisfy these conditions        easily obtain from Eq. (2) that for R ⬎ 1 Ḡ共R兲 satisfies ex-
+is presented in Subsection 2.E. If there are several re-            pressions (30) (with constants c1 – c5), while for R ⱕ 2
+gions with different values of ␹ (smooth inside each re-
+gion), the analysis is still valid, but interfaces inside V           兩Ḡ共R兲兩 ⱕ c6R−3,         兩⳵␮Ḡ共R兲兩 ⱕ c7R−4,
+should be considered the same way as the outer boundary
+of V. We further fix the geometry of the scattering prob-                           兩⳵␮⳵␯Ḡ共R兲兩 ⱕ c8R−5,            兩⳵␮⳵␯⳵␳Ḡ共R兲兩 ⱕ c9R−6,
+lem and incident field. Therefore we will be interested
+only in variation of discretization (which is characterized                         兩⳵␮⳵␯⳵␳⳵␶Ḡ共R兲兩 ⱕ c10R−7             for " ␮, ␯, ␳, ␶ .   共31兲
+by the single parameter d); for reasons that will become
+clear in the sequel, we assume that kd ⬍ 2 (this bound is              Next, we state two auxiliary facts that will be used
+not limiting, since otherwise DDA is generally                      later. Let Vc be a cube with size d and with its center at
+inapplicable2).                                                     the origin and f共r兲 be a four-times differentiable function
+   We switch to dimensionless parameters by assuming                inside Vc. Then
+
+
+                                                                             冏冕                            冏
+k = 1, which is equivalent to measuring all the distances in
+units of 1 / k. The unit of the electric field can be chosen                   1
+arbitrary but constant. In all further derivations we will                                d3rf共r兲 − f共0兲 ⱕ c11d2 max 兩⳵␮⳵␯f共r兲兩,              共32兲
+                                                                               d3                                        ␮␯,r苸Vc
+use two sets of constants: ␥i and ci. ␥1 – ␥13 are basic con-                        Vc
+
+stants that do not depend on the discretization d but do
+depend directly on all other problem parameters—size pa-
+rameter x = kReq (Req is the volume-equivalent radius), m,
+shape, and incident field—or some of them. On the con-
+                                                                       冏冕1
+                                                                         d3    Vc
+                                                                                    d3rf共r兲 − f共0兲 ⱕ   冏   d2
+                                                                                                           24
+                                                                                                                兩共ⵜ2f共r兲兲r=0兩
+
+trary, c1 – c94 are auxiliary values that either are numeri-
+                                                                                                           + c12d4 max 兩⳵␮⳵␯⳵␳⳵␶f共r兲兩.
+cal constants or can be derived in terms of constants ␥i.                                                               ␮␯␳␶,r苸Vc
+Although the dependencies of ci on ␥i are not explicitly de-
+                                                                                                                                              共33兲
+rived in this paper, one can easily obtain them following
+the derivations of this section. That is the main motiva-
+tion for using such a vast amount of constants instead of           Expressions (32) and (33) are the corollary of expanding f
+an order-of-magnitude formalism. However, such explicit             into a Taylor series. Odd orders of the Taylor expansion
+derivation has limited application because, as we will see          vanish because of cubical symmetry.
+further, constants in the final result depend on almost all           Our first goal is to estimate 储hd储1. Starting from Eq.
+basic constants. Qualitative analysis of these dependen-            (17), we write hid as
+
+
+                                                                                    冉冕                                              冊
+cies will be performed at the end of this subsection. It
+should be noted that the main theoretical results concern-
+ing DDA convergence [boundedness of errors by a qua-                  hid =   兺
+                                                                              j⫽i     Vj
+                                                                                           d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj + M共Vi,ri兲,
+dratic function, cf. expression (70)] can be formulated and
+applied without consideration of any constants (which is                                                                                      共34兲
+simpler). However, our full derivation enables us to make
+additional conclusions related to the behavior of specific          where we have introduced the polarization vector for con-
+error terms.                                                        ciseness:
+   The total number of dipoles used to discretize the scat-
+terer is                                                                                   P共r兲 = ␹共r兲E共r兲,         Pi = P共ri兲.               共35兲
+                           N = ␥ 1d .−3
+                                                             共29兲
+                                                                    It is evident that P共r兲 also satisfies expressions (30) (with
+We assume that the internal field Ẽ is at least four times         constants c13 – c17). We start by estimating 兩M共Vi , ri兲兩. Sub-
+differentiable and all these derivatives are bounded in-            stituting a Taylor expansion of P共r兲,
+side V:
+
+      兩E共r兲兩 ⱕ ␥2,   兩⳵␮E共r兲兩 ⱕ ␥3,       兩⳵␮⳵␯E共r兲兩 ⱕ ␥4,                                                      1
+                                                                    P共R兲 = P共0兲 +         兺 R 共⳵ P兲共0兲 + 2 兺␶ R R␶共⳵ ⳵␶P兲共r̃共␳, ␶,R兲兲,
+                                                                                           ␳
+                                                                                               ␳   ␳
+                                                                                                                    ␳
+                                                                                                                          ␳     ␳
+                兩⳵␮⳵␯⳵␳E共r兲兩 ⱕ ␥5,    兩⳵␮⳵␯⳵␳⳵␶E共r兲兩 ⱕ ␥6
+                                                                                                                                              共36兲
+                               for r 苸 V and " ␮, ␯, ␳, ␶ . 共30兲
+
+This assumption is acceptable, since there are no inter-            where 0 ⱕ r˜␮ ⱕ R␮, into Eq. (4) gives
+2582      J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                                                                               Yurkin et al.
+
+
+
+   M共Vi,ri兲 =      冕   Vi
+                            d3R共Ḡ共R兲 − Ḡs共R兲兲Pi
+                                                                                       and (2) described above. All j that fall in the third case
+                                                                                       satisfy Rij ⬍ 2 (the exact value of this constant—slightly
+                                                                                       larger than 冑3—depends on d). The number of dipoles in
+
+                            冕
+                       1                                                               a shell Sl (which can be incomplete)—ns共l兲—can be esti-
+                   +
+                       2     Vi
+                                  d3RḠ共R兲     兺␶ R R␶共⳵ ⳵␶P兲共r̃共␳, ␶,R兲兲.
+                                               ␳
+                                                        ␳          ␳                   mated as
+                                                                                                                 ns共l兲 ⱕ 共2l + 1兲3 − 共2l − 1兲3 ⱕ c21l2 .                               共41兲
+                                                                                共37兲
+                                                                                       The sum of the error over all dipoles that lie in complete
+The norms of these two terms can be estimated as
+
+
+冏冕                                         冏冏 冕                           冏
+                                                                                       shells is then
+
+
+                                                                                                                          冉冕                                                       冊
+                                                   2                                                 K共i兲−1
+        d3R共Ḡ共R兲 − Ḡs共R兲兲Pi =                        ĪPi        d3Rg共R兲 ⱕ c18d2 ,
+   Vi
+                                                   3          Vi                                      兺 兺
+                                                                                                      l=1     j苸Sl共i兲         Vj
+                                                                                                                                   d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj .                  共42兲
+                                                                                共38兲
+                                                                                       Since each shell in expression (42) is complete, it can be
+
+           冏冕 Vi
+                   d3RḠ共R兲           兺␶ R R␶共⳵ ⳵␶P兲共r̃共␳, ␶,R兲兲
+                                       ␳
+                                           ␳       ␳                      冏            divided into pairs of dipoles that are symmetric over the
+                                                                                       center of the shell (j and −j). For convenience we set
+                                                                                       r = 0. The inner sum in expression (42) can then be rewrit-
+
+                            冕
+                                                                                       ten as
+
+
+                                                                                                      冉冕                                                                                冊
+              ⱕ 3c15                 d3R兩Ḡ共R兲兩R2 ⱕ c19d2 .                     共39兲   1
+                                Vi
+                                                                                           兺
+                                                                                       2 j苸S 共i兲            Vj
+                                                                                                                 d3r⬘Ḡ共r⬘兲共P共r⬘兲 + P共− r⬘兲兲 − d3Ḡij共0兲共Pj + P−j兲 .
+Expression (38) follows directly from the definitions in                                         l
+
+Eqs. (2) and (5). To derive expression (39), we used expres-                                                                                                                           共43兲
+sions (31) and the fact that 兺␳␶ 兩 R␳R␶ 兩 ⱕ 3R2. Finally, ex-
+                                                                                       Further, we introduce the auxiliary function
+pressions (37)–(39) lead to
+                                兩M共Vi,ri兲兩 ⱕ c20d2 .                            共40兲                                    1
+                                                                                                                 u共r⬘兲 = 共P共r⬘兲 + P共− r⬘兲兲 − P共0兲,                                     共44兲
+                                                                                                                        2
+   To estimate the sum in Eq. (34), we consider separately
+three cases: (1) dipole j lies in a complete shell of dipole i                         which satisfies the following inequalities [follows from ex-
+(we define the shell below); (2) j lies in a distant shell of                          pressions (30) for P共r兲 and Taylor series]:
+dipole i—Rij = 兩rj − ri 兩 ⬎ 1; and (3) all j that fall between the
+first two cases (see Fig. 1). We define the first shell 关S1共i兲兴                                               兩u共r兲兩 ⱕ c22r2,             兩⳵␮u共r兲兩 ⱕ c23r,
+of a cubical dipole as a set of dipoles that touch it (includ-                                                                兩⳵␮⳵␯u共r兲兩 ⱕ c24             for " ␮, ␯ .                共45兲
+ing touching in one point only). The second shell 关S2共i兲兴 is
+a set of dipoles that touch the outer surface of the first                             Then expression (43) is equivalent to
+
+
+                                                                                                 冉冕                                                        冊
+shell, and so on. The lth shell 关Sl共i兲兴 is then a set of all
+dipoles that lie on the boundary of the cube with size
+共2l + 1兲d and center coinciding with the center of the origi-                           兺
+                                                                                       j苸Sl共i兲         Vj
+                                                                                                            d3r⬘Ḡ共r⬘兲u共r⬘兲 − d3Ḡij共0兲uj
+
+
+
+                                                                                                                                        冉冕                                    冊
+nal dipole. We call a shell complete if all its elements lie
+inside the volume of the scatterer V. A shell is called a dis-
+tant shell if all its elements satisfy Rij ⬎ 1; i.e., if its order
+                                                                                                                          +    兺
+                                                                                                                              j苸Sl共i兲      Vj
+                                                                                                                                                d3r⬘Ḡ共r⬘兲 − d3Ḡij共0兲 Pi , 共46兲
+l ⬎ Kmax = 关1 / d兴. Let K共i兲 be the order of the first incom-
+plete shell, which is an indicator of how close dipole i is to                         where uj = u共rj兲. To estimate the first term, we apply ex-
+the surface. We demand K共i兲 ⱕ Kmax to separate cases (1)                               pression (32) to the whole function under the integral. Us-
+                                                                                       ing expressions (31) and (45), one may obtain
+
+                                                                                                                  max 兩⳵␮⳵␯共Ḡ共r⬘兲u共r⬘兲兲兩 ⱕ c25Rij−3                                   共47兲
+                                                                                                                 ␮␯,r⬘苸Vj
+
+                                                                                       and hence
+
+
+                                                                                        兺
+                                                                                       j苸Sl共i兲
+                                                                                                 冉冕    Vj
+                                                                                                            d3r⬘Ḡ共r⬘兲u共r⬘兲 − d3Ḡij共0兲uj                  冊
+                                                                                                                                    ⱕ    兺 c d R ⱕc d l ,
+                                                                                                                                        j苸Sl共i兲
+                                                                                                                                                  26
+                                                                                                                                                       5       −3
+                                                                                                                                                               ij      27
+                                                                                                                                                                            2 −1
+                                                                                                                                                                                       共48兲
+
+                                                                                       where we have used expression (41) and Rij ⱖ ld for
+                                                                                       j 苸 Sl共i兲.
+                                                                                          It is straightforward to show that
+
+
+Fig. 1. Partition of the scatterer’s volume into three regions
+relative to dipole i.
+                                                                                                         兺
+                                                                                                       j苸Sl共i兲
+                                                                                                                  冕 V
+                                                                                                                                  2
+                                                                                                                      d3r⬘Ḡ共r⬘兲 = Ī
+                                                                                                                      j
+                                                                                                                                  3 j苸S 共i兲        兺
+                                                                                                                                                       l
+                                                                                                                                                               冕Vj
+                                                                                                                                                                     d3r⬘g共r⬘兲,        共49兲
+Yurkin et al.                                                                                                    Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A        2583
+
+
+
+                               兺 Ḡ = 3 Ī 兺 g共R 兲.
+                              j苸Sl共i兲
+                                          共0兲
+                                          ij
+                                                   2
+
+                                                        j苸Sl共i兲
+                                                                        ij                     共50兲     兺
+                                                                                                       j苸Sl共i兲
+                                                                                                                 冉冕 Vj
+                                                                                                                                                             冊
+                                                                                                                         d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj ⱕ c39dl−2 + c40l−5
+
+                                                                                                                                                                            共58兲
+The derivation is based on Eq. (2) and the equivalence
+R̂R̂ / R2 Û 31 Ī in all sums and integrals that satisfy cubical                                      and then analogously to expression (53),
+
+
+                                                                                                                       冉冕                                          冊
+symmetry. Then the second part of expression (46) is                                                  Kmax
+
+                                                                                                       兺 兺
+transformed to
+                                                                                                                                d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj
+
+冏 兺 冉冕                                                  冊冏
+                                                                                                      l=K共i兲 j苸Sl共i兲       Vj
+
+                       d3r⬘Ḡ共r⬘兲 − d3Ḡij共0兲 Pi                                                                                                 ⱕ c41dK−1共i兲 + c42K−4共i兲. 共59兲
+  j苸Sl共i兲         Vj
+
+
+    ⱕ c28      兺
+            j苸Sl共i兲
+                        冏冕    Vj
+                                                                    冏
+                                   d r⬘g共r⬘兲 − d g共Rij兲 ⱕ c29d l + c30d l ,
+                                    3                       3                       4         2 −3
+                                                                                                      Collecting expressions (40), (53), (54), and (59), we finally
+                                                                                                      obtain
+
+                                                                                                             兩hid兩 ⱕ c41dK−1共i兲 + c42K−4共i兲 + 共c43 + c44 ln K共i兲兲d2 .
+                                                                                               共51兲
+                                                                                                                                                                            共60兲
+where we apply expression (33) to derive the second in-
+                                                                                                      Then
+equality and use the identity ⵜ2g共r兲 = −g共r兲 and the follow-
+ing inequalities:                                                                                                                  N
+
+
+ 兩g共R兲兩 ⱕ c31R ,         −1
+                                   兩⳵␮⳵␯⳵␳⳵␶g共R兲兩 ⱕ c32R                −5
+                                                                                 for " ␮, ␯, ␳, ␶ .
+                                                                                                                       储hd储1 =    兺 兩h 兩 ⱕ 共c + c ln K
+                                                                                                                                  i=1
+                                                                                                                                             d
+                                                                                                                                             i   43    44    max兲Nd
+                                                                                                                                                                        2
+
+
+
+                                                                                               共52兲                                   Kmax
+
+                                                                                                                                  +    兺 n共K兲共c dK + c K 兲,
+                                                                                                                                       K=1
+                                                                                                                                                  41
+                                                                                                                                                        −1
+                                                                                                                                                             42
+                                                                                                                                                                   −4
+                                                                                                                                                                            共61兲
+Substituting expressions (48) and (51) into expression
+(42), one can obtain                                                                                  where n共K兲 is the number of dipoles whose order of the
+
+
+                               冉冕                                                         冊
+          K共i兲−1                                                                                      first incomplete shell is equal to K. It is clear that
+
+            兺 兺
+            l=1    j苸Sl共i兲          Vj
+                                         d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj                                                          n共K兲 ⱕ n共1兲 ⱕ ␥12Nd,                     共62兲
+
+               ⱕ 共c33 + c34 ln K共i兲兲d2 ,                                                       共53兲   where ␥12 is the surface-to-volume ratio of the scatterer.
+                                                                                                      Finally, we obtain
+using the fact that K共i兲d ⱕ 1.                                                                                           储hd储1 ⱕ N关共c43 − c45 ln d兲d2 + c46d兴.              共63兲
+  We now consider the second part of the sum in Eq. (34)
+(where Rij ⬎ 1). We first apply expression (32), then use                                             The last term in expression (63) is mostly determined by
+expressions (30) for P共r兲 and Ḡ共r兲, and finally invoke Eq.                                           dipoles that lie on the surface (or few dipoles deep) be-
+(29):                                                                                                 cause it comes from the K−4 term in expression (61)
+
+
+          冉冕                                                        冊
+                                                                                                      (which rapidly decreases when moving from the surface).
+                                                                                                      We define surface errors as those associated with the lin-
+ 兺
+j,Rij⬎1      Vj
+                  d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj                                                    ear term in expression (63). Our numerical simulation
+                                                                                                      (see Subsection 3.B) shows that this term is small com-
+
+                                          兺 c d ⱕ Nc d ⱕ c d .
+                                                                                                      pared with other terms for typical values of d; however, it
+                                    ⱕ                  35
+                                                                5
+                                                                        35
+                                                                             5
+                                                                                     36
+                                                                                          2
+                                                                                               共54兲
+                                         j,Rij⬎1
+                                                                                                      is always significant for small enough values of d.
+                                                                                                         From Eq. (18) we directly obtain
+  To analyze the third part of the sum in Eq. (34), we
+again sum over shells; however, since they are incom-                                                                             储␦Ed储1 ⱕ 储共Ād兲−1储1储hd储1 .                共64兲
+plete, we cannot use symmetry considerations. We apply
+expression (33) to the whole function under the integral                                              We assume that a bounded solution of Eq. (7) uniquely ex-
+and proceed analogously to the derivation of expression                                               ists for any Ẽinc 苸 H2; moreover, we assume that if
+(51). Using the identity                                                                              储Ẽinc储1 = 1, then 储Ẽ储1 ⱕ ␥13. These assumptions are equiva-
+                                                                                                      lent to the fact that 储Ã−1储1 exists and is finite (the opera-
+                                        ⵜ2Ḡ共r兲 = − Ḡ共r兲                                      共55兲
+                                                                                                      tor Ã−1 is bounded). Because Ād is a discretization of Ã,
+(since we have assumed k = 1), we obtain                                                              one would expect that
+
+                                                                                                                                 lim储共Ād兲−1储1 = 储Ã−1储1 = ␥13 .            共65兲
+                          兩ⵜ2共Ḡ共r兲P共r兲兲r=Rij兩 ⱕ c37Rij−4 ,                                    共56兲                              d→0
+
+                                                                                                      Although Eq. (65) seems intuitively correct, its rigorous
+                   max 兩⳵␮⳵␯⳵␳⳵␶共Ḡ共r⬘兲P共r⬘兲兲兩 ⱕ c38Rij−7 ,                                    共57兲   proof, even if feasible, lies outside the scope of this paper.
+               ␮␯␳␶,r⬘苸Vj                                                                             For an intuitive understanding, one may consult the pa-
+                                                                                                      per by Rahola,25 where he studied the spectrum of the dis-
+which leads to                                                                                        cretized operator (for scattering by a sphere) and showed
+2584      J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                                           Yurkin et al.
+
+that it does converge to the spectrum of the integral op-                          sion (69), since they all already depend on m through the
+erator with decreasing d. It should, however, be noted                             basic constants ␥2 – ␥11, ␥13. This leads to
+that convergence of the spectrum implies only the conver-
+gence of the spectral 共L2兲 norm of the operator and not
+                                                                                                   兩␦␾y兩 ⱕ 共c59 − c60 ln y兲y2 + c61y.           共70兲
+necessarily the convergence of the L1 norm. Therefore Eq.
+(65) should be considered an assumption. It implies that
+there exists a d0 such that                                                        It is not feasible to make any rigorous conclusions about
+                                                                                   the variation of the constants in expression (70) with
+                   for d ⬍ d0       储共Ād兲−1储1 ⱕ c47 ,                      共66兲   varying parameters because all these constants depend
+                                                                                   on ␥2 – ␥6, ␥13, which, in turn, depend in a complex way on
+where c47 is an arbitrary constant larger than ␥13 (al-
+                                                                                   the parameters of the scattering problem. However, we
+though d0 depends on its choice). For example, c47 = 2␥13
+                                                                                   can make one conclusion about the general trend of this
+should lead to a rather large d0 (a rigorous estimate of d0
+                                                                                   dependency.
+does not seem feasible). Therefore 储␦Ed储1 satisfies the
+                                                                                      Following the derivation of expression (70), one can ob-
+same constraint as 储hd储1 [expression (63)] but with con-
+                                                                                   serve that c61 is proportional to ␥12, whereas c59 and c60 do
+stants c48 – c50.
+                                                                                   not directly depend on it (at least part of the contributions
+   Next, we estimate the errors in the measured quanti-
+                                                                                   to them is independent of ␥12). Therefore the general
+ties and start with the discretization error [first part in
+                                                                                   trend will be a decrease of the ratio c61 / c59 with increas-
+Eq. (28)]. Examining Eqs. (20) and (24), one can see that
+                                                                                   ing x (when all other parameters are fixed). This is a
+expression (32) may be directly applied, leading to
+                                                                                   mathematical justification of the intuitively evident fact
+               兩˜
+                ␾共Ẽ兲 − ␾d共E0,d兲兩 ⱕ    兺c d ⱕc d .
+                                        i
+                                                51
+                                                     5
+                                                         52
+                                                              2
+                                                                            共67兲   that surface errors are less significant for larger particles.
+                                                                                      In the analysis of the results of the numerical simula-
+                                                                                   tions (Subsection 3.B), we will neglect the variation of the
+The second part in Eq. (28) is estimated as                                        logarithm. Expression (70) then states that error is
+                                                                                   bounded by a quadratic function of y (for d ⱕ d0). However,
+       兩␾d共E0,d兲 − ␾d共Ed兲兩 ⱕ    兺 c d 兩␦E 兩 ⱕ c d ␦E
+                                i
+                                      53
+                                            3        d
+                                                     i   53
+                                                              3储   d储
+                                                                        1          keep in mind that our derivation does not lead to an op-
+                                                                                   timal error estimation; i.e., it overestimates the error and
+                            ⱕ 共c54 − c55 ln d兲d2 + c56d,                    共68兲   can be improved. For example, the constants ␥2 – ␥6 are
+                                                                                   usually largest inside a small volume fraction of the scat-
+where we used Eq. (29). The estimation of the error for
+                                                                                   terer (near the surface or some internal resonance re-
+Cabs additionally uses the fact 兩␦Eid兩2 ⱕ c57 兩 ␦Eid 兩
+                                                                                   gions), whereas in the rest of the scatterer the internal
+共c57 = max 兩 ␦Eid 兩 兲.
+       d⬍2,i                                                                       electric field and its derivatives are bounded by signifi-
+   By combining expressions (67) and (68), we obtain the                           cantly smaller constants. However, the order of the error
+final result of this subsection:                                                   is estimated correctly, as we will see in the numerical
+                                                                                   simulations.
+                 兩␦␾d兩 ⱕ 共c58 − c55 ln d兲d2 + c56d.                         共69兲
+                                                                                      It is important to note that expression (70) does not im-
+It is important to remember that the derivation was per-                           ply that ␦␾y (which is a signed value) actually depends on
+formed for constant x, m, shape, and incident field. There                         y as a quadratic function, but we will see later that it is
+are 13 basic constants 共␥1 – ␥13兲. ␥1 [Eq. (29)] characterizes                     the case for small enough y (Subsection 3.B, see detailed
+the total volume of the scatterer; hence it depends only on                        discussion in Paper 2). Moreover, the coefficients of linear
+x. ␥ – ␥11 [expressions (30) for ␹共r兲] can be easily obtained                      and quadratic terms for ␦␾y may have different signs,
+given the function ␹共r兲; moreover, it is completely trivial                        which may lead to zero error for nonzero y (however, this
+in the common case of homogenous scatterers. ␥12                                   y, if it exists, is unfortunately different for each measured
+[surface-to-volume ratio, expression (62)] depends on the                          quantity).
+shape of the scatterer and is inversely proportional to x. It
+is not feasible (except for certain simple shapes) to obtain
+the values of constants ␥2 – ␥6 [expressions (30)], since an                       E. Shape Errors
+exact solution for the internal fields is required. These                          In this subsection we extend the error analysis as pre-
+constants definitely depend on all the parameters of the                           sented in Subsection 2.D to shapes that cannot be de-
+scattering problem. Moreover, these dependencies can be                            scribed exactly by a set of cubical subvolumes.
+rapidly varying, especially near the resonance regions.                               We perform the discretization the same way as in Sub-
+The same is true for ␥13 [L1 norm of the inverse of the in-                        section 2.B, but some of the Vi are not cubical (for i 苸 ⳵V,
+tegral operator, Eq. (65)]. Finally, there is the important                        which denotes that dipole i lies on the boundary of the
+constant d0 that also depends on all the parameters; how-                          volume V). We set ri to be still in the center of the cube
+ever, one may expect it to be large enough (e.g., d0 ⱖ 2) for                      (circumscribing Vi), not to break the regularity of the lat-
+most of the problems—then its variation can be neglected.                          tice. The standard PP prescription uses equal volumes
+   Before proceeding, we introduce the discretization pa-                          共Vi = d3兲 in Eqs. (10), (14), (25), and (26); i.e., the discreti-
+rameter y = 兩m 兩 kd. We employ the commonly used formula                           zation changes the shape of the particle a little bit. We
+as proposed by Draine8; however, the exact dependence on                           will estimate the errors introduced by these boundary di-
+m is not important because all the conclusions are still                           poles. These errors should then be added to those ob-
+valid for constant m. Replacing d by y does not signifi-                           tained in Subsection 2.D. We start by estimating 储hd储1.
+cantly change the dependence of the constants in expres-                           First, we consider hid for i 苸 ⳵V:
+Yurkin et al.                                                                                       Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A                                2585
+
+
+
+          hid =   兺
+                  j苸⳵V
+                          冉冕    Vj
+                                     d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj ,         冊   共71兲              兩M共Vi,ri兲兩 ⱕ c67d + c68               冏冕 Vi
+                                                                                                                                                    d3r⬘Ḡs共ri,r⬘兲 ,          冏        共80兲
+
+
+which is just a reduction of Eq. (34). For i 苸 ⳵V, hid is the                              where the remaining integral can be proven to be equal to
+same plus the error in the self-term:                                                      −L̄共⳵Vi , ri兲. The last proof left [see expressions (74) and
+
+
+                 冉冕                                                       冊
+                                                                                           (80)] is to demonstrate that L̄共⳵Vi , ri兲 is bounded by a con-
+  hid =   兺
+          j苸⳵V       Vj
+                          d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj + M共Vi,ri兲                      stant. The only potential problem may come from the sub-
+                                                                                           surface of ⳵Vi that is part of the particle surface (because
+           j⫽i                                                                             it may be close to ri). This subsurface is assumed planar.
+
+            冉
+          − L̄共⳵ Vi,ri兲 −
+                                     4␲
+                                      3
+                                            冊
+                                           Ī ␹iEi .                                共72兲
+                                                                                           We will calculate the integral in Eq. (6) over the infinite
+                                                                                           plane r⬘ − ri = ␳ + r such that ␳ · r = 0. Then n⬘ = ± ␳ / ␳ and
+
+Let us define                                                                               L̄共infinite plane, ri兲 = ⫿             冕         d 2r
+                                                                                                                                                           ␳ˆ ␳ˆ
+                                                                                                                                                    ␳共␳ + r 兲
+                                                                                                                                                       2           2 3/2
+                                                                                                                                                                                 ␳ˆ ␳ˆ
+                                                                                                                                                                           = ⫿ 2␲ 2 ,
+                                                                                                                                                                                  ␳
+
+                          冕
+                                                                                                                                        R2
+
+                hijsh =         d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3Ḡij共0兲Pj ,                  共73兲                                                                                               共81兲
+                           Vj
+                                                                                           which is bounded. The rest of the integral (over the part of
+
+
+                                             冉                        冊
+                                                                                           the cube surface) is bounded by a constant, which is a
+                                                               4␲                          manifestation of a more general fact that (by its defini-
+             hiish = M共Vi,ri兲 − L̄共⳵ Vi,ri兲 −                       Ī ␹iEi .       共74兲
+                                                               3                           tion) L̄共⳵Vi , ri兲 does not depend on the size but only on the
+                                                                                           shape of the volume. Finally, we have
+We estimate each of the terms in Eq. (73) separately
+(since there is actually no significant cancellation and the                                                             兩L̄共⳵ Vi,ri兲兩 ⱕ c69 ,                                         共82兲
+error is of the same order of magnitude as the values
+                                                                                           which, together with expressions (74), (78), and (80),
+themselves) using expressions (30) for P共r兲 and Ḡ共r兲 and
+                                                                                           proves expression (76).
+expressions (31). This leads to
+
+
+                                     再
+                                                                                             Using expressions (75) and (76), we obtain
+
+                    兩hijsh兩 ⱕ
+                                         c62d3Rij−3 ,
+                                         c63d , 3
+                                                            Rij ⬍ 2
+                                                            Rij ⬎ 1
+                                                                          .         共75兲
+                                                                                              储h 储1 ⱕ
+                                                                                                d
+                                                                                                         兺兺
+                                                                                                          i   j苸⳵V
+                                                                                                                     兩hijsh兩 +   兺
+                                                                                                                                 j苸⳵V
+                                                                                                                                        兩hiish兩 ⱕ
+                                                                                                                                                     j苸⳵V
+                                                                                                                                                             冉
+                                                                                                                                                     兺 兺 c n 共l兲l
+                                                                                                                                                                   Kmax
+
+
+                                                                                                                                                                   l=1
+                                                                                                                                                                           62 s
+                                                                                                                                                                                   −3
+
+
+
+To estimate hiish, we assume that the surface of the scat-
+terer is a plane on the scale of the size of the dipole. A fi-
+nite radius of curvature only changes the constants in the
+                                                                                                               冊
+                                                                                                         + c70 ⱕ Nd共c71 − c72 ln d兲,                                                   共83兲
+
+following expressions. We will prove that                                                  where we have changed the order of the summation in the
+                                           兩hiish兩 ⱕ c64;                           共76兲   double sum and split the summation over cubical shells
+                                                                                           for l ⱕ Kmax and l ⬎ Kmax. Then we have grouped every-
+therefore we do not need to consider the third term in Eq.                                 thing into one sum over boundary dipoles. Expressions
+(74) (coming from the unity tensor) at all, since it is                                    (41) and (62) were used in the last inequality. Combining
+bounded by a constant:                                                                     expressions (63) and (83), one can obtain the total esti-
+                                                                                           mate of 储hd储1 for any scatterer:
+
+          M共Vi,ri兲 =       冕    Vi
+                                     d3r⬘共Ḡ共ri,r⬘兲 − Ḡs共ri,r⬘兲兲P共r⬘兲                              储hd储1 ⱕ N关共c43 − c45 ln d兲d2 + 共c73 − c72 ln d兲d兴.                                 共84兲
+
+                                                                                           Using expression (66), we immediately obtain the same
+
+                           +冕        Vi
+                                          d3r⬘Ḡs共ri,r⬘兲共P共r⬘兲 − P共ri兲兲             共77兲
+                                                                                           estimate for 储␦Ed储1.
+                                                                                              The derivation of the errors in the measured quantities
+                                                                                           is slightly modified, compared with Subsection 2.D, by the
+The function in the first integral is always bounded by                                    presence of the shape errors. Expressions (67) and (68)
+c65 兩 r⬘ − ri兩−2. If ri 苸 Vi, the same is true for the second in-                          are changed to
+tegral, and hence                                                                             ˜ 共Ẽ兲 − ␾d共E0,d兲兩 ⱕ
+                                                                                             兩␾                           兺 c d + 兺 c d ⱕ c d + c d,
+                                                                                                                                  51
+                                                                                                                                        5
+
+                                                                                                                                              i苸⳵V
+                                                                                                                                                      74
+                                                                                                                                                              3
+                                                                                                                                                                         52
+                                                                                                                                                                              2
+                                                                                                                                                                                  75
+                                 兩M共Vi,ri兲兩 ⱕ c66d.                                 共78兲                                   i
+
+                                                                                                                                                                                       共85兲
+If ri 苸 Vi, we introduce an auxiliary point r⬙ that is sym-
+metric to ri, over the particle surface and apply the iden-                                    兩␾d共E0,d兲 − ␾d共Ed兲兩 ⱕ c53d3储␦Ed储1 ⱕ 共c54 − c55 ln d兲d2
+tity
+                                                                                                                                 + 共c76 − c77 ln d兲d.                                  共86兲
+          P共r⬘兲 − P共ri兲 = 共P共r⬘兲 − P共r⬙兲兲 + 共P共r⬙兲 − P共ri兲兲                         共79兲
+                                                                                           The second term in expression (85) comes from surface di-
+to the second integral in Eq. (77). Using a Taylor expan-                                  poles for which errors are the same order as the values
+sion of P near r⬙ and the fact that 兩r⬘ − r⬙ 兩 ⱕ 兩r⬘ − ri兩 for                             themselves. Finally, the generalization of expression (70)
+r⬘ 苸 Vi, one can show that                                                                 is
+2586     J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                                      Yurkin et al.
+
+
+          兩␦␾y兩 ⱕ 共c59 − c60 ln y兲y2 + 共c78 − c79 ln y兲y.      共87兲      IT, which numerically evaluates the integral in Eq.
+                                                                      (12), has a more pronounced effect on the error estimate.
+                                                                      Consider dipole j from the lth shell (incomplete) of dipole
+The shape errors reinforce the surface errors (the linear             i, then
+term of discretization error), and, although both of them
+
+                                                                                冕
+generally decrease with increasing size parameter x, one
+may expect the linear term in expression (87) to be sig-                              d3r⬘Ḡ共ri,r⬘兲P共r⬘兲 − d3ḠijPj
+nificant up to higher values of y than in expression (70).                       Vj
+
+
+
+                                                                                        冕
+   All the derivations in this subsection can, in principle,
+be extended to interfaces inside the particle, i.e., when a                         =         d3r⬘Ḡ共ri,r⬘兲共P共r⬘兲 − Pj兲
+surface, which cannot be described exactly as a surface of                               Vj
+a set of cubes, separates two regions where ␹共r兲 varies
+smoothly. Two parts of the cubical dipole on the interface
+should be considered separately the same way as was
+                                                                                    ⱕ c80     冕 Vj
+                                                                                                     d3r⬘r⬘2 max 兩⳵ ␮Ḡ共ri,r⬘兲兩
+                                                                                                             ␮,r⬘苸Vj
+done above. This will, however, not change the main con-
+clusion of this subsection—expression (87)—but only the
+constants.                                                                              + c81  冕 Vj
+                                                                                                      d3r⬘兩Ḡ共ri,r⬘兲兩r⬘2 ⱕ c82dl−4 .      共89兲
+
+
+F. Different Discrete Dipole Approximation                            Here we have used Eq. (36) and a Taylor expansion of
+Formulations                                                          Green’s tensor up to the first order. Expression (89) states
+In this subsection we discuss how different DDA formula-              that the second term in expression (58) is completely
+tions modify the error estimates derived in Subsections               eliminated and so is the linear term in expressions (69)
+2.D and 2.E.                                                          and (70) (surface errors). Therefore convergence of DDA
+   Most of the improvements of PP proposed in the litera-             with IT for cubically shaped scatterers is expected to be
+ture are concerned with the self-term M共Vi , ri兲. They are            purely quadratic (neglecting the logarithm). However, for
+the radiative reaction correction8 (RR), the digitized                noncubically shaped scatterers the linear term reappears,
+Green’s function,23 the formulation by Lakhtakia,26,27 the            owing to the shape errors. Both IT and FCD also modify
+a1-term method,28,29 the lattice dispersion relation30                the self-term; however, the effect is basically the same as
+(LDR), the formulation by Peltoniemi31 (PEL), and the                 for the other formulations.
+corrected LDR.32 All of them provide an expression for                   Several papers aimed to reduce shape errors.10,11,36 The
+M共Vi , ri兲 that is of order d2 (except for RR, which is of or-        first one—the generalized semi-analytical method10—
+der d3). For instance, LDR is equivalent to                           modifies the whole DDA scheme, and the other two pro-
+                                                                      pose averaging of the susceptibility over the boundary di-
+       M共Vi,ri兲 = 关共b1 + b2m2 + b3m2S兲d2 + 共2/3兲id3兴Pi 共88兲           poles. We will analyze here weighted discretization (WD)
+                                                                      by Piller,11 which is probably the most advanced method
+                                                                      to reduce shape errors available today.
+(remember that we assumed k = 1), where b1 , b2 , b3 are                 WD modifies the susceptibility and self-term of the
+numerical constants and S is a constant that depends                  boundary subvolume. We slightly modify the definition of
+only on the propagation and polarization vectors of the in-           the boundary subvolume used in Subsections 2.B and 2.E
+cident field. However, none of these formulations can ex-             to automatically take into account interfaces inside the
+actly evaluate the integral in expression (39) because the            scatterer. We define Vi to be always cubical but with a
+variation of the electric field is not known beforehand               possible interface inside. The particle surface, crossing
+(PEL solves this problem but only for a spherical dipole).            the subvolume Vi, is assumed planar and divides the sub-
+Therefore they (it is hoped) decrease the constant in ex-             volume into two parts: the principal volume Vip (contain-
+pression (40), thus decreasing the overall error in the               ing the center) and the secondary volume Vis with suscep-
+measured quantities. However, these formulations are                  tibilities ␹ip ⬅ ␹i, ␹is and electric fields Eip ⬅ Ei, Eis,
+not expected to change the order of the error from d2 to              respectively. The electric fields are considered constant in-
+some higher order.                                                    side each part and related to each other via the boundary-
+   We do not analyze the improvements by Rahmani et
+                                                                      condition tensor T̄i:
+al.33,34 and the surface-corrected LDR,17 as they are lim-
+ited to certain particle shapes.
+   There exist two improvements of the interaction term                                                 Eis = T̄iEi .                     共90兲
+in PP: filtered coupled dipoles12 (FCD) and integration of
+Green’s tensor35 (IT). A rigorous analysis of FCD errors is           In WD the susceptibility of the boundary subvolume is re-
+beyond the scope of this paper, but it seems that FCD is              placed by an effective one, defined as
+not designed to reduce the linear term in expression (63)
+that comes from the incomplete (nonsymmetric) shells.                                       ¯␹ie = 共Vip␹ipĪ + Vis␹isT̄i兲/d3 ,            共91兲
+This is because FCD employs sampling theory to improve
+the accuracy of the overall discretization for regular cubi-          which gives the correct total polarization of the cubical di-
+cal grids. FCD does not improve the accuracy of a single              pole. The effective self-term is directly evaluated starting
+Ḡij calculation (approximation of an integral over one               from Eq. (4), considering ␹ and E constant inside each
+subvolume).                                                           part,
+Yurkin et al.                                                                                            Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A                 2587
+
+
+
+     M̄共Vi,r兲 =         冉冕    Vip
+                                        d3r⬘共Ḡ共ri,r⬘兲 − Ḡs共ri,r⬘兲兲␹ip
+                                                                                                   兩hiish兩 ⱕ c86d + 兩L̄共⳵ Vip,ri兲Pip + L̄共⳵ Vis,ri兲Pis − L̄共⳵ Vi,ri兲¯␹ieEi兩,
+                                                                                                                                                                              共97兲
+
+                        +   冕     Vis
+                                        d3r⬘共Ḡ共r,r⬘兲 − Ḡs共ri,r⬘兲兲␹isT̄i Ei .     冊              where the second term comes from the fact that averaged
+                                                                                                  L̄P is not the same as L̄ times averaged P. This error de-
+                                                                                                  pends on the geometry of the interface inside Vi and gen-
+                                                                                           共92兲
+                                                                                                  erally is of order unity. For example, if the plane interface
+Piller evaluated the integrals in Eq. (92) numerically.11                                         is described as z = zi + ⑀, taking the limit ⑀ → 0 gives the er-
+   To take a smooth variation of the electric field and sus-                                      ror 兩2␲共Pip − Pis兲z兩 [using Eq. (81)]. Therefore WD does not
+ceptibility into account, we define ␹is = ␹共r⬙兲 (r⬙ is defined                                    principally improve the error estimate of hiish, given by ex-
+                                                                                                  pression (76), although it may significantly decrease the
+in Subsection 2.E), and T̄i is calculated at the surface be-
+                                                                                                  constant. On the other hand, since L̄共⳵Vip , ri兲 and
+tween ri and r⬙ . Pip ⬅ Pi, and Pis = ␹isEis = ␹isT̄iEi. Then
+                                                                                                  L̄共⳵Vis , ri兲 can be (analytically) evaluated for a cube inter-
+                        兩P共r⬙兲 − Pis兩 ⱕ c83 min兩r − ri兩,                                   共93兲   sected by a plane, WD can be further improved to reduce
+                                                           r苸Vis                                  the error in hiish to linear in d, which is a subject of future
+                                                                                                  research.
+where we have assumed that expressions (30) for ␹共r兲 and                                             Proceeding analogously to the derivation of expression
+E共r兲 are also valid in Vis.                                                                       (83), one can obtain
+  We start estimating errors of WD with hijsh [cf. Eq. (73)]:
+
+
+            hijsh =     冕         d3r⬘共Ḡ共ri,r⬘兲P共r⬘兲 − Ḡij共0兲Pjp兲
+                                                                                                       储hd储1 ⱕ          冉   Kmax
+
+                                                                                                                  兺 兺 c n 共l兲l + c + c d ⱕ c Nd.
+                                                                                                                 j苸⳵V       l=1
+                                                                                                                                   84 s
+                                                                                                                                           −4
+                                                                                                                                                    87     88   冊   89
+
+                            Vpj
+                                                                                                                                                                              共98兲
+
+                        +冕    Vsj
+                                        d3r⬘共Ḡ共ri,r⬘兲P共r⬘兲 − Ḡij共0兲Pjs兲.                 共94兲   It can be shown that for the scattering amplitude [Eq.
+                                                                                                  (25)] the error estimate given by expression (85) can be
+                                                                                                  improved, since WD correctly evaluates the zeroth order
+Using Taylor expansions of P共r⬘兲 near rj and r⬙ in Vjp and                                        of value for the boundary dipoles, leading to
+Vjs, correspondingly, and expression (93), one may find
+that the main contribution comes from the derivative of
+Green’s tensor, leading to [cf. expression (75)]
+                                                                                                          ˜ 共Ẽ兲 − ␾d共E0,d兲兩 ⱕ
+                                                                                                         兩␾                         兺 c d + 兺 c d ⱕ c d . 共99兲
+                                                                                                                                     i
+                                                                                                                                          51
+                                                                                                                                                5
+
+                                                                                                                                                    i苸⳵V
+                                                                                                                                                           90
+                                                                                                                                                                4
+                                                                                                                                                                    91
+                                                                                                                                                                         2
+
+
+
+
+                       兩hijsh兩 ⱕ        再   c84d4Rij−4 ,
+                                            c85d4 ,
+                                                                   Rij ⬍ 2
+                                                                   Rij ⬎ 1
+                                                                             .             共95兲
+                                                                                                  In his original paper11 Piller did not specify the expres-
+                                                                                                  sion that should be used for Cabs. Direct application of the
+                                                                                                  susceptibility provided by WD into Eq. (26) does not re-
+                                                                                                  duce the order of error when compared with the exact Eq.
+hijsh is the following [cf. Eq. (74)]:
+                                                                                                  (24) (except when ␹is = 0), since they are not linear func-
+
+   hiish = 共M共Vi,ri兲 − L̄共⳵ Vi,ri兲Pip兲 −                      冉冕    Vip
+                                                                          d3r⬘共Ḡ共ri,r⬘兲
+                                                                                                  tions of the electric field. However, if we consider sepa-
+                                                                                                  rately Vip and Vis [which is equivalent to replacing
+                                                                                                  Vi Im共共␹¯ieEi兲 · Ei*兲 by Vip Im共␹ip兲 兩 Ei兩2 + Vis Im共␹is兲 兩 T̄iEi兩2], the
+
+           − Ḡs共ri,r⬘兲兲Pip +                 冕  Vis
+                                                       d3r⬘共Ḡ共r,r⬘兲 − Ḡs共ri,r⬘兲兲Pis
+                                                                                                  same estimate as in expression (99) can be derived for
+                                                                                                  Cabs.
+                                                                                                     Using expressions (98) and (99), and the first part of ex-
+
+
+                                             冊
+                                                                                                  pression (86), one can derive the final error estimate for
+           − L̄共⳵ Vi,ri兲¯␹ieEi                                                                    WD:
+
+                                                                                                                    兩␦␾y兩 ⱕ 共c92 − c93 ln y兲y2 + c94y,                       共100兲
+
+       =   冕   Vip
+                     d3r⬘G共ri,r⬘兲共P共r⬘兲 − Pip兲                                                    where the constant before the linear term, as compared
+                                                                                                  with expression (87), does not contain a logarithm and is
+
+           +冕    Vis
+                       d3r⬘Ḡ共ri,r⬘兲共P共r⬘兲 − Pis兲
+                                                                                                  expected to be significantly smaller because several fac-
+                                                                                                  tors contributing to it are eliminated in WD. Although
+                                                                                                  WD has a potential for improving, it does not seem fea-
+
+            冕
+                                                                                                  sible to completely eliminate the linear term in the shape
+           +           d3r⬘Ḡs共ri,r⬘兲共Pis − Pip兲                                                  error. The accuracy of evaluation of the interaction term
+                 Vis                                                                              over the boundary dipole [cf. Eq. (94)] can be improved by
+                                                                                                  IT over Vip and Vis separately but that would ruin the
+           + L̄共⳵ Vi,ri兲¯␹ieEi − L̄共⳵ Vi,ri兲Pip .                                          共96兲   block-Toeplitz structure of the interaction matrix and
+                                                                                                  hinder the fast Fourier transform–based algorithm for
+The first two integrals can be easily shown to be ⱕc86d [cf.                                      the solution of linear equations.5 Since there is no compa-
+Eq. (77)], and the third one is transformed to L̄ the same                                        rable alternative to fast Fourier transform nowadays, this
+way as in expression (80), thus                                                                   method seems inapplicable.
+2588    J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                           Yurkin et al.
+
+
+   Minor modifications of the expression for Cabs are pos-      cal dipoles. In this paper we show results only for the ex-
+sible. Draine8 proposed a modification of Eq. (26) that was     tinction efficiency Qext (for incident light polarized paral-
+widely used afterward and that was further modified by          lel to one of the principal axes of the cubical dipoles) and
+Chaumet et al.35 However, for many cases these expres-          phase function S11共␪兲 as the most commonly used in ap-
+sions are equivalent, and, even when they are not, the dif-     plications. However, the theory applies to any measured
+ference is of order d3, which is neglected in our error         quantity. For instance, we have also confirmed it for other
+analysis.                                                       Mueller matrix, elements (data not shown).
+                                                                   Exact results of S11共␪兲 for all five test cases are shown
+                                                                in Fig. 2. For spheres this is the result of Mie theory (the
+3. NUMERICAL SIMULATIONS                                        relative accuracy of the code we used24 is at least ⬍10−6)
+A. Discrete Dipole Approximation                                and for the cube and discretized sphere an extrapolation
+The basics of the DDA method were summarized by                 over the five finest discretizations (the extrapolation tech-
+Draine and Flatau.2 In this paper we use the LDR pre-           nique is presented in Paper 2, together with all details of
+scription for dipole polarizability,30 which is most widely     obtaining these results, including their estimated errors).
+used nowadays, e.g., in the publicly available code DDSCAT      We use such “exact” results because analytical theory is
+6.1.4 We also employ dipole size correction8 for noncubi-       unavailable for these shapes and because errors of the
+cally shaped scatterers to ensure that the cubical approxi-     best discretization are larger than that of the extrapola-
+mation of the scatterer has the correct volume; this is be-     tion. Their use as references for computing real errors
+lieved to diminish shape errors, especially for small           (difference between the computed and the exact values) of
+scatterers.2 We use a standard discretization scheme as         single DDA calculations is justified because all these real
+described in Subsection 2.E, without any improvements           errors are significantly larger than the errors of the ref-
+for boundary dipoles. It is important to note that all the      erences themselves (see Paper 2; in general, real errors
+conclusions are valid for any DDA implementation but            obtained this way have an uncertainty of reference error).
+with a few changes for specific improvements, as dis-           Exact values of Qext for all test cases are presented in
+cussed in Subsection 2.F.                                       Table 1.
+   Our code—AMSTERDAM DDA37—is capable of running on               In the following we show the results of DDA conver-
+a cluster of computers (parallelizing a single DDA compu-       gence. Figures 3 and 4 present relative errors (absolute
+tation), which allows us to use a practically unlimited         values) of S11 at different angles ␪ and maximum error
+number of dipoles, since we are not limited by the              over all ␪ versus y in a log–log scale. In many cases the
+memory of a single computer.38,39 We used a relative error      maximum errors are reached at an exact backscattering
+of residual ⬍10−8 as a stopping criterion for the iterative     direction, then these two sets of points overlap. Deep
+solution of the DDA linear system. Tests suggest that the       minima that happen at intermediate values of y for some
+relative error of the measured quantities due to the itera-
+tive solver is then ⬍10−7 (data not shown) and hence can
+be neglected (total relative errors in our simulations are
+⬎10−6 ÷ 10−5—see Subsection 3.B). More details about our
+code can be found in Paper 2. All DDA simulations were
+carried out on the Dutch national computer cluster
+LISA.40
+
+B. Results
+We study five test cases: one cube with kD = 8; three
+spheres with kD = 3 , 10, 30; and a particle obtained by a
+cubical discretization of the kD = 10 sphere using 16 di-
+poles per D (total 2176 dipoles, x equal to that of a sphere;
+see detailed description in Paper 2). By D we denote the
+diameter of a sphere or the edge size of a cube. All scat-
+terers are homogenous with m = 1.5. Although DDA errors
+significantly depend on m (see, e.g., Ref. 14), we limit our-
+selves to one single value and study effects of size and
+shape of the scatterer.                                         Fig. 2. S11共␪兲 for all five test cases in logarithmic scale. The re-
+                                                                sult for the kD = 3 sphere is multiplied by 10 for convenience.
+   The maximum number of dipoles per D 共nD兲 was 256.
+The values of nD that we used are of the form {4,5,6,7} 共2p兲       Table 1. Exact Values of Qext for the Five Test
+(p is an integer), except for the discretized sphere, where                            Cases
+all nD are multiples of 16 (this is required to exactly de-
+scribe the shape of the particle composed from a number         Particle                                                Qext
+of cubes). The minimum values for nD were 8 for the kD
+                                                                kD = 8 cube                                            4.490
+= 3 sphere; 16 for the cube, the kD = 10 sphere, and the
+                                                                Discretized kD = 10 sphere                             3.916
+discretized sphere; and 40 for the kD = 30 sphere.
+                                                                kD = 3 sphere                                          0.753
+   All the computations use a direction of incidence paral-
+                                                                kD = 10 sphere                                         3.928
+lel to one of the principal axes of the cubical dipoles. The
+                                                                kD = 30 sphere                                         1.985
+scattering plane is parallel to one of the faces of the cubi-
+Yurkin et al.                                                                  Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A   2589
+
+                                                                         for a small deviation of errors of S11共90° 兲 for large values
+                                                                         of y]. Similar results are obtained for the kD = 10 sphere
+                                                                         but with significant oscillations superimposed on the gen-
+                                                                         eral trend. Convergence for the large 共kD = 30兲 sphere is
+                                                                         quadratic or even faster in the range of y studied, also
+                                                                         with significant oscillations.
+                                                                            Comparing Figs. 3 and 4 [especially Figs. 3(b) and 4(b)
+                                                                         showing results for almost the same particles], one can
+                                                                         deduce the following differences in DDA convergence for
+                                                                         cubically and noncubically shaped scatterers. The linear
+                                                                         term for cubically shaped scatterers is significantly
+                                                                         smaller, resulting in smaller total errors, especially for
+                                                                         small y. All these conclusions, together with the size de-
+                                                                         pendence of the significance of the linear term in the total
+
+
+
+
+Fig. 3. Relative errors of S11 at different angles ␪ and maximum
+over all ␪ versus y for (a) the kD = 8 cube, (b) the cubical discreti-
+zation of the kD = 10 sphere. A log–log scale is used. A linear fit of
+maximum over ␪ errors is shown 共m = 1.5兲.
+
+values of ␪ (and also sometimes for Qext—Fig. 5) are due
+to the fact that the differences between simulated and ref-
+erence values change sign near these values of y (see Pa-
+per 2 for a detailed description of this behavior). The solid
+lines are linear fits to all or some points of maximum er-
+ror. The slopes of these lines are depicted in the figures.
+Figure 5 shows relative errors of Qext for all five studied
+cases in a log–log scale. A linear fit through the five finest
+discretizations of the kD = 3 sphere is shown. More results
+of these numerical simulations are presented in Paper 2.
+
+
+4. DISCUSSION
+Convergence of DDA for cubically shaped particles (Fig. 3)
+shows the following trends. All curves have linear and
+quadratic parts (the nonmonotonic behavior of errors for
+some ␪ is also a manifestation of the fact that the signed
+difference can be approximated by a sum of linear and
+quadratic terms that have different signs). The transition
+between these two regimes occurs at different y (which in-
+dicates the relative importance of linear and quadratic co-
+efficients). Although for maximum errors that are close to
+those of the backscattering direction the linear term is
+significant for larger y, it is much smaller and not signifi-
+cant in the whole range of y studied for side scattering
+共␪ = 90° 兲. Results of DDA convergence for spheres (Fig. 4)
+show a different behavior for different sizes. Errors for                Fig. 4. Same as Fig. 3 but for (a) kD = 3, (b) kD = 10, and (c)
+the small 共kD = 3兲 sphere converge purely linear [except                 kD = 30 spheres.
+2590     J. Opt. Soc. Am. A / Vol. 23, No. 10 / October 2006                                                               Yurkin et al.
+
+                                                                      bounded by a sum of a linear term and a quadratic term
+                                                                      in the discretization parameter y; the linear term is sig-
+                                                                      nificantly smaller for cubically than for noncubically
+                                                                      shaped scatterers. Therefore for small y, errors for cubi-
+                                                                      cally shaped particles are much smaller than for noncubi-
+                                                                      cally shaped ones. The relative importance of the linear
+                                                                      term decreases with increasing size; hence convergence of
+                                                                      DDA for large enough scatterers is quadratic in the com-
+                                                                      mon range of y. All these conclusions were verified by ex-
+                                                                      tensive numerical simulations.
+                                                                         Moreover, these simulations showed that errors are not
+                                                                      only bounded by a quadratic function (as predicted in Sec-
+                                                                      tion 2) but actually can be (with good accuracy) described
+                                                                      by a quadratic function of y. This fact provides a basis for
+                                                                      the extrapolation technique presented in Paper 2.
+                                                                         Our theory predicts that modern DDA improvements
+                                                                      (namely, IT and WD) should significantly change the con-
+Fig. 5. Relative errors of Qext versus y for all five test cases. A   vergence of DDA; however, numerical testing of these pre-
+log–log scale is used. A linear fit through five finest discretiza-
+tions of the kD = 3 sphere is shown.                                  dictions is left for future research.
+
+errors, are in perfect agreement with the theoretical pre-
+dictions made in Subsections 2.D and 2.E. Errors for non-
+cubically shaped particles exhibit quasi-random oscilla-
+                                                                      ACKNOWLEDGMENTS
+tions that are not present for cubically shaped particles.            We thank Gorden Videen and Michiel Min for valuable
+This can be explained by the sharp variations of shape er-            comments on an earlier version of this manuscript and
+rors with changing y (discussed in detail in Paper 2). Os-            the anonymous reviewer for helpful suggestions. Our re-
+cillations for the kD = 3 sphere [Fig. 4(a)] are very small           search is supported by the NATO Science for Peace pro-
+(but still clearly present), which is due to the small size of        gram through grant SfP 977976.
+the particle and hence featurelessness of its light-                     Corresponding authors M. A. Yurkin and A. G. Hoek-
+scattering pattern—the surface structure is not that im-              stra can be reached by e-mail at myurkin@science.uva.nl
+portant, and one may expect rather small shape errors.                and alfons@science.uva.nl, respectively.
+Results for Qext (Fig. 5) fully support the conclusions. Er-
+rors of Qext for the large sphere at small values of y are
+unexpectedly smaller than for smaller spheres. This fea-
+ture requires further study before any firm conclusions               REFERENCES
+are made; however, there is definitely no similar tendency             1.   E. M. Purcell and C. R. Pennypacker, “Scattering and
+for S11共␪兲 (cf. Fig. 4).                                                    adsorption of light by nonspherical dielectric grains,”
+                                                                            Astrophys. J. 186, 705–714 (1973).
+   We have also studied a kD = 8 porous cube that was ob-              2.   B. T. Draine and P. J. Flatau, “Discrete-dipole
+tained by dividing a cube into 27 smaller cubes and then                    approximation for scattering calculations,” J. Opt. Soc. Am.
+removing randomly nine of them. All the conclusions are                     A 11, 1491–1499 (1994).
+the same as those reported for the cube but with slightly              3.   B. T. Draine, “The discrete dipole approximation for light
+                                                                            scattering by irregular targets,” in Light Scattering by
+higher overall errors (data not shown).                                     Nonspherical Particles, Theory, Measurements, and
+   In this paper we have used a traditional DDA                             Applications, M. I. Mishchenko, J. W. Hovenier, and L. D.
+formulation2 for numerical simulations. However, as we                      Travis, eds. (Academic, 2000), pp. 131–145.
+showed in Subsection 2.E, several modern improvements                  4.   B. T. Draine and P. J. Flatau, “User guide for the discrete
+of DDA (namely, IT and WB) should significantly change                      dipole approximation code DDSCAT 6.1,” http://
+                                                                            xxx.arxiv.org/abs/astro-ph/0409262 (2004).
+its convergence behavior. IT should completely eliminate               5.   J. J. Goodman, B. T. Draine, and P. J. Flatau, “Application
+the linear term for cubically shaped scatterers, which                      of fast-Fourier-transform techniques to the discrete-dipole
+should improve the accuracy especially for small y. WD                      approximation,” Opt. Lett. 16, 1198–1200 (1991).
+should significantly decrease shape and hence total errors             6.   G. C. Hsiao and R. E. Kleinman, “Mathematical
+                                                                            foundations for error estimation in numerical solutions of
+for noncubically shaped particles; moreover, it should sig-                 integral equations in electromagnetics,” IEEE Trans.
+nificantly decrease the amplitude of quasi-random error                     Antennas Propag. 45, 316–328 (1997).
+oscillations because it takes into account the location of             7.   K. F. Warnick and W. C. Chew, “Error analysis of the
+the interface inside the boundary dipoles. Numerical test-                  moment method,” IEEE Antennas Propag. Mag. 46, 38–53
+ing of DDA convergence using IT and WD is a subject of a                    (2004).
+                                                                       8.   B. T. Draine, “The discrete-dipole approximation and its
+future study.                                                               application to interstellar graphite grains,” Astrophys. J.
+                                                                            333, 848–872 (1988).
+                                                                       9.   J. I. Hage, J. M. Greenberg, and R. T. Wang, “Scattering
+5. CONCLUSION                                                               from arbitrarily shaped particles: theory and experiment,”
+                                                                            Appl. Opt. 30, 1141–1152 (1991).
+To the best of our knowledge, we conducted for the first              10.   F. Rouleau and P. G. Martin, “A new method to calculate
+time a rigorous theoretical convergence analysis of DDA.                    the extinction properties of irregularly shaped particles,”
+In the range of DDA applicability 共kd ⬍ 2兲, errors are                      Astrophys. J. 414, 803–814 (1993).
+Yurkin et al.                                                                 Vol. 23, No. 10 / October 2006 / J. Opt. Soc. Am. A    2591
+
+11.   N. B. Piller, “Influence of the edge meshes on the accuracy            structures,” J. Res. Natl. Inst. Stand. Technol. 98, 699–716
+      of the coupled-dipole approximation,” Opt. Lett. 22,                   (1993).
+      1674–1676 (1997).                                                27.   J. I. Hage and J. M. Greenberg, “A model for the optical
+12.   N. B. Piller and O. J. F. Martin, “Increasing the                      properties of porous grains,” Astrophys. J. 361, 251–259
+      performance of the coupled-dipole approximation: a                     (1990).
+      spectral approach,” IEEE Trans. Antennas Propag. 46,             28.   C. E. Dungey and C. F. Bohren, “Light scattering by
+      1126–1137 (1998).                                                      nonspherical particles: a refinement to the coupled-dipole
+13.   N. B. Piller, “Coupled-dipole approximation for high                   method,” J. Opt. Soc. Am. A 8, 81–87 (1991).
+      permittivity materials,” Opt. Commun. 160, 10–14                 29.   H. Okamoto, “Light scattering by clusters: the A1-term
+      (1999).                                                                method,” Opt. Rev. 2, 407–412 (1995).
+14.   A. G. Hoekstra, J. Rahola, and P. M. A. Sloot, “Accuracy of      30.   B.    T.   Draine    and     J.   J.    Goodman,      “Beyond
+      internal fields in volume integral equation simulations of             Clausius–Miossotti—wave propagation on a polarizable
+      light scattering,” Appl. Opt. 37, 8482–8497 (1998).                    point lattice and the discrete dipole approximation,”
+15.   S. D. Druger and B. V. Bronk, “Internal and scattered                  Astrophys. J. 405, 685–697 (1993).
+      electric fields in the discrete dipole approximation,” J. Opt.   31.   J. I. Peltoniemi, “Variational volume integral equation
+      Soc. Am. B 16, 2239–2246 (1999).                                       method for electromagnetic scattering by irregular grains,”
+16.   Y. L. Xu and B. A. S. Gustafson, “Comparison between                   J. Quant. Spectrosc. Radiat. Transf. 55, 637–647 (1996).
+      multisphere light-scattering calculations: rigorous solution     32.   D. Gutkowicz-Krusin and B. T. Draine, “Propagation of
+      and discrete-dipole approximation,” Astrophys. J. 513,                 electromagnetic waves on a rectangular lattice of
+      894–909 (1999).                                                        polarizable     points,”    http://xxx.arxiv.org/abs/astro-ph/
+17.   M. J. Collinge and B. T. Draine, “Discrete-dipole                      0403082 (2004).
+      approximation with polarizabilities that account for both        33.   A. Rahmani, P. C. Chaumet, and G. W. Bryant, “Coupled
+      finite wavelength and target geometry,” J. Opt. Soc. Am. A             dipole method with an exact long-wavelength limit and
+      21, 2023–2028 (2004).                                                  improved accuracy at finite frequencies,” Opt. Lett. 27,
+18.   M. A. Yurkin, V. P. Maltsev, and A. G. Hoekstra,                       2118–2120 (2002).
+      “Convergence of the discrete dipole approximation. II. An        34.   A. Rahmani, P. C. Chaumet, and G. W. Bryant, “On the
+      extrapolation technique to increase the accuracy,” J. Opt.             importance of local-field corrections for polarizable
+      Soc. Am. A 23, 2592–2601 (2006).                                       particles on a finite lattice: application to the discrete
+19.   A. Lakhtakia, “Strong and weak forms of the method of
+                                                                             dipole approximation,” Astrophys. J. 607, 873–878 (2004).
+      moments and the coupled dipole method for scattering of
+                                                                       35.   P. C. Chaumet, A. Sentenac, and A. Rahmani, “Coupled
+      time-harmonic electromagnetic-fields,” Int. J. Mod. Phys. C
+                                                                             dipole method for scatterers with large permittivity,” Phys.
+      3, 583–603 (1992).
+                                                                             Rev. E 70, 036606 (2004).
+20.   F. M. Kahnert, “Numerical methods in electromagnetic
+                                                                       36.   K. F. Evans and G. L. Stephens, “Microwave radiative
+      scattering theory,” J. Quant. Spectrosc. Radiat. Transf. 79,
+                                                                             transfer through clouds composed of realistically shaped ice
+      775–824 (2003).
+21.   C. P. Davis and K. F. Warnick, “On the physical                        crystals. Part 1. Single scattering properties,” J. Atmos.
+      interpretation of the Sobolev norm in error estimation,”               Sci. 52, 2041–2057 (1995).
+      Appl. Comput. Electromagn. Soc. J. 20, 144–150                   37.   “Amsterdam DDA,” http://www.science.uva.nl/research/scs/
+      (2005).                                                                Software/adda.
+22.   A. D. Yanghjian, “Electric dyadic Green’s function in the        38.   A. G. Hoekstra, M. D. Grimminck, and P. M. A. Sloot,
+      source region,” Proc. IEEE 68, 248–263 (1980).                         “Large scale simulations of elastic light scattering by a fast
+23.   G. H. Goedecke and S. G. O’Brien, “Scattering by irregular             discrete dipole approximation,” Int. J. Mod. Phys. C 9,
+      inhomogeneous particles via the digitized Green’s function             87–102 (1998).
+      algorithm,” Appl. Opt. 27, 2431–2438 (1988).                     39.   M. A. Yurkin, K. A. Semyanov, P. A. Tarasov, A. V.
+24.   C. F. Bohren and D. R. Huffman, Absorption and Scattering              Chemyshev, A. G. Hoekstra, and V. P. Maltsev,
+      of Light by Small Particles (Wiley, 1983).                             “Experimental and theoretical study of light scattering by
+25.   J. Rahola, “On the eigenvalues of the volume integral                  individual mature red blood cells by use of scanning flow
+      operator of electromagnetic scattering,” SIAM (Soc. Ind.               cytometry and discrete dipole approximation,” Appl. Opt.
+      Appl. Math) J. Sci. Comput. (USA) 21, 1740–1754 (2000).                44, 5249–5256 (2005).
+26.   A. Lakhtakia and G. W. Mulholland, “On two numerical             40.   “Description of the national computer cluster Lisa,” http://
+      techniques for light scattering by dielectric agglomerated             www.sara.nl/userinfo/lisa/description/mdex.html(2005).
+

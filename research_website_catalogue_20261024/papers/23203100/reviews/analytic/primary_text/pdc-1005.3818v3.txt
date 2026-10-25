@@ -1,0 +1,1868 @@
+                                           Quantum Information Processing manuscript No.
+                                           (will be inserted by the editor)
+
+
+
+
+                                           Public and private resource trade-offs for a quantum channel
+
+                                           Mark M. Wilde · Min-Hsiu Hsieh
+
+
+
+
+                                           November 8, 2018
+
+
+
+                                           Abstract Collins and Popescu realized a powerful analogy between several resources in classical and
+
+
+
+
+arXiv:1005.3818v3 [quant-ph] 25 Jun 2012
+                                           quantum information theory. The Collins-Popescu analogy states that public classical communication,
+                                           private classical communication, and secret key interact with one another somewhat similarly to the way
+                                           that classical communication, quantum communication, and entanglement interact. This paper discusses
+                                           the information-theoretic treatment of this analogy for the case of noisy quantum channels. We determine
+                                           a capacity region for a quantum channel interacting with the noiseless resources of public classical
+                                           communication, private classical communication, and secret key. We then compare this region with the
+                                           classical-quantum-entanglement region from our prior efforts and explicitly observe the information-
+                                           theoretic consequences of the strong correlations in entanglement and the lack of a super-dense coding
+                                           protocol in the public-private-secret-key setting. The region simplifies for several realistic, physically-
+                                           motivated channels such as entanglement-breaking channels, Hadamard channels, and quantum erasure
+                                           channels, and we are able to compute and plot the region for several examples of these channels.
+                                           PACS 03.67.Hk · 03.67.Pp
+
+
+                                           1 Introduction
+
+                                           One of the first breakthroughs in quantum information theory was the discovery of a protocol for es-
+                                           tablishing secret correlations with the use of a quantum channel [3]. Such a task is now well known as
+                                           quantum key distribution [40]. This thriving area of research has resulted in a currently available quan-
+                                           tum technology, and efforts are now underway to construct space-to-ground quantum communication
+                                           devices [47, 38].
+                                               These initial results on quantum key distribution inspired the quantum information-theoretic study
+                                           of secret communication over quantum channels, and this line of inquiry has subsequently led to an
+                                           improved understanding of the relations between private classical information and quantum informa-
+                                           tion. Schumacher and Westmoreland were one of the first to study this connection [42], and Collins and
+                                           Popescu then discussed a useful analogy between the classical world and the quantum world [14]. The
+                                           Collins-Popescu analogy states that the way that a public classical bit, a private classical bit, and a bit
+                                           of secret key interact is qualitatively similar to the way that a classical bit, a quantum bit, and a bit of
+                                           entanglement interact [14]. They justify this analogy operationally, by comparing the teleportation pro-
+                                           tocol [4] to the one-time pad protocol [48]. Teleportation consumes two classical bits and one maximally
+                                           entangled pair to generate a qubit channel, whereas the one-time pad protocol consumes one public bit
+                                           and a bit of secret key to establish a private classical bit. A qubit channel can establish entanglement,
+                                           and a private classical bit channel can establish a bit of secret key—these protocols have the respective
+                                           M.M.W. acknowledges support from the MDEIE (Québec) PSR-SIIRI international collaboration grant.
+
+                                           Mark M. Wilde is a postdoctoral fellow with the School of Computer Science, McGill University, Montreal, Quebec, Canada
+                                           H3A 2A7 E-mail: mark.wilde@mcgill.ca · Min-Hsiu Hsieh was with the ERATO-SORST Quantum Computation and Infor-
+                                           mation Project, Japan Science and Technology Agency 5-28-3, Hongo, Bunkyo-ku, Tokyo, Japan during the development
+                                           of this paper. He is now with the Statistical Laboratory, University of Cambridge, Wilberforce Road, Cambridge, UK CB3
+                                           0WB E-mail: minhsiuh@gmail.com
+names entanglement distribution and secret key distribution. Additionally, a qubit channel can generate
+a classical bit, and a private classical bit channel can generate a public classical bit.1 But the lack of
+an analogy of the super-dense coding protocol [6] in the public-private-secret-key setting is where this
+analogy breaks down.
+    Shortly after this initial work, Devetak and Cai et al. independently established the private capacity
+of a quantum channel as one of its fundamental capacities [16, 13]. These results and the ideas involved are
+formally similar to private information transmission in the classical setting [15, 51, 1, 36, 2]. In addition
+to determining the private classical capacity, Devetak provided a good lower bound on the quantum
+capacity of a quantum channel by showing how to construct good quantum error-correcting codes from
+classical codes that transmit classical information privately [16]. Devetak and Winter continued these
+efforts, demonstrating many further important connections between private classical information and
+quantum information [19, 18], and Smithet al. then employed these capacity formulas to determine good
+bounds on the secret key rate of the standard protocol for quantum key distribution [46].
+    In this article, we study how a noisy quantum channel interacts with the noiseless resources of
+public classical communication, private classical communication, and secret key. That is, we determine
+trade-off formulas for how a sender and receiver can use any of the noiseless resources to assist a noisy
+quantum channel in generating any of the other noiseless resources. In earlier work, we determined
+trade-off formulas in the setting where the noiseless resources are classical communication, quantum
+communication, and entanglement [31, 30, 29, 50]. Thus, one could view the present work as the completion
+of the information-theoretic treatment of the Collins-Popescu analogy (at least for the case of channels)
+that began in the aforementioned papers and continued in Refs. [17, 27].
+    Our main result is the private dynamic capacity theorem. This theorem determines the capabilities
+for a noisy quantum channel to generate any of the three noiseless classical resources when assisted by
+the others. The rates in the private dynamic capacity region can be either positive or negative, depending
+on whether a protocol generates or consumes a given resource, respectively. The result of this theorem
+is that combinations of only four protocols are sufficient to generate the entire capacity region: the
+publicly-enhanced private father protocol [28], the one-time pad protocol, secret key distribution, and
+private-to-public transmission. This result is in line with the Collins-Popescu analogy because we found
+that the classically-enhanced father protocol [31], teleportation, entanglement distribution, and super-
+dense coding are sufficient to realize the quantum dynamic capacity region of a quantum channel [31, 30,
+29, 50]. This theorem also explicitly demonstrates the aforementioned breakdown of the Collins-Popescu
+analogy—the last two inequalities in each theorem are similar by inspection, but the first one in each is
+different because of the lack of a super-dense coding protocol in the public-private-secret-key setting and
+because the rates in teleportation and the one-time pad are different.
+    We also explicitly compute and plot the private dynamic capacity region for several realistic, physi-
+cally motivated quantum channels: entanglement-breaking channels [43, 25], dephasing channels, cloning
+channels [10,8, 9, 11], and erasure channels [23]. Entanglement-breaking channels have application in en-
+tanglement detection protocols [33, 39]. Dephasing noise occurs in superconducting qubit systems [12],
+the cloning channel represents a natural process that occurs during stimulated emission [37, 44, 34], and
+the erasure channel is a simplified model for photon loss [21, 49, 35, 20]. Brádler et al. pointed out in
+Ref. [11] that both dephasing channels and cloning channels are examples of Hadamard channels [32],
+and this Hadamard property is useful in proving that the private dynamic capacity region is tractable.
+The proof for the quantum erasure channel follows by exploiting its particular structure. We prove these
+results first by showing that a formula, named the private dynamic capacity formula, is additive for each
+of these channels. We then analyze each channel individually and show that a particular ensemble suffices
+to achieve the boundary points of the private dynamic capacity region.
+    We structure this paper as follows. We first review the communication model, some definitions, and
+notation that are essential in understanding the rest of the paper. Section 3 states the private dynamic
+capacity theorem and the next two sections prove the achievability part and the converse part. We then
+introduce the private dynamic capacity formula, show how its additivity implies that the computation
+of the capacity region boundary simplifies, analyze special cases of the formula, and compare the region
+to the quantum dynamic capacity region from Refs. [30, 29, 50]. Sections 7 and 8 prove that the private
+dynamic capacity formula is additive for entanglement-breaking channels and the Hadamard class of
+ 1  This latter protocol, that we call private-to-public transmission, follows from the particular communication model that
+we consider in this paper.
+
+
+                                                            2
+channels, respectively. We finally compute and plot the private dynamic capacity region for dephasing
+channels, cloning channels, and erasure channels in Section 9. We conclude with a discussion and some
+open problems.
+
+
+2 Definitions and notation
+
+We first establish some definitions and notation that we employ throughout the paper, and we review a
+few important properties of the entropy. Consider a random variable M with a uniform distribution on
+                 MA MB
+D values. Let Φ        denote an embedding of this random variable into a maximally correlated state
+shared between two parties MA and MB :
+                                                 D
+                                MA MB       1 X          M           M
+                               Φ        ≡         |mi hm| A ⊗ |mi hm| B .                              (1)
+                                            D m=1
+
+A common randomness bit corresponds to the special case where D = 2. Suppose a third party Eve
+possesses a quantum system E. A state ρMA MB E on the systems MA , MB , and E is a public common
+randomness state if
+                                                              MA MB
+                                    TrE {ρMA MB E } = Φ                   ,
+                                                              MA MB
+                                            ρMA MB E 6= Φ                 ⊗ σE ,
+
+for some state σ E . The above conditions imply that Eve has some correlations with the above state and
+could learn about the random variable M by performing a measurement on her system. A state ω MA MB E
+is a secret key state if
+                                                                  MA MB
+                                    TrE {ω MA MB E } = Φ                  ,
+                                                MA MB E           MA MB
+                                            ω             =Φ                  ⊗ σE ,
+
+for some state σ E . In this case, Eve cannot learn anything about the random variable M by performing
+a measurement on her share of ω MA MB E .
+                                                               0
+    A completely-positive trace-preserving (CPTP) map N A →B is the most general map we consider
+that maps from a quantum system A0 to another quantum system B (we usually call them “Alice” and
+“Bob”). It acts as follows on any density operator ρ:
+                                             0
+                                                           Ak ρA†k ,
+                                                       X
+                                          N A →B (ρ) =
+                                                              k
+
+where the operators Ak satisfy the condition k A†k Ak = I. A quantum channel admits an isometric
+                                               P
+             0
+            A →BE
+extension UN      , which is a unitary embedding into a larger Hilbert space. One recovers the original
+channel by taking a partial trace over the “environment” system E (we usually call this system “Eve”).
+                                              A0 →E
+One obtains the complementary channel (N c )        by taking a partial trace over the system B.
+   A channel is degradable if there is a degrading map DB→E such that Bob can simulate the map to
+Eve [17]:
+                                                  0             A0 →E
+                              ∀ρ     DB→E ◦ N A →B (ρ) = (N c )       (ρ) .
+A channel is antidegradable if there is a map T E→B such that Eve can simulate the map to Bob:
+                                                      A0 →E                      0
+                              ∀ρ     T E→B ◦ (N c )               (ρ) = N A →B (ρ) .
+               0
+             A →B
+A channel NEB      is entanglement-breaking if its output is a separable state whenever the input is
+entangled [43,25]:
+                               A0 →B           AA0
+                                                      X
+                              NEB    (|Γ i hΓ |    )=   pX (x) σxA ⊗ θxB .
+                                                              x
+
+Such a channel is antidegradable and the antidegrading map consists of two parts: 1) a measurement of the
+system E that gives a classical variable and 2) a state preparation conditional on the classical outcome of
+
+
+                                                          3
+                                                                                          E
+                                   A’             
+                                           A →BE
+                Alice’s lab
+                                          UN
+                   E1
+
+                                                                                          B
+                                                                                                 Bob’s lab
+
+
+                                                                                                    E2
+Fig. 1 (Color online) The communication model in this paper. Alice can prepare local states in her lab and choose to
+send them through a noisy channel or dump them locally at no cost in a bin E1 to which Eve has access. We depict the
+isometric extension UNA0 →BE of the channel N A0 →B and give Eve full access to the environment E of the channel. Bob
+
+receives the output B of the channel and can process it locally at his end or dump it in a bin E2 to which Eve has access. In
+this model, Alice and Bob can simulate a public classical channel from a private classical channel because Bob can choose
+to dispose quantum states in the bin E2 to which Eve has access.
+
+
+
+the measurement. A quantum Hadamard channel is one whose complementary channel is entanglement-
+breaking [32]. It is thus degradable with a similar degrading map that consists of a measurement and
+state preparation.
+    We employ a particular model of communication in this paper (depicted in Figure 1). We define a
+public channel as one for which an eavesdropper Eve can gain some information about what Alice and
+Bob transmit over it. A private channel is one for which Eve cannot gain any information about what
+they transmit. In this model, we give Eve access to the environment of a noisy quantum channel and
+particular registers that Alice and Bob can discard locally from their laboratories. We do not count this
+discarding as a resource because it results from local actions that Alice and Bob take. This particular
+model allows us to make close contact with result from the classical-quantum-entanglement trade-off [31,
+30, 29, 50].
+    We consider a three-dimensional capacity region throughout this work (as in Ref. [30]), whose points
+(R, P, S) correspond to rates of public classical communication, private classical communication, and
+secret key generation/consumption, respectively. For example, the one-time pad protocol corresponds to
+the following point:
+                                               (−1, 1, −1) ,
+because it consumes a public bit and a bit of secret in order to generate a private bit. Secret key
+distribution corresponds to
+                                           (0, −1, 1) ,
+and a private-to-public transmission corresponds to
+
+                                                        (1, −1, 0) .
+
+    The entropy H (A)ρ of a density operator ρA on some quantum system A is as follows:
+
+                                              H (A)ρ ≡ −Tr ρA log ρA ,
+                                                          
+
+where the logarithm is base two. The entropy can never exceed the logarithm of the dimension of system
+A. The quantum mutual information of a bipartite density operator ρAB is
+
+                                     I (A; B)ρ ≡ H (A)ρ + H (B)ρ − H (AB)ρ ,
+
+and the conditional quantum mutual information for a tripartite state ρABC is
+
+                          I (A; B|C)ρ = H (AC)ρ + H (BC)ρ − H (C)ρ − H (ABC)ρ .
+
+
+                                                             4
+The quantum mutual information obeys a chain rule:
+                                 I (AB; C)ρ = I (A; C)ρ + I (B; C|A)ρ .                                (2)
+   A classical-quantum state σ XY BE of the following form plays an important role throughout this
+paper:
+                                                     X         Y   A0 →BE A0
+                               X
+                     σ XY BE ≡    pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN     (ρx,y ),
+                                 x,y
+                    0
+                                            A0 →BE
+where the states ρA
+                  x,y are mixed states and UN         is the isometric extension of some noisy channel
+   0
+ A →B
+N      . Applying the above chain rule gives the following relation:
+                                I (Y X; B)σ = I (X; B)σ + I (Y ; B|X)σ .                               (3)
+An accessible introduction to concepts in quantum Shannon theory is available in Yard’s thesis [52].
+
+
+3 The private dynamic capacity theorem
+
+The private dynamic capacity theorem gives bounds on the reliable communication rates of a noisy
+quantum channel when combined with the noiseless resources of public classical communication, private
+classical communication, and a secret key. The theorem applies regardless of whether a protocol consumes
+the noiseless resources or generates them.
+Theorem 1 (Private Dynamic Capacity) The private dynamic capacity region CRPS (N ) of a quan-
+tum channel N is equal to the following expression:
+                                                       ∞
+                                                       [ 1     (1)
+                                         CRPS (N ) =          C    (N ⊗k ),                            (4)
+                                                             k RPS
+                                                       k=1
+                                                                               (1)
+where the overbar indicates the closure of a set. The “one-shot” region CRPS (N ) is the union of the
+                               (1)
+“one-shot, one-state” regions CRPS,σ (N ):
+                                         (1)
+                                                   [ (1)
+                                       CRPS (N ) ≡  CRPS,σ (N ).
+                                                         σ
+                                       (1)
+The “one-shot, one-state” region CRPS,σ (N ) is the set of all rates R, P , and S such that
+                                       R + P ≤ I (Y X; B)σ ,                                           (5)
+                                       P + S ≤ I (Y ; B|X)σ − I (Y ; E|X)σ ,                           (6)
+                               R + P + S ≤ I (Y X; B)σ − I (Y ; E|X)σ .                                (7)
+The above entropic quantities are with respect to a classical-quantum state σ XY BE where
+                                                      X         Y    A0 →BE A0
+                                X
+                     σ XY BE ≡     pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN        (ρx,y ),                  (8)
+                                 x,y
+                  0
+                                                                                    0k
+and the states ρAx,y are mixed. It is implicit that one should consider states on A    instead of A0 when
+taking the regularization in (4).
+    The above theorem is a “multi-letter” capacity theorem because of the regularization in (4). Though,
+we show later that the regularization is not necessary for entanglement-breaking channels, the Hadamard
+class of channels, or the quantum erasure channels. We prove the private dynamic capacity theorem in
+two parts:
+1. The direct coding theorem below shows that combining the “publicly-enhanced private father proto-
+   col” with the one-time pad, secret key distribution, and private-to-public transmission achieves the
+   above region.
+2. The converse theorem demonstrates that any coding scheme cannot do better than the regularization
+   in (4), in the sense that a scheme with vanishing error should have its rates below the above amounts.
+   We prove the converse theorem directly in “one fell swoop,” by employing a catalytic, information-
+   theoretic approach (similar to the method introduced in Ref. [50]).
+
+
+                                                         5
+4 Dynamic achievable rate region
+
+The unit resource achievable region is what Alice and Bob can achieve with the protocols secret key
+distribution, the one-time pad, and private-to-public transmission. It is the cone of the rate triples
+corresponding to these protocols:
+
+                         {α (0, −1, 1) + β (−1, 1, −1) + γ (1, −1, 0) : α, β, γ ≥ 0} .
+
+We can also write any rate triple (R, P, S) in the unit resource capacity region with a matrix equation:
+
+                                                         
+                                            R      0 −1 1    α
+                                           P  = −1 1 −1 β  .                                     (9)
+                                            S       1 −1 0   γ
+
+The inverse of the above matrix is as follows:
+                                                         
+                                                  −1 −1 0
+                                                 −1 −1 −1 ,
+                                                   0 −1 −1
+
+and gives the following set of inequalities for the unit resource achievable region:
+
+                                                     R + P ≤ 0,
+                                                 R + P + S ≤ 0,
+                                                     P + S ≤ 0,
+
+by inverting the matrix equation in (9) and applying the constraints α, β, γ ≥ 0.
+   Now, let us include the publicly-enhanced private father protocol [28]. Ref. [28] proved that we can
+                                                                                      0
+achieve the following rate triple by channel coding over a noisy quantum channel N A →B :
+
+                                  (I (X; B)σ , I (Y ; B|X)σ , −I (Y ; E|X)σ ) ,
+
+for any state σ XY BE of the form:
+
+                                  X                         X       Y        0       0
+                                                                          A →BE A
+                      σ XY BE ≡          pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN    (ρx,y ),               (10)
+                                   x,y
+
+
+          0                                                                      0
+          A →BE
+where UN         is an isometric extension of the quantum channel N A →B . Specifically, we showed in
+Ref. [28] that one can achieve the above rates with vanishing error in the limit of large blocklength. Thus
+the achievable rate region is the following translation of the unit resource achievable region in (9):
+
+                                                             
+                              R      0 −1 1    α        I (X; B)σ
+                             P  = −1 1 −1 β  +  I (Y ; B|X)  .
+                                                                  σ
+                              S      1 −1 0    γ      −I (Y ; E|X)σ
+
+We can now determine bounds on an achievable rate region that employs the above coding strategy. We
+apply the inverse of the matrix in (9) to the LHS and RHS. Then using the constraints α, β, γ ≥ 0, we
+obtain the inequalities in (5-7), corresponding exactly to the one-shot, one-state region in Theorem 1.
+Taking the union over all possible states σ in (10) and taking the regularization gives the full private
+dynamic achievable rate region.
+
+
+                                                        6
+                                              TA                    t                                    tf
+                                                         E
+                                              A’
+                             K                     U     B                                E
+                                                         E
+                                              A’ U
+               Alice
+                             M
+                                    E                    B                                E Eve
+
+                                                         E
+                             SA               A’
+                                                 U       B                                E
+                                              J
+
+                                              L                                       B
+                             SB                                                                   TB
+                                                                                      B
+               Bob                                                                                K
+                                                                                      B   D M̂
+
+Fig. 2 (Color online) The most general protocol for generating public classical communication, private classical commu-
+nication, and secret key with the help of the same respective resources and many uses of a noisy quantum channel. Alice
+begins with her public classical register K, her private classical register M , and her share of the secret key in SA . She
+encodes according to some CPTP encoding map E that outputs a classical register TA , many quantum registers A0n , a
+                                                                                                                      0
+public classical register L, and a private classical register J. She inputs A0n to many uses of the noisy channel N A →B (with
+                         0
+isometric extension UN  A  →BE ), transmits J over a noiseless private classical channel, and transmits L over a noiseless public
+classical channel. Bob receives the channel outputs B n , the private classical register J, and the public classical register L
+and performs a decoding D that recovers the public and private classical information. The decoding also generates secret
+key with system TA .
+
+
+
+
+5 Catalytic and information theoretic converse proof
+
+This section provides a catalytic, information theoretic converse proof of the private dynamic capacity
+region, showing that (4) gives a multi-letter characterization of it. The catalytic approach means that we
+are considering the most general protocol that consumes and generates public classical communication,
+private classical communication, and secret key in addition to the uses of the noisy quantum channel.
+Figure 2 depicts the most general protocol for generating public classical communication, private classical
+                                                                                          0
+communication, and a secret key with the consumption of a noisy quantum channel N A →B and the same
+respective resources. This approach has the advantage that we can prove the converse theorem in “one
+fell swoop.” We employ the Alicki-Fannes’ inequality, the chain rule for quantum mutual information,
+elementary properties of quantum entropy, and the quantum data processing inequality to prove the
+converse.
+    There are some subtleties in our proof for the converse theorem. We prove that the bounds in (5-7) hold
+for common randomness generation and private key generation instead of public classical communication
+and private classical communication, respectively, because a capacity for generating common randomness
+and a private key can only be better than that for generating public classical communication and private
+classical communication. This setting is slightly different from that depicted in Figure 2.
+    We prove that the converse theorem holds for a state of the following form:
+                                                         X         Y    A0 →BE A0
+                                  X
+                       σ XY BE ≡      pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN        (ρx,y ),               (11)
+                                        x,y
+
+                        0
+where the states ρA
+                  x,y are mixed.
+   We prove all three bounds in (5-7). Alice possesses the following classical registers:
+                                                                                                 KKA
+1. Two public classical registers K and KA in the maximally correlated state Φ   where the dimension
+                       nR
+   of both systems is 2 . The register KA is for public classical communication.
+
+
+                                                               7
+                                                                                                                M MA
+2. Two private classical registers M and MA in the maximally correlated state Φ               where the
+                                  nP
+   dimension of both systems is 2 . The register MA is for private classical communication.
+                                                                                             SA SB
+3. One share SA of a secret key. The shared secret key is in the maximally correlated state Φ      where
+   the dimension of both systems is 2nS . Bob possesses the other share SB of the secret key.
+                                       e
+
+   Our convention above is that the protocol generates a resource whose rate has an overbar and con-
+sumes a resource whose rate has a tilde.
+   The initial state is as follows:
+                                                           M MA            KKA           SA SB
+                                ω M MA KKA SA SB ≡ Φ                ⊗Φ             ⊗Φ            .
+                                                                                                       0n
+She passes the registers KA , MA , and SA into an encoding map E KA MA SA →A TA LJ . This map outputs
+a classical register TA of dimension 2nS , a public classical register L of dimension 2nR , a private classical
+                                                                                        e
+
+                           nP                                   0n
+register J of dimension 2 , and many quantum systems A for input to the channel. The register TA
+                             e
+
+is for creating a secret key with Bob. The state after this encoding map is as follows:
+                                    0n                             0n
+                         ω M KSB A       TA LJ
+                                                 ≡ E KA MA SA →A        TA LJ
+                                                                                (ω M MA KKA SA SB ).
+                                                            0n      n                                       0
+She sends the systems A0n through many uses N A →B of the noisy channel N A →B , transmits L over
+a noiseless public classical channel, and transmits J over a noiseless private classical channel, producing
+the following state:                  n n
+                                                        A0n →B n E n           0n
+                                ω M KB E TA LJSB ≡ UN                (ω M KSB A TA LJ ),               (12)
+          A0n →B n E n                                                    0n   n
+where UN               is the isometric extension of the channel N A →B . The above state is a state of the
+                                                                                       n
+form in (11) with X ≡ KL and Y ≡ M JSB TA . Bob then applies a map DB SB LJ→TB M̂ K̂ that outputs
+classical registers TB , M̂ , K̂. Let ω 0 denote the final state.
+    The following condition should hold for a catalytic private dynamic protocol that transmits the public
+and private classical data and establishes secret key with -error:
+                             M M̂                n     TA TB            M M̂ K K̂E n TA TB
+                            Φ       ⊗ ρK K̂E ⊗ Φ               − (ω 0 )                              ≤ ,              (13)
+                                                                                                 1
+             n                                             n            K K̂
+where ρK K̂E is some state such that TrE n {ρK K̂E } = Φ . Condition (13) implies that Alice and Bob
+establish maximal classical correlations in M and M̂ , in K and K̂, and in TA and TB . The following
+security condition should hold as well:
+                                            n                                        n
+                                ω M KE TA LJSB − π M TA JSB ⊗ σ KLE                          ≤ ,
+                                                                                         1
+              n
+where ω M KE TA LJSB is the state in (12) obtained from tracing over Bob’s systems, π is the maximally
+                       n
+mixed state, and σ KLE is some state on the public registers and Eve’s systems. This security criterion
+implies that Eve cannot learn anything about any of the private data if she has access to all of the public
+data in addition to her registers. It also implies that the following information-theoretic bound holds:
+                                                I (M JSB TA ; E n KL)ω ≤ .                                            (14)
+The net rate triple for the protocol is as follows: (R − R,
+                                                         e P − Pe, S − S).
+                                                                       e The protocol generates a resource
+if its corresponding rate is positive, and it consumes a resource if its corresponding rate is negative.
+     We prove the first bound in (5). Consider the following chain of inequalities:
+                
+        n R + P = I(KM ; K̂ M̂ )Φ⊗Φ
+                  ≤ I(KM ; K̂ M̂ )ω0 + nδ 0
+                  ≤ I (KM ; B n LJSB )ω
+                  = I(KM ; B n LJ|SB )ω
+                  = H(KM SB )ω + H(B n LJSB )ω − H(KM B n LJSB )ω − H(SB )ω
+                  ≤ H(KM SB )ω + H(B n )ω + H(LJSB )ω − H(KM B n LJSB )ω − H(SB )ω
+                  = I(KLM JSB ; B n )ω − H(KLM JSB )ω + H(KM SB )ω + H(LJSB )ω − H(SB )ω
+                  = I(KLM JSB ; B n )ω + I(KM ; LJ|SB )ω
+                  ≤ I(KLM JSB TA ; B n )ω + I(KM ; LJ|SB )ω
+                  ≤ I(XY ; B n )ω + n(R
+                                      e + Pe).
+
+
+                                                               8
+                                                                                               K K̂   M M̂
+The first equality follows by evaluating the mutual information I(M K; M̂ K̂) on the state Φ       ⊗Φ     .
+The first inequality follows from the condition in (13) and an application of the Alicki-Fannes’ inequality
+where δ 0 vanishes as  → 0. We suppress this term in the rest of the inequalities for convenience. The
+second inequality follows from quantum data processing. The second equality follows by applying the
+mutual information chain rule in (2) and because I(KM ; SB )ω = 0 for this protocol. The third equality
+follows from expanding the conditional mutual information I(KM ; B n LJ|SB )ω . The third inequality
+follows by subadditivity of the entropy H(B n LJSB )ω . The fourth equality follows because
+
+                H(B n )ω − H(KM B n LJSB )ω = I(KLM JSB ; B n )ω − H(KLM JSB )ω ,
+
+and the fifth equality follows because
+
+             −H(KLM JSB )ω + H(KM SB )ω + H(LJSB )ω − H(SB )ω = I(KM ; LJ|SB )ω .
+
+The fourth inequality follows from quantum data processing. The final inequality follows from the defi-
+nitions X ≡ KL and Y ≡ M JSB TA and because the quantum mutual information I(KM ; LJ|SB )ω can
+never be larger than the logarithm of the dimension of the classical registers LJ.
+    We now prove the bound in (6). Consider the following chain of inequalities:
+         
+n P + S = I(M TA ; M̂ TB )Φ⊗Φ
+           ≤ I(M TA ; M̂ TB )ω0 + nδ 0
+           ≤ I(M TA ; B n JLKSB )ω
+           ≤ I(M TA ; B n JLKSB )ω − I(M TA JSB ; E n KL)ω + 
+           = I(M TA ; B n JSB |KL)ω + I(M TA ; KL)ω − I(M TA JSB ; E n |KL)ω − I(M TA JSB ; KL)ω + 
+           = I(M TA JSB ; B n |KL)ω + I(M TA ; JSB |KL)ω − I(B n ; JSB |KL)ω
+                + I(M TA ; KL)ω − I(M TA JSB ; KL)ω − I(M TA JSB ; E n |KL)ω + 
+           ≤ I(M TA JSB ; B n |KL)ω − I(M TA JSB ; E n |KL)ω + I(M TA ; JSB |KL)ω + 
+           ≤ I(Y ; B n |X)ω − I(Y ; E n |X)ω + n(Pe + S)
+                                                      e + .
+
+                                                                         TA TB    M M̂
+The first equality follows by evaluating the entropy for the state Φ          ⊗Φ     . The first inequality
+follows from the condition in (13) and an application of the Alicki-Fannes’ inequality where δ 0 → 0 as
+ → 0. We suppress this term in the rest of the inequalities for convenience. The second inequality follows
+from quantum data processing. The third inequality follows from the bound in (14) on Eve’s information.
+The second and third equalities follow from the chain rule for quantum mutual information. The fourth
+inequality follows from quantum data processing I(M TA JSB ; KL)ω ≥ I(M TA ; KL)ω and the fact that
+I(B n ; JSB |KL)ω ≥ 0. The last inequality follows from the definitions X ≡ KL and Y ≡ M JSB TA
+and because the mutual information I(M TA ; JSB |KL)ω can never be larger than the logarithm of the
+dimensions of the registers J, SB .
+    We finally prove the bound in (7). Consider the following chain of inequalities:
+                          
+              n R + P + S = I(KM TA ; K̂ M̂ TB )Φ⊗Φ⊗Φ
+                             ≤ I(KM TA ; K̂ M̂ TB )ω0 + nδ 0
+                             ≤ I(KM TA ; B n JLSB )ω
+                             ≤ I(KM TA ; B n JLSB )ω − I(M TA JSB ; E n |KL)ω + 
+                             = I(KLM TA JSB ; B n )ω + I (JLSB ; KM TA )ω − I (JLSB ; B n )ω
+                                  − I(M TA JSB ; E n |KL)ω + 
+                             ≤ I(Y X; B n )ω − I(Y ; E n |X)ω + n(R
+                                                                  e + Pe + S)
+                                                                           e + .
+
+                                                                  K K̂     M M̂   TA TB
+The first equality follows by evaluating the entropy for the state Φ ⊗Φ    ⊗Φ      . The first inequality
+follows from the condition in (13) and an application of the Alicki-Fannes’ inequality where δ 0 → 0 as
+ → 0. We suppress this term in the rest of the inequalities for convenience. The second inequality
+follows from quantum data processing. The third inequality follows from the condition in (14) (note that
+I(M TA JSB ; E n |KL)ω + I(M TA JSB ; KL)ω = I(M TA JSB ; E n KL)ω from the chain rule and both terms
+
+
+                                                      9
+on the LHS are non-negative). The second equality follows from the chain rule for quantum mutual
+information. The final inequality follows from the definitions X ≡ KL and Y ≡ M JSB TA , because
+I (JLSB ; B n )ω ≥ 0, and because the mutual information I (JLSB ; KM TA )ω can never be larger than
+the logarithm of the dimensions of the registers J, L, SB .
+
+
+6 The private dynamic capacity formula
+
+The private dynamic capacity formula is a particular formula that is relevant in the computation of the
+private dynamic capacity region. If this formula is additive for a particular channel, then the computation
+of the region simplifies, in the sense that it requires an optimization over a single use of the channel,
+rather than with an infinite number of them [7]. The reasoning for this is similar to our discussion in
+Section 6 of Ref. [50], appealing to ideas from Pareto-optimal trade-off analysis (see Chapter 4 of Ref. [7]).
+Thus, we keep the discussion to a minimum here and instead refer the reader to Section 6 of Ref. [50]
+for further explanations.
+Definition 1 (Private Dynamic Capacity Formula) The private dynamic capacity formula of a
+quantum channel N is as follows:
+   Pλ,µ (N ) ≡ max I (Y X; B)σ + λ [I (Y ; B|X)σ − I (Y ; E|X)σ ] + µ [I (Y X; B)σ − I (Y ; E|X)σ ] ,    (15)
+                  σ
+
+where λ, µ ≥ 0.
+Definition 2 The regularized private dynamic capacity formula is as follows:
+                                    reg            1
+                                        (N ) ≡ lim Pλ,µ N ⊗n .
+                                                              
+                                  Pλ,µ
+                                              n→∞ n
+
+Lemma 1 Suppose the private dynamic capacity formula is additive for channels N and M:
+                                  Pλ,µ (N ⊗ M) = Pλ,µ (N ) + Pλ,µ (M) .
+Then the regularized private dynamic capacity formula is equal to the private dynamic capacity formula:
+                                               reg
+                                              Pλ,µ (N ) = Pλ,µ (N ) .
+In this sense, the regularized formula “single-letterizes” and it is not necessary to take the limit.
+Proof The proof is similar to the proof of Lemma 1 in Ref. [50].
+Theorem 2 Single-letterization of the private dynamic capacity formula implies that the computation
+of the Pareto optimal trade-off surface of the private dynamic capacity region requires an optimization
+over a single channel use.
+Proof The proof exploits the same techniques as the proof of Theorem 2 in Ref. [50].
+
+
+6.1 Special cases of the private dynamic capacity formula
+
+We now consider several special cases of the private dynamic capacity formula. These special cases have
+similar geometric interpretations as discussed in Section 6.1 of Ref. [50]. The first case corresponds
+to considering a supporting hyperplane of the capacity region with normal vector (1, 1, 0), the second
+corresponds to considering a supporting hyperplane with normal vector (0, 1, 1), and the last a supporting
+hyperplane with normal vector (1, 1, 1). Each of these choices corresponds to singling out only one of the
+inequalities in Theorem 1 and maximizing with respect to that inequality.
+Corollary 1 The private dynamic capacity formula is equivalent to the HSW classical capacity for-
+mula [24, 41] when λ, µ = 0, in the sense that
+                                    max I (Y X; B)σ = max0 I (X; B)ρ ,
+                                      σ                      ρXA
+
+where                                     0                             0
+                                                                   X
+                                                X
+                                     ρXA ≡           pX (x) |xi hx| ⊗ ρA
+                                                                       x ,
+                                                 x
+and σ is a state of the form in Theorem 1.
+
+
+                                                        10
+Proof The proof of this statement follows merely by redefining the joint classical variable XY in the first
+formula to be the classical variable X in the second formula.
+
+Corollary 2 The private dynamic capacity formula is equivalent to the Devetak-Cai-Winter-Yeung pri-
+vate classical capacity formula [16, 13] in the limit where λ → ∞ and µ is fixed, in the sense that
+                                                              h                     i
+                    max [I (Y ; B|X)σ − I (Y ; E|X)σ ] = max0 I (X; B)ρ − I (X; E)ρ ,
+                         σ                                     ρXA
+
+where ρ is a state of the form in the above corollary and σ is a state of the form in Theorem 1.
+
+Proof The inequality LHS ≥ RHS follows by choosing the distribution pX,Y (x, y) = pX (x) pY |X (y|x)
+                                                                                               0
+with pY |X (y|x) = p∗X (y) and pX (x) = δx,x0 and choosing the conditional density operators ρA
+                                                                                              x0 ,y =
+    A0
+(ρ∗x ) where the asterisked quantities are optimalPfor the RHS.
+                                                               The inequality LHS ≤ RHS follows
+because the quantity I (Y ; B|X)σ − I (Y ; E|X)σ = x pX (x) I (Y ; B)σx − I (Y ; E)σx and an average
+is always less than a maximum.
+
+Corollary 3 The private dynamic capacity formula is equivalent to the HSW classical capacity formula
+in the limit where µ → ∞ and λ is fixed, in the sense that
+
+                             max [I (Y X; B)σ − I (Y ; E|X)σ ] =        max         I (X; B) .
+                              σ                                      {pX (x),ψx }
+
+
+Proof The inequality LHS ≥ RHS follows by choosing the distribution pX,Y (x, y) = pX (x) pY |X (y|x)
+                                                                                                0
+with pY |X (y|x) = δy,y0 and pX (x) = p∗X (x) and choosing the conditional density operators ρA
+                                                                                              x,y0 =
+    A0
+(ρ∗x ) . The inequality LHS ≤ RHS follows because
+
+                     I (Y X; B)σ − I (Y ; E|X)σ ≤ I (Y X; B)σ ≤                max         I (X; B) .
+                                                                            {pX (x),ψx }
+
+
+6.1.1 Comparison between public-private and classical-quantum regions
+
+We now compare the Devetak-Shor classical-quantum trade-off formula [17] with a special case of our
+above formula that applies to a trade-off between public and private classical communication. We should
+expect these two formulas to be comparable from the Collins-Popescu analogy because no entanglement
+or secret key is involved. The result is that the public-private region is generally larger than the classical-
+quantum region, but the two regions are equivalent for degradable quantum channels.
+    First consider the following refinement of the Devetak-Shor formula (see Section IV-A-4 of Ref. [31]):
+
+                             fµ (N ) ≡ max I (X; B)ρ + I (AiBX)ρ + µI (AiBX)ρ ,
+                                          ρ
+
+
+where ρXAB is a state of the form
+                                              X                X        0             0
+                                  ρXAB ≡          pX (x) |xi hx| ⊗ N A →B (φAA
+                                                                            x  ).
+                                              x
+
+The formula for the public-private trade-off is a special case of the private dynamic capacity formula:
+
+         Pµ (N ) ≡ max I (X; B)σ + I (Y ; B|X)σ − I (Y ; E|X)σ + µ [I (Y ; B|X)σ − I (Y ; E|X)σ ] ,
+                     σ
+
+where σ XY BE is a state of the form
+                                                       X         Y   A0 →BE A0
+                                 X
+                     σ XY BE ≡      pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN     (ρx,y ),
+                                    x,y
+
+Lemma 2 The classical-quantum trade-off formula is never greater than the public-private trade-off
+formula:
+                                      fµ (N ) ≤ Pµ (N ) .
+
+
+                                                          11
+Proof The proof techniqiue is similar to that of Lemma 3 in Ref. [45]. First let us rewrite the function
+f so that it is a function on the systems X, B, and E:
+
+                          fµ (N ) = max I (X; B)ρ + I (AiBX)ρ + µI (AiBX)ρ
+                                     ρ
+                                                           h                   i
+                                  = max I (X; B)ρ + (µ + 1) H (B|X)ρ − H (E|X)ρ .
+                                      ρ
+
+Thus, it is only important to consider the input system A0 when evaluating the above formula. Let
+                                                    0            0
+                                                  ρA         AA
+                                                   x = TrA {φx  },
+
+so that the maximization above is over a state of the following form:
+                                                        X     A0 →BE A0
+                                      X
+                            ρXBE ≡        pX (x) |xi hx| ⊗ UN       (ρx ),
+                                              x
+                                                                                                         0
+where U is the isometric extension of the channel N . Take a spectral decomposition of the states ρA
+                                                                                                   x :
+                                          0
+                                                             A0
+                                             X
+                                       ρA
+                                        x =     pY |X (y|x) ψx,y ,
+                                                        y
+
+                      0
+                  A
+where the states ψx,y are pure. Then the following state θXY BE is a particular state of the form σ XY BE :
+                                                           X         Y   A0 →BE    A0
+                             X
+                  θXY BE ≡       pX (x) pY |X (y|x) |xi hx| ⊗ |yi hy| ⊗ UN       (ψx,y ),
+                                x,y
+
+such that TrY {θ} = ρXBE . Consider the following chain of inequalities:
+                                 h                      i
+              I (X; B)ρ + (µ + 1) H (B|X)ρ − H (E|X)ρ
+               = I (X; B)θ + (µ + 1) [H (B|X)θ − H (E|X)θ ]
+               = I (X; B)θ + (µ + 1) [H (B|X)θ − H (B|Y X)θ − H (E|X)θ + H (E|Y X)θ ]
+               = I (X; B)θ + (µ + 1) [I (Y ; B|X)θ − I (Y ; E|X)θ ]
+               ≤ Pµ (N ) .
+
+The first equality follows because TrY {θ} = ρXBE . The second equality follows because the entropies
+of θ on systems B and E are equal when conditioned on X and Y . The third equality follows from the
+definition of conditional mutual information. The final inequality follows from the definition of Pµ (N ).
+
+Lemma 3 Suppose that a quantum channel is degradable. Then the classical-quantum trade-off formula
+is equivalent to the public-private trade-off formula.
+
+Proof The proof is again similar to that of Lemma 3 in Ref. [45]. Consider the state definitions in the
+previous lemma and the definition of σ XY BE from before. Consider a state σ XY ZBE defined as follows:
+                                                          X         Y         Z   A0 →BE     0
+                   X
+       σ XY ZBE ≡      pX,Y (x, y) pZ|X,Y (z|x, y) |xi hx| ⊗ |yi hy| ⊗ |zi hz| ⊗ UN      (ϕA
+                                                                                           x,y,z ),
+                      x,y,z
+
+         0                                0                                0
+where ρA                             A                                     A
+              P
+        x,y =     z pZ|X,Y (z|x, y) ϕx,y,z is a spectral decomposition of ρx,y . Consider the following chain
+                                                       XY BE
+of inequalities that applies to an arbitrary state σ         :
+
+       I (X; B)σ + (µ + 1) [I (Y ; B|X)σ − I (Y ; E|X)σ ]
+        = I (X; B)σ + (µ + 1) [I (Y Z; B|X)σ − I (Z; B|XY )σ − [I (Y Z; E|X)σ − I (Z; E|XY )σ ]]
+        = I (X; B)σ + (µ + 1) [I (Y Z; B|X)σ − I (Y Z; E|X)σ − [I (Z; B|XY )σ − I (Z; E|XY )σ ]]
+        ≤ I (X; B)σ + (µ + 1) [I (Y Z; B|X)σ − I (Y Z; E|X)σ ]
+        = I (X; B)σ + (µ + 1) [H (B|X)σ − H (B|XY Z)σ − H (E|X)σ + H (E|XY Z)σ ]
+        = I (X; B)σ + (µ + 1) [H (B|X)σ − H (E|X)σ ]
+        ≤ fµ (N ) .
+
+
+                                                            12
+The first equality follows by applying the chain rule for quantum mutual information. The second equality
+follows by rearranging terms. The first inequality follows because I (Z; B|XY )σ −I (Z; E|XY )σ ≥ 0 for a
+degradable quantum channel. The third equality follows by expanding mutual informations. The fourth
+equality follows because the entropies of the state σ on systems B and E are equal when conditioned on
+X, Y , and Z. The final inequality follows from the definition of fµ (N ).
+
+6.1.2 Comparison between quantum dynamic and private dynamic formulas
+
+We can compare the quantum dynamic and private dynamic capacity formulas for the class of degradable
+channels. The proof exploits the simplified form of the private dynamic capacity formula that results
+from Lemma 6, and the quantum dynamic capacity formula appears in the proof below.
+
+Lemma 4 Suppose that a quantum channel ND is degradable. Then the quantum dynamic capacity
+formula can never be less than the private dynamic capacity formula.
+
+Proof We prove this theorem by showing that
+
+                                        Pλ,µ (ND ) ≤ Dλ,µ (ND ) ,
+
+where Dλ,µ (ND ) is the quantum dynamic capacity formula given by
+
+              Dλ,µ (ND ) ≡ max I (AX; B)σ + λI (AiBX)σ + µ [I (X; B)σ + I (AiBX)σ ] .
+                             σ
+
+The state σ XABE is a state of the form
+                                                       X   A0 →BE      0
+                                       X
+                            σ XABE ≡     pX (x) |xi hx| ⊗ UN D
+                                                                  (φAA
+                                                                    x    ),
+                                        x
+
+                     0
+where the states φAA
+                  x   are pure. Suppose that the following state is the one that maximizes Pλ,µ (ND ) for
+a given λ and µ:
+                                                           X         Y    A0 →BE   A0
+                            X
+                  ω XY BE ≡      pX (x) pY |X (y|x) |xi hx| ⊗ |yi hy| ⊗ UN D
+                                                                                 (ψx,y )
+                             x,y
+
+                                  0
+Then we choose the states φAA
+                           x   in a given σ XABE to be as follows:
+
+                                   AA0                               A0
+                                         Xq                  A
+                              |φx i    =      pY |X (y|x) |yi |ψx,y i .
+                                            y
+
+
+We can obtain the state ω XY BE from the state σ XABE by performing a complete dephasing ∆A→Y
+where the dephasing basis is {|yi hy|}. Then the following inequalities hold
+
+                 I (Y X; B)ω + λ [H (B|X)ω − H (E|X)ω ] + µ [H (B)ω − H (E|X)ω ]
+                  = I (Y X; B)ω + λ [H (B|X)σ − H (E|X)σ ] + µ [H (B)σ − H (E|X)σ ]
+                  ≤ I (AX; B)σ + λ [H (B|X)σ − H (E|X)σ ] + µ [H (B)σ − H (E|X)σ ]
+                  = I (AX; B)σ + λI (AiBX)σ + µ [I (X; B)σ + I (AiBX)σ ]
+                  ≤ Dλ,µ (ND ).
+
+The first equality follows because the entropies of ω and σ without the Y system are equivalent. The
+first inequality follows from quantum data processing: one can obtain the state ω XY BE be performing a
+                                                                                 A
+von Neumann measurement of the A system of the state σ XABE in the basis {|yi }. The second equality
+follows by rearranging terms. The final equality follows from the definition of Dλ,µ .
+
+    The above lemma explicitly shows how the analogy between the classical and quantum worlds breaks
+down for the case of a degradable channel. The quantum dynamic capacity formula is always larger than
+the private dynamic formula because of the strong correlations in entanglement and because of the lack
+of a super-dense coding protocol in the public-private-secret-key setting.
+
+
+                                                   13
+7 Single-letter private dynamic capacity regions for entanglement-breaking channels
+
+Our first class of channels for which the private dynamic capacity region simplifies is the class of
+entanglement-breaking channels. Shor found that such channels have an additive classical capacity [43],
+and we can extend his method of proof to show that the full private dynamic capacity region for these
+channels is single-letter.
+
+Theorem 3 (Private Dynamic Capacity for Entanglement-Breaking Channels) The private
+dynamic capacity region CRPS (NEB ) of an entanglement-breaking quantum channel NEB is the set of all
+rates R, P , and S, such that
+
+                                                R + P ≤ max I (X; B)ω ,                               (16)
+                                                          ω
+                                                P + S ≤ 0,                                            (17)
+                                          R + P + S ≤ max I (X; B)ω .                                 (18)
+                                                          ω
+
+The above entropic quantities are with respect to a classical-quantum state σ XB where
+                                                        X      A0 →B     0
+                                      X
+                              σ XB ≡      pX (x) |xi hx| ⊗ NEB       (ψxA ),                          (19)
+                                            x
+
+                    0
+and the states ψxA are pure.
+
+    We prove this theorem in a few steps. We first show that the private dynamic capacity formula sim-
+plifies dramatically for antidegradable channels (recall that entanglement-breaking channels are a special
+case of antidegradable ones). We then show that this simplified formula is additive for an entanglement-
+breaking channel and this result implies the form of the region in the statement of the above theorem.
+
+Lemma 5 Suppose that a quantum channel NAD is antidegradable. Then the private dynamic capacity
+formula simplifies as follows:
+                                 Pλ,µ (NAD ) = hλ,µ (NAD ) ,
+where
+                                      hλ,µ (NAD ) ≡ (1 + µ) max I (X; B)ω ,
+                                                              ω
+        XBE
+and ω         is a state of the following form:
+                                                            X   A0 →BE     0
+                                           X
+                                  ω XBE ≡     pX (x) |xi hx| ⊗ UNAD
+                                                                       (ψxA ),
+                                            x
+
+                    0
+and the states ψxA are pure.
+
+Proof The inequality Pλ,µ (NAD ) ≥ hλ,µ (NAD ) follows by carefully choosing the state σ XY BE for the
+                                                                                               0          0
+                                                                                                      ∗ A
+maximization on the LHS: choose the distribution pX,Y (x, y) = p∗X (x) δy,y0 and each state ρA
+                                                                                             x,y0 = (ψx )
+where the terms with asterisks are optimal for the RHS. The other inequality Pλ,µ (NAD ) ≤ hλ,µ (NAD )
+follows from the following chain of inequalities:
+
+                I (Y X; B)σ + λ [I (Y ; B|X)σ − I (Y ; E|X)σ ] + µ [I (Y X; B)σ − I (Y ; E|X)σ ]
+                 ≤ I (Y X; B)σ + µI (Y X; B)σ
+                 ≤ hλ,µ (NAD ).
+
+The first inequality follows because [I (Y ; B|X)σ − I (Y ; E|X)σ ] ≤ 0 (from antidegradability) and by
+dropping the term −µI (Y ; E|X)σ . The second inequality follows because I (Y X; B)σ ≤ maxω I (X; B)ω .
+
+Corollary 4 The private dynamic capacity formula is additive for an antidegradable channel NAD and
+an entanglement-breaking channel NEB :
+
+                                  Pλ,µ (NAD ⊗ NEB ) = Pλ,µ (NAD ) + Pλ,µ (NEB )
+
+
+                                                        14
+Proof The proof is similar to the proof in Ref. [43]. We first note that the tensor product of an antidegrad-
+able channel and an entanglement-breaking channel is an antidegradable channel. This observation allows
+us to employ the simplified formula in Lemma 5. We employ the following states in the proof:
+                                            X      A1 →B1       A2 →B2
+                         X
+                 ω XB ≡       pX (x) |xi hx| ⊗ NAD         ⊗ NEB       (ψxA1 A2 )
+                              x
+                                                 X                      A1 →B1
+                              X                        X
+                                                                                 A1       B2
+                          =         pX (x) |xi hx| ⊗        pZ|X (z|x) NAD     (σz,x ) ⊗ θz,x ,
+                              x                        z
+                                                              X          Z A1 →B1
+                              X
+                    XZB                                                             A1       B2
+                ω         ≡         pX (x) pZ|X (z|x) |xi hx| ⊗ |zi hz| ⊗ NAD     (σz,x ) ⊗ θz,x .
+                              x,z
+
+Consider the following chain of inequalities:
+            Pλ,µ (NAD ⊗ NEB ) = hλ,µ (NAD ⊗ NEB )
+                                     = (1 + µ) I (X; B1 B2 )ω
+                                     = (1 + µ) [H (B1 B2 )ω − H (B1 B2 |X)ω ]
+                                     ≤ (1 + µ) [H (B1 )ω + H (B2 )ω − H (B1 B2 |XZ)ω ]
+                                     = (1 + µ) [H (B1 )ω + H (B2 )ω − H (B1 |XZ)ω − H (B2 |XZ)ω ]
+                                     = (1 + µ) [I (X; B1 )ω + I (X; B2 )ω ]
+                                     ≤ hλ,µ (NAD ) + hλ,µ (NEB )
+                                     = Pλ,µ (NAD ) + Pλ,µ (NEB ).
+The first equality follows from Lemma 5. The second equality follows from the assumption that ω is a
+state that maximizes hλ,µ (NAD ⊗NEB ). The third equality follows from the definition of quantum mutual
+information. The first inequality follows from subadditivity of entropy and conditioning does not increase
+entropy. The fourth equality follows because the state ω is product when conditioned on both X and
+Z. The fifth equality follows from the definition of quantum mutual information. The second inequality
+follows because the mutual informations are always less than their maxima, and the final equality follows
+from Lemma 5.
+
+Example 1 The private dynamic capacity region of a completely dephasing channel is the set of all R,
+P , and S satisfying the following inequalities:
+                                                           R + P ≤ 1,
+                                                           P + S ≤ 0,
+                                                     R + P + S ≤ 1.
+This result follows because the completely dephasing channel is an entanglement-breaking channel with
+public classical capacity equal to one.
+
+
+8 Single-letter private dynamic capacity regions for the quantum Hadamard channels
+
+We now prove that the private dynamic capacity region is additive for the class of quantum Hadamard
+channels. This result is perhaps dual to the above result because Hadamard channels are ones for which
+the map to the environment is entanglement-breaking, and they are degradable with a degrading map
+from Bob to the environment Eve. Our method of proof is similar as above—we first prove that the
+private dynamic capacity formula simplifies for degradable channels and then prove additivity of the
+simplified formula for the Hadamard channels.
+
+Lemma 6 Suppose that a quantum channel ND is degradable. Then the private dynamic capacity formula
+simplifies as follows:
+                                   Pλ,µ (ND ) = gλ,µ (ND ),
+where
+          gλ,µ (ND ) ≡ max I (Y X; B)ω + λ [H (B|X)ω − H (E|X)ω ] + µ [H (B)ω − H (E|X)ω ] ,
+                          ω
+
+
+                                                             15
+and ω XY BE is a state of the following form:
+                                      X                     X          Y       0            0
+                                                                             A →BE
+                        ω XY BE ≡           pX,Y (x, y) |xi hx| ⊗ |yi hy| ⊗ UN D
+                                                                                     A
+                                                                                   (ψx,y ),
+                                      x,y
+
+                  0
+                A
+and the states ψx,y are pure.
+                                                                                        0
+Proof The inequality Pλ,µ (ND ) ≥ gλ,µ (ND ) follows by choosing each state ρA
+                                                                             x,y in σ
+                                                                                      XY BE
+                                                                                            for the maxi-
+                                              0
+                                            A
+mization on the LHS to be the pure state ψx,y   that maximizes the RHS. Consider the following chain of
+inequalities:
+
+       Pλ,µ (ND ) ≥ I (Y X; B)σ + λ [I (Y ; B|X)σ − I (Y ; E|X)σ ] + µ [I (Y X; B)σ − I (Y ; E|X)σ ]
+                  = I (Y X; B)σ + λ [H (B|X)σ − H (B|XY )σ − H (E|X)σ + H (E|XY )σ ]
+                         + µ [H (B)σ − H (B|XY )σ − H (E|X)σ + H (E|XY )σ ]
+                  = I (Y X; B)σ + λ [H (B|X)σ − H (E|X)σ ] + µ [H (B)σ − H (E|X)σ ]
+                  = gλ,µ (ND ).
+
+We now prove that the other inequality Pλ,µ (ND ) ≤ gλ,µ (ND ) holds. Suppose the state σ XY BE maximizes
+Pλ,µ (ND ). Consider a state σ XY ZBE defined as follows:
+                      X                                         X          Y        Z           0   0
+                                                                                         A →BE
+       σ XY ZBE ≡             pX,Y (x, y) pZ|X,Y (z|x, y) |xi hx| ⊗ |yi hy| ⊗ |zi hz| ⊗ UN D
+                                                                                               (ϕA
+                                                                                                 x,y,z ),
+                      x,y,z
+
+          0
+                                     A0                                         A0
+where ρA                                                                                           XY BE
+               P
+        x,y =     z pZ|X,Y (z|x, y) ϕx,y,z is a spectral decomposition of each ρx,y in the state σ       .
+                                      XY BE
+This state is a state of the form ω           with Y redefined to be Y Z. Consider the following chain of
+inequalities:
+
+   Pλ,µ (ND ) = I (Y X; B)σ + λ [I (Y ; B|X)σ − I (Y ; E|X)σ ] + µ [I (Y X; B)σ − I (Y ; E|X)σ ]
+             = I (Y ZX; B)σ + λ [I (Y Z; B|X)σ − I (Y Z; E|X)σ − [I (Z; B|Y X)σ − I (Z; E|Y X)σ ]]
+                  + µ [I (X; B)σ + I (Y Z; B|X)σ − I (Y Z; E|X)σ − [I (Z; B|Y X)σ − I (Z; E|Y X)σ ]]
+             ≤ I (Y ZX; B)σ + λ [I (Y Z; B|X)σ − I (Y Z; E|X)σ ]
+                  + µ [I (X; B)σ + I (Y Z; B|X)σ − I (Y Z; E|X)σ ]
+             = I (Y ZX; B)σ + λ [H (B|X)σ − H (B|XY Z)σ − H (E|X)σ + H (E|XY Z)σ ]
+                  + µ [H (B)σ − H (B|XY Z)σ − H (E|X)σ + H (E|XY Z)σ ]
+             = I (Y ZX; B)σ + λ [H (B|X)σ − H (E|X)σ ] + µ [H (B)σ − H (E|X)σ ]
+             ≤ gλ,µ (ND ).
+
+The first equality follows by definition. The second equality follows from applying the chain rule for mu-
+tual information. The first inequality follows because I (Z; B|Y X)σ − I (Z; E|Y X)σ ≥ 0 for a degradable
+channel. The third equality follows by expanding the mutual informations, and the fourth equality follows
+because H (B|XY Z)σ = H (E|XY Z)σ . The final inequality follows from the definition of gλ,µ (ND ).
+
+Lemma 7 Suppose that NH is a quantum Hadamard channel and that ND is a degradable quantum
+channel. Then the private dynamic capacity formula is additive:
+
+                                      Pλ,µ (NH ⊗ ND ) = Pλ,µ (NH ) + Pλ,µ (ND ).
+
+Proof The inequality Pλ,µ (NH ⊗ ND ) ≥ Pλ,µ (NH ) + Pλ,µ (ND ) trivially holds by picking the state on
+the LHS to be a tensor product of the ones that individually maximize the RHS. Thus, we prove the
+non-trivial inequality Pλ,µ (NH ⊗ ND ) ≤ Pλ,µ (NH ) + Pλ,µ (ND ) for the channels in the hypothesis of the
+lemma. Consider a state of the form σ XY B1 E1 B2 E2 that arises from inputting a state of the form in
+Lemma 6 to the tensor product channel. Let ω XY ZW E1 B2 E2 be the state that arises from applying the
+
+
+                                                           16
+first part of the degrading map of the Hadamard channel to system B1 . Then the following chain of
+inequalities holds:
+
+Pλ,µ (NH ⊗ ND )
+= gλ,µ (NH ⊗ ND )
+= H (B1 B2 )σ − H (E1 E2 |Y X)σ + λ [H (B1 B2 |X)σ − H (E1 E2 |X)σ ] + µ [H (B1 B2 )σ − H (E1 E2 |X)σ ]
+= H (B1 )σ − H (E1 |Y X)σ + λ [H (B1 |X)σ − H (E1 |X)σ ] + µ [H (B1 )σ − H (E1 |X)σ ]
+     + H (B2 |B1 )σ − H (E2 |Y XE1 )σ + λ [H (B2 |XB1 )σ − H (E2 |XE1 )σ ] + µ [H (B2 |B1 )σ − H (E2 |XE1 )σ ]
+≤ H (B1 )σ − H (E1 |Y X)σ + λ [H (B1 |X)σ − H (E1 |X)σ ] + µ [H (B1 )σ − H (E1 |X)σ ]
+     + H (B2 )σ − H (E2 |Y XW )σ + λ [H (B2 |XW )σ − H (E2 |XW )σ ] + µ [H (B2 )σ − H (E2 |XW )σ ]
+≤ gλ,µ (NH ) + gλ,µ (ND )
+= Pλ,µ (NH ) + Pλ,µ (ND ).
+
+The first equality follows from Lemma 6 because a Hadamard channel is degradable and thus the tensor
+product channel is degradable as well. The second equality follows by definition. The third equality
+follows by expanding with the chain rule for entropy. The first inequality follows from subadditivity
+(H (B2 |B1 )σ ≤ H (B2 )σ ) and because there is a degrading map from B1 → W and from W → E1 (and
+so H (B2 |XB1 )σ ≤ H (B2 |XW )σ and H (E2 |XW )σ ≤ H (E2 |XE1 )σ ). The second inequality follows
+from the definition of gλ,µ , and the final equality follows from Lemma 6.
+
+
+
+9 The private dynamic capacity region for special channels
+
+In the forthcoming subsections, we explicitly compute and plot the private dynamic capacity region for
+the qubit dephasing channel, the 1 → N cloning channel, and the quantum erasure channel. Interestingly,
+the ensemble required to achieve the boundary is the same for all three boundaries. The proofs of the
+theorems in this section are similar (though with subtle differences) to proofs from Refs. [11, 50], and
+they all appear in the appendix.
+
+
+
+9.1 Dephasing channels
+
+Consider the qubit dephasing channel Np with dephasing probability p:
+
+                                          Np (ρ) := (1 − p)ρ + p∆(ρ),                                 (20)
+
+where ∆(ρ) := h0|ρ|0i|0ih0| + h1|ρ|1i|1ih1| is the completely dephasing channel. The below theorem gives
+an explicit form for the private dynamic capacity region of this channel, and Figure 3 plots the region
+for a dephasing parameter p = 0.2.
+
+Theorem 4 The private dynamic capacity region CRPS (Np ) of a dephasing channel with dephasing pa-
+rameter p is the set of all R, P , and S such that
+
+                                          R + P ≤ 1,                                                  (21)
+                                          P + S ≤ H2 (ν) − H2 (γ (ν, p)),                             (22)
+                                   R + P + S ≤ 1 − H2 (γ (ν, p)),                                     (23)
+
+where ν ∈ [0, 1/2], H2 is the binary entropy function, and
+                                                r
+                                          1 1                  p    p
+                             γ (ν, p) ≡    +        1 − 16 ·      1−    ν(1 − ν).
+                                          2 2                  2     2
+
+
+                                                       17
+                                                        2
+
+
+
+
+                       Secret key consumption rate
+                                                                                                                              OTP
+                                                      1.5
+                                                       1
+                                                      0.5
+                                                                                                   curve
+                                                       0         P2P                       PEPFP
+                                                     −0.5
+                                                      −1
+                                                                                                   SKD
+                                                     −1.5                  SKD
+                                                      −2
+                                                                   0                                                                           −2
+                                                                                                                                      −1
+                                                                            2                                             0
+                                                                                                                   1
+                                                                                       4                 2
+                                                                                           3
+              Private classical communication rate                                                             Public classical communication rate
+
+Fig. 3 (Color online) The private dynamic triple trade-off for the qubit dephasing channel with dephasing parameter
+p = 0.2. P2P is in the direction of private-to-public transmission, SKD is in the direction of secret key distribution, OTP
+is in the direction of the one-time pad protocol, and PEPFP is the publicly-enhanced private father trade-off curve (this
+convention is the same in the forthcoming figures). The region exhibits a non-trivial resource trade-off only on the surface
+below the PEPFP trade-off curve in the direction of secret key distribution.
+
+
+
+
+9.2 Quantum cloning channels
+
+A 1 → N cloning channel [10, 8, 9, 11] is the map induced by a universal cloning machine [22]. It approx-
+imately copies the input with a maximal fidelity independent of the input. The communication model
+for this channel gives all of the approximate clones to the receiver Bob and gives the environment of the
+map to Eve. The Kraus operators for a 1 → N cloning channel are as follows:
+                                                                                                                                N −1
+                                                                1 √                 √
+                                                       
+                                                                                  A0                  A0
+                                                                                                         
+                                                                              B                   B
+                                                            √        N − i |ii h0| + i + 1 |i + 1i h1|                                     ,
+                                                                ∆N                                                                  i=0
+
+where ∆N ≡ N (N + 1) /2 and
+                                                                                   B
+                                                                                {|ji ≡ |N − j, ji}N
+                                                                                                  j=0 ,
+
+                   B
+where |N − j, ji denotes a normalized state on an N -qubit system that is a uniform superposition of
+computational basis states with N − j “zeros” and j “ones.” Figure 4 plots the capacity region for a
+1 → 10 cloning channel, and the proof of the below theorem appears in the appendix.
+
+Theorem 5 The private dynamic capacity region CRPS (NCl ) of a 1 → N quantum cloning channel is
+the set of all R, P , and S such that
+
+                                                                                               N
+                                                                                            1 X
+                                                                       R + P ≤ 1 − log N +        i log i,
+                                                                                           ∆N i=0
+                                                                       P + S ≤ H (λi (µ) /∆N ) − H (ηi (µ) /∆N ) ,
+                                                                 R + P + S ≤ log (N + 1) − H (ηi (µ) /∆N ) ,
+                                                                                   P
+where H is the entropy function H (·) ≡ −                                           i (·) log (·),
+
+                                                                ∆N ≡ N (N + 1) /2,
+                                                            λi (µ) ≡ (N − 2i)µ + i             for    0 ≤ i ≤ N,
+                                                            ηi (µ) ≡ (N − 1 − 2i)µ + i + 1                   for   0 ≤ i ≤ N − 1,
+                                                                  µ ∈ [0, 1/2] .
+
+
+                                                                                               18
+                                             0. 5
+                                                                                                                                 OTP
+                                             0. 4
+
+
+
+
+              Secret key consumption rate
+                                             0. 3
+
+                                             0. 2
+
+                                             0. 1                                                   ve
+                                                                                        P     cur
+                                                                                   PEPF
+                                               0    P2P
+                                                                                                           SKG
+                                            −0.1
+
+                                            −0.2
+                                                                     SKG
+                                            −0.3
+                                            −0.5
+                                                      0
+                                                                                                                                             −0.2   −0.4
+                                                              0. 5                                                               0
+                                                                                                         0. 4       0. 2
+                                                                               1       0. 6
+       Private classical communication rate                                                                         Public classical communication rate
+
+Fig. 4 (Color online) The private dynamic capacity region for a 1 → 10 cloning channel. The region exhibits a non-trivial
+resource trade-off only on the surface below the PEPFP trade-off curve in the direction of secret key distribution.
+
+
+
+9.3 Quantum erasure channel
+
+Below we show that the private dynamic capacity region simplifies if the quantum channel is a quantum
+erasure channel. A quantum erasure channel with erasure parameter  is the following map:
+
+                                                                     N (ρ) ≡ (1 − ) ρ +  |ei he| .
+
+Notice that the receiver can perform a measurement {|0i h0| + |1i h1| , |ei he|} and can learn whether the
+channel erased the state. The receiver can do this without disturbing the state in any way. An isometric
+            A0 →BE                                             AA0                0
+extension UN 
+                    of it acts as follows on a purification |ψi    of the state ρA :
+                                                     A →BE0          AA0       √                     AB         E   √           AE     B
+                                                    UN 
+                                                           |ψi             =       1 −  |ψi               |ei +         |ψi        |ei .
+
+In the above representation, we see that the erasure channel has the interpretation that it hands the
+input to Bob with probability 1 −  while giving an erasure flag |ei to Eve, and it hands the input to Eve
+with probability  while giving the erasure flag to Bob. Figure 5 plots the region for an erasure channel
+with erasure parameter  = 1/4, and the proof of the below theorem appears in the appendix.
+
+Theorem 6 The private dynamic capacity region CRPS (N ) of a quantum erasure channel N is the set
+of all R, P , and S such that
+
+                                                                           R + P ≤ (1 − ) ,
+                                                                           P + S ≤ (1 − 2) H2 (p) ,
+                                                                     R + P + S ≤ 1 −  − H2 (p) ,
+
+where p ∈ [0, 1/2].
+
+
+10 Conclusion
+
+This paper completes the information-theoretic treatment of the Collins-Popescu analogy between classi-
+cal communication, quantum communication, entanglement and public classical communication, private
+
+
+                                                                                              19
+                                                1
+                                                                                                                                 OTP
+
+
+
+
+               Secret key consumption rate
+                                              0. 8
+
+                                              0. 6
+
+                                              0. 4
+
+                                              0. 2
+                                                                                                          curve
+                                                0
+                                                          P2P                                     PEPFP
+
+                                             −0.2
+
+                                             −0.4
+
+                                             −0.6                                                    SKD
+                                                                                   SKD
+                                             −0.8
+                                             −1.5
+                                                     −1                                                                                   −1
+                                                          −0.5                                                                     −0.5
+                                                                 0                                                           0
+                                                                     0. 5                                             0. 5
+                                                                                                                  1
+                                                                            1                        1. 5
+                                                                                1. 5          2
+                                                                                       2. 5
+            Private classical communication rate                                                          Public classical communication rate
+
+Fig. 5 (Color online) The private dynamic capacity region for a quantum erasure channel with erasure parameter  = 1/4.
+The erasure channel does not have a non-trivial trade-off, i.e., time-sharing between different protocols is the optimal
+strategy.
+
+
+
+classical communication, and secret key (at least for the case of channels). Our main theorem gives the
+private dynamic capacity region of a quantum channel. The catalytic information theoretic converse proof
+technique again proves to be useful in obtaining a simplified converse proof. The private dynamic capac-
+ity region dramatically simplifies for entanglement-breaking channels, Hadamard channels, and erasure
+channels, so that we can actually plot the region for several examples of these channels.
+    The open question remaining is to complete the Collins-Popescu analogy for the case of a static
+resource (a bipartite state shared between Alice and Bob). We have determined the static region for the
+classical-quantum-entanglement trade-off [30], and this first step should help in completing the analogy.
+Another ambitious open question would be to solve the quintuple trade-off between public classical
+communication, private classical communication, quantum communication, entanglement, and secret key,
+of which the regions in this paper are merely a projection. The catalytic information-theoretic converse
+proof technique should be helpful in obtaining a capacity theorem. Completing this larger trade-off
+problem could further our understanding of the nature of these different resources and their interaction
+with a noisy quantum resource.
+
+
+Acknowledgements
+
+The authors thank Patrick Hayden for suggesting the communication model in Figure 1.
+
+
+A Proofs
+
+Proof (Theorem 4 (Dephasing channel region)) We first prove that it is sufficient to consider an ensemble of the following
+form to characterize the boundary points of the region:
+
+   ν                               0  1−ν                               0
+     |0i h0|X ⊗ |0i h0|Y ⊗ |0i h0|A +     |0i h0|X ⊗ |1i h1|Y ⊗ |1i h1|A +
+   2                                   2
+                                              1−ν                                0 ν                              0
+                                                   |1i h1|X ⊗ |0i h0|Y ⊗ |0i h0|A + |1i h1|X ⊗ |1i h1|Y ⊗ |1i h1|A ,                            (24)
+                                                2                                  2
+where ν ∈ [0, 1/2]. We can use the simplified form of the private dynamic capacity formula in Lemma 6 because the
+dephasing channel is a degradable channel. Consider a classical-quantum state with a finite number Nx Ny of conditional
+
+
+                                                                                       20
+                     0
+density operators φA
+                   x,y :
+                                                    Nx −1 Ny −1
+                                           0         X     X                                                    0
+                                 ρXY A ≡                          pX (x) pY |X (y|x) |xihx|X ⊗ |yi hy|Y ⊗ φA
+                                                                                                           x,y .
+                                                    x=0    y=0
+       0
+Let φA
+     x denote the conditional states if X is known but Y is not:
+
+                                                                      Ny −1
+                                                                  0       X                   0
+                                                              A
+                                                             φx ≡               pY |X (y|x)φA
+                                                                                            x,y .
+                                                                          y=0
+
+It suffices for these states to be diagonal in the dephasing basis because the channel output entropy when conditioned on
+X can only be larger while the environment’s entropy when conditioned on X remains constant (see Lemma 9 of Ref. [26]).
+We can form a new classical-quantum state with quadruple the number of conditional density operators by applying all
+four Pauli operators to the original conditional density operators:
+
+                                 Nx     y −1 3
+                                    −1 NX
+                           0      X         X          1                                                        0
+                  σ XY JA ≡                              pX (x) pY |X (y|x) |xihx|X ⊗ |yihy|Y ⊗ |jihj|J ⊗ σj φA
+                                                                                                              x,y σj ,
+                                  x=0          y=0 j=0
+                                                       4
+
+where σ0 = I, σ1 = σZ , σ2 = σX and σ3 = σY are the Pauli matrices. Let ρXY BE and σ XY JBE be the respective states
+                                     0              0
+                                                                                  A0 →BE of the dephasing channel.
+after sending the A0 system of ρXY A and σ XY JA through the isometric extension UN
+Consider the following chain of inequalities that holds for all λ, µ ≥ 0:
+                                             h                        i   h              i
+                  H (B)ρ − H (B|Y X)ρ + λ H (B|X)ρ − H (E|X)ρ + µ H (B)ρ − H (E|X)ρ
+                                                                             h                 i
+                  = H (B)ρ − H (B|Y XJ)σ + λ H (B|XJ)σ − H (E|XJ)σ + µ H (B)ρ − H (E|XJ)σ
+                                                                                              
+                  ≤ H (B)σ − H (B|Y XJ)σ + λ H (B|XJ)σ − H (E|XJ)σ + µ H (B)σ − H (E|XJ)σ
+                                                                                   
+                  = 1 − H (B|Y XJ)σ + λ H (B|XJ)σ − H (E|XJ)σ + µ 1 − H (E|XJ)σ
+                                 Nx
+                                  X −1           h                                                         i
+                  =1+µ+                    pX (x) −H (B)N (φx,y ) + λH (B)N (φx ) − (λ + µ) H (E)N c (φx )
+                                 x=1
+                               h                                                         i
+                  ≤ 1 + µ + max −H (B)N (φx,y ) + λH (B)N (φx ) − (λ + µ) H (E)N c (φx )
+                                  x
+                  = 1 + µ − H (B)                 + λH (B)
+                                                            N (φ∗  − (λ + µ) H (E)N c (φ∗ )
+                                           N φ∗
+                                              x,y               x)                      x
+
+                  = 1 + µ + λH (B)N (φ∗ ) − (λ + µ) H (E)N c (φ∗ )
+                                       x                       x
+                          h                            i    h                 i
+                  = 1 + λ H (B)N (φ∗ ) − H (E)N c (φ∗ ) + µ 1 − H (E)N c (φ∗ ) .
+                                                x                     x                             x
+
+The first equality follows because conditioning on J does not change the conditional entropies. That is, the conditional
+entropies H (B|X) and H (B|Y X) are invariant under a Pauli operator on the input state that commutes with the channel.
+Furthermore, a Pauli operator on the input state does not change the eigenvalues for the output of the dephasing channel’s
+complementary channel: H(E)N c (XφA0 X) = H(E)N c (φA0 ) . The first inequality follows because entropy is concave, i.e.,
+                                                x                          x
+the local state σ B is a mixed version of ρB . The second equality follows because
+                                                                                                      
+                                 X 1                                           X
+                                                                B
+                 H(B)σB = H             pX (x) pY |X (y|x) σj φx,y σj  = H      pX (x) pY |X (y|x) I/2 = 1.
+                                 x,y,j
+                                       4                                       x,y
+
+The third equality follows because the system X is classical and conditioning on J does not change the entropies. The
+second inequality follows because the maximum value of a realization of a random variable is not less than its expectation.
+The fourth equality follows be defining the ensemble with a ∗ to be the optimal ensemble with respect to the maximization
+over x. The fifth equality follows from a further optimization: it is better to choose the pure states φ∗x,y to be pure states
+in the basis of the dephasing channel. The final equality follows by rearranging terms. The final state φ∗x then has the
+               0                    0
+form ν |0i h0|A + (1 − ν) |1i h1|A for some value of ν because φ∗x is diagonal in the dephasing basis. The three other states
+σX φ∗x σX , σY φ∗x σY , and σZ φ∗x σZ have a similar form, but φ∗x = σZ φ∗x σZ and σX φ∗x σX = σY φ∗x σY . Thus, it suffices
+to choose the state φ∗x and its bit-flipped version, and the variable Y needs only have distribution (ν, 1 − ν) because of
+the particular form of φ∗x . Thus, an ensemble of the kind in (24) is sufficient to attain a point on the boundary of the
+region. Evaluating the entropic quantities in Theorem 1 on a state of the above form gives the expression for the region in
+Theorem 4.
+
+Proof (Theorem 5 (Cloning channel region)) We first prove that the same ensemble as in (24) suffices for achieving the
+limits of the region. We exploit the following classical-quantum states:
+                                   0   X                                               0
+                            ρXY A ≡        pX (x) pY |X (y|x) |xi hx|X ⊗ |yi hy|Y ⊗ φA
+                                                                                     x,y ,
+                                                x,y
+                                       0        X1                                                      0   0       0
+                               σ XY IA ≡                 pX (x) |xi hx|X ⊗ |yi hy|Y ⊗ |ii hi|I ⊗ (σiA )φA     A
+                                                                                                        x,y (σi ),
+                                                 x,i
+                                                     4
+
+
+
+                                                                                21
+                   0
+where the states φA                       XY BE and σ XY IBE be the states obtained by transmitting the A0 system through
+                   x,y are pure, and let ρ
+                                                       0                               0
+the isometric extension of the erasure channel. Let σxA Y ≡ y pY |X (y|x) |yi hy|Y ⊗φA
+                                                             P
+                                                                                     x,y . The cloning channel is degradable
+and covariant [8, 10], the latter meaning that the following relationships hold for any input density operator σ and any
+unitary V acting on the input system A0 :
+                                                          
+                                                                             †
+                                              NCl V σV † = RV NCl (σ) RV        ,
+                                                          
+                                              NClc
+                                                     V σV † = SV NClc
+                                                                      (σ) SV† ,
+
+where RV and SV are higher-dimensional irreducible representations of the unitary V on the respective systems B and E.
+The state σ B is equal to the maximally mixed state on the symmetric subspace for the following reasons:
+                                           0                                                                              N
+                                               !
+                                      IA
+                                                           Z                      Z
+                    0                                                                                              1 X
+          σ B = NCl σ A = NCl                      = NCl        V ωV † dV       =        RV N (ω) RV † dV =                  |ii hi|B ,   (25)
+                                       2                                                                           N + 1 i=0
+
+where the fourth equality exploits the linearity and covariance of the cloning channel NCl . Consider the following chain of
+inequalities:
+                                h                       i     h                    i
+     H (B)ρ − H (B|Y X)ρ + λ H (B|X)ρ − H (E|X)ρ + µ H (B)ρ − H (E|X)ρ
+      = (µ + 1) H (B)ρ − H (B|Y X)ρ + λH (B|X)ρ − (λ + µ) H (E|X)ρ
+      = (µ + 1) H (B)ρ − H (B|Y XI)σ + λH (B|XI)σ − (λ + µ) H (E|XI)σ
+      ≤ (µ + 1) H (B)σ − H (B|Y XI)σ + λH (B|XI)σ − (λ + µ) H (E|XI)σ
+                                                             X
+                              X                            i                 h                                        i
+      = (µ + 1) log (N + 1) −      pX (x) pY |X (y|x) H        +      pX (x) λH (B)N (σA0 ) − (λ + µ) H (E)N c (σA0 )
+                               x,y
+                                                          ∆N       x
+                                                                                        x                        x
+
+                                       
+                                      i
+      ≤ (µ + 1) log (N + 1) − H           + λH (B)N (σ∗ ) − (λ + µ) H (E)N c (σ∗ )
+                                    ∆N                  x                      x
+
+                          N
+                      1  X              h                             i    h                           i
+      = 1 − log N +          i log i + λ H (B)N (σ∗ ) − H (E)N c (σ∗ ) + µ log (N + 1) − H (E)N c (σ∗ ) .
+                     ∆N i=0                         x              x                                x
+
+
+
+The first equality follows by rearranging terms. The second equality follows because the conditional entropies are invariant
+under unitary transformations:
+
+                               H(B)R        B †        = H(B)ρB ,         H(E)S             E †     = H(E)ρE ,
+                                        σj ρx Rσj                x                      σj ρx Sσj              x
+
+
+where Rσj and Sσj are higher-dimensional representations of σj on systems B and E, respectively. The first inequal-
+ity follows because entropy is concave, i.e., the local state σ B is a mixed version of ρB . The third equality follows
+because (25) implies
+                P that H(B)σB = log (N + 1), from applying unitary covariance of the cloning channel to the term
+H (B|Y XI)σ =      x,y pX (x) pY |X (y|x) H (B)N (ψx,y ) (all pure states have the same output entropy—thus, it does not
+matter which particular pure states we input), and from expanding the conditional entropies H (B|XI)σ and H (E|XI)σ .
+The second inequality follows because the maximum value of a realization
+                                                                       of a random variablePis not less than its expec-
+                                                                                                N
+tation. The final equality follows by observing that log (N + 1) − H ∆i   = 1 − log N + ∆1      i=0 i log i. The entropies
+                                                                                         N                         N
+H(B)N (σx∗ ) and H(E)N c (σx∗ ) depend only on the eigenvalues of the input state σx∗ by the covariance of both the cloning
+channel and its complement. We can therefore choose σx∗ to be diagonal in the {|0i, |1i} basis of A0 , and without loss of
+generality, suppose these eigenvalues are equal to ν and 1 − ν. The ensemble defined to consist of σx∗ and Xσx∗ X assigned
+equal probabilities then saturates the upper bound. The final analytic form in the statement of the theorem follows by
+evaluating the entropies and these calculations are similar to calculations available in Section V-B of Ref. [11].
+
+
+    Proof of Theorem 6 (Erasure channel region). We prove Theorem 6 in several steps.
+
+Lemma 8 The private dynamic capacity formula in (15) simplifies as follows for a quantum erasure channel N :
+
+                         Pλ,µ (N ) ≡      max         (1 − ) + λ (1 − 2) H2 (p) + µ ((1 − ) − H2 (p)) .                              (26)
+                                        p∈[0,1/2]
+
+Thus, the “one-shot” dynamic capacity region of a quantum erasure channel is as Theorem 6 states.
+
+Proof We can use the simplified form of the private dynamic capacity formula in Lemma 6 because the quantum erasure
+channel is a degradable channel. We exploit the following classical-quantum states:
+                                 0  X                                               0
+                           ρXY A ≡      pX (x) pY |X (y|x) |xi hx|X ⊗ |yi hy|Y ⊗ φA
+                                                                                  x,y ,
+                                        x,y
+                                  0   X1                                                               0   0       0
+                          σ XY IA ≡                pX (x) |xi hx|X ⊗ |yi hy|Y ⊗ |ii hi|I ⊗ (σiA )φA     A
+                                                                                                  x,y (σi ),                              (27)
+                                        x,i
+                                            4
+
+
+
+                                                                     22
+and let ρXY BE and σ XY IBE be the states obtained by transmitting the A0 system through the isometric extension of the
+                        0
+erasure channel. Let σxA ≡ y pY |X (y|x) φA
+                                             0
+                                                                                                A0
+                           P
+                                           x,y . Furthermore, let the eigenvalues of the state σx with highest entropy on
+system A0 be p and 1 − p. Consider that the following chain of inequalities holds for any state ρXY BE :
+                                      h                   i   h                  i
+               H (B)ρ − H (B|Y X)ρ + λ H (B|X)ρ − H (E|X)ρ + µ H (B)ρ − H (E|X)ρ
+               = (µ + 1) H (B)ρ − H (B|Y X)ρ + λH (B|X)ρ − (λ + µ) H (E|X)ρ
+               = (µ + 1) H (B|XE )ρ − H (B|Y XXE )ρ + λH (B|XXE )ρ − (λ + µ) H (E|XXE )ρ
+               = (µ + 1) (1 − ) H A0 ρ − (1 − ) H A0 |Y X ρ + λ (1 − ) H A0 |X ρ − (λ + µ) H A0 |X ρ
+                                                                                                   
+
+               = (µ + 1) (1 − ) H A0 ρ + [λ (1 − ) − (λ + µ) ] H A0 |X ρ
+                                                                        
+
+               = (µ + 1) (1 − ) H A0 ρ + [λ (1 − ) − (λ + µ) ] H A0 |XI σ .
+                                                                          
+
+
+The first equality follows by rearrnging terms. The second equality follows by incorporating the classical erasure flag
+variable. The third equality follows by exploiting the properties of the quantum erasure channel. The fourth equality
+follows by rearranging terms and because the entropy H (A0 |Y X)ρ vanishes (the state on A0 conditioned on both X and
+Y is pure). The fifth equality follows because H (A0 |X)ρ = H (A0 |XI)σ . Continuing,
+
+                               ≤ (µ + 1) (1 − ) H A0 σ + [λ (1 − ) − (λ + µ) ] H A0 |XI σ
+                                                                                          
+
+                               = (µ + 1) (1 − ) + [λ (1 − ) − (λ + µ) ] H A0 |XI σ
+                                                                                   
+                                                                           X
+                                                                             pX (x) H A0 σA0
+                                                                                         
+                               = (µ + 1) (1 − ) + [λ (1 − ) − (λ + µ) ]
+                                                                                                  x
+                                                                                x
+                                                                                    0
+                                                                                        
+                               ≤ (µ + 1) (1 − ) + [λ (1 − ) − (λ + µ) ] H A           ∗
+                                                                                        σx
+
+                               = (1 − ) + λ (1 − 2) H2 (p) + µ ((1 − ) − H2 (p)) .
+
+The first inequality follows because the unconditional entropy of the state ρ is always less than that of the state σ. The
+first equality follows because H (A0 )σ = 1. The second equality follows by expanding the conditional entropy. The second
+inequality follows because an average is always less than a maximum. The final equality follows by rearranging terms and
+by plugging in the eigenvalues of σx∗ . The form of the private dynamic capacity formula then follows because this chain of
+inequalities holds for any input ensemble.
+
+Lemma 9 It suffices to consider the set of λ, µ ≥ 0 for which
+
+                                                         λ (1 − 2) ≥ µ.
+
+Otherwise, we are just maximizing the public classical capacity, which we know from Ref. [5] is equal to 1 − .
+
+Proof Consider rewriting the expression in (26) as follows:
+
+                                     max       (1 − ) + µ (1 − ) + [λ (1 − 2) − µ] H2 (p) .
+                                   p∈[0,1/2]
+
+
+Suppose that the expression in square brackets is negative, i.e.,
+
+                                                         λ (1 − 2) < µ.
+
+Then the maximization over p simply chooses p = 0 so that H2 (p) vanishes and the negative term disappears. The resulting
+expression for the private dynamic capacity formula is
+
+                                                        (1 − ) + µ (1 − ) ,
+
+which corresponds to the following region
+
+                                                            R + P ≤ 1 − ,
+                                                            P + S ≤ 0,
+                                                       R + P + S ≤ 1 − .
+
+The above region is equivalent to a translation of the unit resource capacity region to the public classical capacity rate
+triple (1 − , 0, 0). Thus, it suffices to restrict the parameters λ and µ as above for the quantum erasure channel.
+
+Lemma 10 The following additivity relation holds for two quantum erasure channels N with the same erasure parameter
+:
+                                      Pλ,µ (N ⊗ N ) = Pλ,µ (N ) + Pλ,µ (N ).
+
+
+
+                                                                 23
+Proof We prove the non-trivial inequality Pλ,µ (N ⊗ N ) ≤ Pλ,µ (N ) + Pλ,µ (N ). We define the following states:
+
+                                         0   0     X                                               A0 A0
+                                   ρXY A1 A2 ≡           pX (x) pY |X (y|x) |xi hx|X ⊗ |yi hy|Y ⊗ φx,y
+                                                                                                     1 2
+                                                                                                         ,
+                                                   x,y
+                                                    A0 →B1 E1         A0 →B2 E2          0   0
+                           ω   XY B1 E1 B2 E2
+                                                 ≡ UN1          ⊗ UN2           (ρXY A1 A2 ),
+
+and we suppose that ρXY A1 A2 is the state that maximizes Pλ,µ (N ⊗ N ). Consider the following equality:
+                                                                                                           
+         H (B1 B2 )ω − H (B1 B2 |Y X)ω + λ H (B1 B2 |X)ω − H (E1 E2 |X)ω + µ H (B1 B2 )ω − H (E1 E2 |X)ω
+                                                              
+         = (1 − )2 H A01 A02 ρ +  (1 − ) H A01 ρ + H A02 ρ
+                                                          
+                                                    
+             −  (1 − ) H A01 |Y X ρ + H A02 |Y X ρ
+                                     
+
+                  h                                                          i
+             + λ (1 − )2 H A01 A02 |X ρ +  (1 − ) H A01 |X ρ + H A02 |X ρ
+                                                             
+                  h                                                   i
+             − λ 2 H A01 A02 |X ρ +  (1 − ) H A01 |X ρ + H A02 |X ρ
+                                                       
+                  h                                                 i
+             + µ (1 − )2 H A01 A02 ρ +  (1 − ) H A01 ρ + H A02 ρ
+                                                        
+                  h                                                   i
+             − µ 2 H A01 A02 |X ρ +  (1 − ) H A01 |X ρ + H A02 |X ρ .
+                                                       
+
+
+The above equality follows by exploiting the properties of the quantum erasure channel and because the entropy H A01 A02 |Y X ρ =
+                                                                                                                             
+
+0. Continuing, the above quantity is less than the following one:
+
+                   ≤ 2 (1 − ) −  (1 − ) H A01 |Y XIJ σ + H A02 |Y XIJ σ
+                                                                            
+
+                        + λ (1 − 2) H A01 A02 |XIJ σ
+                                                    
+
+                        + µ 2 (1 − ) − 2 H A01 A02 |XIJ σ −  (1 − ) H A01 |XIJ σ − H A02 |XIJ σ
+                                                                                                   
+
+                   = 2 (1 − )
+                       + λ (1 − 2) H A01 |XIJ σ + H A02 |XIJ σ
+                                                                   
+
+                      + µ 2 (1 − ) −  H A01 |XIJ σ − H A02 |XIJ σ
+                                                                        
+
+                       −  (1 − ) H A01 |Y XIJ σ + H A02 |Y XIJ σ
+                                                                       
+
+                      − λ (1 − 2) − µ2 I A01 ; A02 |XIJ σ
+                                                          
+
+                   ≤ Pλ,µ (N ) + Pλ,µ (N ) −  (1 − ) H A01 |Y XIJ σ + H A02 |Y XIJ σ
+                                                                                      
+                          h                                  i
+                       − λ (1 − 2) − µ2 I A01 ; A02 |XIJ ρ
+                                             
+
+                   ≤ Pλ,µ (N ) + Pλ,µ (N ) .
+
+The first inequality follows from similar proofs we have seen for a state σ of the form in (27). The first equality follows
+by rearranging terms. The second inequality follows from the form of Dλ,µ in (26). The final inequality follows because
+Lemma 9 states that it is sufficient to consider λ (1 − 2) ≥ µ. Note that this condition implies that
+
+                                                             λ (1 − 2) ≥ µ2 ,
+
+and hence that the quantity in square brackets in the line above the last one is positive.
+
+
+
+References
+
+ 1. Ahlswede, R., Csiszár, I.: Common randomness in information theory and cryptography—Part I: Secret sharing. IEEE
+    Transactions on Information Theory 39, 1121–1132 (1993)
+ 2. Ahlswede, R., Csiszár, I.: Common randomness in information theory and cryptography—Part II: CR-capacity. IEEE
+    Transactions on Information Theory 44, 225—-240 (1998)
+ 3. Bennett, C.H., Brassard, G.: Quantum cryptography: Public key distribution and coin tossing. In: Proceedings of
+    IEEE International Conference on Computers, Systems, and Signal Processing, pp. 175–179. IEEE (1984)
+ 4. Bennett, C.H., Brassard, G., Crépeau, C., Jozsa, R., Peres, A., Wootters, W.K.: Teleporting an unknown quantum
+    state via dual classical and Einstein-Podolsky-Rosen channels. Physical Review Letters 70, 1895–1899 (1993)
+ 5. Bennett, C.H., DiVincenzo, D.P., Smolin, J.A.: Capacities of quantum erasure channels. Physical Review Letters
+    78(16), 3217–3220 (1997). DOI 10.1103/PhysRevLett.78.3217
+ 6. Bennett, C.H., Wiesner, S.J.: Communication via one- and two-particle operators on Einstein-Podolsky-Rosen states.
+    Physical Review Letters 69, 2881–2884 (1992)
+ 7. Boyd, S., Vandenberghe, L.: Convex Optimization. Cambridge University Press, The Edinburgh Building, Cambridge,
+    CB2 8RU, UK (2004). URL http://www.stanford.edu/~boyd/cvxbook/
+ 8. Brádler, K.: An infinite sequence of additive channels: The classical capacity of cloning channels. arXiv:0903.1638
+    (2009)
+
+
+                                                                    24
+ 9. Brádler, K., Dutil, N., Hayden, P., Muhammad, A.: Conjugate degradability and the quantum capacity of cloning
+    channels. arXiv:0909.3297 (2009)
+10. Brádler, K., Hayden, P., Panangaden, P.: Private information via the Unruh effect. Journal of High Energy Physics
+    2009(08), 074 (2009). URL http://stacks.iop.org/1126-6708/2009/i=08/a=074
+11. Brádler, K., Hayden, P., Touchette, D., Wilde, M.M.: Trade-off capacities of the quantum Hadamard channels. To
+    appear in Physical Review A (2010). arXiv:1001.1732
+12. Brito, F., DiVincenzo, D.P., Koch, R.H., Steffen, M.: Efficient one- and two-qubit pulsed gates for an oscillator-stabilized
+    Josephson qubit. New Journal of Physics 10(3), 033,027 (2008). URL http://stacks.iop.org/1367-2630/10/033027
+13. Cai, N., Winter, A., Yeung, R.W.: Quantum privacy and quantum wiretap channels. Problems of Information Trans-
+    mission 40(4), 318–336 (2004). DOI http://dx.doi.org/10.1007/s11122-005-0002-x
+14. Collins, D., Popescu, S.: Classical analog of entanglement. Physical Review A 65(3), 032,321 (2002). DOI 10.1103/
+    PhysRevA.65.032321
+15. Csiszár, I., Körner, J.: Broadcast channels with confidential messages. IEEE Transactions on Information Theory
+    24(3), 339–348 (1967)
+16. Devetak, I.: The private classical capacity and quantum capacity of a quantum channel. IEEE Transactions on
+    Information Theory 51(1), 44–55 (2005)
+17. Devetak, I., Shor, P.W.: The capacity of a quantum channel for simultaneous transmission of classical and quantum
+    information. Communications in Mathematical Physics 256(2), 287–303 (2005)
+18. Devetak, I., Winter, A.: Relating quantum privacy and quantum coherence: an operational approach. Physical Review
+    Letters 93, 080,501 (2004)
+19. Devetak, I., Winter, A.: Distillation of secret key and entanglement from quantum states. Proceedings of the Royal
+    Society A 461, 207–235 (2005)
+20. Duan, R., Grassl, M., Ji, Z., Zeng, B.: Multi-error-correcting amplitude damping codes. In: Proceedings of the Inter-
+    national Symposium on Information Theory. Austin, Texas, USA (2010). arXiv:1001.2356
+21. Gingrich, R.M., Kok, P., Lee, H., Vatan, F., Dowling, J.P.: All linear optical quantum memory based on quantum error
+    correction. Physical Review Letters 91(21), 217,901 (2003). DOI 10.1103/PhysRevLett.91.217901
+22. Gisin, N., Massar, S.: Optimal quantum cloning machines. Physical Review Letters 79(11), 2153–2156 (1997). DOI
+    10.1103/PhysRevLett.79.2153
+23. Grassl, M., Beth, T., Pellizzari, T.: Codes for the quantum erasure channel. Physical Review A 56(1), 33–38 (1997).
+    DOI 10.1103/PhysRevA.56.33
+24. Holevo, A.S.: The capacity of the quantum channel with general signal states. IEEE Transactions on Information
+    Theory 44, 269–273 (1998)
+25. Horodecki, M., Shor, P.W., Ruskai, M.B.: Entanglement breaking channels. Reviews in Mathematical Physics 15(6),
+    629–641 (2003). ArXiv:quant-ph/0302031
+26. Hsieh, M.H., Devetak, I., Winter, A.: Entanglement-assisted capacity of quantum multiple-access channels. IEEE
+    Transactions on Information Theory 54(7), 3078–3090 (2008)
+27. Hsieh, M.H., Luo, Z., Brun, T.: Secret-key-assisted private classical communication capacity over quantum channels.
+    Physical Review A 78(4), 042306 (2008). DOI 10.1103/PhysRevA.78.042306
+28. Hsieh, M.H., Wilde, M.M.: Public and private communication with a quantum channel and a secret key. Physical
+    Review A 80(2), 022,306 (2009). DOI 10.1103/PhysRevA.80.022306
+29. Hsieh, M.H., Wilde, M.M.: Theory of Quantum Computation, Communication, and Cryptography, Lecture Notes in
+    Computer Science, vol. 5906, chap. Optimal Trading of Classical Communication, Quantum Communication, and
+    Entanglement, pp. 85–93. Springer-Verlag (2009)
+30. Hsieh, M.H., Wilde, M.M.: Trading classical communication, quantum communication, and entanglement in quantum
+    Shannon theory. To appear in the IEEE Transactions on Information Theory (2009). arXiv:0901.3038
+31. Hsieh, M.H., Wilde, M.M.: Entanglement-assisted communication of classical and quantum information. To appear in
+    the IEEE Transactions on Information Theory (2010). arXiv:0811.4227
+32. King, C., Matsumoto, K., Nathanson, M., Ruskai, M.B.: Properties of conjugate channels with applications to additivity
+    and multiplicativity. Markov Processes and Related Fields 13(2), 391–423 (2007). J. T. Lewis memorial issue
+33. Korbicz, J.K., Almeida, M.L., Bae, J., Lewenstein, M., Acı́n, A.: Structural approximations to positive maps and
+    entanglement-breaking channels. Physical Review A 78(6), 062,105 (2008). DOI 10.1103/PhysRevA.78.062105
+34. Lamas-Linares, A., Simon, C., Howell, J.C., Bouwmeester, D.: Experimental quantum cloning of single photons. Science
+    296, 712–714 (2002)
+35. Lu, C.Y., Gao, W.B., Zhang, J., Zhou, X.Q., Yang, T., Pan, J.W.: Experimental quantum coding against qubit loss
+    error. Proceeding of the National Academies of Sciences of the United States of America 105(32), 11,050–11,054 (2008)
+36. Maurer, U.: Secret key agreement by public discussion from common information. IEEE Transactions on Information
+    Theory 39, 733–742 (1993)
+37. Milonni, P.W., Hardies, M.L.: Photons cannot always be replicated. Physics Letters A 92(7), 321–322 (1982)
+38. Minkel, J.R.: Space station could beam secret quantum codes by 2014. Scientific American (2008)
+39. Chruściński, D., Pytel, J., Sarbicki, G.: Constructing optimal entanglement witnesses. Physical Review A 80(6),
+    062,314 (2009). DOI 10.1103/PhysRevA.80.062314
+40. Scarani, V., Bechmann-Pasquinucci, H., Cerf, N.J., Dušek, M., Lütkenhaus, N., Peev, M.: The security of practical
+    quantum key distribution. Reviews of Modern Physics 81(3), 1301–1350 (2009). DOI 10.1103/RevModPhys.81.1301
+41. Schumacher, B., Westmoreland, M.D.: Sending classical information via noisy quantum channels. Physical Review A
+    56, 131–138 (1997)
+42. Schumacher, B., Westmoreland, M.D.: Quantum privacy and quantum coherence. Physical Review Letters 80(25),
+    5695–5697 (1998). DOI 10.1103/PhysRevLett.80.5695
+43. Shor, P.W.: Additivity of the classical capacity of entanglement-breaking quantum channels. Journal of Mathematical
+    Physics 43(9), 4334–4340 (2002). DOI 10.1063/1.1498000. URL http://link.aip.org/link/?JMP/43/4334/1
+44. Simon, C., Weihs, G., Zeilinger, A.: Optimal quantum cloning via stimulated emission. Physical Review Letters 84(13),
+    2993–2996 (2000). DOI 10.1103/PhysRevLett.84.2993
+
+
+                                                              25
+45. Smith, G.: Private classical capacity with a symmetric side channel and its application to quantum cryptography.
+    Physical Review A 78(2), 022,306 (2008). DOI 10.1103/PhysRevA.78.022306
+46. Smith, G., Renes, J.M., Smolin, J.A.: Structured codes improve the Bennett-Brassard-84 quantum key rate. Physical
+    Review Letters 100(17), 170,502 (2008). DOI 10.1103/PhysRevLett.100.170502
+47. Ursin, R., et al.: Space-QUEST: Experiments with quantum entanglement in space. Europhysics News 40(3), 26–29
+    (2009). arXiv:0806.0945
+48. Vernam, G.S.: Cipher printing telegraph systems for secret wire and radio telegraphic communications. Journal of the
+    IEEE 55, 109–115 (1926)
+49. Wasilewski, W., Banaszek, K.: Protecting an optical qubit against photon loss. Physical Review A 75(4), 042,316
+    (2007). DOI 10.1103/PhysRevA.75.042316
+50. Wilde, M.M., Hsieh, M.H.: The quantum dynamic capacity formula of a quantum channel (2010). arXiv:1004.0458
+51. Wyner, A.D.: The wire-tap channel. Bell System Technical Journal 54, 1355–1387 (1975)
+52. Yard, J.: Simultaneous classical-quantum capacities of quantum multiple access channels. Ph.D. thesis, Stanford
+    University, Stanford, CA (2005). quant-ph/0506050
+
+
+
+
+                                                          26
+

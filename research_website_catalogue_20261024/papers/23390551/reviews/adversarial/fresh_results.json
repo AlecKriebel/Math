@@ -1,0 +1,194 @@
+{
+  "arithmetic": "Python fractions.Fraction and integers only",
+  "test_count": 19,
+  "checks": [
+    {
+      "name": "Taylor_coefficient_identity",
+      "statement": "Numerator coefficients after removing i^n/n! agree with radial formula.",
+      "passed": true,
+      "evidence": "Checked exact integer identities n=2..100; polynomial identities are derived in FRESH_DERIVATION.md."
+    },
+    {
+      "name": "Taylor_infinite_tail",
+      "statement": "Rational geometric bound proves e<11/4 and 2e-9/2<1.",
+      "passed": true,
+      "evidence": {
+        "e_upper": "2222710781/817689600",
+        "tail_upper": "382909181/408844800"
+      }
+    },
+    {
+      "name": "cubic_radial_shell_cancellation",
+      "statement": "Every complete radius shell through |j|=6 has exactly zero trace-free tensor sum.",
+      "passed": true,
+      "evidence": {
+        "shell_count": 31,
+        "max_radius_squared": 36
+      }
+    },
+    {
+      "name": "broken_symmetry_mutant",
+      "statement": "Removing (1,0,0) from the nearest shell destroys cancellation.",
+      "passed": true,
+      "evidence": [
+        [
+          -2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "lattice_near_bound",
+      "statement": "L-infinity shells prove the explicit 26R bound.",
+      "passed": true,
+      "evidence": "Each shell has 24q^2+2 points, every Euclidean radius is >=q; 26h floor(R/h)<=26R for every h,R>0."
+    },
+    {
+      "name": "non_norm_static_projection_family_q3",
+      "statement": "Selfadjoint strongly convergent backgrounds support a norm-convergent off-interval projection.",
+      "passed": true,
+      "evidence": {
+        "lambda_plus": "13/4",
+        "projection_gap_squared": "1/10",
+        "static_norm_lower_bound": "1",
+        "background_spectral_interval": "[-1,2] (row-sum/Gershgorin bound)"
+      }
+    },
+    {
+      "name": "non_norm_static_projection_family_q5",
+      "statement": "Selfadjoint strongly convergent backgrounds support a norm-convergent off-interval projection.",
+      "passed": true,
+      "evidence": {
+        "lambda_plus": "37/12",
+        "projection_gap_squared": "1/26",
+        "static_norm_lower_bound": "1",
+        "background_spectral_interval": "[-1,2] (row-sum/Gershgorin bound)"
+      }
+    },
+    {
+      "name": "non_norm_static_projection_family_q11",
+      "statement": "Selfadjoint strongly convergent backgrounds support a norm-convergent off-interval projection.",
+      "passed": true,
+      "evidence": {
+        "lambda_plus": "181/60",
+        "projection_gap_squared": "1/122",
+        "static_norm_lower_bound": "1",
+        "background_spectral_interval": "[-1,2] (row-sum/Gershgorin bound)"
+      }
+    },
+    {
+      "name": "non_norm_static_projection_family_q101",
+      "statement": "Selfadjoint strongly convergent backgrounds support a norm-convergent off-interval projection.",
+      "passed": true,
+      "evidence": {
+        "lambda_plus": "15301/5100",
+        "projection_gap_squared": "1/10202",
+        "static_norm_lower_bound": "1",
+        "background_spectral_interval": "[-1,2] (row-sum/Gershgorin bound)"
+      }
+    },
+    {
+      "name": "left_compact_strong_mutant",
+      "statement": "Strong convergence cannot justify compact-left multiplication without adjoints.",
+      "passed": true,
+      "evidence": "X_n=e1 tensor en ->0 strongly, P1 X_n=X_n has norm one; X_n*e1=en does not converge to zero."
+    },
+    {
+      "name": "nonselfadjoint_projection_mutant",
+      "statement": "Dropping background selfadjointness permits norm-projection failure.",
+      "passed": true,
+      "evidence": "Embed this block on e1,en: projection error remains exactly 1/3, despite strong background convergence and fixed compact correction."
+    },
+    {
+      "name": "strong_correction_pollution_mutant",
+      "statement": "Strong convergence of compact corrections cannot replace norm convergence.",
+      "passed": true,
+      "evidence": "C_n=3P_en is compact and strongly tends to zero but has eigenvalue 3 and norm 3 at every n; the limiting zero operator has no spectral point at 3."
+    },
+    {
+      "name": "Jordan_split_n2",
+      "statement": "Cluster algebraic multiplicity survives while individual Jordan blocks change.",
+      "passed": true,
+      "evidence": {
+        "eigenvalue_shifts": [
+          "-1/2",
+          "1/2"
+        ],
+        "total_multiplicity": 2,
+        "limit_nilpotent_index": 2
+      }
+    },
+    {
+      "name": "Jordan_split_n7",
+      "statement": "Cluster algebraic multiplicity survives while individual Jordan blocks change.",
+      "passed": true,
+      "evidence": {
+        "eigenvalue_shifts": [
+          "-1/7",
+          "1/7"
+        ],
+        "total_multiplicity": 2,
+        "limit_nilpotent_index": 2
+      }
+    },
+    {
+      "name": "Jordan_split_n100",
+      "statement": "Cluster algebraic multiplicity survives while individual Jordan blocks change.",
+      "passed": true,
+      "evidence": {
+        "eigenvalue_shifts": [
+          "-1/100",
+          "1/100"
+        ],
+        "total_multiplicity": 2,
+        "limit_nilpotent_index": 2
+      }
+    },
+    {
+      "name": "ball_rational_certificate",
+      "statement": "All explicit smallness bounds hold and the trace has strictly negative imaginary upper bound.",
+      "passed": true,
+      "evidence": {
+        "kappa": "1/10000",
+        "epsilon_upper": "1/50000000",
+        "eta_upper": "3/2500000",
+        "graph_upper": "3/1250000",
+        "trace_upper": "-7831/15000000000000000",
+        "trace_coefficient": "-7831/15000"
+      }
+    },
+    {
+      "name": "ball_harmonic_gap",
+      "statement": "Shifted harmonic eigenvalues ell>=2 are at least 1/15.",
+      "passed": true,
+      "evidence": "The inequality reduces to 15(ell-1)>=3(2ell+1), i.e. ell>=2; the 1/6 accumulation is retained."
+    },
+    {
+      "name": "rational_deletion_volume",
+      "statement": "The geometric series sum_(k>=1) 2^(-3k) is 1/7.",
+      "passed": true,
+      "evidence": {
+        "removed_fraction_upper_j1": "1/229376",
+        "removed_fraction_upper_j8": "1/481036337152"
+      }
+    },
+    {
+      "name": "physical_embedding_weight",
+      "statement": "J_h is an isometry precisely with the common h^3 sequence weight.",
+      "passed": true,
+      "evidence": "Cell integral norm and weighted vector norm agree; omission of h^3 is detected for h!=1."
+    }
+  ],
+  "scope": "Finite exact identities and explicitly proved infinite-family controls. They do not certify lattice endpoint extrema, historical priority or replace operator proofs."
+}

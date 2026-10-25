@@ -1,0 +1,383 @@
+                                             Capacity of the Bosonic Wiretap Channel and the
+                                                    Entropy Photon-Number Inequality
+                                                           Saikat Guha                              Jeffrey H. Shapiro                        Baris I. Erkmen
+                                              Research Laboratory of Electronics          Research Laboratory of Electronics          Research Laboratory of Electronics
+                                                 MIT, Cambridge, MA 02139                    MIT, Cambridge, MA 02139                    MIT, Cambridge, MA 02139
+                                                       saikat@MIT.edu                               jhs@MIT.edu                               erkmen@MIT.edu
+
+
+
+
+arXiv:0801.0841v1 [quant-ph] 6 Jan 2008
+                                             Abstract— Determining the ultimate classical information car-      follow:
+                                          rying capacity of electromagnetic waves requires quantum-
+                                          mechanical analysis to properly account for the bosonic nature             Chomodyne    =    2−1 ln[1 + 4η N̄ /(2(1 − η)N + 1)] (2)
+                                          of these waves. Recent work has established capacity theorems
+                                          for bosonic single-user and broadcast channels, under the pre-            Cheterodyne   =    ln[1 + η N̄ /((1 − η)N + 1)].        (3)
+                                          sumption of two minimum output entropy conjectures. Despite
+                                          considerable accumulated evidence that supports the validity of       The +1 terms in the noise denominators are quantum contri-
+                                          these conjectures, they have yet to be proven. In this paper, it is   butions, so that even when the noise mode b̂ is unexcited these
+                                          shown that the second conjecture suffices to prove the classical      capacities remain finite, unlike the situation in Eq. (1).
+                                          capacity of the bosonic wiretap channel, which in turn would
+                                          also prove the quantum capacity of the lossy bosonic channel.
+                                                                                                                   The classical capacity of the pure-loss bosonic channel—
+                                          The preceding minimum output entropy conjectures are then             in which the b̂ mode is unexcited (N = 0)—was shown
+                                          shown to be simple consequences of an Entropy Photon-Number           in [1] to be Cpure−loss = g(η N̄ ) nats/use, where g(x) ≡
+                                          Inequality (EPnI), which is a conjectured quantum-mechanical          (x+1) ln(x+1)−x ln(x) is the Shannon entropy of the Bose-
+                                          analog of the Entropy Power Inequality (EPI) form classical           Einstein probability distribution with mean x. This capacity
+                                          information theory.
+                                                                                                                exceeds the N = 0 versions of Eqs. (2) and (3), as well
+                                                                                                                as the best known bound on the capacity of ideal optical
+                                                          I. M OTIVATION AND H ISTORY                           direct detection. The ultimate capacity of the thermal-noise
+                                             The performance of communication systems that rely                 (N > 0) version of this channel is bounded below as follows,
+                                          on electromagnetic wave propagation are ultimately limited            Cthermal ≥ g(η N̄ + (1 − η)N ) − g((1 − η)N ), and this
+                                          by noise of quantum-mechanical origin. Moreover, high-                bound was shown to be the capacity if the thermal channel
+                                          sensitivity photodetection systems have long been close to            obeyed a certain minimum output entropy conjecture [2].
+                                          this noise limit. Hence determining the ultimate capacities of        This conjecture states that the von Neumann entropy at the
+                                          lasercom channels is of immediate relevance. The most famous          output of the thermal channel is minimized when the â mode
+                                          channel capacity formula is Shannon’s result for the classical        is in its vacuum state. Considerable evidence in support of
+                                          additive white Gaussian noise channel. For a complex-valued           this conjecture has been accumulated [3], but it has yet to
+                                                                                                 √              be proven. Nevertheless, the preceding lower bound already
+                                          channel model in which we transmit a and receive c = η a+
+                                          √
+                                            1 − η b, where 0 < η < 1 is the channel’s transmissivity and        exceeds Eqs. (2) and (3) as well as the best known bounds on
+                                          b is a zero-mean, isotropic, complex-valued Gaussian random           the capacity of direct detection.
+                                          variable that is independent of a, Shannon’s capacity is                 More recently, a capacity analysis of the bosonic broadcast
+                                                                                                                channel led to an inner bound on the capacity region, which
+                                                   Cclassical = ln[1 + η N̄ /(1 − η)N ] nats/use,        (1)    was shown to be the capacity region under the presumption
+                                                                                                                of a second minimum output entropy conjecture [4]. Both
+                                          with E(|a|2 ) ≤ N̄ and E(|b|2 ) = N . In the quantum                  conjectures have been proven if the input states are restricted
+                                          version of this channel model, we control the state of an             to be Gaussian, and they have been shown to be equivalent
+                                          electromagnetic mode with photon annihilation operator â             under this input-state restriction. In this paper, we show that
+                                          at the transmitter, and receive another
+                                                                             √      mode with photon            the second conjecture will establish the privacy capacity of
+                                                                      √
+                                          annihilation operator ĉ = η â + 1 − η b̂, where b̂ is the           the lossy bosonic channel, as well as its ultimate quantum
+                                          annihilation operator of a noise mode that is in a zero-mean,         information carrying capacity.
+                                          isotropic, complex-valued Gaussian state. For lasercom, if               The Entropy Power Inequality (EPI) from classical infor-
+                                          quantum measurements corresponding to ideal optical homo-             mation theory is widely used in coding theorem converse
+                                          dyne or heterodyne detection are employed at the receiver,            proofs for Gaussian channels. By analogy with the EPI, we
+                                          this quantum channel reduces to a real-valued (homodyne) or           conjecture its quantum version, viz., the Entropy Photon-
+                                          complex-valued (heterodyne) additive Gaussian noise channel,          number Inequality (EPnI). In this paper we show that the
+                                          from which the following capacity formulas (in nats/use)              two minimum output entropy conjectures cited above are
+                                                                                                              P           P
+simple corollaries of the EPnI. Hence, proving the EPnI would                         Here, χ(pj , σ̂j ) ≡ S( j pj σ̂j ) − j pj S(σ̂j ), is the
+immediately establish key results for the capacities of bosonic                       Holevo information, where {pj } is a probability dis-
+communication channels.                                                               tribution associated with the density operators σ̂j , and
+                                                                                      S(ρ̂) ≡ −Tr(ρ̂ log ρ̂) is the von Neumann entropy of
+               II. Q UANTUM W IRETAP C HANNEL
+                                                                                      the density operator ρ̂.2
+   The term “wiretap channel” was coined by Wyner [5] to
+                                                                                   Because Holevo information may not be additive, the clas-
+describe a communication system, in which Alice wishes
+                                                                                sical privacy capacity Cp of the quantum wiretap channel
+to communicate classical information to Bob, over a point-
+                                                                                must be computed by maximizing over successive uses of the
+to-point discrete memoryless channel that is subjected to a
+                                                                                channel, i.e., for n being the number of uses of the channel,
+wiretap by an eavesdropper Eve. Alice’s goal is to reliably
+and securely communicate classical data to Bob, in such a way                            Cp (NA-BE )
+that Eve gets no information whatsoever about the message.
+                                                                                                                h                          n
+                                                                                                                 χ(pT (i), j pA|T (j|i)ρ̂B
+                                                                                                                           P
+Wyner used the conditional entropy rate of the signal received
+                                                                                         = sup         max                               j )/n
+                                                                                            n p T (i)pA|T (j|i)
+by Eve, given Alice’s transmitted message, to measure the                                                               n
+                                                                                                                              i
+                                                                                         − χ(pT (i), j pA|T (j|i)ρ̂E
+                                                                                                     P
+secrecy level guaranteed by the system. He gave a single                                                              j   )/n   .              (6)
+letter characterization of the rate-equivocation region under                   The probabilities {pi } form a distribution over an auxiliary
+a limiting assumption, that the signal received by Eve is a                     classical alphabet T , of size |T |. The ultimate privacy capacity
+degraded version of the one received by Bob. Csiszár and                       is computed by maximizing the expression specified in (6)
+Körner later generalized Wyner’s results to the case in which                  over {pT (i)}, {pA|T (j|i)}, {ρ̂A
+                                                                                                                    n
+                                                                                                                  j }, and n, subject to a cardi-
+the signal received by Eve is not a degraded version of the one                 nality constraint on |T |. For a degraded wiretap channel, the
+received by Bob [6]. These classical-channel results were later                 auxiliary random variable is unnecessary, and Eq. (6) reduces
+extended by Devetak [7] to encompass classical transmission                     to
+over a quantum wiretap channel.                                                                                                n                       n
+   A quantum channel NA-B from Alice to Bob is a trace-                         Cp (NA-BE ) = sup max [χ(pA (j), ρ̂B                 E
+                                                                                                                   j )/n−χ(pA (j), ρ̂j )/n].
+                                                                                                     n pA (j)
+preserving completely positive map that transforms Alice’s                                                                                                 (7)
+single-use density operator ρ̂A to Bob’s, ρ̂B = NA-B (ρ̂A ). The
+quantum wiretap channel NA-BE is a quantum channel from                                 III. N OISELESS B OSONIC W IRETAP C HANNEL
+Alice to an intended receiver Bob and an eavesdropper Eve .
+                                                                                   The noiseless bosonic wiretap channel consists of a collec-
+The quantum channel from Alice to Bob is obtained by tracing
+                                                                                tion of spatial and temporal bosonic modes at the transmitter
+out E from the channel map, i.e., NA-B ≡ TrE (NA-BE ), and
+                                                                                that interact with a minimal-quantum-noise environment and
+similarly for NA-E . A quantum wiretap channel is degraded
+                                                                                split into two sets of spatio-temporal modes en route to two
+if there exists a degrading channel NBdeg   -E such that NA-E =                 independent receivers, one being the intended receiver and the
+NBdeg
+    -E ◦ N A - B .                                                              other being the eavesdropper.   The multi-mode bosonic wiretap
+   The wiretap channel describes a physical scenario in which                                         N
+                                                                                channel is given by      s As -Bs Es , where NAs -Bs Es is the
+                                                                                                           N
+for each successive n uses of NA-BE Alice communicates                          wiretap-channel map for the sth mode, which can be obtained
+a randomly generated classical message m ∈ W to Bob,                            from the Heisenberg evolutions
+where m is a classical index that is uniformly distributed over
+                                                                                                        √
+                                                                                                          ηs âs + 1 − ηs fˆs ,
+                                                                                                                  p
+the set, W , of 2nR possibilities. To encode and transmit m,                                   b̂s =                                       (8)
+Alice generates an instantiation k ∈ K of a discrete random
+                                                                                                        p              √ ˆ
+                                                                                               ês =      1 − ηs âs − ηs fs ,             (9)
+variable, and then prepares n-channel-use states that after
+transmission through the channel, result in bipartite conditional               where the {âs } are Alice’s modal annihilation operators, and
+                        n n
+density operators {ρ̂B    E
+                       m,k }. A (2
+                                   nR
+                                      , n, ǫ) code for this channel             {b̂s }, {ês } are the corresponding modal annihilation operators
+consists of an encoder, x : (W, K) → An , and a positive
+                             n                                                  for Bob and Eve, respectively. The modal transmissivities {ηs }
+                                                                                satisfy 0 ≤ ηs ≤ 1, and the environment modes {fˆs } are in
+                                           n
+operator-valued measure (POVM) {ΛB                  n
+                                         m } on B such that the
+following conditions are satisfied for every m ∈ W .1                           their vacuum states. We will limit our treatment here to the
+   1) Bob’s probability of decoding error is at most ǫ, i.e.,                   single-mode bosonic wiretap channel, as the privacy capacity
+                      n                                                       of the multi-mode channel can in principle be obtained by
+                             Bn
+                   Tr ρ̂B
+                        m,k Λm    > 1 − ǫ, ∀k, and              (4)             summing up capacities of all spatio-temporal modes and
+                                  n                                             maximizing the sum capacity subject to an overall input-power
+  2) For any POVM {ΛE               n
+                          m } on E , no more than ǫ bits                        budget using Lagrange multipliers, cf. [2], where this was done
+     of information is revealed about the secret message m.                     for the multi-mode single-user lossy bosonic channel.
+     Using j ≡ (m, k), this condition can be expressed, in                      Theorem — Assuming the truth of minimum output entropy
+     terms of the Holevo information [8], as follows,                           conjecture 2 (see Sec. V), the ultimate privacy capacity of the
+                                    n
+                                       
+                             ⊗n
+                    χ pj , NA−E  (ρA
+                                   j ) ≤ ǫ.              (5)                       2 A density operator is Hermitian, with eigenvalues that form a probability
+                                                                                distribution. Thus, the von Neumann entropy of a density operator ρ̂ is the
+  1 An , B n , and E n are the n-channel-use alphabets of Alice, Bob and Eve.   Shannon entropy of its eigenvalues.
+                                                                                                                               ′
+                                                                                   Fig. 1, where the quantum states ρ̂E of the constructed system
+                                                                                   E ′ are identical to the quantum states ρ̂E for a given input
+                                                                                   quantum state ρ̂A . Using Eq. (11) for the bosonic wiretap
+                                                                                   channel, we have
+                                                                                    Cp (NA-BE ) = max S ρ̂B − S ρ̂E
+                                                                                                                            
+                                                                                                          hâ† âi≤N̄
+                                                                                                                          ′
+                                                                                      =       max [S(ρ̂B ) − S(ρ̂E )]
+                                                                                            hâ† âi≤N̄
+                                                                                                                                                         ′
+                                                                                      =         max          {maxhâ† âi≤N̄ ,S(ρ̂B )=K [S(ρ̂B ) − S(ρ̂E )]}
+                                                                                            0≤K≤g(η N̄ )
+                                                                                                                                                  ′
+                                                                                      =         max          {K − minhâ† âi≤N̄ ,S(ρ̂B )=K [S(ρ̂E )]}
+                                                                                            0≤K≤g(η N̄ )
+
+Fig. 1. Schematic diagram of the single-mode bosonic wiretap channel. The             =         max          {K − g[(1 − η)g −1 (K)/η]}
+transmitter Alice (A) encodes her messages to Bob (B) in a classical index                  0≤K≤g(η N̄ )
+j, and over n successive uses of the channel, thus preparing a bipartite state
+ρ̂B
+  j
+    n n
+     E where E n represents n channel uses of an eavesdropper Eve (E).                = g(η N̄ ) − g((1 − η)N̄ ) nats/use
+For η > 1/2, this channel is degraded, as Eve’s state can be recreated by
+passing Bob’s state through a beamsplitter of transmissivity (1 − η)/η.               = Q(1) (NA-B ).                                                    (12)
+                                                                                   The first equality above follows from Lemma 3 of [9].
+                                                                                   The second equality follows from NA-BE being a degraded
+single-mode noiseless bosonic wiretap channel (see Fig. 1)
+                                                                                   channel. The restriction to 0 ≤ K ≤ g(η N̄ ) in the third
+with mean input photon-number constraint hâ† âi ≤ N̄ is
+                                                                                   equality is permissible because maxhâ† âi≤N̄ S(ρ̂B ) = g(η N̄ ).
+      Cp (NA-BE ) = g(η N̄ ) − g((1 − η)N̄ ) nats/use,                    (10)     The fifth equality follows4 from minimum output entropy
+                                                                                   conjecture 2 (see Sec. V). The ρ̂B that achieves this equality
+for η > 1/2 and Cp = 0 for η ≤ 1/2. This capacity is                               is a thermal state, which is realized when Alice employs
+additive and achievable with single-channel-use coherent-                          coherent-state encoding with a zero-mean isotropic Gaussian
+state encoding with a zero-mean isotropic Gaussian prior                           prior distribution pA (α) = (1/πK) exp(−|α|2 /K). The sixth
+distribution pA (α) = exp(−|α|2 /N̄ )/π N̄ .                                       equality now follows from g(x)−g(cx) being a monotonically
+                                                                                   increasing function of x ≥ 0, for c a constant satisfying
+Proof — Devetak’s result for the privacy capacity of the                           0 ≤ c < 1, and the equality to the single-letter quantum
+degraded quantum wiretap channel in Eq. (7) requires finite-                       capacity follows from Eq. (11). Note that the privacy capacity
+dimensional Hilbert spaces. Nevertheless, we will use this                         of this channel is zero when η ≤ 1/2. It is straightforward to
+result for the bosonic wiretap channel, which has an infinite-                     show that in the limit of high input photon number N̄ ,
+dimensional state space, by extending it to infinite-dimensional
+state spaces through a limiting argument.3 Furthermore, it was                      Cp (NA-BE ) = Q(1) (NA-B ) = max {0, ln(η) − ln(1 − η)} ,
+recently shown that the privacy capacity of a degraded wiretap
+                                                                                   a result that Wolf et. al. [10] independently derived by a
+channel is additive, and equal to the single-letter quantum
+                                                                                   different approach without use of an unproven output entropy
+capacity of the channel from Alice to Bob [9], i.e.,
+                                                                                   conjecture.
+       Cp (NA-BE ) = Cp(1) (NA-BE ) = Q(1) (NA-B ),                       (11)
+                                                                                   IV. T HE E NTROPY P HOTON -N UMBER I NEQUALITY (EP N I)
+where the superscript (1) denotes single-letter capacity. It is                    A. The Entropy Power Inequality
+straightforward to show that if η > 1/2, the bosonic wiretap
+                                                                                      Let X and Y be statistically independent, n-dimensional,
+channel is a degraded channel, in which Bob’s is the less-noisy
+                                                                                   real-valued random vectors that possess differential (Shannon)
+receiver and Eve’s is the more-noisy receiver. The degraded
+                                                                                   entropies h(X) and h(Y) respectively. Because a real-valued,
+nature of the bosonic wiretap channel has been depicted in
+                                                                                   zero-mean Gaussian random variable U has differential en-
+   3 When |T | and |A| are finite and we are using coherent states in Eq. (7),     tropy given by h(U ) = ln(2πehU 2 i), where the mean-squared
+there will be a finite number of possible transmitted states, leading to a         value, hU 2 i, is considered to be the power of U , the entropy
+finite number of possible states received by Bob and Eve. Suppose we               powers of X and Y are taken to be
+limit the auxiliary-input alphabet (T )—and hence the input (A) and the
+output alphabets (B and E)—to truncated coherent states within the finite-                                  eh(X)/n                      eh(Y)/n
+dimensional Hilbert space spanned by the Fock states { |mi : 0 ≤ m ≤ M },                    P (X) ≡                    and P (Y) ≡              .       (13)
+where M ≫ N̄ . Applying Devetak’s theorem to the Hilbert space spanned                                        2πe                          2πe
+by these truncated coherent states then gives us a lower bound on the privacy
+capacity of the bosonic wiretap channel when the entire, infinite-dimensional         4 Here, g −1 (S) is the inverse of the function g(N ). Because g(N ) for
+Hilbert space is employed. By taking M sufficiently large, while maintaining       N ≥ 0 is a non-negative, monotonically increasing, concave function of N ,
+the cardinality condition for T , the rate-region expressions given by Devetak’s   it has an inverse, g −1 (S) for S ≥ 0, that is non-negative, monotonically
+theorem will converge to Eq. (10).                                                 increasing, and convex.
+In this way, an n-dimensional, real-valued, random vector X̃                    the âi mode and ρ̂Tbi is the thermal state of average photon
+comprised of independent, identically distributed (i.i.d.), real-               number N (ρ̂b ) for the b̂i mode, then we have S(ρ̂ã ) = S(ρ̂a )
+valued, zero-mean, variance-P (X), Gaussian random variables                    and S(ρ̂b̃ ) = S(ρ̂b ). We define a new vector of photon
+has differential entropy h(X̃) = h(X). We can similarly define                  annihilation operators, ĉ = [ ĉ1 ĉ2 · · · ĉn ], by the
+an i.i.d. Gaussian random vector Ỹ with differential entropy                   convex combination
+h(Ỹ) = h(Y). We define a new random vector by the convex                                       √        p
+combination                                                                                 ĉ ≡ η â + 1 − η b̂, for 0 ≤ η ≤ 1,           (21)
+                         √       p
+                    Z ≡ η X + 1 − η Y,                      (14)                and use ρ̂c to denote its density operator. This is equivalent to
+where 0 ≤ η ≤ 1. This random vector has differential                            saying that ĉi is the output of a lossless beam splitter whose
+                                                                                inputs, âi and b̂i , couple to that output with transmissivity η
+         √ and entropy power P (Z). Furthermore, let Z̃ ≡
+entropy h(Z)
+√                                                                               and reflectivity 1 − η, respectively.
+  η X̃ + 1 − η Ỹ. Three equivalent forms of the Entropy
+Power Inequality (EPI), see, e.g., [11], are then:                                We can now state two equivalent forms of our conjectured
+                                                                                Entropy Photon-Number Inequality (EPnI) [13]:
+               P (Z)     ≥     ηP (X) + (1 − η)P (Y)                    (15)
+                                                                                            N (ρ̂c ) ≥    ηN (ρ̂a ) + (1 − η)N (ρ̂b )       (22)
+                h(Z)     ≥     h(Z̃)                                    (16)
+                                                                                            S(ρ̂c ) ≥ S(ρ̂c̃ ),                             (23)
+                                                                                            Nn
+                h(Z)     ≥     ηh(X) + (1 − η)h(Y).                     (17)    where ρ̂c̃ ≡ i=1 ρ̂Tci with ρ̂Tci being the thermal state of
+                                                                                average photon number ηN (ρ̂a ) + (1 − η)N (ρ̂b ) for ĉi .
+B. The Entropy Photon-Number Inequality
+   Let â       =       [ â1 â2 · · · ân ] and b̂           =                      V. M INIMUM O UTPUT E NTROPY C ONJECTURES
+[ b̂1 b̂2 · · · b̂n ] be vectors of photon annihilation                            By analogy with the classical EPI, we might expect there
+operators for a collection of 2n different electromagnetic                      to be a third equivalent form of the quantum EPnI, viz.,
+field modes of frequency ω [12]. The joint state of the modes
+                                                                                              S(ρ̂c ) ≥ ηS(ρ̂a ) + (1 − η)S(ρ̂b ).          (24)
+associated with â and b̂ is given by the product-state density
+operator ρ̂ab = ρ̂a ⊗ ρ̂b , where ρ̂a and ρ̂b are the density                   It is easily shown that (22) implies (24) [14], but we have not
+operators associated with the â and b̂ modes, respectively.                    been able to prove the converse. Indeed, we suspect that the
+The von Neumann entropies of the â and b̂ modes are                            converse might be false. More important than whether or not
+S(ρ̂a ) = −tr[ρ̂a ln(ρ̂a )] and S(ρ̂b ) = −tr[ρ̂b ln(ρ̂b )].                    (24) is equivalent to (22) and (23), is the role of the EPnI
+   The thermal state of a mode with annihilation operator â                    in proving classical information capacity results for bosonic
+has two equivalent definitions:                                                 channels. In particular, the EPnI provides simple proofs of
+                                     2                                          the following two minimum output entropy conjectures. These
+                                e−|α| /N
+                        Z
+                 ρ̂T = d2 α               |αihα|,            (18)               conjectures are important because proving minimum output
+                                  πN                                            entropy conjecture 1 also proves the conjectured capacity of
+and                          ∞
+                                                                                the thermal-noise channel [2], and proving minimum output
+                             X      Ni                                          entropy conjecture 2 also proves the conjectured capacity
+                    ρ̂T =                   |iihi|,                     (19)
+                             i=0
+                                 (N + 1)i+1                                     region of the bosonic broadcast channel [4]. Furthermore,
+                                                                                as we have shown above, proving minimum output entropy
+where N = hâ† âi is the average photon number. In Eq. (18),                   conjecture 2 also establishes the privacy capacity of the
+|αi is the coherent state of amplitude α, i.e., it satisfies â|αi =            bosonic wiretap channel and the single-letter quantum capacity
+α|αi, for α a complex number. In Eq. (19), |ii is the i-photon                  of the lossy bosonic channel.
+state, i.e., it satisfies N̂ |ii = i|ii, for i = 0, 1, 2, . . ., with N̂ ≡         Minimum Output Entropy Conjecture 1 — Let a and
+â† â being the photon number operator. Physically, Eq. (18)                   b be n-dimensional vectors of annihilation operators, with
+says that the thermal state is an isotropic Gaussian mixture                    joint density operator ρ̂ab = (|ψiaa hψ|) ⊗ ρ̂b , where |ψia
+of coherent states. Equation (19), on the other hand, says that
+the thermal state is a Bose-Einstein mixture of number states.                              N zero-mean-field pure state of the a modes
+                                                                                is an arbitrary
+                                                                                and ρ̂b = ni=1 ρ̂Tbi with ρ̂Tbi being the b̂i mode’s thermal
+From Eq. (19) we immediately have that S(ρ̂T ) = g(N ),                         state of average photon number K. Define a new vector of
+because the photon-number states are orthonormal.5                              photon annihilation operators, ĉ = [ ĉ1 ĉ2 · · · ĉn ], by
+    The entropy photon-numbers of the density operators ρ̂a                     the convex combination (21) and use ρ̂c to denote its density
+and ρ̂b are defined as follows:                                                 operator and S(ρ̂c ) to denote its von Neumann entropy. Then
+   N (ρ̂a ) ≡ g −1 (S(ρ̂a )/n) and N (ρ̂b ) ≡ g −1 (S(ρ̂b )/n).                 choosing |ψia to be the n-mode vacuum state minimizes
+                                                              (20)              S(ρ̂c ).
+                 Nn
+Thus, if ρ̂ã ≡ i=1 ρ̂Tai and ρ̂b̃ ≡
+                                        Nn
+                                               ρ̂   , where  ρ̂                    Minimum Output Entropy Conjecture 2 — Let a and b
+                                            i=1 Tbi             Tai
+is the thermal state of average photon number N (ρ̂a ) for                      be n-dimensional vectors of annihilation operators with joint
+                                                                                density operator ρ̂ab = (|ψiaa hψ|) ⊗ ρ̂b , where |ψia =
+                                                                                N   n
+                                                                                    i=1 |0iai is the n-mode vacuum state and ρ̂b has von
+  5 The coherent states, {|αi}, are not orthonormal, but rather overcomplete.
+Neumann entropy S(ρ̂b ) = ng(K) for some K ≥ 0.                                                     R EFERENCES
+Define a new vector of photon annihilation operators, ĉ =          [1] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, and H. P.
+[ ĉ1 ĉ2 · · · ĉn ], by the convex combination (21) and use           Yuen, “Classical capacity of lossy bosonic channels: the exact solution,”
+ρ̂c to denote its density operator and S(ρ̂N                            Phys. Rev. Lett. 92, 027902 (2004).
+                                           c ) to denote its von
+                                             n                      [2] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, B. J. Yen,
+Neumann entropy. Then choosing ρ̂b = i=1 ρ̂Tbi with ρ̂Tbi               and H. P. Yuen, “Classical capacity of free-space optical communication,”
+being the b̂i mode’s thermal state of average photon number             in O. Hirota, ed., Quantum Information, Statistics, Probability, (Rinton
+                                                                        Press, New Jersey, 2004) pp. 90–101.
+K minimizes S(ρ̂c ).                                                [3] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, and J. H. Shapiro,
+   To see that the EPnI encompasses both of the preceding               “Minimum output entropy of bosonic channels: a conjecture,” Phys. Rev.
+minimum output entropy conjectures is our final task in this            A 70, 032315 (2004).
+                                                                    [4] S. Guha, J. H. Shapiro, and B. I. Erkmen, “Classical capacity of bosonic
+paper. We begin by using the premise of conjecture 1 in (22).           broadcast communication and a minimum output entropy conjecture,”
+Because the â modes are in a pure state, we get S(ρ̂a ) = 0            Phys. Rev. A 76, 032303 (2007).
+and hence the EPnI tells us that                                    [5] A. D. Wyner, “The wiretap channel,” Bell. Sys. Tech. Jour. 54, 1355–1387
+                                                                        (1975).
+            N (ρ̂c ) ≥ (1 − η)N (ρ̂b ) = (1 − η)K.          (25)    [6] I. Csiszár and J. Körner, “Broadcast channels with confidential messages,”
+                                                                        IEEE Trans. Inform. Theory 23, 339–348, (1978).
+                                                                    [7] I. Devetak, “The private classical capacity and quantum capacity of a
+Taking g(·) on both sides of this inequality, we get S(ρ̂c )/n ≥        quantum channel,” arXiv:quant-ph/0304127v6.
+g[(1 − η)K]. But, if |ψia isNthe n-mode vacuum state, we            [8] A. S. Holevo, “The capacity of a quantum channel with general input
+                                 n                                      states,” IEEE Trans. Inform. Theory 44, 269–273 (1998); P. Hausladen, R.
+can easily show that ρ̂c =       i=1 ρ̂Tci , with ρ̂Tci being the       Jozsa, B. Schumacher, M. Westmoreland, and W. K. Wootters, “Classical
+ĉi mode’s thermal state of average photon number (1 − η)K.             information capacity of a quantum channel,” Phys. Rev. A 54, 1869–
+Thus, when |ψia is the n-mode vacuum state we get S(ρ̂c ) =             1876 (1996); B. Schumacher and M. D. Westmoreland, “Sending classical
+ng[(1 − η)K], which completes the proof.                                information via noisy quantum channels,” Phys. Rev. A 56, 131–138
+                                                                        (1997).
+    Next, we apply the premise of conjecture 2 in (22). Once        [9] G. Smith, “The private classical capacity with a symmetric side channel
+again, the â modes are in a pure state, so we get                      and its application to quantum cryptography,” arXiv:quant-ph/0705.3838.
+                                                                    [10] M. M. Wolf, D. Pérez-Garcı́a, G. Giedke, “Quantum capacities of
+            N (ρ̂c ) ≥ (1 − η)N (ρ̂b ) = (1 − η)K,          (26)        bosonic channels,” arXiv:quant-ph/0606132.
+                                                                    [11] O. Rioul, “Information theoretic proofs of entropy power inequalities,”
+and hence S(ρ̂c )/n ≥ g[(1 − η)K]. But, taking ρ̂b =                    arXiv:cs.IT/07041751.
+N n                                                                 [12] L. Mandel and E. Wolf, Optical Coherence and Quantum Optics,
+  i=1 ρ̂Tbi , with ρ̂Tbi being the b̂i mode’s thermal state of          (Cambridge University Press, Cambridge, 1995).
+average photon number K, satisfies the premise ofNminimum           [13] To show that (22) implies (23), assume (22) is true:
+output entropy conjecture 2 and implies that ρ̂c = ni=1 ρ̂Tci ,                          N (ρ̂c )   ≥     ηN (ρ̂a ) + (1 − η)N (ρ̂b )                (27)
+with ρ̂Tci being the ĉi mode’s thermal state of average photon
+number (1−η)K. In this case we have S(ρ̂c ) = ng[(1−η)K],                                           =     ηN (ρ̂ã ) + (1 − η)N (ρ̂b̃ )              (28)
+which completes the proof.                                              Now, if ρ̂ã b̃ = ρ̂ã ⊗ ρ̂b̃ is the joint density operator of the â and
+                                                                                                                                          Nn
+                                                                        b̂ modes, we find that the state of the ĉ modes is ρ̂c̃ ≡            i=1 ρ̂Tci ,
+                      VI. C ONCLUSION                                   where ρ̂Tci is a thermal state with average photon number given by
+   We conjectured a quantum version of the classical entropy            N (ρ̂c̃ ) = ηN (ρ̂ã ) + (1 − η)N (ρ̂b̃ ), so that S(ρ̂c̃ ) = ng[N (ρ̂c̃ )]. Thus,
+                                                                        from (28) we get N (ρ̂c ) ≥ N (ρ̂c̃ ) = g −1 (S(ρ̂c̃ )/n). Taking g(·) of
+power inequality, which subsumes two minimum output en-                 both sides of this inequality completes the proof.
+tropy conjectures that prior work has shown to be sufficient            To show that (23) implies (22), assume (23) is true:
+to prove the capacity of the point-to-point thermal-noise                N (ρ̂c )   =     g −1 (S(ρ̂c )/n)
+lossy bosonic channel, and the bosonic broadcast channel
+respectively [2], [4]. Even though proving this more general                        ≥     g −1 (S(ρ̂c̃ )/n) = g −1 [g(ηN (ρ̂ã ) + (1 − η)N (ρ̂b̃ ))]
+inequality—the Entropy Photon-number Inequality (EPnI)—
+might seem harder than the two minimum output entropy                               =     ηN (ρ̂ã ) + (1 − η)N (ρ̂b̃ )
+conjectures, there is a possibility of drawing parallels from
+                                                                                    =     ηN (ρ̂a ) + (1 − η)N (ρ̂b ),                               (29)
+the proofs of the classical entropy power inequality [11]. In
+this paper, we have also shown that the EPnI also implies               where the inequality is due to g −1 (S) being a monotonically increasing
+                                                                        function of S, and the proof is complete.
+the proof of the privacy capacity of the bosonic wiretap            [14] Assume that (22) is true. We then have that N (ρ̂c ) ≥ ηN (ρ̂a ) + (1 −
+channel. Furthermore, using a result from [9], we have that the         η)N (ρ̂b ), so that
+degraded nature of the bosonic wiretap channel implies that                   S(ρ̂c )    =     ng[N (ρ̂c )] ≥ ng[ηN (ρ̂a ) + (1 − η)N (ρ̂b )] (30)
+its privacy capacity equals the single-letterquantum capacity of
+the lossy bosonic channel. Moreover. both of these capacities                            ≥     ηng[N (ρ̂a )] + (1 − η)ng[N (ρ̂b )]                   (31)
+are achieved by coherent-state encoding using an isotropic
+Gaussian prior.                                                                          =     ηS(ρ̂a ) + (1 − η)S(ρ̂b ),                            (32)
+                                                                        where the second inequality follows from g(N ) being concave, and the
+                   ACKNOWLEDGEMENTS                                     proof is complete.
+  This research was supported by the W. M. Keck Foundation
+Center for Extreme Quantum Information Theory.
+

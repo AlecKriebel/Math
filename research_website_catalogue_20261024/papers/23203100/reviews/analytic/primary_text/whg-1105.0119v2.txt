@@ -1,0 +1,1712 @@
+                                                                 Quantum trade-off coding for bosonic communication
+
+                                                                                     Mark M. Wilde and Patrick Hayden
+                                                             School of Computer Science, McGill University, Montreal, Québec, Canada H3A 2A7
+
+                                                                                                   Saikat Guha
+                                                                           Disruptive Information Processing Technologies Group,
+                                                                     Raytheon BBN Technologies, Cambridge, Massachusetts, USA 02138
+                                                                                           (Dated: May 24, 2025)
+                                                          Recent work has precisely characterized the achievable trade-offs between three key information
+                                                       processing tasks—classical communication (generation or consumption), quantum communication
+                                                       (generation or consumption), and shared entanglement (distribution or consumption), measured in
+                                                       bits, qubits, and ebits per channel use respectively. Slices and corner points of this three-dimensional
+
+
+
+
+arXiv:1105.0119v2 [quant-ph] 19 May 2011
+                                                       region reduce to several well-known quantum communication protocols over noisy channels. A
+                                                       single trade-off coding technique can attain any point in the region and can outperform time-
+                                                       sharing between the best known protocols for accomplishing each information processing task alone.
+                                                       Previously, the benefits of trade-off coding that had been found were too small to be of much
+                                                       practical value (for the dephasing and the universal cloning machine channels, for instance). In this
+                                                       article, we demonstrate that the associated performance gains are nonetheless remarkably high for
+                                                       several physically relevant bosonic channels that model free-space / fiber-optic links, thermalizing
+                                                       channels, or amplifiers (or even relativistic communication). We show that significant performance
+                                                       gains from trade-off coding also apply when trading photon-number resources between transmitting
+                                                       public and private classical information simultaneously over secret-key-assisted bosonic channels.
+
+                                                       PACS numbers: 03.67.Hk, 03.67.Pp, 04.62.+v
+                                                       Keywords: trade-off coding, quantum Shannon theory, bosonic channels, entanglement, secret key
+
+
+                                              Shannon’s classical information theory found the ca-           or even limit the amount of entanglement consumed in
+                                           pacity of a classical channel, which quantifies the chan-         the entanglement-assisted transmission of classical infor-
+                                           nel’s ability to transmit information [1]. The capacity           mation [19]. The sender and receiver could further spec-
+                                           serves as a benchmark against which communication en-             ify whether they would like the classical information to
+                                           gineers can test the performance of any practical scheme.         be public or private [20].
+                                           Despite the success of Shannon’s theory, it fails to iden-           In a trade-off communication problem, such as that
+                                           tify the true capacity for physical channels such as free-        mentioned above for simultaneous classical-quantum
+                                           space or fiber-optic links because the quantum physical           communication, the naive strategy of time-sharing would
+                                           properties of the optical-frequency EM waves—the car-             have the sender and receiver use a classical communi-
+                                           rier of information—must be accounted for within a full           cation protocol for some fraction of the time (say, the
+                                           quantum framework in order to assess the ultimate lim-            best Holevo-Schumacher-Westmoreland (HSW) classical
+                                           its on reliable communication [2]. A major revision of            code and a joint-detection receiver on long codeword
+                                           Shannon’s information theory, dubbed quantum Shan-                blocks [11–13]), while operating with a quantum commu-
+                                           non theory, has emerged in recent years in an attempt             nication protocol for the other fraction of the time (say,
+                                           to determine the ultimate physical limits on communica-           the best Lloyd-Shor-Devetak (LSD) quantum code and
+                                           tions [3]. This theory has provided a successful quantum          a joint-detection receiver on long codeword blocks [14–
+                                           theory of information in many special cases [4–8], but            16]). Trade-off coding is a more complex coding strategy
+                                           recent developments have indicated that there is much             than naive time-sharing, in which—simply stated—the
+                                           more to understand regarding the nature of information            sender encodes classical information into the many dif-
+                                           transmission over quantum channels [9, 10].                       ferent ways of permuting quantum codes. Prior research
+                                              Quantum channels support a richer variety of infor-            has shown that its performance can beat that of time-
+                                           mation processing tasks than do classical channels. A             sharing for certain channels such as dephasing channels
+                                           sender can transmit classical information, such as “on”           and universal cloning machine channels, for which it is
+                                           or “off,” over a quantum channel for a receiver to de-            even provably optimal [6, 21–23].
+                                           code [11–13], or she can transmit quantum information,               In 2004, Bennett and Shor announced that “per-
+                                           such as the quantum-mechanical state of a photon, to the          haps the greatest progress over the last year has been
+                                           same receiver [14–16]. Additionally, if the sender and re-        in understanding trade-offs among communications re-
+                                           ceiver share entanglement before communication begins,            sources” [3]. As Bennett and Shor suggested, the origi-
+                                           this resource can boost the rate of information transmis-         nal [6, 19] and subsequent developments [22, 24] on trade-
+                                           sion [17], generalizing the superdense coding effect [18].        off coding indeed improved our understanding of commu-
+                                           The sender might also want to transmit classical and              nication over quantum channels. But the practical pay-
+                                           quantum information simultaneously to the receiver [6],           off of trade-off coding for the channels studied previously
+
+                                           Typeset by REVTEX
+                                                                                                                                     2
+
+                      Alice                Bob                              ther consume or generate shared entanglement between
+                                                                            the sender and the receiver. A real parameter η between
+                                                                            zero and one characterizes the power transmissivity of
+| 〉| 〉| 〉| 〉 ······
+→  →
+   →     →                                                                  the single-mode bosonic channel. We let C be the rate
+                                                                            of classical communication, Q be the rate of quantum
+ 0101100 ······        E                              | 〉| 〉| 〉| 〉 ······
+                                                      →  →
+                                                         →     →            communication, and E be the rate of entanglement con-
+                                            D         0101100 ······        sumption (or generation). If the rate of a resource is
+                                                                            positive, then the interpretation is that the protocol gen-
+                                                                            erates that resource. Otherwise, with a negative rate,
+                                                                            the interpretation is that the protocol consumes that re-
+                                                                            source. Figure 1 depicts a particular scenario in which
+                                                                            Alice would like to communicate both classical and quan-
+FIG. 1: The anatomy of a trade-off code. Alice and                          tum data to Bob with the help of shared entanglement.
+Bob are spatially separated (depicted with the dashed lines),                  We can show that the capacity region of the lossy
+and she would like to communicate both classical and quan-                  bosonic channel with η ≥ 1/2 is the union of regions
+tum information to him with the help of shared entanglement                 of the following form (provided the minimum-output en-
+(depicted at the lower left as arising from some third-party                tropy conjecture is true) [56] [33]:
+source). Alice feeds a qubit stream |↑i |&i |↓i |%i · · · , a clas-
+sical bit stream 0101100 · · · , and her half of the shared en-                  C + 2Q ≤ g (λNS ) + g (ηNS ) − g ((1 − η) λNS ) ,
+tanglement through an encoder E. She transmits the encoded                        Q + E ≤ g (ηλNS ) − g ((1 − η) λNS ) ,
+data over many uses of a noisy channel (depicted as light-
+ning bolts corrupting the data). Bob receives the outputs of                  C + Q + E ≤ g (ηNS ) − g ((1 − η) λNS ) ,          (1)
+the channels and feeds them along with his half of the shared
+entanglement into a decoder D that can decode both the clas-                where λ ∈ [0, 1] is a variable photon-number-sharing pa-
+sical and quantum data.                                                     rameter, NS is the mean input photon number (con-
+                                                                            straint), and g (N ) is the entropy of a single-mode ther-
+                                                                            mal state with mean photon number N :
+
+                                                                                      g (N ) ≡ (N + 1) ln (N + 1) − N ln N.        (2)
+was so small that the technique seemed to be of only the-
+oretical interest, suggesting that in any real scenario, a                  If η < 1/2, then the above region is still achievable. The
+sender and receiver would simply agree on a time-sharing                    strategy for achieving the above rates generates random
+strategy in order to avoid the increased encoding and de-                   codes from a particular ensemble that consists of Gaus-
+coding complexity of trade-off coding.                                      sian distributed displacements of a two-mode squeezed
+   In this article, we show to the contrary that trade-                     vacuum such that the mean input photon number is equal
+off coding yields remarkable gains over time-sharing for                    to NS [33]. All the above equations can be divided by
+several channels of practical interest including the lossy                  ln 2, such that the units for C, Q and E become classical
+bosonic channel, which can model free-space optical com-                    bits, qubits, and entangled bits (ebits) per channel use,
+munication. Our results also apply more generally to                        respectively. The interpretation of the photon-number
+thermalizing and amplifying bosonic channels, which can                     sharing parameter λ is that it determines the fraction
+model systems as diverse as superconducting transmis-                       of photons the code dedicates to quantum or classical
+sion lines in the microwave range [25] or hybrid quantum                    resources. If λ is close to zero, then the code is dedicat-
+memories that store both classical and quantum infor-                       ing most of the photons to classical resources (the unas-
+mation in the collective degrees of freedom of atomic en-                   sisted transmission of classical information), whereas if
+sembles [26]. We determine an achievable rate region                        it is close to one, the code dedicates most of the pho-
+for the lossy bosonic channel using a transmitter that                      tons to quantum resources (quantum communication or
+modulates two-mode squeezed-vacuum states. We prove                         entanglement-assisted classical transmission). This allo-
+that this rate region is the capacity region for the lossy                  cation, however, is done within a single channel use, as
+bosonic channel if a long-standing minimum output en-                       compared to naive time-sharing, in which each channel
+tropy conjecture is true [27–30]. Even if the conjecture                    use is dedicated to only one task.
+is not true, our achievable trade-off region beats time-                       Figure 2 depicts two important special cases of the re-
+sharing between the best known communication proto-                         gion in (1): (a) the trade-off between classical and quan-
+cols for the lossy bosonic channel by huge margins, and                     tum communication without entanglement assistance
+the same holds for the more general thermal and ampli-                      and (b) the trade-off between entanglement-assisted and
+fying channels.                                                             unassisted classical communication. The figure indi-
+   Trading quantum and classical resources—Our first re-                    cates the remarkable improvement over time-sharing that
+sult concerns the transmission of classical and quantum                     trade-off coding gives. It is important to note that if
+information over a single-mode lossy bosonic channel                        the mean input photon number is high enough to reach
+with a constraint on the mean photon number per mode                        the quantum capacity of the lossy bosonic channel (see
+at the transmitter, where the transmission can also ei-                     more about this below), then the achievable rates given
+                                                                                                                                                                                                                                     3
+
+                                         Classical−quantum trade−off for the lossy bosonic channel with η = 3/4                                        Classical−entanglement trade−off for the lossy bosonic channel with η = 3/4
+                               1.6                                                                                                                    9
+                                                                                             Trade−off coding
+                                                                                             Time−sharing                                                                Trade−off coding
+                               1.4                                                                                                                    8
+                                                                                                                                                                         Time−sharing
+
+                                                                                                                                                      7
+
+
+
+                                                                                                                      Entanglement consumption rate
+                               1.2
+
+
+
+ Quantum communication rate
+                                                                                                                                                      6
+                                1
+                                                                                                                                                      5
+                               0.8
+
+
+
+   (in qubits / channel use)                                                                                             (in ebits / channel use)
+                                                                                                                                                      4
+                               0.6
+                                                                                                                                                      3
+
+                               0.4
+                                                                                                                                                      2
+
+                               0.2                                                                                                                    1
+
+                                0                                                                                                                     0
+                                     0        1       2       3         4       5       6      7       8          9                                   8.5            9               9.5             10        10.5            11
+                                                             Classical communication rate                                                                                      Classical communication rate
+                                                                (in bits / channel use)                                                                                           (in bits / channel use)
+
+                                                                        (a)                                                                                                                 (b)
+FIG. 2: (a) The C-Q trade-off. Suppose a channel transmits on average 3/4 of the photons to the receiver, while losing
+the other 1/4 en route. Such a channel can reliably transmit a maximum of log2 (3/4) − log2 (1/4) ≈ 1.58 qubits per channel
+use [8], and a mean photon budget of about 200 photons per channel use at the transmitter is sufficient to nearly achieve this
+quantum capacity. A trade-off coding strategy which lowers the quantum data rate to about 1.4 qubits per channel use while
+retaining the same mean photon budget allows for a sender to reliably transmit an additional 4.5 classical bits per channel use,
+while time-sharing would only allow for an additional 1 classical bit per channel use with this photon budget. This 6.5 dB
+increase in the classical data rate (or spectral efficiency) that trade-off coding gives over time-sharing for this example is strong
+enough to demand that quantum communication engineers employ trade-off coding strategies in order to take advantage of
+such theoretical performance gains. (b) The C-E trade-off. The sender and the receiver share entanglement, and the sender
+would like to transmit classical information while minimizing the consumption of entanglement. With a mean photon budget of
+200 photons per channel use over a channel that propagates only 3/4 of the photons input to it, the sender can reliably transmit
+a maximum of about 10.7 classical bits per channel use while consuming entanglement at a rate of about 9.1 entangled bits per
+channel use [17, 31, 32]. With trade-off coding, the sender can significantly reduce the entanglement consumption rate to about
+5 entangled bits per channel use while still transmitting about 10.5 classical bits per channel use, only a 0.08 dB decrease in
+the rate of classical communication for a 2.6 dB decrease in the entanglement consumption rate. The savings in entanglement
+consumption could be useful for them if they would like to have the extra entanglement for future rounds of assisted (quantum
+or classical) communications.
+
+
+
+                                                                                                                                                                                                         −1
+above are much better than those achievable by time-                                                                      by ln (η) − ln (1 − η) − [η (1 − η) λNS ] when NS is suf-
+sharing between its quantum capacity [8], its classical                                                                   ficiently high [33]. Thus, in order to reach the quantum
+capacity [7], and its entanglement-assisted classical and                                                                 capacity to within  bits, a trade-off code should dedi-
+quantum capacities [17, 31, 32]. In [33], we give the full                                                                cate no more than a fraction λ = 1/ [η (1 − η) NS ln 2]
+proof of the above result, showing that trade-off coding                                                                  to the quantum part of the code. If the trade-off code
+outperforms time-sharing whenever η < 1, and we extend                                                                    dedicates a higher fraction of the photons than this to
+the above result to other important bosonic channels such                                                                 quantum resources, then it is effectively wasting photons
+as the thermal noise and amplifier channels.                                                                              which could instead be used to get a significant amount
+   A rule of thumb for trade-off coding—It is known                                                                       of classical communication “for free.” As the mean input
+that the quantum capacity of a lossy bosonic channel                                                                      photon number increases, the fraction of available pho-
+with unlimited mean input photon number is equal to                                                                       tons needed for the quantum rate to saturate at capac-
+ln (η) − ln (1 − η) when 1/2 < η < 1 (the quantum                                                                         ity becomes smaller and smaller. So, if a trade-off code
+capacity vanishes when 0 ≤ η ≤ 1/2) [57] [8, 31, 34],                                                                     abides by the above rule of thumb, it will nearly reach
+while g (ηNS ) − g ((1 − η) NS ) is an achievable rate for                                                                the limit on quantum capacity of ln (η)−ln (1 − η), while
+quantum communication over it, with NS photons avail-                                                                     achieving a high classical data rate as well.
+able per channel use on an average [8]. In the con-                                                                          A similar rule of thumb applies for the entanglement-
+text of trade-off coding, the achievable rate becomes                                                                     assisted transmission of classical information. That is,
+g (ηλNS ) − g ((1 − η) λNS ), where λ is the fraction of                                                                  it is not necessary to dedicate such a large fraction of
+photons dedicated to quantum resources. A Taylor series                                                                   the photons to shared entanglement when the mean pho-
+expansion of g (ηλNS ) − g ((1 − η) λNS ) bounds it below                                                                 ton budget increases. Recall that the maximum classical
+                                                                                                                        4
+
+communication rate over the lossy bosonic channel with        same as that between public and private classical com-
+entanglement assistance is equal to g (NS ) + g (ηNS ) −      munication.
+g ((1 − η) NS ) [31, 32], while from the first inequality        The other setting to which our results apply is some-
+in (1), observe that a limited-entanglement trade-off code    what more exotic. If a receiver is accelerating uniformly
+achieves a rate of g (λNS ) + g (ηNS ) − g ((1 − η) λNS ).    with respect to an inertial sender, then the sender’s trans-
+Thus, a natural question is to determine the fraction of      mission to the receiver experiences an amplification noise
+photons needed to dedicate to shared entanglement in          due to the well-known Unruh effect [36]. Prior research
+order to come close to achieving the full entanglement-       has investigated this “Unruh channel” under a some-
+assisted classical capacity (with maximal entanglement        what restrictive assumption that the sender transmit
+consumption). It turns out that we can apply a simi-          certain superpositions of single-photon states to the re-
+lar rule of thumb because the quantity 5/ [6λNS (1 − η)]      ceiver [22, 23, 37]. Our results demonstrate an increase
+serves as an upper bound on the difference of the             in performance for this Unruh channel under the less re-
+entanglement-assisted capacity and the limited entangle-      strictive assumption of a fixed photon budget, with the
+ment data rate when NS is sufficiently high [33]. Thus,       upshot of a considerable simplification in the mathemat-
+in order to be within  bits of the entanglement-assisted     ics needed to understand the communication capabilities
+classical capacity, it suffices to choose the photon-number   of this channel [33].
+sharing parameter λ = 5/ [6NS (1 − η) ln 2] [33]. Since         Discussion—We might attempt to understand why
+the rate of entanglement consumption for a limited en-        trade-off coding between classical and quantum commu-
+tanglement code is g (λNS ), this rule of thumb can give      nication performs so well for bosonic channels in the high
+a significant savings on entanglement consumption in or-      photon-number regime by making an analogy with qubit
+der to have the benefit of the superdense coding effect in    dephasing channels. It is well known that for every η less
+the high photon-number regime.                                than one, the lossy bosonic channel has a finite quan-
+   Trading public and private classical resources—We          tum capacity even when an infinite number of photons
+have further trade-off coding results for two other no-       are available [31]. Here, we have seen that we can ap-
+table settings. The first is the setting where a sender       proach this quantum capacity with just a small fraction
+would like to transmit both public and private classical      of the total photon number dedicated to the quantum
+information to a receiver over a free-space link (perhaps     part of the code. Thus, one can think loosely of the
+even with the assistance of a secret key). These results      lossy bosonic channel as being “composed of” a few chan-
+constitute a relevant benchmark for satellite-to-satellite    nels that are good for quantum data transmission while
+links, which might be used for both public communica-         the rest are good for classical data transmission. The
+tion and quantum key distribution [35]. We let R denote       analogy is that we can combine many strongly dephas-
+the rate of public communication, P the rate of private       ing channels that are only good for classical data trans-
+communication, and S the rate of secret key consump-          mission with just a few weakly dephasing channels that
+tion/generation. The capacity region of the lossy bosonic     are good for quantum data transmission in order to ap-
+channel with η ≥ 1/2 for this latter trade-off is as fol-     proximate the lossy bosonic classical-quantum trade-off.
+lows (provided the minimum-output entropy conjecture          From Refs. [6, 22, 24], we know that the trade-off capac-
+is true) [33]:                                                ity region of any dephasing channel is additive, and so
+                                                              the resulting region for the combined dephasing channel
+           R + P ≤ g (ηNS ) ,                                 is simply the Minkowski sum of those of the individual
+           P + S ≤ g (ηλNS ) − g ((1 − η) λNS ) ,             channels. However, this heuristic understanding is only
+       R + P + S ≤ g (ηNS ) − g ((1 − η) λNS ) ,       (3)    satisfying in the very high photon-number regime, when
+                                                              the available number of photons is much larger than that
+where λ ∈ [0, 1] is again a photon-number-sharing param-      needed to saturate the quantum capacity.
+eter, NS is the mean input photon number, and g (N )             Conclusion—We have shown that achievable rates
+is defined in (2). If η < 1/2, then the above region is       with trade-off coding over bosonic channels can be sig-
+still achievable. When λ is closer to zero, the code ded-     nificantly higher than those achievable from time-sharing
+icates more photons to public classical resources, while      across conventional quantum protocols, suggesting that
+when closer to one, the code dedicates more photons to        quantum communication engineers should try to take ad-
+private classical resources. An interesting special case      vantage of these gains in a practical coding scheme. Our
+of the above achievable region is the trade-off between       trade-off regions are optimal for a lossy bosonic chan-
+public and private classical communication. Lemma 3           nel that transmits on average over half of the photons
+of Ref. [20] proves that the classical-quantum trade-off      input to it if the minimum-output entropy conjecture
+from before is the same as the public-private trade-off       is true. This paper does not discuss specific codes and
+whenever the channel is degradable (the lossy bosonic         structured optical receivers to attain reliable communica-
+channel is degradable whenever η ≥ 1/2 [8, 34]). Thus,        tions at rate-triples predicted by our achievable dynamic
+Figure 2(a) doubles as a plot of this trade-off. Further-     capacity region. In future work, it would be interesting to
+more, we should note that the trade-off between public        lay out the full transmitter-coding-receiver architecture
+classical communication and secret key generation is the      for optical trade-off coding.
+                                                                                                                              5
+
+   Acknowledgements—We thank Jeffrey H. Shapiro for              as well as funding from the Canada Research Chairs
+reminding us of the results from Ref. [29]. MMW ac-              program, the Perimeter Institute, CIFAR, FQRNT’s IN-
+knowledges the MDEIE (Québec) PSR-SIIRI interna-                TRIQ, NSERC, ONR through grant N000140811249, and
+tional collaboration grant. PH acknowledges the hospi-           QuantumWorks. SG acknowledges the DARPA Informa-
+tality of the Stanford Institute for Theoretical Physics         tion in a Photon program, contract #HR0011-10-C-0159.
+
+
+
+
+ [1] Claude E. Shannon. A mathematical theory of communi-        [18] Charles H. Bennett and Stephen J. Wiesner. Com-
+     cation. Bell System Technical Journal, 27:379–423, 1948.         munication via one- and two-particle operators on
+ [2] Jeffrey H. Shapiro. The quantum theory of optical com-           Einstein-Podolsky-Rosen states. Physical Review Letters,
+     munications. IEEE Journal of Selected Topics in Quan-            69:2881–2884, 1992.
+     tum Electronics, 15(6):1547–1569, 2009.                     [19] Peter W. Shor. Quantum Information, Statistics, Prob-
+ [3] Charles H. Bennett and Peter W. Shor. Quantum channel            ability (Dedicated to A. S. Holevo on the occasion of his
+     capacities. Science, 303(5665):1784–1787, March 2004.            60th birthday), chapter “The classical capacity achiev-
+ [4] Jim Harrington and John Preskill. Achievable rates               able by a quantum channel assisted by limited entangle-
+     for the Gaussian quantum channel. Physical Review A,             ment”, pages 144–152. Rinton Press, 2004. arXiv:quant-
+     64(6):062301, November 2001.                                     ph/0402129.
+ [5] Christopher King. The capacity of the quantum depolar-      [20] Mark M. Wilde and Min-Hsiu Hsieh. Public and private
+     izing channel. IEEE Transactions on Information The-             resource trade-offs for a quantum channel. May 2010.
+     ory, 49(1):221–229, January 2003.                                arXiv:1005.3818.
+ [6] Igor Devetak and Peter W. Shor. The capacity of a quan-     [21] Mark M. Wilde and Min-Hsiu Hsieh. The quantum dy-
+     tum channel for simultaneous transmission of classical           namic capacity formula of a quantum channel. April
+     and quantum information. Communications in Mathe-                2010. arXiv:1004.0458.
+     matical Physics, 256(2):287–303, 2005.                      [22] Kamil Brádler, Patrick Hayden, Dave Touchette, and
+ [7] Vittorio Giovannetti, Saikat Guha, Seth Lloyd, Lorenzo           Mark M. Wilde. Trade-off capacities of the quantum
+     Maccone, Jeffrey H. Shapiro, and Horace P. Yuen. Clas-           Hadamard channels. Physical Review A, 81(6):062312,
+     sical capacity of the lossy bosonic channel: The exact           June 2010.
+     solution. Physical Review Letters, 92(2):027902, January    [23] Tomas Jochym-O’Connor, Kamil Brádler, and Mark M.
+     2004.                                                            Wilde. Trade-off coding for universal qudit cloners moti-
+ [8] Michael M. Wolf, David Pérez-Garcı́a, and Geza Giedke.          vated by the Unruh effect. March 2011. arXiv:1103.0286.
+     Quantum capacities of bosonic channels. Physical Review     [24] Min-Hsiu Hsieh and Mark M. Wilde. Entanglement-
+     Letters, 98(13):130501, March 2007.                              assisted communication of classical and quantum in-
+ [9] Graeme Smith and Jon Yard. Quantum communica-                    formation. IEEE Transactions on Information Theory,
+     tion with zero-capacity channels. Science, 321:1812–1815,        56(9):4682–4704, September 2010. arXiv:0811.4227.
+     September 2008.                                             [25] A. Wallraff, D. I. Schuster, A. Blais, L. Frunzio, R.-S.
+[10] Matthew B. Hastings. Superadditivity of communication            Huang, J. Majer, S. Kumar, S. M. Girvin, and R. J.
+     capacity using entangled inputs. Nature Physics, 5:255–          Schoelkopf. Strong coupling of a single photon to a super-
+     257, 2009.                                                       conducting qubit using circuit quantum electrodynamics.
+[11] Paul Hausladen, Richard Jozsa, Benjamin Schumacher,              Nature, 431:162–167, September 2004.
+     Michael Westmoreland, and William K. Wootters. Clas-        [26] T. Chaneliere, D. N. Matsukevich, S. D. Jenkins, S.-
+     sical information capacity of a quantum channel. Physical        Y. Lan, T. A. B. Kennedy, and A. Kuzmich. Storage
+     Review A, 54(3):1869–1876, September 1996.                       and retrieval of single photons transmitted between re-
+[12] Benjamin Schumacher and Michael D. Westmoreland.                 mote quantum memories. Nature, 438:833–836, Decem-
+     Sending classical information via noisy quantum chan-            ber 2005.
+     nels. Physical Review A, 56(1):131–138, July 1997.          [27] Vittorio Giovannetti, Saikat Guha, Seth Lloyd, Lorenzo
+[13] Alexander S. Holevo. The capacity of the quantum chan-           Maccone, and Jeffrey H. Shapiro. Minimum output en-
+     nel with general signal states. IEEE Transactions on             tropy of bosonic channels: A conjecture. Physical Review
+     Information Theory, 44(1):269–273, 1998.                         A, 70(3):032315, September 2004.
+[14] Seth Lloyd. Capacity of the noisy quantum channel.          [28] Vittorio Giovannetti, Alexander S. Holevo, Seth Lloyd,
+     Physical Review A, 55(3):1613–1622, March 1997.                  and Lorenzo Maccone. Generalized minimal output en-
+[15] Peter W. Shor. The quantum channel capacity and co-              tropy conjecture for one-mode Gaussian channels: def-
+     herent information. In Lecture Notes, MSRI Workshop              initions and some exact results. Journal of Physics A:
+     on Quantum Computation, 2002.                                    Mathematical and Theoretical, 43(41):415305, 2010.
+[16] Igor Devetak. The private classical capacity and quantum    [29] Saikat Guha, Jeffrey H. Shapiro, and Baris I. Erkmen.
+     capacity of a quantum channel. IEEE Transactions on              Classical capacity of bosonic broadcast communication
+     Information Theory, 51:44–55, January 2005.                      and a minimum output entropy conjecture. Physical Re-
+[17] Charles H. Bennett, Peter W. Shor, John A. Smolin, and           view A, 76(3):032303, September 2007.
+     Ashish V. Thapliyal. Entanglement-assisted capacity of      [30] Saikat Guha. Multiple-User Quantum Information The-
+     a quantum channel and the reverse Shannon theorem.               ory for Optical Communication Channels. PhD thesis,
+     IEEE Transactions on Information Theory, 48(10):2637,            Massachusetts Institute of Technology, June 2008.
+     October 2002. arXiv:quant-ph/0106052.                       [31] A. S. Holevo and R. F. Werner. Evaluating capaci-
+                                                                                                                               6
+
+     ties of bosonic Gaussian channels. Physical Review A,           noise, measurement, and amplification. Reviews of Mod-
+     63(3):032312, February 2001.                                    ern Physics, 82(2):1155–1208, April 2010.
+[32] Vittorio Giovannetti, Seth Lloyd, Lorenzo Maccone,         [50] Carlton M. Caves. Quantum limits on noise in linear
+     and Peter W. Shor. Entanglement assisted capacity of            amplifiers. Physical Review D, 26(8):1817–1839, October
+     the broadband lossy channel. Physical Review Letters,           1982.
+     91(4):047901, July 2003.                                   [51] Kamil Brádler. An infinite sequence of additive chan-
+[33] Mark M. Wilde, Patrick Hayden, and Saikat Guha. Sup-            nels: the classical capacity of cloning channels. 2009.
+     plementary material for “Quantum trade-off coding for           arXiv:0903.1638.
+     bosonic communication”, 2011.                              [52] Kamil Brádler, Nicolas Dutil, Patrick Hayden, and
+[34] Saikat Guha, Jeffrey H. Shapiro, and Baris I. Erk-              Abubakr Muhammad. Conjugate degradability and the
+     men. Capacity of the bosonic wiretap channel and the            quantum capacity of cloning channels. Journal of Math-
+     entropy photon-number inequality. In Proceedings of             ematical Physics, 51(7):072201, 2010.
+     the IEEE International Symposium on Information The-       [53] Kamil Brádler, Patrick Hayden, and Prakash Panan-
+     ory, pages 91–95, Toronto, Ontario, Canada, July 2008.          gaden. Quantum communication in Rindler spacetime.
+     arXiv:0801.0841.                                                2010. arXiv:1007.0997.
+[35] Valerio Scarani, Helle Bechmann-Pasquinucci, Nico-         [54] P. D. Nation, J. R. Johansson, M. P. Blencowe, and
+     las J. Cerf, Miloslav Dušek, Norbert Lütkenhaus, and          Franco Nori. Stimulating uncertainty: Amplifying the
+     Momtchil Peev. The security of practical quantum key            quantum vacuum with superconducting circuits. 2011.
+     distribution. Reviews of Modern Physics, 81(3):1301–            arXiv:1103.0835.
+     1350, September 2009.                                      [55] Vittorio Giovannetti and Rosario Fazio. Information-
+[36] William G. Unruh. Notes on black-hole evaporation.              capacity description of spin-chain correlations. Physical
+     Physical Review D, 14(4):870–892, August 1976.                  Review A, 71(3):032314, March 2005.
+[37] Kamil Brádler, Patrick Hayden, and Prakash Panan-         [56] The trade-off results reported in this paper apply for a
+     gaden. Private information via the Unruh effect. Journal        single-mode bosonic channel. These results are sufficient
+     of High Energy Physics, 2009(08):074, 2009.                     to construct trade-off capacity results for any physical op-
+[38] Min-Hsiu Hsieh and Mark M. Wilde. Trading classical             tical communication channel that modulates multiple de-
+     communication, quantum communication, and entangle-             grees of freedom of the photon, such as spatial and polar-
+     ment in quantum Shannon theory. IEEE Transactions on            ization modes of light, although this generalization may
+     Information Theory, 56(9):4705–4730, September 2010.            require an additional Lagrange-multiplier-optimization
+[39] Mark M. Wilde. From Classical to Quantum Shan-                  step. One such example is the multiple-spatial-mode
+     non Theory. March 2011. Lecture Notes available at              near-field line-of-sight free-space optical channel. Our
+     markwilde.com/teaching/notes/.                                  single-mode results are therefore of fundamental impor-
+[40] Charles H. Bennett, Gilles Brassard, Claude Crépeau,           tance to practical communications problems.
+     Richard Jozsa, Asher Peres, and William K. Wootters.       [57] The quantum capacity “cap” plays an interesting role
+     Teleporting an unknown quantum state via dual classical         in multimode quantum communication. When NS , the
+     and Einstein-Podolsky-Rosen channels. Physical Review           mean photon number at the transmitter, is high, the
+     Letters, 70:1895–1899, 1993.                                    quantum capacity begins to saturate to its maximum
+[41] Min-Hsiu Hsieh and Mark M. Wilde. Public and private            value of log2 (η/(1 − η)) qubits per mode. In this regime,
+     communication with a quantum channel and a secret key.          using NS /2 mean number of photons to modulate each
+     Physical Review A, 80(2):022306, August 2009.                   one of two orthogonal polarization modes (parallel chan-
+[42] Christopher Gerry and Peter Knight. Introductory Quan-          nels) can let us surpass the quantum capacity cap and
+     tum Optics. Cambridge University Press, November                yield a higher qubit spectral efficiency (average number
+     2004.                                                           of qubits transmitted per second) for the same NS . The
+[43] Samuel L. Braunstein and Peter van Loock. Quantum in-           qubit throughput increases even further when multiple
+     formation with continuous variables. Reviews of Modern          spatial modes are available.
+     Physics, 77:513–577, 2005.
+[44] Vittorio Giovannetti, Seth Lloyd, Lorenzo Maccone, and
+     Peter W. Shor. Broadband channel capacities. Physical
+                                                                           Appendices: Detailed Derivations
+     Review A, 68(6):062323, December 2003.
+[45] Igor Devetak, Aram W. Harrow, and Andreas Win-
+     ter. A resource framework for quantum shannon theory.        In the following appendices, we justify the results an-
+     54(10):4587–4618, October 2008.                            nounced in the main text. Appendix A recasts known re-
+[46] Jens Eisert and Michael M. Wolf. Quantum Information       sults on trade-off coding [20, 21, 24, 38] into a form more
+     with Continous Variables of Atoms and Light, chapter       suitable for the bosonic setting. Appendix B proves that
+     Gaussian quantum channels, pages 23–42. Imperial Col-      the regions in (1) and (3) are achievable and that they are
+     lege Press, London, 2007. arXiv:quant-ph/0505151.          the capacity regions if a long-standing minimum-output
+[47] Michael M. Wolf, Geza Giedke, and J. Ignacio Cirac. Ex-
+                                                                entropy conjecture is true. Recall that the region in (1)
+     tremality of gaussian quantum states. Physical Review
+     Letters, 96(8):080502, March 2006.                         describes the classical-quantum-entanglement trade-off
+[48] Daniel Collins and Sandu Popescu. Classical analog of      of the lossy bosonic channel and the region in (3) de-
+     entanglement. Physical Review A, 65(3):032321, Febru-      scribes the public-private-secret-key trade-off of the lossy
+     ary 2002.                                                  bosonic channel. Appendix B also gives expressions for
+[49] A. A. Clerk, M. H. Devoret, S. M. Girvin, Florian Mar-     special cases of the regions in (1) and (3), demonstrates
+     quardt, and R. J. Schoelkopf. Introduction to quantum      that trade-off coding always beats time-sharing whenever
+                                                                                                                              7
+
+0 < η < 1, rigorously establishes our “rules of thumb”        of regions of the form:
+for trade-off coding, and considers the high photon num-
+ber limit for some special cases. Appendices C and D              C + 2Q ≤ H (N (ρ))
+                                                                                X
+give achievable rate regions for the thermal and ampli-                       +      pX (x) [H (ρx ) − H (N c (ρx ))] ,
+fier bosonic channels, respectively. Finally, Appendix E                                x
+demonstrates that an encoding with a fixed mean pho-                                                                       (A1)
+ton budget can beat the rates achieved with a single-                           X
+                                                                                                                 c
+excitation encoding for the “Unruh channel.”                       Q+E ≤            pX (x) [H (N (ρx )) − H (N (ρx ))] ,
+                                                                                x
+                                                                                                                           (A2)
+                                                                                             X
+                                                               C + Q + E ≤ H (N (ρ)) −            pX (x) H (N c (ρx )) ,
+                                                                                              x
+      Appendix A: Review of Trade-off Regions                                                                              (A3)
+                                                              where H(σ) ≡ − Tr(σ ln σ), {pX (x)P, ρx } is an ensemble
+   In recent work, Wilde and Hsieh have synthesized all       with expected density operator ρ ≡ x pX (x) ρx and N c
+known single-sender single-receiver quantum and classi-       is the channel complementary to the channel N .
+cal communication protocols over a general noisy quan-
+tum channel into a three-way dynamic capacity region          Proof. The above proposition is just a rephrasing of the
+that they call the “triple-trade-off” region [21, 24, 38].    results from Refs. [21, 24, 38]. Recall from Ref. [21] that
+They consider a three-dimensional region whose points         the quantum dynamic capacity region is the regulariza-
+(C, Q, E) correspond to rates of classical communication,     tion of the union of regions of the form:
+quantum communication, and entanglement generation
+                                                                        C + 2Q ≤ I (AX; B)ρ ,                              (A4)
+(or consumption) respectively. Let us illustrate a few
+simple examples of such triple trade-offs. In the qubit                   Q + E ≤ I (AiBX)ρ ,                              (A5)
+teleportation protocol, communication (consumption) of               C + Q + E ≤ I (X; B)ρ + I (AiBX)ρ ,                   (A6)
+two classical bits and communication (consumption) of
+one ebit of shared entanglement is used to communi-           where the union is over all classical-quantum states ρXAB
+cate (generate) one noiseless qubit, giving a rate triple     of the following form:
+(−2, 1, −1), where a minus sign indicates the consump-                     X                          0       0
+                                                                                             X
+tion of a resource and a plus sign indicates the generation       ρXAB ≡       pX (x) |xi hx| ⊗ N A →B (φAAx    ),  (A7)
+of a resource. Similarly, the superdense coding proto-                      x
+col consumes a noiseless qubit channel and an ebit to                       0
+
+generate two classical bits. It corresponds to the rate       and each φAAx   is a pure, bipartite state [21, 24, 38]. The
+triple (2, −1, −1). Another trivial trade-off region is en-   convention in the above formulas is that a rate for a re-
+tanglement distribution, which communicates one noise-        source is positive when the communication protocol gen-
+less qubit to generate one ebit of shared entanglement,       erates that resource, and the rate for a resource is neg-
+thereby yielding the rate triple (0, −1, 1). Wilde and        ative when the communication protocol consumes that
+Hsieh show that when a communication channel is noisy,        resource. The above characterization is the full triple
+the above three unit-resource protocols, in conjunction       trade-off, including both positive and negative rates. A
+with the classically-enhanced father protocol [24, 39], can   simple strategy for achieving the above capacity region
+be used to derive the ultimate (C, Q, E) trade-off space      is to combine the “classically-enhanced father protocol”
+for any noisy quantum channel. The dynamic capacity           [24, 39] with teleportation [40], superdense coding [18],
+region formula they derive is regularized over multiple       and entanglement distribution. The classically-enhanced
+channel uses, and hence the triple trade-off region may       father protocol is a coding strategy that can communi-
+in general be superadditive. Another dynamic capacity         cate both classical and quantum information with the
+region that Wilde and Hsieh characterize is the trade-        help of shared entanglement. It generalizes both of the
+off between private communication rate P (generation or       trade-off coding strategies from Refs. [6, 19].
+consumption), public communication rate R (generation            Due to the particular form of the state in (A7), we can
+or consumption) and secret-key rate S (distribution or        rewrite the inequalities in (A4-A6) as
+consumption) [20].                                                 C + 2Q ≤ H (A|X)ρ + H (B)ρ − H (E|X)ρ , (A8)
+                                                                     Q + E ≤ H (B|X)ρ − H (E|X)ρ ,                         (A9)
+                                                                C + Q + E ≤ H (B)ρ − H (E|X)ρ ,                        (A10)
+            1.   Quantum Dynamic Region                       where the entropies are now with respect to the following
+                                                              classical-quantum state
+Proposition 1 The quantum dynamic capacity region of                                             A0 →BE      0
+                                                                           X                X
+                                                                ρXABE ≡       pX (x) |xi hx| ⊗ UN       (φxAA ), (A11)
+a quantum channel N is the regularization of the union                     x
+                                                                                                                                        8
+          0
+       A →BE
+and UN         is an isometric extension of the channel                    where R is the rate of public classical communication, P
+   A0 →B                                                                   is the rate of private classical communication, S is the
+N        . We can also think of the information quan-
+tities as being with respect to the following input en-                    rate of secret key generation or consumption, the state
+semble (isomorphic to the input classical-quantum state                    ω XY BE is a state of the following form:
+in (A11)):                                                                                 X                              X
+                      n              0
+                                       o                                     ω XY BE ≡           pX (x) pY |X (y|x) |xi hx|
+                        pX (x) , φAA
+                                  x      .            (A12)
+                                                                                           x,y
+              n       o                                                                                             Y   A→BE  A
+                                                                                                                                  
+Let ρx ≡ TrA φAA
+                    0                P
+                        and let ρ ≡ x pX (x) ρx . We then                                                  ⊗ |yi hy| ⊗ UN    ψx,y   ,
+                 x
+obtain the inequalities in the statement of the proposition                  A→BE
+                                                                           UN        is an isometric extension of the channel N A→B ,
+by substituting into (A8-A10).                                                    A
+                                                                           and ψx,y are pure states. The register X is associated
+   Observe that it suffices to calculate just four entropies
+                                                                           to the public information of the code, and the register
+in order to determine the achievable rates (C, Q, E) as-
+                                                                           Y is associated to the code’s private information. The
+sociated to particular input ensemble:
+                                                                           method for achieving the above capacity region is to com-
+                      H (N (ρ)) ,                                  (A13)   bine the “publicly-enhanced private father” protocol with
+                      X                                                    the one-time pad, private-to-public communication, and
+                         pX (x) H (ρx ) ,                          (A14)
+                                                                           secret key distribution [20]. The “publicly-enhanced pri-
+                          x
+                          X                                                vate father” protocol exploits shared secret key and the
+                              pX (x) H (N (ρx )) ,                 (A15)   channel to communicate public and private classical in-
+                          x
+                          X                                                formation [41].
+                              pX (x) H (N c (ρx )) .               (A16)     We can also think about this capacity region from the
+                          x                                                ensemble point of view. Let the input ensemble be
+                                                                                            
+                                                                                              pX (x) pY |X (y|x) , ψx,y .
+                 2.       Private Dynamic Region
+                                                                                         P                                P
+                                                                           Let ρx ≡        y pY |X (y|x) ψx,y and ρ ≡       x pX (x) ρx .
+  The private dynamic capacity region of a quantum                         Then we get the characterization in the statement of the
+channel captures the trade-off between public classical                    proposition by substitution.
+communication, private classical communication, and se-                      The above proposition also gives an achievable rate re-
+cret key [20].                                                             gion if we restrict the input states to be pure (pure states
+                                                                           are sufficient to achieve the boundary of the region for
+Proposition 2 The private dynamic capacity region of                       degradable channels, but a general channel might need
+a degradable quantum channel N is the regularization of                    an optimization over all mixed states). Observe that it
+the union of regions of the form:                                          suffices to consider the following four entropies in order
+     R + P ≤ H (N (ρ))                                                     to calculate the private dynamic capacity region:
+                  X
+                −      pX (x) pY |X (y|x) H (N (ψx,y )) ,                          H (N (ρ)) ,                                    (A20)
+                              x,y                                                  X
+                                                                   (A17)              pX (x) pY |X (y|x) H (N (ψx,y )) ,          (A21)
+                  X                                                                 x,y
+     P +S ≤               pX (x) [H (N (ρx )) − H (N c (ρx ))] ,                   X
+                      x                                                                   pX (x) H (N (ρx )) ,                    (A22)
+                                                                   (A18)           X
+                                                                                     x
+
+                                                                                          pX (x) H (N c (ρx )) .                  (A23)
+                                     X
+R + P + S ≤ H (N (ρ)) −                   pX (x) H (N c (ρx )) ,
+                                                                                     x
+                                      x
+                                                                   (A19)
+      
+where pX (x)PpY |X (y|x) , |ψx,y i is anPensemble of pure                           Appendix B: Lossy Bosonic Channel
+states, ρx ≡ y pY |X (y|x) ψx,y , ρ ≡ x pX (x) ρx , and
+N c is the channel complementary to N .                                      Consider now the case of a single-mode lossy bosonic
+Proof. This proposition is a rephrasing of the results                     channel. The transformation that this channel induces
+in Ref. [20]. For a degradable quantum channel N ,                         on the input annihilation operators is
+Lemma 6 of Ref. [20] states that the private dynamic                                            √      p
+region is as follows:                                                                     â → η â + 1 − η ê,             (B1)
+                                                                                                  p          √
+                  R + P ≤ I (Y X; B)ω ,                                                   ê → − 1 − η â + η ê,           (B2)
+                  P + S ≤ H (B|X)ω − H (E|X)ω ,
+                                                                           where â is the input annihilation operator for the sender,
+              R + P + S ≤ H (B)ω − H (E|X)ω ,                              ê is the input annihilation operator for the environment,
+                                                                                                                     9
+
+and η is the transmissivity of the channel. Let N de-        Observe that the reduced state θ is a thermal state with
+note the Kraus map induced by this channel, and let N c      mean photon number λNS [42]. Let θ denote the state
+denote the complementary channel. In the case where          resulting from taking the expectation of the state θ over
+the environmental input is the vacuum state, the com-        the choice of α with the prior pλNS (α):
+plementary channel is just a lossy bosonic channel with
+transmissivity 1 − η [34]. We place a photon number con-                     Z
+straint on the input mode to the channel, such that the                 θ≡       dα pλNS (α) D (α) θD† (α) .
+mean number of photons at the input cannot be greater
+than NS .
+                                                             The state θ is just a thermal state with mean photon
+  1.    Quantum Dynamic Achievable Rate Region
+                                                             number NS [42]. Thus, the state input to the channel on
+                                                             average has a mean photon number NS , ensuring that
+                                                             we meet the photon number constraint on the channel
+   The proof of the theorem below justifies achievability    input.
+of the region in (1) in the main text.
+                                                               It is worth mentioning the two extreme cases of the
+Theorem 3 An achievable quantum dynamic region for           ensemble in (B6). When the photon-number-sharing pa-
+a lossy bosonic channel with transmissivity η is the union   rameter λ = 0, the ensemble reduces to an ensemble of
+of regions of the form:                                      coherent states with a Gaussian prior of variance NS :
+
+       C + 2Q ≤ g (λNS ) + g (ηNS ) − g ((1 − η) λNS ) ,
+                                                                                                  A0
+                                                                             n                       o
+                                                                                           A
+                                                    (B3)                      pNS (α) , |0i ⊗ |αi      .
+      Q + E ≤ g (ηλNS ) − g ((1 − η) λNS ) ,         (B4)
+  C + Q + E ≤ g (ηNS ) − g ((1 − η) λNS ) ,          (B5)    This ensemble achieves the classical capacity of the
+                                                             lossy bosonic channel [7]. When the photon-number-
+where λ ∈ [0, 1] is a photon-number-sharing parameter
+                                                             sharing parameter λ = 1, the ensemble is no longer
+and g (N ) is the entropy of a thermal state with mean
+                                                             an ensemble—the input state is always the two-mode
+photon number N defined in (2).
+                                                             squeezed state in (B8) with λ = 1. This input state
+Proof. We pick an input ensemble of the form in (A12)        achieves both the entanglement-assisted classical and
+as follows, from which we will generate random codes:        quantum capacities of the lossy bosonic channel [17, 31,
+             n                              o                32, 44] and the channel’s quantum capacity [34]. For
+                            0             0
+               pλNS (α) , DA (α) |ψTMS iAA .      (B6)       the latter statement about quantum capacity, the result
+                                                             holds if the mean input photon number is sufficiently high
+The distribution pλNS (α) is an isotropic Gaussian distri-   (so that g (ηNS ) − g ((1 − η) NS ) ≈ ln (η) − ln (1 − η))
+                                                             and, otherwise, the statement depends a long-standing
+bution with variance λNS :                                   minimum-output entropy conjecture [27, 28, 34].
+                    1         n
+                                     2
+                                           o
+                                                              We can now calculate the various entropies in (A13-
+      pλNS (α) ≡         exp − |α| /λNS ,           (B7)
+                  πλNS                                       A16). For our case, they are respectively as follows:
+
+where λ ≡ 1 − λ, λ ∈ [0, 1] is a photon-number-sharing                  
+parameter, indicating how many photons to dedicate to            H N θ ,                                          (B9)
+                                                                 Z
+the quantum part of the code, while λ indicates how
+                                                                   dα pλNS (α) H D (α) θD† (α) ,
+                                                                                              
+many photons to dedicate to the classical part. In (B6),                                                         (B10)
+   0
+DA (α) is a displacement operator acting on mode A0 ,
+                                                                 Z
+                                                                   dα pλNS (α) H N D (α) θD† (α) ,
+                                                                                                 
+               0
+and |ψTMS iAA is a two-mode squeezed (TMS) state of                                                              (B11)
+the following form [42, 43]:                                     Z
+                                                                   dα pλNS (α) H N c D (α) θD† (α) .
+                                                                                                  
+                      s                                                                                          (B12)
+                   ∞              n
+           AA0
+                  X         [λNS ]        A   A0
+   |ψTMS i      ≡                  n+1 |ni |ni   .  (B8)
+                  n=0   [λNS + 1]
+                                                             The above entropies are straightforward to calculate for
+Let θ denote the state resulting from tracing over the       the case of the lossy bosonic channel.
+                                                                                                   We proceed in the
+mode A:                                                      above order. The state N θ is a thermal state with
+                   n                   o                     mean photon number ηNS (the lossy bosonic channel
+                                     0
+           θ ≡ TrA |ψTMS ihψTMS |AA                          attenuates the mean photon number of the transmitted
+                   ∞
+                                                             thermal state), and so its entropy is
+                                  n
+                   X     [λNS ]               A0
+               =                   n+1 |ni hn|   .
+                   n=0 [λNS + 1]
+                                                                                         
+                                                                                 H N θ        = g (ηNS ) ,
+                                                                                                                                                                   10
+
+Entropy is invariant under the application of a unitary
+transformation, and so the second entropy is just
+                                                                                                  8
+
+
+
+
+                                                                 Entanglement consumption rate
+           Z
+                                                                                                  6
+              dα pλNS (α) H D (α) θD† (α)
+                                            
+                                                                                                  4
+              Z
+                                                                                                  2
+           = dα pλNS (α) H (θ)
+                                                                                                  0
+             = H (θ)                                                                             −2
+
+             = g (λNS ) .                                                                        −4
+                                                                                                 −5
+
+Both the channel N and the complementary channel N c                                                      0
+                                                                                                                                                                   −10
+                                                                                                                                                         −5
+are covariant with respect to a displacement operator                                                           5                             0
+                                                                                                                                    5
+                                                                                                                               10
+                                                                                                                     10   15
+D (α) whenever the input state is thermal. Thus, we             Quantum communication rate
+                                                                                                                                    Classical communication rate
+can compute the last two entropies as
+    Z                                                          FIG. 3: The full triple trade-off region for the lossy bosonic
+       dα pλNS (α) H N D (α) θD† (α)
+                                       
+                                                               channel with transmissivity η = 3/4 and mean input photon
+                                                               number NS = 100. The arrows indicate directions in which
+                             √             √
+       Z
+                                                               the boundary extends infinitely.
+     = dα pλNS (α) H D ( ηα) N (θ) D† ( ηα)
+                                                
+
+      = H (N (θ))
+      = g (ηλNS ) ,                                  (B13)
+                                                               other case when λ is equal to zero, we are dedicating all
+and                                                            of the photons to sending classical information without
+  Z                                                            any intent to send quantum information. Figure 3 plots
+   dα pλNS (α) H N c D (α) θD† (α)
+                                                             this triple trade-off region for η = 3/4 and NS = 100.
+   Z               p                p 
+  = dα pλNS (α) H D      ηα N c (θ) D†   ηα
+                                                                                                  2.    Special Cases of the Quantum Dynamic
+  = H (N c (θ))                                                                                                      Trade-off
+  = g ((1 − η) λNS ) ,                               (B14)
+                                                                 A first special case of the quantum dynamic achievable
+where η ≡ 1 − η.                                               rate region is the trade-off between classical and quantum
+   We can now specify our characterization of an achiev-       communication (first explored by Devetak and Shor in
+able rate region for trade-off communication over the          Ref. [6]). The region in (B3-B5) reduces to the following
+lossy bosonic channel, simply by plugging in our various       set of inequalities for this special case:
+entropies into the characterization of the region in (A1-
+A3). We can justify this approach by means of a limiting                                                   Q ≤ g (ηλNS ) − g ((1 − η) λNS ) ,                 (B15)
+argument similar to that which appears in Refs. [29, 34].                                              C + Q ≤ g (ηNS ) − g ((1 − η) λNS ) .                  (B16)
+Suppose that we truncate the Hilbert space at the chan-
+nel input so that it is spanned by the Fock number states      Figure 2(a) in the main text displays a plot of this region
+{|0i , |1i , . . . , |Ki} where K  NS . Thus, all coherent    for a lossy bosonic channel with transmissivity η = 3/4
+states, squeezed states, and thermal states become trun-       and mean input photon number NS = 200. Trade-off
+cated to this finite-dimensional Hilbert space. Also, it is    coding for this channel can give a dramatic improvement
+only necessary to consider an alphabet X that is finite        over a time-sharing strategy. More generally, Figure 4(a)
+because the input Hilbert space is finite (this follows from   demonstrates that trade-off coding beats time-sharing
+Caratheodory’s theorem [6, 24]). Applying Proposition 1        for all η such that 1/2 < η < 1 (there is no trade-off
+to the ensemble of the form in (B6) in this truncated          for η ≤ 1/2 because the quantum capacity vanishes for
+Hilbert space gives a quantum dynamic region which is          these values of η).
+strictly an inner bound to the region in (B3-B5). As we
+                                                                  Another special case of the quantum dynamic capacity
+let K grow without bound, the entropies given by Propo-
+                                                               region is when the sender and receiver share prior entan-
+sition 1 converge to the entropies in (B3-B5). A similar
+                                                               glement and the sender would like to transmit classical
+argument applies to the private dynamic regions and the
+                                                               information to the receiver (a trade-off first explored by
+other regions throughout this paper.
+                                                               Shor in Ref. [19]). The region in (B3-B5) reduces to the
+   In order to obtain the full region, we take the union
+                                                               following set of inequalities for this special case:
+of all the above regions by varying the photon-number-
+sharing parameter λ from 0 to 1. When λ is one, we are
+                                                                                                 C ≤ g (λNS ) + g (ηNS ) − g ((1 − η) λNS ) ,                 (B17)
+dedicating all of the photons to quantum resources with-
+out the intent of sending any classical information. In the                                      C ≤ g (ηNS ) − g ((1 − η) λNS ) + E,                         (B18)
+                                                                                                                               11
+
+where we now take the convention that positive E corre-              4.   “Rules of Thumb” for Trade-off Coding
+sponds to the consumption of shared entanglement. Fig-
+ure 2(b) in the main text displays a plot of this region           Here we derive two propositions to support the claims
+for the case where η = 3/4 and NS = 200. The figure             in the main text regarding two different “rules of thumb”
+demonstrates that trade-off coding can give a dramatic          for trade-off coding.
+improvement over time-sharing. More generally, Fig-
+ure 4(b) demonstrates that trade-off coding beats time-         Lemma 4 The thermal entropy function g (N ) admits
+sharing for all η such that 0 < η < 1.                          the following power series expansion whenever N ≥ 1:
+                                                                                                   ∞           j+1
+                                                                                                   X     (−1)
+                                                                          g (N ) = ln (N ) + 1 +                     .
+3.    The Limit of High Mean Input Photon Number                                                   j=1
+                                                                                                       j (j + 1) N j
+
+                                                                Proof. Consider the following chain of equalities:
+   We now briefly describe what happens to the above
+special cases when the mean input photon number be-               g (N ) = (N + 1) ln (N + 1) − N ln (N )
+comes high. We begin with the classical-quantum trade-                                
+                                                                                            1
+                                                                                              
+off. Recall from Ref. [31] that the classical capacity of the            = (N + 1) ln 1 +       − 1 + ln (N ) + 1          (B20)
+                                                                                           N
+lossy bosonic channel can be infinite if the input photon
+number is unlimited. But the quantum capacity is fun-           Now consider the following Taylor series expansion of
+damentally limited even if an infinite number of photons        ln (1 + 1/N ) which is valid for all N ≥ 1:
+are available [8, 31]. The threshold on quantum capacity                                        ∞
+                                                                                 
+                                                                                        1
+                                                                                              X (−1)j+1
+for the lossy bosonic channel with transmissivity η is                         ln 1 +        =              .   (B21)
+                                                                                        N      j=1
+                                                                                                      jN j
+     lim g (ηNS ) − g ((1 − η) NS ) = ln (η) − ln (1 − η) .
+  NS →∞
+                                                                We can use this expansion to manipulate the expression
+                                                      (B19)
+                                                                (N + 1) ln (1 + 1/N ) − 1:
+Let NT denote the approximate number of photons                                            
+needed to reach the above limit on quantum capacity.                            ∞       j+1        ∞         j+1
+This limit has implications for trade-off coding. Given
+                                                                               X   (−1)     −1=
+                                                                                                  X     (−1)
+                                                                   (N + 1)                                         .
+a large input photon number NS > NT , it is possible to                        j=1
+                                                                                     jN j         j=1
+                                                                                                      j (j + 1) N j
+exploit an amount NT for the quantum part of the trans-                                                                    (B22)
+mission and NS − NT for the classical part of the trans-
+mission, so that the classical part of the transmission         Combining (B20), (B21), and (B22) gives the statement
+can become arbitrarily large in the limit of infinite mean      of the lemma.
+input photon number (this leads to our rule of thumb
+                                                                Proposition 5 A lower bound on the achievable rate for
+pointed out in the main text). Figure 5(a) depicts the
+                                                                the lossy bosonic channel is as follows:
+classical-quantum trade-off for a lossy bosonic channel
+with η = 3/4 as the mean input photon number NS in-                                                                        1
+                                                                g (ηNS )−g ((1 − η) NS ) ≥ ln (η)−ln (1 − η)−                     .
+creases on a logarithmic scale from 0.01 to 1010 .                                                                   η (1 − η) NS
+   An interesting effect occurs with the trade-off between
+assisted and unassisted classical communication. In the         provided that (1 − η) NS ≥ 2 and η ≥ 1 − η. Thus, in a
+limit of infinite photon number, the difference between         trade-off coding strategy, it suffices to choose the photon-
+the entanglement-assisted classical capacity and the clas-      number sharing parameter λ = 1/ [η (1 − η) NS ln 2]
+sical capacity approaches ln (1/ (1 − η)):                      whenever λ (1 − η) NS ≥ 2 and η ≥ 1 − η in order to
+                                                                be within  bits of the quantum capacity (expressed in
+      lim g (NS ) + g (ηNS ) − g ((1 − η) NS ) − g (ηNS )       units of qubits per channel use).
+     NS →∞
+                                                                Proof. The first step is to use the expansion from
+     = lim g (NS ) − g ((1 − η) NS )
+       NS →∞                                                    Lemma 4. Substituting in gives
+     = lim ln (NS ) − ln ((1 − η) NS )                             g(ηNS ) − g((1 − η)NS )
+       NS →∞
+
+     = ln (1/ (1 − η)) .                                                                            1          1
+                                                                            ≥ ln η − ln(1 − η) +         − 2 2 + ···
+                                                                                                  2ηNS     6η NS
+Since both capacities diverge, this implies, in particular,                            1               1
+that their ratio approaches one in the same limit. This                        −              +                 − ···
+                                                                                  2(1 − η)NS     6(1 − η)2 NS2
+is an indication that entanglement becomes less useful in
+the high photon number limit. Figure 5(b) depicts the                                                2η − 1
+                                                                            ≥ ln η − ln(1 − η) −
+classical-entanglement trade-off for a lossy bosonic chan-                                        2η(1 − η)NS
+                                                                                    ∞
+nel with transmissivity η = 3/4 and mean input photon                              X       1          1
+number NS increasing on a logarithmic scale from 0.01                           −                             ,
+                                                                                       j(j + 1) [(1 − η)N S]
+                                                                                                            j
+to 1010 .                                                                          j=2
+                                                                                                                                                                                                                                               12
+
+
+                                                                                                                                            Classical−entanglement trade−off for the lossy bosonic channel
+                        Classical−quantum trade−off for the lossy bosonic channel
+
+
+
+                                 5                                                                                                                                15
+
+
+
+   Quantum communication rate                                                                                                     Entanglement consumption rate
+                                 4
+                                                                                                                                                                  10
+                                 3
+
+
+
+
+     (in qubits / channel use)
+                                                                                                                                      (in ebits / channel use)
+                                 2
+                                                                                                                                                                   5
+                                 1
+
+                                 0                                                                0.9                                                                                                                          0
+                                 0                                                       0.8                                                                                                                                0.2
+                                             5                                     0.7                                                                             0                                                     0.4
+                                                          10                 0.6                                                                                  20                                                  0.6
+                                                                 15    0.5                                                                                                      15            10                   0.8
+                                                                                   Channel efficiency η                                                                                              5           1
+        Classical communication rate                                                                                                                                                                         0          Channel efficiency η
+           (in bits / channel use)                                                                                                                Classical communication rate
+                                                                                                                                                     (in bits / channel use)
+
+
+                                                               (a)                                                                                                                                    (b)
+FIG. 4: (a) The trade-off between classical and quantum communication for all η ∈ (1/2, 1), with the result that trade-off
+coding always beats time-sharing by a significant margin. We assume that the mean input photon number NS = 50/ (1 − η)
+so that there is a sufficient number of photons to almost reach the quantum capacity of ln (η) − ln (1 − η) if the trade-off
+code dedicates all of the available photons to quantum communication. (b) The trade-off between entanglement-assisted and
+unassisted classical communication for all η ∈ (0, 1), with the result that trade-off coding always beats time-sharing. For
+consistency with (a), we again assume that NS = 50/ (1 − η).
+
+
+
+                                     Classical−quantum trade−off for the lossy bosonic channel                                                           Classical−entanglement trade−off for the lossy bosonic channel
+
+                                                                                                                                                 40
+
+
+
+
+                                                                                                                 Entanglement consumption rate
+                                                                                                                                                 30
+
+
+
+
+     Quantum communication rate
+                                     2
+                                                                                                                                                 20
+
+
+
+                                                                                                                     (in ebits / channel use)
+                                   1.5
+
+                                     1                                                                                                           10
+
+
+       (in qubits / channel use)
+                                                           9
+                                                          10
+                                                      6
+                                   0.5               10                                                      9
+                                                 3                                                          10                                      0
+                                                                                                        6
+                                                                                                   10
+                                     0
+                                         0                                                   10
+                                                                                               3            NS                                                    10
+                                                                                                                                                                       0
+                                                 10                                                                                                                         3
+                                                           20                            0                                                                                 10
+                                                                      30            10                                                                            NS            10
+                                                                                                                                                                                     6
+                                                                                                                                                                                                                             10      0
+                                   Classical communication rate                                                                                                                           9          30           20
+                                                                                                                                                                                         10
+                                      (in bits / channel use)                                                                                                                                      Classical communication rate
+                                                                                                                                                                                                      (in bits / channel use)
+
+                                                               (a)                                                                                                                                  (b)
+FIG. 5: (a) The trade-off between classical and quantum communication for a lossy bosonic channel with transmissivity η = 3/4
+as the mean input photon number NS increases on a logarithmic scale from 0.01 to 1010 . The quantum capacity can never
+be larger than ln (η) − ln (1 − η), but the classical capacity is unbounded as NS → ∞. Thus, the best option for a trade-off
+code is to abide by the rule of thumb given in the main text and dedicate only a small fraction λ ≈ 50/ [(1 − η) NS ] of the
+available photons to quantum resources. This ensures that the quantum data rate is near maximal while also maximizing the
+rate of classical communication. (b) The trade-off between entanglement-assisted and unassisted classical communication for
+the same lossy bosonic channel as NS increases logarithmically from 0.01 to 1010 . Abiding by a similar rule of thumb and
+dedicating a fraction λ ≈ 50/ [(1 − η) NS ] of the available photons to shared entanglement ensures that the classical data rate
+is near maximal while minimizing the entanglement consumption rate. Observe that trade-off protocols operating at these near
+maximal data rates given by the rule of thumb consume about the same amount of entanglement for all of the trade-off curves
+depicted.
+                                                                                                                              13
+
+where in the last line the order 1/NS term is exact. The     classical data rate g (λNS ) + g (ηNS ) − g ((1 − η) λNS ):
+error term was estimated by keeping only the negative
+terms in the expansion for orders 1/NS2 and higher, in            g (NS ) + g (ηNS ) − g ((1 − η) NS )
+addition to applying the inequality 1 − η ≤ η. Let R =                  − [g (λNS ) + g (ηNS ) − g ((1 − η) λNS )]
+(1 − η)NS . We can then bound                                      = g (NS ) − g (λNS )
+        ∞                    ∞
+                                                                        − [g ((1 − η) NS ) − g ((1 − η) λNS )]
+        X        1        1X 1            1                           ∞
+                                                                                    "                #
+                        ≤           =                                X (−1)j+1        1         1
+        j=2
+            j(j + 1)R j   6 j=2 R j   6(R − R)
+                                         2
+                                                                   =                      −
+                                                                          j (j + 1) NSj            j
+                                                                     j=1                    (λNS )
+                                                                          ∞
+                                                                                           "                          #
+                                                                                     j+1
+using the formula for the sum of a geometric series. So                  X      (−1)             1             1
+if R = (1 − η)NS ≥ 2, then R ≤ R2 /2 and we get that                  −                  j           j
+                                                                                                       −            j
+                                                                         j=1 j (j + 1) NS    (1 − η)     (λ (1 − η))
+
+   g(ηNS ) − g((1 − η)NS )
+                            2η − 1      1     1                        1 h                      −1                −1
+                                                                                                                     i
+    ≥ ln η − ln(1 − η) −              −                           =         1 − λ−1 − (1 − η) + [λ (1 − η)]
+                         2η(1 − η)NS    3 (1 − η)NS                   2NS
+                                                                           ∞
+                                                                                        "                  #
+                                                                                    j+1
+                           8η/3 − 1                                      X    (−1)          1        1
+    = ln η − ln(1 − η) −                                               +                       −         j
+                         2η(1 − η)NS                                      j=2
+                                                                              j (j + 1) NSj       (λNS )
+                              1                                            ∞          j+1
+                                                                                             "                            #
+    ≥ ln η − ln(1 − η) −            ,                                    X       (−1)             1               1
+                         η(1 − η)NS                                    −                  j           j
+                                                                                                        −               j
+                                                                          j=2 j (j + 1) NS     (1 − η)      (λ (1 − η))
+using in the last line that η < 1.
+                                                             The second equality follows by expanding the thermal
+  The statement in the proposition about trade-off cod-
+                                                             entropy functions with Lemma 4 and by canceling terms.
+ing follows by analyzing the above bound. An achiev-
+                                                             The third equality follows by taking out the first term in
+able rate for quantum data transmission with a trade-off
+                                                             the summation. Continuing,
+coding strategy is g (ληNS ) − g (λ (1 − η) NS ), and the
+above development gives the following lower bound on                  1
+                                                                          
+                                                                              η
+                                                                                  
+                                                                                       1−λ
+                                                                                             
+this achievable rate (in units of qubits per channel use):        ≤
+                                                                     2NS 1 − η           λ
+                                                                     ∞
+                                           1
+                                                                    X                2
+       log2 (η) − log2 (1 − η) −                      .           +                               j
+                                   η (1 − η) λNS ln 2               j=2 j (j + 1) (λ (1 − η) NS )
+                                                                                   ∞
+                                                                          1        X               2
+Thus, if we would like to be within  bits of the max-             ≤             +                               .
+                                                                     2λNS (1 − η) j=2 j (j + 1) (λ (1 − η) NS )j
+imum quantum capacity log2 (η) − log2 (1 − η), then it
+suffices to choose the photon-number sharing parameter
+λ as given in the statement of the proposition.              The first inequality follows by realizing that 1 − λ−1 −
+                                                                    −1               −1
+                                                             (1 − η) + [λ (1 − η)]      = (η/ (1 − η)) (1 − λ) /λ, by
+                                                             keeping only the positive terms in the series, and by re-
+Proposition 6 An upper bound on the difference be-           alizing that λ (1 − η) NS ≤ (1 − η) NS , λ (1 − η) NS ≤
+tween the entanglement-assisted classical capacity with      λNS , and λ (1 − η) NS ≤ NS . The next inequality fol-
+maximal entanglement and that for limited entanglement       lows because η, 1 − λ ≤ 1. Continuing,
+trade-off coding is as follows:                                                   ∞
+                                                                       1        2X          1
+                                                              ≤               +
+                           5                                      2λNS (1 − η) 6 j=2 (λ (1 − η) NS )j
+                                   ,
+                      6λNS (1 − η)                                                                                            !
+                                                                     1        2                           1
+                                                              =             +                            2
+provided that λ (1 − η) NS ≥ 2. Thus, in order to               2λNS (1 − η) 6           (λ (1 − η) NS ) − λ (1 − η) NS
+be within  bits of the entanglement-assisted classi-
+cal capacity, it suffices to choose the photon-number                             1          2    1
+sharing parameter λ = 5/ [6NS (1 − η) ln 2] whenever                      ≤               +
+λ (1 − η) NS ≥ 2.                                                            2λNS (1 − η) 6 λ (1 − η) NS
+                                                                                  5
+                                                                           =              .
+                                                                             6λNS (1 − η)
+Proof.        Consider the difference between the
+entanglement-assisted classical capacity g (NS ) +           The first inequality follows because 1/j (j + 1) ≤ 1/6 for
+g (ηNS ) − g ((1 − η) NS ) and the limited entanglement      j ≥ 3. The first equality follows from the formula for
+                                                                                                                      14
+
+a geometric series. The second inequality is true when-        Observe that θ is just a thermal state with mean photon
+ever λ (1 − η) NS ≥ 2, and the final equality follows from     number NS , so that the mean number of photons entering
+simple addition.                                               the channel meets the constraint of NS .
+   The statement about trade-off coding follows from the          We remark on the two extreme cases of the ensem-
+above bound on the difference between the entanglement-        ble in (B26). If the photon-number-sharing parameter
+assisted classical capacity and the limited entanglement       λ = 0, then the coding scheme devotes all of its photons
+data rate. If we would like the error to be within  bits of   to public classical communication. The ensemble is an
+capacity, then the bound in the statement of the propo-        isotropic distribution of coherent states, which is the en-
+sition should hold.                                            semble needed to achieve the capacity of the lossy bosonic
+                                                               channel for public classical communication [7]. If the
+                                                               photon-number-sharing parameter λ = 1, then the cod-
+   5.   Private Dynamic Achievable Rate Region                 ing scheme devotes all of its photons to private classical
+                                                               communication. The ensemble is again an isotropic mix-
+                                                               ture of coherent states, which is the ensemble needed to
+   The proof of the theorem below justifies achievability
+                                                               achieve the private classical capacity of the lossy bosonic
+of the region in (3) in the main text.
+                                                               channel [34], up to the aforementioned minimum-output
+                                                               entropy conjecture [27, 28].
+Theorem 7 An achievable private dynamic region for a
+                                                                  The four entropies in (A20-A23) become the following
+lossy bosonic channel with transmissivity η is the union
+                                                               four entropies for our case:
+of regions of the form:
+                                                                        
+                                                               H N θ ,                                              (B29)
+        R + P ≤ g (ηNS ) ,                           (B23)      Z Z
+        P + S ≤ g (ληNS ) − g (λ (1 − η) NS ) ,      (B24)           dα dβ pλNS (α) p(λ)NS (β) H (N (|α + βi hα + β|)) ,
+    R + P + S ≤ g (ηNS ) − g (λ (1 − η) NS ) .       (B25)                                                         (B30)
+                                                               Z
+where λ ∈ [0, 1] is a photon-number-sharing parameter              dα pλNS (α) H (N (θα )) ,                       (B31)
+and g (N ) is defined in (2).                                  Z
+                                                                   dα pλNS (α) H (N c (θα )) .                     (B32)
+Proof. This channel is degradable whenever η ≥ 1/2
+[34], and antidegradable otherwise. For simplicity, we         The first entropy is equal to the entropy of an attenuated
+study the case where the channel is degradable (Lemma 5        thermal state:
+of Ref. [20] demonstrates that the region is somewhat                                     
+trivial for the case of an antidegradable channel). We                           H N θ = g (ηNS ) .
+choose the input ensemble to be a mixture of coherent
+states:                                                        The second entropy is equal to zero because a lossy
+                                                               bosonic channel does not change the purity of a coherent
+                                                               state. We calculate the final two entropies in the same
+              
+                pλNS (α) pλNS (β) , |α + βi ,      (B26)
+                                                               way as we did in (B13) and (B14), respectively.
+where the distributions pλNS (α) and pλNS (β) are                 Figure 6 plots the private dynamic capacity region for
+isotropic Gaussian priors of the form in (B7). The pa-         a lossy bosonic channel with transmissivity η = 3/4 and
+rameter λ is again a photon-number-sharing parameter           the mean input photon number NS = 100.
+where λ = 1 − λ is the fraction of photons that the code
+dedicates to public resources and λ is the fraction that
+                                                                   6.   Special Case of the Private Dynamic Region
+it dedicates to private resources. Let θα denote the state
+resulting from averaging over the variable β:
+                 Z                                                An interesting special case of the private dynamic re-
+                                                               gion is the trade-off between public and private classi-
+           θα ≡ dβ pλNS (β) |α + βi hα + β|                    cal communication. Lemma 3 of Ref. [20] proves that
+                                                               the classical-quantum trade-off from Appendix B 2 is the
+              = D (α) θD† (α) ,                      (B27)
+                                                               same as the public-private trade-off whenever the chan-
+where θ is a thermal state with mean photon number             nel is degradable (recall that the lossy bosonic channel
+λNS . Let θ denote the state resulting from averaging          is degradable whenever η ≥ 1/2). Thus, the formulas in
+over all states in the ensemble:                               (B15-B16) characterize this trade-off as
+        Z Z                                                                 P ≤ g (ηλNS ) − g ((1 − η) λNS ) ,     (B33)
+   θ≡         dα dβ pλNS (α) pλNS (β) |α + βi hα + β|                   R + P ≤ g (ηNS ) − g ((1 − η) λNS ) .      (B34)
+        Z
+     = dα pλNS (α) D (α) θD† (α) .                (B28)        and Figure 2(a) serves as a plot of it. We should note
+                                                               that the trade-off between public classical communication
+                                                                                                                                                                 15
+
+                                                                                                      the following upper bounds:
+                                                                                                                    X
+                                 8
+                                                                                                                       pX (x) H (ρx ) ≤ ng (λNS ) ,          (B35)
+                                                                                                                     x
+                                 6
+                                                                                                                      H N ⊗n (ρ) ≤ ng (ηNS ) ,
+                                                                                                                                 
+                                                                                                                                                             (B36)
+
+
+
+  Secret key consumption rate
+                                 4                                                                          X
+                                                                                                              pX (x) H N ⊗n (ρx ) ≤ ng (ηλNS ) ,
+                                                                                                                                 
+                                                                                                                                                             (B37)
+                                 2                                                                             x
+
+                                 0                                                                    and the following lower bound:
+                                                                                                                                  
+                                −2                                                                                           ⊗n
+                                                                                                          X
+                                                                                                             pX (x) H (N c ) (ρx ) ≥ ng ((1 − η) λNS ) ,
+                                −4                                                                         x
+                                −5                                                                                                                             (B38)
+                                        0                                                    −5
+                                             5
+                                                            5
+                                                                             0                        so that for all n-letter ensembles   {p X (x) , ρx } with ρx ∈
+Private classical communication rate 10             10                                                B (H⊗n ) and ρ ≡
+                                                                                                                            P
+                                                                Public classical communication rate                          x pX (x) ρx , there exists some λ ∈
+                                                                                                      [0, 1] such that the above bounds hold. The above bounds
+                                                                                                      immediately imply that the region in (B3-B5) is the
+FIG. 6: The boundary of a private dynamic achievable region                                           quantum dynamic capacity region.
+for a lossy bosonic channel with transmissivity η = 3/4 and                                              The second bound in (B36) follows because the quan-
+mean input photon number NS = 100. The arrows indicate
+                                                                                                      tum entropy is subadditive and the entropy of a ther-
+directions in which the boundary extends infinitely.
+                                                                                                      mal state gives the maximum entropy for a bosonic state
+                                                                                                      with mean photon number ηNS (if the input mean pho-
+                                                                                                      ton number is NS , then the output mean photon number
+                                                                                                      is ηNS for a lossy bosonic channel with transmissivity η).
+                                                                                                         Recall that the thermal entropy function g (x) is mono-
+and secret key generation is the same as that between                                                 tonically increasing and concave in its input argument.
+public and private classical communication, found simply                                              The proof from Refs. [29, 30] makes use of these facts and
+by replacing P with S in the above formulas.                                                          we can do so as well. Let us begin by bounding the term
+                                                                                                      in (B35). Supposing that the mean number of photons
+                                                                                                      for the j th symbol of ρx is NS,xj , we have the following
+                                                                                                      bound:
+
+                                                                                                                            0 ≤ H (ρx )                      (B39)
+                                                                                                                                Xn
+     7.                              Converse for the Quantum Dynamic Region                                                       H ρjx
+                                                                                                                                         
+                                                                                                                              ≤                              (B40)
+                                                                                                                                  j=1
+                                                                                                                                   n
+   We now prove that the characterization in (B3-B5)
+                                                                                                                                  X               
+                                                                                                                              ≤         g NS,xj              (B41)
+is the capacity region corresponding to the trade-off                                                                             j=1
+between classical communication, quantum communica-
+                                                                                                                              ≤ ng (NS,x ) ,                 (B42)
+tion, and entanglement. Our converse proof exploits the
+same ideas used in Refs. [29, 30] to prove optimality of                                                              Pn
+                                                                                                      where NS,x ≡ j=1 n1 NS,xj . The second inequality ex-
+the bosonic broadcast channel region and, as such, it
+                                                                                                      ploits the subadditivity of quantum entropy, the third in-
+is optimal only if the minimum output entropy conjec-
+                                                                                                      equality exploits the fact that the maximum quantum en-
+ture is true (in particular, the second strong version from
+                                                                                                      tropy of a bosonic system with mean photon number N is
+Refs. [29, 30]). Some evidence has been collected suggest-
+                                                                                                      g (N ), and the last inequality exploits concavity of g (x).
+ing that this conjecture should be true, but a full proof
+                                                                                                      Thus, for all x ∈ X there exists some λ0x ∈ [0, 1] such
+remains elusive. Refs. [29, 30], however, have shown that
+                                                                                                      that
+the conjecture is true if the input states are restricted to
+be Gaussian, and thus our region is optimal if the input                                                                 H (ρx ) = ng (λ0x NS,x ) ,          (B43)
+states are restricted to be Gaussian.
+                                                                                                      because g (x) is a monotonically increasing function of x
+Proof. Proposition 1 states that the regularization of                                                for x ≥ 0. Also, we have that
+the region in (A1-A3) is the quantum dynamic capacity
+region for any quantum channel. We prove here that the
+                                                                                                                            X
+                                                                                                                        0≤     pX (x) H (ρx )            (B44)
+region in (B3-B5) is equivalent to the capacity region for                                                                     x
+a lossy bosonic channel N with transmissivity parameter
+                                                                                                                           ≤ H (ρ)                           (B45)
+η > 1/2 and mean input photon number NS , up to a min-
+imum output entropy conjecture. We do so by proving                                                                        ≤ ng (NS ) ,                      (B46)
+                                                                                                                          16
+
+where the second inequality follows from concavity of          for reasons similar to those in (B44-B46). Thus, there
+quantum entropy, and the last follows from the fact that       exists some λ ∈ [0, 1] such that
+the maximum entropy for a bosonic state of mean photon                X
+                                                                         pX (x) H N ⊗n (ρx ) = ng (ληNS ) ,
+                                                                                             
+number N is g (N ). Thus, there exists some λ0 ∈ [0, 1]                                                        (B51)
+such that                                                               x
+
+                                                               because g (x) is a monotonically increasing function of
+            X
+               pX (x) H (ρx ) = ng (λ0 NS ) ,     (B47)
+                    x                                          x for x ≥ 0. This gives us our third bound in (B37).
+                                                               Combining (B51) and (B49) gives us the following bound
+because g (x) is a monotonically increasing function of x
+for x ≥ 0. We then have that                                                          g (ληNS ) ≥ g (λ0 ηNS ) ,
+         X
+            pX (x) g (λ0x NS,x ) = g (λ0 NS ) ,    (B48)       which in turn implies that
+            x
+                                                                                          g (λNS ) ≥ g (λ0 NS ) ,
+by combining (B43) and (B47). Alice can simulate Bob’s
+state by passing her system through one input port of          because g (x) and its inverse g −1 (y) (defined on positive
+a beamsplitter with transmissivity η while passing the         reals) are both monotonically increasing. This gives us
+vacuum through the other port. Assuming the truth of           our first bound in (B35) by combining with (B47).
+Strong Conjecture 2 from Refs. [29, 30], we have that            Combining (B50) and (B51), we have
+                                                                          X
+            H N ⊗n (ρx ) ≥ ng (λ0x ηNS,x ) .
+                         
+                                                                             pX (x) ng (λx NS,x ) = ng (ηλNS ) .
+                                                                              x
+(We should point out that Strong Conjecture 2 holds if
+the entropy photon-number inequality is true [30]). Using      We are assuming that the lossy bosonic channel has η ≥
+the relation in (B48) and concavity of g (x), we can apply     1/2 so that it is degradable and Bob can simulate Eve’s
+a slightly modified version of Corollary A.4 from Guha’s       state by passing his state through one input port of a
+thesis [30] to show that                                       beamsplitter with transmissivity (1 − η) /η while passing
+           X                                                   the vacuum through the other port. Assuming the truth
+               pX (x) g (λ0x ηNS,x ) ≥ g (λ0 ηNS ) ,           of Strong Conjecture 2 from Refs. [29, 30], we have that
+                x                                                                     
+                                                                                 ⊗n
+giving the lower bound                                                 H (N c ) (ρx ) ≥ ng (λx (1 − η) NS,x ) .
+       X
+          pX (x) H N ⊗n (ρx ) ≥ g (λ0 ηNS ) .
+                             
+                                                     (B49)     Using the above relation, concavity of g (x), and the fact
+        x                                                      that η ≥ 1/2, we can apply the modified version of Corol-
+(Corollary A.4 of Ref. [30] is stated for a uniform dis-       lary A.4 from Ref. [30] to show that
+tribution, but the argument only relies on a concavity             X
+                                                                       pX (x) g (λx (1 − η) NS,x ) ≥ g (λ (1 − η) NS ) .
+argument and thus applies to an arbitrary distribution.)
+                                                                    x
+   With a similar development as in (B39-B42), we can
+bound the entropy H (N ⊗n (ρx )) because the mean num-         This gives our final bound in (B38):
+ber of photons for the j th symbol of N ⊗n (ρx ) is ηNS,xj :                X           
+                                                                                               ⊗n
+                                                                                                     
+                                                                                pX (x) H (N c ) (ρx )
+                 0 ≤ H N ⊗n (ρx )
+                                   
+                                                                                  x
+                       n
+                                                                                      X
+                     X                                                            ≥        pX (x) g (λx (1 − η) NS,x )
+                           H N ⊗n ρjx
+                                      
+                   ≤                                                                  x
+                               j=1
+                               n
+                                                                                  ≥ g (λ (1 − η) NS ) .
+                               X                
+                           ≤         g ηNS,xj
+                               j=1
+
+                           ≤ ng (ηNS,x ) .
+                                                                   a.       Special Cases of the Quantum Dynamic Region
+Thus, for all x ∈ X there exists some λx ∈ [0, 1] such
+that                                                              A similar proof can be used to show that our char-
+             H N ⊗n (ρx ) = ng (λx ηNS,x ) ,
+                         
+                                                 (B50)         acterization of the CE trade-off curve is optimal for all
+                                                               η ∈ [0, 1] and that our characterization of the CQ trade-
+because g (x) is a monotonically increasing function of x      off curve is optimal for all η ∈ [1/2, 1]. Of course, both
+for x ≥ 0. We also have that                                   proofs require Strong Conjecture 2 from Refs. [29, 30]
+                   X
+                      pX (x) H N ⊗n (ρx )                      (which holds if the entropy photon-number inequality is
+                                          
+              0≤
+                           x                                   true).
+                        ≤ H N ⊗n (ρ)
+                                                                 We also can completely characterize the trade-off be-
+                                                               tween quantum communication and entanglement con-
+                        ≤ ng (ηNS ) ,                          sumption for a lossy bosonic channel with η ≥ 1/2.
+                                                                                                                        17
+
+Theorem 8 The trade-off between entanglement assis-          by the same reasoning as in the above proof. Thus, we
+tance and quantum communication (when C = 0, Q ≥ 0,          have the following upper bound for a particular state ρ:
+and E ≤ 0) given by (B3-B5) is optimal for the lossy
+bosonic channel with η ≥ 1/2.                                  H (A)ρ + (µ + 1) I (AiB)ρ
+                                                                ≤ g (ηλNS ) + (µ + 1) [g (ηλNS ) − g ((1 − η) λNS )] .
+Proof. Recall from Ref. [45] that the characterization of
+                                                             It is straightforward to show that g (ηx)−g ((1 − η) x) is a
+the entanglement-assisted quantum capacity region for
+                                                             monotonically increasing function in x whenever η ≥ 1/2,
+any channel N is the regularization the union of the fol-
+                                                             by considering that g (ηx) = g ((1 − η) x) = 0 for x = 0,
+lowing regions:                                                                             ∂            ∂
+                                                             g (ηx) ≥ g ((1 − η) x), and ∂x   g (ηx) ≥ ∂x  g ((1 − η) x)
+                                                             whenever η ≥ 1/2. Thus, we obtain our final upper
+                       2Q ≤ I (A; B)ρ ,
+                                                             bound by setting λ = 1. These  0
+                                                                                              rates are achievable sim-
+                        Q ≤ I (AiB)ρ + |E| ,                 ply taking the input state φA to be thermal with mean
+                                                             photon number NS .
+where  the entropies  are with respect to a state ρAB ≡
+  A0 →B    AA0
+N       (φ     ), the union of the above regions is over
+                            0                                   8.       Converse for the Private Dynamic Region
+pure, bipartite states φAA , Q is the rate of quantum
+communication, and E is the rate of entanglement con-
+sumption. Characterizing the boundary of the region is         We can prove the converse for the private dynamic ca-
+equivalent to optimizing the following function [45]:        pacity region similarly to how we did for the quantum
+                                                             dynamic capacity region. Proposition 2 states that the
+              max I (A; B)ρ + µI (AiB)ρ ,                    regularization of the region in (A17-A19) is equivalent to
+                   ρ
+                                                             the private dynamic capacity region. We prove that the
+                                                             region in (B23-B25) is equivalent to the capacity region
+where µ is a positive number playing the role of a La-       for a lossy bosonic channel with transmissivity param-
+grange multiplier. We can rewrite the above function in      eter η > 1/2 and mean input photon number NS , up
+the following form:                                          to a minimum output entropy conjecture. We do so by
+                                                             proving the following upper bounds:
+            max H (A)ρ + (µ + 1) I (AiB)ρ ,
+              ρ
+                                                                                H N ⊗n (ρ) ≤ ng (ηNS ) ,
+                                                                                            
+                                                                                                                 (B52)
+                                                                   X
+                                                                       pX (x) H N ⊗n (ρx ) ≤ ng (ηλNS ) ,
+                                                                                            
+because I (A; B) = H (A) + I (AiB). It is straight-                                                              (B53)
+forward to show that the above formula is additive for                x
+degradable channels [6], and furthermore, we can rewrite     and the following lower bounds (the first up to the min-
+the coherent information I (AiB)ρ as a conditional en-       imum output entropy conjecture):
+tropy H (F |E), whenever the channel is degradable [6]                                     
+                                                                                      ⊗n
+                                                                  X
+(let F be the environment of the degrading map). Then,                pX (x) H (N c ) (ρx ) ≥ ng ((1 − η) λNS ) ,
+from the extremality of Gaussian states for entropy and              x
+conditional entropy [46, 47], it suffices to perform the
+                                                               X
+                                                                     p (x) p (y|x) H N ⊗n (ρx,y ) ≥ 0.
+                                                                                                 
+                                                                                                                    (B54)
+above optimization over only Gaussian states. Recall           x,y
+that I (AiB) = H (B) − H (E) where E is the environ-
+ment of the channel. For a lossy bosonic channel with        so      that        for      all      n-letter     ensembles
+                                                                                                            ∈P B (H⊗n ),
+                                                             
+η ≥ 1/2 with mean input photon number NS , the follow-        pX (x) pPY |X (y|x) , ρx,y      with ρx,y
+ing bounds hold                                              ρx ≡         y pY |X (y|x) ρx,y , and ρ ≡        x pX (x) ρx ,
+                                                             there exists some λ ∈ [0, 1] such that the above bounds
+                   0 ≤ H (A)ρ ≤ g (NS ) ,                    hold. The above bounds immediately imply that the
+                                                             region in (B23-B25) is the private dynamic capacity
+                   0 ≤ H (B)ρ ≤ g (ηNS ) .                   region of the lossy bosonic channel.
+                                                             Proof. The last bound in (B54) follows simply be-
+Thus, there exist some λ0 , λ ∈ [0, 1] such that H (A)ρ =    cause the quantum entropy is always positive. The other
+g (λ0 NS ) and H (B)ρ = g (ηλNS ) from the monotonicity      bounds follow by the same method given in the converse
+of g (x). Also, we have that g (ηλNS ) ≥ g (ηλ0 NS ) from    of the quantum dynamic capacity region for the lossy
+the same reasoning as in the above proof, though Strong      bosonic channel.
+Conjecture 2 from Ref. [29, 30] is known to hold for Gaus-
+sian states. This then implies that g (λNS ) ≥ g (λ0 NS )
+by the same reasoning as in the above proof. Also, we                Appendix C: The Thermal Noise Channel
+have the following lower bound from Strong Conjecture 2
+(which holds for Gaussian states):                             The thermal noise channel is the same map as in (B1-
+                                                             B2), with the exception that the environment is in a ther-
+                  H (E)ρ ≥ g ((1 − η) λNS ) ,                mal state with mean photon number NB .
+                                                                                                                        18
+
+            1.   Quantum Dynamic Region                       where
+                                                                                                      2
+Theorem 9 An achievable quantum dynamic region for              D2 ≡ [λ (1 + η) NS + (1 − η) NB + 1]
+the thermal noise channel with transmissivity η and mean                                      − 4ηλNS (λNS + 1) .
+thermal photon number NB is as follows:
+                                                              Plugging in the entropies gives us the statement of the
+   C + 2Q ≤ g (λNS ) + g (ηNS + (1 − η) NB )                  proposition.
+                − gEη
+                      (λ, NS , NB ) ,                           The trade-off region for classical and quantum commu-
+                                        η                     nication is
+    Q + E ≤ g (ηλNS + (1 − η) NB ) − gE   (λ, NS , NB ) ,
+                                      η
+C + Q + E ≤ g (ηNS + (1 − η) NB ) − gE (λ, NS , NB ) ,             Q ≤ g (η (λ) NS + (1 − η) NB )
+                                                                               η
+                                                                           − gE  (λ, NS , NB ) ,                  (C2)
+where λ ∈ [0, 1] is a photon-number-sharing parameter,                                            η
+g (N ) is defined in (2), and                                  C + Q ≤ g (ηNS + (1 − η) NB ) − gE (λ, NS , NB ) . (C3)
+
+   η                                                          The trade-off region for assisted and unassisted classical
+  gE (λ, NS , NB ) ≡                                          communication is
+       g ([D + λ (1 − η) NS − (1 − η) NB − 1] /2)
+         + g ([D − λ (1 − η) NS + (1 − η) NB − 1] /2) ,          C ≤ g ((λ) NS ) + g (ηNS + (1 − η) NB )
+                                                                              η
+                                                                          − gE   (λ, NS , NB ) ,
+                                                                                                 η
+                                                                 C ≤ g (ηNS + (1 − η) NB ) − gE    (λ, NS , NB ) + E,
+                                         2
+  D2 ≡ [λ (1 + η) NS + (1 − η) NB + 1]
+                                                              where above our convention changes so that positive E
+                                − 4ηλNS (λNS + 1) .           corresponds to the consumption of entanglement. Fig-
+                                                              ure 7(a) depicts the trade-off between classical and quan-
+Proof. We use the same coding strategy as in (B6) and
+                                                              tum communication for a thermal noise channel, and Fig-
+then simply need to calculate the four entropies in (B9-
+                                                              ure 7(b) depicts the trade-off between assisted and unas-
+B12) for this case. The average output state is a thermal
+                                                              sisted classical communication.
+state with mean number of photons ηNS + (1 − η) NB ,
+implying that the first entropy in (B9) is
+                                                                         2.   Private Dynamic Region
+          H N θ = g (ηNS + (1 − η) NB ) .
+
+The second entropy in (B10) is the same as before be-         Theorem 10 An achievable private dynamic region for
+cause it is the entropy of the half of the state not trans-   the thermal noise channel with transmissivity η and mean
+mitted through the channel:                                   thermal photon number NB is as follows:
+
+                                                                  R + P ≤ g (ηNS + (1 − η) NB ) − g ((1 − η) NB ) ,
+     Z
+        dα pλNS (α) H D (α) θD† (α) = g (λNS ) .
+                                        
+                                                                                                     η
+                                                                  P + S ≤ g (ηλNS + (1 − η) NB ) − gE  (λ, NS , NB ) ,
+                                                                                                   η
+                                                              R + P + S ≤ g (ηNS + (1 − η) NB ) − gE (λ, NS , NB ) ,
+The state of the output conditioned on the displacement
+operator applied is a thermal state with mean photon          where λ ∈ [0, 1] is a photon-number-sharing parameter,
+number ηλNS + (1 − η) NB . Thus, the third entropy in                                        η
+                                                              g (N ) is defined in (2), and gE is defined in (C1).
+(B11) is
+  Z                                                           Proof. We can obtain an expression for a private dy-
+                                  †                         namic achievable rate region of the thermal noise chan-
+      dα pλNS (α) H N D (α) θD (α)
+                                                              nel. If we use the same ensemble for coding as in (B26),
+                             = g (ηλNS + (1 − η) NB ) .       then the resulting private dynamic achievable rate region
+                                                              is slightly different from that in (B23-B25). A thermal
+We calculate the fourth entropy in (B12) in a different       channel does not preserve the purity of coherent states
+way, along the lines presented in Refs. [31, 44]. The dis-    transmitted through it. Thus, the entropy in (B30) is no
+placement operator does not affect the correlation matrix     longer equal to zero, but it is instead equal to
+of the two-mode squeezed state, and thus the entropy of         Z Z
+this state does not change under such a transformation.               dα dβ pλNS (α) p(λ)NS (β) H (N (|α + βi hα + β|))
+In this case, the entropy is
+                                                                                                   = g ((1 − η) NB ) ,
+   η
+  gE (λ, NS , NB ) ≡
+                                                              because Bob’s state is a displaced thermal state with
+        g ([D + λ (1 − η) NS − (1 − η) NB − 1] /2)
+                                                              mean photon number (1 − η) NB (the amount of noise
+     + g ([D − λ (1 − η) NS + (1 − η) NB − 1] /2) , (C1)      that the environment injects into the state). Thus, the
+                                                                                                                                                                                                     19
+
+                                Classical−quantum trade−off for the thermalizing bosonic channel            Classical−entanglement trade−off for the thermalizing bosonic channel
+
+                                 2
+
+
+
+
+                                                                                                               Entanglement consumption rate
+                                                                                                                                               10
+
+
+
+  Quantum communication rate
+                                1.5
+                                                                                                                                                8
+
+                                                                                                                                                6
+                                 1
+
+
+
+    (in qubits / channel use)                                                                                      (in ebits / channel use)
+                                                                                                                                                4
+
+                                                                                                                                                2
+                                0.5
+                                                                                                                                                0
+                                                                                                                                                0
+                                 0                                                                                                                   2                                     6
+                                 0
+                                      0.2                                                                                                                                        8
+                                            0.4                                                                                                     NB   4
+                                                  0.6                                       2      0                                                                    10
+                                  NB                    0.8                  6       4
+                                                              1   10    8                                                                                    6   12   Classical communication rate
+                                                                             Classical communication rate
+                                                                                                                                                                         (in bits / channel use)
+                                                                                (in bits / channel use)
+
+
+                                                                       (a)                                                                                   (b)
+FIG. 7: This figure displays the effect of increasing thermal noise (parametrized by NB ) on the trade-off between (a) classical
+and quantum communication and (b) entanglement-assisted and unassisted classical communication. We cannot say whether
+any points in these regions are optimal because the capacity of the thermal channel is unknown (though, they are known if the
+minimum-output entropy conjecture is true [27, 28]).
+
+
+
+expression for the private dynamic achievable rate region                                                   the signal mode. We can consider the auxiliary mode
+is as stated in the theorem.                                                                                more generally to be in a thermal state with mean photon
+   This region is generally smaller than the full quantum                                                   number NB .
+dynamic achievable rate region for the same values of NS ,
+NB , and η because there is no analog of the superdense
+coding effect with the resources of public classical com-                                                      1.                       Achievable Quantum and Private Dynamic
+munication, private classical communication, and secret                                                                                               Regions
+key [20, 48]. Though, the trade-off between public and
+private communication with this coding strategy is the                                                      Theorem 11 An achievable quantum dynamic region
+same as that between classical and quantum communi-                                                         for the amplifying channel with gain κ ≥ 1 and mean
+cation in (C2-C3).                                                                                          thermal photon number NB is as follows:
+
+                                                                                                                 C + 2Q ≤ g (λNS ) + g (κNS + (κ − 1) (NB + 1))
+                                Appendix D: The Amplifying Channel                                                             κ
+                                                                                                                            − gE (λ, NS , NB ) ,
+   The amplifying channel is another bosonic channel im-                                                          Q + E ≤ g (κλNS + (κ − 1) (NB + 1))
+                                                                                                                               κ
+portant in applications, modeling any kind of amplifica-                                                                    − gE (λ, NS , NB ) ,
+tion process that can occur in bosonic systems. These                                                         C + Q + E ≤ g (κNS + (κ − 1) (NB + 1))
+applications range from cavities coupled with Josephson                                                                        κ
+                                                                                                                            − gE (λ, NS , NB ) ,
+junctions [49], to non-degenerate parametric amplifiers in
+quantum optics [50], to the Unruh effect from relativistic                                                  where λ ∈ [0, 1] is a photon-number-sharing parameter,
+quantum mechanics [36].                                                                                     g (N ) is defined in (2), and
+   The amplifying channel corresponds to the following
+transformation of the input annihilation operator:                                                             κ
+                                                                                                              gE (λ, NS , NB ) ≡
+                        √      √
+                    â → κ â + κ − 1 ê† ,          (D1)                                                            g ([D + (κ − 1) [λNS + NB + 1] − 1] /2)
+                        √          √ †
+                    †
+                  ê → κ − 1 â + κ ê ,             (D2)                                                                + g ([D − (κ − 1) [λNS + NB + 1] − 1] /2) ,
+
+where κ ≥ 1 is the amplifier gain and ê is now an auxiliary
+mode associated with the amplification process. If the                                                                                                                                 2
+                                                                                                              D2 ≡ [λ (1 + κ) NS + (κ − 1) (NB + 1) + 1]
+state of the auxiliary mode is a vacuum state, then this
+auxiliary mode injects the minimum possible noise into                                                                                      − 4κλNS (λNS + 1) .
+                                                                                                                        20
+
+Theorem 12 An achievable private dynamic region for          Thus, the expression for the quantum dynamic capac-
+the amplifying channel with gain κ ≥ 1 and mean thermal      ity region of an amplifying channel is as stated in Theo-
+photon number NB is as follows:                              rem 11 above.
+                                                                We can also use a similar coding scheme as in (B26)
+            R + P ≤ g (κNS + (κ − 1) (NB + 1))               for the private dynamic setting. The only other entropy
+                        − g ((κ − 1) (NB + 1)) ,             that we need to calculate for this setting is the one in
+            P + S ≤ g (κλNS + (κ − 1) (NB + 1))              (B30):
+                           κ
+                        − gE  (λ, NS , NB ) ,                  Z Z
+        R + P + S ≤ g (κNS + (κ − 1) (NB + 1))                       dα dβ pλNS (α) p(λ)NS (β) H (N (|α + βi hα + β|))
+                           κ
+                        − gE  (λ, NS , NB ) ,                                                 = g ((κ − 1) (NB + 1)) ,
+where λ ∈ [0, 1] is a photon-number-sharing parameter,
+                               κ                             because Bob’s state is a displaced thermal state with
+g (N ) is defined in (2), and gE is defined in (D3).
+                                                             mean photon number (κ − 1) (NB + 1) (the amount of
+Proof. (Of Theorems 11 and 12) The trade-off cod-            noise that the environment injects into the state). Thus,
+ing scheme for both the quantum dynamic and private          the expression for the private dynamic achievable rate
+dynamic trade-off settings is the same as we used before     region is as stated in Theorem 12 above.
+in (B6) and (B26), respectively. Thus, we only need to         Figure 8 plots the classical-quantum and classical-
+calculate the various entropies associated with the ampli-   entanglement trade-off curves for an amplifying channel
+fying channel. We consider the quantum dynamic setting       with NS = 200, NB = 0, and increasing values of the
+first and calculate the four entropies in (B9-B12).          amplification parameter κ. The figures demonstrate that
+   The state resulting from transmitting a thermal state     increased amplification decreases performance, but the
+with mean photon number NS through the amplifying            upshot is that both trade-off settings still exhibit a re-
+channel is a thermal state with mean photon number           markable improvement over time-sharing.
+κNS + (κ − 1) (NB + 1). Thus, it follows that
+                 
+        H N θ = g (κNS + (κ − 1) (NB + 1)) .                               Appendix E: Unruh Channel
+
+By the same argument as before, we have that                    Brádler et al. studied the information theoretic conse-
+     Z                                                       quences of the Unruh effect in a series of papers [22, 23,
+       dα pλNS (α) H D (α) θD† (α) = g (λNS ) .
+                                    
+                                                             37, 51–53]. They dubbed “the Unruh channel” as the
+                                                             channel induced by the Unruh effect when a Minkowski
+The displacement operators acting on a thermal state are     observer encodes a qubit into a single-excitation subspace
+again covariant with respect to the amplifying channel so    and a uniformly accelerating Rindler observer detects
+that                                                         this state (by single-excitation encoding, we mean a dual-
+  Z                                                          rail encoding with |0L i ≡ |01i and |1L i ≡ |10i) . It is well
+     dα pλNS (α) H N D (α) θD† (α)
+                                                           known that the transformation corresponding to the Un-
+                                                             ruh effect is equivalent to the transformation in (D1-D2)
+                      = g (κλNS + (κ − 1) (NB + 1)) .        for an amplifying bosonic channel [54]. The results of
+                                                             Brádler et al. demonstrate that “the Unruh channel” has
+Finally, we can make use of the Holevo-Werner results in     a beautiful structure as a countably infinite direct sum of
+Section V-A of Ref. [31] to show that                        universal cloning machine channels [37], and this prop-
+  Z                                                          erty implies that both the quantum dynamic and private
+                                                             dynamic capacity regions are single-letter [20–22]. More
+      dα pλNS (α) H N c D (α) θD† (α)
+                                     
+                                                             generally, their results with single-excitation encodings
+                                       κ
+                                    = gE (λ, NS , NB ) ,     of course apply to amplifying bosonic channels.
+                                                                In spite of these analytical results, one might question
+where                                                        calling this channel the Unruh channel because the en-
+                                                             coding has a specific form as a dual-rail encoding. More
+   κ                                                         generally, we could study the capacities of the transfor-
+  gE (λ, NS , NB ) ≡
+         g ([D + (κ − 1) [λNS + NB + 1] − 1] /2)             mation corresponding to the Unruh effect by imposing
+                                                             a mean-photon-number constraint at the input, rather
+      + g ([D − (κ − 1) [λNS + NB + 1] − 1] /2) , (D3)       than restricting the form of the encoding. In this way,
+and                                                          we can relate the achievable rates in Appendix D to the
+                                                             capacity results of Brádler et al. In order to make a
+                                              2              fair comparison, we should restrict the mean number of
+  D2 ≡ [λ (1 + κ) NS + (κ − 1) (NB + 1) + 1]
+                                                             photons at the input to be 1/2 because this is the mean
+                                − 4κλNS (λNS + 1) .          number of photons when sending a dual-rail maximally
+                                                                                                                                                                                                                                                                 21
+
+                                                                                                                                                                                           Classical−entanglement trade−off for the amplifier channel
+                                                  Classical−quantum trade−off for the amplifier channel
+
+                                                                                                                                                                                           10
+                                            2.5
+
+
+
+             Quantum communication rate                                                                                                                    Entanglement consumption rate
+                                                                                                                                                                                            8
+                                              2
+
+                                            1.5                                                                                                                                             6
+
+
+
+
+               (in qubits / channel use)
+                                                                                                                                                             (in ebits / channel use)
+                                              1                                                                                                                                             4
+
+                                            0.5
+                                                                                                                                                                                            2
+                                              0
+                                                  0                                                        0                                                                                0
+                                                        2                                             2
+                                                              4                                 4                                                                                               2                                                      6
+                                                                    6                      6                                                                                                                                                    8
+                                                                         8          8                                                                                                                   4
+                                            Amplification κ                                                                                                                                                      6                   10
+                                                                                  Classical communication rate                                                                             Amplification κ                12
+                                                                                      (in bits / channel use)                                                                                                                  Classical communication rate
+                                                                                                                                                                                                                                  (in bits / channel use)
+
+                                                                          (a)                                                                                                                                        (b)
+FIG. 8: (a) Trade-off between classical and quantum communication for the bosonic amplifying channel with NS = 200 and
+NB = 0 for increasing values of the amplification parameter κ. (b) Trade-off between entanglement-assisted and unassisted clas-
+sical communication for the same channel. For both trade-offs, more amplification degrades performance because it introduces
+too much noise.
+
+
+                                                      Comparison of encodings for the Unruh channel                                                                                         Comparison of encodings for the Unruh channel
+                                   3
+                                                                             Single−excitation encoding
+                                                                             Mean photon number encoding                                       2.5
+                                  2.5
+
+
+
+
+   Classical communication rate                                                                                Entanglement conpsumtion rate
+                                                                                                                                                2
+                                   2
+
+
+                                                                                                                                               1.5
+                                  1.5
+
+
+                                                                                                                                                1
+                                   1
+
+
+                                                                                                                                               0.5
+                                  0.5
+                                                                                                                                                                                                                                   Single−excitation encoding
+                                                                                                                                                                                                                                   Mean photon number encoding
+                                   0                                                                                                            0
+                                        0             0.5       1       1.5        2           2.5         3                                         0                           1                  2            3            4             5          6
+                                                              Quantum communication rate                                                                                                            Classical communication rate
+
+                                                                        (a)                                                                                                                                  (b)
+FIG. 9: Trade-off curves between (a) classical and quantum communication and (b) entanglement-assisted and unassisted
+classical communication. Each figure plots a trade-off curve (rightmost to leftmost) for increasing values of the acceleration
+parameter z ∈ {0, 0.2, 0.4, 0.6, 0.8, 0.95}. The dotted curves are the trade-off curves from Ref. [22] where the encoding is
+restricted to a single-excitation subspace. The solid lines are achievable rates with a mean photon-number constraint of 1/2.
+The result is that the mean photon-number constrained encoding always outperforms single-excitation encoding.
+
+
+
+mixed state of the form (|01i h01| + |10i h10|) /2, but we                                                                                               input to the channel [22]. Furthermore, note that the ac-
+should then multiply all rates by two because the Unruh                                                                                                  celeration parameter z of Brádler et al. in Refs. [22, 37]
+channel of Brádler et al. exploits two uses of the Unruh                                                                                                is related to the amplification parameter κ for the ampli-
+transformation for one use of the Unruh channel. It is fair                                                                                              fying bosonic channel via z = (κ − 1)/κ.
+to consider the maximally mixed state as input because                                                                                                     Figure 9 compares the trade-off curves for the “Unruh
+this is the state that achieves the boundary of the various                                                                                              channel” with the trade-off curves for the Unruh trans-
+capacity regions when tracing over all other systems not                                                                                                 formation with a mean photon-number constraint. The
+                                                                                                                22
+
+result is that the latter outperforms the former for all   of Fock space than does a restricted encoding. A sim-
+depicted values of the acceleration parameter z (though    ilar result occurs when comparing the amplitude damp-
+note that the quantum rates become comparable as the       ing channel with the lossy bosonic channel [55] (the am-
+acceleration parameter z increases to 0.95). The result    plitude damping channel results from sending a super-
+in the figure is unsurprising because an encoding with     position of the vacuum state and a single-photon state
+a mean photon-number constraint has access to more         through the lossy bosonic channel).
+

@@ -1,0 +1,909 @@
+                                                              Tight uniform continuity bounds for quantum entropies:
+                                                        conditional entropy, relative entropy distance and energy constraints
+                                                                                                Andreas Winter1, ∗
+                                                                          1
+                                                                           ICREA & Fı́sica Teòrica: Informació i Fenòmens Quàntics,
+                                                                   Universitat Autònoma de Barcelona, ES-08193 Bellaterra (Barcelona), Spain
+                                                                                            (Dated: 12 January 2016)
+                                                            We present a bouquet of continuity bounds for quantum entropies, falling broadly into two classes:
+                                                         First, a tight analysis of the Alicki-Fannes continuity bounds for the conditional von Neumann
+                                                         entropy, reaching almost the best possible form that depends only on the system dimension and the
+                                                         trace distance of the states. Almost the same proof can be used to derive similar continuity bounds
+
+
+
+
+arXiv:1507.07775v6 [quant-ph] 12 Jan 2016
+                                                         for the relative entropy distance from a convex set of states or positive operators. As applications
+                                                         we give new proofs, with tighter bounds, of the asymptotic continuity of the relative entropy of
+                                                         entanglement, ER , and its regularization ER  ∞
+                                                                                                         , as well as of the entanglement of formation, EF .
+                                                         Using a novel “quantum coupling” of density operators, which may be of independent interest, we
+                                                         extend the latter to an asymptotic continuity bound for the regularized entanglement of formation,
+                                                         aka entanglement cost, EC = EF∞ .
+                                                            Second, we derive analogous continuity bounds for the von Neumann entropy and conditional
+                                                         entropy in infinite dimensional systems under an energy constraint, most importantly systems of
+                                                         multiple quantum harmonic oscillators. While without an energy bound the entropy is discontinuous,
+                                                         it is well-known to be continuous on states of bounded energy. However, a quantitative statement
+                                                         to that effect seems not to have been known. Here, under some regularity assumptions on the
+                                                         Hamiltonian, we find that, quite intuitively, the Gibbs entropy at the given energy roughly takes
+                                                         the role of the Hilbert space dimension in the finite-dimensional Fannes inequality.
+
+
+                                                             I.   INTRODUCTION                               one can find two jointly distributed random variables,
+                                                                                                             X ∼ p and Y ∼ q (meaning X is distributed according
+                                               On finite dimensional systems, the von Neumann en-            to the probability law p, and Y according to q), with
+                                            tropy S(ρ) = − Tr ρ log ρ is continuous, but this becomes        Pr{X 6= Y } = 12 kp − qk1 ≤ ǫ. The crucial idea is to
+                                            useful only once one has explicit continuity bounds, most        let Pr{X = Y = x} = min(px , qx ) and to distribute the
+                                            significantly the one due to Fannes [13], the sharpest form      remaining probability weight suitably off the diagonal.
+                                            of which is the following:                                       (This is also the minimum probability over all such cou-
+                                                                                                             pled random variables [55]. For the reader with a taste
+                                            Lemma 1 (Audenaert [3], Petz [32]) For states ρ                  for the sophisticated, this is the Kantorovich-Rubinshtein
+                                            and σ on a Hilbert space A of dimension d = |A| < ∞,             dual formula for the Wasserstein distance in the case of
+                                            if 12 kρ − σk1 ≤ ǫ ≤ 1, then                                     the trivial metric d(x, y) = 1 for all x 6= y and d(x, x) = 0,
+                                                                                                             cf. the broad survey [5].) Then, by the monotonicity of
+                                                                (
+                                                                  ǫ log(d − 1) + h(ǫ) if ǫ ≤ 1 − d1 ,        the Shannon entropy under taking marginals and Fano’s
+                                               |S(ρ) − S(σ)| ≤                                               inequality (see [9]),
+                                                                  log d               if ǫ > 1 − 1d ,
+                                                                                                                  H(X) − H(Y ) ≤ H(XY ) − H(Y )
+                                            with h(x) = H(x, 1−x) = −x log x−(1−x) log(1−x) the                                = H(X|Y ) ≤ ǫ log(d − 1) + h(ǫ),
+                                            binary entropy. A simplified, but universal bound reads
+                                                                                                             and likewise for H(Y )−H(X). [For the simplified bound,
+                                                          |S(ρ) − S(σ)| ≤ ǫ log d + h(ǫ).                    we use H(X|Y ) ≤ ǫ log d + h(ǫ).]
+                                                                                                               Next, we reduce the quantum case to the classical one:
+                                            We include a short proof for self-containedness, and also        W.l.o.g. S(ρ) ≤ S(σ), and consider the dephasing oper-
+                                            because it deserves to be known better. It seems that            ation E in the eigenbasis of ρ, which maps ρ to itself, a
+                                            it was first found by Petz [32, Thm. 3.8], who credits           diagonal matrix with a probability distribution p along
+                                            Csiszár for the classical case; the latter seems to have        the diagonal, and σ to E(σ), a diagonal matrix with a
+                                            appeared first in Zhang’s paper [55] (see also [34]).            probability distribution q along the diagonal. Hence
+                                            Proof. We only have to treat the case ǫ ≤ 1 − d1 . We                                                    
+                                                                                                                     H(p) = S(ρ) ≤ S(σ) ≤ S E(σ) = H(q).
+                                            begin with the classical case of two probability distribu-
+                                            tions p and q on the same ground set of d elements. It           At the same time, kp− qk1 = kE(ρ)− E(σ)k1 ≤ kρ− σk1 ,
+                                            is well known, and in fact elementary to confirm, that           and so, using the classical case,
+                                                                                                                |S(ρ) − S(σ)| ≤ H(q) − H(p) ≤ ǫ log(d − 1) + h(ǫ).
+                                                                                                               Note that the inequality is tight for all ǫ and d, e.g. by
+                                            ∗ andreas.winter@uab.cat                                                                             ǫ
+                                                                                                             σ = |0ih0| and ρ = (1 − ǫ)|0ih0| + d−1 (11 − |0ih0|).      ✷
+2
+
+   We are interested in bounds of the above form, i.e. only   the recent discussion of approximately degradable chan-
+referring to the trace distance of the states and some gen-   nels [43].
+eral global parameter specifying the system, for a number        We present a simple proof of the Alicki-Fannes inequal-
+of entropic quantities, starting with the conditional von     ity that yields the stronger form of Lemma 2. One of the
+Neumann entropy, relative entropy distances from certain      themes of the present paper, to which we draw attention
+sets, etc, which have numerous applications in quantum        here, is the use of entropy inequalities in the proofs. In
+information theory and quantum statistical physics. Fur-      particular, we make use of the concavity of the condi-
+thermore, and perhaps even more urgently, in situations       tional entropy (which is equivalent to strong subadditiv-
+of infinite dimensional Hilbert spaces, where the above       ity of the von Neumann entropy) [27]. In the following
+form of the Fannes inequality becomes trivial.                proof we will specifically rely on two inequalities express-
+                                                              ing the concavity of the entropy and the fact that it is
+   The rest of the paper is structured as follows: in Sec-    not “too concave” [23]:
+tion II we present and prove an almost tight version of
+Lemma 1 for the conditional entropy (originally due to                                        !
+                                                                 X                  X            X
+Alicki and Fannes [1]), then in Section III we general-              pi S(ρi ) ≤ S      p i ρi ≤    pi S(ρi ) + H(p). (1)
+ize the principle behind our proof to a family of relative       i                  i            i
+entropy distance measures from a convex set; in these                                                    P      A         I
+two sections we also present some illustrative applica-       By introducing a bipartite state ρ =        i pi ρi ⊗ |iihi| ,
+tions of the conditional entropy bounds to two entangle-      this is seen to be equivalent to
+ment measures, ER and EF , as well as their regulariza-
+tions. In Section IV we expand the methodology of the                S(A|I) ≤ S(A) ≤ S(AI) = S(A|I) + S(I),
+first part of the paper to infinite dimensional systems,
+where Fannes-type continuity bounds are obtained under        which consists of two applications of strong subadditivity.
+an energy constraint for a broad class of Hamiltonians,
+and specifically for quantum harmonic oscillators. All        Lemma 2 For states ρ and σ on a Hilbert space A ⊗ B,
+entropy continuity bounds are stated as Lemmas, while         if 12 kρ − σk1 ≤ ǫ ≤ 1, then
+the applications appear as Corollaries, and two auxiliary                                                          
+results (on “quantum coupling” of density matrices) as                                                            ǫ
+                                                                S(A|B)ρ − S(A|B)σ ≤ 2ǫ log |A| + (1 + ǫ) h            .
+Propositions. The absence of Theorems is meant to en-                                                            1+ǫ
+courage readers to apply the results presented here.
+                                                                If B is classical in the sense that both ρ and σ are
+                                                              so-called qc-states, i.e. with an orthonormal basis {|xi},
+          II.    CONDITIONAL ENTROPY                                  X                           X
+                                                                  ρ=      p x ρA         B
+                                                                               x ⊗ |xihx| ,   σ=      qx σxA ⊗ |xihx|B ,
+  Alicki and Fannes [1] proved an extension of the Fannes              x                             x
+
+inequality for the conditional entropy                        and analogously if both are cq-states, then this can be
+                                AB          B                 tightened to
+                S(A|B)ρ = S(ρ        ) − S(ρ ),
+                                                                                                                
+                                                                                                              ǫ
+defined for states ρ on a bipartite (tensor product)             S(A|B)ρ − S(A|B)σ ≤ ǫ log |A| + (1 + ǫ) h         .
+                                                                                                            1+ǫ
+Hilbert space A ⊗ B. While a double application of
+Lemma 1 would yield such a bound involving both the           Proof. The right hand side is monotonic in ǫ, hence we
+dimensions of A and B, Alicki and Fannes show that if         may assume 21 kρ − σk1 = ǫ. Let ǫ∆ = (ρ − σ)+ be the
+kρ − σk1 ≤ ǫ ≤ 1, then                                        positive part of ρ − σ. Note that because this difference
+                                                              is traceless and its trace norm equals 2ǫ, ∆ is a bona fide
+        S(A|B)ρ − S(A|B)σ ≤ 4ǫ log |A| + 2h(ǫ).
+                                                              state. Furthermore,
+In particular, this form is independent of the dimension                   ρ = σ + (ρ − σ)
+of B, which might even be infinite. Note that for classi-
+cal, Shannon, conditional entropy, an inequality like the                    ≤ σ + ǫ∆
+                                                                                                    
+above can be obtained from Lemma 1 by convex combi-                                       1      ǫ
+nation, resulting in a bound like that of Lemma 1 (see                       = (1 + ǫ)       σ+     ∆
+                                                                                         1+ǫ    1+ǫ
+below).
+                                                                             =: (1 + ǫ)ω.
+   The Alicki-Fannes inequality has several applications
+in quantum information theory, from the proof of asymp-       By letting ǫ∆′ := (1 + ǫ)ω − ρ, we obtain another state
+totic continuity of entanglement measures — most no-          ∆′ , such that
+tably squashed entanglement [7] and conditional entan-
+glement of mutual information (CEMI) [54] —, to the                         1      ǫ      1      ǫ
+continuity of quantum channel capacities [26], and on to             ω=        σ+     ∆=     ρ+     ∆′ .                (2)
+                                                                           1+ǫ    1+ǫ    1+ǫ    1+ǫ
+                                                                                                                                  3
+
+This is a slightly optimized version of the trick in the            As an application of Lemma 2, we can obtain tighter
+proof of Alicki and Fannes [1]; cf. [28].                        continuity bounds on various quantum channel capaci-
+  Now, we use the following well-known variational char-         ties, simply substituting our tighter bound rather than
+acterization of the conditional entropy:                         the original formulation of Alicki and Fannes in the proofs
+                                                                of Leung and Smith [26].
+          −S(A|B)ω = min D ω AB k11A ⊗ ξ B ,                        As a token, we demonstrate a tight version of the
+                           ξ
+                                                                 asymptotic continuity of the entanglement of forma-
+where D(ρkσ) = Tr ρ(log ρ − log σ) is the quantum rela-          tion [4],
+tive entropy [30, 46]. Choosing an optimal state ξ for ω                             X                            X
+(which is ξ = ω B ), we have, from Eq. (2),                           EF (ρ) = inf       px S(TrB ρx ) s.t. ρ =         p x ρx
+                                                                                    x                              x
+S(A|B)ω = −D ω AB k11A ⊗ ξ B
+          = S(ω) + Tr ω log ξ B                                  for a state ρAB on the bipartite system A ⊗ B, originally
+                                                               due to Nielsen [29]. We then go on to prove asymp-
+                ǫ         1              ǫ                       totic continuity for its regularization, the entanglement
+          ≤h         +         S(ρ) +        S(∆′ )
+              1+ǫ        1+ǫ           1+ǫ                       cost [16],
+                       1                     ǫ
+                  +        Tr ρ log ξ B +        Tr ∆′ log ξ B                                         1
+                     1+ǫ                   1+ǫ                              EC (ρ) = EF∞ (ρ) = lim         EF (ρ⊗n ),
+                                                                                               n→∞ n
+                ǫ        1                     ǫ
+          =h         −      D(ρk11 ⊗ ξ)−         D(∆′ k11 ⊗ ξ)
+              1+ǫ      1+ǫ                  1+ǫ                  which, albeit following the general “telescoping” strategy
+                                                               of [26], requires a new idea, and seems not to have been
+                ǫ         1                    ǫ
+          ≤h         +         S(A|B)ρ +         S(A|B)∆′ ,      known before [8]. Note that EC is different from EF [15].
+              1+ǫ        1+ǫ                1+ǫ
+where in the third line we have used the concavity upper         Corollary 4 Let ρ and σ be states on the system A ⊗ B,
+bound from Eq. (1). Using the other decomposition in             denoting the smaller of the two dimensions
+                                                                                                   p          by d. Then,
+                                                                 1
+Eq. (2), the concavity of the conditional entropy, i.e. the      2 kρ − σk 1 ≤ ǫ implies, with δ =  ǫ(2 − ǫ),
+lower bound in Eq. (1), gives                                                                                      
+                                                                                                                δ
+                 1             ǫ                                     |EF (ρ) − EF (σ)| ≤ δ log d + (1 + δ) h          ,
+      S(A|B)ω ≥     S(A|B)σ +     S(A|B)∆ .                                                                   1+δ
+                1+ǫ           1+ǫ                                                                                   
+                                                                                                                  δ
+  Putting these two bounds together and multiplying by               |EC (ρ) − EC (σ)| ≤ 2δ log d + (1 + δ) h           .
+                                                                                                               1+δ
+1 + ǫ, we arrive at
+                                                                Note that these bounds only depend on the smaller of
+    S(A|B)σ − S(A|B)ρ ≤ ǫ S(A|B)∆′ − S(A|B)∆                     the two dimensions, in contrast to [29]; in particular,
+                                         
+                                       ǫ                         they apply even in the case that one of the two Hilbert
+                         + (1 + ǫ) h        .                    spaces is infinite dimensional.
+                                      1+ǫ
+The proof of the general bound is concluded observing            Proof. We may assume w.l.o.g. that EF (ρ) ≥ EF (σ)
+that the conditional entropy of any state is bounded be-         and |B| ≥ |A| = d. Choose a purifying system R ≃ AB,
+tween − log |A| and + log |A|.                                   and pure states ϕABR and ψ ABR with ϕAB = ρ and
+                                                                 ψ AB = σ = ψ R such that
+  For the case of two qc-states or two cq-states as above,
+note that the states ∆ and ∆′ are of the same, qc-form                          |hϕ|ψi| = F (ρ, σ) ≥ 1 − ǫ,
+(cq-form, resp.), and so their conditional entropies are
+                                                                                          p
+between 0 and log |A|.                                  ✷        thus√21 kϕ − ψk1 ≤ δ = 1 − (1 − ǫ)2 . Here, F (ρ, σ) =
+                                                                  √
+                                                                 k ρ σk1 is the fidelity between two quantum states, and
+Remark 3 Lemma 2 is almost best possible, as we can              we have used that it is related to the trace distance by
+see by considering the example of σ AB = Φd , the max-           these well-known inequalities [14]:
+imally entangled state on A = B = Cd , and ρAB =
+(1 − ǫ)Φd + d2ǫ−1 (11 − Φd ). Clearly, 12 kρ − σk1 = ǫ, while                            1           p
+                                                                        1 − F (ρ, σ) ≤     kρ − σk1 ≤ 1 − F (ρ, σ)2 .            (3)
+                                                                                         2
+  S(A|B)ρ − S(A|B)σ
+                                                                  By an observation of Schrödinger (which he called
+            = ǫ log(d2 − 1) + h(ǫ) − log d − (− log d)
+                                 ǫ                             “steering”) in the context of his investigation of quantum
+            = 2ǫ log d + h(ǫ) − O 2 .                            entanglement
+                                                                      P         [35], cf. [22], for any convex decomposition
+                                   d                             σ = x px σx , there exists a measurement POVM (Mx )
+                                                                                                        AB
+This asymptotically matches Lemma 2 for large d and              on R such that px σx = TrP      R ψ(11    ⊗ MxR ). Introduc-
+small ǫ.                                                         ing the qc-channel M(ξ) = x Tr ξMx |xihx| from R to a
+4
+
+                                                                1
+suitable space X, we then have                                  2 kψ − Θk1 ≤ δ, once more invoking Eq. (3).As before
+                                                                                                              ′ ′
+                            X                                   we choose an optimal decomposition of σ ⊗ ΩA B into
+                                                                                                     AB
+       e := (idAB ⊗ M)ψ =
+       σ                       px σxAB ⊗ |xihx|X ,        (4)               ′ :   ′
+                                                                states on AA BB , which we can represent by a POVM
+                                   X
+                                     x                          and associated cptp map M : RR′ −→ X:
+             and S(A|X)σe =              px S(TrB σx ).
+                                     x
+                                                                                   e := (idAA′ BB ′ ⊗ M)(ψ ⊗ υ)
+                                                                                   σ
+                                                                                       X           ′  ′
+
+Let us choose an optimal decomposition for the pur-                                  =     px σxAA BB ⊗ |xihx|X ,
+                                                                                        x
+pose of entanglement of formation, and the correspond-                                                 X
+ing POVM and quantum channel, i.e. EF (σ) = S(A|X)σe .                EF (σ ⊗ Ω) = S(AA′ |X)σe =            px S(TrBB ′ σx ).
+Applying the same to ϕABR , we obtain                                                                   x
+                            X                                   Applying the same map to ω ⊗ υ, we get
+       ρe := (idAB ⊗ M)ϕ =     qx ρAB
+                                   x  ⊗ |xihx|X ,
+                                     x                                             ρe := (idAA′ BB ′ ⊗ M)(Θ ⊗ υ)
+                    R
+                                                                                        X          ′   ′
+with qx = Tr ϕ Mx . Hence,                                                            =     px ρxAA BB ⊗ |xihx|X ,
+                  X                                                                     x
+         EF (ρ) ≤    px S(TrB ρx ) = S(A|X)ρe.                                                         X
+                                                                      EF (σ ⊗ Ω) ≤ S(AA′ |X)ρe =            px S(TrBB ′ ρx ),
+                          x
+                                                                                                        x
+Observe that by the contractivity of the trace norm under
+                                                                where we observe that, crucially, the same px appear in
+cptp maps,
+                                                                                           e. Using ΘR = σ T = ψ R , we
+                                                                the expressions for ρe and σ
+                    δ ≥ kψ − ϕk1 ≥ ke
+                                    σ − ρe|k1 .                 even have
+                                                                          ′    ′                                     ′   ′
+
+Now we can invoke the classical part of Lemma 2,                       ρeA B X = (idA′ B ′ ⊗ M)(σ T ⊗ υ) = σ
+                                                                                                           eA B X .
+
+       EF (ρ) − EF (σ) ≤ S(A|X)ρe − S(A|X)σe                    Thus with Lemma 2, as desired,
+                                                 
+                                               δ                EF (ρ ⊗ Ω) − EF (σ ⊗ Ω) ≤ S(AA′ |X)ρe − S(AA′ |X)σe
+                       ≤ δ log d + (1 + δ) h        ,
+                                              1+δ                                       = S(A|A′ X)ρe − S(A|A′ X)σe
+                                                                                                                   
+and we are done.                                                                                                 δ
+                                                                                        ≤ 2δ log d + (1 + δ) h        ,
+  For the regularization, consider any integer n and                                                            1+δ
+                                                              where in the second line we have used the chain rule
+    EF ρ⊗n − EF σ ⊗n
+                                                                S(AA′ |X) = S(A′ |X)+S(A|A′ X), as well as S(A′ |X)ρe =
+           n
+           X                                                  S(A′ |X)σe .                                          ✷
+       =         EF ρ⊗t ⊗ σ ⊗n−t − EF ρ⊗t−1 ⊗ σ ⊗n−t+1
+           t=1                                                  Proposition 5 (“Quantum coupling”) Given states
+           n
+           X                                                    ρ and σ on a Hilbert space A, with 21 kρ − σk1 ≤ ǫ,
+       ≤         |EF (ρ ⊗ Ωt ) − EF (σ ⊗ Ωt )|,                 there exist purifications |ϕi of ρ and |ψi of σ, and a
+           t=1                                                  (sub-normalized) vector |ϑi, all three in the tensor square
+                                                          (5)   Hilbert space A ⊗ A =: A1 A2 , such that
+with Ωt = ρ⊗t−1 ⊗ σ ⊗n−t . ′The
+                             ′
+                                 proof will be concluded                      ρT = ϕA2 ,    ρ = ϕA1 ≥ TrA2 |ϑihϑ|,
+by showing that for any ΩA B ,
+                                                                              σ = ψ A1 ,    σ T = ψ A2 ≥ TrA1 |ϑihϑ|,
+                                                     
+                                                   δ
+|EF (ρ ⊗ Ω) − EF (σ ⊗ Ω)| ≤ 2δ log d + (1 + δ) h        ,       and
+                                                  1+δ
+                                                                                     |hψ|ϑi|, |hϕ|ϑi| ≥ 1 − ǫ.
+as this will imply from Eq. (5) that
+                                                              Here, ·T denotes the transpose of a matrix with respect
+1      ⊗n
+                  ⊗n
+                                                δ              to a chosen basis.
+  EF ρ      − EF σ      ≤ 2δ log d + (1 + δ) h       .
+n                                               1+δ                Consequently, there exists a state ΘA1 A2 with the prop-
+                                                                erties ΘA1 = ρ and ΘA2 = ψ A2 = σ T , and such that
+To see this, assume again w.l.o.g. that EF (ρ ⊗ Ω) ≥            F (ψ, Θ), F (ϕ, Θ) ≥ 1 − ǫ.
+EF (σ ⊗ Ω), and choose a purification υ of Ω on A′ B ′ R′ ,
+with R′ ≃ A′ B ′ . Besides the purification ψ ABR of σ,            This proposition can be viewed as a quantum analogue
+we now need a state (not generally pure) ΘABR with              of the coupling of random variables X ∼ p and Y ∼ q
+ΘAB = ρ and ΘR = ψ R . Proposition 5 below guarantees           such that Pr{X 6= Y } = 21 kp − qk1 , on which the proof
+the existence of such a state with F (ψ, Θ) ≥ 1 − ǫ, hence      of Lemma 1 relied.
+                                                                                                                       5
+
+Proof. Fixing an orthonormal basis {|ii} of A, and in-       where we have first used the definitions of |ψi, |ϑi and
+troducing the unnormalized maximally entangled vector        |Φi, and then the identity between ω and σ; the fifth line
+                       X                                     is by triangle inequality, in the sixth we used (1 + ǫ)ω ≥ ρ
+                 |Φi =    |iiA1 |iiA2 ,                      once more, the operator monotonicity of the square root,
+                             i                               and the Hölder inequality | Tr X∆| ≤ kXk k∆k1; in the
+we have the following two “pretty good purifications” [53]   last step we use the fact that both ρ and ∆ are states
+of ρ and σ:                                                  and kXk ≤ 1.
+                                                                Finally, to obtain Θ, we write
+                 √                  √ T
+         |ϕi := ( ρ ⊗ 11)|Φi = 11 ⊗ ρ |Φi,                                  ρ = |ϑihϑ|A1 + (1 − hϑ|ϑi)∆1 ,
+                 √                  √ T
+         |ψi := ( σ ⊗ 11)|Φi = 11 ⊗ σ |Φi,                                σ T = |ϑihϑ|A2 + (1 − hϑ|ϑi)∆2 ,
+
+the claimed properties of which can be readily checked.      with bona fide states ∆1 and ∆2 . It is straightforward
+   To obtain |ϑi, we use once more Eq. (2) from the proof    to check that the definition
+of Lemma 2:                                                              Θ := |ϑihϑ| + (1 − hϑ|ϑi)∆1 ⊗ ∆2
+           1      ǫ      1      ǫ
+       ω=     σ+     ∆=     ρ+     ∆′ ,                      satisfies all requirements on Θ.                          ✷
+          1+ǫ    1+ǫ    1+ǫ    1+ǫ
+with states ∆ and ∆′ . Then define                           Remark 6 Although the above proof refers to the un-
+                                             
+                   1                                         normalized vector |Φi, and thus taken literally only
+        |ϑi := √        ρ1/2 ω −1/2 σ 1/2 ⊗ 11 |Φi           makes sense for finite dimensional Hilbert spaces, the
+                  1+ǫ
+                   √ T                                     proposition remains true also in the infinite dimensional
+            = X ⊗ σ |Φi = (X ⊗ 11) |ψi                       (separable) case. This can be seen either by finite dimen-
+               √                                             sional approximation, or by considering |Φi as a formal
+            = ( ρ ⊗ Y ) |Φi = (11 ⊗ Y ) |ϕi,
+                                                             device to mediate between normalized entangled vectors
+using (Z ⊗ 11)|Φi = (11 ⊗ Z T )|Φi, with                     (|ϕi, √
+                                                                   |ψi, |ϑi, etc) and Hilbert-Schmidt class operators
+                                                              √
+                                                             ( ρ, σ, ρ1/2 ω −1/2 σ 1/2 , etc).
+                       1
+                 X= √     ρ1/2 ω −1/2 ,
+                      1+ǫ
+                       1                                          III.   RELATIVE ENTROPY DISTANCES
+                 Y = √    (σ T )1/2 (ω T )−1/2 .
+                      1+ǫ
+                                                               The same method employed in Lemma 2 can be used to
+                                            1
+  We claim that kXk, kY k ≤ 1. Indeed, ω ≥ 1+ǫ ρ, so         derive asymptotic continuity bounds for the relative en-
+                                                             tropy distance with respect to any closed convex set C of
+                      1 √ −1 √                               states, or more generally positive semidefinite operators,
+           XX † =        ρω    ρ
+                     1+ǫ                                     on a Hilbert space A, cf. [45]),
+                      1 √           √
+                   ≤     ρ (1 + ǫ)ρ−1 ρ = 11,                                  DC (ρ) = min D(ρkγ).                  (6)
+                     1+ǫ                                                                   γ∈C
+
+and similarly Y Y † ≤ 11. From this it follows that          Unlike [45], C has to contain only at least one full-rank
+       ϑA2               †
+                = TrA1 (X X ⊗ 11)ψ ≤ ψ    A2      T
+                                               = σ , and     state, so that DC is guaranteed to be finite; in addition,
+                                                             C should be bounded, so that DC is bounded from be-
+           A1                 †         A1
+       ϑ        = TrA2 (11 ⊗ Y Y )ϕ ≤ ϕ        = ρ.          low. We recover the conditional entropy S(A|B)ρ for a
+                                                             bipartite state ρ on A ⊗ B, as DC (ρ) with
+   It remains to bound the inner product |hψ|ϑi| (the
+                                                                              
+other one, |hϕ|ϑi|, is completely analogous):                            C = 11A ⊗ σ B : σ a state on B .
+               1                            √ T
+  |hψ|ϑi| = √         hΦ| ρ1/2 ω −1/2 σ 1/2 ⊗ σ |Φi          Lemma 7 For a closed, convex and bounded set C of
+              1+ǫ                                            positive semidefinite operators, containing at least one of
+               1         √                                   full rank, let
+          =√          Tr ρω −1/2 σ
+              1+ǫ
+               1         √                                                   κ := sup DC (τ ) − DC (τ ′ )
+          =√          Tr ρω −1/2 [(1 + ǫ)ω − ǫ∆]                                   τ,τ ′
+              1+ǫ
+               1                √ √           √              be the largest variation of DC . Then, for any two states
+          =√          (1 + ǫ) Tr ρ ω − ǫ Tr ρω −1/2 ∆        ρ and σ with 21 kρ − σk1 ≤ ǫ,
+              1+ǫ
+               √ p                                                                                          
+          ≥ Tr ρ (1 + ǫ)ω − ǫ Tr X∆                                                                       ǫ
+               √ √                                                  |DC (ρ) − DC (σ)| ≤ ǫ κ + (1 + ǫ) h        .   (7)
+          ≥ Tr ρ ρ − ǫkXk k∆k1 ≥ 1 − ǫ,                                                                  1+ǫ
+6
+
+Proof. The only modification with respect to the proof          For the regularization, consider any integer n and
+of Lemma 2 is that we replace the invocation of concavity
+                                                                               
+of the conditional entropy with the joint convexity of the     ER ρ⊗n − ER σ ⊗n
+relative entropy, which makes DC a convex functional.
+                                                                       n
+                                                                       X
+   Namely, with ω as in Eq. (2), we have on the one hand,                                                         
+                                                                   =         ER ρ⊗t ⊗ σ ⊗n−t − ER ρ⊗t−1 ⊗ σ ⊗n−t+1
+                       1            ǫ                                  t=1
+           DC (ω) ≤       DC (σ) +     DC (∆).                         n
+                                                                       X
+                      1+ǫ          1+ǫ
+                                                                   ≤         |ER (ρ ⊗ Ωt ) − ER (σ ⊗ Ωt )|,
+On the other hand, with an optimal γ ∈ C,                              t=1
+
+                
+ DC (ω) = D ωkγ                                               with Ωt = ρ⊗t−1 ⊗σ ⊗n−t . Now for each t, Lemma 7 gives
+          = −S(ω) − Tr ω log γ                                                                                     
+                                                                                                               ǫ
+                                                               |ER (ρ ⊗ Ωt ) − ER (σ ⊗ Ωt )| ≤ ǫκt + (1 + ǫ) h        ,
+                 ǫ         1             ǫ                                                                      1+ǫ
+          ≥ −h        −        S(ρ) −        S(∆′ )
+                1+ǫ       1+ǫ          1+ǫ                                                                     
+                        1                  ǫ                  with κt = supτ,τ ′ ER (τ ⊗ Ωt ) − ER (τ ′ ⊗ Ωt ) . To see
+                   −        Tr ρ log γ −       Tr ∆′ log γ    this, we have to look into the proof of the lemma, and
+                      1+ǫ                1+ǫ
+                                                            observe that for states ρ⊗Ωt and σ⊗Ωt , also the auxiliary
+                 ǫ         1                 ǫ                operators ∆ and ∆′ are of the form τ ⊗ Ωt and τ ′ ⊗ Ωt .
+          = −h        +        D(ρkγ) +         D(∆′ kγ)
+                1+ǫ       1+ǫ             1+ǫ                 However, by LOCC monotonicity,
+                   
+                 ǫ         1               ǫ
+          ≥ −h        +        DC (ρ) +        DC (∆′ ).                          ER (τ ′ ⊗ Ωt ) ≥ ER (Ωt ),
+                1+ǫ       1+ǫ            1+ǫ
+
+Putting these two inequalities together yields the claim      and similarly
+of the lemma.                                          ✷
+                                                                   ER (τ ⊗ Ωt ) ≤ ER (Φd ⊗ Ωt ) ≤ log d + ER (Ωt ),
+    In particular, in the case that
+                                                              so that κt ≤ log d. Although we do not need it, the right
+     C = SEP(A : B)                                           hand inequality is in fact an equality, ER (Φd ⊗ Ωt ) =
+       := conv{αA ⊗ β B : α, β states on A, B, resp.}         log d + ER (Ωt ) [33]. Thus, we obtain for all n,
+                                                                                                                    
+                                                                1          1                                     ǫ
+is the set of separable states, we obtain the relative en-        ER ρ ⊗n
+                                                                           − ER σ     ⊗n
+                                                                                           ≤ ǫ log d + (1 + ǫ) h       ,
+tropy of entanglement of a state ρ on bipartite system         n              n                                   1+ǫ
+A ⊗ B, ER (ρ) = DSEP(A:B) (ρ) [47]. Furthermore, we
+consider its regularization                                   and taking the limit n → ∞ concludes the proof.            ✷
+                                                                 Again, in Lemma 7 and Corollary 8, the constant in the
+                               1                              linear term (proportional to ǫ) is essentially best possible,
+                  ∞
+                 ER (ρ) = lim    ER (ρ⊗n ),
+                           n→∞ n
+                                                              as we see by taking two states maximizing the difference
+which is known to be different from ER (ρ) in general [48].   DC (ρ)−DC (σ), i.e. attaining κ, since 21 kρ−σk1 ≤ 1 =: ǫ.
+
+Corollary 8 (Cf. Donald/Horodecki [11] & Chris-               Remark 9 Lemma 7 improves upon similar-looking gen-
+tandl [6]) For any two states ρ and σ on the composite        eral bounds by Synak-Radtke and Horodecki [45], which
+system A ⊗ B, denoting the smaller of the dimensions          were subsequently optimized by Mosonyi and Hiai [28,
+|A|, |B| by d, 12 kρ − σk1 ≤ ǫ implies                        Prop. VI.1]. The latter paper also explains lucidly (in
+                                                                                              1
+                                                              Sec. VI) that the coefficient 1+ǫ  in the convex decompo-
+                                                   
+                                                  ǫ           sition of ω in two ways, into ρ and ∆′ and into σ and ∆, is
+      |ER (ρ) − ER (σ)| ≤ ǫ log d + (1 + ǫ) h         ,       optimal, and gives a nice geometric interpretation of ω as
+                                                 1+ǫ
+                                                            a max-relative entropy center of ρ and σ (cf. [24]). Thus,
+       ∞           ∞                              ǫ           at least following the same strategy one cannot improve
+     |ER  (ρ) − ER   (σ)| ≤ ǫ log d + (1 + ǫ) h       .
+                                                 1+ǫ          the bound any more.
+                                                                                                                     ∞
+                                                                 That the regularized relative entropy measure ER       is
+Note that this bound only depends on the smaller of the       asymptotically continuous followed previously from its
+two dimensions, in contrast to [11]; in particular, it ap-    non-lockability [21], which it inherits from ER . This has
+plies even in the case that one of the two Hilbert spaces     been worked out in [8, Prop. 13], following [6, Prop. 3.23],
+is infinite dimensional.                                      with a different linear term.
+Proof. The first bound, on the single-letter ER is a
+direct application of Lemma 7 to the case where C is the      Remark 10 It would be interesting to lift the restric-
+set of all separable states on A ⊗ B.                         tion that C has to be a convex set: Natural examples are
+                                                                                                                           7
+
+the case that C is the set of all product states in a bipar-     The entropy in this case is given by
+tite (multipartite) system, in which case DC becomes the                            
+quantum mutual information (multi-information); or the                     S γ(E) = log Z + β(E)(log e)E.
+case that C is the closure of the set of all Gibbs states
+for a suitable Hamiltonian operator H,                           This implies that the spectrum is unbounded above, and
+                                                               that the energy levels cannot become “too dense” with
+                         1      −βH                              growing energy value.
+              C=              e      :β>0 .
+                     Tr e−βH                                       Let us immediately draw some conclusions from these
+                                                                 assumptions; the following is a simply consequence of Shi-
+   Both examples have in common that C is an exponen-
+                                                                 rokov’s [37, Prop. 1], for which we present an elementary
+tial family (or the closure of one); it is known that at least
+                                                                 proof.
+in some cases DC is continuous, but counterexamples of
+discontinuous behaviour are known [51].
+                                                                 Proposition 11 For a Hamiltonian
+                                                                                                        H satisfying the
+                                                                 Gibbs Hypothesis, S γ(E) is a strictly increasing,
+              IV.    BOUNDED ENERGY                              strictly concave function of the energy E.
+
+                                                                 Proof. It is clear from the maximum entropy charac-
+   If the Hilbert space in the Fannes inequality (Lemma 1)       terization of γ(E) that the entropy as a function of E
+has infinite dimension, or likewise A in the Alicki-Fannes       must be non-decreasing; it is unbounded by looking at
+inequality (Lemma 2), then the bound becomes triv-               the formula for the entropy in terms of log Z.
+ial: the right hand side is infinite. This is completely           Furthermore, for energies E1 and E2 , and 0 ≤ p ≤ 1,
+natural, since the entropy is not even continuous, and
+                                                                                            
+these Fannes-type bounds imply a sort of uniform conti-           Tr pγ(E1 ) + (1 − p)γ(E2 ) H ≤ pE1 + (1 − p)E2 =: E,
+nuity. Continuity is restored, however, when restricting
+to states of finite energy, for instance of a quantum har-       and so concavity follows:
+monic oscillator [50], see also [12] and [38] for more recent                                            
+results and excellent surveys on the status of continuity               S γ(E) ≥ S pγ(E1 ) + (1 − p)γ(E2 )
+of the entropy. Shirokov [39] has developed an approach                                                                (8)
+                                                                                 ≥ pS γ(E1 ) + (1 − p)S γ(E2 ) .
+do prove (local) continuity of entropic quantities, based
+on certain finite entropy assumptions, in which he uses                                                
+                                                                   From this it follows that S γ(E)      is strictly
+                                                                                                                    increas-
+Alicki-Fannes inequalities on finite approximations.
+   Uniform bounds are still out of the question, but what        ing, because otherwise S γ(E1) = S γ(E2 ) for some
+we shall show here is that the Fannes and Alicki-Fannes          E1 < E2 , but then S γ(E2 ) < S γ(E3 ) for some
+inequalities discussed above have satisfying analogues,          E2 < E3 , since the entropy grows to infinity as E → ∞,
+with a dependence on the energy of the states rather             contradicting concavity.
+than the Hilbert space dimension.                                  But this means that for E1 6= E2 , necessarily γ(E1 ) 6=
+   Abstractly, our setting is this: Consider a Hamilto-          γ(E2 ), and so by the strict concavity of the von Neumann
+nian H on a infinite dimensional separable Hilbert space         entropy, we have strict inequality in the second line of
+A. If there is another system B and we consider bi-              Eq. (8) for 0 < p < 1.                                    ✷
+partite states and conditional entropy, we implicitly as-
+sume trivial Hamiltonian on B, i.e. global Hamiltonian           Corollary 12 If H satisfies the Gibbs Hypothesis, then
+H = H A ⊗ 11B . We shall need a number of assumptions            for any δ > 0,
+on H, to start with that it has discrete spectrum and                                                    
+that it is bounded from below; for normalization pur-                        sup λ S γ(E/λ) = δ S γ(E/δ) .
+                                                                            0<λ≤δ
+poses we fix the ground state energy of H to be 0. The
+mathematically precise assumption is the following.              Proof. The right hand side is clearly attained by letting
+Gibbs Hypothesis. For every β > 0, let the parti-                λ = δ. To prove “≤” for any admissible λ, observe that
+tion function Z(β) := Tr e−βH < ∞ be finite, so that             by concavity (Proposition 11),
+  1    −βH
+Z(β) e     is a bona fide state with finite entropy. In                                                             
+this case, for every energy E in the spectrum of H,               S γ(tF ) ≥ t S γ(F ) + (1 − t) S γ(0) ≥ t S γ(F ) .
+the (unique) maximizer of the entropy S(ρ) subject to
+Tr ρH ≤ E is of the Gibbs form:                                  Letting t = λδ ≤ 1 and F = E
+                                                                                            λ concludes the proof.         ✷
+                            1
+                γ(E) =           e−β(E)H ,
+                         Z(β(E))                                 Remark 13 Another useful fact proved by Shirokov [37,
+                                                                 Prop. 1(ii)], which we shall
+                                                                                           invoke later, is that under
+where β = β(E) is decreasing with E and is the solution          our assumptions, S γ(E) = o(E), which can be recast
+to the equation
+                                                                 as saying that δ S γ(E/δ) → 0 for every finite E and
+                    Tr e−βH (H − E) = 0.                         δ → 0.                                              ✷
+8
+
+   We start with an easy-to-prove continuity bound for         Here, we have first used the marginals of ω, then in the
+the entropy, inspired by the proof of Lemma 1, though          second line the Araki-Lieb “triangle” inequality [2], in
+for the conditional entropy we shall have to resort to a       the third line strong subadditivity, and in the last step
+different argument. It uses a quantum coupling as in           the maximum entropy principle, noting that with respect
+Proposition 5 (which implies a weaker bound in the fol-        to the Hamiltonian H A1 ⊗ 11A2 + 11A1 ⊗H A2 , ω has energy
+lowing, with the square of the expression on the right         ≤ 2E, and so the energy of ω ′ is bounded by 2E/ǫ. For
+hand side).                                                    the last line, observe that the Gibbs state at energy 2E/ǫ
+                                                               of the composite system is γ(E/ǫ)⊗2 .                    ✷
+Proposition 14 Let ρ and σ be states on the same
+Hilbert space A, and consider the tensor square A ⊗ A =:          The following two general bounds lack perhaps the sim-
+A1 A2 of the quantum system. Then, there exists a state        ple elegance of Lemma 15, but they turn out to be more
+ω with ω A1 = ρ, ω A2 = σ and such that                        flexible, and stronger in certain regimes.
+                           1                                   Meta-Lemma 16 (Entropy) For a Hamiltonian H on
+                 kωk∞ ≥ 1 − kρ − σk1 .
+                           2                                   A satisfying the Gibbs Hypothesis and any two states ρ
+                                                               and σ with Tr ρH, Tr σH ≤ E, 12 kρ − σk1 ≤ ǫ < ǫ′ ≤ 1,
+Proof. Choose spectral decompositions                                   ǫ′ −ǫ
+                     X                                         and δ = 1+ǫ  ′,
+                 ρ=      ri |ei ihei |,                                                            
+                             i                                    S(ρ)−S(σ) ≤ (ǫ′ + 2δ)S γ(E/δ) + h(ǫ′ ) + h(δ).
+                            X
+                       σ=        si |fi ihfi |,
+                             i
+                                                               Meta-Lemma 17 (Conditional entropy) For states
+                                                               ρ and σ on the bipartite system A ⊗ B and otherwise
+of the two states, with r1 ≥ r2 ≥ . . . and s1 ≥ s2 ≥ . . .;   the same assumption as before,
+then, the ℓ1 -distance between the probability vectors (ri )                                                 
+and (si ) is not larger than the trace distance between ρ        S(A|B)ρ −S(A|B)σ ≤ (2ǫ′ + 4δ)S γ(E/δ)
+and σ:                                                                                                ′ 
+                                                                                                ′       ǫ
+                                                                                        + (1 + ǫ ) h           + 2h(δ).
+             kρ − σk1 ≥ k(ri ) − (si )k1 =: 2ǫ.                                                       1 + ǫ′
+(This is known as Mirksy’s inequality [20, Cor. 7.4.9.3].)       To interpret these bounds, we remark that in a certain
+  Defining a vector                                            sense they show that the Gibbs entropy at the cutoff
+                  Xp                                           energy E/ǫ (E/δ) takes on the role of the logarithm of
+           |φi :=     min{ri , si }|ei iA1 |fi iA2
+                                                               the dimension in the finite dimensional case. Before we
+                   i
+                                                               launch into their proof, let us introduce some notation:
+in A1 A2 , we clearly have Tr |φihφ| = 1 − ǫ, and φA1 ≤ ρ,     Define the energy cutoff projectors
+φA2 ≤ σ, thus we can write                                                       X
+                                                                       P≤ :=            |nihn|, P> := 11 − P≤ ,
+       ρ = |φihφ|A1 + ǫ∆1 ,        σ = |φihφ|A2 + ǫ∆2 ,
+                                                                              0≤En ≤E/δ
+with bona fide states ∆1 and ∆2 .
+   It is straightforward to check that the definition ω :=     where |ni is the eigenvector of eigenvalue En of the
+|φihφ| + ǫ∆1 ⊗ ∆2 satisfies all requirements on ω.       ✷     Hamiltonian H. We shall also consider the pinching map
+
+Lemma 15 Let the Hamiltonian H on A satisfying the                             T (ξ) = P≤ ξP≤ + P> ξP> ,
+Gibbs Hypothesis. Then for any two states ρ and σ on A
+                                                               which is a unital channel, as well as its action on the
+with Tr ρH, Tr σH ≤ E and 12 kρ − σk1 ≤ ǫ ≤ 1,
+                                                               original ρ and σ:
+                                     
+          S(ρ) − S(σ) ≤ 2ǫS γ(E/ǫ) + h(ǫ).
+                                                                              T (ρ) =: (1 − λ)ρ≤ + λρ> ,
+Proof. Pick a state ω on A1 A2 , according to Proposi-                        T (σ) =: (1 − µ)σ≤ + µσ> .
+tion 14: ω A1 = ρ, ω A2 = σ, and with largest eigenvalue
+≥ 1 − ǫ, meaning that we can write                             Note that because H commutes with the action of T ,
+                 ω = (1 − ǫ)|ψihψ| + ǫω ,         ′            we have Tr ξH = Tr T (ξ)H, and so the energy bound E
+                                                               applies also to T (ρ) and T (σ). Hence,
+with a pure state |ψi (the normalized vector |φi from the
+proof of Proposition 14) and some other state ω ′ . Hence,        λ ≤ δ, λ Tr ρ> H ≤ E,     µ ≤ δ, µ Tr σ> H ≤ E.     (9)
+
+           S(ρ) − S(σ) = S(ω A1 ) − S(ω A2 )                   Our strategy will be to relate S(ρ) to S(ρ≤ ) (and the
+                            ≤ S(ω   A1 A2
+                                      )                        same for σ and σ≤ ) via entropy inequalities, including
+                                  ′                            concavity, similar to the first part of the paper, and then
+                            ≤ ǫS(ω ) + h(ǫ)                    apply the usual Fannes (Alicki-Fannes) inequalities to ρ≤
+                                         
+                            ≤ 2ǫS γ(E/ǫ) + h(ǫ).               and σ≤ .
+                                                                                                                           9
+
+Proof of Lemma 16. First of all, by concavity of the              With these three elements we can conclude the proof:
+entropy (monotonicity under unital cptp maps),                  W.l.o.g. S(ρ) ≥ S(σ), and so from Eqs. (11), (13) and
+                                                                (15),
+         S(ρ) ≤ S(T (ρ))                                                                                           
+                                                         (10)     S(ρ) − S(σ) ≤ S(ρ≤ ) − S(σ≤ ) + h(δ) + 2δS γ(E/δ)
+              = h(λ) + (1 − λ)S(ρ≤ ) + λS(ρ> ).                                                   
+                                                                              ≤ (ǫ′ + 2δ)S γ(E/δ) + h(ǫ′ ) + h(δ),
+Now, by Eq. (9), the maximum entropy principle and
+Corollary 12,                                                   as advertised.                                             ✷
+                                                              Proof of Lemma 17. It is very similar to the previous
+         λS(ρ> ) ≤ λS γ(E/λ) ≤ δS γ(E/δ) .
+                                                                one, only that we have to be a bit more careful in some
+Thus, from Eq. (10), observing δ ≤ 12 , we get                  details, as the conditional entropy can be negative.
+                                                                  The first step goes through almost unchanged, with the
+                                                               map T ⊗ idB , since the conditional entropy is concave as
+          S(ρ) ≤ S(ρ≤ ) + h(δ) + δS γ(E/δ) ,             (11)
+                                                                well (equivalent to strong subadditivity) [27]:
+and likewise for σ.
+  Second, we have                                                 S(A|B)ρ ≤ S(A|B)T (ρ)
+                                                                              = h(λ) + (1 − λ)S(A|B)ρ≤ + λS(A|B)ρ> .
+             S(σ) ≥ (1 − µ)S(σ≤ ) + µS(σ> ).             (12)
+                                                                The remainder term λS(A|B)ρ> is upper bounded by
+To see this, we think of the action of T as a binary mea-       λS(ρA> ) (again by strong
+                                                                                         subadditivity), hence the upper
+surement on the system A, which we can implement co-            bound λS γ(E/λ) still applies. The only change is due
+herently with two ancilla qubits X and X ′ ,                    to the fact that the conditional entropy can be negative.
+                               ′                     ′          However, for any bipartite state ξ AB ,
+     |ϕi 7−→ (P≤ |ϕi)A |00iXX + (P> |ϕi)A |11iXX .
+                                                                                 −S(ξ A ) ≤ S(A|B)ξ ≤ S(ξ A ).
+Applying this to σ, we have by unitary invariance and
+the Araki-Lieb “triangle” inequality,                           Here, the right hand inequality is strong subadditiv-
+                                                                ity that we have used before; introducing a purification
+S(σ) = S(AXX ′ ) ≥ S(AX) − S(X ′ )                              |ϕiABC of the state, we have −S(A|B)ϕ = S(A|C)ϕ ≤
+                 = S(AX) − S(X)                                 S(ξ A ), which is the left hand inequality. Thus,
+                                                                                                                  
+                 = S(A|X) = (1 − µ)S(σ≤ ) + µS(σ> ).                   (1 − λ)S(A|B)ρ≤ ≤ S(A|B)ρ≤ + δS γ(E/δ) .
+Thus, using that the energy of σ≤ is at
+                                       most E/δ by             Altogether,
+construction, and so S(σ≤ ) ≤ S γ(E/δ) ,                                                          
+                                                                   S(A|B)ρ ≤ S(A|B)ρ≤ + 2δS γ(E/δ) + h(δ).             (16)
+                                            
+   S(σ) ≥ (1 − µ)S(σ≤ ) ≥ S(σ≤ ) − δS γ(E/δ) . (13)               Also the second step requires only minor modifications:
+  Third, by definitions, contractivity of the trace norm        With the notation of the previous proof, and using the
+and triangle inequality,                                        Araki-Lieb “triangle” inequality once again,
+                                                                S(AXX ′ |B) = S(AXX ′ B) − S(B)
+  2ǫ ≥ kρ − σk1
+                                                                    ≥ S(ABX) − S(X ′ ) − S(B)
+     ≥ P≤ ρP≤ − P≤ σP≤ 1
+                                                                    = S(ABX) − S(BX) − S(X) − S(B) + S(XB)
+     = (1 − λ)ρ≤ − (1 − µ)σ≤ 1                                      = S(A|BX) − I(X : B)
+     = (1 − δ)(ρ≤ − σ≤ ) + (δ − λ)ρ≤ + (µ − δ)σ≤ 1                  ≥ S(A|BX) − h(δ).
+     ≥ (1 − δ)kρ≤ − σ≤ k1 − 2δ,
+                                                                Again, since conditional entropies can be negative, we
+and so                                                          have to be more careful with remainder terms and get
+                                                                                                       
+               1               ǫ+δ                                 S(A|B)σ ≥ S(A|B)σ≤ − 2δS γ(E/δ) − h(δ).        (17)
+                 kρ≤ − σ≤ k1 ≤     = ǫ′ .                (14)
+               2               1−δ                                In the third step, the trace norm estimate (14) goes
+Hence by the Fannes inequality in the form of Lemma 1,          through unchanged, and then we apply the Alicki-Fannes
+                                                                inequality in the form of Lemma 2:
+         |S(ρ≤ ) − S(σ≤ )| ≤ ǫ′ log Tr P≤ + h(ǫ′ )
+                                                        (15)       S(A|B)ρ≤ − S(A|B)σ≤
+                           ≤ ǫ′ S γ(E/δ) + h(ǫ′ ).                                                                  
+                                                                                      ′                  ′       ǫ′
+                                                                                  ≤ 2ǫ log Tr P≤ + (1 + ǫ ) h
+The latter inequality holds because the state Tr1P≤ P≤                                                         1 + ǫ′
+                                                                                                                ′ 
+clearly has energy bounded by E/δ, and so cannot have                                                             ǫ
+                                                                                  ≤ 2ǫ′ S γ(E/δ) + (1 + ǫ′ ) h         .
+entropy larger than the Gibbs state.                                                                            1 + ǫ′
+10
+
+  Putting this together with Eqs. (16) and (17), assum-       with E =: ℓE.
+ing w.l.o.g. that S(A|B)ρ ≥ S(A|B)σ , we obtain                  By using this upper bound in Lemmas 16 and 17, for
+                                                              δ = αǫ(1 − ǫ), with a parameter α between 0 and 12 , and
+ S(A|B)ρ − S(A|B)σ ≤ S(A|B)ρ≤ − S(A|B)σ≤
+                                                             introducing
+                          + 2h(δ) + 4δS γ(E/δ)                                       (
+                                             
+                       ≤ (2ǫ′ + 4δ)S γ(E/δ)                                  e         h(x) for x ≤ 21 ,
+                                        ′                                  h(x) :=
+                                          ǫ                                            1     for x ≥ 21 ,
+                                  ′
+                          + (1 + ǫ ) h         + 2h(δ),
+                                        1 + ǫ′
+                                                              we obtain directly the following:
+and we are done.                                         ✷
+   The bounds of Lemmas 15, 16 and 17 are very general,       Lemma 18 Consider two states ρ and σ of the ℓ-
+and it may not be immediately apparent how useful they        oscillator system (18), whose energies are bounded
+are. However, thanks to [37, Prop. 1(ii)], restated in       Tr ρH, Tr σH ≤ E = ℓE. Then, 21 kρ − σk1 ≤ ǫ < 1
+Remark 13, δS γ(E/δ) → 0 for every finite E, as δ → 0         implies
+                                       √
+(cf. [40, Cor. 4]). Thus, choosing ǫ′ = ǫ, the lemmas do
+prove continuity of the entropy and conditional entropy       S(ρ) − S(σ)
+                                                                            "Xℓ                               #
+in general, and uniformly for each fixed energy.                     1+α                  E                 e
+   We now specialize our bounds to the important case of        ≤ǫ        +2α      log       + 1 + ℓ log
+                                                                     1−α                 ~ωi             α(1 − ǫ)
+a collection of ℓ quantum harmonic oscillators, where we                       i=1
+                                                                                                            
+shall see that the bounds are asymptotically tight. The                                   1+α            1+α
+Hamiltonian is                                                                 + (ℓ + 2)        +2α eh        ǫ .
+                                                                                          1−α            1−α
+                         ℓ
+                         X
+                    H=         ~ωi a†i ai ,           (18)    If the states live on a system composed of the ℓ oscillators
+                         i=1                                  (A) and another system B, then
+where ωi is the native frequency of the i-th oscillator       S(A|B)ρ − S(A|B)σ
+and ai is its annihilation (aka lowering) operator (see                                                            #
+                                                                             "Xℓ              
+e.g. [25] or [49]). Note that we chose the slightly unusual           1+α                  E                 e
+energy convention                                               ≤ 2ǫ      +2α       log       + 1 + ℓ log
+                 P such that the ground state has energy              1−α                 ~ωi             α(1 − ǫ)
+0, rather than i 21 ~ωi , to be able to apply directly our                      i=1
+                                                                                                            
+above results. In the case of a single mode, and choosing                                1+α        e   1+α
+                                                                             + (2ℓ + 4)        +2α h          ǫ .✷
+units such that ~ω1 = 1, the Hamiltonian simply becomes                                  1−α            1−α
+the number operator N . In that case, it is well-known
+that
+             
+    S γ(N ) = g(N ) := (N + 1) log(N + 1) − N log N           Remark 19 For each fixed ǫ ≤ 1, we can make        Pα ar-
+                     ≤ log(N + 1) + log e.                    bitrarily small, and then for large energy E ≫ i ~ωi ,
+                                                              the bounds of Lemma 18 are asymptotically tight, in the
+Crucially, and in accordance with Proposition 11, g is a      sense that apart from the additive offset terms, the factor
+concave, monotone increasing function of N .                  multiplying ǫ (2ǫ, resp.) cannot be smaller than
+                                              Nℓ
+  In the general
+           P      case of Eq. (18), γ(E) = i=1 γi (Ei ),
+with E = i Ei and where γi (Ei ) is the Gibbs state of                              ℓ                   
+                                                                                  X                E
+the i-th mode with energy Ei . Maximizing the entropy,                     S γ(E) ≈   log              +1 .
+                            !                                                                      ~ωi
+                Oℓ             Xℓ                                                     i=1
+                                        Ei
+            S       γi (Ei ) =      g         ,               This can be seen in the entropy case by comparing the
+                                        ~ωi
+                i=1            i=1                            vacuum state ρ = |0ih0|⊗ℓ of all ℓ modes with the state
+over all allocations of the total energy over the ℓ modes     σ = (1 − ǫ)|0ih0|⊗ℓ + ǫγ(E); in the conditional entropy
+leads to a transcendental equation, but we do not need        case, take ρ to be a purification of the Gibbs state γ(E)
+to solve it as we only want an upper bound, via g(N ) ≤       on A ⊗ B, and σ = (1 − ǫ)ρ + ǫγ(E)A ⊗ τ B with an
+log(N + 1) + log e. By a straightforward Lagrange mul-        arbitrary state τ on B.
+tiplier calculation we see that the optimum is to divide
+the energy equally among the modes:
+                        ℓ                                                  V.    CONCLUSIONS
+                     X            Ei
+     S γ(E) ≤ max           log        + 1 + log e
+                       i=1
+                                   ~ωi                           Using entropy inequalities, specifically concavity, we
+                                                   (19)     improved the appearance of the Alicki-Fannes inequality
+                             Xℓ
+                                        E                     for the conditional von Neumann entropy to an almost
+               = (log e)ℓ +      log       +1 ,
+                             i=1
+                                       ~ωi                    tight form. It would be nice to know the ultimately best
+                                                                                                                          11
+
+form among all formulas that depend only on the dimen-          in terms of the trace distance of the states or diamond
+sion of the Hilbert space and the trace distance, but we        norm distance of the channels, respectively. While in
+have to leave this as an open problem.                          many applications it is of minor interest to have the op-
+   In particular, it would be curious to find the optimal       timal form of the bound (for example when ǫ goes to 0),
+form of the fidelity in Proposition 5,                          it pays off to have a tighter bound than [1] in the setting
+                                                                of approximately degradable channels [43]. Indeed, this
+      Fe := max F (ψ, Θ) s.t. ΘA1 = ρ, ΘA2 = ψ A2,              results even in new, tighter upper bounds on the quan-
+              1                                                 tum capacity of very quiet depolarizing channels [43], by
+         ≥ 1 − kρ − σk1 ,                                       way of an extension of the methodology of [41].
+              2
+                                                                   The infinite dimensional versions of these entropy
+with a fixed purification ψ of σ, and of Proposition 14,
+                                                                bounds under an energy constraint are awaiting appli-
+     1                                                          cations, though it seems clear that explicit bounds on
+  1 − kρ − σk1 ≤ max kωk∞ s.t. ω A1 = ρ, ω A2 = σ,              the continuity and asymptotic continuity of entanglement
+     2
+                                                                measures [12], (e.g. for squashed entanglement since the
+which may be regarded as quantum state analogues of             first posting of the present manuscript [40]) and chan-
+the coupling random variables,                                  nel capacities [17–19, 36] in infinite dimension should be
+                                                                among the first, as well as the extension of approximate
+    1                                                           degradability [43] to Bosonic channels [44].
+      kp − qk1 = min Pr{X 6= Y } s.t. X ∼ p, Y ∼ q.
+    2
+Furthermore, are there versions of these statements that           Acknowledgments. Thanks to David Sutter and
+would allow for alternative proofs or tighter versions of       Volkher Scholz for stimulating discussions, to Nihat Ay,
+Lemmas 2 and 17 for the conditional entropy?                    Milán Mosonyi and Dong Yang for remarks on general
+   The same principle lead to the apparently first uniform      relative entropy distances, to Maxim Shirokov for his
+continuity bounds of the entropy and conditional on in-         many insights into entropy and entanglement measures,
+finite dimensional Hilbert spaces under a bound on the          in particular his keen interest in the asymptotic continu-
+expected energy (or, for that matter, bounded expecta-          ity of entanglement cost and for spotting an error in an
+tion of any sufficiently well-behaved Hermitian operator).      earlier version of the proof of Lemma 17, and to Mark
+In the case of a system of harmonic oscillators, we have        Wilde for comments on the history of Lemma 1. The
+seen that the bound is, in a certain sense, asymptotically      hospitality of the Banff International Research Station
+tight, even though here we are much farther away from           (BIRS) during the workshop “Beyond IID in Informa-
+a universally optimal form.                                     tion Theory” (5-10 July 2016) is gratefully acknowledged,
+   The Fannes and Alicki-Fannes inequalities already are        where Volkher Scholz and David Sutter posed the deriva-
+known to have many applications in quantum informa-             tion of infinite dimensional Fannes type inequalities as an
+tion theory. These include the continuity of certain            open problem, and where the present work was initiated.
+entanglement measures such as entanglement of forma-              The author’s work was supported by the EU (STREP
+tion [29], relative entropy of entanglement [11], squashed      “RAQUEL”), the ERC (AdG “IRQUAT”), the Spanish
+entanglement [7] and conditional entanglement of mutual         MINECO (grant FIS2013-40627-P) with the support of
+information [54], and of various quantum channel capaci-        FEDER funds, as well as by the Generalitat de Catalunya
+ties [26]. In fact, we always get explicit continuity bounds    CIRIT, project 2014-SGR-966.
+
+
+
+
+ [1] R. Alicki, M. Fannes, “Continuity of quantum conditional        phy, PhD Thesis, Department of Applied Mathematics
+     information”, J. Phys. A: Math. Gen. 37:L55-L57 (2004).         and Theoretical Physics, Cambridge University, 2006;
+ [2] H. Araki, E.H. Lieb, “Entropy inequalities”, Commun.            arXiv:quant-ph/0604183.
+     Math. Phys. 18:160-170 (1970).                              [7] M. Christandl, A. Winter, “ ‘Squashed entanglement’
+ [3] K.M.R. Audenaert, “A sharp continuity estimate for the          – An additive entanglement measure”, J. Math. Phys.
+     von Neumann entropy”, J. Math. Phys. A: Math. Theor.            45(3):829-840 (2003).
+     40(28):8127-8136 (2007).                                    [8] M. Christandl, N. Schuch, A. Winter, “Entanglement
+ [4] C.H. Bennett, D.P. DiVincenzo, J.A. Smolin, W.K.                of the Antisymmetric State”, Commun. Math. Phys.
+     Wootters, “Mixed-state entanglement and quantum er-             311:397-422 (2012).
+     ror correction”, Phys. Rev. A 54(5):3824-3851 (1996).       [9] T.M. Cover, J.A. Thomas, Elements of Information The-
+ [5] V.I. Bogachev, A.V. Kolesnikov, “The Monge-                     ory, 2nd ed., John Wiley & Sons, 2006.
+     Kantorovich problem:        achievements, connections,     [10] I. Devetak, P.W. Shor, “The capacity of a quantum chan-
+     and perspectives”, Russian Math. Surveys 67(5):785-890          nel for simultaneous transmission of classical and quan-
+     (2012).                                                         tum information”, Commun. Math. Phys. 256:287-303
+ [6] M. Christandl, The Structure of Bipartite Quantum               (2005).
+     States — Insights from Group Theory and Cryptogra-         [11] M.J. Donald, M. Horodecki, “Continuity of relative
+12
+
+     entropy of entanglement”, Phys. Lett. A 264:257-260               59(11):7118-7131 (2013).
+     (1999).                                                      [35] E. Schrödinger, “Discussion of Probability Relations be-
+[12] J. Eisert, C. Simon, M.B. Plenio, “On the quantification          tween Separated Systems”, Math. Proc. Cambridge Phil.
+     of entanglement in infinite-dimensional quantum sys-              Soc. 31(4):555-563 (1935); “Probability Relations be-
+     tems”, J. Phys. A: Math. Gen. 35(17):3911-3923 (2002).            tween Separated Systems”, Math. Proc. Cambridge Phil.
+[13] M. Fannes, “A continuity property of the entropy density          Soc. 32(3):446-452 (1936).
+     for spin lattice systems”, Commun. Math. Phys. 31:291-       [36] M.E. Shirokov, A.S. Holevo, “On Approximation of
+     294 (1973).                                                       Infinite-Dimensional Quantum Channels”, Probl. Inf.
+[14] C.A. Fuchs, J. van de Graaf, “Cryptographic Distin-               Transm. 44(2):73-90 (2008).
+     guishability Measures for Quantum-Mechanical States”,        [37] M.E. Shirokov, “Entropy characteristics of subsets
+     IEEE Trans. Inf. Theory 45(4):1216-1227 (1999).                   of states. I”, Izvestiya: Mathematics 70(6):1265-1292
+[15] M.B. Hastings, “Superadditivity of communication ca-              (2006).
+     pacity using entangled inputs”, Nature Phys. 5:255-257       [38] M.E. Shirkov, “Continuity of the von Neumann entropy”,
+     (2009).                                                           Commun. Math. Phys. 296(3):625-654 (2010).
+[16] P.M. Hayden, M. Horodecki, B.M. Terhal, “The asymp-          [39] M.E. Shirokov, “Measures of quantum correla-
+     totic entanglement cost of preparing a quantum state”,            tions in infinite-dimensional systems”, arXiv[quant-
+     J. Phys. A: Math. Gen. 34(35):6891-6898 (2001).                   ph]:1506.06377 (2015).
+[17] A.S. Holevo, “On Quantum Communication Chan-                 [40] M.E. Shirokov, “Squashed entanglement in infinite di-
+     nels with Constrained Inputs”, arXiv:quant-ph/9705054             mensions”, arXiv[quant-ph]:1507.08964v3 (2015).
+     (1997).                                                      [41] G. Smith, J.A. Smolin, A. Winter, “The Quantum Ca-
+[18] A.S. Holevo, “Entanglement-Assisted Capacities of Con-            pacity With Symmetric Side Channels”, IEEE Trans.
+     strained Quantum Channels”, Theory Probab. Appl.                  Inf. Theory 54(9):4208-4217 (2008).
+     48(2):243-255 (2006).                                        [42] G. Smith, “Private classical capacity with a symmetric
+[19] A.S. Holevo, M.E. Shirokov, “Continuous Ensembles and             side channel and its application to quantum cryptogra-
+     the Capacity of Infinite-Dimensional Quantum Chan-                phy”, Phys. Rev. A 78:022306 (2008).
+     nels”, Theory Probab. Appl. 50(1):86-98 (2006).              [43] D. Sutter, V.B. Scholz, R. Renner, A. Winter, “Approx-
+[20] R. Horn, Ch. Johnson, Matrix analysis, Cambridge Uni-             imate Degradable Quantum Channels”, arXiv[quant-
+     versity Press, 2nd edition, 2013.                                 ph]:1412.0980v2 (2015).
+[21] K. Horodecki, M. Horodecki, P. Horodecki, J. Oppen-          [44] D. Sutter, V.B. Scholz, R. Renner, A. Winter, in prepa-
+     heim, “Locking Entanglement with a Single Qubit”,                 ration.
+     Phys. Rev. Lett. 94:200501 (2005).                           [45] B. Synak-Radtke, M. Horodecki, “On asymptotic con-
+[22] L.P. Hughston, R. Jozsa, W.K. Wootters, “A complete               tinuity of functions of quantum states”, arXiv:quant-
+     classification of quantum ensembles having a given den-           ph/0507126 (2005).
+     sity matrix”, Phys. Lett. A 183:14-18 (1993).                [46] H. Umegaki, “Conditional expectations in an operator
+[23] I. Kim, M.-B. Ruskai, “Bounds on the concavity of en-             alegebra IV (entropy and information)”, Kodai Math,
+     tropy”, J. Math. Phys. 55:092201 (2014).                          Sem. Rep. 14:59-85 (1962).
+[24] G. Kimura, T. Miyadera, H. Imai, “Optimal state dis-         [47] V. Vedral, M.B. Plenio, M.A. Rippin, P.L. Knight,
+     crimination in general probabilistic theories”, Phys. Rev.        “Quantifying Entanglement”,         Phys. Rev. Lett.
+     A 79:062306 (2009).                                               78(12):2275-2279 (1997).
+[25] P. Kok, B.W. Lovett, Introduction to Optical Quantum         [48] K.G.H. Vollbrecht, R.F. Werner, “Entanglement mea-
+     Information Processing, Cambridge University Press,               sures under symmetry”, Phys. Rev. A 64:062307 (2001).
+     2010.                                                        [49] C. Weedbrook, S. Pirandola, R. Garcı́a-Patrón, N.J.
+[26] D. Leung, G. Smith, “Continuity of quantum channel ca-            Cerf, T.C. Ralph, J.H. Shapiro, S. Lloyd, “Gaussian
+     pacities”, Commun. Math. Phys. 292(1):201-215 (2009).             quantum information”, Rev. Mod. Phys. 84(2):621-669
+[27] E.H. Lieb, M.-B. Ruskai, “Proof of the strong subaddi-            (2012).
+     tivity of quantum-mechanical entropy”, J. Math. Phys.        [50] A. Wehrl, “General properties of entropy”, Rev. Mod.
+     14(12):1938-1941 (1973).                                          Phys. 50(2):221-260 (1978).
+[28] M. Mosonyi, F. Hiai, “On the Quantum Rényi Relative         [51] S. Weis, A. Knauf, “Entropy distance: new quantum phe-
+     Entropies and Related Capacity Formulas”, IEEE Trans.             nomena”, J. Math. Phys. 53:102206 (2012).
+     Inf. Theory 57(4):2474-2487 (2011).                          [52] M.M. Wilde, Quantum Information Theory, Cambridge
+[29] M.A. Nielsen, “Continuity bounds for entanglement”,               University Press, 2013.
+     Phys. Rev. A 61:064301 (2000).                               [53] A. Winter, “ ‘Extrinsic’ and ‘Intrinsic’ Data in Quan-
+[30] M. Ohya, D. Petz, Quantum Entropy and Its Use, 2nd                tum Measurements: Asymptotic Convex Decomposition
+     edition, Springer Verlag, Berlin Heidelberg, 2004.                of Positive Operator Valued Measures”, Commun. Math.
+[31] Y. Ouyang, “Channel covariance, twirling, contrac-                Phys. 244:157-185 (2004).
+     tion, and some upper bounds on the quantum capac-            [54] D. Yang, M. Horodecki, Z.D. Wang, “An Additive and
+     ity”, Quantum Inf. Comput. 14(11&12):917-936 (2014);              Operational Entanglement Measure: Conditional En-
+     arXiv[quant-ph]:1106.2337v6.                                      tanglement of Mutual Information”, Phys. Rev. Lett.
+[32] D. Petz, Quantum Information Theory and Quantum                   101:140501 (2008); arXiv:quant-ph/0701149.
+     Statistics, Springer Verlag, Berlin Heidelberg, 2008.        [55] Z. Zhang, “Estimating Mutual Information Via
+[33] M. Piani, A. Winter, “Extra-weak additivity of the rela-          Kolmogorov Distance”, IEEE Trans. Inf. Theory
+     tive entropy of entanglement”, in eternal preparation.            53(9):3280-3282 (2007).
+[34] I. Sason, “Entropy Bounds for Discrete Random Vari-
+     ables via Maximal Coupling”, IEEE Trans. Inf. Theory
+

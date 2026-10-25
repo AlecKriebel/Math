@@ -1,0 +1,1331 @@
+                                           The private classical capacity and quantum capacity of a
+                                                               quantum channel
+                                                                                     I. Devetak∗
+
+
+
+
+arXiv:quant-ph/0304127v6 21 Oct 2004
+                                                                                 October 23, 2018
+
+
+                                                                                       Abstract
+                                                 A formula for the capacity of a quantum channel for transmitting private classical infor-
+                                             mation is derived. This is shown to be equal to the capacity of the channel for generating
+                                             a secret key, and neither capacity is enhanced by forward public classical communication.
+                                             Motivated by the work of Schumacher and Westmoreland on quantum privacy and quantum
+                                             coherence, parallels between private classical information and quantum information are ex-
+                                             ploited to obtain an expression for the capacity of a quantum channel for generating pure
+                                             bipartite entanglement. The latter implies a new proof of the quantum channel coding the-
+                                             orem and a simple proof of the converse. The coherent information plays a role in all of the
+                                             above mentioned capacities.
+                                                 Keywords: Cryptography, entanglement, large deviations, quantum channel capacity, wire-
+                                             tap channels.
+
+
+                                       1     Introduction
+                                       The correspondence between secret classical information and quantum information, after having
+                                       been part of quantum information folklore for many years, was first explicitly studied by Collins
+                                       and Popescu [14]. The simplest example of this relationship is the ability to convert a maximally
+                                       entangled Bell state |Φ+ i = √12 (|0i|0i + |1i|1i) shared by Alice and Bob into a secret classical key
+                                       by local bilateral measurements in the {|0i, |1i} basis. Since the initial state is pure and hence
+                                       decoupled from the “environment”, so is the information about the measurement outcomes. The
+                                       converse direction does not hold in the literal sense: there is no way to recover the entanglement
+                                       once the measurement has been made. However, given a quantum resource such as a quantum
+                                       channel, it is conceivable that a secret key generating protocol could be converted into a (pure)
+                                       entanglement generating protocol by performing all the steps “coherently” [6], e.g. replacing proba-
+                                       bilistic mixtures by quantum superpositions. The connection has been exploited in one direction by
+                                       Shor and Preskill [35] in proving the secrecy of the BB84 [7] quantum key distribution protocol by
+                                       reduction from the entanglement-based protocol of Lo and Chau [25] via Calderbank-Shor-Steane
+                                       (CSS) [13] codes. In a different context, an equivalence has recently been established between
+                                       the noise thresholds for certain two-way protocols for secret key distillation and entanglement
+                                       distillation [1, 11].
+                                           The motivation for the present work is a paper by Schumacher and Westmoreland [31] in
+                                       which an information theoretical approach to secret key generation is taken. They invoke standard
+                                       classical results on wire-tap channels [41, 16, 2, 27] to argue heuristically that the capacity of a
+                                       noisy quantum channel N for generating a secret key should be lower bounded by the coherent
+                                          ∗ The author is with the IBM T.J. Watson Research Center, Yorktown Heights, NY 10598, USA. This work was
+
+                                       supported in part by the NSA under the US Army Research Office (ARO), grant numbers DAAG55-98-C-0041 and
+                                       DAAD19-01-1-06.
+
+
+                                                                                           1
+information Ic (ρ, N ) [30, 26] of the channel with respect to an arbitrary input density operator ρ.
+Our first main result is an exact expression for the channel capacity for secret key generation K(N ).
+At the time of writing [31] it was only conjectured that the coherent information played a role in
+the quantum capacity Q(N ). The quantum capacity theorem was originally stated by Lloyd [26],
+who also provided heuristic arguments for its validity. Other relevant early works include [30, 5, 4].
+It is only recently that a rigorous direct coding theorem has been reported by Shor [34] attaining
+the coherent information based upper bound of [5, 4]. Our second main result is a new proof of
+the direct coding theorem via an entanglement generation protocol based, in turn, on our secret
+key generation protocol. Shor’s proof [34] is based on random subspace codes (see also [26]). Our
+code turns out to be related to a generalization of CSS codes, which is not surprising given its
+cryptographic origin. In addition we provide a new, simplified proof of the converse theorem of [4],
+avoiding difficulties with restricting the encoding to partial isometries.
+    It is necessary to introduce some notation for dealing with classical-quantum resources [19].
+Classical-quantum resources can be static or dynamic. A static bipartite classical-quantum re-
+source, denoted by {c q}, is described by an ensemble E = {ρx , p(x)}. If the indices x ∈ X and
+distribution p are associated with some random variable X, and the density operators ρQ        x = ρx
+with some quantum system Q, the ensemble E may be equated with the classical-quantum system
+XQ. One may similarly have multipartite systems such as U XQ (of the {c c q} type) and XQE
+(of the {c q q} type) with more than one classical or quantum component.
+    A dynamic bipartite classical-quantum resource, denoted by {c → q} is given by a classical-
+quantum channel W : x 7→ ρx , or, alternatively, by the quantum alphabet {ρx }. Analogous to the
+static case, the channel W may be equated with the conditional quantum system Q|X. Indeed,
+ρQ
+ x is the state of the quantum system Q conditioned on the classical index being x. Dynamic
+resources are similarly extended to more than two parties.
+    A useful representation of static classical-quantum systems, which we refer to as the “enlarged
+Hilbert space” (EHS) representation, is obtained by embedding the classical random variables into
+quantum systems. For instance, our ensemble E corresponds to the density operator
+                                            X             A
+                                     ρAQ =      p(x)|xihx| ⊗ ρQ x,                                (1)
+                                            x
+
+where A is a dummy quantum system and {|xi : x ∈ X } is an orthonormal basis for the Hilbert
+space HA of A. A static classical-quantum system may, therefore, be viewed as a special case of
+a quantum one. The EHS representation is convenient for defining various information theoretical
+quantities for classical-quantum systems. The von Neumann entropy of a quantum system A with
+density operator ρA is defined as H(A) = −Tr ρA log ρA . For a bipartite quantum system AB
+define the conditional von Neumann entropy
+
+                                    H(B|A) = H(AB) − H(A),
+
+and quantum mutual information
+
+                      I(A; B) = H(A) + H(B) − H(AB) = H(B) − H(B|A),
+
+in formal analogy with the classical definitions. For a tripartite quantum system ABC define the
+quantum conditional mutual information
+
+        I(A; B|C) = H(A|C) + H(B|C) − H(AB|C) = H(AC) + H(BC) − H(ABC) − H(C).
+
+A commonly used identity is the chain rule
+
+                                  I(A; BC) = I(A; B) + I(A; C|B).
+
+Notice that for classical-quantum
+                             P    correlations (1) the von Neumann entropy H(A) is just the
+Shannon entropy H(X) = − x p(x) log p(x) of X. The conditional entropy H(Q|X) is defined as
+
+                                                  2
+                  P
+H(Q|A) and equals x p(x)H(ρx ). Similarly, the mutual information between X and Q is defined
+as I(X; Q) = I(A; Q). Notice that this is precisely the familiar Holevo information [22] of the
+ensemble E:                                     !
+                                     X               X
+                        χ(E) = H          p(x)ρx −       p(x)H(ρx ).
+                                           x              x
+
+Finally we need to introduce a classical-quantum analogue of a Markov chain. A classical Markov
+chain T → X → Y consists of correlated random variables T , X and Y whose probabilities obey
+Pr{Y = y|X = x, T = t} = Pr{Y = y|X = x}, which is to say that Y depends on T only through
+X. Analogously we may define a classical-quantum Markov chain T → X → Q associated with an
+ensemble {ρtx , p(t, x)} for which ρtx = ρx . Such an object typically comes about by augmenting the
+system XQ by the random variable T (classically) correlated with X via a conditional distribution
+Q(t|x) = Pr{T = t|X = x}. In the EHS representation this corresponds to the state
+                                   X         X              Z         A
+                           ρZAQ =      p(x)     Q(t|x)|tiht| ⊗ |xihx| ⊗ ρQ x.                    (2)
+                                   x        u
+
+We shall henceforth make liberal use of the concepts defined above and their natural extensions.
+    The paper is organized as follows. In section 2 we define and find expressions for the private
+information and key generation capacities Cp (W ) and K(W ), respectively, of a {c → qq} type
+channel W . We show that allowing a free forward public channel does not help in either case.
+In section 3 these findings are applied to a noisy quantum channel N setting, yielding analogous
+capacities Cp (N ) and K(N ). In section 4 we turn to the problem of entanglement generation
+over the quantum channel N and find the corresponding capacity E(N ). This result is readily
+translated into an expression for the quantum capacity Q(N ) in section 5. We conclude with open
+problems.
+
+
+2    Private information transmission and key generation over
+     classical-quantum channels
+We begin by defining a general private information transmission protocol for a {c → qq} channel
+from Alice to Bob and Eve. The channel is defined by the map W : x → ρQE          x , with x ∈ X and
+the ρQE
+      x   defined on a bipartite quantum system QE; Bob has access to Q and Eve has access to
+E. Alice’s task is to convey, by some large number n uses of the channel W and unlimited use
+of a public channel (which both Bob and Eve have access to), one of 2nR equiprobable messages
+to Bob so that he can identify the message with high probability while at the same time Eve
+receives almost no information about the message. The inputs to the composite channel W ⊗n are
+classical sequences of the form x1 . . . xn ∈ X n , for which we use the shorthand notation xn (not to
+be confused with the power operation). The ouputs of W ⊗n are density operators living on some
+Hilbert space Qn E n . We formally define an (n, ǫ) private channel code of rate R in the following
+way. Alice generates a random variable M which she can use for randomization, if necessary.
+Given the classical message embodied in the random variable K uniformly distributed on the set
+[2nR ] := {1, 2, . . . , 2nR }, she sends the random variable X n = X n (K, M ) over the channel W ⊗n
+and sends the random variable S = S(K, M ) through the public channel. Bob performs a decoding
+POVM (based on the information contained in S) on his system Qn , yielding the random variable
+Y , and computes his best estimate of Alice’s message L = L(Y, S). We require
+
+                                        Pr{K 6= L} ≤       ǫ,                                     (3)
+                                           I(K; S) ≤       ǫ,                                     (4)
+                                         I(K; E n |S) ≤    ǫ.                                     (5)
+
+
+
+                                                  3
+The second condition means that the public information S is almost uncorrelated with K and the
+third implies via the Holevo bound [22] that, given the public information, there is no measurement
+Eve could perform that would reveal more than ǫ bits of information about K 1 . We call the rate
+R achievable if for every ǫ, δ > 0 and sufficiently large n there exists an (n, ǫ) code of rate R − δ.
+The private channel capacity Cp (W ) is the supremum of achievable rates R.
+    The above scenario should be contrasted with a secret key generation protocol, where Alice
+does not care about transmitting a particular message but only about establishing secret classical
+correlations with Bob, about which Eve has arbitrarily little information. The definition of an
+(n, ǫ) key generation code is almost the same as that of a private channel code, with the difference
+that now K itself is a function of M . The secret key capacity K(W ) is similarly given by the
+supremum of achievable rates R.
+
+Theorem 1
+                                                     1
+                         Cp (W ) = K(W ) = lim         max{I(T ; Ql ) − I(T ; E l )},             (6)
+                                                 l→∞ l T X l
+
+where QE|X is given by W and T → X l → Ql E l is a Markov chain.
+
+    Note that the limit in equation (6) indeed exists, by standard arguments (see e.g. [5], Appendix
+A). It should be noted that the above formula does not quite attain the ultimate goal of being
+effectively computable, due to the l → ∞ limit. This seems to be a ubiquitous problem in quantum
+information theory, and we shall encounter it two more times in this paper, namely, in theorem 5
+and proposition 7.
+    Proving that the right hand side of (6) is achievable is called the direct coding theorem, whereas
+showing that it is an upper bound is called the converse. It is obvious from our definition that
+K(W ) ≥ Cp (W ), since any private channel can be used for generating a secret key. Hence it
+suffices to prove the converse for K(W ) and achievability for Cp (W ).
+Proof of Theorem 1 (converse)            We shall prove that, for any δ, ǫ > 0 and sufficiently large
+n, if an (n, ǫ) secret key generation code has rate R then
+                                              1
+                                  R−δ ≤         max{I(T ; Qn ) − I(T ; E n )}.
+                                              n T Xn
+The proof parallels the classical one from [2]. Fano’s inequality [15] says
+
+                                      H(K|L) ≤ 1 + Pr{K 6= L}nR.
+
+Hence
+
+                                    nR =        H(K)
+                                           =    I(K; L) + H(K|L)
+                                           ≤    I(K; L) + 1 + nǫ log |X |.
+
+The last inequality follows from condition (3). Furthermore,
+
+                              I(K; L) ≤         I(K; SQn )
+                                      =         I(K; S) + I(K; Qn |S)
+                                          ≤     I(K; Qn |S) − I(K; E n |S) + 2ǫ
+                                          =     I(T ; Qn |S) − I(T ; E n |S) + 2ǫ,                (7)
+  1 As we shall see, ǫ can be made to decrease exponentially in n.
+
+
+
+
+                                                        4
+where T = KS. The first inequality is a consequence of the Holevo bound [22] and the second
+inequality follows from conditions (4) and (5). Since, without loss of generality, ǫ ≤ 6 logδ |X | and
+n ≥ δ2 ,
+                               1
+                                 [I(T ; Qn |S) − I(T ; E n |S)] ≥ R − δ,                            (8)
+                               n
+with S → T → X n → Qn E n a Markov chain. Since the left hand side can be written as the average
+of
+                                      1
+                                        [I(Ts ; Qns ) − I(Ts ; Esn )]                               (9)
+                                      n
+with respect to the distribution of S, and the Markov condition Ts → Xsn → Qns Esn holds for each
+s, choosing the particular value of s that maximizes (9) proves the claim.
+  For the direct coding theorem we shall need two lemmas. The first is a quantum version of the
+Chernoff bound from [3].
+
+Lemma 2 (Ahlswede, Winter) Let ξ1 , . . . , ξµ be independent identically distributed (i.i.d.) ran-
+dom variables with values in the algebra B(H) of bounded linear operators on some Hilbert space
+H, which are bounded between 0 and the identity operator I. Assume that the expectation value
+Eξm = θ ≥ tI. Then for every 0 < η < 1/2
+                       (     µ
+                                                )                       
+                          1 X                                      η2 t
+                     Pr         ξm 6∈ [(1 ± η)θ] ≤ 2 dim H exp −µ         ,
+                          µ m=1                                   2 ln 2
+
+where [(1 ± η)θ] = [(1 − η)θ; (1 + η)θ] is an interval in the operator order: [A; B] = {ξ ∈ B(H) :
+A ≤ ξ ≤ B}.
+
+   The second lemma is Winter’s “gentle operator” lemma [37]. It says that a POVM element
+that succeeds on a state with high probability does not disturb it much.
+
+Lemma 3 (Winter) For a state ρ and operator 0 ≤ Λ ≤ I, if Tr (ρΛ) ≥ 1 − λ, then
+                                             √ √              √
+                                        ρ−    Λρ Λ        ≤    8λ.
+                                                      1
+
+The same holds if ρ is only a subnormalized density operator.
+                              √
+   In the above, kAk1 = Tr AA† denotes the trace norm of some operator A. It is a norm in
+the sense that the trace distance between two operators A and B, kA − Bk1 , satisfies the triangle
+inequality
+                                kA − Ck1 ≤ kA − Bk1 + kB − Ck1 .                              (10)
+Proof of Theorem 1 (direct coding theorem)                 We shall construct a private channel code
+that achieves the expression (6) without making use of the public channel from Alice to Bob.
+Consequently, the public channel cannot increase Cp (W ) or K(W ). Fixing the random variable X
+with distribution p, our goal is first to show that a private information rate of I(X; Q) − I(X; E) is
+achievable. We shall draw heavily on ideas from Winter’s POVM compression paper [38]. Define
+σx =PTr Q (ρQE                      QE
+            x ) and ωx = Tr E (ρx ), the local alphabets for Eve and Bob, respectively, and let
+ω = x px ω x .
+                                                                                     n
+   In what follows we shall assume familiarity with the notions of typical sets TX,δ    , typical sub-
+         n                                           n       n
+spaces ΠE,δ and conditionally typical subspaces ΠE|X,δ (x ). These are defined in Appendix A for
+convenience.
+
+
+
+
+                                                  5
+   Fixing δ > 0, we have the following properties (for xn ∈ TX,δ
+                                                             n
+                                                                 , where applicable) [37, 9] :
+
+                                     s := Pr{X n ∈ TX,δ
+                                                    n
+                                                        } ≥                   1−ǫ                   (11)
+                                        Tr σxn ΠnE|X,δ (xn )            ≥     1−ǫ                   (12)
+                                       Tr σxn ΠnE, δ(|X |+1)            ≥     1−ǫ                   (13)
+                                       Tr ωxn ΠnQ|X,δ (xn )             ≥     1−ǫ                   (14)
+                                       Tr ωxn ΠnQ, δ(|X |+1)            ≥     1−ǫ                   (15)
+                                                                                −1
+                                           Tr ΠnE, δ(|X |+1)            ≤     α                     (16)
+                              ΠnE|X,δ (xn )σxn ΠnE|X,δ (xn )            ≤     βΠnE|X,δ (xn )        (17)
+                                                  Tr ΠnQ|X, δ (xn ) ≤         βe−1                  (18)
+                            ΠnQ, δ(|X |+1) ω ⊗n ΠnQ, δ(|X |+1)          ≤     eΠnQ, δ(|X |+1) .
+                                                                              α                     (19)
+
+Here α = 2−n[H(E)+cδ] , β = 2−n[H(E|X)−cδ] , α     e = 2−n[H(Q)−cδ] , βe = 2−n[H(Q|X)+cδ] for some
+                     −nc′ δ 2                    ′
+constant c and ǫ = 2          for some constant c . Define, for xn ∈ TX,δ
+                                                                      n
+                                                                          ,
+
+                                   ξx′′n        =    ΠnE|X,δ (xn )σxn ΠnE|X,δ (xn ),
+                                   ξx′ n        =    ΠnE,δ(|X |+1) ξx′′n ΠnE,δ(|X |+1) .
+
+Since σxn commutes with ΠnE|X,δ (xn ), ξx′′n ≤ σxn . From this, (12) and (13)
+
+                             Tr ξx′ n          = Tr ξx′′n − Tr (I − ΠnE, δ(|X |+1) )ξx′′n
+                                               ≥ 1 − 2ǫ.
+
+Let p′ be the pruned distribution p⊗n with respect to the set TX,δ
+                                                               n
+                                                                   , namely
+                                                        p(xn )
+                                           ′     n                   xn ∈ TX,δ
+                                                                           n
+                                        p (x ) =               s
+                                                           0         otherwise,
+
+where s is as defined in (11). Then Tr θ′ ≥ 1 − 2ǫ, for
+                                             X
+                                     θ′ =          p′ (xn ) ξx′ n .
+                                                            n
+                                                       xn ∈TX,δ
+
+
+Let Π be the projector onto the subspace spanned by the eigenvectors of θ′ with eigenvalue ≥ ǫα.
+By (16), the support of θ′ has dimension ≤ α−1 , so eigenvalues smaller than ǫα contribute at most
+                                                                                                     ′
+ǫ to Tr θ′ . Hence, Tr θ ≥ 1 − 3ǫ for θ = Πθ′ Π. Also let ξxn = Πξx′ n Π, µ′ = 2n[I(X;E)+3(c+c δ)δ] ,
+                            ′
+κ′ = 2n[I(X;Q)−I(X;E)−5(c+c δ)δ] and define µ′ κ′ i.i.d random variables Ukm , m ∈ [µ′ ], k ∈ [κ′ ], each
+distributed according to p′ . Observe that θ = EξUkm , where E denotes taking expectation values
+with respect to the distribution p′ . Define the event
+                                             ′
+                                                                     
+                                       1 µ X                        
+                                 ιk =            ξU     ∈ [(1 ± ǫ)θ]   .                             (20)
+                                        µ′         km
+                                                                     
+                                                      m=1
+
+According to lemma 2,
+                                                                 
+                                                           ǫ3 α
+                              Pr{not ιk } ≤ 2Tr Π exp −µ′           , ∀k.
+                                                          2β ln 2
+                                                                                               −1
+The right hand side, being a double exponential in n, can be made ≤ ǫκ′ for all k and sufficiently
+large n. Now we shall argue that {Ukm is a good code for the {c → q} channel Q|X [37] with high
+
+                                                               6
+                                                                     ′
+probability. It is a random code of size 2n[I(X;Q)−2(c+c δ)δ] , and each codeword is chosen according
+to the pruned distribution p′ . The proof of the Holevo-Schumacher-Westmoreland theorem [23]
+involves choosing codewords according to the distribution p⊗n and can be easily modified to work
+for p′ (see Appendix B). Consequently, the expectation of the average probability of error can be
+made to decay exponentially with n:
+
+                                                E pe ({Ukm }) ≤ 10ǫ.
+
+Define the event                              n             √  o
+                                                            4
+                                          ι0 = pe ({Ukm }) ≤ ǫ3 .                                     (21)
+
+Then Markov’s lemma (from standard probability theory), according to which for any random
+variable X and constant γ > 0
+                                Pr{X ≥ γEX} ≤ γ −1 ,
+implies                                                         √
+                                                Pr{not ι0 } ≤ 10 4 ǫ.
+By construction,
+                                                                ′
+                                                               κ
+                                                               X                         √
+                        Pr{not(ι0 & ι1 . . . & ικ′ )} ≤              Pr{not ιk } ≤ ǫ + 10 4 ǫ,        (22)
+                                                               k=0
+
+so there exists a particular value {ukm } of {Ukm }, for which
+                                                          √    ιk holds for all k = 0, . . . , κ′ (in fact,
+we have shown this holds with probability ≥ 1 − ǫ − 10 ǫ for a randomly chosen {ukm }). For all
+                                                          4
+
+
+xn ∈ TX,δ
+       n
+           we have, by lemma 3,
+
+                              kσxn − ξx′ n k1    ≤     kσxn − ξx′′n k1 + kξx′′n − ξx′ n k1
+                                                          √
+                                                 ≤     ǫ + 16ǫ.                                       (23)
+
+Now, ιk implies                                 "           #
+                                                    1 X
+                                          Tr            ξu    ≥ 1 − 4ǫ
+                                                    µ′ m km
+
+and hence, by (23) and lemma 3,
+
+      µ′                                                                       µ                 ′
+  1 X                           1 X          ′         1 X ′                1 X
+        σu − θ            ≤          σukm − ξukm 1 + ′      (ξ   − ξukm ) + ′    ξu − θ
+  µ′ m=1 km                    µ′ m                   µ m ukm               µ m=1 km
+                    1                                                    1              1
+                                   √      √                √     √
+                          ≤    (ǫ + 16ǫ) + 32ǫ + ǫ = 2ǫ + 4 ǫ + 4 2ǫ.                 (24)
+
+So far we only have a bound on the average error probability for the channel code. We        √ would
+like each individual codeword to have low√error probability. By (21), at most√a fraction ǫ of the
+codewords ukm have error probability
+                             √           ≥ 4 ǫ. Moreover, at most a fraction 4 ǫ of the values √ of k
+are such that a fraction ≥ 4 ǫ of the ukm for that particular k have error probability ≥ 4 ǫ. We
+shall expurgate
+           √     these values of k from the code, without loss of generality retaining the set [κ] with
+κ = (1 − 4 ǫ) κ′ . For each k √ ∈ [κ], order the ukm according to increasing error probability, and
+retain only the first µ = (1 − 4 ǫ) µ′ of √
+                                          them. This slight reduction in κ′ and µ′ now ensures that
+each codeword has error probability ≤ 4 ǫ. Since
+                                           ′
+                                         µ            µ
+                                     1 X           1 X                           √
+                                            σu   −      σu                    ≤ 2 4 ǫ,                (25)
+                                     µ′ m=1   km
+                                                   µ m=1 km
+                                                                          1
+
+
+                                                           7
+we now have
+                             µ
+                         1 X                            √     √      √
+                              σu − θ            ≤ 2ǫ + 4 ǫ + 4 2ǫ + 2 4 ǫ =: ǫ′ .               (26)
+                         µ m=1 km
+                                            1
+Note that this expurgation ensures that all the ukm are distinct; if they were not, the probability
+of error for a repeated codeword would be ≥ 12 , a contradiction for sufficiently large n. Defining
+                                                              µ
+                                                     1 X
+                                            σk =          σu
+                                                     µ m=1 km
+
+and
+                                                              κ
+                                                     1X
+                                                σ=      σk                                      (27)
+                                                     κ
+                                                          k=1
+
+we have
+                                          kσk − σk1 ≤ 2ǫ′ , ∀k.                                 (28)
+By Fannes’ inequality (see e.g. [28]) we can estimate
+                                                      κ
+                                                 1X
+                             I(K; E n )    =        [H(σ) − H(σk )]
+                                                 κ
+                                                     k=1
+                                           ≤ η(2ǫ′ ) + 2nǫ′ log dim HE ,                        (29)
+
+when 2ǫ′ ≤ 1e and where η(x) = −x log x. We are now in a position to describe our private
+channel code. The random variable M is uniformly distributed on [µ], the message K is uniformly
+distributed on [κ] and the channel input is X(K, M ) = uKM . By construction, Bob can perform
+                                                                                           √      a
+measurement that correctly identifies the pair (k, m), and hence k, with probability ≥ 1 − 4 ǫ. The
+rate of the code is bounded as R ≥ I(X; Q)−I(X; E)−6(c+c′δ)δ, for sufficiently large n. Equation
+                  ′
+(29) and ǫ = 2−c n ensures that I(K; E n ) can be made arbitrarily small (indeed exponentially small
+in n) for sufficiently large n. Notice that by simulating some channel X|T in her lab, Alice can
+effectively produce the QE|T channel for T → X → QE; thus I(T ; Q) − I(T ; E) is also achievable.
+The multi-letter formula (6) follows from applying the above to the super-channel W ⊗l .
+Remark The classical analogue of theorem 1, namely the capacity Cp (W ) of a {c → cc} channel
+W = Y Z|X was first discovered in [41, 16] for a weaker notion of secrecy, and later strengthened
+in [27]. Our result implies a new proof of the classical direct coding theorem, using large deviation
+techniques instead of hashing/extractors as in the work of Maurer and collaborators [27].
+
+
+3     Private information transmission and key generation over
+      quantum channels
+Now we shall apply these results to the setting where Alice and Bob are connected via a noisy
+quantum channel N : B(HP ) → B(HQ ). Here B(HP ) denotes the space of bounded linear
+operators on HP , the Hilbert space of the quantum system P. The channel N is (non-uniquely)
+                                                 P
+defined in terms of the operation elements {Ai }, i A†i Ai = I, as
+                                                X
+                                       N (ρ) =    Ai ρA†i .
+                                                          i
+
+This representation is exploited in Shor’s proof of the quantum channel capacity theorem [34].
+Here we take a different approach to noisy channels, propagated by Schumacher and collaborators
+
+
+                                                      8
+[30, 5]. The channel is physically realized by an isometry UN : B(HP ) → B(HQE ), called an
+isometric extension of N , which explicitly includes the unobserved environment E. 2
+    We shall assume that the environment E is completely under the control of the eavesdropper
+Eve, and the quantum system Q is under Bob’s control. Suppose Alice’s initial density operator is
+given by ρP . Defining ω Q = N (ρP ) = Tr E UN (ρP ) and σ E = Tr Q UN (ρP ), the coherent information
+is defined as
+                                   Ic (ρP , N ) = H(ω Q ) − H(σ E ).
+Note that, although there is an infinite family of UN corresponding to a given N , the coherent
+information is independent of this choice [30]. Since we are interested in transmitting private
+classical information, the most general protocol requires Alice to prepend a {c → q} channel P|X
+of her choice (given by some alphabet {ρx } ∈ P j ) to j instances of N , for arbitrarily large j. This
+induces a {c → qq} channel Qj E j |X, and we may now apply the results of the previous section.
+Combining the l → ∞ limit from equation (6) with the j → ∞ one and absorbing T into X gives
+                                                     1
+                          Cp (N ) = K(N ) = lim        max{I(X; Ql ) − I(X; E l )}.
+                                                 l→∞ l XP
+
+It is easily verified (see also section 4) that this may be rewritten as
+                                                             1
+                                Cp (N ) = K(N ) = lim            max Ip (ρ, N ⊗l ),                            (30)
+                                                        l→∞ l ρ∈H⊗l
+                                                                    P
+
+
+where we introduce the private information Ip :
+                                           (                                   )
+                                             X                     X
+             Ip (ρ, N ) = Ic (ρ, N ) − min      p(x)Ic (ρx , N ) :   p(x)ρx = ρ .                              (31)
+                                           {p(x),ρx }
+                                                         x                      x
+
+The above expression for K(N ) is almost implicit in [31], albeit without proof. Note that Ip (ρ, N ) ≥
+Ic (ρ, N ) since any decomposition of ρ into pure states sets the expression minimized in (31) to zero.
+It is codes corresponding to Ip (ρ, N ) = Ic (ρ, N ) that will be relevant for entanglement generation.
+In Appendix C we give an example illustrating the possibility of Ip > Ic > 0.
+
+
+4     Entanglement generation over quantum channels
+In this section we apply the above results to the more difficult problem of entanglement generation
+over quantum channels. The objective is for Alice and Bob to share a nearly maximally entangled
+state on a 2nR × 2nR dimensional Hilbert space, by using a large number n instances of the noisy
+quantum channel N . Before getting into details we should recall some facts about fidelities and
+purifications (mostly taken from [28]). The fidelity of two density operators with respect to each
+other can be defined as3
+                                                   √ √
+                                       F (ρ, σ) = k ρ σk21 .
+For two pure states |χi, |ζi this amounts to
+
+                                             F (|χi, |ζi) = |hχ|ζi|2 .
+   2 The standard formulation of [30] refers to a channel N : B(H ) → B(H ) with the same input and output
+                                                                       Q         Q
+Hilbert space. The channel is physically realized by appending an environment system E, wlog initially in a pure
+state, applying a unitary operation U    EQ  on the joint system, and tracing out E. Here we adapt the slightly more
+general approach of [4] in which the input and output Hilbert space of the channel may differ.
+   3 Our definition of fidelity is the square of the quantity defined in [28].
+
+
+
+
+                                                         9
+Lemma 4 Consider two collections of orthonormal states (|χj i)j∈[N ] and (|ζj i)j∈[N ] such that
+hχj |ζj i ≥ 1 − ǫ for all j. There exist phases γj and δj such that
+
+                                                 hχ̂|ζ̂i ≥ 1 − ǫ,
+
+where
+                                                                N
+                                                      1 X iγj
+                                       |χ̂i    =     √      e |χj i,                        (32)
+                                                      N j=1
+                                                                N
+                                                      1 X iδj
+                                       |ζ̂i    =     √      e |ζj i.                        (33)
+                                                      N j=1
+
+Proof Define the Fourier transformed states
+                                                        N
+                                                1 X 2πijs/N
+                                      |χ̂s i = √      e     |χj i,
+                                                N j=1
+
+and similarly define |ζ̂s i. It is easy to see that
+                                   N                   N
+                                1 X                 1 X
+                                      hχ̂s |ζ̂s i =       hχj |ζj i ≥ 1 − ǫ,
+                                N s=1               N j=1
+
+hence at least one value of s obeys
+                                              eiθs hχ̂s |ζ̂s i ≥ 1 − ǫ,
+for some phase θs . Setting γj√= 2πjs/N and δj = γj + θs satisfies the statement of the lemma.
+    Moreover, a fraction 1 − ǫ of the values of s satisfy
+                                                            √
+                                      eiθs hχ̂s |ζ̂s i ≥ 1 − ǫ,
+
+a fact we shall use in Appendix D.
+    The following relation between fidelity and the trace distance will be needed:
+                                  p          1          p
+                             1−    F (ρ, σ) ≤ kρ − σk1 ≤ 1 − F (ρ, σ),                      (34)
+                                             2
+the second inequality becoming an equality for pure states. A purification |Φρ iRQ of a den-
+sity operator ρQ is some pure state living in an augmented quantum system RQ such that
+                RQ
+Tr R (|Φρ ihΦρ | ) = ρQ . Any two purifications |Φρ iRQ and |Φ′ρ iRQ of ρQ are related by some
+local unitary U on the reference system R
+
+                                     |Φ′ρ iRQ = (U R ⊗ I Q )|Φρ iRQ .
+
+A theorem by Uhlmann states that, for a fixed purification Φσ of σ,
+
+                                     F (ρ, σ) = max F (|Φρ i, |Φσ i).
+                                                      Φρ
+
+A corollary of this theorem is the monotonicity property of fidelity
+
+                                      F (ρRQ , σ RQ ) ≤ F (ρQ , σ Q ),
+
+where ρQ = Tr R ρRQ and σ Q = Tr R σ RQ .
+
+                                                           10
+   Returning to the problem of entanglement generation, an (n, ǫ) code is defined as follows. Alice
+                                                                  n                             ⊗n
+prepares, without loss of generality, a pure bipartite state |ΥiAP in her lab, defined on HA ⊗ HP  ,
+                              n
+dim HA = κ, and sends the P portion of it through the channel. Bob performs a general decoding
+                                                      ⊗n
+quantum operation on the channel output D : B(HQ         ) → B(HB ), dim HB = κ, yielding the state
+                                                                               n
+                               ΩAB = [I A ⊗ (D ◦ N ⊗n )](|ΥihΥ|AP ).                               (35)
+
+The rate of the code is R = n1 log κ. We require
+
+                                       F (|Φκ iAB , ΩAB ) ≥ 1 − ǫ,
+
+where                                                 r         κ
+                                           κ AB           1X A B
+                                      |Φ i        =         |ki |ki
+                                                          κ
+                                                               k=1
+
+is the standard maximally entangled state shared by Alice and Bob. We shall call a rate R
+achievable if for every ǫ, δ > 0 and sufficiently large n there exists an (n, ǫ) code of rate R − δ. The
+entanglement generating capacity E(N ) is given by the supremum of achievable R.
+
+Theorem 5 Given the channel N ,
+                                                      1
+                                   E(N ) = lim            max Ic (ρ, N ⊗l ).                       (36)
+                                              l→∞ l ρ∈H⊗l
+                                                                P
+
+
+Remark Note that K(N ) ≥ E(N ) is obvious since any pure entanglement can be converted into
+a secret key by performing a measurement in the {|ki} basis. It is not clear from formulas (30)
+and (36) whether the inequality can be made strict. We return to this issue in the final section.
+   The converse theorem makes use of the following simple lemma [4].
+
+Lemma 6 For two states ρRQ and σ RQ of a quantum system RQ of dimension d with fidelity
+f = F (ρRQ , σ RQ ),
+                                              2        p
+                     |∆H(ρRQ ) − ∆H(σ RQ )| ≤ + 4 log d 1 − f ,
+                                              e
+where
+                           ∆H(ρRQ ) = H(ρQ ) − H(ρRQ ).
+
+Proof By the monotonicity of fidelity, F (ρB , σ B ) ≥ f . The lemma follows from a double
+application of Fannes’ inequality [28] and (34).
+Proof of Theorem 5 (converse)             We shall prove that, for any δ, ǫ > 0 and sufficiently large
+                                                                                                   ⊗n
+n, if an (n, ǫ) code has rate R then R − δ ≤ n1 Ic (ρ, N ⊗n ), where ρ the restriction of |Υi to HP   .
+                                                      δ       2         4
+Evidently, it suffices to prove this for ǫ ≤ [ 16 log dim HP ] and n ≥ eδ . The converse relies on the
+quantum data processing inequality, which says that quantum post-processing cannot increase the
+coherent information [30].
+
+                           Ic (ρ, N ⊗n )    ≥ Ic (ρ, D ◦ N ⊗n )
+                                            = ∆H(Ω)
+                                                             2      √
+                                            ≥ ∆H(|Φκ ihΦκ |) − − 8nR ǫ
+                                                             e
+                                                  2                √
+                                            ≥ nR − − 8n log dim HP ǫ,
+                                                  e
+from which the claim follows. The first inequality is the data processing inequality and the second
+inequality is an application of lemma 6.
+
+                                                          11
+Proof of Theorem 5 (direct coding theorem)                It suffices to demonstrate that a rate of
+Ic (ρ, N ) is achievable for any ρ ∈ HP . The regularized formula (36) is obtained by additional
+blocking. Following [31], consider the eigen-decomposition of ρ into the orthonormal pure state
+ensemble {p(x), |φx i},                X
+                                          p(x)|φx ihφx | = ρ.                                  (37)
+                                                 x
+
+The distribution p defines a random variable X. Let UN : B(HP ) → B(HQE ) be an isometric
+extension of N . Define the {c → qq} channel W : x 7→ UN |φx iP =: |φ′x iQE . Define the local output
+                                                                   QE                                QE
+density matrices seen by Bob and Eve by ωxQ = Tr E (|φ′x ihφ′x | ) and σxE = Tr Q (|φ′x ihφ′x | ),
+                                            Q       E
+respectively, and the averages over x by ω and σ , respectively. In section 2 we showed that for
+any δ there exists an (n, ǫ) code, defined by {ukm : k ∈ [κ], m ∈ [µ]}, of rate n1 log κ = Ic (ρ, N ) − δ.
+Indeed [31]
+                                               X                            X
+           I(X; Q) − I(X; E) = H(ω Q ) −          p(x)H(ωxQ ) − H(σ E ) +        p(x)H(σxE )
+                                                          x                            x
+                                    =      H(ω Q ) − H(σ E )
+                                    =      Ic (ρ, N ),
+
+since H(ωxQ ) = H(σxE ) for all x.
+    In what follows we shall be dealing with blocks of length n and use the abbreviated notation
+Q for Qn , etc. Consider sending the state |φkm iP := |φukm iP through the isometric extension
+          ⊗n
+channel UN
+                                                  ⊗n
+                                     |φ′km iQE = UN  |φkm iP .
+                                    QE
+        E
+Define σkm = Tr Q (|φ′km ihφ′km |        ) and
+                                                           1X E
+                                                 σkE =        σ .
+                                                           µ m km
+
+As shown in section 2, there exists a θE such that, for all k,
+
+                                                     kσkE − θE k1 ≤ ǫ.                               (38)
+
+In addition, there is a measurement Bob can perform on Q that with probability ≥ 1 − ǫ correctly
+identifies the index km. Since any measurement can be written as a unitary operation on a
+larger Hilbert space (including some ancilla initially in a pure state) followed by a von Neumann
+                                                           ′
+measurement on the ancilla, there exists a unitary V QBB such that
+                                             ′                         ′           ′
+                            (I E ⊗ V QBB )|φ′km iQE |0iB |0iB = |ψkm iQEBB
+
+and                                                  ′             ′
+                                          F (ρBB      B   B
+                                              km , |ki |mi ) ≥ 1 − ǫ,
+       ′                       QEBB′                                                                  ′
+for ρBB
+      km = Tr QE (|ψkm ihψkm |     ). By Uhlmann’s theorem, for the purification |ψkm iQEBB of
+    ′                                               ′            ′
+ρBB
+ km there exists a “purification” |χkm i
+                                        QE
+                                           |kiB |miB of |kiB |miB such that
+                                           QEBB′                           ′
+                                hψkm |               |χkm iQE |kiB |miB ≥ 1 − ǫ.                     (39)
+
+        = Tr Q (|χkm ihχkm |QE ). Since |ψkm iQEBB is also a purification of σkm
+                                                               ′
+      E                                                                       E
+Let σ
+    ekm                                                                          , we have, by (34),
+the monotonicity of fidelity and (39):
+                                     q
+                E      E                       E ,σ E )
+             kσkm  −σ ekm  k1 ≤ 2 1 − F (σkm      ekm
+                                     q                                             √
+                               ≤ 2 1 − F (|ψkm iQEBB′ , |χkm iQE |kiB |miB′ ) ≤ 2 ǫ.
+
+
+                                                              12
+Define
+                                                           1X E
+                                                  ekE =
+                                                  σ           σe .                                (40)
+                                                           µ m km
+Then
+                                            1X E          E
+                        σkE − θE k1
+                       ke                 ≤      kσkm − σ
+                                                        ekm k1 + kσ E k − θE k1                   (41)
+                                            µ m
+                                             √
+                                          ≤ 2 ǫ + ǫ.                                              (42)
+
+By (34)                                                         √
+                                              σkE , θE ) ≥ 1 − 2 ǫ − ǫ.
+                                           F (e                                                   (43)
+   Consider the set of quantum codewords {|φk i}:
+                                         r
+                                           1 X iγkm
+                                |φk iP =          e |φkm iP ,                                     (44)
+                                           µ m
+
+                                                                  ⊗n                                   ′
+with the phases γkm to be specified. After transmission through UN   , adding the ancilla |0iB |0iB
+                   ′
+and applying V QBB , |φk iP becomes
+                                           r
+                                  QEBB′       1 X iγkm            ′
+                             |ψk i      =         e     |ψkm iQEBB .                            (45)
+                                             µ m
+
+By (39) and lemma 4 we can choose the phases γkm and δkm so that
+                                             QEBB′               ′
+                                     hψk |           |kiB |ϕk iQEB ≥ 1 − ǫ,                       (46)
+
+where                                             r
+                                     QEB′             1 X iδkm              ′
+                              |ϕk i           =           e    |χkm iQE |miB .
+                                                      µ m
+                                   QEB′                                                            ′
+Note that σ  ekE = Tr QB′ (|ϕk ihϕk |   ), as defined in (40). Hence, fixing a purification |Φθ iQEB of
+                                                 ′
+θE , for all k ∈ [κ] there exists a unitary UkQB such that (cf. [32])
+                                   QEB′        ′               ′       √
+                           hΦθ |          [UkQB ⊗ I E ]|ϕk iQEB ≥ 1 − 2 ǫ − ǫ,
+
+by applying Uhlmann’s theorem to (43). Introducing the “controlled” unitary
+                                      ′   X                ′
+                               U BQB =       |kihk|B ⊗ UkQB ,
+                                                       k
+
+the above may be rewritten as
+                              ′           ′                    ′       √
+                      hΦθ |QEB hk|B [U BQB ⊗ I E ]|kiB |ϕk iQEB ≥ 1 − 2 ǫ − ǫ.
+
+Combining this with (46) gives
+                               ′           ′                ′       √
+                       hΦθ |QEB hk|B [U BQB ⊗ I E ]|ψk iQEBB ≥ 1 − 4 ǫ − 4ǫ.                      (47)
+
+We can now define our entanglement generating code. Alice prepares the state
+                                         r
+                                   AP       1X A
+                                |Υi   =          |ki |φk iP ,                                     (48)
+                                            κ
+                                                             k
+
+
+                                                           13
+keeps the system A and sends the system P through the channel. Bob subsequently applies the
+decoding operator
+                             h                                         ′†    ′†
+                                                                                i
+                                   ′     ′             B        B′
+            D : ω Q 7→ Tr QB′ U BQB V QBB (ω Q ⊗ |0ih0| ⊗ |0ih0| )V QBB U BQB ,        (49)
+
+resulting in some state ΩAB , which by (47) and the monotonicity of fidelity obeys
+                                                          √
+                                F (ΩAB , |Φκ iAB ) ≥ 1 − 4 ǫ − 4ǫ.                            (50)
+
+This concludes the proof of the direct coding theorem.
+Remark Transforming a private channel code into an entanglement generating one appears to
+work only for pure state decompositions of ρ. Otherwise, the pure states |φ′ i become effectively
+shared by Alice, Bob and Eve. The decoding operation D would then involve performing joint
+operations on spatially separated quantum systems belonging to Bob and Alice, which cannot be
+accomplished in general without additional quantum resources.
+Remark Note the similarity between (44) and CSS codes [13]. Indeed, here we have a coset-
+like decomposition of a {c → q} “error correction” code of size κµ into κ {c → q} “privacy
+amplification” codes of size µ (see [28] for a nice exposition of these concepts in the context of
+the Shor-Preskill result [35]). The differences lie in that CSS codes have an additional algebraic
+structure and are composed of purely classical rather than classical-quantum codes.
+
+
+5    Quantum information transmission over quantum chan-
+     nels.
+Finally we arrive at our destination: recovering the formula for the quantum capacity Q(N ) of a
+quantum channel N . This quantity has been rigorously defined in [4] and we briefly review it here.
+                                                                     ⊗n
+An (n, ǫ) code is defined by an encoding operation E : B(H) → B(HP      ) and a decoding operation
+         ⊗n
+D : B(HQ ) → B(H), such that
+
+                            min F (|φi, (D ◦ N ⊗n ◦ E)(|φihφ|)) ≥ 1 − ǫ.                      (51)
+                            |φi∈H
+
+
+The rate of the code is given by R = n1 log dim H. The quantum capacity of the channel Q(N ) is
+the supremum of all achievable R.
+   There is an alternative definition, in which the condition (51) and the definition of R are
+replaced by
+                          R = max{H(ρ) : Fe (ρ, D ◦ N ⊗n ◦ E) ≥ 1 − ǫ}.                   (52)
+                               ρ∈H
+
+Here Fe is the entanglement fidelity [30, 28]
+
+                               Fe (ρ, O) = F (|Ψi, (I ⊗ O)(|ΨihΨ|)),
+
+where |Ψi is some purification of ρ (Fe is independent of the particular choice of |Ψi). We denote
+the corresponding capacity by eQ(N ). In [4], Q(N ) and e
+                                                        Q(N ) were called the subspace transmission
+and entanglement transmission capacities of the channel, respectively, and were shown to be equal.
+    It comes as no surprise that entanglement generation and entanglement transmission are closely
+related. This intuition is made rigorous by the following proposition.
+
+Proposition 7 Given the channel N ,
+
+                                e ) = E(N ) = lim 1 max Ic (ρ, N ⊗l ).
+                        Q(N ) = Q(N                                                           (53)
+                                              l→∞ l ρ∈H⊗l
+                                                       P
+
+
+
+
+                                                14
+Proof It is obvious that E(N ) ≥ Q(N e ), since the quantum channel may be used to transmit half
+of a maximally entangled state. Notice that this fact in conjunction with the converse for theorem
+5 yields a new and substantially simpler proof of the converse to the quantum channel capacity
+theorem (cf. [4]). To prove that E(N ) ≤ Q(Ne ) requires just a bit more work. In [10, 4] it was shown
+that Qe → (N ) = e
+                 Q(N ), where Qe → (N ) is the quantum capacity of a quantum channel N enhanced
+by unlimited forward classical communication (cf. our corresponding result for private information
+transmission). Defining E→ (N ) analogously, it now suffices to show E→ (N ) ≤ Q    e → (N ). Indeed,
+any entanglement generated may be used in conjunction with the forward classical channel to
+perform quantum teleportation of the state ρ [8]. More precisely (see section 4), Alice and Bob
+generate the state Ω satisfying
+                                       f = F (|Φκ i, Ω) ≥ 1 − ǫ.
+They may perform a bilateral twirling operation [10] to transform Ω into a Werner state
+                   Z
+                                                                1−f
+           T (Ω) = dU (U ⊗ U ∗ )Ω(U ⊗ U ∗ )† = f |Φκ ihΦκ | +        (I − |Φκ ihΦκ |),
+                                                                κ−1
+
+which is now interpreted as being in the state |Φκ i with probability f . Since teleporting a state ρ
+living in a κ-dimensional Hilbert space H via the maximally entangled |Φκ i yields an entanglement
+fidelity of 1, using T (Ω) instead will give an entanglement fidelity of at least f ≥ 1 − ǫ. Actually,
+one need not perform the full twirling operation. The twirl is equivalent to applying some bilateral
+U ⊗ U ∗ chosen at random. Thus there exists a particular value of U for which the entanglement
+fidelity is ≥ f . Furthermore, the U ⊗ U ∗ is easily absorbed into |Υi and D of the entanglement
+generating protocol. Choosing ρ to be maximally entropic proves the claim. Thus Q(N    e ) = E(N ).
+
+Remark It is possible to modify the proof of the direct coding part of theorem 5 to lower bound
+e ) directly rather than via E(N ). This is done in Appendix D, where we also show the existence
+Q(N
+of random entanglement transmission codes of large blocklength n with rate arbitrarily close to
+Ic (ρ, N ) and the nice property that the average density operator of the codewords is arbitrarily
+close to ρ⊗n .
+
+
+6    Discussion
+We have defined and found expressions for the private information transmission Cp and secret key
+generation K capacities for classical-quantum wire-tap channels W and quantum channels N . A
+subclass of the corresponding protocols was made “coherent” to yield entanglement generation and
+quantum information transmission protocols achieving the respective capacities E(N ) and Q(N ).
+Thus we have established a very important operational connection between quantum privacy and
+quantum coherence [31].
+    Our results show that Cp (W ) = K(W ), Cp (N ) = K(N ) and E(N ) = Q(N ). On the other
+hand, it is obvious operationally, as well as from Ip (ρ, N ) ≥ Ic (ρ, N ), that K(N ) ≥ E(N ). Al-
+though it is easy to find examples of strict inequality between Ic (ρ, N ) and Ip (ρ, N ) for particular
+(ρ, N ) pairs (see Appendix C), it is not clear whether this still holds when optimized over ρ and
+in the asymptotic sense of (30) and (36). In particular, we would like to know whether there
+exist quantum channels which cannot be used for transmitting quantum information, yet may be
+used to establish a secret key. The “static” analogue of this question was answered recently in
+in [24] by providing an example of a bipartite state with non-zero distillable secret key but zero
+(two-way!) distillable entanglement. It is natural to expect that a channel related to this state
+would demonstrate a separation between K and E [36].
+    Another open problem is whether the formula for Cp (W ) may be single-letterized (as in the
+purely classical case [16]) for general channels or at least certain classes of channels. The same
+
+
+                                                  15
+question is open for Cp (N ), whereas counterexamples are known for Q(N ) [20]. A non-trivial class
+of channels exists (so-called degradable channels) for which Q(N ) is efficiently computable [18],
+and it can be shown that this property extends to Cp (W ) (we do not know this to be true for
+Cp (N )). More generally, we would like to be able to say something about the convergence rate of
+the limits in equations (30) and (36).
+    A natural extension of the present work would be to allow two-way public/classical communi-
+cation for key/entanglement generation. This enhanced auxiliary resource is known to improve the
+capacities in both cases [2, 27, 10], but it seems unlikely that reasonable information-theoretical
+formulas exist in general.
+    The results of section 2 were independently obtained by Cai and Yeung [12], see [39, 40].
+Acknowledgments We thank C. H. Bennett and J. A. Smolin for useful discussions and the for-
+mer for pointing us to [39]. Thanks also go to A. W. Harrow, D. W. Leung, K. El-Zein and J. Yard
+for comments on the manuscript. Finally, we are indebted to A. S. Holevo and D. Kretschmann
+for drawing our attention to a couple of technical errors in an earlier version of the paper.
+
+
+A     Definitions of typical sequences and subspaces
+We shall list definitions and properties of typical sequences and subspaces [17, 29, 37]. Consider
+some general classical-quantum system U XQ in the state defined by the ensemble {p(u, x), ρux }.
+X is defined on the set X and U on the set U. Denote by p(x) and P (x|u) the distribution of X
+and conditional distribution of X|U , respectively.
+   For the probability distribution p on the set X define the set of typical sequences (with δ > 0)
+                               n
+                             Tp,δ = {xn : ∀x |N (x|xn ) − np(x)| ≤ nδ} ,
+
+where N (x|xn ) counts the number of occurrences of x in the word xn = x1 . . . xn of length n.
+                                                                                            n
+When the distribution p is associated with some random variable X we may use the notation TX,δ .
+                                            n    n
+   For the stochastic map P : U → X and u ∈ U define the set of conditionally typical sequences
+(with δ > 0) by
+                n
+               TP,δ (un ) = {xn : ∀u, x |N ((u, x)|(un , xn )) − P (x|u)N (u|un )| ≤ nδ} .
+
+When the stochastic map P is associated with some conditional random variable X|U we may use
+                n
+the notation TX|U,δ  (un ).
+PdFor a density operator ρ on a d-dimensional Hilbert space H, with eigen-decomposition ρ =
+  k=1 λk |kihk| define (for δ > 0) the typical projector as
+                                                   X
+                                       Πnρ,δ =              |k n ihk n |.
+                                                      n
+                                                 kn ∈TR,δ
+
+
+When the density operator ρ is associated with some quantum system Q we may use the notation
+ΠnQ,δ .
+   For a collection of states ρu , u ∈ U, and un ∈ U n define the conditionally typical projector as
+                                                         O
+                                       Πn{ρu },δ (un ) =   ΠIρuu ,δ ,
+                                                            u
+
+
+where Iu = {i : ui = u} and ΠIρuu ,δ denotes the typical projector of the density operator ρu in the
+positions given by the set Iu in the tensor product of n factors. When the {ρu } are associated with
+some conditional classical-quantum system Q|U we may use the notation ΠnQ|U,δ (un ).
+
+
+
+
+                                                    16
+B      The modified HSW theorem
+                               ′
+Define ν = 2n[I(X;Q)−2(c+c δ)δ] i.i.d. random variables {Us }, s ∈ [ν], according to the pruned
+distribution p′ . We shall show that this random set can be made into a HSW code for the {c → q}
+channel Q|X with low probability of error. More precisely, we shall construct a decoding POVM
+{Ys } such that
+                               Epe ({Us }) = ETr (ωUs (I − Ys )) ≤ 10ǫ.
+We shall need the following lemma due to Hayashi and Nagaoka [21]: For any operators 0 ≤ S ≤ I
+and T ≥ 0
+                                         1            1
+                           I − (S + T )− 2 S(S + T )− 2 ≤ 2(I − S) + 4T.                  (54)
+The {Ys } are constructed as follows
+                                           X        1
+                                                           X        1
+                                     Ys = (  ΛUt )− 2 ΛUs (  ΛUt )− 2
+                                             t                  t
+
+with
+                               Λxn = ΠnQ, δ(|X |+1) ΠnQ|X,δ (xn )ΠnQ, δ(|X |+1) .
+Then, by (54),                                                      X
+                            pe ({Us }) ≤ 2(1 − Tr ωUs ΛUs ) + 4            Tr ωUs ΛUt .       (55)
+                                                                    t6=s
+
+It is not hard to verify (cf. lemma 6 of [21]) that for xn ∈ TX,δ
+                                                              n
+
+
+                                            Tr ωxn Λxn ≥ 1 − 3ǫ
+
+follows from (14) and (15). By (18)
+                                                 Tr Λxn ≤ βe−1 .
+Also note that                              X
+                                   EωUs =        p′ (xn )ωxn ≤ (1 − ǫ)−1 ω ⊗n ,
+                                            xn
+
+so that, by (19),
+                        ΠnQ, δ(|X |+1) EωUs ΠnQ, δ(|X |+1) ≤ (1 − ǫ)−1 α
+                                                                       e ΠnQ, δ(|X |+1) .
+Putting everything together, taking the expectation of (55) and noting that Us and Ut are inde-
+pendent for s 6= t, we have
+
+                             Epe ({Us }) ≤        6ǫ + 4(ν − 1)Tr (EωUs EΛUt )
+                                            ≤                      e βe−1 ≤ 10ǫ,
+                                                  6ǫ + 4ν(1 − ǫ)−1 α
+
+the last inequality coming from our choice of ν.
+
+
+C      An example of Ip(ρ, N ) > Ic (ρ, N )
+Consider a four dimensional Hilbert space H4 , with orthonormal basis {|1i, |2i, |3i, |4i}. Let Π12
+be the projector onto the space spanned by |1i and |2i, and let Π34 be the projector onto the space
+spanned by |3i and |4i. Our channel4 N : B(H4 ) → B(H4 ) is given by
+
+                                    N (ρ) = Π12 ρΠ12 + D34 (Π34 ρΠ34 ),
+  4 This channel was suggested to us by J. A. Smolin.
+
+
+
+
+                                                        17
+where D34 is the completely depolarizing channel on the two dimensional subspace spanned by |3i
+and |4i. Defining π12 = 12 Π12 and π34 = 21 Π34 , it is easily verified that
+
+                                           Ic (π12 , N ) =        1
+                                           Ic (π34 , N ) =        −1.                         (56)
+
+Define, for some small positive ǫ,
+                                      ′
+                                     π12     =     (1 − ǫ)π12 + ǫπ34
+                                      ′
+                                     π34     =     (1 − ǫ)π34 + ǫπ12 .
+
+By continuity, for sufficiently small ǫ
+                                                ′
+                                           Ic (π12 ,N) >          0
+                                                ′
+                                           Ic (π34 ,N)        <   0.                          (57)
+
+Since
+                ′      ′    1 − ǫ − ǫ2            1 − ǫ − ǫ2         ǫ2       ǫ2
+               π12 = ǫπ34 +              |1ih1| +            |2ih2| + |3ih3| + |4ih4|,
+                                  2                   2              2        2
+                             ′
+is a valid decomposition of π12 , it is readily seen that
+                                          ′               ′
+                                     Ip (π12 , N ) > Ic (π12 , N ) > 0.
+
+
+D       The average density operator of random quantum codes
+In this section we show how to convert a subclass of the entanglement generation codes described
+in section 4 into entanglement transmission ones of the same rate Ic (ρ, N ) − δ. Then we construct
+random entanglement transmission codes of the same rate such that the average density operator
+of the codewords becomes arbitrarily close to ρ⊗n for large enough blocklength n.
+    Alice is given the system A′ , entangled with some reference system A she has no access to, in
+some general state with Schmidt decomposition
+                                           ′   X               ′
+                                      |ΨiAA =      αk |kiA |kiA .
+                                                     k
+
+Her goal is transfer the entanglement with A from her system A′ to Bob’s B. Notice that the states
+|φkm iP (and hence |φk iP ) are mutually orthogonal. Consequently, there is an isometric encoding
+                   ′                            ′
+E defined by |kiA 7→ |φk iP which maps |ΨiAA to
+                                             X
+                                    |ΥiAP =       αk |kiA |φk iP ,                            (58)
+                                                    k
+
+now bearing a strong resemblance to (48). By following through the remaining steps of the proof of
+theorem 5, it is easily seen that after applying the decoding operation D given by (49) one arrives
+at (c.f. (50)):                                                      √
+                        F (|Ψi, (I ⊗ (D ◦ N ⊗n ◦ E))(|ΨihΨ|)) ≥ 1 − 4 ǫ − 4ǫ.                  (59)
+Choosing |Ψi to be maximally entangled implies, via (52), an achievable entropy rate of n1 log κ =
+Ic (ρ, N ) − δ.
+    The set S = {|φk i} is sometimes referred to as the quantum code. A natural quantity to define
+is the quantum code density operator
+                                                         κ
+                                                   1X
+                                          ρ(S) =      |φk ihφk |,
+                                                   κ
+                                                        k=1
+
+
+                                                        18
+i.e. the input to the channel N ⊗n as seen by someone ignorant of the encoded state. Little can
+be said about ρ(S) for any particular quantum code S given by our construction. However if
+we consider random codes, a probabilistic mixture of deterministic codes given by an ensemble
+{pβ , Sβ }, we can make the average code density operator
+                                               X
+                                          ρ=      pβ Sβ
+                                                            β
+
+                          ⊗n
+be arbitrarily close to ρ . We shall show this via a double randomization of our original protocol.
+   1. First recall that for fixed k and fixed set {|φkm i}m∈[µ] , the kth quantum codeword (44)
+                                              r
+                                                1 X iγkm
+                                      |φk i =        e     |φkm i
+                                                µ m
+
+was chosen from one of µ Fourier states. If they were all “ǫ-good” quantum codewords, in the sense
+of (46), then picking |φk i at random according to the uniform distribution on the set of Fourier
+states, for each k, would result in a random code with average code density operator
+                                            1 X
+                                       ρ=         |φkm ihφkm |.
+                                           κµ
+                                                        k,m
+                                                  √                           √
+According to the proof of lemma 4, a fraction 1 − ǫ of the Fourier states are
+                                                                          √     ǫ-good codewords.
+The random code in which each |φk i is uniformly distributed over these ǫ-good codewords has
+an average code density operator ρ for which
+                                  1      X                        √
+                            kρ −                 |φkm ihφkm |k ≤ 2 ǫ.                        (60)
+                                 κµ
+                                               (k,m)∈[κ]×[µ]
+                                                                                                         √
+At the same time, equation (59) must be modified to account for the codes being                              ǫ-good instead
+of ǫ-good:                                                        √
+                     F (|Ψi, (I ⊗ (D ◦ N ⊗n ◦ E))(|ΨihΨ|)) ≥ 1 − 6 ǫ − 2ǫ.                                             (61)
+This concludes the first layer of randomization.
+   2. Backtracking to section 2, by equation (22), choosing the {ukm }k∈[κ′√             ],m∈[µ′ ] at random
+according to p′ , followed by expurgation,
+                                     √      results
+                                             √      in failure with probability   ǫ+10   4
+                                                                                           ǫ, thus modifying
+the fidelity estimate (61) to 1 − 10 ǫ − 6 ǫ − 3ǫ. This is the second layer of randomization. The
+                                     4
+
+
+average code density matrix before the expurgation is (denoting by E the expectation value over
+the {ukm })                                              
+                            1      X                           X
+                       E ′ ′                |φkm ihφkm | =       p′ (xn )|φxn ihφxn |,
+                          κµ         ′    ′                     xn
+                                (k,m)∈[κ ]×[µ ]
+
+for which                                 X
+                                      k        p′ (xn )|φxn ihφxn | − ρ⊗n k ≤ 2ǫ.
+                                          xn
+The expurgation itself has a small effect on the average code density operator:
+
+                  1       X                                1            X                             √
+                                      |φkm ihφkm | −                                  |φkm ihφkm | ≤ 4 4 ǫ,
+                 κµ                                      κ ′ µ′
+                      (k,m)∈[κ]×[µ]                               (k,m)∈[κ′ ]×[µ′ ]
+
+implying
+                                                                                                  
+                1       X                               1                    X                             √
+            E                      |φkm ihφkm | − E  ′ ′                               |φkm ihφkm | ≤ 4 4 ǫ,
+               κµ                                      κµ
+                    (k,m)∈[κ]×[µ]                                     (k,m)∈[κ′ ]×[µ′ ]
+
+
+
+                                                            19
+and hence                                                     
+                              1       X                                  √
+                       E                         |φkm ihφkm | − ρ⊗n ≤ 4 4 ǫ + 2ǫ.
+                             κµ
+                                  (k,m)∈[κ]×[µ]
+
+By (60),                                                             
+                                   1              X                          √
+                             ρ−E                           |φkm ihφkm | ≤ 2 ǫ.
+                                  κµ
+                                          (k,m)∈[κ]×[µ]
+
+where ρ := E ρ is the average code density matrix of our doubly randomized protocol. Hence
+                                                √       √
+                                  kρ − ρ⊗n k ≤ 4 4 ǫ + 2 ǫ + 2ǫ,
+
+which concludes the argument.
+
+
+References
+ [1] A. Acin, L. Masanes and N. Gisin, “Equivalence between two-qubit entanglement and secure
+     key distribution”, Phys. Rev. Lett., vol. 91, pp. 167901–167904, 2003.
+ [2] R. Ahlswede and I. Csiszár, “Common Randomness in Information Theory and Cryptography
+     — Part I: Secret Sharing “, IEEE Trans. Inf. Theory, vol. 39, pp. 1121–1132, 1993.
+ [3] R. Ahlswede and A. Winter, “Strong Converse for Identification via Quantum Channels”,
+     IEEE Trans. Inf. Theory, vol. 48, pp. 569–579, 2002.
+ [4] H. Barnum, E. Knill and M. A. Nielsen, “On Quantum Fidelities and Channel Capacities”,
+     IEEE Trans. Inf. Theory, vol. 46, pp. 1317–1329, 2000.
+ [5] H. Barnum, M. A. Nielsen and B. Schumacher, “Information transmission through a noisy
+     quantum channel”, Phys. Rev. A, vol. 57, pp. 4153 , 1998.
+ [6] C. H. Bennett, private communication, 2003.
+ [7] C. H. Bennett and G. Brassard, “Quantum Cryptography: Public key distribution and coin
+     tossing”, Proc. IEEE Int. Conf. Computers, Systems and Signal Processing (Bangalore, India),
+     pp. 175–179, 1984.
+ [8] C. H. Bennett, G. Brassard, C. Crépeau, R. Jozsa, A. Peres and W. K. Wootters, “ Teleporting
+     an unknown quantum state via dual classical and EPR channels”, Phys. Rev. Lett., vol. 70,
+     pp. 1895–1898, 1993.
+ [9] C. H. Bennett, I. Devetak, A. W. Harrow, P. W. Shor and A. Winter, “The Quantum Reverse
+     Shannon Theorem”, in preparation.
+[10] C. H. Bennett, D. P. DiVincenzo, J. A. Smolin and W. K. Wootters, “Mixed-state entangle-
+     ment and quantum error correction”, Phys. Rev. A, vol. 54, pp. 3824–3851, 1996.
+[11] D. Bruss, M. Christandl, A. Ekert, B.-G. Englert, D. Kaszlikowski and C. Machiavello, “To-
+     mographic Quantum Cryptography: Equivalence of Quantum and Classical Key Distillation”,
+     Phys. Rev. Lett., vol. 91, pp. 097901–097905, 2003.
+[12] N. Cai and R. W. Yeung, “Quantum Privacy and Quantum Wiretap Channels”, manuscript,
+     2003.
+
+
+
+                                                       20
+[13] A. R. Calderbank and P. W. Shor, “Good Quantum Error-Correcting Codes Exist”, Phys.
+     Rev. A, Vol. 54, pp. 1098–1106, 1996. A. Steane, “Multiple Particle Interference and Quantum
+     Error Correction”, Proc. Roy. Soc. Lond. A452, pp. 2551–2576, 1996.
+[14] D. Collins and S. Popescu, “A classical analogue of entanglement”, quant-ph/0107082, 2001.
+[15] T. M. Cover and J. A. Thomas, Elements of Information Theory, Wiley and Sons, New York,
+     1991.
+[16] I. Csiszár and J. Körner, “Broadcast channels with confidential messages”, IEEE Trans. Inf.
+     Theory, vol. 24, pp. 339–348, 1978.
+[17] I. Csiszár and J. Körner, Information Theory: Coding Theorems for Discrete Memoryless
+     Systems, Academic Press, New York, 1981.
+[18] I. Devetak and P. W. Shor, “The capacity of a quantum channel for simultaneous transmission
+     of classical and quantum information”, quant-ph/0311131, 2003.
+[19] I. Devetak and A. Winter, “Distilling common randomness from bipartite quantum states”,
+     quant-ph/0304196, 2003.
+[20] D. P. DiVincenzo, P. W. Shor and J. A. Smolin, “Quantum-channel capacity of very noisy
+     channels,” Phys. Rev. A., vol. 57, pp. 830–839, 1998.
+[21] M. Hayashi and H. Nagaoka, “General formulas for capacity of classical-quantum channels”,
+     IEEE Trans. Inf. Theory, vol. 49, pp. 1753–1768, 2003.
+[22] A. S. Holevo, ”Bounds for the quantity of information transmitted by a quantum channel”,
+     Probl. Inf. Transm., vol 9, pp. 177-183, 1973.
+[23] A. S. Holevo, “The Capacity of the Quantum Channel with General Signal States”, IEEE
+     Trans. Inf. Theory, vol. 44, pp. 269–273, 1998. B. Schumacher and M. D. Westmoreland,
+     “Sending classical information via noisy quantum channels”, Phys. Rev. A, vol. 56, pp. 131–
+     138, 1997.
+[24] K. Horodecki, M. Horodecki, P. Horodecki and J. Oppenheim, “Secure key from bound en-
+     tanglement”, quant-ph/0309110, 2003.
+[25] H.-K. Lo and H. F. Chau, “Unconditional Security Of Quantum Key Distribution Over Arbi-
+     trarily Long Distances”, Science, vol. 283, pp. 2050–2056, 1999.
+[26] S. Lloyd, ”Capacity of the noisy quantum channel”, Phys. Rev. A, vol. 55, pp. 1613, 1996.
+[27] U. M. Maurer, “The Strong Secret Key Rate of Discrete Random Triples”, Communication
+     and Cryptography – Two Sides of One Tapestry, R. Blahut et al. eds.), Kluwler Academic
+     Publishers, pp. 271–285, 1994. U. M. Maurer and S. Wolf, “Information-Theoretic Key Agree-
+     ment: From Weak to Strong Secrecy for Free”, Advances in Cryptology - EUROCRYPT ’00,
+     Lecture Notes in Computer Science, Springer-Verlag, vol. 1807, pp. 351–368, 2000.
+[28] M. A. Nielsen and I. L. Chuang, Quantum Information and Quantum Computation, Cambridge
+     University Press, 2001.
+[29] B. Schumacher,”Quantum coding”, Phys. Rev. A, vol. 51, pp. 2738–2747, 1995. R. Jozsa and
+     B. Schumacher, “A new proof of the quantum noiseless coding theorem”, J. Mod. Opt, vol.
+     41, pp. 2343–2349, 1994.
+[30] B. Schumacher and M. A. Nielsen, “Quantum data processing and error correction”, Phys.
+     Rev. A, vol. 54, pp. 2629, 1996.
+
+                                               21
+[31] B. Schumacher and M. D. Westmoreland, “Quantum privacy and quantum coherence”, Phys.
+     Rev. Lett., vol. 80, pp. 5695–5697, 1998.
+[32] B. Schumacher and M. D. Westmoreland, “Approximate quantum error correction”, Quant.
+     Inf. Proc., vol. 1, pp. 5-12(8), 2002.
+[33] B. Schumacher and M. D. Westmoreland, “Relative entropy in quantum information theory”,
+     quant-ph/0004045, 2001.
+[34] P. W. Shor, “The quantum channel capacity and coherent information ”, lec-
+     ture notes, MSRI Workshop on Quantum Computation, 2002. Avaliable at
+     http://www.msri.org/publications/ln/msri/2002/quantumcrypto/shor/1/
+[35] P. W. Shor and J. Preskill, “Simple Proof of Security of the BB84 Quantum Key Distribution
+     Protocol”, Phys. Rev. Lett., vol. 85, pp. 441–444, 2000.
+[36] J. A. Smolin, private communication, 2004.
+[37] A. Winter, ”Coding theorem and strong converse for quantum channels”, IEEE Trans. Inf.
+     Theory, vol. 45, pp. 2481–2485, 1999.
+
+[38] A. Winter, “’Extrinsic’ and ’intrinsic’ data in quantum measurements: asymptotic convex
+     decomposition of positive operator valued measures”, quant-ph/0109050, 2001.
+[39] A. Winter, A. C. A. Nascimento and H. Imai, “Commitment Capacity of Discrete Memoryless
+     Channels”, cs.CR/0304014, 2003.
+[40] R. Wilmink, Ph.D. thesis, U. Bielefeld, 2003.
+[41] A. D. Wyner, “The wire-tap channel”, Bell. Sys. Tech. Jour., vol. 54, pp. 1355–1387, 1975.
+
+
+   Biography I. Devetak received his Ph.D. in Electrical Engineering from Cornell University in
+2002. Since then he has been a post-doctoral researcher at the IBM T.J. Watson Research Center,
+Yorktown Heights, NY. He will be joining the Electrical Engineering faculty at the University of
+Southern California in January 2005.
+
+
+
+
+                                               22
+

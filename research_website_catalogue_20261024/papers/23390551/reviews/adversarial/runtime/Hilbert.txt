@@ -1,0 +1,858 @@
+                                                              CONVERGENCE OF A SIMPLE DISCRETIZATION OF
+                                                                 THE FINITE HILBERT TRANSFORMATION
+
+                                                                                         MARTIN COSTABEL
+
+
+                                                   A BSTRACT. For a singular integral equation on an interval of the real line, we study the behavior
+
+
+
+
+arXiv:2303.13693v2 [math.NA] 7 Sep 2023
+                                                   of the error of a delta-delta discretization. We show that the convergence is non-uniform, between
+                                                   order O(h2 ) in the interior of the interval and a boundary layer where the consistency error does
+                                                   not tend to zero.
+
+
+
+
+                                                                                         1. I NTRODUCTION
+
+                                          Let a, b ∈ R with a < b. On the interval Ω = (a, b) we consider the singular integral equation,
+                                          abbreviated as (λI − AΩ )u = f ,
+                                                                              Z
+                                                                                    u(y)
+                                          (1.1)                  λu(x) − p.v.              dy = f (x) , x ∈ Ω .
+                                                                               Ω iπ(x − y)
+
+                                          We discretize it in the simplest imaginable fashion. We choose N ∈ N defining the mesh width
+                                          h = N1 and fix some origin aN ∈ R, thus defining the infinite regular grid
+                                                                                ΣN = {xN    N
+                                                                                       m = a + mh | m ∈ Z}
+
+                                          and its finite counterpart ΣN ∩ Ω indexed by
+                                                                                    ω N = {m ∈ Z | xN
+                                                                                                    m ∈ Ω} ,
+
+                                          and consider the system
+                                                                             1       X          un
+                                          (1.2)                   λum −                                   = f (xN
+                                                                                                                m) ,      (m ∈ ω N ) .
+                                                                           iπN               x − xN
+                                                                                              N
+                                                                                  n∈ω N ,m̸=n m    n
+
+                                          This system can easily be programmed and solved with a couple of lines of code, without any
+                                          knowledge of analysis, and it produces surprisingly good results, see Figure 1 for some examples
+                                          for which the exact solution of the integral equation is known. These examples are introduced
+                                          below in Section 2.3 and further analyzed numerically in Section 4.
+                                          This simple delta-delta scheme is similar to Lifanov’s method of discrete vortices [1], except that
+                                          we take the same grid for the quadrature points and the evaluation points, and we put zero on the
+                                          diagonal.
+
+                                             Date: 04/09/2023.
+                                             2020 Mathematics Subject Classification. 65R20, 45E05.
+                                             Key words and phrases. singular integral equation, Hilbert transform, delta-delta discretization, method of discrete
+                                          vortices, discrete dipole approximation.
+                                                                                                    1
+2                                          MARTIN COSTABEL
+
+                                                                                          3rd example, N=10, alpha=1/4
+                                                  2nd example, N=10
+          1st example, N=10                                                       4
+                                     0.8
+1.002
+1.001                                0.6
+                                                                                  3
+
+    1
+                                     0.4                                          2
+0.999
+0.998
+                                     0.2                                          1
+0.997
+0.996
+                                      0                                           0
+        0 0.2 0.4 0.6 0.8   1 1.2          0    0.2   0.4   0.6   0.8   1   1.2       0     0.2   0.4   0.6   0.8   1   1.2
+
+
+
+    F IGURE 1. 3 examples: Exact solutions and their computed p/w constant approximations
+
+There is also a similarity to the fully discrete Calderón calculus analyzed in [5], although the
+differences, namely that we consider an open interval and not a closed curve and that our integral
+operator is strongly singular, are too important to try a similar analysis.
+Note that the approximation scheme (1.2) for the integral equation (1.1) is not a projection method
+(or Petrov-Galerkin scheme) in any meaningful sense, although it has the form (except for the di-
+agonal term) of a Galerkin scheme with Dirac deltas as test and trial functions. This has the
+negative consequence that some tools are not available that one would like to use in order to
+generalize results proved for the model singular integral equation (1.1) to equations with more
+general strongly singular kernels, a variable multiplier λ instead of a constant, or equations with
+lower order terms. These tools use the persistence of stability under compact perturbations of the
+operator, and this is known for projection methods and also for more general discrete approxima-
+tion schemes in the Stummel-Vainikko sense, see for example [10]. But it seems that our simple
+scheme does not fit into any of these frameworks.
+The question of a convergence proof for the delta-delta approximation (1.2) came up in the context
+of our recent research into the error analysis of higher-dimensional simple discretization meth-
+ods for strongly singular volume integral equations related to the Discrete Dipole Approximation
+(DDA). The latter has been a standard tool in computational electrodynamics for half a century
+[7, 11, 2], with a wide range of applications from interstellar dust clouds to nano-particles. Despite
+the popularity of DDA in computational physics, there is very little known about its mathematical
+properties, but we have now some results about its stability [4, 3]. In order to complete the conver-
+gence proof, one needs estimates for the consistency error, and for gaining insight on the behavior
+of this, the one-dimensional example (1.1), (1.2) presented itself as a “toy problem”, where the
+error analysis should be more transparent, while still showing some essential peculiarities of the
+more complicated higher-dimensional situation. It turns out that this is indeed the case, but that
+the results are interesting by themselves, and we present this in the following.
+
+
+                                               2. S TABILITY
+
+Numerical stability of the system (1.2), which we abbreviate as (λI − T N )U N = F N , means that
+there exists a bound of U N by F N uniform in N , that is, a uniform resolvent estimate in some
+operator norm ∥(λI − T N )−1 ∥ ≤ CS for all N .
+                 A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                       3
+
+2.1. Stability in ℓ2 . Such a stability estimate has been proved in [4], and although most of it is
+based on quite well known arguments, for the sake of completeness we quote the result and the
+main points of its proof here.
+Proposition 2.1. The matrix T N of the system (1.2) is selfadjoint with its eigenvalues in C =
+[−1, 1]. For λ ∈ C the discretization method (1.2) is stable in the ℓ2 norm if and only if the
+integral operator λI − AΩ is boundedly invertible in L2 (Ω), and this is equivalent to λ ̸∈ C. For
+such λ, there is an estimate for the operator norms
+(2.1)          ∥(λI − T N )−1 ∥L(ℓ2 (ωN )) ≤ dist(λ, C)−1 = ∥(λI − AΩ )−1 ∥L(L2 (Ω)) .
+
+The arguments are based on Fourier analysis and on a Lax-Milgram or Galerkin style use of the
+notion of numerical range. We recall the definition of the numerical range W (B) of a bounded
+linear operator B in Hilbert space, namely the range of values on the unit sphere of the sesquilinear
+form associated with B
+(2.2)                             W (B) = {(u, Bu)|∥u∥ = 1} .
+This is a bounded set contained in the disk with radius ∥B∥, convex by the Toeplitz-Hausdorff
+theorem, and its closure contains the spectrum of B. Writing for any u of norm one and z =
+(u, Bu) the estimate
+                  dist(λ, W (B)) ≤ |λ − z| = |(u, λu − Bu)| ≤ ∥(λI − B)u∥ ,
+one immediately gets the resolvent estimate in the operator norm
+(2.3)                          ∥(λI − B)−1 ∥ ≤ dist(λ, W (B))−1 .
+Considering that the restriction to a subspace does not increase the numerical range, one gets the
+same resolvent estimate for operators defined from B by restricting the sesquilinear form to a
+subspace. This is the Lax-Milgram argument for stability of Galerkin methods, and it applies here
+both to the integral equation (1.1) and the discrete system (1.2).
+The integral operator AΩ in (1.1) and the system matrix T N in (1.2) have this feature in common:
+They are both projections to bounded sets of translation invariant (i.e. convolution) operators, and
+these can be diagonalized by Fourier analysis.
+The finite Hilbert transformation AΩ is the restriction to Ω of the Hilbert transformation A on R,
+that is the convolution with the kernel K defined as the distribution
+                                                   1      1
+                                         K(x) =      p.v.
+                                                  iπ      x
+that has the Fourier transform
+                                     K(ξ)
+                                      b    = sign ξ (ξ ∈ R) .
+From the Plancherel theorem follows that the convolution operator A acting in the Hilbert space
+L2 (R) is equivalent to the operator of multiplication with its symbol K b in L2 (R). It follows in
+particular that A is a selfadjoint involution and its spectrum consists of two eigenvalues ±1 of
+infinite multiplicity.
+This implies W (AΩ ) ⊂ W (A) = C and the resolvent estimate
+                             ∥(λI − AΩ )−1 ∥L(L2 (Ω)) ≤ dist(λ, C)−1 .
+4                                        MARTIN COSTABEL
+
+On the discrete side there is a parallel argument using Fourier series instead of the Fourier trans-
+form. The system matrix T N is a finite section of a (bi-)infinite Toeplitz matrix T that, owing
+to
+                                     1       1           1
+                                                  =             ,
+                                   iπN xN      N
+                                          m − xn     iπ(m − n)
+is independent of N ,
+                                  1       
+(2.4)                 T =                         with zero on the diagonal.
+                              iπ(m − n) m,n∈Z
+Let σT be its symbol (characteristic function) defined by the Fourier series
+                                     ∞
+                  X 1
+                            imτ
+                                    X   2 sin mτ              τ
+        σT (τ ) =          e    =                 = sign τ −      (τ ̸= 0) ,   σT (0) = 0 .
+                  m∈Z
+                      iπm           m=1
+                                           πm                 π
+Then by the Plancherel theorem it follows that the discrete convolution operator defined by T
+acting on ℓ2 (Z) is equivalent to the operator of multiplication with σT in L2 (−π, π). Therefore
+both its spectrum and the closure of its numerical range W (T ) are equal to C = [−1, 1]. Since
+T N arises from T by restriction to ℓ2 (ω N ), we get the inclusion W (T N ) ⊂ C and the uniform
+resolvent estimate in (2.1).
+With these simple arguments, we have proved Proposition 2.1, except for two points: The assertion
+that stability implies that λ ̸∈ C, and the last equality in (2.1), where we would only get an
+inequality.
+For the first point we use the fact that whereas the system (1.2)
+(2.5)                                 (λI − T N )U N = F N ,
+when considered as an approximation scheme for the integral equation (1.1) (λI−AΩ )u = f , is not
+a projection method, it is indeed a standard Galerkin scheme when considered as an approximation
+scheme for the infinite system
+(2.6)                              (λI − T )U = F      in ℓ2 (Z) .
+As such, it converges whenever it is stable; in detail: Denote by PN the orthogonal projection
+operator in ℓ2 (Z) onto the subspace of sequences vanishing outside ω N , identified with ℓ2 (ω N ),
+so that we can write (λI − T N )PN = PN (λI − T )PN . If we take as the origin aN of the grid a
+fixed point inside Ω, then
+                               lim PN U = U       in ℓ2 (Z) for any U .
+                              N →∞
+
+If U N and U satisfy (2.5), (2.6) with F N = PN F , then we have the identity
+                    U − U N = I − (λI − T N )−1 PN (λI − T ) (U − PN U ) .
+                                                               
+
+Now let λ ∈ C be such that the scheme (2.5) is stable,
+                                  ∥(λI − T N )−1 ∥ ≤ CS .
+                                    
+Then ∥U − U N ∥ ≤ 1 + CS ∥λI − T ∥ ∥U − PN U ∥ (this is the quasi-optimality of the Galerkin
+scheme, Céa’s lemma), hence U N → U , and because of ∥U N ∥ ≤ CS ∥F ∥, we find in the limit
+                                         ∥U ∥ ≤ CS ∥F ∥ .
+                 A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                          5
+
+This implies that λI − T is invertible with the norm of the inverse bounded by CS−1 , hence λ ̸∈ C,
+in fact dist(λ, C) ≥ CS−1 .
+For the second point, we recall that the finite Hilbert transformation and its spectral theory is a
+well-studied classical object. In particular it can be diagonalized by a generalized Fourier trans-
+formation [6] implying that as soon as Ω is a proper subinterval of R (even a half line), its action
+in L2 (Ω) is unitarily equivalent to the operator of multiplication by σ in L2 (−1, 1) with σ(ξ) = ξ.
+Both its spectrum and the closure of its numerical range W (AΩ ) are therefore equal to C, which
+shows the last equality in (2.1).
+
+
+2.2. Solution behavior. The simplicity of the statement of Proposition 2.1 is somewhat deceptive
+and hides a more complicated situation: Whereas the solvability of the finite system (1.2) is, of
+course, independent of the norm we choose in the space of sequences, the latter only being used to
+describe the stability, this is quite different for the solvability of the integral equation (1.1). Here,
+owing to the singular behavior of the solution at the endpoints of Ω, the spectrum of the finite
+Hilbert transform depends on the function space. The generalized eigenfunctions
+                                            q                i     ξ+1     x−a
+                                          1       b−a
+                                gξ (x) = π 2(x−a)(b−x)    e 2π log 1−ξ log b−x
+for which it is shown in [6] that they diagonalize the operator via the Hilbert space isomorphism
+f 7→ F : L2 (a, b) → L2 (−1, 1) with the transform pair
+                                Z b                          Z 1
+                 F (ξ) = √  1
+                                     gξ (x)f (x)dx, f (x) =      gξ (x)F (ξ) √dξ
+                             1−ξ 2   a                            −1              1−ξ 2
+
+such that AΩ f is transformed to ξF (ξ), are genuine eigenfunctions in Lp (Ω) with p < 2. More
+precisely, one considers the arcs of circles
+                                             λ+1
+                              Cα0 = {λ ∈ C | λ−1 = e2πiα , Re α = α0 }
+which connect the points −1 and 1 inside the unit circle if 14 < α0 < 34 and outside if α0 ∈
+(0, 41 ) ∪ ( 43 , 1). Then the spectrum of AΩ in Lp (a, b) is the domain between C1− 1 and C 1 . Its
+                                                                                     p       p
+interior consists of eigenvalues. For an eigenvalue λ, define the exponent α by the above relation
+               1
+          α = 2πi log λ+1
+                      λ−1
+                               or equivalently    λ = −i cot πα,         1 − p1 < Re α < p1 .
+Then the corresponding eigenfunction in Lp (a, b) is
+                                     u(x) = (x − a)−α (b − x)α−1 .
+                                         p
+The spectrum in the dual space L p−1 (Ω) is the same set. Thus for p < 2 the solution of (1.1)
+exists, in general, but is not unique, and for p > 2 it is unique, but does not exist for all right
+hand sides. Only for p = 2, the two arcs of circle degenerate to the interval C, and for λ ∈ C the
+operator λI − AΩ in L2 (Ω) is injective with dense range.
+Thus, the delta-delta discretization manages to mimick the solution behavior of the singular inte-
+gral equation for the specific value p = 2.
+For AΩ , it is also known how to write the resolvent explicitly as a singular integral operator with
+weight, involving multiplication by powers of the distance to the points a and b, see for example
+6                                         MARTIN COSTABEL
+
+[8] or [9]. For the discrete version T N , such explicit formulas for the diagonalization and resolvent
+do not seem to be available.
+
+
+2.3. Exact solutions. Examples where both u and f are explicitly known functions can be ob-
+tained from function-theoretic arguments. For u ∈ L1 (a, b) define the Cauchy integral for z ∈
+C \ [a, b]
+                                              Z b
+                                           1      u(y)
+                                   w(z) =              dy .
+                                          2πi a y − z
+Then w is holomorphic in C \ [a, b], behaves as O(|z|−1 ) as |z| → ∞, and satisfies on Ω = (a, b)
+the jump relations
+(2.7)     w+ − w− = u ;         w+ + w− = AΩ u,        where    w± (x) = lim w(x ± iε) .
+                                                                           ε→0+
+
+Therefore the integral equation (1.1) is equivalent to the jump condition
+                                   (λ − 1)w+ − (λ + 1)w− = f .
+Reciprocally, any function w that is holomorphic outside [a, b], vanishes at infinity and has square
+integrable upper and lower traces on the branch cut [a, b] provides a solution u to the integral
+equation (1.1) with right hand side f , if u and f are defined from the traces w± via formulas (2.7).
+For example, the function w0 (z) = log z−a
+                                         z−b
+                                             is (or can be chosen to be) holomorphic in C \ [a, b],
+        −1
+is O(|z| ) at infinity, and has the upper and lower traces
+                        w0,+ (x) = log x−a
+                                       b−x
+                                           − iπ ,    w0,− (x) = log x−a
+                                                                    b−x
+                                                                        + iπ
+Since these traces belong to L2 (a, b), the jump u0 (x) = −2πi solves the integral equation (1.1) if
+we choose the right hand side f0 (x) = −2πiλ − 2 log x−a  b−x
+                                                              .
+                                p
+Another example is w1 (x) = (z − a)(z − b)−z + a+b       2
+                                                            that has the right branch cut and behavior
+at infinity. Traces on (a, b) are
+                   p                                                p
+      w1,+ (x) = i (x − a)(b − x) − x + a+b   2
+                                                ,   w 1,− (x) =  −i    (x − a)(b − x) − x + a+b2
+                        p
+The jump u1 (x) = 2i (x − a)(b    p − x) therefore solves the integral equation (1.1) if we choose
+the right hand side f1 (x) = 2iλ (x − a)(b − x) + 2x − a − b.
+Other examples can be obtained by applying an entire analytic function F to the preceding exam-
+ple functions w, provided F (0) = 0. For a third example, we take the function F (w) = eαw − 1
+and apply it to the first example above, that is, we choose an exponent α ∈ C and define
+                   z−a            α
+w2 (z) = eα log z−b − 1 = z−a z−b
+                                     − 1.
+The traces on the branch cut w2,± (x) = (x − a)α (b − x)−α e∓iπα − 1 belong to L2 (a, b) if
+α ∈ (− 21 , 12 ). The corresponding exact solution u2 and right hand side f2 are given by
+                        x − a α                               x − a α
+u2 (x) = −2i sin πα                  with AΩ u2 (x) = 2 cos πα            −2 and f2 = λu2 −AΩ u2 .
+                         b−x                                     b−x
+Note that if λ = i cot πα, then f2 is a constant function.
+                 A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                        7
+
+                                      3. E RROR ESTIMATES
+
+3.1. Approximate solutions. For sake of simplicity we assume from now on that the length of
+Ω is a multiple of h and that the origin aN is chosen such that the boundary points a and b are
+midpoints of the mesh.
+(3.1)      b − a = Mh ,     M ∈ N,       ω N = {1, . . . , M } ,   xN      h
+                                                                    1 = a+ 2 ,   xN      h
+                                                                                  M = b− 2 .
+
+When no confusion is possible, we omit superscripts N and write the discrete system as
+                                         M
+                                    1 X      un
+(3.2)                     λum −                   = fm ,           m ∈ ωN .
+                                  iπN n=1 xn − xm
+                                        n̸=m
+
+In the spirit of Lifanov’s method of discrete vortices [1], the delta-delta scheme can be considered
+as a Nyström-type quadrature method, where the integral in (1.1) is replaced by its approximation
+by the midpoint rule. The approximate solution u(N ) satisfies the modified equation
+                                           1 X 1 u(N ) (xn )
+(3.3)                        λu(N ) (x) −                        = f (x) ,
+                                          iπ    N
+                                                   N xn − x
+                                               n∈ω
+
+and its evaluation in the gridpoints x = xm gives the system (3.2) for the nodal values um =
+u(N ) (xm ).
+Alternatively, one can also consider the delta-delta scheme as a one-point quadrature approxima-
+tion of a collocation method with piecewise constant trial functions. This is the popular point of
+view for DDA, see for example the error analysis in [12].
+Let χj be the characteristic function of the interval Ij = [xj − h2 , xj + h2 ]. We consider the space
+of piecewise constant functions S N,0 (ω N ) = span{χj | j ∈ ω N }.
+Then the collocation scheme is: Find uN ∈ S N,0 (ω N ) such that
+                                        uN (y)
+                                     Z
+                        N          1
+(3.4)                 λu (xm ) −                 dy = f (xm ) , m ∈ ω N .
+                                  iπ Ω y − xm
+From this we get our system (3.2) by taking the un as the coefficients of uN in the basis of the χn ,
+                                               X
+                                        uN =       un χ n ,
+                                                 n∈ω N
+
+and for the off-diagonal matrix elements AΩ χn (xm ) approximating the integrals by a one-point
+quadrature rule:                               
+                           Z
+                               χk (y)          0               if m = n
+                                      dy ∼           1      1
+                              y − xm                           if m ̸= n
+                                                 xn − xm N
+After this replacement of the integrals, the system  (3.4) becomes (3.2). For the diagonal elements,
+                                               R χn (y)
+note that the Cauchy principal value integral y−xn dy vanishes for symmetry reasons.
+Notice that even if the coefficients (un ) in (3.3) and (3.4) are the same, the approximate solutions
+uN and u(N ) are not the same: uN in (3.4) is a piecewise constant function, whereas u(N ) , which
+8                                                MARTIN COSTABEL
+
+for λ ̸= 0 is defined by (3.3) once the uk are known, is a sum of the possibly smooth function f
+and a rational function with simple poles in the grid points.
+
+
+3.2. Consistency error. We define the consistency error as the vector cN [u] with components
+                        1  b u(y)
+                           Z
+               N
+                                                X         u(xn ) 
+(3.5)         cm [u] =                 dy − h                      , m ∈ ωN .
+                       iπ a y − xm               N
+                                                        x n − x m
+                                                        n∈ω \{m}
+
+It can be written as cN [u] = (RN AΩ − T N RN )u, where RN is the restriction operator that maps
+a function u to its nodal values U = (u(xm ))m∈ωN .
+Thus it is the quadrature error for the midpoint rectangle rule applied to the Cauchy singular
+integral. This quadrature error has been estimated under various assumptions on the function u
+in [1, Section 1.3], from which we borrow some ideas. We study here only the case where u is
+Hölder continuous up to the boundary, u ∈ C α ([a, b]) for some α ∈ (0, 1].
+In the applications of the singular integral equation (1.1) studied in [1], mainly from fluid dy-
+namics, more general functions u with singularities at the boundary points a and b need to be
+considered. But since we want to emphasize the analogy with the volume integral equation of the
+DDA method, and solutions of the latter tend to be smooth up to (smooth points of) the boundary,
+the simple situation of u ∈ C α ([a, b]) will be sufficient for our purpose.
+An advantage of this simplification is that we can get convergence results in an easy way from
+combining the consistency estimates of this section with the stability estimates of the preceding
+section. Convergence results for the case of solutions with singularities seem to require a much
+more complicated analysis, see [1, Chapter 7].
+We consider first the case where u is constant.
+Lemma 3.1. Let
+                                           Z b
+                                                dy         X             h
+                                  sj =               −                        .
+                                            a y − xj                  xk − xj
+                                                         k∈ω N \{j}
+
+Then for all j ∈ ω N
+                      h2    1           1                                    h          2
+(3.6)       |sj | ≤             2
+                                  −          2
+                                               = | a+b
+                                                    2
+                                                       − xj |(b − a)                       .
+                      8 (xj − a)    (b − xj )                        2(xj − a)(b − xj )
+
+Proof. We split
+                                                              Z
+                                X                                   dy        h
+                       sj =                sjk   with sjk =              −         .
+                                                               Ik y − xj   xk − xj
+                              k∈ω N \{j}
+
+First we observe that there are cancellations: sjk + sjk′ = 0 for k ′ + k = 2j, because of the
+antisymmetry of the kernel. Therefore
+                                       (
+                X                        {k | 2xj − a + h2 < xk < b} if xj ≤ a+b2
+                                                                                  ,
+           sj =      sjk with Aj =                                h           a+b
+                k∈Aj
+                                         {k | a < xk < 2xj − b − 2 } if xj ≥ 2 .
+                  A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                       9
+
+Then we apply the classical error representation for the midpoint rule
+                        Z h                     Z h
+                           2                       2
+                             f (t)dt − hf (0) =        ( − |t|)2 f ′′ (t)dt ,
+                                                      1 h
+                                                      2 2
+                             −h
+                              2
+                                                             −h
+                                                              2
+
+
+valid for any C 2 function, to the function f (t) = t+xk1−xj . Consider the case xj ≤ a+b
+                                                                                        2
+                                                                                           . Then for
+the relevant indices k, we have xk > xj and therefore f ′′ (t) = 2(t + xk − xj )−3 > 0. Hence
+            h2                                   h2 b                     h2
+               Z                                    Z
+                      2dy                                      2dy                  1           1     
+0 < sjk <                        =⇒   0 <  sj <                       =      −            +             .
+            8 Ik (y − xj )3                       8 2xj −a (y − xj )3     8    (b − xj )2 (xj − a)2
+
+Likewise, for xj ≥ a+b
+                    2
+                       , the second derivative is always negative, and we obtain
+
+                          h2 2xj −b 2dy             h2
+                              Z
+                                                              1            1     
+               0 > sj >                         =      −             +             .
+                           8 a       (y − xj )3     8     (b − xj )2 (xj − a)2
+                                                                                                    □
+
+The lemma means that for xj in any compact subinterval of (a, b), the sj converge to zero as
+O(h2 ). But when xj tends to a or b as h → 0, then sj will have non-zero limits. For example for
+x1 = a + h2 , one finds s1 → log 2 − γ, where γ = 0.5772.. is Euler’s constant. For this case, the
+estimate (3.6) gives sj ≤ 21 in the limit.
+
+                                                           √ threshold ϵ, the points xj where |sj |
+Another way to express this behavior is that for a given error
+exceeds ϵ are confined to a boundary layer of thickness h/ 2ϵ.
+Proposition 3.2. Let 0 < α ≤ 1. For u ∈ C α ([a, b]) let cN
+                                                          j [u] be defined by (3.5). Then
+                                                                               h2           
+(3.7)            |cN
+                   j [u]| ≤ C
+                                     α
+                                    h | log h|∥u∥C α ([a,b]) + |u(xj )|                        .
+                                                                        (xj − a)2 (b − xj )2
+Here the constant C depends on a, b but not on h = N1 nor on u.
+If, in addition, u(a) = u(b) = 0 holds, then the estimate simplifies to
+(3.8)                                 |cN           α
+                                        j [u]| ≤ C h | log h|∥u∥C α ([a,b]) .
+
+
+Proof. Split
+                                  X
+               iπcN
+                  j [u] = cjj +            cjk + u(xj )sj    with
+                                    k̸=j
+
+                                                             u(y) − u(xj ) u(xk ) − u(xj ) 
+                         Z                            Z
+                             u(y)
+                   cjj =           dy, cjk =                              −                  dy
+                         Ij y − xj                      Ik      y − xj        xk − xj
+and sj as defined and estimated in Lemma 3.1.
+For cjj we find
+                      u(y) − u(xj )
+                 Z                       Z
+        |cjj | =                    dy ≤     |y − xj |α−1 dy ∥u∥C α ([a,b]) ≤ hα ∥u∥C α ([a,b]) .
+                   Ij    y − x j          Ij
+10                                            MARTIN COSTABEL
+                                                                                 P
+For the term u(xj )sj we use the estimate from Lemma 3.1. It remains to estimate k̸=j cjk . Write
+                                   u(y) − u(xk )
+                              Z                             Z
+       0     1           0                             1
+                                                                                1        1
+                                                                                               
+cjk = cjk + cjk with cjk =                       dy , cjk =     u(xk ) − u(xj ) y−x  − xk −x     dy.
+                                Ik    y − xj                 Ik
+                                                                                   j         j
+
+
+Then
+   X               h α                 Z xj − h2 dy          Z b
+                                                                         dy 
+          c0jk≤         ∥u∥C α ([a,b])                       +                 ≤ C hα | log h| ∥u∥C α ([a,b]) .
+       k̸=j
+                   2                        a      xj − y       xj + 2 y − x j
+                                                                     h
+
+
+                                                k −y
+Finally, c1jk = Ik u(xk ) − u(xj ) (y−xxj )(x
+                 R                      
+                                                   k −xj )
+                                                           dy can be estimated as
+                            |xk − y|
+                 Z
+|c1jk | ≤ ∥u∥C α                            1−α
+                                                dy ≤ C ∥u∥C α h2 |xk − xj |α−2 = C ∥u∥C α hα |k − j|α−2 .
+                   Ik |y − x  |x
+                             j k   −   x j |
+For α < 1, the infinite series k∈Z\{j} |k − j|α−2 converges, so that
+                                  P
+                                              X
+                                                  c1jk ≤ C hα ∥u∥C α .
+                                           k̸=j
+
+For α = 1, we would pick up an extra factor of log N = | log h|.
+The estimate (3.7) is proved.
+Finally, if u(a) = u(b) = 0, then |u(xj) | ≤ C ∥u∥C α (xj − a)α (b − xj )α , hence
+                                h2                 α                h          2−α
+                   |u(xj )|                  ≤ C h   ∥u∥ C α                        .
+                        (xj − a)2 (b − xj )2                 (xj − a)(b − xj )
+The last factor is uniformly bounded, and this completes the proof of (3.8)                                 □
+
+3.3. Discrete error. If u is the solution of the integral equation (1.1) with right hand side f and
+U N = (un )n∈ωN is solution of the discrete system (1.2) with fm = f (xm ), then we define the
+discrete error E N as vector with the components Em = u(xm ) − um , m ∈ ω N . It is easy to see
+that E N satisfies the discrete system with the consistency error as right hand side,
+(3.9)                                     (λI − T N )E N = cN [u] .
+By a direct application of our stability and consistency estimates we obtain an estimate for the
+discrete error. We choose the situation where the simplified consistency estimate (3.8) holds.
+Theorem 3.3. Assume λ ∈ C \ [−1, 1]. Let u be solution of the integral equation (1.1) with right
+hand side f and (un )n∈ωN be solution of the discrete system (1.2) with fm = f (xm ). If we assume
+that u ∈ C α ([a, b]) with 12 < α ≤ 1 and u(a) = u(b) = 0, then there is a constant C independent
+of N such that the discrete error satisfies
+                                                             1
+(3.10)                                ∥E N ∥ℓ2 (ωN ) ≤ C N 2 −α log N .
+
+Proof. From the error equation (3.9) and our stability estimate (2.1) we obtain
+                                     ∥E N ∥ℓ2 (ωN ) ≤ C ∥cN [u]∥ℓ2 (ωN ) .
+                                                                                             √
+Now our consistency estimate (3.8) is an ℓ∞ (ω N ) estimate, so we lose a factor of           N:
+                              1                       1                       1
+         ∥cN ∥ℓ2 (ωN ) ≤ |ω N | 2 ∥cN ∥ℓ∞ (ωN ) ≤ C N 2 ∥cN ∥ℓ∞ (ωN ) ≤ C N 2 −α log N ∥u∥C α ([a,b]) .
+                 A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                                    11
+
+                                                                                                                 □
+
+
+3.4. Convergence in L2 .
+When the solution u does not vanish on the boundary, we only have the consistency estimate
+(3.7), and the consistency error cN [u] will not converge to zero in ℓ∞ and even less in ℓ2 , hence
+the discrete error will not converge to zero in ℓ2 , either. Instead, we can study the error of the
+piecewise constant approximation
+                                                             X
+                             eN = u − uN with uN =                uk χk .
+                                                                          k∈ω N
+
+Its L2 (Ω) norm can be bounded by
+                             XZ
+                N 2
+              ∥e ∥L2 (a,b) =      |u(y) − uk |2 dy
+                                         Ik
+                              k∈ω N
+                                 X Z                                          Z                             
+                            ≤2                                      2
+                                                    |u(y) − u(xk )| dy +                |u(xk ) − uk |2 dy
+                                               Ik                                  Ik
+                                 k∈ω N
+                                 X                                        
+                            ≤2                h2α+1 ∥u∥2C α + h |Ek |2
+                                 k∈ω N
+
+                            ≤ C h ∥u∥2C α ([a,b]) + h ∥E N ∥2ℓ2 (ωn ) .
+                                    2α
+                                                                     
+
+                                                                               1
+Thus we get convergence as soon as we can show that N − 2 ∥E N ∥ℓ2 tends to zero. By our ℓ2
+                                                             1
+stability estimates, this is equivalent to the fact that N − 2 ∥cN ∥ℓ2 tends to zero. For this, as we have
+seen before, it would be sufficient that the consistency error ∥cN ∥ℓ∞ tends to zero.
+But this is not necessary: In fact, assume that the consistency estimate (3.7) is satisfied. It implies
+
+                   N
+                                         
+                                           α
+                                                                h2        h2       
+                 |cj | ≤ C ∥u∥C α ([a,b]) h | log h| + max            ,
+                                                             (xj − a)2 (b − xj )2
+Now xj − a takes the values h2 , 3h
+                                  2
+                                    , 5h
+                                       2
+                                         ,..., and therefore the sum
+                                                 X             h2    2
+                                                           (xj − a)2
+                                                j∈ω N
+
+is bounded independently of N by a constant
+                                                     ∞
+                                                     X
+                                         ′
+                                      C = 16               (2j + 1)−4 < ∞ .
+                                                     j=0
+
+This implies finally
+                                                                                
+                        h∥cN ∥2ℓ2 (ωN ) ≤ C ∥u∥2C α ([a,b]) h2α | log h|2 + h C ′ .
+
+We have proved the following error estimate.
+12                                        MARTIN COSTABEL
+
+Theorem 3.4. Assume λ ∈ C \ [−1, 1]. Let u be solution of the integral equation (1.1) with
+right hand sidePf , let U N = (uk )k∈ωN be solution of the discrete system (3.2) with fj = f (xj ),
+and let uN = k∈ωN uk χk be the corresponding piecewise constant function. If we assume that
+u ∈ C α ([a, b]), then there is a constant C independent of N such that the error eN = u − uN
+satisfies
+                                                                  1
+                               ∥eN ∥L2 (a,b) ≤ C N −α log N + N − 2 .
+                 √
+The last term O( h) in this error estimate that prevents the estimate to improve with regularity
+         1
+above C 2 is due to the boundary layer and the choice of the L2 norm for measuring the error. One
+could choose Lp for 1 ≤ p ≤ ∞ instead. In the same way as above, one obtains
+                                                                1
+                       ∥eN ∥Lp (a,b) ≤ C hα ∥u∥2C α ([a,b]) + h p ∥E N ∥ℓp (ωn ) .
+                                                                                
+
+This would be best for p = 1, but we are tied to p = 2 because we depend on our stability estimate.
+
+                                  4. N UMERICAL EXPERIMENTS
+
+In this section, we fix arbitrarily the interval [a, b] = [−0.15, 1.35] and choose N as an odd
+multiple of 10, so that [a, b] is subdivided in 3N/2 subintervals of length h = N1 . We use the 3
+examples discussed in section 2.3, where we divide the first example by −2πi,
+                                                                            p so that u0 (x) = 1.
+In the second example, we normalize by dividing by 2i, so that u1 (x) = (x − a)(b − x). For
+                                                                1 √
+                                                             x−a 4
+the third example, we choose α = 0.25, so that u2 (x) = b−x / 2. In Figure 1, we saw the
+3 exact solutions with their computed piecewise constant approximation, computed for N = 10
+with λ = 2.
+
+
+4.1. Behavior of consistency error and discrete error. Knowing the exact solution, we can
+define the consistency error cN as in (3.5) and the discrete error E N as in Section 3.3. In Figure 2,
+we plot for our 3 examples the absolute values of cN and E N as functions of x ∈ [a, b] for
+N = 10, 50, 250, 1250. In the logarithmic scale, one can see the convergence in the interior of
+the interval with a power of N , whereas near the boundary points there is either much slower
+convergence for example 2, where u1 (a) = u1 (b) = 0, or no convergence at all for example 1
+where the solution u0 does not vanish at the boundary points, thus illustrating the analysis shown
+in Section 3. Note that we have not presented an analysis for the case of a singular solution such
+as the one in the third example, but the numerical results show a similar behavior as for the other
+examples, although the consistency and discrete errors, like the solution itself, tend to infinity near
+b.
+
+
+4.2. Convergence rates. In Figure 3 we plot several error norms as functions of N = 10 × 3j ,
+j = 0, ..., 6 in a loglog scale: The ℓ2 (ω N ) norms of the consistency error cN and the discrete
+error E N as well as the ℓ2 norm of the restriction of E N to the interior subinterval [0, 1.2] of
+(a, b). Finally the L2 (a, b) norm of the error eN of the piecewise constant approximation, which
+                                                          1
+we compare with the normalized ℓ2 norm of E N , N − 2 ∥E N ∥ℓ2 (ωN ) . What we observe for the
+three examples can be compared with the error estimates in Proposition 3.2 and Theorems 3.3
+                                             A SIMPLE DISCRETIZATION OF THE FINITE HILBERT TRANSFORMATION                                                                                                                                                                                                           13
+
+                                                                                                                                      2nd example, u-f-c-E                                                                                3rd example, u-f-c-E
+                            1st example, u-f-c-E
+                                                                                                             1                                                                                                   1
+       2
+                                                                                                                                                                                        u1                                                                                                     u2
+                                                                                    u0
+                                                                                                                                                                                        f1                                                                                                     f2
+                                                                                    f0
+                                                                                                                                                                                        c,N=10                                                                                                 c,N=10
+
+       0
+                                                                                    c,N=10                   0                                                                          E,N=10
+                                                                                                                                                                                                                 0                                                                             E,N=10
+                                                                                    E,N=10
+                                                                                                                                                                                        c,N=50                                                                                                 c,N=50
+                                                                                    c,N=50
+                                                                                                                                                                                        E,N=50                                                                                                 E,N=50
+                                                                                    E,N=50
+                                                                                                                                                                                        c,N=250                                                                                                c,N=250
+  -2                                                                                c,N=250                  -1                                                                                                  -1
+                                                                                                                                                                                        E,N=250                                                                                                E,N=250
+                                                                                    E,N=250
+                                                                                                                                                                                        c,N=1250                                                                                               c,N=1250
+                                                                                    c,N=1250
+                                                                                                                                                                                        E,N=1250                                                                                               E,N=1250
+                                                                                    E,N=1250
+
+  -4                                                                                                         -2                                                                                                  -2
+
+
+  -6                                                                                                         -3                                                                                                  -3
+
+
+  -8                                                                                                         -4                                                                                                  -4
+
+
+ -10                                                                                                         -5                                                                                                  -5
+                0    0.2            0.4        0.6        0.8           1       1.2                                         0   0.2        0.4       0.6        0.8        1       1.2                                          0   0.2        0.4       0.6        0.8            1       1.2
+
+
+
+
+                           F IGURE 2. Exact solution u, rhs f, consistency error c and discrete error E
+
+and 3.4, taking into account that we only have global error estimates. Whereas we have seen in
+Section 3.2 that the consistency error cN behaves differently in the interior of the domain and near
+the boundary, our technique of proof does not allow to infer the same behavior for the discrete
+                                                            1
+error E N . Yet we see for both examples 1 and 2 a O(N − 2 ) behavior for ∥Eint   N
+                                                                                    ∥ℓ2 , which would
+                                −1          ∞                           2
+correspond to an order of O(N ) for the ℓ norm and also for the L error of the corresponding
+piecewise constant approximation.
+For the global ℓ2 norms of the errors cN and E N we see that in example 1 they do not tend to zero,
+in accordance with the behavior near the boundary of estimates (3.6) and (3.7). In example 2, they
+                    1
+are of order O(N − 2 ), which reflects again the boundary layer behavior for the approximation of
+                                                         1
+the function u1 , which is Hölder continuous of class C 2 there.
+                                                                                                                                                                                                   1
+The global L2 norm of the error eN is seen to behave as O(N − 2 ) in example 1, which corresponds
+to Theorem 3.4. In example 2, the behavior is O(N −1 ), which better than what Theorem 3.4
+                 1
+predicts for a C 2 solution. The explanation is that whereas the Theorems 3.3 and 3.4 consider
+worst-case scenarios, the solution u1 is in fact C ∞ except at the two boundary points, so that
+estimate (3.10) may be seen to hold with α = 1.
+                                    1st example, error norms                                                                               2nd example, error norms                                                                            3rd example, error norms
+      0
+ 10                                                                                                               0                                                                                                   1
+                                                                                                             10                                                                                                  10
+                                                                            ||c||
+                                                                                  l2                                                                                           ||c||                                                                                                   ||c||
+                                                                                                                                                                                        l2                                                                                                   l2
+                                                                            ||E||
+                                                                                    l2                                                                                         ||E||                                                                                                   ||E||
+                                                                                                                                                                                        l2                                                                                                     l2
+
+                                                                            ||Eint||                              -1
+                                                                                         l2                  10                                                                ||Eint||
+                                                                                                                                                                                             l2
+                                                                                                                                                                                                                                                                                       ||Eint||
+      -1                                                                                                                                                                                                                                                                                            l2
+ 10
+                                                                            ||e||                                                                                              ||e||
+                                                                                  L2
+                                                                                                                                                                                        L2
+                                                                                                                                                                                                                                                                                       ||e||
+                                                                                                                                                                                                                                                                                             L2
+                                                                                              1/2
+                                                                                                                                                                                                  1/2                 0
+                                                                            ||E|| /N
+                                                                                    l2                                                                                         ||E|| /N                          10                                                                    ||E|| /N
+                                                                                                                                                                                                                                                                                                         1/2
+                                                                                                                                                                                        l2                                                                                                     l2
+                                                                                                                  -2
+                                                                            N
+                                                                                -1/2                         10                                                                    -1                                                                                                      -1/4
+                                                                                                                                                                               N                                                                                                       N
+      -2
+ 10
+
+
+                                                                                                                  -3
+                                                                                                             10
+                                                                                                                                                                                                                      -1
+                                                                                                                                                                                                                 10
+
+      -3
+ 10
+                                                                                                                  -4
+                                                                                                             10
+
+
+
+
+      -4                                                                                                          -5                                                                                                  -2
+ 10                                                                                                          10                                                                                                  10
+            1                   2                                   3                                    4              1                  2                           3                                     4              1                  2                               3                                    4
+       10                  10                                  10                                   10             10                 10                          10                                    10             10                 10                              10                                   10
+
+
+
+
+                    F IGURE 3. Error norms, compared to N −1/2 (Ex. 1), N −1 (Ex. 2), N −1/4 (Ex. 3),
+
+                                                                                                                                 R EFERENCES
+ [1] B ELOTSERKOVSKY, S. M., AND L IFANOV, I. K. Method of discrete vortices. CRC Press, Boca Raton, FL,
+     1993. Translated from the 1985 Russian edition by V. A. Khokhryakov and revised by the authors.
+14                                            MARTIN COSTABEL
+
+ [2] C HAUMET, P. C. The discrete dipole approximation: A review. Mathematics 10, 17 (2022).
+ [3] C OSTABEL , M., DAUGE , M., AND N EDAIASL , K. On the stability of the discrete dipole approximation in
+     time-harmonic dielectric scattering, 2023. In preparation.
+ [4] C OSTABEL , M., DAUGE , M., AND N EDAIASL , K. Stability analysis of a simple discretization method for a
+     class of strongly singular integral equations, 2023. arxiv:2302.13159.
+ [5] D OM ÍNGUEZ , V., L U , S., AND S AYAS , F.-J. A fully discrete Calderón calculus for two dimensional time
+     harmonic waves. Int. J. Numer. Anal. Model. 11, 2 (2014), 332–345.
+ [6] KOPPELMAN , W., AND P INCUS , J. D. Spectral representations for finite Hilbert transformations. Math. Z. 71
+     (1959), 399–407.
+ [7] P URCELL , E. M., AND P ENNYPACKER , C. R. Scattering and adsorption of light by nonspherical dielectric
+     grains. Astrophys. J. 186 (1973), 705–714.
+ [8] S ÖHNGEN , H. Zur Theorie der endlichen Hilbert-Transformation. Math. Z. 60 (1954), 31–51.
+ [9] T RICOMI , F. G. Integral equations. Pure and Applied Mathematics. Vol. V. Interscience Publishers, Inc., New
+     York; Interscience Publishers Ltd., London, 1957.
+[10] VAJNIKKO , G. M. Regular convergence of operators and approximate solution of equations. J. Sov. Math. 15
+     (1981), 675–705.
+[11] Y URKIN , M. A., AND H OEKSTRA , A. G. The discrete dipole approximation: An overview and recent devel-
+     opments. J. Quant. Spectrosc. Radiat. Transf. 106, 1 (2007), 558–589.
+[12] Y URKIN , M. A., M ALTSEV, V. P., AND H OEKSTRA , A. G. Convergence of the discrete dipole approximation.
+     I. Theoretical analysis. J. Opt. Soc. Am. A 23, 10 (Oct 2006), 2578–2591.
+
+
+U NIV. R ENNES , CNRS, IRMAR - UMR 6625, F-35000 R ENNES , F RANCE
+Email address: Martin.Costabel@univ-rennes1.fr
+

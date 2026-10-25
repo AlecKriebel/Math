@@ -1,0 +1,1808 @@
+                        The entropy photon-number inequality
+                                                    OpenAI
+
+                                             September 24, 2026
+
+
+                                                    Abstract
+          We prove the entropy photon-number inequality for two independent bosonic inputs with
+      finite mean energy, for every finite number of modes. This resolves the entropy photon-number
+      conjecture in this finite-energy setting while allowing arbitrary entanglement among the modes
+      within either input. As a consequence, we determine the exact minimum output entropy at fixed
+      input entropy for every finite tensor power of an identical thermal attenuator, over finite-energy
+      inputs that may be entangled across modes. We also obtain the exact classical capacity region of
+      the degraded two-receiver pure-loss bosonic broadcast channel under a mean photon constraint.
+
+
+Contents
+1 Introduction                                                                                                    2
+  1.1 Context and earlier results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     3
+  1.2 Proof strategy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    4
+
+2 Bosonic states, energy, and entropy                                                                             5
+  2.1 Entropy estimates and compactness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           6
+  2.2 Passive mixing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+
+3 Interpolation of diagonal form comparisons                                                                      8
+  3.1 Operations that preserve comparison . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         9
+  3.2 A Stieltjes representation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      9
+  3.3 The additional weight and the final minimization . . . . . . . . . . . . . . . . . . . . . . . . .         12
+
+4 A regularized minimum and its Hessian                                                                    14
+  4.1 The auxiliary ports and the functional . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+  4.2 A Gibbs regularity lemma . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+  4.3 Attainment and the exact logarithm identity . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+  4.4 The component entropy-Hessian estimate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+
+5 The metric adapted to thermal relaxation                                                                 19
+  5.1 Four elementary comparisons . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+  5.2 The thermal defect functionals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+
+6 Stationarity and the thermal limit                                                                      23
+  6.1 Weighted traces and the exact stationarity identity . . . . . . . . . . . . . . . . . . . . . . . . 23
+  6.2 Cancellation and convergence to the thermal inputs . . . . . . . . . . . . . . . . . . . . . . . 25
+
+7 A degraded pure-loss broadcast capacity region                                                                 26
+
+
+
+
+                                                        1
+1    Introduction
+The entropy photon number of an n-mode bosonic state is the mean photon number per mode of
+the product of n identical one-mode thermal states with the same total entropy. Guha, Erkmen,
+and Shapiro conjectured that this quantity obeys a concavity inequality under beam-splitter mixing
+of independent inputs [20]. Their entropy photon-number inequality is a quantum counterpart of
+the classical entropy power inequality and has consequences for minimum output entropy and the
+information capacities of bosonic channels. We prove its two-input form for finite-energy states.
+    Write
+                            g(t) = (t + 1) log(t + 1) − t log t, t ≥ 0,                       (1.1)
+with 0 log 0 = 0. This continuous function increases from zero to infinity; its inverse is denoted by
+g −1 . All entropies and logarithms in this paper use the natural base.
+Theorem 1.1 (Entropy photon-number inequality). Let n ≥ 1 be finite, and let ρA , ρB be states on
+n bosonic modes, with annihilation operators a1 , . . . , an and b1 , . . . , bn , respectively, satisfying
+                                             n                                    n
+                                               †                                    †
+                                             X                                    X
+                                    Tr ρA          aj aj < ∞,             Tr ρB         bj bj < ∞.
+                                             j=1                                  j=1
+
+The joint input is ρA ⊗ ρB ; no independence assumption is made among the modes within either
+state. For 0 ≤ η ≤ 1, let ρC be the reduced state of the modes
+                                   √        p
+                              cj = η aj + 1 − η bj ,       1 ≤ j ≤ n,
+after passive beam-splitter mixing. Then
+                                    S(ρC )                       S(ρA )                              S(ρB )
+                                                                                                     
+                           −1                           −1                                  −1
+                       g                         ≥ ηg                         + (1 − η) g                   ,   (1.2)
+                                      n                            n                                   n
+where S(ρ) = − Tr ρ log ρ.
+    Thus Theorem 1.1 resolves the entropy photon-number conjecture positively for finite-energy
+inputs, including arbitrary internal multimode entanglement. Thermal inputs with a common mean
+photon number within each port give equality, even when the means at the two ports differ.
+    For the channel consequences, write τr for the n-mode product thermal state with mean photon
+number r in each mode, including the vacuum at r = 0; thus S(τr ) = ng(r). Let Eη,NB be the
+                                                          √       √
+one-mode thermal attenuator obtained by retaining c = η a + 1 − η b when the environment
+mode b is thermal with mean photon number NB and is independent of the input. Its tensor power
+  ⊗n
+Eη,N B
+       uses the same parameters in every mode and the joint input ρ ⊗ τNB .
+Corollary 1.2 (Constrained entropy minimum for identical thermal attenuators). Let n ≥ 1 be
+finite, let s, NB ≥ 0 be finite, and let 0 ≤ η ≤ 1. Every state ρ on n modes with Tr ρ nj=1 a†j aj < ∞
+                                                                                      P
+
+satisfies
+                            1  ⊗n                     S(ρ)
+                                                                      
+                              S Eη,NB (ρ) ≥ g ηg −1           + (1 − η)NB .                        (1.3)
+                            n                            n
+In particular, the exact constrained minimum is
+                                       1  ⊗n                               
+                                min      S Eη,NB (ρ) = g ηg −1 (s) + (1 − η)NB .                                (1.4)
+                          P on n modes n
+                     ρ a state
+                                n
+                     Tr ρ          a† a <∞
+                                j=1 j j
+                            S(ρ)=ns
+
+It is attained by the product thermal input τg−1 (s) . No independence assumption is imposed among
+the modes of ρ; only the environment is required to be independent of that input.
+
+                                                                    2
+Proof. The environment τNB has finite total mean photon number nNB and entropy ng(NB ). The
+retained output has finite energy because passive mixing preserves combined total number, so its
+entropy is finite by Lemma 2.2. Apply Theorem 1.1 to the independent inputs ρ and τNB , and then
+apply the increasing function g, to obtain (1.3).
+    For r = g −1 (s) < ∞, the state τr has finite total mean photon number nr and entropy ns.
+Proposition 2.3 gives
+                                       ⊗n
+                                     Eη,N B
+                                            (τr ) = τηr+(1−η)NB ,
+whose entropy is ng(ηr + (1 − η)NB ). This attains the lower bound and proves (1.4). The endpoints
+are included: at η = 0 the retained state is the environment, and at η = 1 it is the input. When
+s = 0 or NB = 0, the corresponding thermal state is the vacuum, covered by the zero-mean case of
+Proposition 2.3.
+
+    Corollary 1.2 concerns identical passive thermal attenuators with an independent product thermal
+environment. It asserts attainment, not uniqueness, and makes no claim for mode-dependent
+attenuations, amplifiers, or additive-noise channels.
+    The vacuum case also determines the classical capacity region of a degraded pure-loss broadcast
+channel. Here one input mode per use is passively split with auxiliary vacuum modes independent
+of the input between receivers B, C and an inaccessible loss output. The power transmissivities
+satisfy 0 ≤ ηC < ηB and ηB + ηC ≤ 1, so C’s marginal is obtained from B’s by a further pure-loss
+attenuation. Section 7 gives the exact region for independent classical messages and separate
+collective decoding, without feedback or receiver cooperation. Its finite mean photon constraint is
+averaged over the codebook and uses, and its finite-energy codewords may be entangled across uses.
+The vacuum-port specialization of Theorem 1.1 supplies the entropy input assumed in the converse
+of Guha, Shapiro, and Erkmen [21]; coherent-state superposition coding supplies achievability.
+
+1.1   Context and earlier results
+Shannon introduced entropy power in his theory of communication [28]; the Fisher-information
+proofs of Stam and Blachman [30, 4] became central to its later development. For independent
+classical random vectors, the entropy power inequality compares the entropy of a sum with the
+entropies of its summands. Its bosonic counterpart replaces addition by passive mixing of quantum
+modes. The analogy is especially natural for thermal states: their mean photon numbers add
+with the beam-splitter weights, and their entropies are given by the same function g appearing in
+Theorem 1.1. The formulation of Guha, Erkmen, and Shapiro [20, Section II.B] makes this thermal
+comparison the central conjecture and explains its consequences for bosonic communication. Earlier
+work had established the capacity of the pure-loss bosonic channel [18] and connected noisy-channel
+capacity questions with minimum output entropy [17]. The constrained minimum-output problem
+also appears in the bosonic broadcast-channel analysis of Guha, Shapiro, and Erkmen [21]. Early
+EPnI special cases included one-mode number-diagonal inputs with two nonzero probabilities and a
+vacuum second port [6].
+    König and Smith [24] established a quantum entropy power inequality using quantum Fisher
+information and a heat evolution. Their results include the linear bound
+
+                                 S(ρC ) ≥ ηS(ρA ) + (1 − η)S(ρB )
+
+for every transmissivity, and the exponential entropy power bound for a balanced beam splitter. De
+Palma, Mari, and Giovannetti [10] proved the exponential bound for every transmissivity,
+
+                              eS(ρC )/n ≥ ηeS(ρA )/n + (1 − η)eS(ρB )/n .                      (1.5)
+
+                                                  3
+These results are formulated for an arbitrary finite number of modes and independent inputs, with
+no product assumption within a group. De Palma, Mari, Lloyd, and Giovannetti [11] subsequently
+treated more general linear mixing of several independent groups of modes. De Palma and Trevisan
+later gave a rigorous finite-energy treatment of the Fisher-information and heat-flow steps using
+an integral formulation; their conditional inequality with a trivial memory system yields (1.5) for
+arbitrary independent finite-energy inputs [12, Theorem 6].
+     The entropy photon-number inequality requires a sharper comparison than (1.5) when the input
+entropy levels differ. When S(ρA ) = S(ρB ), the linear entropy bound already gives the EPnI value
+by monotonicity of g −1 . For unequal entropy levels, thermal inputs attain EPnI, whereas the
+exponential bound does not recover their exact output entropy. This distinction matters for the
+minimum output entropy problem with an input-entropy constraint: the bound must reproduce the
+exact thermal comparison at unequal entropy levels.
+     The EPnI itself was also known for two independent Gaussian inputs in any finite number
+of modes, including Gaussian correlations within either input; De Palma proves this case using
+symplectic eigenvalue comparisons [7, Appendix A.8].
+     The Gaussian optimizer theorem of Giovannetti, Holevo, and García-Patrón [19] settled the
+unconstrained minimum-output problem for broad classes of Gaussian channels. Fixing a positive
+input entropy is a different optimization problem. For one-mode gauge-covariant channels, De
+Palma, Trevisan, and Giovannetti established optimality of passive rearrangement at fixed spectrum
+[13], then the sharp entropy bound for the quantum-limited attenuator [14], and finally the sharp
+bound for one-mode phase-covariant Gaussian channels with thermal noise [15, Theorem 4]. Their
+multimode extension [16, Theorem 11] covers inputs diagonal in some product basis, including
+classical correlations in that basis.
+     Later advances address further parts of this landscape. De Palma [8] proved the sharp constrained
+bound for multimode entanglement-breaking Gaussian attenuators and amplifiers with thermal
+environments, and improved lower bounds for other parameter regimes. Beigi and Rahimi-Keshari
+[3] proved a one-mode meta-logarithmic-Sobolev inequality that also gives a variational proof of the
+one-mode constrained minimum-output result. Beigi and Mehrabi [2] established subset-convolution
+inequalities for exponential entropy power and entropy monotonicity under repeated symmetric
+quantum convolution of an identical input.
+     Theorem 1.1 supplies the thermal comparison for two freely varying inputs, including arbitrary
+entanglement within either port. Corollary 1.2 specializes it to the exact finite-mode constrained
+minimum for identical thermal attenuators, without a product or separability restriction on the
+finite-energy input. Thermal states enter the proof of Theorem 1.1 as reference states and as limits of
+regularized minimizers. The original inputs need not be Gaussian, number-diagonal, or independent
+across modes.
+
+1.2   Proof strategy
+The difficulty is to compare the two freely varying inputs with thermal states at their respective
+entropy levels. We fix those thermal reference parameters near a hypothetical strictly violating pair.
+This turns the contradiction into a negative minimum of a linear combination of three entropies,
+after adding penalties that ensure compactness and regularity. The reference parameters remain
+fixed throughout the variational argument.
+    An independent analytic ingredient is an interpolation theorem for positive diagonal quadratic
+forms, proved in Section 3. For positive scalars m and real parameters x, y, it transforms four
+
+
+
+
+                                                  4
+comparisons with weights
+                                                                                           x
+          mf (x)ex ,   mf (x)e−x ,        mf (y)ey ,    mf (y)e−y ,           f (x) =          ,   f (0) = 1,
+                                                                                        sinh x
+into the comparison with weight mf (x)f (y)/f (x + y). No compatibility is required between the
+linear maps and the diagonal multipliers. A Stieltjes representation for the derivative of an implicitly
+defined function is the essential analytic step. The theorem is formulated for finitely many spectral
+parameter values on source tests and permits unrestricted nonnegative target sums, so it also applies
+to the infinite matrix spaces used below.
+    Section 4 develops the variational argument. Assuming a strict violation, we add a thermal port,
+a small thermal replacement of the output, a relative-entropy penalty, and a fourth-moment penalty.
+The resulting functional has faithful Gibbs minimizers with enough moment control for all subsequent
+traces. Varying one input at a time yields a component contraction in the logarithmic-mean metric
+at those minimizers. It is not asserted as a universal channel inequality.
+    Section 5 combines two product-port variance estimates with the component contractions. These
+supply precisely the four hypotheses of the interpolation theorem. Its conclusion controls the norm
+of a centered thermal-balance defect: a linear functional measuring the creation–annihilation balance
+after subtracting the state’s mean. In Section 6, pairing the Gibbs identities with the relaxation
+generators gives an exact cancellation of the centered energy terms. As the fourth-moment penalty
+vanishes, the remaining defects and means tend to zero; their number-basis identities force both
+limiting inputs to be thermal. Entropy continuity then contradicts the original strictly negative
+objective value.
+    The auxiliary regularizations have linked roles: the relative-entropy penalty gives energy coercivity
+and supplies the strict margin in the final defect and mean estimate, while the thermal port supplies
+the slack needed for the associated Hessian comparisons. Output replacement controls the output
+logarithm, and the moment penalty justifies the unbounded-generator calculations. Only the last
+penalty tends to zero in the concluding compactness argument. This avoids assuming differentiability
+of entropy along an unbounded evolution or convergence of the input energies.
+    Section 2 supplies the entropy, compactness, and thermal-mixing facts used in this argument.
+Each of the specialized interpolation, minimization, and limiting statements is proved within the
+paper.
+
+
+2    Bosonic states, energy, and entropy
+We work on the n-mode Fock space Hn = ℓ2 (Nn0 ), with number basis {|k⟩ : k ∈ Nn0 }. For the
+annihilation operators dj ,
+                                  q                           n
+                                                                †
+                                                              X
+                       dj |k⟩ =       kj |k − ej ⟩,     N=          dj dj ,      W = I + N.
+                                                              j=1
+
+A state is a positive trace-class operator of trace one. Expectations of positive unbounded operators
+are understood as increasing limits of bounded spectral truncations. Form inequalities have their
+usual quadratic-form meaning on the indicated domains.
+    For r > 0, put
+                            h(r) = log(1 + 1/r),      τr = (r + 1)−n e−h(r)N .                  (2.1)
+The product geometric law gives
+
+                                        Tr τr N = nr,        S(τr ) = ng(r).                                    (2.2)
+
+                                                         5
+The state τr is faithful and has all number moments finite. At r = 0, its limiting state is the
+multimode vacuum.
+
+2.1   Entropy estimates and compactness
+We first record the entropy facts needed in the infinite-dimensional argument. The relative entropy
+introduced by Umegaki [31] gives the Gibbs variational principle. For oscillator energy bounds,
+the compactness and entropy-continuity statements below are special cases of the general energy-
+constrained theory [29, 32]; we include the elementary cutoff proof used here.
+
+Lemma 2.1 (Relative entropy and the Gibbs variational inequality). Let σ be a faithful state, and
+suppose both S(ρ) and Tr ρ(− log σ) are finite. Then
+
+                               D(ρ∥σ) := −S(ρ) + Tr ρ(− log σ) ≥ 0,
+
+with equality if and only if ρ = σ. Consequently, if K is bounded below and 0 < Z = Tr e−K < ∞,
+its Gibbs state Z −1 e−K uniquely minimizes Tr ρK − S(ρ) among states for which these expressions
+are finite, provided that Gibbs state belongs to the admitted class.
+
+Proof. Choose eigenvectors ψj of ρ with positive eigenvalues pj , and set qj = ⟨ψj , σψj ⟩. Scalar
+Jensen applied to the spectral measure of σ gives
+
+                                     −⟨ψj , log σ ψj ⟩ ≥ − log qj .
+
+The elementary inequality p log(p/q) ≥ p − q and j qj ≤ 1 now imply nonnegativity. Equality
+                                                       P
+
+requires pj = qj , no mass of σ outside the support of ρ, and equality in each Jensen inequality. The
+last condition makes each ψj an eigenvector of σ with eigenvalue qj , so ρ = σ. The Gibbs assertion
+follows by substituting − log σ = K + log Z.
+
+Lemma 2.2 (Energy bound and compactness). For each finite E ≥ 0, the set of states with
+Tr ρN ≤ E is compact in trace norm. On this set entropy is continuous and obeys
+
+                                        0 ≤ S(ρ) ≤ ng(E/n).                                      (2.3)
+
+Every finite-energy state is a trace-norm limit of normalized finite-number truncations with uniformly
+bounded energies and convergent entropies.
+
+Proof. Diagonal entropy in any orthonormal basis bounds von Neumann entropy above: apply
+concavity of −t log t to each diagonal entry expressed in a spectral decomposition, then sum the
+nonnegative terms. Compare the number-basis probabilities with the geometric probabilities of
+τE/n . Summing −p log p ≤ −p log q + q − p gives, when E > 0,
+
+                          S(ρ) ≤ n log(1 + E/n) + h(E/n)E = ng(E/n).
+
+For E = 0, the state is the vacuum and the assertion is immediate.
+   Let PK = 1{N ≤K} , QK = I − PK , and q = Tr ρQK . The rank of PK is finite, and q ≤ E/(K + 1).
+Factoring off ρ1/2 and applying the Hilbert–Schmidt Cauchy–Schwarz inequality bounds each off-
+                   √
+diagonal block by q in trace norm. Hence ρ is uniformly approximated by its finite-dimensional
+compression; normalizing the latter changes its trace norm by at most q. This proves precompactness.
+The energy bound is closed by lower semicontinuity of positive spectral expectations, so the set is
+compact.
+
+                                                   6
+    For completeness, write H2 (q) = −q log q − (1 − q) log(1 − q). Pinching into the two number
+blocks changes the entropy by a quantity between zero and H2 (q). To see the upper bound directly,
+split each vector in a pure eigenensemble of ρ into its two projected vectors. Concavity of H2 bounds
+the increase of the ensemble-weight entropy by H2 (q); the entropy of a pure-state mixture is at
+most its weight entropy. The latter fact follows by applying diagonal entropy to the Gram operator
+of the weighted vectors, which has the mixture’s nonzero eigenvalues. The lower bound follows from
+the same concavity argument for pinching.
+    The pinched entropy equals
+                                             PK ρPK                   QK ρQK
+                                                                            
+                           H2 (q) + (1 − q)S                     + qS              ,
+                                              1−q                        q
+where zero-mass terms are omitted. The last term is bounded by
+                                                     E
+                                                           
+                                                qn g    ,
+                                                     qn
+which tends to zero uniformly as q ↓ 0. The low-number entropy term is continuous in the
+finite-dimensional compression. These bounds uniformly approximate S(ρ) by continuous finite-
+dimensional expressions and prove its continuity under the common energy bound.
+    Finally, normalized number compressions converge in trace norm. Their energies are at most
+E/(1 − q), and hence are uniformly bounded for all sufficiently large K. The established continuity
+proves entropy convergence.
+
+    In particular, entropy grows only logarithmically with energy for fixed n, whereas a positive
+linear energy penalty is coercive. For r > 0, we shall repeatedly use the identity
+
+                            D(ρ∥τr ) = −S(ρ) + n log(r + 1) + h(r) Tr ρN.                           (2.4)
+
+2.2   Passive mixing
+For any finite collection of ports, a real orthogonal rotation of their mode operators, performed
+identically for every mode index, is implemented by a unitary on their joint Fock space. One way
+to construct it is to rotate the creation operators acting on the joint vacuum; the commutation
+relations show that the resulting number vectors again form an orthonormal basis. This unitary
+preserves combined total number. A retained subsystem therefore has energy no greater than the
+combined input energy. On each finite total-number sector, the unitary depends continuously on
+the rotation; consequently the induced channels are trace-norm continuous on every fixed state as
+the rotation varies.
+Proposition 2.3 (Thermal  mixing). Suppose independent ports carry the n-mode states τrs , and
+                      P √
+the retained modes are s λs ds,j , where λs ≥ 0 and s λs = 1. Their joint retained state is
+                                                   P
+
+
+                                                    τP λs rs .
+                                                       s
+
+
+Proof. The coherent-state representation of a thermal state is
+                                                                 2
+                                                       e−∥z∥ /r 2n
+                                            Z
+                                     τr =       |z⟩⟨z|         d z.
+                                            Cn           (πr)n
+                                                2        √
+Indeed, inserting the coefficients ⟨k|z⟩ = e−∥z∥ /2 z k / k! and integrating gives the diagonal geometric
+probabilities in (2.1). Products of coherent states transform by the same linear rotation of their
+
+                                                        7
+amplitudes, as follows from their annihilation eigenvector equations or creation-operator expansion.
+Independent centered circular complex Gaussians with covariances rs I consequently produce retained
+            P
+covariance ( s λs rs )I. The displayed representation proves the claim. Zero reference means follow
+by continuity.
+
+    This thermal representation and its relation to entropy photon number are also the starting
+point of the original formulation [20, Section II.B]. In the argument below it is only the auxiliary
+reference states that have this special form.
+
+
+3    Interpolation of diagonal form comparisons
+The proof requires an interpolation principle for quadratic forms. Its hypotheses involve four simple
+weights. In the later application at the regularized minima, the target weight makes the squared
+norm of a centered thermal-balance defect equal to the normalized entropy-production pairing plus
+a centered-energy correction. This is the identity used in the stationarity cancellation. We prove
+the principle here, including the analytic property on which it depends.
+    Set
+                                 x
+                      f (x) =        ,      b(x) = x coth x,     f (0) = b(0) = 1.               (3.1)
+                              sinh x
+Both functions are positive and even on R. On Hilbert spaces Hj , 0 ≤ j ≤ k, fix coordinate
+representations in which all weights below act by scalar multiplication. A positive weight Xj defines
+the possibly unbounded form                       X
+                                       QX,j (Z) =     Xj (α)|Zα |2 ;
+                                                      α
+
+fixed positive coordinate measures can be absorbed into the coordinates. Let T ⊂ H0 be a linear test
+space, let Li : T → Hi be linear, and let wi > 0 for 1 ≤ i ≤ k. We say that the family X = (Xj )kj=0
+satisfies comparison if
+                                           k
+                                           X
+                              QX,0 (Z) ≥         wi QX,i (Li Z)     (Z ∈ T ).                      (3.2)
+                                           i=1
+
+All sums on the right are interpreted as nonnegative coordinate sums.
+
+Theorem 3.1 (Four-weight interpolation). At every coordinate of every space, let m > 0 and
+x, y ∈ R be given. Suppose each Z ∈ T is supported on finitely many values of the parameter
+tuple (m, x, y), and T is invariant under scalar multiplication by functions of this tuple. If the four
+families
+                           mf (x)ex , mf (x)e−x , mf (y)ey , mf (y)e−y                             (3.3)
+satisfy comparison, then so does
+                                                     f (x)f (y)
+                                           F =m                 .                                  (3.4)
+                                                     f (x + y)
+   Finitely many parameter values do not mean finitely many nonzero coordinates. In particular,
+a centered finite matrix can have an infinite identity tail, all at the same parameter value. The
+hypothesis permits this situation, which will occur in our application.
+
+
+
+
+                                                      8
+3.1   Operations that preserve comparison
+The operations below belong to the parallel-sum and operator-mean calculus of Anderson–Duffin
+and Kubo–Ando [1, 25]. We give direct form proofs, including the limits needed for unbounded
+weights.
+    Throughout this subsection, the auxiliary weights are positive functions of the parameter tuple
+(m, x, y). Positive linear combinations preserve (3.2). So do pointwise limits of such weights: on
+a source test there are only finitely many parameter values, so its form converges; on the target
+spaces Fatou’s lemma gives the required inequality.
+    Comparisons also persist under the parallel sum
+                                          X : Y = (X −1 + Y −1 )−1 .                                     (3.5)
+Indeed, coordinatewise,
+                                                            Y             X
+              (X : Y )|z|2 = min X|u|2 + Y |v|2 ,
+                                                         
+                                                                  u=
+                                                                z, v =         z.
+                            u+v=z                        X +Y           X +Y
+The source minimizers U, V lie in T . Apply the comparisons for X and Y to them, then use
+Li U + Li V = Li Z and the coordinatewise minimum on each target space. Target minimizers need
+not belong to any specified test space.
+    Consequently, if X, Y satisfy comparison, so do their logarithmic mean ℓ(X, Y ) = (X −
+Y )/(log X − log Y ) and XY /ℓ(X, Y ), with the continuous value ℓ(X, X) = X. The identities
+that implement these operations are
+                             Z 1                                               Z 1
+                   1                     dt                    XY                          dt
+                         =                       ,                    =                              .   (3.6)
+                ℓ(X, Y )      0    (1 − t)X + tY             ℓ(X, Y )           0    t/X + (1 − t)/Y
+For the first identity, a positive quadrature followed by inversion is a finite parallel sum: if qj > 0
+and Vj > 0, then
+                                           −1
+                                      M
+                                      qj 
+                                      X
+                                                 = (V1 /q1 ) : · · · : (VM /qM ).
+                                      V
+                                   j=1 j
+
+Here Vj = (1 − tj )X + tj Y already satisfies comparison. The second identity is a positive average of
+weighted parallel sums. Pointwise limits give the integrals; zero coefficients are omitted or obtained
+by a limit. Thus no rule asserting preservation under multiplication of weights is being used.
+   Apply these two operations to each opposite-exponent pair in (3.3). Since their logarithmic
+mean is m, we obtain comparison for the three families
+                          m,          ms,      mt,           s = f (x)2 ,       t = f (y)2 .             (3.7)
+The next step constructs one further weight from these three.
+
+3.2   A Stieltjes representation
+The function x 7→ f (x)2 decreases from 1 to 0 on [0, ∞). Define B on (0, 1] by
+                                              B f (x)2 = b(x).
+                                                         
+                                                                                                         (3.8)
+The scalar quadratic (3.18), used at the end of the proof, determines the candidate for the additional
+weight. It pairs the four original weights on ξ ∓ ϕ and ξ ± ϕ and adds E|ϕ|2 . For a candidate
+E = me > 0, write a = b(x) + b(y). Its minimum is
+                                                                  !
+                                            m    (x − y)2
+                                              a−                      |ξ|2 .
+                                            2     a + 2e
+
+                                                         9
+For x2 ̸= y 2 , the addition formula gives F/m = (yb(x) + xb(y))/(x + y). Equating the minimum
+with F |ξ|2 therefore requires, within this quadratic construction,
+
+                                                                        m(t − s)
+        (a + 2e)(b(x) − b(y)) = x2 − y 2 ,              E=                          ,      s = f (x)2 ,     t = f (y)2 ,
+                                                                     2(B(s) − B(t))
+
+where the last equality uses b(z)2 = f (z)2 + z 2 . The final minimization will verify the value in all
+cases. It remains to obtain comparison for this candidate from the known weights. Its reciprocal
+has the integral form, initially for 0 < s, t < 1,
+                            Z 1
+                   1   2
+                                  −B ′ θs + (1 − θ)t dθ,                    s = f (x)2 ,     t = f (y)2 .
+                                                                 
+                     =                                                                                                      (3.9)
+                   E   m     0
+
+The lemma below will show that this defines a positive continuous weight also when s = 1 or t = 1.
+A Stieltjes representation of −B ′ turns the reciprocal into a limit of positive combinations of 1/m
+and reciprocals of θ(ms) + (1 − θ)(mt) + rm, with r ≥ 0. The parallel-sum argument above will
+then construct E from the three known weights. We now prove the required representation.
+
+Lemma 3.2. The function B extends holomorphically to the upper half-plane and across the positive
+real axis, is real and strictly decreasing there, and satisfies B(1) = 1, B ′ (1) = −1. There are a
+constant c ≥ 0 and a positive measure ν on [0, ∞) such that
+
+                                             dν(r)                                      dν(r)
+                                       Z                                         Z
+                     −B ′ (s) = c +                              (s > 0),                     < ∞.                         (3.10)
+                                       [0,∞) s + r                                [0,∞) 1 + r
+
+In particular −B ′ (s) > 0 for every s > 0.
+
+Proof. For x > 0, put s = f (x)2 ∈ (0, 1). Differentiating s = f (x)2 and B(s) = b(x) gives
+
+                                   ds   2s(1 − B)                        db   B−s
+                                      =           ,                         =     .
+                                   dx       x                            dx    x
+Here B(s) = x coth x > 1, so we may set
+                                                                   1−s
+                                                R(s) =                      .
+                                                                s(B(s) − 1)
+
+The derivatives give
+                                         B(s) − s     1                         1
+                                                                                       
+                                   ′
+                              −B (s) =              =                             + R(s) .                                 (3.11)
+                                       2s(B(s) − 1)   2                         s
+The term 1/s is already a Stieltjes kernel, so it remains to obtain such a representation for R. We
+first construct the extension of B using
+                                                       2
+                                                 u
+                                           
+                                    s=                      ,         B(s) = u cot u.                                      (3.12)
+                                               sin u
+
+For q > 0 let p∗ (q) ∈ (π/2, π) be the unique solution of
+
+                                           p∗ (q) tan p∗ (q) = −q tanh q,
+
+and put
+              D = {p + iq : q > 0, 0 < p < p∗ (q)},                       Q = {z : Re z > 0, Im z < 0}.
+
+
+                                                                 10
+Existence, uniqueness and continuity of p∗ follow because p tan p increases strictly from −∞ to 0 on
+(π/2, π): its derivative is (p + sin p cos p)/ cos2 p > 0. Thus D is connected. The map a(u) = sin u/u
+takes D into Q, as follows from
+                                           p sin p cosh q + q cos p sinh q
+                            Re a(p + iq) =                                 > 0,
+                                                       p2 + q 2
+                                           p cos p sinh q − q sin p cosh q
+                            Im a(p + iq) =                                 < 0.
+                                                       p2 + q 2
+The first sign is precisely the boundary equation when p > π/2, and is immediate for p ≤ π/2. For
+the second, when p < π/2 use tan p/p > 1 > tanh q/q; for p ≥ π/2 the sign is immediate.
+   This map is proper into Q. Its finite boundary pieces map to the coordinate axes: p = 0 and
+q = 0 map to the positive real axis, and p = p∗ (q) to the negative imaginary axis. The limiting
+corners u = 0, π map to 1, 0, respectively. Moreover,
+                                               sinh q
+                                |a(p + iq)| ≥ p 2     −→ ∞              (q −→ ∞)
+                                               π + q2
+uniformly for 0 ≤ p ≤ π. Thus the inverse image of a compact subset of Q cannot approach the
+boundary or infinity. There are no critical points in D, because
+                                                     q sin(2p) − p sinh(2q)
+                                     Im(u cot u) =                          < 0,                (3.13)
+                                                       cosh(2q) − cos(2p)
+whereas a′ (u) = 0 would imply u cot u = 1. The strict sign follows from sin(2p) ≤ 2p and
+sinh(2q) > 2q.
+    For completeness, properness and the inverse function theorem imply that a(D) is both open
+and relatively closed in Q, hence is all of Q. Each fiber is finite, and local inverse neighborhoods
+at its points give an evenly covered neighborhood: an additional inverse point arbitrarily close to
+the chosen image point would, by properness, accumulate at that fiber. Thus a is a covering map.
+A connected covering of the simply connected quadrant has one sheet: inverse branches continue
+along paths by successive evenly covered neighborhoods, and homotopies make the continuations
+independent of the path. Therefore a : D → Q has a holomorphic inverse.
+    For Im s > 0, take the branch of s−1/2 in Q and define u = a−1 (s−1/2 ). Equations (3.12) and
+(3.13) give a holomorphic B with Im B < 0. To check its continuation at s0 > 0, the preceding
+bound on |a| bounds q as s → s0 from above. Every cluster point of u lies on p = 0 or q = 0, since
+the curved boundary has purely imaginary image. On these pieces sinh q/q increases strictly from 1
+to ∞, and sin p/p decreases strictly from 1 to 0 for 0 < p < π. These observations identify a unique
+boundary limit: u = iq if 0 < s0 < 1, and u = p ∈ (0, π) if s0 > 1. The derivatives there are nonzero,
+so local analytic inversion gives continuation across s0 . At s0 = 1 use u2 as parameter:
+                                2
+                          u                u2                                   u2
+                    
+                                     =1+      + O(u4 ),         u cot u = 1 −      + O(u4 ).
+                        sin u              3                                    3
+This gives B(1) = 1, B ′ (1) = −1. The two real parametrizations also show that B is strictly
+decreasing on (0, ∞) and agrees with (3.8).
+   We next recall the classical Herglotz representation [22], with a positive-harmonic proof in
+the form needed below. If P is holomorphic with Im P ≥ 0 in the upper half-plane and extends
+holomorphically with real values across (0, ∞), then
+                                                            1     r
+                                            Z                         
+                   P (s) = a0 + βs +                           −       dµ(r),         β ≥ 0,    (3.14)
+                                             (−∞,0]       r − s 1 + r2
+
+                                                           11
+where a0 ∈ R, µ ≥ 0 and (1 + r2 )−1 dµ(r) < ∞. Indeed, under s = i(1 + z)/(1 − z) its imaginary
+                           R
+
+part becomes a nonnegative harmonic function v on the disk. The measures v(ϱeiθ )dθ/(2π) have
+the fixed mass v(0). A weak limit as ϱ ↑ 1, together with the Poisson formula on each smaller disk,
+represents v by a positive boundary measure. The atom at z = 1 contributes β Im s; at the other
+boundary points the Poisson kernel becomes (1 + r2 ) Im s/|r − s|2 . Incorporate the factor 1 + r2
+into dµ(r). The measure has no mass on the arcs corresponding to r > 0, because v tends uniformly
+to zero on their compact subarcs, by the assumed continuation. The analytic integral in (3.14)
+converges locally uniformly; its imaginary part is the one just obtained. The remaining holomorphic
+function has zero imaginary part and is a real constant. This proves (3.14).
+    Apply (3.14) to P = −B and subtract the value at 1. The function
+                                   B(s) − 1                          dµ(r)
+                                                          Z
+                            G(s) =          =β+                                                   (3.15)
+                                    1−s                   (−∞,0] (1 − r)(s − r)
+
+has a removable value G(1) = 1. It is positive on the positive real axis, and H(s) = sG(s)
+has nonnegative imaginary part in the upper half-plane: this follows termwise from β ≥ 0 and
+Im(s/(s − r)) ≥ 0 for r ≤ 0. The function H has no zero there. Otherwise the nonnegative harmonic
+function Im H would attain zero inside, and the minimum principle would force H to be a real
+constant; its positive real-axis values rule out the constant zero. Thus
+                                                        1
+                                             R(s) =
+                                                      sG(s)
+continues the real function R above holomorphically to the upper half-plane and across (0, ∞), is
+positive on that interval, and satisfies Im(−R) ≥ 0.
+   Apply (3.14) once more, now to −R, with coefficients β,
+                                                         e µ
+                                                           e. For real s > 1 it gives
+
+                                                                       1   1
+                                                      Z                          
+                    0 ≤ R(1) − R(s) = β(s
+                                      e − 1) +                           −    dµ
+                                                                               e(r)
+                                                        (−∞,0]        1−r s−r
+                                      ≤ R(1).
+
+Consequently βe = 0, and monotone convergence gives (1 − r)−1 dµ
+                                                              R
+                                                               e(r) ≤ R(1). We may therefore
+write
+                                     dµ
+                                      e(r)                        dµ
+                                                                   e(r)
+                             Z                            Z
+                 R(s) = c0 +               ,  c0 = R(1) −               ≥ 0.          (3.16)
+                              (−∞,0] s − r                 (−∞,0] 1 − r
+
+Initially this identity follows on the positive axis; local uniform convergence and analytic continuation
+give it in the upper half-plane as well.
+    The holomorphic functions −B ′ and 12 (1/s + R(s)) agree on 0 < s < 1 by (3.11). The identity
+theorem extends their equality to the upper half-plane and the positive real axis. Equation (3.16),
+after replacing r by −r, now proves (3.10); the term 1/(2s) contributes an atom of mass 1/2 at zero
+and ensures strict positivity.
+
+3.3   The additional weight and the final minimization
+The lemma extends the same integral definition (3.9) continuously and positively to all s, t > 0,
+including the values used in (3.7). The fundamental theorem of calculus gives
+                                           m(t − s)
+                                         
+                                                         ,            s ̸= t,
+                                         
+                                         
+                                                 − B(t))
+                                         
+                                   E=   2(B(s)                                                    (3.17)
+                                            m
+                                      −           ,                  s = t.
+                                      
+                                      
+                                          2B ′ (s)
+
+                                                   12
+Lemma 3.2 shows that E is obtainable by the comparison-preserving operations already established.
+Indeed, after substitution of (3.10), every reciprocal term is of the form
+                                   1                         1
+                                               =                          ,
+                          m(θs + (1 − θ)t + r)   θ(ms) + (1 − θ)(mt) + rm
+
+and the constant term is a multiple of 1/m. Positive finite quadratures followed by inversion are
+parallel sums of positive multiples of these positive linear combinations of m, ms, mt. Truncating
+the r-integral and refining partitions gives pointwise convergence for every s, t > 0: on each bounded
+interval the integrands are continuous, and the tail is controlled by (1 + r)−1 dν(r) < ∞. The
+                                                                          R
+
+source finite-parameter hypothesis and target Fatou argument therefore prove comparison for E.
+    We complete the proof of Theorem 3.1 by an exact scalar minimization. For ξ, ϕ ∈ C put
+                            1X                       1X
+                Q(ξ, ϕ) =       mf (x)e±x |ξ ∓ ϕ|2 +     mf (y)e±y |ξ ± ϕ|2 + E|ϕ|2 .             (3.18)
+                            4 ±                      4 ±
+
+Write a = b(x) + b(y) and e = E/m. Since f (x)e±x = b(x) ± x, expansion gives
+                                     ma 2       a
+                                                            
+                       Q(ξ, ϕ) =        |ξ| + m   + e |ϕ|2 − m(x − y) Re(ξϕ).
+                                      2         2
+The unique minimizer and its value are
+                                                                                     !
+                          x−y                                m    (x − y)2
+                       ϕ=        ξ,            min Q(ξ, ϕ) =   a−                        |ξ|2 .   (3.19)
+                          a + 2e                ϕ            2     a + 2e
+
+If x2 ̸= y 2 , the identity b(z)2 = f (z)2 + z 2 and (3.17) give
+
+                                         (a + 2e)(b(x) − b(y)) = x2 − y 2 .
+
+Hence the minimum in (3.19) is
+
+                                     yb(x) + xb(y) 2      f (x)f (y) 2
+                                 m                |ξ| = m           |ξ| ,                         (3.20)
+                                         x+y              f (x + y)
+where the second equality is the addition formula for sinh, with continuous values when x or y is
+zero.
+    No singular minimization is hidden when x2 = y 2 . If y = x, the minimizer is ϕ = 0 and the
+value is mb(x)|ξ|2 = mf (x)2 |ξ|2 /f (2x). If y = −x ̸= 0, write s = f (x)2 and b = b(x). Equations
+(3.17) and (3.11) yield
+                                        s(b − 1)               x2
+                                   e=            ,   b+e=          .
+                                         b−s                 b−s
+Thus (3.19) gives m(b − x2 /(b + e))|ξ|2 = ms|ξ|2 , as required. At x = y = 0, we have E = m/2,
+ϕ = 0, and the value is m|ξ|2 . This proves (3.20) in every case.
+    For a source test Z, let Φ be its coordinatewise minimizer in (3.19). It belongs to T by the
+invariance assumption. Apply the four assumed comparisons to Z ∓Φ and Z ±Φ, and the comparison
+for E to Φ. After summing, the source side is QF,0 (Z) by (3.20), whereas the target side is
+                            X        X                              X
+                                wi        Qi (Li Z)α , (Li Φ)α ≥         wi QF,i (Li Z).
+                            i        α                               i
+
+This is the claimed comparison, and proves Theorem 3.1.
+
+                                                        13
+4     A regularized minimum and its Hessian
+We argue by contradiction. This section constructs a strictly negative minimum with enough
+regularity to support the later operator identities. It then extracts an entropy-Hessian estimate at
+that minimum.
+
+4.1   The auxiliary ports and the functional
+Suppose Theorem 1.1 fails. The endpoint transmissions give equality, so 0 < η < 1. By Lemma 2.2,
+normalized number cutoffs of the inputs converge with bounded energies and convergent entropies,
+as do their outputs. Thus there is a fixed strictly violating pair (ρw    w
+                                                                     1 , ρ2 ) with finite number support.
+Write ai = g −1 (S(ρw
+                    i )/n). At least one ai is positive.
+    Besides the two variable ports 1, 2, introduce a fixed thermal port D, in state ρD = τrD with
+rD > 0. Its mixing weight and those of the variable inputs are
+
+                    0 < λD < 1,            λ1 = (1 − λD )η,
+                                                        λ2 = (1 − λD )(1 − η).
+                                                         P        √
+The retained port, denoted by 0, has annihilators d0,j = s=1,2,D λs ds,j before reduction. For
+positive reference parameters r1 , r2 , set
+
+                     r0 = λ1 r1 + λ2 r2 + λD rD ,           hs = h(rs )   (s = 0, 1, 2, D).
+
+Let γ be the retained state obtained from ρ1 ⊗ ρ2 ⊗ ρD . We also replace a small fraction of that
+output by its reference thermal:
+
+                ρ0 = (1 − κ)γ + κτr0 ,          0 < κ < 1,        wi = (1 − κ)λi     (i = 1, 2).
+
+Unless otherwise indicated, sums indexed by i run over 1, 2. Since h(r) = g ′ (r), the quotient
+(S(ρ) − ng(r))/h(r) expresses the entropy deviation in the linearized scale of total photon number
+at the thermal reference. For ε, ζ > 0 we minimize, over input states of finite fourth moment, the
+functional
+                                           S(ρ0 ) − ng(r0 ) X S(ρi ) − ng(ri )
+                         Jζ (ρ1 , ρ2 ) =                     −       wi
+                                                   h0             i
+                                                                            hi
+                                              X wi                      X                          (4.1)
+                                           +ε           D(ρi ∥τri ) + ζ   Tr ρi Wi4 .
+                                                 i
+                                                    h i                 i
+
+   The normalization of the relative-entropy penalty also matches the closing stationarity calculation.
+The thermal entropy formula and (2.4) give
+
+                              D(ρ∥τr )    S(ρ) − ng(r)             
+                                       =−              + Tr ρN − nr .
+                               h(r)           h(r)
+
+Thus the input terms pair an entropy coefficient 1 + ε with an energy coefficient ε. Their centered-
+energy coefficients differ by one in stationarity, matching the output centered-energy relation while
+retaining the strict defect and mean terms.
+    The parameters are chosen in the following order. First choose ri > 0 equal or sufficiently close
+to ai . At λD = κ = ε = ζ = 0, the value at the fixed witness approaches
+
+                                    S(ρw
+                                       C ) − ng(ηa1 + (1 − η)a2 )
+                                                                  < 0.
+                                         h(ηa1 + (1 − η)a2 )
+
+                                                       14
+The input differences vanish in this limit. If ai = 0, this follows from g(r)/h(r) → 0 as r ↓ 0;
+the output denominator has a strictly positive, finite limit. Fix rD > 0 and then choose λD > 0
+sufficiently small to retain negativity. Indeed, the additional mixing can be performed after the
+original beam splitter; as λD ↓ 0, its unitary converges strongly on each total number sector. The
+resulting states converge in trace norm with bounded energy, and their entropies converge by
+Lemma 2.2.
+    Next choose ε > 0 small enough to retain negativity and to have
+                                X                               X
+                      (1 + ε)       λi ri ≤ r0 ,      (1 + ε)           λi (ri + 1) ≤ r0 + 1.   (4.2)
+                                i                                   i
+
+At ε = 0 the gaps are respectively λD rD and λD (rD + 1), both positive. Finally take κ > 0
+sufficiently small. The additional bound on κ used in Section 5 depends only on the parameters
+already fixed, so it is compatible with this choice. The witness has finite fourth moments and finite
+thermal relative entropies. Consequently there are constants c > 0 and ζ0 > 0 such that
+
+                                    Jζ (ρw    w
+                                         1 , ρ2 ) ≤ −c        (0 < ζ ≤ ζ0 ).                    (4.3)
+
+All parameters except ζ remain fixed from now on.
+
+4.2   A Gibbs regularity lemma
+The fourth-moment penalty yields more regularity than its definition alone suggests. We record the
+needed form argument explicitly.
+
+Lemma 4.1. Let W = 1 + N on the n-mode Fock space. Suppose k > 0 and B is a bounded positive
+operator. The positive form
+
+                        K = kW 4 + W 1/2 BW 1/2 ,               D(K 1/2 ) = D(W 2 ),
+
+defines a positive self-adjoint operator with compact inverse. Its normalized Gibbs state ω =
+e−K / Tr e−K is faithful and satisfies Tr ωW 7 < ∞. It uniquely minimizes Tr σK − S(σ) among
+states with finite fourth moment.
+
+Proof. Put C = kI + W −3/2 BW −3/2 . The form is ∥C 1/2 W 2 ϕ∥2 on D(W 2 ), and is closed because
+kI ≤ C ≤ ∥C∥I. The operator
+                                      U = W −2 C −1 W −2
+is positive, compact, and injective. Choose a complete orthonormal eigenbasis ψj with U ψj = u−1
+                                                                                              j ψj
+and uj > 0. Every ψj belongs to D(W 2 ) and satisfies the form eigenvalue equation for K with
+                                                 √
+eigenvalue uj . For completeness, the vectors uj C −1/2 W −2 ψj are orthonormal and complete:
+orthonormality follows from U , and completeness from the dense range of C −1/2 W −2 . Parseval’s
+identity therefore gives
+                                              X
+                         ∥C 1/2 W 2 ϕ∥2 =          uj |⟨ψj , ϕ⟩|2         (ϕ ∈ D(W 2 )).
+                                               j
+
+Closedness and finite spectral sums show that the domain of this diagonal form is exactly D(W 2 ).
+This constructs K = U −1 .
+   The bound U ≤ k −1 W −4 gives
+
+                                    #{j : uj ≤ a} ≤ rank 1{W 4 ≤a/k} ,
+
+                                                        15
+by comparing dimensions with the complementary number subspace. The right side grows polyno-
+mially in a. Also ∥W 2 ψj ∥2 ≤ uj /k. Test the form eigenvalue equation against each number vector
+and multiply that coordinate equation by W −1/2 . It gives
+
+                                kW 7/2 ψj = uj W −1/2 ψj − BW 1/2 ψj .
+
+The right side is square summable, so ψj ∈ D(W 7/2 ), with the explicit bound
+                                                            q
+                                ∥W 7/2 ψj ∥ ≤ k −1 uj + ∥B∥ uj /k .
+                                                                   
+
+
+Polynomial eigenvalue counting and the exponential weights e−uj now prove both 0 < Tr e−K < ∞
+and Tr(e−K W 7 ) < ∞. Finally, for a state σ with finite fourth moment, all terms in
+
+                               Tr σK − S(σ) = D(σ∥ω) − log Tr e−K
+
+are finite. Nonnegativity and the equality case of relative entropy give the asserted unique minimum.
+
+
+4.3    Attainment and the exact logarithm identity
+Proposition 4.2. For every 0 < ζ ≤ ζ0 , the functional Jζ attains a minimum of value at most −c.
+The input energies at these minima are bounded uniformly in ζ. At each minimum all four states
+ρs , s = 0, 1, 2, D, are faithful, have finite seventh moment, and satisfy 0 ≤ Hs := − log ρs ≤ Cs Ws4
+as forms. In fact H0 ≤ CW0 . The inputs obey the exact identities
+
+                   (1 + ε)wi      1−κ
+                             Hi =     Ti H0 + εwi Ni + ζWi4 + ci I,       i = 1, 2,              (4.4)
+                       hi          h0
+where Ti is the output-observable slice with the other two inputs fixed, and ci is a real scalar. The
+moment and logarithm bounds need not be uniform as ζ ↓ 0.
+
+Proof. Write Ei = Tr ρi Ni . Expanding the thermal relative entropy expresses Jζ , up to constants
+depending only on the fixed parameters, as
+
+                      S(ρ0 ) X (1 + ε)wi            X           X
+                            −            S(ρi ) + ε   wi Ei + ζ   Tr ρi Wi4 .                    (4.5)
+                       h0     i
+                                   h i              i           i
+
+The first term is nonnegative. The bound S(ρi ) ≤ ng(Ei /n) = O(log(1+Ei )) shows that the positive
+linear energy terms dominate every negative entropy term. Thus bounded upper sublevels have
+bounded input energies, uniformly in 0 < ζ ≤ ζ0 . For fixed ζ > 0 their fourth moments are bounded
+as well. Take a minimizing sequence in the sublevel supplied by (4.3). Lemma 2.2 gives a trace-norm
+convergent subsequence of each input. The product and channel maps are trace-norm continuous,
+and output energies are bounded by the combined input energy plus the fixed replacement energy.
+Entropy is continuous along this subsequence. The energy and fourth-moment expectations are
+lower semicontinuous, by bounded spectral truncation. Equation (4.5) therefore gives an admissible
+minimum, and the same sublevel estimate gives its uniform energy bound.
+    Fix such a minimum. The replacement gives ρ0 ≥ κτr0 . The resolvent representation of the
+logarithm, together with inverse order for positive operators, implies
+
+                                   0 ≤ H0 ≤ − log(κτr0 ) ≤ CW0
+
+
+                                                 16
+as positive forms. To define Ti , pull an output observable back through the passive unitary and
+take its partial expectation in the states of the other two ports. For bounded Z, this is a bounded
+unital positive slice satisfying
+                                          Tr ρi Ti Z = Tr γZ.                                  (4.6)
+For H0 , use increasing bounded spectral truncations to define the positive form Ti H0 . Since the
+retained number is bounded by total number before reduction, slicing H0 ≤ CW0 yields
+                                                  0 ≤ Ti H0 ≤ Ci Wi .
+In particular, its expectation is the output cross entropy for every varied input of finite energy.
+    Vary only input i and replace the output entropy in Jζ by the cross entropy Tr ρe0 H0 . Nonnega-
+tivity of relative entropy makes the resulting functional J i a majorant, with equality at the chosen
+minimum. Thus
+                                   J i (ρei ) ≥ Jζ (ρei ) ≥ Jζ (ρi ) = J i (ρi ).
+After division by its entropy coefficient (1 + ε)wi /hi , this majorant is Tr ρei Ki − S(ρei ) plus a constant,
+where
+                                       hi      1−κ
+                                                                            
+                            Ki =                     Ti H0 + εwi Ni + ζWi4 .                              (4.7)
+                                  (1 + ε)wi      h0
+                                                                                             1/2        1/2
+This is a form kWi4 + Ri with k > 0 and 0 ≤ Ri ≤ Ci Wi . Hence Ri = Wi                             Bi Wi      for a bounded
+positive Bi . Lemma 4.1 identifies the input uniquely as
+                                                              e−Ki
+                                                     ρi =            .
+                                                             Tr e−Ki
+It is faithful, has finite seventh moment, and satisfies Hi = Ki + log Tr e−Ki , proving (4.4) and the
+claimed input logarithm bounds.
+    The fixed thermal port has every number moment. Total-number preservation and (x1 + x2 +
+xD )7 ≤ 36 (x71 + x72 + x7D ) for nonnegative numbers give finite seventh moment of the raw output;
+the thermal replacement preserves this property. This proves all remaining assertions.
+
+4.4    The component entropy-Hessian estimate
+Work at one of the minima in Proposition 4.2. For each label s, fix an eigenbasis ρs = diag(ps,l ),
+with all ps,l > 0. These orthonormal eigenbases generally differ from the number bases used to
+define the energy, and they depend on the minimizing states. With ℓ(a, b) = (a − b)/(log a − log b)
+and ℓ(a, a) = a, define
+                                X                                                  log(ps,l /ps,r )
+                      ∥Z∥2s =         hs ℓ(ps,l , ps,r )|Zlr |2 ,    vs (l, r) =                    .                 (4.8)
+                                l,r
+                                                                                        hs
+
+Up to the factor hs , this is the Bogoliubov inner product on observables. Its dual form on state
+perturbations is the Bogoliubov–Kubo–Mori metric, obtained from the Hessian of relative entropy
+[27, 26]. We establish the needed differentiation formulas on finite eigenblocks and then use density;
+no bounded inverse for the full state is assumed.
+    These weighted matrix spaces are Hilbert spaces, with inner product conjugate-linear in the
+first variable. Bounded observables belong to them because the logarithmic mean is at most
+the arithmetic mean. The centered subspace is the orthogonal complement of I; the orthogonal
+projection subtracts ⟨Z⟩s I, where ⟨Z⟩s = Tr ρs Z. Set
+                                                          Ti Z − ⟨Ti Z⟩i I
+                                               Li Z =          √           .                                          (4.9)
+                                                                 λi
+
+                                                              17
+Initially the centered output tests are finite eigenblock matrices with their expectation times I
+subtracted. They form a dense subspace. Such a test can have an infinite identity tail, but has
+only finitely many frequencies v0 . Multiplication by any function of v0 preserves this class and its
+centering: every diagonal entry, including that tail, has frequency zero.
+
+Proposition 4.3. For i = 1, 2, the slice map on the centered output space satisfies
+                                                         1+ε
+                                            ∥Li Z∥2i ≤       ∥Z∥20 .                                   (4.10)
+                                                         1−κ
+It consequently extends continuously to the completed centered spaces. For bounded observables this
+extension agrees with (4.9).
+
+Proof. For a single varied input of finite fourth moment, denote the resulting modified output by
+ρe0 . The logarithm identity (4.4) cancels all linear terms in the objective difference, giving exactly
+
+                                                (1 + ε)wi              1
+                       Jζ (ρei ) − Jζ (ρi ) =             D(ρei ∥ρi ) − D(ρe0 ∥ρ0 ) ≥ 0.               (4.11)
+                                                    hi                 h0
+All cross entropies are finite by the fourth-moment assumptions and the bounds on Hi , H0 .
+    Let A be a traceless Hermitian matrix on a finite input eigenblock. Then ρi + tA is a state for
+all sufficiently small positive and negative t. Its fourth moment is finite: each selected eigenvector
+has finite seventh moment by the construction in Lemma 4.1. Finite-dimensional differentiation on
+that block gives
+
+                                         t2                                   X      |Alr |2
+                   D(ρi + tA∥ρi ) =         Qi (A) + o(t2 ),      Qi (A) =                         .
+                                         2                                     l,r
+                                                                                   ℓ(pi,l , pi,r )
+
+For example, the derivative of the logarithm is the integral of (ρi + uI)−1 A(ρi + uI)−1 over u > 0
+on this block.
+    To extract a dual lower bound without restricting the actual output perturbation to a finite
+eigenblock, we test the Gibbs variational formula with a centered output observable. Let Z be a
+Hermitian centered output test as above. The Gibbs inequality gives
+
+                             D(ρe0 ∥ρ0 ) ≥ t Tr ρe0 Z − log Tr exp(log ρ0 + tZ).
+
+The logarithm of this partition function has first derivative zero and second derivative ∥Z∥20 /h0 at zero.
+This follows from finite-block exponential differentiation: before centering, only a finite eigenblock
+changes, and centering merely multiplies the exponential by a scalar. Writing Zt = Tr elog ρ0 +tZ and
+σt = Zt−1 elog ρ0 +tZ , the same block decomposition gives 0 < Zt < ∞ and makes σt faithful. Since
+− log σt = H0 − tZ + log Zt , the finite energy of ρe0 , the bound H0 ≤ CW0 , and boundedness of Z
+give finite entropy and finite cross entropy against σt . Lemma 2.1 therefore gives the displayed lower
+bound. Since the output perturbation induced by tA is (1 − κ)t times the raw channel perturbation,
+the lower bound has expansion
+                                                                    !
+                                   2                      ∥Z∥20
+                                  t    (1 − κ) Tr ATi Z −               + o(t2 ).
+                                                           2h0
+
+Put α = (1 + ε)wi h0 /hi . Comparing with (4.11) yields
+
+                                                                         ∥Z∥20
+                                   2(1 − κ) Tr ATi Z − αQi (A) ≤               .                       (4.12)
+                                                                          h0
+
+                                                         18
+    We can optimize the left side over the completed traceless Hermitian space for Qi . Indeed, trace
+is continuous in this norm, since
+                                                                !
+                                                    X               X |All |2
+                                         2
+                                  | Tr A| ≤              pi,l                   ≤ Qi (A).
+                                                     l               l
+                                                                         pi,l
+
+Finite eigenblock truncation followed by correcting the trace at one fixed diagonal entry proves
+density in the trace-zero subspace. The constrained dual of Qi is the logarithmic-mean norm of the
+observable after subtracting its ρi expectation. Thus the supremum in (4.12) equals
+
+                                          (1 − κ)2
+                                                   ∥Ti Z − ⟨Ti Z⟩i I∥2i .
+                                            αhi
+It follows that
+                               (1 − κ)2 ∥Ti Z − ⟨Ti Z⟩i I∥2i ≤ (1 + ε)wi ∥Z∥20 .
+Dividing by λi gives (4.10). The estimate extends to complex tests by writing real and imaginary
+Hermitian parts: symmetry of the logarithmic-mean weights and preservation of adjoints make each
+squared norm the sum of the corresponding two squared norms.
+    Density now gives the continuous extension. To identify it on a bounded Z, approximate by
+Pm ZPm , where Pm are increasing finite spectral projections of ρ0 , and center each approximant.
+They converge in both output arithmetic norms and hence in the logarithmic-mean norm. The
+slice is completely positive and unital, so its Schwarz inequality bounds the corresponding input
+arithmetic norms by the raw output norms. Those in turn are at most (1 − κ)−1 times the modified
+output norms, because ρ0 ≥ (1 − κ)γ. The sliced approximants therefore converge to the bounded
+slice in (4.9), as required.
+
+
+5     The metric adapted to thermal relaxation
+Fix a minimizing pair from Proposition 4.2. All comparisons in this section concern these states.
+We use the centered observable spaces, modular frequencies vs , and maps Li introduced in Section 4;
+sums over i run over 1, 2. For a positive scalar weight Xs (vs ), write
+
+                                                 ∥Z∥2Xs ,s = ⟨Z, Xs Z⟩s .
+
+We say that a family of weights satisfies comparison when
+                                         X
+                                                 wi ∥Li Z∥2Xi ,i ≤ ∥Z∥2X0 ,0 .                               (5.1)
+                                             i
+
+Initially, Z is a finite eigenblock matrix centered by a scalar multiple of the identity. Such tests have
+finitely many frequencies, including zero; they need not have finite matrix support after centering.
+
+5.1    Four elementary comparisons
+Define, with continuous values at zero,
+                               v      hs v                              v                            1
+                    bs (v) =     coth      ,         Rs,± (v) = bs (v) ± ,                bs (0) =      .
+                               2       2                                2                            hs
+If ρs = diag(pl ), then
+
+                   hs ℓ(pl , pr )Rs,+ (vs (l, r)) = pl ,             hs ℓ(pl , pr )Rs,− (vs (l, r)) = pr .   (5.2)
+
+                                                                19
+Thus the corresponding squared norms of a centered observable are Tr ρs ZZ † and Tr ρs Z † Z.
+    Both families R+ and R− satisfy comparison. To see this, embed Z as an observable Ze on the
+three input ports and equip the joint observable space with either arithmetic inner product. The
+centered one-port subspaces are mutually orthogonal because the joint state is ρ1 ⊗ ρ2 ⊗ ρD . The
+centered slice Ti Z − Tr γZ I is the orthogonal projection onto the ith such subspace: its pairing
+with a bounded one-port observable is the defining partial-expectation identity. Consequently
+the sum of the two slice variances is at most the corresponding variance in γ. The variance in
+ρ0 = (1 − κ)γ + κτr0 is at least (1 − κ) times that variance in γ. Since wi /λi = 1 − κ, these statements
+give (5.1) for both multiplication orders. Only independence across ports has been used.
+    The two constant families rs and rs + 1 also satisfy comparison. Indeed, Proposition 4.3 and
+(4.2) give                  X                           X
+                               wi ri ∥Li Z∥2i ≤ (1 + ε)   λi ri ∥Z∥20 ≤ r0 ∥Z∥20 ,
+                            i                                i
+and the same argument applies with rs + 1.
+Proposition 5.1 (Interpolated comparison). The positive weights
+                                     1 f (hs v/2)f (−hs /2)   bs (v) − (rs + 12 )v
+                         Fs (v) =                           =                                       (5.3)
+                                     hs f (hs (v − 1)/2)             1−v
+satisfy (5.1). The quotient at v = 1 is understood continuously. For each fixed rs > 0 there are
+constants 0 < cs ≤ Cs < ∞, independent of the minimizing states, such that cs ≤ Fs (v) ≤ Cs for
+every v ∈ R.
+Proof. Apply Theorem 3.1 with
+                                m = 1/hs ,        x = hs vs /2,       y = −hs /2.
+The ambient coordinate spaces in Theorem 3.1 are the full weighted matrix spaces; its source test
+space consists of the centered finite-eigenblock tests described above. Multipliers depending on
+the frequency preserve that test space, because every diagonal entry has frequency zero. The first
+two weights are Rs,+ , Rs,− ; the other two are rs , rs + 1. The conclusion is the first expression in
+(5.3). The second follows from the hyperbolic addition formula and coth(hs /2) = 2rs + 1. The first
+expression is continuous and strictly positive, while the second gives the limits rs at +∞ and rs + 1
+at −∞. This proves both bounds.
+    The thermal weight has a useful logarithmic-mean interpretation:
+                                                                                
+                                 ℓ(pl , pr )Fs (vs (l, r)) = ℓ rs pl , (rs + 1)pr .                 (5.4)
+Indeed the logarithmic difference on the right is hs (vs (l, r) − 1); substitution in (5.3) proves the
+identity, including its continuous values. Up to a fixed normalization, this is the frequency-dependent
+logarithmic mean used in the detailed-balance entropy geometry of Carlen and Maas [5, Definition 5.7
+and Lemma 5.8]. Proposition 5.1 establishes the particular comparison needed at our regularized
+minima.
+    Write ∥Z∥Fs = ∥Z∥Fs ,s , and let ∥q∥Fs ,∗ denote the dual norm of a linear functional on the
+centered space. For a list of n functionals, its squared norm is the sum of the n squared dual norms.
+Density and Proposition 4.3 extend Proposition 5.1 to the completed centered spaces. On bounded
+observables the extension of Li is the actual centered slice. In fact, bounded spectral compressions
+of Z converge strongly with their adjoints, as do their slices. Dominated convergence in either
+arithmetic norm gives convergence in the logarithmic-mean norm, since ℓ(a, b) ≤ (a + b)/2. This
+also explains why the comparison applies to fixed number-basis tests later, although the minimizing
+eigenbases vary.
+
+                                                        20
+5.2    The thermal defect functionals
+Let ds,j be the annihilator of mode j on port s, and put
+                µs = (Tr ρs ds,j )nj=1 ,        d′s,j = ds,j − (µs )j I,               e′s = Tr ρs Ns − |µs |2 .
+For bounded Z, define
+                            qs,j (Z) = (rs + 1) Tr ρs (d′s,j )† Z − rs Tr ρs Z(d′s,j )† .                          (5.5)
+A coherent displacement shifts ds,j and (µs )j by the same constant, so these centered functionals
+also vanish on displaced thermal states. The final argument must control µs separately to recover
+the fixed, undisplaced thermal reference. These are well-defined weak trace pairings and vanish on I.
+For example, dρ = (dρ1/2 )ρ1/2 is trace class by Hilbert–Schmidt factorization whenever Tr ρN < ∞;
+the same holds for d† ρ, ρd, and ρd† . Thus no domain invariance for an arbitrary bounded Z is being
+assumed.
+    We record the summability needed for both the metric estimate and the subsequent generator
+calculation.
+Lemma 5.2 (Dual norm and logarithmic sums). At each minimizing state, qs has finite dual norm.
+Set
+                                Ks,lr = (rs + 1)pr − rs pl .
+Then
+                                                         (1 − vs (l, r))Ks,lr |(d′s,j )lr |2 .
+                                                 X
+                                 ∥qs ∥2Fs ,∗ =                                                                     (5.6)
+                                                 j,l,r
+
+The sums obtained by replacing the coefficient on the right by |Ks,lr | or |vs (l, r)Ks,lr | are finite.
+Proof. Suppress the label s and write H = − log ρ. By Proposition 4.2, Tr ρW 7 < ∞ and 0 ≤ H ≤
+CW 4 as forms. Every eigenvector ψr of ρ belongs to D(W 7/2 ), since pr > 0. Number shifts give
+∥W 2 d′ ψ∥ + ∥W 2 (d′ )† ψ∥ ≤ C ′ ∥W 5/2 ψ∥. Consequently the crossed logarithmic sums, such as
+                                       pr (− log pl )|d′lr |2 =            pr ⟨d′ ψr , Hd′ ψr ⟩,
+                                 X                                   X
+
+                                 l,r                                   r
+
+are bounded by a constant times Tr ρW 5 . For the uncrossed sums, use
+                         − log pr ≤ C⟨ψr , W 4 ψr ⟩,                  ⟨W 4 ⟩ψr ⟨W ⟩ψr ≤ ⟨W 5 ⟩ψr .
+The last inequality is the elementary nonnegative covariance inequality for the increasing functions
+t4 , t of the same positive random variable. It bounds (− log pr )∥d′ ψr ∥2 and its creation-operator
+analogue. The corresponding sums without logarithms are finite by finite energy. These bounds
+imply the claimed absolute summability of K and vK.
+      In matrix coordinates, (5.5) is
+                                                             X
+                                              qj (Z) =              Klr d′j,lr Zlr .
+                                                              l,r
+
+By (5.2) and (5.3),
+                                   Klr
+                                             = b(v) − (r + 12 )v = (1 − v)F (v).                                   (5.7)
+                                hℓ(pl , pr )
+Hence the representing vector in the F inner product is (1 − v)d′j , and its squared norm is the sum
+in (5.6). That sum is finite by the preceding estimates. Finally, F (0) = 1/h, so orthogonality to I
+in the F inner product is exactly zero ρ-mean. The representing vector is orthogonal to I because
+qj (I) = 0. Restricting to the centered space therefore does not change the dual norm.
+
+                                                                21
+                                                                       P √
+Lemma 5.3 (Weak convolution identity). Let µγ =                               i   λi µi be the raw output mean. For every
+bounded output observable Z,
+                                        X
+                        q0,j (Z) =             wi qi,j (Li Z) + κ(1 − κ)(µγ )j Tr[(γ − τr0 )Z].                     (5.8)
+                                          i
+
+Proof. The thermal defect is zero on τr , since (r + 1)dτr = rτr d by its geometric number weights.
+For the raw output, define qγ,j by (5.5) using its mean and reference parameter r0 . The terms with
+coefficient 1 in the identity                  X p
+                                   qγ,j (Z) =         λs qs,j (Ts Z)
+                                                          s=1,2,D
+                P √
+agree by d0,j = s λs ds,j . The remaining terms are expected commutators. After rotation, d†s,j is
+√
+  λs d†0,j plus an operator on discarded modes. The weak commutator of that discarded operator
+                                                                           P
+with a retained observable has zero trace. Thus its retained coefficient is s λs rs = r0 , as required.
+    These statements use only finite energy: all one-mode-factor products with the state are trace
+class as above. A discarded operator can first be cut off in its own number basis; its bounded cutoff
+commutes with Z ⊗ I, so trace cyclicity applies. The cutoff products converge in trace norm by the
+same Hilbert–Schmidt factorization. This justifies the weak commutator and passage between joint,
+reduced, and sliced traces, without assigning an operator domain to [d†0,j , Z].
+    The D term vanishes. Since the mean of the replaced output is (1 − κ)µγ , direct centering gives
+
+                               q0,j = (1 − κ)qγ,j + κ(1 − κ)(µγ )j Tr[(γ − τr0 ) · ].
+
+                      i wi qi,j ◦ Li , since qi,j (I) = 0.
+                    P
+The first term is
+
+Proposition 5.4 (Defect estimate). Set
+
+                                                                                    C0 = (h0 inf F0 (v))−1/2 .
+                        X                                  X
+              A2∗ =         wi ∥qi ∥2Fi ,∗ ,       M∗2 =        wi |µi |2 ,
+                                                                                              v∈R
+                        i                                   i
+
+Then                                                                 √
+                                               ∥q0 ∥F0 ,∗ ≤ A∗ +         2κ C0 M∗ .                                 (5.9)
+In particular, the previously reserved choice of κ may be made small enough that
+                                                                  ε
+                                               ∥q0 ∥2F0 ,∗ ≤ A2∗ + (A2∗ + M∗2 )                                    (5.10)
+                                                                  2
+holds uniformly in ζ and the minimizing states.
+
+Proof. By Proposition 5.1 and Cauchy–Schwarz, the dual norm of the first term in (5.8), summed
+over the modes, is at most A∗ . For the second term put
+                                                     q
+                                          J(Z) =         κ(1 − κ) Tr[(γ − τr0 )Z].
+
+The variance between the two branches of the mixture gives |J(Z)|2 ≤ ∥Z∥2R0,+ ,0 and |J(Z)|2 ≤
+∥Z∥2R0,− ,0 on centered tests. The two-weight logarithmic-mean operation proved in Section 3.1
+applies to this scalar-valued map, with both target weights equal to 1. Since ℓ(R0,+ , R0,− ) = 1/h0 ,
+it yields
+                                  |J(Z)|2 ≤ ∥Z∥20 /h0 ≤ C02 ∥Z∥2F0 .
+
+
+
+                                                                22
+Moreover, (1 − κ)|µγ |2 ≤ 2 i wi |µi |2 = 2M∗2 . The triangle inequality now proves (5.9). Using
+                                P
+
+Young’s inequality with coefficient ε/2, it is enough to impose
+
+                                                             ε2
+                                              0<κ≤
+                                                         4(ε + 2)C02
+
+to obtain (5.10). The right-hand side depends only on the reference parameters and ε, which were
+fixed before κ; this requirement is therefore compatible with the parameter choice in Proposition 4.2.
+
+
+
+6      Stationarity and the thermal limit
+For each label s, consider the thermal relaxation expression
+                              n
+                                    (rs + 1)D[ds,j ]ρ + rs D[d†s,j ]ρ ,            D[d]ρ = dρd† − 12 {d† d, ρ}.
+                              X                                           
+      δs = Ls ρs ,   Ls ρ =                                                                                       (6.1)
+                              j=1
+
+This is the standard bosonic thermal-relaxation, or quantum Ornstein–Uhlenbeck, generator; its
+entropy production has been studied in [23, 5, 9]. Here we use it as a trace-class expression at the
+regularized minima. The proof requires the weighted trace identities established below, rather than
+a log-Sobolev inequality or differentiation of entropy along an unbounded semigroup. The geometric
+weights give Ls τrs = 0.
+
+6.1     Weighted traces and the exact stationarity identity
+Lemma 6.1 (Generator covariance and logarithmic pairings). At a minimizing pair, δs is traceless
+and Ws2 δs Ws2 is trace class. If Φi is the raw channel with the other two input states fixed, extended
+linearly to trace-class operators, then
+                                                              X
+                                             δ0 = (1 − κ)             Φi (δi ).                                   (6.2)
+                                                              i
+
+The traces against the forms Hs and Ws4 are well defined, and
+                                                              X
+                                       Tr δ0 H0 = (1 − κ)              Tr δi Ti H0 .                              (6.3)
+                                                                  i
+
+Proof. First consider finite total-number cutoffs, where all products in the calculation are finite
+rank. This covariance calculation is linear in the joint input and applies to arbitrary finite-number-
+supported joint operators, without a product assumption. The sum over the three ports of the
+coefficient-1 terms D[ds,j ] is invariant under the real orthogonal mode rotation. Terms acting only
+on discarded modes vanish under partial trace. The remaining heat expression is
+
+                              D[d]ρ + D[d† ]ρ = − 12 [d, [d† , ρ]] + [d† , [d, ρ]] .
+                                                                                        
+
+
+Writing an original mode as its retained component plus discarded components, every commutator
+involving a discarded component disappears under partial trace. The retained part has coefficient
+                                                                        P
+λs . The resulting generator on the raw output therefore has parameter s λs rs = r0 . We next
+justify this covariance calculation for the full input state.
+
+
+
+                                                         23
+    Here is a weighted trace argument extending the finite-cutoff calculation. Suppress a label
+and put T = W 3 ρW 3 , a positive trace-class operator by the finite seventh moment. Each term of
+W 2 LρW 2 is a finite sum of bounded-factor products around T . For example,
+
+           W 2 dρd† W 2 = (W 2 dW −3 )T (W −3 d† W 2 ),               W 2 d† dρW 2 = (d† dW −1 )T W −1 .
+
+The outer factors are bounded because a mode shifts number by one and has coefficients growing as
+the square root of number. The creation terms satisfy the same estimates. For the number cutoff
+PK , W 3 PK ρPK W 3 = PK T PK → T in trace norm. Hence the cutoff generator expressions converge
+in the W 2 -sandwiched trace norm. In particular they have trace-zero limits.
+    The same estimates hold on the joint input using Wtot = I + N1 + N2 + ND . The joint input has
+finite seventh moment, and the rotation preserves total-number sectors. Partial trace is continuous
+in the required weighted trace norms: for k = 3 on cutoff states and k = 2 on generator expressions,
+                                           −k
+insert the bounded factor (W0k ⊗ I)Wtot       , of norm at most one, on both sides before taking the
+partial trace. On the full product input the fixed thermal port has zero generator, as does the
+replacement thermal. Consequently the covariance just proved reduces to (6.2).
+    The form bound 0 ≤ Hs ≤ Cs Ws4 makes Ws−2 Hs Ws−2 bounded. Its pairing with Ws2 δs Ws2
+defines the logarithmic trace; Ws4 is treated the same way. For the slicing assertion, decompose the
+self-adjoint trace-class operator Wi2 δi Wi2 into its positive and negative parts and conjugate back by
+Wi−2 . This expresses δi as a difference of positive operators with finite fourth moment. The positive
+slicing identity for Ti H0 applies to each part, proving (6.3).
+
+    Define σs = Tr δs Hs /hs . Pair the exact Hamiltonian identity (4.4) with δi and sum over i. The
+scalar terms vanish by tracelessness, and Lemma 6.1 gives
+                                         X                    X                     X
+                     0 = σ0 − (1 + ε)            wi σ i + ε       wi Tr δi Ni + ζ       Tr δi Wi4 .        (6.4)
+                                             i                i                     i
+
+This is an algebraic consequence of the Gibbs identity. It requires neither that ρi + tδi remain
+positive for two-sided t, nor that entropy be differentiated along this unbounded generator.
+Lemma 6.2 (Entropy production identity). The quantities in (6.4) satisfy
+
+                                         σs = ∥qs ∥2Fs ,∗ − (e′s − nrs ).                                  (6.5)
+
+Proof. In an eigenbasis of ρs , direct evaluation of the two dissipators gives
+
+                                             vs (l, r) (rs + 1)pr − rs pl |(d′s,j )lr |2 .
+                                     X                                      
+                            σs = −                                                                         (6.6)
+                                     j,l,r
+
+For example, the contribution of D[d]ρ to the trace against H is l,r pr (− log pl + log pr )|dlr |2 . The
+                                                                                P
+
+creation term is obtained by interchanging l, r; centering d changes only diagonal entries, where
+vs (l, l) = 0.
+     All these expansions are legitimate. Lemma 5.2 controls the crossed and uncrossed logarithmic
+sums absolutely. In the anticommutator terms, d† dψr and dd† ψr belong to D(W 2 ) because ψr ∈
+D(W 7/2 ). The form pairing with Hψr = (− log pr )ψr is therefore valid. For the eigenbasis
+truncations ρ(m) = r≤m pr |ψr ⟩⟨ψr |, we have
+                     P
+
+                                  X
+                 W 3 ρ(m) W 3 =         pr |W 3 ψr ⟩⟨W 3 ψr | −→ W 3 ρW 3           in trace norm.
+                                  r≤m
+
+The bounded-factor expansions in Lemma 6.1 therefore justify the eigenvector expansions in the
+required weighted trace norm as well.
+
+                                                          24
+   Subtracting (6.6) from (5.6) leaves
+
+                         (rs + 1)pr − rs pl |(d′s,j )lr |2 = (rs + 1)e′s − rs (e′s + n) = e′s − nrs ,
+                 X                            
+
+                 j,l,r
+
+where the canonical commutation relations give the additional n. This proves (6.5).
+
+6.2   Cancellation and convergence to the thermal inputs
+The number shifts in (6.1) give
+
+                                 Tr δi Ni = nri − Tr ρi Ni = −(e′i − nri ) − |µi |2 .                    (6.7)
+
+They also give
+
+               Tr δi Wi4 = Tr ρi Pi (Ni ),                                                               (6.8)
+                                                           4
+                                                               − Wi4 + ri (Ni + n) (Wi + 1)4 − Wi4 .
+                                                                                                 
+                 Pi (Ni ) = (ri + 1)Ni (Wi − 1)
+
+This polynomial has leading term −4Ni4 ; hence its supremum on Ni ∈ {0, 1, . . .} is finite. In
+particular,                             X
+                                  P :=     Tr δi Wi4 ≤ C,                                  (6.9)
+                                                           i
+with C independent of ζ and the minimizing states.
+   Independence across the input ports and µD = 0 imply
+
+                                  e′γ =       λi e′i + λD nrD ,
+                                          X                                    Xp
+                                                                        µγ =         λi µi .
+                                          i                                     i
+
+Taking account of the two branches of the replacement gives the exact centered-energy identity
+
+                                  e′0 − nr0 =            wi (e′i − nri ) + κ(1 − κ)|µγ |2 .
+                                                    X
+                                                                                                        (6.10)
+                                                     i
+
+Insert (6.5), (6.7), and (6.10) into (6.4). All centered-energy terms cancel, yielding, before discarding
+any term,
+                         0 = ∥q0 ∥2F0 ,∗ − (1 + ε)A2∗ − εM∗2 − κ(1 − κ)|µγ |2 + ζP.                 (6.11)
+Now Proposition 5.4 and (6.9) imply
+                                                       ε
+                                                  0 ≤ − (A2∗ + M∗2 ) + Cζ.                              (6.12)
+                                                       2
+Thus, as ζ ↓ 0, both input means tend to zero and both lists of input defect functionals tend to zero
+in their dual norms.
+     The uniform energy bound in Proposition 4.2 and Lemma 2.2 provide a subsequence along which
+both inputs converge in trace norm, say to ρbi . To identify these limits, fix a matrix Z supported on
+a finite block of the number basis. By Proposition 5.1 and the arithmetic bound for the logarithmic
+mean, the centered version of Z has Fi norm at most a fixed constant times ∥Z∥, uniformly in the
+minimizing state. Hence qi,j (Z) → 0 by (6.12). Replacing d′i,j by di,j changes this functional by
+(µi )j Tr ρi Z, which also tends to zero. Both d†i,j Z and Zd†i,j are bounded finite-rank operators for
+this fixed test. Trace-norm convergence therefore passes the uncentered trace identity to the limit,
+giving
+                    (ri + 1)di,j ρbi = ri ρbi di,j as number-basis matrices, for every j.        (6.13)
+
+                                                                25
+No convergence of energy or of unbounded first moments is used here.
+    For completeness, (6.13) determines the whole n-mode state. If multi-indices p, b satisfy pj > 0,
+its matrix entries obey
+                                     √                 q
+                             (ri + 1) pj (ρbi )p,b = ri bj (ρbi )p−ej ,b−ej ,
+with zero right-hand side when bj = 0. If pj > bj , iteration kills the entry; if pj < bj , self-adjointness
+does the same. Thus all off-diagonal entries vanish. Diagonal entries have ratio ri /(ri + 1) whenever
+any one coordinate is increased by one. Trace one fixes the normalization, so ρbi = τri . This
+conclusion excludes internal correlations as well as off-diagonal coherences in the limit; no product
+assumption within an input was made.
+    The raw output now converges to τr0 by continuity of the channel and Proposition 2.3; the
+replaced output has the same limit. Uniformly bounded energies give convergence of all three
+entropies by Lemma 2.2. The entropy portion of Jζ in (4.1) consequently tends to zero. Its
+relative-entropy and fourth-moment penalties are nonnegative, so
+
+                                              lim inf Jζ ≥ 0
+                                                ζ↓0
+
+along the selected subsequence. This contradicts the uniform strict negative upper bound for the
+minima. It is unnecessary to prove that either penalty tends to zero, or to send any of the other
+auxiliary parameters to zero.
+   The strict violation assumed in Section 4 is therefore impossible. Since the reduction there
+preserved every arbitrary finite-energy input pair at each fixed finite n, this proves Theorem 1.1 for
+0 < η < 1. At η = 0 or 1 the retained state is the corresponding input and the asserted inequality is
+equality.
+
+
+7    A degraded pure-loss broadcast capacity region
+Write Lξ = Eξ,0 for the pure-loss attenuator. Consider the memoryless broadcast channel with
+one input mode per use, passively split with vacuum auxiliary inputs between receivers B, C and
+an inaccessible loss output. Let ηB , ηC be the power transmissivities to the two receivers, so the
+marginal channels are LηB and LηC . We assume
+
+                                    0 ≤ ηC < ηB ,          ηB + ηC ≤ 1.
+
+For an n-use code, the messages mB ∈ {1, . . . , MB } and mC ∈ {1, . . . , MC } are independent and
+                                                                                             (n)
+uniform. The encoder may assign to each pair an arbitrary finite-energy n-mode state ρmB ,mC ,
+including states entangled across uses, subject to
+                                                                   
+                                                       n
+                                1    X                X †
+                                           Trρ(n)
+                                               mB ,mC     aj aj  ≤ nN̄ .                              (7.1)
+                              MB MC mB ,mC            j=1
+
+Thus the photon constraint is averaged over uses and the entire codebook, not imposed separately
+on each codeword. Each receiver uses an arbitrary collective measurement on its own n output
+modes to recover its intended message, with vanishing average error. The receivers do not cooperate,
+and there is no feedback.
+
+Corollary 7.1 (Degraded two-receiver pure-loss broadcast capacity). Let 0 ≤ N̄ < ∞, 0 ≤ ηC < ηB ,
+and ηB + ηC ≤ 1. The classical capacity region for the channel and coding model above, with rates
+
+
+                                                      26
+in nats per use, is the closed convex hull of the nonnegative pairs (RB , RC ) satisfying, for some
+0 ≤ β ≤ 1,
+                                    RB ≤ g(ηB β N̄ ),
+                                                                                                (7.2)
+                                    RC ≤ g(ηC N̄ ) − g(ηC β N̄ ),
+where g is the natural-log function in (1.1).
+Proof. Converse. Set λ = ηC /ηB ∈ [0, 1). Composition of pure-loss attenuators gives LηC = Lλ ◦LηB .
+This is a degrading channel for the receiver marginals, implemented with a new independent vacuum
+port; it does not assert independence of the physical B and C outputs.
+   For every finite n and every finite-energy n-mode state σ, Theorem 1.1 with an independent
+vacuum port, equivalently Corollary 1.2 at NB = 0, gives
+                                                                 S(σ)
+                                                                    
+                                 S L⊗n
+                                    λ (σ) ≥ ng λg
+                                                  −1
+                                                                             .                    (7.3)
+                                                                  n
+This supplies the finite-block vacuum-port inequality required from Strong Conjecture 2 in Guha,
+Shapiro, and Erkmen’s broadcast analysis [21, Appendix A] on all states needed here. It does not
+require σ to be a product across modes.
+   We follow the converse of Guha, Shapiro, and Erkmen [21], giving the averaging and information
+                                                                     Y be the output at receiver
+argument for the present coding model. For a fixed n-use code, let σmk
+Y ∈ {B, C} for messages m = mB , k = mC , and set
+                       1 X Y                      1 X C                       1 X      (n)
+              σkY =       σ ,           σ̄ C =        σ ,          N̄k =           Tr ρm,k N.
+                      MB m mk                    MC k k                      nMB m
+
+The codebook constraint gives MC−1      k N̄k ≤ N̄ . For every finite-energy input, a vacuum attenuator
+                                      P
+
+satisfies
+                                      Tr L⊗n
+                                                    
+                                          ξ (ρ)N = ξ Tr ρN :
+expanding each output number operator, the independent vacuum has zero number and first
+moments, so its number term and both cross terms vanish. This calculation allows arbitrary
+entanglement across input modes. Thus σkB has energy nηB N̄k , while σ̄ C has energy at most
+nηC N̄ . All conditional states have finite energy and entropy, and linearity and degradation give
+σkC = L⊗n     B
+         λ (σk ).
+    Let pB,n , pC,n be the intended-message average error probabilities, and write RY,n = n−1 log MY .
+Fano’s inequality and the Holevo bounds used in the cited converse give
+                                           1 X            H2 (pB,n )
+                      (1 − pB,n )RB,n ≤         S(σkB ) +            ,
+                                          nMC k               n
+                                          S(σ̄ C )    1 X            H2 (pC,n )
+                      (1 − pC,n )RC,n ≤            −       S(σkC ) +            ,
+                                            n        nMC k               n
+
+where H2 is the binary entropy. For the first bound, reveal the independent weak message as side
+information to the strong decoder and discard the nonnegative entropies of the individual output
+states in the conditional Holevo quantity. This only enlarges the information used for the upper
+bound; it does not change the decoder required by the model. The second bound is the Holevo
+bound for the weak message.
+    Assume N̄ > 0 for now, and put
+                                        S(σkB )               1 X
+                               uk,n =           ,    ūn =        uk,n .
+                                          n                  MC k
+
+                                                    27
+The energy–entropy bound and concavity of g, whose second derivative is −1/[r(1 + r)] for r > 0,
+imply
+                                      1 X
+                           0 ≤ ūn ≤         g(ηB N̄k ) ≤ g(ηB N̄ ).
+                                     MC k
+
+There is therefore a code-dependent βn ∈ [0, 1] with ūn = g(ηB βn N̄ ). Set ϕλ (u) = g(λg −1 (u)). This
+function is convex. Indeed, for 0 < λ < 1 and r > 0, differentiation using g and h = g ′ gives
+                                                                                       
+                                         λ (1 + λr)h(λr) − (1 + r)h(r)
+                           ϕ′′λ (g(r)) =                         3
+                                                                                            ≥ 0,
+                                                r(1 + r)(1 + λr)h(r)
+
+because t 7→ (1 + t)h(t) has derivative h(t) − 1/t < 0. Continuity includes u = 0, and ϕ0 = 0.
+Applying (7.3) to each conditional state and then Jensen’s inequality gives
+                      1 X             1 X
+                           S(σkC ) ≥      ϕλ (uk,n ) ≥ ϕλ (ūn ) = g(ηC βn N̄ ).
+                     nMC k           MC k
+
+Also S(σ̄ C ) ≤ ng(ηC N̄ ). Substituting these bounds into the information inequalities yields
+
+                                                                       H2 (pB,n )
+                        (1 − pB,n )RB,n ≤ g(ηB βn N̄ ) +                          ,
+                                                                           n
+                                                                                      H2 (pC,n )
+                         (1 − pC,n )RC,n ≤ g(ηC N̄ ) − g(ηC βn N̄ ) +                            .
+                                                                                          n
+For any achieved rate pair, take a subsequence on which βn converges in [0, 1]. Continuity of g, the
+rate lower limits, and vanishing decoding errors give the outer bound in (7.2) with the limiting β.
+    Achievability. We use the coherent Gaussian superposition ensemble of Guha, Shapiro, and
+Erkmen [21, Section IV]. To justify its bosonic limit and the photon constraint, we start with the
+finite-alphabet superposition construction in the proof of Yard, Hayden, and Devetak’s Theorem 1
+[33, Section II.A], expressed here in nats. For a finite classical input alphabet, finite-dimensional
+quantum outputs, and a finite law p(t, x), that construction sends a common message to both
+receivers and a private message to B at the strict rates
+                              X
+                                  p(t)χ p(x | t), ωxB ,            RC < min χ p(t), ωtY ,
+                                                                                                    
+                     RB <
+                                                                               Y =B,C
+                              t
+
+where ωtY =               Y
+               x p(x | t)ωx
+              P
+                              and
+                                                                  
+                                                      X                  X
+                                  χ(pj , ωj ) = S        p j ωj  −           pj S(ωj ).
+                                                      j                    j
+
+We use the common message as the message for C; receiver B may discard its decoded common
+label. Degradation and data processing make the minimum in the common-message bound equal to
+the C quantity.
+    Assume first that N̄ > 0 and ηC > 0. Fix 0 < N ′ < N̄ and 0 < β < 1. Let T, Z be independent
+centered circular complex Gaussian variables of variances (1 − β)N ′ and βN ′ , respectively. Partition
+the disk {|z| ≤ ℓ} into finitely many sets of diameter at most 1/ℓ, with its complement as one further
+cell, and let Tℓ , Zℓ be the corresponding conditional expectations of T, Z. For either X = T, Z and
+its corresponding Xℓ ,                               h            i
+                               E|X − Xℓ |2 ≤ ℓ−2 + E |X|2 1{|X|>ℓ} −→ 0.
+
+
+                                                              28
+They remain centered and independent, and conditional expectation contracts second moments.
+Hence
+                            E|Tℓ + Zℓ |2 = E|Tℓ |2 + E|Zℓ |2 ≤ N ′ .
+For a symbol x = (t, z) of their finite product alphabet, transmit the coherent state |t + z⟩. The
+finite law in the coding construction is p(t, (t′ , z)) = 1{t=t′ } pTℓ (t)pZℓ (z). At receiver transmissivity
+ξ ∈ {ηB , ηC }, put
+                            p           p                         p                 p
+                  θℓ,ξ = E| ξZℓ ⟩⟨ ξZℓ |,            ωℓ,ξ = E| ξ(Tℓ + Zℓ )⟩⟨ ξ(Tℓ + Zℓ )|.
+
+Conditioned on Tℓ = t, the receiver state is a unitary displacement of θℓ,ξ , and the output for
+each symbol is pure. The private-message Holevo quantity at B and the common-message Holevo
+quantity at C are therefore
+                               S(θℓ,ηB ),    S(ωℓ,ηC ) − S(θℓ,ηC ).                        (7.4)
+The coherent-projector identity
+                                                         q
+                              |u⟩⟨u| − |v⟩⟨v| 1 = 2 1 − e−|u−v|2 ≤ 2|u − v|
+
+and Cauchy–Schwarz show that, in trace norm, θℓ,ξ tends to the one-mode thermal state of mean
+photon number ξβN ′ , and ωℓ,ξ to the one-mode thermal state of mean photon number ξN ′ . Their
+mean photon numbers are bounded by ξβN ′ and ξN ′ , respectively. Lemma 2.2 thus gives convergence
+of the quantities in (7.4) to
+
+                                   g(ηB βN ′ ),         g(ηC N ′ ) − g(ηC βN ′ ).
+
+For each fixed ℓ, the finitely many coherent receiver vectors span finite-dimensional spaces. The
+physical channel on these symbols is therefore exactly a finite classical-input channel with such
+output spaces. Decoding measurements on those spaces extend to Fock space without changing
+their action on the transmitted states.
+    It remains to enforce (7.1) on a deterministic code. For the fixed finite alphabet let
+
+                                                                          p(t)ct ≤ N ′ ,
+                                   X                                  X
+      c(x) = |t + z|2 ,     ct =        p(x | t)c(x),          c̄ =                        cmax = max c(x).
+                                                                                                   x
+                                    x                                 t
+
+Fix a target rate pair strictly below the two finite Holevo bounds. Choose the type tolerance
+δ > 0 small enough for this rate backoff and so that c̄ + δcmax ≤ N ′′ < N̄ for some N ′′ . The cited
+superposition construction supplies a sequence of fixed outer codes whose words have a common
+type Pn at block length n, with ∥Pn − pT ∥1 ≤ δ, where pT (t) = p(t). The random inner letters in
+the corresponding blocks have law p(x | t), and the complete words are obtained by permutations.
+With each outer code fixed, all expectations and probabilities below are over these inner codebooks.
+Thus the photon cost Cn per use, averaged over the entire random codebook, satisfies
+
+                                                  Pn (t)ct ≤ c̄ + δcmax ≤ N ′′ .
+                                            X
+                                   ECn =
+                                             t
+
+Before its final message expurgation, the cited construction also gives a vanishing expected bound
+on its average joint decoding error over the same inner codebooks. Let En be the sum of the two
+intended-message average errors, with B’s decoded common label discarded. Each is bounded by
+that joint error, so, after absorbing a factor of two, EEn ≤ en for a positive sequence en → 0. We
+
+
+
+                                                          29
+use this stage because its average-error estimate suffices for the stated criterion and its full product
+message set is the one over which Cn was computed. Markov’s inequality gives
+                                                    √            N ′′ √
+                          Pr{Cn > N̄ } + Pr{En >        en } ≤       + en < 1
+                                                                 N̄
+for all sufficiently large n. Hence a deterministic code satisfies the entire-codebook photon constraint
+and has vanishing average error. It retains the full uniform independent product message set. Each
+codeword is a product of finitely many coherent symbols and has finite energy, and En controls each
+receiver’s intended-message error.
+    For 0 < β < 1, fix a rate pair strictly below the corresponding Gaussian pair in (7.2). First
+choose N ′ < N̄ close enough that its Gaussian pair still exceeds the target, and then choose a finite
+ℓ whose Holevo pair does so. For this fixed alphabet choose the type tolerance and cost slack as
+above, and only then let the block length grow. Taking closure reaches the boundary and includes
+β = 0, 1, and time sharing among codes satisfying the same photon bound gives the closed convex
+hull.
+    If N̄ = 0, every codeword is the vacuum and both rates are zero. If ηC = 0, receiver C always
+receives the vacuum and the region reduces to RC = 0, RB ≤ g(ηB N̄ ), the single-receiver pure-loss
+capacity [18]. Both endpoints are included in (7.2).
+
+    Corollary 7.1 concerns only the stated two-receiver pure-loss classical coding model. It gives no
+noisy-broadcast, amplifier, wiretap, quantum-capacity, feedback, or receiver-cooperation statement.
+
+
+References
+ [1] W. N. Anderson, Jr., and R. J. Duffin, Series and parallel addition of matrices, Journal of Math-
+     ematical Analysis and Applications 26 (1969), 576–594. doi:10.1016/0022-247X(69)90200-5.
+ [2] S. Beigi and H. Mehrabi, Monotonicity of the von Neumann entropy under quantum convolution,
+     Communications in Mathematical Physics 407 (2026), article 199. doi:10.1007/s00220-026-
+     05703-4; arXiv:2504.02206v3.
+ [3] S. Beigi and S. Rahimi-Keshari, A meta logarithmic-Sobolev inequality for phase-covariant
+     Gaussian channels, Annales Henri Poincaré 26 (2025), 2737–2778. doi:10.1007/s00023-024-
+     01487-2; arXiv:2311.09572v2.
+ [4] N. M. Blachman, The convolution inequality for entropy powers, IEEE Transactions on Infor-
+     mation Theory 11 (1965), 267–271. doi:10.1109/TIT.1965.1053768.
+ [5] E. A. Carlen and J. Maas, Gradient flow and entropy inequalities for quantum Markov
+     semigroups with detailed balance, Journal of Functional Analysis 273 (2017), 1810–1869.
+     doi:10.1016/j.jfa.2017.05.003; arXiv:1609.01254.
+ [6] S. Das, N. Sharma, and S. Muthukrishnan, On some special cases of the entropy photon-number
+     inequality, arXiv:1107.2365 (2011).
+ [7] G. De Palma, Gaussian optimizers and other topics in quantum information, PhD thesis,
+     defended 2016; arXiv:1710.09395v1 (2017).
+ [8] G. De Palma, New lower bounds to the output entropy of multi-mode quantum Gaussian channels,
+     IEEE Transactions on Information Theory 65 (2019), 5959–5968. doi:10.1109/TIT.2019.2914434;
+     arXiv:1805.12469v3.
+
+                                                  30
+ [9] G. De Palma and S. Huber, The conditional entropy power inequality for quantum additive
+     noise channels, Journal of Mathematical Physics 59 (2018), 122201. doi:10.1063/1.5027495;
+     arXiv:1803.00470.
+
+[10] G. De Palma, A. Mari, and V. Giovannetti, A generalization of the entropy power inequality to
+     bosonic quantum systems, Nature Photonics 8 (2014), 958–964. doi:10.1038/nphoton.2014.252;
+     arXiv:1402.0404v2.
+
+[11] G. De Palma, A. Mari, S. Lloyd, and V. Giovannetti, Multimode quantum entropy power inequal-
+     ity, Physical Review A 91 (2015), 032320. doi:10.1103/PhysRevA.91.032320; arXiv:1408.6410v2.
+
+[12] G. De Palma and D. Trevisan, The conditional entropy power inequality for bosonic quantum
+     systems, Communications in Mathematical Physics 360 (2018), 639–662. doi:10.1007/s00220-
+     017-3082-8; arXiv:1706.00440v2.
+
+[13] G. De Palma, D. Trevisan, and V. Giovannetti, Passive states optimize the output of bosonic
+     Gaussian quantum channels, IEEE Transactions on Information Theory 62 (2016), 2895–2906.
+     doi:10.1109/TIT.2016.2547426.
+
+[14] G. De Palma, D. Trevisan, and V. Giovannetti, Gaussian states minimize the output entropy
+     of the one-mode quantum attenuator, IEEE Transactions on Information Theory 63 (2017),
+     728–737. doi:10.1109/TIT.2016.2621748; arXiv:1605.00441.
+
+[15] G. De Palma, D. Trevisan, and V. Giovannetti, Gaussian states minimize the output en-
+     tropy of one-mode quantum Gaussian channels, Physical Review Letters 118 (2017), 160503.
+     doi:10.1103/PhysRevLett.118.160503; arXiv:1610.09970v2.
+
+[16] G. De Palma, D. Trevisan, and V. Giovannetti, Multimode Gaussian optimizers for the Wehrl
+     entropy and quantum Gaussian channels, arXiv:1705.00499 (2017).
+
+[17] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, and J. H. Shapiro, Minimum out-
+     put entropy of bosonic channels: a conjecture, Physical Review A 70 (2004), 032315.
+     doi:10.1103/PhysRevA.70.032315.
+
+[18] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, and H. P. Yuen, Classical
+     capacity of the lossy bosonic channel: the exact solution, Physical Review Letters 92 (2004),
+     027902. doi:10.1103/PhysRevLett.92.027902.
+
+[19] V. Giovannetti, A. S. Holevo, and R. García-Patrón, A solution of Gaussian optimizer conjecture
+     for quantum channels, Communications in Mathematical Physics 334 (2015), 1553–1571.
+     doi:10.1007/s00220-014-2150-6; arXiv:1312.2251v2.
+
+[20] S. Guha, B. I. Erkmen, and J. H. Shapiro, The entropy photon-number inequality and
+     its consequences, in 2008 Information Theory and Applications Workshop (2008), 128–130.
+     doi:10.1109/ITA.2008.4601037; arXiv:0710.5666v2 (2007).
+
+[21] S. Guha, J. H. Shapiro, and B. I. Erkmen, Classical capacity of bosonic broadcast commu-
+     nication and a minimum output entropy conjecture, Physical Review A 76 (2007), 032303.
+     doi:10.1103/PhysRevA.76.032303.
+
+[22] G. Herglotz, Über Potenzreihen mit positivem, reellen Teil im Einheitskreis, Berichte über
+     die Verhandlungen der Königlich-Sächsischen Gesellschaft der Wissenschaften zu Leipzig,
+     Mathematisch-Physische Klasse 63 (1911), 501–511.
+
+                                                31
+[23] S. Huber, R. König, and A. Vershynina, Geometric inequalities from phase space translations,
+     Journal of Mathematical Physics 58 (2017), 012206. doi:10.1063/1.4974224; arXiv:1606.08603.
+
+[24] R. König and G. Smith, The entropy power inequality for quantum systems, IEEE
+     Transactions on Information Theory 60 (2014), 1536–1548. doi:10.1109/TIT.2014.2298436;
+     arXiv:1205.3409v2.
+
+[25] F. Kubo and T. Ando, Means of positive linear operators, Mathematische Annalen 246 (1980),
+     205–224. doi:10.1007/BF01371042.
+
+[26] A. Lesniewski and M. B. Ruskai, Monotone Riemannian metrics and relative entropy on
+     noncommutative probability spaces, Journal of Mathematical Physics 40 (1999), 5702–5724.
+     doi:10.1063/1.533053; arXiv:math-ph/9808016.
+
+[27] D. Petz and G. Toth, The Bogoliubov inner product in quantum statistics, Letters in Mathe-
+     matical Physics 27 (1993), 205–216. doi:10.1007/BF00739578.
+
+[28] C. E. Shannon, A mathematical theory of communication, Bell System Technical Journal 27
+     (1948), 379–423, 623–656. doi:10.1002/j.1538-7305.1948.tb00917.x.
+
+[29] M. E. Shirokov, Entropy characteristics of subsets of states. I, Izvestiya: Mathematics 70
+     (2006), 1265–1292. doi:10.1070/IM2006v070n06ABEH002346; arXiv:quant-ph/0510073.
+
+[30] A. J. Stam, Some inequalities satisfied by the quantities of information of Fisher and Shannon,
+     Information and Control 2 (1959), 101–112. doi:10.1016/S0019-9958(59)90348-1.
+
+[31] H. Umegaki, Conditional expectation in an operator algebra, IV (Entropy and information),
+     Kodai Mathematical Seminar Reports 14 (1962), 59–85. doi:10.2996/kmj/1138844604.
+
+[32] A. Winter, Tight uniform continuity bounds for quantum entropies: conditional entropy, relative
+     entropy distance and energy constraints, Communications in Mathematical Physics 347 (2016),
+     291–313. doi:10.1007/s00220-016-2609-8; arXiv:1507.07775v6.
+
+[33] J. Yard, P. Hayden, and I. Devetak, Quantum broadcast channels, IEEE Transactions on Informa-
+     tion Theory 57 (2011), 7147–7162. doi:10.1109/TIT.2011.2165811; arXiv:quant-ph/0603098v2.
+
+
+
+
+                                                32
+

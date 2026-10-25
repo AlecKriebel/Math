@@ -1,0 +1,59 @@
+{
+  "utc": "2026-10-25T03:56:53.479328+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "numpy": "2.3.4",
+  "sympy": "1.14.0",
+  "method": "Full static inspection before execution; fresh analytic derivation and independent controls completed first. Only owned byte-identical copies executed; no wrapper or prior expected/verdict result was read.",
+  "replays": [
+    {
+      "script": "ball_exact_controls.py",
+      "sha256": "9d7430a0e2fcc5a41572248a60fb43ea18a36a76906c404109ac62ecfa19a5bd",
+      "copy_byte_identical": true,
+      "start_utc": "2026-10-25T03:56:34.721563+00:00",
+      "end_utc": "2026-10-25T03:56:34.938236+00:00",
+      "exit_code": 0,
+      "stdout_path": "cache/quarantined_replay/ball_exact_controls/stdout.txt",
+      "stderr_path": "cache/quarantined_replay/ball_exact_controls/stderr.txt",
+      "exact_count": 1244,
+      "all_pass": true,
+      "negative_trace_coefficient": "-7831/15000"
+    },
+    {
+      "script": "kernel_controls.py",
+      "sha256": "8a832f41f441648499b1a38b7691679d4d36a0bd16fc2df636518c652bfdedf1",
+      "copy_byte_identical": true,
+      "start_utc": "2026-10-25T03:56:34.939980+00:00",
+      "end_utc": "2026-10-25T03:56:53.055800+00:00",
+      "exit_code": 0,
+      "stdout_path": "cache/quarantined_replay/kernel_controls/stdout.txt",
+      "stderr_path": "cache/quarantined_replay/kernel_controls/stderr.txt",
+      "exact": {
+        "radial_derivative_identity": true,
+        "remainder_I_series": "-k**2/(8*pi*r) - I*k**3/(6*pi) + 3*k**4*r/(32*pi) + O(r**2)",
+        "remainder_eeT_series": "-k**2/(8*pi*r) - k**4*r/(32*pi) + O(r**2)",
+        "source_nu3": "4*pi/3",
+        "exact_shells_checked": 427,
+        "squared_radius_max": 512,
+        "shell_numerator_sums_zero": true,
+        "exact_translated_h_scaling": true
+      },
+      "illustration_rows": {
+        "static": 4,
+        "dynamic": 12
+      }
+    },
+    {
+      "script": "spectral_illustration.py",
+      "sha256": "a4401ff94ce1c875c0665388eaad946e02954fa8779c6667271b0c66355b8a49",
+      "copy_byte_identical": true,
+      "start_utc": "2026-10-25T03:56:53.056370+00:00",
+      "end_utc": "2026-10-25T03:56:53.303606+00:00",
+      "exit_code": 0,
+      "stdout_path": "cache/quarantined_replay/spectral_illustration/stdout.txt",
+      "stderr_path": "cache/quarantined_replay/spectral_illustration/stderr.txt",
+      "all_pass": true,
+      "illustrative_rows": 5
+    }
+  ],
+  "limitation": "Finite exact identities and floating diagnostics support, but do not replace, the universal written proof."
+}

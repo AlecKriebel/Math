@@ -1,0 +1,399 @@
+Quantum Inf Process (2012) 11:1503–1509
+DOI 10.1007/s11128-012-0451-2
+
+ERRATUM
+
+
+
+Erratum to: The quantum dynamic capacity formula
+of a quantum channel; Public and private resource
+trade-offs for a quantum channel
+
+Mark M. Wilde · Min-Hsiu Hsieh
+
+
+
+
+Published online: 7 August 2012
+© Springer Science+Business Media, LLC 2012
+
+
+
+Erratum to: Quantum Information Processing
+            DOI 10.1007/s11128-011-0310-6;
+            DOI 10.1007/s11128-011-0317-z
+
+1 Introduction
+
+In this erratum, we revise our Theorem 2 in Ref. [5] and Theorem 2 in Ref. [4]. We had
+previously claimed in these two theorems that the rate region for classical communica-
+tion, quantum communication, and entanglement consumption, and the rate region for
+public communication, private communication, and secret key consumption, respec-
+tively, could be computed as a convex optimization program. These claims are not
+
+
+
+The online version of the original article can be found under
+doi:10.1007/s11128-011-0310-6; 10.1007/s11128-011-0317-z.
+
+M. M. Wilde (B)
+School of Computer Science, McGill University, Montreal, QC H3A 2A7, Canada
+e-mail: mark.wilde@mcgill.ca
+
+M.-H. Hsieh
+ERATO-SORST Quantum Computation and Information Project, Japan Science and Technology
+Agency, 5-28-3, Hongo, Bunkyo-ku, Tokyo, Japan
+e-mail: minhsiuh@gmail.com
+
+Present Address:
+M.-H. Hsieh
+Statistical Laboratory, University of Cambridge, Wilberforce Road, Cambridge CB3 0WB, UK
+M.-H. Hsieh
+Centre for Quantum Computation and Intelligent Systems (QCIS), Faculty of Engineering
+and Information Technology (FEIT), University of Technology, Sydney (UTS),
+Broadway, P.O. Box 127, Sydney, NSW 2007, Australia
+
+
+                                                                                        123
+1504                                                                    M. M. Wilde, M.-H. Hsieh
+
+
+correct, simply because the task of computing the Holevo information (a special case
+of both triple trade-off rate regions) cannot be done with a convex optimization pro-
+gram, as was known in prior work (see Ref. [3], for example). We also prove that the
+task of computing these rate regions for general channels is NP-complete, by exploit-
+ing a simple reduction from the task of computing a channel’s Holevo information
+to the task of computing the full triple trade-off region and the fact that computing a
+channel’s Holevo information is NP-complete [1].
+    We structure this erratum as follows. We first provide proofs that the Holevo infor-
+mation cannot be computed as a simple convex optimization program. We do this by
+showing that the Holevo information is concave in the input distribution for a fixed set
+of signaling states (Lemma 1), while it is convex in the signaling states if the input dis-
+tribution is fixed (Lemma 2). Thus, the computation of the Holevo information cannot
+be done with a convex optimization program, and in general, for this function, a local
+maximum will not be a global one. Although these facts are already known, we did
+not find this explicitly worked out in the literature and thought it would be useful to do
+so here. We then provide revisions of Theorem 2 in Ref. [5] and Theorem 2 in Ref. [4]
+that demonstrate why the quantum dynamic capacity formula and the private dynamic
+capacity formula, respectively, are still relevant in simplifying the computation of the
+rate regions’ boundaries. Specifically, we show that if these formulas single-letter-
+ize, then it is only necessary to compute the regions with respect to a single channel
+use, rather than with a regularization (an infinite number of them). Finally, we show
+that the tasks of computing the boundaries of both triple trade-off rate regions are
+NP-complete.
+
+
+2 Holevo information is concave in the input distribution and convex
+in the signaling states
+
+Lemma 1 The Holevo information I (X ; B) is concave in the input distribution when
+the signal states are fixed, in the sense that
+
+                  λI (X ; B)σ0 + (1 − λ) I (X ; B)σ1 ≤ I (X ; B)σ ,                         (1)
+
+where σ0X B and σ1X B are of the form
+                                    
+                          σ0X B ≡       p X (x) |x x| X ⊗ N (σx ) ,                       (2)
+                                    x
+                                    
+                          σ1X B ≡       q X (x) |x x| X ⊗ N (σx ) ,                       (3)
+                                    x
+
+
+and σ X B is a mixture of the states σ0X B and σ1X B of the form:
+                     
+            σ XB ≡         [λp X (x) + (1 − λ) q X (x)] |x x| X ⊗ N (σx ) ,               (4)
+                      x
+
+where 0 ≤ λ ≤ 1.
+
+
+123
+Erratum to: The quantum dynamic ...                                                 1505
+
+
+Proof Let σ XU B be the state
+                                                                                    
+ σUXB ≡         p X (x) |x x| X ⊗ λ |0 0|U + q X (x) |x x| X ⊗ (1 − λ) |1 1|U
+              x
+             ⊗N (σx ) .                                                              (5)
+                      
+Observe that TrU σ XU B = σ X B . Then, the statement of concavity is equivalent to
+
+                                  I (X ; B|U )σ ≤ I (X ; B)σ .                       (6)
+
+We can rewrite this as
+
+                   H (B|U )σ − H (B|U X )σ ≤ H (B)σ − H (B|X )σ .                    (7)
+
+Observe that
+
+                                  H (B|U X )σ = H (B|X )σ ,                          (8)
+
+that is, one can calculate that both of these are equal to
+                       
+                            [λp X (x) + (1 − λ) q X (x)] H (N (σx )) .               (9)
+                        x
+
+The statement of concavity then becomes
+
+                                      H (B|U )σ ≤ H (B)σ ,                          (10)
+
+which follows from concavity of quantum entropy.                                          
+                                                                                          
+Lemma 2 The Holevo information I (X ; B) is convex in the signal states when the
+input distribution is fixed, in the sense that
+
+                    λI (X ; B)σ0 + (1 − λ) I (X ; B)σ1 ≥ I (X ; B)σ ,               (11)
+
+where σ0X B and σ1X B are of the form
+                                      
+                            σ0X B ≡        p X (x) |x x| X ⊗ N (σx ) ,            (12)
+                                       x
+                                      
+                            σ1X B ≡        p X (x) |x x| X ⊗ N (ωx ) ,            (13)
+                                       x
+
+and σ X B is a mixture of the states σ0X B and σ1X B of the form:
+                            
+                  σ XB ≡         p X (x) |x x| X ⊗ N (λσx + (1 − λ) ωx ) ,        (14)
+                             x
+
+where 0 ≤ λ ≤ 1.
+
+                                                                               123
+1506                                                                  M. M. Wilde, M.-H. Hsieh
+
+
+Proof Let σ XU B be the state
+                                                                                 
+σ XU B ≡        p X (x) |x x| X ⊗ λ |0 0|U ⊗ N (σx ) + (1−λ) |1 1|U ⊗ N (ωx ) .
+           x
+                                                                                          (15)
+                      
+Observe that TrU σ XU B = σ X B . Then, convexity in the input states is equivalent
+to the statement
+
+                                 I (X ; B|U )σ ≥ I (X ; B)σ .                            (16)
+
+Consider that
+
+                       I (X ; B|U )σ = I (X ; BU )σ − I (X ; U )σ ,                      (17)
+
+by the chain rule for the quantum mutual information. Since the input distribution
+p X (x) is fixed, there are no correlations between X and the convexity variable U , so
+that I (X ; U )σ = 0. Thus, the above inequality is equivalent to
+
+                                 I (X ; BU )σ ≥ I (X ; B)σ ,                             (18)
+
+which follows from the quantum data processing inequality.                                  
+                                                                                            
+
+    In the above two theorems, we have shown that the Holevo information is either
+concave or convex depending on whether the signal states or the input distribution
+is fixed, respectively. Thus, the computation of the Holevo information of a general
+quantum channel becomes difficult as the input dimension of the channel grows larger,
+since a local maximum of the Holevo information is not necessarily a global maximum.
+
+
+3 Revision of Theorem 2 of Ref. [5] and Theorem 2 of Ref. [4]
+
+Recall that the quantum dynamic capacity formula is defined as follows:
+Definition 1 (Quantum Dynamic Capacity Formula) The quantum dynamic capacity
+formula of a quantum channel N is as follows:
+
+  Dλ,μ (N ) ≡ max I (AX ; B)σ + λI (AB X )σ + μ (I (X ; B)σ + I (AB X )σ ) ,
+                  σ
+                                                                                         (19)
+
+where σ is a state of the form
+                                 
+                      σ X AB ≡       p X (x) |x x| X ⊗ N A →B (φxA A ),                (20)
+                                 x
+
+λ, μ ≥ 0, and these parameters λ and μ play the role of Lagrange multipliers.
+
+
+123
+Erratum to: The quantum dynamic ...                                                         1507
+
+
+Theorem 1 Single-letterization of the quantum dynamic capacity formula implies
+that the computation of the Pareto optimal trade-off surface of the quantum dynamic
+capacity region requires an optimization over a single channel use.
+Proof We employ ideas from optimization theory for the proof (see Ref. [2]). We
+would like to characterize all the points in the capacity region that are Pareto optimal.
+Such a task is standard vector optimization in the theory of Pareto trade-off analysis
+(see Section 4.7 of Ref. [2]). We can phrase the optimization task as the following
+scalarization of the vector optimization task:
+
+                                   max           wC C + w Q Q + w E E                       (21)
+                              C,Q,E, p(x),φx
+
+subject to
+
+                               C + 2Q ≤ I (AX ; B n )σ ,                                    (22)
+                               Q + E ≤ I (AB X )σ ,   n
+                                                                                            (23)
+                           C + Q + E ≤ I (X ; B n )σ + I (AB n X )σ ,                      (24)
+
+where the maximization is over all C, Q, and E and over probability distributions
+                                   n
+p X (x) and bipartite states φxA A . The geometric interpretation of the scalarization
+task is that we are trying to find a supporting
+                                                plane of the dynamic capacity region
+where the weight vector wC , w Q , w E is the normal vector of the plane and the
+value of its inner product with (C, Q, E) characterizes the offset of the plane. The
+Lagrangian of the above optimization problem is
+                                      n
+    L C, Q, E, p X (x) , φxA A , λ1 , λ2 , λ3 ≡ wC C + w Q Q + w E E
+                                                                         
+                                                +λ1 I AX ; B n σ − C + 2Q
+                                                                       
+                                                +λ2 I AB n X σ − Q + E
+                                                                        
+                                                +λ3 I X ; B n σ + I AB n X σ
+                                                             
+                                                − C+Q+E ,                      (25)
+
+and the Lagrange dual function g [2] is
+                                                                           n
+     g (λ1 , λ2 , λ3 ) ≡           sup           L C, Q, E, p X (x) , φxA A , λ1 , λ2 , λ3 , (26)
+                                             n
+                           C,Q,E, p(x),φxA A
+
+where λ1 , λ2 , λ3 ≥ 0. The optimization task simplifies if the Lagrange dual function
+does. Thus, we rewrite the Lagrange dual function as follows:
+                                                                                
+g (λ1 , λ2 , λ3 ) =          sup              wC C + w Q Q + w E E + λ1 I AX ; B n σ
+                                          n
+                      C,Q,E, p(x),φxA A
+                                                     
+                      − C + 2Q + λ2 I AB n X σ − Q + E
+                                                          
+                      +λ3 I X ; B n σ + I AB n X σ − C + Q + E                             (27)
+
+                                                                                      123
+1508                                                                 M. M. Wilde, M.-H. Hsieh
+
+                                                                                 
+               =             sup           (wC − λ1 − λ3 ) C + w Q − 2λ1 − λ2 − λ3 Q
+                                       n
+                   C,Q,E, p(x),φxA A
+                                                      
+                   + (w E − λ2 − λ3 ) E + λ1 I AX ; B n σ
+
+                  λ2             λ3                       
+                   + I AB n X σ +     I X ; B n σ + I AB n X σ                        (28)
+                  λ1               λ1
+                                                             
+               = sup (wC − λ1 − λ3 ) C + w Q − 2λ1 − λ2 − λ3 Q
+                   C,Q,E
+
+                                                                       λ2       
+                   +(w E −λ2 −λ3 ) E +λ1             max n I AX ; B n σ + I AB n X σ
+                                                   p(x),φxA A            λ1
+                       λ3                      
+                   +       I X ; B n σ + I AB n X σ .                                  (29)
+                       λ1
+
+The first equality follows by definition. The second equality follows from some alge-
+bra, and the last follows because the Lagrange dual function factors into two separate
+optimization tasks: one over C, Q, and E and another that is equivalent to the quantum
+dynamic capacity formula with λ = λ2 /λ1 and μ = λ3 /λ1 . Thus, the computation
+of the Pareto optimal trade-off surface requires just a single use of the channel if the
+quantum dynamic capacity formula in (19) single-letterizes.                            
+                                                                                       
+
+  Similarly, the private dynamic capacity formula is defined as follows:
+
+Definition 2 (Private Dynamic Capacity Formula) The private dynamic capacity for-
+mula of a quantum channel N is as follows:
+                                                                
+Pλ,μ (N ) ≡ max I (Y X ; B)σ + λ I (Y ; B|X )σ − I (Y ; E|X )σ + μ I (Y X ; B)σ
+             σ
+                           
+            −I (Y ; E|X )σ ,                                                 (30)
+
+where λ, μ ≥ 0, σ X Y B E is a state of the following form:
+
+                       
+                                                                  A →B E
+         σ XY BE ≡           p X,Y (x, y) |x x| X ⊗ |y y|Y ⊗ UN      (ρx,y
+                                                                           A
+                                                                               ),       (31)
+                       x,y
+
+
+ A →B E is an isometric extension of the channel N , and the states ρ A are mixed.
+UN                                                                   x,y
+
+  We obtain the following revision of Theorem 2 of Ref. [4] in a similar way:
+
+Theorem 2 Single-letterization of the private dynamic capacity formula implies that
+the computation of the Pareto optimal trade-off surface of the private dynamic capacity
+region requires an optimization over a single channel use.
+
+Proof The proof exploits the same techniques as the proof of Theorem 1 above.              
+                                                                                           
+
+
+123
+Erratum to: The quantum dynamic ...                                                                 1509
+
+
+4 Computing the trade-off region is NP-complete
+
+We finally prove that the task of computing the boundary of the trade-off regions, even
+in the case where the region single-letterizes, is an NP-complete problem. We do so
+by appealing to the results of Beigi and Shor [1].
+
+Theorem 3 Suppose N is a quantum channel that acts on a d-dimensional Hilbert
+space and is specified by poly(d) number of bits. Let ∂CCQE (N ) denote the boundary of
+the single-letter quantum dynamic capacity region given by (9–11) in Theorem 1 of Ref.
+[5]. Then deciding whether poly(d) number of rate triples (C, Q, E) (some of which
+are on the C, Q, or E axes) all lie inside the boundary ∂CCQE (N ) is NP-complete.
+
+Proof We prove this theorem by showing that this decision problem is in NP and is
+“harder” than the problem of computing the Holevo formula for the quantum channel
+N , which has already been shown to be NP-complete [1].
+   First, we can easily prove that the decision problem is in NP. If N is a quantum
+channel and all of the rate triples (C, Q, E) lie inside the boundary ∂CCQE (N ), then
+for each rate triple, there is an ensemble { p X (x), ρx }x∈X such that |X | ≤ poly(d)
+(a simple application of Caratheodory’s theorem) and such that the rate triple lies
+inside the region given by (9–11) of Theorem 1 of Ref. [5]. Therefore given these
+ensembles corresponding to the rate triples, the verifier can check in polynomial time
+whether the rate triples lie inside the region.
+   To show that this decision problem is NP-hard, there is a simple reduction from
+the task of computing the Holevo formula to the task of computing the full region. In
+particular, given a method for deciding whether a polynomial number of rate triples
+are inside the region, one could use this to decide whether the Holevo formula is larger
+than some constant. Thus, the above decision problem is NP-complete.                  
+                                                                                      
+
+Remark 1 A similar decision problem for the single-letter private dynamic capacity
+region is NP-complete. This follows by the same proof because the Holevo formula
+is a special rate triple in the single-letter private dynamic capacity region.
+
+Acknowledgements We are grateful to Graeme Smith for pointing out Ref. [1] to us and noting the
+conflict between our previous claims and the results in Ref. [1].
+
+
+References
+
+1. Beigi, S., Shor, P.: On the complexity of computing zero-error and Holevo capacity of quantum channels.
+   September 2007. arXiv:0709.2090.
+2. Boyd, S., Vandenberghe, L.: Convex Optimization. Cambridge University Press, Cambridge (2004)
+3. Hayashi, M., Imai, H., Matsumoto, K., Ruskai, M.B., Shimono, T.: Qubit channels which require four
+   inputs to achieve capacity: implications for additivity conjectures. Quant. Inform. Comput. 5, 13–31
+   (2005). arXiv:quant-ph/0403176
+4. Wilde, M.M., Hsieh, M.-H.: Public and private resource trade-offs for a quantum channel. Quant. Inform.
+   Process. May 2010. arXiv:1005.3818 (accepted)
+5. Wilde, M.M., Hsieh, M.-H.: The quantum dynamic capacity formula of a quantum channel. Quant.
+   Inform. Process. April 2010. arXiv:1004.0458 (accepted)
+
+
+
+
+                                                                                             123
+

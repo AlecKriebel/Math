@@ -1,0 +1,1246 @@
+                                                   Public and private communication with a quantum channel and a secret key
+
+                                                                                                     Min-Hsiu Hsieh∗
+                                                                           ERATO-SORST Quantum Computation and Information Project,
+                                                                     Japan Science and Technology Agency 5-28-3, Hongo, Bunkyo-ku, Tokyo, Japan
+
+                                                                                                     Mark M. Wilde†
+                                                                      Electronic Systems Division, Science Applications International Corporation,
+                                                                               4001 North Fairfax Drive, Arlington, Virginia, USA 22203
+                                                                                                (Dated: April 22, 2022)
+                                                              We consider using a secret key and a noisy quantum channel to generate noiseless public commu-
+                                                            nication and noiseless private communication. The optimal protocol for this setting is the publicly-
+                                                            enhanced private father protocol. This protocol exploits random coding techniques and “piggy-
+                                                            backing” of public information along with secret-key-assisted private codes. The publicly-enhanced
+
+
+
+
+arXiv:0903.3920v1 [quant-ph] 23 Mar 2009
+                                                            private father protocol is a generalization of the secret-key-assisted protocol of Hsieh, Luo, and Brun
+                                                            and a generelization of a protocol for simultaneous communication of public and private information
+                                                            suggested by Devetak and Shor.
+
+                                                            PACS numbers: 03.67.Hk, 03.67.Dd
+                                                            Keywords: public communication, private communication, secret key, quantum Shannon theory
+
+
+                                                                I.   INTRODUCTION                                In this setting, the cryptographic setting, we consider
+                                                                                                                 Eve as a potential eavesdropper. She is no longer the
+                                              The qualitative connection between secrecy of infor-               “rest of the universe,” because some party now holds the
+                                                                                                                                                       AB
+                                           mation and the ability to maintain quantum correlations               purification of the dephased state Φ .
+                                           has long been a part of quantum information theory. The                  The body of literature on the privacy/quantum-
+                                           connection comes about from the observation that a max-               coherence connection has now grown substantially. Some
+                                           imally entangled ebit state, shared between two parties               of the original exploitations of this connection were the
+                                           named Alice and Bob, has no correlations with the “rest               various quantum key distribution protocols [2, 3, 4].
+                                           of the universe”—in this sense, the ebit is monogamous                These protocols establish a shared secret key with the
+                                           [1]. We can represent the global state of the ebit and the            help of a noisy quantum channel or noisy entanglement.
+                                           “rest of the universe” as                                             The subsequent proofs [5, 6] for the security of these
+                                                                                                                 protocols rely on the formal mathematical equivalence
+                                                                       ΦAB ⊗ σ E ,                               between entanglement distillation [7] and key distilla-
+                                                                                                                 tion. Schumacher and Westmoreland explored the con-
+                                           where Alice and Bob share the ebit ΦAB , and
+                                                                                                                 nection with an information-theoretical study [8]—they
+                                                                            AB                                   established a simple relation between the capacity of a
+                                                             ΦAB ≡ |Φi hΦ| ,
+                                                                                                                 quantum channel for transmitting quantum information
+                                                               AB    1    A   B     A   B                        and its utility for quantum key distribution. Collins
+                                                           |Φi    ≡ √ (|0i |0i + |1i |1i ),
+                                                                      2                                          and Popescu [9] and Gisin et al. [10] initiated the for-
+                                                                                                                 mal study of the connections between entanglement and
+                                           and σ E is some state of Eve, a third party representing              secret key. Since then, researchers have determined a
+                                           the “rest of the universe.” Eve’s state σ E is indepen-               method for mapping an entangled state to a probability
+                                           dent of Alice and Bob’s ebit. The relation to a secret                distribution with secret correlations [11] and have contin-
+                                           key comes about when Alice and Bob perform local mea-                 ued to extend existing quantum results [12] to analogous
+                                           surements of the ebit in the computational basis. The                 results for privacy [13].
+                                           resulting state is
+                                                                                                                    The connection has also proven fruitful for quantum
+                                                                           AB                                    Shannon theory, where we study the capabilities of a
+                                                                       Φ        ⊗ σE ,                           large number of independent uses of a noisy quantum
+                                                       AB                                                        channel or a large number of copies of a noisy bipartite
+                                           where Φ          is the maximally correlated state:                   state. The first step in this direction was determining
+                                                           1                                                   the capacity of a quantum channel for transmitting a pri-
+                                                  AB                 A         B         A         B
+                                              Φ        ≡      |0i h0| ⊗ |0i h0| + |1i h1| ⊗ |1i h1| .            vate message or establishing a shared secret key [14, 15].
+                                                           2                                                     Devetak further showed how coherently performing each
+                                                                                                                 step of a private protocol leads to a code that achieves
+                                                                                                                 the capacity of a quantum channel for transmitting quan-
+                                           ∗ Electronic address: minhsiuh@gmail.com                              tum information [14]. Since these initial insights, we
+                                           † Electronic address: mark.m.wilde@saic.com                           have seen how the seemingly different tasks of distilling
+                                                                                                                              2
+
+secret key, distilling entanglement, transmitting private              II.   DEFINITIONS AND NOTATION
+information, and transmitting quantum information all
+have connections [16]. Oppenheim et al. have deter-               We first introduce the notion of a noiseless public chan-
+mined a merging protocol for private correlations [17],        nel, a noiseless private channel, and a noiseless secret
+based on the quantum state merging protocol [18, 19].          key as resources. Our communication model includes
+Additionally, the secret-key-assisted private capacity of      one sender Alice, a receiver Bob, and an eavesdrop-
+a quantum channel [20] is analogous to its entanglement-       per Eve. Alice chooses classical messages k from a set
+assisted quantum capacity [21, 22].                            [K] ≡ {1, . . . , K}. She encodes these messages as quan-
+                                                                                     A
+                                                               tum states {|ki hk| }k∈[K] . We assume that each party
+   The connection is only qualitative because the              is in a local, secret facility that does not leak informa-
+Horodeckis and Oppenheim have observed that there ex-          tion to the outside world. For example, Eve cannot gain
+ist bound entangled states [23]. These bound entangled         any information about a state that Alice or Bob prepares
+states are entangled, yet have no distillable entanglement     locally. We consider two dynamic resources, public clas-
+(one cannot extract ebits from them), but they indeed          sical communicaton and private classical communication,
+have distillable secret key. The dynamic equivalent of         and two static resources, common randomness and secret
+this state is an entanglement binding channel [24, 25, 26].    key.
+This channel has no ability to transmit quantum informa-          A noiseless public channel idA→Bpub  from Alice to Bob
+tion. The loss of the privacy-coherence connection here is     implements the following map for k ∈ [K]:
+not necessarily discomforting. In fact, it is more interest-                                     X
+                                                                                  A          B
+ing because it leads to the “superactivation effect” [27]—       idA→B
+                                                                   pub : |ki hk| → |ki hk| ⊗          pK 0 |K (k 0 |k) ρE
+                                                                                                                        k0 , (1)
+the possibility of combining two zero-capacity channels                                           k0 ∈[K]
+to form a quantum channel with non-zero quantum ca-
+pacity. Additionally, the private analog of this scenario      where pK 0 |K (k 0 |k) is some conditional probability distri-
+exhibits some unexpected behavior [28].                        bution and ρE   k0 is a state on Eve’s system. The above
+                                                               definition of a noiseless public channel captures the idea
+                                                               that Bob receives the classical information perfectly, but
+  In this paper, we continue along the privacy-coherence
+                                                               Eve receives only partial information about Alice’s mes-
+connection and detail the publicly-enhanced private fa-
+                                                               sage. Eve has perfect correlation with Alice’s message
+ther protocol. This protocol exploits a secret key and
+                                                               if and only if her conditional distribution pK 0 |K (k 0 |k) is
+a large number of independent uses of a noisy quantum
+                                                                                               0    0 E         0
+channel to generate noiseless public communication and         δk0 ,k and her states ρE k0 = |k i hk | for all k . We make no
+noiseless private communication. This protocol is the          distinction between a noiseless public channel where Eve
+“public-private” analog of the classically-enhanced father     receives partial information and one where Eve receives
+protocol [29], and might lead to further insights into the     perfect information because we are only concerned with
+privacy-coherence connection. The publicly-enhanced            the rate at which Alice can communicate to Bob—we are
+private father protocol combines the coding techniques of      not concerned with the more general scenario of broad-
+the suggested protocol in Section 4 of Ref. [30] (originally   cast communication where Eve is an active party in the
+proven for the classical wiretap channel [31]) with the re-    communication protocol [32]. We represent the noiseless
+cent secret-key-assisted private communication protocol        public channel symbolically as the following resource:
+[20].
+                                                                                         [c → c]pub .
+
+  We structure this work as follows. The next section             The resource inequality framework [21] uses the nota-
+establishes the definition of a noiseless public channel, a    tion [c → c] to represent one noiseless bit of classical com-
+noiseless private channel, noiseless common randomness,        munication. We require a symbol different from [c → c]
+and a perfect secret key. We then clarify a small point        because that symbol does not distinguish between public
+with the protocol for private communication [14, 15]—          and private communication. For example, the superdense
+specifically, we address the apparent ability of that pro-     coding protocol [33] actually produces two private clas-
+tocol to transmit public information in addition to pri-       sical bits, but the notation [c → c] does not indicate this
+vate information. Section IV describes the publicly-           fact.
+enhanced private father protocol and states our main              A noiseless private channel is the following map:
+theorem (Theorem 1). This theorem gives the capacity
+                                                                                            A               B
+region for the publicly-enhanced private father protocol.                    idA→B                         E
+                                                                               priv : |ki hk| → |ki hk| ⊗ σ ,
+We proceed with the proof of the corresponding converse
+theorem in Section V and the proof of the corresponding        where σ E is a constant state on Eve’s system, indepen-
+direct coding theorem in Section VI. Section VII shows         dent of what Bob receives. A private channel appears
+that the suggested protocol from Ref. [30] is a child of       as a special case of a public channel where random vari-
+the publicly-enhanced private father protocol. We then         able K 0 that represents Eve’s knowledge is independent
+conclude with some remaining open questions.                   of random variable K. The definition in (1) reduces to
+                                                                                                                         3
+
+that of a private channel if we set the probability dis-         Note that a noiseless public channel alone cannot im-
+tribution in (1) to pK 0 |K (k 0 ). But we define a private    plement a noiseless private channel, and a noiseless pri-
+channel as the case when K 0 and K are independent.            vate channel alone cannot implement a noiseless public
+Otherwise, the channel is public. This difference is the       channel. This relation is different from the correspond-
+distinguishing feature of a noiseless private channel. We      ing relation between a noiseless quantum channel and a
+represent the noiseless private channel symbolically as        noiseless classical channel [39] because a noiseless quan-
+the following resource:                                        tum channel alone can implement a noiseless classical
+                                                               channel, but a noiseless classical channel alone cannot
+                           [c → c]priv .                       implement a noiseless quantum channel.
+
+The above definitions of a public classical channel and
+private classical channel are inspired by definitions in           III.   RELATIVE RESOURCE IN PRIVATE
+Refs. [20, 34].                                                               COMMUNICATION
+  Common randomness is the static analog of a noiseless
+public channel [35, 36, 37]. In fact, Alice can actually         We would like to clarify one point with the protocol
+use a public channel to implement common randomness.           for private communication [14, 15] before proceeding to
+Alice first prepares a local maximally mixed state π A         our main theorem. By inspecting the proof of the di-
+where                                                          rect coding theorem in Ref. [14], one might think that
+                            1 X        A
+                                                               Alice could actually transmit public information at an
+                    πA ≡        |ki hk| .                      additional rate of I (X; E). The following sentence from
+                           |K|
+                               k∈[K]                           Ref. [14] may lead one to arrive at such a conclusion:
+
+She makes an exact copy of the random state locally to               “By construction, Bob can perform a mea-
+produce the following state:                                         surement that correctly identifies the pair
+                                                                     (k,
+                                                                     √   m), and hence k, with probability ≥ 1 −
+              AA0        1 X        A         A0
+          Φ         ≡        |ki hk| ⊗ |ki hk| .        (2)           4
+                                                                        .”
+                        |K|
+                           k∈[K]
+                                                                  But this conclusion is incorrect because the random
+She sends the A0 system through the noiseless public           variable M representing the “public” message m must
+channel. The resulting state represents common random-         have a uniform distribution. This random variable M
+ness shared between Alice and Bob, about which Eve may         serves the purpose of randomizing Eve’s knowledge of the
+have partial information:                                      private message k [40]. The protocol would not operate
+                                                               as intended if random variable M had a distribution other
+    1 X        A         B
+                            X                                  than the uniform distribution. The size of the message
+        |ki hk| ⊗ |ki hk| ⊗   pK 0 |K (k 0 |k) ρE
+                                                k0
+   |K|                      0
+                                                               set for the random variable M must be at least 2nI(X;E) .
+       k∈[K]                              k ∈[K]
+                                                               The rate I (X; E) of randomization further confirms the
+                                                               role of the mutual information as the minimum amount of
+  A noiseless secret key is the static analog of a noiseless
+                                                               noise needed to destroy one’s correlations with a random
+private channel. Alice again prepares the state π A and
+                                                               variable [41] (see Refs. [42, 43] for further explorations
+makes a copy of it to an A0 system. She sends the A0
+                                                               of this idea). It is thus not surprising that the mutual
+system through a noiseless private channel, generating
+                                                               information I (X; E) arises in the protocol for private
+the following resource:
+                                                               communication because Alice would like to destroy Eve’s
+     1 X        A         B          AB                        correlations with her private message k.
+         |ki hk| ⊗ |ki hk| ⊗ σ E = Φ    ⊗ σE .                    The resource inequality [21] for the protocol for private
+     K
+        k∈[K]                                                  communication is as follows:
+Alice and Bob share perfect common randomness, but
+                                                                 hN i ≥ I (X; E) [c → c : π]pub +
+this time, Eve has no knowledge of this common ran-
+domness. This resource is a secret key. A perfect secret                          (I (X; B) − I (X; E)) [c → c]priv , (3)
+key resource has two requirements [38]:
+                                                               where the mutual information quantities are with respect
+   1. The key should have a uniform distribution.              to the following classical-quantum state:
+                                                                                                 A0 →BE     0
+                                                                          X                 X
+   2. Eve possesses no correlations with the secret key.                      pX (x) |xi hx| ⊗ UN       (σxA ),
+                                                                          x∈X
+  We denote the resource of a shared secret key as fol-
+lows:                                                          corresponding0
+                                                                                 to the channel input ensemble
+                                                               {pX (x) , σxA }x∈X . The meaning of the resource in-
+                             [cc]priv .                        equality is that Alice can transmit nI (X; E) bits of
+                                                                                                                             4
+
+public information (with the requirement that Al-                 Preparation. Alice prepares a public message k in a
+ice’s random variable has a uniform distribution) and          register K and private message m in a register M . Each
+n (I (X; B) − I (X; E)) bits of private information by         of these has a uniform distribution:
+using a large number n of independent uses of the noisy                                             K
+quantum channel N . The resource [c → c : π]pub is not                                K     1 X        K
+                                                                                  π       ≡     |ki hk| ,
+an absolute resource, but is rather a relative resource                                     K
+                                                                                                   k=1
+[21, 44, 45], meaning that the protocol only works prop-                                            M
+erly if Alice’s public variable has a uniform distribution,                                   1 X          M
+                                                                                  πM ≡              |mi hm| .
+or equivalently, is equal to the maximally mixed state                                        M m=1
+π. This public information must be completely random
+because Alice uses it to randomize Eve’s knowledge of          Alice also shares the maximally correlated secret key
+                                                                       SA SB
+the private message.                                           state Φ       with Bob:
+   The resource inequality in (3) leads to a simpler way
+                                                                                              S
+of implementing the direct coding theorem of the secret-                      SA SB       1X           S           S
+                                                                          Φ           ≡         |si hs| A ⊗ |si hs| B .
+key-assisted private communication protocol [20]. Sup-                                    S s=1
+pose that Alice has public information in a random vari-
+able M . If she combines this random variable with a           The overall state after preparation is
+secret key, the resulting random variable has a uniform
+                                                                                                            SA SB
+distribution because the secret key randomizes the public                             πK ⊗ πM ⊗ Φ                   .
+variable. This variable can then serve as the input needed
+to implement the relative resource of public communica-          Encryption. Alice exploits an encryption map
+tion. Alice can transmit an extra nI (X; E) of private in-                            f : [M ] × [S] → [M ] .
+formation by combining this public communication with
+the secret key resource, essentially implementing a one-       The encryption map f computes an encrypted variable
+time pad protocol [46, 47]. We phrase the above argu-          f (m, s) that depends on the private message m and the
+ment with the theory of resource inequalities:                 secret key s. Furthermore, the encryption map f satisfies
+hN i + I (X; E) [cc]priv                                       the following conditions:
+
+≥ I (X; E) [c → c : π]pub + I (X; E) [cc]priv +                   1. For all s1 , s2 ∈ [S] where s1 6= s2 :
+(I (X; B) − I (X; E)) [c → c]priv                                                     f (m, s1 ) 6= f (m, s2 ).
+≥ I (X; E) [c → c]priv + (I (X; B) − I (X; E)) [c → c]priv
+                                                                  2. For all m1 , m2 ∈ [M ] where m1 6= m2 :
+= I (X; B) [c → c]priv .
+This resource inequality is equivalent to that obtained in                            f (m1 , s) 6= f (m2 , s).
+Ref. [20].
+                                                                The encryption map f corresponds physically to a
+                                                               CPTP map F M SA →P . The state after the encryption
+ IV.   PUBLIC AND PRIVATE TRANSMISSION                         map is
+            WITH A SECRET KEY
+                                                                                                    SA SB
+                                                                 F M SA →P (π K ⊗ π M ⊗ Φ       )=
+   We begin by defining our publicly-enhanced private0 fa-                    1  X                        P         S
+ther protocol (PEPFP) for a quantum channel N A →B                    πK ⊗           |f (m, s)i hf (m, s)| ⊗ |si hs| B .
+                                                                             M S m,s
+from a sender Alice to a receiver  Bob. The channel has an
+                             A0 →BE
+extension to an isometry UN         , defined on a bipartite     Channel     Encoding. Alice prepares the codeword
+quantum system BE, where Bob has access to system B                    A0n
+                                                               state σk,f (m,s) based on the public message k and the
+and Eve has access to system E. Alice’s task is to trans-
+                                                               encrypted message f (m, s). This encoding corresponds
+mit, by some large number n uses of the channel N , one                                                   0n
+
+of K public messages and one of M private messages to          physically to some CPTP map E KP →A . The state af-
+Bob. The goal is for Bob to identify the messages with         ter the encoding map is
+high probability and for Eve to receive no information                         1    X
+                                                                                         A0n                SB
+about the private message. In addition, Alice and Bob                                   σk,f (m,s) ⊗ |si hs|   .
+                                                                            KM S
+have access to a private string (a secret key), picked uni-                            k,m,s
+
+formly at random from the set [S], before the protocol                                                A                 0n
+
+begins.                                                          Transmission. Alice sends the state σk,f (m,s) through
+                                                                                 0n       n   n
+                                                                            A         →B E
+   An (n, R, P, RS , ) secret-key-assisted private channel    the channel UN                     , generating the state
+code consists of six steps: preparation, encryption, chan-
+                                                                               1   X
+                                                                                      Bn En              SB
+nel coding, transmission, channel decoding, and decryp-                              σk,f (m,s) ⊗ |si hs|   ,
+tion. We detail each of these steps below.                                    KM S
+                                                                                       k,m,s
+                                                                                                                                                                    5
+
+where                                                                                                                             t                            tf
+                                                                                                                      E                            E
+              B E n   n
+                           A       0n
+                                        →B n E n     A 0n                                         K        A’
+                  (m,s) ≡ UN
+             σk,f                                  (σk,f                                                        U
+                                                         (m,s) ).
+                                                                                                                      B
+                                                                                                                      E                            E
+                                                                                         M                 A’ U       B                                Eve
+   Channel Decoding. Bob receives the above state                                Alice                 E
+from the channel and would like to decode the messages.                                  SA   F            A’
+                                                                                                                      E                            E
+                                                                                                                U     B
+He exploits a decoding positive-operator-valued measure
+                                                                                                                                               B
+(POVM) that acts on his system B n . The elements of                                     SB                                                              K
+this POVM are                                                                                                                                  B
+                                                                                 Bob
+                           n
+                                                                                                                                                   D
+                   {ΛB
+                     k,f (m,s) }k∈[K],f (m,s)∈[M ] .                                                                                           B             G M
+Bob places the measurement results k and f (m, s) in the
+respective registers K̂ and P̂ . The ideal output state                         FIG. 1: The above figure depicts all of the steps in a publicly-
+after Bob’s decoding operation is                                               enhanced private father code. Alice performs the encryption
+                                                                                map F on her private variable M and her half SA of the
+ X
+       Bn En             SB                                                     secret key. She then encodes her public variable K and the
+     σk,f (m,s) ⊗|si hs|    ⊗|kihk|K̂ ⊗|f (m, s)ihf (m, s) |P̂ ,                encrypted message with the encoding map E. She transmits
+k,m,s                                                                           the encoded data over a large number of uses of the noisy
+                                                                                channel N . The isometric extension of the noisy quantum
+where it is understood that the normalization factor is                         channel N is UN , and we give the full purification of the
+1/ (KM S).                                                                      channel to Eve. Bob receives the outputs of the channel. He
+  Decryption. The final step is for Bob to decrypt the                          performs the decoding map D to recover the public variable
+encrypted message f (m, s). He employs a decryption                             K and the encrypted message. He combines the encrypted
+function g, where                                                               message with his half of the secret key and processes these
+                                                                                two variables with the decryption map G. He then recovers
+                          g : [M ] × [S] → [M ] .                               the private variable M . A good publicly-enhanced private
+                                                                                father code has the property that Bob can perfectly recover
+The decryption function g satisfies the following prop-                         the public variable K and the private variable M while Eve
+erty:                                                                           learns nothing about the secret key or the private variable M .
+
+                   ∀ s, m        g(f (m, s), s) = m.
+
+This decryption function allows Bob to recover Alice’s                          This criterion ensures that Eve’s state is independent of
+private message as m = g(f (m, s), s) based on the en-                          the key and the private message m.
+crypted message f (m, s) and the secret key s. Physically,                         A rate triple (R, P, RS ) is achievable if there exists
+this operation corresponds to a CPTP map G SB P̂ →M̂ .                          an (n, R − δ, P − δ, RS + δ, ) publicly-enhanced private
+The state after this decryption map is                                          father code for any , δ > 0 and sufficiently large n. The
+                                                                                capacity region CPEPFP (N ) is a three-dimensional region
+  1   X
+         Bn En              SB                                                  in the (R, P, RS ) space with all possible achievable rate
+        σk,f (m,s) ⊗ |si hs|   ⊗ |kihk|K̂ ⊗ |mihm|M̂ .
+ KM S                                                                           triples (R, P, RS ).
+          k,m,s
+
+Figure 1 depicts all of the above steps in a general                            Theorem 1 The capacity region C(N ) of a secret-key-
+publicly-enhanced private father code.                                          assisted quantum channel N for simultaneously transmit-
+  The conditions for a good publicly-enhanced secret-                           ting both public and private classical information is equal
+key-assisted private code are that Bob be able to decode                        to the following expression:
+the public message k and encrypted message p = f (m, s)
+                                                                                                                ∞
+with high probability:                                                                                          [ 1
+                                                                                                      C(N ) =                 C (1) (N ⊗l ),                   (5)
+                                     n
+                                        Bn                                                                                l
+                  ∀k, p        Tr{ΛB
+                                   k,p σk,p } ≥ 1 − .                                                          l=1
+
+
+It is sufficient to consider the above criterion because Bob                    where the overbar indicates the closure of a set. The
+can determine the private message m with high probabil-                         “one-shot” region C (1) (N ) is the set of all R, P, RS ≥ 0,
+ity if he can determine the encrypted message p with high                       such that
+probability. Also, the following inequality is our security
+criterion:                                                                                R ≤ I(X; B)σ ,                                                       (6)
+                                                                                          P ≤ RS + I (Y ; B|X)σ − I (Y ; E|X)σ ,                               (7)
+            X         n                     S            n
+  ∀k, m             E
+                   σk,f (m,s) ⊗ |si hs|
+                                        B
+                                          − σkE ⊗ π SB                  ≤ .              P ≤ I(Y ; B|X)σ .                                                    (8)
+              s                                                     1
+                                                                          (4)   The above entropic quantities are with respect to a “one-
+                                                                                                                                                                   6
+
+shot” quantum state σ XY BE , where                                         M                                           t                            tf
+                    X
+          σ XY BE ≡     p(x)|xihx|X ⊗ ρYx BE ,              (9)                          K
+                             x
+                                                                                                                  E                    E
+                                                                                         K’           A’
+                                                                                                              U   B
+and the states ρYx BE are of the form                                                                             E                    E
+                                                                            M’                        A’ U        B                        Eve
+    ρYx BE =
+             X
+                  p(y|x)|yihy|Y ⊗ UNA0 →BE A0
+                                          (ρx,y ),         (10)
+                                                                   Alice                          E
+                                                                            SA   F                    A’
+                                                                                                                  E                    E
+                  y                                                                                           U   B
+
+                                     0           0                                                                                 B         K’
+                                         A →BE                              SB
+for some density operator ρA x,y and UN          is an iso-
+                                                                                                                                   B
+metric extension of N . It is sufficient to consider |X | ≤         Bob
+                                                                                                                                       D
+min{|A0 |, |B|}2 + 1 by the method in Ref. [48].                                                                                   B              G M’
+   The proof of the above capacity theorem consists of
+two parts. The first part that we show is the converse
+                                                                  FIG. 2: The above figure depicts the coding scenario that we
+theorem. The converse theorem shows that the rates in
+                                                                  consider for the converse theorem. It is similar to the protocol
+the above theorem are optimal—any given coding scheme             of Figure 1 with the exception that the goal is for Alice and
+that has asymptotically good performance cannot per-              Bob to generate common randomness and a secret key, rather
+form any better than the above rates. We prove the                than transmitting public and private information respectively.
+converse theorem in the next section. The second part
+that we prove is the direct coding theorem. The proof
+of the direct coding theorem gives a coding scheme that                                                                 0
+                                                                                                                      KKA
+achieves the limits given in the above theorem.                   Alice prepares a state Φ                                  for common randomness
+                                                                  generation:
+  V.   PROOF OF THE CONVERSE THEOREM                                                   0
+                                                                                                      1 X
+                                                                                                                  K
+                                                                                     KKA                         K         K0
+                                                                                 Φ                ≡       |ki hk| ⊗ |ki hk| A .
+                                                                                                      K
+   We outline the proof strategy of the converse before                                                       k=1
+
+delving into its details. Consider that a noiseless public                                                              KK 0           MM0                     SA SB
+channel can generate common randomness and a noise-               Alice combines her states Φ A , Φ          A
+                                                                                                               , and Φ      .
+less private channel can generate a secret key. Let K(N )         The most general encoding operation that she can per-
+denote the capacity of a quantum channel N for generat-           form on her three registers KA 0
+                                                                                                   , MA0 , and SA is a con-
+                                                                                                 0   0
+                                                                                               KA  MA  SA →A0n
+ing common randomness, generating a secret key, while             ditional quantum encoder E                    consisting of
+                                                                                   0     0n
+consuming a secret key at respective rates (R, P, RS ).                          MA SA →A
+                                                                  a collection {Ek          }k of CPTP maps [29]. Each
+The capacity region K(N ) contains the capacity region                           M 0 S →A0n
+                                                                  element Ek A A        of the conditional quantum en-
+C(N ) of Theorem 1 (C(N ) ⊆ K(N )) because of the
+                                                                  coder consists of an encryption with the secret key
+aforementioned one-way relation between a noiseless pub-
+                                                                  and the mapping to channel codewords. Each element
+lic channel and common randomness and that between a                M 0 S →A0n
+noiseless private channel and a secret key. It thus suffices      Ek A A       produces the following state:
+to prove the converse for a secret-key-assisted common                                                                              0
+                                                                                             0n           M 0 S →A0n             M MA             SA SB
+randomness generation and secret key generation proto-                     ωkM SB A               ≡ Ek A A                  (Φ             ⊗Φ             ).
+col. We consider the most general such protocol when
+proving the converse and show that the capacity region            The average density operator over all public messages is
+in (6-8) bounds the capacity region K(N ). The result             then as follows:
+of the converse theorem is then that K(N ) ⊆ C(N ) and                             1 X        K          0n
+thus that K(N ) = C(N ).                                                               |ki hk| ⊗ ωkM SB A .
+                                                                                 K
+Proof [Converse] Suppose Alice creates the maximally                                                  k
+                       0
+correlated state π M MA locally, where                            Alice sends the A0n system through the noisy channel
+                                                                   A0n →B n E n
+              0
+                       1
+                           M                                      UN            , producing the following state:
+           M MA                               M0
+                           X        M
+       Φ          ≡          |mi hm| ⊗ |mi hm| A .
+                       M m=1                                                 n       n            1 X        K   A0n →B n E n          0n
+                                                                  ω KM SB B E ≡                       |ki hk| ⊗ UN            (ωkM SB A ).
+                                                                                                  K
+(the protocol should be able to transmit the correlations                                                 k
+              0
+           M MA
+in state Φ       with -accuracy while keeping them se-           Define the systems Y ≡ M SB and X ≡ K so that the
+cret). Alice shares the maximally correlated secret key           above state is a particular nth extension of the state in
+        SA SB
+state Φ       with Bob:                                           the statement of the public-private secret-key-assisted ca-
+                                 S                                pacity theorem. The above state is the state at time t
+               SA SB       1X           S           S             in Figure 2. Bob receives nthe above    state and performs
+           Φ           ≡         |si hs| A ⊗ |si hs| B .                                            0   0
+                           S s=1                                  a decoding instrument DB SB →KB MB [29] (each element
+                                                                                                                                 7
+
+ B n S →M 0
+Dk B       B
+              of the instrument consists of a channel de-               The first inequality follows by combining the equality
+coding and a decryption). The protocol ends at time tf                  n (RS + δ) = H (SB ) = H (SB |K) and the security cri-
+                                      0   0
+                                  KM KB MB  En                          teria in (11-12). The first equality follows from the defi-
+(depicted in Figure 2). Let (ω 0 )             be the state
+                                         n n
+at time tf after Bob processes ω KM SB B E with the de-                 nition of mutual information. The second inequality fol-
+                        n     0    0                                    lows because H (M )ω = H (M |SB K)ω (M , SB , and K
+coding instrument DB SB →KB MB .
+                                                                        are independent) and conditioning does not increase en-
+   Suppose that an (n, R − δ, P − δ, RS + δ, ) secret-key-
+                                                                        tropy H (E n |K) ≥ H (E n |SB K). The third inequality
+assisted protocol as given above exists. In particular, the
+                                                                        follows because the addition of a classical system can in-
+following information-theoretic security conditions follow
+                                                                        crease entropy H (M E n |K)ω ≤ H (M E n SB |K)ω . The
+from the security criterion in (4):
+                                                                        second equality follows from the definition of conditional
+                          I (M ; E n |K)ω ≤ ,                   (11)   mutual information. The third equality follows from the
+                                                                        chain rule of mutual information, and the last equality
+                         I (SB ; E n |K)ω ≤ ,                   (12)   follows from the definitions Y ≡ M SB and X ≡ K.
+                                                                           We next prove the upper bound in (14) on the private
+by the application of the Alicki-Fannes inequality [49]
+                                                                        communication rate:
+and evaluating the n
+                     conditional mutual informations of
+the ideal state σkE ⊗ π SB in (4). These conditions imply                   n(P − δ)
+that Eve learns nothing about the secret correlations in
+                                                                            = H (M )
+system M and Eve learns nothing about the secret key
+SB (at time t) even if she knows the public variable K.                     = I (M ; MB0 )ω0 + H (M |MB0 )
+We prove that the following bounds apply to the elements                    ≤ I(M ; MB0 K)ω0 + nδ 0
+of the protocol’s rate triple (R − δ, P − δ, RS + δ),                       ≤ I(M ; B n SB K)ω + nδ 0
+            I(X; B n )ω                                                     = I(M ; B n K|SB )ω + nδ 0
+    R−δ ≤                ,                                       (13)       = H (M |SB ) + H(B n K|SB )ω −
+                 n
+            I(Y ; B n |X)ω                                                  H (M B n SB K) + H (SB ) + nδ 0
+    P −δ ≤                  ,                                    (14)
+                   n                                                        = H (M SB |K) − H (SB |K) + H(B n K|SB )ω −
+                   I(Y ; B |X)ω − I(Y ; E n |X)ω
+                           n
+                                                                            H (M B n SB K) + H (SB |K) + nδ 0
+    P − δ ≤ RS +                                 ,               (15)
+                                n
+                                                                            = H (M SB |K) + H(B n K|SB )ω −
+            I(Y ; E n |X)ω
+   RS + δ ≥                ,                                     (16)       H (M B n SB K) + nδ 0
+                  n
+                                                                            ≤ H (M SB |K) + H(B n K)ω − H (M B n SB K) +
+for any , δ > 0 and all sufficiently large n.
+  In the ideal case, the ideal private channel acts on sys-                 H (K) − H (K) + nδ 0
+tem M to 0produce the maximally correlated and secret                       = I (M SB ; B n |K)ω + nδ 0
+state π M M . So, for our case, the inequality                              = I (Y ; B n |X)ω + nδ 0
+                          0              0
+                       M MB En        M MB          n
+                                                                        The first equality follows by evaluating the entropy for
+              (ω 0 )             −Φ          ⊗ σE           ≤   (17)               M
+                                                        1               the state Φ and noting that H (M ) = H (M |K). The
+holds because the protocol  is -good for private commu-                second equality follows by standard entropic relations.
+                       n
+nication. The state σ E is some constant state on Eve’s                 The first inequality follows from (17), Fano’s inequality
+system.                                                                 [54], and conditioning does not increase entropy. The
+  The lower bound in (16) is the most straightforward                   second inequality is from quantum data processing. The
+to prove. Consider the following chain of inequalities:                 third equality follows from the chain rule for mutual in-
+                                                                        formation and I (M ; SB ) = 0 because M and SB are
+n (RS + δ) + 2                                                         independent. The fourth equality follows by expand-
+ ≥ I (M ; E n |K)ω + I (SB ; E n |K)ω + H (SB |K)ω                      ing the conditional mutual information. The fifth and
+                                                                        sixth equalities follow from standard entropic relations.
+ = H (M |K)ω + H (E n |K) − H (M E n |K)ω +                             The last inequality follows because conditioning does
+I (SB ; E n |K)ω + H (SB |K)ω                                           not increase entropy H(B n K|SB )ω ≤ H(B n K)ω . The
+ ≥ H (M |SB K)ω + H (E n |SB K) − H (M E n |K)ω +                       fifth equality follows by the definition of mutual infor-
+I (SB ; E n |K)ω + H (SB |K)ω                                           mation, and the last equality follows from the definitions
+                                                                        Y ≡ M SB , X ≡ K, and δ 0 ≡ n1 + P .
+ ≥ H (M |SB K)ω + H (E n |SB K) − H (M E n SB |K)ω +                       The second bound in (15) on the private communica-
+I (SB ; E n |K)ω + H (SB |K)ω                                           tion rate follows from adding the bound in (14) to the
+ = I (M ; E n |SB K)ω + I (SB ; E n |K)ω                                bound in (16).
+                                                                           We can use a proof by contradiction to get the bound
+ = I (M SB ; E n |K)ω
+                                                                        on the public rate R. Suppose that we have secret key
+ = I (Y ; E n |X)ω                                                      available at some rate > I(X; E n )ω /n. Then one could
+                                                                                                                         8
+
+combine the public communication at rate R with the             show how to associate a classical string to a random pri-
+extra secret key in a one-time pad protocol in order to         vate father code by exploiting the “code pasting” tech-
+generate private communication at a rate R + P . The            nique from Ref. [30]. The proof proceeds by applying the
+resulting protocol consumes secret key at a rate greater        HSW theorem [50, 51] to show that Bob can decode the
+than I (Y X; E n ) because                                      public information first. Based on the public informa-
+                                                                tion, Bob decodes the private information. The details
+      I (Y ; E n |X)ω   I (X; E n )ω   I (Y X; E n )            of the proof involve showing how the random publicly-
+                      +              =               .
+             n              n               n                   enhanced private father code has low probability of error
+                                                                for decoding the public information and the private in-
+The state ω is of the form given by the secret-key-assisted     formation. Finally, we employ the standard techniques
+capacity theorem [20]. The total amount of private              of derandomization and expurgation to show that there
+communication that a secret-key-assisted protocol can           exists a particular publicly-enhanced private father code
+generate cannot be any larger than I (Y X; B n ) /n [20].       that achieves the rates given in Theorem 1.
+The chain rule also applies to the mutual information
+I (Y X; B n ) /n:
+                                                                             A.       Random Private Coding
+      I (Y ; B n |X)ω   I (X; B n )ω   I (Y X; B n )
+                      +              =               .
+             n              n               n                     We first recall the secret-key-assisted private communi-
+                                               n                cation capacity theorem (also known as the private father
+If the public rate R were to exceed I (X; B )ω /n, then
+                                                                capacity theorem) [20].
+this public rate would contradict the optimality of the
+secret-key-assisted protocol from Ref. [20]. Thus, the          Theorem 2 The secret-key-assisted private channel ca-
+public rate R must obey the bound in (13).            2         pacity region CSKP (N ) is given by
+                                                                                            ∞
+                                                                                            [ 1       e (1) (N ⊗l ),
+                                                                             CSKP (N ) =              CSKP             (19)
+     VI.   PROOF OF THE DIRECT CODING                                                             l
+                                                                                            l=1
+                  THEOREM
+                                                                where the overbar indicates the closure of a set, and
+                                                                e (1) (N ) is the set of all RS ≥ 0, P ≥ 0 such that
+                                                                C
+  The direct coding theorem is the proof of the follow-          SKP
+ing publicly-enhanced private father protocol resource in-                   P ≤ I(Y ; B)ρ − I(Y ; E)ρ + RS            (20)
+equality (See Refs. [21, 22] for the theory of resource in-
+                                                                             P ≤ I(Y ; B)ρ ,                           (21)
+equalities):
+                                                                where RS is the secret key consumption rate and ρ is a
+  hN i + I (Y ; E|X)σ [cc]priv ≥                                state of the form
+                                                                                                 A0 →BE A0
+                                                                                X
+   I (Y ; B|X)σ [c → c]priv + I (X; B)σ [c → c]pub .     (18)         ρY BE ≡     p(y)|yihy|Y ⊗ UN     (ρy ),     (22)
+                                                                                  y
+The resource inequality has an interpretation as the fol-                                     0              0
+                                                                                                   A →BE
+lowing statement. For any , δ > 0 and sufficiently large       for some ensemble {p(y), ρA
+                                                                                          y } and UN     is an isomet-
+n, there exists a protocol that consumes nI (Y ; E|X)σ          ric extension of N .
+bits of secret key and n independent uses of the noisy                                                           0n
+                                                                   The channel input density operator ρA (C) for a pri-
+quantum channel N to generate nI (Y ; B|X)σ bits of pri-        vate father code C ≡ {ρA
+                                                                                          0n
+                                                                                         m }m∈[M ] is a uniform mixture
+vate communication and nI (X; B)σ bits of public com-                                          0n
+
+munication with  probability of error. In addition, Eve’s      of all the private codewords ρA
+                                                                                              m in code C:
+state is -close to a state that is independent of the pri-                                            M
+                                                                                       0n    1 X A0n
+vate message and the secret key. The entropic quantities                          ρA (C) ≡        ρ .
+are with respect to the state σ XY BE in (9).                                                M m=1 m
+   The proof of the direct coding theorem proceeds sim-           We cannot0n say much about the channel input density
+ilarly to the proof of the direct coding theorem for the        operator ρA (C) for a particular private father code C.
+classically-enhanced father protocol from Ref. [29]. There      But we can say something about the expected channel
+are some subtle differences between the two proofs, and         input density operator of a random private father code C
+we highlight only the parts of the proof that are different     (where C itself becomes a random variable).
+from the proof of the classically-enhanced father proto-
+col. The proof begins by showing how to construct a             Definition 1 A random private father code is an ensem-
+random private father code, similar to the notion of a          ble {pC , C} of codes where each code C occurs with prob-
+random father code [29] or a random quantum code [14].          ability pC . The expected channel input density operator
+                                                                   0n
+We introduce the channel input density operator for a           ρA is as follows:
+random private father code and show that it is possi-                                0n
+                                                                                             n 0n     o
+ble to make it close to a tensor-product state. We then                            ρA ≡ EC ρA (C) .                  (23)
+                                                                                                                                     9
+                                                                                                                0
+A random private father code is “ρ-like” if the expected                      For any density operator ρA , it is possible to con-
+channel input density operator is close to a tensor power                  struct a secret-key-assisted private code that achieves the
+of some state ρ:                                                           private communication rate and secret key consumption
+                            0n
+                                                                           rate in Proposition 3.
+                      ρA − ρ⊗n                          ≤ .        (24)      Let [M ] denote a set of size 2n[I(Y ;B)−cδ] for some
+                                                    1
+                                                                           constant c and let Um denote 2n[I(Y ;B)−cδ] random vari-
+  We now state a version of the direct coding theorem                      ables that we choose according to the pruned distribution
+that applies to random private father codes. The proof                     p0n (y n ). The realizations um of the random variables Um
+shows that we can produce a random secret-key-assisted                     are sequences in Y n and are the basis for constructing
+private code with an expected channel input density op-                    a secret-key-assisted private code C with the following
+erator close to a tensor power state.                                      codeword ensemble:
+                                                                                                                    n
+Proposition 3 For any , δ 0> 0 and all sufficiently large                                      C = {p0n (um ), ρA
+                                                                                                                 um }m .
+n, there exists a random ρA0 -like secret-key-assisted pri-
+vate code for a channel N A →B such that                                   We then perform a decoding positive operator-valued
+                                                                √          measure (POVM) with elements {Λm }m∈[M ] and decryp-
+                 0n
+              ρA − (ρA )⊗n
+                                    0
+                                                    ≤ 2 + 4 , 4
+                                                                    (25)                                                          √
+                                                1                          tion map g, resulting in failure with probability 4+20 
+         0n
+                                                                           by the arguments in Ref. [20].
+where ρA is defined in (23). The random private code                          Suppose that we choose a particular secret-key-assisted
+has private communication rate I(Y ; B)ρ − δ and secret                    private code C according to the above prescription. Its
+key consumption rate I(Y ; E)ρ + δ. The entropic quan-                     code density operator is
+tities are with respect to the state in (22) and the state
+   0               0
+ρA ≡ y p (y) ρA
+       P                                                                                                        M
+                 y .                                                                              0n       1 X A0n
+                                                                                            ρA (C) =            ρ .
+   The proof of Proposition 3 is an extension of the devel-                                                M m=1 um
+opment in Appendix D of Ref. [30] and the development
+in Ref. [20].                                                                Suppose we now consider the secret-key-assisted pri-
+                                            0
+Proof Consider the density operator ρA where                               vate code chosen according to the above prescription as a
+                                                                           random code C (where C is now a random variable). Let
+                     0    X            0                                      0n
+                   ρA =       p (y) ρA
+                                     y .                                   ρ0A (C) be the channel input density operator for the
+                                                                                                                   0n
+                                    y∈Y                                    random code before expurgation and ρA (C) its channel
+                                                                           input density operator after expurgation:
+The nth extension of the above state as a tensor power
+state is as follows:                                                                                           M    0
+
+                                                                                                0A0n         1 X A0n
+              0n     0      X                0n                                             ρ          (C) ≡ 0   ρ ,
+           ρA ≡ (ρA )⊗n =        pn (y n ) ρA
+                                            yn ,                                                            M m=1 Um
+                                        y n ∈Y n
+                                                                                                                M
+                                                                                                  0n       1 X A0n
+where                                                                                       ρA (C) ≡            ρ ,
+                                                                                                           M m=1 Um
+                0n              0           0                   0
+              ρA      A     A             A
+               y n ≡ ρy1 ⊗ ρy2 ⊗ · · · ⊗ ρyn .
+                                                                           where the primed rates are the rates before expurgation
+We define the pruned distribution p0n as follows:                          and the unprimed rates are those after expurgation (they
+                                                                                                                                     0n
+             n n P                                    n                   are slightly different but identical for large n). Let ρ0A
+  0n  n       p (y ) / yn ∈T Y n pn (y n ) : y n ∈ TδY                             0n
+ p (x ) ≡                    δ                                             and ρA denote the expectation of the above channel
+                          0                :    else,                      input density operators:
+          n
+where TδY denotes the δ-typical set of sequences with                                             0n
+                                                                                                      n 0n    o
+                  0n
+length n. Let ρeA denote the following “pruned state”:                                      ρ0A   ≡ EC ρ0A (C) ,
+                                                                                               0n
+                                                                                                      n 0n   o
+                  0n  X                 0n                                                   ρA ≡ EC ρA (C) .
+               ρeA ≡       p0n (y n ) ρA
+                                       yn .       (26)
+                                        n
+                           y n ∈TδY
+                                                                              Choosing our code in the particular way that we did
+                                                                    0n
+For any  >    0 and sufficiently large n, the state ρA is                 leads to an interesting consequence. The expectation of
+           A0n                                                             the0ndensity operator corresponding to Alice’s codeword
+close to ρe    by the gentle measurement lemma [52] and
+because the probability for sequences outside the typical                  ρAUm is equal to the pruned state in (26):
+set is small:                                                                              n 0n o X              0n
+                          A0n           A0n                                              EC ρA
+                                                                                             Um  =  p0n (y n )ρA
+                                                                                                               yn ,
+                      ρ         − ρe                    ≤ 2.                                              yn
+                                                    1
+                                                                                                                                               10
+                                                             0n
+because we choose the codewords ρAy n randomly accord-                         Definition 2 A random private code is (ρxn )-like if the
+                                                                                                                         0n
+ing to the pruned distribution p0n (y n ). Then the ex-                        expected channel input density operator ρA
+                                                                                                                        xn is close to
+                                          0n
+pected channel input density operator ρ0A is as follows:                       the state ρxn :
+                         n 0n      o                                                                         0n
+                 0n
+              ρ0A = EC ρ0A (C)                      (27)                                                ρA
+                                                                                                         xn − ρxn                 ≤ .
+                                                                                                                              1
+                                        0
+                             M                                                 Proposition 4 Suppose we have an          ensemble as above.
+                          1 X          n 0n o
+                        = 0       EC ρA   Um                            (28)   Consider a quantum        channel  N  A0 →B
+                                                                                                                           with its isomet-
+                          M m=1                                                                    A0 →BE
+                                                                               ric extension UN           . Then there exists a random
+                          X              0n
+                            p0n (y n )ρA                                       (ρxn )-like secret-key-assisted private code for the channel
+                        =              yn .                             (29)       0
+                             yn                                                N A →B for any , δ > 0, for all sufficiently largen
+                                                                                                                                     n, and
+                                                                               for any classical string xn in the typical set TδX [54]. Its
+Then we know that the following inequality holds for
+   0n                            0n
+                                                                               private communication rate is I(Y ; B|X) − c0 δ, and its
+ρ0A and the tensor power state ρA                                              secret key consumption rate is I(Y ; E|X) − c00 δ for some
+                          0n                0n
+                                                                               constants c0 , c00 where the entropic quantities are with re-
+                      ρ0A − ρA                           ≤ 2           (30)   spect to the state in (9). The state ρx is the restriction
+                                                     1
+                                                                               of the following state
+by the typical subspace theorem and the gentle measure-                                            0   X                      0
+
+ment lemma. The expurgation of any secret-key-assisted                                        ρYx A =      p(y|x)|yihy|Y ⊗ ρA
+                                                                                                                            x,y
+                                                                                                         y
+private code C has a minimal effect on the resulting chan-
+nel input density operator [30]:                                               to the A0 system.
+                 0n                    0n                       √              Proof [Proposition 4] The proof of this theorem pro-
+              ρ0A (C) − ρA (C)                               ≤ 4 4 .
+                                                         1                     ceeds exactly as the proof of Proposition 3 in Ref. [29]
+                                                                               and the proof of Proposition 5 in Ref. [30].          2
+The above inequality implies that the following one holds
+                                                       0n
+for the expected channel input density operators ρ0A
+       0n
+and ρA                                                                          C.    Publicly-enhanced secret-key-assisted private
+                        0n             0n               √                                              code
+                  ρ0A − ρA                           ≤ 4 4 ,           (31)
+                                                 1
+                                                                               Proposition 5 (HSW Coding Theorem [50, 51])
+                                                                                                                       0
+because the trace distance is convex. The following in-                        Consider an input ensemble {p(x), ρA x } that gives rise
+equality holds                                                                                                XB
+                                                                               to a classical-quantum state σ , where
+                   0n             0n                 √                                          X                    0      0
+                ρA − ρA                      ≤ 2 + 4 4                (32)            σ XB ≡      p(x)|xihx|X ⊗ N A →B (ρA
+                                                                                                                           x ).
+                                        1
+                                                                                                x∈X
+by applying the triangle inequality to (30) and (31).                          Let R = I(X; B)σ − c0 δ for any δ > 0 and for some
+Therefore, the random secret-key-assisted private code                         constant c0 . Then for all  > 0 and for all sufficiently
+is ρ-like.                                          2                          large n, there exists a classical encoding map
+                                                                                                                     n
+                                                                                                    h : 2nR → TδX ,
+                                                                                                           
+  B.   Associating a Random Private Code with a
+                  Classical String                                             and a decoding POVM
+                                                                                                                  n
+                                                                                                         {ΛB
+                                                                                                           k }k∈[2nR ] ,
+   Suppose that we have an ensemble {p(x), ρx }x∈X
+of quantum states. The density operator ρx arises                              that allows Bob to decode any classical message k ∈ [2nR ]
+as the expected density operator of another ensemble                           with high probability:
+{p (y|x) , ρx,y }. Let xn ≡ x1 · · · xn denote a classical                                                    n        n
+
+string generated by the density p(x) where each symbol                                             Tr{τkB ΛB
+                                                                                                           k } ≥ 1 − .
+xi ∈ X . Then there is a density operator σxn correspond-                                                         n
+                                                                               The density operators τkB are the channel outputs
+ing to the string xn where
+                                                                                                    n                 0n                0n
+                                                                                                                           →B n
+                                       n
+                                                                                                τkB ≡ N A                         (ρA
+                                                                                                                                    h(k) ),   (33)
+                                       O
+                        ρxn ≡                    ρxi .                                                                       0n
+                                                                               and the channel input states ρA
+                                                                                                             xn are a tensor product of
+                                       i=1
+                                                                               states in the ensemble:
+Suppose that we label a random private code by the                                                           0n
+                                                                                                                       n
+                                                                                                                       O            0
+                     0n
+string xn and let ρA
+                   xn denote its expected channel input
+                                                                                                        ρA
+                                                                                                         xn ≡                 ρA
+                                                                                                                               xi .
+density operator.                                                                                                      i=1
+                                                                                                                                                  11
+
+   We are now in a position to prove the direct coding part                         The second inequality follows from Proposition 5 and
+of the publicly-enhanced private father capacity theorem.                           (34). Let pe,pub (Ck ) denote the public message error
+The proof is similar to that in Ref. [29, 30].                                      probability for each public message k of the publicly-
+Proof       [Direct Coding Theorem] Define the public                               enhanced father code C:
+message set [2nR ], the classical    encoding map h, the
+                            n
+channel output states τkB , and the decoding POVM                                             pe,pub (Ck ) ≡ 1 − Pr{K 0 = k | K = k}.
+     n
+{ΛB k }k∈2nR as in Proposition 5. We label each public                              Then by the above definition, and (35), it holds that the
+message k ∈ [2nR ] where R = I(X; B) − c0 δ.
+                                                       0n                           expectation of the error probability pe,pub (Ck ) for public
+   Invoking Proposition 4, there exists a random (ρA  h(k) )-                       message k with respect to the random private code Ck is
+like private code Ck with probability density pCk because                           low:
+                                0n
+each input to the channel ρA   h(k) is a tensor product of                                                                       n       n
+                                                                                                                                  B
+an ensemble {p(x), ρA
+                                0                                                              ECk {pe,pub (Ck )} = 1 − Tr{ΛB k τk }             (36)
+                        x }. The random private code Ck
+has encryption-decryption pair (fCk , gCk ) and encoding-                                                         ≤ (1 + |X |) .                (37)
+decoding pair (ECk , DCk ) for each of its realizations.
+We label the combined operations simply as the pair                                    We now show that the private error is small. Input the
+                                                                                                   SA SB                            0n
+           0n     n
+(ECMk SA →A , DCBk SB →M ). It transmits n[I(Y ; B|X) + c0 δ]                       state π M ⊗ Φ          to the encoder ECMk SA →A , followed by
+                                                                                                      0n     n
+private bits, provided Alice and Bob share at least                                 the channel N A →B . The resulting state is an extension
+                                                                                           n       n
+n[I(Y ; E|X) + c00 δ] secret key bits.                                              ΩSCkB B of τCBk :
+   Let C denote the random publicly-enhanced secret-key-                                                                                     
+assisted private code that is the collection of random pri-                                     n        0n    n           0n          SA SB
+                                                                                         ΩSCkB B ≡ N A →B ECMk SA →A (π M ⊗ Φ                ) .
+vate codes {Ck }k∈[2nR ] . We first prove that the expec-
+tation of the error probability for public message k is                                   SB B n                                     n
+small. The expectationn is with respect to the random                               Let Ωk     denote the expectation of ΩCSkB B with respect
+private code Ck . Let τCBk denote the channel output den-                           to the random code Ck :
+sity operator corresponding to the private code Ck :                                                SB B n
+                                                                                                                 n       n
+                                                                                                                           o
+               n                                         o                                         Ωk      ≡ ECk ΩSCkB B .
+      n              0n    n           0n        SA SB
+  τCBk ≡ TrSB N A →B (ECMk SA →A (π M ⊗ Φ              )) .
+                                                                                                       SB B n                                n
+        n
+                                                                                    It follows that Ωk      is an extension of τ B
+                                                                                                                                 k . The fol-
+Let τ B
+      k   denote the expected channel output density op-                            lowing inequality follows from (35):
+erator of the random father code Ck :
+                                                                                                       SB B n      n
+                 n
+                          n no X          n                                                        Tr{Ωk        ΛB
+                                                                                                                 k } ≥ 1 − (1 + |X |).          (38)
+            τB
+             k       ≡ ECk τCBk = pCk τCBk .
+                                                 Ck                                 The above inequality is then sufficient for us to apply a
+                                                                                    modified version of the gentle measurement lemma (See
+The following inequality holds
+                                                                                    Appendix C of Ref. [29]) so that the following inequality
+                           0n       0n                                              holds
+                         ρA       A
+                          h(k) − ρh(k)           ≤ |X | 
+                                             1                                                  q                q                  
+                                                                                                      B n  SB B n   B n     SB B n
+                                                                0n                         ECk       Λk ΩCk        Λk − ΩCk
+because the random private code Ck is (ρAh(k) )-like. Then                                                                         1
+                                                  n
+the expected channel output density operator τ B
+                                                                                              p
+                                                k is close                                  ≤ 8(1 + |X |).                              (39)
+to the tensor product state τkB in (33):
+                                                                                                                                n
+
+                            n
+                                                                                    We define a decoding instrument DCB SB →KM for the
+                               Bn
+                         τB
+                          k − τk             ≤ |X | ,                       (34)   random publicly-enhanced private father code C as fol-
+                                         1
+                                                                                    lows [29, 55]:
+because the trace distance   is monotone under the quan-
+                 A0n →B n                                                                n
+                                                                                                    n 
+tum operation
+            n
+               N          . It then follows that the POVM                             DCB SB →KM ρB SB
+element ΛBk   has a high probability of detecting the ex-                                               q                   
+                                              n                                                                        q
+pected channel output density operator τ kB :                                                    n            n B n SB
+                                                                                         X                                              K
+                                                                                       ≡     DCBk SB →M    ΛB
+                                                                                                            k  ρ         ΛBn
+                                                                                                                          k    ⊗ |ki hk| ,
+            n        n              n        n              n        n                    k
+     Tr{ΛB   B         B  B       B    B
+         k τ k } ≥ Tr{Λk τk } − τ k − τk
+                                                                         1                     n
+                                                                                    where DCBk SB →M is the decoder for the private father
+                          ≥ 1 −  − |X | .                                  (35)                              n
+                                                                                                                        q              q
+                                                                                                                               n Bn S
+                                                                                    code Ck and each map DCBk SB →M ( ΛB
+                                                                                                                                            n
+                                                                                                                             k  ρ    B
+                                                                                                                                         ΛB
+                                                                                                                                          k )
+The first inequality follows from the following lemma that
+                                                                                    is trace-reducing. The induced quantum operation cor-
+holds for any two quantum states ρ and σ and a positive
+                                                                                    responding to this instrument is as follows:
+operator Π where 0 ≤ Π ≤ I:
+                                                                                               n
+                                                                                                                 n n                o
+             Tr {Πρ} ≥ Tr {Πσ} − kρ − σk1 .                                                 DCB SB →M (ρ) = TrK DCB SB →KM (ρ) .
+                                                                                                                                            12
+
+Monotonicity of the trace distance gives an inequality for               The above random publicly-enhanced secret-key-
+the trace-reducing maps of the quantum decoding instru-               assisted private code relies on Alice and Bob having ac-
+ment:                                                                 cess to a source of common randomness. We now show
+                      q               q                           that they can eliminate the need for common randomness
+         DB n SB →M       ΛB
+                              n  SB B n
+                                           ΛB
+                                              n
+                                                  −                  and select a good publicly-enhanced secret-key-assisted
+              Ck            k ΩCk           k
+    ECk                n
+                                       n
+                                                                     private code C that has a low public error pe,pub (Ck ) and
+                  DCBk SB →M ΩSCkB B                 
+                                                                      low private error pe,priv (Ck ) for all public messages in a
+                                                    1
+       p
+     ≤ 8(1 + |X |).                                   (40)           large subset of [2nR ]. By the bounds in (36) and (43), the
+                                                                      following bound holds for the expectation of the averaged
+The following inequality also holds                                   summed error probabilities:
+                   n
+                                        n
+                                                                          (                                          )
+                 DCB SB →M ΩSCkB B −                                             1 X
+                                                                                                                            ≤ 0 + (1 + |X |).
+                                                         
+                                                                      ECk                  pe,pub (Ck ) + pe,priv (Ck )
+ ECk                                                                            2nR
+                         q                  q       
+      DB n SB →M            ΛB
+                                  n   SB B n
+                                               ΛB
+                                                   n
+                                k ΩCk
+                                                                                     k
+            Ck                                   k
+                                                        1
+                                                                 
+         X           n
+                                  q
+                                                    n
+                                                      q             If the above bound holds for the expectation over all
+                  DCBk0 SB →M          ΛkB0 ΩSCkB B
+                                           n                n
+ ≤ ECk                                                  ΛBk0          random codes, it follows that there exists a particular
+                                                                1     publicly-enhanced private father code C = {Ck }k∈[2nR ]
+          0                                                      
+           k 6=k
+                                                                      with the following bound on its averaged summed error
+                                               
+         X q                        q          
+                         n    SB B n      Bn                          probabilities:
+ = ECk               ΛBk0   Ω Ck        Λ k0
+                                              1
+          0                                    
+           k 6=k
+                                                                             1 X
+                                                                                      pe,pub (Ck ) + pe,priv (Ck ) ≤ 0 + (1 + |X |).
+                                      
+         X         n n
+                               SB B n
+                                      o                                    2nR
+ = ECk           Tr ΛB  k 0 Ω  Ck
+                                                                                  k
+          0                           
+           k 6=k
+            n n S Bn o                                                We fix the code C and expurgate the worst half of the pri-
+ = 1 − Tr ΛB
+                      B
+                k Ωk                                                  vate father codes—those private father codes with public
+                                                                      messages k that have the highest value of pe,pub (Ck ) +
+  ≤ (1 + |X |).                                               (41)
+                                                                      pe,priv (Ck ). This derandomization and expurgation yields
+                                                                      a publicly-enhanced private father code that has each
+The first inequality follows by definitions and the triangle
+                                                                      public error pe,pub (Ck ) and each private error pe,priv (Ck )
+inequality. The first equality follows because the trace
+                                                                      upper bounded by 2 (0 + (1 + |X |)) for the remaining
+distance is invariant under isometry. The second equality
+                                   n SB B n                           public messages k. This expurgation decreases the pub-
+follows because the operator ΛB  k ΩCk      is positive. The
+                                                                      lic rate by a negligible factor of n1 .                    2
+third equality follows from some algebra, and the second
+inequality follows from (35). The private communication
+for all public messages k and codes Ck is good
+                 n
+                               n
+                                                                                         VII.     CHILD PROTOCOLS
+             DCBk SB →M ΩCSkB B − π M ≤ ,
+                                                1
+                                                                        Two simple protocols for the public-private setting are
+because each code Ck in the random private father code                secret key distribution and the one-time pad [46, 47]. Se-
+is good for private communication. It then follows that               cret key distribution is a protocol where Alice creates
+                                                                                      AA0
+         n      n
+                            n
+                                       o                             the state Φ      locally and sends the system A0 through
+     ECk DCBk SB →M ΩSCkB B − π M         ≤ .      (42)              a noiseless private channel. The protocol creates a secret
+                                                1
+                                                                      key and corresponds to the following resource inequality:
+Application of the triangle inequality to (42), (41), and
+(40) gives the following bound on the expected private                                           [c → c]priv ≥ [cc]priv .
+error probability:
+                                                                      The one-time pad protocol exploits a secret key and a
+                     ECk {pe,priv (Ck )} ≤ 0                  (43)
+                                                                      noiseless public channel to create a noiseless private chan-
+where                                                                 nel. It admits the following resource inequality:
+                                p                   √
+           0 ≡ (1 + |X |) +       8(1 + |X |) + 2 ,                               [c → c]pub + [cc]priv ≥ [c → c]priv .
+
+and where we define the private error pe,priv (Ck ) of the              We now consider some protocols that are child pro-
+code Ck as follows:                                                   tocols of the publicly-enhanced private father protocol.
+                                     n
+                                                                     Consider the resource inequality in (18). We can com-
+       pe,priv (Ck ) ≡ DCSB →M ΩSCkB B − π M .                        bine the protocol with secret key distribution, and we
+                                                          1
+                                                                                                                          13
+
+recover the protocol suggested in Section 4 of Ref. [30]:                        VIII.    CONCLUSION
+
+    hN i + I (Y ; E|X)σ [cc]priv
+    ≥ I (Y ; B|X)σ [c → c]priv + I (X; B)σ [c → c]pub .             We have introduced an optimal protocol, the publicly-
+                                                                 enhanced private father protocol, that exploits a secret
+    ≥ (I (Y ; B|X)σ − I (Y ; E|X)σ ) [c → c]priv +
+                                                                 key and a large number of independent uses of a noisy
+   I (Y ; E|X)σ [c → c]priv + I (X; B)σ [c → c]pub               quantum to transmit public and private information.
+    ≥ (I (Y ; B|X)σ − I (Y ; E|X)σ ) [c → c]priv +               Several protocols in the literature are now special cases
+                                                                 of this protocol.
+   I (Y ; E|X)σ [cc]priv + I (X; B)σ [c → c]pub
+                                                                    A few open questions remain. It remains to determine
+By cancellation of the secret key term, we are left with         the capacity regions of a multiple-access quantum chan-
+the following resource inequality:                               nel [48, 56] and a broadcast channel [32] for transmitting
+                                                                 public and private information while consuming a secret
+hN i + o [cc]priv ≥ (I (Y ; B|X)σ − I (Y ; E|X)σ ) [c → c]priv   key. One might also consider the five-dimensional re-
+                + I (X; B)σ [c → c]pub ,                         gion corresponding to the scenario where Alice and Bob
+                                                                 consume secret key, entanglement, and a noisy quan-
+where o [cc]priv represents a sublinear amount of secret         tum channel to produce quantum communication, public
+key consumption.                                                 classical communication, and private classical communi-
+  We can combine the publicly-enhanced private father            cation. This scenario might give more insight into the
+protocol with the one-time pad:                                  privacy/coherence correspondence. It remains open to
+                                                                 determine the full triple trade-off for the use of a quan-
+    hN i + I (Y ; E|X)σ [cc]priv + I (X; B)σ [cc]priv            tum channel in connection with public communication,
+     ≥ I (Y ; B|X)σ [c → c]priv + I (X; B)σ [c → c]pub           private communication, and secret. We have made initial
+                                                                 progress on this problem by exploiting techniques devel-
+    + I (X; B)σ [cc]priv                                 (44)    oped in Ref. [39]. Before completing this work, we need
+     ≥ I (Y ; B|X)σ [c → c]priv + I (X; B)σ [c → c]priv          to determine a publicly-assisted private mother proto-
+                                                                 col, the analog of the classically-assisted mother protocol
+     = I (XY ; B)σ [c → c]priv                           (45)    in Refs. [21, 39]. This protocol should then allow us to
+                                                                 determine the full triple trade-off for both the dynamic
+This protocol is one for secret-key-assisted transmission
+                                                                 setting and the static setting.
+of private information. It is not an efficient protocol be-
+cause the optimal secret-key-assisted protocol [20] imple-
+ments the following resource inequality:
+
+   hN i + I (XY ; E)σ [cc]priv ≥ I (XY ; B)σ [c → c]priv
+
+For a channel with non-zero private capacity so that
+I (X; B)σ − I (X; E)σ > 0, the protocol in (45) is not
+efficient because it uses more secret key than necessary.                           Acknowledgments
+This inefficiency is similar to the inefficiency that we
+found for combining the classically-enhanced father pro-
+tocol with teleportation (See Section VII of Ref. [29]). It         The authors thank Igor Devetak for a private discus-
+is not surprising that this inefficiency occurs because the      sion regarding the issue in Section III with the protocol
+publicly-enhanced private father protocol is the public-         for private communication. MMW acknowledges partial
+private analog of the classically-enhanced father protocol       support from an internal research and development grant
+and the one-time pad protocol is the public-private ana-         SAIC-1669 of Science Applications International Corpo-
+log of the teleportation protocol [9].                           ration.
+
+
+
+
+ [1] Barbara Terhal. Is entanglement monogamous? IBM                  IEEE, 1984.
+     Journal of Research and Development (arXiv:quant-            [3] Artur K. Ekert. Quantum cryptography based on Bell’s
+     ph/0307120), 48:71–78, 2004.                                     theorem. Physical Review Letters, 67(6):661–663, August
+ [2] Charles H. Bennett and Gilles Brassard. Quantum cryp-            1991.
+     tography: Public key distribution and coin tossing. In       [4] Charles H. Bennett, Gilles Brassard, and N. David Mer-
+     Proceedings of IEEE International Conference on Com-             min. Quantum cryptography without Bell’s theorem.
+     puters, Systems, and Signal Processing, pages 175–179.           Physical Review Letters, 68(5):557–559, February 1992.
+                                                                                                                            14
+
+ [5] Peter W. Shor and John Preskill. Simple proof of security   [24] Karol Horodecki, M. Horodecki, P. Horodecki, Debbie
+     of the BB84 quantum key distribution protocol. Physical          Leung, and Jonathan Oppenheim. Unconditional privacy
+     Review Letters, 85(2):441–444, July 2000.                        over channels which cannot convey quantum information.
+ [6] Zhicheng Luo and Igor Devetak. Efficiently imple-                Physical Review Letters, 100(11):110502, 2008.
+     mentable codes for quantum key expansion. Physical Re-      [25] P. Horodecki, M. Horodecki, and R. Horodecki. Bind-
+     view A, 75:010303, 2007.                                         ing entanglement channels. Journal of Modern Optics,
+ [7] Charles H. Bennett, David P. DiVincenzo, John A.                 47:347–354, February 2000.
+     Smolin, and William K. Wooters. Mixed state entan-          [26] Karol Horodecki, M. Horodecki, P. Horodecki, Debbie Le-
+     glement and quantum error correction. Physical Review            ung, and Jonathan Oppenheim. Quantum key distribu-
+     A, 54:3824–3851, 1996.                                           tion based on private states: Unconditional security over
+ [8] Benjamin Schumacher and Michael D. Westmoreland.                 untrusted channels with zero quantum capacity. IEEE
+     Quantum privacy and quantum coherence. Physical Re-              Transactions on Information Theory, 54(6):2604–2620,
+     view Letters, 80(25):5695–5697, June 1998.                       June 2008.
+ [9] Daniel Collins and Sandu Popescu. Classical analog of       [27] Graeme Smith and Jon Yard. Quantum communica-
+     entanglement. Physical Review A, 65(3):032321, Febru-            tion with zero-capacity channels. Science, 321:1812–1815,
+     ary 2002.                                                        September 2008.
+[10] Nicolas Gisin, Renato Renner, and Stefan Wolf. Linking      [28] Graeme Smith and John A. Smolin. Can nonprivate
+     classical and quantum key agreement: Is there a classical        channels transmit quantum information? Physical Re-
+     analog to bound entanglement? Algorithmica, 34(4):389–           view Letters, 102(1):010501, 2009.
+     412, 2002.                                                  [29] Min-Hsiu Hsieh and Mark M. Wilde. The classically-
+[11] Antonio Acı́n and Nicolas Gisin. Quantum correlations            enhanced father protocol. arXiv:0811.4227, 2008.
+     and secret bits. Physical Review Letters, 94(2):020501,     [30] Igor Devetak and Peter W. Shor. The capacity of a quan-
+     January 2005.                                                    tum channel for simultaneous transmission of classical
+[12] Toby S. Cubitt, Frank Verstraete, W. Dür, and J. I.             and quantum information. Communications in Mathe-
+     Cirac. Separable states can be used to distribute en-            matical Physics, 256(2):287–303, 2005.
+     tanglement. Physical Review Letters, 91(3):037902, July     [31] Imre Csiszár and János Körner. Broadcast channels with
+     2003.                                                            confidential messages. IEEE Transactions on Informa-
+[13] Joonwoo Bae, Toby Cubitt, and Antonio Acı́n. Nonsecret           tion Theory, 2:299–318, 1967.
+     correlations can be used to distribute secrecy. Physical    [32] Jon Yard, Patrick Hayden, and Igor Devetak. Quantum
+     Review A, 79(3):032304, 2009.                                    broadcast channels. arXiv:quant-ph/0603098, March
+[14] Igor Devetak. The private classical capacity and quantum         2006.
+     capacity of a quantum channel. IEEE Transactions on         [33] Charles H. Bennett and Stephen J. Wiesner. Com-
+     Information Theory, 51(1):44–55, 2005.                           munication via one- and two-particle operators on
+[15] Ning Cai, Andreas Winter, and Raymond W. Yeung.                  Einstein-Podolsky-Rosen states. Physical Review Letters,
+     Quantum privacy and quantum wiretap channels. Prob-              69:2881–2884, 1992.
+     lems of Information Transmission, 40(4):318–336, 2004.      [34] Debbie Leung and Graeme Smith. Continuity of quantum
+[16] Igor Devetak and Andreas Winter. Distillation of secret          channel capacities. arXiv:0810.4931, October 2008.
+     key and entanglement from quantum states. Proceedings       [35] Rudolph Ahlswede and Imre Csiszár. Common random-
+     of the Royal Society A, 461:207–235, 2005.                       ness in information theory and cryptography—Part I: Se-
+[17] Jonathan Oppenheim, Robert W. Spekkens, and Andreas              cret sharing. IEEE Transactions on Information Theory,
+     Winter. A classical analogue of negative information.            39:1121–1132, 1993.
+     arXiv:quant-ph/0511247, 2005.                               [36] Rudolph Ahlswede and Imre Csiszár. Common random-
+[18] M. Horodecki, Jonathan Oppenheim, and Andreas Win-               ness in information theory and cryptography—Part II:
+     ter. Partial quantum information. Nature, 436:673–676,           CR-capacity. IEEE Transactions on Information The-
+     2005.                                                            ory, 44:225–240, 1998.
+[19] M. Horodecki, Jonathan Oppenheim, and Andreas Win-          [37] Igor Devetak and Andreas Winter. Distilling common
+     ter. Quantum state merging and negative information.             randomness from bipartite quantum states. IEEE Trans-
+     Communications in Mathematical Physics, 269(1):107–              actions on Information Theory, 50:3138–3151, 2003.
+     136, January 2007.                                          [38] Renato Renner. Security of Quantum Key Distribu-
+[20] Min-Hsiu Hsieh, Zhicheng Luo, and Todd Brun. Secret-             tion. PhD thesis, ETH Zurich (arXiv:quant-ph/0512258),
+     key-assisted private classical communication capacity            2005.
+     over quantum channels. Physical Review A, 78(4):042306,     [39] Min-Hsiu Hsieh and Mark M. Wilde. Trading classical
+     2008.                                                            communication, quantum communication, and entangle-
+[21] Igor Devetak, Aram W. Harrow, and Andreas Winter. A              ment in quantum Shannon theory. arXiv:0901.3038, Jan-
+     resource framework for quantum shannon theory. IEEE              uary 2009.
+     Transactions on Information Theory, 54(10):4587–4618,       [40] Igor Devetak. private communication.
+     October 2008.                                               [41] Berry Groisman, Sandu Popescu, and Andreas Winter.
+[22] Igor Devetak, Aram W. Harrow, and Andreas J. Winter.             Quantum, classical, and total amount of correlations
+     A family of quantum protocols. Physical Review Letters,          in a quantum state. Physical Review A, 72(3):032317,
+     93:239503, 2004.                                                 September 2005.
+[23] Karol Horodecki, M. Horodecki, P. Horodecki, and            [42] Francesco Buscemi. How to securely decouple quan-
+     Jonathan Oppenheim. Secure key from bound entan-                 tum systems: local shredding of bipartite correlations.
+     glement. Physical Review Letters, 94(16):160502, April           arXiv:0807.3594, 2008.
+     2005.                                                       [43] Francesco Buscemi. Lest we remember a quantum: quan-
+                                                                                                                           15
+
+     tum information shredding. arXiv:0901.4506, 2009.               nel with general signal states. IEEE Transactions on
+[44] Igor Devetak.     Triangle of dualities between quan-           Information Theory, 44:269–273, 1998.
+     tum communication protocols. Physical Review Letters,      [51] Benjamin Schumacher and Michael D. Westmoreland.
+     97(14):140503, 2006.                                            Sending classical information via noisy quantum chan-
+[45] Anura Abeyesinghe. Unification of Quantum Information           nels. Physical Review A, 56:131–138, 1997.
+     Theory. PhD thesis, California Institute of Technology,    [52] Andreas Winter. Coding theorem and strong converse for
+     Pasadena, California, 2006.                                     quantum channels. IEEE Transactions on Information
+[46] Gilbert S. Vernam. Cipher printing telegraph systems for        Theory, 45(7):2481–2485, 1999.
+     secret wire and radio telegraphic communications. Jour-    [53] Andreas Winter. Coding Theorems of Quantum Informa-
+     nal of the IEEE, 55:109–115, 1926.                              tion Theory. PhD thesis, Universität Bielefeld, Germany,
+[47] Claude E. Shannon. Communication theory of secrecy              1999.
+     systems. Bell System Technical Journal, 28(4):656–715,     [54] Thomas M. Cover and Joy A. Thomas. Elements of In-
+     October 1949.                                                   formation Theory. Series in Telecommunication. John
+[48] Jon Yard, Patrick Hayden, and Igor Devetak. Ca-                 Wiley and Sons, New York, 1991.
+     pacity theorems for quantum multiple-access channels:      [55] Jon Yard. Simultaneous classical-quantum capacities of
+     Classical-quantum and quantum-quantum capacity re-              quantum multiple access channels. PhD thesis, Stanford
+     gions.    IEEE Transactions on Information Theory,              University, Stanford, CA, 2005. quant-ph/0506050.
+     54(7):3091–3113, July 2008.                                [56] Min-Hsiu Hsieh, Igor Devetak, and Andreas Winter.
+[49] Robert Alicki and Mark Fannes. Continuity of quantum            Entanglement-assisted capacity of quantum multiple-
+     conditional information. Journal of Physics A: Mathe-           access channels. IEEE Transactions on Information The-
+     matical and General, 37(5):L55–L57, 2004.                       ory, 54(7):3078–3090, 2008.
+[50] Alexander S. Holevo. The capacity of the quantum chan-
+

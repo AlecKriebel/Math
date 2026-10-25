@@ -1,0 +1,1754 @@
+                                                      STABILITY ANALYSIS OF A SIMPLE DISCRETIZATION METHOD
+                                                                          FOR A CLASS OF
+                                                             STRONGLY SINGULAR INTEGRAL EQUATIONS
+
+                                                              MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+
+
+
+arXiv:2302.13159v3 [math.NA] 22 Oct 2023
+                                                    A BSTRACT. Motivated by the discrete dipole approximation (DDA) for the scattering of elec-
+                                                    tromagnetic waves by a dielectric obstacle that can be considered as a simple discretization of a
+                                                    Lippmann-Schwinger style volume integral equation for time-harmonic Maxwell equations, we
+                                                    analyze an analogous discretization of convolution operators with strongly singular kernels.
+                                                       For a class of kernel functions that includes the finite Hilbert transformation in 1D and the prin-
+                                                    cipal part of the Maxwell volume integral operator used for DDA in dimensions 2 and 3, we show
+                                                    that the method, which does not fit into known frameworks of projection methods, can nevertheless
+                                                    be considered as a finite section method for an infinite block Toeplitz matrix. The symbol of this
+                                                    matrix is given by a Fourier series that does not converge absolutely. We use Ewald’s method to
+                                                    obtain an exponentially fast convergent series representation of this symbol and show that it is a
+                                                    bounded function, thereby allowing to describe the spectrum and the numerical range of the matrix.
+                                                       It turns out that this numerical range includes the numerical range of the integral operator, but
+                                                    that it is in some cases strictly larger. In these cases the discretization method does not provide a
+                                                    spectrally correct approximation, and while it is stable for a large range of the spectral parameter
+                                                    λ, there are values of λ for which the singular integral equation is well posed, but the discretization
+                                                    method is unstable.
+
+
+
+
+                                                                                                C ONTENTS
+
+                                             1.     Introduction                                                                                              2
+                                             1.1.    Motivation                                                                                                2
+                                             1.2.    The Discrete Dipole Approximation                                                                        4
+                                             1.3.    Outline of the paper                                                                                      5
+                                             1.4.    Notation for Fourier transforms and Fourier series                                                        6
+                                             1.5.    Kernels and their symbols                                                                                7
+                                             1.6.    Delta-delta discretization                                                                               11
+                                             2.     The discrete system                                                                                       11
+                                             2.1.    Toeplitz structure                                                                                       12
+
+                                              2020 Mathematics Subject Classification. 65R20, 45E10, 47A12, 65B10, 78M99.
+                                              Key words and phrases. volume integral equation, strongly singular kernel, delta-delta discretization, discrete
+                                           dipole approximation, numerical stability.
+                                                                                                      1
+2                     MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+    2.2.    Ewald method                                                                          12
+    2.3.    An integral representation                                                            15
+    2.4.    Matrix-valued kernels                                                                 17
+    3.     Examples                                                                               18
+    3.1.    Example 1. Dimension d = 1. Finite Hilbert transformation                             18
+    3.2.    Example 2. Dimension d = 2, kernel x1 x2 |x|−4                                        20
+    3.3.    Example 3. Dimension d = 2, kernel (x21 − x22 )|x|−4                                  23
+    3.4.    Example 4. Dimension d = 2, kernel (x1 + ix2 )2 |x|−4                                 27
+    3.5.    Example 5. Dimension d ≥ 2. Volume Integral Equation for the Quasi-static
+                Maxwell system                                                                    28
+    Acknowledgment                                                                                33
+    References                                                                                    33
+
+
+
+                                         1. I NTRODUCTION
+
+1.1. Motivation.
+Introduced almost 50 years ago by Purcell and Pennypacker [13], the Discrete Dipole Approxima-
+tion (DDA) is a classical numerical method in computational electromagnetics that is the subject
+of a vast and still rapidly growing literature (see the surveys [18, 3]), but is virtually unknown
+in the mathematical community. It can be considered as a numerical approximation scheme for a
+strongly singular volume integral equation that, however, is too simple to fit into any known frame-
+work for standard approximation schemes for such equations (Galerkin, collocation or Nyström
+methods etc). In particular, to the authors’ knowledge, there does not exist any error estimate or
+convergence proof for this method.
+In the paper [19], estimates for a consistency error are derived, and it is observed that to complete
+the convergence analysis, a uniform estimate for the inverse of the matrix of the linear system
+(stability estimate) would be needed. In the present paper, we prove first results on the way to
+such stability estimates for the DDA and related numerical schemes. The class of singular integral
+equations considered here includes the quasi-static case (i.e. zero frequency limit) of the Maxwell
+volume integral equation that describes the scattering of electromagnetic waves by a penetrable
+dielectric body in the case of constant electric permittivity. Further stability results for the non-
+zero frequency case will be the subject of a forthcoming paper.
+Because of the simplicity of the class of operators considered here (convolution operators with
+kernels positively homogeneous of degree −d on a bounded domain Ω ⊂ Rd ), we are able to
+obtain rather sharp results on the region of stability, by estimating the numerical range of the
+discretized operator in comparison with the numerical range of the integral operator. It turns
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                                 3
+
+out that for some operators, including the quasi-static Maxwell case in dimension d ≥ 2, the
+stability region is smaller than what one would naı̈vely expect. This corresponds to the fact that the
+eigenvalues of the system matrix, as the mesh-width of the discretization tends to zero, accumulate
+on a set that is strictly larger than the convex hull of the essential spectrum of the integral operator.
+In the paper [14], motivated by the convergence analysis of iterative solutions of the resulting large
+linear systems, the essential spectrum of the Maxwell volume integral operator was studied for the
+case of scattering by a dielectric ball in R3 . This is a subset of the segment in the complex plane
+that corresponds to the essential numerical range of the integral operator. It is now known (see
+[4, 5]) that the same form of the essential spectrum is valid for more general bounded Lipschitz
+domains. In [14], results of some numerical experiments are then shown that seem to indicate
+that the eigenvalues of the system matrices accumulate either at isolated points, corresponding
+to eigenvalues of the integral operator and hence to eigenvalues or resonances of the scattering
+problem, or at the points of the segment that is spanned by the essential spectrum of the integral
+operator. Looking closer at Figures 4.2–4.4 of [14], one can detect an “overshoot”, namely that the
+observed segment of accumulation points is actually larger than the span of the essential spectrum.
+In the paper [20], there is a discussion of the spectrum of the system matrices of the DDA scheme
+for the quasi-static Maxwell equations, motivated by the numerical modeling of the scattering of
+light by dust particles whose size is small with respect to the wavelength of the light (“Rayleigh
+particles”). Based on extensive experience with numerical computations using the DDA code
+ADDA, the authors are convinced that the DDA provides a faithful approximation of the solution
+of the volume integral equation in the sense that, among other things, the spectral measure of the
+DDA system matrices converges to the spectral measure of the volume integral operator. They
+provide plots of the spectral density of these matrices, including a zoom on a neighborhood of
+the lower end of the spectrum, see graph (a) in [20, FIG. 8]. There one can clearly see that
+there is an overshoot, namely a part of the spectrum below zero, and that its negative minimum
+does not disappear as the number of dipoles grows, but rather seems to converge to some number
+around −0.09. In a subsequent paper [15], the authors detect this “spill-out” of the spectrum of the
+DDA system matrices and relate it to an explosion of the needed iterations in an iterative solution
+method that they observed for large refractive indices. They study the behavior of this overshoot
+for anisotropic meshes, where it becomes larger, and for some recently introduced improvements
+of the DDA, where it seems to disappear.
+For the quasi-static Maxwell case we prove below (see Proposition 3.15 and (3.51)) that for the
+classical DDA on a cubic grid such an overshoot indeed exists and that it amounts to an almost
+20% increase of the length of the segment spanned by the essential spectrum.
+This somewhat unexpected result implies that the simple discretization scheme of the DDA does
+not provide a spectrally correct approximation of the strongly singular volume integral operator.
+The additional observation, supported by numerical experience, that this concerns only a small
+neighborhood of the essential spectrum or perhaps even only of the endpoints of this spectrum,
+whereas discrete eigenvalues and large parts of the spectral density nevertheless are correctly
+approximated, still awaits a precise description and proof.
+4                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+It also implies that the DDA scheme is actually unstable in high-contrast situations, namely if the
+relative permittivity is very small (smaller than ∼ 0.093 ) or very large (larger than ∼ 11.8). We
+prove this here for the zero-frequency limit, but expect that it is also true for non-zero frequencies.
+
+
+1.2. The Discrete Dipole Approximation.
+As its name indicates, the DDA (sometimes called Coupled Dipole Approximation) can be con-
+sidered as an approximation of a dielectric continuum described by Maxwell’s equations by a
+different physical system consisting of a finite number of dipoles that are characterized by their
+polarizability, interacting via electromagnetic fields.
+The same mathematical system can be obtained by a procedure more amenable to arguments of
+numerical analysis, namely by transforming the Maxwell equations for the original dielectric con-
+tinuum into an equivalent Lippmann-Schwinger style volume integral equation and then discretiz-
+ing this integral equation by a simple delta-delta approximation on a regular grid {xn | n ∈ Zd }
+of meshwidth h > 0.
+Thus a linear integral equation on a bounded domain Ω ⊂ Rd
+                                   Z
+(1.1)                     λu(x) − K(x, y)u(y)dy = f (x) (x ∈ Ω)
+                                      Ω
+will be approximated by the finite dimensional linear system
+                               X
+(1.2)              λum −              hd K(xm , xn )un = f (xm )     (xm ∈ Ω) .
+                             xn ∈Ω,n̸=m
+
+We omit the diagonal term m = n, because we shall have to do with singular kernels. Apart from
+this, (1.2) looks like a Galerkin method with Dirac deltas as trial and test functions.
+Let us briefly describe the construction of the volume integral equation. A more detailed derivation
+can be found in [10] and, with special emphasis on the two-dimensional situation, in [5]. We write
+the time harmonic Maxwell equations with normalized frequency κ ∈ C as a second order system
+for the electric field u.
+(1.3)                                curl curl u − κ2 ϵu = iκJ.
+Here it is assumed that the magnetic permeability is constant (normalized to 1) in the whole
+space. If one further assumes that the permittivity ϵ is equal to 1 outside of a bounded domain and
+the source current J has compact support, one can write this as a perturbation of the free-space
+situation
+(1.4)                        curl curl u − κ2 u = −κ2 (1 − ϵ)u + iκJ.
+Here the right hand side has compact support, and therefore convolution with the outgoing funda-
+mental solution gκ of the Helmholtz equation and application of the operator ∇ div +κ2 leads to
+the volume integral equation in distributional form
+(1.5)                         u = −(∇ div +κ2 )gκ ⋆ (1 − ϵ)u + uinc .
+Here the incoming field uinc combines the field generated by the current density with possible
+sourceless full space solutions of Maxwell’s equations (plane waves etc.)
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                                5
+
+Equation (1.5) can be considered in any dimension d ≥ 2, but only d = 2 and d = 3 are relevant
+for electrodynamics. The equation can be written in the form of a second kind strongly singular
+integral equation with the d × d matrix valued kernel
+(1.6)                            K(x, y) = −(D2 + κ2 )gκ (x − y) .
+The integral operator thus defined involves second order distributional derivatives of the weakly
+singular kernel gκ (x − y). Instead of this form of an integro-differential operator, one can write
+the strongly singular integral operator also in the form of a Cauchy principal value integral, using
+the well-known relation (for more details, see section 3.5.1 below)
+                    Z                             Z
+                  2                                                         1
+(1.7)           D       gκ (x − y)u(y)dy = p.v. D2 gκ (x − y)u(y)dy − u(x) .
+                     Rd                            Rd                       d
+If we further assume that the permittivity ϵ equals a constant ϵr ∈ C \ {1} in Ω, we can divide by
+1 − ϵr and arrive at the final form (1.1) with the integral understood in the principal value sense,
+the kernel given by (1.6), and the spectral parameter λ defined by the relation
+                                          1      1     d − 1 + ϵr
+(1.8)                             λ=          − =                 .
+                                       1 − ϵr d        d(1 − ϵr )
+                                    2+ϵr
+For d = 3, this relation λ = 3(1−ϵ      r)
+                                            is known in the DDA literature as Clausius-Mossotti po-
+                                          1
+larizability, referring to the fact that λ corresponds to the polarizability of the dipoles and to the
+Clausius-Mossotti equation between the molecular polarizability and the electric permittivity in a
+dielectric material, see for example [9, Section 4.5].
+The principal part of the volume integral operator is obtained by taking the limit κ → 0, and we
+will refer to this situation as the quasi-static Maxwell case. The resulting kernel is homogeneous
+of degree −d, and this property allows to analyze the corresponding linear system (1.2) using
+Fourier analysis of Toeplitz matrices. For this reason we study in this paper a class of strongly
+singular kernels that includes the quasi-static Maxwell kernel.
+
+
+1.3. Outline of the paper.
+In Section 1.5 we define a class of strongly singular kernels that are homogeneous of degree −d
+and translation invariant, and we evoke the relation between the numerical range of the corre-
+sponding singular integral operator in L2 and values of its symbol. The notion of numerical range
+allows to use a Lax-Milgram type argument to get a resolvent estimate for the restriction of the
+convolution operator to a bounded domain Ω.
+After introducing in Section 1.6 the delta-delta discretization, we state in Theorem 1.6 the main
+stability result valid for our class of operators.
+In Section 2 we study tools for proving stability results, namely infinite Toeplitz matrices and
+their symbols defined by Fourier series. Here a main difficulty is that one needs precise bounds
+for the values of a function (numerical symbol) defined by a Fourier series that is not absolutely
+convergent. We find that one can use Ewald’s method for this purpose. The result is that the
+symbol of the Toeplitz matrix is a bounded function, and that its range is always a superset of the
+range of the symbol of the integral operator, but that it might be strictly larger. If this is the case,
+then stability of the delta-delta scheme implies well-posedness of the integral equation, but not
+6                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+vice versa: The numerical scheme does then not provide a spectrally correct approximation, and
+it might be unstable for values of the spectral parameter λ for which any Galerkin scheme of the
+integral equation would be stable.
+In Section 3 we study in detail five representative examples.
+Example 1 concerns the one-dimensional singular integral equation defined by the finite Hilbert
+transformation. Here the numerical symbol has a simple explicit expression, and this can be
+used to get estimates for the resolvent of the discretized operator by the resolvent of the integral
+operator, with constant equal to 1. This gives Theorem 3.4, which is the ideal stability result that
+subsequent results are measured against.
+Examples 2 and 3 exhibit different behavior of the delta-delta scheme for two strongly singular
+integral operators in two dimensions. Whereas the two integral operators are equivalent, related
+by a simple rotation of the coordinate system, the two discrete systems show opposite behavior:
+We prove that in Example 2 the ranges of the symbol of the integral operator and of the symbol of
+the infinite Toeplitz matrix are identical, whereas in Example 3 there is an overshoot; the region of
+instability of the approximation scheme is strictly larger than the numerical range of the integral
+operator.
+In Example 4, we graphically illustrate the relations, proved in Sections 1.5 and 2, between the
+spectrum and numerical range of the system matrices and the numerical range of the singular
+integral operator by considering a non-selfadjoint case. The kernel is a complex-valued function
+whose real and imaginary parts are given by the kernels of Examples 3 and 2, respectively.
+The kernels studied in Examples 2 and 3 are also the off-diagonal and diagonal terms, respectively,
+in the matrix-valued kernel of the quasi-static Maxwell volume integral operator, which is the
+subject of Example 5. We study this for dimensions d ≥ 2 and give more precise results for
+d = 2 and d = 3. In two dimensions we find the same overshoot of the numerical range of the
+numerical symbol versus the symbol of the integral operator as Example 3. In three dimensions
+this overshoot is even larger, and it can be verified numerically either by computing the numerical
+symbol using Ewald’s method or by studying the asymptotic behavior of the smallest and largest
+eigenvalues of the matrix of the linear system as the mesh width tends to zero.
+
+
+1.4. Notation for Fourier transforms and Fourier series.
+We use the following convention for the Fourier transformation in Rd .
+                                                 Z
+(1.9)                         f (ξ) = F f (ξ) =
+                              b                      f (x)eiξ·x dx .
+                                                    Rd
+Inverse:
+                                                             Z
+(1.10)                    f (x) = F   −1 b
+                                         f (x) = (2π)   −d
+                                                                  fb(ξ)e−ix·ξ dξ .
+                                                             Rd
+
+For Fourier series, we use the following notation. For a sequence a : Zd → C, its Fourier series is
+defined as
+                                   X
+(1.11)                    ã(τ ) =     a(m)eim·τ , τ ∈ Q = [−π, π]d .
+                                  m∈Zd
+                             STABILITY OF A SIMPLE DISCRETIZATION METHOD                                   7
+
+Inverse:
+                                                         Z
+                                                    −d
+(1.12)                             a(m) = (2π)               ã(τ )e−im·τ dτ.
+                                                         Q
+
+The definitions are extended in the usual way from convergent sums and integrals to suitable
+spaces of functions and distributions. In particular, we have Parseval’s theorem
+                        d                                                            d
+(1.13)       f 7→ (2π)− 2 fb : L2 (Rd ) → L2 (Rd )           and     a 7→ (2π)− 2 ã : ℓ2 (Zd ) → L2 (Q)
+are unitary (i.e. isometric Hilbert space isomorphisms).
+Combining the Parseval formula and the convolution theorem gives
+               Z                                        Z
+                                                     −d
+(1.14)              u(x) k(x − y) v(y) dy dx = (2π)       ub(ξ) b
+                                                                k(ξ) vb(ξ) dξ ,
+                   R2d                                                   Rd
+
+                     X                                               Z
+                                                                −d
+(1.15)                       a(m) c(m − n) b(n) = (2π)                   ã(τ ) c̃(τ ) b̃(τ ) dτ .
+                                                                     Q
+                    m.n∈Zd
+
+From these formulas follows immediately that the operators of convolution with k in L2 (Rd ) and
+of discrete convolution with c in ℓ2 (Zd ) are bounded if and only if the “symbols” b
+                                                                                    k and c̃ are
+                                  ∞    d        ∞
+bounded functions belonging to L (R ) and L (Q), respectively.
+Sufficient conditions for this are that k ∈ L1 (Rd ) and c ∈ ℓ1 (Zd ). But these conditions are not
+necessary, and it is precisely the situation where they are not satisfied that will be relevant in the
+following.
+We will use the Poisson summation formula in the form
+                             X                 X
+(1.16)                           f (m)eim·τ =       fb(τ + 2πn) .
+                                 m∈Zd                    n∈Zd
+
+A sufficient (but in no way necessary) condition for (1.16) to hold for all τ is that
+                                  f        ∈ ℓ1 (Zd )    and fb ∈ L1 (Rd ).
+                                      Zd
+
+
+If we do not assume f d ∈ ℓ1 , but only fb ∈ L1 , then f is bounded, the left hand side of (1.16)
+                        Z
+converges in the distributional sense and the right hand side converges in L1 (Q). Then (1.16) is
+true in a weaker sense, the distributional left hand side being equal to the L1 (Q) right hand side.
+Example: Gaussian with parameter s > 0.
+                                                                                |ξ|  2
+                                             2                              d
+(1.17)                       f (x) = e−|x| s      ⇐⇒         fb(ξ) = ( πs ) 2 e− 4s .
+For this example the Poisson summation formula takes the form (for τ ∈ Rd )
+                            X        2
+                                                X        d   |τ +2πn|2
+(1.18)                          e−|m| s eim·τ =   ( πs ) 2 e− 4s .
+                               m∈Zd                      n∈Zd
+
+
+
+1.5. Kernels and their symbols.
+8                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+1.5.1. Homogeneous kernels. Later on, we will consider a rather restricted class of strongly sin-
+gular integral operators on Rd that are convolutions with kernel functions of the form
+(1.19)        K(x) = p(x) |x|−d−2      where p is a homogeneous polynomial of degree 2 .
+
+But first we recall some well-known general properties of homogeneous functions and distribu-
+tions that can be found, for example, in [8, Chap. III].
+Let K be a function on Rd , positively homogeneous of degree −d and smooth outside of the
+origin. For a given ϵ > 0, one can define a distribution Kϵ ∈ S ′ (Rd ) that coincides with K on
+Rd \ {0} by its action on a test function ϕ as
+                             Z                             Z
+(1.20)           ⟨Kϵ , ϕ⟩ =        K(x)(ϕ(x) − ϕ(0))dx +       K(x)ϕ(x) dx .
+                              |x|<ϵ                              |x|>ϵ
+
+This is independent of ϵ if and only if K satisfies the cancellation condition on the unit sphere
+Sd−1
+                                        Z
+(1.21)                                       K ds = 0 .
+                                           Sd−1
+In this case, we denote the distribution simply by K, and we can take the limit ϵ → 0, thus we get
+the Cauchy principal value.
+                                   Z                     Z
+(1.22)              ⟨K, ϕ⟩ = p.v. K(x)ϕ(x) dx = lim            K(x)ϕ(x) dx .
+                                                        ϵ→0   |x|>ϵ
+
+Another consequence of the cancellation condition (1.21) is that the Fourier transform Kb of the
+homogeneous distribution K is a bounded function homogeneous of degree 0, smooth outside of
+the origin and also satisfying the cancellation condition. The operator A of convolution with K
+is therefore bounded in L2 (Rd ). Note that in the absence of condition (1.21), K
+                                                                                b ϵ would have a
+logarithmic singularity at 0.
+The operator A is diagonalized by Fourier transformation:
+(1.23)                                     F Au = K
+                                                  bub.
+
+Therefore in L2 (Rd ), we can obtain information about the spectrum Sp(A) and about the nu-
+merical range W (A) from the corresponding easily checked information about the operator of
+multiplication by the symbol K.
+                             b
+
+We recall that the numerical range of A is defined by
+                                  W (A) = {(u, Au) | ∥u∥ = 1} ,
+where (·, ·) denotes the Hilbert space inner product. It is convex by the Toeplitz-Hausdorff theorem
+and it contains the spectrum of A. Denote by im(K)  b = K(R  b d ) the image (range) of K.
+                                                                                         b This is a
+compact set. We note a first result implied by the unitary equivalence (1.23) with the multiplication
+operator.
+Lemma 1.1. The spectrum Sp(A) is the image im(K),
+                                              b and the closure W (A) of the numerical
+range of A is the convex hull of im( b
+                                    K).
+                         STABILITY OF A SIMPLE DISCRETIZATION METHOD                              9
+
+It is well known (and easy to prove) that the numerical range allows estimates for the operator
+norm of the resolvent: For any λ ∈ C \ W (A),
+                               ∥(λI − A)−1 ∥ ≤ dist(λ, W (A))−1 .
+It is also monotone with respect to inclusions of subspaces, a property not shared by the spectrum.
+Given an open set Ω ⊂ Rd , we denote by AΩ the restriction of the convolution operator A to
+L2 (Ω) and consider the strongly singular integral equation (λI − AΩ )u = f , or in detail
+                                     Z
+(1.24)                λu(x) − p.v. K(x − y)u(y) dy = f (x) (x ∈ Ω).
+                                     Ω
+
+From the definition of the numerical range follows immediately the inclusion W (AΩ ) ⊂ W (A).
+We can summarize this discussion:
+Proposition 1.2. Let C ⊂ C be a closed convex set such that K(ξ)b    ∈ C for all ξ ∈ Sd−1 . Then
+for all λ ̸∈ C and any f ∈ L2 (Ω), the integral equation (1.24) has a unique solution u ∈ L2 (Ω),
+and there is a resolvent estimate in the L2 (Ω) norm
+(1.25)                          ∥(λI − AΩ )−1 ∥ ≤ dist(λ, C)−1 .
+Remark 1.3. The same argument implies stability for any Galerkin method: Let Xh be any closed
+subspace of L2 (Ω), and let Ah : Xh → Xh be the operator defined by restricting the sesquilinear
+form (u, Av) to Xh × Xh . Then the statement of Proposition 1.2 remains true if we replace AΩ by
+Ah .
+Remark 1.4. Whereas there is, in general, no simple relation between the spectra Sp(AΩ ) and
+Sp(A), for the numerical ranges of our convolution operators with homogeneous kernels we not
+only have the inclusion W (AΩ ) ⊂ W (A), but also the converse. Namely there holds
+(1.26)                  W (AΩ ) = W (A)      for any open subset Ω ⊂ C.
+
+Proof. The set of Rayleigh quotients (u,Au)
+                                      (u,u)
+                                            , where u ∈ L2 (Rd ) \ {0} has compact support, is a
+dense subset of W (A). We show that it is a subset of W (AΩ ): Indeed, let u be such a function and
+let ρ > 0 and a ∈ Rd be chosen such that the support of the function uρ,a defined by uρ,a (x) =
+u(ρx + a) is contained in Ω. Then
+                               (u, Au)   (uρ,a , Auρ,a )
+                                       =                 ∈ W (AΩ ).
+                                (u, u)    (uρ,a , uρ,a )
+                                                                                                 □
+
+1.5.2. Special kernels. For d = 1, there is essentially only one non-trivial kernel homogeneous
+of degree −d, namely K(x) = x1 .
+In Rd for d ≥ 2, while some of the following analysis would be possible for more general ho-
+mogeneous kernels, we focus now on the situation (1.19). This means that from now on, we
+fix a strongly singular kernel K and a homogeneous polynomial p of degree 2 with K(x) =
+p(x)|x|−d−2 , satisfying (1.21), considered as a distribution on Rd according to (1.22), and we
+denote by Kb its Fourier transform.
+10                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+Lemma 1.5. Let K have the form (1.19) and satisfy (1.21). Then
+                                                          d
+                        p(ξ)                    2π 2
+(1.27)        K(ξ)
+              b    = −νd 2 ,        where νd =      d
+                                                        is the volume of the unit ball in Rd .
+                        |ξ|                    d Γ( 2 )
+
+                                                                      2
+Proof. We first compute the Fourier transform of p(x)e−|x| s , using (1.17)
+                                             2       π d           |ξ|2
+                            Fx7→ξ [p(x)e−|x| s ] = ( ) 2 p(−i∂ξ )e− 4s .
+                                                     s
+The evaluation of these derivatives leads to the following simple result, as we will show:
+                                               2        π d 1        |ξ|2
+(1.28)                         Fx7→ξ [p(x)e−|x| s ] = −( ) 2 2 p(ξ)e− 4s .
+                                                        s 4s
+For j, k ∈ {1, . . . , d} with j ̸= k, let
+(1.29)                         ajk (x) = x2j − x2k ,      bjk (x) = xj xk .
+                                                                                                R
+Any homogeneous polynomial of degree 2 satisfying the cancellation condition                        Sd−1
+                                                                                                           p = 0 is a
+linear combination of the ajk and bjk , so we need to verify (1.28) only for these.
+                |ξ|2            |ξ|2           |ξ|2                   |ξ|2
+Note that ∂ξj e− 4s = − 2s
+                        1
+                           ξj e− 4s and ∂ξ2j e− 4s = − 2s1
+                                                           + 4s12 ξj2 e− 4s .
+Then for p = ajk , we see
+                                             |ξ|2       1 2          |ξ|2
+                                                                 2 − 4s
+                              (∂ξ2k − ∂ξ2j )e− 4s =       (ξ − ξ  )e      ,
+                                                       4s2 k    j
+
+and for p = bjk , we see
+                                             |ξ|2       1          |ξ|2
+                                   ∂ξj ∂ξk e− 4s =         ξk ξj e− 4s
+                                                                        .
+                                                       4s2
+Thus in both cases we have
+                                            |ξ|2        1        |ξ|2
+(1.30)                             p(∂ξ )e− 4s =           p(ξ)e− 4s
+                                                                      ,
+                                                       4s2
+and (1.28) is proved.
+Now we use the definition of the Gamma function
+                                  Z ∞               Z ∞
+                                       a −t dt                  2
+                         Γ(a) =       t e t = |x|2a
+                                                        sa e−|x| s ds
+                                                                   s
+                                     0                            0
+
+to write the kernel as an integral over Gaussians
+                                                              Z ∞
+                                     −d−2        1                        d           2
+(1.31)              K(x) = p(x)|x|          = d                       s 2 +1 p(x)e−|x| s ds
+                                                                                          s
+                                                                                            .
+                                             Γ( 2 + 1)        0
+                                                                              2
+Taking Fourier transforms and using (1.28), we find with u = |ξ|
+                                                              4s
+                          d   Z ∞                                d     Z ∞
+                       π2         −1
+                                            |ξ|2
+                                          − 4s ds           −2 π
+                                                                  2
+(1.32) −K(ξ) =
+          b                      s p(ξ)e         s
+                                                   = p(ξ)|ξ| d d          e−u du = νd p(ξ) |ξ|−2
+                   4Γ( d2 + 1) 0                              2
+                                                                Γ( 2
+                                                                     )  0
+
+as claimed.                                                                                                        □
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                                 11
+
+1.6. Delta-delta discretization.
+Let N ∈ N, fix some origin aN ∈ Rd and define the cubic grid of meshwidth h = N1 by
+                                                     m
+                               ΣN = {xN         N
+                                          m = a +       | m ∈ Zd } .
+                                                     N
+We further define
+                                   ω N = {m ∈ Zd | xN  m ∈ Ω} .
+Then a very simple discretization of the strongly singular integral equation (λI − AΩ )u = f (1.24)
+is the following
+                                X
+(1.33)            λum − N −d           K(xN        N           N
+                                             m − xn )un = f (xm ) ,   (m ∈ ω N ) ,
+                               n∈ω N ,m̸=n
+
+or in shorthand (λI − T N )U = F .
+The name “delta-delta discretization” points at the fact that this discretization formally looks like
+a Galerkin method for the integral equation (1.24) with Dirac deltas as both test and trial func-
+tions, except for the diagonal terms of T N , where we put zero, which is natural in view of the
+cancellation condition (1.21).
+Our aim in this paper is to analyze the linear system (1.33), in particular its stability in ℓ2 (ω N ), in
+the same way as we did above for the integral equation (1.24) in L2 (Ω), and to compare the two.
+We state a general result here, which we prove in the next section. More precise results will be
+given below in Section 3 for some examples, in particular those mentioned in Subsection 1.1.
+Theorem 1.6. Let K be a strongly singular kernel satisfying (1.19) and (1.21). Then there exists
+a compact convex set C ⊂ C such that for any λ ∈ C \ C, any N ∈ N for which ω N is non-empty,
+and for any F ∈ ℓ2 (ΩN ), the system (1.33) has a unique solution, and there is a uniform estimate
+for the inverse in the ℓ2 (ΩN ) operator norm
+(1.34)                        ∥(λI − T N )−1 ∥L(ℓ2 (ΩN )) ≤ dist(λ, C)−1 .
+Furthermore, with the strongly singular integral operator A defined above in Section 1.5.1, there
+holds the inclusion
+(1.35)                                       W (A) ⊂ C .
+Remark 1.7. Note that the inclusion W (A) ⊂ C implies that for λ ̸∈ C the singular integral
+equation is uniquely solvable, too, and provides the a priori estimate (1.25), for any domain Ω ⊂
+Rd . On the other hand, in order to guarantee stability for λ ∈ C \ C, the inclusion may need to
+be strict, as we shall see in the examples, and then there may be λ ∈ C \ W (A) for which the
+singular integral equation is well posed, but the delta-delta discretization is unstable.
+
+                                      2. T HE DISCRETE SYSTEM
+
+Let T N be the matrix representing the discretized integral operator in (1.33):
+                                                    (
+               N      N                      N        N −d K(xN       N
+                                                               m − xn )     (m ̸= n)
+(2.1)        T = (tmn )m,n∈ωN with tmn =                                             .
+                                                      0                     (m = n)
+12                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+Our aim is to bound the numerical range W (T N ) independently of N .
+
+2.1. Toeplitz structure.
+The matrix elements tN
+                     mn of T
+                             N
+                               do not depend on the choice of the origin aN , and since we
+assumed that K is homogeneous of degree −d, we have
+                                  N −d K(xN    N
+                                          m − xn ) = K(m − n) ,
+
+hence T N is a finite section of a fixed infinite Toeplitz (discrete convolution) matrix
+                                                         (
+                                                            K(m − n) (m ̸= n) ,
+(2.2)               T = (tmn )m,n∈Zd with tmn =
+                                                            0            (m = n) .
+Theorem 1.6 will be proved if we can show that T defines a bounded linear operator in ℓ2 (Zd )
+whose numerical range W (T ) contains W (A). We can then choose C as the closure of W (T ).
+We use Fourier series and the convolution theorem to diagonalize the matrix T and to represent
+the sesquilinear form defined by the matrix T N , compare (1.15). For U = (um )m∈ωN , we find
+                                                   Z
+                                  N            −d
+(2.3)                       (U, T U ) = (2π)         F (τ ) |ũ(τ )|2 dτ .
+                                                         Q
+                           im·τ                      d
+              P
+Here ũ(τ ) = m∈ωN um e           and Q = [−π, π] . F (τ ) is the symbol (characteristic function) of
+the Toeplitz matrix T :
+                                                  X
+(2.4)                               F (τ ) =                K(m) eim·τ .
+                                               m∈Zd ,m̸=0
+
+The problem is now reduced to the study of the operator of multiplication by the function F in
+L2 (Q).
+Lemma 2.1. The operator T : ℓ2 (Zd ) → ℓ2 (Zd ) is bounded if and only if F ∈ L∞ (Q).
+The closure of W (T ) is the closed
+                                  Sconvex hull of the range im(F ) = {F (τ ) | τ ∈ Q} and is also
+                                            N
+equal to the closure of the union N ∈N W (T ) .
+
+Proof: This is immediate from (2.3).
+
+2.2. Ewald method.
+The problem that makes the statement F ∈ L∞ (Q) non trivial is that the Fourier series (2.4) is not
+absolutely convergent. The sequence (K(m))m∈Zd is of order O(|m|−d ) at infinity and therefore
+in ℓp (Zd ) for all p > 1, but not for p = 1. Its membership in ℓ2 (Zd ) implies, for example, that the
+series converges in the sense of L2 (Q). The slow convergence of the Fourier series for F makes it
+also unsuitable for using it in numerical computations to find bounds for im(F ).
+We will use a variant of a method introduced by P. P. Ewald [7] in 1921 as a tool to compute slowly
+converging lattice sums. It has become a routine method for the computation of periodic and quasi-
+periodic Green functions, with application in numerical electrodynamics and other fields where
+periodic structures appear. Among the many presentations of the method: Appendix A of the
+article [6] or Section 2.13.3 in the book [2].
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                              13
+
+We use it here as a summation method for our slowly converging Fourier series. In our restricted
+setting it turns out to give surprisingly simple results.
+The method introduces a decomposition K = K F + K P for the coefficients and correspondingly
+F = F F + F P for the Fourier series in such a way that both K F and the Fourier transform
+Kb P of K P are exponentially decreasing at infinity, so that both the Fourier series for F F (τ ) and
+the Poisson sum (compare (1.16)) for F P (τ ) are rapidly convergent, which not only proves the
+boundedness of F , but gives also a fast numerical algorithm for its computation.
+In the literature one often labels the two terms in the decomposition “spatial” and “spectral” sums,
+but this is not pertinent to our situation, where the lattice sum runs over the Fourier variable, and
+the Fourier series runs overs spatial points. So we will use “Fourier” and “Poisson” sums as labels.
+The idea of Ewald’s method is to represent K(x) by an integral over Gaussians from 0 to ∞ as
+we did already in Section 1.5.2 above:
+                                                      Z ∞
+                                       −d−2    p(x)          d      2
+(2.5)                  K(x) = p(x)|x|       = d            s 2 e−|x| s ds
+                                             Γ( 2 + 1) 0
+
+and then to split the integral at a point β 2 > 0:
+                                                          Z ∞
+                                        p(x)                      d      2
+(2.6)                                F
+                               K (x) = d                         s 2 e−|x| s ds ,
+                                      Γ( 2 + 1)             β2
+                                                          Z β2
+                                               p(x)               d       2
+(2.7)                          K P (x) =                         s 2 e−|x| s ds .
+                                             Γ( d2 + 1)     0
+
+
+We see that K F is simply the product of K by a function exponentially decreasing at infinity
+
+                                                         Γ( d2 + 1, β 2 |x|2 )
+(2.8)                                K F (x) = K(x)
+                                                              Γ( d2 + 1)
+
+with the (upper) incomplete Gamma function (see [1, §6.5])
+                                           Z ∞
+                                Γ(a, x) =       ta−1 e−t dt .
+                                                     x
+                                 2       2
+Therefore K F (x) = O(|x|2 e−β |x| ) as |x| → ∞ , and the Fourier series for F F (τ )
+                                             X
+(2.9)                           F F (τ ) =          K F (m) eim·τ
+                                               m∈Zd ,m̸=0
+
+
+converges rapidly, implying that F F is an analytic function on Rd /(2πZ)d .
+Consequently, the Fourier series for F P (τ ) converges as slowly as the one for F (τ ), and we use
+instead the Poisson summation formula (1.16) and write
+                                              X
+(2.10)                            F P (τ ) =      b P (τ + 2πn) .
+                                                  K
+                                                n∈Zd
+14                    MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+                b P with the formulas used for K
+We can evaluate K                              b in Lemma 1.5. As in (1.32) we obtain
+                               d    Z β2                              d     Z ∞
+                           −π 2          −1
+                                                |ξ|2
+                                               − 4s ds           −2 π
+                                                                       2
+                P
+              K (ξ) =
+              b
+                            d
+                                       s p(ξ)e       s
+                                                       = −p(ξ)|ξ| d d             e−u du
+(2.11)                  4Γ( 2
+                              +  1)  0                             2
+                                                                     Γ( 2
+                                                                          )  |ξ|2
+                                                                             4β 2
+
+                                        |ξ|2
+                                    −
+                        = K(ξ)e
+                          b     4β 2 .
+
+
+
+Therefore we also obtain a very simple form for the Fourier transform, namely that K   b P is just the
+symbol of A cut off at infinity, and therefore the series (2.10) converges absolutely and uniformly.
+At most one term in the sum may be discontinuous, when τ + 2πn = 0, and for τ ∈ Q this is the
+term with n = 0. We can summarize the result.
+Proposition 2.2. The symbol F (τ ) of the infinite Toeplitz matrix T is a bounded function given
+for any β > 0 by the exponentially convergent sums
+                                         d                                      |τ +2πn|2
+                         X             Γ( +1,β 2 |m|2 ) im·τ   X              −
+(2.12)        F (τ ) =                   2
+                                K(m) Γ( d +1) e              +   K(τ + 2πn) e 4β2 .
+                                                                 b
+                                                  2
+                         m∈Zd ,m̸=0                                  n∈Zd
+
+In the period cube Q = [−π, π]d , it is C ∞ outside of 0, and it has the form
+(2.13)         F (τ ) = K(τ
+                        b ) + F0 (τ )          where F0 is analytic in Q and F0 (0) = 0.
+
+Proof. We have proved equation (2.12) above, except for one point: From Poisson’s summation
+formula follows that the Poisson sum (2.10) equals the Fourier series with coefficients K P (m),
+m ∈ Zd , including m = 0. But in the Fourier series (2.4) defining F (t) as well as in (2.9) defining
+F F (t), we have excluded m = 0. So we should compensate for K P (0), which according to (2.7)
+equals
+                                       P          p(0)β d
+                                      K (0) = d            .
+                                                 Γ( 2 + 1)
+Now, since we assumed p(x) to be a homogeneous polynomial of degree 2, we have p(0) = 0 and
+hence no compensation is needed.
+Representing F0 as
+                        d                                                       |τ +2πn|2             |τ |2
+           X          Γ( +1,β 2 |m|2 )                X                     −                       −
+                  K(m) 2Γ( d +1) eim·τ +
+                                                                                                            
+F0 (τ ) =                                                       K(τ + 2πn)e
+                                                                b                   4β 2     K(τ ) e 4β2 − 1 ,
+                                                                                            + b
+                                2
+         m∈Zd ,m̸=0                                n∈Zd ,n̸=0
+
+we see immediately that it is analytic. For finding F0 (0), we can use the following observation.
+Lemma 2.3. Let S ⊂ Rd be a finite set that is cubically symmetric, i. e. invariant under reflections
+at coordinate planes and under permutations of the coordinates,
+                                                            R       and let p be a homogeneous
+polynomial of degree 2 satisfying the cancellation condition Sd−1 p = 0. Then
+                                          X
+                                              p(x) = 0.
+                                               x∈S
+
+
+This is immediately clear when p is one of the ajk or bjk from (1.29), and it is therefore true for
+all p satisfying the (spherical) cancellation condition.
+                          STABILITY OF A SIMPLE DISCRETIZATION METHOD                              15
+
+For any M ∈ R, the set {m ∈ Zd | |m|2 = M } is either empty or cubically symmetric. Therefore
+for τ = 0, the two sums in the representation of F0 (τ ) are 0. The last term
+                                                                    |τ |2
+                                                                  −
+                                         |τ |2                   e 4β2 − 1
+                                     −              
+                             K(τ
+                             b ) e       4β 2    − 1 = −νd p(τ )
+                                                                    |τ |2
+tends to νD p(0)/(4β 2 ) = 0 as τ → 0, and hence F0 (0) = 0.                                      □
+
+Poposition 2.2 implies Theorem 1.6, where C is the closed convex hull of im(F ). The inclusion
+W (A) ⊂ C is easy to see from (2.13):
+Given ϵ > 0, let δ > 0 be such that for |τ | < δ we have |F0 (τ )| < ϵ. Since K  b is homogeneous of
+degree zero, it takes all of its values already on the ball Bδ (0) of radius δ. Thus
+                          im(K) b ⊂ F (Bδ (0)) + Bϵ (0) ⊂ im(F ) + Bϵ (0) .
+Taking convex hulls shows that
+                              W (A) ⊂ C + Bϵ (0)            for all ϵ > 0 .
+Remark 2.4. The very simple form of the Ewald representation (2.12) comes from the very simple
+form of the Fourier transforms (1.27) and (1.28), which in turn rely on the cancellation condition
+(1.21). Now for the kernel K this condition is natural, because it is necessary in order to represent
+K as a homogeneous distribution and to have a bounded Fourier transform. But for the symbol K      b
+it is not as natural. We can add a constant and still have a function homogeneous of degree zero,
+which will then not satisfy the cancellation condition. An example is ξj ξk |ξ|−2 for all j, k, even
+for j = k.
+On the other hand, the representation K(x) = p(x)|x|−d−2 may not be the most natural, one may
+come across cases (see Example 5 below) like
+                               Kjk (x) = δjk |x|−d − d xj xk |x|−d−2 ,
+where for j = k the two terms in the sum do not separately satisfy (1.21). This fits into our
+framework, however, because
+                                                                 X d
+                              −d−2
+       Kjk (x) = −d bjk (x)|x|      for j ̸= k, and Kkk (x) =        ajk (x)|x|−d−2 .
+                                                                              j=1
+
+If one treats the two terms individually, one may get formulas for Fourier transforms and for the
+Ewald splitting that are less symmetric than what we presented above.
+
+2.3. An integral representation.
+We have another look at the Ewald splitting for the numerical symbol F (ξ) = F F (ξ) + F P (ξ)
+described in (2.6)–(2.12)
+                             X p(m) Z ∞ d                2
+(2.14)                F
+                    F (ξ) =         d
+                                                s 2 e−|m| s ds eim·ξ
+                                 Γ( 2 + 1) β 2
+                            m∈Zd
+                            X −π d2         Z β2
+                                                                    |ξ+2πn|2
+                      P                          −2               −
+(2.15)              F (ξ) =                    s    p(ξ +  2πn)e       4s    ds .
+                               d
+                                 4Γ( d2 + 1) 0
+                              n∈Z
+16                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+These formulas are valid for any 0 < β < ∞. All the sums and integrals are converging absolutely
+here, and therefore we can interchange sums and integrals.
+                    Z ∞                                   X p(m) d               2
+            F
+(2.16) F (ξ) =          H F (ξ, s) ds with H F (ξ, s) =          d
+                                                                        s 2 e−|m| s eim·ξ
+                     β2                                       Γ( 2 + 1)
+                                                         m∈Zd
+                    Z β2                                  X −π d2 p(ξ + 2πn)           |ξ+2πn|2
+            P             P                   P                                   −2 −
+(2.17) F (ξ) =          H (ξ, s) ds with H (ξ, s) =                  d
+                                                                                s    e    4s    .
+                     0                                      d
+                                                                 4Γ( 2
+                                                                       +  1)
+                                                                         n∈Z
+
+From the definition (2.16) of H F and the fact that |m| ≥ 1 in the sum follows without difficulty
+that for any 0 < γ < 1 there exists a constant C such that
+(2.18)                      |H F (ξ, s)| ≤ C e−γs         for all s ≥ 1, ξ ∈ Rd .
+To see the behavior of H P (ξ, s) from (2.17), we decompose
+                                    H P (ξ, s) = H0 (ξ, s) + H1 (ξ, s)
+with
+                                            d       X                              |ξ+2πn|2
+(2.19)                  H0 (ξ, s) = − 4Γ(πd2+1)           p(ξ + 2πn)s−2 e−            4s      ,
+                                            2
+                                                n∈Zd ,n̸=0
+                                            d                    |ξ|2
+(2.20)                  H1 (ξ, s) = − 4Γ(πd2+1) p(ξ)s−2 e− 4s .
+                                            2
+
+                                                                                                  2
+Now we use the fact that for ξ ∈ Q and n ̸= 0 we have |ξ + 2πn| ≥ π. Therefore for any δ < π4
+there is a constant C such that
+                                                δ
+(2.21)                     |H0 (ξ, s)| ≤ C e− s         for all 0 < s ≤ 1, ξ ∈ Q,
+and H0 (ξ, s) is analytic in ξ for all s.
+It remains to analyze the term with n = 0, i.e. H1 . It is clear that it vanishes for ξ = 0, and for
+                                                        2
+every ξ ̸= 0 there exists a constant Cξ and 0 < γ < |ξ|4 such that
+                                                             γ
+(2.22)                  |H1 (ξ, s)| ≤ Cξ min{s−2 , e− s }               for all s ∈ (0, ∞) .
+Thus H1 (ξ, s) is integrable over s ∈ (0, ∞) for all ξ, but there is no uniform bound for Cξ :
+                             |ξ|2
+Considering sups>0 s−2 e− 4s , one sees that Cξ = O(|ξ|−2 ) as ξ → 0.
+Thus we see that H F is integrable as s → ∞ according to (2.18), and H P is integrable as s → 0
+according to (2.21) and (2.22), but, because of Poisson’s summation formula, they are in fact the
+same
+                                      H F (ξ, s) = H P (ξ, s) ,
+so we can use all of the above estimates for both of them. We can summarize
+Proposition 2.5. The symbol F (ξ) has the integral representation
+                                            Z ∞
+(2.23)                             F (ξ) =      H(ξ, s) ds ,
+                                                    0
+                             STABILITY OF A SIMPLE DISCRETIZATION METHOD                               17
+
+where H(ξ, s) is given either by the Fourier series H F in (2.16) or, equivalently, by the lattice sum
+H P in (2.17). The decomposition F = F0 +K   b in Proposition 2.2 corresponds to the decomposition
+H = H0 + H1 with H0 and H1 defined in (2.19) and (2.20), and there holds
+                          Z ∞                                    Z ∞
+(2.24)           F0 (ξ) =      H0 (ξ, s) ds      and K(ξ) =
+                                                         b             H1 (ξ, s) ds .
+                              0                                               0
+In these integrals, the functions s 7→ H0 (ξ, s), s 7→ H1 (ξ, s), and s 7→ H(ξ, s) are integrable on
+(0, ∞) for any ξ ∈ Q, for any ξ ∈ Rd \ {0}, and for any ξ ∈ Q \ {0}, respectively.
+
+The integral representations (2.23) and (2.24) will be used below to get bounds for the function
+F (ξ) from estimates for H(ξ, s). The latter will be a consequence of the following observation
+that can be proved using Fourier representations (2.16) for H and (1.28) for H1 .
+Lemma 2.6. The functions
+                         d                               d                          d
+            (ξ, s) 7→ s− 2 H0 (ξ, s),     (ξ, s) 7→ s− 2 H1 (ξ, s),     (ξ, s) 7→ s− 2 H(ξ, s),
+are solutions of the heat equation
+                                  (∂s − ∆ξ )u(ξ, s) = 0         in Q × (0, ∞).
+
+2.4. Matrix-valued kernels.
+Until now, we have considered kernel functions with values in C and integral operators acting
+on scalar functions. The generalization to vector-valued functions and matrix-valued kernels is
+simple and straightforward, and we do not find it necessary to introduce typographic distinctions
+for the vector-valued objects. The main difference is that in the general theory of Section 1.5,
+one has to use the numerical range W (K(x)) of the matrix K(x) instead of the value K(x) in
+statements such as Lemma 1.1 and Proposition 1.2. In particular
+                                                         [
+(2.25)               W (A) is the closed convex hull of         d
+                                                                  W (K(ξ))
+                                                                     b     .
+                                                                       ξ∈R
+
+Theorem 1.6 remains literally true, but for the construction of the set C one has once again to use
+the numerical range W (F (t)) of the matrix-valued function F . In Lemma 2.1, the characterization
+of the numerical range W (T ) is to be understood as follows.
+                                                                  S
+Lemma 2.7. The closure of W (T ) is the closed convex hull of τ ∈Q W (F (τ )) and is also equal
+to the closure of the union N ∈N W (T N ).
+                           S
+
+
+The basic Parseval-convolution formula (1.15) now has to be written, instead of the scalar version
+(2.3), as
+                                                   Z
+                         N                      −d           ⊤
+(2.26)              (U, T U ) = (U, T U ) = (2π)       ũ(τ ) F (τ ) ũ(τ ) dτ .
+                                                                 Q
+                             im·τ
+              P
+Here ũ(τ ) = m∈ω N um e
+                                   , and F (τ ) is the matrix-valued symbol of the block Toeplitz matrix
+T = K(m − n) m,n∈Zd :
+                                                     X
+(2.27)                                 F (τ ) =                K(m) eim·τ .
+                                                  m∈Zd ,m̸=0
+18                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+From (2.26) one can immediately read the properties of the numerical range stated in Lemma 2.7.
+In this paper, most considered examples of kernels are real-valued and the matrices symmetric, in
+which case the integral operators are selfadjoint, and the numerical ranges consist of intervals in
+the real line.
+
+
+                                          3. E XAMPLES
+
+3.1. Example 1. Dimension d = 1. Finite Hilbert transformation.
+We start with the simplest example of a strongly singular integral equation and show that the
+stability of its delta-delta approximation can be completely analyzed, resulting in a kind of ideal
+stability theorem.
+
+3.1.1. The singular integral equation. Let a, b ∈ R with a < b. On the interval Ω = (a, b) we
+consider the singular integral equation, abbreviated as (λI − AΩ )u = f ,
+                                        Z
+                                      1     u(y)
+(3.1)                      λu(x) −                dy = f (x) , x ∈ Ω .
+                                     iπ Ω x − y
+                                                                                            1
+The integral is understood in the Cauchy principal value sense. The kernel function K(x) = iπx
+has the Fourier transform
+                                        K(ξ) = sign ξ.
+                                         b
+The operator A of convolution with K on R is the Hilbert transformation. It satisfies A2 = I, and
+its spectrum (in a large class of function spaces, for instance Lp (R) with 1 < p < ∞) is {−1, 1},
+consisting of two eigenvalues of infinite multiplicity.
+The finite Hilbert transformation AΩ and its spectral theory are also well studied classical objects,
+see for example [11]. Here the spectrum depends on the function space; for Lp (Ω) it is strongly
+dependent on p, but not on Ω, as long as Ω is a proper subinterval of R. For p = 2 one has the
+following description.
+Lemma 3.1. The finite Hilbert transformation AΩ is a bounded selfadjoint operator in L2 (Ω),
+unitarily equivalent to the operator of multiplication by σ in L2 (−1, 1) with σ(ξ) = ξ. Both the
+spectrum Sp(AΩ ) and the closure of the numerical range W (AΩ ) are equal to C = [−1, 1]. For
+all λ ∈ C \ C and any f ∈ L2 (Ω), the integral equation (3.1) has a unique solution u ∈ L2 (Ω),
+and for the resolvent one has in the L2 (Ω) operator norm
+(3.2)                            ∥(λI − AΩ )−1 ∥ = dist(λ, C)−1 .
+
+Explicit formulas for the resolvent are known. For the infinite Hilbert transformation this is triv-
+ially obtained by algebra:
+                                                   1
+                                  (λI − A)−1 = 2       (λI + A) ,
+                                                λ −1
+and for the finite Hilbert transformation, formulas for the resolvent can be found for example in
+[16] or [17].
+                          STABILITY OF A SIMPLE DISCRETIZATION METHOD                               19
+
+3.1.2. The discrete system. We use the notation of Section 1.2 with d = 1, in particular xN m =
+       m
+aN + N    and ω N = {m ∈ Z | xN m  ∈ Ω}.  The   simple delta-delta discretization of our singular
+integral equation (3.1) is
+                             1    X          un
+(3.3)               λum −                 N      N
+                                                   = f (xNm) ,   (m ∈ ω N ) .
+                           iπN    N
+                                         xm − x n
+                                  n∈ω ,m̸=n
+
+                                             1     1               N
+The system matrix T N with matrix elements iπN  xN   N (m, n ∈ ω ) is a finite section of the
+                                                 m −xn
+infinite Toeplitz matrix
+                               1     
+                       T =                     with zero on the diagonal.
+                           iπ(m − n) m,n∈Z
+The symbol F (τ ) is now given by the Fourier series
+                                             ∞
+                              X      eimτ   X   2 sin mτ
+(3.4)              F (τ ) =               =              ,     τ ∈ Q = [−π, π] .
+                            m∈Z,m̸=0
+                                     iπm    m=1
+                                                   πm
+
+This series converges for all t ∈ Q to the well known saw-tooth function
+                                             τ
+(3.5)                      F (τ ) = sign τ −      (τ ̸= 0) , F (0) = 0 .
+                                             π
+The range of this function is the interval (−1, 1).
+Properties of the matrix T follow immediately from this symbol F and can be summarized as
+follows.
+Lemma 3.2. The infinite Toeplitz matrix T defines a bounded selfadjoint operator in ℓ2 (Z), uni-
+tarily equivalent to the operator of multiplication by F in L2 (−π, π) with F given in (3.5). Both
+the spectrum Sp(T ) and the closure of the numerical range W (T ) are equal to C = [−1, 1]. For
+all λ ∈ C \ C the operator λI − T is invertible in ℓ2 (Z), and for the resolvent one has in the ℓ2 (Z)
+operator norm
+(3.6)                             ∥(λI − T )−1 ∥ = dist(λ, C)−1 .
+Corollary 3.3. The matrix T N of the system (3.3) is selfadjoint with its eigenvalues in C = [−1, 1].
+For λ ∈ C \ C, there is a uniform resolvent estimate in the ℓ2 operator norm
+(3.7)                            ∥(λI − T N )−1 ∥ ≤ dist(λ, C)−1 .
+
+The converse is also true: If there is a uniform stability estimate
+                                 ∥(λI − T N )−1 ∥ ≤ C     for all N ,
+then one also has (by a standard Galerkin argument) ∥(λI − T )−1 ∥ ≤ C, hence dist(λ, C) ≥ C1
+and λ ̸∈ C. Combining this with Lemma 3.1, we obtain the following description of the stability
+result for our delta-delta discretisation of the finite Hilbert transform.
+Theorem 3.4. For λ ∈ C the following are equivalent:
+(i) The singular integral equation (3.1) has a unique solution u ∈ L2 (Ω) for any f ∈ L2 (Ω).
+(ii) The discretization method (3.3) is stable in the ℓ2 norm.
+20                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+(iii) λ ̸∈ C, where C = [−1, 1].
+For such λ, there is an estimate for the operator norms
+(3.8)                   ∥(λI − T N )−1 ∥L(ℓ2 (ωN )) ≤ ∥(λI − AΩ )−1 ∥L(L2 (Ω)) .
+
+
+
+3.2. Example 2. Dimension d = 2, kernel x1 x2 |x|−4 .
+We consider now the simplest higher-dimensional example where in the notation of Section 1.5.2
+d = 2 and p(x) = − π1 b12 (x), see (1.29). We show that the stability of its delta-delta approximation
+follows a similar simple pattern as in the previous one-dimensional example, although the proof
+is non-trivial.
+
+3.2.1. The singular integral equation. The kernel and its Fourier transform are
+                                              x 1 x2                ξ1 ξ2
+(3.9)                           K(x) = −             ,       K(ξ)
+                                                             b    =       .
+                                              π|x|4                 |ξ|2
+For Ω ⊂ R2 , we consider the singular integral equation (λI − AΩ )u = f as in (1.24)
+                                        Z
+(3.10)                     λu(x) − p.v. K(x − y)u(y) dy = f (x).
+                                               Ω
+
+                                         b is the interval [− 1 , 1 ], we can formulate the result of
+Observing that the range of the function K                    2 2
+Proposition 1.2 as follows
+Lemma 3.5. Let C = [− 12 , 12 ]. For Ω = R2 , both the spectrum Sp(AΩ ) and the closure of the
+numerical range W (AΩ ) in L2 (Ω) are equal to C. For any open subset Ω ⊂ R2 , the closure of the
+numerical range in L2 (Ω) satisfies W (AΩ ) ⊂ C, and there is a resolvent estimate in the L2 (Ω)
+operator norm
+(3.11)                               ∥(λI − AΩ )−1 ∥ ≤ dist(λ, C)−1 .
+
+3.2.2. The discrete system. Let now Ω be a bounded domain in R2 . In the notation of Section 1.6
+                                                                m
+with d = 2, the regular grid consists of the points xN     N
+                                                     m = a + N , indexed by ω
+                                                                                 N
+                                                                                    = {m ∈ Z2 |
+xN
+ m ∈ Ω}. The simple delta-delta discretization of our singular integral equation (3.10) is
+
+                    1 −2        X         (xN      N      N      N
+                                            m,1 − xn,1 )(xm,2 − xn,2 )
+(3.12)      λum +     N                                                un = f (xN
+                                                                                m) ,   (m ∈ ω N ) .
+                    π                            |xN
+                                                   m  −  x N |4
+                                                           n
+                            n∈ω N ,m̸=n
+
+The system matrix T N is now a finite section of the infinite Toeplitz matrix
+                    1  (m1 − n1 )(m2 − n2 ) 
+            T =−                                           with zero on the diagonal.
+                    π        |m − n|4           m,n∈Z2
+
+Its symbol is therefore given by the Fourier series for τ ∈ Q = [−π, π]2
+                                                       ∞
+                           X         m1 m2 im·τ   4 X         m1 m2
+(3.13)     F (τ ) = −                      e    =                         sin(m1 τ1 ) sin(m2 τ2 ) .
+                                     π|m|4        π m ,m =1 (m21 + m22 )2
+                        m∈Z2 ,m̸=0                       1   2
+                          STABILITY OF A SIMPLE DISCRETIZATION METHOD                              21
+
+Whereas we do not know an explicit closed form expression for this function, we know from the
+results of Section 2.2 using Ewald’s method that it is bounded and that it can be written as in
+equation (2.13)
+(3.14)         F (τ ) = K(τ
+                        b ) + F0 (τ )            where F0 is analytic in Q and F0 (0) = 0.
+In addition, we know from (3.13) that F vanishes on the boundary of Q, hence
+(3.15)                                  F0 (τ ) = − b
+                                                   K(τ )       (τ ∈ ∂Q) .
+In the previous example, we used the explicit expression of F (τ ) for finding the range of F . In
+fact, the function F0 in that case was just the linear interpolation between the two values of the
+symbol K b on ∂Q, which implied that the closed convex hull of im(F ) was the same as the convex
+hull of im(K).
+            b In the present case, we do not have a simple formula, but we can still prove that
+the conclusion is true.
+Lemma 3.6. Let F (τ ) be as defined in (3.13). Then for any τ ∈ Q
+                                                            1 1
+(3.16)                                       F (τ ) ∈ C = [− , ].
+                                                            2 2
+
+The proof is not obvious, although the claim is numerically evident if we compute F using Ewald’s
+method and plot its graph, see the contour plot in Figure 1.
+
+
+                                                                                  0.5
+                          3
+
+
+
+                         2.5                                                      0.4
+
+
+
+                          2
+                                                                                  0.3
+
+
+                         1.5
+                                                                                  0.2
+
+                          1
+
+                                                                                  0.1
+                         0.5
+
+
+
+                          0                                                       0
+                               0       0.5   1     1.5     2   2.5    3
+
+
+
+
+            F IGURE 1. Contour plot of F (ξ) on the quarter square Q++ , Example 2.
+
+Before we give the proof, let us draw the conclusion for the stability of the numerical scheme (3.12).
+Corollary 3.7. Let C = [− 12 , 21 ] and λ ∈ C \ C. Then for any N the linear system (3.12) has a
+unique solution, and there is a uniform resolvent estimate
+(3.17)                             ∥(λI − T N )−1 ∥L(ℓ2 (ΩN )) ≤ dist(λ, C)−1 .
+22                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+Proof. For symmetry reasons, it is sufficient to prove (3.16) for τ ∈ Q++ = (0, π)2 . For the proof
+of Lemma 3.6, we will show the following:
+(3.18)                    For any ξ ∈ Q++ ,         F (ξ) ≥ 0 and F0 (ξ) ≤ 0 .
+This implies 0 ≤ F (ξ) ≤ K(ξ)
+                         b    ≤ 12 , hence (3.16) .
+We use the integral representations from Proposition 2.5
+                    Z ∞                        Z ∞                                   Z ∞
+(3.19)    F0 (ξ) =       H0 (ξ, s)ds , b
+                                       K(ξ) =       H1 (ξ, s) ds ,         F (ξ) =          H(ξ, s) ds .
+                      0                                 0                               0
+According to (2.19), H0 (ξ, s) = H(ξ, s) − H1 (ξ, s) with
+                                ξ1 ξ2 |ξ|2               X
+(3.20)             H1 (ξ, s) = 2 e− 4s , H(ξ, s) =          H1 (ξ + 2πn, s) .
+                                4s                        2    n∈Z
+
+Let 0 ≤ ϵ < T and ΣTϵ = Q++ × (ϵ, T ). In ΣTϵ , we want to use the maximum principle for the heat
+equation (see Lemma 2.6) for the functions H̃0 (ξ, s) = s−1 H0 (ξ, s) and H̃(ξ, s) = s−1 H(ξ, s).
+Since H̃1 (ξ, s) = s−1 H1 (ξ, s) is continuous for (ξ, s) ∈ R2 × [0, ∞) \ {0, 0} and the Poisson
+series                                        X
+                                H̃0 (ξ, s) =        H̃1 (ξ + 2πn, s)
+                                                n∈Z2 ,n̸=0
+
+converges uniformly for (ξ, s) ∈ ΣT0 for all T > 0, we see that H̃0 is continuous in ΣT0 with initial
+value H̃0 (ξ, 0) = 0. On the lateral boundary we use the Fourier representation (see (2.16))
+                                       ∞
+                                 4 X                  2
+                      H̃(ξ, s) =           m1 m2 e−|m| s sin(m1 ξ1 ) sin(m2 ξ2 ) .
+                                 π m ,m =1
+                                      1    2
+
+
+If ξ1 or ξ2 is in {0, π}, this implies that H̃ = 0 and therefore
+                     H̃0 (ξ, s) = −H̃1 (ξ, s) ≤ 0       for (ξ, s) ∈ ∂Q++ × (0, T ] .
+According to Lemma 2.6, H̃0 satisfies the heat equation (∂s − ∆ξ )H̃0 = 0 in ΣT0 . Thus we can
+apply the maximum principle to H̃0 and obtain H̃0 (ξ, s) ≤ 0 in ΣT0 , hence also H0 (ξ, s) ≤ 0.
+Integrating over s ∈ (0, ∞) yields
+                                      F0 (ξ) ≤ 0       for ξ ∈ Q++ .
+
+For H̃, we cannot apply the maximum principle directly in ΣT0 , because H̃ is not continuous at
+(0, 0) ∈ ΣT0 , but we can apply it in ΣTϵ for any 0 < ϵ < T . On the lateral boundary, H̃ vanishes as
+seen above, and for the initial value at s = ϵ we have
+                          H̃(ξ, ϵ) = H̃0 (ξ, ϵ) + H̃1 (ξ, ϵ) ≥ H̃0 (ξ, ϵ) ≥ δ(ϵ)
+with δ(ϵ) = inf ξ∈Q++ H̃0 (ξ, ϵ). Hence by the maximum principle, in ΣTϵ we have
+                                          H̃(ξ, s) ≥ min{0, δ(ϵ)} .
+Now, as we have seen above, H̃0 (·, s) tends to 0 uniformly as s → 0, hence δ(ϵ) → 0 as ϵ → 0,
+which implies H̃(ξ, s) ≥ 0 for any s > 0 and ξ ∈ Q++ . After integrating over s, we finally get
+F (ξ) ≥ 0 for ξ ∈ Q++ , and the proof of the Lemma is complete.                              □
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                               23
+
+Remark 3.8. In conclusion, for this example we find the same “ideal” stability estimate as in the
+previous one-dimensional example.
+
+
+3.3. Example 3. Dimension d = 2, kernel (x21 − x22 )|x|−4 .
+We consider another two-dimensional example where in the notation of Section 1.5.2 d = 2 and
+             1
+p(x) = − 2π    a12 (x), see (1.29). We show that the complement of the stability zone in this case is
+strictly larger than the image of the symbol of the integral operator.
+
+3.3.1. The singular integral equation. We use the same notation for analogous objects as in the
+preceding example. Therefore in this section, the letters K, b
+                                                             K, T etc. are redefined to have new
+meanings. The kernel and its Fourier transform are now
+                                 x22 − x21            ξ2 − ξ2  ξ2  1
+(3.21)                 K(x) =              ,    K(ξ)
+                                                b    = 1 2 2 = 12 − .
+                                 2π|x|4                2|ξ|   |ξ|  2
+                                                              b is again the interval [− 1 , 1 ].
+The normalization is chosen so that the range of the function K                          2 2
+
+In fact, this kernel is the same as in the previous example (3.9) after a 45◦ rotation of the coordinate
+system. Therefore if we write the singular integral equation as in (3.10), we can copy verbatim
+the statement of the previous example concerning the numerical range of the integral operator AΩ
+(see Lemma 3.5) and the resolvent estimate (3.11).
+Lemma 3.9. Lemma 3.5 is true for the singular integral equation (3.10) defined with the ker-
+nel (3.21).
+
+3.3.2. The discrete system. To the delta-delta discretization
+                                 X
+(3.22)            λum − N −2             K(xN       N         N
+                                             m − xn )un = f (xm )        (m ∈ ω N )
+                                n∈ω N ,m̸=n
+
+corresponds the finite section T N of the infinite Toeplitz matrix
+                  1  (m2 − n2 )2 − (m1 − n1 )2 
+           T =                                               with zero on the diagonal.
+                 2π            |m − n|4             m,n∈Z2
+
+The numerical symbol (symbol of T ) is now defined as
+                                         X m2 − m2
+                                                  2     1 im·τ
+(3.23)                      F (τ ) =                  4
+                                                         e     .
+                                          2
+                                                 2π|m|
+                                           m∈Z ,m̸=0
+
+Lemma 3.10. Let
+                                            Γ( 41 )4
+                                      Λ0 =           = 0.5471... .
+                                             32π 2
+Let F (τ ) be as defined in (3.23). Then there exists Λ+ ≥ Λ0 such that F (Q) = C = [−Λ+ , Λ+ ].
+Conjecture 3.11. Numerical evidence suggests equality
+(3.24)                                         Λ+ = Λ0 .
+24                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+Proof of Lemma 3.10. The function F is odd with respect to permutation of ξ1 and ξ2 . The
+decomposition F = F0 + K b with F0 continuous on Q implies that F takes its maximum Λ+ on Q.
+Therefore its image F (Q) is a closed symmetric interval C = [−Λ+ , Λ+ ]. We are going to show
+that
+(3.25)                                     F (π, 0) = Λ0 .
+The conjecture (3.24) then corresponds to the claim that F attains its maximum on Q in the point
+τ = (π, 0).
+To prove (3.25), we first transform the slowly converging double Fourier series
+                                          X               m22 − m21
+(3.26)                       F (π, 0) =         (−1)m1
+                                           2
+                                                       2π(m21 + m22 )2
+                                       m∈Z ,m̸=0
+
+into a rapidly convergent single series. One way to get this is to start with the Poisson sum-
+mation formula applied to the function f (x) = (x − iy)−1 whose Fourier transform is fb(ξ) =
+2πi1+ (ξ)e−yξ for y > 0. The result is then valid for all y ̸= 0. It can be written for t ∈ [−π, π] as
+                    X eint              eyσ(t)
+(3.27)                          = iπ               with σ(t) = −t + π sign t .
+                    n∈Z
+                        n − iy        sinh(πy)
+Remark: Euler’s formula (3.5) is a simple consequence of this.
+Taking the derivative with respect to y and subtracting the formulas for y and −y leads to
+            X n2 − y 2                σ(t) sinh(σ(t)y) sinh(πy) − π cosh(σ(t)y) cosh(πy)
+(3.28)                       eint = π                                                      .
+            n∈Z
+                    2
+                 (n + y )2 2
+                                                             sinh2 πy
+This can be used to reduce the double Fourier series for F (ξ) to a single rapidly convergent Fourier
+series. We are here only interested in the limit t → 0:
+                                   X n2 − y 2             −π 2
+(3.29)                                     2 + y 2 )2
+                                                      =     2    .
+                                   n∈Z
+                                        (n              sinh  πy
+                                             P               P                   P
+Hence, by decomposing the double sum m∈Z2 \{0} as m1 =0,m2 ∈Z\{0} + m1 ∈Z\{0},m2 ∈Z and
+using ∞      1     π2
+       P
+         n=1 n2 = 6 (which can also be obtained from (3.29) by looking at the pole in y = 0) we
+finally get
+                                                                     ∞
+                            X
+                                        m1    m22 − m21        π X (−1)n π
+(3.30)             Λ0 =           (−1)                      = −                    .
+                             2
+                                           2π(m21 + m22 )2     6 n=1 sinh2 πn
+                        m∈Z ,m̸=0
+
+This series converges rapidly, with 5 terms giving 15 significant digits: Λ0 = 0.547109903806619...
+The series is covered by the formulas for IXs with s = 2 in [21]. The explicit expression for Λ0
+given in the Lemma can be deduced from this.                                                   □
+Remark 3.12. The conformal radius (or logarithmic capacity) of the unit square is known to be
+[12, Tables]
+                                              Γ( 1 )2
+                                       R□ = 4 3 .
+                                               4π 2
+This implies the remarkable relation
+                                              2
+(3.31)                                      πR□ = 2Λ0 .
+                          STABILITY OF A SIMPLE DISCRETIZATION METHOD                            25
+
+The conjecture that Λ+ = Λ0 is clearly supported by numerical evidence. Here are the results of
+two different approaches for the approximation of Λ+ :
+In Table 1 we approximate the numerical symbol F from (3.23) using the Ewald method (2.12)
+from Proposition 2.2.
+                      X                                   X                   |τ +2πn|2
+(3.32)    F (τ ) ≈             K(m)Γ(2, π|m|2 )eim·τ +           K(τ + 2πn) e− 4π .
+                                                                 b
+                  |m1 |,|m2 |≤M,m̸=0                            |n1 |,|n2 |≤M
+
+We take the maximum of F (τ ) over a regular N × N grid discretizing the period square Q =
+[−π, π]2 . Results are shown for N = 1001, so that the point (π, 0) is included. One sees the rapid
+convergence of the sums in the Ewald method.
+
+                              M            Maximum         diff with Λ0
+                              1    0.5466820485568409            -0.00043
+                              2    0.5471099022284376           -1.578e-9
+                              3    0.5471099038066192            1.11e-16
+                              4    0.5471099038066192            1.11e-16
+                                       TABLE 1. Computation of Λ+
+
+
+In Table 2 we show the maximum eigenvalue of the matrix T N where Ω is the unit square, together
+with an extrapolated value and its difference with Λ0 .
+
+                 N           λmax (T N )              extrap.              diff with Λ0
+                 16   0.541802946417726
+                 24   0.544571778645890
+                 36   0.545922219922679 0.547207966733364                       9.81e-5
+                 54   0.546562896841136 0.547141211191569                       3.13e-5
+                 81   0.546860792009930 0.547119678405314                       9.77e-6
+
+                      TABLE 2. Computation of max(Sp(T N )), Example 3
+
+
+For comparison, we show in Table 3 the analogous computations for the matrices from Example
+2, where Λ+ = 0.5.
+In the previous Example 2, we were able to prove the equation Λ+ = 0.5 using an argument
+involving the maximum principle for the heat equation, see the proof of Lemma 3.6, in particular
+(3.18). While we have no proof for the equation Λ+ = Λ0 here, it is possible to use an analogous
+argument to obtain an upper bound for Λ+ . The square Q++ (of area π 2 ) of the previous example
+now has to be turned by 45◦ and to be replaced by the lozenge (a square of area 2π 2 )
+                   Q♢ = ξ ∈ R2 | 0 < ξ1 < 2π; |ξ2 | < min{ξ1 , 2π − ξ1 } .
+                         
+26                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+
+                N          λmax (T N )               extrap.             diff with 0.5
+                16    0.4299869696672885
+                24    0.4526591158216325
+                36    0.4683227545642122 0.5033301483277116                   3.33e-3
+                54    0.4789372344435390 0.5012512843991882                   1.25e-3
+                81    0.4860451011088278 0.5004526691660266                   4.53e-4
+
+                       TABLE 3. Computation of max(Sp(T N )), Example 2
+
+
+Then one can see again that F (ξ) = 0 on ∂Q♢ . But now ∂Q♢ contains two points of discontinuity
+of F , the origin (0, 0) and the point (2π, 0). Therefore the decomposition F = F0 + K
+                                                                                     b has to be
+refined into
+                              F (ξ) = F00 (ξ) + K(ξ)
+                                                 b       b − (2π, 0)) .
+                                                      + K(ξ
+The function F00 defined by this will then be continuous on the closure of Q♢ . Now one can use
+the integral representation from Proposition 2.5 similarly to (3.19) and use the maximum principle
+for the heat equation as before to conclude that
+                          For any ξ ∈ Q♢ ,   F (ξ) ≥ 0 and F00 (ξ) ≤ 0 .
+This implies 0 ≤ F (ξ) ≤ K(ξ)
+                         b      b − (2π, 0)) in Q♢ , and hence by taking the maximum,
+                              + K(ξ
+(3.33)                                       Λ+ ≤ 1 .
+Unfortunately, this estimate is much less sharp than the estimate by 12 in the previous example.
+To illustrate the behavior of the numerical symbol F (ξ), we present in Figure 2 a surface graph
+of F on the square Q and a contour plot on the lozenge Q♢ . The parts exceeding the range of the
+symbol K b are indicated in bright red hues. The maximum at the midpoint (π, 0) of Q♢ is in clear
+evidence.
+
+                                                                                             0.5625
+                                                        3
+
+                                                                                             0.5
+                                                        2
+
+                                                                                             0.4
+                                                        1
+
+
+                                                                                             0.3
+                                                        0
+
+
+
+                                                        -1                                   0.2
+
+
+
+                                                        -2                                   0.1
+
+
+                                                        -3
+                                                                                             0
+                                                             0   1   2   3    4    5     6
+
+
+
+
+          F IGURE 2. Numerical symbol for Example 3. Left: F on Q, right: F on Q♢ .
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                               27
+
+Let us summarize the stability result obtained for this example.
+Corollary 3.13. Let C = [−Λ+ , Λ+ ] and λ ∈ C \ C. Then for any N the linear system (3.12) has
+a unique solution, and there is a uniform resolvent estimate
+(3.34)                       ∥(λI − T N )−1 ∥L(ℓ2 (ΩN )) ≤ dist(λ, C)−1 .
+For λ ∈ [−Λ+ , − 21 ) ∪ ( 12 , Λ+ ] the integral equation (λI − AΩ )u = f with kernel (3.21) is well-
+posed in L2 (Ω), but the corresponding delta-delta approximation scheme (3.22) is unstable.
+
+
+3.4. Example 4. Dimension d = 2, kernel (x1 + ix2 )2 |x|−4 .
+                        1
+Let d = 2 and p(x) = − 1π (a12 (x)+2ib12 (x)). The corresponding kernel and its Fourier transform
+are
+                               x22 − x21 − 2ix1 x2             (ξ1 + iξ2 )2
+(3.35)              K(x) =                         ,   K(ξ) =
+                                                       b                    .
+                                      π|x|4                    |ξ1 + iξ2 |2
+The normalization is chosen so that |K(ξ)|b      = 1 for ξ ∈ R2 . We include this example, which
+has features combining those of the two preceding examples, mainly for purposes of illustration.
+Because the singular integral operator and the system matrices of the corresponding delta-delta
+discretization in this case are non-selfadjoint, we expect to see less trivial relations between spectra
+and numerical ranges than in the selfadjoint case.
+It is obvious from the definition (3.35) that the spectrum Sp(A) of the operator of convolution
+with K in L2 (R2 ) is the unit circle {ξ ∈ C | |ξ| = 1} and that its numerical range is the unit disk.
+Whereas we do not know the spectrum Sp(AΩ ) for a bounded domain Ω ⊂ R2 , the numerical
+range is still the unit disk, compare (1.26),
+(3.36)                   Sp(AΩ ) ⊂ W (AΩ ) = W (A) = {ξ ∈ C | |ξ| ≤ 1}.
+
+For the system matrices T N of the delta-delta discretization scheme, Theorem 1.6 and Lemma 2.1
+provide the following relations.
+                                                     [
+(3.37)       Sp(T N ) ⊂ W (T N ) ⊂ W (T ) = conv         W (T M ) and W (A) ⊂ W (T ) .
+                                                      M ∈N
+
+
+In Figure 3 we show for the case of a square domain Ω and two values of N the spectrum Sp(T N )
+(red points), the boundary of the numerical range W (T N ) (red line), and the unit circle, which is
+the boundary of W (A) (green line). We can see the inclusions from (3.37) between Sp(T N ) and
+W (T N ), and we can perceive the asymptotic inclusion of W (A) in W (T N ) as N tends to infinity.
+We can also see that the eigenvalues of the matrices, in contrast to the numerical range, will not
+fill the whole unit disk asymptotically. On the other hand, we clearly see the overshoot W (T ) \
+W (AΩ ), that is the region of λ where the volume integral equation is uniquely solvable and the
+operator λI − AΩ is sectorial, so that every L2 -conforming Galerkin method would converge,
+whereas the delta-delta scheme is unstable. It appears that the limits for the real part of this
+overshoot are the same (scaled by a factor 2) as in the previous example, that is ±2Λ0 with Λ0
+defined in Lemma 3.10.
+28                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+
+
+
+            F IGURE 3. Spectrum and numerical range. Left: N = 8, right: N = 32.
+
+3.5. Example 5. Dimension d ≥ 2. Volume Integral Equation for the Quasi-static Maxwell
+system.
+In the quasi-static Maxwell volume integral equation (see Section 1.2), the right hand side and
+the solution are Cd -valued functions, and the singular integral operator is defined as the matrix of
+second distributional derivatives of the convolution with the free-space Green function g for the
+Laplace operator, see equation (1.5). If we call this operator A0 , then it is not the same as the
+operator A defined by the Cauchy principal value of the integral with the same kernel, but there is
+a simple relation: Let
+                     K(x) = −D2 g(x) = − ∂i ∂j g(x) i,j∈1,...,d for x ̸= 0 .
+                                                         
+(3.38)
+Then
+(3.39)              Z                          Z
+     0                                                               1           1
+ A u(x) = −∇ div           g(x − y)u(y)dy = p.v.     K(x − y)u(y)dy + u(x) = (A + I)u(x) .
+                      Rd                          Rd                 d           d
+This is most easily seen by first using the symmetries of the kernel with respect to reflections at
+coordinate axes and permutations of the variables in order to deduce that the distribution kernel of
+A0 − A must be a scalar multiple of the d × d identity matrix Id times the Dirac distribution δ0 ,
+and then determining this multiple by taking traces: tr(−D2 g) = −∆g = δ0 = tr( d1 Id δ0 ).
+
+3.5.1. The singular integral equation. We consider the strongly singular integral equation, still
+written as (λI − AΩ )u = f ,
+                           Z
+(3.40)         λu(x) − p.v. K(x − y)u(y) dy = f (x) with K given in (3.38) .
+                              Ω
+
+The function space is now L (Ω; Cd ).
+                              2
+
+
+Let us note the explicit form of the kernel, valid in any dimension d ≥ 2, where we consider points
+in Rd as column vectors,
+                                                                               d
+                         1       1                                       2π 2
+(3.41)           K(x) = − (x x⊤ − Id |x|2 ) |x|−d−2 ,         with νd =           .
+                         νd      d                                      d Γ( d2 )
+                           STABILITY OF A SIMPLE DISCRETIZATION METHOD                               29
+
+The simplest way to see this is to first look at the symbol of the operator. For this we employ
+d-dimensional Fourier transformation and use the fact that gb(ξ) = |ξ|−2 , hence
+                                            ξ ξ⊤                 ξ ξ ⊤ − d1 Id |ξ|2
+(3.42)                F (−D2 g)(ξ) =                  and K(ξ)
+                                                          b    =                    .
+                                            |ξ|2                       |ξ|2
+We check that tr K
+                 b = 0 and that K b satisfies the spherical cancellation condition. Indeed, in the
+notation of Lemma 1.5, the (matrix-valued) polynomial p(ξ) is given by
+                                                   1          1
+(3.43)                             p(ξ) = −           (ξ ξ ⊤ − Id |ξ|2 ) .
+                                                   νd         d
+Thus the off-diagonal elements of the matrix p(x) are given by
+                                            1            bjk (x)
+                                        −      xj xk = −         ,
+                                            νd             νd
+and the diagonal elements by
+                                                      d
+                                 1 2 1 2         1 X
+                                − (xk − |x| ) =          ajk (x) ,
+                                 νd    d        d νd j=1
+
+compare Remark 2.4.
+From our formulas of Section 1.5.1 we find the explicit form (3.41) for our kernel. For d = 2, we
+have νd = π, and we recognize the kernels studied in the Examples 2 and 3.
+              ⊤
+The matrix ξ|ξ|ξ 2 is an orthogonal projection matrix, hence its numerical range is the interval [0, 1].
+Therefore W (K(ξ))b      = [− d1 , 1 − d1 ] for any ξ ̸= 0. We immediately get the following instance of
+Proposition 1.2.
+Lemma 3.14. Let C = [− d1 , 1 − d1 ]. Then for all λ ̸∈ C and any f ∈ L2 (Ω; Cd ), the integral
+equation (3.40) has a unique solution u ∈ L2 (Ω; Cd ), and there is a resolvent estimate in the
+L2 (Ω; Cd ) operator norm
+(3.44)                            ∥(λI − AΩ )−1 ∥ ≤ dist(λ, C)−1 .
+
+3.5.2. The discrete system. With the d × d matrix-valued kernel K and vector-valued functions u
+and f , we can write the delta-delta discretization (λI − T N )U = F of the integral equation (3.40)
+in the same form as in the scalar case
+                                 X
+(3.45)            λum − N −d            K(xN        N           N
+                                              m − xn )un = f (xm ) ,  (m ∈ ω N ) ,
+                              n∈ω N ,m̸=n
+
+where now the system matrix T N is of size d|ω N | × d|ω N | and is considered as a linear operator
+in ℓ2 (ω N ; Cd ).
+We recall the discussion of matrix-valued kernels in Section 2.4 above, in particular the properties
+of the numerical range stated in Lemma 2.7.
+The basic stability estimate follows.
+30                  MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+                                                                                         (d)   (d)
+Proposition 3.15. Let K be the kernel defined in (3.38), (3.41). Then there exist Λ− , Λ+ ∈ R
+with
+                                   (d)       1         (d)      1
+(3.46)                           Λ− ≤ − ,            Λ+ ≥ 1 −
+                                             d                  d
+such that the following holds.
+(i) For τ ∈ Q = [−π, π]d , τ ̸= 0, F (τ ) is a real symmetric matrix with eigenvalues contained in
+                    (d)  (d)
+the interval C = [Λ− , Λ+ ],
+                     (d)                               (d)
+(3.47)             Λ− = inf min(Sp(F (τ )) ,          Λ+ = sup max(Sp(F (τ )) .
+                           τ ∈Q                               τ ∈Q
+
+(ii) For any N , the numerical range W (T N ) is contained in W (T ) = C.
+
+                     (d)                               (d)
+(3.48)             Λ− = inf min(Sp(T N )) ,           Λ+ = sup max(Sp(T N )) .
+                           N ∈N                               N ∈N
+
+(iii) The delta-delta scheme (3.45) is stable if and only if λ ∈ C \ C, and one has the stability
+estimate in the ℓ2 (ω N ; Cd ) operator norm
+(3.49)                            ∥(λI − T N )−1 ∥ ≤ dist(λ, C)−1 .
+
+Proof. The matrix K(x) is symmetric for x ̸= 0, implying that also F (τ ) is a symmetric matrix
+for τ ̸= 0. The symmetry K(−x) = K(x) implies that the matrix elements of F (τ ) are real.
+Therefore the numerical range of F (τ ) is the interval [λ− (τ ), λ+ (τ )], where
+                     λ− (τ ) = min(Sp(F (τ )) ,       λ+ (τ ) = max(Sp(F (τ )) .
+This justifies (3.47). All the other statements of the proposition are instances of the statements of
+Section 1.6, in particular Theorem 1.6, and their proofs in Section 2, based on Ewald’s method.
+                                                                                                   □
+
+                                                        (d)
+What remains is to get information on the numbers Λ± and to see whether the inequalities (3.46)
+                                      (d)                   (d)
+are strict. In that case, for λ ∈ [Λ− , − d1 ) ∪ (1 − d1 , Λ+ ], the integral equation is well-posed in
+L2 (Ω; Cd ), but the delta-delta discretization scheme is unstable in ℓ2 (ΩN ; Cd ).
+We will discuss this for the practically relevant cases d = 2, where we get rather precise informa-
+tion, and d = 3, which is the most important case because of its relevance for the DDA method in
+computational electromagnetics.
+
+3.5.3. Dimension d = 2. . Here the numerical symbol has the form
+                                                        !
+                                            a(τ ) b(τ )
+                                  F (τ ) =
+                                            b(τ ) −a(τ )
+                                                                   p
+with real-valued functions a and b. The eigenvalues are λ± (τ ) = ± a(τ )2 + b(τ )2 , implying
+ (d)       (d)
+Λ− = −Λ+ . The functions a and b have been studied in the previous examples, a in Example 3
+and b in Example 2.
+                          STABILITY OF A SIMPLE DISCRETIZATION METHOD                          31
+
+In particular, b(τ ) = 0 for τ ∈ ∂Q, and therefore
+(3.50)                        for τ = (π, 0),       λ+ (τ ) = a(τ ) = Λ0
+with the number Λ0 = 0.5471... encountered in Example 3, Lemma 3.10. This implies
+                                              (2)
+                                            Λ+ ≥ Λ0 ,
+and we are in the same situation as in Example 3: Strong numerical evidence suggests that the
+                                                                           (2)
+function λ+ attains its maximum in the point τ = (π, 0) and therefore Λ+ = Λ0 , but we do not
+have a formal proof for this. The positive eigenvalue λ+ is plotted in Figure 4.
+
+
+
+
+                             F IGURE 4. d = 2. Eigenvalue λ+ on Q.
+
+
+In any case, we have proved that in dimension d = 2 for any bounded open set Ω ⊂ R2 and
+any λ ∈ (−0.5471, −0.5) ∪ (0.5, 0.5471) the delta-delta scheme (λI − T N )U = F is unstable in
+ℓ2 (ΩN ; C2 ) as N → ∞, whereas the integral equation (λI−AΩ )u = f is well posed in L2 (Ω; C2 ).
+
+3.5.4. Dimension d = 3. . The three eigenvalues λj of F (τ ) satisfy λ1 +λ2 +λ3 = 0. Numerically,
+one sees that the minimal and maximal values are attained on the intersection of the boundary of
+Q = [−π, π]3 with the coordinate planes. In Figure 5 we show a graph of the three eigenvalues on
+the line {(π, y, 0) | y ∈ [−π, π]}. The values − 31 and 23 are shown as dashed lines.
+                (3)                                  (3)
+This suggests Λ− = min Sp(F ((π, π, 0))) and Λ+ = max Sp(F ((π, 0, 0))).
+The computed values are
+                 (3)                                        (3)
+(3.51)         Λ− = −0.4260241507272727 ,                  Λ+ = 0.7709022227747195 .
+                                     (3)    (3)
+This implies a length of W (T ) of Λ+ − Λ− = 1.1969263735019922 instead of 1, which is the
+length of W (A), thus an overshoot of almost 20%.
+32                   MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+
+
+
+               F IGURE 5. d = 3. Eigenvalues of F (τ ) on middle line of face of Q.
+
+                                                                                         (3)
+Under this assumption, one can write simple series expansions for the numbers Λ± . If all the
+coordinates of τ are 0 or π, then the off-diagonal elements of the matrix F (τ ) vanish and the 3
+eigenvalues are the diagonal elements. Therefore the Fourier series for F (τ ) gives
+(3.52)
+    (3)
+           X (−1)m1 +m2 m2 + m2 − 2m2                 (3)
+                                                            X (−1)m3 m2 + m2 − 2m2
+                                1     2        3                                1    2      3
+   Λ− =                                         5 , Λ+ =                                      .
+            3
+                      4π        2     2      2
+                             (m1 + m2 + m3 ) 2                3
+                                                                     4π (m1 + m2 + m3 ) 25
+                                                                                2    2    2
+         m∈Z ,m̸=0                                             m∈Z ,m̸=0
+
+These sums, although not absolutely convergent, appear to converge quite well in the sense of
+partial sums over cubes,
+                                X                  X
+                                       = lim                 .
+                                               N →∞
+                                  m∈Z3 ,m̸=0          max |mj |≤N,m̸=0
+                                                       j
+
+We do not know whether explicit expressions for these sums exist.
+By means of the Clausius-Mossotti relation (1.8) one can express the stability results equivalently
+in terms of the relative permittivity ϵr . Let
+                       3Λ+ − 2                                      3Λ− − 2
+(3.53)        ϵmin =           = 0.0943961 . . . ,         ϵmax =           = 11.788555 . . . .
+                       1 + 3Λ+                                      1 + 3Λ−
+The numerical range λ ∈ [− 31 , 23 ] of the quasi-static Maxwell volume integral operator corresponds
+to ϵr ≤ 0. The volume integral equation is therefore well posed in L2 (Ω) if the relative permittivity
+ϵr is either non-real or positive.
+On the other hand, the corresponding DDA scheme is stable in ℓ2 (Z3 ) if and only if ϵr is either non-
+real or contained in the interval (ϵmin , ϵmax ). For ϵr ∈ (0, ϵmin ] ∪ [ϵmax , ∞) the integral equation
+(and therefore the dielectric scattering problem) is well-posed, but the DDA scheme is unstable.
+To conclude this discussion, we show in Table 4 the result of some computations for the spectrum
+of the system matrix T N for a cube in three dimensions. One can see convergence to the expected
+values (3.51), even for rather modest values of N . Compare also [20, FIG. 8].
+                              STABILITY OF A SIMPLE DISCRETIZATION METHOD                                        33
+
+
+              N         λmax (T N )                 λmin (T N )           λmax (T N ) − λmin (T N )
+              4    0.67730278666935         -0.3896455148525014             1.06694830152185
+              8    0.73653727456221         -0.4130173055963489             1.14955458015856
+             12    0.75323748914578         -0.4193953119966648             1.17263280114245
+             16    0.76017444184544         -0.4220149407429199             1.18218938258836
+
+              TABLE 4. Computation of max(Sp(T N )) and min(Sp(T N )), Example 5
+
+
+Acknowledgment. This work was partially supported by a grant from the Niels Hendrik Abel
+Board. The authors acknowledge support of the Centre Henri Lebesgue ANR-11-LABX-0020-
+01.
+
+                                                 R EFERENCES
+ [1] A BRAMOWITZ , M., AND S TEGUN , I. A., Eds. Handbook of mathematical functions with formulas, graphs and
+     mathematical tables. Washington: U.S. Department of Commerce. xiv, 1046 pp., 1964.
+ [2] A MMARI , H., F ITZPATRICK , B., K ANG , H., RUIZ , M., Y U , S., AND Z HANG , H. Mathematical and computa-
+     tional methods in photonics and phononics, vol. 235. Providence, RI: American Mathematical Society (AMS),
+     2018.
+ [3] C HAUMET, P. C. The discrete dipole approximation: A review. Mathematics 10, 17 (2022).
+ [4] C OSTABEL , M., DARRIGRAND , E., AND S AKLY, H. The essential spectrum of the volume integral operator in
+     electromagnetic scattering by a homogeneous body. Comptes Rendus Mathématique 350 (2012), 193–197.
+ [5] C OSTABEL , M., DARRIGRAND , E., AND S AKLY, H. Volume integral equations for electromagnetic scattering
+     in two dimensions. Comput. Math. Appl. 70, 8 (2015), 2087–2101.
+ [6] E SSMANN , U., P ERERA , L., B ERKOWITZ , M. L., DARDEN , T., L EE , H., AND P EDERSEN , L. G. A smooth
+     particle mesh Ewald method. J. Chem. Phys. 103 (1995), 8577–8593.
+ [7] E WALD , P. P. Die Berechnung optischer und elektrostatischer Gitterpotentiale. Ann. der Phys. (4) 64 (1921),
+     253–287.
+ [8] G EL’ FAND , I. M., AND S HILOV, G. E. Generalized functions. Vol. I: Properties and operations. Translated by
+     E. Saletan. 1964.
+ [9] JACKSON , J. D. Classical Electrodynamics, 3rd ed. John Wiley & Sons, Inc., 1999.
+[10] K IRSCH , A. An integral equation approach and the interior transmission problem for Maxwell’s equations.
+     Inverse Probl. Imaging 1, 1 (2007), 159–179.
+[11] KOPPELMAN , W., AND P INCUS , J. D. Spectral representations for finite Hilbert transformations. Math. Z. 71
+     (1959), 399–407.
+[12] P ÓLYA , G., AND S ZEG Ö , G. Isoperimetric inequalities in mathematical physics, vol. 27 of Ann. Math. Stud.
+     Princeton University Press, Princeton, NJ, 1951.
+[13] P URCELL , E. M., AND P ENNYPACKER , C. R. Scattering and adsorption of light by nonspherical dielectric
+     grains. Astrophys. J. 186 (1973), 705–714.
+[14] R AHOLA , J. On the eigenvalues of the volume integral operator of electromagnetic scattering. SIAM J. Sci.
+     Comput. 21, 5 (2000), 1740–1754.
+[15] S MUNEV, D. A., C HAUMET, P. C., AND Y URKIN , M. A. Rectangular dipoles in the discrete dipole approxi-
+     mation. Journal of Quantitative Spectroscopy and Radiative Transfer 156, 0 (2015), 67 – 79.
+[16] S ÖHNGEN , H. Zur Theorie der endlichen Hilbert-Transformation. Math. Z. 60 (1954), 31–51.
+[17] T RICOMI , F. G. Integral equations. Pure and Applied Mathematics. Vol. V. Interscience Publishers, Inc., New
+     York; Interscience Publishers Ltd., London, 1957.
+[18] Y URKIN , M. A., AND H OEKSTRA , A. G. The discrete dipole approximation: An overview and recent devel-
+     opments. J. Quant. Spectrosc. Radiat. Transf. 106, 1 (2007), 558–589.
+34                    MARTIN COSTABEL, MONIQUE DAUGE, AND KHADIJEH NEDAIASL
+
+[19] Y URKIN , M. A., M ALTSEV, V. P., AND H OEKSTRA , A. G. Convergence of the discrete dipole approximation.
+     I. Theoretical analysis. J. Opt. Soc. Am. A 23, 10 (Oct 2006), 2578–2591.
+[20] Y URKIN , M. A., M IN , M., AND H OEKSTRA , A. G. Application of the discrete dipole approximation to very
+     large refractive indices: Filtered coupled dipoles revived. Phys. Rev. E 82 (Sep 2010), 036703.
+[21] Z UCKER , I. J. The summation of series of hyperbolic functions. SIAM J. Math. Anal. 10 (1979), 192–206.
+
+
+U NIV. R ENNES , CNRS, IRMAR - UMR 6625, F-35000 R ENNES , F RANCE
+Email address: Martin.Costabel@univ-rennes1.fr
+Email address: Monique.Dauge@univ-rennes1.fr
+
+D EPARTMENT OF M ATHEMATICS , IASBS, G AVAZANG ROAD , Z ANJAN , I RAN
+Email address: knedaiasl85@gmail.com, nedaiasl@iasbs.ac.ir
+

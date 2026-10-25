@@ -1,0 +1,568 @@
+                       Oﬀ-interval spectral convergence for
+                     geometrically consistent discrete dipoles
+                                                Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                              15 October 2026
+                                      Unrefereed preprint, version 1.0
+
+
+
+                                                  Abstract
+         Costabel’s 2022 Oberwolfach report asks for a precise description and proof of the observed
+     approximation of nonreal eigenvalues by the discrete dipole approximation away from a real
+     lattice interval. We give an independent proof for bounded particles whose center-selected cubic
+     voxels converge in volume. This includes every bounded Lipschitz particle, with arbitrary grid
+     translations. At each ﬁxed complex frequency, the actual zero-diagonal matrices have no spec-
+     tral pollution outside the exact static lattice interval; isolated eigenvalues are approximated with
+     algebraic multiplicity and norm-convergent embedded Riesz projections. The proof combines
+     the established static lattice bound of Costabel–Dauge–Nedaiasl with strong static consistency,
+     Hilbert–Schmidt convergence of the sampled dynamic correction and classical spectral approxi-
+     mation. A separate compact, positive-volume, empty-interior support has a nonreal continuum
+     eigenvalue at frequency 10−4 while every matrix on the grids n−1 Z3 is 3 × 3 zero. This example
+     clariﬁes the geometric hypothesis. The classical ingredients and previously announced dynamic
+     work are explicitly credited; ﬁrst priority is not certiﬁed. AI tools were used extensively, and no
+     external human peer review is asserted.
+
+
+1    The question and a precise spectral statement
+For a bounded measurable set Ω ⊂ R3 , put HΩ = L2 (Ω; C3 ). Fix κ ∈ C throughout the mesh limit.
+Let                                       Z                         Z
+                  eiκ|x|
+         gκ (x) =        , Aκ u = −∇ div gκ (x − y)u(y) dy − κ    2
+                                                                       gκ (x − y)u(y) dy.
+                  4π|x|                    Ω                         Ω
+
+Derivatives in this deﬁnition are distributional and the result is restricted to Ω. The bounded
+comparison operator for the diagonal-omitting discretization is
+                                         Z                            Z
+                Sκ = Aκ − 31 I = p. v.        K0 (x − y)(·)(y) dy +       Rκ (x − y)(·)(y) dy,              (1)
+                                          Ω                           Ω
+
+where, away from zero,
+
+                                               I − 3ee⊤
+        Kκ = −(D2 + κ2 I)gκ ,      K0 (x) =             ,    R κ = Kκ − K0 ,      r = |x|,   e = x/r.       (2)
+                                                 4πr3
+We use this operator convention directly, without a material-contrast conversion.
+
+
+
+                                                      1
+   For each h > 0 choose any ah ∈ R3 , and set
+                                                                                           [
+      xm = ah + hm,      Qhm = xm + h[− 12 , 21 )3 ,     Ih = {m ∈ Z3 : xm ∈ Ω},   Ωh =          Qhm .
+                                                                                          m∈Ih
+
+The ﬁnite matrix under consideration is exactly
+                                                X
+                                  (Tκh u)m =           h3 Kκ (xm − xn )un .                              (3)
+                                               n∈Ih
+                                               n̸=m
+
+In particular, every diagonal 3 × 3 block is zero. Our geometric assumption is
+
+                                             |Ωh △ Ω| −→ 0.                                              (G)
+
+The representative used for center membership is part of these deﬁnitions. Condition (G) is suﬃ-
+cient; we do not claim it is necessary.
+    We use the static lattice theorem of Costabel–Dauge–Nedaiasl [2]. The inﬁnite matrix
+                                                  X
+                                      (T v)m =           K0 (m − n)vn
+                                                 n̸=m
+
+deﬁnes a bounded selfadjoint operator on ℓ2 (Z3 ; C3 ). Its exact closed numerical range is a bounded
+real interval
+                           Jlat = W (T ) = [Λ− , Λ+ ],      [− 13 , 32 ] ⊂ Jlat .                  (4)
+Here the operator is deﬁned by the bounded lattice multiplier, equivalently by its action on ﬁnitely
+supported sequences and bounded extension. No rearrangement of an absolutely divergent series
+is intended. We use the exact interval, not the numerically suggested endpoint extrema. The
+controlling proof and numbering are those of [2, §§1.6,2.1–2.4,3.5; Proposition 3.15], arXiv version 3.
+    Identify a vector on Ih with the function equal to um on Qhm and zero elsewhere. This is an
+                          P
+isometry for the norm h3 m |um |2 , and changing the Euclidean squared norm by this scalar does
+not change a matrix operator norm. Both continuum and discrete spectral projections below are
+extended by zero to
+                                         H = L2 (R3 ; C3 ).
+The zero-dimensional matrix convention applies when Ih is empty.
+
+Theorem 1. Assume (G), with Ω bounded measurable and κ ∈ C ﬁxed. Then:
+
+  1. For every compact L ⊂ (C \ Jlat ) ∩ ρ(Sκ ), the matrices zI − Tκh are invertible for all z ∈ L
+     and suﬃciently small h, with inverse norms uniformly bounded in z and h. In particular, no
+     sequence of matrix eigenvalues can converge to an oﬀ-interval point in ρ(Sκ ).
+
+  2. Every spectral point λ of Sκ outside Jlat is an isolated eigenvalue of ﬁnite algebraic multiplic-
+     ity. If a closed disk about λ misses Jlat and contains no other continuum spectral point, the
+     embedded discrete Riesz projections for its boundary converge in operator norm to the contin-
+     uum projection. Their ranks eventually agree. The enclosed matrix eigenvalues converge to
+     λ, counted with total algebraic multiplicity.
+
+  3. The corresponding total generalized spectral subspaces converge in both gap directions. The
+     matrices have uniformly bounded norms as h → 0.
+
+
+
+                                                        2
+    Every bounded set with |∂Ω| = 0 satisﬁes (G), for√arbitrary translations ah . Indeed, points
+classiﬁed diﬀerently from their cell center are within 3h of ∂Ω. The volume of these shrink-
+ing bounded boundary neighborhoods tends to zero. Thus Theorem 1 applies to every bounded
+Lipschitz particle, whether its boundary is included in the membership set or not.
+    Theorem 1 gives the oﬀ-interval description requested in [1, §4, p. 2582], with an explicit geo-
+metric condition. The source poses an observed-particle convergence question; it does not print (G)
+or ask for a necessary-and-suﬃcient classiﬁcation of geometries. We assert neither convergence
+for every irregular compact particle nor spectral correctness inside Jlat . There is no rate, mesh-
+dependent-frequency limit or preservation of individual Jordan block sizes. Nonreal spectral points
+automatically lie outside the real interval. Eigenvalues in the unshifted Aκ convention are obtained
+by adding 1/3.
+
+Earlier work and the contribution boundary. The static lattice operator, its Ewald represen-
+tation and interval bound are established results of [2]; the question and earlier nonzero-frequency
+stability results belong to [1]. Cubic cancellation and smooth-ﬁeld DDA consistency/error esti-
+mates already occur in [3, 4]. The latter analysis explicitly assumes the discrete inverse control
+in its equation (65). Compact multiplication, stable/regular approximation, spectral projections
+and multiplicity arguments are classical [5, 6, 7]. Static-plus-compact continuum decompositions
+and nonreal-pole theory are also prior work [8, 9, 10], as are sphere perturbation and radiation
+calculations [11, 12, 13]. Pointwise DDA’s dependence only on center values and the associated
+continuity issue are discussed in [14, §IX, footnote 22].
+    The purpose of this note is to verify the actual sampled matrix on a common Hilbert space
+and to give an independent proof of the resulting qualiﬁed spectral statement. The speciﬁc inputs
+are strong static consistency and norm convergence of the sampled dynamic correction, including
+changing masks. We claim no new general spectral approximation principle, ﬁrst DDA consistency
+analysis or new existence mechanism for nonreal continuum poles. Section 4 combines classical
+ingredients into a compact-support scope obstruction.
+    Costabel–Dauge–Nedaiasl also announced On the Stability of the Discrete Dipole Approximation
+in Time-Harmonic Dielectric Scattering, in preparation in 2022/2023; see [15] and [16, reference 3].
+Their report already gives dynamic stability results while separately leaving the oﬀ-interval eigen-
+value question open. A bounded public-source audit through 15 October 2026 did not locate that
+manuscript’s full proof or a covering later theorem. Its contents remain a priority uncertainty.
+Rahola’s full paper was not available in this audit; its publisher abstract supplies historical sphere-
+spectrum credit. One forward-citing ultrasound thesis was screened only at metadata/abstract level
+because its full ﬁle was unavailable. The accompanying research record gives the exact source cov-
+erage and limits. These limitations preclude an absolute novelty claim; this note oﬀers a credited,
+independently checked proof of its stated theorem.
+
+
+2    Consistency of the actual zero-diagonal matrices
+Radial diﬀerentiation gives the useful explicit formula
+
+                                eiκr                                            
+                     Kκ (x) =       3
+                                      (1 − iκr − κ2 r2 )I + (κ2 r2 + 3iκr − 3)ee⊤ .                (5)
+                                4πr
+Consequently, on every bounded diﬀerence set and for ﬁxed κ,
+
+                                 κ2              iκ3
+                  Rκ (x) = −        (I + ee⊤ ) −     I + O(r),     ∥Rκ (x)∥F ≤ C/r.                (6)
+                                8πr              6π
+
+                                                    3
+Here ∥ · ∥F is the matrix Frobenius norm. Only bounded physical diﬀerences are used, so the
+estimate is valid for any ﬁxed complex frequency. The distributional identity
+
+                                      −D2 (4πr)−1 = p. v. K0 + 31 Iδ0
+
+follows by rotational symmetry and taking traces. The Hessian of gκ − g0 is locally integrable and
+has no extra delta term. This proves (1); its normalization is also explicit in [2, (1.7), (3.39)].
+    Let D be convolution by p. v. K0 on H. Its Fourier multiplier is
+
+                                 b        ξξ ⊤ 1
+                                 D(ξ) =        − 3 I,         σ(D) ⊂ [− 31 , 23 ].                            (7)
+                                          |ξ|2
+                                                            P
+Equip full-lattice sequences with squared norm h3 m |um |2 . Let Jh be their isometry to cellwise
+constant functions; its adjoint Jh∗ is cell averaging. Put
+
+   Ph = Jh Jh∗ ,    Dh = Jh T Jh∗ ,       Mh = 1Ωh ,        M = 1Ω ,         B h = M h Dh M h ,   B = M DM.
+
+All these act on H. The projection Ph commutes with Mh . Static homogeneity gives h3 K0 (hj) =
+K0 (j), so Bh is exactly the static matrix (3) on the occupied-cell space and zero on its orthogonal
+complement. The operators Bh , B are selfadjoint and have spectra in Jlat : compression preserves
+the form bound because 0 ∈ Jlat , and (7) applies to B.
+
+Lemma 2. As h → 0, Dh → D strongly on H, uniformly with respect to the chosen grid translations
+in the dense-core argument. Under (G), Bh → B strongly.
+
+Proof. Choose ϕ ∈ Cc∞ (R3 ; C3 ), and let ϕh equal ϕ(xm ) on Qhm . Then ϕh → ϕ in H. On the mth
+cell,                                      X
+                                  Dh ϕ h =    h3 K0 (hj)ϕ(xm − hj).
+                                             j̸=0
+
+For any compactly supported radial cutoﬀ χ, exact cubic reﬂections, coordinate permutations and
+termwise trace zero give
+                       X                                            Z
+                              h3 K0 (hj)χ(hj) = 0,          p. v.       K0 (y)χ(y) dy = 0.                    (8)
+                       j̸=0
+
+These are ﬁnite sums or radial principal values, not rearranged inﬁnite sums. Take χδ = 1 for r ≤ δ
+and zero for r ≥ 2δ. Subtract ϕ(xm ) in the near term, using (8). Its size is at most
+                                               X
+                                C∥∇ϕ∥∞ h3               |hj|−2 ≤ C ′ ∥∇ϕ∥∞ δ.
+                                            0<|hj|≤2δ
+
+For the last inequality, each integer annulus of unit width has O((q +1)2 ) lattice points. Summation
+         P
+gives h3 0<|hj|≤R |hj|−2 ≤ CR, including the empty-sum case R < h. The continuum near term
+obeys the same O(δ) bound.
+    With δ ﬁxed, the remaining kernel is smooth away from zero. The compact support of ϕ gives
+uniform Riemann-sum convergence for centers in every bounded set, independent of translation.
+The continuum convolution Dϕ is smooth, so changing its argument from a center to a point of its
+cell gives an error tending to zero. First let h → 0, then δ → 0, to obtain local L2 convergence.
+    This also gives whole-space convergence. Outside a ball larger than twice the support of ϕ,
+the discrete and continuous outputs are bounded by C(1 + |x|)−3 , uniformly for small h. For the
+                                                      P
+discrete bound use the uniformly bounded sum h3 m |ϕ(xm )|. Their squared tails therefore have
+
+                                                        4
+integral O(R−3 ). Thus Dh ϕh → Dϕ in H. The uniform bound ∥Dh ∥ ≤ ∥T ∥ ﬁrst replaces ϕh by ϕ
+and then extends the result by density to all of H.
+    Finally, for every u ∈ H,
+                                                              Z
+                                     ∥(Mh − M )u∥2 =                  |u|2 −→ 0
+                                                              Ωh △Ω
+
+by absolute continuity of the integral. Products of uniformly bounded strongly convergent operators
+give Bh → B.
+
+    Let C be the integral operator on H with kernel
+
+                                       c(x, y) = 1Ω (x)Rκ (x − y)1Ω (y).
+
+Deﬁne ch to be Rκ (xm − xn ) on Qhm × Qhn when m, n ∈ Ih and m ̸= n, and zero otherwise. Write
+Ch for its integral operator. On occupied-cell constants its action is exactly
+                                                  X
+                                      (Ch u)m =          h3 Rκ (xm − xn )un .
+                                                  n∈Ih
+                                                  n̸=m
+
+It vanishes on the orthogonal complement. Hence Bh + Ch represents precisely (3), with no
+integrated-cell replacement or inserted self interaction.
+
+Lemma 3. Under (G), C is Hilbert–Schmidt and
+
+                                             ∥Ch − C∥HS −→ 0.
+
+Proof. All occupied cubes lie in a common bounded box for small h. The bound (6) gives square-
+                          r−2 is locally integrable in three dimensions. On |x − y| < δ, cell centers
+integrability of c, since √
+satisfy |xm − xn | < δ + 3h. Thus
+                   ZZ                                                     X
+                                  ∥ch (x, y)∥2F dx dy ≤ Ch6 #Ih                      |hj|−2
+                        |x−y|<δ                                                √
+                                                                      0<|hj|<δ+ 3h
+
+                                                    ≤ C ′ (h3 #Ih )(δ + h) ≤ C ′′ (δ + h).
+
+The continuum counterpart is O(δ). This also controls the omitted same-cell block; it cannot leave
+a nonzero Hilbert–Schmidt self term.
+   Away from a ﬁxed diagonal neighborhood, center diﬀerences stay away from zero for small h,
+and Rκ is uniformly continuous and bounded on the relevant compact set. The error in the two
+product masks is supported in
+
+                                    ((Ωh △Ω) × B∗ ) ∪ (B∗ × (Ωh △Ω)),
+
+where B∗ is the common box. Its volume tends to zero. The far kernels therefore converge in L2 .
+Let h → 0 and then δ → 0.
+
+
+3    The classical compact spectral argument
+We give the argument to specify the topology of projection convergence. It is an application of
+classical compact approximation and spectral theory, not a new abstract principle; compare [5, 6, 7].
+
+                                                          5
+Lemma 4. Let Bn , B be bounded selfadjoint operators on a complex Hilbert space, with spectra in
+a ﬁxed bounded real interval J. Suppose Bn → B strongly and Cn → C in norm, where Cn , C are
+compact. Put Sn = Bn + Cn , S = B + C. Then the three conclusions of Theorem 1, in the common
+space, hold outside J.
+Proof. For z ∈/ J, put Rn (z) = (z−Bn )−1 and R(z) = (z−B)−1 . The common bound is dist(z, J)−1 .
+The resolvent identity proves strong convergence Rn (z) → R(z), uniformly on compact z-sets on
+each ﬁxed vector, by ﬁnite nets and the resolvent bounds. Selfadjointness gives the corresponding
+strong convergence of adjoints through Rn (z)∗ = Rn (z).
+    If Xn → X strongly and is uniformly bounded, then ∥(Xn − X)K∥ → 0 for compact K, by
+ﬁnite-rank approximation. If also Xn∗ → X ∗ strongly, taking adjoints gives ∥K(Xn − X)∥ → 0.
+Finite nets give uniform versions for norm-continuous compact families of K. In particular,
+
+                               Fn (z) = Rn (z)Cn −→ F (z) = R(z)C
+
+in norm, uniformly on compact subsets of C \ J. The family F is compact and analytic, and
+
+                                    z − S = (z − B)(I − F (z)).                                   (9)
+
+For large |z| it is invertible. The analytic Fredholm argument on the connected set C \ J gives
+isolated poles with ﬁnite-rank principal parts. One may obtain this directly by choosing a ﬁnite-rank
+orthogonal projection so that the remaining block of F (z0 ) has norm less than 1/2. Local analytic
+block elimination reduces invertibility to a ﬁnite-dimensional Schur determinant. Its singularities
+are discrete unless the determinant vanishes identically; connectedness and invertibility at large
+z exclude that alternative by continuation. The resulting resolvent poles have ﬁnite-rank Riesz
+projections, whose ranges are exactly the generalized eigenspaces. This last assertion also follows
+by comparing Laurent coeﬃcients in (z − S)(z − S)−1 = I.
+    On a compact set L ⊂ (C \ J) ∩ ρ(S), norm convergence of Fn and a Neumann inverse estimate
+give invertibility of I − Fn , with a uniform bound. Factorization (9) proves the claimed resolvent
+bound and excludes pollution there.
+    Let Γ bound an isolating disk whose closure misses J. On Γ deﬁne
+
+                            Gn = (I − Fn )−1 Fn ,       G = (I − F )−1 F.
+
+These are compact, and Gn → G uniformly in norm. The full resolvent is
+
+                                     (z − Sn )−1 = Rn + Gn Rn .                                  (10)
+
+The integrals of Rn and R over Γ vanish, because they are analytic throughout the disk. Moreover
+
+                      ∥Gn Rn − GR∥ ≤ ∥Gn − G∥∥Rn ∥ + ∥G(Rn − R)∥ −→ 0
+
+uniformly on Γ. The last term uses strong convergence of the adjoint resolvents; ordinary strong
+convergence alone would not suﬃce. Integrating proves norm convergence Πn → Π of Riesz projec-
+tions.
+    Once ∥Πn − Π∥ < 1, the restrictions Πn : ran Π → ran Πn and Π : ran Πn → ran Π are injective.
+Hence their ﬁnite ranks agree. This argument does not require orthogonal projections or semisimple
+eigenvalues. Repeating it for smaller circles and using stability on the intervening compact annuli
+proves convergence of the whole eigenvalue cluster with algebraic multiplicity. For unit vectors in
+either range, projecting to the other range bounds each subspace gap by ∥Πn − Π∥. Finally, ∥Sn ∥
+is uniformly bounded because the static spectra lie in J and Cn converges in norm.
+
+                                                    6
+   Apply Lemma 4 to Lemmas 2–3, with J = Jlat , along every sequence h → 0. The embedded
+operators are Sκ on functions supported in Ω, and Tκh on occupied-cell constants, each extended
+by zero. Their extra inﬁnite-dimensional zero eigenspaces are harmless because 0 ∈ Jlat and every
+contour under consideration misses this interval. This proves Theorem 1. Notice that full norm
+convergence of the static operators or their resolvents has not been asserted.
+
+
+4     A compact-support obstruction
+The following supplementary result prevents extending the aﬃrmative statement to arbitrary com-
+pact point-membership masks. Nonreal sphere poles, their radiation sign and static/dynamic per-
+turbation methods are classical [11, 12, 10, 13, 9]. We include an elementary quantitative certiﬁcate
+to keep the frequency and all error bounds checkable.
+Theorem 5. There is a compact set Ω ⊂ R3 of positive volume and empty interior such that, at
+the ﬁxed real frequency κ = 1/10000, Sκ on HΩ has an isolated nonreal eigenvalue, whereas every
+matrix (3) on h = 1/n, ah = 0, is the 3 × 3 zero matrix. The sole sampled point is an isolated,
+volume-zero anchor. The support is speciﬁed existentially within the explicit sequence below; no
+eﬀective index or numerical eigenvalue location is claimed.
+
+4.1   An intrinsic ball mode and an explicit nonreal perturbation
+Let B = {x : |x| < 1}. Coordinates are scaled so that this ball has radius one. First work on
+the intrinsic space HB , rather than its whole-space zero extension. The static operator A0 is the
+compression of the longitudinal Fourier projection. The orthogonal decomposition is
+
+                          HB = ∇H01 (B) ⊕ ∇Hharm
+                                            1
+                                                 (B) ⊕ (∇H 1 (B))⊥ .                             (11)
+
+The gradient space is closed by Poincare’s inequality; the Dirichlet variational projection splits oﬀ
+the harmonic gradients. The last summand has divergence-free zero extension, including zero weak
+normal ﬂux, and A0 = 0 there. On the ﬁrst summand, zero extension commutes with taking the
+gradient and the longitudinal projection gives A0 = I.
+    For a degree-ℓ solid harmonic rℓ Yℓ , ℓ ≥ 1, the distributional divergence of its zero-extended
+gradient is −ℓYℓ δ∂B . The Newton single layer with density Yℓ equals rℓ Yℓ /(2ℓ + 1) inside the ball:
+matching the interior and exterior radial solutions gives the derivative jump −1. Thus
+                                                        ℓ
+                                    A0 ∇(rℓ Yℓ ) =          ∇(rℓ Yℓ ).
+                                                     2ℓ + 1
+Spherical harmonics of distinct degrees are orthogonal in the Dirichlet inner product. Their expan-
+sions are complete in the harmonic H 1 space modulo constants, with energy weights ℓ∥Yℓ ∥2L2 (∂B) .
+Therefore                                                        
+                                                          ℓ
+                               σ(A0 ) = {0, 1, 2 } ∪
+                                               1
+                                                              :ℓ≥1 .                           (12)
+                                                       2ℓ + 1
+The value 1/2 is the accumulation spectral point. The shifted S0 = A0 − I/3 has an isolated
+zero eigenspace V consisting exactly of the three constant vector ﬁelds. For ℓ ≥ 2 its harmonic
+eigenvalues are
+                                           ℓ−1        1
+                                                   ≥ .
+                                         3(2ℓ + 1)   15
+The other spectral values, −1/3, 2/3 and the accumulation value 1/6, are farther from zero. Let P
+be the orthogonal projection onto V .
+
+                                                     7
+   On HB , write Sκ = S0 + Cκ . Formula (5) gives
+                                                                                           Z
+                               iκ3                                  I + ee⊤
+              Cκ = κ2 C2 −         J + Eκ ,      C2 (x, y) = −              ,     Ju =          u(y) dy.   (13)
+                               6π                                     8πr                   B
+
+For |κ| ≤ 1/2 the following bounds hold:
+
+               ∥C2 ∥HS ≤ 1,        ∥J /(6π)∥ = 29 ,            ∥Eκ ∥ ≤ 2|κ|4 ,         ∥Cκ ∥ ≤ 2|κ|2 .     (14)
+
+Here are explicit estimates. The squared Frobenius numerator of I + ee⊤ is 6, and
+                        ZZ                                      Z
+                                                                                      32π 2
+                                   |x − y|−2 dx dy ≤ |B|                 |z|−2 dz =         .
+                             B×B                                 |z|≤2                  3
+
+This proves the ﬁrst bound. For z = κr, the coeﬃcients of order n ≥ 2 in
+
+                             eiz (1 − iz − z 2 ) − 1,          eiz (z 2 + 3iz − 3) + 3
+
+are in (n − 1)2 /n! and −in (n − 1)(n − 3)/n!. Since r ≤ 2, |z| ≤ 1. The terms of order at least four
+in either numerator have absolute sum at most
+                                            X n2
+                                     |z|4            = |z|4 (2e − 29 ) < |z|4 .
+                                            n≥4
+                                                n!
+                                                                         √
+For example e < 11/4 is enough. The matrix Frobenius factor is at most 3 + 1 < 3, so the
+remainder kernel is bounded by 3|κ|4 r/(4π). Its Hilbert–Schmidt norm is at most 2|κ|4 . Also
+∥J ∥ = |B| = 4π/3. Finally
+
+                          ∥Cκ ∥ ≤ |κ|2 (1 + 29 |κ| + 2|κ|2 ) ≤ 18
+                                                               29
+                                                                  |κ|2 < 2|κ|2 .
+
+    On the circle |z| = 1/30, the static resolvent norm is at most 30. If ε = ∥Cκ ∥ ≤ 1/60,
+the perturbed resolvent norm is at most 60, and the resolvent identity gives the Riesz projection
+estimate
+                                ∥Pκ − P ∥ ≤ 60ε ≤ 120|κ|2 =: η.                              (15)
+For η < 1, the rank is three. The range of Pκ is a graph {v + Γκ v : v ∈ V } over V , because for
+w ∈ ran Pκ ,
+                          ∥(I − P )w∥ ≤ η∥w∥,     ∥P w∥ ≥ (1 − η)∥w∥.
+If η ≤ 1/2, then ∥Γκ ∥ ≤ η/(1 − η) ≤ 240|κ|2 . This argument allows nonorthogonal Pκ .
+    The coordinate operator
+                                       Hκ = P Sκ (I + Γκ )|V
+is similar to the restriction of Sκ to its three-dimensional invariant range. Since P S0 = 0, equa-
+tions (13)–(15) yield
+
+                                             iκ3
+                     Hκ − κ2 P C2 |V +           P J |V       ≤ (2 + 2 · 240)|κ|4 = 482|κ|4 .
+                                             6π
+
+For real κ, P C2 |V is selfadjoint and has real trace, while J |V = (4π/3)IV . Hence
+
+                                        Im tr Hκ ≤ − 23 κ3 + 1446κ4 .                                      (16)
+
+
+                                                          8
+At κ = 1/10000, all smallness hypotheses above hold, and the right-hand side equals
+                                                    7831 3
+                                               −         κ < 0.
+                                                   15000
+The trace is the sum of the three eigenvalues counted algebraically; at least one is nonreal. These are
+genuine isolated ﬁnite-algebraic-multiplicity eigenvalues of Sκ in the contour cluster. No eigenvalue
+simplicity, diagonalizability or numerical eigenvalue calculation has been used. The rank-three zero
+calculation was intrinsic to HB ; its whole-space zero extension would instead have an inﬁnite zero
+eigenspace.
+
+4.2   A ﬁxed compact particle invisible to every rational mesh
+Enumerate Q3 ∩ B as (qk )k≥1 , where Q denotes the rationals. For j ≥ 1 set
+                           [
+                    Uj =         B(qk , 2−j−k−4 ),   Fj = B \ Uj ,       Ωj = Fj ∪ {0}.
+                           k≥1
+
+Each Fj is compact, has no rational point and has empty interior. Moreover
+
+                                 4π 2−3j−12
+                  |B \ Fj | ≤               < |B|,         Fj ⊂ Fj+1 ,     |B \ Fj | → 0.          (17)
+                                  3    7
+Thus each has positive volume, and its indicators tend almost everywhere to 1B . The point 0 has
+its own deleted neighborhood, so restoring it gives an isolated, volume-zero anchor. In particular
+Ωj is compact, has positive volume and empty interior, and
+
+                                        Ωj ∩ n−1 Z3 = {0}     (n ≥ 1).                             (18)
+
+Every associated matrix is exactly 3 × 3 zero.
+    It remains to retain a continuum nonreal pole on one ﬁxed Fj . Fix the frequency and a nonreal
+ball eigenvalue just proved, and take a small isolating disk around it with nonreal closed disk. On
+H, let Mj = 1Fj and MB = 1B . Equation (17) implies strong mask convergence. Therefore
+
+                                           Mj DMj −→ MB DMB
+
+strongly, with common selfadjoint spectral bound [−1/3, 2/3]. The dynamic corrections converge
+in Hilbert–Schmidt norm by dominated convergence of their square-integrable kernels on B × B.
+Lemma 4, now applied to this continuum mask sequence, gives norm convergence of the Riesz
+projections on the chosen contour. Their ﬁnite positive ranks eventually agree, so Sκ on Fj has
+a nonreal eigenvalue in the disk for all suﬃciently large ﬁnite j. Adding the null anchor leaves
+the volume operator unchanged. Choose any one such j and put Ω = Ωj . Equation (18) proves
+Theorem 5.
+    This passage uses strong convergence of the singular static compressions, not the false assertion
+that small removed volume makes them close in operator norm. Whole-space zero complements
+cause no problem on the nonreal contour. The selected index is existential; the frequency is explicit.
+For this Ω, the selected voxel volume is n−3 and |Ω1/n △Ω| → |Ω| > 0, so (G) fails. The exam-
+ple neither contradicts Theorem 1 nor shows that its geometric condition is necessary for every
+individual spectral question.
+
+
+
+
+                                                       9
+5    Veriﬁcation and research status
+The accompanying archive contains this source, the original proof artifacts, the source/priority
+audit record and executable exact symbolic/rational controls. Floating-point matrix and reﬁnement
+diagnostics are separately labeled as illustrations. The analytical arguments above establish the
+operator limits, harmonic completeness and spectral conclusions; ﬁnite controls are not substitutes
+for those proofs or certiﬁcates of historical priority.
+    AI tools were used extensively in developing the arguments, writing, computation, source re-
+search and adversarial checking. The archived independent reviews are AI-assisted adversarial
+reviews. This is an unrefereed preprint; no external human peer review or formal proof-assistant
+certiﬁcation is asserted. The source-access and priority limitations stated in Section 1 remain part
+of the research status.
+
+
+References
+ [1] M. Costabel, Stability analysis of the DDA for Dielectric Scattering (joint work with M.
+     Dauge and K. Nedaiasl), in At the Interface between Semiclassical Analysis and Numer-
+     ical Analysis of Wave Scattering Problems, Oberwolfach Report 43/2022, pp. 2580–2582.
+     doi:10.4171/owr/2022/43.
+
+ [2] M. Costabel, M. Dauge and K. Nedaiasl, Stability analysis of a simple discretization method for
+     a class of strongly singular integral equations, Integral Equations Operator Theory 95 (2023),
+     article 29. Controlling author version: arXiv:2302.13159v3. doi:10.1007/s00020-023-02750-7.
+
+ [3] M. A. Yurkin, V. P. Maltsev and A. G. Hoekstra, Convergence of the discrete dipole
+     approximation. I. Theoretical analysis, J. Opt. Soc. Am. A 23 (2006), 2578–2591.
+     doi:10.1364/JOSAA.23.002578.
+
+ [4] M. A. Yurkin, V. P. Maltsev and A. G. Hoekstra, Convergence of the discrete dipole ap-
+     proximation. I. Theoretical analysis: erratum, J. Opt. Soc. Am. A 32 (2015), 2407–2408.
+     doi:10.1364/JOSAA.32.002407.
+
+ [5] P. M. Anselone and T. W. Palmer, Spectral analysis of collectively compact, strongly conver-
+     gent operator sequences, Paciﬁc J. Math. 25 (1968), 423–431. Primary full text.
+
+ [6] P. M. Anselone and M. L. Treuden, Regular operator approximation theory, Paciﬁc J. Math.
+     120 (1985), 257–268. Primary full text.
+
+ [7] J. Descloux, N. Nassif and J. Rappaz, On spectral approximation. Part 1. The problem of
+     convergence, RAIRO Anal. Numer. 12 (1978), 97–112. Primary full text.
+
+ [8] N. V. Budko and A. B. Samokhin, Spectrum of the volume integral operator of electromag-
+     netic scattering, SIAM J. Sci. Comput. 28 (2006), 682–700. Author manuscript: arXiv:math-
+     ph/0505013.
+
+ [9] Y. Zhou, Spectral structure of electromagnetic scattering on arbitrarily shaped dielectrics,
+     Commun. Math. Sci. 20 (2022), 1363–1395. Author version: arXiv:0911.4540v5 (2021).
+     doi:10.4310/CMS.2022.v20.n5.a7.
+
+[10] H. Ammari, B. Li and J. Zou, Super-resolution in recovering embedded electromagnetic sources
+     in high contrast media, ETH SAM Research Report 2020-08 (2020). arXiv:2001.07116.
+
+                                                10
+[11] J. Rahola, On the eigenvalues of the volume integral operator of electromagnetic scattering,
+     SIAM J. Sci. Comput. 21 (2000), 1740–1754. doi:10.1137/S1064827598338962.
+
+[12] H. Ammari and P. Millien, Shape and size dependence of dipolar plasmonic resonance of
+     nanoparticles, J. Math. Pures Appl. 129 (2019), 242–265. doi:10.1016/j.matpur.2018.12.001.
+
+[13] D. Tzarouchis, P. Ylä-Oijala and A. Sihvola, Resonant scattering characteristics of homoge-
+     neous dielectric sphere (2017), arXiv:1702.05883v1. doi:10.1109/TAP.2017.2690312.
+
+[14] M. A. Yurkin and M. I. Mishchenko, Volume integral equation for electromagnetic
+     scattering: Rigorous derivation and analysis for a set of multilayered particles with
+     piecewise-smooth boundaries in a passive host medium, Phys. Rev. A 97 (2018), 043824.
+     doi:10.1103/PhysRevA.97.043824.
+
+[15] K. Nedaiasl, Abel Visiting Scholarship Program report on the September–October 2022 visit
+     to Rennes. IMU primary report.
+
+[16] M. Costabel, Convergence of a simple discretization of the ﬁnite Hilbert transforma-
+     tion, Comput. Math. Appl. 150 (2023), 15–21. Author version: arXiv:2303.13693v2.
+     doi:10.1016/j.camwa.2023.09.004.
+
+
+
+
+                                               11
+

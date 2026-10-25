@@ -1,0 +1,116 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - paragraph:
+    - link "Alec Kriebel":
+      - /url: /
+  - navigation "Main navigation":
+    - link "Research":
+      - /url: /research/
+    - text: "|"
+    - link "Blog":
+      - /url: /blog/
+    - text: "|"
+    - link "ORCID":
+      - /url: https://orcid.org/0009-0001-9320-500X
+- main:
+  - article:
+    - heading "CoNP-completeness of binary directed chip-firing reachability" [level=1]:
+      - link "CoNP-completeness of binary directed chip-firing reachability":
+        - /url: /research/binary-directed-chip-firing-reachability/
+    - paragraph:
+      - text: By Alec Kriebel, independent researcher.
+      - text: Manuscript dated
+      - time: 15 October 2026
+      - text: · Version 1.0 ·
+      - strong: Unrefereed preprint
+    - paragraph:
+      - link "Read the paper (PDF, 6 pages)":
+        - /url: paper.pdf
+      - text: ·
+      - link "Source and verification package (ZIP)":
+        - /url: pr1097_support_v1_0.zip
+      - text: ·
+      - link "Zenodo record":
+        - /url: https://doi.org/10.5281/zenodo.23431676
+    - paragraph:
+      - link "Plain-English explanation":
+        - /url: "#plain-language"
+      - text: ·
+      - link "Read on this page":
+        - /url: "#paper"
+      - text: ·
+      - link "Collaboration":
+        - /url: "#collaborate"
+    - separator
+    - heading "Abstract" [level=2]
+    - paragraph: Ordinary legal chip-firing reachability is coNP-complete under deterministic polynomial-time many-one reductions for finite loopless strongly connected directed multigraphs, with binary adjacency entries and nonnegative binary initial and target configurations. We give an explicit reduction from the complement of the halting problem of Farrell and Levine. A finite-state cutoff controls an exact simulation, a gate supplies a cleanup reserve, and a marker forces that gate to have fired in every target-reaching word. Together with the prior coNP-membership theorem of Hujter, Kiss and Tóthmérész, this answers the historical general-digraph hardness question in the stated model. We credit earlier period, recurrence and reserve-simulation arguments. Exact-result, gadget and method priority, independence of discovery, and present-day openness remain unknown after a bounded source audit. This extensively AI-assisted note is unrefereed.
+    - heading "The idea in plain English" [level=2]
+    - paragraph: In a chip-firing game, a vertex with enough chips can send chips along all its outgoing arcs. This paper asks whether some finite sequence of legal moves can reach a specified final arrangement.
+    - paragraph: "The result classifies this question as coNP-complete for a precise family of directed multigraphs. Arc multiplicities and chip counts are written in binary, so a compact input can describe very large numbers of parallel arcs and chips. The graph is loopless and strongly connected: every vertex can reach every other along directed paths."
+    - paragraph: The proof turns the question of whether legal play can continue indefinitely into a specified-target reachability question. It computes the new graph and target directly, without first finding a recurrent arrangement or writing out the potentially very long sequence of moves.
+    - heading "The precise result" [level=2]
+    - paragraph: For finite nonempty loopless strongly connected directed multigraphs, deciding whether a finite sequential legal firing word takes a nonnegative initial configuration to a specified nonnegative target is coNP-complete under deterministic polynomial-time many-one reductions.
+    - paragraph: The number of vertices varies with the input. Adjacency entries, including arc multiplicities, and both configurations are encoded in binary. The empty firing word is allowed, and a word may stop even when another move remains available. Malformed inputs are rejected. In the one-vertex loopless case, reachability is exactly equality of the two configurations.
+    - paragraph: The reduction supplies coNP-hardness. Prior work by Hujter, Kiss and Tóthmérész supplies coNP membership; the paper explains the earlier certificate argument with attribution.
+    - heading "Why the result holds" [level=2]
+    - paragraph: Conservation bounds the number of possible source configurations. A legal word that is long enough must repeat a state, so it can be continued forever. This cutoff can be numerically large while its binary representation stays short.
+    - paragraph: The new graph simulates the source until a gate has collected enough chips. Firing the gate releases a reserve that lets the remaining prescribed moves reach an explicitly calculated target. A marker ensures that every target-reaching word has fired the gate, even if its other firing counts differ from the intended ones.
+    - paragraph: The graph and target use polynomially many bits. The reduction computes them without executing the long simulation. The earlier coNP-membership argument gives polynomial-size certificates of nonreachability using reduced firing counts.
+    - heading "Scope and limitations" [level=2]
+    - paragraph: Parallel arcs, large degrees and large chip counts are used. No corresponding classification is established for simple graphs, unary encodings, bounded degrees or bounded total chip counts.
+    - paragraph: The theorem concerns legal reachability of a specified target on a varying input graph. It is not a halting or rotor-routing classification, or a claim about all configurations on one fixed graph.
+    - paragraph: Both input configurations are nonnegative. Signed intermediate normalization in the hardness proof does not establish coNP membership for every signed formulation.
+    - paragraph: The cutoff bounds a simulation horizon, not the running time of a reachability algorithm. Finite verification controls supplement the written proof and do not certify it formally.
+    - paragraph: Source hardness, coNP membership, period deletion, recurrence and reserve-simulation arguments are earlier work. Priority of the complete result or gate/marker mechanism, independent discovery and present worldwide openness remain unestablished.
+    - heading "Status and AI use" [level=2]
+    - paragraph: AI tools were used extensively in solving, checking, source comparison, programming and writing. Internal AI reviews and finite computational controls do not constitute external human peer review, journal acceptance or proof-assistant certification.
+    - paragraph: The manuscript and Zenodo metadata are dated 15 October 2026; the Zenodo record was created on 17 October 2026. The earlier date records manuscript preparation, not verified public availability. Neither date establishes first priority.
+    - heading "Read the paper" [level=2]
+    - paragraph:
+      - link "Open PDF in a full window":
+        - /url: paper.pdf
+      - text: ·
+      - link "Download the original from Zenodo":
+        - /url: https://zenodo.org/records/23431676/files/paper.pdf
+    - iframe
+    - heading "Collaborate on this result" [level=2]
+    - paragraph: I welcome substantive collaboration from researchers in chip-firing, combinatorics and computational complexity on independent verification, comparison with earlier constructions and preparation for journal review. Any coauthorship would reflect actual research contributions.
+    - paragraph: Authorship and responsibilities would be discussed in relation to the substantive contributions made.
+    - paragraph:
+      - link "Contact Alec":
+        - /url: mailto:me@aleckriebel.com
+    - heading "Cite this paper" [level=2]
+    - paragraph:
+      - text: Alec Kriebel. (2026). CoNP-completeness of binary directed chip-firing reachability (Version 1.0) [Preprint]. Zenodo.
+      - link "https://doi.org/10.5281/zenodo.23431676":
+        - /url: https://doi.org/10.5281/zenodo.23431676
+    - paragraph:
+      - link "Download BibTeX":
+        - /url: citation.bib
+    - heading "Background and prior work" [level=2]
+    - list:
+      - link "Farrell and Levine — CoEulerian graphs":
+        - /url: https://arxiv.org/abs/1502.04690v3
+      - text: ": Corollary 3.2 provides NP-completeness of the source HALTING problem and its total-Laplacian hardness interface."
+      - link "Hujter, Kiss and Tóthmérész — On the complexity of the chip-firing reachability problem":
+        - /url: https://arxiv.org/abs/1507.03209v4
+      - text: ": Theorem 12 already establishes coNP membership. Problem 19 records the historical general-digraph hardness question; Theorem 14 retains a recurrent-target premise."
+      - link "Björner and Lovász — Chip-firing games on directed graphs":
+        - /url: https://www.cs.elte.hu/~lovasz/morepapers/abacus.pdf
+      - text: ": Earlier period deletion and reduced-firing-count machinery underlie the credited certificate argument."
+      - link "Tóthmérész — Rotor-routing reachability is easy, chip-firing reachability is hard":
+        - /url: https://arxiv.org/abs/2102.11970v2
+      - text: ": Earlier recurrence-to-reachability conversion and a polynomial-hierarchy barrier are distinct from the directly computed target used here."
+      - link "Kiss and Tóthmérész — Chip-firing games on Eulerian digraphs and NP-hardness of computing the rank of a divisor on a graph":
+        - /url: https://arxiv.org/abs/1407.6958v3
+      - text: ": Earlier work uses large reserves for finite-horizon simulation. Scaling and reserve simulation in general are not claimed as new."
+- contentinfo:
+  - separator
+  - paragraph:
+    - link "Research home":
+      - /url: /research/
+    - text: "|"
+    - link "me@aleckriebel.com":
+      - /url: mailto:me@aleckriebel.com
+  - paragraph: © 2013–2026 Kriebel LLC.

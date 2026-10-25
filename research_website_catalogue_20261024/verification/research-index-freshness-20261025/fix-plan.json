@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-25T03:58:41.323879+00:00",
+  "status": "READY_PENDING_CURRENT_BROWSER_UI_RELEASE",
+  "observations": "Repeated actual /research/ normal navigation returns an older42-entry index after a reload shows44. Fresh direct HTTP always returns correct44 and currently advertises max-age=3600. No service-worker/cache code found in public. This supports correcting the browser freshness policy without claiming the exact browser-internal cause.",
+  "official_reference": "https://firebase.google.com/docs/hosting/full-config#headers",
+  "before_firebase_sha256": "f18a024a2886c90411850c59beab02de024f2c10e0d057b311406524c980faf7",
+  "header_rule": {
+    "regex": "^/research(/[^/.]+)*(/|/index\\.html)?$",
+    "headers": [
+      {
+        "key": "Cache-Control",
+        "value": "public, max-age=0, must-revalidate"
+      }
+    ]
+  },
+  "scope_cases": {
+    "/research": true,
+    "/research/": true,
+    "/research/index.html": true,
+    "/research/binary-directed-chip-firing-reachability/": true,
+    "/research/satoh-sl2-representation-filtration-counterexamples/index.html": true,
+    "/research/research.css": false,
+    "/research/sitemap.xml": false,
+    "/research/a/paper.pdf": false,
+    "/research/a/archive.zip": false,
+    "/blog/": false
+  },
+  "preservation": "Only firebase.json will change after exclusive UI release. All public content/artifact bytes remain unchanged. Old browser records stay frozen; separate post-deploy HTTP and actual normal-navigation checks required."
+}

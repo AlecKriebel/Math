@@ -1,0 +1,489 @@
+                                               Secret Keys Assisted Private Classical Communication Capacity over Quantum
+                                                                                 Channels
+                                                                               Min-Hsiu Hsieh,1 Zhicheng Luo,2 and Todd Brun3
+                                                                                 1
+                                                                                Ming Hsieh Department of Electrical Engineering,
+                                                                           University of Southern California, Los Angeles, CA 90089
+                                                               2
+                                                                 Physics Department, University of Southern California, Los Angeles, CA 90089.
+                                                   3
+                                                     Ming Hsieh Electrical Engineering Department, University of Southern California, Los Angeles, CA 90089
+                                                          We prove a regularized formula for the secret key-assisted capacity region of a quantum channel for
+                                                        transmitting private classical information. This result parallels the work of Devetak on entanglement
+                                                        assisted quantum communication capacity [1]. This formula provides a new family protocol, the
+                                                        private father protocol, under the resource inequality framework that includes private classical
+
+
+
+
+arXiv:0806.3525v1 [quant-ph] 21 Jun 2008
+                                                        communication without secret key assistance as a child protocol.
+
+                                                        PACS numbers: 03.67.Hk, 03.67.Mn, 03.67.Pp
+                                                        Keywords: Private channel capacity, father protocol, secret keys, and resource inequality.
+
+
+                                                            I.   INTRODUCTION                                   ited secret keys do not help. The trade-off between the
+                                                                                                                rate of secret key consumption and the rate of increased
+                                              Secret keys, by definition, refer to common random-               private classical communication is presented quantita-
+                                           ness available to a sender and receiver at distant loca-             tively. Under the RI framework, our protocol can be
+                                           tions while any other party has absolutely no informa-               understood as a “private father protocol” due to its sim-
+                                           tion about it. Generating secret keys requires preserving            ilarity to the original father protocol. Furthermore, the
+                                           secrecy from a third party [2]. An information-theoretic             unassisted private classical communication capacity [7]
+                                           model in the classical setting is the “wiretap channel” [3],         can be seen as a child protocol.
+                                           where the sender wants to communicate with one legiti-                  This paper is organized as follows. Section II contains
+                                           mate receiver while keeping the eavesdropper completely              definitions, notation, and relevant background material.
+                                           ignorant of the message sent. Private communication                  Section III contains statements and proofs of our main
+                                           can be achieved via encryption once secret keys are gen-             result. In section IV, we rewrite our result under the RI
+                                           erated. Secret keys are a valuable resource that can be              framework, and show how to recover the unassisted pri-
+                                           used to achieve information transmission tasks.                      vate classical capacity from ours. We conclude in section
+                                                                                                                V.
+                                              The above scenario has a quantum analogue, where
+                                           secret keys are generated over a quantum channel. The
+                                           secret key generating protocol has been proposed by sev-                                    II.       NOTATION
+                                           eral authors [4, 5, 6], and in [7], it has been shown that
+                                           the capacity of a quantum channel for transmitting pri-
+                                                                                                                  Consider a classical-quantum system XQ in the state
+                                           vate classical information is the same as the capacity of
+                                                                                                                described by an ensemble {p(x), ρx } with p(x) defined on
+                                           the same channel for generating secret keys. Further-
+                                                                                                                X and ρx being density operators on the Hilbert space
+                                           more, neither capacity is enhanced by public classical
+                                                                                                                HQ of system Q. Such a state ρXQ of systems XQ can
+                                           communication in the forward direction. This raises the
+                                                                                                                be represented by the “enlarged Hilbert space” (EHS)
+                                           interesting question of how these different resources in-
+                                                                                                                representation:
+                                           terconvert in a quantum information protocol, and was
+                                                                                                                                     X
+                                           partially answered in [1, 8, 9].                                                   ρXQ =      p(x)|xihx|X ⊗ ρQx,
+                                              The formal treatment of quantitative interconversions                                          x
+                                           between nonlocal information processing resources is
+                                                                                                                where X is a dummy quantum system and {|xi : x ∈ X }
+                                           studied in [1], wherein such an asymptotically faithful
+                                                                                                                is an orthonormal basis for the Hilbert space HX of
+                                           conversion is expressed as a resource inequality (RI).
+                                                                                                                system X. The reduced density operators
+                                                                                                                                                     P         of systems
+                                           These resource inequalities are extremely powerful, and
+                                                                                                                X and Q are ρX = TrQ ρXQ =              x p(x)|xihx|, and
+                                           sometimes lead to new quantum protocols [8]. For exam-
+                                                                                                                ρQ = TrX ρXQ respectively. The von Neumann entropy
+                                           ple, they allow us to relate the family protocols to several
+                                                                                                                of the quantum state ρQ is H(Q)ρ = − Tr(ρQ log ρQ ).
+                                           well-known quantum protocols by direct application of
+                                                                                                                (We will omit the subscript ρ when the state is clear from
+                                           teleportation or superdense coding, etc.
+                                                                                                                the context.) Notice that the von Neumann entropy of
+                                              In this paper, we study the private classical commu-              the dummy quantum system X is equal to the Shannon
+                                           nication capacity over a quantum channel assisted by a               entropy of random variable X whose probability distri-
+                                           secret key. We show that secret keys are a useful nonlocal           bution is p(x). The conditional entropy is defined as
+                                           resource that can increase the private classical communi-
+                                           cation capacity over quantum channels; however, unlim-                                H(Q|X) = H(QX) − H(X).               (1)
+                                                                                                                                          2
+
+It should be noted that conditioning on classical vari-                                          III.    MAIN RESULT
+ables (systems) amounts to averaging; therefore (1) is
+also equal to                                                                              A.    Classical-quantum channels
+                        X
+              H(Q|X) =     p(x)H(Q)ρx .            (2)
+                                                                                  We begin by defining our private classical communica-
+                               x
+                                                                               tion protocol for a {c → qq} channel from sender Alice
+The mutual information is                                                      to receiver Bob and eavesdropper Eve. The channel is
+                                                                               defined by the map W : x → σxBE , with x ∈ X and
+           I(X; Q) = H(X) + H(Q) − H(QX).                                      the state σxBE defined on a bipartite quantum system
+   Next, we will briefly introduce definitions and proper-                     BE; Bob has access to subsystem B and Eve has access
+ties of typical sequences and subspaces [10].                                  to subsystem E. Alice’s task is to transmit, by some
+          n
+   Let TX,δ  denote the set of typical sequences associated                    large number n uses of the channel W, one of {0, 1}nR
+with some random variable X such that for the proba-                           equiprobable messages to Bob so that he can identify the
+bility distribution p defined on the set X                                     message with high probability while at the same time
+                                                                             Eve receives almost no information about the message.
+        n        n            N (x|xn )                                        In addition, Alice and Bob are given some private strings
+      TX,δ = x : ∀x ∈ X ,               − p(x) ≤ δ ,                           (secret keys), picked uniformly at random from the set
+                                  n
+                                                                               {0, 1}nRs , before the protocol begins. The inputs to the
+where N (x|xn ) is the number of occurrences of x in the                       channel W ⊗n are classical sequences xn ∈ X n with prob-
+sequence xn := x1 · · · xn of length n.                                        ability pn (xn ). The outputs of W ⊗n are density opera-
+   Assume the density operator ρQ of system     P Q has the                    tors σxBE
+                                                                                       n = σx
+                                                                                              BE
+                                                                                                  ⊗ · · ·⊗ σxBE living on some Hilbert space
+                                                                                               1              n
+following spectral decomposition: ρQ =           y p(y)|yihy|.                 H
+                                                                                   n n
+                                                                                 B E
+                                                                                       .
+Then we can define the typical projector as                                       An (n, R, Rs , ǫ) secret key-assisted private channel code
+                            X                                                  consists of
+                 ΠnQ,δ =          |y n ihy n |,            (3)
+                                  n
+                            y n ∈TY,δ                                             • An encryption map f : {0, 1}nR × {0, 1}nRs →
+                                                                                    {0, 1}nR , i.e. f generates an index random variable
+where |y n i is a state in HQ  ⊗n
+                                  . For a collection of states                      K uniformly distributed in {0, 1}nR based on the
+{ρx , x ∈ X }, the conditional typical projector is defined                         classical message embodied in the random variable
+as                                                                                  M and the shared secret key embodied in the ran-
+                                   O                                                dom variable S. Furthermore, f (m, s1 ) 6= f (m, s2 )
+                  ΠnQ|X,δ (xn ) =     ΠIQx|x ,δ ,          (4)                      for s1 6= s2 and f (m1 , s) 6= f (m2 , s) for m1 6= m2 .
+                                        x
+                                                                                  • An encoding map E : {0, 1}nR → X n . Alice en-
+where Ix = {i : xi = x} is the indicator and                       ΠIQx|x ,δ        codes the index k as E(k) and sends it through the
+denotes the tensor product of the typical projector of the                          channel W ⊗n , generating the state
+density operator ρQ                                                                                     X
+                   x in the positions given by the set Ix                                         1
+with the identity everywhere else.                                                 ΥAs Bs BE = nRs             |sihs|As ⊗ |sihs|Bs ⊗
+                                                                                                2          nRs
+  Fixing δ > 0, we will need the following properties of                                                 s∈{0,1}
+
+typical subspaces and conditionally typical subspaces:                                           1      X
+                                                                                                                   BE
+                                                                                                                  σE(f (m,s))          (10)
+                                                                                                2nR
+                Tr σxQn ΠnQ|X,δ (xn )       ≥ 1−ǫ                      (5)                            m∈{0,1}nR
+
+
+                Tr σxQn ΠnQ,δ(|X |+1)       ≥ 1−ǫ                      (6)        • A decoding POVM {Λk′ }k′ ∈{0,1}nR , where Λk′ is a
+                                                                                    positive operator acting on B and taking on val-
+                    Tr ΠnQ,δ(|X |+1)        ≤ α                        (7)
+                                                                                    ues k ′ . Bob need to infer the index k through the
+      ΠnQ|X,δ (xn )σxQn ΠnQ|X,δ (xn )       ≤ β   −1
+                                                       ΠnQ|X,δ (xn )   (8)          POVM;
+                                                                                  • A decryption map g : {0, 1}nR × {0, 1}nRs →
+where α = 2n[H(Q)+cδ] and β = 2n[H(Q|X)−cδ] for ǫ =
+     ′ 2                                                                            {0, 1}nR , where g(f (m, s), s) = m, ∀s, m. This al-
+2−nc δ and some constants c and c′ .                                                lows Bob to recover Alice’s message as m′ = g(k ′ , s)
+   Finally we need some facts about trace distances                                 based on k ′ and s;
+(taken from [10]). The trace distance between two den-
+sity operators ρ and σ can be defined as                                       such that
+                                                                                                  e BE − τ B ⊗ σ E k1 ≤ ǫ,
+                                                                                                 kΥ                                    (11)
+                    kρ − σk1 = Tr |ρ − σ|,
+           √                                                                         e BE is the state of the subsystem BE after Bob’s
+                                                                               where Υ
+where |A| ≡ A† A is the positive square root of A† A.                          decoding operation, and
+The monotonicity property of trace distance is
+                                                                                                        1 X
+                                                                                               τ B = nR        |mihm|B
+              kρRB − σ RB k1 ≥ kρB − σ B k1 .                          (9)                            2     m
+                                                                                                                                  3
+
+                                                                                                            n n     E
+contains the private classical information that is decou-        Corollary 1 Consider an ensemble {p     P (x n), σnxn }E
+                                                                                                                        xn ∈X n
+                                                                                                    E
+pled from Eve’s state σ E .                                      with average density operator σ = xn p (x )σxn , let
+   A rate pair (R, Rs ) is called achievable if for any ǫ, δ >   random variables X1 , X2 , ..., XS all be independently dis-
+0 and sufficiently large n there exists an (n, R − δ, Rs +       tributed according to pn and C = (Xs )s∈[S] . Then for all
+δ, ǫ) private channel code. The private capacity region          ǫ, δ > 0 and sufficiently large n,
+CP F (W) is a two-dimensional region in the (R, Rs ) plane                               √
+with all possible achievable rate pairs (R, Rs ).                    Pr{oe(C) ≥ 2ǫ + 19 ǫ} ≤ 2α exp(−κ0 Sǫ3 β/α). (16)
+   We now state our main theorem.
+                                                                 where α = 2n[H(E)σ +cδ] , β = 2n[H(E|X)σ −cδ] , S =
+Theorem 1 The private            channel   capacity    region    2nI(X;E)σ +3cδ , and
+CP F (W) is given by
+                                                                                            1 X E
+                             ∞
+                             [
+                             1 e (1)                                            oe(C) =        σXs − σ E               .
+              CP F (W) =       CP F (W ⊗n ),             (12)                               S
+                                                                                                s∈[S]
+                             n                                                                                     1
+                         n=1
+
+where the notation Z means the closure of a set Z and            Proof We can relate to Lemma 1 through the iden-
+e (1) (W) is the set of all Rs ≥ 0, R ≥ 0 such that
+C                                                                tifications: X → X n , σx → σxn , p → pn , σ → σ E ,
+ PF
+                                                                 Π → ΠnE,δ(|X |+1) and Πx → Π̂nE|X,δ (xn ) with
+            R ≤ I(X; B)σ − I(X; E)σ + Rs                 (13)
+                                                                                            
+            R ≤ I(X; B)σ ,                               (14)                                   ΠnE|X,δ (xn ) xn ∈ TX,δ
+                                                                                                                     n
+                                                                         Π̂nE|X,δ (xn ) =
+                                                                                                     0        otherwise.
+where BE|X is given by W and σ is of the form
+                   X                                               The four conditions now read (for all xn ∈ X n ),
+          σ XBE =      p(x)|xihx|X ⊗ σxBE .
+                         x                                                     Tr σxEn Π̂nE|X,δ (xn ) ≥ 1 − ǫ,                  (17)
+
+Proving that the right hand side of (12) is achievable is                      Tr σxEn ΠnE,δ(|X |+1) ≥ 1 − ǫ,                   (18)
+called the direct coding theorem, whereas showing that it                           Tr ΠnE,δ(|X |+1) ≤ α,                       (19)
+is an upper bound is called the converse.
+   For the direct coding part, we will need the following            Π̂nE|X,δ (xn )σxEn Π̂nE|X,δ (xn ) ≤ β −1 Π̂nE|X,δ (xn ).   (20)
+lemma from [11], a quantum generalization of the cover-
+ing lemma in [12].                                               These follow from the properties of typical subspaces and
+                                                                 conditionally typical subspaces mentioned before.      ✷
+Lemma 1 (Covering Lemma) We are given an en-                      We will also need the Holevo-Schumacher-
+semble {p(x), σx }x∈X with average density operator σ =
+P                                                                Westmoreland (HSW) theorem [13, 14].
+  x∈X p(x)σx . Assume the existence of projectors Π and
+(Πx )x∈X with the following properties (∀x ∈ X ):                Proposition 1 (HSW theorem) Given an ensemble
+                                                                                   X
+                   Tr σx Πx ≥ 1 − ǫ,                                        σ XB =   p(x)|xihx|X ⊗ σxB ,
+                    Tr σx Π ≥ 1 − ǫ,                                                      x∈X
+                       Tr Π ≤ α,
+                                                                 and integer n, consider the encoding map E : [K] → X n
+                   Πx σx Πx ≤ β −1 Πx .                          given by E(k) = Xk , where k ∈ [K] : 1, 2, · · · , K, and
+                                                                 {Xk } are random variables chosen according to the i.i.d.
+In addition, we require Πx and σx to commute for all x.          distribution pn . For any ǫ, δ > 0 and sufficiently large n,
+The obfuscation error of a set S ⊆ X is defined as               there exists a decoding POVM set (Λk )k∈[K] on B for the
+                                                                                                                   ′
+                                                                 encoding map E with K = 2n[I(X;B)−2(c+c δ)δ] , and some
+                              1 X
+               oe(S) =            σx − σ       ,                 c, such that for all k,
+                             |S|
+                               x∈S         1                                      X
+                                                                                E     |π(k ′ |k) − δ(k, k ′ )| ≤ ǫ .
+and is an upper bound on the probability of distinguish-                            k′
+ing the fake average from the real one. Define the set
+C = (Xs )s∈[S] , where Xs is a random variable chosen            Here π(k ′ |k) is the probability of decoding k ′ conditioned
+independently according to the distribution p on X , and         on k having been encoded:
+S = ⌈γ −1 α/β⌉ for some 0 < γ < 1. Then
+                                                                                    π(k ′ |k) = Tr(Λk′ σE(k) ),                 (21)
+                       √
+     Pr{oe(C) ≥ 2ǫ + 19 ǫ} ≤ 2α exp(−κ0 ǫ3 /γ).      (15)
+                                                                 δ(s, s′ ) is the delta function and the expectation is taken
+                                                                 over the random encoding.
+                                                                                                                                                             4
+
+                                                                                 We now invoke Proposition 1. Choose R = I(X; B) −
+              R
+                                                                               2(c + c′ δ)δ. There exists a POVM (Λk′ )k′ ∈{0,1}nR acting
+                                                                               on B such that for all k,
+                                     Q
+           I(X;B)                                                                               X
+                                                                                              E    |π(k ′ |k) − δ(k, k ′ )| ≤ ǫ .    (23)
+                                                                                                     k′
+
+               P                                                               After Bob performs the POVM, the state (10) becomes
+  I(X;B) – I(X;E)
+                                                                                        1    X                                     1 X
+                                                                               Υ̂ =                |sihs|As ⊗ |sihs|Bs ⊗                       π(k ′ |f (m, s))
+                                                                                      2nRs                                        2nR
+                                                                                               s                                        m,k′
+
+                                I(X;E)                             Rs                        |k ′ ihk ′ |B ⊗ σX
+                                                                                                              E
+                                                                                                                f (m,s)
+                                                                                                                        ,
+
+Figure 1: Private classical communication capacity region of                   which is close to
+{c → qq} channel when assisted by a pre-shared secret key.
+                                                                                             1 X
+                                                                                      Υ̂0 = nRs      |sihs|As ⊗ |sihs|Bs
+                                                                                           2      s
+  Now we are ready to prove the direct coding theorem.                                          1 X
+Proof [direct coding theorem]                                                              ⊗ nR        |f (m, s)ihf (m, s)|B ⊗ σX
+                                                                                                                                E
+                                                                                              2                                   f (m,s)
+  The capacity region is shown in Fig. 1. This trade-off                                            m
+region includes two limit points P and Q. When Rs = 0
+(Point P), the private classical capacity of W is equal to                     in the sense that EkΥ̂ − Υ̂0 k1 ≤ ǫ by condition (23).
+I(X; B) − I(X; E). This is the well-known private classi-                        Bob applies the decryption map g to his system B,
+cal communication capacity proved in [7]. In our case, it                                           e As Bs BE . By the monotonicity of
+                                                                               resulting in a state Υ
+suffices to prove Point Q is optimal; that is, the achiev-                     trace distance (9), we have
+ability of the rate pair (R, Rs ) = (I(X; B), I(X; E)).
+The idea of the proof is as follows: instead of sacrific-                                               e BE − Υ
+                                                                                                      EkΥ      e BE
+                                                                                                                 0 k1 ≤ ǫ ,
+ing nI(X; E) bits of classical message to randomize Eve’s
+knowledge of the state, Alice and Bob use a pre-shared                         where
+secret key to do so. For all ǫ, δ > 0 and sufficiently large
+n, we show below that a private information transmission                              e BE = 1
+                                                                                               X
+                                                                                                        B     1 X E
+                                                                                      Υ 0         |mihm|  ⊗        σ        .
+rate of I(X; B) is achievable if Alice and Bob consume a                                    2nR m           2nRs s Xf (m,s)
+pre-shared secret key with rate I(X; E).                                                                                                  √
+  Fix ǫ, δ > 0 and a sufficiently large n. Consider the en-                    By the Markov inequality, Pr{not ℓ0 } ≤                     ǫ, where ℓ0 is
+                                                 ⊗n
+semble {pn (xn ), σxBE
+                     n } of the channel output W    . There                    the logic statement
+exists an encoding map E : K → XK for Alice on the                                                                                 √
+encryption output K = f (M, S) where XK is i.i.d. with                                                 e BE − Υ
+                                                                                                      kΥ      e BE k1 ≤             ǫ.                    (24)
+                                                                                                                0
+distribution pn , M represents the classical message taken
+values from {0, 1}nR, and S represents the pre-shared se-                      By the union bound,
+cret key values taken from {0, 1}nRs . Here {XK } serves
+                                                                                                                             nR
+as a HSW code.                                                                                                              2
+                                                                                                                            X                            √
+  In the following, we will explicitly use f (m, s) in-                        Pr{not (ℓ0 &ℓ1 & · · · &ℓ|m| )} ≤                  Pr{not ℓi } ≤ ǫ +       ǫ.
+stead of its index k. For each m ∈ {0, 1}nR , define                                                                        i=0
+Cm = (Xf (m,s) )s∈[2nRs ] . Cm works as a covering code as
+define in Corollary 1. Choose Rs = I(X; E) + 3(c + c′δ)δ.                      Hence there exists a specific choice of {Xf (m,s) }, say
+For any m ∈ {0, 1}    nR                                                       {xf (m,s) }, for which all these conditions are satisfied.
+                   √ , define the logic statement ℓm by                        Consequently,
+oe(Cm ) ≤ 2ǫ + 19 ǫ, where
+
+                                1    X
+                                          E
+                                                                                        ke
+                                                                                         ΥBE − τ B ⊗ σ E k1 ≤ k e
+                                                                                                               ΥBE − eΥBE0 k1
+           oe(Cm ) =                     σX         − σE       ,
+                              2nRs          f (m,s)                                                            e BE − τ B ⊗ σ E k1
+                                                                                                            + kΥ
+                                     s                     1                                                      0
+                                                                                                                     √
+       P          n    n                                                                                    ≤ 2ǫ + 20 ǫ .
+ E
+σ =        xn p       (x   )σxEn and σxEn = TrB σxBE
+                                                   n . By Corollary
+
+1,                                                                             as claimed.                                             ✷
+     Pr{not ℓm } ≤ 2α exp(−κ0 2           nRs 3
+                                              ǫ β/α) , ∀m.              (22)   Proof [converse]
+                                                                                  We shall prove that, for any δ, ǫ > 0 and sufficiently
+The probability of (22) can be made ≤ ǫ2−nR when n is                          large n, if an (n, R, Rs , ǫ) secret keys assisted private
+sufficient large.                                                              channel code has rate R then (13) and (14) hold.
+                                                                                                                                         5
+
+
+     M                        K                                           Combining (30) and (33) gives
+             Encryption                 Encoding      Xn
+                 f                          E                                  I(M ; M ′ ) ≤ I(M S; M ′ S)                            (34)
+                                                                                           ≤ I(X n ; B n |S) − I(X n ; E n |S)        (35)
+                     S                                Channel                              + H(S) + ǫ.                                (36)
+                                                           W ⊗n
+                                                                          Hence
+      M’                      K’        Decoding
+             Decryption                                                               nR = H(M )                                      (37)
+                                            Λk        σ xB E
+                                                           n   n
+                 g                                         n                             = I(M ; M ′ ) + H(M |M ′ )                   (38)
+                                                                                         ≤ I(M ; M ′ ) + 1 + nǫ log |X |,             (39)
+Figure 2: Private classical communication protocol assisted
+by pre-shared secret key.
+                                                                          where (39) follows from the Fano’s inequality. Choosing
+                                                                          ǫ ≤ 6 logδ |X | and n ≥ δ2 , (36) and (39) give
+
+                                                                                   1
+  The private classical communication protocol is shown                    R−δ ≤     [I(X n ; B n |S) − I(X n ; E n |S) + H(S)] (40)
+                                                                                   n
+in Fig. 2
+                                                                                   1
+                                                                                  = [I(X n ; B n |S) − I(X n ; E n |S)] + Rs ,  (41)
+             nR = H(K)                                                             n
+                = I(K; K ′ ) + H(K|K ′ )                                  where Rs = H(S)
+                                                                                      n . Since we can write
+                ≤ I(K; K ′ ) + 1 + nǫ log |X |,                                       1
+                                                                                        [I(X n ; B n |S) − I(X n ; E n |S)] ,         (42)
+where the last inequality follows from Fano’s inequality:                             n
+                                                                          as the average with respect to the distribution of S, and
+             H(K|K ′ ) ≤ 1 + Pr{K 6= K ′ }nR,                             Ks → Xsn → Bsn Xsn holds for each s, we can choose a
+                                                                          particular value of s that maximizes (13).
+and Pr{K 6= K ′ } ≤ ǫ is guaranteed by the HSW theorem.                                                                           ✷
+Hence,
+
+                 I(K; K ′ ) ≤ I(K; B n )                           (25)              B.    Generic quantum channels
+                            ≤ I(X n ; B n ),                       (26)
+                                                                             Suppose now that Alice and Bob are connected by a
+                                                                                                             ′
+where the first inequality follow from the data processing                noisy quantum channel N : B(HA       ) → B(HB ), where
+inequality while the second inequality comes from the                     B(H) denotes the space of bounded linear operators on
+                                                                                           ′
+Markov condition K → X n → B n E n . We then have                         H. Let UN : B(HA   ) → B(HBE ) be an isometry extension
+                                                                          of N that includes the unobserved environment E which
+                                   1                                      is completely under the control of the eavesdropper Eve.
+                     R−δ ≤           I(X n ; B n ),                (27)
+                                   n                                      Theorem 1 then can be rewritten as the following
+
+where without loss of generality ǫ ≤ 6 logδ |X | and n ≥ 2δ .             Theorem 2 The private            channel        capacity   region
+This proves (14).                                                         CP F (N ) is given by
+  On the other hand,                                                                                  ∞
+                                                                                                      [ 1
+                                                                                       CP F (N ) =           e (1) (N ⊗n ),
+                                                                                                             C                        (43)
+                                                                                                              PF
+         I(M S; M ′ S) = I(M S; M ′ |S) + I(S; M S)                                                  n=1
+                                                                                                         n
+                       ≤ I(K; M ′ |S) + H(S)                       (28)
+                                                                          where the notation Z means the closure of a set Z and
+                       ≤ I(K; B n |S) + H(S)                       (29)   e (1) (N ) is the set of all Rs ≥ 0, R ≥ 0 such that
+                                                                          CPF
+                       ≤ I(X n ; B n |S) + H(S)                    (30)
+                                                                                      R ≤ I(A; B)σ − I(A; E)σ + Rs                    (44)
+where (28) follows from I(M S; M ′ |S) = I(K; M ′ |S) and                             R ≤ I(A; B)σ ,                                  (45)
+I(S; M S) ≤ H(S), (29) follows from data processing
+inequality, and (30) follows from the Markov condition                    where σ is of the form
+K → X n → B n E n . Furthermore, (24) guarantees that                                                  ′              ′
+                                                                                                   A →BE
+                                                                                          σ ABE = UN     (|ψiAA ),
+                         ǫ ≥ I(M ; E n |S)                         (31)                                        ′
+                                                                          for some pure input state |ψiAA whose reduced density
+                           = I(K; E n |S)                          (32)               ′    P                    ′
+                                                                          operator ρA =      x p(x)ρx and UN : A → BE is an
+                           ≥ I(X n ; E n |S).                      (33)   isometric extension of N .
+                                                                                                                            6
+
+  With
+  ′     Pthe spectral decomposition of the input state           to the output of (47).
+ρA =       x p(x)ρx , each UN induces a corresponding
+{c → qq} channel. Therefore, the results of the previ-
+ous section can be directly applied here.
+
+
+       IV.    PRIVATE FATHER PROTOCOL                                              V.     CONCLUSION
+
+  In this section, we will phrase our result using the the-
+                                                                    In this paper, we have found a regularized expression
+ory of resource inequalities developed in [8]. The channel
+                                                                 for the secret keys assisted capacity region CP F (N ) of
+N : A → B assisted by some rate Rs of secret key shared
+                                                                 a quantum channel N for transmitting private classical
+between Alice and Bob was used to enable a rate R of
+                                                                 information. Our result shows that secret key are a valu-
+secret communication between Alice and Bob. This is
+                                                                 able nonlocal resource for transmitting private informa-
+written as
+                                                                 tion. One interesting problem is to investigate how secret
+               hN i + Rs [cc]∗ ≥ R[c → c]∗ .             (46)    keys can be applied in other quantum protocols. For ex-
+                                                                 ample, it might be plausible that the entanglement gener-
+This resource inequality holds iff (Rs , R) ∈ CP F (N ),         ation protocol could be boosted by secret keys. However,
+with CP F (N ) given in Theorem 2. The “if” direction,           the result seems unlikely. In particular, it is impossible to
+i.e. the direct coding theorem, followed from the “corner        construct a secret key-assisted entanglement generation
+points”                                                          protocol by simply coherifying the protocol proposed in
+                                                                 this paper. Another open problem is to obtain a single-
+          hN i + I(A; E)[cc]∗ ≥ I(A; B)[c → c]∗ .        (47)    letterized formula of Theorem 1.
+
+This resource inequality (47) is called the private father
+protocol due to its similarity of the father protocol in [8].
+  We can recover the unassisted private channel capacity
+result in [7]:
+                                                                                     Acknowledgment
+                 hN i ≥ Ic (AiB)[c → c]∗ .               (48)
+
+This resource inequality can be obtained by appending              We are grateful to Igor Devetak for valuable dis-
+the following noiseless resource inequality                      cussions. MH and ZL were supported by NSF grant
+                                                                 no. 0524811.   TAB was supposed by NSF grant
+                      [c → c]∗ ≥ [cc]∗                   (49)    no. 0448658.
+
+
+
+
+ [1] I. Devetak, A. W. Harrow, and A. Winter. A resource          [8] I. Devetak, A. W. Harrow, and A. J. Winter. A family
+     framework for quantum shannon theory, 2005. quant-               of quantum protocols. Phys. Rev. Lett., 93:239503, 2004.
+     ph/0512015.                                                  [9] Anura Abeyesinghe, Igor Devetak, Patrick Hayden, and
+ [2] Rudolph Ahlswede and Imre Csiszár. Common random-               Andreas Winter. The mother of all protocols: Restruc-
+     ness in information theory and cryptography – part i:            turing quantum information’s family tree, 2006. quant-
+     Secret sharing. IEEE Trans. Inf. Theory, 39:1121–1132,           ph/0606225.
+     1993.                                                       [10] M. A. Nielsen and I. L. Chuang. Quantum Computation
+ [3] A. D. Wyner. The wire-tap channel. Bell. Sys. Tech.              and Quantum Information. Cambridge University Press,
+     Jour., 54:1355–1387, 1975.                                       New York, 2000.
+ [4] S. Lloyd. The capacity of a noisy quantum channel. Phys.    [11] I. Devetak, P. Hayden, and A. Winter. Principles of
+     Rev. A, 55:1613–1622, 1997.                                      Quantum Information Theory. 2006. in preparation.
+ [5] B. Schumacher and M. A. Nielsen. Quantum data pro-          [12] Z. Luo and I. Devetak. Channel simulation with quantum
+     cessing and error correction. Phys. Rev. A, 54:2629–2635,        side information, 2006. quant-ph/0611008.
+     1996.                                                       [13] A. S. Holevo. The capacity of the quantum channel with
+ [6] I. Devetak and A. Winter. Relating quantum privacy               general signal states. IEEE Trans. Inf. Theory, 44:269–
+     and quantum coherence: an operational approach. Phys.            273, 1998.
+     Rev. Lett., 93:080501, 2004.                                [14] B. Schumacher and M. D. Westmoreland. Sending classi-
+ [7] I. Devetak. The private classical capacity and quantum           cal information via noisy quantum channels. Phys. Rev.
+     capacity of a quantum channel. IEEE Trans. Inf. Theory,          A, 56:131–138, 1997.
+     51(1):44–55, 2005.
+

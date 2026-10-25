@@ -1,0 +1,2073 @@
+                                        General formulas for capacity of classical-quantum
+                                                             channels
+
+
+
+
+arXiv:quant-ph/0206186v4 28 Feb 2003
+                                                          Masahito Hayashi ∗                Hiroshi Nagaoka †
+
+
+                                                                                 Abstract
+                                                   The capacity of a classical-quantum channel (or in other words the classi-
+                                               cal capacity of a quantum channel) is considered in the most general setting,
+                                               where no structural assumptions such as the stationary memoryless property
+                                               are made on a channel. A capacity formula as well as a characterization of
+                                               the strong converse property is given just in parallel with the corresponding
+                                               classical results of Verdú-Han which are based on the so-called information-
+                                               spectrum method. The general results are applied to the stationary memory-
+                                               less case with or without cost constraint on inputs, whereby a deep relation
+                                               between the channel coding theory and the hypothesis testing for two quantum
+                                               states is elucidated.
+
+
+                                                                                Keywords
+
+                                                   Quantum channel coding, Information spectrum, Classical-quantum chan-
+                                               nel, Classical capacity of a quantum channel, Cost constraint
+
+
+
+                                       1       Introduction
+                                       The channel coding theorem for a stationary and memoryless1 (classical-)quantum
+                                       channel has been established by combining the direct part shown by Holevo [1]
+                                       and Schumacher-Westmoreland [2] with the (weak) converse part which goes back to
+                                       1970’s works by Holevo[3, 4]. This theorem is undoubtedly a landmark in the history
+                                       of quantum information theory. At the same time, however, we should not forget
+                                       that stationary memoryless channels are not the only class of quantum channels.
+                                           ∗
+                                             Laboratory for Mathematical Neuroscience, Brain Science Institute, RIKEN, 2–1 Hirosawa,
+                                       Wako, Saitama, 351–0198, Japan. (e-mail: masahito@brain.riken.go.jp)
+                                           †
+                                             Graduate School of Information Systems, University of Electro-Communications. 1-5-1,
+                                       Chouhugaoka, Chouhu-shi, Tokyo, 182-8585, Japan. (e-mail: nagaoka@is.uec.ac.jp)
+                                           1
+                                             Throughout the paper, a stationary memoryless channel without using entangled input states
+                                       is simply referred to as a stationary memoryless channel; see Remark 13.
+
+
+                                                                                      1
+It is indeed natural to think that many channels appearing in nature are neither
+stationary nor memoryless even in the approximate sense.
+    In the classical information theory, a capacity formula for the most general setting
+was given by Verdú and Han [5], based on the so-called information-spectrum method
+[6]. We show in this paper that a similar approach is applicable to yield some
+general formulas for the capacity of a classical-quantum channel (or in other words
+the classical-capacity of a quantum channel) and related notions.
+    Let us take a brief look at the general feature of the information-spectrum method
+in the classical information theory. One of the main subjects of the information the-
+ory is to characterize asymptotic optimalities of various types of coding problems by
+entropy-like information quantities. In the information-spectrum method, a coding
+problem is treated in the most general setting, without assuming any structural as-
+sumptions such as the stationary memoryless property, and the asymptotic optimal-
+ity is characterized by a limiting expression on information spectra (i.e., asymptotic
+behaviors of logarithmic likelihoods). Since the asymptotic optimization of coding is
+essentially solved in this characterization, rewriting the information-spectrum quan-
+tity to an entropy-like quantity for a specific situation is mostly a direct consequence
+of a limiting theorem in the probability theory such as the law of large numbers, the
+Shannon-McMillan-Breiman theorem, ergodic theorems, large deviation theorems,
+etc. Such a framework brings not only generality but also transparency of mathe-
+matical arguments. Indeed, we are often led to simplification of a proof of an existing
+coding theorem by investigating it from the information-spectrum viewpoint.
+    Turning to the quantum information theory, in spite of the recent remarkable
+progress of the field we often see that mathematical arguments to prove theorems
+are neither so transparent nor unified as in the classical theory. For instance, the
+original proof of the direct part of quantum channel coding theorem [1, 2] is rather
+complicated so that it is not easy to grasp the essence of the argument(; see [7] for a
+different proof). Extending the information-spectrum method to the quantum case is
+an attractive subject which brings a hope that proofs will be simplified and, more im-
+portantly, that both the optimality of coding systems and the limiting law governing
+quantum stochastic situations will be provided with transparent and comprehensive
+understanding.
+    In this paper, we pursue this subject for the quantum channel coding problem,
+whereby the quantum analogue of Verudú-Han’s general formula is obtained. In
+addition, the formula is applied to the stationary memoryless case to yield a new
+proof of the quantum channel coding theorem. It should be noted here that, in both
+of derivation of the general formula and application to the stationary memoryless
+case to get a nonasymptotic expression, there arise several mathematical difficul-
+ties to which the corresponding classical arguments are not immediately applicable.
+The difficulties in deriving the general formula are overcome by using the quantum
+Neyman-Pearson lemma [8, 9, 10] and a novel operator inequality (Lemma 2), while
+those in rewriting the formula to the known form in the stationary memoryless case
+are coped with by invoking the asymptotic theory of hypothesis testing for two quan-
+
+                                           2
+tum states [11, 12, 10] (; see the references of [10] for related results) as a kind of
+substitute of the weak law of large numbers. In particular, the inequality of Lemma 2
+is expected to play a key role in analyzing a measurement of the square root type in
+general; actually it drastically simplifies the original proof of [1, 2] as mentioned in
+Remark 19.
+    Historically, the present work is preceded by Ogawa’s proof [13] of the direct part
+of the quantum channel coding theorem, with an improved and simplified version
+being found in [14], which was actually the first remarkable result of the information-
+spectrum approach to the quantum channel coding problem and elucidated the close
+relation between the channel coding and the hypothesis testing in the quantum in-
+formation theory; see Remark 9 and Remark 14. In the present paper, we clarify
+this relation from a more general viewpoint and make further developments to estab-
+lish the information-spectrum method in the quantum channel coding theory. These
+attempts lead us to better understanding of the reason why the quantum relative
+entropy plays important roles in both of these problems.
+    We should emphasize, however, that the present paper is not the final goal for
+the information-spectrum study of quantum channel capacity. Even though a general
+capacity formula has been given in terms of the quantum information spectrum, the
+way to apply it to the stationary memoryless case shown in this paper is not so
+straightforward as the classical counterpart. Indeed, if our concern is restricted to
+proving the coding theorem for stationary memoryless channels, the information
+spectrum appears to be a kind of roundabout at present; see Remarks 15, 17 and
+19. In order to achieve the same level of simplicity and transparency as the classical
+information-spectrum method and to fulfill further the above-mentioned hope for the
+quantum information-spectrum method, we will need to have more theoretical tools
+to analyze the quantum information spectrum.
+    The paper is organized as follows. In section 2 the notion of general classical-
+quantum channels is introduced and the coding problem for it is formulated. Sec-
+tion 3 is devoted to asserting the main theorem, which gives the general capacity
+formula and the characterization of strong converse property of a general channel,
+while the proof is given in section 5 based on some lemmas prepared in section 4.
+Stationary memoryless channels are treated in section 6 and section 8, the latter of
+which considers cost constraint on inputs, while section 7 is devoted to revisiting
+the decoder introduced by Holevo-Schumacher-Westmoreland in view of comparison
+to our decoder used to prove the general formulas. Section 9 gives some concluding
+remarks.
+
+
+2    Capacity of general classical-quantum channels
+A quantum communication channel is generally composed of the following constructs;
+(separable) Hilbert spaces H1 and H2 which respectively represent the quantum
+systems of the sender’s and the receiver’s sides, a trace preserving CP (completely
+
+
+                                           3
+positive) map Γ from the trace-class operators on H1 to those on H2 which describes
+the change of sent states, and a map V : X → S(H1 ) which represents the modulator
+to set the input state to Vx according to the value of the control variable x ∈ X .
+When our concern is restricted to sending classical messages via the channel, however,
+only the composite map Γ ◦ V : X → S(H2 ) is relevant, and hence in the sequel we
+call a map W : X ∋ x 7→ Wx ∈ S(H) a classical-quantum channel or simply
+a channel. Here X is an arbitrary (finite or infinite) set and H is an arbitrary
+Hilbert space. This definition corresponds to the classical one in which a channel is
+represented by a conditional probability W : (x, y) 7→ W (y | x) or equivalently by a
+map W : x 7→ Wx = W ( · | x).
+Remark 1 In many papers treating the capacity of quantum memoryless channels
+(e.g., [1, 2, 3, 7, 15]), only the case when X is a finite set is considered. Even though
+the restriction to the finite case may be sufficient to understand the essence of most
+(but not all) mathematical arguments for proving the capacity theorem, there is no
+reason to restrict ourselves to the finite case from the standpoint that the capacity
+is the maximum reliable transmission rate of all possible communication systems
+for a given quantum channel. Indeed, a particularly important infinite case is when
+X = S(H1 ) and W is a trace-preserving CP map.
+Remark 2 The term “classical-quantum channel” has been provided with several
+different meanings in the literature (cf. [16]). The present definition is similar to
+that of [17], although some measure-theoretic assumptions were made there on both
+the set X and the mapping x 7→ Wx to consider a channel in a general and unified
+operator-algebraic setting.
+Remark 3 As was pointed out in [18], the capacity problem for a channel W :
+X → S(H) relies only on its range {Wx | x ∈ X }, and we can adopt the alternative
+definition in which an arbitrary subset of S(H) is called a channel. In other words,
+we can assume, if we wish, with no loss of generality that every W appearing in the
+sequel is the identity map on a subset X ⊂ S(H). The reason for treating a map
+W instead of its range is mainly that it enables us to introduce more readable and
+natural notations.
+    For an arbitrary channel W : X → S(H), we call a triple (N, ϕ, Y ) a code
+for W when it consists of a natural number (size) N, a mapping (encoding)
+                                                                      P       ϕ :
+               → X and a POVM (decoding) Y = {Yi }N
+{1, . . . , N} P                                  i=1 on H  such that    Y
+                                                                        i i ≤  I,
+where I − i Yi corresponds to the failure of decoding, and denote the totality of
+such codes by C(W ). For a code Φ = (N, ϕ, Y ) ∈ C(W ), the code size and the
+average error probability are represented as
+                                          def
+                                       |Φ| = N,     and                              (1)
+                                          N
+                                 def1 X
+                           Pe [Φ] =       (1 − Tr [Wϕ(i) Yi ]).                      (2)
+                                    N i=1
+
+
+                                                4
+    Now let us proceed to the asymptotic setting. Suppose that we are given a se-
+quence H ~ = {H(n) }∞ of Hilbert spaces and a sequence W   ~ = {W (n) }∞ of channels
+                     n=1                                               n=1
+W (n) : X (n) → S(H(n) ). An important example is the stationary memoryless case
+when H  ~ and W~ are defined from a Hilbert space H and a channel W : X → S(H)
+                                   (n)
+as H(n) = H⊗n , X (n) = X n and Wxn = Wx1 ⊗ · · · ⊗ Wxn for xn = (x1 , . . . , xn ), which
+will be treated in sections 6 and 8. Except for those sections, however, we do not
+make any assumptions on the mutual relations among {H(n) }, {X (n) } and {W (n) }
+for different n’s. Such an extremely general setting is one of the main features of the
+information spectrum approach. The capacity of W   ~ is then defined as
+
+           ~ ) def
+         C(W   = sup {R | ∃Φ~ = {Φ(n) } ∈ ~C(W~ ),
+                                 1
+                          lim inf log |Φ(n) | ≥ R and lim Pe [Φ(n) ] = 0 },           (3)
+                            n→∞ n                     n→∞
+
+
+where ~C(W
+         ~ ) denotes the totality of sequences of codes Φ    ~ = {Φ(n) }∞ such that
+                                                                        n=1
+Φ(n) ∈ C(W (n) ) for all n. We also introduce a ‘dual’ of the capacity
+               def
+       C †( ~
+           W ) = inf {R | ∀ ~
+                           Φ = {Φ(n) } ∈ ~C( ~
+                                             W ),
+                                 1
+                          lim inf log |Φ(n) | ≥ R implies lim Pe [Φ(n) ] = 1 }.       (4)
+                            n→∞ n                         n→∞
+
+
+Note that C(W ~ ) ≤ C † (W
+                         ~ ) always holds. Following the terminology of classical
+                                                              ~ when C(W
+information theory, we say that the strong converse holds for W           ~ ) =
+  † ~
+C (W ).
+
+
+3     Main results
+In this section we give general formulas for C(W  ~ ) and C † (W
+                                                               ~ ) which are regarded
+as the quantum extensions of those for classical channel coding obtained by Verdú
+and Han [5]. The classical formula was given in terms of some information-spectrum-
+theoretic quantities, and we first need to introduce quantum analogues of these con-
+cepts along the line developed in [10].
+P For a self-adjoint trace-class operator A with the spectral decomposition A =
+  i λi Ei , where {λi } are the eigenvalues and {Ei } are the orthogonal projections
+onto the corresponding eigenspaces, we define
+                             def
+                                 X                      def
+                                                            X
+                   {A ≥ 0} =         Ei and {A > 0} =            Ei .              (5)
+                               i:λi ≥0                        i:λi >0
+
+These are the orthogonal projections onto the direct sum of eigenspaces correspond-
+ing to nonnegative and positive eigenvalues, respectively. The projections {A ≤ 0}
+and {A < 0} are defined similarly.
+
+
+                                            5
+    For any set X , let P(X ) be the totality of probability distributions on X with
+finite supports. That is, an element P of P(X ) is a function X → [0, 1] such that its
+                  def
+support supp(P ) = {x | P (x) > 0} is a finite set and that
+                            X             X
+                                P (x) =          P (x) = 1.
+                            x∈X                 x∈supp(P )
+
+Let the totality of sequences P~ = {P (n) }∞ of P (n) ∈ P(X (n) ) be denoted by ~
+                                                                                P(X~ ),
+                                           n=1
+and the totality of ~       (n) ∞        (n)              ~ ~           ~
+                     σ = {σ }n=1 of σ ∈ S(H) by S(H). Given P ∈ P(X ) and   ~  ~
+~    ~  ~
+σ ∈ S(H), let
+                                                                                  
+                               X               h       n                   oi     
+  ~       ~  def                       (n) n        (n)     (n)    na (n)
+J(P , ~
+      σ, W ) = inf a lim            P (x )Tr Wxn Wxn − e σ > 0 = 0 ,
+                      n→∞ n (n)                                                   
+                              x ∈X
+                                                                                   
+                                X               h        n                  oi     
+  ~       ~  def                        (n) n         (n)     (n)   na (n)
+J(P , ~
+      σ, W ) = sup a lim             P (x )Tr Wxn Wxn − e σ > 0 = 1 ,
+                      n→∞ n (n)                                                    
+                               x ∈X
+
+and
+                               ~, ~      ~, ~  def
+                             I(P W ) = J(P WP~ , ~
+                                                W ),
+                                 ~ ) def
+                               ~,W
+                             I(P         ~,W
+                                     = J(P ~ ~,W
+                                               ~ ),
+                                             P
+
+      ~ ~ denotes the sequence {W (n) }∞ of   (n)
+where W P                        P     n=1
+
+                      (n) def
+                              X                (n)
+                   WP (n) =       P (n) (xn ) Wxn ∈ S(H(n) ).                      (6)
+                                  xn ∈X (n)
+
+Note that I(P ~,W~ ) and I(P ~,W
+                               ~ ) are quantum analogues of the spectral sup- and
+inf-information rates ([5]):
+                             def         1     W (n) (Y (n) | X (n) )
+                   I(X ; Y) = p- lim sup   log                         ,
+                                   n→∞ n          PY (n) (Y (n) )
+                            def         1     W (n) (Y (n) | X (n) )
+                   I(X ; Y) = p- lim inf log                         ,
+                                   n→∞ n         PY (n) (Y (n) )
+where Y = {Y (n) } is supposed to be the sequence of random variables obtained
+as the outputs of channels W = {W (n) } for a sequence of input random variables
+X = {X (n) }.
+                            n                  o
+                                (n)   na (n)
+Remark 4 The projection Wxn − e σ > 0 in the definitions above can be
+              n                   o
+                  (n)
+replaced with Wxn − ena σ (n) ≥ 0 or, more generally, with an arbitrary self-adjoint
+operator S satisfying
+                n                   o        n                  o
+                    (n)  na (n)                 (n)   na (n)
+                 Wxn − e σ > 0 ≤ S ≤ Wxn − e σ ≥ 0 .
+
+This ambiguity does not influence the definitions of the above quantities; see [10].
+
+                                                     6
+   Now we have the following theorem.
+Theorem 1
+                         ~ ) = max I(P
+                       C(W           ~, ~
+                                       W)                                                        (7)
+                                     ~ ∈P(
+                                     P  ~ X~)
+
+                                = max                 ~,~
+                                                min J(P σ, ~
+                                                          W ),                                   (8)
+                                     ~ ∈P(
+                                     P  ~ X~) ~ ~ H)
+                                              σ∈S( ~
+
+and
+                                        ~,W
+                            ~ ) = max I(P
+                       C † (W             ~ )                                                    (9)
+                                     ~ ∈P(
+                                     P  ~ X~)
+
+                                = max                  ~,~
+                                                min J (P    ~ ).
+                                                         σ, W                                (10)
+                                     ~ ∈P(
+                                     P  ~ X~) ~ ~ H)
+                                              σ∈S( ~
+
+Remark 5 The formula obtained by Verdú and Han [5] for a sequence of classical
+channels W = {W (n) }∞
+                     n=1 is
+
+                                C(W) = sup I(X ; Y),                                         (11)
+                                                X
+
+where the supremum is taken over all possible input sequences X = {X (n) }, and Y =
+{Y (n) } denotes the output sequences corresponding to X. In addition, they showed
+that the strong converse holds for W if and only if supX I(X ; Y) = supX I(X ; Y).
+In the process of proving this, they have essentially shown that
+                               C † (W) = sup I(X ; Y),                                       (12)
+                                                X
+
+even though C † (W) does not explicitly appear in that paper. Note that the supre-
+mums in these expressions can be replaced with maximums (see Remark 7 below),
+and our expressions (7) and (9) are the quantum extensions of (11) and (12).
+Remark 6 In the classical case, let
+                               def        1     W (n) (Y (n) | X (n) )
+                 J(X, Ŷ, W) = p- lim sup   log                         ,
+                                    n→∞ n          PŶ (n) (Y (n) )
+                             def         1     W (n) (Y (n) | X (n) )
+                 J(X, Ŷ, W) = p- lim inf log                         ,
+                                    n→∞ n         PŶ (n) (Y (n) )
+where Ŷ (n) is an arbitrary random variable with a probability distribution PŶ (n)
+taking values in a common set with Y (n) . Then we have
+                              1     W (n) (Y (n) | X (n) )              1     PY (n) (Y (n) )
+   J(X, Ŷ, W) ≥ p- lim sup     log                        + p- lim inf   log
+                      n→∞     n        PY (n) (Y (n) )            n→∞ n       PŶ (n) (Y (n) )
+                = I(X ; Y) + D(Y k Ŷ),
+                          1     W (n) (Y (n) | X (n) )              1     PY (n) (Y (n) )
+   J(X, Ŷ, W) ≥ p- lim inf log                        + p- lim inf   log
+                      n→∞ n        PY (n) (Y (n) )            n→∞ n       PŶ (n) (Y (n) )
+                = I(X ; Y) + D(Y k Ŷ),
+
+                                                7
+where D(Y k Ŷ) is the spectral inf-divergence rate [6] between Y and Ŷ. Since
+D(Y k Ŷ) ≥ 0 always holds, we have
+
+                          I(X ; Y) = min J(X, Ŷ, W),        and              (13)
+                                            Ŷ
+
+                          I(X ; Y) = min J(X, Ŷ, W),                         (14)
+                                            Ŷ
+
+which yield similar expressions to (8) and (10) from (11) and (12). In the quan-
+tum case, on the other hand, it is not clear whether the corresponding equations
+  ~,W
+I(P  ~ ) = min~σ J(P ~,~   ~ ) and I(P
+                        σ, W           ~,W~ ) = min ~σ J(P
+                                                         ~,~  ~ ) generally hold.
+                                                           σ, W
+Nevertheless the expressions for C(W~ ) and C (W
+                                             † ~ ) in Theorem 1 always hold.
+
+Remark 7 If a classical or quantum information-spectrum quantity includes a se-
+quence of variables, the supremum (infimum, resp.) (e.g. (11), (12) ) with respect
+to the variables can always be replaced with the maximum (miminum) due to the
+following lemma. Thus we do not need to care about the attainability of such a
+supremum (infimum).
+
+Lemma 1 Suppose that we are given a sequence {Fn }∞      n=1 , where each Fn is a
+nonempty set consisting of monotonically nondecreasing functions defined on R, and
+    ~ denote the totality of sequences f~ = {fn }∞ of functions fn ∈ Fn ; in other
+let F
+                               Q                 n=1
+       ~ is the direct product ∞ Fn of {Fn }. For each f~ ∈ F
+words, F                                                       ~ and x ∈ R, let
+                                 n=1
+
+                    def
+               [f~]−
+                   x = sup {a | lim sup fn (a) ≤ x} ∈ R ∪ {∞, −∞},
+                                      n→∞
+                     def
+               [f~]+
+                   x = inf {a | lim inf fn (a) ≥ x} ∈ R ∪ {∞, −∞}.
+                                  n→∞
+
+Then the supremums and infimums of
+
+                   sup [f~]−        ~+          ~−
+                           x , sup [f ]x , inf [f ]x   and   inf [f~]+
+                                                                     x
+                    f~           f~              f~           f~
+
+
+                         ~
+are always attainable in F.
+
+Proof: See Appendix I.
+   In the situation of Thorem 1, for instance, the lemma is applied to sequences of
+functions f~ = {fn }∞n=1 of the form
+                         X              h      n                  oi
+                                 (n) n     (n)    (n)  na (n)
+              fn (a) =         P (x )Tr Wxn Wxn − e σ ≤ 0 ,
+                     xn ∈X (n)
+
+
+for which we have [f~]−        ~ σ, W
+                       0 = J(P , ~
+                                      ~ ) and [f~]+ = J(P
+                                                  1
+                                                        ~,~σ, W~ ). Note that the
+monotonicity of these functions follows from an argument in section 3 of [10].
+
+
+                                                 8
+4      Lemmas for proving Theorem 1
+We need three lemmas. The first one is the key operator inequality to prove the
+second, while the second and third lemmas are directly used to prove the theorem.
+Throughout this paper the generalized inverse of a nonnegative operator A is simply
+denoted by A−1 ; i.e., A−1 is the nonnegative operator such that AA−1 = A−1 A =
+PA = PA−1 where PA and PA−1 denote the orthogonal projections onto the ranges of
+A and A−1 .
+Lemma 2 For any positive number c and any operators 0 ≤ S ≤ I and T ≥ 0, we
+have
+           √      −1 √        −1
+       I − S + T S S + T ≤ (1 + c) (I − S) + (2 + c + c−1 ) T.         (15)
+Proof: Let P be the orthogonal projection onto the range of S + T . Then P
+commutes both S and T , and hence it is enough to prove
+   h   √      −1 √        −1
+                             i                                         
+ P I − S+T S S+T               P ≤ P (1 + c) (I − S) + (2 + c + c−1 ) T P, and
+     h  √       −1 √       −1
+                               i                                            
+ P⊥ I − S + T S S + T            P ⊥ ≤ P ⊥ (1 + c) (I − S) + (2 + c + c−1 ) T P ⊥ ,
+                                              √        −1
+where P ⊥ = I − P . Since P ⊥ S = P ⊥ T = P ⊥ S + T = 0, the second inequality is
+trivial. Thus, we have only to show the first one or, equivalently, to show (15) in the
+                                                      √             √ √         −1
+case when the range of S +T is H. Substituting A = T and B = T ( S + T −I)
+into the general operator inequality A∗ B + B ∗ A ≤ c−1 A∗ A + c B ∗ B, which follows
+from (A − cB)∗ (A − cB) ≥ 0, we have
+                        √       −1         √       −1
+                     T ( S + T − I) + ( S + T − I)T
+                                √       −1         √       −1
+                   ≤ c−1 T + c ( S + T − I)T ( S + T − I).                         (16)
+                                         √
+In addition, since the function f (x) = x is an operator monotone function and
+0 ≤ S ≤ I, we have
+                                 √          √
+                                   S + T ≥ S ≥ S.                                  (17)
+Now the desired inequality is proved as follows:
+      √        −1 √         −1   √       −1 √      −1
+  I − S+T S S+T = S+T T S+T
+          √       −1          √       −1         √     −1 √ −1
+ =T + T ( S + T − I) + ( S + T − I)T + ( S + T − I)T ( S + T − I)
+                          √       −1       √      −1
+ ≤(1 + c−1 ) T + (1 + c) ( S + T − I)T ( S + T − I)
+                          √       −1             √    −1
+ ≤(1 + c−1 ) T + (1 + c) ( S + T − I)(S + T )( S + T − I)
+                                        √
+ =(1 + c−1 ) T + (1 + c) (I + S + T − 2 S + T )
+ ≤(1 + c−1 ) T + (1 + c) (I + S + T − 2S)
+ =(1 + c) (I − S) + (2 + c + c−1 ) T,
+
+                                          9
+where the first inequality follows from (16) and the third inequality follows from (17).
+
+
+Lemma 3 For any n ∈ N, a ∈ R, N ∈ N, P (n) ∈ P(X (n) ) and c > 0, there exists a
+code Φ(n) ∈ C(W (n) ) such that |Φ(n) | = N and
+                             X                 h     n                   oi
+                                                 (n)   (n)     (n)
+        Pe [Φ(n) ] ≤ (1 + c)      P (n) (xn )Tr Wxn Wxn − ena WP (n) ≤ 0
+                                   xn ∈X (n)
+                       + (2 + c + c )e−na N,
+                                         −1
+                                                                                                     (18)
+          (n)
+where WP (n) is defined by (6).
+Proof: We prove the lemma by a random coding method. Given n, a, N, P (n) and
+                                                                               (n)
+an encoder ϕ(n) : {1, . . . , N} → X (n) , define the decoding POVM Y (n) = {Yi }N i=1
+by
+                                      N
+                                             !− 21    N
+                                                            !− 12
+                              (n) def
+                                      X               X
+                           Yi =           πj       πi    πj       ,               (19)
+                                               j=1                   j=1
+
+where                              n                        o
+                                     def
+                                     (n)         na (n)
+                               πi = Wϕ(n) (i) − e WP (n) > 0 .                                       (20)
+Denoting the average error probability Pe [Φ(n) ] of the code Φ(n) = (N, ϕ(n) , Y (n) ) by
+Pe [ϕ(n) ], we have
+
+                  1 X
+                      N   h                   i
+                            (n)            (n)
+   Pe [ϕ(n) ] =         Tr Wϕ(n) (i) I − Yi
+                  N i=1
+                     N
+                          "                                                     !#
+                  1 X        (n)
+                                                                        X
+                ≤       Tr Wϕ(n) (i) (1 + c) (I − πi ) + (2 + c + c−1 )      πj    ,                 (21)
+                  N i=1                                                 j6=i
+
+which follows from Lemma 2. Now suppose that an encoder ϕ(n) is randomly gener-
+                                                 (n)
+ated according to the probability distribution Prc (ϕ(n) ) = P (n) (ϕ(n) (1)) · · · P (n) (ϕ(n) (N)).
+                                      (n)
+The expectation of Pe [ϕ(n) ] under Prc is then bounded from above as
+                                   N
+                                   X       h         n                           oi
+  (n)              (n) 1 + c                 (n)       (n)             (n)
+ Erc  Pe [ϕ(n) ] ≤Erc                    Tr Wϕ(n) (i) Wϕ(n) (i) − ena WP (n) ≤ 0
+                          N        i=1
+                                                N X
+                                             −1 X               h         n                           oi
+                       (n) 2 + c + c                              (n)       (n)             (n)
+                    + Erc                                     Tr Wϕ(n) (i) Wϕ(n) (j) − ena WP (n) > 0
+                                    N              i=1 j6=i
+                             X                     h     n                 oi
+                                       (n)     n     (n)   (n) na (n)
+                  =(1 + c)         P         (x )Tr Wxn Wxn − e WP (n) ≤ 0
+                              xn
+                                               X                     h      n                    oi
+                                                                       (n)    (n)       (n)
+                    + (2 + c + c−1 )N                   P (n) (xn )Tr WP (n) Wxn − ena WP (n) > 0 .
+                                                   xn
+                                                                                                     (22)
+
+                                                           10
+                          (n)               (n)
+Substituting A = Wxn − ena WP (n) into Tr [A {A > 0}] ≥ 0, the second term of (22)
+is further evaluated by
+                  X                h      n                     oi
+                                     (n)    (n)       (n)
+                      P (n) (xn )Tr WP (n) Wxn − ena WP (n) > 0
+                     xn
+                           X                     h     n                 oi
+                   −na               (n)    n      (n)   (n) na (n)
+                ≤e               P         (x )Tr Wxn Wxn − e WP (n) > 0
+                            xn
+                ≤e−na .
+
+Thus the existence of ϕ(n) for which the code Φ(n) = (N, ϕ(n) , Y (n) ) satisfies (18) has
+been proved.
+
+Remark 8 In deriving the direct part of the general capacity formula for classical
+channels, Verdú and Han [5] invoked the so-called Feinstein’s lemma (Theorem 1 in
+[5]; see the next remark) which ensures the existence of a code satisfying
+                                                               
+                    (n)         1     W (n) (Y (n) | X (n) )
+               Pe [Φ ] ≤ Prob     log                        ≤ a + e−na N.    (23)
+                                n        PY (n) (Y (n) )
+
+Lemma 3 above can be regarded as a quantum analogue of Feinstein’s lemma, al-
+though the coefficients there are a bit larger.
+
+Remark 9 Historically, it seems that Shannon [19] was the first to explicitly for-
+mulate the inequality (23). He used a random coding argument to prove that there
+exists a code whose average error probability satisfies (23). On the other hand, Black-
+well et al. [20] showed that the same inequality is also satisfiable for the maximum
+error probability. They proved this by refining Feinstein’s non-random packing argu-
+ment, which is well known to have been used in the first rigorous proof of the coding
+theorem for discrete memoryless channels [21]. This course of things makes some
+people to call the theorem concerning (23) “Feinstein’s lemma”, sometimes only for
+the maximum error probability and sometimes for both criteria (cf. [5]). We note
+that the original proof of Feinstein does not yield the general capacity formula, and
+the refinement mede by Blackwell et al. is essential in this respect. Our Lemma 3
+corresponds to Shannon’s one, while an attempt toward a quantum extension of the
+result of Blackwell et al. has been made in [13, 14]. The result obtained there is
+unfortunately not general enough to prove the direct part of the general formula (7),
+but is of a particular interest itself; see Remark 14 below.
+                                                   h       n                      oi
+                          def P            (n) n       (n)      (n)   na  (n)
+Remark 10 Letting A = xn ∈X (n) P (x )Tr Wxn Wxn − e WP (n) ≤ 0 and
+                                                     q
+   def                                                   B
+B = e−na N, the RHS of (18) is minimized at c = A+B          , which proves the existence
+of a code satisfying                             p
+                          Pe [Φ(n) ] ≤ A + 2B + 2 B(A + B).
+
+
+                                                    11
+Lemma 4 For any n ∈ N and any code Φ(n) ∈ C(W (n) ) with |Φ(n) | = N, there exists
+a probability distribution P (n) ∈ P(X (n) ) such that for any a ∈ R and σ (n) ∈ S(H(n) )
+                         X                       h     n                 oi ena
+                                                   (n)   (n)
+         Pe [Φ(n) ] ≥               P (n) (xn )Tr Wxn Wxn − ena σ (n) ≤ 0 −     .     (24)
+                                (n)
+                                                                            N
+                        xn ∈X
+
+Proof: Remember that for any operators A ≥ 0 and 0 ≤ T ≤ I,
+
+                                    Tr [AT ] ≤ Tr [A {A > 0}] ,                       (25)
+
+which is the essence of the quantum Neyman-Pearson lemma [8, 9, 10]. Then we see
+that for any code Φ(n) = (N, ϕ(n) , Y (n) ),
+   h                          i      h                   n                         oi
+         (n)                (n)                (n)                  (n)
+Tr Wϕ(n) (i) − ena σ (n) Yi       ≤ Tr Wϕ(n) (i) − ena σ (n) Wϕ(n) (i) − ena σ (n) > 0
+                                       h           n                      oi
+                                             (n)     (n)
+                                  ≤ Tr Wϕ(n) (i) Wϕ(n) (i) − ena σ (n) > 0 .
+
+This is rewritten as
+  h                    i     h         n                         oi       h            i
+       (n)          (n)          (n)       (n)                                       (n)
+Tr Wϕ(n) (i) I − Yi        ≥ Tr Wϕ(n) (i) Wϕ(n) (i) − ena σ (n) ≤ 0 − ena Tr σ (n) Yi      ,
+
+and hence we have
+
+                 1 X
+                    N    h         n                         oi ena X   h
+                                                                        N            i
+                           (n)       (n)                                         (n)
+  Pe [Φ(n) ] ≥         Tr Wϕ(n) (i) Wϕ(n) (i) − ena σ (n) ≤ 0 −       Tr σ (n) Yi
+                 N i=1                                          N i=1
+
+                 1 X
+                    N    h         n                         oi ena
+                           (n)       (n)
+           ≥           Tr Wϕ(n) (i) Wϕ(n) (i) − ena σ (n) ≤ 0 −     .
+                 N i=1                                          N
+
+We thus have (24) by letting P (n) be the empirical distribution for the N points
+(ϕ(n) (1), . . . , ϕ(n) (N)).
+                                                       (n)
+Remark 11 Lemma 4 in the case of σ (n) = WP (n) is just the quantum analogue of
+Theorem 4 in [5] which evaluates the error probability of a code as
+                                                                
+                   (n)           1     W (n) (Y (n) | X (n) )        ena
+              Pe [Φ ] ≥ Prob       log                        ≤ a  −     . (26)
+                                n         PY (n) (Y (n) )            N
+
+Our results might seem to be still incomplete in comparison with the beautiful duality
+between (23) and (26).
+
+
+
+
+                                                12
+5    Proof of Theorem 1
+Now Theorem 1 is proved as follows. We first show the inequality
+                                  ~ ) ≥ max I(P
+                                C(W           ~,W
+                                                ~ ).                               (27)
+                                             ~∈~
+                                             P   ~)
+                                               P(X
+
+Here we can assume that the RHS is strictly positive since otherwise the inequality
+is trivial. Suppose that we are given a sequence P  ~ = {P (n) } ∈ P(
+                                                                   ~ X~ ) and a number
+R such that 0 < R < I(P     ~,W
+                              ~ ). Setting N = ⌈enR ⌉ in Lemma 3, it follows that for
+each real number a and c > 0 there exists a sequence of codes Φ    ~ = {Φ(n) } ∈ ~C(W
+                                                                                    ~ )
+               (n)      nR
+such that |Φ | = ⌈e ⌉ and
+                              X                 h     n                     oi
+                                                  (n)   (n)          (n)
+          Pe [Φ(n) ] ≤(1 + c)      P (n) (xn )Tr Wxn Wxn − ena WP (n) ≤ 0
+                            xn ∈X (n)
+
+                    + (2 + c + c ) e−na ⌈enR ⌉
+                                   −1
+                                                                                   (28)
+
+for every n. Recalling the definition of I(P ~, ~
+                                                W ), we see that the first term of the
+RHS goes to 0 as n → ∞ for any a < I(P     ~, ~
+                                             W ), while the second term goes to 0 for
+any a > R. Hence, letting a lie in R < a < I(P  ~,W~ ), the existence of a Φ
+                                                                           ~ satisfying
+lim inf n→∞ N1 log Φ(n) | ≥ R and limn→∞ Pe [Φ(n) ] = 0 is shown. This implies that
+R ≤ C(W   ~ ) for any 0 < R < I(P  ~,W
+                                     ~ ), and completes the proof of (27).
+    Next we prove
+                                   ~ ) ≥ max I(P
+                              C † (W               ~,W~ ).                         (29)
+                                              ~ ∈P(
+                                              P  ~ X~)
+
+We can assume that C † (W  ~ ) < ∞ since otherwise the inequality is trivial. Let R be
+an arbitrary number greater than C † (W  ~ ). Then for each a and c > 0 there exists a
+sequence of codes Φ~ = {Φ(n) } ∈ ~C(W  ~ ) such that |Φ(n) | = ⌈enR ⌉ and (28) holds for
+                        1
+every n. From limn→∞ n log |Φ | = R > C † (W
+                                (n)              ~ ), Pe [Φ(n) ] must go to 1 as n → ∞,
+and therefore (28) yields that for any a > R
+                             X                 h      n                       oi
+                                    (n) n         (n)     (n)     na  (n)
+       1 ≤ (1 + c) lim inf        P (x )Tr Wxn Wxn − e WP (n) ≤ 0 .
+                    n→∞
+                            xn ∈X (n)
+
+                            P                     h      n                  oi
+                                                     (n)   (n)       (n)
+Since c > 0 is arbitrary,            P (n) (xn )Tr Wxn Wxn − ena WP (n) ≤ 0
+                                xn ∈X (n)                                      con-
+verges to 1 and hence a ≥ I(P   ~,W~ ). We thus have a ≥ I(P   ~,W
+                                                                 ~ ) for ∀a > ∀R >
+C † (W~ ), and (29) has been proved.
+     Let us proceed to prove the converse inequality
+                          ~ ) ≤ max
+                        C(W                             ~,~
+                                                 min J (P    ~ ).
+                                                          σ, W                     (30)
+                                        ~ ∈P(
+                                        P  ~ X~) ~ ~ H)
+                                                 σ∈S( ~
+
+          ~ ). Then there exists a sequence of codes Φ
+Let R < C(W                                          ~ = {Φ(n) } ∈ ~C(W
+                                                                      ~ ) satisfying
+                       1
+                  lim inflog |Φ(n) | > R and              lim Pe [Φ(n) ] = 0.
+                   n→∞ n                                  n→∞
+
+
+                                                13
+From Lemma 4, there exists a P~ = {P (n) } such that for any n ∈ N and ~
+                                                                       σ = {σ (n) },
+        X                 h     n                    oi               enR
+                            (n)    (n)
+             P (n) (xn )Tr Wxn Wxn − enR σ (n) ≤ 0 ≤ Pe [Φ(n) ] + (n)
+       n (n)
+                                                                     |Φ |
+         x ∈X
+                                                                          → 0 as n → ∞.
+                              ~,~
+This implies that R ≤ min~σ J(P    ~ ) for some P
+                                σ, W            ~ . Therefore, we have
+
+                                   R ≤ max              ~,~
+                                                  min J(P    ~ )
+                                                          σ, W
+                                       ~∈~
+                                       P P( ~
+                                           W)         ~
+                                                      σ
+
+
+for any R < C( ~
+              W ), and (30) has been proved. Similarly, we can prove
+                                   ~ ) ≤ max
+                              C † (W                         ~,~
+                                                       min J(P    ~ ).
+                                                               σ, W                       (31)
+                                         ~∈~
+                                         P P(X~ ) ~
+                                                  σ∈ ~
+                                                    S( ~
+                                                       H)
+
+The remaining parts
+                              ~, ~
+                        max I(P W ) ≥ max                           ~,~
+                                                              min J(P σ, ~
+                                                                        W)
+                       ~ ∈P(
+                       P  ~ X~)                  ~ ∈P(
+                                                 P  ~ X~ ) ~ ~ H)
+                                                           σ∈S( ~
+
+and
+                              ~,W
+                        max I(P ~ ) ≥ max                           ~,~
+                                                              min J(P    ~ )
+                                                                      σ, W
+                       ~∈~
+                       P   ~)
+                         P(X                     ~∈~
+                                                 P P(X~ ) ~
+                                                          σ∈ ~
+                                                            S( ~
+                                                               H)
+
+are obvious from the definitions.
+
+
+6       Stationary memoryless case
+In this section we demonstrate how the general formulas given in Theorem 1 leads
+to the following coding theorem for stationary memoryless channels.
+
+Theorem 2 Let W : X → S(H) be an arbitrary channel and consider its stationary
+memoryless extension:
+                      H(n) = H⊗n ,      X (n) = X n ,        and
+                        (n)
+                      Wxn = Wx1 ⊗ · · · ⊗ Wxn              for xn = (x1 , . . . , xn ).   (32)
+                     ~ = {W (n) } is given by
+Then the capacity of W
+                                       ~ ) = sup I(P, W ),
+                                     C(W                                                  (33)
+                                                 P ∈P(X )
+
+where                                           X
+                                          def
+                                  I(P, W ) =          P (x)D(Wx k WP )
+                                                x∈X
+                def
+with D(ρ k σ) = Tr [ρ(log ρ−log σ)] being the quantum relative entropy. Furthermore,
+if dim H < ∞, then the strong converse holds: C † (W~ ) = C(W ~ ).
+
+                                                      14
+Remark 12 The proof of the strong converse given below relies essentially on the
+compactness of the closure of the range ∆ = {Wx | x ∈ X }, which follows from the
+finiteness of dim H. The argument is immediately extended to a certain class of
+channels with dim H = ∞ including the case when X is a finite set, whereas the
+general condition for the strong converse in the infinite-dimensional case is yet to be
+studied.
+Remark 13 Let Γ be a trace-preserving CP map from the trace-class operators on
+H1 to those on H2 . When considering Γ as a classical-quantum channel W : X →
+S(H2 ) with X = S(H1 ), its stationary memoryless extension W (n) is a channel which
+maps an n-tuple (σ1 , . . . , σn ) ∈ X (n) = X n of states {σi } ⊂ S(H1 ) to the product
+state Γ(σ1 ) ⊗ · · · ⊗ Γ(σn ), and the capacity of W    ~ = {W (n) } is given by (33). On the
+other hand, Γ has the stationary memoryless extension Γ⊗n as a “quantum-quantum”
+channel, which defines another classical-quantum channel W̃ (n) : X˜ (n) → S(H2 ⊗n )
+with X˜ (n) = S(H1 ⊗n ). Note that W (n) can be regarded as the restriction W̃ (n)↾X (n) of
+                                                                                            ~ )
+W̃ (n) by identifying (σ1 , . . . , σn ) ∈ X n with σ1 ⊗· · ·⊗σn ∈ X˜ (n) . The capacity C(W̃
+    ~ = {W̃ (n) } is beyond the scope of the preceding theorem, whereas recently the
+of W̃
+conjecture C(W̃~ ) = C(W  ~ ) together with the more fundamental additivity conjecture
+has been calling wide attention. See, for instance, [22, 23, 24, 25] and the references
+cited there.
+    Historically, the converse part C( ~W ) ≤ supP ∈P(X ) I(P, W ) was first established
+by Holevo’s early work [3, 4] which is now often referred to as the Holevo bound,
+while the direct part C(W  ~ ) ≥ supP ∈P(X ) I(P, W ) was proved much more recently by
+Holevo [1] and Schumacher-Westmoreland [2]. It should be noted that their proof is
+based on the representation of I(P, W ) as the entropy difference:
+                                                X
+                         I(P, W ) = H(WP ) −        P (x)H(Wx ),                    (34)
+                                                       x
+              def
+where H(ρ) = −Tr [ρ log ρ] is the von Neumann entropy, and hence needs (when
+dim H = ∞) the assumption
+                                 H(Wx ) < ∞,           ∀x ∈ X .                           (35)
+See the next section for more details. Our proof given below has the advantage of not
+needing this finiteness assumption (cf. Remark 16). Note also that in the case when
+dim H < ∞ the range of supremum in (33) can be restricted to those P ∈ P(X )
+with | supp(P )| ≤ dim ∆ + 1, where | supp(P )| denotes the number of elements of the
+                        def
+support of P and ∆ = {Wx | x ∈ X }, and that the supremum can be replaced with
+maximum when ∆ is closed (and hence compact); see [18, 26]. The strong converse
+C † (W~ ) ≤ supP ∈P(X ) I(P, W ) for a finite X was shown in [15, 7].
+     Let us begin with considering the (weak) converse
+                                   ~ ) ≤ sup I(P, W ).
+                                 C(W                                                      (36)
+                                            P ∈P(X )
+
+
+
+                                              15
+Lemma 5 For any sequence of channels ~
+                                     W = {W (n) } and any sequence of distri-
+        ~ = {P (n) } we have
+butions P
+
+                               ~, ~               1
+                             I(P W ) ≤ lim inf      I(P (n) , W (n) ).             (37)
+                                              n→∞ n
+
+Proof: Given n, xn ∈ X (n) and a ∈ R arbitrarily, let
+                             h      n                   oi
+                      def       (n)    (n)   na    (n)
+                   αn = Tr Wxn Wxn − e WP (n) > 0 ,
+                             h       n                   oi
+                      def       (n)     (n)         (n)
+                   βn = Tr WP (n) Wxn − ena WP (n) > 0 .
+
+Then the monotonicity of the quantum relative entropy yields
+                       (n)       (n)              αn                 1 − αn
+                 D(Wxn k WP (n) ) ≥ αn log           + (1 − αn ) log
+                                                  βn                 1 − βn
+                                         ≥ − log 2 − αn log βn .
+On the other hand, we have
+               h                  n                    oi
+                   (n)     (n)      (n)       (n)
+        0 ≤ Tr (Wxn − ena WP (n) ) Wxn − ena WP (n) > 0 = αn − ena βn
+                                                                    (n)   (n)
+and hence βn ≤ e−na αn ≤ e−na . We thus obtain n1 D(Wxn k WP (n) ) ≥ − n1 log 2 + a αn ,
+and taking the expectation w.r.t. P (n) we have
+  1                      1          X               h     n                     oi
+                                                      (n)   (n)       (n)
+    I(P (n) , W (n) ) ≥ − log 2 + a    P (n) (xn )Tr Wxn Wxn − ena WP (n) > 0 .
+  n                      n          xn
+
+This leads to the implications:
+                             X          h     n                oi
+           ~    ~                (n) n    (n)   (n) na (n)
+    a < I(P k W ) =⇒ lim        P (x )Tr Wxn Wxn − e WP (n) > 0 = 1
+                          n→∞
+                                  xn
+                                      1
+                    =⇒ a ≤ lim inf      I(P (n) , W (n) ),
+                                  n→∞ n
+
+which proves the lemma.
+   Using this lemma and invoking that in the stationary memoryless case
+                         sup          I(P (n) , W (n) ) = n sup I(P, W ),
+                     P (n) ∈P(X n )                      P ∈P(X )
+
+
+we see that (36) follows from the general formula C(W  ~ ) ≤ max ~ I(P
+                                                                     ~,W~ ).
+                                                                P
+   Before proceeding to the direct and strong converse parts, we introduce quantum
+analogues of the spectral inf- and sup-divergence rates [6] (see Remark 6): given
+                              ~ = {ρ(n) } and ~
+arbitrary sequences of states ρ               σ = {σ (n) }, let
+                      def                                     
+              ρk~
+            D(~   σ) = inf a | lim Tr ρ(n) ρ(n) − ena σ (n) > 0 = 0 ,          (38)
+                                n→∞
+                      def                                      
+              ρk~
+            D(~   σ) = sup a | lim Tr ρ(n) ρ(n) − ena σ (n) > 0 = 1 .          (39)
+                                        n→∞
+
+
+                                                 16
+Note that D(~ ρk ~        ρk~
+                  σ ) ≤ D(~   σ) and that D(~  ρk~ σ) ≤ lim inf n→∞ n1 D(ρ(n) k σ (n) ), the
+latter of which can be proved similarly to Lemma 5. The following relation, which
+was shown in [10], will play an essential role in the later arguments: in the quantum
+                 ~ = {ρ⊗n }∞
+i.i.d. case when ρ         n=1 and ~σ = {σ ⊗n }∞n=1 , we have
+
+                                         ρk~
+                                       D(~        ρk ~
+                                           σ) = D(~  σ ) = D(ρ k σ).                                     (40)
+
+   Now let us observe how the direct part
+                                                   ~ ) ≥ sup I(P, W )
+                                                 C(W                                                     (41)
+                                                              P ∈P(X )
+
+
+follows from the general formula. Let P be an arbitrary distribution in P(X ) and
+P (n) ∈ P(X n ) be the nth i.i.d. extension: P (n) (xn ) = P (x1 ) · · · P (xn ) for xn =
+(x1 , . . . , xn ). Denoting thePsupport of P by {u1, . . . , uk } ⊂ X and letting λi = P (ui ),
+ρi = Wui and σ = WP = i λi ρi , we have
+               X                  h     n                        oi
+                                    (n)   (n)        (n)
+                     P (n) (xn )Tr Wxn Wxn − ena WP (n) > 0
+        xn ∈X (n)
+             X                                                                                
+        =                λi1 · · · λin Tr (ρi1 ⊗ · · · ⊗ ρin ) ρi1 ⊗ · · · ⊗ ρin − ena σ ⊗n > 0
+            i1 ,...,in
+                                  
+        = Tr R⊗n R⊗n − ena S ⊗n > 0 ,
+
+where
+                                                                                                
+                               λ1 ρ1                                           λ1 σ
+                 def                   ..          0                 def           ..        0 
+                R=                          .            ,         S =                  .        .   (42)
+                                0                 λk ρk                         0              λk σ
+
+                               ~ = {P (n) }, R
+We thus have for the sequences P             ~ = {R⊗n } and S
+                                                            ~ = {S ⊗n }
+
+                               ~,W
+                             I(P ~ ) = D(R
+                                         ~ k S)
+                                             ~ = D(R k S) = I(P, W ),                                    (43)
+
+where the second equality follows from (40) and the rest are immediate from the
+definitions of the quantities. This, combined with (7), completes the proof of (41).
+
+Remark 14 Essential in the above derivation of (41) from (7) is the use of D(~     ρk~ σ) ≥
+D(ρ k σ) for sequences of i.i.d. states. The proof of the inequality given in [10] is based
+on the direct part of the quantum Stein’s lemma for a hypothesis testing problem
+on ρ⊗n and σ ⊗n , which was first shown by Hiai and Petz [11], whereas the classi-
+cal counterpart of the inequality is a direct consequence of the weak law of large
+numbers. Hence the above derivation can be thought of as a proof of the channel
+coding theorem via the theory of quantum hypothesis testing (cf. Remark 15 below).
+It should be noted that a significant characteristic of the proof lies in separation of
+
+                                                               17
+the coding part and the limiting part; the former is entirely coped with in the gen-
+eral formula (7), or equivalently in the non-asymptotic arguments of Lemma 2 and
+Lemma 3, while the latter relies on the asymptotic analysis of quantum hypothesis
+testing. Another proof of (41) with a similar approach is found in [13, 14], where
+the coding part is proved by a variant of quantum Feinstein’s lemma (cf. Remark 9)
+and the limiting part is based on an asymptotic analysis made in [27] (cf. Remark 17
+below) on a variant of D(~  ρk~ σ), which is much easier to treat than the original
+D(~ρk~ σ).
+Remark 15 In an actual fact, (41) can be proved by directly applying Lemma 2
+to the direct part of quantum Stein’s lemma as follows, without appealing to the
+general formula (7). Given P ∈ P(X ), let R and S be defined by (42), which can
+be represented as R = ⊕x P (x)Wx and S = ⊕x P (x)WP . For an arbitrary ε > 0 and
+a sufficiently large n, it follows from the quantum Stein’s lemma that there exists a
+                                         (n)            (n)
+projection of the form T (n) = ⊕xn Txn , where {Txn } are projections on H⊗n , such
+that
+                                 X                  (n) (n)
+               Tr [R⊗n T (n) ] =    P (n) (xn )Tr [Wxn Txn ] ≥ 1 − ε,
+                                  xn
+                                  X                         (n)
+             Tr [S ⊗n T (n) ] =        P (n) (xn )Tr [WP⊗n Txn ] ≤ e−n(D(R k S)−ε) .
+                                  xn
+
+Given an encoder ϕ(n) : {1, . . . , N} → X n , define the decoding POVM Z (n) =
+  (n)
+{Zi }Ni=1 by
+                         N
+                                       !− 12           N
+                                                                   !− 21
+                 (n) def
+                         X      (n)           (n)
+                                                       X  (n)
+               Zi =          Tϕ(n) (j)       Tϕ(n) (i)   Tϕ(n) (j)       .
+                             j=1                            j=1
+
+Then replacing Y (n) with Z (n) in the proof of Lemma 3, using Lemma 2 for c = 1
+(e.g.) and applying the random coding with respect to P (n) , we see that there exists
+a code Φ(n) satisfying
+                                                    
+                  Pe [Φ(n) ] ≤ 2 1 − Tr [R⊗n T (n) ] + 4NTr [S ⊗n T (n) ]        (44)
+                            ≤ 2ε + 4e−n(D(R k S)−ε) N,
+which proves (41) by D(R k S) = I(P, W ).
+Remark 16 As is shown in section 4 of [11], from the fact that the (direct part of)
+quantum Stein’s lemma holds for states on every finite-dimensional matrix algebra,
+it is immediately concluded that the lemma holds also for states on every AFD
+(approximately finite dimensional) operator algebra, including the algebra B(H) of
+bounded operators on a separable Hilbert space H. This means that our proof of (33)
+is valid for every channel W on a separable Hilbert space H without the finiteness
+assumption (35). Note also that a similar argument based on the AFD property can
+be applied to the channel coding problem directly to remove the finiteness assumption
+from the proof of Holevo-Schumacher-Westmoreland.
+
+                                                18
+Remark 17 Combination of the argument in Remark 15 and the derivation of the
+direct part of quantum Stein’s lemma given in [27] will provide one of the simplest
+proofs of (41) (for a finite-dimensional H). In addition, application of Theorem 2
+of [27] to (44) implies that for any n and a > 0 there exists a code Φ(n) satisfying
+|Φ(n) | = ena and
+                              Pe [Φ(n) ] ≤ 6(n + 1)d e−n ϕ̄(a) ,                (45)
+        def
+where d = k dim H (the size of the matrices R and S) and
+                                           h           i
+                      def                       t     t
+                ϕ̄(a) = max −at − log Tr RS 2 R−t S 2
+                           0≤t≤1
+                                                                             !
+                                                X            h     t      t
+                                                                            i
+                                                                      −t
+                       = max       −at − log            λi Tr ρi σ 2 ρi σ 2    .
+                          0≤t≤1
+                                                    i
+
+As was shown in [27], ϕ̄(a) > 0 holds for any a < D(R k S) = I(P, W ), and (45)
+gives an exponential bound on the error probability.
+
+   Next we proceed to the strong converse part
+                                      ~ ) ≤ sup I(P, W )
+                                 C † (W                                            (46)
+                                             P ∈P(X )
+
+
+under the assumption that H is finite-dimensional. In order to link (46) to the
+general formula, we use the following relations ([28, 29]):
+
+                       sup I(P, W ) = sup                min J(P, σ, W )
+                      P ∈P(X )               P ∈P(X ) σ∈S(H)
+
+                                       = min             sup J(P, σ, W )
+                                             σ∈S(H) P ∈P(X )
+
+                                       = min sup D(Wx k σ),                        (47)
+                                             σ∈S(H) x∈X
+
+
+where                                        X
+                                       def
+                          J(P, σ, W ) =            P (x)D(Wx k σ).
+                                             x∈X
+
+These relations can be derived just in parallel with its classical counter part (e.g.,
+pp.142–147 of [30], Theorem 4.5.1 of [31]) by the use of a mini-max theorem for a
+certain class of two-variable convex-concave functions (e.g. Chap.VI of [32]), com-
+bined with the fact that the supremum of supP ∈P(X ) I(P, W ) can be attained when
+{Wx | x ∈ X } is closed ([18, 26]).
+     In proving the strong converse of the quantum hypothesis testing problem for two
+i.i.d. states, which is equivalent to the part D(~ ρk ~
+                                                      σ ) ≤ D(ρ k σ) in (40) (see [10]),
+Ogawa and Nagaoka [12] showed that for any states ρ, σ and any numbers c > 0 and
+0 ≤ s ≤ 1,                                                    
+                         Tr [ρ {ρ − cσ > 0}] ≤ c−s Tr ρ1+s σ −s .                  (48)
+
+                                               19
+                                 (n)
+Applying this to the states Wxn , σ ⊗n and c = ena , we have
+    h     n                oi      h       1X
+                                               n
+                                                                    i
+      (n)   (n)
+  Tr Wxn Wxn − ena σ ⊗n > 0 ≤ exp −n as −         log Tr Wx1+s  σ −s
+                                            n i=1           i
+
+                                   h                            i
+                              ≤ exp −n as − sup log Tr Wx1+s σ −s     . (49)
+                                                            x∈X
+
+Now assume that Im σ ⊃ Im Wx for all x ∈ X , where Im denotes the image (range)
+of an operator, let ¯∆ be the closure of the range ∆ = {Wx | x ∈ X }, and define the
+                      ¯ → R by f (s, ρ) = log Tr [ρ1+s σ −s ]. Then we have f (0, ρ) = 0
+function f : [0, 1] × ∆
+and
+                                  ∂
+                                     f (0, ρ) = D(ρ k σ).                          (50)
+                                  ∂s
+Moreover, since the derivative
+
+                        ∂             Tr [ρ1+s (log ρ − log σ)σ −s ]
+                           f (s, ρ) =
+                        ∂s                   Tr [ρ1+s σ −s ]
+                                                      ¯ is compact, we see that the
+is continuous with respect to both s and ρ, and since ∆
+differentiation in (50) is uniform in ρ; i.e.,
+
+                                       f (s, ρ)
+                           lim max              − D(ρ k σ) = 0.
+                           s↓0 ρ∈ ¯
+                                 ∆        s
+
+Let a be an arbitrary number satisfying a > maxρ∈∆¯ D(ρ k σ) = supx∈X D(Wx k σ).
+It then follows from the above uniform convergence that there exists an s0 > 0 such
+that for any 0 < s ≤ s0
+                                                             
+                     as > max f (s, ρ) = sup log Tr Wx1+s σ −s .
+                              ¯
+                            ρ∈∆             x∈X
+
+
+                                                  x = {xn } ∈ X~ , where X~ = {X n } is
+                                 for any sequence ~
+Invoking (49), this implies that Q
+identified with the product set n X n , we have
+              h       n                   oi
+                  (n)    (n)
+       lim Tr Wxn Wxn − ena σ ⊗n > 0 = 0 for ∀a > sup D(Wx k σ),                 (51)
+      n→∞                                                         x∈X
+
+or equivalently
+                               ~ x~ k ~
+                             D(W      σ) ≤ sup D(Wx k σ),                          (52)
+                                              x∈X
+
+                  (n)
+       ~ ~x = {Wxn } and ~
+where W                    σ = {σ ⊗n }. Although we assumed Im σ ⊃ Im Wx , ∀x ∈ X
+above, this inequality is valid for any σ ∈ S(H) because supx∈X D(Wx k σ) = ∞ if
+
+
+                                             20
+Im σ 6⊃ Im Wx for some x ∈ X . Now the desired inequality (46) is derived from the
+general formula (10) as follows:
+                      ~ ) = max
+                 C † (W                              ~,~
+                                               min J(P    ~ )
+                                                       σ, W
+                                    ~∈~
+                                    P      σ∈ ~
+                                        ~) ~
+                                      P(X    S( ~
+                                                H)
+
+                               ≤ min                  ~,~
+                                               max J (P    ~ )
+                                                        σ, W
+                                       ~ H)
+                                    ~ ∈S(
+                                    σ     ~ P
+                                            ~ ∈P(
+                                               ~ X~ )
+
+                                           ~ ~x k ~
+                               = min max D(W      σ)
+                                      ~ H)
+                                    σ∈S(
+                                    ~    ~ ~ ~
+                                           x∈X
+                                           ~ ~x k ~
+                               ≤ min max D(W               σ = {σ ⊗n }
+                                                  σ ) with ~
+                                    σ∈S(H) ~ ~
+                                           x∈X
+                               ≤ min sup D(Wx k σ) = sup I(P, W ),
+                                    σ∈S(H) x∈X                       P ∈P(X )
+
+where the last equality follows from (47).
+
+
+7     On the Holevo-Schumacher-Westmoreland de-
+      coder
+Let us return to the situation in the proof of Lemma 3 where a probability distribution
+P (n) and an encoder ϕ(n) : {1, . . . , N} → X (n) are given. Instead of Y (n) defined in
+(19), consider the following POVM Ye (n) :
+                                  N
+                                             !− 21        N
+                                                                   !− 12
+                         (n) def
+                                 X                        X
+                      Ye   i =        τ νj τ       τ νi τ   τ νj τ       ,           (53)
+                                         j=1                         j=1
+
+where                          n                o                  n                o
+                     def            (n)                      def     (n)
+                   τ =             WP (n) < e−nb ,       νi =       Wϕ(n) (i) > e−nc .
+This type of decoder was introduced by Holevo [1] and Schumacher-Westmoreland
+[2] in proving the direct part of the capacity theorem. Let us investigate this decoder,
+                           (n)
+comparing it with our Yi defined by (19) and (20).
+Remark 18 More precisely, the decoder treated in [1, 2] was defined by (53) with
+projections τ and νi of the form
+                n                 o          n                        o
+            def     ′      (n)           def            (n)         ′
+          τ = e−nb < WP (n) < e−nb , νi = e−nc < Wϕ(n) (i) < e−nc ,
+
+where we have used a slight extension of the notation in (5):
+                                              X
+                            {α < A < β} =           Ei .
+                                                             i: α<λi <β
+
+However, the asymptotic performance of the decoder does not depend on the partic-
+ular values of b′ , c′ as far as b′ is sufficiently large and c′ is sufficiently small. Hence
+we set b′ = ∞ and c′ = −∞ to simplify the arguments.
+
+                                                        21
+    The authors of [1, 2] showed by a rather complicated calculation that the average
+error probability of the code eΦ(n) = (N, ϕ(n) , Ye (n) ) satisfies
+                                                                                              
+              XN         h                i       h                i  X   h                 i 
+    e (n)  1                 (n)                         (n)                   (n)
+Pe [Φ ] ≤            3Tr Wϕ(n) (i) (I − τ ) + Tr Wϕ(n) (i) (I − νi ) +   Tr Wϕ(n) (i) τ νj τ     .
+           N                                                                                  
+               i=1                                                              j(6=i)
+                                                                                                    (54)
+Note that a simplified derivation of the inequality with slightly different coefficients
+was shown in [16]. Applying the random coding with respect to P (n) to (54) and
+noting that
+               h        n             on               on               oi
+                   (n)     (n)              (n)             (n)
+            Tr WP (n) WP (n) < e−nb       Wxn > e−nc      WP (n) < e−nb
+                        n             o        hn             oi
+                    (n)     (n)                     (n)
+            ≤ WP (n) WP (n) < e−nb · Tr Wxn > e−nc
+             ≤ e−n(b−c) ,                                                                           (55)
+
+where k · k denotes the operator norm, we see that there exists a code Φ(n) such that
+                 h       n            oi X                   h      n           oi
+                     (n)    (n)                                 (n)   (n)
+ Pe [Φ(n) ] ≤3Tr WP (n) WP (n) ≥ e−nb +         P (n) (xn )Tr Wxn Wxn ≤ e−nc
+                                                       xn
+                 −n(b−c)
+             +e            N.                                                                       (56)
+                      ~ = {P (n) } ∈ P(
+Now, for an arbitrary P              ~ X~ ) let
+                        n             h       n         oi    o
+             ~    def                     (n)   (n) −nb
+         H(WP~ ) = sup b lim Tr WP (n) WP (n) ≥ e          =0
+                         n→∞                               
+                                         (n)    1   (n)
+                  = sup b lim Tr WP (n) − log WP (n) ≤ b      =0 ,
+                            n→∞                 n
+                       (                                                                   )
+                                      X                 h     n        oi
+     ~ |P      def
+        ~ ) = inf                                         (n)   (n)
+   H(W                     c    lim        P (n) (xn )Tr Wxn Wxn ≤ e−nc = 0
+                                n→∞
+                                      xn
+                       (                                                                    )
+                                      X                     (n)        1     (n)
+               = inf    c       lim        P (n) (xn )Tr Wxn          − log Wxn ≥ c        =0       ,
+                                n→∞
+                                      xn
+                                                                       n
+
+and assume that H( ~      W |P ~ ) < ∞. It then follows from (56) that there exists
+                           ~
+a sequence of codes Φ = {Φ(n) } such that limn→∞ Pe [Φ(n) ] = 0 with the rate
+lim inf n→∞ n1 log |Φ(n) | being arbitrarily close to H(W ~ ~ ) − H(W~ |P
+                                                                        ~ ); i.e., we have
+                                                            P
+                                  n                                         o
+             C(W ~ ) ≥ max          H(W~ ~ ) − H(W ~ |P~ ) H(W   ~ |P
+                                                                    ~) < ∞ .           (57)
+                                         P
+                       ~ ∈P(
+                       P  ~ X~ )
+
+
+   The quantities H(W ~ ~ ) and H(W
+                                  ~ |P
+                                     ~ ) are regarded as information-spectrum
+                        P
+analogues of the von Neumann entropy and its conditional version. Indeed, for a
+
+                                                  22
+                                        (n)
+stationary memoryless channel Wxn = Wx1 ⊗ · · · ⊗ Wxn with i.i.d. P (n) (xn ) =
+P (x1 ) · · · P (xn ) the law of large numbers yields
+
+                        H(W ~ ~ ) = H(WP ) = −Tr [WP log WP ],                               (58)
+                              P
+                                                  X
+                       H( ~
+                         W |P ~ ) = H(W | P ) def
+                                              =     P (x)H(Wx ),                             (59)
+                                                        x
+
+
+which leads to C(W ~ ) ≥ supP ∈P(X ) (H(WP ) − H(W | P )) = supP ∈P(X ) I(P, W ) under
+the finiteness assumption (35) (cf. Remark 16). This is just what was shown in [1, 2].
+
+Remark 19 Inequality (15) of Lemma 2 can be applied to the code Φ            e (n) = (N, ϕ(n) , Ye (n) )
+to derive (57) more straightforwardly than the derivations in [1, 2, 16]. Indeed, letting
+c = 1 (e.g.) in (15) we have
+                    (                                                             )
+              1 XN       h                       i    X        h                i
+    e (n) ] ≤                (n)                                 (n)
+Pe [Φ                 2Tr Wϕ(n) (i) (I − τ νi τ ) + 4       Tr Wϕ(n) (i) τ νj τ
+              N i=1
+                                                      j6=i
+                                                                                                          
+                XN       h                 i        h                   i       X     h                 i 
+              1              (n)                           (n)                             (n)
+            ≤         4Tr Wϕ(n) (i) (I − τ ) + 2Tr Wϕ(n) (i) (I − νi ) + 4          Tr Wϕ(n) (i) τ νj τ      ,
+              N                                                                                           
+                i=1                                                             j(6=i)
+
+
+where the second inequality follows from the next lemma. This leads to (57) as well
+as from (54).
+
+Lemma 6 For any state ρ and any projections ν, τ such that [ρ, ν] = 0, we have
+
+                            Tr [ρτ ντ ] ≥ Tr [ρν] − 2Tr [ρ(I − τ )].
+
+Proof: Obvious from 0 ≤ (I − τ )ν(I − τ ) = τ ντ − ν + (I − τ )ν + ν(I − τ ) and
+ρν = νρ ≤ ρ.
+   Comparing (57) with (7) it is immediate that
+                              n                                     o
+              ~,W
+        max I(P  ~ ) ≥ max H(W     ~ ~ ) − H(W
+                                             ~ |P
+                                                ~ ) H(W ~ |P~) < ∞ .
+                                     P
+            ~
+            P                  ~
+                               P
+
+Actually, a slightly stronger assertion holds:
+
+                    ~ ∈ P(
+Theorem 3 For every P   ~ H)
+                           ~ with H(W
+                                    ~ |P
+                                       ~ ) < ∞ we have
+
+                               ~, ~
+                             I(P W ) ≥ H( ~
+                                         WP~ ) − H( ~ ~ ).
+                                                   W |P                                      (60)
+
+Proof: It suffices to show that for any b < H(W  ~ ~ ), c > H(W
+                                                              ~ |P
+                                                                 ~ ) and ε > 0 we
+                                                    P
+       ~,W
+have I(P  ~ ) ≥ b − c − ε, or, equivalently that if
+                                h      n              oi
+                                   (n)     (n)
+                        lim Tr WP (n) WP (n) ≥ e−nb = 0                      (61)
+                           n→∞
+
+
+                                               23
+and                                          X                    h     n        oi
+                                                                    (n)   (n)
+                                 lim                 P (n) (xn )Tr Wxn Wxn > e−nc = 1                        (62)
+                                 n→∞
+                                        xn ∈X (n)
+
+then
+                             X                      h     n                        oi
+                                                      (n)   (n)           (n)
+                 lim                   P (n) (xn )Tr Wxn Wxn − en(b−c−ε) WP (n) > 0 = 1.                     (63)
+                n→∞
+                           xn ∈X (n)
+
+We obtain
+   X                 h     n                         oi
+                       (n)   (n)           (n)
+        P (n) (xn )Tr Wxn Wxn − en(b−c−ε) WP (n) > 0
+    xn ∈X (n)
+      X                                h                             n                                oi
+                    (n)                       (n)             (n)           (n)             (n)
+≥               P            n
+                          (x )Tr             Wxn − en(b−c−ε) WP (n)        Wxn − en(b−c−ε) WP (n) > 0
+    xn ∈X (n)
+      X                                h                             n                   on           on               oi
+                                               (n)             (n)           (n)              (n)           (n)
+≥               P (n) (xn )Tr                Wxn − en(b−c−ε) WP (n)        WP (n) < e−nb     Wxn > e−nc    WP (n) < e−nb
+    xn ∈X (n)
+      X                      h     n        oi   X              h     n            oi
+                               (n)   (n)                          (n)   (n)
+≥               P (n) (xn )Tr Wxn Wxn > e−nc − 2   P (n) (xn )Tr Wxn WP (n) ≥ e−nb
+    xn ∈X (n)                                                          xn ∈X (n)
+                            X                      h      n              on           oi
+                                                     (n)    (n)             (n)
+    − en(b−c−ε)                       P (n) (xn )Tr WP (n) WP (n) < e−nb   Wxn > e−nc
+                          xn ∈X (n)
+      X                         h     n         oi      h      n              oi
+                                  (n)   (n)               (n)    (n)      −nb
+≥               P   (n)      n
+                          (x )Tr Wxn Wxn > e−nc
+                                                   − 2Tr WP (n) WP (n) ≥ e       − e−nε ,
+    xn ∈X (n)
+
+where the second inequality follows from (25), the third from Lemma 6 and the last
+from (55). Now it is clear that (62) and (61) implies (63).
+
+Remark 20 Theorem 3 enables us to derive the direct part (41) for a stationary
+memoryless channel from the general formula (7) via equations (58) and (59). This
+is essentially equivalent to the simplification of Holevo-Schumacher-Westmoreland’s
+proof explained in Remark 19, but can also be regarded as a variation of the scenario
+of section 6 to derive (41) from (7) via D(~  ρk~                  ~ = {ρ⊗n }∞
+                                                 σ) ≥ D(ρ k σ) for ρ         n=1 and
+        ⊗n ∞
+~
+σ = {σ }n=1 . That is, just in parallel with the proof of Theorem 3, we can show
+for any sequences of states ρ ~ = {ρ(n) } and ~
+                                              σ = {σ (n) } that
+
+                                                   ρk~
+                                                 D(~        ρk ~
+                                                     σ) ≥ K(~  σ ) − H(~
+                                                                       ρ),
+
+where
+                                                                
+                                       def     (n)     1    (n)
+                      ρk ~
+                    K(~  σ ) = sup b lim Tr ρ        − log σ ≤ b   =0 ,
+                                      n→∞             n
+                                                                
+                             def              (n)     1    (n)
+                      H(~ρ) = inf c lim Tr ρ        − log ρ ≥ c    =0 ,
+                                     n→∞              n
+
+
+                                                               24
+which yields for ρ~ = {ρ⊗n }∞n=1 and ~σ = {σ ⊗n }∞
+                                                 n=1 that D(~ρk ~
+                                                                σ ) ≥ −Tr [ρ log σ] −
+H(ρ) = D(ρ k σ). Combination of this argument, which provides another simple
+proof of the direct part of the quantum Stein’s lemma (cf. [10]), with the scenario of
+section 6 is equivalent to the direct use of Theorem 3 mentioned above.
+Remark 21 The classical counterpart of (60) is rather obvious (cf. Remark 6):
+                             1     W (n) (Y (n) | X (n) )
+     I(X ; Y) = p- lim inf     log
+                        n→∞ n         PY (n) (Y (n) )
+                             1            1                   1        1
+                 ≥ p- lim inf log                 − p- lim sup log (n) (n)
+                        n→∞ n               (n)
+                                   PY (n) (Y )            n→∞ n   W (Y | X (n) )
+                 = H(Y) − H(Y | X).
+
+
+8       Capacity under cost constraint
+The cost constraint problem in the general setting is trivial as in the case of clas-
+sical information spectrum methods [6]. Namely, given a sequence W                  ~ = {W (n) }
+                    (n)      (n)
+of channels W            : X     → S(H ) as well as a sequence ~c = {c(n) } of func-
+                                          (n)
+
+tions c(n) : X (n) → R, which are called cost functions, and a real number γ,
+the capacity under cost constraint is nothing but the capacity C(W                 ~ ↾~c,γ ) of the
+sequence of channels W        ~ ↾~c,γ = {W (n) ↾c(n) ,γ }, where W (n) ↾c(n) ,γ is the restriction
+                 (n)                 (n)
+W (n)↾c(n) ,γ : Xc(n) ,γ ∋ xn 7→ Wxn of the original channel W (n) to
+                             (n)   def
+                           Xc(n) ,γ = {xn ∈ X (n) | c(n) (xn ) ≤ nγ }.                          (64)
+
+In addition, the strong converse property in this case is represented as C(W    ~ ↾~c,γ ) =
+     ~ ↾~c,γ ). Needless to say, we can apply the general formulas in Theorem 1 to these
+C † (W
+quantities.
+     Now let us consider the situation where ~ W = {W (n) } is the stationary memoryless
+extension (32) of W : X → S(H) and ~c = {c(n) } is the additive extension
+                                                            n
+                                                            X
+                                             (n)    n
+                                         c         (x ) =         c(xi ),
+                                                            i=1
+
+where c is a function X → R. We shall prove the following theorem, which was
+essentially obtained by Holevo [16, 33] except for the strong converse part.
+Theorem 4 In the stationary memoryless case with the additive cost, we have
+                        C( ~
+                          W ↾~c,γ ) = sup I(P, W ),                         (65)
+                                                        P ∈Pc,γ (X )
+
+where                                                                   X
+                            def                                   def
+                  Pc,γ (X ) = {P ∈ P(X ) | EP [c] =                           P (x)c(x) ≤ γ}.
+                                                                        x∈X
+                                                                ~ ↾~c,γ ) = C(W
+If, in addition, dim H < ∞ then the strong converse holds: C † (W             ~ ↾~c,γ ).
+
+                                                         25
+    We first show that the (weak) converse part
+                                        ~ ↾~c,γ ) ≤
+                                      C(W                     sup             I(P, W )                             (66)
+                                                           P ∈Pc,γ (X )
+
+                                                                        def          (n)
+is derived from the general formula. Let P (n) = P(Xc(n) ,γ ) be the totality of proba-
+bility distributions on X (n) = X n whose supports are finite subsets of
+                                  (                            n
+                                                                            )
+                      def (n)                               1 X
+               X̂ (n) = Xc(n) ,γ = (x1 , . . . , xn ) ∈ X n       c(xi ) ≤ γ .
+                                                            n i=1
+
+                                                                                                 (n)         (n)
+For any P (n) ∈ P (n) and any permutation π on {1, . . . , n}, Pπ defined by Pπ (x1 , . . . , xn )
+                                                                                            (n)
+= P (n) (xπ(1) , . . . , xπ(n) ) also belongs to P (n) and satisfies I(P (n) , W (n) ) = I(Pπ , W (n) ).
+Since I(P (n) , W (n) ) is concave with respect to P (n) , we can restrict ourselves to
+symmetric distributions when considering supP (n) ∈P (n) I(P (n) , W (n) ). For a sym-
+metric P (n) ∈ P (n) , the marginal distribution on X belongs to Pc,γ and satisfies
+I(P (n) , W (n) ) ≤ nI(P, W ). Hence we have
+
+                                sup         I(P (n) , W (n) ) ≤ n sup I(P, W ),
+                             P (n) ∈P (n)                                 P ∈Pc,γ
+
+
+and (66) follows from Lemma 5 and (7) as in the costless case.
+   Next, let us consider the direct part
+                                       ~ ↾~c,γ ) ≥
+                                     C(W                      sup             I(P, W ).                            (67)
+                                                           P ∈Pc,γ (X )
+
+We use a slight modification of Lemma 3 as follows. Let P be a probability dis-
+tribution in Pc,γ (X ) and a be a real number. Given an arbitrary encoder ϕ(n) :
+                                                  (n)         (n)
+{1, . . . , N} → X n , let the decoder Y (n) = {Y1 , . . . , YN } be defined by
+
+                                               N
+                                                           !− 12              N
+                                                                                         !− 12
+                                   (n)
+                                               X                              X
+                                 Yi =                 πj           πi               πj           ,
+                                                j=1                           j=1
+                 n                         o
+           def     (n)
+where πi =        Wϕ(n) (i) − ena WP ⊗n > 0 . It then follows from Lemma 2 for c = 1
+(e.g.) that the average error probability of the code Φ(n) = (N, ϕ(n) , Y (n) ) is bounded
+by
+
+                          2 X
+                             N    h                   i     N
+                                                         4 XX         h            i
+                 (n)                (n)                                 (n)
+         Pe [Φ         ]≤       Tr Wϕ(n) (i) (I − πi ) +            Tr Wϕ(n) (i) πj .
+                          N i=1                          N i=1 j6=i
+
+Now let P (n) be the nth i.i.d. extension of P and P̂ (n) ∈ P(X̂ (n) ) be defined by
+                                                                                                       (n)
+                        P̂ (n) (xn ) = P (n) (xn )/Kn          for xn ∈ X̂ (n) = Xc(n) ,γ ,                        (68)
+
+                                                            26
+           def
+where Kn = P (n) (Xˆ (n) ). Note that due to the assumption P ∈ Pc,γ (X ) and to the
+central limiting theorem we have
+                                                           1
+                                          (n)   (n)
+                          lim Kn ≥ lim P       Xc(n) ,E [c] = .                 (69)
+                         n→∞       n→∞                 P     2
+Generating the encoder ϕ(n) randomly according to the distribution
+
+                           Prc(n) (ϕ(n) ) = P̂ (n) (ϕ(n) (1)) · · · P̂ (n) (ϕ(n) (N)),
+
+we see that there exists a code Φ(n) for W (n)↾c(n) ,γ of size N satisfying
+               X                  h     n                        oi
+                                    (n)   (n)
+Pe [Φ(n) ] ≤ 2      P̂ (n) (xn )Tr Wxn Wxn − ena WP ⊗n ≤ 0
+              xn ∈X̂ (n)
+                    X                           h       X                                n                    oi
+                                                                                 (n)      (n)
+         + 4N                  P̂ (n) (xn )Tr                      P̂ (n) (xn′ )Wxn′      Wxn − ena WP ⊗n > 0
+                  xn ∈X̂ (n)                        xn′ ∈Xˆ(n)
+             2       X                 h     n             oi
+                                (n) n    (n)   (n) na ⊗n
+         ≤                     P (x )Tr Wxn Wxn − e WP ≤ 0
+             Kn
+                  xn ∈X̂ (n)
+                    X                           h 1                          i
+         + 4N                  P̂ (n) (xn )Tr        WP ⊗n Wxn − ena WP ⊗n > 0
+                                                  Kn
+                  xn ∈X̂ (n)
+             2 X (n) n                                  4
+         ≤              P (x )Tr Wxn Wxn − ena WP ⊗n ≤ 0 +    Ne−na .
+             Kn xn ∈X n                                    Kn
+
+              ~ = {P (n) } and recalling (69) we have
+Thus, letting P
+
+                                   C( ~            ~, ~
+                                     W ↾~c,γ ) ≥ I(P W ) = I(P, W ),                                        (70)
+
+where the last equality follows from (43). We have thus proved (67).
+                                ~
+Remark 22 For the sequence P̂ = {P̂ (n) } defined from a P ∈ Pc,γ (X ) by (68), the
+general formula (7) implies that
+                 ~
+   W ↾~c,γ ) ≥ I(P̂ , ~
+ C( ~                W)
+                                        X                         h     n                   oi
+                                                                    (n)   (n)      (n)
+             = sup {a | lim                         P̂ (n) (xn )Tr Wxn Wxn − ena WP̂ (n) ≤ 0 = 0}
+                                n→∞
+                                      xn ∈X̂ (n)
+                                        X                           h     n                 oi
+                                                        (n)    n      (n)   (n) na (n)
+             ≥ sup {a | lim                         P         (x )Tr Wxn Wxn − e WP̂ (n) ≤ 0 = 0}
+                                n→∞
+                                      xn ∈X (n)
+                                                                               n       o
+                 ~,~                                                               (n)
+             = J(P σ, ~      ~ = P (n)
+                     W ) for P                                           and ~
+                                                                             σ = WP̂ (n) ,
+
+where the second inequality follows from (69). So, if we could use I(P      ~,W~ ) =
+min~σ J(P~,~
+           σ, W~ ), which is merely a conjecture at present (see Remark 6), the in-
+equality in (70) could be derived from the general formula as in the classical case.
+
+                                                               27
+      Let us proceed to the proof of the strong converse part
+                                      ~ ↾~c,γ ) ≤
+                                 C † (W                sup         I(P, W )            (71)
+                                                    P ∈Pc,γ (X )
+
+                                                               ~
+                                                           x ∈ X̂ = {X̂ (n) },
+under the assumption that dim H < ∞. We claim that for any ~
+                (n)
+where Xˆ (n) = Xc(n) ,γ , and any σ ∈ S(H),
+
+                             ~ ~x k ~
+                           D(W      σ) ≤             sup       J(P, σ, W ),            (72)
+                                                P ∈Pc,γ (X )
+
+                    (n)
+       ~ ~x = {Wxn } and ~
+where W                    σ = {σ ⊗n }. We only need to show this for σ such that
+Im σ ⊃ Im Wx for ∀x ∈ supp(P ), ∀P ∈ Pc,γ (X ), since the RHS is ∞ otherwise. For
+any xn ∈ X̂ (n) and any real numbers a and 0 ≤ s ≤ 1, it follows from (48) that
+        h     n           oi    h       1X
+                                            n
+                                                      1+s −s i
+          (n)   (n) na ⊗n
+      Tr Wxn Wxn − e σ > 0 ≤ exp −n as −       log Tr Wxi σ
+                                         n i=1
+                                             ≤ exp [−n (as − ψ(s))] ,                  (73)
+
+where                                        X                            
+                           def
+                      ψ(s) =         sup            P (x) log Tr Wx1+s σ −s .
+                                 P ∈Pc,γ (X ) x∈X
+
+Let
+                            def
+                  Pc,γ,2 (X ) = {P | P ∈ Pc,γ (X ) and |supp(P )| ≤ 2},
+where |supp(P )| denotes the number of elements of the support of P . Then a similar
+argument to section IV of [18] is applied to prove that Pc,γ (X ) is the convex hull of
+Pc,γ,2(X ); see Appendix II. Hence we have
+                                     X                          
+                    ψ(s) =    sup         P (x) log Tr Wx1+s σ −s .
+                               P ∈Pc,γ,2 (X ) x∈X
+
+                           = max g(s, ω),
+                                 ω∈Ω̄
+
+where Ω̄ is the compact subset of [0, 1] × S(H)2 defined as the closure of
+         
+   Ω = (λ, Wx1 , Wx2 ) | 0 ≤ λ ≤ 1, (x1 , x2 ) ∈ X 2 , λc(x1 ) + (1 − λ)c(x2 ) ≤ γ ,
+
+and
+                               def
+              g(s, (λ, ρ1, ρ2 )) = λ log Tr [ρ1+s −s                   1+s −s
+                                              1 σ ] + (1 − λ) log Tr [ρ2 σ ].
+
+A similar argument to the derivation of (51) is applied to (73) so that we have
+                          h      n                    oi
+                             (n)    (n)
+                  lim Tr Wxn Wxn − ena σ ⊗n > 0 = 0
+                     n→∞
+                                        ∂
+                     for ∀a > max          g(ω, 0) = sup J(P, σ, W ),
+                                   ω∈Ω̄ ∂s          P ∈Pc,γ (X )
+
+
+
+                                                    28
+which proves the claim (72). Now the strong converse (71) is derived as follows:
+
+           C †( ~
+               W ↾~c,γ ) = max              ~,~
+                                     min J (P σ, ~
+                                                W)
+                              ~ σ∈S( ~ H)
+                                       ~
+                            P(X̂ ) ~
+                          ~∈~
+                          P
+
+                      ≤ min               ~,~
+                                    max J(P    ~ )
+                                            σ, W
+                          σ∈ ~
+                          ~ S( ~
+                               H) P
+                                  ~ ∈P( ~
+                                     ~ X̂ )
+                                  ~ ~x k ~
+                      = min max D(W      σ)
+                          σ∈ ~
+                          ~ S( ~
+                               H) ~ ~
+                                  x∈X̂
+                                  ~ ~x k ~
+                      ≤ min max D(W              σ = {σ ⊗n }
+                                         σ) with ~
+                          σ∈S(H) ~ ~
+                                 x∈X̂
+                      ≤ min          sup        J(P, σ, W )
+                          σ∈S(H) P ∈Pc,γ (X )
+
+                      =      sup        min J(P, σ, W ) =        sup         I(P, W ),
+                          P ∈Pc,γ (X ) σ∈S(H)                 P ∈Pc,γ (X )
+
+
+where we have invoked the fact that similar relations to (47) hold for the present
+situation.
+
+
+9    Concluding remarks
+We have obtained a general formula for capacity of classical-quantum channels to-
+gether with a characterization of the strong converse property by extending the
+information-spectrum method to the quantum setting. The general results have
+been applied to stationary memoryless case with or without cost-constraint on in-
+puts, whereby new simple proofs have been given to the corresponding coding the-
+orems. Among many open problems concerning the present work, we would recall
+here only the following two; one is the problem mentioned in Remark 6 and the other
+is how to analyze (if possible) asymptotics of the quantum information spectrum di-
+rectly, not by way of the theory of quantum hypothesis testing. These problems will
+be important toward further developement of the quantum information-spectrum
+method.
+
+
+Acknowledgment
+The authors are grateful to an anonymous referee and Prof. T.S. Han for useful
+comments on the history of Feinstein’s lemma.
+
+
+
+
+Appendix
+Appendix I         Proof of Lemma 1
+
+                                                29
+                                              def
+     Let us begin with the attainability of c = supf~ [f~]−
+                                                          x . We assume −∞ < c < ∞
+                                                                 (k)
+first. Then for every natural number k there exists f~ = {fn }∞
+                                                         (k)               ~
+                                                                     n=1 ∈ F such that
+[f~ ] > c − . This implies that
+   (k)
+     x
+       −
+             k
+               1
+
+                                                   
+                                                  1
+                              lim sup fn(k)    c−     ≤ x,
+                                n→∞               k
+
+and hence there exists nk such that for any n ≥ nk ,
+                                          
+                                (k)      1         1
+                              fn     c−      ≤x+ .
+                                         k         k
+
+Let us choose {nk } to satisfy nk < nk+1 (∀k). Then every n uniquely determines
+                                                                             def
+a number k such that nk ≤ n < nk+1 , which we denote by k = kn . Letting fn∗ =
+ (k )             def
+fn n ∈ Fn and f~∗ = {fn∗ }∞       ~
+                          n=1 ∈ F, we have
+                                        
+                                ∗     1         1
+                              fn c −       ≤x+ .
+                                      kn        kn
+
+This implies that lim supn→∞ fn∗ (c − ε) ≤ x for any ε > 0, and therefore we have
+[f~∗ ]−               ~−
+      x = c = supf~ [f ]x . Next, let us consider the case when c = ∞. Then for
+                                                   (k)
+every natural number k there exists f~(k) = {fn }∞            ~
+                                                       n=1 ∈ F such that [f
+                                                                           ~(k) ]− > k,
+                                                                                 x
+which implies the existence of a number nk such that for any n ≥ nk we have
+  (k)
+fn (k) ≤ x + k1 . Then a similar argument to the previous one is applicable to
+construction of a sequence f~∗ = {fn∗ } ∈ F~ satisfying lim supn→∞ fn∗ (k) ≤ x for any
+k, and therefore we have [f~∗ ]−                  ~−
+                                x = ∞ = supf~ [f ]x . The remaining case c = −∞ is
+trivial, since this means that [f~]−                ~ ~
+                                   x = −∞ for all f ∈ F .
+                                              def
+     Let us proceed to the attainability of c = sup ~ [f~]+ ,. Assume −∞ < c < ∞.
+                                                      f      x
+Then for every k there exists f~(k) = {fn }∞                     ~(k) ]+ > c − 1 . This
+                                          (k)        ~
+                                              n=1 ∈ F such that [f     x       k
+implies that                                      
+                                      (k)        1
+                             lim inf fn      c−      < x,
+                               n→∞               k
+and hence there exists a δk > 0 such that the set
+                                                        
+                            def      (k)     1
+                        Ak = n fn         c−      ≤ x − δk
+                                             k
+
+has infinitely many elements. Let {Bk }∞ k=1 be a family of subsets Bk ⊂ Ak such that
+|Bk | = ∞ and Bk ∩ Bl = φ for ∀k 6= ∀l, and let f~∗ = {fn∗ }∞n=1 be defined by
+                                    (k)
+                 ∗                 fn                  if n ∈ SBk ,
+                fn =
+                        an arbitrary element of Fn if n 6∈ k Bk .
+
+
+                                              30
+                                        
+Then for every k the set {n | fn∗ c − k1 ≤ x − δk } includes Bk as a subset and hence
+has infinitely many elements. This leads to lim inf n→∞ fn∗ (c − ε) < x for any ε > 0,
+and therefore we have [f~∗ ]+                 ~+
+                             x = c = supf~ [f ]x . The case c = ∞ can be proved
+similarly, and the case c = −∞ is trivial.
+                                                                          def
+    Letting Gn be the set of monotonically nondecreasing functions gn (a) = −fn (−a)
+for fn ∈ Fn , we have
+
+                 inf [f~]−          g ]+
+                         x = − sup [~  −x   and   inf [f~]+          g ]−
+                                                          x = − sup [~  −x .
+                ~ ~
+                f∈F                ~              ~ ~
+                                                  f∈F                ~
+                               ~g ∈G                             ~g ∈G
+
+
+The attainability of the infimums thus follows from that of the supremums.
+
+
+Appendix II           Proof that Pc,γ (X ) is the convex hull of Pc,γ,2 (X )
+
+    Let P be an arbitrary distribution in Pc,γ (X ), and let RP denote the subset of
+Pc,γ (X ) consisting of all distributions P ′ satisfying EP ′ [c] = EP [c] and supp(P ′ ) ⊂
+supp(P ). Since RP is convex and compact, the element P of RP can be represented
+as a convex combination of extreme points of RP . Hence it suffices to show that
+the support of every extreme pointPof RP has at most two elements. Suppose that
+                                        k
+a P ′ ∈ RP is written as P ′ =                                                         ′
+                                        i=1 λi δxi , where {x1 , . . . , xk } = supp(P ) and
+    def
+λi = P ′ (xP i ) > 0. If k ≥ 3,Pthere   exists a nonzero real vector (α1 , . . . , αk ) ∈ Rk
+                k                 k
+such that i=1 αi = 0 and i=1 αi c(xi ) = 0. Then, for a sufficiently small ε > 0,
+        P                           P
+P1 = ki=1 (λ + εαi ) δxi and P2 = ki=1 (λ − εαi ) δxi become two distinct distributions
+in RP and satisfy P ′ = 12 (P1 + P2 ), which means that P ′ is not extreme. Therefore,
+if P ′ is an extreme point then k = | supp(P ′)| ≤ 2.
+
+
+References
+ [1] A.S. Holevo, “The capacity of the quantum channel with general signal states,”
+     IEEE Trans. Inform. Theory, vol.44, 269–273, 1998.
+
+ [2] B. Schumacher and M.D. Westmoreland, “Sending classical information via
+     noisy quantum channels,” Phys. Rev. A, vol.56, 131–138, 1997.
+
+ [3] A.S. Holevo, “Bounds for the quantity of information transmitted by a quantum
+     communication channel,” Probl. Inform. Transm., vol.9, 177–183, 1973.
+
+ [4] A.S. Holevo, “On the capacity of quantum communication channel,” Probl. In-
+     form. Transm., vol. 15, no. 4, pp. 247–253, 1979.
+
+ [5] S. Verdú and T.S. Han, “A general formula for channel capacity,” IEEE Trans.
+     Inform. Theory, vol.40, 1147–1157, 1994.
+
+
+                                            31
+ [6] T.S. Han, Information-Spectrum Methods in Information Theory, Springer-
+     Verlag, 2003. (The original Japanese edition was published from Baifukan-Press,
+     Tokyo, in 1998.)
+
+ [7] A. Winter, “Coding theorem and strong converse for quantum channels,” IEEE
+     Trans. Inform. Theory, vol.45, 2481-2485, 1999.
+
+ [8] A. S. Holevo, “An analog of the theory of statistical decisions in noncommuta-
+     tive theory of probability,” Trudy Moskov. Mat. Obšč., vol. 26, 133-149 1972.
+     (English translation is Trans. Moscow Math. Soc., vol. 26, 133-149 1972.)
+
+ [9] C.W. Helstrom, Quantum Detection and Estimation Theory, Academic Press,
+     New York, 1976.
+
+[10] H. Nagaoka and M. Hayashi, “An information-spectrum approach to classical
+     and quantum hypothesis testing,” LANL e-print quant-ph/0206185, 2002.
+
+[11] F. Hiai and D. Petz, “The proper formula for relative entropy and its asymptotics
+     in quantum probability,” Commun. Math. Phys., vol. 143, 99–114, 1991.
+
+[12] T. Ogawa and H. Nagaoka, “Strong converse and Stein’s lemma in quantum hy-
+     pothesis testing,” IEEE Trans. Inform. Theory, vol.46, 2428-2433, 2000. LANL
+     e-print quant-ph/9906090, 1999.
+
+[13] T. Ogawa, “A study on the asymptotic property of the hypothesis testing and
+     the channel coding in quantum mechanical systems,” Ph.D. dissertation, Uni-
+     versity of Electro-Communications, 2000 (In Japanese).
+
+[14] T. Ogawa and H. Nagaoka, “A New Proof of the Channel Coding Theorem
+     via Hypothesis Testing in Quantum Information Theory,” Proc. 2002 IEEE
+     International Symposium on Information Theory, p.73. 2002.
+
+[15] T. Ogawa and H. Nagaoka, “Strong Converse to the Quantum Channel Coding
+     Theorem,” IEEE Trans. Inform. Theory, vol.45, 2486-2489, 1999.
+
+[16] A.S. Holevo, “Coding theorems for quantum channels,” LANL e-print
+     quant-ph/9809023, 1998.
+
+[17] A.S. Holevo, “Problems in the mathematical theory of quantum communication
+     channels,” Rep. Math. Phys., vol.12, no.2, pp.273-278, 1977.
+
+[18] A. Fujiwara and H. Nagaoka, “Operational capacity and pseudoclassicality of a
+     quantum channel,” IEEE Trans. Inform. Theory, vol.44, 1071–1086, 1998.
+
+[19] C.E. Shannon, “Certain results in coding theory for noisy channels,” Information
+     and Control vol.1, 6–25, 1957.
+
+
+
+                                         32
+[20] D. Blackwell, L. Breiman and A.J. Thomasian, “The capacity of a class of
+     channels,” Ann. Math. Statist, vol.30, 1229–1241, 1959.
+
+[21] A. Feinstein, “A new basic theorem of information theory,” IRE Trans. PGIT,
+     vol.4, 2–22, 1954.
+
+[22] S. Osawa and H. Nagaoka, “Numerical experiments on the capacity of quan-
+     tum channel with entangled input states,” IEICE Trans., vol.E84-A, 2583–2590,
+     2001.
+
+[23] P.W. Shor, “Additivity of the classical capacity of entanglement-breaking quan-
+     tum channels,” LANL e-print quant-ph/0201149, 2002.
+
+[24] C. King, “Additivity for a class of unital qubit channels,” LANL eprint
+     quant-ph/0103156, 2001 (Jour. Math. Phys., in press).
+
+[25] C. King, “The capacity of the quantum depolarizing channel,” LANL eprint
+     quant-ph/0204172, 2002.
+
+[26] A. Uhlmann, “Entropy and Optimal Decompositions of States Relative to a
+     Maximal Commutative Subalgebra,” Open Systems & Information Dynamics,
+     vol.5, 209–228, 1998.
+
+[27] T. Ogawa and M. Hayashi, “On error exponents in quantum hypothesis testing,”
+     LANL e-print quant-ph/0206151, 2002.
+
+[28] M. Ohya, D. Petz and N. Watanabe, “On capacities of quantum channels,” Prb.
+     Math. Stat., vol.17, 179–196, 1997.
+
+[29] B. Schumacher and M.D. Westmoreland, “Optimal signal ensembles,” Phys.
+     Rev. A, vol 63, no.2, 022308, Jan. 2001.
+
+[30] I. Csiszár and J. Körner, Information Theory: Coding Theorems for Discrete
+     Memoryless Systems, Academic Press, 1981.
+
+[31] R. G. Gallager, Information Theory and Reliable Communication, John Wiley
+     & Sons, 1968.
+
+[32] I. Ekeland and R. Téman, Convex Analysys and Variational Problems, North-
+     Holland, 1976; SIAM, 1999.
+
+[33] A. S. Holevo, “On quantum communication channels with constrained inputs,”
+     LANL e-print quant-ph/9705054, 1997.
+
+
+
+
+                                        33
+
