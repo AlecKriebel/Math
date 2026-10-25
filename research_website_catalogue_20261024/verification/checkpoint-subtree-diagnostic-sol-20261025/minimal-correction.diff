@@ -1,0 +1,20 @@
+--- scripts/checkpoint_subtree.py
++++ scripts/checkpoint_subtree.py
+@@ -41,7 +41,7 @@
+     git('read-tree','--empty',env=env)
+     git('read-tree','--prefix='+PROGRAM.name+'/',parent+':'+PROGRAM.name,env=env)
+     git('add','--',PROGRAM.name+'/',env=env)
+-    files=value('diff','--cached','--name-only',parent,'--',PROGRAM.name+'/',env=env).splitlines()
++    files=value('diff','--cached','--name-only','--no-renames',parent,'--',PROGRAM.name+'/',env=env).splitlines()
+     if not files:
+         print('No new programme changes');raise SystemExit(0)
+     if not all(p.startswith(PROGRAM.name+'/')for p in files):raise RuntimeError('Scope escape')
+@@ -63,7 +63,7 @@
+     actual_entries=entries(tree)
+     if actual_entries!=root_entries:raise RuntimeError('Root tree composition differs')
+     if {k:v for k,v in actual_entries.items()if k!=key}!={k:v for k,v in parent_entries.items()if k!=key}:raise RuntimeError('Sibling tree modified')
+-    actual_files=value('diff-tree','-r','--no-commit-id','--name-only',parent,tree).splitlines()
++    actual_files=value('diff-tree','-r','--no-commit-id','--name-only','--no-renames',parent,tree).splitlines()
+     if sorted(actual_files)!=sorted(files):raise RuntimeError('Full-tree changes differ from scoped changes')
+     if digest_file(shared_index)!=shared_sha or value('rev-parse','HEAD')!=local_head or value('branch','--show-current')!=branch:raise RuntimeError('Shared checkout changed')
+     receipt={'utc':datetime.now(timezone.utc).isoformat(),'parent':parent,'tree':tree,'files':len(files),'scope':PROGRAM.name,'strategy':'programme-only version4 isolated index plus exact sibling-preserving parent-root composition','temporary_index_bytes':Path(index).stat().st_size,'sibling_root_entries_preserved':len(parent_entries)-1,'shared_index_sha256_before_and_after':shared_sha,'local_branch_and_shared_index_unchanged':True,'dry_run':dry}

@@ -384,3 +384,7 @@ Root accepted complete private3stage +independentchecker correction after readon
 ## 2026-10-25T14:48:01.766688+00:00 — low-space checkpoint recovery
 
 Original repository-wide temporary index write ran out of disk; no branch/sharedindex/source/evidence deletion occurred. New programme-only v4 isolated index uses1,769,361bytes, composes exactlyonechangedprogramme subtree into the authenticatedparent root, preserving all158 siblingroot entries. Actualdryrunfulltree1323changesareallprogramme-only; sharedindexhashunchanged and mainpreserved. Originalcheckpointscript unchanged. Browserconnection separatelyrestored to sameChromeextension/currentbrowser3, soleuserSheet963521366; pendingdownloads resumeadditively. Bestguessnativefinalized68/203=33.50%, scientific75/203=36.95%; all203ongoing.
+
+## 2026-10-25T14:53:44.144704+00:00 — complete shortest-path-blocking root review
+
+Root fullyreadall3finalreports/customverdicts, actualwhole4pp/source and sealeduniversalproof, exactKrause/Poljak/Khachiyan interfaces and laterFerudun11pp (truncatedmiddleclosedbyseparateactualPDF3–6read). All2091boundfiles and50outerZIP+7nestedtaroccurrences independentlyauthenticated; fulltheorem/rationalcost/finite/exact4variantscleared withoutrepair orpriorityclaim. Science76/203=37.44%; nativefinalized68/203=33.50% stillauthoritative62published. Completednewcheckpointebd3 used1.77MiBindex/all158siblingspreserved. Browserstillmissing5saveddownloads, AA94–96blank. All203goalongoing.

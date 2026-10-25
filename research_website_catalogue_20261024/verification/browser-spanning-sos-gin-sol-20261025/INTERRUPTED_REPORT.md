@@ -1,0 +1,11 @@
+# Interrupted Spanning/SOS/Gin browser evidence
+
+The first session completed actual desktop/390 article views for all three papers, all12 genuine title-link/Research-return events to the65-entry index, complete6body/66section/all-anchor/schema comparisons, embedded readers, and actual full-window native4/5/6page counts/fits/properties.64raw frames are retained;4are excluded(one delayed SOS view and3blank native resize frames). Dark partial reader regions supply no positive PDF evidence.
+
+One actual article-link download completed: /Users/alec/Downloads/root_dependent_spanning_trees.pdf,57772B,SHA256 f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4, matching source and installed site. Five downloads and verified cleanup were pending when the next fresh archive-tab creation timed out. CUA reset its kernel; the required new inventory returned no browsers and a closed transport. No duplicate creation, browser reselection, settings/cache/security workaround or original-tab action followed.
+
+The original11 inventory is ignored/private. Four known owned IDs are963521000,963521003,963521006 and963521009; the interrupted create call has an unknown outcome. This packet makes no claim that the agent closed these or preserved the original11 at the later reconnect. Native-link events lost from unflushed runtime memory are separately bound to retained actual native AX/capture metrics and actual link activations in the tool conversation, with no invented activation times.
+
+All686fresh504-era inputs were unchanged after interruption. This snapshot preserves the actual positive/failed evidence, setup/comparison-adapter failures and remaining boundary. It is not a full completed browser/download gate. Root subsequently provided a fresh evidenced grant: same Chrome Person1 extension f3bb8740-9481-4d2a-95f4-a2cfff40edc5 reconnected as browser3 with only current Sheet tab963521366; previous original/owned IDs absent. No restoration/recreation of old tabs is authorized. Additive recovery will be recorded only in reconnection-finish-20261025. Original interrupted artifacts remain immutable.
+
+No source/config/content/shared core/native/Git/deploy/outreach writes occurred. The bounded publication presentation gate is85% complete at this interruption; overall203 work remains ongoing.

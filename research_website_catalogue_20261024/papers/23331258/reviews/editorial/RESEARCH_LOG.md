@@ -1,0 +1,7 @@
+# Private editorial log — row101
+
+2026-10-25T15:02:05.700126+00:00 — 25%: Authenticated current root clearance, fully read root review and all three complete final family reports/native verdicts, full controlling TeX and current source/transport/custody shapes. Configs and editorial folder were absent. Preserved actual PDF-then-ZIP order, correcting parent shorthand with root confirmation. Original ZIP-only nested0 retained alongside complete additive50+7tar evidence. Baseline frozen with 2221 exact existing files; no shared/site snapshot or source rewrite.
+
+2026-10-25T15:03:39.535991+00:00 — 65%: Whole original abstract and full theorem/corollaries, positive Krause/Poljak/Khachiyan/Ferudun credit, actual licenses, complete4page reader/support/BibTeX requirements and new publication/promotion configs prepared. Original50-member archive and separate7-body tar map retained whole, with actual PDF→ZIP asset order. No renderer, HTTP, source suite or publication action.
+
+2026-10-25T15:06:32.425210+00:00 — 90%: Complete public copy and actual license checked against manuscript/README; exact Dvořák–Knop v1 title confirmed from existing titlepage. Read-only static verifier passes58/58checks including full original objects, four-page reader, original50+7archive bodies and all2,221baseline files unchanged. Whole read/custody ledgers and private verdict prepared. Final report and immutable seal pending; no old numerical suite repeated.

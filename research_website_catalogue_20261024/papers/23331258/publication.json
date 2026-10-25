@@ -1,0 +1,1084 @@
+{
+  "title": "NP-completeness of three-terminal shortest-path blocking",
+  "slug": "three-terminal-shortest-path-blocking",
+  "description": "Deleting edges to raise all three terminal distances is NP-complete, even with unit costs and distances three. Read the full paper and source.",
+  "abstract": "We prove that, in a finite simple undirected graph with unit edge lengths, finding a minimum edge set whose deletion increases all three distances between three specified terminals by at least one is NP-hard. The budget decision problem is NP-complete even when all deletion costs are one and all three original terminal distances are three. A direct reduction from Vertex Cover passes through a tripartite graph and identifies its vertex-cover number with the minimum shortest-path blocker size. The construction also gives NP-completeness when the terminal distances must remain finite, or must increase exactly from three to four. This provides a classification of the undirected triangle question posed by Krause in 2005, without asserting bibliographic first priority.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "plain_language": [
+    "Three marked vertices in a graph give three pairs to connect. The question asks for the cheapest set of edges to delete so that the shortest route for every pair becomes at least one edge longer. All edges have length one, and any edge may be deleted.",
+    "The paper proves that the budget decision problem is NP-complete even when every deletion costs one and all three original shortest routes have length three. It also proves hardness when the terminal pairs must stay connected or their distances must become exactly four.",
+    "A proposed deletion set can be checked in polynomial time, but an exact polynomial-time algorithm for every input would imply P=NP. In the main model a disconnected terminal pair has infinite distance and satisfies the increase requirement. Deletion prices and route lengths are different attributes."
+  ],
+  "result": [
+    "Let G be a finite simple undirected graph with unit traversal lengths and three distinct terminals r, s and t that are initially pairwise connected. All three unordered terminal pairs are demands. A blocker F may delete any edges and must satisfy d(G−F;x,y)≥d(G;x,y)+1 for every demand pair, with infinity greater than every finite distance.",
+    "Given a nonnegative binary integer budget B, deciding whether such an F has |F|≤B is NP-complete, even when every deletion cost is one and all three original terminal distances are three. Exact optimization is NP-hard. The decision version with positive binary-encoded rational deletion costs and a rational budget is also NP-complete.",
+    "The unit-cost decision problem remains NP-complete when all final terminal distances must remain finite, and when each must increase exactly from three to four. These variants guarantee terminal connectivity; they do not require every remaining vertex to lie in one connected component.",
+    "All edges, including terminal spokes, internal construction edges and added backup edges, remain deletable. The result imposes no protected-edge or spoke-only restriction. Its reduction covers arbitrary input sizes and binary budgets without expanding the numeric budget into the graph."
+  ],
+  "why_it_works": [
+    "Start from a Vertex Cover instance Q with n vertices and m edges. Replace each edge u−v by a private path u−b−c−v. The resulting tripartite graph H satisfies τ(H)=m+τ(Q). This is the vertex-cover form of Poljak’s classical subdivision identity, and the paper supplies both directions of its proof.",
+    "Attach a new terminal to each of the three parts of H. Every original terminal geodesic is a spoke, one H-edge and a second spoke. A vertex cover gives a blocker by deleting its spokes. Conversely, from any blocker choose the vertex of each deleted spoke and one endpoint of each deleted H-edge. These choices form a cover of size at most the blocker, proving opt(G_H)=τ(H) with arbitrary edge deletions.",
+    "With budget B=m+k, the two identities preserve the Vertex Cover answer. For m≥1 the graph has n+2m+3 vertices, n+5m edges and all three terminal distances equal to three. A fixed valid yes-instance handles edgeless source graphs. The graph size is independent of the magnitude of binary k.",
+    "For the finite-distance and exact-four variants, add a private four-edge backup path between each terminal pair, using nine new internal vertices. No new path of length at most three appears. Any blocker must still hit the old geodesics, while a cover’s spoke deletions leave every backup intact and all three distances exactly four. Krause’s earlier expensive-edge added-path mechanism is credited; this note proves the unrestricted unit-cost specialization directly.",
+    "An edge-deletion list, shortest-path searches and exact cost comparisons give polynomial certificates. Positive rational costs inherit hardness from the unit-cost subclass; no weighted spoke-rounding identity is asserted. The finite exact diagnostics accompany the universal written proof."
+  ],
+  "limitations": [
+    "The theorem concerns finite simple undirected graphs with unit traversal lengths, all three terminal demands and unrestricted edge deletion. It does not claim planar, bounded-degree, weighted-traversal-length or globally connected residual-graph classifications. Directed demands and full-disconnection multicuts require separate model comparisons.",
+    "Vertex Cover NP-completeness is the classical complexity input. The paper proves its particular cover, geodesic and backup-path identities directly. Poljak’s subdivision result, Khachiyan and coauthors’ related tripartite attachment, and Krause’s earlier added-path exact-one transfer receive explicit credit.",
+    "Krause’s historical sources record the undirected triangle question and separately treat the directed case. A historical open statement is not a claim that the question remained open until this work. The original Bienstock–Díaz body was unavailable; its proposal attribution is through Krause. Broader cut-paper interfaces were read without certifying every auxiliary proof or final journal body.",
+    "Alper Ferudun’s related preprint addresses the same general classification through Three-Terminal Cut, with deletion-cost instances at initial distance four and unit-cost bundle instances at distance six. It does not treat exact-one increase. It is positively credited without certifying its entire external proof, archive or solver dependencies.",
+    "This record declares 12 October 2026 and was created on 13 October. Ferudun’s related record declares 13 October and was created on 14 October. These observed dates establish neither worldwide firstness nor independent origin, copying or a relationship between the works. Historical priority and present worldwide openness are not certified."
+  ],
+  "background": [
+    {
+      "title": "Stefan Krause (2005 workshop; report published 2006), Increasing distances in graphs",
+      "url": "https://doi.org/10.4171/OWR/2005/50",
+      "note": "The contribution on printed pages 2856–2858 states the undirected three-pair triangle question with unit traversal lengths and deletion costs. Historical open status does not certify current openness."
+    },
+    {
+      "title": "Stefan Krause (2006), Increasing Distances in Graphs, Section 4.3",
+      "url": "https://webdoc.sub.gwdg.de/ebook/dissts/Braunschweig/Krause2006.pdf#page=42",
+      "note": "The dissertation defines the undirected blocking model and infinity convention. Section 4.3 is the triangle case; directed Theorem 9.3 is a separate result. Attribution to Bienstock–Díaz is mediated through these actual Krause sources because the original body was unavailable."
+    },
+    {
+      "title": "Stefan Krause (2006), Section 9.2, exact-one transfer by added paths",
+      "url": "https://webdoc.sub.gwdg.de/ebook/dissts/Braunschweig/Krause2006.pdf#page=93",
+      "note": "Earlier added-path machinery transfers distance-increase hardness to exact-one increase using expensive edges. That mechanism is credited; the present note supplies its own arbitrary-deletion, unrestricted unit-cost backup-path proof."
+    },
+    {
+      "title": "Richard M. Karp (1972), Reducibility among combinatorial problems",
+      "url": "https://doi.org/10.1007/978-1-4684-2001-2_9",
+      "note": "The Main Theorem and Node Cover entry supply the classical NP-completeness input. Both subsequent graph identities are proved in the note."
+    },
+    {
+      "title": "Svatopluk Poljak (1974), A note on stable sets and colorings of graphs",
+      "url": "https://dml.cz/handle/10338.dmlcz/105554",
+      "note": "Printed page 308 gives the two-subdivision stable-set identity, equivalent to the vertex-cover identity τ(H)=m+τ(Q). The current paper explicitly credits this classical result."
+    },
+    {
+      "title": "Khachiyan, Boros, Borys, Elbassioni, Gurvich, Rudolf and Zhao (2008), On short paths interdiction problems: total and node-wise limited interdiction",
+      "url": "https://doi.org/10.1007/s00224-007-9025-6",
+      "note": "Section 6 supplies a related tripartite attachment in a protected-vertex, vertex-deletion, one-terminal-pair, zero/one-length model. The present note credits the mechanism and proves its different edge-deletion/unit-length/three-demand transfer."
+    },
+    {
+      "title": "Baier and coauthors, Length-Bounded Cuts and Flows, author manuscript",
+      "url": "https://kam.mff.cuni.cz/~kolman/papers/acmlcuts.pdf",
+      "note": "Provides a broader length-bounded-cut framework. The inspected introductory interfaces are not an automatic hardness theorem for this three-terminal distance-three restriction; complete auxiliary proofs and final journal identity were not re-audited."
+    },
+    {
+      "title": "Dvořák and Knop (2015), Parameterized complexity of length-bounded cuts and multi-cuts, v1",
+      "url": "https://arxiv.org/abs/1511.02801v1",
+      "note": "The inspected parameterized multi-terminal interfaces concern broader distance constraints. They are not substituted for the proof of the precise three-demand unit-length theorem here."
+    },
+    {
+      "title": "Alper Ferudun (2026), Blocking Shortest Paths between Three Terminals Is NP-Hard: A Reduction from Three-Terminal Cut, version 1.0",
+      "url": "https://doi.org/10.5281/zenodo.23358810",
+      "note": "Related same-classification preprint using Three-Terminal Cut, costed bipartite distance-four and unit-cost distance-six bundle constructions, without the exact-one variant. It declares 13 October and was created 14 October; this record declares 12 October and was created 13 October. The citation certifies neither worldwide priority, author relationship nor the complete external proof/support."
+    }
+  ],
+  "ai_disclosure": "AI tools were used extensively in constructing and reconstructing the proof, literature work, computational checks, adversarial review and writing. Independent AI-agent review is not independent human peer review. This unrefereed preprint has no journal acceptance or formal proof-assistant certification. Alec Kriebel is the named human author and is responsible for the work. Finite diagnostics supplement the universal written proof.",
+  "collaboration": "Independent proof checks, counterexamples and precise model or prior-work comparisons are welcome. Developing a journal submission would require substantive research contributions. Authorship and acknowledgments would reflect actual contributions and mutual agreement; citations imply no participation or endorsement.",
+  "follow_up": null,
+  "followup_rationale": "Default none; root clearance approves no substantial follow-up.",
+  "AA": null,
+  "canonical_url": null,
+  "publication_date": "2026-10-12",
+  "version": "1.0",
+  "version_field_present": true,
+  "doi": "10.5281/zenodo.23331258",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "three-terminal-shortest-path-blocking-v1.0.pdf",
+  "pdf_pages": 4,
+  "supplement_filename": "three-terminal-bsp-source-verification-v1.0.zip",
+  "supplement_label": "Complete original source and verification archive (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original complete PDF",
+      "url": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete source and verification ZIP",
+      "url": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content"
+    }
+  ],
+  "status": "Unrefereed research note, version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.",
+  "license": "CC BY 4.0 for authored manuscript, proofs, code and audits in the deposit",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_note": "The complete unchanged archive retains its original README license statement and per-file notices; external references retain their own terms.",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0",
+  "edition_note": "Manuscript and declared publication date: 12 October 2026; version 1.0.",
+  "reader_intro": "Read the complete 4-page deposited paper in the on-page PDF reader.",
+  "bibtex_note": "Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification",
+  "prepared_bibtex": "@misc{Kriebel2026ThreeTerminalShortestPathBlocking,\n  author = {Kriebel, Alec},\n  title = {NP-completeness of three-terminal shortest-path blocking},\n  year = {2026},\n  month = {oct},\n  day = {12},\n  date = {2026-10-12},\n  version = {1.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23331258},\n  url = {https://zenodo.org/records/23331258},\n  note = {Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": 23331258,
+    "concept_record_id": "23331257",
+    "record_url": "https://zenodo.org/records/23331258",
+    "doi": "10.5281/zenodo.23331258",
+    "version": "1.0",
+    "version_field_present": true,
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "zenodo_publication_date": "2026-10-12",
+    "manuscript_date": "2026-10-12",
+    "record_created_utc": "2026-10-13T04:14:08.648156+00:00",
+    "record_updated_utc": "2026-10-13T04:14:09.125327+00:00",
+    "metadata_path": "sources/normalized-metadata.json",
+    "metadata_sha256": "f1ff2696a3b2ece16549bc63b0b2e5b2757dd3f4be0f236f33d2002781826fef",
+    "metadata_original": {
+      "utc": "2026-10-25T08:25:39.213854+00:00",
+      "derived_from_raw": "record.raw.json/latest.raw.json/versions.raw.json; native shapes preserved unchanged",
+      "record_id": 23331258,
+      "title": "NP-completeness of three-terminal shortest-path blocking",
+      "version": "1.0",
+      "publication_date": "2026-10-12",
+      "created": "2026-10-13T04:14:08.648156+00:00",
+      "updated": "2026-10-13T04:14:09.125327+00:00",
+      "doi": "10.5281/zenodo.23331258",
+      "conceptrecid": "23331257",
+      "latest_record_id": 23331258,
+      "versions_total": 1,
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "17c866bd-ba3a-44ef-ad87-f84668330a11",
+            "key": "three-terminal-shortest-path-blocking-v1.0.pdf",
+            "size": 54431,
+            "checksum": "md5:efb4fc1dfb55ab833c0920636d8fb652",
+            "links": {
+              "self": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-shortest-path-blocking-v1.0.pdf",
+          "bytes": 54431,
+          "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+          "md5": "efb4fc1dfb55ab833c0920636d8fb652"
+        },
+        {
+          "original_api_file_object": {
+            "id": "9b9f8d1b-2a30-471b-a3ee-9f23dce78ad2",
+            "key": "three-terminal-bsp-source-verification-v1.0.zip",
+            "size": 118783,
+            "checksum": "md5:df862fd9882631d20a2c8b4e7ba884dd",
+            "links": {
+              "self": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-bsp-source-verification-v1.0.zip",
+          "bytes": 118783,
+          "sha256": "8ab6fed5ce3ed9007484d3f09ba5f776abee854b8bd8bb55ebccfcd36f12d5ab",
+          "md5": "df862fd9882631d20a2c8b4e7ba884dd"
+        }
+      ],
+      "all_TeX_candidates": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/note.tex",
+          "bytes": 12462,
+          "sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e"
+        }
+      ],
+      "local_candidate": {
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/publication/output/pdf/note.pdf",
+        "exists": true,
+        "bytes": 54431,
+        "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+        "matches_fresh_actual_PDF": true
+      }
+    },
+    "raw_record_path": "sources/record.raw.json",
+    "raw_record_sha256": "5081ba36b42b784f6adc6201131788ec3336c5ae0563c6b4e822a676557f56a4",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "96738df62ce7d995b6ed6bae7659878a3c8fe89a8020bae3ec74893219ba6787",
+    "source_receipt_schema": "Original all_assets/original_api_file_object, lowercase md5/sha256, actual PDF then ZIP; distinct actual latest/versions/PDF/ZIP transports plus initial record list; original ZIP-only files inventory and separate additive tar custody. No aliases.",
+    "source_receipt_original": {
+      "utc": "2026-10-25T08:25:39.214035+00:00",
+      "derived_from_raw": "record.raw.json/latest.raw.json/versions.raw.json; native shapes preserved unchanged",
+      "record_id": 23331258,
+      "title": "NP-completeness of three-terminal shortest-path blocking",
+      "version": "1.0",
+      "publication_date": "2026-10-12",
+      "created": "2026-10-13T04:14:08.648156+00:00",
+      "updated": "2026-10-13T04:14:09.125327+00:00",
+      "doi": "10.5281/zenodo.23331258",
+      "conceptrecid": "23331257",
+      "latest_record_id": 23331258,
+      "versions_total": 1,
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "17c866bd-ba3a-44ef-ad87-f84668330a11",
+            "key": "three-terminal-shortest-path-blocking-v1.0.pdf",
+            "size": 54431,
+            "checksum": "md5:efb4fc1dfb55ab833c0920636d8fb652",
+            "links": {
+              "self": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-shortest-path-blocking-v1.0.pdf",
+          "bytes": 54431,
+          "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+          "md5": "efb4fc1dfb55ab833c0920636d8fb652"
+        },
+        {
+          "original_api_file_object": {
+            "id": "9b9f8d1b-2a30-471b-a3ee-9f23dce78ad2",
+            "key": "three-terminal-bsp-source-verification-v1.0.zip",
+            "size": 118783,
+            "checksum": "md5:df862fd9882631d20a2c8b4e7ba884dd",
+            "links": {
+              "self": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-bsp-source-verification-v1.0.zip",
+          "bytes": 118783,
+          "sha256": "8ab6fed5ce3ed9007484d3f09ba5f776abee854b8bd8bb55ebccfcd36f12d5ab",
+          "md5": "df862fd9882631d20a2c8b4e7ba884dd"
+        }
+      ],
+      "all_TeX_candidates": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/note.tex",
+          "bytes": 12462,
+          "sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e"
+        }
+      ],
+      "local_candidate": {
+        "path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/publication/output/pdf/note.pdf",
+        "exists": true,
+        "bytes": 54431,
+        "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+        "matches_fresh_actual_PDF": true
+      },
+      "status": "SOURCE_READY_FRESH_PUBLIC_ORIGINALS_COMPLETE_RECURSIVE_CUSTODY",
+      "sheet_row": 101,
+      "PDF_pages": 4,
+      "safe_all_depth_members": 50,
+      "expanded_bytes": 263795,
+      "nested_archives": 0,
+      "source_evaluation": "Raw source custody only; no mathematical or historical verdict."
+    },
+    "source_assets_field": "all_assets",
+    "all_assets": [
+      {
+        "original_api_file_object": {
+          "id": "17c866bd-ba3a-44ef-ad87-f84668330a11",
+          "key": "three-terminal-shortest-path-blocking-v1.0.pdf",
+          "size": 54431,
+          "checksum": "md5:efb4fc1dfb55ab833c0920636d8fb652",
+          "links": {
+            "self": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-shortest-path-blocking-v1.0.pdf",
+        "bytes": 54431,
+        "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+        "md5": "efb4fc1dfb55ab833c0920636d8fb652"
+      },
+      {
+        "original_api_file_object": {
+          "id": "9b9f8d1b-2a30-471b-a3ee-9f23dce78ad2",
+          "key": "three-terminal-bsp-source-verification-v1.0.zip",
+          "size": 118783,
+          "checksum": "md5:df862fd9882631d20a2c8b4e7ba884dd",
+          "links": {
+            "self": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-bsp-source-verification-v1.0.zip",
+        "bytes": 118783,
+        "sha256": "8ab6fed5ce3ed9007484d3f09ba5f776abee854b8bd8bb55ebccfcd36f12d5ab",
+        "md5": "df862fd9882631d20a2c8b4e7ba884dd"
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "17c866bd-ba3a-44ef-ad87-f84668330a11",
+        "key": "three-terminal-shortest-path-blocking-v1.0.pdf",
+        "size": 54431,
+        "checksum": "md5:efb4fc1dfb55ab833c0920636d8fb652",
+        "links": {
+          "self": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content"
+        }
+      },
+      {
+        "id": "9b9f8d1b-2a30-471b-a3ee-9f23dce78ad2",
+        "key": "three-terminal-bsp-source-verification-v1.0.zip",
+        "size": 118783,
+        "checksum": "md5:df862fd9882631d20a2c8b4e7ba884dd",
+        "links": {
+          "self": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "actual_asset_order": [
+      "three-terminal-shortest-path-blocking-v1.0.pdf",
+      "three-terminal-bsp-source-verification-v1.0.zip"
+    ],
+    "recursive_archive_inventory_path": "sources/archive-members.json",
+    "recursive_archive_inventory_sha256": "36579a24878fa328493efdd8e4f510e60e378b5fbcb47b208a6dbdc4f7a206cd",
+    "recursive_archive_inventory_original": {
+      "utc": "2026-10-25T08:25:39.171692+00:00",
+      "safe_all_depth_members": 50,
+      "directories": [],
+      "nested_archives": [],
+      "expanded_bytes": 263795,
+      "files": [
+        {
+          "archive_chain": [],
+          "member": "PACKAGE_MANIFEST.json",
+          "path": "published-source/PACKAGE_MANIFEST.json",
+          "bytes": 8944,
+          "sha256": "4d334f6d751de56246f3af12b4c75e146eaa16052f916ff56d52156f3bfc1dc8",
+          "CRC32": "e5722320",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "README.md",
+          "path": "published-source/README.md",
+          "bytes": 3746,
+          "sha256": "142a2d9db0c6c84359d6dac3447ec98906f5746181bcde904b82b2792684a02a",
+          "CRC32": "6c66c2d6",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "note.tex",
+          "path": "published-source/note.tex",
+          "bytes": 12462,
+          "sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e",
+          "CRC32": "03fa6bc8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/ACCEPTANCE.md",
+          "path": "published-source/original_packet/ACCEPTANCE.md",
+          "bytes": 3400,
+          "sha256": "08c6b47941db31052b0f8bd1e40b86efe41b51f75f0d4a6b3386d6f163db7fc3",
+          "CRC32": "5144d22a",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/AUTHOR_FREEZE.tar.gz",
+          "path": "published-source/original_packet/AUTHOR_FREEZE.tar.gz",
+          "bytes": 12052,
+          "sha256": "f05e41d5a419c2faffc584e495da799bc43b306850ccd50c4f1f8824ab224996",
+          "CRC32": "046d468d",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/FRESH_GATE.json",
+          "path": "published-source/original_packet/FRESH_GATE.json",
+          "bytes": 770,
+          "sha256": "04a70db62ad02021b1b4414c9fdc95ec7fac7a995b1c926bd00a05bedb834c2c",
+          "CRC32": "664b3ac5",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/PUBLIC_MANIFEST.json",
+          "path": "published-source/original_packet/PUBLIC_MANIFEST.json",
+          "bytes": 3784,
+          "sha256": "63c6c812054a38c98780afd938f2dd409baf65f4ef88a0511f31c06bc3a09274",
+          "CRC32": "9d1f2cbe",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/README.md",
+          "path": "published-source/original_packet/README.md",
+          "bytes": 2479,
+          "sha256": "ae1e088be8bff8def4d67ce9cc0470f1e4088f1417abb44827d54f73001b0409",
+          "CRC32": "78bf3381",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/RESEARCH_LOG.md",
+          "path": "published-source/original_packet/RESEARCH_LOG.md",
+          "bytes": 1338,
+          "sha256": "bf836f1ffbf23b39f0578aae0950a42fa49cf82204cdf263877f937daf9b3d17",
+          "CRC32": "aeaaf2d2",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/FROZEN_MANIFEST.json",
+          "path": "published-source/original_packet/frozen_packet/FROZEN_MANIFEST.json",
+          "bytes": 1219,
+          "sha256": "b13c9cee3e806a263ba0e24b2838599692727ea48d26977d4fca714e1e30d273",
+          "CRC32": "2a0e25df",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/PROOF.md",
+          "path": "published-source/original_packet/frozen_packet/PROOF.md",
+          "bytes": 11661,
+          "sha256": "f31b19b8e4286e0104ed1e272f5cbc4a39e20aea78aa30334466f5b44e5830f7",
+          "CRC32": "776f95cc",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/README.md",
+          "path": "published-source/original_packet/frozen_packet/README.md",
+          "bytes": 1407,
+          "sha256": "ad2aa1a6934e62e6334d0f20e6da2f19b77e55f97245e50f217cb37c36b7a50f",
+          "CRC32": "d814de34",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/SOURCE_AND_MODEL.md",
+          "path": "published-source/original_packet/frozen_packet/SOURCE_AND_MODEL.md",
+          "bytes": 4434,
+          "sha256": "0b2dc51e57a119b4a20696afc5fac4bad1a9a082741419aaa8f5d00b290a135f",
+          "CRC32": "4e2ff98a",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/SOURCE_MANIFEST.json",
+          "path": "published-source/original_packet/frozen_packet/SOURCE_MANIFEST.json",
+          "bytes": 4151,
+          "sha256": "4aa4f95729ba6dfaa494fbe300c57ddbf4e218e18c4b693f71448109d29234e1",
+          "CRC32": "8b2352f9",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/checks/check_reduction.py",
+          "path": "published-source/original_packet/frozen_packet/checks/check_reduction.py",
+          "bytes": 6735,
+          "sha256": "c25c82f6374a5d06b47288b658d40dfc3d0c541669f13424d979449005fa0998",
+          "CRC32": "854657c8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/frozen_packet/checks/check_results.json",
+          "path": "published-source/original_packet/frozen_packet/checks/check_results.json",
+          "bytes": 856,
+          "sha256": "f85961d996c400c209ec15e51edee80a7c521008cb43e7746a04528044973239",
+          "CRC32": "3b229900",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_audit_2/AUDIT.md",
+          "path": "published-source/original_packet/independent_audit_2/AUDIT.md",
+          "bytes": 14259,
+          "sha256": "ea3f75a2827fa0d75af07a32e4f985690dc6d791b47cbcc97e30ff40dd0d4b68",
+          "CRC32": "d4cf8437",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_audit_2/AUDIT_MANIFEST.json",
+          "path": "published-source/original_packet/independent_audit_2/AUDIT_MANIFEST.json",
+          "bytes": 3138,
+          "sha256": "2993c18ccdb759aeb134c527fe5d47ece9b0717de0f2333a432086374fcdace3",
+          "CRC32": "757591c5",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_audit_2/fresh_control_results.json",
+          "path": "published-source/original_packet/independent_audit_2/fresh_control_results.json",
+          "bytes": 744,
+          "sha256": "ab80ef45a75f665a5b95197d3f6abb19f32cb96eb80c329bc52672178d8b09fa",
+          "CRC32": "9c343945",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_audit_2/fresh_controls.py",
+          "path": "published-source/original_packet/independent_audit_2/fresh_controls.py",
+          "bytes": 9440,
+          "sha256": "e2537446fefb50dcf856770ab33a170631c6a1cd14b0e10406ff1236129b7c32",
+          "CRC32": "83610854",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/AUDIT_MANIFEST.json",
+          "path": "published-source/original_packet/independent_reduction_audit/AUDIT_MANIFEST.json",
+          "bytes": 1253,
+          "sha256": "94f1d30ec5a49b9cac7403f19c6021af79dd81379ec13948c879a38c34dd1fad",
+          "CRC32": "376a0225",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/AUDIT_REDUCTION.md",
+          "path": "published-source/original_packet/independent_reduction_audit/AUDIT_REDUCTION.md",
+          "bytes": 11488,
+          "sha256": "827f4cd5449672fef203232eb559f214fc4dedd68c61c0cca36ef7feaf45f2da",
+          "CRC32": "fd993a19",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/independent_check.py",
+          "path": "published-source/original_packet/independent_reduction_audit/independent_check.py",
+          "bytes": 7329,
+          "sha256": "af19b56da68a72914735a213acd4cb9a7a1be63cd4143378f2b3c95a67b9564e",
+          "CRC32": "300d2a22",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/independent_check_results.json",
+          "path": "published-source/original_packet/independent_reduction_audit/independent_check_results.json",
+          "bytes": 529,
+          "sha256": "83cbd89dee70ec3017dda0c015a2a2001f5a8f0b07aa3830a598ef8812e304ce",
+          "CRC32": "d9c537a5",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/rerun/check_reduction.py",
+          "path": "published-source/original_packet/independent_reduction_audit/rerun/check_reduction.py",
+          "bytes": 6735,
+          "sha256": "c25c82f6374a5d06b47288b658d40dfc3d0c541669f13424d979449005fa0998",
+          "CRC32": "854657c8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/independent_reduction_audit/rerun/check_results.json",
+          "path": "published-source/original_packet/independent_reduction_audit/rerun/check_results.json",
+          "bytes": 856,
+          "sha256": "62cb798dd5ab1acf70cae930aae873307b2599e40c0725474e69fafd25f0f6c6",
+          "CRC32": "bb83f347",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/mutation_tests.py",
+          "path": "published-source/original_packet/mutation_tests.py",
+          "bytes": 4105,
+          "sha256": "1a97b86129bf5c5c6e233dff4f657139012526a16c64277366abec2a3ffed7d1",
+          "CRC32": "6fbf3830",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "original_packet/verify_publication.py",
+          "path": "published-source/original_packet/verify_publication.py",
+          "bytes": 6190,
+          "sha256": "a6b980f0e5aa310e8108b94e3b1a6af3628f770e336bc5b4305e391e4efbf001",
+          "CRC32": "bc9c334f",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/AUDIT.md",
+          "path": "published-source/reviews/computation_family/AUDIT.md",
+          "bytes": 9237,
+          "sha256": "3bb7d9ace813164efef310342da1da3db1e37b684cfb2c12b97236372331bffa",
+          "CRC32": "783aefe8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/audit_result.json",
+          "path": "published-source/reviews/computation_family/audit_result.json",
+          "bytes": 3163,
+          "sha256": "4dbbb0ffcda46106f91a27813c042fa0ae7857b28a227d42d00339254852dae4",
+          "CRC32": "3365a0c8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/independent_structural_checks.py",
+          "path": "published-source/reviews/computation_family/independent_structural_checks.py",
+          "bytes": 9741,
+          "sha256": "19ba6f23b4ce14ae99d88839b7815cb2bd298b04df4a30f9fd35bcc24b23b887",
+          "CRC32": "ed31b2c1",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/independent_structural_results.json",
+          "path": "published-source/reviews/computation_family/independent_structural_results.json",
+          "bytes": 722,
+          "sha256": "1952f847bd477540b0b6eaf1da8ab9b323bfa71370d839f29ad561794059a8ee",
+          "CRC32": "47a4cd30",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/independent_structural_results_optimized.json",
+          "path": "published-source/reviews/computation_family/independent_structural_results_optimized.json",
+          "bytes": 722,
+          "sha256": "26653748d306a6bab71243af662eb97c724318fe6e4a280818e084ed486daacb",
+          "CRC32": "be6f0a51",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/optimization_and_integrity_controls.py",
+          "path": "published-source/reviews/computation_family/optimization_and_integrity_controls.py",
+          "bytes": 4528,
+          "sha256": "2903683d63da7a7d6e9a9695c4b79f0806eb1d5423157dd226654905b8bd34c0",
+          "CRC32": "105c7a34",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/optimization_and_integrity_results.json",
+          "path": "published-source/reviews/computation_family/optimization_and_integrity_results.json",
+          "bytes": 5798,
+          "sha256": "004d1151bc8bee313e5a458315bbe7b439f9ac847001c8d0738b523fa15bbcda",
+          "CRC32": "5d30fffb",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/replay_normal.json",
+          "path": "published-source/reviews/computation_family/replay_normal.json",
+          "bytes": 1890,
+          "sha256": "15a7615ed63691806baf827ac428a24dbbd09443079f6cf7320c743eec8a7db1",
+          "CRC32": "822765e0",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/replay_optimized.json",
+          "path": "published-source/reviews/computation_family/replay_optimized.json",
+          "bytes": 1890,
+          "sha256": "15a7615ed63691806baf827ac428a24dbbd09443079f6cf7320c743eec8a7db1",
+          "CRC32": "822765e0",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/computation_family/submitted_mutation_results.json",
+          "path": "published-source/reviews/computation_family/submitted_mutation_results.json",
+          "bytes": 9786,
+          "sha256": "6d8e634458b8a4b9accf591816d6b4e5ef3c32b15c2219eb875906ddfb665cf2",
+          "CRC32": "ff3deab5",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/priority_family/CITING_BIENSTOCK.json",
+          "path": "published-source/reviews/priority_family/CITING_BIENSTOCK.json",
+          "bytes": 1335,
+          "sha256": "df9c3139fd3cd272d699090764c27418b08139425782c95067b17f641fd9cacd",
+          "CRC32": "5c47e240",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/priority_family/CITING_KRAUSE.json",
+          "path": "published-source/reviews/priority_family/CITING_KRAUSE.json",
+          "bytes": 256,
+          "sha256": "665a86f1e595415bc902c2d1d7ddc5e4ccf1cc12fa6b031d6e807d87cf5cfce1",
+          "CRC32": "1ba63c7e",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/priority_family/PRIORITY_AUDIT.md",
+          "path": "published-source/reviews/priority_family/PRIORITY_AUDIT.md",
+          "bytes": 15436,
+          "sha256": "e04201a398c20f3bdd383d4c1abfd159368496facd6e39578e1ea0faa81b049a",
+          "CRC32": "b8a5a617",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/priority_family/QUERY_LOG.md",
+          "path": "published-source/reviews/priority_family/QUERY_LOG.md",
+          "bytes": 5358,
+          "sha256": "6c359371b6e5a70529b3244d0c109e925c9ded0076939454f4a803f24bfdcb61",
+          "CRC32": "64c6ff6c",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/priority_family/SOURCE_MANIFEST.json",
+          "path": "published-source/reviews/priority_family/SOURCE_MANIFEST.json",
+          "bytes": 3778,
+          "sha256": "8815c369a78b245785ae528b6e6fd69a85c2e2da68d2e26dd3466bd0b932f270",
+          "CRC32": "8bb8ea63",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/proof_family/AUDIT.md",
+          "path": "published-source/reviews/proof_family/AUDIT.md",
+          "bytes": 13873,
+          "sha256": "da01e279d086664816562d6b50c1fa61d32fce3020c35a11afb0a1184c91d666",
+          "CRC32": "1e379e10",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/proof_family/RESEARCH_LOG.md",
+          "path": "published-source/reviews/proof_family/RESEARCH_LOG.md",
+          "bytes": 2190,
+          "sha256": "607ffe0e6b5c871a2335aee2773ec6184d5b0129f7e469668504f3e6f3e7fa09",
+          "CRC32": "b8a96428",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/proof_family/independent_checks.py",
+          "path": "published-source/reviews/proof_family/independent_checks.py",
+          "bytes": 13560,
+          "sha256": "d6d8d7120f738e1b8a449ac6f31f022f26fcd55390269353b6b1ee861e89f77f",
+          "CRC32": "9118ee9b",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/proof_family/independent_results.json",
+          "path": "published-source/reviews/proof_family/independent_results.json",
+          "bytes": 1264,
+          "sha256": "66477304ef1959e0f52e1d06468c9abc6016a347f194a885a077c2a8533ea38d",
+          "CRC32": "383a19bc",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/source_model_family/SOURCE_MODEL_MANIFEST.json",
+          "path": "published-source/reviews/source_model_family/SOURCE_MODEL_MANIFEST.json",
+          "bytes": 1858,
+          "sha256": "d46421caa5f628592cbf4fff09b06b85ad042ecc158f0118dac25c97bfca5f60",
+          "CRC32": "a95b67f8",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "reviews/source_model_family/SOURCE_MODEL_REPORT.md",
+          "path": "published-source/reviews/source_model_family/SOURCE_MODEL_REPORT.md",
+          "bytes": 7683,
+          "sha256": "69d511105ac99c1c42909c1bbdd16e6e3b96c2bd4bdc25452c9a7526fb7bf9f5",
+          "CRC32": "ea77ee22",
+          "mode": 33188
+        },
+        {
+          "archive_chain": [],
+          "member": "verify_package.py",
+          "path": "published-source/verify_package.py",
+          "bytes": 4223,
+          "sha256": "5d015a7d7e75fabc58661c5cb33a77fd4847d2e33a4975c55f847d4e84d506a7",
+          "CRC32": "25007d3b",
+          "mode": 33188
+        }
+      ],
+      "safety": "Canonical names; no duplicate/symlink/encrypted/nonregular member; bounded recursive expansion; all bodies CRC-read and SHA256-bound; no execution."
+    },
+    "original_READY_ZIP_only_nested_count": 0,
+    "original_READY_outer_member_count": 50,
+    "tar_custody_addendum_path": "reviews/scope/tar-custody-addendum.json",
+    "tar_custody_addendum_sha256": "34e560a6b37c74a03776dbbe8dadd43dc75746ff1de14e3a1f4249596abf3cd6",
+    "tar_custody_addendum_original": {
+      "utc": "2026-10-25T08:28:16.367722+00:00",
+      "kind": "ADDITIVE_FULL_TAR_CUSTODY_AND_SOURCE_READY_FORMAT_CLARIFICATION",
+      "source_ready_unchanged": true,
+      "early_limit": "SOURCE_READY nested detector recognized ZIP only; nested_archives=0 meant no nested ZIP. The deposited AUTHOR_FREEZE.tar.gz was already hash-bound as an outer ZIP member, but its inner members had not been inspected at ready freeze.",
+      "archive": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/AUTHOR_FREEZE.tar.gz",
+      "archive_bytes": 12052,
+      "archive_sha256": "f05e41d5a419c2faffc584e495da799bc43b306850ccd50c4f1f8824ab224996",
+      "gzip_full_decompression_CRC_trailer_validated": true,
+      "uncompressed_tar_bytes": 51200,
+      "uncompressed_tar_sha256": "adf75a0d9ea5fe5c34f061ed3cf61f447eedd9145545e8cca235d81f0de84c4e",
+      "regular_members": [
+        {
+          "original_tar_member": "three_terminal_30000347/FROZEN_MANIFEST.json",
+          "bytes": 1219,
+          "sha256": "b13c9cee3e806a263ba0e24b2838599692727ea48d26977d4fca714e1e30d273",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/FROZEN_MANIFEST.json",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/PROOF.md",
+          "bytes": 11661,
+          "sha256": "f31b19b8e4286e0104ed1e272f5cbc4a39e20aea78aa30334466f5b44e5830f7",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/PROOF.md",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/README.md",
+          "bytes": 1407,
+          "sha256": "ad2aa1a6934e62e6334d0f20e6da2f19b77e55f97245e50f217cb37c36b7a50f",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/README.md",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/SOURCE_AND_MODEL.md",
+          "bytes": 4434,
+          "sha256": "0b2dc51e57a119b4a20696afc5fac4bad1a9a082741419aaa8f5d00b290a135f",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/SOURCE_AND_MODEL.md",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/SOURCE_MANIFEST.json",
+          "bytes": 4151,
+          "sha256": "4aa4f95729ba6dfaa494fbe300c57ddbf4e218e18c4b693f71448109d29234e1",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/SOURCE_MANIFEST.json",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/checks/check_reduction.py",
+          "bytes": 6735,
+          "sha256": "c25c82f6374a5d06b47288b658d40dfc3d0c541669f13424d979449005fa0998",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/checks/check_reduction.py",
+          "byteidentical_to_existing_outer_member": true
+        },
+        {
+          "original_tar_member": "three_terminal_30000347/checks/check_results.json",
+          "bytes": 856,
+          "sha256": "f85961d996c400c209ec15e51edee80a7c521008cb43e7746a04528044973239",
+          "existing_exact_original_member": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/published-source/original_packet/frozen_packet/checks/check_results.json",
+          "byteidentical_to_existing_outer_member": true
+        }
+      ],
+      "directories": [
+        "three_terminal_30000347",
+        "three_terminal_30000347/checks"
+      ],
+      "tar_regular_member_count": 7,
+      "tar_member_bytes": 30463,
+      "safe_no_links_devices_encryption_traversal_duplicates": true,
+      "all_nested_bodies_already_present_verbatim": "All7 tar file bodies are byte-identical to existing frozen_packet members. No duplicate source bodies or new aliases written.",
+      "total_recursive_regular_member_occurrences": 57,
+      "nested_archives_all_formats": 1,
+      "source_evaluation": "Only custody and edition identity; no mathematical audit endorsement."
+    },
+    "transport_receipt_path": "sources/api-and-file-receipts.json",
+    "transport_receipt_sha256": "c1611fb9b2dd0d0c0ea2c4940742f9869b9aac3af812b1ec6d5854515206bcf4",
+    "transport_receipt_original": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23331258/versions/latest",
+        "started_utc": "2026-10-25T08:25:38.009826+00:00",
+        "completed_utc": "2026-10-25T08:25:39.123007+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23331258",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:25:39 GMT",
+          "content-type": "application/json",
+          "content-length": "7456",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23331258> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "127",
+          "x-ratelimit-reset": "1792916798",
+          "retry-after": "58",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/latest.raw.json",
+        "bytes": 7456,
+        "sha256": "5081ba36b42b784f6adc6201131788ec3336c5ae0563c6b4e822a676557f56a4"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23331258/versions",
+        "started_utc": "2026-10-25T08:25:38.010004+00:00",
+        "completed_utc": "2026-10-25T08:25:38.574690+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23331258/versions",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:25:38 GMT",
+          "content-type": "application/json",
+          "content-length": "7591",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792916798",
+          "retry-after": "59",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/versions.raw.json",
+        "bytes": 7591,
+        "sha256": "ad11b3c43377737756e4a069783dddec62e9fa3a76fa8f4571240e367379d169"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content",
+        "started_utc": "2026-10-25T08:25:38.010133+00:00",
+        "completed_utc": "2026-10-25T08:25:39.010313+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23331258/files/three-terminal-shortest-path-blocking-v1.0.pdf/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:25:38 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "54431",
+          "content-disposition": "attachment; filename=three-terminal-shortest-path-blocking-v1.0.pdf",
+          "oc-checksum": "MD5:efb4fc1dfb55ab833c0920636d8fb652",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792916798",
+          "retry-after": "59",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-shortest-path-blocking-v1.0.pdf",
+        "bytes": 54431,
+        "sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content",
+        "started_utc": "2026-10-25T08:25:38.010254+00:00",
+        "completed_utc": "2026-10-25T08:25:39.158503+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23331258/files/three-terminal-bsp-source-verification-v1.0.zip/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:25:38 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "118783",
+          "content-disposition": "attachment; filename=three-terminal-bsp-source-verification-v1.0.zip",
+          "oc-checksum": "MD5:df862fd9882631d20a2c8b4e7ba884dd",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792916798",
+          "retry-after": "59",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/three-terminal-bsp-source-verification-v1.0.zip",
+        "bytes": 118783,
+        "sha256": "8ab6fed5ce3ed9007484d3f09ba5f776abee854b8bd8bb55ebccfcd36f12d5ab"
+      }
+    ],
+    "transport_receipt_entry_count": 4,
+    "initial_intake_receipt_path": "sources/api-intake-initial-receipts.json",
+    "initial_intake_receipt_sha256": "0b506e0c356a3e3416e7bdc13ea62319f4754441c6e1063021f5f4950f3c4ff4",
+    "initial_intake_receipt_original": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23331258",
+        "started_utc": "2026-10-25T08:25:37.336237+00:00",
+        "completed_utc": "2026-10-25T08:25:38.008954+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23331258",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 08:25:37 GMT",
+          "content-type": "application/json",
+          "content-length": "7456",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23331258> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792916798",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331258/sources/record.raw.json",
+        "bytes": 7456,
+        "sha256": "5081ba36b42b784f6adc6201131788ec3336c5ae0563c6b4e822a676557f56a4"
+      }
+    ],
+    "initial_intake_receipt_entry_count": 1,
+    "asset_root_path": "sources",
+    "pdf_sha256": "0f6fc15b270e178cec67ff98f09f1f7f7f09d34f4926ea568266bb8dab35b3a2",
+    "supplement_sha256": "8ab6fed5ce3ed9007484d3f09ba5f776abee854b8bd8bb55ebccfcd36f12d5ab",
+    "source_tex_path": "sources/published-source/note.tex",
+    "source_tex_sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e",
+    "abstract_tex": "\nWe prove that, in a finite simple undirected graph with unit edge lengths,\nfinding a minimum edge set whose deletion increases all three distances between\nthree specified terminals by at least one is NP-hard. The budget decision problem\nis NP-complete even when all deletion costs are one and all three original\nterminal distances are three. A direct reduction from Vertex Cover passes through\na tripartite graph and identifies its vertex-cover number with the minimum\nshortest-path blocker size. The construction also gives NP-completeness when\nthe terminal distances must remain finite, or must increase exactly from three\nto four. This provides a classification of the undirected triangle question\nposed by Krause in 2005, without asserting bibliographic first priority.\n",
+    "abstract_source": "sources/published-source/note.tex#abstract",
+    "abstract_source_sha256": "908e36fec4c1b73088b2ed960877efd703f87d9ef57e5addb00233131953de3e",
+    "abstract_normalization": "Only whitespace folding; every original word and sentence retained.",
+    "public_page_reader_pdf_count": 1,
+    "archive_outer_regular_file_count": 50,
+    "archive_nested_tar_regular_file_count": 7,
+    "archive_regular_member_occurrences": 57,
+    "archive_container_count": 2,
+    "nested_archive_count": 1,
+    "archive_embedded_pdf_count": 0,
+    "total_distinct_reader_pdf_count": 1,
+    "reader_intro": "Read the complete 4-page deposited paper in the on-page PDF reader.",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "6cf26175fa884ab0191142c01ae837a570e433f40bd00e4a3996a686dcf93b70",
+    "publication_state": "PRIVATE_EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "review_boundary": "Separate root scientific clearance precedes intake. Historical original READY and custom family findings remain literal; no rendering/local/live/browser/native/publication gate claimed."
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T15:03:39.535991+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23331258-20261025.json",
+    "root_clearance_sha256": "5ddd08a3c3eda941ece10ccf650a0ad0fe5ef4615d1832f6bda442b14242abb6",
+    "publication_state": "PRIVATE_EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "browser_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "native_sheet_aa_url": null,
+    "root_editorial_clearance_received": false
+  }
+}

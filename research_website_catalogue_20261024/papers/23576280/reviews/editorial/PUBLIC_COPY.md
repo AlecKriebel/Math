@@ -30,7 +30,7 @@ The proof gives a polynomial reduction from explicitly encoded Set Cover and a p
 
 The proof uses the classical Lovász characterization of 2-connected factor-critical graphs by all-odd open ear decompositions, in the precise form stated by Benchetrit–Sebő. A graph is factor-critical when deleting any vertex leaves a perfect matching. Each ear contributes one to cycle rank, so β can be expressed by the ranks of suitable factor-critical subgraphs.
 
-For the cone z*B over a connected bipartite graph B, this becomes β(z*B)=max |E(B[S])| over nonempty S for which B[S] is connected and has a perfect matching. The score counts all induced edges, so both connectedness and the choice of objective matter.
+For the cone z*B over a connected bipartite graph B with at least two vertices, this becomes β(z*B)=max |E(B[S])| over nonempty S for which B[S] is connected and has a perfect matching. The score counts all induced edges, so both connectedness and the choice of objective matter.
 
 The Set Cover construction uses one complete bipartite block Kₖ,ₖ for the root and each universe element, together with a connector for each set. With T=Σⱼ(1+|Aⱼ|), k=T+n+3, M=(m+1)k² and threshold F=M−ks, a minimal cover supplies distinct private elements and an explicit perfect matching with enough induced edges.
 
@@ -54,6 +54,8 @@ The observed Zenodo creation dates are 22 October 2026 for this record and 23 Oc
 
 ## Status and AI use
 
+Unrefereed preprint, version 1.0.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.
+
 AI tools were used extensively in mathematical research, proof development and reconstruction, literature work, computation, verification and writing. This is an unrefereed preprint without external human peer review, journal acceptance or formal proof-assistant certification. Alec Kriebel is the named human author and is responsible for the work. Finite diagnostics supplement the written proof.
 
 Manuscript and declared publication date: 22 October 2026; version 1.0.0.
@@ -68,7 +70,7 @@ Read the complete 6-page deposited paper in the on-page PDF reader.
 
 [Complete unchanged source and verification ZIP](https://zenodo.org/api/records/23576280/files/initial-odd-ear-prefix-source-and-verification.zip/content)
 
-The archive includes the identical paper PDF, editable TeX, exact diagnostic code, results and original license notices. Authored prose is CC BY4.0; authored code is MIT.
+The archive includes the identical paper PDF, editable TeX, exact diagnostic code, results and original license notices. Authored prose is CC BY 4.0; authored code is MIT.
 
 ## Background and prior work
 
@@ -98,5 +100,5 @@ Independent proof checks, counterexamples and precise comparisons with prior wor
 
 ## Cite this paper
 
-Alec Kriebel. (2026). *NP-completeness of the initial odd-ear prefix* (Version 1.0.0) [Preprint]. Zenodo. [DOI10.5281/zenodo.23576280](https://doi.org/10.5281/zenodo.23576280).
+Alec Kriebel. (2026). *NP-completeness of the initial odd-ear prefix* (Version 1.0.0) [Preprint]. Zenodo. [DOI 10.5281/zenodo.23576280](https://doi.org/10.5281/zenodo.23576280).
 

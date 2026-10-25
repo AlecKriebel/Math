@@ -1,0 +1,15 @@
+# Final content QA
+
+2026-10-25T14:57:36.994344+00:00
+
+Status: ISSUES_FOUND
+
+Completion: 100% of requested checks executed.
+
+Read-only checks of generated content against approved publication data and published source. Browser rendering and external HTTP checks are separate.
+
+23441617: 59/63 checks passed; 19 local links/anchors; 7 searchable PDF pages.
+
+Issues: 23441617: background_links; 23441617: exact_whole_approved_body_text; 23441617: exact_BibTeX_and_predecessor_labels; 23441617: bibliographic_defect_whole_and_public_181
+
+SHA-256 bindings and individual checks are recorded in the accompanying JSON.

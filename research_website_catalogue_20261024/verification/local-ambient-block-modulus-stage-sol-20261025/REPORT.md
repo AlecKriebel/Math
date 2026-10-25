@@ -1,0 +1,71 @@
+# Private combined stage — Ambient, BlockCode and Modulus
+
+The authorized three-record private stage is complete. The actual pages pass187 checks; the single old64-record suite passed3708 checks;128 complete old/proposed renderer executions produced identical outputs in memory. Each normal and optimized Python mode accepted all three pristine sources/pages and rejected98 source/schema/authority changes and58 public-output changes. Production, source/configuration, native and publication gates remain unchanged. Root actual-rendered-copy review and an independent code audit are pending. The203-paper programme remains ongoing.
+
+## Exact scope and fresh baseline
+
+Only23333353(row97),23416806(row98) and23441617(row99) are proposed. Before any new helper/renderer/checker proposal, baseline.py captured the actual504 public files,65 index entries and66 sitemap URLs, plus current core/config/source/authority inputs:1405 protected files. FROZEN_INPUT_SET.json explicitly identifies64 configured current articles and one manual article. Native remains62; the preceding three articles' deployment/browser state is separate. Read-only website HEAD was dcc259dbd4fd4285a65374e20ae65281fa30e852. No Git state was changed.
+
+No configuration glob grants publication authority. Any configuration outside the explicit current64 and authorized new3, including rows100/101/103, is excluded. Historical492/1113/1349 maps are not adopted as current. Old sealed stages/correction packages are preserved and their immutable owned-output manifests checked separately. Their historical mutable-site baselines are not followed.
+
+The private public/ directory contains exactly14 files: three HTML/PDF/complete-ZIP/BibTeX groups and two shared index/sitemap replacements. Existing65 visible index entries are byte-identical and all65 structured entries remain in order. Existing66 sitemap URLs remain in order. Only the three authorized URLs are appended, giving index68 and sitemap69; integration would yield516 public files. No old site asset tree, reference tree, symlink fallback or fixture copy was created. Missing old paths resolve read-only to actual current production bytes during checks.
+
+## Complete handoff and original-object reading
+
+The entire three final editorial REPORT.md, PUBLIC_COPY.md and SCHEMA_ADAPTER.md bodies were read, along with all metadata/reader requirements and prepared citations, unique configuration fields, whole scientific/editorial root objects and full ROOT_REVIEW.md dispositions. Each complete publication/promotion/source-ready/raw/derivative/transport JSON object was parsed recursively; all embedded complete original source, transport, API, root and custom scientific verdict objects were compared to their actual source files. READ_LEDGER.json distinguishes semantic prose readings from mechanical complete-object and byte-custody reads. No claim is made to have semantically reread every historical archive narrative or every foreign primary body during this website task.
+
+Exact root editorial authority hashes are:
+
+-23333353:94ab86958620ae8d9f1248fcddcc6b39bd664bba82c6ba68968482c87dc43fb3.
+-23416806:d6fbc1dbef32e80d435930785c23bb79f6c04deb2abcdaae47cb0d0a743f65dc.
+-23441617:805412e59a549d658927c85190d451fbf0d0e061edbfa2b5006191fd59f30957.
+
+AUTHORITY_SOURCE_BINDINGS.json records complete exact input pins and original-object paths. Root scientific authority remains the completed original review, not a new mathematical certification by a website consumer. No new primary fetch/search, supplied mathematical-program execution, environment, scientific repair or narrowed replacement was undertaken.
+
+## Original schemas and literal Modulus disposition
+
+23333353 retains all_actual_assets/api_file_object/lowercase md5/sha256, PDF-then-ZIP order.23416806 and23441617 retain all_assets/original_api_file_object/lowercase md5/sha256; BlockCode's order is ZIP-then-PDF, Modulus's PDF-then-ZIP. The raw and derivative metadata interfaces, all five complete transport objects, literal headers, all TeX candidates and all early/final seals remain unchanged. There is no receipt.json/record.json/files alias or fabricated HTTP/MD5/API-object field written into any original. The renderer receives only a derived temporary resolver view after authenticating the actual originals.
+
+The Modulus root status is literally PASS_WITH_NONCENTRAL_BIBLIOGRAPHIC_DEFECT. The new helper authenticates the exact whole pinned root decision before accepting the exact per-record status. It neither substitutes PASS nor accepts an unbounded prefix. All three whole custom family verdicts and their original false/null/history values remain as written; root authority is separate. The full original noncentral_bibliographic_defect object remains present.
+
+The confirmed typo is Heinonen–Koskela volume180 in PDF7/reference[4] and controlling TeX442; title/authors/DOI identify the credited work. The public reference uses Acta Math.181(1998),1–61, DOI10.1007/BF02392747. The original PDF, TeX and entire archive retain180 and their original hashes. API/public deposit version1.0 is distinct from the PDF/TeX's unprinted version: manuscript_version=null and manuscript_version_printed=false remain exact. No source correction occurred.
+
+## Actual public pages and full scientific scope
+
+I read the entire three actual rendered public-copy bodies after generation, not only an excerpt or metadata view. Full extracted bodies are public-copy-23333353.txt, public-copy-23416806.txt and public-copy-23441617.txt; structured section dumps are separate. Their corresponding complete HTML files are the actual renderer outputs in public/research/. All original approved prose and the complete original abstracts remain, with the established fixed template navigation/reader/citation/collaboration/footer text. No internal custody counts/hashes/replay stories were introduced into public copy.
+
+Ambient keeps the countably infinite unrestricted extreme-exchangeable whole-joint-law definition, both algebraic and universal unital C* categories, distinct proper coordinate subalgebras with scalar intersection, exclusion of every downstairs witness by all finite words, pure upstairs fold, every0<t<1 and endpoint/coincident variants, separate Laurent zero-evaluation obstruction and the C* extreme-lifting/free-product-injection proposition. Fixed-full-marginal slice and two-copy distinctions, nonfaithful/tracial/tensor/tail/normal-W* exclusions and DKW/Liebscher/classical-method credit remain explicit. No known pure-folding construction is presented as new.
+
+BlockCode keeps every nonempty two-sided irreducible sofic target, a specified onto self-code, any completion and common recognizing monoid, epsilon/short-word conventions, the entire four-way equivalence and N=max{2,ell,4(|M|+1)}. Failure excludes every alternate completion/radius/containing alphabet. Published PRZ2014 Theorem4.2 is an indispensable explicit import; profile sets, endpoint profiles, saturation and unrestricted finite all-path reachability remain clear. SFT/automorphism/even-shift/nononto/periodic/unused-letter boundaries, broader-problem/efficient-solver exclusions, substantial Boyle/Dykstra/Barth/Ballier/PRZ credit and unread final-journal overlap limits remain.
+
+Modulus keeps every compact real E, the entire real complement, whole-plane planar2-modulus and actual pointwise extended Borel densities admissible on every curve. Local-off-endpoint and separately consistent globally rectifiable conventions, multiplicity, endpoint/constant-portion zero arclength and permitted intermediate contacts remain explicit. Lsc majorant, actual ACL/Sobolev potential, trace/critical rigidity giving length only, separate every-endpoint liminf-circle/first-exit argument and q/n scaling retain the null-positive-capacity case. Classical/Gonchar–Vuorinen/Hayman–Lingham/DNPV/Brezis/HK/Hesse credit and2019/1982 access/priority uncertainty remain. The archived bibliographic typo is not turned into a public audit narrative.
+
+All pages preserve extensive-AI, unrefereed, no-external-human-peer-review and no-formal-certification statements, sole actual author/ORCID, full status paragraphs and passive substantive-contribution/mutual-agreement collaboration. No follow-up, firstness/current-worldwide-open or independent-discovery claim is added. The established contact link remains a passive template link; no communication or outreach was prepared or sent.
+
+## Minimal code proposals and complete body contract
+
+render_page.proposed.py and final-content-check.proposed.py are full proposed files; shared-renderer.diff/shared-checker.diff show exact installed-to-proposed changes. Two new helper proposals authenticate the three sources and assemble the body contract. Installed scripts, checker, helpers, configurations and site files are untouched. Stage-only ROOT/SITE overrides are recorded separately in exact diffs. Each new membership branch is restricted to ABM_IDS; the old64 paths preserve their existing behavior.
+
+The body text contract is independently assembled from the whole approved configuration and established fixed template labels. It is not a hash blindly learned from the generated page. Exact whole body, one h1, byline/date/header edition, citation edition, complete ordered status paragraphs, reader/material/BibTeX/predecessor labels and original/full source links are checked from the initial proposal. Added prose outside named sections is rejected. All new body notation is already approved readable Unicode/plain text; no shared math normalizer is changed and raw TeX commands are rejected in the body contract.
+
+This is a normalized semantic text/anchor contract. Whitespace is normalized, comments and script/style text are excluded, and existing HTML parsing is used. It is not a proof for arbitrary hostile HTML/CSS visibility or browser layout. Actual browser/HTTP/reader interaction/download tests remain separate and unperformed for these new pages. The contract verifies the literal approved content and structured links under the established template.
+
+## Meaningful verification and bounded preparation history
+
+The actual three-page checker passes187 checks, selecting exactly3/4/7 complete PDF pages. Every original source asset is hash/size/MD5 authenticated against the actual API objects and copied unchanged. The complete ZIP CRC/member/extraction checks cover60 Ambient occurrences,186 BlockCode occurrences across4 qualified containers and118 Modulus occurrences. No original support program is executed and no finite computation is represented as a universal scientific proof.
+
+Exactly one full old64 checker dispatch passed3708 checks. The actual installed and proposed renderers were each fully executed for every old ID in memory:128 executions, all complete output bytes, source-read bindings and renderer receipts identical.643 unique actual inputs are recorded once in LEGACY_RENDERER_INPUTS.json; no old asset fixture copies were made. These suites were not repeated after success.
+
+Each normal and -O mode accepted3 pristine source views and rejected98 changed source/schema/authority cases. Cases include altered actual configuration/source/raw/derivative/transport/TeX/BibTeX/root/editorial/seal/manifest/asset reads; wrong API-object/array/checksum schemas, asset reordering/removal, invented transport aliases, lost qualified nested occurrences/extraction mapping, generic PASS/prefix substitution, erased Modulus defect, invented printed version, public181-to180 regression and a changed100-to100.0 scalar type. Originals and supplied arguments remain unchanged.
+
+Each mode accepted3 actual pristine pages and rejected58 output faults,116 negatives total: date/header/citation edition changes, omitted/reordered status, omitted proof, wrong iframe/original href/license/ORCID, altered PDF/ZIP/BibTeX reads, h1 replacement, extra outside-section claims, misleading PDF/ZIP labels, changed result text, raw TeX insertion and Modulus181-to180 regression. Exact case reports and changed-read hashes are preserved; all mutations are memory-only, not altered source or website trees.
+
+The initial target run rejected only independently assembled predecessor-label punctuation spacing: a closing anchor introduces a normalized token boundary before its colon. The expected fixed-template boundary was corrected, with no public scientific/source change. The original failed receipt and initial unconsumed body-contract draft are retained under the original failure receipt/history. The corrected contract then passed. This bounded preparation history is private, not public copy. No installed code or completed prior packet was modified.
+
+## Preservation, remaining gates and reproducible handoff
+
+verify_stage.py is read-only and performs no rendering or test-suite replay. It authenticates every owned manifest entry/seal, all1405 fresh protected originals/current504 public files,643 actual old renderer inputs, the selected target sources/assets/whole objects, completed test receipts, exact current body contract and earlier immutable owned packets. Source/API/transport/version/scientific-object limits are explicit in METADATA_READER_REQUIREMENTS.md and the original editorial requirements. The fresh baseline is the current504-file site; older mutable baselines are never treated as current.
+
+The package is lean: only the14-file overlay, proposed code/diffs, read/custody/control receipts and readable copies are stored. No full site/reference/environment duplication was made. An unrelated new programme checkpoint_subtree.py added by root after baseline is outside this stage and does not change any protected old file or grant new article authority.
+
+All original canonical/AA/follow-up values remain null. All original rendered-copy/local/live/browser/native/publication flags remain false. This stage does not install code, change source/configuration/site/core/native/UI/Git state, serve HTTP, deploy, redirect, release or communicate externally. Exact root actual-rendered-copy approval and an independent code audit are pending; production integration requires a later explicit decision. The private-stage assignment is100% complete, while the full203-paper programme remains ongoing.

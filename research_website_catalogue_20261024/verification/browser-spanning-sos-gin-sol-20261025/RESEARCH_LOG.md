@@ -1,3 +1,5 @@
 # Spanning / SOS / Gin browser preparation
 
 2026-10-25T08:33:48.421219+00:00 — Created fresh browser namespace and ignored private inventories before any future write. Reused complete actual static-copy reads at unchanged hashes; parsed exact full configs and reader/support requirements. Expected future504/index65/sitemap66. No UI/tab/HTTP/download or actual-site/core baseline yet; wait for explicit root LIVE_READY/exclusive grant and exact live byte receipts. Preparation100%; eventual bounded live gate0%. All203 goal ongoing.
+
+2026-10-25T14:49:10.560018+00:00 — Interrupted session sealed before additive fresh-root-authorized recovery. Actual64frames/6bodies/66sections/12navigation events/native4/5/6 and1saved file;5downloads+cleanup pending. Original11 later absent in root fresh inventory, no agent-closure claim. Currentdcc259db/504/65 reauthenticated; all686bindings unchanged. Estimate85%.
