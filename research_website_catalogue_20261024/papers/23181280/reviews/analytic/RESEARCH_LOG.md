@@ -1,0 +1,11 @@
+# Analytic family research log: Zenodo 23181280
+
+* 2026-10-25T07:06:16.704996+00:00 — Exact queue row94 read. Fresh actual record/latest/versions and all API file objects authenticated. Original PDF4pp57772B and ZIP151513B downloaded directly from the API-object URLs; sizes and MD5 match. ZIP47 members, 304697 expanded bytes, safe canonical unique paths, no symlinks/encryption, CRC/member hashes pass. Controlling TeX is the only extracted TeX. No supplied source code executed. Source-ready frozen. Bounded scientific review completion estimate 15%.
+
+No external contact or prepared outreach, source repair, Git, config, site, UI, deploy or release action is authorized. The earlier discotope packet remains sealed; all203 catalogue work remains ongoing.
+
+* 2026-10-25T07:07:54.401152+00:00 — Read complete actual4ppPDF/all4renders and full controllingTeX. Sealed all-size edge-count forcing proof, structured literal-root identity, both reduction directions, explicit-table complexity, unary bound, orientation/shift and exact boundary controls before any external primary or other review exposure. No central defect found. Completion estimate45%.
+
+* 2026-10-25T07:15:03.894673+00:00 — Independent exact controls PASS54formulas/5752tree cases; selected inspected suppliedfunctions pass normal/-O in isolated clone. Actual four primary interfaces checked after earlyseal, including direct scan images for KarpMainTheorem/item11; exact KaibelProblem1 matches andProblem2 remains distinct. Own rational joint-lift boundary witness has cost10 versus integer optimum11. Global novelty and priority remain uncertified. Frozen59sourcebindings, earlyseal and previous discotope13-file finalpacket all preserved. Completion estimate93%.
+
+* 2026-10-25T07:15:36.907625+00:00 — Final REPORT, custom full VERDICT, proof/boundary derivations, exact rational witness, independent and selected-supplied execution receipts, primary/read/search/custody ledgers completed and sealed. Literal original theorem and corollary supported; central defect absent; source correction not required. Global novelty/priority remain uncertified and publication authority remains with root. Bounded analytic-review completion estimate100%; all203 remain ongoing.

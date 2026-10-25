@@ -1,0 +1,76 @@
+{
+  "utc": "2026-10-25T07:08:06.753652+00:00",
+  "status": "EARLY_INDEPENDENT_RECONSTRUCTION_BEFORE_EXTERNAL_OR_HISTORICAL_READING",
+  "independence": {
+    "whole_actual_four_page_PDF_read": true,
+    "all_four_raw_page_renders_inspected": true,
+    "whole_controlling_TeX_read": true,
+    "historical_audits_or_support_verdicts_read": false,
+    "sibling_or_root_scientific_opinions_read": false,
+    "external_primary_bodies_read": false
+  },
+  "original_full_abstract_TeX_verbatim": "An undirected spanning tree induces an arborescence at every vertex root.\nGiven an independent arc-cost vector for each root, we prove that deciding\nwhether the sum of the costs of these entire rooted orientations is at most\na given threshold is NP-complete, even when every cost belongs to\n$\\{0,1,2\\}$. A reduction from satisfiability uses two hubs, variable vertices,\nand clause vertices. A symmetric cost vector at one hub forces a tree at\nthreshold to encode an assignment with one selected literal per clause;\nthe corresponding clause-root costs test those literals. Uniformly shifting\nthe costs yields the same conclusion for costs in $\\{1,2,3\\}$. This resolves\nProblem~1 in Volker Kaibel's November 2018 Oberwolfach workshop contribution,\nwhose report was published in December 2019. Exact finite checks accompany\nthe all-size proof.",
+  "exact_claim": {
+    "input": "finite connected simple undirected G=(V,E), N>=1; independent c_r:A->nonnegative integers explicitly binary encoded for all 2N|E| root/arcs, integer K; one common undirected spanning tree; entire away-root orientation at every r",
+    "theorem": "Deciding existence F(T)<=K is NP-complete even all entries in {0,1,2}; strong NP-completeness and optimization NP-hardness follow. Positive {1,2,3} variant via shift; inward convention via full transpose.",
+    "not_claimed": "No only-root-to-vertex paths objective, no single fixed root, no compact implicit table, no neighboring Kaibel Problem 2, no arbitrary-real computational decision class, no unrestricted MaxSAT optimum identity, no absolute priority."
+  },
+  "independent_derivation": [
+    {
+      "step": "NP membership",
+      "derivation": "N-1 edge certificate, union-find/tree connectivity and N traversals. At most N(N-1) binary additions; bit size <= maximal entry bit size+ceil(log2(N(N-1))) and threshold comparison polynomial. N=1 objective empty sum zero, negative K no. Graph represented explicitly."
+    },
+    {
+      "step": "Preprocessing",
+      "derivation": "Remove literal repetitions and tautological clauses, honor empty clause as fixed no, no surviving clause fixed yes, delete unused declarations and densely relabel actual occurring variable labels. Source 3SAT with at most 3 literals yields n<=3m after this normalization, so huge binary variable names cannot inflate output."
+    },
+    {
+      "step": "Construction",
+      "derivation": "N=n+m+2. Hub edge tf, two hub edges per variable, incidence edges per surviving literal. Simple because no clause has two signs of a variable or repeated literals. Connected because each variable meets both hubs and each nonempty clause meets at least one variable. All cost vectors determined before tree choice. At t symmetric weights 0/1/2; at q_j only outward variable-to-hub arcs of its occurring variables potentially cost 1, all others 0."
+    },
+    {
+      "step": "Universal structural bound",
+      "derivation": "Any spanning tree has p+q+h=n+m+1 and q>=m. Base c_t is symmetric so F_t=p+2q=(2m+n)+(1-h)+(q-m). Nonnegative other-root costs imply F<=K forces h=1,q=m and F=F_t=K. All clause degrees then exactly 1. Removing clause leaves leaves a core tree containing tf. Every variable then has at least one hub edge, and cannot have both because tf forms a cycle. Thus exactly one."
+    },
+    {
+      "step": "Exact structured clause test",
+      "derivation": "For a structured T rooted at q_j, its selected variable v_i points to its chosen hub. Every other variable is a leaf of the two-star core entered from the hub side and has hub-to-variable orientation, even if it also occurs in clause j. All other possibly costed arcs therefore point in their zero-cost direction. Table assigns selected arc 1 iff selected literal false. Hence F=K+number of false selected literals, only for structured T."
+    },
+    {
+      "step": "Many-one equivalence",
+      "derivation": "Any satisfying assignment chooses one true occurrence per clause and gives acyclic connected two-star core with clause leaves, F=K. Any F<=K tree is structured and each selected literal true, giving a satisfying assignment. No circular dependence on an unknown tree in the input table."
+    },
+    {
+      "step": "Size and strong hardness",
+      "derivation": "|E|<=1+2n+3m, all 2N|E| values explicitly constant size, K=2m+n<=2N, construction polynomial. All numerics bounded polynomially, giving NP-hardness even unary. Add 1 to every root/arc entry shifts each tree by exactly N(N-1), and shifted K remains polynomial. Full arc transpose changes away orientations to inward orientations."
+    }
+  ],
+  "boundaries": [
+    "One vertex: unique empty tree F=0; K<0 rejects.",
+    "Empty clause fixed no has 2 roots each charging 1 on its unique orientation, total 2>K=1. No surviving clauses fixed yes all costs zero K=0.",
+    "A clause containing one or two literals is allowed; no repeated or opposite-sign duplicate remains.",
+    "Zero-cost root vectors are legitimate independent inputs. Nonnegativity is essential for structural inference; negative arbitrary costs not used.",
+    "B>=2 gives F_t=(Bm+n)+(1-h)+(B-1)(q-m); B=1 does not force clause leaves.",
+    "Theorem concerns the sum of all N-1 edges for every root and one shared tree, not independently optimized arborescences.",
+    "Finite tests cannot prove all-size NP-hardness or absolute priority."
+  ],
+  "load_bearing_interfaces": [
+    {
+      "dependency": "NP-completeness of CNF SAT with clauses of size <=3",
+      "status": "standard theorem cited to Karp; actual primary theorem interface still to inspect"
+    },
+    {
+      "dependency": "Kaibel Problem 1 exact model/objective and inward/away conventions",
+      "status": "primary workshop body still to inspect; manuscript statement not accepted as external verification"
+    },
+    {
+      "dependency": "Martin formulation contextual interpretation",
+      "status": "cited expositions still to inspect; not a dependency of the reduction itself"
+    },
+    {
+      "dependency": "Historical novelty/current unresolved status",
+      "status": "not established; bounded search and credit review required; no firstness inference from search absence"
+    }
+  ],
+  "initial_assessment": "Written all-size proof reconstructs without a detected internal central gap. External primary/source/replay and priority checks outstanding; no promotion authority."
+}

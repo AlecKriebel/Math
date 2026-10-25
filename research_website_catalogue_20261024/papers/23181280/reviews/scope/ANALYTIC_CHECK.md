@@ -1,0 +1,33 @@
+# Independent check of the full complexity claim
+
+This derivation was reconstructed in the early seal from the complete actual four-page PDF and controlling TeX. External interfaces were checked afterward. It concerns the original full statement, with no replacement by a smaller claim.
+
+For a finite connected simple graph with N vertices, every root r has its own explicitly encoded nonnegative integral cost on both directions of every edge. A single undirected spanning tree T is chosen. Its cost is the sum over every root of the costs of every one of the N-1 arcs oriented away from that root. The certificate is the N-1 selected edges. Connectivity/acyclicity and N traversals verify the certificate; at most N(N-1) binary entries are added. Their sum has at most the maximum entry bit length plus O(log N) bits. Membership in NP therefore holds. At N=1 the unique empty tree costs zero; negative thresholds reject.
+
+The imported theorem is NP-completeness of satisfiability with at most three literals per clause, not a hardness conclusion from tests. Karp's actual 1972 scan, printed p92, states Cook's SAT completeness theorem; printed p98 gives the reduction to at most three literals. The definitions and relevant reduction were inspected. Cook's original proof is not claimed re-proved or read in its original source.
+
+Normalize a formula by removing repeated literals and tautological clauses, treating an empty clause as an immediate fixed no-instance and no remaining clauses as a fixed yes-instance. Only actual occurring symbols are densely relabeled. The two-vertex no-instance has four table entries equal to one, but only two are used by its unique tree, one at each root: cost two exceeds threshold one. The zero table with threshold zero is a yes-instance. In the remaining case n,m>=1 and n<=3m; large integer names or unused declarations do not inflate the output.
+
+Use hubs t,f, variable vertices v_i, and clause vertices q_j. Edges are tf, tv_i, fv_i, and q_jv_i for each variable occurring in C_j. Nonempty clauses and hub attachments make this a connected simple graph, with N=n+m+2 and |E|<=1+2n+3m. At root t, both directions of tf cost zero, both directions of each hub-variable edge cost one, and both directions of each clause-variable edge cost two. All f and variable-root vectors vanish. For root q_j, only arcs v_i->t and v_i->f for its occurring variables can be nonzero: the false truth-value hub costs one, the true hub costs zero. Reverse arcs cost zero. This defines the full input before a tree is chosen. Let K=2m+n.
+
+For an arbitrary spanning tree, let h indicate tf, p count hub-variable edges and q count clause-variable edges. Each clause has degree at least one and each incidence edge meets only one clause, so q>=m. Edge counting gives p+q+h=n+m+1. The symmetric hub-root cost is therefore
+
+    F_t(T)=p+2q=K+(1-h)+(q-m).
+
+All other root costs are nonnegative. A tree with F(T)<=K must have h=1 and q=m. Each clause degree is then exactly one. Deleting all clause leaves leaves a core tree containing tf; each variable needs a hub edge, while two such edges would create a triangle. Thus every variable has exactly one hub, encoding its truth value. This threshold argument applies to all trees before any selected-literal cost identity is used.
+
+For a structured tree rooted at q_j, its selected neighboring variable v_i points to its chosen hub h_i. Every other variable's core edge points from its hub to that variable: after entering the two-star core through v_i, there is no alternate route to a different variable. This also covers other variables that occur in C_j. Consequently only v_i->h_i can carry a nonzero cost from q_j's vector, and that cost is exactly the indicator that the selected literal is false. All remaining non-base costs vanish. Hence, for structured trees only,
+
+    F(T)=K+number of false selected literals.
+
+A satisfying assignment selects a true literal in each clause, yielding a connected two-star core with clause leaves, hence a tree of cost K. Conversely, any tree at threshold is structured and every selected literal must be true; thus every clause is satisfied. This is a polynomial many-one reduction with 2N|E| explicitly written constant-size entries and K<=2N. It proves NP-hardness under unary as well as binary numerical encoding. With NP membership, this proves the full strong NP-completeness statement.
+
+Adding one to every entry at every root adds exactly N(N-1) to every tree, independent of its shape. The shifted threshold is polynomially bounded and the costs lie in {1,2,3}. Full arc transposition pairs away-root with inward-root orientations pointwise. Neither step introduces a new combinatorial hypothesis.
+
+For general integer B>=2, the same count gives F_t=K_B+(1-h)+(B-1)(q-m), K_B=Bm+n. This explains the historical B=n+1 proof and current B=2 specialization; B=1 would fail to force q=m. There is no claim that minimizing over all trees equals K plus a MaxSAT optimum, nor an approximation, bounded-degree, planarity, fixed-active-root-count or neighboring destination-path theorem.
+
+The exact Kaibel interface is confirmed by the entire contribution on printed pp3014-3015 of the actual publisher PDF. Problem 1 uses one undirected tree and a separately supplied root vector charged on its whole induced arborescence, precisely the target objective. It allows real costs; hardness of this finite nonnegative integer subclass supplies its optimization-hardness answer under standard finite encoding. Problem 2 instead has one fixed root in a digraph and separately charged destination paths. No conclusion about Problem 2 is imported.
+
+The contextual Martin-lift claim also checks. In Friesen's Proposition 2, common x_e equals the sum of both z^r directions, z>=0, every nonroot indegree is one and root indegree zero. Summing indegrees gives sum x_e=N-1. For nonempty S choose a root in S; summing its indegrees over S gives x(E(S))<=|S|-1. For integral x these inequalities force the incidence vector of a tree. Given such a tree, root indegree zero forces its adjacent directions away; induction along the tree forces all z uniquely. CCZ Section 6.1 provides the same standard spanning-tree extension using parent-indexed variables. This classical correspondence is prior credit, not a contribution here. Projection integrality does not assert that the full joint lift is integral for arbitrary objectives on z, so there is no polynomial-time contradiction.
+
+No central analytic or complexity gap was identified in the complete stated theorem. This conclusion is a proof review. The diagnostics corroborate finite instances and implementation contracts; they are not a proof of universal hardness or priority.

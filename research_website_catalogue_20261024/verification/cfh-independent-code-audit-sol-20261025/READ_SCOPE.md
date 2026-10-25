@@ -1,0 +1,7 @@
+# Read ledger interpretation
+
+`READ_LEDGER.json` records exact actual file paths, sizes, SHA256 values and reading purposes. Preservation-only binary or text reads do not imply scientific or prose review. Complete JSON parsing and object comparisons use the entire objects, without projecting their verdict fields to simplified statuses.
+
+Manual inspection preceding execution covered the complete actual new helper, complete proposed renderer, complete checker diff and changed checker context, private ROOT/SITE/import override diffs, complete `bosonic_source.py` containment dependency and `published_assets.py` resolver, all six root authority JSON objects, and all three actual complete receipts. Additional read-only context inspected the private `stage_reader.py` fallback and the beginning of the stage orchestration/build harness; none of those harnesses were executed. The audit's actual direct code comparisons bind current shared code, frozen inputs, proposals and both diff files.
+
+`READINESS_BINDING_CHECK.json` adds exact per-file comparisons of every 165 owned output and every 473 in-scope original-input entry from the sealed readiness manifest. `PRESERVATION_BINDINGS.json` separately records all 640 independently selected stage/source/authority/baseline objects before this audit and proves byte equality after controls. Complete out-of-scope website assets and scientific manuscript reasoning were not reviewed again by this worker.

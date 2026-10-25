@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-25T07:12:19.105932+00:00",
+  "early_reconstruction": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/reviews/scope/INITIAL_INDEPENDENT_RECONSTRUCTION.json",
+  "current_checkable_derivation": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/reviews/scope/ANALYTIC_CHECK.md",
+  "steps": [
+    {
+      "step": "NP membership",
+      "derivation": "N-1 edge certificate, union-find/tree connectivity and N traversals. At most N(N-1) binary additions; bit size <= maximal entry bit size+ceil(log2(N(N-1))) and threshold comparison polynomial. N=1 objective empty sum zero, negative K no. Graph represented explicitly."
+    },
+    {
+      "step": "Preprocessing",
+      "derivation": "Remove literal repetitions and tautological clauses, honor empty clause as fixed no, no surviving clause fixed yes, delete unused declarations and densely relabel actual occurring variable labels. Source 3SAT with at most 3 literals yields n<=3m after this normalization, so huge binary variable names cannot inflate output."
+    },
+    {
+      "step": "Construction",
+      "derivation": "N=n+m+2. Hub edge tf, two hub edges per variable, incidence edges per surviving literal. Simple because no clause has two signs of a variable or repeated literals. Connected because each variable meets both hubs and each nonempty clause meets at least one variable. All cost vectors determined before tree choice. At t symmetric weights 0/1/2; at q_j only outward variable-to-hub arcs of its occurring variables potentially cost 1, all others 0."
+    },
+    {
+      "step": "Universal structural bound",
+      "derivation": "Any spanning tree has p+q+h=n+m+1 and q>=m. Base c_t is symmetric so F_t=p+2q=(2m+n)+(1-h)+(q-m). Nonnegative other-root costs imply F<=K forces h=1,q=m and F=F_t=K. All clause degrees then exactly 1. Removing clause leaves leaves a core tree containing tf. Every variable then has at least one hub edge, and cannot have both because tf forms a cycle. Thus exactly one."
+    },
+    {
+      "step": "Exact structured clause test",
+      "derivation": "For a structured T rooted at q_j, its selected variable v_i points to its chosen hub. Every other variable is a leaf of the two-star core entered from the hub side and has hub-to-variable orientation, even if it also occurs in clause j. All other possibly costed arcs therefore point in their zero-cost direction. Table assigns selected arc 1 iff selected literal false. Hence F=K+number of false selected literals, only for structured T."
+    },
+    {
+      "step": "Many-one equivalence",
+      "derivation": "Any satisfying assignment chooses one true occurrence per clause and gives acyclic connected two-star core with clause leaves, F=K. Any F<=K tree is structured and each selected literal true, giving a satisfying assignment. No circular dependence on an unknown tree in the input table."
+    },
+    {
+      "step": "Size and strong hardness",
+      "derivation": "|E|<=1+2n+3m, all 2N|E| values explicitly constant size, K=2m+n<=2N, construction polynomial. All numerics bounded polynomially, giving NP-hardness even unary. Add 1 to every root/arc entry shifts each tree by exactly N(N-1), and shifted K remains polynomial. Full arc transpose changes away orientations to inward orientations."
+    }
+  ],
+  "additional_primary_interface_checks": [
+    {
+      "name": "Karp1972",
+      "outcome": "Imported SAT<=3 NP-completeness interface confirmed by actual Cook theorem statement and explicit clause conversion. Proof of Cook theorem remains an established imported theorem, not re-proved here."
+    },
+    {
+      "name": "Kaibel Problem1",
+      "outcome": "Full actual original objective agrees exactly, and distinction from neighboring Problem2 verified. Real-cost optimization question is answered by hard finite integer subclass, not a claim of NP membership for arbitrary abstract reals."
+    },
+    {
+      "name": "Martin context",
+      "outcome": "Friesen common x and root indegree constraints and CCZ parent form inspected; integral x yields a tree and root orientations unique. Classical attribution preserved; projection integrality alone does not establish full joint-lift integrality."
+    },
+    {
+      "name": "Historical B=n+1",
+      "outcome": "Both full historical proof copies read and bound. Current B=2 is supported by same unrestricted identity with B-1 positive, not an independent new mechanism. Earlier diagnostic suffix validation repaired in frozen current support; no current source edits."
+    }
+  ],
+  "universal_proof_status": "PASS_NO_CENTRAL_GAP_IDENTIFIED",
+  "finite_evidence_limits": "New actual replay confirms implementation/receipts on finite suites; not universal theorem or priority certificate."
+}

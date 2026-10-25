@@ -76,7 +76,7 @@ assert s.factor(right.subs({X:xp,Y:yp}))==0
 assert s.factor((left-right))==4*X*c
 assert s.factor_list(right)[0]==1 and len(s.factor_list(right)[1])==1
 assert s.factor_list(left)[0]==1 and len(s.factor_list(left)[1])==1
-results.append({'id':'rank_one_stadium_boundary','translated_circle_parametrization_remainder':'0','difference_of_defining_polynomials':str(s.expand(left-right)),'both_circle_polynomials_irreducible_over_C_for_fixed_real_c_nonzero':'Each is a smooth plane affine conic: its projective quadratic form has determinant -1, so it cannot factor into lines over C.','scope':'Symbolic identity plus a written smooth-conic argument; two-dimensional exposed arc families belong to distinct conics when c>0.'})
+results.append({'id':'rank_one_stadium_boundary','translated_circle_parametrization_remainder':'0','difference_of_defining_polynomials':str(s.expand(left-right)),'both_circle_polynomials_irreducible_over_C_for_fixed_real_c_nonzero':'Each is a smooth plane affine conic: its projective quadratic form has determinant -1, so it cannot factor into lines over C.','scope':'Symbolic identity plus a written smooth-conic argument; the two planar exposed arc families belong to distinct conics when c>0.'})
 
 receipt={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'python':sys.executable,'python_version':platform.python_version(),'sympy_version':s.__version__,'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'status':'PASS_ALL_EXACT_DIAGNOSTICS','universal_proof_location':'EARLY_DERIVATION.md','sample_checks_are_not_universal_proofs':True,'results':results}
 (out/'CHECK_RESULTS.json').write_text(json.dumps(receipt,indent=2)+'\n')

@@ -1,0 +1,4 @@
+# Cubic/Hessian legacy identity preflight
+
+- 2026-10-25T07:03:48.731727+00:00: 20% of bounded preflight. Exact revision fcef024e7fec5def93bbc716f33d856f6a93c8af; Git show/ls-tree only, optional locks disabled. Protected prior owned outputs/readiness seals and current accepted source authorities without following stale site/core baselines. No FPS identity re-review, checkout, fetch, index change or redirect.
+- 2026-10-25T07:08:56.502582+00:00:100% of bounded identity preflight. All254docs entries inventoried;48HTML/XML and129text paths searched;76actualPDF paths/73unique blobs hashed and extracted. No current Cubic/Hessian PDF identity,title or record-ID article match. Full radial4page and small-unitary4page readers/fullHTML read as distinct-work exclusions. Root adjudication remains separate; zero redirects proposed or written. All six private readiness packages and accepted source authorities unchanged; stale site/core baselines not followed.

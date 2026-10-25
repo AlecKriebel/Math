@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-25T07:15:35.536703+00:00",
+  "status": "EARLY_INDEPENDENT_FULL_CLAIM_RECONSTRUCTION",
+  "actual_read": "Entire actual5pp text and all5 unaltered raw renders, entire controllingTeX including all claims/proofs/references.",
+  "independence": "No historical audits, current sibling/root scientific opinions, or current target primary passages read. Same OWR report PDF existed from prior unrelated Kaibel review, but Laurent contribution not yet read in this lane.",
+  "original_full_abstract_TeX": "For every fixed compact convex body $K\\subset\\R^n$ with nonempty\ninterior and every real polynomial $f$, the normalized Lebesgue\nsum-of-squares density bound of degree at most $2r$ has error\n$O_{K,f}(r^{-2})$ for every integer $r\\ge1$.\nWe give a self-contained proof and an explicit constant, using one\nglobal square. A quadratic Taylor upper estimator reduces the objective\nto a scalar endpoint problem. Homothetic contraction compares every\nsublevel shell with the same core mass that normalizes a fixed power of\na Dirichlet polynomial; that mass cancels before summation. This proves\nthe quadratic upper rate in the convex-body/Lebesgue regime of the\n2018 Oberwolfach question. A classical interval example shows that the\nexponent is sharp in the worst case. The proxy and the broad\nlocalization and relative-mass mechanisms have established precedents;\nno firstness or new-method claim is made.",
+  "exact_claim": {
+    "hierarchy": "H_r=inf integral_K f q dx over globally SOS q of degree<=2r, integral_K q dx=1, r integer>=1; reference is n-dimensional Lebesgue.",
+    "quantifiers": "For every fixed n>=1, compact convex full-dimensional K, every real polynomial f, any minimizer a in K, all r>=1. No smooth/semialgebraic boundary or convexity of f required.",
+    "constant": "H=max_K Hessian operator norm, gamma=1+H/2, g=grad f(a).(x-a)+gamma||x-a||\u00b2, G=max_K g>0, L=n+2, C_n=4L\u00b2(pi/2)^(2L)(1+2^(n+2)); 0<=H_r-f*<=C_n G/r\u00b2. Single normalized global square witness.",
+    "sharpness": "For interval [0,1], f=t, H_r>=1/[4(r+1)\u00b2]; product with [-1,1]^(n-1) same. One worst-case fixed instance in each dimension, not positive lower rate for every objective.",
+    "extension": "Also C\u00b2 objectives on open neighborhood of K using same quadratic proxy and derivative maxima.",
+    "exclusions": "No arbitrary reference measure, lower-dimensional K with n-dimensional Lebesgue, nonconvex body, efficient minimizer-location method, objective-only-polynomial hierarchy for general nonconvex f, firstness or new-method assertion."
+  },
+  "derivation": [
+    {
+      "step": "Proxy",
+      "check": "Constrained one-sided directional derivative along every segment from minimizer gives ell>=0. Taylor with max Hessian norm over segment inside K yields f-f*<=ell+H||x-a||\u00b2/2<=g. gamma>0 gives g>0 away from a, K full dimension gives nontrivial other point and G>0 finite. u=g/G has degree<=2 and range[0,1]. Constant f still g positive and error zero."
+    },
+    {
+      "step": "Mass growth",
+      "check": "Homothety by alpha=s/t in[0,1] sends S_t into S_s since g(a+alpha(x-a))=alpha ell+alpha\u00b2 gamma d\u00b2<=alpha g(x). Jacobian alpha^n implies F(t)<= (t/s)^n F(s), including t>1. Core F(h)>=h^n vol(K)>0. No differentiation/distribution density assumptions."
+    },
+    {
+      "step": "Kernel",
+      "check": "A_m=(1+2sum_{j=1}^m T_j(1-2t))/(2m+1) degree m and A_m(0)=1. Substitute1-2t=cos(2v), v=asin sqrt(t); finite geometric/Dirichlet identity gives sin(Nv)/(N sqrt(t)). Defining sum bounds abs by1 and quotient by1/(N sqrt(t)). For t<=h=N^-2, convex arcsin is below its endpoint chord, Nv<=pi/2; sin(Nv)>=2Nv/pi and v>=sqrt(t), so A_m>=2/pi on entire core incl0."
+    },
+    {
+      "step": "Relative cancellation",
+      "check": "Q=A_m(u)^(2L) is a global square, bounded bymin(1,(h/u)^L) on K and Z>= (2/pi)^(2L)F(h)>0. Core numerator<=hF(h). Each shell2^j h<u<=2^(j+1)h contributes<=hF(h)2^(n+1)2^{j(n+1-L)}. L=n+2 makes geometric sum2, including last shell beyond1 via same growth estimate. Dividing cancels exact sameF(h), yielding ratio <=(pi/2)^(2L)(1+2^(n+2))/N\u00b2. Oscillatory zeros away from core do not destroy normalization."
+    },
+    {
+      "step": "Degree/all orders",
+      "check": "r>=2L choosem=floor(r/(2L)); square root polynomial degree<=2mL<=r, Qdegree<=4mL<=2r. N=2m+1>=r/(2L) gives stated constant4L\u00b2 factor. For1<=r<2L constant density error<=G andC_n/r\u00b2>=1. qgloballysquare even though only estimates onK. No semialgebraic boundary needed."
+    },
+    {
+      "step": "Worst case",
+      "check": "Shifted normalized Legendre basis has sum squares<=sum(2j+1)=(r+1)\u00b2=M on[0,1]. CS bounds each p\u00b2<=M integral p\u00b2; sumSOSandunitmassgivesq<=M. At most halfmass in[0,1/(2M)], so expectationt>=1/(4M). Fixed-y polynomial degree<=r and integration in y give same marginal bound without extra product-volume factor. Thus worst-caseTheta(r^-2) using proved upper bound, but constantfexactzero."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Legendre orthogonality/norm/sup bound",
+      "status": "Classical finite identities sketched via Rodrigues and complex integral; independently standard derivation coherent, exact arithmetic checks still to run."
+    },
+    {
+      "name": "External theorem/credit interfaces",
+      "status": "Manuscript claims original OWR normalization omission, Slot-Laurent Theorem11 and Lemmas1/4, deKlerk-Laurent proxy and interval sharpness, Totik-Varga Thm2.1 endpoint specialization and2026table. Actual bodies still to inspect; no reliance on claimed old audits."
+    }
+  ],
+  "initial_assessment": "No central mathematical gap detected in reconstructed self-contained universal proof. External theorem attribution, support diagnostics/custody and bounded scope remain outstanding."
+}
