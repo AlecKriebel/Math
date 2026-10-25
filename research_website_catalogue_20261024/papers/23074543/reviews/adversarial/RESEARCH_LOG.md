@@ -1,0 +1,3 @@
+# Adversarial research log — Zenodo 23074543
+
+- 2026-10-25T06:59:11Z — Read AGENTS.md, actual full four-page PDF extraction, controlling published-source/paper.tex, and source identity metadata. Independently reconstructed support-face, connected-analytic, GP perturbation, and separating-polynomial mechanisms. Seven materially distinct falsification families fixed in EARLY_LEDGER.md before external mathematical bodies or historical/current sibling opinions. No substantive defect found at this checkpoint; external conjecture interfaces and controls remain. Completion estimate for this bounded review: 35%.
