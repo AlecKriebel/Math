@@ -1,0 +1,11 @@
+# Independence and coordination
+
+The source-ready packet was supplied with raw custody only before the other scientific lanes began. This scope lane read the entire actual six-page manuscript and full controlling TeX, rendered/read actual pages4–5, and sealed a substantive claim/boundary/proof/attack ledger at15:36:42UTC before any supplied checker, foreign primary or earlier/current evaluation. Source archive members were safely byte-read for custody; their earlier review/priority narratives were not semantically read.
+
+The separately authored own_20_control.py was completed before inspecting source checkers. Primary downloads and exact source code inspection followed the early seal. Other lanes were supplied only raw original paths/hashes/page coordinates during their early independence phase. Their own early seals were reported and the parent later allowed scientific exchange after all family early seals. Root explicitly remained free of scientific findings until its own full paper/TeX reconstruction seal51387323b61909980a0fd9dd856497488236d872204cee86e1c6d059ecbd306a.
+
+A peer caught a raw metadata error: this lane's message said19July1997 for Matsumoto. The actual page1 image says28July1997. This correction is based on the original image, not a guessed alternative date. The final read/custody ledger records it and no byte was changed.
+
+After this scope lane had already independently established the normal-mode source replay and its full-record comparisons, a peer reported its own separately authored261810-edge and810-word reconstruction. That late result is an attributed crosscheck only; this lane did not inspect the peer's code/finalreport and does not claim its execution as our own. The actual optimized-mode false positive was communicated as a runtime limitation, not a mathematical counterexample. No current sibling finalREPORT, verdict or root derivation was opened.
+
+The parent subsequently explicitly opened complete final-report reading after its own early reconstruction. All source original writes stopped at SOURCE_READY freeze; only own scope/cache/review artifacts were created afterward. No external individual was contacted or messaged, and no release/site/native/UI/Git/outreach actions occurred.

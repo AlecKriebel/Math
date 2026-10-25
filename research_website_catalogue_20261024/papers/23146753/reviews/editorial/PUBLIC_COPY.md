@@ -1,0 +1,89 @@
+# Closedness and attractive approximation of binary MTP2 edge models
+
+Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X)
+
+Manuscript and declared publication date: 4 October 2026 · Zenodo version 1.0 · Unrefereed preprint · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+Manuscript and declared publication date: 4 October 2026. Zenodo records version 1.0; the manuscript prints no version number.
+
+## Original abstract
+
+For any fixed finite graph, the binary MTP₂ distributions admitting finite nonnegative unary and edge factors are exactly the pointwise limits of strictly positive attractive Ising distributions on that same graph. In particular, the finite-factor class is closed, answering Conjecture 1 in Lauritzen's 2022 problem statement. The proof handles zero cells by contracting deterministic equalities and aggregating interactions, then uses a classical residual-flow representation to bound local factors without losing normalization. We distinguish this characterization from earlier natural-lattice factorization results and from a previously published counterexample to the accompanying factorization conjectures.
+
+## In plain language
+
+A graphical model writes a joint probability distribution as a product of factors attached to vertices and edges. MTP₂ is a positive-dependence condition. This paper asks what happens when some probabilities are zero or when positive attractive Ising models approach the boundary of the probability simplex.
+
+On every fixed finite graph, the MTP₂ distributions that already have finite nonnegative vertex and edge factors are exactly the limits of positive attractive Ising distributions on that same graph. The result includes deterministic coordinates and tied coordinates, while retaining the original edges.
+
+The finite-factor requirement matters. A globally Markov MTP₂ distribution can fail to have such a factorization; the paper explains an earlier four-cycle counterexample and credits its authors.
+
+## The precise result
+
+Fix any finite simple graph G=(V,E) and binary states Ω={0,1}^V. Let F₂(G) consist of normalized probabilities p satisfying p(x∧y)p(x∨y)≥p(x)p(y) for every x,y∈Ω and admitting an actual product of finite nonnegative unary factors and factors on the original edges. Zeros are allowed.
+
+Let A(G) consist of the strictly positive laws proportional to exp(∑ᵢhᵢxᵢ+∑ᵢⱼ∈EJᵢⱼxᵢxⱼ), with arbitrary finite real fields hᵢ and finite nonnegative couplings Jᵢⱼ. Then F₂(G)=closure A(G) in the fixed finite-dimensional probability simplex. In particular, F₂(G) is closed under pointwise limits. No extra edge or hidden variable is introduced.
+
+The note also gives the exact closure corollary for M_I(G)∩M₂(G) in Lauritzen’s 2022 statement, where M_I uses finite real edge factors only. Signs can be removed by absolute values. When E is nonempty, isolated coordinates are jointly uniform and independent under that edge-only convention; these properties survive limits and the remaining unary factors can be absorbed into incident edges.
+
+For nonempty V and no edges, the literal empty product is not a normalized probability, so the source’s literal edge-only family is empty. With a tacit scalar normalization it contains just the uniform law. For V empty the sole mass is 1. These source conventions are distinct from the main unary-and-edge model, which permits arbitrary independent Bernoulli coordinates on an edgeless graph.
+
+For a nonempty edge set, the supplement also shows that a nonempty Boolean sublattice which is facial for the original-edge design is feasible for that same design. In concrete terms, a lattice zero set of a nonnegative finite original-edge energy is recovered from its original-edge projection constraints. This supplies an attributed support-geometric route to the closure corollary.
+
+## Why it works
+
+Finite local factors identify the support from its actual vertex and edge projections. MTP₂ makes that support a lattice. After pinned coordinates are removed, the edge constraints are implications; strongly connected implication classes represent equal coordinates. On the resulting poset, four allowed support states force each aggregate interaction between incomparable classes to be nonnegative. Individual supplied potentials need not be attractive.
+
+The aggregate interactions can be placed on existing edges. Penalizing the original pin and implication violations then gives positive attractive laws converging to the desired distribution. Their mass on the original support has a strictly positive limiting normalizer.
+
+For the reverse direction, a classical cut representation and maximum-flow residual reparameterization give bounded unary and original-edge factors. Their product is W(x)=exp(−E(x)+min E), so max W=1 and 1≤∑ₓW(x)≤2^|V|. Compactness therefore yields limiting finite factors without losing normalization. The argument allows finite real capacities and does not rely on an integer-capacity algorithm terminating.
+
+## Scope and limitations
+
+This is a finite, binary, pairwise, fixed-graph theorem. It does not assert factorization for every globally Markov MTP₂ law, or extend to arbitrary clique interactions, infinite graphs, nonbinary states, hidden variables or changing graphs. It gives no uniform-in-graph approximation rate or efficient general factor-reconstruction algorithm.
+
+Gandolfi–Lenarda’s earlier four-cycle law illustrates the boundary: its support has x₃=x₄, with mass 2/9 at 1111 and 1/9 at the other seven supported states. It is MTP₂ and globally Markov, but violates an identity obeyed by every original-edge factorization. This is a prior counterexample to separate factorization claims, not a new counterexample or a contradiction to the smaller finite-factor theorem.
+
+The proof uses established toric support geometry, lattice-support ideas, positive-potential theory and graph-cut/flow tools. The comparison with prior work is limited to the cited editions; historical first priority and current worldwide open status are not certified. No new underlying-method or independent-discovery claim is made. Finite computations illustrate examples; the arbitrary-graph theorem rests on the written proof.
+
+## Background and prior work
+
+[S. Lauritzen, Two open problems in graphical models of algebraic nature, OWR 55/2022, pp. 3125–3127](https://doi.org/10.4171/OWR/2022/55) Conjecture 1 is the exact edge-only closure question addressed here. The accompanying factorization conjectures are separate.
+
+[D. Geiger, C. Meek and B. Sturmfels, On the toric algebra of graphical models (2006)](https://doi.org/10.1214/009053606000000263) The classical distinction between toric closure and finite nonnegative factorization depends on support feasibility and faciality.
+
+[T. Kahle and S. Sullivant, Lattice supported distributions and graphical models, arXiv:2411.03139v1 (2024)](https://arxiv.org/abs/2411.03139v1) Their natural-lattice, clique-factor limit theorem and cover/feasibility framework are prior work. Pins, repeated coordinates and the original-edge design require the additional steps stated in this note.
+
+[S. Lauritzen, C. Uhler and P. Zwiernik, Total positivity in exponential families with application to binary variables (2021)](https://doi.org/10.1214/20-AOS2007) Binary lattice-support reconstruction and compact extended MTP₂ graphical families provide established background; an extended family is distinct from finite original-edge factors.
+
+[S. Fallat and coauthors, Total positivity in Markov structures (2017)](https://doi.org/10.1214/16-AOS1478) The positive-pair-potential criterion is classical. Its cancellation converse is not extended indiscriminately to factors with zero entries.
+
+[V. Kolmogorov and R. Zabih, What energy functions can be minimized via graph cuts? (2004)](https://doi.org/10.1109/TPAMI.2004.1262177) The binary submodular cut construction is classical; it represents pairwise interactions without extra nonterminal variables.
+
+[J.-C. Picard and M. Queyranne, On the structure of all minimum cuts in a network and applications (1979 report; published 1980)](https://doi.org/10.1007/BFb0120902) Residual reachability and cut-flow identities supply classical foundations for the bounded-factor gauge.
+
+[V. Kolmogorov and C. Rother, Minimizing nonsubmodular functions with graph cuts—a review (2007)](https://doi.org/10.1109/TPAMI.2007.1031) Maximum-flow residual updates as energy reparameterizations are established tools; the separate doubled-node QPBO construction is not needed here.
+
+[A. Gandolfi and P. Lenarda, A note on Gibbs and Markov random fields with constraints and their moments, vol. 4 (nominal 2016), pp. 407–422; published 13 April 2017](https://doi.org/10.2140/memocs.2016.4.407) Lemma 5.2 gives the exact earlier four-cycle obstruction discussed here. Kahle–Sullivant later give a related equality-support example.
+
+## Research status
+
+Unrefereed preprint, Zenodo version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.
+
+AI tools were used extensively in research, proof development, literature work, writing and code. This is an unrefereed preprint without external human peer review or formal proof-assistant certification; the named author is responsible for the work.
+
+## Contributions
+
+Substantive proof checks, counterexamples and precise comparisons with prior work are welcome. Authorship and acknowledgments would reflect actual research contributions and mutual agreement. Citations credit prior work and imply no participation or endorsement.
+
+## Read the paper
+
+Read the complete 5-page deposited paper in the on-page PDF reader.
+
+[Open PDF](/research/binary-mtp2-edge-closure/mtp2-edge-closure-note.pdf) · [Download PDF](/research/binary-mtp2-edge-closure/mtp2-edge-closure-note.pdf) · [Download original PDF from Zenodo](https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content) · [Download complete ZIP](/research/binary-mtp2-edge-closure/mtp2-edge-closure-verification.zip) · [Download original complete ZIP from Zenodo](https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content) · [Download BibTeX](/research/binary-mtp2-edge-closure/citation.bib)
+
+[Selected Zenodo edition](https://zenodo.org/records/23146753)
+
+## Cite this paper
+
+Alec Kriebel. (2026). Closedness and attractive approximation of binary MTP2 edge models (Zenodo version 1.0) [Preprint]. Zenodo. [DOI 10.5281/zenodo.23146753](https://doi.org/10.5281/zenodo.23146753).

@@ -1,0 +1,475 @@
+{
+  "title": "Closedness and attractive approximation of binary MTP2 edge models",
+  "slug": "binary-mtp2-edge-closure",
+  "description": "Binary MTP₂ laws with finite vertex and edge factors are exactly the limits of positive attractive Ising laws on the same finite graph, including zero cells.",
+  "abstract": "For any fixed finite graph, the binary MTP₂ distributions admitting finite nonnegative unary and edge factors are exactly the pointwise limits of strictly positive attractive Ising distributions on that same graph. In particular, the finite-factor class is closed, answering Conjecture 1 in Lauritzen's 2022 problem statement. The proof handles zero cells by contracting deterministic equalities and aggregating interactions, then uses a classical residual-flow representation to bound local factors without losing normalization. We distinguish this characterization from earlier natural-lattice factorization results and from a previously published counterexample to the accompanying factorization conjectures.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "plain_language": [
+    "A graphical model writes a joint probability distribution as a product of factors attached to vertices and edges. MTP₂ is a positive-dependence condition. This paper asks what happens when some probabilities are zero or when positive attractive Ising models approach the boundary of the probability simplex.",
+    "On every fixed finite graph, the MTP₂ distributions that already have finite nonnegative vertex and edge factors are exactly the limits of positive attractive Ising distributions on that same graph. The result includes deterministic coordinates and tied coordinates, while retaining the original edges.",
+    "The finite-factor requirement matters. A globally Markov MTP₂ distribution can fail to have such a factorization; the paper explains an earlier four-cycle counterexample and credits its authors."
+  ],
+  "result": [
+    "Fix any finite simple graph G=(V,E) and binary states Ω={0,1}^V. Let F₂(G) consist of normalized probabilities p satisfying p(x∧y)p(x∨y)≥p(x)p(y) for every x,y∈Ω and admitting an actual product of finite nonnegative unary factors and factors on the original edges. Zeros are allowed.",
+    "Let A(G) consist of the strictly positive laws proportional to exp(∑ᵢhᵢxᵢ+∑ᵢⱼ∈EJᵢⱼxᵢxⱼ), with arbitrary finite real fields hᵢ and finite nonnegative couplings Jᵢⱼ. Then F₂(G)=closure A(G) in the fixed finite-dimensional probability simplex. In particular, F₂(G) is closed under pointwise limits. No extra edge or hidden variable is introduced.",
+    "The note also gives the exact closure corollary for M_I(G)∩M₂(G) in Lauritzen’s 2022 statement, where M_I uses finite real edge factors only. Signs can be removed by absolute values. When E is nonempty, isolated coordinates are jointly uniform and independent under that edge-only convention; these properties survive limits and the remaining unary factors can be absorbed into incident edges.",
+    "For nonempty V and no edges, the literal empty product is not a normalized probability, so the source’s literal edge-only family is empty. With a tacit scalar normalization it contains just the uniform law. For V empty the sole mass is 1. These source conventions are distinct from the main unary-and-edge model, which permits arbitrary independent Bernoulli coordinates on an edgeless graph.",
+    "For a nonempty edge set, the supplement also shows that a nonempty Boolean sublattice which is facial for the original-edge design is feasible for that same design. In concrete terms, a lattice zero set of a nonnegative finite original-edge energy is recovered from its original-edge projection constraints. This supplies an attributed support-geometric route to the closure corollary."
+  ],
+  "why_it_works": [
+    "Finite local factors identify the support from its actual vertex and edge projections. MTP₂ makes that support a lattice. After pinned coordinates are removed, the edge constraints are implications; strongly connected implication classes represent equal coordinates. On the resulting poset, four allowed support states force each aggregate interaction between incomparable classes to be nonnegative. Individual supplied potentials need not be attractive.",
+    "The aggregate interactions can be placed on existing edges. Penalizing the original pin and implication violations then gives positive attractive laws converging to the desired distribution. Their mass on the original support has a strictly positive limiting normalizer.",
+    "For the reverse direction, a classical cut representation and maximum-flow residual reparameterization give bounded unary and original-edge factors. Their product is W(x)=exp(−E(x)+min E), so max W=1 and 1≤∑ₓW(x)≤2^|V|. Compactness therefore yields limiting finite factors without losing normalization. The argument allows finite real capacities and does not rely on an integer-capacity algorithm terminating."
+  ],
+  "limitations": [
+    "This is a finite, binary, pairwise, fixed-graph theorem. It does not assert factorization for every globally Markov MTP₂ law, or extend to arbitrary clique interactions, infinite graphs, nonbinary states, hidden variables or changing graphs. It gives no uniform-in-graph approximation rate or efficient general factor-reconstruction algorithm.",
+    "Gandolfi–Lenarda’s earlier four-cycle law illustrates the boundary: its support has x₃=x₄, with mass 2/9 at 1111 and 1/9 at the other seven supported states. It is MTP₂ and globally Markov, but violates an identity obeyed by every original-edge factorization. This is a prior counterexample to separate factorization claims, not a new counterexample or a contradiction to the smaller finite-factor theorem.",
+    "The proof uses established toric support geometry, lattice-support ideas, positive-potential theory and graph-cut/flow tools. The comparison with prior work is limited to the cited editions; historical first priority and current worldwide open status are not certified. No new underlying-method or independent-discovery claim is made. Finite computations illustrate examples; the arbitrary-graph theorem rests on the written proof."
+  ],
+  "background": [
+    {
+      "title": "S. Lauritzen, Two open problems in graphical models of algebraic nature, OWR 55/2022, pp. 3125–3127",
+      "url": "https://doi.org/10.4171/OWR/2022/55",
+      "note": "Conjecture 1 is the exact edge-only closure question addressed here. The accompanying factorization conjectures are separate."
+    },
+    {
+      "title": "D. Geiger, C. Meek and B. Sturmfels, On the toric algebra of graphical models (2006)",
+      "url": "https://doi.org/10.1214/009053606000000263",
+      "note": "The classical distinction between toric closure and finite nonnegative factorization depends on support feasibility and faciality."
+    },
+    {
+      "title": "T. Kahle and S. Sullivant, Lattice supported distributions and graphical models, arXiv:2411.03139v1 (2024)",
+      "url": "https://arxiv.org/abs/2411.03139v1",
+      "note": "Their natural-lattice, clique-factor limit theorem and cover/feasibility framework are prior work. Pins, repeated coordinates and the original-edge design require the additional steps stated in this note."
+    },
+    {
+      "title": "S. Lauritzen, C. Uhler and P. Zwiernik, Total positivity in exponential families with application to binary variables (2021)",
+      "url": "https://doi.org/10.1214/20-AOS2007",
+      "note": "Binary lattice-support reconstruction and compact extended MTP₂ graphical families provide established background; an extended family is distinct from finite original-edge factors."
+    },
+    {
+      "title": "S. Fallat and coauthors, Total positivity in Markov structures (2017)",
+      "url": "https://doi.org/10.1214/16-AOS1478",
+      "note": "The positive-pair-potential criterion is classical. Its cancellation converse is not extended indiscriminately to factors with zero entries."
+    },
+    {
+      "title": "V. Kolmogorov and R. Zabih, What energy functions can be minimized via graph cuts? (2004)",
+      "url": "https://doi.org/10.1109/TPAMI.2004.1262177",
+      "note": "The binary submodular cut construction is classical; it represents pairwise interactions without extra nonterminal variables."
+    },
+    {
+      "title": "J.-C. Picard and M. Queyranne, On the structure of all minimum cuts in a network and applications (1979 report; published 1980)",
+      "url": "https://doi.org/10.1007/BFb0120902",
+      "note": "Residual reachability and cut-flow identities supply classical foundations for the bounded-factor gauge."
+    },
+    {
+      "title": "V. Kolmogorov and C. Rother, Minimizing nonsubmodular functions with graph cuts—a review (2007)",
+      "url": "https://doi.org/10.1109/TPAMI.2007.1031",
+      "note": "Maximum-flow residual updates as energy reparameterizations are established tools; the separate doubled-node QPBO construction is not needed here."
+    },
+    {
+      "title": "A. Gandolfi and P. Lenarda, A note on Gibbs and Markov random fields with constraints and their moments, vol. 4 (nominal 2016), pp. 407–422; published 13 April 2017",
+      "url": "https://doi.org/10.2140/memocs.2016.4.407",
+      "note": "Lemma 5.2 gives the exact earlier four-cycle obstruction discussed here. Kahle–Sullivant later give a related equality-support example."
+    }
+  ],
+  "ai_disclosure": "AI tools were used extensively in research, proof development, literature work, writing and code. This is an unrefereed preprint without external human peer review or formal proof-assistant certification; the named author is responsible for the work.",
+  "collaboration": "Substantive proof checks, counterexamples and precise comparisons with prior work are welcome. Authorship and acknowledgments would reflect actual research contributions and mutual agreement. Citations credit prior work and imply no participation or endorsement.",
+  "follow_up": null,
+  "followup_rationale": "Default none; no independently supported substantial research follow-up added.",
+  "AA": null,
+  "canonical_url": null,
+  "publication_date": "2026-10-04",
+  "version": "1.0",
+  "version_field_present": true,
+  "doi": "10.5281/zenodo.23146753",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "mtp2-edge-closure-note.pdf",
+  "pdf_pages": 5,
+  "supplement_filename": "mtp2-edge-closure-verification.zip",
+  "supplement_label": "Complete source and verification archive (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original PDF",
+      "url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete ZIP",
+      "url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content"
+    }
+  ],
+  "status": "Unrefereed preprint, Zenodo version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Zenodo version 1.0",
+  "citation_edition_label": "Zenodo version 1.0",
+  "edition_note": "Manuscript and declared publication date: 4 October 2026. Zenodo records version 1.0; the manuscript prints no version number.",
+  "reader_intro": "Read the complete 5-page deposited paper in the on-page PDF reader.",
+  "bibtex_note": "Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification",
+  "prepared_bibtex": "@misc{Kriebel2026BinaryMTP2EdgeClosure,\n  author = {Kriebel, Alec},\n  title = {Closedness and attractive approximation of binary MTP2 edge models},\n  year = {2026},\n  month = {oct},\n  day = {4},\n  date = {2026-10-04},\n  version = {1.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23146753},\n  url = {https://zenodo.org/records/23146753},\n  note = {Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": "23146753",
+    "concept_record_id": "23146752",
+    "record_url": "https://zenodo.org/records/23146753",
+    "doi": "10.5281/zenodo.23146753",
+    "version": "1.0",
+    "version_field_present": true,
+    "zenodo_version": "1.0",
+    "manuscript_version": null,
+    "manuscript_version_printed": false,
+    "version_provenance": "Actual Zenodo metadata declares1.0; current PDF/TeX print4October2026 and no version label.",
+    "zenodo_publication_date": "2026-10-04",
+    "manuscript_date": "2026-10-04",
+    "record_created_utc": "2026-10-04T22:49:51.137150+00:00",
+    "record_updated_utc": "2026-10-10T21:34:00.951178+00:00",
+    "metadata_path": "sources/normalized-metadata.json",
+    "metadata_sha256": "19a3a8be8617790ef5f1776059df9ba106c42cd3f0a3976853ad0c6d05878464",
+    "raw_record_path": "sources/record.raw.json",
+    "raw_record_sha256": "12c582504480363159995fa9004f314684483af37b3e9213fc9be04a632fc801",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "99b034e696ba8a6ba772a5829210af3c1a6a97251de5e1b7be687f8785efe0da",
+    "source_receipt_schema": "Original all_assets/original_api_file_object/lowercase md5/sha256; ZIP then PDF; original ready plus separate additive source manifest/seal.",
+    "source_receipt_original": {
+      "utc": "2026-10-25T15:13:06.658461+00:00",
+      "derived_from_raw": "record.raw.json/latest.raw.json/versions.raw.json; original objects unmodified",
+      "record_id": 23146753,
+      "title": "Closedness and attractive approximation of binary MTP2 edge models",
+      "version": "1.0",
+      "publication_date": "2026-10-04",
+      "created": "2026-10-04T22:49:51.137150+00:00",
+      "updated": "2026-10-10T21:34:00.951178+00:00",
+      "doi": "10.5281/zenodo.23146753",
+      "conceptrecid": "23146752",
+      "latest_record_id": 23146753,
+      "versions_total": 1,
+      "all_assets": [
+        {
+          "original_api_file_object": {
+            "id": "0fcd4770-d3b2-4612-a8e0-fa0af39d94e1",
+            "key": "mtp2-edge-closure-verification.zip",
+            "size": 103495,
+            "checksum": "md5:cdd1a4def6ce6d58e13c45af703ee02c",
+            "links": {
+              "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-verification.zip",
+          "bytes": 103495,
+          "sha256": "4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5",
+          "md5": "cdd1a4def6ce6d58e13c45af703ee02c"
+        },
+        {
+          "original_api_file_object": {
+            "id": "781e74d7-ee21-4abf-8f83-f48ab83bf7c9",
+            "key": "mtp2-edge-closure-note.pdf",
+            "size": 76891,
+            "checksum": "md5:0afc4fd82272a87b678e0efce8beea0d",
+            "links": {
+              "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-note.pdf",
+          "bytes": 76891,
+          "sha256": "c64228c64ce3ed187e2a58335926dbf29abe45b4468c24d1c457980bcd941ad3",
+          "md5": "0afc4fd82272a87b678e0efce8beea0d"
+        }
+      ],
+      "all_TeX_candidates": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/published-source/mtp2_edge_closure.tex",
+          "bytes": 15589,
+          "sha256": "e10a6be7d61e61a03dd231b6df39e81888ea728a3f17aa8b61c19b6a22b6ec23"
+        }
+      ],
+      "status": "SOURCE_READY_FRESH_PUBLIC_ORIGINALS_COMPLETE_RECURSIVE_CUSTODY",
+      "sheet_row": 105,
+      "PDF_pages": 5,
+      "safe_regular_member_occurrences": 13,
+      "expanded_bytes": 203829,
+      "nested_archives": 0,
+      "source_evaluation": "Original source custody only; no mathematical verdict or inherited review approval."
+    },
+    "source_assets_field": "all_assets",
+    "all_assets": [
+      {
+        "original_api_file_object": {
+          "id": "0fcd4770-d3b2-4612-a8e0-fa0af39d94e1",
+          "key": "mtp2-edge-closure-verification.zip",
+          "size": 103495,
+          "checksum": "md5:cdd1a4def6ce6d58e13c45af703ee02c",
+          "links": {
+            "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-verification.zip",
+        "bytes": 103495,
+        "sha256": "4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5",
+        "md5": "cdd1a4def6ce6d58e13c45af703ee02c"
+      },
+      {
+        "original_api_file_object": {
+          "id": "781e74d7-ee21-4abf-8f83-f48ab83bf7c9",
+          "key": "mtp2-edge-closure-note.pdf",
+          "size": 76891,
+          "checksum": "md5:0afc4fd82272a87b678e0efce8beea0d",
+          "links": {
+            "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-note.pdf",
+        "bytes": 76891,
+        "sha256": "c64228c64ce3ed187e2a58335926dbf29abe45b4468c24d1c457980bcd941ad3",
+        "md5": "0afc4fd82272a87b678e0efce8beea0d"
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "0fcd4770-d3b2-4612-a8e0-fa0af39d94e1",
+        "key": "mtp2-edge-closure-verification.zip",
+        "size": 103495,
+        "checksum": "md5:cdd1a4def6ce6d58e13c45af703ee02c",
+        "links": {
+          "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content"
+        }
+      },
+      {
+        "id": "781e74d7-ee21-4abf-8f83-f48ab83bf7c9",
+        "key": "mtp2-edge-closure-note.pdf",
+        "size": 76891,
+        "checksum": "md5:0afc4fd82272a87b678e0efce8beea0d",
+        "links": {
+          "self": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "recursive_archive_inventory_path": "sources/archive-members.json",
+    "recursive_archive_inventory_sha256": "b0d1b51f96f865fdd5fb7864b8c91e1c23efd835809fd7c40d697ccb8edb7643",
+    "transport_receipt_path": "sources/api-and-file-receipts.json",
+    "transport_receipt_sha256": "3e3c4b0d1e986254a9a716c3be07448228f5e3b1098050e2834bcdae0d85d1c5",
+    "transport_receipt_original": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23146753",
+        "started_utc": "2026-10-25T15:12:09.762488+00:00",
+        "completed_utc": "2026-10-25T15:12:10.448801+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23146753",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 15:12:10 GMT",
+          "content-type": "application/json",
+          "content-length": "7640",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23146753> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792941191",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "bytes": 7640,
+        "sha256": "12c582504480363159995fa9004f314684483af37b3e9213fc9be04a632fc801",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/record.raw.json"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23146753/versions/latest",
+        "started_utc": "2026-10-25T15:12:10.449103+00:00",
+        "completed_utc": "2026-10-25T15:12:11.617378+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23146753",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 15:12:11 GMT",
+          "content-type": "application/json",
+          "content-length": "7640",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23146753> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "130",
+          "x-ratelimit-reset": "1792941191",
+          "retry-after": "59",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "bytes": 7640,
+        "sha256": "12c582504480363159995fa9004f314684483af37b3e9213fc9be04a632fc801",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/latest.raw.json"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23146753/versions",
+        "started_utc": "2026-10-25T15:12:11.617630+00:00",
+        "completed_utc": "2026-10-25T15:12:12.201303+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23146753/versions",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 15:12:12 GMT",
+          "content-type": "application/json",
+          "content-length": "7775",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792941191",
+          "retry-after": "58",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "bytes": 7775,
+        "sha256": "ac0c81c0f3515e275ea1ffd15e6fb0e63c0787f4f8311c9c8659959db22d64a0",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/versions.raw.json"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content",
+        "started_utc": "2026-10-25T15:12:12.201560+00:00",
+        "completed_utc": "2026-10-25T15:12:13.148761+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-verification.zip/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 15:12:12 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "103495",
+          "content-disposition": "attachment; filename=mtp2-edge-closure-verification.zip",
+          "oc-checksum": "MD5:cdd1a4def6ce6d58e13c45af703ee02c",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792941191",
+          "retry-after": "58",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "bytes": 103495,
+        "sha256": "4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-verification.zip"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content",
+        "started_utc": "2026-10-25T15:12:13.149813+00:00",
+        "completed_utc": "2026-10-25T15:12:14.085007+00:00",
+        "status": 200,
+        "final_url": "https://zenodo.org/api/records/23146753/files/mtp2-edge-closure-note.pdf/content",
+        "headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 15:12:13 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "76891",
+          "content-disposition": "attachment; filename=mtp2-edge-closure-note.pdf",
+          "oc-checksum": "MD5:afc4fd82272a87b678e0efce8beea0d",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "127",
+          "x-ratelimit-reset": "1792941191",
+          "retry-after": "57",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "bytes": 76891,
+        "sha256": "c64228c64ce3ed187e2a58335926dbf29abe45b4468c24d1c457980bcd941ad3",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23146753/sources/mtp2-edge-closure-note.pdf"
+      }
+    ],
+    "transport_receipt_entry_count": 5,
+    "asset_root_path": "sources",
+    "pdf_sha256": "c64228c64ce3ed187e2a58335926dbf29abe45b4468c24d1c457980bcd941ad3",
+    "supplement_sha256": "4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5",
+    "source_tex_path": "sources/published-source/mtp2_edge_closure.tex",
+    "source_tex_sha256": "e10a6be7d61e61a03dd231b6df39e81888ea728a3f17aa8b61c19b6a22b6ec23",
+    "abstract_tex": "\nFor any fixed finite graph, the binary MTP$_2$ distributions admitting finite nonnegative unary and edge factors are exactly the pointwise limits of strictly positive attractive Ising distributions on that same graph. In particular, the finite-factor class is closed, answering Conjecture~1 in Lauritzen's 2022 problem statement. The proof handles zero cells by contracting deterministic equalities and aggregating interactions, then uses a classical residual-flow representation to bound local factors without losing normalization. We distinguish this characterization from earlier natural-lattice factorization results and from a previously published counterexample to the accompanying factorization conjectures.\n",
+    "abstract_source": "reviews/editorial/ORIGINAL_ABSTRACT.tex",
+    "abstract_source_sha256": "a505eb27d549bd195a365b77f68312be3515d4174cd84f61588fd426b0e517c1",
+    "abstract_normalization": {
+      "whitespace": "fold consecutive whitespace into one ordinary space",
+      "exact_presentational_replacements": {
+        "MTP$_2$": "MTP₂",
+        "Conjecture~1": "Conjecture 1"
+      },
+      "no_word_or_sentence_omission": true
+    },
+    "public_page_reader_pdf_count": 1,
+    "archive_outer_regular_file_count": 13,
+    "archive_regular_member_occurrences": 13,
+    "archive_container_count": 1,
+    "nested_archive_count": 0,
+    "archive_embedded_pdf_count": 1,
+    "total_distinct_reader_pdf_count": 1,
+    "reader_intro": "Read the complete 5-page deposited paper in the on-page PDF reader.",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "514db27fb3f4de34ce63ac50d3bf9279a9a411fea8e1f358c5ef706a5b65ef86",
+    "publication_state": "EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "review_boundary": "Complete root scientific authority separately adopted; original family/source objects and false/null history retained whole."
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T15:54:05.397142+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "scientific_clearance_status": "PASS_WITH_EXPLICIT_PRIMARY_AND_PRIORITY_LIMITS",
+    "root_clearance_file": "verification/root-clearance-23146753-20261025.json",
+    "root_clearance_sha256": "9f03be990c7b547ebc341908662b241f84b77ffb9b26f9d834d72407d34b7860",
+    "publication_state": "EDITORIAL_CONFIGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "browser_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "native_sheet_aa_url": null,
+    "root_editorial_clearance_received": false
+  }
+}

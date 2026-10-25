@@ -1,0 +1,129 @@
+--- current
++++ proposed
+@@ -15,6 +15,8 @@
+ from spanning_sos_gin_source import SG_IDS, PINS as SG_PINS, spanning_sos_gin_source_view, normalize_sg_abstract, display_sg_text
+ from ambient_block_modulus_source import ABM_IDS, STATUSES as ABM_STATUSES, ambient_block_modulus_source_view, normalize_abm_abstract
+ from abm_body_contract import BodyText as ABMBodyText, expected_body as expected_abm_body
++from odd_ear_blocking_source import OEB_IDS, STATUSES as OEB_STATUSES, odd_ear_blocking_source_view, normalize_oeb_abstract, approved_material_note
++from oeb_body_contract import BodyText as OEBBodyText, expected_body as expected_oeb_body, MATERIAL_NOTES as OEB_MATERIAL_NOTES
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+ parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+@@ -26,6 +28,8 @@
+ if not args.output_dir.resolve().is_relative_to(R/'verification'):parser.error('output-dir must be inside verification')
+ S=args.site
+ TEX_PATHS={
++ '23576280':'published-source/manuscript/main.tex',
++ '23331258':'published-source/note.tex',
+  '23333353':'published-source/ambient_independence_verification/ambient_independence.tex',
+  '23416806':'published-source/paper.tex',
+  '23441617':'published-source/manuscript/main.tex',
+@@ -230,6 +234,7 @@
+  for old,new in replacements.items():body=body.replace(old,new)
+  return body
+ def abstract_tokens(tex,record_id=None):
++ if record_id in OEB_IDS:return wt(normalize_oeb_abstract(record_id,tex))
+  if record_id in ABM_IDS:return wt(normalize_abm_abstract(record_id,tex))
+  if record_id in SG_IDS:return wt(normalize_sg_abstract(record_id,tex))
+  if record_id in CD_IDS:return wt(normalized_cd_abstract(record_id,tex))
+@@ -349,6 +354,7 @@
+  test('no_noindex','noindex' not in meta.get('robots',''))
+  visible_text=''.join(d.text).lower()
+  novelty_checked_text=visible_text.replace('does not certify worldwide first priority','').replace('does not establish worldwide first priority','')
++ if rid in OEB_IDS:novelty_checked_text=novelty_checked_text.replace('do not establish worldwide firstness','').replace('establish neither worldwide firstness nor independent origin','')
+  test('no_audit_replay',not any(x in novelty_checked_text for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
+  test('no_followup',c['follow_up'] is None and 'id="further-research"' not in h)
+  test('authorship_once',h.count('Authorship and responsibilities would be discussed in relation to the substantive contributions made.')==1)
+@@ -368,7 +374,9 @@
+    local.append(good)
+  test('local_links_anchors',all(local))
+  receipt_file=p/'sources/receipt.json';asset_root=p/'sources'
+- if rid in ABM_IDS:
++ if rid in OEB_IDS:
++  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=odd_ear_blocking_source_view(p,c,gate);receipt_file=p/c['source_binding']['source_receipt_path']
++ elif rid in ABM_IDS:
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=ambient_block_modulus_source_view(p,c,gate);receipt_file=p/c['source_binding']['source_receipt_path']
+  elif rid in SG_IDS:
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=spanning_sos_gin_source_view(p,c,gate);receipt_file=p/c['source_binding']['source_receipt_path']
+@@ -411,15 +419,15 @@
+  ix=json.loads(re.search('<script type="application/ld\\+json">(.*?)</script>',index,re.S).group(1));items=ix['mainEntity']['itemListElement'];test('index_jsonld',len([x for x in items if x['url']==base and x['name']==c['title']])==1 and ix['mainEntity']['numberOfItems']==len(items))
+  test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
+  bib=(f.parent/'citation.bib').read_text()
+- if rid in SG_IDS or rid in ABM_IDS:test('bibtex',bib==c['prepared_bibtex'])
+- else:test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS or rid in SG_IDS or rid in ABM_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
+- test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS or rid in SG_IDS or rid in ABM_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
+- if rid in SG_IDS or rid in ABM_IDS:record_file=p/c['source_binding']['raw_record_path']
++ if rid in SG_IDS or rid in ABM_IDS or rid in OEB_IDS:test('bibtex',bib==c['prepared_bibtex'])
++ else:test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS or rid in SG_IDS or rid in ABM_IDS or rid in OEB_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
++ test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS or rid in SG_IDS or rid in ABM_IDS or rid in OEB_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
++ if rid in SG_IDS or rid in ABM_IDS or rid in OEB_IDS:record_file=p/c['source_binding']['raw_record_path']
+  elif rid in CD_IDS:record_file=p/'sources/zenodo-record.raw.json'
+  else:record_file=p/'sources'/(c['source_binding']['record_path'].removeprefix('sources/') if rid in CFH_IDS else 'zenodo_record.json' if rid=='23390551' else 'metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
+  record=json.loads(record_file.read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334','23203100','23395703') and c['source_binding']['zenodo_version'] is None))
+  if c.get('edition_label') and rid not in CD_IDS:test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
+- if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS and rid not in CFH_IDS and rid not in CD_IDS and rid not in SG_IDS and rid not in ABM_IDS:
++ if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS and rid not in CFH_IDS and rid not in CD_IDS and rid not in SG_IDS and rid not in ABM_IDS and rid not in OEB_IDS:
+   materials=re.search('<section id="materials">(.*?)</section>',h,re.S).group(1)
+   test('supporting_materials_links',all(x['url'] in materials and x['label'] in unescape(materials) and x.get('doi','') in unescape(materials) for x in c['related_resources']))
+   related_bound=True
+@@ -432,7 +440,7 @@
+   test('related_resource_source_bindings',related_bound)
+  if (p/'promotion.json').exists():
+   gate=json.loads((p/'promotion.json').read_text())
+-  test('promotion_pdf_binding',(gate['status']==ABM_STATUSES[rid] if rid in ABM_IDS else gate['status']=='PASS') and gate['pdf_sha256']==sha(asset_root/c['pdf_filename']))
++  test('promotion_pdf_binding',(gate['status']==OEB_STATUSES[rid] if rid in OEB_IDS else gate['status']==ABM_STATUSES[rid] if rid in ABM_IDS else gate['status']=='PASS') and gate['pdf_sha256']==sha(asset_root/c['pdf_filename']))
+   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
+   if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194','23127955') or rid in ADDED_IDS or rid in OCTOBER_EDITOR_IDS:
+    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+@@ -1217,6 +1225,51 @@
+   if rid=='23181280':test('whole_common_tree_explicit_binary_constant_alphabets_and_limits',all(x in section_text['result'] for x in ['same underlying tree','all edges in all these rooted orientations','2N|E|','in binary','strong NP-completeness','{0,1,2}','{1,2,3}','N(N−1)','transposed']) and all(x in section_text['limits'] for x in ['Problem 2','unencoded real inputs','unrestricted optimum','first discovery']))
+   elif rid=='23442760':test('whole_normalized_Lebesgue_all_order_constant_C2_product_and_credit',all(x in section_text['result'] for x in ['nonempty interior','n≥1','global sums of squares','∫_K q dx=1','r≥1','Cₙ=4(n+2)²(π/2)^(2n+4)(1+2^(n+2))','C²']) and all(x in section_text['proof'] for x in ['same core mass','1/[4(r+1)²]','[0,1]×[−1,1]^(n−1)','constant objectives have zero error']) and all(x in section_text['limits'] for x in ['Totik–Varga','Markov','arbitrary reference measures','locate one']))
+   else:test('whole_characteristic_zero_four_polar_generic_cutoff_full_ring_and_priority_limits',all(x in section_text['result'] for x in ['characteristic zero','all four partial derivatives before','degree-reverse-lexicographic','x₁>x₂>x₃>x₄','p=min{d≥0:x₂ᵈ∈B}=8','degree-seven minimal generator']) and all(x in section_text['limits'] for x in ['Migliore–Nagel','Ilardi','five-generated','four-generated','positive-characteristic','smallest possible']) and c['version'] is None and 'version' not in art and 'version =' not in bib)
++ if rid in OEB_IDS:
++  binding=c['source_binding'];contract=OEBBodyText(h)
++  test('exact_whole_approved_body_text',contract.bodies==1 and contract.text==expected_oeb_body(c))
++  test('exact_visible_h1',contract.headings==[c['title']])
++  heading_fragments=re.findall(r'<h1>(.*?)</h1>',h,re.S)
++  heading_anchors=OEBBodyText('<body>'+''.join(heading_fragments)+'</body>').anchors
++  test('exact_h1_selflink_destination',len(heading_fragments)==1 and [(attrs.get('href'),label) for attrs,label in heading_anchors]==[('/research/'+c['slug']+'/',c['title'])])
++  main_navigation=re.findall(r'<nav aria-label="Main navigation">(.*?)</nav>',h,re.S)
++  research_anchors=[(attrs.get('href'),label) for attrs,label in OEBBodyText('<body>'+''.join(main_navigation)+'</body>').anchors if label=='Research']
++  test('exact_main_Research_destination',len(main_navigation)==1 and research_anchors==[('/research/','Research')])
++  shown=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
++  from datetime import date
++  declared=date.fromisoformat(c['publication_date']);day=f'{declared.day} {declared.strftime("%B %Y")}'
++  entry=re.findall(r'<p class="entry-meta">(.*?)</p>',h,re.S)
++  expected_entry=f"By {c['author']}, independent researcher. {c['publication_date_label']} {day} · {c['edition_label']} · Unrefereed preprint"
++  test('exact_byline_date_header_edition',len(entry)==1 and shown(entry[0])==expected_entry and [a.get('datetime') for t,a in d.a if t=='time']==[c['publication_date']])
++  cite=re.search(r'<section id="cite">(.*?)</section>',h,re.S);paras=re.findall(r'<p>(.*?)</p>',cite.group(1),re.S) if cite else []
++  expected_cite=f"{c['author']}. ({declared.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. https://doi.org/{c['doi']}"
++  test('exact_citation_edition',len(paras)==2 and shown(paras[0])==expected_cite and shown(paras[1])=='Download BibTeX')
++  status=re.search(r'<section id="status">(.*?)</section>',h,re.S)
++  status_paragraphs=[unescape(x) for x in re.findall(r'<p>(.*?)</p>',status.group(1),re.S)] if status else []
++  test('exact_ordered_full_status_paragraphs',status_paragraphs==[c['status'],c['ai_disclosure']]+([c['edition_note']] if c.get('edition_note') else []))
++  test('whole_original_abstract',normalize_oeb_abstract(rid,a)==c['abstract']==art['abstract'] and '<h2>Original abstract</h2><p>'+__import__('html').escape(c['abstract'])+'</p>' in h)
++  test('readable_body_math',not any(x in contract.text for x in ['\\','$']))
++  test('whole_original_receipt_transport_verdicts',raw_receipt==binding['source_receipt_original']==gate['source_receipt_original'] and json.loads((p/binding['transport_receipt_path']).read_text())==binding['transport_receipt_original']==gate['transport_receipt_original'] and all(x['verdict']==json.loads((p/x['verdict_file']).read_text()) for x in gate['reviews'].values()))
++  test('exact_literal_authenticated_root_status',gate['status']==OEB_STATUSES[rid] and gate['root_clearance_record']['status']==OEB_STATUSES[rid])
++  test('exact_full_prepared_BibTeX',bib==c['prepared_bibtex']==(p/binding['prepared_bibtex_path']).read_text())
++  test('complete_selected_reader',len(texts)==c['pdf_pages']=={'23576280':6,'23331258':4}[rid] and c['reader_intro'] in contract.text)
++  test('exact_four_article_files',{x.name for x in f.parent.iterdir() if x.is_file()}=={'index.html','citation.bib',c['pdf_filename'],c['supplement_filename']})
++  original_urls={x['name']:x['url'] for x in receipt['files']}
++  def exact_anchor(url,label,download=None):
++   return sum(a.get('href')==url and text==label and (download is None or ('download' in a)==download) for a,text in contract.anchors)==1
++  test('exact_original_PDF_label_download',exact_anchor(original_urls[c['pdf_filename']],'Download the original from Zenodo',True))
++  test('exact_local_PDF_label_download',exact_anchor(c['pdf_filename'],'Download PDF',True) and exact_anchor(c['pdf_filename'],'Open PDF in a full window',False))
++  test('exact_original_complete_ZIP_label',exact_anchor(original_urls[c['supplement_filename']],'Zenodo original complete ZIP',False))
++  test('exact_local_ZIP_labels',sum(a.get('href')==c['supplement_filename'] and text==c['supplement_label'] and 'download' in a for a,text in contract.anchors)==2)
++  test('exact_BibTeX_and_predecessor_labels',exact_anchor('citation.bib','Download BibTeX',False) and all(exact_anchor(x['url'],x['title'],False) for x in c['background']))
++  test('CC_BY_header_schema',art['license']==c['license_url']=='https://creativecommons.org/licenses/by/4.0/' and exact_anchor(c['license_url'],'CC BY 4.0',False))
++  test('private_gates_unchanged',c['canonical_url'] is gate['canonical_url'] is c['AA'] is gate['AA'] is c['follow_up'] is gate['follow_up'] is None and all(gate[k] is False and c['review_metadata'][k] is False for k in ['rendered_public_copy_approved','local_http_verified','live_http_verified','browser_verified','native_sheet_publication_verified','public_page_published']))
++  note=approved_material_note(p)
++  test('exact_approved_material_note_and_code_license',note==OEB_MATERIAL_NOTES[rid] and '<p>'+__import__('html').escape(note)+'</p>' in h and ('authored code is MIT' in note if rid=='23576280' else 'proofs, code and audits' in note and 'CC BY 4.0' in note))
++  test('whole_original_initial_intake_receipts',json.loads((p/binding['initial_intake_receipt_path']).read_text())==binding['initial_intake_receipt_original']==gate['initial_intake_receipt_original'])
++  if rid=='23576280':test('whole_variable_threshold_open_ear_scope',all(x in contract.text for x in ['explicitly listed parallel edges','first even ear','integer t in binary','Every nonpositive threshold','arbitrary partial blocks','fixed threshold','Lovász','Alper Ferudun']))
++  else:test('whole_three_terminal_arbitrary_edge_and_exact_four_scope',all(x in contract.text for x in ['All three unordered terminal pairs','infinity greater','positive binary-encoded rational deletion costs','exactly from three to four','All edges, including terminal spokes','Krause’s earlier expensive-edge','no weighted spoke-rounding identity']))
++
+  if rid in ABM_IDS:
+   binding=c['source_binding'];contract=ABMBodyText(h)
+   test('exact_whole_approved_body_text',contract.bodies==1 and contract.text==expected_abm_body(c))

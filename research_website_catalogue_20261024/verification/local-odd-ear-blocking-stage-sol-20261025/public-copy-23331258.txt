@@ -1,0 +1,115 @@
+Skip to content Alec Kriebel
+
+Research | Blog | ORCID NP-completeness of three-terminal shortest-path blocking
+
+By Alec Kriebel, independent researcher.
+
+Manuscript and declared publication date 12 October 2026 · Version 1.0 · Unrefereed preprint
+
+Read the paper (PDF, 4 pages) · Complete original source and verification archive (ZIP) · Zenodo record · CC BY 4.0
+
+Plain-English explanation · Read on this page · Collaboration
+
+Original abstract
+
+We prove that, in a finite simple undirected graph with unit edge lengths, finding a minimum edge set whose deletion increases all three distances between three specified terminals by at least one is NP-hard. The budget decision problem is NP-complete even when all deletion costs are one and all three original terminal distances are three. A direct reduction from Vertex Cover passes through a tripartite graph and identifies its vertex-cover number with the minimum shortest-path blocker size. The construction also gives NP-completeness when the terminal distances must remain finite, or must increase exactly from three to four. This provides a classification of the undirected triangle question posed by Krause in 2005, without asserting bibliographic first priority.
+
+The idea in plain English
+
+Three marked vertices in a graph give three pairs to connect. The question asks for the cheapest set of edges to delete so that the shortest route for every pair becomes at least one edge longer. All edges have length one, and any edge may be deleted.
+
+The paper proves that the budget decision problem is NP-complete even when every deletion costs one and all three original shortest routes have length three. It also proves hardness when the terminal pairs must stay connected or their distances must become exactly four.
+
+A proposed deletion set can be checked in polynomial time, but an exact polynomial-time algorithm for every input would imply P=NP. In the main model a disconnected terminal pair has infinite distance and satisfies the increase requirement. Deletion prices and route lengths are different attributes.
+
+The precise result
+
+Let G be a finite simple undirected graph with unit traversal lengths and three distinct terminals r, s and t that are initially pairwise connected. All three unordered terminal pairs are demands. A blocker F may delete any edges and must satisfy d(G−F;x,y)≥d(G;x,y)+1 for every demand pair, with infinity greater than every finite distance.
+
+Given a nonnegative binary integer budget B, deciding whether such an F has |F|≤B is NP-complete, even when every deletion cost is one and all three original terminal distances are three. Exact optimization is NP-hard. The decision version with positive binary-encoded rational deletion costs and a rational budget is also NP-complete.
+
+The unit-cost decision problem remains NP-complete when all final terminal distances must remain finite, and when each must increase exactly from three to four. These variants guarantee terminal connectivity; they do not require every remaining vertex to lie in one connected component.
+
+All edges, including terminal spokes, internal construction edges and added backup edges, remain deletable. The result imposes no protected-edge or spoke-only restriction. Its reduction covers arbitrary input sizes and binary budgets without expanding the numeric budget into the graph.
+
+Why the result holds
+
+Start from a Vertex Cover instance Q with n vertices and m edges. Replace each edge u−v by a private path u−b−c−v. The resulting tripartite graph H satisfies τ(H)=m+τ(Q). This is the vertex-cover form of Poljak’s classical subdivision identity, and the paper supplies both directions of its proof.
+
+Attach a new terminal to each of the three parts of H. Every original terminal geodesic is a spoke, one H-edge and a second spoke. A vertex cover gives a blocker by deleting its spokes. Conversely, from any blocker choose the vertex of each deleted spoke and one endpoint of each deleted H-edge. These choices form a cover of size at most the blocker, proving opt(G_H)=τ(H) with arbitrary edge deletions.
+
+With budget B=m+k, the two identities preserve the Vertex Cover answer. For m≥1 the graph has n+2m+3 vertices, n+5m edges and all three terminal distances equal to three. A fixed valid yes-instance handles edgeless source graphs. The graph size is independent of the magnitude of binary k.
+
+For the finite-distance and exact-four variants, add a private four-edge backup path between each terminal pair, using nine new internal vertices. No new path of length at most three appears. Any blocker must still hit the old geodesics, while a cover’s spoke deletions leave every backup intact and all three distances exactly four. Krause’s earlier expensive-edge added-path mechanism is credited; this note proves the unrestricted unit-cost specialization directly.
+
+An edge-deletion list, shortest-path searches and exact cost comparisons give polynomial certificates. Positive rational costs inherit hardness from the unit-cost subclass; no weighted spoke-rounding identity is asserted. The finite exact diagnostics accompany the universal written proof.
+
+Scope and limitations
+
+The theorem concerns finite simple undirected graphs with unit traversal lengths, all three terminal demands and unrestricted edge deletion. It does not claim planar, bounded-degree, weighted-traversal-length or globally connected residual-graph classifications. Directed demands and full-disconnection multicuts require separate model comparisons.
+
+Vertex Cover NP-completeness is the classical complexity input. The paper proves its particular cover, geodesic and backup-path identities directly. Poljak’s subdivision result, Khachiyan and coauthors’ related tripartite attachment, and Krause’s earlier added-path exact-one transfer receive explicit credit.
+
+Krause’s historical sources record the undirected triangle question and separately treat the directed case. A historical open statement is not a claim that the question remained open until this work. The original Bienstock–Díaz body was unavailable; its proposal attribution is through Krause. Broader cut-paper interfaces were read without certifying every auxiliary proof or final journal body.
+
+Alper Ferudun’s related preprint addresses the same general classification through Three-Terminal Cut, with deletion-cost instances at initial distance four and unit-cost bundle instances at distance six. It does not treat exact-one increase. It is positively credited without certifying its entire external proof, archive or solver dependencies.
+
+This record declares 12 October 2026 and was created on 13 October. Ferudun’s related record declares 13 October and was created on 14 October. These observed dates establish neither worldwide firstness nor independent origin, copying or a relationship between the works. Historical priority and present worldwide openness are not certified.
+
+Status and AI use
+
+Unrefereed research note, version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.
+
+AI tools were used extensively in constructing and reconstructing the proof, literature work, computational checks, adversarial review and writing. Independent AI-agent review is not independent human peer review. This unrefereed preprint has no journal acceptance or formal proof-assistant certification. Alec Kriebel is the named human author and is responsible for the work. Finite diagnostics supplement the universal written proof.
+
+Manuscript and declared publication date: 12 October 2026; version 1.0.
+
+Read the paper
+
+Read the complete 4-page deposited paper in the on-page PDF reader.
+
+Open PDF in a full window · Download PDF · Download the original from Zenodo
+
+Supporting materials
+
+Complete original source and verification archive (ZIP) · Zenodo original complete ZIP
+
+The archive includes the editable TeX, original proof packet, exact diagnostic code, results and historical audit material. Authored manuscript, proofs, code and audits in the deposit are licensed CC BY 4.0; external references retain their own terms.
+
+Collaborate on this result
+
+Independent proof checks, counterexamples and precise model or prior-work comparisons are welcome. Developing a journal submission would require substantive research contributions. Authorship and acknowledgments would reflect actual contributions and mutual agreement; citations imply no participation or endorsement.
+
+Authorship and responsibilities would be discussed in relation to the substantive contributions made.
+
+Contact Alec
+
+Cite this paper
+
+Alec Kriebel. (2026). NP-completeness of three-terminal shortest-path blocking (Version 1.0) [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.23331258
+
+Download BibTeX
+
+Background and prior work
+
+Stefan Krause (2005 workshop; report published 2006), Increasing distances in graphs : The contribution on printed pages 2856–2858 states the undirected three-pair triangle question with unit traversal lengths and deletion costs. Historical open status does not certify current openness.
+
+Stefan Krause (2006), Increasing Distances in Graphs, Section 4.3 : The dissertation defines the undirected blocking model and infinity convention. Section 4.3 is the triangle case; directed Theorem 9.3 is a separate result. Attribution to Bienstock–Díaz is mediated through these actual Krause sources because the original body was unavailable.
+
+Stefan Krause (2006), Section 9.2, exact-one transfer by added paths : Earlier added-path machinery transfers distance-increase hardness to exact-one increase using expensive edges. That mechanism is credited; the present note supplies its own arbitrary-deletion, unrestricted unit-cost backup-path proof.
+
+Richard M. Karp (1972), Reducibility among combinatorial problems : The Main Theorem and Node Cover entry supply the classical NP-completeness input. Both subsequent graph identities are proved in the note.
+
+Svatopluk Poljak (1974), A note on stable sets and colorings of graphs : Printed page 308 gives the two-subdivision stable-set identity, equivalent to the vertex-cover identity τ(H)=m+τ(Q). The current paper explicitly credits this classical result.
+
+Khachiyan, Boros, Borys, Elbassioni, Gurvich, Rudolf and Zhao (2008), On short paths interdiction problems: total and node-wise limited interdiction : Section 6 supplies a related tripartite attachment in a protected-vertex, vertex-deletion, one-terminal-pair, zero/one-length model. The present note credits the mechanism and proves its different edge-deletion/unit-length/three-demand transfer.
+
+Baier and coauthors, Length-Bounded Cuts and Flows, author manuscript : Provides a broader length-bounded-cut framework. The inspected introductory interfaces are not an automatic hardness theorem for this three-terminal distance-three restriction; complete auxiliary proofs and final journal identity were not re-audited.
+
+Dvořák and Knop (2015), Parameterized complexity of length-bounded cuts and multi-cuts, v1 : The inspected parameterized multi-terminal interfaces concern broader distance constraints. They are not substituted for the proof of the precise three-demand unit-length theorem here.
+
+Alper Ferudun (2026), Blocking Shortest Paths between Three Terminals Is NP-Hard: A Reduction from Three-Terminal Cut, version 1.0 : Related same-classification preprint using Three-Terminal Cut, costed bipartite distance-four and unit-cost distance-six bundle constructions, without the exact-one variant. It declares 13 October and was created 14 October; this record declares 12 October and was created 13 October. The citation certifies neither worldwide priority, author relationship nor the complete external proof/support.
+
+Research home | me@aleckriebel.com
+
+© 2013–2026 Kriebel LLC.

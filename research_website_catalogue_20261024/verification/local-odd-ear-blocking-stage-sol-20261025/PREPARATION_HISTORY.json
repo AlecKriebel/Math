@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-25T15:57:10.856278+00:00",
+  "initial_failed_execution": "source-controls-normal.execution.json",
+  "initial_raw_stderr": "source-controls-normal.stderr",
+  "initial_helper": "history/odd_ear_blocking_source.initial.py",
+  "cause": "Own new helper assumed integer promotion.record_id for both records. Actual immutable Odd-Ear promotion stores string23576280, Blocking stores integer23331258; SOURCE_READY/metadata/source_binding IDs are integers for both.",
+  "correction": "Only new helper now requires each exact native promotion ID type; originals remain unchanged, no coercion or alias persisted.",
+  "initial_partial_control_counts_not_claimed": true,
+  "text_extraction_note": {
+    "observed_utc": "2026-10-25T16:03:01.719064+00:00",
+    "actual_failed_tool_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\nAssertionError\ncat: .../public-copy-23576280.txt: No such file or directory\ncat: .../public-copy-23331258.txt: No such file or directory",
+    "cause": "Own readable-text extractor omitted whitespace boundaries at inline tags, so its normalized text differed from the unchanged canonical body parser. Both actual target checker modes already passed.",
+    "correction": "Only new readable extractor now uses the same explicit tag boundaries; rendered pages/proposals/sources unchanged.",
+    "output_text_files_not_written_before_failure": true,
+    "render_or_suite_not_repeated": true
+  }
+}

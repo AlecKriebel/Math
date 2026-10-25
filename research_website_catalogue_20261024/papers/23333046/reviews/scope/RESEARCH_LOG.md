@@ -1,0 +1,5 @@
+# Row107 source and scope review
+
+* Initial checkpoint, 2026-10-25 — New task accepted. Source acquisition and independent full-manuscript reconstruction precede foreign primary bodies, archived audits and current scientific opinions. Earlier sealed packets remain immutable. Source acquisition0%; scientific review0%; all203 ongoing. Exact acquisition timestamps will be retained per request.
+* 2026-10-25T15:56:58.364300+00:00 — All fresh original API assets/checksums/transport facts and recursive archive bodies authenticated; SOURCE_READY sealed before mathematical reading/opinions/primaries. Source acquisition100%; scientific review0%; all203 ongoing.
+* 2026-10-25T15:59:47.597920+00:00 — Entire actual5pp PDF/controlTeX and all5 rendered pages read; independent exact claim, full-series/cochain/all-recipient deduction and9 materially distinct attack families sealed before foreign bodies/opinions/archived audits. Source100%; scientific review35%; root receives custody only until its initial seal; all203 ongoing. Initial intake attempt had assumed loose Git main ref; corrected before any acquisition to resolve packed/loose refs read-only, no original overwritten.

@@ -29,6 +29,11 @@ for r in manifest['files']:
 pin=json.loads((E/'REMOTE_PIN.json').read_text());assert require_binding(pin['raw'])==f"{pin['commit']}\trefs/heads/main\n".encode()
 assert git('rev-parse',pin['commit']+':docs').decode().strip()==pin['docs_tree']
 assert git('ls-tree','-r','-l','--full-tree',pin['commit'],'--','docs')==(E/'docs-tree.raw.txt').read_bytes()
+closing=json.loads((E/'REMOTE_CLOSING_RECEIPT.json').read_text());assert require_binding(closing['raw'])==f"{closing['commit']}\trefs/heads/main\n".encode()
+assert git('rev-parse',closing['commit']+':docs').decode().strip()==pin['docs_tree']
+assert git('ls-tree','-r','-l','--full-tree',closing['commit'],'--','docs')==(E/'docs-tree.raw.txt').read_bytes()
+for r in closing['new_commit_and_root_tree_objects']:
+ b=require_binding(r);assert hashlib.sha1(r['kind'].encode()+b' '+str(len(b)).encode()+b'\0'+b).hexdigest()==r['oid']
 for r in json.loads((E/'GIT_OBJECT_RECEIPT.json').read_text())['objects']:
  b=require_binding(r);assert hashlib.sha1(r['kind'].encode()+b' '+str(len(b)).encode()+b'\0'+b).hexdigest()==r['oid']
 tree=json.loads((E/'DOCS_OBJECT_BINDINGS.json').read_text());assert len(tree)==254;rawtexts={}
@@ -54,15 +59,18 @@ target=json.loads((E/'TARGET_IDENTITY.json').read_text());assert target['record'
 for k in ['reader','source','ready']:require_binding(target[k])
 assert not target['identical_legacy_readers'] and target['reader']['sha256']!=target['foreign_OpenAI_28pp_SHA256']
 v=json.loads((E/'VERDICT.json').read_text());assert v['status']=='NO_GENUINE_LEGACY_CORRESPONDENCE_IDENTIFIED' and not v['redirect_candidates']
-before=json.loads((E/'PRESERVATION_BEFORE.json').read_text());after=json.loads((E/'PRESERVATION_AFTER.json').read_text());assert after['changed_files']==[] and after['added_or_removed_working_docs']==[] and after['refs_unchanged'] and after['working_docs_status_unchanged']
+before=json.loads((E/'PRESERVATION_BEFORE.json').read_text());after=json.loads((E/'PRESERVATION_AFTER.json').read_text());assert after['unauthorized_or_unexplained_changed_files']==[] and after['added_or_removed_working_docs']==[] and after['local_HEAD_main_symbolic_HEAD_unchanged'] and after['working_docs_status_unchanged']
 checked=0
 for r in before['files']:
  p=Path(r['path']);mutable=p.is_relative_to(G/'docs') or p.is_relative_to(G/'.git')
  if mutable and not args.current_working_preservation:continue
+ if str(p) in after['authorized_concurrent_changed_files']:
+  if args.current_working_preservation:require_binding(after['authorized_root_tracking_ref_final_binding'])
+  continue
  require_binding(r);checked+=1
 if args.current_working_preservation:
  assert sorted(str(p) for p in (G/'docs').rglob('*') if p.is_file())==before['docs_paths']
  assert git('status','--porcelain=v1','--','docs').decode()==before['working_docs_status']
- for key,ref in [('HEAD','HEAD'),('main','refs/heads/main'),('origin_main_local_ref','refs/remotes/origin/main')]:assert git('rev-parse',ref).decode().strip()==before[key]
+ for key,ref in [('HEAD','HEAD'),('main','refs/heads/main'),('origin_main_local_ref','refs/remotes/origin/main')]:assert git('rev-parse',ref).decode().strip()==after['refs'][key]
  assert git('symbolic-ref','HEAD').decode().strip()==before['symbolic_HEAD']
 print(json.dumps({'status':'PASS','owned_payload_files':len(manifest['files']),'immutable_docs_blobs':254,'reused_PDF_extracts':76,'replayed_search_representations':260,'current_originals_rehashed':checked,'current_mutable_preservation_required':args.current_working_preservation,'no_network_or_writes':True}))

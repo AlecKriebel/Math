@@ -1,0 +1,14 @@
+{
+  "phase": "unsealed editorial static validation",
+  "status": "FAILED_OWN_MUTATION_HARNESS_THEN_CORRECTED",
+  "command": "python3 verify_editorial.py",
+  "exit_code": 1,
+  "exact_error": "ValueError: too many values to unpack (expected 2)",
+  "location": "reject(), interpreting a popped original-root-entry object as a copytext/BibTeX pair",
+  "cause": "The mutation callback returned dict.pop's removed object; the harness expected either no return or a two-item text tuple.",
+  "correction": "Interpret only an actual two-item tuple as replacement text/BibTeX; other callback return values are ignored.",
+  "pristine_config_validation_completed_before_harness_error": true,
+  "full_negative_control_suite_completed_in_this_attempt": false,
+  "original_source_or_prior_packet_changes": false,
+  "scientific_or_publication_gate_advanced": false
+}
