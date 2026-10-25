@@ -1,0 +1,35 @@
+from pathlib import Path
+import json,hashlib,datetime
+P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024');O=P/'redirects/ambient-block-modulus-preflight-sol-20261025';now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def ident(p):return {'path':str(p.relative_to(P)),'bytes':p.stat().st_size,'sha256':sha(p)}
+def wr(n,x):(O/n).write_text(json.dumps(x,indent=2,ensure_ascii=False)+'\n')
+receipt=json.loads((O/'CORPUS_RECEIPT.json').read_text());targets=json.loads((O/'TARGET_CUSTODY.json').read_text());prior=[]
+for rid in ['23333353','23416806','23441617']:
+ A=P/'papers'/rid/'reviews/analytic';mpath=A/'MANIFEST.json'
+ if not mpath.exists():mpath=A/'HANDOFF_MANIFEST.json'
+ m=json.loads(mpath.read_text());bad=[]
+ for row in m['portable_files']:
+  rel=row.get('relative_path',row['path']);p=A/rel;raw=p.read_bytes()
+  if len(raw)!=row['bytes'] or hashlib.sha256(raw).hexdigest()!=row['sha256']:bad.append(rel)
+ seal=json.loads((A/'FINAL_SEAL.json').read_text());ok=seal['manifest_sha256']==sha(mpath)
+ prior.append({'record_id':rid,'portable_files':len(m['portable_files']),'mismatches':bad,'manifest_seal_valid':ok,'manifest_path':str(mpath.relative_to(P)),'manifest_sha256':sha(mpath),'final_seal_sha256':sha(A/'FINAL_SEAL.json')})
+ if bad or not ok:raise RuntimeError(('previous sealed packet changed',rid))
+wr('PRIOR_PACKET_PRESERVATION.json',{'utc':now,'packets':prior})
+for rid,x in targets.items():
+ for row in x['inputs']:
+  p=P/row['path'];raw=p.read_bytes()
+  if len(raw)!=row['bytes'] or hashlib.sha256(raw).hexdigest()!=row['sha256']:raise RuntimeError(('target source changed',row['path']))
+wr('identity-verdict.json',{'status':'COMPLETE_NO_GENUINE_LEGACY_CANDIDATE','records':{rid:{'classification':'NO_CORRESPONDING_OLD_ARTICLE_OR_READER_IDENTIFIED','identical_reader':False,'earlier_same_work_candidate':None} for rid in targets},'fresh_remote_main_pin':receipt['fresh_remote_pin'],'docs_tree':receipt['docs_tree'],'redirect_candidates':[],'redirect_authorized':False,'public_writes_performed':False,'scientific_review_reopened':False,'completion_percent':100,'limits':'Identity conclusion is bounded to the authenticated fresh pinned docs tree; no assertion about untracked material, other branches or other websites. Machine extraction is not whole-paper human reading.','completed_utc':now})
+wr('READ_LEDGER.json',{'utc':now,'current_targets':'All three actual target manuscripts and controlling TeX were already read in the separately sealed analytic reviews in this continuous lane; actual97 reader text reread here, and every target reader/TeX/archive/ready hash reauthenticated. No scientific disposition reopened.','legacy_actual_inspection':['Complete47-entry HTML title/heading/canonical/citation/reader-reference inventory.','Complete index visible text and all34 sitemap URLs.','Complete76-entry PDF metadata/page/byte-hash identity inventory.','First title lines for every reader lacking PDF title metadata.','All exact/distinctive query hits and identified false-positive contexts; selected loose-word contexts used for exclusions.'],'machine_only':['All854 PDF pages extracted and searched, not claimed fully read by a human.','All17 raw tracked-text query outputs preserved; noisy broad outputs not all scientifically read.','All9 normalized full-reader target queries are empty.'],'not_read_or_run':['Entire unrelated reader proofs','Authored old source programs as executable code','Current sibling/root scientific opinions for97–99','Any genuine old target article, because no candidate was identified'],'prior_packet_preservation':'All three prior analytic manifests rehashed unchanged; see PRIOR_PACKET_PRESERVATION.json.'})
+wr('CUSTODY.json',{'utc':now,'git_root':'/Users/alec/Documents/Math','remote':'https://github.com/AlecKriebel/Math.git','fresh_main_pin':receipt['fresh_remote_pin'],'docs_tree':receipt['docs_tree'],'remote_receipt':'REMOTE_HTTPS_RECEIPT.json; exact response cache/remote-main-ref.raw.json','git_read_only_commands':['remote -v','ls-remote','rev-parse','ls-tree','grep','cat-file'],'git_mutating_commands':[],'tracked_docs_inventory':ident(O/'docs-tree.raw.txt'),'actual_reader_inventory':ident(O/'pdf-identity-inventory.json'),'target_bindings':ident(O/'TARGET_CUSTODY.json'),'preserved_originals':json.loads((O/'preserved-legacy-bindings.json').read_text()),'preserved_old_bytes':34620,'whole_old_site_copy':False,'old_source_execution':False,'scope':'Only new preflight artifacts; no redirect or public mutation.'})
+wr('CONNECTOR_FAILURE_RECEIPT.json',{'operation':'Read-only GitHub connector GET main ref','result':'Connector transport failed at chatgpt.com backend; no repository response received.','resolution':'Ordinary HTTPS GET subsequently returned actual200 remote reference, bound independently.','scientific_or_repo_mutation':False})
+(O/'RESEARCH_LOG.md').write_text('# Research log\n\n- 2026-10-25T08:11:36.154750Z: Read-only remote pin acquisition; initial Git network check stalled. Own process groups bounded/cleaned; no fetch/ref/index/checkout. Completion20%.\n- 2026-10-25T08:12:24.856017Z: Ordinary HTTPS200 remote main reference authenticated dc143f92e8fe1b30b8b286aff96d58d58075d1ed. Cached docs tree independently matches7a24ec1dcb73a5e06ba82ff9cccda54e73f9deec. Completion50%.\n- 2026-10-25T08:13:28.051724Z: Full254-file tree,47HTML identities,76actualPDFs/854extractablepages inventoried. Index/sitemap and identity interfaces inspected. No target hash or distinctive subject candidate. Completion85%.\n- '+now+': Normalized reader title/ID/subject checks all empty; explicit loose-vocabulary exclusions completed. All three prior analytic packets and target source identities unchanged. Full preflight report, custody/read/negative inventory and immutable seal complete. No redirect candidate. Completion100%.\n')
+wr('CACHE_MANIFEST.json',{'utc':now,'files':[ident(p) for p in sorted((O/'cache').rglob('*')) if p.is_file()],'scope':'Ignored raw remote response and extracted reader first-page identity text; no full old PDFs saved.'})
+rows=[]
+for p in sorted(O.rglob('*')):
+ if p.is_file() and 'cache' not in p.relative_to(O).parts and p.name not in ['HANDOFF_MANIFEST.json','FINAL_SEAL.json']:
+  x=ident(p);x['relative_path']=str(p.relative_to(O));rows.append(x)
+wr('HANDOFF_MANIFEST.json',{'utc':now,'status':'COMPLETE_IMMUTABLE_READ_ONLY_PREFLIGHT','file_count':len(rows),'files':rows,'fresh_main_pin':receipt['fresh_remote_pin'],'docs_tree':receipt['docs_tree']})
+wr('FINAL_SEAL.json',{'utc':now,'status':'COMPLETE_IMMUTABLE','manifest_sha256':sha(O/'HANDOFF_MANIFEST.json'),'manifest_bytes':(O/'HANDOFF_MANIFEST.json').stat().st_size,'report_sha256':sha(O/'REPORT.md'),'verdict_sha256':sha(O/'identity-verdict.json'),'portable_files':len(rows),'redirect_candidates':0,'completion_percent':100})
+print(json.dumps({'utc':now,'portable_files':len(rows),'manifest_sha256':sha(O/'HANDOFF_MANIFEST.json'),'seal_sha256':sha(O/'FINAL_SEAL.json'),'report_sha256':sha(O/'REPORT.md'),'prior_packets_unchanged':[x['record_id'] for x in prior]},indent=2))

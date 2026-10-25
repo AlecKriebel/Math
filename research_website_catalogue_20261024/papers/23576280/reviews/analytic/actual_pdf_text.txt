@@ -1,0 +1,237 @@
+=== ACTUAL PDF PAGE1 ===
+NP-completeness of the initial odd-ear preﬁx
+Alec Kriebel
+Independent researcher
+ORCID: 0009-0001-9320-500X
+22 October 2026
+Preprint, version 1.0.0
+Abstract
+For a ﬁnite 2-vertex-connected graph G, let β(G) be the largest number of consecutive odd
+ears at the beginning of an open ear decomposition, counting its initial circuit and its one-edge
+ears. We prove that deciding β(G) ≥ t, with t part of the input, is NP-complete even for
+simple graphs with a universal vertex whose deletion leaves a connected bipartite graph. This
+answers the variable-threshold complexity question posed by Sebő and by Benchetrit–Sebő. The
+reduction is from explicitly encoded Set Cover. It uses the classical factor-critical formulation of
+β, a cone identity, and a block-loss inequality that permits arbitrary partial blocks. In particular,
+it does not assume an optimal subgraph is a union of whole blocks.
+1 Question and conventions
+All graphs are ﬁnite and undirected. The general input graph is loopless, may have parallel edges,
+and is 2-vertex-connected: it has at least three vertices and remains connected after deleting any
+one vertex. A circuit is a connected 2-regular subgraph. An open ear decomposition consists of an
+initial circuit followed by paths with distinct old endpoints and new internal vertices. Each edge
+occurs in exactly one ear, and the ears partition the edge set. Paths of one edge are allowed. An
+ear is odd if its number of edges is odd. The initial circuit is also counted as an ear.
+For such a graph, β(G) is the maximum length of the initial consecutive odd preﬁx. Once the
+ﬁrst even ear occurs, later odd ears do not count. If no odd initial circuit is possible, β(G) = 0 .
+Sebő’s Question 4 in the 2014 Oberwolfach report [ 1, printed p. 2914] asks for the complexity of
+computing this parameter. Benchetrit–Sebő give these precise open-ear conventions, the factor-
+critical interpretation, and the polynomial-computability question [ 2, §§1.1,3.1, Question 3.3].
+Theorem 1. The language of pairs (G, t) with G as above, t an integer in binary, and β(G) ≥ t,
+is NP-complete. NP-hardness holds on simple 2-vertex-connected graphs with a speciﬁed universal
+vertex z such that G − z is connected and bipartite.
+Thus an exact polynomial-time algorithm for β would imply P = NP. The threshold varies
+with the input. This does not assert hardness at any ﬁxed threshold, and is consistent with the
+ﬁxed-parameter result in [ 2]. It concerns neither closed ears nor the total number of odd ears
+throughout a decomposition.
+1
+=== ACTUAL PDF PAGE2 ===
+2 The cone identity
+A graph H is factor-critical if H − v has a perfect matching for every v ∈ V (H). We use the
+classical theorem of Lovász: a 2-vertex-connected graph is factor-critical if and only if it has an
+all-odd open ear decomposition [ 3, 2]. This is an established structural input, not a new result of
+this note.
+Lemma 2. For a 2-vertex-connected graph G,
+β(G) = max
+H
+(
+|E(H)| − |V (H)| + 1
+)
+, (1)
+where H ranges over 2-vertex-connected factor-critical subgraphs of G, with value zero if the family
+is empty. The maximum can be taken over induced subgraphs.
+Proof. The union of an all-odd preﬁx is 2-vertex-connected and factor-critical by the classical
+theorem. Each ear contributes one to |E| − |V | + 1, including the initial circuit. This proves one
+inequality.
+Conversely, an eligible H has an all-odd open decomposition by the same theorem. It extends
+to G: if a component of G − V (H) had only one distinct neighbor in H, that neighbor would be
+a cut vertex of G. Hence any such component has two distinct old neighbors; a path through the
+component between them supplies an open ear. Repeat until all vertices are present, then add
+all unused edges as one-edge ears. This also proves extension starting from any later intermediate
+union. The resulting decomposition of G begins with all the ears of H.
+For a ﬁxed vertex set, adding its missing edges preserves both factor-criticality and 2-vertex-
+connectivity and can only increase the quantity in (1). Thus induced H suﬃce.
+For a graph B, its cone z ∗ B adds one new vertex z and one edge from z to every vertex of B.
+Lemma 3. If B is connected and bipartite with at least two vertices, then G = z ∗ B is 2-vertex-
+connected, and
+β(G) = max { |E(B[S])| : S ̸= ∅, B [S] is connected and has a perfect matching }. (2)
+Proof. Deleting z leaves connected B; deleting any other vertex leaves connectivity through z. A
+2-vertex-connected factor-critical graph cannot be bipartite. Indeed its order is odd, its bipartition
+classes are nonempty, and deleting a vertex from the smaller class leaves unequal class sizes, which
+precludes a perfect matching. Thus every eligible H in (1) contains z. Make it induced and write
+H = z ∗ B[S].
+Deleting z shows that 2-vertex-connectivity of H requires B[S] connected, and factor-criticality
+requires a perfect matching of B[S]. Conversely, if B[S] is connected with a perfect matching M ,
+then |S| ≥ 2, and the cone is 2-vertex-connected. Deleting z uses M . After deleting u ∈ S, remove
+its matching edge uv and match v to z instead. This proves factor-criticality. Finally,
+|E(H)| − |V (H)| + 1 =
+(
+|E(B[S])| + |S|
+)
+− (|S| + 1) + 1 = |E(B[S])|.
+Both directions give (2). Since B contains an edge, the feasible family is nonempty.
+3 The reduction
+We reduce from Set Cover, whose NP-completeness is classical [ 4]. An instance explicitly lists a
+universe U = {1, . . . , m}, sets A1, . . . , An, and a budget s. It asks whether at most s sets cover U .
+2
+=== ACTUAL PDF PAGE3 ===
+Preprocessing. Budgets below zero give a NO instance. With a nonnegative budget an empty
+universe gives YES. For a nonempty universe, no sets, an uncovered element, or budget zero give
+NO. If the union is U and s ≥ n, the answer is YES. These tests are polynomial. Map any trivial
+YES to a triangle with threshold 1 and any trivial NO to a triangle with threshold 2. A triangle
+has β = 1 and is the cone over K2, so every output remains in the restricted class of Theorem 1.
+It now suﬃces to handle
+m, n ≥ 1, 1 ≤ s ≤ n,
+n∪
+j=1
+Aj = U.
+Empty or repeated sets are allowed in this nontrivial input.
+Put
+T =
+n∑
+j=1
+(1 + |Aj|), k = T + n + 3, M = (m + 1)k2, F = M − ks. (3)
+Here k is a block size; the output threshold is F . We shall use
+k > T, k > s, k 2 > ks + T, F > 0. (4)
+Indeed k − s ≥ T + 3, so k(k − s) > T .
+Construction. Take pairwise disjoint copies Q0, . . . , Qm of Kk,k, with left and right classes Li, Ri.
+Choose a distinguished right vertex qi ∈ Ri. For each Aj, add a new left vertex cj, adjacent to q0
+and to each qi with i ∈ Aj. There are no other interblock edges. Call this graph B. It is simple
+and bipartite, with
+|V (B)| = 2k(m + 1) + n, |E(B)| = M + T.
+Every connector cj meets the root block Q0; every element block has a connector neighbor since
+the sets cover U . Thus B is connected. Output
+(G, t) = ( z ∗ B, F ). (5)
+It belongs to the claimed simple cone class.
+Proposition 4. The Set Cover instance is YES if and only if β(G) ≥ F .
+Proof. Suppose ﬁrst that a cover of size at most s exists. Delete redundant sets to obtain an
+inclusion-minimal cover indexed by J, and put r = |J| ≤ s. Each j ∈ J has a private element p(j):
+an element of Aj belonging to no other selected set. Otherwise Aj could be deleted. These private
+elements are distinct.
+Select all block vertices and the r connectors indexed by J, but omit one left vertex from Lp(j)
+for each j ∈ J. Call the resulting vertex set S. Match cj to qp(j). In each such block, the remaining
+unmatched vertices form Kk−1,k−1; match them internally. Match all other blocks internally as
+Kk,k. Distinct private elements make these matches disjoint, and they cover every selected vertex.
+Each retained block is connected since k ≥ 2. Every selected connector meets the root block,
+and coverage links every element block to one of those connectors. Thus B[S] is connected. Exactly
+r left block vertices have been omitted, in distinct blocks, losing exactly kr internal edges. All right
+vertices remain, so every incidence of a chosen connector remains. Consequently
+|E(B[S])| = M − kr +
+∑
+j∈J
+(1 + |Aj|) ≥ M − ks = F.
+3
+=== ACTUAL PDF PAGE4 ===
+Lemma 3 gives β(G) ≥ F .
+Conversely, use that lemma to choose S for which B[S] is connected, has a perfect matching,
+and has at least F edges. Let r be its number of selected connectors. For every block, set
+ai = |Li \ S|, b i = |Ri \ S|, d i = k(ai + bi) − aibi.
+Here 0 ≤ ai, bi ≤ k, and di is exactly the number of lost internal edges of Qi. No whole-block
+assumption has been made.
+Every block retains at least one internal edge. Otherwise at most M − k2 internal edges remain
+and the total connector contribution is at most T , giving
+|E(B[S])| ≤ M − k2 + T < M − ks = F
+by (4), a contradiction. In particular, both the root block and every element block have selected
+internal edges.
+The perfect matching forces the selected bipartition classes to have equal size. All connectors
+are left vertices, so
+∑
+i
+(k − ai) + r =
+∑
+i
+(k − bi), hence
+∑
+i
+(ai − bi) = r.
+The exact identity
+di − k(ai − bi) = bi(2k − ai) ≥ 0 (6)
+therefore gives ∑
+i di ≥ kr. There are only T connector edges in the whole graph. Thus
+M − ks ≤ |E(B[S])| ≤ M − kr + T, k (r − s) ≤ T < k.
+Integrality implies r ≤ s.
+Finally, ﬁx an element i. Its block has a selected internal edge, and so does the distinct root
+block. Since B[S] is connected, a path from the element block to the root must leave Qi through
+a selected connector cj. Such an edge exists only when i ∈ Aj. The r selected sets therefore cover
+every element, within budget.
+Encoding size. Let L be the length of the explicit Set Cover input. After the union test,
+m, n, T = O(L), and hence k = O(L). The construction lists O(L2) vertices and O(L3) edges;
+the binary threshold F has polynomial bit length. Renumbering the elements is polynomial. No
+succinct multiplicities, weights, implicit graph, or parallel edges are used. Proposition 4 proves
+NP-hardness.
+Membership in NP . For t > 0, a certiﬁcate supplies a subgraph H ⊆ G and a perfect matching
+of H − v for each v ∈ V (H). Check that |V (H)| ≥ 3, that H and every H − v are connected,
+that all matching edges belong to the required deletion graph and cover every remaining vertex
+exactly once, and that |E(H)| − |V (H)| + 1 ≥ t. These are polynomial checks with a polynomial
+certiﬁcate. Lemma 2 proves the required equivalence. For t ≤ 0 the answer is immediate on valid
+inputs. Invalid input graphs may ﬁrst be rejected in polynomial time. This completes the proof of
+Theorem 1.
+4
+=== ACTUAL PDF PAGE5 ===
+4 Relation to earlier work and veriﬁcation
+The cone identity optimizes the number of all induced edges on a connected perfectly matchable
+vertex set. These two qualiﬁcations matter. Sharifov’s polynomial algorithm [ 5] permits discon-
+nected perfectly matchable selections. For example, take three K3,3 blocks and two left connectors,
+one joining the distinguished root right vertex to each of the other blocks. All block vertices alone
+give 27 induced edges and a perfect matching, but three components. The connected optimum is
+25: retaining all three blocks requires both connectors, whose matching balance loses at least six
+block edges and adds at most four connector edges. The bound is attained by omitting one left
+vertex in each nonroot block and matching the connectors there. If a block retains no internal edge,
+at most 27 − 9 + 4 = 22 edges remain; with fewer than two connectors one cannot connect all three
+retained blocks. Thus connectivity cannot simply be dropped.
+Weighted Connected Matching [ 6] instead maximizes the weight of the matching edges ; it does
+not maximize the number of all edges induced by the endpoints. Its related hardness theorem is
+therefore credited without identifying the two objectives. Constrained ear decompositions [ 7] and
+joins in matroids [ 8] likewise concern diﬀerent constraints or total-parity parameters. The new
+ingredient here is the explicit Set Cover reduction for (2), including the partial-block inequality
+(6).
+The original question was stated as open in 2014 and 2015 [ 1, 2]. A bounded primary-source and
+publication-register investigation through 22 October 2026 authenticated no earlier publication of
+the full theorem above. This is not an exhaustive priority or exclusive-ﬁrstness certiﬁcation, and the
+question’s source and the cited dependencies are not represented as publications of this reduction.
+Exact source versions and scope limits are recorded in the accompanying DEPENDENCIES.md and
+PRIORITY.md.
+The accompanying standard-library Python diagnostics test the original complete-ear preﬁx
+objective on ﬁnite graphs against independent matching and induced-subgraph enumerations, the
+exact omission identity, explicit full-size reduction witnesses, preprocessing cases, and falsiﬁable
+controls. These ﬁnite tests supplement the proof; they do not establish its universal quantiﬁers or
+certify priority. Reproduction instructions and exact output are included in the source archive.
+AI involvement and status. AI tools were extensively involved in mathematical research, proof
+development and reconstruction, computational veriﬁcation, literature investigation, manuscript
+preparation, editing, and adversarial auditing. Alec Kriebel is the named human author. This
+manuscript is a preprint and has not undergone formal independent human peer review. Internal
+AI reviews are not such peer review or proof-assistant veriﬁcation. Authored prose is licensed CC
+BY 4.0 and authored code is MIT licensed.
+References
+[1] A. Sebő, Problems about uniform covers, with tours and detours, in Combinatorial Op-
+timization, Oberwolfach Reports 51/2014, pp. 2912–2915, Question 4 on printed p. 2914.
+https://ems.press/content/serial-article-files/46541.
+[2] Y. Benchetrit and A. Sebő, Ear-decompositions and the complexity of the matching polytope,
+arXiv:1509.05586v1 (2015), §§1.1, 3.1–3.2. https://arxiv.org/abs/1509.05586v1.
+[3] L. Lovász, A note on factor-critical graphs, Studia Sci. Math. Hungar. 7 (1972), 279–280.
+Classical theorem used in the precise form stated in [ 2, Theorem 3.2].
+5
+=== ACTUAL PDF PAGE6 ===
+[4] R. M. Karp, Reducibility among combinatorial problems, in R. E. Miller and J. W. Thatcher
+(eds.), Complexity of Computer Computations , Plenum, 1972, pp. 85–103. https://doi.org/
+10.1007/978-1-4684-2001-2_9 .
+[5] F. Sharifov, Perfectly matchable subgraph problem on a bipartite graph, RAIRO Oper. Res.
+44 (2010), 27–42. https://doi.org/10.1051/ro/2010004.
+[6] G. C. M. Gomes, B. P. Masquio, P. E. D. Pinto, V. F. dos Santos, and J. L. Szwarcﬁter,
+Weighted connected matchings, Theoret. Comput. Sci. 1036 (2025), 115149. https://doi.org/
+10.1016/j.tcs.2025.115149. Inspected proof version: arXiv:2202.04746v1 (2022), https://
+arxiv.org/abs/2202.04746v1; journal metadata authenticated, journal body not accessed.
+[7] F. Havet and N. Nisse, Constrained ear decompositions in graphs and digraphs, Discrete Math.
+Theor. Comput. Sci. 21(4) (2019), article 3. https://doi.org/10.23638/DMTCS-21-4-3 .
+[8] Y. Bai, K. Bérczi, and C. Nalam, Joins and ear decompositions beyond graphic matroids,
+arXiv:2608.01059v1 (2026). https://arxiv.org/abs/2608.01059v1.
+6

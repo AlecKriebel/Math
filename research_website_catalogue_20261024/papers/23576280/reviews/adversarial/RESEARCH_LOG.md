@@ -1,0 +1,3 @@
+# Initial odd-ear prefix independent adversarial log
+
+- 2026-10-25T08:18:16Z — 35%. Complete actual6-page PDF and control TeX read. Independently reconstructed all-input Set Cover equivalence, partial-block loss/parity, explicit encoding/preprocessing, complete-ear NP certificate and a distinct direct matching-pair odd-ear construction proving the cone identity. Ten attack families fixed before primary bodies/opinions. General Lovasz/BS interface, original problem definitions and related objective/priority limits remain open. Seven prior packets untouched; no supplied code/contact/outreach; all203 ongoing.

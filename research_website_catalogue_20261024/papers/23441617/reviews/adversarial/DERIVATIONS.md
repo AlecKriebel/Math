@@ -6,7 +6,7 @@ The mechanisms were fixed before primary bodies in the sealed early ledger. This
 
 E is an arbitrary compact subset of[0,1], F=R minus E and S2={|z|=2}. All connectors are continuous with the stated endpoint limits, locally rectifiable in the interior, with no prohibition on interior plate/axis contacts. Line integrals are increasing limits on interior compact subcurves; arclength counts multiplicity, constant portions have zero length, and an infinite endpoint value alone has zero mass. Densities are actual extended nonnegative Borel functions, not area-equivalence classes. The global-rectifiability variant uses that convention consistently in both families.
 
-For empty E the circle family is empty and has modulus0. Otherwise suppose the real-complement modulus is finite. The definition of an infimum then supplies SOME admissible finite-energy rho; it does not require an extremal density or attainment. If every admissible density had infinite energy, or there were none, the infimum would be infinite.
+For empty E the circle family is empty and has modulus 0. Otherwise suppose the real-complement modulus is finite. The definition of an infimum then supplies SOME admissible finite-energy rho; it does not require an extremal density or attainment. If every admissible density had infinite energy, or there were none, the infimum would be infinite.
 
 ## D2. Pointwise finite-energy majorization, including infinity
 
@@ -109,6 +109,6 @@ By contrast, the density infinite only at0 and zero elsewhere has zero integral 
 
 ## D11. Findings and exact limits
 
-Theorem1 and Lemmas1–5 survive independent reconstruction under both stated consistent curve conventions. Every null-set endpoint and every connector remains in the quantifiers. Classical trace/upper-gradient/compact-condenser sources support the acknowledged context, while the direct proof does not import a touching-plate capacity identity. No mathematical computation or finite grid was used.
+Theorem 1 and Lemmas 1–5 survive independent reconstruction under both stated consistent curve conventions. Every null-set endpoint and every connector remains in the quantifiers. Classical trace/upper-gradient/compact-condenser sources support the acknowledged context, while the direct proof does not import a touching-plate capacity identity. No mathematical computation or finite grid was used.
 
-There is one separate minor bibliographic error: reference[4], controlling TeX line442 and PDF7, gives Acta Math.180. The actual Heinonen–Koskela first page and official publisher record for its correct DOI both give181(1998),1–61. This does not change the argument, and no source repair was made. Historical priority/current openness remain unknown; a1982 program title is not a resolution body, and the full2019 problem page remains unavailable.
+There is one separate minor bibliographic error: reference [4], controlling TeX line 442 and PDF 7, gives Acta Math. 180. The actual Heinonen–Koskela first page and official publisher record for its correct DOI both give181(1998),1–61. This does not change the argument, and no source repair was made. Historical priority/current openness remain unknown; a 1982 program title is not a resolution body, and the full 2019 problem page remains unavailable.
