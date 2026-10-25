@@ -1,0 +1,485 @@
+{
+  "bindings": {
+    "artifact_sha256": "050037e966c4de88305f86165262d4e5d454884a9f03f62926ef1793c171238c",
+    "crosswalk_sha256": "443067211fdba870e0ec4209fcfa9d0f48ef990ef4ecdafa65744bfea487ce12",
+    "four_raw_ledger_sha256": "8e5c3f4bbd03640a5a8da8c1be58ba0ecf525bdffd57efcc10e519871c732438",
+    "four_summary_sha256": "b07f57d1fc4e5ebd0b4bce2261931fa64399c791f539e02f46eff1146dcb76f4",
+    "four_verification_sha256": "543c38d9e74e4c9ee9f20e1ba2bd2de80e0476ddf0b544d7c7807025b9ed6fb8",
+    "mutation_driver_sha256": "3730ed7e4d941c4a0b0e5aa6929fad79c9845bcb3665b17b0dbe30899035ec1c",
+    "one_port_ledger_sha256": "1091d7f1a0c78408d0c10dfab31b0d2a5ae2c5447543c5bdb99d2abcb883bf2b",
+    "one_port_manifest_sha256": "d332e3b89b84e066c6eab15c123ebc43c307798ce21bc7e43b2c3a3bb547c48b",
+    "two_port_ledger_sha256": "36c2b0572de34b91f03ec0c6c9f67d26bdd292ba3896d935c96492a46168bce8",
+    "two_port_manifest_sha256": "be8f8cb43eafee70d4ddc29b69dd26bc33e0e598b7a2255f3fd30a7873a470b3",
+    "two_port_parent_inventory_sha256": "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8",
+    "verifier_sha256": "3ad4d91673e8b3efe88a816de87d4cadaeb5b774c8f037cbd5daf1f81053639f"
+  },
+  "cases": [
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "accept",
+      "four_port_crosswalk_control": {
+        "command": [
+          "{python}",
+          "-B",
+          "anchor_universe/verify_complete_anchor_crosswalk.py",
+          "--four-raw-ledger",
+          "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+          "--output",
+          "{temporary_crosswalk_report}"
+        ],
+        "expected": "accept",
+        "observed": "accept",
+        "returncode": 0,
+        "validated_sentinel": "K3P_COMPLETE_ANCHOR_UNIVERSE_CROSSWALK_PASS"
+      },
+      "name": "clean_control",
+      "observed": "accept",
+      "returncode": 0,
+      "validated_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_PASS"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_00}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "folded_four_port_raw_equality_omission": {
+        "command": [
+          "{python}",
+          "-B",
+          "anchor_universe/verify_complete_anchor_crosswalk.py",
+          "--four-raw-ledger",
+          "{four_raw_equality_omitted}",
+          "--output",
+          "{temporary_crosswalk_report}"
+        ],
+        "expected": "reject",
+        "expected_failure_code": "FOUR_RAW_LEDGER_BINDING",
+        "mutated_ledger": {
+          "matched": 1,
+          "ordered_hash_root": "8a83e9b1e5e464b8ae77d26098d4159c078248af5d793e3d22b3c8d844ff69ee",
+          "rows": 405215,
+          "status_counts": {},
+          "uncompressed_bytes": 120692093,
+          "uncompressed_sha256": "2cd275550bfe580a332132c20c1e66979b18b4ba7e063863c31579e5de1ed995"
+        },
+        "observed": "reject",
+        "observed_failure_code": "FOUR_RAW_LEDGER_BINDING",
+        "omitted_raw_id": 137124,
+        "returncode": 1
+      },
+      "name": "omit_tree_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_01}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_cycle_restored_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_02}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_theta2_k5_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_03}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_theta2_k6_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_04}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "cycle_triangle_relabelled_isomorphic",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_05}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_source_graph_hash_replaced",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_06}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_k7_restoration_path_folded",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_07}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_restored_role_forged",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_08}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "bogus_anchor_appended",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_09}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "incoming_boundary_partition_reclassified",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_10}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_base_stage_omitted",
+      "observed": "reject",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    },
+    {
+      "coherent_rebinding": {
+        "mutated_ledger": {
+          "matched": 1,
+          "ordered_hash_root": "8a83e9b1e5e464b8ae77d26098d4159c078248af5d793e3d22b3c8d844ff69ee",
+          "rows": 405215,
+          "status_counts": {},
+          "uncompressed_bytes": 120692093,
+          "uncompressed_sha256": "2cd275550bfe580a332132c20c1e66979b18b4ba7e063863c31579e5de1ed995"
+        },
+        "rebound_inputs": [
+          "four_port_replay_summary",
+          "independent_four_port_verification"
+        ]
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "{four_raw_equality_omitted}",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_RAW_EQUALITY_COUNT",
+      "name": "four_raw_equality_parent_omitted_after_rebinding",
+      "observed": "reject",
+      "observed_failure_code": "FOUR_RAW_EQUALITY_COUNT",
+      "omitted_raw_id": 137124,
+      "returncode": 1
+    },
+    {
+      "coherent_rebinding": {
+        "mutated_ledger": {
+          "matched": 1,
+          "ordered_hash_root": "923b9d409fd8172ba748ae19cf66371a5bb66cb79a0faea403b03c5a9f8d5952",
+          "rows": 29964,
+          "status_counts": {
+            "displayed_quartet_mismatch": 27758,
+            "isomorphic": 1916,
+            "k3p_tree_sunlet_sos": 99,
+            "triangle": 191
+          },
+          "uncompressed_bytes": 26937500,
+          "uncompressed_sha256": "28a3f88f4c9d635770c4ee57a173efb2936262e74ea06786c7a898489157908b"
+        },
+        "rebound_inputs": [
+          "one_port_probe_manifest"
+        ]
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+        "--one-port-ledger",
+        "{one_port_equality_status_mutated}",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_ONE_PORT_EQUALITY_STATUS",
+      "mutated_key": [
+        "four:raw154873",
+        0,
+        0
+      ],
+      "name": "used_one_port_equality_status_corrupted_after_rebinding",
+      "observed": "reject",
+      "observed_failure_code": "FOUR_ONE_PORT_EQUALITY_STATUS",
+      "returncode": 1
+    },
+    {
+      "coherent_rebinding": {
+        "mutated_ledger": {
+          "matched": 1,
+          "ordered_hash_root": "8fe69225f8dcec418f44a0a21dd9bb9f694cffd542b7d4fcf3eeac6149dd6678",
+          "rows": 544571,
+          "status_counts": {
+            "displayed_quartet_mismatch": 511265,
+            "isomorphic": 30970,
+            "k3p_tree_sunlet_sos": 576,
+            "triangle": 1760
+          },
+          "uncompressed_bytes": 621747239,
+          "uncompressed_sha256": "f6e7ad0d1f4a32935eb4d00e4a49beef8f632c0ecd1aa7839c66799a72dbe3d5"
+        },
+        "rebound_inputs": [
+          "two_port_probe_manifest"
+        ]
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "{two_port_separator_status_mutated}",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_TWO_PORT_NONE_STATUS",
+      "mutated_key": [
+        "P1:four:raw154873:0:0",
+        0,
+        6
+      ],
+      "name": "used_two_port_status_corrupted_after_rebinding",
+      "observed": "reject",
+      "observed_failure_code": "FOUR_TWO_PORT_NONE_STATUS",
+      "returncode": 1
+    },
+    {
+      "coherent_rebinding": {
+        "mutated_ledger": {
+          "matched": 1,
+          "ordered_hash_root": "8d896fd12c008203b4d036af2fb060212edd628e72963ca2ce79e59a7e5cfc3c",
+          "rows": 405216,
+          "status_counts": {},
+          "uncompressed_bytes": 120692553,
+          "uncompressed_sha256": "fc7759078a7dfa5d8bbd374f5c06f39749ee898976867af920e9d2a5673c3f56"
+        },
+        "rebound_inputs": [
+          "four_port_replay_summary",
+          "independent_four_port_verification"
+        ]
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "{four_extra_terminal_id_mutated}",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_EXTRA_TERMINAL_IDS",
+      "mutated_raw_id": [
+        202225,
+        999999999
+      ],
+      "name": "extra_terminal_descendant_identity_corrupted_after_rebinding",
+      "observed": "reject",
+      "observed_failure_code": "FOUR_EXTRA_TERMINAL_IDS",
+      "returncode": 1
+    },
+    {
+      "command": [
+        "{python}",
+        "-O",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "optimized mode forbidden",
+      "name": "optimized_mode",
+      "observed": "reject",
+      "observed_failure_code": "optimized mode forbidden",
+      "returncode": 1,
+      "validated_failure_sentinel": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+    }
+  ],
+  "counts": {
+    "accepted": 0,
+    "clean_controls": 1,
+    "coherently_rebound_four_port_semantic_mutations": 4,
+    "mutations": 16,
+    "preserved_non_four_and_runtime_mutations": 12,
+    "rejected": 16
+  },
+  "diagnostic_policy": {
+    "ephemeral_compressed_bytes_excluded_from_payload": true,
+    "mutated_ledgers_committed_logically": true,
+    "rejection_signals_checked_before_sealing": true,
+    "stdout_bytes_excluded_from_payload": true
+  },
+  "payload_sha256": "1ce5f3f9a5947ed4814c1d99b6b21ca85541931dcef36234e3889bb8730d43c5",
+  "schema": "k3p-non-four-anchor-universe-mutations-v3",
+  "status": "PASS"
+}

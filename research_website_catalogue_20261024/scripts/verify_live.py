@@ -12,8 +12,10 @@ assert ids
 paths = ['research/index.html', 'research/research.css', 'research/sitemap.xml']
 for rid in ids:
     c = json.loads((ROOT/'papers'/rid/'publication.json').read_text())
-    paths += [f'research/{c["slug"]}/{name}' for name in
-              ('index.html', 'citation.bib', c['pdf_filename'], c['supplement_filename'])]
+    names = ['index.html', 'citation.bib', c['pdf_filename']]
+    if c.get('supplement_filename'): names.append(c['supplement_filename'])
+    names += [asset['filename'] for asset in c.get('additional_assets', [])]
+    paths += [f'research/{c["slug"]}/{name}' for name in names]
 
 def check(path):
     url = 'https://aleckriebel.com/' + (path[:-10] if path.endswith('index.html') else path)

@@ -1,0 +1,195 @@
+\section{Sharpness}\label{sec:sharpness}
+
+The sharpness construction is independent of the fourteen-orbit atlas.  Its
+three-leaf base pair has rooted presentations
+
+\begin{align*}
+W:\quad& rS,rL_0,SU,SV,UX,VZ,ZX,UV,ZL_1,XL_2,
+ &&\operatorname{Ret}(W)=\{V,X\},\\
+W':\quad& rS,rL_0,SU,SX_0,VX_0,UX_1,VX_1,UV,X_0L_1,X_1L_2,
+ &&\operatorname{Ret}(W')=\{X_0,X_1\}.
+\end{align*}
+
+Suppress \(r\) under \cref{def:standard} and retain every reticulation
+arrowhead.
+
+\begin{proposition}[Topology of the base pair]\label{prop:sharp-topology}
+The mixed graphs \(W,W'\) are simple, binary, level two, and lie in
+\(W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}\).  Their exhaustive rooting
+censuses
+
+\[
+ (\#\mathrm{admissible},\#\mathrm{tree\mbox{-}child},
+   \#\mathrm{non\mbox{-}tree\mbox{-}child})
+\]
+
+are
+
+\[
+ W:(5,2,3),\qquad W':(7,2,5).
+\]
+
+They are labelled nonisomorphic and not ordinary-triangle equivalent.
+\end{proposition}
+
+\input{\KThreePCanonicalRoot/figures/sharpness_pair}
+
+Figure~\ref{fig:sharpness-pair} makes the distinct underlying labelled graphs
+and the weak-but-not-strong obstruction visible before the exact rooting
+census is invoked.
+
+\begin{proof}
+Exact enumeration orients every ordinary edge for every candidate root edge,
+then checks binary degree, acyclicity, reachability, the lowest-stable-ancestor
+condition by dominators, and tree-childness.  The displayed rooting supplies
+a tree-child witness and another admissible rooting leaves an omnian, giving
+weak but not strong status.  Exact labelled mixed-graph comparison finds no
+isomorphism.  Even after all internal arrowhead flags are forgotten, the
+underlying labelled graphs have no isomorphism; triangle redirection cannot
+change the underlying graph.
+\end{proof}
+
+\subsection{The certified common rank-15 point}
+
+Let \(y\in\R^{15}\) be the scaled pivot variables in the equality system
+
+\[
+ F_i(y)=s_i\bigl(q_i(W;x_W(y))-q_i(W';x_{W'}(y))\bigr)=0,
+ \qquad 1\le i\le15,
+\]
+
+for the fifteen nonconstant conservation-supported three-leaf K3P
+coordinates.  The literal maps have 64 direct parameters: ten edge
+spectra and two inheritance probabilities on each network.  Fifteen are
+pivots and the other 49 are frozen at exact rational values.
+
+\begin{proposition}[Krawczyk sharpness certificate]\label{prop:krawczyk}
+There is a rational center \(y_0\) and the box
+
+\[
+ X=\prod_{j=1}^{15}[y_{0,j}-10^{-50},y_{0,j}+10^{-50}]
+\]
+
+such that:
+
+\begin{enumerate}[label=(\roman*)]
+  \item the Krawczyk operator maps \(X\) strictly into its interior and the
+        equality system has a unique root in \(X\);
+  \item both normalized network maps have rank \(15\) throughout \(X\);
+  \item all edge spectra, transition probabilities, inheritance
+        probabilities, and strict continuous-time margins remain positive
+        throughout \(X\).
+\end{enumerate}
+
+At the common tensor, the two images share an ambient-open regular
+\(15\)-dimensional germ.
+\end{proposition}
+
+\begin{proof}
+Exact rational Gauss--Jordan elimination constructs
+\(Y=J_F(y_0)^{-1}\).  Directed rational interval arithmetic encloses
+\(J_F(X)\) and forms
+
+\[
+ K(y_0,X)=y_0-YF(y_0)+(I-YJ_F(X))(X-y_0).
+\]
+
+Every component lies strictly inside \(X\).  The largest normalized distance
+from the box center is \(9.74099938\times10^{-41}\), and
+
+\[
+ \lVert I-YJ_F(X)\rVert_\infty
+ \le8.07702308\times10^{-47}<1.
+\]
+
+The inclusion gives existence; the norm bound makes every mean Jacobian in
+the convex box invertible and gives uniqueness in this equality slice.
+
+For each \(15\)-by-\(32\) local network Jacobian, exact row reduction selects
+a \(15\)-minor.  Neumann bounds throughout \(X\) are at most
+\(1.54315210\times10^{-45}\) for \(W\) and
+\(4.58271952\times10^{-45}\) for \(W'\), excluding zero.  The smallest exact
+continuous-time lower bounds are positive (approximately
+\(4.96\times10^{-10}\) and \(1.40\times10^{-9}\)).  The complete certificate
+stores rational intervals for every inequality, not only these summaries.
+The submersion theorem now gives an ambient-open output neighborhood for each
+map, whose intersection is the common regular germ.
+\end{proof}
+
+The uniqueness in \cref{prop:krawczyk} concerns only the selected
+\(15\)-variable equality slice; it is not global numerical-parameter
+identifiability.
+
+\subsection{Identical K3P cherry substitution}
+
+Replace the same labelled leaf on both networks by the same labelled cherry.
+Let the new pendant spectra be
+\(u=(u_C,u_G,u_T)\) and \(v=(v_C,v_G,v_T)\).  For each nonzero character \(h\),
+choose a retained outside leaf \(j\).  If \(q'\) is the enlarged tensor
+and \(\ell\) is the old leaf replaced by the cherry \(a,b\), Fourier
+conservation gives the explicit observables
+
+\[
+\begin{aligned}
+R_h&=
+\frac{q'_{j=h,\,a=h,\,b=0,\,\mathrm{others}=0}}
+     {q'_{j=h,\,a=0,\,b=h,\,\mathrm{others}=0}}
+=\frac{u_hq_{\ell=h,\,j=h,\,\mathrm{others}=0}}
+       {v_hq_{\ell=h,\,j=h,\,\mathrm{others}=0}}
+=\frac{u_h}{v_h},\\
+P_h&=q'_{a=h,\,b=h,\,\mathrm{others}=0}
+=u_hv_hq_{\ell=0,\,\mathrm{others}=0}=u_hv_h.
+\end{aligned}
+\]
+
+The common old-network factor in the ratio is strictly positive, and the
+last equality uses \(q_{\mathbf0}=1\).
+
+\begin{lemma}[Six-dimensional cherry inverse]\label{lem:cherry}
+On the positive branch,
+
+\[
+ \det\frac{\partial(R_C,P_C,R_G,P_G,R_T,P_T)}
+ {\partial(u_C,v_C,u_G,v_G,u_T,v_T)}
+ =\frac{8u_Cu_Gu_T}{v_Cv_Gv_T}\ne0.
+\]
+
+Thus one identical cherry adds exactly six dimensions to a common regular
+germ.  At
+
+\[
+ u=(2/5,4/9,3/7),\qquad v=(3/7,5/11,4/9),
+\]
+
+both spectra are strict continuous-time and the determinant is \(176/25\).
+\end{lemma}
+
+\begin{proof}
+The determinant factors into three \(2\)-by-\(2\) sector blocks.  Its direct
+Laurent-polynomial expansion gives the displayed formula.  The inverse is
+
+\[
+ u_h=\sqrt{R_hP_h},\qquad v_h=\sqrt{P_h/R_h}.
+\]
+
+After recovering these six coordinates, divide retained-cherry Fourier
+coordinates by their nonzero pendant factors to recover the old tensor.
+Thus the new map has at most six new parameter directions and at least six
+locally observable directions.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:sharpness}]
+The base case follows from
+\cref{prop:sharp-topology,prop:krawczyk}.  Repeatedly apply
+\cref{lem:cherry}.  A tree-child base rooting lifts; the old omnian and its
+incident arcs remain unchanged; the cherry stem (replacing the former
+pendant edge) and the two new pendant edges are bridges, so the blobs and
+level remain unchanged.  Contracting the uniquely labelled newest cherry
+recovers the previous graph.  Hence any enlarged isomorphism or triangle
+equivalence would descend to one for the base pair, which does not exist.
+The dimension is \(15+6(n-3)=6n-3\).
+\end{proof}
+
+Therefore ``strongly'' in \cref{thm:main} cannot be weakened to ``weakly,''
+even in strict continuous time.  The theorem does not say that every weakly
+tree-child network is ambiguous.

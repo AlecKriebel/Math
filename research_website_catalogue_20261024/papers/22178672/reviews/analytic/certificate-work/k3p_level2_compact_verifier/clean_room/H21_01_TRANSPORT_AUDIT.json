@@ -1,0 +1,138 @@
+{
+  "schema": "k3p-h21-fourteen-orbit-clean-room-audit-v2",
+  "generated_at": "2026-08-24T22:39:08-07:00",
+  "status": "PASS",
+  "scope": "H21 transport, all fourteen four-port orbit separations, two pre-lock sink swaps, and clean-room fail-closed behavior",
+  "global_theorem_status": "NOT_ASSERTED_BY_THIS_COMPONENT_ALONE",
+  "historical_diagnosis": {
+    "preserved_historical_verifier": true,
+    "historical_verifier_sha256": "ee5e29a2cd795d9389e8e1257ebdb9eeaa4256fb5d03e07f230bf82ba555ef91",
+    "historical_failure_reproduced": true,
+    "historical_failure": "rooted-DAG automorphisms were used where root-suppressed semi-directed mixed automorphisms were required; base-target automorphisms were not conjugated into the displayed frame",
+    "corrected_transport_status": "PASS"
+  },
+  "hardening_repairs": {
+    "optimized_python": "refused immediately at module import",
+    "assert_nodes_in_corrected_verifier": 0,
+    "terminal_gate_type": "explicit CertificationError/RuntimeError checks",
+    "port_permutation_binding": "port_permutation equals representative_permutation",
+    "source_incoming_role_binding": "reconstructed selected-port-0",
+    "target_incoming_role_binding": "reconstructed selected-port-representative[0]",
+    "active_input_binding": "five hard-coded SHA-256 values checked before JSON parsing",
+    "raw_member_fourier_transports_checked": 38,
+    "rank_claim_binding": "rank equals unique output-row count equals unique parameter-column count",
+    "selected_observable_binding": "minor rows and coordinate labels are checked against the reconstructed selected projection"
+  },
+  "census": {
+    "source_supports": 6,
+    "selected_incoming_target_completions": 831,
+    "dummy_incoming_target_completions": 1983,
+    "target_completions": 2814,
+    "canonical_orbits": 14,
+    "raw_orbit_members": 38,
+    "h21_double_cosets": 7,
+    "h21_nonisomorphic_double_cosets": 6,
+    "prelock_sink_swaps": 2,
+    "transported_h14_quartics": 5,
+    "remaining_exact_quartics": 4,
+    "directed_rank_obstructions": 5
+  },
+  "directed_rank_upper_bounds": [
+    {
+      "orbit_id": "H21-02",
+      "source_minor_rank": 11,
+      "target_minor_rank": 10,
+      "reconstructed_target_upper_bound": 10,
+      "mechanism": "ten rational generators U,V,Z,D,I,A0,B0,A,B,rho with eleven exact cross-multiplied identities",
+      "saturation_factors": ["e2C", "e2G", "D", "I"]
+    },
+    {
+      "orbit_id": "L20-02",
+      "source_minor_rank": 14,
+      "target_minor_rank": 12,
+      "reconstructed_target_upper_bound": 12,
+      "mechanism": "ordinary three-sunlet marginal matched exactly and compressed to twelve generators"
+    },
+    {
+      "orbit_id": "L21a-02",
+      "source_minor_rank": 11,
+      "target_minor_rank": 10,
+      "reconstructed_target_upper_bound": 10,
+      "mechanism": "selected ordinary-sunlet projection uses ten of twelve generators",
+      "absent_generators": ["A_G", "B_G"]
+    },
+    {
+      "orbit_id": "L21b-02",
+      "source_minor_rank": 11,
+      "target_minor_rank": 10,
+      "reconstructed_target_upper_bound": 10,
+      "mechanism": "selected ordinary-sunlet projection uses ten of twelve generators",
+      "absent_generators": ["A_G", "B_G"]
+    },
+    {
+      "orbit_id": "L23-01",
+      "source_minor_rank": 14,
+      "target_minor_rank": 12,
+      "reconstructed_target_upper_bound": 12,
+      "mechanism": "ordinary three-sunlet marginal matched exactly and compressed to twelve generators"
+    }
+  ],
+  "mutation_suite": {
+    "status": "PASS",
+    "mutations_rejected": 9,
+    "mutations_accepted": 0,
+    "controls_passed": 2,
+    "mutations": [
+      "mutated_port_permutation",
+      "mutated_target_incoming_role",
+      "weakened_target_rank_claim",
+      "weakened_target_upper_bound_claim",
+      "inflated_101_over_100_rank_labels",
+      "mismatched_target_minor_size",
+      "mutated_selected_observable_set",
+      "optimized_python_mode",
+      "mutated_active_input_hash"
+    ],
+    "result_file": "CLEAN_ROOM_MUTATION_RESULTS.json",
+    "result_file_sha256": "5544969046337b3f5adcbfaf698bde34908f1f5c971597dc79a7fbad7a65297c"
+  },
+  "immutable_inputs": {
+    "K3P_14_ORBIT_LOCK.json": "61d88a67b487ebbee1cae881def23fdce770d4fa0cac0d6b86be02e7368438a3",
+    "k3p_prelock_source5_quartic.json": "5e7bf1599f2a28858b2dbce3993baf6adea9e27cef9ffa8d23503200742d0a5e",
+    "k3p_h14_marginal_orbit_certificates.json": "41c3c9756536a28b9fc24250c62491e10322e66c0bd4c4b692e939aade2395c0",
+    "k3p_remaining_quartic_separators.json": "8ee39cd08a01f9e9dd385e41bbab4814f7e0859f143aceda4e8831ddba053f61",
+    "k3p_directed_rank_obstructions.json": "fa0ac74cde903edc422a90b5e490bd639b2e2b4c758d9d3ec10a794f1a044f42"
+  },
+  "artifacts": {
+    "corrected_verifier": {
+      "file": "verify_h21_transport_and_fourteen_orbits.py",
+      "sha256": "becacec117734248047cded6f84d5996ad91c7531be36b1d8db8eec57653740b"
+    },
+    "transport_regression": {
+      "file": "test_h21_transport_regression.py",
+      "sha256": "aa3a97442854d7df8b6d4b3bfa02e9f2d18d4eaa4a0838fdd33738e00ea6a063"
+    },
+    "mutation_driver": {
+      "file": "test_clean_room_mutations.py",
+      "sha256": "114b7d7e4a694e7b8bfaca212bf45846b034e6b22b6b95c0c0fe3a4314eec2a8"
+    },
+    "mandatory_runner": {
+      "file": "verify_clean_room.sh",
+      "sha256": "ea76278d7fac941726b00c137408b8874ff0aeed56bb17b33bfa05c3a2d80857"
+    },
+    "historical_replay": {
+      "file": "replay_historical_failure.py",
+      "sha256": "d49cb601c7f8a33dd6f07acd7005bc2f45efa9a3e6a4f0dc42fa36e8d4c13695"
+    }
+  },
+  "observed_runtime_seconds": {
+    "historical_replay": 0.09,
+    "corrected_full_replay": 1.73,
+    "transport_regression_full_replay": 1.80,
+    "mutation_suite": 2.77,
+    "mandatory_runner_total": 6.50
+  },
+  "observed_peak_rss_bytes": 96256000,
+  "terminal_sentinel": "CLEAN_ROOM_FULL_GATE_PASS",
+  "exact_remaining_gaps_within_scope": []
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "nmsc-numerical-recovery-regression-v1",
+  "rate_unit": "log(2)",
+  "description": "Strict theta_0 with strong repairs on U-X and V-X; all times and log(2)-scaled pair rates are integers.",
+  "ages": {"x":0,"a":0,"b":0,"w":0,"X":2,"TA":6,"V":10,"TB":16,"U":20,"S":24,"R":28},
+  "arcs": [["R","S"],["R","w"],["S","U"],["S","V"],["U","TB"],["U","V"],["TB","b"],["TB","X"],["V","TA"],["TA","a"],["TA","X"],["X","x"]],
+  "routing": {"X":{"TA":"1/3","TB":"2/3"},"V":{"U":"1/2","S":"1/2"}},
+  "default_rate_multiplier":1,
+  "fixtures": [
+    {"name":"equal_parent_rates_gamma_half","words":{"TA>X":[[2,2]],"TB>X":[[2,2]],"U>V":[[10,2]],"S>V":[[10,2]],"S>U":[[20,2]]}},
+    {"name":"unequal_piecewise_words","words":{"TA>X":[[2,1],[4,2]],"TB>X":[[2,2],[12,3]],"U>V":[[10,2],[14,4],[18,1]],"S>V":[[10,2],[13,3],[21,1]],"S>U":[[20,2],[22,3]]}},
+    {"name":"both_inheritances_half_piecewise","routing":{"X":{"TA":"1/2","TB":"1/2"}},"words":{"TA>X":[[2,3],[4,1]],"TB>X":[[2,1],[12,2]],"U>V":[[10,2],[14,1],[18,3]],"S>V":[[10,2],[13,4],[21,2]],"S>U":[[20,1],[22,2]]}}
+  ]
+}

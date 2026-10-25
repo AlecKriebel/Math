@@ -1,0 +1,81 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\scriptsize},
+  tree/.style={circle,draw,inner sep=1.1pt,minimum size=4.5mm},
+  retic/.style={circle,draw,double,inner sep=.95pt,minimum size=5mm},
+  port/.style={rectangle,draw,rounded corners=.5pt,inner sep=1.1pt},
+  ordinary/.style={line width=.6pt},
+  enter/.style={-{Stealth[length=1.9mm,width=1.2mm]},line width=.85pt},
+  orient/.style={font=\tiny,align=center}
+]
+  % Reticulation at port 1.
+  \begin{scope}[shift={(-4.2,0)}]
+    \node[retic] (a) at (0,1.15) {$1$};
+    \node[tree] (b) at (-.95,-.45) {$2$};
+    \node[tree] (c) at (.95,-.45) {$3$};
+    \node[port] (p1) at (0,2.05) {$p_1$};
+    \node[port] (p2) at (-1.65,-1.2) {$p_2$};
+    \node[port] (p3) at (1.65,-1.2) {$p_3$};
+    \draw[enter] (b) -- (a);
+    \draw[enter] (c) -- (a);
+    \draw[ordinary] (b) -- (c);
+    \draw[ordinary] (a) -- (p1);
+    \draw[ordinary] (b) -- (p2);
+    \draw[ordinary] (c) -- (p3);
+    \node[orient] at (0,-1.65) {reticulate at (1)};
+  \end{scope}
+
+  \node[font=\large] at (-2.1,.15) {$\equiv_\triangle$};
+
+  % Reticulation at port 2.
+  \begin{scope}[shift={(0,0)}]
+    \node[tree] (a) at (0,1.15) {$1$};
+    \node[retic] (b) at (-.95,-.45) {$2$};
+    \node[tree] (c) at (.95,-.45) {$3$};
+    \node[port] (p1) at (0,2.05) {$p_1$};
+    \node[port] (p2) at (-1.65,-1.2) {$p_2$};
+    \node[port] (p3) at (1.65,-1.2) {$p_3$};
+    \draw[enter] (a) -- (b);
+    \draw[enter] (c) -- (b);
+    \draw[ordinary] (a) -- (c);
+    \draw[ordinary] (a) -- (p1);
+    \draw[ordinary] (b) -- (p2);
+    \draw[ordinary] (c) -- (p3);
+    \node[orient] at (0,-1.65) {reticulate at (2)};
+  \end{scope}
+
+  \node[font=\large] at (2.1,.15) {$\equiv_\triangle$};
+
+  % Reticulation at port 3.
+  \begin{scope}[shift={(4.2,0)}]
+    \node[tree] (a) at (0,1.15) {$1$};
+    \node[tree] (b) at (-.95,-.45) {$2$};
+    \node[retic] (c) at (.95,-.45) {$3$};
+    \node[port] (p1) at (0,2.05) {$p_1$};
+    \node[port] (p2) at (-1.65,-1.2) {$p_2$};
+    \node[port] (p3) at (1.65,-1.2) {$p_3$};
+    \draw[enter] (a) -- (c);
+    \draw[enter] (b) -- (c);
+    \draw[ordinary] (a) -- (b);
+    \draw[ordinary] (a) -- (p1);
+    \draw[ordinary] (b) -- (p2);
+    \draw[ordinary] (c) -- (p3);
+    \node[orient] at (0,-1.65) {reticulate at (3)};
+  \end{scope}
+
+  \node[draw,rounded corners=1.2pt,inner sep=3pt,font=\small]
+    at (0,-2.45)
+    {$\overline{\operatorname{im}\Phi_1}
+      =\overline{\operatorname{im}\Phi_2}
+      =\overline{\operatorname{im}\Phi_3}=H_{14},
+      \quad \operatorname{rank}_{\rm gen}=14$};
+\end{tikzpicture}
+\caption{The three labelled ordinary-triangle orientations.  The external
+ports stay fixed while the two retained arrowheads are redirected to a
+different triangle vertex.  Their normalized K3P image closures are the
+same irreducible hypersurface $H_{14}$, and they share a strict smooth
+rank-$14$ germ.}
+\label{fig:triangle-orientations}
+\end{figure}

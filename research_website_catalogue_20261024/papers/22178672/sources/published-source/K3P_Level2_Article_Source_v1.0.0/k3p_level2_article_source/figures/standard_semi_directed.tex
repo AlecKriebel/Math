@@ -1,0 +1,57 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\scriptsize},
+  tvertex/.style={circle,draw,inner sep=1.25pt,minimum size=4.8mm},
+  retic/.style={circle,draw,double,inner sep=1.1pt,minimum size=5.2mm},
+  leaf/.style={rectangle,draw,rounded corners=.6pt,inner sep=1.5pt},
+  rooted/.style={-{Stealth[length=1.9mm,width=1.2mm]},line width=.55pt},
+  retained/.style={-{Stealth[length=2.2mm,width=1.35mm]},line width=.9pt},
+  ordinary/.style={line width=.65pt}
+]
+  % Rooted presentation.
+  \begin{scope}[shift={(0,0)}]
+    \node[font=\small] at (0,3.45) {rooted presentation};
+    \node[tvertex] (r) at (0,2.8) {$r$};
+    \node[tvertex] (u) at (-1.15,1.75) {$u$};
+    \node[tvertex] (v) at (1.15,1.75) {$v$};
+    \node[retic] (x) at (0,.65) {$x$};
+    \node[leaf] (l0) at (-2.0,.65) {$L_0$};
+    \node[leaf] (l1) at (2.0,.65) {$L_1$};
+    \node[leaf] (l2) at (0,-.45) {$L_2$};
+    \draw[rooted] (r) -- (u);
+    \draw[rooted] (r) -- (v);
+    \draw[retained] (u) -- (x);
+    \draw[retained] (v) -- (x);
+    \draw[rooted] (u) -- (l0);
+    \draw[rooted] (v) -- (l1);
+    \draw[rooted] (x) -- (l2);
+  \end{scope}
+
+  \draw[-{Stealth[length=2.3mm,width=1.4mm]},line width=.7pt]
+    (2.65,1.4) -- node[above,align=center,font=\tiny]
+    {mark reticulation entries\\suppress $r$ once} (4.0,1.4);
+
+  % Standard semi-directed image.
+  \begin{scope}[shift={(6.65,0)}]
+    \node[font=\small] at (0,3.45) {standard semi-directed graph};
+    \node[tvertex] (u2) at (-1.15,2.15) {$u$};
+    \node[tvertex] (v2) at (1.15,2.15) {$v$};
+    \node[retic] (x2) at (0,.65) {$x$};
+    \node[leaf] (l02) at (-2.0,.65) {$L_0$};
+    \node[leaf] (l12) at (2.0,.65) {$L_1$};
+    \node[leaf] (l22) at (0,-.45) {$L_2$};
+    \draw[ordinary] (u2) -- node[above,font=\tiny] {merged root edge} (v2);
+    \draw[retained] (u2) -- (x2);
+    \draw[retained] (v2) -- (x2);
+    \draw[ordinary] (u2) -- (l02);
+    \draw[ordinary] (v2) -- (l12);
+    \draw[ordinary] (x2) -- (l22);
+  \end{scope}
+\end{tikzpicture}
+\caption{The fixed standard semi-directed convention.  The binary root is
+deleted and its two incident arcs are merged in one step; no further cleanup
+is performed.  The two arrowheads entering the reticulation are retained.}
+\label{fig:standard-semi-directed}
+\end{figure}

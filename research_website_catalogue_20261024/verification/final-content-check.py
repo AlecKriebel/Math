@@ -1,4 +1,4 @@
-"""Verify rendered research content. Supported source layouts: the four IDs in TEX_PATHS.
+"""Verify rendered research content. Supported source layouts are listed in TEX_PATHS.
 Uses Python standard library plus an existing pdftotext executable; installs nothing.
 """
 from pathlib import Path
@@ -19,8 +19,10 @@ TEX_PATHS={
  '23577484':'main.tex',
  '23310484':'manuscript.tex',
  '23331395':'paper.tex',
+ '22770864':'kourovka_16_63/report/kourovka_16_63.tex',
+ '22729537':'NMSC_Paper_A_Source/manuscript/main.tex',
 }
-LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim'}
+LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR'}
 def abstract_tokens(tex):
  for old,new in LATEX_WORDS.items():tex=tex.replace(old,new)
  commands=re.findall(r'\\[A-Za-z]+',tex)
@@ -50,7 +52,8 @@ for rid in args.record_ids:
  for sec,key in [('abstract','abstract'),('plain-language','plain_language'),('result','result'),('proof','why_it_works'),('limits','limitations')]:
   segment=re.search('<section id="'+sec+'">(.*?)</section>',h,re.S).group(1)
   paras=[unescape(x) for x in re.findall('<p>(.*?)</p>',segment,re.S)]
-  test(sec,paras==(c[key] if isinstance(c[key],list) else [c[key]]))
+  expected=c[key] if isinstance(c[key],list) else c[key].split('\n\n')
+  test(sec,paras==expected)
  textpath=p/'sources/published-source'/TEX_PATHS[rid]
  a=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',textpath.read_text(),re.S).group(1)
  test('abstract_full_source_words',abstract_tokens(a)==wt(c['abstract']))
@@ -72,10 +75,18 @@ for rid in args.record_ids:
    local.append(good)
  test('local_links_anchors',all(local))
  receipt=json.loads((p/'sources/receipt.json').read_text()); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
- for key in ['pdf_filename','supplement_filename']:
-  name=c[key];actual=sha(f.parent/name);hashes[name]=actual
-  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if x['name']==name))
- with zipfile.ZipFile(f.parent/c['supplement_filename']) as z:test('zip_integrity',z.testzip() is None)
+ assets=[(key,c[key]) for key in ['pdf_filename','supplement_filename'] if c.get(key)]
+ assets += [('additional_asset_'+asset['filename'],asset['filename']) for asset in c.get('additional_assets',[])]
+ for key,name in assets:
+  actual=sha(f.parent/name);hashes[name]=actual
+  test(key,actual==sha(p/'sources'/name)==next(x['sha256'] for x in receipt['files'] if x['name']==name) and name in [a.get('href') for t,a in d.a if t=='a'])
+  if name.endswith('.zip'):
+   with zipfile.ZipFile(f.parent/name) as z:test('zip_integrity_'+name,z.testzip() is None)
+  if key.startswith('additional_asset_') and name.endswith('.pdf'):
+   extra_text=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/name),'-'],text=True).split('\f')
+   if not extra_text[-1].strip():extra_text.pop()
+   test('supplement_pdf_searchable',all(len(t.strip())>100 for t in extra_text))
+   test('supplement_pdf_page_label',f'PDF, {len(extra_text)} pages' in h)
  texts=subprocess.check_output(['/opt/homebrew/bin/pdftotext',str(f.parent/c['pdf_filename']),'-'],text=True).split('\f')
  if not texts[-1].strip():texts.pop()
  test('pdf_searchable',all(len(t.strip())>100 for t in texts));test('page_count',f'PDF, {len(texts)} pages' in h)
@@ -89,6 +100,8 @@ for rid in args.record_ids:
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
  if rid=='23310484':test('scope_complete',all(x in unescape(h) for x in ['finite simplicial complex','actual vertex set','Nevo and Wagner’s result for PL spheres already excludes arbitrary topological embeddings','d = 0']))
  if rid=='23331395':test('scope_complete',all(x in unescape(h) for x in ['smooth integral projective variety','arbitrary characteristic','one closed point','mult_x(ρ_*Γ)','inseparable degree']))
+ if rid=='22770864':test('scope_complete',all(x in unescape(h) for x in ['full automorphism group','1009^52359','i ≥ 7','Lie-ring automorphism','awaiting confirmation by mathematicians','Omirov and Ruan','does not claim that G and Aut(G) are isomorphic']))
+ if rid=='22729537':test('scope_complete',all(x in unescape(h) for x in ['population alignment laws indexed by locus length','stationary reversible','not a canonical species graph','incidence-separated','scalar-separator faithfulness','compact semianalytic','no practical numerical bound','L + 1']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

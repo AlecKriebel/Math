@@ -1,0 +1,286 @@
+\section{Primitive factors and bounded classification}\label{sec:bounded}
+
+\subsection{Cycle and theta cores}
+
+Move a root-containing factor along an all-tree path to a real labelled
+incoming boundary, using \cref{lem:root-movement}.  Delete port arms and
+suppress ordinary bivalent vertices that are neither the local source nor a
+reticulation sink, recording the removed port-bearing subdivisions as
+ordered words.
+
+\begin{proposition}[Cycle--theta primitive theorem]\label{prop:cores}
+Every nontrivial complete blob factor in the strong level-2 class has a cycle
+core or one of four directed theta cores
+\(\theta_0,\theta_1,\theta_2,\theta_3\).  It is recovered uniquely from the
+core, one labelled ordered port word on each directed segment, and one child
+port below every path-sink reticulation.
+\end{proposition}
+
+\begin{proof}
+Let \(r,v,e\) be the numbers of reticulations, internal vertices, and blob
+edges after port arms are removed.  Summing indegrees gives
+\(e=v+r-1\), hence
+
+\[
+ \sum_w(\deg_B(w)-2)=2e-2v=2(r-1).
+\]
+
+For \(r=1\), every blob vertex has degree two and the core is a cycle.  For
+\(r=2\), exactly two vertices have degree three; biconnectedness makes the
+blob three internally disjoint paths between them, hence a theta.  The
+incoming boundary is ordinary: deleting an arc entering a reticulation cannot
+disconnect its endpoints, because the other parent and their root paths give
+an alternate connection.  Its factor endpoint is therefore the unique local
+tree source \(S\).  A theta pole already uses all three binary incidences in
+the blob, so \(S\) lies inside one pole-to-pole path.  Any internal
+reticulation is a path sink whose unique child is its boundary arm.
+
+At most one pole is reticulate.  If both were, the path containing \(S\)
+points toward both poles and cannot contain either pole's unique outgoing
+side.  Those two outgoing sides must therefore lie on the other event-free
+paths, forcing one complete path from the first pole to the second and the
+other back from the second to the first.  That is a directed cycle.
+
+Suppose exactly one pole \(R\) is reticulate and the other \(T\) is a tree
+pole.  The second reticulation is an internal sink \(X\).  If \(S\) and \(X\)
+lie on different paths, the \(S\)-path points away from \(S\), the
+\(X\)-path points toward \(X\), and the third path is forced from \(T\) to
+\(R\); this is \(\theta_0\).  If they share a path, the only acyclic order
+from \(T\) to \(R\) is \(T\)--\(S\)--\(X\)--\(R\).  The reverse event order
+would force the two event-free paths in opposite directions and create a
+directed cycle.  Both event-free paths therefore point from \(T\) to \(R\),
+giving \(\theta_1\).
+
+If both poles are tree vertices, both reticulations are internal sinks.  They
+cannot share one path: the two arrows entering each sink would force \(S\)
+between the sinks, while each of the other two event-free pole-to-pole paths
+would then have to be directed from one tree pole to the other.  Those paths
+cannot have the same direction, because the receiving pole would have two
+parents; opposite directions form a directed cycle with the
+source-to-sink subpaths.  Thus the sinks lie on distinct paths.  If \(S\)
+lies on the third path, both poles feed both sinks, giving \(\theta_2\).
+Otherwise \(S\) shares a path with one sink; read from the pole whose other
+two sides point outward, acyclicity fixes the order
+pole--\(S\)--sink--pole and every remaining direction, giving
+\(\theta_3\).  Reversing unnamed poles or interchanging unnamed sinks yields
+only the displayed symmetries.  Hence no source or sink placement is omitted.
+This is the directed ported refinement of the two underlying
+level-2 generators in \cite{HuberEtAl2025}; the frozen topology replay is a
+finite regression of this case split, not its premise.
+\end{proof}
+
+\input{\KThreePCanonicalRoot/figures/primitive_cores}
+
+Figure~\ref{fig:primitive-cores} fixes the pole, segment, incoming-boundary,
+and minimum-repair notation used in the finite grammar.
+
+The directed segments and minimum occupied sets required by
+\cref{lem:no-omnian} are:
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+core & directed segments in index order & minimum occupied sets\\
+\midrule
+cycle & \(S\to X,S\to X\) & \(\{0\},\{1\}\)\\
+\(\theta_0\) & \(S\to U,S\to V,U\to X,V\to X,U\to V\)
+ & \(\{2,3\},\{3,4\}\)\\
+\(\theta_1\) & \(S\to U,S\to X,V\to X,U\to V,U\to V\)
+ & \(\{2,3\},\{2,4\}\)\\
+\(\theta_2\) & \(S\to U,S\to V,U\to X_0,V\to X_0,\)
+ \(U\to X_1,V\to X_1\)
+ & \(\{2,3\},\{2,5\},\{3,4\},\{4,5\}\)\\
+\(\theta_3\) & \(S\to U,S\to X_0,V\to X_0,U\to X_1,\)
+ \(V\to X_1,U\to V\)
+ & \(\{2\},\{4\}\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The corresponding obstruction clauses are
+\(\{0,1\}\) for a cycle; \(\{3\},\{2,4\}\) for \(\theta_0\);
+\(\{2\},\{3,4\}\) for \(\theta_1\);
+\(\{2,4\},\{3,5\}\) for \(\theta_2\); and \(\{2,4\}\) for
+\(\theta_3\).  The displayed sets are precisely their minimum transversals.
+
+For a target core with \(m_H\) directed segments, \(q_H\) path-sink roles,
+and \(r_H\) repair tags, the exact number of target completions using \(k\)
+selected boundaries and selected-incoming flag \(\varepsilon\) is
+
+\begin{equation}\label{eq:completion-count}
+ C(k,\varepsilon)=\sum_H r_H\sum_{j=0}^{q_H}
+ \binom{q_H}{j}
+ \binom{k-\varepsilon-j+m_H-1}{m_H-1}.
+\end{equation}
+
+The tuples \((m_H,q_H,r_H)\) are
+\((2,1,1),(5,1,2),(5,1,2),(6,2,4),(6,2,2)\).  Thus the four-port target
+grammar has 831 selected-incoming and 1,983 marginalized-incoming
+completions.
+
+\subsection{The exact four-port residue}
+
+Six rigid K3P source supports have normalized ranks
+
+\[
+ 20,\ 21,\ 21,\ 21,\ 23,\ 24.
+\]
+
+After pointwise, quadratic, graph-isomorphism, and ordinary-triangle filters,
+the only nonterminal four-port residue consists of the following 14
+canonical directed orbits.  Here the arrow in the rank column is source to
+target, and ``H14'' means a transported marginal of \eqref{eq:H14}.  The
+symbol \(r_j\) is the zero-based index of the listed minimum occupied set for
+that core, and a word \texttt{p0p1p2p3} records the port relabeling
+\(i\mapsto p_i\).  The family labels H21 and L\(d\) record, respectively, a
+rank-21 nonautomorphic relabeling family and a lower-rank source mapping to a
+rank-24 target; the suffixes a and b distinguish the two
+\(\theta_1\)-repair families.
+
+{\small
+\begin{longtable}{llllrl}
+\toprule
+orbit & source & target & rank & raw & exact certificate\\
+\midrule
+\endhead
+H21-01 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0132}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-02 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0213}\) & \(21\to21\) & 4 & \(11>10\) rank\\
+H21-03 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0231}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-04 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0312}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-05 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0321}\) & \(21\to21\) & 2 & H14 quartic\\
+H21-06 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{1032}\) & \(21\to21\) & 4 & H14 quartic\\
+L20-01 & \(\theta_0,r_0\) & \(\theta_3,r_1;\texttt{1203}\) & \(20\to24\) & 2 & quartic\\
+L20-02 & \(\theta_0,r_0\) & \(\theta_3,r_1;\texttt{1230}\) & \(20\to24\) & 2 & \(14>12\) rank\\
+L21a-01 & \(\theta_1,r_0\) & \(\theta_3,r_1;\texttt{0123}\) & \(21\to24\) & 2 & quartic\\
+L21a-02 & \(\theta_1,r_0\) & \(\theta_3,r_1;\texttt{0132}\) & \(21\to24\) & 2 & \(11>10\) rank\\
+L21b-01 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0123}\) & \(21\to24\) & 2 & quartic\\
+L21b-02 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0132}\) & \(21\to24\) & 2 & \(11>10\) rank\\
+L23-01 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0123}\) & \(23\to24\) & 2 & \(14>12\) rank\\
+L23-02 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0132}\) & \(23\to24\) & 2 & quartic\\
+\bottomrule
+\end{longtable}
+}
+
+The two pre-lock sink swaps are separate from those fourteen orbits.  Their
+common rigid support is \(\theta_3,r_1\) with selected incoming port, both
+sink-child ports, and the repair port on segment 4; the rows below are its
+two nonautomorphic labelled presentations.
+
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+presentation & port relabeling & rank & exact certificate\\
+\midrule
+SINK-0132 & \texttt{0132} & \(24\to24\) & quartic\\
+SINK-1023 & \texttt{1023} & \(24\to24\) & quartic\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The six H21 rows are the nonisomorphic double cosets of the repaired
+\(\theta_0\) source; the seventh double coset is isomorphic.  The complete
+final post-filter accounting is
+
+\begin{equation}\label{eq:38plus2}
+ \boxed{40=38+2.}
+\end{equation}
+
+The 38 raw records belong to the fourteen named orbits; the two separately
+tabulated rows are rank-\(24\) \(\theta_3\) sink-swap presentations.  Neither is a
+labelled graph isomorphism, and the same exact eight-term quartic has zero
+target pullback and nonzero strict
+source value on each.
+
+\begin{theorem}[Fourteen-orbit classification]\label{thm:fourteen}
+The polynomially separated orbits are
+
+\[
+\begin{gathered}
+\text{H21-01, H21-03, H21-04, H21-05, H21-06,}\\
+\text{L20-01, L21a-01, L21b-01, L23-02},
+\end{gathered}
+\]
+
+and the directed-rank-separated orbits are
+
+\[
+ \text{H21-02, L20-02, L21a-02, L21b-02, L23-01}.
+\]
+
+The two sink swaps are polynomially separated.  Thus the bounded residue has
+zero unresolved directions, no new symmetric K3P move, and no proper
+directed K3P containment.
+\end{theorem}
+
+\begin{proof}[Exact finite proof]
+The active exhaustive replay begins with the six source supports, the 2,814
+target completions obtained from \eqref{eq:completion-count}, and all 24 port
+permutations.  It visits all
+\(6\cdot2814\cdot24=405{,}216\) directed presentations.  Literal graph
+tests exclude 377,382, leaving 27,834 post-topology presentations.  Exact
+Jacobian minors together with coefficientwise polynomial-vector-field upper
+bounds exclude 23,054; the quadratic identities exclude 1,968; transported
+\(H_{14}\) marginals exclude 88; and 2,540 enter the independently replayed
+restoration forest.  The remaining presentations comprise 30 labelled
+isomorphisms, 114 ordinary-triangle presentations, and the 40 records in
+\eqref{eq:38plus2}.  Thus this accounting is derived from the primitive
+grammar rather than read from the fourteen-orbit lock.
+
+For a literal target map \(f\), let \(A\) be the exact coefficient matrix of
+the polynomial vector-field identities \(J_fV=0\), and let \(E\) evaluate the
+vector-field coefficients at the recorded strict rational point.  Exact linear
+algebra computes
+
+\[
+ \dim E(\ker A)=\rank\!\begin{bmatrix}A\\E\end{bmatrix}-\rank(A).
+\]
+
+A nonzero evaluation-image minor makes these kernel fields generically
+independent and hence gives the certified target-rank upper.  Sampled Jacobian
+ranks are used only to supply nonzero lower-rank minors, never as upper bounds.
+A presentation enters the 23,054-case rank-exclusion class only when its exact
+source lower rank is strictly greater than that certified target upper.
+
+The separately implemented verifier imports neither the producer nor its
+graph-atlas module.  It reconstructs the grammar, all 4,379 distinct literal
+maps used by the presentations, the topology tests, every exact nonzero rank
+minor, every target rank upper bound, and the polynomial pullbacks.  It also
+checks the 2,540 restoration obligations against the active forest by their
+source, target, and port-permutation data, and derives the double-coset
+quotient of the 40-record residue.  Coherently resealed omission and
+reclassification mutations are required to fail.
+
+For each of the nine polynomial orbits, an exact characteristic-zero quartic
+vanishes on the complete target map and has a nonzero value at a strict
+rational source point.  The first five are transported \(H_{14}\) marginal
+quartics; the remaining four are multigraded eight-term quartics.  Exact graph
+and Fourier transports cover every raw member.
+
+For each of the five rank orbits, a selected source projection has a nonzero
+exact Jacobian minor of rank \(11\) or \(14\).  The target projection factors
+rationally through 10 or 12 generators, respectively, giving the
+strict upper bound.  These are directional selected-projection obstructions,
+not comparisons of total model dimension: the target may have equal or
+larger total normalized rank while its indicated observable projection has
+smaller function-field dimension.  The H21 upper bound holds after saturation
+by declared physical factors, all nonzero throughout the strict domain; the
+other four targets are compressed ordinary-sunlet projections.  A
+source-relative open containment cannot lie inside the lower-dimensional
+target projection.
+
+The clean-room implementation reconstructs all six sources, all 2,814
+target completions, seven H21 double cosets, all 38 coordinate transports,
+and both sink swaps.  The original H21-01 failure is diagnosed as the use of
+rooted-DAG automorphisms in place of root-suppressed semi-directed mixed-graph
+automorphisms, compounded by failure to conjugate a base target automorphism
+into the displayed frame.  The corrected mixed-graph transport passes and
+the historical verifier remains preserved.  Exact rows, columns, bodies,
+source evaluations, and hashes appear in the supplement.
+\end{proof}
+
+The bounded result is intentionally direction-sensitive.  A target of larger
+generic dimension is not automatically a containing model, and a polynomial
+identity is transported through the literal labelled graph rather than
+attached only to a topology name.

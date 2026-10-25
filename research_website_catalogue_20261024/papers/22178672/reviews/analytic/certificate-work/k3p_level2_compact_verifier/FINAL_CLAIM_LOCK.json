@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "lock_version": "1.4.0",
+  "status": "CERTIFIED_K3P_SAME_MATHEMATICAL_CLASSIFICATION",
+  "model": "K3P",
+  "network_class": "binary standard semi-directed strongly tree-child level-2",
+  "domains": {
+    "principal_positive": {
+      "variables": ["c", "g", "t"],
+      "bounds": ["0<c<1", "0<g<1", "0<t<1"],
+      "transition_inequalities": [
+        "1+c-g-t>0",
+        "1-c+g-t>0",
+        "1-c-g+t>0"
+      ],
+      "inheritance": "0<lambda<1"
+    },
+    "strict_continuous_time": {
+      "variables": ["c", "g", "t"],
+      "bounds": ["0<c<1", "0<g<1", "0<t<1"],
+      "rate_inequalities": ["c>g*t", "g>c*t", "t>c*g"],
+      "inheritance": "0<lambda<1"
+    }
+  },
+  "continuous_time_specialization": {
+    "status": "CERTIFIED",
+    "strict_CT_is_open_full_dimensional_subset_of_D3_plus": true,
+    "spectral_parameterization": "c=y*z, g=x*z, t=x*y with 0<x,y,z<1",
+    "inverse_parameterization": [
+      "x=sqrt(g*t/c)",
+      "y=sqrt(c*t/g)",
+      "z=sqrt(c*g/t)"
+    ],
+    "principal_margin_bounds": [
+      "1+y*z-x*z-x*y > (1-y)*(1-z) > 0",
+      "1+x*z-y*z-x*y > (1-x)*(1-z) > 0",
+      "1+x*y-y*z-x*z > (1-x)*(1-y) > 0"
+    ],
+    "necessity_transfer": "Every source-relative regular full-dimensional CT containment witness is an open D3+ containment witness, so the certified principal-domain necessity theorem applies.",
+    "sufficiency_transfer": "The common H14 triangle germ and simultaneous physical bridge gluing are independently certified inside the strict continuous-time domain."
+  },
+  "claimed_outcome": "K3P-SAME",
+  "certification": {
+    "classification_gate": "reproducibility/verify_k3p_same_classification.py",
+    "classification_gate_sha256": "6578c71aa168ffaee7b1a7911fc11cfaf97d91a8510bf5bdd0376f7786cd44e5",
+    "classification_gate_report": "reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json",
+    "classification_gate_report_schema": "k3p-same-integrated-classification-gate-v2",
+    "classification_gate_report_status": "CERTIFIED_K3P_SAME",
+    "classification_mutation_gate": "reproducibility/test_k3p_same_classification_mutations.py",
+    "classification_mutation_gate_sha256": "1f529fc3a16c59e3be844c4c44cd6fe7f0e719242628dd1d5afd115f3895e1ae",
+    "classification_mutation_report": "reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
+    "classification_mutation_report_sha256": "d3eac6eb49afe1c49ae585cc343dcc2d2bb88d39133e9899ffbc19cd902970a2",
+    "classification_mutation_report_status": "PASS_27_OF_27_REJECTED",
+    "mathematical_status": "CERTIFIED",
+    "restoration_status": "PASS_COMPLETE_K3P_ALGEBRA",
+    "unresolved_mathematical_gates": 0
+  },
+  "cut_transfer": {
+    "status": "CERTIFIED",
+    "scope": "source-relative regular full-dimensional containment between binary standard semi-directed strongly tree-child level-2 networks",
+    "principal_positive": "N <=_(3,+) N' implies Cut(N)=Cut(N')",
+    "strict_continuous_time": "N <=_(3,CT) N' implies Cut(N)=Cut(N')",
+    "proof_inputs": [
+      "self-contained K3P displayed-tree minor and balanced-compression proof of Cut(N') subset Cut(N)",
+      "bridge-split compatibility in the source and target reduced bridge trees",
+      "complete 204-direction pointwise one-active wrong-split obstruction"
+    ],
+    "common_bridge_tree_assumed": false,
+    "fourteen_orbit_classification_imported": false,
+    "universal_arbitrary_network_pointwise_cut_rank_iff": "WITHDRAWN_NOT_USED",
+    "valid_auxiliary_cut_rank_statements": {
+      "true_cut_rank_at_most_four": "pointwise",
+      "noncut_rank_greater_than_four": "generic via displayed-tree boundary specialization and explicit quartet minor"
+    },
+    "theorem_manifest": {
+      "path": "cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json",
+      "sha256": "ce29187c17123651c547c34d86fcdcef1c671505bbb5c132c53dd2a2e6ab3445"
+    }
+  },
+  "classification": {
+    "principal_positive": "N <=_(3,+) N' iff N ==_triangle N' iff N bowtie_(3,+) N'",
+    "strict_continuous_time": "N <=_(3,CT) N' iff N ==_triangle N' iff N bowtie_(3,CT) N'",
+    "triangle_equivalence": {
+      "labelled_reduced_trees_of_blobs_agree": true,
+      "corresponding_complete_factor_relation": "labelled_mixed_graph_isomorphism_or_ordinary_triangle_redirection",
+      "coherent_boundary_transports_required": true
+    },
+    "proper_one_sided_containment_in_strong_class": false
+  },
+  "triangle": {
+    "generic_normalized_rank": 14,
+    "ambient_normalized_dimension": 15,
+    "closure": "H14=Z(F_H14)",
+    "common_strict_ct_smooth_germ_dimension": 14
+  },
+  "four_port": {
+    "full_universe_raw_presentations": 405216,
+    "post_topology_presentations": 27834,
+    "rigorous_syzygy_rank_exclusions": 23054,
+    "full_universe_evidence": {
+      "summary": "four_port_atlas/full_universe_replay/artifacts/FULL_FOUR_PORT_REPLAY.json",
+      "independent_report": "four_port_atlas/full_universe_replay/INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json",
+      "mutation_report": "four_port_atlas/full_universe_replay/FULL_FOUR_PORT_MUTATION_REPORT.json"
+    },
+    "canonical_nontrivial_orbits": 14,
+    "raw_records_in_orbits": 38,
+    "separate_sink_swap_records": 2,
+    "post_quadratic_records": 40,
+    "polynomially_separated": [
+      "H21-01", "H21-03", "H21-04", "H21-05", "H21-06",
+      "L20-01", "L21a-01", "L21b-01", "L23-02"
+    ],
+    "directed_rank_separated": [
+      "H21-02", "L20-02", "L21a-02", "L21b-02", "L23-01"
+    ],
+    "new_symmetric_moves": 0,
+    "proper_directed_containments": 0,
+    "unresolved": 0
+  },
+  "anchor_universe": {
+    "non_four_derived": 133,
+    "four_port_contract_rows_exhaustively_verified": 43,
+    "complete": 176,
+    "relations": {
+      "isomorphic": 143,
+      "ordinary_triangle": 33
+    },
+    "frozen_contract_role": "regression target for 133 derived non-four rows; designated serialization input for 43 four-port rows, not a four-port completeness premise",
+    "four_port_raw_equality_parents_covered": 144,
+    "four_port_fixed_full_requests_covered": 1356,
+    "four_port_descendant_requests_unmatched": 0,
+    "four_port_one_port_rows_reconciled": 161,
+    "four_port_two_port_rows_reconciled": 64,
+    "k2p_algebra_active": false,
+    "marginalized_incoming_parents": 176,
+    "marginalized_incoming_physical_paths": 424,
+    "marginalized_incoming_paths_unmatched": 0,
+    "existing_one_port_rows_reconciled": 66,
+    "evidence": {
+      "producer": "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+      "independent_verification": "anchor_universe/INDEPENDENT_NON_FOUR_VERIFICATION.json",
+      "one_port_reconciliation": "anchor_universe/MARGINALIZED_THETA_ONE_PORT_RECONCILIATION.json",
+      "complete_crosswalk": "anchor_universe/COMPLETE_ANCHOR_UNIVERSE_CROSSWALK.json",
+      "mutation_report": "anchor_universe/NON_FOUR_ANCHOR_MUTATION_REPORT.json"
+    }
+  },
+  "sharpness": {
+    "base_leaf_count": 3,
+    "class": "W_TC\\S_TC",
+    "rooting_censuses": {"W3": [5, 2, 3], "W3_prime": [7, 2, 5]},
+    "base_common_germ_dimension": 15,
+    "all_n_minimum": 3,
+    "all_n_common_germ_dimension": "6*n-3",
+    "all_n_both_in_weak_not_strong_class": true,
+    "all_n_labelled_nonisomorphic": true,
+    "all_n_nontriangle_equivalent": true,
+    "all_n_common_germ_regular_full_dimensional": true,
+    "strict_continuous_time": true
+  },
+  "outer_collision": {
+    "source_rank": 9,
+    "target_rank": 15,
+    "collision_locus_dimension": 23,
+    "strict_continuous_time_deformation": true,
+    "inside_weak_tree_child": false
+  },
+  "permitted_final_statuses": [
+    "K3P-SAME", "K3P-MODIFIED", "K3P-STRONG-FAILURE"
+  ],
+  "final_promotion": {
+    "status": "CERTIFIED_K3P_SAME",
+    "remaining_load_bearing_mathematical_gates": [],
+    "remaining_nonmathematical_gates": [
+      "clean quick/full/full-regeneration replay and release-ledger rebinding",
+      "clean-room release archive and checksum engineering after the replay",
+      "journal submission-format and metadata package engineering"
+    ],
+    "submission_ready": false,
+    "human_review_complete": false,
+    "doi_assigned": false,
+    "license_selected": false
+  }
+}

@@ -27,7 +27,8 @@ try:
         print('No new programme changes'); raise SystemExit(0)
     # Archived source is retained byte for byte, including original whitespace.
     git('diff','--cached','--check',parent,'--',PROGRAM.name+'/',
-        ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',env=env)
+        ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',
+        ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',env=env)
     tree=git('write-tree',env=env)
     message=sys.argv[1] if len(sys.argv)>1 else 'Checkpoint Zenodo research website catalogue'
     commit=subprocess.check_output(['git','-c','gc.auto=0','commit-tree',tree,'-p',parent],input=message+'\n',cwd=REPO,env=env,text=True).strip()

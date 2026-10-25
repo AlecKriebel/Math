@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+  root/.style={draw,rounded corners=2pt,fill=gray!8,minimum width=3.6cm,
+    minimum height=9mm,align=center},
+  case/.style={draw,rounded corners=2pt,fill=blue!4,minimum width=4.6cm,
+    minimum height=1.2cm,align=center},
+  end/.style={draw,rounded corners=2pt,fill=green!8,minimum width=4.6cm,
+    minimum height=1.0cm,align=center},
+  arr/.style={-{Latex[length=2mm]},thick}
+]
+\node[root] (d) at (0,1.8) {metric differential \(\mathcal D\)};
+\node[case] (r2) at (-5,-0.1) {
+  \(\operatorname{rank}\mathcal D\ge2\)\\
+  compatible dimension \(\ge13\)
+};
+\node[case] (r1) at (0,-0.1) {
+  \(\operatorname{rank}\mathcal D=1\)\\
+  projective fiber rigidity
+};
+\node[case] (r0) at (5,-0.1) {
+  \(\operatorname{rank}\mathcal D=0\)\\
+  base-ray permutation
+};
+\node[end] (e2) at (-5,-2.2) {positive second variation};
+\node[end] (e1) at (0,-2.2) {no strictly positive\\multiplier};
+\node[end] (e0) at (5,-2.2) {explicit deterministic\\mixture};
+\draw[arr] (d) -- (r2);
+\draw[arr] (d) -- (r1);
+\draw[arr] (d) -- (r0);
+\draw[arr] (r2) -- (e2);
+\draw[arr] (r1) -- (e1);
+\draw[arr] (r0) -- (e0);
+\node[align=center,font=\small] at (0,-3.3) {
+  Every rank contradicts a strict non-PVM Bell maximum.
+};
+\end{tikzpicture}

@@ -1,0 +1,144 @@
+\section{Marginal localization}\label{sec:localization}
+
+\begin{lemma}[Triple-product marginal submersion]\label{lem:marginal}
+For every \(m\ge1\),
+
+\[
+ ((c_i,g_i,t_i))_{i=1}^m\longmapsto
+ \left(\prod_i c_i,\prod_i g_i,\prod_i t_i\right)
+\]
+
+maps \(\Dplus^m\) onto \(\Dplus\), has differential rank three, and has local
+physical analytic sections.  The analogous statement holds on \(\Dct\).
+\end{lemma}
+
+\begin{proof}
+Serial composition of strict K3P transition distributions is group
+convolution and therefore remains strict; Fourier transformation converts it
+to coordinatewise multiplication.  For surjectivity, choose the first
+\(m-1\) factors isotropic and sufficiently near the identity, and put the
+strict residual on the final edge, as in \cref{lem:subdivision}.  The three
+Jacobian rows have disjoint positive supports; derivatives with respect to
+\((c_1,g_1,t_1)\) give a nonzero diagonal minor.  Continuous-time
+surjectivity follows by using \(B_{\mathrm{CT}}\), or by positive coordinate
+power roots.
+\end{proof}
+
+The exact graph-derived descriptor records more than ordinary serial paths.
+For a retained character assignment and switching \(\sigma\), an edge sees
+the group sum below its displayed descendant mask.  The complete visible
+signature is the array of those \(C,G,T\) values over every switching and
+retained assignment.  Split complements agree because the total group sum is
+zero.  Edges with the same nonzero signature enter only through their three
+products; zero-signature edges are invisible.  A retained inheritance
+coordinate is transported as \(\lambda\) or \(1-\lambda\) according to the
+recorded parent order; a tensor-invisible reticulation disappears after its
+two switching weights sum to one.
+
+\begin{proposition}[Complete marginal descriptor]\label{prop:marginal-descriptor}
+Every rigid-support, restoration-prefix, one-port, and two-port restriction
+used in the proof factors into triple-product maps from
+\cref{lem:marginal}, coordinate projections and permutations, and recorded
+parent-order complements.  It is physically onto its effective selected
+domain, is a submersion, and has local physical analytic sections.
+\end{proposition}
+
+\begin{proof}
+Set omitted leaf characters to zero in \eqref{eq:k3p-fourier} and group full
+switchings by their retained switching.  Identical complete signatures have
+identical sector exponents in every monomial and therefore collapse to one
+triple product.  Tensor-invisible reticulations contribute
+\(\lambda+(1-\lambda)=1\); every other inheritance coordinate is transported
+exactly.  Apply \cref{lem:marginal} independently to each visible class.
+\end{proof}
+
+\begin{lemma}[Finite semialgebraic cover]\label{lem:finite-cover}
+Let a nonempty relatively open subset of a smooth \(d\)-dimensional
+semialgebraic manifold be covered by finitely many semialgebraic sets.  One
+member of the cover contains a nonempty relatively open subset.
+\end{lemma}
+
+\begin{proof}
+A semialgebraic subset of a smooth \(d\)-manifold has dimension \(d\)
+exactly when it has nonempty relative interior.  Finite-union dimension and
+the frontier-dimension inequality therefore give the claim
+\cite[Propositions~2.8.5(i) and~2.8.13]{BochnakCosteRoy1998}.
+\end{proof}
+
+\begin{proposition}[Physical localization and no compensation]
+\label{prop:localization}
+Suppose \(N\preceqplus N'\).  For each pair of corresponding complete ported
+factors \(H,H'\), some fixed target incoming and completion type contains a
+source-relative full-dimensional regular germ of the projective physical K3P
+model of \(H\).  Parameters in other factors cannot compensate for a local
+separator.
+\end{proposition}
+
+\begin{proof}
+By \cref{thm:cut-transfer}, the labelled abstract bridge-incidence trees
+agree.  Shrink
+the regular source neighborhood around a nonzero maximal minor.  The physical
+product chart of \cref{lem:physical-product} contains a product box of local
+factor germs and bridge intervals.  Fix all coordinates except one focal
+factor.  Positive bridge factorization and the analytic normalizers extract
+its projective incidence orbit intrinsically from the global tensor.
+
+Only finitely many target incoming and completion types occur in the
+primitive grammar.  Let \(R_H\) be the rank-drop locus of the projective focal
+map.  Its complement is a nonempty semialgebraic open set: a maximal focal
+Jacobian minor is nonidentically zero, and the physical product chart
+identifies its rank with the focal summand of the global rank.  Work in a
+small maximal-rank source box \(U\) in that complement.
+
+For a fixed target type \(\tau\), let \(\Psi_\tau\) be its projective physical
+factor map, including the effective marginal coordinates supplied by
+\cref{prop:marginal-descriptor}, and form the physical incidence
+correspondence
+\[
+ Z_\tau=\{(u,\eta)\in U\times\Theta_\tau:
+             \overline\Phi_H(u)=\Psi_\tau(\eta)\}.
+\]
+This is semialgebraic.  The original global analytic target section, followed
+by intrinsic factor extraction, shows that the finitely many projections
+\(\operatorname{pr}_U Z_\tau\) cover \(U\); it is used here only to establish
+coverage, not as the desired fixed-type section.  By Tarski--Seidenberg each
+projection is semialgebraic, so \cref{lem:finite-cover} gives a type \(\tau\)
+whose projection contains a relatively open source subgerm \(U_H\).
+
+Take a finite semialgebraic real-analytic constant-rank stratification of
+\(Z_\tau\), compatible with the projection to \(U\).  The image of a stratum
+on which that projection has rank below \(\dim U\) has dimension below
+\(\dim U\).  Because finitely many such images cannot contain the relatively
+open set just obtained, some incidence stratum projects with rank \(\dim U\).
+Shrink about a physical point over that open image and call the resulting
+open source-parameter subbox \(U_H\).  The analytic constant-rank theorem
+supplies a physical analytic section
+\(u\mapsto (u,\sigma_{H,\tau}(u))\) of the incidence projection on \(U_H\).
+Hence
+\[
+ \overline\Phi_H=\Psi_\tau\circ\sigma_{H,\tau}
+\]
+on \(U_H\), exactly the fixed-type local directed relation.  If collapsed
+serial classes must be expanded into physical edge coordinates, compose with
+the local physical analytic section in
+\cref{prop:marginal-descriptor}.  Intrinsic extraction is independent of
+remote target coordinates, so a polynomial or rank obstruction on the focal
+orbit cannot be cancelled elsewhere.
+\end{proof}
+
+\begin{lemma}[Fixed-full restoration]\label{lem:fixed-restoration}
+Fix actual networks and a full relation \(N\preceqplus N'\).  Fix one omitted
+physical label, its source insertion edge, target attachment, and boundary
+transport.  Marginalizing this same relation gives one enumerated child
+relation with source-open restriction.  Exact separation of every such child
+therefore excludes the fixed full parent.
+\end{lemma}
+
+\begin{proof}
+Marginalization sets the restored character to zero.  Pendant factors become
+one, serial classes multiply coordinatewise, and
+\cref{prop:marginal-descriptor} gives a physical source-open image.
+The actual attachment and transport are one row of the exhaustive child
+construction.  No abstract smaller relation is lifted and no arbitrary
+target deletion map is inverted.
+\end{proof}

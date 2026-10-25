@@ -1,0 +1,189 @@
+{
+  "schema": "k3p-hardened-h21-adversarial-reaudit-v1",
+  "generated_at": "2026-08-24T22:53:00-07:00",
+  "status": "PASS_ZERO_REMAINING_HARDENING_GAPS",
+  "verdict": {
+    "H21_mathematical_transport": "PASS",
+    "optimized_python_fail_closed": "PASS",
+    "active_input_hash_binding": "PASS",
+    "port_incoming_repair_raw_binding": "PASS",
+    "rank_minor_dimension_binding": "PASS",
+    "target_rank_upper_bound_reconstruction": "PASS_NONCIRCULAR",
+    "certificate_skip_control": "PASS_FAIL_CLOSED",
+    "full_fourteen_orbit_and_two_sink_gate": "PASS",
+    "remaining_blockers": 0
+  },
+  "audited_hashes": {
+    "final_hardened_verifier": "bf69fce87b26376597efa1be221fe7b8ddc303b4054c6ee22fa861e781d2051a",
+    "regression": "aa3a97442854d7df8b6d4b3bfa02e9f2d18d4eaa4a0838fdd33738e00ea6a063",
+    "historical_replay": "d49cb601c7f8a33dd6f07acd7005bc2f45efa9a3e6a4f0dc42fa36e8d4c13695",
+    "historical_verifier": "ee5e29a2cd795d9389e8e1257ebdb9eeaa4256fb5d03e07f230bf82ba555ef91",
+    "auxiliary_exact_four_port": "f85c1a77ee88ab265b5a6d0adab80c45ff5642c3c1258aa991d7b94a1c3c5816",
+    "adversarial_reaudit_driver": "d31411837ca739411962a572a361c789ac80a73ca6c5276884edefa005046f0a"
+  },
+  "hardening_history": {
+    "initial_hardened_hash_before_control_fix": "becacec117734248047cded6f84d5996ad91c7531be36b1d8db8eec57653740b",
+    "intermediate_blocker": "verify_all(run_certificates=False) emitted the full terminal sentinel without algebraic replay",
+    "intermediate_blocker_location": "verify_h21_transport_and_fourteen_orbits.py:1680 and old unconditional sentinel at line 1725",
+    "final_fix": "verify_all now requires run_certificates is True before any work",
+    "final_hash_after_control_fix": "bf69fce87b26376597efa1be221fe7b8ddc303b4054c6ee22fa861e781d2051a",
+    "control_retest": "run_certificates=False raises CertificationError before emitting the full sentinel"
+  },
+  "baseline_full_gate": {
+    "ordinary_runtime_exit_code": 0,
+    "terminal_sentinel": "CLEANROOM_K3P_H21_TRANSPORT_AND_FOURTEEN_ORBITS_PASS",
+    "rank_upper_bound_sentinel": "PASS five independently reconstructed directed-rank upper bounds",
+    "canonical_orbits": 14,
+    "raw_members": 38,
+    "raw_member_plus_representative_Fourier_transport_calls": 52,
+    "prelock_sink_swaps": 2,
+    "rank_upper_bound_records": 5,
+    "regression_sentinel": "H21_01_TRANSPORT_REGRESSION_PASS"
+  },
+  "optimized_mode_controls": [
+    {
+      "control": "python -O full verifier",
+      "exit_code": 1,
+      "result": "REJECTED_AT_IMPORT",
+      "message": "certification verifier refuses optimized Python",
+      "full_pass_sentinel_emitted": false
+    },
+    {
+      "control": "python -O historical optimized-bypass probe",
+      "exit_code": 1,
+      "result": "REJECTED_AT_VERIFIER_IMPORT",
+      "message": "certification verifier refuses optimized Python",
+      "former_bypass_sentinel_emitted": false
+    },
+    {
+      "control": "PYTHONOPTIMIZE=1 full verifier",
+      "exit_code": 1,
+      "result": "REJECTED_AT_IMPORT",
+      "message": "certification verifier refuses optimized Python",
+      "full_pass_sentinel_emitted": false
+    }
+  ],
+  "active_input_hashes": [
+    {
+      "filename": "K3P_14_ORBIT_LOCK.json",
+      "sha256": "61d88a67b487ebbee1cae881def23fdce770d4fa0cac0d6b86be02e7368438a3",
+      "one_byte_mutation": "REJECTED_BEFORE_JSON_PARSE"
+    },
+    {
+      "filename": "k3p_prelock_source5_quartic.json",
+      "sha256": "5e7bf1599f2a28858b2dbce3993baf6adea9e27cef9ffa8d23503200742d0a5e",
+      "one_byte_mutation": "REJECTED_BEFORE_JSON_PARSE"
+    },
+    {
+      "filename": "k3p_h14_marginal_orbit_certificates.json",
+      "sha256": "41c3c9756536a28b9fc24250c62491e10322e66c0bd4c4b692e939aade2395c0",
+      "one_byte_mutation": "REJECTED_BEFORE_JSON_PARSE"
+    },
+    {
+      "filename": "k3p_remaining_quartic_separators.json",
+      "sha256": "8ee39cd08a01f9e9dd385e41bbab4814f7e0859f143aceda4e8831ddba053f61",
+      "one_byte_mutation": "REJECTED_BEFORE_JSON_PARSE"
+    },
+    {
+      "filename": "k3p_directed_rank_obstructions.json",
+      "sha256": "fa0ac74cde903edc422a90b5e490bd639b2e2b4c758d9d3ec10a794f1a044f42",
+      "one_byte_mutation": "REJECTED_BEFORE_JSON_PARSE"
+    }
+  ],
+  "metadata_and_raw_mutations": [
+    {"mutation": "port_permutation differs from representative_permutation", "result": "REJECTED"},
+    {"mutation": "source incoming-role string changed", "result": "REJECTED"},
+    {"mutation": "target incoming-role string changed", "result": "REJECTED"},
+    {"mutation": "source repair tag changed", "result": "REJECTED"},
+    {"mutation": "target repair tag changed", "result": "REJECTED"},
+    {"mutation": "one raw member and witness omitted", "result": "REJECTED"},
+    {"mutation": "duplicate raw member inserted", "result": "REJECTED"},
+    {"mutation": "one raw witness omitted", "result": "REJECTED"},
+    {"mutation": "displayed target automorphism placed in base-target witness frame", "result": "REJECTED"},
+    {"mutation": "identity coordinate action substituted for nonidentity H21 transport", "result": "REJECTED"}
+  ],
+  "rank_mutations": [
+    {"mutation": "claim ranks 101>100=100 with original 11x11/10x10 minors", "result": "REJECTED_AT_MINOR_SIZE_BINDING"},
+    {"mutation": "source minor has 11 rows and 10 columns", "result": "REJECTED"},
+    {"mutation": "target minor rank 10 has only 9 rows", "result": "REJECTED"},
+    {"mutation": "target upper-bound integer changed from 10 to 11", "result": "REJECTED_AGAINST_RECONSTRUCTED_COUNT"},
+    {"mutation": "H21 rational-generator name changed", "result": "REJECTED"},
+    {"mutation": "H21 saturation-factor name changed", "result": "REJECTED"},
+    {"mutation": "source map hash replaced by target map hash", "result": "REJECTED"},
+    {"mutation": "sunlet absent-generator list changed", "result": "REJECTED"},
+    {"mutation": "sunlet omitted port set out of range", "result": "REJECTED"},
+    {"mutation": "upper-bound mechanism changed to unknown value", "result": "REJECTED"}
+  ],
+  "target_upper_bound_reconstruction": [
+    {
+      "orbit_id": "H21-02",
+      "source_rank": 11,
+      "target_rank_and_upper_bound": 10,
+      "mechanism": "ten-rational-generator exact cross-multiplication",
+      "exact_identities": 11,
+      "rank_fields_poisoned_during_independence_test": true,
+      "reconstructed_count_unchanged": true,
+      "strict_target_point_saturation_minimum": "1696/17955"
+    },
+    {
+      "orbit_id": "L20-02",
+      "source_rank": 14,
+      "target_rank_and_upper_bound": 12,
+      "mechanism": "exact ordinary-sunlet generator compression",
+      "rank_fields_poisoned_during_independence_test": true,
+      "independent_composite_support_count": 12
+    },
+    {
+      "orbit_id": "L21a-02",
+      "source_rank": 11,
+      "target_rank_and_upper_bound": 10,
+      "mechanism": "exact ordinary-sunlet generator compression",
+      "rank_fields_poisoned_during_independence_test": true,
+      "independent_composite_support_count": 10
+    },
+    {
+      "orbit_id": "L21b-02",
+      "source_rank": 11,
+      "target_rank_and_upper_bound": 10,
+      "mechanism": "exact ordinary-sunlet generator compression",
+      "rank_fields_poisoned_during_independence_test": true,
+      "independent_composite_support_count": 10
+    },
+    {
+      "orbit_id": "L23-01",
+      "source_rank": 14,
+      "target_rank_and_upper_bound": 12,
+      "mechanism": "exact ordinary-sunlet generator compression",
+      "rank_fields_poisoned_during_independence_test": true,
+      "independent_composite_support_count": 12
+    }
+  ],
+  "noncircularity_findings": {
+    "rank_integer_dependency": false,
+    "target_minor_dependency": false,
+    "target_upper_bound_integer_dependency": false,
+    "H21_reason": "The target descriptor is compiled from the hash-bound literal graph. Eleven exact sparse-polynomial identities express the selected target coordinates through ten hard-coded rational functions on the nonempty saturation open set. Poisoning all rank conclusions leaves the count and identities unchanged.",
+    "sunlet_reason": "The compiled target marginal is exactly matched against an exhaustively enumerated canonical ordinary-sunlet map. Generator occurrence is then counted from the formulas. A separate composite-variable support implementation independently reproduces counts 12,10,10,12 after all rank conclusions are poisoned.",
+    "auxiliary_implementation_agreement": {
+      "file_sha256": "f85c1a77ee88ab265b5a6d0adab80c45ff5642c3c1258aa991d7b94a1c3c5816",
+      "inequalities": ["H21-02:11>10", "L20-02:14>12", "L21a-02:11>10", "L21b-02:11>10", "L23-01:14>12"]
+    }
+  },
+  "control_mutations": [
+    {
+      "mutation": "verify_all(run_certificates=False)",
+      "result": "REJECTED_BEFORE_WORK",
+      "full_pass_sentinel_emitted": false
+    }
+  ],
+  "accounting": {
+    "ordinary_mutations_rejected": 25,
+    "optimized_controls_rejected": 3,
+    "active_files_byte_mutated": 5,
+    "rank_upper_bounds_independently_reconstructed": 5,
+    "historical_failure_preserved": true
+  },
+  "residual_objections": [],
+  "exact_remaining_gaps": [],
+  "completion_estimate_percent": 100
+}

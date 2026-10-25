@@ -17,8 +17,13 @@ for item in receipt['files']:
 assert gate['pdf_sha256'] == next(x['sha256'] for x in receipt['files'] if x['name']==c['pdf_filename'])
 slug = c['slug']; assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',slug)
 out = SITE/slug; out.mkdir(exist_ok=True)
-for name in (c['pdf_filename'],c['supplement_filename']):
+asset_names = [c['pdf_filename']]
+if c.get('supplement_filename'): asset_names.append(c['supplement_filename'])
+asset_names += [asset['filename'] for asset in c.get('additional_assets', [])]
+assert len(asset_names) == len(set(asset_names))
+for name in asset_names:
     assert Path(name).name == name
+    assert name in {item['name'] for item in receipt['files']}
     shutil.copyfile(paper/'sources'/name,out/name)
 h=escape
 url=f'https://aleckriebel.com/research/{slug}/'
@@ -31,17 +36,26 @@ article={'@type':'ScholarlyArticle','@id':url+'#article','url':url,'name':c['tit
 schema={'@context':'https://schema.org','@graph':[{'@type':'WebPage','@id':url+'#page','url':url,'name':c['title'],'dateCreated':today,'dateModified':today,'mainEntity':{'@id':url+'#article'}},article]}
 def section(anchor,title,paragraphs):
     return f'<section id="{anchor}"><h2>{h(title)}</h2>'+''.join(f'<p>{h(p)}</p>' for p in paragraphs)+'</section>'
-sections=section('abstract','Abstract',[c['abstract']])+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
+sections=section('abstract','Abstract',c['abstract'].split('\n\n'))+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
 if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
 sections+=section('limits','Scope and limitations',c['limitations'])
-sections+=section('status','Status and AI use',['This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.'])
+sections+=section('status','Status and AI use',[c.get('ai_disclosure', 'This is an unrefereed preprint. AI tools were used extensively in the research, proof development, computational checks, literature review, and writing. The supporting package contains the published source and verification materials.')])
 if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])
 sections+=f'<section id="paper"><h2>Read the paper</h2><p><a href="{h(c["pdf_filename"])}">Open PDF in a full window</a> · <a href="https://zenodo.org/records/{record_id}/files/{h(c["pdf_filename"])}">Download the original from Zenodo</a></p><iframe class="paper-pdf" src="{h(c["pdf_filename"])}#view=FitH" title="{h(c["title"])} — full paper PDF" loading="lazy"></iframe></section>'
+if c.get('related_resources'):
+    sections+='<section id="materials"><h2>Supporting materials</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["label"])}</a>'+(' · DOI '+h(x['doi']) if x.get('doi') else '')+'</li>' for x in c['related_resources'])+'</ul></section>'
 sections+=section('collaborate','Collaborate on this result',[c['collaboration'],'Authorship and responsibilities would be discussed in relation to the substantive contributions made.'])+'<p><a href="mailto:me@aleckriebel.com">Contact Alec</a></p>'
 sections+=f'<section id="cite"><h2>Cite this paper</h2><p>{h("; ".join(authors))}. ({published.year}). <i>{h(c["title"])}</i> (Version {h(c["version"])}) [Preprint]. Zenodo. <a href="{doi}">{doi}</a></p><p><a href="citation.bib">Download BibTeX</a></p></section>'
 sections+='<section id="background"><h2>Background and prior work</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["title"])}</a>{": "+h(x["note"]) if x.get("note") else ""}</li>' for x in c['background'])+'</ul></section>'
 author_meta='\n'.join(f'<meta name="citation_author" content="{h(a)}">' for a in authors)
 pages=len(PdfReader(out/c['pdf_filename']).pages)
+download_links = [f'<a href="{h(c["pdf_filename"])}">Read the paper (PDF, {pages} pages)</a>']
+if c.get('supplement_filename'):
+    download_links.append(f'<a href="{h(c["supplement_filename"])}" download>{h(c.get("supplement_label", "Source and verification (ZIP)"))}</a>')
+for asset in c.get('additional_assets', []):
+    assert asset['kind'] in ('pdf', 'zip', 'text')
+    download_links.append(f'<a href="{h(asset["filename"])}">{h(asset["label"])}</a>')
+download_links.append(f'<a href="{doi}">Zenodo record</a>')
 document=f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +75,7 @@ document=f'''<!DOCTYPE html>
 <main id="main"><article><header>
 <h1><a href="/research/{slug}/">{h(c['title'])}</a></h1>
 <p class="entry-meta">By {h('; '.join(authors))}, independent researcher.<br>Published <time datetime="{c['publication_date']}">{display_date}</time> · Version {h(c['version'])} · <strong>Unrefereed preprint</strong></p>
-<p><a href="{h(c['pdf_filename'])}">Read the paper (PDF, {pages} pages)</a> · <a href="{h(c['supplement_filename'])}" download>Source and verification (ZIP)</a> · <a href="{doi}">Zenodo record</a></p>
+<p>{' · '.join(download_links)}</p>
 <p><a href="#plain-language">Plain-English explanation</a> · <a href="#paper">Read on this page</a> · <a href="#collaborate">Collaboration</a></p>
 </header><hr>{sections}</article></main>
 <footer><hr><p><a href="/research/">Research home</a> | <a href="mailto:me@aleckriebel.com">me@aleckriebel.com</a></p><p class="copyright">© 2013–2026 Kriebel LLC.</p></footer>

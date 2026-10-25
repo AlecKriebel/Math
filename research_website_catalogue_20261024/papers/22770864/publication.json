@@ -1,0 +1,92 @@
+{
+  "title": "An explicit odd-order p-group with as many automorphisms as elements",
+  "slug": "odd-order-p-group-equal-automorphisms",
+  "description": "An explicit odd-order p-group with exactly as many automorphisms as elements: a computer-assisted proposed solution to Kourovka Notebook problem 16.63.",
+  "abstract": "We construct a finite group G for which p = 1009, |G| = |Aut(G)| = 1009^52359. The group is the Baker–Campbell–Hausdorff group of an explicitly specified rank-31 Lie ring modulo 1009^1689. Its nilpotency class is at most 846 < 1009. An asymmetric lattice forces every automorphism of the finite Lie ring into an integral logarithm–exponential neighborhood. This gives a bijection between the full automorphism set and the kernel of a linear derivation matrix. Exact independently implemented Python and C++ computations establish the Smith valuations of that matrix. The resulting computer-assisted proof answers the existence question affirmatively. The construction and all exact certificates are supplied with separately implemented verification software.",
+  "plain_language": [
+    "An automorphism is a way to relabel every element of a group while preserving its multiplication. The question is whether a nontrivial group whose size is a power of an odd prime can have exactly as many of these symmetries as it has elements.",
+    "This paper constructs an example with 1009^52359 elements and the same number of automorphisms. The number is enormous, but the construction has a finite description: an element is a list of 31 numbers taken modulo 1009^1689, with a specified rule for multiplying two lists.",
+    "The main difficulty is accounting for every automorphism. The proof uses a deliberately asymmetric lattice to constrain them all, then turns their count into an exact linear-algebra calculation. The paper presents this as an affirmative answer to D. MacHale’s Kourovka Notebook problem 16.63."
+  ],
+  "result": [
+    "For p = 1009, the paper constructs a finite nontrivial p-group G with |G| = |Aut(G)| = 1009^52359, where Aut(G) is the full automorphism group.",
+    "The group is G = BCH(L/p^1689 L), where L is the explicit rank-31 Lie lattice in Definitions 2.1 and 5.1. Its nilpotency class is at most 846, below p, so the finite Lazard correspondence preserves its order and full automorphism group.",
+    "For this fixed Lie lattice and every integer i ≥ 7, the full Lie-ring automorphism group of L/p^i L has order p^(30i + 1689), while L/p^i L has p^(31i) elements. Choosing i = 1689 makes the two counts equal.",
+    "The exact derivation matrix has 14,415 rows, 961 columns, rank 931, and nullity 30. Its nonzero p-primary Smith valuations have multiplicities 87, 55, 758, 6, and 25 at valuations 0, 1, 2, 3, and 4; their sum is 1689."
+  ],
+  "limitations": [
+    "This gives one example at p = 1009. It does not establish an example for every odd prime, and it makes no minimality claim for the prime, group order, or number of generators.",
+    "The equality is between orders. The paper does not claim that G and Aut(G) are isomorphic.",
+    "The construction is explicit through its Lie bracket and finite Baker–Campbell–Hausdorff rule. It does not enumerate the group’s multiplication table or its automorphisms. Exact computation certifies the matrix data; the full-automorphism reduction and the correspondence with groups also require the written proof.",
+    "The Lie-algebra template is due to Omirov and Ruan. This paper supplies its integral normalization, finite-characteristic arguments, asymmetric lattice, and exact count of finite automorphisms.",
+    "The Kourovka Notebook lists this manuscript as an AI-proposed solution awaiting confirmation by mathematicians. Its listing should not be read as external validation or journal peer review."
+  ],
+  "background": [
+    {
+      "title": "E. I. Khukhro and V. D. Mazurov (eds.), The Kourovka Notebook, 21st edition, October 2026 update-3",
+      "url": "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-3.pdf",
+      "note": "Problem 16.63, on printed page 106, asks the odd-prime equality question and links this manuscript with the marker for an AI-proposed solution awaiting mathematician confirmation. Archive 12.77 concerns the separate divisibility question."
+    },
+    {
+      "title": "Bakhrom Omirov and Jie Ruan, On Lie Algebras with Only Inner Derivations (2026)",
+      "url": "https://arxiv.org/html/2605.04602v1",
+      "note": "Theorem 4.8 supplies the rank-31 characteristic-zero Lie-algebra template. The present construction credits that input and separately establishes the finite-characteristic facts it needs."
+    },
+    {
+      "title": "Jon González-Sánchez and Andrei Jaikin-Zapirain, Finite p-groups with small automorphism group (2015)",
+      "url": "https://arxiv.org/abs/1406.5772",
+      "note": "Constructs families with fewer automorphisms than elements and disproves the general divisibility conjecture. That result and its Lie-theoretic method are important background; it does not establish the exact equality sought in Problem 16.63."
+    },
+    {
+      "title": "M. Shabani-Attar, On equality of order of a finite p-group and order of its automorphism group (2015)",
+      "url": "https://doi.org/10.1007/s40840-014-0030-z",
+      "note": "Classifies equality in specified classes and excludes odd-prime examples of maximal class, with cyclic Frattini subgroup, or of class two with cyclic centre. These restrictions are not a general nonexistence result."
+    },
+    {
+      "title": "Serena Cicalò, Willem A. de Graaf, and Michael Vaughan-Lee, An effective version of the Lazard correspondence (2012)",
+      "url": "https://doi.org/10.1016/j.jalgebra.2011.11.031",
+      "note": "Explains the correspondence between finite p-groups and Lie rings of nilpotency class below p, including preservation of automorphism groups. That class restriction is checked explicitly here."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent review of the group-theoretic proof and exact certificates, particularly the reduction to the full automorphism count, or on preparing the work for journal submission.",
+  "why_it_works": [
+    "Begin with the rank-31 Lie-algebra template of Omirov and Ruan. A chosen flag has no nonidentity stabilizer in its full finite-field automorphism group. Weighting the lattice along this flag forces every automorphism of a sufficiently deep finite quotient into a domain where logarithms are integral.",
+    "Within that domain, logarithm and exponential preserve the required precision and give a bijection between all automorphisms and solutions of a linear derivation equation. This is the bridge from a nonlinear symmetry problem to an exact matrix count.",
+    "The matrix’s nullity contributes 30i to the exponent of the automorphism count, while its Smith valuations contribute 1689. The ring itself has order p^(31i), so the counts meet at i = 1689. The class bound then lets the Lazard correspondence transfer the equality to a finite group."
+  ],
+  "follow_up": null,
+  "followup_rationale": "No follow-up is promoted. Smaller examples, other primes, and a structural explanation of the Smith data are natural directions, but this bounded scope review has not established a sufficiently focused new conjecture, decisive mechanism, or literature gap to meet the requested high bar for a paper-worthy public follow-up. The manuscript makes no minimality claim, and this absence is a limitation rather than grounds to advertise an unsupported conjecture.",
+  "publication_date": "2026-09-15",
+  "version": "1.1.0",
+  "doi": "10.5281/zenodo.22770864",
+  "zenodo_url": "https://zenodo.org/records/22770864",
+  "author": "Alec Kriebel",
+  "pdf_filename": "kourovka_16_63_v1.1.0.pdf",
+  "supplement_filename": "kourovka_16_63_v1.1.0_source-and-certificates.zip",
+  "source_binding": {
+    "record_id": "22770864",
+    "concept_record_id": "22770863",
+    "pdf_sha256": "9d94db98b4b599a176e95bc74ae8048f69db81d852cf8d557e22f2191c298248",
+    "supplement_sha256": "33560d8879bbe3df578f92a8e6311010e504b7d2b669af6678163a7c8f96a7a4",
+    "metadata_file": "sources/record.json",
+    "receipt_file": "sources/receipt.json",
+    "read_scope": "All 13 pages of the published PDF; published LaTeX abstract and references, README, explicit group-presentation data and certificate metadata. No archived or current analytic/adversarial review verdict was used.",
+    "files": [
+      {
+        "name": "kourovka_16_63_v1.1.0_source-and-certificates.zip",
+        "url": "https://zenodo.org/api/records/22770864/files/kourovka_16_63_v1.1.0_source-and-certificates.zip/content",
+        "bytes": 321685,
+        "sha256": "33560d8879bbe3df578f92a8e6311010e504b7d2b669af6678163a7c8f96a7a4",
+        "zenodo_checksum": "md5:0a7a854cd235f3d52e003c2fd865e34c"
+      },
+      {
+        "name": "kourovka_16_63_v1.1.0.pdf",
+        "url": "https://zenodo.org/api/records/22770864/files/kourovka_16_63_v1.1.0.pdf/content",
+        "bytes": 132048,
+        "sha256": "9d94db98b4b599a176e95bc74ae8048f69db81d852cf8d557e22f2191c298248",
+        "zenodo_checksum": "md5:dd6953a54b356102d7005a4124e66598"
+      }
+    ]
+  },
+  "ai_disclosure": "This is an unrefereed preprint whose construction, proof development, and initial verification software were generated using AI tools; subsequent checks are not external human peer review or proof-assistant formalization."
+}

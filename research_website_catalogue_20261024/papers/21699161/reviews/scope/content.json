@@ -1,0 +1,187 @@
+{
+  "title": "Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation",
+  "slug": "minimum-bell-setting-complexity",
+  "description": "Why qubit POVMs need at least three Bell settings on one side and two on the other to beat projective measurements, when shared randomness is allowed.",
+  "abstract": "Vértesi and Bene exhibited a 3 × 2 Bell scenario in which qubit positive-operator-valued measurements (POVMs) outperform qubit projection-valued measurements (PVMs). We prove the matching setting lower bound. For arbitrary finite, input-dependent output alphabets, the shared-randomness convex hulls of bipartite qubit-POVM and qubit-PVM behaviors are equal when both parties have two inputs. Equivalently, no two-input linear Bell functional separates the two convexified sets. We also give a rational 3 × 2 functional, an exact qubit-POVM strategy, and a global analytic qubit-PVM upper bound with a strict exact gap. Hence 3 × 2 is the minimum input architecture, up to exchanging the parties. The equality proof combines a one-binary-party Lorentz-cone simulation, an extremal binary–ternary reduction, a physically exact Lorentz incidence manifold, finite-POVM duality, and a rank trichotomy based on the incidence second variation. The result concerns convexified behavior sets; it does not assert equality of the raw nonconvex strategy images or same-state simulation.",
+  "plain_language": [
+    "In a Bell experiment, two separated observers each choose a measurement and record an outcome. Generalized quantum measurements, called POVMs, allow more possibilities than projective measurements, called PVMs. This paper asks how many measurement choices are needed before that extra freedom changes the observable correlations when each observer’s quantum system is a qubit.",
+    "With only two choices for each observer, the paper shows that any probability table produced by qubit POVMs can also be produced by a shared-randomness mixture of qubit PVM strategies. This holds for every finite number of declared outcomes, even when the outcome lists differ between measurements.",
+    "The mixture may use different states and measurements on different runs. The result concerns reproducing the joint probabilities; it does not turn every individual POVM into a projective measurement on the original state.",
+    "Three choices on one side and two on the other are enough for a strict advantage. Vértesi and Bene established that phenomenon in 2010. The proposed advance here is the matching two-choice lower bound, together with an explicit rational Bell expression and exact bounds certifying a three-by-two gap."
+  ],
+  "result": [
+    "For every bipartite architecture with two inputs per party and arbitrary finite, input-dependent output alphabets (A₀, A₁; B₀, B₁), conv Q₂ᴾᴼⱽᴹ(A, B) = conv Q₂ᴾⱽᴹ(A, B). Each strategy has local Hilbert-space dimension at most two. The convex hull permits a shared classical variable to select the state and all measurements simultaneously.",
+    "The PVM class includes zero projectors, deterministic measurements, all labelled support patterns, and stochastic output postprocessing. Dimension-increasing ancillary systems are excluded. Equivalently, every linear Bell functional with two inputs per party has the same qubit-POVM and qubit-PVM optimum.",
+    "For the rational three-by-two Bell functional in equation (1), the paper gives an attained POVM value L₀ = 20√2 + 16/25 and a global PVM upper bound U = 20√2 + 3/5 + (4 + 3√2)/250. The certified gap is L₀ − U = 3(2 − √2)/250 > 0.",
+    "The witness has output architecture (2, 2, 3) for one party and (2, 2) for the other. Together with the two-input equality and the locality of one-input scenarios, it gives the minimum input architecture 3 × 2, up to exchanging the parties. The numbers 3 and 2 count measurement settings, not outcomes."
+  ],
+  "limitations": [
+    "The equality is between shared-randomness convex hulls. It does not establish equality of the raw nonconvex strategy images, a simulation using the same state, or projective simulability of an individual POVM as an operator-valued measurement.",
+    "The classification is bipartite and restricted to local Hilbert spaces of dimension at most two, finite output alphabets, and ordinary single-round Bell behaviors. It does not extend here to higher dimensions, multiple parties, or sequential measurements.",
+    "The three-by-two certificates provide an attained lower bound and a global upper bound. Neither is claimed to be the exact global optimum. The paper also derives no private-randomness entropy guarantee.",
+    "The code checks finite identities and explicit constructions. Compactness, extremal reduction, physical reconstruction, multiplier positivity, and exhaustion of the rank cases require the written proof. The paper remains unrefereed and was developed with extensive AI assistance."
+  ],
+  "why_it_works": [
+    "If one observer has only binary outcomes, the other observer’s steered states can be compressed into a three-dimensional cone. Decomposing relations in that cone gives one common mixture of complete projective strategies, preserving the whole probability table.",
+    "A hypothetical two-input Bell separator can then be reduced to one binary and one ternary measurement on each side. The remaining physical strategies admit exact Lorentz-metric coordinates. At a strict nonprojective maximum, duality forces positive multipliers, and an exhaustive rank analysis either produces an improving physical direction or an explicit projective simulation.",
+    "For the three-by-two witness, a CHSH term constrains the state and measurement geometry while an additional three-outcome measurement gains a state-discrimination advantage. Exact algebra bounds every projective alternative, including zero effects and deterministic cases."
+  ],
+  "background": [
+    {
+      "title": "Tamás Vértesi and Erika Bene, Two-qubit Bell inequality for which positive operator-valued measurements are relevant (2010)",
+      "url": "https://doi.org/10.1103/PhysRevA.82.062115",
+      "note": "Establishes the earlier three-by-two qubit POVM advantage. The current paper credits this phenomenon and claims the matching arbitrary-output two-input lower bound."
+    },
+    {
+      "title": "Johanna F. Barra and colleagues, Higher quantum bound for the Vértesi–Bene–Bell inequality (2012)",
+      "url": "https://doi.org/10.1103/PhysRevA.86.042114",
+      "note": "Refines the earlier witness and studies detection efficiency. A better witness value or experimental threshold is a different question from minimum input count."
+    },
+    {
+      "title": "Michał Oszmaniec, Leonardo Guerini, Peter Wittek, and Antonio Acín, Simulating positive-operator-valued measures with projective measurements (2017)",
+      "url": "https://doi.org/10.1103/PhysRevLett.119.190501",
+      "note": "Studies simulation of measurement operators by projective measurements and classical randomness. Reproducing a Bell behavior while changing the state is a distinct requirement."
+    },
+    {
+      "title": "Yasamin Panahi and colleagues, Upper Bounding Hilbert Space Dimensions which can Realize all the Quantum Correlations (2025)",
+      "url": "https://arxiv.org/abs/2505.20519",
+      "note": "Using a Masanes reduction and Schmidt compression, gives qubit dimension bounds when one party has two binary settings. It does not make the other party’s arbitrary-output measurements projective."
+    },
+    {
+      "title": "Sacha Cerf and Harold Ollivier, The perturbative method for quantum correlations (2026)",
+      "url": "https://arxiv.org/abs/2603.26875",
+      "note": "Develops local perturbative geometry near deterministic correlations and proposes a route toward POVM–PVM distinctions. This is different from the global convexified equality claimed here."
+    },
+    {
+      "title": "Sacha Schwarz, Bänz Bessire, André Stefanov, and Yeong-Cherng Liang, Corrigendum on ternary-outcome Bell measurements (2018)",
+      "url": "https://doi.org/10.1088/1367-2630/aabe5c",
+      "note": "Corrects an earlier claimed nonprojective advantage by including a projective strategy with zero effects. The present model explicitly retains those cases."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent review of the arbitrary-output two-input theorem, particularly the physical reconstruction and exceptional-rank arguments, or on preparing the result for journal submission. Expertise in Bell correlations, convex geometry, or quantum measurement theory would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is promoted. The manuscript already lists higher dimensions, raw-set equality, multipartite scenarios, constructive simulation, sequential measurements, robust witnesses, and exact optima. This bounded review has not isolated a new precise conjecture or independently supported mechanism that meets the requested high bar; repeating those directions would not add enough value.",
+  "publication_date": "2026-07-30",
+  "version": "July 2026",
+  "archive_version_label": "1.1.0",
+  "doi": "10.5281/zenodo.21699161",
+  "zenodo_url": "https://zenodo.org/records/21699161",
+  "author": "Alec Kriebel",
+  "pdf_filename": "kriebel-2026-minimum-bell-setting-complexity-v1.1.0.pdf",
+  "supplement_filename": null,
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Line-numbered manuscript",
+      "doi": "10.5281/zenodo.21699069",
+      "url": "https://zenodo.org/records/21699069",
+      "record_id": "21699069"
+    },
+    {
+      "label": "LaTeX source archive",
+      "doi": "10.5281/zenodo.21699181",
+      "url": "https://zenodo.org/records/21699181",
+      "record_id": "21699181"
+    },
+    {
+      "label": "Published integrity manifest",
+      "doi": "10.5281/zenodo.21699205",
+      "url": "https://zenodo.org/records/21699205",
+      "record_id": "21699205"
+    },
+    {
+      "label": "Exact verification and reproducibility package",
+      "doi": "10.5281/zenodo.21699224",
+      "url": "https://zenodo.org/records/21699224",
+      "record_id": "21699224"
+    }
+  ],
+  "status": "Unrefereed preprint; printed manuscript dated July 2026. Published file and companion archives carry the label v1.1.0. Developed with extensive AI assistance; independent specialist review welcome.",
+  "ai_disclosure": "This is an unrefereed preprint developed with extensive generative-AI assistance in mathematical exploration, derivation, proof analysis, software, literature work, and writing. The human author accepts responsibility for the released claims. The supplied proofs and exact artifacts support independent scrutiny; they do not constitute independent expert peer review.",
+  "source_binding": {
+    "record_id": "21699161",
+    "concept_record_id": "21699160",
+    "pdf_sha256": "1a408e9d98f5166e8ffa6adf607413132facb51fa6f8d3108843b5f0280f2c66",
+    "supplement_sha256": null,
+    "zenodo_version": null,
+    "manuscript_version": null,
+    "manuscript_date": "July 2026",
+    "publication_date": "2026-07-30",
+    "archive_version_label": "1.1.0",
+    "version_source": "No metadata.version is present in the Zenodo record, and no numbered version is printed in the manuscript. content.version records the printed July 2026 edition. v1.1.0 appears in the deposited filename and companion archival labels; it is not silently inserted into Zenodo metadata.",
+    "abstract_source": "Complete abstract from page 1, visually checked and cross-checked against main.tex in separately published source record 21699181; typographic normalization only, no appended editorial disclosure.",
+    "read_scope": "All34 main-PDF pages, including appendices A–I; main.tex abstract/edition fields. The line-numbered PDF is an alternate34-page presentation, not a new mathematical supplement.",
+    "files": [
+      {
+        "name": "kriebel-2026-minimum-bell-setting-complexity-v1.1.0.pdf",
+        "url": "https://zenodo.org/api/records/21699161/files/kriebel-2026-minimum-bell-setting-complexity-v1.1.0.pdf/content",
+        "bytes": 238228,
+        "sha256": "1a408e9d98f5166e8ffa6adf607413132facb51fa6f8d3108843b5f0280f2c66",
+        "zenodo_checksum": "md5:9ab44afe416cfabc1d065de0c62647b5"
+      }
+    ],
+    "related_records": [
+      {
+        "record_id": "21699069",
+        "label": "Line-numbered manuscript",
+        "doi": "10.5281/zenodo.21699069",
+        "url": "https://zenodo.org/records/21699069",
+        "files": [
+          {
+            "name": "kriebel-2026-minimum-bell-setting-complexity-review-v1.1.0.pdf",
+            "url": "https://zenodo.org/api/records/21699069/files/kriebel-2026-minimum-bell-setting-complexity-review-v1.1.0.pdf/content",
+            "bytes": 251541,
+            "sha256": "e7f80310f71316c15c6f97e2a9de0af26d194567b5fd572a8c4f49e833d02640",
+            "zenodo_checksum": "md5:a5a7a0d08c99e864159de09a7866f6ab"
+          }
+        ]
+      },
+      {
+        "record_id": "21699181",
+        "label": "LaTeX source archive",
+        "doi": "10.5281/zenodo.21699181",
+        "url": "https://zenodo.org/records/21699181",
+        "files": [
+          {
+            "name": "kriebel-2026-minimum-bell-setting-complexity-source-v1.1.0.tar.gz",
+            "url": "https://zenodo.org/api/records/21699181/files/kriebel-2026-minimum-bell-setting-complexity-source-v1.1.0.tar.gz/content",
+            "bytes": 36142,
+            "sha256": "86b611349f562d06274ea10d9d01107dfc50da07838c2d4785ca9a2da01af83a",
+            "zenodo_checksum": "md5:53f10a19ece2e4118b764e61304f22d2"
+          }
+        ]
+      },
+      {
+        "record_id": "21699205",
+        "label": "Published integrity manifest",
+        "doi": "10.5281/zenodo.21699205",
+        "url": "https://zenodo.org/records/21699205",
+        "files": [
+          {
+            "name": "kriebel-2026-minimum-bell-setting-complexity-SHA256SUMS-v1.1.0.txt",
+            "url": "https://zenodo.org/api/records/21699205/files/kriebel-2026-minimum-bell-setting-complexity-SHA256SUMS-v1.1.0.txt/content",
+            "bytes": 383,
+            "sha256": "84436a1d73572a6d3910ce73c3dd09748fcea12059e6803e9e1bc32a098427a6",
+            "zenodo_checksum": "md5:7a8425d9b38179a2882cf25362b1ae80"
+          }
+        ]
+      },
+      {
+        "record_id": "21699224",
+        "label": "Exact verification and reproducibility package",
+        "doi": "10.5281/zenodo.21699224",
+        "url": "https://zenodo.org/records/21699224",
+        "files": [
+          {
+            "name": "kriebel-qubit-povm-pvm-reproducibility-v1.1.0.zip",
+            "url": "https://zenodo.org/api/records/21699224/files/kriebel-qubit-povm-pvm-reproducibility-v1.1.0.zip/content",
+            "bytes": 633606,
+            "sha256": "b34c0570a8ad1f98c8688d597bf9a2cfdc525ba5b20b90dc9638f7ec8af66e77",
+            "zenodo_checksum": "md5:6dadf5902d38333f5afb6e7deb8dc036"
+          }
+        ]
+      }
+    ],
+    "related_asset_boundary": "Related resources are separately deposited Zenodo records. No additional file is claimed to be uploaded on primary record 21699161. The renderer must link these separate DOI records explicitly rather than infer primary-record download URLs."
+  }
+}

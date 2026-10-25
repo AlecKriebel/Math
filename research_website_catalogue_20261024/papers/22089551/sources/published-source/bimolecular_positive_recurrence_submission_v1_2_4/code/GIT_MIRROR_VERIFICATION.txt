@@ -1,0 +1,24 @@
+VERSION 1.2 PUBLIC MIRROR VERIFICATION
+Date: 2026-08-16
+
+Canonical repository:
+  https://github.com/AlecKriebel/Math
+
+Canonical annotated tag:
+  bimolecular-positive-recurrence-v1.2
+
+Canonical package path:
+  bimolecular_positive_recurrence_submission_v1_2/code
+
+After the tag is published, verify that the public mirror and a local checkout
+resolve to the same immutable commit with:
+
+  git ls-remote --tags https://github.com/AlecKriebel/Math.git \
+    refs/tags/bimolecular-positive-recurrence-v1.2 \
+    refs/tags/bimolecular-positive-recurrence-v1.2^{}
+  git rev-parse bimolecular-positive-recurrence-v1.2^{tag}
+  git rev-parse bimolecular-positive-recurrence-v1.2^{commit}
+
+Then run ../validation/replay_release.sh from any clean checkout of the tag.
+That executable check, the complete manifest, and the canonical report replace
+the stale copied transcript pattern used by earlier releases.

@@ -1,0 +1,169 @@
+\section{Conventions and the K3P model}\label{sec:conventions}
+
+\subsection{Rooted and semi-directed networks}
+
+\begin{definition}[Rooted binary network]
+Let \(X\) be a finite set of leaf labels.  A rooted binary phylogenetic
+network is a finite directed acyclic graph without parallel arcs in which the
+root has bidegree \((0,2)\), every tree vertex has bidegree \((1,2)\), every
+reticulation has bidegree \((2,1)\), and every leaf has bidegree \((1,0)\) and
+a unique label in \(X\).  Every vertex is reachable from the root.  The root
+is the lowest stable ancestor of the leaves.  A rooted presentation is
+\emph{tree-child} when each internal vertex has a tree vertex or leaf as a
+child.
+\end{definition}
+
+\begin{definition}[Standard semi-directed convention]\label{def:standard}
+Mark every arc entering a reticulation, undirect every other arc, delete the
+binary root, and merge its two incident arcs into one edge, retaining at
+either endpoint exactly the arrowhead present before deletion.  We admit the
+presentation only when this single suppression creates no loop or parallel
+edge and loses no reticulation arrowhead.  No later exhaustive cleanup is
+part of this operation.  The resulting labelled mixed graph is a
+\emph{standard semi-directed network}.  An admissible rooting is a rooted
+binary network whose one-step suppression is exactly that mixed graph.
+\end{definition}
+
+\input{\KThreePCanonicalRoot/figures/standard_semi_directed}
+
+The one-step operation and the retained reticulation arrowheads are shown in
+\cref{fig:standard-semi-directed}.
+
+Isomorphisms preserve leaf labels, ordinary edges, retained arrowheads, and
+vertex roles.  Restriction to a leaf subset is a distinct operation: after
+choosing displayed reticulation parents one may prune unlabelled dead ends
+and suppress unlabelled bivalent vertices.  Such cleanup does not enlarge the
+admissible-rooting set of the original mixed graph.  See
+\cite{SempleSteel2003,HoltgrefeEtAl2026} for broader background on rooted and
+semi-directed conventions.
+
+\begin{definition}[Weak and strong tree-childness]
+A standard semi-directed network is \emph{weakly tree-child} if at least one
+admissible rooting is tree-child.  It is \emph{strongly tree-child} if it has
+an admissible rooting and every admissible rooting is tree-child.  We denote
+these classes by \(W_{\mathrm{TC}}\) and \(S_{\mathrm{TC}}\), respectively.
+\end{definition}
+
+\begin{lemma}[No-omnian criterion]\label{lem:no-omnian}
+In the binary fixed convention, a standard semi-directed network with an
+admissible rooting is strongly tree-child if and only if every tail of a
+retained reticulation edge is incident with two ordinary edges.
+\end{lemma}
+
+\begin{proof}
+If a tail fails the condition, it is either a reticulation with a
+reticulation child or an ordinary vertex tailing two retained edges.  The
+first case is non-tree-child in every rooting.  In the second, moving an
+admissible root to the tail's unique ordinary incidence produces an
+admissible rooting in which the tail has two reticulation children.  Thus
+strong tree-childness fails.  Conversely, under the incidence condition an
+ordinary vertex with a reticulation child retains an ordinary child, a
+reticulation has an ordinary child, and a root with two reticulation children
+would suppress to a forbidden two-arrowhead edge.  Hence every admissible
+rooting is tree-child.  This is the fixed binary specialization of the
+criterion used in \cite{EnglanderEtAl2026,HoltgrefeEtAl2026}.
+\end{proof}
+
+A \emph{bridge} is an edge whose deletion disconnects the underlying graph.
+A \emph{blob} is a maximal nontrivial biconnected block.  A network is
+\emph{level two} when every blob contains at most two reticulations.
+Contracting each nontrivial blob while retaining the intervening ordinary
+branching components gives the labelled reduced \emph{tree of blobs}.  When a
+blob is cut from the network, each incident bridge becomes a labelled
+boundary \emph{port}.  A complete ported factor retains every physical port,
+including the child port below a path-sink reticulation.
+
+\begin{definition}[Ordinary triangle equivalence]\label{def:triangle}
+An ordinary triangle redirection changes only which vertex of a three-cycle
+factor incident with three external arms is reticulate and redirects the two
+arrowheads entering it.  Write \(N\trianglerel N'\) when the labelled reduced
+trees of blobs agree, corresponding nontriangle complete factors are
+labelled mixed-graph isomorphic, and every remaining pair differs by an
+ordinary triangle redirection, with coherent boundary transports.
+\end{definition}
+
+\subsection{Fourier parameterization and physical domains}
+
+Identify the states and characters with
+\(\G=\{0,C,G,T\}\), with Klein-four addition.  A K3P edge \(e\) has Fourier
+spectrum
+
+\[
+ \widehat f_e=(1,c_e,g_e,t_e).
+\]
+
+Inverse Fourier transformation gives
+
+\begin{align}\label{eq:inverse-fourier}
+ f_e(0)&=\frac{1+c_e+g_e+t_e}{4},&
+ f_e(C)&=\frac{1+c_e-g_e-t_e}{4},\nonumber\\
+ f_e(G)&=\frac{1-c_e+g_e-t_e}{4},&
+ f_e(T)&=\frac{1-c_e-g_e+t_e}{4}.
+\end{align}
+
+The root state is uniform.  At each reticulation \(r\), one parent is chosen
+with probability \(\lambda_r\in(0,1)\) and the other with probability
+\(1-\lambda_r\).  A switching \(\sigma\) gives a displayed tree \(T_\sigma\)
+with positive weight \(w_\sigma\).  For a character assignment
+\(\mathbf h=(h_i)_{i\in\X}\),
+
+\begin{equation}\label{eq:k3p-fourier}
+ q_N(\mathbf h)=
+ \begin{cases}
+ \displaystyle\sum_\sigma w_\sigma
+  \prod_{e\in T_\sigma}
+  \widehat f_e\!\left(\xor_{i\in A_e}h_i\right),
+  &\xor_{i\in\X}h_i=0,\\[2mm]
+ 0,&\text{otherwise},
+ \end{cases}
+\end{equation}
+
+where \(A_e\mid A_e^c\) is the displayed-tree split.  The map is polynomial
+in edge spectra and inheritance probabilities.
+
+Strict positivity of \eqref{eq:inverse-fourier}, together with positive
+nontrivial spectra, is exactly the principal domain \(\Dplus\) in
+\cref{thm:main}.  Symmetric continuous-time K3P rates
+\((\alpha_C,\alpha_G,\alpha_T)>0\) give
+
+\[
+ c=e^{-2(\alpha_G+\alpha_T)},\qquad
+ g=e^{-2(\alpha_C+\alpha_T)},\qquad
+ t=e^{-2(\alpha_C+\alpha_G)},
+\]
+
+and are equivalent to the three inequalities defining \(\Dct\).
+
+Write \(\Theta_{3,+}(N)\) and \(\Theta_{3,\mathrm{CT}}(N)\) for the open
+physical parameter spaces, \(\Phi_N\) for \eqref{eq:k3p-fourier}, and
+\(\M_{3,+}(N)=\Phi_N(\Theta_{3,+}(N))\).  Put
+
+\[
+ d_N=\max_{\theta\in\Theta_{3,+}(N)}\rank D\Phi_N(\theta).
+\]
+
+A source parameter is regular when its Jacobian has rank \(d_N\).
+
+\subsection{Observational relations}
+
+\begin{definition}[Directed containment and common germ]\label{def:relations}
+Write \(N\preceqplus N'\) if there are a regular source point
+\(\theta_0\in\Theta_{3,+}(N)\), a connected open neighborhood
+\(U\subseteq\Theta_{3,+}(N)\) on which \(\Phi_N\) has rank \(d_N\), and a
+real-analytic physical target section
+\(\sigma:U\to\Theta_{3,+}(N')\) such that
+
+\[
+ \Phi_N=\Phi_{N'}\circ\sigma\qquad\text{on }U.
+\]
+
+Write \(N\bowtieplus N'\) when the two physical images contain a common
+analytic germ that is regular and full-dimensional in both images and has
+physical analytic sections from both parameter spaces.  Define
+\(\preceqct\) and \(\bowtiect\) by replacing the edge domain with \(\Dct\).
+\end{definition}
+
+These relations are stronger than nonempty image intersection and different
+from inclusion of complex Zariski closures.  The target section in
+\(\preceqplus\) is physical but need not be target-open or target-regular.
+This asymmetric quantifier is important in the cut-transfer argument below.

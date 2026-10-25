@@ -1,0 +1,92 @@
+{
+  "schema": "nmsc-independent-exposure-loss-manifest-v1",
+  "claim_scope": {
+    "network_class": "ported strict binary rooted tree-child/strong-tail level-2 primitive cores",
+    "model": "independent-lineage NMSC with positive finite rates and inheritance probabilities",
+    "observation": "total marked first-merger/survival laws plus route-exclusive labelled anchor cells",
+    "parameter_domain": "positive rational durations and rates; inheritance weights strictly between zero and one",
+    "quantifier": "exact bounded falsification on all four theta0/theta1 exposure-loss minimum repairs",
+    "target": "complete exposed-V record, residual Q8 carrier, and joint V-then-X reattachment"
+  },
+  "conventions": {
+    "segment_ids": "zero-based positions in each primitive core's arcs array",
+    "physical_q_order": "lexicographic order of exact incoming V incidence tuples (tail, head, edge key, segment, edge role)",
+    "child_corridor_weight": "the X-parent route descending from V; the complementary physical route has weight one minus this value"
+  },
+  "primitive_cores": {
+    "branch": {
+      "arcs": [
+        ["S", "U"],
+        ["S", "V"],
+        ["U", "X"],
+        ["V", "X"],
+        ["U", "V"]
+      ],
+      "reticulations": ["V", "X"],
+      "sinks": ["X"]
+    },
+    "parallel": {
+      "arcs": [
+        ["S", "U"],
+        ["S", "X"],
+        ["V", "X"],
+        ["U", "V"],
+        ["U", "V"]
+      ],
+      "reticulations": ["V", "X"],
+      "sinks": ["X"]
+    }
+  },
+  "cases": [
+    {
+      "case_id": "branch-repair-2-3",
+      "core": "branch",
+      "repair_segments": [2, 3],
+      "child_segment": 3,
+      "typing_segment": 2,
+      "physical_q": ["2/3", "1/3"]
+    },
+    {
+      "case_id": "branch-repair-3-4",
+      "core": "branch",
+      "repair_segments": [3, 4],
+      "child_segment": 3,
+      "typing_segment": 4,
+      "physical_q": ["1/3", "2/3"]
+    },
+    {
+      "case_id": "parallel-repair-2-3",
+      "core": "parallel",
+      "repair_segments": [2, 3],
+      "child_segment": 2,
+      "typing_segment": 3,
+      "physical_q": ["1/3", "2/3"]
+    },
+    {
+      "case_id": "parallel-repair-2-4",
+      "core": "parallel",
+      "repair_segments": [2, 4],
+      "child_segment": 2,
+      "typing_segment": 4,
+      "physical_q": ["1/3", "2/3"]
+    }
+  ],
+  "exact_fixture": {
+    "entry_time": "2",
+    "x_child_corridor_weight": "2/5",
+    "child_chambers": [
+      {"duration": "1/2", "rate": "2"},
+      {"duration": "1/3", "rate": "5"}
+    ],
+    "parent_chambers": [
+      {"duration": "1/4", "rates": ["3", "5"], "changed_parent": null},
+      {"duration": "1/5", "rates": ["7", "5"], "changed_parent": 0},
+      {"duration": "1/6", "rates": ["7", "11"], "changed_parent": 1}
+    ],
+    "equal_parent_rate": "13",
+    "equal_parent_q_values": ["1/3", "1/2"],
+    "equal_child_rate": "5",
+    "direction_rate": "17",
+    "direction_duration": "1/4"
+  }
+}

@@ -1,0 +1,47 @@
+# Publication scope review: Zenodo 22089551
+
+**Conclusion:** The publication copy is ready for the separate mathematical gate. No substantive defect was identified during this independent scope reading. This verdict is not a mathematical proof certificate, human peer review, journal recommendation, or certification of novelty or priority.
+
+## Bound source and reading coverage
+
+Exact title: **Positive Recurrence for Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks**. Author: Alec Kriebel, ORCID 0009-0001-9320-500X. DOI: [10.5281/zenodo.22089551](https://doi.org/10.5281/zenodo.22089551). Version **1.2.4**, Zenodo publication date **22 August 2026**, matching the main manuscript and supplementary-note dates.
+
+Freshly extracted and read all 16 main-paper pages and both supplementary-note pages. Inspected the main first page visually. Cross-checked the abstract and publication wrapper against the released TeX. Verified all three uploaded SHA-256 hashes against the fresh receipt and checked ZIP integrity. The uploaded main PDF is byte-identical to the archive’s `manuscript/main_arxiv.pdf`; the supplementary PDF is byte-identical to `manuscript/supplementary_note.pdf`.
+
+The source has two conditional abstracts. The uploaded PDF uses the full 197-word non-JAP abstract. `content.json` preserves that abstract with whitespace normalization only; the shorter JAP abstract is not substituted. The extra PDF is retained through `additional_assets`, while the main PDF and full release ZIP use the conventional fields. Fresh extracted-text hashes are in `extraction_receipt.json`.
+
+The archive contains historical audit and review materials. They were not read, nor were any current analytic/adversarial reviewer opinions. This scope conclusion was formed from the actual paper, supplement, relevant source, metadata, and primary literature. The regression suite was not run by this reviewer, and finite calibration reports were not used to support the universal theorem.
+
+## Claim and interpretation boundaries
+
+- The theorem concerns a **finite stochastic mass-action** model with strictly positive rate constants, a **single linkage class**, weak reversibility, and **every complex of molecularity at most two**. The number of species may be arbitrary but finite. Because weak reversibility makes every complex a source, the molecularity language must not be casually replaced by a source-only assumption in a different class of networks.
+- With one linkage class, weak reversibility means the complex graph is strongly connected. An individual reaction need not have its reverse edge; a directed return path suffices.
+- Every initial population has a closed reachable communicating class. On a nonabsorbing class the claimed theorem gives nonexplosion and finite mean positive return times. Absorbing singleton classes are treated by their point-mass stationary laws.
+- Uniqueness of a stationary law is **within each reachable class**, not necessarily on the full population lattice. Conserved quantities, parity, boundary faces, and other restrictions can separate classes.
+- The exact claimed advance over the 2020 predecessor is removal of the condition that each species occur in a pure unary or pure-double complex. The single-linkage and binary assumptions remain. This is not a solution of the unrestricted chemical recurrence conjecture.
+- Symmetric reachability is a previously known combinatorial fact under weak reversibility. Its return paths do not by themselves give finite expected stochastic return times.
+- Nonexplosion is distinct from positive recurrence and already has broader results. It is appropriately presented as recovered by the proof, not as a new general nonexplosion theorem.
+- The target shift and exact factorial ratio distinguish the argument from an unshifted one-step entropy drift. Entropy-like potentials, tier methods, finite reaction paths, and sampled-chain Foster theory are established infrastructure.
+- Positive recurrence does not imply bounded sample paths, finite stationary moments of unbounded count observables, exponential ergodicity, or useful mixing bounds. The proof’s exceptional set is qualitative and rate-dependent. The paper’s small drift coefficient examples concern this construction rather than the process’s optimal convergence rate.
+- No empirical or organism-specific validation is claimed. The released computations support identities, examples, and edge cases, not the universal recurrence theorem.
+
+## Focused primary-literature check
+
+This was a bounded review of the direct predecessor, reachability precedent, entropy background, current nonexplosion result, and competing/complementary recurrence announcements. It does not justify an exhaustive priority assertion.
+
+1. **Anderson and Kim (2018), [Some Network Conditions for Positive Recurrence of Stochastically Modeled Reaction Networks](https://doi.org/10.1137/17M1161427).** The primary published abstract describes parameter-independent structural sufficient conditions, mainly binary, and the tier method. This is the proper source of the broader conjectural context, rather than a problem newly formulated here.
+2. **Anderson, Cappelletti and Kim (2020), [single-linkage weakly reversible networks](https://doi.org/10.1017/jpr.2020.28).** Read the author-hosted primary version’s Theorem 4.1, Example 4.1, and Section 6.1 boundary argument. The theorem expressly requires each species to have a pure complex. The boundary proof uses this assumption to obtain the available unary source after excluding the pure double. This supports the manuscript’s precise comparison. Multi-step embedded-chain drift is already part of that work; the new claim must be the target-shifted mechanism and removal of the extra hypothesis, not the invention of multi-step Foster reasoning.
+3. **Paulevé, Craciun and Koeppl (2014), [Dynamical properties of Discrete Reaction Networks](https://doi.org/10.1007/s00285-013-0686-2).** The primary article’s definition of recurrence is symmetric reachability, and its Lemmas 4.5–4.6 imply the weak-reversibility return-path fact. The paper correctly distinguishes that combinatorial property from positive recurrence.
+4. **Anderson, Craciun, Gopalkrishnan and Wiuf (2015), [entropy and stationary distributions](https://doi.org/10.1007/s11538-015-0102-8).** The primary author-hosted abstract and introduction connect the classical Horn–Jackson family with stochastic non-equilibrium potentials. The paper’s log-factorial potential is a target-shifted discrete analogue; neither entropy growth nor the classical function is a new invention.
+5. **Xu, [On the Regularity of Reaction Systems, arXiv v3](https://arxiv.org/abs/2409.05340v3).** Important update: the current primary version is dated **12 October 2026**, after this paper, and corrects the earlier title spelling. Its abstract includes regularity for every binary mass-action system, as well as second-order endotactic systems. Its discussion still distinguishes nonexplosion from the unresolved broader bimolecular recurrence problem. The public background uses the current title and scope without modifying the historical published abstract. No contradiction with this single-linkage recurrence claim follows.
+6. **Agazzi, Anderson, Cappelletti, Laurence and Mattingly, [ConStRAINeD two-dimensional result](https://constrained.polito.it/publications/).** The authors’ project page describes the two-species proof as complete but continues to list the manuscript in preparation. An [ECMTB July 2026 primary conference abstract](https://contributions.ecmtb2026.org/event/1/sessions/64/) independently states the positive-recurrence claim. Credit is required even in the absence of a located paper. Their reported two-species scope and this paper’s arbitrary-species/single-linkage/binary scope are complementary; no superseding claim is warranted.
+
+Public copy therefore emphasizes the removal of the specific pure-species assumption and the exact carried-target mechanism. It does not advertise first proof of reachability symmetry, first nonexplosion result, or resolution of the full conjecture. Further specialist literature checking remains appropriate before a journal submission.
+
+## Interesting feature and follow-up decision
+
+The most useful explanatory example is `0 → A + B → B → 0`: immediate radial drift can point outward at a boundary while a finite reaction episode supplies the restoring effect. This communicates why the marked target is more than a cosmetic change of potential.
+
+**No follow-up is proposed.** Multiple linkage classes, higher molecularity, and quantitative bounds are already named in the manuscript. The paper identifies genuine obstructions: a carried target cannot necessarily reach a useful terminal in another linkage class, and larger complexes introduce configurations outside the binary top-complex alternative. This review has not supplied a new mechanism or a sufficiently sharp, supported conjecture. Repeating those open directions would not meet the requested bar.
+
+The public content explicitly discloses unrefereed status and material generative-AI assistance in both `status` and `limitations`. The professional collaboration invitation requests substantive review or submission development and promises no authorship. Internal audit dates, checkpoint percentages, and replay details remain outside public article copy.
