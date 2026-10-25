@@ -1,0 +1,114 @@
+--- current
++++ proposed
+@@ -11,6 +11,7 @@
+ from bosonic_source import bosonic_source_view
+ from dipole_source import dipole_source_view
+ from cfh_source import cfh_source_view, normalized_cfh_abstract
++from cylinder_discotope_source import CD_IDS, PINS as CD_PINS, cylinder_discotope_source_view, normalized_cd_abstract, display_cd_abstract
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+ parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+@@ -22,6 +23,8 @@
+ if not args.output_dir.resolve().is_relative_to(R/'verification'):parser.error('output-dir must be inside verification')
+ S=args.site
+ TEX_PATHS={
++ '23387774':'published-source/cylinder_areas.tex',
++ '23074543':'published-source/paper.tex',
+  '23431676':'published-source/pr1097_support_v1_0/paper.tex',
+  '23387442':'published-source/satoh_filtration_verification/satoh_filtration_counterexamples.tex',
+  '23328912':'published-source/aim_5_2_source/preprint.tex',
+@@ -218,6 +221,7 @@
+  for old,new in replacements.items():body=body.replace(old,new)
+  return body
+ def abstract_tokens(tex,record_id=None):
++ if record_id in CD_IDS:return wt(normalized_cd_abstract(record_id,tex))
+  if record_id in CFH_IDS:return wt(normalized_cfh_abstract(record_id,tex))
+  if record_id in DIPOLE_LANGLANDS_IDS:return wt(normalized_dipole_langlands_abstract(record_id,tex))
+  if record_id in SURREAL_CONE_BROWNIAN_IDS:return wt(normalized_surreal_cone_brownian_abstract(record_id,tex))
+@@ -269,11 +273,12 @@
+  test('canonical',[a['href'] for t,a in d.a if t=='link' and a.get('rel')=='canonical']==[base])
+  schemas=[json.loads(x) for x in re.findall('<script type="application/ld\\+json">(.*?)</script>',h,re.S)]
+  art=next(x for x in schemas[0]['@graph'] if x['@type']=='ScholarlyArticle')
+- test('jsonld',all(art[k]==c[k] for k in ['description','abstract']) and (('version' not in art) if rid=='23203100' else art['version']==c['version']) and art['name']==c['title'] and art['datePublished']==c['publication_date'] and art['sameAs']=='https://doi.org/'+c['doi'] and art['encoding']['contentUrl']==base+c['pdf_filename'] and art['author'][0]['name']==c['author'] and art['identifier']['value']==c['doi'])
++ test('jsonld',all(art[k]==(display_cd_abstract(rid,c[k]) if rid in CD_IDS and k=='abstract' else c[k]) for k in ['description','abstract']) and (('version' not in art) if rid=='23203100' else art['version']==c['version']) and art['name']==c['title'] and art['datePublished']==c['publication_date'] and art['sameAs']=='https://doi.org/'+c['doi'] and art['encoding']['contentUrl']==base+c['pdf_filename'] and art['author'][0]['name']==c['author'] and art['identifier']['value']==c['doi'])
+  for sec,key in [('abstract','abstract'),('plain-language','plain_language'),('result','result'),('proof','why_it_works'),('limits','limitations')]:
+   segment=re.search('<section id="'+sec+'">(.*?)</section>',h,re.S).group(1)
+   paras=[unescape(x) for x in re.findall('<p>(.*?)</p>',segment,re.S)]
+   expected=c[key] if isinstance(c[key],list) else c[key].split('\n\n')
++  if rid in CD_IDS and key=='abstract':expected=[display_cd_abstract(rid,c['abstract'])]
+   test(sec,paras==expected)
+  textpath=p/'sources'/TEX_PATHS[rid]
+  source=textpath.read_text()
+@@ -351,7 +356,9 @@
+    local.append(good)
+  test('local_links_anchors',all(local))
+  receipt_file=p/'sources/receipt.json';asset_root=p/'sources'
+- if rid in CFH_IDS:
++ if rid in CD_IDS:
++  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=cylinder_discotope_source_view(p,c,gate)
++ elif rid in CFH_IDS:
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=cfh_source_view(p,c,gate)
+  elif rid=='23390551':
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=dipole_source_view(p,c,gate);receipt_file=p/c['source_binding']['receipt_path']
+@@ -387,12 +394,13 @@
+  test('index_entry',f'href="/research/{c["slug"]}/"' in index and c['description'] in unescape(index))
+  ix=json.loads(re.search('<script type="application/ld\\+json">(.*?)</script>',index,re.S).group(1));items=ix['mainEntity']['itemListElement'];test('index_jsonld',len([x for x in items if x['url']==base and x['name']==c['title']])==1 and ix['mainEntity']['numberOfItems']==len(items))
+  test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
+- bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
+- test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
+- record_file=p/'sources'/(c['source_binding']['record_path'].removeprefix('sources/') if rid in CFH_IDS else 'zenodo_record.json' if rid=='23390551' else 'metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
++ bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
++ test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS or rid in CD_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
++ if rid in CD_IDS:record_file=p/'sources/zenodo-record.raw.json'
++ else:record_file=p/'sources'/(c['source_binding']['record_path'].removeprefix('sources/') if rid in CFH_IDS else 'zenodo_record.json' if rid=='23390551' else 'metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
+  record=json.loads(record_file.read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334','23203100') and c['source_binding']['zenodo_version'] is None))
+- if c.get('edition_label'):test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
+- if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS and rid not in CFH_IDS:
++ if c.get('edition_label') and rid not in CD_IDS:test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
++ if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS and rid not in CFH_IDS and rid not in CD_IDS:
+   materials=re.search('<section id="materials">(.*?)</section>',h,re.S).group(1)
+   test('supporting_materials_links',all(x['url'] in materials and x['label'] in unescape(materials) and x.get('doi','') in unescape(materials) for x in c['related_resources']))
+   related_bound=True
+@@ -1089,6 +1097,42 @@
+   else:
+    test('hessian_full_proper_positive_ordered_torsion_scope',all(x in body for x in ['one fixed finite dimension n≥1','N=binomial(2n+4,3)>n','one smooth Ψ:U→ℝ with positive ordinary Hessian','proper smooth embedding f:M→U','exactly ∇ and ∇*, in that order','if and only if both prescribed torsions vanish','nonconvex and incomplete','dual affine coordinates are local','no fixed finite probability model','final Lê 2006','final Lê 2007','separate Lauritzen Lancaster','Abe article']))
+    test('hessian_full_four_receipts_two_actual_assets',len(raw_receipt['files'])==4 and len(receipt['files'])==2 and sum(x['actual_file_object'] is None for x in raw_receipt['files'])==2 and not (p/'sources/record.json').exists())
++ if rid in CD_IDS:
++  pin=CD_PINS[rid];binding=c['source_binding'];science=json.loads((R/gate['root_clearance_file']).read_text());editorial=json.loads((R/('verification/root-editorial-'+rid+'-20261025.json')).read_text())
++  section_text={sid:' '.join(unescape(re.sub(r'<[^>]+>',' ',seg)).split()) for sid,seg in re.findall(r'<section id="([^"]+)">(.*?)</section>',h,re.S)}
++  body=' '.join(unescape(re.sub(r'<[^>]+>',' ',re.search(r'<body>(.*?)</body>',h,re.S).group(1))).split())
++  test('exact_two_ID_root_editorial_authority',sha(p/'publication.json')==pin['publication'] and sha(p/'promotion.json')==pin['promotion'] and sha(R/gate['root_clearance_file'])==pin['science'] and sha(R/('verification/root-editorial-'+rid+'-20261025.json'))==pin['editorial'] and editorial['private_staging_authorized'] is True and editorial['production_integration_authorized'] is False)
++  test('whole_original_receipt_no_alias',raw_receipt==binding['source_receipt_original']==gate['source_receipt_original'] and pin['asset_key'] in raw_receipt and 'files' not in raw_receipt and 'assets' not in raw_receipt and sha(receipt_file)==pin['receipt'])
++  test('whole_original_custom_verdicts',all(item['verdict']==json.loads((p/item['verdict_file']).read_text()) and sha(p/item['report'])==item['report_sha256']==science['reviews'][role]['report_sha256'] and sha(p/item['verdict_file'])==item['verdict_sha256']==science['reviews'][role]['verdict_sha256'] for role,item in gate['reviews'].items()))
++  test('exact_controlling_TeX',textpath==p/binding['source_tex_path'] and sha(textpath)==pin['tex']==binding['source_tex_sha256'])
++  test('whole_original_abstract',normalized_cd_abstract(rid,a)==c['abstract'] and art['abstract']==display_cd_abstract(rid,c['abstract']) and [unescape(x) for x in re.findall('<p>(.*?)</p>',re.search('<section id="abstract">(.*?)</section>',h,re.S).group(1),re.S)]==[display_cd_abstract(rid,c['abstract'])])
++  test('readable_mathematical_typography',not any(x in section_text['abstract'] for x in ['\\operatorname','\\to','\\infty','$']))
++  test('complete_actual_reader_pages',len(texts)==c['pdf_pages']==pin['pages'] and 'Read the complete '+str(pin['pages'])+'-page paper' in section_text['paper'])
++  test('exact_complete_PDF_ZIP_bytes',sha(f.parent/c['pdf_filename'])==binding['pdf_sha256']==science['pdf_sha256'] and sha(f.parent/c['supplement_filename'])==binding['supplement_sha256']==science['supplement_sha256'])
++  test('only_four_article_outputs',{x.name for x in f.parent.iterdir() if x.is_file()}=={'index.html','citation.bib',c['pdf_filename'],c['supplement_filename']} and c['additional_assets']==[])
++  test('explicit_local_and_original_PDF_downloads',len([x for t,x in d.a if t=='a' and x.get('href')==c['pdf_filename'] and 'download' in x])==1 and len([x for t,x in d.a if t=='a' and x.get('href')=='https://zenodo.org/records/'+rid+'/files/'+c['pdf_filename'] and 'download' in x])==1)
++  test('complete_support_links',all(any(t=='a' and x.get('href')==url for t,x in d.a) for url in [c['supplement_filename'],'https://zenodo.org/records/'+rid+'/files/'+c['supplement_filename']]))
++  test('exact_full_BibTeX',bib==(p/'reviews/editorial/citation.bib').read_text()==c['bibtex'] and c['doi'] in bib and c['publication_date'] in bib and 'version = {1.0}' in bib)
++  test('edition_and_creation_not_conflated',record['publication_date']==c['publication_date']==science['publication_date'] and record['version']==c['version']=='1.0' and binding['record_created_utc']==pin['created']==science['record_created_utc'] and 'Manuscript and declared publication date <time' in h)
++  test('unmodified_false_publication_gates',all(gate[k] is False and c['review_metadata'][k] is False for k in ['rendered_public_copy_approved','local_http_verified','live_http_verified','browser_verified','native_sheet_publication_verified','public_page_published']) and gate['AA'] is c['AA'] is gate['follow_up'] is c['follow_up'] is None)
++  test('extensive_AI_unrefereed_nohuman_formal',all(x in section_text['status'] for x in ['used extensively','human','formal']) and 'Unrefereed preprint' in body and 'actual contributions' in section_text['collaborate'])
++  test('full_prior_credit',all(x in section_text['background'] for x in (['Aggarwal','Delecroix','Liu','Arratia','Tavaré'] if rid=='23387774' else ['Gesmundo','Meroni','Kucharz','Kurdyka'])))
++  test('research_prose_license_metadata',art['license']=='https://creativecommons.org/licenses/by/4.0/' and any(t=='a' and x.get('href')==art['license'] for t,x in d.a))
++  with zipfile.ZipFile(asset_root/c['supplement_filename']) as archive:
++   members=[x for x in archive.infolist() if not x.is_dir()];readers=[x for x in members if x.filename.lower().endswith('.pdf')]
++   test('entire_original_archive_members',len(members)==(138 if rid=='23387774' else 87) and all((p/'sources/published-source'/x.filename).read_bytes()==archive.read(x) for x in members) and not any(x.filename.lower().endswith(('.zip','.tar','.gz')) for x in members))
++   test('historical_reader_not_substituted',(not readers) if rid=='23387774' else len(readers)==1 and readers[0].filename=='verification/source_snapshot/proof.pdf' and hashlib.sha256(archive.read(readers[0])).hexdigest()=='e6e32c1612ea88360d887c1ea37b82d41a5463cad24c204ef023bfd32b49dc0f' and archive.read(readers[0])!=(f.parent/c['pdf_filename']).read_bytes())
++  if rid=='23387774':
++   test('whole_every_rate_geometric_marked_PPP_and_moments',all(x in section_text['result'] for x in ['Q(1^(4g−4))','each maximal horizontal cylinder once','First N→∞','every deterministic positive s_g','s_g→0 and g*s_g→∞','actual geometric point measure','PPP(dx/(2x))','every fixed joint moment','independent Poisson variables','mean and variance','vertical marginal']))
++   test('principal_order_and_endpoint_limits',all(x in section_text['limits'] for x in ['principal holomorphic quadratic stratum','square-count limit before the genus','diagonal N(g)','arbitrary-stratum','all-direction','microscopic','macroscopic','rare events']))
++   test('microscopic_discrepancy_and_unknown_announced_overlap',all(x in section_text['limits'] for x in ['6g−6','4g−4','different fixed microscopic laws','Delecroix–Liu','thesis','primitive conjectural','overlapping results','priority remain uncertain','No first-priority']))
++   test('prior_model_classical_unmarked_and_actual_transfer',all(x in section_text['limits'] for x in ['existing weighted model','selected-component identity','classical unmarked Poisson approximation','Gamma-marking transfer']) and 'arbitrarily slowly' in section_text['proof'] and 'total variation alone' in section_text['proof'])
++  else:
++   test('full_unrestricted_E_theorem',all(x in section_text['result'] for x in ['every finite positive sum','centered ellipsoidal balls','at least two','Exp(D)','nonzero real linear functionals','No genericity or full-dimensionality']))
++   test('separate_fullD_every_subset_GP_and_relative_S',all(x in section_text['result'] for x in ['Separately, suppose D is full-dimensional','every subset J','relative boundary','S(D)=E(D)','nonempty real Zariski-open','Vandermonde','ambient space']))
++   test('nongeneric_rankone_and_nonclaims_retained',all(x in section_text['limits'] for x in ['rank-one interval','two distinct conic components','nongeneric sums','degree','birationality','entire complex critical locus','infinite sums','Historical first priority']))
++   test('precise_GM_KK_OWR_predecessor_credit',all(x in section_text['background'] for x in ['Definition 3.3','Conjecture 8.2','Theorems 4.3/6.1','Remark 3.4','Section 5','Proposition 4.3','real-Zariski','Conjecture 1','removes genericity']))
++   test('versioned_predecessor_link',any(t=='a' and x.get('href')=='https://arxiv.org/abs/2111.01241v2' for t,x in d.a) and 'Related source editions' in body)
+  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
+ result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
+ result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

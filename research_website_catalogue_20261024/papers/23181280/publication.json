@@ -1,0 +1,490 @@
+{
+  "slug": "aggregate-root-dependent-spanning-tree-cost",
+  "description": "Strong NP-completeness for the aggregate cost of one spanning tree oriented at every vertex root, even with costs in {0,1,2}.",
+  "plain_language": [
+    "Choosing one network tree can become computationally hard when its cost depends on the starting vertex. This note proves strong NP-completeness for the total cost of all rooted orientations, even with costs drawn from three small integers."
+  ],
+  "result": [
+    "Start with a finite connected simple undirected graph with $N\\ge1$ vertices. Choose one spanning tree and orient every edge away from a chosen vertex. Do this for every vertex root, keeping the same underlying tree throughout. Each root has its own independently supplied cost for every directed edge, and the objective adds the costs of all edges in all these rooted orientations.",
+    "The input explicitly lists all $2N|E|$ nonnegative integer costs in binary, together with an integer threshold. The decision problem asks whether some common tree has aggregate cost at most that threshold. The theorem proves strong NP-completeness already when every cost is in $\\{0,1,2\\}$. Finding a minimum-cost tree is therefore NP-hard. Adding one to every cost gives strong NP-completeness for the positive alphabet $\\{1,2,3\\}$, because every tree acquires the same total increment $N(N-1)$.",
+    "Orienting toward each root gives an equivalent convention when every input arc-cost pair is transposed. The model charges the entire rooted tree at every root; it does not optimize a different tree for each root or charge only a selected destination path."
+  ],
+  "why_it_works": [
+    "The reduction starts from satisfiability with at most three literals per clause. Two hub vertices represent the two truth values. Variable vertices attach to hubs, and clause vertices select literals. A symmetric cost table at one hub forces every tree meeting the threshold to contain the hub edge, give each variable exactly one hub attachment, and make every clause vertex a leaf.",
+    "The forcing step accounts for every possible spanning tree. If $p$ counts hub–variable edges, $q$ counts clause–variable edges, and $h$ records the hub edge, then the base cost is $p+2q=K+(1-h)+(q-m)$, with $K=2m+n$ and $q\\ge m$. Nonnegative costs at the other roots force $h=1$ and $q=m$ at the threshold. Only after this step is the tree interpreted as an assignment.",
+    "When the tree is rooted at a clause leaf, its selected variable's edge points toward that variable's chosen hub. The clause-root table charges one precisely when this selected literal is false. Thus a satisfying assignment supplies a tree at the threshold, and a tree at the threshold supplies a satisfying assignment. The graph, every entry of the cost table, and the threshold have polynomial size. The proof handles clause simplification, empty instances, and sparse variable labels explicitly."
+  ],
+  "limitations": [
+    "The result answers the whole-orientation objective in Problem 1 of Volker Kaibel's November 2018 Oberwolfach contribution, published in the workshop report in December 2019. The satisfiability machinery is classical, as developed by Cook and Karp. Martin's spanning-tree formulation is also prior work; the note credits the expositions by Conforti, Cornuéjols and Zambelli and by Friesen. Integrality of a formulation's edge projection alone does not settle arbitrary objectives on all its root-orientation variables.",
+    "The statement concerns the written finite, explicitly encoded integer-input model. It does not settle Kaibel's neighboring Problem 2 or claim NP membership for arbitrary unencoded real inputs. The false-selected-literal identity applies to the forced structured trees; it is not a formula for the unrestricted optimum in terms of the smallest number of unsatisfied clauses. Historical first discovery and present worldwide open status are not established.",
+    "The complete support archive contains the source and exact finite verification material. These checks illustrate and test the construction; the all-size reduction is what proves hardness."
+  ],
+  "background": [
+    {
+      "title": "Volker Kaibel, Open Problem: Arborescences and NP-hardness, Oberwolfach Report 50/2018, pp. 3014–3015. Workshop report.",
+      "url": "https://doi.org/10.4171/OWR/2018/50",
+      "note": "Problem 1 supplies the exact common-tree, whole-root-orientation question; Problem 2 has a different objective."
+    },
+    {
+      "title": "Richard M. Karp, Reducibility among combinatorial problems, Complexity of Computer Computations (1972), pp. 85–103. Chapter.",
+      "url": "https://doi.org/10.1007/978-1-4684-2001-2_9",
+      "note": "The classical NP-completeness machinery includes satisfiability with at most three literals per clause."
+    },
+    {
+      "title": "Michele Conforti, Gérard Cornuéjols and Giacomo Zambelli, Extended Formulations in Combinatorial Optimization, revised February 2010, Section 6.1. Author manuscript.",
+      "url": "https://www.andrew.cmu.edu/user/gc0v/webpub/ExtFor-Feb2010.pdf",
+      "note": "Section 6.1 explains the classical Martin formulation and its common-edge/root-orientation variables."
+    },
+    {
+      "title": "M. Friesen, Extended Formulations for Higher Order Polytopes in Combinatorial Optimization (2019), Proposition 2. Dissertation.",
+      "url": "https://d-nb.info/1219966134/34",
+      "note": "Proposition 2 gives the prior spanning-tree lift and its interpretation."
+    }
+  ],
+  "collaboration": "Substantive proof checks, counterexamples, and precise comparisons with prior work are welcome. Authorship and acknowledgments depend on actual research contributions and mutual agreement.",
+  "title": "NP-completeness of aggregate root-dependent spanning-tree cost",
+  "abstract": "An undirected spanning tree induces an arborescence at every vertex root. Given an independent arc-cost vector for each root, we prove that deciding whether the sum of the costs of these entire rooted orientations is at most a given threshold is NP-complete, even when every cost belongs to {0,1,2}. A reduction from satisfiability uses two hubs, variable vertices, and clause vertices. A symmetric cost vector at one hub forces a tree at threshold to encode an assignment with one selected literal per clause; the corresponding clause-root costs test those literals. Uniformly shifting the costs yields the same conclusion for costs in {1,2,3}. This resolves Problem 1 in Volker Kaibel's November 2018 Oberwolfach workshop contribution, whose report was published in December 2019. Exact finite checks accompany the all-size proof.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "follow_up": null,
+  "followup_rationale": "Default none; no independently supported substantial research follow-up proposed.",
+  "publication_date": "2026-10-06",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23181280",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "root_dependent_spanning_trees.pdf",
+  "supplement_filename": "root_dependent_spanning_trees_support.zip",
+  "supplement_label": "Complete source and verification materials (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original PDF",
+      "url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete ZIP",
+      "url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content"
+    }
+  ],
+  "status": "Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof-assistant certification.",
+  "license": "CC BY 4.0",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0, 6 October 2026",
+  "canonical_url": null,
+  "pdf_pages": 4,
+  "reader_intro": "The complete 4-page deposited paper is available below.",
+  "ai_disclosure": "AI tools were used extensively in solving, drafting, literature checking, code generation, verification, and adversarial review. This preprint is unrefereed and has not received conventional human peer review. It is not a formal proof-assistant certificate.",
+  "edition_note": "Manuscript and declared publication date: 6 October 2026, version 1.0.",
+  "bibtex_note": "Unrefereed preprint; version 1.0, dated 6 October 2026. Prepared with extensive AI assistance.",
+  "prepared_bibtex": "@misc{Kriebel2026RootDependentSpanningTrees,\n  author = {Kriebel, Alec},\n  title = {NP-completeness of aggregate root-dependent spanning-tree cost},\n  year = {2026},\n  month = {oct},\n  day = {06},\n  version = {1.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23181280},\n  url = {https://zenodo.org/records/23181280},\n  note = {Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": "23181280",
+    "concept_record_id": "23181279",
+    "record_url": "https://zenodo.org/records/23181280",
+    "doi": "10.5281/zenodo.23181280",
+    "version": "1.0",
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "zenodo_publication_date": "2026-10-06",
+    "manuscript_date": "6 October 2026",
+    "record_created_utc": "2026-10-06T06:48:28.773371+00:00",
+    "record_updated_utc": "2026-10-10T21:29:14.120878+00:00",
+    "metadata_path": "sources/zenodo-record.raw.json",
+    "metadata_sha256": "08a4529b1c0e2f2f494670a99f2bcef34a10659072a3b673e70486a8bbfb2ab6",
+    "raw_record_path": "sources/zenodo-record.raw.json",
+    "raw_record_sha256": "08a4529b1c0e2f2f494670a99f2bcef34a10659072a3b673e70486a8bbfb2ab6",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "649f09752971d5f0ff95770936cd1f7f60083d79b595a33dd11c22d7b2328bcb",
+    "source_receipt_schema": "Original SOURCE_READY actual_assets/api_file_object/uppercaseMD5SHA256 with raw metadata only; no invented receipt.json or normalized metadata aliases",
+    "source_receipt_record": {
+      "utc": "2026-10-25T07:06:16.704996+00:00",
+      "status": "SOURCE_READY_FRESH_ALL_PUBLIC_FILES",
+      "record_id": 23181280,
+      "conceptrecid": "23181279",
+      "sheet_row": 94,
+      "title": "NP-completeness of aggregate root-dependent spanning-tree cost",
+      "DOI": "10.5281/zenodo.23181280",
+      "version": "1.0",
+      "publication_date": "2026-10-06",
+      "created": "2026-10-06T06:48:28.773371+00:00",
+      "updated": "2026-10-10T21:29:14.120878+00:00",
+      "latest_record_id": 23181280,
+      "versions_total": 1,
+      "actual_assets": [
+        {
+          "api_file_object": {
+            "id": "9518abd0-cb84-4fca-b3e1-db9264924a05",
+            "key": "root_dependent_spanning_trees.pdf",
+            "size": 57772,
+            "checksum": "md5:a97ec8558dee8b45f3179eebff3976b2",
+            "links": {
+              "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/sources/root_dependent_spanning_trees.pdf",
+          "bytes": 57772,
+          "MD5": "a97ec8558dee8b45f3179eebff3976b2",
+          "SHA256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+          "size_equals_API": true,
+          "checksum_equals_API": true
+        },
+        {
+          "api_file_object": {
+            "id": "5fb1266c-2db3-47bc-a623-ed7747ae6813",
+            "key": "root_dependent_spanning_trees_support.zip",
+            "size": 151513,
+            "checksum": "md5:653d4726d8351b6688f26ebe1e2bb0c7",
+            "links": {
+              "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/sources/root_dependent_spanning_trees_support.zip",
+          "bytes": 151513,
+          "MD5": "653d4726d8351b6688f26ebe1e2bb0c7",
+          "SHA256": "66f7d7e25370062e0f70b7fdce538dc90a5a264957557714f11d1ac42ebc14aa",
+          "size_equals_API": true,
+          "checksum_equals_API": true
+        }
+      ],
+      "PDF_pages": 4,
+      "PDF_selected_pages_rendered_and_visually_inspected": [
+        1,
+        4
+      ],
+      "selected_renders_in_ignored_cache": "/Users/alec/Documents/Math/research_website_catalogue_20261024/tmp/analytic_23181280_cache",
+      "member_count": 47,
+      "expanded_bytes": 304697,
+      "ZIP_validation": {
+        "canonical_unique_paths": true,
+        "regular_files_and_directories_only": true,
+        "no_traversal_symlinks_encryption": true,
+        "bounded_expansion": true,
+        "CRC_and_member_hashes_pass": true
+      },
+      "controlling_TeX": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/sources/published-source/source_preparation/root_dependent_spanning_trees.tex",
+      "source_program_execution": false,
+      "inventory_candidate_comparison": {
+        "candidate_path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/unsolved_math_prioritization/attempts/30003996/publication/package/root_dependent_spanning_trees.pdf",
+        "candidate_exists": true,
+        "candidate_used_as_source": false,
+        "candidate_bytes": 57772,
+        "candidate_SHA256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+        "candidate_equal_fresh_PDF": true
+      },
+      "source_changes": "none; original API/file bytes and unmodified extraction preserved",
+      "custody_policy": "Frozen at this checkpoint; subsequent custody additions must be additive."
+    },
+    "source_assets_field": "actual_assets",
+    "files": [
+      {
+        "api_file_object": {
+          "id": "9518abd0-cb84-4fca-b3e1-db9264924a05",
+          "key": "root_dependent_spanning_trees.pdf",
+          "size": 57772,
+          "checksum": "md5:a97ec8558dee8b45f3179eebff3976b2",
+          "links": {
+            "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/sources/root_dependent_spanning_trees.pdf",
+        "bytes": 57772,
+        "MD5": "a97ec8558dee8b45f3179eebff3976b2",
+        "SHA256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+        "size_equals_API": true,
+        "checksum_equals_API": true
+      },
+      {
+        "api_file_object": {
+          "id": "5fb1266c-2db3-47bc-a623-ed7747ae6813",
+          "key": "root_dependent_spanning_trees_support.zip",
+          "size": 151513,
+          "checksum": "md5:653d4726d8351b6688f26ebe1e2bb0c7",
+          "links": {
+            "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23181280/sources/root_dependent_spanning_trees_support.zip",
+        "bytes": 151513,
+        "MD5": "653d4726d8351b6688f26ebe1e2bb0c7",
+        "SHA256": "66f7d7e25370062e0f70b7fdce538dc90a5a264957557714f11d1ac42ebc14aa",
+        "size_equals_API": true,
+        "checksum_equals_API": true
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "9518abd0-cb84-4fca-b3e1-db9264924a05",
+        "key": "root_dependent_spanning_trees.pdf",
+        "size": 57772,
+        "checksum": "md5:a97ec8558dee8b45f3179eebff3976b2",
+        "links": {
+          "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content"
+        }
+      },
+      {
+        "id": "5fb1266c-2db3-47bc-a623-ed7747ae6813",
+        "key": "root_dependent_spanning_trees_support.zip",
+        "size": 151513,
+        "checksum": "md5:653d4726d8351b6688f26ebe1e2bb0c7",
+        "links": {
+          "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "transport_receipt_path": "sources/api-receipt.json",
+    "transport_receipt_sha256": "a9823211783d569867501bd46184f31c9e328da1ca481c432c407a74b03dc90d",
+    "transport_receipt_record": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23181280",
+        "final_url": "https://zenodo.org/api/records/23181280",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:05:23 GMT",
+          "content-type": "application/json",
+          "content-length": "6304",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23181280> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792911984",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "started_utc": "2026-10-25T07:05:23.147791+00:00",
+        "completed_utc": "2026-10-25T07:05:23.800854+00:00",
+        "path": "zenodo-record.raw.json",
+        "bytes_received": 6304,
+        "MD5": "c0bee8fe97e88a1c728bf71b484888aa",
+        "SHA256": "08a4529b1c0e2f2f494670a99f2bcef34a10659072a3b673e70486a8bbfb2ab6"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23181280/versions/latest",
+        "final_url": "https://zenodo.org/api/records/23181280",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:05:47 GMT",
+          "content-type": "application/json",
+          "content-length": "6304",
+          "vary": "Accept-Encoding",
+          "etag": "\"4\"",
+          "link": "<https://zenodo.org/api/records/23181280> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792911984",
+          "retry-after": "36",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "started_utc": "2026-10-25T07:05:46.069352+00:00",
+        "completed_utc": "2026-10-25T07:05:47.243042+00:00",
+        "path": "latest.raw.json",
+        "bytes_received": 6304,
+        "MD5": "c0bee8fe97e88a1c728bf71b484888aa",
+        "SHA256": "08a4529b1c0e2f2f494670a99f2bcef34a10659072a3b673e70486a8bbfb2ab6"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23181280/versions",
+        "final_url": "https://zenodo.org/api/records/23181280/versions",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:05:47 GMT",
+          "content-type": "application/json",
+          "content-length": "6439",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "127",
+          "x-ratelimit-reset": "1792911984",
+          "retry-after": "36",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "started_utc": "2026-10-25T07:05:46.069778+00:00",
+        "completed_utc": "2026-10-25T07:05:47.680386+00:00",
+        "path": "versions.raw.json",
+        "bytes_received": 6439,
+        "MD5": "6681a7e72de3ec493b4c4c67937750c7",
+        "SHA256": "23f52252dbaeb00418466af1b46cc6765506838c583756a4cba7d0196bdba95b"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content",
+        "final_url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:05:46 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "57772",
+          "content-disposition": "attachment; filename=root_dependent_spanning_trees.pdf",
+          "oc-checksum": "MD5:a97ec8558dee8b45f3179eebff3976b2",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792911984",
+          "retry-after": "37",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "started_utc": "2026-10-25T07:05:46.069868+00:00",
+        "completed_utc": "2026-10-25T07:05:46.997180+00:00",
+        "path": "root_dependent_spanning_trees.pdf",
+        "bytes_received": 57772,
+        "MD5": "a97ec8558dee8b45f3179eebff3976b2",
+        "SHA256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+        "api_file_object": {
+          "id": "9518abd0-cb84-4fca-b3e1-db9264924a05",
+          "key": "root_dependent_spanning_trees.pdf",
+          "size": 57772,
+          "checksum": "md5:a97ec8558dee8b45f3179eebff3976b2",
+          "links": {
+            "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees.pdf/content"
+          }
+        }
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content",
+        "final_url": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:05:46 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "151513",
+          "content-disposition": "attachment; filename=root_dependent_spanning_trees_support.zip",
+          "oc-checksum": "MD5:653d4726d8351b6688f26ebe1e2bb0c7",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792911984",
+          "retry-after": "37",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "started_utc": "2026-10-25T07:05:46.069952+00:00",
+        "completed_utc": "2026-10-25T07:05:47.126291+00:00",
+        "path": "root_dependent_spanning_trees_support.zip",
+        "bytes_received": 151513,
+        "MD5": "653d4726d8351b6688f26ebe1e2bb0c7",
+        "SHA256": "66f7d7e25370062e0f70b7fdce538dc90a5a264957557714f11d1ac42ebc14aa",
+        "api_file_object": {
+          "id": "5fb1266c-2db3-47bc-a623-ed7747ae6813",
+          "key": "root_dependent_spanning_trees_support.zip",
+          "size": 151513,
+          "checksum": "md5:653d4726d8351b6688f26ebe1e2bb0c7",
+          "links": {
+            "self": "https://zenodo.org/api/records/23181280/files/root_dependent_spanning_trees_support.zip/content"
+          }
+        }
+      }
+    ],
+    "transport_receipt_entry_count": 5,
+    "asset_root_path": "sources",
+    "pdf_sha256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+    "supplement_sha256": "66f7d7e25370062e0f70b7fdce538dc90a5a264957557714f11d1ac42ebc14aa",
+    "source_tex_path": "sources/published-source/source_preparation/root_dependent_spanning_trees.tex",
+    "source_tex_sha256": "a0e7e6158267fbf9ca4cafbd5ccb4cfa4ac79a1e0aea61282c9ee09d7e8d11d5",
+    "abstract_tex": "\nAn undirected spanning tree induces an arborescence at every vertex root.\nGiven an independent arc-cost vector for each root, we prove that deciding\nwhether the sum of the costs of these entire rooted orientations is at most\na given threshold is NP-complete, even when every cost belongs to\n$\\{0,1,2\\}$. A reduction from satisfiability uses two hubs, variable vertices,\nand clause vertices. A symmetric cost vector at one hub forces a tree at\nthreshold to encode an assignment with one selected literal per clause;\nthe corresponding clause-root costs test those literals. Uniformly shifting\nthe costs yields the same conclusion for costs in $\\{1,2,3\\}$. This resolves\nProblem~1 in Volker Kaibel's November 2018 Oberwolfach workshop contribution,\nwhose report was published in December 2019. Exact finite checks accompany\nthe all-size proof.\n",
+    "abstract_tex_sha256": "03a016855df274c55bb78f498a088ebbd974b325e52e64b7a9520586ed14eb64",
+    "abstract_source": "reviews/editorial/ORIGINAL_ABSTRACT.tex",
+    "abstract_source_sha256": "03a016855df274c55bb78f498a088ebbd974b325e52e64b7a9520586ed14eb64",
+    "abstract_normalization": {
+      "whitespace": "fold consecutive whitespace",
+      "TeX nonbreaking space": "ordinary space",
+      "exact_presentational_replacements": {
+        "$\\{0,1,2\\}$": "{0,1,2}",
+        "$\\{1,2,3\\}$": "{1,2,3}"
+      },
+      "complete_original_abstract_no_sentence_omissions": true
+    },
+    "public_page_reader_pdf_count": 1,
+    "archive_regular_file_count": 47,
+    "nested_archive_count": 0,
+    "archive_embedded_pdf_count": 1,
+    "total_distinct_reader_pdf_count": 1,
+    "archive_reader_note": "Sole embedded current PDF equals selected outer reader.",
+    "reader_intro": "The complete 4-page deposited paper is available below.",
+    "complete_support_requirement": {
+      "complete_original_ZIP_local_download": true,
+      "complete_original_ZIP_Zenodo_download": true,
+      "regular_member_count": 47,
+      "publish_only_PDF_complete_ZIP_BibTeX_and_article_as_page_assets": true,
+      "no_source_cache_or_selected_script_bundle": true,
+      "preserve_all_internal_history_and_license_notices": true
+    },
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "review_boundary": "Complete original source receipt/custom verdicts/pending intake remain historical originals; exact later root authority adopted separately.",
+    "pending_intake_seal_path": "reviews/editorial-intake/SEAL.json",
+    "pending_intake_seal_sha256": "25356f05343b0bbb41ba50a282934fe0c9e64d5a5ffc50016c872acdb4c834fd",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "fb8fafc1866b91d60905aa9134d1740531a56b33480aa8ac7f4911fb32e02d9a"
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T07:39:20.340306+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23181280-20261025.json",
+    "root_clearance_sha256": "db8b20ff1321cb87e2e198ccacc4c7f6eb9f55d8eee2f6993e7f6e004c83c2a8",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "browser_verified": false,
+    "live_verified": false,
+    "native_verified": false,
+    "native_sheet_aa_url": null,
+    "editor_authorization": "Only previously absent paper configs and new final editorial handoff after immutable pending intake; root full handoff read required before any staging."
+  }
+}

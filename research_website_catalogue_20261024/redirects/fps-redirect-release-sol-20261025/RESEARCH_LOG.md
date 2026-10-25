@@ -1,3 +1,6 @@
 # FPS redirect release log
 
 - 2026-10-25T07:35:07.239964+00:00:15% release checkpoint. Exact root authority and native60readback/visual receipts fully read. Original sealed preparation30 outputs and861 original bindings rehashed unchanged. New release namespace only; baseline899 relevant originals before release/UI. Isolated-index exact2path release authorized; no working-tree/Sheet/site/core edits.
+- 2026-10-25T07:35:56.766944Z:65% checkpoint. Exact two-path commit549c43a6d76f211aa9a5f9b0e2c5f9f2765b185a pushed non-force from382de3a parent;252otherdocs blobs/modes exact; temporary index removed and localHEAD/index/main/dirtydocs preserved.
+- 2026-10-25T07:36:52.288Z:80% checkpoint. OrdinaryHTTP9responses/7expectedmatches and freshactual oldURL browser show oldcached article/index. No livePASS; one own tabclosed/all11originals preserved/2056desktopreset/UIreleased promptly. NormalHTTPexpiry07:46:20; conservativebrowser07:46:52, requiringnewownership and finishedbuild.
+- 2026-10-25T07:40:01.857937+00:00:85% checkpoint. FullREPORT complete,899 originalbindings preserved, exactrelease/staticcustodyauditPASS. Pages observedbuilding549, then rootpostreleasecheckpointec6 carrying exactsamedocs tree. Remaining livebyte/automaticarrivalgate externalbuild/cachepending; no endlesspolling or workaround; final pending-state manifest/seal.

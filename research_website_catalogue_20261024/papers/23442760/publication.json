@@ -1,0 +1,470 @@
+{
+  "slug": "quadratic-sos-density-bounds-convex-bodies",
+  "description": "A single global square gives explicit quadratic SOS-density error bounds on every fixed full-dimensional compact convex body with Lebesgue measure.",
+  "plain_language": [
+    "A polynomial can be minimized by concentrating a sum-of-squares probability density near one of its minimizers. This note proves a quadratic error rate on every fixed full-dimensional compact convex body with Lebesgue measure, using a single global square."
+  ],
+  "result": [
+    "Let $K\\subset\\mathbb R^n$ be compact and convex with nonempty interior, with $n\\ge1$, and let $f$ be a real polynomial. The bound $H_r(f,K)$ minimizes $\\int_K f q\\,dx$ over global sums of squares $q$ of degree at most $2r$ subject to $\\int_K q\\,dx=1$. For every integer $r\\ge1$, the error satisfies $0\\le H_r(f,K)-f_*\\le C_nG/r^2$, where $f_*=\\min_K f$.",
+    "For any minimizer $a$, set $H=\\max_K\\|\\nabla^2f\\|_{\\mathrm{op}}$, $\\gamma=1+H/2$, $g(x)=\\nabla f(a)\\cdot(x-a)+\\gamma\\|x-a\\|^2$, and $G=\\max_K g$. The theorem gives $0<G<\\infty$ and the explicit constant $C_n=4(n+2)^2(\\pi/2)^{2n+4}(1+2^{n+2})$. A single square of a real polynomial, normalized over the whole body, witnesses this upper bound.",
+    "The objective need not be convex, and the boundary of $K$ need not be smooth or semialgebraic. The same proof applies to objectives of class $C^2$ on an open neighborhood of $K$. The constants belong to the fixed body and objective; no useful bound uniform over all dimensions or degenerating bodies is asserted."
+  ],
+  "why_it_works": [
+    "At a constrained minimizer, the gradient points nonnegatively along every segment into the convex body. Taylor's formula therefore supplies the nonnegative quadratic upper proxy $g$. After scaling it to $u=g/G$, contraction toward the minimizer compares every sublevel volume with a smaller one: $F(t)\\le(t/s)^nF(s)$ for $0<s\\le t$, where $F(t)=\\operatorname{vol}_n\\{x\\in K:u(x)\\le t\\}$.",
+    "An explicit Dirichlet polynomial has a positive core of width proportional to the inverse square of its degree and a controlled tail. A fixed even power makes it a global square. Every dyadic tail shell is bounded relative to the same core mass that lower-bounds the normalizing integral. That mass cancels before summation, leaving the quadratic rate. The degree calculation and a constant-density fallback cover every positive integer order.",
+    "For $K=[0,1]$ and $f(t)=t$, the note also proves the classical lower estimate $H_r(f,K)\\ge1/[4(r+1)^2]$. The same estimate holds for $f(t,y)=t$ on $[0,1]\\times[-1,1]^{n-1}$. Together with the upper theorem, this gives a fixed worst-case instance of order $r^{-2}$ in each dimension. It does not give a positive matching lower rate for every objective; constant objectives have zero error."
+  ],
+  "limitations": [
+    "The note addresses the convex-body/Lebesgue regime in Laurent's contribution, joint work with de Klerk, to the 2018 Oberwolfach report. It explicitly uses probability densities of unit mass. Slot and Laurent's Theorem 11 gives the earlier $O(\\log^2 r/r^2)$ bound for this hierarchy and asks whether the logarithm can be removed.",
+    "The constrained-gradient and quadratic-upper-estimator reductions already appear in de Klerk–Laurent and Slot–Laurent. Endpoint polynomial localization and comparison of shell mass with local core mass have classical precedents, including Totik–Varga. Their older endpoint-polynomial theorem, combined with Markov's inequality and the relative-mass argument, also yields the scoped quadratic upper rate. The interval/product worst-case exponent is likewise prior work of de Klerk–Laurent. No firstness or new-method claim is made, and present worldwide open status is not certified.",
+    "The theorem uses Lebesgue measure and a quadratic proxy. It does not assert the same rate for arbitrary reference measures or for the restricted hierarchy whose densities must be polynomials of the original objective for general nonconvex $f$. The construction assumes a global minimizer is available; it does not supply an efficient way to locate one or compute all required integrals. The explicit constant is coarse, rather than an optimal asymptotic coefficient.",
+    "The complete source and verification archive accompanies the paper. Finite exact checks and numerical examples supplement the written universal proof; they are not certificates of its infinite quantifiers."
+  ],
+  "background": [
+    {
+      "title": "Monique Laurent, joint work with Etienne de Klerk, Convergence analysis of Lasserre measure-based approximations for polynomial optimization, Oberwolfach Report 50/2018, pp. 2991–2993. Report.",
+      "url": "https://doi.org/10.4171/owr/2018/50",
+      "note": "The convex-body convergence question is interpreted with explicit unit-mass probability densities."
+    },
+    {
+      "title": "Lucas Slot and Monique Laurent, Improved convergence analysis of Lasserre's measure-based upper bounds for polynomial minimization on compact sets, Mathematical Programming 193 (2022), 831–871. The cited numbering follows arXiv:1905.08142v2. Journal article.",
+      "url": "https://arxiv.org/abs/1905.08142v2",
+      "note": "Theorem 11 gives the earlier logarithmic-factor bound; Lemmas 1 and 4 contain the constrained-gradient and quadratic-proxy reductions."
+    },
+    {
+      "title": "Etienne de Klerk and Monique Laurent, Comparison of Lasserre's measure-based bounds for polynomial optimization to bounds obtained by simulated annealing, Mathematics of Operations Research 43 (2018), 1317–1325. Article.",
+      "url": "https://doi.org/10.1287/moor.2017.0906",
+      "note": "The quadratic Taylor upper estimator for general polynomial objectives is an established reduction."
+    },
+    {
+      "title": "Vilmos Totik and Tamás Varga, Non-symmetric fast decreasing polynomials and applications, Journal of Mathematical Analysis and Applications 394 (2012), 378–390. Article.",
+      "url": "https://doi.org/10.1016/j.jmaa.2012.03.006",
+      "note": "The older endpoint-polynomial theorem and shell/core comparison are credited antecedents; the stated older-ingredient deduction is retained."
+    },
+    {
+      "title": "Etienne de Klerk and Monique Laurent, Worst-case examples for Lasserre's measure-based hierarchy for polynomial optimization on the hypercube, Mathematics of Operations Research 45 (2020), 86–98. Article.",
+      "url": "https://doi.org/10.1287/moor.2018.0983",
+      "note": "Interval/Jacobi and product-box examples already establish the classical worst-case quadratic exponent."
+    },
+    {
+      "title": "Monique Laurent and Lucas Slot, An overview of convergence rates for sum of squares hierarchies in polynomial optimization, Recent Developments in Industrial and Applied Mathematics (2026), 149–176. Final chapter.",
+      "url": "https://doi.org/10.1007/978-981-95-1446-5_8",
+      "note": "The final overview records a logarithmic factor for general convex bodies; its contents do not certify worldwide openness."
+    }
+  ],
+  "collaboration": "Substantive proof checks, counterexamples, and precise comparisons with prior work are welcome. Authorship and acknowledgments depend on actual research contributions and mutual agreement.",
+  "title": "Quadratic convergence of SOS-density bounds on convex bodies",
+  "abstract": "For every fixed compact convex body K⊂ℝⁿ with nonempty interior and every real polynomial f, the normalized Lebesgue sum-of-squares density bound of degree at most 2r has error O_{K,f}(r⁻²) for every integer r≥1. We give a self-contained proof and an explicit constant, using one global square. A quadratic Taylor upper estimator reduces the objective to a scalar endpoint problem. Homothetic contraction compares every sublevel shell with the same core mass that normalizes a fixed power of a Dirichlet polynomial; that mass cancels before summation. This proves the quadratic upper rate in the convex-body/Lebesgue regime of the 2018 Oberwolfach question. A classical interval example shows that the exponent is sharp in the worst case. The proxy and the broad localization and relative-mass mechanisms have established precedents; no firstness or new-method claim is made.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "follow_up": null,
+  "followup_rationale": "Default none; no independently supported substantial research follow-up proposed.",
+  "publication_date": "2026-10-17",
+  "version": "1.0",
+  "doi": "10.5281/zenodo.23442760",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "Convex_Body_SOS_Density_Note_v1.0.pdf",
+  "supplement_filename": "Convex_Body_SOS_Density_Verification_v1.0.zip",
+  "supplement_label": "Complete source and verification materials (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original PDF",
+      "url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content"
+    },
+    {
+      "label": "Zenodo original complete ZIP",
+      "url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content"
+    }
+  ],
+  "status": "Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof-assistant certification.",
+  "license": "CC BY 4.0",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.0",
+  "citation_edition_label": "Version 1.0, 17 October 2026",
+  "canonical_url": null,
+  "pdf_pages": 5,
+  "reader_intro": "The complete 5-page deposited paper is available below.",
+  "ai_disclosure": "AI tools were used extensively in the solution, derivations, source checks, verification, drafting, and adversarial review. This preprint is unrefereed and has not received external human peer review. It is not a formal proof-assistant certificate.",
+  "edition_note": "Manuscript and declared publication date: 17 October 2026, version 1.0.",
+  "bibtex_note": "Unrefereed preprint; version 1.0, dated 17 October 2026. Prepared with extensive AI assistance.",
+  "prepared_bibtex": "@misc{Kriebel2026ConvexBodySOSDensity,\n  author = {Kriebel, Alec},\n  title = {Quadratic convergence of SOS-density bounds on convex bodies},\n  year = {2026},\n  month = {oct},\n  day = {17},\n  version = {1.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23442760},\n  url = {https://zenodo.org/records/23442760},\n  note = {Unrefereed preprint; extensive AI assistance; no external human peer review or formal proof certification},\n  orcid = {0009-0001-9320-500X}\n}\n",
+  "source_binding": {
+    "record_id": "23442760",
+    "concept_record_id": "23442759",
+    "record_url": "https://zenodo.org/records/23442760",
+    "doi": "10.5281/zenodo.23442760",
+    "version": "1.0",
+    "zenodo_version": "1.0",
+    "manuscript_version": "1.0",
+    "zenodo_publication_date": "2026-10-17",
+    "manuscript_date": "17 October 2026",
+    "record_created_utc": "2026-10-17T22:06:29.417068+00:00",
+    "record_updated_utc": "2026-10-17T22:06:29.913910+00:00",
+    "metadata_path": "sources/normalized-metadata.json",
+    "metadata_sha256": "211973f84244499074b2ae2e921a0c3a7a938a732502e026751a776001aeb7c3",
+    "raw_record_path": "sources/record.raw.json",
+    "raw_record_sha256": "b80f9a95b3efb0cd315f65f81c602c0afd14a873c875044977460db2bee228cb",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "b3b01936d1b1ce7ce7ab88b0082b92399ebf663d2dcddc81fc50aa72250db8b2",
+    "source_receipt_schema": "Original SOURCE_READY all_actual_assets/api_file_object/lowercasemd5sha256, actual normalized-metadata.json/record.raw.json and api-receipts.json; no aliases",
+    "source_receipt_record": {
+      "utc": "2026-10-25T07:14:43.776509+00:00",
+      "status": "SOURCE_READY_FRESH_ALL_PUBLIC_FILES",
+      "record_id": 23442760,
+      "conceptrecid": "23442759",
+      "sheet_row": 95,
+      "title": "Quadratic convergence of SOS-density bounds on convex bodies",
+      "doi": "10.5281/zenodo.23442760",
+      "version": "1.0",
+      "publication_date": "2026-10-17",
+      "created": "2026-10-17T22:06:29.417068+00:00",
+      "updated": "2026-10-17T22:06:29.913910+00:00",
+      "latest_record_id": 23442760,
+      "versions_total": 1,
+      "all_actual_assets": [
+        {
+          "api_file_object": {
+            "id": "cb0c1486-60de-4f46-b4a5-3a106f2453f5",
+            "key": "Convex_Body_SOS_Density_Verification_v1.0.zip",
+            "size": 413706,
+            "checksum": "md5:531923304284805cf91754391725e0b1",
+            "links": {
+              "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Verification_v1.0.zip",
+          "bytes": 413706,
+          "sha256": "52d8ba4dd670ab77184ea6706aacaac0233997c44ad16b041c357f6b5070d38a",
+          "md5": "531923304284805cf91754391725e0b1"
+        },
+        {
+          "api_file_object": {
+            "id": "52f55757-f671-47a9-bade-df882a0a80a0",
+            "key": "Convex_Body_SOS_Density_Note_v1.0.pdf",
+            "size": 77950,
+            "checksum": "md5:8c8f54f455aae1e160b8b56ea8047775",
+            "links": {
+              "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Note_v1.0.pdf",
+          "bytes": 77950,
+          "sha256": "f8cbd7733bc63f4918df3b18007d3087ae5cd862a4318c6bddd6f75d58385240",
+          "md5": "8c8f54f455aae1e160b8b56ea8047775"
+        }
+      ],
+      "PDF_pages": 5,
+      "safe_archive_members": 152,
+      "expanded_bytes": 1327270,
+      "nested_archives": 0,
+      "controlling_TeX": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/published-source/manuscript/main.tex",
+        "bytes": 15887,
+        "sha256": "5508a2a2bf9079573b29b4be8b5cdf638b2c2003e4536e5c0e1518c591db7c59"
+      },
+      "local_candidate": {
+        "path": "/Users/alec/Documents/Math/draft_pr_actual_outcomes_1200_1300_20261017/audits/pr1261_30003990/publication/Convex_Body_SOS_Density_Note_v1.0.pdf",
+        "exists": true,
+        "candidate_sha256": "f8cbd7733bc63f4918df3b18007d3087ae5cd862a4318c6bddd6f75d58385240",
+        "equal_fresh_PDF": true,
+        "candidate_used_instead_of_download": false
+      },
+      "source_originals_frozen": true,
+      "scientific_history_or_sibling_reviews_not_read": true,
+      "public_package_history": "152 original support members retained verbatim including authored audit history; no historical opinions read at source-ready checkpoint."
+    },
+    "source_assets_field": "all_actual_assets",
+    "files": [
+      {
+        "api_file_object": {
+          "id": "cb0c1486-60de-4f46-b4a5-3a106f2453f5",
+          "key": "Convex_Body_SOS_Density_Verification_v1.0.zip",
+          "size": 413706,
+          "checksum": "md5:531923304284805cf91754391725e0b1",
+          "links": {
+            "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Verification_v1.0.zip",
+        "bytes": 413706,
+        "sha256": "52d8ba4dd670ab77184ea6706aacaac0233997c44ad16b041c357f6b5070d38a",
+        "md5": "531923304284805cf91754391725e0b1"
+      },
+      {
+        "api_file_object": {
+          "id": "52f55757-f671-47a9-bade-df882a0a80a0",
+          "key": "Convex_Body_SOS_Density_Note_v1.0.pdf",
+          "size": 77950,
+          "checksum": "md5:8c8f54f455aae1e160b8b56ea8047775",
+          "links": {
+            "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Note_v1.0.pdf",
+        "bytes": 77950,
+        "sha256": "f8cbd7733bc63f4918df3b18007d3087ae5cd862a4318c6bddd6f75d58385240",
+        "md5": "8c8f54f455aae1e160b8b56ea8047775"
+      }
+    ],
+    "published_file_objects": [
+      {
+        "id": "cb0c1486-60de-4f46-b4a5-3a106f2453f5",
+        "key": "Convex_Body_SOS_Density_Verification_v1.0.zip",
+        "size": 413706,
+        "checksum": "md5:531923304284805cf91754391725e0b1",
+        "links": {
+          "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content"
+        }
+      },
+      {
+        "id": "52f55757-f671-47a9-bade-df882a0a80a0",
+        "key": "Convex_Body_SOS_Density_Note_v1.0.pdf",
+        "size": 77950,
+        "checksum": "md5:8c8f54f455aae1e160b8b56ea8047775",
+        "links": {
+          "self": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content"
+        }
+      }
+    ],
+    "published_asset_count": 2,
+    "transport_receipt_path": "sources/api-receipts.json",
+    "transport_receipt_sha256": "6356bcfe3862189f2e9a2c742c522e6efa1c4576ae6058165e77d62e554fb853",
+    "transport_receipt_record": [
+      {
+        "requested_url": "https://zenodo.org/api/records/23442760",
+        "started_utc": "2026-10-25T07:14:22.225148+00:00",
+        "final_url": "https://zenodo.org/api/records/23442760",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:14:22 GMT",
+          "content-type": "application/json",
+          "content-length": "7592",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23442760> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "132",
+          "x-ratelimit-reset": "1792912523",
+          "retry-after": "60",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/record.raw.json",
+        "bytes": 7592,
+        "md5": "0b18ad214b393a243bfcd598b5b2904e",
+        "sha256": "b80f9a95b3efb0cd315f65f81c602c0afd14a873c875044977460db2bee228cb",
+        "completed_utc": "2026-10-25T07:14:22.838356+00:00"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23442760/versions/latest",
+        "started_utc": "2026-10-25T07:14:22.838849+00:00",
+        "final_url": "https://zenodo.org/api/records/23442760",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:14:23 GMT",
+          "content-type": "application/json",
+          "content-length": "7592",
+          "vary": "Accept-Encoding",
+          "etag": "\"3\"",
+          "link": "<https://zenodo.org/api/records/23442760> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "130",
+          "x-ratelimit-reset": "1792912523",
+          "retry-after": "59",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/latest.raw.json",
+        "bytes": 7592,
+        "md5": "0b18ad214b393a243bfcd598b5b2904e",
+        "sha256": "b80f9a95b3efb0cd315f65f81c602c0afd14a873c875044977460db2bee228cb",
+        "completed_utc": "2026-10-25T07:14:23.939008+00:00"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23442760/versions",
+        "started_utc": "2026-10-25T07:14:23.939223+00:00",
+        "final_url": "https://zenodo.org/api/records/23442760/versions",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:14:24 GMT",
+          "content-type": "application/json",
+          "content-length": "7727",
+          "vary": "Accept-Encoding",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "129",
+          "x-ratelimit-reset": "1792912523",
+          "retry-after": "58",
+          "permissions-policy": "interest-cohort=()",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-source": "api",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/versions.raw.json",
+        "bytes": 7727,
+        "md5": "46eeefe96ac3859f227c0501bdc95602",
+        "sha256": "48bbd22daadda1692fae7c491bb901f583a5d74f392f0e9bff93d26eeef57d0f",
+        "completed_utc": "2026-10-25T07:14:24.475102+00:00"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content",
+        "started_utc": "2026-10-25T07:14:24.475351+00:00",
+        "final_url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Verification_v1.0.zip/content",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:14:24 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "413706",
+          "content-disposition": "attachment; filename=Convex_Body_SOS_Density_Verification_v1.0.zip",
+          "oc-checksum": "MD5:531923304284805cf91754391725e0b1",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "128",
+          "x-ratelimit-reset": "1792912523",
+          "retry-after": "58",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Verification_v1.0.zip",
+        "bytes": 413706,
+        "md5": "531923304284805cf91754391725e0b1",
+        "sha256": "52d8ba4dd670ab77184ea6706aacaac0233997c44ad16b041c357f6b5070d38a",
+        "completed_utc": "2026-10-25T07:14:25.968855+00:00"
+      },
+      {
+        "requested_url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content",
+        "started_utc": "2026-10-25T07:14:25.969990+00:00",
+        "final_url": "https://zenodo.org/api/records/23442760/files/Convex_Body_SOS_Density_Note_v1.0.pdf/content",
+        "http_status": 200,
+        "response_headers": {
+          "server": "nginx",
+          "date": "Sun, 25 Oct 2026 07:14:26 GMT",
+          "content-type": "application/octet-stream",
+          "content-length": "77950",
+          "content-disposition": "attachment; filename=Convex_Body_SOS_Density_Note_v1.0.pdf",
+          "oc-checksum": "MD5:8c8f54f455aae1e160b8b56ea8047775",
+          "accept-ranges": "bytes",
+          "content-security-policy": "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch",
+          "x-content-type-options": "nosniff",
+          "x-download-options": "noopen",
+          "x-permitted-cross-domain-policies": "none",
+          "x-frame-options": "sameorigin",
+          "x-xss-protection": "1; mode=block",
+          "x-ratelimit-limit": "133",
+          "x-ratelimit-remaining": "127",
+          "x-ratelimit-reset": "1792912523",
+          "retry-after": "56",
+          "strict-transport-security": "max-age=31556926; includeSubDomains",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+          "x-source": "files-primary",
+          "connection": "close"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23442760/sources/Convex_Body_SOS_Density_Note_v1.0.pdf",
+        "bytes": 77950,
+        "md5": "8c8f54f455aae1e160b8b56ea8047775",
+        "sha256": "f8cbd7733bc63f4918df3b18007d3087ae5cd862a4318c6bddd6f75d58385240",
+        "completed_utc": "2026-10-25T07:14:26.827872+00:00"
+      }
+    ],
+    "transport_receipt_entry_count": 5,
+    "asset_root_path": "sources",
+    "pdf_sha256": "f8cbd7733bc63f4918df3b18007d3087ae5cd862a4318c6bddd6f75d58385240",
+    "supplement_sha256": "52d8ba4dd670ab77184ea6706aacaac0233997c44ad16b041c357f6b5070d38a",
+    "source_tex_path": "sources/published-source/manuscript/main.tex",
+    "source_tex_sha256": "5508a2a2bf9079573b29b4be8b5cdf638b2c2003e4536e5c0e1518c591db7c59",
+    "abstract_tex": "\nFor every fixed compact convex body $K\\subset\\R^n$ with nonempty\ninterior and every real polynomial $f$, the normalized Lebesgue\nsum-of-squares density bound of degree at most $2r$ has error\n$O_{K,f}(r^{-2})$ for every integer $r\\ge1$.\nWe give a self-contained proof and an explicit constant, using one\nglobal square. A quadratic Taylor upper estimator reduces the objective\nto a scalar endpoint problem. Homothetic contraction compares every\nsublevel shell with the same core mass that normalizes a fixed power of\na Dirichlet polynomial; that mass cancels before summation. This proves\nthe quadratic upper rate in the convex-body/Lebesgue regime of the\n2018 Oberwolfach question. A classical interval example shows that the\nexponent is sharp in the worst case. The proxy and the broad\nlocalization and relative-mass mechanisms have established precedents;\nno firstness or new-method claim is made.\n",
+    "abstract_tex_sha256": "37ed9f2dcba4d7de4c23f43cd46ebf472d54498579f0a09ed1a6cecd29bf29ec",
+    "abstract_source": "reviews/editorial/ORIGINAL_ABSTRACT.tex",
+    "abstract_source_sha256": "37ed9f2dcba4d7de4c23f43cd46ebf472d54498579f0a09ed1a6cecd29bf29ec",
+    "abstract_normalization": {
+      "whitespace": "fold consecutive whitespace",
+      "TeX nonbreaking space": "ordinary space",
+      "exact_presentational_replacements": {
+        "$K\\subset\\R^n$": "K⊂ℝⁿ",
+        "$f$": "f",
+        "$2r$": "2r",
+        "$O_{K,f}(r^{-2})$": "O_{K,f}(r⁻²)",
+        "$r\\ge1$": "r≥1"
+      },
+      "complete_original_abstract_no_sentence_omissions": true
+    },
+    "public_page_reader_pdf_count": 1,
+    "archive_regular_file_count": 152,
+    "nested_archive_count": 0,
+    "archive_embedded_pdf_count": 0,
+    "total_distinct_reader_pdf_count": 1,
+    "archive_reader_note": "No embedded PDF; historical internal proof snapshots are not alternate readers.",
+    "reader_intro": "The complete 5-page deposited paper is available below.",
+    "complete_support_requirement": {
+      "complete_original_ZIP_local_download": true,
+      "complete_original_ZIP_Zenodo_download": true,
+      "regular_member_count": 152,
+      "publish_only_PDF_complete_ZIP_BibTeX_and_article_as_page_assets": true,
+      "no_source_cache_or_selected_script_bundle": true,
+      "preserve_all_internal_history_and_license_notices": true
+    },
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "review_boundary": "Complete original source receipt/custom verdicts/pending intake remain historical originals; exact later root authority adopted separately.",
+    "pending_intake_seal_path": "reviews/editorial-intake/SEAL.json",
+    "pending_intake_seal_sha256": "cefa250892d532409501857530ccbf2e147e5297980b28917d925d9ead7eb982",
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "fd7b6dd9af920fc1af43b192c9ecc2e882db0eb9661017f2aec2b0ddd44cc425"
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T07:39:20.433818+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-23442760-20261025.json",
+    "root_clearance_sha256": "1ae733563c14ddbcdd6a446a61376aeddd569e09e637f18490c57eb2310d36bd",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "browser_verified": false,
+    "live_verified": false,
+    "native_verified": false,
+    "native_sheet_aa_url": null,
+    "editor_authorization": "Only previously absent paper configs and new final editorial handoff after immutable pending intake; root full handoff read required before any staging."
+  }
+}
