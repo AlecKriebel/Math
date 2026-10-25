@@ -1257,6 +1257,8 @@ for rid in args.record_ids:
   original_urls={x['name']:x['url'] for x in receipt['files']}
   def exact_anchor(url,label,download=None):
    return sum(a.get('href')==url and text==label and (download is None or ('download' in a)==download) for a,text in contract.anchors)==1
+  fixed_links=[('#main','Skip to content'),('/','Alec Kriebel'),('/blog/','Blog'),(c['orcid'],'ORCID'),(c['pdf_filename'],f"Read the paper (PDF, {c['pdf_pages']} pages)"),('https://doi.org/'+c['doi'],'Zenodo record'),('#plain-language','Plain-English explanation'),('#paper','Read on this page'),('#collaborate','Collaboration'),('mailto:me@aleckriebel.com','Contact Alec'),('https://doi.org/'+c['doi'],'https://doi.org/'+c['doi']),('/research/','Research home'),('mailto:me@aleckriebel.com','me@aleckriebel.com')]
+  test('exact_other_fixed_template_destinations',all(exact_anchor(url,label,False) for url,label in fixed_links))
   test('exact_original_PDF_label_download',exact_anchor(original_urls[c['pdf_filename']],'Download the original from Zenodo',True))
   test('exact_local_PDF_label_download',exact_anchor(c['pdf_filename'],'Download PDF',True) and exact_anchor(c['pdf_filename'],'Open PDF in a full window',False))
   test('exact_original_complete_ZIP_label',exact_anchor(original_urls[c['supplement_filename']],'Zenodo original complete ZIP',False))

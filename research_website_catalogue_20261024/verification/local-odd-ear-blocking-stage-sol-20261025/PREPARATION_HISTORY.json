@@ -8,10 +8,18 @@
   "initial_partial_control_counts_not_claimed": true,
   "text_extraction_note": {
     "observed_utc": "2026-10-25T16:03:01.719064+00:00",
-    "actual_failed_tool_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\nAssertionError\ncat: .../public-copy-23576280.txt: No such file or directory\ncat: .../public-copy-23331258.txt: No such file or directory",
     "cause": "Own readable-text extractor omitted whitespace boundaries at inline tags, so its normalized text differed from the unchanged canonical body parser. Both actual target checker modes already passed.",
     "correction": "Only new readable extractor now uses the same explicit tag boundaries; rendered pages/proposals/sources unchanged.",
     "output_text_files_not_written_before_failure": true,
-    "render_or_suite_not_repeated": true
+    "render_or_suite_not_repeated": true,
+    "recorded_tool_error_excerpt_with_abbreviated_paths": "Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\nAssertionError\ncat: .../public-copy-23576280.txt: No such file or directory\ncat: .../public-copy-23331258.txt: No such file or directory"
+  },
+  "additional_target_guard": {
+    "utc": "2026-10-25T16:07:24.658965+00:00",
+    "reason": "The unchanged body-text contract does not authenticate remaining fixed-template hrefs such as ORCID/footer/jump links. Add one OEB-only check for the original approved fixed destinations, without changing old67 behavior.",
+    "earlier_pristine67_per_record_results_preserved": true,
+    "earlier_proposal": "history/final-content-check.before-fixed-template-destinations.py",
+    "renderer_and_public_outputs_unchanged": true,
+    "only_target_pristine_checks_need_repeat_before_first_old67_dispatch": true
   }
 }

@@ -75,7 +75,7 @@
    if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
    if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194','23127955') or rid in ADDED_IDS or rid in OCTOBER_EDITOR_IDS:
     test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
-@@ -1217,6 +1225,51 @@
+@@ -1217,6 +1225,53 @@
    if rid=='23181280':test('whole_common_tree_explicit_binary_constant_alphabets_and_limits',all(x in section_text['result'] for x in ['same underlying tree','all edges in all these rooted orientations','2N|E|','in binary','strong NP-completeness','{0,1,2}','{1,2,3}','N(N−1)','transposed']) and all(x in section_text['limits'] for x in ['Problem 2','unencoded real inputs','unrestricted optimum','first discovery']))
    elif rid=='23442760':test('whole_normalized_Lebesgue_all_order_constant_C2_product_and_credit',all(x in section_text['result'] for x in ['nonempty interior','n≥1','global sums of squares','∫_K q dx=1','r≥1','Cₙ=4(n+2)²(π/2)^(2n+4)(1+2^(n+2))','C²']) and all(x in section_text['proof'] for x in ['same core mass','1/[4(r+1)²]','[0,1]×[−1,1]^(n−1)','constant objectives have zero error']) and all(x in section_text['limits'] for x in ['Totik–Varga','Markov','arbitrary reference measures','locate one']))
    else:test('whole_characteristic_zero_four_polar_generic_cutoff_full_ring_and_priority_limits',all(x in section_text['result'] for x in ['characteristic zero','all four partial derivatives before','degree-reverse-lexicographic','x₁>x₂>x₃>x₄','p=min{d≥0:x₂ᵈ∈B}=8','degree-seven minimal generator']) and all(x in section_text['limits'] for x in ['Migliore–Nagel','Ilardi','five-generated','four-generated','positive-characteristic','smallest possible']) and c['version'] is None and 'version' not in art and 'version =' not in bib)
@@ -111,6 +111,8 @@
 +  original_urls={x['name']:x['url'] for x in receipt['files']}
 +  def exact_anchor(url,label,download=None):
 +   return sum(a.get('href')==url and text==label and (download is None or ('download' in a)==download) for a,text in contract.anchors)==1
++  fixed_links=[('#main','Skip to content'),('/','Alec Kriebel'),('/blog/','Blog'),(c['orcid'],'ORCID'),(c['pdf_filename'],f"Read the paper (PDF, {c['pdf_pages']} pages)"),('https://doi.org/'+c['doi'],'Zenodo record'),('#plain-language','Plain-English explanation'),('#paper','Read on this page'),('#collaborate','Collaboration'),('mailto:me@aleckriebel.com','Contact Alec'),('https://doi.org/'+c['doi'],'https://doi.org/'+c['doi']),('/research/','Research home'),('mailto:me@aleckriebel.com','me@aleckriebel.com')]
++  test('exact_other_fixed_template_destinations',all(exact_anchor(url,label,False) for url,label in fixed_links))
 +  test('exact_original_PDF_label_download',exact_anchor(original_urls[c['pdf_filename']],'Download the original from Zenodo',True))
 +  test('exact_local_PDF_label_download',exact_anchor(c['pdf_filename'],'Download PDF',True) and exact_anchor(c['pdf_filename'],'Open PDF in a full window',False))
 +  test('exact_original_complete_ZIP_label',exact_anchor(original_urls[c['supplement_filename']],'Zenodo original complete ZIP',False))
