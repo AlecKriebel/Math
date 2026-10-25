@@ -1,0 +1,116 @@
+--- /dev/null
++++ b/scripts/cfh_source.py
+@@ -0,0 +1,113 @@
++"""Authenticated read-only source views for exactly three cleared editions.
++
++Original receipt/custom-verdict objects are neither normalized nor rewritten.
++Only an independent temporary asset list is selected after complete validation.
++"""
++from copy import deepcopy
++from pathlib import Path
++import hashlib,json,re
++from bosonic_source import contained_file,digest
++
++CFH_IDS={'23204952','22983138','23409904'}
++PINS = {'23204952': {'publication': '50ee5b3441887f82281c22b6218d708c546c85ac32ecf386e8357caf4febfbde', 'promotion': '2f8ad1a63a5b0665a32c56c2ea6d69ea7129e3e72dab4d8cbd461650574f5de8', 'science': 'bdf890b3b59aab25b650f2dba76c6b8b137da7f878c048ee17f33ca8054e054e', 'editorial': '0eb263e08d1a29d6c98e5ca8c42ba131b17d25fe9499e03f492bbf685aa7ec16', 'receipt': '6eea087eb8714103794b38f39417703d9cbd92482756eec9ab6c5cb88d0db54d', 'metadata': 'd024387b4178fae3bfbfbf992ea504c4481d62beac22eb51610b671cc351fa73', 'record': 'd024387b4178fae3bfbfbf992ea504c4481d62beac22eb51610b671cc351fa73', 'tex': 'de80fb7f84555b632956f21ed8e6e0d1ae6b32da010ee6a89b69a72eb3cf8193', 'seal': '1327ed9213e99be20e29b696cc520e5c24a2f6aaa59b36a6273e1aeefc8b8ae9', 'metadata_path': 'sources/record.json', 'record_path': 'sources/record.json', 'created': '2026-10-07T06:22:48.667321+00:00', 'pages': 8, 'raw_api': 'ac8a6fdc29b81aec6dcee4071dcee0588b6ef91d18fea88c7f22e9e3276bad39'}, '22983138': {'publication': '283d8fb6ab0f06404b0508cf048a4c48bb56876660f8b450ff6bc5bbc6c1b367', 'promotion': '512838f18603104cebf82cbf9ae2aff6dbcc1f0127af833785979108b0d3de44', 'science': 'e0030a2638a0639af4d344feaebf2d410c5e8fa5b6a989ca0ddd054b5c341313', 'editorial': '29bd1ab214eb77e83427c695e3bb3e4e3626d98583fcb3ce4ec770f5b68dc630', 'receipt': 'e681d7ba6541716a3b3f902e22c76117c64b0b51c609483460d20db350bc4bfd', 'metadata': '936d15bc4f5d92e793ff600d295835057fef5bdb2a26d7c24989225437d8dd05', 'record': '70d71f82be93094220d2283dd8988c8569101d96e79327fdb9c6d19529d6a2fd', 'tex': 'ce8a48dc12ac9d80144a7de7391f2583c6d567c5d4d1067c3be122bf10283b29', 'seal': '69d68c4b06b89b84cc63d751140710e72d1384fc109fa86f5b47893bab4c311c', 'metadata_path': 'sources/metadata.normalized.json', 'record_path': 'sources/zenodo-record.raw.json', 'created': '2026-09-26T21:12:54.068503+00:00', 'pages': 4}, '23409904': {'publication': '4fc136ea35a2aae78b1bafed3e31a98325983c9c75848331e3fa33d8b226760c', 'promotion': '2b60bc89ac0b63371297abe3fe63ce438153b4e6bdf4fb81436da66bd7b32cb0', 'science': 'f710d77348b4379deceb86829cc74c069f4a0c16a7d42983fc19b2b2568c953f', 'editorial': 'bc2094944f49224eea9fb31a954ee032a02c481b2f2db559ac1c46ce93cb51f1', 'receipt': '97e3a06085692c557a2b98061d715b71d8f727a9fd3fc7400c367275a14c3f37', 'metadata': '74c908116740385264932057d81c7c0f1402f523d13f7223398600a5498dc692', 'record': '0969b76518ee51c9ec3a1fc8082e498124e4a42af3eae5e04a79c0faa875cb4f', 'tex': '97a749910fe2f340f000d82e1f1f46a4f0b26c975b1e5d54d2ce572a9cefed28', 'seal': 'ce0e061cb5434ab8863569a763ec542db6c209c3513424c499c8467b49631771', 'metadata_path': 'sources/metadata.normalized.json', 'record_path': 'sources/zenodo-record.raw.json', 'created': '2026-10-16T06:28:36.578999+00:00', 'pages': 6}}
++
++def normalized_cfh_abstract(rid,body):
++    if rid not in CFH_IDS:raise ValueError('Unsupported cleared edition')
++    body=' '.join(body.split())
++    if rid=='23204952':
++        replacements=[('K\\"ahler--Einstein','Kähler–Einstein'),('Druel--Guenancia--P\\u aun','Druel–Guenancia–Păun'),('$-K_X=rL$','−K_X = rL'),('$L$','L'),('$r>\\dim(X)/2+1$','r > dim(X)/2 + 1'),('$n$','n'),('$n\\geq5$','n ≥ 5'),('--','–')]
++    elif rid=='22983138':replacements=[('Sch\\"utt','Schütt')]
++    else:replacements=[('$M$','M'),('$n$','n'),('$n\\geq1$','n≥1'),('$\\R^{\\binom{2n+4}{3}}$','ℝ^{binomial(2n+4,3)}')]
++    for old,new in replacements:body=body.replace(old,new)
++    if '\\' in body or '$' in body:raise ValueError('Unrecognized cleared-edition abstract command')
++    return body
++
++def cfh_source_view(paper,config,gate):
++    """Return complete original receipt, selected copied asset view, source root."""
++    paper=Path(paper);rid=paper.name
++    if rid not in CFH_IDS:raise ValueError('Adapter restricted to three exact cleared records')
++    pin=PINS[rid];b=config['source_binding'];programme=paper.parents[1]
++    assert digest(contained_file(paper,'publication.json'))==gate['publication_sha256']==pin['publication']
++    assert digest(contained_file(paper,'promotion.json'))==pin['promotion']
++    assert b['record_id']==gate['record_id']==rid and gate['status']=='PASS' and gate['disposition_by']=='root'
++    assert b['receipt_path']==gate['source_receipt_path']=='sources/receipt.json' and b['asset_root_path']=='sources'
++    assert b['metadata_path']==gate['metadata_path']==pin['metadata_path'] and b['record_path']==pin['record_path']
++    assert b['embedded_assets']==config['additional_assets']==b['additional_reader_pdfs']==[]
++    rp=contained_file(paper,b['receipt_path']);mp=contained_file(paper,b['metadata_path']);ap=contained_file(paper,b['record_path'])
++    raw=json.loads(rp.read_bytes());meta=json.loads(mp.read_bytes());api=json.loads(ap.read_bytes())
++    assert digest(rp)==b['receipt_sha256']==b['source_receipt_sha256']==gate['source_receipt_sha256']==pin['receipt']
++    assert digest(mp)==b['metadata_sha256']==gate['metadata_sha256']==pin['metadata']
++    assert digest(ap)==b['record_sha256']==pin['record']
++    assert raw==gate['source_receipt_record'] and raw['files']==gate['source_files']==b['files']
++    if rid=='23204952':
++        assert meta==api
++        actual_api_path=contained_file(paper,'sources/record/api.raw.json')
++        assert digest(actual_api_path)==pin['raw_api']
++        api=json.loads(actual_api_path.read_bytes())
++        assert all(meta[k]==api[k] for k in meta) and len(raw['files'])==len(api['files'])==2
++    else:
++        assert not (paper/'sources/record.json').exists()
++        assert meta['complete_metadata']==api['metadata'] and meta['complete_actual_file_objects']==api['files']
++    m=api['metadata'];assert str(api['id'])==rid and str(api['conceptrecid'])==b['concept_record_id'] and api['status']=='published'
++    assert all(config[k]==m[k] for k in ['title','doi','publication_date','version'])
++    assert config['author']=='Alec Kriebel' and m['creators'][0]['name']=='Kriebel, Alec' and m['creators'][0]['orcid']=='0009-0001-9320-500X'
++    assert config['license']=='CC BY 4.0' and m['license']['id']=='cc-by-4.0'
++    assert api['created']==b['record_created_utc']==pin['created'] and api['updated']==b['record_updated_utc']
++    science=contained_file(programme,gate['root_clearance_file'])
++    assert gate['root_clearance_file']==config['review_metadata']['root_clearance_file']=='verification/root-clearance-'+rid+'-20261025.json'
++    assert digest(science)==gate['root_clearance_sha256']==config['review_metadata']['root_clearance_sha256']==pin['science']
++    authority=json.loads(science.read_bytes());assert gate['root_clearance_record']==authority and authority['status']=='PASS' and authority['approved_scope']==gate['approved_scope']
++    if 'scope_gate_resolution' in authority:assert gate['scope_gate_resolution']==authority['scope_gate_resolution']
++    assert authority['source_receipt_sha256']==pin['receipt'] and authority['metadata_sha256']==pin['metadata']
++    editorial_path=contained_file(programme,'verification/root-editorial-'+rid+'-20261025.json');assert digest(editorial_path)==pin['editorial']
++    editorial=json.loads(editorial_path.read_bytes());assert editorial['publication_sha256']==pin['publication'] and editorial['promotion_sha256']==pin['promotion'] and editorial['seal_sha256']==pin['seal']
++    assert editorial['status'].startswith('ROOT_ACCEPTED_EDITORIAL_FULL_')
++    assert editorial.get('private_stage_authorized_next') is True or editorial.get('publication_authorization','').startswith('Private staging only next')
++    seal_path=contained_file(paper,'reviews/editorial/SEAL.json');assert digest(seal_path)==pin['seal'];seal=json.loads(seal_path.read_bytes())
++    for relative,item in seal['owned_output_bindings'].items():
++        path=contained_file(paper,relative);assert digest(path)==item['sha256'] and path.stat().st_size==item['bytes']
++    for relative,item in seal.get('common_owned_editorial_code_bindings',{}).items():
++        path=contained_file(programme,relative);assert digest(path)==item['sha256'] and path.stat().st_size==item['bytes']
++    assert set(gate['reviews'])==set(authority['reviews'])=={'scope','analytic','adversarial'}
++    for role,item in gate['reviews'].items():
++        ref=authority['reviews'][role];assert item['root_authority_entry']==ref
++        assert ref['report']=='papers/'+rid+'/'+item['report'] and ref['verdict']=='papers/'+rid+'/'+item['verdict_file']
++        assert digest(contained_file(paper,item['report']))==item['sha256']==ref['report_sha256']
++        vf=contained_file(paper,item['verdict_file']);assert digest(vf)==item['verdict_sha256']==ref['verdict_sha256'] and json.loads(vf.read_bytes())==item['verdict']
++    custody=contained_file(programme,gate['root_custody_receipt']);assert digest(custody)==gate['root_custody_receipt_sha256']==authority['root_custody_receipt_sha256']
++    assert gate['follow_up'] is config['follow_up'] is authority['follow_up'] is None
++    assert gate['rendered_copy_verified'] is gate['live_verified'] is gate['browser_verified'] is False and gate['native_sheet_aa_url'] is None
++    tp=contained_file(paper,b['source_tex_path']);assert digest(tp)==b['source_tex_sha256']==b['abstract_source_sha256']==pin['tex']
++    abstract=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',tp.read_text(),re.S).group(1).strip()
++    assert abstract==b['abstract_tex'] and hashlib.sha256(abstract.encode()).hexdigest()==b['abstract_tex_sha256'] and normalized_cfh_abstract(rid,abstract)==config['abstract']
++    candidate=contained_file(paper,b['frozen_scope_content_path']);assert digest(candidate)==b['frozen_scope_content_sha256'];candidate=json.loads(candidate.read_bytes())
++    assert candidate[b['frozen_scope_abstract_field']]==(abstract if rid=='23409904' else config['abstract'])
++    selected=[]
++    assert len(raw['files'])=={'23204952':2,'22983138':3,'23409904':4}[rid]
++    for item in raw['files']:
++        name=item['name'] if rid=='23204952' else item['filename'];path=contained_file(paper,'sources/'+name);data=path.read_bytes()
++        assert len(data)==item['bytes'] and digest(path)==item['sha256']
++        md5=hashlib.md5(data).hexdigest()
++        if rid=='23204952':
++            assert set(item)=={'name','url','bytes','sha256','zenodo_checksum'}
++            api_item=next(x for x in api['files'] if x['key']==name);assert item['url']==api_item['links']['self'] and item['zenodo_checksum']==api_item['checksum']=='md5:'+md5
++        else:
++            assert item['md5']==md5 and item['status']==200
++            api_item=item['file_object'] if rid=='22983138' else item['actual_file_object']
++            if api_item is None:
++                assert rid=='23409904' and name in ('versions.raw.json','latest.raw.json');continue
++            assert api_item==next(x for x in api['files'] if x['key']==name)
++            assert item['url_from_actual_file_object' if rid=='22983138' else 'requested_url']==api_item['links']['self']==item['final_url']
++            assert api_item['checksum']=='md5:'+md5
++        assert api_item['size']==len(data)
++        selected.append(deepcopy(item))
++        if name==config['pdf_filename']:assert digest(path)==b['pdf_sha256']==gate['pdf_sha256']==authority['pdf_sha256']
++        elif name==config['supplement_filename']:assert digest(path)==b['supplement_sha256']==gate['supplement_sha256']==authority['supplement_sha256']
++    assert len(selected)==len(api['files'])==({'22983138':3}.get(rid,2))
++    if rid=='22983138':
++        checksum=contained_file(paper,'sources/SHA256SUMS');data=checksum.read_bytes()
++        assert len(data)==170 and digest(checksum)==b['published_checksum_sha256']==authority['additional_public_checksum_file_sha256']
++        entries=data.decode().splitlines();assert len(entries)==2
++        for line in entries:
++            value,name=line.split();assert name in (config['pdf_filename'],config['supplement_filename']) and digest(contained_file(paper,'sources/'+name))==value
++    return raw,{'record_id':rid,'files':selected},contained_file(paper,'sources/'+config['pdf_filename']).parent

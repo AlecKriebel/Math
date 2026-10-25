@@ -1,0 +1,102 @@
+--- a/verification/final-content-check.py
++++ b/verification/final-content-check.py
+@@ -10,6 +10,7 @@
+ from published_assets import PublishedAssets, asset_name, normalized_receipt_view
+ from bosonic_source import bosonic_source_view
+ from dipole_source import dipole_source_view
++from cfh_source import cfh_source_view, normalized_cfh_abstract
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+ parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+@@ -69,6 +70,9 @@
+  '23356964':'published-source/generic-wreath-hyperfiniteness-verification/note.tex',
+  '23203100':'extracted/zenodo-upload-kit/manuscript/main.tex',
+  '22089807':'published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/main.tex',
++ '23204952':'published-source/main.tex',
++ '22983138':'published-source/owr_4136_011_equality/manuscript/paper.tex',
++ '23409904':'published-source/research_note.tex',
+  '23390551':'cache/extracted/dipole_spectrum.tex',
+  '23430326':'support/paper.tex',
+  '23444606':'published-source/initial-omnific-models-source-and-verification/main.tex',
+@@ -78,6 +82,8 @@
+  '23430906':'support/paper.tex',
+  '23306332':'published-source/nonunique_nearest_stable_complex_quadratics_verification/nonunique_nearest_stable_complex_quadratics_verification/nonunique_nearest_stable_complex_quadratics.tex',
+ }
++CFH_IDS={'23204952','22983138','23409904'}
++CFH_PINS={'23204952': {'publication': '50ee5b3441887f82281c22b6218d708c546c85ac32ecf386e8357caf4febfbde', 'promotion': '2f8ad1a63a5b0665a32c56c2ea6d69ea7129e3e72dab4d8cbd461650574f5de8', 'science': 'bdf890b3b59aab25b650f2dba76c6b8b137da7f878c048ee17f33ca8054e054e', 'editorial': '0eb263e08d1a29d6c98e5ca8c42ba131b17d25fe9499e03f492bbf685aa7ec16', 'receipt': '6eea087eb8714103794b38f39417703d9cbd92482756eec9ab6c5cb88d0db54d', 'metadata': 'd024387b4178fae3bfbfbf992ea504c4481d62beac22eb51610b671cc351fa73', 'record': 'd024387b4178fae3bfbfbf992ea504c4481d62beac22eb51610b671cc351fa73', 'tex': 'de80fb7f84555b632956f21ed8e6e0d1ae6b32da010ee6a89b69a72eb3cf8193', 'seal': '1327ed9213e99be20e29b696cc520e5c24a2f6aaa59b36a6273e1aeefc8b8ae9', 'metadata_path': 'sources/record.json', 'record_path': 'sources/record.json', 'created': '2026-10-07T06:22:48.667321+00:00', 'pages': 8, 'raw_api': 'ac8a6fdc29b81aec6dcee4071dcee0588b6ef91d18fea88c7f22e9e3276bad39'}, '22983138': {'publication': '283d8fb6ab0f06404b0508cf048a4c48bb56876660f8b450ff6bc5bbc6c1b367', 'promotion': '512838f18603104cebf82cbf9ae2aff6dbcc1f0127af833785979108b0d3de44', 'science': 'e0030a2638a0639af4d344feaebf2d410c5e8fa5b6a989ca0ddd054b5c341313', 'editorial': '29bd1ab214eb77e83427c695e3bb3e4e3626d98583fcb3ce4ec770f5b68dc630', 'receipt': 'e681d7ba6541716a3b3f902e22c76117c64b0b51c609483460d20db350bc4bfd', 'metadata': '936d15bc4f5d92e793ff600d295835057fef5bdb2a26d7c24989225437d8dd05', 'record': '70d71f82be93094220d2283dd8988c8569101d96e79327fdb9c6d19529d6a2fd', 'tex': 'ce8a48dc12ac9d80144a7de7391f2583c6d567c5d4d1067c3be122bf10283b29', 'seal': '69d68c4b06b89b84cc63d751140710e72d1384fc109fa86f5b47893bab4c311c', 'metadata_path': 'sources/metadata.normalized.json', 'record_path': 'sources/zenodo-record.raw.json', 'created': '2026-09-26T21:12:54.068503+00:00', 'pages': 4}, '23409904': {'publication': '4fc136ea35a2aae78b1bafed3e31a98325983c9c75848331e3fa33d8b226760c', 'promotion': '2b60bc89ac0b63371297abe3fe63ce438153b4e6bdf4fb81436da66bd7b32cb0', 'science': 'f710d77348b4379deceb86829cc74c069f4a0c16a7d42983fc19b2b2568c953f', 'editorial': 'bc2094944f49224eea9fb31a954ee032a02c481b2f2db559ac1c46ce93cb51f1', 'receipt': '97e3a06085692c557a2b98061d715b71d8f727a9fd3fc7400c367275a14c3f37', 'metadata': '74c908116740385264932057d81c7c0f1402f523d13f7223398600a5498dc692', 'record': '0969b76518ee51c9ec3a1fc8082e498124e4a42af3eae5e04a79c0faa875cb4f', 'tex': '97a749910fe2f340f000d82e1f1f46a4f0b26c975b1e5d54d2ce572a9cefed28', 'seal': 'ce0e061cb5434ab8863569a763ec542db6c209c3513424c499c8467b49631771', 'metadata_path': 'sources/metadata.normalized.json', 'record_path': 'sources/zenodo-record.raw.json', 'created': '2026-10-16T06:28:36.578999+00:00', 'pages': 6}}
+ DIPOLE_LANGLANDS_IDS={'23390551','23430326'}
+ def normalized_dipole_langlands_abstract(rid,body):
+  if rid=='23390551':
+@@ -212,6 +218,7 @@
+  for old,new in replacements.items():body=body.replace(old,new)
+  return body
+ def abstract_tokens(tex,record_id=None):
++ if record_id in CFH_IDS:return wt(normalized_cfh_abstract(record_id,tex))
+  if record_id in DIPOLE_LANGLANDS_IDS:return wt(normalized_dipole_langlands_abstract(record_id,tex))
+  if record_id in SURREAL_CONE_BROWNIAN_IDS:return wt(normalized_surreal_cone_brownian_abstract(record_id,tex))
+  if record_id in SLIT_GAUSSIAN_IDS:return wt(normalized_slit_gaussian_abstract(record_id,tex))
+@@ -344,7 +351,9 @@
+    local.append(good)
+  test('local_links_anchors',all(local))
+  receipt_file=p/'sources/receipt.json';asset_root=p/'sources'
+- if rid=='23390551':
++ if rid in CFH_IDS:
++  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=cfh_source_view(p,c,gate)
++ elif rid=='23390551':
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=dipole_source_view(p,c,gate);receipt_file=p/c['source_binding']['receipt_path']
+  elif rid=='23203100':
+   gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=bosonic_source_view(p,c,gate);receipt_file=p/c['source_binding']['receipt_path']
+@@ -378,12 +387,12 @@
+  test('index_entry',f'href="/research/{c["slug"]}/"' in index and c['description'] in unescape(index))
+  ix=json.loads(re.search('<script type="application/ld\\+json">(.*?)</script>',index,re.S).group(1));items=ix['mainEntity']['itemListElement'];test('index_jsonld',len([x for x in items if x['url']==base and x['name']==c['title']])==1 and ix['mainEntity']['numberOfItems']==len(items))
+  test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
+- bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
+- test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
+- record_file=p/'sources'/('zenodo_record.json' if rid=='23390551' else 'metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
++ bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],('Kriebel, Alec' if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS else c['author']),c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
++ test('background_links',all(x['url'] in (unescape(h) if rid in SURREAL_CONE_BROWNIAN_IDS or rid in DIPOLE_LANGLANDS_IDS or rid in CFH_IDS else h) and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
++ record_file=p/'sources'/(c['source_binding']['record_path'].removeprefix('sources/') if rid in CFH_IDS else 'zenodo_record.json' if rid=='23390551' else 'metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
+  record=json.loads(record_file.read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334','23203100') and c['source_binding']['zenodo_version'] is None))
+  if c.get('edition_label'):test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
+- if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS:
++ if c.get('related_resources') and rid not in SLIT_GAUSSIAN_IDS and rid not in SURREAL_CONE_BROWNIAN_IDS and rid not in DIPOLE_LANGLANDS_IDS and rid not in CFH_IDS:
+   materials=re.search('<section id="materials">(.*?)</section>',h,re.S).group(1)
+   test('supporting_materials_links',all(x['url'] in materials and x['label'] in unescape(materials) and x.get('doi','') in unescape(materials) for x in c['related_resources']))
+   related_bound=True
+@@ -1050,6 +1059,36 @@
+    test('original_custom_scope_history',scope['mathematical_verdict'] is None and scope['mathematical_clearance'] is False and scope['publication_clearance'] is False and scope['candidate_held'] is True and analytic['publication_authority_granted'] is False and adverse['root_promotion'].startswith('PENDING:') and adverse['source_edits'] is False)
+    test('langlands_actual_quotient_entire_induction_and_fixed_orbits',all(x in section_text['result'] for x in ['F=ℚ₃','unramified quadratic extension','smooth admissible complex','irreducible-quotient segment convention','not itself an entire normalized induction','every nonsingular 15-dimensional Hermitian space']) and all(x in section_text['proof'] for x in ['each fixed Hermitian orbit','strict-containment swaps','Entire independent open-orbit restrictions','Only containment of proper rank-one images','No general equality generating that kernel','partition of the five segment occurrences']))
+    test('langlands_unknown_Luo_Zha_and_limits',all(x in section_text['limits'] for x in ['do not assume π is unitarizable','do not assert that π is spherical','No separate kernel-generation disproof','Luo–Zha','remain UNKNOWN','may overlap, be contained in, or be superseded','No exhaustive literature absence']) and 'remain UNKNOWN' in c['abstract'] and any(x['title'].startswith('Luo and Zha') and 'UNKNOWN' in x['note'] for x in c['background']))
++ if rid in CFH_IDS:
++  binding=c['source_binding'];pinned=CFH_PINS[rid];body=' '.join(unescape(re.sub(r'<[^>]+>',' ',re.search(r'<body>(.*?)</body>',h,re.S).group(1))).split())
++  science=json.loads((R/gate['root_clearance_file']).read_text());editorial=json.loads((R/('verification/root-editorial-'+rid+'-20261025.json')).read_text())
++  test('exact_approved_config_source_authority',sha(p/'publication.json')==pinned['publication']==gate['publication_sha256'] and sha(p/'promotion.json')==pinned['promotion'] and gate['root_clearance_record']==science and sha(R/gate['root_clearance_file'])==pinned['science'] and sha(R/('verification/root-editorial-'+rid+'-20261025.json'))==pinned['editorial'] and editorial['publication_sha256']==pinned['publication'] and editorial['promotion_sha256']==pinned['promotion'])
++  test('complete_original_custom_verdicts',all(v['verdict']==json.loads((p/v['verdict_file']).read_text()) and sha(p/v['report'])==v['sha256']==science['reviews'][role]['report_sha256'] and sha(p/v['verdict_file'])==v['verdict_sha256']==science['reviews'][role]['verdict_sha256'] and v['root_authority_entry']==science['reviews'][role] for role,v in gate['reviews'].items()))
++  test('complete_original_receipt_and_source_assets',raw_receipt==gate['source_receipt_record'] and binding['files']==gate['source_files']==raw_receipt['files'] and sha(receipt_file)==pinned['receipt'])
++  test('exact_source_tex_path_and_bytes',textpath==p/binding['source_tex_path'] and sha(textpath)==binding['source_tex_sha256']==pinned['tex'])
++  test('complete_original_abstract',a.strip()==binding['abstract_tex'] and normalized_cfh_abstract(rid,a)==c['abstract'] and c['abstract_is_original'] is True and len(c['abstract'].split('\n\n'))==1)
++  test('original_abstract_heading',re.search(r'<section id="abstract"><h2>(.*?)</h2>',h).group(1)==c['abstract_heading']=='Original abstract')
++  prepared=json.loads((p/'reviews/editorial/public-sections.json').read_text())
++  test('all_approved_public_paragraphs',all(re.search(r'<section id="'+x['id']+r'"><h2>(.*?)</h2>',h).group(1)==x['heading'] and all(paragraph in body for paragraph in x.get('paragraphs',[]) if x['id']!='cite') for x in prepared['sections']))
++  test('exact_prepared_bibtex_and_license',bib==(p/'reviews/editorial/citation.bib').read_text()==prepared['bibtex'] and art['license']=='https://creativecommons.org/licenses/by/4.0/' and any(t=='a' and x.get('href')==art['license'] for t,x in d.a))
++  test('two_explicit_local_original_pdf_downloads',len([x for t,x in d.a if t=='a' and x.get('href')==c['pdf_filename'] and 'download' in x])==1 and len([x for t,x in d.a if t=='a' and x.get('href')=='https://zenodo.org/records/'+rid+'/files/'+c['pdf_filename'] and 'download' in x])==1 and any(t=='a' and x.get('href')==c['pdf_filename'] and 'download' not in x for t,x in d.a))
++  test('one_selected_unchanged_reader_and_complete_zip',len(frames)==1 and len(texts)==c['pdf_pages']==pinned['pages'] and sha(f.parent/c['pdf_filename'])==binding['pdf_sha256']==science['pdf_sha256'] and sha(f.parent/c['supplement_filename'])==binding['supplement_sha256']==science['supplement_sha256'] and {x.name for x in f.parent.iterdir() if x.is_file()}=={'index.html','citation.bib',c['pdf_filename'],c['supplement_filename']} and c['additional_assets']==[])
++  test('complete_local_original_zip_links',all(any(t=='a' and x.get('href')==url for t,x in d.a) for url in [c['supplement_filename'],'https://zenodo.org/records/'+rid+'/files/'+c['supplement_filename']]))
++  test('edition_chronology',record['version']==c['version']==science['reviewed_zenodo_version'] and c['publication_date']==science['publication_date'] and c['source_binding']['record_created_utc']==pinned['created'] and c['edition_note'] in body and 'Manuscript and declared publication date <time' in h)
++  test('no_manufactured_publication_gates_or_followup',gate['rendered_copy_verified'] is gate['live_verified'] is gate['browser_verified'] is False and gate['native_sheet_aa_url'] is None and gate['follow_up'] is c['follow_up'] is science['follow_up'] is None and all(x in body for x in ['used extensively','human or journal peer review','formal proof-assistant certification','actual research and writing contributions','mutual agreement']))
++  with zipfile.ZipFile(asset_root/c['supplement_filename']) as archive:
++   members=[x for x in archive.infolist() if not x.is_dir()];readers=[x for x in members if x.filename.lower().endswith('.pdf')]
++   test('all_original_archive_members',len(members)==binding['archive_regular_file_count'] and all((p/'sources/published-source'/x.filename).read_bytes()==archive.read(x) for x in members) and not any(x.filename.lower().endswith(('.zip','.tar','.gz')) for x in members))
++   test('archive_reader_identity',not readers if rid=='23204952' else len(readers)==1 and archive.read(readers[0])==(asset_root/c['pdf_filename']).read_bytes())
++  if rid=='23204952':
++   test('cubic_full_declared_scope_and_dependencies',all(x in body for x in ['every irreducible normal finite quasi-étale cover','I=±J','n≥5','every dimension 2≤k≤n','G_n(ℂ)/⟨σ⟩','including across their singular loci','principal external inputs','complete proofs are not freshly recertified','full chapter proof has not been accessed','stronger result of Kong, Shen, Zhao and Zhao']))
++   test('cubic_original_null_scope_history',gate['reviews']['scope']['verdict']['mathematical_verdict'] is None and gate['reviews']['scope']['verdict']['promotion_decision'] is None)
++  elif rid=='22983138':
++   test('fps_full_universal_equality_and_prior_credit',all(x in body for x in ['n≥1 and r>0','‖v‖₂≥r for every actual extreme point','C₂(K)≥[r²+(n+1)‖g_K‖₂²]/(n+2)','need not be regular','centroid need not be the origin','finite body-dependent strictness witness','FPS already proved the inequality, simplex moments, finite vertex decomposition and common-centroid rigidity for polytopes']))
++   checksum=p/'sources/SHA256SUMS';test('fps_third_published_checksum_original_link',checksum.stat().st_size==170 and sha(checksum)==binding['published_checksum_sha256']==science['additional_public_checksum_file_sha256'] and any(t=='a' and x.get('href')=='https://zenodo.org/records/22983138/files/SHA256SUMS' for t,x in d.a) and len(receipt['files'])==3 and not (f.parent/'SHA256SUMS').exists())
++  else:
++   test('hessian_full_proper_positive_ordered_torsion_scope',all(x in body for x in ['one fixed finite dimension n≥1','N=binomial(2n+4,3)>n','one smooth Ψ:U→ℝ with positive ordinary Hessian','proper smooth embedding f:M→U','exactly ∇ and ∇*, in that order','if and only if both prescribed torsions vanish','nonconvex and incomplete','dual affine coordinates are local','no fixed finite probability model','final Lê 2006','final Lê 2007','separate Lauritzen Lancaster','Abe article']))
++   test('hessian_full_four_receipts_two_actual_assets',len(raw_receipt['files'])==4 and len(receipt['files'])==2 and sum(x['actual_file_object'] is None for x in raw_receipt['files'])==2 and not (p/'sources/record.json').exists())
+  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
+ result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
+ result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'
