@@ -1,0 +1,2612 @@
+=== PDF PAGE 1 ===
+arXiv:0812.4040v1  [math.DS]  21 Dec 2008
+STOCHASTICALL Y ST ABLE GLOBALL Y COUPLED MAPS
+WITH BIST ABLE THERMODYNAMIC LIMIT
+JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Abstract. We study systems of globally coupled interval maps, where
+the identical individual maps have two expanding, fraction al linear, onto
+branches, and where the coupling is introduced via a paramet er - com-
+mon to all individual maps - that depends in an analytic way on the
+mean ﬁeld of the system. We show: 1) For the range of coupling p a-
+rameters we consider, ﬁnite-size coupled systems always ha ve a unique
+invariant probability density which is strictly positive a nd analytic, and
+all ﬁnite-size systems exhibit exponential decay of correl ations. 2) For
+the same range of parameters, the self-consistent Perron-F robenius op-
+erator which captures essential aspects of the correspondi ng inﬁnite-size
+system (arising as the limit of the above when the system size tends to
+inﬁnity), undergoes a supercritical pitchfork bifurcatio n from a unique
+stable equilibrium to the coexistence of two stable and one u nstable
+equilibrium.
+1. Introduction
+Globally coupled maps are collections of individual discrete-time dynami-
+cal systems (their units) which act independently on their respective phase
+spaces, except for the inﬂuence (the coupling) of a common parameter that is
+updated, at each time step, as a function of the mean ﬁeld of the whole sys-
+tem. Systems of this type have received some attention throu gh the work
+of Kaneko [9, 10] in the early 1990s, who studied systems of N quadratic
+maps acting on coordinates x1,...,x N ∈ [0, 1], and coupled by a parameter
+depending in a simple way on ¯x :=N − 1(x1 + · · ·+xN ). His key observation,
+for huge system size N , was the following: if (¯ xt)t=0,1,2,... denotes the time
+series of mean ﬁeld values of the system started in a random co nﬁguration
+(x1,...,x N ), then, for many parameters of the quadratic map, and even fo r
+very small coupling strength, pairs (¯ xt, ¯xt+1) of consecutive values of the
+ﬁeld showed complicated functional dependencies plus some noise of order
+N − 1/2, whereas for uncoupled systems of the same size the ¯ xt, after a while,
+Date: November 10, 2018.
+2000 Mathematics Subject Classiﬁcation. 37A60,37D99,37L60,82C20.
+Key words and phrases. globally coupled maps, mean ﬁeld, self consistent Perron Fr obe-
+nius operator, bifurcation, bistability, iterated functi on system, Pick-Herglotz-Nevanlinna
+functions.
+This cooperation was supported by the DFG grant Ke-514/7-1 ( Germany). J.-B.B. was
+also partially supported by CNRS (France). The authors ackn owledge the hospitality of
+the ESI (Austria) where part of this research was done. G.K. t hanks Carlangelo Liverani
+for a discussion that helped to shape the ideas in Section 5.3 .
+1
+
+=== PDF PAGE 2 ===
+2 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+are constant up to some noise of order N − 1/2. While the latter observation
+is not surprising for independent units, the complicated de pendencies for
+weakly coupled systems, a phenomenon Kaneko termed violation of the law
+of large numbers , called for closer investigation.
+The rich bifurcation structure of the family of individual q uadratic maps
+may oﬀer some explanations, but since a mathematically rigor ous investiga-
+tion of even a small number of coupled quadratic maps in the ch aotic regime
+still is a formidable task, there seem to be no serious attemp ts to tackle this
+problem.
+A model which is mathematically much easier to treat is given by coupled
+tent maps. Indeed, for tent maps with slope larger than
+√
+2 and moderate
+coupling strength, a system of N mean ﬁeld coupled units has an ergodic
+invariant probability density with exponentially decreas ing correlations [13].
+This is true for all N and for coupling strengths that can be chosen to be the
+same for all N . Nevertheless, Ershov and Potapov [7] showed numerically
+that (albeit on a much smaller length scale than in the case of coupled
+quadratic maps) also mean ﬁeld coupled tent maps exhibit a vi olation of
+the law of large numbers in the aforementioned sense. They al so provided
+a mathematical analysis which demonstrated that the discon tinuities of the
+invariant density of a tent map are at the heart of the problem . Their
+analysis was not completely rigorous, however, as Chawanya and Morita [2]
+could show that there are indeed (exceptional) parameters o f the system
+for which there is no violation of the law of large numbers - co ntrary to
+the predictions in [7]. On the other hand, references [17, 18 ] contain further
+simulation results on systems violating the law of large num bers. (But at
+present, a mathematically rigorous treatment of globally c oupled tent maps
+that is capable of classifying and explaining the diverse dy namical eﬀects
+that have been observed does not seem to be in sight either.) T hese studies
+were complemented by papers by J¨ arvenp¨ a¨ a [8] and Keller [ 12], showing
+(among other things) that globally coupled systems of smoot h expanding
+circle maps do not display violation of the law of large numbe rs at small
+coupling strength, because their invariant densities are s mooth.
+Given this state of knowledge, the present paper investigat es speciﬁc sys-
+tems of globally coupled piecewise fractional linear maps o n the interval
+X := [ − 1
+2, 1
+2 ], where each individual map has a smooth invariant density.
+For small coupling strength, Theorem 4 in [12] extends easil y to this setup
+and proves the absence of a violation of the law of large numbe rs. For larger
+coupling strength, however, we are going to show that this ph enomenon does
+occur in the following sense:
+Bifurcation: The nonlinear self-consistent Perron-Frobenius operator
+(PFO) ˜P on L1(X,λ ), which describes the dynamics of the system
+in its thermodynamic limit, undergoes a supercritical pitc hfork bi-
+furcation as the coupling strength increases. (Here and in t he sequel
+λ denotes Lebesgue measure.)
+
+=== PDF PAGE 3 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 3
+Mixing: At the same time, all corresponding ﬁnite-size systems have
+unique absolutely continuous invariant probability measu res µN on
+their N -dimensional state space, and exhibit exponential decay of
+correlations under this measure.
+Stable behaviour: In the stable regime, i.e. for ﬁxed small coupling
+strength below the bifurcation point of the inﬁnite-size sy stem, the
+measures µN converge weakly, as the system size N → ∞ , to an
+inﬁnite product measure (u0 ·λ)N, where u0 is the unique ﬁxed point
+of ˜P .
+Bistable behaviour: In the bistable regime , i.e. for ﬁxed coupling
+strength above the bifurcation point of the inﬁnite-size sy stem, all
+possible weak limits of the measures µN are convex combinations of
+the three inﬁnite product measures ( ur ·λ)N,r ∈ {− r∗, 0,r ∗}, where
+nowu0 is the unique unstable ﬁxed point of ˜P and u± r∗ are its two
+stable ﬁxed points. (We conjecture that the measure ( u0 ·λ)N is not
+charged in the limit.)
+This scenario clearly bears some resemblance to the Curie-W eiss model from
+statistical mechanics and its dynamical variants.
+We also stress that a simple modiﬁcation of our system leads t o a variant
+where, instead of two stable ﬁxed points, one stable two-cyc le for ˜P is cre-
+ated at the bifurcation point. This may be viewed as the simpl est possible
+scenario for a violation of the law of large numbers in Kaneko ’s original sense.
+In the next section we describe our model in detail, and formu late the
+main results. Section 3 contains the proofs for ﬁnite-size s ystems. In Sec-
+tion 4 we start the investigation of the inﬁnite-size system via the self-
+consistent PFO ˜P . We observe that this operator preserves a class of prob-
+ability densities which can be characterised as derivative s of Herglotz-Pick-
+Nevanlinna functions. Integral representations of these f unctions reveal a
+hidden order structure, which is respected by the operator ˜P , and allows us
+to describe the pitchfork bifurcation. In Section 5 this dyn amical picture
+for ˜P is extended to arbitrary densities. Finally, in Section 6, w e discuss the
+situation when some noise is added to the dynamics.
+2. Model and main results
+2.1. The parametrised family of maps. Throughout, all measures are
+understood to be Borel, and we let P(B) := { probability measures on B}.
+Lebesgue measure will be denoted by λ. We introduce a 1-parameter family
+of piecewise fractional-linear transformations Tr onX := [− 1
+2, 1
+2 ], which will
+play the role of the local maps. To facilitate manipulation o f such maps, we
+use their standard matrix representation, letting
+fM (x) := ax +b
+cx +d for any real 2 × 2-matrix M =
+(
+a b
+c d
+)
+,
+
+=== PDF PAGE 4 ===
+4 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+so that f ′
+M (x) = (ad − bc)/ (cx +d)2 and fM ◦fN = fM N. Speciﬁcally, we
+consider the function fMr , depending on a parameter r ∈ (− 2, 2), given by
+the coeﬃcient matrix
+Mr :=
+(
+r + 4 r + 1
+2r 2
+)
+.
+One readily checks that fMr (− 1
+2 ) = − 1
+2 , fMr ( 1
+2 ) = 3
+2 , fMr (α r) = 1
+2 for
+α r := −r/ 4, and that (the inﬁmum being attained on ∂X )
+f ′
+Mr (x) = 4 − r2
+2 (rx + 1)2 ⩾ 2 2 − |r|
+2 + |r|= inf
+X
+f ′
+Mr > 0 for x ∈ X.
+The latter shows that fMr is uniformly expanding if and only if |r|< 2
+3 , and
+we deﬁne our single-site maps Tr :X → X with parameter r ∈ (− 2/ 3, 2/ 3)
+by letting
+Tr(x) := fMr (x) mod
+(
+Z + 1
+2
+)
+=
+{
+fMr (x) on [ − 1
+2,α r),
+fMr (x) − 1 = fNr (x) on ( α r, 1
+2 ],
+where
+Nr :=
+(
+1 − 1
+0 1
+)
+Mr .
+We thus obtain a family ( Tr)r∈ (− 2/3,2/3) of uniformly expanding, piecewise
+invertible maps Tr :X → X, each having two increasing covering branches.
+Note also that this family is symmetric in that
+(2.1) − Tr(−x) = T− r(x) for r ∈
+(
+− 2
+3, 2
+3
+)
+and x ∈ X.
+According to well-known folklore results, each map Tr, r ∈ (− 2/ 3, 2/ 3),
+has a unique invariant probability density ur ∈ D := { u ∈ L1(X,λ ) : u ⩾
+0,
+∫
+Xudλ = 1 }, and Tr is exact (hence ergodic) w.r.t. the corresponding
+invariant measure. Due to (2.1), we have u− r(x) = ur(−x) mod λ. We
+denote the Perron-Frobenius operator (PFO), w.r.t. Lebesgue measure λ,
+of a map T by PT , abbreviating Pr := PTr . In our construction below we
+will exploit the fact that 2-to-1 fractional linear maps lik e Tr in fact enable
+a fairly explicit analysis of their PFOs on a suitable class o f densities. In
+particular, the ur are known explicitly:
+Remark 1. Let γr := r
+1+r , δr := r
+1− r . Then
+(2.2) ˜ ur(x) :=
+∫ δr
+γr
+1
+(1 − xy)2 dy = 2r2
+(rx − (1 − r))(rx − (1 +r))
+is an integrable invariant density for Tr, see [21]. Its normalised version
+(2.3) ur(x) :=
+(
+log r2 − 4
+9r2 − 4
+) − 1
+·˜ur(x)
+is the unique Tr-invariant probability density.
+
+=== PDF PAGE 5 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 5
+Figure 1. The functions Tr (left), and ur (right), for r = − 1
+2 .
+The key point in the choice of this family of maps is that for r < 0, Tr
+is steeper in the positive part of X than in its negative part, hence typical
+orbits spend more time on the negative part, which is conﬁrme d by the
+invariant density (see Figure 1). If r> 0, then Tr favours the positive part.
+The heuristics of our construction is that for suﬃciently st rong coupling
+this eﬀect of “polarisation” is reinforced and gives rise to b istable behaviour.
+2.2. The ﬁeld and the coupling. For any probability measure Q ∈ P(X),
+we denote its mean by
+(2.4) φ(Q) :=
+∫
+X
+xdQ (x),
+and call this the ﬁeld of Q. With a slight abuse of notation we also write,
+for u ∈ D ,
+(2.5) φ(u) :=
+∫
+X
+xu(x)dx =φ(Q) if u = dQ
+dλ,
+and, for x ∈ X N,
+(2.6) φ(x) := 1
+N
+N∑
+i=1
+xi =φ(Q) if Q = 1
+N
+N∑
+i=1
+δxi .
+To deﬁne the system of globally coupled maps (both in the ﬁnit e- and
+the inﬁnite-size case) we will, at each step of the iteration , determine the
+actual parameter as a function of the present ﬁeld. This is do ne by means
+of a feedback function G :X → R := [− 0. 4, 0. 4] which we always assume to
+be real-analytic 1 and S-shaped in that it satisﬁes G′(x) > 0 and G(−x) =
+−G(x) for all x ∈ X, while G′′(x) < 0 if x > 0. The most important
+single parameter in our model is going to be B := G′(0) which quantiﬁes
+the coupling strength.
+1This is only required to obtain highest regularity of the inv ariant densities of the
+ﬁnite-size systems in Theorem 1. Everything else remains tr ue if G is merely of class C2.
+
+=== PDF PAGE 6 ===
+6 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Remark 2. The following will be our standard example of a suitable feed back
+function G:
+(2.7) G(x) := A tanh
+(B
+Ax
+)
+,
+where 0 < A⩽ 0. 4 and 0 ⩽B ⩽ 18. (This requires some numerical eﬀort.
+For 0<A ⩽ 0. 2 and 0 ⩽B ⩽ 15, elementary estimates suﬃce.)
+For the results to follow we shall impose a few additional con straints on
+the feedback function G, made precise in Assumptions I and II below.
+2.3. The ﬁnite-size systems. We consider a system TN : X N → X N of
+N coupled copies of the parametrised map, deﬁned by ( TN (x))i =Tr(x)(xi)
+with r(x) := G(φ(x)). For the following theorem, which we prove in sec-
+tion 3, we need the following assumption (satisﬁed by the exa mple above):
+(2.8) Assumption I: G′(x) ⩽ 25 − 50|G(x)|for all x ∈ X.
+Theorem 1 (Ergodicity and mixing of ﬁnite-size systems ). Suppose
+the S-shaped function G satisﬁes (2.8). Then, for any N ∈ N, the map
+TN : X N → X N has a unique absolutely continuous invariant probability
+measure µN . Its density is strictly positive and real analytic. The syste ms
+(TN, µN ) are exponentially mixing in various strong senses, in parti cular
+do H¨ older observables have exponentially decreasing correlations.
+The key to the proof is an estimate ensuring uniform expansio n. After es-
+tablishing the latter in Section 3, the theorem follows from “folklore” results
+whose origins are not so easy to locate in the literature. In a C 2-setting,
+existence, uniqueness and exactness of an invariant densit y were proved es-
+sentially by Krzyzewski and Szlenk [15]. Exponential mixin g follows from
+the compactness of the transfer operator ﬁrst observed by Ru elle [20]. For a
+result which applies in our situation and entails Theorem 1, we refer to the
+main theorem of [16].
+2.4. The self-consistent PFO and the thermodynamic limit of the
+ﬁnite-size systems. Since the coupling we deﬁned is of mean-ﬁeld type,
+we can adapt from the probabilistic literature (see for exam ple [22, 4]) the
+classical method of taking the thermodynamic limit of our family of ﬁnite-
+size systems TN , as N → ∞ . To do so, consider the set P(X) of Borel
+probability measures on X, equipped with the topology of weak convergence
+and the resulting Borel σ -algebra on P(X). Deﬁne ˜T : P(X) → P(X) by
+(2.9) ˜T (Q):=Q ◦T − 1
+r(Q), where r(Q) := G(φ(Q)).
+We can then represent the evolution of any ﬁnite-size system using ˜T .
+Indeed, if ǫN (x) := 1
+N
+∑N
+i=1δxi is the empirical measure of x = (xi)1⩽i⩽N ,
+then ǫN :X N → P(X) satisﬁes ǫN ◦ TN = ˜T ◦ǫN .
+
+=== PDF PAGE 7 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 7
+Furthermore, when restricted to the set of probability meas ures absolutely
+continuous with respect to λ, ˜T is represented by the self-consistent Perron
+Frobenius operator, which is the nonlinear positive operator ˜P deﬁned as
+(2.10) ˜P :L1(X,λ ) → L1(X,λ ), ˜Pu :=PG(φ(u))u.
+Clearly, this map satisﬁes ˜T (u ·λ) = ( ˜Pu ) ·λ and preserves the set D of
+probability densities. Note, however, that it does not cont ract, i.e. there
+are u,v ∈ D such that ∥ ˜Pu − ˜Pv ∥L1(X,λ) > ∥u − v∥L1(X,λ).
+One may ﬁnally join these two aspects, the action of ˜T on means of Dirac
+masses, or on absolutely continuous measures, via the follo wing observation:
+Proposition 1 (Propagation of chaos ). LetQ =u ·λ ∈ P(X), with u ∈
+D. If (xi)i⩾1 is chosen according to Q⊗ N, then, for any n ⩾ 0, the empirical
+measuresǫN (Tn
+N (x1,...,x N )) converge weakly to ( ˜P nu) ·λ as N → ∞ .
+This result conﬁrms the point of view that the self-consiste nt PFO ˜P
+represents the inﬁnite-size thermodynamic limit N → ∞ of the ﬁnite-size
+systems TN . Its proof is reasonably simple (easier than for stochastic evolu-
+tions). The only diﬃculty is that ˜T is not a continuous map on the whole of
+P(X). This can be overcome with the following lemma, which Propo sition
+1 is a direct consequence of, and whose proof is given in Secti on A.1.
+Lemma 1 (Continuity of ˜T at non-atomic measures ). Assume that a
+sequence (Qn)n⩾1 in P(X) converges weakly to some non-atomic Q. Then
+( ˜TQ n)n⩾1 converges weakly to ˜TQ .
+Here is an immediate consequence of this lemma that will be us ed below.
+Corollary 1. Assume that a sequence (πn)n⩾1 of ˜T -invariant Borel proba-
+bility measures on P(X) converges weakly to some probability π on P(X). If
+there is a Borel set A ⊆ P(X) withπ (A) = 1 which only contains non-atomic
+measures, then π is also ˜T -invariant.
+2.5. The long-term behaviour of the inﬁnite-size system. Our goal
+is to analyse the asymptotics of ˜P on D. Some basic features of ˜P can be
+understood considering the dynamics of
+H :
+(
+− 2
+3, 2
+3
+)
+→ R :=
+[
+− 4
+10, 4
+10
+]
+, H (r) := G(φ(ur)),
+which governs the action of ˜P on the densities ur introduced in § 2.1, as
+(2.11) ˜Pu r =PH(r)ur.
+In studying ˜P , we will always presuppose the following:
+(2.12) Assumption II: H is S-shaped.
+This assumption can be checked numerically for speciﬁc feed back functions
+G, like that of Remark 2, cf. §A.2 below. By (2.1), H(−r) = −H(r). Note,
+however, that r ↦→ φ(ur) itself is not S-shaped (see Figure 3) so that the
+
+=== PDF PAGE 8 ===
+8 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+S-shapedness of G alone is not suﬃcient for that of H.
+Assumption II will enter our arguments only via the followin g dichotomy
+which it entails: either
+H(r) has a unique ﬁxed point at r = 0
+(the stable regime with H ′(0) ⩽ 1 and r = 0 stable),
+or
+H(r) has exactly three ﬁxed points −r∗ < 0<r ∗
+(the bistable regime with H ′(0)> 1 and ±r∗ stable).
+We will see that H ′> 0 and H ′(0) = G′(0)/ 6, so that the stable regime
+corresponds to the condition G′(0) ⩽ 6. Observe now that
+(2.13) ˜Pu r =ur iﬀ
+{
+r = 0 (in the stable regime)
+r ∈ { 0, ±r∗} (in the bistable regime)
+(since ur ̸= ur′ for r ̸= r′, and each Tr is ergodic). We are going to show
+that the ﬁxed points u0 = 1 X , and u± r∗ dominate the long-term behaviour
+of ˜P on D completely, and that they inherit the stability properties of the
+corresponding parameters −r∗ < 0 < r∗. Therefore, the stable/bistable
+terminology forH introduced above also provides an appropriate description
+of the asymptotic behaviour of ˜P .
+Theorem 2 (Long-term behaviour of ˜P on D ). Consider ˜P : D → D ,
+D equipped with the metric inherited from L1(X,λ ). Assuming (I) and (II),
+we have the following:
+1) In the stable regime, u0 is the unique ﬁxed point of ˜P , and attracts all
+densities, that is,
+lim
+n→∞
+˜P nu =u0 for all u ∈ D.
+2) In the bistable regime, { u− r∗,u 0,u r∗ } are the only ﬁxed points of ˜P . Now
+u0 is unstable, while u− r∗ and ur∗ are stable. More precisely:
+a) u± r∗ are stable ﬁxed points for ˜P in the sense that their respective
+basins of attraction are L1-open.
+b) If u∈ D is not attracted by u− r∗ or ur∗ , then it is attracted by u0.
+c) u0 is not stable. Indeed, u0 can beL1-approximated by convex analytic
+densities from either basin. It is a hyperbolic ﬁxed point of ˜P in the
+sense made precise in Proposition 5 of Section 5.
+Example 1. In case G(x) = A tanh(Bx/A ) with 0 <A ⩽ 0. 4 and 0 ⩽B ⩽
+18, both theorems apply. The inﬁnite-size system is stable i ﬀ B ⩽ 6, and
+bistable otherwise, while all ﬁnite-size systems have a uni que a.c.i.m. in this
+parameter region.
+The theorem summarises the contents of Propositions 3, 4 and 5 of Sec-
+tion 5 (which, in fact, provide more detailed information). The proofs rest
+on the fact that PFOs of maps with full fractional-linear bra nches leave the
+
+=== PDF PAGE 9 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 9
+class of Herglotz-Pick-Nevanlinna functions invariant. T his observation can
+be used to study the action of ˜P in terms of an iterated function system on
+the interval [ − 2, 2] with two fractional-linear branches and place dependent
+probabilities. In the bistable regime the system is of cours e not contractive,
+but it has strong monotonicity properties and special geome tric features
+which allow to prove the theorem.
+Our third theorem, which is essentially a corollary to the pr evious ones,
+describes the passage from ﬁnite-size systems to the inﬁnit e-size system.
+Below, weak convergence of the µN ∈ P(X N ) to some µ ∈ P(X N) means
+that
+∫
+ϕd µN →
+∫
+ϕd µ for all continuous ϕ :X N → R which only depend
+on ﬁnitely many coordinates. (So that
+∫
+ϕd µN is deﬁned, in the obvious
+fashion, for N large enough.)
+Theorem 3 (F rom ﬁnite to inﬁnite size – the limit as N → ∞ ).
+The TN -invariant probability measures µN of Theorem 1 correspond to the
+˜T -invariant probability measures µN ◦ǫ− 1
+N on P(X). All weak accumulation
+pointsπ of the latter sequence are ˜T -invariant probability measures concen-
+trated on the set of measures absolutely continuous w.r.t. λ. Furthermore:
+1) In the stable regime, the sequence (µN ◦ǫ− 1
+N )N ⩾1 converges weakly to the
+point mass δλ. In other words, the sequence (µN )N ⩾1 converges weakly
+to the pure product measure λ N on X N.
+2) In the bistable regime, each weak accumulation point π of the sequence
+(µN ◦ǫ− 1
+N )N ⩾1 is of the form αδ u− r∗ λ + (1 − 2α )δu0λ +αδ ur∗ λ for some
+α ∈ [0, 1
+2 ]. In other words, each weak accumulation point of the sequence
+(µN )N ⩾1 is of the form α (u− r∗λ)N + (1 − 2α )λ N +α (ur∗λ)N.
+Remark 3. We cannot prove, so far, that α = 1
+2 , which is to be expected
+because u0 is an unstable ﬁxed point of ˜P . In Section 6 we show that α = 1
+2
+indeed, if some small noise is added to the system.
+Proof of Theorem 3. As ǫN ◦ TN = ˜T ◦ǫN , the TN -invariant probability
+measures µN of Theorem 1 correspond to ˜T -invariant probability measures
+µN ◦ǫ− 1
+N on P(X). Their possible weak accumulation points are all concen-
+trated on sets of measures from P(X) with density w.r.t. λ, see Theorem 3
+in [12]. (The proof of that part of the theorem we refer to does not rely on
+the continuity of the local maps that is assumed in that paper .) Therefore
+Corollary 1 shows that all these accumulation points are ˜T -invariant prob-
+ability measures concentrated on measures with density w.r .t. λ. In other
+words, they can be interpreted as ˜P -invariant probability measures on D.
+Now Theorem 2 implies that the sequence ( µN ◦ǫ− 1
+N )N ⩾1 converges weakly
+to the point mass δu0λ in the stable regime, whereas, in the bistable regime,
+each such limit measure is of the form αδ u− r∗ λ + (1 − 2α )δu0λ +αδ ur∗ λ for
+
+=== PDF PAGE 10 ===
+10 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+someα ∈ [0, 1
+2 ] (observe the symmetry of the system). Now the correspond-
+ing assertions on the measures µN follow along known lines, for a reference
+see e.g. [12, Proposition 1]. □
+3. Proofs: the finite-size systems
+We assume throughout this section that
+(3.1) |G(x)|⩽ 0. 5 and G′(x) ⩽ 25 − 50|G(x)|for all |x|⩽ 1
+2.
+In order to apply the main theorem of Mayer [16] we must check h is as-
+sumptions (A1) – (A4) for the map T = TN . To that end deﬁne F :X N →
+[− 1
+2, 3
+2 ]N by ( F(x))i = fMr(x)(xi). Obviously T(x) = F(x) mod
+(
+Z + 1
+2
+) N ,
+and (A1) – (A4) follow readily from the following facts that w e are going to
+prove:
+Lemma 2. F : X N → [− 1
+2, 3
+2 ]N is a homeomorphism which extends to a
+diﬀeomorphism between open neighbourhoods of X N and [− 1
+2, 3
+2 ]N .
+Lemma 3. The inverse F− 1 of F is real analytic and can be continued to
+a holomorphic mapping on a complex δ-neighbourhood Ω of [− 1
+2, 3
+2 ]N such
+that T− 1(Ω) is contained in a δ′-neighbourhood of X N for some 0<δ ′<δ .
+To verify these two lemmas we need the following uniform expa nsion
+estimate which we will prove at the end of this section. (Here ∥. ∥ denotes
+the Euclidean norm.)
+Lemma 4 (Uniform expansion ). There is a constant ρ ∈ (0, 1) such that
+∥(DF(x))− 1∥ ⩽ρ for all N ∈ N and x ∈ X N .
+Proof of Lemma 2. Obviously F(X N ) ⊆ [− 1
+2, 3
+2 ]N . Hence it is suﬃcient to
+prove the assertions of the lemma for the map ˜F := 1
+2 (F − ( 1
+2,..., 1
+2 )T) :
+X N → X N . As each fMr is diﬀerentiable on ( − 1, 1) (recall that |r|< 2
+3 ),
+˜F extends to an analytic mapping from ( − 1, 1)N → RN . By Lemma 4, it is
+locally invertible on Ω ε := (− 1
+2 − ε, 1
+2 +ε)N for each suﬃciently small ε ⩾ 0.
+(Note that Ω 0 = int(X).) All we need to show is that this implies global
+invertibility of ˜F|Ω0 : Ω 0 → Ω0, because then the possibility to extend ˜F
+diﬀeomorphically to a small open neighbourhood of X N in RN follows again
+from the local invertibility on Ω ε for some ε> 0.
+So we prove the global invertibility of ˜F|Ω0 : Ω 0 → Ω0. As each ˜fMr :=
+1
+2 (fMr − 1
+2 ) : X → X is a homeomorphism that leaves ﬁxed the endpoints of
+the interval X, we have ˜F(∂X N ) ⊆ ∂X N and ˜F(Ω0) ⊆ Ω0. Observing the
+simple fact that Ω 0 is a paracompact connected smooth manifold without
+boundary and with trivial fundamental group, we only need to show that
+˜F|Ω0 : Ω 0 → Ω0 is proper in order to deduce from [3, Corollary 1] that ˜F|Ω0
+is a diﬀeomorphism of Ω 0. So let K be a compact subset of Ω 0. As ˜F|Ω0
+extends to the continuous map ˜F : X N → X N and as ˜F(∂X N ) ⊆ ∂X N ,
+
+=== PDF PAGE 11 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 11
+the set ˜F|− 1
+Ω0 (K) = ˜F− 1(K) ⊂ int(XN) ⊆ X N is closed and hence compact.
+Therefore ˜F|Ω0 : Ω 0 → Ω0 is indeed proper. □
+Proof of Lemma 3. As F is real analytic on a real neighbourhood of X N ,
+the real analyticity of F− 1 on a real neighbourhood of [ − 1
+2, 3
+2 ]N follows from
+the real analytic inverse function theorem [14, Theorem 18. 1]. It extends to
+a holomorphic function on a complex δ-neighbourhood Ω of [ − 1
+2, 3
+2 ]N – see
+e.g. the discussion of complexiﬁcations of real analytic ma ps in [14, pp.162-
+163]. If δ >0 is suﬃciently small, Lemma 4 implies that F− 1 is a uniform
+contraction on Ω. Hence the δ′ in the statement of the lemma can be chosen
+strictly smaller than δ. □
+Proof of Lemma 4. Recall that ( F(x))i = fr(x)(xi) where r(x) = G(φ(x)),
+φ(x) = 1
+N
+∑N
+i=1xi and we write fr instead of fMr . Denote g(x) = G′(φ(x)),
+∆1(x) := diag( f ′
+r(x1),...,f ′
+r(xN ))
+∆2(x) := diag( ∂f r
+∂r (x1),..., ∂f r
+∂r (xN ))
+EN :=
+
+
+
+1
+N ... 1
+N
+.
+.
+. .
+.
+.
+1
+N ... 1
+N
+
+
+
+and observe that q(x) := (4 − r2) ∂fr
+∂r (x)/f ′
+r(x) simpliﬁes to q(x) = 1 − 4x2
+so that
+∆1(x)− 1∆2(x) = 1
+4 − r2 diag (q(x1),...,q (xN )) =: 1
+4 − r2 ∆3(x) .
+Then the derivative of the coupled map F(x) = (fr(x)(x1),...,f r(x)(xN )) is
+DF(x) = ∆ 1(x) + ∆2(x)ENg(x) = ∆ 1(x)
+(
+1 + 1
+4 − r2 ∆3(x)ENg(x)
+)
+,
+with 1 denoting the identity matrix. Letting
+q = q(x) := ( q(x1),....,q (xN ))T
+eN := ( 1
+N,...., 1
+N )T
+and observing that ∆ 3(x) = diag( q(x)) so that ∆ 3(x)EN = q eT
+N , the inverse
+of DF(x) is
+DF(x)− 1 =
+(
+1 − g(x)
+4 − r2 +g(x)eT
+N q(x) q(x)eT
+N
+)
+∆1(x)− 1 .
+In order to check conditions under which F is uniformly expanding in all
+directions, it is suﬃcient to ﬁnd conditions under which ∥DF(x)− 1∥ < 1
+uniformly in x. Observe ﬁrst that ∥∆1(x)− 1∥ ⩽ (inff ′
+r)− 1 ⩽ 1
+2
+2+|r|
+2−| r|< 1 for
+|r|< 2
+3 . From now on we ﬁx a point x and suppress it as an argument to all
+functions. Then, if v is any vector in RN , some scalar multiple of it can be
+decomposed in a unique way as α v = q − p where p is perpendicular to q.
+
+=== PDF PAGE 12 ===
+12 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Denote ¯p = eT
+N p, ¯q = eT
+N q, and observe that ¯q ⩾ 0 as q has only nonnegative
+entries. We estimate the euclidian norm of ( 1 − g
+4− r2+geT
+N q q eT
+N )(α v):
+
+
+
+
+(
+1 − g
+4 − r2 +geT
+N q q eT
+N
+)
+(α v)
+
+
+
+
+2
+=
+(
+1 + g ¯p − g ¯q
+4 − r2 +g ¯q
+) 2
+∥q∥2 + ∥p∥2
+=
+(
+1 + ¯p − ¯q
+Γ + ¯q
+) 2
+∥q∥2 + ∥p∥2
+=
+(1 + Γ− 1 ¯p
+1 + Γ− 1 ¯q
+) 2
+∥q∥2 + ∥p∥2
+(3.2)
+where Γ := 4− r2
+g . As ¯p ⩽ N − 1/2∥p∥ and ¯q ⩾ N − 1∥q∥2 (observe that all
+entries of q are bounded by 1), we can continue the above estimate with
+⩽ ∥q∥2 + ∥p∥2 + 2∥p∥∥q∥ Γ− 1N − 1/2∥q∥
+(1 + Γ − 1N − 1∥q∥2)2 + ∥p∥2 Γ− 2N − 1∥q∥2
+(1 + Γ− 1N − 1∥q∥2)2
+To estimate this expression we abbreviate temporarily t :=N − 1/2∥q∥. Then
+0 ⩽t ⩽ 1, and straightforward maximisation yields:
+Γ− 1N − 1/2∥q∥
+(1 + Γ− 1N − 1∥q∥2)2 ⩽ 9
+16
+√
+3
+√
+Γ
+Γ− 2N − 1∥q∥2
+(1 + Γ− 1N − 1∥q∥2)2 ⩽ 1
+4Γ
+So we can continue the above estimate by
+(3.2) ⩽ (∥q∥2 + ∥p∥2)
+(
+1 + 9
+16
+√
+3
+√
+Γ
++ 1
+4Γ
+)
+where ∥q∥2 + ∥p∥2 = ∥α v∥2. Hence
+
+
+
+
+(
+1 − g
+1 − r +geT
+N q qeT
+N
+)
+(α v)
+
+
+
+ ⩽
+(
+1 + 9
+16
+√
+3
+√
+Γ
++ 1
+4Γ
+) 1/2
+∥α v∥
+and therefore
+∥DF− 1(x)∥ ⩽ρ :=
+(1
+2 · 2 + |r|
+2 − |r|
+) (
+1 + 9
+16
+√
+3
+√
+Γ
++ 1
+4Γ
+) 1/2
+.
+Observing Γ = 4− r2
+g one ﬁnds numerically that the norm is bounded by
+0. 99396 uniformly for all x, if − 0. 5 ⩽r ⩽ 0. 5 and 0 ⩽g ⩽ 25 − 50r. Hence
+the map F is uniformly expanding in all directions provided (3.1) hol ds. □
+
+=== PDF PAGE 13 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 13
+4. An iterated function system representation for smooth
+densities
+4.1. An invariant class of densities. The PFOs Pr allow a detailed anal-
+ysis since their action on certain densities has a convenien t explicit descrip-
+tion: Consider the family ( wy)y∈ (− 2,2) of probability densities on X given
+by
+wy(x) := 1 − y2/ 4
+(1 − xy)2 , x ∈ X.
+As pointed out in [21] (using diﬀerent parametrisations), Pe rron-Frobenius
+operators PfM of fractional-linear maps fM act on these densities via their
+duals fM #, where
+M # :=
+(
+0 1
+1 0
+)
+·M ·
+(
+0 1
+1 0
+)
+=
+(
+d c
+b a
+)
+for M =
+(
+a b
+c d
+)
+,
+in that
+(4.1) PfM (1J ·wy) =
+(∫
+J
+wydλ
+)
+·wy′ with y′ =fM #(y),
+for matrices M and intervals J ⊆ X for which fM (J) = X. (This can also
+be veriﬁed by direct calculation). Since f(0 1
+1 0)(x) = 1
+x , one can compute the
+duals
+σr(y) := fM #
+r
+(y) = 1
+fMr ( 1
+y ) = 2(y +r)
+(r + 1)y +r + 4 and
+τr(y) := fN #
+r
+(y) = 1
+fNr ( 1
+y ) = σr(y)
+1 − σr(y) = 2(y +r)
+(r − 1)y − r + 4
+(4.2)
+of the individual branches of Tr, then express Prwy as the convex combina-
+tion
+Prwy =PfMr (1[− 1
+2 ,αr) ·wy) +PfNr (1(αr , 1
+2 ] ·wy)
+=pr(y) ·wσr(y) + (1 − pr(y)) ·wτr(y),(4.3)
+with weights
+(4.4) pr(y) :=
+∫ αr
+− 1/2
+wy(x)dx = 1
+2 − r +y
+4 +ry and 1 − pr(y) = 1
+2 + r +y
+4 +ry
+It is straightforward to check that for every r ∈ (− 2, 2) the functions σr,
+τr are continuous and strictly increasing on [ − 2, 2] with images σr([− 2, 2]) =
+[− 2, 2/ 3] and τr([− 2, 2]) = [ − 2/ 3, 2].
+From this remark and (4.3) it is clear that the Pr preserve the class of
+those u ∈ D which are convex combinations u =
+∫
+(− 2,2)wydµ (y) =
+∫
+w•dµ
+of the special densities wy for some representing measure µ from P(− 2, 2).
+
+=== PDF PAGE 14 ===
+14 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+We ﬁnd that Pr acts on representing measures according to
+Pr
+(∫
+(− 2,2)
+w•dµ
+)
+=
+∫
+(− 2,2)
+w•d (L∗
+rµ ) with(4.5)
+L∗
+rµ := (pr ·µ ) ◦σ − 1
+r + ((1 − pr) ·µ ) ◦τ− 1
+r ,
+where pr ·µ denotes the measure with density pr w.r.t. µ .
+To continue, we need to collect several facts about the dual m apsσr and
+τr. We have
+(4.6) σ ′
+r(y) = 2(4 − r2)
+(ry +y +r + 4)2 and τ′
+r(y) = 2(4 − r2)
+(ry − y − r + 4)2 ,
+showing that σr and τr are strictly concave, respectively convex, on [ − 2, 2].
+One next gets readily from (4.2) that 1 /σ r − 1/τ r = 1 wherever deﬁned, and
+σr(y)<τ r(y) for y ∈ [− 2, 2]⧹{− r}
+while (and this observation will be crucial later on) σr andτr have a common
+zero zr := −r and
+(4.7) σ ′
+r(zr) = τ′
+r(zr) = 2
+4 − r2, and σr(zr +t) = 2t
+(r + 1)t + 4 − r2 .
+In the following, we restrict our parameter r to the set R =
+[
+− 4
+10, 4
+10
+]
+.
+Direct calculation proves that, letting Y :=
+[
+− 2
+3, 2
+3
+]
+, we have
+(4.8) σr(Y ) ∪ τr(Y ) ⊆ Y if r ∈ R,
+so that Y is an invariant set for all such σr and τr, and that
+(4.9) sup
+Y
+σ ′
+r =σ ′
+r
+(
+− 2
+3
+)
+⩽ 3
+4 and sup
+Y
+τ′
+r =τ′
+r
+(2
+3
+)
+⩽ 3
+4 for r ∈ R,
+which provides us with a common contraction rate on Y for the σr and τr
+from this parameter region. All these features of σr and τr are illustrated
+by Figure 2.
+We denote by w(y) := φ(wy) the ﬁeld of the density wy, and ﬁnd by
+explicit integration that
+(4.10)
+w(y) =
+(1
+4 − 1
+y2
+)
+log 1 +y/ 2
+1 − y/ 2 + 1
+y =
+∞∑
+k=0
+1
+(2k + 1)(2k + 3)
+(y
+2
+) 2k+1
+for y ∈ Y . In particular, w(0) = 0 and w′(y) ⩾ 1
+6 > 0, so the ﬁeld depends
+monotonically on y. Note also that we have, for all µ ∈ P(Y ),
+(4.11) φ
+(∫
+Y
+w•dµ
+)
+=
+∫
+Y
+∫
+X
+xwy(x)dxdµ (y) =
+∫
+Y
+wdµ.
+We focus on densities u with representing measure µ supported on Y , i.e.
+on the class D′ := { u =
+∫
+Y w•dµ : µ ∈ P(Y )}. Writing
+(4.12) rµ :=G
+(∫
+Y
+wdµ
+)
+=G(φ(u)) ∈ R,
+
+=== PDF PAGE 15 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 15
+Figure 2. The dual maps σr and τr for r = 0. 3. The small
+invariant box has endpoints γr and τr.
+and recalling (4.5), we ﬁnd that our nonlinear operator ˜P acts on the rep-
+resenting measures from P(Y ) via
+˜P
+(∫
+Y
+w•dµ
+)
+=
+∫
+Y
+w•d
+(
+˜L∗µ
+)
+with(4.13)
+˜L∗µ := L∗
+rµµ = (prµ ·µ ) ◦σ − 1
+rµ + ((1 − prµ) ·µ ) ◦τ− 1
+rµ .
+As supp( ˜L∗µ ), the support of ˜L∗µ , is contained in σr(supp(µ ))∪τr(supp(µ )),
+it is immediate from (4.8) that
+˜P D′ ⊆ D ′.
+Forr ∈ R = [ − 4
+10, 4
+10 ] we ﬁnd that σr and τr each have a unique stable
+ﬁxed point in Y , given by
+σr(γr) = γr := r
+r + 1 and τr(δr) = δr := −r
+r − 1 ,
+respectively. Note that the interval Yr := [ γr,δ r] of width 2 r2/ (1 − r2)
+between these stable ﬁxed points is invariant under both σr and τr, see the
+small boxed region in Figure 2. Furthermore, each of γr and δr is mapped
+to r under the branch not ﬁxing it, i.e.
+σr(δr) = τr(γr) = r,
+meaning that, restricted to Yr, σr and τr are the inverse branches of some
+2-to-1 piecewise fractional linear map Sr :Yr → Yr.
+The explicit Tr-invariant densities ur from (2.3) can be represented as
+ur =
+∫
+Y w•dµ r with µ r ∈ P(Yr) ⊆ P(Y ) given by
+(4.14) dµ r
+dλ (y) =
+(
+log r2 − 4
+9r2 − 4
+) − 1 1Yr (y)
+1 − y2/ 4.
+
+=== PDF PAGE 16 ===
+16 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Our goal in this section is to study the asymptotic behaviour of ˜P on D′,
+using its representation by means of the IFS ˜L∗. We will prove
+Proposition 2 ( Long-term behaviour of ˜P on D′ ). Take any u ∈ D ′,
+u =
+∫
+Y wydµ (y) for some µ ∈ P(Y ). The following is an exhaustive list of
+possibilities for the asymptotic behaviour of the sequence ( ˜L∗nµ )n⩾0:
+(1) ˜L∗nµ ≻ δ0 for some n ⩾ 0. Then ( ˜L∗nµ )n⩾0 converges to µ r∗ and
+hence ˜P nu converges to ur∗ in L1(X,λ ).
+(2) The interval conv(supp( ˜L∗nµ )) contains 0 for all n ⩾ 0. Then
+( ˜L∗nµ )n⩾0 converges toδ0 and hence ˜P nu converges tou0 inL1(X,λ ).
+In this case also the length of conv(supp( ˜L∗nµ )) tends to 0
+(3) ˜L∗nµ ≺ δ0 for some n ⩾ 0. Then ( ˜L∗nµ )n converges to µ − r∗ and
+hence ˜P nu converges to u− r∗ in L1(X,λ ).
+In the stable regime, only scenario (2) is possible, so that we always have
+convergence of ( ˜L∗nµ )n⩾0 to δ0.
+Our arguments will rely on continuity and monotonicity prop erties of the
+IFS, that we detail below, before proving Proposition 2 in Se ction 4.4.
+4.2. The IFS: continuity . Convergence in P(Y ), lim µ n = µ , will always
+mean weak convergence of measures,
+∫
+Y ρdµ n →
+∫
+Y ρdµ for bounded con-
+tinuous ρ : Y → R. Since Y is a bounded interval, this is equivalent to
+convergence in the Wasserstein-metric dW on P(Y ). If Fµ and Fν are the
+distribution functions of µ and ν, then
+(4.15) dW (µ,ν ) :=
+∫ ∞
+−∞
+|Fµ(x) − Fν (x)|dx.
+The Kantorovich-Rubinstein theorem (e.g. [6, Ch.11]) prov ides an additional
+characterisation:
+(4.16) dW (µ,ν ) = sup
+ψ: LipY [ψ]⩽1
+∫
+Y
+ψd (µ − ν)
+for any µ,ν ∈ P(Y ). Here, Lip Y [ψ ] := sup y,y′∈ Y ;y̸=y′ |ψ (y) − ψ (y′)|/ |y − y′|
+for any ψ : Y → R (and analogously for functions on other domains). We
+now see that there is a constant K > 0 (the common Lipschitz bound for
+the functions y ↦→ wy(x) on Y , where x ∈ X) such that
+
+
+
+
+∫
+Y
+w•dµ −
+∫
+Y
+w•dν
+
+
+
+
+L1(X,λ)
+⩽K ·dW (µ,ν ).(4.17)
+This means that, for densities from D′, convergence of the representing
+measures implies L1-convergence of the densities.
+We will also use the following estimate.
+Lemma 5 (Continuity of (r,µ ) ↦→L ∗
+rµ ). There are constants κ1,κ 2 > 0
+such that
+dW (L∗
+rµ, L∗
+sν) ⩽κ1dW (µ,ν ) +κ2|r − s|
+
+=== PDF PAGE 17 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 17
+for all µ,ν ∈ P(Y ) and all r,s ∈ R.
+Proof. For Lipschitz functions ψ on Y we have∫
+Y
+ψd (L∗
+rµ − L ∗
+sν) ⩽ LipY [(ψ ◦σr)pr + (ψ ◦τr)(1 − pr)] ·dW (µ,ν )
++ sup
+y∈ Y
+LipR [ψ (σ.(y))p.(y) +ψ (τ.(y))(1 − p.(y))] · |r − s|(4.18)
+Suppose that ψ is C1, with |ψ ′|⩽ 1. Then the ﬁrst Lipschitz constant is
+bounded by
+κ1 := sup
+r∈ R
+[ 
+(τr − σr) ·p′
+r
+
+
+∞ +
+
+σ ′
+r ·pr +τ′
+r ·(1 − pr)
+
+
+∞
+]
+< ∞ ,
+and the second one by
+κ2 := sup
+r∈ R
+[ 
+
+
+
+∂σ r
+∂r ·pr
+
+
+
+
+∞
++
+
+
+
+
+∂τr
+∂r ·(1 − pr)
+
+
+
+
+∞
++
+
+
+
+(τr − σr) ·∂p r
+∂r
+
+
+
+
+∞
+]
+< ∞ ,
+and the lemma follows from the Kantorovich-Rubinstein theo rem (4.16),
+since these C1 functions ψ uniformly approximate the Lipschitz functions
+appearing there. □
+Corollary 2. The operators L∗
+r, r ∈ R, and ˜L∗ are uniformly Lipschitz-
+continuous on P(Y ) for the Wasserstein metric.
+Proof. The Lipschitz-continuity of L∗
+r is immediate from Lemma 5. For ˜L∗,
+we recall from (2.9) and (4.13) that ˜L∗µ = L∗
+rµµ with rµ = G(
+∫
+Y
+wdµ ) so
+that
+|rµ − rν|⩽ Lip(G) Lip(w) dW (µ,ν ),
+which allows to conclude with Lemma 5. □
+Remark 4. Rigorous numerical bounds give κ1 ⩽ 0. 5761 and κ2 ⩽ 0. 5334.
+These estimates can be used to show that not only the individu al L∗
+r are
+uniformly contracting on P(Y ), but also (under suitable restrictions on the
+function G) ˜L∗ is a uniform contraction on P(Y ∗) where Y ∗ is a suitable
+neighbourhood of the support of µ r∗ , and µ r∗ is the representing measure
+ofur∗ withr∗ the unique positive ﬁxed point of the equation r =G(φ(ur)).
+Our treatment of ˜L∗, however, does not rely on these estimates, because it
+is based on monotonicity properties explained below.
+4.3. The IFS: monotonicity . On the space P(Y ) of probability measures
+µ,ν representing densities from D′, we introduce an order relation by deﬁn-
+ing
+(4.19) µ ⪯ν :⇔ ∀ y ∈ Y : µ (y, ∞ ) ⩽ν(y, ∞ )
+The symbols ≺ , ⪰ and ≻ designate the usual variants of ⪯. We collect a
+few elementary facts on this order relation:
+(4.20) µ ⪯ ν if and only if
+∫
+Yudµ ⩽
+∫
+Y udν for each bounded and non-
+decreasing u :Y → R.
+
+=== PDF PAGE 18 ===
+18 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+In particular, if µ ⪯ν, then
+∫
+Ywdµ ⩽
+∫
+Ywdν , and hence rµ ⩽rν as well.
+(4.21) If µ ⪯ ν and if ρ1,ρ 2 : Y → Y are non-decreasing and such that
+ρ1(y) ⩽ρ2(y) for all y, then µ ◦ρ− 1
+1 ⪯ν ◦ρ− 1
+2 .
+(4.22) If µ ⪯ν and if
+∫
+Yudµ =
+∫
+Yudν for some strictly increasing
+u :Y → R, then µ =ν.
+(4.23) Let z ∈ Y . Then δz ⪯µ if and only if supp( µ ) ⊆ [z, ∞ ).
+We also observe that the representing measures µ r of the Tr-invariant den-
+sitiesur form a linearly ordered subset of P(Y ). Routine calculations based
+on (4.14) show that
+(4.24) µ r ≺ µ s if r<s.
+Our analysis of the asymptotic behaviour of the IFS will cruc ially depend
+on the fact that the operators L∗
+r and ˜L∗ respect this order relation on P(Y ),
+as made precise in the next lemma:
+Lemma 6 (Monotonicity of (r,µ ) ↦→ L ∗
+rµ ). Letµ,ν ∈ P(Y ) andr,s ∈ R.
+a) If µ ≺ ν, then L∗
+rµ ≺ L ∗
+rν.
+b) If r<s , then L∗
+rµ ≺ L ∗
+sµ .
+c) If µ ≺ ν, then ˜L∗µ ≺ ˜L∗ν.
+Proof. Letu :Y → R be bounded and non-decreasing and recall that
+∫
+Y
+ud (L∗
+rµ ) =
+∫
+Y
+[u ◦σr ·pr +u ◦τr ·(1 − pr)]dµ.(4.25)
+a) Let µ ⪯ν. In view of (4.20) we can prove L∗µ ⪯ L ∗ν by showing that
+the integrand on the right-hand side of (4.25) is non-decrea sing. For this we
+use the facts that σr andτr are strictly increasing with σr <τ r, and that pr
+is non-increasing, since p′
+r(y) = − 4− r2
+(4+ry)2 < 0. One gets then, for x<y,
+u(σrx)pr(x) +u(τrx)(1 − pr(x))
+=u(σrx)pr(y) +u(σrx) (pr(x) − pr(y))  
+>0
++u(τrx)(1 − pr(x))
+⩽u(σrx)pr(y) +u(τrx)(pr(x) − pr(y)) +u(τrx)(1 − pr(x))
+=u(σrx)pr(y) +u(τrx)(1 − pr(y))
+=u(σry)pr(y) +u(τry)(1 − pr(y))
+− [(u(σry) − u(σrx))pr(y) + (u(τry) − u(τrx)) (1 − pr(y))].  
+⩾0
+(4.26)
+Henceµ ⪯ν implies L∗
+rµ ⪯ L ∗
+rν. Now, if u is strictly increasing, then (4.26)
+always is a strict inequality, i.e. the integrand on the righ t-hand side of
+(4.25) is strictly increasing. Therefore, µ ≺ ν implies L∗
+rµ ≺ L ∗
+rν by (4.22).
+
+=== PDF PAGE 19 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 19
+b) We must show that (4.25) is non-decreasing as a function of r. To this
+end note ﬁrst that
+∂p r(y)
+∂r = y2 − 4
+(ry + 4)2 < 0 ,(4.27)
+∂σ r(y)
+∂r = 8 − 2y2
+(ry +y +r + 4)2 > 0 ,(4.28)
+∂τr(y)
+∂r = 8 − 2y2
+(ry − y − r + 4)2 > 0 .(4.29)
+Hence, if r<s , then
+u(σrx)pr(x) +u(τrx)(1 − pr(x))
+=u(σrx)ps(x) +u(σrx) (pr(x) − ps(x))
+ 
+>0
++u(τrx)(1 − pr(x))
+⩽u(σsx)ps(x) +u(τsx)(pr(x) − ps(x)) +u(τsx)(1 − pr(x))
+=u(σsx)ps(x) +u(τsx)(1 − ps(x)) ,
+and for strictly increasing u we have indeed a strict inequality.
+c) This follows from a) and b):
+˜L∗µ = L∗
+rµµ ≺ L ∗
+rµν ⪯ L∗
+rνν = ˜L∗ν
+as rµ =G(
+∫
+Y
+wdµ ) ⩽G(
+∫
+Y wdν ) = rν by (4.20). □
+In §5.2 below, we will also make use of a more precise quantitativ e version
+of statement a). It is natural to state and prove it at this poi nt.
+Lemma 7 (Quantifying the growth of µ ↦→ L ∗
+rµ ). Suppose that α,β > 0
+are such that u′ ⩾α and τ′
+r,σ ′
+r ⩾β . Then, for µ ⪯ν,
+(4.30)
+∫
+Y
+ud (L∗
+rν) −
+∫
+Y
+ud (L∗
+rµ ) ⩾αβ
+(∫
+Y
+id dν −
+∫
+Y
+id dµ
+)
+.
+Proof. Observing that u(σry) − u(σrx) and u(τry) − u(τrx) are ⩾αβ (y − x),
+we ﬁnd for the last expression in (4.26) that
+[(u(σry) − u(σrx))pr(y) + (u(τry) − u(τrx)) (1 − pr(y))] ⩾αβy − αβx.
+This turns (4.26) into a chain of inequalities which shows th at the function
+given by v(x) := u(σrx)pr(x) +u(τrx)(1 − pr(x)) − αβx is non-decreasing.
+Hence, by (4.20), µ ⪯ν entails
+∫
+Yvdµ ⩽
+∫
+Y vdν , which is (4.30). □
+4.4. Dynamics of the IFS and the asymptotics of ˜P on D′. We are
+now going to clarify the asymptotic behaviour of ˜L∗ on P(Y ). In view of
+(4.17), this also determines the asymptotics of ˜P on D′, and hence proves
+Proposition 2.
+Our argument depends on monotonicity properties which we ca n exploit
+since the topology of weak convergence on P(Y ), conveniently given by the
+
+=== PDF PAGE 20 ===
+20 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Wasserstein metric, is consistent with the order relation i ntroduced above.
+Indeed, one easily checks:
+(4.31) If ( νn) and (¯νn) are weakly convergent sequences in P(Y ) with
+νn ⪯ ¯νn for all n, then lim νn ⪯ lim ¯νn.
+Recall from § 2.5 that, in the bistable regime, r∗ is the unique positive
+ﬁxed point of the equation r =G(φ(ur)). For convenience, we now let
+r∗ := 0 in the stable regime .
+Then, in either case, ur with representing measure µ r is ﬁxed by ˜P iﬀ r ∈
+{ 0, ±r∗}. By (4.24) we have µ − r∗ ⪯ µ 0 = δ0 ⪯ µ r∗ with strict inequalities
+in the bistable regime.
+Lemma 8 (Convergence by monotonicity ). If µ ⪯ ˜L∗µ , then µ ⪯
+˜L∗µ ⪯ ˜L∗2µ ⪯... , and the sequence ( ˜L∗nµ )n⩾0 converges weakly to a mea-
+sureµ r ⪰µ with r ∈ { 0, ±r∗}. The same holds for ⪰ instead of ⪯.
+Proof. The monotonicity of the sequence ( ˜L∗nµ )n⩾0 follows immediately
+from Lemma 6c). Because of (4.31), it implies that the sequen ce can have
+at most one weak accumulation point. Compactness of P(Y ) and continuity
+of ˜L∗ therefore ensure that ( ˜L∗nµ )n⩾0 converges to a ﬁxed point of ˜L∗, i.e.
+to one of the measures µ r withr ∈ { 0, ±r∗}, and (4.31) entails µ r ⪰µ . The
+proof for decreasing sequences is the same. □
+The following lemma strengthens the previous one considera bly. It pro-
+vides uniform control, in terms of the Wasserstein distance (4.15), on the
+asymptotics of large families of representing measures.
+Lemma 9 (Convergence by comparison ). We have the following:
+a) In the stable regime, there exists a sequence (εn)n⩾0 of positive real num-
+bers converging to zero such that
+dW ( ˜L∗nµ,δ 0) ⩽εn for µ ∈ P(Y ) and n ∈ N.
+b) In the bistable regime, for every y >0 there exists a sequence (εn)n⩾0 of
+positive real numbers converging to zero such that
+dW ( ˜L∗nµ,µ r∗ ) ⩽εn for µ ∈ P(Y ) with µ ⪰δy and n ∈ N.
+An analogous assertion holds for measures µ ⪯δ− y.
+Proof. As Y = [− 2
+3, 2
+3 ], we trivially have δ− 2/3 ⪯µ ⪯δ2/3 for all µ ∈ P(Y ).
+In particular, ˜L∗δ2/3 ⪯ δ2/3, and Lemma 8 ensures that ( ˜L∗nδ2/3)n⩾0 con-
+verges. Due to Lemma 6c), we have δ0 ⪯ µ r∗ = ˜L∗nµ r∗ ⪯ ˜L∗nδ2/3 for all
+n ⩾ 0, showing, via (4.31), that lim ˜L∗nδ2/3 = µ r∗ . In the same way one
+proves that ( ˜L∗nδ− 2/3)n⩾0 converges to µ − r∗ . For the stable regime this
+means that both sequences converge to δ0 =µ 0.
+
+=== PDF PAGE 21 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 21
+a) Assume we are in the stable regime. By the above discussion ,
+εn := dW ( ˜L∗nδ− 2/3,δ 0) + dW ( ˜L∗nδ2/3,δ 0)
+tends to zero. For any µ , (4.31) guarantees ˜L∗nδ− 2/3 ⪯ ˜L∗nµ ⪯ ˜L∗nδ2/3 for
+all n ⩾ 0. Hence F ˜L∗ nδ− 2/3
+(y) ⩾ F ˜L∗ nµ(y) ⩾ F ˜L∗ nδ2/3
+(y) for all y, proving
+dW ( ˜L∗nµ,δ 0) ⩽εn.
+b) Now consider the bistable regime. Note ﬁrst that if there i s a suitable
+sequence (εn)n⩾0 for some y >0, then it also works for all y′>y . Therefore,
+there is no loss of generality if we assume that y >0 is so small that
+(4.32) σG(w(y))(y) =
+(1
+2 + G′(0)
+12
+)
+y + O(y2)>y
+(use (4.10), (4.28) and (4.2) to see that this can be achieved .) Since
+L∗
+rδy = pr(y)δσr (y) + (1 − pr(y))δτr (y) and σr(y) < τr(y), we then have
+δ0 ≺ δy ≺ L ∗
+G(
+w(y))δy = ˜L∗δy, recall Lemma 6. Lemma 8 then implies that
+( ˜L∗nδy)n⩾0 converges to µ r∗ . In view of the initial discussion, ( ˜L∗nδ2/3)n⩾0
+converges to µ r∗ as well, so that
+εn := dW ( ˜L∗nδy,µ r∗ ) + dW ( ˜L∗nδ2/3,µ r∗ )
+deﬁnes a sequence of reals converging to zero. Now take any µ ∈ P(Y ) with
+µ ⪰δy, then ˜L∗nδ2/3 ⪰ ˜L∗nµ ⪰ ˜L∗nδy for all n ⩾ 0, and dW ( ˜L∗nµ,µ r∗ ) ⩽εn
+follows as in the proof of a) above. □
+This observation enables us to determine the asymptotics of ˜L∗nµ for any
+µ ∈ P(Y ) which is completely supported on the positive half (0 , 2/ 3] of Y
+(meaning that µ ≻ δ0, cf. (4.23)), or on its negative half [ − 2/ 3, 0).
+Corollary 3. Letµ ∈ P(Y ).
+a) In the stable regime, the sequence ( ˜L∗nµ )n⩾0 converges to δ0.
+b) In the bistable regime, if µ ≻ δ0, then the sequence ( ˜L∗nµ )n⩾0 converges
+to µ r∗ . If µ ≺ δ0, it converges to µ − r∗ .
+Proof. a) follows immediately from Lemma 9a). We turn to b): Let r :=∫
+Y wdµ . Then r > 0 because w > 0 on (0 , 2/ 3] and µ ≻ δ0. Therefore
+σr(0) > σ0(0) =0. Fix some y as in Lemma 9b), w.l.o.g. y ∈ (0,σ r(0)).
+Then δ0 ≺ δy ⪯ L ∗
+rµ = ˜L∗µ since σr and τr map supp(µ ) into [σr(0), 2/ 3],
+so that indeed dW ( ˜L∗nµ,µ r∗ ) → 0 as n → ∞ by the lemma. □
+It remains to investigate the convergence of sequences ( ˜L∗nµ )n⩾0 when
+none of these measures can be compared (in the sense of ≺ ) to δ0. To this
+end let [a0,b 0] := Y . Given a sequence of parameters r1,r 2,... ∈ R deﬁne
+an :=σrn ◦... ◦σr1(a0) and bn :=τrn ◦... ◦τr1(b0)
+for n ⩾ 1, and, for any µ =µ 0 ∈ P(Y ) = P[a0,b 0], consider the measures
+µ n := L∗
+rn ◦... ◦ L∗
+r1µ .
+
+=== PDF PAGE 22 ===
+22 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Then supp(µ n) ⊆ supp(L∗
+rnµ n− 1) ⊆ σrn([an− 1,b n− 1]) ∪ τrn([an− 1,b n− 1]) ⊆
+[an,b n] by induction. Write [ a,b ]ε := [a − ε,b +ε], where ε ⩾ 0. The next
+lemma exploits the crucial observation that the two branche sσr andτr have
+tangential contact at their common zero zr, see Figure 2.
+Lemma 10 (Support intervals close to zeroes ). There exists some
+C ∈ (0, ∞ ) such that the following holds: Suppose that (rn)n⩾1 is any given
+sequence in R. If for some ε ⩾ 0 and ¯n(ε) ⩾ 0 we have
+(♣ ε) zrn+1 ∈ [an,b n]ε for n ⩾ ¯n(ε),
+then
+(4.33)
+lim
+n→∞
+|bn − an|⩽Cε2 ,
+(4.34) lim
+n→∞
+max (|an|, |bn|) ⩽ 3
+4ε +Cε2,
+and, in case ε = 0,
+(4.35) 0 ∈ [an,b n] for n ⩾ ¯n(0) + 1.
+Proof. Letε ⩾ 0 and assume ( ♣ ε). Note that, for n ⩾ ¯n = ¯n(ε),
+if an>z rn+1, then 0 <a n+1< 3/ 4 ·ε,
+if bn<z rn+1, then − 3/ 4 ·ε<b n+1< 0,
+if an ⩽zrn+1 ⩽bn, then an+1 ⩽ 0 ⩽bn+1.
+The ﬁrst implication holds because 0 = σrn+1(zrn+1)<σ rn+1(an) = an+1 as
+σrn+1 increases strictly, and since by ( ♣ ε) we have an ∈ (zrn+1,z rn+1 +ε],
+whencean+1<ε ·supσ ′
+rn+1 ⩽ 3ε/ 4 due to (4.9). Analogously for the second
+implication. The third is immediate from monotonicity.
+Now, as σr andτr share a common zero zr, (4.9) ensures b¯n+m − a¯n+m ⩽
+3
+4 (b¯n+m− 1 − a¯n+m− 1) in case zr ∈ [a¯n+m− 1,b ¯n+m− 1]. Otherwise, note that zr
+isε-close to one of the endpoints, w.l.o.g. to a¯n+m− 1. Since σr andτr are tan-
+gent at zr, there is some C >0 s.t. 0 ⩽τr¯n+m(a¯n+m− 1) − σr¯n+m(a¯n+m− 1) ⩽
+C
+4ε2 in this case, while (4.9) controls the rest of b¯n+m − a¯n+m. In view of
+diam(Y) = 4/ 3, we thus obtain, for m ⩾ 1,
+b¯n+m − a¯n+m ⩽ 3
+4 (b¯n+m− 1 − a¯n+m− 1) + C
+4ε2 ⩽... ⩽ 4
+3
+(3
+4
+) m
++Cε2.
+Statement (4.33) follows immediately. For the asymptotic e stimate (4.34)
+on max ( |an|, |bn|) = max( −an,b n), use the above inequality plus the ob-
+servation that, by the ﬁrst two implications stated in this p roof, a¯n+m and
+−b¯n+m never exceed 3ε/ 4. Finally, if ε = 0, (4.35) is straightforward from
+(♣ ε) and the third implication above. □
+While the full strength of this lemma will only be required in the next
+subsection, the ε = 0 case enables us to now conclude the
+
+=== PDF PAGE 23 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 23
+Proof of Proposition 2. The conclusions of (1) and (3) follow from Corol-
+lary 3. If neither of these two cases applies, then the assump tion of (2) must
+be satisﬁed, and so condition ( ♣ 0) of Lemma 10 is satisﬁed with ¯ n(0) = 0.
+Hence lim n→∞ max(|an|, |bn|) = 0 by (4.34). As the ˜L∗nµ are supported in
+[an,b n], these measures must converge to δ0. □
+5. Proofs: the self-consistent PFO for the infinite-size syst em
+5.1. Shadowing densities and the asymptotics of ˜P on D. We are
+now going to clarify the asymptotics of the self-consistent PFO on the set
+D of all densities, proving
+Proposition 3 ( Long-term behaviour of ˜P on D ). For every u ∈ D ,
+the sequence ( ˜P nu)n⩾0 converges in L1(X,λ ), and
+lim
+n→∞
+˜P nu
+{
+= u0 in the stable regime,
+∈ { u− r∗,u 0,u r∗ } in the bistable regime.
+The basins { u ∈ D : limn→∞ ˜P nu =u± r∗ } of the stable ﬁxed points u± r∗ are
+L1-open.
+(The set of densities attracted to u0 in the bistable regime will be dis-
+cussed in §5.2 below.)
+We begin with some notational preparations. Throughout, we ﬁx some
+u ∈ D . The iterates ˜P nu deﬁne parameters rn := G(φ( ˜P n− 1u)) (n ⩾ 1).
+With this notation, ˜P nu =Prn...P r1u.
+We let πN , N ⩾ 1, denote the partition of X into monotonicity intervals
+of TrN ◦... ◦Tr1. Note that each branch of this map is a fractional linear
+bijection from a member of πN ontoX. Since the Tr,r ∈ R, have a common
+uniform expansion rate, we see that diam( πN ) → 0, and hence, by the
+standard martingale convergence theorem, E[u ∥σ (πN )] → u in L1(X,λ ),
+that is,
+(5.1) ηN := ∥E[u ∥σ (πN )] − u∥L1(X,λ) − → 0 as N → ∞ .
+Write
+v(N )
+k :=PrN+k...P r1 (E[u ∥σ (πN )]) for k ⩾ 0 and N ⩾ 1,
+and observe that v(N )
+k ∈ D ′ because it is a weighted sum of images of the
+constant function 1 under various fractional linear branch es (recall (4.1) and
+(4.8)).
+For N = 0 we let v(0)
+0 := ur∗ and write, in analogy to the notation
+introduced for N ⩾ 1, v(0)
+k := Prk...P r1(v(0)
+0 ) and η0 := ∥v(0)
+0 − u∥L1(X,λ).
+Obviously,v(0)
+k ∈ D ′ for all k ⩾ 0.
+
+=== PDF PAGE 24 ===
+24 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Hence there are measures µ (N )
+k ∈ P(Y ) such that v(N )
+k =
+∫
+Y w•dµ (N )
+k .
+Observe also that
+(5.2) ∥ ˜P N +ku − v(N )
+k ∥L1(X,λ) ⩽ηN for all k ⩾ 0 and N ⩾ 0,
+as ∥Pr∥ = 1 for all r, so that in particular
+(5.3) |φ(v(N )
+k ) − φ( ˜P N +ku)|⩽ηN, |G(φ(v(N )
+k )) − rN +k+1|⩽
+
+G′
+
+∞ ·ηN
+In addition, we need to understand the distances
+∆(N,k)
+n := ∥v(N )
+n+k − ˜P nv(N )
+k ∥L1(X,λ).
+which, in fact, admit some control which is uniform in k:
+Lemma 11 (Shadowing control ). There is a non-decreasing sequence
+(∆n)n⩾0 in (0, ∞ ), not depending on u ∈ D , such that
+(5.4) ∆ (N,k)
+n ⩽ηN ·∆n for k,n ⩾ 0 and N ⩾ 0
+Proof. Letr(N,k)
+n :=G(φ( ˜P n− 1v(N )
+k )), and observe that (4.17) entails
+∆(N,k)
+n =∥PrN+n+k...P rN+1+kv(N )
+k − Pr(N,k)
+n
+...P r(N,k)
+1
+v(N )
+k ∥L1(X,λ)
+⩽K ·dW (L∗
+rN+n+k... L∗
+rN+1+kµ (N )
+k , L∗
+r(N,k)
+n
+... L∗
+r(N,k)
+1
+µ (N )
+k ).
+Applying Lemma 5 repeatedly, we therefore see that
+∆(N,k)
+n ⩽Kκ 2
+n− 1∑
+i=0
+κi
+1 |rN +n+k− i − r(N,k)
+n− i |
+=Kκ 2
+n− 1∑
+i=0
+κi
+1 |G(φ( ˜P N +n+k− i− 1u)) − G(φ( ˜P n− i− 1v(N )
+k ))|
+⩽K ∥G′∥∞ κ2
+n− 1∑
+i=0
+κi
+1 ∥ ˜P N +n+k− i− 1u − ˜P n− i− 1v(N )
+k ∥L1(X,λ)
+⩽K ∥G′∥∞ κ2
+n− 1∑
+i=0
+κi
+1
+(
+ηN + ∆(N,k)
+n− i− 1
+)
+,
+where the last inequality uses (5.2). (Recall that ˜P does not contract
+on L1(X,λ ), whence the need for the ∆ (N,k)
+n− i− 1-term.) Letting Kn := 1 +
+K ∥G′∥∞ κ2
+∑n− 1
+i=0 κi
+1 and ˆ∆(N,k)
+n := max{ ∆(N,k)
+i :i = 0,...,n − 1}, we thus
+obtain
+(5.5) ˆ∆(N,k)
+n ⩽Kn ·(ηN + ˆ∆(N,k)
+n− 1 ) ⩽... ⩽ηN ·nK n
+n,
+which proves our assertion. □
+We can now complete the
+Proof of Proposition 3. We begin with the easiest situation:
+
+=== PDF PAGE 25 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 25
+The stable regime . We have to show that lim n→∞ ∥ ˜P nu − u0∥L1(X,λ) = 0.
+Take any ε> 0. Let ( εn)n⩾0 be the sequence provided by Lemma 9a), and
+K the constant from (4.17). There is some n (henceforth ﬁxed) for which
+Kεn<ε/ 3. In view of (5.1), there is some N0 such that (1 + ∆ n)ηN < 2ε/ 3
+wheneverN ⩾N0. We then ﬁnd, using (5.2), Lemma 11, and (4.17) together
+with Lemma 9a) that
+∥ ˜P N +nu − u0∥L1(X,λ) ⩽ηN + ∥v(N )
+n − ˜P nv(N )
+0 ∥L1(X,λ) +Kεn
+⩽ηN + ∆nηN +Kεn
+<ε for N ⩾N0,
+(5.6)
+which completes the proof in this case.
+The bistable regime . Given the sequence rn =G(φ( ˜P n− 1u)) as before, we
+let [an,b n] ⊆ Y be the sequence of parameter intervals from Lemma 10. Ob-
+serve that the measures representing the v(N )
+n satisfy supp(µ (N )
+n ) ⊆ [an,b n]
+for all n and N . We now distinguish two cases:
+First case: For all ε >0 we have ( ♣ ε) from Lemma 10. Then, for any
+ε > 0, the lemma ensures that there is some n (henceforth ﬁxed) with
+max (|an|, |bn|) < ε/ 4K, so that also dW (µ (N )
+n ,δ 0) < ε/ 2K, whatever N .
+Due to (5.1), ηN <ε/ 2 for N ⩾N0, and we ﬁnd, using (5.2) and (4.17),
+∥ ˜P N +nu − u0∥L1(X,λ) ⩽ηN + ∥v(N )
+n − u0∥L1(X,λ)
+⩽ηN +KdW (µ (N )
+n ,δ 0)
+<ε for N ⩾N0,
+showing that indeed ˜P nu → u0.
+Second case: there is some
+ε> 0 s.t. ( ♣ ε) is violated in that, say,
+(5.7) zrn <a n− 1 − ε
+for inﬁnitely many n. We show that this implies ˜P nu → ur∗ . (If ( ♣ ε) is
+violated in the other direction, ˜P nu → u− r∗ then follows by symmetry.)
+In view of (5.3), and since (due to µ (N )
+k ⪰ δaN+k , (4.20), and (4.11))
+φ(v(N )
+k ) ⩾φ(waN+k ) = ¯w(aN +k), we have
+rN +k+1 =G(φ( ˜P N +ku)) ⩾G(φ(v(N )
+k ) − ηN )
+⩾G(φ(v(N )
+k )) −
+
+G′
+
+∞ ηN ⩾G(
+w(aN +k)) −
+
+G′
+
+∞ ηN,
+and hence, observing that ∥ ∂σr
+∂r ∥∞ ⩽ 1 and writing ˜σ (y) := σG(w(y))(y) for
+y ∈ Y ,
+(5.8) aN +k+1 =σrN+k+1(aN +k) ⩾ ˜σ (aN +k) −
+
+G′
+
+∞ ηN
+
+=== PDF PAGE 26 ===
+26 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+for all N and k. Note that ˜ σ ′(0) = σ ′
+0(0) + ∂
+∂rσr(0)|r=0 ·G′(0) ·w′(0) =
+1
+2 + 1
+2 ·G′(0) · 1
+6 > 1, see (4.28) and (4.10). Therefore, if we ﬁx some
+ω ∈ (1, ˜σ ′(0)), there exists some a∗ > 0 such that ˜ σ (a) ⩾ ωa for all
+a ∈ (0,a ∗]. Without loss of generality, ε/ 3<a ∗.
+Now ﬁx N such that ∥G′∥∞ ηN < (ω − 1)ε/ 3, and let N +n + 1 satisfy
+(5.7). Due to (4.7), we have
+(5.9) aN +n+1 =σrN+n+1(aN +n)>σ rN+n+1(zrN+n+1 +
+ε)>ε/ 3.
+Now, if aN +n+1 ⩾a∗, then, by (5.8),
+aN +n+2 ⩾ ˜σ (aN +n+1) −
+
+G′
+
+∞ ηN
+⩾ ˜σ (a∗) − (ω − 1)
+ε/ 3
+⩾ωa ∗ − (ω − 1)a∗ =a∗ >ε/ 3.
+Otherwise, aN +n+1 ∈ (0,a ∗), and again
+aN +n+2 ⩾ ˜σ (aN +n+1) −
+
+G′
+
+∞ ηN
+>ω
+ε/ 3 − (ω − 1)ε/ 3 = ε/ 3.
+It follows inductively that lim inf kak ⩾ ε/ 3. More precisely: If N1 and
+n1 are integers such that ηN1 < ̺ := ∥G′∥∞
+− 1(ω − 1)ε/ 3 and aN1+n1 >
+zrN1+n1+1 +ε, then
+ak >ε/ 3 for k>N 1 +n1.
+In particular, if the initial density u is such that η0 = ∥ur∗ − u∥L1(X,λ)<̺ ,
+then we can take N1 = 0.
+Next, ﬁx y :=ε/ 6 ∈ (0, ε/ 3), and choose a sequence ( εn)n⩾0 according to
+Lemma 9b). Then 0 <y <a k and hence δ0 ≺ δy ⪯µ (N )
+k for k>N 1 +n1 so
+that the lemma implies dW ( ˜L∗nµ (N )
+k ,µ r∗ ) ⩽εn. Hence, by (4.17),
+∥ ˜P nv(N )
+k − ur∗ ∥L1(X,λ) ⩽K ·εn for k>N 1 +n1 and all n,N .
+We then ﬁnd, using (5.2) and Lemma 11,
+∥ ˜P N +k+nu − ur∗ ∥L1(X,λ) ⩽ηN + ∥v(N )
+k+n − ˜P nv(N )
+k ∥L1(X,λ) +K ·εn
+⩽ηN + ∆nηN +K ·εn
+(5.10)
+for k >N1 +n1 and all n,N . Now lim n→∞ ∥ ˜P nu − ur∗ ∥L1(X,λ) = 0 follows
+as in the stable case.
+It remains to prove that the basin of attraction of ur∗ isL1-open. (Then,
+by symmetry, the same is true for u− r∗ .) As ˜P isL1-continuous, it suﬃces to
+show that this basin contains an open L1-ball centered at ur∗ . To check the
+latter condition, ﬁrst notice that zr∗ < 0< supp(µ r∗ ) so that there is some
+n1 > 0 such that σ n1
+r∗ (a0)> 0. As we can assume w.l.o.g. that
+ε< |zr∗ |, we
+haveσ n1
+r∗ (a0)> zr∗ +ε, and as ˜P is L1-continuous, there is some ̺ ∈ (0,̺ )
+
+=== PDF PAGE 27 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 27
+such thatarn1 =σrn1 ◦· · · ◦σr1(a0)>z rn1 +ε whenever ∥u− ur∗ ∥L1(X,λ)<̺.
+Therefore we can continue to argue as in the previous paragra ph (using the
+presentn1 and N1 = 0) to conclude that lim n→∞ ∥ ˜P nu − ur∗ ∥L1(X,λ) = 0.
+□
+Remark 5. We just proved a bit more than what is claimed in Proposition 3 :
+another look at equation (5.10) reveals that, in the bistabl e regime, the
+stable ﬁxed point ur∗ of ˜P is even Lyapunov-stable (and the same is true for
+u− r∗ ). Indeed, ﬁx ε >0, n1 ∈ N and ̺ >0 as in the preceding paragraph.
+That choice was completely independent of the particular in itial densities
+investigated there, and the same is true of the choice of the c onstantsK, ∆ n
+andεn occuring in estimate (5.10). Now let δ >0. Choose n2 ∈ N such that
+εn2 < δ
+2K and then η := min { ̺, δ
+2(1+∆n2 ) }. Then equation (5.10), applied
+withN = 0, shows that for each u ∈ L1(X,λ ) with η0 = ∥u− ur∗ ∥L1(X,λ)<η
+and for each n ⩾ 0 holds
+∥ ˜P n1+n2+nu − ur∗ ∥L1(X,λ) ⩽η0(1 + ∆n2) +Kε n2 <δ .
+5.2. The stable manifold of u0 in the bistable regime. LetW s(u0) :=
+{ u ∈ D : ˜P nu → u0} denote the stable manifold of u0 in the space of all
+probability densities on X. Clearly, all symmetric densities u (i.e. those
+satisfying u(−x) = u(x)) belong to W s(u0), because symmetric densities
+have ﬁeld φ(u) = 0 so that also the parameter G(φ(u)) = 0, and symmetry
+is preserved under the operator P0.
+However,W s(u0) is not a big set. In the present section we prove
+Proposition 4 (The basins of u± r∗ touch W s(u0) ∩ D ′). Each density
+in W s(u0) ∩ D ′ belongs to the boundaries of the basins of ur∗ and of u− r∗ .
+We start by providing more information on the ﬁelds φ( ˜P nu) of orbits
+in W s(u0) ∩ D ′. Recall that for u =
+∫
+Y w•dµ ∈ D ′ we have ˜P nu =∫
+Y w•d( ˜L∗nµ ) (n ⩾ 0). Given such a density, we denote by Rn(u) the
+“radius” of the support of ˜L∗nµ , i.e. Rn(u) := inf { ε > 0 : supp( ˜L∗nµ ) ⊆
+[−ε,ε ]}, and let φ n(u) := φ( ˜P nu) =
+∫
+Y wd ( ˜L∗nµ ).
+Lemma 12 (Field versus support radius ). In the bistable regime, for
+eachu ∈ W s(u0) ∩ D ′ there exists a constant Cu> 0 such that
+(5.11) |φ n(u)|⩽Cu ·(Rn(u))2 for n ⩾ 0.
+Proof. In view of the explicit formula (4.10), we have w′(0) = 1
+6 andw′′(0) =
+0, and therefore see that there is some ε ∈ (0, 1
+3 ) such that for every ε ∈ (0, ε)
+and all y ∈ [− 2ε, 2ε],
+|y|
+6 ⩽ |w(y)|⩽ |y|
+6 − 6ε2 and |G(y)|> (B − cε)|y|,(5.12)
+where B :=G′(0)> 6 and c, too, is a positive constant which only depends
+on the function G. In addition, elementary calculations based on (4.2) and
+
+=== PDF PAGE 28 ===
+28 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+(4.6) show that letting κ := max(1, B+2
+6 ), ε can be chosen such that, for
+everyε ∈ (0, ε) and r ∈ [0,Bε ), also
+|σ ′
+r(y) − 1
+2 |⩽Bε , |τ′
+r(y) − 1
+2 |⩽Bε for |y|⩽ε,
+Bε ⩾τr(y) ⩾σr(y) ⩾
+(1
+2 − κε
+)
+(y +r) ⩾ 0 for y ∈ [−r,ε ], and
+0>τ r(y) ⩾σr(y) ⩾
+(1
+2 +ε
+)
+(y +r)> −Bε for y ∈ [−ε, −r).
+(5.13)
+(Recall that σr and τr share a zero at zr = −r.) Finally, note that we can
+w.l.o.g. take
+ε so small that ¯B :=
+(1
+2 − ε
+) (
+1 + B
+6 − ( 1
+3 + c
+6 )ε
+)
+∈ (1, 3]. (Due
+to Assumption I we have B ⩽ 25.)
+Consider some v =
+∫
+Y w•dν with ν ∈ P(Y ). We claim that for ε ∈ (0, ε
+κ )
+(5.14) |φ( ˜Pv )|⩾ ¯B · |φ(v)| −ε2 if supp(ν) ⊆ [−ε,ε ].
+Denoter :=G(φ(v)) which by S-shapedness of G satisﬁes |r|<Bε . In view
+of our system’s symmetry, we may assume w.l.o.g. that r ⩾ 0. According
+to (4.11) and (4.13) we have
+φ( ˜Pv ) = φ
+(∫
+Y
+w•d( ˜L∗ν)
+)
+=
+∫
+Y
+(w ◦σr) ·prdν +
+∫
+Y
+(w ◦τr) ·(1 − pr)dν
+so that, due to (5.12) and (5.13),
+∫
+Y
+(
+w ◦σr) ·prdν
+⩾
+∫
+Y
+(1[− Bε,0) ◦σr(y)
+6 − 6ε2 + 1[0,Bε] ◦σr(y)
+6
+)
+·σr(y)pr(y)dν(y)
+⩾
+∫
+Y
+( 1[− 2
+3 ,− r)(y)
+6 − 6ε2
+(1
+2 +ε
+)
++
+1[− r, 2
+3 ](y)
+6
+(1
+2 − κε
+) )
+·(y +r)pr(y)dν(y).
+Combining this with the parallel estimate for
+∫
+Y (w ◦τr) ·(1 − pr)dν, we get
+φ( ˜Pv ) ⩾
+∫
+[− 2
+3 ,− r)
+(1
+2 +ε
+)
+(y +r)
+6 − 6ε2 dν(y) +
+∫
+[− r, 2
+3 ]
+(1
+2 − κε
+)
+(y +r)
+6 dν(y).
+Continuing, we ﬁnd that
+φ( ˜Pv ) ⩾
+∫
+[− 2
+3 ,− r)
+1
+2 +ε
+6 − 6ε2 ·ydν (y) +
+∫
+[− r, 2
+3 ]
+1
+2 − κε
+6 ·ydν (y) +
+1
+2 − κε
+6 ·r
+⩾
+∫
+[− 2
+3 ,0)
+1
+2 +ε
+6 − 6ε2 ·ydν (y) +
+∫
+[0, 2
+3 ]
+1
+2 − κε
+6 ·ydν (y) +
+1
+2 − κε
+6 ·r
+⩾
+∫
+[− 2
+3 ,0)
+K ·w(y)dν(y) +
+∫
+[0, 2
+3 ]
+K ∗ ·w(y)dν(y) +
+1
+2 − κε
+6 ·r ,
+
+=== PDF PAGE 29 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 29
+whereK := ( 1
+2 +ε)/ (1 − ε2)>K ∗ := ( 1
+2 − κε)(1 − ε2). As, because of (5.12),
+φ(v) =
+∫
+Y wdν ⩽ ε
+5 , so that r =G (φ (v)) ⩾ (B − cε) ·φ (v), we conclude
+φ( ˜Pv ) ⩾φ(v)
+(
+K ∗ + ( 1
+2 − κε)(B − cε)
+6
+)
++ (K − K ∗)
+∫
+[− 2
+3 ,0)
+w(y)dν(y)
+⩾φ(v)
+(1
+2 − ε
+) (
+1 + B
+6 −
+(1
+3 + c
+6
+)
+ε
+)
+− ε2 = ¯B ·φ(v) − ε2,
+sinceK − K ∗ ⩽ 3ε and |w(y)|⩽ ε
+3 whenever |y|⩽ε ⩽ 1
+3 . This proves (5.14).
+Now take any u ∈ W s(u0) ∩ D ′. Then φ n(u) → 0, and the second alterna-
+tive of Proposition 2 applies, so that Rn(u) ⩽ε/κ and (1+2BRn(u))2 ⩽ ¯B+1
+2
+for all n larger than some nε. In particular,
+(5.15) Rn+1(u)2 ⩽ (1 + 2BRn(u))2Rn(u)2 ⩽
+¯B + 1
+2 Rn(u)2
+for these n in view of (5.13). Applying, for n ⩾ nε, the estimate (5.14) to
+v := ˜P nu and ε :=Rn(u), we obtain
+|φ n+1(u)|⩾ ¯B · |φ n(u)| −(Rn(u))2 for n ⩾nε.
+Suppose for a contradiction that ( Rn(u))2 < ¯B− 1
+2 |φ n(u)|for some n > nε.
+Then |φ n+1(u)|> ¯B+1
+2 |φ n(u)|, and therefore ( Rn+1(u))2 ⩽ ¯B+1
+2 (Rn(u))2 <
+¯B− 1
+2
+¯B+1
+2 |φ n(u)|< ¯B− 1
+2 |φ n+1(u)|. We can thus continue inductively to see
+that |φ n(u)|< |φ n+1(u)|< |φ n+2(u)|< ... which contradicts φ n(u) → 0.
+Therefore |φ n(u)|⩽ 2
+¯B− 1 (Rn(u))2 for all n > nε, and the assertion of our
+lemma follows. □
+Lemma 13 (W s(u0) is a thin set for the order ≺ ). In the bistable
+regime, if u =
+∫
+Y w•dµ and v =
+∫
+Y w•dν are densities in D′ with µ ≺ ν,
+then at most one of u and v can belong to W s(u0).
+Proof. Suppose that u ∈ W s(u0). We are going to show that ˜P nv → ur∗ ,
+i.e. ˜L∗nν → µ r∗ as n → ∞ .
+Assume for a contradiction that also v ∈ W s(u0). We denote the param-
+eters obtained from u by rn,µ :=G(φ( ˜P n− 1u)) = G(
+∫
+Y wd ( ˜L∗(n− 1)µ )), and
+deﬁne rn,ν analogously. Then our assumption implies that lim n→∞ rn,µ =
+limn→∞ rn,ν = 0.
+In view of (4.10), w′ ⩾ 1
+6 , and one checks immediately that inf Y σ ′
+0 = 18
+49 >
+1
+3 so that there is n0 > 0 such that inf Y σ ′
+rn,µ ⩾ 1
+3 for all n ⩾ n0. Because
+of the strict monotonicity of ˜L∗ (Lemma 6) we have ˜L∗n0µ ≺ ˜L∗n0ν, so that
+(replacing µ and ν by these iterates) we can assume w.l.o.g. that n0 = 0.
+Denote L∗(n)
+µ := L∗
+rn,µ ◦ · · · ◦ L∗
+r1,µ so that ˜L∗nµ = L∗(n)
+µ µ and (µ ↦→ rµ being
+non-decreasing) ˜L∗nν ⪰ L ∗(n)
+µ ν for n ⩾ 1. Therefore
+
+=== PDF PAGE 30 ===
+30 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+rn,ν − rn,µ ⩾G
+(∫
+Y
+wd (L∗(n)
+µ ν)
+)
+− G
+(∫
+Y
+wd (L∗(n)
+µ µ )
+)
+⩾ inf
+X
+G′ ·
+(∫
+Y
+wd (L∗(n)
+µ ν) −
+∫
+Y
+wd (L∗(n)
+µ µ )
+)
+.
+In view of the lower bounds for w′ and σ ′
+rn,µ,τ ′
+rn,µ, repeated application of
+the estimate (4.30) from Lemma 7 yields
+(5.16) rn,ν − rn,µ ⩾ inf XG′
+6 ·3n
+∫
+Y
+id d(ν − µ ).
+Observe that the last integral is strictly positive because µ ≺ ν, cf. (4.22).
+On the other hand, due to Proposition 2 there are εn ց 0 such that
+supp( ˜L∗nµ ) ∪ supp( ˜L∗nν) ⊆ [−εn,ε n],
+and as σ ′
+0(0) = 1
+2 < 5
+9 and rn,µ,r n,ν → 0 (whence also zrn,µ,z rn,ν → z0 = 0),
+there exists a constant C > 0 such that εn ⩽ C( 5
+9 )n for n ⩾ n′. Hence
+|φ n(u)|, |φ n(v)|⩽ max{ Cu,C v} ·C 2( 25
+81 )n for n ⩾ n′ by Lemma 12, and as
+rn,ν − rn,µ ⩽ supw′·(|φ n(u)|+|φ n(v)|), this contradicts the previous estimate
+(5.16). □
+We can now conclude this section with the
+Proof of Proposition 4. Suppose that u =
+∫
+w•dµ ∈ W s(u0). For t ∈ (0, 1)
+let u(t) :=
+∫
+Y w•d((1 − t)µ +tδ2/3) ∈ D ′. Then u(t) ≻ u, hence u(t) ̸∈
+W s(u0) by the previous proposition. Therefore, due to Propositio n 2 and
+monotonicity of ˜L∗, for any t, ˜P nu(t) converges to ur∗ ≻ u0 as n → ∞ .
+On the other hand, lim t→ 0 ∥u − u(t)∥L1(X,λ) = 0, so u is in the boundary
+of the basin of ur∗ . Replacing δ2/3 byδ− 2/3 yields the corresponding result
+for the basin of u− r∗ . □
+5.3. Diﬀerentiability of ˜P at C2-densities. As ˜P is based on a parametrised
+family of PFOs where the branches of the underlying map (and not only their
+weights) depend on the parameter, it is nowhere diﬀerentiabl e, neither as
+an operator on L1(X,λ ) nor as an operator on the space BV( X) of (much
+more regular) functions of bounded variation on X. On the other hand, as
+the branches of the map and their parametric dependence are a nalytic, one
+can show that ˜P is diﬀerentiable as an operator on the space of functions
+that can be extended holomorphically to some complex neighb ourhood of
+X ⊆ C.
+Here we will focus on a more general but slightly weaker diﬀere ntiability
+statement.
+Lemma 14 (Diﬀerentiability of ˜P at C 2-densities). Letu ∈ C 2(X) be
+a probability density w.r.t. λ and let g ∈ L1(X,λ ) have
+∫
+Xgdλ = 0. Then
+(5.17) ∂
+∂τ
+˜P (u +τg)|τ =0 =Pr(g) +wr(u) ·G′(φ(u))φ(g)
+
+=== PDF PAGE 31 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 31
+wherer =G(φ(u)), wr(u) := Pr ((uv r)′), and vr(x) = 4x2− 1
+4− r2 . If we consider
+˜P as an operator from BV(X) to L1(X,λ ), then ˜P is even diﬀerentiable at
+each probability density u ∈ C 2(X) ⊂ BV(X) and
+(5.18) D ˜P |u =Pr +G′(φ(u))wr(u) ⊗ φ .
+Proof. In order to simplify the notation deﬁne a kind of transfer ope rator
+L by Lu := u +u ◦ f(1 1
+0 1) and note that ( Lu)′ = Lu′. Observing that
+fN − 1
+r
+=fM − 1
+r
+◦f(1 1
+0 1), we have Pru =L(u ◦fM − 1
+r
+·f ′
+M − 1
+r
+). Deﬁne
+(5.19) vr(x) :=
+(∂
+∂rfM − 1
+r
+)
+(fMr (x)) = 4x2 − 1
+4 − r2 .
+For a function u ∈ C 2(X) denote by U the antiderivative of u. Then
+u ◦fM − 1
+s
+·f ′
+M − 1
+s
+− u ◦fM − 1
+r
+·f ′
+M − 1
+r
+=
+(
+U ◦fM − 1
+s
+− U ◦fM − 1
+r
+) ′
+=
+(
+(s − r) · ∂
+∂r (U ◦fM − 1
+r
+) +Rs,r
+) ′(5.20)
+where
+Rs,r(x) :=
+∫ s
+r
+(s − t) ∂ 2
+∂t 2 (U (fM − 1
+t
+(x)))dt .
+As ∂
+∂r (U ◦fM − 1
+r
+) = u ◦fM − 1
+r
+· ∂
+∂rfM − 1
+r
+= (uv r) ◦fM − 1
+r
+, we have
+(∂
+∂r (U ◦fM − 1
+r
+)
+) ′
+= (uv r)′ ◦fM − 1
+r
+·f ′
+M − 1
+r
+.
+Together with (5.20) this yields
+Psu − Pru =L
+(
+u ◦fM − 1
+s
+·f ′
+M − 1
+s
+− u ◦fM − 1
+r
+·f ′
+M − 1
+r
+)
+= (s − r)L
+(
+(uv r)′ ◦fM − 1
+r
+·f ′
+M − 1
+r
+)
++L
+(
+R′
+s,r
+)
+= (s − r)Pr
+(
+(uv r)′)
++L
+(
+R′
+s,r
+)
+and |L(R′
+s,r)(x)|⩽ C (s − r)2 with a constant that involves only the ﬁrst
+two derivatives of u.
+Now let u ∈ C 2(X) be a probability density, and let g ∈ L1(X,λ ) be such
+that
+∫
+gdλ = 0. Let r :=G(φ(u)) and s :=G(φ(u +g)). Then
+˜P (u +g) − ˜P (u) = (Psu − Pru) +Prg + (Psg − Prg)
+= (s − r)Pr
+(
+(uv r)′)
++Pr(g) + (Psg − Prg) +L(R′
+s,r) .
+(5.21)
+This implies at once formula (5.17) for the directional deri vative, and as
+∥Psg − Prg∥1 → 0 (s → r) uniformly for g in the unit ball of BV( X), also
+(5.18) follows at once. □
+
+=== PDF PAGE 32 ===
+32 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+Proposition 5 (u ≡ 1 is a hyperbolic ﬁxed point of ˜P ). In the bistable
+regime,u ≡ 1 is a hyperbolic ﬁxed point of ˜P |D∩ BV(X) in the following sense:
+the derivative of ˜P : D ∩ BV(X) → L1(X,λ ) atu ≡ 1 has a one-dimensional
+unstable subspace and a codimension 1 stable subspace.
+Proof. LetQ :=D ˜P |u≡ 1. As G′(0) = B andw0(1) = P0[2x] = [x], it follows
+from (5.18) that Q =P0 +B [x]⊗ φ. (Here [2x] denotes the function x ↦→ 2x,
+etc.) Observe now that φ([x]) = 1
+12 . Then Q[x] = P0[x] + B
+12 [x] = ( 1
+2 + B
+12 )[x]
+so that, for B > 6, Q has the unstable eigendirection [ x] with eigenvalue
+λ := 1
+2 + B
+12 > 1. On the other hand, as φ(1) = 0, we have Q1 = P01 = 1,
+so the constant density 1 is a neutral eigendirection, and ﬁn ally, for f ∈
+ker(φ) ∩ ker(λ), we have Qf =P0f , so Var(Qf ) ⩽ 1
+2 Var(f ). □
+6. The noisy system
+In Theorem 3 we proved that, in the bistable regime, each weak accumu-
+lation point of the sequence ( µN ◦ǫ− 1
+N )N ⩾1 is of the form αδ u− r∗ λ + (1 −
+2α )δu0λ +αδ ur∗ λ for some α ∈ [0, 1
+2 ], i.e. that the stationary states of the
+ﬁnite-size systems approach a mixture of the stationary sta tes of the inﬁnite-
+size system. It is natural to expect that actually α = 1
+2 , meaning that any
+limit state thus obtained is a mixture of stable stationary states of ˜P . While
+we could not prove this for the model discussed so far, we now a rgue that
+this conjecture can be veriﬁed if we add some noise to the syst ems.
+At each step of the dynamics we perturb the parameter of the si ngle-site
+maps by a small amount. To make this idea more precise, let
+r(Q,t ) = G(φ(Q) +t) for Q ∈ P(X) and t ∈ R, in particular
+r(x,t ) = G(φ(x) +t) for x ∈ X N and t ∈ R.(6.1)
+Letη1,η 2,... be i.i.d. symmetric real valued random variables with commo n
+distribution ̺ and |ηn|⩽ε. For n = 1, 2,... and x ∈ X N let us deﬁne the
+X N -valued Markov process ( ξn)n∈ N byξ0 = x and
+(6.2) ξn+1 =Tr(ξn,ηn+1)(ξn).
+Assume now that the distribution of ξn has density hn w.r.t. Lebesgue
+measure on X N . Then routine calculations show that the distribution of
+ξn+1 has density
+∫
+RPN,thnd̺(t) where PN,t is the PFO of the map TN,t :
+X N → X N , ( TN,t(x))i = Tr(x,t)(xi). It is straightforward to check that,
+for suﬃciently small ε, Lemmas 2 – 4 from Section 3 carry over to all TN,t
+(|t|⩽ε) with uniform bounds, and that
+∫
+X N |PN,tf −PN,0f |dλ N ⩽ constN ·ε·
+Var(f ) so that the perturbation theorem of [11] guarantees that th e process
+(ξn)n∈ N has a unique stationary probability µN,ε whose density w.r.t. λ N
+tends, in L1(X N,λ N ), to the unique invariant density of TN asε → 0. This
+convergence is not uniform in N , however. Nevertheless, folklore arguments
+show that there is some ˜ ε >0 such that, for all ε ∈ (0, ˜ε) and all N ∈ N
+the absolutely continuous stationary measure µN,ε is unique so that the
+
+=== PDF PAGE 33 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 33
+symmetry properties of the maps Tr and the random variables ηn guarantee
+that µN,ε is symmetric in the sense that its density hN,ε satisﬁes hN,ε(x) =
+hN,ε(−x).
+On the other hand, for each ﬁxed ε > 0, all weak limit points of the
+measures µN,ε ◦ǫ− 1
+N as N → ∞ are stationary probabilities for the P(X)-
+valued Markov process (Ξ n)n∈ N deﬁned by
+(6.3) Ξ n+1 = Ξ n ◦T − 1
+r(Ξn,ηn+1) ,
+compare the deﬁnition of ˜T : P(X) → P(X) in (2.9). The proof is completely
+analogous to the corresponding one for the unperturbed case (see Lemma 1
+and Corollary 1). For ε ∈ (0, ˜ε) the symmetry of the µN,ε carries over to
+these limit measures Q in the sense that Q(A) = Q{ ˆµ : µ ∈ A} for each
+Borel measurable set A ⊆ P(X) where ˆµ(U ) := µ (−U ) for all Borel subsets
+U ⊆ X.
+The following proposition then shows that, in the bistable r egime and for
+smallε> 0 and large N , the measures µN,ε are weakly close to the mixture
+1
+2
+(
+(u− r∗λ)N + (ur∗λ)N)
+of the stable states for ˜P ; compare also Theorem 3.
+Proposition 6 (Invariant measures for inﬁnite-size noisy systems ).
+Suppose G′(0) > 6 so that we are in the bistable regime and recall that the
+ηn are symmetric random variables.
+Then, for every δ >0 there is ε0 > 0 such that for each ε ∈ (0,ε 0) the
+stationary distribution Qε of Ξn on P(X) is supported on the set of mea-
+suresu ·λ ∈ P(X) which have density u =
+∫
+Y w•dµ ∈ D ′ with representing
+measuresµ ∈ P(Y ) satisfying dW (µ, 1
+2 (µ − r∗ +µ r∗ )) ⩽δ.
+Sketch of the proof. LetQ be a stationary distribution of Ξ n that occurs as
+a weak limit of the measures µN,ε. So Q is symmetric. Just as in the proof
+of Theorem 3, where the “zero noise limit”, namely the transf ormation ˜T
+is treated, one argues that Q is supported by the set of measures u ·λ,
+u ∈ D . Arguing as in the derivation of (5.2) one shows that densiti es in
+the support of Q can be approximated in L1(X,λ ) by densities from D′,
+and the stationarity of Q implies that Q is indeed supported by measures
+with densities from D′. Therefore the process (Ξ n)n⩾0 can be described by
+the transfer operator ˜L∗
+ε of an iterated function system on Y just as the
+self-consistent PFO ˜P is described by the operator ˜L∗ in equation (4.13).
+The only diﬀerence is that in this case one ﬁrst chooses the par ameterr ran-
+domly,r =G(
+∫
+Y
+wdµ +ηn+1) and then the branch σr orτr with respective
+probabilities pr(y) and (1 − pr(y)).
+Let y > 0 be such that P{ ηn > y} > 0. Suppose now that for some
+realisation of the process (Ξ n)n⩾0 the numbers r(Ξn,η n+1) satisfy condition
+(♣ ε) of Lemma 10 for all ε> 0. Then it follows, as in the proof of Proposi-
+tion 2, that lim n→∞ rn(Ξn,η n+1) = 0 and the measures Ξ n converge weakly
+to λ so that also lim n→∞ r(Ξn, 0) = 0. As ηn >y > 0 for inﬁnitely many n
+almost surely, both limit cannot be zero at the same time, and we conclude
+
+=== PDF PAGE 34 ===
+34 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+that almost surely there is some ε >0 such that ( ♣ ε) is not satisﬁed. In
+particular, there are ¯ε> 0 and ¯n ∈ N such that ( ♣ ¯ε) is violated for n = ¯n− 1
+with some positive probability κ.
+Let Ξ n =hn ·λ withhn =
+∫
+Y w•dνn. (So hn andνn are random objects.)
+As in (5.9) we conclude that sup supp( ν¯n)< − ¯ε/ 3 or inf supp( ν¯n)> ¯ε/ 3 in
+this case. Without loss of generality we assume that the latt er happens with
+probability at least κ
+2 .
+Next, as in (4.32) we may choose y ∈ (0, ¯ε/ 3) so small that 0 < y <
+y1 :=σG(w(y))(y) ⩽ inf supp( ˜L∗δy). Hence, for reasons of continuity, there is
+ε1 > 0 such that also y ⩽ inf supp( ˜L∗
+εδy) if ε ∈ [0,ε 1). Therefore, in view of
+the monotonicity of the operator ˜L∗
+ε, we can conclude that inf supp( νn) ⩾y
+for all n ⩾ ¯n with probability at least κ
+2 . Now ﬁx δ >0. By Lemma 9b there
+is some (non-random) n1 ∈ N such that dW ( ˜L∗n1νn,µ r∗ ) ⩽ δ
+2 for all n ⩾ ¯n
+with probability at least κ
+2 . But then, by continuity reasons again, there is
+ε0 ∈ (0,ε 1) such that dW (νn+n1,µ r∗ ) < δfor all n ⩾ ¯n with probability at
+least κ
+2 . The claim of the proposition follows now, because (Ξ n)n is a Markov
+process and because the stationary distribution Q is symmetric. □
+Appendix A. Some technical and numerical results
+A.1. Proof of Lemma 1. It suﬃces to prove the convergence for evalua-
+tions of any Lipschitz continuous function ϕ deﬁned on X. Let us denote
+rn = r(Qn) (resp. r = r(Q)), and α n (resp. α ) the discontinuity point of
+Trn (resp. Tr). Recall that α n = − rn
+4 (resp. α = − r
+4 ).
+Let us ﬁx ε> 0. Q being non-atomic, there exists δ >0 such that the in-
+tervalU := [c−δ,c +δ] is of Q-measure smaller thatε. The weak convergence
+ofQn toQ implies thatcn tends toc, and that lim sup n→ +∞ Qn(U ) ⩽Q(U ).
+Let us choose n0 such that for all n ⩾n0, |cn − c|< δ
+2 andQn(U )<ε . One
+then has
+⏐
+⏐
+⏐
+∫
+X
+ϕd ( ˜TQ ) −
+∫
+X
+ϕd ( ˜TQ n)
+⏐
+⏐
+⏐ =
+⏐
+⏐
+⏐
+∫
+X
+ϕ ◦TrdQ −
+∫
+X
+ϕ ◦TrndQn
+⏐
+⏐
+⏐
+⩽
+⏐
+⏐
+⏐
+∫
+X
+ϕ ◦Trd(Q − Qn)
+⏐
+⏐
+⏐ +
+⏐
+⏐
+⏐
+∫
+U c
+(ϕ ◦Trn − ϕ ◦Tr)dQn
+⏐
+⏐
+⏐
++
+⏐
+⏐
+⏐
+∫
+U
+(ϕ ◦Trn − ϕ ◦Tr)dQn
+⏐
+⏐
+⏐
+⩽
+⏐
+⏐
+⏐
+∫
+X
+ϕ ◦Trd(Q − Qn)
+⏐
+⏐
+⏐ + Lip(ϕ ) sup
+U c
+|Trn − Tr|+ 2ε∥ϕ ∥∞
+(A.1)
+Since the application ϕ ◦Tr as a single discontinuity point, which is of zero
+Q-measure, the ﬁrst term converges to zero. The second one als o goes to
+zero since it measures the dependence of Tr on its parameter away from the
+discontinuity point (one can make an explicit computation) .
+A.2. The ﬁelds of the densities ur. We start with some observations on
+the function ψ (r) := φ(ur) that are based on symbolic computations and on
+
+=== PDF PAGE 35 ===
+GLOBALLY COUPLED MAPS WITH BISTABLE THERMODYNAMIC LIMIT 35
+Figure 3. The functions ψ (r) := φ(ur) (left), Q(r) :=
+ψ′′(r)
+(ψ′(r))2 (centre), and H(r) = A tanh( B
+Aφ(ur)) with A = 0. 4
+and B = 8 (right).
+numerical evaluations. One ﬁnds
+(A.2) ψ (r) = 1
+r +
+log
+(
+4+4 r− 3 r2
+4− 4 r− 3 r2
+)
+log
+(
+4− 9 r2
+4− r2
+) = r
+6 + 7r3
+40 + 461r5
+2016 + 4619r7
+13440 +... .
+From this numerical evidence (see Figure 3 for a plot) it is cl ear that, for
+r ∈ [0, 0. 4],
+ψ (r) ⩾ r
+6, and
+ψ ′′(r)
+(ψ ′(r))2 = 189r
+5 − 12862r3
+175 + 44487r5
+500 − 346403009r7
+4042500 +... ⩽ 189
+5 r.
+Hence H ′(r) = G′(ψ (r))ψ ′(r) ⩽G′( r
+6 )ψ ′(r). As
+H ′′= (G ◦ψ )′′=
+(G′′
+G′ ◦ψ + ψ ′′
+(ψ ′)2
+)
+·(ψ ′)2 ·(G′ ◦ψ ) ,
+H ′′(r) ⩽ 0 follows provided G′′(ψ(r))
+G′(ψ(r)) ⩽ − 189
+5 r. Therefore, assumption (2.12)
+is fulﬁlled, if
+(A.3) G′(x) ⩽ 1
+ψ ′(6x) or if G′′(x)
+G′(x) ⩽ − 189
+5 ·6x
+ForG(x) = A tanh( B
+Ax), in which caseG′(x) = B/ cosh( B
+Ax)2 and G′′(x)
+G′(x) =
+− 2 B
+A tanh( B
+Ax) this can be checked numerically. (Observe that 0 ⩽A ⩽ 0. 4
+and distinguish the cases B =G′(0) ⩽ 6 and B >6.) For an illustration see
+the rightmost plot of H(r) in Figure 3.
+References
+[1] O. Bandtlow, O. Jenkinson, Invariant measures for real analytic expanding maps , J.
+London Math. Soc. 75 (2007), 343-368.
+[2] T. Chawanya, S. Morita, On the bifurcation structure of the mean-ﬁeld ﬂuctuation in
+the globally coupled tent map systems , Physica D 116 (1998), 44-70.
+
+=== PDF PAGE 36 ===
+36 JEAN-BAPTISTE BARDET, GERHARD KELLER AND ROLAND ZWEIM ¨ULLER
+[3] G. Chichilnisky, Topology and invertible maps , Adv. Appl. Mathematics 21 (1998),
+113-123.
+[4] D.A. Dawson, J. G¨ artner, Large deviations from the McKean-Vlasov limit for weakly
+interacting diﬀusions , Stochastics, 20 (1987), 247-308.
+[5] R. de la Llave, Invariant manifolds associaed to invariant subspaces with out invariant
+complements: a graph transform approach, Mathematical Physics Electronic Journal 9
+(2003), Paper 3. (http://www.ma.utexas.edu/mpej/Vol/9/ 3.ps)
+[6] R. Dudley, Real Analysis and Probability, Cambridge Uni v. Press (2002).
+[7] S.V. Ershov, A.B. Potapov, On mean ﬁeld ﬂuctuations in globally coupled maps , Phys-
+ica D 86 (1995), 523-558.
+[8] E. J¨ arvenp¨ a¨ a,An SRB-measure for globally coupled analytic expanding cir cle maps,
+Nonlinearity 10 (1997), 1435-1469.
+[9] K. Kaneko, Globally coupled chaos violates the law of large numbers but not the central
+limit theorem, Phys. Rev. Letters 65 (1990), 1391-1394.
+[10] K. Kaneko, Remarks on the mean ﬁeld dynamics of networks of chaotic elem ents,
+Physica D 86 (1995), 158-170.
+[11] G. Keller, Stochastic stability in some chaotic dynamical systems , Monatshefte Math.
+94 (1982), 313-333.
+[12] G. Keller, An ergodic theoretic approach to mean ﬁeld coupled maps , Progress in
+Probability, Vol. 46 (2000), 183-208.
+[13] G. Keller, Mixing for ﬁnite systems of coupled tent maps , Proc. Steklov Inst. Math.
+216 (1997), 315-321.
+[14] S.G. Krantz, H.R. Parks, A Primer of Real Analytic Funct ions, Sec. ed., Birkh¨ auser
+(1992).
+[15] K. Krzyzewski, W. Szlenk, On invariant measures for expanding diﬀerentiable map-
+pings, Stud. Math. 33 (1969), 83-92.
+[16] D.H. Mayer, Approach to equilibrium for locally expanding maps in Rk, Commun.
+Math. Phys. 95 (1984), 1-15.
+[17] N. Nakagawa, T.S. Komatsu, Dominant collective motion in globally coupled tent
+maps, Phys. Rev. E 57 (1998) 1570.
+[18] N. Nakagawa, T.S. Komatsu, Conﬁned chaotic behavior in collective motion for pop-
+ulations of globally coupled chaotic elements , Phys. Rev E 59 (1999), 1675-1682.
+[19] C. P¨ otzsche, S. Siegmund, C m-smoothness of invariant ﬁber
+bundles, Topol. Methods Nonlinear Anal. 24 (2004), 107-145.
+(http://www.math.uni-frankfurt.de/∼siegmund/preprints/03hPoeSie.ps)
+[20] D. Ruelle, Zeta-functions for expanding maps and Anosov ﬂows , Inventiones math.
+34 (1976), 231-242.
+[21] F. Schweiger, Invariant measures for piecewise fractional linear maps . J. Austral.
+Math. Soc. Ser. A 34 (1983), 55-59.
+[22] A.S. Sznitman, Alain-Sol, Topics in propagation of chaos. Ecole d’Ete de Probabilites
+de Saint-Flour XIX—1989 , Lecture Notes in Math., 1464, 165–251,Springer, Berlin,
+1991.
+J.-B. Bardet: IRMAR, Universit ´e Rennes 1, Campus de Beaulieu, 35042
+Rennes Cedex, France and LMRS, Universit ´e de Rouen, A venue de l’Universit´e,
+BP.12, Technop ˆole du Madrillet, 76801 Saint- ´Etienne-du-Rouvray, France;
+G. Keller: Department Mathematik, Universit ¨at Erlangen-N¨urnberg, Bismar-
+ckstr. 1 1/2, 91054 Erlangen, Germany;
+R. Zweim¨uller: F akult¨at f ¨ur Mathematik, Universit¨at Wien, Nordbergstrasse
+15, 1090 Wien, Austria.
+E-mail address: jean-baptiste.bardet@univ-rouen.fr, keller@mi.uni-er langen.de,
+roland.zweimueller@univie.ac.at

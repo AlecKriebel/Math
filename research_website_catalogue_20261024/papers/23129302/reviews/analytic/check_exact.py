@@ -6,7 +6,7 @@ import sympy as s
 O=Path(__file__).resolve().parent
 checks=[]
 def same(name,left,right):
- result=s.cancel(left-right)
+ result=s.factor(left-right)
  if result!=0:raise RuntimeError((name,str(result)))
  checks.append({'name':name,'kind':'exact_symbolic_identity','verified':True})
 x,z,r,y,a=s.symbols('x z r y a',real=True)
@@ -47,7 +47,8 @@ sigma=2*(y+r)/((r+1)*y+r+4)
 tau=2*(y+r)/((r-1)*y-r+4)
 weight=s.Rational(1,2)-(r+y)/(4+r*y)
 w=lambda parameter,coordinate:(1-parameter**2/4)/(1-coordinate*parameter)**2
-same('invariant_convex_density_family',w(y,b(z,r))*s.diff(b(z,r),z)+w(y,b(z+1,r))*s.diff(b(z+1,r),z),weight*w(sigma,z)+(1-weight)*w(tau,z))
+same('invariant_density_lower_branch',w(y,b(z,r))*s.diff(b(z,r),z),weight*w(sigma,z))
+same('invariant_density_upper_branch',w(y,b(z+1,r))*s.diff(b(z+1,r),z),(1-weight)*w(tau,z))
 for name,t,den in [('sigma',sigma,(r+1)*y+r+4),('tau',tau,(r-1)*y-r+4)]:
  same(name+'_positive_y_derivative',s.diff(t,y),2*(4-r*r)/den**2)
  same(name+'_positive_r_derivative',s.diff(t,r),2*(4-y*y)/den**2)
