@@ -1,0 +1,2013 @@
+                       Stochastic Processes and their Applications 120 (2010) 223–254
+                                                                                         www.elsevier.com/locate/spa
+
+
+
+
+                   Discretizing the fractional Lévy areaI
+                      A. Neuenkirch a,∗ , S. Tindel b , J. Unterberger b
+              a TU Dortmund, Fakultät für Mathematik, Vogelpothsweg 87, D-44227 Dortmund, Germany
+      b Institut Élie Cartan Nancy, Université de Nancy 1, B.P. 239, 54506 Vandœuvre-lès-Nancy Cedex, France
+
+          Received 3 February 2009; received in revised form 29 September 2009; accepted 10 October 2009
+                                         Available online 18 October 2009
+
+
+
+
+Abstract
+
+   In this article, we give sharp bounds for the Euler discretization of the Lévy area associated to a d-
+dimensional fractional Brownian motion. We show that there are three different regimes for the exact root
+mean square convergence rate of the Euler scheme, depending on the Hurst parameter H ∈ (1/4, 1). For
+H < 3/4 the exact convergence rate is p    n −2H +1/2 , where n denotes the number of the discretization
+subintervals, while for H = 3/4 it is n −1 log(n) and for H > 3/4 the exact rate is n −1 . Moreover, we
+also show that a trapezoidal scheme converges (at least) with the rate n −2H +1/2 . Finally, we derive the
+asymptotic error distribution of the Euler scheme. For H ≤ 3/4 one obtains a Gaussian limit, while for
+H > 3/4 the limit distribution is of Rosenblatt type.
+ c 2009 Elsevier B.V. All rights reserved.
+
+MSC: Primary 60H35; Secondary 60H07; 60H10; 65C30
+
+Keywords: Fractional Brownian motion; Lévy area; Discretization schemes; Asymptotic error distribution
+
+
+1. Introduction and main results
+
+   Let B = (B (1) , . . . , B (d) ) be a d-dimensional fractional Brownian motion (fBm) with Hurst
+parameter H ∈ (1/4, 1) indexed by R, i.e. B is composed of d independent centered Gaussian
+processes with continuous sample paths and covariance function given by
+                   1  2H                           
+      R H (s, t) =       |s| + |t|2H − |t − s|2H , s, t ∈ R.
+                   2
+ I Supported by the DAAD (PPP-Procope D/0707564) and Egide (PHC-Procope 17879TH).
+ ∗ Corresponding author.
+    E-mail addresses: andreas.neuenkirch@math.tu-dortmund.de (A. Neuenkirch), tindel@iecn.u-nancy.fr (S. Tindel),
+jeremie.unterberger@iecn.u-nancy.fr (J. Unterberger).
+
+0304-4149/$ - see front matter c 2009 Elsevier B.V. All rights reserved.
+doi:10.1016/j.spa.2009.10.007
+224                   A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+For an arbitrary T > 0, a typical stochastic differential equation (SDE) on [0, T ] driven by B
+can be written as
+                Z t
+      Yt = a +      σ (Ys ) dBs , t ∈ [0, T ],                                               (1)
+                           0
+
+where a ∈ Rm is a given initial condition and σ : Rm → Rm,d is sufficiently smooth. During the
+last years, the rough paths theory has allowed to handle several aspects of differential equations
+like (1), ranging from existence and uniqueness results (see [8,16] for equations of type (1)
+and [4,11,21] for extensions to other kinds of systems) to density estimates [5] or ergodic
+theorems [12].
+    It is also important, and in fact at the very core of the rough path analysis, to derive good
+numerical approximations for fractional differential equations like (1). This problem has so far
+been considered in three types of situations: (i) When H > 1/2, it is proved independently
+in [7] and [18] that the Euler scheme associated to Eq. (1), based on the grid {i T /n; i ≤ n},
+converges with the rate n −(2H −1)+ε for arbitrarily small ε > 0. The exact rate of convergence of
+the Euler scheme is computed in [20] in the particular case of a one-dimensional equation. (ii) In
+the Brownian case H = 1/2, there exists a huge amount of literature on approximation schemes
+for SDEs, and we just send the interested reader to the references [14,17] for an overview of the
+topic. (iii) For 1/3 < H < 1/2, the rough path strategy in order to solve Eq. (1), see e.g. [8,9,16],
+tells us that one should use at least a Milstein-type scheme in order to approximate its solution.
+Moreover, it can be easily seen that for H < 1/2 the standard Euler scheme does not converge for
+stepsizes going to zero, even in the one-dimensional case. Indeed, consider the one-dimensional
+SDE
+      dX t = X t dBt ,           X 0 = 1,
+whose exact solution is given by X t = exp(Bt ). The Euler approximation of this equation at
+t = 1 is given by
+                     n−1
+        (n)
+                     Y
+      X1 =                 (1 + (B(k+1)/n − Bk/n )).
+                     k=0
+So, for n ∈ N sufficiently large and using a Taylor expansion, we have
+                                                n−1
+                     (n)
+                                                 X                                   
+      X1 − X1              = exp(B1 ) − exp               log(1 + (B(k+1)/n − Bk/n ))
+                                                    k=0
+                                                              n−1
+                                                           1X                            
+                           = exp(B1 ) − exp B1 −                  |B(k+1)/n − Bk/n |2 + ρn ,
+                                                            2 k=0
+              a.s.
+where ρn −→ 0 for n → ∞ for H > 1/3. Now, it is well known that
+      n−1
+      X                                  a.s.
+            |B(k+1)/n − Bk/n |2 −→ ∞
+      k=0
+                                          (n)   a.s.
+for H < 1/2, so we have X 1 −→ 0. However, Milstein-type schemes are known to be
+convergent for such a one-dimensional equation; see [10].
+   For general multi-dimensional equations of type (1), a Milstein-type scheme is studied in [7]:
+set Y 0 = a, and for a grid given by tk = kT /n, k = 0, . . . , n − 1, let
+            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254   225
+
+                             d
+                                                        (i)        (i)
+                                   σ (i) (Y tk )(Btk+1 − Btk )
+                             X
+      Y tk+1 = Y tk +
+                             i=1
+                         d                              Z tk+1
+                                   (i) ( j)                                  (i)    ( j)
+                                                                 (Bs(i) − Btk ) dBs ,
+                         X
+                +                 D σ         (Y tk )                                               (2)
+                         i, j=1                          tk
+
+                                                                             (i)
+for k = 0, . . . , n − 1, where D(i) is the differential operator l=1
+                                                                    Pm
+                                                                           σl ∂xl . Davie then proves
+that this scheme has convergence rate n   −(3H  −1)+ε , and this result has been extended in [8] in an
+abstract setting to higher order schemes for a rough path with a given regularity.
+   The above Milstein-type scheme (2) requires knowledge of the iterated integrals
+                  Z t
+         (i, j)               ( j)
+       Xt       =     Bs(i) dBs , t ∈ [0, T ], i, j = 1, . . . , d,                                (3)
+                     0
+
+whose explicit distribution is unknown for i 6= j. Thus discretization procedures for (3) are
+crucial for an implementation of this numerical method. This has already been addressed in [6],
+where dyadic linear approximations of the fBm B are used in order to define a Wong–Zakai-type
+approximation X bn of X . In the last reference, the process X
+                                                             bn is shown to converge almost surely
+in p-variation distance, and the (non-sharp) error bound
+         bn − X T |2 ≤ C · 2−n(4H −1)/2
+      E| X T
+
+is also determined. The current article takes up this kind of program, and we consider the
+approximation of
+             Z T
+       XT =      Bs(1) dBs(2)                                                          (4)
+                0
+
+by the Euler and a trapezoidal scheme based on equidistant discretizations.
+   For the approximation of (4) the standard Euler method has the explicit expression
+               n−1
+                          (1)     (2)          (2)
+               X                                    
+      X Tn =             Bi T /n B(i+1)T /n − Bi T /n .                                             (5)
+               i=0
+
+The results we obtain for the Euler scheme are then of two kinds. First, we determine the exact
+L 2 -convergence rate.
+
+Theorem 1. Let X T defined by (4) and its Euler approximation X Tn given by expression (5). Let
+                                  ∞
+                                  X                                      H 2 (2H − 1)
+      α1 (H ) = c0 + 2                  ck    and        α2 (H ) =                    ,
+                                  k=1
+                                                                         4(4H − 3)
+
+where the constants c0 , ck will be defined below by (23) and (24). Then ∞
+                                                                         P
+                                                                            k=1 ck is a convergent
+series for H ∈ (1/4, 3/4) and
+                        
+                           α (H ) · T 4H · n −4H +1 + o(n −4H +1 ) for H ∈ (1/4, 3/4),
+                         1
+                        
+                        
+                            9
+      E|X T − X Tn |2 =         · T 3 · log(n)n −2 + o(log(n)n −2 ) for H = 3/4,
+                          128
+                        α (H ) · T 4H · n −2 + o(n −2 )            for H ∈ (3/4, 1).
+                        
+                                        2
+226              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+   In the case H = 1/2, i.e. for the approximation of the Wiener Lévy area, the above result is
+well known and can be obtained by straightforward computations. In particular, one can easily
+check that α1 (1/2) = 12 , which means that we recover the classical result for Brownian motion.
+   The convergence rate breaks up into several regimes which are reminiscent of the cases
+obtained in [23] concerning weighted quadratic variations of the one-dimensional fBm. In
+particular, the convergence rate does not improve for H > 3/4, i.e. is equal to n −1 independently
+of H . Finally, note that our study starts obviously at H = 1/4+ , since the Lévy area is not even
+defined for H ≤ 1/4.
+   Using a trapezoidal rule for the approximation of the integral leads to the following scheme,
+which coincides with the Wong–Zakai approximation used in [6]:
+              n−1 
+       bn = 1         (1)     (1)           (2)          (2)
+              X                                             
+       X            B     + B             B          − Bi T /n .                                         (6)
+         T
+            2 i=0 i T /n     (i+1)T /n     (i+1)T /n
+
+
+This trapezoidal scheme avoids the “breakdown” of the convergence rate of the Euler scheme for
+H ≥ 3/4.
+
+Theorem 2. Let H > 1/4. Then there exists a constant C(H ) > 0 such that
+               bn |2 ≤ C(H ) · T 4H · n −4H +1 .
+       E|X T − X T
+
+   We strongly suppose that the trapezoidal scheme has exact root mean square convergence rate
+n −2H +1/2 . Moreover, we suppose that this rate is the best possible. In other words, we conjecture
+that the conditional expectation of X T given BT /n , B2T /n , . . . , BT satisfies
+                                                        2
+       E X T − E(X T | BT /n , B2T /n , . . . , BT )        ≥ c(H ) · T 4H · n −4H +1 ,
+where c(H ) > 0.
+   The third result in this article is a refinement of Theorem 1, meaning that we obtain a limit
+theorem for the asymptotic error distribution of the Euler scheme.
+
+Theorem 3. Let X T , X Tn and α1 (H ), α2 (H ) defined as above. Moreover, let Z be a standard
+normal random variable. Then:
+(1) Case 1/4 < H ≤ 3/4. Here the following central limit theorems hold:
+                                      L p
+          lim n 2H −1/2 (X T − X Tn ) = α1 (H )T 2H · Z for H ∈ (1/4, 3/4),
+            n→∞
+      and
+                                                   L    3
+            lim n(log(n))−1/2 (X T − X Tn ) =           √ T 3/2 · Z
+            n→∞                                        4 8
+    for H = 3/4.
+(2) Case H > 3/4. Let R1 and R2 be two independent Rosenblatt processes (see Section 5 for a
+    definition). Then it holds
+                                L p
+            lim n (X T − X Tn ) = 2α2 (H )T 2H · (R1 − R2 ).
+            n→∞
+
+    Let us say a few words about the methodology we have adopted in order to prove Theorem 3.
+It should be mentioned first that we have used the analytic approximations introduced in [26] in
+            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254   227
+
+order to define the Lévy area X , which allows us to use some elegant complex analysis methods
+for moments estimates in this context. Then, for H ∈ (1/4, 3/4), the central limit type results are
+obtained through the criterion introduced in [24] for random variables in a fixed chaos. For this
+we control the fourth moments of X with the help of (Feynman) diagrams. For the case H ≥ 3/4
+we proceed in a different way. Here the trapezoidal approximation of X T performs better than
+the Euler method. Expressing the difference between both schemes as the difference of quadratic
+variations for two independent one-dimensional fBms, thanks to a simple geometrical trick given
+in [22], one obtains the limit theorems for H ≥ 3/4 using the limit results for quadratic variations
+of fBm; see e.g. [3,23] and the references therein. (We use a similar trick also to compute the
+mean square convergence rate of the Euler scheme for H ≥ 3/4). In particular, this leads to the
+Rosenblatt-type limit distribution for H > 3/4. For the trapezoidal scheme, whose error seems
+to behave like the second order quadratic variations of fBm, see e.g. [2], a central limit theorem
+could be also derived using the criterion in [24], but we omit this here for the sake of conciseness.
+    The remainder of this article is structured as follows. Integrals with respect to the fractional
+Brownian motion will always be understood as limits of analytic integrals as in [26]. We thus
+recall the definition of the analytic fBm, as well as some preliminaries in Section 2. Section 3
+contains the proofs of Theorems 1 and 2. The proof of Theorem 3 is given in Sections 4 and 5.
+
+2. Definition of the analytic FBM and preliminaries
+
+    This section is devoted to recall the definition of the fractional Brownian motion introduced
+in [26], and to state some of the properties of this process which will be used in what follows. All
+the random variables introduced here will be defined on a complete probability space (U, F, P),
+without any further mention (notice the unusual notation U for our probability space, due to
+the fact that the letter Ω will serve for the complex domains we consider in what follows). The
+following kernels will also be essential for our future computations. Here and in what follows,
+R and = stand respectively for the real and imaginary part of a complex number.
+
+Definition 4 (η-Regularized Power Functions). For β ∈ R \ Z and η > 0 let
+      [x]±,β
+         η   = (±ix + η)β         and    [x]βη = 2R[x]±,β
+                                                      η   = [x]+,β
+                                                               η        η .
+                                                                   + [x]−,β
+
+Then, for η > 0 and x, y ∈ R, define K 0,± (η; x, y) as
+                          H (1 − 2H )                        H (1 − 2H )
+      K 0,± (η; x, y) =               (±i(x − y) + η)2H −2 =             [x − y]η±,2H −2 .
+                           2 cos π H                          2 cos π H
+Set also
+      K 0 (η; x, y) := 2RK 0,± (η; x, y) = K 0,+ (η; x, y) + K 0,− (η; x, y).
+Note that the above kernels are well defined on our prescribed domain R∗+ × R × R.
+
+2.1. Definition of the analytic fBm
+
+    The article [26] introduces the fractional Brownian motion as the real part of the trace on R of
+an analytic process Γ (called: analytic fractional Brownian motion [25]) defined on the complex
+upper-half plane Π + = {z ∈ C; =(z) > 0}. This is achieved by first noticing that the kernel
+K 0 (η) is positive definite and represents (for every fixed η > 0) the covariance of a real-analytic
+228            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+centered Gaussian process with real time parameter t. The easiest way to see this is to make use
+of the following explicit series expansion: for k ≥ 0 and z ∈ Π + , set
+                                       s
+                            (1       )   Γ (2 − 2H + k) z + i 2H −2 z − i k
+                        r                                                 
+                          H    −  2H
+       f k (z) = 2 H −1
+                                                                               ,             (7)
+                           2 cos π H      Γ (2 − 2H )k!    2i            z+i
+
+where Γ stands for the usual Gamma function. Then these functions are well defined on Π + ,
+and it can be checked that one has
+                    η1          η2 
+                                                                   
+       X                                        1
+           fk x + i     fk y + i       = K 0,−     (η1 + η2 ) ; x, y .
+       k≥0
+                    2              2             2
+
+Define more generally a Gaussian process with time parameter z ∈ Π + as follows:
+               X
+     Γ 0 (z) =    f k (z)ξk                                                                            (8)
+               k≥0
+
+where (ξk )k≥0 are independent standard complex Gaussian variables, i.e. E[ξ j ξk ] = 0, E[ξ j ξ̄k ] =
+δ j,k . The Cayley transform z 7→ z+i z−i
+                                          maps Π + to D, where D stands for the unit disk of the
+complex plane. This allows us to    Pprove trivially  that the series defining Γ 0 is a random entire
+series – i.e. a series of the form k≥0 ak z ξk , see [13] – which may be shown to be analytic on
+                                             k
+
+the unit disk. Hence the process Γ 0 is analytic on Π + . Furthermore note that, restricting to the
+horizontal line R + i η2 , the following identity holds true:
+
+      E[Γ 0 (x + iη/2)Γ 0 (y + iη/2)] = K 0,− (η; x, y).
+
+   One may now integrate the process Γ 0 over any path γ : (0, 1) → Π + with endpoints
+γ (0) = 0 and γ (1) = z ∈ Π + ∪ R (the result does not depend on the particular path but only
+on the endpoint z). The result is a process Γ which is still analytic on Π + , and let us stress the
+(obvious) fact that Γ 0 is the derivative of Γ on Π + . Furthermore, one may retrieve the fractional
+Brownian motion by considering the real part of the boundary value of Γ on R. Another way to
+look at it is to define Γt (η) := Γ (t + iη) as a regular process living on R, and to remark that the
+real part of Γ (η) converges when η → 0 to fBm. In the following Proposition, we give precise
+statements which summarize what has been said until now:
+
+Proposition 5 (See [26,25]). Let Γ 0 be the process defined on Π + by relation (8).
+
+(1) Let γ R: (0, 1) → Π + be a continuous path with endpoints γ (0) = 0 and γ (1) = z, and set
+    Γz = γ Γu0 du. Then Γ is an analytic process on Π + . Furthermore, as z runs along any path
+    in Π + going to t ∈ R, the random variables Γz converge almost surely to a random variable
+    called again Γt .
+(2) The family {Γt ; t ∈ R} defines a centered Gaussian complex-valued process whose paths are
+    almost surely κ-Hölder continuous for any κ < H . Its real part Bt := 2RΓt has the same
+    law as fBm.
+(3) The family of centered Gaussian real-valued processes Bt (η) := 2RΓt+iη converges a.s. to
+    Bt in α-Hölder norm for any α < H , on any interval of the form [0, T ] for an arbitrary
+    constant T > 0. Its infinitesimal covariance kernel EBx0 (η)B y0 (η) is K 0 (η; x, y).
+              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254    229
+
+2.2. Definition of the Lévy area
+
+    Let us describe a natural possible definition of the Lévy area associated to Γ . Since the process
+Bt (η) := 2RΓt+iη is a smooth one, one can define the following integral in the Riemann sense
+for all 0 ≤ s < t and η > 0:
+                  Z t            Z u1
+       Ast (η) =      dBu(2)
+                          1
+                             (η)      dBu(1)
+                                          2
+                                             (η).                                                   (9)
+                     s                 s
+
+It turns out that A(η) converges in some Hölder spaces, in a sense which can be specified as
+follows. Let T be an arbitrary positive constant, C j be the set of continuous complex-valued
+                                                                µ
+functions defined on [0, T ] j , and for µ > 0, define a space C2 of µ-Hölder functions on [0, T ]2
+by
+                               | f st |            µ
+                                                  C2 (V ) = f ∈ C2 (Ω ; V ); k f kµ < ∞ .
+                                                           
+      k f kµ :=      sup                µ
+                                            and                                                       (10)
+                  s,t∈[0,T ] |t − s|
+
+The µ-Hölder semi-norm for a function g ∈ C1 is then defined by setting h st = gt − gs as an
+element of C2 , and kgkµ := khkµ in the sense given by (10).
+   According to [26,25], the Lévy area A of B can then be defined in the following way:
+
+Proposition 6. Let T > 0 be an arbitrary constant, and for s, t ∈ [0, T ]2 , η > 0, define Ast (η)
+as in Eq. (9). Consider also 0 < γ < H . Then:
+                                                                                                  γ
+(1)For any p ≥ 1, the couple (B(η), A(η)) converges when η → 0 in L p (Ω ; C1 ([0, T ]; R) ×
+ 2γ
+C2 ([0, T ]2 ; R)) to a couple (B, A), where B is a fractional Brownian motion.
+(2)The increment A satisfies the following algebraic relation:
+                                (2)                   
+     Ast − Asu − Aut = Bt − Bu(2) Bu(1) − Bs(1) ,
+
+for s, u, t ∈ [0, T ].
+
+Notice that the algebraic property (2) in Proposition 6 is the one which qualifies A to be a
+reasonable definition of the Lévy area of B.
+   It will be essential for us to estimate the moments of A. For this we will use the following
+definition:
+
+Definition 7. For η > 0 and a1 , a2 ∈ R, let us define the function K a1 ,a2 (η; ·, ·) on R × R by
+                               Z x1     Z x2
+      K a1 ,a2 (η; x1 , x2 ) =      dy1      dy2 K 0 (η; y1 , y2 ).                              (11)
+                                  a1         a2
+
+Notice then that, invoking the conventions of Definition 4, we have
+                                       1
+       K a1 ,a2 (η; x1 , x2 ) =                [x1 − x2 ]2H             2H             2H
+                                                         η − [x 1 − a2 ]η − [a1 − x 2 ]η
+                                  4 cos(π H )
+                                              η .
+                                  + [a1 − a2 ]2H
+                                                 
+                                                                                                      (12)
+
+We also state the classical Wick lemma for further use.
+230               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+Proposition 8. Let Z = (Z 1 , . . . , Z 2N ) be a centered Gaussian vector. Then
+                                                X                N
+                                                                 Y
+      E[Z 1 · · · Z 2N ] =                                               E[Z i2 j Z i2 j+1 ]                       (13)
+                                  (i 1 ,i 2 ),...,(i 2N −1 ,i 2N ) j=1
+
+where the sum ranges over the (2N − 1)!! = 1 · 3 · 5 · · · (2N − 1) couplings of the indices
+1, . . . , 2N .
+We can now give the announced expression for the moments of A(η) (recall that A(η) is defined
+by (9)):
+
+Lemma 9. Let N ≥ 1 and {si , ti ; i ≤ 2N } be a family of real numbers satisfying si < ti . Then
+      "                 # Z
+        2N
+        Y                   t1           Z t2N
+    E      As j ,t j (η) =     dx1 · · ·       dx2N
+           j=1                             s1                  s2N
+
+                            X                               X                   N
+                                                                                Y
+            ×                                                                            K 0 (η; xi2k−1 , xi2k )
+                 (i 1 ,i 2 ),...,(i 2N −1 ,i 2N ) ( j1 , j2 ),...,( j2N −1 , j2N ) k=1
+                 N
+                 Y
+            ×          K s j2k−1 ,s j2k (η; x j2k−1 , x j2k ).                                                     (14)
+                 k=1
+
+Proof. By definition of the approximation A(η), we have
+       "                 #
+         2N
+         Y                  2N Z t j
+                            Y             Z xj       h                                                i
+     E      As j ,t j (η) =          dx j      dy j E Bx0(1)
+                                                         1
+                                                             (η)B 0(2)
+                                                                  y1   (η) · · · B 0(1)
+                                                                                   x2N  (η)B 0(2)
+                                                                                             y2N  (η)   . (15)
+           j=1                           j=1 s j                sj
+
+Our claim follows then from a direct application of Proposition 5 point (3), Proposition 8 and
+Definition 7. 
+Remark 10. As a side result of our Theorem 2, we also obtain that the fractional Lévy area A
+constructed by analytic approximation (see Proposition 6) coincides with the one constructed
+in [6] by linear interpolations of the fBm B, and thus also with the area obtained by Malliavin
+calculus techniques as in e.g. [21].
+
+2.3. Analytic preliminaries
+
+  We gather here some elementary integral estimates which turn out to be essential for our
+computations. The first one concerns the behavior of the kernel K a1 ,a2 given in Definition 4
+when |a1 − x1 |, |a2 − x2 | are of order 1 and |x1 − x2 | is large.
+
+Lemma 11. Assume η, |x1 − a1 |, |x2 − a2 | ≤ 1 and |x1 − x2 |, |a1 − x2 |, |a2 − x1 |, |a1 − a2 | are
+bounded from below by a positive constant C. Then
+      |K a1 ,a2 (η; x1 , x2 )| ≤ C (min(|x1 − x2 |, |a1 − x2 |, |a2 − x1 |, |a1 − a2 |))2H −2 .
+
+Proof. The proof is elementary using the integral expression (12) for K a1 ,a2 . 
+                                                                      Rt
+   We shall also need to estimate convolution integrals of the form 0 K 0 (η; z, u) f (u) du or
+Rt
+ 0 K a,b (η; z, u) f (u) du. The following lemma gives a precise answer when f is analytic on a
+            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254             231
+
+neighborhood of (a, b) for two given constants a, b ∈ R, and multivalued with a power behavior
+near a and b.
+Lemma 12 (See [27]). Fix two real constants a, b with a < b, and let f be a function in
+L 1 ([a, b], C). Define another function φ by φ : z 7→ a (−i(z − u))β (u − a)γ f (u) du with
+                                                       Rb
+
+γ > −1 and β + γ ∈ R \ Z. Then:
+(1) Assume f is analytic in a (complex) neighborhood of s ∈ (a, b). Then φ has an analytic
+     extension to a complex neighborhood of s.
+(2) Assume f is analytic in a complex neighborhood of a. Then φ may be written on a small
+     enough neighborhood of a as the multivalued function
+           φ(z) = (z − a)β+γ +1 F(z) + G(z)                                                                  (16)
+    where both F and G are analytic.
+(3) More precisely, the following continuity property holds: let Ω be a complex neighborhood of
+    [a, b] and ε ∈ (0, 1/2). If f is analytic on a relatively compact domain Ω̃ containing the
+    closure Ω̄ of Ω , then φ extends analytically to the cut domain Ωcut := Ω \ ((a + R− ) ∪ (b +
+    R+ )) and writes (z − a)β+γ +1 F(z) + G(z) on B(a, ε(b − a)) (F, G analytic) with
+                        sup                    |φ|,      sup        |F|,      sup        |G| ≤ C sup | f |   (17)
+           Ωcut \(B(0,ε(b−a))∪B(b,ε(b−a)))            B(a,ε(b−a))          B(a,ε(b−a))             Ω̃
+   for some constant C which does not depend on f .
+Proof. Points (1) and (2) follow directly from [27], Lemmas 3.2 and 3.3. Point (3) may be
+shown very easily by following the proof of the above two lemmas step by step and using the
+analyticity of f . Note that (under the hypotheses of (3)) φ is analytic on the larger domain
+Ω̃ \ ((a + R− ) ∪ (b + R+ )), but the method of contour deformation used in the proof gives
+a bound for φ(z) which goes to infinity when z comes closer and closer to the boundary of Ω̃
+(hence the need for the relatively compact inclusion of Ω into Ω̃ ). 
+   We shall also need the following elementary lemma. Here and later on, we will write x . y
+for x, y ∈ R, if there exists a constant C > 0 such that x ≤ C · y.
+
+Lemma 13. Let α, β > −1 and 0 < a < b < 1. Then:
+    Z 1
+        |t − a|α |t − b|β dt . 1 + |a − b|α+β+1 .                                                            (18)
+       0
+
+Proof. Let σa (b) = max(0, 2a − b) and σb (a) = min(1, 2b − a). Split the above integral
+     R σ (b) R a          R b R σ (a) R 1
+into 0 a + σa (b) + a + b b + σb (a) . We show that the integral over each subinterval is
+. 1 + |a − b|α+β+1 (by symmetry, it is sufficient to check this for the three first subintervals
+only). Now, a simple study of the function t 7→ |t − a|/|t − b| shows that c < |t−a||t−b| < C on
+[0, σa (b)], so
+        Z σa (b)                        Z σa (b)
+                 |t − a|α |t − b|β dt .          (t − b)α+β dt . (b − a)α+β+1 + bα+β+1 .     (19)
+       0                                   0
+If α + β + 1 < 0, resp. α + β + 1 > 0, then this is . (b − a)α+β+1 , resp. . 1. On [σa (b), a],
+one has c < |t−b|
+             b−a < C this time, so
+      Z a
+            |t − a|α |t − b|β dt . (b − a)α+β+1 .                                         (20)
+       σa (b)
+232               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+Finally, a |t − a|α |t − b|β dt = Γ (α+1) Γ (β+1)     α+β+1 , where Γ is the Gamma
+         Rb
+                                     Γ (α+β+2) (b − a)
+function. 
+
+3. Mean square error computations
+
+   This section is devoted to prove Theorems 1 and 2. We will start with the error of the Euler
+scheme for H ∈ (1/4, 3/4), then we will consider the trapezoidal scheme and we will conclude
+with the error of the Euler scheme for H ∈ (3/4, 1). Throughout this section and the remainder
+of this article, we will use extensively the self-similarity or scaling property of fBm, i.e. for any
+c > 0 the process
+                   (i)
+      B·(i) = c H B·/c
+      e                                                                                                   (21)
+is again an fBm, and the stationarity property, that is for any h ∈ R the process
+
+      e·(i) = B (i) − B (i)
+      B                                                                                                   (22)
+               ·+h     h
+
+is an fBm. As a consequence we have e.g. that
+       Z t                     Z t−s                    Z 1
+             (1)   (1)   (2) L         (1)    (2) L
+           (Bu − Bs ) dBs =          Bu dBs = (t − s)2H
+                                                            Bu(1) dBs(2) ,
+       s                                  0                                    0
+           0 ≤ s ≤ t ≤ T.
+
+
+3.1. Some moment estimates
+
+  The preliminary results we need for the proof of Theorem 1 are summarized in the following
+Lemma:
+                          R k+1 (1)      (1)    (2)
+Lemma 14. Let Ak,k+1 = k (Bs − Bk ) dBs , k ∈ N, be the iterated integrals obtained by
+applying Proposition 6. Define
+            h         i
+                    2
+                         and ck = E A0,1 Ak,k+1 .
+                                                   
+      c0 = E A0,1
+
+Then we have
+                                            
+              H                         1
+      c0 =         β(2H, 2H ) +                ,                                                          (23)
+              2                       4H − 1
+and
+                  H
+      ck =              ((k + 1)4H − 2k 4H + (k − 1)4H )
+              4(4H − 1)
+                1
+              − k 2H ((k + 1)2H − 2k 2H + (k − 1)2H )
+                4
+                H k+1
+                  Z
+              +          (|x − 1|2H |x|2H −1 − |x|2H |x − 1|2H −1 ) dx.                                   (24)
+                2 k
+
+Proof. Both identities are obtained thanks to the same kind of considerations. Furthermore,
+relation (23) is obtained in [1, Theorem 34] or [26]. We thus focus on identity (24).
+            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254   233
+
+   Recall that ck can be obtained as a limit of ck (η) when η → 0, where ck (η) is given by:
+                  "Z                                                          #
+                      1                   Z k+1 
+                                                              (1)
+                                                                   
+                          (1)      (2)               (1)                (2)
+     ck (η) := E        Bs (η) dBs (η)             Bs (η) − Bk (η) dBs (η)
+                      0                         k
+
+             = E A0,1 (η) Ak,k+1 (η) .
+                                   
+
+We can thus apply identity (14) with N = 1, s1 = 0, t1 = 1, s2 = k, t2 = k + 1, use expression
+(12) for the kernel K , and let η → 0 in order to obtain:
+                   Z k+1 Z 1
+              1                                                                     
+      ck = γ H                |s1 − s2 |2H −2 s12H − k 2H − |s1 − s2 |2H + |s2 − k|2H ds2 ds1
+              2     k      0
+          := ck,1 + ck,2 + ck,3 + ck,4 ,
+with γ H := H (2H − 1). It should be noticed here that, since we are integrating on the rectangle
+[0, 1] × [k, k + 1] with k ≥ 1, the limits as η → 0 can be taken without much care about
+                                 β
+singularities of our kernels [x]η for negative β’s. Moreover, direct calculations yield
+                    Z k+1 Z 1
+               1
+       ck,1 = γ H              s12H |s1 − s2 |2H −2 ds2 ds1
+               2      k     0
+               H k+1 2H 2H −1
+                  Z
+            =           s1 (s1        − |s1 − 1|2H −1 ) ds1
+               2 k
+                                         H k+1 2H
+                                            Z
+               1
+            = ((k + 1) − k ) −
+                         4H      4H
+                                                    x |x − 1|2H −1 dx
+               8                         2 k
+and
+                           Z k+1 Z 1
+                1
+      ck,2 = − γ H k  2H
+                                       |s1 − s2 |2H −2 ds2 ds1
+                2           k       0
+                1        h
+                              (1)       (1)   (1)
+                                                  i
+           = − k 2H E (Bk+1 − Bk )B1
+                2
+                1
+           = − k 2H ((k + 1)2H − 2k 2H + (k − 1)2H ).
+                4
+Finally, we have
+                     Z k+1 Z 1
+                1
+      ck,3 = − γ H                |s1 − s2 |4H −2 ds2 ds1
+                2      k       0
+                    γH
+                              Z k+1
+           =−                        (s14H −1 − |s1 − 1|4H −1 ) ds1
+                2(4H − 1) k
+                  2H − 1
+           =−                ((k + 1)4H − 2k 4H − (k − 1)4H )
+                8(4H − 1)
+and
+                   Z k+1 Z 1
+              1
+      ck,4 = γ H                |s2 − k|2H |s1 − s2 |2H −2 ds2 ds1
+              2     k       0
+              H 1
+                 Z
+           =         |s2 − k|2H (|k + 1 − s2 |2H −1 − |k − s2 |2H −1 ) ds2
+              2 0
+                                            H k+1
+                                                Z
+              1
+           = (−k 4H + (k − 1)4H ) +                    |x − 1|2H |x|2H −1 dx.
+              8                              2 k
+234               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+Hence, putting together our elementary calculations for ck,1 , . . . , ck,4 , expression (24) follows
+easily. 
+
+3.2. Proof of Theorem 1 for H ∈ (1/4, 3/4)
+
+   The case H = 1/2 is well known, thusPwe omit this case. Note that we can decompose the
+                                                 n
+error of the Euler scheme as X T − X Tn = i=1       Jin , with random variables Jin defined by
+             Z (i+1)T /n
+                                   (1)
+         n
+       Ji =              (Bs(1) − Bi/n ) dBs(2) = A(i T )/n,(i+1)T /n , i = 0, . . . , n − 1,
+                i T /n
+
+where Ast is obtained P as the      L 2 -limit of Ast (η) according to Proposition 6. In particular,
+               n  2              n n
+E[|X T − X T | ] = i, j E[Ji J j ], which means that we are first reduced to study the quantities
+E[Jin J jn ] in terms of i, j and n. Towards this aim, one can first remark that, since fBm is self-
+similar, we have
+
+      E[Jin J jn ] = T 4H n −4H E[Ai,i+1 A j, j+1 ].                                                      (25)
+Moreover, as in the proof of Lemma 9, for |i − j| > 1 it holds:
+                                Z i+1 Z j+1 Z s1 Z s2
+    E Ai,i+1 (η)A j, j+1 (η) =                         K 0 (η; s1 , s2 )
+                            
+                                            i       j       i     j
+                                           × K 0 (η; u 1 , u 2 ) du 2 du 1 ds2 ds1 .
+Since we are away from the diagonal, one can take safely the limit η → 0 in the expression
+above, which gives:
+      E Ai,i+1 A j, j+1 = H 2 (2H − 1)2
+                      
+             Z i+1 Z j+1 Z s1 Z s2
+          ×                        |u 1 − u 2 |2H −2 |s1 − s2 |2H −2 du 2 du 1 ds2 ds1 . (26)
+                  i       j      i     j
+
+Note that the above expression implies that
+      E Ai,i+1 A j, j+1 > 0.
+                      
+
+Step 1: Diagonal terms. For the diagonal terms, i.e. for i = j, we have by stationarity of the
+increments that
+        h         i     h        i
+                2              2
+      E Ai,i+1      = E A0,1 .
+
+So (25) gives
+      n−1    h       i          h      i
+                                     2
+      X
+            E |Jin |2 = T 4H · E A0,1 · n −4H +1 .                                                        (27)
+      i=0
+
+Step 2: Secondary diagonal terms. For the secondary diagonal terms, we have again by
+stationarity of the increments of fBm that
+      E Ai,i+1 Ai+1,i+2 = E A0,1 A1,2 .
+                                        
+               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254             235
+
+Hence it follows
+             n−1
+             X
+                          E Jin Ji+1
+                                  n
+                                       = 2T 4H · E A0,1 A1,2 · (n − 1)n −4H .
+                                                         
+                                                                                                                (28)
+       i, j=0,|i− j|=1
+
+Step 3: Close to diagonal terms. Now we consider the terms, which are in a ”log(n)-vicinity” of
+the diagonal terms, i.e.
+          X                                     X
+                  E Jin Ji+1
+                          n
+                               = T 4H · n −4H ·         E Ai,i+1 A j, j+1 .
+                                                                      
+         0≤i, j≤n−1                                                 0≤i, j≤n−1
+       1<|i− j|≤log(n)                                            1<|i− j|≤log(n)
+
+Using the stationarity of the fBm we have
+         X                              X                                                 
+                 E Ai,i+1 A j, j+1 = 2                                   E A0,1 Ai− j,i− j+1
+         0≤i, j≤n−1                                       0≤i, j≤n−1
+       1<|i− j|≤log(n)                                   1<i− j≤log(n)
+
+                                                       blog(n)c
+                                                         X
+                                                                  (n − k)E A0,1 Ak,k+1 .
+                                                                                     
+                                                  =
+                                                         k=2
+
+Thus
+           X                                              blog(n)c
+                                                            X
+                         E Jin Ji+1
+                                 n
+                                      = T 4H · n −4H +1 ·
+                                                                              
+                                                                   E A0,1 Ak,k+1
+         0≤i, j≤n−1                                                      k=2
+       1<|i− j|≤log(n)
+
+                                                                         blog(n)c
+                                                                           X         k 
+                                           − T 4H · n −4H +1 ·                         E A0,1 Ak,k+1 .
+                                                                                                    
+                                                                           k=2
+                                                                                     n
+From Eq. (26) we have that
+                  
+     E A0,1 Ak,k+1
+                         Z 1 Z k+1 Z s1 Z s2
+       = H (2H − 1)
+            2          2
+                                             |u 1 − u 2 |2H −2 |s1 − s2 |2H −2 du 2 du 1 ds2 ds1 .
+                                   0   k           0      k
+An application of the mean value theorem for k > 1 gives
+     1 2                                        1
+       H (2H − 1)2 |k + 1|4H −4 ≤ E A0,1 Ak,k+1 ≤ H 2 (2H − 1)2 |k − 1|4H −4 .
+                                   
+     4                                           4
+Consequently, we have
+                              blog(n)c+1                      blog(n)c
+       1 2                       X                              X
+         H (2H − 1)2                             4H −4
+                                                                                      
+                                           |k|           ≤               E A0,1 Ak,k+1
+       4                         k=3                           k=2
+                                                                                      blog(n)c−1
+                                                              1 2                        X
+                                                         ≤      H (2H − 1)2                        |k|4H −4 ,
+                                                              4                          k=1
+                    P∞                                                              Pblog(n)c
+                        P∞ < ∞
+and notice that k=1 |k|4H     since H < 3/4.P
+                          −4
+                                                                     
+                                              So, k=2 E A0,1 Ak,k+1 converges as
+n → ∞, and setting S = k=2 E A0,1 Ak,k+1 = ∞    k=2 ck we end up with
+       blog(n)c
+         X                    
+                  E A0,1 Ak,k+1 = S + o(1).
+        k=2
+236                   A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+Moreover, we have
+            blog(n)c
+              X          k              log(n)
+      0≤                   E A0,1 Ak,k+1 ≤       S = O(log(n)n −1 ).
+              k=2
+                         n                  n
+
+Consequently, we have derived that
+
+           X              h        i                     ∞
+                                                         X
+                         E Jin J jn = 2T 4H · n −4H +1 ·   E A0,1 Ak,k+1 + o(n −4H +1 ).
+                                                                       
+                                                                                                                   (29)
+        0≤i, j≤n−1                                               k=2
+      1<|i− j|≤log(n)
+
+
+Step 4: Off-diagonal terms. Now, it remains to consider the off-diagonal terms, i.e. the terms
+with |i − j| > log(n). We show that these terms are asymptotically negligible for H < 3/4.
+Proceeding as in the previous steps, we have
+         X                                   X
+               E Jin Ji+1
+                       n
+                            = T 4H · n −4H ·
+                                                                  
+                                                   E Ai,i+1 A j, j+1
+       0≤i, j≤n−1                                          0≤i, j≤n−1
+      |i− j|>log(n)                                       |i− j|>log(n)
+
+
+and
+                                                                Z i+1 Z j+1                               !2
+      0 ≤ E Ai,i+1 A j, j+1 ≤ H 2 (2H − 1)2                                     |s1 − s2 |2H −2 ds1 ds2        .
+                                    
+                                                                  i        j
+
+Since |i − j| > 1, the mean value theorem gives
+
+      0 ≤ E Ai,i+1 A j, j+1 ≤ H 2 (2H − 1)2 ||i − j| − 1|4H −4 ,
+                          
+
+and we obtain
+         X                                         n−1 i−dlog(n)e
+                                                   X      X
+                      ||i − j| − 1|4H −4 = 2                          |i − j − 1|4H −4
+       0≤i, j≤n−1                                  i=0     j=0
+      |i− j|>log(n)
+
+                                                   n−1
+                                                   X           i−1
+                                                               X
+                                             =2                           j 4H −4
+                                                   i=0 j=dlog(n)e−1
+                                                         n−1
+                                                         X
+                                             ≤ 2n                 j 4H −4 .
+                                                     j=blog(n)c
+
+Since H < 3/4, we have
+         n−1
+         X                            ∞
+                                      X
+                       j 4H −4 ≤                j 4H −4 = O(log(n)4H −3 ).
+      j=blog(n)c                   j=blog(n)c
+
+Hence it follows
+         X       h       i
+               E Jin J jn = o(n −4H +1 ).                                                                          (30)
+       0≤i, j≤n−1
+      |i− j|>log(n)
+              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254   237
+
+Step 5: The asymptotic constant. Combining (27)–(30) and using Lemma 14 now gives
+                                                    !
+                                               ∞
+                                               X
+                 n 2      4H
+      E[|X T − X T | ] = T · n   −4H +1
+                                        c0 + 2    ck + o(n −4H +1 ),
+                                                                       k=1
+
+which finishes the proof of Theorem 1 for H ∈ (1/4, 3/4).
+
+3.3. Proof of Theorem 2
+
+   Here we omit again the case H = 1/2, which is well known. Recall that the trapezoidal
+scheme is given by
+                n−1
+              1X     (1)       (1)       (2)          (2) 
+       X Tn =
+       b            Bi T /n + B(i+1)T /n B(i+1)T /n − Bi T /n .
+              2 i=0
+
+Thus, applying again the scaling property of fBm, the mean square error of the trapezoidal
+scheme is given by
+                                                          n−1
+                                                          XX  n−1
+               X Tn |2 = T 4H · n −4H ·
+       E|X T − b                                                    EA
+                                                                     ei,i+1 A
+                                                                            ej, j+1
+                                                          i=0 j=0
+
+with
+                        Z i+1
+       ei,i+1 = 1
+       A
+                                        (1)
+                                      (Bi+1 + Bi
+                                                    (1)
+                                                          − 2Bs(1) ) dBs(2)
+                2           i
+for i, j = 0, 1, . . . , n − 1. We will use a similar decomposition as for the Euler scheme, i.e.
+               bn |2 = T 4H · n −4H (I1 (n) + I2 (n) + I3 (n))
+       E|X T − X T
+
+with
+                  n−1
+                  X      h          i
+       I1 (n) =            ei,i+1 |2 ,
+                        E |A
+                  i=0
+                                n−1
+                                X
+       I2 (n) =                                         ej, j+1 ,
+                                                              
+                                              E Aei,i+1 A
+                  i=0, j=0,|i− j|=1
+                                n−1
+                                X
+       I3 (n) =                                         ej, j+1 .
+                                                              
+                                              E Aei,i+1 A
+                  i=0, j=0,|i− j|>1
+
+Moreover, note that as in the proof of Lemma 14, using Lemma 9 and moreover letting η → 0
+and applying dominated convergence, we obtain for |i − j| > 1 that
+                               Z i+1 Z j+1
+      E Ai,i+1 A j, j+1 = γ H              θi, j (s1 , s2 )|s1 − s2 |2H −2 ds2 ds1
+                      
+         e     e                                                                      (31)
+                                                i         j
+
+with γ H = H (2H − 1) and
+                       1               (1) (1)             (1)   (1)
+       θi, j (s1 , s2 ) =E(2Bs(1)
+                                1
+                                  − Bi − Bi+1 )(2Bs(1)
+                                                    2
+                                                       − B j − B j+1 )
+                       4
+for s1 ∈ [i, i + 1], s2 ∈ [ j, j + 1].
+238                A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+Step 1: Diagonal terms. For the diagonal terms, i.e. for i = j, we have by stationarity of the
+increments of fBm that
+                    h        i
+      I1 (n) = n · E |A
+                      e0,1 |2 = O(n).                                                     (32)
+
+Step 2: Secondary diagonal terms. For the secondary diagonal terms it holds
+
+      I2 (n) = 2(n − 1) · E A
+                                     
+                             e0,1 A
+                                  e1,2 = O(n).                                                                          (33)
+Step 3: Off-diagonal terms. Again stationarity gives
+                             n−1
+                             X
+        I3 (n) =
+                                                         
+                                        E Aei,i+1 A
+                                                  ej, j+1
+                   i=0, j=0,|i− j|>1
+                       n−1 X
+                       X   i−2                         
+                  =2               E Ae0,1 A
+                                           ei− j,i− j+1
+                       i=0 j=0
+                       n
+                       X
+                         (n − k)E A     ek,k+1 .
+                                             
+                  =2               e0,1 A                                                                               (34)
+                       k=2
+
+Now (31) gives
+                                       Z 1 Z k+1
+              ek,k+1 = γ H                         θ0,k (s1 , s2 )|s1 − s2 |2H −2 ds2 ds1 .
+                   
+      E Ae0,1 A
+                                        0     k
+
+Setting
+         1
+        R0,k = {s1 , s2 ∈ [0, 1] × [k, k + 1] : θ0,k (s1 , s2 ) ≥ 0},
+         2
+        R0,k = {s1 , s2 ∈ [0, 1] × [k, k + 1] : θ0,k (s1 , s2 ) < 0},
+an application of the mean value theorem yields
+      Z 1 Z k+1
+                θ0,k (s1 , s2 )|s1 − s2 |2H −2 ds2 ds1
+       0    k
+                           Z Z                                                Z Z
+         = |k + ξ1 |2H −2            θ0,k (s1 , s2 ) ds2 ds1 + |k + ξ2 |2H −2                        θ0,k (s1 , s2 ) ds2 ds1
+                                        1
+                                       R0,k                                                    2
+                                                                                              R0,k
+
+with ξ1 , ξ2 ∈ (−1, 1). Thus
+      Z 1 Z k+1                                                    Z 1 Z k+1
+                 θ0,k (s1 , s2 )|s1 − s2 |2H −2 ds2 ds1 = |k|2H −2           θ0,k (s1 , s2 ) ds2 ds1 + ρk ,
+          0   k                                                                0    k
+
+where
+                                                  Z 1 Z k+1
+      |ρk | ≤ |2H − 2| · |k − 1|2H −3 ·                       |θ0,k (s1 , s2 )| ds2 ds1 .
+                                                   0    k
+
+Inserting this into (34) gives
+                         n
+                         X                         Z 1 Z k+1                                         n
+                                                                                                     X
+        I3 (n) = 2γ H          (n − k)|k|2H −2                 θ0,k (s1 , s2 ) ds2 ds1 + 2γ H          (n − k)ρk .
+                         k=2                        0    k                                           k=2
+                  A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254    239
+
+Now note that θi, j can be bounded as follows: We have
+                        1                                 1/2
+     θi, j (s1 , s2 ) ≤    E|(Bs1 − Bi ) + (Bs1 − Bi+1 )|2
+                        4
+                                                           1/2
+                        × E|(Bs2 − B j ) + (Bs2 − B j+1 )|2
+                                                                 1/2 
+                        1                1/2 
+                      ≤     E|Bs1 − Bi |2       + E|Bs1 − Bi+1 |2
+                        4
+                                          1/2                  1/2 
+                        ×    E|Bs2 − B j |2     + E|Bs2 − B j+1 |2
+
+and therefore
+                     sup            θi, j (s1 , s2 )
+        s1 ∈[i,i+1],s2 ∈[ j, j+1]
+                                           1                                                      
+             ≤             sup                |s1 − i| H + |s1 − i − 1| H |s2 − j| H + |s2 − j − 1| H ≤ 1
+                 s1 ∈[i,i+1],s2 ∈[ j, j+1] 4
+
+for all i, j ∈ N. Hence
+        |ρk | ≤ 2|k − 1|2H −3
+and
+                 n
+                 X                ∞
+                                  X
+         2γ H      (n − k)ρk ≤ 4n   k 2H −3 .
+                 k=2                          k=1
+        P∞           2H −3 < ∞, it follows
+Since        k=1 k
+
+                 n
+                 X
+        2γ H       (n − k)ρk = O(n).                                                                      (35)
+                 k=2
+
+It remains to consider
+                 n
+                 X                 Z 1 Z k+1
+        2γ H       (n − k)|k|2H −2           θ0,k (s1 , s2 ) ds2 ds1 .                                    (36)
+                 k=2                         0     k
+
+From [19] (see Appendix A) we know that
+     Z 1 Z k+1
+                                           1                                   
+               θ0,k (s1 , s2 ) ds2 ds1 = − · 2|k|2H + |k + 1|2H + |k − 1|2H
+      0    k                               8
+                 1                                       
+          +                · |k + 1|2H +1 − |k − 1|2H +1
+             2(2H + 1)
+                        1                                                      
+          +                            · 2|k|2H +2 − |k + 1|2H +2 − |k − 1|2H +2 .
+             2(2H + 1)(2H + 2)
+A Taylor expansion up to order 5 of the right-hand side of the above equation yields
+     Z 1 Z k+1
+               θ0,k (s1 , s2 ) ds2 ds1 = O(|k − 1|2H −3 )
+         0       k
+240                  A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+and thus
+        ∞
+        X                  Z 1 Z k+1
+              |k| 2H −2
+                                            θ0,k (s1 , s2 ) ds2 ds1 < ∞.
+        k=2                 0      k
+
+This allows us to control the sum in (36), i.e.
+             n
+             X                   Z 1 Z k+1
+        2γ H    (n − k)|k| 2H −2
+                                           θ0,k (s1 , s2 ) ds2 ds1 = O(n).                                   (37)
+                k=2                               0    k
+
+So, combining this with (35) we have
+        I3 (n) = O(n).                                                                                       (38)
+Step 4: The error bound. Combining (32), (33) and (38) now gives
+                 X Tn |2 ] ≤ C(H ) · T 4H · n −4H +1 ,
+        E[|X T − b
+which is the assertion of Theorem 2.
+3.4. Proof of Theorem 1 for H ∈ [3/4, 1)
+
+   Here the following relation will be very helpful: For the difference between the Euler and the
+trapezoidal scheme we have
+                                  n−1
+                                1X       (1)       (1)       (2)          (2)
+        X Tn − X
+               bn = −                 (B        − Bi T /n )(B(i+1)T /n − Bi T /n ).
+                 T
+                                2 i=0 (i+1)T /n
+Since
+                bn |2 = O(n −4H +1 )
+        E|X T − X T
+
+due to Theorem 2, it follows
+                       1/2                1/2
+        E|X T − X Tn |2                bn |2
+                            = E|X Tn − X T        + O(n −2H +1/2 ).                                          (39)
+
+By scaling we have
+                                                             n−1                              2
+                           T           4H
+                                                                     (1)    (1)  (2)    (2)
+                                                             X
+                 X Tn |2 =
+        E|X Tn − b                          ·n   −4H
+                                                       ·E          (Bi+1 − Bi )(Bi+1 − Bi )       .
+                                       4                     i=0
+Moreover,
+            n−1                                              2
+                     (1)         (1)        (2)        (2)
+            X
+        E         (Bi+1 − Bi )(Bi+1 − Bi )
+            i=0
+                  n−1 X
+                      n−1 
+                1X                                                   2
+            =              |i − j − 1|2H − 2|i − j|2H + |i − j + 1|2H .
+                4 i=0 j=0
+
+So, we have to analyze the behavior of
+                    n−1 X
+                    X   n−1                                                          2
+        n −4H ·                  |i − j − 1|2H − 2|i − j|2H + |i − j + 1|2H
+                    i=0 j=0
+              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254    241
+
+in detail. We can rewrite this sum as
+                 n−1
+                 XX  n−1                                                                     2
+       n −4H ·                |i − j − 1|2H − 2|i − j|2H + |i − j + 1|2H
+                 i=0 j=0
+                                            n−1 i−1
+                                            X   X                                             2
+          = 2n −4H +1 + 2n −4H                      |i − j − 1|2H − 2|i − j|2H + |i − j + 1|2H
+                                            i=0 j=0
+                                              n−1
+                                              X                                          2
+          = O(n −4H +1 ) + 2n −4H                   (n − k) |k − 1|2H − 2|k|2H + |k + 1|2H .
+                                              k=2
+
+Hence,
+                                4H                n−1                                        2
+                          T                       X          
+                X Tn |2 =
+       E|X Tn − b                       · n −4H       (n − k) |k − 1|2H − 2|k|2H + |k + 1|2H
+                                8                 k=2
+
+                              + O(n         −4H +1
+                                                     ).                                               (40)
+
+Moreover,
+                 n−1                                                            2
+        n −4H          (n − k) |k − 1|2H − 2|k|2H + |k + 1|2H
+                 P
+                 k=2
+                   n−1
+                                                                                    2
+                                                  2H               2H           2H
+                           1 − nk           k−1
+                                                          − 2 nk        + k+1             .
+                   P                
+              =n                             n                             n
+                   k=2
+
+A Taylor expansion up to order 4 gives
+
+         k − 1 2H    k 2H   k + 1 2H               k 2H −2 −2
+                  −2      +          = 2H (2H − 1)        · n + ρk · n −2H
+           n         n        n                    n
+with
+
+       |ρk | = O(|k − 1|2H −4 )
+
+for k > 1. Therefore
+                                                          !2
+         n−1
+         X             k − 1 2H         k 2H    k + 1 2H
+                          
+                    k
+       n         1−                 −2        +
+         k=2
+                    n      n             n         n
+                                  n−1
+                                                k 4H −4 1             n−1
+                                            
+                                  X        k                          X
+          = 4H 2 (2H − 1)2 · n −2       1−             · + n −4H +1 ·     ρ
+                                                                          ek ,
+                                  k=2
+                                           n n          n             k=2
+
+where
+
+        ρk | = O(|k − 1|4H −6 ).
+       |e
+
+We have
+       ∞
+       X
+              ρk | < ∞
+             |e
+       k=2
+242                 A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+and thus
+                                                            !2
+         n−1 
+                         k − 1 2H         k 2H     k + 1 2H
+                         
+         X           k
+        n         1−                 −2        +
+          k=2
+                     n      n             n          n
+                                   n−1 
+                                                 k 4H −4 1
+                                              
+                                   X        k
+           = 4H 2 (2H − 1)2 · n −2       1−              · + O(n −4H +1 ).
+                                   k=2
+                                            n    n        n
+
+Combining this with (40) gives
+
+                               T 4H 2                 n−1 
+                                                                   k 4H −4 1
+                                                                 
+                                                      X        k
+                 bn |2 =
+        E|X Tn − X T               H (2H − 1)2 · n −2       1−            · + O(n −4H +1 ). (41)
+                                 2                    k=2
+                                                               n   n       n
+
+   Now assume that H > 3/4. It holds
+     n−1 
+                   k 4H −4 1
+                                Z 1
+     X        k
+          1−              · =        (1 − x) x 4H −4 dx + o(1).
+     k=2
+              n    n       n      0
+
+Since
+        Z 1
+                                               1
+              (1 − x) x 4H −4 dx =                       ,
+         0                              (4H − 2)(4H − 3)
+the assertion of the theorem for H > 3/4 follows from (39). It remains to consider the case
+H = 3/4. Here we have
+
+      T 4H 2                   n−1
+                                           k 4H −4 1      9 3 −2 n−1
+                               X                                    X1
+                                      k
+            H (2H − 1) · n
+                        2   −2
+                                   1−              · =        T ·n           + O(n −2 ).
+        2                      k=2
+                                      n    n        n    128          k=2
+                                                                           k
+
+Since
+        n−1
+        X   1
+                  = c − 1 + log(n) + o(1),
+        k=2
+              k
+
+where c stands for the Euler–Mascheroni constant, we obtain
+                         9 3 −2
+              X Tn |2 =
+     E|X Tn − b             T · n log(n) + O(n −2 ),
+                        128
+which together with (39) completes the proof.
+
+4. Asymptotic error distribution of the Euler scheme: H < 3/4
+
+   Let us first explain the strategy we have adopted in order to obtain our central limit theorem
+for the difference X T − X Tn of the Lévy area and its Euler approximation in the case H < 3/4.
+First, recall that the random variable X T − X Tn can be expressed as
+                       n                   Z (i+1)T /n
+                                                                 (1)
+                                                       (Bs(1) − Bi/n ) dBs(2) .
+                      X
+       X T − X Tn =       Jin , with Jin ,
+                         i=1                         i T /n
+
+With this expression in hand, it can be seen in particular that X T − X Tn is still an element of the
+second chaos of our underlying fBm B.
+            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254    243
+
+   Let us then recall the following limit theorem for random variables in a fixed finite Gaussian
+chaos, which can be found in [24, Theorem 1]:
+
+Proposition 15. Fix p ≥ 1. Let {Z n ; n ≥ 1} be a sequence of centered random variables
+belonging the pth chaos of a Gaussian process, and assume that
+
+       lim E[Z n2 ] = 1.                                                                            (42)
+      n→∞
+Then Z n converges in distribution to a centered Gaussian random variable if and only if the
+following condition is met:
+
+       lim E[Z n4 ] = 3.                                                                            (43)
+      n→∞
+
+This is the criterion we shall adopt in order to get our central limit theorem. The second order
+condition (42) is simply a normalization step, so that the essential point is to analyze the fourth
+order moments of X T − X Tn in order to prove condition (43). It should be stressed at this point
+that [24, Theorem 1] contains in fact a series of equivalent statements for condition (43), based
+either on assumptions on the Malliavin derivatives of the random variables Z n , or on purely
+deterministic criteria concerning the kernels defining the multiple integrals under consideration.
+These alternative criteria yield arguably some shorter computations, but we preferred to stick to
+the fourth order moment for two main reasons: (i) The computations we perform in this context
+are more intuitive, and in a sense, easier to follow. (ii) As we shall explain below, the fourth order
+computations lead to some visual representations in terms of graphs, and we will able to show
+easily that the CLT is equivalent to have the sum of the connected diagrams tending to 0. As we
+shall see, this latter criterion is really analogous to [24, Theorem 1, Condition (ii)].
+    In the remainder of this section, we check condition (43) for X T − X Tn , rescaled according to
+Theorem 1, in order to get a central limit theorem for our approximation. We shall first explain
+the basics of our diagrammatical method of computation and show how to reduce our problem
+to the analysis of connected diagrams. Then we split our study into regular and singular terms.
+
+4.1. Reduction of the problem
+
+   Owing to Theorem 1, it is enough for our purposes to show that limn→∞ E[Z n4 ] = 3, where
+                                                      n
+                                                      X
+      Z n = n 2H −1/2 T −2H [α1 (H )]−1/2                   Jin .                                   (44)
+                                                      i=1
+
+Furthermore, the self-similarity of fBm implies that
+                                        !4 
+                                   X n
+      E[Z n4 ] = (α1 (H )n)−2 E       Ii  ,
+                                        i=1
+
+where Ii = Ai,i+1 is the Lévy area between i and i + 1. Now, the most naive idea one can have
+in mind is to write Z n as limη→0 Z n (η), where Z n is obtained by considering regularized areas
+based on B(η), and then expand E[Z n4 (η)] as
+                                            "            #
+                                  X n         4
+                                              Y
+      E[Z n (η)] = (α1 (H )n)
+          4                   −2
+                                          E      Ii j (η)
+                                    i 1 ,...,i 4 =1         j=1
+244            A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+
+                                 1                   2              1                    2
+
+
+
+
+                                 3                  4               3                    4
+
+
+
+
+                                          Fig. 1. Two examples of diagrams.
+                                                             !      "                      #       "                       #
+                           4
+                           Y Z i j +1               Z xj                4
+                                                                        Y                              4
+                                                                                                       Y
+        = (α1 (H )n)  −2
+                                             dx j          dy j E             Bx0(1)
+                                                                                  j
+                                                                                     (η)       E             B y0(2)
+                                                                                                                  j
+                                                                                                                     (η)       ,   (45)
+                           j=1       ij              ij                 j=1                            j=1
+
+where we have used formula (15) with N = 2 in order to get the last equality.
+   We apply now Wick’s formula (14) in order to get an expression for the expected
+values above, and this is where our diagrammatical representation can be useful. Indeed,
+            0(1)                 0(2)
+E[ 4j=1 Bx j (η)] E[ 4j=1 B y j (η)] is the sum of 9 different terms, connecting the xi ’s two by
+   Q                    Q
+two according to formula (14), and also the yi ’s two by two. Each term may be represented by
+a four-point diagram in the following way. Draw a simple line, resp. a dashed line between i
+and j if xi and x j , resp. yi and y j are connected. This procedure yields 9 different graphs, whose
+typical examples are given at Fig. 1. Moreover, the reader can then check easily that diagrams fall
+into two types: connected ones (6) and disconnected ones (3). Furthermore, up to permutations
+of the indices, there is only one disconnected diagram, namely the first diagram of Fig. 1. One
+checks immediately that the corresponding integral is E[Ii1 (η)Ii2 (η)]E[Ii3 (η)Ii4 (η)]. Write also
+the total contribution of the 6 connected diagrams as E[Ii1 (η)Ii2 (η)Ii3 (η)Ii4 (η)](c) , where (c)
+stands for connected. Thanks to our graphical representation, it is then straightforward to prove
+the following: for arbitrary constants ci , i = 1, . . . , n, we have
+                         !4                          !2                     !4 
+              Xn                            Xn                        n
+                                                                      X
+      E         ci Ii (η)  − 3 E2           ci Ii (η)  = E         ci Ii (η)  .            (46)
+            i=1                                i=1                                 i=1
+                                                                                                              (c)
+
+Hence our condition (43) is satisfied for Z n defined by (44) if and only if the right-hand side of
+Eq. (46) goes to zero for ci = n −1/2 (ci is in fact independent of i). It should be stressed at that
+point that the latter condition (which is what we call connected diagrams go to 0) is an analogue
+of criterion (ii) in [24, Theorem 1], but is obtained here without Malliavin calculus tools. This
+terminology is inspired by the Feynman diagram analysis in the context of quantum field theory;
+see e.g. [15].                Pn
+   Let us set now Z̃ n (η) = i=1      Ii (η). With the above considerations in mind, we are reduced
+to show that
+                    1 h        i
+        lim lim 2 E Z̃ n4 (η)        = 0.                                                       (47)
+       n→∞ η→0 n                 (c)
+
+This relation will be first proved for H ∈ (1/2, 3/4). In that case one may consider directly the
+situation where η = 0, that is the infinitesimal covariance kernel (x, y) 7→ H (2H − 1)|x −
+y|2H −2 , since it is locally integrable. The proof requires only a few lines of computations. Each
+diagram in E[ Z̃ n4 (η)](c) splits into regular terms – which are also well defined for H < 12 – and
+singular terms – which diverge when H < 21 . As we shall see, the bounds given for the non-
+singular terms also hold true for H < 12 . Then we shall see how to bound the singular terms for
+               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254                           245
+
+                                                  1                                                 2
+
+
+
+
+                                                   3                                                4
+
+                                                       Fig. 2. Typical connected diagram.
+
+
+arbitrary H by replacing the ill-defined kernel H (2H − 1)|x − y|2H −2 with its regularization
+K 0 (η; x, y). This step is of course only needed in the case H < 21 , but computations are equally
+valid in the whole range H ∈ (1/4, 3/4). In other words, the barrier H = 12 is largely artificial
+(the proofs of the two cases are actually mixed, and one could also have written a general proof,
+at the price of some more technical calculations).
+   Before we enter into these computational details, let us reduce     Pn our problem a little bit more:
+recall again that we wish to prove relation (47) for Z̃ n (η) = i=1           Ii (η). As explained above,
+we evaluate E[ Z̃ n (η)](c) with 6 different connected diagrams. Let us focus on the term, which
+                  4
+
+will be called T , corresponding to the diagram given at Fig. 2 (the other ones can be treated in
+a similar manner). Now, starting from expression (45), taking into account the fact that we are
+considering the particular diagram    given at Fig. 2 and integrating over the internal variables y,
+we end up with T = n −2 in1 ,...,i4 =1 I(i1 ,...,i4 ) , where (recalling that the kernel K is defined by
+                             P
+Eq. (11))
+                           Z i1 +1                    Z i4 +1
+       I(i1 ,...,i4 ) :=                 dx1 · · ·              dx4
+                            i1                         i4
+
+                           × K 0 (η; x1 , x2 )K 0 (η; x3 , x4 )K i1 ,i3 (η; x1 , x3 )K i2 ,i4 (η; x2 , x4 ).                  (48)
+
+   The latter expression yields naturally a notion of regular terms and singular terms: split the
+set of indices {1, . . . , n}4 into A1 ∪ A2 , where
+
+       A2 = {(i 1 , . . . , i 4 ) | 1 ≤ i 1 , . . . , i 4 ≤ n, |i 1 − i 3 |, |i 2 − i 4 | ≤ 1},
+          A1 = {1, . . . , n}4 \ A2 .                                                                                         (49)
+
+Regular terms, resp. singular terms are those for which |i 1 − i 2 |, |i 3 − i 4 | ≥ 2, resp. |i 1 − i 2 | ≤ 1
+or |i 3 −i 4 | ≤ 1. Split accordingly the sets of indices A j , j = 1, 2 into A j,reg ∪ A j,sing , and denote
+                           X                                                               X
+      T j,reg =                            I(i1 ,...,i4 )   and       T j,sing =                           I(i1 ,...,i4 ) .   (50)
+                                    reg
+                   (i 1 ,...,i 4 )∈A j                                                              sing
+                                                                                   (i 1 ,...,i 4 )∈A j
+
+
+It remains to prove that T j,reg = o(n 2 ) and T j,sing = o(n 2 ), for j = 1, 2. These two steps will be
+performed respectively at Sections 4.2 and 4.3.
+246               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+4.2. Regular terms and case H > 1/2
+
+    This section is devoted to the study of T j,reg , and also of T j,sing for H > 1/2. In both cases, one
+is allowed to take limits as η → 0 without much care, by a standard application of the dominated
+convergence theorem. We skip this elementary step, and consider directly our expressions for
+η = 0.
+    Let us start by T1,reg , which is given by
+                           X            Z i1 +1           Z i4 +1
+       T1,reg =                                 dx1 · · ·         dx4 K 0 (x1 , x2 )K 0 (x3 , x4 )
+                  |i 1 −i 3 |,|i 1 −i 2 |,|i 3 −i 4 |≥2 i 1                i4
+
+                  × K i1 ,i3 (x1 , x3 )K i2 ,i4 (x2 , x4 ).                                                                   (51)
+
+We shall bound this integral by different methods in the cases H ∈ (1/2, 3/4) and H < 21 :
+(i) Assume first H ∈ (1/2, 3/4). Whenever |s − i|, |t − j| ≤ 1, recall from Lemma 11 that
+K i, j (s, t) . |t − s|2H −2 if |i − j| ≥ 2, and s ∈ [i, i + 1], t ∈ [ j, j + 1]. In particular,
+the quantity |K i1 ,i3 (x1 , x3 )| in Eq. (51) is bounded by |x1 − x3 |2H −2 . We also obviously have
+|K 0 (x1 , x2 )| . |x2 − x1 |2H −2 and |K 0 (x3 , x4 )| . |x4 − x3 |2H −2 . As a consequence,
+                                   X           Z i1 +1            Z i4 +1
+         |T1,reg | ≤ 2C                                 dx1 · · ·         dx4 |x2 − x1 |2H −2 |x4 − x3 |2H −2
+                          |i 1 −i 3 |,|i 1 −i 2 |,|i 3 −i 4 |≥2 i 1                i4
+
+                    × |x1 − x3 |        2H −2
+                                                  |K i2 ,i4 (x2 , x4 )|.
+Let us undo now the initial scaling by setting t j = x j /n. One gets
+                               Z 1           Z 1
+                    4+3(2H −2)
+      |T1,reg | . n                dt1 · · ·     dt4 |t2 − t1 |2H −2 |t4 − t3 |2H −2
+                                         0                        0
+
+                    × |t3 − t1 |      2H −2
+                                                K bnt2 c,bnt4 c (nt2 , nt4 ).                                                 (52)
+Applying Lemma 13 to the above expression (52) and integrating successively with respect to t1
+and t3 yields
+                               Z 1     Z 1
+      |T1,reg | . n 4+3(2H −2)
+                                   dt2     dt4 (1 + |t2 − t4 |6H −4 )K bnt2 c,bnt4 c (nt2 , nt4 ). (53)
+                                           0            0
+
+Recall now that |K bnt2 c,bnt4 c (nt2 , nt4 )| . min(1, (n|t2 − t4 |)2H −2 ). Hence, one can bound this
+kernel by 1 on [0, 1/n] and by (nt)2H −2 on [1/n, 1], yielding
+      Z 1                                    Z 1/n              Z 1
+          dt4 K bnt2 c,bnt4 c (nt2 , nt4 ) .       dt + n 2H −2     t 2H −2 dt . n −1 + n 2H −2 , (54)
+        0                                                     0                     1/n
+
+and also
+      Z 1                                                                  Z 1/n                          Z 1
+            dt4 |t2 − t4 |6H −4 K bnt2 c,bnt4 c (nt2 , nt4 ) .                     t 6H −4 dt + n 2H −2          t 8H −6 dt
+        0                                                                   0                              1/n
+                                                                      . n 3−6H + n 2H −2 .
+Hence, multiplying by the prefactor n 4+3(2H −2) from Eq. (53), one has found: |T1,reg | .
+n + n 8H −4 + n 6H −3 . n + n 8H −4 . In particular, if H < 3/4, then |T1,reg | = o(n 2 ).
+              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254                 247
+
+(ii) Assume now H < 12 . In this case, the integrals we have been manipulating above are
+divergent, so that we will use series arguments instead. Let us observe then that, under the same
+conditions as in the case H ∈ (1/2, 3/4), the bound |K i1 ,i3 (x1 , x3 )| . |i 1 − i 3 |2H −2 holds true.
+We also bound the factor |K i2 ,i4 (x2 , x4 )| by a constant in order to get
+                                                                               !
+                      X                               X
+      |T1,reg | .             |i 1 − i 3 |2H −2              |i 2 − i 1 |2H −2
+                     i 1 ,i 3 :|i 1 −i 3 |≥2                          i 2 :|i 2 −i 1 |≥2
+                                                                          !
+                                   X
+                                                                  2H −2
+                     ×                              |i 4 − i 3 |
+                             i 4 :|i 4 −i 3 |≥2
+                             X
+                 .                             |i 1 − i 3 |2H −2 = O(n).
+                     i 1 ,i 3 :|i 1 −i 3 |≥2
+
+   We now leave to the reader the task of checking, with the same kind of computations, that
+|T1,sing | = O(n) (provided H > 12 ).
+   Turn now to the complementary set of indices, A2 : by simply bounding the kernels K i, j (x, y)
+by constants in (51), one gets
+                              X             Z i1 +1           Z i4 +1
+       |T2,reg | .                                  dx1 · · ·         dx4 |K 0 (x1 , x2 )||K 0 (x3 , x4 )|
+                     |i 1 −i 3 |,|i 2 −i 4 |≤1;|i 1 −i 2 |,|i 3 −i 4 |≥2 i 1                 i4
+                             X
+                 .                             |i 1 − i 2 |2(2H −2) .                                             (55)
+                     i 1 ,i 2 :|i 1 −i 2 |≥2
+
+Hence |T2,reg | = O(n 4H −2 ) = o(n 2 ) when H < 3/4, which is enough for our purposes.
+  Finally, provided H > 21 , some similar elementary considerations prove that
+                            Z 1            Z 1                                !2
+       |T2,sing | . n               dx1              dx2 |K (x1 , x2 )|
+                                                              0
+                                                                                   = O(n),                        (56)
+                               0                0
+
+where we have used the fact that |i j − i k | = O(1) for j, k = 1, . . . , 4 if (i 1 , . . . , i 4 ) ∈ A2,sing .
+
+4.3. Singular terms in the case H < 1/2
+
+     Let us reconsider the terms T1,sing and T2,sing in (50), taking now into account the fact that we
+deal with the regularized kernels K 0 (η; x1 , x2 ), K 0 (η; x3 , x4 ) instead of K 0 (x1 , x2 ), K 0 (x3 , x4 ).
+     In order to treat all the terms appearing in our sums in a systematic way, let us introduce a little
+of vocabulary: consider any multi-index (i 1 , . . . , i p ), p ≥ 2 (in our case p = 4). We shall say that
+{i j1 , . . . , i jk }, j1 6= · · · 6= jk is a maximal contiguity subset of (i 1 , . . . , i p ) if (up to a reordering)
+i j2 −i j1 = · · · = i jk −i jk−1 = 1 and il ≥ i jk +2 or ≤ i j1 −2 if l 6= j1 , . . . , jk . Maximal contiguity
+subsets define a partition of the set {i 1 , . . . , i p }. Then we shall write (i 1 , . . . , i p ) ∈ Jm 1 ,...,m q if
+the lengths of the maximal contiguity subsets of (i 1 , . . . , i p ) are m 1 ≥ · · · ≥ m q .
+     This terminology will help us classify the terms in T1,sing ∪ T2,sing . Forgetting about the O(n)
+multi-indices (i 1 , . . . , i 4 ) in J4 appearing in T2,sing (according to the fact that Var(Ast (η)) is
+uniformly bounded on [0, T ], proved in [26], this term contributes only O(n) to the sum), the
+other singular terms are all in T1,sing and may be:
+     – either of type J2,1,1 , with maximal contiguity subsets {{i 1 , i 2 }, {i 3 }, {i 4 }} or equivalently
+{{i 3 , i 4 }, {i 1 }, {i 2 }};
+248              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+    – or of type J2,2 , with maximal contiguity subsets {{i 1 , i 2 }, {i 3 , i 4 }};
+    – or of type J3,1 , with maximal contiguity subsets {{i 1 , i 2 , i 3 }, {i 4 }} or equivalent possibilities.
+    Let us observe that, in our iterated multiple integrals, the most serious problems of singularity
+appear when the external variables x (represented by solid lines in our graphs) are contiguous.
+Indeed, the internal variables y are integrated, smoothing the kernels K 0 into K a,b . However, one
+still has to cope with the highly singular kernel K 0 for the external variables. For instance, for
+the graph given at Fig. 2 (which is the one we are analyzing), this kind of problem appears for
+the terms of type J2,1,1 (when the maximal contiguity subset is {{i 1 , i 2 }, {i 3 }, {i 4 }}) or J2,2 . But a
+simple Fubini-type argument allows us to get rid of these singularities. Indeed, when η > 0, the
+integral
+       4
+       Y Z i j +1                                               4
+                                                                Y Z xj
+                    dx j K 0 (η; x1 , x2 )K 0 (η; x3 , x4 ) ·              dy j K 0 (η; y1 , y3 )K 0 (η; y2 , y4 ),
+       j=1 i j                                                   j=1 i j
+
+corresponding to the diagram of Fig. 2, is also equal to
+       4 Z i j +1
+       Y                                                        4 Z i j +1
+                                                                Y
+                    dy j K 0 (η; y1 , y3 )K 0 (η; y2 , y4 ) ·                dx j K 0 (η; x1 , x2 )K 0 (η; x3 , x4 ),
+       j=1 i j                                                   j=1 y j
+
+corresponding (up to time-reversal) to the reversed diagram obtained by exchanging full lines
+with dashed lines. The important point is that this full-line dashed-line symmetry maps the above
+singular diagrams of type J2,1,1 or J2,2 into regular diagrams, for which the external variables
+are separated. This situation can thus be handled along the same lines as in Section 4.2, and there
+only remains to estimate singular diagrams of type J3,1 .
+   For this latter class of diagram, assume for instance (without loss of generality) that {i 1 , i 2 , i 3 }
+is a maximal contiguity subset of (i 1 , . . . , i 4 ). Then, owing to relation (12), the corresponding
+integral writes E = E(i 1 , . . . , i 4 ), with
+                 Z i3 +1     Z i1 +1        Z i2 +1     Z i4 +1
+      E = cH             dx3            dx1         dx2         dx4 [x3 − x4 ]η2H −2 [x1 − x2 ]η2H −2
+                    i3           i1            i2               i4
+                                                                           
+             × [x3 − x1 ]2H              2H              2H              2H
+                         η + [i 3 − i 1 ]η − [x 3 − i 1 ]η − [x 1 − i 3 ]η    K i2 ,i4 (η; x2 , x4 ), (57)
+
+which is the sum of 4 terms, denoted in what follows by E 1 , . . . , E 4 . The most complicated one
+is a priori E 1 , obtained by choosing the contribution of [x3 − x1 ]2H η to the integral. Let us first
+estimate this term.
+    Apply Lemma 12 with f (x4 ; u) = [u − x4 ]2H    η
+                                                      −2 , z = x (x is simply an additional parameter
+                                                                  1 4
+here, and f fulfills the analytic assumptions of Lemma 12 because i 3 and i 4 are not contiguous)
+and β = 2H, γ = 0: letting
+                        Z i3 +1
+       φ1 (x4 ; x1 ) :=         dx3 [x1 − x3 ]2H            2H −2
+                                              η [x 3 − x 4 ]η     ,
+                          i3
+
+we obtain that φ1 is analytic in x1 on a cut neighborhood Ωcut      0 of [i , i + 1] excluding possibly
+                                                                            1 1
+i 3 and i 3 + 1 (depending on whether i 3 , i 3 + 1 ∈ {i 1 , i 1 + 1} or not), and one can decompose φ1
+into
+
+       φ1 (x4 ; x1 ) = [x1 − i 3 ]2H
+                                  η
+                                     +1
+                                        F1 (x4 ; x1 ) + G 1 (x4 ; x1 )                                                  (58)
+               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254                  249
+
+on a neighborhood of i 3 (and similarly around i 3 + 1), with F1 possibly zero. The functions
+φ1 |Ωcut
+     0 , F1 and G 1 are analytic and bounded by a constant times |i 3 − i 4 |
+                                                                             2H −2 .
+
+    Apply once again Lemma 12 with f (x4 ; u) = φ1 (x4 ; u), z = x2 and β = 2H − 2, γ = 0 or
+(possibly) 2H + 1: letting
+                            Z i1 +1
+       φ2 (x4 ; x2 ) =                   dx1 [x2 − x1 ]2H
+                                                       η
+                                                          −2
+                                                             φ1 (x4 ; x1 ),                                         (59)
+                             i1
+
+φ2 is analytic in x2 on a cut neighborhood Ωcut
+                                            00 of [i , i + 1] excluding possibly i and i + 1,
+                                                    2 2                           1     1
+and
+
+       φ2 (x4 ; x2 ) = [x2 − i 1 ]2H
+                                  η
+                                     −1
+                                        F2 (x4 ; x2 ) + [x2 − i 1 ]4H
+                                                                   η F3 (x 4 ; x 2 ) + G 2 (x 4 ; x 2 )             (60)
+
+on a neighborhood of i 1 (and similarly around i 1 +1), with the same bounds as before for φ2 |Ωcut          00 ,
+
+F2 , F3 and G 2 .
+    Finally, since φ2 is integrable with respect to x2 on [i 2 , i 2 + 1] and K i2 ,i4 (η; x2 , x4 ) is bounded
+by C|i 3 − i 4 |2H −2 by Lemma 11, one gets
+                      Z i4 +1
+       |E| ≤ C    0
+                                  dx4 |i 3 − i 4 |4H −4 = C 0 |i 3 − i 4 |4H −4 .                                   (61)
+                       i4
+
+   There remain 3 ‘boundary’ terms E 2 , E 3 , E 4 which are easier to cope with. Consider for
+instance E 3 defined as
+             Z i4 +1     Z i2 +1
+      E3 =           dx4         dx2 K i2 ,i4 (η; x2 , x4 )
+                 i4                 i2
+                      Z i1 +1                            Z i3 +1
+               ×                dx1 [x2 − x1 ]2H
+                                              η
+                                                 −2
+                                                                   dx3 [x3 − i 1 ]2H            2H −2
+                                                                                  η [x 3 − x 4 ]η     .
+                       i1                                  i3
+
+Applying again Lemma 12, we get
+              Z i4 +1                     Z i2 +1
+     E3 = C           dx4 G 1 (x4 ; i 1 )         dx2 K i2 ,i4 (η; x2 , x4 )
+               i4                          i2
+                                                             
+           × [x2 − i 1 − 1]2H  η
+                                   −1
+                                         − [x2 − i 1 ]2H
+                                                      η
+                                                         −1
+                                                                ,
+
+where G 1 is as in Eq. (58). Since x2 7→ [x2 − i 1 − 1]2H         η
+                                                                     −1 and x 7→ [x − i ]2H −1 are integrable
+                                                                              2          2       1 η
+and G 1 , resp. K i2 ,i4 is bounded by a constant times |i 3 − i 4 |2H −2 , one easily gets an upper bound
+as the same form as before, namely, |E 3 | ≤ C|i 3 − i 4 |4H −4 .
+                P Pthat E(i 1 , . . . , i 44H     ) defined by (57) satisfies
+                                                                            PE(i 1 , . . . , i 4 ) ≤ C|i 3 − i 4 |
+   Thus we have                                                                                                    4H −4 .
+
+Finally, since          |i 3 −i 4 |≥2 |i 3 −i 4 |
+                                                     −4 = O(n), we obtain i1 ,...,i4 ∈J3,1 E(i 1 , . . . , i 4 ) = O(n).
+   Let us summarize now the results we have obtained so far: we have shown, respectively at
+Sections 4.2 and 4.3, that the terms T j,reg and T j,sing defined by Eq. (50) are o(n 2 ). Going
+back to the definition of T (see Eq. (48)), this also shows that this quantity is of order o(n 2 ).
+Recall now that E[ Z̃ n4 (η)](c) can be decomposed into 6 terms, corresponding to our connected
+diagrams, each of the same kind as the particular example T we have chosen. We have thus
+proved that E[ Z̃ n4 (η)](c) = o(n 2 ) uniformly in η, which yields relation (47). This finishes the
+proof of Theorem 3 for H < 3/4.
+250              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+5. Asymptotic error distribution of the Euler scheme: H ≥ 3/4
+
+   In this case, we derive the limit distribution in a different way, i.e. by analyzing the difference
+between the trapezoidal and the Euler scheme. Recall that for T = 1 this difference is given by
+        n−1
+      1X       (1)     (1)    (2)        (2)
+            (B      − Bi/n )(B(i+1)/n − Bi/n ),                                                          (62)
+      2 i=0 (i+1)/n
+
+and we will see that, thanks to a simple geometric trick (borrowed from [22]), the latter quantity
+has the same law as
+      1 n−1
+        X  (1)          (1)        (2)        (2)
+                                                     
+            |B(i+1)/n − Bi/n |2 − |B(i+1)/n − Bi/n |2 .
+      4 i=0
+
+   This allows us to apply easily the limit theorems for the quadratic variation of fBm, see e.g.
+[3,23] and the references therein, yielding the Lemma below, in which the following distribution
+appears:
+
+Definition 16 (Rosenblatt Random Variable). A standard Rosenblatt random variable with
+parameter H0 = 2H − 1 is given by
+                                                                   !
+        (4H − 3)1/2                     ∂K H        ∂K H
+                      Z 1Z 1 Z 1
+                                             (u, s)      (u, r ) du dWr dWs
+      4H (2H − 1)1/2 0 0        max{r,s} ∂u          ∂u
+
+where W is a standard Brownian motion,
+                              Z t
+     K H (t, s) = c H s 1/2−H     (u − s) H −3/2 u H −1/2 du 1[0,t) (s)
+                                    s
+
+and
+                                          1/2
+                     H (2H − 1)
+             
+      cH =                                       .
+                 β(2 − 2H, H − 1/2)
+
+
+Lemma 17. The following limits in law hold true:
+(i) Let H = 3/4. Then we have
+             √          n−1
+               2n       X     (1)        (1)    (2)        (2)    L
+                            (B(i+1)/n − Bi/n )(B(i+1)/n − Bi/n ) −→ Z ,
+         c1 (H ) log(n) i=0
+       p
+
+where c1 (H ) = 9/16 and Z is a standard normal random variable.
+(ii) Let H ∈ (3/4, 1). Then
+         √       n−1
+           2n X        (1)        (1)    (2)        (2)    L  1
+       √             (B(i+1)/n − Bi/n )(B(i+1)/n − Bi/n ) −→ √ (R1 − R2 ),
+         c2 (H ) i=0                                           2
+
+where c2 (H ) = 2H 2 (2H − 1) / (4H − 3) and R1 and R2 are two independent standard
+Rosenblatt variables of index 2H − 1.
+             A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254         251
+
+Proof. (i) Let β be a fractional Brownian motion with Hurst index H and define
+                                            !
+               n−1                                           n−1
+            1X       |β(i+1)/n − βi/n |2                     X
+     Vn =                                − 1  = −1 + n 2H −1
+                                                                 |β(i+1)/n − βi/n |2 .
+            n i=0           n −2H                            i=0
+If H = 3/4 it follows from [3,23] that
+     r
+              n           L
+                      Vn −→ Z ,                                                                          (63)
+       c1 (H ) log(n)
+where Z is a standard normal random variable. Moreover, for H ∈ (3/4, 1) we know from
+[3,23] that
+      s
+         n 4−4H      L
+                 Vn −→ R,                                                         (64)
+         c2 (H )
+where R is a standard Rosenblatt random variable with index 2H − 1.
+   Now let β̃ be another fractional Brownian motion with the same Hurst index as β, but
+independent of β, and define
+                        n−1 
+                        X                                               
+      Vn0 = n 2H −1          |β(i+1)/n − βi/n |2 − |β̃(i+1)/n − β̃i/n |2 .
+                        i=0
+The continuous mapping theorem and (63) imply that
+     r
+              n           L
+                     V 0 −→ Z 1 − Z 2                                                                    (65)
+       c1 (H ) log(n) n
+for H = 3/4, where Z 1 and Z 2 are two independent standard normal random variables. From
+(64) we obtain that
+      s
+        n 4−4H 0 L
+               V −→ (R1 − R2 ),                                                       (66)
+        c2 (H ) n
+where R1 and R2 are two independent
+                            √        standard Rosenblatt
+                                                  √      random variables with index 2H − 1.
+(ii) Now, set B (1) = (β+ e
+                         β)/ 2 and B (2) = (β− e
+                                               β)/ 2. Then B (1) and B (2) are two independent
+fractional Brownian motions with the same Hurst parameter. Moreover, we have
+                n−1
+                X       (1)         (1)     (2)            (2)   L 1
+      n 2H −1         (B(k+1)/n − Bk/n )(B(k+1)/n − Bk/n ) =            Vn0 .
+                k=0
+                                                                    2
+Thus, we have for H = 3/4 that
+                          n−1                                        r
+             2n           X     (1)        (1)    (2)        (2) L                     n
+                              (B(i+1)/n − Bi/n )(B(i+1)/n − Bi/n ) =                          V 0,
+          c1 (H ) log n i=0                                                     c1 (H ) log(n) n
+      p
+
+                                                                                                     √
+and the first claim follows from (65) and the fact that Z 1 − Z 2 has the same distribution as           2Z 1 .
+   Moreover, since
+                  n−1                                          2−2H
+           2n X         (1)        (1)    (2)        (2) L n
+      √               (B(i+1)/n − Bi/n )(B(i+1)/n − Bi/n ) = √        V0
+          c2 (H ) i=0                                          c2 (H ) n
+the second claim follows from (66).           
+252             A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+   Since the trapezoidal scheme has a better convergence rate than the Euler scheme for
+H ≥ 3/4, which we already used in Section 3.4, the error of the latter scheme is dominated
+by (62). Thus, the asymptotic error distribution of the Euler scheme can be determined by the
+above Lemma, which will be carried out in the following two subsections.
+
+5.1. Error distribution of the Euler scheme for H = 3/4
+
+   By scaling we can assume without loss of generality that T = 1. Recall that here we have
+                             9
+       E|X 1 − X 1n |2 =        · log(n)n −2 + o(log(n)n −2 )
+                            128
+                                                                       X 1n we can write
+for the error of the Euler scheme. Using the trapezoidal approximation b
+
+       X 1 − X 1n = X 1 − b
+                          X 1n + b
+                                 X 1n − X 1n
+                         n−1
+                       1X       (1)     (1)    (2)        (2)
+                   =         (B      − Bi/n )(B(i+1)/n − Bi/n ) + ρn ,
+                       2 i=0 (i+1)/n
+
+where ρn = X 1 − b
+                 X 1n . Hence, setting κn := n[ 128
+                                                 9
+                                                    log(n)]−1/2 , we obtain
+                                n−1
+                             κn X      (1)    (1)    (2)        (2)
+       κn (X 1 − X 1n ) =           (B     − Bi/n )(B(i+1)/n − Bi/n ) + κn ρn .
+                             2 i=0 (i+1)/n
+
+Now note that κn ρn → 0 in L 2 (Ω ) by Theorem 2 and
+          √          n−1
+            2n       X     (1)         (1)   (2)        (2)    L
+                         (B(i+1)/n − Bi/n )(B(i+1)/n − Bi/n ) −→ Z ,
+       c1 (H ) log n i=0
+     p
+
+where c1 (H ) = 9/16 by Lemma 17. Since
+                     √                √
+     κn         n      32      n        2
+          =p         √ =p           √       ,
+      2       log(n) 9       log(n) c1 (H )
+it finally follows that
+                                             r
+                                         L        9
+       n(log(n))   −1/2
+                          (X 1 − X 1n ) −→           · Z,
+                                                 128
+where Z is a standard normal random variable.
+
+5.2. Error distribution of the Euler scheme for H > 3/4
+
+   Here we have
+       E|X 1 − X 1n |2 = α2 (H ) · n −2 + o(n −2 )
+with
+                   1 H 2 (2H − 1)
+       α2 (H ) =                  .
+                   4 4H − 3
+              A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254                  253
+
+Proceeding as above, the limit distribution of the error of the Euler scheme is determined by the
+limit distribution of
+                  n−1
+           n      X      (1)     (1)    (2)        (2)
+         √            (B      − Bi/n )(B(i+1)/n − Bi/n ).
+        2 α2 (H ) i=0 (i+1)/n
+Since
+                         s                   √
+           1                   4H − 3           2
+         √        =                       =√         ,
+        2 α2 (H )            H 2 (2H − 1)    c2 (H )
+it follows by Lemma 17 that
+           n                     L 1
+         √        (X 1 − X 1n ) −→ √ (R1 − R2 ).
+        2 α2 (H )                   2
+
+References
+
+ [1] F. Baudoin, L. Coutin, Operators associated with a stochastic differential equation driven by fractional Brownian
+     motions, Stoch. Proc. Appl. 117 (5) (2007) 550–574.
+ [2] A. Begyn, Asymptotic expansion and central limit theorem for quadratic variations of Gaussian processes, Bernoulli
+     13 (3) (2007) 712–753.
+ [3] J.-C. Breton, I. Nourdin, Error bounds on the non-normal approximation of Hermite power variations of fractional
+     Brownian motion, Electron. Comm. Probab. 13 (2008) 482–493.
+ [4] M. Caruana, P. Friz, Partial differential equations driven by rough paths, J. Differential Equation 247 (1) (2009)
+     140–173.
+ [5] T. Cass, P. Friz, N. Victoir, Non-degeneracy of Wiener functionals arising from rough differential equations, Trans.
+     Amer. Math. Soc. 361 (2009) 3359–3371.
+ [6] L. Coutin, Z. Qian, Stochastic analysis, rough path analysis and fractional Brownian motions, Probab. Theory
+     Related Fields 122 (1) (2002) 108–140.
+ [7] A. Davie, Differential equations driven by rough paths: An approach via discrete approximation, Appl. Math. Res.
+     Express. 2 (2007) 40 pp.
+ [8] P. Friz, N. Victoir, Multidimensional Stochastic Processes as Rough Paths, Cambridge University Press (in press).
+ [9] M. Gubinelli, Controlling rough paths, J. Funct. Anal. 216 (1) (2004) 86–140.
+[10] M. Gradinaru, I. Nourdin, Milstein’s type scheme for fractional SDEs, Ann. Inst. H. Poincaré Probab. Statist.
+     (in press).
+[11] M. Gubinelli, S. Tindel, Rough evolution equations, preprint (arXiv:0803.0552v1). Ann. Probab. (2008) (in press).
+[12] M. Hairer, Ergodicity of stochastic differential equations driven by fractional Brownian motion, Ann. Probab. 33
+     (2) (2005) 703–758.
+[13] J.-P. Kahane, Some Random Series of Functions, Cambridge University Press, 1985.
+[14] P.E. Kloeden, E. Platen, Numerical Solution of Stochastic Differential Equations, Springer, 1999.
+[15] M. Le Bellac, Quantum and Statistical Field Theory, in: Oxford Science Publications, Clarendon Press, 1991.
+[16] T. Lyons, Z. Qian, System Control and Rough Paths, Oxford University Press, 2002.
+[17] G.N. Milstein, M.V. Tretyakov, Stochastic Numerics for Mathematical Physics, Springer, 2004.
+[18] Y. Mishura, G. Shevchenko, The rate of convergence for Euler approximations of solutions of stochastic differential
+     equations driven by fractional Brownian motion, Stochastics 80 (5) (2008) 489–511.
+[19] A. Neuenkirch, Optimal pointwise approximation of stochastic differential equations driven by fractional Brownian
+     motion, Stoch. Proc. Appl. 118 (12) (2008) 2294–2333.
+[20] A. Neuenkirch, I. Nourdin, Exact rate of convergence of some approximation schemes associated to SDEs driven
+     by a fractional Brownian motion, J. Theoret. Probab. 20 (4) (2007) 871–899.
+[21] A. Neuenkirch, I. Nourdin, S. Tindel, Delay equations driven by rough paths, Electron. J. Probab. 13 (2008)
+     2031–2068.
+[22] I. Nourdin, A change of variable formula for the 2D fractional Brownian motion of Hurst index bigger or equal to
+     1/4, J. Funct. Anal. 256 (2009) 2303–2320.
+254               A. Neuenkirch et al. / Stochastic Processes and their Applications 120 (2010) 223–254
+
+[23] I. Nourdin, D. Nualart, C. Tudor, Central and non-central limit theorems for weighted power variations of fractional
+     Brownian motion (2008) preprint (arXiv:0710.5639v2).
+[24] D. Nualart, G. Peccati, Central limit theorems for sequences of multiple stochastic integrals, Ann. Probab. 33 (1)
+     (2005) 177–193.
+[25] S. Tindel, J. Unterberger, The rough path associated to the multidimensional analytic fBm with any Hurst parameter,
+     (2008) preprint (arXiv:0810.1408v1).
+[26] J. Unterberger, Stochastic calculus for fractional Brownian motion with Hurst exponent H > 1/4: A rough path
+     method by analytic extension, Ann. Probab. 37 (2) (2009) 565–614.
+[27] J. Unterberger, A central limit theorem for the rescaled Lévy area of two-dimensional fractional Brownian motion
+     with Hurst index H < 1/4 (2008) preprint (arXiv:0808.3458).
+

@@ -1,0 +1,5 @@
+# Analytic review research log
+
+2026-10-25T05:14:54.719695+00:00 — 45% complete. All seven reader pages read/rendered; exact claim reconstructed; independent tensor/projection proof and standard-library rational algebra controls sealed before submitted-code inspection. Source provenance and actual primary canonical-existence theorem still to inspect. No sibling scientific opinions read. No external communication.
+
+2026-10-25T05:15:49.157158+00:00 — 65% complete. Fresh Zenodo custody verified. Actual primary NTU institutional Proposition 6/Remark 10/Theorem 2 and full theorem-2 proof read; central existence input confirmed. Submitted checker inspection exposed an error in our excluded H=1 correction-variance comment; exact recalculation gives T^4/(4m²), reader correct, central proof unaffected. Original seal retained and explicit addendum/corrected exact output added. Historical authored proof headers and support prose mention favorable old audits; those statements were encountered incidentally after first seal and are not mathematical authority.

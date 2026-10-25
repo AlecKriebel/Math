@@ -1,0 +1,72 @@
+{
+  "record_id": "23383961",
+  "state": "EDITORIAL_BINDINGS_ONLY; RENDERING_PENDING",
+  "bounded_authority": "Only the source-bound publication/promotion configs and new editorial records were authored. This is a root-facing adapter specification, not a mutation of a shared renderer, schema or site.",
+  "field_mapping": {
+    "title": "HTML h1, document title and citation_title; exact published title",
+    "description": "Unique meta description, Open Graph description and ScholarlyArticle.description",
+    "abstract": "Full unchanged original abstract in indexable HTML and ScholarlyArticle.abstract",
+    "abstract_heading": "Use Original abstract as the visible heading. The current shared renderer hardcodes Abstract and ignores this field. Root must make a bounded per-page adaptation and verify actual output; do not prefix, shorten or rewrite the abstract to work around the heading.",
+    "plain_language": "The idea in plain English",
+    "result": "The precise result",
+    "why_it_works": "Why the result holds",
+    "limitations": "Scope and limitations",
+    "ai_disclosure": "Status and AI use; extensive AI/unrefereed/no human or journal review/no formal certification must survive",
+    "edition_note": "Display the declared manuscript/publication date separately from record-created date; do not infer priority",
+    "background": "Linked credited prior work, without adopting unverified absence/example-overlap assertions from manuscript Section 5",
+    "collaboration": "Actual substantive research and writing contributions plus mutual agreement; no prepared individual outreach",
+    "follow_up": "null: omit the follow-up section",
+    "canonical_url": "Already the final slug-derived canonical; use it in canonical tag, structured data, citation_pdf_url, Open Graph, index and sitemap when actually staged",
+    "source_binding": "Private source identity/custody; not public prose",
+    "review_metadata": "Private preparation state; not public prose"
+  },
+  "custom_verdict_requirements": {
+    "root_authority": "promotion.status PASS is the later root scientific disposition, bound to the exact root-clearance hash; it is not a live/browser/native-publication pass.",
+    "scope_original": "Preserve the complete reviews.scope.verdict object including status=SCOPE_COMPLETE_PENDING_INDEPENDENT_MATHEMATICAL_REVIEW, mathematical_pass=false, scientific_verdict=null, defect_found=null and ready_to_publish=false. The frozen candidate retains mathematical_pass=false, ready_to_publish=false and canonical_url=null.",
+    "analytic_original": "Preserve complete original object: status=analytic_pass_no_substantive_defect_found, publication_clearance=false and remaining_analytic_gap=null. Root disposition is separately PASS.",
+    "adversarial_original": "Preserve complete original object: verdict=PASS_SCIENTIFIC_SCOPE, substantive_defect_found=false and unresolved_mathematical_gap=null. Root disposition is separately PASS.",
+    "bounded_mapping": "Read each complete original object and its separately copied root_disposition. Do not rewrite source verdicts or turn the scope-only pending gate into an original mathematical PASS. Later root scope_gate_resolution explains chronology."
+  },
+  "asset_specification": {
+    "pdf": "Copy support_slit.pdf from the bound sources without modification; iframe/embed uses the identical local asset. Provide a direct-open link and a download link with a download attribute, plus a clear original Zenodo link. Do not regenerate the PDF.",
+    "supplement": "Copy the complete verification_package.zip unchanged; provide local download and Zenodo original links. Do not extract/trim/repack it as the public supplement.",
+    "no_other_assets": "No additional reader or public third-party cached primary texts. The ZIP contains no embedded PDF reader or nested archive.",
+    "download_adapter": "The shared renderer currently offers direct PDF opening and the original Zenodo link but no explicit local PDF download attribute. Root should include that bounded per-page link and verify it with the final assets. The separate supporting-material links in PUBLIC_COPY must be carried through even though related_resources is empty."
+  },
+  "metadata_specification": {
+    "author": "Alec Kriebel; ORCID 0009-0001-9320-500X",
+    "version": "1.0",
+    "datePublished": "2026-10-14",
+    "record_created_utc": "2026-10-15T04:00:29.066300+00:00",
+    "creativeWorkStatus": "Unrefereed preprint",
+    "doi": "10.5281/zenodo.23383961",
+    "license": "CC BY 4.0",
+    "canonical_url": "https://aleckriebel.com/research/nonmonotone-argument-radial-angle-support-slit/",
+    "scholarly_graph": "Use exact title, author/ORCID, version, declared date, DOI, full original abstract, PDF encoding and unrefereed status. Keep internal review dates/hashes/check counts out of the public graph and text."
+  },
+  "expected_sections": [
+    "Original abstract",
+    "The idea in plain English",
+    "The precise result",
+    "Why the result holds",
+    "Scope and limitations",
+    "Status and AI use",
+    "Read the paper",
+    "Supporting materials",
+    "Collaborate on this result",
+    "Cite this paper",
+    "Background and prior work"
+  ],
+  "remaining_root_gates": [
+    "actual rendered public-copy and source-asset comparison",
+    "local HTTP and link/download checks",
+    "live HTTP and byte-identical PDF/ZIP checks",
+    "desktop/mobile browser inspection",
+    "native Sheet AA URL only after verified live"
+  ],
+  "native_sheet_aa_url": null,
+  "website_rendered": false,
+  "live_verified": false,
+  "browser_verified": false,
+  "native_tracker_modified": false
+}
