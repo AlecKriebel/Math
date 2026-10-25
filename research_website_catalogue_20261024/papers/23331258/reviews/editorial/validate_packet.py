@@ -129,6 +129,22 @@ check('Krause_earlier_expensive_edge_exact_one_positive_credit', any('Section 9.
 check('intake_source_order_correction_documented', 'PDF then ZIP' in load(E/'INTAKE_RECORD.json')['actual_source_asset_and_transport_order'] and 'Parent shorthand' in load(E/'INTAKE_RECORD.json')['bounded_intake_correction'])
 check('full_arbitrary_edge_infinity_finite_and_exact_scope_in_draft', all(x in copy for x in ('All three unordered terminal pairs','infinity greater','positive binary-encoded rational deletion costs','finite','exactly from three to four','All edges, including terminal spokes','arbitrary edge deletions')))
 
-result = {'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'record_id':23331258, 'kind':'PRIVATE_EDITORIAL_STATIC_VALIDATION_ONLY', 'status':'PASS' if all(x['passed'] for x in checks) else 'FAIL', 'checks_count':len(checks), 'checks':checks, 'no_render_HTTP_UI_Git_source_execution_or_writes_by_this_validator':True, 'publication_authority':False}
+ledger_verification = {'status':'NOT_PRESENT_DURING_INITIAL_PREPARATION'}
+if (E/'READ_LEDGER.json').exists():
+    entries = load(E/'READ_LEDGER.json')['entries']
+    failures = bindings([x['input'] for x in entries])
+    ledger_verification = {'status':'PASS' if not failures else 'FAIL','fixed_input_entries':len(entries),'failures':failures,'mutable_consumer_observations_not_followed':True}
+manifest_verification = {'status':'NOT_PRESENT_PRESEAL'}
+if (E/'MANIFEST.json').exists() or (E/'SEAL.json').exists():
+    if not (E/'MANIFEST.json').exists() or not (E/'SEAL.json').exists():
+        manifest_verification = {'status':'FAIL','reason':'Incomplete manifest/seal pair'}
+    else:
+        manifest, seal = load(E/'MANIFEST.json'), load(E/'SEAL.json')
+        failures = bindings(manifest['files'])
+        seal_binding = seal['manifest']
+        good = not failures and manifest['file_count'] == len(manifest['files']) == len({r['path'] for r in manifest['files']}) == seal['all_manifest_bindings_rehashed'] and sha(E/'MANIFEST.json') == seal_binding['sha256'] and (E/'MANIFEST.json').stat().st_size == seal_binding['bytes']
+        manifest_verification = {'status':'PASS' if good else 'FAIL','bound_files':manifest['file_count'],'failures':failures,'manifest_hash_matches_seal':sha(E/'MANIFEST.json') == seal_binding['sha256']}
+
+result = {'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'record_id':23331258, 'kind':'PRIVATE_EDITORIAL_STATIC_VALIDATION_ONLY', 'status':'PASS' if all(x['passed'] for x in checks) and ledger_verification['status'] != 'FAIL' and manifest_verification['status'] != 'FAIL' else 'FAIL', 'checks_count':len(checks), 'checks':checks, 'read_ledger_verification':ledger_verification, 'sealed_manifest_verification':manifest_verification, 'no_render_HTTP_UI_Git_source_execution_or_writes_by_this_validator':True, 'publication_authority':False}
 print(json.dumps(result, ensure_ascii=False, indent=2))
 raise SystemExit(0 if result['status'] == 'PASS' else 1)
