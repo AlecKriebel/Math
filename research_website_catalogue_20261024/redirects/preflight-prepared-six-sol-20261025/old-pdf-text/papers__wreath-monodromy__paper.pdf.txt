@@ -1,0 +1,429 @@
+       Full wreath-product monodromy through the third iterate
+                       of an explicit Keller map
+                                            Alec Kriebel
+                            with heavy assistance from ChatGPT 5.6 Sol
+
+                  First public repository release 21 July 2026, 18:44:48 UTC
+                    Strengthened site edition 22 July 2026, 02:24:28 UTC
+                               Research draft; not peer reviewed
+
+
+                                                  Abstract
+         Let F : C → C be the newly announced noninjective polynomial map with constant Jaco-
+                  3     3
+
+     bian determinant −2 and geometric monodromy S3 . We determine the geometric monodromy
+     of its second and third iterates:
+                             Mon(F ◦2 ) = S3 o S3 ,      Mon(F ◦3 ) = S3 o S3 o S3 .
+     The respective degrees are 9 and 27, and the group orders are 1296 and 13,060,694,016. On
+     the target line (1, 2, s), exact primitive eliminants have one-edge Newton polygons at infinity,
+     giving a 9-cycle and a 27-cycle. Each discriminant has a squarefree divisor of multiplicity one
+     and hence gives a single deepest-block transposition; at level three, exact leading-coeﬀicient
+     and reconstruction-denominator guards are included. Elementary group lemmas force the full
+     wreath products. Postcomposition by diag(1/4, 1, 1) gives a noninjective unit-Jacobian map
+     realizing the pair (9, S3 o S3 ). We also prove that every iterate F ◦m has a full 3m -cycle in its
+     geometric inertia at infinity. Exact SymPy, dependency-free finite-field, PARI/GP, and GAP
+     checks accompany the argument.
+
+Verification disclaimer. The human author is a complete amateur exploring the limits of AI-
+assisted mathematics and cannot independently verify these claims. This is a research artifact for
+expert checking, not an established result. No guarantee of worldwide priority is made.
+
+
+1   The map and the result
+Put u = 1 + xy and define F = (F1 , F2 , F3 ) by
+                                    F1 = u3 z + y 2 u(4 + 3xy),
+                                    F2 = y + 3xu2 z + 3xy 2 (4 + 3xy),                                     (1)
+                                    F3 = 2x − 3x2 y − x3 z.
+Exact expansion gives det JF = −2. Moreover,
+                        p0 = (0, 0, − 41 ),   p1 = (1, − 23 , 13
+                                                               2 ),   p2 = (−1, 23 , 13
+                                                                                      2 )                  (2)
+all map to (−1/4, 0, 0).
+    For a dominant polynomial map H, write Mon(H) for the Galois group of the normal closure
+of the induced function-field extension, in its natural action on a generic fiber.
+                                  m
+    Put W1 = S3 and Wm+1 = S33 ⋊ Wm in the natural action on the depth-(m + 1) ternary tree.
+
+                                                        1
+Theorem 1. The second and third iterates have generic degrees 9 and 27, respectively, and
+
+             Mon(F ◦2 ) = W2 = S3 o S3 ≤ S9 ,         Mon(F ◦3 ) = W3 = S3 o S3 o S3 ≤ S27 .
+
+Moreover, |W2 | = 64 = 1296 and |W3 | = 61+3+9 = 13,060,694,016.
+
+Proposition 2. For every m ≥ 1, the geometric monodromy of F ◦m contains a cycle of length 3m .
+
+Proposition 3. Write G = F ◦2 and let G  b = (G1 /4, G2 , G3 ). Then det J G
+                                                                           b = 1, Mon(G)
+                                                                                      b = S3 o S3 ,
+    b                                                           b
+and G is noninjective. The three points in (2) all map under G to (0, 0, −1/2).
+
+    The last proposition follows immediately from the theorem and det J(F ◦ F ) = 4.
+
+
+2    The cubic inverse resolvent
+For a target (a, b, c), introduce
+
+                                     Ca,b,c (t) = 2at3 − bt2 + 2t − c.                              (3)
+
+For a simple root t, the generic preimage is reconstructed by
+
+                            bt2 + 3c − 6t               t                2x − 3x2 y − c
+                     y=−                  ,     x=          ,      z=                   .           (4)
+                                 2t2                 1 − ty                   x3
+
+Substitution reduces every coordinate of F (x, y, z)−(a, b, c) to zero modulo Ca,b,c (t). The parameter
+is t = x/(1 + xy), reciprocal to the usual parameter y + 1/x.
+     The three roots of (3) parametrize the generic fiber. For F ◦ F , each of three outer roots
+supports a second cubic of inner roots. Consequently the generic degree is nine and
+
+                                          Mon(F ◦ F ) ≤ S3 o S3 .                                   (5)
+
+One further iteration gives the natural depth-three ternary-tree block system, so Mon(F ◦3 ) ≤ W3 ;
+its action on the nine bottom blocks is the monodromy of the intermediate F ◦2 cover.
+
+
+3    A degree-nine slice
+Restrict the target to (a, b, c) = (1, 2, s). Let t satisfy
+
+                                          2t3 − 2t2 + 2t − s = 0
+
+and reconstruct (x(t), y(t), z(t)) using (4). An inner resolvent root r satisfies
+
+                                    2x(t)r3 − y(t)r2 + 2r − z(t) = 0.
+
+Eliminating t and removing the vertical content 256s7 gives the primitive polynomial P (r, s) below.
+
+
+
+
+                                                     2
+               P = 128r9 s − 256r8 + (2592s2 − 3072s + 1408)r7
+                     + (−7452s3 + 1248s2 − 1584s − 576)r6
+                     + (−17496s4 + 82944s3 − 87936s2 + 42240s − 5760)r5
+                     + (52488s4 − 142884s3 + 135144s2 − 60144s + 8928)r4
+                     + (104976s5 + 97200s4 − 97056s3 − 41472s2 + 93824s − 26880)r3
+                     + (236196s6 − 380538s5 − 147744s4 + 772080s3 − 754944s2
+                                              + 333792s − 62208)r2
+                     + (236196s6 − 734832s5 + 1916784s4 − 2658432s3 + 2128320s2
+                                         − 919296s + 186624)r
+                     + 531441s8 − 2204496s7 + 5436882s6 − 11805534s5 + 17996446s4
+                                              − 17402304s3 + 10364976s2 − 3544992s + 557280.
+
+3.1   No extraneous generic branch
+Put K = C(s) and C0 (t) = 2t3 − 2t2 + 2t − s. The equation s = 2t3 − 2t2 + 2t defines a degree-three
+rational function, so C0 is irreducible over K and the intermediate field is K(t). On C0 = 0,
+                                            2t2                         3s + 2t2 − 6t
+                            x(t) =                   ,       y(t) = −                 .
+                                       3s + 2t2 − 4t                         2t2
+The exact identities
+                  Rest (C0 , t) = s,       Rest (C0 , 3s + 2t2 − 4t) = 4s(27s2 − 28s + 12)
+show that the reconstruction denominators do not vanish generically.
+    Let N (t, r, s) be the cleared numerator of the inner cubic and let R be its remainder modulo
+C0 . Then degt R = 2, and the checker verifies
+                                           Rest (C0 , R) = 4s7 P (r, s).                                   (6)
+The subresultant degrees are 3, 2, 1, 0. Write the linear subresultant as
+                                          L(t, r, s) = λ(r, s)t + µ(r, s).
+Here degr λ = 6, λ has 52 terms, and
+                                           gcd(P, λ) = 1     in C(s)[r].
+Thus, at the generic point of every component of P = 0, the common root is t = −µ/λ; it satisfies
+C0 = R = 0, and all reconstruction denominators are nonzero. Conversely, every genuine inverse
+pair annihilates the resultant. Hence the primitive resultant has no extraneous generic branch and
+has the same function field as the two-step inverse incidence curve.
+
+
+4     Three inertia elements
+4.1   A 9-cycle at infinity
+Write v = 1/s and consider v 8 P (r, v −1 ). For the coeﬀicients of r0 , . . . , r 9 , their v-adic valuations
+are
+                                        0, 2, 2, 3, 4, 4, 5, 6, 8, 7.
+
+                                                         3
+Every intermediate point lies strictly above the line from (0, 0) to (9, 7). The lower Newton polygon
+is therefore one edge of slope 7/9.
+    Set v = w9 and r = w−7 R. The initial equation is
+
+                                          128R9 + 531441 = 0.
+
+Its roots are simple and lift uniquely to Puiseux branches. The local deck transformation w 7→ ζ9 w
+multiplies the leading term by ζ9−7 . Since gcd(7, 9) = 1, it permutes all nine branches in one orbit.
+Thus P is irreducible over C((1/s)), hence over C(s), and slice monodromy contains a 9-cycle α.
+    Together with the linear-subresultant calculation, this gives the actual function-field tower
+
+        C(s) ⊂ C(s)(t) ⊂ C(s)(t, r) = C(s)(r),        [C(s)(t) : C(s)] = 3,   [C(s)(r) : C(s)] = 9.
+
+In particular, the inner step has degree three and the nine Puiseux branches are precisely the nine
+sheets of the pulled-back F ◦ F cover.
+
+4.2     A single transposition
+Exact discriminant factorization gives
+
+                     discr (P ) = 238 q(s)8 A(s)B(s)2 ,    q(s) = 27s2 − 28s + 12,                    (7)
+
+where
+
+                 A(s) = 1129718145924s12 − 6474958632657s11 + 21955119111630s10
+                        − 60661410535386s9 + 123515279853390s8 − 191093865073182s7
+                        + 235490291194248s6 − 188631015819696s5 + 54561577345568s4
+                        + 41882989175328s3 − 44714997684096s2 + 15094447332352s
+                        − 1434819245056.
+
+The exact certificates verify that A is squarefree and coprime to q, B, and the leading coeﬀicient
+128s. At each root of A, the discriminant has valuation one while the degree remains nine. Local
+geometric inertia is thus a single transposition β. A permutation moving only two sheets cannot
+act nontrivially on the three blocks, so β is supported in one block.
+    The full degree-22 factor B is recorded in Appendix A and checked independently in SymPy
+and PARI/GP.
+
+4.3     A transposition of the blocks
+The outer cubic has discriminant
+
+                     disct (2t3 − 2t2 + 2t − s) = −4(27s2 − 28s + 12) = −4q(s).
+
+The quadratic q is squarefree and coprime to A and B. A small loop about either root of q has
+outer monodromy a transposition. Total inertia contains an element γ whose image on the three
+blocks is that transposition.
+
+
+
+
+                                                     4
+5   The group argument
+Lemma 4. Let H ≤ S3 o S3 in its natural action on three blocks of size three. Suppose H contains a
+9-cycle α, a single transposition β, and an element γ inducing a transposition on the blocks. Then
+H = S3 o S3 .
+
+Proof. The 9-cycle induces a 3-cycle on the blocks, and α3 acts as a 3-cycle inside each block. The
+transposition β is supported in one block. Conjugating it by α3 gives a distinct transposition in
+that block, so these elements generate the full S3 supported there. Conjugation by powers of α
+gives the full S3 independently in all three blocks. Hence the base subgroup S33 lies in H.
+    On blocks, α supplies a 3-cycle and γ a transposition, so the image of H is the top S3 . A
+subgroup containing the full base and surjecting onto the top is the full semidirect product.
+
+    The three inertia elements constructed above satisfy the lemma, so the slice monodromy is
+S3 o S3 . Slice monodromy is a subgroup of generic monodromy; combining this with (5) proves the
+level-two assertion of Theorem 1.
+
+
+6   Full-cycle inertia for all iterates
+We prove Proposition 2 by a local-field induction. Put u = 1/s, let K = C((u)) with ν(u) = 1, and
+work in a fixed Puiseux closure. Start from X0 = (1, 2, u−1 ) and choose a compatible inverse tower
+F (Xk+1 ) = Xk . We prove that
+
+                          ν(xk ) = ak ,     ν(yk ) = −ak ,           ν(zk ) = −ck ,               (8)
+
+with nonzero leading units, and that the level-k local branch field has ramification degree 3k over
+K. Initially a0 = 0 and c0 = 1.
+   The next inverse parameter satisfies
+
+                                     2xk t3 − yk t2 + 2t − zk = 0.
+
+The coeﬀicient valuations, in increasing powers of t, are
+
+                                           (−ck , 0, −ak , ak ).
+
+If ck > 5ak , the two middle points lie strictly above the segment joining (0, −ck ) to (3, ak ). The
+Newton polygon theorem gives, for all three roots,
+                                                         ak + ck
+                                          ν(tk+1 ) = −           .                                (9)
+                                                            3
+The endpoint residual polynomial is a separable binomial cubic.
+   We now check every possible cancellation in the reconstruction formulas. In
+
+                                                 yk t2 + 3zk − 6t
+                                      yk+1 = −                    ,
+                                                        2t2
+the term 3zk is uniquely smallest, since
+
+                                −ck < −ak + 2ν(t),           −ck < ν(t).
+
+
+
+                                                    5
+Consequently ν(yk+1 ) = (2ak −ck )/3 = −ak+1 . Next, ν(tyk+1 ) = (ak −2ck )/3 < 0, so tyk+1 uniquely
+dominates 1 in xk+1 = t/(1 − tyk+1 ) and ν(xk+1 ) = ak+1 . Finally, −zk uniquely dominates the
+numerator of
+                                        2xk+1 − 3x2k+1 yk+1 − zk
+                                 zk+1 =                          .
+                                                 x3k+1
+Thus (8) persists with
+                                       ck − 2ak
+                               ak+1 =           ,     ck+1 = 2(ck − ak ).                        (10)
+                                           3
+For ρk = ak /ck , the interval 0 ≤ ρk ≤ 1/6 is invariant under
+                                                     1 − 2ρk
+                                           ρk+1 =              ,
+                                                    6(1 − ρk )
+and its image is contained in [2/15, 1/6] after the first step. Hence ck > 5ak at every level, com-
+pleting the valuation induction.
+    For ramification, set Ak = 3k ak and Ck = 3k ck . Then
+
+                   Ak+1 = Ck − 2Ak ,        Ck+1 = 6(Ck − Ak ),         A0 = 0, C0 = 1.
+
+At the mth inverse step,
+                                           Em
+                              ν(tm ) = −      ,     Em = Am−1 + Cm−1 .
+                                           3m
+For m ≥ 2, 3 | Cm−1 and Am−1 ≡ 1 (mod 3); also E1 = 1. Thus 3 ∤ Em for every m. By induction
+the preceding branch field has value group (1/3m−1 )Z, whereas ν(tm ) has exact denominator 3m .
+Adjoining tm therefore has ramification degree at least three; its equation is cubic, so both relative
+degree and ramification degree equal three. Reconstruction is rational and tm = xm /(1 + xm ym ),
+hence passing between tm and Xm loses no field.
+    The level-m local branch consequently has degree and ramification index 3m over K. The global
+slice cover has degree at most 3m , so this branch exhausts it and is totally ramified. Newton–
+Puiseux theory in characteristic zero makes tame inertia cyclic and transitive on the 3m conjugates;
+a generator is a single 3m -cycle.
+    As an independent check, nested PARI resultants for m = 3 give a degree-27 eliminant with
+one lower Newton edge from (0, 0) to (27, 34).
+
+
+7   Full wreath monodromy at level three
+We retain the discriminant information from the same exact eliminant. On the target line (1, 2, s),
+let
+                       C0 (t) = 2t3 − 2t2 + 2t − s,  X1 = rec((1, 2, s), t),
+where rec denotes (4). Let C1 (t, r) be the numerator of CX1 (r), set X2 = rec(X1 , r), and let
+C2 (t, r, q) be the numerator of CX2 (q). Define
+                                                                            R
+                      R(q, s) = Rest C0 , Resr (C1 , C2 ) ,        Q=                .
+                                                                        contentq (R)
+Exact PARI arithmetic gives
+                          degq R degs R degs contentq (R) degq Q degs Q
+                    value   27    244          196          27     48.
+
+                                                    6
+     After u = 1/s and the common valuation shift, the lower Newton polygon is the single edge
+(0, 0)–(27, 34). Since gcd(27, 34) = 1, each irreducible factor over C((u)) would have degree divisible
+by 27. Thus Q is irreducible over C((u)), hence over C(s), and inertia contains a 27-cycle α.
+     There is no hidden denominator branch. If D1 , D2 are the denominators cleared when defining
+C1 , C2 , respectively, the checker forms
+                                                                                   
+                        L(s) = Rest (C0 , D1 ),   U (s) = Rest C0 , Resr (C1 , D2 ) .
+
+Both are nonzero. Choose a generic inverse tower and its deepest resolvent parameter q. Recon-
+struction is defined there, and elimination gives Q(q, s) = 0. Since Q is irreducible of degree 27, it
+is the minimal polynomial of this genuine q. Thus the inverse-tower field has degree at least 27,
+while the three cubic steps give degree at most 33 . Equality holds, q generates the tower field, and
+Q is exactly the generic fiber polynomial of the pulled-back third iterate.
+    Let D = discq (Q) and put
+
+             G = gcd(D, D′ ),      Rsf = D/G,           M = gcd(Rsf , G),   E = Rsf /M.
+
+Thus E is the product of precisely the irreducible discriminant factors of multiplicity one. The
+exact degrees are
+
+              degs D = 1612,      degs Rsf = 752,         degs M = 676,     degs E = 76.
+
+Furthermore, E is squarefree and coprime to M , to the degree-27 leading coeﬀicient of Q (of s-
+degree 14), and to L and U . At every root of E, the degree therefore remains 27, reconstruction is
+genuine, and the discriminant has valuation one. Local geometric inertia is a single transposition
+τ . Since monodromy preserves the nine bottom blocks of size three, τ lies inside one bottom block.
+Lemma 5. Let H ≤ W3 contain a 27-cycle and a single transposition. If the image of H on the
+nine bottom blocks is W2 , then H = W3 .
+Proof. The 27-cycle α induces a 9-cycle on the bottom blocks, and α9 acts as a 3-cycle in each
+such block. The elements τ and α9 τ α−9 generate the full S3 on one bottom block. Conjugation
+by powers of α supplies independent S3 factors on all nine bottom blocks, so S39 ≤ H. This is the
+complete kernel of W3 → W2 . Since H maps onto W2 , it follows that H = W3 .
+
+   The image of Mon(F ◦3 ) on the bottom blocks is Mon(F ◦2 ) = W2 by the level-two argument in
+Sections 3–5. Applying Lemma 5 gives
+
+                       Mon(F ◦3 ) = W3 ,      |W3 | = 69+3+1 = 13,060,694,016.
+
+This paper proves level three only. The accompanying bounded-memory level-four certificate was
+subsequently computed and independently audited. It supplies the required deepest-block transpo-
+sition and proves Mon(F ◦4 ) = W4 . Its localization and norm-to-inertia argument remain outside
+this level-three paper.
+
+
+8    Independent arithmetic cross-check
+At s = −3, the primitive specialization is
+                     f (r) = − 384r9 − 256r8 + 33952r7 + 216612r6 − 4580568r5
+                            + 9515052r4 − 15697056r3 + 223986114r2 + 599887620r
+                            + 17172300267.
+
+
+                                                    7
+Dependency-free modular arithmetic verifies squarefree factorizations with irreducible-degree pat-
+terns
+                                    p          degrees
+                                   13             (9)
+                                   61 (2, 1, 1, 1, 1, 1, 1, 1)
+                                   19       (2, 2, 2, 2, 1).
+These give Frobenius cycle types (9), (2, 17 ), and (24 , 1). The same group lemma forces the arith-
+metic group to be the full wreath product. GAP independently enumerates all subgroups of the
+wreath product and finds no proper survivor. PARI/GP 2.17.4 identifies five unrelated rational
+fibers as transitive group 9T 31 of order 1296.
+    This is corroboration only; neither geometric proof infers geometric monodromy from an arith-
+metic specialization.
+
+
+9      Verification and priority scope
+The artifact contains complementary exact checks:
+
+File                             Scope
+verify_symbolic.py               Jacobian, collision, inverse identities, resultant, denominator and
+                                 subresultant certificates, Newton data, discriminant, squarefree-
+                                 ness, coprimality
+verify_modular.py                dependency-free polynomial arithmetic and Rabin irreducibility
+                                 certificates
+verify_iterate_inertia.py        dependency-free recurrence, Newton-edge, and reconstruction-
+                                 dominance checks
+verify_pari.gp                   independent discriminant, coprimality, finite-field, and arithmetic
+                                 Galois checks
+verify_group.g                   exhaustive subgroup check inside S3 o S3
+verify_level3_newton.py          independent degree-27 resultant and Newton edge for the third
+                                 iterate
+verify_level3_wreath.py          primitive degree-27 eliminant, simple discriminant divisor, leading
+                                 and denominator guards, and depth-three group lemma
+
+The level-three checkers use SymPy-generated equations and delegate nested resultants and dis-
+criminants to PARI.
+     The closest public monodromy study states only Mon(F0 ◦F0 ) ≤ S3 oS3 and calls its exact group
+a natural next computation [2]. A separate four-variable construction already claims a different
+imprimitive degree-eight group of order 192 [3]. We therefore do not claim the first imprimitive or
+first non-symmetric Keller monodromy. The claimed contribution is the exact second- and third-
+iterate groups, the realizations (9, W2 ) and (27, W3 ), and the all-iterate full-cycle statement. A
+timestamped 23-repository audit accompanies the artifact.
+     The stronger arboreal assertion that every iterate has the full iterated wreath product remains
+open: the present paper does not produce a new single transposition at every level. The separate
+certificate in w4_search/RESULT.md settles W4 .
+
+
+
+
+                                                 8
+A The degree-22 square factor
+
+     B(s) = 1423119505038213888s22 − 155058052818404824443s21 + 1413754646027656083066s20
+            − 8145658955220494785812s19 + 33677018812011807334224s18 − 108385682498649366622416s17
+            + 280859820926917245978240s16 − 598631883156564470992728s15 + 1062288637590844067815584s14
+            − 1579910926841521168581900s13 + 1974730823883289142626824s12 − 2073348574060015592229024s11
+            + 1822485349587628391880960s10 − 1333523184375693801555072s9 + 806144943610022071172864s8
+            − 398941760796329492797440s7 + 159756878618286560778240s6 − 50952869532774134959104s5
+            + 12636860641575849510912s4 − 2344566242453066735616s3 + 304677812001210531840s2
+            − 24551525690267664384s + 926711257485017088.
+
+
+
+References
+[1] Galois structure of the new counterexample to the Jacobian conjecture, MathOverflow 513387
+    (2026), https://mathoverflow.net/questions/513387/.
+
+[2] MikhailSzh and Claude, The Antiderivative Resolvent of the Weighted-Lift Family of Keller
+    Maps, audited Git commit 9193c66385ce390f61a4e25d3f5255435bfa056a (2026), https://
+    github.com/MikhailSzh/weighted-lift-galois.
+
+[3] Juan M. G. H., A quartic-resultant counterexample to the Jacobian Conjecture, audited Git
+    commit 640322133fa4bbe172e0ac95f3c485f2c86d8cea (2026), https://github.com/juanm
+    gh3/quartic-resultant-keller-map.
+
+[4] J. König, D. Neftin, and S. Rosenberg, Polynomial compositions with large monodromy groups
+    and applications to arithmetic dynamics, arXiv:2401.17872 (2024).
+
+
+
+
+                                                      9
+

@@ -1,0 +1,527 @@
+         Simultaneous amplification beyond fitness three halves
+                                            Alec Kriebel
+                                       Independent Researcher
+
+                                             August 8, 2026
+
+
+                                                 Abstract
+         We study fixation from a uniformly random single mutant on finite connected loopless undi-
+     rected weighted graphs under both Birth–death (Bd) and death–Birth (dB) Moran updating.
+     Let Rhyb be the unique root in (3/2, 151/100) of
+
+                                R6 − 8R5 + 22R4 − 30R3 + 21R2 − 6R + 1.
+
+     We construct one fitness-independent graph family which, for every fixed 1 < r < Rhyb , strictly
+     amplifies fixation under both rules for all suﬀiciently large populations. Numerically, Rhyb =
+     1.5028569127905696 . . ., and hence Rsim ≥ Rhyb > 3/2.
+         The graph combines a large clique, a dilute collection of hub pendants, and a dilute collection
+     of internally heavy two-vertex satellites coupled to the clique through positive weak edges. We
+     first derive the exact finite weak-cut trace. We then control establishment and the entire path
+     to fixation, obtaining the normalized corrections
+
+                                2(σ − 1)     λ                     2{r(2 − r) − σ}
+                     B(r) =               +      ,        D(r) =                   − λ.
+                              1 + σ(r − 1) r − 1
+                                     2                              σ + 2r(r − 1)
+
+     Optimizing the interval on which both are positive gives the displayed sextic. Independent
+     labelled-event and symbolic verifiers audit the lumping, trace coeﬀicients, root isolation, and
+     tangency.
+        This disproves the proposed exact threshold 3/2. We also exactly refute every graph-
+     independent convex aﬀine endpoint separator. The unrestricted exact value of Rsim remains
+     open.
+
+    Scope. This paper proves the lower bound Rsim ≥ Rhyb = 1.5028569127905696 . . . > 3/2
+    and the exact threshold of the displayed two-mechanism dilute hybrid. It does not prove
+          a universal upper bound or determine the exact unrestricted value of Rsim .
+
+
+Author summary
+The two standard update orders in evolutionary graph theory often reward opposite structural
+features. We combine two small effects at a vanishing population proportion. Internally heavy
+pairs improve death–Birth fixation but slightly reduce Birth–death fixation. Hub pendants have
+the opposite effect. Their proportions can be balanced so that both net effects are positive, even
+at fitness 3/2 and on a short interval above it. Exact optimization produces an algebraic endpoint
+near 1.5028569. The weak links are chosen uniformly over a growing fitness interval, so the graph
+sequence is fixed before fitness is quantified.
+
+
+
+                                                     1
+1    Introduction
+A population structure is a simultaneous amplifier at fitness r when it raises uniformly initialized
+fixation probability, relative to the complete graph of the same order, under both Bd and dB
+updating. The asymptotic question has the quantifier order
+                                ∃{Gt } ∀r ∈ (1, R) ∃t0 (r) ∀t ≥ t0 (r).
+The graphs and weights may depend on t, but not on r.
+    Svoboda, Joshi, Tkadlec, and Chatterjee constructed simultaneous amplifiers on the interval
+1 < r < 1.2 [1]. A separate center–triangle construction subsequently established Rsim ≥ 3/2, while
+that particular family suppresses at the endpoint [2]. The latter fact suggested, but did not prove,
+that 3/2 might be the universal phase boundary.
+    The present construction crosses that boundary. The mechanism is a dilute linear combination
+of two rigorously traced modules. Its exact optimization also identifies the best threshold within
+this two-mechanism leading regime. Two endpoint proof programs are thereby closed: universal
+impossibility at 3/2 is false, and an exact order-22 graph rules out every fixed convex aﬀine separator
+of the two normalized endpoint probabilities.
+
+
+2    Model, baselines, and threshold
+Let G = (V, w) be finite, connected, loopless, undirected, and weighted:
+                                                                X
+                       wuv = wvu ≥ 0,       wuu = 0,      du :=    wuv > 0.
+                                                                   v
+
+A state is a mutant set S ⊆ V . Mutants have fitness r > 1 and residents fitness one. Under Bd, a
+parent is selected proportional to fitness and then a replacement target proportional to edge weight.
+Under dB, a uniformly chosen target dies and then a parent is selected proportional to fitness times
+edge weight. Thus, with F (S) = |V | + (r − 1)|S|,
+                                      r X wuv
+                PBd (S, S ∪ {v}) =                ,                            v∈/ S,             (1)
+                                    F (S)     du
+                                          u∈S
+                                      1 X wuv
+                 PBd (S, S \ {v}) =               ,                            v ∈ S,             (2)
+                                    F (S)     du
+                                           ∈S
+                                          u/
+                                                P
+                                     1        r u∈S wuv
+                PdB (S, S ∪ {v}) =        P            P       ,               v∈/ S,             (3)
+                                    |V | r u∈S wuv + u /∈S wuv
+                                               P
+                                     1             ∈S wuv
+                 PdB (S, S \ {v}) =       P      u/
+                                                       P       ,               v ∈ S.             (4)
+                                    |V | r u∈S wuv + u /∈S wuv
+The fixation function hU is the unique harmonic solution with boundary values zero at ∅ and one
+at V . We use
+                                      1 X
+                         ρU (G, r) =       hU ({v}),     U ∈ {Bd, dB}.
+                                     |V |
+                                          v∈V
+    Direct solution of the one-dimensional complete-graph count chains gives
+                                                 1 − r−1
+                                  ρBd (Kn , r) =         ,                                         (5)
+                                                 1 − r−n
+                                                 n − 1 1 − r−1
+                                  ρdB (Kn , r) =                 .                                 (6)
+                                                   n 1 − r−(n−1)
+
+                                                   2
+Both converge, for fixed r > 1, to
+                                                   1
+                                       p(r) := 1 − .
+                                                   r
+Definition 1. Rsim is the supremum of all R > 1 for which one fitness-independent family {Gt },
+with |V (Gt )| → ∞, satisfies
+                       ρBd (Gt , r) > ρBd (K|V (Gt )| , r),       ρdB (Gt , r) > ρdB (K|V (Gt )| , r)
+for every fixed r ∈ (1, R) and every suﬀiciently large t.
+
+
+3      The dilute pair–pendant hybrid
+Let
+                              P (R) = R6 − 8R5 + 22R4 − 30R3 + 21R2 − 6R + 1
+and let Rhyb be its unique root in (3/2, 151/100). Define
+                                               −Rhyb
+                                                 3       2
+                                                     + 4Rhyb − 3Rhyb − 1
+                                        σ∗ =                                      ,                                (7)
+                                                     2(Rhyb − 1)
+                                             2(Rhyb − 1)(1 − σ∗ )
+                                        λ∗ =                      .                                                (8)
+                                                       2
+                                              1 + σ∗ (Rhyb − 1)
+Exact root isolation gives
+ Rhyb = 1.5028569127905696 . . . ,          σ∗ = 0.1306772822870484 . . . ,           λ∗ = 0.7508064830318805 . . . .
+      For t ≥ 2, put
+                        qt = t,       mt = ⌊λ∗ t⌋,        C t = t4 ,       nt = Ct + mt + 2qt .
+The graph contains:
+    1. a unit-weight clique on Ct vertices, one designated as the hub;
+    2. mt unit-weight leaves adjacent only to the hub;
+    3. qt disjoint two-vertex satellites, each with internal edge weight Wt = Ct /σ∗ ;
+    4. an edge of common weight εt > 0 from every satellite vertex to every clique vertex.
+There are no other edges. In particular, there are no edges between distinct satellites.
+   To define the positive coupling without reference to a subsequently chosen fitness, let
+                                              It = [1 + 1/t, Rhyb − 1/t]
+when this interval is nonempty. Let ρ0U,t denote the finite separated trace defined in Section 4.
+Choose et to be the least positive integer such that, for εt = 2−et ,
+
+                               nt ρU (Gt (εt ), r)     ρ0U,t (r)    1
+                          sup                      −              ≤            (U = Bd, dB).
+                          r∈It qt  ρU (Knt , r)      ρU (Knt , r)   t
+
+For the finitely many empty intervals, take et = 1. Finite Schur-complement continuity proves
+existence. At fixed t, e, all entries are algebraic rational functions of r, denominators are positive,
+and the two uniform inequalities are decidable by exact real-algebraic arithmetic. Thus this is an
+effective graph definition, and every weight is fixed before r is quantified.
+
+                                                              3
+                                                  mt hub leaves
+
+                                                                            Ct /σ∗
+
+
+                                            H               all weak edges εt
+
+
+
+                            unit clique                              qt heavy pairs
+                             C t = t4
+
+Figure 1: Schematic of the dilute hybrid. Dashed lines represent all satellite–clique edges, not only
+those drawn.
+
+Theorem 2 (Main theorem). For every fixed 1 < r < Rhyb , the family above satisfies, for every
+suﬀiciently large t,
+
+                       ρBd (Gt , r) > ρBd (Knt , r),         ρdB (Gt , r) > ρdB (Knt , r).
+
+Consequently
+                             Rsim ≥ Rhyb = 1.5028569127905696 . . . > 3/2.
+
+
+4    Exact lumping and the finite weak-cut trace
+A configuration has orbit label
+                                                 (h, i, u, v, ℓ),
+where h is the hub type, i the number of mutant ordinary clique vertices, u the number of mixed
+pairs, v the number of all-mutant pairs, and ℓ the mutant-leaf count. The group
+
+                                          SCt −1 × (S2 ≀ Sqt ) × Smt
+
+is transitive on every fibre and commutes with both update kernels. Therefore the orbit partition
+is a strong lumping: the total probability from a labelled state to any target fibre depends only on
+its five coordinates.
+     We first fix finite C, m, q and send ε ↓ 0. At ε = 0 the closed fast classes are precisely the states
+in which the center module and every pair are internally homogeneous. Write a macro state as
+
+                                        (h, k) ∈ {0, 1} × {0, . . . , q},
+
+where h is the center type and k the number of mutant pairs. Partition the finite first-step matrix
+into mixed-module states F and homogeneous states M . The ε = 0 block on F is invertible because
+every finite connected module absorbs internally. Its Schur complement on M , after removing the
+common first power of ε, converges to the introduction rate multiplied by the affected module’s
+exact local fixation probability. This proves the trace from the finite absorbing system, without an
+independent-genealogy assumption.
+    Let aU    U
+         H , aP be the uniformly initialized isolated fixation probabilities of the center and one pair,
+and let PU , PUP be macro fixation from (1, 0) and (0, 1). Then the finite separated limit is
+          H
+
+
+                                    C +m U         2q
+               ρ0U (C, m, q; r) =       aH (r)PUH + aU (r)PUP ,                 N = C + m + 2q.        (9)
+                                      N            N P
+
+                                                        4
+The convergence is uniform on every compact fitness interval because all finite denominators remain
+positive there.
+
+
+5    Quantitative center-module estimates
+Let HC,m be a unit clique KC with m unit hub pendants and put p = 1 − 1/r. Along C = t4 ,
+m ≍ t, the following estimates hold uniformly when r ranges over a compact subset of (1, ∞):
+                              uU
+                               core (r) = p + o(q/C),       U = Bd, dB,                           (10)
+                                leaf (r) = 1 − o(1),
+                               uBd                                                                (11)
+                                               −1
+                               udB
+                                leaf (r) = O(C    ).                                              (12)
+Here uU
+      core averages the C clique starting vertices. Consequently
+                                              Cp + m
+                                    aBd
+                                     H (r) =          + o(q/C),                                    (13)
+                                              C +m
+                                               Cp
+                                     adB
+                                      H (r) =        + o(q/C).                                     (14)
+                                              C +m
+   We give the quantitative argument because an o(1) establishment approximation would be too
+weak: the final gain is only of order q/C. Write a center state as (h, i, ℓ), put c = C − 1, d = c + m,
+and suppress a common positive statewise time factor. The six Bd changing rates are
+                                   change             rate
+                                 i→i+1       r(c − i){h/d + i/c}
+                                 i → i − 1 i{(1 − h)/d + (c − i)/c}
+                                0 → 1 at h         r(i/c + ℓ)
+                                1 → 0 at h    (c − i)/c + m − ℓ
+                                 ℓ→ℓ+1           rh(m − ℓ)/d
+                                 ℓ→ℓ−1            (1 − h)ℓ/d.
+After multiplication by C + m, the six dB rates are
+                                                           r(h + i)
+                                i→i+1         (c − i)
+                                                      c + (r − 1)(h + i)
+                                                      c−i+1−h
+                                i→i−1          i
+                                                 c + (r − 1)(i − 1 + h)
+                                                        r(i + ℓ)
+                                0 → 1 at h
+                                                   d + (r − 1)(i + ℓ)
+                                                       d−i−ℓ
+                                1 → 0 at h
+                                                   d + (r − 1)(i + ℓ)
+                                ℓ→ℓ+1                  h(m − ℓ)
+                                ℓ→ℓ−1                  (1 − h)ℓ.
+These tables follow by summing the labelled parent–target and death–parent events and are the
+only estimates used below.
+    Start from one ordinary clique mutant, with resident hub and no mutant leaves. Stop i on
+hitting 0 or K = A log C. Before the first hub change, the exact embedded up/down odds are
+                                                  c−i
+                               RBd (i) = r                   ,                                    (15)
+                                           c − i + c/(c + m)
+                                             c − i c + (r − 1)(i − 1)
+                               RdB (i) = r                            .                           (16)
+                                           c − i + 1 c + (r − 1)i
+
+                                                       5
+Both equal r{1 + O(K/C)}. At i ≤ K, the hub-change hazard divided by the ordinary-change
+hazard is O(K/C). A biased walk started at one makes O(K) expected ordinary changes before
+hitting {0, K}, so charging the first hub change as an error event costs O(K 2 /C).
+    The product-odds gambler’s-ruin formula therefore gives
+
+                                    P1 (TK < T0 ) = p + O(K 2 /C) + O(r−K ).
+
+For every hub and leaf state, the ordinary-count odds remain bounded below by a constant r0 > 1
+from K to a fixed positive core density. Indeed, the two tables give the uniform lower bounds
+           +                                   +
+          qBd         r                       qdB   h+i    c−i      c + (r − 1)(i − 1 + h)
+           − ≥ 1 + c/{d(c − i)} ,              − =r  i c − i + 1 − h c + (r − 1)(i + h)
+                                                                                           .
+          qBd                                 qdB
+
+Hence return to zero costs O(r0−K ). In the upper strip the resident deficit is dominated by a
+subcritical linear birth–death chain. Recurrent mutant-hub blocks then fill all leaves: a dB leaf
+copies the hub at its next death, while the Bd excursion up/down ratio, for resident deficit R = c−i,
+is bounded below by
+                                   r2 (i/c + ℓ)(m − ℓ)     r2
+                                                       ≥        >1
+                                    (R/c + m − ℓ)ℓ       1 + 2δ
+once R ≤ 2δc, with δ chosen suﬀiciently small. Repeating B log C cleanup blocks makes failure
+O(C −B ), whereas a resident core lineage reaching positive density during these polynomially many
+blocks costs exp{−Ω(C)}.
+   Choose A and then B uniformly on the fitness compact so that all of
+
+                      O(K 2 /C) + O(r−K ) + O(r0−K ) + O(C −B ) + exp{−Ω(C)}
+
+are o(q/C) = o(C −3/4 ). The hub starting vertex has weight C −1 = o(q/C). This proves (10) and
+controls the route from establishment to fixation.
+    For a Bd mutant leaf, hub activation has order-one rate and leaf loss has rate O(C −1 ). During
+an activated excursion, whose return rate is m + O(1), a successful ordinary-core mark occurs with
+probability Θ(1/m). Resolving successive excursions gives loss-before-mark probability O(m/C) +
+o(1); failed finite core families have a geometrically summable conditioned progeny tail. This proves
+(11). Under dB, the leaf dies at rate one after the common death-clock time change, whereas hub
+activation is at most r/C, proving (12).
+    At reciprocal fitness, the same stopped comparison is uniformly subcritical. Reaching a positive
+core density, necessary for local fixation, has probability exp{−Ωr (C)}.
+
+
+6    Pair gates and the complete macro path
+For the center, let
+                         X          1         1                              X          hH ({x}; r)
+              IH =                     =1+        ,            JH (r) =                             .
+                                    dx     C −1+m                                           dx
+                      x in clique                                         x in clique
+
+For a pair with internal weight W = C/σ, put
+                                            2   2σ                    1  σ
+                                     IP =     =    ,       JP (r) =     = .
+                                            W   C                     W  C
+
+
+                                                       6
+The second identity uses the exact dB singleton value 1/2 on K2 . The center estimates imply
+
+                                IH = 1 + o(1),         JH (r) = p + o(1),
+
+while JH (1/r) and the reciprocal core fixation probability are exponentially small.
+    For one specified pair, let A, D, B, C ′ denote, respectively, mutant-pair invasion of a resident
+center, resident-center recovery of that pair, mutant-center invasion of a resident pair, and resident-
+pair recovery of the center. Summing the parent–target or death–parent events gives, after a
+common time change,
+
+                          A                  D                B            C′
+                  Bd CrIP acore (r)     2IH aP (1/r)      2rIH aP (r) CIP acore (1/r)
+                  dB      2rJH (r)     (C/r)JP (1/r)       CrJP (r)     (2/r)JH (1/r).
+
+The isolated pair values are
+                              r                     1                           1
+                  aBd
+                   P (r) =       ,    aBd
+                                       P (1/r) =       ,     adB       dB
+                                                              P (r) = aP (1/r) = .
+                             r+1                   r+1                          2
+    On macro states the only nonzero rates are
+
+                     (0, k) → (1, k) : kA,           (0, k) → (0, k − 1) : kD,
+                     (1, k) → (1, k + 1) : (q − k)B, (1, k) → (0, k) : (q − k)C ′ .
+
+Since qC ′ /B → 0, a mutant center converts all resident pairs with probability 1 − o(1). From one
+mutant pair, the successful gate odds tend to
+                                                               2r(r − 1)
+                               ZB = σ(r2 − 1),          ZD =             .
+                                                                   σ
+Therefore
+                                               ZB                  ZD
+                         PUH → 1,       P
+                                       PBd →        ,      P
+                                                         PdB  →         .
+                                             1 + ZB              1 + ZD
+This exact macro chain controls the post-establishment route; no branching survival probability is
+substituted for global fixation.
+
+
+7    The simultaneous correction and its optimization
+Put η = q/C. Substitution of (13)–(14) and the pair gates into (9), together with the O(C −1 ) = o(η)
+complete baseline correction, gives
+                                                                   
+                       ρBd (Gt , r)           2(σ − 1)          λ
+                                    =1+η                   +          + or (η),                  (17)
+                      ρBd (Knt , r)         1 + σ(r2 − 1) r − 1
+                                                                 
+                       ρdB (Gt , r)         2{r(2 − r) − σ}
+                                    =1+η                     − λ + or (η).                       (18)
+                      ρdB (Knt , r)          σ + 2r(r − 1)
+The pair parts follow by the exact simplifications
+                                                     
+                           [r/(r + 1)]ZB /(1 + ZB )        2(σ − 1)
+                       2                            −1 =               ,                          (19)
+                                       p                 1 + σ(r2 − 1)
+                                                     
+                                 [1/2]ZD /(1 + ZD )      2{r(2 − r) − σ}
+                             2                      −1 =                 .                        (20)
+                                         p                σ + 2r(r − 1)
+
+
+                                                   7
+One leaf replaces one core vertex and contributes 1/p − 1 = 1/(r − 1) under Bd and −1 under dB.
+  Both bracketed corrections are positive precisely when
+
+                                            L(r, σ) < λ < U (r, σ),
+
+where
+                                   2(1 − σ)(r − 1)                  2{r(2 − r) − σ}
+                            L=                     ,        U=                      .
+                                    1 + σ(r2 − 1)                    σ + 2r(r − 1)
+After multiplication by positive denominators, L < U is equivalent to
+
+                                                  Fr (σ) < 0,
+
+where
+                         Fr (σ) = (r − 1)σ 2 + (r3 − 4r2 + 3r + 1)σ + r(2r − 3).
+Its minimizing value and minimum are
+
+                                 −r3 + 4r2 − 3r − 1                                P (r)
+                        σ(r) =                      ,          min Fr (σ) = −             .
+                                      2(r − 1)                  σ                4(r − 1)
+
+Exact Sturm counting gives no root of P in (1, 3/2) and exactly one in (3/2, 151/100). At that
+root, σ∗ is the double tangency and
+
+                                      L(Rhyb , σ∗ ) = U (Rhyb , σ∗ ) = λ∗ .
+
+For fixed σ∗ , L is increasing and U decreasing on (1, Rhyb ) because
+
+                        2(σ − 1){σ(r − 1)2 − 1}                              4r(σ − r)
+               ∂r L =                           > 0,            ∂r U =                     < 0.
+                           {1 + σ(r2 − 1)}2                               {2r(r − 1) + σ}2
+Thus
+                                 L(r, σ∗ ) < λ∗ < U (r, σ∗ )    (1 < r < Rhyb ),
+which proves Theorem 2. Compact-uniformity of every estimate and the definition of et preserve
+the required quantifier order.
+
+Proposition 3 (Class-optimal tangent). Within the dilute heavy-pair plus hub-leaf leading regime
+(17)–(18), Rhyb is the exact largest threshold of an interval beginning at one on which a fixed pair
+(σ, λ) can make both corrections positive.
+
+Proof. For fixed positive σ, feasibility implies Fr (σ) < 0, and hence mins∈R Fr (s) < 0. At Rhyb
+the unconstrained minimum is zero at the admissible value σ∗ > 0. Immediately above Rhyb the
+discriminant is negative, so no positive σ—indeed no real σ—is feasible. Since the fixed pair (σ∗ , λ∗ )
+works throughout (1, Rhyb ), no interval beginning at one can extend farther.
+
+Remark 4 (Rational alternative). Taking σ = 19/137 and λ = 20/27 gives, exactly at r = 3/2,
+                                          232                         65
+                                   B=          > 0,         D=            > 0.
+                                         17361                      12123
+This completely rational parameter choice has threshold
+                                    √
+                           5069 + 12 147001
+                     RQ =                     = 1.50176815223369 . . . > 3/2.
+                                 6439
+
+                                                        8
+8    Why the fixed-aﬀine endpoint route cannot work
+The normalized endpoint coordinates are
+                                    ρBd (G, 3/2)                    ρdB (G, 3/2)
+                          x(G) =                  ,       y(G) =                  .
+                                   ρBd (Kn , 3/2)                  ρdB (Kn , 3/2)
+Consider the order-22 complete-support weighted graph with a class A of order two, a class B of
+order twenty, internal weights 137 and 1, and every cross edge of weight 1/500. Exact solution of
+the S2 × S20 orbit chains gives
+                                                                        x + 2y       2
+              0.9334 < x < 0.9335,       1.0336 < y < 1.0337,                  −1>       .
+                                                                          3        10000
+The aﬀine crossing
+                                                      y−1
+                                               θ0 =
+                                                      y−x
+satisfies θ0 > 0.3355 > 1/3. Hence any universal inequality
+
+                                           θx + (1 − θ)y ≤ 1
+
+would require θ > 1/3. Independently proved clique–pendant asymptotics force every universal
+coeﬀicient to satisfy θ ≤ 1/3 [2]. Therefore no graph-independent convex aﬀine endpoint separator
+exists. All signs here are exact rational signs from two independent 61-state solves; the displayed
+decimals are only shorthand.
+    This refutation is logically separate from Theorem 2. The order-22 graph itself has x < 1 < y
+and is not a simultaneous endpoint amplifier. The dilute hybrid supplies the endpoint and beyond-
+endpoint simultaneous family.
+
+
+9    Independent verification and status
+The replay package has three exact components.
+    1. A labelled-event implementation enumerates all 512 configurations of a nine-vertex test graph
+       and matches every Bd and dB transition aggregate across all 108 orbit fibres.
+    2. A separate symbolic calculation reconstructs ZB , ZD , the pair and leaf correction coeﬀicients,
+       the rational endpoint margins, and the algebraic phase polynomial.
+    3. An independent Sturm certificate isolates Rhyb , verifies the quadratic identity, tangency, op-
+       timizer, and derivative factorizations.
+The positive-cut diagonal is defined by an exact finite interval decision, not by sampled fitnesses.
+Numerical sparse solves were used only as a hostile diagnostic for the quantitative core error and
+are not part of the proof.
+    The present status is:
+    PROVED:                      Rsim ≥ Rhyb > 3/2.
+    PROVED:                      Rhyb is class-optimal for the displayed dilute regime.
+    EXACTLY REFUTED:             Rsim = 3/2 and every graph-independent convex aﬀine endpoint
+                                 separator of the displayed form.
+    OPEN:                        The unrestricted exact value of Rsim and any matching universal
+                                 upper bound.
+
+                                                      9
+Data and code availability
+The source package includes a one-command replay of every finite symbolic component and the
+independent labelled-chain implementation. The manuscript is a public-repository research draft,
+but has no tagged preprint release or archival DOI at this checkpoint. A public preprint release
+would not constitute peer-reviewed journal publication.
+
+
+AI-assistance disclosure
+Computational and language-model assistance was used for symbolic exploration, exact verifier
+implementation, hostile auditing, and manuscript preparation. Every theorem claim is supported
+by the displayed analytic argument and independently executable exact certificates. Numerical
+evidence is explicitly separated from proof.
+
+
+References
+[1] J. Svoboda, S. S. Joshi, J. Tkadlec, and K. Chatterjee, Amplifiers of selection for the Moran
+    process with both Birth-death and death-Birth updating, PLoS Computational Biology 20 (2024),
+    e1012008. doi:10.1371/journal.pcbi.1012008.
+
+[2] A. Kriebel, A fitness-independent family of simultaneous amplifiers below fitness three halves,
+    public preprint and exact certificate package (2026). doi:10.5281/zenodo.21850042.
+
+
+
+
+                                                10
+

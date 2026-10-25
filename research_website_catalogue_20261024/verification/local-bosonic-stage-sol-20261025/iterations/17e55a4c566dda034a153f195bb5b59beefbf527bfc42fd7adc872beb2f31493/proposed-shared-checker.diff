@@ -1,0 +1,185 @@
+--- a/verification/final-content-check.py
++++ b/verification/final-content-check.py
+@@ -8,6 +8,7 @@
+ from html import unescape
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
+ from published_assets import PublishedAssets, asset_name, normalized_receipt_view
++from bosonic_source import bosonic_source_view
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+ parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+@@ -65,7 +66,19 @@
+  '23393596':'published-source/deep-derived-pure-braids-source-verification-v1.0/note.tex',
+  '23358014':'published-source/critical_wave_verification/manuscript/critical_wave_growth.tex',
+  '23356964':'published-source/generic-wreath-hyperfiniteness-verification/note.tex',
++ '23203100':'extracted/zenodo-upload-kit/manuscript/main.tex',
++ '22089807':'published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/main.tex',
++ '23306332':'published-source/nonunique_nearest_stable_complex_quadratics_verification/nonunique_nearest_stable_complex_quadratics_verification/nonunique_nearest_stable_complex_quadratics.tex',
+ }
++def normalized_quadratic_abstract(body):
++ return ' '.join(body.replace('$z^2$','z²').split())
++def normalized_bosonic_abstract(body):
++ return ' '.join(body.replace('--','–').split())
++def normalized_amplifier_abstract(body):
++ body=body.replace('\n\\[\n',' ').replace('\n\\]\n',' ')
++ for old,new in [('R^6-8R^5+22R^4-30R^3+21R^2-6R+1.','R⁶ − 8R⁵ + 22R⁴ − 30R³ + 21R² − 6R + 1.'),(r'r\in(1,R)','r ∈ (1,R)'),(r'1<r<\Rhyb','1 < r < R_hyb'),(r'\Rsim\geq\Rhyb=1.5028569127905696\ldots>3/2','R_sim ≥ R_hyb = 1.5028569127905696… > 3/2'),(r'\Rsim','R_sim'),(r'\Rhyb','R_hyb'),(r'(\sigma,\lambda)','(σ,λ)'),('$',''),('--','–')]:body=body.replace(old,new)
++ if '\\' in body:raise ValueError('Unrecognized amplifier abstract command')
++ return '\n\n'.join(' '.join(p.split()) for p in re.split(r'\n\s*\n',body.strip()))
+ BRAID_WAVE_WREATH_IDS={'23393596','23358014','23356964'}
+ def normalized_braid_abstract(body):
+  for old,new in [('$',''),(r'\geq','≥'),(r'\not\subset','⊄'),(r'\F','F'),('--','–')]:body=body.replace(old,new)
+@@ -144,6 +157,9 @@
+  for old,new in replacements.items():body=body.replace(old,new)
+  return body
+ def abstract_tokens(tex,record_id=None):
++ if record_id=='23203100':return wt(normalized_bosonic_abstract(tex))
++ if record_id=='22089807':return wt(normalized_amplifier_abstract(tex))
++ if record_id=='23306332':return wt(normalized_quadratic_abstract(tex))
+  if record_id in BRAID_WAVE_WREATH_IDS:return wt({'23393596':normalized_braid_abstract,'23358014':normalized_wave_abstract,'23356964':normalized_wreath_abstract}[record_id](tex))
+  if record_id in REACH_SATOH_IDS:return wt(normalized_reach_satoh_abstract(record_id,tex))
+  if record_id=='23328912':return wt(normalized_cubulation_abstract(tex))
+@@ -188,7 +204,7 @@
+  test('canonical',[a['href'] for t,a in d.a if t=='link' and a.get('rel')=='canonical']==[base])
+  schemas=[json.loads(x) for x in re.findall('<script type="application/ld\\+json">(.*?)</script>',h,re.S)]
+  art=next(x for x in schemas[0]['@graph'] if x['@type']=='ScholarlyArticle')
+- test('jsonld',all(art[k]==c[k] for k in ['description','abstract','version']) and art['name']==c['title'] and art['datePublished']==c['publication_date'] and art['sameAs']=='https://doi.org/'+c['doi'] and art['encoding']['contentUrl']==base+c['pdf_filename'] and art['author'][0]['name']==c['author'] and art['identifier']['value']==c['doi'])
++ test('jsonld',all(art[k]==c[k] for k in ['description','abstract']) and (('version' not in art) if rid=='23203100' else art['version']==c['version']) and art['name']==c['title'] and art['datePublished']==c['publication_date'] and art['sameAs']=='https://doi.org/'+c['doi'] and art['encoding']['contentUrl']==base+c['pdf_filename'] and art['author'][0]['name']==c['author'] and art['identifier']['value']==c['doi'])
+  for sec,key in [('abstract','abstract'),('plain-language','plain_language'),('result','result'),('proof','why_it_works'),('limits','limitations')]:
+   segment=re.search('<section id="'+sec+'">(.*?)</section>',h,re.S).group(1)
+   paras=[unescape(x) for x in re.findall('<p>(.*?)</p>',segment,re.S)]
+@@ -269,8 +285,12 @@
+    if good and q.suffix=='.html' and u.fragment:good=unquote(u.fragment) in [b['id'] for _,b in Doc(q).a if 'id' in b]
+    local.append(good)
+  test('local_links_anchors',all(local))
+- raw_receipt=json.loads((p/'sources/receipt.json').read_bytes());receipt=normalized_receipt_view(raw_receipt); hashes={'html':sha(f),'publication':sha(p/'publication.json')}
+- resolver=PublishedAssets(p/'sources',receipt,c.get('source_binding',{}).get('embedded_assets',[]))
++ receipt_file=p/'sources/receipt.json';asset_root=p/'sources'
++ if rid=='23203100':
++  gate=json.loads((p/'promotion.json').read_text());raw_receipt,receipt,asset_root=bosonic_source_view(p,c,gate);receipt_file=p/c['source_binding']['receipt_path']
++ else:raw_receipt=json.loads(receipt_file.read_bytes());receipt=normalized_receipt_view(raw_receipt)
++ hashes={'html':sha(f),'publication':sha(p/'publication.json')}
++ resolver=PublishedAssets(asset_root,receipt,c.get('source_binding',{}).get('embedded_assets',[]))
+  for asset in c.get('additional_assets',[]):resolver.additional_asset_kind(asset)
+  assets=[(key,c[key]) for key in ['pdf_filename','supplement_filename'] if c.get(key)]
+  assets += [('additional_asset_'+asset['filename'],asset['filename']) for asset in c.get('additional_assets',[])]
+@@ -298,9 +318,10 @@
+  test('index_entry',f'href="/research/{c["slug"]}/"' in index and c['description'] in unescape(index))
+  ix=json.loads(re.search('<script type="application/ld\\+json">(.*?)</script>',index,re.S).group(1));items=ix['mainEntity']['itemListElement'];test('index_jsonld',len([x for x in items if x['url']==base and x['name']==c['title']])==1 and ix['mainEntity']['numberOfItems']==len(items))
+  test('sitemap',sitemap.count('<loc>'+base+'</loc>')==1)
+- bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],c['author'],c['doi'],c.get('bibtex_note','Unrefereed preprint, version '+c['version'])]))
++ bib=(f.parent/'citation.bib').read_text();test('bibtex',all(x in bib for x in [c['title'],c['author'],c['doi'],(c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied'))]))
+  test('background_links',all(x['url'] in h and x['title'] in unescape(h) and x['note'] in unescape(h) for x in c['background']))
+- record=json.loads((p/'sources/record.json').read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334') and c['source_binding']['zenodo_version'] is None))
++ record_file=p/'sources'/('metadata.json' if rid=='23306332' else 'record/zenodo_record.json' if rid=='23203100' else 'record.json')
++ record=json.loads(record_file.read_text())['metadata'];test('record_metadata',all(c[k]==record[k] for k in ['title','doi','publication_date']) and (c['version']==record['version'] if 'version' in record else rid in ('21699161','23203334','23203100') and c['source_binding']['zenodo_version'] is None))
+  if c.get('edition_label'):test('edition_label',c['edition_label'] in unescape(h) and c['citation_edition_label'] in unescape(h) and c['edition_note'] in unescape(h))
+  if c.get('related_resources'):
+   materials=re.search('<section id="materials">(.*?)</section>',h,re.S).group(1)
+@@ -315,7 +336,7 @@
+   test('related_resource_source_bindings',related_bound)
+  if (p/'promotion.json').exists():
+   gate=json.loads((p/'promotion.json').read_text())
+-  test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
++  test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(asset_root/c['pdf_filename']))
+   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
+   if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055','23180194','23127955') or rid in ADDED_IDS or rid in OCTOBER_EDITOR_IDS:
+    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
+@@ -731,6 +752,98 @@
+   test('genericity_and_height_limits',all(x in unescape(h) for x in ['not identify the entire set of hyperfinite actions as Gδ','Stabilizers and nonsurjective maps are allowed','onto height obtained for generic continuous Cantor actions is a consequence of that compact setting','does not treat all Borel W-actions without a height factor','No comeager conjugacy class, uniform Borel choice of heights or exhaustions across actions, or clopen finite exhaustion']))
+   test('compatible_metrics_and_exceptional_height',all(x in unescape(h) for x in ['dimension may grow with the width, and slab components may be infinite','Divisible widths give nested slab graphs with decreasing distances','exact compatible-metric hypothesis of their Theorem 7.3','full preimage of the embedded integers, which may be uncountable','height cutoff is essential to keep the pulled-back classes finite','rather than a general theorem about increasing unions of hyperfinite relations']))
+   test('credited_inputs_and_historical_scope',all(x in unescape(h) for x in ['Question 3 in Iyer’s contribution, joint with Shinko','established Cantor-action lifting principles','Corollary 5.5','Theorem 7.3','Corollary 7.5','The prior generic hyperfiniteness theorem assumes locally finite asymptotic dimension','linked 2006 author preprint','later 2008 journal paper','Finite diagnostics','do not prove the Baire-category or infinite Borel assertions','No historical firstness, continued worldwide openness']))
++ if rid=='23306332':
++  binding=c['source_binding'];metadata_file=p/'sources/metadata.json'
++  quadratic_public_text=' '.join(unescape(re.sub(r'<[^>]+>',' ',re.search(r'<body>(.*?)</body>',h,re.S).group(1))).split()).lower()
++  test('abstract_full_source_text',normalized_quadratic_abstract(a)==c['abstract'])
++  test('abstract_full_124_words_seven_sentences',len(c['abstract'].split())==binding['abstract_word_count']==124 and len(re.findall(r'\.(?:\s|$)',c['abstract']))==7)
++  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n'))==1)
++  test('abstract_source_binding',binding['source_tex_path']==binding['abstract_source']=='sources/'+TEX_PATHS[rid] and binding['source_tex_sha256']==binding['abstract_source_sha256']==sha(textpath)=='caf327484a7068244ab98494eab835f50b84521a6d7ba364007bda31f7478677' and binding['abstract_tex_sha256']==hashlib.sha256(a.strip().encode()).hexdigest()=='e923d5b23fa4b00127bb3c3b1a9ec5382d45ebb2d366aadab0ce6f3e959c8aff')
++  candidate_path=p/'reviews/scope/public-candidate.json';candidate=json.loads(candidate_path.read_text())
++  test('frozen_scope_candidate_binding',binding['frozen_scope_content_path']=='reviews/scope/public-candidate.json' and binding['frozen_scope_content_sha256']==sha(candidate_path) and binding['frozen_scope_abstract_field']=='full_original_abstract' and candidate['full_original_abstract']==c['abstract'])
++  test('original_metadata_path_binding',record_file==metadata_file and binding['metadata_path']==binding['record_path']==gate['metadata_path']=='sources/metadata.json' and sha(metadata_file)==binding['metadata_sha256']==binding['record_sha256']==gate['metadata_sha256']==raw_receipt['metadata_sha256']=='82e624db015b8f612e7d1eb56463b6c035130e88d4579887c3b5306ef3dd9bdd')
++  test('original_receipt_schema_binding',raw_receipt['record_id']==23306332 and all('filename' in x and 'name' not in x for x in raw_receipt['files']) and gate['source_receipt_sha256']==binding['receipt_sha256']==binding['source_receipt_sha256']==sha(p/'sources/receipt.json')=='1267dcd347b53c295116bac15151fa92dff359469da3c0c7e16c1e6a8de3d53a')
++  test('all_published_source_assets_bound',gate['source_files']==binding['files']==receipt['files'] and all(sha(p/'sources'/asset_name(x))==x['sha256'] for x in receipt['files']))
++  test('pdf_zip_source_bindings',gate['pdf_sha256']==binding['pdf_sha256']==sha(p/'sources'/c['pdf_filename']) and gate['supplement_sha256']==binding['supplement_sha256']==sha(p/'sources'/c['supplement_filename']))
++  test('two_original_assets_one_reader',len(receipt['files'])==2 and {asset_name(x) for x in receipt['files']}=={c['pdf_filename'],c['supplement_filename']} and c['additional_assets']==binding['embedded_assets']==[] and len(frames)==1 and len(texts)==c['pdf_pages']==6 and c['supplement_filename']=='nonunique_nearest_stable_complex_quadratics_verification.zip')
++  with zipfile.ZipFile(p/'sources'/c['supplement_filename']) as original_archive:
++   members=[x for x in original_archive.infolist() if not x.is_dir()]
++   test('twelve_double_nested_source_members',len(members)==12 and all((p/'sources/published-source/nonunique_nearest_stable_complex_quadratics_verification'/x.filename).read_bytes()==original_archive.read(x) for x in members))
++   test('no_embedded_reader_or_nested_archive',not any(x.filename.lower().endswith(('.pdf','.zip','.tar','.gz')) for x in members))
++  test('promotion_review_bindings',set(gate['reviews'])=={'analytic','adversarial','scope'} and all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()))
++  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
++  test('root_clearance_binding',gate['root_clearance_file']==c['review_metadata']['root_clearance_file']=='verification/root-clearance-23306332-20261025.json' and gate['root_clearance_sha256']==c['review_metadata']['root_clearance_sha256']==sha(clearance_path)=='9faabde229535455e707dfae14639727c129953be08b08b2984299a83da0b436' and clearance==gate['root_clearance_record'] and clearance['record_id']==rid and clearance['status']==gate['status']=='PASS' and clearance['disposition_by']==gate['disposition_by']=='root' and clearance['approved_scope']==gate['approved_scope'])
++  test('root_clearance_source_review_identity',clearance['pdf_sha256']==gate['pdf_sha256'] and clearance['source_receipt_sha256']==gate['source_receipt_sha256'] and set(clearance['reviews'])==set(gate['reviews']) and all(clearance['reviews'][k]['report_sha256']==v['sha256'] and clearance['reviews'][k]['verdict_sha256']==v['verdict_sha256'] and clearance['reviews'][k]['report']=='papers/'+rid+'/'+v['report'] and clearance['reviews'][k]['verdict']=='papers/'+rid+'/'+v['verdict_file'] for k,v in gate['reviews'].items()) and all(sha(p/name)==x['sha256'] for name,x in clearance['source_receipts'].items()))
++  test('original_review_seals_bound',all(sha(R/x['path'])==x['sha256'] for x in clearance['root_review_seals_rehashed']))
++  av=gate['reviews']['analytic']['verdict'];dv=gate['reviews']['adversarial']['verdict'];sv=gate['reviews']['scope']['verdict']
++  test('custom_scientific_verdicts_preserved',av['verdict']=='PASS_WITH_BOUNDED_BIBLIOGRAPHIC_LIMITS' and av['publication_clearance'] is False and dv['result']=='no_substantive_mathematical_defect_found' and dv['promotion_clearance'] is False and gate['reviews']['analytic']['root_disposition']==gate['reviews']['adversarial']['root_disposition']=='PASS')
++  test('frozen_scope_chronology_preserved',sv['scope_status']=='COMPLETE — conditional scope candidate ready' and sv['mathematical_pass'] is False and sv['mathematical_verdict'] is None and sv['promotion_authorized'] is False and gate['reviews']['scope']['root_disposition']=='SCOPE_COMPLETE' and gate['scope_gate_resolution']==clearance['scope_gate_resolution'])
++  test('no_source_repair_or_review_overclaim',gate['source_repair'] is clearance['source_repair'] is False and gate['human_peer_review'] is gate['formal_machine_verification'] is False)
++  test('record_creation_exact',json.loads(metadata_file.read_text())['created']==binding['record_created_utc']=='2026-10-11T23:14:10.664861+00:00')
++  test('printed_date_and_metadata_version_distinguished',r'\date{11 October 2026\quad\textnormal{(research note; unrefereed preprint)}}' in source and 'version 1.0' not in source.lower() and binding['manuscript_version'] is None and record['version']==c['version']==binding['zenodo_version']=='1.0' and record['publication_date']==c['publication_date']==binding['manuscript_date']=='2026-10-11' and c['edition_label']==c['citation_edition_label']=='Zenodo version 1.0' and c['publication_date_label']=='Manuscript dated' and '<br>Manuscript dated <time datetime="2026-10-11">11 October 2026</time>' in h and c['edition_note'] in unescape(h) and 'without printing a version number' in c['edition_note'] and 'do not establish first priority' in c['edition_note'])
++  test('metadata_author_orcid',c['title']=='Nonunique nearest stable complex quadratics' and c['author']=='Alec Kriebel' and c['orcid']==art['author'][0]['sameAs']=='https://orcid.org/0009-0001-9320-500X' and c['doi']=='10.5281/zenodo.23306332' and c['canonical_url']==base)
++  test('scope_complete',all(x in unescape(h) for x in ['complex monic quadratic p(z)=z²+az+b','α(p)≤0','(Re a, Im a, Re b, Im b)','For each fixed real symmetric positive-definite coefficient matrix G','every neighborhood of that point contains some unstable quadratic','at least two distinct attained global nearest points','all complex stable quadratics, including repeated and imaginary-axis roots']))
++  test('full_degree_attainment_scope',all(x in unescape(h) for x in ['ℓ≠0','at (1,0,0)','coefficient metric on ℝ⁶','Both real leading-coefficient directions are included','original exact-degree set','not globally closed','clipped set is compact','less than R/3','more than 2R/3','clipped and original global minimizers coincide']))
++  test('mixed_epigraph_covector_scope',all(x in unescape(h) for x in ['entire abscissa epigraph','height zero over the monic and full-degree base points','metric may mix height and coefficient coordinates','limiting support covector is horizontal','representing normal vector can tilt in a mixed metric']))
++  test('separate_finite_subgradient_function_scope',all(x in unescape(h) for x in ['Separately, the monic complex quadratic abscissa','each fixed finite limiting subgradient v₀','real Euclidean coefficient metric','local constants may depend on the chosen v₀','epigraph normal is (v₀,−1)','does not give constants uniform over all finite subgradients','full-degree function theorem','function theorem for every mixed coefficient/height metric']))
++  test('actual_normals_and_classical_projection',all(x in unescape(h) for x in ['x≥0, U=u+y²/4≥0 and V²≤x²U','Both nonnegativity conditions are needed','n₀·cₜ=t³','2t⁴+t⁶','actual proximal normals','classical Poliquin–Rockafellar–Thibault projection characterization','bounded minimizing-sequence argument','Theorem 1.3(a),(k)','local weak-closedness condition is automatic in finite dimensions']))
++  test('function_proof_and_composition_caveat',all(x in unescape(h) for x in ['invertible discriminant-coordinate map (a,b)↦(a,a²−4b)','transports lower supports in both directions','Fixing a finite subgradient','Theorem 3.1 is a prox-regularity composition result under hypotheses','does not itself state unconditional exact subdifferential equality','explicit two-sided diffeomorphism and lower-support argument independently supplies the equality']))
++  test('historical_conventions_and_prior_credit',all(x in unescape(h) for x in ['Section 8, printed pp.166–168','Question 1 on p.106','leaves field, normalization and metric unspecified','Burke and Overton','Kirillov and Overton','Orban de Xivry','Moses and Liu','original Cross, Moses–Liu and Bottema bodies were not inspected','exact example and nonuniqueness comparisons are not asserted here']))
++  test('limits_and_positive_real_boundary',all(x in unescape(h) for x in ['no all-degree or real-only classification','convex orthant a≥0,b≥0','unique projection in every fixed positive-definite inner product','arbitrary norms, singular or varying metrics','nonlinear parameter-dependent metrics','does not apply to every nearby unstable target','No explicit unstable input together with its two minimizing stable polynomials','Decimal controls are not interval-certified bounds','No historical firstness, exhaustive novelty clearance or continued worldwide openness']))
++  test('unrefereed_ai_and_authorship',art['creativeWorkStatus']=='Unrefereed preprint' and all(x in unescape(h) for x in ['Unrefereed preprint',c['ai_disclosure'],c['collaboration'],'used extensively','not independent human or journal peer review','without formal proof-assistant certification','actual research contributions']))
++  test('no_unjustified_follow_up',c['follow_up'] is gate['follow_up'] is clearance['follow_up'] is None)
++  test('no_private_audit_narrative',not any(x in quadratic_public_text for x in ['root-clearance','sha256','sha-256','replay','31,233','31233','4,305','4305','2,005','2005 rational','25 october 2026','2026-10-25']))
++ if rid=='23203100':
++  binding=c['source_binding'];body=' '.join(unescape(re.sub(r'<[^>]+>',' ',re.search(r'<body>(.*?)</body>',h,re.S).group(1))).split())
++  clearance=gate['root_clearance_record']
++  test('authenticated_original_source_layout',type(raw_receipt) is list and asset_root==p/'sources/assets' and record_file==p/'sources/record/zenodo_record.json' and gate['source_receipt_sha256']==binding['receipt_sha256']==sha(receipt_file)=='8170b3100a1e00bb4f1c5cb0477079b48dd162cf3d8fcb4b063c87473ba28025')
++  test('full_original_abstract',normalized_bosonic_abstract(a)==c['abstract']==(p/'reviews/editorial/ABSTRACT.txt').read_text().strip()==(p/'reviews/scope/ORIGINAL_ABSTRACT.txt').read_text().strip())
++  test('abstract_146_words_eight_sentences_one_paragraph',len(c['abstract'].split())==binding['abstract_word_count']==146 and len(re.findall(r'\.(?:\s|$)',c['abstract']))==8 and len(re.split(r'\n\s*\n',a.strip()))==1)
++  test('tex_and_abstract_hashes',binding['source_tex_path']==binding['abstract_source']=='sources/'+TEX_PATHS[rid] and sha(textpath)==binding['source_tex_sha256']==binding['abstract_source_sha256']=='eda0b20fb843fda3b7b70203b63628e36ebf5d4a1b6c817624d3a5810f9beaab' and hashlib.sha256(a.strip().encode()).hexdigest()==binding['abstract_tex_sha256'] and hashlib.sha256(c['abstract'].encode()).hexdigest()==binding['abstract_sha256'])
++  candidate_path=p/binding['frozen_scope_content_path'];candidate=json.loads(candidate_path.read_text())
++  test('frozen_scope_abstract',sha(candidate_path)==binding['frozen_scope_content_sha256'] and candidate[binding['frozen_scope_abstract_field']]==c['abstract'])
++  expected=json.loads((p/'reviews/editorial/public-sections.json').read_text())
++  for section_id,section in expected.items():
++   segment=re.search('<section id="'+section_id+'">(.*?)</section>',h,re.S).group(1)
++   test('approved_section_'+section_id,unescape(re.search('<h2>(.*?)</h2>',segment,re.S).group(1))==section['heading'] and ([unescape(x) for x in re.findall('<p>(.*?)</p>',segment,re.S)]==section['paragraphs'] if 'paragraphs' in section else all(x['title'] in unescape(segment) and x['url'] in segment and x['note'] in unescape(segment) for x in section['items'])))
++  test('honest_absent_version_and_exact_dates','version' not in art and c['version'] is binding['zenodo_version'] is binding['manuscript_version'] is clearance['metadata_version'] is clearance['manuscript_version'] is None and c['publication_date']==clearance['publication_date']=='2026-10-06' and r'\date{October 6, 2026}' in source and c['edition_label']==c['citation_edition_label']=='No version number supplied' and '7 October 2026 UTC' in body and all(x not in body for x in ['Version None','Version null','Version 1.0','Version v1']))
++  test('all_five_original_custom_reviews',len(gate['reviews'])==5 and gate['reviews']['scope']['verdict']['status']=='scope_intake_complete_no_scientific_verdict' and gate['reviews']['analytic']['verdict']['publication_clearance'] is False and gate['reviews']['adversarial']['verdict']['unconditional_global_capacity_clearance'] is False and gate['reviews']['upstream_analytic']['verdict']['verdict']=='PASS' and gate['reviews']['upstream_adversarial']['verdict']['verdict']=='PASS_UPSTREAM_REQUIRED_VE')
++  test('root_dependency_resolution',gate['scope_gate_resolution']==clearance['scope_gate_resolution'] and gate['root_clearance_sha256']=='e186543476c3a507b7ba5fc59df50432963efce03d6791015eb8f48becb61ca6' and gate['dependency_resolution']['current_mathematical_disposition'].startswith('Exact general CQE and explicit GEN private regions'))
++  test('six_exact_inequalities_common_lambda',all(x in body for x in ['C+2Q ≤ g(λN)+g(ηN)−g((1−η)λN)','Q+E ≤ g(ηλN)−g((1−η)λN)','C+Q+E ≤ g(ηN)−g((1−η)λN)','R+P ≤ g(ηN)','P+S ≤ g(ηλN)−g((1−η)λN)','R+P+S ≤ g(ηN)−g((1−η)λN)','one common λ','using that same λ']) and body.count('closed union over λ ∈ [0,1]')==2)
++  test('literal_and_generated_secrecy_distinguished',all(x in body for x in ['W=(M,T_A)','V=(J,S_B) are traced out','Eve does not additionally receive the consumed key','U=(M,T_A,J,S_B)','1 ≤ 1/(d_M d_T_A)+(ε_sec+ε_rel)/2','d_M d_T_A=1 eventually','(−1,1,−1)','2(1−1/d)','even after optimizing the comparison public marginal','This obstruction does not depend on EPnI']))
++  test('operational_scope_and_boundary',all(x in body for x in ['1/2 ≤ η ≤ 1','0 ≤ N < ∞','Arbitrary entanglement','maximally mixed logical source','averaged over classical messages, shared key and encoder randomness','finite gross generation and consumption rates','logarithmic dimensions O(n)','Required finite seeds are charged','no semantic-security guarantee','no secrecy guarantee after revealing consumed key','At N=0 and at η=1 both complete regions','At η=1/2 the complete corrected-private region','No peak, per-codeword','No free two-way assistance, superlinear catalysts']))
++  test('credited_external_epni_and_existing_formulas',all(x in body for x in ['Wilde, Hayden and Guha already gave the formulas','OpenAI proof','De Palma','not an independent proof of EPnI','external unrefereed EPnI proof','No firstness, exhaustive novelty clearance']))
++  test('explicit_pdf_download',len([x for t,x in d.a if t=='a' and x.get('href')==c['pdf_filename'] and 'download' in x])==2)
++  test('one_reader_two_unchanged_deposits',len(receipt['files'])==2 and c['additional_assets']==binding['embedded_assets']==[] and len(frames)==1 and len(texts)==c['pdf_pages']==7)
++  with zipfile.ZipFile(asset_root/c['supplement_filename']) as archive:
++   members=[x for x in archive.infolist() if not x.is_dir()]
++   test('forty_original_zip_members',len(members)==40 and all((p/'sources/extracted/zenodo-upload-kit'/x.filename).read_bytes()==archive.read(x) for x in members) and not any(x.filename.lower().endswith(('.pdf','.zip','.tar','.gz')) for x in members))
++  test('ai_unrefereed_no_formal_claim',all(x in body for x in ['used extensively','not independent human or journal peer review','external EPnI dependency is also unrefereed','No reproduced Lean build or proof-assistant certification','actual research contributions']))
++  test('no_followup_or_private_audit',c['follow_up'] is gate['follow_up'] is clearance['follow_up'] is None and not any(x in body.lower() for x in ['root-clearance','sha256','sha-256','axiom closure','comparator','intentional sorry','2026-10-25','25 october 2026','/users/','checks passed']))
++ if rid=='22089807':
++  binding=c['source_binding'];body=' '.join(unescape(re.sub(r'<[^>]+>',' ',re.search(r'<body>(.*?)</body>',h,re.S).group(1))).split())
++  clearance_path=R/gate['root_clearance_file'];clearance=json.loads(clearance_path.read_text())
++  test('full_original_two_paragraph_abstract',normalized_amplifier_abstract(a)==c['abstract']==(p/'reviews/editorial/ABSTRACT.txt').read_text().strip() and len(c['abstract'].split())==binding['abstract_word_count']==214 and len(c['abstract'].split('\n\n'))==binding['abstract_paragraphs']==2)
++  test('tex_and_abstract_hashes',binding['source_tex_path']==binding['abstract_source']=='sources/'+TEX_PATHS[rid] and sha(textpath)==binding['source_tex_sha256']==binding['abstract_source_sha256']=='bcc2a0e5f502105ac3d5539a1d2dd752e732463d89c2106f7e67ce4da27d7aac' and hashlib.sha256(a.strip().encode()).hexdigest()==binding['abstract_tex_sha256'])
++  candidate_path=p/binding['frozen_scope_content_path'];candidate=json.loads(candidate_path.read_text())
++  test('frozen_scope_abstract',sha(candidate_path)==binding['frozen_scope_content_sha256'] and ' '.join(candidate[binding['frozen_scope_abstract_field']].split())==' '.join(c['abstract'].split()))
++  test('root_authority_and_scope',gate['root_clearance_file']==c['review_metadata']['root_clearance_file']=='verification/root-clearance-22089807-20261025.json' and sha(clearance_path)==gate['root_clearance_sha256']==c['review_metadata']['root_clearance_sha256']=='547296ed820667dfb47b36f796631c23f5eae67be7fb5c2ad898fb5d0bb72125' and clearance==gate['root_clearance_record'] and clearance['approved_scope']==gate['approved_scope'] and clearance['scope_gate_resolution']==gate['scope_gate_resolution'])
++  test('original_custom_review_bindings',set(gate['reviews'])=={'scope','analytic','adversarial'} and all(v['sha256']==sha(p/v['report'])==clearance['reviews'][k]['report_sha256'] and v['verdict_sha256']==sha(p/v['verdict_file'])==clearance['reviews'][k]['verdict_sha256'] and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for k,v in gate['reviews'].items()))
++  test('historical_scope_hold_preserved',gate['reviews']['scope']['verdict']['mathematical_gate']=='not_decided_by_this_scope_verdict' and gate['reviews']['scope']['verdict']['promotion_authorized'] is False and gate['reviews']['analytic']['verdict']['verdict']=='PASS_STATED_CLAIMS' and gate['reviews']['adversarial']['verdict']['verdict']=='supported_as_stated_no_substantive_fault_found')
++  test('standard_original_receipt_metadata_assets',type(raw_receipt) is dict and raw_receipt['record_id']==rid and sha(receipt_file)==binding['receipt_sha256']==binding['source_receipt_sha256']==gate['source_receipt_sha256']==clearance['source_receipt_sha256']=='6cfdd2ec0be534ac37db9572f6d215e9ed1add81b85e428cb5ec75fb6bfa0f13' and sha(record_file)==binding['metadata_sha256']==binding['record_sha256']=='4cddc3b454e3e5a7c653fa3711b209cd9c8b41b834ead10a57984ce0ed79fd88' and sha(p/binding['raw_record_path'])==binding['raw_record_sha256'] and gate['source_files']==binding['files']==receipt['files'] and all(sha(asset_root/asset_name(x))==x['sha256'] for x in receipt['files']))
++  test('edition_chronology',c['version']==binding['zenodo_version']==clearance['reviewed_zenodo_version']=='2.0.4' and c['publication_date']==clearance['reviewed_edition_publication_date']=='2026-08-25' and binding['original_named_release']['date']==clearance['earlier_same_work_release_date']=='2026-08-08' and str(binding['original_named_release']['record_id'])==clearance['earlier_same_work_record_id']=='21852072' and '25 August 2026' in body and '8 August 2026' in body and 'earlier date is not the publication date of version 2.0.4' in body)
++  test('fixed_fitness_eventual_quantifier',all(x in body for x in ['one fitness-independent sequence','for every fixed 1 < r < R_hyb','there exists t₀(r)','every t ≥ t₀(r)','Each comparison uses the complete graph on the same n_t vertices','All weights are fixed before r is quantified','one family, then every fixed fitness, then a fitness-dependent size threshold']))
++  test('distinct_pure_process_finite_baselines',all(x in body for x in ['finite connected loopless undirected weighted graphs','uniformly initialized single-mutant fixation','ρ_Bd(K_n,r) = (1−r⁻¹)/(1−r⁻ⁿ)','ρ_dB(K_n,r) = ((n−1)/n)(1−r⁻¹)/(1−r⁻⁽ⁿ⁻¹⁾)','Bd chooses a fitness-weighted parent','dB first chooses a uniformly random death site']))
++  test('lower_bound_and_restricted_response_optimum',all(x in body for x in ['R_sim ≥ R_hyb = 1.5028569127905696… > 3/2','optimal among fixed positive σ and λ','displayed first-order dilute response model','σ = 19/137 and λ = 20/27','1.50176815223369… > 3/2','does not establish optimality over all growing graph families','singular or size-dependent parameter choices','supplies no universal upper bound']))
++  test('gain_and_endpoint_practical_limits',all(x in body for x in ['Θ(t⁻³) = Θ(n_t⁻³/⁴) and tends to zero','Neutrality r = 1 and the upper endpoint r = R_hyb are excluded','no size bound uniform near either endpoint','no guarantee for fitness varying with population size','need not contain a graph of every integer order','No useful finite-size onset, fixation-time bound, bounded weight ratio','no empirical prediction','randomly mixes the update rules']))
++  test('prior_credit_ai_and_no_formal_claim',all(x in body for x in ['Svoboda','Tkadlec','1 < r < 1.2','different quantifier order','Generative AI was used extensively','not independent human or journal peer review','without formal proof-assistant certification','actual research and writing contributions']))
++  test('standalone_reader_never_substituted',sha(f.parent/c['pdf_filename'])==gate['pdf_sha256']==binding['pdf_sha256']==clearance['pdf_sha256']=='1d6d1d31a782776b07b9240467f02d624b47dcde5c83f4740a192136c2dfb8e3' and binding['embedded_pdf_sha256']==clearance['embedded_pdf_sha256']=='1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9' and c['additional_assets']==binding['embedded_assets']==[] and len(frames)==1 and len(texts)==21 and len(receipt['files'])==2)
++  with tarfile.open(asset_root/c['supplement_filename'],'r:gz') as archive:
++   members=[x for x in archive if x.isfile()]
++   test('complete_23_member_tar_preserved',len(members)==23 and all((p/'sources/published-source'/x.name).read_bytes()==archive.extractfile(x).read() for x in members))
++   wheels=[x for x in members if x.name.endswith('.whl')]
++   test('two_nested_wheels_preserved',len(wheels)==2)
++  test('no_followup_or_private_audit',c['follow_up'] is gate['follow_up'] is clearance['follow_up'] is None and not any(x in body.lower() for x in ['root-clearance','sha256','sha-256','2026-10-25','25 october 2026','/users/','checks passed']))
+  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
+ result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
+ result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

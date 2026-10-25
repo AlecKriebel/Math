@@ -1,0 +1,767 @@
+      Permutation-blind Bell scores and obstructions
+             to maximal global randomness
+       Exact maximizers for two cyclic families and setting-complexity consequences
+
+                                              Alec Kriebel
+                              with heavy assistance from ChatGPT 5.6 Sol
+
+                                              27 July 2026
+
+
+                                                Abstract
+         We study how many measurement settings are needed for one Bell score to certify 2 log2 d
+     private random bits from projective d-outcome measurements. We do not determine the all-
+     dimensional minimum, but prove four exact structural results. First, if either party has only
+     one input, the complete behavior is local and has a compatible pure realization in which Eve
+     guesses every joint output perfectly; thus both parties need at least two inputs. Second, we give
+     a positive-factor theorem for a broad first-harmonic polar-linear class. Under explicit phase-
+     product hypotheses, every permutation of the scalar maximizing phases produces an admissible
+     order-d maximizer with the same Bell-visible correlators, although its full target distribution
+     can change. Third, the phase-permutation counterexamples previously found for the first cyclic
+     family of Perito et al. also annihilate the sum-of-squares certificate of their second family. For
+     both augmented families and every d ≥ 4, an exact maximizer with trivial Eve obeys
+                                           1    2 sin(π/d) sin(3π/d)   1
+                              G(AB|E) ≥       +                      > 2.
+                                           d2         d2 (d − 1)      d
+     At d = 4, an exact Q(ζ16 ) certificate gives G = 3/32 > 1/16. Finally, we compute all four ideal
+     tables of the standard two-input qudit self-test and prove that a natural separately bounded
+     third-setting repair cannot expose its common computational mutually unbiased basis. These
+     results explain why several eﬀicient designs fail, but they neither rule out nor construct an
+     all-dimensional 2 × 2 or 2 × 3 protocol.
+
+Status. This is an unrefereed, AI-assisted research note. The symbolic proof, discovery code,
+exact finite certificate, and independent checks are public for audit. The author is an independent
+amateur and cannot personally validate every technical step; expert review is required.
+
+
+1   Framework and results
+Fix an integer d ≥ 2. Alice has projective measurements {Max }a∈Zd , Bob has {Nby }b∈Zd , and Eve
+purifies their finite-dimensional state |Ψ⟩ABE . For a designated pair (x∗ , y∗ ), write
+                                                                  
+                               σEab
+                                    = TrAB (Max∗ ⊗ Nby∗ ⊗ 1)|Ψ⟩⟨Ψ| .
+Maximal global private randomness means
+                                                                       X
+                            ab                                                 ab
+                           σE  = ρE /d2     for every a, b,     ρE =          σE  .                       (1)
+                                                                        a,b
+
+This is stronger than the scalar equality p(a, b|x∗ , y∗ ) = 1/d2 .
+   Let Md denote the setting pairs for which one real linear Bell functional has a quantum maxi-
+mum whose every realizing strategy satisfies (1). Our universal lower bound is:
+
+                                                     1
+Permutation-blind Bell scores                                                             A. Kriebel
+
+
+Theorem 1.1 (One-input impossibility). For every d ≥ 2 and every finite m,
+                                   (1, m) ∈
+                                          / Md ,       (m, 1) ∈
+                                                              / Md .
+In fact, if Alice has one input, every complete nonsignalling behavior has a compatible pure projective
+realization satisfying
+                                           G(AB|0, y, E) = 1
+for each Bob input y. The symmetric statement holds when Bob has one input.
+    For d = 2, the lower bound is tight. The binary score
+                                 A0 B0 − 2A0 B1 + 2A1 B0 + 2A1 B1
+                √
+has maximum 3 3 and certifies two private joint bits at (0, 0). This is the δ = π/6 case, up to an
+output flip, of Wooltorton, Brown, and Colbeck [4]; Appendix A records a short independent SOS
+check.
+    For d ≥ 3, the exact minimum remains open. The strongest all-dimensional single-score con-
+struction located in our targeted audit has two Alice settings and d2 + 1 Bob settings [2]. Thus
+the rigorous setting bounds recorded here are
+                                        2 ≤ mA ,       2 ≤ mB ,
+with no claim that the known upper construction is minimal.
+
+
+2    Proof of the one-input impossibility
+                                                              P
+Proof of Theorem 1.1. Nonsignalling makes p(a) = b p(a, b|y) independent of y. For p(a) > 0,
+set
+                                                           p(a, b|y)
+                                                ry (b|a) =           ;
+                                                             p(a)
+for p(a) = 0, choose ry ( · |a) arbitrarily. Introduce the finite hidden variable
+                                                                       Y
+                           λ = (a, b1 , . . . , bmB ),     µ(λ) = p(a)   ry (by |a).
+                                                                  y
+
+Alice outputs the stored a, and Bob outputs the stored by on input y. Summing over the other
+entries gives                  X
+                                     µ(λ) = p(a)ry (b|a) = p(a, b|y),
+                             λ:λA =a,λy =b
+so this deterministic local model reproduces the complete behavior.
+    It has a finite-dimensional pure projective realization:
+                                          Xp
+                                  |Ψ′ ⟩ =       µ(λ)|λ⟩A |λ⟩B |λ⟩E ,
+                                             λ
+where Alice’s and Bob’s PVMs group the computational labels by a and by . Eve reads λ and knows
+both outputs for every target input, so G = 1. Exchanging Alice and Bob proves the symmetric
+claim.
+Remark 2.1. The theorem concerns the total number of test inputs. It does not say that a larger
+Bell test cannot use one designated generation input on each wing. It is the standard locality fact
+for a scenario with one input on one wing, written here because it gives the exact resource baseline.
+It is stronger than a one-score obstruction because the flagged realization reproduces the entire
+behavior.
+
+                                                   2
+Permutation-blind Bell scores                                                                A. Kriebel
+
+
+3    A polar-linear permutation theorem
+For an operator C, write |C| = (C † C)1/2 and Re T = (T + T † )/2.
+
+Lemma 3.1 (Polar positive factor). Let C = V |C| be the canonical polar decomposition and let B
+be unitary. Then
+                            |C| + |C † |                     1
+                                         ⊗ 1 − Re(C ⊗ B) = P † P,
+                                2                            2
+where
+                               P = |C † |1/2 ⊗ 1 − V |C|1/2 ⊗ B.
+
+Proof. The polar partial isometry satisfies V † V = s(|C|) and |C † |1/2 V = V |C|1/2 . Consequently
+
+                                        |C † |1/2 V |C|1/2 = V |C| = C,
+
+while
+                                           |C|1/2 V † V |C|1/2 = |C|.
+Expanding P † P , with all tensor factors displayed, gives
+
+                               |C| ⊗ 1 + |C † | ⊗ 1 − C ⊗ B − C † ⊗ B † .
+
+No inverse and no extension of V to a unitary is used.
+
+    Fix finitely many coeﬀicient pairs αr , βr ∈ C, and set
+                                                   X
+                   gr (z) = αr + βr z,     f (z) =    |gr (z)|,             M = max f (z).
+                                                                                  |z|=1
+                                                           r
+
+For unitaries A0 , A1 , Br , B∗ , define
+                                  X
+                            J =       Re[(αr A0 + βr A1 ) ⊗ Br ] + Re(A0 ⊗ B∗ ).                    (2)
+                                 r
+
+                                                                         †
+Theorem 3.2 (Exact    P certificate and permutation blindness). Put U = A0 A1 , Cr = A0 gr (U ) =
+Vr |Cr |, and f (U ) = r |gr (U )|. Set
+
+                                     Pr = |Cr† |1/2 ⊗ 1 − Vr |Cr |1/2 ⊗ Br ,
+                                     G = M 1 − f (U ),
+                                     R ∗ = 1 − A0 ⊗ B ∗ .
+
+Then
+                                         1X †       1        1           
+                   (M + 1)1 − J =            Pr Pr + R∗† R∗ + G + A0 GA†0 ⊗ 1.                      (3)
+                                         2 r        2        2
+
+    Now let ω = e2πi/d . Suppose there are labeled phases zj , srj ∈ T satisfying
+                                                     Y
+                                    f (zj ) = M,        zj = 1,
+                                                               j
+                                                                   Y
+                                 srj |gr (zj )| = gr (zj ),            srj = 1.
+                                                                   j
+
+
+                                                       3
+Permutation-blind Bell scores                                                                   A. Kriebel
+
+
+At a zero of gr , srj may be any unitary polar-extension phase. For every permutation κ of the
+labels, the strategy
+                               A0 = X,              A1 = X diag(zκj ),
+                                                                                                (4)
+                               Br = X diag(sr,κj ), B∗ = X
+                  P
+on |Φd ⟩ = d−1/2 j |j, j⟩ attains M + 1, and every displayed observable has d-th power 1. All local
+first moments and the entire first-harmonic correlator matrix of (2) are independent of κ.
+Proof. Since gr (U ) is normal,
+
+                                 |Cr | = |gr (U )|,       |Cr† | = A0 |gr (U )|A†0 .
+
+Functional calculus gives G ≥ 0. Sum Lemma 3.1 over r and use
+
+                                        1 − Re(A0 ⊗ B∗ ) = 12 R∗† R∗
+
+to obtain (3).
+    For arbitrary weights tj ,                                         
+                                                                  Y
+                                        (X diag(tj ))d =             tj  1.                          (5)
+                                                                  j
+
+The two product hypotheses therefore prove every order relation in (4). Moreover,
+
+                                      αr A0 + βr A1 = X diag(gr (zκj ))
+
+has polar factor X diag(sr,κj ). At a zero of gr , this is a unitary extension of the canonical partial
+isometry; it agrees on the support of |Cr |, which is all that the positive factor uses. The maximally
+entangled trace identity
+                                   ⟨Φd |R ⊗ S|Φd ⟩ = d−1 Tr(RS T )
+then proves equality in every positive factor.
+   Finally,
+                                           1X
+                            ⟨A0 ⊗ Br ⟩ =        srj ,
+                                          d
+                                              j
+                                           1X
+                            ⟨A1 ⊗ Br ⟩ =        zj srj ,
+                                          d
+                                                      j
+                                                                              1X
+                                 ⟨A0 ⊗ B∗ ⟩ = 1,          ⟨A1 ⊗ B∗ ⟩ =           zj .
+                                                                              d
+                                                                                j
+
+These are symmetric sums of the labeled data. Every local observable is a weighted shift and hence
+has zero trace.
+                                                                                   P
+Corollary 3.3 (Exact randomness obstruction). Use the spectral convention O = a ω a Πa . For
+the target (A1 , B∗ ), define
+
+                                                                              X
+                                                                              d−1
+                           q0 = 1,         qj+1 = zκj qj ,            qbm =         qj ω mj .
+                                                                              j=0
+
+Then
+                                                              |b
+                                                               q−(a+b) |2
+                                          pκ (a, b|1, ∗) =                .                            (6)
+                                                                  d3
+
+                                                          4
+Permutation-blind Bell scores                                                                    A. Kriebel
+
+
+If the Fourier magnitudes are not constant, the trivial-Eve realization obeys
+                                                             maxm |bqm | 2   1
+                                   G(AB|1, ∗, E) ≥                3
+                                                                           > 2.
+                                                                d           d
+Proof. Equation (5) gives qd = q0 . The eigenvectors of A0 = X and A1 = X diag(zκj ) are
+respectively                    X                        X
+                     uc = d−1/2    ω −cj |j⟩, va = d−1/2    qj ω −aj |j⟩.
+                                       j                                           j
+
+The transpose of Bob’s outcome-b projector
+                                  P        is Alice’s outcome-(−b) projector for X. Taking their
+overlap proves (6). Parseval gives m |b
+                                      qm |2 = d2 ; nonconstancy therefore forces one magnitude
+squared to exceed d.
+
+
+4     Both cyclic families admit biased maximizers
+4.1   The first polar-linear family
+Let                                                                         (
+                                  πi(2k + δd )                                    0,   d odd,
+                         zk = exp                            ,         δd =
+                                       d                                          1,   d even.
+These are exactly the roots of z d = (−1)d−1 .
+Lemma 4.1 (Sharp scalar sum).
+                                              X
+                                              d−1                          π
+                                      max           |1 + ω y z| = 2 csc                                 (7)
+                                      |z|=1                                   2d
+                                              y=0
+
+has equality precisely when z d = (−1)d−1 .
+Proof. Write z = e2is , h = π/d, and a = h/2. Then the sum in (7) is
+                                                                 X
+                                                                 d−1
+                                  2Gd (s),          Gd (s) =           |cos(s + yh)|,
+                                                                 y=0
+
+and Gd has period h.
+   If d = 2m+1, take −a ≤ s ≤ a and reindex by k = −m, . . . , m. Every s+kh lies in [−π/2, π/2],
+because a + mh = π/2. Hence
+                                              X
+                                              m
+                              Gd (s) =               cos(s + kh) = csc(a) cos s.
+                                           k=−m
+
+Its maximum is attained exactly at s ≡ 0 (mod h), which is equivalent to z d = 1.
+    If d = 2m, take 0 ≤ s ≤ h. The first m cosines are nonnegative and the last m are nonpositive;
+an endpoint term may vanish. The two finite sums give
+                            X
+                            m−1                        X
+                                                      2m−1
+                 Gd (s) =         cos(s + yh) −              cos(s + yh) = csc(a) cos(s − a).
+                            y=0                        y=m
+
+Its maximum is attained exactly at s ≡ a (mod h), equivalently z d = −1. Multiplying by two
+proves the result.
+
+                                                           5
+Permutation-blind Bell scores                                                                           A. Kriebel
+
+
+   Apply Theorem 3.2 with
+                                                gy (z) = 1 + ω y z.
+The polynomial td − (−1)d−1 gives
+                            Y                           Y
+                                zk = 1,                         (1 + ω y zk ) = 2 > 0.
+                                  k                         k
+
+Thus the polar phases
+                                               1 + ω y zk
+                                                sy,k =
+                                              |1 + ω y zk |
+have product one, and every root ordering is an order-d maximizer of
+                                  X
+                                  d−1
+                           Id =         Re[(A0 + ω y A1 ) ⊗ By ] + Re(A0 ⊗ Bd )
+                                  y=0
+
+with exact value                                            π
+                                                    2 csc
+                                                     + 1.
+                                                2d
+This recovers, in the general language above, the first-family counterexamples of Ref. [6].
+
+4.2    The target bias
+For d ≥ 4, choose the final-two swap
+                                      κ = (0, 1, . . . , d − 3, d − 1, d − 2).                                 (8)
+The second cyclic autocorrelation of the sequence in Corollary 3.3 is
+                                       X             X
+                                 C2 =      qj+2 qj =   zκj zκj+1 .
+                                                j                       j
+
+It vanishes in the canonical order, whereas (8) gives
+                 C2 = (zd−1 − zd−2 )(zd−3 − z0 ),                   |C2 | = 4 sin(π/d) sin(3π/d) > 0.          (9)
+Hence the target table is nonuniform.
+   For a quantitative bound, put
+                                  xm = |b
+                                        qm |2 − d,                   ∆ = max xm .
+                                                                            m
+       P
+Then       m xm = 0, and Fourier inversion at lag two gives
+                                                       1X
+                                               C2 =        xm ω −2m .
+                                                       d m
+
+The nonzero mean-zero sequence xm has at most d − 1 positive entries, so
+                                  X           X
+                         d|C2 | ≤   |xm | = 2    xm ≤ 2(d − 1)∆.
+                                           m                    xm >0
+
+Substitution in (6) proves
+                                                       1     2 sin(π/d) sin(3π/d)
+                             G(AB|1, d, E) ≥               +                      .                           (10)
+                                                       d 2         d2 (d − 1)
+At d = 2, 3, every root ordering in this particular family is Fourier-flat.
+
+                                                                6
+Permutation-blind Bell scores                                                              A. Kriebel
+
+
+4.3   The second SOS-certified family
+We now show that the same Bob observables maximize the second family of Ref. [1]. Put η = eπi/d ,
+so ω = η 2 , and let
+                                 (−1)ℓ−1 η ℓ(ℓ−1)
+                           λℓ =                     , 0 ≤ ℓ < d.
+                                d sin(π(ℓ − 12 )/d)
+This is λ0,ℓ−1 in the source’s cyclic indexing; the formula at ℓ = 0 is read literally with (−1)−1 = −1.
+For Bob’s first-family observables, define
+
+                                                        X
+                                                        d−1
+                                               Cℓ =           ω ℓy By .
+                                                        y=0
+
+The Hermitian Bell functional is
+
+                                                 X
+                                                 d−1
+                                                                    
+                                         Fd =          Re λℓ Aℓ ⊗ Cℓ .                             (11)
+                                                 ℓ=0
+
+Theorem 4.2 (Permutation maximizers of the second family). For every permutation κ, define
+                                                        
+               qℓ = η −ℓ(ℓ−1+δd ) , Dℓ = qℓ X diag ω −ℓκj ,     A ℓ = Dℓ .
+                                                                                j
+
+Then every Aℓ and By has d-th power 1, and
+
+                                                  Cℓ = dλℓ Dℓ .
+
+The strategy on |Φd ⟩ attains
+                                                      ⟨Fd ⟩ = d.
+With Bd = X, the augmented Hermitian functional
+
+                                          F d = Fd + Re(A0 ⊗ Bd )
+
+has value d + 1. For the ordering (8), its target (A1 , Bd ) has exactly the distribution (6), and hence
+obeys the strict gap (10) for every d ≥ 4. Its complete matrix of complex first-harmonic correlators
+is independent of κ.
+
+Proof. For zr = η 2r+δd , write
+                                                                  (
+                                                                      +1,   2r + δd < d,
+                          s0 (zr ) = εr η r+δd /2 ,       εr =
+                                                                      −1,   2r + δd > d.
+
+There is no equality case. Also sy (zr ) = s0 (zr+y mod d ). Therefore the diagonal weight of Cℓ at a
+label r is                X                                    X
+                             ω ℓy sy (zr ) = ω −ℓr Sℓ ,  Sℓ =     ω ℓt s0 (zt ).
+                            y                                               t
+
+Let
+                                           d + 1 − δd
+                                     n=               ,            rℓ = η 2ℓ−1 .
+                                               2
+
+
+
+                                                          7
+Permutation-blind Bell scores                                                              A. Kriebel
+
+
+The first n signs εt are positive and the rest are negative, while rℓd = −1. Two geometric sums give
+                                                                   !
+                                                   X
+                                                   n−1      X
+                                                            d−1
+                                           −δd /2
+                                    Sℓ = η             rℓ −
+                                                        t        t
+                                                                rℓ
+                                                        t=0                    t=n
+                                                    −δ
+                                                  2η d rℓn
+                                                       /2
+                                       =−
+                                             1 − rℓ
+                                          (−1)ℓ−1 η −ℓδd
+                                       =                   = dλℓ qℓ .
+                                         sin(π(ℓ − 12 )/d)
+This proves Cℓ = dλℓ Dℓ , including its phase.
+                                         P
+   The weighted-cycle identity (5) and j κj = d(d − 1)/2 give
+                                           ∑
+                          Dℓd = qℓd ω −ℓ       j κj   1 = (−1)ℓ(ℓ−1+δd )+ℓ(d−1) 1 = 1.
+Indeed, ℓ(ℓ + d − 2 + δd ) is even because d − 2 + δd is odd. Thus the Alice observables are admissible.
+   For completeness, the coeﬀicient identity
+                                               X
+                                                   |λℓ |2 = 1
+                                                          ℓ
+
+follows from                                                               !
+                                      X
+                                      d−1
+                                                              π(ℓ − 21 )
+                                               csc    2
+                                                                               = d2 ,
+                                                                  d
+                                      ℓ=0
+
+the derivative of the finite cotangent-sum identity. Fourier orthogonality and By† By = 1 give
+                                          X †
+                                             Cℓ Cℓ = d2 1.
+                                                      ℓ
+
+Consequently, for arbitrary admissible observables,
+                                            Pℓ = dλℓ 1 − Aℓ ⊗ Cℓ
+satisfies the exact SOS
+                                                                  1 X †
+                                                                      d−1
+                                           d1 − Fd =                 Pℓ Pℓ .                       (12)
+                                                                 2d
+                                                                      ℓ=0
+For our strategy,                                        
+                                Pℓ |Φd ⟩ = dλℓ 1 − Dℓ ⊗ Dℓ |Φd ⟩ = 0.
+Hence ⟨Fd ⟩ = d. Since A0 = X and (X ⊗ X)|Φd ⟩ = |Φd ⟩, the augmentation contributes one.
+Finally,
+                  A1 = η −δd X diag(ω −κj ) = X diag(η 2κj +δd ) = X diag(zκj ),
+where the first equality is read entrywise in the weighted shift. Thus the target pair is literally the
+one in Corollary 3.3. Moreover,
+
+                                                 qℓ X ℓr
+                                                                     d−1
+                                    ⟨Aℓ ⊗ By ⟩ =     ω sy (zr ),
+                                                 d
+                                                                     r=0
+
+and ⟨Aℓ ⊗ Bd ⟩ is obtained by deleting the sy (zr ) factor. These are symmetric sums over the
+complete root set, so every complex first harmonic is permutation-independent even though higher
+harmonics and the full target behavior need not be.
+
+                                                                 8
+Permutation-blind Bell scores                                                               A. Kriebel
+
+
+Remark 4.3 (Source conventions). Equations (11)–(12) match Eqs. (19), (22), and (23) of Ref. [1].
+Its nearby Eq. (20) omits dλℓ , and the prose there omits Alice’s complex conjugation, which its
+theorem restores. We use a real part in the augmentation so that the Bell operator is Hermitian.
+
+4.4   An exact four-outcome certificate
+At d = 4, set ζ = eπi/8 and κ = (0, 1, 3, 2). Then
+
+                      A0 = X,         A1 = X diag(ζ 2 , ζ 6 , ζ 14 , ζ 10 ),   B4 = X.
+
+The sequence in Corollary 3.3 is
+                                                               3
+                          q = (1, ζ 2 , −1, ζ 6 ),       |b
+                                                          qm |2 m=0 = (2, 6, 2, 6).
+
+Thus, for both augmented cyclic families,
+                               (
+                                 1/32, a + b even,                                  3  1
+                p(a, b|1, 4) =                                   G(AB|1, 4, E) =      > .
+                                 3/32, a + b odd,                                  32  16
+
+The accompanying verifier works exactly in Q[x]/(x8 + 1), reconstructs the published λ’s, checks
+Cℓ = 4λℓ Dℓ , every fourth-power relation, the full SOS operator identity, both Bell values, and the
+displayed table.
+
+Corollary 4.4 (Value-only robustness is impossible). For either augmented cyclic family and every
+d ≥ 4, no valid value-only bound
+                                                1
+                              G(AB|E) ≤            + fd (ε),        fd (ε) −→ 0
+                                                d2
+can hold for all strategies with Bell deficit at most ε.
+
+Proof. The exact biased maximizer is feasible for every ε ≥ 0 and has the positive gap (10). This
+says nothing against bounds that condition on additional observed statistics.
+
+
+5     Why the standard 2 × 2 qudit route does not immediately work
+The standard two-input self-test of a maximally entangled qudit [3] uses Fourier-phase bases. Di-
+rectly from the geometric amplitude on |Φd ⟩, its four joint tables have the form
+                                                                                
+                                    sin2 (πδxy )                        1/4 3/4
+               p(a, b|x, y) = 3 2                      ,     (δxy ) =              ,         (13)
+                             d sin (π(a − b + δxy )/d)                  −1/4 1/4
+
+up to input swaps, conjugation, transposition, and output relabeling. Therefore every table has
+                                                         1               1
+                                     pmax =                      > 2.
+                                               2d3 sin2 (π/(4d))  d
+
+None of the four setting pairs is uniform, for any d ≥ 2. Its ideal joint min-entropy is
+                                         π                 π2
+                            log2 2d3 sin2    = log2 d + log2    + o(1).
+                                          4d                 8
+
+
+                                                        9
+Permutation-blind Bell scores                                                                 A. Kriebel
+
+
+The existing self-test certifies log2 d local bits, not the desired 2 log2 d global bits.
+    Suppose a third Bob setting is perfectly correlated with either one of Alice’s two ideal bases by
+a separately bounded term. Its cross table with Alice’s other basis has half-step offset:
+                                                 1           1
+                                pcross
+                                  max = 3      2          > 2 (d ≥ 3).
+                                          d sin (π/(2d))     d
+Thus the direct “self-test plus perfect anchor” composition already has a nonuniform ideal maxi-
+mizer. The qubit exception is exactly the case in which the two Alice bases are mutually unbiased.
+   The following proposition rules out a broader version of the same coeﬀicientwise construction.
+Let F be the Fourier matrix, ρ = eπi/d , and
+                                       R = diag(1, ρ, . . . , ρd−1 ).
+The real Hermitian operator system generated by the two ideal Alice PVMs is
+                          n                                          o
+                      S = F diag(x)F † + RF diag(y)F † R† : x, y ∈ Rd .
+
+Proposition 5.1 (Computational-MUB exposure obstruction). If K ∈ S has a computational
+vector er as an eigenvector with eigenvalue κ, then either K = κ1, or κ is neither the largest nor
+the smallest eigenvalue of K.
+    Consequently no nontrivial third-setting term
+                                       X
+                                  L=       Kb ⊗ Q b ,    Kb ∈ S,
+                                           b
+can expose the computational PVM on the maximally entangled strategy through the common
+coeﬀicientwise bound Kb ≤ Λ1.
+Proof. Write K = C + RC ′ R† , where C, C ′ are Hermitian circulants:
+                                                           ′
+                                    Cjk = c[j−k] ,        Cjk = c′[j−k] .
+The eigenvector equations in column r are
+                                           cm + ρνr (m) c′m = 0,
+where νr (m) ∈ [−r, d − 1 − r] is congruent to m (mod d). Comparing each equation with its
+Hermitian conjugate forces
+      cm = c′m = 0    unless   m ∈ {1, . . . , s} ∪ {d − s, . . . , d − 1},   s = min(r, d − 1 − r).
+For the surviving modes, the ordinary and wrapped diagonals cancel except in the upper-right and
+lower-left s × s corners. After grouping the first s, middle d − 2s, and last s coordinates,
+                                                            
+                                                    0 0 T
+                                     K − κ1 =  0 0 0  ,
+                                                   T† 0 0
+where T is upper-triangular Toeplitz. Its nonzero eigenvalues are ±σj (T ). Hence a nonscalar K
+has spectrum on both sides of κ.
+    For the resulting bound L ≤ Λ1 to be saturated on |Φd ⟩ with computational Qb , every compu-
+tational outcome has nonzero weight and the corresponding eb must be a maximal eigenvector of
+Kb . The first part makes this impossible unless all relevant Kb are scalar, in which case the term
+constrains no measurement.
+Remark 5.2. Proposition 5.1 is deliberately narrow. It does not rule out a joint SOS, a different
+common MUB, a different two-input self-test, or an arbitrary 2 × 3 Bell functional.
+
+                                                     10
+ Permutation-blind Bell scores                                                                 A. Kriebel
+
+
+ 6     A suﬀicient private-MUB composition lemma
+ The preceding obstruction identifies a design route that fails, not the property a successful con-
+ struction would need. The latter has a short operator-valued formulation.
+
+ Lemma 6.1 (Private-MUB composition). Let {Pb } and {Ra } be Alice PVMs and let {Qπ(b) } be a
+ Bob PVM. Suppose, on a purification |Ψ⟩ABE ,
+
+ (i) the Eve state conditioned on Pb equals ρE /d;
+
+(ii) Qπ(b) |Ψ⟩ = Pb |Ψ⟩;
+
+(iii) Pb Ra Pb |Ψ⟩ = d−1 Pb |Ψ⟩.
+
+Then the target pair (R, Q) satisfies
+                                                  a,π(b)
+                                                 σE        = ρE /d2
+ for every a, b.
+
+ Proof. For every Hermitian test operator TE , conditions (ii), cross-party commutation, and the
+ projector relations give
+                                     a,π(b)
+                             Tr(TE σE         ) = ⟨Ψ|Ra Qπ(b) TE Qπ(b) Ra |Ψ⟩
+                                               = ⟨Ψ|Pb Ra Pb TE |Ψ⟩
+                                                 1                  1
+                                               = ⟨Ψ|Pb TE |Ψ⟩ = 2 Tr(TE ρE ).
+                                                 d                 d
+ Equality against every Hermitian TE proves the operator identity.
+
+    Thus a purification-stable self-test that yields a private reference basis and the state-supported
+ MUB sandwich, plus a compatible third-setting equality condition, would solve the 2 × 3 problem.
+ State extraction alone, average scalar overlaps, and observed uniformity are insuﬀicient.
+
+
+ 7     Status of the measurement-resource problem
+ The exact conclusions of this note are summarized in Table 1.
+
+     Scenario or design              Rigorous status
+     1 × m or m × 1                  Impossible even when the complete behavior is fixed (Theorem 1.1).
+     2 × 2, d = 2                    Achievable and therefore setting-minimal; the score is known [4].
+     2 × 2, d ≥ 3                    Open here. The standard ideal qudit strategy has no uniform pair.
+     2 × 3, d ≥ 3                    Open here. The direct perfect-anchor composition fails, and
+                                     Proposition 5.1 rules out one broader exposure route.
+     All-dimensional upper           2 × (d2 + 1) settings in Ref. [2]; the first d2 Bob measurements have
+     benchmark                       three outcomes and may be zero-padded when d ≥ 3.
+     First-harmonic polar-linear     Exact conditional permutation obstruction under the hypotheses of
+     class                           Theorem 3.2.
+     Two augmented cyclic families   Fail value-based maximal global randomness for every d ≥ 4.
+
+                           Table 1: What is proved, and what remains open.
+
+
+
+                                                           11
+Permutation-blind Bell scores                                                           A. Kriebel
+
+
+    No universal impossibility theorem for 2 × 2 at d > 2 is proved. In particular, the spectrum-
+permutation theorem is class-specific. Nor do the negative ideal-strategy calculations preclude a
+different constant-setting self-test. The minimum-setting law requested at the start of this program
+therefore remains unresolved.
+    The useful positive outcome is a sharper design criterion: a successful Bell score must constrain
+operator-valued higher information, not merely an unordered relative spectrum or first-harmonic
+correlators. One exact route would be to prove the hypotheses of Lemma 6.1; another would be a
+direct operator-valued Fourier cancellation proof requiring less than full self-testing.
+
+
+8   Verification and scope
+The public package contains:
+
+• this analytic manuscript and a machine-readable family certificate;
+
+• independent, dependency-free checks of the binary SOS and standard qudit probability tables;
+
+• discovery code for the second-family Fourier construction through d = 12;
+
+• an independent exact Q(ζ16 ) verifier for d = 4;
+
+• claims and assumptions ledgers, failed approaches, a research log, and a targeted prior-art
+  audit.
+
+The programs are secondary checks and do not formally quantify over every d.
+    A targeted primary-source search found no all-dimensional 2 × 2 or 2 × 3 single-score protocol
+with the required projective d-outcome global-private conclusion, and no equivalent published per-
+mutation theorem for the second cyclic family. This is not proof of worldwide priority. Unindexed,
+unpublished, or concurrent work may exist. The standard two-input self-test itself identifies global
+2 log2 d randomness as an open direction [3].
+    The derivations, manuscript, code, and literature audit were produced with heavy assistance
+from ChatGPT 5.6 Sol under Alec Kriebel’s direction. No AI system is an author or bears re-
+sponsibility for the claims. Alec Kriebel is the named human author and takes responsibility for
+releasing the artifacts, while explicitly requesting independent expert validation.
+
+
+A Binary benchmark
+For binary Hermitian unitaries, set
+
+                             W2 = A0 B0 − 2A0 B1 + 2A1 B0 + 2A1 B1 .
+
+The exact identity
+                              √          1 √                 2
+                             3 31 − W2 = √    3A0 − B0 + 2B1
+                                        2 3
+                                           1 √               2
+                                         +√    3A1 − B0 − B1
+                                            3
+                    √
+proves the maximum 3 3, with cross-party tensor identities suppressed only in this display. Equal-
+ity yields                         √                               √
+                 (B0 − 2B1 )|Ψ⟩ = 3A0 |Ψ⟩,        (B0 + B1 )|Ψ⟩ = 3A1 |Ψ⟩.
+
+                                                 12
+Permutation-blind Bell scores                                                           A. Kriebel
+
+
+                         √                       √
+Putting XA = (A0 + 2A1 )/ 3 and ZB = (B0 − 2B1 )/ 3 gives, on the state,
+
+                     B0 = XA ,    Z B = A0 ,   {A0 , XA } = 0,   {ZB , B0 } = 0.
+
+The two associated cross-party stabilizers make ⟨A0 TE ⟩, ⟨B0 TE ⟩, and ⟨A0 B0 TE ⟩ vanish for every
+Hermitian TE . These are exactly the three nontrivial binary operator-valued Fourier coeﬀicients,
+    ab = ρ /4.
+so σE     E
+
+
+
+References
+ [1] I. Perito, R. D’Avino, M. Jung, P. Mironowicz, A. Acín, and R. Augusiak, Bell inequalities
+     tailored to optimal global randomness certification, arXiv:2606.21362v3 (2026),
+     https://arxiv.org/abs/2606.21362.
+
+ [2] M. Farkas, P. Mironowicz, and R. Augusiak, Maximal global device-independent
+     randomness from projective measurements in every dimension, arXiv:2606.21369 (2026),
+     https://arxiv.org/abs/2606.21369.
+
+ [3] S. Sarkar, D. Saha, J. Kaniewski, and R. Augusiak, Self-testing quantum systems of
+     arbitrary local dimension with minimal number of measurements, npj Quantum Information
+     7, 151 (2021), https://doi.org/10.1038/s41534-021-00490-3.
+
+ [4] L. Wooltorton, P. Brown, and R. Colbeck, Tight analytic bound on the trade-off between
+     device-independent randomness and nonlocality, Physical Review Letters 129, 150403
+     (2022), https://doi.org/10.1103/PhysRevLett.129.150403.
+
+ [5] A. Kriebel, The exact quantum value of a cyclic Bell operator, provisional AI-assisted
+     research note (2026),
+     https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/.
+
+ [6] A. Kriebel, Maximal violation without maximal global randomness in a cyclic Bell family,
+     provisional AI-assisted research note (2026), https:
+     //aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/.
+
+ [7] J. Kaniewski, I. Šupić, J. Tura, F. Baccari, A. Salavrakos, and R. Augusiak, Maximal
+     nonlocality from maximal entanglement and mutually unbiased bases, and self-testing of
+     two-qutrit quantum systems, Quantum 3, 198 (2019),
+     https://doi.org/10.22331/q-2019-10-24-198.
+
+ [8] E. Coccia, S. Padovan, and G. Vallone, Systematic derivation of Tsirelson bounds in
+     arbitrary dimensions, arXiv:2606.21626 (2026), https://arxiv.org/abs/2606.21626.
+
+
+
+
+                                                 13
+

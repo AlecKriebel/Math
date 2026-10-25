@@ -1,0 +1,189 @@
+                           A Lipschitz-nonincreasing deformation
+                               of small unitary-valued maps
+                                                    Alec Kriebel∗
+
+                                      September 23, 2026          (version 1.1)
+
+
+                                                        Abstract
+              For the unit-round sphere and either the unnormalized Hilbert–Schmidt or operator-norm
+          length metric on U (N ), we give an explicit strong deformation retraction of the maps with
+          Lipschitz constant at most 1/2 onto the constant maps. At time t ∈ [0, 1], the Lipschitz constant
+          is at most (1 − t2 )/(1 + t2 ) times its original value. The formula depends continuously on the
+          entire map and stays in the original U (N ). In particular, it answers the literal question [?24](i)
+          in Gromov’s 2017 scalar-curvature problem list, with the stronger requirement that the Lipschitz
+          bound be preserved throughout. The proof uses a classical matrix fractional transformation and
+          an elementary resolvent identity.
+
+
+1        Statement and scope
+Gromov asks in [1, p. 36], question [?24](i), whether maps S n−1 → U (N ) with Lipschitz constant
+less than 1/2 can be deformed to constant maps continuously in the input map, for every n. The
+preceding page speciﬁes a standard bi-invariant metric normalized to have shortest nonconstant
+closed geodesics of length 2π. We state our metrics explicitly: for ν = HS or op, put
+                           √                                                                 ∫
+                ∥X∥HS =        tr(X ∗ X),       ∥X∥op = sup ∥Xv∥,                ℓν (U ) =       ∥U ′ (s)∥ν ds,
+                                                         ∥v∥=1
+
+and let dν be the induced length metric on U (N ). The ﬁrst is the usual unnormalized Riemannian
+metric; the second is a Finsler length metric. The Hilbert–Schmidt metric has the stated nor-
+malization; in both norms the shortest nonconstant closed one-parameter subgroups have length
+2π. That normalization alone is not a deﬁnition of an arbitrary bi-invariant metric, and no such
+arbitrary-metric claim is intended.
+    Equip S n−1 with its unit-round geodesic distance. For n ≥ 2, N ≥ 1, let L≤1/2 denote the maps
+Φ : S n−1 → U (N ) with Lipdν (Φ) ≤ 1/2, with the uniform topology. Deﬁne L<1/2 similarly.
+Theorem 1. Fix p ∈ S n−1 . Set A = Φ(p) and WΦ (x) = A∗ Φ(x). Then
+                                            (           )(             )−1
+                          Ht (Φ)(x) = A WΦ (x) + tI I + tWΦ (x)              ,        0 ≤ t ≤ 1,                  (1)
+is a strong deformation retraction of L≤1/2 onto the constant maps, and restricts to one of L<1/2 .
+It satisﬁes
+                                                                1 − t2
+                           Lipdν (Ht (Φ)) ≤ qt Lipdν (Φ),  qt =        .                       (2)
+                                                                1 + t2
+The terminal constant is Φ(p); every constant map is ﬁxed at every time.
+    ∗
+        Independent researcher. ORCID: 0009-0001-9320-500X.
+
+
+                                                             1
+   This is a retraction onto a copy of U (N ), not a contraction of that copy to one prescribed point.
+The based subspace Φ(p) = I is contractible. No stabilization in N is needed.
+
+
+2    Proof
+For either norm we use unitary invariance and the ideal inequality
+
+                                    ∥BXC∥ν ≤ ∥B∥op ∥X∥ν ∥C∥op .                                   (3)
+
+Lemma 1. If W ∈ U (N ) and dν (I, W ) ≤ π/2, then Re W = (W + W ∗ )/2 ≥ 0.
+
+Proof. Let W v = eiθ v with ∥v∥ = 1 and principal angle |θ| ≤ π. Every piecewise smooth unitary
+path U from I to W yields a path U v on the real unit sphere underlying CN . Its length is at
+least the spherical distance arccos(cos θ) = |θ|, and its speed is at most ∥U ′ ∥op ≤ ∥U ′ ∥ν . Thus
+|θ| ≤ dν (I, W ). The spectral theorem now gives the conclusion.
+
+    Write S = {W ∈ U (N ) : Re W ≥ 0}. For W ∈ S set
+
+                                   Ft (W ) = (W + tI)(I + tW )−1 .
+
+The identity
+                     (I + tW )∗ (I + tW ) = (1 + t2 )I + t(W + W ∗ ) ≥ (1 + t2 )I                 (4)
+proves invertibility, even at t = 1, and ∥(I + tW )−1 ∥op ≤ (1 + t2 )−1/2 . Also (W + tI)∗ (W + tI) =
+(I + tW )∗ (I + tW ), so Ft (W ) is unitary. Direct substitution gives
+
+                            F0 (W ) = W,       F1 (W ) = I,          Ft (I) = I.                  (5)
+
+    For U, V ∈ S the noncommutative resolvent identity is
+
+                      Ft (U ) − Ft (V ) = (1 − t2 )(I + tU )−1 (U − V )(I + tV )−1 .              (6)
+
+Indeed, multiplying on the left by I + tU and on the right by I + tV reduces it to
+
+                     (U + tI)(I + tV ) − (I + tU )(V + tI) = (1 − t2 )(U − V ).
+
+Here U commutes with its own resolvent; U and V need not commute. Equations (3)–(6) imply
+
+                                  ∥Ft (U ) − Ft (V )∥ν ≤ qt ∥U − V ∥ν .                           (7)
+
+Diﬀerentiating the same rational formula on its open domain gives
+
+          DFt (W )[E] = (1 − t2 )(I + tW )−1 E(I + tW )−1 ,           ∥DFt (W )[E]∥ν ≤ qt ∥E∥ν    (8)
+
+when W ∈ S. Hence every absolutely continuous curve W (s) in S satisﬁes
+
+                                        ℓν (Ft ◦ W ) ≤ qt ℓν (W ).                                (9)
+
+This uses the ordinary ﬁnite-dimensional chain rule almost everywhere. For the induced length
+metric, the length of an absolutely continuous unitary curve is the integral of its matrix-norm
+speed. In particular, (9) is an intrinsic length statement, not an inference from a chordal distance
+bound on arbitrary pairs.
+
+                                                    2
+    Let L = Lipdν (Φ) ≤ 1/2. Bi-invariance and the diameter π of the sphere yield
+
+                           dν (I, WΦ (x)) = dν (Φ(p), Φ(x)) ≤ Ld(p, x) ≤ π/2.
+
+Thus WΦ (x) ∈ S by Lemma 1. For x, y choose a minimizing spherical geodesic γ between them.
+The restriction Φ ◦ γ is a Lipschitz, hence absolutely continuous, curve, of length at most Lℓ(γ).
+Its matrix-norm absolute continuity follows also from ∥U − V ∥ν ≤ dν (U, V ). Its normalized image
+stays in S, so (9) and left invariance give
+
+                   dν (Ht (Φ)(x), Ht (Φ)(y)) ≤ ℓν (Ht (Φ) ◦ γ) ≤ qt Lℓ(γ) = qt Ld(x, y).
+
+This proves (2), including for nonsmooth input maps.
+   It remains to check continuity in the input map. For eligible Φ, Ψ, let δ = supx ∥Φ(x) − Ψ(x)∥ν ,
+A = Φ(p) and B = Ψ(p). Then ∥A − B∥ν ≤ δ and
+
+                                       ∥A∗ Φ(x) − B ∗ Ψ(x)∥ν ≤ 2δ.
+
+Using (7) and unitarity gives
+
+                            sup ∥Ht (Φ)(x) − Ht (Ψ)(x)∥ν ≤ (1 + 2qt )δ ≤ 3δ.                           (10)
+                             x
+
+The rational formula is continuous on the compact set [0, 1] × S, by (4), so its dependence on t is
+uniform in W . Combined with (10), this proves joint continuity. Matrix-norm and intrinsic uniform
+topologies agree because the corresponding metrics induce the same topology on compact U (N ).
+Finally, (5) proves all retraction properties. Since 0 ≤ qt ≤ 1, the strict sublevel is also preserved.
+This proves Theorem 1.
+
+
+3    Boundary cases and interpretation
+The two-point sphere. If S 0 is assigned angular distance π, the same result holds. One value
+is ﬁxed. For the other, the principal eigenangles satisfy |θ| ≤ π/2, and
+                                               (             (               ))
+                                                                 1−t     θ
+                                 Ft (eiθ ) = exp 2i arctan           tan          .
+                                                                 1+t     2
+
+The derivative of the resulting angle with respect to θ is (1 − t2 )/(1 + t2 + 2t cos θ) ≤ qt ; at t = 1 the
+angle is identically zero. Thus each new absolute angle is at most qt times the original. Distances
+to I are the Euclidean norm of principal angles for dHS and their maximum for dop , proving the
+asserted Lipschitz estimate. We do not use a path-length metric on disconnected S 0 .
+
+Families and scope. For any topological parameter space Y and continuous Φ : Y × S n−1 →
+U (N ) whose slices obey the bound, substitution into (1) gives a continuous family of deformations.
+The formula is also equivariant under constant changes of frames: Ht (QΦR) = QHt (Φ)R for
+Q, R ∈ U (N ). No claim about nontrivial sphere ﬁbrations is needed or made. The bound 1/2
+answers the printed question; the preceding discussion of maps with Lip < 1 in [1] is a diﬀerent
+bound.
+
+
+
+
+                                                     3
+Classical mechanism and priority. The fractional transformation is classical (see the Cayley
+chart in [2, §1.7.9]): if C(W ) = (I − W )(I + W )−1 , then
+                                                      1−t
+                                      C(Ft (W )) =        C(W ).
+                                                      1+t
+Even the weaker assertion without preservation of a Lipschitz sublevel follows from the principal
+logarithm: for L < 1, the normalized image avoids −1, and A exp((1 − s) log WΦ ) deforms the
+map to A continuously. The point of Theorem 1 is its elementary, explicit quantitative estimate
+throughout the deformation for both stated length metrics. No novelty is claimed for the Cayley
+transform, logarithm chart, or local contractibility. A documented literature search accompanying
+this note found no earlier explicit statement of this quantitative retraction as an answer to [?24](i);
+this is not a guarantee of ﬁrst priority.
+
+Veriﬁcation and provenance. The proof above is self-contained apart from standard ﬁnite-
+dimensional spectral and curve-length facts. Accompanying exact algebra checks and numerical
+stress tests are optional diagnostics, not a formal proof or a replacement for the analytic argument.
+The candidate proof, independent adversarial checks, literature search, and manuscript preparation
+used generative-AI assistance. The accompanying reports are AI-assisted internal reviews, not
+external peer review. This note is an unrefereed preprint. The project page provides the source,
+review reports, and veriﬁcation companions.
+
+
+References
+[1] M. Gromov, 101 Questions, Problems and Conjectures around Scalar Curvature, incomplete
+    and unedited version, October 1, 2017, pp. 35–36. Author-hosted manuscript.
+
+[2] Y. A. Neretin, Lectures on Gaussian Integral Operators and Classical Groups, EMS Series of
+    Lectures in Mathematics, European Mathematical Society, 2011, §1.7.9, Theorem 7.5, p. 42.
+    Author-hosted book.
+
+
+
+
+                                                  4
+

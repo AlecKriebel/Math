@@ -1,0 +1,17 @@
+--- proposed production renderer
++++ owned stage renderer
+@@ -4,11 +4,12 @@
+ from html import escape
+ import hashlib, json, re, sys
+ from pypdf import PdfReader
++sys.path.insert(0, '/Users/alec/Documents/Math/research_website_catalogue_20261024/scripts')
+ from published_assets import PublishedAssets, asset_name, normalized_receipt_view
+ from bosonic_source import bosonic_source_view
+ 
+-ROOT = Path(__file__).resolve().parents[1]
+-SITE = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public/research')
++ROOT = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
++SITE = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/local-bosonic-stage-sol-20261025/public/research')
+ paper = ROOT / 'papers' / str(int(sys.argv[1]))
+ c = json.loads((paper/'publication.json').read_text())
+ gate = json.loads((paper/'promotion.json').read_text())

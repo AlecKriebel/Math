@@ -1,0 +1,63 @@
+
+ 
+ 
+ 
+ A four-vertex counterexample to Knudson’s persistence-gradient conjecture 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Alec Kriebel Research Verification & downloads 
+ Discrete Morse theory · Unrefereed preprint 
+ A four-vertex counterexample to Knudson’s persistence-gradient conjecture 
+ Alec Kriebel ·  ORCID  · Version 1.0.1 · 23 September 2026 
+ A persistence pair need not have a gradient path in the matching formed from the incident persistence pairs. A triangulated interval already gives a counterexample. 
+ Read the 3-page paper Proof & verifiers Zenodo upload kit 
+ 
+ 
+ 
+ Four vertices. Three edges. Zero paths. 
+ Insert the simplices in this order, with each face preceding its coface: 
+ a, b, c, d, cd, bd, ac. 
+ 
+ The underlying interval a–c–d–b Vertices a, c, d, b have birth times 1, 3, 4, 2. Edges ac, cd, db enter at times 7, 5, 6. 
+ 
+ 
+ a c d b 
+ 7 5 6 birth 1 birth 3 birth 4 birth 2 
+ The interval, with vertex birth times and edge insertion times. 
+ 
+ Over the field with two elements, reduce each boundary using earlier columns with the same latest nonzero row: 
+ Edge Reduced boundary Persistence pair Incident? 
+ cd c + d (d, cd) Yes 
+ bd (b + d) + (c + d) = b + c (c, bd) No 
+ ac (a + c) + (b + c) = a + b (b, ac) No 
+ 
+ Only the incident pair remains in the matching:  V P  = {(d, cd)} . A path from the critical edge  ac  must first descend to  a  or  c . Both vertices are unmatched, so either path stops immediately. 
+ Conclusion.  The pair  (b, ac)  belongs to the persistence pairing, but its gradient-path count in  V P  is  zero . 
+ This disproves  Conjecture 2 in Knudson’s 2008 Oberwolfach report , printed p. 1629. The signed boundary calculation in the paper extends the example to any field. 
+ 
+ The field must stay fixed 
+ The earlier pair  (c, bd)  has the path  bd → d → cd → c . Cancelling it changes the matching and creates a path from  ac  to  b . That is a path in a different field. The conjecture is about the original  V P . 
+ Ordered cancellations in related work, including  Bauer, Lange, and Wardetzky’s surface simplification results , are consistent with this example. 
+ Check it in seconds 
+ Download and extract the proof package, then run these commands from its folder. Python 3.9 or later is sufficient; no packages or network access are needed. 
+ python3 verification/verify.py
+python3 verification/independent_check.py 
+ The first checker combines boundary reduction, union-find and exhaustive path enumeration. The second reconstructs the barcode from ranks of component maps and checks signed reduction and path reversal. Both passed, including with Python optimization enabled. 
+ Verification report  ·  Priority audit and search record LaTeX manuscript  ·  Primary verifier  ·  Independent checker Zenodo kit  ·  Metadata JSON  ·  Copy-and-paste instructions Download checksums  ·  Complete repository folder 
+ 
+ Attribution and scope 
+ A bounded priority audit completed on 23 September 2026 found no earlier explicit refutation in the searched literature. It does not guarantee novelty: related work is listed as unpublished, and some full texts were unavailable. The exact original conjecture was checked directly; the current status of the user-supplied catalogue entry OWR-2040-002 could not be verified. 
+ The candidate arose from prior AI-assisted work supplied by the author. OpenAI Codex prepared this publication and its checks, with separate AI audit agents. This is an unrefereed preprint. No minimum-size claim, proof-assistant certification, or resolution of other conjectures is asserted. The Zenodo files are ready for manual upload; no DOI has been assigned by this project. 
+ 
+ 
+ © 2026 Alec Kriebel · Text: CC BY 4.0 · Code: MIT ·  Licenses 
+ 
