@@ -1,0 +1,15 @@
+--- stage/final-content-check.proposed.py
++++ correction/final-content-check.proposed.py
+@@ -1221,6 +1221,12 @@
+   binding=c['source_binding'];contract=ABMBodyText(h)
+   test('exact_whole_approved_body_text',contract.bodies==1 and contract.text==expected_abm_body(c))
+   test('exact_visible_h1',contract.headings==[c['title']])
++  heading_fragments=re.findall(r'<h1>(.*?)</h1>',h,re.S)
++  heading_anchors=ABMBodyText('<body>'+''.join(heading_fragments)+'</body>').anchors
++  test('exact_h1_selflink_destination',len(heading_fragments)==1 and [(attrs.get('href'),label) for attrs,label in heading_anchors]==[('/research/'+c['slug']+'/',c['title'])])
++  main_navigation=re.findall(r'<nav aria-label="Main navigation">(.*?)</nav>',h,re.S)
++  research_anchors=[(attrs.get('href'),label) for attrs,label in ABMBodyText('<body>'+''.join(main_navigation)+'</body>').anchors if label=='Research']
++  test('exact_main_Research_destination',len(main_navigation)==1 and research_anchors==[('/research/','Research')])
+   shown=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
+   from datetime import date
+   declared=date.fromisoformat(c['publication_date']);day=f'{declared.day} {declared.strftime("%B %Y")}'
