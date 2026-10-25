@@ -1,0 +1,24 @@
+--- sealed-private-original
++++ additive-proposed-correction
+@@ -1114,6 +1114,21 @@
+   test('complete_support_links',all(any(t=='a' and x.get('href')==url for t,x in d.a) for url in [c['supplement_filename'],'https://zenodo.org/records/'+rid+'/files/'+c['supplement_filename']]))
+   test('exact_full_BibTeX',bib==(p/'reviews/editorial/citation.bib').read_text()==c['bibtex'] and c['doi'] in bib and c['publication_date'] in bib and 'version = {1.0}' in bib)
+   test('edition_and_creation_not_conflated',record['publication_date']==c['publication_date']==science['publication_date'] and record['version']==c['version']=='1.0' and binding['record_created_utc']==pin['created']==science['record_created_utc'] and 'Manuscript and declared publication date <time' in h)
++  # Bind visible edition and status separately from correctly formed metadata.
++  from datetime import date
++  declared=date.fromisoformat(c['publication_date']);declared_text=f'{declared.day} {declared.strftime("%B %Y")}'
++  visible_text=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
++  entry_meta=re.findall(r'<p class="entry-meta">(.*?)</p>',h,re.S)
++  expected_entry=f"By {'; '.join(c.get('authors',[c['author']]))}, independent researcher. Manuscript and declared publication date {declared_text} · {c['edition_label']} · Unrefereed preprint"
++  test('visible_exact_declared_date_and_header_edition',len(entry_meta)==1 and visible_text(entry_meta[0])==expected_entry and [attrs.get('datetime') for tag,attrs in d.a if tag=='time']==[c['publication_date']])
++  cite_segment=re.search(r'<section id="cite">(.*?)</section>',h,re.S)
++  cite_paragraphs=re.findall(r'<p>(.*?)</p>',cite_segment.group(1),re.S) if cite_segment else []
++  expected_citation=f"{'; '.join(c.get('authors',[c['author']]))}. ({declared.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. https://doi.org/{c['doi']}"
++  test('visible_exact_citation_edition',len(cite_paragraphs)==2 and visible_text(cite_paragraphs[0])==expected_citation and visible_text(cite_paragraphs[1])=='Download BibTeX')
++  status_segment=re.search(r'<section id="status">(.*?)</section>',h,re.S)
++  status_paragraphs=[unescape(x) for x in re.findall(r'<p>(.*?)</p>',status_segment.group(1),re.S)] if status_segment else []
++  expected_status=[c['status'],c['ai_disclosure']]+([c['edition_note']] if c.get('edition_note') else [])
++  test('all_exact_approved_status_paragraphs',status_paragraphs==expected_status)
+   test('unmodified_false_publication_gates',all(gate[k] is False and c['review_metadata'][k] is False for k in ['rendered_public_copy_approved','local_http_verified','live_http_verified','browser_verified','native_sheet_publication_verified','public_page_published']) and gate['AA'] is c['AA'] is gate['follow_up'] is c['follow_up'] is None)
+   test('extensive_AI_unrefereed_nohuman_formal',all(x in section_text['status'] for x in ['used extensively','human','formal']) and 'Unrefereed preprint' in body and 'actual contributions' in section_text['collaborate'])
+   test('full_prior_credit',all(x in section_text['background'] for x in (['Aggarwal','Delecroix','Liu','Arratia','Tavaré'] if rid=='23387774' else ['Gesmundo','Meroni','Kucharz','Kurdyka'])))

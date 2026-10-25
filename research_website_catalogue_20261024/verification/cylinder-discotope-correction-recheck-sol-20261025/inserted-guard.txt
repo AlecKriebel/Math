@@ -1,0 +1,15 @@
+  # Bind visible edition and status separately from correctly formed metadata.
+  from datetime import date
+  declared=date.fromisoformat(c['publication_date']);declared_text=f'{declared.day} {declared.strftime("%B %Y")}'
+  visible_text=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
+  entry_meta=re.findall(r'<p class="entry-meta">(.*?)</p>',h,re.S)
+  expected_entry=f"By {'; '.join(c.get('authors',[c['author']]))}, independent researcher. Manuscript and declared publication date {declared_text} · {c['edition_label']} · Unrefereed preprint"
+  test('visible_exact_declared_date_and_header_edition',len(entry_meta)==1 and visible_text(entry_meta[0])==expected_entry and [attrs.get('datetime') for tag,attrs in d.a if tag=='time']==[c['publication_date']])
+  cite_segment=re.search(r'<section id="cite">(.*?)</section>',h,re.S)
+  cite_paragraphs=re.findall(r'<p>(.*?)</p>',cite_segment.group(1),re.S) if cite_segment else []
+  expected_citation=f"{'; '.join(c.get('authors',[c['author']]))}. ({declared.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. https://doi.org/{c['doi']}"
+  test('visible_exact_citation_edition',len(cite_paragraphs)==2 and visible_text(cite_paragraphs[0])==expected_citation and visible_text(cite_paragraphs[1])=='Download BibTeX')
+  status_segment=re.search(r'<section id="status">(.*?)</section>',h,re.S)
+  status_paragraphs=[unescape(x) for x in re.findall(r'<p>(.*?)</p>',status_segment.group(1),re.S)] if status_segment else []
+  expected_status=[c['status'],c['ai_disclosure']]+([c['edition_note']] if c.get('edition_note') else [])
+  test('all_exact_approved_status_paragraphs',status_paragraphs==expected_status)

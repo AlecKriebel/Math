@@ -1,0 +1,61 @@
+{
+  "UTC": "2026-10-25T07:58:23.296367+00:00",
+  "assignment": "Independent adversarial code audit",
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "kind": "CHECKER_FALSE_NEGATIVE",
+      "location": "final-content-check.proposed.py:1116",
+      "finding": "The visible declared date is not compared to the approved date.",
+      "mechanism": "The date check binds record/config/scientific metadata but only tests that a generic entry-meta prefix occurs in HTML.",
+      "reproduction": "For either actual article replace the single visible date before </time> by 1 January 2030, retaining all meta/JSON-LD/config fields.",
+      "controls": [
+        "checker-23387774-wrong_visible_date.json",
+        "checker-23074543-wrong_visible_date.json"
+      ],
+      "actual_result": "PASS with all 65/66 checks, exit0",
+      "expected_result": "Reject an unapproved visible date.",
+      "existing_sealed_copy_correct": true
+    },
+    {
+      "id": "F2",
+      "priority": "P2",
+      "kind": "CHECKER_FALSE_NEGATIVE",
+      "location": "final-content-check.proposed.py:402 and :1116",
+      "finding": "Visible entry-meta and citation edition labels are not checked for these IDs.",
+      "mechanism": "The generic edition_label test explicitly excludes CD_IDS. The CD-specific test validates metadata version, not either visible label.",
+      "reproduction": "Change only the entry-meta edition after </time> from version1.0 to9.9, or only (Version1.0) [Preprint] in Cite this paper to (Version9.9) [Preprint]. Exact actual scripts preserve spacing and mutate the actual reads in memory.",
+      "controls": [
+        "checker-23387774-wrong_visible_edition.json",
+        "checker-23074543-wrong_visible_edition.json",
+        "checker-23387774-wrong_visible_citation_edition.json",
+        "checker-23074543-wrong_visible_citation_edition.json"
+      ],
+      "actual_result": "PASS with all checks, exit0 in all four controls",
+      "expected_result": "Reject an unapproved visible edition or citation edition.",
+      "existing_sealed_copy_correct": true
+    },
+    {
+      "id": "F3",
+      "priority": "P2",
+      "kind": "CHECKER_FALSE_NEGATIVE",
+      "location": "final-content-check.proposed.py:1118",
+      "finding": "Discotope can lose the whole approved c.status paragraph and still pass.",
+      "mechanism": "Only used extensively/human/formal substrings are required in the status section; the remaining ai_disclosure paragraph supplies all three. The exact ai_disclosure is tested, but exact c.status or complete status paragraph list is not.",
+      "reproduction": "Remove exactly <p>HTML-escaped c.status</p> from the actual Discotope HTML read.",
+      "controls": [
+        "checker-23074543-omit_status_paragraph.json"
+      ],
+      "actual_result": "PASS, all66 checks, exit0",
+      "expected_result": "Reject removal of an approved status paragraph.",
+      "comparison": "The corresponding Cylinder omission rejects because its remaining disclosure lacks formal; this is accidental coverage and not an exact status contract.",
+      "existing_sealed_copy_correct": true
+    }
+  ],
+  "mathematical_defect_identified": false,
+  "incorrect_current_rendered_page_identified": false,
+  "source_helper_authentication_bypass_identified": false,
+  "root_owns_additive_repair": true,
+  "source_stage_production_mutations": false
+}

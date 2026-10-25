@@ -1,0 +1,83 @@
+# Ambient Dependence of Extremal-Exchangeable Independence
+
+Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X)
+
+Manuscript and declared publication date: 12 October 2026 · Version 1.0 · Unrefereed preprint · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+## Original abstract
+
+Liebscher asked whether independence defined by an extreme exchangeable free-product state needs to retain its ambient algebra. We give a state-preserving inclusion of a four-point algebra into M₄(ℂ) for which two distinct proper coordinate subalgebras, intersecting only in the scalars, are dependent downstairs and independent upstairs. Positivity forces every downstairs witness to be the same nontrivial character mixture; upstairs a pure vector state supplies a pure folding witness. Pure folding is an established construction, credited below. We also exhibit an extreme exchangeable algebraic state with no positive extension to a larger algebra, addressing the source's separate non-lifting concern. In contrast, extreme invariant states do lift along equivariant unital C*-inclusions. The definition is unrestricted: extremality is among all exchangeable states, without a fixed-marginal, faithfulness or trace condition.
+
+## In plain language
+
+This paper studies a particular definition of independence based on extreme exchangeable states. It asks whether the answer depends on the larger algebra containing the two observed subalgebras, even when their original joint law is preserved.
+
+An explicit four-point algebra gives a change of answer. Its two coordinate subalgebras are dependent inside that algebra, but become independent after the same algebra is placed diagonally inside the 4-by-4 complex matrices with a coherent pure state.
+
+The paper also separates two directions of state extension. Positive extension can fail for algebraic *-algebras. In the stated C* setting, extreme invariant states do extend, while restriction of an upstairs extreme state can still lose extremality.
+
+## The precise result
+
+Let F(A) be the countable unital free product of copies of A indexed by ℕ, and let E(A) contain all states invariant under finite permutations of its copies. For unital *-subalgebras B,C⊆A, independence means that some ω∈ext E(A) has the entire original B*C joint law when B is put in copy 1 and C in copy 2: ω∘((j₁|B)*(j₂|C))=φ∘(ι_B*ι_C). Extremality is among all exchangeable states, without restricting that convex set to prescribed full-copy marginals. The algebraic category uses positive unital functionals; the C* category uses the universal unital free product and continuous states.
+
+Take the four-point function algebra A=ℂ⁴ on {00,01,10,11}, p(s,t)=s, q(s,t)=t, B=span{1,p}, C=span{1,q}, and φ=(δ₀₀+δ₁₁)/2. Embed A diagonally in M₄(ℂ) in that point order and set u=(e₀₀+e₁₁)/√2 and φ′(T)=⟨u,Tu⟩. The inclusion preserves the state. B and C are distinct proper unital *-subalgebras with scalar intersection. They are dependent in (A,φ) and independent in (M₄(ℂ),φ′), in both free-product categories.
+
+Every possible downstairs exchangeable witness for the full joint law is forced to equal (χ₀+χ₁)/2, where χ₀ and χ₁ evaluate every copy at 00 and 11. This nontrivial character mixture is not extreme. Upstairs, pulling the pure vector state back through the map folding all matrix copies identically gives a pure exchangeable witness, with the correct entire joint law and full-copy marginals φ′.
+
+The pure-state lemma holds in both categories: a pure state pulls back purely along a surjective unital *-homomorphism, and a unit vector state on M_d(ℂ) is pure. The construction extends to every 0<t<1 using φ_t=(1−t)δ₀₀+tδ₁₁ and u_t=√(1−t)e₀₀+√t e₁₁. The forced downstairs mixture then has weights 1−t and t. At t=0 or 1 it is a character. If coincident subalgebras are allowed, A=B=C=ℂ²⊂M₂ supplies the stated smaller variant with a faithful downstairs fair state.
+
+Separately, the algebraic inclusion R=ℂ[x]⊂S=ℂ[x,x⁻¹], with x and x⁻¹ self-adjoint, has an extreme exchangeable all-copy evaluation-at-zero state on F(R) with no positive unital extension to F(S). Evaluation at one is a common state of the two base algebras, but it is different from the forbidden zero-evaluation character.
+
+For an equivariant unital C* inclusion D⊆E under the group of finitely supported permutations of ℕ, every extreme invariant state of D has an extreme invariant extension to E. The canonical map between universal unital free products of a C* inclusion is injective, so this lifting proposition applies to those products. It is compatible with the main example: an upstairs extreme state can restrict to a downstairs nonextreme state.
+
+## Why it works
+
+The full joint law and exchangeability force ∥(P_i−Q_j)Ω∥²=0 for every i≠j in the GNS representation. A third copy index connects all projection vectors to one vector v. Each projection fixes v, so every nonempty finite generator word has moment 1/2, or t in the weighted version. Those words span the free product and determine every possible witness, rather than only testing one chosen fold.
+
+The algebraic GNS null space is a left ideal by Cauchy–Schwarz, which makes the word calculation legitimate. Equality on the cyclic vector is not promoted to equality of operators. Upstairs, positivity makes constituents of a convex decomposition vanish on the folding kernel and descend to the quotient; purity then makes the decomposition trivial. Folding retains each B*C word in its original order.
+
+For the Laurent obstruction, a positive extension would have self-adjoint inverses X,Y with XY=1 and η(X²)=0. Its Gram matrix for X,Y would be [[0,1],[1,η(Y²)]], whose determinant is −1. This contradicts positivity.
+
+In the C* setting, ordinary state extension, averaging over finite symmetric groups and a weak-* cluster subnet give an invariant extension. The fiber over an extreme invariant lower state is a nonempty compact face, so a compact-convex extreme-point theorem gives an extreme upper extension. State extension and cyclic GNS dilations, padded to a common Hilbert space, also prove injectivity of the universal free-product inclusion. These use standard C* state-extension, compactness and Krein–Milman inputs.
+
+## Scope and limitations
+
+The definition concerns countably infinitely many free copies, all exchangeable states and the entire joint law. A two-copy invariant extreme witness can exist downstairs; the third-index step explains why that finite variant differs. A finite collection of word checks cannot replace the all-witness, all-word proof.
+
+Fixing full-copy marginals while still testing extremality in E(A) leaves the upstairs witness valid. Testing extremality inside the fixed-full-marginal convex slice is a different definition: the forced downstairs mixture is extreme in that slice. The counterexample does not assert dependence under that changed convention.
+
+The main example permits nonfaithful states and uses no tracial witness. The smaller coincident ℂ² example has a faithful downstairs state, but supplies no faithful-only theorem with all required states faithful. Faithful-only, tracial-only, trivial-tail and separately specified normal W* definitions remain outside the result.
+
+Commutativity of the single-copy algebra A does not impose commutativity between free copies. A classical commutative or tensor-quotient interpretation changes the state algebra and is not substituted for the printed free-product definition. No arbitrary-group lifting theorem or resolution of the other five workshop questions is claimed.
+
+The algebraic non-extension example concerns the zero-evaluation character, not the different shared evaluation-at-one marginal. It is not a failure of C* state extension. Conversely, existence of extreme C* extensions does not require all extreme-state restrictions to remain extreme.
+
+Pure folding and its maximal-amalgamation setting are established prior work of Dykema, Köstler and Williams. The contribution presented here is the explicit ambient-dependence example, its exclusion of every downstairs witness, the separate algebraic obstruction and the stated lifting deductions. The arguments use classical positivity, GNS, state-extension and compact-convex methods. Historical first priority, independent discovery and current worldwide open status are not asserted.
+
+## Background and prior work
+
+[V. Liebscher, On Quantum Independence, Oberwolfach Reports 6 (2009), 540–541](https://doi.org/10.4171/OWR/2009/09) The unrestricted extreme-exchangeable definition and item (1) supply the precise ambient-algebra question. Items (2)–(6) concern separate questions.
+
+[K. J. Dykema, C. Köstler and J. D. Williams, Quantum symmetric states on free product C*-algebras, Trans. Amer. Math. Soc. 369 (2017), 645–679](https://doi.org/10.1090/tran6661) Proposition 8.7 gives the established maximal-amalgamation folding construction; Theorem 8.1 relates quantum and ordinary symmetric extremality. The manuscript proves the required all-state purity special case directly.
+
+[Dykema–Köstler–Williams, arXiv:1305.7293v3](https://arxiv.org/abs/1305.7293v3) Version 3 author manuscript containing the stated definitions and extremality results.
+
+## Research status
+
+Unrefereed preprint, version 1.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.
+
+AI tools were used extensively in proof development, literature work, writing, reproduction and internal adversarial checking. This is an unrefereed preprint; it has not received external human peer review or formal proof-assistant certification. The named author is responsible for the work. Finite computations supplement the universal proofs and do not certify infinite-copy extremality or historical priority.
+
+## Contributions
+
+Substantive proof checks, counterexamples and precise comparisons with prior work are welcome. Authorship and acknowledgments would reflect actual research contributions and mutual agreement. Citations credit prior work and imply no participation or endorsement.
+
+## Read the paper
+
+Read the complete 3-page deposited paper in the on-page PDF reader.
+
+[Open the original PDF](https://zenodo.org/api/records/23333353/files/ambient_independence.pdf/content) · [Download the original complete ZIP](https://zenodo.org/api/records/23333353/files/verification_package.zip/content) · [Selected Zenodo edition](https://zenodo.org/records/23333353)
+
+## Cite this paper
+
+Alec Kriebel. (2026). Ambient Dependence of Extremal-Exchangeable Independence (Version 1.0) [Preprint]. Zenodo. [DOI 10.5281/zenodo.23333353](https://doi.org/10.5281/zenodo.23333353).

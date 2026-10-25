@@ -1,0 +1,10 @@
+# Prescribed block-code extension adversarial log
+
+- 2026-10-25T07:54:33Z — 35%. Read complete actual 4-page PDF and controlling TeX. Reconstructed normalization, regular ideal, irreducible saturation, finite reachability and universal boundary arguments. Eight distinct attack families fixed before any prior opinion/foreign primary body. PRZ exact bound/profile convention and original problem interface remain open. Five prior packets untouched; no code execution, external contact or outreach. All203-paper goal ongoing.
+
+- 2026-10-25T07:55:35.123448Z — 40%. Substantive early ledger sealed before foreign bodies and all scientific review opinions. Early seal81e6d352af31fee9509b0093503c05b6b15890c2ff9dc935ba11000a38e2f5d1. Raw-only primary handoff requested afterward.
+- 2026-10-25T07:57:17.518883Z — 75%. Actual final PRZ definitions/Theorem 4.2 match exact bound/profile sets; Boyle/Dykstra/Ballier primary interfaces match scope/credit. Inspected own 36 finite controls succeed, including five explicit saturated word pairs with equal profile sets but unequal counts. Universal proof survives independently.
+- 2026-10-25T07:58:19.067756Z — 85%. Whole 195 originals,186 member occurrences/four containers, four actual primary PDFs, failed journal HTML and five prior sealed packets verified unchanged. No substantive defect found. Historical priority unknown; journal-version access limits explicit.
+- 2026-10-25T08:00:44Z — 95%. Completing full report/custom verdict, D1–D10, exact attack/read/primary/custody ledgers. No source repair, replacement, broader solver implementation or promotion attempted. Root authority retained; all 203 goal ongoing.
+
+- 2026-10-25T08:03:36.037950+00:00 — 100%. Complete report/custom verdict, independent universal derivations, exact controls, primary/read/access/attack ledgers and whole original custody complete. All preserved bytes rechecked; final immutable manifest/seal created. Complete original criterion survives bounded falsification, historical priority unknown, root authority retained. No default followup; overall 203-paper goal ongoing.
