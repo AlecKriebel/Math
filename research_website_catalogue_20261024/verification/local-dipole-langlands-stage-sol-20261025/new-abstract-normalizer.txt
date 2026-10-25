@@ -1,0 +1,31 @@
+DIPOLE_LANGLANDS_IDS={'23390551','23430326'}
+def normalized_dipole_langlands_abstract(rid,body):
+ if rid=='23390551':
+  replacements=[("Costabel's",'Costabel’s'),('Costabel--Dauge--Nedaiasl','Costabel–Dauge–Nedaiasl'),('Hilbert--Schmidt','Hilbert–Schmidt'),(r'$10^{-4}$','10⁻⁴'),(r'$n^{-1}\Z^3$','n⁻¹ℤ³'),(r'$3\times3$','3 × 3')]
+ else:
+  replacements=[(r'$F=\Q_3$','F=ℚ₃'),('$E/F$','E/F'),('$[4,6],[2,5],[3,3],[1,4],[0,2]$','[4,6],[2,5],[3,3],[1,4],[0,2]'),(r'$\GL_{15}(E)$','GL₁₅(E)'),('Feigon--Lapid--Offen','Feigon–Lapid–Offen'),(r"Lapid--M\'inguez",'Lapid–Mínguez'),('$k=1$','k=1'),('Luo--Zha','Luo–Zha'),(r'\href{https://doi.org/10.1007/s11464-025-0256-0}{10.1007/s11464-025-0256-0}','10.1007/s11464-025-0256-0'),(r'\textbf{UNKNOWN}','UNKNOWN')]
+ for old,new in replacements:body=body.replace(old,new)
+ if '\\' in body or '$' in body:raise ValueError('Unrecognized dipole/Langlands abstract command')
+ return ' '.join(body.split())
+
+def dipole_archive_inventory(archive_path,source_root):
+ from io import BytesIO
+ rows=[];nested=[];readers=[];layers=[];safe=True
+ def visit(data,base,depth,prefix=''):
+  nonlocal safe
+  layers.append(depth)
+  with zipfile.ZipFile(BytesIO(data)) as archive:
+   names=set()
+   for item in archive.infolist():
+    if item.is_dir():continue
+    relative=Path(item.filename)
+    if relative.is_absolute() or '..' in relative.parts or item.filename in names:raise ValueError('Unsafe recursive archive member')
+    names.add(item.filename);payload=archive.read(item);target=base/relative
+    if target.is_symlink() or not target.resolve().is_relative_to(source_root.resolve()):raise ValueError('Unsafe extracted recursive member')
+    safe=safe and target.read_bytes()==payload
+    row={'member':prefix+item.filename,'sha256':hashlib.sha256(payload).hexdigest(),'bytes':len(payload),'source':str(target)};rows.append(row)
+    if item.filename.lower().endswith('.pdf'):readers.append(row)
+    if item.filename.lower().endswith('.zip'):
+     nested.append(row);visit(payload,Path(str(target)+'.expanded'),depth+1,prefix+item.filename+'!/')
+ visit(archive_path.read_bytes(),source_root,1)
+ return {'rows':rows,'nested':nested,'readers':readers,'layers':max(layers),'all_member_bytes_match':safe,'unique_hashes':len({x['sha256'] for x in rows}),'hidden':sum(any(part.startswith('.') for part in x['member'].replace('!/', '/').split('/')) for x in rows)}
