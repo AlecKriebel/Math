@@ -1,0 +1,136 @@
+{
+  "record_id": "23430906",
+  "created_utc": "2026-10-25T05:17:52.453087+00:00",
+  "status": "Scope transcription and dependency map only; universal mathematics pending independent analytic/adversarial gates.",
+  "main_claim": {
+    "source": "Published PDF Theorem 1, p.2, equation (3); full abstract p.1.",
+    "quantifiers": [
+      "Every fixed H∈(1/4,1)",
+      "Every T>0",
+      "Every integer n≥1",
+      "Every F∈L²(G_(T,n)), including nonlinear estimators"
+    ],
+    "process": [
+      "Two independent centered continuous Gaussian standard fractional Brownian motions",
+      "Common Hurst parameter H",
+      "Covariance R_H(s,t)=(s^(2H)+t^(2H)−|s−t|^(2H))/2",
+      "B¹_0=B²_0=0 deterministic"
+    ],
+    "observations": "G_(T,n)=σ(Bⁱ_(jT/n): i=1,2; j=1,…,n). Both complete uniform grids include T. There are n observations per component, or 2n random scalar observations total.",
+    "target": "X_T=∫₀ᵀ B¹_s dB²_s, canonical iterated integral defined by L² limit of piecewise-linear lifts.",
+    "inequality": "‖X_T−F‖₂≥c_H T^(2H)n^(1/2−2H)",
+    "constant": "c_H=2πa/(D_H√(P̄_fP̄_g))>0; a=4/45045; D_H=∫_R |exp(iξ)−1|²|ξ|^(−1−2H)dξ; α=2H+1; P̄_r=π^αL_r²+2N_r²π^(α−6)(1+1/[2(5−α)]), r=f,g.",
+    "functions": "φ(x)=x⁴(1−x)⁴ on [0,1], zero elsewhere; f=φ′ and g=φ. The zero extensions belong to W^(3,1), with L_r=‖r‖₁ and N_r=‖r‴‖₁. The body specifies this finite regularity; the abstract adjective smooth should not be interpreted as C∞.",
+    "optimal_estimator": "Taking F=E[X_T|G_(T,n)] gives the minimum conditional root mean-square residual bound."
+  },
+  "interfaces": [
+    {
+      "id": "I1",
+      "mechanism": "Established area existence, Chen relation, and polygonal identification",
+      "source": "Paper §2, pp.2–3; NTU journal Proposition 6, printed p.229; Remark 10, p.230; Theorem 2, p.226, with proof pp.237–240; underlying Unterberger Theorem 4.10.",
+      "input": "Independent equal-H standard fBm, H>1/4; analytic approximations converge in Lp and preserve Chen relation.",
+      "output": "Square-integrable area with joint scaling and stationarity; identification with the canonical polygonal lift.",
+      "remaining_math_gate": "Check exact integral orientation, normalization, and law. No exact Euler coefficient is required."
+    },
+    {
+      "id": "I2",
+      "mechanism": "Sufficient L² convergence of left sums",
+      "source": "Paper §2, equations (4)–(9), pp.2–3.",
+      "input": "I1; finite c₀; |c₁|≤c₀ by Cauchy–Schwarz; differentiated covariance only between separated cells r≥2.",
+      "output": "L_m→X_T in L² in three regimes split at H=3/4. Brownian H=1/2 is handled separately. P_m=L_m+Q_m with Q_m→0.",
+      "remaining_math_gate": "Check the finite lag identity, separated-cell limit, and rate bounds, including empty sums, critical H, and Brownian H."
+    },
+    {
+      "id": "I3",
+      "mechanism": "Normalized Gaussian representation and dual covariance paths",
+      "source": "Paper §3, equations (10)–(12), pp.3–4.",
+      "input": "0<D_H<∞ for 0<H<1; conjugate-symmetric real Hilbert space; negative-sign Fourier transform; zero-extended polynomials in W^(3,1).",
+      "output": "Standard fBm law and E[B_t W(u_h)]=h(t)−h(0), using conjugation in u_h.",
+      "remaining_math_gate": "Check normalization, conjugation, Fourier inversion, and weak endpoint derivatives."
+    },
+    {
+      "id": "I4",
+      "mechanism": "Simultaneous upper Gram bound by periodization",
+      "source": "Paper §4, equations (13)–(14), pp.4–5.",
+      "input": "Integer translations of f and g, scaled by Δ^H; Fourier decay bounded by min(L_r,N_r|η|^(−3)); α∈(3/2,3).",
+      "output": "Gram matrix ≤M_r I uniformly in cell size and count, where M_r=D_H P̄_r/(2π).",
+      "remaining_math_gate": "Check Tonelli, finite trigonometric Parseval, the alias-series bound, and scale powers. This is an upper bound, not rough-increment lower coercivity."
+    },
+    {
+      "id": "I5",
+      "mechanism": "Quadratic Gaussian witness independent of the complete grid",
+      "source": "Paper §5, equation (15), p.5.",
+      "input": "All cell paths vanish at every observation time; joint Gaussianity and independence of the two components.",
+      "output": "Y=Σ U_j V_j is independent of G_(T,n), has mean zero, and satisfies E[Y²]=tr(AC)≤nM_fM_g.",
+      "remaining_math_gate": "Check independence from the entire observation vector and the PSD trace bound with signed off-diagonal entries. Cell independence is not assumed."
+    },
+    {
+      "id": "I6",
+      "mechanism": "Exact pairing followed by Cauchy–Schwarz",
+      "source": "Paper §5, equations (16)–(17), p.5.",
+      "input": "I2 with fixed T,n,j; U_j V_j∈L²; deterministic Riemann–Stieltjes convergence.",
+      "output": "E[X_TY]=na(T/n)^(2H) and E[FY]=0 for every L² grid estimator; the stated lower bound follows with the displayed c_H.",
+      "remaining_math_gate": "Check the fixed-mesh limit, positive exact pairing a, and transfer from the enlarged Gaussian realization to the original joint law. No simultaneous m,n limit or stochastic Fubini step is asserted."
+    }
+  ],
+  "boundaries": [
+    {
+      "case": "H=1/4",
+      "scope": "Excluded. The paper notes a diagonal contribution T/4 to the polygonal-correction second moment. No endpoint canonical construction or lower bound is asserted."
+    },
+    {
+      "case": "H=1",
+      "scope": "Excluded. Harmonic normalization diverges, and degenerate fBm paths are linear, so the endpoint product recovers the iterated integral."
+    },
+    {
+      "case": "H=1/2",
+      "scope": "Included. Independent-component Itô and Stratonovich iterated integrals agree. The prior exact optimum T/(2√n) is stronger than the displayed witness constant."
+    },
+    {
+      "case": "H=3/4",
+      "scope": "Included. The sufficient convergence bridge has a logarithmic factor; the stated lower bound does not acquire a logarithmic factor."
+    },
+    {
+      "case": "n=1",
+      "scope": "Included directly. Each component supplies only the observation at T."
+    },
+    {
+      "case": "T and scaling",
+      "scope": "Every positive real T is covered. RMS scales as T^(2H). No T=0 conclusion is needed."
+    },
+    {
+      "case": "Other area conventions",
+      "scope": "The halved antisymmetric area X_T−B¹_TB²_T/2 has the same optimal conditional residual. The unhalved difference has twice that residual. Factors must be retained when changing the target."
+    },
+    {
+      "case": "Other observations or models",
+      "scope": "No theorem for nonuniform or adaptive grids, unequal H, correlated components, missing components, additional observations, or arbitrary Gaussian linear information is asserted."
+    },
+    {
+      "case": "Constants and limits",
+      "scope": "No sharp constant, exact normalized limit, limiting law, uniform positivity in H, or uniform endpoint control is asserted."
+    }
+  ],
+  "attribution": {
+    "prior": [
+      "Exact Brownian optimum",
+      "Smooth H>1/2 asymptotic optimal rate",
+      "Harmonizable Fourier bumps and Gaussian projection methods"
+    ],
+    "present_note": "An attributed explicit localized-witness lower inequality for every n. No first-theorem or new-general-method claim is made.",
+    "unknown": [
+      "Historical theorem priority",
+      "Method priority",
+      "Full novelty",
+      "Worldwide current-open status",
+      "Potential rough-fBm implications of incompletely accessible Dickinson and Jackowski methods"
+    ]
+  },
+  "success_criteria_for_separate_review": [
+    "Retain every theorem quantifier and every process, observation, and target convention.",
+    "Justify the area input and L² convergence independently of the flagged v1 exact coefficient.",
+    "Validate witness normalization, Gram control, exact pairing, Gaussian independence, and transfer between representations.",
+    "Finite controls cannot establish the universal analytic steps."
+  ],
+  "follow_up": null
+}

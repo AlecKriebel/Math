@@ -1,6 +1,6 @@
 # Correction to one excluded-endpoint control; canonical input verified
 
-2026-10-25T05:22 UTC. Preserve the original first seal and all sealed artifacts unchanged.
+2026-10-25 UTC (exact checkpoint time in RESEARCH_LOG.md). Preserve the original first seal and all sealed artifacts unchanged.
 
 The first independent controls output and section 7 of the sealed derivation incorrectly described the H=1 polygonal half-correction variance as T^4/4. This is an error in this review's excluded-endpoint control, not in the submitted reader. Static inspection of the deposited original finite checker exposed the disagreement; direct exact recalculation resolves it:
 

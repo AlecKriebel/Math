@@ -1,0 +1,5 @@
+# Scope research log: Zenodo 23440119
+
+- 2026-10-25T05:23:07.748546+00:00 — Checkpoint 1; estimated 15% of this intake/scope task complete. Public API/HTML/PDF/archive acquired with HTTP receipts. Both deposited files match API and queue size/MD5. ZIP preflight complete; 26 members safely extracted. Local ignore rules installed before checkpoint. Published manuscript and main TeX will be read before historical scientific audit opinions; no prior favorable opinions received. No submitted programs executed. No Git, deployment, shared script or external communication performed.
+
+- 2026-10-25T05:23:25.165637+00:00 — Checkpoint 2; estimated 35% complete. Independently read full five-page manuscript and full main.tex; all five rendered pages inspected. Literal claim, proof mechanism, endpoints, attribution, and exact scope sealed in independent-scope-seal.json before opening historical submitted audit reports. Primary definitions/priority context still to inspect; no mathematical verdict assigned.

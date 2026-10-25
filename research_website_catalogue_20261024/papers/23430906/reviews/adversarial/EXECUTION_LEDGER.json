@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-25T05:19:57.351947+00:00",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "commands": [
+    {
+      "stage": "independent control",
+      "command": "python3 independent/controls.py > outputs/independent_controls.json",
+      "cwd": "reviews/adversarial",
+      "exit_code": 0,
+      "source_written_before_submitted_checker_inspection": true
+    },
+    {
+      "stage": "submitted wrapper",
+      "command": "python3 quarantine/support/scripts/check.py --out [absolute adversarial folder]/outputs/wrapper_normal",
+      "cwd": "reviews/adversarial",
+      "exit_code": 0,
+      "source_sha256": "6b7c443338d0f68118a03d63d3e471c9359f6bae85bcf05b473dfef1501c1e05",
+      "stdout": "outputs/wrapper_normal.stdout.json"
+    },
+    {
+      "stage": "submitted optimized wrapper",
+      "command": "python3 -O quarantine/support/scripts/check.py --out [absolute adversarial folder]/outputs/wrapper_optimized",
+      "cwd": "reviews/adversarial",
+      "exit_code": 0,
+      "source_sha256": "6b7c443338d0f68118a03d63d3e471c9359f6bae85bcf05b473dfef1501c1e05",
+      "stdout": "outputs/wrapper_optimized.stdout.json"
+    }
+  ],
+  "static_read_before_submitted_execution": [
+    "checks/original_finite_checks.py",
+    "scripts/check.py",
+    "scripts/package_paths.py"
+  ],
+  "quarantine": "all225 regular support members copied byte-exact; no source edits; output locations external to copied frozen root",
+  "not_run": [
+    "installers",
+    "builders",
+    "historical run-all",
+    "verify_package.py",
+    "release/deploy/service tools"
+  ],
+  "failed_optional_probe": "Import sympy raised ModuleNotFoundError in system Python; no install attempted; replaced with exact standard-library Fraction controls.",
+  "limitations": "finite diagnostics only; optimized raw assertions disabled and replaced by explicit wrapper contract; raw child outputs stored, no acceptance based only on PASS strings"
+}
