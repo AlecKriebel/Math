@@ -1,0 +1,276 @@
+        Pure point Dirichlet spectrum on quasi-conical domains
+                                                 Alec Kriebel
+                                       Independent researcher
+                                     ORCID: 0009-0001-9320-500X
+
+                                               15 October 2026
+                                          Research note, version 1.0
+
+
+
+                                                   Abstract
+         For every dimension at least two, we construct a connected open quasi-conical domain whose
+     Dirichlet Laplacian has a complete orthonormal eigenbasis, although its spectrum and essential
+     spectrum are the entire nonnegative half-line. Its positive eigenvalues are dense, zero is not
+     an eigenvalue, and both continuous spectral subspaces vanish. We use the expanding-cube and
+     shrinking-window geometry of Krejčířík and Lotoreichik, choosing both cube sizes and positive
+     apertures inductively. The additional construction transports a growing family of complete ﬁnite
+     spectral clusters with summable norm errors. A repeated dense test family proves completeness
+     and excludes singular continuous spectrum. This answers the existential spectral-type question
+     in their discussion and the corresponding Oberwolfach contribution.
+
+Status and disclosure. AI tools were used extensively in developing, reproducing, checking
+and adversarially reviewing the argument and preparing this note. This is an unrefereed preprint.
+Internal AI-assisted review is not external human peer review or proof-assistant certiﬁcation. The
+source and veriﬁcation package records the checks and their limits.
+
+
+1    The question and the precise result
+An open set is quasi-conical if it contains Euclidean balls of arbitrarily large radius. On any open
+Ω ⊂ Rd , let AΩ be the nonnegative self-adjoint Dirichlet Laplacian deﬁned by the closed form
+                                          Z
+                               qΩ [u] =        |∇u|2 ,       dom qΩ = H01 (Ω).
+                                           Ω
+
+This deﬁnition imposes no regularity assumption on the boundary. Krejčířík and Lotoreichik [1] con-
+structed connected quasi-conical domains with an embedded eigenvalue and with no absolutely con-
+tinuous spectrum. Their Section 5 asks whether the singular continuous part can also be removed.
+Lotoreichik’s Oberwolfach contribution [2, pp. 2077–2078] poses the same existential question; it is
+repeated in [3, Open Problem 1, PDF p. 16].
+
+Theorem 1. For every integer d ≥ 2 there is a connected open quasi-conical set Ω ⊂ Rd , consisting
+of expanding cubes joined through positive shrinking windows in their common faces, such that
+A = AΩ has a complete orthonormal eigenbasis and
+
+         σ(A) = σess (A) = σp (A) = [0, ∞),              ker A = {0},     Hac (A) = Hsc (A) = {0}.
+
+Both the cube widths and the window widths are chosen in the construction.
+
+                                                         1
+    Pure point spectral type means completeness of the eigenvectors. It does not assert that ev-
+ery point of [0, ∞) is an eigenvalue. The theorem concerns zero-thickness interface screens with
+open windows. It makes no assertion for arbitrary preassigned cube sizes, smooth boundaries, Neu-
+mann conditions or positive-length connecting passages; no eﬀective numerical aperture bounds are
+supplied.
+    The geometry, freedom to choose future cube sizes and ﬁnite-window continuity below come
+from [1, Sections 2.2 and 3]. Whole spectral families already handle multiplicities in [4, Proposi-
+tion 1.4]; see also the explicit warning in [1, Remark 3.1]. The additional step here is the exhaustive
+geometric transport and its completeness estimate. Neither ﬁnite-cluster perturbation theory nor
+diagonalization on ﬁnite reducing subspaces is claimed as a new abstract principle.
+
+
+2    A bounded shrinking-window step
+Write Qa (x) = xe1 +(−a, a)d . Suppose that a bounded connected partial tower On ends in Qan (xn ),
+with all its earlier windows ﬁxed. For a > an + 1, put x = xn + an + a, p = (xn + an )e1 , and
+                                                                            
+                 D0 = On ∪ Qa (x),         Dδ = D0 ∪ p + (−δ, δ)d ,                    0 < δ < an .
+
+The connector away from its middle face is already inside the adjacent cubes. Thus Dδ \ D0 is
+precisely a patch of that face: the L2 spaces are canonically the same, while the form domains
+diﬀer. The full connector cube makes Dδ open and connected.
+
+Lemma 2. On this common L2 space,
+
+                            (ADδ + 1)−1 − (AD0 + 1)−1 −→ 0                      (δ ↓ 0).
+
+All these bounded-domain Dirichlet operators have compact resolvent and strictly positive eigenval-
+ues.
+
+Proof. This is the ﬁnite-window application of [1, Propositions 2.2–2.3 and Section 3]. We give
+a direct form argument to make the dimension and boundary hypotheses explicit. Choose one
+bounded box B containing the ﬁxed ﬁnite geometry. Zero extension realizes Vδ = H01 (Dδ ) and
+V0 = H01 (D0 ) as closed subspaces of H01 (B). As δ ↓ 0 these spaces decrease, and
+                                                 \
+                                                        Vδ = V0 .                                     (1)
+                                               0<δ<an
+
+Indeed, for bounded u in this intersection choose a smooth cutoﬀ ζr that vanishes near p and is
+one outside a shrinking neighborhood. Choose δ so small that the connector is inside the zero
+neighborhood. Multiplying smooth compactly supported approximants to u in Dδ by ζr shows that
+ζr u ∈ V0 . For d ≥ 3 use a cutoﬀ between radii r and 2r; its squared gradient norm is O(rd−2 ). For
+d = 2, choose a smooth θ equal to zero on (−∞, 0] and one on [1, ∞), and use
+                                                            !
+                                     log(|y − p|/r2 )
+                          ζr (y) = θ                               (r2 < |y − p| < r),
+                                        log(1/r)
+
+continued by zero inside and one outside. Its gradient energy is
+                             Z                              Z 1
+                                                  2π
+                                   |∇ζr |2 =                      |θ′ (s)|2 ds −→ 0.
+                              R2               log(1/r)      0
+
+
+                                                        2
+In either case ζr u → u in H 1 (B) for bounded u: use dominated convergence and ∥u∇ζr ∥2 ≤
+∥u∥∞ ∥∇ζr ∥2 . Truncate the real and imaginary parts ﬁrst to treat arbitrary u; Sobolev truncation
+preserves each Vδ and converges in H 1 . Closedness proves (1).
+     If δj → 0 and uj ∈ Vδj converges weakly in H 1 (B), its limit belongs to every ﬁxed Vs , hence to
+V0 . Every v ∈ V0 is its own recovery sequence. Now write Rδ = (ADδ + 1)−1 and R0 = (AD0 + 1)−1 .
+For bounded inputs fj , the solutions Rδj fj are uniformly bounded in H01 (B). If norm convergence
+failed, select unit inputs with a positive lower bound on (Rδj − R0 )fj               . Pass to fj ⇀ f and, by
+                                                                                  2
+Rellich compactness, to outputs converging strongly in L2 (B) and weakly in H01 (B). The preceding
+form-space limit puts their limit in V0 . Testing the variational equation against V0 identiﬁes it as
+R0 f . Compactness of R0 also gives R0 fj → R0 f , a contradiction. The same containing-box
+embedding proves compact resolvents, and the Poincaré inequality in B proves positivity.
+
+    This argument keeps every old window ﬁxed. In dimension one a positive connector joins
+adjacent intervals for every δ > 0, and the point removal argument fails; this is why d ≥ 2 is
+required.
+    Suppose S is a ﬁnite set of old eigenvalues and the new cube has no eigenvalue in S. Each
+λ ∈ S is then isolated in AD0 with exactly its old full eigenspace, extended by zero. Choose disjoint
+isolating intervals Iλ with endpoints outside σ(AD0 ). Lemma 2 implies
+
+                          EDδ (Iλ ) −→ EOn ({λ}) ⊕ 0          in operator norm.                            (2)
+
+For example, apply ﬁxed Riesz contours around the isolated nonzero eigenvalues (1 + λ)−1 of the
+bounded resolvents. The resolvent identity gives convergence of the contour integrals. Projections
+at norm distance below one have equal ranks: either projection is injective on the other’s range. A
+multiple eigenvalue may split inside its interval; its entire cluster is retained.
+
+
+3    Inductive protection of an exhaustive family
+Set a1 = x1 = 1 and O1 = Q1 (1). Once On is ﬁxed, the next cube eigenvalues are
+
+                         π 2 (m21 + · · · + m2d )
+                                                  ,      mi ∈ N,   N = {1, 2, . . .}.
+                                  4a2
+For any ﬁnite positive set S and a ∈ (an + 1, an + 2), an equality with λ ∈ S bounds every mi .
+Only ﬁnitely many widths are forbidden. We may therefore choose an+1 in this interval avoiding
+S, then set xn+1 = xn + an + an+1 . This changes no earlier parameter.
+    When cube ωj = Qaj (xj ) is chosen, ﬁx its orthonormal sine basis (fj,ℓ )ℓ≥1 , extended by zero as
+necessary. Let
+                      εn = 2−n−2 ,      ηn = 2−n ,     Fn = {fj,ℓ : j, ℓ ≤ n}.
+We construct ﬁnite-rank orthogonal projections Pnk , 1 ≤ k ≤ n, each a sum of complete eigenspace
+projections of AOn , such that
+
+                                  Pn1 ≤ · · · ≤ Pnn ,                                                      (3)
+                        k
+                       Pn+1 − Pnk      < εn ,               k
+                                                      rank Pn+1 = rank Pnk    (k ≤ n),                     (4)
+                      ∥(I − Pnn )f ∥ < ηn       (f ∈ Fn ).                                                 (5)
+
+In (4) the old projections are extended by zero into the new ﬁnite-stage L2 space.
+
+
+                                                        3
+    For n = 1, a suﬃciently high ﬁnite spectral cutoﬀ gives (5). At stage n, let Sn be the ﬁnite set
+of eigenvalues occurring in Pnn . Choose the next cube nonresonant with Sn . For each λ ∈ Sn take
+an interval as in (2). If Snk ⊂ Sn deﬁnes Pnk , transport it by
+                                                        X
+                                           k
+                                          Pn+1 =               EDδn (Iλ ).
+                                                           k
+                                                        λ∈Sn
+
+There are ﬁnitely many constraints. Choose one positive δn so small that (4) holds for every k ≤ n
+and
+                                     δn < min(an /2, 2−n ).
+Set On+1 = Dδn . Disjoint intervals and complete clusters preserve nesting, complete-eigenspace
+                                                      n+1
+status and rank. Finally choose a spectral cutoﬀ Pn+1     above all transported clusters and high
+enough to satisfy (5) for Fn+1 . Compact-resolvent completeness permits this ﬁnite choice. An older
+projection need not remain a low-energy cutoﬀ after transport. No simple spectrum or uniform
+spectral-gap estimate is assumed.
+
+
+4    The ﬁnal domain and its resolvent
+          S
+Let Ω = n On . It is open and connected and contains balls of radius an → ∞. Apart from
+countably many null interface patches it is the disjoint union of the cubes. Hence
+                                                               M
+                                         H = L2 (Ω) =                L2 (ωj ),
+                                                               j≥1
+
+and all fj,ℓ together form an orthonormal basis of H. Every earlier projection and resolvent now
+acts by zero extension on H. The preceding norms and ranks are unchanged by these canonical
+embeddings.
+    Put R = (AΩ + 1)−1 and Rn = in (AOn + 1)−1 rn , where rn restricts and in extends by zero.
+Then Rn → R strongly, with ∥Rn ∥ ≤ 1. Indeed the zero-extended Vn = H01 (On ) are increasing
+closed subspaces of V = H01 (Ω) for
+                                                    Z
+                                        b(u, v) =        (∇u · ∇v + uv̄).
+                                                     Ω
+
+Their union is dense: compact support in the increasing open cover lies in one ﬁnite stage, and
+Cc∞ (Ω) is form-dense. For f ∈ H, Rn f is the b-orthogonal projection of Rf onto Vn . It therefore
+converges in form norm and in H. Norm convergence of this inﬁnite exhaustion is not required.
+The extended Rn have kernels on the future cube summands; only R is used as a genuine resolvent
+on all of H.
+
+
+5    Limiting eigenvectors and completeness
+For ﬁxed k, (4) gives a norm limit P k and
+                                                   ∞
+                                                   X
+                               P   k
+                                       − Pnk   ≤         εj = 2−n−1          (n ≥ k).            (6)
+                                                   j=n
+
+It is an orthogonal projection of the same ﬁnite rank, by norm continuity and the distance-below-one
+criterion. Nesting passes to the limits. Since Rn Pnk = Pnk Rn , strong convergence of the uniformly
+
+                                                          4
+bounded Rn and norm convergence of Pnk give RP k = P k R. Thus Ran P k is a ﬁnite-dimensional
+reducing subspace for R. Positivity and injectivity of R make every eigenvalue µ on that space
+strictly positive. If Rv = µv, then v = µ−1 Rv ∈ dom AΩ and AΩ v = (µ−1 − 1)v. Consequently
+Ran P k ⊂ Hpp (AΩ ), the closed span of its eigenvectors. Injectivity prevents a nonzero protected
+limit space from escaping to inﬁnite energy.
+    Fix f = fj,ℓ . For every n ≥ max(j, ℓ), (5) and (6), applied to the trajectory born at n, give
+                 ∥(I − P n )f ∥ ≤ ∥(I − Pnn )f ∥ + ∥Pnn − P n ∥ < 2−n + 2−n−1 −→ 0.
+Every P n f lies in the closed space Hpp (AΩ ). It follows that every cube-basis probe lies there and
+Hpp (AΩ ) = H. This proves absence of both continuous spectral subspaces; dense eigenvalues alone
+would not prove that assertion. Equivalently, P k → I strongly. Diagonalizing R on Ran P 1 and the
+ﬁnite-dimensional orthogonal diﬀerences Ran(P k+1 − P k ) gives a complete orthonormal eigenbasis.
+
+
+6    Spectral support and the zero endpoint
+Nonnegativity gives σ(AΩ ) ⊂ [0, ∞). For λ ≥ 0, choose ξ ∈ Rd with |ξ|2 = λ and χ ∈ Cc∞ (B1 (0))
+of L2 norm one. With cube center cn and rn = an /2, put
+                                 un (x) = rn−d/2 χ((x − cn )/rn )eiξ·x .
+These unit functions belong to Cc∞ (Ω) ⊂ dom AΩ . The product rule gives
+                       ∥(AΩ − λ)un ∥2 ≤ rn−2 ∥∆χ∥2 + 2|ξ|rn−1 ∥∇χ∥2 −→ 0.
+Their supports lie in disjoint cubes, so they are orthonormal and weakly null. Weyl’s criterion puts
+every λ ≥ 0 in the essential spectrum. Completeness identiﬁes the spectral set with the closure of
+the eigenvalues. Finally, a zero eigenfunction has zero weak gradient and is constant on connected
+Ω. Its inﬁnite volume excludes a nonzero L2 constant. This proves all assertions of Theorem 1.
+
+
+Veriﬁcation, priority and availability
+The accompanying source and veriﬁcation archive preserves the original proof and dated audits, in-
+dependent geometric and spectral reconstructions, bounded primary-source priority searches, their
+adversarial challenge, exact ﬁnite diagnostics and ﬁle-integrity checks. Those computations do not
+formally verify the inﬁnite-dimensional theorem or compute admissible apertures. An explicitly
+corrected source-reading error in one audit is preserved with its superseding addendum; it did not
+change the theorem.
+    The priority searches located no earlier full matching result. They do not certify historical
+ﬁrstness or worldwide current openness. Some older full bodies, a restricted ﬁnite-dimensional gap-
+transport note, unindexed work and nonpublic material remained outside the comparison. The
+dated question and substantive antecedents are credited above; the claim is the complete construc-
+tion proved here. The research record is repository PR 765. This note and its authored supporting
+material are released under CC BY 4.0.
+
+
+References
+[1] D. Krejčířík and V. Lotoreichik, Quasi-conical domains with embedded eigenvalues, Bull.
+    Lond. Math. Soc. 56 (2024), 2969–2981. doi:10.1112/blms.13113. Inspected author version:
+    arXiv:2205.08172v2 (20 May 2024).
+
+                                                   5
+[2] V. Lotoreichik, joint work with D. Krejčířík, Quasi-conical domains with embedded eigenval-
+    ues, in Geometric Spectral Theory, Oberwolfach Rep. 20 (2023), report 36/2023, 2077–2078.
+    doi:10.4171/OWR/2023/36.
+
+[3] D. Krejčířík, Spectral geometry: old questions and new answers, arXiv:2609.28602v1 (23 Septem-
+    ber 2026), Open Problem 1, PDF p. 16.
+
+[4] R. Hempel, L. A. Seco and B. Simon, The essential spectrum of Neumann Laplacians on
+    some bounded singular domains, J. Funct. Anal. 102 (1991), 448–483. doi:10.1016/0022-
+    1236(91)90130-W.
+
+
+
+
+                                                6
+

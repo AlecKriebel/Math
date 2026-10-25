@@ -1,0 +1,1809 @@
+                                                                         USER-FRIENDLY TAIL BOUNDS
+                                                                       FOR SUMS OF RANDOM MATRICES
+
+                                                                                           JOEL A. TROPP
+
+
+                                                  Abstract. This paper presents new probability inequalities for sums of independent, random, self-
+
+
+
+
+arXiv:1004.4389v7 [math.PR] 15 Jun 2011
+                                                  adjoint matrices. These results place simple and easily veriﬁable hypotheses on the summands, and
+                                                  they deliver strong conclusions about the large-deviation behavior of the maximum eigenvalue of
+                                                  the sum. Tail bounds for the norm of a sum of random rectangular matrices follow as an immediate
+                                                  corollary. The proof techniques also yield some information about matrix-valued martingales.
+                                                     In other words, this paper provides noncommutative generalizations of the classical bounds
+                                                  associated with the names Azuma, Bennett, Bernstein, Chernoﬀ, Hoeﬀding, and McDiarmid. The
+                                                  matrix inequalities promise the same diversity of application, ease of use, and strength of conclusion
+                                                  that have made the scalar inequalities so valuable.
+
+
+
+
+                                                                                         1. Introduction
+                                             Random matrices have come to play a signiﬁcant role in computational mathematics. This line
+                                          of research has advanced by using established methods from random matrix theory, but it has also
+                                          generated diﬃcult questions that cannot be addressed without new tools. Let us summarize some
+                                          of the challenges that arise in numerical applications.
+                                                • Research has extended well beyond the classical ensembles (e.g., Wishart matrices and
+                                                  Wigner matrices) to encompass many other classes of random matrices. For instance, it is
+                                                  now common to study the properties of a sparse matrix sampled from a ﬁxed matrix or a
+                                                  random submatrix drawn from a ﬁxed matrix.
+                                                • We also encounter highly structured matrices that involve a limited amount of randomness.
+                                                  One important example is the randomized DFT, which consists of a diagonal matrix of
+                                                  random signs multiplied by a discrete Fourier transform matrix.
+                                                • Questions about the spectral properties of random matrices remain fundamental, but mod-
+                                                  ern problems can also involve other considerations. For example, we might need to estimate
+                                                  the cut norm of a random adjacency matrix. Or we might want to study the action of a
+                                                  random operator on a class of vectors or matrices.
+                                                • Most problems in numerical mathematics concern matrices of ﬁnite order. Asymptotic
+                                                  theory is less relevant in practice.
+                                                • We often require explicit large-deviation theorems for statistics of random matrices so that
+                                                  we can study rates of convergence.
+                                                • Results with eﬀective constants are essential to ensure that algorithms are provably correct.
+
+                                             Date: 25 April 2010. Revised on 15 June 2010, 14 November 2010, 7 January 2011, and 15 June 2011.
+                                             Key words and phrases. Discrete-time martingale, large deviation, probability inequality, random matrix, sum of
+                                          independent random variables.
+                                             2010 Mathematics Subject Classification. Primary: 60B20. Secondary: 60F10, 60G50, 60G42.
+                                             JAT is with Computing & Mathematical Sciences, MC 305-16, California Institute of Technology, Pasadena, CA
+                                          91125. E-mail: jtropp@cms.caltech.edu. Research supported by ONR award N00014-08-1-0883, DARPA award
+                                          N66001-08-1-2065, and AFOSR award FA9550-09-1-0643.
+                                                                                                    1
+2                                          JOEL A. TROPP
+
+   We have encountered these issues in a wide range of problems from computational mathemat-
+ics: smoothed analysis of Gaussian elimination [SST06]; semideﬁnite relaxation and rounding of
+quadratic maximization problems [Nem07, So09]; construction of maps for dimensionality reduc-
+tion [AC09]; matrix approximation by sparsiﬁcation [AM07] and by sampling submatrices [RV07];
+analysis of sparse approximation [Tro08] and compressive sampling [CR07] algorithms; randomized
+schemes for low-rank matrix factorization [HMT11]; and analysis of algorithms for completion of
+low-rank matrices [Gro11, Rec09]. And this list is by no means comprehensive!
+   In most of these applications, the methods currently invoked to study random matrices require
+a substantial amount of practice to use eﬀectively. Even so, the ﬁnal results tend to be a little
+disappointing: the constants are usually poor and the predictions are sometimes coarser than we
+might like. These frustrations have led us to search for simpler techniques that still yield detailed
+quantitative information about ﬁnite random matrices.
+
+1.1. Technical Overview. We consider a ﬁnite sequence {Xk } of random, self-adjoint matrices
+with dimension d. Our goal is to harness basic properties of these matrices to bound the probability
+                                      n      X             o
+                                    P λmax         Xk ≥ t .                                   (1.1)
+                                                   k
+
+Here and elsewhere, λmax denotes the algebraically largest eigenvalue of a self-adjoint matrix. This
+formulation is more general than it may appear because we can exploit the same ideas to explore
+several related problems:
+     • We can study the smallest eigenvalue of the sum.
+     • We can bound the largest singular value of a sum of random rectangular matrices.
+     • Related arguments apply to matrix martingales and other adapted sequences.
+Indeed, the expression (1.1) captures the essence of many questions that arise in numerical appli-
+cations of random matrix theory, including most of the research cited above.
+  Observe that (1.1) formally resembles the probability that a sum of real random variables exceeds
+a certain level. The Laplace transform method, attributed to Bernstein, is a particularly elegant
+system for producing tail bounds for sums of scalar random variables; see [McD98, Lug09] for
+accessible discussions. In a remarkable paper [AW02], Ahlswede and Winter show how to transport
+the Laplace transform method to the matrix setting. They establish that
+                     n       X          o       n               X         o
+                    P λmax        Xk ≥ t ≤ inf e−θt · E tr exp          θXk .                  (1.2)
+                                 k              θ>0                     k
+
+In words, the probability (1.1) is controlled by a matrix version of the moment generating function
+(mgf). See Proposition 3.1 for an easy proof of (1.2) that is due to Oliveira [Oli10b].
+   The matrix Laplace transform estimate (1.2) presents a serious technical challenge. We must
+control the trace of the matrix mgf
+                                                  X        
+                                         E tr exp      θXk
+                                                       k
+
+using information about the summands X1 , X2 , X3 , . . . . This estimate requires powerful tools, and
+it stands as the major impediment to bounding the tail probability (1.1).
+   The true signiﬁcance of the Ahlswede–Winter argument [AW02, App.] consists in their technique
+for computing the required bounds on the matrix mgf. We describe their method in §3.7. The
+following probability inequality for a matrix Gaussian series is typical of the results that emerge
+from their approach. Let {Ak } be a family of ﬁxed self-adjoint matrices with dimension d, and let
+{γk } be a sequence of independent standard normal variables. Then
+              n     X              o         2  2
+                                                                           X
+                                                                     2
+            P λmax         γk Ak ≥ t ≤ d · e−t /2σAW where σAW          :=      λmax (A2k ).     (1.3)
+                         k                                                    k
+                             TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                          3
+
+The Ahlswede–Winter apparatus leads to a collection of other interesting probability inequalities;
+see §1.3 for references. Nevertheless, tail bounds developed in this fashion, including (1.3), are
+usually very far from optimal. See §3.7 and §4.8 for further discussion of this point.
+   This paper describes a more satisfactory framework for completing the bound on the matrix mgf.
+The crucial new ingredient in our argument is a deep theorem [Lie73, Thm. 6] of Lieb from his
+seminal paper on convex trace functions. We introduce Lieb’s theorem in §3.4, and we explain how
+to combine this result with the matrix Laplace transform technique. We use this scheme to obtain
+a large family of probability inequalities that are essentially sharp in a wide variety of situations.
+   Our approach represents a dramatic advance beyond the Ahlswede–Winter technique. For ex-
+ample, our method delivers the following bound for a matrix Gaussian series:
+               n     X               o          2   2
+                                                                             X        
+             P λmax         γk Ak ≥ t ≤ d · e−t /2σ where σ 2 := λmax               A2k .         (1.4)
+                            k                                                                     k
+The estimate (1.4) oﬀers a fundamental advantage over (1.3) because the variance parameter σ 2
+                                2 . Furthermore, the discussion in §4 demonstrates that the in-
+is often d times smaller than σAW
+equality (1.4) cannot be sharpened without changing its structure. This improvement is typical of
+results constructed from our blueprint.
+1.2. Index of Inequalities. This work contains a large number of bounds for the probability (1.1).
+The precise form of each inequality depends on prior information about the summands. As a service
+to the reader, we have collected the most useful results in this section. We have also included a
+short qualitative discussion of each bound, along with the location in the paper where the full
+treatment appears.
+1.2.1. Notation. The symbol 4 denotes the semideﬁnite order on self-adjoint matrices. The maps
+λmin and λmax return the algebraically smallest and largest eigenvalue of a self-adjoint matrix. We
+write k·k for the spectral norm, which equals the largest singular value of a matrix.
+1.2.2. Main Results for Positive-Semidefinite Matrices. In classical probability theory, one of the
+most famous concentration results concerns the number of successes in a sequence of independent
+random trials. This quantity can be expressed as a sum of independent, bounded random variables.
+Chernoﬀ’s large-deviation theorem [Che52] provides explicit estimates on the probability that this
+type of series is greater than (or smaller than) a speciﬁed level.
+   In the matrix setting, the analogous theorem concerns a sum of positive-semideﬁnite random
+matrices subject to a uniform eigenvalue bound. The matrix Chernoﬀ inequality shows that the
+extreme eigenvalues of the matrix series have the same binomial-type behavior that occurs in the
+scalar case.
+Theorem 1.1 (Matrix Chernoﬀ). Consider a finite sequence {Xk } of independent, random, self-
+adjoint matrices with dimension d. Assume that each random matrix satisfies
+                            Xk < 0   and    λmax (Xk ) ≤ R         almost surely.
+Define                              X                                      X               
+                   µmin := λmin          E Xk        and    µmax := λmax                E Xk .
+                                     k                                              k
+Then
+                                                                         µmin /R
+                                                               e−δ
+           n     X                o      
+          P λmin    Xk ≤ (1 − δ)µmin ≤ d ·                                              for δ ∈ [0, 1], and
+                       k                                    (1 − δ)1−δ
+                                                                         µmax /R
+                                                            eδ
+           n      X                           o       
+         P λmax            Xk ≥ (1 + δ)µmax         ≤d·                                 for δ ≥ 0.
+                       k                                (1 + δ)1+δ
+   Chernoﬀ bounds are well suited to studying the spectrum of a random matrix with independent
+columns. For additional details and related inequalities, turn to §5.
+4                                               JOEL A. TROPP
+
+1.2.3. Main Results for Self-Adjoint Matrices. Another basic example of concentration is provided
+by a sum of real numbers modulated by independent standard normal variables or, alternatively, by
+independent Rademacher1 random variables. A classical result shows that this type of random series
+exhibits subgaussian tails. When we replace the real numbers by self-adjoint random matrices, we
+discover that the maximum and minimum eigenvalue of the matrix sum retain this normal tail
+behavior.
+Theorem 1.2 (Matrix Gaussian and Rademacher Series). Consider a finite sequence {Ak } of fixed,
+self-adjoint matrices with dimension d, and let {ξk } be a finite sequence of independent standard
+normal or independent Rademacher random variables. Then, for all t ≥ 0,
+                 n      X             o         2    2
+                                                                          X
+               P λmax         ξk Ak ≥ t ≤ d · e−t /2σ where σ 2 :=             A2k .
+                                k                                                          k
+
+   Theorem 1.2 was ﬁrst established explicitly by Oliveira using a diﬀerent method [Oli10b]. We
+have included the result here because it is very important and because it follows from a mechan-
+ical application of our techniques. Turn to §4 for an exhaustive discussion of matrix Gaussian
+series. This presentation also describes several new phenomena that arise when we translate scalar
+inequalities to the matrix setting.
+   The Hoeﬀding inequality is a more general result that describes a sum of independent, zero-mean
+random variables that are subject to upper and lower bounds; it demonstrates that this random
+series exhibits normal concentration. We can extend this result to the matrix setting by considering
+random matrices that satisfy semideﬁnite upper bounds. In the matrix case, the maximum and
+minimum eigenvalues of the sum also have subgaussian behavior.
+Theorem 1.3 (Matrix Hoeﬀding). Consider a finite sequence {Xk } of independent, random, self-
+adjoint matrices with dimension d, and let {Ak } be a sequence of fixed self-adjoint matrices. Assume
+that each random matrix satisfies
+                               E Xk = 0     and    Xk2 4 A2k        almost surely.
+Then, for all t ≥ 0,
+                  n     X      o         2    2
+                                                                                     X
+                 P λmax    Xk ≥ t ≤ d · e−t /8σ                 where      σ 2 :=          A2k .
+                                    k                                                  k
+
+   The constant 1/8 in Theorem 1.3 can be improved when there is additional information available.
+See §7 for a discussion and some related results for martingales.
+   In fact, a sum of independent, bounded random variables may vary substantially less than the
+Hoeﬀding bound suggests. A famous inequality of Bernstein demonstrates that this type of random
+series exhibits normal concentration near its mean on a scale determined by the variance of the sum.
+On the other hand, the tail of the sum decays subexponentially on a scale controlled by a uniform
+upper bound on the summands. Sums of independent random matrices exhibit the same type of
+behavior, where the normal concentration depends on a matrix generalization of the variance and
+the tails are controlled by a uniform bound on the maximum eigenvalue of each summand.
+Theorem 1.4 (Matrix Bernstein). Consider a finite sequence {Xk } of independent, random, self-
+adjoint matrices with dimension d. Assume that each random matrix satisfies
+                             E Xk = 0     and   λmax (Xk ) ≤ R        almost surely.
+Then, for all t ≥ 0,
+                                                      −t2 /2
+          n       X      o                                                         X
+                                                                              σ 2 :=               E Xk2
+                                                                                                           
+        P λmax       Xk ≥ t ≤ d · exp                                 where                                    .
+                         k                         σ 2 + Rt/3                                  k
+
+    1A Rademacher random variable is uniformly distributed on {±1}.
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                 5
+
+  Independently, Oliveira has established a somewhat weaker version of Theorem 1.4 using alter-
+native techniques [Oli10a]. The reader is probably aware that the probability literature contains
+a huge number of results that extend Bernstein’s inequality to include other a priori information
+on the summands, such as bounds on the rate of moment growth. Section 6 contains additional
+matrix probability inequalities of this species.
+1.2.4. Main Results for Rectangular Matrices. As an immediate corollary of our results for self-
+adjoint random matrices, we can also establish a collection of inequalities for the maximum singular
+value of a sum of random rectangular matrices. In each case, we extend the result to rectangular
+matrices by using a device from operator theory called the self-adjoint dilation (§2.6). Remark 3.11
+and §4.2 oﬀer some discussion of this technique. This section presents two of the most important
+inequalities for sums of random rectangular matrices.
+   As in the self-adjoint case, the norm of a Gaussian or Rademacher series with rectangular matrix
+coeﬃcients has subgaussian tails. This result follows directly from Theorem 1.2; see §4.2 for a
+complete proof. Observe that the variance parameter changes to reﬂect the fact that the row and
+column spaces of a general matrix are independent from each other; the variance can be viewed as
+a noncommutative “sum of squares.”
+Theorem 1.5 (Matrix Gaussian and Rademacher Series: Rectangular Case). Consider a finite
+sequence {Bk } of fixed matrices with dimension d1 × d2 , and let {ξk } be a finite sequence of in-
+dependent standard normal or independent Rademacher random variables. Define the variance
+parameter                            n X                            o
+                                                      X
+                          σ 2 := max        Bk Bk∗ ,        Bk∗ Bk .
+                                                   k                 k
+Then, for all t ≥ 0,            n X                o                  2   2
+                            P             ξk Bk ≥ t ≤ (d1 + d2 ) · e−t /2σ .
+                                      k
+
+  We can also develop a rectangular version of the matrix Bernstein inequality. Notice the parallel
+between the variance parameter here and the variance parameter for a rectangular Gaussian series.
+This result is an immediate corollary of Theorem 1.4; a proof sketch appears in Remark 6.3.
+Theorem 1.6 (Matrix Bernstein: Rectangular Case). Consider a finite sequence {Zk } of indepen-
+dent, random matrices with dimensions d1 × d2 . Assume that each random matrix satisfies
+                           E Zk = 0        and         kZk k ≤ R   almost surely.
+Define                                n X                                             o
+                                                                   X
+                        σ 2 := max                E(Zk Zk∗ ) ,           E(Zk∗ Zk )       .
+                                              k                      k
+Then, for all t ≥ 0,
+                                                                              −t2 /2
+                           n X               o                                         
+                       P            Zk ≥ t ≤ (d1 + d2 ) · exp                                 .
+                                k                                          σ 2 + Rt/3
+  We trust that the reader can develop other probability inequalities for rectangular matrices as
+needed. For brevity, we have omitted further examples.
+1.2.5. Inequalities for Matrix Martingales. The techniques in this paper also lead directly to some
+simple results for matrix martingales. This material appears in §7.
+      Azuma Inequality: The Azuma inequality is the martingale extension of the Hoeﬀding in-
+        equality.
+     McDiarmid Inequality: The McDiarmid bounded diﬀerence inequality concerns matrix-
+      valued functions of a family of independent random variables. It demonstrates that the
+      extreme eigenvalues of the matrix-valued function exhibit normal concentration.
+6                                          JOEL A. TROPP
+
+For more reﬁned martingale inequalities, see the papers [Oli10a, Tro11a] and the technical re-
+port [Tro11c].
+
+1.3. Summary of Related Work. We continue with an overview of some related work on ﬁnite-
+dimensional random matrices. The ﬁrst group of papers relies on the matrix extension of the
+Laplace transform method; the second group uses noncommutative moment inequalities.
+
+1.3.1. The Matrix Laplace Transform Method. The most important precedent for our work is the
+inﬂuential paper of Ahlswede and Winter [AW02]. They are responsible for developing the matrix
+version of the Laplace transform method, which shows that the tail probability (1.1) is controlled
+by a matrix generalization of the mgf. They describe an iterative argument, based on the Golden–
+Thompson inequality, (2.6) below, that allows them to provide a weak bound for the mgf of a sum of
+independent random matrices in terms of mgf bounds for the individual summands. In particular,
+they apply this technique to obtain an extension of the Chernoﬀ inequality [AW02, Thm. 19].
+   The Ahlswede–Winter method for bounding the matrix mgf is quite general. Several other
+authors have exploited their technique to obtain matrix extensions of classical probability inequal-
+ities. Christoﬁdes and Markström establish a matrix version of the Azuma and Hoeﬀding inequal-
+ities [CM08]. Gross [Gro11, Thm. 6] and Recht [Rec09, Thm. 3.2] develop two diﬀerent matrix
+extensions of Bernstein’s inequality. We also refer the reader to Vershynin’s note [Ver09], which
+oﬀers a self-contained introduction to the Ahlswede–Winter circle of ideas.
+   Results established within the Ahlswede–Winter framework are often sharp for sums of i.i.d. ran-
+dom matrices, but the inequalities are far less accurate when applied to other types of sums.
+Roughly speaking, the tail bounds have the correct shape, but the method often leads to poor esti-
+mates for the quantity that controls the scale of large deviations. For a speciﬁc example, compare
+the variance parameter in (1.3) with the (correct) variance parameter appearing in (1.4). All the
+results we have mentioned so far have this shortcoming. See §3.7 for technical details.
+   Very recently, Oliveira has developed two notable variations [Oli10b, Oli10a] on the Ahlswede–
+Winter method for bounding the matrix mgf. These techniques can sometimes identify the correct
+matrix generalization of the scale parameter. In particular, the approach in [Oli10b] can be used to
+prove Theorem 1.2. Oliveira has also developed a version of the matrix Bernstein inequality [Oli10a,
+Thm. 1.2] that is similar to Theorem 1.4; his proof involves a matrix extension of the martingale
+techniques from [Fre75].
+   The current article was inspired by the work of Ahlswede–Winter [AW02] and Oliveira [Oli10b].
+Our results were obtained independently from Oliveira’s paper [Oli10a].
+
+1.3.2. Noncommutative Moment Inequalities. There is another contemporary line of research that
+uses noncommutative (nc) moment inequalities to study random matrices. In a signiﬁcant arti-
+cle [Rud99], Rudelson obtains an optimal estimate for the sample complexity of approximating the
+covariance matrix of a general isotropic distribution. The argument in his paper, which is due to
+Pisier, depends on a version of the nc Khintchine inequality [LP86, LPP91, Pis03].
+   Rudelson’s technique has been applied widely over the last ten years, and it has emerged as
+a valuable tool for studying discrete random matrices. For example, the method can be used to
+provide bounds on the norm of a random submatrix [RV07, Thm. 1.8] drawn from a ﬁxed matrix. It
+seems likely, however, that matrix probability inequalities will replace the nc Khintchine inequality
+for many applications because they are easier to use and often produce better results.
+   By now, there is a substantial literature on other nc moment inequalities. The article [JX05]
+contains a reasonably accessible and comprehensive discussion. Some of these results have been
+applied to the study of random matrices; see [JX08] for an example. As we discuss in §4.7, nc
+moment bounds can also be combined with the matrix Laplace transform method because they
+sometimes provide an alternative way to control the matrix mgf.
+                            TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                  7
+
+1.4. Roadmap. The rest of the paper is organized as follows. Section 2 introduces the background
+results required for our proofs. Section 3 proves the main technical results that lead to probability
+inequalities for sums of independent random matrices. Section 4 uses Gaussian series as a case study
+to illustrate the main features of matrix probability inequalities and to argue that the bounds in
+this paper are structurally optimal. We develop the matrix Chernoﬀ and Bernstein inequalities in
+§§5–6. Finally, we establish some simple martingale results in §7.
+
+                    2. Algebra, Analysis, and Probability with Matrices
+   This section provides a short introduction to the background we require for our proofs. The
+proofs contain detailed cross-references to this material, so the reader may wish to proceed directly
+to the main thread of argument in §3.
+   Most of these results can be located in Bhatia’s books on matrix analysis [Bha97, Bha07].
+The works of Horn and Johnson [HJ85, HJ94] also serve as good general references. Higham’s
+book [Hig08] is an excellent source for information about matrix functions.
+
+2.1. Conventions on Matrices. A matrix is a ﬁnite, two-dimensional array of complex numbers.
+In this paper, all matrices are square unless otherwise noted. We add the qualiﬁcation rectangular
+when we need to refer to a general array, which may be square or nonsquare. Many parts of the
+discussion do not depend on the size of a matrix, so we specify dimensions only when it matters.
+In particular, we usually do not state the size of a matrix when it is determined by the context.
+   Several abbreviations are ubiquitous. Instead of self-adjoint, we often write s.a. Positive semi-
+deﬁnite becomes psd, and we shorten positive deﬁnite to pd.
+   We write 0 for the zero matrix and I for the identity matrix. The matrix Eij has a unit entry in
+the (i, j) position and zeros elsewhere. The symbol Q is reserved for a unitary matrix. We adopt
+Parlett’s convention [Par87] that bold capital letters symmetric about the vertical axis (A, . . . , Y
+and ∆, . . . , Ω) refer to s.a. matrices.
+   The symbols λmin and λmax refer to the algebraic minimum and maximum eigenvalues of a
+s.a. matrix. We use curly inequalities to denote the semideﬁnite ordering: A < 0 means that A is
+psd. The symbol k·k always refers to the ℓ2 vector norm or the associated operator norm, which is
+called the spectral norm because it returns the maximum singular value of its argument.
+
+2.2. Conventions on Probability. We prefer to avoid unnecessary abstraction and technical
+detail, so we frame the standing assumption that all random variables are suﬃciently regular
+that we are justiﬁed in computing expectations, interchanging limits, and so forth. Furthermore,
+we often state that a random variable satisﬁes some relation and omit the qualiﬁcation “almost
+surely.” We reserve the symbols X, Y for random s.a. matrices.
+
+2.3. Matrix Functions. Consider a function f : R → R. We deﬁne a map on diagonal matrices
+by applying the function to each diagonal entry. We then extend f to a function on s.a. matrices
+using the eigenvalue decomposition:
+                             f (A) := Q · f (Λ) · Q∗   where A = QΛQ∗ .                          (2.1)
+The spectral mapping theorem states that each eigenvalue of f (A) is equal to f (λ) for some eigen-
+value λ of A. This point is obvious from our deﬁnition.
+  Standard inequalities for real functions typically do not have parallel versions that hold for the
+semideﬁnite ordering. Nevertheless, there is one type of relation for real functions that always
+extends to the semideﬁnite setting:
+     f (a) ≤ g(a)    for a ∈ I   =⇒    f (A) 4 g(A)     when the eigenvalues of A lie in I.      (2.2)
+We sometimes refer to (2.2) as the transfer rule.
+8                                          JOEL A. TROPP
+
+2.4. The Matrix Exponential. The exponential of an s.a. matrix A can be deﬁned by apply-
+ing (2.1) with the function f (x) = ex . Alternatively, we may use the power series expansion
+                                                     X∞ Ap
+                                     exp(A) := I +              .
+                                                         p=1 p!
+
+The exponential of an s.a. matrix is always pd because of the spectral mapping theorem. On account
+of the transfer rule (2.2), the matrix exponential satisﬁes some simple semideﬁnite relations that
+we collect here. For each s.a. matrix A, it holds that
+                                          I + A 4 eA ,          and                                 (2.3)
+                                                    A2 /2
+                                        cosh(A) 4 e         .                                       (2.4)
+  We often work with the trace of the matrix exponential, tr exp : A 7→ tr eA . The trace exponential
+function is convex. It is also monotone with respect to the semideﬁnite order:
+                                  A4H        =⇒     tr eA ≤ tr eH .                                 (2.5)
+See [Pet94, Sec. 2] for short proofs of these facts.
+   The matrix exponential does not convert sums into products, but the trace exponential has a
+related property that serves as a limited substitute. The Golden–Thompson inequality [Bha97,
+Sec. IX.3] states that
+                              tr eA+H ≤ tr eA eH
+                                                    
+                                                      for all s.a. A, H.                  (2.6)
+The obvious generalization of the bound (2.6) to three matrices is false [Bha97, Prob. IX.8.4].
+
+2.5. The Matrix Logarithm. We deﬁne the matrix logarithm as the functional inverse of the
+matrix exponential:
+                        log(eA ) := A for each s.a. matrix A.                       (2.7)
+This formula determines the logarithm on the pd cone, which is adequate for our purposes.
+  The matrix logarithm interacts beautifully with the semideﬁnite order [Bha07, Exer. 4.2.5].
+Indeed, the logarithm is operator monotone:
+                              0≺A4H          =⇒       log(A) 4 log(H).                              (2.8)
+The logarithm is also operator concave:
+      τ log(A) + (1 − τ ) log(H) 4 log(τ A + (1 − τ )H)          for all pd A, H and τ ∈ [0, 1].    (2.9)
+Caveat lector: Operator monotone functions and operator convex functions are depressingly rare.
+In particular, the matrix exponential does not belong to either class [Bha97, Ch. V].
+
+2.6. Dilations. An extraordinarily fruitful idea from operator theory is to embed matrices within
+larger block matrices, called dilations [Pau02]. The s.a. dilation of a rectangular matrix B is
+                                                          
+                                                    0 B
+                                         S (B) :=            .                                (2.10)
+                                                    B∗ 0
+Evidently, S (B) is always s.a. A short calculation yields the important identity
+                                                BB ∗
+                                                            
+                                          2              0
+                                    S (B) =                    .                                   (2.11)
+                                                  0    B∗B
+It can also be veriﬁed that the s.a. dilation preserves spectral information:
+                                 λmax (S (B)) = kS (B)k = kBk .                                    (2.12)
+We use dilations to extend results for s.a. matrices to rectangular matrices. See Remark 3.11
+and §4.2 for more information about this technique.
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                   9
+
+2.7. Expectation and the Semidefinite Order. Since the expectation of a random matrix
+can be viewed as a convex combination and the psd cone is convex, expectation preserves the
+semideﬁnite order:
+                        X 4 Y almost surely =⇒ E X 4 E Y .                           (2.13)
+  Every operator convex function admits an operator Jensen’s inequality [HP03]. In particular,
+the matrix square is operator convex, which implies that
+                                       (E X)2 4 E X 2 .
+                                                       
+                                                                                        (2.14)
+The relation (2.14) is also a speciﬁc instance of Kadison’s inequality [Bha07, Thm. 2.3.2].
+
+                   3. Tail Bounds via the Laplace Transform Method
+   This section develops some general probability inequalities for the maximum eigenvalue of a sum
+of independent random matrices. The main argument can be viewed as a matrix extension of the
+Laplace transform method for sums of independent real random variables. In the matrix setting,
+however, it requires great care to execute this technique successfully.
+
+3.1. Matrix Moments and Cumulants. Consider a random s.a. matrix X that has moments
+of all orders. By analogy with the classical scalar deﬁnitions, we may construct matrix extensions
+of the moment generating function (mgf) and the cumulant generating function (cgf):
+                     MX (θ) := E eθX     and ΞX (θ) := log E eθX      for θ ∈ R.                 (3.1)
+We admit the possibility that these expectations do not exist for all values of θ. The matrix cgf
+can be viewed as an exponential mean, a weighted average that emphasizes large deviations (with
+the same sign as θ). The matrix mgf and cgf have formal power series expansions:
+                              X∞ θ p                              X∞ θ p
+                MX (θ) = I +            · E(X p ) and ΞX (θ) =               · Ψp .
+                                 p=1 p!                               p=1 p!
+
+The coeﬃcients E(X p ) are called matrix moments, and we refer to Ψp as a matrix cumulant. The
+matrix cumulant Ψp has a formal expression as a (noncommutative) polynomial in the matrix
+moments up to order p. In particular, the ﬁrst cumulant is the mean and the second cumulant is
+the variance:
+                            Ψ1 = E X and Ψ2 = E(X 2 ) − (E X)2 .
+Higher-order cumulants are harder to write down and interpret.
+
+3.2. The Laplace Transform Method for Matrices. We begin our main development with a
+striking idea drawn from the inﬂuential paper [AW02] of Ahlswede and Winter. Their work contains
+a matrix analog of the classical Laplace transform bound. We need the following variant, which is
+due to Oliveira [Oli10b].
+Proposition 3.1 (The Laplace Transform Method). Let Y be a random self-adjoint matrix. For
+all t ∈ R,
+                                                n               o
+                         P {λmax (Y ) ≥ t} ≤ inf e−θt · E tr eθY .
+                                                  θ>0
+
+  In words, we can control tail probabilities for the maximum eigenvalue of a random matrix by
+producing a bound for the trace of the matrix mgf deﬁned in (3.1).
+
+Proof. Fix a positive number θ. We have the chain of relations
+                                                   n                 o
+        P {λmax (Y ) ≥ t} = P {λmax (θY ) ≥ θt} = P eλmax (θY ) ≥ eθt ≤ e−θt · E eλmax (θY ) .
+10                                          JOEL A. TROPP
+
+The ﬁrst identity uses the homogeneity of the maximum eigenvalue map, and the second relies on
+the monotonicity of the scalar exponential function; the third relation is Markov’s inequality. To
+bound the exponential, note that
+                                 eλmax (θY ) = λmax eθY ≤ tr eθY .
+                                                       
+
+The identity is the spectral mapping theorem; the inequality holds because the exponential of an
+s.a. matrix is pd and the maximum eigenvalue of a pd matrix is dominated by the trace. Combine
+the latter two relations to reach
+                                 P {λmax (Y ) ≥ t} ≤ e−θt · E tr eθY .
+This inequality holds for any positive θ, so we may take an inﬁmum to complete the proof.         
+
+3.3. The Failure of the Matrix mgf. In the scalar setting, the Laplace transform method is
+very eﬀective for studying sums of independent random variables because the mgf decomposes.
+Consider an independent sequence {Xk } of real random variables. Operating formally, we see that
+the (scalar) mgf of the sum satisﬁes a multiplication rule:
+                                  X      
+            M(Pk Xk ) (θ) = E exp
+                                                 Y           Y          Y
+                                       θXk = E        eθXk =   E eθXk =     MXk (θ).       (3.2)
+                                      k               k            k          k
+This calculation relies on the fact that the scalar exponential function converts sums to products,
+a property the matrix exponential does not share. As a consequence, there is no immediate analog
+of (3.2) in the matrix setting.
+   Ahlswede and Winter attempt to imitate the multiplication rule (3.2) using the following obser-
+vation. When X1 and X2 are independent random matrices,
+       tr MX1 +X2 (θ) ≤ E tr eθX1 eθX2 = tr (E eθX1 )(E eθX2 ) = tr MX1 (θ) · MX2 (θ) .
+                                                                                  
+                                                                                              (3.3)
+The ﬁrst relation is the Golden–Thompson trace inequality (2.6). Unfortunately, we cannot extend
+the bound (3.3) to include additional matrices. This cold fact suggests that the Golden–Thompson
+inequality may not be the natural way to proceed. In §3.7, we map out the route Ahlswede and
+Winter pursue, but we continue along a diﬀerent path.
+3.4. A Concave Trace Function. For inspiration, we turn to the literature on matrix analysis.
+Some of the most beautiful and profound results in this domain concern the convexity of trace
+functions. We have observed that this theory has incredible implications for the study of random
+matrices. This paper demonstrates that a large class of matrix probability inequalities follows from
+a deep theorem [Lie73, Thm. 6] of Lieb that appears in his seminal work on convex trace functions.
+Theorem 3.2 (Lieb). Fix a self-adjoint matrix H. The function
+                                     A 7−→ tr exp(H + log(A))
+is concave on the positive-definite cone.
+   Epstein provides an alternative proof of Theorem 3.2 in [Eps73, Sec. II], and Ruskai oﬀers a
+simpliﬁed account of Epstein’s argument in [Rus02, Rus05]. The note [Tro11b] derives Lieb’s
+theorem from the joint convexity of quantum relative entropy [Lin74, Lem. 2]. The latter approach
+is advantageous because the joint convexity result admits several elegant, conceptual proofs, such
+as [Eﬀ09, Cor. 2.2].
+   We require a simple but powerful corollary of Lieb’s theorem. This result describes how expec-
+tation interacts with the trace exponential.
+Corollary 3.3. Let H be a fixed self-adjoint matrix, and let X be a random self-adjoint matrix.
+Then
+                        E tr exp(H + X) ≤ tr exp(H + log(E eX )).
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                    11
+
+Proof. Deﬁne the random matrix Y = eX , and calculate that
+   E tr exp(H + X) = E tr exp(H + log(Y )) ≤ tr exp(H + log(E Y )) = tr exp(H + log(E eX )).
+The ﬁrst identity follows from the deﬁnition (2.7) of the matrix logarithm because Y is always
+pd. Lieb’s result, Theorem 3.2, ensures that the trace function is concave in Y , so we may invoke
+Jensen’s inequality to draw the expectation inside the logarithm.                               
+
+3.5. Subadditivity of the Matrix cgf. Let us return to the problem of bounding the matrix mgf
+of an independent sum. Although the multiplication rule (3.2) is a dead end in the matrix case, the
+scalar cgf has a related property that submits to generalization. For an independent family {Xk }
+of real random variables, the scalar cgf is additive:
+                                          X        X
+                Ξ(Pk Xk ) (θ) = log E exp
+                                                                        X
+                                              θXk =        log E eθXk =     ΞXk (θ),          (3.4)
+                                             k               k                k
+
+where the second identity follows from (3.2) when we take logarithms.
+   Our key insight is that Corollary 3.3 oﬀers a completely satisfactory way to extend the addition
+rule (3.4) for scalar cgfs to the matrix setting. We have the following result.
+Lemma 3.4 (Subadditivity of Matrix cgfs). Consider a finite sequence {Xk } of independent,
+random, self-adjoint matrices. Then
+                            X               X            
+                   E tr exp      θXk ≤ tr exp    log E eθXk   for θ ∈ R.
+                                  k                      k
+
+Proof. It does no harm to assume θ = 1. Let Ek denote the expectation, conditioned on X1 , . . . , Xk .
+Abbreviate
+                                 Ξk := log(Ek−1 eXk ) = log(E eXk ),
+where the equality holds because the family {Xk } is independent. We see that
+                      Xn                                  Xn−1         
+             E tr exp          Xk = E0 · · · En−1 tr exp          Xk + Xn
+                          k=1                                 k=1
+                                                            Xn−1                    
+                                     ≤ E0 · · · En−2 tr exp       Xk + log(En−1 eXn )
+                                                              k=1
+                                                            Xn−2                 
+                                     = E0 · · · En−2 tr exp       Xk + Xn−1 + Ξn
+                                                              k=1
+                                                            Xn−2                
+                                     ≤ E0 · · · En−3 tr exp       Xk + Ξn−1 + Ξn
+                                                Xn          k=1
+                              . . . ≤ tr exp             Ξk .
+                                                   k=1
+
+The ﬁrst line relies on the tower property of conditional expectation. At each step m = 1, 2, . . . , n,
+we invoke Corollary 3.3 with the ﬁxed matrix H equal to
+                                        Xm−1          Xn
+                                 Hm =           Xk +            Ξk .
+                                            k=1              k=m+1
+
+This act is legal because Hm does not depend on Xm .                                                  
+Remark 3.5. To make the parallel with the addition rule (3.4) clearer, we can rewrite the conclusion
+of Lemma 3.4 in the form
+                                                       X             
+                         tr exp Ξ(Pk Xk ) (θ) ≤ tr exp         ΞXk (θ)
+                                                                 k
+
+by applying the deﬁnition (3.1) of the matrix cgf.
+12                                            JOEL A. TROPP
+
+3.6. Tail Bounds for Independent Sums. This section contains abstract tail bounds for the sum
+of independent random matrices. Later, we will specialize these results to some speciﬁc situations.
+We begin with a very general inequality, which is the progenitor of our other results.
+Theorem 3.6 (Master Tail Bound for Independent Sums). Consider a finite sequence {Xk } of
+independent, random, self-adjoint matrices. For all t ∈ R,
+                  n      X           o       n           X            o
+                P λmax         Xk ≥ t ≤ inf e−θt · tr exp     log E eθXk    .      (3.5)
+                               k                θ>0                        k
+
+Proof. Substitute the subadditivity rule for matrix cgfs, Lemma 3.4, into the Laplace transform
+bound, Proposition 3.1.                                                                       
+   Our ﬁrst corollary adapts Theorem 3.6 to the case that arises most often in practice. We call
+upon this result several times to obtain tail bounds under a variety of assumptions about the
+structure of the random matrices.
+Corollary 3.7. Consider a finite sequence {Xk } of independent, random, self-adjoint matrices
+with dimension d. Assume there is a function g : (0, ∞) → [0, ∞] and a sequence {Ak } of fixed
+self-adjoint matrices that satisfy the relations
+                                     E eθXk 4 eg(θ)·Ak       for θ > 0.                       (3.6)
+Define the scale parameter                            X       
+                                        ρ := λmax            Ak .
+                                                         k
+Then, for all t ∈ R,          n     X      o
+                             P λmax    Xk ≥ t ≤ d · inf e−θt+g(θ)·ρ .                         (3.7)
+                                          k                     θ>0
+
+Proof. The hypothesis (3.6) implies that
+                                   log E eθXk 4 g(θ) · Ak      for θ > 0                      (3.8)
+because of the property (2.8) that the matrix logarithm is operator monotone. Recall the fact (2.5)
+that the trace exponential is monotone with respect to the semideﬁnite order. As a consequence,
+we can introduce each relation from the family (3.8) into the master inequality (3.5). For each
+θ > 0, it follows that
+                    n    X            o                        X      
+                  P λmax        Xk ≥ t ≤ e−θt · tr exp g(θ) ·         Ak
+                              k
+                                                                  k X        
+                                              −θt
+                                          ≤e      · d · λmax exp g(θ) ·     Ak
+                                                                       Xk    
+                                                 −θt
+                                          =d·e        · exp g(θ) · λmax     Ak .
+                                                                               k
+The second inequality holds because the trace of a pd matrix, such as the exponential, is bounded
+by the dimension d times the maximum eigenvalue. The last line depends on the spectral mapping
+theorem and the fact that the function g is nonnegative. Identify the quantity ρ, and take the
+inﬁmum over positive θ to reach the conclusion (3.7).                                          
+Remark 3.8. An alternative expression of the result (3.7) is that
+        n     X            o                                  
+      P λmax         Xk ≥ t ≤ d · exp − sup {θt − g(θ) · ρ} = d · exp (−ρ · g∗ (t/ρ)) .
+                       k                          θ>0
+
+In words, the exponent in the tail bound can be written in terms of the perspective transformation
+of the Fenchel–Legendre conjugate of the function g. This inequality parallels the upper estimate
+in Cramér’s classical result for large deviations [DZ98, Thm. 2.2.3].
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                  13
+
+   It is also worthwhile to state another consequence of Theorem 3.6. This bound is sometimes more
+useful than Corollary 3.7 because it combines the mgfs of the random matrices together under a
+single logarithm.
+Corollary 3.9. Consider a sequence {Xk : k = 1, 2, . . . , n} of independent, random, self-adjoint
+matrices with dimension d. For all t ∈ R,
+                                                                  X               
+       n      Xn            o                                     1    n      θXk
+     P λmax           Xk ≥ t ≤ d · inf exp −θt + n · log λmax                Ee        .     (3.9)
+                  k=1                 θ>0                           n    k=1
+
+Proof. Recall the fact (2.9) that the matrix logarithm is operator concave. For each θ > 0, it follows
+that                                                                  X             
+             Xn                       1 Xn                             1   n
+                     log E eθXk = n ·           log E eθXk 4 n · log           E eθXk .
+                 k=1                  n    k=1                         n   k=1
+
+The property (2.5) that the trace exponential is monotone allows us to introduce the latter relation
+into the master inequality (3.5) to obtain
+                                                                   X              
+               n       Xn             o
+                                              −θt                    1   n      θXk
+             P λmax             Xk ≥ t ≤ e        · tr exp n · log           Ee        .
+                            k=1                                      n   k=1
+
+To complete the proof, we bound the trace by d times the maximum eigenvalue, and we invoke
+the spectral mapping theorem (twice!) to draw the maximum eigenvalue map inside the logarithm.
+Take the inﬁmum over positive θ to reach (3.9).                                             
+  We conclude this section with remarks on some other situations that we can analyze using the
+master tail bound, Theorem 3.6, and its corollaries.
+Remark 3.10 (Minimum Eigenvalue). We can study the minimum eigenvalue of a sum of random
+s.a. matrices because λmin (X) = −λmax (−X). As a result,
+                       n     X         o     n      X         o
+                     P λmin       Xk ≤ t = P λmax         −Xk ≥ −t .
+                                     k                           k
+In §5, we apply this observation to develop lower Chernoﬀ bounds.
+Remark 3.11 (Maximum Singular Value). We can also analyze the maximum singular value of a
+sum of random rectangular matrices by applying these results to the s.a. dilation (2.10). For a
+ﬁnite sequence {Zk } of independent, random, rectangular matrices, we have
+                          n X           o     n     X                o
+                        P       Zk ≥ t = P λmax           S (Zk ) ≥ t
+                                 k                           k
+on account of (2.12) and the property that the dilation is real-linear. This device allows us to
+extend most of the tail bounds in this paper to rectangular matrices. See §4 for an application to
+Gaussian and Rademacher series.
+Remark 3.12 (Martingales). It is possible to combine the proofs of Lemma 3.4 and Theorem 3.6
+to obtain some simple results for matrix martingales. See the demonstration of the matrix Azuma
+inequality in §7 for an example of this approach. To reach fully detailed results for martingales,
+one must use a fundamentally diﬀerent style of argument [Oli10a, Tro11a].
+3.7. The Ahlswede–Winter Method. Ahlswede and Winter use a diﬀerent approach to bound
+the matrix mgf, which exploits the multiplicative bound (3.3) for the trace exponential of a sum of
+two independent, random, s.a. matrices. The reader may ﬁnd their argument interesting.
+   Consider a sequence
+                P      {Xk : k = 1, 2, . . . , n} of independent, random, s.a. matrices with dimension
+d, and let Y = k Xk . The trace inequality (3.3) implies that
+                          h    Pn−1                    i         Pn−1
+            tr MY (θ) ≤ tr E e k=1 θXk E eθXn ≤ tr E e k=1 θXk · λmax E eθXn .
+                                                                                        
+14                                           JOEL A. TROPP
+
+Iterating this procedure leads to the relation
+                              hY               i       X                
+         tr MY (θ) ≤ (tr I) ·     λmax E eθXk = d · exp    λmax log E eθXk .                 (3.10)
+                                  k                              k
+
+The bound (3.10) is the key to the Ahlswede–Winter method for producing probability inequalities.
+As a consequence, their approach generally leads to tail bounds that depend on a scale parameter
+involving “the sum of eigenvalues.” See, for example, the bound (1.3) or the matrix probability
+inequalities presented in the papers [AW02, CM08, Gro11, Rec09].
+   In contrast, our result on the subadditivity of cumulants, Lemma 3.4, implies that
+                                                     X             
+                            tr MY (θ) ≤ d · exp λmax       log E eθXk .                    (3.11)
+                                                             k
+
+Probability inequalities developed with (3.11) contain a scale parameter that involves the “eigen-
+value of a sum.” See, for example, the bound (1.4). The exponent in (3.10) often exceeds the
+exponent in (3.11) by a factor of d, the ambient dimension, which is a serious loss. Section 4.8
+describes concrete situations where this discrepancy occurs.
+
+                          4. Case Study: Matrix Gaussian Series
+   A matrix Gaussian series stands among the simplest instances of a sum of independent random
+matrices. Nevertheless, this example already exhibits several new phenomena that arise when we
+translate scalar tail bounds to the matrix setting. Consequently, we explore this fundamental case
+in depth as a way to develop insights about other matrix probability inequalities.
+
+4.1. Main Results. We begin with the scalar case. Consider a ﬁnite sequence {ak } of real numbers
+and a ﬁnite sequence {γk } of independent standard Gaussian variables. We have the probability
+inequality
+                        nX              o     2   2
+                                                                 X
+                      P        γk ak ≥ t ≤ e−t /2σ where σ 2 :=       a2k .                  (4.1)
+                              k                                          k
+This result testiﬁes that a Gaussian series with real coeﬃcients satisﬁes a normal-type tail bound
+where the variance is controlled by the sum of the squared coeﬃcients. The relation (4.1) follows
+easily from the scalar Laplace transform method. An alternative proof proceeds using the rotational
+invariance of a standard normal vector along with basic estimates on the error function.
+   The inequality (4.1) generalizes directly to the noncommutative setting, as do many other scalar
+tail bounds. The matrix Laplace transform method, Proposition 3.1, delivers the following result
+on the tail behavior of a matrix Gaussian series.
+Theorem 4.1 (Matrix Gaussian and Rademacher Series). Consider a finite sequence {Ak } of fixed
+self-adjoint matrices with dimension d, and let {γk } be a finite sequence of independent standard
+normal variables. Compute the variance parameter
+                                               X
+                                        σ 2 :=       A2k .                                    (4.2)
+                                                      k
+
+Then, for all t ≥ 0,
+                             n     X         o         2   2
+                            P λmax    γk Ak ≥ t ≤ d · e−t /2σ .                               (4.3)
+                                             k
+In particular,
+                                      n X            o          2   2
+                                  P         γk Ak ≥ t ≤ 2d · e−t /2σ .                        (4.4)
+                                        k
+The same bounds hold when we replace {γk } by a finite sequence of independent Rademacher random
+variables.
+                            TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                 15
+
+   Observe that the bound (4.3) reduces to the scalar result (4.1) when the dimension d = 1.
+Of course, one may wonder whether the generalization (4.2) of the scalar variance is sharp and
+whether the dimensional dependence in (4.3) is necessary. A primary objective of this section is to
+demonstrate that Theorem 4.1 cannot be improved without changing its form.
+   Most of the inequalities in this paper have variants that concern the maximum singular value
+of a sum of rectangular random matrices. These extensions follow immediately when we apply
+the s.a. results to the s.a. dilation of the sum of rectangular matrices. Here is the general version
+of Theorem 4.1, which serves as a model for other rectangular results.
+Corollary 4.2 (Rectangular Matrix Gaussian and Rademacher Series). Consider a finite sequence
+{Bk } of fixed matrices with dimension d1 × d2 , and let {γk } be a finite sequence of independent
+standard normal variables. Compute the variance parameter
+                                     n X                X            o
+                            2                     ∗            ∗
+                           σ := max         Bk Bk ,          Bk Bk .
+                                                  k                      k
+
+Then, for all t ≥ 0,
+                                 n X                o                  2   2
+                             P             γk Bk ≥ t ≤ (d1 + d2 ) · e−t /2σ .
+                                       k
+The same bound holds when we replace {γk } by a finite sequence of independent Rademacher random
+variables.
+   The proofs of Theorem 4.1 and Corollary 4.2 appear below in §4.2. Unlike our other results,
+these two bounds are not new. One established argument, which we discuss in §4.7, involves
+noncommutative Khintchine inequalities. It is also possible to prove these results using Oliveira’s
+ideas [Oli10b].
+
+4.2. Proofs. We continue with a short demonstration of the main results for matrix Gaussian and
+Rademacher series. The ﬁrst step is to obtain a semideﬁnite bound for the mgf of a ﬁxed matrix
+modulated by a Gaussian variable or a Rademacher variable. This mgf bound essentially appears
+in Oliveira’s work [Oli10b, Lem. 2].
+Lemma 4.3 (Rademacher and Gaussian mgfs). Suppose that A is an s.a. matrix. Let ε be a
+Rademacher random variable, and let γ be a standard normal random variable. Then
+                                   2   2                             2       2
+                        E eεθA 4 eθ A /2       and     E eγθA = eθ A /2               for θ ∈ R.
+Proof. Absorbing θ into A, we may assume θ = 1 in each case. We begin with the Rademacher
+mgf. By direct calculation,
+                                                                     2
+                                           E eεA = cosh(A) 4 eA /2 ,
+where the second relation is (2.4).
+  For the Gaussian case, recall that the moments of a standard normal variable satisfy
+                                                             (2p)!
+                       E(γ 2p+1 ) = 0 and       E(γ 2p ) =               for p = 0, 1, 2, . . . .
+                                                             p! 2p
+Therefore,
+                                     ∞                          ∞
+                                     X E(γ 2p )A2p              X (A2 /2)p                   2
+                       E eγA = I +                      =I+                             = eA /2 .
+                                     p=1
+                                               (2p)!            p=1
+                                                                                 p!
+
+The ﬁrst identity holds because the odd terms in the series vanish.                                 
+
+  The tail bounds for s.a. matrix Gaussian and Rademacher series follow easily.
+16                                           JOEL A. TROPP
+
+Proof of Theorem 4.1. Let {ξk } be a ﬁnite sequence of independent standard normal variables or
+independent Rademacher variables. Invoke Lemma 4.3 to obtain
+                                             2
+                          E eξk θAk 4 eg(θ)·Ak    where g(θ) := θ 2 /2 for θ > 0.
+Recall that                              X                    X         
+                                 σ2 =            A2k = λmax           A2k .
+                                            k                     k
+Corollary 3.7 delivers
+                     n    X         o                     2         2   2
+                   P λmax    ξk Ak ≥ t ≤ d · inf e−θt+g(θ)·σ = d · e−t /2σ .                  (4.5)
+                                  k                     θ>0
+
+For the record, the inﬁmum is attained when θ = t/σ 2 .
+   To obtain the norm bound (4.4), recall that kY k = max{λmax (Y ), −λmin (Y )}. Standard Gauss-
+ian variables and Rademacher variables are symmetric, so the inequality (4.5) implies
+              n       X             o      n      X               o           2  2
+            P −λmin       ξk Ak ≥ t = P λmax            (−ξk )Ak ≥ t ≤ d · e−t /2σ .
+                            k                                 k
+Apply the union bound to the estimates for λmax and −λmin to complete the proof.                 
+  The result for a series with rectangular matrix coeﬃcients follows immediately when we apply
+Theorem 4.1 to the s.a. dilation of the series.
+Proof of Corollary 4.2. Let {ξk } be a ﬁnite sequence of independent standard normal random vari-
+ables or independent Rademacher random variables. Consider the sequence {ξk S (Bk )} of random
+s.a. matrices with dimension d1 + d2 . The spectral identity (2.12) ensures that
+                  X                    X                     X              
+                       ξk Bk = λmax S            ξk Bk    = λmax       ξk S (Bk ) .
+                      k                            k                          k
+Thus, we may invoke Theorem 4.1 to obtain a probability inequality for the norm of the series.
+Simply observe that the matrix variance parameter (4.2) satisﬁes the relation
+                                 Bk Bk∗ P 0
+         X                 P                               n X                X          o
+    2                 2        k                                           ∗         ∗
+   σ =         S (Bk ) =                      ∗       = max          B k B k  ,    B k B k
+             k                   0         k Bk Bk                 k             k
+
+on account of the identity (2.11) for the square of the s.a. dilation.                           
+
+4.3. Application: A Gaussian Matrix with Nonuniform Variances. It may not be imme-
+diately clear why abstract probability inequalities, such as Theorem 4.1 and Corollary 4.2, deliver
+information about interesting random matrices that arise in practice. Let us describe a simple
+application that speaks to this concern.
+   Fix a d1 × d2 matrix B, and draw a random d1 × d2 matrix Γ whose entries are independent
+standard normal variables. Let ⊙ denote the componentwise (i.e., Schur or Hadamard) product of
+matrices. Construct the random matrix Γ ⊙ B, and observe that its (j, k) component is a Gaussian
+variable with mean zero and variance |bjk |2 . We claim that
+                                     2   2
+                                                              n                         o
+   P {kΓ ⊙ Bk ≥ t} ≤ (d1 + d2 ) · e−t /2σ where σ 2 = max maxj kbj: k2 , maxk kb:k k2 . (4.6)
+The symbols bj: and b:k represent the jth row and kth column of the matrix B. An immediate
+consequence of (4.6) is that the median of the norm satisﬁes
+                                                p
+                               M(kΓ ⊙ Bk) ≤ σ 2 log(2(d1 + d2 )).                    (4.7)
+There are nonuniform Gaussian matrices where the estimate (4.7) for the median has the correct
+order and other examples where the logarithmic factor is parasitic; see §§4.4–4.5 below. The reader
+may also wish to juxtapose (4.7) with the work of Seginer [Seg00, Thm. 3.1] and Latala [Lat05,
+Thm. 1] although these results are not fully comparable.
+                                  TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                                     17
+
+  To establish (4.6), we ﬁrst decompose the matrix of interest as a Gaussian series:
+                                            X
+                                   Γ⊙B =         γjk · bjk Ejk .
+                                                                 jk
+Next, we must determine the variance parameter. Note that
+                                    X X         
+                                          |bjk |2 Ejj = diag(kb1: k2 , kb2: k2 , . . . , kbd1 : k2 ).
+       X
+            (bjk Ejk )(bjk Ejk )∗ =
+              jk                              j         k
+Similarly,
+                                             X X                  
+                                                            |bjk |2 Ekk = diag(kb:1 k2 , kb:2 k2 , . . . , kb:d2 k2 ).
+        X
+                  (bjk Ejk )∗ (bjk Ejk ) =
+             jk                               k         j
+Therefore,
+                       n                                                                                              o
+         2                            2       2                    2                     2       2              2
+        σ = max     diag(kb1: k , kb2: k , . . . , kbd1 : k ) ,            diag(kb:1 k , kb:2 k , . . . , kb:d2 k )
+                  n                                o
+             = max maxj kbj: k2 , maxk kb:k k2 .
+An application of Corollary 4.2 yields the tail bound (4.6).
+4.4. Controlling the Expectation. A remarkable feature of Theorem 4.1 is that it always allows
+us to obtain reasonably accurate estimates for the expected norm of the s.a. Gaussian series
+                                              X
+                                        Y =        γk Ak .                                   (4.8)
+                                                                  k
+To establish this point, we ﬁrst compute upper and lower bounds for the second moment of kY k.
+Theorem 4.1 yields
+                 Z ∞ n          √o                       Z ∞
+           2                                                            2
+    E(kY k ) =                             2
+                     P kY k > t dt ≤ 2σ log(2d) + 2d              e−t/2σ dt = 2σ 2 log(2ed).
+                       0                                                       2σ2 log(2d)
+Jensen’s inequality furnishes the lower estimate:
+                              E(kY k2 ) = E Y 2 ≥ E(Y 2 ) =
+                                                                              X
+                                                                                       A2k = σ 2 .
+                                                                                   k
+The (homogeneous) ﬁrst and second moment of the norm of a Gaussian series are equivalent up to
+a universal constant [LT91, Cor. 3.2], so we conclude that
+                                                   p
+                                   cσ ≤ E kY k ≤ σ 2 log(2ed).                           (4.9)
+This argument demonstrates that the matrix variance parameter σ 2 controls the expected norm
+E kY k up to a factor that depends very weakly on the dimension. A similar remark applies to the
+median value M(kY k).
+4.5. The Dimensional Factor. In the inequality (4.9), the gap between the upper and lower
+bounds for E kY k arises because of the dimensional factor d in the statement (4.4). This dimensional
+dependence is a new feature of probability inequalities in the matrix setting. The extra term appears
+in each of our main results, and it is usually possible to identify a simple case where it is necessary.
+   In particular, we cannot remove the factor d from the probability bound in Theorem 4.1. Observe
+that the norm of a diagonal Gaussian matrix is typically bounded below:
+                    Xd                             p
+                           γk Ekk = maxk |γk | > 2 log d with high probability.
+                            k=1
+
+Theorem 4.1 delivers the following tail bound for this series.
+                                 X                  
+                                      d                        2
+                              P           γk Ekk ≥ t ≤ 2d · e−t /2 .
+                                                  k=1
+                                                                                                                 p
+The factor 2d ensures that this probability inequality does not become eﬀective until t ≥                             2 log(2d),
+comme il faut.
+18                                                  JOEL A. TROPP
+
+   We can also identify situations where the dimensional term produces an overestimate of the ex-
+pected norm. For instance, consider a d-dimensional matrix drawn from the unnormalized Gaussian
+orthogonal ensemble (GOE):                 X
+                                   W =          γjk (Ejk + Ekj )
+                                                  1≤j≤k≤d
+The literature contains a sharp bound for the expected norm of this matrix:
+                                                    √
+                                          E kW k ≤ 2 d                                                          (4.10)
+The result (4.10) follows from ideas of Gordon [Gor85, Gor92] elaborated in [DS02, Thm. 2.11].
+Meanwhile, integrating the tail bound (4.4) from Theorem 4.1 yields the weaker result
+                                                p
+                                    E kW k ≤ (d + 3) log(2ed).                                 (4.11)
+                                                     √
+The estimate (4.11) is too large by a factor of about log d, which is the worst possible discrepancy
+in view of (4.9).
+Remark 4.4 (Eﬀective Dimension). Let us stress that the nominal dimension of the matrices does
+not play a role in Theorem 4.1. If the ranges of the matrices A1 , A2 , . . . are contained within a ﬁxed
+r-dimensional subspace, we can replace the ambient dimension d with the eﬀective dimension r. A
+similar remark applies to our other results.
+4.6. Comparison with Concentration Inequalities. It is fruitful to think about Theorem 4.1
+as a statement that the matrix Gaussian series (4.8) typically falls near its expectation as a random
+matrix when we measure the size of deviations using the operator norm:
+                                                                            2       2
+                                        P {kY − E Y k ≥ t} ≤ 2d · e−t /2σ .                                     (4.12)
+In contrast, the classical concentration inequality [Bog98, Thm. 1.7.6] concerns the variation of the
+norm about its mean value:
+                                                                                2       2
+                                      P {| kY k − E kY k | ≥ t} ≤ 2 · e−t /2σ∗                                  (4.13)
+where the scale for deviations depends on the weak variance parameter
+                                      nX                             o
+                           σ∗2 := sup      |u∗ Ak v|2 : kuk = kvk = 1 .                                         (4.14)
+                                                   k
+It can be shown [LT91, Cor. 3.2] that the bound (4.13) is asymptotically sharp as t → ∞.
+   Let us elaborate on the relationship between the matrix variance σ 2 deﬁned in (4.2) and the
+weak variance σ∗2 appearing in (4.14). First, note that
+                                       X                X
+                           σ∗2 ≤ sup        u∗ A2k u =      A2k = σ 2 .                   (4.15)
+                                         kuk=1      k                   k
+
+Equality holds in (4.15) when, for example, the family {Ak } commutes. We can also establish a
+reverse inequality.
+                             X           
+                                                               |u∗ Ak ej |2 ≤ d · σ∗2
+                      X                          X        X
+                σ2 =      Ak        ej e∗j Ak ≤       sup                               (4.16)
+                                k          j                     j kuk=1        k
+
+where {ej : j = 1, . . . , d} is the standard basis for Rd . In the worst case2, the bound (4.16) has
+roughly the correct order.
+   In summary, the matrix concentration inequality (4.12) always leads to a good estimate for
+the expected norm E kY k. Nevertheless, the presence of the parameter σ 2 in the tail bound can
+lead to a signiﬁcant overestimate of the probability that kY k is large. On the other hand, the
+classical inequality (4.13) contains no information about the mean, but it always produces a sharp
+large-deviation bound. Therefore, the two results complement each other well.
+     2A worst-case example occurs with high probability when the sequence {A : k = 1, . . . , d} consists of independent
+                                                                            k
+matrices drawn from the d-dimensional GOE, but the proof seems to be complicated.
+                            TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                              19
+
+4.7. Noncommutative Moment Inequalities. The matrix Laplace transform bound, Propo-
+sition 3.1 demonstrates that we can bound tail probabilities for the norm of a random series by
+controlling the matrix mgf. In certain special cases, it is possible to bound the matrix mgf us-
+ing noncommutative (nc) moment inequalities. Let us describe how to establish Theorem 4.1 in
+this fashion. This material is unrelated to the main development, so the reader may skip it with
+impunity.
+   The nc Khintchine inequality provides an estimate for the expectation of the (2p)th moment
+of the Schatten 2p-norm of a matrix Gaussian series [LP86, LPP91, Pis03]. The most elementary
+formulation of this result states that
+                        X          2p            X     p
+                   E tr       γk Ak     ≤ C2p · tr    A2k     for p = 1, 2, 3, . . . .    (4.17)
+                            k                             k
+Buchholz [Buc01, Thm. 5] has shown that the optimal constant in (4.17) satisﬁes
+                                                              (2p)!
+                                    C2p := E |γ1 |2p = (2p − 1)!! = .
+                                                              p! 2p
+The bound (4.17) also holds with the same constant when we replace {γk } by a sequence of inde-
+pendent Rademacher variables [Buc05, Thm. 5].
+  The family (4.17) of inequalities allows us to develop a short proof of the tail bound for matrix
+Gaussian and Rademacher series.
+Alternative Proof of Theorem 4.1. Proposition 3.1 yields
+                  n     X             o        n            X      o
+                P λmax        γk Ak ≥ t ≤ inf e−θt · E tr exp θ  γk Ak .                     (4.18)
+                                k                  θ>0                  k
+
+We may use (4.17) to bound the Taylor series for the matrix mgf term by term:
+                X           X∞ θ 2p             X          2p
+      E tr exp θ       γk Ak =               E tr       γk Ak
+                     k            p=0 (2p)!           k
+                               X∞ θ 2p                                 2X      
+                                               X
+                                                        2
+                                                          p           θ      2
+                             ≤              tr       A       = tr exp       Ak .             (4.19)
+                                  p=0 p! 2p        k k                  2 k
+
+Substitute (4.19) into (4.18), and select θ = t/σ 2 to complete the minimization.                
+   We may regard the mgf bound (4.19) as an “exponential generating function” for the family of
+nc Khintchine inequalities (4.17), but—unfortunately—the nc Khintchine inequalities do not follow
+as a consequence of this mgf bound. Recall that Lieb’s result, Theorem 3.2, also delivers a proof
+of the inequality (4.19). This observation suggests that it might be possible to use Lieb’s theorem
+to prove the nc Khintchine inequalities (4.17). We regard this as a tantalizing open question.
+4.8. Comparison with the Ahlswede–Winter Bound. In §3.7, we describe how Ahlswede
+and Winter go about bounding the matrix mgf [AW02, App.]. It is natural to ask how inequalities
+developed using their approach compare with the results in this paper.
+   Gaussian series provide an excellent illustration of the discrepancy between the two techniques.
+In this case, the Ahlswede–Winter method yields the probability inequality
+                   n X               o            2  2
+                                                                         X
+                                                                   2
+                 P        γk Ak ≥ t ≤ 2d · e−t /2σAW where σAW        :=      A2k .          (4.20)
+                        k                                                   k
+The estimate (4.20) should be compared with our bound (4.4). The Ahlswede–Winter variance
+           2
+parameter σAW  always dominates the matrix variance parameter (4.2) because
+                                   X           X
+                            σ2 =       A2k ≤        A2k = σAW
+                                                            2
+                                                               .
+                                               k          k
+The two variance parameters rarely coincide, and the best reverse inequality is
+                                  X                 X
+                           2
+                          σAW  ≤       tr A2k ≤ d ·     A2k = d · σ 2 .
+                                           k                  k
+20                                          JOEL A. TROPP
+
+This worst-case behavior is typical. For instance, consider the two Gaussian matrices presented
+in §4.5. The Ahlswede–Winter tail bound (4.20) provides essentially no information about the norm
+of either matrix.
+Remark 4.5 (Moment Inequalities). There is an alternative approach to establishing the result (4.20)
+that parallels the method presented in §4.7. We simply bound the Taylor series of the matrix mgf
+term by term using an appropriate family of moment inequalities:
+        X          2p         X h         i1/p p                 (2p)!
+                                          2p
+   E tr       γk Ak     ≤ C2p ·      tr(Ak )         where C2p :=            for p = 1, 2, 3, . . . .
+            k                     k                                   p! 2p
+These estimates follow from a result of Tomczak–Jaegermann [TJ74, Thm. 3.1] for Rademacher
+series together with the central limit theorem.
+
+                    5. Sums of Random Positive-Semidefinite Matrices
+   The classical Chernoﬀ bounds concern the sum of independent, nonnegative, and uniformly
+bounded random variables. In sympathy, matrix Chernoﬀ bounds describe the extreme eigenvalues
+of a sum of independent, psd random matrices whose maximum eigenvalues are subject to a uniform
+bound. These probability inequalities demonstrate that the upper and lower tails of the sum exhibit
+binomial-type behavior.
+   Our ﬁrst result parallels the strongest versions of the scalar Chernoﬀ inequality for the proportion
+of successes in a sequence of independent (but not identical) Bernoulli trials [Lug09, Exer. 7].
+Theorem 5.1 (Matrix Chernoﬀ I). Consider a sequence {Xk : k = 1, 2, . . . , n} of independent,
+random, self-adjoint matrices that satisfy
+                           Xk < 0    and    λmax (Xk ) ≤ 1   almost surely.
+Compute the minimum and maximum eigenvalues of the average expectation,
+                           X                               X            
+                           1 n                               1     n
+            µ̄min := λmin        E Xk   and µ̄max := λmax              E Xk .
+                           n k=1                             n     k=1
+
+Then
+                   X         
+                    1 n
+            P λmin        Xk ≤ α ≤ d · e−n·D(α k µ̄min ) for 0 ≤ α ≤ µ̄min , and
+                    n k=1
+                   X         
+                    1 n
+            P λmax        Xk ≥ α ≤ d · e−n·D(α k µ̄max ) for µ̄max ≤ α ≤ 1.
+                    n k=1
+
+The binary information divergence D(a k u) := a(log(a) − log(u)) + (1 − a)(log(1 − a) − log(1 − u))
+for a, u ∈ [0, 1].
+   We have found that the following weaker version of Theorem 5.1 produces excellent results but
+is simpler to apply. This corollary corresponds with the usual statement of the scalar Chernoﬀ
+inequalities for sums of nonnegative random variables; see [Lug09, Exer. 8] or [MR95, §4.1].
+Corollary 5.2 (Matrix Chernoﬀ II). Consider a finite sequence {Xk } of independent, random,
+self-adjoint matrices that satisfy
+                           Xk < 0    and   λmax (Xk ) ≤ R    almost surely.
+Compute the minimum and maximum eigenvalues of the sum of expectations,
+                             X                           X          
+                µmin := λmin    E Xk    and µmax := λmax         E Xk .
+                                     k                                    k
+                          TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                 21
+
+Then
+                                                                 µmin /R
+                                                       e−δ
+          n     X                o      
+         P λmin    Xk ≤ (1 − δ)µmin ≤ d ·                                   for δ ∈ [0, 1], and
+                      k                             (1 − δ)1−δ
+                                                                 µmax /R
+                                                        eδ
+          n     X                o      
+         P λmax    Xk ≥ (1 + δ)µmax ≤ d ·                                   for δ ≥ 0.
+                      k                             (1 + δ)1+δ
+   The proofs of Theorem 5.1 and Corollary 5.2 appear below in Section 5.1. We continue this
+discussion with some telegraphic remarks concerning various aspects of the Chernoﬀ bounds.
+Remark 5.3 (Related Inequalities). The following standard simpliﬁcation of Corollary 5.2 is useful.
+                 n     X                o              2
+               P λmin         Xk ≤ tµmin ≤ d · e−(1−t) µmin /2R for t ∈ [0, 1], and
+                            k
+                 n    X                 o      h e itµmax /R
+              P λmax          Xk ≥ tµmax ≤ d ·                 for t ≥ e.
+                            k                      t
+These inequalities manifest that the minimum eigenvalue has normal-type behavior and the maxi-
+mum eigenvalue exhibits Poisson-type decay.
+Remark 5.4 (Applications). Matrix Chernoﬀ inequalities are very eﬀective for studying random
+matrices with independent columns. Consider a rectangular random matrix
+                                                        
+                                   Z = z1 z2 . . . zn
+where {zk } is a family of independent random vectors in Cm . The norm of Z satisﬁes
+                                                        Xn          
+                             kZk2 = λmax (ZZ ∗ ) = λmax        zk zk∗ .
+                                                            k=1
+Similarly, the minimum singular value sm of the matrix satisﬁes
+                                                        Xn           
+                          sm (Z)2 = λmin (ZZ ∗ ) = λmin         zk zk∗ .
+                                                             k=1
+In each case, the summands are stochastically independent and psd, so the matrix Chernoﬀ bounds
+apply. See [Tro10] for a problem where this method applies.
+Remark 5.5 (Expectations). Corollary 5.2 produces accurate estimates for the expectation of the
+maximum eigenvalue:
+                                   X       
+                    µmax ≤ E λmax        Xk ≤ C · max {µmax , R log d} .
+                                          k
+The lower bound is Jensen’s inequality; the upper bound follows from a messy—but standard—
+calculation. Observe that the dimensional dependence vanishes when the mean µmax is suﬃciently
+large in comparison with the upper bound R!
+Remark 5.6 (Dimensional Factor). The factor d in the Chernoﬀ bounds cannot be omitted because
+of the coupon collector’s problem [MR95, §3.6]. Consider a d-dimensional random matrix X with
+the distribution
+                      X = Ejj with probability d−1 for each j = 1, 2, . . . d.
+If {Xk } is a sequence of independent random matrices with the same distribution as X, then
+                       Xn        
+                  λmin         Xk = 0 with high probability unless n > d log d.
+                          k=1
+The dimensional factor in the lower Chernoﬀ bound reﬂects this fact. The same example shows
+that the upper Chernoﬀ bound must also exhibit a dimensional dependence. We have extracted
+this idea from [RV07, Sec. 3.5].
+22                                            JOEL A. TROPP
+
+Remark 5.7 (Previous Work). Theorem 5.1 is a considerable strengthening of the matrix Chernoﬀ
+bound established by Ahlswede and Winter [AW02, Thm. 19]. Their proof requires the extra
+assumption that the summands are identically distributed, in which case their result matches
+Theorem 5.1.
+5.1. Proofs. To establish the matrix Chernoﬀ inequalities, we commence with a semideﬁnite bound
+for the matrix mgf of a random psd contraction.
+Lemma 5.8 (Chernoﬀ mgf). Suppose that X is a random psd matrix that satisfies λmax (X) ≤ 1.
+Then
+                        E eθX 4 I + (eθ − 1)(E X) for θ ∈ R.
+  The proof of Lemma 5.8 parallels the classical argument; the matrix adaptation is due to
+Ahlswede and Winter [AW02, Thm. 19].
+Proof. Consider the function f (x) = eθx . Since f is convex, its graph lies below the chord connecting
+two points. In particular,
+                            f (x) ≤ f (0) + [f (1) − f (0)] · x   for x ∈ [0, 1].
+More explicitly,
+                               eθx ≤ 1 + (eθ − 1) · x for x ∈ [0, 1].
+The eigenvalues of X lie in the interval [0, 1], so the transfer rule (2.2) implies that
+                                         eθX 4 I + (eθ − 1)X.
+Expectation respects the semideﬁnite order, so
+                                      E eθX 4 I + (eθ − 1)(E X).
+This is the advertised conclusion.                                                                     
+     We prove the upper Chernoﬀ bounds ﬁrst because the argument is slightly easier.
+Proof of Theorem 5.1, Upper Bound. The Chernoﬀ mgf bound, Lemma 5.8, states that
+                     E eθXk 4 I + g(θ) · (E Xk ) where g(θ) := eθ − 1 for θ > 0.
+As a result, Corollary 3.9 implies
+                                                                  X                          
+          n     X             o                                   1
+        P λmax          Xk ≥ t ≤ d · exp −θt + n · log λmax                  (I + g(θ) · E Xk )
+                      k                                             n      k
+                                                                                           
+                                                                                 1X
+                                   = d · exp −θt + n · log λmax I + g(θ) ·              E Xk
+                                                                                 n    k
+
+                                   = d · exp (−θt + n · log (1 + g(θ) · µ̄max )) .                  (5.1)
+The third relation follows from basic properties of the eigenvalue map and the deﬁnition of µ̄max .
+Make the change of variables t 7→ nα. The right-hand side is smallest when
+                             θ = log(α/(1 − α)) − log(µ̄max /(1 − µ̄max )).
+Substitute these quantities into (5.1) to obtain the information divergence upper bound.               
+Proof of Corollary 5.2, Upper Bound. Assume that the summands satisfy the uniform eigenvalue
+bound with R = 1; the general result follows by re-scaling. The shortest route to the weaker
+Chernoﬀ upper bound starts at (5.1). The numerical inequality log(1 + x) ≤ x, valid for x > −1,
+implies that
+         n      X           o
+        P λmax        Xk ≥ t ≤ d · exp (−θt + g(θ) · nµ̄max ) = d · exp (−θt + g(θ) · µmax )
+                      k
+Make the change of variables t 7→ (1 + δ)µmax , and select the parameter θ = log(1 + δ). Simplify
+the resulting tail bound to complete the proof.                                                
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                               23
+
+  The lower bounds follow from a closely related argument.
+
+Proof of Theorem 5.1, Lower Bound. We intend to apply Corollary 3.9 to the sequence {−Xk }. In
+this case, the Chernoﬀ mgf, Lemma 5.8, states that
+           E eθ(−Xk ) = E e(−θ)Xk 4 I − g(θ) · (E Xk )   where g(θ) := 1 − e−θ for θ > 0.
+The minimum eigenvalue λmin (−A) = −λmax (A), so we can apply Corollary 3.9 as follows.
+       n     X           o     n       X                   o
+      P λmin       Xk ≤ t = P λmax              (−Xk ) ≥ −t
+                 k                            k
+                                                           X                          
+                                                             1
+                             ≤ d · exp θt + n · log λmax              (I − g(θ) · E Xk )
+                                                             n      k
+                                                                        X              
+                                                                            1    n
+                             = d · exp θt + n · log 1 − g(θ) · λmin                  E Xk
+                                                                            n    k=1
+
+                             = d · exp (θt + n · log (1 − g(θ) · µ̄min )) .                   (5.2)
+Make the substitution t 7→ nα. The right-hand side is minimal when
+                            θ = log(µ̄min /(1 − µ̄min )) − log(α/(1 − α)).
+These steps result in the information divergence lower bound.                                    
+
+Proof of Corollary 5.2, Lower Bound. As before, assume that the uniform bound R = 1. We obtain
+the weaker lower bound as a consequence of (5.2). The inequality log(1 + x) ≤ x holds for x > −1,
+so we have
+           n      X          o
+          P λmin        Xk ≤ t ≤ d · exp (θt − g(θ) · nµ̄min ) = d · exp (θt − g(θ) · µmin )
+                      k
+
+Make the replacement t 7→ (1 − δ)µmin , and select θ = − log(1 − δ) to complete the proof.       
+Remark 5.9 (Alternative Proof). Corollary 5.2 can also be established directly using Corollary 3.7
+instead of Corollary 3.9. In this case, we use the mgf bound
+                                                        
+                             E eθX 4 exp (eθ − 1)(E X)       for θ ∈ R,
+
+which follows instantly from Lemma 5.8 and the semideﬁnite relation (2.3). The remaining details
+mirror the arguments here.
+
+                      6. Matrix Bennett and Bernstein Inequalities
+  In the scalar setting, Bennett and Bernstein inequalities describe the upper tail of a sum of
+independent, zero-mean random variables that are either bounded or subexponential. In the matrix
+case, the analogous results concern a sum of zero-mean random matrices.
+  Our ﬁrst result describes the case where the maximum eigenvalue of each summand satisﬁes a
+uniform bound.
+Theorem 6.1 (Matrix Bernstein: Bounded Case). Consider a finite sequence {Xk } of independent,
+random, self-adjoint matrices with dimension d. Assume that
+                          E Xk = 0   and    λmax (Xk ) ≤ R        almost surely.
+Compute the norm of the total variance,
+                                                X
+                                       σ 2 :=         E Xk2
+                                                              
+                                                                  .
+                                                  k
+24                                          JOEL A. TROPP
+
+Then the following chain of inequalities holds for all t ≥ 0.
+                                                          σ2
+                                                               
+                  n     X             o                        Rt
+                P λmax         Xk ≥ t ≤ d · exp − 2 · h 2                                          (i)
+                             k                           R        σ
+                                                            2
+                                                          −t /2
+                                                                   
+                                          ≤ d · exp                                               (ii)
+                                                       σ 2 + Rt/3
+                                             (
+                                               d · exp(−3t2 /8σ 2 )  for t ≤ σ 2 /R;
+                                          ≤                                                       (iii)
+                                               d · exp(−3t/8R)       for t ≥ σ 2 /R.
+
+The function h(u) := (1 + u) log(1 + u) − u for u ≥ 0.
+   Observe that Theorem 6.1 places no assumption on the minimum eigenvalues of the summands,
+which may be arbitrarily small. As a consequence, when we apply the result to the two sequences
+{Xk } and {−Xk }, the parameter R may diﬀer.
+   Theorem 6.1(i) can be viewed as a matrix version of the Bennett inequality [Lug09, Thm. 5],
+which implies that the tail probabilities exhibit Poisson-type decay. Part (ii) parallels a well-known
+result [Lug09, Thm. 6], which is perhaps the most famous among the probability inequalities
+attributed to Bernstein. Part (iii), which we call the split Bernstein inequality, clearly delineates
+between the normal behavior that occurs at moderate deviations and the slower decay that emerges
+in the tail.
+   A related inequality holds when we allow the moments of the random matrices to grow at a
+limited rate, which we interpret as a matrix extension of the moment behavior of a subexponential
+random variable [dlPG02, Lem. 4.1.9].
+Theorem 6.2 (Matrix Bernstein: Subexponential Case). Consider a finite sequence {Xk } of
+independent, random, self-adjoint matrices with dimension d. Assume that
+                                                   p!
+                   E Xk = 0     and    E(Xkp ) 4      · Rp−2 A2k   for p = 2, 3, 4, . . . .
+                                                   2
+Compute the variance parameter
+                                                   X
+                                          σ 2 :=           A2k .
+                                                       k
+Then the following chain of inequalities holds for all t ≥ 0.
+                                                          −t2 /2
+                   n      X             o                      
+                  P λmax         Xk ≥ t ≤ d · exp                                                  (i)
+                               k                         σ 2 + Rt
+                                               (
+                                                 d · exp(−t2 /4σ 2 ) for t ≤ σ 2 /R;
+                                            ≤                                                     (ii)
+                                                 d · exp(−t/4R)      for t ≥ σ 2 /R.
+
+   The hypotheses of Theorem 6.2 are not fully comparable with the hypotheses of Theorem 6.1
+because Theorem 6.2 allows the random matrices to be unbounded but it also demands that we
+control the ﬂuctuation of the maximum and minimum eigenvalues. The resulting tail bound is
+very similar to Theorem 6.1(ii). We cannot achieve a Bennett-type inequality, like Theorem 6.1(i),
+without stricter assumptions on the growth of moments.
+   The proofs of Theorem 6.1 and 6.2 appear below. We ﬁnish the discussion with an assorted
+collection of enriching comments.
+Remark 6.3 (Rectangular Versions). The matrix Bernstein inequalities admit rectangular variants.
+For example, consider a sequence {Zk } of d1 × d2 random matrices that satisfy the assumptions
+                            E Zk = 0 and       kZk k ≤ R       almost surely.
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                  25
+
+We can apply Theorem 6.1 to the s.a. dilation (2.10) of the sum of these random matrices to see
+that the probability                                   2       
+                            n X            o            σ       Rt
+                          P         Zk ≥ t ≤ d · exp        · h
+                                  k                     R2      σ2
+where d := d1 + d2 and where the variance parameter
+                                  n X                  X              o
+                       σ 2 := max        E(Zk Zk∗ ) ,       E(Zk∗ Zk ) .
+                                          k                    k
+This argument leads to Theorem 1.6, stated in the introduction. There is also a rectangular
+extension of Theorem 6.2, but the hypotheses are messier.
+Remark 6.4 (Related Inequalities). There are too many variants of the scalar Bernstein inequality
+to present the matrix generalization of each one. Let us just mention a few of the possibilities.
+     • Theorem 6.2 can be sharpened using an idea of Rio that appears in [Mas07, Sec. 2.2.3].
+     • When the random matrices exhibit moment growth of the form E(Xkp ) 4 Rp−2 A2k , we
+        recover the Poissonian tail behavior captured in Theorem 6.1(i).
+     • When the summands are symmetric random variables (i.e., Xk ∼ −Xk ), we can exploit
+        the fact that the matrix mgf E eθXk = E cosh(θXk ) to obtain arcsinh inequalities.
+Remark 6.5 (Expectations). We can use the matrix Bernstein inequality to bound the mean of the
+maximum eigenvalue of the random sum. For example, assume that the hypotheses of Theorem 6.1
+or 6.2 are in force. Then
+                                X               n p                o
+                         E λmax    Xk ≤ C · max σ log d, R log d .                       (6.1)
+                                     k
+The upper bound follows by integrating Theorem 6.1(ii) or Theorem 6.2(i). Lower bounds seem to
+require additional assumptions.
+Remark 6.6 (Previous Work). Oliveira’s results are quite similar to the bounds presented here. In
+particular, Oliveira’s martingale inequality [Oli10a, Thm. 1.2] implies a weaker version of Theo-
+rem 6.1(ii). The main result from [Oli10b] has a similar ﬂavor.
+6.1. Proof of Theorem 6.1. The main lemma shows how to bound the mgf of a zero-mean
+random matrix using a bound for its largest eigenvalue.
+Lemma 6.7 (Bounded Bernstein mgf). Suppose that X is a random s.a. matrix that satisfies
+                                   EX = 0     and   λmax (X) ≤ 1.
+Then                                                       
+                          E eθX 4 exp (eθ − θ − 1) · E(X 2 )       for θ > 0.
+
+  As usual, the proof of the mgf bound parallels a classical method, which we learned from corre-
+spondence with Yao-Liang Yu.
+Proof. Fix the parameter θ > 0, and deﬁne a smooth function f on the real line:
+                                 eθx − θx − 1                              θ2
+                        f (x) =                 for x  =
+                                                       6 0   and   f (0) =    .
+                                      x2                                   2
+An exercise in diﬀerential calculus veriﬁes that f is increasing. Therefore, f (x) ≤ f (1) when x ≤ 1.
+The eigenvalues of X do not exceed one, so the transfer rule (2.2) implies that
+                                          f (X) 4 f (1) · I.
+Expanding the matrix exponential and applying the latter relation, we discover that
+                       eθX = I + θX + X · f (X) · X 4 I + θX + f (1) · X 2 .
+26                                                 JOEL A. TROPP
+
+To complete the proof, we take the expectation of this semideﬁnite bound.
+                                                                                      
+         E eθX 4 I + f (1) · E(X 2 ) 4 exp f (1) · E(X 2 ) = exp (eθ − θ − 1) · E(X 2 ) .
+                                                          
+
+The second semideﬁnite relation follows from (2.3).                                                   
+     We are prepared to establish the Bernstein inequalities for bounded random matrices.
+Proof of Theorem 6.1. We assume that R = 1; the general result follows by a scaling argument
+once we note that the summands are 1-homogeneous and the variance σ 2 is 2-homogeneous.
+  The main challenge is to establish the Bennett inequality, Part (i); the remaining bounds are
+consequences of simple numerical estimates. Invoke Lemma 6.7 to see that
+                E eθXk 4 exp g(θ) · E Xk2     where g(θ) := eθ − θ − 1 for θ > 0.
+                                          
+
+For each θ > 0, Corollary 3.7 implies that
+                n      X            o                             X        
+              P λmax         Xk ≥ t ≤ d · exp −θt + g(θ) · λmax          E Xk2
+                           k                                           k
+                                        = d · exp −θt + g(θ) · σ 2 .
+                                                                  
+
+The right-hand side attains its minimal value when θ = log(1 + t/σ 2 ). Substitute and simplify to
+establish Part (i).
+   The Bennett inequality (i) implies the Bernstein inequality (ii) because of the numerical bound
+                                                      u2 /2
+                                        h(u) ≥                   for u ≥ 0.
+                                                    1 + u/3
+The latter relation is established by comparing derivatives.
+   The Bernstein inequality (ii) implies the split Bernstein inequality (iii). To obtain the subgaussian
+piece of (iii), observe that
+                             1                 1              3
+                           2
+                                    ≥ 2          2
+                                                         = 2 for t ≤ σ 2 /R
+                          σ + Rt/3     σ + R(σ /R)/3        4σ
+because the left-hand side is a decreasing function of t for t ≥ 0. Similarly, we obtain the subexpo-
+nential piece of (iii) from the fact
+                             t                    (σ 2 /R)              3
+                                       ≥                          =          for t ≥ σ 2 /R,
+                         σ 2 + Rt/3         σ 2 + R(σ 2 /R)/3          4R
+which holds because the left-hand side is an increasing function of t for t ≥ 0.                      
+6.2. Proof of Theorem 6.2. We begin with the appropriate estimate for the matrix mgf.
+Lemma 6.8 (Subexponential Bernstein mgf). Suppose that X is a random s.a. matrix that satisfies
+                                                             p!
+                       EX = 0         and     E(X p ) 4         · A2    for p = 2, 3, 4, . . . .
+                                                             2
+Then
+                                                     θ2
+                                                                 
+                            Ee   θX
+                                      4 exp                · A2         for 0 < θ < 1.
+                                                  2(1 − θ)
+Proof. The argument proceeds by estimating each term in the Taylor series of the matrix exponen-
+tial. Indeed,
+                      ∞                  ∞
+                                        X θp
+                     X θ p E(X p )                          θ2                     θ2
+                                                                                            
+       θX                                        2                   2                     2
+   E e = I+θ E X +                 4 I+       ·A = I+             · A 4 exp              ·A .
+                     p=2
+                            p!          p=2
+                                            2            2(1 − θ)               2(1 − θ)
+
+As usual, the last relation is (2.3).                                                                 
+                            TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                 27
+
+  The Bernstein inequality for subexponential random matrices is an easy consequence of the
+previous lemma.
+Proof of Theorem 6.2. As before, we assume that R = 1; the general result follows by scaling.
+Invoke Lemma 6.8 to see that
+                                                          θ2
+               E eθXk 4 exp g(θ) · A2k
+                                       
+                                         where g(θ) :=          for 0 < θ < 1.
+                                                       2(1 − θ)
+For each θ > 0, Corollary 3.7 implies that
+    n      X            o                        X     
+                                                       A2k    = d · exp −θt + g(θ) · σ 2 .
+                                                                                        
+  P λmax         Xk ≥ t ≤ d · exp −θt + g(θ) · λmax
+                k                                                    k
+
+We select θ = t/(σ 2 + t). Substitute and simplify to complete Part (i).
+  The split inequality (ii) follows from Part (i) by the same argument presented in the proof of
+Theorem 6.1.                                                                                  
+
+             7. The Matrix Hoeffding, Azuma, and McDiarmid Inequalities
+   In this section, we prove some simple martingale deviation bounds by modifying the approach
+that we have used to study sums of independent random matrices. More sophisticated martingale
+results require additional machinery [Oli10a, Tro11a].
+
+7.1. Matrix Martingales. We begin with the required deﬁnitions. Let (Ω, F , P) be a master
+probability space. Consider a ﬁltration {Fk } contained in the master sigma algebra:
+                                 F0 ⊂ F1 ⊂ F2 ⊂ · · · ⊂ F∞ ⊂ F .
+Given such a ﬁltration, we deﬁne the conditional expectation Ek [ · ] := E[ · | Fk ]. A sequence {Xk }
+of random matrices is adapted to the ﬁltration when each Xk is measurable with respect to Fk .
+Loosely speaking, an adapted sequence is one where the present depends only upon the past.
+   An adapted sequence {Yk } of s.a. matrices is called a matrix martingale when
+                       Ek−1 Yk = Yk−1    and       E kYk k < ∞      for k = 1, 2, 3, . . . .
+We obtain a scalar martingale if we track any ﬁxed coordinate of a matrix martingale {Yk }. Given
+a matrix martingale {Yk }, we can construct the difference sequence
+                               Xk := Yk − Yk−1         for k = 1, 2, 3, . . . .
+Note that the diﬀerence sequence is conditionally zero mean: Ek−1 Xk = 0.
+
+7.2. Main Results. The scalar version of Azuma’s inequality states that a scalar martingale
+exhibits normal concentration about its mean value, and the scale for deviations is controlled by
+the total maximum squared range of the diﬀerence sequence. Here is a matrix extension.
+Theorem 7.1 (Matrix Azuma). Consider a finite adapted sequence {Xk } of self-adjoint matrices
+in dimension d, and a fixed sequence {Ak } of self-adjoint matrices that satisfy
+                           Ek−1 Xk = 0    and       Xk2 4 A2k       almost surely.
+Compute the variance parameter
+                                                     X
+                                          σ 2 :=            A2k .                                (7.1)
+                                                        k
+Then, for all t ≥ 0,            n     X      o         2   2
+                               P λmax    Xk ≥ t ≤ d · e−t /8σ .                                  (7.2)
+                                               k
+
+  Theorem 7.1 can also be phrased directly in terms of a matrix martingale.
+28                                             JOEL A. TROPP
+
+Corollary 7.2. Consider an s.a. matrix martingale {Yk : k = 1, . . . , n} in dimension d, and
+let {Xk } be the associated difference sequence. Suppose that the difference sequence satisfies the
+hypotheses of Theorem 7.1, and compute the parameter σ 2 according to (7.1). Then
+                                                                     2   2
+                                  P {λmax (Yn − E Yn ) ≥ t} ≤ d · e−t /8σ .                      (7.3)
+     We continue with a few tangential comments.
+Remark 7.3 (Rectangular Version). The matrix Azuma inequality has a rectangular version, which
+we obtain by applying Theorem 7.1 to the s.a. dilation (2.10) of the adapted sequence.
+Remark 7.4 (Related Inequalities). There are several situations where the constant 1/8 in the
+bound (7.2) can be improved to 1/2. One case occurs when each summand Xk is conditionally
+symmetric; see Remark 7.8. Another example requires the assumption that Xk commutes almost
+surely with Ak , which allows us to generalize the classical proof [McD98, Lem. 2.6] of the Azuma
+inequality to the matrix setting.
+   If we place the additional assumption that the summands are independent, Theorem 7.1 gives a
+matrix extension of one of Hoeﬀding’s inequalities, which we have presented as Theorem 1.3 in the
+introduction.
+   In the scalar setting, one of the most useful corollaries of Azuma’s inequality is the bounded
+diﬀerences inequality of McDiarmid [McD98, Thm. 3.1]. This result states that a function of
+independent random variables exhibits normal concentration about its mean, and the variance
+depends on how much a change in a single variable can alter the value of the function. A version
+of the bounded diﬀerences inequality holds in the matrix setting.
+Corollary 7.5 (Matrix Bounded Diﬀerences). Let {Zk : k = 1, 2, . . . , n} be an independent family
+of random variables, and let H be a function that maps n variables to a self-adjoint matrix of
+dimension d. Consider a sequence {Ak } of fixed self-adjoint matrices that satisfy
+                                                                                          2
+                      H(z1 , . . . , zk , . . . , zn ) − H(z1 , . . . , zk′ , . . . , zn ) 4 A2k ,
+where zi and zi′ range over all possible values of Zi for each index i. Compute the variance parameter
+                                                    X
+                                            σ 2 :=       A2k .
+                                                        k
+
+Then, for all t ≥ 0,
+                                                                         2    2
+                                P {λmax (H(z) − E H(z)) ≥ t} ≤ d · e−t /8σ
+where z = (Z1 , . . . , Zn ).
+     The proofs of the matrix Azuma and McDiarmid inequalities appear in the next two sections.
+
+7.3. Proof of Theorem 7.1. The classical approach to Azuma’s inequality does not seem to
+extend directly to the matrix setting. See [McD98, Lem. 2.6] for a short presentation of this
+argument. We use a diﬀerent type of proof that is inspired by methods from probability in Banach
+space [LT91]. The main idea is to inject additional randomness into the sum via a symmetrization
+procedure.
+Lemma 7.6 (Symmetrization). Let H be a fixed s.a. matrix, and let X be a random s.a. matrix
+with E X = 0. Then
+                                        E tr eH+X ≤ E tr eH+2εX ,
+where ε is a Rademacher variable independent from X.
+                           TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                   29
+
+Proof. Construct an independent copy X ′ of the random matrix, and let E′ denote integration with
+respect to the new variable. Since the matrix is zero mean,
+                                           ′   ′                ′                   ′
+                E tr eH+X = E tr eH+X−E X ≤ E tr eH+(X−X ) = E tr eH+ε(X−X ) .
+We have used the convexity of the trace exponential to justify Jensen’s inequality. Since X − X ′
+is a symmetric random variable, we can modulate it by an independent Rademacher variable ε
+without changing its distribution. The ﬁnal bound depends on a short sequence of inequalities:
+                                       ′
+                                              h           1/2              ′ 1/2
+                                                                                    i
+   E tr eH+X ≤ E tr eH/2+εX · eH/2−εX ≤ E tr eH+2εX             · tr eH−2εX
+                                                         1/2               ′ 1/2
+                                           ≤ E tr eH+2εX      · E tr eH−2εX         = E tr eH+2εX .
+The ﬁrst relation is the Golden–Thompson inequality (2.6); the second is the Cauchy–Schwarz
+inequality for the trace; and the third is the Cauchy–Schwarz inequality for real random variables.
+The last identity follows because the two factors are identically distributed.                   
+  The other essential ingredient in the proof is a conditional bound for the matrix cgf of a sym-
+metrized random matrix.
+Lemma 7.7 (Azuma cgf). Suppose that X is a random s.a. matrix and A is a fixed s.a. matrix
+that satisfy X 2 4 A2 . Let ε be a Rademacher random variable independent from X. Then
+                               log E e2εθX | X 4 2θ 2 A2 for θ ∈ R.
+                                             
+
+Proof. We apply the Rademacher mgf bound, Lemma 4.3, conditionally to obtain
+                                                  2  2
+                                 E e2θεX | X 4 e2θ X .
+                                           
+
+The fact (2.8) that the logarithm is operator monotone implies that
+                                log E e2θεX | X 4 2θ 2 X 2 4 2θ 2 A2 ,
+                                              
+
+where the second relation follows from the hypothesis on X.                                          
+   We are prepared to establish the matrix Azuma inequality. The proof involves an iteration
+similar to the argument that implies the subadditivity of cgfs, Lemma 3.4, for sums of independent
+random matrices.
+Proof of Theorem 7.1. The matrix Laplace transform method, Proposition 3.1, states that
+                   n     X           o       n            X         o
+                 P λmax        Xk ≥ t ≤ inf e−θt · E tr exp       θXk .                           (7.4)
+                                 k                 θ>0                   k
+
+The main diﬃculty in the proof is to bound the matrix mgf, which we accomplish by an iterative
+argument that alternates between symmetrization and cumulant bounds.
+   Let us detail the ﬁrst step of the iteration. Deﬁne the natural ﬁltration Fk := F (X1 , . . . , Xk )
+of the process {Xk }. Then we may compute
+                          X                h     Xn−1                      i
+                 E tr exp       θXk = E E tr exp            θXk + θXn Fn−1
+                              k                         k=1
+                                             h     Xn−1                      i
+                                      ≤ E E tr exp          θXk + 2εθXn Fn
+                                                        k=1
+                                                 Xn−1                           
+                                                         θXk + log E e2εθXn | Fn
+                                                                     
+                                      ≤ E tr exp
+                                                     k=1
+                                                 Xn−1                 
+                                      ≤ E tr exp         θXk + 2θ 2 A2n .
+                                                         k=1
+The ﬁrst identity is the tower property of conditional expectation. In the second line, we invoke
+the symmetrization method, Lemma 7.6, conditional on Fn−1 , and then we relax the conditioning
+on the inner expectation to the larger algebra Fn . By construction, the Rademacher variable ε
+30                                               JOEL A. TROPP
+
+is independent from Fn , so we can apply the concavity result, Corollary 3.3, conditional on Fn .
+Finally, we use the fact (2.5) that the trace exponential is monotone to introduce the Azuma cgf
+bound, Lemma 7.7, in the last inequality.
+   By iteration, we achieve
+                                     X                     X      
+                            E tr exp      θXk ≤ tr exp 2θ 2       A2k .                     (7.5)
+                                             k                           k
+
+Note that this procedure relies on the fact that the sequence {Ak } of upper bounds does not
+depend on the values of the random sequence {Xk }. Substitute the mgf bound (7.5) into the
+Laplace transform bound (7.4), and observe that the inﬁmum is achieved when θ = t/4σ 2 .  
+Remark 7.8. Suppose that the sequence {Xk } is conditionally symmetric:
+                                    Xk ∼ −Xk        conditional on Fk−1 .
+When we execute the proof of Theorem 7.1 under this assumption, we can symmetrize each term
+in the sum without suﬀering an extra factor of two. For example,
+          h      Xn−1                      i     h      Xn−1                   i
+        E tr exp        θXk + θXn Fn−1 = E tr exp                θXk + εθXn Fn−1
+                        k=1                                             k=1
+
+where ε is independent from Fn . The rest of the proof remains the same, but the analog of the
+bound (7.2) has a constant of 1/2 instead of 1/8 in the exponent.
+7.4. Proof of Corollary 7.5. Finally, we establish the matrix version of the bounded diﬀerences
+inequality. The main idea in the argument is to construct the Doob martingale associated with the
+natural ﬁltration of the independent random sequence. We compute semideﬁnite bounds for the
+diﬀerence sequence, and then we apply the matrix Azuma inequality to control the deviations of
+the martingale.
+
+Proof of Corollary 7.5. In this argument only, we write EZ for the expectation with respect to a
+random variable Z, holding other variables ﬁxed. Recall that z = (Z1 , . . . , Zn ). For k = 0, 1, . . . , n,
+consider the random matrices
+                      Yk := E[H(z) | Z1 , Z2 , . . . , Zk ] = EZk+1 EZk+2 . . . EZn H(z).
+The sequence {Yk } forms a Doob martingale. The associated diﬀerence sequence is
+                                                                          
+                  Xk := Yk − Yk−1 = EZk+1 EZk+2 . . . EZn H(z) − EZk H(z) ,
+where the second identity follows from independence and Fubini’s theorem.
+  It remains to bound the diﬀerence sequence. Let Zk′ be an independent copy of Zk , and construct
+the random vector z ′ = (Z1 , . . . , Zk−1 , Zk′ , Zk+1 , . . . , Zn ). Observe that EZk H(z) = EZk′ H(z ′ ) and
+that H(z) does not depend on Zk′ . Therefore, we can write
+                         Xk = EZk+1 EZk+2 . . . EZn EZk′ H(z) − H(z ′ ) .
+                                                                                     
+
+The vectors z and z ′ diﬀer only in the kth coordinate, so that
+                                                     2
+                                       H(z) − H(z ′ ) 4 A2k
+
+by deﬁnition of the bound A2k . Finally, the semideﬁnite Jensen inequality (2.14) for the matrix
+square yields
+                                                                    2
+                     Xk2 4 EZk+1 EZk+2 . . . EZn EZk′ H(z) − H(z ′ ) 4 A2k .
+To complete the proof, we apply (7.3) to the martingale {Yk }.                                               
+                              TAIL BOUNDS FOR SUMS OF RANDOM MATRICES                                           31
+
+                                            Acknowledgments
+   I would like to thank Vern Paulsen and Bernhard Bodmann for some helpful conversations
+connected with this project. Klas Markström and David Gross provided references to related work.
+Ben Recht oﬀered some useful comments on the presentation. Yao-Liang Yu proposed the argument
+in Lemma 6.7. Richard Chen and Alex Gittens have helped me root out (numerous) typographic
+errors. Finally, let me mention Roberto Oliveira’s elegant work [Oli10b] on matrix probability
+inequalities, which originally spurred me to pursue this project.
+
+                                                 References
+[AC09]   N. Ailon and B. Chazelle. The fast Johnson–Lindenstrauss transform and approximate nearest neighbors.
+         SIAM J. Comput., 39(1):302–322, 2009.
+[AM07] D. Achlioptas and F. McSherry. Fast computation of low-rank matrix approximations. J. Assoc. Comput.
+         Mach., 54(2):Article 10, 2007. (electronic).
+[AW02] R. Ahlswede and A. Winter. Strong converse for identiﬁcation via quantum channels. IEEE Trans. Inform.
+         Theory, 48(3):569–579, Mar. 2002.
+[Bha97] R. Bhatia. Matrix Analysis. Number 169 in Graduate Texts in Mathematics. Springer, Berlin, 1997.
+[Bha07] R. Bhatia. Positive Definite Matrices. Princeton Univ. Press, Princeton, NJ, 2007.
+[Bog98] V. Bogdanov. Gaussian Measures. American Mathematical Society, Providence, RI, 1998.
+[Buc01] A. Buchholz. Operator Khintchine inequality in non-commutative probability. Math. Ann., 319:1–16, 2001.
+[Buc05] A. Buchholz. Optimal constants in Khintchine-type inequalities for Fermions, Rademachers and q-Gaussian
+         operators. Bull. Pol. Acad. Sci. Math., 53(3):315–321, 2005.
+[Che52] H. Chernoﬀ. A measure of the asymptotic eﬃciency for tests of a hypothesis based on the sum of observa-
+         tions. Ann. Math. Statist., 23(4):493–507, 1952.
+[CM08] D. Cristoﬁdes and K. Markström. Expansion properties of random Cayley graphs and vertex transitive
+         graphs via matrix martingales. Random Structures Algs., 32(8):88–100, 2008.
+[CR07] E. Candès and J. K. Romberg. Sparsity and incoherence in compressive sampling. Inverse Problems,
+         23(3):969–985, 2007.
+[dlPG02] V. H. de la Peña and E. Giné. Decoupling: From Dependence to Independence. Probability and its Appli-
+         cations. Springer, Berlin, 2002.
+[DS02]   K. R. Davidson and S. J. Szarek. Local operator theory, random matrices, and Banach spaces. In W. B.
+         Johnson and J. Lindenstrauss, editors, Handbook of Banach Space Geometry, pages 317–366. Elsevier,
+         Amsterdam, 2002.
+[DZ98]   A. Dembo and O. Zeitouni. Large Deviations: Techniques and Applications. Springer, 2nd edition, 1998.
+[Eﬀ09]   E. G. Eﬀros. A matrix convexity approach to some celebrated quantum inequalities. Proc. Natl. Acad. Sci.
+         USA, 106(4):1006–1008, Jan. 2009.
+[Eps73] H. Epstein. Remarks on two theorems of E. Lieb. Comm. Math. Phys., 31:317–325, 1973.
+[Fre75]  D. A. Freedman. On tail probabilities for martingales. Ann. Probab., 3(1):100–118, Feb. 1975.
+[Gor85] Y. Gordon. Some inequalities for Gaussian processes and applications. Israel J. Math., 50(4):265–289, 1985.
+[Gor92] Y. Gordon. Majorization of Gaussian processes and geometric applications. Probab. Theory Related Fields,
+         91(2):251–267, 1992.
+[Gro11] D. Gross. Recovering low-rank matrices from few coeﬃcients in any basis. IEEE Trans. Inform. Theory,
+         57(3):1548–1566, Mar. 2011.
+[Hig08] N. J. Higham. Functions of Matrices: Theory and Computation. Society for Industrial and Applied Math-
+         ematics, Philadelphia, PA, 2008.
+[HJ85]   R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge Univ. Press, Cambridge, 1985.
+[HJ94]   R. A. Horn and C. R. Johnson. Topics in Matrix Analysis. Cambridge Univ. Press, Cambridge, 1994.
+[HMT11] N. Halko, P.-G. Martinsson, and J. A. Tropp. Finding structure with randomness: Stochastic algorithms
+         for constructing approximate matrix decompositions. SIAM Rev., 53(2):217–288, June 2011.
+[HP03]   F. Hansen and G. K. Pedersen. Jensen’s operator inequality. Bull. London Math. Soc., 35:553–564, 2003.
+[JX05]   M. Junge and Q. Xu. On the best constants in some non-commutative martingale inequalities. Bull. London
+         Math. Soc., 37:243–253, 2005.
+[JX08]   M. Junge and Q. Xu. Noncommutative Burkholder/Rosenthal inequalities II: Applications. Israel J. Math.,
+         167:227–282, 2008.
+[Lat05] R. Latala. Some estimates of norms of random matrices. Proc. Amer. Math. Soc., 133(5):1273–1282, 2005.
+[Lie73]  E. H. Lieb. Convex trace functions and the Wigner–Yanase–Dyson conjecture. Adv. Math., 11:267–288,
+         1973.
+32                                                JOEL A. TROPP
+
+[Lin74]    G. Lindblad. Expectations and entropy inequalities for ﬁnite quantum systems. Comm. Math. Phys.,
+           39:111–119, 1974.
+[LP86]     F. Lust-Piquard. Inégalités de Khintchine dans Cp (1 < p < ∞). C. R. Math. Acad. Sci. Paris, 303(7):289–
+           292, 1986.
+[LPP91]    F. Lust-Piquard and G. Pisier. Noncommutative Khintchine and Paley inequalities. Ark. Mat., 29(2):241–
+           260, 1991.
+[LT91]     M. Ledoux and M. Talagrand. Probability in Banach Spaces: Isoperimetry and Processes. Springer, Berlin,
+           1991.
+[Lug09]    G. Lugosi. Concentration-of-measure inequalities. Available at http://www.econ.upf.edu/~ lugosi/anu.
+           pdf, 2009.
+[Mas07]    P. Massart. Concentration Inequalities and Model Selection: Ecole d’Eté de Probabilités de Saint-Flour
+           XXXIII—2003. Number 1896 in Lecture Notes in Mathematics (LNM). Springer, 2007.
+[McD98]    C. McDiarmid. Concentration. In Probabilistic Methods for Algorithmic Discrete Mathematics, number 16
+           in Algorithms and Combinatorics, pages 195–248. Springer, Berlin, 1998.
+[MR95]     R. Motwani and P. Raghavan. Randomized Algorithms. Cambridge Univ. Press, Cambridge, 1995.
+[Nem07]    A. Nemirovski. Sums of random symmetric matrices and quadratic optimization under orthogonality con-
+           straints. Math. Prog. Ser. B, 109:283–317, 2007.
+[Oli10a]   R. I. Oliveira. Concentration of the adjacency matrix and of the Laplacian in random graphs with inde-
+           pendent edges. Available at arXiv:0911.0600, Feb. 2010.
+[Oli10b]   R. I. Oliveira. Sums of random Hermitian matrices and an inequality by Rudelson. Electron. Commun.
+           Probab., 15:203–212, 2010.
+[Par87]    B. N. Parlett. The Symmetric Eigenvalue Problem. Number 20 in Classics in Applied Mathematics. Society
+           for Industrial and Applied Mathematics, Philadelphia, PA, 1987.
+[Pau02]    V. I. Paulsen. Completely Bounded Maps and Operator Algebras. Number 78 in Cambridge Studies in
+           Advanced Mathematics. Cambridge Univ. Press, Cambridge, 2002.
+[Pet94]    D. Petz. A survey of certain trace inequalities. In Functional analysis and operator theory, volume 30 of
+           Banach Center Publications, pages 287–298, Warsaw, 1994. Polish Acad. Sci.
+[Pis03]    G. Pisier. Introduction to Operator Spaces. Cambridge Univ. Press, Cambridge, 2003.
+[Rec09]    B. Recht. Simpler approach to matrix completion. J. Mach. Learn. Res., Oct. 2009. To appear. Available
+           at http://pages.cs.wisc.edu/~ brecht/papers/09.Recht.ImprovedMC.pdf.
+[Rud99]    M. Rudelson. Random vectors in the isotropic position. J. Funct. Anal., 164:60–72, 1999.
+[Rus02]    M. B. Ruskai. Inequalities for quantum entropy: A review with conditions for equality. J. Math. Phys.,
+           43(9):4358–4375, Sep. 2002.
+[Rus05]    M. B. Ruskai. Erratum: Inequalities for quantum entropy: A review with conditions for equality [J. Math.
+           Phys. 43, 4358 (2002)]. J. Math. Phys., 46(1):0199101, 2005.
+[RV07]     M. Rudelson and R. Vershynin. Sampling from large matrices: An approach through geometric functional
+           analysis. J. Assoc. Comput. Mach., 54(4):Article 21, 19 pp., Jul. 2007. (electronic).
+[Seg00]    Y. Seginer. The expected norm of random matrices. Combin. Probab. Comput., 9:149–166, 2000.
+[So09]     A. M.-C. So. Moment inequalities for sums of random matrices and their applications in optimization.
+           Math. Prog. Ser. A, Dec. 2009. (electronic).
+[SST06]    A. Sankar, D. A. Spielman, and S.-H. Teng. Smoothed analysis of the condition numbers and growth factors
+           of matrices. SIAM J. Matrix Anal. Appl., 28(2):446–476, 2006.
+[TJ74]     N. Tomczak-Jaegermann. The moduli of smoothness and convexity and the Rademacher averages of trace
+           classes Sp (1 ≤ p < ∞). Studia Math., 50:163–182, 1974.
+[Tro08]    J. A. Tropp. On the conditioning of random subdictionaries. Appl. Comput. Harmon. Anal., 25:1–24, 2008.
+[Tro10]    J. A. Tropp. Improved analysis of the subsampled randomized Hadamard transform. Adv. Adapt. Data
+           Anal., 2010. To appear. Available at arXiv:1011.1595.
+[Tro11a]   J. A. Tropp. Freedman’s inequality for matrix martingales. Electron. Commun. Probab., 16:262–270, 2011.
+[Tro11b]   J. A. Tropp. From the joint convexity of quantum relative entropy to a concavity theorem of Lieb. Proc.
+           Amer. Math. Soc., 2011. To appear. Available at arXiv:1101.1070.
+[Tro11c]   J. A. Tropp. User-friendly tail bounds for matrix martingales. ACM Report 2011-01, California Inst. Tech.,
+           Pasadena, CA, Jan. 2011.
+[Ver09]    R. Vershynin. A note on sums of independent random matrices after Ahlswede–Winter. Available at http:
+           //www-personal.umich.edu/~ romanv/teaching/reading-group/ahlswede-winter.pdf, 2009.
+

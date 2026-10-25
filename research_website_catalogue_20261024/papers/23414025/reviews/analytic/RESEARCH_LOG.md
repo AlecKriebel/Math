@@ -1,0 +1,5 @@
+# Analytic review — 23414025
+
+- 2026-10-25T00:49:08.627026+00:00 — 5%: Fresh four-page PDF and source package identified and hashed. No archived or sibling opinions consulted; starting full paper and authored proof read.
+- 2026-10-25T00:50:50.735904+00:00 — 85%: Full published paper, TeX, authored proof and source support read. Primary integration, homogeneous-space, Levi/polar and homology references checked directly; determinant/post-Lie derivations reconstructed. Published 2,896 diagnostics pass in all three Python modes. Fresh derivation-space and polynomial determinant controls pass. Author candidate/status text encountered, but no past or sibling reviewer opinions read. No substantive defect identified.
+- 2026-10-25T00:51:51.996390+00:00 — 100%: Full REVIEW.md and source-bound verdict.json completed. Theorem1 and the post-Lie corollary survive analytic reconstruction; no substantive mathematical gap identified. Exact primary interfaces and fresh controls recorded, alongside priority/certification limits. No repair, historical/sibling verdict consultation, or publication action performed.

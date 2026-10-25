@@ -1,0 +1,38 @@
+{
+  "schema": "pr948-live-base-ref-semantics-observation-v1",
+  "started_utc": "2026-10-16T10:22:09.609310+00:00",
+  "completed_utc": "2026-10-16T10:22:10.198761+00:00",
+  "query": "{repository(owner:\"AlecKriebel\",name:\"Math\"){ref(qualifiedName:\"refs/heads/main\"){target{oid}} pullRequest(number:948){number state isDraft headRefOid baseRefOid baseRefName baseRef{target{oid}} changedFiles}}}",
+  "reply": {
+    "data": {
+      "repository": {
+        "ref": {
+          "target": {
+            "oid": "4ed1b7ed514955e979343e5d6092ed3bfead7e50"
+          }
+        },
+        "pullRequest": {
+          "number": 948,
+          "state": "OPEN",
+          "isDraft": true,
+          "headRefOid": "be4313efafa1af5962394e07d8a4debff2e94d92",
+          "baseRefOid": "7431d02aed19d00fc8494a564b9048db203320e9",
+          "baseRefName": "main",
+          "baseRef": {
+            "target": {
+              "oid": "4ed1b7ed514955e979343e5d6092ed3bfead7e50"
+            }
+          },
+          "changedFiles": 25
+        }
+      }
+    }
+  },
+  "status": "OBSERVED_DISTINCT_STORED_AND_LIVE_BASE",
+  "stored_base_ref_oid": "7431d02aed19d00fc8494a564b9048db203320e9",
+  "live_base_ref_target_oid": "4ed1b7ed514955e979343e5d6092ed3bfead7e50",
+  "repository_main_oid": "4ed1b7ed514955e979343e5d6092ed3bfead7e50",
+  "stored_differs_from_live": true,
+  "scope": "Read-only PR/ref/file-count metadata only; no problem proof/body, no service mutations, no excluded problem processing. Observed difference does not allege an actual wrong-target event.",
+  "required_ROOT02_extension": "Bind actual live baseRef.target.oid, not only associated baseRefOid, in PR metadata, every filename page and final status bracket; initial cached identity needs independently recorded matching head/live base, absent in initial inventory."
+}

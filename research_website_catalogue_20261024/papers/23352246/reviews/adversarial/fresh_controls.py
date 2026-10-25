@@ -122,7 +122,7 @@ for n in [1,2,10,100]:
   k=(1<<kb)-1;H=(1<<hb)-1;M=factorial(n)*(k*(H+1))**n
   # Conservative signed integer vector encoding: n+1 signs + bit lengths.
   length=(n+1)*(M.bit_length()+2)
-  phi=10*(n+1)**2*(1+(n+1).bit_length()+ (k+1).bit_length()+(H+2).bit_length())
+  phi=10*(n+1)**2*(1+n.bit_length()+k.bit_length()+(H+1).bit_length())
   need(length<=phi,'facet encoding formula insufficient');tick('facet_binary_bounds')
 result={'status':'PASS','seed':23352246,'counts':counts,'scope':'Fresh independent exact Fraction controls; no supplied checker imported. Analytic K2,2 elimination, dual-certified arbitrary/nonvertex LP optima, signed bulk removal, constructive finite recession mixtures and binary length boundaries.','limits':'Bounded corroboration; does not implement general polynomial LP, SFM or GLS and does not establish a universal theorem by enumeration.'}
 print(json.dumps(result,indent=2))

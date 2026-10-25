@@ -1,0 +1,2763 @@
+                                                       RANDOM QUOTIENTS OF FREE PRODUCTS
+
+
+                                            EDUARD EINSTEIN†, SURAJ KRISHNA M S, MURPHYKATE MONTEE, THOMAS NG,
+                                                                   AND MARKUS STEENBOCK
+
+
+
+
+arXiv:2502.08630v2 [math.GR] 28 Sep 2026
+                                                   Abstract. We introduce a density model for random quotients of a free prod-
+                                                   uct of finitely generated groups. We prove that a random quotient in this model
+                                                   has the following properties with overwhelming probability: if the density is
+                                                   below 1/2, the free factors embed into the random quotient and the random
+                                                   quotient is hyperbolic relative to the free factors. Further, there is a phase
+                                                   transition at 1/2, with the random quotient being a finite group above this
+                                                   density. If the density is below 1/6, the random quotient is cubulated relative
+                                                   to the free factors. Moreover, if the free factors are cubulated, then so is the
+                                                   random quotient.
+
+
+
+
+                                                                               1. Introduction
+                                               Gromov’s density model of random groups is an oft-used tool for studying
+                                           ‘generic’ properties of groups. The model is defined as follows: Let n ≥ 2, ℓ >
+                                           0, 0 < d < 1. A Gromov random group (see [Gro93]) is given by a presentation
+                                           ⟨S∣R⟩, where ∣S∣ = n and R is a collection of (2n − 1)dℓ cyclically reduced words
+                                           on the alphabet S of length ℓ, chosen uniformly at random with replacement. The
+                                           value d is called the density. Traditionally, we fix a density d and a number of
+                                           generators n, and say that a property P holds with overwhelming probability if the
+                                           probability of a random group satisfying P tends to 1 as ℓ → ∞.
+                                               When d < 1/2, with overwhelming probability a Gromov random group is torsion-
+                                           free non-elementary hyperbolic; on the other hand, when d > 1/2, with overwhelm-
+                                           ing probability a random group is either trivial or Z/2Z [Gro93; OW11]. Other
+                                           properties of random groups also exhibit a phase transition phenomenon, that is,
+                                           there is a threshold density d0 above and below which some property is either satis-
+                                           fied or not satisfied with overwhelming probability. These properties include small
+                                           cancellation conditions [Oll04b; Tsa22; Tsa24], satisfying Greendlinger’s lemma
+                                           [Oll04b], a Freiheitssatz-type property [Tsa23], and Property (T) (folklore). For
+                                           the last property, the threshold density is currently unknown, though it is known
+                                           to be at most 1/3 [Żuk03; KK13] and no less than 1/4 [Ash22]. It is unknown if
+                                           there is a threshold density for cubulation (that is, acting geometrically on a CAT(0)
+                                           cube complex). Ollivier–Wise showed in [OW11] that for d < 1/6, Gromov random
+                                           groups are, with overwhelming probability, cubulated, and Mackay–Przytycki and
+                                           Montee [MP15; Mon23] extended these results to cocompact, but not necessarily
+                                           proper, actions on CAT(0) cube complexes for d < 3/14.
+                                           1.1. The free product density model. In this paper, we initiate the study of
+                                           random quotients of free products of groups and obtain a few analogous results.
+                                           We do so by defining a density model for random quotients that uses the action of
+
+                                             Date: September 29, 2026.
+                                                                                          1
+2             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+a free product on a suitable Bass–Serre tree T , see [Ser77] or [BH99, Chapter III.Γ,
+Section 6.3]. This is directly inspired by Gromov’s model: words of length ℓ in a
+free group correspond to the finite set of elements that have translation length ℓ on
+its Cayley graph. Note that, in our case, T is not locally finite whenever one of the
+free factors is infinite, so the set of all loxodromic elements of a fixed translation
+length is infinite. For this reason, we choose a density d random set of relators from
+a natural finite subset of loxodromic elements of fixed translation length.
+Definition 1.1. Let n ≥ 2, m ≥ 1, ℓ > 0, 0 < d < 1. Let G = (G1 , . . . , Gn ) be an n-
+tuple of nontrivial finitely generated groups, that we refer to as the factor groups.
+Moreover, we suppose that if n = 2, then G1 or G2 is not isomorphic to Z/2Z, so
+that G1 ∗ G2 is not virtually cyclic. Let Si denote a finite generating set for Gi .
+Let Bi (m) ⊆ Gi be the set of nontrivial elements in the ball of radius m in the
+word metric with respect to Si . Let Sℓ be the set of words w = s1 s2 ⋯sℓ such that
+each syllable sj ∈ ⋃ Bi (m) and such that no two consecutive syllables sj and sj+1
+are in the same factor group. In addition, we assume that s1 and sℓ are not in the
+same factor group. Let R ⊂ Sℓ be a subset chosen by selecting ∣Sℓ ∣d words from Sℓ
+uniformly at random, with replacement. Then the group G = G1 ∗ ⋅ ⋅ ⋅ ∗ Gn /⟪R⟫ is
+a random group in the free product density model of random groups on G1 , . . . , Gn .
+We write G ∼ FPD(G; d, m, ℓ) to indicate that G is a random group in this model.
+We say that a group G ∼ F PD(G; d, m, ℓ) satisfies a property P with overwhelming
+probability if limℓ→∞ P(G satisfies P ) = 1.
+   Note that Sℓ is a finite set of elements of G1 ∗ ⋯ ∗ Gn of free product length = ℓ
+represented in normal form. For readers familiar with the notion of angle in this
+context, note that the set Sℓ consists of the elements of translation length ℓ in the
+Bass–Serre tree T that subtend an angle at most m at each turn. We note that the
+model depends on the choice of a finite generating set for each group Gi .
+   As the hyperbolic geometry of a free group is reflected by its action on its Cayley
+graph, so too is the relative hyperbolic geometry of a free product reflected by its
+action on the Bass–Serre tree. From this point of view, our model is a natural
+generalization of the Gromov model to quotients of free products. The use of the
+Bass–Serre tree allows us to push many of the methods that have been used to
+study Gromov random groups to this setting.
+   Our first theorem below shows that there is a threshold density ( 21 ) below which
+the factor groups of the free product embed into G, and G itself is non-elementary
+relatively hyperbolic with respect to the factor groups.
+Theorem 1.2. Let G ∼ FPD(G; d, m, ℓ).
+  (1) If d < 12 , then, with overwhelming probability, the groups G1 , G2 , . . ., Gn
+      embed into G and G is hyperbolic relative to {G1 , . . . , Gn }.
+  (2) If d > 21 and n ≥ 3, then, with overwhelming probability, G has order at
+      most 2. If d > 1/2 and n = 2, with overwhelming probability G is equal to a
+      finite dihedral group or the free product G1 ∗ ⋅ ⋅ ⋅ ∗ Gn .
+Remark 1.3. If n = 2, then Sℓ is empty for all odd ℓ. Therefore G = G1 ∗ G2 in this
+case.
+   When each free factor is a free group, our model gives a random quotient of a free
+group. However, our quotients behave differently than Gromov random quotients.
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                                 3
+
+
+Example 1.4. Let us consider the free product Gk = Fk ∗ Z of a non-abelian free
+group on k generators and an infinite cyclic group. We may consider Gk ≅ Fk+1
+and ask how random quotients of Gk taken in the free product density model relate
+to random quotients in the Gromov density model. By Theorem 1.2, Fk embeds
+in the random free product quotient of Gk for all values of k, whenever d < 1/2.
+In the Gromov density model, however, Tsai shows in [Tsa23, Theorem 1] that
+there exists a function ε ∶ N → (0, 21 ] which tends quickly to 0 as k → ∞ so that: if
+d > ε(k) then the factor group Fk does not embed into a random quotient, and if
+d < ε(k) then Fk embeds. Nevertheless, Gromov random groups at density d < 1/2
+are hyperbolic (see [Gro93; Oll04b]), and thus hyperbolic relative to the image of
+Fk .
+1.2. Actions on CAT(0) cube complexes. We also extend the cubulation
+result of [OW11] for Gromov random groups to the free product density model. A
+group is cubulated if it acts properly and cocompactly on a CAT(0) cube complex.
+In a similar vein, a group is relatively cubulated if it admits a relatively geometric
+action on a CAT(0) cube complex (see Definition 6.1).
+Theorem 1.5. Let G ∼ FPD(G; d, m, ℓ). If d < 16 , then G is, with overwhelming
+probability, cubulated relative to {G1 , . . . , Gn }. If moreover each Gi is a cubulated
+group, then, with overwhelming probability, G is cubulated.
+    We actually prove a generalization of Theorem 1.5, see Theorem 7.5. This theo-
+rem applies to a free product of relatively cubulated groups. Each of these groups
+is cubulated relative to a set of subgroups called the peripheral subgroups. The
+theorem then asserts a relative cubulation for the random quotient relative to the
+collection of the peripheral subgroups of the factor groups. The first part of Theo-
+rem 1.5 follows from this, and the second part is proven in Section 8.
+    In the case of d < 1/12, Theorem 4.30 implies that the random quotient G sat-
+isfies, with overwhelming probability, the C ′ (1/6)-condition over the free product.
+In this case Theorem 1.5 follows from [MS17], see also [JW22] in the case that
+d < 1/40, and [EN21]. The idea of the proof is to extend these papers and [OW11]
+to the setting of the free product density model.
+Remark 1.6. If a group G is cubulated relative to peripheral subgroups G1 , . . . , Gn ,
+this can have powerful consequences even if the peripherals are not themselves
+cubulated. For instance, if all the peripheral subgroups Gi are residually finite,
+then G itself is residually finite and all its full relatively quasiconvex subgroups are
+separable [EG22, Corollary 1.7], see also [GM22, Theorem 4.7].
+Remark 1.7. As a consequence of Theorem 1.5, we obtain a partial answer to
+[FW24, Problem 7.2]. Let G1 and G2 act properly and cocompactly on CAT(0)
+cube complexes X1 , X2 , respectively. In this case, let us view the free product
+G = G1 ∗G2 as the fundamental group of the space X∗ , which is composed of X1 , X2
+and a segment s whose endpoints are glued to X1 and X2 , respectively. Then G
+is cubulated by Theorem 1.5, and the density of cubulation given by Theorem 1.5
+does not depend on the length of s. Note, however, that [FW24, Problem 7.2] does
+not specify a model of a random quotient of a free product. It also remains open
+whether the density of Theorem 1.5 is optimal. In fact, to our knowledge the only
+model for random groups with a known sharp optimal upper bound for cubulation
+is the 6-gonal model for random groups [Odr25].
+4             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+    We leave open the following questions.
+
+Question 1.8. Let G ∼ FPD(G; d, m, ℓ). If d < 14
+                                               3
+                                                 , with overwhelming probability,
+does G act cocompactly on a CAT(0) cube complex? If d < 1/4, does it act with
+unbounded orbits on a CAT(0) cube complex?
+
+   Having unbounded orbits on a CAT(0) cube complex and Property (T) are
+mutually exclusive group properties. In the case that d < 16 , Theorem 1.5 implies
+that there is such an action on a CAT(0) cube complex, so G ∼ FPD(G; d, m, ℓ)
+does not have Property (T) regardless of the choice of factor groups. However, in
+the free product density model the following is open.
+
+Question 1.9. Let G ∼ FPD(G; d, m, ℓ). If d > 13 , does the random group G have
+Property (T) with overwhelming probability?
+
+   These questions are motivated by the best-known densities in Gromov’s model
+for random groups (see [Mon23], [Ash22], [Żuk03]).
+   A strategy to answer Question 1.9 in the affirmative is the following. Let G1 =
+⟨X1 , R1 ⟩ and G2 = ⟨X2 , R2 ⟩, and let G = ⟨X1 ∪ X2 , R1 ∪ R2 ∪ R⟩. Note that G′ =
+⟨X1 ∪ X2 , R⟩ is a random quotient in the free product density model of two free
+groups. Moreover, if G′ = ⟨X1 ∪ X2 , R⟩ has Property (T), then so does G. Thus,
+Question 1.9 can be reduced to whether the group G′ has Property (T).
+   It is also unclear how the group properties of groups in the free product density
+model compare to those in Gromov’s model for random groups in the case that
+each factor group is infinite cyclic. The referee suggested the following question.
+
+Question 1.10. If we consider a d-random quotient, with any m ≥ 1, of the free
+product of k ≥ 2 infinite cyclic groups Z ∗ Z ∗ ⋯ ∗ Z, it does not coincide with
+the Gromov density model with k generators at density d. Are there any group
+properties that differ?
+
+1.3. Outline. In Section 2, we provide constructions of model spaces XR and
+XR (Z) for random quotients of free products that we use throughout the paper.
+The first space, XR , witnesses the geometry relative to the free factors while XR (Z)
+is often quasi-isometric to the group itself. The main results of Section 4 are
+Theorem 4.30, a local isoperimetric inequality for XR , and Lemma 4.33, a non-
+planar version of Greendlinger’s Lemma. In Section 5, we use Theorem 4.30 to
+prove a global isoperimetric inequality, Theorem 5.1. We then examine how the
+geometry of XR reflects the relative hyperbolicity of a random quotient relative to
+the factors when d < 21 , and prove Theorem 1.2. In Section 6, we establish results
+for density d < 16 about the geometry of codimension–1 subspaces of our model
+spaces called hyperstructures.
+   These results are used in Section 7 and Section 8 to prove Theorem 1.5. The-
+orem 7.5 is the main result of Section 7, where we prove that random quotients
+are relatively geometric cubulated with overwhelming probability at d < 16 when
+the factors are (possibly trivially) relatively geometrically cubulated. In addition
+to the results from Section 6, the proof of Theorem 7.5 uses a relative cubulation
+criterion from [EN21]. Finally, in Section 8, we prove that if the factor groups are
+properly and cocompactly cubulated, then a random quotient at density d < 61 will
+be properly and cocompactly cubulated with overwhelming probability. For this,
+                         RANDOM QUOTIENTS OF FREE PRODUCTS                                       5
+
+
+we use a boundary criterion of Bergeron–Wise [BW12, Theorem 5.1] for proper-
+ness of the action, and a result of Hruska–Wise [HW14, Theorem 7.12] to prove
+cocompactness.
+
+1.4. Acknowledgments. This research was funded in whole or in part by the
+Austrian Science Fund (FWF) [10.55776/P35079] and NSF grant number DMS-
+2317001. For open access purposes, the authors have applied a CC BY public
+copyright license to any author-accepted manuscript version arising from this sub-
+mission. Montee and Steenbock acknowledge support by the Erwin Schrödinger
+International Institute for Mathematics and Physics in the framework of its Re-
+search in Teams Program in 2024. Suraj was supported by an annual research
+grant of Ashoka University, and ISF grant 1226/19 at the Technion, and gratefully
+acknowledges the hospitality of Carleton College, Institut Henri Poincaré, Institut
+des Hautes Études Scientifiques, the University of Vienna, and the International
+Centre for Theoretical Sciences (Code: ICTS/GIG2024/07) for visits during vari-
+ous stages of this work. Ng was partially supported by ISF grant 660/20 and at the
+Technion by a Zuckerman Fellowship and gratefully acknowledges the hospitality of
+Carleton College. Finally, the authors acknowledge support by LabEx CARMIN,
+ANR-10-LABX-59-01 of the Institut Henri Poincaré (UAR 839 CNRS-Sorbonne
+Université) during the program Groups Acting on Fractals, Hyperbolicity and Self-
+Similarity. The authors thank Xingyi Zhang for assistance in creating figures.
+   Finally, we wish to thank the referee for their pertinent and useful comments
+that shaped this work. We also thank the referee for pointing out several mistakes
+in our original arguments, and for sharing their ideas on how to fix those mistakes.
+
+               2. Model spaces for quotients of free products
+   Let G1 , G2 , . . . , Gn be groups. Let (Z1 , p1 ), (Z2 , p2 ), . . . , (Zn , pn ) be based geo-
+desic metric spaces such that each Gi acts on Zi by isometries. We suppress base-
+points except when explicitly needed. Denote the free product by G∗ = G1 ∗ ⋅ ⋅ ⋅ ∗ Gn
+and let Z = {Z1 , . . . , Zn }. In this section we construct a space XR (Z) on which
+certain quotients of G∗ act properly and cocompactly.
+   The free product G∗ is the fundamental group of a graph of groups Σ whose
+underlying graph is a star with n leaves: each of the free factors Gi is the vertex
+group for exactly one of the leaf vertices, the vertex group of the central vertex is
+trivial, and all edge groups are trivial. Let T denote the Bass–Serre tree for the
+graph of groups Σ (see Figure 1).
+   We now construct a space T (Z). For each vertex gGi of T we take a copy of
+(Zi , pi ) that we denote by (Zig , pgi ) and for each vertex g{1} we take a singleton
+{⋆g }. The space T (Z) is obtained from the disjoint union of the (Zig , pgi ) and {⋆g }
+by adding, for each edge (gGi , ggi {1}) of T , an edge (gi pgi , ⋆ggi ).
+Remark 2.1. The space T (Z) is a realization of a tree of spaces with underlying
+tree T , in which the spaces for each Gi are copies of (Zi , pi ) and all other spaces
+are single points. See [SW79].
+   There is an induced action of G∗ on T (Z) and a natural G∗ -equivariant projec-
+tion πT ∶ T (Z) ↠ T . We call the pre-image of a vertex of T a vertex space.
+   Let R be a finite subset of G∗ consisting of loxodromic elements for the action
+of G∗ on T . We construct model spaces XR (Z), and XR for G = G∗ /⟪R⟫.
+6              EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+
+
+                                      Gi                  G2
+
+
+                                             1            G1
+
+
+
+                                                     Gn
+
+
+           Figure 1. The Bass–Serre tree T and the graph of groups Σ.
+
+    Let W ⊂ G∗ be the set of conjugates of the elements of R. For every w ∈ W,
+we construct a line L(w) ⊆ T (Z) which is stabilized by w in such a way that
+L(w) projects to the unique bi-infinite geodesic axis L(w) ⊆ T on which w acts by
+translations:
+    For each g ∈ Gi fix a geodesic path αg ⊆ Zi joining the basepoint pi to g ⋅ pi .
+Then, for each length 2 subpath (g1, gGi ) ∪ (gGi , ggi 1) of L(w) ⊂ T , we choose the
+lift (⋆g , pgi ) ∪ αggi ∪ (gi pgi , ⋆ggi ) in T (Z). This defines a unique lift L(w) in T (Z)
+of L(w) by taking the union of the pre-images of its subpaths of length at most 2.
+Note that π(L(w)) = L(w).
+    Denote by X ′ (Z) = ⟪R⟫/T (Z) and q ∶ T (Z) ↠ X ′ (Z). Note that G acts
+on X ′ (Z). For any x ∈ L(w) we have q(x) = q(w ⋅ x). Let w be a conjugate of
+an element in R and let x ∈ L(w). Since the infinite cyclic subgroup ⟨w⟩ acts
+cocompactly on L(w), the finite subsegment of L(w) joining x and w ⋅ x determines
+a cycle σw ∶ S 1 → X ′ (Z) that maps surjectively onto q(L(w)). We take σw to be
+the boundary attaching map of a 2-cell Dw to X ′ (Z). The resulting complex is
+            XR (Z1 , . . . , Zn ) = XR (Z) ∶= X (Z) ⊔ (⊔w Dw )/(∂Dw ∼ σw ) ,
+                                                 ′
+
+
+and we refer to the 2-cells Dw as relator cells.
+Remark 2.2. It may be the case that two words w = grg −1 , w′ = hsh−1 have the
+same axes L(w), L(w′ ); for example, if g = h and r = s−1 . In this case we will
+                       RANDOM QUOTIENTS OF FREE PRODUCTS                                  7
+
+
+                                  T (Z)          XR (Z)
+                                        πT           πX
+
+                                    T              XR
+
+         Figure 2. The actions of G∗ on T (Z) and T , respectively, induces
+         actions of G on XR (Z) and XR , respectively.
+
+
+see two disks Dw , Dw′ in XR (Z) identified along their boundary. We will show
+later that, in the probabilistic setting we are interested in, this does not occur (see
+Corollary 5.7).
+   We let XR = XR (Z1′ , . . . , Zn′ ) where each space Zi′ is fixed to be a singleton. Note
+that XR is a 2-complex with 1-skeleton ⟪R⟫/T . There is a natural projection map
+                                   πX ∶ XR (Z) → XR
+such that the diagram in Figure 2 commutes.
+   The following is an immediate consequence of the construction.
+Lemma 2.3. The action of G∗ on the tree of spaces T (Z) (respectively T ) induces
+an action of the quotient group G = G∗ /⟪R⟫ on the space XR (Z) (respectively
+XR ). Since πT is G∗ -equivariant, πX is G-equivariant.                        □
+   In general, the projection from T (Z) to XR (Z) does not restrict to an embedding
+of the vertex spaces Zi into XR (Z). Indeed, the group G could even be a finite or
+trivial group. The following is an example where the vertex spaces do not embed
+and G is not finite.
+Example 2.4. Let G1 = ⟨a⟩ be an infinite cyclic group, and let G2 = ⟨b, c⟩ be a free
+group. Let Z1 and Z2 be their respective Cayley graphs. Let R = {a(bc)10 , (bc)−10 a},
+and note that a(bc)10 and (bc)−10 a are loxodromic for the action of G1 ∗ G2 on
+its Bass-Serre tree. Observe that a2 = 1 and (bc)20 = 1 in the quotient group
+G = G1 ∗ G2 /⟪R⟫. Thus the projection map from T (Z) to XR (Z) does not restrict
+to an embedding of Z1 or Z2 .
+   However, we will later show that in our random model with overwhelming prob-
+ability the factor groups Gi embed in the quotient G and the projection map from
+T (Z) to XR (Z) restricts to an embedding of Zi in XR (Z) (see Corollary 5.7).
+Example 2.5. Assume that R satisfies the C ′ (1/6) small cancellation condition over
+the free product. Then the space XR is the development of the complex of groups
+described in [MS17]. If, furthermore, the groups Gi act properly and cocompactly
+on CAT(0) cube complexes Qi , then XR (Q1 , . . . , Qn ) coincides with the “blown-up
+space” used in [MS17] to build walls.
+   Note that vertices of T are either cosets of {1}, in which case we call them central
+vertices, or they are cosets of some Gi , in which case they are called factor vertices.
+Similarly, we refer to a vertex of XR that is in the image of a central vertex of T as
+a central vertex, and otherwise we call the vertex a factor vertex. By the definition
+of XR , this yields a well-defined partition of the vertices of XR into factor vertices
+and central vertices.
+8             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+Lemma 2.6. The quotient G = G∗ /⟪R⟫ acts on the complex XR with trivial edge
+stabilizers. Moreover, the stabilizer of a vertex of XR satisfies the following: if
+the vertex is central, then the stabilizer is trivial. Otherwise, it is conjugate to the
+image of one of the groups Gi in G.
+Proof. Let x be an edge or a vertex of XR and let g ∈ G∗ /⟪R⟫ be the image of an
+element h =/ 1 in G∗ such that h x = x. Let x be a pre-image of x. If hx /= x, then
+h ∈ ⟪R⟫ and h = 1 in G. This settles the case where x is an edge. Otherwise, x
+and x are vertices, and h is in the stabilizer of x. If x ∈ {g{1} ∣ g ∈ G}, then the
+stabilizer of x is trivial and h = 1. Thus the stabilizer of x is trivial in this case.
+Otherwise, the stabilizer of x is conjugate to one of the groups Gi . This yields the
+lemma.                                                                               □
+    We end this section by introducing the following important notation.
+Definition 2.7. An edge triple in T is an ordered triple (e1 , v, e2 ) so that e1 , e2
+are edges in T containing a factor vertex v. We assign a label to each edge triple in
+T , named a rotation element, as follows: Given an edge triple (e1 , v, e2 ), where e1 =
+(w1 {1}, w2 Gi ), e2 = (w2 Gi , w3 {1}), the rotation element from e1 to e2 is w1−1 w3 ∈
+Gi .
+Remark 2.8. The rotation element w1−1 w3 is indeed in Gi as case w1 = w2 w1′ and
+w3 = w2 w3′ , where w1′ , w3′ ∈ Gi . Rotation elements of edge triples in T are G∗ -
+invariant, that is, (e1 , v, e2 ) and g(e1 , v, e2 ) have the same rotation element for any
+g ∈ G∗ .
+    By Remark 2.8 the following is well-defined.
+Definition 2.9. An edge triple in XR is an ordered triple (e1 , v, e2 ) so that e1 ,
+e2 are edges in XR containing a factor vertex v. Let (e′1 , v ′ , e′2 ) be a pre-image
+of (e1 , v, e2 ) in T . The rotation element of (e1 , v, e2 ) is the image of the rotation
+element of (e′1 , v ′ , e′2 ) under the quotient map q ∶ G∗ → G. Moreover, in this case
+the rotation element of (e′1 , v ′ , e′2 ) in G∗ is called a geometric representative of the
+rotation element of (e1 , v, e2 ).
+Remark 2.10. The rotation element of an edge triple in XR is well-defined in G
+by Remark 2.8, but may have multiple geometric representatives in Gi , for some
+factor group Gi of G∗ . This happens if and only if Gi does not embed in G.
+For instance, let G be the group of Example 2.4 and let (e′1 , v ′ , e′2 ) be an edge
+triple in T with rotation element a2 . Then the rotation element of the image of
+(e′1 , v ′ , e′2 ) in XR is the identity element, and both the identity element and a2
+are geometric representatives of this rotation element in G∗ . Similarly, rotation
+elements about a given factor vertex with rotation elements a and a3 are also
+geometric representatives of the same edge triple in XR . This is related to the fact
+that a complex of group is developable if and only if the vertex groups embed, see
+[BH99, Chapter III.C Theorem 2.13 and Proposition 3.14].
+
+                                  3. Diagrams in XR
+    By a diagram in a 2-complex X we mean a combinatorial map Y → X, where Y
+is a finite connected 2-complex. The area of Y , denoted by Area(Y ), is the number
+of 2-cells in Y . We denote by ∂Y the set of edges in the boundary of Y , and by ∣∂Y ∣
+its cardinality. By a disk diagram in a 2-complex X, we mean a combinatorial map
+                       RANDOM QUOTIENTS OF FREE PRODUCTS                                  9
+
+
+D → X, where D is a 2-complex that is planar, connected, and simply-connected.
+In particular, a disk diagram D may have a spur so need not be a topological disk.
+
+3.1. Diagrams over R. Let Y → XR be a finite diagram such that
+    (1) the boundary of every 2-cell has length = 2ℓ,
+    (2) there is a partition of the vertices into factor vertices and central vertices
+        that is respected by the map Y → XR , i.e., this map sends factor vertices
+        to factor vertices, and central vertices to central vertices.
+An edge triple in Y is a triple (e1 , v, e2 ), where v is a factor vertex and e1 and e2
+are two edges of Y at v.
+   Note that every diagram Y → XR satisfying the points (1) and (2) above inherits,
+via the map Y → XR , a decoration in the following sense.
+Definition 3.1. A decoration of a diagram Y → XR satisfying (1) and (2) above
+consists of
+      ● a factor group Gv for each factor vertex v,
+      ● for each edge triple (e1 , v, e2 ), where e1 and e2 are edges at the factor
+        vertex v, a rotation element s ∈ Gv which is the identity element if and
+        only if e1 = e2 ,
+      ● for each 2-cell a fixed factor vertex in its boundary and an orientation of
+        the boundary,
+such that the following hold.
+    (1) The rotation element of an edge triple in Y is a geometric representative of
+        the rotation element of its image in XR .
+    (2) Let c be a 2-cell and let s1 , s2 , . . . , sm be the rotation elements, read start-
+        ing from the fixed vertex in its boundary in the orientation fixed on the
+        boundary. Then the word r = s1 s2 ⋯sm ∈ R. In this case, we say that c
+        bears the word r ∈ R.
+Definition 3.2. The diagram Y is a diagram over R if the rotation elements
+assigned to edge triples (e1 , v, e2 ) and (e2 , v, e1 ) are inverse to each other in G∗ .
+    As the following example shows, diagrams in XR are not necessarily diagrams
+over R. Indeed, condition (2) of Definition 3.1 may be in conflict with Definition 3.2
+if factor groups do not embed in G.
+Example 3.3. Let G1 = ⟨a∣∅⟩, G2 = ⟨b∣∅⟩, R = {ab, a−1 b} and G = G1 ∗ G2 /⟪R⟫ =
+Z/2Z. Figure 3(d) is a spherical diagram in XR , which is not a diagram over R.
+Indeed, let v be the front vertex in the diagram in Figure 3(d), and let e, f be the
+two edges at v where e is the front edge in the figure. The rotation element of the
+edge triple (e, v, f ) in the relator face C2 has to be a, and the rotation element of
+the edge triple (f, v, e) in the relator face C3 has to be a as well. This is because
+the two 2-cells in this diagram need to bear a relator. These two rotation elements
+are not inverse to each other in G1 = ⟨a⟩.
+   Finally, a reduction pair in a diagram Y over R is a pair of 2-cells which share
+at least one edge, with opposite orientations and a common vertex such that the
+respective boundary paths starting from that vertex in the given orientation bear
+the same words in R. A diagram Y over R is reduced if it does not contain any
+reduction pair.
+10             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+Remark 3.4. If a disk diagram D over R filling a given loop in XR is of minimal
+area, then it is also reduced.
+     We have the following.
+Lemma 3.5. Assume that the quotient map from G∗ to G is injective on the
+factor groups. Then every diagram Y → XR inherits a unique decoration via the
+map Y → XR , so that the rotation elements assigned to edge triples (e1 , v, e2 )
+and (e2 , v, e1 ) are inverse to each other in G∗ . In particular, with its inherited
+decoration Y is a diagram over R.
+Remark 3.6. In fact even more is true. For instance, if v is a factor vertex and Y ′
+is a planar subdiagram containing v, if edge triples (e1 , v, e2 ), (e2 , v, e3 ), (e1 , v, e3 )
+have rotation elements s1 , s2 , s3 respectively then s1 s2 = s3 in Gv .
+                                                                                            (1)
+Proof of Lemma 3.5. As the factor groups embed, the quotient map from T to XR
+is injective on the set of edge triples at any fixed factor vertex of the Bass-Serre
+tree T . For this reason, the rotation element of any edge triple at a factor vertex
+in XR has a unique geometric representative in Gv . Also, every 2-cell of Y is sent
+                                                               (1)
+to a 2-cell of XR ; and since the quotient map from T to XR is injective on the
+set of edge triples at any fixed factor vertex, any edge triple (e1 , v, e2 ) in a 2-cell
+of Y is sent to an edge triple (f1 , v, f2 ) in XR where f1 =/ f2 . As the geometric
+representative of the rotation element of such an edge triple is unique, the claim
+follows by assigning this element as the rotation element of (e1 , v, e2 ).            □
+3.2. Disk diagrams over R. Observe that any embedded cycle c in XR      1
+                                                                           bounds
+a disk diagram over R. Indeed, this follows because c lifts to a segment c̃ in T
+whose endpoints are translates of each other by an element of ⟪R⟫. This yields the
+following variant of the van Kampen Lemma.
+   If D is a disk diagram over R, we say that its boundary bears a word w ∈ ⟪R⟫ if
+there is a factor vertex v0 on ∂D and an orientation of ∂D such that w equals the
+word obtained by concatenating the rotation elements at the edge triples in ∂D,
+starting from v0 in the given orientation.
+Lemma 3.7. Let w ∈ ⟪R⟫ be represented by a word in normal form. Then there
+is a disk diagram over R whose boundary bears the word w.
+   We describe how this lemma follows from the traditional van Kampen lemma.
+It may help to refer to Figure 3.
+Proof. For all 1 ⩽ i ⩽ m fix a presentation ⟨Gi ∣Ri ⟩ of Gi where Ri is the set of all
+relators in Gi over the alphabet Gi . Let Zi be the Cayley complex of Gi with respect
+this presentation and let Z = {Z1 , . . . , Zn }. By Lemma 2.3, there is a G-equivariant
+projection from XR (Z) onto XR obtained by simultaneously contracting all the
+copies of the spaces Zi in XR (Z) to a point.
+   On the other hand, there also is a G-equivariant projection from XR (Z) onto the
+Cayley complex ΓG with respect to the presentation ⟨G1 ∪ ⋅ ⋅ ⋅ ∪ Gn ∣R1 ∪ ⋅ ⋅ ⋅ ∪ Rn ∪ R⟩
+obtained by simultaneously contracting each of the edges originating in the Bass-
+Serre tree T to a point. We now mimic the inversion of this procedure for a van
+Kampen diagram over G.
+   Let w ∈ ⟪R⟫ be a word in normal form in the free product G∗ . Let D be a van
+Kampen diagram for w over G of minimal area (e.g. Figure 3(a)). Each edge is
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                              11
+
+
+
+
+        (a)                     (b)                   (c)                  (d)
+
+
+        Figure 3. Let G1 = ⟨a∣∅⟩, G2 = ⟨b∣∅⟩, R = {ab, a−1 b} and G =
+        G1 ∗ G2 /⟪R⟫ = Z/2Z. Figure (a) shows a van Kampen diagram
+        D of G for the relation a2 = 1. There are two factor diagrams:
+        firstly, the top 2-cell enclosed by the edges labelled a, a and a2 ,
+        and, secondly, the edge labelled b. The bottom vertex has factor
+        degree 3, the top vertex has factor degree 2. Figure (b) shows
+        the corresponding diagram D     ̃ in XR (Z), where Z1 and Z2 are the
+        Cayley complexes for G1 with respect to the generating set G1 and
+        all relations in G1 , for G2 , respectively. Here we have retained the
+        orientation and labels of the edges of Z1 and Z2 in XR (Z). Figure
+        (c) shows a corresponding disk diagram D over R. Figure (d) is
+        a spherical diagram in XR obtained by identifying the boundary
+        paths in Figure (c). Figure (a) can be obtained from Figure (b) by
+        contracting all the unlabelled edges to a point. Figure (c) can be
+        obtained from Figure (b) by contracting each factor diagram to a
+        point.
+
+
+oriented and labelled by an element of one of the factor groups. The diagram D is
+built up of factor faces and relator faces. The former are the 2-cells all of whose
+edges are labelled by an element of the same factor group, and whose boundary
+bears a relation in that same factor group. The latter are the 2-cells of boundary
+length = ℓ that bear the relators of R. Note that no two consecutive edges in
+the boundary of a relator face can be labelled by elements in the same factor
+group. This is because the elements of R are given in normal form, so that any two
+consecutive syllables are in distinct factor groups. Also note that each such syllable
+is a generator of G. A factor diagram is either a single factor face or an edge that
+is not contained in any factor face. Let v be a vertex in D. The multiplicity of a
+factor diagram K → D at v is the number of vertices of the factor diagram that are
+identified with v via the map K → D. The factor degree of a vertex v is the sum of
+the multiplicities of the factor diagrams at v.
+   We now build a diagram D    ̃ in XR (Z) and a map from D     ̃ to D such that the
+following diagram commutes:
+
+                                 XR (Z)          ΓG
+                                                      .
+                                      ̃
+                                      D          D
+12             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+To this point replace each vertex of D by a star of edges as follows. If the factor
+degree of the vertex v is d, we replace v by a star consisting of d edges such that
+contracting the new edges yields the original diagram, and such that each leaf
+vertex of the star is in exactly one factor diagram. The central vertices of such a
+star are referred to as central vertices. We note that this procedure does not alter
+the factor diagrams, while the boundary length of a relator face increases. In fact,
+every vertex in the boundary of a relator face is replaced by two edges joined at a
+central vertex.
+   Since the Cayley complex of G is obtained from XR (Z) by contracting each
+edge originating in the Bass-Serre tree to a point, this procedure results in a disk
+diagram D ̃ → XR (Z) (e.g. Figure 3(b)) by sending each 2-cell of D̃ to the pre-image
+in XR (Z) of the image of the corresponding 2-cell of D in the Cayley complex of
+G. The diagram D    ̃ has edges and 2-cells originating in the factor diagrams of D,
+and edges originating in the vertices of D. Edges of the first type are sent to edges
+in the copies of the Zi , edges of the second type are sent to the edges originating
+in the Bass-Serre tree T . A maximal connected subdiagram all of whose edges
+originate in the same factor diagram of D is called a factor diagram of D.    ̃ Note
+                                       ̃
+that the factor diagrams of D and D are in 1-1 correspondence. Moreover, each
+2-cell originating from a relator face has boundary of length = 3ℓ; more precisely, ℓ
+edges are sent to images of the complexes Zi in XR (Z), and 2ℓ edges are sent to
+the image of the Bass-Serre tree in XR (Z). The map from D    ̃ to D is given by the
+inverse operation of contracting each edge of second type in D  ̃ to a point.
+   We now construct a diagram D over R and a map from D        ̃ to D such that the
+following diagram commutes:
+
+                                   XR (Z)          XR
+                                                         .
+                                      ̃
+                                      D             D
+
+To this point, we simultaneously contract each factor diagram of D   ̃ to a point. Since
+XR is obtained from XR (Z) by contracting each of the spaces Zi to a point, this
+procedure yields a disk diagram D → XR (e.g. Figure 3(c)). The boundary of each
+2-cell of D has length = 2ℓ. Moreover, the images of the factor diagrams are the
+factor vertices, the remaining vertices are the central vertices. To each factor vertex
+v that is the image of an edge labelled by an element of Gi one assigns the factor
+group Gv = Gi . Moreover, to each edge triple (e1 , v, e2 ) in XR at factor vertex v
+we assign a rotation element as follows. Suppose that v is in the image of a factor
+diagram K, and let z1 and z2 ∈ K be the vertices in the preimage of e1 , and e2
+                  ̃ Then the rotation element assigned to (e1 , v, e2 ) is the element
+respectively, in D.
+of Gv read on the edge path from z1 to z2 in K. By this definition the rotation
+element assigned to (e2 , v, e1 ) is inverse to the rotation element of (e1 , v, e2 ) in the
+factor group Gv . This procedure yields a disk diagram over R whose boundary
+bears the word w. The map from D       ̃ to D is the map that simultaneously contracts
+                         ̃
+each factor diagram of D to a point. This yields the claim.                               □
+
+     Lemma 3.7 yields the following.
+
+Lemma 3.8. The complex XR is simply connected.                                            □
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                             13
+
+
+                  4. (Relative) isoperimetric inequalities
+   Our interest in disk diagrams stems from the following fact. We say that X
+satisfies a linear isoperimetric inequality if there is a constant C > 0, such that
+Area(D) ⩽ C∣∂D∣ for all disk diagrams D of minimal area among the diagrams
+with same boundary curve in X.
+Proposition 4.1 ([BH99, Chapter III.H, Section 2, Theorem 2.9 and 3.2 Remark
+(4)]). Let L ⩾ 3 and let X be a 2-complex such that every 2-cell has L edges. If X
+satisfies a linear isoperimetric inequality, then X is hyperbolic.
+   The main goal of this section is to prove Theorem 4.30, which gives a linear
+isoperimetric inequality for disk diagrams in XR and an analogous bound for certain
+non-planar diagrams. It is used in Section 5 to argue that XR satisfies a linear
+isoperimetric inequality, hence, that XR is hyperbolic.
+   The following definition gives a way to bound the amount of internal gluing that
+exists in a (possibly non-planar) diagram.
+Definition 4.2 ([Odr21]). Let Y be a 2-complex. The area of Y , denoted Area(Y ),
+is the number of 2-cells in Y . The cancellation of Y is
+                      Cancel(Y ) =          ∑             (deg(e) − 1),
+                                     e∈Y (1) , deg(e)/
+                                                     =0
+
+where deg(e) is the number of 2-cells that contain the edge e with multiplicity.
+Remark 4.3. If D is a disk diagram and every 2-cell in D is an ℓ-gon, then
+Cancel(D) = 12 (ℓArea(D) − ∣∂D∣) . This relates cancellation to isoperimetric in-
+equalities of Y .
+   Another notion that has proved useful in the study of random groups in Gromov’s
+density model is the notion of “decorated abstract diagrams” [Oll04a]. In order to
+use the combinatorial properties of XR we adapt the technical notions of abstract
+diagrams and cancellation to our setting. We use these to prove Theorem 4.18,
+which is the main technical result of this section. We start with decorated abstract
+diagrams.
+4.1. Decorated abstract diagrams. From now on, let G = (G1 , . . . , Gn ) be an
+n-tuple of finitely generated nontrivial groups and let G ∼ FPD(G; d, m, ℓ). We are
+interested in diagrams that can be immersed in XR .
+Definition 4.4. An abstract diagram is a finite connected 2-complex. A decorated
+abstract diagram is a finite connected 2-complex with bipartite 1-skeleton in which
+every 2-cell is a 2ℓ-gon, along with the following decoration:
+    (1) a distinguished vertex on the boundary of each 2-cell such that all distin-
+        guished vertices lie in the same part of the bipartition of the 0-cells,
+    (2) an orientation in each 2-cell, and
+    (3) a partition of the faces of the 2-complex.
+The equivalence classes of the faces are called abstract relators. In analogy with
+Definition 3.2, we refer to the elements of the part containing the distinguished
+vertices as factor vertices. All other vertices are referred to as central vertices.
+A triple (e1 , v, e2 ) in a decorated abstract diagram is an edge triple if e1 and e2
+are distinct edges containing a factor vertex v. The area of a decorated abstract
+diagram Y , denoted Area(Y ), is the number of 2-cells in Y .
+14             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+
+
+          Figure 4. A decorated abstract diagram. Let G and R be as in
+          Figure 3. Then this decorated abstract diagram is fulfillable in G,
+          see Figure 3(c).
+
+Definition 4.5. A reduction pair in a decorated abstract diagram is a pair of
+2-cells which share at least one edge, with opposite orientations, which are in the
+same part of the partition of the 2-cells, and for which the first vertex in the overlap
+occurs at the same (oriented) distance from the distinguished vertex in each face.
+   An abstract diagram is reduced if it contains no reduction pairs.
+   Note that if a decorated abstract diagram contains a reduction pair, we can
+reduce it by identifying the 2-cells in the pair. In this way, the requirement that
+abstract diagrams be reduced can be interpreted as a condition that abstract dia-
+grams do not contain extraneous 2-cells which carry the same data.
+   Our goal is to detect whether a given reduced decorated abstract diagram can be
+realized as a diagram in XR by fulfilling its decoration to make it a diagram over
+R, see Definition 3.2, i.e. by assigning a rotation element to each edge triple on the
+boundary of each face so that the boundary of the face bears a relator in R, and
+then checking if the decorated diagram so obtained can appear as a subcomplex of
+XR . We will compute the probability that such a decoration is possible inductively.
+Definition 4.6. A decorated abstract diagram Y is fulfillable in G if there is
+       ● an assignment of a factor group Gv to each factor vertex v of degree ≥ 2,
+       ● an assignment of a relator of R for each face such that the assignment
+         respects the partition of faces, and two faces from different equivalence
+         classes are not assigned the same relator,
+       ● an assignment of a nontrivial element of ⋃ni=1 Bi (m) to each edge triple in
+         a face — called rotation elements in analogy to Definition 3.2,
+such that the following hold.
+     (1) For any factor vertex v, the rotation elements assigned to each edge triple
+         centered at v are all contained in Gv .
+     (2) Let f be a face and let w1 , . . . , wℓ denote the rotation elements in order from
+         the distinguished vertex, in the direction of the given orientation. Then the
+         word w1 . . . wℓ is the relator assigned to f . In this case we say that the face
+         bears the relator assigned to it.
+     (3) The rotation element assigned to an edge triple (e1 , v, e2 ) is inverse in Gv
+         to the rotation element assigned to (e2 , v, e1 ).
+If a decorated abstract diagram Y is fulfillable in G, we also say that Y fulfills R.
+     We now compare Definition 4.6 to Definition 3.2 of diagrams over R.
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                              15
+
+
+Remark 4.7. Let Y → XR be a diagram over R. The map from the 2-complex Y to
+XR induces a decoration on the 2-complex Y which lets us view Y as a decorated
+abstract diagram. We call Y the underlying decorated abstract diagram of Y → XR .
+If Y → XR is reduced, then Y is a reduced abstract diagram. Furthermore, as
+Y → XR is a diagram over R, Y is fulfillable. A concrete example of a fulfillable
+decorated abstract diagram is given in Figure 4.
+Remark 4.8. Suppose that an abstract diagram admits a combinatorial map to
+XR . Then it also inherits a decoration via the map to XR . However, the dec-
+orated abstract diagram so obtained may not be fulfillable, see Example 3.3 and
+Figure 3(d).
+   We first prove the linear isoperimetric inequality in XR . By Lemma 3.7, it is
+sufficient to prove the linear isoperimetric inequality for disk diagrams over R. We
+actually prove that for a fixed reduced abstract diagram, the probability that it can
+be fulfilled and that it violates the inequality is, with overwhelming probability, 0.
+By Remark 4.7, this implies that the probability of being a reduced diagram over
+R which violates the linear isoperimetric inequality is 0. We then argue that the
+number of diagrams of interest in XR is sufficiently small, so that this statement
+holds, with overwhelming probability, for all such diagrams.
+Definition 4.9. Let Y be a decorated abstract diagram. A vertex of Y is called a
+corner of Y if the degree of v is ≥ 3 or if v is the ℓ-th vertex of some face f .
+   Recall that the boundary of each face f has length 2ℓ, so every ∣∂f ∣/2-th vertex
+is a corner. This will be important in our proof, see Lemma 4.19.
+Definition 4.10. A corner labeling on a decorated abstract diagram is an assign-
+ment of a factor group to each corner and of all the rotation elements centered at
+such factor vertices.
+   Note that a corner labeled decorated abstract diagram need not a priori be
+fulfillable.
+4.2. Counting corner labeled abstract diagrams. We also need a notion of
+bounded complexity for our abstract diagrams. In particular, we need a bound on
+the area and on the amount of gluing required to create the diagram.
+Definition 4.11. A connector in an abstract diagram Y is either a maximal seg-
+ment of Y (1) such that all vertices on the segment other than its endpoints have
+degree 2, or a cycle in Y (1) in which at most one vertex has degree greater than 2.
+
+Definition 4.12. An abstract diagram Y is (K, M )-bounded if Area(Y ) ≤ K and
+Y (1) is a union of at most M connectors.
+   This definition varies from the definition of a (K, M )-bounded diagram in [MP15,
+Section 2]. In their definition, M bounds the number of gluings needed to construct
+a diagram. However, the two definitions are roughly equivalent in the situations
+explored in this paper, and our definition makes some calculations easier. We note
+also that any (K, M )-bounded 2-complex must be of complexity max{K, M }, in
+the sense of [Tsa24, Definition 2.2]. Indeed, our connectors are equivalent to Tsai’s
+maximal arcs, and if a complex has at most M connectors then every face of the
+diagram must be bounded by at most M maximal arcs.
+16            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+
+
+        Figure 5. A non-planar diagram with three 2-cells and six max-
+        imal arcs, each indicated in a different color. Note that the inter-
+        section of two 2-cells need not be a maximal arc.
+
+Lemma 4.13. Let Y be a non-filamentous decorated abstract diagram. If Y is
+(K, M )-bounded, then Y has at most ℓK + K corners.
+Proof. There are at most ℓK vertices of degree > 2, and at most K vertices that
+are the ℓ-th vertex on a face f .                                            □
+   We will use the following fact. An abstract diagram is non-filamentous if all of
+its edges are contained in at least one 2-cell.
+Proposition 4.14. The number of (K, M )-bounded reduced corner-labeled non-
+filamentous decorated abstract diagrams is polynomial in ℓ.
+Proof. It follows from [Tsa24, Lemma 2.3] that the number of (K, M )-bounded non-
+filamentous decorated abstract diagrams is polynomial in ℓ. Also, the number of
+corners in a (K, M ) bounded diagram is polynomial in ℓ by Lemma 4.13. Moreover,
+in a (K, M )-bounded diagram any vertex has degree at most 2M because every
+vertex of degree greater than 2 is an endpoint of a connector. For every rotation
+element at a corner, there are B = ∑ni=1 ∣Bi (m)∣ possibilities; hence, there are at
+most B 2M possibilities to assign rotation elements per corner. This yields the
+claim.                                                                            □
+   We now define a relative version of cancellation for abstract diagrams of G, which
+relies on counting edge triples rather than edges. Roughly speaking, the relative
+cancellation of a diagram measures constraints on internal edge triples.
+4.3. A relative version of Cancellation. We say a 2-cell fully contains an edge
+triple if it contains both the edges of the triple, while a 2-cell partially contains an
+edge triple if it contains exactly one of the edges of the triple.
+Definition 4.15. The relative degree of an edge triple in a decorated abstract
+diagram is defined as follows (see Figure 6):
+                                                      ⎧
+                                                      ⎪  if there is a 2-cell partially
+                             2-cells that fully       ⎪
+                                                      ⎪1
+  deg∗ (e1 , v, e2 ) ∶= # {                       } + ⎨ containing (e1 , v, e2 )        .
+                            contain (e1 , v, e2 )     ⎪
+                                                      ⎪
+                                                      ⎪
+                                                      ⎩0 otherwise
+
+Definition 4.16. Let E be the set of all edge triples that have non-zero relative
+degree. The relative cancellation of a decorated abstract diagram Y is
+                                  1
+                   Cancel∗ (Y ) =        ∑ (deg∗ (e1 , v, e2 ) − 1).
+                                  2 (e1 ,v,e2 )∈E
+                        RANDOM QUOTIENTS OF FREE PRODUCTS                                     17
+
+
+
+
+         Figure 6. Two possible arrangements of adjacent faces. On the
+         left, the edge triple (e1 , v, e2 ) is fully contained in both adjacent
+         faces, and deg∗ (e1 , v, e2 ) = 2. On the right (e1 , v, e2 ) is par-
+         tially contained in one face and fully contained in the other, and
+         deg∗ (e1 , v, e2 ) = 2.
+
+Remark 4.17. Note that deg∗ (e1 , v, e2 ) = deg∗ (e2 , v, e1 ), and that edge triples
+are ordered, i.e. (e1 , v, e2 ) ≠ (e2 , v, e1 ). The factor of 1/2 in the formula for
+Cancel∗ (Y ) is to correct for the double counting of deg∗ (e1 , v, e2 ) = deg∗ (e2 , v, e1 )
+in ∑(e1 ,v,e2 )∈E (deg∗ (e1 , v, e2 ) − 1).
+  Note that if an edge triple is not fully contained in a 2-cell of Y , then it does
+not contribute to Cancel∗ (Y ).
+  We are now ready to state the main result of this section.
+Theorem 4.18. Let K, M, ε > 0. With overwhelming probability the following
+property holds. Every (K, M )-bounded reduced non-filamentous diagram Y over R
+satisfies
+                              Cancel∗ (Y ) ≤ (d + ε)Area(Y )ℓ.                               (1)
+4.4. The proof of Theorem 4.18. We adapt the arguments of [Oll04a; Odr21]
+to our setting. Let Y be a corner labeled decorated abstract diagram. Let N be
+the number of equivalence classes of the partition of the 2-cells of Y . We think of
+this number as of the number of distinct relators in Y . For 1 ≤ i ≤ N let mi be the
+cardinality of the i-th equivalence class, that is, the number of times a relator ri
+appears in Y . Up to reordering, we may assume that m1 ≥ m2 ≥ ⋅ ⋅ ⋅ ≥ mN .
+    Consider a factor vertex v in Y . If v is a corner, then every rotation element
+centered on v is already determined because Y is corner labeled. On the other
+hand, suppose that v is not a corner. Then v is adjacent to at most two edges, so
+it is contained in at most two edge triples. Suppose these edge triples are fully
+contained in faces f1 , . . . , fs bearing abstract relators i1 , . . . , is , and suppose that v
+is the kj -th vertex of face fj .
+Lemma 4.19. If Y is reduced, then, for every 1 ≤ j < j ′ ≤ s we have that (ij , kj ) ≠
+(ij ′ , kj ′ ).
+Proof. Suppose by contradiction that 1 ≤ j < j ′ ≤ s and that (ij , kj ) = (ij ′ , kj ′ ).
+Then kj = kj ′ and ij = ij ′ . By definition v is not a corner. Thus its degree is equal
+to 2, and let e1 and e2 be the two edges adjacent to v. Also note that as the degree
+of v is equal to 2, the edge triple (e1 , v, e2 ) is fully contained in fj and fj ′ . In
+particular, faces fj and fj ′ share edges e1 and e2 . As Y is reduced, fj and fj ′ do
+not have opposite orientations. Hence kj = kj ′ implies that kj = ∣∂fj ∣/2 = ℓ, so v is
+a corner. This is a contradiction.                                                     □
+18             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+    So we can define a strict lexicographic order on pairs (ij , kj ), and this gives a
+unique minimal index jmin for each such edge triple. Note that this minimal index
+is the same for edge triples (e, v, e′ ) and (e′ , v, e), so for a vertex v of degree 2 we can
+unambiguously associate jmin with v. For the face fjmin there are no constraints
+on the rotation element at vertex v, however for every other fj containing v the
+rotation element at v is determined by the choice of rotation element in fjmin
+because of condition (2) in Definition 4.6.
+Definition 4.20. Let Y be a corner labeled decorated abstract diagram. Let v be
+a factor vertex in Y and let f be a face of Y containing v. Then v constrains f if
+either v is a corner or if f ≠ fjmin . Similarly, in this case, the edge triple at v in ∂f
+constrains f .
+   Let δ(f ) be the number of edge triples constraining a face f , let F (Y ) be the
+set of faces of Y , and let Fi be the set of faces bearing abstract relator ri . For
+1 ≤ i ≤ N , let κi = maxFi δ(f ).
+Lemma 4.21. Let Y be a reduced corner labeled non-filamentous decorated abstract
+diagram. Then
+                                                          N
+                          Cancel∗ (Y ) ≤     ∑ δ(f ) ≤ ∑ mi κi .
+                                           f ∈F (Y )     i=1
+
+Proof. If an edge triple (e, v, e′ ) is partially contained in some face, then deg(v) ≥ 3,
+hence v constraints any adjacent face. In this case, (e, v, e′ ) contributes 1/2 to
+Cancel∗ (Y ) for all faces that fully contain (e, v, e′ ). Otherwise, (e, v, e′ ) is fully
+contained in every face that contains either of its edges, and therefore (e, v, e′ )
+contributes 1/2 to Cancel∗ (Y ) for all but one adjacent face. By definition there is
+at most one face that is not constrained by v. Summing over all edge triples (e, v, e′ )
+yields the first inequality. The second inequality follows from the definitions.        □
+   We try to fulfill the abstract diagram Y inductively, by picking a relator for each
+equivalence class of 2-cells in Y in order. Note that at each step, when we fill in
+a face fj some of the edge triples may already be determined either by the corner
+labeling of Y or by a labeling of an edge triple in a previous step. These edge triples
+are precisely the edge triples that constrain face fj . We compute the probability
+that at each step, a randomly chosen relator agrees with all of the constraints on a
+given face. We first formalize this agreement condition.
+Definition 4.22. Let Y be a decorated abstract diagram, along with an ordering
+of the equivalence classes of the faces of Y , and let {w1 , . . . , wq } be an ordered set
+of words in Sℓ . We assign the word wj to each of the faces in the j-th equivalence
+class of 2-cells in Y , and say that {w1 , . . . , wq } partially fulfills Y if there is an
+assignment of a nontrivial rotation element in ⋃ni=1 Bi (m) to each edge triple in the
+faces in the first to q-th equivalence class such that the following hold.
+    (1) The rotation elements assigned to edge triples centered at a fixed factor
+         vertex all are in the same factor group.
+    (2) Each face in the j-th equivalence class bears the word wj .
+    (3) The rotation element assigned to an edge triple (e1 , v, e2 ) is inverse to the
+         rotation element assigned to (e2 , v, e1 ).
+   Let Y be a corner labeled decorated abstract diagram. Recall that κq was defined
+to be the maximal number of constraints for a face in the q-th equivalence class,
+                        RANDOM QUOTIENTS OF FREE PRODUCTS                                    19
+
+
+see Definition 4.20; in other words, κq is sum of the length of the segments that
+have already been labeled in the face with label q for which this is maximized.
+   Let f be the face labeled q with a maximal number of constraints. Let us
+remove the constrained edge triples from the boundary of f . This set decomposes
+into finitely many maximal segments; let ηq be its number. Let η ∶= max ηq .
+Remark 4.23. If the abstract diagram Y is (K, M )-bounded, then η ⩽ M .
+Lemma 4.24. There is a constant C > 1 such that the following holds. Let Y be a
+reduced corner-labeled non-filamentous decorated abstract diagram. For 1 ≤ q ≤ N ,
+let pq be the probability that q words w1 , w2 , . . . , wq of free product length ℓ chosen
+at random partially fulfill Y and let p0 = 1. Then
+                                    pq
+                                        ≤ C η+1 λS q .
+                                                    −κ
+                                   pq−1
+   To prove this lemma we first need estimates on the cardinality of the set Sℓ . The
+following lemma is based on a standard counting argument that was explained to
+us by Eric Egge.
+Lemma 4.25. Let Wℓ be the set of words of free-product length ℓ whose syllables
+are in ⋃i Bi (m). There are constants λS > 1 and C > 0 such that for all ℓ > 0,
+                                1 ℓ
+                                  λ ≤ ∣Wℓ ∣ ≤ CλℓS .
+                               C S
+Proof. Define a graph Υ with vertex set B1 (m)⊔⋯⊔Bn (m) and edges (v, w) if and
+only if v, w do not lie in a common ball Bi (m). Let A denote the adjacency matrix
+of Υ. Since A is symmetric, it is diagonalizable and has real eigenvalues. Denote
+the distinct eigenvalues by λ1 , . . . , λk , numbered so that ∣λ1 ∣ > ∣λ2 ∣ > ⋯ > ∣λk ∣.
+   There is a one-to-one correspondence between paths of length ℓ − 1 in Υ and
+reduced words of free-product length ℓ whose syllables all lie in the balls Bi (m),
+given by reading the vertices of the path. Thus
+                                      ∣Wℓ ∣ = J T Aℓ−1 J,
+where J denotes the vector whose entries are all 1. Since A is diagonalizable, the
+entries of Aℓ−1 are linear combinations of λℓ−1      1 , . . . , λk . Hence ∣Wℓ ∣ = c1 λ1     +
+                                                                  ℓ−1                     ℓ−1
+
+⋯ + ck λk for some real numbers c1 , . . . , ck . These numbers do not depend on ℓ.
+        ℓ−1
+
+Note that at least one of the ci is non-zero, since ∣Wℓ ∣ ⩾ 1 for all ℓ > 0. For ease
+of notation we will assume that all the ci are non-zero; if they are not then we
+can simply discard the corresponding eigenvalues and renumber. Similarly we may
+assume that ∣λ1 ∣ > 0. Since ∣λ1 ∣ > ∣λi ∣ for all i > 1, this implies that c1 , λ1 , C0 are all
+positive.
+   Now take
+                                                                 c1 kc
+                     c = max{∣ci ∣}, λS = λ1 , C0 = max {           , }.
+                           i                                    2λ1 λ1
+We then have
+                    ∣Wℓ ∣ ≤ ∣c1 λℓ−1
+                                 1 ∣ + ⋯ + ∣ck λk ∣ ≤ kc λ1
+                                                  ℓ−1       ′ ℓ−1
+                                                                    ⩽ C0 λℓS .
+On the other hand, we also have
+                           ∣Wℓ ∣ = ∣c1 λℓ−1
+                                        1 + ⋯ck λk ∣
+                                                 ℓ−1
+
+
+                                ≥ ∣∣c1 λℓ−1
+                                        1 ∣ − ∣c2 λ2 + ⋯ck λk ∣∣.
+                                                   ℓ−1      ℓ−1
+20             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+Since ∣λ1 ∣ > ∣λi ∣ for all i > 1, we have that
+                        ∣c2 λn2 + ⋯ck λnk ∣       ∣c2 λn2 ∣ + ⋯∣ck λnk ∣
+                     lim                    ≤ lim                        = 0.
+                    n→∞        ∣c1 λn1 ∣      n→∞        ∣c1 λn1 ∣
+In particular, there is N > 0 so that for n > N , we have ∣c2 λn2 + ⋯ck λnk ∣ < 12 ∣c1 λn1 ∣.
+And since c1 , λ1 > 0, for ℓ − 1 > N this gives us
+                        ∣Wℓ ∣ ≥ ∣∣c1 λℓ−1
+                                      1 ∣ − ∣c2 λ2 + ⋯ck λk ∣∣
+                                                 ℓ−1      ℓ−1
+
+                                          1           c1       1 ℓ
+                              ≥ c1 λℓ−1
+                                     1 − c1 λ 1
+                                                 ℓ−1
+                                                     = λℓ−1 ≥    λ .
+                                          2           2 1      C0 S
+                                    λℓ
+   Finally fix C = maxℓ≤N {C0 , ∣WSℓ ∣ }.
+   Since the number of reduced words of free-product length 2ℓ whose syllables are
+in B1 (m) ∪ B2 (m) is 2(b1 b2 )ℓ > 4ℓ , and since this is a lower bound for ∣W2ℓ ∣, we
+must have λS > 1.                                                                    □
+
+   Define Wℓi,⋅ to be the set of reduced words in Wℓ whose first syllable is not in
+Bi (m). Define Wℓ⋅,j analogously, and let W i,j be the set of reduced words in Wℓ
+whose first syllable is not in Bi (m) and whose final syllable is not in Bj (m). Note
+that ∣Wℓi,j ∣ = ∣Wℓj,i ∣ and ∣Wℓi,⋅ ∣ = ∣Wℓ⋅,i ∣.
+Corollary 4.26. Let λS be as defined in Lemma 4.25. If n > 3, then for any
+1 ≤ i, j ≤ n we have ∣Wℓi,j ∣ ≍ ∣Wℓi,⋅ ∣ ≍ ∣Sℓ ∣ ≍ λℓS . In particular, there is a constant
+C > 1 so that for any set A ∈ {Wℓ , Sℓ , Wℓi,⋅ , Wℓi,j } we have
+                                    C −1 λℓS ≤ ∣A∣ ≤ CλℓS .
+   If n = 2, there is a constant C > 1 so that we have C −1 λℓS ≤ Sℓ ≤ CλℓS when ℓ is
+even, and for all ℓ ∈ N we have ∣A∣ ≤ CλℓS for all A ∈ {Wℓ , Sℓ , Wℓi,⋅ , Wℓi,j }.
+Proof. First suppose that n ≥ 3. For every word w ∈ Wℓ−1 there is some (non-unique)
+element g ∈ ⋃i≠j Bi (m) so that gw ∈ Wℓj,⋅ . Therefore we have ∣Wℓj,⋅ ∣ ≤ ∣Wℓ ∣ ≤ C2 λℓS ,
+and on the other hand
+                                                      C1 ℓ
+                         ∣Wℓj,⋅ ∣ ≥ ∣Wℓ−1 ∣ ≥ C1 λℓ−1
+                                                  S =   λ .
+                                                      λS S
+This proves that ∣Wℓj,⋅ ∣ ≍ λℓS .
+    The estimates on ∣Wℓi,j ∣ and ∣Sℓ ∣ follow from analogous arguments. Indeed, for
+every word w ∈ Wℓ−2 there exist g, g ′ ∈ ⋃i Bi (m) so that gwg ′ ∈ Wℓi,j , and there
+exist h, h′ ∈ ⋃i Bi (m) so that hwh′ ∈ Sℓ .
+    Now suppose that n = 2. Every word of even length is cyclically reduced, so
+when ℓ is even ∣Sℓ ∣ = ∣Wℓ ∣ ≍ λℓS . Furthermore we can compute λS directly. Indeed,
+                                                                                      √
+if b1 = ∣B1 (m)∣, b2 = ∣B2 (m)∣ then for even ℓ, ∣Sℓ ∣ = 2(b1 b2 )ℓ/2 , so λS = b1 b2 . There
+is a bijection between W 1,⋅ and W 2,⋅ given by reversing any word. So ∣Wℓi,⋅ ∣ = 12 ∣Wℓ ∣.
+Since every word in Wℓi,⋅ is in Wℓi,j for j ≠ i, we also have ∣Wℓ1,2 ∣ = 12 ∣Wℓ ∣, while
+∣Wℓ1,1 ∣ = ∣Wℓ2,2 ∣ = 0.
+    On the other hand, if ℓ is odd then every word in Wℓi,⋅ is in Wℓi,i , so ∣Wℓi,i ∣ = ∣Wℓi,⋅ ∣
+and ∣Wℓ1,2 ∣ = 0. We can compute directly that ∣Wℓ ∣ = (b1 b2 )(ℓ−1)/2 (b1 + b2 ), and
+∣Wℓ1,⋅ ∣ = b1 (b1 b2 )(ℓ−1)/2 , ∣Wℓ2,⋅ ∣ = b2 (b1 b2 )(ℓ−1)/2 . This completes the proof.   □
+                        RANDOM QUOTIENTS OF FREE PRODUCTS                                         21
+
+
+Proof of Lemma 4.24. Suppose that Y is partially fulfilled by words w1 , w2 , . . . , wq−1
+in Sℓ . Let us estimate the number of words wq ∈ Sℓ such that w1 , w2 , . . . wq−1 , wq
+partially fulfills Y . Let f be the face labeled q with a maximal number of con-
+straints. Let ηq be the number of maximal edge subpaths in ∂f which do not
+contain any edge triples (e1 , v, e2 ) constraining f ; that is they do not contain v
+and the edges e1 and e2 . Let l1 , . . . , lηq be the number of edge triples contained in
+these maximal subpaths. Note that l1 + l2 + . . . + lηq = ℓ − κq . By Corollary 4.26,
+there are at most CλlSi ways to assign the rotation elements to the edge triples
+in the i-th such subpath. Overall the number of words wq as above is at most
+    l1 +l2 +...+lη      ℓ−κ
+C η λS       q
+               = C η λS q .
+   On the other hand, there are at least C −1 λℓS words in Sℓ . Thus
+ pq
+     = P (wq partially fulfills Y ∣ w1 , w2 , . . . , wq−1 partially fulfill Y ) ⩽ C η+1 λS q .
+                                                                                          −κ
+                                                                                                   □
+pq−1
+
+Proposition 4.27. Let G ∼ FPD(G; d, m, ℓ). Then there is a constant C > 1 such
+that for every corner-labeled non-filamentous reduced decorated abstract diagram Y
+the following holds. Let ε > 0. Then either Cancel∗ (Y ) < (d + ε)Area(Y )ℓ, or the
+probability that Y fulfills R is less than C η+N +1 λ−εℓ
+                                                     S .
+
+   Proposition 4.27 brings [Odr21, Proposition 1.8] to our setting. Up to notation,
+the proof that we give below is the same as the proof in [Odr21] for non-planar
+diagrams, or of [Oll05, Lemma 59] for disk diagrams, see also [Oll04a, Section 2.2].
+
+Proof. For 1 ≤ q ≤ N , let Pq be the probability that there exists a q-tuple of words
+partially fulfilling Y in G. Then
+
+                      Pq ≤ ∣R∣q pq = Sℓdq pq ≤ C dq λqdℓ
+                                                     S pq ≤ C λS pq ,
+                                                             N qdℓ
+
+
+where Sℓ denotes the number of cyclically reduced words of free product length ℓ
+with syllables in ⋃ni=1 Bi (m) and λS , C are as defined in Corollary 4.26. Hence
+
+                        logλS (Pq ) ≤ qdℓ + logλS (pq ) + logλS (C N ).
+
+  Lemma 4.24 implies that κq ≤ logλS (pq−1 ) − logλS (pq ) + logλS (C η+1 ). Since
+∑q=1 mq = Area(Y ), Lemma 4.21 gives us
+ N
+
+
+                        N
+       Cancel∗ (Y ) ≤ ∑ mq (logλS pq−1 − logλS pq + logλS (C η+1 ))
+                       q=1
+                       N −1
+                     = ∑ ((mq+1 − mq ) logλS pq ) − mN logλS pN + m1 logλS p0
+                        q=1
+
+                                           + Area(Y ) (logλS (C η+1 ) + logλS (C N )) .
+
+  Since p0 = 1 and mq+1 − mq ≤ 0, we have
+                       N −1
+      Cancel∗ (Y ) ≤ ∑ (mq+1 − mq )(logλS Pq − qdℓ) − mN (logλS PN − N dℓ)
+                       q=1
+
+                                                           + Area(Y ) logλS (C η+N +1 ).
+22             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+            q=1 (mq − mq+1 )qdℓ + mN N dℓ = dℓ ∑q=1 mq = dℓArea(Y ), we have
+     Since ∑N −1                                N
+
+
+                                    N −1
+        Cancel∗ (Y ) ≤ dℓArea(Y ) + ∑ (mq+1 − mq ) logλS Pq − mN logλS PN
+                                     q=1
+
+                                                       + Area(Y ) logλS (C η+N +1 ).
+Note that PN = min Pq . Since (mq+1 − mq ) ≤ 0 and m1 ≤ Area(Y ) we get
+
+                                                                ⎛N −1                 ⎞
+ Cancel∗ (Y ) ≤ (dℓ + logλS (C η+N +1 ))Area(Y ) + logλS PN       ∑ (mq+1 − mq ) − mN
+                                                                ⎝ q=1                 ⎠
+               = (dℓ + logλS (C η+N +1 ))Area(Y ) − m1 logλS PN
+               ≤ Area(Y )(dℓ − logλS PN + logλS (C η+N +1 )).
+We conclude that
+                                                      Area(Y )dℓ−Cancel∗ (Y )
+
+                 P(Y is fulfillable) ≤ PN ≤ C η+N +1 λS     Area(Y )
+                                                                                .
+     Therefore, if Cancel∗ (Y ) ≥ (d + ε)Area(Y )ℓ we have
+                            P(Y is fulfillable) ≤ C η+N +1 λ−εℓ
+                                                            S .                        □
+
+     At this point we are ready to prove Theorem 4.18.
+
+Proof of Theorem 4.18. Let Y → XR be a reduced diagram over R. By Remark 4.7
+there is an underlying reduced decorated abstract diagram Y which is fulfillable.
+Furthermore, we fix the corner labeling on Y induced by the decoration of the
+diagram Y → XR . Then we call Y the underlying corner-labeled decorated abstract
+diagram.
+    Let Y be the set of corner-labeled decorated abstract diagrams underlying the
+reduced non-filamentous (K, M )-bounded diagrams over R. Note that each dia-
+gram in Y is a fulfillable reduced corner-labeled decorated abstract non-filamentous
+(K, M )-bounded diagram.
+    Let P0 be the probability that a given reduced corner-labeled decorated abstract
+non-filamentous (K, M )-bounded diagram that violates inequality (1) fulfills R. By
+Proposition 4.27 and Remark 4.23, P0 ≤ C M +K+1 λS −εℓ . Let P1 be the probability
+that a given reduced corner-labeled decorated abstract non-filamentous (K, M )-
+bounded diagram that violates inequality (1) is in Y. As every decorated abstract
+diagram in Y fulfills R, P1 ≤ P0 . Thus P1 ≤ C M +K+1 λS −εℓ .
+    Let D(K, M, ℓ) be the number of reduced decorated abstract corner-labeled non-
+filamentous diagrams that are (K, M )-bounded. Thus, the probability that Y con-
+tains a diagram that violates inequality (1) is at most D(K, M, ℓ)P1 . As D(K, M, ℓ)
+is polynomial in ℓ by Proposition 4.14, this probability tends to 0 when ℓ → ∞. □
+
+4.5. A Return to Planar Isoperimetry. The main goal of this subsection
+is to relate relative cancellation to standard cancellation and isoperimetry of disk
+diagrams.
+Lemma 4.28. Let Y be a decorated abstract diagram. Then
+                              Cancel(Y ) ≤ 2 Cancel∗ (Y ).
+                            RANDOM QUOTIENTS OF FREE PRODUCTS                                23
+
+
+Proof. Recall that E the set of edge triples of non-zero relative degree from Defi-
+nition 4.15, and let E be the set of edges of Y of non-zero degree. These sets are
+each used to count 2-cells when computing Cancel∗ (Y ) and Cancel(Y ) respectively.
+Partition these sets as follows. Let
+      E0 ∶= {(e, v, e′ ) ∈ E ∣ there is no 2-cell that partially contains (e, v, e′ )},
+and let E1 = E ∖ E0 . Note that if (e, v, e′ ) ∈ E0 , there still may be a 2-cell that fully
+contains (e, v, e′ ).
+  Similarly, let
+            E0 ∶= {e ∈ E ∣ ∃ v ∈ V and e′ ∈ E at v such that (e, v, e′ ) ∈ E0 },
+and let E1 = E ∖ E0 .
+    Whether an edge triple belongs to E0 or E1 puts restrictions on the edges of the
+triple. Here we write e ∼ v when and edge e is incident to a vertex v.
+    By definition, if (e, v, e′ ) ∈ E0 , then both e, e′ ∈ E0 . On the other hand, if
+(e, v, e′ ) ∈ E1 there are more possibilities. It can be that e ∈ E0 and e′ ∈ E1 . However,
+in this case, there is no 2-cell that fully contains (e, v, e′ ). Indeed, suppose to the
+contrary that c is a 2-cell fully containing (e, v, e′ ). Since e ∈ E0 , there is an edge e′′
+such that (e, w, e′′ ) ∈ E0 where e ∼ w. If e′ =/ e′′ , then c partially contains (e, w, e′′ )
+contradicting the definition of E0 . Thus e′ = e′′ . But then (e, v, e′ ) ∈ E0 by the
+above argument, also yielding a contradiction. This shows that if (e, v, e′ ) ∈ E1 is
+fully contained in a 2-cell then both e, e′ ∈ E1 . In particular, if an edge e ∈ E1 is
+adjacent to a 2-cell c and e ∼ v then there is another edge e′ ∼ v such that (e, v, e′ )
+is fully contained in c.
+    We will first use these partitions to relate degree and relative degree with respect
+to a fixed factor vertex v.
+    If (e, v, e′ ) ∈ E0 then deg∗ (e, v, e′ ) = deg(e). Indeed, every 2-cell adjacent to e
+fully contains the triple, hence is also adjacent to e′ . Thus,
+                             ∑       (deg∗ (e, v, e′ ) − 1) = ∑ (deg(e) − 1).
+                              ′                                        e∈v
+                         e,e ∈v
+                                                                      e∈E0
+                      (e,v,e′ )∈E0
+
+   On the other hand, if (e, v, e′ ) ∈ E1 , then
+                deg∗ (e, v, e′ ) − 1 = #{2-cells fully containing (e, v, e′ )}.
+Summing over all triples including v double counts 2-cells. We claim that
+                 ∑          (deg∗ (e, v, e′ ) − 1) = ∑ deg(e) ⩾ ∑ (deg(e) − 1).
+               e,e′ ∼v                                     e∼v
+                                                          e∈E1
+                                                                               e∼v
+                                                                              e∈E1
+             (e,v,e′ )∈E1
+
+Indeed, we have seen that 2-cells fully containing triples in E1 and through v may
+only pass through adjacent edges from E1 . On the other hand, 2-cells adjacent to
+edges in E1 and incident to v always fully contain a triple of the form (e, v, e′ ).
+   To conclude let Vf (Y ) be the collection of all factor vertices of Y . We combine
+both computations and sum over Vf (Y ) to obtain that
+                2 Cancel∗ (Y ) =            ∑            ∑          (deg∗ (e, v, e′ ) − 1)
+                                          v∈Vf (Y )     e,e′ ∼v
+                                                      (e,v,e′ )∈E
+
+                                      ⩾     ∑         ∑ (deg(e) − 1) = 2 Cancel(Y ).
+                                          v∈Vf (Y ) e∼v
+                                                    e∈E
+24            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+Note that the last equality in the equation above holds because the 0-skeleton of Y
+is bipartite with Vf (Y ) being one of the bipartitions.                          □
+  Note any non-filamentous disk diagram of bounded size must also have a bounded
+number of connectors (see Definition 4.11).
+Lemma 4.29. If Y is a non-filamentous disk diagram with at most K 2-cells, then
+Y is (K, 12 K(K − 1)2 + K 2 ) bounded.
+Proof. Suppose that two 2-cells C1 and C2 in Y have non-empty intersection. As
+Y is planar, C1 ∩ C2 splits as a union of disjoint connectors. Suppose that C1 ∩ C2 is
+composed of m connectors. Then there are at least m−1 disjoint cycles in ∂C1 ∪∂C2 .
+Since Y is simply connected, each of these cycles is filled with a sub-disk diagram
+containing at least one 2-cell. Thus m ≤ K − 1. Therefore the total number of
+connectors in the interior of Y is at most (K 2
+                                                )(K − 1). Since Y is simply connected,
+every 2-cell of Y has at most K connectors on ∂Y , so the total number of connectors
+in Y is at most (K 2
+                     )(K − 1) + K 2 .                                               □
+   By applying Theorem 4.18 we get bounds on (standard) cancellation and isoperi-
+metric inequalities with high probability. Note that although our words have (syl-
+lable) length ℓ, the 2-cells in XR have boundary length 2ℓ.
+Theorem 4.30. Let G ∼ FPD(G; d, m, ℓ). The following statements hold with
+overwhelming probability. For every reduced (K, M )-bounded diagram Y over R,
+                             Cancel(Y ) ≤ dArea(Y )2ℓ.                            (2)
+Furthermore, for a reduced disk diagram D over R of area at most K we have
+                             ∣∂D∣ ≥ (1 − 2d)2ℓArea(D).
+Proof. Let Y → XR be a reduced (K, M )-bounded diagram Y over R. By The-
+orem 4.18 applied to Y and by Lemma 4.28, with overwhelming probability, the
+first claim (2) holds. Indeed, we may remove filaments from Y as these do not con-
+tribute to Cancel(Y ). This splits Y into smaller diagrams, each of which satisfies
+the required inequality. This yields the claim.
+    For the second part of the theorem, let D be a reduced disk diagram over R
+of area at most K. Note first that 2 Cancel(D) + ∣∂D∣ = 2ℓArea(D). Further, by
+Lemma 4.29, there exists M such that D is (K, M )-bounded, and therefore by the
+first part of this theorem Cancel(D) ≤ 2ℓdArea(D). Putting these together, we get
+∣∂D∣ ≥ (1 − 2d)2ℓArea(D), with overwhelming probability.                         □
+4.6. A Non-Planar Variant of Greendlinger’s Lemma. We prove a non-
+planar version of Greendlinger’s Lemma which we use in Section 6.3. The proof
+follows the same argument as the planar case, as proved in [Oll04b], together with
+the following remark.
+   Let Y be a 2 complex. An edge e of Y is external if deg(e) ≤ 1. All other edges
+are internal. For any 2-cell h in Y , let Ih denote the set of internal edges in h.
+Remark 4.31. For every 2-complex Y , we have
+                                            deg(e) − 1 1 ⎛          ⎞
+                Cancel(Y ) = ∑      ∑                 ≥      ∑ ∣Ih ∣ ,
+                             h∈Y (2) e∈h(1)
+                                             deg(e)     2 ⎝h∈Y (2)  ⎠
+with equality exactly when every internal edge has degree 2. In particular, in every
+disk diagram equality holds.
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                              25
+
+
+  Greendlinger’s Lemma has traditionally been used to show that in a disk diagram
+D there must exist some 2-cells which contribute at least half of their boundary
+edges to ∂D. We intend to show something slightly stronger.
+
+Definition 4.32. Let ε > 0 and suppose that Y is a 2-complex in which every 2-cell
+has boundary length L. An ε-supershell of Y is a 2-cell which as at least L( 12 + ε)
+external edges.
+
+Lemma 4.33. Let L > 0. Let Y be a 2-complex with at least two 2-cells, such that
+each of its subcomplexes Y ′ satisfies Cancel(Y ′ ) < dLArea(Y ′ ) and all 2-cells of
+Y have boundary length L. Then there are at least two 2-cells of Y each with at
+least L(1 − 5d/2) external edges. Hence, for 0 < ε < 21 − 5d
+                                                           2
+                                                             , Y contains at least two
+ε-supershells.
+
+Proof. Let f be a 2-cell of Y with the maximal number of external edges, and let
+αL be the number of external edges in f . Then α′ L = L − αL is the number of
+internal edges in f . Similarly, let h be a 2-cell of T with the second largest number
+of external edges and let βL be the number of external edges in h. Notes that we
+may have α = β. For any other 2-cell g ≠ f, g ≠ h in Y the number of internal edges
+in g is at least β ′ L = 1 − βL.
+   We want to prove that β ≥ 1− 5d/2, so assume for contradiction that β < 1 −5d/2,
+or, equivalently, that β ′ > 5d/2.
+   By Remark 4.31,
+
+                                    1⎛           ⎞
+                     Cancel(Y ) ≥        ∑ ∣Ih ∣
+                                    2 ⎝h∈Y (2)   ⎠
+                                    1⎛ ′                   ⎞                      (3)
+                                ≥     α L+     ∑        β′L
+                                    2⎝     g∈Y (2) ,g≠f    ⎠
+                                    1 ′
+                                ≥     (α L + β ′ L(Area(Y ) − 1)) .
+                                    2
+  Consider the 2-complex Y ′ obtained by removing the face f from Y , so Area(Y ) =
+Area(Y ′ ) + 1. Then Cancel(Y ) = Cancel(Y ′ ) + ∣Y ′ ∩ f ∣ = Cancel(Y ′ ) + α′ L, so
+
+                    Cancel(Y ′ ) = Cancel(Y ) − α′ L
+                                   1
+                                 ≥ (−α′ L + β ′ L(Area(Y ) − 1))                  (4)
+                                   2
+                                   1
+                                 = (−α′ L + β ′ LArea(Y ′ )) .
+                                   2
+   There are two cases. First suppose that α′ ≥ d. Since dLArea(Y ) ≥ Cancel(Y ),
+(3) gives us
+                2d(Area(Y ′ ) + 1) = 2dArea(Y ) ≥ α′ + β ′ Area(Y ′ ).
+Since β ′ > 5d/2, we know that β ′ − 2d > d/2 > 0. So we get
+                                        2d − α′ 2(2d − α′ )
+                         Area(Y ′ ) ≤            ≤          .
+                                        β ′ − 2d    d
+Therefore Area(Y ′ ) < 2, so Area(Y ) ≤ 2.
+26            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+  Now suppose that α′ < d. Since dLArea(Y ′ ) > Cancel(Y ′ ), (4) gives us 2dArea(Y ′ ) ≥
+−α′ + β ′ Area(Y ′ ). Since β ′ − 2d > d/2 we get
+                                                α′     2α′
+                             Area(Y ′ ) ≤            ≤     .
+                                            β ′ − 2d    d
+Therefore Area(Y ) ≤ 2.
+   We have assumed that Area(Y ) ≥ 2. Therefore in either case, we can conclude
+that Area(Y ) = 2. Let f, g the 2-cells of Y . Then Cancel(Y ) = ∣f ∩ g∣ ≤ 2dL, so both
+f and g have at least L − 2dL > L − 5dL/2 external edges, as desired.                □
+
+          5. Global Isoperimetry and (Relative) Hyperbolicity
+  The main goal of this section is to prove that random quotients are relatively
+hyperbolic.
+
+5.1. Global Isoperimetry. In this subsection we show that the local linear
+isoperimetric inequality of Theorem 4.30 implies a global isoperimetric inequality.
+In particular, we prove the following (compare to [Oll04b, Theorem 8]).
+Theorem 5.1. Let X be a 2-complex that is simply connected such that every 2-cell
+in X has boundary length equal to L. Let C > 0 and ε > 0. Let P be a property
+of disk diagrams that is preserved by taking subdiagrams. Suppose that for some
+K ≥ 1050 ε−2 C −3 any disk diagram D with property P of area at most K satisfies
+                                 ∣∂D∣ ≥ CLArea(D).
+Then any disk diagram D with property P in X satisfies
+                              ∣∂D∣ ≥ (C − ε)LArea(D).
+   An important example of a property of disk diagrams that is preserved by tak-
+ing subdiagrams is that of being a reduced van Kampen diagram over a group
+presentation, or being a reduced diagram over R in the complex XR of this paper.
+   Together with the local isoperimetric inequality Theorem 4.30, Theorem 5.1
+implies the following.
+Corollary 5.2. Let d < 12 and ε > 0. Let L = 2ℓ. With overwhelming probability,
+any reduced disk diagram over R of G ∼ F PD(G; d, m, ℓ) satisfies
+
+                            ∣∂D∣ ≥ (1 − 2d − ε)LArea(D).                           (5)
+Proof. By Theorem 4.30, for d < 12 and K ≥ 1050 ε−2 (1 − 2d)−3 , with overwhelm-
+ing probability, the complex XR satisfies a linear isoperimetric inequality for disk
+diagrams of area at most K. The result now follows from Theorem 5.1.              □
+
+   To prove Theorem 5.1 we closely follow the strategy of [Oll04b], and we encourage
+the careful reader to refer to that paper. In fact, the statement of [Oll04b, Theorem
+8] is identical to the statement Theorem 5.1 if we replace the space X with the
+Cayley complex of a finitely presented group in which every relator has length
+equal to L. We argue that although the results of Ollivier are stated for the Cayley
+complex of finitely presented groups, they also apply to any simply connected 2-
+dimensional polygonal complex X all of whose 2-cells have the same boundary
+length.
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                            27
+
+
+Remark 5.3. The results of Ollivier are written with different notation than we use
+in this paper. For clarity within this paper, we translate Ollivier’s notation into
+our own. We record here the relevant dictionary for those who wish to check the
+Ollivier results: Ac (D) = L2 Area(D), Lc (D) = ∣∂D∣, A(D) = LArea(D).
+  The following is an adaptation of a result of Papasoglu’s [Pap96] for simplicial
+complexes.
+Proposition 5.4 ([Oll04a, Proposition 42]). Let X be a simply connected 2-complex
+such that each face of X has exactly L edges. Let P be a property of disk diagrams
+that is preserved by taking subdiagrams.
+   Suppose that for some integer K ≥ 1010 , any disk diagram D in X with property
+                       2
+P and area between K4 and 480K 2 satisfies
+                            ∣∂D∣2 ≥ 2 ⋅ 1014 L2 Area(D).
+Then any disk diagram D with property P in X with area at least K 2 satisfies
+                                         Area(D)L
+                                  ∣∂D∣ ≥             .
+                                            104 K
+   We now apply a double induction argument, as in [Oll04b]. Note that the state-
+ments in [Oll04b] are written in terms of van Kampen diagrams for finitely presented
+groups; however, they apply equally well to abstract diagrams of 2-dimensional sim-
+plicial complexes in which there are at most finitely many possible boundary lengths
+of 2-cells. In particular, they apply in the setting of XR . We sketch the argument
+here, with references to [Oll04b] for details.
+   For the base case, note that Proposition 5.4 implies that if ∣∂D∣ ≥ C1 Area(D)L
+for any diagram D satisfying P with Area(D) ≥ 1023 C1−2 , then any diagram satisfy-
+ing P must satisfy ∣∂D∣ ≥ C2 Area(D)L, where C2 = C/1015 (see [Oll04b, Proposition
+10] for details).
+   The following immediately implies Theorem 5.1.
+Proposition 5.5 ([Oll04b, Proposition 13]). Suppose that X is a simply connected
+2-complex so that every 2-cell has boundary length equal to L. Let P be a property
+of disk diagrams that is preserved by taking subdiagrams. Fix ε > 0. Let C, C ′ > 0
+Suppose that all disk diagrams D in X with property P satisfy
+                               ∣∂D∣ ≥ C ′ Area(D)L,
+and for some K ≥ 50/ε2 C ′3 , every diagram D with property P satisfying Area(D) ≤
+K also satisfies
+                                 ∣∂D∣ ≥ CArea(D)L.
+Then any diagram D with property P satisfies
+                            ∣∂D∣ ≥ (C − 14ε)Area(D)L.
+Proof Sketch. Let C, C ′ , ε > 0. Suppose that any disk diagram D with P satisfies
+∣∂D∣ ≥ C ′ Area(D)L, and that for some A ≥ 50/(εC ′ )2 if ∣∂D∣ ≤ A then ∣∂D∣ ≥
+CArea(D)L. By [Oll04b, Lemma 11] there exists a decomposition D = D1 ∪ D2
+so that D1 , D2 have no 2-cells in common, D1 , D2 both contain at least a quarter
+of ∂D, and D1 ∩ D2 has length at most L + 2L    C′
+                                                   log(Area(D)). We can use this
+to show that for any diagram with ∣∂D∣ ≤ 76 AL, we have ∣∂D∣ ≥ (C − ε)Area(D)L
+(see [Oll04b, Proposition 12]). Proposition 5.5 follows inductively (see [Oll04b,
+Proposition 13].                                                                □
+28             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+5.2. Relative Hyperbolicity.     We use the linear isoperimetric inequality in
+Corollary 5.2 and the fact that R is finite to prove that XR is hyperbolic and
+G is relatively hyperbolic.
+Corollary 5.6. Let d < 1/4. With overwhelming probability there is no embedded
+closed path in XR of length < 2ℓ. In particular, the boundary path of each 2-cell
+                (1)
+
+is embedded.
+Proof. Suppose that there is an embedded closed path of length < 2ℓ. It bounds a
+disk diagram D, and D must have at least two 2-cells. Then by Corollary 5.2, for
+all ε > 0 we have
+                 2ℓ > ∣∂D∣ ≥ (1 − 2d − ε)2ℓArea(D) ≥ 2(1 − 2d − ε)2ℓ.
+Since d < 1/4 this is a contradiction.                                                □
+Corollary 5.7. When d < 21 , with overwhelming probability, the complex XR is
+aspherical and the quotient map G∗ → G restricts to an embedding on each factor
+group G1 , . . . , Gn .
+Proof. We first prove that the quotient map G∗ → G restricts to an embedding on
+each factor group G1 , . . . , Gn . By contradiction, Lemma 3.7 implies that there is
+a disk diagram over R of boundary length = 2. Applying this to Corollary 5.2 we
+have
+                                     2 ≥ (1 − 2d − ε)2ℓ
+for all ε > 0. Pick ε = 12 (1 − 2d). Since d < 1/2, for sufficiently large ℓ this is a
+contradiction.
+   Now, by Lemma 3.5 every diagram in XR admits a decoration that makes it a
+diagram over R. As XR is simply connected and 2-dimensional, to prove asphericity
+it suffices to show that there are no spherical diagrams in XR . Cutting open a
+spherical diagram along an edge yields a disk diagram over R of boundary length
+2. By the above argument this is impossible.                                        □
+     Combining Corollary 5.7 with Lemma 3.5 immediately yields the following.
+Corollary 5.8. When d < 12 , with overwhelming probability the following holds.
+Let Y be a diagram in XR , equipped with its inherited decoration. Then Y is a
+diagram over R.
+   From now on we equip any diagram in XR with its inherited decoration. Via
+Corollary 5.8, then every diagram in XR is a diagram over R. Thus it makes sense
+to talk about reduced diagrams in XR . Moreover, Theorem 4.30 and Corollary 5.2
+apply to reduced diagrams in XR . We use these facts without further notice.
+   Fineness is an important tool in Bowditch’s characterization of relative hyper-
+bolicity. There are several equivalent formulations, see [Bow12, Proposition 2.1].
+We use the following definition.
+Definition 5.9. Let Γ be a graph. A circuit in Γ is the image of a continuous
+injective mapping S1 → Γ. The graph Γ is fine if for any edge e of Γ and any
+n ∈ Z>0 , there are finitely many circuits of length n that contain e.
+
+Proposition 5.10. Let d < 1/2. With overwhelming probability XR
+                                                                         (1)
+                                                                               is a fine
+hyperbolic graph.
+                       RANDOM QUOTIENTS OF FREE PRODUCTS                               29
+
+
+Proof. By Corollary 5.2 XR satisfies a linear isoperimetric inequality, hence XR is
+hyperbolic by Proposition 4.1.
+   Fix a positive integer N . Let e be any edge in XR and consider a lift ẽ in the
+                                                       (1)
+
+tree T . By Lemma 3.8 XR is simply connected, so any embedded loop γ containing
+e of length ∣γ∣ ≤ N is the boundary of a non-filamentous reduced disk diagram D
+without cut vertices. By Corollary 5.7 and Lemma 3.5, this diagram D is a disk
+diagram over R with its inherited decoration. In particular, every 2-cell bears an
+element of R.
+   By Corollary 5.2 there is a uniform bound on the area of such a disk diagram,
+and since R is finite there are only finitely many such disk diagrams with boundary
+length at most N and whose image contains the edge e.                            □
+   Finally, we obtain the main result of this section.
+Corollary 5.11 (Theorem 1.2(1)). When d < 12 , with overwhelming probability
+G ∼ FPD(G; d, m, ℓ) is hyperbolic relative to {Gi }ni=1 . Moreover, the stabilizers of
+vertices in XR are exactly the conjugates of the Gi factors.
+Proof. This follows from Proposition 5.10, Corollary 5.7, Lemma 2.6, and Bowditch’s
+characterization of relative hyperbolicity [Hru10, Definition 3.4 (RH-4)]. The more-
+over statement is immediate from Lemma 2.6.                                       □
+5.3. Density more than 1/2. When d > 1/2 we show that G is, with overwhelm-
+ing probability, finite. A previous version of this article only included a rough
+sketch of the proof of Theorem 1.2(2). The following proof was outlined to us by
+the anonymous referee.
+   Recall that the Probablistic Pigeonhole Principle states that when sorting f (N ) <
+N
+√ pigeons into N holes uniformly independently at random with replacement, if
+  N ≤ f (N ) then as N → ∞ the probability that one hole receives at least 2 pigeons
+goes to 1. We will use the probabilistic pigeonhole principle to produce pairs of
+relations between such sets with common prefixes to deduce finiteness of the quo-
+tients. As pointed out in Remark 1.3 if there are only two factor groups, that is,
+n = 2, there are no relations for ℓ odd. In this case we assume that ℓ is even.
+Lemma 5.12. Let d > 12 . Let u1 , u2 be distinct elements in the free product G∗
+having free product length 1 or 3 so that the first and final syllables of the normal
+forms representing u1 and u2 are all in Bi (m) for some i. Then, with overwhelming
+probability, the images of u1 and u2 are equal in G.
+Proof. We prove that, for d > 12 , there exists some v so that vu1 and vu2 are
+simultaneously in R with overwhelming probability. This then implies that u1 = u2
+in G with overwhelming probability.
+   Denote by Sℓ (u) the subset of Sℓ consisting of words w with a fixed suffix u
+such that the free product length ∣∣wu−1 ∣∣ = ℓ − ∣∣u∣∣. Recall from Section 4.4 that
+Wki,j denotes words of syllable length k whose first syllable is not contained in the
+ith factor and last syllable is not contained in the jth factor. In contrast with Sk ,
+words in Wki,j are allowed to have first and last syllables in the same factor. For
+suffixes with free product length ∣∣u∣∣ ≤ 3 having first and final syllable in Bi (m), we
+will use these sets to count prefixes. Indeed, the set of prefixes wu−1 of the words
+in Sℓ (u) is equal to Wℓ−∣∣u∣∣
+                        i,i
+                               . By Corollary 4.26, there are constants C > 0 and λ > 0
+such that ∣Wℓ−∣∣u∣∣
+            i,i
+                    ∣ ≤ Cλℓ−∣∣u∣∣ ≤ Cλℓ−1 for sufficiently large ℓ.
+30              EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+     Also note that ∣Sℓ (u)∣ ≥ ∣Wℓ−∣∣u∣∣
+                                 i,i
+                                         ∣. Thus, by Corollary 4.26, there exists a constant
+C ′ ≥ 0 such that for sufficiently large ℓ we have ∣Sℓ (u)∣ ≥ C ′ ∣Sℓ ∣ ≥ C ′ λℓ . Since R is
+chosen uniformly from Sℓ , with overwhelming probability
+                         ∣R ∩ Sℓ (u)∣ ≥ C ′ ∣R ∩ Sℓ ∣ = C ′ ∣R∣ > C ′ λdℓ .
+So when d > 21 , we have that
+                                       ∣R ∩ Sℓ (u)∣ > λℓ/2
+with overwhelming probability when ℓ → ∞.
+    We now apply the probabilistic pigeonhole principle: The pigeons are pairs in
+(R ∩ Sℓ (u1 )) × (R ∩ Sℓ (u2 )). The holes are subsets of Wℓ−∣∣u  i,i
+                                                                      1 ∣∣
+                                                                           of size at most 2.
+The map from pigeons to holes is (v1 u1 , v2 u2 ) ↦ {v1 , v2 }. That is, we assign pairs
+to the set of their prefixes.
+    Two distinct pairs (x1 , x2 ) and (y1 , y2 ) are assigned to the same set A ⊂ Wℓ−∣∣u
+                                                                                       i,i
+                                                                                           1 ∣∣
+if and only if
+                   x1 = v1 u1 , x2 = v2 u2 , y1 = v2 u1 , y2 = v1 u2 .
+In this case, the desired relators are x1 and y2 . Thus, when ℓ → ∞, we deduce that
+R contains relators vu1 and vu2 .                                                          □
+     We are ready to show finiteness of the quotient.
+Proof of Theorem 1.2(2). First, the quotient G is generated by at most one order-
+2 element per factor group. Indeed, for any generator x ∈ Bi (m) that does not
+have order two, x−1 also appears in Bi (m). Thus by applying Lemma 5.12 with
+u1 = x, u2 = x−1 we see that with overwhelming probability x = x−1 in G. Thus
+every generator is mapped to an element of order two in the quotient.
+   Similarly, if x, y are generators of Gi then Lemma 5.12 implies that x = y in G.
+   When the number of factor groups n ≥ 3, consider any pair of generators x, y
+in distinct factor groups. Let z be a generator in a factor that does not contain
+either x or y. Then Lemma 5.12 with u1 = zxz and u2 = zyz implies that with
+overwhelming probability zxz = zyz in G. Hence, x = y in the quotient. Therefore,
+in this case, G has order at most 2.
+   On the other hand, when there are exactly two factors, that is, n = 2, with
+overwhelming probability G is still generated by two elements a and b of order
+2, one for each factor. Moreover, with overwhelming probability R will contain
+distinct relators that map to the alternating words of length at most ℓ starting
+with a and starting with b. In this case, G is a quotient of a finite dihedral group,
+all of which are finite dihedral groups.                                           □
+
+                         6. Preparing to Cubulate at d < 16
+  The following type of action of a relatively hyperbolic group on a CAT(0) cube
+complex was introduced by Einstein and Groves [EG20, Definition 2.1].
+Definition 6.1. Let (K, D) be a relatively hyperbolic pair. An isometric action of
+K on a CAT(0) cube complex X     ̃ is relatively geometric (with respect to D) if:
+                             ̃
+   (1) the action of K on X is cocompact,
+   (2) every peripheral subgroup D ∈ D acts elliptically (i.e. stabilizes a cell), and
+   (3) cell stabilizers are either finite or conjugate to a finite index subgroup of
+       some D ∈ D.
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                               31
+
+
+Groups that admit a relatively geometric action with respect to some collection of
+peripheral subgroups are called relatively cubulated.
+   It is possible to give a wallspace construction adapted from [OW11] to XR to
+show that our groups G = (G1 ∗⋯∗Gn )/⟪R⟫ act on a CAT(0) cube complex. When
+d < 16 , to show that the action is, with overwhelming probability, relatively geomet-
+ric with respect to {G1 , . . . , Gn }, we use a criterion from [EN21]. This approach
+allows us to simultaneously show that, in the case that each Gi is relatively cubu-
+lated, G is also cubulated relative to a finer peripheral structure whose elements are
+the peripherals of the Gi . To do this we use the space XR (Q1 , . . . , Qn ) introduced
+in Section 2.
+6.1. Hyperstructures in Mixed Polygonal-Cubical Complexes. Let Q =
+(Q1 , . . . , Qn ) be an n–tuple of CAT(0) cube complexes such that Gi acts cellularly
+on Qi without inversions. Recall that the space XR (Q1 , . . . , Qn ) = XR (Q), defined
+in Section 2, is a complex composed of polygons and cube complexes. We generalize
+such a space in the following.
+Definition 6.2. A complex Ω is a mixed polygonal-cubical complex if X is a cell
+complex whose cells are either n–cubes (not necessarily all of the same dimension)
+or polygons.
+   We say Ω is a mixed even polygonal-cubical complex if every polygon has an even
+number of sides.
+   For the following, let Ω be a mixed even polygonal-cubical complex. We now
+define Ω–hyperstructures, which generalize hyperplanes in the case that Ω is a cube
+complex. Similar notions have been used to construct walls before in [Wis04; MS17;
+EN21], for example. Let C be a cell of Ω, and let e1 , e2 be edges of C. We say that
+e1 is opposed to e2 if either of the following hold.
+    (1) If C is an n–cube, we say that e1 ∼opp e2 if and only if e1 , e2 are dual to the
+         same midcube.
+    (2) If C is a polygon, we say that e1 ∼opp e2 if and only if they are the same
+         edge or are diametrically opposed in C (recall that C must have an even
+         number of edges).
+Then ∼opp extends to an equivalence relation on the edges of Ω by taking the
+transitive closure.
+Example 6.3. If Ω is a cube complex, then each ∼opp equivalence class is the collec-
+tion of edges dual to a hyperplane of Ω.
+Definition 6.4. Let Ω be a mixed even polygonal-cubical complex. The Ω– hy-
+perstructure associated to an edge e of Ω is the subspace WeΩ of Ω constructed as
+follows:
+     (1) for each polygon C and each pair e1 , e2 of diametrically opposed edges with
+         e1 , e2 ∈ [e]∼opp , add a geodesic segment from the midpoint of e1 to the
+         midpoint of e2 via the center of C, and
+     (2) for each cube C, include any midcube that is dual to an edge of [e]∼opp .
+The carrier of WeΩ is the union (in Ω) of all cells whose interior intersects WeΩ
+nontrivially.
+  If X is a polygonal complex, the X–hyperstructures will be called edge hypergraphs.
+Example 6.5. If Ω is a cube complex, then an Ω–hyperstructure is a hyperplane.
+32             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+   Given a hyperstructure W , the abstract hyperstructure corresponding to W is
+a complex W    ̃ whose vertices are in one-to-one correspondence with the edges in
+[e]∼opp . For each geodesic segment joining midpoints of edges e1 , e2 as in Defi-
+nition 6.4(1) the abstract hyperstructure has an edge between the vertices corre-
+sponding to e1 , e2 . Similarly, for each midcube Cmid dual to edges {e1 , e2 , . . . } as in
+Definition 6.4(2), the abstract hyperstructure W    ̃ has a copy of Cmid whose vertices
+are {e1 , e2 , . . . }. While the abstract hyperstructure need not be embedded (see for
+example Figure 4 of [EN21]), W is naturally the image of an immersion of W          ̃ into
+Ω.
+   Every hyperstructure W carries a combinatorial metric on the 0–skeleton of its
+corresponding abstract hyperstructure. If W is an edge hypergraph, this is the
+path metric on the abstract graph representing W . We call this the hyperstructure
+metric of W , and denote it dW . Note that if x, x′ ∈ W then dX (1) (x, x′ ) need not
+be equal to (the combinatorial distance) dW (x, x′ ). This can be seen immediately
+in a 2n-gon for n ≥ 3 in which dX (1) (x, x′ ) = n, whereas dW (x, x′ ) = 1.
+   We will also be interested in the following.
+Definition 6.6. Let X be a polygonal complex where every polygon has an even
+number of sides, and let EX be a mixed even polygonal-cubical complex so that
+there is a surjective combinatorial map:
+                                        p ∶ EX → X
+that takes cubes to points and nontrivial polygons to nontrivial polygons, in such
+a way that each open edge of X has a unique open edge as preimage. We call p the
+projection map from EX to X.
+Definition 6.7. Let X be an even polygonal complex, EX a mixed even polygonal-
+cubical complex and p ∶ EX → X the projection map. A (p–)projected hypergraph
+is the image of an EX–hyperstructure.
+   The abstract hypergraph corresponding to p(W ) can be constructed by taking
+the abstract hypergraph corresponding to W and collapsing the cells whose images
+in EX are collapsed by p. A projected hypergraph p(W ) may not be an edge
+hypergraph of X, since midcubes in W are projected to vertices of X, and thus
+antipodality is also not necessarily preserved.
+Example 6.8. Let G1 = ⟨a⟩ be an infinite cyclic group, and let G2 = ⟨b, c⟩ be a
+free group. Let Q1 , Q2 be the standard Cayley graphs for G1 , G2 , respectively.
+These are trees so they are CAT(0) cube complexes. Let the radius m = 1001. Let
+R = {a1000 bc}. Let C be a relator cell in XR , and let c̃ be its pre-image in XR (Q).
+The hypergraph in c̃ at the first edge of the subpath of ∂̃    c in Z1 returns to (the
+same copy) of Z1 . Thus the projected hypergraph in C consists of the corresponding
+factor vertex and a segment to the center to the polygon. See Figure 7.
+   In the following subsection, we show that there is a subdivision of XR and
+XR (Q) so that projected hypergraphs are close to being edge hypergraphs in the
+following sense.
+Definition 6.9. Let X, EX, p ∶ EX → X be as in Definition 6.6. Let ε ⩾ 0, and
+suppose that every polygon of X is an L-gon. We say that a projected hypergraph
+Z is ε-antipodal if dX (1) (x, x′ ) ≥ L( 12 − ε) for all adjacent vertices x, x′ of Z.
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                           33
+
+
+
+
+        Figure 7. An antipodal hypergraph W in EX need not project
+        to a hypergraph in X. See Example 6.8.
+
+   All edge hypergraphs are ε-antipodal (for all possible ε).
+   We will henceforth use hypergraphs to refer to both edge hypergraphs and pro-
+jected hypergraphs.
+6.2. Subdividing. From now on, we fix EX to be the mixed polygonal-cubical
+complex XR (Q) as defined in Section 2, where the spaces Qi ∈ Q are CAT(0) cube
+complexes on which the factor groups Gi act (relatively) geometrically. We also fix
+X to be the polygonal complex XR .
+   The next result, Proposition 6.10, follows from [Mar14, Theorem 2.4]. In [Mar14,
+Theorem 2.4], properness is a hypothesis, but properness is not required for state-
+ments about simple connectedness and cocompactness.
+Proposition 6.10. The complex EX is simply connected. Moreover, the cocom-
+pactness of the action of each Q ∈ Q implies that EX is G–cocompact.
+   As in [MS17], to ensure that projected hypergraphs are ε-antipodal, we subdivide
+the edges of the model space EX = XR (Q) whose image lies in X.
+   Recall the map p ∶ EX → X from Definition 6.6. By definition, each open edge in
+X has a unique preimage in EX. We call every such closed edge of EX a polygonal
+edge, and every other edge of EX a cubical edge. We make note of this information
+with the following.
+Observation 6.11. Polygonal edges and cubical edges decompose the edges of EX
+into a G-invariant partition.
+   Let EX[k] be obtained from EX by cubically subdividing each Qi ∈ Q such that
+every cubical edge becomes a segment of length two, subdividing every polygonal
+edge into a segment of 2k edges, and updating the attaching maps on polygons
+accordingly.
+   The projection map p ∶ EX → X induces a natural quotient map
+                               pk ∶ EX[k] → X[k],
+where the space X[k] is obtained by subdividing each edge of X into a segment of
+2k edges. When there is no confusion, we will denote the map pk by p.
+Remark 6.12. Let τ be the maximal translation length for all elements of all Bi (m)
+from the finite set ⋃ Bi (m). For each polygon D in EX (respectively EX[k])
+a cubical segment, i.e., a subsegment of ∂D that is contained in a single cube
+complex (a copy of a subdivided Qi ), has length at least zero, and at most the
+uniform constant 2τ ≥ 0. On the other hand, a maximal polygonal segment, i.e., a
+path consisting of (subdivided) polygonal edges, has length exactly 2 (respectively
+4k).
+34             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+  Let 0 < d < 15 and ℓ > 0. Fix the following constants to be used here and in
+Lemma 6.21:
+                   1                                        τ
+            εd,ℓ ∶= min{1/5 − d, 1/ℓ}    and     kd,ℓ ∶= ⌈       ⌉ + 1.
+                   2                                       4εd,ℓ
+Remark 6.13. Note that the results on random quotients below are with overwhelm-
+ing probability when ℓ → ∞, so that we can always assume that 1ℓ < 15 − d. We keep
+the dependence of εd,ℓ on d as this allows to show the results in the more general
+setting of groups acting on complexes with polygons of edge length = ℓ, with triv-
+ial edge stabilizers, and linear isoperimetric inequality with isoperimetric constant
+(1 − 2d)ℓ.
+Definition 6.14. The balanced polygonal-cubical complex EXbal is the subdivi-
+sion EX[k] of EX for k = kd,ℓ , while the balanced polygonal complex Xbal is the
+subdivision X[k] of X for k = kd,ℓ .
+Proposition 6.15. The subdivisions EXbal and Xbal have the following properties:
+   (1) EXbal is a mixed even polygonal-cubical complex,
+   (2) p can be viewed as a combinatorial map p ∶ EXbal → Xbal ,
+   (3) every polygon of Xbal has the same number of sides, which we denote by L,
+       and
+   (4) if W is an EXbal –hyperstructure, its image p(W ) is an εd,ℓ –antipodal hy-
+       pergraph in Xbal .
+Proof. Item (1) is immediate from the construction of the subdivision. Item (2)
+follows by applying Lemma 2.6 since subdivisions are G–equivariant. Item (3)
+follows from the construction of X[k].
+   To show Item (4), let c be a polygon of Xbal and let c̃ be its pre-image in EXbal .
+Let x, y be two antipodal points in ∂̃c. Recall that k = kd,ℓ as defined above, that
+∣∂c∣ = 4kℓ, and that there are ℓ-many factor vertices on ∂c. Thus
+                     2kℓ ⩽ dEX (1) (x, y) ⩽ (4kℓ + 2ℓτ )/2 = 2kℓ + ℓτ.                   (6)
+                                bal
+
+The lower bound follows as dEX (1) (x, y) = 21 ∣ ∂̃
+                                                  c ∣ ≥ 12 ∣ ∂c ∣ = 2kℓ. To see the upper
+                                bal
+bound recall that the pre-image of each factor vertex of ∂c contributes at most
+2τ -many edges to ∂̃c. As there are ℓ-many factor vertices in ∂c, the upper bound
+follows.
+   Let γ be a shortest simple path in ∂c from p(x) to p(y) and let γ         ̃ be a simple
+path from x to y in ∂̃c that projects onto γ. Then length(̃        γ ) ≥ dEX (1) (x, y). Also
+                                                                            bal
+note that
+                length(γ) ≥ length(̃γ ) − 2τ ∣{factor vertices on γ}∣.
+Thus we have that
+         dEX (1) (x, y) ≥ length(γ) ≥ dEX (1) (x, y) − 2τ ∣{factor vertices on γ}∣.
+             bal                          bal
+
+We claim that γ contains at most ℓ/2 + 1 factor vertices. Indeed, let us by contra-
+diction assume that there are more than ℓ/2 + 1 factor vertices. By definition, the
+segment between two consecutive factor vertices on ∂c is of length 4k, and by as-
+sumption there are at least ⌊ℓ/2⌋ + 1 such segments in γ. Note that ⌊ℓ/2⌋ ⩾ ℓ/2 − 1/2.
+Thus
+              dEX (1) (x, y) ≥ 4k(⌊ℓ/2⌋ + 1) ≥ 4k(ℓ/2 − 1/2) = 2kℓ + 2k.
+                    bal
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                           35
+
+
+As ℓτ < 2k by the choice of k, this is a contradiction to Equation (6). This yields
+the claim.
+   Using the claim, we now estimate dX (1) (p(x), p(y)) as follows:
+                                            bal
+
+            dX (1) (p(x), p(y)) ≥ dEX (1) (x, y) − 2τ ∣{factor vertices on γ}∣
+               bal                    bal
+
+                                           ℓ
+                              ≥ 2kℓ − 2τ ( + 1)
+                                           2
+                                      1 τ 1 1
+                              ≥ 4kℓ ( −      ( + )) .
+                                      2 2k 2 ℓ
+One verifies from the definition of k that
+                                  τ 1 1
+                                     ( + ) < εd,ℓ .
+                                 2k 2 ℓ
+This yields that
+                                                  1
+                       dX (1) (p(x), p(y)) > 4kℓ ( − εd,ℓ ) ,
+                           bal                    2
+which completes the proof.                                                        □
+
+Notation 6.16. For the remainder of the paper, L = 4kℓ will be the length of the
+boundary of a polygon in Xbal .
+  If e is an edge of Xbal , let ZeX denote the hypergraph of Xbal dual to e. If e is
+an edge of EXbal , we let WeEX denote the EXbal –hyperstructure dual to e.
+Definition 6.17. Let v be a vertex of Xbal . A fiber complex EXv is the preimage
+of v under the projection p ∶ EXbal → Xbal .
+                     (1)
+   The metric on Xbal is the standard edge metric; thus an edge path of length r
+in X corresponds to an edge path of length at most 2kr in Xbal .
+   Let Ybal → Xbal be a diagram in Xbal . Then there is a diagram Y → X such that
+the following diagram commutes:
+                                     X            Xbal
+
+
+                                     Y            Ybal
+In this case we call Y the preimage of Ybal in X. We say that a diagram in Xbal is
+reduced if its pre-image in X is a reduced diagram.
+Remark 6.18. The inequality (2), which holds in X by Theorem 4.30, continues to
+hold for reduced (K, M )–bounded diagrams in Xbal with 2ℓ replaced by L. Thus
+we can apply Lemma 4.33 in Xbal . Similarly, the conclusion of Corollary 5.2 will
+continue to hold for Xbal .
+6.3. Properties of Projected Hypergraphs in Xbal . In this subsection we
+show that hypergraphs of Xbal are embedded with overwhelming probability when-
+ever d < 1/5. Furthermore, the map from the abstract hypergraph with the hyper-
+graph metric to Xbal is a quasi-isometry.
+   In order to do so, we analyze diagrams induced by self-intersections of hyper-
+graphs. We use the terminology developed in [OW11, Section 3], and we refer the
+reader there for further details.
+36            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+
+
+         Figure 8. Construction of a collared diagram for a self-
+         intersection in hypergraph H. Note that the collared diagram need
+         not be planar.
+
+                            (1)
+  For every loop α in Xbal there is a reduced disk diagram whose boundary is
+α by Lemma 3.8. We say this disk diagram is bounded by α. Similarly, loops in
+hypergraphs also bound disk diagrams in the following manner (see Figure 8).
+Definition 6.19. Let γ be a hypergraph segment of length N passing through
+2-cells C1 , . . . , CN , such that C1 = CN . There are two cases: the image in Xbal of γ
+is either a loop or has a self-intersection at the center of C1 = CN in Xbal . For each
+edge ei in γ with 1 ≤ i ≤ N − 1, we pick a path αi ⊂ ∂Ci connecting the endpoints
+of ei . If the image of γ is a loop, we define α = α1 . . . αN −1 in X (1) . On the other
+hand, if γ induces a self-intersection in e1 , eN , replace α1 with a path from the last
+endpoint of e1 to the first endpoint of eN , and let α = α1 . . . αN −1 . In either case,
+a reduced disk diagram D bounded by α is referred to as disk diagram bounded by
+γ. We construct a quasi-collared diagram associated to γ, denoted D ⋃αi {Ci }N       i=1 ,
+                                                                                       −1
+
+as follows: glue 2-cells Ci to D along αi . The 2-cell C1 is a corner of D. The
+subdiagram ⋃N         −1
+                    i=1 Ci is the collar.
+
+   Given a loop obtained as the concatenation of hypergraph segments γ1 , . . . , γk ,
+we may similarly define a k-quasi-collared diagram, with corners occurring in the
+2-cells which contain points in γi ∩ γi+1 .
+Lemma 6.20. Let N > 0, d < 1/5. There exist K, M > 0 depending only on N, d
+such that for every hypergraph segment γ in Xbal of length ≤ N , with an associated
+quasi-collared diagram Y , Y is (K, M )-bounded with overwhelming probability.
+Proof. If γ has an associated quasi-collared diagram Y = D ∪αi {Ci }k−1  i=1 for some
+k ≤ N , then γ contains a loop or self-intersection. We may assume that D is reduced.
+Recall that hypergraph segments of Xbal are ε-antipodal where ε = εd,ℓ < 1/5 − d.
+Since ∣∂D∣ ≤ N L ( 12 + ε), there is a uniform bound on the area of D by Remark 6.18.
+Thus, with overwhelming probability, there is a uniform bound K on the area of
+Y.
+   Let C = Y − D. By construction the number of connectors in C is bounded
+above by 4N . By Lemma 4.29, D is (K, 12 K(K − 1)2 + K 2 )-bounded. The number
+of connectors in Y is bounded above by the sum of the number of connectors in D
+and C and the number of connectors in Y that lie on D ∩ C. Therefore the number
+of connectors in Y is at most (1 + 4N )( 12 K(K − 1)2 + K 2 ) + 4N .                □
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                              37
+
+
+Lemma 6.21. Let N > 0, d < 1/5. With overwhelming probability any hypergraph
+segment of length ≤ N is embedded in Xbal .
+Proof. Suppose there is some segment γ of length k ≤ N which is either a loop or has
+a self-crossing. We may assume that γ is minimal; i.e., there is no self-intersection
+except at the endpoints of γ. Let Y = D ∪αi {Ci }k−1   i=1 be a quasi-collared diagram
+of γ with D reduced. Up to swapping a choice of αi for its opposite path in the
+boundary of Ci , we may assume that D ∪αi {Ci }k−1  i=1 is reduced. By Lemma 6.20, Y
+is (K, M )-bounded for some K, M , so Remark 6.18 allows us to apply Lemma 4.33.
+    Note that the 2-cells in D have entirely internal edges or they are contained in
+{Ci }k−1
+     i=1 . For i /
+                 = 1, the cells Ci contribute at most L(1/2+εd,ℓ ) < L(1/2+(1/5−d)) <
+L(1 − 5d/2) to the boundary. Therefore, the only 2-cell that can contribute at least
+L(1 − 5d/2) edges to the boundary is C1 .
+    We obtain a contradiction because Lemma 4.33 requires D ∪ {Ci }k−1   i=1 to have at
+least two 2-cells that contribute at least L(1 − 5d/2) edges to the boundary.        □
+Theorem 6.22. Let d < 1/5 and let Z be an abstract hypergraph of Xbal . Then the
+natural immersion Z → Xbal restricts to a (20L, 0)-quasi-isometric embedding from
+(Z, dZ ) to (Xbal , dX (1) ).
+                     bal
+
+                                        (1)
+Proof. Let us rescale the metric of Xbal by 1/L so that the circumference of each
+2-cell is 1. Note that with overwhelming probability disk diagrams in this metric
+satisfy ∣∂D∣ ≥ (1 − 2d)Area(D); in particular we see that Xbal is δ-hyperbolic where
+δ does not depend on L.
+   We claim that for any N > 0 the immersion map on every hypergraph segment of
+length ≤ N is a (10, 0)-quasi-isometry with overwhelming probability when L → ∞.
+We first explain how to derive the assertion of the Lemma from this claim. By
+[Gro87, Remark 7.2.B], for every λ ≥ 1, there is some κ > 0 such that every κ−local
+(λ, 0)-quasigeodesic in Xbal is a global (2λ, 0)-quasi-geodesic. Note that κ depends
+                          (1)
+
+only on δ and λ, and, hence, not on L. Applying this statement with N = κ, the
+assertion of the lemma follows.
+   We now prove the claim. Let γ be a hypergraph segment with k ≤ N edges.
+In particular, γ passes through at most N 2-cells Ci . By Lemma 6.21, we assume
+                                                                                  (1)
+that γ is embedded, so that the 2-cells Ci are distinct. Let α be a geodesic in Xbal
+joining the endpoints of γ. Let γi be the segment of γ contained in Ci . Let αi be
+an edge path in the boundary of Ci connecting the endpoints of γi . There is a disk
+diagram D bounded by α ⋅ α1 . . . αn .
+   Let D be a disk diagram of minimal area among all such diagrams and any choice
+of the segments αi . Let Y = D ∪αi {Ci }ki=1 . Then, by choice of D, no boundary
+2-cell of D maps to one of the Ci . In particular, Y is reduced and we have that
+                               k = Area(Y ) − Area(D).
+Moreover, the edges αi are internal in Y or they lie on α. Indeed, no boundary
+2-cell of D maps to one of the Ci and Ci is glued to Y along αi . More generally,
+edges of D are internal in Y unless they lie on α.
+   We now estimate Cancel(Y ). Since the definition of Cancel(Y ) does not depend
+on the metric, rescaling the metric on Xbal does not change the computation of
+Cancel(Y ). Let E0 be the set of internal edges of Y . Then
+                           Cancel(Y ) ≥ ∑ deg(e) − 1 ≥ ∣E0 ∣.
+                                        e∈E0
+38             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+On the other hand,
+                              k
+                      2∣E0 ∣ ⩾ ∑ L∣αi ∣Xbal + Area(D)L − ∣α∣Xbal L
+                             i=1
+
+because edges that are in αi ∩ α cannot be on the boundary of a 2-cell of D. Using
+the fact that hypergraphs are εd,ℓ -antipodal (Proposition 6.15(4)), we obtain that
+                                   k
+                  2 Cancel(Y ) ≥ ∑ ∣αi ∣Xbal L + Area(D)L − ∣α∣Xbal L
+                                   i=1
+                                   1
+                               ≥ L( − εd,ℓ )k + Area(D)L − ∣α∣Xbal L
+                                   2
+                                 L
+                               ≥ k + LArea(D) − Lkεd,ℓ − L∣α∣Xbal .
+                                 2
+Note that N gives a uniform bound on ∣γ∣Z , and hence a uniform bound on ∣α∣Xbal .
+By Remark 6.18 we have a uniform bound on the size of D, so we have a uniform
+bound on the size of Y . By Remark 6.18 we get Cancel(Y ) ≤ dLArea(Y ), so we
+get:
+                               1
+                  2dArea(Y ) ≥ k + Area(D) − kεd,ℓ − ∣α∣Xbal .
+                               2
+By rearranging the terms, we have
+                                 1
+                    ∣α∣Xbal ≥ k ( − εd,ℓ ) + Area(D) − 2dArea(Y ).
+                                 2
+Recall that εd,ℓ ≤ 15 − d and that k = Area(Y ) − Area(D). As d < 1/5, this yields
+that
+                     3
+         ∣α∣Xbal ≥ ( + d)(Area(Y ) − Area(D)) + Area(D) − 2dArea(Y )
+                     10
+                     3                     3                1
+                 ≥ ( − d)Area(Y ) + (1 −     − d)Area(D) > Area(Y ).           (7)
+                     10                   10               10
+   Finally, recall that each edge of γ lies in a distinct Ci . Therefore ∣γ∣Z ≤ Area(Y ).
+Thus (7) yields that
+                                     1
+                                       ∣γ∣Z < ∣α∣Xbal .
+                                    10
+On the other hand, by Proposition 6.15(4) consecutive points in γ are at a distance
+in Xbal of at most 12 + εd,ℓ , so
+     (1)
+
+
+                                       1
+                            ∣α∣Xbal ≤ ( + εd,ℓ ) ∣γ∣Z ≤ ∣γ∣Z .
+                                       2
+In particular, the map from Z to Xbal (under the rescaled metric) is an N -local
+(10, 0)-quasi-isometry. Hence, this map is a (20, 0)-quasi-isometry. Composing this
+with the rescaling map, the immersion of Z into Xbal under the standard metric is
+a (20L, 0)-quasi-isometric embedding.                                            □
+
+     The following is a corollary of Theorem 6.22.
+Theorem 6.23. Let d < 1/5. With overwhelming probability hypergraphs are em-
+bedded trees.
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                              39
+
+
+Proof. We once again scale the metric on Xbal by 1/L. By Theorem 6.22 for any hy-
+pergraph Z, with overwhelming probability the immersion map Z → Xbal restricts
+to a (20, 0)-quasi-isometric embedding from (Z, dZ ) to (Xbal , L1 dX (1) ). Thus there
+                                                          (1)
+
+is a distance N , that does not depend on L, such that the images of two points of
+distance > N in Γ are distinct in X. By Lemma 6.21 we may assume that geodesic
+paths of length ≤ N in Γ embed in X. This yields the claim.                          □
+Corollary 6.24. Let d < 1/5. With overwhelming probability, all edge hypergraphs
+separate Xbal into two components.
+Proof. Let N (Z) be a small neighborhood of a hypergraph Z. Note that N (Z) − Z
+has two components. Furthermore, note that Xbal is simply connected so H1 (Xbal ) =
+0. By applying a Mayer–Vietoris argument to N (Z) and Xbal − Z we see that the
+number of components of Xbal − Z is the same as the number of components of
+N (Z) − Z.                                                                       □
+  More generally, we obtain a similar result for hyperstructures.
+Proposition 6.25. Let d < 1/5. With overwhelming probability, the hyperstructure
+WeEX associated to an edge e is contractible and separates EXbal into two compo-
+nents.
+Proof. The proof is the same as [MS17, Lemmas 3.34 and 3.35] except that we rely
+on Theorem 6.23 to show that projected hypergraphs are embedded trees in Xbal
+rather than [MS17, Lemma 3.32].                                               □
+6.4. Controlling intersections of hypergraph and vertex stabilizers. The
+main result of this subsection is Proposition 6.26, which ensures that hypergraph
+stabilizers have controlled intersections with the peripheral subgroups in our pre-
+ferred relatively hyperbolic structure for G. We use Proposition 6.26 to satisfy one
+of the hypotheses of a relative cubulation criterion from [EN21].
+Proposition 6.26. Let d < 1/5. Let Z be a hypergraph in Xbal , let H = StabG (Z),
+and let v be a vertex of Xbal with stabilizer Gv . With overwhelming probability, if
+v does not lie in Z, then Gv ∩ StabG (Z) is finite.
+   We use the fact that Xbal is a fine graph (recall Definition 5.9) to show that the
+set of edges and vertices minimizing the distance from v to Z is finite. We then
+show that some finite index subgroup of Gv ∩ StabG (Z) must act trivially on this
+                             (1)
+finite set. The fineness of Xbal implies that we can pass to a further finite index
+subgroup of Gv ∩ StabG (Z) that stabilizes an edge of Xbal .
+   We first prove the following lemma, which follows from the fact that projected
+hypergraphs are quasi-isometrically embedded.
+Lemma 6.27. Let d < 1/5. Let Z be a hypergraph or projected hypergraph in Xbal ,
+let Y be the carrier of Z, let Z − be a component of Xbal ∖ Z. There is an affine
+                                                         (1)
+
+function λ ∶ R → R so that for any x1 , x2 ∈ Z ∩ Xbal there is an arc of length at
+                                                     (1)
+
+most λ(d(x1 , x2 )) from x1 to x2 that does not intersect Z − .
+                                                         (1)
+Proof. Theorem 6.22 implies that a geodesic path in Xbal from x1 to x2 has length
+linearly related to the hypergraph distance dZ (x1 , x2 ). In any polygon C so that
+Z passes through the interior of C, by Proposition 6.15(4), there are two paths
+between Z ∩ ∂C in ∂C that have length at most ( 12 + εd,ℓ )∣∂C∣. One of these two
+40             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+paths, which we call σC  −
+                            , must avoid Z − . We define σ to be the concatenation of
+the paths σC , for all polygons C such that the geodesic segment from x1 to x2 in
+             −
+
+Z passes through its interior. The path σ is a path from x1 to x2 , and its length
+is at most ( 12 + ε)dZ (x1 , x2 )L. Moreover, by construction, σ avoids Z − . If σ is not
+an arc, it can be made an arc by eliminating any loops, which strictly shortens the
+path.                                                                                  □
+
+   For the following two propositions, fix a projected hypergraph Z and a vertex v
+in Xbal . Let Dv be the collection of edges dual to Z or vertices on Z that realize
+the minimum distance to v. That is, if e ∈ Dv and f is an edge dual to Z or a
+vertex in Z not in Dv , then dX (1) (v, e) < d(v, f ).
+                                   bal
+
+
+Proposition 6.28. Let d < 1/5. Then the collection Dv is finite.
+Proof. Suppose toward a contradiction that there is an infinite collection e0 , e1 , e2 , . . .
+so that each ei ∈ Dv . Let γ0 , γ1 , γ2 , . . . be paths of minimal length from v to ei ∩ Z
+respectively. The paths γi are geodesic, so if γi , γ0 have common vertices v, w, we
+may reroute γi so that γi agrees with γ0 between v, w. Thus we assume that if γi
+and γ0 have a vertex w in common other than v, then the subpath of γi from v to
+w agrees with the subpath of γ0 .
+    We show that there exists an infinite I ⊆ {0, 1, 2, . . .} and a vertex v0 on γ0 so
+that 0 ∈ I and for all i ∈ I, γi ∩ γ0 is exactly the subsegment of γ0 from v to v0 .
+Our proof is by induction on the length of γ0 . If the length of γ0 is 1, then the
+γi ∩ γ0 = {v} are pairwise disjoint because the ei are distinct.
+    Now suppose that the length of γ0 is m and f0 , f1 , f2 , . . . are edges such that fi
+is the first edge of γi issuing from v. We chose γi so that if γi ∩ γ0 ≠ {v}, then
+γi and γ0 must contain a common initial subsegment issuing from v. Therefore, if
+fi ≠ f0 for infinitely many i, then there are infinitely many i so that γi ∩ γ0 = {v} so
+we can take v0 = v. Otherwise, there is an infinite J ⊆ {0, 1, 2, . . .} so that 0 ∈ J and
+i ∈ J implies fi = f0 . Then we can obtain v0 by applying the inductive hypothesis
+to the collection {γi ∖ fi ∶ i ∈ J}. This completes the proof of the claim.
+    Thus there exists a vertex v0 , some infinite I ⊆ {0, 1, . . . } with 0 ∈ I, and a
+collection of geodesic arcs {ρi ∶ i ∈ I} so that for all i ∈ I, ρi issues from vertex v0 ,
+ρi is a subpath of γi , ∣ρi ∣ ≤ ∣γi ∣, and ρi ∩ ρ0 = {v0 }.
+    By Lemma 6.27 there are arcs σ1 , σ2 , . . . in X (1) so that σi connects ei ∩ Z to
+e0 ∩Z. Furthermore, since each γi is geodesic, we have ∣σi ∣ ≤ 2λ∣γi ∣ = λ(dX (1) (v, Z)).
+                                                                                  bal
+   Consider the paths µi = ρ0 ⋅ σi ⋅ ρi . These have length ∣µi ∣ ≤ 4λ(dX (1) (v, Z)).
+                                                                                bal
+Furthermore each µi is distinct because each path ρi has distinct endpoints. Since
+ρi ∖ {ei ∩ Z} lies in Z − , σi does not intersect Z − , and ρi ∩ ρ0 = {v0 }, each µi is an
+embedded loop containing the initial edge of ρ0 issuing from v0 . However, there
+                                           (1)
+can only be finitely many µi because Xbal is a fine graph by Proposition 5.10. This
+contradicts the fact that I is infinite.                                                 □
+
+Proposition 6.29. Let d < 1/5. Let Hv = Gv ∩ StabG (Z). If v does not lie in Z,
+then Hv contains a finite index subgroup that stabilizes an edge of Xbal .
+Proof. Observe that Hv fixes v and Hv fixes Z setwise, so the action of Hv takes
+points in Dv to points in Z. Since points in Dv realize the minimum distance
+                                   (1)
+from v to Z, and since Hv acts on Xbal by isometries, the action of Hv permutes
+                     RANDOM QUOTIENTS OF FREE PRODUCTS                             41
+
+
+the elements of Dv . Since Dv is finite by Proposition 6.28, there is a finite index
+H0 ≤ Hv that fixes Dv pointwise.
+   If e0 ∩ Z is a midpoint of an edge, H0 must fix e0 and we are done. If e0 is a
+vertex, there are finitely many geodesic paths from v to e0 because Xbal is a fine
+hyperbolic graph by Remark 6.18. Since H0 acts by isometries and fixes e0 , H0
+permutes the geodesic paths from v to e0 . Thus some finite index subgroup H1 ≤ H0
+fixes some geodesic from v to e0 pointwise and therefore fixes an edge.           □
+
+Proof of Proposition 6.26. By Lemma 2.6 the edge stabilizers for the action of G
+                                                                  (1)
+on XR are trivial and after subdividing, the edge stabilizers of Xbal are trivial. If
+v is not in Z, then there is a finite index subgroup of Hv = Gv ∩ StabG (Z) that
+                   (1)
+fixes an edge of Xbal by Proposition 6.29. Hence Hv is finite because a finite index
+subgroup is trivial.                                                               □
+
+6.5. Cutting geodesics with hypergraphs. The main result of this subsection
+is the following proposition.
+
+Proposition 6.30. Let d < 61 and let γ be a geodesic in Xbal containing at least
+                                                                 (1)
+
+two vertices. With overwhelming probability, there exists an edge hypergraph Z so
+that ∣Z ∩ γ∣ = 1. Furthermore, if γ is infinite then with overwhelming probability
+there exists an N > 0 so that every subpath of γ of length N intersects an edge
+hypergraph Z which intersects γ exactly once.
+   Both cases will follow from results of Ollivier and Wise in [OW11]. They consider
+a Gromov random group and a collection of antipodal hypergraphs in its Cayley
+complex and establish several results about the behavior of hypergraphs and their
+carriers. Analogous results for Xbal are listed in the following theorem.
+Theorem 6.31. Let 0 < d < 1/6. The following hold with overwhelming probability
+in Xbal .
+   (1) Every reduced disk diagram D with Area(D) ≥ 3 contains at least three 2-
+       cells that contribute strictly more than half their edges to ∂D. (See [OW11,
+       Theorem 5.1].)
+   (2) If Z, Z ′ are (projected or edge) hypergraph rays intersecting in a 2-cell C,
+       they either intersect in a 2-cell adjacent to C as in Figure 9, or they do not
+       intersect anywhere else. (See [OW11, Corollary 5.2].)
+   (3) The carrier of a (projected or edge) hypergraph Z is a convex subcomplex
+       of Xbal . (See [OW11, Theorem 8.1].)
+   (4) For all p, q ∈ Xbal and for all ε > 0 we have
+                        (0)
+
+
+                                   1 1
+                       #(p, q) ≥    ( − d − ε) (d(p, q) − 6L),
+                                   2 6
+        where #(p, q) denotes the number of edge hypergraphs separating points p, q.
+        (See [OW11, Theorem 9.1].)
+   The proofs of these claims for edge hypergraphs follow exactly the arguments in
+[OW11]. Indeed, the results in [OW11] are a direct consequence of the antipodal
+construction of hypergraphs and the fact that the Cayley complex X     ̃ satisfies a
+linear isoperimetric inequality ∣∂D∣ ≥ (1 − 2d − ε)Area(D)L [OW11, Theorem 1.6].
+In particular, Ollivier–Wise actually prove that these results hold in any simply
+42            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+
+
+      Figure 9. The unique minimal diagram collared by two hypergraphs.
+
+connected 2-complex X  ̃ made of L-gons which satisfies this linear isoperimetric
+inequality, equipped with antipodal hypergraphs.
+   It remains to prove that (2) and (3) also apply to projected hypergraphs. To
+this end, note that a key tool in the proofs of [OW11] is to consider a diagram
+collared by hypergraphs and use the fact that hypergraphs are antipodal to argue
+that only corners can contribute more than L/2 edges to the boundary of the
+diagram. Though projected hypergraphs are not in general antipodal, diagrams
+collared by projected hypergraphs are sufficiently well behaved to allow the proofs
+of Ollivier–Wise to apply in our setting. The following lemma formalizes this.
+Lemma 6.32. Let Z1 , . . . , Zk be hypergraphs in Xbal . Let Y be a quasi-collared
+diagram, collared by Z1 , . . . , Zk . If C is a 2-cell in the collar of Y that is not a
+corner, then ∣C ∩ ∂Y ∣ ≤ L/2.
+Proof. The vertices of Xbal can be partitioned into the vertices that existed in
+XR , called original vertices, and the vertices introduced by subdivision, called new
+vertices. Note that original vertices around a 2-cell are at distance at least 2k from
+each other, where Xbal = XR [k].
+   Let C be a 2-cell of the collar of Y and let α′ = C ∩(Y − C). Note that α′ is a path
+in the boundary of C that is interior in Y . Since subdivision does not introduce new
+2-cells, the endpoints of α′ are both original vertices. If C is not a corner, one of the
+Zi intersects C with endpoints x, x′ ∈ C − ∂Y . Let α be the path in ∂C − ∂Y from
+x to x′ . Note that α′ is an extension of α. By Proposition 6.15, ∣α∣ ≥ (1/2 − εd,ℓ )L.
+Since L = 2kℓ and εd,ℓ < 1/ℓ, we have εd,ℓ < 2k/L. Thus ∣α∣/2k > L/4k − 1. Hence the
+number of original vertices on α, and also on α′ , is at least L/4k = ℓ/2. But since
+the endpoints of α′ are original vertices, this shows that ∣α′ ∣ ≥ L/2, as desired. □
+   In the language of [OW11], Lemma 6.32 states that any pseudoshell of the dia-
+gram Y collared by Z1 , . . . , Zk has to be a corner. Thus the proofs of (2), (3) of
+Theorem 6.31 for projected hypergraphs are identical to the proofs given in [OW11],
+substituting Lemma 6.32 for the antipodal construction of the hypergraphs when
+necessary.
+Proof of Proposition 6.30. Let γ be an infinite geodesic in Xbal . Let N > 6L. Then
+                                                                 (1)
+
+by Theorem 6.31(4) along any subpath of γ of length N there is at least one edge
+hypergraph Z which intersects the subpath of γ exactly once. If Z intersects γ again
+at a point at distance > N , then by convexity of the carrier of Z (Theorem 6.31(3)),
+the subpath of γ between the two intersection points lies in the carrier, and we get
+a disk diagram Y that cannot satisfy Theorem 6.31(1) because of Lemma 6.32.
+   Suppose instead that γ is a finite geodesic segment. Refer to Figure 10. Note
+that by Theorem 6.23 no edge hypergraph can meet γ twice in the same 2-cell, so
+γ is not contained in a single 2-cell. Let Z denote the edge hypergraph closest to
+one of the endpoints of γ, and let x ≠ y denote the first two intersection points of Z
+with γ. By Theorem 6.31(3), which applies to the edge hypergraph Z, the subpath
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                                 43
+
+
+of γ from x to y lies in the carrier of Z. Let C1 , C2 denote the first two 2-cells of
+the carrier of Z.
+    First suppose that ∣γ ∩ C1 ∣ = 1. Then ∣C1 ∩ C2 ∣ ≥ L/2 − 1. Indeed, let e1 = γ ∩ C1 ,
+and let e2 be the opposite edge in ∂C1 . Note that e2 ∈ C1 ∩ C2 . Also, by convexity
+of the carrier of Z (Theorem 6.31(3)) the intersection of γ with C1 ∩ C2 is non-
+empty, hence, e1 ∩ C2 is non-empty. As e1 and e2 are opposite in ∂C1 , this yields
+the claim. On the other hand, the isoperimetric inequality from Corollary 5.2 (see
+also Remark 6.18) implies that ∂(C1 ∪ C2 ) has at least 43 L edges, so ∣C1 ∩ C2 ∣ ≤ L/3.
+As L → ∞ this gives a contradiction. Thus we may assume that ∣γ ∩ C1 ∣ > 1. Let
+r = Z ∩ (C1 ∩ C2 ), and let p, s be the endpoints of C1 ∩ C2 so that s ∈ γ. Let Z ′ be
+the edge hypergraph incident to the edge of xs closest to s. Then Z ≠ Z ′ . Note that
+since γ is a geodesic and r ∉ γ, we have γ ∩(C1 ∩C2 ) = s. As in the previous case, we
+have ∣C1 ∩ C2 ∣ = d(p, s) = d(s, r) + d(r, p) ≤ L/3. Since d(x, s) + d(s, r) = L/2, we get
+that d(x, s) ≥ d(r, p) + L/6. On the other hand, if the other endpoint of Z ′ ∩ C1 is in
+ps = C1 ∩ C2 , then d(x, s) < d(r, p), which is a contradiction. Thus Z ′ ∩ C1 ∩ C2 = ∅.
+This implies that Z ′ ∩ C2 = ∅. Indeed, if this is not the case then Z ∩ Z ′ includes a
+point in C2 , so by Theorem 6.31(2) Z ′ would cross an edge of C1 ∩ C2 .
+    Suppose that Z ′ intersects γ at least two times. We claim that Z and Z ′ intersect
+in a 2-cell C =/ C1 . Indeed, let a denote the point Z ′ ∩ C1 ∩ γ and let b be another
+point in Z ′ ∩ γ. Note that, by the choice of x, ab ⊂ γ does not contain x. We thus
+have two cases: either ab ⊂ ay or ay ⊂ ab. In the first case, by convexity of carriers
+(Theorem 6.31(3)), every edge of γ with non-empty intersection with ab lies in the
+carrier of Z and in the carrier of Z ′ . Since Z ′ is dual to an edge e of xy, Z and Z ′
+cross in any 2-cell with e in its boundary. This completes the proof in the first case.
+The argument in the second case is similar. Thus Z and Z ′ intersect at C =/ C1 .
+By Theorem 6.31(2), Z and Z ′ have to intersect at either C2 or at C3 (Figure 10).
+Z ′ does not enter C2 , so the only possibility is C3 .
+    Consider the diagram induced by the union of C1 , C2 , C3 . By Theorem 6.31(1),
+all three 2-cells must contribute at least L2 to the boundary. But C1 contributes
+at most L − (d(x, s) + d(s, p)) < L/2 to the boundary. This is a contradiction, so
+Z ′ ∩ γ = {a}.                                                                          □
+
+
+
+
+         Figure 10. If γ is a finite geodesic, there is an antipodal hyper-
+         graph that crosses γ exactly once.
+
+                7. Applying a relative cubulation criterion
+  In this section, we prove Theorem 1.5 using the following relative cubulation
+condition from [EN21], which uses [EMN25], and ideas from [BW12; EG20] to
+obtain a cubulation.
+44             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+   Throughout, we let G ∼ FPD(G; d, m, ℓ). We assume that each factor has a
+relatively hyperbolic structure (Gi , Pi ), and that each of these structures admits a
+relatively geometric cubulation. We denote by P the union ⋃i Pi . Note that, with
+overwhelming probability, (G, P) is relatively hyperbolic.
+   The statement of Theorem 7.1 below has been adapted to the context of EXbal
+and Xbal of this paper for ease of reading. We will define the terms and conditions
+in the theorem after stating it, and then show how results from previous sections
+verify these conditions.
+Theorem 7.1 ([EN21, Corollary 8.22]). If Xbal has suitable walls and EXbal sat-
+isfies the projected wall tree, projected wall fullness and two-sided wall projection
+properties, then (G, P) acts relatively geometrically on a CAT(0) cube complex.
+   We now define the conditions in the hypothesis of Theorem 7.1, again adapted
+to our context to simplify notations for the reader.
+Definition 7.2 ([EN21] Hypotheses 6.2). The polygonal complex Xbal satisfies the
+suitable walls condition if:
+    (1) for any edge e of Xbal , the hypergraph Ze ∈ Z is an embedded tree whose
+         inclusion map into Xbal is a quasi-isometric embedding,
+    (2) any hypergraph Z ∈ Z separates X into two distinct complementary com-
+         ponents,
+    (3) for any Z ∈ Z and any vertex v ∈ X, Stab(Z) ∩ Stab(v) is finite, and
+    (4) if γ is a combinatorial geodesic, then there exists an edge e of γ so that Ze
+         crosses γ exactly once. If γ is infinite, there exists an N ∈ N so that every
+         subsegment of γ with length N contains an edge e so that Ze intersects γ
+         exactly once.
+Proposition 7.3. Let G ∼ FPD(G; d, m, ℓ) with d < 61 . The complex Xbal satisfies
+the suitable walls condition as in Definition 7.2.
+Proof. We verify Definition 7.2 item by item. Theorem 6.23 and Theorem 6.22
+imply Item (1). Corollary 6.24 implies Item (2). Proposition 6.26 implies Item (3).
+Proposition 6.30 implies Item (4).                                               □
+     Recall that there is a projection map p ∶ EXbal → Xbal from Definition 6.6.
+Definition 7.4 ([EN21] Definition 8.10). We say
+   (1) (EXbal , p) has the projected wall tree property if p projects every EXbal –
+       hyperstructure to an embedded tree whose inclusion into Xbal is a quasi-
+       isometric embedding,
+   (2) (EXbal , p) has the projected wall fullness property if whenever WeEXbal is an
+       EXbal –hyperstructure and v is a vertex of Xbal , StabG (WeEXbal ) has infinite
+       intersection with StabG (v) if and only if p(WeEXbal ) intersects v, and
+   (3) (EXbal , p) has the two-sided wall projection property if every WeEXbal sepa-
+       rates EXbal into two complementary components such that the correspond-
+       ing closed half-spaces U + and U − , which satisfy U + ∩ U − = WeEXbal , then
+       p(U + ) ∩ p(U − ) = p(WeEXbal ).
+     We are now ready to state the main result of this section:
+Theorem 7.5. Let G ∼ F PD(G; d, m, ℓ) with d < 16 so that each factor has a
+relatively hyperbolic structure (G1 , P1 ), . . . , (Gn , Pn ) and each of these structures
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                               45
+
+
+admits a relatively geometric cubulation. Let P be the union ⋃i Pi . Then with
+overwhelming probability (G, P) is relatively hyperbolic and acts relatively geomet-
+rically on a CAT(0) cube complex.
+
+Proposition 7.6. Let G ∼ FPD(G; d, m, ℓ) with d < 61 . Then (EXbal , p) satis-
+fies the projected wall tree, projected wall fullness, and two sided wall projection
+properties.
+
+Proof. Recall from the end of Section 6.1 that a hypergraph in Xbal is either an
+edge hypergraph in Xbal or a projection of an EXbal –hyperstructure. In particular,
+Theorem 6.22 and Theorem 6.23 imply that (EXbal , p) satisfies the projected wall
+tree property. Proposition 6.26 implies the projected wall fullness property. For the
+two sided wall projection property, we see from Proposition 6.25 that W = WeEXbal
+is two-sided. Let U + and U − be closed half-spaces so that U + ∩ U − = WeEXbal . Let
+x ∈ p(U + ) ∩ p(U − ). The projection p ∶ EXbal → Xbal restricts to a homeomorphism
+on the preimage of each open 1–cell or 2–cell of Xbal , moreover, the preimage of
+each 0–cell is a (connected) fiber complex.
+   Hence, if x is contained in the interior of a 1–cell or 2–cell then there is a unique
+point x̃ ∈ p−1 (x) and it must be that x  ̃ ∈ U ∩ U − . Otherwise, x is a 0–cell of Xbal
+with preimage Ex a fiber complex. Since x ∈ p(U + ) it must be that Ex ∩ U + ≠ ∅,
+and similarly, Ex ∩ U − ≠ ∅. Since U + , U − are half spaces of W that both intersect
+Ex , U + ∩ Ex , U − ∩ Ex are half spaces of a hyperplane W ∩ Ex in Ex . Thus there
+exists a point x̃ ∈ Ex ∩ (U + ∩ U − ) such that p(̃
+                                                  x) = x ∈ p(U + ∩ U − ) as desired. The
+reverse inclusion is obvious.                                                         □
+
+Proof of Theorem 7.5. The result follows by combining the cubulation criterion
+Theorem 7.1 with Proposition 7.6.                                            □
+
+Remark 7.7. For an arbitrary random quotient of a free product, the factor Gi acts
+relatively geometrically on a point with respect to the structure (Gi , {Gi }). Then
+take P to be the collection of free factors, EXbal = Xbal = XR , with projection
+p = id, and apply Theorem 7.1 to obtain the first part of Theorem 1.5.
+
+
+                         8. Geometrically cubulating
+  The goal of this section is the following.
+
+Theorem 8.1. If G ∼ FPD(G; d, m, ℓ) with d < 61 and each of the factors G1 , . . . , Gn
+admits a proper and cocompact cubulation, then with overwhelming probability, G
+acts properly and cocompactly on a CAT(0) cube complex.
+
+    Throughout this section, let G ∼ F PD(G; d, m, ℓ) with G = {G1 , . . . , Gn } and
+d < 16 . Assume that each Gi is cubulable. If Gi is finite, let Yi be a single point.
+Otherwise, let Yi be an essential CAT(0) cube complex on which the group Gi
+acts properly and cocompactly; that is, every hyperplane of Yi splits Yi into two
+deep components. We refer the reader to [CS11, Section 3.1] for the definitions.
+Each Yi will be the essential core of the complex Qi considered in Section 6.1.
+It is guaranteed to exist by [CS11, Proposition 3.5]. Throughout this section, we
+fix EXbal to be the mixed even polygonal-cubical complex with fiber complexes
+Y1 , . . . , Yn .
+46            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+   The conditions in Definition 7.2 and Definition 7.4 guarantee that (up to passing
+to an index at most 2 subgroup to avoid inversions) the stabilizers of all EXbal –
+hyperstructures and edge hypergraphs in Xbal are codimension-1 subgroups of G
+(see for example [EN21, Section 6 and 8] and references therein).
+   For the remainder of this article, fix C(G) to be the CAT(0) cube complex
+dual to this G-finite collection of codimension-1 subgroups obtained via the Sageev
+construction (see [HW14, Section 2.6] for the precise formalism in this setting).
+In Section 8.1 we prove the induced action of G on C(G) is proper and then
+in Section 8.2 we prove the action is cocompact. Note that we cannot directly
+apply Theorem 7.5 because there is no relatively geometric action on the factor
+complexes. Indeed, the factor groups are not necessarily hyperbolic (relative to the
+trivial subgroup).
+8.1. Properness. The main tool used to prove properness is the following result.
+Theorem 8.2 ([BW12, Theorem 5.1]). Let (G, P) be a relatively hyperbolic pair.
+Suppose that:
+    (1) for each parabolic point q ∈ ∂P (G), there exist finitely many quasi-isometrically
+        embedded finitely generated codimension–1 subgroups of G whose intersec-
+        tions with StabG (q) yields a proper action of StabG (q) on the corresponding
+        dual cube complex, and
+    (2) for each pair of distinct points u, v ∈ ∂P (G) there is a quasi-isometrically
+        embedded finitely generated codimension–1 subgroup H such that u, v lie in
+        H–distinct components of ∂P G ∖ ∂H.
+Then there exists a subcollection of finitely many quasi-isometrically embedded f.g.
+codimension–1 subgroups of G such that the action of G on the dual cube complex
+is proper.
+Remark 8.3. Even though Theorem 8.2 as stated gives a (finite) subcollection of
+codimension–1 subgroups with respect to which the dual cube complex is proper,
+it is implicit (see [BW12, Lemma 5.4]) that, when the collection of codimension–1
+subgroups we start with is finite, we do not need to pass to a subcollection. This is
+the setting that will be relevant to us. We will show that the G–finite collection of
+stabilizers of the EXbal –hyperstructures and the edge hypergraphs of X satisfy the
+hypotheses of Theorem 8.2. Therefore, the action on the dual cube complex will
+be proper. See Theorem 8.9.
+  We will first show that EXbal –hyperstructures are quasi-isometrically embedded.
+Recall that p ∶ EXbal → Xbal is the natural projection.
+Proposition 8.4. Let W be a hyperstructure in EXbal . Then W is quasi-isometrically
+embedded in EXbal .
+   Let W be a hyperstructure in EXbal , let N (W ) be its carrier, and let a, b be
+arbitrary points in W ∩ EXbal . Let γ be a geodesic in EXbal from a to b and let α
+                          (1)                            (1)
+
+be a shortest path in N (W ) ∩ EXbal from a to b. Our goal is to show that ∣α∣ is
+                                   (1)
+
+uniformly bounded above by a linear function in ∣γ∣. We do this by cases. There
+exist minimal decompositions of α and γ as
+                        α = α1 ∗ ⋅ ⋅ ⋅ ∗ αm .   γ = γ1 ∗ ⋅ ⋅ ⋅ ∗ γm
+so that for each 1 ≤ i ≤ m one of the following holds:
+                           RANDOM QUOTIENTS OF FREE PRODUCTS                                47
+
+
+(Case 1) αi , γi have the same image in EXbal ,
+(Case 2) p(αi ), p(γi ) have disjoint interiors, or
+(Case 3) αi , γi have distinct images in EXbal but are contained in the same fiber
+          complex.
+    To obtain this minimal decomposition first identify the maximal subpaths of α
+ and γ with the same image in EXbal . Let α′ , γ ′ be the complements. These split
+ into subpaths {αi′ }, {γi′ }, so that the endpoints of αi′ and γi′ coincide in EXbal . Fix
+ i and consider p(αi′ ) and p(γi′ ) in Xbal . There are maximal subpaths which map to
+ disjoint images in Xbal . By construction, all other subpaths must lie in the same
+ fiber complex. This completes the decomposition.
+    In general, it is not true that a geodesic γ in EXbal projects to a geodesic in Xbal .
+ However, the image of such a geodesic has controlled intersection with polygons.
+ Recall that in this section, ε and the subdivision parameter k have been chosen as
+ defined in Remark 6.12.
+ Lemma 8.5. Let c be a polygon in Xbal . If γ is a geodesic in EXbal then ∣p(γ)∩c∣ <
+ L(ε+ 12 ). Similarly, suppose that W is a hyperstructure in EXbal , and α is a shortest
+ path in N (W ) ∩ EXbal . Then ∣p(α) ∩ c∣ < L(ε + 12 ).
+                          (1)
+
+
+ Proof. Let c be a polygon in Xbal . There is a unique polygon c̃ in EXbal so that
+ p(̃                                     c∣ ≤ 12 ∣∂̃
+    c) = c. If γ is geodesic, then ∣γ ∩ ∂̃         c∣. By the construction in Section 6.2,
+ the map p ∶ EXbal → Xbal collapses cubical edges, so ∣p(γ) ∩ c∣ < L(ε + 12 ). Similarly,
+ if α is a shortest path in N (W ) and c̃ ⊂ N (W ) then ∣α∩∂̃   c∣ ≤ 12 ∣∂̃
+                                                                          c∣. Thus ∣p(α)∩c∣ <
+ L(ε + 2 ).
+         1
+
+     Suppose instead that c̃ ⊄ N (W ) and ∣p(α)∩∂c∣ ≥ L(ε+ 21 ). Let e be the first edge in
+ c∩p(α). Let p(W ′ ) be the projected hypergraph through e, and note that W ′ ≠ W .
+ Since p(W ′ ) is ε-antipodal, p(W ′ ) must cross another edge e′ ∈ p(α) ⊂ p(N (W )),
+ hence p(W ) ∩ p(W ′ ) contains at least two distinct points. By Theorem 6.31(2)
+ these points lie in adjacent 2-cells d, d′ ∈ p(N (W )). Then D = d ∪ d′ ∪ c is a disk
+ diagram collared by p(W ) and p(W ′ ), with area 3 and at most 2 corners. Since
+ d ≠ d′ , this is impossible by Theorem 6.31(2).                                           □
+   We now analyze the behavior of a Case 2 pair of arcs, using their projections to
+ Xbal . Let τ be the uniform constant from Remark 6.12 that bounds the length of
+ cubical segments in EXbal .
+ Lemma 8.6. Let d < 61 and let 1 ≤ i ≤ m. Suppose sα , sγ are the starting points
+ of αi , γi , respectively, and let tα , tγ be their ending points. Then dEX (1) (sα , sγ ) ≤ τ
+                                                                               bal
+ and dEX (1) (tα , tγ ) ≤ τ .
+           bal
+
+ Proof. If i is in Case (1), the endpoints of αi , γi are equal to each other. If i is in
+ Case (3) and 1 < i < m, then i−1 and i+1 are in Case (1) or in Case (2). Otherwise,
+ i = 1 or i = m, and either m = 1, or i + 1, respectively, i − 1, is in Case (1) or Case
+ (2). So it suffices to prove this for the endpoints in Case (2).
+    Suppose αi , γi are in Case (2). Then p(sα ) = p(sγ ) and p(tα ) = p(tγ ). Let D be
+ a reduced disk diagram bounded by p(αi ), p(γi ). By Lemma 4.33 and the choice
+ of the subdivision parameter k in Section 6.2, either ∣D∣ = 1 or D contains at least
+ two ε-supershells (see Definition 4.32).
+    We will show that the first edge of p(αi ) and the first edge of p(γi ) are part of
+ the same polygon of D. Let cα be the polygon of D adjacent to the first edge of
+48             EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+p(αi ), and let c′α be the polygon of D adjacent to the last edge of p(αi ). We define
+cγ and c′γ analogously. By Lemma 8.5, the intersections of any ε-supershell with
+p(αi ), and p(γi ) respectively, must both contain at least one edge. Moreover, these
+edges are on ∂D. Let c be the first polygon in D adjacent to p(αi ), going along
+p(αi ) from p(sα ) to p(tα ), that is an ε-supershell. Note that c may be equal to cα
+or c′α .
+   We claim that D ∖ c splits into at least two components unless cα = cγ = c or
+c = c′α = c′γ . Indeed, recall that the intersections of c with p(αi ) and p(γi ) both
+contain at least one edge, and that these edges need to be in ∂D. Thus, removing
+c we see that the boundary path is cut into (at least) two components, hence, the
+same holds for D.
+   Suppose cα =/ cγ . If c′α ≠ c′γ or if c ≠ c′α = c′γ , let D1 be the component of D ∖ c
+containing cγ , and let D′ = D1 ∪ c. Then D′ contains cα and cγ , but c is the only
+ε-supershell of D′ . This contradicts Lemma 4.33. Hence c = c′α = c′γ . But then c is
+the only ε-supershell of D, which also contradicts Lemma 4.33.
+   So cα = cγ and c′α = c′γ . Hence there is a path from sα to sγ that lies in
+the boundary of the polygon c̃ satisfying p(̃      c) = cα . By Remark 6.12, there is a
+constant τ > 0 so that d(sα , sγ ) < τ . Similarly, d(tα , tγ ) < τ.                   □
+     We are now ready to prove Proposition 8.4.
+Proof of Proposition 8.4. Let a, b ∈ N (W ), let γ be a geodesic from a to b, and let
+α be a shortest path in N (W ) from a to b. Since γ is a geodesic, ∣γ∣ ≤ ∣α∣. Thus
+it suffices to show ∣α∣ is at most a linear function of ∣γ∣. We demonstrate this by
+showing it is true for each pair αi , γi .
+     If i is in Case (1), then ∣αi ∣ = ∣γi ∣. Suppose that i is in Case (2). By Theorem 6.22
+p(W ) is (λ, ε)–quasi-isometrically embedded in Xbal . The endpoints of p(αi ) are
+within L2 of p(W ), thus p(αi ) is a (λ, ε + L)–quasigeodesic in Xbal . Hence ∣p(γi )∣ ≥
+                                                                           (1)
+
+
+λ
+ 1
+   ∣p(αi )∣ − ε − L. Therefore,
+                 ∣αi ∣ ≤ 2τ ∣p(αi )∣ + 2τ
+                     ≤ 2τ λ∣p(γi )∣ + 2τ λ(L + ε) ≤ 2λτ ∣γi ∣ + 2τ λ(L + ε).
+Recall that τ is the constant given by Remark 6.12. If i is in Case (3), then αi , γi
+lie in a common fiber CAT(0) cube complex. Since αi is a geodesic in a hyperplane
+carrier, which is a convex subcomplex of a CAT(0) cube complex, we have that αi
+is geodesic in the fiber complex. By the triangle inequality and Lemma 8.6,
+                                ∣αi ∣ ≤ ∣γi ∣ + 2τ ≤ ∣γi ∣(1 + 2τ ).                      □
+Lemma 8.7. Let H be an edge hypergraph of Xbal . There is a unique lift W of H
+to EXbal , and W is quasi-isometrically embedded in EXbal .
+Proof. Since H does not contain any vertices, p−1 (h) is a single point for any
+h ∈ H. Thus we can lift the embedding H ↪ Xbal to H ↪ W = p−1 (H) ⊆ EXbal and
+StabG (W ) = StabG (H). We metrise W by dW (a, b) = dH (p(a), p(b)). Let a, b ∈ W
+and let γ be an EXbal –geodesic between a, b. Observe that
+                   (1)
+
+
+                   dEX (1) (a, b) = ∣γ∣ ≥ ∣p(γ)∣ ≥ dX (1) (p(a), p(b))
+                       bal                              bal
+
+                                     1                     1
+                                  ≥     dW (p(a), p(b)) =    d̂ (a, b)
+                                    20L                   20L W
+                      RANDOM QUOTIENTS OF FREE PRODUCTS                              49
+
+
+by Theorem 6.22. Let L  ̂ ≥ L + 2τ ℓ, so that L
+                                              ̂ is an upper bound on the number
+of sides of a polygon in EXbal . Then there is a path in EXbal between a and b of
+                                                            (1)
+
+                ̂ ̂ (a, b). Thus W is quasi-isometrically embedded in EXbal . □
+length at most Ld  W
+
+  Since any hyperstructure in EXbal projects to a hyperstructure in the compact
+EXbal /G , the stabilizer of any hyperstructure W acts cocompactly on W . We thus
+have the following.
+Proposition 8.8. Let W be an EXbal -hyperstructure or the lift of an edge hyper-
+graph in Xbal . Then StabG (W ) acts cocompactly on W, and is quasi-isometrically
+embedded in G.
+Theorem 8.9. If G ∼ FPD(G; d, m, ℓ) with d < 16 and each of the factors G1 , . . . , Gn
+admits a proper and cocompact cubulation, then G acts properly on the CAT(0) cube
+complex C(G).
+Proof. Since Xbal has suitable walls (see Proposition 7.3), Proposition 6.10 of
+[EN21] shows that the endpoints in Xbal ∪∂Xbal of any geodesic are separated by at
+least one edge hypergraph. [EN21, Theorem 6.12] then shows that Theorem 8.2(2)
+is satisfied.
+   For p ∈ Xbal , if StabG (p) is infinite then StabG (p) is conjugate to some Gi .
+Moreover, any EXbal –hyperstructure stabilizer that intersects StabG (p) intersects
+StabG (p) in exactly one hyperplane stabilizer. Indeed, by Theorem 6.23 any EXbal –
+hyperstructure projects to a tree in Xbal , so they cannot intersect a fiber complex
+more than once. Cubulating over the hyperplanes of the fiber cube complex re-
+covers the geometric action on the fiber complex corresponding to p, proving The-
+orem 8.2(1) is satisfied. Theorem 8.2, along with Remark 8.3, gives the required
+result.                                                                           □
+8.2. Cocompactness.          We now show that the action of G on the dual cube
+complex C(G) is cocompact. Let P = Gi ∈ {G1 , . . . , Gn } and let vP be the vertex
+in Xbal fixed by P . Let Y = Yi be the corresponding fiber complex. Note that every
+edge-hypergraph H in Xbal has a unique lift H     ̃ in EXbal , and furthermore since
+                ̃
+H ∩ Xbal = ∅, H is a wall in EXbal . Let V denote the set of the halfspaces of EXbal
+       (0)
+
+given by the EXbal –hyperstructures and lifts of edge-hypergraphs in Xbal . That
+is, given a hyperstructure or lifted edge hypergraph W and halfspaces UW , UW      ′
+
+satisfying EXbal ∖ W = UW ∪ UW , we have UW , UW ∈ V. In what follows, we will use
+                                ′                  ′
+
+W to refer to the wall (UW , UW ′
+                                  ). Note that the cube complex dual to V is exactly
+the cube complex C(G); indeed, StabG (H) = StabG (H)    ̃ because edge stabilizers in
+Xbal are trivial.
+    Let 1/2 > r > 0. Recall that Nr (Y ) denotes the r-neighbourhood of Y . Define
+                U(Y ) = Ur∗ (Y ) = {U ∈ V ∣ diam(U ∩ Nr (Y )) = ∞}.
+Since each edge on EXbal has length 1, by choosing r < 1/2 we guarantee that the
+vertices of Nr (Y ) are exactly the vertices of Y . Thus,
+                        U(Y ) = {U ∈ V ∣ diam(U ∩ Y ) = ∞}.
+Remark 8.10. Let W = (U, U ′ ) be a wall in V. Suppose that both U and U ′ are
+in U(Y ). Then there is a hyperplane h of Y such that Y ∖ h = (U ∩ Y ) ∪ (U ′ ∩ Y ).
+In other words, U ∩ Y and U ′ ∩ Y are the halfspaces in Y defined by h, and the
+hyperstructure that defines the wall W extends h to EXbal .
+50            EINSTEIN, SURAJ KRISHNA, MONTEE, NG, AND STEENBOCK
+
+
+   The set U(Y ) is a hemiwallspace in the sense of [HW14, Definition 3.18]. We
+denote the cube complex dual to this hemiwallspace by C(U) = Cr∗ (Y ). This
+cube complex embeds as a convex subcomplex in C(EXbal ) = C(EXbal , V) [HW14,
+Lemma 3.24], and is defined as follows [HW14, Construction 3.21]: the 0-cubes
+are subcollections c ⊂ U with non-empty pairwise intersection such that for each
+V = (U, U ′ ) ∈ V exactly one of U and U ′ is in c. The 0-cubes are connected by a
+1-cube if they differ on two complementary halfspaces U , U ′ such that (U, U ′ ) ∈ V.
+Finally, for every k > 0, one adds a k-cube if the (k − 1)-skeleton of a cube appears.
+Remark 8.11. As the hyperstructure extending disjoint hyperplanes of Y may in-
+tersect in EXbal , the cube complex Y is not isomorphic to Cr∗ (Y ). However, Y is
+a subcomplex of Cr∗ (Y ).
+    The cube complex C(U) is isomorphic to the cube complex dual to the wallspace
+U ′ on EXbal defined by removing all those halfspaces from U such that only one
+halfspace has non-empty intersection with Y [HW14, Remark 3.22]. Note that in
+our context these are halfspaces whose corresponding EXbal –hyperstructures are
+disjoint from Y . This cube complex is denoted by C(U ′ ). Note that U ∖ U ′ is
+contained in every 0-cube of C(U ).
+Remark 8.12. The cube complex C(U ′ ) embeds in C(G) with image C(U), where
+the embedding is defined as follows: a 0-cell c′ of C(U ′ ) is sent to the 0-cell c′ ∪
+(U ∖ U ′ ) of C(U). This extends to the higher dimensional cubes of C(U ′ ) in a
+natural way. The action of P on EXbal induces an action of P on C(U ′ ), or C(U),
+respectively. Also observe that P stabilizes the set of walls in U ′ and the set of
+walls in U ∖ U ′ . By definition, the embedding of C(U ′ ) is P -equivariant.
+Proposition 8.13. The group P acts cocompactly on C(U).
+    By Remark 8.12 it is sufficient to prove that P acts cocompactly on C(U ′ ). We
+first prove the following. Recall that Y is an essential CAT(0) cube complex, on
+which P acts properly and cocompactly.
+Lemma 8.14. Let W1 and W2 be two walls of U ′ that intersect in EXbal . Then
+either they intersect in Y , or the intersection of the carriers of p(W1 ) and p(W2 )
+contains an edge of Xbal at vP , the vertex of Xbal fixed by P .
+Proof. Suppose that W1 and W2 do not intersect in Y . If p(W1 ) and p(W2 ) intersect
+in the interior of a 2-cell containing vP we are done.
+   Otherwise, p(W1 ) and p(W2 ) collar a diagram of Xbal . Let D be a minimal such
+diagram containing vP . Recall that a corner of D is a 2-cell c of D such that p(W1 )
+and p(W2 ) intersect in the interior of c. Note that a 2-cell is a corner if and only
+if both p(W1 ) and p(W2 ) have non-empty intersection with its interior. Indeed,
+suppose p(W1 ) and p(W2 ) both have non-empty intersection with the interior of a
+2-cell c of Xbal and let c̃ be the pre-image of c in EXbal . Both W1 and W2 connect
+opposite edges of c̃. Thus, W1 and W2 intersect in the interior of c̃, hence, p(W1 )
+and p(W2 ) intersect in the interior of c.
+   As p(W1 ) and p(W2 ) do not intersect in the interior of a 2-cell containing vP ,
+D has at most one corner. By Lemma 6.32 every ε-supershell of D has to be a
+corner. Thus, by Lemma 4.33 the diagram D has at most two 2-cells. Both must
+contain vP , as the interior of one contains a segment of p(W1 ) and the interior of
+the other contains a segment of p(W2 ). Also p(W1 ) and p(W2 ) have to intersect
+                                         REFERENCES                                     51
+
+
+in a point of the intersection of these two 2-cells that is distinct from vP . Hence,
+the intersection of the carriers of p(W1 ) and p(W2 ) contains an edge at vP .     □
+Proof of Proposition 8.13. Let W1 , W2 be walls in U ′ that intersect in EXbal . Let
+hi be the hyperplane of Y such that Wi ∩ Y = hi .
+   Recall the constant τ from Remark 6.12. Let R ∶= 2τ . Observe that R ≥
+2 max{∣∣h∣∣Y ∣ h ∈ BP (m)}, where ∣∣h∣∣Y denotes the translation length of h on
+Y and BP (m) is the ball of radius m in the Cayley graph of P .
+   We denote by NR (h) the cubical R-neighbourhood of h and claim that NR (h1 ) ∩
+NR (h2 ) is non-empty. Indeed, if W1 and W2 intersect in Y , then the intersection
+of h1 and h2 is non-empty. Otherwise, the carriers of the projected hypergraphs of
+W1 and W2 in Xbal intersect in an edge of Xbal at vP . By construction of EXbal ,
+this implies that d(h1 , h2 ) ⩽ R, hence, the claim.
+   Now let W1 , W2 , . . . , Wk be a set of walls of U ′ that pairwise intersect in EXbal .
+Then NR (h1 ), NR (h2 ), . . . , NR (hk ) pairwise intersect. Note that the spaces NR (hi )
+are convex in Y . By Helly’s theorem (see Lemma 13.13 of [HW08], for instance)
+there is a point y ∈ Y in the intersection of the sets NR (hi ). Thus, there is a radius
+R′ > R such that each of the hyperplanes hi intersects the finite ball BR′ (y). Since
+P acts cocompactly on Y , up to the group action of P on U ′ there are at most
+finitely many families of walls of U ′ that pairwise intersect in EXbal .
+   We conclude that P acts cocompactly on C(U ′ ). See for instance [HW14, Lemma
+7.2]. This finishes the proof.                                                          □
+Proof of Theorem 8.1. In view of Proposition 8.8, the assumptions of [HW14, The-
+orem 7.12] hold in our situation. Thus there is a compact K ⊂ C(G) such that
+                    C(G) = GK ∪ ⋃ GCr∗ (Yi ) = GK ∪ ⋃ GC(Ui ).
+                                     i                      i
+By Proposition 8.13 there is a compact Ki ⊂ Cr∗ (Yi ) such that Gi Ki = Cr∗ (Yi ).
+Let K ′ = K ∪ ⋃i Ki . Note that K ′ is the union of finitely many compact subspaces,
+hence is itself compact. Note that
+                 C(G) = GK ∪ ⋃ GCr∗ (Yi ) = GK ∪ ⋃ GP Ki = GK ′ .
+                                 i                      i
+   We conclude that the action of G on C(G) is cocompact. By Theorem 8.9, the
+action is also proper.                                                     □
+
+                                         References
+[Ash22]     Calum J Ashcroft. Random groups do not have Property (T) at densi-
+            ties below 1/4. Preprint, arXiv:2206.14616 [math.GR] (2022). 2022. url:
+            https://arxiv.org/abs/2206.14616.
+[BH99]      Martin R. Bridson and André Haefliger. Metric spaces of non-positive
+            curvature. English. Vol. 319. Grundlehren Math. Wiss. Berlin: Springer,
+            1999. isbn: 3-540-64324-9.
+[Bow12]     Brian H. Bowditch. “Relatively hyperbolic groups”. In: Internat. J. Al-
+            gebra Comput. 22.3 (2012), pp. 1250016, 66. issn: 0218-1967. doi: 10.
+            1142/S0218196712500166. url: https://doi- org.proxy.cc.uic.
+            edu/10.1142/S0218196712500166.
+52                               REFERENCES
+
+
+[BW12]  Nicolas Bergeron and Daniel T. Wise. “A boundary criterion for cubu-
+        lation”. In: Amer. J. Math. 134.3 (2012), pp. 843–859. issn: 0002-9327.
+        doi: 10 . 1353 / ajm . 2012 . 0020. url: https : / / doi - org . proxy .
+        library.cornell.edu/10.1353/ajm.2012.0020.
+[CS11]  Pierre-Emmanuel Caprace and Michah Sageev. “Rank rigidity for CAT(0)
+        cube complexes”. In: Geom. Funct. Anal. 21.4 (2011), pp. 851–891. issn:
+        1016-443X,1420-8970. doi: 10.1007/s00039-011-0126-7. url: https:
+        //doi.org/10.1007/s00039-011-0126-7.
+[EG20]  Eduard Einstein and Daniel Groves. “Relative cubulations and groups
+        with a 2-sphere boundary”. In: Compos. Math. 156.4 (2020), pp. 862–
+        867. issn: 0010-437X. doi: 10.1112/s0010437x20007095. url: https:
+        //doi-org.proxy.cc.uic.edu/10.1112/s0010437x20007095.
+[EG22]  Eduard Einstein and Daniel Groves. “Relatively geometric actions on
+        CAT(0) cube complexes”. English. In: J. Lond. Math. Soc., II. Ser.
+        105.1 (2022), pp. 691–708. issn: 0024-6107. doi: 10.1112/jlms.12556.
+[EMN25] Eduard Einstein, Suraj Krishna M S, and Thomas Ng. “On the bound-
+        ary criterion for relative cubulation: multiended parabolics”. English.
+        In: Bull. Lond. Math. Soc. 57.7 (2025), pp. 2177–2189. issn: 0024-6093.
+        doi: 10.1112/blms.70087.
+[EN21]  Eduard Einstein and Thomas Ng. Relative Cubulation of Small Can-
+        cellation Free Products. Preprint, arXiv:2111.03008 [math.GR] (2021).
+        2021. url: https://arxiv.org/abs/2111.03008.
+[FW24]  David Futer and Daniel T. Wise. “Cubulating random quotients of hy-
+        perbolic cubulated groups”. English. In: Trans. Am. Math. Soc., Ser. B
+        11 (2024), pp. 622–666. issn: 2330-0000. doi: 10.1090/btran/180.
+[GM22]  Daniel Groves and Jason Fox Manning. “Specializing cubulated rela-
+        tively hyperbolic groups”. In: J. Topol. 15.2 (2022), pp. 398–442. issn:
+        1753-8416,1753-8424. doi: 10.1112/topo.12226. url: https://doi.
+        org/10.1112/topo.12226.
+[Gro87] M. Gromov. “Hyperbolic groups”. In: Essays in group theory. Vol. 8.
+        Math. Sci. Res. Inst. Publ. Springer, New York, 1987, pp. 75–263. doi:
+        10.1007/978- 1- 4613- 9586- 7_3. url: https://doi- org.proxy.
+        library.cornell.edu/10.1007/978-1-4613-9586-7_3.
+[Gro93] M. Gromov. “Asymptotic invariants of infinite groups”. In: Geometric
+        group theory, Vol. 2 (Sussex, 1991). Vol. 182. London Math. Soc. Lec-
+        ture Note Ser. Cambridge Univ. Press, Cambridge, 1993, pp. 1–295.
+[Hru10] G. Christopher Hruska. “Relative hyperbolicity and relative quasicon-
+        vexity for countable groups”. In: Algebr. Geom. Topol. 10.3 (2010),
+        pp. 1807–1856. issn: 1472-2747. doi: 10 . 2140 / agt . 2010 . 10 . 1807.
+        url: http://dx.doi.org/10.2140/agt.2010.10.1807.
+[HW08]  Frédéric Haglund and Daniel T. Wise. “Special cube complexes”. In:
+        Geom. Funct. Anal. 17.5 (2008), pp. 1551–1620. issn: 1016-443X. doi:
+        10.1007/s00039-007-0629-4. url: http://dx.doi.org/10.1007/
+        s00039-007-0629-4.
+[HW14]  G. C. Hruska and Daniel T. Wise. “Finiteness properties of cubulated
+        groups.” English. In: Compos. Math. 150.3 (2014), pp. 453–506. issn:
+        0010-437X. doi: 10.1112/S0010437X13007112.
+                                  REFERENCES                                    53
+
+
+[JW22]     Kasia Jankiewicz and Daniel Wise. “Cubulating small cancellation free
+           products”. English. In: Indiana Univ. Math. J. 71.4 (2022), pp. 1397–
+           1409. issn: 0022-2518. doi: 10.1512/iumj.2022.71.9628.
+[KK13]     Marcin Kotowski and Michal Kotowski. “Random groups and property
+           (T ): Żuk’s theorem revisited”. In: Journal of the London Mathematical
+           Society 88.2 (Aug. 2013), pp. 396–416. doi: 10.1112/jlms/jdt024.
+[Mar14]    Alexandre Martin. “Non-positively curved complexes of groups and bound-
+           aries”. In: Geom. Topol. 18.1 (2014), pp. 31–102. issn: 1465-3060. doi:
+           10.2140/gt.2014.18.31. url: https://doi.org/10.2140/gt.2014.
+           18.31.
+[Mon23]    MurphyKate Montee. “Random groups at density d < 3/14 act non-
+           trivially on a CAT(0) cube complex”. In: Trans. Amer. Math. Soc. 376.3
+           (2023), pp. 1653–1682.
+[MP15]     John M. Mackay and Piotr Przytycki. “Balanced walls for random groups”.
+           In: Michigan Math. J. 64.2 (June 2015), pp. 397–419. doi: 10.1307/
+           mmj/1434731930. url: https://doi.org/10.1307/mmj/1434731930.
+[MS17]     Alexandre Martin and Markus Steenbock. “A combination theorem for
+           cubulation in small cancellation theory over free products”. In: Ann.
+           Inst. Fourier (Grenoble) 67.4 (2017), pp. 1613–1670. issn: 0373-0956.
+           url: http://aif.cedram.org/item?id=AIF_2017__67_4_1613_0.
+[Odr21]    Tomasz Odrzygóźdź. Nonplanar isoperimetric inequality for random groups.
+           Preprint, arXiv:2104.13903 [math.GR] (2021). 2021. url: https : / /
+           arxiv.org/abs/2104.13903.
+[Odr25]    Tomasz Odrzygóźdź. “Bent walls for random groups in the square and
+           hexagonal model”. English. In: Trans. Am. Math. Soc. 378.6 (2025),
+           pp. 3779–3822. issn: 0002-9947. doi: 10.1090/tran/9141.
+[Oll04a]   Y. Ollivier. “Sharp phase transition theorems for hyperbolicity of ran-
+           dom groups”. In: Geom. Funct. Anal. 14.3 (2004), pp. 595–679. issn:
+           1016-443X. doi: 10.1007/s00039- 004- 0470- y. url: https://doi.
+           org/10.1007/s00039-004-0470-y.
+[Oll04b]   Yann Ollivier. “Some small cancellation properties of random groups”.
+           In: International Journal of Algebra and Computation 17 (Oct. 2004).
+           doi: 10.1142/S021819670700338X.
+[Oll05]    Yann Ollivier. A January 2005 invitation to random groups. English.
+           Vol. 10. Ensaios Mat. Rio de Janeiro: Sociedade Brasileira de Matemática,
+           2005. isbn: 85-85818-30-1.
+[OW11]     Yann Ollivier and Daniel T. Wise. “Cubulating random groups at den-
+           sity less than 1/6”. In: Trans. Amer. Math. Soc. 363.9 (2011), pp. 4701–
+           4733. issn: 0002-9947. doi: 10.1090/S0002-9947-2011-05197-4. url:
+           https://doi.org/10.1090/S0002-9947-2011-05197-4.
+[Pap96]    Panagiotis Papasoglu. “An algorithm detecting hyperbolicity”. In: Geo-
+           metric and computational perspectives on infinite groups (Minneapolis,
+           MN and New Brunswick, NJ, 1994) 25 (1996), pp. 193–200.
+[Ser77]    Jean-Pierre Serre. Arbres, amalgames, SL2 . Rédigé avec la collaboration
+           de Hyman Bass. French. Ed. by Hyman Bass. Vol. 46. Astérisque. Société
+           Mathématique de France (SMF), Paris, 1977.
+54                                   REFERENCES
+
+
+[SW79]       Peter Scott and Terry Wall. “Topological methods in group theory”. In:
+             Homological group theory (Proc. Sympos., Durham, 1977). Vol. 36. Lon-
+             don Math. Soc. Lecture Note Ser. Cambridge Univ. Press, Cambridge-
+             New York, 1979, pp. 137–203.
+[Tsa22]      Tsung-Hsuan Tsai. “Density of random subsets and applications to
+             group theory”. In: J. Comb. Algebra 6.3-4 (2022), pp. 223–263. issn:
+             2415-6302,2415-6310. doi: 10.4171/jca/63. url: https://doi.org/
+             10.4171/jca/63.
+[Tsa23]      Tsung-Hsuan Tsai. “Freiheitssatz and phase transition for the density
+             model of random groups”. English. In: Math. Z. 303.3 (2023). Id/No 65,
+             p. 25. issn: 0025-5874. doi: 10.1007/s00209-022-03186-2.
+[Tsa24]      Tsung-Hsuan Tsai. “Phase transition for the existence of van Kampen
+             2–complexes in random groups”. In: Algebraic & Geometric Topology
+             24.7 (2024), pp. 3897–3917.
+[Wis04]      D. T. Wise. “Cubulating small cancellation groups”. In: Geom. Funct.
+             Anal. 14.1 (2004), pp. 150–214. issn: 1016-443X,1420-8970. doi: 10 .
+             1007/s00039-004-0454-y. url: https://doi.org/10.1007/s00039-
+             004-0454-y.
+[Żuk03]     Andrzej Żuk. “Property (T) and Kazhdan constants for discrete groups”.
+             In: Geometric And Functional Analysis 13.3 (June 2003), pp. 643–670.
+             doi: 10.1007/s00039-003-0425-8.
+  Department of Mathematics and Statistics, Swarthmore College, 500 College Ave,
+Swarthmore, PA 19081, USA.
+
+     Department of Mathematics, Ashoka University, Haryana 131029, India.
+     Email address: suraj.meda@ashoka.edu.in
+
+   Department of Mathematics and Statistics, Carleton College, 1 College St, North-
+field, MN 55057, USA & Erwin Schrödinger International Insitute for Mathematics and
+Physics, Universität Wien, 1090 Wien, Austria
+   Email address: mmontee@carleton.edu
+
+   Department of Mathematics, Brandeis University, 415 South Street, Waltham, PA
+02453, USA.
+   Email address: thomas.ng.math@gmail.com
+
+   Fakultät für Mathematik, Universität Wien, 1090 Wien, Austria & Erwin Schrödinger
+International Insitute for Mathematics and Physics, Universität Wien, 1090 Wien, Aus-
+tria
+   Email address: markus.steenbock@univie.ac.at
+

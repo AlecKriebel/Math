@@ -1,0 +1,174 @@
+{
+  "schema": "independent-analytic-review-v1",
+  "record_id": "23205034",
+  "doi": "10.5281/zenodo.23205034",
+  "title": "Output-sensitive sparse factorization over finite fields from dense factorization",
+  "publication_date": "2026-10-06",
+  "version": null,
+  "review_completed_utc": "2026-10-25T00:51:32.625118+00:00",
+  "review_status": "complete",
+  "review_completion_percent": 100,
+  "verdict": "reductions_supported_unconditional_dependency_unresolved",
+  "disposition": "review_coverage_and_upstream_dependency_hold_for_unconditional_claim",
+  "demonstrated_paper_defect": false,
+  "unconditional_corollary_independently_verified": false,
+  "publication_clearance_for_unqualified_unconditional_claim": false,
+  "reviewed_artifacts": [
+    {
+      "name": "verification.zip",
+      "url": "https://zenodo.org/api/records/23205034/files/verification.zip/content",
+      "bytes": 291388,
+      "sha256": "96c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68",
+      "zenodo_checksum": "md5:6cd353daffda25a73949d5324eae069c"
+    },
+    {
+      "name": "paper.pdf",
+      "url": "https://zenodo.org/api/records/23205034/files/paper.pdf/content",
+      "bytes": 104276,
+      "sha256": "6e04d462b5229ad310558afd868f21666377e7b5136fad514a7752b20ea4ea10",
+      "zenodo_checksum": "md5:bc9914adad331e615df675b0aadb28f9"
+    }
+  ],
+  "published_pdf_pages_read": 9,
+  "assumptions": [
+    "p is a promised prime given in binary; L = ceil(log2(p)).",
+    "K = F_p[T]/(h), with an explicit monic irreducible h of degree m at least 1, using coefficient coordinates over F_p.",
+    "The nonzero input is sparse, with t nonzero terms and distinct nonnegative binary exponents; N is its degree and b = max(1, ceil(log2(N+1))).",
+    "Output is all distinct monic irreducible factors in dense representation, with binary positive multiplicities and the leading coefficient; D is the sum of distinct factor degrees.",
+    "The dense or prime-field factorization subroutine is a complete exact oracle for the reduction; its unconditional polynomial implementation is a separate dependency.",
+    "The prescribed construction degree d is a numeric output-size parameter; polynomial dependence on log(d) is not claimed."
+  ],
+  "exact_checked_claims": [
+    {
+      "id": "T1-sparse-dense",
+      "statement": "Theorem 1: deterministic sparse complete factorization reduces to at most 2b dense factorization calls, each of degree at most (b+1)D, aggregate degree O(b^2 D), with polynomial nonoracle bit cost in t,b,D,m,L.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "valuation",
+      "statement": "Exact known-factor valuation via base-p residue recursion and an invertible binomial evaluation matrix; the least residue of multiplicity is at most t-1. Integer exponents are retained, including at roots of unity.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "logarithmic-derivative",
+      "statement": "The reduced denominator of U-prime/U is exactly the product of factors whose multiplicity is nonzero modulo p. Doubling Padé reconstruction is accepted only after the exact identity U-prime Q = U A, rather than a finite series prefix.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "signed-Cartier",
+      "statement": "Signed Cartier descent preserves U/V as a polynomial, keeps the sparse numerator support at most t, shrinks numerator degree by a factor p, keeps the new denominator degree at most the old denominator degree plus D, and cancels foreign factors through the signed multiplicity ledger.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "extension-Frobenius",
+      "statement": "Both section operands use inverse coefficient Frobenius in extension fields. The new numerator and denominator correctly represent the quotient of p-th roots; replacing coefficients unchanged is generally invalid.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "T2-dense-prime",
+      "statement": "Theorem 2: complete dense factorization over represented K reduces to at most mn prime-field calls of degrees at most n and aggregate degree at most mn^2 by trace coordinates; the direct F_p-linear fixed-algebra variant uses at most n calls with aggregate degree at most n^2.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "construction",
+      "statement": "Prescribed-degree irreducible construction follows at oracle level through prime-field construction and extension-field factorization, with the stated explicit field model and numeric output degree. Shoup reduction statements and exceptional cases were checked in the original source.",
+      "status": "supported_as_stated_reduction",
+      "limitations": []
+    },
+    {
+      "id": "bit-complexity",
+      "statement": "Coordinate sizes, binary exponent operations, inverse Frobenius, Gaussian elimination dimensions, sparse-dense products and signed multiplicity growth give polynomial bit overhead. A conservative substitution supports the displayed loose exponent bound.",
+      "status": "supported_as_stated_reduction",
+      "limitations": [
+        "No formal instruction-level complexity certificate was built."
+      ]
+    },
+    {
+      "id": "C3-conditional",
+      "statement": "Corollary 3 follows if the pinned upstream deterministic polynomial-time prime-field factorization theorem is valid. Its statement matches the required complete factorization, binary prime and bit-cost interface.",
+      "status": "supported_conditional_implication",
+      "limitations": []
+    },
+    {
+      "id": "upstream-auxiliary-primes",
+      "statement": "The upstream factorization manuscript Section 11 supplies a polynomial auxiliary-prime bound conditional on the exact general-cyclotomic finite-order Hecke zero-free theorem in its pinned primitive-root manuscript.",
+      "status": "supported_conditional_implication",
+      "limitations": [
+        "This check does not certify either full upstream proof."
+      ]
+    }
+  ],
+  "identified_defects": [],
+  "strongest_verified_result": "The complete sparse reduction and represented-field-to-prime-field reductions are independently supported as deterministic oracle implications in their stated dense-distinct-factor output model, including arbitrary binary multiplicities and extension-field Frobenius.",
+  "exact_remaining_gap": "Full correctness of the pinned 48-page deterministic prime-field factorization algorithm and the pinned 92-page general-cyclotomic Hecke zero-free input has not been independently reconstructed. Therefore the unconditional polynomial-time corollary is not certified by this review. This is an unresolved dependency and coverage limitation, not an identified counterexample or demonstrated defect.",
+  "unverified_upstream_nodes": [
+    {
+      "key": "upstream142",
+      "sha256": "ed88aa5ba802311a21c4f265bcef43515a16019f4b5afdd7f52ecbd36ce0204d",
+      "pages": 48,
+      "exact_statement_checked": true,
+      "complete_proof_checked": false,
+      "checked_scope": "Theorems 1.1 and 1.2; introductory interface; Section 10 opening/cost interface; full Section 11 conditional auxiliary-prime implication; limited Section 6 sample.",
+      "remaining_scope": "Complete geometric prime-field splitting algorithm and all supporting lemmas and cost details."
+    },
+    {
+      "key": "upstream029",
+      "sha256": "671ac4b3ece879f614ed8f4b782e61a07805e533f385a694fe4d7afbda3c9365",
+      "pages": 92,
+      "exact_statement_checked": true,
+      "complete_proof_checked": false,
+      "checked_scope": "Introduction and exact Theorem 1.2: uniform width 10^-6 zero-free strip for all finite-order Hecke characters over every cyclotomic field containing the twelfth roots of unity.",
+      "remaining_scope": "Complete theta, reflection, Poisson, Mellin and associated analytic proof in Sections 3–8 and Appendix A."
+    }
+  ],
+  "primary_source_status": {
+    "source_receipts": "reference_receipts.json",
+    "shoup": "Original Theorem 3.1 and extension Theorem 4.1 and their reduction arguments read visually, including characteristic and 2-power exceptions.",
+    "mattarei": "Theorem 2 and proof checked; digit-weight consequence agrees; sparse valuation proof was also reconstructed independently.",
+    "cartier": "Rowland–Yassawi Definition 1.7 and Proposition 1.9 checked; extension-coefficient twist directly reconstructed.",
+    "rai": "Primary arXiv HTML Algorithm 2 and Theorem 4.1 checked for the construction reduction, without importing its randomized implementation as a deterministic theorem.",
+    "upstream_repository_status": "Pinned README warns that verification stages vary and unformalized results may have issues. The catalogue inspection did not locate these exact two theorem titles; absence from this search is not a proof that no formalization exists. No Lean build was run."
+  },
+  "computational_evidence": {
+    "published_clean_replay_receipt": "published_reproduction.json",
+    "published_clean_replay": "PASS",
+    "source_hashes_verified": true,
+    "published_dense_exhaustive_inputs": 377,
+    "published_sparse_exhaustive_inputs": 960,
+    "fresh_control_source": "independent_controls.py",
+    "fresh_control_sha256": "bef029837780092dec317b8daa2184381cb090538437852df62845eed4c273fa",
+    "fresh_control_result": "independent_controls_result.json",
+    "fresh_control_status": "PASS",
+    "fresh_assertions": 63949,
+    "fresh_families": 22,
+    "fresh_complete_trial_factorization_comparisons": 532,
+    "fresh_signed_carry_pairs": 26265,
+    "fresh_direct_Cartier_steps": 1275,
+    "largest_tested_characteristic_bits": 127,
+    "largest_tested_exponent_bits": 1016,
+    "limits": "Finite exact control tests support implementation and negative controls, not asymptotic complexity or the upstream analytic theorem. Supplied toy prime factorization enumerates small fields; no universal upstream prime-field algorithm was executed."
+  },
+  "independence": {
+    "sibling_verdicts_read_before_verdict": false,
+    "historical_review_opinions_relied_on": false,
+    "fresh_truth_controls": true,
+    "no_external_outreach": true,
+    "no_source_repairs": true,
+    "no_site_sheet_git_or_publication_mutations": true
+  },
+  "excluded_certifications": [
+    "human peer review",
+    "novelty or priority",
+    "full upstream theorem correctness",
+    "formal verification",
+    "practical polynomial-time implementation"
+  ],
+  "report": "REVIEW.md",
+  "research_log": "RESEARCH_LOG.md"
+}

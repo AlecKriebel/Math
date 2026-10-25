@@ -1,0 +1,8 @@
+# Research log
+
+- 2026-10-16T07:28:00.605549+00:00 — 20%: independent full-code assessment frozen before execution or implementer verdict inspection; initial authentication passed. Intermittent ENOSPC recorded.
+- 2026-10-16T07:31:08.408495+00:00 — 45%: Authenticated positives, real normal/optimized original replay, build, current and independent raw ZIP reconstruction exercised. Paper fixture remains HEADER ONLY and NOT ACTUAL PAPER.
+- 2026-10-16T07:31:10.765424+00:00 — 65%: Adversarial JSON, closed tree, metadata, raw ZIP and output/receipt safety tests completed; proceeding to hostile startup and native first-pass ordering.
+- 2026-10-16T07:31:21.263463+00:00 — 90%: Independent runtime, hostile capability control, native complete-before-parse ordering, exact pair/statement and optional primary inventory tests completed. Awaiting final issue disposition and public manifest.
+- 2026-10-16T07:35:40.733373+00:00 — 92%: additional launcher attack hypothesis was falsified. Three test expectation failures (not tool defects) remain verbatim in TEST_RESULTS; actual isolated Python ignored the hostile launcher and produced real children. Initial automatically written counterexample label was wrong and is preserved privately, superseded by corrected probe and disposition.
+- 2026-10-16T07:38:25.827630+00:00 — 100%: scoped review complete. No subject defect; 153 passing assertions and 3 preserved, corrected reviewer hypothesis failures. All 190 actual process receipts validate. Independent raw ZIP matches at 72,897 bytes / fc65b868484e6e3be801eadb8170c92a2dac7efcd7125cded3ec49b5ef03f94b. Actual paper/math/priority/visual/integrated review remain outside scope; original effort 1/5 unchanged.

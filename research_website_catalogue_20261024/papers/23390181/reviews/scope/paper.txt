@@ -1,0 +1,339 @@
+===== PAGE 1 =====
+Property (T) above one-third density
+in random free-product quotients
+Alec Kriebel ∗
+Independent researcher
+ORCID: 0009-0001-9320-500X
+October 15, 2026 (version 1.0.0)
+Abstract
+Fix at least three nontrivial ﬁnitely generated groups and a ﬁnite inverse-closed generating
+alphabet of nonidentity elements in each factor. At every ﬁxed density 1/ 3 < d < 1, their
+random free-product quotient, formed from independent uniform cyclically reduced syllable
+relators of exact length with replacement, has Kazhdan’s property (T) with probability tending
+to one through all integer lengths. This answers the property-(T) question in Problem 16 of
+the 2026 Oberwolfach report on median geometry. The proof completes model-speciﬁc steps of
+an earlier proposed syllable-block spectral program: a weighted endpoint calculation handles
+unequal alphabets, torsion, and all three length residues. It uses the established triangular-link
+criterion and matrix concentration. The conclusion includes ﬁxed-radius word-ball alphabets
+and makes no uniform assertion for growing parameters.
+1 Model, result, and antecedents
+Let F = G1 ∗ · · · ∗Gn, where n ≥ 3 and each Gi is nontrivial and ﬁnitely generated. Fix a nonempty
+ﬁnite inverse-closed generating set Bi ⊂ Gi \ { 1}. Regard B = ⨆
+i Bi as a disjoint alphabet, and
+let c(a) be the factor of a ∈ B. In particular, Bi may consist of the nonidentity elements of a ﬁxed
+positive-radius word ball. For ℓ ≥ 2 put
+Sℓ = {a1 · · ·aℓ ∈ Bℓ : c(aj) ̸= c(aj+1) (1 ≤ j < ℓ), c (aℓ) ̸= c(a1)}.
+These are rooted words, without identiﬁcation by rotation or inversion. Free-product normal form
+identiﬁes them with distinct elements of F . Fix 1/ 3 < d < 1, draw Nℓ = ⌊|Sℓ|d⌋ independent
+uniform elements of Sℓ with replacement, and let Gℓ be F modulo their normal closure.
+Theorem 1. For every choice of the ﬁxed data above, P(Gℓ has property (T) ) − → 1 as ℓ → ∞
+through all integers.
+For ball alphabets this is the at-least-three-factor property-(T) question of [ 1, Problem 16,
+pp. 535–536], with the precise sampling convention of [ 2, Deﬁnition 1.1]. Theorem 1 allows torsion
+and inﬁnite or non-ﬁnitely-presented factors. It asserts neither a ﬁnite-length guarantee nor unifor-
+mity as the factors, alphabets, or density vary. The endpoint d = 1/ 3 and two factors are excluded.
+∗OpenAI tools were used extensively in solving the problem, developing and checking the proof, drafting, coding,
+and adversarial veriﬁcation. This preprint is unrefereed: no completed external human peer review or formal proof-
+assistant veriﬁcation is claimed. The accompanying ﬁnite checks do not certify the asymptotic theorem.
+1
+
+===== PAGE 2 =====
+In particular it does not settle every parameter in the broader [ 2, Question 1.9]: for two factors the
+odd-length cyclic universe can be empty. The established collapse above density 1/ 2 already gives
+property (T) there [ 2, Theorem 1.2]; the substantive density extension here is 1/ 3 < d ≤ 1/ 2.
+The overall strategy has substantial antecedents. Montee–Steenbock’s project report [ 3, pp. 77–
+79, especially p. 78] already proposed the same-model syllable-respecting three-part spectral ap-
+proach and left its gap and transfer steps open. That volume reports a 2024 project, but bears
+copyright 2025 and an August 2025 preface; we do not assign it a veriﬁed 2024 public-release date.
+Ashcroft’s strict-length free-group theorem [ 4, Theorem B, Deﬁnition 3.6, §6] already uses almost-
+equal blocks to treat all integer lengths. The common-suﬃx transfer below follows the mechanism
+of Drutu–Mackay [ 5, Lemma 12.2], with additional care for inverse-ﬁxed blocks. Earlier Markov-
+language and spectral methods include [ 6, 7]. We use the Ballmann–Swiatkowski–Zuk link criterion
+in Kotowski–Kotowski’s multigraph formulation [ 8, Theorem 2.13], and Tropp’s matrix Chernoﬀ
+inequality [ 9, Corollary 5.2 and Remark 5.3].
+The contribution proved here is the completion of the weighted endpoint, torsion-deletion, type-
+matrix, and concentration steps for the stated law along that established program. It is not a new
+spectral criterion or an invention of the three-block strategy. Our literature comparison is dated and
+bounded, not a certiﬁcate of ﬁrst occurrence or worldwide current openness. Oppenheim’s recent
+improvement in the Gromov model [ 10] concerns a diﬀerent law and lengths divisible by four, and
+is not an input here. Thus no assertion about a universal current Gromov-model one-third upper
+bound is needed.
+2 Counting blocks and deleting inverse-ﬁxed words
+Write k = |B|and deﬁne the symmetric matrix
+Aab = 1{c(a)̸=c(b)} (a, b ∈ B).
+Its graph is complete multipartite, connected, and contains a triangle. It is therefore primitive. Let
+λ and r be its Perron eigenvalue and positive eigenvector, normalized by ∑
+a r2
+a = 1 . A triangle
+gives λ ≥ 2. The vector r is constant within each part, so ra− 1 = ra. For real z,
+zT Az =
+( ∑
+a
+za
+) 2
+−
+∑
+i
+
+ ∑
+a∈ Bi
+za
+
+
+2
+.
+This is nonpositive on a codimension-one subspace. Hence A has just one positive eigenvalue;
+primitivity implies that every other eigenvalue has absolute value less than λ. The reversible
+stochastic matrix
+Pab = Aabrb
+λra
+(1)
+has stationary law r2
+a, simple eigenvalue 1, and remaining spectrum in [− ρ, 0] for some 0 ≤ ρ < 1.
+Let Wt denote the reduced syllable words of length t, and let f (w), l (w) denote their ﬁrst and
+last letters. Exactly (At− 1)ab words have endpoints a, b , and
+Zℓ := |Sℓ|= tr(Aℓ) ∼ λℓ. (2)
+All estimates below concern this ﬁxed matrix. Its real spectral decomposition gives a uniform
+exponential error in (At)ab/λ t → rarb.
+Put Vt = {w ∈ Wt : w ̸= w− 1}. An even-length reduced word cannot equal its inverse: its
+middle two syllables would belong to the same factor. An inverse-ﬁxed word of length 2s + 1 is
+2
+
+===== PAGE 3 =====
+determined by its ﬁrst s syllables and a middle self-inverse letter. Since |Ws|= O(λs), at most
+O(λs) words are removed. Positivity of the ﬁnitely many ra now gives, for a ﬁxed η < 1 and
+uniformly in endpoints,
+vt(a, b ) := |{w ∈ Vt : f (w) = a, l (w) = b}|= λt− 1rarb(1 + O(ηt)), (3)
+Th(p, q ) :=
+∑
+w∈ Vh
+Ap,f(w)Al(w),q = λh+1rprq(1 + O(ηh)). (4)
+For the second formula, the sum over Wh is (Ah+1)pq and the same deletion bound applies. In-
+creasing η within (0, 1) absorbs both errors. Every endpoint class is therefore nonempty eventually.
+Inversion of w, together with factor invariance under inversion, also gives the exact symmetry
+Th(p, q ) = Th(q, p ).
+3 Triangularization and ﬁnite-index transfer
+Write ℓ = 3L + e, e ∈ {0, 1, 2}, and cut each sampled word at ﬁxed positions into lengths
+(L, L, L ), (L, L, L + 1), (L, L + 1, L + 1) (5)
+respectively. Let I be the set of distinct lengths occurring. The signed formal-generator alphabet
+is V = ⨆
+t∈ I Vt: choose one formal generator for each pair {w, w − 1} and interpret the other member
+as its formal inverse. Normal form distinguishes diﬀerent lengths, and deletion ensures that every
+pair has two members.
+Keep a sample only when all three blocks belong to their corresponding Vt, and impose its
+formal triangular relation uvw = 1. Discarded samples impose no relation. Denote this triangular
+group by Γ ℓ. Each retained relation is cyclically reduced formally: adjacent inverse blocks would
+have meeting syllables in the same factor, contradicting the original cyclic reduction. Its link has
+the three undirected edges
+{u− 1, v }, {v− 1, w }, {w− 1, u }. (6)
+There are no loops. Parallel edges and repeated relator cells are counted with multiplicity; this
+does not change the presented group. Global inversion of signed vertices identiﬁes this convention
+with [ 8, Deﬁnition 2.12].
+Mapping formal generators to their blocks gives an epimorphism from Γ ℓ onto Hℓ = ⟨Vt : t ∈
+I⟩ ≤ Gℓ. We next verify the ﬁnite-index claim without probabilistic assumptions.
+Lemma 1. For L ≥ 4, the subgroup H0 = ⟨VL⟩ ≤ F has index at most two. Consequently
+[Gℓ : Hℓ] ≤ 2.
+Proof. For a, b ∈ B, choose a factor C diﬀerent from both their factors. We seek a common suﬃx v
+of length L − 1 with av, b − 1v ∈ VL. If L is even, any reduced suﬃx starting in C works, since even-
+length words are never inverse-ﬁxed. If L is odd, then L ≥ 5. Choose an even-length suﬃx starting
+and ending in C: length four is realized by factor sequence C, D, E, C for three distinct factors,
+and appending pairs D, C gives every larger even length. Each resulting block has diﬀerent ﬁrst
+and last factors, so cannot be inverse-ﬁxed. Nonemptiness of each alphabet supplies the syllables.
+Thus
+(av)(b− 1v)− 1 = ab ∈ H0.
+Let K = ⟨ab : a, b ∈ B⟩. It is normal, since for every letter c, c(ab)c− 1 = (ca)(bc− 1) ∈ K. In F/K
+every letter has the same image, whose square is the identity, so [F : K] ≤ 2. Hence [F : H0] ≤ 2.
+Its image in Gℓ lies in Hℓ, proving the conclusion.
+3
+
+===== PAGE 4 =====
+Property (T) passes to quotients and from ﬁnite-index subgroups to the whole group [ 8, Remarks
+2.10–2.11]. It suﬃces to establish property (T) for Γ ℓ. No factor embedding, ﬁnite presentation for
+the factors, or distribution-preserving replacement by free factors is assumed.
+4 The exact mean link and its spectrum
+Let E be the random link adjacency matrix and ¯E = EE. For types t, u ∈ I, let ctu count oriented
+corner incidences in the block pattern. In increasing type order the matrices and their row sums
+ht = ∑
+u ctu are
+C0 = [6], C 1 =
+(
+2 2
+2 0
+)
+, C 2 =
+(
+0 2
+2 2
+)
+. (7)
+Their entries sum to six. Take x ∈ Vt, y ∈ Vu with endpoints (a, b ) = ( f (x), l (x)) and (c, f ) =
+(f (y), l (y)). If ctu > 0, put h = ℓ− t − u. Then
+¯Exy = Nℓ
+Zℓ
+ctuAacTh(b, f ); (8)
+if ctu = 0 the entry is zero. Indeed, prescribe the adjacent blocks at a particular oriented corner
+as x− 1, y . Their boundary contributes Aac; the remaining block must lie in Vh and close the other
+two boundaries, giving Th(f, b ) = Th(b, f ). Each completion is exactly one word at the ﬁxed
+cut positions. Reading each of the three positions and both orientations gives ( 7) and ( 8). This
+positional count does not assume that rotating unequal block lengths preserves the ﬁxed cutting
+rule. It includes all rejection events without conditioning on the number of retained samples.
+Let ¯dx = ∑
+y ¯Exy. Summing ( 8) over endpoint classes with ( 3)–( 4), using ∑
+f r2
+f = 1 and∑
+c Aacrc = λra, yields
+¯dx = Nℓ
+Zℓ
+λℓ− t+1rarbht(1 + o(1)). (9)
+The error is uniform over all vertices. Thus, for ﬁxed positive constants c0, C 0 and all suﬃciently
+large ℓ,
+δℓ := minx
+¯dx ≥ c0λdℓ−⌈ ℓ/3⌉, M ℓ := |V | ≤ C0λ⌈ℓ/3⌉. (10)
+Integer-part rounding is harmless by ( 2). In particular δℓ grows exponentially and log Mℓ = O(ℓ).
+The mean walk ¯Pxy = ¯Exy/ ¯dx maps all functions to functions constant on each class (t, a, b ).
+Its nonzero eigenvalues are exactly those of the compressed stochastic matrix
+ˆP(t,a,b),(u,c,f) = vu(c, f )
+¯Exy
+¯dx
+.
+Compression is exact and reversible, with stationary weights proportional to endpoint-class size
+times its common expected degree. There are at most 2k2 classes, all present eventually. Equations
+(3)–( 9) show convergence, separately for each residue, to
+ˆP(t,a,b),(u,c,f) − → QtuPacRbf , Q tu = ctu/h t, R bf = r2
+f . (11)
+This is Q ⊗ P ⊗ R. For e = 0, Q = [1]; for e = 1, 2, respectively,
+Q =
+(
+1/ 2 1 / 2
+1 0
+)
+, Q =
+(
+0 1
+1/ 2 1 / 2
+)
+.
+4
+
+===== PAGE 5 =====
+Both latter spectra are {1, − 1/ 2}. The spectrum of R is {1, 0}, with the appropriate multiplicity
+of zero. By ( 1), the tensor limit has a simple eigenvalue 1, and every other eigenvalue is at most
+ρ/ 2 < 1/ 2. In unequal residues the positive products (− 1/ 2)µ, µ ∈ [− ρ, 0], are essential to this
+bound. For equal lengths the sharper upper bound is zero, including the extra zero eigenvalues of
+the full walk.
+The compressed matrices have ﬁxed size and real spectra by reversibility, so spectral continuity
+gives an eventual full mean normalized Laplacian gap at least
+γ = 1
+2 + 1 − ρ
+4 > 1
+2 . (12)
+Here and below the normalized Laplacian is I − D− 1/2ED − 1/2. Simplicity of the principal eigenvalue
+also gives eventual mean connectivity. The three separate residue limits imply a single eventual
+bound for all lengths.
+5 Concentration and the actual link
+Write the unnormalized random Laplacian as L = ∑Nℓ
+j=1 Lj. A rejected sample has Lj = 0 ; oth-
+erwise it supplies three edge Laplacians. These matrices are independent across samples, positive
+semideﬁnite, have row sums zero, and satisfy ∥Lj∥ ≤ 6, since each edge Laplacian has norm two.
+The three edges of one sample need not be independent.
+Put ¯D = diag( ¯dx), z = ¯D1/21, and Xj = ¯D− 1/2Lj ¯D− 1/2. Every Xj kills the same deterministic
+z and has norm at most 6/δ ℓ. On z⊥ , the minimum eigenvalue of ∑
+j EXj is at least γ. The
+lower-tail matrix Chernoﬀ bound [ 9, Corollary 5.2, Remark 5.3] therefore gives, for ﬁxed 0 < ε < 1,
+P
+
+ ∑
+j
+Xj
+⏐⏐⏐⏐⏐⏐
+z⊥
+̸⪰(1 − ε)γI
+
+ ≤ Mℓ exp(− ε2γδℓ/ 12). (13)
+If the actual expected minimum exceeds γ, using this smaller threshold and weaker probability
+bound remains valid. Restriction to the deterministic common-kernel complement preserves inde-
+pendence and positivity.
+A ﬁxed signed vertex receives at most one incidence from each of the three block occurrences,
+since no block equals its inverse. Its degree contribution per sample is consequently between zero
+and three, even when blocks repeat. The scalar Chernoﬀ upper tail, with (1+ ε) log(1+ε)− ε ≥ ε2/ 3,
+and a union bound give
+P
+(
+∃x : dx > (1 + ε) ¯dx
+)
+≤ Mℓ exp(− ε2δℓ/ 9). (14)
+There is no assertion of independence between diﬀerent vertices’ degrees. Both right-hand sides
+tend to zero by ( 10).
+On the complementary event, for every g in the codimension-one subspace U = {g : gT ¯D1 = 0},
+gT Lg ≥ (1 − ε)γgT ¯Dg, g T Dg ≤ (1 + ε)gT ¯Dg, D = diag(dx).
+The ﬁrst inequality forces the kernel of L to consist only of constants: a kernel of dimension at
+least two would intersect U nontrivially. Hence the actual graph is connected and all its degrees
+are positive. The generalized Courant–Fischer principle, which maximizes the minimum Rayleigh
+quotient over all codimension-one subspaces, now yields the actual normalized gap bound
+λ1(I − D− 1/2ED − 1/2) ≥ (1 − ε)γ
+1 + ε > 1
+2 (15)
+5
+
+===== PAGE 6 =====
+upon choosing 0 < ε < (2γ − 1)/ (2γ + 1). Thus centering with ¯D, rather than D, is legitimate; no
+change of orthogonality is assumed.
+With probability tending to one the triangular multigraph link is connected and satisﬁes ( 15).
+The criterion [ 8, Theorem 2.13] implies property (T) for Γ ℓ. Its quotient Hℓ has property (T), and
+Lemma 1 transfers this to Gℓ. This proves Theorem 1.
+6 Workshop shorthand and veriﬁcation scope
+The normal-word shorthand on p. 523 of [ 1] does not expressly impose the wrap-around restriction
+of [ 2, Deﬁnition 1.1]. The literal linear-normal version follows as well, without identifying the laws.
+Indeed, its universe has size
+Uℓ = 1T Aℓ− 11 ∼ λℓ− 1
+( ∑
+a
+ra
+) 2
+, Zℓ
+Uℓ
+− → λ
+(∑
+a ra)2 > 0.
+Among ⌊U d
+ℓ ⌋ independent uniform linear draws, the number of cyclic ones is binomial with mean
+of order λdℓ. Choose 1/ 3 < d ′ < d. With probability tending to one this number exceeds ⌊Zd′
+ℓ ⌋, by
+scalar concentration. The retained identities are independent uniform cyclic words, independent of
+that count. Apply Theorem 1 at density d′ to the ﬁrst prescribed number of retained words; the
+full linear presentation is a further quotient and inherits property (T).
+The proof uses the cited spectral and concentration theorems as established inputs, not as
+independently reproved results. The accompanying veriﬁcation package provides source and archive
+integrity checks, exact ﬁnite link-count and suﬃx tests, and adversarial negative controls, with
+explicit literature-reading scopes. These ﬁnite computations are diagnostics of the formulas, not a
+proof of the limiting statements, property (T), or priority. The analytical proof above supplies the
+asymptotic conclusion; its external-review and AI-assistance status is disclosed on the ﬁrst page.
+References
+[1] G. Arzhantseva, I. Chatterji, E. Fioravanti, and G. Niblo (organizers), Median Geometry
+and Applications , Oberwolfach Reports 23 (2026), report 8, 487–540; Problem 16, 535–536.
+doi:10.4171/OWR/2026/8.
+[2] E. Einstein, S. Krishna M S, M. Montee, T. Ng, and M. Steenbock, Random Quotients of Free Products,
+arXiv:2502.08630v2 (2026). Deﬁnition 1.1, Theorem 1.2, and Question 1.9 refer to this revision.
+[3] M. Montee and M. Steenbock, Dynamical, geometric and analytic properties of random groups , Re-
+search in Teams Project 3, in ESI Annual Report 2024 , Erwin Schrodinger International Institute for
+Mathematics and Physics, University of Vienna (copyright 2025), 77–79. Institute report ; preface dated
+August 2025.
+[4] C. J. Ashcroft, Property (T) in density-type models of random groups , Groups Geom. Dyn. 17 (2023),
+1325–1356. doi:10.4171/GGD/730.
+[5] C. Drutu and J. M. Mackay, Random groups, random graphs and eigenvalues of p-Laplacians, Adv.
+Math. 341 (2019), 188–254. doi:10.1016/j.aim.2018.10.035.
+[6] F. Bassino, C. Nicaud, and P. Weil, Generic properties of subgroups of free groups and ﬁnite presenta-
+tions, arXiv:1507.01088v1 (2015).
+[7] C. J. Ashcroft, Property (T) in random quotients of hyperbolic groups at densities above 1/ 3,
+arXiv:2202.12318v2 (2022).
+6
+
+===== PAGE 7 =====
+[8] M. Kotowski and M. Kotowski, Random groups and property (T): Zuk’s theorem revisited , J. Lond.
+Math. Soc. 88 (2013), 396–416. doi:10.1112/jlms/jdt024. The criterion and permanence statements
+used here are in arXiv:1106.2242v2, Theorem 2.13 and Remarks 2.10–2.11.
+[9] J. A. Tropp, User-friendly tail bounds for sums of random matrices , Found. Comput. Math. 12 (2012),
+389–434. doi:10.1007/s10208-011-9099-z. We use arXiv:1004.4389v7, Corollary 5.2 and Remark 5.3.
+[10] I. Oppenheim, Property (T) for random groups in the density model with d > 1/ 4, arXiv:2609.21255v1
+(2026).
+7

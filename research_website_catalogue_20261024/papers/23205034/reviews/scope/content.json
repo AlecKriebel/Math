@@ -1,0 +1,133 @@
+{
+  "title": "Output-sensitive sparse factorization over finite fields from dense factorization",
+  "slug": "output-sensitive-sparse-finite-field-factorization",
+  "description": "A deterministic sparse-to-dense factorization reduction handles binary exponents and arbitrary multiplicities over explicitly represented finite fields.",
+  "abstract": "We give a deterministic reduction for complete factorization of a sparse univariate polynomial over an explicitly represented finite field. Its cost is polynomial in the term count, binary exponent length, field encoding, and total degree of the distinct densely returned factors, including arbitrary binary multiplicities. The reduction maintains a sparse numerator and a dense denominator during characteristic-p descent. The numerator degree shrinks by p, while the denominator degree grows by at most the original radical degree per step. Classical logarithmic derivatives, Padé reconstruction, residue multiplicity arguments and Cartier sections supply the individual tools. We also detail the established dense factorization and irreducible construction reductions of Berlekamp and Shoup. Substitution of OpenAI’s prime-field theorem gives uniform deterministic polynomial bit complexity, without GRH, randomness or an integer-factorization oracle. That input requires the companion general cyclotomic Hecke zero-free theorem; this paper neither reproves its breakthrough nor claims formal verification.",
+  "plain_language": [
+    "A polynomial can have a very short description even when its largest exponent is enormous. Factoring it by expanding every coefficient can therefore do vastly more work than the written input and answer require.",
+    "This paper gives a reduction that keeps the input compressed while asking a conventional dense-factorization routine to solve smaller problems. The output lists each distinct irreducible factor with all its coefficients, and records its multiplicity in binary. The cost is polynomial in that input and output size, including cases with enormous repeated powers.",
+    "The useful surprise is that repeated factors divisible by the field’s characteristic can be handled without expanding those powers. A sparse numerator is paired with a dense denominator whose degree grows by only a controlled amount at each step.",
+    "The sparse-to-dense reduction is the central contribution described here. The further deterministic polynomial-time conclusion uses the cited OpenAI prime-field theorem and its companion analytic theorem. Dense field reductions and prescribed-degree constructions are explicitly credited to earlier authors; the note makes no first-priority claim."
+  ],
+  "result": [
+    "The field is explicitly represented as K = F_p[T]/(h), with p prime in binary and h a supplied monic irreducible polynomial of degree m. A nonzero univariate input is supplied as t nonzero terms with distinct nonnegative binary exponents. Let N be its degree, b = max(1, ceil(log₂(N + 1))), L = ceil(log₂ p), and D the sum of the degrees of its distinct irreducible factors.",
+    "Complete factorization returns the leading coefficient and all distinct monic irreducible factors densely, with positive binary multiplicities. Theorem 1 reduces this deterministically to at most 2b complete dense-factorization calls over K, each on degree at most (b + 1)D, with nonoracle bit cost polynomial in t, b, D, m and L. Arbitrary characteristic-divisible multiplicities are included; constants and monomials require no such calls.",
+    "Combining the reduction with the direct prime-Frobenius method uses at most 2b(b + 1)D prime-field factorization calls, each of degree at most (b + 1)D. The explicit dense reductions are inherited Berlekamp methods, and the prescribed-degree irreducible construction uses established Shoup reductions and the degree-md lift also given by Rai.",
+    "The polynomial-time corollary substitutes OpenAI’s cited prime-field factorization theorem. That theorem imports a zero-free result for finite-order Hecke L-functions over all cyclotomic fields containing the twelfth roots of unity. The corollary depends on those sources; the sparse reduction itself does not depend on how the dense oracle is implemented."
+  ],
+  "limitations": [
+    "Output size includes the dense coefficients of every distinct factor. The theorem is not polynomial solely in the number of nonzero output terms, does not find an arbitrary small common divisor at that cost, and does not cover general arithmetic-circuit inputs.",
+    "Zero is excluded from complete factorization. Primality of p and irreducibility of the supplied field polynomial are input promises or require their stated deterministic checks; a field cardinality alone is not an explicit field representation.",
+    "The additional irreducible-construction cost is polynomial in numeric degree d, which is the size of its dense output, not in log d. Optional root extraction by factoring X^r − a is polynomial in numeric r, and yields a fixed-r consequence rather than a general binary-r bound.",
+    "The unconditional running-time corollary imports the complete cited prime-field and general cyclotomic Hecke results. A Dirichlet-only nonvanishing theorem is insufficient. The note does not reprove the upstream breakthrough or establish a formal proof-assistant certificate for this dependency chain.",
+    "The reference prime oracle enumerates only small fields. Its cost is not polynomial in log p, and the enormous theoretical prime-field branch was not executed. The finite examples corroborate reduction identities; they establish neither the universal complexity bound nor practical efficiency.",
+    "Logarithmic derivatives, Padé reconstruction, multiplicity residue methods, Cartier sections, characteristic-p descent and the dense/construction reductions have established antecedents. The proposed addition is their repeated compressed representation with a bounded denominator degree. Historical first priority is not certified."
+  ],
+  "background": [
+    {
+      "title": "Mattarei, Root multiplicities and number of nonzero coefficients of a polynomial",
+      "url": "https://arxiv.org/abs/math/0512239v2",
+      "note": "Theorem 2 and its residue argument supply the earlier multiplicity-versus-weight structure; this is not a new sparsity theorem in the present note."
+    },
+    {
+      "title": "Rowland and Yassawi, Automatic congruences for diagonals of rational functions",
+      "url": "https://arxiv.org/abs/1310.8635v2",
+      "note": "Proposition 1.9 records the established Cartier pull-out mechanism used in the compressed descent."
+    },
+    {
+      "title": "Lecerf, Fast separable factorization and applications",
+      "url": "https://doi.org/10.1007/s00200-008-0062-4",
+      "note": "Earlier characteristic-p separable and residue descent, credited by the manuscript. The present complexity claim concerns a sparse numerator and controlled dense denominator."
+    },
+    {
+      "title": "Demin and van der Hoeven, Factoring sparse polynomials fast",
+      "url": "https://arxiv.org/abs/2312.17380v2",
+      "note": "Earlier sparse algorithms with probabilistic complexity analyses allowing polynomial dependence on numeric total degree; their scope differs from the binary-exponent, dense-factor-output reduction here."
+    },
+    {
+      "title": "Berlekamp, Factoring polynomials over large finite fields",
+      "url": "https://doi.org/10.1090/S0025-5718-1970-0276200-X",
+      "note": "The field-extension factorization reduction is inherited from the classical Frobenius-fixed-algebra approach."
+    },
+    {
+      "title": "Shoup, New algorithms for finding irreducible polynomials over finite fields",
+      "url": "https://www.shoup.net/papers/detirred.pdf",
+      "note": "Prescribed-degree construction reduces deterministically to prime-field factorization; this established implication is not claimed as a new theorem here."
+    },
+    {
+      "title": "Rai, Pseudo-Deterministic Construction of Irreducible Polynomials over Finite Fields",
+      "url": "https://arxiv.org/abs/2410.04071v1",
+      "note": "Algorithm 2 gives the degree-md extension-field lift explicitly credited by this note."
+    },
+    {
+      "title": "OpenAI, Deterministic Polynomial Factorization over Prime Fields",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf",
+      "note": "Theorem 1.1 is the imported prime-field input for the final polynomial-time corollary; ownership of that claimed breakthrough remains with its source."
+    },
+    {
+      "title": "OpenAI, Primitive roots for every admissible integer base",
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf",
+      "note": "The general cyclotomic Hecke zero-free statement in Theorem 1.2 is a required dependency of the cited prime-field theorem."
+    }
+  ],
+  "why_it_works": [
+    "An exact logarithmic derivative reveals factors whose multiplicities are not divisible by the characteristic. Padé reconstruction recovers its small denominator, with acceptance checked by an exact sparse identity rather than a matching initial series alone.",
+    "A residue recursion computes each known factor’s full multiplicity directly from binary exponents. It visits occupied exponent classes, without enumerating the field or every exponent up to the input degree.",
+    "Characteristic-p descent is performed on a polynomial represented as a sparse numerator divided by a dense denominator. Cartier sections shrink the numerator, while the denominator degree increases by at most the original distinct-factor degree per step.",
+    "A signed factor ledger is essential: temporary denominator factors can be absent from the original polynomial and must cancel later. The final multiplicities and total weighted degree can be checked against the original sparse input without expanding huge powers."
+  ],
+  "collaboration": "I welcome substantive collaboration on an independent review of the compressed sparse-factorization reduction, its relation to earlier small-characteristic algorithms, or improvements to the reduction and its implementation. Expertise in finite fields, symbolic computation and algebraic complexity would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed. Practical improvements, sparse-only output, circuit inputs and removing or replacing deep upstream dependencies are broad research programs whose viability is not established by this scope review. None meets the requested high bar as a specific new conjecture.",
+  "publication_date": "2026-10-06",
+  "version": "October 6, 2026",
+  "doi": "10.5281/zenodo.23205034",
+  "author": "Alec Kriebel",
+  "pdf_filename": "paper.pdf",
+  "supplement_filename": "verification.zip",
+  "additional_assets": [],
+  "status": "Unrefereed preprint, October 6, 2026 edition, developed with extensive AI assistance. No first-priority or formal-verification claim.",
+  "ai_disclosure": "AI tools were used extensively in research, drafting and verification. Automated adversarial audits are not conventional human peer review. The author is responsible for the claims, and upstream AI-produced mathematical work is attributed to its cited authors.",
+  "source_binding": {
+    "record_id": "23205034",
+    "concept_record_id": "23205033",
+    "record_url": "https://zenodo.org/records/23205034",
+    "doi": "10.5281/zenodo.23205034",
+    "zenodo_version": null,
+    "manuscript_version": null,
+    "manuscript_date": "October 6, 2026",
+    "publication_date": "2026-10-06",
+    "archive_version_label": "publication-candidate-v5",
+    "version_source": "Zenodo metadata has no version and the manuscript prints no numbered version. content.version is the printed October 6, 2026 edition. The ZIP fileset label publication-candidate-v5 and its 2026-10-07 creation timestamp describe package provenance, not a supplied manuscript or Zenodo version.",
+    "source_retrieved_utc": "2026-10-25T00:43:20.885565+00:00",
+    "pdf_sha256": "6e04d462b5229ad310558afd868f21666377e7b5136fad514a7752b20ea4ea10",
+    "supplement_sha256": "96c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68",
+    "files": [
+      {
+        "name": "verification.zip",
+        "url": "https://zenodo.org/api/records/23205034/files/verification.zip/content",
+        "bytes": 291388,
+        "sha256": "96c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68",
+        "zenodo_checksum": "md5:6cd353daffda25a73949d5324eae069c"
+      },
+      {
+        "name": "paper.pdf",
+        "url": "https://zenodo.org/api/records/23205034/files/paper.pdf/content",
+        "bytes": 104276,
+        "sha256": "6e04d462b5229ad310558afd868f21666377e7b5136fad514a7752b20ea4ea10",
+        "zenodo_checksum": "md5:bc9914adad331e615df675b0aadb28f9"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "paper.pdf",
+        "pages": 9,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "Complete original SPARSE_CANDIDATE_DERIVATION.md and manuscript/REFERENCES.bib; targeted original primary-source comparisons. Full upstream 48/92-page proofs are not independently re-proved by this scope review.",
+    "abstract_source": "Complete published PDF page 1 abstract, visually checked and cross-checked against manuscript source. Whitespace and mathematical typography normalized; no appended AI/editorial prose.",
+    "archive_pdf_identity": "The only PDF in the verification ZIP is manuscript/paper.pdf, byte-identical to the separately published main PDF. No supplementary PDF exists.",
+    "review_boundary": "Independent scope and bounded primary-literature review; not a separate mathematical gate, exhaustive novelty certificate, or human peer review."
+  }
+}

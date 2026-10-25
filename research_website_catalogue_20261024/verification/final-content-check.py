@@ -28,12 +28,15 @@ TEX_PATHS={
  '23356680':'published-source/note.tex',
  '23445342':'published-source/main.tex',
  '23387753':'published-source/note.tex',
+ '23352246':'published-source/rational_mixed_integer_bipartite_covers_v1/research_note.tex',
+ '23414025':'published-source/note.tex',
 }
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex):
  tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
  tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
  tex=re.sub(r'\\ge(?![A-Za-z])','≥',tex)
+ tex=re.sub(r'\\(g|n|to)(?![A-Za-z])',lambda m:{'g':'g','n':'n','to':'→'}[m.group(1)],tex).replace('j_1','j₁').replace('j_2','j₂')
  for old,new in LATEX_WORDS.items():tex=tex.replace(old,new)
  commands=re.findall(r'\\[A-Za-z]+',tex)
  if commands:raise ValueError('Unrecognized abstract TeX commands: '+repr(commands))
@@ -78,8 +81,12 @@ for rid in args.record_ids:
   normalized_abstract=a.replace('$K_4$','K₄').replace('$3$','3').replace(r'$4+\sqrt{17}$','4 + √17').replace('--','–').replace('~',' ')
   test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
   test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
- if rid in ('23445342','23387753'):
+ if rid in ('23445342','23387753','23352246'):
   normalized_abstract=a.replace(r'$\ZZ$','Z').replace(r'$\Z^d$','Zᵈ').replace(r'$d\ge2$','d ≥ 2').replace('$p<1$','p < 1').replace(r'\textbf{Priority qualification:}','Priority qualification:').replace(r'H\"aggstr\"om','Häggström').replace(r'\ ',' ').replace('$','').replace('~',' ').replace('--','–').replace("'",'’')
+  test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid=='23414025':
+  normalized_abstract=a.replace(r'\(\g\)','g').replace(r'\(\n\)','n').replace(r'\(j_1,j_2:\g\to\n\)','j₁, j₂ : g → n')
   test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
   test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
  test('no_noindex','noindex' not in meta.get('robots',''))
@@ -138,7 +145,7 @@ for rid in args.record_ids:
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
-  if rid in ('23441523','23356680','23445342','23387753'):
+  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025'):
    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
    test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
@@ -169,6 +176,12 @@ for rid in args.record_ids:
  if rid=='23387753':
   test('scope_complete',all(x in unescape(h) for x in ['ordinary finite energy','every integer d ≥ 2','Finite components are allowed','quenched: X is fixed','internal site thresholds','maximum finite-side size','connected one-ended spanning tree','not the induced bond graph','factor-of-iid','No first-priority claim']))
   test('credited_planar_antecedent',all(x in unescape(h) for x in ['planar perturbation mechanism is due to Häggström and Mester','additional bounded-cutset deduction']))
+ if rid=='23352246':
+  test('scope_complete',all(x in unescape(h) for x in ['Variables have unrestricted signs','total binary encoding','Dimension, integer-coordinate count and denominators may all vary','integral improving recession direction','actual convex hull conv(S) is a closed rational polyhedron','including boundary points','width at most 2n','at most 2n|I| nodes','two integer coordinates','separate subtree-hull Conjecture 2 remains unaddressed','not claim an algorithm for arbitrary unencoded real data','not implement the full polynomial-time']))
+  test('credited_classical_methods',all(x in unescape(h) for x in ['Classical mixed proximity','hybrid partial minimization','ring-family submodular minimization','exact optimization–separation']))
+ if rid=='23414025':
+  test('scope_complete',all(x in unescape(h) for x in ['same finite dimension','tr(ad_g x) = 0','n is semisimple','invertible linear difference','zero-dimensional case is included','Remark 4 supplies','merely reductive target is not covered','not asserted to be a group homomorphism','nilpotent targets are outside','original body of Onishchik’s 1969 decomposition paper was not accessible']))
+  test('credited_classical_methods',all(x in unescape(h) for x in ['predecessor in Baues’s work','established pair j₁ = R + I and j₂ = R','holomorphic identity theorem','stabilizer is closed and discrete']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

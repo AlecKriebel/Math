@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-16T08:50:28.906663+00:00",
+  "inert_known_pre_fix_core_sha256": "f9dbbf4beff5dba244199fe9b704c97fdafc5de58104a086c3b933d0373fb860",
+  "actual_external_calls": 0,
+  "actual_repository_or_PR_writes": 0,
+  "findings": [
+    {
+      "id": "R948-WORKFLOW-ROOT-01",
+      "classification": "required",
+      "witness": "Root read all1084 lines. Historical freeze_check lines417-436 switches operations/files to historical base but reads every evidence_files key at ROOT/name. A changed living register therefore invalidates a correctly archived old review. Developer focused regression required; no actual old publication candidate is alleged to exist."
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-02",
+      "classification": "required",
+      "witness": "Actual old gate_next executed with fake external transports. Changed immutable head from1x40 to2x40; old target claimed_solved, actual retargeted target unsolved. It selected old target without requesting filename metadata. No real PR was retargeted or read.",
+      "synthetic_actual_current_target": "30000002",
+      "observed_selected": {
+        "number": 952,
+        "problem_id": "30000001",
+        "headRefOid": "2222222222222222222222222222222222222222",
+        "baseRefName": "main",
+        "status": "claimed_solved",
+        "queue_row_sha256": "e6b8e4ca95c9c4cf9a908bc09cfaf4524a52118287dcae255b3d941576ae02ac",
+        "gate_utc": "2026-10-16T08:50:28.906470+00:00",
+        "math_source_read": false,
+        "snapshot_not_yet_created": true
+      },
+      "requested_fake_API_calls": [
+        [
+          "gh",
+          "api",
+          "graphql",
+          "-f",
+          "query=query($expr:String!){repository(owner:\"AlecKriebel\",name:\"Math\"){object(expression:$expr){... on Blob{text isBinary byteSize oid}}}}",
+          "-f",
+          "expr=2222222222222222222222222222222222222222:unsolved_math_prioritization/QUEUE.md"
+        ]
+      ]
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-03",
+      "classification": "required",
+      "witness": "Actual old native_safety executed with fake blob transport. Explicit JSON key30004549:null passed and was reported absent; true absent control also passed. No real current null entry was observed.",
+      "observed_null_present_receipt": {
+        "state_sha256": "ef5448a95a969ec13b674d3c4b73ea6eef66d3d3caf97219a5950b9c2e1bbb9e",
+        "history_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_state_absent": true,
+        "target_history_entries": 0,
+        "historical_native_turn_count": "UNKNOWN",
+        "new_author_proof_responses": 0
+      },
+      "true_absent_positive_receipt": {
+        "state_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "history_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_state_absent": true,
+        "target_history_entries": 0,
+        "historical_native_turn_count": "UNKNOWN",
+        "new_author_proof_responses": 0
+      }
+    }
+  ],
+  "status": "ENGINEERING_REPAIR_REQUIRED_BEFORE_FIRST_CANONICAL_FREEZE",
+  "math_change_required": false,
+  "new_author_proof_responses": 0
+}

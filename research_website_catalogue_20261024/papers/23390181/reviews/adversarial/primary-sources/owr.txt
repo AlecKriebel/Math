@@ -1,0 +1,2351 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                   Report No. 8/2026
+
+                             DOI: 10.4171/OWR/2026/8
+
+                  Median Geometry and Applications
+                                      Organized by
+                              Goulnara Arzhantseva, Vienna
+                                  Indira Chatterji, Nice
+                               Elia Fioravanti, Karlsruhe
+                              Graham Niblo, Southampton
+
+
+                          15 February – 20 February 2026
+
+         Abstract. This was the ﬁrst-ever workshop on median geometry and its
+         applications, bringing together the leading experts from areas of pure and
+         applied expertise in ﬁelds currently seen as distinct. Invited experts from
+         mathematical biology, and computer science interacted with specialists from
+         geometry, combinatorics and group theory, all ﬁelds in which median geom-
+         etry plays a key role. The participants worked to understand the similarities
+         and diﬀerences in the way in which they modelled and exploited median ge-
+         ometry in their work, developing a dictionary of terms that facilitated com-
+         munication and fostering collaboration. As well as exploring recent activity
+         in their ﬁelds, the participants developed a problem list to guide future de-
+         velopment and promote cross disciplinary research.
+
+
+Mathematics Subject Classiﬁcation (2020): 05Cxx, 06Dxx, 20F65, 20F67, 51Kxx, 68R10, 91B14,
+92D15.
+License: Unless otherwise noted, the content of this report is licensed under CC BY SA 4.0.
+
+
+
+                        Introduction by the Organizers
+
+The workshop Median Geometry and Applications, held at the Mathematisches
+Forschungsinstitut Oberwolfach from February 15–20, 2026, brought together a
+diverse group of researchers working at the interface of pure and applied mathe-
+matics. It was the ﬁrst event of its kind dedicated speciﬁcally to median geome-
+try and its wide-ranging applications. Participants included experts in geometric
+group theory, combinatorics, and topology, alongside researchers from computer
+science, and mathematical biology. This broad participation created a uniquely
+488                                                    Oberwolfach Report 8/2026
+
+collaborative atmosphere in which ideas could ﬂow across traditional disciplinary
+boundaries.
+   A central aim of the workshop was to identify common structures underlying
+seemingly disparate problems. Median geometry, through the framework of me-
+dian algebras, median graphs, and CAT(0) cube complexes, played a key role
+as a unifying language. Early expository talks set the stage by highlighting two
+key motivating applications: the median voter theorem from economics and the
+reconstruction of phylogenetic trees in biology. These examples illustrated how
+median structures can encode notions of choice, consensus and optimality, and
+how geometric interpretations can lead to both conceptual clarity and theoretical
+and computational advances.
+   One of the signiﬁcant achievements of the workshop was the collaborative de-
+velopment of a dictionary of terms bridging diﬀerent ﬁelds. Researchers observed
+that similar concepts such as “intervals”, “consensus points”, or “independent
+choices/events” appear, sometimes under diﬀerent names, in economics, computer
+science, and biology. By systematically identifying these correspondences, par-
+ticipants created a shared vocabulary that will facilitate future interdisciplinary
+work. This eﬀort proved particularly valuable during the problem session, where
+open questions from a range of areas were presented, with the dictionary allowing
+the participants to reframe and reformulate the questions, with the potential of
+addressing them using tools from another ﬁeld.
+   The scientiﬁc program reﬂected a balance between foundational theory and
+concrete applications. On the theoretical side, several talks advanced the under-
+standing of median spaces and their role in geometric group theory. Notably,
+new developments in the study of asymptotic cones of groups introduced higher-
+dimensional analogues of real trees, known as real cubings. These provide a power-
+ful framework for analyzing hierarchically hyperbolic groups, a wide and important
+class including hyperbolic groups and mapping class groups. Other contributions
+examined actions of groups on median spaces, revealing deep connections between
+geometric properties such as non-positive curvature and analytic properties like
+Kazhdan’s property (T) and a-T-menability.
+   Breakthrough results were also presented in topology and combinatorics. A
+highlight was the resolution of longstanding conjectures related to the modiﬁed
+Hauptvermutung and weighted strong factorization problems, demonstrating the
+continuing impact of combinatorial and geometric methods on classical questions.
+   From a combinatorial and algorithmic perspective, median structures were
+shown to oﬀer powerful tools for eﬃcient computation. New results on centrality
+and optimization problems in median graphs demonstrated how geometric proper-
+ties can be exploited to design faster algorithms. In particular, recent progress on
+the weighted center problem highlighted how the intrinsic convexity-like features of
+median spaces can break classical complexity barriers. These developments are of
+direct relevance to network analysis and data science, where median-based models
+arise naturally.
+Median Geometry and Applications                                                  489
+
+   The workshop also showcased important applications in computer science. Me-
+dian graphs and CAT(0) cube complexes play a central role in concurrency theory,
+where they provide geometric models for event structures and Petri nets. Several
+talks reported signiﬁcant progress on long-standing conjectures in this area, in-
+cluding new counterexamples and reﬁned classiﬁcations of event structures. These
+results deepen the understanding of distributed computation and highlight the
+surprising interplay between discrete geometry and theoretical computer science.
+   In biology, median structures appeared prominently in phylogenomics. Re-
+searchers discussed the geometry of tree spaces and median networks as models for
+evolutionary relationships. Eﬃcient algorithms for computing geodesics in these
+spaces enable statistical comparisons of phylogenetic trees, with applications to
+evolutionary biology and genomics. These contributions illustrated how abstract
+geometric ideas can inform practical data analysis in the life sciences.
+   Economics provided another classical, but important, domain of application.
+The study of preference aggregation on median spaces, including generalizations
+of the median voter theorem, demonstrated how geometric insights can inform
+social choice theory. In particular, results on Condorcet winners and single-peaked
+preferences highlighted the role of median structures in ensuring stability and
+strategy-proofness in voting systems.
+   A deﬁning feature of the workshop was the active participation of researchers at
+all career stages. Early-career mathematicians presented innovative ideas along-
+side established experts, contributing to a dynamic and inclusive scientiﬁc envi-
+ronment. Many of the most exciting developments arose from informal discussions
+and collaborations initiated during the week, underscoring the importance of the
+Oberwolfach format in fostering deep engagement.
+   The program also included several survey lectures aimed at making advanced
+topics accessible to a broad audience. These talks were instrumental in bridging
+gaps between disciplines and enabling participants to engage meaningfully with
+unfamiliar areas. Evening sessions and informal discussions further enriched the
+scientiﬁc exchange, allowing for the exploration of speculative ideas and long-term
+research directions.
+   In summary, the workshop successfully demonstrated the unifying power of me-
+dian geometry across a wide spectrum of mathematical and applied disciplines. By
+bringing together diverse perspectives, it not only advanced the state of knowledge
+in several areas but also laid the groundwork for future collaborations. The devel-
+opment of a shared dictionary of concepts, the identiﬁcation of common problems,
+and the presentation of signiﬁcant new results all point to a vibrant and growing
+ﬁeld at the intersection of pure and applied mathematics. The overwhelmingly
+positive feedback from participants conﬁrms that the workshop achieved its goal
+of fostering sustained interdisciplinary dialogue, and it is anticipated that the con-
+nections established here will lead to further breakthroughs in the years to come.
+   The organisers would like to thank the staﬀ and leadership of the MFO for
+their hospitality throughout our visit and for all their eﬀorts in preparing for the
+workshop. The institute is a paradise for mathematicians, and that reputation
+490                                                  Oberwolfach Report 8/2026
+
+is maintained by the professionalism and diligence of the entire team. Their ef-
+forts make a major contribution to the atmosphere of friendship, collegiality and
+successful collaboration, which is characteristic of the MFO experience.
+Median Geometry and Applications                                                                               491
+
+
+
+
+Workshop: Median Geometry and Applications
+Table of Contents
+
+
+Karim Adiprasito
+   Hauptvermutung, Tietze’s dream and Oda’s strong
+   factorization conjecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 493
+Pénélope Azuelos
+    Median metric groups . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 494
+Montserrat Casals-Ruiz (joint with Mark Hagen, Ilya Kazachkov)
+  Universal real cubings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 495
+Ruth Charney (joint with Corey Bregman, Nathaniel Stambaugh, Karen
+   Vogtmann)
+   Automorphism groups of RAAGs: a geometric approach . . . . . . . . . . . . . . 497
+Indira Chatterji
+   Condorcet winners on median spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 499
+Victor Chepoi (joint with Jérémie Chalopin)
+   On Thiagarajan’s conjectures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 500
+Cornelia Druţu (joint with Indira Chatterji, Frederic Haglund, Davide
+   Spriano, Stefanie Zbinden)
+   Connections between median graphs, spaces of non-positive curvature and
+   actions on Hilbert spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 503
+Guillaume Ducoﬀe (joint with Pierre Bergé, Jérémie Chalopin, Victor
+   Chepoi, Feodor F. Dragan, Michel Habib, Yann Vaxès)
+   Radius functions in median graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 504
+Anthony Genevois
+   An invitation to quasi-median graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 507
+Mark Hagen (joint with Montserrat Casals-Ruiz, Ilya Kazachkov)
+  Introduction to Real Cubings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 510
+Katharina Huber
+   Median Graphs from a Phylogenetics Perspective . . . . . . . . . . . . . . . . . . . . 512
+Lamine Messaci (joint with Indira Chatterji)
+  On a particular class of inﬁnite rank median spaces . . . . . . . . . . . . . . . . . . 513
+Michah Sageev
+   CAT(0) cube complexes in low dimensional topology . . . . . . . . . . . . . . . . . 516
+Roman Sauer (joint with Uri Bader)
+  From Kazhdan’s property to higher-dimensional expansion . . . . . . . . . . . . 517
+492                                                                   Oberwolfach Report 8/2026
+
+Peter F. Stadler (joint with Boštjan Brešar, Manoj Changat, and Bruno
+   Schmidt)
+   Nebeský’s step systems and “smoothness” in graphs . . . . . . . . . . . . . . . . . . 519
+Markus Steenbock (joint with Eduard Einstein†, Suraj Krishna M S,
+  MurphyKate Montee, Thomas Ng)
+  Relative cubulations and random quotients of free products . . . . . . . . . . . . 521
+Karen Vogtmann (joint with Lou Billera, Susan Holmes)
+   Navigating phylogenetic tree space . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 524
+Nick Wright (joint with Amina Ladjali, Graham A. Niblo, Jiawen Zhang)
+   Intrinsic geometry from coarse medians . . . . . . . . . . . . . . . . . . . . . . . . . . . . 525
+Median Geometry and Applications                                                             493
+
+                                        Abstracts
+
+            Hauptvermutung, Tietze’s dream and Oda’s strong
+                       factorization conjecture
+                          Karim Adiprasito
+Consider two triangulations of the same space. How can they be related? This
+is the subject of the infamous Hauptvermutung, stated by Steinitz and Tietze in
+1908 in slightly diﬀerent forms. In particular, Tietze’s formulation modernized, is
+as follows:
+Question 1 (Hauptvermutung (version Tietze), [3]). Given two homeomorphic
+simplicial complexes, is there a common reﬁnement that is reached by elementary
+moves?
+   This Steinitz asked essentially the same question, but without asking for ele-
+mentary moves. Now, of course, the story goes on that Milnor in 1961 proved that
+this is not true [2].
+   Now, the question remained: what happens if one is additionally interested in
+PL homeomorphisms only. So, the revised Tietze question would be:
+Question 2 (Modiﬁed Hauptvermutung after Tietze). Given two PL homeomor-
+phic simplicial complexes, is there a common reﬁnement that is reached by ele-
+mentary moves?
+   That is perhaps more realistic, because PL homeomorphic complexes are related
+by elementary moves called stellar moves. But a common reﬁnement is more dif-
+ﬁcult, and it remained an open conjecture, often attributed to Alexander (though
+it should have been probably attributed to Tietze).
+   A similar conjecture emerged in toric geometry, often called the strong factor-
+ization conjecture of Oda.
+   The author and Pak proved the following theorem in 2024, resolving Tietze’s
+modiﬁed problem and a slight weakening of Oda’s conjecture
+Theorem 1 (Adiprasito-Pak). The weighted strong factorization conjecture is
+true, and the modiﬁed Hauptvermutung is true as well.
+  I presented a proof, which relies on ideas from earlier work of the author [1].
+
+                                        References
+[1] K. A. Adiprasito and B. Benedetti, Subdivisions, shellability, and collapsibility of products,
+    Combinatorica 37 (2017), 1–30.
+[2] J. W. Milnor, Two complexes which are homeomorphic but combinatorially distinct, Annals
+    of Mathematics 74(2) (1961), 575–590.
+[3] H. Tietze, Über die topologischen Invarianten mehrdimensionaler Mannigfaltigkeiten,
+    Monatsh. für Math. u. Phys. 19 (1908), 1–118.
+494                                                      Oberwolfach Report 8/2026
+
+                              Median metric groups
+                               Pénélope Azuelos
+A metric group is a group equipped with a metric which is invariant under left-
+multiplication. Equivalently, it is a metric space equipped with a free transitive
+group action by isometries. Important examples of such groups include ﬁnitely
+generated groups equipped with the word metric induced by a ﬁnite generating
+set and Lie groups equipped with an invariant Riemannian metric. In this talk, I
+discussed some constructions of metric group structures on connected ﬁnite rank
+median spaces. With the exception of Rn , these groups cannot be locally compact
+by a result of Messaci [3] and in general they are also not topological groups (while
+left-multiplication is isometric, right-multiplication often fails to be continuous).
+Deﬁnition. An R-tree is a geodesic metric space (X, d) such that any pair of
+points in X is connected by a unique arc. For any cardinal κ ≥ 2, the universal
+κ-tree Tκ is the unique complete R-tree such that every point has valence κ.
+   In [2], Casals-Ruiz, Hagen and Kazachkov prove that, for any cardinal 0 ≤ κ ≤
+2ℵ0 , there is a metric group structure on T2ℵ0 such that there are precisely κ orbits
+of lines in T2ℵ0 which have transitive stabiliser. In particular, there are inﬁnitely
+many non-isomorphic groups which act freely and transitively on this R-tree. One
+feature of their construction is that any line stabiliser will be either trivial, cyclic
+or transitive, raising the question:
+Question. Does there exist a group G which acts freely and transitively on T2ℵ0
+such that, for some line L ⊆ T2ℵ0 , the stabiliser StabG (L) is a dense proper
+subgroup of R?
+   To answer this question, and some related questions regarding actions on higher
+rank median spaces, one approach is to abstract the construction of the free group
+from the set of words in some alphabet. This gives rise to the notion of an ore,
+which is a cancellative monoid with involution satisfying some additional assump-
+tions, including that it is equipped with a median structure arising from a partial
+order. From an ore Y , one ﬁnds a canonical subset of reduced elements on which a
+group operation can be deﬁned which preserves the median structure. I explained
+how this can be used to prove the following result from [1]:
+   Let SubN C (R) denote the set of non-cyclic subgroups of R and let K denote the
+set of cardinals 0 ≤ κ ≤ 2ℵ0 .
+Theorem 1. Let ι : SubN C (R) → K be any map which is supported on ≤ 2ℵ0
+elements. Then there exists a group G which acts freely and transitively on T2ℵ0
+such that the following holds. For all H ∈ SubN C (R), if AH is the set of orbits
+of lines G · L such that the induced action of the stabiliser StabG (L) on L is
+isomorphic to the action of H on R by translations, then |AH | = ι(H).
+   In particular, taking ι to be the characteristic map of Q (or any other dense
+proper subgroup of R), we get a positive answer to the question above. One can
+also use this to strengthen Casals-Ruiz, Hagen and Kazachkov’s result as follows:
+Median Geometry and Applications                                                       495
+
+                              ℵ0
+Corollary 2. There are 22          isomorphism classes of groups which act freely and
+transitively on T2ℵ0 .
+   An analogue of this theorem can also be proven in the setting of ℓ1 products
+of T2ℵ0 , where one controls the stabilisers of maximal ﬂats rather than lines. One
+consequence of this is the following (also from [1]):
+Theorem 3. There exists a group G acting freely and transitively on the ℓ1 product
+X = T2ℵ0 × T2ℵ0 such that any subgroup H ≤ G which splits non-trivially as a
+direct product fails to act coboundedly on X.
+
+                                      References
+[1] P. Azuelos, A guide to constructing free transitive actions on median spaces,
+    arXiv.2507.22230 (2025).
+[2] M. Casals-Ruiz, M. Hagen and I. Kazachkov, Real cubings and asymptotic cones of hierar-
+    chically hyperbolic groups, Preprint.
+[3] L. Messaci, Isometric actions on locally compact ﬁnite rank median spaces, Groups Geom.
+    Dyn. to appear (2025).
+
+
+                             Universal real cubings
+                           Montserrat Casals-Ruiz
+                  (joint work with Mark Hagen, Ilya Kazachkov)
+
+Finitely generated groups are discrete objects, and therefore the traditional tools
+of local geometry cannot be applied directly to their study. In his inﬂuential work
+on asymptotic invariants, Gromov proposed recovering a geometric viewpoint by
+changing perspective and observing the group from inﬁnitely far away. This idea
+leads to the notion of the asymptotic cone of a group, a more continuous object
+that can be studied using topological, dynamical, and inﬁnitesimal methods.
+   Using this framework, Gromov proved that every asymptotic cone of a hyper-
+bolic group is a (universal) real tree. Moreover, this property completely charac-
+terizes hyperbolic groups: a ﬁnitely generated group is hyperbolic if and only if
+each of its non-principal asymptotic cones is a real tree.
+   The fact that the asymptotic cones are real trees plays a central role in the
+study of hyperbolic groups. In particular, it provides one of the main tools used to
+describe JSJ decompositions encoding their splittings, to analyze the structure of
+their outer automorphism groups, and to classify them up to isomorphism. More
+surprisingly, Sela made deep use of the Rips machine in his study of the ﬁrst-order
+theory of hyperbolic groups. Using this machinery, together with other tools, he
+showed that hyperbolic groups are equationally Noetherian, described the ﬁnitely
+generated models of their ﬁrst-order theory, and proved that this theory is stable
+and admits elimination of imaginaries.
+   Motivated by the coarse geometry of mapping class groups and right-angled
+Artin groups, and more generally of hierarchically hyperbolic groups, we introduce
+the class of real cubings as a natural generalization of real trees. They form a
+subclass of complete geodesic median metric spaces of ﬁnite rank, in roughly the
+496                                                    Oberwolfach Report 8/2026
+
+same way that hierarchically hyperbolic spaces form a subclass of coarse median
+spaces.
+   Using results of Bowditch and Zeidler on medians in asymptotic cones of coarse
+median spaces, together with Fioravanti’s work on measured halfspaces, we show
+that every non-principal asymptotic cone of a hierarchically hyperbolic group is
+bilipschitz equivalent to a real cubing. This generalizes the fact that asymptotic
+cones of hyperbolic groups are real trees and also strengthens a result of Behrstock-
+Drutu-Sapir on asymptotic cones of mapping class groups.
+   The construction of an asymptotic cone involves several choices, namely a non-
+principal ultraﬁlter on N and a rescaling sequence, and these choices are crucial for
+the resulting coarse geometry. Indeed, Thomas–Velickovic and Drutu–Sapir con-
+structed examples of ﬁnitely generated groups, and Ol’shanskii–Sapir and Osin–
+Ould Houcine examples of ﬁnitely presented groups, for which diﬀerent choices of
+ultraﬁlters yield non-homeomorphic asymptotic cones.
+   Nevertheless, if G is word-hyperbolic, then every asymptotic cone of G is iso-
+metric to a (universal) real tree: a point if G is ﬁnite, a line if G is virtually Z,
+or the unique complete homogeneous 2ℵ0 -valent real tree constructed by Dyubina
+and Polterovich.
+   In view of these results, it is natural to ask whether hierarchically hyperbolic
+groups have unique asymptotic cones. To address this question, we introduce the
+notion of a local real cubing, a higher-dimensional analogue of a sheaf of lines. Our
+ﬁrst result establishes the existence of a canonical global object determined by
+such local data.
+Theorem 1. Given a local real cubing L, there exists a unique complete homoge-
+neous real cubing with local structure L at each point, which we call the universal
+real cubing with local structure L.
+  The proof is inspired by the classical construction of the universal real tree. We
+begin by reviewing this construction and show that, starting from an action of R
+on the line, one obtains the following.
+Theorem 2. There exists a group acting freely and transitively on a complete
+2ℵ0 -valent real tree.
+   We then generalize this construction to real cubings with prescribed local struc-
+ture.
+Theorem 3. There exists a group acting freely and transitively on a complete real
+cubing with local structure L.
+   These constructions have direct applications to the asymptotic geometry of hi-
+erarchically hyperbolic groups. In particular, one can show that the non-principal
+asymptotic cones of a hierarchically hyperbolic group G are bilipschitz equivalent
+to universal real cubings for some local structure L. Consequently, the problem of
+determining whether G has unique asymptotic cones reduces to the uniqueness of
+the associated local structure.
+Median Geometry and Applications                                                           497
+
+   Under suitable algebraic conditions on G, satisﬁed, for example, by mapping
+class groups of surfaces, fundamental groups of compact special cube complexes,
+and hyperbolic groups, we prove that, up to bilipschitz equivalence, the local
+structure (and hence the asymptotic cones of G) is independent of the choice of
+ultraﬁlter and rescaling sequence.
+
+                                       References
+[1] J. Behrstock, C. Druţu and M. Sapir, Median structures on asymptotic cones and homo-
+    morphisms into mapping class groups, Proc. Lond. Math. Soc. (3) 102 (2011), 503–554.
+[2] B. H. Bowditch, Large-scale rigidity properties of the mapping class groups, Paciﬁc J. Math.
+    293 (2018), 1–73.
+[3] M. Casals-Ruiz, M. Hagen and I. Kazachkov, Real cubings and asymptotic cones
+    of hierarchically hyperbolic groups, Available at https://www.wescac.net/cones_july_
+    2024-public.pdf (2025).
+[4] A. Dyubina and I. Polterovich, Explicit constructions of universal R-trees and asymptotic
+    geometry of hyperbolic spaces, Bull. London Math. Soc. 33 (2001), 727–734.
+[5] E. Fioravanti, Roller boundaries for median spaces and algebras, Algebr. Geom. Topol. 20
+    (2020), 1325–1370.
+[6] M. Gromov, Asymptotic invariants of inﬁnite groups, In Geometric group theory, Vol. 2
+    (Sussex, 1991), London Math. Soc. Lecture Note Ser. 182, Cambridge Univ. Press, Cam-
+    bridge, 1993, 1–295.
+[7] S. Thomas and B. Velickovic, Asymptotic cones of ﬁnitely generated groups, Bull. London
+    Math. Soc. 32 (2000), 203–208.
+
+
+
+
+        Automorphism groups of RAAGs: a geometric approach
+                              Ruth Charney
+   (joint work with Corey Bregman, Nathaniel Stambaugh, Karen Vogtmann)
+
+Given a ﬁnite, simplicial graph Γ, we deﬁne the associated Right-Angled Artin
+Group (RAAG) to be the group AΓ whose generators correspond to the vertices of
+Γ and relations are commutators [x, y] of generators joined by an edge in Γ. RAAGs
+span a range of groups from free groups (when Γ has no edges) to free abelian
+groups (when Γ is a complete graph). Associated to AΓ is a cube complex, SΓ ,
+known as the Salvetti complex, whose fundamental group is AΓ and its universal
+covering space is CAT(0). RAAGs and their Salvetti complexes have played a
+major role in geometric group theory and geometric topology. In this talk I discuss
+some recent work on outer automorphism groups of RAAGs.
+   Outer automorphisms of free groups have been much studied. An essential
+tool in this study is Culler-Vogtmann’s “Outer Space”, a contractible space with
+a proper action of Out(Fn ). Our goal in the current project is to construct an
+analogous space for the outer automorphism group of any RAAG. There is a well-
+known generating set for Out(AΓ ) due to Laurence and Servatius, consisting of
+graph permutations, inversions, partial conjugations, and transvections. We divide
+the transvections v 7→ vw into two types. If v, w do not commute, we call this a
+fold. If v, w do commute, we call it a twist. The subgroup of Out(AΓ ) generated by
+498                                                      Oberwolfach Report 8/2026
+
+all of the Laurence-Servatius generators excluding twists, is called the “untwisted
+subgroup” and denoted U (AΓ ).
+   We begin by focusing on the untwisted subgroup. In joint work with Stam-
+baugh and Vogtmann [1], we construct an Outer Space for U (AΓ ), that is, a con-
+tractible space with a proper action of U (AΓ ). Moreover, we show that this space
+equivariantly retracts onto a simplicial “spine” on which U (AΓ ) acts properly and
+cocompactly. Points in this space are pairs (X, h) where X is a locally CAT(0)
+cube complex which can be reduced to SΓ by a series of hyperplane collapses, and
+h is a homotopy equivalence from X to SΓ . Composing h with the inverse of the
+collapse map gives a homotopy equivalence from SΓ to SΓ . We require that the
+resulting map be untwisted, that is, it represents an element of U (AΓ ).
+   Next, in joint work with Bregman and Vogtmann [2], we extend this construc-
+tion to an outer space for the full outer automorphism group. To do this, we allow
+the cubes in X to “skew”, giving rise to a locally CAT(0) parallelotope complex.
+The marking h is again a homotopy equivalence with the Salvetti complex, but no
+longer required to be untwisted. However, a subtlety arises here as a twist may
+occur either by skewing cubes or by changing the marking. In order to get a well-
+deﬁned action of Out(AΓ ) on this space, we must forget the explicit parallelotope
+structure on X, and just remember the induced metric. We then prove that the
+resulting space is contractible and the action of Out(AΓ ) is well-deﬁned and has
+ﬁnite point stabilizers.
+   We expect that, as in the case of free groups, these outer spaces will serve as
+useful tools in studying outer automorphism groups of RAAGs. As a start, we
+consider ﬁnite subgroups G < U 0 (AΓ ) (where U 0 (AΓ ) is the subgroup of U (AΓ )
+excluding graph permutations). The Nielsen realization problem asks whether
+any such subgroup ﬁxes a point in our untwisted outer space. In joint work with
+Bregman and Vogtmann [3], we prove that, in fact, it ﬁxes a point in the spine of
+outer space. Since the action on the spine is cocompact, as a corollary, we conclude
+that U 0 (AΓ ) contains at most ﬁnitely many conjugacy classes of ﬁnite subgroups.
+   In the remainder of the talk, I brieﬂy discuss some other applications and mod-
+iﬁcations of these spaces by various authors, as well as some open questions for
+future research.
+
+
+                                    References
+ [1] R. Charney, N. Stambaugh, and K. Vogtmann, Outer space for untwisted automorphisms
+     of right-angled Artin groups, Geom. Topol. 21 (2017), 131–1178.
+ [2] C. Bregman, R. Charney, and K. Vogtmann, Outer space for RAAGs, Duke Math. J., 172
+     (2023), 1033–1108.
+ [3] C. Bregman, R. Charney, and K. Vogtmann, Finite groups of untwisted outer automor-
+     phisms of RAAGs, Algebr. Geom. Topol. 25 (2025), 2413–2440.
+Median Geometry and Applications                                                    499
+
+                    Condorcet winners on median spaces
+                            Indira Chatterji
+
+We discuss the following result by Berno Buechel in 2013 that appeared in [1].
+
+Proposition 1. Let (>) be a single-peaked non-degenerate preference proﬁle for
+N voters on a median space (X, H). If there is a Condorcet winner then there is a
+median alternative (but the median alternative need not be a Condorcet winner).
+
+   We start by explaining all the terms used in this proposition. A property space
+(X, H) is here a ﬁnite set X of cardinality at least 3 (of policies, political positions
+or social states), endowed with a set of partitions H of X that are called issues,
+such that each two points in X are separated by at least one issue (these are the
+walls that are used in geometric group theory). The number of issues separating
+two points in X gives a metric on X:
+
+                    d(x, y) = |{H̄ = {H, H c } | x ∈ H, y ∈ H c }|
+
+that allows to deﬁne intervals between a pair of points
+
+                    I(x, y) = {t ∈ X | d(x, t) + d(t, y) = d(x, y)}
+
+and the property space (X, H) is called median if given any 3 points, the triple
+intersection of intervals contains exactly one point, called the median.
+    A preference proﬁle for N voters is a collection of total orders on X, denoted
+by (>) = (>n ), one for each voter n = 1, . . . , N . An order >n is single peaked
+if there is x∗ ∈ X such that for each distinct elements y, z ∈ X, if y ∈ I(x∗ , z)
+then y >n z (it’s a form Morse function, expressing compatibility with the median
+structure). The proﬁle is single peaked if all the individual orders are. The proﬁle
+is non-degenerate if all the issues have a winning side, and that allows to deﬁne
+the median alternative as the intersection of all the heavy sides.
+    A Condorcet winner is an element x ∈ X such that for any other element y we
+have
+             |{n ∈ {1, . . . , N } | x >n y} ≥ |{n ∈ {1, . . . , N } | y >n x}|
+   One can give examples of preference proﬁles with no Condorcet winner, but the
+median alternative always exists and is unique. Single-peaked preference proﬁles
+were studied by Nehring and Puppe in 2007, showing that median alternatives
+were strategy-proof and giving equivalent characterizations as dividing the issues
+in good and bad sides in a consistent way, meaning that two good sides cannot
+combine into a bad one. For instance, a department agreeing that hiring either
+candidate A or candidate B is better than no hire, but that hiring both candidates
+will result in a war that would be worse than no hire at all. While in theory voters
+should have single peaked preferences, we can all notice that in practice people
+are not that rational, showing the need to understand other types of preference
+proﬁles.
+500                                                          Oberwolfach Report 8/2026
+
+                                       References
+ [1] B. Buechel, Condorcet winners on median spaces, Social Choice and Welfare 42 (2014),
+     735–750.
+ [2] K. Nehring and C. Puppe, Eﬃcient and strategy-proof voting rules: A characterization,
+     Games and Economic Behavior 59 (2007), 132–153.
+ [3] K. Nehring and C. Puppe, The structure of strategy-proof social choice—Part I: General
+     characterization and possibility results on median spaces, Journal of Economic Theory 135
+     (2007), 269–305.
+
+
+
+
+                           On Thiagarajan’s conjectures
+                                   Victor Chepoi
+                          (joint work with Jérémie Chalopin)
+
+Introduction. Median structures (median semilattices, median graphs, and
+CAT(0) cube complexes) found unexpected and decisive applications in completely
+diﬀerent areas of research. One of such applications is the solution of three Thi-
+agarajan’s conjectures about event structures. Although my talk presented an
+overview of characterizations, properties, and applications of median structures,
+in this extended abstract I will focus on this precise application.
+Event structures and their domains. Event structures, introduced by Nielsen,
+Plotkin, and Winskel (1981) are a widely recognized abstract model of concurrent
+computation. An event structure is a partially ordered set of the occurrences of
+actions, called events, together with a conﬂict relation. The partial order captures
+the causal dependency of events. The conﬂict relation models incompatibility of
+events so that two events that are in conﬂict cannot simultaneously occur in any
+state of the computation. Two events that are neither ordered nor in conﬂict may
+occur concurrently. Formally, an event structure is a triple E = (E, ≤, #), consist-
+ing of a set E of events, and two binary relations ≤ and #, the causal dependency
+≤ and the conﬂict relation # with the requirement that the conﬂict is inherited by
+≤. The pairs of events not in ≤ ∪ ≥ ∪ # deﬁne the concurrency relation k. The
+domain of an event structure consists of all computation states, called conﬁgura-
+tions. Each computation is a subset of events such that no two conﬂicting events
+can occur together in the same computation and if an event occurred in a compu-
+tation then all events on which it causally depends have occurred too. The domain
+of E is the set D(E) of all ﬁnite conﬁgurations ordered by inclusion. An event e
+is enabled by a conﬁguration c if e ∈/ c and c ∪ {e} is a conﬁguration. The degree
+of E is the maximum number of events enabled by a conﬁguration. The future
+(or the principal ﬁlter) of a conﬁguration c is the set of all ﬁnite conﬁgurations c′
+containing c. Barthélemy and Constantin (1993) proved that the domains of the
+event structures are in bijection with pointed median graphs and CAT(0) cube
+complexes: the events correspond to hyperplanes, concurrency eke′ to intersecting
+hyperplanes e, e′ , causal dependency e ≤ e′ to separation of e′ from the origin by
+e, and the conﬂict e#e′ to non-separation and non-crossing.
+Median Geometry and Applications                                                       501
+
+The nice labeling conjecture. The nice labeling conjecture was formulated by
+Rozoy and Thiagarajan (1991) and asserts that every event structure with ﬁnite
+degree admits a nice labeling with a ﬁnite number of labels. A nice labeling is a
+labeling of events with the letters from some ﬁnite alphabet such that any two
+co-initial events (i.e., any two events which are concurrent or in minimal conﬂict)
+have diﬀerent labels. The nice labelings of event structures arise when studying
+the equivalence of three diﬀerent models of distributed computation: labeled event
+structures, net systems, and distributed monoids. The nice labeling conjecture can
+be viewed as a question about a local-to-global ﬁnite behavior of such models.
+   A counterexample to the nice labeling conjecture was constructed in [3]. It is
+based on the bijection between domains of event structures and CAT(0) cube com-
+plexes and on Burling’s construction (1965) of 3-dimensional box hypergraphs with
+clique number 2 and arbitrarily large chromatic numbers k. Namely, we consider
+the chain of all Burling box hypergraphs and transform it into a 4-dimensional
+CAT(0) cube complex, which is further transformed into the domain of an event
+structure with degree at most 10 not admitting a ﬁnite nice labeling.
+
+
+The conjecture on regular event structures. Finite 1-safe Petri nets, also
+called net systems, are natural models of asynchronous concurrency. Nielsen,
+Plotkin, and Winskel (1981) proved that every net system N unfolds into an
+event structure EN describing all possible executions of N : the events of EN are
+all prime Mazurkiewicz traces on the transitions of N , equipped with the causal
+dependency and conﬂict relations. To deal with net systems, Thiagarajan (1996,
+2002) introduced the notions of regular event structure and trace regular event
+structure. The main diﬀerence is that the regularity is deﬁned for unlabeled event
+structures while trace regularity is deﬁned under the stronger assumption of a
+given trace regular labeling. These deﬁnitions were motivated by the fact that the
+event structures EN arising from ﬁnite 1-safe Petri nets N are regular: Thiagarajan
+proved that event structures of ﬁnite 1-safe Petri nets correspond to regular trace
+event structures. This led him to conjecture that regular event structures and
+regular trace event structures are the same. Equivalently, an event structure E is
+isomorphic to the event structure unfolding of a net system iﬀ E is regular.
+    In [1], we presented a counterexample to this conjecture based on a geometric
+and combinatorial view on event structures. To deal with regular event structures,
+we showed how to construct regular event domains from CAT(0) cube complexes.
+Of particular importance for us are the CAT(0) cube complexes arising as universal
+covers of ﬁnite NPC (Nonpositively Curved) cube complexes. We adapted the
+universal cover construction to directed NPC complexes (Y, o) and showed that
+every principal ﬁlter of the directed universal cover (Ye , oe) is the domain of an event
+structure. Furthermore, if the NPC complex Y is ﬁnite, then this event structure
+is regular. Motivated by this result, we called an event structure strongly regular
+if its domain is the principal ﬁlter of the directed universal cover Y     e = (Ye , oe) of
+a ﬁnite directed NPC complex Y = (Y, o). Our counterexample to Thiagarajan’s
+conjecture is a strongly regular event structure not admitting a ﬁnite regular nice
+502                                                     Oberwolfach Report 8/2026
+
+labeling. It is derived from Wise’s (2007) nonpositively curved square complex X
+obtained from a tile set with six tiles.
+    In view of this counterexample, one can ask if the event structures arising as un-
+foldings of ﬁnite 1-safe Petri nets are strongly regular and under which conditions
+is a regular event structure trace regular ? Haglund and Wise (2008,2012) detected
+ﬁve types of pathologies which may occur in NPC complexes. They called the
+NPC complexes without such pathologies special. The main motivation for intro-
+ducing special cube complexes was the idea of Wise that the famous virtual Haken
+conjecture for hyperbolic 3-manifolds can be reduced to solving problems about
+special cube complexes. Agol (2013) completed this program and solved the vir-
+tual Haken conjecture using the deep theory of special cube complexes developed
+by Haglund and Wise. The main ingredient in this proof is Agol’s theorem that
+ﬁnite NPC complexes whose universal covers are hyperbolic are virtually special
+(i.e., they admit ﬁnite covers which are special cube complexes).
+    In [1] we proved that Thiagarajan’s conjecture is true for event structures whose
+domains arise as principal ﬁlters of universal covers of ﬁnite special cube com-
+plexes. On the other hand, in [2], we established the converse result: we prove
+that to any 1-safe Petri net N , one can associate a ﬁnite directed labeled special
+cube complex XN such that the domain of the event structure EN (obtained as
+the unfolding of N ) is a principal ﬁlter of the universal cover X  e N of XN . This
+proves that the trace regular event structures are exactly the special strongly reg-
+ular event structures and that the trace labeling is obtained via the covering map.
+This shows that all event structures arising as unfoldings of ﬁnite 1-safe Petri nets
+are strongly regular, answering in the positive previous question. This also shows
+that specialness must be added to strong regularity to ensure a positive answer to
+Thiagarajan’s second conjecture. Therefore, the trace regular event structures can
+be characterized as the event structures whose domains arise from ﬁnite special
+cube complexes. This establishes a surprising bijection between 1-safe Petri nets
+(fundamental objects in concurrency) and special cube complexes (fundamental
+objects in geometric group theory).
+
+The conjecture on decidability of MSO logic. Thiagarajan and Yang (2014)
+deﬁned the monadic second order (MSO) theory of an event structure unfolding
+EN of a net system N . This immediately leads to the following fundamental
+question: When MSO of EN is decidable? It turns out that the MSO theory of
+trace event structures is not always decidable: Thiagarajan and Yang deﬁned grid
+event structures and showed that the MSO theory of event structures containing
+grids is undecidable. This led Thiagarajan to conjecture that the MSO theory
+of a trace regular event structure EN is decidable iﬀ EN is grid-free. In [2] we
+constructed a counterexample to this conjecture. Namely, we constructed an NPC
+square complex Z with one vertex, four edges, and three squares. We showed that
+Z is virtually special and thus any principal ﬁlter of the universal cover of Z is the
+domain of a trace regular event structure EZ , whose graph has inﬁnite treewidth
+and bounded hyperbolicity. The ﬁrst result implies that MSO of EZ is undecidable
+while the second result shows that EZ is grid-free.
+Median Geometry and Applications                                                          503
+
+                                       References
+ [1] J. Chalopin and V. Chepoi, A counterexample to Thiagarajan’s conjecture, J. Comput. Syst.
+     Sci. 113 (2020), 76–100.
+ [2] J. Chalopin and V. Chepoi, 1-Safe Petri nets and special cube complexes: equivalence and
+     applications, ACM Trans. Comput. Logic 20 (2019), No. 3, Article 17, 49 pages.
+ [3] V. Chepoi, Nice labeling problem for event structures: a counterexample, SIAM J. Comput.
+     41 (2012), 715–727.
+
+
+
+Connections between median graphs, spaces of non-positive curvature
+                      and actions on Hilbert spaces
+                             Cornelia Druţu
+    (joint work with Indira Chatterji, Frederic Haglund, Davide Spriano,
+                              Stefanie Zbinden)
+
+The ﬁst part of this talk explored how key properties of inﬁnite groups relate to
+key classes of graphs. Two combinatorial structures are, in a sense, at the two
+extremes of the spectrum: expander graphs (robust, highly connected networks,
+non-embeddable in Hilbert spaces, diﬃcult to construct) and median graphs (eco-
+nomic networks, easy to embed in Hilbert spaces, easy to construct). These two
+classes turn out to be closely connected to two important properties of inﬁnite
+groups: Kazhdan’s property (T), respectively a-T-menability.
+    Thus, on one hand the ﬁrst hands-on example of expander graphs has been
+constructed by Margulis using inﬁnite groups with property (T) that are residually
+ﬁnite: the Cayley graphs of all the ﬁnite quotients endowed with the image of a
+ﬁxed generating set of the initial group compose a family of expanders.
+    Conversely, using expanders one can construct new inﬁnite groups with property
+(T). Building on work of Garland, Ballmann and Świa̧tkowski proved the following
+[1]. Given a 2-dimensional simplicial complex X such that the link of every vertex
+is a strong expander (i.e. the ﬁrst non-zero eigenvalue of the Laplacian is > 21 )
+a group G that acts simplicially, properly discontinuously and cocompactly on X
+has property (T).
+    The other combinatorial geometry, the median one, can be deﬁned in the more
+general setting of metric spaces. A metric space (X, d) is median if every triple of
+points x1 , x2 , x3 ∈ X admits a unique median point m ∈ X satisfying
+                             d(xi , m) + d(m, xj ) = d(xi , xj )
+for all i, j ∈ {1, 2, 3}, i 6= j. A graph is then called median if its set of vertices with
+the combinatorial structure satisﬁes the above property.
+   In joint work with I. Chatterji and F. Haglund [2], we proved that a group has
+property (T) ⇔ any action by isometries on a median space has bounded orbits.
+   Likewise, a group is a-T-menable ⇔ it admits a proper action by isometries on
+a median space.
+   This comes to illustrate that indeed a-T-menability can be reformulated in terms
+of median geometry, while property (T) is incompatible with such a geometry.
+504                                                           Oberwolfach Report 8/2026
+
+   There are various degrees of compatibility with the median structure among
+a-T-menable groups: some are cubulable (i.e act cocompactly on CAT(0) cube
+complexes) while others cannot act properly on either CAT(0) cube complexes or
+on median spaces of ﬁnite rank, even if they act cocompactly on median spaces of
+inﬁnite rank (as is the case for instance for irreducible uniform lattices of isometries
+of products of real hyperbolic spaces) [3].
+   Median spaces share various properties of non-positive curvature. To begin
+with, spaces of ﬁnite rank can have their metric deformed in a bi-Lipschitz and
+equivariant way so that it becomes CAT(0).
+   Even without the ﬁnite rank condition, the median geometry still has features in
+common with the CAT(0) one. In particular, a dichotomy similar to the Ballmann
+rigidity theorem occurs for groups acting cocompactly on spaces median or quasi-
+isometric to median.
+   Thus, in joint work with Davide Spriano and Stefanie Zbinden [4], we proved
+that a non-virtually cyclic group that acts properly discontinuously and with com-
+pact quotient on a metric space X quasi-isometric to a median space satisﬁes the
+following dichotomy: either the divergence of G is linear, equivalently all asymp-
+totic cones are without cut-points; or G has a Morse element, is acylindrically
+hyperbolic, has free non-abelian subgroups. All asymptotic cones have cut-points.
+
+                                       References
+ [1] W. Ballmann and J. Świa̧tkowski, On L2 -cohomology and property (T) for automorphism
+     groups of polyhedral cell complexes, Geom. Funct. Anal. 7 (1997), 100–120.
+ [2] I. Chatterji, C. Druţu and F. Haglund, Kazhdan and Haagerup properties from the median
+     viewpoint, Adv. Math. 225 (2010), 882–921.
+ [3] I. Chatterji and C. Druţu, Median geometry for spaces with measured walls and for groups,
+     Math. Ann. 393 (2025), 2926–2952.
+ [4] C. Druţu, D. Spriano and S. Zbinden, Combings, local-to-global property for Morse quasi-
+     geodesics and divergence, Preprint.
+
+
+
+                    Radius functions in median graphs
+                            Guillaume Ducoffe
+   (joint work with Pierre Bergé, Jérémie Chalopin, Victor Chepoi, Feodor F.
+                      Dragan, Michel Habib, Yann Vaxès)
+
+The purpose of this talk was to report on the state of the art for the following
+problem on median graphs:
+Deﬁnition. Let Γ = (V, E) be a graph (possibly inﬁnite), and let π : V 7→ R≥0 ,
+with ﬁnite support, be called a proﬁle. The radius function rπ maps every vertex
+v to max{π(u) · d(u, v) : u ∈ supp(π)}. The Weighted Center problem asks to
+ﬁnd a vertex c such that rπ (c) is minimized, hereafter called a center.
+   The Weighted Center problem can also be deﬁned for metric spaces. The
+special case where π can only take 0, 1 values is sometimes called the Unweighted
+Center problem, or the Subset Center problem. Furthermore, for ﬁnite graphs
+Median Geometry and Applications                                                 505
+
+or metric spaces the classical Center problem corresponds to the particular case
+of the all-one proﬁle π, which has attracted considerable attention in algorithmic
+graph theory, and in computational geometry.
+Motivations. The ﬁne-grained complexity of the Weighted Center problem
+on median graphs can be relevant in the study of median networks [5]: that are
+roughly the median closure of phylogenetic data (e.g., mitochondrial DNA of hu-
+man populations). Indeed, in network analysis, the inverse of the radius function
+is used as a centrality index to determine the relative importance of the nodes in
+a network. Since median networks are notoriously large, it is important to design
+algorithms for them that are as fast as possible. On general graphs, the Center
+problem requires n2−o(1) time, under plausible complexity hypotheses, even on n-
+vertex graphs with at most n1+o(1) edges [2]. However, it is possible to break this
+quadratic barrier for median graphs, due to their metric and geometric properties.
+
+
+                              1. State of the art
+For n-node trees, an O(n)-time algorithm for the Weighted Center has long
+been known [12]. A crucial ingredient to this algorithm is that radius functions
+in trees are convex. However, there exist median graphs with non convex radius
+functions: for instance, consider a cycle on four vertices.
+   The following results were presented during the talk.
+Parameterized complexity. Progress on much larger subclasses of median
+graphs, beyond trees, has only been achieved quite recently. A ﬁrst result in this
+direction was obtained for median graphs of bounded tree-dimension [11]. (For a
+median graph Γ, or more generally for a partial cube, its tree-dimension is the least
+k such that Γ can be isometrically embedded in the Cartesian product of k trees).
+More speciﬁcally, given an isometric embedding of a graph Γ in the product of k
+N -node trees, the Weighted Center problem can be solved in 2O(k log k) N 1+o(1)
+time. Note that median graphs of tree-dimension two can be recognized in linear
+time [4]. Squaregraphs are another well-studied subclass of median graphs with
+tree-dimension at most ﬁve: they are the plane graphs such that all the inner
+faces are quadrangles and every vertex of degree at most three lies on the outer-
+face [3]. However, the problem of computing the tree-dimension of median graphs
+is NP-hard, and no eﬃcient approximation algorithm is likely to exist [6]. This
+inherently limits the use of this parameter in algorithmic design. By comparison,
+the cube-dimension is a more tractable parameter: the latter is just the largest
+dimension of a hypercube in a median graph. In particular, the cube-dimension
+of any median graph is at most its tree-dimension, and it is much smaller for
+some median graphs (e.g., the tree-dimension is unbounded for the median graphs
+of cube-dimension two). For n-vertex median graphs of cube-dimension d, there
+exists a 2O(d) n1+o(1) -time algorithm for the Unweighted Center problem [9].
+Open problem 1. Is there an almost linear-time algorithm for the Weighted
+Center problem on median graphs of bounded cube-dimension?
+506                                                         Oberwolfach Report 8/2026
+
+   At present, such an algorithm is only known for median graphs of cube-dimen-
+sion two [10]. This algorithm is based on the following G2 -unimodality property
+of radius functions in these graphs, namely: every vertex v that minimizes rπ (v)
+within its ball of radius 2 is a center.
+Open problem 2. Characterize the median graphs with Gp -unimodal radius
+functions. In particular, does there exist some constant c > 0 such that every me-
+dian graph of cube-dimension d has all its radius functions that are Gc·d -unimodal?
+Arbitrary median graphs. An important notion for the design of eﬃcient al-
+gorithms on general median graphs is that of Θ-classes. Roughly, a Θ-class of a
+median graph Γ is made of all its edges that are mapped to the same dimension
+of the smallest hypercube in which Γ isometrically embeds. Every Θ-class of a
+median graph is a matching cutset whose removal leaves two gated components,
+called halfspaces. Therefore, Θ-classes are used in the design of divide-and-conquer
+algorithms on median graphs. In particular, for 0, 1 proﬁles, the radius function
+of a median graph Γ can be computed in linear time from its restriction to two
+complementary halfspaces, with respect to any Θ-class. However, this does not
+immediately lead to subquadratic-time algorithms for the Unweighted Cen-
+ter problem because there may exist a linear number of Θ-classes. The generic
+framework presented in [7] consists of disconnecting the largest Θ-classes so as to
+reduce the cube-dimension of the resulting subgraphs to α · log n, for some arbi-
+                                     5
+trarily small α. Doing so, an O(n 3 +o(1) )-time algorithm for the Unweighted
+Center problem was claimed. More recently, the concept of ”balanced” Θ-class
+was introduced, which has led to the proof of the following stronger result:
+Theorem 1 ([8]). The Unweighted Center problem can be solved in O(n log4n)
+time on n-vertex median graphs.
+
+                                   2. Perspectives
+It was asked during the talk whether the results above can be extended to edge-
+weighted median graphs. This is likely to require additional assumptions on the
+edge-weight distribution. For example, a natural choice is to assign the same pos-
+itive weight to every two edges in the same Θ-class. Generalizations of the results
+above for median graphs to (unweighted) partial cubes also look challenging. For
+that, it could be interesting to identify families of partial cubes with a median clo-
+sure of sub-quadratic size. However, for ℓ1 -spaces, a conditional quadratic lower
+bound was proved recently [1].
+
+                                      References
+ [1] A. Abboud, M. H. Bateni, V. Cohen-Addad, C. S. Karthik, and S. Seddighin, On Complexity
+     of 1-Center in Various Metrics, APPROX/RANDOM (2023), #1, 1:1–1:19.
+ [2] A. Abboud, V. Vassilevska Williams, and J. Wang, Approximation and ﬁxed parameter
+     subquadratic algorithms for radius and diameter in sparse graphs, SODA (2016), 377–391.
+ [3] H.-J. Bandelt, V. Chepoi, and D. Eppstein, Combinatorics and geometry of ﬁnite and
+     inﬁnite squaregraphs, SIAM J. Discrete Math. 24(4) (2010), 1399–1440.
+Median Geometry and Applications                                                            507
+
+ [4] H.-J. Bandelt, V. Chepoi, and D. Eppstein, Ramiﬁed rectilinear polygons: coordinatization
+     by dendrons, Discrete Comput. Geom. 54(4) (2015), 771–797.
+ [5] H. Bandelt, P. Forster, B. C. Sykes, and M. B. Richards, Mitochondrial portraits of human
+     populations using median networks, Genetics 141(2) (1995), 743–753.
+ [6] H.-J. Bandelt and M. van De Vel, Embedding topological median algebras in products of
+     dendrons, Proc. London Math. Soc. (3) 58(3) (1989), 439–453.
+ [7] P. Bergé, G. Ducoﬀe, and M. Habib, Subquadratic-time algorithm for the diameter and all
+     eccentricities on median graphs, Theory of Computing Systems 68 (2024), 144–193.
+ [8] P. Bergé, G. Ducoﬀe, and M. Habib, Quasilinear-time eccentricities computation, and more,
+     on median graphs, SODA (2025), 1679–1704.
+ [9] P. Bergé and M. Habib, Diameter, radius and all eccentricities in linear time for constant-
+     dimension median graphs, LAGOS (2021), 97–107.
+[10] J. Chalopin, V. Chepoi, F. F. Dragan, G. Ducoﬀe, and Y. Vaxès, On Gp -unimodality of
+     radius functions in graphs: structure and algorithms, arXiv:2503.15011 (2025).
+[11] G. Ducoﬀe, Isometric embeddings in trees and their use in distance problems, MFCS (2021),
+     #43, 43:1–43:16.
+[12] N. Megiddo, Linear time algorithms for linear programming in R3 and related problems,
+     SIAM J. Comput. 12 (1983), 759–776.
+
+
+
+                      An invitation to quasi-median graphs
+                               Anthony Genevois
+
+Loosely speaking, quasi-median graphs provide the smallest reasonnable family of
+median-like graphs that include both median graphs and (products of) complete
+graphs. Formally, mimicking the characterisation of median graphs as retracts of
+hypercubes, quasi-median graphs can be deﬁned as retracts of Hamming graphs
+(i.e. products of complete graphs). Other characterisations of median graphs can
+be turned into characterisations of quasi-median graphs, usually just by replacing
+edges and cubes with cliques and Hamming graphs. For instance, in the same
+way that a graph is median if and only if it is the one-skeleton of a CAT(0) cube
+complex, a graph is quasi-median if and only if it is the one-skeleton of a CAT(0)
+prism complex. (Here, a prism refers to a product of simplices.)
+    More generally, it seems that most of the properties satisﬁed by median graphs
+have natural analogues for quasi-median graphs, always obtained by applying the
+same dictionnary. This motivates the idea that median and quasi-median graphs
+are tightly connected. This motivates the following question: are quasi-median
+graphs actually useful or is it suﬃcient to work with median graphs instead?
+    In this talk, our goal is to motivate the idea that, despite the fact that every
+quasi-median graph can be turned into a canonical median graph, quasi-median
+graphs pop up in various places so naturally that they help signiﬁcantly to think
+and to prove. In other words, quasi-median graphs should not be underestimated.
+Data visualisation. Let S be a set and C a set of partitions of S. We think of
+C as a set of characters that diﬀerentiate the objects in S. Deﬁne a selector as a
+map σ : C → 2S satisfying σ(C ) ∈ C for every character C ∈ C. In other words, σ
+chooses an element of the partition C for every C ∈ C. Through the embedding
+                         s 7→ (C 7→ element of C containing s),
+508                                                      Oberwolfach Report 8/2026
+
+one can think of S as living inside the graph H(S, C )
+      • whose vertices are selectors;
+      • and whose edges connect any two selectors that diﬀer on a single character.
+Notice that H(S, C ) is a Hamming graph. This is a huge graph, and the challenge
+in data visualisation is to ﬁnd a smaller subgraph of H(S, C ) that still contains S
+and that encodes in a meaningfull way how the characters in C diﬀerentiate the
+points of S.
+   When all the characters in C are bipartitions, a relevant choice is to take the
+median closure of S in H(S, C ). In phylogenomics, this is known as the Buneman
+graph of a split system; and, in geometric group theory, this is known as the
+cubulation of a wallspace. In the general case, we explain how to construct a quasi-
+median graph from (S, C). See [8, 9] for more information on the construction.
+Median sets. Most commonly, median graphs are deﬁned by the property that
+any three vertices admit a unique median vertex. But, more generally, it is possible
+to deﬁne the median set Med(S) of an arbitrary  P ﬁnite collection S of vertices as
+the set of the vertices x minimising the sum s∈S d(x, s). Determining median
+sets is a classical problem in location theory. In median graphs, median sets are
+well-understood, and similar results exist for quasi-median graphs. In fact, it
+is possible to characterise quasi-median graphs as the only graphs for which a
+certain dynamical location problem is solvable [13]. There are also applications in
+geometric group theory, since median sets can be used in order to prove ﬁxed-point
+theorems [14, 12].
+Independency. Consider a physical system, which can be in a state s ∈ S and on
+which can applied actions a ∈ A. An action may not be applicable if the system
+is in a given state; but, if it is, the action changes the state of the system. Two
+actions are independent if, when applicable, applying a and then b, or applying b
+and then a, moves the system to same state. In this part of the talk, we explain
+how median graphs can be characterised in terms of such systems of actions with
+independency. This is related to state complexes in robotics [2] and event struc-
+tures in informatics [1]. We also explain how adding intensities to the actions
+naturally leads to a characterisation of quasi-median graphs. Formally, this allows
+us to describe (quasi-)median graphs as Cayley graphs of some speciﬁc groupoids,
+leading to interesting constructions in geometric group theory (extending, for in-
+stance, diagram groups [15] and quandle products [11]). Details will be available
+in a forthcoming article.
+Relatively median graphs. In geometric group theory, it is often desirable
+to be able to say that a given space X, equipped with a particular collection P
+of subspaces, has some geometry relative to P despite the fact that nothing is
+known about the geometry of the subspaces in P. A remarkable illustration of
+this idea is provided by relatively hyperbolic spaces. In this part of the talk, we
+propose a deﬁnition of relatively median graphs and motivate its relevancy. For
+instance, a product of graphs is median relative to its factors and a pointed sum
+of graphs is median relative to its factors. Other examples include Cayley graphs
+Median Geometry and Applications                                                              509
+
+of graph products of groups and some diadem products of graphs [4]. A notable
+characterisation of relatively median graphs, which highlights quasi-median graphs
+as sorts of universal median-like graphs, is the following: a graph is relatively
+median if and only if it is isometric to a quasi-median graph equipped with a
+parallel-friendly weight function on its edges. (Here, a weight function is referred
+to as parallel-friendly if two opposite edges in an induced 4-cycle always have the
+same weight.) More details and applications in geometric group theory will be
+available in a forthcoming article.
+
+Other applications in geometric group theory. Now, quasi-median graphs
+have plenty of applications in geometric group theory, including: a generalisation
+of Haglund and Wise’s theory of special cube complexes [5] (replacing right-angled
+Artin groups with graph products of groups); the introduction of (right-angled)
+rotation groups [10], which provides a new perspective and an exntesion of Kim
+and Koberda’s extension graphs [12, 7]; the construction of embeddings between
+Thompson-like groups [6]; a geometric description of approximations of lamplighter
+groups [3]; a characterisation of the numbers of relative ends and of coends [9]; a
+reduction of the theory of group actions on right-angled buildlings to the theory
+of group actions on quasi-median graphs (in preparation).
+
+
+                                         References
+ [1] M. Nielsen, G. Plotkin and G. Winskel, Petri nets, event structures and domains. I, Theoret.
+     Comput. Sci. 13 (1981), 85–108.
+ [2] A. Abrams and R. Ghrist, State complexes for metamorphic robots, The International Jour-
+     nal of Robotics Research 23 (2004), 811–826.
+ [3] A. Genevois and R. Tessera, Asymptotic geometry of lamplighters over one-ended groups,
+     Invent. Math. 238 (2024), 1–67.
+ [4] A. Genevois, Lamplighter groups, median spaces and Hilbertian geometry, Proc. Edinb.
+     Math. Soc. (2), 65 (2022), 500–529.
+ [5] A. Genevois, Special cube complexes revisited: a quasi-median generalization, Canad. J.
+     Math. 75 (2023), 743–777.
+ [6] A. Genevois, Embeddings into Thompson’s groups from quasi-median geometry, Groups
+     Geom. Dyn. 13 (2019), 1457–1510.
+ [7] A. Genevois, Mini-course on the Embedding Problem between RAAGs, In Groups acting
+     on fractals, hyperbolicity and self-similarity, Panor. Synthèses, Soc. Math. France, Paris 63
+     (2025), 171–192.
+ [8] H.-J. Bandelt, K. Huber and V. Moulton, Quasi-median graphs from sets of partitions,
+     Discrete Appl. Math. 122 (2002), 23–35.
+ [9] A. Genevois, Relative numbers of ends and quasi-median graphs, Preprint (2026).
+[10] A. Genevois, Rotation groups, mediangle graphs, and periagroups: a uniﬁed point of view
+     on Coxeter groups and graph products of groups, arXiv:2212.06421 (2022), Groups Geom.
+     Dyn. to appear.
+[11] A. Genevois, Beyond graph products and cactus groups: quandle products of groups,
+     arXiv:2505.09194 (2025).
+[12] A. Genevois, Cubical-like geometry of quasi-median graphs and applications to geometric
+     group theory, arXiv:1712.01618 (2017).
+[13] F. Chung, R. Graham and M. Saks, A dynamic location problem for graphs, Combinatorica
+     9 (1989), 111–131.
+510                                                      Oberwolfach Report 8/2026
+
+[14] M. Chastand and N. Polat, Invariant Hamming graphs in inﬁnite quasi-median graphs,
+     Discrete Math. 160 (1996), 93–104.
+[15] A. Genevois, An introduction to diagram groups, J. Comb. Algebra 9 (2025), 31–119.
+
+
+
+                        Introduction to Real Cubings
+                                Mark Hagen
+            (joint work with Montserrat Casals-Ruiz, Ilya Kazachkov)
+
+The purpose of this talk is to introduce the class of real cubings, which are com-
+plete, connected, ﬁnite-rank median spaces with an additional property allowing
+them to be “coordinatised” as a median subalgebra of a product of real trees.
+The class includes several familiar examples, like ﬁnite-dimensional CAT(0) cube
+complexes and real trees, but the motivating examples are asymptotic cones of hi-
+erarchically hyperbolic spaces. To explain the motivation, we begin with the main
+theorem of the work being presented [1]:
+Theorem 1. Let G be a ﬁnitely generated group that is (quasi-isometric to) one
+of the following:
+      • the mapping class group of a connected orientable surface of ﬁnite genus
+         with ﬁnitely many punctures/boundary components;
+      • the fundamental group of a compact special cube complex;
+      • a hyperbolic group.
+Then any two non-principal asymptotic cones of G are bilipschitz equivalent.
+    In fact, the theorem holds more generally for a suitable class of hierarchically
+hyperbolic groups that also includes hyperbolic groups, most 3–manifold groups,
+certain Artin groups, etc. This generalises the well-known characterisation of
+nonelementary hyperbolic groups as those groups whose asymptotic cones are all
+isometric to the universal 2ℵ0 –tree. Theorem 1 has important predecessors, no-
+tably the Osin-Sapir and Sisto results on uniqueness of asymptotic cones of rela-
+tively hyperbolic groups [2, 3]. For context, note that uniqueness up to bilipschitz
+equivalence, or even just homeomorphism, is a strong property of a group, since
+it fails even in relatively straightforward examples, and there are numerous more
+elaborate examples where the set of homeomorphism types of asymptotic cones
+has various wild properties (see e.g. [5, 4, 6]).
+    Theorem 1 is also the subject of another talk in the workshop, by Montse
+Casals-Ruiz; the present talk therefore focuses on just one of the ingredients in
+the proof, namely the following theorem:
+Theorem 2. Let (Z, S) be a hierarchically hyperbolic space in the sense of [8,
+Defn. 1.1]. Let ω be a non-principal ultraﬁlter on N, let (on )n be a sequence of
+observation points in Z, let (rn )n be an unbounded increasing sequence of positive
+reals, and let Cone(Z) be the asymptotic cone of Z with observation point (on )n ,
+rescaling (1/rn )n , and ultraﬁlter ω. Then Cone(Z) is bilipschitz equivalent to a
+real cubing.
+Median Geometry and Applications                                                  511
+
+   In the case where Z is a mapping class group with a ﬁnitely generated word
+metric, most of the content of Theorem 2 is contained in a result of Behrstock-
+Druţu-Sapir that predates the language of real cubings [7].
+   The goal of the talk is to deﬁne real cubings, explain the “real tree coordinate
+system” on a real cubing, and indicate how the proof of Theorem 2 goes.
+   Let X be a median metric space, with metric d and median µ : X 3 → X.
+We require that the rank of X as a median algebra is ﬁnite, and that the metric
+space (X, d) is complete and connected, or, alternatively, discrete, i.e. X is the
+0–skeleton of a CAT(0) cube complex. A wall is a pair ŵ = {w, w∗ } where w ⊂ X
+is median-convex and w∗ = X − w is also. The set of walls is W (X). More
+generally, given a subspace A ⊂ X, let W (A) be the set of walls ŵ such that
+A ∩ w, A ∩ w∗ 6= ∅. If û ∈ W (X), we say that ŵ and û cross if ŵ ∈ W (u) ∩ W (u∗ )
+and let W (û) be the set of walls that cross
+                                         T û.
+   Given any set I ⊆ W (X), let I ⊥ = ŵ∈I W (ŵ). If I = ∅, we say I ⊥ = W (X),
+and note that W (X)⊥ = ∅ . Let F = {I ⊥⊥ : I ⊆ W (X)} − {∅}. Then F is
+partially ordered by inclusion and W (X) is the unique maximal element. If U ∈ F
+and U ⊂ W (X), then U ⊥ ∈ F−{W (X)}, so ⊥ is an involution on the non-maximal
+elements, and U ⊂ V if and only if V ⊥ ⊂ U ⊥ .
+   We say that X is a real cubing provided there exists n ∈ N, called the depth of
+F, such that any ⊂–chain in F contains at most n distinct elements.
+   This is an abstraction of the notion of a cube complex with a factor system
+as in [9, Sec. 8]; the latter notion is used to create hierarchically hyperbolic
+structures (i.e. “coarse coordinate systems” where the coordinates take values in
+hyperbolic spaces). If the depth of F is ﬁnite, we can similarly
+                                                             Q          produce
+                                                                            Q maps
+πU : X → T U, U ∈ F, where T U is a real tree, such that U∈F : X → U∈F T U
+yields an isometric embedding into the base component of the codomain, equipped
+with the ℓ1 metric and the product median.
+   The construction is roughly as follows. For each U ∈ F, work of Fioravanti
+[10] on measured halfspaces allows us to produce a closed convex (hence gated)
+subspace FU ⊆ X such that U = W (FU ). Let πU : X → FU be the gate map.
+We will construct a pseudometric sU on FU such that sU is median of rank 1 and
+πU is a 1–lipschitz median-preserving map. We then take T U to be the metric
+quotient of the pseudometric space (FU , sU ). Roughly speaking, sU is constructed
+as follows. For each V ∈ F properly contained in U , the gate map πV : FV → FU
+is an isometric embedding. Given x, y ∈ FU , there are countably many such V
+where πV (x) 6= πV (y), and we subtract d(πV (x), πV (y)) from d(x,P y). An inclusion-
+exclusion argument lets one deﬁne sU (x, y) in such a way that V ⊆U sU (x, y) =
+d(x, y), which is what is required to make the product map an isometric embedding.
+The reason why T U is a real tree is that nontrivial “median rectangles” in FU
+provide pairs V, V ⊥ ∈ F, both contained in U , and U 6= U ⊥ , so the containment
+is proper, and hence the rectangle collapses to a point in T U . This ensures that
+the median rank of T U is at most 1.
+   Now we turn to Theorem 2. The proof proceeds roughly as follows, eliding
+some technical points. If Z is a hierarchically hyperbolic space, then it supports a
+512                                                           Oberwolfach Report 8/2026
+
+coarse median µZ , and also comes equipped with a collection of µZ –quasiconvex
+standard product regions Pi , each of which is quasi-isometric to a product Fi ×Ei of
+simpler hierarchically hyperbolic spaces. Simplicity is measured by a nonnegative
+integer, called the complexity. Now, by a result of Bowditch, up to modifying Z
+in its bilipschitz equivalence class, the map µ := ω − limn µZ deﬁnes a median
+operator on Z making it a complete, connected, ﬁnite rank median metric space.
+There are many closed convex subspaces of the form F = ω − limn Fin , where
+(Fin )n is a sequence of factors of standard product regions Pin . One constructs F
+as above, and then shows that for U ∈ F, there are various F as above such that
+walls belonging to U cross F. This correspondence is close enough that ⊂–chains
+in F yield chains of comparable length in the nesting order on the hierarchically
+hyperbolic index set of Z, which has bounded chains by deﬁnition.
+
+                                       References
+ [1] M. Casals-Ruiz, M. Hagen and I. Kazachkov, Real cubings and asymptotic cones of hier-
+     archically hyperbolic groups, Working draft, available at https://www.wescac.net/cones_
+     july_2024-public.pdf.
+ [2] D. Osin and M. Sapir, Universal tree-graded spaces and asymptotic cones, Int. J. Algebra
+     Comput. 21 (2011), 793–824.
+ [3] A. Sisto, Tree-graded asymptotic cones, Groups Geom. Dyn. 7 (2013), 697–735.
+ [4] L. Kramer, S. Shelah, K. Tent and S. Thomas, Asymptotic cones of ﬁnitely presented groups,
+     Adv. Math. 193 (2005), 142–173.
+ [5] S. Thomas and B. Velickovic, Asymptotic cones of ﬁnitely generated groups, Bull. London
+     Math. Soc. 32 (2000), 203–208.
+ [6] C. Druţu and M. Sapir, Tree-graded spaces and asymptotic cones of groups Topology 44
+     (2005), 959–1058.
+ [7] J. Behrstock, C. Druţu and M. Sapir, Median structures on asymptotic cones and homo-
+     morphisms into mapping class groups, Proc. Lond. Math. Soc. (3) 102 (2011), 503–554.
+ [8] J. Behrstock, M. Hagen and A. Sisto, Hierarchically hyperbolic spaces II: Combination
+     theorems and the distance formula, Paciﬁc J. Math. 299 (2019), 257–338.
+ [9] J. Behrstock, M. Hagen and A. Sisto, Hierarchically hyperbolic spaces I: Curve complexes
+     for cubical groups, Geom. Topol. 21 (2017), 1731–1804.
+[10] E. Fioravanti, Roller boundaries for median spaces and algebras, Algebr. Geom. Topol. 20
+     (2020), 1325–1370.
+
+
+
+              Median Graphs from a Phylogenetics Perspective
+                           Katharina Huber
+
+Ever since Darwin, trees have been used to represent evolutionary histories of
+species and organisms. Over the years, it has however been found that trees are
+not always the best way to represent certain evolutionary processes. Championed
+by Bandelt and Dress in [1], one way to address this is to view a tree as a split
+system, that is, a set of bipartitions of its leaf set, and to relax the requirement
+that the splits should be compatible, or in other words, that they all “ﬁt” onto
+the same tree.
+   Intriguingly, any split system can be represented by a split network and labelled
+median graphs are a special type of such a structure. For this reason, labelled
+Median Geometry and Applications                                                          513
+
+median graphs have found use in, for example, phylogeography studies where they
+are employed to help shed light into the genetic make-up of populations [2, 8].
+From a more combinatorial point of view, labelled median graphs have also been
+found to have interesting and far-reaching connections with discrete structures of
+interest in the area of Phylogenetic Combinatorics [6] such as tight spans of metrics
+[5] and geometries of split systems.
+   In this talk, we will ﬁrst consider labelled median graphs within a phylogenetics
+context [7], and then review some of the mathematical results alluded to above,
+including some recent results that link labelled median graphs with diversities [3],
+a novel concept that generalises metrics introduced in [4].
+
+                                       References
+ [1] H. Bandelt and A. W. M. Dress, A canonical decomposition theory for metrics on a ﬁnite
+     set, Adv. Math. 92 (1992), 47–105.
+ [2] H. Bandelt, P. Forster and A. Röhl, Median-joining networks for inferring intraspeciﬁc
+     phylogenies, Mol. Biol. Evol. 16 (1999), 37–48.
+ [3] D. Bryant, K. T. Huber, V. Moulton and A. Spillner, Buneman graphs, partial splits and
+     subtree distances, Discrete Appl. Math. 369 (2025), 28–44.
+ [4] D. Bryant and P. F. Tupper, Hyperconvexity and tight-span theory for diversities, Adv.
+     Math. 231 (2012), 3172–3198.
+ [5] A. W. M. Dress, Trees, tight extensions of metric spaces, and the cohomological dimension
+     of certain groups: A note on combinatorial properties of metric spaces, Adv. Math. 53
+     (1984), 321–402.
+ [6] A. W. M. Dress, K. T. Huber, J. H. Koolen, V. Moulton and A. Spillner, Basic Phylogenetic
+     Combinatorics, Cambridge University Press (2011).
+ [7] D. H. Huson, R. Rupp and C. Scornavacca, Phylogenetic Networks: Concepts, Algorithms
+     and Applications, Cambridge University Press (2011).
+ [8] T. Zerjal, Y. Xue, G. Bertorelle, R. S. Wells, W. Bao, S. Zhu, R. Qamar, Q. Ayub, A. Mo-
+     hyuddin, S. Fu, P. Li, N. Yuldasheva, R. Ruzibakiev, J. Xu, Q. Shu, R. Du, H. Yang,
+     M. E. H. E. Robinson, T. Gerelsaikhan, B. Dashnyam, S. Q. Mehdi and C. Tyler-Smith,
+     The genetic legacy of the Mongols, Am. J. Hum. Genet. 72 (2003), 717–721.
+
+
+
+            On a particular class of inﬁnite rank median spaces
+                               Lamine Messaci
+                       (joint work with Indira Chatterji)
+
+Median spaces contain an abundance of halfspaces: any two disjoint convex subsets
+are separated by a halfspace. The median geometry is entirely encoded in the set
+of halfspaces, which naturally carries the structure of a measured space satisfying
+a Crofton-type formula: the measure of the set of halfspaces separating two points
+equals the distance between them (see [2] and [6]).
+   In ﬁnite-rank median spaces, halfspaces are either open, closed, or both ([6]).
+This is no longer true in the inﬁnite-rank case, where halfspaces may be dense with
+empty interior; this occurs, for instance, in L1 spaces over a non-atomic measure
+space.
+   We aim to investigate a subclass of inﬁnite-rank median spaces in which halfs-
+paces still retain a topological meaning.
+514                                                     Oberwolfach Report 8/2026
+
+Deﬁnition. A median space X has the topological separation property if for every
+pair of points x, y ∈ X, there exists a halfspace h ⊆ X such that x ∈ h̊ and y ∈ h˚c .
+   We will show that many important properties follow from this topological sep-
+aration. Before doing so, we ﬁrst present a list of median spaces satisfying this
+property.
+Examples.
+    • Any locally convex median space has the topological separation property,
+      as any pair of disjoint convex subsets is separated by a halfspace.
+    • The 0-skeleton of a CAT(0) cube complex of arbitrary dimension, endowed
+      with the combinatorial metric, is a median space that satisﬁes the topo-
+      logical separation property.
+    • The median space associated to the n-dimensional hyperbolic space Hn
+      introduced in [1]. This follows from the fact that the set of halfspaces
+      separating a point from a halfspace that does not contain it in its closure
+      has positive measure.
+    • The class is closed under direct sums. If (Xi , ai )i∈N is a sequence of pointed
+      complete median spaces with the topological separation property, then
+      their direct sum
+                 M                             X
+                     (Xi , ai ) := {(xi )i∈N |   d(ai , xi ) < +∞}
+                   i∈N                       i∈N
+
+        also has the topological separation property.
+      • The class is closed under direct limits. Let (Xi )i∈N be a sequence of
+        complete median spaces with the topological separation property and
+                                  φi : Xi → Xi+1
+        be isometric embeddings with convex images. Then the direct limit lim Xi
+                                                                          −→
+        is a median space with the topological separation property.
+   When dealing with group actions, it is important to have a compactiﬁcation
+of the space in order to encode the global behaviour of the action. In the case
+of locally convex median spaces, this was achieved in [6] under the additional
+assumption that intervals are compact.
+   One approach is to embed the space into a product of intervals:
+                                       Y
+                           i:X →           [a, b]
+                                         a,b∈X
+                                 x 7→ (m(x, a, b))a,b .
+The Roller compactiﬁcation of X is deﬁned as the closure of i(X), where the
+target space is endowed with the product topology. This construction is called the
+zero-completion (see [6, Section 4]).
+   The assumption that intervals are compact, which is not true for every median
+spaces, ensures that the product topology is compact. For complete median spaces
+with the topological separation property, we prove that intervals are compact.
+Median Geometry and Applications                                                  515
+
+Theorem 1. Let X be a complete median space with the topological separation
+property. Then every interval is compact.
+   Another compactiﬁcation of the space is in the spirit of Stone duality. One
+considers the set of ultraﬁlters U(X) on the set of halfspaces of X. This set is
+naturally endowed with a convex topology C induced by open halfspaces: for any
+thick open halfspace, consider the set of ultraﬁlters containing it. This family
+forms a basis for C.
+   In [8], it is shown that the embedding of X into U(X) is convex. This allows
+the extension of the retractions onto intervals [a, b] to the whole space U(X). In
+this way one obtains a canonical map
+                            φ : U(X)   → X̄
+                                   u   7→ (m̃(u, a, b))a,b .
+Theorem 2. The map φ is a homeomorphism between (U(X), C) and X̄.
+   In ﬁnite-rank median spaces, the irreducibility assumption is mild: any ﬁnite-
+rank median space splits uniquely as an ℓ1 -product of irreducible median spaces,
+and its isometry group is, up to ﬁnite index, the product of the isometry groups
+of the factors.
+   In the inﬁnite-rank case, even the existence of irreducible factors is not guar-
+anteed. For instance, consider L1 spaces over a non-atomic measure space (X, µ).
+Any measurable subset of X gives rise to a splitting of L1 (X, µ), but no such
+splitting yields an irreducible factor.
+   However, the topological separation property imposes the existence of irre-
+ducible factors. More precisely, we have the following decomposition.
+Theorem 3. Let X be a complete separable median space with the topological sepa-
+ration property. Then there exists a sequence of pointed median spaces ((Xi , ai ))i∈N
+with the topological separation property such that
+                      M                            X
+                X=       (Xi , ai ) := {(xi )i∈N |   d(ai , xi ) < +∞}.
+                      i∈N                       i∈N
+
+   In his foundational work, Margulis established the phenomenon of superrigidity
+for higher-rank lattices, showing that any “non-elementary” morphism from such
+lattices into a semisimple Lie group extends to the ambient group. Since then,
+many related questions have been studied, extending these ideas to situations
+where the source group is a product of locally compact, second-countable groups
+and the target group is a more general topological group preserving a certain
+structure, namely a median structure ([3], [5], [7]).
+   Two main assumptions in Margulis’ superrigidity theorem are the higher-rank
+condition and semisimplicity. In the general setting of lcsc groups, the higher-
+rank assumption is encoded by requiring the group to split as a product. The
+semisimplicity assumption is instead reﬂected in a “non-elementary” condition on
+the action, ensuring the presence of suﬃciently rich dynamics (for instance the
+existence of free subgroups). In the median setting, this condition ensures the
+non-emptiness of the regular boundary, denoted ∂r X, inside the Roller boundary.
+516                                                            Oberwolfach Report 8/2026
+
+  The ﬁrst step toward establishing superrigidity is the construction of a boundary
+map.
+Theorem 4. Let Γ be a ﬁnitely generated group acting non-elementarily by isome-
+tries on a complete irreducible median space X with the topological separation prop-
+erty. Then there exists a unique Γ-equivariant map from the Furstenberg–Poisson
+boundary of Γ to the regular boundary ∂r X.
+   When Γ is an irreducible lattice in a lcsc group G := G1 × G2 , we obtain the
+following superrigidity theorem.
+Theorem 5. Let Γ be an irreducible lattice in G = G1 × G2 . For any non-
+elementary isometric action of Γ on a complete irreducible median space X with the
+topological separation property, there exists a Γ-invariant median subspace Y ⊆ X
+such that the Γ-action on Y extends to G and factors through one of the projections
+πi : G → Gi .
+
+                                        References
+ [1] I. Chatterji and C. Druţu, Median geometry for spaces with measured walls and for groups,
+     arXiv:1708.00254 (2017).
+ [2] I. Chatterji, C. Druţu and F. Haglund, Kazhdan and Haagerup properties from the median
+     viewpoint, Adv. Math. 225 (2010), 882–921.
+ [3] I. Chatterji, T. Fernós and A. Iozzi, The median class and superrigidity of actions on
+     CAT(0) cube complexes, J. Topol. 9 (2016), 349–400.
+ [4] E. Fioravanti, The Tits alternative for ﬁnite rank median spaces, Enseign. Math. 64 (2018),
+     89–126.
+ [5] E. Fioravanti, Superrigidity of actions on ﬁnite rank median spaces, Adv. Math. 352 (2019),
+     1206–1252.
+ [6] E. Fioravanti, Roller boundaries for median spaces and algebras, Algebr. Geom. Topol. 20
+     (2020), 1325–1370.
+ [7] B. Ma and L. Messaci, Cocycle superrigidity for median spaces of ﬁnite rank,
+     arXiv:2506.19043 (2025).
+ [8] M. L. Messaci, Espaces médians, PhD thesis, Université Côte d’Azur, 2023. Thèse dirigée
+     par I. Chatterji.
+
+
+
+            CAT(0) cube complexes in low dimensional topology
+                           Michah Sageev
+
+We discuss CAT(0) cube complexes as viewed through the lens of 3-manifold topol-
+ogy. We review the classical theorem of Kneser, reducing the study of closed 3-
+manifolds to the study of irreducible ones. This showed the connection with group
+action on trees, which are 1-dimensional CAT(0) cube complexes. We then discuss
+the notion of a Haken 3-manifold and a ﬁbered 3-manifold, as well as the famous
+virtual Haken and virtual Fibering conjectures. We then turn to CAT(0) cubu-
+lations proper, starting with the pioneering work of Aichison and Rubinstein on
+CAT(0) cubulations of 3-manifolds. This led to the more general notion of CAT(0)
+cubulations via spaces with walls and later to the connection with median spaces
+Median Geometry and Applications                                                517
+
+and median graphs. We then turn to a discussion of Haglund and Wise’s devel-
+opment of special complexes, a setting in which Stallings approach for building
+of covers of graphs can be generalized to building covers of non-positively curved
+cube complexes. Finally, we discuss how this led to Agol’s solution of the virtual
+Haken and virtual Fibering conjecture. We end with a few questions stemming
+from this line of research.
+
+      From Kazhdan’s property to higher-dimensional expansion
+                            Roman Sauer
+                     (joint work with Uri Bader)
+
+A waist inequality for a space X is a statement of the following kind: for every map
+from X to a lower-dimensional Euclidean space, at least one ﬁber must be large.
+In a Riemannian setting, the size of a ﬁber is measured by its (m − d)-volume,
+where m is the dimension of X and d is the dimension of the target. In a discrete
+setting, one measures the size of a ﬁber by counting the number of d-simplices
+that intersect that ﬁber.
+   A prototypical waist inequality is Gromov’s sphere waist theorem [3]. It says
+that if 1 ≤ d < m and f : S m → Rd is continuous, then there exists p ∈ Rd with
+                                                           
+                         volm−d f −1 (p) ≥ volm−d S m−d .
+In discrete geometry, related overlap statements appear in Boros–Furedi-type the-
+orems [1] and lead naturally to the topological overlap property for simplicial
+complexes.
+   For a d-dimensional simplicial complex X, the topological ε-overlap property
+requires that for every continuous f : X → Rd , some point p ∈ Rd is covered by at
+least an ε-fraction of the f -images of the d-simplices.
+Deﬁnition 1. A family {Xi }i∈N of simplicial complexes with |Xi | → ∞ is a d-
+dimensional topological expander if there is a uniform ε > 0 such that every Xi
+has the ε-overlap property.
+  There is an analogous Riemannian formulation.
+Deﬁnition 2. A family {Mi }i∈N of closed Riemannian m-manifolds with volm (Mi )
+→ ∞ is a d-dimensional topological expander if there is a uniform ε > 0 such that
+                                       
+                        volm−d f −1 (p) ≥ ε volm (Mi )
+for every smooth map f : Mi → Rd .
+   For d = 1, the behaviour of the largest ﬁber is controlled by the Cheeger
+constant and by spectral gaps of the graph Laplacian. Margulis’ construction of
+expanders from ﬁnite quotients of a Kazhdan group is a fundamental example [7]:
+for a ﬁnitely generated Kazhdan group Γ, ﬁnite quotients Γ/Γ′ produce Cayley
+graphs that form an expander family. On the cohomological level, the Kazhdan
+property introduced by Kazhdan [4] is equivalent to the vanishing of H 1 (Γ, V ) for
+unitary representations V .
+518                                                         Oberwolfach Report 8/2026
+
+   The higher-dimensional analogue starts from Garland’s vanishing theorem for
+lattices in SLn (Qp ) [2]: for unitary representations V ,
+
+                          H i (Γ, V ) = 0      (1 ≤ i ≤ n − 2).
+
+This can be interpreted as a higher Kazhdan property. The corresponding geo-
+metric model is the Bruhat–Tits building. One asks whether its ﬁnite quotients
+form high-dimensional topological expanders, as suggested by the connection be-
+tween the vanishing of the ﬁrst cohomology (that is, the Kazhdan property) and
+one-dimensional expanders. This program has seen major progress: ﬁrst for n = 3
+(Ramanujan complexes) [5], and more recently in higher rank [6].
+   On the Lie group side, an analogous vanishing theorem for lattices in SLn (R)
+was obtained in joint work with Uri Bader [8]. This supports the following con-
+jectural Riemannian picture.
+
+Conjecture. For a simple noncompact Lie group G of real rank d ≥ 2 with sym-
+metric space X = G/K, the family of compact locally symmetric spaces {Γ\X}Γ
+associated with G is a d-dimensional topological expander.
+
+   In the talk I discussed the following result, which partially proves the rank 2
+case of the conjecture above [9].
+
+Theorem. If M is a closed Riemannian manifold with Kazhdan fundamental
+group, then the family of ﬁnite-sheeted covers of M is a 2-dimensional topological
+expander.
+
+
+                                      References
+[1] K. Boros and Z. Furedi, The number of triangles covering the center of an n-set, Geom.
+    Dedicata 17 (1984), 69–77.
+[2] H. Garland, p-adic curvature and the cohomology of discrete subgroups of p-adic groups,
+    Ann. of Math. (2) 97 (1973), 375–423.
+[3] M. Gromov, Isoperimetry of waists and concentration of maps, Geom. Funct. Anal. 13
+    (2003), 178–215.
+[4] D. Kazhdan, Connection of the dual space of a group with the structure of its closed sub-
+    groups, Funkcional. Anal. i Prilozen. 1 (1967), 71–74.
+[5] T. Kaufman, D. Kazhdan, and A. Lubotzky, Ramanujan complexes and bounded degree
+    topological expanders, 57th FOCS (2016), 484–493.
+[6] S. Evra and T. Kaufman, Bounded degree cosystolic expanders of every dimension, J. Amer.
+    Math. Soc. 37 (2024), no. 1, 39–68.
+[7] G. A. Margulis, Explicit constructions of expanders, Problemy Peredachi Informatsii 9
+    (1973), 71–80.
+[8] U. Bader and R. Sauer, Higher Kazhdan property and unitary cohomology of arithmetic
+    groups, arXiv:2308.06517 (2023).
+[9] U. Bader and R. Sauer, Uniform waist inequalities in codimension two for manifolds with
+    Kazhdan fundamental group, arXiv:2407.19783 (2024).
+Median Geometry and Applications                                                   519
+
+           Nebeský’s step systems and “smoothness” in graphs
+                              Peter F. Stadler
+     (joint work with Boštjan Brešar, Manoj Changat, and Bruno Schmidt)
+
+The basic idea behind step systems of graphs introduced by Ladislav Nebeský is to
+formalize a local view on shortest path, see e.g. [3]. Set S(u, v) : = I[u, v] ∩ N (u),
+where I[u, v] as usual denotes the interval, i.e., the union of the shortest path
+between two vertices, and N (u) is the neighborhood of u. An vertex v ∈ S(u, x)
+can be viewed as a “road sign” at u indicating the directed towards x. Indeed,
+signpost systems are a much more general setting, requiring only the tree axioms
+for all u, v, x ∈ X
+    (A) v ∈ S(u, x) implies u ∈ S(v, u) (symmetry)
+    (B) v ∈ S(u, x) implies u ∈ / S(v, x) (no going back along shortest paths)
+    (H) If u 6= v then there is z ∈ X such that x ∈ S(u, v) (existence of a forward
+         step)
+The step systems of connected graphs are signpost systems satisfying an addition
+set of 5 axioms. It was shown recently that one of them is in fact redundant and
+thus can be dropped. In the same work is was shown that a connected graph is
+bipartite if and only if it step system satisﬁes in addition
+  (BP) v ∈ S(u, v) implies v ∈ S(u, x) or u ∈ S(v, x).
+A property of signpost systems that appears                  x       z
+prominently in the literature is the smoothness
+axiom
+                                                                              y
+     (S) v ∈ S(u, x), v ∈ S(u, y), and z ∈ S(x, y)
+                                                                v
+         implies v ∈ S(u, z).                                 u
+The situtation is depicted on the left.
+Theorem 1. [1] A signpost system S is the step system of a partial cube if and
+only if satisﬁes (BP) and (S).
+   This result can be taken as a motivation to consider the graphs with a smooth
+step system in their own right. Note that median graphs are partial cubes, and
+thus in particular smooth.
+   It is easy to check that the complete bipartite graph K2,3 and the “propeller
+graph” K1,1,3 consisting of three triangle sharing a common edge are not smooth.
+Moreover, these two graphs must not appear as isometric subgraphs. Since induced
+subgraphs with diameter 2 are always isometric, it follows that smooth graphs
+(K2,3 , K1,1,3 )-free. The converse is not true, however.
+   Smoothness has the interesting property of being preserved by many key graph
+operations:
+Theorem 2. If G and H are smooth, then the Cartesian product GH, the strong
+product G ⊠ H, and any gated amalgam of G and H is smooth.
+   It is not diﬃcult to verify that complete graphs, block graphs, and cycles and
+trees are smooth graphs. From these building blocks, Thm. 2 implies that many
+520                                                            Oberwolfach Report 8/2026
+
+well-studied graph classes are smooth in particular quasi-median graphs and more
+generally, partial Hamming graphs.
+   A connected graph G with shortest path distance dG is embeddable with scale
+λ ∈ N into a graph H with shortest path distance dH if there exists a mapping
+ϕ : V (G) → V (H) such that dH (ϕ(x), ϕ(y)) = λdG (x, y) for every pair of vertices
+x, y ∈ V (G).
+Theorem 3. Let G be a graph, and let H be a smooth graph such that G has a
+scale 2 embedding into H. Then G is also a smooth graph.
+   As a useful conseqence of Thm. 3 the halve cubes are smooth.
+   A graph G is a ℓ1 -graph if it has a scale-λ embedding in a hypercube, i.e., if
+there an n ≥ 1 and map V (G) → V (Qn ) such that dQn (ϕ(x), ϕ(y)) = λdG (x, y) for
+some ﬁxed positive integer constant λ. Shpectorov [4] proved that a ﬁnite graph
+G is an ℓ1 -graph if and only if it is an isometric subgraph of the Cartesian product
+of cocktail party graphs (hyperoctahedra), complete graphs, and half-cubes. Since
+all these building blocks are smooth, we conclude that
+Theorem 4. All ℓ1 -graphs a smooth.
+   This in turn establishes smoothness for several large subclasses of weakly mod-
+ular graphs, including weakly median graphs.
+   A hint by Victor Chepoi, one of the participants in the workshop, just after
+the meeting uncovered an interesting connection to convexity theory: Denote by
+v/u : ={x ∈ V |v ∈ h{x, u}i} the point-shadow of v w.r.t. u and set v/u : ={x ∈
+V |v ∈ I(x, u)}.
+Theorem 5. G is smooth if and only if U (u, v) is geodesically convex for any two
+adjacent vertices in G.
+   Convexity of U (u, v) appeared as a useful condition in [2]. We note, ﬁnally, that
+there are smooth graphs with non-convex point-shadow of adjacent vertices, such
+W4− , the 4-wheel without a spoke.
+   Let us call a graph “strongly prime” if it is neither a gated amalgam of proper
+subgraphs nor a nontrivial Cartesian or strong product. It remains an interesting
+open problem to identify the strongly prime smooth graphs.
+   The work presented here is a collaboration with Boštjan Brešar (U Maribor),
+Manoj Changat (U Kerala), and Bruno Schmidt (U Leipzig).
+
+                                        References
+ [1] M. Changat, J. J. Chavara, M. R. Chitra, J. Mathew and P. F. Stadler, Step systems on
+     graphs, In press (2026).
+ [2] V. Chepoi, Separation of two convex sets in convexity structures, J. Geom. 50 (1994), 30–51.
+ [3] L. Nebeský, Geodesics and steps in a connected graph, Czech. Math. J. 47 (1997), 149–161.
+ [4] S. Shpectorov, On scale embeddings of graphs into hypercubes, Eur. J. Combin. 14 (1993),
+     117–130.
+Median Geometry and Applications                                                   521
+
+      Relative cubulations and random quotients of free products
+                           Markus Steenbock
+ (joint work with Eduard Einstein†, Suraj Krishna M S, MurphyKate Montee,
+                                Thomas Ng)
+
+
+                         1. Quotients of free groups
+1.1. The Cayley complex. Let G be a group given by a group presentation
+                                    G = hX | Ri,
+in terms of a ﬁnite generating set X and a ﬁnite set of relators R, a set of reduced
+words in (X ⊔ X −1 )∗ . In other words, G is a quotient of the free group F (X)
+by the normal closure hhRii. Associated to this data is the Cayley complex, a 2-
+complex that can be constructed as follows. Let T be the Cayley graph of F (X),
+an inﬁnite tree of vertex degree = 2|X|. Each non-trivial element g of F (X) acts
+on T by isometry and ﬁxes a bi-inﬁnite geodesic line, its axis, denoted by Lg . Let
+L = {Lh | h is conjugate into R}. We cone oﬀ all the axis in L to obtain the space
+                                [
+                         Ṫ = T    (L × [0, 1])/(l1 ,1)∼(l2 ,1) .
+                                L∈L
+
+Note that F (X), hence also hhRii, acts by isometries on Ṫ . The Cayley complex
+EG := Ṫ /hhRii. The Cayley complex is a locally ﬁnite, connected and simply
+connected polygonal 2-complex. Morever G acts on EG by automorphism. This
+action is free and transitive on the vertex set. Note that EG may not be aspherical.
+
+1.2. Hyperbolic and cubulated groups. Let δ ⩾ 0. A connected and simply
+connected polygonal 2-complex Y is δ-hyperbolic if for all simple closed curves c
+in Y there is a disk diagram D → Y such that its boundary ∂D = c and such that
+                                 δArea(D) < |∂D|.
+Here Area(D) is the number of 2-cells in D, and |∂D| is the number of edges in
+the boundary of D. We say that G is δ-hyperbolic if EG is δ-hyperbolic. If G
+is hyperbolic, this implies, for instance, that the word problem is solvable. If in
+addition G is cubulated, that is, acting properly and cocompactly by isometries on
+a CAT (0) cube complex, then G is, for instance, also residually ﬁnite and linear.
+
+1.3. Gromov’s model for random groups. By the Adian-Rabin theorem there
+is no algorithm to decide whether a group given by a ﬁnite presentation is hyper-
+bolic; it is not even possible to decide its triviality. This motivates to study groups
+given by a random presentation. We ﬁx rules on how to choose such a random
+presentation. Fix m > 1, d ∈ (0, 1), ℓ > 0 and a set X of cardinality m. Let
+ Sℓ := {reduced & cyclically reduced words in (X ∪ X −1 )∗ of word length = ℓ}.
+Let Rℓ be a collection of Sℓd -many words chosen uniformly, independently with
+replacement from Sℓ .
+522                                                        Oberwolfach Report 8/2026
+
+Theorem 1. Let Gℓ = hX | Rℓ i. With overwhelming probability when ℓ → ∞ the
+following is true.
+      (1) If d < 21 , then Gℓ is torsion-free and (1 − 2d)ℓ-hyperbolic [2, 3].
+      (2) If d > 21 , then Gℓ is ﬁnite [2].
+      (3) If d < 61 , then Gℓ is cubulated [4].
+   The theorem implies, for instance, that if d < 61 , then, with overwhelming
+probability when ℓ → ∞, Gℓ is residually ﬁnite and linear.
+
+                          2. Quotients of free products
+We develop a version of Gromov’s model for random groups for quotients of a free
+product of given ﬁnitely generated groups.
+
+2.1. The model space for relative geometry. Let P = {P1 , . . . , Pm } be a
+collection of ﬁnitely generated groups Pi = hXi , Ri i, the factor groups. We let
+                                                  D[      [ E
+                     F (P) = P1 ∗ P2 · · · ∗ Pm =    Xi |     Ri
+
+be their free product. Let R ⊂ F (P) be a ﬁnite set. We represent each r ∈ R as
+a word r = h1 h2 . . . hn in normal form, that is, each syllable hi is an element of a
+factor group and no two consecutive syllables hi and hi+1 are in the same factor
+group. Then n = |r|∗ is the syllable length of r. We assume, in addition, that
+|r|∗ ⩾ 2. We let
+                                  G = F (P)/hhRii.
+Next, we let T be a Bass-Serre tree for F (P), more precisely, the universal cover
+of the star of groups of n edges identiﬁed at a central vertex, where the group
+associated to the i-the leave vertex is Pi , and the trivial group is associated to
+the central vertex. The pre-images of the leaf vertices are the factor vertices.
+The factor vertices may have inﬁnite edge degree, so T is not in general locally
+ﬁnite. The free product F (P) acts on this tree. The stabiliser of a factor vertex
+is conjugate to one of the factor groups, the stabilisers of the other vertices and
+the edges are trivial. Every element of R stabilises a bi-inﬁnite geodesic line in T .
+We deﬁne Ṫ as before and let
+                                     EG = Ṫ /hhRii.
+The space EG is a connected and simply-connected polygonal 2-complex, but it is
+usually not locally ﬁnite. As before G acts on EG. Each image of a factor vertex
+in EG is stabilised by the image of a conjugate of a factor group, the stabiliser of
+an edge or one of the other vertices is trivial. As before EG may not be aspherical.
+
+2.2. Relatively hyperbolic and relatively cubulated groups. Let δ ⩾ 0.
+The group G is δ-hyperbolic relative to P if
+     • the projection F (P) → G restricts to an embedding on the factor groups,
+     • EG is δ-hyperbolic 2-complex.
+Median Geometry and Applications                                                        523
+
+   Also, G is cubulated relative to P if G is hyperbolic relative to P and if it acts
+cocompactly on a CAT(0) cube complex C such that
+      • each factor group acts elliptically on C, that is, it ﬁxes a cell,
+      • each inﬁnite cell stabiliser is conjugate to a ﬁnite index subgroup of a
+         factor group.
+If G is cubulated relative to a collection of residually ﬁnite groups, then G itself is
+residually ﬁnite [1]. We don’t know in general whether a group cubulated relative
+to cubulated groups is itself cubulated.
+2.3. The free product density model. Let m > 1, d ∈ (0, 1) and ℓ > 0. The
+set of all elements of syllable length = ℓ is an inﬁnite set if a free factor is inﬁnite.
+To remidiate this, let Bi ⊂ Pi be balls of a ﬁxed radius. Then let
+                                                                             m
+                                                                             [
+    Sℓ = {s | s = h1 . . . hℓ in normal form such that each syllable hj ∈        Bi }.
+                                                                               i=1
+
+Note that Sℓ is a ﬁnite set.      Let Rℓ be a collection of Sℓd -many words chosen
+uniformly, independently with replacement from Sℓ .
+Theorem 2. Let Gℓ = F (P)/hhRℓ ii. With overwhelming probability when ℓ → ∞
+the following is true.
+    (1) If d < 12 , then Gℓ is (1 − 2d)ℓ-hyperbolic relative to P.
+    (2) If d > 12 and m > 2, Gℓ is ﬁnite. If m = 2, Gℓ is ﬁnite or equal to F (P).
+    (3) If d < 16 , then Gℓ is cubulated relative to P.
+   As a consequence, if d < 61 and if all the factor groups are residually ﬁnite, then
+Gℓ is residually ﬁnite with overwhelming probability when ℓ → ∞. If d < 1/6 and
+all the factor groups are cubulated, we prove, in addition, that Gℓ is cubulated.
+2.4. On the proof. By a counting argument |Sℓ | ∼ λℓ , for some λ > 0. Thus
+|Rℓ | ∼ λdℓ , hence, the probability that two 2-cells in EG share L edges . λ2dℓ−L .
+If d < 12 Lℓ this tends to 0 when ℓ → ∞. To prove Theorem 2(1), one elaborates on
+this idea, following the arguments of [3]. For Theorem 2(3), one proves that the
+opposite edge hypergraphs make EGℓ a wall space of convex walls if d < 1/6. In
+fact, the proof of [4] applies in our situation. The group Gℓ acts on the dual cube
+complex, and one proves that this action is a relatively geometric action.
+
+                                   Acknowledment
+This work was supported by the Austrian Science Fund (FWF) [10.55776/P35079].
+
+                                      References
+ [1] E. Einstein and D. P. Groves, Relatively geometric actions on CAT(0) cube complexes, J.
+     Lond. Math. Soc. (2) 105 (2022), no. 1, 691–708. Corrigendum: J. Lond. Math. Soc. (2)
+     111 (2025), Paper No. e70211, 3 pp.
+ [2] M. Gromov, Asymptotic invariants of inﬁnite groups, In Geometric group theory, Vol. 2
+     (Sussex, 1991), London Math. Soc. Lecture Note Ser. 182 (1993), Cambridge Univ. Press,
+     Cambridge, 1–295.
+524                                                            Oberwolfach Report 8/2026
+
+ [3] Y. Ollivier, Some small cancellation properties of random groups, Internat. J. Algebra Com-
+     put. 17 (2007), 37–51.
+ [4] Y. Ollivier and D. T. Wise, Cubulating random groups at density less than 1/6, Trans.
+     Amer. Math. Soc. 363 (2011), 4701–4733.
+
+
+
+                       Navigating phylogenetic tree space
+                                 Karen Vogtmann
+                     (joint work with Lou Billera, Susan Holmes)
+
+Phylogenetics is the branch of biology that studies the evolutionary history of a set
+of biological taxa. This history is usually encoded as a rooted tree whose leaves are
+labeled by the taxa. Nodes mark speciation events, and the distance between nodes
+indicates some measure (such as time) of their diﬀerence. Producing phylogenetic
+trees from data samples is an inexact science for many reasons. The data may
+be noisy, it may not ﬁt neatly into a tree, diﬀerent data from the same set of
+taxa (such as diﬀerent genes) may produce diﬀerent trees, diﬀerent tree-building
+algorithms or even diﬀerent runs of the same algorithm on the same data may
+produce diﬀerent trees, etc. A strategy for ﬁnding the true tree is to use several
+methods to produce a large set of possible trees and then do a statistical analysis
+of the set in order to ﬁnd the most likely true tree.
+   One approach to this problem is to think of trees as points in a geometric
+space and use geometric methods to do the statistical analysis. Such a space was
+proposed by Billera, Holmes and myself in 2001 [1]. We showed that the space we
+found carries a metric of non-positive curvature, i.e. it satisﬁes Gromov’s CAT(0)
+condition. Important features of CAT(0) geometry include the fact that there is
+a unique geodesic between any two trees. Furthermore, the geometry gives a way
+to deﬁne statistical measures on a point set such as a center, spread and density.
+   There are in fact several natural ways to deﬁne a “center” of a ﬁnite set of
+points in a CAT(0) space; in each case the center is unique, but diﬀerent methods
+produce diﬀerent centers. To implement any one of them one must ﬁrst be able to
+ﬁnd the geodesic between two points and its length (i.e. the distance between the
+points). In the original paper we gave a method for doing this, which I explained
+in more detail in the unpublished note [4] and which was reﬁned by M. Owen in
+her thesis in 2009 [2]. This method depends on the fact that the space of trees
+can be given the structure of a cube complex, and one can explicitly determine
+the (ﬁnite) set of cubes that could possibly carry the geodesic between two trees.
+Philip Hall’s marriage lemma can then be used to isometrically embed this set of
+cubes as a union of orthants (of various dimensions) in a Euclidean space; we call
+these legal orthants. If the trees being studied have a root and n leaves, then the
+dimension of the Euclidean space is n − 2. The fact that the image is CAT(0)
+means that once we specify a sequence of legal orthants, standard methods of
+Euclidean geometry can be used to ﬁnd the unique shortest path that starts at a
+speciﬁed point in the ﬁrst orthant and ends at a speciﬁed point in the last orthant.
+To ﬁnd the geodesic in the space of trees, then, one can list all legal sequences of
+Median Geometry and Applications                                                          525
+
+orthants connecting the ﬁrst to the last and calculate the shortest path through
+each of these sequences; the shortest of all these paths is the geodesic.
+   This algorithm works, but the number of possible legal sequences of orthants
+is exponential in the number of taxa. In 2011 Owen and J.S. Provan found a
+more eﬃcient way to determine the best sequence of orthants which is polynomial
+of degree 4 instead of exponential [3]. They did this by reducing the problem of
+ﬁnding the geodesic to a combinatorial algorithm for analyzing weighted bipartite
+trees which was known to be O(n3 ). In further work, Owen and various coauthors
+have studied other statistical measures such as the Frechet mean and variance; in
+this case the center of a ﬁnite set is deﬁned as the unique point that minimizes
+the sum of the squares of the distances to the points.
+   In the talk I described the space of trees and explained the basics of how to ﬁnd
+geodesics, then pointed to the more recent work of M. Owen and others improving
+and elaborating on this theme.
+
+
+                                       References
+[1] L. J. Billera, S. P. Holmes, and K. Vogtmann, Geometry of the space of phylogenetic trees,
+    Adv. in Appl. Math., 27 (2001), 733–767.
+[2] M. Owen, Computing geodesic distances in tree space, SIAM J. Discrete Math. 25 (2011),
+    1506–1529.
+[3] M. Owen, J. S. Provan, A fast algorithm for computing geodesic distance in tree space,
+    IEEE/ACM Trans. Comput. Biol. Bioinform. 8 (2011), 2–13.
+[4] K. Vogtmann, Geodesics in the space of trees, preprint (2007), available at http://warwick.
+    ac.uk/fac/sci/maths/people/staff/karen_vogtmann/research/
+
+
+
+
+                 Intrinsic geometry from coarse medians
+                               Nick Wright
+       (joint work with Amina Ladjali, Graham A. Niblo, Jiawen Zhang)
+
+The aim of this talk is to explore and identify the geometry of course median
+spaces using algebraic and combinatorial approaches.
+    Median algebras are objects with a notion of “betweenness”: for any triple
+a, b, c there is a unique point m which is simultaneously between each pair of
+points. Gromov’s δ-hyperbolic spaces (and classical hyperbolic spaces) have an
+analogous property: for any triple of points a, b, c and geodesic trangle connecting
+these, each side of the triangle lies in a δ-neighbourhood of the union of the other
+two. It follows that there exist points which are nearly between each pair in the
+sense that they are δ-close to any/every geodesic from a to b, b to c and c to a.
+   Motivated by this Bowditch [1] introduced the concept of coarse median spaces:
+metric spaces with a coarse median operation. In addition to the majority vote
+axiom ha, a, bi = a, and symmetry of ha, b, ci under permutation of the arguments,
+a coarse median is required to satisfy the following:
+526                                                             Oberwolfach Report 8/2026
+
+      • there exist K, H0 > 0 such that if a ∼C a′ then ha, b, ci ∼KC+H0 ha′ , b, ci.
+      • for every integer p there is a constant Hp such that if F ∈ X has cardinality
+        p then there is a median algebra Π and a function λ : Π → X such that
+           – λ(Π) ⊇ F
+           – λ(ha, b, ci) ∼Hp hλ(a), λ(b), λ(c)i.
+The ﬁrst condition is a large-scale Lipschitz condition on the operation, while the
+second says roughly that ﬁnite sets of points can, uniformly for a given size, be
+approximated by points in a median algebra.
+   Now any identity which must hold in a median algebra, for instance the 4-
+point “associativity” ha, b, hc, b, dii = hha, b, ci, b, di, or the 5-point “distributivity”
+ha, b, hc, d, eii = hha, b, ci, ha, b, di, ei, must be approximately true in a coarse me-
+dian space, with the error bounded independent of the speciﬁc tuple of points to
+which it is applied. With Niblo and Zhang [3], we gave a converse to this:
+
+Theorem 1 (Niblo-W-Zhang). A metric space equipped with a ternary operation
+satisfying the majority vote, symmetry and large-scale Lipschitz axioms, is a coarse
+median space if and only if there is a constant κ4 such that
+
+                            ha, b, hc, b, dii ∼κ4 hha, b, ci, b, di.
+
+To show this, for each p-tuple in X we must ﬁnd a median algebra and a map
+from this to X whose image includes these points.
+   The median algebra we take is the free median algebra Πp on the alphabet
+{α1 , . . . , αp }. One way to construct this is to consider well-formed ternary ex-
+pressions in these letters and impose the equivalence relation that two expressions
+are equal if for every median algebra X and for every tuple (a1 , . . . , ap ), the two
+expressions evaluate to the same point of X. These ternary expressions are a re-
+cursively deﬁned language in the alphabet {α1 , . . . , αp , h, i} and the evaluation at
+a tuple (a1 , . . . , ap ) is likewise deﬁned recursively.
+   While Πp will not admit a morphism to the putative coarse median space, the
+ternary expressions can be evaluated. We obtain the map Πp → X by selecting
+representative expressions for each element of Πp , and evaluating these. We then
+argue that this map satisﬁes Bowditch’s axiom by showing that the equivalence
+relation deﬁning Πp is generated by elementary transformations corresponding to
+the majority vote and symmetry axioms along with the 4-point condition.
+   For a median algebra which is the vertex set of a CAT(0) cube complex, not only
+does the metric determine the median, but conversely the median also determines
+the metric. Two natural questions arises for coarse median spaces: does the metric
+determine the coarse median, and does the coarse median determine the metric?
+   For the ﬁrst question the answer is no: in the coarse world, quasi-isometric
+metrics should be viewed as equivalent and therefore the edge metric on Zn is
+equivalent to the Euclidean metric. However the latter does not distinguish axis
+directions and therefore many coarse medians are possible here.
+   For the second the answer is yes: with Niblo and Zhang [4] we showed that for
+a bounded geometry quasi-geodesic coarse median space, the metric is determined
+Median Geometry and Applications                                                          527
+
+up to quasi-isometry by the median. The geometry is intrinsic to the median,
+indeed we can give a formula deﬁning an intrinsic metric from the median.
+    Our starting point is to return to the idea of “betweenness”. The interval from a
+to b, denoted [a, b] is the set of points ha, b, xi as x ranges over the space. We think
+of the interval as the points between a and b, and indeed the triple intersection
+[a, b] ∩ [b, c] ∩ [c, a] is a set of bounded diameter containing the median ha, b, ci.
+    The cardinality of the interval is a proxy for the metric which is entirely deter-
+mined by the median operation: letting D(a, b) = #[a, b] − 1 we have D(a, a) = 0
+and D(a, b) = D(b, a). We can build a metric from D using the following deﬁnition:
+                                      k
+                                      X
+                  dhi (a, b) = min{         D(xi−1 , xi ) : x0 = a, xk = b}.
+                                      i=1
+
+Theorem 2 (Niblo-W-Zhang). For a bounded geometry quasi-geodesic coarse me-
+dian space (X, d, h i), the metric d is the same as dhi up to quasi-isometry.
+   In the case of a CAT(0) cube complex our deﬁnition recovers the edge metric.
+   For the purpose of bounding distances, the function D is suﬃcient. We use
+this to deﬁne a coarse median algebra. This consists of a set X and a ternary
+operation such that the majority rule and symmetry axioms hold along with the
+following uniform bound:
+ ∃K > 0 such that D(ha, b, hc, d, eii, hha, b, ci, ha, b, di, ei) < K     ∀a, b, c, d, e ∈ X.
+A metric is no longer part of the required data. The 5-point condition here pro-
+vides a proxy for the large-scale Lipschitz condition as well as yielding the 4-point
+condition. Thus a coarse median algebra, when equipped with its intrinsic metric,
+gives a coarse median space in the sense of Bowditch.
+   We conclude with a question about the internal structure of intervals, which is
+joint work with Ladjali [2]. In a CAT(0) cube complex, intervals are “ﬂat” in the
+sense that they can be embedded as median subalgebras of Zn .
+   In a median algebra, points in an interval [a, b] have a partial ordering
+                        x ≤ y ⇐⇒ x ∈ [a, y] ⇐⇒ y ∈ [x, b]
+making the interval into a lattice. The meet and join are deﬁned using the median:
+                         x ∧ y = ha, x, yi         x ∨ y = hx, y, bi.
+  We deﬁne a point u in [a, b] to be edge-maximal if
+                  x, y ∈ [u, b] and u = x ∧ y =⇒ x = u or y = u.
+In a CAT(0) cube complex these are points u for which there is at most one edge
+(u, v) with u < v.
+   With Ladjali we showed that width of the poset M of edge-maximal points
+equals the rank of the interval. By Dilworth’s Lemma this poset therefore splits
+as a union of n chains.
+   We view these chains as providing coordinates on the interval: For a point
+x ∈ [a, b] we deﬁne the coordinates of x to be the tuple (u1 , . . . , un ), where ui
+528                                                          Oberwolfach Report 8/2026
+
+is the least element of the ith chain such that x ≤ ui . We can recover x as
+x = u1 ∧ · · · ∧ un .
+   Extending this to coarse median spaces is more diﬃcult. We would like to say
+x ≤C y if x ∧ y := ha, x, yi is C-close to x, however this relation will in no longer
+transitive. We generalise the notion of edge-maximality deﬁning u ∈ [a, b] to be
+(D, E) edge-maximal if
+                  u ∼D x1 ∧ x2 ∧ · · · ∧ xn =⇒ u ∼E xi for some i
+Theorem 3 (Ladjali-W). There exists a constant D such that for any E there ex-
+ists C such that the ≤C -antichains in the (D, E) edge-maximal set have cardinality
+bounded by the (coarse) rank of [a, b].
+   As a consequence we deduce that the relation ≤C restricted to a suﬃciently
+separated subset of the edge-maximal set is loop-free. Hence ≤C extends to a
+partial-order and once again we can split into chains and construct tuples of co-
+ordinates (u1 , . . . , un ). These coordinates coarsely respect the median structure:
+Theorem 4 (Ladjali-W). The map x 7→ (u1 , . . . , un ) is a quasi-morphism.
+
+                                       References
+ [1] B. Bowditch, Coarse median spaces and groups, Paciﬁc J. Math. 261 (2013), 53–93.
+ [2] A. A. Ladjali, Polynomial growth of coarse intervals in coarse median spaces, PhD thesis,
+     University of Southampton, 2025.
+ [3] G. A. Niblo, N. Wright and J. Zhang, A four point characterisation for coarse median
+     spaces, Groups Geom. Dyn. 13 (2019), 939–980.
+ [4] G. A. Niblo, Coarse median algebras: the intrinsic geometry of coarse median spaces and
+     their intervals, Selecta Math. 27 (2021), 20.
+
+
+
+                                    Problem session
+
+
+This section contains a collection of open problems, some of which are well-known.
+They were contributed by the workshop participants during the problem session.
+Problem 1. The Cannon conjecture, Chatterji
+The Cannon conjecture states that if G is a hyperbolic group whose boundary
+at inﬁnity is homeomorphic to the 2-sphere, i.e., ∂G ∼    = S 2 , then G admits a
+discrete, faithful, and cocompact action on hyperbolic 3-space H3 . Equivalently, G
+is isomorphic to a Kleinian group, i.e., G < P SL2 (C). Markovic [1] and Haissinsky
+[2] showed that this holds under the assumption that G is cubulated. The following
+set of questions are rephrased from a conversation with Agol in 2019.
+Question i) Can you replace “cubulated” by “medianized” (= act geometrically
+on a median space) in Markovic result?
+Question ii) Can you medianize a hyperbolic group with ∂G ∼ = S 2 ? That is
+potentially much easier than cubulate.
+Median Geometry and Applications                                                           529
+
+Question iii) Can we even prove that there is any eﬀective action on a median
+space for such a hyperbolic group? That amounts to proving that it doesn’t have
+Kazhdan’s property (T). Is it related to the previous question?
+Question iv) Is every medianized hyperbolic group cubulable? Can you even
+prove residually ﬁnite?
+Question v) Is every group that is cocompact median of ﬁnite rank cubulable?
+
+                                       References
+[1] V. Markovic, Criterion for Cannon’s Conjecture, Geom. Funct. Anal. 23 (2013), 1035–1061.
+[2] P. Haissinsky, Hyperbolic groups with planar boundaries, Invent. Math. 201 (2015), 239–307.
+
+Problem 2. Symmetric groups and wall structures, Arzhantseva
+Let Sn denote the permutation group on a ﬁnite set of n elements.
+Question i) Does there exist a sequence of generating sets Xn of Sn such that the
+sizes |Xn | are uniformly bounded and the corresponding sequence of Cayley graphs
+(Cay(Sn , Xn ))n admits a wall structure whose wall metric is coarsely equivalent
+to the word length metric (i.e., to the graph metric) on (Cay(Sn , Xn ))n ?
+   The existence of a wall structure is an obstruction to expansion: such a structure
+implies a coarse embedding of the sequence (Cay(Sn , Xn ))n into a Hilbert space.
+While a celebrated result of Kassabov provides generating sets Yn such that the
+resulting Cayley graphs (Cay(Sn , Yn ))n form a family of expanders, it is well
+known that other families, such as (Cay(Sn , {(12), (12 . . . n)}))n fail to expand.
+   Beyond mere existence, one may ask about the prevalence of such generating
+sets.
+Question ii) For a ﬁxed k ⩾ 2, does the proportion of generating sets Xn of Sn
+of size k whose Cayley graphs admit a wall structure coarsely equivalent to the
+word length metric remain bounded away from zero as n → ∞?
+   Positive answers to these questions would stand in sharp contrast to the expan-
+sion properties proved by Kassabov.
+
+Problem 3. Coarse median spaces, Arzhantseva
+A coarse median space is a metric space endowed with a ternary operator that sat-
+isﬁes axioms of a median algebra only up to a bounded error. Introduced by Brian
+Bowditch, examples of coarse median spaces include Gromov hyperbolic spaces,
+CAT (0) cube complexes, mapping class groups, Teichmüller spaces of compact
+surfaces, and hierarchically hyperbolic spaces.
+Question. Does every coarse median space coarsely embed into a Hilbert space?
+  An aﬃrmative answer would provide a far-reaching generalisation of the well-
+known positive result on median spaces.
+
+Problem 4. Single-peakedness, Chatterji
+Can singled peakedness preferences be understood in terms of normal cube path,
+the space of orders on X and measures on X? What happens when we allow X
+530                                                      Oberwolfach Report 8/2026
+
+to be inﬁnite countable? Once the peak has been chosen, the minimum might be
+on the boundary, is it well-deﬁned?
+
+Problem 5. Partial data, Huber, interpreted by Chatterji & Niblo
+Suppose that in constructing the Buneman graph we encounter some uncertainties
+in determining which half spaces some vertices lie in. This can occur because of
+missing data, or measurement errors for example. Is there a coarse variant of the
+Buneman graph that can model this data, allowing us to compute medians up to
+controlled error?
+   One possibility is to deﬁne a partial wall space as sets of probability measures on
+pairs of partitions that diﬀer at one single point (or a small proportion of points),
+so that H ⊆ [0, 1]X and deﬁne H c = 1X \ H. We still have a map
+                                     π: H → W
+and look at sections. Now when 2 sections diﬀer we no longer get an integer value
+but we should still get a metric space, which may not be median, but might have
+controlled geometry.
+
+Problem 6. Graphs of hyperplanes, Genevois
+Let X be a median graph.
+     • Its transversality graph T (X) is the graph whose vertices are the hyper-
+       planes of X and whose edges connect any two transverse hyperplanes.
+     • Its contact graph C(X) is the graph whose vertices are the hyperplanes of
+       X and whose edges connect any two hyperplanes that are either transverse
+       or tangent.
+One easily shows that not every graph can be described as the contact graph of
+some median graphs, e.g. cycles of length ≥ 4. Hence:
+Question i) Which graphs can be described as contact graphs of median graphs?
+    On the other hand, it is known that every graph can be realised as the transver-
+sality graph of some median graph. But the degree of the median graph one has
+to consider may explode. For instance, it can be shown that the transversality
+graph of a median graph X is (3 − deg(X)/2)-hyperbolic. This motivates the
+following deﬁnition: Given an arbitrary graph G, its transversality degree TD(G)
+is the smallest degree of a median graph whose transversality graph is isomorphic
+to G.
+Question ii) How can one compute the transversality degree of a graph?
+   Notice, for instance, that the transversality degree of a grid [0, n] × [0, n] tends
+to +∞ as n grows (as a consequence of the previous comment on hyperbolicity of
+transversality graphs).
+
+Problem 7. Travelling polytopes, Genevois
+Given a graph X, two vertices x, y ∈ V (X), and a ﬁnite set of vertices F ⊂ V (X),
+deﬁne
+Median Geometry and Applications                                                531
+
+     Travelling salesman: TS(x, F, y) as the shortest length of a path connect-
+       ing x to y and passing through all the vertices in F ;
+     Travelling polytope: TP(x, F, y) as the shortest length of    S a path of poly-
+       topes P0 := {x}, P1 , . . . , Pk−1 , Pk := {y} such that F ⊂ i V (Pi ).
+Here, a polytope refers to the convex hull of ﬁnitely many vertices. A path of
+polytopes is a sequence such that, given two consecutive polytopes, one (say P )
+can be obtained from the other (say Q) as the convex hull of Q ∪ {u} for some
+vertex u ∈ ∂Q.
+   The problem is to compare the solutions to the travelling salesman and polytope
+problems. It is clear that TP ≤ 2TS. For the reverse equality, we introduce the
+quantity
+
+TP(X) := sup{α | ∃C > 0, ∀x, y, ∀F, TP(x, F, y) + |F | ≥ C(TS(x, F, y) + |F |)α }.
+
+It is known that, given an unbounded median graph X with bounded degree:
+     • TP(X) ∈ [1/2, 2/3] ∪ {1};
+     • TP(X) = 1 if and only if X is hyperbolic;
+     • TP(X) = 1/2 if X has inﬁnite cubical dimension;
+                   d
+     • TP(Ed ) = 2d−1 .
+A natural question is:
+
+Question. Which values can take TP(·) on median graphs?
+
+   For instance, it would be interesting to compute the travelling polytope constant
+of a product of (regular) trees.
+
+Problem 8. Metric actions on median graphs, Genevois
+An action G y X on a graph is proper if vertex-stabilisers are ﬁnite and metrically
+proper if {g ∈ G | d(o, go) ≤ R} is ﬁnite for every R ≥ 0 (given an arbitrary
+basepoint o ∈ V (X)). An interesting problem is to understand the diﬀerence
+between acting properly on a median graph and acting metrically properly on a
+median graph.
+   For instance, consider a permutational wreath product Z2 ≀G/N G. On the one
+L if G acts properly on a median graph X, then Z2 ≀G/N G acts properly on
+hand,
+    G/N Z2 × X, where the direct sum is thought of as a hypercube. On the other
+hand, a theorem of Chifan and Ioana shows that Z2 ≀G/N G is not a-T-menable
+whenever G is a-T-menable but G/N is not. Thus, Z2 ≀Fn /N Fn admits a proper
+action on a median graph but not a metrically properly action on a median graph
+(as a consequence of a theorem of Niblo and Reeves). It would be interesting to
+understand such examples from the point of view of median geometry.
+
+Question i) If Fn /N does not act metrically properly on a median graph (e.g.
+Fn /N ≃ BS(1, 2)), can Z2 ≀Fn /N Fn act metrically properly on a median graph?
+
+  For another example of interest, we can mention:
+532                                                  Oberwolfach Report 8/2026
+
+Question ii) Does the Grigorchuk group act metrically properly on a median
+graph?
+   A construction of Schneeberger shows that a proper action does exist, but this
+speciﬁc action is not metrically proper.
+
+Problem 9. Fixed-point properties, Genevois
+Inspired by Thompson’s group V as a group of homeomorphisms of the Cantor
+set C, Brin deﬁned a higher-dimensional Thompson group 2V as a group of home-
+omorphisms of C2 . Interestingly, despite the fact that V acts metrically properly
+on a locally ﬁnite median graph, 2V does not (as it contains distorted elements).
+Question i) Does 2V admit an action with unbounded orbits on some median
+graph? Does it satisfy Kazhdan’s property (T)?
+   There exist rather few interesting examples of groups with the bounded-orbit
+property on median graphs (a.k.a. property (FW)). Finding new examples would
+be interesting. For instance:
+Question ii) Construct explicit examples of hyperbolic groups with property
+(FW) but without property (T).
+   Such examples are known to exist, for instance
+                                              √ by applying the Rips construc-
+tion obtained by Ollivier and Wise to SL(2, Z[ 2]).
+
+Problem 10. Covers of cube complexes, Shepherd
+The following question has been posed a while ago:
+Question i) (Haglund): If X1 and X2 are ﬁnite special cube complexes with a
+common universal cover, do they necessarily have a common ﬁnite cover?
+   Leighton’s theorem says that the answer is YES if X1 and X2 are graphs. More
+generally, the answer is YES if X1 and X2 have free fundamental groups (Bridson–
+Shepherd). The answer is also YES if the common universal cover is the right-
+angled building associated to a graph product of ﬁnite groups (Shepherd). The
+specialness assumption is necessary, indeed without it one can construct counter-
+examples where the common universal cover is a product of trees (using examples
+of Wise or Burger–Mozes).
+Question ii) Is there an algorithm that takes as input a pair of ﬁnite non-
+positively curved cube complexes and determines whether they have isomorphic
+universal covers?
+  Such an algorithm is known for the case of graphs (Angluin), it is based on the
+well-known colour reﬁnement procedure from graph theory.
+
+Problem 11. Median/cubical actions of hyperbolic groups, Hagen
+Let G be a hyperbolic group.
+Median Geometry and Applications                                                    533
+
+    (1) Suppose that for all inﬁnite-order g ∈ G, there exists a cobounded (not
+        necessarily proper) action of G on a CAT(0) cube complex Xg such that
+        the hyperplane-stabilisers are all quasiconvex subgroups of G, and hgi has
+        unbounded orbits. Is G cocompactly cubulable? Or, at least, is G a-T-
+        menable?
+    (2) Let G be hyperbolic and act properly and cocompactly on a (ﬁnite rank?)
+        median space. Is G necessarily residually ﬁnite? Or, in fact, linear? (This
+        is in principle easier than the well-known question about cocompactly
+        cubulating hyperbolic median groups.)
+
+Problem 12. Cartan-Hadamard theorem for median spaces, Bowditch
+One can show that any complete simply connected path-metric space which is
+uniformly locally median is in fact median. Here, “uniformly locally median”
+means that there is some ǫ > 0 such that any triple of points of diameter less than
+epsilon has a unique median.
+Question. Can one remove the word “uniform” from this statement, i.e., instead
+just suppose that every point has a neighbourhood in which every triple has a
+unique median?
+  This is elaborated on in some (too much!) detail in my preprint cited below:
+
+                                    References
+[1] B. Bowditch. A Cartan-Hadamard theorem for median metric spaces, https://bhbowditch.
+    com/papers/ch-median.pdf
+
+Problem 13. Universal real cubings, Casals-Ruiz (from discussions with M.
+Hagen and I. Kazachkov)
+In his study of asymptotic invariants, Gromov proved that each non-principal
+asymptotic cone of a hyperbolic group is a universal real tree and that this com-
+pletely characterises the class of hyperbolic groups: a ﬁnitely generated group is
+hyperbolic if and only if each (non-principal) asymptotic cone is a universal real
+tree.
+Question i) Which ﬁnitely generated groups have all non-principal asymptotic
+cones bilipschitz equivalent to a universal real cubing?
+   Bowditch proved that non-principal asymptotic cones of coarse median groups
+are median algebras. Can we characterise groups quasi-isometric to an HHS within
+the class of coarse median groups in terms of their asymptotic cones? Namely,
+Question ii) Is a coarse median group quasi-isometric to an HHS if and only
+if each (non-principal) asymptotic cone is (bi-Lipschitz equivalent to) a universal
+real cubing?
+
+Problem 14. Graphical apiculate algebras, Chepoi & Bandelt
+Every connected graph G = (V, E) can be turned into a ternary algebra, called an
+apex algebra of G: an apex operation (. . .) : V 3 → V maps any triplets u, v, w and
+534                                                           Oberwolfach Report 8/2026
+
+u, w, v to a vertex x = (uvw) = (uwv) ∈ I(u, v) ∩ I(u, w), called a u-apex relative
+to v and w, such that I(u, x) is maximal with respect to inclusion. A graph G is
+called apiculate if the u-apex relative to v and w is unique for all u, v, w ∈ V [1].
+Equivalently, G is apiculate if for each u the basepoint order (V, ≤u ) (in which
+x ≤u y if and only if x ∈ I(u, y)) is a meet-semilattice.
+   A metric triangle xyz is a triplet of vertices x, y, z such that I(x, y) ∩ I(x, z) =
+{x}, I(y, x)∩I(y, z) = {y}, and I(z, x)∩I(z, y) = {z} [4]. A metric triangle y1 y2 y3
+is called a quasi-median of a triplet x1 , x2 , x3 ∈ V if for any i, j ∈ {1, 2, 3}, i 6= j,
+the vertices yi , yj lie on a common shortest path between xi and xj . Any triplet
+of vertices in any connected graph admits at least one quasi-median. A graph
+G = (V, E) is called a generalized median graph if any triplet x1 , x2 , x3 ∈ V has a
+unique quasi-median. Each generalized median graph is apiculate but the converse
+is not true, see [1]. We will call the apex algebra of a generalized median graph a
+generalized median algebra.
+   A ternary algebra (V, (. . .)) is called apiculate if there exists an apiculate graph
+G = (V, E) such that (. . .) is the apex operation of G endowed with the standard
+graph-distance d and standard interval function I. A ternary algebra (V, (. . .))
+is called a graphical apiculate algebra if (V, (. . .)) and all its subalgebras are
+apiculate algebras.
+   Discrete median, quasi-median [3], and weakly median algebras [2] are graph-
+ical apiculate algebras. In general, an apex algebra of a graph is not necessarily
+graphical. The following questions naturally arise from the work [1, 2]:
+Question i) Characterize the apiculate graphs having graphical apiculate alge-
+bras.
+Question ii) Characterize the generalized median graphs having graphical gen-
+eralized median algebras.
+
+                                       References
+ [1] H.-J. Bandelt and V. Chepoi, The algebra of metric betweenness I: subdirect representation
+     and retracts, Europ. J. Combin. 28 (2007), 1640–1661.
+ [2] H.-J. Bandelt and V. Chepoi, The algebra of metric betweenness II: axiomatics of weakly
+     median graphs, Europ. J. Combin. 29 (2008), 676–700.
+ [3] H.-J. Bandelt, H. M. Mulder and E. Wilkeit, Quasi-median graphs and algebras, J. Graph
+     Theory 18 (1994), 681–703.
+ [4] V. Chepoi, Classifying graphs by metric triangles (in Russian), Metody Diskretnogo Analiza
+     49 (1989), 75–93.
+
+
+Problem 15. Corners in subcomplexes of Z3 , V. Chepoi (from discussions
+with J. Chalopin and M. Kokkou)
+Let G be a ﬁnite connected (partial) subgraph of Z3 . Let X(G) be the cube
+complex of G, i.e., a square (respectively, a 3-cube) of Z3 belongs to X(G) if and
+only if all 4 vertices and 4 edges of this square belong to G (respectively, all 8
+vertices and 12 edges of this cube belong to G). Then G is the 1-skeleton of X(G).
+A corner of X(G) is a vertex v belonging to a unique maximal cell of X(G). A
+Median Geometry and Applications                                                           535
+
+corner peeling of G (or of X(G)) is a total ordering of its vertices v1 , . . . , vn such
+that vi is a corner of Gi = G[v1 , . . . , vi ] (clearly, Gn = G).
+   By a coordinate hyperplane we will mean any hyperplane of R3 of the form
+xi = α for some i = 1, 2, 3 and α ∈ R. A section of X(G) is a nonempty intersection
+of X(G) with a coordinate hyperplane. A piece is a connected component of a
+section. An integer piece (respectively, a half-integer piece) is any piece deﬁned
+by a coordinate hyperplane xi = α, where α is an integer (respectively, where α
+is a half-integer, i.e., α = α0 + 21 with α0 ∈ Z).
+   The following conjecture was formulated in connection with leader election (de-
+signing a unique global leader by local decisions, see [2] for results relating leader
+election with metric graph theory) via corner peelings:
+Conjecture. Let G = (V, E) be a ﬁnite connected subgraph of Z3 satisfying the
+following conditions:
+     (1) the cube complex X(G) of G is simply connected;
+     (2) each piece of X(G) is simply connected.
+Then G admits a corner peeling.
+   Clearly, it is suﬃcient to require condition (2) only for integer and half-integer
+pieces. We can prove this conjecture with the following additional condition.
+For each half-integer piece H (which can be viewed as an analog of the mid-
+hyperplane in CAT(0) cube complexes), consider the carrier N (H) of H in X(G).
+Let N + (H) and N − (H) are the two half-carriers of H. Both N + (H) and N − (H)
+are isomorphic to H (and N (H) is the product of the segment [0, 1] with H). Both
+N + (H) and N − (H) are subcomplexes of the integer-pieces H + and H − of X(G),
+respectively. Then, consider the following condition:
+    (3) N + (H) is an isometric subgraph/subcomplex of H + and N − (H) is an
+        isometric subgraph/subcomplex of H − .
+Then one can show that if G satisﬁes the conditions (1),(2),(3), then G admits
+a corner peeling (in fact, one can ask (3) only for coordinate hyperplanes of one
+direction).
+   On the other hand, there exists an isometric subgraph G of Z12 (in fact of
+a 12-dimensional hypercube) without any corner, which has a contractible cube
+complex X(G), and whose each section is an isometric subgraph [1].
+
+                                       References
+ [1] J. Chalopin, V. Chepoi, S. Moran and M. Warmuth, Unlabeled sample compression schemes
+     and corner peelings for ample and maximum classes, J. Comput. Syst. Sci. 127 (2022), 1–28.
+ [2] J. Chalopin, V. Chepoi and M. Kokkou, Distance-based certiﬁcation for leader election in
+     meshed graphs and local recognition of their subclasses, arXiv:2602.12894v1 (2026).
+
+Problem 16. The free product density model, Steenbock (from discussions
+with Einstein, Montee, Ng, Suraj Krishna)
+In Gromov’s random model for random groups, if the density d > 1/3, then by a
+result of Zuk, the random group has Kazhdan’s Property (T) with overwhelming
+probability.
+536                                                   Oberwolfach Report 8/2026
+
+Question. Does this remain true for a random quotient of a free product of at
+least 3 factors in the free product density model at density d > 1/3?
+   As Property (T) is closed under quotients, it would be suﬃcient to prove that a
+random quotient of a free product of free groups in the free product density model
+at density d > 1/3 has Property (T) with overwhelming probability.
+   At least it would be good to show the following.
+Conjecture. A random quotient of a free product of at least 3 factors in the
+free product density model at density d > 1/3 is not cubulated relative to the free
+factors.
+Median Geometry and Applications                                                  537
+
+                         Dictionary across disciplines
+In a number of contexts CAT(0) cube complexes, and their duals, discrete median
+algebras, provide a natural model for binary choices and their interactions. As
+a result, the concept has appeared in a range of disciplines including economics,
+mathematical biology and computer science.
+   For some of these areas, there is a clear correspondence between the concepts, in
+others, there is instead a fruitful analogy. This is particularly the case with social
+choice theory and the theory of concurrency, where the analogies become precise
+only for suitably restricted classes of domains. In both cases, the lack of a com-
+mon vocabulary was a signiﬁcant barrier to communication and inter-disciplinary
+collaboration. The following table was compiled by workshop participants in an
+eﬀort to overcome that obstruction. The completed entries played an important
+role in supporting inter-disciplinary dialog throughout the workshop, while the
+gaps suggest areas for future fruitful cross-disciplinary collaboration.
+
+ Geometric          Discrete          Computer        Phylo-          Economics
+ group theory       mathematics       science         genomics
+ CAT(0) cube        median alge-      certain                         property
+                                      coherent        split system
+ complex            bras/median                                       space
+                    graphs            event
+                                      structures
+ wallspace          cut system
+ wall/hyperplane cut                  event           split           issue
+ halfspace          prime                             side            binary
+                    ideal/prime                                       property
+                    convex set
+ crossing walls     crossing cuts     concurrent      incompatible    independent
+                                      events          splits          choices
+ Sageev’s           Stone/Roller              Buneman graph
+ construction       duality
+ principal          vertex            conﬁguration S-map/split-       consumption
+ ultraﬁlter                                        map                bundle
+ convex set         ideal in a        conﬁguration                    consistent
+                    distributive      domain                          set of choices
+                    lattice/median
+                    subalgebra
+ gate-convex set    Chebyshev         retract/
+                    ideal/retract     projection-
+                                      stable
+                                      subdomain
+
+
+
+                                                          Reporter: Lamine Messaci
+538                                                    Oberwolfach Report 8/2026
+
+                                    Participants
+
+
+Prof. Dr. Karim Adiprasito                 Prof. Dr. Ruth Charney
+Jussieu Institute of Mathematics - Paris   Department of Mathematics
+Rive Gauche (IMJ-PRG)                      Brandeis University
+Sorbonne Universite                        415 South St
+4 place Jussieu                            Waltham, MA 02453
+P.O. Box 247                               UNITED STATES
+75252 Paris Cedex 5
+FRANCE
+                                           Prof. Dr. Indira Chatterji
+                                           Laboratoire de Mathématiques
+Dr. Macarena Arenas                        Université de Nice
+Centre for Mathematical Sciences           Parc Valrose
+University of Cambridge                    06108 Nice Cedex
+Wilberforce Road                           FRANCE
+Cambridge CB3 0WB
+UNITED KINGDOM
+                                           Dr. Victor Chepoi
+                                           Aix-Marseille Université Université
+Prof. Dr. Goulnara N. Arzhantseva          Laboratoire d’Informatique et Systèmes
+Fakultät für Mathematik                  Faculté des Siences
+Universität Wien                          163 Avenue de Luminy
+Oskar-Morgenstern-Platz 1                  13288 Marseille cedex 9
+1090 Wien                                  FRANCE
+AUSTRIA
+                                           Prof. Dr. Cornelia Druţu Badea
+Pénélope Azuelos                         Mathematical Institute
+Department of Mathematics                  Oxford University
+University of Bristol                      Andrew Wiles Building
+Woodland Road                              Woodstock Road
+Bristol BS8 1UG                            Oxford OX2 6GG
+UNITED KINGDOM                             UNITED KINGDOM
+
+Brian H. Bowditch                          Assoc. Prof. Dr. Guillaume
+Mathematics Institute                      Ducoﬀe
+University of Warwick                      Faculty of Mathematics and Computer
+Gibbet Hill Road                           Science
+Coventry CV4 7AL                           University of Bucharest
+UNITED KINGDOM                             AND
+                                           National Institute for Research and
+                                           Development in Informatics
+Dr. Montserrat Casals-Ruiz
+                                           Str. Academiei nr. 14, sector 1
+Departamento de Matemáticas
+                                           010014 Bucharest 1
+Euskal Herriko Unibertsitatea
+                                           ROMANIA
+Barrio Sarriena, s/n,
+48940 Leioa
+SPAIN
+Median Geometry and Applications                                              539
+
+Dr. Elia Fioravanti                    Prof. Dr. Roman Sauer
+Karlsruher Institut für Technologie   Institut für Algebra und Geometrie
+(KIT)                                  Fakultät für Mathematik (KIT)
+Institut für Algebra und Geometrie    Englerstraße 2
+76131 Karlsruhe                        76131 Karlsruhe
+GERMANY                                GERMANY
+
+Dr. Anthony Genevois                   Dr. Sam Shepherd
+Département de Mathématiques         Fachbereich Mathematik
+Université Montpellier II             Universität Münster
+Place Eugene Bataillon                 48149 Münster
+34095 Montpellier Cedex 5              GERMANY
+FRANCE
+                                       Prof. Dr. Peter Stadler
+Dr. Mark Hagen                         Fakultät für Mathematik/Informatik
+School of Mathematics                  Universität Leipzig
+University of Bristol                  Haertelstraße 16-18
+Woodland Road                          04109 Leipzig
+Bristol BS8 1UG                        GERMANY
+UNITED KINGDOM
+                                       Dr. Markus Steenbock
+Assoc. Prof. Dr. Katharina Huber       Fakultät für Mathematik
+School of Computing Sciences           Universität Wien
+University of East Anglia              Oskar-Morgenstern-Platz 1
+Norwich Research Park                  1090 Wien
+Norwich, NR4 7TJ                       AUSTRIA
+UNITED KINGDOM
+                                       Prof. Dr. Karen L. Vogtmann
+Dr. Lamine Messaci                     Mathematics Institute
+Laboratoire AGM, Cergy - Paris         University of Warwick
+Université,                           Zeeman Building, C2.05
+2 av. Adolphe Chauvin                  Coventry CV4 7AL
+95000 Cergy-Pontoise                   UNITED KINGDOM
+FRANCE
+                                       Prof. Dr. Nick Wright
+Prof. Dr. Graham Niblo                 School of Mathematics
+School of Mathematics                  University of Southampton
+University of Southampton              Southampton SO17 1BJ
+Highﬁeld Campus                        UNITED KINGDOM
+Southampton SO17 1BJ
+UNITED KINGDOM
+
+Prof. Dr. Michah Sageev
+Department of Mathematics
+Technion - Israel Institute of
+Technology
+Haifa 32000
+ISRAEL
+

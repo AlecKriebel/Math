@@ -6,9 +6,14 @@ import json, os, subprocess, tempfile, sys
 PROGRAM = Path(__file__).resolve().parents[1]
 REPO = PROGRAM.parent
 def git(*args, env=None):
-    result=subprocess.run(['git','-c','gc.auto=0',*args], cwd=REPO, env=env, text=True, stdout=subprocess.PIPE)
+    result=subprocess.run(['git','-c','gc.auto=0',*args], cwd=REPO, env=env, text=True, encoding='utf-8', errors='backslashreplace', stdout=subprocess.PIPE)
     if result.returncode:
-        print(result.stdout)
+        # Diagnostics may contain whole downloaded reference pages; report only
+        # filenames/line summaries rather than flooding the conversation.
+        diagnostics = [line for line in result.stdout.splitlines() if not line.startswith('+')]
+        print('\n'.join(diagnostics[:12]))
+        if len(diagnostics) > 12:
+            print(str(len(diagnostics)-12)+' further diagnostic lines omitted.')
         result.check_returncode()
     return result.stdout.strip()
 
@@ -29,6 +34,7 @@ try:
     git('diff','--cached','--check',parent,'--',PROGRAM.name+'/',
         ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',
         ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',
+        ':!'+PROGRAM.name+'/papers/*/reviews/*/primary-imports/*.tex',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.log',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stderr',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stdout',

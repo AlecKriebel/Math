@@ -1,0 +1,1156 @@
+                                                  Random groups and property (T): Żuk’s theorem
+                                                                   revisited
+
+
+
+
+arXiv:1106.2242v2 [math.GR] 12 May 2012
+                                                                    Marcin Kotowski ∗                Michal Kotowski †
+                                                                   Faculty of Mathematics, Informatics and Mechanics
+                                                                                   University of Warsaw,
+                                                                           Banacha 2, 02-097 Warszawa, Poland.
+
+                                                                                    August 27, 2018
+
+
+                                                                                          Abstract
+                                                      We provide a full and rigorous proof of a theorem attributed to Żuk, stating that
+                                                  random groups in the Gromov density model for d > 1/3 have property (T) with
+                                                  high probability. The original paper had numerous gaps, in particular, crucial steps
+                                                  involving passing between different models of random groups were not described. We
+                                                  fix the gaps using combinatorial arguments and a recent result concerning perfect
+                                                  matchings in random hypergraphs. We also provide an alternative proof, avoiding
+                                                  combinatorial difficulties and relying solely on spectral properties of random graphs in
+                                                  G(n, p) model.
+
+
+                                          1       Introduction
+                                          The topic of this paper are two important concepts in geometric group theory — random
+                                          groups and property (T).
+                                              Random groups have been an active ﬁeld of study ever since their introduction by Gromov
+                                          in the early nineties [Gro93]. The main focus of this theory is on asymptotic properties of
+                                          groups. Roughly speaking, we deﬁne a model in which group presentations are chosen at
+                                          random, subject to certain restrictions, and depend on some parameter going to inﬁnity. We
+                                          then study the probability that a random group has given property (for example, is trivial,
+                                          free, word hyperbolic etc.). It turns out that frequently this probability tends to 0 or 1, so
+                                          we can say that asymptotically “almost none” or “almost all” groups have the considered
+                                          property.
+                                                2010 Mathematics Subject Classification 20F65.
+                                              ∗
+                                                mk249015@students.mimuw.edu.pl
+                                              †
+                                                mk249019@students.mimuw.edu.pl
+
+                                                                                                 1
+    Various diﬀerent models of choosing a group at random have been proposed. The most
+popular and widely studied is the Gromov density model [Gro93], in which the presentations
+have ﬁxed number of generators, but the length and number of relators go to inﬁnity. The
+number of relators is controlled by a parameter d ∈ [0, 1], called the density. It has been
+discovered that many properties exhibit a “phase transition” — below a certain critical
+density almost all groups have the property, while above it almost none do. The most
+celebrated example is Gromov’s theorem ([Gro93], see [Oll10] for d = 12 ), which states that
+for d ≥ 21 a random group in this model is almost surely trivial or Z2 , while for d < 12 it is
+almost surely inﬁnite and word hyperbolic (where “almost surely” means “with probability
+tending to 1 as the relevant parameters go to inﬁnity”). Therefore the Gromov model gives
+us new examples of hyperbolic groups.
+    An excellent survey of random groups is [Oll05], where the reader can ﬁnd out more
+about the history of this ﬁeld, important results and further references.
+    The second concept, property (T), was ﬁrst introduced by Kazhdan to study certain
+properties of lattices in Lie groups (hence it is also known as Kazhdan’s property). Later it
+turned out that this property, concerning unitary representations of groups and their invari-
+ant vectors, is relevant to many other areas of mathematics and also computer science. A
+comprehensive treatment of this topic and its history can be found in [BdlHV08], here we
+will only mention that property (T) has found applications in representation theory, har-
+monic analysis, ergodic theory, expanding graphs, computational group theory and measure
+theory. For example, groups with property (T) were used by Margulis to give a ﬁrst explicit
+construction of families of expanders, graphs with good spectral properties which are impor-
+tant in theoretical computer science (we will also encounter spectral graph theory in later
+sections). Many such applications are described in [Lub94].
+    Interestingly, for a long time few examples of groups having property (T) were known,
+most of them associated with lattices in Lie groups. As we will see, it is random group
+theory that gives us new examples of such groups. Actually, in a suitably deﬁned sense
+“most” groups have property (T), in the same way as “most” groups in the Gromov model
+are trivial or hyperbolic for certain densities.
+    This remarkable result is due to Żuk and was proved in [Żuk03]. In this paper Żuk shows
+this for the triangular model, a model of random groups closely related to the Gromov model:
+
+Theorem A. For density d > 13 , a random group in the triangular model M(m, d) has
+property (T) with overwhelming probability.
+
+   Analogous statement for the Gromov model is attributed to Żuk, although it does not
+appear in [Żuk03]:
+
+Theorem B. For density d > 31 , a random group in the Gromov model G(n, l, d) has property
+(T) with overwhelming probability.
+
+   Together with Gromov’s theorem, this shows that for d between 31 and 12 we obtain a
+multitude of inﬁnite hyperbolic groups with property (T). On the other hand, it is known
+[OW10] that for d < 51 random groups in the density model do not have property (T). It is
+
+                                              2
+an open problem to decide if the density 13 for the Gromov model can be improved or if it is
+critical for having property (T).
+    Żuk’s key insight is the introduction of the triangular model, mentioned above, and
+the use of a certain spectral criterion for property (T), which relates this property to the
+spectrum of the discrete Laplacian on a suitably deﬁned ﬁnite graph. It is then possible to
+pass to the original Gromov model, so that the task of proving property (T) is reduced to
+the analysis of eigenvalues of the Laplacian on random graphs.
+    Unfortunately, Żuk’s original paper contains gaps — the steps needed to pass from results
+about random graphs to the triangular model are not spelled out explicitly and are stated
+without proof. The passage from the triangular model to the Gromov density model is
+not mentioned there, although it can be done following ideas from the survey [Oll05]. As
+Ollivier points out in his survey, each of these steps requires dealing with technical details,
+but the required proofs do not seem to appear anywhere in the literature. In particular the
+passage from the results about random regular graphs to the triangular model turns out to
+be nontrivial.
+    The goal of this paper is to ﬁll the gaps from Żuk’s argument and describe the passage
+to the Gromov model, thus giving a full and rigorous proof of Theorem B. We introduce
+the appropriate deﬁnitions and properties of random group models and then proceed to
+prove in detail the facts needed to obtain the main theorem, relying on a strong result from
+random graph theory to deal with the major diﬃculty mentioned above. In addition we
+give an alternative way of passing to the triangular model, not relying on theorems about
+random regular graphs, but using more recent results about the so called Erdős-Renyi model
+of random graphs.
+    The structure of the paper is as follows. In Section 2 we introduce the models of random
+groups, property (T), the spectral criterion and give an outline of Żuk’s approach to the
+proof. In Section 3, after recalling necessary notions from graph theory, we prove that
+random groups in the triangular model typically have property(T). We then use this result
+to ﬁnish the proof of the main theorem, proving that groups in the Gromov model are
+quotients of groups in the triangular model. Section 4, is devoted to the alternative proof of
+Theorem A, relying on methods from spectral graph theory and random graphs.
+
+
+Acknowledgements
+We would like to thank Piotr Przytycki for suggesting to us the topic of paper, his help and
+valuable suggestions.
+
+
+2     Preliminary notions
+2.1    Models of random groups
+In this section, we deﬁne relevant models of random groups. A comprehensive survey on the
+topic of random groups is given in [Oll05]. All groups we consider will be ﬁnitely generated.
+
+                                              3
+     Suppose we have a ﬁnite set of generators S = {s1 , . . . , sn }. Let R be a set of words
+chosen randomly according to some probability distribution on the set of all words on the
+elements of S and their inverses. A random group will be a group given by the presentation
+hS|Ri. Choosing a model of random groups consists of specifying a probability law for the
+set of relators R. Unless stated otherwise, we consider only relators r which are cyclically
+reduced, i.e. if r = s1 . . . sl , then si 6= s−1
+                                               i+1 for 1 ≤ i ≤ l (where we identify sl+1 and
+s1 ). Usually, we will be interested in asymptotic properties of a random group when some
+parameter, e.g. number of generators n or the length of relators l, goes to inﬁnity.
+     Whenever numbers like (2n − 1)ld, denoting an integer quantity (e.g. number of relators),
+appear, they are understood to mean their integer parts, e.g. ⌊(2n − 1)ld ⌋.
+     The most widely studied model of random groups is the Gromov density model.
+Definition 2.1. Fix a parameter d ∈ (0, 1), called the relation density. A group Γ in the
+Gromov density model G(n, l, d) is given by Γ = hS|Ri, where |S| = n and R is a set of
+(2n − 1)ld relators, each of them chosen uniformly and independently from the set of relators
+of length l (note that the same relator can appear several times).
+Definition 2.2. Fix n and d. We say that a property P of groups holds with over-
+whelming probability (w.o.p.) in the Gromov density model if we have lim P(Γ ∈
+                                                                                    l→∞
+G(n, l, d) satisﬁes P ) = 1.
+    We will sometimes relax the requirement that exactly (2n − 1)ld relators are chosen, i.e.
+                                                                          f (n)
+we allow choosing f (n) ≈ (2n − 1)ld relators, where ”≈” means that (2n−1)      ld → 1 as n → ∞.
+
+It will be clear that the properties we consider do not depend on such details.
+    As mentioned in the introduction, for d ≥ 21 groups in the Gromov density model are
+trivial or Z2 w.o.p., so we will only be interested in values of d < 12 .
+    Another model of random groups, introduced ad hoc in [Żuk03], is the triangular model.
+Definition 2.3. As before, ﬁx d ∈ (0, 1). A group Γ in the triangular model M(m, d) is
+given by Γ = hS|Ri, where |S| = m and R is a set of (2m − 1)3d relators, chosen uniformly
+and independently from the set of relators of length 3.
+   Intuitively, a random group in the triangular model M(m, d) should be related to a
+                                                     l
+Gromov random group G(n, l, d) with 2m = (2n) 3 , since then the numbers of relators,
+(2m − 1)3d and (2n − 1)ld , are approximately the same. Indeed, we will see in Chapter 3 that
+every group in G(n, l, d) has a subgroup of ﬁnite index which is a homomorphic image of a
+group in the (slightly modiﬁed) triangular model, with m as above.
+Definition 2.4. For ﬁxed d, we say that a property P of groups holds with overwhelming
+probability (w.o.p.) in the triangular model if we have lim P(Γ ∈ M(m, d) satisﬁes P ) =
+                                                        m→∞
+1.
+   We note that if d < 12 , in both models w.o.p each relator appears at most once [Oll05]:
+Remark 2.5. If d < 21 , w.o.p. all relators in the presentation of a random group in the
+Gromov model G(n, l, d) or the triangular model M(m, d) are distinct words.
+
+                                               4
+    The last model we shall use is the permutation model.
+Definition 2.6. Fix a set of generators S = {s1 , . . . , sn } of size n. Choose v ≥ 1 and
+pick uniformly and independently v pairs of permutations {π11 , π21 }, . . . , {π1v , π2v }, where each
+πki , k = 1, 2, is chosen randomly from the set of all permutations of {s1 , . . . , sn , s−1           −1
+                                                                                           1 , . . . , sn }.
+A random group Γ in the permutation model F (n, v) is Γ = hS|Ri, with R consisting of
+                               i ±1    i ±1
+2nv words of the form s±1   j π1 (sj )π2 (sj ), for i = 1, . . . , v and j = 1 . . . , n.
+
+    Note that we place no restrictions on the permutations πki , so the resulting words
+s±1  i ±1   i ±1
+ j π1 (sj )π2 (sj ) might not be cyclically reduced.
+    The permutation model is directly related to the following notion of a random graph:
+Definition 2.7. Fix a set of vertices V = {1, . . . , n} and choose at random v permutations
+π1 , . . . , πv of V . Deﬁne the set of (undirected) edges between vertices as E = {(i, πk (i)) : i =
+1, . . . , n, k = 1, . . . , v}. We allow multiple edges between two vertices. A random graph in
+the configuration model L(n, v) is the graph G = (V, E).
+    A graph in the conﬁguration model L(n, v) is a random regular graph of degree 2v. Such
+graphs have been extensively studied (see for example [JLR00]) and their spectral properties
+will be helpful in analysing random groups appearing in the permutation model.
+Definition 2.8. For ﬁxed v, we say that a property P of groups holds with overwhelming
+probability (w.o.p.) in the permutation model if we have lim P(Γ ∈ F (n, v) satisﬁes P ) =
+                                                          n→∞
+1.
+
+2.2     Property (T)
+We will now deﬁne Kazhdan’s property (T) and formulate some basic facts. Here, we are
+only concerned with discrete, ﬁnitely generated groups — for a more complete treatment,
+including property (T) for general topological groups, see [BdlHV08].
+    Let Γ be a ﬁnitely generated group with a ﬁnite generating set S. Consider H, a Hilbert
+space, and π : Γ → U(H), a unitary representation of Γ on H. We will say that π has
+almost invariant vectors if for every ε > 0 there exists uε ∈ H such that for every s ∈ S
+kπ(s)uε − uε k < εkuε k (call such uε ε-invariant). A vector u ∈ H is called invariant if
+π(g)u = u for every g ∈ Γ.
+Definition 2.9. We say that Γ has property (T) if for every H and π the following holds:
+if π has almost invariant vectors, then π has an invariant vector.
+    Before we proceed to give examples, we note the following simple property:
+Remark 2.10. Let φ : Γ → H be an epimorphism. Then if Γ has property (T), so does H.
+Proof. Let S be a generating set of Γ. Take φ(S) to be a generating set of H. Every
+representation π of H can be pulled back to a representation π ′ = π ◦ φ of Γ. Note that
+ε-invariant vectors of π are also ε-invariant of π ′ , so if π has almost invariant vectors, so does
+π ′ . Since Γ has property (T), π ′ has an invariant vector, which is also an invariant vector of
+π.
+
+                                                     5
+    An easy consequence of the above fact is that property (T) is preserved under adding
+relators — if Γ = hS|Ri has property (T), then Γ′ = hS|R ∪ R′ i, obtained from Γ by
+adding an arbitrary set of relators R′ , also has property (T). Therefore, to prove that a
+group Γ = hS|Ri has property (T), it suﬃces to ﬁnd a subset R′ ⊆ R of relators such that
+Γ′ = hS|R′ i has property (T).
+    Another useful fact is that property (T) is preserved when passing to a subgroup of ﬁnite
+index [BdlHV08, Theorem 1.7.1]:
+Remark 2.11. Let H be a subgroup of finite index in Γ. Then H has property (T) if and
+only if Γ has property (T).
+   We illustrate the deﬁnition of property (T) with a few examples:
+   • Z does not have property (T), which can be seen by analysing its representation on
+     L2 (R) by translations
+   • from Remark 2.10, any group admitting an epimorphism onto Z does not have property
+     (T) — this includes Zn and free groups Fn
+   • lattices in certain Lie groups, including SLn (R) for n ≥ 3 and Sp2n (R) for n ≥ 2, have
+     property (T) [BdlHV08, Section 1.4, 1.5]
+
+2.3    Spectral criterion for property (T)
+Given a group and its presentation, it is in general diﬃcult to decide whether the group has
+property (T) or not. Here we describe, following [Żuk03], a simple suﬃcient condition for
+having property (T), based on spectral properties of a certain ﬁnite graph associated with
+the group’s presentation.
+    Let G = (V, E) be a graph with the vertex set V and the set of edges E (we allow multiple
+edges between two vertices). For a vertex v we denote its degree by deg(v). For functions
+f, g : V → R their inner product is deﬁned as:
+                                          X
+                                hf, gi =      f (v)g(v) deg(v)
+                                         v∈V
+
+We can then introduce the discrete Laplacian ∆:
+                                                     1 X
+                             (∆f )(v) = f (v) −                 f (v ′ )
+                                                   deg(v) v′ ∼v
+where v ′ ∼ v means that vertices v ′ and v are adjacent (if there are multiple edges between
+v and v ′ , then v ′ appears in the sum with the corresponding multiplicity).
+   The Laplacian ∆ is a linear operator from ℓ2 (G) to ℓ2 (G). It is easily seen that it is
+non-negative and self-adjoint with respect to the inner product deﬁned above and therefore
+has real spectrum.
+   Constant functions are mapped by ∆ to 0, so 0 is always an eigenvalue. If Γ is connected,
+then it is a simple eigenvalue. We will denote the smallest nonzero eigenvalue of ∆ by λ1 (Γ).
+   The graph L(S) below is the same as the graph L′ (S) from Żuk’s paper:
+
+                                               6
+Definition 2.12 ([Żuk03, Section 7.1]). Let Γ = hS|Ri, where S = {s1 , . . . , sn }. We
+deﬁne the graph L(S) as follows. The vertices of this graph are generators s1 , . . . , sn and
+their inverses s−1             −1
+                  1 , . . . , sn . For each relator in R of the form sx sy sz we introduce edges
+     −1        −1        −1
+(sx sy ), (sy sz ), (sz sx ).
+
+    This deﬁnition allows having multiple edges between two distinct vertices, but does not
+allow loops from a vertex to itself (since we assume that relators are cyclically reduced).
+Note that only relators of length 3 (corresponding to triangles in the Cayley graph of Γ
+associated with the presentation) are relevant to the deﬁnition of L(S).
+    We will always assume that L(S) is connected. As noted in Żuk’s paper, even if L(S)
+is not connected (which is the case, for example, for Z2 with standard generators), we can
+change the generating set, replacing S by S ∪ S 2 , and it is easily checked that the latter
+set gives a connected graph. Thus, every group has a generating set S for which L(S) is
+connected.
+    Intuitively, for a presentation consisting only of relators of length 3, the graph L(S) is
+the vertex link of the triangular presentation 2-complex.
+    We can now formulate the theorem connecting spectral properties of the Laplacian and
+property (T).
+
+Theorem 2.13 ([Żuk03, Proposition 6]). Let Γ be a group given by a presentation hS|Ri
+and assume that L(S) is connected. If λ1 (L(S)) > 21 , then Γ has property (T).
+
+    The theorem ﬁrst appears in [BŚ97] (see also [Żuk96]). It is usually formulated for a
+version of L(S) without multiple edges.
+    Property (T) and the above criterion are closely connected to the spectral properties of
+G-invariant random walks and existence of certain Poincaré inequalities on the Cayley graph
+of Γ. A good reference for this topic is [Oll03] (see also [BdlHV08]).
+    The following example shows that the constant 12 cannot be improved [Żuk03]. Take
+Γ = Z2 with the generating set S = {(0, 1), (1, 0), (1, 1)}. The graph L(S) is a cycle of six
+vertices and it can be checked that the eigenvalues of ∆ on this graph are 0, 12 , 23 , 2. We then
+have λ1 (L(S)) = 21 , but Z2 does not satisfy property (T).
+    Later on it will be also convenient to decompose L(S) into subgraphs, as in the following
+deﬁnition.
+
+Definition 2.14. Let Γ = hS|Ri be a group. We deﬁne graphs Li , i = 1, 2, 3, such that
+each of them has the same vertex set as L(S) and for each relator of the form sx sy sz we
+insert and edge (sx , s−1                   −1                     −1
+                       y ) into L1 , (sy , sz ) into L2 and (sz , sx ) into L3 .
+
+
+2.4    Proofs of main theorems – outline
+The main results we are concerned with in this paper are the following theorems:
+
+Theorem A. For density d > 31 , a random group in the triangular model M(m, d) has
+property (T) with overwhelming probability.
+
+
+                                                7
+Theorem B. For density d > 31 , a random group in the Gromov model G(n, l, d) has property
+(T) with overwhelming probability.
+
+    Here we give an outline of Żuk’s original argument concerning Theorem A, which is
+contained in [Żuk03], and point out gaps in the proof which need to be ﬁlled. Then we
+sketch how this can be used to deduce Theorem B.
+    The ﬁrst step is to prove that w.o.p. a random group in the permutation model F (n, v)
+satisﬁes property (T) (for a suitably chosen value of v).
+    This is accomplished by invoking the spectral criterion. Namely, let Γ = hS|Ri be a
+random group in the F (n, v) model. Consider the graph L(S) and the associated subgraphs
+L1 , L2 , L3 . It is readily proved, as in Żuk’s paper [Żuk03, Lemma 6], that if λ1 (Li ) > 21 for
+i = 1, 2, 3, then λ1 (L(S)) > 21 . We can then invoke Theorem 2.13 to conclude that Γ has
+property (T). To prove that each of Li , say L1 , has λ1 > 12 , we observe that it is exactly a
+random graph in the conﬁguration model L(n, v) (Deﬁnition 2.7) and such graphs typically
+have large second Laplacian eigenvalue, thanks to the following theorem by Friedman:
+
+Theorem 2.15 ([Fri91, Theorem B]). Let L be a random graph in the configuration model
+L(n, v). Then                       √                   
+                                        2v − 1 log v c
+                  lim P λ1 (L) > 1 −           +      +       =1
+                 n→∞                      v        v    v
+where c is some constant independent of v.
+
+   The inequality in [Fri91] is formulated in terms of eigenvalues of the adjacency matrix,
+but it is straightforward to rewrite it as an inequality for the Laplacian eigenvalues.
+                                                                                1
+   We ﬁx v to be large enough so that the theorem        above gives
+                                                                    λ1 (Li ) > 2 (actually we
+                                                    √
+can have λ1 (Li ) arbitrarily close to 1, as 1 −  2v−1
+                                                   v
+                                                        + logv v + vc → 1 with v → ∞). This
+concludes the ﬁrst step.
+    The second step consists of showing that w.o.p. a random group in the triangular model
+for d > 13 is a quotient of a random group in the permutation model. Since we know that
+random groups in the latter model w.o.p. have property (T) and property (T) is preserved
+under taking quotients, it will follow that w.o.p. a random group in the triangular model
+has property (T).
+    To this end we need to show that a typical presentation of a triangular group contains
+a subset of relators corresponding to pairs of permutations, as in the deﬁnition of F (n, v).
+In [Żuk03] this fact is stated without proof. Actually, this is equivalent to ﬁnding a perfect
+matching in a certain hypergraph closely related to L(S), which we will deﬁne in Chapter
+3. We will prove there, using a theorem proved by Johansson, Kahn and Vu in [JKV08],
+that indeed such a matching exists with high probability (although we should stress that the
+result from [JKV08] is highly nontrivial). This gives us Theorem A.
+    To obtain Theorem B, we need to pass from the triangular model to the Gromov density
+model. As explained in [Oll05], the triangular model is typically “less quotiented” than
+the Gromov model, so we expect that groups in the latter model with high probability will
+be quotients of groups in the former. This is indeed the case, although only some of the
+
+                                                 8
+details are provided in [Oll05]. In Section 3.3 we prove the required result by constructing
+a homomorphism from a suitable modiﬁcation of the triangular model to the density model
+(the modiﬁcations are needed to deal with technical issues involving nonreduced words).
+     This strategy of proof may be considered roundabout — we are forced to look for a perfect
+matching in a random hypergraph, but only because of good spectral properties of random
+groups in the permutation model, i.e. we are only interested in the large eigenvalue the
+matching provides and not the matching itself. A more direct proof, avoiding combinatorial
+diﬃculties with ﬁnding matchings, might be desirable. We give such a proof in Section 4,
+where we prove directly in the triangular model (using known results about another model
+of random graphs and without resorting to permutations) that graphs Li typically have large
+λ1 .
+
+
+3     Proofs of main theorems - the triangular model and
+      the Gromov model
+3.1     Basic notions of random graphs
+In this section we recall basic notions of random graph theory and introduce auxilliary
+deﬁnitions. We shall use standard asymptotic notation. For functions f, g, f = O(g) means
+that f (n) ≤ Cg(n) for some constant C, and similarly f = Ω(g) means that f (n) ≥ Cg(n)
+for some C. f = o(g) means that fg(n)  (n)
+                                           → 0 as n → ∞ and f = ω(g) means that fg(n)       (n)
+                                                                                                →∞
+as n → ∞. Finally f = Θ(g(n)) if both f = O(g) and f = Ω(g) hold.
+    Fix a vertex set V of size n. A k-hypergraph G = (V, E) with vertex set V consists
+of a family of hyperedges E, where each hyperedge e ∈ E is a subset of V of size k (we
+allow repeated hyperedges). The case k = 2 gives the usual notion of graph with edges.
+A hypergraph will be called k-partite if the vertex set V can be partitioned into k disjoint
+subsets, V = V1 ∪ · · · ∪ Vk , such that each hyperedge is of the form e = {v1 , . . . , vk }, vi ∈ Vi
+for i = 1, . . . , k. A perfect matching in a k-partite hypergraph is a set of disjoint edges
+that cover V .
+    One of the most widely used models of random graphs is the G(n, p) model (also called
+the Erdős-Renyi model), in which a random graph on n vertices is obtained by taking each
+possible edge independently with probability p. The expected number of edges is N = n2 p.
+                                                                                                   
+
+Typically we are interested in asymptotic properties of such graphs, when n → ∞ and
+p = p(n) depends on n. For given p, we say that a random graph has property P with
+high probability (w.h.p.) if lim P(G ∈ G(n, p) satisﬁes P ) = 1. A common phenomenon
+                                 n→∞
+in G(n, p) model is the existence of sharp thresholds, where for a given graph property P
+there exists a threshold probability p(n) such that lim P(G ∈ G(n, p) satisﬁes P ) = 0 if
+                                                          n→∞
+p = o(p(n)), but lim P(G ∈ G(n, p) satisﬁes P ) = 1 for p = ω(p(n)).
+                  n→∞
+   A related model is the G(n, M) model, where we choose uniformly at random a set of
+edges from all possible sets of edges of size
+                                           M on n vertices. This is somewhat similar to the
+                                        n
+G(n, p) model with p such that M = 2 p (so that the expected number of edges agrees) and
+
+                                                  9
+sometimes results about one model can be transferred to the other [JLR00]. Both deﬁnitions
+are straightforwardly generalized to the case of hypergraphs.
+    For technical reasons it will be also convenient to deﬁne two slightly diﬀerent models
+of random hypergraphs. The motivation for introducing them will be clear from the next
+section.
+Definition 3.1. Fix n and M. Let V be a set of size 2n whose elements are labeled
+by s1 , . . . , sn , s−1           −1
+                      1 , . . . , sn . A random graph G in the G3 (n, M) is a 3-partite hypergraph
+obtained in the following way. The vertex set of G consists of three disjoint copies V1 , V2 , V3
+of V . We choose uniformly and independently a set of M hyperedges, where each hyperedge
+is a triple (sx , sy , sz ), sx ∈ V1 , sy ∈ V2 , sz ∈ V3 .
+    Let e = (sx , sy , sz ) be an edge as in the previous deﬁnition. We will call e a reduced
+edge if the corresponding word sx sy sz is cyclically reduced. A reduced perfect matching
+is a perfect matching whose all hyperedges are reduced.
+Definition 3.2. Fix n and M. A random graph G in the Gred    3 (n, M) model is a 3-partite
+hypergraph obtained in the same way as in the G3 (n, M) model, with the restriction that
+we choose edges only from the set of reduced edges. The notion of satisfying a property with
+high probability is deﬁned in the same way as in the previous models.
+
+3.2    From the permutation model to the triangular model
+In this section we will describe how to pass from the permutation model to the triangular
+model — roughly, we will prove that a random triangular group is a quotient of a random
+group in the permutation model. Our ﬁrst step will be establishing the existence of a perfect
+matching in a random hypergraph associated with a random group in the M(m, d) model.
+Then, after a few technical steps, we will apply this analysis to the M(m, d) triangular model
+and a variant of the F (n, v) permutation model. This will enable us to prove Theorem A.
+    Recall that a random group Γ = hS|Ri in the triangular model M(m, d) is obtained by
+choosing independently (2m − 1)3d relators of the form sx sy sz . From now on we take d > 31
+so that 3d = 1 + ε, ε > 0. As we want to pass from this model to the permutation model, we
+focus our attention on ﬁnding a subset of relators of the form s±1 π1 (s±1 )π2 (s±1 ) for s ∈ S,
+where πi is a permutation. Each s should appear in these relators three times (playing the
+role of s, π1 (s′ ) and π2 (s′′ ) for some s′ , s′′ ).
+    The requirement that R contains a subset of relators of the desired form is naturally
+rephrased in terms of the following 3-hypergraph associated to the presentation.
+Definition 3.3. Let Γ = hS|Ri be a group in the M(m, d) model. We deﬁne a graph L3 (S)
+in the following way: take the vertex set to be V1 ∪ V2 ∪ V3 , where Vi are disjoint copies of
+S ∪ S −1 . For a relator sx sy sz ∈ R insert a hyperedge (sx , sy , sz ), sx ∈ V1 , sy ∈ V2 , sz ∈ V3
+(we remove duplicate edges).
+    Choosing a random group in the triangular model M(m, d) gives us a random graph
+L3 (S) in the Gred
+               3 (m, M) model for M = (2m − 1)
+                                               3d
+                                                  = (2m − 1)1+ε (note that both models
+
+                                                 10
+allow only reduced relators and edges, respectively). To ﬁnd a subset of relators of the form
+s±1 π1 (s±1 )π2 (s±1 ), for s ∈ S, it is enough to ﬁnd a perfect matching in L3 (S).
+    In principle, models G3 (n, M) and Gred    3 (n, M) allow duplicate edges. However, we will
+use these graphs in the setting of random groups with density < 12 , where with overwhelming
+probability there are no duplicate relators (Remark 2.5). We can therefore assume that no
+duplicate edges will occur in random graphs described above.
+    The key result upon which our proof is based is the following result from random graph
+theory [JKV08, Corollary 2.6]:
+Theorem 3.4. Let p(n) = Ω( logn2
+                                n
+                                  ). Then a random 3-partite 3-hypergraph in G3 (n, M) for
+M = Ω(n3 p) contains a perfect matching with high probability.
+    The theorem in [JKV08] is actually proved for ordinary, not k-partite, hypergraphs, but
+the proof requires essentially no modiﬁcations to acommodate this change.
+    Theorem 3.4 is a special case of a more general theorem in [JKV08], concerning thresholds
+for existence of balanced factors in random graphs. In particular, it solves the long-standing
+“Shamir problem”, asking for the threshold probability for existence of a perfect matching in
+a hypergraph. The proof is rather diﬃcult, employing concentration inequalities and entropy
+estimates as well as intricate combinatorial arguments.
+    This is in sharp contrast with the case of bipartite graphs, where a simple argument based
+on Hall’s marriage theorem gives a threshold probability of p = logn n [Bol01, Corollary 7.13].
+The lack of a Hall-type theorem for hypergraphs, giving necessary and suﬃcient conditions
+for a perfect matching, makes generalizing that argument to hypergraphs unfeasible. Indeed,
+the problem of ﬁnding perfect matchings even in 3-hypergraphs is NP-hard, so it is unlikely
+that a simple Hall-type criterion exists. There are several partial criteria for matchings in
+hypergraphs ([AH00], [Hax95]), but none of them seems suﬃcient to establish our result.
+    Easier arguments can be given [JLR00, Theorem 4.19] to obtain a matching as soon as
+      4
+Mn− 3 → ∞. One ﬁrst conditions the graph on the sequence of degrees of its vertices and
+then applies the second moment method. However, this is too weak for our purposes, since
+it would only give Theorem A for densities d > 49 .
+    As an immediate corollary of Theorem 3.4, we obtain:
+Corollary 3.5. With high probability a random graph in the G3 (m, M) model for M =
+(2m − 1)1+ε contains a perfect matching.
+   Since we are interested in ﬁnding a matching in the reduced graph Gred
+                                                                      3 (m, M), we ﬁrst
+need to establish the following fact:
+Corollary 3.6. A random graph in the G3 (m, M) model, for M = (2m − 1)1+ε , contains a
+reduced perfect matching with high probability.
+Proof. Let G be a random graph in G3 (m, M) model. A perfect matching corresponds
+to a pair of permutations π1 , π2 such that the edges of the matching are of the form
+(s, π1 (s), π2 (s)), s ∈ S ∪ S −1 . Being a reduced matching imposes the additional condi-
+tions s 6= π1 (s)−1 , π1 (s) 6= π2 (s)−1 and π2 (s) 6= s−1 , for each s. Therefore reduced perfect
+
+                                               11
+matchings correspond to pairs π1 , π2 such that, after composing with an involution, π1 is
+a derangement (a permutation without a ﬁxed point), and, once π1 is chosen, π2 is subject
+to the constraints π2 (s) 6= s−1 , π1 (s) 6= π2 (s)−1 , which means that for each s it has now to
+avoid two values.
+    It is well known that as m → ∞, probability that a random permutation is a derangement
+approaches 1e . Furthermore, it can be shown that permutations with two forbidden values, as
+in the case of π2 , also asymptotically, as m → ∞, form a constant fraction of all permutations
+(this is equivalent to the so called ménage problem and the constant is e12 [Kap43]). Therefore,
+by taking m large enough, we can assume that for a random pair of permutations π1 , π2 the
+probability of satisfying the conditions for a reduced matching is bounded from below by a
+constant p independent of m.
+    In our model, the number of edges, of order m1+ε , is asymptotically greater than the
+threshold value from Theorem 3.4. Since the threshold number of edges is only m log m,
+                                                            mε
+we can easily partition the edge set into f (m) = C log      m
+                                                               sets of size m log m, f (m) → +∞.
+In each such set we have a perfect matching with high probability, and since probability
+that a perfect matching is reduced is ≥ p, we have a perfect reduced matching with some
+probability p′ > 0, independent of m. The probability that there is no perfect reduced
+matching is therefore less than (1 − p′ )f (m) , which goes to 0 as m → ∞.
+
+
+   Now we are ready to ﬁnd a perfect matching in the reduced graph model:
+
+Corollary 3.7. A random graph in the Gred  3 (m, M) model, for M = (2m − 1)
+                                                                            1+ε
+                                                                                , contains
+a (necessarily reduced) perfect matching with high probability.
+
+Proof. From Corollary 3.6 it follows that a random graph in the G3 (m, M) model, for M =
+(2m − 1)1+ε , contains a reduced perfect matching with high probability. Let PM (F ) denote
+the probability that a random graph in G3 (m, M) contains such a matching, PredM (F ) — the
+                         red
+same probability for G3 (m, M) and let EM ′ be the event that a random graph in G3 (m, M)
+contains exactly M ′ reduced edges, M ′ ≤ M.
+    Now, consider the following procedure — we choose a random graph G in the G3 (m, M)
+model and remove nonreduced edges, obtaining a graph G′ . Fixing any M ′ ≤ M and
+conditioning on existence of exactly M ′ reduced edges in G gives us G′ that is a random
+graph in Gred          ′                                                   ′
+             3 (m, M ). G contains a reduced matching if and only if G does. Since M
+                                                                                            ′
+
+is now ﬁxed, the distribution of nonreduced edges in G is independent of the existence of
+a reduced matching, so PM (F |EM ′ ) = Pred          ′                       red      ′
+                                          M ′ (F ). G is a random graph in G3 (m, M ) and
+                             red                                     red
+M ′ ≤ M, so PredM ′ (F ) ≤ PM (F ). Thus, we obtain PM (F |EM ′ ) ≤ PM (F ) and since this is
+true for every M , upon taking the total distribution PM (F ) we obtain PM (F ) ≤ Pred
+                   ′
+                                                                                     M (F ).
+                                     red
+Therefore a random graph in the G3 (m, M) model contains a perfect matching with high
+probability.
+    We can now formally state and prove the main result of this section. Since relators in the
+triangular model are reduced, it is necessary to replace the usual permutation model F (n, v)
+with the reduced model F red (n, v):
+
+                                               12
+Definition 3.8. The reduced permutation model, denoted by F red(n, v), is the random
+group model deﬁned analogously to F (n, v) (Deﬁnition 2.6), but we allow only relators
+which are cyclically reduced, i.e. only permutations {π1 , π2 } with π1 (s) 6= s−1 , π1 (s) 6=
+π2 (s)−1 , π2 (s) 6= s−1 for every s ∈ S ∪ S −1 are admissible.
+
+Definition 3.9. The random graph model Lred (n, v) (compare to Deﬁnition 2.7) is a random
+graph on a vertex set V, |V | = 2n, labelled by {s1 , . . . , sn , s−1           −1
+                                                                    1 , . . . , sn }, which is constructed
+by choosing at random v permutations π1 , . . . , πv for which πk (s) 6= s−1 for every s ∈ V .
+The edge set E is deﬁned as E = {(s, πk (s)) : s ∈ V, k = 1, . . . , v}.
+
+    For F red(n, v), it is easy to see that if we deﬁne graphs L(S) and L1 , L2 , L3 as in Section
+2.4, each Li will be a random graph in Lred (n, v).
+    We know from Theorem 2.15 that for v large enough a random graph L in L(n, v) has
+λ1 (L) > 21 with high probability. The same holds for Lred (n, v):
+
+Lemma 3.10. For v large enough, a random graph L in Lred(n, v) is connected and has
+λ1 (L) > 21 with high probability.
+
+Proof. As in the proof of Lemma 3.6, permutations such that π(s) 6= s for all s (derange-
+ments) asymptotically, as m → ∞, form a constant fraction of all permutations, with con-
+stant 1e . If we pick v permutations π1 , . . . , πv and require πk (s) 6= s for k = 1, . . . , v and all s,
+the probability that all are derangements also, as m → ∞, approaches a constant. Choosing
+v permutations with these restrictions corresponds to graph model Lred (m, v), while choos-
+ing unrestricted permutations corresponds to L(m, v). From Theorem 2.15, if we choose v
+large enough, a random graph L in L(m, v) has λ1 > 12 with high probability. Furthermore,
+it is well known that random regular graphs such as L are connected ([JLR00, Theorem
+9.20]). Since the probability that L conforms to restrictions of Lred(m, v) is bounded from
+below by a constant, independent of n, graphs in Lred(m, v) will also have λ1 > 12 with high
+probability.
+    From Lemma 3.10 and and Theorem 2.13, we obtain:
+
+Corollary 3.11. For v sufficiently large, a random group in the reduced permutation model
+F red (n, v) has property (T) with overwhelming probability.
+
+    We therefore obtain the main result of this section, Theorem A.
+Proof of Theorem A. Since d > 13 , we have (2m − 1)1+ε relators and thus from Corollary
+3.7 a random triangular presentation contains, with overwhelming probability, a subset of
+relators of the form s±1 π1 (s±1 )π2 (s±1 ) for s ∈ S. Actually, for any ﬁxed v we can ﬁnd v
+disjoint subsets of such relators — it is enough to divide the set of relators R arbitrarily into
+v equal disjoint parts and ﬁnd a desired subset in each of them. Obviously if we can ﬁnd
+such a subset with overwhelming probability in one part, we will also be able to do this in
+all v parts, as v is ﬁxed and each part has, up to a constant, the same number of relators as
+R.
+
+
+                                                    13
+    Thus, with overwhelming probability we can assign to a random group Γ in M(m, d) a
+group Γ′ in F red (m, v) such that Γ is a quotient of Γ′ . The choice of v subsets of relators
+is not unique, but we can perform it in such a way that Γ′ is uniformly random, i.e. is a
+random group in F red (m, v). For example, we can ﬁrst enumerate such subsets in arbitrary
+order and always choose the ﬁrst one that appears. If we take v large enough, from Corollary
+3.11 Γ′ has property (T) with overwhelming probability, and since Γ is a quotient of Γ′ , Γ
+has propery (T) with overwhelming probability.
+
+3.3     From the triangular model to the Gromov model
+In this section we show how to pass from the triangular model to the Gromov density model
+and thus complete the proof of Theorem B. The idea is, as before, to prove that a random
+group in the Gromov model is a quotient of a random group in the triangular model. We
+ﬁrst describe the proof informally and then present a more detailed argument, dealing with
+certain technical issues.
+     The ﬁrst attempt, based on [Oll05, Section I.3.g], would be as follows. Let us ﬁx n, l, d and
+let W denote the set of all reduced words over letters a±1              ±1
+                                                           1 , . . . , an of length l/3 (assuming that
+l is divisible by 3). If we now consider a group Γ in the M(m, d) model with 2m = |W |, we
+see that there is a natural mapping from M(m, d) to G(n, l, d) (with a1 , . . . , an as generators
+in the latter model), with the same d. Namely, let W + , W − be such that W = W + ∪ W − ,
+|W + | = |W − | = 12 |W |, wi 6= wj−1 for wi , wj ∈ W + and words from W − are inverses of words
+from W + . We then enumerate the elements of W + arbitrarily and deﬁne the homomorphism
+as φ(si ) = wi , where s1 , . . . , sm are generators in the triangular model and w1 , . . . , wm are
+distinct elements of W + . This is a homomorphism from Γ into a group Γ′ in the G(n, l, d)
+model, as each relator of the form sx sy sz is mapped to a word of length l, a valid relator in
+the Gromov model (with the same density d, as (2m − 1)3d = (|W | − 1)3d ≈ (2n − 1)ld ). In
+fact, this is an epimorphism onto a subgroup of ﬁnite index in Γ′ and since every random
+group in the Gromov model arises from a triangular group by means of this homomorphism
+(so that the probability distribution induced on M(m, d) is uniform), it follows that with
+high probability groups in G(n, l, d) have property (T).
+     The problem with this construction is that the words φ(sx sy sz ) obtained in the image of
+the homomorphism may not be reduced. For example, if φ(s1 ) = a1 a2 a3 and φ(s2 ) = a−1        3 a1 a1 ,
+then s1 s2 s2 , a valid relation in the triangular model, is mapped to a1 a2 a3 a3 a1 a1 a−1
+                                                                                        −1
+                                                                                               3 a1 a1 ,
+which is not reduced and hence not a valid relator in the Gromov model. As such reduc-
+tions will occur with overwhelming probability, we have to introduce a modiﬁcation of the
+triangular model and the homomorphism to deal with this issue.
+Definition 3.12. Fix d ∈ (0, 1). A group Γ in the positive triangular model M+ (m, d)
+is given by Γ = hS|Ri, where |S| = m and R is a set of (2m − 1)3d relators, chosen
+independently and uniformly from the set of relators of length 3, with the restriction that
+only words not using elements from S −1 are chosen.
+    The graph L(S) associated with the group is deﬁned in the same way as for the standard
+triangular model. Note that this time L(S) is always a bipartite graph, with vertex sets S
+
+                                                  14
+and S −1 , as there are no edges of the form ss′ or s−1 s′−1 .
+    We would like to prove the analogue of Theorem A for the positive triangular model.
+    The main diﬀerence with the standard triangular model is that we cannot use Theorem
+2.15 to deduce large λ1 eigenvalue of the graph induced by the permutation subset of relators.
+Theorem 2.15 works for graphs chosen at random among all v-regular graphs, and in our case
+each graph Li , as deﬁned in Section 2.4, is always bipartite and v-regular. Fortunately, the
+following analogue of Theorem 2.15 easily follows from a more general result about random
+graphs (which, incidentally, can also be used to prove Theorem 2.15, with a diﬀerent bound):
+
+Theorem 3.13 ([Fri03, Theorem 1.2]). Consider the vertex set V consisting of two dis-
+joint copies of {1, . . . , n}. Let G be a random bipartite v-regular graph obtained by choosing
+uniformly at random v permutations π1 , . . . , πv of {1, . . . , n} and inserting edges (i, πj (i)),
+j = 1, . . . , v, i = 1, . . . , n, into V . Then for any ε > 0:
+                                                       √           1
+                                                                         !!
+                                                         2v(v − 1) 4   ε
+                              lim P λ1 (G) ≥ 1 −                     +      =1
+                             n→∞                            v          v
+
+   This in particular implies that λ1 → 1 with v → ∞.
+   One obtains this theorem by applying [Fri03, Theorem 1.2] to a base graph consisting of
+two vertices connected by v edges. Every bipartite v-regular graph is then a cover of this
+base graph.
+
+Theorem 3.14. A random group in the M+ (m, d) model for d > 31 has property (T) with
+overwhelming probability
+
+Proof. The proof is esentially the same as the proof of Theorem A, so we will not repeat all
+the details. In fact, it is even easier, as we do not have to deal with possible reductions and
+require that the permutations obtained in the proof are derangements.
+    We deﬁne the graph G3 (n, M) in the same way as before, with the modiﬁcation that it has
+only vertices labelled by s1 , . . . , sn , as their inverses are not used in any relators in M+ (m, d).
+Using Theorem 3.4, we deduce that with high probability it has a perfect matching, which
+corresponds to a set of relators of the form sπ1 (s)π2 (s). This enables us to show that with
+high probability every group in the M+ (m, d) model is a quotient of a random group in
+the modiﬁed F (n, v) model, where we disallow inverses of generators to appear, as in the
+deﬁnition of M+ (m, d). By Theorem 3.13 the latter groups satisfy the spectral criterion, as
+in the case of standard permutation model, and the theorem follows.
+    We now proceed to deﬁne the desired homomorphism. Fix n, l, d and a set of generators
+A = {a1 , . . . , an }. We will call elements from A positive letters and elements from A−1
+negative letters. Let Wl/3 denote the set of all reduced words over A ∪ A−1 of length l/3
+which begin and end with a positive letter. By Wl′ we denote the set of words of the form
+w1 w2 w3 , where wi ∈ Wl/3 (all words in Wl′ are reduced and of length l). Consider now
+the set S = {s1 , . . . , sm }, where m = |Wl/3 |, and enumerate all elements of Wl/3 in an
+arbitrary way. Let hg1, . . . , gm i denote the free group generated by {g1 , . . . , gm }. We deﬁne
+
+                                                  15
+a homomorphism φ : hs1 , . . . , sm i → ha1 , . . . , an i by φ(si ) = wi , where wi is the i-th element
+of Wl/3 .
+     Now note that if Γ = hS|Ri is a group in the M+ (m, d) model, then each relator sx sy sz
+is mapped by φ to a word in Wl′ . Therefore φ projects to a homomorphism (for simplicity
+also denoted by φ) from Γ to Γ′ = hA|φ(R)i, where |R| = |φ(R)| = (2m − 1)3d and each
+relator in φ(R) is from Wl′ . Actually it is an epimorphism onto a subgroup of ﬁnite index in
+Γ′ .
+
+Lemma 3.15. φ(Γ) is a subgroup of finite index in Γ′ .
+
+Proof. Throughout the proof a, b, c will always denote positive letters.
+    φ(Γ) is generated by all reduced words of length l/3 which are of the form avb. We will
+show that every word over A ∪ A−1 is equal in the free group to a word of the form u, tu or
+stu, where u ∈ φ(Γ) and s, t ∈ A ∪ A−1 , which is enough to prove that φ(Γ) has ﬁnite index
+in Γ′ .
+    Observe that all words of the form avb−1 (and similarly a−1 vb), where v has even length,
+belong to φ(Γ). Namely, set k = l/3 − 2 and let v have even length. If v has length at most
+2k, then we write v = v ′ v ′′ , where v ′ , v ′′ have equal length, and concatenate words av ′ ut
+and t−1 u−1 v ′′ b−1 = (bv ′′−1 ut)−1 , where u is a word and t is a positive letter, chosen so that
+both av ′ ut and bv ′′−1 ut are reduced. If v has length greater than 2k, then we write v as
+v = v1 v2 . . . vj v ′ v ′′ , for some j, where each vi has length 2k and v ′ , v ′′ have length at most k.
+We then concatenate words av1 t−1                     −1                  −1      ′           −1 −1 ′′ −1
+                                           1 , t1 v2 t2 , . . ., tj−1 vj tj , tj v utj+1 and tj+1 u v b , where
+again u and ti are chosen so that all these words are reduced.
+    Suppose now that we have a reduced word w over A ∪ A−1 . Without loss of generality we
+can assume that w begins with a or begins with a−1 and ends with a positive letter. Assume
+that w begins with a (the other case is dealt with analogously). Consider ﬁrst the case when
+w has odd length. If w ends with a positive letter, say b, then for any c 6= a the word c−1 w
+is of the form c−1 w ′ b, where w ′ has even length, so it belongs to φ(Γ). Similarly, if w ends
+with a negative letter, say b−1 , than for c the word cw belongs to φ(Γ).
+    If w has even length, then we have two cases. If it ends with some b−1 , then it is of the
+form aw ′ b−1 , where w ′ has even length, so it belongs to φ(Γ). If it ends with some b, then
+for c 6= a we have that c−1 a−1 w is of the form c−1 w ′ b, where w ′ has even length, so c−1 a−1 w
+belongs to φ(Γ).
+    We are now in the position to ﬁnish the proof of our main theorem.
+Proof of Theorem B. Fix n, l and 1/3 < d < 1/2. Let m = |Wl/3 | (with all the notation as
+above). We will ﬁrst show that if Γ′ = hA|Ri is a random group in the G(n, l, d) model, but
+with the restriction that we choose (2m−1)3d relators only from Wl′ , then with overwhelming
+probability Γ′ satisﬁes property (T).
+    Suppose Γ′ is such a group. By means of the construction described above, we can ﬁnd a
+group Γ in the M+ (m, d) model, with the set of generators S and m = |Wl/3 |, such that φ(Γ)
+is a subgroup of ﬁnite index in Γ′ (Lemma 3.15). The probability distribution on M+ (m, d)
+obtained in this way is uniform and from Theorem 3.14 we know that with overwhelming
+
+                                                      16
+probability Γ has property (T). Since φ is an epimorphism from Γ onto a subgroup of ﬁnite
+index in Γ′ , from Remark 2.10 and Remark 2.11 we have that Γ′ satisﬁes property (T) with
+overwhelming probability.
+    Now let Γ′ = hS|Ri be a random group in the G(n, l, d) model. We will show that with
+high probability R contains a subset R′ of at least (2m − 1)3d relators from Wl′ .
+    For C > 0, where C ≈ 216 , we have |Wl′| = C1 (2n − 1)l . This means that the average
+number of relators from Wl′ in R is C1 (2n − 1)ld . With overwhelming probability R contains
+at least, say, 12 C1 (2n − 1)ld such relators. Since we want to have (2m − 1)3d = (|Wl/3 | − 1)3d ≈
+|Wl′ |d = C1 (2n − 1)ld relators, we should make an inessential change in the deﬁnition of
+M+ (m, d), taking 21 (2m − 1)3d relators instead of (2m − 1)3d . Alternatively we could take
+the density in the triangular model to be some d′ arbitrarily smaller than d and construct the
+homomorphism from M+ (m, d′ ) to G(n, l, d). Another option is choosing relators of length
+in [l − C, l + C] for some constant C > 0.
+    Since with overwhelming probability we can ﬁnd a subset R′ of R consisting of at least
+1
+2
+  (2m − 1)3d words from Wl′ (and, in the same way as in the proof of Theorem A, it can be
+chosen to be uniformly random), our group Γ′ will then be a quotient of a group hS|R′ i,
+with R′ containing only words from Wl′ , and we have shown that such groups typically have
+property (T), which ﬁnishes the proof.
+    Actually we have covered only the case of l divisible by 3. This can be dealt with by
+relaxing the requirement that we choose relators of length exactly l in the deﬁnition of the
+density model and instead allow all relators of length ≤ l, which is arguably more natural
+(see discussion in [Oll05, I.2.c]). With high probability we can then ﬁnd a suﬃciently large
+subset of relators of length divisible by 3 and repeat the proof above. Alternatively one could
+try to modify the triangular model and the homomorphism.
+    The ﬁnal remark is that most of technical issues in proofs in this and the preceding section
+stem from the requirement that we choose only reduced words in the random presentations.
+If we allow all words, not necessarily reduced, to be chosen in the Gromov model, the
+straightforward construction of the homomorphism described in the beginning of this section
+works well. Similarly, if we allow nonreduced words in the triangular model, we do not have
+to deal with reductions and require that permutations are derangements when passing from
+the permutation model to the triangular model. For the sake of continuity with previous
+work in random groups we have adopted the traditional deﬁnitions of both models, but
+perhaps allowing all words to appear in the presentations would be more natural in many
+contexts.
+
+
+4     The triangular model - alternative approach
+Here, we provide another proof that for d > 13 random groups in the triangular model
+M(m, d) have property (T) with overwhelming probability. The proof is based solely on
+spectral properties of random graphs, in particular almost regular graphs. In Section 4.1,
+we state basic deﬁnitions and lemmas about spectra of graphs. Then, in Section 4.2, we use
+
+
+                                                17
+results about the second smallest eigenvalue the of Laplacian λ1 of a G(n, p) random graph
+to deduce that a random graph in G(n, M) has λ1 > 21 with high probability. In Section 4.3,
+we ﬁnish the proof by showing how to apply results about G(n, M) model to the triangular
+model.
+
+4.1    Spectral properties of graphs
+Here we state basic deﬁnitions and facts about spectra of random graphs that we will use
+later. A survey of basic facts from spectral graph theory can be found in [Chu97]. Through-
+out this section we will work with G(n, p) and G(n, M) models described in Section 3.
+    For a graph G = (V, E) with vertex set V = {v1 , . . . , vn }, let d(vi ) denote the degree of
+vertex vi . The degree matrix D(G), or simply D, is the diagonal matrix with degrees of
+vertices on its diagonal, i.e. Dii = d(vi ) for i = 1, . . . , n. We will assume that G is connected
+and has no vertices of degree 0. The adjacency matrix of G, denoted by A(G) or A, is the
+matrix such that its entry Aij is equal to the number of edges between vi and vj . Since our
+graphs are unoriented, A is symmetric, Aij = Aji .
+Definition 4.1. The normalized Laplacian L(G) is the matrix deﬁned by
+                                                     1     1
+                                       L = I − D − 2 AD − 2
+    Both A and L are symmetric. For a symmetric matrix M, we can list its eigenvalues
+in increasing order: λ0 (M) ≤ λ1 (M) ≤ · · · ≤ λn−2 ≤ λn−1 (M). It can be easily seen that
+the spectrum of A(G) lies in the interval [−dmax , dmax ], where dmax = maxv∈G d(v) and the
+spectrum of L(G) lies in the interval [0, 2]. The ﬁrst nonzero eigenvalue of L(G), λ1 , is often
+the called the spectral gap of G.
+    We can compare the notion of normalized Laplacian to the Laplacian ∆ deﬁned in Section
+2, which can be expressed as ∆ = I −D −1 A. In the case of d-regular graphs, where all vertices
+have degree d, we have D = dI and the matrices L, ∆ and I − d1 A coincide. If we have a
+sequence of graphs which are “almost regular”, in the sense that their minimal and maximal
+degrees are close to each other, we expect that spectral properties of L and ∆ should be
+asymptotically the same, which will be made precise below.
+Definition 4.2. Let {Gn }∞n=1 be a sequence of graphs and let dn be any sequence. We say
+                  ∞
+that graphs {Gn }n=1 are almost dn -regular if for every Gn its minimum and maximum
+degree are (1 + o(1))dn .
+     We will often apply the term “almost dn -regular” when talking about a single graph,
+where it is implicit that the graph depends on some parameter n → ∞. In particular we will
+say that a random graph in G(n, p) (or G(n, M)) is almost dn -regular with high probability
+if its minimum and maximum degree is (1 + o(1))dn with high probability.
+     We will be interested in studying random graphs in G(n, p), for which the average degree
+is (n − 1)p. Below, this will be asymptotically the same as np and for notational convenience
+we will replace (n − 1)p by np. For p such that n2 p = n1+ε , a typical graph in G(n, p) will
+                                                     
+
+be almost np-regular, thanks to the following easily proved fact [AS00, Theorem 8.5.1]:
+
+                                                18
+Lemma 4.3. Let p = ω( logn n ) and G be a random graph in G(n, p). Then with high probability
+for all v ∈ G we have d(v) = (1 + o(1))np, i.e. G is almost np-regular.
+
+    It can be easily shown that the largest eigenvalue of A for an almost dn -regular graph
+is (1 + o(1))dn . The next standard lemma states that having the second largest eigenvalue
+of A asymptotically smaller than the largest is equivalent to having spectral gap uniformly
+close to 1:
+
+Lemma 4.4. Let dn → ∞ and let Gn be almost dn -regular. Then d1n λn−2 (A(Gn )) = (1 +
+o(1))(1 − λ1 (L(Gn ))). In particular if λn−2 (A(Gn )) = o(dn ) then λ1 (L(Gn )) = 1 − o(1).
+
+Proof. We shall use the following variational characterization of eigenvalues of a symmetric
+matrix M, called the Courant-Fischer Theorem [Chu97]:
+
+                                     λk = max min hMx, xi
+                                            Vk     x⊥V k
+                                                  hx,xi=1
+
+
+where the maximum is taken over all k-dimensional subspaces V k .
+   It will be more convenient to replace L with L′ = I − D −1 A - since these two matrices
+are similar, they share the same spectrum.
+   Note that since all vertex degrees are (1 + o(1))dn , all nonzero entries of d1n D are 1 + o(1),
+so we can write:
+    λn−2 (A)                  1
+             = max    min    h Ax, xi
+      dn       V n−2 x⊥V n−2  dn
+                      hx,xi=1
+                                1
+              = max  min   h       DD −1 Ax, xi
+                 n−2
+                 V     n−2
+                      x⊥V       dn
+                      hx,xi=1
+
+              ≤ (1 + o(1)) max
+                            n−2
+                                min
+                                  n−2
+                                      hD −1 Ax, xi
+                            V     x⊥V
+                                  hx,xi=1
+
+              = (1 + o(1))λn−2(I − L′ ) = (1 + o(1))(1 − λ1 (L′ )) = (1 + o(1))(1 − λ1 (L))
+
+
+
+  The next lemma says that the Laplacian of an almost regular graph does not change
+much if we add a small “correction” to the graph.
+
+Lemma 4.5. Let G be an almost dn -regular graph and let K be a graph on the same vertex
+set whose maximum degree is o(dn ). Then:
+
+a) G ∪ K is almost dn -regular
+
+b) λ1 (L(G)) = 1 − o(1) if and only if λ1 (L(G ∪ K)) = 1 − o(1).
+
+
+
+
+                                                  19
+Proof. Since K has maximum degree o(dn ), every vertex of the graph G ∪ K has degree at
+most (1 + o(1))dn + o(dn ) = (1 + o(1))dn , so G ∪ K is almost dn -regular, which proves a).
+   Now assume that λ1 (L(G)) = 1 − o(1). By Lemma 4.4, we have λn−2 (A(G)) = o(dn ).
+Since K has maximum degree o(dn ), all eigenvalues of its adjacency matrix are o(dn ) in
+absolute value. We have A(G ∪ K) = A(G) + A(K), so for i = 1, . . . , n we obtain λi (A(G ∪
+K)) = λi (A(G)) + o(dn ) (since we are adding a matrix with spectral norm o(dn )). In
+particular λn−2 (G ∪ K) = o(dn ) so, as from a) G ∪ K is almost dn -regular, by Lemma 4.4 we
+have λ1 (L(G ∪ K)) = 1 − o(1).
+
+4.2    From G(n, p) to G(n, M)
+In this section we show that if M is suﬃciently large, then typical graphs in G(n, M) have
+good spectral properties, i. e. they have the spectral gap close
+                                                               to 1 as n → ∞.
+    It is well known that for p and M such that p = ω logn n and M = ω(n log n) random
+graphs in G(n, p) and G(n, M) are connected with high probability [Bol01]. Since these
+bounds will be satisﬁed in all cases we are considering, we will assume that our graphs are
+connected.
+    We will rely on the following theorem about the G(n, p) model (which is a corollary of a
+more general result from [CLV03, Theorem 3.6]):
+Theorem 4.6. Suppose np = ω(log2 n) and let g(n) be an arbitrary function tending to
+infinity. Then with high probability a random graph G in G(n, p) satisfies:
+
+                                                    4  g(n) log2 n
+                        λ1 (L(G)) ≥ 1 − (1 + o(1)) √ −
+                                                    np     np
+
+    In particular this implies that with high probability λ1 (L(G)) = 1 − o(1). We would like
+to prove the analogous result for the G(n, M) model.
+   First we will need a lemma concerning the maximum vertex degree in a sparse graph.
+                                                           √
+Lemma 4.7. Let G be random graph in G(n, k) with k ≤ M , where M = ω(n log n). Then
+with high probability:                              
+                                                    M
+                                      max d(v) = o
+                                      v∈G            n
+In particular all eigenvalues of A(G) are with high probability o M
+                                                                      
+                                                                    n
+                                                                        .
+Proof. Fix a vertex v ∈ G. We ﬁrst estimate the probability that v has degree  √ at  least d
+                                     n                                          2 M
+                                       
+when G is from G(n, p) for k = p 2 . Note that for such k we have pn ≤            n
+                                                                                       , so the
+average degree d¯ is at most 1 (and actually tends to 0 if M = o(n2 )). We use a tail estimate
+for the binomial distribution (see [JLR00, Theorem 2.1]):
+                                                                 !
+                                                             2
+                                                            t
+                           P d(v) ≥ d¯ + t ≤ exp − ¯ 2 
+                                           
+                                                                                            (1)
+                                                       2 d + 3t
+
+
+                                              20
+The right hand side can be made n−ω(1) by taking t = ω(log n) such that at the same time
+t=o M  n
+          . The probability that any vertex has degree at least d, denote this by Pp (d), is n
+times the right hand side of (1), which is therefore also n−ω(1) .
+   Now take the analogous probability in G(n, k), denote it by Pk (d). From a general
+inequality between √probabilities for G(n, k) and G(n, p) models
+                                                               √ [Bol01, Theorem 2.2, iii)],
+                                                −ω(1)
+we have Pk (d) ≤ 3 kPp (d). Since Pp (d) is n         and k ≤ M ≤ n, the right hand     side
+goes to zero, so with high probability all vertices in G from G(n, k) have degree o Mn
+                                                                                        .
+
+Theorem 4.8. Suppose M = ω(n log2 n). Then with high probability a random graph G in
+G(n, M) satisfies:
+
+a) G is almost np-regular
+
+b) λ1 (L(G)) = 1 − o(1)
+
+Proof. Fix M = ω(n log2 n) and p such that M = p n2 . Let H be a random graph in G(n, p)
+                                                        
+                                                 √
+conditioned on having between M and M + M edges. Since we are conditiong on an
+event whose probability is bounded from below by some constant (which follows from the
+properties of binomial distribution), conclusion of Lemma 4.3 and Theorem 4.6 still hold, so
+with high probability H is almost np-regular and we have λ1 (L(H)) = 1 − o(1).
+    Now let G be a subgraph of H having exactly M edges, chosen uniformly at random
+from all such subgraphs. G has the same distribution as a random graph in G(n, M), so it
+is enough to show that λ1 (L(G)) = 1 − o(1) with high probability. We will ﬁrst estimate the
+eigenvalues of the adjacency matrix of G.
+    Let K be a subgraph of G consisting of edges not belonging to H, so that  √ A(K) =
+A(H) − A(G). If we condition on H having exactly M + k edges, for 0 ≤ k ≤ M , then we
+can think of this process as ﬁrst choosing K according to the G(n, k) distribution (without
+any constraints) and then choosing G uniformly  √ among the graphs on the remaining edges.
+As K is a random graph in G(n, k) with k ≤  M , from Lemma 4.7 we have that with high
+probability all vertices of K have degree o M    = o (np).
+                                              n           √
+    Since the above property holds for all k = 0, . . . , M , by Lemma 4.5 G is almost np-
+regular and λ1 (L(G)) = 1−o(1) if and only if λ1 (G∪K) = λ1 (H) = 1−o(1). As λ1 (L(H)) =
+1 − o(1) with high probability, this ﬁnishes the proof.
+
+4.3    Application to the triangular model
+We will now proceed to prove Theorem A using results from the previous section. We use the
+notation of Section 2.4 — λ1 (G) denotes the smallest nonzero eigenvalue of ∆ (equivalently:
+of L) on graph G.
+    Fix d > 1/3 so that 3d = 1 + ε. Let Γ = hS|Ri be a random group in the M(m, d)
+model (we will asume that we actually choose (2m)3d ≈ (2m − 1)3d relators in the triangular
+model) and let L(S) be the graph associated with Γ as in Section 2.4. Let us divide L(S)
+into three subgraphs L1 , L2 , L3 as in Section 2.4.
+
+
+                                             21
+    Each Li is a random graph on n = 2m vertices, with the marginal distribution the same
+as obtained by putting n1+ε edges one by one uniformly at random. As such it is not a graph
+in G(n, M) for M = n1+ε , as it allows duplicate edges. However, the number of duplicates
+is with high probability negligible as compared to n1+ε — choosing a random graph Li is
+equivalent to an experiment in which put n1+ε balls into n2 bins at random and it can be
+easily calculated (see e.g. [MU05, Chapter 5]) that with high probability we will have no
+more than O(n2ε ) duplicate edges. Therefore if we denote by L′i a graph obtained from Li by
+collapsing all duplicate edges into one edge, the diﬀerence Ki = Li \L′i is a graph with O(n2ε )
+edges. Its average degree is o(1) and it can be easily shown, using the same methods as in
+proofs of Lemma 4.5 and Lemma 4.7, that with high probability Ki has maximum degree
+at most o(nε ), so that Li and L′i will have asymptotically the same spectral properties.
+Therefore from now on we will treat Li as a random graph in G(n, M), without duplicates.
+Lemma 4.9. In the setting as above, with high probability λ1 (L(S)) > 21 .
+Proof. Let ∆i denote the Laplacian on Li , ∆ — the Laplacian of L(S), Di — the degree
+matrix of Li , D — the degree matrix of L(S) (in particular D = D1 + D2 + D3 ). From the
+deﬁnition of ∆ it is easily seen that:
+                                               3
+                                               X
+                                         ∆=          Di D −1 ∆i
+                                               i=1
+
+Since M = n1+ε = ω(n log2 n), from part a) of Theorem 4.8 we have that each Li is with
+high probability almost dn -regular for dn = nε . In particular each nonzero entry of Di is
+(1 + o(1))dn and each nonzero entry of D is (3 + o(1))dn . Therefore we can write Di D −1 =
+1
+3
+  I + Ki , where Ki has only diagonal entries which are all o(1). We get:
+                                                     3
+                                            1X
+                                         ∆=       ∆i + K
+                                            3 i=1
+            3
+            P
+where K =         Ki ∆i has all eigenvalues at most o(1) (as ∆i has spectrum in [0, 2]).
+            i=1
+   Now suppose that ∆ has an eigenvector f with eigenvalue ≤ 1/2. We have:
+                                                     3
+                           1                      1X
+                             hf, f i ≥ h∆f, f i =       h∆i f, f i + hKf, f i
+                           2                      3 i=1
+
+By Theorem 4.8 λ1 (Li ) are uniformly bounded away from 1/2 and hKf, f i will be arbitrarily
+small as n → ∞. Therefore the above inequality implies that for at least one i we have
+h∆i f, f i ≤ 21 hf, f i, which contradicts λ1 (Li ) > 12 .
+Alternative proof of Theorem A. By Theorem 2.13 it is enough to show that λ1 (L(S)) > 21
+with overwhelming probability. Each Li is a random graph in G(n, M) for M ≈ n1+ε , in
+particular M = ω(n log2 n), so the assumptions of Theorem 4.8 are satisﬁed and for each i
+we have λ1 (Li ) = 1 − o(1) with high probability. By Lemma 4.9 we get λ1 (L(S)) > 21 with
+overwhelming probability and this ﬁnishes the proof.
+
+                                                  22
+    As we have seen in Section 3, to pass from the triangular model to the Gromov model
+it is necessary to use a modiﬁcation of the triangular model, the positive triangular model,
+which results in L(S) being a random bipartite graph. Therefore what we actually need
+to pass to the Gromov model and prove Theorem B is to prove that groups in the positive
+model typically have property (T). To this end we would have to replace Theorem 4.6 with
+an analogous result for the G(n, n, p) model of bipartite graphs (deﬁned naturally). We have
+not found such a result in the literature, although it seems plausible that Theorem 4.6 also
+holds in the bipartite case.
+
+
+References
+[AH00]     Ron Aharoni and Penny Haxell, Hall’s theorem for hypergraphs, J. Graph Theory
+           35 (2000), no. 2, 83–88.
+
+[AS00]     Noga Alon and Joel H. Spencer, The probabilistic method, second ed.,
+           Wiley-Interscience Series in Discrete Mathematics and Optimization, Wiley-
+           Interscience [John Wiley & Sons], New York, 2000.
+
+[BdlHV08] Bachir Bekka, Pierre de la Harpe, and Alain Valette, Kazhdan’s property (T),
+          New Mathematical Monographs, vol. 11, Cambridge University Press, Cam-
+          bridge, 2008.
+
+[Bol01]    Béla Bollobás, Random graphs, second ed., Cambridge Studies in Advanced
+           Mathematics, vol. 73, Cambridge University Press, Cambridge, 2001.
+
+[BŚ97]    W. Ballmann and J. Światkowski, On L2 -cohomology and property (T) for au-
+                                  ‘
+           tomorphism groups of polyhedral cell complexes, Geom. Funct. Anal. 7 (1997),
+           no. 4, 615–645.
+
+[Chu97]    Fan R. K. Chung, Spectral graph theory, CBMS Regional Conference Series in
+           Mathematics, vol. 92, Published for the Conference Board of the Mathematical
+           Sciences, Washington, DC, 1997.
+
+[CLV03]    Fan R. K. Chung, Linyuan Lu, and Van H. Vu, The spectra of random graphs
+           with given expected degrees, Internet Mathematics 1 (2003), no. 3.
+
+[Fri91]    Joel Friedman, On the second eigenvalue and random walks in random d-regular
+           graphs, Combinatorica 11 (1991), no. 4, 331–362.
+
+[Fri03]    Joel Friedman, Relative expanders or weakly relatively ramanujan graphs, Duke
+           Math. J 118 (2003), 2003.
+
+[Gro93]    M. Gromov, Asymptotic invariants of infinite groups, Geometric group theory,
+           Vol. 2 (Sussex, 1991), London Math. Soc. Lecture Note Ser., vol. 182, Cambridge
+           Univ. Press, Cambridge, 1993, pp. 1–295.
+
+                                            23
+[Hax95]    P.E. Haxell, A condition for matchability in hypergraphs., Graphs Comb. 11
+           (1995), no. 3, 245–248 (English).
+
+[JKV08]    Anders Johansson, Jeﬀ Kahn, and Van Vu, Factors in random graphs, Random
+           Structures Algorithms 33 (2008), no. 1, 1–28.
+
+[JLR00]    Svante Janson, Tomasz Luczak, and Andrzej Ruciński, Random graphs,
+           Wiley-Interscience Series in Discrete Mathematics and Optimization, Wiley-
+           Interscience, New York, 2000.
+
+[Kap43]    Irving Kaplansky, Solution of the “problème des ménages.”, Bull. Amer. Math.
+           Soc. 49 (1943), 784–785.
+
+[Lub94]    Alexander Lubotzky, Discrete groups, expanding graphs and invariant measures,
+           Birkhäuser Verlag, Basel, 1994.
+
+[MU05]     Michael Mitzenmacher and Eli Upfal, Probability and computing - randomized
+           algorithms and probabilistic analysis, Cambridge University Press, 2005.
+
+[Oll03]    Yann     Ollivier,   Spectral  interpretations  of   Property               T,
+           http://www.yann-ollivier.org/rech/publs/aut_spec_T.pdf, 2003.
+
+[Oll05]           , A January 2005 invitation to random groups, Ensaios Matemáticos
+           [Mathematical Surveys], vol. 10, Sociedade Brasileira de Matemática, Rio de
+           Janeiro, 2005.
+
+[Oll10]          , Update to ,,A January 2005 invitation to random groups”, January 2010,
+           http://www.yann-ollivier.org/rech/publs/rgupdates.pdf, 2010.
+
+[OW10]     Yann Ollivier and Daniel T. Wise, Cubulating random groups at density less than
+           1
+           6
+             , Trans. Amer. Math. Soc., to appear (2010).
+
+[Żuk96]   Andrzej Żuk, La propriété (T) de Kazhdan pour les groupes agissant sur les
+           polyèdres, C. R. Acad. Sci. Paris Sér. I Math. 323 (1996), no. 5, 453–458.
+
+[Żuk03]          , Property (T) and Kazhdan constants for discrete groups, Geom. Funct.
+           Anal. 13 (2003), no. 3, 643–670.
+
+
+
+
+                                           24
+
