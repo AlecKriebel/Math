@@ -11,3 +11,6 @@ Final REVIEW.md and hash-bound verdict.json complete. Final counterexample sourc
 
 ## 2026-10-25T01:26:17.270649+00:00 — 35% full review, resumed
 Parent requested strongest plausible contextual reading. Independently confirmed Eq17 imposes equal nontrivial B entries, under which M_CC=4d²/5=M_TT=5e²/9 forces positive e/d=6/5. Thus the counterexample refutes general factorization, but does not establish an unequivocal substantive defect in context. Reclassified as boundary/clarity note; full main theorem/support/certificate review resumes. No paper repair. Parent reported no sibling mathematical findings.
+
+## 2026-10-25T01:30:28.204334+00:00 — 85% complete
+Fresh independent controls pass: 845 compact-K2P/quartic-K3P likelihood, positivity, rank, tangent and contextual ratio checks; 495 additional cubic-CT K2P, family-Jacobian, signed child and all-order Q controls. Published ten-stage suite replayed unchanged under Python 3.14.6, exit 0, 46 manifest members verified, final ALL EXACT CHECKS PASSED; full stream and receipt saved. All three TeX documents rebuilt successfully in ignored copied package. Full remaining code/interface inspection and source-vs-PDF comparison continue; no substantive defect established.

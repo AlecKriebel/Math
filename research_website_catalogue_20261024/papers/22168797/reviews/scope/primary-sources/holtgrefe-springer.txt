@@ -1,0 +1,1089 @@
+Theory in Biosciences (2026) 145:4
+https://doi.org/10.1007/s12064-025-00453-8
+
+    RESEARCH
+
+
+
+Characterizing semi‑directed phylogenetic networks and their
+multi‑rootable variants
+Niels Holtgrefe1 · Katharina T. Huber2 · Leo van Iersel1 · Mark Jones1 · Vincent Moulton2
+
+Received: 8 August 2025 / Accepted: 21 November 2025 / Published online: 10 December 2025
+© The Author(s) 2025
+
+
+Abstract
+In evolutionary biology, phylogenetic networks are graphs that provide a flexible framework for representing complex evolu-
+tionary histories that involve reticulate evolutionary events. Recently, phylogenetic studies have started to focus on a special
+class of such networks called semi-directed networks. These graphs are defined as mixed graphs that can be obtained by de-
+orienting some of the arcs in some rooted phylogenetic network, that is, a directed acyclic graph whose leaves correspond to a
+collection of species and that has a single source or root vertex. However, this definition of semi-directed networks is implicit
+in nature since it is not clear when a mixed-graph enjoys this property or not. In this paper, we introduce novel, explicit math-
+ematical characterizations of semi-directed networks, and also multi-semi-directed networks, that is mixed graphs that can be
+obtained from directed phylogenetic networks that may have more than one root. In addition, through extending foundational
+tools from the theory of rooted networks into the semi-directed setting—such as cherry picking sequences, omnians, and path
+partitions—we characterize when a (multi-)semi-directed network can be obtained by de-orienting some rooted network that
+is contained in one of the well-known classes of tree-child, orchard, tree-based or forest-based networks. These results address
+structural aspects of (multi-)semi-directed networks and pave the way to improved theoretical and computational analyses
+of such networks, for example, within the development of algebraic evolutionary models that are based on such networks.
+
+Keywords Mixed graph · Semi-directed phylogenetic network · Tree-based network · Tree-child network · Orchard
+network · Path partitions
+
+
+Introduction                                                              graph, usually with a single source or root, whose leaf set
+                                                                          corresponds to some collection of species or taxa. For exam-
+Phylogenetic networks are a generalization of evolution-                  ple, in Fig. 1, D1 is a rooted phylogenetic network for the col-
+ary trees that are used to represent evolutionary histories               lection {x1 , … , x8 } of species. Lately, multi-rooted networks
+of organisms such as plants and viruses that can evolve in                have also become of interest, which only differ from rooted
+a non-tree-like fashion (see e.g. Huson et al. 2010). In par-             phylogenetic networks in that they may have multiple roots
+ticular, they permit the representation of reticulate events,             (see e.g. D2 in Fig. 1). Such networks can be used to model
+in which, for example, two species cross with one another                 ancestral relationships between populations (Soraggi and
+or transfer genes. There are several classes of phylogenetic              Wiuf 2019) and for representing the evolutionary history
+networks, but in this paper we will mainly focus on rooted                of distantly related groups of species that can still exchange
+phylogenetic networks (see e.g. Kong et al. 2022 for a recent             genes (Huber et al. 2022; Scholz et al. 2019). In both types
+overview), and some of their recent generalizations. Essen-               of networks, vertices with indegree greater than 1 are of spe-
+tially, a rooted phylogenetic network is a directed acyclic               cial interest because they represent reticulate events. Hence,
+                                                                          such vertices are commonly called reticulations and their
+* Vincent Moulton                                                         incoming arcs reticulation arcs.
+  v.moulton@uea.ac.uk                                                        Recently, a new class of phylogenetic networks called
+                                                                          semi-directed networks (Solís-Lemus and Ané 2016) has
+1
+     Delft Institute of Applied Mathematics, Delft University             started to receive a lot of attention in the literature, both
+     of Technology, Delft, The Netherlands
+                                                                          from a theoretical (e.g. Baños 2019; Gross and Long 2018;
+2
+     School of Computing Sciences, University of East Anglia,             Gross et al. 2021; Linz and Wicke 2023; Jingcheng and
+     Norwich, United Kingdom
+
+
+                                                                                                                          Vol.:(0123456789)
+4   Page 2 of 21                                                                                   Theory in Biosciences (2026) 145:4
+
+Fig. 1  Five mixed
+graphs N1 , N2 , G, D1 , D2. Mixed
+graph N1 is a semi-directed
+network since it is the semi-
+deorientation of, for example,
+the rooted network D1 illustrated
+below it. Mixed graph N2 is a
+multi-semi-directed network
+since it is the semi-deorienta-
+tion of, for example, the multi-
+rooted network D2 illustrated
+below it. However, it can be
+shown that N2 is not a semi-
+directed network (since two
+roots are needed). The mixed
+graph G is not semi-directed nor
+multi-semi-directed
+
+
+
+
+Ané 2023; Englander et al. 2025) and applied (e.g. Allman         2018; Baños 2019; Gross et al. 2021), semi-directed net-
+et al. 2025b; Holtgrefe et al. 2025) point of view. Basi-         works have gained importance instead. However, their defi-
+cally speaking, these are mixed graphs (i.e. graphs that can      nition is somewhat problematic, in that it is given implicitly
+have a combination of undirected edges and directed arcs),        rather than explicitly. For instance, the mixed graph G in
+which can be obtained by partly deorienting a rooted phy-         Fig. 1 is neither semi-directed nor multi-semi-directed, but
+logenetic network, that is, by replacing all arcs which are       how can this be decided? Of course, one possibility would
+not reticulation arcs with an edge, and then suppressing any      be to develop some algorithm to make this decision, but
+resulting degree-2 vertex that arises from a root. We call        for certain applications it could also be useful to have char-
+such a partial deorientation, in which only reticulation arcs     acterizations for when a mixed graph is semi-directed or
+keep their direction and the root locations are lost, a semi-     multi-semi-directed.
+deorientation. For example, in Fig. 1, N1 is a semi-directed         In this paper, we shall provide some characterizations
+network since it is the semi-deorientation of, e.g., the rooted   for semi-directed and multi-semi-directed networks. These
+network D1. In this paper, we will also consider multi-semi-      results reveal combinatorial features of (multi-)semi-directed
+directed networks, that is, mixed graphs which are the semi-      networks that help support further results in this paper and
+deorientation of some multi-rooted network. Note that these       may also be helpful for future studies. One of the main tools
+networks were recently considered in Maxfield et al. (2025)       that we use to obtain our characterizations is the concept of a
+in the context of defining a dissimilarity measure between        semi-directed cycle in a mixed graph, that is, a cycle of arcs
+semi-directed networks. As an example, in Fig. 1, N2 is           and edges in the graph whose edges can be oriented so as to
+multi-semi-directed since it is the semi-deorientation of D2.     obtain a directed cycle. Indeed, the exclusion of such cycles
+In general, in case a (multi-)semi-directed network N is a        is a condition in one of our main characterizations (see e.g.
+semi-deorientation of a (multi-)rooted network D, we shall        Theorem 2). As a corollary of our characterizations, in case
+call D a rooting of N.                                            a mixed graph is a (multi-)semi-directed network, we give a
+   Locating the root in a phylogenetic network inferred from      more general characterization to that given in Maxfield et al.
+biological data is often problematic. In particular, without      (2025) for when a subset of vertices or subdivisions of edges
+asymmetrical models of character change, root placement           or arcs can correspond to a choice of root(s) that leads to a
+cannot be determined from the data alone and must rely            rooting of the network.
+on external assumptions (Kinene et al. 2016). Due to more            We shall also explore the consequences of our results for
+favorable identifiability results that circumvent the need for    some special classes of rooted phylogenetic networks (see
+root placement (Solís-Lemus and Ané 2016; Gross and Long          e.g. Kong et al. 2022 for a recent review of the different
+Theory in Biosciences (2026) 145:4                                                                                            Page 3 of 21 4
+
+types of rooted networks). In particular, given a fixed class           structural classes receiving extensive attention (see again
+of rooted or multi-rooted phylogenetic networks, it is of               Kong et al. 2022). In parallel, undirected phylogenetic net-
+interest to characterize when a (multi-)semi-directed net-              works have also been studied when no information of direc-
+work has a rooting contained in the given class. This could             tionality is available (see e.g. Gambette et al. 2012). This has
+be either strongly (all rootings are in the class) or weakly            led to work that focuses on the relationship between rooted
+(there exists a rooting that is in the class). For example, a           and undirected networks. Recent contributions in this area
+rooted phylogenetic network is tree-based (Francis and Steel            include studies such as Huber et al. (2024); Maeda et al.
+2015) if it has a rooted spanning tree with the same leaf set           (2023); van Iersel et al. (2018); Fischer and Francis (2020);
+as the network. Thus, a semi-directed network is weakly tree-           Urata et al. (2024); Döcker and Linz (2024, 2025); Demp-
+based if it has a rooting that is tree-based, and it is strongly        sey et al. (2024); Garvardt et al. (2023), which explore how
+tree-based if all its rootings are tree-based (see e.g. Fig. 2).        undirected networks can be oriented and when this can be
+   Various concepts have been used to characterize when                 done to give rooted networks within specific classes.
+a rooted phylogenetic network is contained within a cer-                   In terms of (multi)-semi-directed networks, similar
+tain class. For example, the classes of rooted tree-child               structural and graph-theoretical questions remain largely
+networks (Cardona et al. 2009) and rooted orchard net-                  unexplored. Indeed, although seemingly related, the partial
+works (Erdos et al. 2019; Janssen and Murakami 2021) can                presence of directions within these networks presents fun-
+both be characterized using cherry picking sequences (Erdos             damentally different problems. To date, the only substantial
+et al. 2019; Janssen and Murakami 2021), eventually lead-               work in this direction is by Maxfield et al. (2025). The main
+ing to practical software for reconciling phylogenetic trees            aim of their work was to introduce an efficiently comput-
+into networks (Bernardini et al. 2023, 2024). On the other              able dissimilarity metric between two tree-child multi-semi-
+hand, rooted tree-based networks (Francis and Steel 2015)               directed networks. To do this they developed some results
+have been characterized using both omnians (Jetten and van              for directing mixed graphs as multi-semi-directed networks.
+Iersel 2016) and path partitions (Francis et al. 2018), with            There are, however, several important differences between
+the latter concept also providing a characterization for rooted         their framework and ours. Most notably, our definition of
+forest-based networks (Huber et al. 2022). We shall general-            (multi-)semi-directed networks allows rootings on edges or
+ize some of these concepts to (multi-)semi-directed networks            arcs and we enforce arcs to correspond to reticulation arcs,
+and apply them to obtain characterizations for when such a              whereas they do not, and they permit parallel edges or arcs,
+network has a rooting that is contained within the classes of           whereas we do not. For their type of networks they present
+tree-child, orchard, tree-based or forest-based networks (or            two results that are related to ours: a characterization for
+when all of its rootings are contained within these classes).           when a subset of vertices in a mixed graph gives a root-
+                                                                        ing of the graph [(Maxfield et al. 2025), Proposition 8 and
+Previous work                                                           Remark 1], and when a mixed graph can be rooted to give a
+                                                                        tree-child network in case such a rooting exists [(Maxfield
+There is a well-established body of literature devoted to               et al. 2025), Proposition 11]. We give some more details on
+the study of rooted phylogenetic networks, with numerous                the relationship of these results with ours below.
+
+
+
+
+Fig. 2  Three semi-directed networks N1, N2 and N3. Semi-directed       the vertex r1 is tree-based, but the rooting obtained in a similar way
+network N1 is strongly tree-based since each of its rootings is tree-   using vertex r2 is not. Semi-directed network N3 is not weakly tree-
+based. Semi-directed network N2 is weakly tree-based, but not           based since it has no rooting that is tree-based
+strongly, since the rooting obtained by directing all edges away from
+4   Page 4 of 21                                                                                              Theory in Biosciences (2026) 145:4
+
+
+Outline of the paper                                                       to vp ) if for all i ∈ {1, … , p − 1} either (vi , vi+1 ) is an arc
+                                                                           in A or {vi , vi+1 } is an edge in E. A ∧-path (between v1
+We now summarize the contents of the rest of this paper.                   and vp ) in G is a path (v1 , … , vi , … , vp ) of N, p ≥ 1, such
+After presenting some preliminaries in Sect. 2, in Sect. 3                 that (vi , … , v1 ) and (vi , … , vp ) are semi-directed paths, for
+we present some characterizations for when a mixed graph                   some i ∈ {1, … , p}. An edge-path in G is a path (v1 , … , vp ),
+is multi-semi- and semi-directed (Theorems 1 & 2 and Cor-                  such that {vi , vi+1 } is an edge in E, for all i ∈ {1, … , p − 1}.
+ollary 1, respectively). Then in Sect. 4, we characterize the              We call the number of vertices on a path P minus 1 the
+feasible sets of root locations in rootings of the network                 length of P and refer to P as a trivial path if the length of
+(Theorem 4). At the end of the section we also explain how                 P is zero. If P is not trivial then we sometimes also say
+our characterizations lead to an efficient algorithm for decid-            that P is non-trivial. We say that G is connected if for any
+ing if an arbitrary mixed graph is a multi-semi-directed or                two vertices x and y of G there is a path joining x and y
+semi-directed network. In Sect. 5 we use omnians to char-                     A cycle in G is a sequence of vertices (v1 , v2 , … , vp = v1 ),
+acterize when a (multi)-semi-directed network is strongly                  p ≥ 4 , such that vi ≠ vj for 1 ≤ i < j < p and, for all
+and weakly tree-child (Theorem 5 and Proposition 1, respec-                i ∈ {1, … , p − 1} , either (vi , vi+1 ) or (vi+1 , vi ) is an arc
+tively) and also strongly tree-based (Theorem 6). In Sect. 6               in A or {vi , vi+1 } is an edge in E. Note that, since p ≥ 4
+we use cherry picking sequences to characterize when a                     and vp = v1, a cycle contains at least three distinct vertices.
+(multi)-semi-directed network is strongly or weakly orchard                A cycle is called semi-directed if, for all i ∈ {1, … , p − 1},
+(Theorem 7 and Theorem 8, respectively), and in Sect. 7                    either (vi , vi+1 ) is an arc in A or {vi , vi+1 } is an edge in E.
+we use path partitions to characterize when the network is                 A reticulation r of N is a sink of a cycle in N if r = vi
+weakly forest-based (Theorem 9) or weakly tree-based (Cor-                 and (vi−1 , vi ), (vi+1 , vi ) ∈ A , for some i ∈ {1, … , p − 1} ,
+ollary 4). In Sect. 8, we conclude with some open problems.                with v0 = vp−1. If G is connected and does not contain a
+                                                                           cycle, then we call G a tree. If additionally E = � , i.e., G is
+                                                                           fully directed, and G has a single root, we call G a rooted
+Preliminaries                                                              tree. We refer to Fig. 3 for examples that illustrate some of
+                                                                           the definitions in this and the next subsection.
+Mixed graphs
+
+A mixed graph is an ordered tuple G = (V, E, A) where V                    Multi‑rooted and multi‑semi‑directed networks
+is a nonempty set of vertices, E is a set of undirected
+edges {u, v} ⊆ V , u ≠ v, and A is a set of directed arcs (u, v)           Suppose X is a finite set with at least two elements. A
+with u, v ∈ V , u ≠ v , and such that for all arcs (u, v) ∈ A we           multi-rooted network (on X) is a mixed graph (V, E, A)
+have that {u, v} ∉ E and (v, u) ∉ A. Note that, by definition,             (with leaf set X), with E = � , no directed cycles, d(v) ≠ 2
+parallel arcs, parallel edges or parallel edge/arc pairs are not           for all non-root vertices v ∈ V and d− (v) ∈ {0, 1, d(v) − 1}
+allowed in mixed graphs. For an arc (u, v) ∈ A, we call u the              for all v ∈ V . A k-rooted network is a multi-rooted net-
+tail and v the head. If (u, v) ∈ A, we call u a parent of v and v          work with precisely k ≥ 1 roots. A 1-rooted network is also
+a child of u. If there is an edge {u, v} ∈ E or an arc (u, v) ∈ A,         called a rooted network. A rooted network without any
+we call u and v adjacent or neighbours.                                    reticulations is called a rooted phylogenetic tree.
+   Suppose for the following that G = (V, E, A) is a mixed                    Consider any mixed graph. Subdividing an edge {u, v}
+graph. For v ∈ V , the indegree dG− (v) is the number of arcs              replaces the edge {u, v} by two edges {u, w} and {w, v}
+entering v, the outdegree dG+ (v) is the number of arcs leav-              with w a new vertex. Subdividing an arc (u, v) replaces
+ing v, and dGe (v) is the number of edges in E incident to v.              the arc (u, v) by an edge {u, w} and an arc (w, v) with w
+In addition, the degree dG (v) is the total number of edges                a new vertex. Suppressing a degree-2 vertex w is defined
+and arcs incident to v. We will omit the subscript G when                  as follows:
+the graph is clear from the context. We call v a reticulation
+if d− (v) > 1, a leaf if d(v) = de (v) = 1 or d(v) = d− (v) = 1            • if w has two incident edges {u, w}, {w, v}, replace them
+and a root if d+ (v) = d(v). The set of leaves of G is called                 by a single edge {u, v};
+the leaf set of G, and it is denoted by L(G). We say that G is             • if w has two incident arcs (u, w), (w, v), replace them
+binary if d(v) ∈ {1, 2} for each root v ∈ V and d(v) ∈ {1, 3}                 by a single arc (u, v);
+for each non-root v ∈ V .                                                  • if w has an incident edge {u, w} and an incident
+   A path in G is a sequence of pairwise distinct verti-                      arc (w, v), replace them by a single arc (u, v);
+ces (v1 , … , vp ) , p ≥ 1, such that for all i ∈ {1, … , p − 1}           • if w has an incident arc (u, w) and an incident
+either (vi , vi+1 ) or (vi+1 , vi ) is an arc in A or {vi , vi+1 } is an      edge {w, v}, replace them by a single edge {u, v},
+edge in E. Such a sequence is a semi-directed path (from v1
+Theory in Biosciences (2026) 145:4                                                                                                                      Page 5 of 21 4
+
+
+
+
+Fig. 3  Left: A 2-semi-directed network N on {a, b, … , e} with set of                         and b form a cherry, leaves d and g are reticulation leaves, while r1
+reticulations {r1 , r2 , r3 , r4 }. The sequence (r1 , v2 , v5 , r2 , v3 , v4 , r3 , r4 , g)   and r4 are leaf reticulations. The vertex sets of the source components
+is a ∧-path of N and the sequence C = (r2 , v3 , v4 , r3 , r4 , v7 , r2 ) is a                 are {a, b, v1 , v3 , v4 , v7 } and {e} while the sink components have ver-
+cycle of N. The vertices r2 and r4 are sinks of C whereas r3 is not.                           tex sets {d, r1 } and {g, r4 }. Right: A rooting D of N in the form of a
+The path (a, v1 , v3 , v4 , v7 ) is an example of an edge-path. The leaves a                   2-rooted network with roots 𝜌1 and 𝜌2
+
+
+
+and in each of these cases also delete w. Note that degree-2                                   any new reticulations. A k-semi-directed network (on X) is a
+vertices with two incoming or two outgoing arcs are not                                        mixed graph that is the semi-deorientation of some k-rooted
+suppressed.                                                                                    network (with leaf set X). Note that the leaf set of a k-semi-
+   The semi-deorientation of a multi-rooted network D is                                       directed network on X may not be equal to X, because an
+the result of replacing each arc (u, v) of D by an edge {u, v}                                 outdegree-1 root may also be in X (see, for example, the
+if dD− (v) = 1 and afterwards suppressing any vertex 𝜌                                         vertex e in Fig. 3 again). A multi-semi-directed network is
+with dD (𝜌) = 2. Note that a root with two outgoing arcs in D                                  a k-semi-directed network for some k ≥ 1. A semi-directed
+will still be present in the semi-deorientation. Also note that                                network is a 1-semi-directed network. When drawing multi-
+a semi-deorientation is not necessarily a mixed graph since                                    rooted and multi-semi-directed networks, we will often omit
+suppressing roots may lead to parallel arcs. However, we will                                  the leaf labels when they are not relevant. We will reserve
+only consider mixed graphs in this paper and hence not con-                                    the letter G for general mixed graphs, D for (multi)-rooted
+sider cases with parallel arcs. A rooting1 of a mixed graph G                                  networks and N for (multi)-semi-directed networks.
+is a multi-rooted network D such that G is the semi-deori-
+entation of D. Observe that D can be obtained from G by
+subdividing (zero or more) arcs and/or edges and replacing                                     Characterizations of multi‑semi‑directed
+edges by arcs. Note that the subdivision vertices necessarily                                  networks
+become roots in D and that vertices of G may also become
+roots in D. This also includes the possibility that a root of G                                In this section we characterize when a mixed graph is a
+that is contained in X becomes a leaf in D (see e.g. the vertex                                multi-semi-directed network or when it is in fact a semi-
+e in Fig. 3) or that a leaf of G not contained in X becomes an                                 directed network. These characterizations naturally lead
+outdegree-1 root in D2. However, it is not possible to create                                  to algorithms for checking (multi-)semi-directedness. We
+                                                                                               sketch one efficient approach at the end of Sect. 4, which
+1                                                                                              outlines a method based on rootings of (multi-)semi-directed
+  Rootings were called “rooted partners” in Maxfield et al. (2025);
+Linz and Wicke (2023).                                                                         networks.
+2
+  From a biological perspective, turning a leaf in a (multi-)semi-
+directed network into a root of a (multi)-rooted network may seem
+problematic. However, since this only applies to leaves of a (multi-)
+semi-directed network not in X, which do not correspond to taxa, this
+does not pose a problem. A leaf of a (multi-)semi-directed network                             Footnote 2 (continued)
+contained in X cannot be turned into a root of a (multi)-rooted net-                           work. Instead, its incident edge can be subdivided by a new vertex
+                                                                                               that becomes a root.
+4   Page 6 of 21                                                                                       Theory in Biosciences (2026) 145:4
+
+   Suppose G = (V, E, A) is a mixed graph. A cherry of a               To complete the proof, we next show that P ends in a
+mixed graph is an ordered pair of leaves (x, y) such that there     reticulation leaf or in a leaf that is in a cherry. To prove
+is a length-2 path between x and y, either consisting of two        this, assume that P ends in a reticulation or in a leaf that
+edges or of two arcs directed towards x and y, respectively.        is not a reticulation leaf and not in a cherry. First suppose
+For convenience, we also refer to a cherry with leaves x and        that P ends in a leaf x that is not a reticulation leaf. Then,
+y as a cherry on {x, y}. A leaf reticulation of G is a reticula-    in view of (Ci), there exists a vertex z of N that is not on P
+tion of G that is adjacent to a leaf of G and a reticulation        and, denoting by w the vertex on P that is the predecessor
+leaf of G is a leaf of G that is adjacent to a reticulation of G.   of v on P, we have that {w, z} ∈ E or (w, z) ∈ A. Hence, z is
+   An (undirected) sink component of G = (V, E, A) is a con-        either also a leaf or it is a reticulation. In the first case, x is
+nected component C of the (undirected) graph (V, E) such            in a cherry. Therefore, we may and will assume that P ends
+that there are no arcs (u, v) ∈ A with u ∈ C and v ∉ C . For        in a reticulation v. Furthermore, there exist arcs entering v
+example, in Fig. 3, {d, r1 } is a sink component since it is a      that are not on P and, by the maximality of P, the last edge/
+connected component of the graph that is obtained by ignor-         arc of P is an edge.
+ing all arcs, and in G there are no arcs leaving this compo-           Consider the maximal connected subgraph H of G con-
+nent. Similarly, an (undirected) source component3 of G is          taining v but no arcs. Observe that H is not a pendant subtree
+a connected component C of (V, E) such that there are no            since it contains at least two vertices with incoming arcs (v
+arcs (u, v) ∈ A with u ∉ C and v ∈ C . A subgraph G′ of G is        and the head of the last arc of P). Hence, by (Ciii), H is not
+a pendant subtree if G′ is a tree and has at most one vertex        a sink component. It follows that H has a vertex y with an
+that has a neighbour in G not in G′.                                incident outgoing arc a = (y, w), some w ∈ V . Hence, the
+   We start with the following technical result which we            subpath of P from s to y extended by w has one more arc
+use to prove our first characterization of multi-semi-directed      than P contradicting the assumption that P contains a maxi-
+networks.                                                           mum number of arcs. 	                                           ◻
+
+Lemma 1 Suppose G = (V, E, A) is a connected mixed graph            Theorem 1 A mixed graph G = (V, E, A) is a multi-semi-
+with |V| ≥ 3. Then G contains either a cherry or a leaf retic-      directed network if and only if Properties (Ci) - (Ciii) hold.
+ulation (or both) if the following properties hold:
+                                                                    Proof If G is a multi-semi-directed network, then Proper-
+                                                                    ties (Ci) - (Ciii) clearly hold.
+ (Ci) d(v) ≠ 2 and d− (v) ∈ {0, d(v) − 1} for all v ∈ V ;              To see the converse, assume that Properties (Ci) - (Ciii)
+(Cii) each cycle of G contains at least one sink; and               hold. We perform induction on |A| + |E|. The base case is
+(Ciii) each sink component of G is a pendant subtree.               |A| + |E| = 0 . In this case, G is a set of isolated vertices.
+                                                                    Hence, G is its own semi-deorientation. Thus, G is a multi-
+Proof Let P be a semi-directed path in G containing a maxi-         semi-directed network.
+mum number of arcs and, over all such paths, containing                For the inductive step, assume that G is such that
+a maximum number of edges. If P contains no arc, then it            |A| + |E| ≥ 1. Then G must contain a connected component
+follows that A = � and hence G is a tree by (Cii) and since         that is not an isolated vertex. In view of the base case it suf-
+G is connected. Since G has at least three vertices, and no         fices to show that every connected component of G that is
+degree-2 vertices, it follows that G has a cherry. Therefore,       not an isolated vertex is a multi-semi-directed network. Let
+we may assume that P contains at least one arc. Let s denote        G′ be a connected component of G that is not an isolated
+the first vertex on P.                                              vertex. If G′ has exactly two vertices, then they are connected
+   We next show that P ends in a leaf or in a reticulation. To      by an edge by (Ci) and clearly G′ is (multi-)semi-directed.
+see this, assume for contradiction that P ends in a vertex v        Otherwise, by Lemma 1, G′ must contains either a cherry or
+with d(v) ≠ 1 and d− (v) = 0 . Then there is an edge {v, w}         a leaf reticulation (or both).
+or an arc (v, w) with w not on P (since otherwise we would             Assume first that G′ contains a cherry on {x, y}. Then,
+have a cycle without sink, which is not allowed by (Cii)).          by (Ci), the length-2 path between x and y consists of two
+Hence, we can extend P to a semi-directed path containing           edges. In this case, we delete leaf x from this cherry and
+more arcs or the same number of arcs and more edges, by             suppress the vertex adjacent to x if this has rendered it a
+appending w in contradiction to the maximality of P. Thus,          vertex of degree two. The resulting graph G′′ is a multi-
+P ends in a leaf or in a reticulation, as required.                 semi-directed network by induction. This means that G′′ is
+                                                                    the semi-deorientation of a multi-rooted network D′′. Let D′
+                                                                    be obtained from D′′ by subdividing the arc entering y by a
+3
+   Source components were called “root components” in Maxfield      new vertex p and adding leaf x with an arc (p, x). Then D′
+et al. (2025).
+Theory in Biosciences (2026) 145:4                                                                                                   Page 7 of 21 4
+
+
+is a multi-rooted network and the semi-deorientation of D′                         (a) C is not semi-directed; and
+is G′. Hence, G′ is a multi-semi-directed network.                                 (b) C contains no non-trivial edge-path between two reticu-
+   To conclude the proof, assume that G′ contains a retic-                             lations of G,
+ulation leaf z. Let r be the reticulation adjacent to z and
+let p1 , … , pt be the parents of r (with t = d− (r) ). Let G′′                    then C contains at least one sink.
+be obtained from G′ by replacing vertices r, z by verti-                           Proof Let C = (v1 , v2 , … , vp = v1 ), p ≥ 4. If C is not semi-
+ces z1 , … , zt and replacing arc (pi , r) by an edge {pi , zi } for               directed, then there exist i, j ∈ {1, 2, … , p − 1} distinct such
+i ∈ {1, … , t} and deleting edge {r, z} thus reducing |A| + |E|                    that (vi , vi+1 ) and (vj+1 , vj ) are arcs on C. Without loss of
+by 1. The resulting graph G′′ is a multi-semi-directed net-                        generality, i < j (mod p − 1). Assume that j and i are such
+work by induction. This means that G′′ is the semi-deori-                          that j − i is minimized. If j − i = 1, then C contains the sink
+entation of a multi-rooted network D′′. Let D′ be obtained                         vj = vi+1. Otherwise, j − i > 1 and, so, vi+1 and vj are both
+from D′′ by merging z1 , … , zt into a single vertex r and add-                    reticulations of G and C contains a non-trivial edge-path
+ing a leaf z with an arc (r, z). Then, D′ is a multi-rooted                        between them. 	                                                ◻
+network and the semi-deorientation of D′ is G′. Hence, G′ is
+a multi-semi-directed network. 	                                 ◻                   An alternative characterization of mixed graphs that are
+                                                                                   multi-semi-directed networks is as follows. See Fig. 4 for
+  The following lemma can be used to show an alternative                           examples that illustrate that Properties (II) and (III) cannot
+characterization of multi-semi-directed networks.                                  be weakened.
+
+Lemma 2 Let C be a cycle in a mixed graph G. If                                    Theorem 2 A mixed graph G = (V, E, A) is a multi-semi-
+                                                                                   directed network if and only if
+
+
+                                                                                     (I) d(v) ≠ 2 and d− (v) ∈ {0, d(v) − 1} for all v ∈ V ;
+                                                                                    (II) G contains no semi-directed cycle; and
+                                                                                   (III) G contains no non-trivial edge-path between two
+                                                                                         reticulations.
+
+                                                                                   Proof As in the case of Theorem 1, it is straight-forward to
+                                                                                   see that if G is a multi-semi-directed network, then Proper-
+                                                                                   ties (I), (II) and (III) hold.
+                                                                                      For the converse direction, by Theorem 1, it suffices to
+                                                                                   show that Properties (I), (II) and (III) imply Properties (Ci),
+                                                                                   (Cii) and (Ciii). For this, it suffices to show that Proper-
+                                                                                   ties (II) and (III) imply Properties (Cii) and (Ciii).
+Fig. 4  Two mixed graphs G and G′ that, by Theorem 2, are not multi-
+                                                                                      First observe that Property (III) implies Property (Ciii)
+semi-directed networks. The reason is that G contains the semi-
+directed cycle (v1 , v2 , v3 , v4 , v1 ) while G′ contains the non-trivial edge-   because any sink component that is not a pendant subtree
+path (v1 , v2 , v3 ) and v1 and v3 are reticulations                               contains two reticulations and a non-trivial edge-path path
+
+Fig. 5  Left: A mixed graph G1
+which, by Corollary 1, is not
+a semi-directed network since
+there is no ∧-path between v1
+and v2. Right: A mixed
+graph G2 that, by Corollary 1,
+is not a semi-directed net-
+work since it contains a cycle
+(v1 , v2 , v3 , v4 , v5 , v1 ) without a
+sink
+4   Page 8 of 21                                                                                          Theory in Biosciences (2026) 145:4
+
+joining them. In view of Lemma 2, Properties (II) and (III)             Proof Consider the graph F obtained from N by deleting
+together imply Property (Cii). 	                        ◻              all arcs. Then F is a forest since, by Theorem 2, N does not
+                                                                        contain any cycles traversing only edges. In any rooting D
+    We will now characterize semi-directed networks. See                of N, where we root only on vertices of N, each (connected)
+Fig. 5 for examples that illustrate that Properties (2) and (3)         component T of F is oriented as a rooted tree T r . The root
+cannot be weakened. Recall that a semi-directed network                 of T r is either a root of D or a reticulation of D. Moreover,
+is the semi-deorientation of some 1-rooted network, i.e. a              each vertex of T r that is not the root of T r is not a reticula-
+rooted network with a single root.                                      tion of D and also not a root of D. Hence, each component
+                                                                        of F contains exactly one vertex that is a root or a reticula-
+Corollary 1 A mixed graph G = (V, E, A) is a semi-directed              tion of D. It follows that the number of components of F
+network if and only if                                                  is precisely |R| + k where R is the set of reticulations of N.
+                                                                           In any forest, the number of components equals the num-
+                                                                        ber of vertices minus the number of edges. Therefore,
+(1) d(v) ≠ 2 and d− (v) ∈ {0, d(v) − 1} for all v ∈ V ;
+                                                                        |V| − |E| = |R| + k,
+(2) each cycle of G contains at least one sink; and
+(3) G contains a ∧-path between each pair of verti-                     implying that
+    ces u, v ∈ V .
+                                                                        |A| + |V| − |E| = |A| + |R| + k,
+Proof As before, it is easy to see that if G is a semi-directed
+                                                                        which can be rewritten as
+network then Properties (1), (2) and (3) hold.
+   Now assume that Properties (1), (2) and (3) hold. We first           |A| − |R| = |E| + |A| − |V| + k.
+show that G is a multi-semi-directed network. In view of
+Theorem 1, it suffices to show that Properties (1) - (3) imply          Since |A| − |R| is the reticulation number of N, the theorem
+Property (Ciii). To this end, suppose that G contains a sink            follows. 	                                                ◻
+component S that is not a pendant subtree. Note that S is a
+tree by Property (2). Since S is not pendant, it contains at               As an immediate consequence, we have the following
+least two reticulations r1 , r2 . Let p1 , p2 be parents of r1 , r2 ,   result.
+respectively, such that p1 ≠ p2 . Note that p1 , p2 are not in S.
+By Property (3), there exists a ∧-path P between p1 and p2 .            Corollary 2 If N = (V, E, A) is a multi-semi-directed net-
+Hence, there is a cycle without sink, formed by path P                  work, then all rootings of N have
+together with the arcs (p1 , r1 ), (p2 , r2 ) and the path between r1   |V| − |R| − |E|
+and r2 through S, which is a contradiction to (2). Thus, (Ciii)
+holds, as required.                                                     roots, with R the set of reticulations of N.
+   It remains to show that any rooting of G has a single root.
+Suppose D is a rooting of G with at least two roots 𝜌1 , 𝜌2 .              We now prove an auxiliary result that will be useful to
+Then there is no ∧-path between 𝜌1 and 𝜌2 in D and hence                characterize all possible rootings of a multi-semi-directed
+also not in G, contradicting Property (3). Hence, we can                network.
+conclude that G is a semi-directed network. 	                     ◻
+                                                                        Lemma 3 Let N be a multi-semi-directed network, R the set
+                                                                        of reticulations of N, and U ⊆ V(N) such that there is no
+                                                                        edge-path between any two vertices in U ∪ R . Then there
+                                                                        exists a rooting of N in which each vertex of U is a root.
+Rootings of multi‑semi‑directed networks
+                                                                        Proof The proof is by induction on |U|. The base case
+The following theorem and its corollary show that the                   for U = � is trivial. If |U| ≥ 1, consider a vertex u ∈ U . By
+number of roots of a rooting of a multi-semi-directed net-              induction, there exists a rooting D of N in which each vertex
+work N = (V, E, A) can be calculated directly from the retic-           of U ⧵ {u} is a root. Let Cu be the connected component of
+ulation number |A| − |R| of N, with R the set of reticulations.         the graph obtained from N by deleting all arcs, such that Cu
+                                                                        contains u. First observe that u is the only vertex from U
+Theorem 3 If N = (V, E, A) is a k-semi-directed network,                in Cu since otherwise there would be an edge-path between
+some k ≥ 1, then the reticulation number of N equals                    two vertices in U. Also note that Cu is a source component
+                                                                        since there is no edge-path between u and any reticulation.
+|E| + |A| − |V| + k.
+                                                                        Moreover, by Theorem 2, N contains no cycle consisting
+Theory in Biosciences (2026) 145:4                                                                                          Page 9 of 21 4
+
+of only edges. Hence, Cu is a tree. Since no vertex of Cu is                Now suppose that there exists a source component C of N
+a reticulation in Cu , it follows that Cu is a rooted tree in D.        containing v, w ∈ V �� with v ≠ w. Then there exists an edge-
+The root u′ of this tree is also a root of D, since D contains          path between v and w of length at least 2 in N. Since v is a
+no arcs whose head is a vertex in Cu but whose tail is not.             root in D, this path is directed from v to w in D. However,
+Hence, in D, Cu contains exactly one root u′. If u� = u then            since w is also a root in D, the path is directed from w to v
+u� ∈ U and D is a rooting of N in which u′ is a root. Hence,            in D, a contradiction. The other cases are again handled
+the lemma holds in this case.                                           similarly.
+    If u′ ≠ u then, since Cu is a rooted tree in D, we can                  We now prove the “if” direction. Since N is multi-semi-
+modify the orientation of D to obtain an alternative rooting            directed, there exists a rooting D of N. Let (V �� , E�� , A�� ) be
+of N by changing only the orientation of each arc on the                its root configuration.
+path between u and u′ in Cu . This gives a rooting D′ of N in               For an edge {u, v} of N, clearly, there exists a rooting of N
+which u ∈ U is a root. Moreover, all vertices in U ⧵ {u} are            with root u if and only if there exists a rooting with root w
+still roots of D′, which concludes the proof. 	              ◻         subdividing {u, v}. Similarly, for an arc (u, v) of N, clearly,
+                                                                        there exists a rooting of N with root u if and only if there
+   For a rooting D of multi-semi-directed net-                          exists a rooting with root w subdividing (u, v). Hence, we
+work N = (V, E, A) , define the root configuration as the               may assume E� = A� = E�� = A�� = � . Let R be the set of
+triple (V � , E� , A� ) with V ′ ⊆ V , E′ ⊆ E and A′ ⊆ A such           reticulations of N. Since each element of V ′ is in a different
+that the roots of D are precisely the vertices in V ′ together          source component, there is no edge-path between any two
+with vertices subdividing each edge in E′ and arc in A′ .               vertices in R ∪ V �. Then, by Lemma 3, it follows that there
+In the following theorem, we characterize the valid root                exists a rooting of N with root configuration (V � , E� , A� ).
+configurations of a multi-semi-directed network. As noted                                                                               ◻
+in the introduction, a similar characterization was given
+in [(Maxfield et al. 2025), Proposition 8], although it                    Theorem 4 directly leads to an efficient algorithm taking
+was under a slightly different framework (e.g. assuming                 O(|V| + |E| + |A|) time for deciding if an arbitrary mixed
+A� = E� = �).                                                           graph G = (V, E, A) is a (multi-)semi-directed network (note
+                                                                        that in [(Maxfield et al. 2025), Remark 1] a similar algo-
+Theorem 4 Let N = (V, E, A) be a multi-semi-directed net-               rithm is sketched to efficiently find a rooting of a multi-semi-
+work and V ′ ⊆ V , E′ ⊆ E and A′ ⊆ A. Then there exists a               directed network). First, find all the source components of G
+rooting D of N with root configuration (V � , E� , A� ) if and only     by traversing the graph in O(|V| + |E| + |A|) time. Second,
+if                                                                      in each source component, pick an arbitrary vertex as root.
+                                                                        Third, do a breath-first search from each root and orient all
+                                                                        edges away from the root, again taking O(|V| + |E| + |A|)
+• each vertex in V ′ and each edge in E′ is in a source com-            time. Finally, with yet another traversal, check if the result-
+  ponent of N and each arc in A′ is an outgoing arc of a                ing mixed graph G′ is a multi-rooted directed network and
+  source component of N; and                                            whether its semi-deorientation is G. Note that by addition-
+• each source component of N contains exactly one ele-                  ally checking whether or not G′ has a single root, it can also
+  ment of V ′, contains exactly one edge in E′ or has exactly           be determined if G is semi-directed.
+  one outgoing arc in A′.
+
+Proof We first prove the “only if” direction. Since N is multi-         Omnians
+semi-directed, there exists a rooting D of N. Let (V �� , E�� , A�� )
+be its root configuration.                                              In this section, we show how the concept of omnians can
+   First suppose that there is a v ∈ V �� that is not in a              be used to characterize tree-child (Theorem 5 and Proposi-
+source component of N. Then there exists a reticulation r               tion 1) and tree-based multi-semi-directed networks (Theo-
+in the component C of the graph (V, E) containing v with                rem 6). As remarked in the introduction, [(Maxfield et al.
+both incoming arcs of r having their tail outside C. Note               2025), Proposition 11] gives an alternative characterization
+that v ≠ r . Hence, there exists an edge-path between r and v           for the tree-child case where, instead of using omnians the
+in N. Since v is a root of D, this path is a directed path from v       concept of the “directed part” of a network is used.
+to r in D. However, this implies that dD− (r) = dD (r), contra-            The main definitions of this section are the following.
+dicting the definition of a multi-rooted network. The other             We say that a vertex v of a multi-semi-directed network is
+cases (that there is a e ∈ E�� that is not in a source compo-           an omnian if d+ (v) ≥ 1 and de (v) ≤ 1, see Fig. 6. We call
+nent or an arc a ∈ A�� that is not an outgoing arc of a source          a multi-rooted network D tree-child if each non-leaf ver-
+component) are handled similarly.                                       tex of D has at least one child that is not a reticulation.
+4   Page 10 of 21                                                                                                 Theory in Biosciences (2026) 145:4
+
+
+
+
+Fig. 6  The three possible configurations surrounding an omnian in a        and (iii) at least two outgoing arcs (and in all cases no other incident
+multi-semi-directed network: (i) one incident edge and at least two         edge/arcs). Note that Case (iii) is possible in multi-semi-directed net-
+outgoing arcs, (ii) at least two incoming arcs and one outgoing arc         works but not in semi-directed networks
+
+
+Furthermore, we say that a multi-semi-directed network N                    a root of D, or there exists a child a of v in N such that the
+is weakly tree-child if N has a rooting that is tree-child. In              arc (v, a) of N leaving v has been subdivided by a root w in
+this case, we also call such a rooting of N a tree-child root-              D and D contains the arcs (w, v) and (w, a). In the first case,
+ing of N. Finally, we say that N is strongly tree-child if every            changing the orientation of the arc (v, u) to (u, v) (making u
+rooting of N is tree-child. See Fig. 7 for examples.                        a root) gives a rooting D′ of N that is not tree-child. Also in
+                                                                            the second case, D′ is a rooting of N that is not tree-child. In
+Theorem 5 A multi-semi-directed network N is strongly tree-                 both cases, we obtain a contradiction, completing the first
+child if and only if N has no omnians.                                      direction of the proof.
+                                                                                For the converse, suppose that N has no omnians, that
+Proof First assume that N is strongly tree-child. Sup-                      is, de (v) ≥ 2 or d+ (v) = 0 for all v ∈ V . Assume that N is
+pose that there exists a vertex v ∈ V that is an omnian,                    not strongly tree-child, i.e., there exists a rooting D of N
+i.e., d+ (v) ≥ 1 and de (v) ≤ 1. If de (v) = 0 , then all chil-             and a non-leaf vertex v of D such that all children of v in D
+dren of v are reticulations in any rooting of N and v                       are reticulations. If v is a reticulation too, then dNe (v) = 0
+is not a leaf since d+ (v) > 0 . This would contradict                      and dN+ (v) = 1. If v is not a reticulation, then dNe (v) ≤ 1
+that N is strongly tree-child. Hence, de (v) = 1. By The-                   and dN+ (v) ≥ 2. In both cases, we obtain a contradiction.
+orem 1 (Property (Ci)), d− (v) ∈ {0, d(v) − 1} . Since                                                                                   ◻
+d− (v) = d(v) − d+ (v) − de (v) ≤ d(v) − 1 − 1, this means that
+d− (v) = 0 and thus d+ (v) = d(v) − 1.                                      Proposition 1 Let N = (V, E, A) be a k-semi-directed net-
+   Let e = {u, v} be the edge in N incident to v. Observe that              work, some k ≥ 1, with set of reticulations R and set of omni-
+all neighbours of v other than u are reticulations. Let D be                ans O. Then, N is weakly tree-child if and only if |O| ≤ k ,
+a tree-child rooting of N. Since v has at least one child in D              de (v) ≥ 1 for all v ∈ V , and there does not exist a non-trivial
+that is not a reticulation, the edge e is oriented away from v              edge-path between any two vertices in O ∪ R.
+in D. This means that there are two possibilities. Either v is
+
+
+
+
+Fig. 7  The semi-directed network N1 on X = {x1 , … , x10 } is strongly     are not tree-child (see Corollary 3). The semi-directed network N3
+tree-child in view of Theorem 5. The semi-directed network N2 also          on {x1 … , x8 } is not weakly tree-child since the edge {r, o} forms an
+on X is weakly tree-child, but not strongly, since the rootings with the    edge-path between a reticulation marked r and an omnian marked o
+root subdividing an arc labelled ∗ are tree-child, but all other rootings   (see Corollary 3)
+Theory in Biosciences (2026) 145:4                                                                                   Page 11 of 21 4
+
+Proof Suppose that N is weakly tree-child. Then there exists       a subtree of G that contains all vertices of G and is a tree.
+a tree-child rooting D of N. For each vertex u ∈ O, either u is    A multi-rooted network N is tree-based if it has a rooted
+a root in D or one of the outgoing arcs of u is subdivided by      spanning tree that has the same leaf set as N. Clearly, a
+a vertex that is a root in D. Hence, |O| ≤ k . For the second      multi-rooted network that is tree-based must be a rooted
+condition, assume for contradiction that there exists a vertex     network, since the corresponding spanning tree must have
+v ∈ V with dNe (v) = 0. Then, by Theorem 2, dN+ (v) ≥ 1 and in     a single root. Note that binary rooted tree-based networks
+any rooting D of N, every child of v is a reticulation. Thus,      were introduced in Francis and Steel (2015) and extended
+D is not tree-child; a contradiction. Lastly, to prove the third   to non-binary rooted networks in Jetten and van Iersel
+condition, assume for contradiction that there exists a non-       (2016), who also defined the stricter notion of strictly tree-
+trivial edge-path P in N between two vertices in O ∪ R, say        basedness, which we do not consider here. A multi-semi-
+between s and t. In a tree-child rooting, an edge incident to a    directed network N is weakly tree-based if N has a root-
+reticulation must be oriented away from the reticulation and,      ing that is tree-based and N is strongly tree-based if every
+similarly, an edge incident to an omnian must be oriented          rooting of N is tree-based, see Fig. 8 for an example. Since
+away from the omnian. Hence, the edge of P incident to s is        every multi-rooted tree-based network is a rooted network,
+oriented away from s in D. Similarly, the edge of P incident       all multi-semi-directed networks that are weakly or strongly
+to t is oriented away from t in D. Therefore, P must contain       tree-based are semi-directed networks. Hence, we will focus
+a reticulation in D and hence in N; a contradiction since no       on semi-directed networks for the remainder of this section.
+internal vertex of an edge-path can be a reticulation.                 To state our next result, we define for a multi-semi-
+    For the other implication, suppose that |O| ≤ k , that         directed network N = (V, E, A) and a subset S of the set of
+de (v) ≥ 1 for all v ∈ V , and that there does not exist a non-    omnians of N the set
+trivial edge-path between any two vertices in O ∪ R . By
+Lemma 3, there exists a rooting D of N such that each vertex       𝛿 + (S) ∶= {t ∈ V ∣ (s, t) ∈ A for some s ∈ S}.
+in O is a root in D. Suppose that D is not tree-child. Let v       Hence, 𝛿 + (S) contains the vertices of N that are the head of
+be a non-leaf vertex of D all whose children in D are reticu-      an arc that starts at an omnian contained in S. Note that by
+lations. Then, we obtain a contradiction since then either         definition, 𝛿 + (S) may contain vertices that are also in S.
+dNe (v) = 0 or v is an omnian of N that is not a root of D.
+                                                             ◻    Theorem 6 Let N be a semi-directed network with O its set
+                                                                   of omnians. Then N is strongly tree-based if and only if for
+   We can simplify the characterization in Proposition 1 for       each S ⊆ O we have that |𝛿 + (S)| ≥ |S|.
+semi-directed networks as follows, using that, in a (multi-)
+semi-directed network, de (v) ≥ 1 holds for any non-omnian         Proof Let R be the set of reticulations of N. We follow
+vertex v and there is no non-trivial edge-path between two         a similar approach as in Jetten and van Iersel (2016) for
+reticulations (Theorem 2).                                         directed networks. More precisely, we first associate a bipar-
+                                                                   tite graph B = (V � , E� ) to N that has vertex set V � = R� ∪ O�,
+Corollary 3 A semi-directed network N is weakly tree-child         with R′ containing a copy of each reticulation in R and O′
+if and only if N has at most one omnian and if there is an         containing a copy of each omnian in O. Hence, a vertex of
+omnian o, then de (o) ≥ 1 and there is no non-trivial edge-        N that is a reticulation as well as an omnian has two cor-
+path between o and a reticulation r of N.                          responding vertices in V ′. For r ∈ R� and o ∈ O�, we define
+                                                                   {r, o} to be an edge in E′ if (o, r) is an arc in N. Note that,
+   We next turn our attention to tree-based multi-semi-            by Hall’s marriage theorem (Hall 1987), B has a matching
+directed networks. A spanning tree of a mixed graph G is
+
+
+Fig. 8  A semi-directed
+network N that is weakly
+tree-based but not strongly
+tree-based, along with a root-
+ing D for it that is tree-based
+(a spanning tree with leaf set
+L(D) is indicated in bold) and a
+rooting D′ for it that is not tree-
+based. Far right: The bipartite
+graph B used in the proof of
+Theorem 6
+4   Page 12 of 21                                                                                       Theory in Biosciences (2026) 145:4
+
+
+that covers O if and only if each subset S ⊆ O′ has at least |S|   Cherry picking
+neighbors in B.
+    To prove the theorem, assume first that N is strongly tree-    In this section we consider another concept, called “cherry
+based. Consider any rooting D of N with the same vertex            picking”, that can be used to characterize certain multi-
+set as N (which exists because any rooting where the root          semi-directed networks. More specifically, we focus on
+subdivides an edge or arc of N can be easily modified to           how cherry picking can be applied to characterize weakly
+obtain a rooting in which the root is a vertex of N). Let          and strongly orchard multi-semi-directed networks, classes
+𝜌 denote the sole root of D. We create a rooting D′ of N           of networks that can be used to model lateral gene transfer
+from D as follows. If 𝜌 is an omnian in N and dNe (𝜌) = 1          (see e.g. van Iersel et al. 2022). To state the main results
+then subdivide the edge incident to 𝜌 in N by a new ver-           (Theorems 7 and 8), we require some further definitions.
+tex 𝜌′ , make 𝜌′ the root of D′ , orient the edge between 𝜌        Recall that a cherry of a mixed graph is an ordered pair of
+and 𝜌′ as (𝜌� , 𝜌), and retain the directions of the remaining     leaves (x, y) such that there is a length-2 path between x
+arcs of D. Otherwise, define D′ to be D. By construction           and y, either consisting of two edges or of two arcs directed
+of D′, for each omnian o ∈ O of N, we have that all outgoing       towards x and y, respectively. Reducing a cherry (x, y) is
+arcs of o in D are also outgoing arcs of o in N. Since N is        defined as deleting x and suppressing any resulting non-root
+strongly tree-based, D′ is tree-based. Consider a base tree T ′    degree-2 vertex.
+of D′. Then, T ′ contains at least one outgoing arc ao (in D′),       To introduce cherry picking for multi-rooted networks,
+for each o ∈ O (the omnians of N). In addition, T ′ contains       consider a multi-rooted network D on X. A reticulated
+exactly one incoming arc of each reticulation in R. Hence,         cherry4 of D is an ordered pair of leaves (x, y) such that y is a
+the arcs ao, o ∈ O, form a matching in B that covers O. By         reticulation leaf and there is a length-3 path between x and y.
+Hall’s marriage theorem recalled above, this implies that          Reducing a reticulated cherry (x, y) of D means deleting the
+each S ⊆ O has at least |S| neighbors in B and hence that          arc from the parent of x to the parent of y and suppressing
+|𝛿 + (S)| ≥ |S|.                                                   any resulting non-root degree-2 vertices. Let D(x, y) be the
+    Conversely, assume that for each S ⊆ O we have that            result of reducing a cherry or reticulate cherry (x, y) in D.
+|𝛿 + (S)| ≥ |S|. Then, by Hall’s marriage theorem, B has a         Then the leaf set of D(x, y) is either the same as the leaf set
+matching M that covers O. Consider any rooting D of N. Let         of D, or, if (x, y) is a cherry of D, then the leaf set of D(x, y)
+𝜌 denote the sole root of D. We construct a rooted spanning        is X ⧵ {x}. We say that D is orchard if it can be reduced to a
+tree T of D with leaf set L(D) as follows, see Fig. 8. For         disjoint union of arcs using a sequence of cherry reductions
+each o ∈ O consider the reticulation r ∈ R that o is matched       and reticulated cherry reductions.
+to by M. Note that (o, r) may not be an arc of D because it           Furthermore, we say that a multi-semi-directed network N
+could have been subdivided by the root. If (o, r) is an arc        is weakly orchard if N has a rooting that is orchard and
+of D, then include it in T. Otherwise, D contains an arc (𝜌, r)    that N is strongly orchard if every rooting of N is orchard.
+which we include in T. For each reticulation in R that does        See Fig. 9 for an example of a semi-directed network N that
+not have an incoming arc in T yet, choose one incoming arc         is weakly orchard but not strongly orchard.
+arbitrarily and add it to T. Finally, add all arcs whose heads        We now define reticulated cherries and their reductions
+are not reticulations                                              for a multi-semi-directed network N on X. This definition is
+    also to T. Clearly, T is a rooted spanning tree of D.          slightly different from the definition above for multi-rooted
+    It remains to show that T has leaf set L(D). Clearly, each     networks since N may have elements of X that are roots,
+leaf of D is a leaf of T. Suppose T has a leaf v that is not a     see for example root e in the 2-semi-directed network in
+leaf in D. Then, in D, v has at least one outgoing arc and the     Fig. 3. A reticulated cherry of N is an ordered pair (x, y)
+head of every outgoing arc of v is a reticulation.                 with x, y ∈ X such that y is a reticulation leaf and there
+    Hence, in N, v has exactly one incident edge, no incom-        is a length-2 or length-3 path between x and y. Reducing
+ing arcs and at least one outgoing arc. Thus, v is an omnian       a reticulated cherry (x, y) of N is defined as deleting the
+of N. This leads to a contradiction since T contains, for each     arc between the neighbours of x and y or deleting the arc
+omnian of N, at least one outgoing arc of D. 	               ◻    between x and the neighbour of y and suppressing any
+                                                                   resulting non-root degree-2 vertices. See Figs. 10 and 11
+   Intriguingly, characterizing semi-directed networks that        for examples. For (x, y) a reticulated cherry or a cherry of
+are weakly tree-based requires a different approach (see Cor-      N, let N(x, y) denote the resulting mixed graph that is the
+ollary 4 at the end of Sect. 7).
+
+                                                                   4
+                                                                      Note that this definition is only for multi-rooted networks. Retic-
+                                                                   ulated cherries in multi-semi-directed networks are defined in a
+                                                                   slightly different way below.
+Theory in Biosciences (2026) 145:4                                                                                             Page 13 of 21 4
+
+Fig. 9  A semi-directed net-
+work N on X = {a, b, c, d, e, f }
+that is weakly orchard but not
+strongly orchard, along with a
+rooting D1 that is orchard and a
+rooting D2 that is not orchard.
+The rooted network D′1 is a
+binary resolution of D1 with
+the gray numbers indicating an
+HGT-consistent labelling for D′1
+
+
+
+
+Fig. 10  Example of a weakly orchard multi-semi-directed network on X ={a … , e} and a sequence of cherry reductions and reticulated cherry
+reductions. In each case, the (reticulated) cherry that is reduced is indicated below the arrow that indicates the reduction
+
+
+
+
+Fig. 11  An alternative sequence of cherry reductions and reticulated    tion. Note that in the bottom-left multi-semi-directed network, a has
+cherry reductions for the weakly orchard multi-semi-directed network     become a root instead of a leaf and that (a, d) is a reticulated cherry
+on X = {a … , e} from Fig. 10. In each case, the (reticulated) cherry    in that network since a ∈ X.
+that is reduced is indicated below the arrow that indicates the reduc-
+4   Page 14 of 21                                                                                   Theory in Biosciences (2026) 145:4
+
+result of reducing (x, y) in N. Note that each connected           Theorem 7 Given a multi-semi-directed network N on X, the
+component of N(x, y) is either an isolated vertex in X or a        following are equivalent.
+multi-semi-directed network on a subset of X.
+   Intriguingly, binary rooted networks that are orchard
+can be characterized in terms of a so-called HGT-con-              (1) N is weakly orchard;
+sistent labelling (van Iersel et al. 2022). As it turns out,       (2) there exists a sequence of cherry reductions and reticu-
+this concept can be canonically extended to binary multi-              lated cherry reductions that reduces N to a forest in
+rooted networks. In turn, this provides us with a tool                 which each tree is either a single edge whose two adja-
+to characterize multi-semi-directed networks that are                  cent vertices are in X or a single vertex that is in X;
+weakly orchard. To make this more precise, suppose that            (3) N has a rooting that has a binary resolution that admits
+D = (V, A, �) is a binary multi-rooted network. Then we                an HGT-consistent labelling;
+call a map t ∶ V → ℕ a HGT-consistent labelling for D if           (4) every nice rooting of N is orchard;
+                                                                   (5) N(x, y) is weakly orchard for some cherry or reticulated
+1. t(u) ≤ t(v) for each arc (u, v) ∈ A;                                cherry (x, y).
+2. t(u) < t(v) for each arc (u, v) ∈ A with v not a reticula-
+   tion; and                                                       Proof That (4) implies (1) is trivial, given that N has at least
+3. for each reticulation v it holds that t(u) = t(v) for exactly   one nice rooting by Observation 1.
+   one parent u of v.                                                  We now show that (1) implies (3). If N is weakly orchard,
+                                                                   then it has a rooting D that is orchard. Since D is a multi-
+See Fig. 9 for an example of a HGT-consistent labelling            rooted network, we can obtain a rooted network D′ from D
+of a 1-rooted network.                                             by adding a new root 𝜌 with an arc to each root or D. Con-
+   We call a rooting D of a multi-semi-directed network N          sider any sequence of cherry and reticulated cherry reduc-
+on X nice if every root of D is either a vertex of N that is       tions that transforms D into a disjoint union U of arcs the
+not in X or subdivides an arc of N whose tail is in X. We          heads of which are elements in X. The same sequence trans-
+will use the following useful fact concerning nice rootings.       forms D′ into a rooted star tree S, that is, the tree obtained
+                                                                   from U as follows. First, add a root 𝜌′ to U. Next, add an
+Observation 1 Every multi-semi-directed network has a nice         arc from 𝜌′ to the tail ta of each arc a in U. Finally, sup-
+rooting.                                                           press all vertices ta . Clearly, S can easily be transformed
+                                                                   into a single arc whose head is in X by cherry reductions.
+Proof Suppose that N is a multi-semi-directed network. Con-        Hence, D′ is also orchard and, by [(van Iersel et al. 2022),
+sider an arbitrary rooting D of N. If a root 𝜌 of D is not a       Theorem 2], D′ has a binary resolution D′b that admits a
+vertex of N, then it subdivides an edge e or an arc a of N. If 𝜌   HGT-consistent labelling. Deleting all vertices and arcs of
+subdivides e, we can make any vertex incident with e a root        D′b that where added to D′ to obtain a binary resolution of 𝜌
+instead of 𝜌. If 𝜌 subdivides an arc a whose tail is not in X,     as part of obtaining D′b then gives a binary resolution of D
+then we can make the tail of a a root instead of 𝜌. 	 ◻           with a HGT-consistent labelling, completing the proof that
+                                                                   (1) implies (3). The converse direction, i.e. that (3) implies
+    We now define a binary resolution of a multi-rooted            (1), can be shown in a similar manner.
+network N = (V, A) which we shall need to state our next               We now prove that (1) implies (2). Let D be a rooting of N
+result. This is the binary multi-rooted network obtained           that is orchard. Consider a sequence 𝜎 of cherry and retic-
+from N by (i) replacing every vertex v with dN+ (v) ≥ 3 and        ulated cherry reductions that transforms D into a disjoint
+its set of outgoing arcs by a rooted binary tree T with root       union of arcs the heads of which are elements in X. A cherry
+v, so that all arcs in T are directed away from v, and the         (x, y) that can be reduced in D can also be reduced in N
+leaf set of T consists of those w ∈ V such that (v, w) ∈ A ,       unless the path between x and y in D contains a root of D
+and (ii) replacing every vertex w in N with dN− (w) ≥ 3 and        and this root is not a vertex of N (i.e. it is suppressed when
+its set of incoming arcs by a rooted binary tree T with root       semi-deorienting D to obtain N). In this case, N contains a
+w, in which the directions of all arcs in T are reversed so        connected component consisting of only the edge {x, y}. A
+that they are all directed towards w and the leaf set of T         reticulated cherry (x, y) that can be reduced in D can also
+consists of those v ∈ V with (v, w) ∈ A . See Fig. 9 for an        be reduced in N. The outcome of reducing (x, y) in N and
+example.                                                           in D in this case, respectively, is the same (up to taking the
+    To simplify the exposition of the remainder of this sec-       semi-deorientation) unless the path between x and y in D
+tion, we shall from now on assume, without loss of general-        contains a root of D and this root is not a vertex of N (i.e.
+ity, that multi-rooted and multi-semi-directed networks have       it is suppressed when semi-deorienting D to obtain N). In
+no isolated vertices.                                              this case, the reduced version of D contains a connected
+Theory in Biosciences (2026) 145:4                                                                                     Page 15 of 21 4
+
+component consisting of a single arc whose head is in X,              and Nk ∶= Nk−1 (sk ) is a graph in which each connected com-
+while the reduced version of N contains a connected com-              ponent is either an isolated vertex in X or an edge such that
+ponent consisting of a single vertex in X. Hence, 𝜎 reduces           both incident vertices are contained in X. Note that in case
+N to a forest in which each connected component is either a           we want to emphasize the order in which the pairs si are
+single edge whose two incident vertices are in X or a single          reduced, we also write N◦(s1 , … , si ) for Ni.
+vertex that is in X.
+    We now show that (2) implies (4). Let D be a nice root-           Lemma 4 Let N be a semi-directed network and let (x, y) be
+ing of N. We prove by induction on the number m of ver-               a cherry or a reticulated cherry of N. If N is strongly orchard
+tices of D that D is orchard. Since |X| ≥ 2 , the bases case          then N(x, y) is strongly orchard.
+is m = 2 and is trivial. Assume that the stated implication
+holds for all multi-semi-directed networks that have a nice           Proof Let D be any rooting of N(x, y). Then a rooting D′ of N
+rooting with 2 ≤ l ≤ m vertices and that N is such that D has         can be obtained from D by the following small modifica-
+m + 1 vertices. Let (x, y) be a cherry or reticulated cherry          tions. If (x, y) is a cherry and x was deleted in the construc-
+in N. Then (x, y) is also a cherry or reticulated cherry of D         tion of N(x, y) from N, then D′ is obtained from D by subdi-
+because D is a nice rooting of N. Note that it is possible            viding the arc incident to y by a vertex w and adding leaf x
+that N contains a length-2 path between x and y while D               with an arc (w, x). If (x, y) is a reticulated cherry, then D′ is
+contains a length-3 path between x and y. This can happen             obtained from D by subdividing the arc incident to y by a
+if d(x) = d+ (x) = 1. In this case, dN(x,y) (x) = 0 and so x is an    vertex v and the arc incident to x by a vertex u and adding
+isolated vertex in N(x, y) while D(x, y) contains a connected         an arc (u, v). Since N is strongly orchard, D′ is orchard. It
+component in the form of an arc from a root of D(x, y) to x.          then follows that D is orchard. Hence, N(x, y) is strongly
+In this case, let D′ , N ′ be D(x, y), N(x, y), respectively, with    orchard. 	                                                    ◻
+the connected component containing x removed. Otherwise,
+simply let D� = D(x, y) and N � = N(x, y). Then D′ is a nice             The converse of the Lemma 4 does not hold in general,
+rooting of N ′ . By induction, it follows that D′ is orchard,         see Fig. 12. Motivated by this, we define an scr-cherry
+from which we can conclude that D is orchard.                         (source component reticulated cherry) of a semi-directed
+    By the equivalence of (1) and (2) shown above, it follows         network N as a reticulated cherry (x, y) such that x is in a
+easily that (5) implies (1).                                          source component of the network.
+    It remains to prove that (1) implies (5). Suppose that N             The next lemma, combined with Lemma 4, shows that
+is weakly orchard and that (x, y) is a cherry or reticulated          cherries and reticulated cherries that are not scr-cherries can
+cherry of N. By Observation 1, N has a nice rooting D.                be reduced in arbitrary order.
+Then D is orchard by the equivalence of (1) and (4). Fur-
+thermore, (x, y) is a cherry or reticulated cherry also in D.         Lemma 5 Let N be a semi-directed network and let (x, y) be
+Let D′ be the rooted network obtained from D by adding a              a cherry or a reticulated cherry of N that is not a scr-cherry.
+new root 𝜌 with an arc to each previous root and suppress-            If N(x, y) is strongly orchard then N is strongly orchard.
+ing any resulting non-root degree-2 vertices. Then (x, y)
+is also a cherry or reticulated cherry in D′ and D′ is also           Proof Assume that N(x, y) is strongly orchard. Let D be any
+orchard. Hence, by [(Janssen and Murakami 2021), Proposi-             rooting of N. We distinguish between the cases that (x, y) is
+tion 1], D� (x, y) is orchard. Thus, D(x, y) is orchard. It fol-      a cherry or reticulated cherry in D or that this is not the case.
+lows that N(x, y) has a rooting that is orchard. Hence, N(x, y)          First suppose that (x, y) is a cherry or reticulated cherry
+is weakly orchard. 	                                            ◻    in D. Then D(x, y) is a rooting of N(x, y) since (x, y) is not
+                                                                      an scr-cherry. Since N(x, y) is strongly orchard, D(x, y) must
+                                                                      be orchard. Hence, D is orchard. So N is strongly orchard.
+   From Theorem 7, it follows that one can decide in linear              Now suppose that (x, y) is neither a cherry nor a reticu-
+time whether a given multi-semi-directed network is weakly            lated cherry of D. This can only happen if (x, y) is a cherry
+orchard since, just as for rooted networks, cherries and retic-       of N that is in a source component of N and the single root
+ulated cherries can be reduced in arbitrary order.                    of D subdivides an edge on the path between x and y in N.
+   To state the second main result of this section which              Then modify D to a rooting D′ by making the internal vertex
+concerns semi-directed networks, we require some further              of this path the root. Then we can use the argument from the
+definitions. Suppose N is a semi-directed network on X. A             previous paragraph to show that N is strongly orchard.
+cherry picking sequence of N is a sequence (s1 , … , sk ) of                                                                        ◻
+ordered pairs of elements of X, such that s1 is a cherry or
+reticulated cherry of N0 ∶= N and, for all i ∈ {1, … , k − 1},        Remark It follows from Theorem 7, Lemmas 4 and 5, and
+the pair si+1 is a cherry or reticulated cherry in Ni ∶= Ni−1 (si )   Fig. 12 that there is a key distinction between the weakly
+4   Page 16 of 21                                                                                            Theory in Biosciences (2026) 145:4
+
+
+
+
+Fig. 12  A semi-directed network N on {a, b, c, d, e} that is weakly     ries or reticulated cherries. The bottom row of networks shows the
+orchard but not strongly orchard, along with a rooting D that is not     first 4 networks obtain when reducing N by the strong cherry picking
+orchard. This is easy to see since D has no cherry, (a, b) is the only   sequence ((d, e), (d, e), (c, e), (b, e), (a, b), (b, d)) of N
+reticulated cherry of D, and the depicted network D(a, b) has no cher-
+
+
+
+and strongly orchard properties concerning the reduction                 to x. Consequently, Di−1 has no cherries or reticulated cher-
+of (reticulated) cherries in arbitrary order. Specifically, the          ries and is therefore not orchard. Hence, Ni−1 is not strongly
+property of a multi-semi-directed network being weakly                   orchard and, by Lemma 4, N is not strongly orchard, a
+orchard is preserved under arbitrarily reducing both cher-               contradiction.
+ries and reticulated cherries. In contrast, a semi-directed                 The other direction of the proof is by induction
+network being strongly orchard is preserved only under                   on k = |X| + |R| − 2 , with R the set of reticulations of N.
+arbitrarily reducing cherries and reticulated cherries that              For k = 0 the statement is trivially true. Assume k ≥ 1 and
+are not scr-cherries.                                                    that for each strong cherry picking sequence s = (s1 , … , sk )
+                                                                         of N0 = N and for each i ∈ {1, … , k}, it holds that if si is an
+   We call a cherry picking sequence s = (s1 , … , sk ) of               scr-cherry of Ni−1 = N◦(s1 , … , si−1 ) then Ni−1 has at least
+N0 = N strong if, for each i ∈ {1, … , k}, it holds that if Ni−1         two scr-cherries.
+has at least one scr-cherry, then si is an scr-cherry of Ni−1.              First suppose that N has a cherry or a reticulated
+Note that if Ni−1 has no scr-cherries then, by definition of a           cherry (x, y) that is not an scr-cherry. Since N(x, y) is
+cherry picking sequence, si is a cherry or reticulated cherry            strongly orchard by induction, it follows that N is strongly
+of Ni−1. We now state the second main result of this section.            orchard by Lemma 5.
+                                                                            Now suppose that N has no cherries or reticulated cherries
+Theorem 8 Let N be a semi-directed network N on X. Then N                that are not scr-cherries. Then N has at least two scr-cherries
+is strongly orchard if and only if, for each strong cherry pick-         (x, y) and (w, z) (possibly, z = y ). Consider any rooting D
+ing sequence s = (s1 , … , sk ) of N and for each i ∈ {1, … , k},        of N. Then at least one of (x, y) and (w, z) is a reticulated
+it holds that if si is an scr-cherry of Ni−1 = N◦(s1 , … , si−1 )        cherry in D. Assume without loss of generality that (x, y) is
+then Ni−1 has at least two scr-cherries where we put N0 = N .            a reticulated cherry of D. Since N(x, y) is strongly orchard
+                                                                         by induction, each rooting of N(x, y) is orchard. In particular,
+Proof First suppose that N is strongly orchard and assume                D(x, y) is orchard. Hence, D is orchard. Since D was arbi-
+for contradiction that there exists a strong cherry picking              trary, it follows that N is strongly orchard. 	               ◻
+sequence s = (s1 , … , sk ) of N such that there exists some
+1 ≤ i ≤ k such that si is a scr-cherry of Ni−1 = N◦(s1 , … , si−1 )         The example in Fig. 12 shows why in the character-
+and Ni−1 has no other scr-cherries. Since s is strong,                   ization in Theorem 8 “for each” cannot be replaced by
+Ni−1 has no cherries or reticulated cherries apart from si .             “there exists”. Even though there exists a cherry picking
+Since si = (x, y) is an scr-cherry, there exists a rooting Di−1          sequence of the required type in the depicted semi-directed
+of Ni−1 where the root subdivides the edge of Ni−1 incident              network N, N is not strongly orchard. Indeed, N also has a
+Theory in Biosciences (2026) 145:4                                                                                              Page 17 of 21 4
+
+strong cherry picking sequence that is not of the required               for each arc (u, v) ∈ A(D) ⧵ A(F) , the vertices u and v are
+type.                                                                    in different trees of F. In this case, we call F a support
+                                                                         forest of D. Note that an element T ∈ F might be a single
+                                                                         vertex or T might contain a vertex v such that dT (v) = 2 .
+Path partitions                                                          If N is a multi-semi-directed network on X, then we say
+                                                                         that N is weakly forest-based if N has a rooting D that is
+We now turn to our final concept for characterizing classes              forest-based.
+of (multi-)semi-directed networks called path partitions,                   Note that since the leaf sets of D and N coincide, no leaf
+see also Francis et al. (2018); Lafond and Moulton (2025);               of N can be a root in D. If every rooting of N with leaf set
+Huber et al. (2022). Basically speaking, for a multi-rooted              X is forest-based, then we call N strongly forest-based. See
+network, this is a partition of the vertex set of the network            Fig. 14 for some examples to illustrate these definitions.
+whose parts induce a collection of directed paths each of                Note if N is semi-directed, then by [(Huber et al. 2022),
+which must end in a leaf. Multi-rooted networks that enjoy               Theorem 1] it follows that if N is weakly (resp. strongly)
+this property are called forest-based networks and can be                forest-based then it is weakly (resp. strongly) tree-based,
+used to model introgression (Scholz et al. 2019); they are               but not conversely (see Fig. 13).
+considered in more depth in Lafond and Moulton (2025);                      Now, suppose that N is a multi-semi-directed net-
+Huber et al. (2022). In this section, we extend the theory of            work on X. For x ∈ X , let P be either a semi-directed
+path partitions from multi-rooted networks to (multi-)semi-              path (u1 = u, u2 , … , uk = x) , k ≥ 2 , in N joining a vertex
+directed networks and shall see that having a path partition             u ∈ V(N) − X to x or the trivial path (u = x) . Then we call
+characterizes weakly tree-based semi-directed networks                   u the handy vertex of P. In addition, for a collection P of
+(Corollary 4).                                                           semi-directed paths in N, we call a maximal connected
+   We begin with some definitions. Suppose that G is a                   subgraph containing only edges {u, v} of N with u, v in
+mixed graph. We call G a forest if it does not contain a                 different semi-directed paths of P a cross component of P .
+cycle. If D is a multi-rooted network on X, then we call D               We now show that a special type of path partition arises
+forest-based if there exists a subgraph F of D in the form               from weakly forest-based multi-semi-directed networks
+of a forest such that F spans V(D) and has leaf set X and,               (see Fig. 15).
+
+
+
+
+Fig. 13  The semi-directed network N1 on X = {a, b, c, d} is weakly      edge labelled ∗ is forest-based and tree-based), but not weakly tree-
+tree-child, weakly forest-based and weakly tree-based. In each case,     child. The semi-directed network N3 on {a, b, c} is weakly tree-based
+the rooting is obtained by subdividing the edge labelled ∗ to obtain     (since the rooting with the root subdividing the edge labelled ∗ is tree-
+the root. The semi-directed network N2 on X is weakly forest-based       based), but not weakly tree-child and not weakly forest-based
+and weakly tree-based (since the rooting with the root subdividing the
+
+
+Fig. 14  A multi-semi-directed
+network N that is weakly forest-
+based but not strongly forest-
+based, along with a rooting D
+of N that is forest-based (the
+dashed and dotted paths are the
+trees that make up the support
+forest) and a rooting D′ of N
+that is not forest-based
+4   Page 18 of 21                                                                                              Theory in Biosciences (2026) 145:4
+
+
+
+
+Fig. 15  A semi-directed network N on X = {a, … , g} that is weakly      tices a, b, v1, v4, v6, v9 and g are the handy vertices of the paths that
+forest-based as D is a rooting of N that is forest-based. The trivial    contain them. The dotted thick black edges make up the three cross
+paths (a), (b) and (g) along with the four semi-directed paths made      components of P , while the thin black, dotted arcs are neither in a
+up by the thin black edges and arcs form a collection of semi-directed   semi-directed path of P nor in a cross component
+paths P in N that satisfies Properties (P1)-(P3) of Lemma 6. The ver-
+
+
+Lemma 6 Let N be a multi-semi-directed network N on X                    e must be the handy vertex of a semi-directed path in P .
+that has a rooting D with leaf set X that is forest-based.               To see this, assume for contradiction that e is an edge in a
+Then there exists a collection P of semi-directed paths in               cross component of P and none of the vertices incident with
+N such that                                                              e, call them u and v, is the handy vertex of a semi-directed
+                                                                         path in P . Then u and v must be an interior vertex of the
+                                                                         semi-directed path in P that contains it, respectively. Since
+      (P1) each vertex of N is in exactly one semi-directed              F is a forest spanning V(D), it follows that one of u and v
+       path in P ;                                                       must be a reticulation in N. Hence (u, v) or (v, u) must be
+      (P2) each semi-directed path in P is either a trivial              an arc in N; a contradiction as {u, v} is an edge in N. Hence,
+       path (x) with x ∈ X or a semi-directed path from a                the claim holds
+       vertex in V(N) − X to some element in X;                              Assume for contradiction, that Property (P3) does not
+      (P3) each cross component of P contains at most one                hold. Then there exists a cross component C of P that con-
+       vertex that is not the handy vertex of a semi-directed            tains two or more vertices that are not the handy vertex of
+       path in P .                                                       the semi-directed path in P that contains them. Let u and u′
+                                                                         denote two such vertices of C and let v and v′ be the vertices
+Moreover, if F is a support forest for D then, for each arc              of N such that {u, v} and {u� , v� } are edges in C and u and
+(u, v) ∈ A(D) ⧵ A(F), we have that                                       v are in different semi-directed paths of P and u′ and v′ are
+      (P4) if {u, v} is an edge or (u, v) is an arc of N                 in different semi-directed paths of P . Note that the semi-
+       and u, v ∈ P ∈ P then u and v appear consecutive                  directed paths in P that contain u and u′ might be the same.
+       on P.                                                             Then, by the previous claim, v and v′ must be the handy
+                                                                         vertices of semi-directed paths in P . Since, by Theorem 2,
+Proof Suppose that F is a support forest for D. We can                   N cannot contain a semi-directed cycle, it follows that C is
+decompose F into a set S of (directed) paths by, for each                a tree. Therefore, there exists a path U in C joining u and u′.
+vertex of F with outdegree greater than 1 in F, arbitrarily              Replacing, if necessary, v with the vertex on U adjacent with
+deleting all but one outgoing arc from F. Let P denote the               u and v′ with the vertex on U adjacent with u′, it follows that
+collection of semi-directed paths in N that corresponds to S .           U has the form (u, v, … , v� , u� ).
+Note that the first arc of a path in S might be different from               Since both {u, v} and {u� , v� } are edges of N and so must
+the first arc of the corresponding semi-directed path in P .             be oriented in any rooting of N and, in combination, Prop-
+We show that Properties (P1)-(P3) are satisfied by P .                   erties (P1) and (P2) imply that any arc on a path P in P is
+   Clearly, P satisfies Properties (P1) and (P2). To see that            oriented towards the handy vertex of P, it follows that {u, v}
+P satisfies Property (P3), we claim first that for every edge e          and {u� , v� } must be oriented towards each other in the orien-
+in a cross component of P one of the vertices incident with              tation of C induced by D. If v ≠ v′ this is not possible since
+Theory in Biosciences (2026) 145:4                                                                                Page 19 of 21 4
+
+
+it implies that some edges in U must have been arcs in N.          cannot be a reticulation in D, a contradiction. Thus, D must
+If v = v� then v is a reticulation in N. Hence, N contains the     be a rooting of N.
+arcs (u, v) and (u� , v) as it is a multi-semi-directed network;      It remains to show that D is forest-based. Let P′ denote
+a contradiction since, by assumption, {u, v} and {u� , v} are      the collections of semi-directed paths in D induced by P .
+edges in C and therefore in N.                                     Then Property (P1) implies that P′ is a forest spanning
+    The remainder is an immediate consequence of the fact          V(D). Furthermore, Property (P2) implies that the leaf set
+that F is a support forest for D. 	                          ◻    of D is X. Lastly, Property (P4) implies that, for each arc
+                                                                   a ∈ A(D) ⧵ A(P� ), the head of a and the tail of a are in dif-
+   Using Lemma 6, we can now characterize multi-semi-              ferent semi-directed paths of P′. Hence, P′ is a support forest
+directed networks that are weakly forest-based (note that this     for D. It follows that N is weakly forest-based. 	 ◻
+is an analogue of [(Huber et al. 2022), Theorem 1]).
+                                                                      As it turns out, in multi-semi-directed networks that are
+Theorem 9 A multi-semi-directed network N on X is weakly           forest-based, collections of semi-directed paths that satisfy
+forest-based if and only if there exists a collection P of         Properties (P1)-(P3) in Lemma 6 also turn out to hold the
+semi-directed paths in N satisfying Properties (P1)-(P4) of        key for our characterization of semi-directed networks that
+Lemma 6.                                                           are weakly tree-based.
+
+Proof By Lemma 6, it suffices to show that if N has a collec-      Corollary 4 A semi-directed network N on X is weakly tree-
+tion of semi-directed paths that satisfies Properties (P1)-(P4)    based if and only if there exists a collection P of semi-
+then N must be weakly forest-based. So suppose that P is           directed paths in N satisfying Properties (P1)-(P3) of
+a collection of semi-directed paths in N that satisfies these      Lemma 6.
+properties.
+    We start with associating a directed graph D to N and          Proof By the definition of weakly tree-based and Lemma 6,
+then show that D is in fact a rooting of N that is forest-based.   it suffices to show that if N contains a collection of semi-
+    To obtain D, we employ Property (P2) and orient, for           directed paths that satisfy Properties (P1)-(P3) of Lemma 6
+each non-trivial semi-directed path P ∈ P , all edges on P         then N is weakly tree-based. Suppose that P is a collection
+towards the unique element in X it contains.                       of semi-directed paths in N that satisfies these properties
+    For each cross component C in P , we do the following.             We create a rooting D of N as in the proof of Theorem 9.
+Let vC be the unique vertex in C that is not a handy vertex        Note that D now has a single root because N is semi-directed.
+of a semi-directed path in P (Property (P3)), if it exists.        To see that D is tree-based, observe that P again spans V(D)
+Otherwise, choose an arbitrary non-leaf vertex v in C to           (by Property (P1)) and has leaf set X (by Property (P2)). By
+play the role of vC.                                               [(Francis et al. 2018), Theorem 2.1], this means that D is
+    In either case, we then orient all edges in C away from vC .   tree-based. Hence, N is weakly tree-based. 	               ◻
+Observe that this is well-defined since C is a tree by Theo-
+rem 2. The obtained directed graph is D.
+    We now show that D is a rooting of N. To this end, we
+need to show that D is a multi-rooted network such that N is       Discussion
+a semi-deorientation of D. Clearly, D is a multi-rooted net-
+work since it cannot contain a directed cycle as otherwise N       In this paper, we have introduced new explicit mathemati-
+would have contained a semi-directed cycle, which is not           cal characterizations of multi-semi-directed networks,
+allowed by Theorem 2. To see that N is a semi-deorientation        overcoming the need to implicitly define such networks
+of N, we need to show that the reticulations of D are pre-         through their rooted counterparts. By extending exist-
+cisely the reticulations of N. Since every reticulation of N is    ing concepts for rooted networks—such as cherry pick-
+also a reticulation of D, it suffices to show that every reticu-   ing sequences, omnians and path partitions—we have
+lation of D is also a reticulation of N. Assume for contradic-     been able to explicitly characterize when a multi-semi-
+tion that D contains a reticulation r that is not a reticulation   directed network has a rooting that is within some com-
+of N. Then since neither a leaf nor a root of N can be a           monly studied classes of rooted networks. In particular,
+reticulation in D, it follows that dNe (r) = dN (r) ≥ 3. Hence,    with the growing interest in semi-directed networks (see
+at least one of the edges incident to r in N is in a cross com-    e.g. Baños 2019; Gross and Long 2018; Gross et al. 2021;
+ponent C of P , and so r is a vertex in C. By Property (P3),       Linz and Wicke 2023; Jingcheng and Ané 2023; Holtgrefe
+it follows that r is a handy vertex of some semi-directed          et al. 2025), our characterizations have the potential to
+path in P or r = vC holds. Hence, C is oriented in D in such       make the mathematical analysis of the algebraic models
+a way that r has exactly one incoming arc. Consequently, r         associated with semi-directed networks more tractable (see
+4   Page 20 of 21                                                                                                  Theory in Biosciences (2026) 145:4
+
+e.g. Maxfield et al. 2025; Englander et al. 2025; Allman                    Declarations
+et al. 2025a).
+   Although we have presented some characterizations for                    Conflict of interest The authors declare no Conflict of interest.
+when a multi-semi-directed network is contained within                      Open Access This article is licensed under a Creative Commons Attri-
+a certain class, there remain some open questions in this                   bution 4.0 International License, which permits use, sharing, adapta-
+direction. For example, generalizing our characterization                   tion, distribution and reproduction in any medium or format, as long
+of strongly orchard semi-directed networks (Theorem 8)                      as you give appropriate credit to the original author(s) and the source,
+                                                                            provide a link to the Creative Commons licence, and indicate if changes
+to multi-semi-directed networks, deciding whether or not                    were made. The images or other third party material in this article are
+strongly forest-based networks can be characterized with                    included in the article’s Creative Commons licence, unless indicated
+path partitions, and seeing if weakly orchard networks can                  otherwise in a credit line to the material. If material is not included in
+be characterized in terms of an HGT-consistent labelling                    the article’s Creative Commons licence and your intended use is not
+                                                                            permitted by statutory regulation or exceeds the permitted use, you will
+directly applied to the multi-semi-directed network are all                 need to obtain permission directly from the copyright holder. To view a
+interesting questions. In addition, similar questions could                 copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+be investigated for other well-known network classes,
+including but not limited to proper-forest-based, normal,
+reticulation visible and tree-sibling networks (Kong et al.
+2022).                                                                      References
+   Finally, our results open up a number of interesting
+algorithmic questions. We have already sketched an effi-                    Allman ES, Ané C, Baños H, Rhodes JA (2025a) Beyond level-1: iden-
+cient algorithm to check if a mixed graph is a (multi-)                          tifiability of a class of galled tree-child networks. Bull Math Biol
+                                                                                 87(11):166
+semi-directed network (see the end of Sect. 4). Develop-                    Allman ES, Baños H, Rhodes JA, Wicke K (2025b) NANUQ+: a
+ing efficient algorithms to check whether a given (multi-)                       divide-and-conquer approach to network estimation. Algorithms
+semi-directed network lies within a fixed class would be a                       Mol Biol 20(1):14
+logical next step. For some classes efficient algorithms fol-               Baños H (2019) Identifying species network features from gene tree
+                                                                                 quartets under the coalescent model. Bull Math Biol 81:494–534
+low directly from our results (see e.g. Theorem 5). However,                Bernardini G, van Iersel L, Julien E, Stougie L (2023) Constructing
+for other classes the existence of efficient algorithms is not                   phylogenetic networks via cherry picking and machine learning.
+immediately obvious. For example, it would be interesting to                     Algorithms Mol Biol 18(1):13
+                                                                            Bernardini G, van Iersel L, Julien E, Stougie L (2024) Inferring phylo-
+determine whether or not there exists a linear time algorithm
+                                                                                 genetic networks from multifurcating trees via cherry picking and
+to check if a semi-directed network is strongly orchard. This                    machine learning. Mol Phylogenetics Evol 199:108137
+question can be answered affirmatively for rooted networks,                 Cardona G, Rosselló F, Valiente G (2009) Comparison of tree-child
+but for semi-directed networks a naive algorithm takes quad-                     phylogenetic networks. IEEE/ACM Trans Comput Biol Bioinform
+                                                                                 6(4):552–569
+ratic time (by checking every possible rooting).
+                                                                            Dempsey J, van Iersel L, Jones M, Murakami Y, Zeh N (2024) A wild
+                                                                                 sheep chase through an orchard. arXiv preprint arXiv:​2408.​10769
+Acknowledgements This paper is based on research that was partly
+                                                                            Döcker J, Linz S (2024) Characterising rooted and unrooted tree-child
+carried out while the authors were in residence at the Institute for Com-
+                                                                                 networks. arXiv preprint arXiv:​2408.​17105
+putational and Experimental Research in Mathematics (ICERM) in
+                                                                            Döcker J, Linz S (2025) On the existence of funneled orientations
+Providence, RI, during the semester program on “Theory, Methods, and
+                                                                                 for classes of rooted phylogenetic networks. Theor Comput Sci
+Applications of Quantitative Phylogenomics”. We thank the organizers
+                                                                                 1023:114908
+for organizing this semester program. We thank Cécile Ané for pos-
+                                                                            Englander AK, Frohn M, Gross E, Holtgrefe N, van Iersel L, Jones M,
+ing an open question during this semester program regarding weakly
+                                                                                 Sullivant S (2025) Identifiability of phylogenetic level-2 networks
+and strongly tree-child semi-directed networks, which motivated part
+                                                                                 under the jukes-cantor model. bioRxiv, pages 2025–04
+of this research. We thank the reviewers for their valuable comments
+                                                                            Erdos PL, Semple C, Steel M (2019) A class of phylogenetic networks
+and suggestions.
+                                                                                 reconstructable from ancestral profiles. Math Biosci 313:33–40
+                                                                            Fischer M, Francis A (2020) How tree-based is my network? proxim-
+Author Contributions All authors contributed equally.
+                                                                                 ity measures for unrooted phylogenetic networks. Discrete Appl
+                                                                                 Math 283:98–114
+Funding This material is based upon work supported by the National
+                                                                            Francis A, Semple C, Steel M (2018) New characterisations of
+Science Foundation (NSF) under Grant No. DMS-1929284 while
+                                                                                 tree-based networks and proximity measures. Adv Appl Math
+the authors were in residence at the Institute for Computational and
+                                                                                 93:93–107
+Experimental Research in Mathematics (ICERM) in Providence, RI,
+                                                                            Francis AR, Steel M (2015) Which phylogenetic networks are merely
+during the semester program on “Theory, Methods, and Applications
+                                                                                 trees with additional arcs? Syst Biol 64(5):768–777
+of Quantitative Phylogenomics”. NH, LvI & MJ were supported by the
+                                                                            Gambette P, Berry V, Paul C (2012) Quartets and unrooted phyloge-
+Dutch Research Council (NWO) under Grant No. OCENW.M.21.306,
+                                                                                 netic networks. J Bioinform Comput Biol 10(04):1250004
+and LvI & MJ also under Grant No. OCENW.KLEIN.125.
+                                                                            Garvardt J, Renken M, Schestag J, Weller M (2023) Finding degree-
+                                                                                 constrained acyclic orientations. In: 18th International sympo-
+Data Availability No datasets were generated or analysed during the
+                                                                                 sium on parameterized and exact computation (IPEC 2023), pages
+current study.
+                                                                                 19–1. Schloss Dagstuhl–Leibniz-Zentrum für Informatik
+Theory in Biosciences (2026) 145:4                                                                                               Page 21 of 21 4
+
+Gross E, Long C (2018) Distinguishing phylogenetic networks. SIAM         Maxfield M, Jingcheng X, Ané C (2025) A dissimilarity measure
+     J Appl Algebra Geom 2(1):72–93                                            for semidirected networks. IEEE Trans Comput Biol Bioinform
+Gross E, van Iersel L, Janssen R, Jones M, Long C, Murakami Y (2021)           22(2):684–696
+     Distinguishing level-1 phylogenetic networks on the basis of data    Scholz GE, Popescu A-A, Taylor MI, Moulton V, Huber KT (2019)
+     generated by markov processes. J Math Biol 83:1–24                        Osf-builder: a new tool for constructing and representing evolu-
+Hall P (1987) On representatives of subsets. Classic papers in Combi-          tionary histories involving introgression. Syst Biol 68(5):717–729
+     natorics, pages 58–62                                                Solís-Lemus C, Ané C (2016) Inferring phylogenetic networks with
+Holtgrefe N, Huber KT, van Iersel L, Jones M, Martin S, Moulton V              maximum pseudolikelihood under incomplete lineage sorting.
+     (2025) Squirrel: reconstructing semi-directed phylogenetic level-1        PLoS Genet 12(3):e1005896
+     networks from four-leaved networks or sequence alignments. Mol       Soraggi S, Wiuf C (2019) General theory for stochastic admixture
+     Biol Evol 42(4):msaf067                                                   graphs and f-statistics. Theor Popul Biol 125:56–66
+Huber KT, Moulton V, Scholz GE (2022) Forest-based networks. Bull         Urata T, Yokoyama M, Miyaji H, Hayamizu M (2024) Orientability
+     Math Biol 84(10):119                                                      of undirected phylogenetic networks to a desired class: practical
+Huber KT, van Iersel L, Janssen R, Jones M, Moulton V, Murakami Y,             algorithms and application to tree-child orientation. arXiv preprint
+     Semple C (2024) Orienting undirected phylogenetic networks. J             arXiv:​2407.​09776
+     Comput Syst Sci 140:103480                                           van Iersel L, Janssen R, Jones M, Murakami Y (2022) Orchard net-
+Huson DH, Rupp R, Scornavacca C (2010) Phylogenetic networks:                  works are trees with additional horizontal arcs. Bull Math Biol
+     concepts, algorithms and applications. Cambridge University               84(8):76
+     Press                                                                van Iersel L, Kelk S, Stamoulis G, Stougie L, Boes O (2018) On
+Janssen R, Murakami Y (2021) On cherry-picking and network con-                unrooted and root-uncertain variants of several well-known phy-
+     tainment. Theor Comput Sci 856:121–150                                    logenetic network problems. Algorithmica 80:2993–3022
+Jetten L, van Iersel L (2016) Nonbinary tree-based phylogenetic net-      Jingcheng X, Ané C (2023) Identifiability of local and global features
+     works. IEEE/ACM Trans Comput Biol Bioinform 15(1):205–217                 of phylogenetic networks from average distances. J Math Biol
+Kinene T, Wainaina J, Maina S, Boykin LM (2016) Rooting trees,                 86(1):12
+     methods for. Encyclopedia of evolutionary biology, page 489
+Kong S, Pons JC, Kubatko L, Wicke K (2022) Classes of explicit phy-       Publisher's Note Springer Nature remains neutral with regard to
+     logenetic networks and their biological and mathematical signifi-    jurisdictional claims in published maps and institutional affiliations.
+     cance. J Math Biol 84(6):47
+Lafond M, Moulton V (2025) Path partitions of phylogenetic networks.
+     Theor Comput Sci 1024:114907
+Linz S, Wicke K (2023) Exploring spaces of semi-directed level-1
+     networks. J Math Biol 87(5):70
+Maeda S, Kaneko Y, Muramatsu H, Murakami Y, Hayamizu M (2023)
+     Orienting undirected phylogenetic networks to tree-child network.
+     arXiv preprint arXiv:​2305.​10162
+
