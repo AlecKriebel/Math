@@ -1,0 +1,2692 @@
+===== PDF PAGE 1 =====
+arXiv:1411.6310v3  [math.NT]  14 Dec 2015
+On parabolic induction on inner forms of the
+general linear group over a non-archimedean
+local ﬁeld
+Erez Lapid∗ Alberto Mínguez†
+December 15, 2015
+T o Joseph Bernstein, in admiration
+Abstract
+We give new criteria for the irreducibility of parabolic ind uction on
+the general linear group and its inner forms over a local non- archimedean
+ﬁeld. In particular, we give a necessary and sufﬁcient condi tion when the
+inducing data is of the form π ⊗ σ where π is a ladder representation and
+σ is an arbitrary irreducible representation. As an applicat ion we simplify
+the proof of the classiﬁcation of the unitary dual.
+CONTENTS
+1 Preliminaries 4
+2 Classiﬁcation 7
+3 Left multiplier representations 15
+4 Irreducibility of Z(∆) × σ 21
+5 Applications 29
+6 A simple proof of T adi´ c hypothesis (U0) 40
+A The admissible dual of GLm(D)
+by Erez Lapid, Alberto Mínguez and Marko T adi´ c 43
+∗ Partially supported by grant # 711733 from the Minerva Found ation
+† partially supported by the ANR ArShiFo ANR-BLAN-0114, MTM2 010-19298 (FEDER) and
+P12-FQM-2696
+1
+
+===== PDF PAGE 2 =====
+INTRODUCTION
+One of the cornerstones of the representation theory of redu ctive groups over
+non-archimedean local ﬁelds is the seminal work of Bernstei n and Zelevinsky
+in the 1970s [16–18]. Much of their work is concentrated on th e general linear
+group. It culminated in Zelevinsky’s classiﬁcation of the ( complex, smooth)
+irreducible representations of GLn(F ) (where F is a non-archimedean local
+ﬁeld) in terms of multisegments – an almost purely combinato rial object [72].
+Roughly speaking, the basic building blocks are supercuspidal representations.
+From them one constructs (using parabolic induction) the so -called segment
+representations. A general irreducible representation is given as a subrepre-
+sentation of the parabolic induction of the tensor product, in a certain order, of
+segment representations.
+Later on this classiﬁcation was extended to inner forms of th e general lin-
+ear groups, namely to the groups GLn(D) where D is a local non-archimedean
+division algebra. (See Appendix A for the history of this pro blem.)
+While the work of Bernstein and Zelevinsky answered some of t he most
+fundamental questions in the representation theory of GLn(F ), there are still
+some outstanding problems. For instance, it is not clear how to combinato-
+rially characterize (in terms of multisegments) the irredu cibility of parabolic
+induction in general or even whether such a characterizatio n is realistic. (In
+principle, it is possible to determine irreducibility of pa rabolic induction either
+by computing a vast number of Kazhdan–Lustzig polynomials [24, 29, 70, 71] or
+using algorithms related to canonical bases (cf. [38] and th e references therein).
+However, neither method is very practical for large n.)
+In this paper we will study a special case of this problem. Fir st, we give
+a complete answer in the case where one of the representation s (call it π ) is a
+segment representation. (The case where π is supercuspidal was considered in
+[41] and [32] independently .) W e will actually give two comb inatorial criteria
+– one in terms of the Zelevinsky involution (for which a combi natorial recipe
+was given by Mœglin and W aldspurger in [45]) and another whic h looks su-
+perﬁcially simpler. See Proposition 4.1 and Corollary 4.14 in the body of the
+paper for the statement of the ﬁrst and second combinatorial criteria respec-
+tively . It is straightforward to extend these criteria from segment representa-
+tions to unramiﬁed or generic representations (see Corolla ry 5.3). Remarkably ,
+the ﬁrst criterion works equally well when π is a Speh representation (Corol-
+lary 5.7). Moreover, building on the square-integrable case we will also provide
+(Corollary 5.16) a complete (and computationally feasible , albeit complicated)
+answer in the case where π is a ladder representation (or more generally , an
+irreducible representation parabolically induced from la dder representations).
+This is a class of representations introduced in [37] – see al so [12]. W e also give
+an alternative, more aesthetic, necessary and sufﬁcient combinatorial condition
+for irreducibility in this case (Proposition 5.20).
+Our method is largely combinatorial using the Bernstein–Ze levinsky ge-
+2
+
+===== PDF PAGE 3 =====
+ometric lemma as the main tool. W e will also use intertwining operators and
+the Zelevinsky involution which interplays between the Zel evinsky classiﬁca-
+tion and the (reﬁned) Langlands classiﬁcation in the case at hand. The proofs
+apply equally well for GLn(D). As an application we will proffer some (eas-
+ily veriﬁable) sufﬁcient conditions for the irreducibilit y of parabolic induction.
+As a further application we present a simple, essentially co mbinatorial, proof
+of the necessary ingredients in the T adi´ c program for the cl assiﬁcation of the
+unitary dual of GLn(D) [65]. This problem emerged after T adi´ c had completed
+the classiﬁcation in the case D = F [63]. In the general case, the program was
+completed in [4] but the proof uses rather heavy machinery . ( See §6 for a more
+complete history of the problem.)
+The contents of the paper are as follows. After setting up the notation and
+terminology in §1 we recall Zelevinsky’s classiﬁcation in § 2, deferring a more
+elaborate discussion to the appendix. In §3 we discuss the ce ntral notion of this
+paper, namely a ‘left multiplier’ representation (LM). Thi s is an irreducible rep-
+resentation π of GLn(D) such that for any m ≥ 1 and any irreducible represen-
+tation σ of GLm(D), the parabolic induction π × σ admits a unique irreducible
+subrepresentation, which occurs with multiplicity one in t he Jordan–Hölder
+sequence of π × σ . W e provide examples for such π ’s. W e note that an example
+of Leclerc shows that not every irreducible representation is LM.
+In §4 we study the parabolic induction π × σ where π is a segment rep-
+resentation and σ is an arbitrary representation. W e provide a combinatorial
+description of the Zelevinsky parameters of the socle of π × σ as well as a char-
+acterization of the irreducibility of π × σ . In §5 we give some applications of
+this characterization. Namely , we provide a sufﬁcient comb inatorial criterion
+for the irreducibility of π × σ (for general irreducible representations π and σ ).
+While this condition is not necessary in general, we do get a precise criterion for
+irreducibility in the case where π is a Speh representation, or more generally
+a ladder representation. In §6 we revisit the classiﬁcation of the unitary dual
+of GLn(D). In the case where D is commutative, this is a well known result of
+T adi´ c [63]. T adi´ c also formulated the necessary ingredients to deal with general
+D and proved some of them [65]. His program was eventually comp leted by
+the combined efforts of several mathematicians (culminati ng in [4]). However,
+so far all proofs ultimately reduced the problem to the case D = F , and require
+ponderous prerequisites. As a consequence of our results in previous sections,
+we provide in §6 a simple proof of the classiﬁcation of the uni tary dual which
+uses minimum prerequisites and which is uniform in D and the characteristic
+of F . In the appendix, joint with Marko T adi´ c we revisit the classiﬁcation of the
+admissible dual of GLn(F ) and its inner forms and outline a simple proof of
+the classiﬁcation with minimal sine qua nons. More precisel y , we only use the
+combinatorics of the Jacquet modules and certain unitarity tricks in the spirit
+of [23] to deal with some minimal cases. (Thus, the proof is no t completely al-
+gebraic.) Notably , at some point we use the group GLn2 to derive results about
+GLn. The proof is very much along the lines of [42] except that we r eplace the
+3
+
+===== PDF PAGE 4 =====
+ingredients which rely on type theory by a self-contained ar gument.
+W e hope that better understanding of the representation the ory of the
+general linear group will shed some light on the representat ion theory of clas-
+sical groups, and in particular on their unitary dual.
+Acknowledgment
+W e are happy to humbly dedicate this paper in honor of Joseph B ernstein
+on the occasion of his 70th birthday . Apart from his global ma thematical im-
+pact, Bernstein has been an inspirational ﬁgure and a role model to us, as he has
+been to a great many mathematicians. The ﬁrst-named author i s fortunate to
+have been taught by Bernstein several courses in his early mathematical educa-
+tion, with a lasting impact. Beyond that, Bernstein has alwa ys been extremely
+generous with his time and ideas.
+Part of this work was done while the authors were visiting NYU Shang-
+hai in spring 2014. W e are both grateful for the generous hosp itality of NYU
+Shanghai. During the last part of this work, the ﬁrst-named a uthor was visiting
+MSRI. He would like to thank MSRI and the organizers of the pro gram “New
+Geometric Methods in Number Theory and Automorphic Forms” f or the in-
+vitation. W e would like to thank Joseph Bernstein, Bernard L eclerc and Marko
+T adi´ c for helpful discussions and communication. Especially we would like to
+thank Marko T adi´ c for joining us in writing the appendix. Thanks are also due
+to Stephen DeBacker, Guy Henniart and Colette Mœglin for use ful correspon-
+dence and to Arnab Mitra, Omer Offen and Eitan Sayag for their comments
+on the paper. Finally , we are grateful to the referee for care fully reading the
+manuscript and for providing an argument which simpliﬁes so me aspects of
+the original version of the paper.
+1 P RELIMINARIES
+Throughout the paper let F be a non-archimedean local ﬁeld with normalized
+absolute value |·|and let D be a ﬁnite-dimensional central division F -algebra.
+For any m ∈ Z≥ 1 let Gm = GL m(D) and let R(Gm) be the category
+of smooth complex representations of Gm of ﬁnite length. If π is an object in
+R(Gm) we write deg(π ) = m. Denote by Irr(Gm) the set of equivalence classes
+of irreducible objects of R(Gm) and by C (Gm) the subset consisting of super-
+cuspidal representations. (By convention we deﬁne G0 as the trivial group and
+Irr(G0) consists of the one-dimensional representation of G0.) Let Irr be the
+disjoint union of Irr(Gm), m ≥ 0. Similarly , letC = ∪ m≥ 1C (Gm).
+Let Rm be the Grothendieck group of R(Gm) and R = ⊕
+m≥ 0
+Rm. The sub-
+monoid of R consisting of ﬁnite sums of elements in Irr (including 0) is denoted
+by R+. The ordering in R is deﬁned by π1 ≤ π2 if π2 − π1 ∈ R+. The canonical
+map from the objects of R(Gm) to Rm will be denoted by π ↦→ [π ].
+4
+
+===== PDF PAGE 5 =====
+For any π ∈ R(Gm), we denote by π∨ the contragredient of π . (The sets
+Irr and C are invariant under ∨ .) If moreover χ is a complex-valued character
+of F∗ , we write πχ for the twist of π by χ ◦ Nrd where Nrd : Gm → F∗ is the
+reduced norm.
+1.1 Induction and Jacquet functor
+Let α = (m1, . . . , m r) be a composition of m. (Sometimes, it will be convenient
+to allow mi = 0 .) W e denote by Mα the subgroup of Gm isomorphic to Gm1 ×
+· · · ×Gmr consisting of invertible matrices which are diagonal by blo cks of size
+m1, . . . , m r and by Pα the subgroup of Gm generated by Mα and the upper
+unitriangular matrices. A standard parabolic subgroup of Gm is a subgroup of
+the form Pα and its (standard) Levi factor is Mα .
+Write rα for the normalized Jacquet functor associated to Pα . Often, α
+will be clear from the context and we will simply write r. If πi ∈ R(Gmi),
+i = 1, . . . , r we write π1 × · · · ×πr ∈ R(Gm) for the representation parabolically
+induced from π1 ⊗ · · · ⊗ πr via the parabolic subgroup Pα . If π ∈ R(Gm), we
+also write π× n = π × · · · ×π (n times).
+For any π ∈ Irr there exist ρ1, . . . , ρ r ∈ C , uniquely determined up to
+permutation, such that π is a subrepresentation of ρ1 × · · · × ρr. In the sequel
+we denote by supp(π ) ⊂ C the set (not the multiset) {ρ1, . . . , ρ r} and call it
+the supercuspidal support of π . More generally , if π ∈ R(Gm) then supp(π ) is by
+deﬁnition the union of the supercuspidal supports of the com position factors
+of π . If π is of the form π1 × · · · × πr with π1, . . . , π k ∈ Irr then all composition
+factors of π have the same supercuspidal support.
+The map:
+([π1], . . . , [πr]) ↦→ [π1 × · · · ×πr]
+induces by linearity a Z-multilinear map from Rm1 × · · · × Rmr to Rm. This
+endows R with the structure of an associative, commutative, Z≥ 0-graded ring.
+(For the commutativity see [19, §5.4] which is valid in any ch aracteristic.)
+1.2 Geometric Lemma
+Next we recall the combinatorial version of the Geometric Lemma of Bernstein–
+Zelevinsky [18] (or more precisely , its consequence after s emisimpliﬁcation).
+Let α = ( m1, . . . , m r) and β = ( n1, . . . , n s) be two compositions of an integer
+m ≥ 1. For every i ∈ { 1, . . . , r }, let πi ∈ R(Gmi ). Denote by Matα,β the (ﬁnite)
+set of r × s matrices B = (bi,j ) with non-negative integer entries such that:
+s∑
+j=1
+bi,j = mi, i ∈ { 1, . . . , r },
+r∑
+i=1
+bi,j = nj, j ∈ { 1, . . . , s }.
+5
+
+===== PDF PAGE 6 =====
+Fix B ∈ Matα,β . For any i ∈ { 1, . . . , r }, α i = ( bi, 1, . . . , b i,s ) is a composition of
+mi and we write the composition factors of rα i (πi) as
+σ (k)
+i = σ (k)
+i, 1 ⊗ · · · ⊗σ (k)
+i,s , σ (k)
+i,j ∈ Irr(Gbi,j ), k ∈ { 1, . . . , l i},
+where li is the length of rα i (πi). For any j ∈ { 1, . . . , s } and a sequence k =
+(k1, . . . , k r) of integers such that 1 ≤ ki ≤ li, deﬁne
+ΣB,k
+j = σ (k1)
+1,j × · · · ×σ (kr )
+r,j ∈ R(Gnj ).
+Then we have:
+[rβ (π1 × · · · ×πr)] =
+∑
+B∈ Matα,β , k
+[ΣB,k
+1 ⊗ · · · ⊗ΣB,k
+s ].
+Let ρ ∈ C and π ∈ R(Gn). W e say that π is left ρ-reduced if there does not
+exist π′ ∈ Irr such that ρ ⊗ π′ ≤ [r(π )]. If π ∈ Irr, this is equivalent to not having
+π′ ∈ Irr such that֒→ρ × π′.
+If I ⊂ C then we say that π is left I-reduced if π is left ρ-reduced for all
+ρ ∈ I.
+Lemma 1.1. For every π ∈ Irr and I ⊂ C there exist unique πI , π¬ I ∈ Irr such that
+1.֒→πI × π¬ I .
+2. supp(πI ) ⊂ I.
+3. π¬ I is left I-reduced.1
+Moreover, π is the unique irreducible subrepresentation of πI × π¬ I .
+Proof. This is proved in [32, Lemma 2.1.2]. Although, the Lemma is st ated in
+[32] only for D = F and representations in the line of a cuspidal representatio n
+ρ (see §2.4), the proof therein is valid in our setting.
+Note that in the case where I = {ρ} is a singleton, πI is of the form ρ× a
+for some a ∈ Z≥ 0.
+W e single out the following consequence of the geometric lem ma:
+Lemma 1.2. 1. Let I ⊂ C and suppose that πi ∈ R(Gmi), i = 1 , . . . , r are left
+I-reduced. Then π1 × · · · ×πr is left I-reduced.
+2. Let πi ∈ R(Gmi ) and σi ∈ Irr Gmi, i = 1 , 2. Assume that σi occurs with
+multiplicity one in [πi], i = 1 , 2 and that π2 is left supp(π1)-reduced. Then
+σ1 ⊗ σ2 occurs with multiplicity one in r(π1 × π2).
+1W e caution thatπ ¬ I is not π J where J is the complement of I.
+6
+
+===== PDF PAGE 7 =====
+1.3 Unique irreducible subrepresentations in induced repr esentations
+Let m ≥ 1 and let π ∈ R(Gm). Recall that the socle (resp, cosocle) of π , denoted
+by soc(π ) (resp., cos(π )), is the largest semi-simple subrepresentation (resp.,
+quotient) of π . Thus, cos(π )∨ = soc( π∨ ).
+Deﬁnition 1.3. We say that π ∈ R(Gn) is socle irreducible (SI) if soc(π ) is irre-
+ducible and occurs with multiplicity one in [π ].
+SI representations play an important role in the representation theory of p-
+adic groups and in particular in the classiﬁcation of irredu cible representations
+of Gn, n ≥ 1. W e will recall that below .
+The following straightforward remark will be used repeated ly .
+Remark 1.4. Let π be a subrepresentation of π′. If π′ is SI then so is π and soc(π′) =
+soc(π ).
+W e could of course deﬁne “cosocle irreducible” in an analogous way . Note
+that π is cosocle irreducible if and only if π∨ is SI.
+The following standard lemma will be useful.
+Lemma 1.5. Assume that πi ∈ R(Gni ), i = 1, 2 are SI. Let σi = soc( πi) ∈ Irr Gni ,
+i = 1, 2 and suppose that σ1 ⊗ σ2 appears with multiplicity 1 in
+[r(π1 × π2)].
+(For instance, this holds if π2 is left supp(π1)-reduced, by Lemma 1.2.) Then π1 × π2
+(and hence also σ1 × σ2) is SI and soc(π1 × π2) = soc( σ1 × σ2).
+Proof. Note that if τ is a subrepresentation of π1 × π2 then by Frobenius reci-
+procity there is a non-trivial map from r(τ) to π1 ⊗ π2. Thus, σ1 ⊗ σ2 occurs
+as a subquotient of r(τ). Thus, if τ, τ′ are distinct (not necessarily inequivalent)
+irreducible subrepresentations of π1 × π2 then
+2[σ1 ⊗ σ2] ≤ [r(τ + τ′)] ≤ [r(π1 × π2)],
+a contradiction. It follows that soc(π1 × π2) is irreducible. Similarly , we cannot
+have 2[soc(π1 × π2)] ≤ [π1 × π2] for otherwise, applying r(n1,n 2) we would get
+2[σ1 ⊗ σ2] ≤ [r(π1 × π2)] which once again contradicts the assumption of the
+lemma. The last part follows from Remark 1.4.
+In particular, by induction on k (using Lemmas 1.2 and 1.5) if ρ1, . . . , ρ k ∈
+C are distinct then ρ1 × · · · ×ρk is SI. (Of course, this case is particularly simple
+since the Jacquet modules are multiplicity free.)
+2 C LASSIFICATION
+In this section we review the classiﬁcation of Irr in terms of multisegments
+and set some more notation. All the results in this section ar e well known. In
+Appendix A we will recall the history of the classiﬁcation an d outline a proof
+along the lines of [42] which uses minimum prerequisites.
+7
+
+===== PDF PAGE 8 =====
+2.1 Segments
+Let m ∈ Z≥ 1 and ρ ∈ C (Gm). T o ρ one can associate (see Theorem A.1) an
+unramiﬁed character νρ of F∗ of the form νρ = |·|sρ
+where sρ ∈ R>0 with the
+property that for any ρ′ ∈ C (Gm′), m′ ∈ Z≥ 1 the induced representation ρ × ρ′
+is reducible if and only if m′ = m and either ρ′ ≃ ρνρ or ρ ≃ ρ′νρ . W e write
+→
+ρ = ρνρ and
+←
+ρ = ρν− 1
+ρ . Note that ν→
+ρ = ν←
+ρ = νρ .
+Let A be a subset of C . By deﬁnition, a connected component of A is an
+equivalence class of the equivalence relation generated by ρ ∼
+→
+ρ whenever ρ
+and
+→
+ρ are in A.
+Deﬁnition 2.1. A segment ∆ is a ﬁnite nonempty connected subset of C (i.e., a single
+connected component). Thus, ∆ is of the form
+∆ = {ρν c
+ρ , ρνc+1
+ρ , . . . , ρν d
+ρ } (2.1)
+where ρ ∈ C and c, d ∈ Z are two integers such that c ≤ d. We denote ∆ as above by
+[c, d]ρ . Thus, [c, d]ρ = [c′, d′]ρ′ precisely when ρν c
+ρ = ρ′νc′
+ρ′ and ρν d
+ρ = ρ′νd′
+ρ′ .
+We write Seg for the set of all segments (as we vary ρ ∈ C ).
+W e writel(∆) for the size of ∆ (also called the length of ∆). By convention
+we also set [c, d]ρ = ∅ if d < c .
+W e denote the extremities of ∆ = [ c, d]ρ by b(∆) = ρν c
+ρ ∈ C and e(∆) =
+ρν d
+ρ ∈ C respectively . W e also write:
+∆∨ = [− d, − c]ρ∨
+←
+∆ = [ c − 1, d − 1]ρ
+∆− = [c, d − 1]ρ
+− ∆ = [ c + 1, d]ρ
+∆+ = [c, d + 1]ρ
++∆ = [ c − 1, d]ρ .
+T o any segment∆ = [ c, d]ρ deﬁne
+Z(∆) = soc( ρν c
+ρ × ρν c+1
+ρ × · · · ×ρν d
+ρ ) ≃ cos(ρν d
+ρ × ρν d− 1
+ρ × · · · ×ρν c
+ρ ).
+It is an irreducible representation which can be characteri zed as the unique
+π ∈ Irr such that
+r(π ) = ρν c
+ρ ⊗ ρν c+1
+ρ ⊗ · · · ⊗ρν d
+ρ . (2.2)
+Note in particular that Z(∆) is left C \ {b(∆)}-reduced. It will be useful to set
+Z(∅) equal to the one-dimensional representation of the trivial group G0.
+W e haveZ(∆∨ ) = Z(∆)∨ .
+8
+
+===== PDF PAGE 9 =====
+Deﬁnition 2.2. Let ∆ = [ c, d]ρ and ∆′ = [ c′, d′]ρ′ be two segments. We say that ∆
+and ∆′ are linked if ∆ ∪ ∆′ forms a segment but neither ∆ ⊂ ∆′ nor ∆′ ⊂ ∆. If ∆
+and ∆′ are linked and ρ′νc′
+ρ′ = ρν c+j
+ρ with j > 0 then we say that ∆ precedes ∆′ and
+write ∆ ≺ ∆′.
+Thus, if ∆ and ∆′ are linked then either ∆ ≺ ∆′ or ∆′ ≺ ∆, but not both.
+2.2 Multisegments and classiﬁcation
+Given a set X, write N(X) for the commutative semigroup of maps from X to
+N with ﬁnite support.
+Deﬁnition 2.3. A multisegment is a multiset of segments, that is an element i n
+Mult := N(Seg).
+W e write a multisegmentm as a ﬁnite sum m = ∆ 1 + · · ·+ ∆N , with ∆i ∈
+Seg. For such m we deﬁne the support of m, denoted supp m, to be ∪ ∆i ⊂ C .
+W e also writem∨ = ∆∨
+1 + · · ·+ ∆∨
+N .
+A sequence of segments (∆1, . . . , ∆N ) is said to be ordered if for every
+1 ≤ i < j ≤ N , ∆i does not precede ∆j . If m ∈ Mult and (∆1, . . . , ∆N ) is
+an ordered sequence of segments such that m = ∆ 1 + · · ·+ ∆N , we say that
+(∆1, . . . , ∆N ) is an ordered form of m.
+For any ordered form (∆1, . . . , ∆N ) of a multisegment m ∈ Mult let
+ζ(m) := Z(∆ 1) × · · · ×Z(∆N )
+be the standard module. Also, set
+˜ζ(m) := Z(∆ N ) × · · · ×Z(∆1).
+Up to isomorphism, ζ(m) and ˜ζ(m) do not depend on the choice of the ordered
+form. Note that [ζ(m)] = [ ˜ζ(m)].
+The set Irr is in natural bijection with Mult (the Zelevinsky classiﬁcations).
+More precisely
+Theorem 2.4. For any m ∈ Mult, ζ(m) is SI and the map
+m ↦→ Z(m) := soc( ζ(m)) = cos( ˜ζ(m))
+is a bijection from Mult to Irr.
+Given m, n ∈ Mult we write m ̸≺ n for the condition that ∆ ̸≺ ∆′ for any
+∆ in m and ∆′ ∈ n.
+W e will say that m = ∆ 1 + · · ·+ ∆ N is totally unlinked if the ∆i’s are
+pairwise unlinked.
+In the following proposition we record some properties of th e map m ↦→
+Z(m) which we will use often. (See §A.3.) W e thank the referee for s uggesting
+to us to add part 3.
+9
+
+===== PDF PAGE 10 =====
+Proposition 2.5. Let m, n ∈ Mult. Then
+1. supp Z(m) = supp m.
+2. The induced representation ζ(m) is irreducible if and only if m is totally un-
+linked.
+3. If m = ∆ 1 + · · ·+ ∆N (in any order) then there exists a non-zero intertwining
+map
+Z(∆1) × · · · ×Z(∆N )
+f
+− → ζ(m).
+Moreover, [Z(m)] ̸≤ [Ker f ].
+4. [Z(m)] ≤ [ζ(n)] if and only if m ⊢ n, where ⊢ is the “union-intersection” order
+of Zelevinsky (see [72, §7]).
+5. Z(m + n) occurs with multiplicity one in [Z(m) × Z(n)].
+6. If m ̸≺ n then Z(m+n) = soc(Z( m)× Z(n)) = cos(Z( n)× Z(m)). In particular,
+if both m ̸≺ n and n ̸≺ m, i.e. if no ∆ ∈ m and ∆′ ∈ n are linked, then
+Z(m) × Z(n) is irreducible.
+7. Z(m∨ ) = Z( m)∨ .
+2.3 Langlands classiﬁcation
+The Langlands classiﬁcation for the groups Gn runs parallel to the Zelevinsky
+classiﬁcation. T o any segment ∆ = [ c, d]ρ we denote by L(∆) the cosocle of
+ρν c
+ρ × ρν c+1
+ρ × · · · ×ρν d
+ρ . It is the unique π ∈ Irr such that
+r(π ) = ρν d
+ρ ⊗ ρν d− 1
+ρ ⊗ · · · ⊗ρν c
+ρ . (2.3)
+The representation L(∆) is essentially square-integrable. Conversely , any
+essentially square-integrable π ∈ Irr is of the form L(∆) for some ∆ ∈ Seg.
+However, we will not use this fact.
+For any ordered form (∆1, . . . , ∆N ) of a multisegment m ∈ Mult deﬁne
+λ(m) := L(∆ 1) × · · · ×L(∆N ) and ˜λ(m) := L(∆ N ) × · · · ×L(∆1). As before, λ(m)
+and ˜λ(m) do not depend (up to an isomorphism) on the choice of the order ed
+form.
+Theorem 2.6. For any m ∈ Mult, λ(m)∨ is SI and the map
+m ↦→ L(m) := cos( λ(m)) = soc( ˜λ(m))
+is a bijection from Mult to Irr which satisﬁes the analogue of Proposition 2.5 with
+• Z(·) replaced by L(·),
+10
+
+===== PDF PAGE 11 =====
+• ζ(·) replaced by λ(·),
+• the map f in part 3 goes in the opposite direction, and,
+• the condition m ̸≺ n replaced by n ̸≺ m in part 6.
+By Theorem 2.4, for any m ∈ Mult there exists a unique multisegment
+mt ∈ Mult such that L(m) = Z( mt). On a combinatorial level, the map m ↦→ mt
+is described by the Mœglin–W aldspurger algorithm (MW-algorithm) of [45]. In
+particular, it is an involution, i.e., Z(m) = L( mt). See §A.5 and also below .
+2.4 Cuspidal lines
+Let ρ ∈ C . Deﬁne
+Zρ = {ρν a
+ρ : a ∈ Z},
+Z≤ ρ = {ρν a
+ρ : a ∈ Z≤ 0},
+Segρ = {∆ ∈ Seg : ∆ ⊂ Zρ },
+Irrρ = {π ∈ Irr : supp( π ) ⊂ Zρ },
+Multρ = {m ∈ Mult : supp( m) ⊂ Zρ } = N(Segρ ).
+W e callZρ the line of ρ. Irreducible representations (resp., multisegments) wit h
+support in a line are called rigid representations (resp., multisegments). It fol-
+lows immediately from Proposition 2.5 part 6, that if the lin es of ρ1, . . . , ρ r are
+distinct (hence, pairwise disjoint) and πi ∈ Irrρ i, i = 1, . . . , r then
+π1 × · · · ×πr
+is irreducible. In practice, this allows to conﬁne ourselve s to rigid representa-
+tions and rigid multisegments.
+W e write≤ for the partial order on Zρ inherited by Z. (Of course this does
+not depend on the choice of ρ.) Given π ∈ Irrρ we write e(π ) ∈ C (resp., b(π ))
+for the largest (resp., smallest) element in supp π . Similarly , we use the notation
+e(m) and b(m) for m ∈ Multρ .
+W e deﬁne two lexicographic orders on Segρ . Namely , given ∆, ∆′ ∈ Segρ
+we write ∆ ≥ e ∆′ if e(∆) ≥ e(∆′) and either e(∆) > e (∆′) or b(∆) ≥ b(∆′).
+Similarly ,∆ ≥ b ∆′ if b(∆) ≥ b(∆′) and either b(∆) > b (∆′) or e(∆) ≥ e(∆′).
+Given m ∈ Mult we will also write ∆ <b m if ∆ <b ∆′ for all ∆′ ∈ m.
+Given m ∈ Multρ let us write ∆max(m) (resp., ∆min(m)) for the maximal
+(resp., minimal) segment in m with respect to ≤ e.
+A sequence (∆1, . . . , ∆N ) of segments in the same line is right aligned
+(resp., left aligned) if ∆1 ≥ e · · · ≥e ∆N (resp., ∆1 ≥ b · · · ≥b ∆N ). (Either condi-
+tion implies ordered.) T o each rigid multisegment m we can associate a unique
+right aligned sequence of segments (∆1, . . . ∆N ) such that m = ∆ 1 + · · ·+ ∆N .
+11
+
+===== PDF PAGE 12 =====
+W e call it the right aligned form of m. Similarly , there is a unique left aligned
+form of m.
+W e mention the following consequence of Lemma 1.2.
+Remark 2.7. Let m = ∆ 1 + · · ·+ ∆ N ∈ Multρ be a multisegment such that, for
+every 1 ≤ i ≤ N , ∆i is not contained in Z≤ ρ . Then λ(m), ˜λ(m) and therefore also
+L(m), are left Z≤ ρ -reduced.
+Given ρ ∈ C and π ∈ Irrρ we will write for brevity π≤ ρ and π̸≤ ρ for πI
+and π¬ I respectively (see Lemma 1.1) where I = Z≤ ρ .
+W e also use the following convention: for any propertyP of segments and
+m = ∆1 + · · ·+ ∆N ∈ Mult we set
+mP =
+∑
+i:∆i satisﬁes P
+∆i. (2.4)
+For instance, for any ∆ ∈ Segρ and m ∈ Multρ we write
+m≤ b∆ =
+∑
+i:∆i≤ b∆
+∆i.
+Using Theorem 2.6 and Remark 2.7 we can describe π≤ ρ and π̸≤ ρ combi-
+natorially in terms of the Langlands classiﬁcation as follo ws: if π = L(n) ∈ Irrρ
+then
+π≤ ρ = L(n≤ eρ )
+and
+π̸≤ ρ = L(n>eρ ).
+Suppose that π = Z( m) ∈ Irrρ with m = ∆ 1 + · · ·+ ∆N and consider the
+Mœglin–W aldspurger algorithm for m [45]. The segments ∆′
+1, . . . , ∆′
+N′ of mt
+are obtained by a recursive procedure one at a time. More prec isely , one forms
+a sequence of multisegments mi, i = 0 , . . . , N ′ with m0 = m and mN′ = 0 such
+that mi is obtained from mi− 1 by removing the end points of certain segments
+of it, and these end points form the segment ∆′
+i. Then π≤ ρ = Z(mk) where k is
+the smallest index such that supp(mk) ⊂ Z≤ ρ .
+For any rigid n ∈ Multρ denote by n− what remains from n after the ﬁrst
+step of MW algorithm is performed. More precisely (cf. [45, § II.2]), writing n =
+∆′
+1 + · · ·+ ∆′
+N′ with ∆′
+1 ≥ e · · · ≥e ∆′
+N′ let k ≥ 0 be the maximal integer for
+which there exist indices j0, . . . , j k such that e(∆′
+j0 ) = e(n) and ∆′
+jl ≺ ∆′
+jl− 1
+and e(∆′
+jl ) = e(
+←
+∆′jl− 1), l = 1, . . . , k . Deﬁne
+j0 = min{j : e(∆′
+j) = e(n)}, (2.5a)
+jl = min{j : ∆′
+j ≺ ∆′
+jl− 1 and e(∆′
+j ) = e(
+←
+∆′jl− 1 )}, l = 1, . . . , k. (2.5b)
+12
+
+===== PDF PAGE 13 =====
+Then
+n− = n +
+k∑
+l=0
+(∆′
+jl
+− − ∆′
+jl ).
+W e havee(∆max(nt)) = e(n) = e(∆′
+j0 ), b(∆max(nt)) = e(∆′
+jk ) and nt = ( n− )t +
+∆max(nt).
+2.5 Speh representations
+A particularly important class of irreducible representat ions is that of Speh rep-
+resentations. They arise from multisegments ∑N
+i=1 ∆i such that ∆i+1 =
+←
+∆i for
+all i = 1, . . . , N − 1. These representations comprise the building blocks for th e
+unitary dual of Gn. W e will recall this at length in §6.
+2.6 Symmetry
+In the case D = F it is known that given π1, π2, σ ∈ Irr,
+֒→π1 × π2 ⇐ ⇒ π2 × π1 ։ σ. (2.6)
+Let us recall the argument ([45, p. 173]). Denote by ˜π the composition of π ∈
+R(Gm) with the isomorphism g ↦→ tg− 1 of Gm. Then we have ˜π1 × π2 = ˜π2× ˜π1
+while on the other hand by a classical result of Gelfand–Kazh dan [28], ˜σ ≃ σ∨
+for any σ ∈ Irr. Thus, if֒→π1 × π2 then
+σ∨ ≃ ˜֒→˜π2 × ˜π1 ≃ π∨
+2 × π∨
+1 = (π2 × π1)∨
+so that σ is a quotient of π2 × π1.
+It is not clear how to extend this argument for D ̸= F . Nevertheless we
+can use a similar argument to obtain a weaker result in the gen eral case. (See
+Lemma 2.9 below .)
+Deﬁnition 2.8. An unlabeled segment is an ordered pair of integers a, b with a ≤ b.
+We denote it [a, b]. An unlabeled multisegment is a multiset of unlabeled segments.
+T o any unlabeled multisegmentm = [a1, b1] + · · ·+ [aN , bN ] and ρ ∈ C , we associate
+the rigid multisegment mρ (or mρ,D if D is not clear from the context) deﬁned by
+mρ = [a1, b1]ρ + · · ·+ [aN , bN ]ρ .
+Let n ≥ 0. Denote G◦
+n = GL n(D◦ ) where D◦ is the central division F -
+algebra opposite to D. The map g ↦→ tg− 1 deﬁnes an isomorphism of groups
+i : G◦
+n − → Gn which gives rise to an equivalence of categories π ↦→ π ◦ i
+between R(Gn) and R(G◦
+n). Writing π ⋆ for the contragredient of π ◦ i we get
+a (contravariant) equivalence of categories between R(Gn) and R(G◦
+n). (Recall
+that in the case D = D◦ = F we have π ⋆ ≃ π for any π ∈ Irr.)
+13
+
+===== PDF PAGE 14 =====
+Note that if πi ∈ R(Gmi), i = 1, . . . , r then
+(π1 × · · · ×πr)⋆ ≃ π ⋆
+r × · · · ×π ⋆
+1 . (2.7)
+In particular, ⋆ preserves supercuspidality . W e also have (χ ◦ NrdD)⋆ = χ ◦
+NrdD◦ for any character χ of F× . Therefore
+(πχ )⋆ = π ⋆ χ (2.8)
+for any π ∈ R(Gm). It easily follows that sρ = sρ ⋆ for any ρ ∈ C and that for
+any segment ∆ = [ a, b]ρ we have Z(∆)⋆ = Z(∆ ⋆ ) and L(∆)⋆ = L(∆ ⋆ ) where
+∆⋆ = [a, b]ρ ⋆ and Z(∆⋆ ) and L(∆⋆ ) are deﬁned with respect to G◦
+n. Deﬁning m⋆
+for m ∈ Mult by linearity we get
+Z(m)⋆ = Z(m⋆ ), L(m)⋆ = L(m⋆ ). (2.9)
+W e will use⋆ as follows.
+Lemma 2.9. Let m, m′, m′′ be three unlabeled multisegments. Suppose that for any
+central division F -algebra D and any supercuspidal irreducible representation ρ of
+GLm(D) we have
+Z(m′′
+ρ,D ) = soc(Z( mρ,D ) × Z(m′
+ρ,D )).
+Then
+Z(m′′
+ρ,D ) = cos(Z( m′
+ρ,D ) × Z(mρ,D )).
+Suppose moreover that Z(mρ,D )× Z(m′
+ρ,D ) is SI. Then Z(mρ,D )× Z(m′
+ρ,D ) irreducible
+if and only if Z(mρ,D ) × Z(m′
+ρ,D ) ≃ Z(m′
+ρ,D ) × Z(mρ,D ).
+Proof. Indeed, using the assumption for (D◦ , ρ⋆ ) instead of (D, ρ),
+cos((Z(mρ ⋆ ,D◦ ) × Z(m′
+ρ ⋆ ,D◦ ))⋆ ) = (soc(Z( mρ ⋆ ,D◦ ) × Z(m′
+ρ ⋆ ,D◦ )))⋆
+= (Z(m′′
+ρ ⋆ ,D◦ ))⋆ = Z(m′′
+ρ,D )
+(by (2.9)). However, by (2.7) and (2.9)
+(Z(mρ ⋆ ,D◦ ) × Z(m′
+ρ ⋆ ,D◦ ))⋆ ≃ Z(m′
+ρ ⋆ ,D◦ )⋆ × Z(mρ ⋆ ,D◦ )⋆ ≃
+Z(m′⋆
+ρ ⋆ ,D◦ ) × Z(m⋆
+ρ ⋆ ,D◦ ) = Z( m′
+ρ,D ) × Z(mρ,D ).
+The result follows.
+For the last part, remark that if Z(mρ,D ) × Z(m′
+ρ,D ) ≃ Z(m′
+ρ,D ) × Z(mρ,D ),
+then by the ﬁrst part
+Z(m′′
+ρ,D ) = soc(Z( mρ,D ) × Z(m′
+ρ,D )) = cos(Z( mρ,D ) × Z(m′
+ρ,D )).
+Since Z(mρ,D ) × Z(m′
+ρ,D ) is assumed to be SI, this can only happen if it is irre-
+ducible.
+14
+
+===== PDF PAGE 15 =====
+3 L EFT MULTIPLIER REPRESENTATIONS
+3.1 Deﬁnition and basic properties
+Deﬁnition 3.1. Given π = Z( m) and σ = Z( n) we write LI(π, σ ) (resp., RI(π, σ ))
+for the condition
+Z(m + n) = soc( π × σ )
+(resp.,
+Z(m + n) = cos( π × σ ). )
+W e summarize the basic properties of this deﬁnition in the following Lemma.
+W e are grateful to the referee for suggesting to us part 4 and i ts proof.
+Lemma 3.2. 1. LI(π, σ ) implies that π × σ is SI.
+2. The conditions LI(π, σ ) and RI(π∨ , σ∨ ) are equivalent.
+3. π × σ is irreducible (in which case π × σ ≃ Z(m + n)) if and only if LI(π, σ )
+and RI(π, σ ).
+4. LI(π, σ ) is equivalent to the condition
+π ×֒→ζ(m + n).
+5. Similarly, RI(π, σ ) is equivalent to the condition ˜ζ(m + n) ։ Z(m) × Z(n).
+6. If m ̸≺ n then LI(π, σ ) and RI(σ, π ) hold.
+Proof. The ﬁrst part follows from Proposition 2.5 part 5 (and would a lso follow
+from part 4 of the current lemma). The second part is also clea r. The third part
+follows from Proposition 2.5 part 5.
+Clearly LI(π, σ ) holds if π ×֒→ζ(m + n) (by Remark 1.4). Conversely ,
+suppose that soc(π × σ ) = Z( m + n). Embed π in ζ(m) and σ in ζ(n). Then π × σ
+embeds in ζ(m)× ζ(n) which by Proposition 2.5 part 3, admits a non-trivial map
+f to ζ(m+n) and [Z(m+n)] ̸≤ [Ker f ]. Thus, f is injective on π × σ , for otherwise
+Ker f
+⏐
+⏐
+π× σ would contain soc(π × σ ) which is Z(m + n) by assumption.
+The next part follows by passing to the contragredient. Fina lly , the last
+part follows from Proposition 2.5 part 6.
+Deﬁnition 3.3. 1. We say that π ∈ Irr is a left multiplier (LM) if for any σ ∈
+Irr, π × σ is SI.
+2. If π = Z( m) is LM and n ∈ Mult then we denote by socz(m, n) the multi-
+segment such that Z(socz(m, n)) = soc( π × Z(n)). Similarly, if π = L( m) is
+LM and n ∈ Mult then we denote by socl(m, n) the multisegment such that
+L(socl(m, n)) = soc( π × L(n)).
+15
+
+===== PDF PAGE 16 =====
+Thus, if π = Z( m) is LM and σ = Z( n), then the condition LI(π, σ ) is
+equivalent to Z(m + n)֒→π × σ , or to socz(m, n) = m + n.
+Remark 3.4. If D = F and π is LM then π × σ is irreducible if and only if π × σ ≃
+σ × π (by (2.6)). In general, we do not know this for D ̸= F . However, see Lemma 2.9.
+Remark 3.5. It was proved in [41] that a representation of the form Z(m) or L(m) is
+LM if m = ∆ 1 + · · ·+ ∆N is such that for all 1 ≤ i ≤ j ≤ N either ∆i = ∆ j or
+∆i and ∆j are disjoint and unlinked. Moreover, if ρ ∈ C and σ ∈ Irr, a description of
+soc(ρ × σ ) was given (see Theorem 4.11 below).
+We will extend this result in the sequel.
+Although, we will not use it in this paper, we mention the following recent
+beautiful result due to Kang, Kashiwara, Kim and Oh. 2
+Theorem 3.6. [33, 34] Let π ∈ Irr. Assume that π × π is irreducible. Then π and π∨
+are LM. Moreover, if soc(π × σ ) ≃ cos(π × σ ) then π × σ is irreducible.
+This answers in the afﬁrmative a conjecture by B. Leclerc [38 , Conjecture
+3]. Actually , the results in [33, 34] (as well as Leclerc’s co njecture itself) are
+stated in a different (related) context, but it is easy to tra nslate the argument
+to our language (the role of the R-matrix is played by the standard intertwin-
+ing operator). Details will be given elsewhere.
+Leclerc also gave an example of π ∈ Irr such that π × π is semisimple of
+length 2 (hence π is not LM). Namely , π = Z([3 , 4]ρ , [1, 3]ρ , [2, 2]ρ, [0, 1]ρ ). This
+disproved a conjecture made in [15]. W e do not know how to comb inatorially
+characterize the property that π × π is irreducible.
+W e start with a simple observation.
+Lemma 3.7. Let π ∈ Irr. Suppose that for any σ ∈ Irr such that supp(σ ) ⊂ supp(π ),
+π × σ is SI. Then π is LM.
+Proof. Embed֒→σ1 × σ2 where supp(σ1) ⊂ supp(π ) and σ2 is left supp(π )-
+reduced (see Lemma 1.1.) Then π ×֒→π × σ1 × σ2. By Lemma 1.5 (applied
+with π1 = π × σ1 and π2 = σ2), π × σ1 × σ2 (and a fortiori π × σ ) is SI. The
+lemma follows.
+3.2 First examples
+A special case of LM representations is the class of saturated representations:
+Deﬁnition 3.8. We say that π ∈ Irr is saturated if π × σ is irreducible for any σ ∈ Irr
+such that supp(σ ) ⊂ supp(π ).
+2It is certainly possible that the methods of these authors ar e instrumental for the determina-
+tion of soc(π × σ ) as well.
+16
+
+===== PDF PAGE 17 =====
+For instance, it follows from Proposition 2.5 part 6 that Z(∆) and L(∆) are
+saturated for any ∆ ∈ Seg. W e will eventually classify the saturated represen-
+tation in Proposition 5.12 below .
+From Lemma 3.7 we infer:
+Corollary 3.9. If π is saturated then π is LM.
+The next corollary provides us with another family of exampl es of LM
+representations.
+Corollary 3.10. Suppose that m is totally unlinked. (See §2.2.) Let π be either Z(m) or
+L(m). Then π is LM. In particular, every unramiﬁed, tempered or (in the ca se D = F )
+generic irreducible representation is LM.
+Proof. W e ﬁrst note that the last part of the corollary follows from the ﬁrst part,
+together with [72, Theorem 9.7], Remark A.11 and the fact tha t a representation
+of Gn is unramiﬁed if and only if it is of the form Z(m) where m is totally
+unlinked and supp m ⊂ { 1 |·|s : s ∈ C} where 1 is the trivial character of
+G1 = D∗ . See [44, 64].
+W e prove the ﬁrst part. Consider the case π = Z( m). (The other case is
+similar.) Write m = ∆ 1 + · · ·+ ∆N . W e argue by induction on N . W e already
+mentioned the case N = 1. For the induction step, assume without loss of gen-
+erality that ∆N is a segment of maximal length among the ∆i’s. Thus, ∆N is a
+connected component of supp π . Let σ ∈ Irr be such that supp(σ ) ⊂ supp(π ).
+Then Z(∆N ) × σ is irreducible since if σ = Z( n) then any segment in n is un-
+linked with ∆N . Therefore, by induction hypothesis
+π × σ = Z(∆ 1) × · · · ×Z(∆N− 1) × (Z(∆N ) × σ )
+is SI. The corollary now follows from Lemma 3.7.
+3.3 Further analysis of the condition LI(π, σ )
+Lemma 3.11. Fix ρ ∈ C and let π ∈ R(Gm), σ ∈ R(Gm′) and m, n ∈ Multρ .
+Assume that
+1. [π ] ≤ [ζ(m)].
+2. [σ ] ≤ [ζ(n)].
+3. π and σ are SI.
+4. For any ∆ ∈ m and ∆′ ∈ n we have ∆′ <b ∆.
+Then soc(π ) ⊗ soc(σ ) occurs with multiplicity one in [r(π × σ )] and hence (by Lemma
+1.5) π × σ is SI. Moreover, LI(soc(π ), soc(σ )) holds.
+A similar statement holds if <b is replaced by <e in assumption 4.
+17
+
+===== PDF PAGE 18 =====
+Proof. Let us analyze [r(π × σ )] using the geometric lemma (see §1.2). One sum-
+mand is [π ⊗ σ ] in which soc(π ) ⊗ soc(σ ) occurs once by assumption. The other
+summands are of the form [τ1 × τ′
+1 ⊗ τ2 × τ′
+2] where τ1 ⊗ τ2 is a composition factor
+of r(d,m− d)(π ) (and in particular of r(d,m− d)(ζ(m))) and τ′
+1 ⊗ τ′
+2 is a composition
+factor of r(d′,m′− d′)(σ ) (and in particular of r(d′,m′− d′)(ζ(n))) with 0 ≤ d < m ,
+0 < d′ ≤ m′ and d + d′ = m. W e claim thatsoc(σ ) ̸≤ [τ2 × τ′
+2]. Indeed, otherwise
+supp τ2 = supp τ′
+1 and in particular, supp τ′
+1 ⊂ Z≥ b(m). However, it is easy to see
+that this implies that b(m) ∈ supp τ′
+1, b(∆′) = b(m) and supp τ′
+1 ⊂ ∆′ where ∆′
+is the largest segment of n with respect to ≥ b. On the other hand it is also clear
+that if b(m) ∈ supp τ2 then ∆ ⊂ supp τ2 where ∆ is the smallest segment of m
+with respect to ≤ b. W e get a contradiction since ∆′ ⊊ ∆.
+The condition LI(soc(π ), soc(σ )) follows from Lemma 3.2 part 6, Proposi-
+tion 2.5 part 4 and the fact that for any m′ ⊢ m, n′ ⊢ n we have m′ ̸≺ n′.
+The argument with <e instead of <b in assumption 4 is similar.
+The following is an immediate consequence.
+Lemma 3.12. Suppose that π = Z( m) ∈ Irrρ and let σ = Z( n) ∈ Irrρ . Let σ1 =
+Z(n̸<bm) and σ2 = Z(n<bm). Assume that π × σ1 is SI . Then π × σ1 × ζ(n<bm) is SI
+and therefore π × σ is SI and soc(π × σ ) = soc( π′ × σ2) where π′ := soc( π × σ1).
+Moreover, we have LI(π′, σ2). Thus, LI(π, σ ) if and only if LI(π, σ 1).
+Throughout the rest of this section assume that π ∈ Irr is rigid and LM
+and let ρ = e(π ) ∈ C . Let also σ = L( n) ∈ Irrρ be such that supp σ ̸⊂ Z≤ ρ . In
+order to determine soc(π × σ ), we can make the argument of Lemma 3.7 more
+effective as follows.
+Lemma 3.13. The representation π × σ≤ ρ × ˜λ(n>eρ ) is SI and
+soc(π × σ ) = soc( π × σ≤ ρ × σ̸≤ ρ ) = soc( π × σ≤ ρ × ˜λ(n>eρ )).
+Thus, if soc(π × σ≤ ρ ) = L( m′) then soc(π × σ ) = L( m′ + n>eρ ).
+In other words, if L(m) is LM then socl(m, n) = socl(m, n≤ ee(m)) + n>ee(m).
+Proof. Recall that σ̸≤ ρ = L(n>eρ ). Thus,
+π ×֒→π × σ≤ ρ × σ̸≤ ρ֒→π × σ≤ ρ × ˜λ(n>eρ ).
+By Lemma 1.5 (with π1 = π × σ≤ ρ and π2 = ˜λ(n>eρ )) and Remark 2.7 we infer
+that π × σ≤ ρ × ˜λ(n>eρ ) is SI. The last assertion of the lemma follows from (the
+analogue for L(·) of) Proposition 2.5 part 6 and the fact that supp m′ ⊂ Z≤ ρ .
+From now on assume that π = Z(m).
+Corollary 3.14. We have
+∆′ /∈ socz(m, n)t
+for any ∆′ ⊋ ∆max(nt).
+18
+
+===== PDF PAGE 19 =====
+Indeed, by the previous lemma, every ∆ ∈ socz(m, n)t with e(∆) = e(n)
+belongs to nt.
+Lemma 3.15. Let ∆′ be any segment in n such that e(∆′) = e(σ ). Set n′ = n − ∆′
+and σ′ = L(n′). Then any two of the following conditions imply the third.
+1. LI(π, σ′).
+2. (m + nt)t = (m + n′t)t + ∆′.
+3. LI(π, σ ).
+Proof. Write n = ∆ 1 + · · ·+ ∆t where ∆1 ≥ e · · · ≥e ∆t so that e(∆1) = e(σ ).
+Let k be the largest index such that e(∆k) = e(∆1), so that ∆′ = ∆ i for some
+1 ≤ i ≤ k. In particular L(∆1 + · · ·+ ∆k) = L(∆ 1) × · · · ×L(∆k). W e have
+֒→σ′′× L(∆1 + · · ·+ ∆k)
+where σ′′= L(∆ k+1 + · · ·+ ∆t). Thus,
+π ×֒→π × σ′ × L(∆′)֒→π × σ′′× L(∆1 + · · ·+ ∆k).
+As before, the right-hand side is SI. Therefore,
+soc(π × σ ) = soc(soc( π × σ′) × L(∆′)).
+Suppose that π′ := soc( π × σ′) = Z( m′) = L( m′t). Then
+soc(π′ × L(∆′)) = L( m′t + ∆′)
+(since ∆′ does not precede any segment in m′t). The Lemma follows.
+Under certain additional assumptions we can sharpen the previous lemma
+as follows.
+Lemma 3.16. Suppose that for any ∆ ∈ Segρ , m≤ e∆ and m>e∆ are LM. Then the
+condition LI(m, n) is equivalent to the conjunction of LI(m, n− ) and (m + n)− =
+m + n− .
+Proof. By the previous lemma it sufﬁces to show that LI(m, n) implies (m +
+n)− = m + n− . W e may assume that n = n≥ e∆min(m) since neither the condition
+LI(m, n) nor the condition (m + n)− = m + n− is affected by replacing n by
+n≥ e∆min(m). Let m = ∆ 1 + · · ·+ ∆k and n = ∆′
+1 + · · ·+ ∆′
+k′ with ∆1 ≥ e · · · ≥e ∆k
+and ∆′
+1 ≥ e · · · ≥e ∆′
+k′. Let i1 < · · ·< i m be the indices given by
+1. i1 = min{i : e(∆′
+i) = e(n)},
+2. ij+1 = min{i : ∆′
+i ≺ ∆′
+ij and e(∆′
+i) = e(
+←
+∆′ij )}, j = 1, . . . , m − 1,
+19
+
+===== PDF PAGE 20 =====
+3. There is no ∆′ ∈ n such that ∆′ ≺ ∆′
+im and e(∆′) = e(
+←
+∆′im ).
+Assume by contradiction that (m + n)− ̸= m + n− . Then there exist indices
+l′ ≤ m and l ≤ k such that ∆l ≺ ∆′
+il′ , e(∆l) = e(
+←
+∆′il′ ) and either l′ = m or
+∆l ⊊ ∆′
+il′+1
+.
+Suppose ﬁrst that k = l. Then necessarily l′ = m (since n = n≥ e∆k ). W e
+get a contradiction to Corollary 3.14 since +∆max(n) ∈ (m + n)t.
+If k > l we write m = m1 + m2 and n = n1 + n2 where m1 = m≥ e∆l,
+m2 = m<e∆l, n1 = n≥ e∆l and n2 = n<e∆l.
+Then
+Z(m) × Z(n)֒→Z(m1) × Z(m2) × Z(n1) × Z(n2)
+and therefore by assumption,
+Z(m + n)֒→Z(m1) × Z(m2) × Z(n1) × Z(n2).
+W e claim that this implies that
+Z(m+n)֒→Z(m1)× Z(n1 +m2)× Z(n2)֒→Z(m1)× Z(n1)× Z(m2)× Z(n2). (3.1)
+Indeed, we have
+cos(Z(m2) × Z(n1)) = Z( n1 + m2) = soc(Z( n1) × Z(m2))
+since n1 ̸≺ m2. Therefore,
+Z(n1 + m2) ̸≤ [Ker A]
+where A is the projection
+Z(m2) × Z(n1)
+A
+− → cos(Z(m2) × Z(n1)) ≃ Z(n1 + m2).
+It follows that
+Z(m + n) ̸≤ [Ker(id × A × id)]
+where id × A × id is the induced intertwining operator
+Z(m1) × Z(m2) × Z(n1) × Z(n2) → Z(m1) × Z(n1 + m2) × Z(n2)
+since any irreducible Z(m′) ≤ [Ker(id × A× id)] satisﬁes m′ ⊢
+̸=
+m1 +n1 +m2+n2 =
+m + n. This gives (3.1). In turn, by Lemma 3.11
+Z(m1) × Z(n1) × Z(m2) × Z(n2)
+is SI since both Z(m1) × Z(n1) and Z(m2) × Z(n2) are SI by assumption and any
+segment of m1 + n1 is >e any segment of m2 + n2. Thus, we get
+Z(m+n) = soc(Z( m1)× Z(n1)× Z(m2)× Z(n2)) = soc(soc(Z( m1)× Z(n1))× soc(Z(m2)× Z(n2))).
+Therefore, necessarily
+Z(m1 + n1) = soc(Z( m1) × Z(n1))
+which yields a contradiction to the case k = l considered above.
+20
+
+===== PDF PAGE 21 =====
+4 I RREDUCIBILITY OF Z(∆) × σ
+4.1 First description of soc(Z(∆) × σ )
+Fix ρ ∈ C and let ∆ ∈ Segρ and σ ∈ Irrρ . Note that by Lemma 3.2 part 6, the
+condition LI(Z(∆), σ) holds if supp σ ⊂ Z≤ e(∆). From this and Lemma 3.13,
+together with the deﬁnition of mt, we infer:
+Proposition 4.1. Let ∆ ∈ Segρ and σ = L( m) ∈ Irrρ . Write m1 = m≤ ee(∆) and
+m2 = m≥ bb(∆). (See (2.4).) Then
+1. soc(Z(∆) × σ ) = L(( mt
+1 + ∆)t + m>ee(∆)).
+2. soc(Z(∆) × σ ) = L( m + ∆t) if and only if (mt
+1 + ∆)t = m1 + ∆t.
+3. cos(Z(∆) × σ ) = L( m + ∆t) if and only if (mt
+2 + ∆)t = m2 + ∆t.
+4. Z(∆) × σ is irreducible if and only if (mt
+1 + ∆)t = m1 + ∆t and (mt
+2 + ∆)t =
+m2 + ∆t.
+Indeed, the ﬁrst part follows from Lemma 3.13 and the remark a bove. The
+second part is an immediate consequence. The third part foll ows by passing to
+the contragredient. Finally the last part follows from the previous parts and the
+fact that L(m + ∆t) occurs with multiplicity one in [Z(∆) × σ ].
+Proposition 4.1 gives a satisfactory necessary and sufﬁcie nt combinatorial
+condition for the irreducibility of Z(∆) × σ which is algorithmically very prac-
+tical. W e can interpret the ﬁrst part of the proposition as fo llows: in order to
+obtain soc(Z(∆) × Z(m))t one performs the Mœglin–W aldspurger algorithm on
+m until the remaining (truncated) segments are supported in Z≤ e(∆). Then one
+inserts ∆ as an additional segment and continues with the algorithm. I n other
+words, one implements a modiﬁed algorithm on m + ∆ in which ∆ is allowed
+to be used in the construction of new segments only after the s upport of the
+remainder of m (after the previous segments were constructed) is containe d in
+Z≤ e(∆).
+Using Lemma 2.9 we infer
+Corollary 4.2. Let ∆ ∈ Seg and m ∈ Mult. Then Z(∆) × Z(m) is irreducible (in
+which case Z(∆) × Z(m) ≃ Z(∆ + m)) if and only if Z(∆) × Z(m) ≃ Z(m) × Z(∆).
+W e can also use Proposition 4.1 to characterize when֒→Z(∆) × σ for
+some σ .
+Corollary 4.3. Let π = L( n) ∈ Irrρ and ∆ ∈ Segρ . Then there exists σ ∈ Irr such
+that π = soc(Z(∆) × σ ) (i.e.,֒→Z(∆) × σ ) if and only if (n≤ ee(∆))t contains ∆.
+In this case σ = L(m) where m>ee(∆) = n>ee(∆) and (m≤ ee(∆))t = (n≤ ee(∆))t − ∆.
+In particular, σ is uniquely determined by π and ∆.
+A special case of Proposition 4.1 is the following. Recall th at a pair of
+segments are juxtaposed if they are linked and disjoint.
+21
+
+===== PDF PAGE 22 =====
+Corollary 4.4. [11, Théorème 3.4] Suppose that no ∆′ ∈ m is juxtaposed with ∆.
+Then Z(∆) × L(m) is irreducible.
+Proof. W e can assume that ∆ ∈ Segρ and m ∈ Multρ . Set m1 = m≤ ee(∆). W e
+show that (m1 + ∆ t)t = mt
+1 + ∆. Indeed, ∆t = ∑
+ρ∈ ∆ ρ. When constructing
+(m1 + ∆t)t using the MW-algorithm, the ﬁrst segment is formed using the end
+points of ∆t (hence all of ∆t) and nothing else since no ∆′ ∈ m1 precedes b(∆)
+by our assumption. Then one remains with m1, so that the MW-algorithm gives
+indeed ∆ + mt
+1.
+The condition ((m≥ bb(∆))t + ∆) t = m≥ bb(∆) + ∆ t follows by passing to
+the contragredient and using the fact that t commutes with the contragredient.
+Hence, by Proposition 4.1, Z(∆) × L(m) is irreducible.
+Note that the combinatorial condition in Corollary 4.4 is by no means
+necessary for the irreducibility of Z(∆) × L(m).
+4.2 Second description of soc(Z(∆) × σ )
+In practice, it will be also useful to have another descripti on of soc(Z(∆) × σ ),
+Recall that Z(∆) is LM for any segment ∆ ∈ Seg. W e start with the following
+result, which is a particular case of Lemma 1.5.
+Lemma 4.5. Let ∆ ∈ Seg, ρ ∈ C and σ ∈ Irr. Suppose that b(∆) ̸= ρ and σ is left
+ρ-reduced. Then for any n ≥ 0 the representation ρ× n × Z(∆) × σ is SI.
+Proof. By hypothesis, Z(∆) × σ is left ρ-reduced and by Corollary 3.9 (or [41]),
+it is SI. The result now follows from Lemma 1.5.
+W e deduce the following proposition.
+Proposition 4.6. Let ∆ be a segment and σ ∈ Irr. Let ρ = b(∆). Write֒→ρ× a ×
+σ¬{ ρ} . Then
+soc(Z(∆) × σ ) = soc( ρ× (a+1) × soc(Z(− ∆) × σ¬{ ρ} )). (4.1)
+Proof. W e have
+Z(∆)×֒→Z(∆)× ρ× a× σ¬{ ρ} ≃ ρ× a× Z(∆)× σ¬{ ρ}֒→ρ× (a+1)× Z(− ∆)× σ¬{ ρ} .
+By Lemma 4.5, soc(ρ× (a+1) × Z(− ∆) × σ¬{ ρ} ) is irreducible, hence equals the
+right hand side of (4.1). The proposition follows.
+T o describesoc(Z(∆) × σ ) using (4.1) we thus need to understand:
+1. How to get σ¬{ ρ} from σ .
+2. How to treat the case where ∆ = {ρ} with ρ ∈ C .
+This was done in [41, §6] using [45, Lemme II.9]. W e will describe it in a slightly
+different combinatorial language which will be useful in th e sequel.
+22
+
+===== PDF PAGE 23 =====
+4.3 Matching functions 3
+Let X and Y be ﬁnite sets and ⇝ a relation between Y and X. W e are interested
+in injective functions f : X → Y satisfying f (x) ⇝ x for all x ∈ X. Such a
+function will be called a ⇝-matching function (or simply a matching function
+if ⇝ is clear from the context). By Hall’s criterion such an f exists if and only if
+for all subsets A ⊂ X we have
+#{y ∈ Y : y ⇝ x for some x ∈ A} ≥ #A. (4.2)
+In some cases it is possible to construct f explicitly . Suppose thatX and Y
+are totally ordered with respect to ≤ X and ≤ Y respectively . A simple-minded
+recipe would be to deﬁne f recursively (from the largest element of X to the
+smallest) by
+f (x) = min {y ∈ Y \f (X>x) : y ⇝ x} (4.3)
+where X>x = {x′ ∈ X : x′ > x }. Of course for this to be well deﬁned, we
+need to know that for all x ∈ X there exist some y / ∈ f (X>x) such that y ⇝ x.
+Clearly , we need some extra conditions on the relation ⇝ for this deﬁnition to
+work. W e will say that the relation ⇝ is traversable if the following condition is
+satisﬁed:
+∀ x1 ≥ X x2 ∈ X ∀ y1 ≥ Y y2 ∈ Y
+y1 ⇝ x1 & y2 ⇝ x1 & y2 ⇝ x2 =⇒ y1 ⇝ x2. (4.4)
+Schematically ,
+y1 →→→←→←→←
+≥Y
+x1≥X
+y2 →→→←→←→←
+↗↗↗↙↗↙↗↙↗↙
+x2
+=⇒
+y1 →→→←→←→←
+↘↘↘↖↘↖↘↖↘↖
+≥Y
+x1≥X
+y2 →→→←→←→←
+↗↗↗↙↗↙↗↙↗↙
+x2
+More generally , even if Hall’s criterion is not satisﬁed we c an still speak
+about ⇝-matchings (or simply matchings, if ⇝ is clear from the context) be-
+tween X and Y by which we mean injective functions f from a subset of X to
+Y satisfying f (x) ⇝ x for all x in the domain of f . W e view such a function as
+a relation between X and Y .
+Imitating the above, we deﬁne a ‘greedy’ ⇝-matching between X and Y .
+Namely , we deﬁnef and its domain I recursively by
+x ∈ I ⇐ ⇒ ∃ y ∈ Y \f (I ∩ X>x) such that y ⇝ x
+in which case f (x) = min {y ∈ Y \f (I ∩ X>x) : y ⇝ x}.
+3The contents of this section are no doubt very familiar to com binatorists. For convenience we
+give a self-contained treatment.
+23
+
+===== PDF PAGE 24 =====
+W e call f the best ⇝-matching between X and Y . The name is justiﬁed by the
+following lemma:
+Lemma 4.7. Assume that ⇝ is traversable. Let g be a ⇝-matching between X and Y
+and let f be the best ⇝-matching between X and Y . Then the size of the domain of f
+is not smaller than the size of the domain of g.
+In particular, the following conditions are equivalent:
+1. There exists a ⇝-matching function from X to Y (with domain X).
+2. Hall’s criterion (4.2) is satisﬁed.
+3. The best ⇝-matching between X and Y is a function from X to Y .
+Proof. Let g be a matching between X and Y . Suppose that f does not coincide
+with g (otherwise there is nothing to prove). Let x1 = x1(g) be the smallest
+element of X such that the restrictions of f and g to X>x1 coincide. W e argue
+by induction on x1.
+Suppose ﬁrst that x1 is in the domain of f but not in the domain of g. If
+f (x1) is not in the image of g, we extend g by setting g′(x1) = f (x1). Otherwise
+f (x1) = g(x2), necessarily with x2 < x 1 and we deﬁne g′ by g′(x) = g(x) for all
+x ̸= x2 in the domain of g and g′(x1) = f (x1).
+Suppose now that x1 is in the domain of g. Then from the deﬁnition of f
+it is clear that x1 is in the domain of f and f (x1) < g (x1). Let y1 = g(x1) and
+y2 = f (x1). If y2 is not in the image of g we modify g by setting g′(x1) = y2 and
+g′(x) = g(x) for all x ̸= x1 in the domain of g. Otherwise y2 = g(x2), necessarily
+with x2 < x 1 and we deﬁne g′ in the domain of g by g′ = g ◦ σ where σ is the
+transposition switching x1 and x2. W e claim thatg′ is a matching, i.e. g′(x) ⇝ x
+for all x in the domain of g′. This is clear if x ̸= x2 while for x = x2 this follows
+from the condition (4.4).
+Thus, in all cases we can ﬁnd a matching g′ whose domain is at least as
+large as the domain of g such that either x1(g′) < x 1(g) or g′ coincides with f
+(if x1(g) is the minimal element of X). This proves the induction step as well
+as the base of the induction.
+By a deﬁnition, a ray in X is either X itself or a subset of X of the form
+X>x0 for some x0 ∈ X. The following lemma is clear from the construction:
+Lemma 4.8. Suppose that ⇝ is traversable and let f be the best matching between X
+and Y . Let A be a ray in X and let B be its complement. Let g be the best matching
+between A and Y and let C be the complement of the range of g. Let h be best matching
+between B and C. Then g (resp., h) is the restriction of f to A (resp., B). In particular,
+f is a function on X if and only if g and h are functions on A and B respectively.
+Another trivial remark is the following:
+24
+
+===== PDF PAGE 25 =====
+Remark 4.9. Suppose that ⇝ is traversable and let f be the best matching between X
+and Y . Suppose that A is a subset of X and B is a subset of Y such that for any x ∈ X
+and y ∈ Y , y ⇝ x implies x ∈ A and y ∈ B. Then the domain of f is contained in A,
+the range of f is contained in B and f is the best matching between A and B.
+Finally , we will use the following:
+Lemma 4.10. Let ⇝ be a traversable relation between X and Y′ (suitably ordered)
+and let f′ be the best matching between X and Y′. Let y0 be the maximal element of
+Y′, let Y = Y′ \ {y0} and let f be the best matching between X and Y . Assume
+that for any x ∈ X and y ∈ Y , if y ⇝ x then y0 ⇝ x. Let a be the size of the
+complement C of the range of f and let a′ be the size of the complement C′ of the range
+of f′. Then a ≤ a′ ≤ a + 1. Moreover, a′ = a + 1 if and only if the domain of f is
+{x ∈ X : y0 ⇝ x}. In this case C′ = C ∪ { y0} and f′ coincides with f .
+Proof. Since f is a matching between X and Y′ and the intersection of f′ with
+X × Y is a matching between X and Y , it follows from Lemma 4.7 that a ≤
+a′ ≤ a + 1. By our condition, the domain of any matching between X and Y is
+contained in {x ∈ X : y0 ⇝ x}. It is also clear from the deﬁnition of the best
+matching that if the domain of f is {x ∈ X : y0 ⇝ x} then f′ coincides with f
+and C′ = C ∪ { y0}. Conversely , ify0 ⇝ x′ and x′ is not in the domain of f then
+we can extend f by f (x′) = y0 to get a strictly bigger matching between X and
+Y′. Hence we have a′ ≤ a.
+4.4 The case when ∆ is supercuspidal
+Let ρ ∈ C and m = ∆ 1 + · · ·+ ∆N ∈ Mult. Write Yρ;m = {i : b(∆i) = ρ} and
+Xρ;m = {i : b(∆i) =
+→
+ρ }. W e deﬁne⇝ (or ⇝m if m is not clear from the context)
+to be the relation between Yρ;m and Xρ;m given by
+j ⇝ i if and only if ∆j ≺ ∆i.
+W e assume that the ∆i’s are ordered such that ∆i1 ⊃ ∆i2 whenever i1 ≤ i2
+and either i1, i2 ∈ Xρ;m or i1, i2 ∈ Yρ;m (e.g., we could take either the left or
+right aligned forms of m). Then ⇝ is traversable with respect to the standard
+ordering on Xρ;m and Yρ;m. In fact for any i1 ∈ Xρ;m and j ∈ Yρ;m such that
+j ⇝ i1 and for any i2 ∈ Xρ;m with i2 ≤ i1 we have j ⇝ i2.
+The following is a restatement of results obtained independently by Mínguez
+and Jantzen.
+Theorem 4.11. [41, Théorème 7.5] , [32, Theorem 2.2.1] Let ρ ∈ C and m ∈ Mult.
+Let f be the best matching between Xρ;m and Yρ;m. Then
+1. soc(ρ × Z(m)) = Z( m + {ρ}) if and only if f is a function from Xρ;m to Yρ;m.
+2. If f is not a function from Xρ;m to Yρ;m and i ∈ Xρ;m is the minimal index which
+does not belong to the domain of f then soc(ρ × Z(m)) = Z( m − ∆i + +∆i).
+25
+
+===== PDF PAGE 26 =====
+3. More generally, let b be the size of the complement B of the domain of f in
+Xρ;m and write B = {l1, . . . , l b} with l1 < · · ·< l b. Then for any a ≥ 0,
+soc(ρ× a × Z(m)) = Z( m′) where
+m′ =
+
+
+
+m − ∑a
+i=1 ∆li + ∑a
+i=1
++∆li if a ≤ b,
+m − ∑b
+i=1 ∆li + ∑b
+i=1
++∆li +
+b− a times
+
+ 
+ρ + · · ·+ ρ otherwise.
+4. Let a be the size of the complement C of the range of f in Yρ;m. Write C =
+{i1, . . . , i a} with i1 < · · ·< i a. Then the integer a is the maximal b ≥ 0
+such that there exists σ ∈ Irr such that Z(m) is a subrepresentation of ρ× b × σ .
+Moreover, this σ is unique and is given by Z(m − ∑b
+j=1 ∆ij + ∑b
+j=1
+− ∆ij ).
+Thus, Z(m){ρ} = ρ× a and
+Z(m)¬{ ρ} = Z(m −
+∑
+i∈ C
+∆i +
+∑
+i∈ C
+− ∆i).
+In particular Z(m) is left ρ-reduced if and only if a = 0 , i.e., if and only if the
+inverse of f is a function from Yρ;m to Xρ;m.
+The theorem is proved using only Jacquet modules in [41] and [32]. In fact,
+it is easy to see that Theorem 4.11 follows from Proposition 4 .1 and Corollary
+4.3 together with the Mœglin–W aldspurger algorithm.
+4.5 The combinatorial setup for general ∆
+Now let ∆ ∈ Seg and m = ∆ 1 + · · ·+ ∆N ∈ Mult. (For convenience we will
+also allow ∆i = ∅. This is of course immaterial.) Let X∆;m = {i : ∆ ≺ ∆i}
+and Y∆;m = {i :
+←
+∆ ≺ ∆i}. (This is consistent with the notation of the previous
+subsection.) As before let ⇝ (or ⇝m) be the relation
+j ⇝ i ⇐ ⇒ ∆j ≺ ∆i
+between Y∆;m and X∆;m. W e writeLC(∆, m) for the condition that there exists
+a matching function from X∆;m to Y∆;m, that is an injective function f : X∆;m →
+Y∆;n such that f (x) ⇝ x for all x.
+Endow X∆;m with a total ordering ≤ X such that
+i1 ≤ X i2 =⇒ ∆i1 ≥ b ∆i2 . (4.5)
+Endow Y∆;m with a total ordering ≤ Y such that
+j1 ≤ Y j2 =⇒ e(∆j1 ) ≥ e(∆j2 ). (4.6)
+26
+
+===== PDF PAGE 27 =====
+(Note that unlike in the case ∆ = {ρ} we cannot guarantee that ≤ X and ≤ Y
+come from the same ordering of the segments of m.) It is easy to check that ⇝ is
+traversable with respect to such orderings. In fact,
+∀i1, i2 ∈ X∆;m, ∀j1, j2 ∈ Y∆;m i1 ≥ X i2 & j1 ≥ Y j2 & j1 ⇝ i1 & j2 ⇝ i2
+=⇒ j1 ⇝ i2.
+Thus by Lemma 4.7, LC(∆, m) is satisﬁed if and only if the best matching be-
+tween X∆;m and Y∆;m (with respect to ≤ X and ≤ Y ) is a function from X∆;m to
+Y∆;m.
+4.6 Criterion for the irreducibility of Z(∆) × σ
+Proposition 4.12. For any ∆ ∈ Seg and m ∈ Mult the conditions LI(Z(∆), Z(m))
+and LC(∆, m) are equivalent.
+Proof. First, we may assume that ∆ ∈ Segρ and m ∈ Multρ for some ρ ∈ C . W e
+prove the proposition by induction on the length of ∆. The case where ∆ is su-
+percuspidal is covered by Theorem 4.11. For the induction st ep we ﬁrst reduce
+to the case where ∆i ≥ b ∆ for all i. Let σ = Z( m) and let σi, i = 1 , 2 be as in
+Lemma 3.12 with m = ∆ . Clearly , X∆;m≥ b∆ = X∆;m and Y∆;m≥ b∆ = Y∆;m.
+Therefore the conditions LC(∆, m) and LC(∆, m≥ b∆) are equivalent. (Note
+also that X∆;m<b∆ = Y∆;m<b∆ = ∅.) On the other hand, it follows from Lemma
+3.12 that the conditions LI(Z(∆), σ) and LI(Z(∆), σ1) are also equivalent.
+Thus, we may assume that ∆i ≥ b ∆ for all i. For convenience assume
+that ∆1 ≥ b · · · ≥b ∆N . Let ρ = b(∆). By assumption, Yρ;m ⊂ Y∆;m. Fix a
+total order ≤ Y on Y∆;m satisfying (4.6). Let g be the best ⇝m-matching between
+Xρ;m and Yρ;m (where we take the standard order on Xρ;m and ≤ Y on Yρ;m).
+Since Yρ;m ⊂ Y∆;m, the domain of g is contained in Xρ;m ∩ X∆;m. Thus, g is the
+best matching between Xρ;m ∩ X∆;m and Yρ;m, which is also the best matching
+between Xρ;m ∩ X∆;m and Y∆;m (Remark 4.9). Let C be the complement of the
+range of g in Yρ;m and let a be the size of C. Recall that σ{ρ} = ρ× a and σ¬{ ρ} =
+Z(m′) where m′ = ∆′
+1 + · · ·+ ∆′
+N is given by
+∆′
+i =
+{
+− ∆i if i ∈ C,
+∆i otherwise.
+Note that X− ∆;m′ = X∆;m \Xρ;m and Y− ∆;m′ = ( Y∆;m \Yρ;m) ∪ C. Moreover,
+the restriction of ≤ Y to Y− ∆;m′ still satisﬁes the analogue of (4.6) for the ∆′
+i’s
+and the intersection of ⇝m with Y− ∆;m′ × X− ∆;m′ is ⇝m′. Let h be best ⇝m′-
+matching between X− ∆;m′ and Y− ∆;m′.
+Note that Xρ;m ∩ X∆;m is a ray of X∆;m. Thus by Lemma 4.8, LC(∆, m) is
+equivalent to the statement that the domain of g is Xρ;m ∩ X∆;m and the domain
+27
+
+===== PDF PAGE 28 =====
+of h is X− ∆;m′. By induction hypothesis, the domain of h is X− ∆;m′ if and only
+if
+Z(m′′) = soc(Z(− ∆) × Z(m′))
+where m′′= m′ +− ∆ = ∆′
+1 + · · ·+ ∆′
+N +− ∆ = ∆′′
+1 + · · ·+ ∆′′
+N +1. Recall that
+by Proposition 4.6
+soc(Z(∆) × Z(m)) = soc( ρ× (a+1) × soc(Z(− ∆) × Z(m′))).
+Thus, to prove the proposition it will sufﬁce to show that Z(m+∆)֒→ρ× (a+1) ×
+σ′ for some σ′ ∈ Irr if and only if the domain of g is Xρ;m ∩ X∆;m and in this
+case σ′ = Z(m′′).
+Clearly Xρ;m+∆ = Xρ;m and Yρ;m+∆ = Yρ;m ∪ { N + 1}. Let g′ be the best
+⇝m+∆-matching between Xρ;m+∆ and Yρ;m+∆ (where we extend ≤ Y by letting
+N + 1 be the largest element). By Lemma 4.10 the complement C′ of the range
+of g′ in Yρ;m+∆ is of size a + 1 if and only if the domain of g is Xρ;m ∩ X∆;m
+and in this case C′ = C ∪ { N + 1} and g′ coincides with g. Our claim therefore
+follows from Theorem 4.11 part 4.
+Symmetrically , deﬁne
+˜X∆;m = {i : ∆ i ≺ ∆},
+˜Y∆;m = {i :
+←
+∆i ≺ ∆}.
+W e writeRC(∆, m) for the condition that there exists a ⇝-matching from ˜X∆;m
+to ˜Y∆;m where ⇝ is the relation
+j ⇝ i ⇐ ⇒ ∆i ≺ ∆j
+between ˜Y∆;m and ˜X∆;m.
+By passing to the contragredient we get:
+Proposition 4.13. For ∆ ∈ Seg and m ∈ Mult the conditions RI(Z(∆), Z(m)) and
+RC(∆, m) are equivalent.
+From Propositions 4.12 and 4.13 and Lemma 3.2 part 3 we infer
+Corollary 4.14. Let ∆ ∈ Seg and m ∈ Mult. Then Z(∆) × Z(m) is irreducible (in
+which case Z(∆) × Z(m) ≃ Z(∆ + m)) if and only if LC(∆, m) and RC(∆, m).
+The proofs in this section never use the condition sρ > 0. Invoking the
+principle of “mirror symmetry” (cf. §A.4) we get:
+Proposition 4.15. For ∆ ∈ Seg and m ∈ Mult. Then
+1. L(∆ + m)֒→L(∆) × L(m) (i.e., L(∆ + m) = soc(L(∆) × L(m))) if and only
+if RC(∆, m).
+28
+
+===== PDF PAGE 29 =====
+2. L(∆) × L(m) ։ L(∆ + m) (i.e., L(∆ + m) = cos(L(∆) × L(m))) if and only
+if LC(∆, m).
+3. The following conditions are equivalent:
+(a) L(∆) × L(m) is irreducible.
+(b) LC(∆, m) and RC(∆, m).
+(c) L(∆) × L(m) ≃ L(m) × L(∆).
+(d) L(∆) × L(m) ≃ L(m + ∆).
+Of course, the equivalence of the irreducibilities ofL(∆)× L(m) and Z(∆)×
+Z(m) can also be deduced directly from the fact that the Zelevinsk y involution
+is a ring homomorphism.
+5 A PPLICATIONS
+5.1 A sufﬁcient condition for the irreducibility of π × σ
+As an application of Proposition 4.12, we will give a sufﬁcie nt condition for
+irreducibility of π × σ , improving the main result of [11] (see Corollary 5.4
+below).
+Proposition 5.1. Let m, n ∈ Mult. Suppose that either
+for every segment ∆ ∈ m we have LC(∆, n) (5.1a)
+or
+for every segment ∆′ ∈ n we have RC(∆′, m). (5.1b)
+Then LI(Z(m), Z(n)) holds.
+Similarly, suppose that either
+for every segment ∆ ∈ m we have RC(∆, n) (5.2a)
+or
+for every segment ∆′ ∈ n we have LC(∆′, m). (5.2b)
+Then RI(Z(m), Z(n)) holds.
+Thus, if either (5.1a) or (5.1b) and if either (5.2a) or (5.2b) then Z(m) × Z(n)
+and L(m) × L(n) are irreducible.
+Proof. Suppose that for every segment ∆ in m we have LC(∆, n). W e will prove
+the statement by induction on the size of m. The case where m is a single seg-
+ment follows from Propositions 4.12. For the induction step we can assume
+as usual that m, n ∈ Multρ for some ρ ∈ C . Let ∆ (resp., ∆′) be the smallest
+29
+
+===== PDF PAGE 30 =====
+segment in m (resp., n) with respect to ≤ b. Note that for any ∆′′ in m the con-
+dition LC(∆′′, n≥ b∆) is equivalent to (hence follows from) LC(∆′′, n). Thus, by
+Lemma 3.12 we reduce to the case where ∆′ ≥ b ∆.
+Assume therefore that ∆′ ≥ b ∆. Note that Z(m) × Z(n) is a submodule of
+Z(m− ∆)× Z(∆)× Z(n). As ∆ ≤ b ∆′ we have RC(∆, n) by Lemma 3.2 part 6. By
+hypothesis we also have LC(∆, n). W e deduce that Z(∆) × Z(n) is irreducible,
+hence isomorphic to Z(n) × Z(∆). Thus,
+Z(m) × Z(n)֒→Z(m − ∆) × Z(n) × Z(∆).
+By induction hypothesis and Lemma 3.2 part 4, the latter is a s ubmodule of
+ζ(m − ∆ + n) × Z(∆)
+which is isomorphic to ζ(m + n) since ∆ ≤ b ∆′.
+The statement for the condition (5.2a) (resp., (5.2b)) foll ows the previous
+case upon passing to the contragredient (resp., by applying Lemma 2.9 and in-
+terchanging m and n). Similarly , the statements for (5.1b) and (5.2b) are equiv -
+alent by passing to the contragredient.
+For L(m) × L(n) we can argue using §A.4 (or the Zelevinsky involution).
+As a special case we get:
+Corollary 5.2. Let m, n ∈ Mult. Assume that either Z(∆′) × Z(m) is irreducible for
+every segment ∆′ ∈ n or Z(∆) × Z(n) is irreducible for every segment ∆ ∈ m. Then
+Z(m) × Z(n) and L(m) × L(n) are irreducible.
+Corollary 5.3. Let m, n ∈ Mult. Assume that n is totally unlinked. Then Z(m) ×
+Z(n) (or L(m) × L(n)) is irreducible if and only if for every segment ∆′ in n we have
+LC(∆′, m) and RC(∆′, m) (i.e., Z(m) × Z(∆′) is irreducible).
+In particular, we get a simple necessary and sufﬁcient crite rion for the
+irreducibility of π × σ when π ∈ Irr is either unramiﬁed, tempered or (in the
+case D = F ) generic, and σ ∈ Irr is arbitrary .
+Proof. The sufﬁciency follows from Proposition 5.1. The necessity follows from
+Proposition 2.5 part 2.
+Using Corollary 4.4 we can also recover the main result of [11 ] as a special
+case.
+Corollary 5.4. [11, Théorème 3.9] Let m, n ∈ Mult. Suppose that for every ∆ ∈ m
+and every ∆′ ∈ n, ∆ and ∆′ are not juxtaposed. Then
+Z(m) × L(n)
+is irreducible.
+30
+
+===== PDF PAGE 31 =====
+5.2 Applications to Speh and saturated representations
+W e go back to saturated representations (see Deﬁnition 3.8).
+Lemma 5.5. Let π = Z( m), m = ∆ 1 + · · ·+ ∆ N be a Speh representation with
+∆i+1 =
+←
+∆i, i = 1 , . . . , N − 1 and let ∆ ∈ Seg. Then LC(∆, m) is equivalent to
+∆ ̸≺ ∆N and RC(∆, m) is equivalent to ∆1 ̸≺ ∆. Thus, Z(∆) × π is irreducible if
+and only if ∆ ̸≺ ∆N and ∆1 ̸≺ ∆. In particular, this happens if ∆ is not linked to
+supp m.
+Proof. It is clear that LC(∆, m) cannot hold if ∆ ≺ ∆N . On the other hand, if
+∆ ̸≺ ∆N then we can take the matching function f (i) = i + 1. Similarly for
+RC(∆, m) (with f (i) = i − 1). The last part follows from Corollary 4.14.
+From Proposition 5.1 we get:
+Proposition 5.6. Let π = Z(∆ 1 + · · ·+ ∆N ) be a Speh representation with ∆i+1 =
+←
+∆i, i = 1 , . . . , N − 1 and let σ = Z(n) ∈ Irr. Assume that ∆1 ̸≺ ∆ for any segment
+∆ in n. Then LI(π, σ ) holds. In particular, this is satisﬁed if supp σ ⊂ Z≤ e(π ) Sim-
+ilarly, if ∆ ̸≺ ∆N for any ∆ in n (e.g., if supp σ ⊂ Z≥ b(π )) then RI(π, σ ) holds. In
+particular, π is saturated and hence LM.
+W e can immediately generalize Proposition 4.1 to Speh representations.
+Corollary 5.7. Let π = Z( m) ∈ Irrρ be a Speh representation and σ = L( n) ∈ Irrρ
+for some ρ ∈ C . Write n1 = n≤ ee(π ) and n2 = n≥ bb(π ). Then
+1. soc(π × σ ) = L(( nt
+1 + m)t + n>ee(π ))
+2. soc(π × σ ) = L( n + mt) if and only if (nt
+1 + m)t = n1 + mt.
+3. cos(π × σ ) = L( n + mt) if and only if (nt
+2 + m)t = n2 + mt.
+4. π × σ is irreducible if and only if (nt
+1 + m)t = n1 + mt and (nt
+2 + m)t = n2 + mt.
+5. π × σ is irreducible if and only if π × σ = σ × π .
+Indeed, the ﬁrst part follows from Lemma 3.13 and Propositio n 5.6. The
+second part follows immediately . The third part follows by p assing to the con-
+tragredient. The fourth part is an immediate consequence, w hile the last part
+now follows from Lemma 2.9.
+Similarly , we can generalize Corollary 4.3.
+Corollary 5.8. Let π = Z( m) ∈ Irrρ be a Speh representation and let π′ = L( n) ∈
+Irrρ . Then there exists σ ∈ Irr such that π′ = soc( π × σ ) (i.e., π′֒→π × σ ) if
+and only if there exists m′ ∈ Mult such that (n≤ ee(π ))t = m + m′. In this case
+σ = L((m′)t + n>ee(π )). In particular, σ is uniquely determined by π and π′.
+31
+
+===== PDF PAGE 32 =====
+Let us now analyze irreducibility of parabolic induction of Speh repre-
+sentations. In the case D = F , a sufﬁcient condition for the irreducibility of
+π1 × · · · × πk where πi are Speh representations was proved in [46, §I.9] and it
+is one of the main local results of [ibid.]. This was extended in [67] to any D,
+where this condition is also shown to be necessary . W e can easily recover these
+irreducibility results. First we reduce to the case k = 2:
+Corollary 5.9. Let π1, . . . , π k ∈ Irr. Suppose that all but at most one of the πi’s
+are Speh representations. Then π1 × · · · × πk is irreducible if and only if πi × πj is
+irreducible for all i < j .
+Note that in the case where all but at most one of the πi’s are segment
+representations this is precisely Corollary 5.3.
+Proof. The only non-trivial direction is the ‘if’ part. W e will prov e the assertion
+by induction on k. The case k = 1 is trivial. For the induction step we may
+assume without loss of generality that πk is a Speh representation. By induction
+hypothesis Π := π1 × · · · ×πk− 1 is irreducible. Also, since πk × πi is irreducible
+for all i < k , we have πk × πi ≃ πi × πk and therefore πk × Π ≃ Π × πk. By the
+last part of Corollary 5.7 we conclude that Π × πk is irreducible as required.
+Finally , it remains to consider the irreducibility of the pr oduct of two
+Speh representations. More precisely , we explicate the conditions LI(π, σ ) and
+RI(π, σ ).
+Corollary 5.10. Let π = Z(∆1 + · · ·+ ∆N ) and σ = Z(∆′
+1 + · · ·+ ∆′
+N′) be two Speh
+representations supported on the same cuspidal line, with ∆i+1 =
+←
+∆i, i = 1, . . . , N −
+1 and ∆′
+i+1 =
+←
+∆′
+i, i = 1 , . . . , N ′ − 1. Then ¬ LI(π, σ ) (the negation of LI(π, σ )) is
+equivalent to the condition
+supp π ≺ supp σ & b(∆1) < b(∆′
+1) & e(∆1) < e(∆′
+1)
+& b(∆N ) < b(∆N′) & e(∆N ) < e(∆N′) (5.3)
+while ¬ RI(π, σ ) is equivalent to the symmetric condition (exchanging π and σ ). Thus,
+π × σ is reducible if and only if either (5.3) or the symmetric condition is satisﬁed. In
+particular, π × σ is irreducible if supp π and supp σ are not linked.
+Proof. In view of Lemma 5.5, the condition (5.1a) is not satisﬁed if a nd only if
+∆i ≺ ∆′
+N′ for some i, or equivalently if b(∆N ) < b (∆′
+N′) and e(∆N ) < e (∆′
+N′)
+and b(∆′
+N′) ≤ e(
+→
+∆1). Similarly , (5.1b) is not satisﬁed if and only if b(∆1) <
+b(∆′
+1) and e(∆1) < e (∆′
+1) and b(∆′
+N′) ≤ e(
+→
+∆1). From Proposition 5.1 it fol-
+lows that if (5.3) is not satisﬁed then LI(π, σ ) holds. Similarly , if the symmetric
+condition to (5.3) fails then RI(π, σ ) holds.
+Suppose now that (5.3) is satisﬁed. Then obviously the symme tric con-
+dition is not satisﬁed and therefore RI(π, σ ) holds. Thus, if LI(π, σ ) also held
+32
+
+===== PDF PAGE 33 =====
+then π × σ would be irreducible and by Corollary 5.7 we would get (writi ng
+π = Z( m), σ = Z( n)) mt + nt = ( m + n)t. However, it is easy to check that
+this combinatorial condition is not fulﬁlled in this case – s ee [67, §5]. (Alterna-
+tively we can use Propositions 5.20 and Lemma 5.21 below .) Si milarly , if the
+symmetric condition to (5.3) is satisﬁed then RI(π, σ ) fails.
+In a special case we can go further:
+Corollary 5.11. Suppose that π = π1 × · · · × πk where πi are Speh representations
+and supp πi are mutually unlinked. Then π is LM.
+Proof. The proof is analogous to that of Corollary 3.10. Let π = π1 × · · · × πk
+where πi are Speh representations where supp πi are mutually unlinked. First
+note that π is irreducible by Corollaries 5.9 and 5.10. T o show that π is LM we
+argue by induction on k. W e already proved the case k = 1 . For the induc-
+tion step assume without loss of generality that supp πk is the longest segment
+among supp πi, i = 1 , . . . , k . Thus, supp πk is a connected component of supp π
+(see §2.1). Let σ ∈ Irr be such that supp(σ ) ⊂ supp(π ). If σ = Z( m) then any
+segment ∆ in m is unlinked with supp(πk). Therefore πk × Z(∆) is irreducible
+by Lemma 5.5. Thus, πk × σ is irreducible by Corollary 5.2. Therefore, by induc-
+tion hypothesis π × σ = π1 × · · · ×πk− 1 × (πk × σ ) is SI. The corollary follows
+from Lemma 3.7.
+Finally , we can classify saturated representations.
+Proposition 5.12. A representation π ∈ Irr is saturated if and only if we can write
+π = π1×· · ·×πk where for all i πi is a Speh representation and supp(πi) is a connected
+component of supp(π ).
+Proof. For the ‘if’ part let π = π1 × · · · × πk be as in the statement of the
+proposition. W e already saw that π is irreducible. Let ∆ ∈ Seg be such that
+∆ ⊂ supp(π ). Then by the condition on π , ∆ and supp(πi) are unlinked for all i.
+Hence Z(∆) × πi is irreducible by Lemma 5.5. It follows from Corollary 5.9 th at
+Z(∆) × π is irreducible. It follows now from Corollary 5.2 that π is saturated.
+Conversely , suppose that π = Z( m) is saturated. W e denote by n(∆) the
+multiplicity of a segment ∆ in m. W e show that for any ∆ ⊂ supp π such that
+←
+∆ ⊂ supp π we have n(
+←
+∆) = n(∆). (This will clearly imply that π has the
+required form.) Indeed, if m = ∆ 1 + · · ·+ ∆N and f is a ⇝-matching from X←
+∆;m
+to Y←
+∆;m
+then f maps {i : ∆ i = ∆ } to {i : ∆ i =
+←
+∆} and therefore n(
+←
+∆) ≥ n(∆).
+Similarly , if f is a matching from ˜X∆;m to ˜Y∆;m then it maps {i : ∆ i =
+←
+∆} to
+{i : ∆ i = ∆} and therefore n(
+←
+∆) ≤ n(∆).
+33
+
+===== PDF PAGE 34 =====
+5.3 Ladder representations
+Finally , we consider a class of representations which gener alize the Speh rep-
+resentations. This class was studied in [12, 36, 37]. It is im portant not only in
+its own right but also since it occurs naturally in the study o f discrete series
+representations of classical groups [40, 47].
+Deﬁnition 5.13. A rigid representation π = Z(∆ 1 + · · ·+ ∆ N ) ∈ Irr is called
+a ladder representation if ∆i ̸⊂ ∆j for any i ̸= j. Thus, if ∆i = [ ci, di]ρ with
+∆1 ≥ b · · · ≥b ∆N then c1 > · · ·> c N and d1 > · · ·> d N . We will also say that
+∆1 + · · ·+ ∆N itself is a ladder in this case.
+For a ladder representation π = Z( m) the left and right aligned forms of
+m coincide – we will simply refer to it as the aligned form of m.
+Many properties which hold for Speh representations also hold more gen-
+erally for ladder representations. (One notable exception is that ladder repre-
+sentations are generally not saturated by Proposition 5.12 .) As an example, we
+will show in this section that every ladder representation i s LM.
+For the rest of the section let π = Z( m) be a ladder representation and let ∆ be
+the largest segment in m with respect to ≥ b (or equivalently ,≥ e).
+The key property that we use is the following.
+Lemma 5.14. Let n ∈ Mult be such that e(∆′) = e(∆) and ∆′ ⊂ ∆ for all ∆′ in n.
+Then π × Z(n) is irreducible.
+Proof. This follows from Corollary 5.2. Indeed for any ∆′ in n the condition
+LC(∆′, m) is trivial while for RC(∆′, m) we can take the matching function
+f (j) = j − 1 in the aligned form of m.
+Proposition 5.15. Every ladder representation is LM.
+Moreover, suppose that σ = Z( n) ∈ Irr is such that supp(σ ) ⊂ Z≤ e(∆). Let
+π′ = Z(m − ∆), σ′ = Z(n<e∆) and τ = Z(∆ + n≥ e∆). Then
+soc(π × σ ) = soc( τ × Σ)
+where Σ = soc( π′ × σ′) and LI(τ, Σ) holds. In particular, LI(π, σ ) if and only if
+LI(π′, σ′).
+Proof. W e will prove the proposition by induction on the size of m. The base of
+the induction is the trivial case m = 0 . For the induction step let σ = Z( n), π′,
+σ′ and τ be as in the statement of the proposition. It follows from Lem ma 5.14
+that π × Z(n≥ e∆) is irreducible. Now
+π ×֒→π × Z(n≥ e∆) × σ′ ≃ Z(n≥ e∆) × π × σ′
+֒→Z(n≥ e∆) × Z(∆) × π′ × σ′ = τ × π′ × σ′.
+34
+
+===== PDF PAGE 35 =====
+By induction hypothesis, π′ × σ′ is SI. Let Σ = soc( π′ × σ′). By Lemma 3.11
+(with π = τ and σ = π′× σ′) we conclude that τ × π′× σ′, and a fortiori π × σ is
+SI and the condition LI(τ, Σ) is satisﬁed. By Lemma 3.7 it follows that π is LM.
+Moreover, soc(π × σ ) = soc( τ × Σ). The last part follows.
+Combining Proposition 5.15 with Lemma 3.13 we can explicate soc(π × σ )
+combinatorially by the following recursive algorithm:
+Corollary 5.16. Let n ∈ Mult and deﬁne n′ = (n≤ ee(∆))t. Then
+socz(m, nt)t = n>ee(∆) + (∆ + n′
+≥ e∆ + socz(m − ∆, n′
+<e∆))t.
+In particular, (by Lemma 2.9) π × σ is irreducible if and only if π × σ = σ × π .
+Corollary 5.16, together with the Mœglin–W aldspurger algo rithm give a
+perfectly feasible algorithm for deciding the irreducibil ity of π × σ (or even,
+LI(π, σ )) for any σ ∈ Irr in terms of the Zelevinsky classiﬁcation.
+Moreover, as in the case of Speh representations we have:
+Lemma 5.17. Let π1, . . . , π k ∈ Irr. Suppose that all but at most one of the πi’s are
+ladder representations. Then π1 × · · · × πk is irreducible if and only if πi × πj is
+irreducible for all i < j .
+Proof. The proof is exactly as that of Corollary 5.9 using Corollary 5.16.
+Thus, in principle we get a combinatorial condition for the i rreducibility
+of π × σ when π is an irreducible product of ladder representations and σ ∈ Irr.
+(W e do not know how to easily characterize combinatorially t he property of
+being an irreducible products of ladder representations.)
+Going back to the case where π is a ladder representation, we may ask
+whether there is a simpler (or at least more concise) combina torial criterion for
+LC(π, σ ) as in the case where π = Z(∆) for ∆ ∈ Seg.
+Suppose that π = Z( m) is a ladder and σ = Z( n) ∈ Irr. Let (∆1, . . . , ∆N )
+be the aligned form of m. Write n = ∆′
+1 + · · ·+ ∆′
+N′. Let
+Xm;n = {(i, j) ∈ { 1, . . . , N } × { 1, . . . , N ′} : ∆ i ≺ ∆′
+j},
+and
+Ym;n = {(i, j) ∈ { 1, . . . , N } × { 1, . . . , N ′} :
+←
+∆i ≺ ∆′
+j}.
+W e deﬁne relations⇝=⇝m;n (resp., ⇝′) between Ym;n and Xm;n by
+(i2, j2) ⇝ (i1, j1) ⇐ ⇒ either (i1 = i2 and ∆′
+j2 ≺ ∆′
+j1 ) or ( j1 = j2 and ∆i1 ≺ ∆i2 ).
+(resp.,
+(i2, j2) ⇝′ (i1, j1) ⇐ ⇒ (i2, j2) ⇝ (i1, j1) and i1 ≤ i2 + 1. )
+35
+
+===== PDF PAGE 36 =====
+Let LC(m, n) (resp., LC′(m, n)) be the condition that there exists a ⇝-matching
+(resp., ⇝′-matching) function from Xm;n to Ym;n. Recall that this means that
+there exists an injective function f : Xm;n → Ym;n such that f (x) ⇝ x for all
+x ∈ Xm;n.
+The condition LC(m, n) makes sense for any m (not necessarily a ladder).
+Lemma 5.18. Suppose that m is a ladder and n is any. Then the conditions LC(m, n)
+and LC′(m, n) are equivalent.
+Proof. Let X = Xm;n and Y = Ym;n. Suppose that f and ˜f are ⇝-matchings
+from X to Y . W e will say that ˜f is an improvement of f if there exists x = (i, j) ∈
+X such that
+1. ˜f (x) ⇝′ x,
+2. f (x) ̸⇝′ x,
+3. ˜f (x′) = f (x′) ⇝′ x′ for all x′ = (i′, j′) such that either j′ < j or j′ = j and
+i′ > i.
+T o prove the lemma we will show that if f is a ⇝-matching which is not a ⇝′-
+matching then there exists an improvement of f . Let x0 = ( i0, j0) ∈ X be such
+that f (x0) ̸⇝′ x0 with j0 minimal and i0 maximal (with respect to this j0). By
+assumption we have f (x0) = ( i0 − k, j0) where k > 1.
+Let y0 = ( i0 − 1, j0) ∈ Y . W e will construct an integer 0 ≤ m ≤ k and
+indices j1, . . . , j m with the following properties.
+1. xl = (i0 − l, jl) ∈ X for l = 1, . . . , m .
+2. yl = (i0 − l − 1, jl) ∈ Y for l = 1, . . . , m ′ where m′ = min(m, k − 1).
+3. ∆′
+jr ≺ ∆′
+js for all 0 ≤ r < s ≤ m.
+4. f (xl) = yl− 1, l = 1, . . . , m .
+5. If m < k then ym is not in the image of f .
+Suppose that the elements x0, . . . , x l− 1 and y0, . . . , y l− 1 have been constructed
+for some l = 1, . . . , k . If yl− 1 is not in the image of f then we take m = l − 1 and
+stop. Otherwise we take xl ∈ X to be the element such that yl− 1 = f (xl). By
+the minimality property of x0 we necessarily have xl = ( i0 − l, jl) for some jl
+where ∆′
+jl− 1 ≺ ∆′
+jl . (For otherwise, xl = (i0 − l + s, jl− 1) for some s > 0. Since
+jl− 1 ≤ j0, we must have s = 1 by the minimality of x0, hence xl = xl− 1, in
+contradiction with the injectivity of f .) Note that ∆′
+jr ≺ ∆′
+jl for all r < l since
+b(
+←
+∆′
+jl ) ≤ e(∆i0− l) ≤ e(∆i0− k) ≤ e(∆′
+j0 ) ≤ e(∆′
+jr ).
+36
+
+===== PDF PAGE 37 =====
+If l < k we take yl = ( i0 − l − 1, jl) and continue. (Note that yl ∈ Y since
+b(∆′
+jl ) ≤ e(
+→
+∆i0− l) ≤ e(∆i0− l− 1).) Otherwise we take m = k and stop. Note that
+in the case m = k we have f (x0) ⇝ xk.
+W e deﬁne ˜f by
+˜f (x) =
+
+
+
+
+
+yl if x = xl, l = 0, . . . , m ′,
+f (x0) if x = xk (and m = k),
+f (x) otherwise.
+It is easy to see that ˜f is an improvement of f .
+The following is an analogue of Lemma 3.16 in the case of ladde r repre-
+sentations.
+Proposition 5.19. Suppose that m ∈ Mult is a ladder, ρ = e(m) and n ∈ Multρ is
+any multisegment such that supp n ̸⊂ Z≤ ρ . Then the following conditions are equiva-
+lent:
+1. LC′(m, n).
+2. LC′(m, n− ) and (m + n)− = m + n− .
+Proof. Let J = {j0, . . . , j k} be as in (2.5a) and (2.5b) so that
+n− = n +
+∑
+j∈ J
+(∆′
+j
+− − ∆′
+j).
+Let X = Xm;n, Y = Ym;n, ˜X = Xm;n− , ˜Y = Ym;n− . Note that ˜X ⊂ X, ˜Y ⊂ Y and
+the complements X0 = X \ ˜X, Y0 = Y \ ˜Y are given by
+X0 = {(i, j) ∈ X : j ∈ J and e(∆i) = e(
+←
+∆′
+j)}
+and
+Y0 = {(i, j) ∈ Y : j ∈ J and e(∆i) = e(∆′
+j)}.
+Note that |Y0| ≤ | X0|since the map g : Y0 → X0 given by (i, jl) ↦→ (i, jl− 1) is
+one-to-one. It is easy to see that the condition (m + n)− = m + n− is equivalent
+to the surjectivity of g. W e will show by successive approximation that
+if there is a ⇝′-matching from X to Y then there is such a matching f
+satisfying f (X0) ⊂ Y0. (5.4)
+Note that if f satisﬁes the latter condition then g is onto, f (X0) = Y0 and
+f ( ˜X) = ˜Y , so that f deﬁnes a ⇝′-matching from ˜X to ˜Y . Conversely , if g is
+onto and LC′(m, n− ) then we can deﬁne a matching from X to Y by combining
+g− 1 with a matching from ˜X to ˜Y . Thus, it remains to prove (5.4).
+Given two ⇝′-matchings f and ˜f from X to Y we say that ˜f is an im-
+provement of f if there exists x0 = (i0, j0) ∈ X0 such that
+37
+
+===== PDF PAGE 38 =====
+1. f (x0) /∈ Y0,
+2. ˜f (x0) ∈ Y0,
+3. For all x = (i, j) ∈ X0 with i < i 0 we have f (x) = ˜f (x) ∈ Y0.
+In order to show (5.4) it sufﬁces to show that if f is a ⇝′-matching such that
+f (X0) ̸⊂ Y0 then there exists an improvement of f .
+W e will construct such an improvement as follows. Let x0 = ( i0, j0) ∈
+X0 be such that y0 = f (x0) /∈ Y0 and i0 is minimal with this property . Then
+necessarily y0 = ( i0, j1) for some j1 where e(∆′
+j1 ) = e(∆i0 ) and ∆′
+j1 ≺ ∆′
+j0 .
+Therefore, there exists a unique j2 ∈ J such that e(∆′
+j2 ) = e(∆′
+j1 ). W e have
+∆′
+j2 ≺ ∆′
+j0 and ∆′
+j2 ⊂ ∆′
+j1 . Thus, y1 = ( i0, j2) ∈ Y0 and y1 ⇝′ x0. If y1 is not in
+the image of f we deﬁne
+˜f (x) =
+{
+y1 if x = x0,
+f (x) otherwise.
+Otherwise, y1 = f (x1) for some x0 ̸= x1 ∈ X. There are two possibilities: either
+x1 = (i0, j3) where ∆′
+j2 ≺ ∆′
+j3 or x1 = (i0 + 1, j2). In the ﬁrst case, y0 ⇝′ x1 and
+we deﬁne ˜f by
+˜f (x) =
+
+
+
+
+
+y1 if x = x0,
+y0 if x = x1,
+f (x) otherwise.
+In the second case, let x2 = ( i0 + 1, j1) and observe that x2 ∈ X, y0 ⇝′ x2 and
+x2 ̸= x0, x1. Let y2 = f (x2) ̸= y0, y1. Then necessarily y2 = ( i0 + 1, j4) (since
+y2 ̸= y0) for some j4 where ∆′
+j4 ≺ ∆′
+j1 . Note that ∆′
+j4 ≺ ∆′
+j2 since b(∆′
+j2 ) ≤
+e(
+→
+∆i0+1) ≤ e(
+→
+∆′j4 ). Hence, y2 ⇝′ x1, and we can deﬁne
+˜f (x) =
+
+
+
+
+
+
+
+
+
+y1 if x = x0,
+y2 if x = x1,
+y0 if x = x2,
+f (x) otherwise.
+In all cases ˜f improves f .
+Combining Corollary 5.16 with Proposition 5.19 and Lemmas 3 .16 and
+5.18 we conclude:
+Proposition 5.20. For any ladder m ∈ Mult and any n ∈ Mult the conditions
+LC(m, n) and LI(Z(m), Z(n)) are equivalent. Similarly LC(n, m) and RI(Z(m), Z(n))
+are equivalent. Thus, Z(m)× Z(n) is irreducible if and only if LC(m, n) and LC(n, m).
+38
+
+===== PDF PAGE 39 =====
+Proof. W e use induction on the size of m. For the induction step, suppose ﬁrst
+that supp n ⊂ Z≤ e(m). W e observe that in the notation of Corollary 5.16,LC(m, n)
+is equivalent to LC(m − ∆, n<e∆). Indeed, let X = Xm;n, X′ = Xm− ∆;n<e∆ ,
+viewed as a subset of X, and X0 = X \ X′. Similarly , let Y = Ym;n, Y′ =
+Ym− ∆;n<e∆ and Y0 = Y \ Y′. It is easy to see that if y ∈ Y0 and y ⇝ x ∈ X
+then necessarily x ∈ X0. Thus, any matching from X to Y restricts to a match-
+ing from X′ to Y′. Conversely , if x = ( i, j) ∈ X0 then (i − 1, j) ∈ Y0 and
+(i − 1, j) ⇝ x. Thus, we can extend any matching from X′ to Y′ to a matching
+from X to Y by taking (i, j) ↦→ (i − 1, j) on X0.
+Thus, in this case the induction step follows from Corollary 5.16. In the
+case supp n ̸⊂ Z≤ e(m) the induction step follows from Proposition 5.19 and
+Lemma 3.16 (taking into account Lemma 5.18).
+The dual statement follows by passing to contragredient.
+In the case where both m and n are ladders it is possible to simplify the
+condition LC(m, n). Suppose that (∆1, . . . , ∆N ) and (∆′
+1, . . . , ∆′
+N′) are the aligned
+forms of m and n respectively , and let X = Xm;n and Y = Ym;n. W e denote by
+N C(m, n) (resp., N C′(m, n)) the condition that there exist indices 1 ≤ i ≤ N ,
+1 ≤ j ≤ N′ and k ≥ 0 such that
+1. (i + l, j + l) ∈ X for all l = 0, . . . , k ,
+2. (i − 1, j), (i + k, j + k + 1) /∈ Y ,
+3. (resp., and in addition, (i + l, j + l + 1) ∈ Y \X for all l = 0, . . . , k − 1).
+Lemma 5.21. In the notation above, the following conditions are equival ent for two
+ladders m, n.
+1. The negation of LC(m, n).
+2. There does not exists a ⇝′′-matching function from X to Y where
+(i2, j2) ⇝′′(i1, j1) ⇐ ⇒ (i2, j2) ⇝′ (i1, j1) and j2 ≤ j1 + 1.
+3. N C(m, n).
+4. N C′(m, n).
+Proof. W e ﬁrst note that if (i, j) ∈ X and (i′, j) ∈ Y then (i′, j) ⇝ (i, j) if and
+only if i′ < i. Similarly if (i, j′) ∈ Y then (i, j′) ⇝ (i, j) if and only if j′ > j .
+W e also note that the extra condition (i + l, j + l + 1) ∈ Y \X in N C′(m, n)
+implies that either b(∆i+l) = b(∆′
+j+l+1) or e(∆i+l) = e(∆′
+j+l+1).
+Obviously 1 =⇒ 2.
+2 =⇒ 3: Suppose that N C(m, n) is not satisﬁed. Then it is easy to see that
+f (i, j) =
+
+
+
+
+
+(i − 1, j) if there exists k ≥ 0 such that (i + l, j + l) ∈ X
+for all 1 ≤ l ≤ k and (i + k, j + k + 1) /∈ Y,
+(i, j + 1) otherwise,
+39
+
+===== PDF PAGE 40 =====
+deﬁnes a ⇝′′-matching from X to Y .
+3 =⇒ 4: W e take a triplet (i, j, k) as in the condition N C(m, n), with k
+minimal. W e claim that (i, j, k) satisﬁes the condition pertaining to N C′(m, n).
+First, it clear from the minimality of k that (i+l, j+l+1) ∈ Y for all l = 0, . . . , k −
+1. W e also have(i− 1, j+1), (i+k − 1, j+k +1) /∈ Y and if (i+l− 1, j+l+1) ∈ Y
+for some 1 ≤ l < k then both (i + l, j + l + 1) and (i + l − 1, j + l) are in X.
+Thus, if (i + l, j + l + 1) ∈ X for some l = 0 , . . . , k − 1 and l is minimal with
+this property , then(i + l, j + l + 1, k′) would also satisfy the deﬁning property
+of N C(m, n) for some k′ < k − l, in contradiction with the minimality of k.
+4 =⇒ 1: Suppose that N C′(m, n) is satisﬁed with indices i, j, k as above.
+Then
+{(i′, j′) ∈ Y : (i′, j′) ⇝ (i + l, j + l) for some 0 ≤ l ≤ k} ⊂
+{(i + l − 1, j + l) : l = 1, . . . , k },
+so that a ⇝-matching is impossible.
+W e remark that in the special case where both Z(m) and Z(n) are ladders
+satisfying b(∆i+1) = b(
+←
+∆i) for all i = 1 , . . . , N − 1 and b(∆′
+j+1) = b(
+←
+∆′
+j ) for all
+j = 1 , . . . , N ′ − 1, the irreducibility criterion of Proposition 5.20 can be si mpli-
+ﬁed even further in accordance with the results of [39]. W e om it the details.
+Remark 5.22. We do not expect the property LC(m, n) to have any representation-
+theoretic signiﬁcance if neither m nor n is a ladder. As a simple example, if ρ ∈ C , the
+multisegments m = {ρ} + {ρ} + {
+→
+ρ } and n = {ρ} + {
+→
+ρ } + {
+→
+ρ } satisfy LC(m, n)
+although LI(Z(m), Z(n)) does not hold: we have
+soc(Z(m) × Z(n)) = Z( {ρ} + {ρ} + {
+→
+ρ } + {
+→
+ρ } + (ρ,
+→
+ρ )) ≃
+Z({ρ} + {
+→
+ρ }) × Z({ρ} + {
+→
+ρ }) × Z((ρ,
+→
+ρ )).
+6 A SIMPLE PROOF OF TADI ´C HYPOTHESIS (U0)
+The goal of this section is to explain how the results of §5.2 s implify the proof
+of the classiﬁcation theorem of the unitary dual of Gm. The classiﬁcation of the
+unitary dual of GLn(F ) was established by T adi´ c [63] in the 1980’s. (Signiﬁcant
+progress on this problem was obtained earlier by Bernstein i n [20]. Ideas of
+Rodier were also inﬂuential.) Later on, under three hypothe ses, named (U0),
+(U1) and (U2), T adi´ c gave the classiﬁcation of the unitary dual of GLm(D), see
+[65]. (Actually , T adi´ c conﬁned himself to characteristiczero since at the time the
+Jacquet–Langlands correspondence was only available in th is case. However,
+once this was established in positive characteristic by Bad ulescu, there is no
+change in the strategy – see [4] and the discussion below .) In §6.1, we explain
+T adi´ c’s theorem and the hypotheses (U0), (U1), (U2). Then, in §6.2 we recall
+40
+
+===== PDF PAGE 41 =====
+how these hypotheses were proved. Finally , in §6.3 we give a n ew proof of a
+weaker version of hypothesis (U0). This leads to a purely com binatorial and
+uniform proof of the classiﬁcation of the unitary dual of GLm(D), and hence
+the hypothesis (U0) in general.
+6.1 Hypotheses (U0), (U1) and (U2)
+W e denote by Irru the subset of Irr consisting of unitarizable representations
+and set C u = C ∩ Irru. (Recall that ρ ∈ C is in C u if and only if its central
+character is unitary .) Forρ ∈ C , d ≥ 1 and n ≥ 0, let m(ρ)
+n,d be the multisegment
+m(ρ)
+n,d =
+n∑
+i=1
+[ n + 1
+2 − i − d − 1
+2 , n + 1
+2 − i + d − 1
+2
+]
+ρ
+and set sp(ρ)
+n,d = L(m(ρ)
+n,d ) ∈ Irr. W e also deﬁne
+Brigid = {sp(ρ)
+n,d ; n, d ∈ Z≥ 1, ρ ∈ C u},
+B = Brigid ⊔ { σν α
+ρ × σν− α
+ρ ; σ = sp(ρ)
+n,d ∈ Brigid, 0 < α < 1/ 2}.
+Thus, Brigid consists of the Speh representations with unitary central c haracter
+(see §2.5). Note that B ⊂ Irr — this follows immediately from Proposition 2.5
+part 6.
+In the case D = F T adi´ c gave the following classiﬁcation of the unitary
+dual of GL(m, D).
+Theorem 6.1. [63] Suppose that D = F . Then the map N(B) − → Irru given by
+τ1 + · · ·+ τs ↦→ τ1 × · · · ×τs (6.1)
+is a bijection (and in particular well deﬁned).
+T adi´ c further conjectured that Theorem 6.1 holds in fact for any D [65]. T o
+that end he postulated the following hypotheses:
+(U0) If π, π′ ∈ Irru, then π × π′ is irreducible.
+(U1) Brigid ⊂ Irru.
+(U2) B \Brigid ⊂ Irru.
+More precisely , he showed:
+Theorem 6.2. ([65, §6]) Suppose that the hypotheses (U0), (U1), (U2) are true. Then
+the map (6.1) is bijective.
+Once again, the assumption of characteristic zero in [65] ca n be lifted as
+explained in [4].
+41
+
+===== PDF PAGE 42 =====
+6.2 Previous proofs of (U0), (U1) and (U2)
+Let us make a few remarks about the previous proofs of hypothe ses (U0), (U1),
+(U2).
+In the case F = D the assertion (U0) is a consequence of well-known
+theorem of Bernstein [20] as was noticed by Jacquet (cf. [30] ). However, Bern-
+stein’s method is not applicable to the case F ̸= D since it relies crucially on
+the properties of the mirabolic subgroup. In the case F ̸= D, the assertion (U0)
+was proved by Sécherre in [57]: 4 using the theory of types of Bushnell–Kutzko
+[22] for GLn(F ) and their generalization [52, 54–56] to GLm(D), together with
+some results of Barbasch and Moy [13, 14] on unitarity , he was able to transfer
+Bernstein’s result to GLm(D).
+T adi´ c remarked in [66] that (U1) and (U2) are a consequence of (U0). The
+argument was written in detail in [4], thus completing the pr oof of the classiﬁ-
+cation of the unitary dual. W e will recall the argument, replacing (U0) with the
+results of §5. (See also [10].) W e also remark that in charact eristic 0, Badulescu
+and Renard proved (U1) without assuming (U0) using global me thods [6].
+First, assuming (U1), the property (U2) is an immediate cons equence of
+the irreducibility of π × π for any π ∈ Brigid (Proposition 5.6 or Corollary 5.10)
+and the elementary fact that complementary series extend un til the ﬁrst point
+of reducibility . More precisely , letπ ∈ Irru and let α be the smallest real number
+≥ 0 such that π |·|α × π |·|− α is reducible. Then π |·|β × π |·|− β is unitarizable for
+all 0 ≤ β < α .
+Moreover, cos(π |·|α × π |·|− α ) is also unitarizable 5 and this can be used to
+give a nice inductive proof of (U1) as follows. (See [4, Lemme 4.2].)
+One proves that sp(ρ)
+k,d is unitarizable for any ρ ∈ C u by induction on k. For
+k = 1 the representation sp(ρ)
+1,d = L([(1 − d)/ 2, (d − 1)/ 2]ρ) is square-integrable
+and hence unitarizable. For the induction step, assume that π = sp(ρ)
+k,d is unita-
+rizable. W e recall that πν α
+ρ × πν− α
+ρ is irreducible for 0 ≤ α < 1
+2 . On the other
+hand by (the mirror symmetry analogue of) Proposition 5.6 or Corollary 5.10
+(applied twice) we have
+cos(πν 1/ 2
+ρ × πν− 1/ 2
+ρ ) ≃ L(m(ρ)
+k− 1,d + m(ρ)
+k+1,d ) ≃ sp(ρ)
+k− 1,d × sp(ρ)
+k+1,d .
+By the above, we deduce that sp(ρ)
+k− 1,d × sp(ρ)
+k+1,d is unitarizable. On the other
+hand, it is well known (and easy to see) that if π1 × π2 is irreducible and unita-
+rizable with π1, π2 hermitian then π1 and π2 are unitarizable (and irreducible) –
+see [66, §3d]). W e deduce that sp(ρ)
+k+1,d is unitarizable, concluding the induction
+step of the proof of (U1).
+4As explained in [4] the proof works in any characteristic.
+5In fact, by a result of Milici´ c all composition factors of π |·|α × π |·|− α are unitarizable – see
+[66, §3c], but we will not need to use this.
+42
+
+===== PDF PAGE 43 =====
+6.3 New proof of (U0)
+In this subsection we prove that (6.1) is bijective using (U1), (U2) (shown above)
+and the following lemma which proves a weaker form of (U0). Th en, (U0) will
+be a consequence of the classiﬁcation, rather than an input t owards it. W e em-
+phasize that assuming the classiﬁcation of the admissible d ual (§2.2), the ensu-
+ing proof of (U0) is purely combinatorial and in particular d oes not use types
+or reduction to the case D = F .
+Lemma 6.3. If π ∈ B and π′ ∈ Irru, then π × π′ is irreducible.
+Proof. Let π ∈ B. By hypotheses (U1) and (U2) proved above we have π ∈ Irru.
+On the other hand, it follows from Corollary 5.11 that π is LM. Hence soc(π × π′)
+is irreducible for any π′ ∈ Irr. If in addition π′ ∈ Irru then π × π′ is irreducible
+since it is unitarizable and in particular semisimple.
+Let us prove now that (6.1) is bijective. First, observe that (6.1) is well-
+deﬁned in view of (U1), (U2) and Lemma 6.3. (The irreducibili ty also follows
+from Corollaries 5.9 and 5.10.) T o prove injectivity one sho ws that every π ∈
+Brigid is a prime element in the factorial ring R. (This property is called (U3)
+and its proof does not use (U0), see [65, §6].) 6 Finally , to prove surjectivity of
+(6.1), T adi´ c shows, using Proposition 2.5 part 5 (that he ca lls property (U4))
+that for any hermitian π ∈ Irr there exist σ1, . . . , σ n, τ1, . . . , τ m ∈ B such that
+π × σ1 × · · · × σn and τ1 × · · · × τm have a composition factor in common
+[66, Lemma 8.2].
+Now , by (U1) and (U2) the representations σ1 × · · · ×σn and τ1 × · · · ×τm
+are unitarizable. If moreover π ∈ Irru then, by Lemma 6.3, π × σ1 × · · · ×σn and
+τ1 × · · · × τm are irreducible and hence equivalent. By (U3), we deduce tha t π
+is a product of some sp(ρ)
+k,d ’s. Since π is hermitian, it is necessarily a product of
+elements in B. W e deduce that the map (6.1) is surjective.
+From Lemma 6.3 and the bijectivity of (6.1) we immediately co nclude:
+Corollary 6.4. (U0) holds.
+A T HE ADMISSIBLE DUAL OF GLm(D)
+BY EREZ LAPID , A LBERTO MÍNGUEZ AND MARKO TADI ´C
+As in the body of the paper, let D be a local non-archimedean division algebra
+with center F . In this appendix we review the classiﬁcation of the admissi ble
+dual of GLm(D) in terms of multisegments.
+There are two classiﬁcation schemes, à la Zelevinsky and à la Langlands .
+The Langlands classiﬁcation is of course valid for any reduc tive group (see e.g.
+[49]), but in the case at hand it can be reﬁned and made more exp licit. In the
+case where D = F these classiﬁcations are due to Zelevinsky [72] (see also [5 0])
+6Using Tadi´ c determinantal formula [37, 62] the argument becomes even more transparent.
+43
+
+===== PDF PAGE 44 =====
+following up on his work with Bernstein [16–18]. There are tw o main tools in
+the work of Bernstein–Zelevinsky: restriction to the mirab olic subgroup (and
+more generally , the notion of derivatives) and the geometri c lemma (which
+they introduce). The ﬁrst one is special to the case D = F while the second one
+is general. In the case where D ̸= F , the explication of the Langlands classiﬁca-
+tion is due to T adi´ c [65] in the case where the characteristic of F is zero. One of
+the ingredients in this classiﬁcation is the local Jacquet– Langlands correspon-
+dence which had been proved by Deligne–Kazhdan–Vignéras using the simple
+trace formula [26]. The local Jacquet–Langlands correspon dence was extended
+to the positive characteristic case by Badulescu [8] using t he method of close
+ﬁelds due to Kazhdan and Deligne [25, 35]. As explained in [4] , using an ad-
+ditional irreducibility result [7], this gives the reﬁned L anglands classiﬁcation
+for any D in positive characteristic as well. The Zelevinsky classiﬁ cation in the
+case D ̸= F is due to Mínguez–Sécherre [42] who consider representations over
+ﬁelds of characteristic different from the residual charac teristic of F . They use
+type theory which was developed by Bushnell–Kutzko in the ca se D = F [22]
+and subsequently by Sécherre and his co-authors in the gener al case in a series
+of papers ([21, 52–56]). All these methods ultimately reduce the classiﬁcation to
+the case D = F .
+The two classiﬁcations are related by the Zelevinsky involution (see §A.5).
+In the following we will explain how the approach of [42] can b e pushed
+further (in the complex case) using some additional input to give a uniform
+proof of the classiﬁcations in all cases. W e will avoid usingthe Jacquet–Langlands
+correspondence (and hence the simple trace formula), the theory of close ﬁelds,
+the Bernstein–Zelevinsky derivatives and type theory . In fact, all the necessary
+ingredients for the proof are contained in the standard text [23]. Another ad-
+vantage is that we get the two classiﬁcations in one fell swoo p (without need
+to worry about the Zelevinsky involution).
+The approach is mostly combinatorial relying on the geometr ic lemma
+but at certain points we use unitarity . The “non-combinator ial” input is given
+in §A.1.
+W e remark that it is also possible to simplify the prerequisites of the proof
+by T adi´ c for the reﬁned Langlands classiﬁcation in this context [65] – see [68],
+[31, §2]. In particular, one can eliminate the use of the Jacq uet–Langlands cor-
+respondence and make the proof uniform in D and valid in any characteristic.
+W e prefer to use an approach which is more combinatorial and w orks equally
+well for the Zelevinsky and Langlands classiﬁcations.
+In the following we will freely use the notation and terminol ogy of §1. In
+particular, Gn = GL n(D).
+A.1 Fundamental irreducibility results
+The point of departure is the following well-known result.
+44
+
+===== PDF PAGE 45 =====
+Theorem A.1. Let ρ ∈ C (Gm). Then there exists a unique unramiﬁed character νρ
+of F∗ of the form νρ = |·|sρ
+with sρ ∈ R>0 such that for any ρ′ ∈ C the induced
+representation ρ × ρ′ is reducible if and only if deg(ρ) = deg( ρ′) and either ρ′ ≃ ρνρ
+or ρ ≃ ρ′νρ . In other words,
+1. ρ × ρ′ is irreducible if ρ′ ∈ C \ {ρ |·|s : s ∈ R}.
+2. For s ∈ R, ρ × ρ |·|s is reducible if and only if s = ± sρ .
+The ﬁrst part of the Theorem follows from a general argument o f Cassel-
+man (see e.g., [49, Theorem VII.1.3]) which is valid for any r eductive group and
+which uses unitarity in an essential way .
+In the case D = F , the second part of Theorem A.1 is a classical result
+of Bernstein–Zelevinsky and sρ = 1 for all ρ ∈ C ([18, Theorem 4.2] and [72,
+§1.11]).
+In the general case, at least in characteristic 0, the second part of Theo-
+rem A.1 follows from general results about reductive groups due to Harish-
+Chandra and Silberger, together with a speciﬁc result for th e general linear
+group due to Olshanski. More precisely , ﬁxρ ∈ C (Gm) and consider the family
+πs := ρ |·|s × ρ |·|− s ∈ R(G2m), s ∈ C with the standard intertwining operators
+M (s) : πs → π− s. Once again by general theory , M (s) is a rational function in
+qs and (qms − q− ms)M (s) is holomorphic [58, 69]. 7 In the case where the char-
+acteristic of F is 0, the second part of Theorem A.1 follows from [61] and the
+following key result.
+Theorem A.2. [48] M (s) has a simple pole at s = 0 and the residue is a positive
+scalar multiple of the identity operator.
+A more streamlined proof of Theorem A.2 appears in [59, Proposition 5.1].
+Note that in [loc. cit.] this is stated and proved only when D = F is of char-
+acteristic 0. However, the proof applies in the general case without chan ge – it
+only relies on the orbit structure of the action of Gm × Gm on the space of m× m
+matrices over D (and more speciﬁcally on the fact that the invertible matric es
+form a unique open orbit).
+One can use the Jacquet–Langlands correspondence [8, 26] to determine
+sρ . In particular, sρ is an integer dividing the degree of D and coprime to m
+([26, Theorem B.2.b] and [9, Lemma 2.4]). Alternatively , Th eorem A.1 (and the
+information about sρ ) is also proved in [57, §4] (which works in any character-
+istic as was pointed out in [4]) without the Jacquet–Langlan ds correspondence
+but using instead the theory of types developed in [21, 22, 52 –56] to reduce the
+problem to a question about the Hecke algebra of type An.
+W e will now give an alternative, elementary argument for thesecond part
+of Theorem A.1 (using Theorem A.2 but avoiding [61], the Jacq uet–Langlands
+7Cf. [27, §6] for a simpler proof in the case at hand. Note that [ ibid., Lemma 17] carries over to
+the case D ̸= F without difﬁculty .
+45
+
+===== PDF PAGE 46 =====
+correspondence, and type theory). The argument is special to the general linear
+group and is valid in any characteristic. It does not give any information about
+sρ .
+First, observe that there is some s > 0 for which πs is reducible. This fol-
+lows from Theorem A.2 by a standard argument using unitarity (cf. [72, §1.11]).
+Indeed, the operator sM (s) deﬁnes an invariant hermitian form on πs for s ∈ R
+which is positive-deﬁnite at s = 0 . If πs were irreducible for all s > 0 then πs
+would be unitarizable. However, the matrix coefﬁcients of πs are unbounded
+on G2m for s ≫ 1.
+Let νρ be a character of the form νρ = |·|sρ
+with sρ > 0 such that ρνρ × ρ
+is reducible. W e will momentarily show that νρ is unique. At any rate, at this
+stage we can still deﬁne segments and the representation Z(∆), L(∆) for any
+segment ∆ (with respect to our choice of νρ ). An easy induction computes the
+minimal Jacquet modules of Z(∆), L(∆) (formulas (2.2) and (2.3) respectively)
+– see for example [65, Proposition 2.7]. In particular, L(∆) is essentially square-
+integrable by Casselman’s criterion.
+Lemma A.3. The character νρ is unique (i.e., sρ is unique).
+Proof. W e could have used [61] but we will give a more elementary and s elf-
+contained argument which is special for Gm. Suppose that ρν a
+ρ × ρ is reducible
+for some 0 < a ̸= 1 . Without loss of generality assume that a > 1. (Otherwise
+we change νρ to νa
+ρ .) Let δ = soc( ρν a
+ρ × ρ) so that r(δ) = ρν a
+ρ ⊗ ρ and δ is an essen-
+tially square-integrable subrepresentation. For any n ≥ 1 let δn = L([0 , n]ρ ) =
+soc(πn) where πn := ρν n
+ρ × · · · × ρν i
+ρ × · · · × ρ. W e take n = ⌈a⌉ − 1 ≥ 1, i.e,
+the integer such that n < a ≤ n + 1. The representation ρν a
+ρ × πn is a prod-
+uct of distinct supercuspidal representations, and in part icular it is SI. W e can
+assume without loss of generality that it has a unitary centr al character. Con-
+sider σ = soc( ρν a
+ρ × πn) ∈ Irr. Then σ = soc( ρν a
+ρ × δn). On the other hand,
+by Frobenius reciprocity there is a non-trivial map δn− 1νρ × δ → ρν a
+ρ × πn and
+hence
+[σ ] ≤ [δn− 1νρ × δ]. (A.1)
+Assume ﬁrst that a = n+1, i.e., a is an integer. Thenσ = δn+1. On the other
+hand, δn− 1νρ and δ are square-integrable and therefore δn− 1νρ × δ is unitary .
+Since it is also SI, it is irreducible. Hence δn− 1νρ × δ = σ = δn+1 which is clearly
+impossible.
+Now assume that a < n + 1 . Let r = r(m,...,m ). Then [r(σ )] ≤ ∑n
+i=0 ̺i
+where
+̺i = ρν n
+ρ ⊗ · · · ⊗ρν i+1
+ρ ⊗ ρν a
+ρ ⊗ ρν i
+ρ ⊗ · · · ⊗ρ.
+(The summand ρν n
+ρ ⊗ ρν n− 1
+ρ · · · ⊗ρ ⊗ ρν a
+ρ is excluded by (A.1).) It easily follows
+that σ is square-integrable since the exponents of all the ̺i’s satisfy Casselman’s
+criterion. Indeed, it is enough to check this for ̺0 since all other exponents
+differ from it by a non-negative sum of roots. Let e ∈ R be the exponent such
+that ρν e
+ρ is unitary . By assumption (n + 2) e = n(n + 1)/ 2 + a. In particular,
+46
+
+===== PDF PAGE 47 =====
+e > 0. W e need to show the inequalities n(n + 1)/ 2 − i(i + 1)/ 2 > (n − i)e,
+i = 0 , 1, . . . , n − 1. It is easy to see that each such inequality is equivalent to
+a < 1
+2 ni + n + i + 1.
+In particular, σ is unitarizable and hence σ∨ ≃ σ c where c denotes com-
+plex conjugation. Denoting by ¯r the minimal Jacquet module with respect to
+the opposite parabolic we get
+¯r(σ )c ≃ ¯r(σ c) ≃ ¯r(σ∨ ) ≃ r(σ )∨
+where the last equivalence is Casselman’s pairing. Note tha t ¯r(σ ) = r(σ ) ◦ w0
+where w0 is the permutation (on blocks) w0(i) = n + 3 − i of {1, . . . , n + 2}.
+Therefore we would get
+w0(̺c
+i ) = ̺∨
+j
+for some i, j ∈ { 0, . . . , n }. This would imply that either ρ∨ = ρcνn
+ρ or ρ∨ = ρcνa
+ρ ,
+both inconsistent with n < a < n + 1.
+In order to complete the proof of Theorem A.1 we still have to p rove the
+irreducibility of ρ× ρ. In fact, this is equivalent to the existence of a pole at s = 0
+for M (s) but we will give a different argument which proves a more gene ral
+result that will be needed later. W e ﬁrst need an auxiliary st atement.
+Lemma A.4. Let ∆i = [ − ai, ai]ρ , i = 1 , . . . , k with ai ∈ Z distinct. Then L(∆1) ×
+· · · ×L(∆k) is irreducible.
+Proof. Indeed, we may assume without loss of generality that ρ is unitary and
+enumerate the ∆i’s so that a1 > · · ·> a k. Thus, b(∆i), e(∆i) /∈ ∆j for all
+i < j . It is easy to see that L(∆1) ⊗ · · · ⊗ L(∆k) occurs with multiplicity one in
+[r(L(∆1) × · · · × L(∆k))]. Therefore L(∆1) × · · · × L(∆k) is SI (cf. Lemma 1.5).
+Since it is unitary , it is irreducible.
+Finally , we show
+Lemma A.5. For any n ≥ 1, ρ× n is irreducible.
+Proof. W e may assume without loss of generality that ρ is unitary . Once again
+we could have appealed to Harish-Chandra’s commuting algeb ra theorem ([60,
+Theorem 5.5.3.2]). Instead we will give a more elementary ar gument which
+is special to the general linear group. For any i = 1 , . . . , n let ∆i, ∆>0
+i and
+∆<0
+i be the segments [− i + 1 , i − 1]ρ , [1, i − 1]ρ and [1 − i, − 1]ρ respectively .
+By Lemma A.4, π := L(∆ 1) × · · · × L(∆n) is irreducible. On the other hand,
+L(∆i)֒→L(∆>0
+n ) × ρ × L(∆<0
+n ) and therefore
+[π ] ≤ [L(∆>0
+1 ) × · · · ×L(∆>0
+n ) × ρ× n × L(∆<0
+1 ) × · · · ×L(∆<0
+n )].
+Since π is irreducible, there exists an irreducible constituent τ of ρ× n such that
+[π ] ≤ [L(∆>0
+1 ) × · · · ×L(∆>0
+n ) × τ × L(∆<0
+1 ) × · · · ×L(∆<0
+n )].
+47
+
+===== PDF PAGE 48 =====
+Let λ be the composition (mn(n − 1)/ 2, mn, mn(n − 1)/ 2) of mn2. If [rλ (σ )] =∑
+i α i ⊗ βi ⊗ γi then we write
+[r(+, 0,− )
+λ (σ )] =
+∑
+i:supp(α i)⊂{ ρν sρ :s>0}, supp(β i)={ρ}, supp(γ i)⊂{ ρν sρ :s<0}
+α i ⊗ βi ⊗ γi.
+Then,
+[r(+, 0,− )
+λ (L(∆>0
+1 ) × · · · ×L(∆>0
+n ) × τ × L(∆<0
+1 ) × · · · ×L(∆<0
+n ))
+= [L(∆ >0
+1 ) × · · · ×L(∆>0
+n ) ⊗ τ ⊗ L(∆<0
+1 ) × · · · ×L(∆<0
+n )].
+On the other hand,
+[r(+, 0,− )
+λ (π )] = [L(∆ >0
+1 ) × · · · ×L(∆>0
+n ) ⊗ ρ× n ⊗ L(∆<0
+1 ) × · · · ×L(∆<0
+n )].
+W e infer thatτ = ρ× n proving our assertion.
+This completes the alternative proof of Theorem A.1.
+Note that clearly ,νρχ = νρ for any ρ ∈ C and character χ of F∗ .
+W e write
+→
+ρ = ρνρ and
+←
+ρ = ρν− 1
+ρ .
+Finally , we need another irreducibility result:
+Lemma A.6. For any ρ ∈ C the induced representations Z([0, 1]ρ )× ρ, Z([0, 1]ρ )×
+→
+ρ ,
+L([0, 1]ρ ) × ρ and L([0, 1]ρ ) ×
+→
+ρ are irreducible.
+Proof. By passing to the contragredient it is enough to prove the irr educibility
+of π1 := ρ × L([0, 1]ρ ) and π2 := ρ × Z([0, 1]ρ ). Suppose ﬁrst that π1 is irreducible
+and assume on the contrary that π2 is reducible. If m denotes the degree of ρ,
+then
+[r(2m,m )(π2)] = Z([0 , 1]ρ ) ⊗ ρ + ρ × ρ ⊗
+→
+ρ .
+Thus, r(2m,m )(π2) is of length two and hence π2 is also of length two and
+one of its constituents σ2 satisﬁes [r(2m,m )(σ2)] = Z([0 , 1]ρ ) ⊗ ρ and hence
+[r(m,m,m )(σ2)] = [ ρ ⊗
+→
+ρ ⊗ ρ]. On the other hand
+[r(m, 2m)(π2)] = ρ ⊗ (ρ ×
+→
+ρ + Z([0, 1]ρ)).
+and therefore
+r(m, 2m)(σ2) ≃ ρ ⊗ L([0, 1]ρ ).
+W e deduce thatσ2 is a subrepresentation of π1 which contradicts its irreducibil-
+ity .
+Finally , we will show that π1 is irreducible. W e argue as before. W e have
+ρ × L([− 1, 1]ρ )֒→π1 ×
+←
+ρ
+48
+
+===== PDF PAGE 49 =====
+and the left-hand side is irreducible by Lemma A.4. Thus, the re exists an irre-
+ducible subquotient σ of π1 such that
+[ρ × L([− 1, 1]ρ )] ≤ [σ ×
+←
+ρ ].
+T aking the Jacquet moduler(3m,m ) on both sides and comparing the part of the
+form ∗ ⊗
+→
+ρ we get
+[ρ × L([0, 1]ρ )] ≤ [σ ]
+so that π1 is irreducible as required.
+A.2 The classiﬁcation
+In the following we will explain the classiﬁcation approach along the lines of
+[42], but avoiding the use of types.
+A key step is the following.
+Lemma A.7. ([43, Théorème 7.38] ) Let m = ∆ 1 + · · ·+ ∆N be a totally unlinked
+multisegment. Then the induced representation ζ(m) = Z(∆ 1) × · · · × Z(∆N ) is
+irreducible.
+For the proof, the following simple result (based on Casselm an’s pairing)
+will be needed.
+Lemma A.8. ([43, Lemme 2.5]) Let π ∈ R(Gn). Suppose there exist ρ1, . . . , ρ r ∈ Irr
+such that:
+1. π is a subrepresentation of ρ1 × · · · ×ρr and a quotient of ρr × · · · ×ρ1.
+2. ρ1 ⊗ · · · ⊗ρr appears with multiplicity one in [r(ρ1 × · · · ×ρr)].
+Then π is irreducible.
+Proof of Lemma A.7. W e will follow the proof of [43, Théorème 7.38], but avoid-
+ing type theory .
+The reduction to the case N = 2 is proved exactly as in [43, Corollaire
+7.32] (using Lemma A.5 for the minimal case). W e assume hence forth N = 2 .
+W e prove the lemma by induction onl(∆1)+ l(∆2). The cases l(∆1)+ l(∆2) ≤ 3
+are covered by Theorem A.1 and Lemma A.6. For the induction st ep we may
+therefore assume that l(∆1) + l(∆2) > 3.
+Suppose ﬁrst that ∆1 = ∆2. Then we have (by induction hypothesis)
+Z(∆1) × Z(∆2)֒→Z(∆1) × b(∆2) × Z(− ∆2) ≃ b(∆2) × Z(∆1) × Z(− ∆2))
+֒→( b(∆2)× b(∆1))× (Z(− ∆1)× Z(− ∆2)) ≃ (b(∆1)× b(∆2))× (Z(− ∆1)× Z(− ∆2)).
+Similarly ,Z(∆1) × Z(∆2) is a quotient of (Z(− ∆1) × Z(− ∆2)) × (b(∆1) × b(∆2)).
+The result follows now from Lemma A.8 and our induction hypot hesis.
+49
+
+===== PDF PAGE 50 =====
+Now suppose that ∆1 = [− 1, 1]ρ and ∆2 = [0, 0]ρ . Then Z(∆1)× ρ is a sub-
+representation of
+←
+ρ × (Z([0, 1]ρ ) × ρ). By Lemma A.6 and Frobenius reciprocity ,
+we deduce that [r(soc(Z(∆1) × ρ))] contains
+←
+ρ ⊗ ρ ⊗ ρ ⊗
+→
+ρ (A.2)
+with multiplicity two. The same is true for cos(Z(∆1) × ρ). As (A.2) appears
+with multiplicity two in [r(Z(∆1) × ρ)] we deduce that Z(∆1) × ρ is irreducible.
+In all other cases, upon passing to the contragredient and ex changing ∆1
+with ∆2 if necessary , we can assume that l(∆1) > 1, − ∆1 and ∆2 are un-
+linked and b(∆1) /∈ { b(∆2),
+←
+b(∆2)}. Then Z(∆1) × Z(∆2) is a subrepresenta-
+tion of b(∆1) × (Z(− ∆1) × Z(∆2)) and (by induction hypothesis) a quotient of
+(Z(− ∆1) × Z(∆2)) × b(∆1). The result now follows from Lemma A.8 and our
+induction hypothesis.
+W e now turn to the proof of Theorem 2.4 which is [42, Théorèmes 1.3 and
+1.4] together with [42, Remarque 5.5 and Remarque 5.9].
+The fact that the map m ↦→ Z(m) is well-deﬁned and injective is proved in
+[42, §5] using only Lemma A.7, Jacquet functors and the Geome tric Lemma.
+The proof that any π ∈ Irr is of the form Z(m) for some m relies in addition
+on the following analog of [72, Proposition 4.6]:
+Lemma A.9. [42, Lemma 5.12] Let ∆ and ∆′ be two linked segments. Then
+[Z(∆) × Z(∆′)] = [Z(∆ , ∆′)] + [Z(∆ ∩ ∆′) × Z(∆ ∪ ∆′)].
+The proof in [ibid.] uses type theory to translate the result of [72, Proposi-
+tion 4.6] to the case where D ̸= F . (This is the only usage of type theory in the
+proof of [42, Théorèmes 1.3 and 1.4].) W e give an alternative proof as follows.
+Proof. W e may assume without loss of generality that ∆′ ≺ ∆. W e prove the
+lemma by induction on l = l(∆) + l(∆′). In the minimal case l = 2 the lemma
+is straightforward.
+The ﬁrst two parts of the proof of [72, Proposition 4.6] depen d only on
+Jacquet functors and the Geometric Lemma and are therefore v alid in our set-
+ting. The ﬁrst part deals with the case where ∆ and ∆′ are juxtaposed. Thus,
+we may assume that ∆ and ∆′ are not juxtaposed. The second part shows that
+Z(∆ ∩ ∆′) × Z(∆ ∪ ∆′) is a quotient of Z(∆) × Z(∆′). (The irreducibility of
+Z(∆ ∩ ∆′) × Z(∆ ∪ ∆′) follows from Lemma A.7.) (The rest of the argument
+of [72, Proposition 4.6] uses derivatives so we need an alter native argument.)
+Since Z(∆, ∆′)֒→Z(∆) × Z(∆′) and Z(∆, ∆′) appears with multiplicity one in
+[Z(∆) × Z(∆′)] we deduce that
+[Z(∆) × Z(∆′)] ≥ [Z(∆, ∆′)] + [Z(∆ ∩ ∆′) × Z(∆ ∪ ∆′)].
+50
+
+===== PDF PAGE 51 =====
+Let r denote the Jacquet functor associated to the parabolic subg roup of type
+(m, (l − 1)m) where m = deg(ρ). Since any irreducible subquotient π of Z(∆) ×
+Z(∆′) satisﬁes r(π ) ̸= 0 it sufﬁces to prove that
+[r(Z(∆, ∆′))] ≥ [r(Z(∆) × Z(∆′))] − [r(Z(∆ ∩ ∆′) × Z(∆ ∪ ∆′))]. (A.3)
+By the Geometric Lemma and the fact that ∆′ ≺ ∆ but ∆ and ∆′ are not juxta-
+posed, the right-hand side of (A.3) equals A + B where
+A = [b(∆) ⊗ (Z(− ∆) × Z(∆′))] − [b(∆) ⊗ (Z(− ∆ ∩ ∆′) × Z(− ∆ ∪ ∆′))]
+B = [b(∆′) ⊗ (Z(∆) × Z(− ∆′))] − [b(∆′) ⊗ (Z(∆ ∩ − ∆′) × Z(∆ ∪ − ∆′))].
+Note that B = 0 if a′ = a − 1. On the other hand
+Z(∆, ∆′)֒→Z(∆) × Z(∆′)֒→b(∆) × Z(− ∆) × Z(∆′). (A.4)
+By Lemmas 1.2 and 1.5, Z(∆, ∆′) is the unique irreducible subrepresentation of
+b(∆) × Z(− ∆) × Z(∆′) and
+Z(∆, ∆′)֒→b(∆) × Z(− ∆, ∆′).
+By Frobenius reciprocity and our induction hypothesis, we d educe that A ≤
+[r(Z(∆, ∆′))].
+In the same way
+Z(∆, ∆′)֒→Z(∆) × b(∆′) × Z(− ∆′) (A.5)
+and if a′ < a − 1, the RHS of (A.5) is isomorphic to b(∆′) × Z(∆) × Z(− ∆′). W e
+deduce as before that B ≤ [r(Z(∆, ∆′))].
+The Lemma follows.
+A.3 Proof of Proposition 2.5
+Part 1 is trivial from the deﬁnition.
+Part 2 is a consequence of Lemmas A.7 and A.9.
+For part 3 we write {e(∆1), . . . , e (∆N )} = {ρ1, . . . , ρ k} (as a set) where if
+ρi = ρj |·|s, i < j with s ∈ R then necessarily s > 0. Let πi be the product of the
+Z(∆j)’s such that e(∆j ) = ρi. Then π1, . . . , π k ∈ Irr and ζ(m) = π1 × · · · ×πk.
+Let Π = Z(∆ 1) × · · · ×Z(∆N ). It is easy to see that π1 ⊗ · · · ⊗πk occurs in
+[r(Π)] with multiplicity one and moreover, there is no other compos ition factor
+of r(Π) in the same Bernstein component of that Levi subgroup. Hence there is
+a non-trivial map r(Π) → π1 ⊗ · · · ⊗ πk, which by Frobenius reciprocity yields
+a non-zero map Π
+f
+− → ζ(m). Finally , the image of f contains soc(ζ(m)) = Z( m).
+Therefore, Z(m) does not occur as a subquotient of Ker f since ζ(m) is SI and
+[Π] = [ ζ(m)].
+51
+
+===== PDF PAGE 52 =====
+Part 4 is proved in [65, Thoerem 5.3] for the Langlands classi ﬁcation but
+the proof is valid for both classiﬁcations (see [42, §6.2.1] ).
+Part 5 follows from part 4 as in [65, Proposition 2.3].
+Part 6 is an easy consequence of Theorem 2.4. Indeed Z(m) × Z(n) is a
+subrepresentation of ζ(m) × ζ(n) ≃ ζ(m + n) whose socle is Z(m + n). Similarly
+for the other statements. (See also [42, Proposition 5.1] fo r the last part.)
+Finally , part 7 follows from the fact that ˜ζ(m) ≃ ζ(m∨ )∨ (cf. [42, Proposi-
+tion 5.10]).
+Remark A.10. As was pointed out by the referee, part 3 is a special case of a m ore
+general statement: for any π1, . . . , π k ∈ Irr and a permutation σ of {1, . . . , k } there
+exists a non-zero intertwining map
+π1 × · · · ×πk → πσ (1) × · · · ×πσ (k)
+Indeed, ﬁxing r1 ≫ · · · ≫ rk, the standard intertwining operators
+M (s) : π1 |·|r1s × · · · ×πk |·|rks → πσ (1) |·|rσ (1)s × · · · ×πσ (k) |·|rσ (k)s
+are well-deﬁned for ℜ s ≫ 1 and admit a meromorphic continuation. Thus, for an
+appropriate r ∈ Z, srM (s) gives the required intertwining operator at s = 0.
+A.4 Principle of “mirror symmetry” [43, §7.3.1]
+From a combinatorial point of view the connection between the Zelevinsky and
+Langlands classiﬁcations is simply that νρ is replaced by ν− 1
+ρ . (Thus, we allow
+sρ to be negative.) The set of segments is unchanged under this o peration but
+b(∆) and e(∆) are interchanged. Similarly , the relation ≺ becomes the inverse
+relation, ≤ b becomes ≥ e and vice versa. All the proofs given or referred to
+in §A.2,A.3 only use Jacquet module techniques and do not dep end on the
+positivity of sρ . (This is not true for Theorem A.1, but there we are of course
+free to choose sρ . Similarly , the statement of Lemma A.6 is symmetric under
+mirror symmetry .) Therefore, the same proof applies to Theorem 2.6.
+Remark A.11. The fact that all essentially square-integrable irreducib le representa-
+tions are of the form L(∆) for some ∆ ∈ Seg is a theorem of Bernstein (at least for
+D = F ) which is stated without proof in [72, Theorem 9.3] . For a proof which works
+over any D see [3] or [31, §2] . It follows immediately that the tempered irreducible
+representations are of the form L(m) where m is totally unlinked. We will not use these
+facts in any serious way.
+A.5 Involution
+An immediate consequence of the classiﬁcation is that the ri ng R is freely gen-
+erated by Z(∆), ∆ ∈ Seg (or alternatively by L(∆), ∆ ∈ Seg) ([65, 72]). Follow-
+ing Zelevinsky (and as in [65]) deﬁne the ring homomorphism π ↦→ π t of R,
+52
+
+===== PDF PAGE 53 =====
+characterized by Z(∆)t = L(∆) for any segment ∆ ∈ Seg. Zelevinsky showed
+that π ↦→ π t is an involution of R (in the case D = F but the proof works for
+any D) and conjectured (in the case D = F ) that
+π t ∈ Irr if π ∈ Irr . (A.6)
+This property was proved (in a more general context) indepen dently by Bern-
+stein (unpublished), Aubert [1, 2] and Schneider–Stuhler [ 51]. It is easy to see
+that property (A.6) implies that for any multisegment m ∈ Mult, we have
+Z(m)t = L( m) and L(m)t = Z( m) (see [50, §5.3] when D = F and [42, Propo-
+sition A.6] in general). Therefore, in view of Theorem 2.4, Z elevinsky’s involu-
+tion induces an involution of Mult also denoted m ↦→ mt. In [45], in the case
+where D = F , Mœglin and W aldspurger deﬁned combinatorially an involu-
+tion m ↦→ m♯ on Mult with the property that mt = m♯ (assuming (A.6) which
+was not known at the time). This works for any D (see [5] or [41, Théorème
+7.7]).
+As pointed out in [65, Remark 7.1] one can turn the tables and d eﬁne a
+Z-linear map π ↦→ π t on R by Z(m)t = L(m) for every multisegment m ∈ Mult.
+Denote again by m ↦→ mt the induced permutation on Mult. (Thus, (A.6) is
+equivalent to the property that π t = π t for all π ∈ R, i.e. that π ↦→ π t is a
+ring homomorphism of R.) W e claim that with this deﬁnition, it follows from
+the results of [45], without using (A.6), that mt = m♯ for all m ∈ Mult (and in
+particular π ↦→ π t is an involution). In fact, at this stage we do not need to use
+the result on Hecke algebras in [45, §I] since we now have at ou r disposal the
+two classiﬁcations with the good properties of Proposition 2.5.
+First note that the proof of [45, Lemme II.9] holds for any D since it only
+uses the properties of Proposition 2.5. Similarly , [45, Lemme II.10.2] is deduced
+from [45, Lemme II.9] (applied to D◦ ) by utilizing the functor ⋆ of §2.6. W e will
+prove that L(m) = Z( m♯), i.e., that m♯ = mt, by induction on the (total) length of
+m. The base of the induction is the trivial case m = 0. For the induction step we
+may suppose that m is rigid. Let (∆1, . . . , ∆N ) be the left aligned form of m and
+let ρ = b(∆1). Set− m = ∆1 + · · ·+− ∆i + · · ·+ ∆N where i is the largest index
+such that b(∆i) = ρ. Then exactly as in [45, Lemme II.11] one proves that L(m)
+is a subrepresentation of L(− m) × ρ. Alternatively , we can argue as follows. Let
+m′ = ∆ 1 + · · ·+ ∆i and− m′ = ∆1 + · · ·+ ∆i− 1 +− ∆i. Then
+L(m′) = L(∆ 1) × · · · ×L(∆i)֒→
+L(∆1) × · · · ×L(∆i− 1) × L(− ∆i) × ρ = L(− m′) × ρ.
+Moreover, L(m′) = soc(L(− m′) × ρ) since L(− m′) ⊗ ρ occurs with multiplicity i
+in both [r(L(m′))] and [r(L(− m′) × ρ)]. Since L(m − m′) is right Z≥ ρ -reduced, it
+follows from (the symmetric analogue of) Lemma 1.2 and Lemma 1.5 that
+soc(L(m − m′) × L(− m′) × ρ) = soc(L( m − m′) × L(m′)) = L( m).
+53
+
+===== PDF PAGE 54 =====
+Hence also soc(L(− m) × ρ) = L( m) as required.
+By induction hypothesis we have L(− m) = Z((− m)♯). Thus,
+Z(mt)֒→Z((− m)♯) × ρ.
+As explained in the proof of [45, Théorème 13] it follows from this relation,
+together with [45, Lemme II.3] (the combinatorial backbone of [ibid.]) and [45,
+Lemme II.10.2] that
+mt ≥ m♯ (A.7)
+where ≥ is the total order on multisegments supported in Zρ introduced in
+[45, §II.1]. Since (A.7) holds for all m of length l and both m ↦→ mt and m ↦→ m♯
+are permutations on the (ﬁnite) set of multisegments of leng th l with a given
+support, we infer that mt = m♯.
+REFERENCES
+[1] Anne-Marie Aubert, Dualité dans le groupe de Grothendieck de la catégorie des re présentations lisses
+de longueur ﬁnie d’un groupe réductif p-adique, Trans. Amer. Math. Soc. 347 (1995), no. 6, 2179–
+2189. MR1285969 (95i:22025)
+[2] , Erratum: “Duality in the Grothendieck group of the category of ﬁnite-length smooth rep-
+resentations of a p-adic reductive group” [Trans. Amer. Math. Soc. 347 (1995), no. 6, 2179–2189;
+MR1285969 (95i:22025)] , Trans. Amer. Math. Soc. 348 (1996), no. 11, 4687–4690. MR1390967
+(97c:22019)
+[3] Asher Auel, Une démonstration d’un théorème de Bernstein sur les représ entations de quasi-carré-
+intégrable de GLn(F ) où F est un corps local non archimédien (2004). DEA mémoire, Université
+Paris-Sud Orsay XI.
+[4] A. I. Badulescu, G. Henniart, B. Lemaire, and V . Sécherre, Sur le dual unitaire de GLr(D), Amer.
+J. Math. 132 (2010), no. 5, 1365–1396. MR2732351 (2012c:22018)
+[5] A. I. Badulescu and D. A. Renard, Zelevinsky involution and Moeglin-Waldspurger algorithm for
+GLn(D), Functional analysis IX, 2007, pp. 9–15. MR2349436 (2008j: 22023)
+[6] , Sur une conjecture de Tadi´ c, Glas. Mat. Ser. III 39(59) (2004), no. 1, 49–54. MR2055385
+(2005d:22016)
+[7] Alexandru Ioan Badulescu, Un résultat d’irréductibilité en caractéristique non null e, Tohoku
+Math. J. (2) 56 (2004), no. 4, 583–592. MR2097163 (2005g:22020)
+[8] , Correspondance de Jacquet-Langlands pour les corps locaux de caractéristique non nulle ,
+Ann. Sci. École Norm. Sup. (4) 35 (2002), no. 5, 695–747. MR1951441 (2004i:11048)
+[9] , Jacquet-Langlands et unitarisabilité , J. Inst. Math. Jussieu 6 (2007), no. 3, 349–379.
+MR2329758 (2008h:20065)
+[10] , On p-adic Speh representations , Bull. Soc. Math. France 142 (2014), no. 2, 255–267.
+MR3269346
+[11] Ioan Badulescu, Erez Lapid, and Alberto Mínguez, Une condition sufﬁsante pour l’irréductibilité
+d’une induite parabolique de GL(m, D), Ann. Inst. Fourier (Grenoble) 63 (2013), no. 6, 2239–
+2266. MR3237446
+[12] Dan Barbasch and Dan Ciubotaru, Ladder representations of GL(n, Qp), Representations of re-
+ductive groups. in honor of the 60th birthday of David A. V oga n, Jr., 2015, pp. 107–128.
+54
+
+===== PDF PAGE 55 =====
+[13] Dan Barbasch and Allen Moy, A unitarity criterion for p-adic groups, Invent. Math. 98 (1989),
+no. 1, 19–37. MR1010153 (90m:22038)
+[14] , Reduction to real inﬁnitesimal character in afﬁne Hecke alg ebras, J. Amer. Math. Soc. 6
+(1993), no. 3, 611–635. MR1186959 (93k:22015)
+[15] Arkady Berenstein and Andrei Zelevinsky, String bases for quantum groups of type Ar, I. M.
+Gel′fand Seminar, 1993, pp. 51–89. MR1237826 (94g:17019)
+[16] I. N. Bernstein and A. V . Zelevinsky, Induced representations of the group GL(n) over a p-adic
+ﬁeld, Funkcional. Anal. i Priložen. 10 (1976), no. 3, 74–75. MR0425031 (54 #12989)
+[17] , Representations of the group GL(n, F ), where F is a local non-Archimedean ﬁeld , Uspehi
+Mat. Nauk 31 (1976), no. 3(189), 5–70. MR0425030 (54 #12988)
+[18] , Induced representations of reductive p-adic groups. I , Ann. Sci. École Norm. Sup. (4) 10
+(1977), no. 4, 441–472. MR0579172 (58 #28310)
+[19] J. Bernstein, P . Deligne, and D. Kazhdan, T race Paley-Wiener theorem for reductive p-adic groups,
+J. Analyse Math. 47 (1986), 180–192. MR874050 (88g:22016)
+[20] Joseph N. Bernstein, P -invariant distributions on GL(N ) and the classiﬁcation of unitary repre-
+sentations of GL(N ) (non-Archimedean case), Lie group representations, II (College Park, Md.,
+1982/1983), 1984, pp. 50–102. MR748505 (86b:22028)
+[21] P . Broussous, V . Sécherre, and S. Stevens, Smooth representations of GLm(D) V: Endo-classes ,
+Doc. Math. 17 (2012), 23–77. MR2889743
+[22] Colin J. Bushnell and Philip C. Kutzko, The admissible dual of GL(N ) via compact open sub-
+groups, Annals of Mathematics Studies, vol. 129, Princeton Univer sity Press, Princeton, NJ,
+1993. MR1204652 (94h:22007)
+[23] Bill Casselman, Introduction to admissible representations of p-adic groups , Unpublished notes
+(1995).http://www.math.ubc.ca/~cass/research/pdf/p-adic-book.pdf.
+[24] Neil Chriss and Victor Ginzburg, Representation theory and complex geometry , Modern
+Birkhäuser Classics, Birkhäuser Boston, Inc., Boston, MA, 2010. Reprint of the 1997 edition.
+MR2838836 (2012f:22022)
+[25] P . Deligne, Les corps locaux de caractéristique p, limites de corps locaux de caractéristique 0, Repre-
+sentations of reductive groups over a local ﬁeld, 1984, pp. 1 19–157. MR771673 (86g:11068)
+[26] P . Deligne, D. Kazhdan, and M.-F. Vignéras, Représentations des algèbres centrales simples p-
+adiques, Representations of reductive groups over a local ﬁeld, 198 4, pp. 33–117. MR771672
+(86h:11044)
+[27] Tobias Finis, Erez Lapid, and W erner Müller, On the degrees of matrix coefﬁcients of intertwining
+operators, Paciﬁc J. Math. 260 (2012), no. 2, 433–456. MR3001800
+[28] I. M. Gel ′fand and D. A. Kajdan, Representations of the group GL(n, K ) where K is a local
+ﬁeld, Lie groups and their representations (Proc. Summer School , Bolyai János Math. Soc.,
+Budapest, 1971), 1975, pp. 95–118. MR0404534 (53 #8334)
+[29] Anthony Henderson, Nilpotent orbits of linear and cyclic quivers and Kazhdan-L usztig polynomials
+of type A, Represent. Theory 11 (2007), 95–121 (electronic). MR2320806 (2008j:17032)
+[30] Hervé Jacquet, Generic representations , Non-commutative harmonic analysis (Actes Colloq.,
+Marseille-Luminy , 1976), 1977, pp. 91–101. Lecture Notes i n Math., V ol. 587. MR0499005 (58
+#16985)
+[31] Chris Jantzen, On square-integrable representations of classical p-adic groups, Canad. J. Math. 52
+(2000), no. 3, 539–581. MR1758232 (2001f:22056)
+[32] , Jacquet modules of p-adic general linear groups , Represent. Theory 11 (2007), 45–83 (elec-
+tronic). MR2306606 (2008g:22023)
+[33] Seok-Jin Kang, Masaki Kashiwara, Myungho Kim, and Se-j in Oh, Monoidal categoriﬁcation of
+cluster algebras (2014). arXiv:1412.8106.
+55
+
+===== PDF PAGE 56 =====
+[34] , Simplicity of heads and socles of tensor products , Compositio Math. 151 (2015), no. 2, 377–
+396.
+[35] D. Kazhdan, Representations of groups over close local ﬁelds , J. Analyse Math. 47 (1986), 175–179.
+MR874049 (88g:22018)
+[36] Arno Kret and Erez Lapid, Jacquet modules of ladder representations , C. R. Math. Acad. Sci. Paris
+350 (2012), no. 21-22, 937–940. MR2996769
+[37] Erez Lapid and Alberto Mínguez, On a determinantal formula of Tadi´ c, Amer. J. Math. 136 (2014),
+no. 1, 111–142. MR3163355
+[38] B. Leclerc, Imaginary vectors in the dual canonical basis of Uq(n), Transform. Groups 8 (2003),
+no. 1, 95–104. MR1959765 (2004d:17020)
+[39] Bernard Leclerc, Maxim Nazarov, and Jean-Yves Thibon, Induced representations of afﬁne
+Hecke algebras and canonical bases of quantum groups , Studies in memory of Issai Schur
+(Chevaleret/Rehovot, 2000), 2003, pp. 115–153. MR1985725 (2004d:17007)
+[40] Ivan Mati´ c, Jacquet modules of strongly positive representations of th e metaplectic group ˜Sp(n),
+Trans. Amer. Math. Soc. 365 (2013), no. 5, 2755–2778. MR3020114
+[41] Alberto Mínguez, Sur l’irréductibilité d’une induite parabolique , J. Reine Angew . Math. 629
+(2009), 107–131. MR2527415 (2010h:22025)
+[42] Alberto Mínguez and Vincent Sécherre, Représentations banales de GLm(D), Compos. Math.
+149 (2013), no. 4, 679–704. MR3049700
+[43] , Représentations lisses modulo ℓ de GLm(D), Duke Math. J. 163 (2014), no. 4, 795–887.
+MR3178433
+[44] , Unramiﬁed ℓ-modular representations of GLn(F) and its inner forms , Int. Math. Res. Not.
+IMRN 8 (2014), 2090–2118. MR3194013
+[45] C. Mœglin and J.-L. W aldspurger, Sur l’involution de Zelevinski , J. Reine Angew . Math. 372
+(1986), 136–177. MR863522 (88c:22019)
+[46] , Le spectre résiduel de GL(n), Ann. Sci. École Norm. Sup. (4) 22 (1989), no. 4, 605–674.
+MR1026752 (91b:22028)
+[47] Colette Mœglin and Marko Tadi´ c, Construction of discrete series for classical p-adic groups , J.
+Amer. Math. Soc. 15 (2002), no. 3, 715–786 (electronic). MR1896238 (2003g:220 20)
+[48] G. I. Ol ′šanski˘ı, Intertwining operators and complementary series in the cla ss of representations of
+the full matrix group over a locally compact division algebr a that are induced by parabolic subgroups ,
+Mat. Sb. (N.S.) 93(135) (1974), 218–253, 326. MR0499010 (58 #16988)
+[49] David Renard, Représentations des groupes réductifs p-adiques, Cours Spécialisés [Specialized
+Courses], vol. 17, Société Mathématique de France, Paris, 2 010. MR2567785 (2011d:22019)
+[50] François Rodier, Représentations de GL(n, k ) où k est un corps p-adique, Bourbaki Seminar, Vol.
+1981/1982, 1982, pp. 201–218. MR689531 (84h:22040)
+[51] Peter Schneider and Ulrich Stuhler, Representation theory and sheaves on the Bruhat-Tits building,
+Inst. Hautes Études Sci. Publ. Math. 85 (1997), 97–191. MR1471867 (98m:22023)
+[52] Vincent Sécherre and Shaun Stevens, Représentations lisses de GLm(D). IV. Représentations su-
+percuspidales, J. Inst. Math. Jussieu 7 (2008), no. 3, 527–574. MR2427423 (2009d:22023)
+[53] , Smooth representations of GLm(D) VI: semisimple types , Int. Math. Res. Not. IMRN 13
+(2012), 2994–3039. MR2946230
+[54] Vincent Sécherre, Représentations lisses de GL(m, D ). I. Caractères simples , Bull. Soc. Math.
+France 132 (2004), no. 3, 327–396. MR2081220 (2005f:22027)
+[55] , Représentations lisses de GL(m, D ). II. β -extensions, Compos. Math. 141 (2005), no. 6,
+1531–1550. MR2188448 (2006j:22018)
+56
+
+===== PDF PAGE 57 =====
+[56] , Représentations lisses de GLm(D). III. Types simples , Ann. Sci. École Norm. Sup. (4) 38
+(2005), no. 6, 951–977. MR2216835 (2007a:22010)
+[57] , Proof of the Tadi´ c conjecture (U0) on the unitary dual of GLm(D), J. Reine Angew . Math.
+626 (2009), 187–203. MR2492994 (2009k:22027)
+[58] Freydoon Shahidi, On certain L-functions, Amer. J. Math. 103 (1981), no. 2, 297–355. MR610479
+(82i:10030)
+[59] , Poles of intertwining operators via endoscopy: the connect ion with prehomogeneous vector
+spaces, Compositio Math. 120 (2000), no. 3, 291–325. With an appendix by Diana Shelstad.
+MR1748913 (2001i:11060)
+[60] Allan J. Silberger, Introduction to harmonic analysis on reductive p-adic groups , Mathematical
+Notes, vol. 23, Princeton University Press, Princeton, N.J .; University of Tokyo Press, Tokyo,
+1979. Based on lectures by Harish-Chandra at the Institute f or Advanced Study , 1971–1973.
+MR544991 (81m:22025)
+[61] , Special representations of reductive p-adic groups are not integrable , Ann. of Math. (2) 111
+(1980), no. 3, 571–587. MR577138 (82k:22015)
+[62] Marko Tadi´ c, On characters of irreducible unitary representations of ge neral linear groups , Abh.
+Math. Sem. Univ . Hamburg65 (1995), 341–363. MR1359141 (96m:22039)
+[63] , Classiﬁcation of unitary representations in irreducible r epresentations of general linear group
+(non-Archimedean case) , Ann. Sci. École Norm. Sup. (4) 19 (1986), no. 3, 335–382. MR870688
+(88b:22021)
+[64] , Spherical unitary dual of general linear group over non-Arc himedean local ﬁeld , Ann. Inst.
+Fourier (Grenoble) 36 (1986), no. 2, 47–55. MR850742 (87m:22047)
+[65] , Induced representations of GL(n, A ) for p-adic division algebras A, J. Reine Angew . Math.
+405 (1990), 48–77. MR1040995 (91i:22025)
+[66] , An external approach to unitary representations , Bull. Amer. Math. Soc. (N.S.) 28 (1993),
+no. 2, 215–252. MR1181278 (93g:22020)
+[67] , Irreducibility criterion for representations induced by e ssentially unitary ones (case of non-
+Archimedean GL(n, A)), Glas. Mat. Ser. III 49(69) (2014), no. 1, 123–161. MR3224483
+[68] , Remark on representation theory of general linear groups ov er a non-archimedean local divi-
+sion algebra (2014). Available athttp://www.hazu.hr/~tadic/.
+[69] J.-L. W aldspurger, La formule de Plancherel pour les groupes p-adiques (d’après Harish-Chandra) , J.
+Inst. Math. Jussieu 2 (2003), no. 2, 235–333. MR1989693 (2004d:22009)
+[70] A. V . Zelevinsky , The p-adic analogue of the Kazhdan-Lusztig conjecture , Funktsional. Anal. i
+Prilozhen. 15 (1981), no. 2, 9–21, 96. MR617466 (84g:22039)
+[71] , Two remarks on graded nilpotent classes , Uspekhi Mat. Nauk 40 (1985), no. 1(241), 199–
+200. MR783619 (86e:14027)
+[72] , Induced representations of reductive p-adic groups. II. On irreducible representations of
+GL(n), Ann. Sci. École Norm. Sup. (4) 13 (1980), no. 2, 165–210. MR584084 (83g:22012)
+Erez Lapid, D EPARTMENT OF MATHEMATICS , W EIZMANN INSTITUTE OF SCIENCE , R E-
+HOVOT 7610001, I SRAEL
+E-mail address:erez.m.lapid@gmail.com
+Alberto Mínguez, I NSTITUT DE MATHÉMATIQUES DE JUSSIEU - P ARIS RIVE GAUCHE , U NI -
+VERSITÉ PARIS 6, 4 PLACE JUSSIEU , 75005, P ARIS , F RANCE
+E-mail address:alberto.minguez@imj-prg.fr
+57
