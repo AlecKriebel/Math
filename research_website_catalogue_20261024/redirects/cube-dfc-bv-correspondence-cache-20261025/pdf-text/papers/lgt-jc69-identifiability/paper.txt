@@ -1,0 +1,1071 @@
+               Global Identifiability in a Three-Taxon
+                   Lateral-Gene-Transfer Model
+                    An exhaustive genealogy calculation under JC69
+
+                                               Alec Kriebel
+
+                     Version 0.2 – prepared for author audit – August 2026
+
+
+                                                  Abstract
+        A finite enumeration of gene histories can fail for a lateral-gene-transfer process even when it
+    reproduces the correct gene-tree topology frequencies. After the first sampled-gene coalescence
+    below the first species divergence, a transfer from a species branch carrying no currently traced
+    sampled ancestry into an occupied recipient moves one sampled ancestral lineage without causing a
+    coalescence. Repeated movements of this kind can change the second gene-tree coalescence time
+    and hence the JC69 branch lengths. We sum them exhaustively by a three-state continuous-time
+    Markov chain.
+        For every fixed known substitution rate µ > 0, the resulting parameter map for the rooted
+    clocklike three-taxon tree ((1, 2), 3) is globally injective on 0 < t1 < t2 and λ > 0. Its Jacobian has
+    full rank three at every interior point, so there is neither an exceptional interior set nor a second
+    interior preimage. The exact distribution also identifies the rooted species-tree cherry through the
+    strict inequality p12 > p13 = p23 . If µ is unknown, only the usual common time-rate scale remains
+    unidentifiable.
+        We also show that two finite-history formula maps associated with the model are distinct
+    from the exhaustive stochastic-process map: one has a certified regular double point, while the
+    other reverses the process’s strict matching-pair inequality at an exact interior parameter point.
+    The three maps and their implications are stated separately, with deterministic symbolic and
+    directed-rounding verification.
+
+
+Contents
+1 Introduction and main results                                                                               2
+
+2 Model definition and notation                                                                               4
+  2.1   Species tree and ordered-pair transfer process . . . . . . . . . . . . . . . . . . . . . . .          4
+  2.2 JC69 mutation process . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           5
+
+3 The missing noncoalescing movement mechanism                                                                5
+
+4 Exhaustive genealogy measure                                                                                6
+  4.1 The post-coalescence three-state chain . . . . . . . . . . . . . . . . . . . . . . . . . . .            6
+  4.2   Disjoint history classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      6
+
+
+
+                                                      1
+Global identifiability in a three-taxon LGT model                  Version 0.2 – prepared for author audit
+
+
+5 Fourier coordinates and the corrected parameter map                                                        8
+    5.1   Conditional JC69 coordinates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       8
+    5.2 Aggregate patterns and Fourier observables . . . . . . . . . . . . . . . . . . . . . . . .           8
+    5.3   Cube reparameterization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      9
+
+6 Global injectivity                                                                                        10
+    6.1 A unique formal branch at each q . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        10
+    6.2 The physically feasible q-set is an interval . . . . . . . . . . . . . . . . . . . . . . . . .      10
+    6.3   Strict Jacobian orientation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   11
+    6.4   Strict monotonicity of the final coordinate . . . . . . . . . . . . . . . . . . . . . . . . .     12
+
+7 Joint topology-and-parameter identifiability                                                              13
+
+8 Statistical interpretation and conditioning                                                               13
+
+9 Comparison with the auxiliary and distributed maps                                                        14
+    9.1 The auxiliary fourteen-history map Ftable . . . . . . . . . . . . . . . . . . . . . . . . .         14
+    9.2 The distributed formula/code map Fsrc . . . . . . . . . . . . . . . . . . . . . . . . . . .         15
+
+10 Discussion and limitations                                                                               17
+
+11 Conclusion                                                                                               17
+
+A Detailed history integrations                                                                             17
+
+B Jacobian sign algebra                                                                                     18
+
+C The Ftable double-point certificate                                                                       18
+
+D Source-version audit details                                                                              19
+
+E Reproducibility                                                                                           19
+
+
+1    Introduction and main results
+Lateral gene transfer (LGT) creates gene histories that need not follow the topology or branch lengths
+of a species tree. A basic stochastic model places transfers on contemporaneous species branches
+according to a Poisson process, retains the donor copy, and replaces the recipient ortholog. Kubatko,
+Linz, and Wicke recently derived three-taxon gene-tree and JC69 site-pattern formulas for this setting
+and posed a global parameter-identifiability question after proving generic local identifiability for their
+displayed formula map [4]. The present paper addresses the underlying backward-lineage process
+directly.
+   The key issue is that “relevant transfer” cannot be equated with “transfer that immediately coalesces
+two currently traced sampled lineages.” Once the first sampled pair has coalesced, a transfer can
+
+
+                                                   2 of 20
+ Global identifiability in a three-taxon LGT model                           Version 0.2 – prepared for author audit
+
+
+ move one of the two remaining sampled ancestral lineages through the third species branch without
+ changing the already formed cherry. Such a movement can decide whether the two surviving lineages
+ meet vertically at time t1 or continue toward t2 . A finite list that terminates after two immediately
+ coalescing transfers therefore need not determine the site-pattern distribution.
+    We distinguish three maps throughout:
+M1. Fproc : the exhaustive map induced by the ordered-pair Poisson LGT process defined in Section 2;
+M2. Ftable : the auxiliary fourteen-history map specified in Section 9, with the two one-transfer density
+    types distinguished and the displayed transfer variables treated as absolute gene-tree times;
+M3. Fsrc : the formula/code map distributed with arXiv:2607.14653v1 and repository commit
+    1954b2ab92525dfdaf43b50f97dcf46658cab6c9.
+ These are different analytic maps. The principal biological theorem concerns Fproc under the specific
+ process convention below; no claim is made that this convention exhausts every possible interpretation
+ of an LGT model.
+    Let
+                                    Θ = {(t1 , t2 , λ) : 0 < t1 < t2 , λ > 0}.
+ The site-pattern coordinates are the five aggregate equality classes
+
+                                             (p0 , p12 , p13 , p23 , pD ),
+
+ where p0 is the all-equal class, pij is the class in which exactly taxa i, j agree, and pD is the all-distinct
+ class.
+
+Theorem 1.1 (Global process identifiability). Fix a known substitution rate µ > 0. Consider one
+sampled ortholog from each taxon on the rooted clocklike species tree ((1, 2), 3), with 0 < t1 < t2 ,
+no incomplete lineage sorting, constant ordered-pair transfer-rate parameter λ > 0, donor retention,
+recipient replacement, and the backward-lineage process of Section 2. Under JC69, the exact population
+site-pattern distribution uniquely determines (t1 , t2 , λ).
+   Equivalently, Fproc is globally injective on Θ. Its distributional Jacobian has rank three at every
+interior point. Thus there is no exceptional interior set and no second interior parameter preimage.
+
+    The theorem is stronger than generic identifiability. It is proved by reducing each fixed pair of
+ observed coordinates to a single formal one-dimensional inverse branch, proving that its physically
+ feasible part is an interval, and showing that the third observed coordinate is strictly monotone along
+ that interval.
+
+Corollary 1.2 (Joint topology-and-parameter identifiability). Among the three labeled rooted clocklike
+three-taxon species trees, the exact JC69 site-pattern distribution under the ordered-pair Poisson LGT
+process jointly identifies the rooted species-tree topology and, conditional on that topology, uniquely
+identifies (t1 , t2 , λ) for every fixed known µ > 0.
+
+    The result has a necessary rate-scale qualification.
+
+ Proposition 1.3 (Unknown-rate scale ambiguity). If µ is also treated as unknown, then for every
+ c > 0 the transformation
+                             (t1 , t2 , λ, µ) 7−→ (ct1 , ct2 , λ/c, µ/c)
+leaves the entire site-pattern distribution unchanged. Consequently, t1 , t2 , λ, and µ cannot be jointly
+identified without fixing a time or rate scale.
+
+
+
+                                                      3 of 20
+Global identifiability in a three-taxon LGT model                Version 0.2 – prepared for author audit
+
+
+   Two secondary results clarify why formulas associated with a finite history reduction do not settle
+the process theorem.
+Proposition 1.4 (Regular double point of the auxiliary map). The auxiliary map Ftable is not
+generically identifiable in the measure-zero-exception sense. More precisely, its image contains a
+nonempty open set of regular observed distributions such that every distribution in that set has at least
+two distinct preimages under Ftable .
+Audit proposition 1.5 (Exact diagnostic for the distributed source map). For arXiv:2607.14653v1
+and repository commit 1954b2ab92525dfdaf43b50f97dcf46658cab6c9, the distributed formula/code
+map Fsrc is distinct from both Fproc and Ftable . At the exact admissible cube point
+                                                             
+                                                    1 81 1
+                                      (q, x, y) =     ,    ,    ,
+                                                    2 100 10
+it produces a strictly positive normalized aggregate distribution but satisfies
+                                   57472173                             172416519
+                 Asrc − Bsrc = −             < 0,       psrc   src
+                                                         12 − p13 = −              < 0.
+                                   800000000                            3200000000
+Thus it reverses the strict matching-pair inequality satisfied by Fproc .
+
+    The source paper’s conjecture is formally attached to its displayed parameter map. Theorem 1.1
+therefore should not be paraphrased as an unqualified proof of that formula-level conjecture. Rather,
+it gives a stronger positive answer to the intended stochastic-process identifiability question after the
+induced genealogy measure is summed exhaustively. The distributed formula must be reconciled with
+the process before formula-based identifiability or inference claims can be interpreted as statements
+about that process.
+
+Scope. Theorem 1.1 assumes: one sampled ortholog per taxon; a rooted clocklike three-taxon
+species tree; one constant ordered-pair rate λ; the donor-retains, recipient-replaced backward-lineage
+convention below; JC69 substitution; fixed known µ > 0; no incomplete lineage sorting; and exact
+population site-pattern probabilities. It does not cover unknown µ without a fixed scale, joint LGT–ILS
+models, larger taxon sets, finite-sample guarantees, branch-specific or distance-dependent transfer
+rates, or alternative transfer conventions.
+
+
+2     Model definition and notation
+2.1    Species tree and ordered-pair transfer process
+
+The species tree is ((1, 2), 3), with leaves at time zero, the 1–2 divergence at time t1 , and the root
+divergence at time t2 . There are three contemporaneous species branches during (0, t1 ) and two during
+(t1 , t2 ).
+   When k species branches are present, transfers occur at total rate kλ. Conditional on a transfer,
+an ordered donor–recipient pair is chosen uniformly among the k(k − 1) possibilities. Hence every
+ordered pair has rate λ/2 below t1 and rate λ above t1 . Forward in time, the donor retains its copy
+and the transferred copy replaces the recipient ortholog.
+   Tracing the three sampled genes backward, a lineage on a recipient branch follows the transfer
+arc to the donor branch. A transfer can be irrelevant, can move a sampled ancestral lineage without
+coalescence, or can coalesce two sampled ancestral lineages. Events are almost surely at distinct times.
+
+                                                  4 of 20
+Global identifiability in a three-taxon LGT model                Version 0.2 – prepared for author audit
+
+
+Definition 2.1 (Ancestrally unoccupied species branch). A species branch is called ancestrally
+unoccupied when it currently carries none of the ancestral lineages of the sampled leaf genes. The
+branch still carries a population gene copy. “Unoccupied” refers only to the induced genealogy of the
+sampled genes.
+
+   After Definition 2.1, the phrase empty state is used only as shorthand for the identity of the
+ancestrally unoccupied species branch.
+
+
+2.2   JC69 mutation process
+
+The root state is uniform on four nucleotides. Along an edge of length s,
+                                    1 3 −µs                    1 1 −µs
+                        Pii (s) =    + e ,        Pij (s) =     − e      (i ̸= j),
+                                    4 4                        4 4
+with fixed known µ > 0. Conditional on the gene tree, mutations on distinct edges are independent.
+The normalization µ = 4/3 is used in the exact numerical certificates, while all process-identifiability
+arguments below are valid for arbitrary fixed µ > 0.
+
+
+3     The missing noncoalescing movement mechanism
+The omission can be seen in a two-transfer path. Let time increase backward from the leaves and
+choose
+                                         0 < u < v < t1 .
+At time u, branch 1 transfers into branch 2. Backward in time, the sampled lineage from taxon 2
+jumps to branch 1 and coalesces with the sampled lineage from taxon 1. The sampled pair (1, 2) has
+now formed the cherry. The two surviving sampled ancestral lineages occupy branches 1 and 3, while
+branch 2 is ancestrally unoccupied.
+   At time v, branch 2 transfers into branch 3. Backward in time, the lineage on recipient branch 3
+jumps to donor branch 2. This transfer causes no immediate sampled-gene coalescence. The surviving
+sampled lineages now occupy branches 1 and 2, and therefore coalesce vertically at t1 . Without the
+second transfer, they would have remained on branches 1 and 3 and would not coalesce at t1 .
+
+                                vertical coalescence
+                                        at t1
+                                                          t1
+
+                            v                          2 → 3: movement only
+
+
+                           u               1 → 2: coalescence backward
+
+
+
+                          branch 1 branch 2 branch 3
+
+Figure 1: A transfer that is noncoalescing at time v changes whether the two surviving sampled
+lineages coalesce vertically at t1 . The already formed cherry remains (1, 2). Arrows show forward
+donor-to-recipient directions; the sampled lineage follows them backward.
+
+
+                                                5 of 20
+Global identifiability in a three-taxon LGT model                    Version 0.2 – prepared for author audit
+
+
+    This example establishes four distinct points: the second transfer changes the sampled genealogy;
+it does not itself cause a coalescence; it changes the second coalescence time and branch lengths; and
+it does not change the sampled pair that already formed the cherry. Consequently, topology-frequency
+formulas can remain correct while site-pattern probabilities are wrong. Under the backward-lineage
+interpretation defined in Section 2, a fourteen-history list that omits such repeated movements is not
+exhaustive.
+
+
+4     Exhaustive genealogy measure
+4.1     The post-coalescence three-state chain
+
+Before the first sampled-gene coalescence below t1 , all three species branches are ancestrally occupied.
+Every transfer then coalesces one sampled pair, so the first coalescence time has rate 3λ and each
+unordered sampled pair is selected with probability 1/3.
+   Suppose the first coalescence occurs at absolute time u < t1 . Two sampled ancestral lineages
+remain. Let E ∈ {1, 2, 3} denote the empty state. For a fixed E = e:
+    • the two ordered transfers between occupied branches have combined rate λ and absorb the process
+      by coalescing the surviving lineages;
+    • the two transfers whose donor is branch e and whose recipient is occupied have combined rate λ
+      and move the empty state, each at rate λ/2;
+    • transfers whose recipient is branch e have combined rate λ and leave the induced sampled genealogy
+      unchanged.
+The absorption hazard is λ, independent of the empty state. Conditional on nonabsorption, E has
+generator                                               
+                                             −2 1      1
+                                         λ
+                                    Q =  1 −2 1  .                                         (1)
+                                         2
+                                              1   1 −2
+
+Lemma 4.1 (Post-coalescence transition kernel). For elapsed time s ≥ 0, the probability of no second
+transfer-coalescence is e−λs . Conditional on this survival,
+                                 1 2 −3λs/2                        1 1 −3λs/2
+                     Pee (s) =    + e       ,        Pee′ (s) =     − e           (e′ ̸= e).
+                                 3 3                               3 3
+Proof. The absorption clock of rate λ is independent of the movement chain. The matrix Q has eigen-
+value 0 on the constant vector and eigenvalue −3λ/2 on its orthogonal complement. Exponentiating
+Q gives the displayed kernel.
+
+
+4.2     Disjoint history classes
+
+Write
+                         T1 = ((1, 2), 3),      T2 = ((1, 3), 2),      T3 = ((2, 3), 1).
+The first transfer below t1 , when present, fixes the sampled cherry and hence the gene-tree topology.
+     If no transfer occurs before t1 , its probability is e−3λt1 and taxa 1, 2 coalesce vertically at t1 . Above
+t1 , the remaining two lineages coalesce at a transfer time v ∈ (t1 , t2 ) with density
+
+                                                 2λe−λ(t1 +2v) ,
+
+
+                                                    6 of 20
+Global identifiability in a three-taxon LGT model                              Version 0.2 – prepared for author audit
+
+
+or at t2 with point mass e−λ(t1 +2t2 ) .
+   If the first coalescence occurs at u ∈ (0, t1 ), then for each topology Ti its aggregate first-event
+density is
+                                                λe−3λu .
+A second transfer-coalescence at v ∈ (u, t1 ) has, for each Ti , joint density
+
+                                          λ2 e−λ(2u+v) ,             0 < u < v < t1 .                              (2)
+
+Indeed, after the first event, survival from u to v is e−λ(v−u) , followed by absorption density λ.
+   For histories surviving to t1 , define
+
+                                 b(u) = λe−λ(t1 +2u) ,                 ρu = e−3λ(t1 −u)/2 .
+
+The topology-dependent probabilities of vertical coalescence at t1 and continuation above t1 are
+
+                                Topology          coalesce at t1          continue above t1
+                                     T1               (1 − ρu )/3            (2 + ρu )/3
+                                     T2               (2 + ρu )/6            (4 − ρu )/6
+                                     T3               (2 + ρu )/6            (4 − ρu )/6
+
+Multiplication by b(u) gives the corresponding measure at t1 . Conditional on continuation, the second
+coalescence occurs at v ∈ (t1 , t2 ) with density 2λe−2λ(v−t1 ) , or at t2 with mass e−2λ(t2 −t1 ) .
+
+Proposition 4.2 (Exhaustiveness, normalization, and topology probabilities). The cases above are
+mutually exclusive and exhaustive for the sampled-gene genealogy under the process of Section 2. Their
+total mass is one. Summing by topology gives
+                                     1 2 −3λt1                                          1 1 −3λt1
+                         Pr(T1 ) =    + e      ,                 Pr(T2 ) = Pr(T3 ) =     − e      .
+                                     3 3                                                3 3
+All integration variables in this genealogy measure are absolute times.
+
+Proof. Either there is no transfer before t1 , or the first transfer occurs at a unique u < t1 . In the
+latter event, the residual process either absorbs at a unique v < t1 or survives to t1 . On survival,
+the two lineages either coalesce vertically at t1 or continue; a continuing pair either transfers before
+t2 or coalesces vertically at t2 . The memoryless construction makes these alternatives disjoint and
+exhaustive.
+   At the first level,
+                                                          3 Z t1
+                                                          X
+                                              −3λt1
+                                          e           +              λe−3λu du = 1.
+                                                          i=1    0
+
+Lemma 4.1, the row sums of the displayed table, and the two-lineage exponential law above t1 each
+have conditional mass one. The topology formulas follow because no transfer below t1 forces T1 ,
+whereas a first transfer below t1 chooses each unordered pair with probability 1/3.
+
+
+
+
+                                                                7 of 20
+Global identifiability in a three-taxon LGT model                        Version 0.2 – prepared for author audit
+
+
+5     Fourier coordinates and the corrected parameter map
+5.1      Conditional JC69 coordinates
+
+Identify the four states with G = Z22 . For a nontrivial character χ of G,
+
+                                          E[χ(Xs ) | X0 ] = e−µs χ(X0 ).
+
+A uniform root kills Fourier moments whose character product is nontrivial.
+
+Proposition 5.1 (Three-leaf ultrametric gene tree). Let a three-leaf ultrametric gene tree have interior
+times 0 < g1 < g2 . If i, j form its cherry, then
+
+                                   pbij = e−2µg1 ,       pbik = pbjk = e−2µg2 .
+
+For three nontrivial characters whose product is trivial,
+
+                                               pb123 = e−µ(g1 +2g2 ) .
+
+Proof. A pair moment propagates along the path joining the two leaves, of length 2g1 for the cherry
+and 2g2 otherwise. In the three-way moment, the three pendant edges and the internal cherry edge
+carry nontrivial characters. Their total contributing length is g1 + g1 + g2 + (g2 − g1 ) = g1 + 2g2 .
+
+
+5.2      Aggregate patterns and Fourier observables
+
+Let p0 be the aggregate probability of three equal states; let p12 , p13 , and p23 be the aggregate
+probabilities that exactly the named pair agrees; and let pD be the all-distinct aggregate. For topology
+((1, 2), 3), symmetry gives p13 = p23 and
+
+                                           p0 + p12 + 2p13 + pD = 1.
+
+Define
+                  4(p0 + p12 ) − 1              4(p0 + p13 ) − 1               16p0 − 1 − 3A − 6B
+             A=                    ,       B=                    ,        C=                      .
+                         3                             3                                6
+Proposition 5.2 (Exact coordinate equivalence). The inverse transformation is
+
+                                                   1 + 3A + 6B + 6C
+                                             p0 =                   ,
+                                                           16
+                                                   3(1 + 3A − 2B − 2C)
+                                             p12 =                      ,
+                                                            16
+                                                   3(1 − A + 2B − 2C)
+                                       p13 = p23 =                    ,
+                                                            16
+                                                   3(1 − A − 2B + 2C)
+                                             pD =                     .
+                                                            8
+Thus exact site-pattern identifiability is equivalent to identifiability from (A, B, C). Moreover,
+                                                    4
+                                             A − B = (p12 − p13 ).                                           (3)
+                                                    3
+Proof. Direct substitution in both directions gives the identity on the affine hyperplane p0 + p12 +
+2p13 + pD = 1. Subtracting the definitions of A and B gives (3).
+
+                                                      8 of 20
+Global identifiability in a three-taxon LGT model                    Version 0.2 – prepared for author audit
+
+
+5.3      Cube reparameterization
+
+For fixed µ > 0, set
+                                 λ
+                           q=       ,       x = e−(λ+µ)t1 ,     y = e−(λ+µ)(t2 −t1 ) .                   (4)
+                                λ+µ
+
+This is a bijection from Θ to (0, 1)3 , with inverse
+                              µq                 1−q                         1−q
+                        λ=       ,      t1 = −       log x,     t2 = t1 −        log y.                  (5)
+                             1−q                  µ                           µ
+Define
+                              r = q + (1 − q)y 2 ,      X = x2−q ,       Z = x3 ,
+and observable combinations
+                                                         A + 2B
+                                       D = A − B,        M=     .
+                                                            3
+The linear change (A, B, C) ↔ (D, M, C) is invertible, with A = M + 2D/3 and B = M − D/3.
+
+Theorem 5.3 (Compact exhaustive-process map). Averaging Proposition 5.1 over the exhaustive
+genealogy measure gives
+
+                       D = (1 − r)x2+q/2 ,                                                               (6)
+                           q(1 − X) 1 + 2r
+                       M=              +       X,                                                        (7)
+                              2−q          3
+                           q 2 {(q − 2)Z + 3X − (q + 1)}        q(1 + 2r)
+                       C=                                + rZ +           (X − Z).                       (8)
+                                    (q − 2)(q + 1)                q+1
+
+The transformed domain is
+
+                                 0 < q < 1,       0 < x < 1,         q < r < 1.
+
+In particular,
+                                     A − B = (1 − q)(1 − y 2 )x2+q/2 > 0.                                (9)
+The formulas are independent of the numerical value of fixed µ after the reparameterization (4).
+
+Proof. Appendix A integrates every disjoint genealogy class in absolute time. Substituting λ = q(λ+µ),
+µ = (1 − q)(λ + µ), and (4) into the resulting original-parameter map reduces all exponentials to
+powers of x, y. Collecting D, M , and C gives (6)–(8). The deterministic verifier performs the same
+history-by-history integration symbolically and independently checks the simplification.
+
+Proof of Proposition 1.3. Under the displayed scaling,
+
+                                             λ/c       λ
+                                                    =     = q,
+                                          λ/c + µ/c   λ+µ
+
+while                                                                   
+                           λ+µ                                λ+µ
+                    exp −       ct1 = x,               exp −        c(t2 − t1 ) = y.
+                            c                                  c
+The compact map depends only on (q, x, y), so the full distribution is unchanged.
+
+
+                                                     9 of 20
+Global identifiability in a three-taxon LGT model                    Version 0.2 – prepared for author audit
+
+
+6     Global injectivity
+The proof fixes (D, M ), constructs the unique formal inverse branch indexed by q, proves that the
+physically feasible q-values form one interval, and then shows that C is strictly decreasing along that
+interval.
+
+
+6.1   A unique formal branch at each q
+
+Let
+                                            4+q                        3q
+                                 α(q) =             ,     γ(q) =             .
+                                           2(2 − q)                 2(2 − q)
+Since D = (1 − r)X α , eliminating r from (7) gives
+
+                                                q    2(1 − q)    2D −γ
+                             M = Φq (X) :=         +          X−    X .                                 (10)
+                                               2−q    2−q         3
+
+Lemma 6.1 (Unique formal fixed-(D, M ) branch). Fix (D, M ) arising from an interior parameter
+point. For every q ∈ (0, 1), equation (10) has exactly one solution X(q) ∈ (0, 1). It uniquely determines
+
+                            x(q) = X(q)1/(2−q) ,        r(q) = 1 − DX(q)−α(q) .
+
+The functions X, x, r are smooth.
+
+Proof. For D > 0,
+                                             2(1 − q) 2Dγ −γ−1
+                                 Φ′q (X) =           +   X     > 0.
+                                              2−q      3
+Furthermore, Φq (X) → −∞ as X ↓ 0, whereas Φq (1) = 1 − 2D/3. At the generating point, X < 1
+and strict monotonicity gives M < 1 − 2D/3. Therefore a unique solution lies in (0, 1) for every q.
+The implicit function theorem gives smoothness.
+
+
+6.2   The physically feasible q-set is an interval
+
+Along the formal branch, put
+
+                                                                                 1 − r(q)
+                     p = 2 − q ∈ (1, 2),       τ = − log x > 0,         h(q) =            .
+                                                                                   1−q
+
+At a physical point, h = 1 − y 2 .
+
+Lemma 6.2 (Feasible-interval lemma). The set of q ∈ (0, 1) for which the fixed-(D, M ) formal branch
+is physical is a nonempty interval.
+
+Proof. We make each sign and crossing step explicit.
+   First, equation (6) and D > 0 imply 1 − r(q) > 0 on the entire formal branch, hence r(q) < 1.
+Since 1 − q > 0, it follows that h(q) > 0 for every formal q. Physical feasibility is
+
+                                     q < r(q) < 1    ⇐⇒        0 < h(q) < 1.
+
+Indeed, r = 1 − (1 − q)h.
+
+
+
+                                                    10 of 20
+Global identifiability in a three-taxon LGT model                 Version 0.2 – prepared for author audit
+
+
+   Implicit differentiation of the fixed-D, M equations in variables (p, τ, h) gives
+                                       dh             hN
+                                          =− 2                      ,                                 (11)
+                                       dp   p (p − 1){h(p − 2) − 2}
+where
+
+                                N = hp2 {2(p − 1)τ + p − 2} − 6p(p − 1)τ
+                                          + (p − 6)epτ − 2p2 − p + 6.
+
+For 1 < p < 2, τ > 0, and 0 < h ≤ 1, set B0 = 2(p − 1)τ + p − 2. If B0 < 0, then hp2 B0 < 0 and,
+because p − 6 < 0 and epτ > 1,
+                                 N < −6p(p − 1)τ − 2p2 < 0.
+If B0 ≥ 0, use h ≤ 1 and the same exponential bound to obtain
+
+                                  N < 2p(p − 1)(p − 3)τ + p2 (p − 4) < 0.
+
+The denominator in (11) is negative, so dh/ dp < 0, equivalently
+                                          dh
+                                             >0      whenever h ≤ 1.                                  (12)
+                                          dq
+
+   Thus every crossing of the level h = 1 is from below to above. If a branch that had left h < 1 later re-
+entered it, continuity would force a downward crossing of h = 1, contradicting (12). Hence {q : h(q) < 1}
+is an interval. Since h(q) > 0 everywhere, this is exactly the feasible set {q : 0 < h(q) < 1}. The
+observed generating point belongs to it, so the interval is nonempty.
+
+6.3     Strict Jacobian orientation
+
+The relevant (x, r) minor is
+                                       ∂(D, M )
+                                 det            = x3−q/2 {2 − q(1 + r)} > 0,                          (13)
+                                        ∂(x, r)
+because 0 < q, r < 1.
+   To determine the full determinant, retain p = 2 − q, set X = e−s , and write r = 1 − (p − 1)h, with
+
+                                   1 < p < 2,       s > 0,     0 < h < 1.
+
+The exact factorization is
+                                ∂(D, M, C)    (p − 1)2 X 3/p−3/2 −(1+3/p)s
+                          det               =                   e          H(s),                      (14)
+                                 ∂(p, X, r)      p3 (3 − p)2
+where
+
+                                H(s) = βe3s/p + γ0 es + αe(3/p−1)s + δ + ηs,
+                                   α = −2p(hp − 3)(hp − 2h − 2) < 0,
+                                   β = −p(p − 3)(p − 2)(hp − 2h − 2) > 0,
+                                  γ0 = (p − 3)(hp − 6) > 0,
+                                   η = (3 − p)(p − 1)(ph2 − 3ph + 6) > 0,
+                                   δ = −α − β − γ0 .
+
+                                                   11 of 20
+Global identifiability in a three-taxon LGT model                    Version 0.2 – prepared for author audit
+
+
+Lemma 6.3 (Positivity of the determinant factor). For 1 < p < 2, 0 < h < 1, and s > 0, one has
+H(s) > 0.
+
+Proof. The initial values are
+                                 H(0) = 0,          H′ (0) = ph2 (3 − p)2 > 0.
+Put a0 = (3 − p)/p and
+                                                        9β s
+                           J (s) = e−a0 s H′′ (s) =        e + γ0 e(2−3/p)s + αa20 .
+                                                        p2
+At zero,
+                                 J (0) = −2h(p − 3)2 (hp − 2h − 1) > 0.
+If p ≥ 3/2, then 2 − 3/p ≥ 0 and J ′ (s) > 0. If p < 3/2, then
+                                             9β s
+                                J ′′ (s) =      e + (2 − 3/p)2 γ0 e(2−3/p)s > 0
+                                             p2
+and
+                                               (p − 3)2
+                                 J ′ (0) = −            (7hp − 12h − 6) > 0,
+                                                  p
+since 7p − 12 < 0. Hence J (s) > 0 in both cases. Therefore H′′ (s) > 0, and the initial values imply
+H(s) > 0 for all s > 0.
+
+   All remaining factors in (14) are positive. The coordinate change (q, x, r) 7→ (p, X, r) has determi-
+nant
+                                             −pxp−1 < 0.
+Consequently,
+                                                    ∂(D, M, C)
+                                              det               <0                                      (15)
+                                                     ∂(q, x, r)
+throughout the domain. Since ∂r/∂y = 2(1 − q)y > 0, the determinant in (q, x, y) coordinates is also
+strictly negative.
+
+6.4   Strict monotonicity of the final coordinate
+
+Along the fixed-(D, M ) branch, Cramer’s rule and (13) give
+                                  dC   det{∂(D, M, C)/∂(q, x, r)}
+                                     =                            < 0.                                  (16)
+                                  dq     det{∂(D, M )/∂(x, r)}
+By Lemma 6.2, the physical branch is an interval; hence C is strictly decreasing on its whole feasible
+part.
+
+Proof of Theorem 1.1. Suppose two interior parameter points have the same site-pattern distribution.
+Proposition 5.2 gives the same (D, M, C). Lemma 6.1 places both on the unique formal fixed-(D, M )
+branch, and Lemma 6.2 places both q-values in one feasible interval. Strict monotonicity (16) forces
+the same q. Lemma 6.1 then forces the same X, r, hence the same x, y. The inverse (5) gives the same
+(t1 , t2 , λ).
+    Equation (15), the positive derivative ∂r/∂y, the invertible observable-coordinate change, the affine
+site-pattern transformation, and the cube diffeomorphism prove full rank of the distributional Jacobian
+everywhere in Θ.
+
+                                                     12 of 20
+Global identifiability in a three-taxon LGT model                          Version 0.2 – prepared for author audit
+
+
+Constructive inversion. Given an exact interior distribution, compute D, M, C. For each trial
+q, solve the strictly increasing scalar equation Φq (X) = M ; set r = 1 − DX −α(q) ; retain the unique
+interval on which q < r < 1; and solve the strictly decreasing equation C(q) = Cobs . Finally set
+                                                          r
+                                           1/(2−q)           r−q
+                                     x=X           ,  y=           ,
+                                                             1−q
+
+and apply (5). The final scalar root generally is transcendental, but it is globally unambiguous.
+
+
+7      Joint topology-and-parameter identifiability
+Proof of Corollary 1.2. For species topology ((1, 2), 3), Theorem 5.3 gives
+
+                                     D = A − B = (1 − r)x2+q/2 > 0.
+
+By (3),
+                                                  p12 > p13 = p23 .
+After relabeling, the exactly equal discordant-pair probabilities and the uniquely largest matching-pair
+probability identify the species-tree cherry. Once the labels are arranged so the topology is ((1, 2), 3),
+Theorem 1.1 uniquely identifies (t1 , t2 , λ).
+
+   The strict inequality holds at every interior point; equality occurs only on boundary degenerations
+such as t2 ↓ t1 . This topology result is therefore global on the open model domain, not merely generic.
+
+
+8      Statistical interpretation and conditioning
+Global population identifiability does not imply uniform finite-sample stability. For example, as
+t2 − t1 ↓ 0, equation (9) gives D ↓ 0, so the topology signal and a direction of the inverse become
+ill-conditioned. Extreme transfer-rate or divergence-time regimes can likewise produce broad, correlated
+likelihood contours. Conditioning and finite-sample error require separate analysis.
+    The regular-double-point statement for Ftable has a precise population-likelihood implication, which
+follows from more than the inverse function theorem alone.
+
+Lemma 8.1 (Population  P multinomial Hessian       at an exact fit). Let p(θ) = (pi (θ))m
+                                                                                        i=1 be a positive
+                                               ∗
+probability vector with i pi (θ) = 1, and let p = p(θ0 ). Define the population multinomial log-likelihood
+                                                      m
+                                                      X
+                                             ℓ(θ) =         p∗i log pi (θ).
+                                                      i=1
+
+Then
+                           ∇ℓ(θ0 ) = 0,       ∇2 ℓ(θ0 ) = −J(θ0 )T diag(1/p∗i )J(θ0 ),
+where J is the distributional Jacobian. If J(θ0 ) has full column rank, the Hessian is negative definite.
+
+Proof. At the exact fit,                     X                      X
+                                 ∇ℓ(θ0 ) =         ∇pi (θ0 ) = ∇          pi (θ0 ) = 0.
+                                              i                       i
+
+
+
+
+                                                      13 of 20
+Global identifiability in a three-taxon LGT model                        Version 0.2 – prepared for author audit
+
+
+Differentiating again gives
+                                            X                   X ∇pi (θ0 )∇pi (θ0 )T
+                              ∇2 ℓ(θ0 ) =       ∇2 pi (θ0 ) −                             .
+                                                                              p∗i
+                                            i                    i
+                               P
+The first sum vanishes because i pi (θ) = 1. The remaining quadratic form is strictly negative on
+every nonzero parameter direction when J has full column rank.
+
+   The two certified Ftable preimages have strictly positive pattern probabilities and full-rank Jacobians.
+By continuity and the local inverse branches, every distribution in a sufficiently small open overlap
+has two separated exact-fitting parameter values, each a strict local maximizer of its corresponding
+population multinomial log-likelihood. This does not imply a particular finite-sample optimizer will
+find both modes, nor does it establish a global fiber count outside that local overlap.
+
+
+9     Comparison with the auxiliary and distributed maps
+9.1      The auxiliary fourteen-history map Ftable
+
+The auxiliary map is defined by the fourteen named classes
+
+                               G14 = {G1x , G1a , G1b , G1c , G1d , G1y ,
+                                       G2a , G2b , G2c , G2d , G3a , G3b , G3c , G3d }.
+
+It distinguishes the two discordant one-transfer density types and interprets the displayed transfer
+variables as absolute gene-tree times. It is internally normalized, but under the backward-lineage
+interpretation of Section 2 it omits the repeated noncoalescing movements of Section 3.
+    With
+                                                         q(2q + 1)
+                                                K(q) =             ,
+                                                           q+2
+its cube formulas are
+                                                                      q(1 − q) q+2
+                      Atable = K(q) + (1 − q)x2 {1 + (1 − xq )y 2 } +          x ,                          (17)
+                                                                        q+2
+                                        1−q 2                        (1 − q)(2 − q) q+2
+                      Btable = K(q) +        x {1 + (3 − xq )y 2 } −               x ,                      (18)
+                                          2                             2(q + 2)
+                      Ctable = q 2 + q(1 − q)x2 + 2q(1 − q)x2 y 2 + (1 − q)(1 − 2q)x3 y 2 .                 (19)
+
+It satisfies
+                                                    1−q 2
+                               Atable − Btable =       x (1 + xq )(1 − y 2 ) > 0.
+                                                     2
+    At                                                                       
+                                                                     1 1 3
+                                       z1 = (q1 , x1 , y1 ) =         , ,         ,
+                                                                     2 10 5
+the exact target is
+                                                            √
+                                                     1017     10
+                                                A0 =      −      ,
+                                                     2500 12500
+                                                             √
+                                                     1013   3 10
+                                                B0 =      −      ,
+                                                     2500 12500
+
+                                                      14 of 20
+Global identifiability in a three-taxon LGT model                Version 0.2 – prepared for author audit
+
+
+                                                     2543
+                                             C0 =         .
+                                                    10000
+The aggregate pattern probabilities are
+                                                            √
+                                                  30887   21 10
+                                             p0 =       −       ,
+                                                  80000 200000
+                                                            √
+                                                  13521    9 10
+                                            p12 =       +       ,
+                                                  80000 200000
+                                                          √
+                                                  537    3 10
+                                      p13 = p23 =      −      ,
+                                                  3200 40000√
+                                                  4371    21 10
+                                            pD =        +       ,
+                                                  40000 100000
+all strictly positive.
+   Appendix C gives a rational interval box B2 in which a 384-bit outward-rounded Krawczyk
+calculation proves the existence and uniqueness of a second root z2 of Ftable (z) = (A0 , B0 , C0 ). The
+determinant enclosures are
+
+          det DFtable (B2 ) ⊂ [−7.16842960336480910 × 10−3 , −7.16842960336480824 × 10−3 ],
+           det DFtable (z1 ) ⊂ [6.82019607798308635 × 10−5 , 6.82019607798308770 × 10−5 ].
+
+Thus both preimages are regular and distinct.
+
+Lemma 9.1 (Regular double point gives an open two-sheeted overlap). Let F : U → R3 be continuously
+differentiable on an open set. If z1 ̸= z2 , F (z1 ) = F (z2 ) = w, and both Jacobians are nonsingular, then
+there exist disjoint open neighborhoods U1 , U2 and a nonempty open set V ∋ w such that every value
+in V has one preimage in each Ui .
+
+Proof. Choose disjoint neighborhoods of z1 , z2 . The inverse function theorem permits shrinking them
+so that F restricts to a diffeomorphism from Ui onto an open neighborhood Vi of w. Then V = V1 ∩ V2
+has the stated property.
+
+Proof of Proposition 1.4. The directed-rounding certificate supplies the distinct regular preimages.
+Lemma 9.1 gives a nonempty open set of regular values with at least two preimages. Therefore no
+measure-zero exceptional set can restore injectivity of Ftable on the complement: the failure occurs
+over an open set. No claim is made that almost every point in the entire image has multiple preimages
+or that every regular fiber has exactly two points.
+
+
+9.2    The distributed formula/code map Fsrc
+
+The source snapshot is frozen in SOURCE_SNAPSHOT.md. Formula-specific statements below refer to
+arXiv:2607.14653v1 and to repository commit 1954b2ab92525dfdaf43b50f97dcf46658cab6c9. The
+distributed R function GetSitePatternProbs appears in LGT-SimulationStudy.Rmd, lines 32–64, at
+that commit. The notebook’s finite-history definitions appear in KubatkoLinzWicke-LGT-2026.nb,
+text lines 430–749, and the corresponding site-pattern integrations begin at the cell headed Pxxx near
+lines 1308–1489, with analogous cells later in the file.
+   Under the source paper’s aggregate convention,
+
+               p0 = pxxx ,    p12 = pxxy ,      p13 = pxyx ,     p23 = pyxx ,     pD = pxyz .
+
+                                                    15 of 20
+Global identifiability in a three-taxon LGT model                      Version 0.2 – prepared for author audit
+
+
+These symbols denote aggregate equality classes, not a single representative nucleotide triple: the class
+multiplicities are respectively 4, 12, 12, 12, and 24, and the five classes sum to one. In the distributed R
+function, the common discordant value is named pxyy and is used twice in the five-category likelihood.
+   The finite-history formulas and the distributed formula are not the same. Exact transformation of
+the R expressions gives, for example,
+                             Csrc − Ctable = qx2 (q − 1)(x − 1)(y − 1)(y + 1),                            (20)
+which is nonzero throughout the open cube.
+   At                                                                 
+                                                            1 81 1
+                                          (q, x, y) =        ,   ,         ,
+                                                            2 100 10
+exact evaluation gives
+                                                    204877969
+                                             Asrc =           ,
+                                                    400000000
+                                                    467228111
+                                             Bsrc =           ,
+                                                    800000000
+                                                    154580959
+                                             Csrc =           ,
+                                                    400000000
+and
+                                                           1671901997
+                                                   pxxx = p0 =        ,
+                                                           3200000000
+                                                           357365817
+                                              pxxy = p12 =            ,
+                                                           3200000000
+                                                            8277849
+                                 pxyx = pyxx = p13 = p23 =          ,
+                                                           50000000
+                                                            55583757
+                                              pxyz = pD =             .
+                                                           1600000000
+All five aggregate probabilities are positive and normalized, but
+                                                                172416519
+                              pxxy − pxyx = p12 − p13 = −                  < 0.
+                                                                3200000000
+The corresponding original parameter point for µ = 4/3 is
+                              4                  3     100                     3
+                            λ= ,          t1 =     log     ,     t2 = t1 +       log 10,
+                              3                  8      81                     8
+so the diagnostic is strictly interior.
+   Two additional source-level discrepancies explain why a reconciliation is needed. In arXiv:
+2607.14653v1, Proposition A.2 states a common t2 -based density for the six one-transfer histories,
+while the later topology calculation and the repository notebook distinguish the t1 -based density
+of the two discordant histories whose second gene-tree time is t1 . In addition, two-event variables
+with ranges such as 0 < h2 < t1 − h1 or 0 < h2 < t2 − t1 are waiting-time increments, whereas the
+notebook’s site-pattern cells pass them directly as absolute interior times. These are exact algebraic
+and probabilistic observations about the frozen versions; whether they match the authors’ intended
+modeling convention is a separate question.
+
+Proof of Audit Proposition 1.5. The exact normalization, map difference (20), coordinate values, pos-
+itivity, and strict negative difference are reproduced by verifier/source formula audit.py. The
+exhaustive process has A − B > 0 by (9), so Fsrc ̸= Fproc ; equation (20) gives Fsrc ̸= Ftable .
+
+                                                     16 of 20
+Global identifiability in a three-taxon LGT model                 Version 0.2 – prepared for author audit
+
+
+10     Discussion and limitations
+The global theorem depends on exhaustive summation of the sampled-gene genealogy, not on generic
+Jacobian rank. The fixed sign of the Jacobian is used only after the global fixed-(D, M ) branch
+and its feasible interval are controlled. This distinction is essential: Ftable has full-rank Jacobians at
+both points of a regular double point, so local isolation and well-conditioned local fits coexist with a
+separated second inverse branch.
+    The topology-frequency formulas are insensitive to the omitted movement mechanism because the
+first sampled pair remains the cherry. JC69 site patterns are sensitive because the movement changes
+the second coalescence time and branch lengths. This is a general warning for reductions that classify
+histories only by topology or by immediately coalescing transfers.
+   The theorem does not resolve finite-sample performance, corrected maximum-likelihood imple-
+mentation, numerical conditioning across the full parameter domain, joint LGT–ILS identifiability,
+branch-specific transfer models, or larger taxon sets. Natural next steps are: implement likelihood and
+simulation directly from the exhaustive genealogy measure; quantify the smallest singular value of the
+distributional Jacobian and the condition number of the inverse; compare the corrected LGT map
+with multispecies-coalescent site-pattern maps; and extend the occupancy-state Markov-chain method
+to larger trees.
+
+
+11     Conclusion
+The ordered-pair Poisson species-lineage process defined in Section 2 is globally identifiable after
+its induced genealogy measure is summed exhaustively. For every fixed known µ > 0, the exact
+three-taxon JC69 site-pattern distribution identifies the rooted cherry and the complete interior
+parameter triple (t1 , t2 , λ). The Jacobian has full rank everywhere, but the decisive global ingredient
+is strict monotonicity along the unique physical fixed-(D, M ) branch.
+   The auxiliary fourteen-history map and the distributed source map must be kept separate from
+this process result. The first has a certified regular double point and therefore an open two-sheeted
+overlap; the second is a different formula map and reverses the process’s strict matching-pair inequality
+at an exact interior point. These findings invite a collaborative reconciliation of model convention,
+genealogy enumeration, likelihood implementation, and simulation analysis.
+
+
+A     Detailed history integrations
+Put ∆ = t2 − t1 , a = λ + µ, and
+
+                                 λ + µe−2a∆
+                            ρ=              ,      E = e−2µt1 ,      L = Eρ.
+                                      a
+For c > 0, define
+                   1 − e−ct1                  H(d) − H(c + d)
+                                                                     Z
+            H(c) =           ,      J(c, d) =                 =                  e−cu−dv du dv.
+                       c                             c                0<u<v<t1
+
+Introduce
+
+     NA = e−(3λ+2µ)t1 ,                             NB = NA ρ,                      NC = e−(3λ+3µ)t1 ρ,
+    SAB = λ2 {J(2λ + 2µ, λ) + 2J(2λ, λ + 2µ)},
+
+                                                17 of 20
+Global identifiability in a three-taxon LGT model                Version 0.2 – prepared for author audit
+
+
+     SC = 3λ2 J(2λ + µ, λ + 2µ),
+      I0 = λe−λt1 H(2λ),                              Ich = λe−λt1 H(2λ + 2µ),
+      Iρ = 2e−5λt1 /2 (1 − e−λt1 /2 ),                Iµ = λe−λt1 H(2λ + µ).
+
+Proposition A.1 (Original-parameter exhaustive-process map). The exhaustive genealogy measure
+gives
+                                                    2E + 4L      E−L
+                               A = NA + SAB + Ich +         I0 +     Iρ ,                              (21)
+                                                       3          3
+                                                    2E + 4L      E−L
+                               B = NB + SAB + Ich +         I0 −     Iρ ,                              (22)
+                                                       3          6
+                               C = NC + SC + (E + 2L)Iµ .                                              (23)
+
+Derivation. The N terms are the class with no transfer before t1 , including the averaged two-lineage
+process above t1 . The S terms integrate the second-transfer-coalescence density (2). The I terms
+integrate histories surviving to t1 : the stationary 1/3 part of the empty-state kernel produces I0 and
+Iµ , while the decaying ρu component produces Iρ . Multiplying each density by the conditional Fourier
+factors from Proposition 5.1 and evaluating elementary exponential integrals gives (21)–(23). The
+exact script symbolic audit.py represents every disjoint history class separately and proves equality
+to these formulas before performing the cube simplification.
+   As structural checks: λ → 0 gives the ordinary species-tree coordinates A → e−2µt1 , B → e−2µt2 ,
+C → e−µ(t1 +2t2 ) ; t2 ↓ t1 gives A − B → 0; and the history measure of Proposition 4.2 remains
+normalized in each limit.
+
+
+B     Jacobian sign algebra
+The full symbolic determinant factorization (14), the initial identities for H and J , and the fixed-(D, M )
+derivative identity (11) are independently reproduced in verifier/analytic identity audit.py.
+That script verifies exact identities only; the sign proofs remain the inequalities in Section 6.
+    The change from (q, x, y) to the original parameters is a diffeomorphism for every fixed µ > 0.
+Its inverse is (5); therefore the nonzero cube determinant implies full rank in (t1 , t2 , λ) coordinates
+without introducing a special value of µ.
+
+
+C     The Ftable double-point certificate
+The exact first point is z1 = (1/2, 1/10, 3/5). The rational interval box B2 = Iq × Ix × Iy is
+
+          Iq = [0.204389064566713115168465243021815199518108042606802299719838,
+                      0.204389064566713115168465243021815199518108042606822299719838],
+          Ix = [0.537679382917769400617776543129111479114716315839301157123324,
+                      0.537679382917769400617776543129111479114716315839321157123324],
+          Iy = [0.995120212240450333859738716968868032586486313327905776837044,
+                      0.995120212240450333859738716968868032586486313327925776837044].
+
+
+
+
+                                                 18 of 20
+Global identifiability in a three-taxon LGT model              Version 0.2 – prepared for author audit
+
+
+For the exact decimal center c, the rational-decimal preconditioner R stored in verifier/certificate.
+json, and interval Jacobian DG(B2 ), the Krawczyk operator
+                          K(c, B2 ) = c − RG(c) + {I − RDG(B2 )}(B2 − c)
+is strictly contained in the interior of B2 . The coordinate width ratios are at most
+                         2.241 × 10−47 ,     1.424 × 10−47 ,     9.035 × 10−49 .
+The second original-parameter triple, with µ = 4/3, is enclosed by
+                         λ2 ∈ [0.342527660969371595, 0.342527660969371650],
+                         (2)
+                        t1 ∈ [0.370253166047871951, 0.370253166047872007],
+                         (2)
+                        t2 ∈ [0.373172103129060517, 0.373172103129060573].
+The verifier parses every decimal as an exact rational                   q
+                                                   √ decimal, evaluates x = exp(q log x) with outward
+MPFR rounding, reconstructs the target in Q( 10), and does not reuse the numerical root search
+that discovered the box.
+
+
+D     Source-version audit details
+The exact source snapshot is documented in SOURCE_SNAPSHOT.md, including retrieval dates, SHA-256
+hashes, repository commit, file paths, and relevant line/cell ranges. The theorem-bearing source
+diagnostic uses only the formulas transcribed from the frozen R function and exact rational/algebraic
+evaluation. Detailed notebook forensics are supplementary evidence for the interpretation mismatch,
+not an axiom in the process proof.
+    The source PDF’s Proposition A.2 and later topology calculation differ on whether the two
+discordant one-transfer histories have a t1 - or t2 -based no-further-relevant-transfer factor. The
+immutable repository notebook uses the t1 distinction in the corresponding definitions. Separately, its
+two-event history descriptions and integration limits identify h2 as an increment, while the site-pattern
+cells pass (h1 , h2 ) as gene-tree interior times. Under the process convention of Section 2, neither
+bookkeeping repair accounts for repeated noncoalescing movement paths; the CTMC summation is
+still required.
+
+
+E    Reproducibility
+From the package root, the deterministic theorem-bearing checks are run by
+make verify-exact
+and end with
+ALL EXACT CHECKS PASSED
+The separate fixed-seed numerical sanity check is
+make audit-simulation
+The combined command make verify runs both. Exact verification includes genealogy normalization,
+symbolic history integrations, Fourier/site-pattern transformations, all 64 direct JC69 leaf patterns,
+global-univalence identities, topology and scale checks, the source-formula diagnostic, and the outward-
+rounded Krawczyk certificate. See README.md, PROVENANCE.md, and MANIFEST.sha256.
+
+                                                19 of 20
+Global identifiability in a three-taxon LGT model            Version 0.2 – prepared for author audit
+
+
+References
+[1] T. H. Jukes and C. R. Cantor, Evolution of protein molecules, in H. N. Munro (ed.), Mammalian
+    Protein Metabolism, vol. 3, pp. 21–132, 1969.
+
+[2] S. Linz, A. Radtke, and A. von Haeseler, A likelihood framework to measure horizontal gene
+    transfer, Molecular Biology and Evolution 24(6):1312–1319, 2007.
+
+[3] M. Steel, Phylogeny: Discrete and Random Processes in Evolution, SIAM, Philadelphia, 2016.
+
+[4] L. Kubatko, S. Linz, and K. Wicke, Revisiting a random model of lateral gene transfer in phyloge-
+    netics, arXiv:2607.14653v1, July 16, 2026. Repository snapshot: https://github.com/lkubatko/
+    LGT-Model, commit 1954b2ab92525dfdaf43b50f97dcf46658cab6c9.
+
+
+
+
+                                              20 of 20
+

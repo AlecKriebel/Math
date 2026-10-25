@@ -1,0 +1,563 @@
+                     A 14-variable unipotent Keller map and
+                  every-order image and vanishing obstructions
+                                           Alec Kriebel
+                           with heavy assistance from ChatGPT 5.6 Sol
+
+                                Research draft prepared 22 July 2026
+                                         Not peer reviewed
+
+
+                                                  Abstract
+          Starting from the recently announced three-variable counterexample to the Jacobian conjec-
+      ture, we give one self-contained consequence mechanism built from a formal inverse pencil and a
+      linear observable. Its first realization is an exact rational vector g ∈ Q[Z]14 with 24 monomials
+      such that det(I + sJg) = 1, Jg is generically regular nilpotent, and I + g has an exact reduced
+      fiber of three rational points. The same inverse series gives an explicit every-exponent failure of
+      the Special Image Conjecture SIC(14). After homogenization and symmetric reduction it gives a
+      homogeneous degree-eight Hessian-nilpotent polynomial in 30 variables for which ∆m P m+1 ̸= 0
+      at every order. A complementary rank-compressed cubic route gives a homogeneous quartic in
+      44 variables with the same every-order nonvanishing, directly addressing the classical quartic
+      Vanishing Conjecture. The real 14-variable map also supplies direct counterexamples to the
+      Campbell, Chamberland–Meisters, and Kulikov injectivity and fixed-point formulations. These
+      are one consequence cascade, not independent discoveries. All claims are accompanied by exact
+      sparse certificates and bounded-memory checkers.
+
+Verification disclaimer. The human author is a complete amateur exploring the limits of AI-
+assisted mathematics and cannot independently verify these claims. This is an unreviewed artifact
+for expert checking, not an established result. The algebraic checks do not establish the literature
+or priority assertions.
+
+
+1    The unified result
+Let En : C[ξ, Z] → C[Z] be the linear map
+
+                                          En (ξ α p(Z)) = ∂Zα p(Z),                                         (1)
+
+and let ∆N denote the Laplacian in N variables. The paper proves the following package directly;
+none of the operator statements is inferred only from a logical equivalence with the Jacobian
+conjecture.
+Theorem 1 (Master theorem). There are explicit exact objects with the following properties.
+    1. A vector g ∈ Q[Z]14 with 24 monomials satisfies
+
+                              det(I + sJg) = 1,        (Jg)14 = 0,        (Jg)13 ̸= 0.
+
+      The map T = I + g has generic degree three, geometric monodromy S3 , and an exact scheme-
+      theoretic fiber consisting of three reduced rational points.
+
+                                                      1
+    2. For A = −ξ · g and b = x + y + u11 ,
+
+                                  E14 (Am ) = 0,          E14 (bAm ) ̸= 0       (m ≥ 1).
+
+      Thus SIC(14) is false, with one fixed multiplier obstructing every positive exponent.
+
+    3. There is a 28-variable nonhomogeneous Hessian-nilpotent polynomial P28 of degree eight and
+       a 30-variable homogeneous Hessian-nilpotent polynomial P30 of degree eight such that, for
+       P = P28 , P30 ,
+                            ∆m P m = 0 (m ≥ 1),     ∆m P m+1 ̸= 0 (m ≥ 0).
+      The expanded term counts are 178 and 608, respectively.
+
+    4. There is a 44-variable homogeneous Hessian-nilpotent quartic P44 , with 538 expanded mono-
+       mials, such that
+
+                            ∆m   m
+                             44 P44 = 0        (m ≥ 1),          ∆m   m+1
+                                                                  44 P44  ̸= 0      (m ≥ 0).
+
+    The 30- and 44-variable endpoints are complementary: the former has smaller ambient dimen-
+sion, while the latter lies in the degree-four homogeneous case used in Zhao’s equivalence with the
+Jacobian conjecture [10]. No global minimality claim is made for either.
+
+
+2     The source map and one inverse series
+The following map is the announced three-dimensional counterexample that initiated the present
+constructions [1]. Put u = 1 + xy and define
+
+                                        F1 = u3 z + y 2 u(4 + 3xy),
+                                        F2 = y + 3xu2 z + 3xy 2 (4 + 3xy),
+                                        F3 = 2x − 3x2 y − x3 z.                                   (2)
+
+We use the identity-linear normalization
+
+                                               Φ = (F3 /2, F2 , F1 ).                             (3)
+
+Direct differentiation gives det JΦ = 1. The three points
+
+                        r0 = (0, 0, − 41 ),     r+ = (1, − 23 , 13
+                                                                 2 ),    r− = (−1, 23 , 13
+                                                                                         2 )      (4)
+
+map to (0, 0, −1/4).
+  The common one-variable engine is the unique series τ ∈ tQ[[t]] satisfying
+                                                             t
+                                                   τ + tτ 3 = .                                   (5)
+                                                             2
+Let D = 1 + 3tτ 2 . Differentiating (5) gives tτ ′ = τ /D. Set
+                                  τ
+                    x̄ = tτ ′ =     ,       ȳ = −3tτ,         z̄ = tD(1 − 30tτ 2 − 18t2 τ 4 ).   (6)
+                                  D
+Lemma 2 (Exact inverse ray). The series in (6) satisfy
+
+                                              Φ(x̄, ȳ, z̄) = (t/2, 0, t).
+
+                                                           2
+Proof. Here 1+ x̄ȳ = 1/D. Direct substitution into (2) gives F1 = t, F2 = 0, and F3 = 2τ (1+tτ 2 ) =
+t, the last equality being (5).
+    Two linear observables below produce the series
+                                                τ ′ − 1/2   ∑
+                              q(t) = τ ′ − 3τ −           =      q m tm ,                           (7)
+                                                     t
+                                                            m≥0
+                                                          ∑
+                              r(t) = τ ′ − 3τ + 3tτ τ ′ =   r m tm .                                (8)
+                                                                     m≥0
+
+Lemma 3 (Coeﬀicient-complete obstruction). For every k ≥ 0,
+                                               (3k+1)
+                                  q3k = r3k = (−1)k    k
+                                                           ,
+                                                     22k+1
+                                                           (     )
+                                                   k+1    3 3k+1
+                                                              k
+                              q3k+1 = r3k+1 = (−1)                   ,
+                                                       (3k + 1)22k+1
+                                                    (3k+4)
+                                                     k+1
+                                         q3k+2 = (−1)k    ,                                         (9)
+                                                    22k+3
+                                                     (3k+2)
+                                                    3 k
+                                       r3k+2 = (−1)k 2k+2   .                                      (10)
+                                                     2
+In particular, qm rm ̸= 0 for every m ≥ 0.
+Proof. Lagrange inversion in (5) gives
+                                                                    (3k+1)
+                                       3k+1               k            k
+                                  [t          ]τ = (−1)                          .
+                                                              (3k + 1)22k+1
+Differentiation gives the residue class 0, multiplication by −3 gives class 1, and the remaining
+summands in (7) and (8) give class 2. These classes are disjoint; elementary binomial simplification
+gives (9)–(10).
+
+
+3     Two inverse-series transfer principles
+The next two identities are the conceptual spine of the paper.
+
+3.1   The image-operator transfer
+Let H ∈ C[Z]n , suppose det(I + tJH) = 1, and let Qt be the formal inverse of I + tH. Put
+                                                              ∑
+                                                              n
+                                       AH (ξ, Z) = −                ξj Hj (Z).                     (11)
+                                                              j=1
+
+Lemma 4 (Abhyankar–Gurjar transfer). For every polynomial p,
+                                       ∑ tm (         )
+                           p(Qt (Z)) =        En pAm H (Z).                                        (12)
+                                           m!
+                                                  m≥0
+
+Consequently En (Am  H ) = 0 for every m ≥ 1,        and any nonzero coeﬀicient [tm ]p(Qt )(Z∗ ) proves
+En (pAm
+      H )(Z ∗ ) ̸
+                = 0.
+Proof. Apply the Abhyankar–Gurjar inversion formula [2, 8] to I + tH = I − (−tH). The determi-
+nant factor is one, and the multinomial theorem collects terms of total ξ-degree m. Taking p = 1
+gives the first conclusion.
+
+                                                        3
+3.2     The symmetric Laplacian transfer
+Suppose additionally that H(0) = 0. For A, B ∈ Cn , define the de Bondt–van den Essen symmetric
+transform [5]
+                                    ∑
+                                    n
+                      PH (A, B) = i   Hj (A + iB)Bj ,       Γt = I − t∇PH .                (13)
+                                      j=1
+
+Lemma 5 (Symmetric transfer). Write X = A + iB. In coordinates (X, B),
+                             (                                      )
+                Γt (X, B) = X + tH(X), (I + tJH(X)T )B − itH(X) .                               (14)
+
+Hence
+                                    det JΓt = det(I + tJH)2 = 1,
+so PH is Hessian nilpotent. Moreover, the A + iB component of Γ−1   t  is (I + tH)−1 .
+    Let λ be a linear form on Cn , put ℓ(A, B) = λ(A + iB), let v be its coeﬀicient vector in the 2n
+variables, and write Dv = v · ∇. If
+                                                         ∑
+                                   λ((I + tH)−1 (Y∗ )) =   c k tk ,
+                                                           k≥0
+
+then                           (         )
+                                     m+1
+                            D v ∆m
+                                 2n PH     (Y∗ , 0) = 2m m!(m + 1)!cm+1 .                       (15)
+
+Proof. Differentiating (13) gives
+
+                    ∇A PH = iJH(X)T B,          ∇B PH = −JH(X)T B + iH(X),
+
+which proves (14). The determinant identity for every t is equivalent to nilpotence of Hess PH .
+   Because H(0) = 0, the polynomial PH has order at least two. Zhao’s inversion formula [10,
+Theorem 3.4] for a Hessian-nilpotent polynomial therefore writes
+                                                       ∑          tm
+                 Γ−1
+                  t (Z) = Z + t∇Rt (Z),         Rt =                      ∆m P m+1 .            (16)
+                                                             2m m!(m + 1)! 2n H
+                                                       m≥0
+
+Apply ℓ at (Y∗ , 0) and compare the coeﬀicient of tm+1 .
+
+   Zhao also proved that Hessian nilpotence is equivalent to ∆m P m = 0 for every m ≥ 1. Thus
+a coeﬀicient-complete inverse observable gives a coeﬀicient-complete counterexample to the corre-
+sponding Vanishing Conjecture without ever expanding a high Laplacian power [10, 9].
+
+
+4      The 14-variable regular-nilpotent map
+Write
+                                    Φ = X + H2 + H3 + · · · + H7 .                              (17)
+The nonzero homogeneous pieces of Φ − I are
+
+
+
+
+                                                  4
+                                        d      Hd,1         Hd,2        Hd,3
+                                        2        0           3xz         4y 2
+                                        3    − 32 x2 y     12xy 2       3xyz
+                                        4    − 21 x3 z     6x2 yz       7xy 3
+                                        5        0          9x2 y 3    3x2 y 2 z
+                                        6        0         3x3 y 2 z    3x2 y 4
+                                        7        0            0        x3 y 3 z
+
+   Take state coordinates
+
+                         U = (u11 , u12 ; u21 , u22 , u23 , u24 ; u31 , u32 , u33 , u34 , u35 ).
+
+Let B ∈ Mat3×11 (Q) select the three chain heads, so BU = (u11 , u21 , u31 )T , let N = J2 ⊕ J4 ⊕ J5
+with ones immediately above the diagonal, and put
+
+                 C = (H3,1 , H4,1 ; H3,2 , H4,2 , H5,2 , H6,2 ; H3,3 , H4,3 , H5,3 , H6,3 , H7,3 )T .
+
+Define                                       (                        )
+                                   g(X, U ) = H2 (X) + BU, −C(X) − N U .                                        (18)
+In the coordinate order Z = (x, y, z, U ), this is
+
+            g1 = u11 ,                               g2 = 3xz + u21 ,                       g3 = 4y 2 + u31 ,
+            g4 = 23 x2 y − u12 ,                     g5 = 12 x3 z,
+            g6 = −12xy 2 − u22 ,                     g7 = −6x2 yz − u23 ,
+            g8 = −9x2 y 3 − u24 ,                    g9 = −3x3 y 2 z,
+           g10 = −3xyz − u32 ,                    g11 = −7xy 3 − u33 ,
+           g12 = −3x2 y 2 z − u34 ,               g13 = −3x2 y 4 − u35 ,
+           g14 = −x3 y 3 z.                                                                                     (19)
+
+Theorem 6. The vector (19) has 24 monomials and
+
+                                                det(I + sJg) = 1.
+
+Its generic nilpotency index is 14. The fiber of T = I + g over c = (0, 0, −1/4, 0, . . . , 0) consists
+scheme-theoretically of exactly three reduced rational points, obtained by lifting (4). The generic
+degree is three and the geometric monodromy is S3 .
+
+Proof. The Jacobian pencil has block form
+                                        (                    )
+                                          I3 + sJH2    sB
+                              I + sJg =                        .
+                                            −sJC    I11 − sN
+
+Since N 5 = 0, a Schur complement gives
+                                    (                               )
+                  det(I + sJg) = det I3 + sJH2 + s2 B(I − sN )−1 JC
+                                    (                     )
+                                           ∑7
+                               = det I3 +     sd−1 JHd (X) = det JΦ(sX) = 1.
+                                                     d=2
+
+
+                                                            5
+Cayley–Hamilton gives (Jg)14 = 0, while exact multiplication gives
+                                  (       )
+                                    (Jg)13 1,5 = −3x6 y 4 z ̸= 0.
+
+   On the stated target the state equations uniquely give U = (I − N )−1 C(X), and the first block
+becomes Φ(X). The source-fiber ideal has lexicographic Gröbner basis
+                           4z + 1 − 27x2 ,           2y + 3x,         x(x − 1)(x + 1).                     (20)
+Its quotient is reduced of length three, proving the exact fiber assertion.
+    More generally, over a target (Y, V ) the state block gives
+                    U = (I − N )−1 (V + C(X)),                 Φ(X) = Y − B(I − N )−1 V.
+Thus T is stably equivalent to Φ × I11 over the target space, not merely on the displayed special
+fiber.
+    For completeness, a target (a, b, c) of the unnormalized map F has inverse parameter t satisfying
+                                              2at3 − bt2 + 2t − c = 0,
+with
+                             bt2 + 3c − 6t           t          2x − 3x2 y − c
+                      y=−                  , x  =        , z =                 .
+                                  2t2             1 − ty              x3
+Thus the generic degree is at most three; the reduced three-point fiber and étaleness give the reverse
+inequality. The cubic discriminant is
+                                    −4(27a2 c2 − 18abc + 16a + b3 c − b2 ),
+and the discriminant in c of the parenthesized quadratic is −(12a − b2 )3 ̸= 0. It is therefore
+squarefree in C(a, b)[c] and not a square in C(a, b, c). Hence the transitive degree-three geometric
+monodromy group is S3 .
+
+      The weights
+                                     ω = (1, 1, 1; 2, 3; 2, 3, 4, 5; 2, 3, 4, 5, 6)                        (21)
+satisfy wt(gi ) = ωi + 1. If Ds = diag(sωi ), then
+                                           Ds−1 T Ds = I + sg        (s ̸= 0).                             (22)
+Thus the entire punctured pencil is linearly conjugate. One diagonal conjugate has integer coeﬀi-
+cients; separately, the member I + g/4 has an entirely integral three-point collision and common
+target (0, 0, −1, 0, . . . , 0). These are two different normal forms.
+
+
+5      Every-exponent SIC and the named consequence cascade
+Let
+                          ∑
+                          14
+                    A=−         ξj g j ,      b = x + y + u11 ,         Z∗ = ( 12 , 0, 1, 0, . . . , 0).   (23)
+                          j=1
+
+For the inverse Qt of I + tg, state elimination and Lemma 2 give
+                                                                                        τ ′ − 1/2
+                    Qt,x (Z∗ ) = τ ′ ,       Qt,y (Z∗ ) = −3τ,     Qt,u11 (Z∗ ) = −               .        (24)
+                                                                                             t
+The last equality is also the first target equation Qx + tQu11 = 1/2. Hence b(Qt )(Z∗ ) = q(t).
+
+                                                           6
+Theorem 7. For every m ≥ 1,
+
+                           E14 (Am ) = 0,     E14 (bAm )(Z∗ ) = m!qm ̸= 0.
+
+Consequently ker E14 is not a Mathieu subspace and SIC(14) is false.
+
+Proof. Apply Lemma 4 with H = g and use Lemma 3.
+
+    Zhao proved [11]
+                                              ∑
+                                              14
+                                  ker E14 =         (ξj − ∂Zj )C[ξ, Z].
+                                              j=1
+
+Following Liu–Sun’s terminology [7], the assertion that this image is a Mathieu subspace is the
+Special Image Conjecture. Thus Theorem 7 also refutes Zhao’s regular-sequence Image Conjecture,
+of which SIC is this specialization. It does not, by itself, reverse other one-way implications in the
+literature.
+    The same map gives the following direct real and complex corollaries. The conjecture numbers
+in the first column are Campbell’s [3]; the other formulations are due to Chamberland–Meisters [4]
+and Kulikov [6].
+
+    Statement refuted                Map                              Exact obstruction
+    Campbell Conj. 3 (unipotent      T on R14                         Spec JT = {1} and three real
+    univalence)                                                       preimages
+    Chamberland–Meisters             T on R14                         all eigenvalues have modulus
+    Conj. 2.1                                                         one, hence a uniform gap from
+                                                                      zero
+    Campbell Conj. 4 (stability / −T                                  spectrum constantly {−1} and
+    weak injectivity)                                                 noninjectivity
+    Kulikov JN (14) and Campbell Nc = c − g                           nilpotent derivative and exactly
+    Conj. 6                                                           three fixed points
+    Campbell Conj. 5 (fixed-point translate Nc at p0                  the origin and two other fixed
+    form)                                                             points; spectrum {0}
+
+These statements are one transformation family, not five independent discoveries. The classical
+dynamical Markus–Yamabe problems already had older counterexamples; the present maps only
+give unusually rigid constant-spectrum realizations.
+    Padding g by zero coordinates proves the corresponding map, fixed-point, and SIC(n) failures
+for every n ≥ 14. The generic Jordan type becomes (14, 1n−14 ).
+
+
+6    The 28- and 30-variable Hessian companions
+Directly apply (13) to H = g and call the result P28 . It is nonhomogeneous of degrees two through
+eight and has 178 expanded monomials. At (Z∗ , 0), take
+
+                                       ℓ28 (A, B) = b(A + iB).
+
+Lemma 5 and (24) give
+                             (         )
+                         Dv28 ∆m   m+1
+                               28 P28    (Z∗ , 0) = 2m m!(m + 1)!qm+1 ̸= 0.                         (25)
+
+                                                     7
+    For the homogeneous version introduce w and put
+                                       (            )
+                             h(Z, w) = w7 g(Z/w), 0 ∈ Q[Z, w]15 .                                          (26)
+
+It is homogeneous of degree seven and has 24 monomials.
+
+Proposition 8. The matrix Jh has exact generic nilpotency index 14 and Jordan type (14, 1).
+
+Proof. Write
+                      (          )
+                          W    q                                         (                 )
+               Jh =                ,     W = w6 Jg(Z/w),           q = w6 7g − Jg(Z/w)(Z/w) .
+                          0    0
+
+Besides (Jg)14 = 0, exact sparse multiplication gives (Jg)13 g = 0. Hence W 14 = 0 and W 13 q = 0,
+so (Jh)14 = 0. On the other hand,
+                                 (       )
+                                   (Jh)13 1,5 = −3w67 x6 y 4 z ̸= 0.
+
+The only partition of 15 with largest part 14 is (14, 1).
+
+    Let P30 = Ph as in (13). This polynomial is homogeneous of degree eight and has 608 expanded
+monomials. Since the last coordinate of I + th is w, its inverse on the slice w = 1 is exactly the
+inverse of I + tg. With target (Z∗ , 1; 0) and ℓ30 (A, B) = b(A + iB), Lemma 5 gives
+                             (           )
+                        Dv30 ∆m     m+1
+                               30 P30      (Z∗ , 1; 0) = 2m m!(m + 1)!qm+1 ̸= 0.              (27)
+
+Equations (25) and (27), together with Hessian nilpotence, prove parts (3) of Theorem 1.
+
+
+7    The every-order homogeneous quartic
+We now retain degree four at the cost of a larger ambient dimension. A factor-reusing stable degree
+reduction in the classical framework [2] gives
+
+                                Ψ = X + H2 + H3 : C13 → C13 ,            det JΨ = 1,                       (28)
+
+in variables
+                           X = (x, y, z, g1a, g1b, g2a, g2b, g3a, g3b, g4a, g4b, g5a, g6b).
+For reproducibility, the six stable operations are summarized below. A two-factor step appends
+outputs a + P, b + Q and subtracts the indicated coeﬀicient times their product from the target
+coordinate; one-factor steps reuse the named existing output.
+
+          step     target      new or reused factors                                          coeﬀicient
+               1      Φ1        2
+                               x , xz + 3y; add g1a, g1b                                        −1/2
+               2      Φ2       3x2 y, 2z + xyz + 3y 2 ; add g2a, g2b                              1
+               3      Φ2       xy, g2a z + 3xg2b; add g3a, g3b                                   −1
+               4      Φ3       xy 2 , 7y + 3xz + 3xy 2 + x2 yz; add g4a, g4b                      1
+               5      Φ3       add g5a + g4a xy; reuse g1b + xz + 3y                             −1
+               6      Φ3       reuse g3a + xy; add g6b + g4a g1b − yg4b                           1
+
+
+
+
+                                                          8
+A final output shear subtracts the product of the g3a- and g1b-outputs from the g4b-output. Each
+displayed step is a composition with triangular source and target automorphisms, so it preserves the
+constant Jacobian up to its linear normalization. Let M be the resulting map and L = JM (0), so
+Ψ = L−1 M and det JΨ = 1. Exact coeﬀicient reduction factors H3 = BK with K = (K1 , . . . , K8 )
+and
+          K1 = 12 x(g1a z + g1b x),
+          K2 = g2a g3a z − 3g2a y 2 + 3g2b g3a x + g3b xy + 12xy 2 ,
+          K3 = − g1b g3a g4a + g3a g4b y − 3g4a xz + g5a xz − g6b xy + 3xyz,
+          K4 = 3x2 y,
+          K5 = 2g1b g3a g4a − 2g3a g4b y + 6g4a xz − 2g5a xz + 2g6b xy − 5xyz,                                (29)
+                     2
+          K6 = xy ,
+          K7 = − g1b xy − 7g2a g3a z + 21g2a y 2 − 21g2b g3a x − g3a xz − 7g3b xy − 84xy 2 ,
+          K8 = g4a xy.
+Here
+                         B(U1 , . . . , U8 ) = (U1 , U2 , U3 , 0, −3U2 , U4 , U5 , 0, 0, U6 , U7 , U8 , 0).   (30)
+Define the cubic homogeneous vector in 22 variables
+                                       (                        )
+                        h4 (X, U, w) = wH2 (X) + w2 BU, −K(X), 0 .                                            (31)
+A Schur complement gives
+                                       (                     )
+                   det(I + sJh4 ) = det I + swJH2 + s2 w2 BJK = det JΨ(swX) = 1;
+hence Jh4 is nilpotent. The checker verifies this matrix identity directly.
+   Set
+                  Y = L−1 ( 12 , 0, 1, 0, . . . , 0) = ( 21 , 0, 1, 0, 0, 0, −2, 0, . . . , 0) ∈ Q13 ,        (32)
+and R∗ = (Y, 08 , 1) ∈ Q22 . If X(t) is the first block of (I + th4 )−1 (R∗ ), the second block gives
+U = tK(X) and therefore
+                                    Ψ(tX) = tY,            M (tX) = t( 21 , 0, 1, 0, . . . , 0).
+The stable outputs and Lemma 2 yield
+                                     Xx = τ ′ ,        Xy = −3τ,            Xg3a = 3tτ τ ′ .                  (33)
+Indeed the zero g3a-output is tXg3a + (tXx )(tXy ) = 0. Thus the linear observable x + y + g3a
+equals r(t) on this inverse.
+   Finally define
+                                              ∑
+                                              22
+                               P44 (A, B) = i    h4,j (A + iB)Bj .                         (34)
+                                                              j=1
+
+It is a homogeneous quartic with 538 expanded monomials. At (R∗ , 0) let ℓ44 (A, B) = (x + y +
+g3a)(A + iB). Lemmas 5 and 3 give
+                     (          )
+                 Dv44 ∆m    m+1
+                        44 P44    (R∗ , 0) = 2m m!(m + 1)!rm+1 ̸= 0 (m ≥ 0).              (35)
+This proves the quartic part of Theorem 1 by a closed formula at every order, strengthening the
+earlier collision-based conclusion of nonvanishing at infinitely many unspecified orders. This is
+the homogeneous-quartic formulation equivalent to the Jacobian conjecture [10]; the degree-eight
+companion instead addresses the general homogeneous Vanishing Conjecture [9].
+
+                                                                 9
+8   Verification, scope, and archival policy
+The unified certificate contains the fully expanded 178-term and 608-term potentials, the fixed
+inverse targets, the two coeﬀicient formulas, the fiber basis, and hashes of the precursor 14- and
+44-variable sparse certificates. The primary exact checker verifies the block identities, weighted
+conjugacy, exact fiber, (Jg)13 g = 0, both inverse series, symmetrization gradients, degrees, and
+term counts. Its peak memory in the reference run was below 100 MB. A dependency-free standard-
+library checker audits the exported sparse data and the first 1000 nonzero coeﬀicients. Finite
+coeﬀicient checks are guards; the all-order proof is Lemma 3.
+    The formula 3 + (4 − 2) + (6 − 2) + (7 − 2) = 14, the stable degree reductions, and the symmetric
+reduction are classical. The Discovery 06 precursor contains a coeﬀicient-Hankel proof of optimality
+only inside its stated constant-state realization ansatz; that scoped side result is not needed here.
+No global smallest-dimension or smallest-term assertion is made. Zihan Zhang had already recorded
+existential Image and quartic Vanishing consequences of the announced counterexample [12]; the
+contribution sought here is an explicit fixed-dimensional, every-order realization. At the audit
+cutoff, no earlier public artifact was located with this exact 14-variable map, an explicit SIC(n)
+witness for n ≤ 14, or the every-order 44-variable quartic formula. That is provisional search
+evidence, not proof of worldwide priority.
+    This paper is the canonical consequence paper. The earlier 22/44-variable note, the 21-variable
+SIC note, and the 14-variable construction note remain public as timestamped technical precursors
+and certificate sources; they are not presented as three additional publications. The separate
+iterated monodromy paper studies different mathematics and is not absorbed here.
+
+
+AI assistance and responsibility
+The constructions, audits, programs, certificates, website, and manuscript were developed with
+heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel’s direction. Alec Kriebel is the named
+human author and has requested prominent disclosure that he is not qualified to validate the
+mathematics independently. Independent expert scrutiny is essential.
+
+
+References
+ [1] L. Alpöge, X post announcing the three-variable map, crediting Akhil Mathew for posing the
+     question and Claude Fable for producing the example, 20 July 2026; https://x.com/__alpo
+     ge__/status/2079028340955197566.
+
+ [2] H. Bass, E. H. Connell, and D. Wright, The Jacobian conjecture: reduction of degree and
+     formal expansion of the inverse, Bull. Amer. Math. Soc. 7 (1982), 287–330.
+
+ [3] L. A. Campbell, Unipotent Jacobian matrices and univalent maps, Contemp. Math. 264 (2000),
+     157–177; https://doi.org/10.1090/conm/264/04218, https://arxiv.org/abs/math/990
+     7157.
+
+ [4] M. Chamberland and G. Meisters, A mountain pass to the Jacobian conjecture, Canad. Math.
+     Bull. 41 (1998), 442–451; https://doi.org/10.4153/CMB-1998-058-4.
+
+ [5] M. de Bondt and A. van den Essen, A reduction of the Jacobian conjecture to the symmetric
+     case, Proc. Amer. Math. Soc. 133 (2005), 2201–2205; https://doi.org/10.1090/S0002-993
+     9-05-07570-2.
+
+                                                 10
+ [6] V. S. Kulikov, The Jacobian conjecture and nilpotent maps, J. Math. Sci. 106 (2001), 3312–
+     3319; https://doi.org/10.1023/A:1017907526453, https://arxiv.org/abs/math/98031
+     43.
+
+ [7] D. Liu and X. Sun, Images of higher-order differential operators of polynomial algebras, Bull.
+     Aust. Math. Soc. 96 (2017), 205–211; https://doi.org/10.1017/S0004972717000454.
+
+ [8] W. Zhao, New proofs for the Abhyankar–Gurjar inversion formula and the equivalence of the
+     Jacobian conjecture and the vanishing conjecture, https://arxiv.org/abs/0907.3991.
+
+ [9] W. Zhao, A vanishing conjecture on differential operators with constant coeﬀicients, Acta Math.
+     Vietnam. 32 (2007), 259–286; https://arxiv.org/abs/0704.1691.
+
+[10] W. Zhao, Hessian nilpotent polynomials and the Jacobian conjecture, Trans. Amer. Math.
+     Soc. 359 (2007), 249–274; https://doi.org/10.1090/S0002-9947-06-03898-0, https:
+     //arxiv.org/abs/math/0409534.
+
+[11] W. Zhao, Images of commuting differential operators of order one with constant leading coef-
+     ficients, J. Algebra 324 (2010), 231–247; https://doi.org/10.1016/j.jalgebra.2010.04.0
+     22, https://arxiv.org/abs/0902.0210.
+
+[12] Z. Zhang, Direct consequences of the three-dimensional counterexample to the Jacobian con-
+     jecture, 20 July 2026; https://zzhang-iu.github.io/papers/direct-consequences-jac
+     obian/.
+
+
+
+
+                                                11
+

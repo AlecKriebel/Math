@@ -1,0 +1,693 @@
+                 No universal death–birth amplifier on a finite
+                        weighted population structure
+                                            Alec Kriebel
+                                       Independent Researcher
+
+                                             August 1, 2026
+
+
+                                                 Abstract
+         We ask whether a finite loopless weighted population structure can strictly increase uniformly
+     initialized single-mutant fixation probability, relative to the same-order complete graph, under
+     death–birth updating for every mutant fitness r > 1. For complete directed support we derive
+     the first 1/r correction exactly. Its excess loss is a sum of squares over incoming weight columns;
+     equality holds precisely when every incoming column is constant, in which case the entire process
+     is the complete-graph baseline. Combining this with the known transience theorem for strongly
+     connected noncomplete supports and a source-component bound for non-strong supports proves
+     that no finite directed weighting amplifies dB fixation for every r > 1. For undirected graphs
+     we also give the exact incomplete-support strong limit. Finally, we classify positive weighted
+     triangles and two maximally symmetric nontrivial families on four vertices at every beneficial
+     fitness: every nonuniform member is a strict dB suppressor. These fixed-graph results do not
+     settle the reversed asymptotic order in which the population threshold may depend on fitness.
+
+
+Author summary
+Evolution in a structured population depends on who can replace whom. A network is called an
+amplifier when it makes a beneficial mutation more likely to take over than it would be in a well-
+mixed population. We ask whether one fixed finite weighted network can amplify every possible
+beneficial mutation under death–birth replacement. It cannot. For complete directed networks,
+we calculate the first strong-selection correction and show that its deficit is an explicit sum of
+nonnegative squares. Equality occurs only when every competition is dynamically identical to
+the well-mixed process. Combining this with the remaining support cases rules out every finite
+directed network. We also obtain exact classifications for all weighted triangles and for two natural
+symmetric four-vertex families: every nonuniform example suppresses selection at every beneficial
+fitness. The proofs are accompanied by exact symbolic transition builders and independent replay
+checks. A different large-population question remains open because its population-size threshold
+may depend on fitness; we state this quantifier distinction and a necessary support-degree condition
+explicitly.
+
+
+1 Relation to prior bounds
+Tkadlec et al. proved that every strongly connected noncomplete population structure—allowing
+directed and weighted edges—is eventually dB-suppressing as fitness grows [1]. Their source-to-
+target weight convention, loopless model, and uniform initialization agree with ours. Their theorem
+
+
+                                                     1
+leaves one strongly connected possibility: a nonuniform weighted version of the complete directed
+graph. Our incoming-column sum of squares closes precisely that case and gives the sharp equality
+class. A short source-component argument below also removes the strong-connectivity assumption
+from the final fixed-graph statement.
+    Transient dB amplification is known and can be diagnosed at weak selection using coalescing
+random walks [2]. More recently, weighted modular graphs have been proved to amplify both Bd
+and dB selection on the fixed fitness interval (1, 1.2) [3]. Those positive results are consistent with
+the obstruction here: our conclusion concerns a fixed finite graph required to amplify for every
+r > 1, and failure occurs in its strong-selection tail.
+
+
+2    Model and result
+Let G = (V, W ) be loopless, |V | = n ≥ 2, and let wuv ≥ 0 be the weight with which source u
+competes to replace dead target v. Assume each incoming degree
+                                               ∑
+                                        d−
+                                         v  :=    wuv
+                                                  u̸=v
+
+is positive. Mutants have fitness r > 1 and residents fitness one. Under death–birth updating
+a uniformly chosen target dies, after which a source is chosen with probability proportional to
+fitness times wuv . Write ρdB (G, r) for fixation probability averaged uniformly over singleton initial
+mutants. Multiplying one incoming column by a positive constant is dynamically irrelevant for dB.
+
+Theorem 1 (directed complete-support correction). Suppose n ≥ 3 and wuv > 0 for every u ̸= v.
+Put
+                                        ∑ ∑ (wuv − wzv )2
+                             Edir (G) =                     .
+                                        v u<z
+                                                   wuv wzv
+                                                u,z̸=v
+
+Then
+                                                          Edir (G)
+                          ρdB (Kn , r) − ρdB (G, r) =               + O(r−2 ).
+                                                         n (n − 2)r
+                                                          2
+
+Here the expansion is for fixed G as r → ∞. The defect vanishes if and only if for each target v
+there is cv > 0 with wuv = cv for all u ̸= v. In that case the full dB chain equals the Kn chain for
+every r > 0. For n = 2, arbitrary positive w12 , w21 also give ρdB (G, r) = 1/2.
+
+Proposition 2 (non-strong supports). If the directed positive-weight support is not strongly con-
+nected, then G is strictly dB-suppressing for all suﬀiciently large finite r.
+
+Corollary 3 (fixed directed closure). No finite loopless directed weighting with positive incoming
+degrees is a strict dB amplifier for every r > 1. More precisely, it is eventually dB-suppressing
+unless it has complete support and constant incoming columns; the latter class ties the baseline
+exactly.
+
+    For symmetric weights, Theorem 1 has a sharper support-level companion. Let
+
+                                         si = |{j : wij > 0}|.
+
+
+
+
+                                                  2
+Proposition 4 (undirected support refinement). For every connected undirected weighted graph,
+                                                        1 ∑ si
+                                    lim ρdB (G, r) =              .
+                                    r→∞                 n  si + 1
+                                                           i
+
+Consequently an incomplete support has limiting deficit
+                                      ∑ n − 1 − si
+                                                      > 0.
+                                          n2 (si + 1)
+                                            i
+
+For complete symmetric support, Edir is the incident-star defect and vanishes only when all off-
+diagonal weights are globally equal.
+    Corollary 3 rules out, in particular,
+
+                      ∃N0 ∀N ≥ N0 ∀r > 1 :      ρdB (GN , r) > ρdB (K|V (GN )| , r),
+
+but it does not decide the reversed order ∀r > 1 ∃N0 (r) ∀N ≥ N0 (r).
+   The two branches of the certificate are shown schematically in Figure 1.
+
+                                                                w12            w13
+
+
+
+
+                 incomplete support                              complete support
+                ρdB (Kn , r) − ρdB (G, r)                    ρdB (Kn , r) − ρdB (G, r)
+              has a positive limiting gap               = Edir (G)/(n2 (n − 2)r) + O(r−2 )
+
+Figure 1: The undirected support refinement. The dashed segment on the left is a missing sup-
+port edge. In the directed complete-support theorem, the right branch measures variation within
+incoming columns.
+
+
+
+3    Complete-graph baselines
+We derive both baselines directly. Let ϕk denote fixation probability on Kn from k mutants, and
+            −
+let p+
+     k and pk be the probabilities of increasing and decreasing k. The first-step equations give
+                                                     −
+                                   k (ϕk+1 − ϕk ) = pk (ϕk − ϕk−1 ).
+                                  p+
+
+If γk = p−   +
+         k /pk , summing successive increments subject to ϕ0 = 0 and ϕn = 1 gives
+                                                        −1
+                                               ∑∏
+                                               n−1  j
+                                    ϕ 1 = 1 +        γk  .
+                                                 j=1 k=1
+
+    For Bd updating, γk = 1/r, hence
+                                                        1 − r−1
+                                       ρBd (Kn , r) =           .                            (1)
+                                                        1 − r−n
+
+                                                  3
+For dB updating, direct counting gives
+                            n−k      rk                              k      n−k
+                     p+
+                      k =                     ,              p−
+                                                              k =                       .
+                             n rk + n − k − 1                        n r(k − 1) + n − k
+Writing Ak = n − 1 + (r − 1)k, one has
+
+                                        Ak             ∏
+                                                       j
+                                                                       Aj
+                                γk =         ,               γk =             .
+                                       rAk−1                        (n − 1)rj
+                                                       k=1
+
+The finite sum telescopes to the exact formula
+                                                   n − 1 1 − r−1
+                                  ρdB (Kn , r) =                   .                               (2)
+                                                     n 1 − r−(n−1)
+For n ≥ 3 this has the strong-selection expansion
+                                                 n−1 n−1
+                               ρdB (Kn , r) =       −    + O(r−2 ).                                (3)
+                                                  n   nr
+   We will use the following elementary finite-chain perturbation fact to make the r → ∞ passage
+precise.
+Lemma 5 (finite-state perturbation). Let P (ε) be a finite family of transition matrices continuous
+at ε = 0. Suppose that, from a specified initial state, all states reachable before absorption at ε = 0
+lie in a set R, the transient restriction QR (0) has spectral radius less than one, and the one-step
+probability of leaving R is O(ε). Then the absorption probabilities converge to those of P (0). If R
+is the full transient state space and the entries are analytic, then the absorption probabilities are
+analytic near zero.
+Proof. The inverse (I−QR (ε))−1 exists and remains bounded for all suﬀiciently small ε. Multiplying
+it by the vector of one-step leakage probabilities shows that the probability of leaving R before
+absorption is O(ε). The absorption equations within R therefore converge to the nonsingular
+limiting system; behavior after leakage can change a hitting probability by at most the leakage
+probability. In the full-space analytic case, (I − Q(ε))−1 is analytic by the adjugate formula.
+
+
+4   Noncomplete directed supports
+We first prove Proposition 2. Consider the condensation DAG of the directed positive-weight
+support. If it has two source strongly connected components, then at least one starts entirely
+resident and cannot receive mutant offspring from outside, so singleton fixation is impossible.
+Suppose instead it has a unique source component C ⊊ V . An initial mutant outside C cannot
+fixate. For i ∈ C, let s+ i = |{v : wiv > 0}|. While i is the only mutant, write piv (r) ≤ 1 for
+its conditional chance to replace target v when that target dies. After self-loops are removed, the
+chance of a first gain before the death of i is
+                                 ∑
+                                   v:wiv >0 piv (r)    s+      n−1
+                                   ∑                ≤ +i    ≤       .
+                               1 + v:wiv >0 piv (r)  si + 1      n
+Fixation requires this gain. Uniform initialization consequently gives
+                                                1 ∑ s+     (n − 1)2
+                               ρdB (G, r) ≤           i
+                                                         ≤          .                              (4)
+                                                n  s+
+                                                 i∈Ci +1      n2
+
+                                                       4
+The baseline tends to (n − 1)/n, leaving the positive limiting gap (n − 1)/n2 . This proves the
+proposition.
+   If the support is strongly connected but noncomplete, Theorem 1 of Tkadlec et al. gives a
+threshold r∗ ≤ 2n2 beyond which strict suppression holds [1]. If it is complete, Theorem 1 gives
+eventual strict suppression unless all incoming columns are constant, in which case columnwise
+normalization makes the chain exactly Kn . These three cases prove Corollary 3.
+
+
+5   Undirected incomplete positive-weight support
+Fix an initial mutant vertex i. At r = ∞, death of i causes extinction. Death of any one of its si
+support-neighbors is followed by mutant reproduction with probability one and creates an adjacent
+mutant pair. Deaths at nonneighbors are self-loops. Conditioning on the first state change therefore
+gives probability si /(si + 1) of reaching a pair before extinction.
+    Once an adjacent pair has formed, the mutant set remains support-connected. Every mutant
+has a mutant neighbor and hence cannot be replaced by a resident in the limiting chain. Whenever a
+boundary resident dies it becomes mutant. Connectedness of the support implies monotone growth
+to fixation almost surely. Thus
+                                                       1 ∑ si
+                                    lim ρdB (G, r) =             .
+                                   r→∞                 n  si + 1
+                                                         i
+
+Subtracting this from (n − 1)/n gives the exact termwise certificate below.
+
+                               n − 1 1 ∑ si      ∑ n − 1 − si
+                                    −          =               .                                   (5)
+                                 n    n si + 1     n2 (si + 1)
+                                            i             i
+
+Every denominator is positive. If an edge is missing, at least one numerator is positive, proving
+Proposition 4.
+    For completeness, the limiting argument is stable: from a singleton, every limiting state reached
+before absorption is a connected mutant set. The finite limiting transient chain absorbs almost
+surely, so its fundamental matrix is nonsingular. For finite r = 1/ε, a transition that leaks from
+this set requires a resident to replace a mutant having a mutant neighbor, and has probability
+O(ε) in each fixed state. Lemma 5 therefore proves convergence of the finite-r hitting probabilities,
+including the effect of all paths after such leakage.
+
+
+6   Complete support and the sum-of-squares correction
+Assume n ≥ 3 and wuv > 0 for all u ̸= v. Put
+
+                                                         d−
+                                                          v − wuv
+                                   ε = r−1 ,     auv =            .
+                                                            wuv
+Let qS (ε) be extinction probability from mutant set S. At ε = 0, every set with at least two mutants
+fixates, while q{i} (0) = 1/n. The limiting transient chain absorbs almost surely, so Lemma 5 shows
+that the hitting probabilities are analytic near ε = 0.
+    For later use, we make the claimed first-order vanishing explicit. Write PST (ε) for the transition
+probability from S to T . Every entry is analytic at zero: after multiplying mutant fitnesses by ε,
+each nontrivial denominator has a strictly positive constant term, while extinction from a singleton
+
+
+                                                  5
+mutant death has probability exactly 1/n. At ε = 0, a singleton either becomes extinct or creates
+a pair, and every state with at least two mutants then follows a pure-birth chain (apart from self-
+loops) to fixation. Hence the full limiting transient matrix has spectral radius less than one. The
+adjugate formula in Lemma 5 proves that every qS is analytic near zero.
+   Differentiate the exact first-step system:
+                                      ∑                  ∑
+                            qS′ (0) =      ′
+                                         PST (0)qT (0) +   PST (0)qT′ (0).                       (6)
+                                       T                            T
+
+If S is proper and 3 ≤ m = |S| ≤ n − 1, a first-order loss removes only one mutant and therefore
+lands in a state with at least two mutants; all loss, self-loop, and gain destinations consequently
+have zeroth-order extinction probability zero. The first sum in (6) vanishes. In the limiting chain,
+PSS (0) = m/n and PS,S∪{v} (0) = 1/n for each v ∈/ S, so
+                                                             ∑
+                                     (n − m)qS′ (0) =               ′
+                                                                   qS∪{v} (0).                   (7)
+                                                              ∈S
+                                                             v/
+
+When n ≥ 4, the right side is zero for m = n−1 because qV ≡ 0; downward induction in mutant-set
+size then proves the assertion for all proper states with at least three mutants. For n ≤ 3 there
+are no such proper states, and qV′ (0) = 0 in every dimension. Thus qS′ (0) = 0 for every |S| ≥ 3.
+Analyticity therefore gives
+                                     qS (ε) = O(ε2 ),   |S| ≥ 3.                               (8)
+   For S = {i, j}, loss of mutant target i occurs with probability
+
+                                 1    ε(d−
+                                         i − wji )      εaji
+                                            −         =      + O(ε2 ),
+                                 n wji + ε(di − wji )    n
+
+while loss of target j contributes εaij /n + O(ε2 ). The leading self-loop probability is 2/n and the
+leading total gain probability is (n − 2)/n. Since a resulting singleton has extinction probability
+1/n + O(ε), the exact first-step equation gives, on putting
+                                                        aij + aji
+                                                bij =             ,
+                                                        n(n − 2)
+
+                                        q{i,j} (ε) = bij ε + O(ε2 ).                             (9)
+   From singleton {i}, death of resident target v creates {i, v} with probability
+                                 1        wiv           1
+                         tiv =                         = (1 − aiv ε) + O(ε2 ).
+                                 n wiv + ε(d−
+                                            v − w iv )  n
+
+Death of i causes extinction with probability exactly 1/n; every other outcome is a self-loop. Hence
+                                           
+                                     ∑               1 ∑
+                              1 +      tiv  q{i} = +       tiv q{i,v} .
+                                 n                   n
+                                       v̸=i                             v̸=i
+
+Substitution of (9) yields the useful vertexwise intermediate formula. Define
+                                         ∑                 ∑
+                                   Oi =     aiv ,     Ii =   aui .
+                                              v̸=i                      u̸=i
+
+
+                                                         6
+        ∑
+Since       j̸=i bij = (Oi + Ii )/(n(n − 2)), expansion of the preceding singleton equation gives
+                                                  [             ]
+                                             1  ε      O i + Ii
+                                   q{i} (ε) = + 2 Oi +            + O(ε2 ).                             (10)
+                                             n n       n−2
+      ∑            ∑
+Now       i Oi =       i Ii = Tdir (G), and averaging (10) yields
+
+                                             ∑∑                                    Tdir (G)
+                                Tdir (G) =            auv ,         Adir (G) =               ,
+                                             v u̸=v
+                                                                                  n2 (n − 2)
+
+                                           n − 1 Adir (G)
+                                    ρdB (G, r) =−           + O(r−2 ).                         (11)
+                                             n        r
+   For the unit complete graph, aij = n − 2 and Tdir (Kn ) = n(n − 1)(n − 2). The difference admits
+the exact identity
+                                                                           
+                                                ∑       ∑ 1
+                   Tdir (G) − n(n − 1)(n − 2) =    d−v          − (n − 1)2 
+                                                v
+                                                            w uv
+                                                                        u̸=v
+                                                              ∑ ∑ (wuv − wzv )2
+                                                        =                                 = Edir (G).   (12)
+                                                              v     u<z
+                                                                               wuv wzv
+                                                                   u,z̸=v
+
+All denominators in (12) are positive. Equality requires every incoming column to be constant.
+Independent positive rescaling of incoming columns cancels from every dB competition, so the
+equality class has exactly the complete-graph chain. Under symmetry, the column constants are
+coupled and force one global edge weight. Equations (3), (11), and (12) prove Theorem 1.
+
+
+7     Beneficial-fitness classification on three vertices
+We now specialize to an undirected triangle with positive edge weights (a, b, c). Let Fi be fixation
+probability when i is the unique mutant and Gi when i is the unique resident. For distinct i, j, k,
+put
+                                      rwij                   wij
+                             uij =            ,   vij =             .
+                                   rwij + wjk            rwjk + wij
+Deleting holding probabilities from the literal dB first-step equations gives
+
+                                     (1 + uij + uik )Fi = uij Gk + uik Gj ,                             (13)
+                                     (1 + vij + vik )Gi = 1 + vij Fk + vik Fj .                         (14)
+
+The coeﬀicient matrix M has nonpositive off-diagonal entries and each diagonal entry equals one
+plus the sum of the absolute off-diagonal entries. It is therefore strictly diagonally dominant, and
+the homotopy I + t(M − I) shows det M > 0.
+   Set s1 = a + b + c, s2 = ab + ac + bc, and s3 = abc, and define
+
+                             B5 = 12s1 s2 s3 − 36s23 ,
+                             B4 = 12s31 s3 − 56s1 s2 s3 + 12s32 + 72s23 ,
+                             B3 = −24s31 s3 + 12s21 s22 + 80s1 s2 s3 − 24s32 − 90s23 ,
+                              P = 9s23 (r6 + 1) + B5 (r5 + r) + B4 (r4 + r2 ) + B3 r3 .
+
+
+                                                               7
+       ∏
+If L = p̸=q (rp + q) over p, q ∈ {a, b, c}, exact expansion of (13)–(14) gives det M = 3P/L. Thus
+P > 0 for positive weights and fitness.
+    Define
+
+                                   A = 3s3 (s1 s2 − 9s3 ),
+                                   D = 12s31 s3 − 45s1 s2 s3 + 4s32 − 27s23 ,
+                                   E = 4s2 (3s21 s2 − 3s1 s3 − 8s22 ),
+                                  H = A(r − 1)4 + Dr(r − 1)2 + Er2 .
+
+Solving the six equations and averaging the three Fi gives the exact rational comparison
+
+                                                                  r(r − 1)H
+                                  ρdB (G, r) − ρdB (K3 , r) = −             .                         (15)
+                                                                  3(r + 1)P
+    For a sign certificate, put
+
+            U = s21 − 3s2 ,       V = s22 − 3s1 s3 ,       W = s1 s2 − 9s3 ,      Z = s32 − 27s23 .
+
+Writing X = ab, Y = ac, Z0 = bc, direct expansion yields
+
+                     2U = (a − b)2 + (a − c)2 + (b − c)2 ,
+                     2V = (X − Y )2 + (X − Z0 )2 + (Y − Z0 )2 ,
+                     W = c(a − b)2 + b(a − c)2 + a(b − c)2 ,
+                      Z = s2 V + 3{Z0 (X − Y )2 + Y (X − Z0 )2 + X(Y − Z0 )2 }.
+
+Finally, the coeﬀicient identities
+
+                 A = 3s3 W,        D = 12s1 s3 U + 3s2 V + Z,            E = 4s2 (3s2 U + V )
+
+show A, D, E ≥ 0, with E > 0 unless a = b = c.
+
+Theorem 6 (weighted-triangle classification). For every positive undirected triangle and every
+r > 1,
+                                                           2r
+                            ρdB (G, r) ≤ ρdB (K3 , r) =          .
+                                                        3(r + 1)
+Equality holds if and only if a = b = c; every nonuniform weighting is a strict dB suppressor
+throughout the beneficial-fitness interval.
+
+Proof. All factors in the denominator of (15) are positive. For nonuniform weights, U > 0, hence
+E > 0 and H ≥ Er2 > 0; the difference is therefore negative for r > 1. Uniform weights give H = 0
+and the baseline chain exactly.
+
+
+8    Two symmetric complete-support families on four vertices
+The triangle result extends to the two most symmetric nontrivial orbit families on four vertices.
+First let G13 (x) have one core, three satellites, unit core–satellite weights, and satellite–satellite
+weight x > 0. Second let G22 (x, y) have two vertex pairs, internal-pair weights x, y > 0, and four
+unit cross-pair weights. These are respectively the full S1 × S3 and S2 × S2 families after common
+weight scaling.
+
+                                                       8
+                                                                           1
+                             1
+                        x
+                                                                  x                 y
+
+
+                            G13 (x)                                    G22 (x, y)
+
+Figure 2: The two symmetric weighted K4 families. Every unlabeled core–satellite or cross-pair
+edge has unit weight; every edge in a displayed orbit has the indicated common weight.
+
+
+    For reference, a two-class graph with class sizes p, q, internal weights α, β, and cross weight γ is
+strongly lumpable by the mutant counts (i, j). Directly from the dB rule, its four state-changing
+probabilities are
+
+                         i+1,j   p−i                 r(iα + jγ)
+                       Pi,j    =                                            ,
+                                 p + q r(iα + jγ) + (p − i − 1)α + (q − j)γ
+                         i−1,j     i             (p − i)α + (q − j)γ
+                       Pi,j    =                                              ,
+                                 p + q r((i − 1)α + jγ) + (p − i)α + (q − j)γ
+                         i,j+1   q−j                r(jβ + iγ)
+                       Pi,j    =                                            ,
+                                 p + q r(jβ + iγ) + (q − j − 1)β + (p − i)γ
+                         i,j−1     j             (q − j)β + (p − i)γ
+                       Pi,j    =                                              .                    (16)
+                                 p + q r((j − 1)β + iγ) + (q − j)β + (p − i)γ
+
+Terms with zero target multiplicity are omitted. These formulas prove lumpability rather than
+assuming it.
+   For the 1 + 3 family, put
+
+               F13 = 2r4 x2 + 2r4 x + 11r3 x2 + 14r3 x + 3r3 + 21r2 x2 + 29r2 x + 12r2
+                       + 16rx2 + 22rx + 8r + 4x2 + 5x + 1,
+               P13 = 8x2 (x + 1)(r6 + 1) + (6x4 + 36x3 + 46x2 + 16x)(r5 + r)
+                       + (27x4 + 73x3 + 85x2 + 59x + 12)(r4 + r2 )
+                       + (42x4 + 90x3 + 106x2 + 66x + 24)r3 .
+
+Solving the six transient equations from (16) gives
+
+                                                             3r2 (r − 1)(x − 1)2 F13
+                       ρdB (G13 (x), r) − ρdB (K4 , r) = −                           .             (17)
+                                                               4(r2 + r + 1)P13
+
+Every coeﬀicient of F13 and P13 is positive.
+    The 2 + 2 numerator is larger, but it has a short domain-adapted certificate. Exact elimination
+of the seven transient equations gives
+
+                                                               r2 (r − 1)H22 (x, y, r)
+                    ρdB (G22 (x, y), r) − ρdB (K4 , r) = −                              .          (18)
+                                                             4(r2 + r + 1)P22 (x, y, r)
+
+The reduced polynomial P22 has 123 positive integer monomials. There is also a structural denom-
+inator certificate. If M22 is the seven-state holding-step-free transient coeﬀicient matrix defined by
+
+                                                    9
+(16), exact expansion gives
+                             P22
+                 det M22 =        ,
+                           128L22
+                     L22 = (2r + x)(2r + y)(rx + 2)(ry + 2)(r + x + 1)(r + y + 1)
+                                   × (rx + r + 1)(ry + r + 1).                                 (19)
+
+The finite quotient chain absorbs almost surely, so M22 is a nonsingular M -matrix and its deter-
+minant is positive. Hence P22 > 0 independently of its coeﬀicient listing.
+   For the numerator, set
+                        √                  √      √
+                    g = xy > 0,       d = ( x − y)2 ≥ 0,        t = r − 1 > 0.
+
+Symmetry in x, y makes the substitutions x + y = 2g + d and xy = g 2 exact. The polynomial
+identity is
+                H22 = C0 (g, t) + C1 (g, t)d + C2 (g, t)d2 + C3 (g, t)d3 + C4 (g, t)d4 , (20)
+where
+
+            C0 = 2t(g − 1)2 (g + 1)(t + 1)R0 ,
+           R0 = (2g 2 + 2g)t4 + (g 3 + 10g 2 + 21g + 6)t3
+                  + (3g 3 + 26g 2 + 61g + 38)t2 + (4g 3 + 32g 2 + 80g + 64)t
+                  + 2g 3 + 16g 2 + 40g + 32,
+            C1 = 2(g 4 + 4g 3 − 2g 2 + 4g + 1)t6 + (11g 4 + 108g 3 + 76g 2 + 60g + 17)t5
+                  + 2(40g 4 + 288g 3 + 393g 2 + 176g + 19)t4
+                  + (16g 5 + 331g 4 + 1704g 3 + 2766g 2 + 1360g + 39)t3
+                  + 2(28g 5 + 337g 4 + 1426g 3 + 2399g 2 + 1378g + 12)t2
+                  + 2(g + 2)(32g 4 + 263g 3 + 722g 2 + 661g + 2)t
+                  + 24g(g + 2)(g + 4)(g 2 + 4g + 5),
+            C2 = 2(g 2 + 1)t6 + 3(9g 2 + 26g + 5)t5 + 2(18g 3 + 120g 2 + 321g + 44)t4
+                  + 2(2g 4 + 105g 3 + 525g 2 + 1071g + 170)t3
+                  + (14g 4 + 474g 3 + 2201g 2 + 3648g + 689)t2
+                  + 2(8g 4 + 240g 3 + 1080g 2 + 1587g + 331)t
+                  + 6(g 4 + 30g 3 + 133g 2 + 186g + 40),
+            C3 = 13t5 + (6g 2 + 48g + 107)t4 + (35g 2 + 312g + 357)t3
+                  + (79g 2 + 744g + 608)t2 + (80g 2 + 768g + 529)t + 6(5g 2 + 48g + 31),
+            C4 = 6t4 + 39t3 + 93t2 + 96t + 36.
+
+Every displayed coeﬀicient is positive except for the superficially negative monomial in the leading
+coeﬀicient of C1 , and
+
+                       g 4 + 4g 3 − 2g 2 + 4g + 1 = (g 2 − 1)2 + 4g(g 2 + 1) > 0.
+
+Thus C1 , C2 , C3 , C4 > 0 and C0 ≥ 0. If d > 0, then C1 d > 0; if d = 0, then H22 = C0 , which
+vanishes only at g = 1. This proves the following exact family classification.
+
+                                                  10
+Theorem 7 (symmetric weighted K4 families). For every r > 1,
+
+                  ρdB (G13 (x), r) ≤ ρdB (K4 , r),        ρdB (G22 (x, y), r) ≤ ρdB (K4 , r).
+
+Equality holds only at x = 1 in the first family and x = y = 1 in the second. Consequently
+every nonuniform member of either family is a strict dB suppressor throughout the beneficial-fitness
+interval.
+
+   Theorem 7 is not a classification of the unrestricted six-edge weighted K4 family. That problem
+remains open.
+
+
+9    Exact verification
+Four exact verification paths accompany the proof. The original undirected verifier constructs
+every subset-state transition over Q(r), checks row normalization and representative positivity cer-
+tificates, verifies complete-graph lumpability, solves the absorption equations, and extracts strong-
+selection coeﬀicients. A separate directed implementation uses the literal source-to-target rule on
+genuinely asymmetric n = 3, 4 matrices. It also checks independent incoming-column rescaling and
+a column-uniform, row-nonuniform negative control that falsifies the wrong row-oriented defect.
+For Theorem 6, one script derives the six equations and all polynomial identities, while a full eight-
+state transition implementation and a hostile no-import replay check the resulting comparison.
+For Theorem 7, a separate orbit derivation checks (17)–(20); a full subset-state implementation
+checks the lumping and rational formulas, and a hostile audit independently repeated the symbolic
+14-state solves.
+     These computations validate implementations and replay exact consequences; finite testing does
+not discharge a universal quantifier. The complete- support quantifier is proved by (6)– (10) and
+(12); the undirected refinement uses (5); and the triangle theorem uses the displayed homogeneous
+identities; the symmetric K4 families use the coeﬀicient certificate (20). The remaining directed-
+support branches follow from (4) and the cited noncomplete-support theorem.
+     As one nontrivial replay, take a weighted triangle with edge weights (w12 , w13 , w23 ) = (2, 3, 5).
+Exact elimination gives
+
+                                                              r(r − 1)P235 (r)
+                             ρdB (G, r) − ρdB (K3 , r) = −                     ,
+                                                              9(r + 1)Q235 (r)
+
+where
+                         P235 (r) = 900r4 + 5491r3 + 9290r2 + 5491r + 900,
+                         Q235 (r) = 675r6 + 6600r5 + 21791r4 + 31768r3
+                                                     + 21791r2 + 6600r + 675.
+Every displayed denominator factor is positive and the numerator is strictly negative for r > 1.
+The verifier also recovers the strong coeﬀicient 22/27 > 2/3, and recovers 343/320 > 3/4 for
+the complete four-vertex weighting with lexicographic edge weights (1, 2, 3, 4, 5, 6). For incomplete
+support it recovers limits 7/12 for the four-vertex path and 9/16 for the four-vertex star, against
+the baseline 3/4.
+   These calculations are checks, not evidence used to extend a finite search.
+
+
+
+
+                                                     11
+10 Finite versus asymptotic statements
+The complete-support expansion in Theorem 1, the source-component bound, and the cited non-
+complete theorem are all fixed-graph statements. They imply that for every G not dB-equivalent
+to the complete graph there is a finite threshold RG such that
+
+                                ρdB (G, r) < ρdB (Kn , r)       (r > RG ).
+
+No claim of a graph-independent threshold is needed. The all-r amplifier property quantifies over
+every finite r > 1 for each graph, so the existence of one such suppressing tail already rules it out.
+The equality case is exact, not asymptotic: independent incoming-column scaling cancels from
+every dB parent competition, so a column-uniform complete directed weighting has precisely the
+baseline chain for all finite r.
+    This argument does not interchange the limits in n and r. In particular, it leaves open the
+distinct possibility that one fitness-independent family might amplify at every fixed r > 1 once
+N ≥ N0 (r), with its individual strong-selection thresholds tending to infinity.
+    There is nevertheless a useful necessary condition. For a mutant set S and dead target v, the
+mutant replacement probability                 ∑
+                                             r u∈S wuv
+                                        ∑            ∑
+                                       r u∈S wuv + u /∈S wuv
+is nondecreasing both in r and under inclusion of S. A common dead target and uniform threshold
+therefore couple the dB chains monotonically. Combining fitness monotonicity with Proposition 4
+gives, for every finite connected undirected graph,
+                                                        1∑ 1
+                                    ρdB (G, r) ≤ 1 −             .                               (21)
+                                                        n si + 1
+                                                            i
+
+Proposition 8 (necessary asymptotic support condition). Let Gn be finite connected undirected
+weighted graphs with |V (Gn )| = n → ∞. If Gn is eventually a dB amplifier at every fixed r > 1,
+then
+                                      1∑ 1
+                                                   −→ 0.
+                                      n     si + 1
+                                             i
+
+Consequently the support degree of a uniformly chosen vertex tends to infinity in probability.
+
+Proof. At any fixed R > 1, eventual amplification and (21) imply
+                                  1∑ 1          (                ) 1
+                        lim sup            ≤ lim 1 − ρdB (Kn , R) = .
+                          n→∞     n si + 1  n→∞                    R
+                                    i
+
+Letting the fixed number R grow proves the first claim. For every fixed K, the fraction of vertices
+with si ≤ K is at most (K + 1) times the displayed average, proving the second.
+
+   This excludes uniformly bounded-support families. It excludes repeated bounded-degree gadgets
+when a positive fraction of vertices retains bounded total support degree after the gadgets are
+connected; arbitrarily weak support-completion edges can fall outside this criterion. A companion
+exact report also proves suppression for fixed-class, positive-proportion dense equitable blow-ups
+with a fixed irreducible class kernel and unequal limiting weighted degrees. Diffuse asymptotically
+regular perturbations, mesoscopic modules, vanishing class proportions, and reducible limiting
+kernels remain open; no universal fixed-r obstruction is claimed.
+
+
+                                                   12
+Research and publication statements
+Data and code availability.
+    No empirical data are used. The complete LaTeX source, exact transition builders, symbolic
+certificates, hostile-audit reports, and one-command reproduction target are archived with release
+universal-db-obstruction-v1.0.0 at github.com/AlecKriebel/Math. The finite computations
+audit the encoded algebra; they are not substitutes for the universal proofs.
+AI-assisted research disclosure.
+   Generative-AI systems were used substantively in exploration, derivation, adversarial proof
+analysis, software development, literature support, and manuscript preparation. Alec Kriebel de-
+termined the released scope and claims and accepts responsibility for the manuscript and verification
+materials. This preprint has not undergone external specialist peer review.
+
+
+References
+[1] J. Tkadlec, A. Pavlogiannis, K. Chatterjee, and M. A. Nowak, “Limits on amplifiers of natu-
+    ral selection under death–Birth updating,” PLoS Computational Biology 16 (2020), e1007494.
+    doi:10.1371/journal.pcbi.1007494.
+
+[2] B. Allen, C. Sample, R. Jencks, J. Withers, P. Steinhagen, L. Brizuela, J. Kolodny, D. Parke,
+    G. Lippner, and Y. A. Dementieva, “Transient amplifiers of selection and reducers of fixa-
+    tion for death–Birth updating on graphs,” PLoS Computational Biology 16 (2020), e1007529.
+    doi:10.1371/journal.pcbi.1007529.
+
+[3] J. Svoboda, S. S. Joshi, J. Tkadlec, and K. Chatterjee, “Amplifiers of selection for the Moran
+    process with both Birth–death and death–Birth updating,” PLoS Computational Biology 20
+    (2024), e1012008. doi:10.1371/journal.pcbi.1012008.
+
+
+
+
+                                                 13
+

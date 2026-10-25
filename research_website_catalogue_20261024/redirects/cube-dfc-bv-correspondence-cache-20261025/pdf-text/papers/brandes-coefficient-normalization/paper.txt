@@ -1,0 +1,158 @@
+           A coeﬃcient normalization for positive deﬁnite forms
+                                                  Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                 23 September 2026                     (version 1.0)
+
+
+                                                     Abstract
+          Every positive deﬁnite real homogeneous form admits linear coordinates in which its symmet-
+      ric ordered coeﬃcients have diagonal entries equal to one and all mixed entries strictly between
+      zero and one. This answers Brandes’s question in Problem 11 of the 2019 Oberwolfach report on
+      analytic number theory, including its absolute-value inequality. The proof chooses a basis close
+      to a direction minimizing the form on a Euclidean sphere. The desired coeﬃcient inequalities
+      then follow from a positive quadratic term in a polynomial diﬀerence.
+
+
+1    Statement and coeﬃcient convention
+Let p : Rm → R be a homogeneous polynomial of positive degree d, with p(x) > 0 for x ̸= 0. Then
+d is even and d ≥ 2. Let A be the unique symmetric d-linear form satisfying p(x) = A(x, . . . , x).
+Throughout, a coeﬃcient means a symmetric ordered coeﬃcient:
+                                             ∑
+                                             m
+                                p(t) =                   A(ej1 , . . . , ejd )tj1 · · · tjd .
+                                         j1 ,...,jd =1
+
+                                             ( )
+Thus the ordinary coeﬃcient of tα is αd A(eα1 1 , . . . , eαmm ). Repeated arguments are denoted by
+superscripts inside A.
+   Brandes asked whether a real invertible linear change of variables can make each coeﬃcient’s
+absolute value at most the geometric mean of its corresponding diagonal entries [2, p. 3182, Prob-
+lem 11]. The earlier discussion of pseudo-diagonal forms in [1] includes the quadratic case in
+Lemma 2.1. We prove the general basis-existence assertion with the ordered coeﬃcient convention
+above.
+
+Theorem 1. Let m ≥ 1 and let p be a positive deﬁnite real homogeneous form of degree d ≥ 2.
+There is a basis z1 , . . . , zm of Rm such that
+
+                         p(zi ) = 1   (1 ≤ i ≤ m),                  0 < A(zj1 , . . . , zjd ) < 1
+
+whenever the indices j1 , . . . , jd are not all equal. In particular, in these coordinates the requested
+absolute-value bound holds for every tuple, with equality precisely for the pure tuples.
+
+    The change of variables is in GLm (R); no orthogonality or quantitative conditioning constraint
+is imposed. For m = 1 the assertion about mixed tuples is vacuous.
+
+
+
+                                                              1
+2    Proof
+Fix an auxiliary Euclidean norm. Choose a unit vector v where p attains its sphere minimum c > 0,
+and ﬁrst replace p, A by p/c, A/c. The coeﬃcient inequalities are invariant under this positive
+common scaling. Hence for the intermediate construction we have
+
+                                     p(v) = 1,        p(x) ≥ ∥x∥d        (x ∈ Rm ).                                  (1)
+
+Write Q(a, b) = A(v d−2 , a, b).
+
+Lemma 1. For every u ⊥ v,
+
+                                                                             ∥u∥2
+                                     A(v d−1 , u) = 0,           Q(u, u) ≥        .
+                                                                             d−1
+
+Proof. By (1), the function p(v + tu) − (1 + t2 ∥u∥2 )d/2 has a minimum of zero at t = 0. Its ﬁrst
+derivative is dA(v d−1 , u), and its second derivative is d(d − 1)Q(u, u) − d∥u∥2 . They are respectively
+zero and nonnegative, as claimed.
+
+    Choose an orthonormal basis w1 , . . . , wm−1 of v ⊥ , set wm = 0, and deﬁne
+
+                                          xi (ε) = v + εwi        (1 ≤ i ≤ m).                                       (2)
+                                                                                                   ∑
+For every ε ̸= 0 these vectors are independent: the tangential component of                           i ai xi = 0 forces
+a1 = · · · = am−1 = 0, and then the radial component forces am = 0.
+   For a ﬁxed ordered tuple J = (j1 , . . . , jd ) put ar = wjr and
+
+                                                                            ∏
+                                                                            d
+               NJ (ε) = A(v + εa1 , . . . , v + εad ),           FJ (ε) =         p(v + εar ) − NJ (ε)d .
+                                                                            r=1
+
+Both expressions are polynomials in ε. Lemma 1 and multilinearity give
+                                                           ∑
+                                         NJ (ε) = 1 + ε2         Q(ar , as ) + O(ε3 ),
+                                                           r<s
+                                                       ( )
+                                                         d 2
+                                p(v + εar ) = 1 +          ε Q(ar , ar ) + O(ε3 ).
+                                                         2
+
+Consequently
+                                     (                                                   )
+                                         d(d − 1) ∑                 ∑
+                    FJ (ε) = ε   2
+                                                    Q(ar , ar ) − d     Q(ar , as ) + O(ε3 )
+                                            2     r                 r<s
+                                d 2∑
+                            =    ε    Q(ar − as , ar − as ) + O(ε3 ).                                                (3)
+                                2 r<s
+
+The last equality follows by expanding each pair diﬀerence; each diagonal term occurs in d − 1 pairs.
+    If J is mixed, some ar − as is a nonzero vector in v ⊥ . Lemma 1 makes the coeﬃcient of ε2 in (3)
+strictly positive. Thus FJ (ε) > 0 for all suﬃciently small positive ε. There are only ﬁnitely many
+tuples, so one positive ε works for all mixed tuples. For a pure tuple, FJ is identically zero. Also
+NJ (0) = 1 for every tuple; by continuity and ﬁniteness, decreasing ε if needed ensures NJ (ε) > 0
+for all tuples.
+
+
+                                                             2
+    Since d is even, these conclusions imply
+
+                                                               ∏
+                                                               d
+                                 0 < A(xj1 , . . . , xjd ) ≤         p(xjr )1/d ,
+                                                               r=1
+
+strictly for mixed tuples. Restore the original p and A: both sides scale by c, so the inequality is
+unchanged. Finally set zi = xi /p(xi )1/d using the original p. Positive column rescaling preserves
+independence, makes p(zi ) = 1, and proves Theorem 1. The matrix S with columns zi has p′ (t) =
+p(St) and polarization A′ (ej1 , . . . , ejd ) = A(zj1 , . . . , zjd ), as required.              □
+
+
+3    Scope and veriﬁcation
+The basis in (2) may be very close to singular. This is allowed by the question. Strict inequalities
+and nonzero determinant are open conditions, so the unnormalized basis xi can also be chosen
+rational by density of Qm×m in Rm×m . The ﬁnal unit-diagonal normalization need not preserve
+rationality. No claim is made here for merely nonnegative forms or for unimodular integral changes
+of variables.
+    The conclusion concerns the existence of suitable coordinates. For example, p(x, y) = x4 +
+12x2 y 2 + y 4 is positive deﬁnite but has A(e1 , e1 , e2 , e2 ) = 2 > 1 in the original coordinates. The
+multinomial factor cannot be dropped when translating to ordinary monomial coeﬃcients.
+    The accompanying open package contains an independent proof using positive deﬁnite bilin-
+ear slices and Cauchy–Schwarz, internal adversarial reviews, a dated priority audit, and a Python
+standard-library veriﬁer. The veriﬁer checks 12 rational examples exactly, including a nonconvex
+positive deﬁnite quartic, and cross-checks coeﬃcients by polarization. These ﬁnite checks supple-
+ment the analytic proof; they are not a formal veriﬁcation of the universal theorem. No separate
+computational assumption is needed in the proof.
+
+Provenance and status. This is an unrefereed preprint. Generative AI supplied the initial
+candidate argument and assisted the internal independent checks, literature search, and writing. A
+bounded public-literature search completed on 23 September 2026 found no earlier general resolu-
+tion; it does not establish ﬁrst priority. The two direct antecedents are cited below. Paper, source,
+and veriﬁcation materials are available at the project page.
+
+
+References
+[1] J. Brandes, Forms representing forms: the deﬁnite case, J. London Math. Soc. (2) 92 (2015),
+    no. 2, 393–410. doi:10.1112/jlms/jdv028.
+
+[2] H. L. Montgomery, Problem Session, in Analytic Number Theory, Oberwolfach Re-
+    ports 16 (2019), no. 4, Report 50, pp. 3179–3183; Problem 11 (Brandes), p. 3182.
+    doi:10.4171/OWR/2019/50.
+
+
+
+
+                                                      3
+
