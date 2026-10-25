@@ -1,0 +1,5 @@
+# JC incorporated-article implementation log
+
+2026-10-25T04:20:59.649067+00:00 — Checkpoint: 90% complete. Prepared one-paper helper, inspected complete proposed HTML/sitemap diff, completed final syntax parse and dry-run. Fresh origin main has zero JC article index hrefs, so parent authorized two-path plan within existing maximum scope. Historical PDF and index stay unchanged. No execute/push/UI/Sheet/deployment action performed. Readiness report/seal are the remaining deliverables.
+
+2026-10-25T04:21:37.138961+00:00 — Final checkpoint: 100% complete. Delivered READINESS.md/READINESS.json, final helper, two actual proposed diffs, complete final dry-run plan and full local/remote preservation evidence. Final candidate changes only the old article HTML and sitemap. Remote docs index has zero corresponding article hrefs and is unchanged. All254 planned docs objects are unchanged except the two authorized blobs. Root must review/execute and then verify live Pages. No execute, Git object creation, commit, push, shared docs mutation, UI, Sheet, deployment or outreach action performed.

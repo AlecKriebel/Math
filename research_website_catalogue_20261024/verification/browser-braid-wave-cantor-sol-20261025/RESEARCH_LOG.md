@@ -1,3 +1,5 @@
 # Browser verification log
 
 - 2026-10-25T04:20:41.441075+00:00 — Read policies and source/publication/deployment expectations; all 51 readiness bindings rehashed unchanged. Browser assignment completion estimate: 5%. No website or source mutations.
+- 2026-10-25T04:24:12.271768+00:00 — All six article desktop/mobile DOM/layout records obtained; initial index44→one reload47→all six ordinary returns44 preserved; later direct mobile47. Braid actual completedZIP matched source/site. Mac lock blocks native PDF visuals/counts; wave/Cantor download attempts have no completed event. SourcePDF/ZIP byte identities rechecked. Completion estimate: 40%; index freshness and native PDF/download work remain open.
+- 2026-10-25T04:25:10.854089+00:00 — Parent requested partial checkpoint and exclusive UI release while manual unlock remains pending. Tab963520672 marked Handoff at Cantor canonical390 ×844; all51 readiness bindings unchanged. Full browser and index freshness PASS withheld. Completion estimate:40%.
