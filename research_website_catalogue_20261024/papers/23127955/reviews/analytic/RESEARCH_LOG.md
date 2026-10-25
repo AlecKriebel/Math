@@ -5,3 +5,6 @@ Assigned independent review of the full8-page paper. Scope agent acquiring fresh
 
 ## 2026-10-25T01:49:46.171029+00:00 — 65%
 Read and visually inspected all8 published pages, actual closure-bar formula confirmed. Reconstructed compact caps, countable fixed-cap graph cover, density-point ranks in dimensions0–3 and area formula. Primary Simon hypotheses match. Fresh26250 exact checks pass before supplied helpers. Own provisional conclusion saved; no substantive gap. Initial local path contained reproduction/false as incidental text; no neighboring historical content accessed and fresh PDF matches exactly.
+
+## 2026-10-25T01:50:25.868236+00:00 — 90%
+Read full candidate mathematical support and all verification/capture/builder code. Incidental candidate status header and README past-review references disclosed; no dedicated historical reports read. Published positive replay passed2826 checks, optimized and false-control children rejected as intended, and unchanged-input archive rebuild matches published ZIP byte for byte. Primary GMT theorem hypotheses and original conjecture match; archived compact-context question inspected without adopting historical date/priority claims. No substantive mathematical defect found.

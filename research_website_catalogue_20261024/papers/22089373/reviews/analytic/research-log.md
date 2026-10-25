@@ -1,0 +1,5 @@
+# Independent analytic review log — Zenodo 22089373
+
+- 2026-10-25T01:47:48Z — Started independent review of the checksum-bound v1.1.7 main manuscript (33 pp) and supplement (7 pp); scope is mathematical validation, not novelty or human peer review. Completion estimate: 0%.
+- 2026-10-25T01:49:26Z — Completed all-page text reading and a fresh standard-library graph/rooting/Fourier implementation. Omega point, probabilities, ranks and topology; Theta topology and two falsification controls passed. This finite evidence does not establish global classification. Completion estimate: 35%.
+- 2026-10-25T01:51:06.204261+00:00 — Fresh public receipt and companion tar acquired by scope agent. Read required run orchestration/crosswalk; incidental published status phrases “FINAL OUTCOME A — PROVED” and “sealed and completely regenerated” were encountered, not adopted as evidence. No sibling/historical review prose read. Began full isolated replay and mathematical source audit. Completion estimate: 40%.
