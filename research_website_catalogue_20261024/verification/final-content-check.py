@@ -30,9 +30,13 @@ TEX_PATHS={
  '23387753':'published-source/note.tex',
  '23352246':'published-source/rational_mixed_integer_bipartite_covers_v1/research_note.tex',
  '23414025':'published-source/note.tex',
+ '23390181':'published-source/note.tex',
+ '23410944':'published-source/paper.tex',
+ '23422055':'published-source/paper/note.tex',
 }
 LATEX_WORDS={r'\omega':'ω',r'\delta':'δ',r'\log':'log',r'\geq':'≥',r'\simeq':'≃',r'\PP':'P',r'\dim':'dim',r'\Aut':'Aut',r'\qquad':' ',r'\emph':'',r'\CCR':'CCR',r"V\'ertesi":'Vértesi',r'\times':'×'}
 def abstract_tokens(tex):
+ tex=tex.replace(r"Krej\v{c}\'i\v{r}\'ik",'Krejčířík')
  tex=tex.replace('K_4','K₄').replace(r'\sqrt','√')
  tex=tex.replace(r'\Z^d','Zᵈ').replace(r'\ZZ','Z').replace(r'\Z','Z').replace(r'\textbf','').replace(r'H\"aggstr\"om','Häggström')
  tex=re.sub(r'\\ge(?![A-Za-z])','≥',tex)
@@ -89,6 +93,13 @@ for rid in args.record_ids:
   normalized_abstract=a.replace(r'\(\g\)','g').replace(r'\(\n\)','n').replace(r'\(j_1,j_2:\g\to\n\)','j₁, j₂ : g → n')
   test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
   test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+ if rid in ('23390181','23410944','23422055'):
+  normalized_abstract=a.replace('$1/3<d<1$','1/3 < d < 1').replace("Kazhdan's","Kazhdan’s").replace(r"Krej\v{c}\'i\v{r}\'ik",'Krejčířík').replace('--','–')
+  test('abstract_full_source_text',' '.join(normalized_abstract.split())==' '.join(c['abstract'].split()))
+  test('abstract_source_paragraphs',len(re.split(r'\n\s*\n',a.strip()))==len(c['abstract'].split('\n\n')))
+  printed_date=re.search(r'\\date\{([^}]+)\}',source).group(1)
+  expected_dates={'23390181':r'October 15, 2026\quad (version 1.0.0)','23410944':r'15 October 2026\\ \small Research note, version 1.0','23422055':r'October 16, 2026 \quad Version 1.0'}
+  test('printed_version_date',printed_date==expected_dates[rid] and c['source_binding']['manuscript_version']==c['version']==c['source_binding']['zenodo_version'])
  test('no_noindex','noindex' not in meta.get('robots',''))
  test('no_audit_replay',not any(x in ''.join(d.text).lower() for x in ['24 october 2026','october 24','audit completed','checks passed','worldwide first','first-ever']))
  test('no_followup',c['follow_up'] is None and 'id="further-research"' not in h)
@@ -145,7 +156,7 @@ for rid in args.record_ids:
   gate=json.loads((p/'promotion.json').read_text())
   test('promotion_pdf_binding',gate['status']=='PASS' and gate['pdf_sha256']==sha(p/'sources'/c['pdf_filename']))
   if gate.get('publication_sha256'):test('promotion_publication_binding',gate['publication_sha256']==sha(p/'publication.json'))
-  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025'):
+  if rid in ('23441523','23356680','23445342','23387753','23352246','23414025','23390181','23410944','23422055'):
    test('promotion_source_receipt_binding',gate['source_receipt_sha256']==sha(p/'sources/receipt.json'))
    test('promotion_review_bindings',all(v['sha256']==sha(p/v['report']) and v['verdict_sha256']==sha(p/v['verdict_file']) and v['verdict']==json.loads((p/v['verdict_file']).read_text()) for v in gate['reviews'].values()) and set(gate['reviews'])=={'analytic','adversarial','scope'})
  if rid=='23577484':test('commuting_fixed','elements that commute with the starting involution' in h and 'produces commuting elements' not in h);test('scope_complete',all(x in unescape(h) for x in ['[d/3, 2d/3]','independent, exactly uniform','sufficiently large','separately','0 < δ < 1']))
@@ -182,6 +193,15 @@ for rid in args.record_ids:
  if rid=='23414025':
   test('scope_complete',all(x in unescape(h) for x in ['same finite dimension','tr(ad_g x) = 0','n is semisimple','invertible linear difference','zero-dimensional case is included','Remark 4 supplies','merely reductive target is not covered','not asserted to be a group homomorphism','nilpotent targets are outside','original body of Onishchik’s 1969 decomposition paper was not accessible']))
   test('credited_classical_methods',all(x in unescape(h) for x in ['predecessor in Baues’s work','established pair j₁ = R + I and j₂ = R','holomorphic identity theorem','stabilizer is closed and discrete']))
+ if rid=='23390181':
+  test('scope_complete',all(x in unescape(h) for x in ['n ≥ 3','nonempty finite inverse-closed generating sets','Words are not identified under rotation or inversion','independent uniform elements of Sℓ with replacement','through all integers','factors, alphabets and density remain fixed','at most two','distinct sampling law','d = 1/3','not infinitude or factor embeddings','earlier collapse theorem already covers d > one-half']))
+  test('credited_established_program',all(x in unescape(h) for x in ['Montee and Steenbock','almost-equal blocks','common-suffix finite-index','triangular-link criterion','Tropp','independent whole-relator Laplacians']))
+ if rid=='23410944':
+  test('scope_complete',all(x in unescape(h) for x in ['every integer d ≥ 2','connected open quasi-conical set','H₀¹(Ω)','closure of the point spectrum','Both cube widths and window widths are chosen inductively','zero-thickness interface screens','without explicit numerical bounds','not asserted to equal the whole half-line','It does not mean an isolated sequence of eigenvalues or compact resolvent']))
+  test('credited_spectral_antecedents',all(x in unescape(h) for x in ['Krejčířík and Lotoreichik','Hempel, Seco and Simon','not a new general principle','does not certify historical first priority']))
+ if rid=='23422055':
+  test('scope_complete',all(x in unescape(h) for x in ['at least three independent','one fixed coordinate ball','Three fixed, linearly independent classes','h⁻_Jε ≥ 3','not an exact dimension','unrestricted compact-four-manifold integrability conjecture','real dimension two','no common positive compatible metric','not closed']))
+  test('credited_geometry_antecedents',all(x in unescape(h) for x in ['prior work of Tan–Wang–Zhang–Zhu','pluricanonical sections','different invariant','bounded comparison does not certify exhaustive novelty']))
  result['papers'][rid]={'checks':checks,'hashes':hashes,'local_links_checked':len(local),'pdf_pages':len(texts),'pdf_chars_per_page':[len(t) for t in texts]}
 result['shared']={'index_sha256':sha(S/'research/index.html'),'sitemap_sha256':sha(S/'research/sitemap.xml'),'robots_sitemap':'Sitemap: https://aleckriebel.com/research/sitemap.xml' in (S/'robots.txt').read_text()}
 result['status']='PASS' if not result['issues'] and result['shared']['robots_sitemap'] else 'ISSUES_FOUND'

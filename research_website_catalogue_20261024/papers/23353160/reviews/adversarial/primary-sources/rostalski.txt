@@ -1,0 +1,755 @@
+        SDP Relaxations for the Grassmann Orbitope
+                    @ Convex Algebraic Geometry Workshop, Banff
+
+
+                                    Philipp Rostalski
+
+                        joined work with R. Sanyal and B. Sturmfels
+
+
+
+                                 Department of Mathematics
+                                        UC Berkeley
+
+
+                                   February 15, 2010
+
+
+
+
+P. Rostalski (UC Berkeley)         Grassmann Orbitopes and SDP        February 15, 2010   1 / 25
+1   Orbitopes
+      Definition and examples
+
+2   Grassmann orbitopes
+      Orbitope structure
+      The Grassmann manifold
+
+3   Convex Algebraic Geometry
+      Theta bodies of ideals
+      Theta bodies for Grassmann orbitopes
+
+4   A glimpse towards other orbitopes...
+      Orbitopes and polytopes
+      First results
+
+
+
+    P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   2 / 25
+What are orbitopes?
+We are interested in the following objects:
+Def.: Orbitope
+An orbitope Ov is the convex hull of an orbit of a compact algebraic group
+G acting on a real vector space V , i.e. fix v ∈ V and consider the set
+
+                                Ov = conv {g · v | g ∈ G} .
+
+
+
+
+Permutahedron, orbitope for      Projection of the Grassmann
+the symmetric group                                               Orbitope conv(Gr2,3 )
+                                 Orbitope conv(Gr2,4 )
+
+   P. Rostalski (UC Berkeley)       Grassmann Orbitopes and SDP       February 15, 2010   3 / 25
+What are orbitopes?
+We are interested in the following objects:
+Def.: Orbitope
+An orbitope Ov is the convex hull of an orbit of a compact algebraic group
+G acting on a real vector space V , i.e. fix v ∈ V and consider the set
+
+                                   Ov = conv {g · v | g ∈ G} .
+
+
+     Orbits are highly symmetric objects
+     Orbits are real algebraic varieties
+     Orbitopes are convex semi-algebraic sets
+
+
+                               ... for more details see [Sanyal, Sottile, Sturmfels, ’09].
+
+
+
+  P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP     February 15, 2010   3 / 25
+Central object
+Def.: Grassmann orbitope
+The set Ov = conv(Grk,n ) is also the convex hull of the orbit of
+v = e1 ∧ e2 ∧ ... ∧ ek ∈ k Rn under the group G = SO(n)
+                        V
+
+
+              conv(Grk,n ) = conv (g · e1 ∧ e2 ∧ ... ∧ ek | g ∈ SO(n))
+
+Elements g ∈ SO(n) of the special orthogonal group
+                               n                                        o
+                SO(n) = X ∈ Rn×n | X · X T = Idn , det(X ) = 1
+         Vk
+act on        Rn by g · (u1 ∧ . . . ∧ uk ) = (gu1 ∧ . . . ∧ guk )
+
+
+
+
+  P. Rostalski (UC Berkeley)       Grassmann Orbitopes and SDP      February 15, 2010   4 / 25
+A bit of notation
+                                                     n
+                                                 = R(k ) of all skew-symmetric
+                                              Rn ∼
+                                         Vk
+We consider the vector space V =
+tensors of order k over Rn .
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP       February 15, 2010   5 / 25
+A bit of notation
+                                                                 n
+                                                             = R(k ) of all skew-symmetric
+                                                          Rn ∼
+                                                     Vk
+We consider the vector space V =
+tensors of order k over Rn .
+If the vectors {e1 , . . . , en } form an ordered basis of Rn we can write
+
+                                X                                                ^k
+                ξ=                       pi1 ,...,ik ei1 ,...,ik   for all ξ ∈        Rn .
+                       1≤i1 <···<ik ≤n
+                                                      | {z }
+                                                    ei1 ∧···∧eik
+
+
+
+
+   P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP              February 15, 2010   5 / 25
+A bit of notation
+                                                                 n
+                                                             = R(k ) of all skew-symmetric
+                                                          Rn ∼
+                                                     Vk
+We consider the vector space V =
+tensors of order k over Rn .
+If the vectors {e1 , . . . , en } form an ordered basis of Rn we can write
+
+                                X                                                ^k
+                ξ=                       pi1 ,...,ik ei1 ,...,ik   for all ξ ∈        Rn .
+                       1≤i1 <···<ik ≤n
+                                                      | {z }
+                                                    ei1 ∧···∧eik
+
+
+Tensors of the form ξ = u1 ∧ · · · ∧ uk are called decomposable.
+
+
+
+
+   P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP              February 15, 2010   5 / 25
+A bit of notation
+                                                                 n
+                                                             = R(k ) of all skew-symmetric
+                                                          Rn ∼
+                                                     Vk
+We consider the vector space V =
+tensors of order k over Rn .
+If the vectors {e1 , . . . , en } form an ordered basis of Rn we can write
+
+                                X                                                ^k
+                ξ=                       pi1 ,...,ik ei1 ,...,ik   for all ξ ∈        Rn .
+                       1≤i1 <···<ik ≤n
+                                                      | {z }
+                                                    ei1 ∧···∧eik
+
+
+Tensors of the form ξ = u1 ∧ · · · ∧ uk are called decomposable.
+
+Decomposable tensor ξ = u1 ∧ · · · ∧ uk with kξk = 1
+
+                    ⇔ (oriented) k-dimensional plane span(u1 , u2 , . . . , uk ) ⊆ Rn
+                            ⇔ ξ ∈ Grk,n (i.e. ξ in the orbit of v ∈ V under SO(n)).
+
+
+   P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP              February 15, 2010   5 / 25
+A bit of notation
+                                                                 n
+                                                             = R(k ) of all skew-symmetric
+                                                          Rn ∼
+                                                     Vk
+We consider the vector space V =
+tensors of order k over Rn .
+If the vectors {e1 , . . . , en } form an ordered basis of Rn we can write
+
+                                X                                                ^k
+                ξ=                       pi1 ,...,ik ei1 ,...,ik   for all ξ ∈        Rn .
+                       1≤i1 <···<ik ≤n
+                                                      | {z }
+                                                    ei1 ∧···∧eik
+
+
+Tensors of the form ξ = u1 ∧ · · · ∧ uk are called decomposable.
+
+Alternatively:
+                      n
+    All vectors p ∈ R(k ) , kpk = 1 where pi1 ,...,ik = det[U]i1 ,...,ik his the k × ik
+                             subdeterminant of the matrix U = u1 , . . . , uk .
+
+
+   P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP              February 15, 2010   5 / 25
+Central object
+Def.: Grassmann orbitope
+The set Ov = conv(Grk,n ) is also the convex hull of the orbit of
+v = e1 ∧ e2 ∧ ... ∧ ek ∈ k Rn under the group G = SO(n)
+                        V
+
+
+               conv(Grk,n ) = conv (g · e1 ∧ e2 ∧ ... ∧ ek | g ∈ SO(n))
+
+We have
+                                conv(Grk,n ) = conv(VR (Ik,n ))
+for the ideal
+                                                       X
+          Ik,n = hquad. Plücker rel’s.i + h                  pI2 − 1i ⊂ R[pi1 ,...,ik , . . . ]
+                     |           {z             }
+                                                         I
+                            ξ decomposable           |         {z      }
+                                                             kξk2 =1
+
+
+
+
+   P. Rostalski (UC Berkeley)          Grassmann Orbitopes and SDP                  February 15, 2010   6 / 25
+(Oriented) Grassmann manifold
+
+
+
+Def.: Grassmann manifold
+The set Grk,n is the set of all (oriented) k-dimensional subspaces of Rn .
+
+                                                                           n
+                                                                     = R(k ) it yields an
+                                                                  Rn ∼
+                                                             Vk
+In its (Plücker) embedding in the unit sphere of
+important object in several applications...
+
+                                               ...e.g. for area minimizing surfaces.
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP              February 15, 2010   7 / 25
+Excursion: Area minimizing surfaces
+Theorem (Harvey and Lawson, ’82)
+If all the tangent planes to a manifold M lie in the same face of
+conv(Grk,n ), then M is area-minimizing among all oriented surfaces with
+the same boundary.
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   8 / 25
+Excursion: Area minimizing surfaces
+Theorem (Harvey and Lawson, ’82)
+If all the tangent planes to a manifold M lie in the same face of
+conv(Grk,n ), then M is area-minimizing among all oriented surfaces with
+the same boundary.
+Quiz: Which one is area minimizing?
+
+
+
+
+                                                        Grassmann manifold Gr1,2 .
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP              February 15, 2010   8 / 25
+Excursion: Area minimizing surfaces
+Theorem (Harvey and Lawson, ’82)
+If all the tangent planes to a manifold M lie in the same face of
+conv(Grk,n ), then M is area-minimizing among all oriented surfaces with
+the same boundary.
+Quiz: Which one is area minimizing?
+
+
+
+
+                                                        Grassmann manifold Gr1,2 .
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP              February 15, 2010   8 / 25
+Excursion: Area minimizing surfaces
+Theorem (Harvey and Lawson, ’82)
+If all the tangent planes to a manifold M lie in the same face of
+conv(Grk,n ), then M is area-minimizing among all oriented surfaces with
+the same boundary.
+Quiz: Which one is area minimizing?
+
+
+
+
+                                                        Grassmann manifold Gr1,2 .
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP              February 15, 2010   8 / 25
+Example: Gr2,4
+The oriented Grassmann variety Gr2,4 is defined by
+                                      2     2     2     2     2     2
+I2,4 = p12 p34 − p13 p24 + p14 p23 , p12 + p13 + p14 + p23 + p24 + p34 −1 .
+                                                             V2
+This is the highest weight orbit of G = SO(4) acting on           R4 .
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP    February 15, 2010   9 / 25
+Example: Gr2,4
+The oriented Grassmann variety Gr2,4 is defined by
+                                      2     2     2     2     2     2
+I2,4 = p12 p34 − p13 p24 + p14 p23 , p12 + p13 + p14 + p23 + p24 + p34 −1 .
+                                                                        V2
+This is the highest weight orbit of G = SO(4) acting on                      R4 .
+A linear change of coordinates
+         u = √12 (p12 + p34 ), v = √12 (p13 − p24 ), w = √12 (p14 + p23 ),
+         x = √12 (p12 − p34 ), y = √12 (p13 + p24 ),            z = √12 (p14 − p23 ).
+
+yields
+                                      1                   1
+                                        , x2 + y2 + z2 −
+                   I2,4 = u 2 + v 2 + w 2 −                   .
+                                      2                   2
+The
+  √ orbitope conv(Gr2,4 ) is the direct product of two 3-balls of radius
+1/ 2.
+
+                                                  What about higher Grassmannians?
+   P. Rostalski (UC Berkeley)     Grassmann Orbitopes and SDP             February 15, 2010   9 / 25
+Central objects: spectrahedra and projections
+     Which other Grassmann orbitopes are spectrahedra, i.e.:
+
+                               C = {x ∈ Rn | A(x )  0}
+                               Pn                               N×N ?
+     for some A(x ) = A0 +       i=1 Ai xi with symmetric Ai ∈ R
+
+
+
+
+    Example: The spectrahedron defined by
+                                                
+            n                     1 x1 x2     o
+    C = (x1 , x2 , x3 ) ∈ R3    x1 1 x3   0 .
+                                         
+                                 x2 x3 1
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   10 / 25
+Central objects: spectrahedra and projections
+     Which other Grassmann orbitopes are spectrahedra, i.e.:
+
+                               C = {x ∈ Rn | A(x )  0}
+                               Pn                               N×N ?
+     for some A(x ) = A0 +       i=1 Ai xi with symmetric Ai ∈ R
+
+
+
+Only a few cases are known, see [Sanyal, Sottile, Sturmfels, ’09]:
+     conv(Gr2,n ) is a spectrahedron.
+     conv(Gr3,6 ) is not a spectrahedron.
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   10 / 25
+Central objects: spectrahedra and projections
+     Which Grassmann orbitopes are projections of spectrahedra, i.e.:
+
+                               C = {x ∈ Rn | ∃y ∈ Rm with A(x , y )  0}
+                                          P               P
+     for some A(x , y ) = A0 +                i Ai xi +      j Bj yj with symmetric
+     Ai , Bj ∈ RN×N ?
+     How to construct such a lifted SDP representation for conv(Grk,n )?
+
+
+
+
+  P. Rostalski (UC Berkeley)            Grassmann Orbitopes and SDP         February 15, 2010   10 / 25
+Special case: Convex hull of a real algebraic variety
+Given an real radical ideal I with real variety VR (I), we define the set of all
+supporting hyperplanes
+                                 n                                                   o
+                 Fsupp = f (x ) = aT x − b | f (x ) ≥ 0 ∀ x ∈ VR (I) .
+
+
+
+
+                                Real Variety with some supporting hyperplanes.
+
+
+We obtain: conv(VR (I)) = {x ∈ Rn | f (x ) ≥ 0 ∀f ∈ Fsupp }
+   P. Rostalski (UC Berkeley)              Grassmann Orbitopes and SDP           February 15, 2010   11 / 25
+Special case: Convex hull of a real algebraic variety
+Sequence of approximations called Moment relaxation (Lasserre/Laurent)
+or Theta bodies (Gouveia, Parrilo, Thomas) for an ideal I:
+
+                          TH1 (I) ⊇ TH2 (I) ⊇ . . . ⊇ conv(VR (I))
+with
+Def.: Theta body
+The set of all points
+
+                           THk (I) = {x ∈ Rn | f ≥ 0 ∀ f ∈ FI,k }
+
+where FI,k contains all affine polynomials f = aT x − b such that
+                                 X
+                           f ≡       σi2 mod I with deg(σi ) ≤ k.
+
+
+
+  P. Rostalski (UC Berkeley)          Grassmann Orbitopes and SDP    February 15, 2010   12 / 25
+Special case: Convex hull of a real algebraic variety
+Sequence of approximations called Moment relaxation (Lasserre/Laurent)
+or Theta bodies (Gouveia, Parrilo, Thomas) for an ideal I:
+
+                          TH1 (I) ⊇ TH2 (I) ⊇ . . . ⊇ conv(VR (I))
+with
+Def.: Theta body
+The set of all points
+
+                           THk (I) = {x ∈ Rn | f ≥ 0 ∀ f ∈ FI,k }
+
+where FI,k contains all affine polynomials f = aT x − b such that
+                                 X
+                           f ≡       σi2 mod I with deg(σi ) ≤ k.
+
+We call an ideal THk -exact if THk (I) = conv(VR (I)).
+  P. Rostalski (UC Berkeley)          Grassmann Orbitopes and SDP    February 15, 2010   12 / 25
+Why do we care?
+
+
+
+
+The set THk (I) is (the closure of) the projection of a spectrahedron
+
+                   THk (I) = {x ∈ Rn | ∃y ∈ Rm with A(x , y )  0}
+...obtainable by a SOS/Moment construction!
+
+
+
+
+  P. Rostalski (UC Berkeley)     Grassmann Orbitopes and SDP   February 15, 2010   13 / 25
+Particularly interesting:
+
+
+The first Theta body TH1 (I):
+
+Theorem (Gouveia, Parrilo and Thomas, ’08)
+                                               \
+                        TH1 (I) =                                  conv VR (q)
+                                    q∈{convex quadrics in I}
+
+
+
+Moderate size SDP representation:
+     Semidefinite cone of size (n + 1) × (n + 1)
+                                                    n+2
+     Number of variables bounded by                  2
+
+
+
+
+  P. Rostalski (UC Berkeley)         Grassmann Orbitopes and SDP             February 15, 2010   14 / 25
+The case conv(Gr2,n )
+
+
+Facial structure of conv(Gr2,n ) is well known:
+     Only bn/2c face orbits
+     (Up to symmetry) only one inclusion maximal face
+
+Theorem
+All Grassmann orbitopes conv(Gr2,n ) are TH1 -exact.
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   15 / 25
+The case conv(Gr2,n )
+
+
+Facial structure of conv(Gr2,n ) is well known:
+     Only bn/2c face orbits
+     (Up to symmetry) only one inclusion maximal face
+
+Theorem
+All Grassmann orbitopes conv(Gr2,n ) are TH1 -exact.
+
+We have TH1 (I2,n ) ⊇ conv(Gr2,n ). To show: Every inclusion maximal face
+F = {x ∈ Rn | f (x ) = 0} of conv(Gr2,n ) is also a face of TH1 (I2,n ).
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   15 / 25
+The case conv(Gr2,n )
+
+
+Facial structure of conv(Gr2,n ) is well known:
+     Only bn/2c face orbits
+     (Up to symmetry) only one inclusion maximal face
+
+Theorem
+All Grassmann orbitopes conv(Gr2,n ) are TH1 -exact.
+
+We have TH1 (I2,n ) ⊇ conv(Gr2,n ). To show: Every inclusion maximal face
+F = {x ∈ Rn | f (x ) = 0} of conv(Gr2,n ) is also a face of TH1 (I2,n ).
+Well, there is essentially only one... take e.g. f (x ) = 1 − i p2i−1,2i and
+                                                             P
+
+we can explicitly compute f (x ) ≡ σi2 mod I2,n with σi affine (thus F is
+                                    P
+
+also a face of TH1 (I2,n )).
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   15 / 25
+General Grassmann orbitopes
+
+
+More general conv(Grk,n ): Face lattice is more complicated (and only
+understood in certain cases).
+
+E.g. for conv(Gr3,6 ) we have, [Morgan, ’85]:
+     Four types of faces: vertices, edges, complex faces, special Lagrangian
+     faces
+     Inclusion maximal faces: Special Lagrangians and edges
+     (Up to symmetry) only one special Lagrangian face orbit but infinitely
+     many edge orbits
+
+Showing TH1 -exactness requires infinitely many (or a parametrized) SOS
+decomposition or new techniques.
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   16 / 25
+Linear optimization over the Grassmannian
+Experimental evidence: Optimizing linear functionals φ(ξ) over TH1 (Ik,n )
+and comparing with optimal value over conv(Grk,n ) (where it is known).
+
+
+That is, compare
+                                   maximize         φ(ξ)
+                                        ξ
+
+                                   subject to       ξ ∈ conv(Grk,n ).
+with
+                               minimize       λ
+                                 λ,σi
+                                                          X
+                               subject to     λ−φ≡              σi2 mod Ik,n ,
+                                                            i
+                                              λ ∈ R, σi affine poly’s.
+
+
+
+
+  P. Rostalski (UC Berkeley)              Grassmann Orbitopes and SDP            February 15, 2010   17 / 25
+Linear optimization over the Grassmannian
+Experimental evidence: Optimizing linear functionals φ(ξ) over TH1 (Ik,n )
+and comparing with optimal value over conv(Grk,n ) (where it is known).
+
+
+Result:
+     All tested cost functions for conv(Gr3,6 ), conv(Gr3,7 ), . . .,
+     conv(Gr4,8 ) lead to correct results.
+     Corresponding optimal faces have correct dimension.
+     Reasonable computation time even for relatively large orbitopes.
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP     February 15, 2010   17 / 25
+Computation times
+
+           Grassmannian        #vars       # Plücker rel’s      Avg. time1 [s]
+            conv(Gr2,4 )         6                1                  < 0.5
+            conv(Gr2,6 )        15               15                   0.5
+            conv(Gr2,8 )        28               70                    1
+           conv(Gr2,10 )        45              210                    6
+           conv(Gr2,12 )        66              495                    60
+           conv(Gr2,13 )        78              715                   200
+            conv(Gr3,6 )        20               35                   0.6
+            conv(Gr3,7 )        35              140                    2
+            conv(Gr3,8 )        56              420                    40
+            conv(Gr3,9 )        84             1050                   570
+            conv(Gr4,8 )        70              721                   180
+           Table: Average computation time for optimizing a generic cost function.
+
+  1
+      @Lenovo T60, 2GHz, 1GB RAM
+  P. Rostalski (UC Berkeley)       Grassmann Orbitopes and SDP         February 15, 2010   18 / 25
+Example: conv(Gr3,7 )
+
+
+            Face type              Dim. in TH1 (Ik,n )           Dim.in conv(Gr3,7 )
+           Associative                    27                             27
+        Special Lagrangian                12                             12
+               CP2                         8                             8
+               CP1                         3                             3
+           Double CP1                      3                             3
+              Vertex                       0                             0
+               Edge                        1                             1
+                S3                        13                             13
+                S2                         8                             8
+                S1                         4                             4
+ Table: All types of faces of conv(Gr3,7 ), [Harvey, Morgan, ’86] can be found in TH1 (I3,7 )!
+
+
+
+  P. Rostalski (UC Berkeley)       Grassmann Orbitopes and SDP            February 15, 2010   19 / 25
+The Harvey Lawson Conjecture
+
+In [Harvey and Lawson, ’82] it is conjectured that
+                                       maximize      φ(ξ)
+                                           ξ
+
+                                       subject to    ξ ∈ conv(Grk,n ).
+
+is equivalent to
+                         minimize         λ
+                                λ,σi
+                                               X                 X
+                         subject to       λ2       pI2 − φ2 ≡            σi2 mod Jk,n
+                                               I                   i
+                                          λ ∈ R, σi linear poly’s.
+
+                                      P 2((   (
+where Jk,n = hquad. Plücker rel’si(
+                                   +h    pI − 1i.
+                                     ((I (
+
+
+   P. Rostalski (UC Berkeley)              Grassmann Orbitopes and SDP              February 15, 2010   20 / 25
+Conclusion
+
+
+
+
+      (Lifted-) Spectrahedral descriptions for orbitopes are desirable
+      THk -bodies/moment relaxations often generate good approximations
+      Grassmann orbitopes conv(Gr2,n ) are TH1 -exact
+      Strong numerical evidence for higher Grassmannians to be TH1 -exact
+
+What other Grassmann orbitopes conv(Grk,n ) are TH1 -exact? All?
+How about other orbitopes?
+
+
+
+
+   P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   21 / 25
+Recall from Frank’s talk: Sections of Orbitopes
+
+Tautological orbitope:
+
+      conv(O(n)) = conv {g · Idn | g ∈ O(n)}
+face orbits characterizable by a cube.                         Cube for conv(O(n)).
+
+
+
+    conv(SO(n)) = conv {g · Idn | g ∈ SO(n)}
+
+face orbits characterizable by a halfcube.
+                                                             Halfcube for conv(SO(n)).
+Schur-Horn orbitopes:
+                           n                        o
+        OM = conv g · M · g T | g ∈ SO(n)
+ face orbits characterizable by a permutahedron.
+                                                              Permutahedron for OM .
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP        February 15, 2010   22 / 25
+Results on other orbitopes
+
+Theorem
+Each of the previous orbitopes is THk -exact if the underlying polytope is
+THk -exact. (For k = 1 also the reverse implication holds.)
+
+More precisely:
+     The O(n)-orbitopes are TH1 -exact.
+     The SO(n)-orbitopes are TH1 -exact only for n = 1, 2, 3, 4.
+     The symmetric/skew symmetric Schur-Horn orbitopes are usually not
+     TH1 -exact.
+
+
+
+
+   Cube for conv(O(n)).        Halfcube for conv(SO(n)).      Permutahedron for OM .
+
+  P. Rostalski (UC Berkeley)    Grassmann Orbitopes and SDP        February 15, 2010   23 / 25
+TH1 -exact polytopes
+
+Theorem (Gouveia, Parrilo and Thomas, ’08)
+For a finite set S ⊂ Rn , the vanishing ideal I(S) is THk -exact if
+P = conv(S) is a (k + 1)-levela polytope. (For k = 1 also the reverse
+implication holds.)
+  a
+      i.e. P = {x ∈ Rn | gi (x ) ≥ 0} s.t. all gi take at most k + 1 different values on S.
+
+
+
+
+                                   Different 2-level polytopes.
+
+
+
+  P. Rostalski (UC Berkeley)        Grassmann Orbitopes and SDP          February 15, 2010   24 / 25
+Questions?
+
+
+
+
+Thank you very much for your attention!
+
+
+
+
+  P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   25 / 25
+  [Gouveia, Parrilo and Thomas, 2008] J. Gouveia, P. Parrilo,R. Thomas
+  Theta Bodies for Polynomial Ideals,
+  http://arxiv.org/abs/0809.3480.
+  [Harvey and Morgan, 1986] R. Harvey and F. Morgan,
+  The faces of the Grassmannian of three-planes in R 7 (Calibrated
+  Geometries),
+  Invent. math., 83 (1986), 191-228.
+  [Harvey and Lawson, 1982] R. Harvey and H. B. Lawson, Jr.,
+  Calibrated Geometries,
+  Acta Math., 148 (1982), 47-157.
+  [Morgan, 1985] F. Morgan,
+  The exterior algebra 3 R 6 and area minimization,
+                       V
+
+  Linear Algebra Appl., 66 (1985), 1-28.
+  [Sanyal, Sottile, Sturmfels, 2009] R. Sanyal, F. Sottile, B. Sturmfels
+  Orbitopes,
+  http://arxiv.org/abs/0911.5436.
+
+P. Rostalski (UC Berkeley)   Grassmann Orbitopes and SDP   February 15, 2010   25 / 25
+                                                        Bermeja, 1. An islet lying off the north coast of the Yucatán
+                                                        peninsula […] according to several maps of the Gulf of Mexico from
+                                                        the 16th to the 19th centuries.
+                                                        2. MATLAB/Yalmip Add On for numerical computation in convex
+                                                        algebraic geometry, expected released : Summer 2010
+
+
+
+
+Main Features:
+• Numerical (real) algebraic geometry    • Several auxiliary tools like
+  - Border basis algorithm                 - Plücker relations for Grassmann and Schubert ideals
+  - Real root finding                      - Improved solution extraction from moment matrices
+  - Real radical computation               - Parametric multiplication matrices for positive
+  - Interfaces to Bertini, ApCoCoA,…          dimensional ideals (alpha)
+                                           - Femat-Weber points and k-ellipses
+• Visualization of semi-algebraic sets     - Renegar derivatives of polytopes
+                                           - …
+  - Spectrahedra and its dual
+  - Projection of spectrahedra
+  - Theta bodies                                 Available summer 2010 at
+  - Web export 3D rotatable figures             math.berkeley.edu/~philipp
+  - Interface to surfex
+

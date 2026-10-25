@@ -1,0 +1,1001 @@
+                                                   The classiﬁcation problem for unitary
+                                                     R-Matrices with two eigenvalues
+                                                                                Gandalf Lechner∗
+                                                                                   March 23, 2026
+
+
+
+
+arXiv:2603.20158v1 [math.QA] 20 Mar 2026
+                                                                                     Abstract
+                                                       The problem of classifying all unitary R-matrices of arbitrary ﬁnite dimen-
+                                                   sion that have precisely two distinct eigenvalues is described, working up to a
+                                                   natural equivalence relation given by the characters of their braid group repre-
+                                                   sentations. Up to one class that might or might not exist in even dimension
+                                                   larger than two, a full classiﬁcation theorem is obtained.
+
+
+                                           1       Introduction
+                                           The (quantum) Yang-Baxter Equation (YBE) is an algebraic nonlinear equation for a
+                                           linear map R : V ⊗ V → V ⊗ V on the tensor square of a vector space V , namely
+
+                                                                (R ⊗ 1)(1 ⊗ R)(R ⊗ 1) = (1 ⊗ R)(R ⊗ 1)(1 ⊗ R)                         (1.1)
+
+                                           as an equation in End(V ⊗ V ⊗ V ), where 1 denotes idV . This equation plays a
+                                           role in remarkably many diﬀerent ﬁelds in mathematics and mathematical physics,
+                                           such as braid group representations [Jon87], knot theory [Tur88], subfactors [Wen90],
+                                           quantum groups [CP94], Hopf algebras [AG03], statistical mechanics [Bax82], quantum
+                                           ﬁeld theory [AAR01], and quantum computing [RW17]. It also has several interesting
+                                           variants, such as the classical Yang-Baxter equation [BK12] or the set-theoretic Yang-
+                                           Baxter equation [CV26].
+                                               This widespread appearance of the YBE provides of course ample interest in un-
+                                           derstanding the solutions of (1.1), and has triggered approaches using various diﬀerent
+                                           tools ranging from algebraic and categorical methods over combinatorics to operator-
+                                           algebraic ideas. Naive direct attempts to solve it run into the problem that (1.1)
+                                           amounts to a system of (dim V )6 cubic equations in (dim V )4 variables, which is not
+                                           manageable even for low dim V > 2. From a more general point of view, the structure
+                                           of the solution set of the YBE – either for ﬁxed V or for a class of vector spaces – is
+                                           largely unknown.
+                                               One therefore typically restricts attention to subfamilies of solutions, such as so-
+                                           lutions of dimension two [Hie92], solutions representing the Temperley-Lieb algebra
+                                           [Byt15], charge-conserving solutions [HMR24], set-theoretic solutions [CV26], or uni-
+                                           tary and involutive solutions [LPW19].
+                                               ∗
+                                              Dep.      Mathematik,      FAU   Erlangen-Nürnberg,   Cauerstr.      11,   91058   Erlangen.
+                                           gandalf.lechner@fau.de
+
+
+                                                                                          1
+    Motivated by applications in quantum physics [RW12; AL17; RW17; CL23], we fo-
+cus in this article on unitary solutions: We require that V ∼
+                                                            = Cd is a ﬁnite-dimensional
+Hilbert space and R : V ⊗ V → V ⊗ V is unitary w.r.t. the canonical scalar product on
+V ⊗ V , i.e. we may view R ∈ End(V ⊗ V ) ∼  = Md2 as a unitary (d2 × d2 )-matrix, where
+we use the standard identiﬁcation Md ⊗ Md ∼    = Md2 , and Md denotes the ∗ -algebra of
+complex (d × d)-matrices. Such solutions of (1.1) will be called unitary R-matrices,
+     ∪ shall write R(V ) for the set of all unitary matrices with base space V , and
+and we
+R = V R(V ) for the union over all ﬁnite-dimensional Hilbert spaces V . We will refer
+to d := dim V as the dimension of R (although R is an operator on Cd ), and write
+                                                                           2
+
+
+dim R := dim V .
+    A classiﬁcation of R(V ) for general V is out of sight. We will therefore identify R-
+matrices which are identical as far as their braid group representations are concerned.
+To deﬁne this equivalence relation, we use the standard notation
+
+            Rk := 1⊗(k−1) ⊗ R ⊗ 1⊗(n−k−1) ∈ End(V ⊗n ),                 1 ≤ k ≤ n − 1,    (1.2)
+
+(the total number n of tensor factors will be clear from context). In case R is invertible,
+we obtain representations of the braid groups Bn , n ∈ N: Recalling that Bn is presented
+on n − 1 generators b1 , . . . , bn−1 by the relations
+
+                                bk bl = bl bk ,          |k − l| > 1,
+                                                                                          (1.3)
+                             bk bl bk = bl bk bl ,       |k − l| = 1,
+
+one easily checks that the maps
+
+                          ρR : Bn → End(V ⊗n ),
+                            (n)
+                                                             bk 7→ Rk ,
+
+uniquely extend to Bn -representations on V ⊗n . In case R is unitary (i.e. R ∈ R(V )),
+this representation is of course unitary.
+Deﬁnition 1.1. Two unitary R-matrices R, S ∈ R are equivalent, denoted R ∼ S, if
+for every n ∈ N, the representations ρR ∼
+                                      (n)    (n)
+                                          = ρS are unitarily equivalent.
+    This deﬁnition focusses on the braid group representation aspects of R-matrices.
+Dropping the unitarity assumption, it also makes sense for invertible R-matrices (also
+on inﬁnite-dimensional spaces), and we refer to [AG03; AL17; LPW19] for some ap-
+pearances of it in the literature.
+    Note that dim R is an invariant (i.e. R ∼ S ⇒ dim R = dim S), and the spectrum
+σ(R) of R (including multiplicities) is also an invariant. This follows by considering the
+unitary equivalences ρR ∼   = ρS and ρR ∼
+                        (1)    (1)       (2)    (2)
+                                             = ρS for two equivalent R-matrices R ∼ S.
+The partial trace of R is another important invariant that will be recalled in the next
+section.
+    We also note that for u : V → V unitary and R ∈ R(V ), one has
+
+                      (u ⊗ u)R(u∗ ⊗ u∗ ) ∈ R(V ),                 (u ⊗ u)R(u∗ ⊗ u∗ ) ∼ R,
+                                                                                          (1.4)
+      [u ⊗ u, R] = 0 ⇒(1 ⊗ u)R(1 ⊗ u∗ ) ∈ R(V ),                   (1 ⊗ u)R(1 ⊗ u∗ ) ∼ R.
+
+To prove these claims, one checks that in the ﬁrst case, the tensor power u⊗n is a
+unitary intertwiner for ρR ∼
+                          (n)      (n)
+                              = ρ(u⊗u)R(u∗ ⊗u∗ ) , and in the second case, u ⊗ u2 ⊗ . . . ⊗ un
+is a unitary intertwiner for ρ ∼
+                               (n)     (n)
+                                  R =ρ             ∗ [CL21].
+                                         (1⊗u)R(1⊗u )
+
+
+                                                     2
+    The challenging general problem of classifying R/∼ is currently open. It is however
+possible to restrict to subfamilies of R that are compatible with ∼, for instance by
+restricting the dimension or the spectrum of R. The family of all unitary R-matrics of
+dimension dim R = 2 can be completely classiﬁed up to equivalence, as will be demon-
+strated at the end of this section. Already for dim V = 3, no comparable classiﬁcation
+result is known (see, however, [HMR24], for a classiﬁcation of the charge-conserving
+R-matrices in dimension three). Part of the problem is, as seen in Proposition 1.2,
+R-matrices with various diﬀerent spectra and diﬀerent cardinalities of spectra appear,
+which leads to many equivalence classes.
+    This observation suggests that instead of prescribing the dimension, one might
+consider R-matrices with prescribed spectrum. Apart from the trivial case σ(R) = {q}
+of R-matrices R = q·1 that are multiples of the identity, the classiﬁcation is understood
+in the family of all unitary R-matrices with spectrum σ(R) ⊂ {1, −1}, i.e. the unitary
+                                                                                       (n)
+involutive R-matrices (of arbitrary dimension). In this case, the representations ρR
+factor through the symmetric group Sn . The involutive unitary R-matrices have been
+classiﬁed in [LPW19] by using extremal characters of the inﬁnite symmetric group.
+One ﬁnds an explicit bijection with the set of pairs of Young diagrams, and for each
+equivalence class, a representative can be speciﬁed.
+
+    In this paper, we go one step further and describe the more general classiﬁcation
+problem for unitary R-matrices R with two eigenvalues, i.e. |σ(R)| = 2. This family
+includes all unitary Yang-Baxter representations of the Temperley-Lieb and Hecke
+algebras, underlying the Jones polynomial. As we will see, it contains non-involutive
+elements which can be seen as “non-classical deformations” of symmetries (involutive
+R-matrices).
+    Without the restriction to unitary R-matrices, this family has been considered
+by Gurevich [Gur93] and Ram [Ram91]. The restriction to unitary R-matrices has
+however a quite eﬀect. As described by Rowell and Wang [RW12] (see also [DRW17]),
+most R-matrices are not unitary, and unitary local (in the sense of tensor products)
+braid group representations are rare. As unitary R-matrices with two eigenvalues can
+also be described in terms of Hecke or Temperley-Lieb algebras, one may equivalently
+study the classiﬁcation question in terms of certain representations of these algebras.
+In a concrete matrix setting, this question has been addressed by Bytsko [Byt15;
+Byt22].
+    In contrast, we will here use the subfactor framework developed with Conti in
+[CL21]. We will recall the relevant notions in Section 2, focussing in particular on
+Markov traces. There we also recall a family of unitary R-matrices known as Gaussian
+R-matrices, going back to work of Goldschmidt and Jones [GJ89; Jon89a; Jon89b] and
+later generalized by Galindo and Rowell [GR14].
+    Whereas Section 2 still applies to arbitrary unitary R-matrices, we specialize to
+R-matrices with two eigenvalues in Section 3, ﬁxing without loss of generality the
+spectrum to be
+                          σ(R) = {−1, q},       q ∈ T \ {−1}.
+As the involutive family, corresponding to q = 1, has already been classiﬁed and
+behaves very diﬀerently from q 6= 1, we restrict to the non-involutive case q 6= ±1.
+    Applying the results from the general framework, we show that the equivalence
+classes of unitary non-involutive R-matrices with two eigenvalues are labelled by three
+
+                                            3
+data: The eigenvalue q, the normalized trace η ∈ (0, 1) of the spectral projection
+corresponding to eigenvalue −1, and the dimension d ∈ N. These three data q, η, d are
+not independent, and the task is to understand which triples (q, η, d) are realized by
+R-matrices.
+    In this context, a main result is Theorem 3.4, which builds on Wenzl’s work on
+Hecke algebra subfactors [Wen88] and a rationality property of braid group characters
+(Proposition 2.1), and establishes strong constraints on the possible triples (q, η, d):
+Only eight families of equivalence classes, each with ﬁxed q and η, but varying dimen-
+sion d, remain. In particular, these classes are empty unless q ∈ {i, −i, eiπ/3 , e−iπ/3 }.
+When restricting to the Temperley-Lieb subfamily, this recovers a theorem of Bytsko
+[Byt19].
+    By exploiting Temperley-Lieb structure and symmetries, these eight families can
+be described by just three families. We then show in Proposition 3.6 that two of these
+three families can be exhausted by Gaussian R-matrices and tensor products with
+identities. The last family of classes, corresponding to q = eiπ/3 , η = 12 , and arbitrary
+even dimension d, is not yet understood. We show that it is empty for d = 2, but do
+not have a proof that this remains true for d > 2. R-matrices of this type would need
+to represent the Hecke algebra but not the Temperley-Lieb algebra, and correspond
+to an unkown localization of a speciﬁc braid group representation [GHR12].
+    Some of our results were already presented in the Oberwolfach proceedings [Lec25].
+
+
+   To conclude the introduction and for later reference, we describe the simple classi-
+ﬁcation of unitary R-matrices of dimension two.
+
+Proposition 1.2. Every unitary R-matrix R with dimension dim R = 2 is equivalent
+to precisely one of the following matrices1 (with the usual identiﬁcation M2 ⊗M2 ∼
+                                                                                 = M4 ):
+
+           R1 = q · 1,                                   q ∈ T,
+                                      
+                    p
+                        q             
+           R2 = 
+                
+                                       ,
+                                                        q ∈ T,     {p, s} ∈ T2 ,    p 6= s,
+                       q
+                                   s
+                                      
+                                   q
+                          p           
+           R3 = 
+                
+                                       ,
+                                                      p, q ∈ T,
+                               p
+                      q
+                              
+                      1 1
+                 q  −1 1      
+           R4 = √  
+                               ,
+                                                        q ∈ T,
+                  2       1 −1
+                          1  1
+
+with uniquely ﬁxed parameters q, p or unordered parameter pairs {p, s}.
+
+Proof. Building on earlier work by Hietarinta and Dye [Hie92; Dye03], it was shown
+in [CL21], that every unitary R-matrix is equivalent to one of the R-matrices listed
+   1
+   Here, and only in this proposition and its proof, the notation R1 , . . . , R4 refers to the speciﬁed
+matrices and not to (1.2).
+
+
+                                                   4
+below:
+
+           R1 = q · 1,                          σ(R1 ) = {q},
+                                     
+                    p
+                        q                                         √        √
+           R2 = 
+                
+                                      ,
+                                               σ(R2 ) = {p, s,         qr, − qr},
+                       r
+                                  s
+                                     
+                                  q
+                         p                                    √        √
+           R3 =                      ,        σ(R3 ) = {p,        qr, − qr},
+                             p       
+                     r
+                              
+                      1 1
+                 q  −1 1                                 {                   }
+           R4 = √             ,               σ(R4 ) =       q(1+i) q(1−i)
+                                                                 √   , √2          .
+                  2      1 −1                                    2
+
+                          1  1
+
+To proceed from this fact to the similar but stronger statement of the proposition, we
+need to show that we may restrict to the more speciﬁc parameter choices given in the
+statement of the proposition, and that no two distinct R-matrices as listed there are
+equivalent.
+    We ﬁrst consider the spectra of this R-matrices, displayed above. Clearly R1 is not
+unitarily equivalent (and in particular, not equivalent) to any of the other R-matrices,
+and R4 is not unitarily equivalent to R2 or R3 because the latter two have a pair of
+opposite eigenvalues ±λ, which R4 does not have. To compare R2 and R3 , we use the
+equivalences (1.4). Consider the unitary diagonal (2 × 2)-matrix u = diag((r/q)1/4 , 1),
+where q, r are the parameters of R3 . One computes that (u ⊗ u)R3 (u∗ ⊗ u∗ ) diﬀers
+                                          √
+from R3 only by replacing r and q by rq. As (u ⊗ u)R3 (u∗ ⊗ u∗ ) ∼ R3 , we may
+restrict to parameters q = r in R3 up to equivalence.
+    Similarly, one checks that R2 commutes with tensor squares u ⊗ u of diagonal
+unitary (2 × 2)-matrices. Hence R2 ∼ (1 ⊗ u)R2 (1 ⊗ u∗ ), and as (1 ⊗ u)R2 (1 ⊗ u∗ ) has
+the same form as R2 , one veriﬁes that u can be chosen to match q and r. Hence also
+in R2 , we may restrict to r = q up to equivalence.
+    For p 6= s in R2 , the matrices R2 and R3 are not unitarily equivalent (2 vs. 3
+eigenvalues). For p = s, they are unitarily equivalent (with identiﬁed parameters),(and)
+in fact even R2 ∼ R3 in this case. To prove that, we consider the unitary u = 01 a0
+           √
+with a = p/q. By straightforward computation, one checks that u ⊗ u commutes
+with R3 , and that R3 ∼ (1 ⊗ u)R3 (1 ⊗ u∗ ) = R2 .
+    The equivalence class of R2 depends only( on) q and the unordered pair {p, s} because
+conjugating R2 with the tensor square of 01 10 swaps p and s.
+
+
+2   R-matrices, subfactors, and Markov traces
+Before entering the discussion of R-matrices with two eigenvalues, we derive a few gen-
+eral results that will be helpful later. To begin with, we recall the subfactor approach
+to unitary R-matrices developed in [CL21].
+    Given R ∈ R(V ), we write d := dim V for its dimension and⊗consider the inﬁnite
+tensor product of matrix algebras Md ∼    = B(V ), namely N =         n∈N Md , considered
+
+
+                                           5
+as a von Neumann algebra that is weakly closed w.r.t. the topology induced by the
+normalized trace τ . Here τ is deﬁned on ﬁnite tensor products as
+                                              ∏
+                                              n
+                                                Tr(Ak )
+                    τ (A1 ⊗ . . . ⊗ An ) :=               ,         A k ∈ Md .
+                                              k=1
+                                                    d
+
+This algebra has the canonical τ -preserving shift endomorphism φ ﬁxed by
+
+                  φ(A1 ⊗ . . . ⊗ An ⊗ 1 . . .) = 1 ⊗ A1 ⊗ . . . Ad ⊗ 1 . . . .
+
+Its τ -preserving left inverse is usually denoted ϕ : N → N and satisﬁes
+
+                        ϕ(φ(x)yφ(z)) = xϕ(y)z,            x, y, z ∈ N .             (2.1)
+
+It acts as a normalized partial trace in the ﬁrst tensor factor, namely ϕ(A1 ⊗A2 ⊗. . .) =
+τ (A1 ) · A2 ⊗ . . ..
+    With the help of ϕ, we can describe an important invariant for the equivalence
+relation ∼, namely the (normalized) partial trace of R. For R, S ∈ R, we have [CL21,
+Thm. 5.8]
+
+                                R ∼ S =⇒ ϕ(R) = ϕ(S).
+
+The reverse implication does not hold in general (also not when besides ϕ(R) = ϕ(S)
+also dim(R) = dim(S) and σ(R) = σ(S) is assumed).
+    Note that although ϕ is deﬁned with operator-algebraic methods, ϕ(R) is an elemen-
+tary object that can be computed with tools from linear algebra. With R ∈ Md ⊗ Md ,
+it can be identiﬁed with the normalized partial trace ϕ(R) = dim1 R (Tr ⊗ id)(R) ∈ Md .
+                                                              (n)
+   Having recalled these data, the representations ρR of Bn given by R ∈ R(V ) can
+be assembled to a unitary representation ρR of the inﬁnite braid group B∞ (presented
+on generators bk , k ∈ N, with the same relations (1.3) as the Bn ) given by
+
+                   ρR : B∞ → End N ,            bk 7→ φk−1 (R),        k ∈ N.
+
+In the following, we will frequently identify the braid groups Bn on n strands with
+their images in the inductive limit B∞ .
+    The counterpart of the canonical endomorphism on the level of B∞ is the injective
+group homomorphism
+
+                              s : B∞ → B∞ ,          bk 7→ bk+1 ,
+
+which clearly satisﬁes ρR ◦ s = φ ◦ ρR .
+   It is often also useful to consider the von Neumann subalgebra LR ⊂ N generated
+by ρR , i.e. the smallest von Neumann algebra inside N that contains all φn (R), n ∈ N0 .
+We note that N and LR are type II1 factors, and
+
+                                       φ(N ) ⊂ N
+                                         ∪      ∪
+                                       φ(LR ) ⊂ LR
+
+
+
+                                                6
+is a commuting square of type II1 factors [CL21]. The relative commutant φ(N )′ ∩ N
+consists of all elements of the form x ⊗ 1 ⊗ 1 ⊗ . . ., x ∈ Md , and the relative commutant
+φ(LR )′ ∩ LR ⊂ φ(N )′ ∩ N contains in particular the partial trace ϕ(R).
+    We deﬁne the character of R as
+                                     τR := τ ◦ ρR : B∞ → C,
+which we also consider as a functional on the unital group ∗ -algebra CB∞ . It is
+important to note that given R, S ∈ R, we have the equivalence [CL21, Prop. 5.2]
+                      R∼S        ⇐⇒       τR = τ S       and   dim R = dim S.                    (2.2)
+In view of this result, it is natural to consider the character τR of R. Some elementary
+properties are gathered in the following proposition.
+Proposition 2.1. The character τR of a unitary R-matrix R ∈ R(V ) has the following
+properties:
+  a) τR is a normalized trace on CB∞ , i.e. τR : CB∞ → C is a linear functional
+      such that τR (xy) = τR (yx) for all x, y ∈ CB∞ , and τR (1) = 1,
+   b) τR is positive and faithful, i.e. τR (x∗ x) > 0 for all x ∈ CB∞ \ {0},
+   c) τR factorizes in the sense that
+                        τR (xsn (y)) = τR (x)τR (y),           x ∈ CBn , y ∈ CB∞ .
+   d) τR is rational in the following sense: There exists d ∈ N (namely, d = dim R)
+      such that for any n ∈ N and any orthogonal projection p ∈ CBn ,
+                                              dn τR (p) ∈ N0 .
+Proof. a) is a straightforward consequence of ρR being a representation and τ a trace,
+and b) follows similarly because ρR is a ∗ -representation of CB∞ and τ is positive and
+faithful.
+    The normalized trace τ factorizes over tensor products, which implies property c)
+of τR by noting that sn (y) acts trivially on the ﬁrst n tensor factors, and x ∈ CBn acts
+non-trivially only on the ﬁrst n factors.
+                                                                            (n)
+    d) follows because for p ∈ CB∞ any orthogonal projection, ρR (p) = ρR (p)⊗1 . . . ∈
+N is an orthogonal projection as well. Hence
+                 (dim R)n τR (p) = TrV ⊗n (ρR (p)) = dim(ρR (p)V ⊗n ) ∈ N0 .
+                                               (n)                (n)
+
+
+
+
+   In addition to the properties listed here, we will be interested in another relevant
+notion, namely that of a Markov trace, satisfying a factorization property which plays
+a prominent role in knot theory [Jon83; Jon87; Wen88; Fre+85].
+Deﬁnition 2.2. A trace µ on CB∞ is called a Markov trace if2
+                            µ(b1 s(x)) = µ(b1 )µ(x),           x ∈ CB∞ .
+   2
+    This deﬁnition is equivalent to the condition µ(xbn ) = µ(b1 )µ(x) for all x ∈ Bn , n ∈ N, which
+is more often used to deﬁne Markov traces [Jon87; Wen88]. To prove the equivalence of the two
+conditions, one uses the fact that Bn admits an inner automorphism γn , n ∈ N, such that γn (bk ) =
+bn−k for 1 ≤ k ≤ n − 1 [Bir74]. Since µ is a trace, we have µ ◦ γn = µ, µ ◦ s = µ, µ(bn ) = µ(b1 ), and
+the equivalence follows.
+
+
+                                                     7
+    While Proposition 2.1 holds for the character τR of every R ∈ R, only some of
+them have the Markov property. The following result makes use of the left inverse ϕ
+of the canonical endomorphism φ and its bimodule property (2.1).
+
+Proposition 2.3. Let R ∈ R. Then τR is a Markov trace if and only if R has trivial
+partial trace3 , ϕ(R) = τ (R) · 1.
+
+Proof. The trace τR is a Markov trace if and only if for each x ∈ CB∞ , we have
+
+                                0 = τR (b1 s(x)) − τR (b1 )τR (x)
+                                  = τ (Rφ(ρR (x))) − τ (R)τ (ρR (x))
+                                      (                           )
+                                  = τ (R − τ (R) · 1) φ(ρR (x))
+                                      (                           )
+                                  = τ (ϕ(R) − τ (R) · 1) ρR (x) .
+                                              (                        )
+By continuity, this extends to 0 = τ (ϕ(R) − τ (R) · 1) m for all m ∈ LR , and in
+particular we may choose m = (ϕ(R) − τ (R)1)∗ because ϕ(R) ∈ LR . As τ is faithful,
+we obtain ϕ(R) = τ (R)1. The reverse implication is obvious.
+    Recalling that ϕ(R) lies in the relative commutant φ(LR )′ ∩ LR , it is clear that τR
+is Markov when the subfactor φ(LR ) ⊂ LR is irreducible. As irreducibility is usually
+not easy to check from a given R-matrix, we next present a straightforward suﬃcient
+condition for irreducibility. We will say that R has a pair of opposite eigenvalues if its
+spectrum σ(R) contains λ and −λ for some λ ∈ C.
+
+Proposition 2.4. If R ∈ R has no pair of opposite eigenvalues, φ(LR ) ⊂ LR is
+irreducible and consequently τR is a Markov trace.
+
+Proof. This proof relies on the following characterization of the relative commutant of
+φ(LR ) ⊂ LR :
+
+                    φ(LR )′ ∩ LR = Md ∩ LR ⊂ {x ∈ Md : φ(x) = R∗ xR},
+
+see [CL21, Prop. 3.4 (i)] for a proof. As LR = LR∗ , we conclude that any x ∈
+φ(LR )′ ∩ LR satisﬁes φ(x) = R∗ xR = RxR∗ , i.e. x commutes with R2 . As R has
+no pair of opposite eigenvalues, R2 and R have the same spectral projections, and we
+ﬁnd that x commutes not only with R2 , but also with R. On the other hand, x also
+commutes with φn (R), n ≥ 1, because these operate trivially on the ﬁrst tensor factor.
+Thus any x ∈ φ(L′R ) ∩ LR commutes with the whole representation ρR , i.e. x lies in
+the center of LR . As LR is a factor, x must be a multiple of the identity.
+    The converse of this proposition is not true, i.e. there exists R ∈ R such that
+φ(LR ) ⊂ LR is irreducible and R has a pair of opposite eigenvalues. An example
+of this is the tensor ﬂip [LPW19]. However, for the class of non-involutive Hecke
+R-matrices, to be introduced next, Prop. 2.4 will turn out to be an eﬃcient tool.
+
+   As an example and for later reference, we now recall an interesting family of unitary
+R-matrices with Markov traces. These R-matrices are called metaplectic or Gaussian.
+  3
+      R-matrices have coinciding left and right partial traces [CL21, Thm. 5.10].
+
+
+                                                   8
+They go back to work of Goldschmidt and Jones [GJ89; Jon89a; Jon89b] and have
+been generalized by Galindo and Rowell [GR14]. We will deﬁne one R-matrix Gd per
+dimension d ≥ 2.
+   For the deﬁnition of the Gaussian R-matrices, we will have to distinguish between
+odd and even d. Following [GR14], we deﬁne the root of unity
+                                    {
+                                      e2πi/d d odd
+                               ξ :=
+                                      eπi/d d even
+
+and ﬁx an orthonormal basis (ek )k=0,...,d−1 of Cd . We deﬁne U ∈ Md ⊗ Md in the tensor
+product basis as
+
+                             U (ek ⊗ el ) := ξ l−k (ek+1 ⊗ el+1 ),
+
+where here and in the following, the indices on ek are extended periodically, i.e. ek+d =
+ek . With these deﬁnitions, one veriﬁes that for any (even or odd) d ∈ N, the crucial
+exchange relation
+
+                             U φ(U ) = ξ 2 φ(U )U,       Ud = 1
+
+holds. This implies that
+
+                                          1 ∑ k2 k
+                                                  d−1
+                                   Gd := √       ξ U
+                                           d k=0
+
+is a unitary R-matrix, which we will refer to as the Gaussian R-matrix of dimension
+d.
+Lemma 2.5. Let Gd ∈ R(Cd ) be the Gaussian R-matrix of dimension d.
+  a) Gd has at most d distinct eigenvalues, and all eigenvalues are (4d)-th roots of
+     unity. More precisely, the eigenvalues of Gd are
+                  {
+                    eiπ/4 e−iπl /d
+                               2
+                                                       d even
+          µl (d) = 1 iπ/4− iπl2          −iπ(d+2l)/2
+                                                              , l = 0, . . . , d − 1.
+                    √ e        2d (1 + e             ) d odd
+                      2
+
+      Speciﬁcally for d = 2 and d = 3, the spectrum is
+
+                                     σ(G2 ) = {eiπ/4 , e−iπ/4 },
+                                     σ(G3 ) = {i, e−iπ/6 }.
+
+  b) The normalized partial trace of Gd is
+                                                     1
+                                           ϕ(Gd ) = √ ,
+                                                      d
+      so τGd is a Markov trace.
+Proof. a) Since U d = 1, its eigenvalues are d-th roots of unity. To see that all d-
+                                                                         ∑
+                                                                                e− d kl U k ,
+                                                                                  2πi
+th roots are eigenvalues of U , one checks directly that the Pl := d1 d−1   k=0∑
+l = 0, . . . , d − 1, are non-zero orthogonal projections with Pl Pm = δlm Pl , l Pl = 1,
+
+                                              9
+    ∑ 2πil
+and l e d Pl = U . This identiﬁes the Pl as the spectral projections of U and shows
+          2πil
+σ(U ) = {e d : l = 0, . . . , d − 1}.
+   The eigenvalues of Gd are therefore the numbers
+
+                                          1 ∑ k2 2πilk
+                                               d−1
+                                    µl = √       ξ e d ,
+                                           d k=0
+
+in particular |σ(Gd )| ≤ d.
+    By application of the reciprocity theorem for generalized Gauss sums [BEW98,
+Thm. 1.2.2] and recalling that ξ = e2πi/d for d odd and ξ = eiπ/d for d even, it follows
+that
+                          {
+                            eiπ/4 e−iπl /d
+                                       2
+                                                               d even
+                     µl = 1 iπ/4− iπl2           −iπ(d+2l)/2
+                                                                      .
+                            √ e        2d (1 + e             ) d odd
+                              2
+
+An explicit check shows that µ4d l = 1 in all cases.
+   b) It follows directly from
+                             ∑the  deﬁnition of U that the partial traces of U, U 2 , . . . , U d−1
+                               d−1 k2
+vanish. Hence ϕ(Gd ) = √d k=0 ξ ϕ(U k ) = √1d .
+                           1
+
+
+
+
+3    Unitary Hecke R-matrices
+As motivated in the introduction, we now restrict attention to unitary R-matrices
+with prescribed spectrum. ∏    That is, we ﬁx a ﬁnite subset S ⊂ T of the unit circle and
+demand σ(R) = S. Then λ∈S (R − λ) = 0, i.e. the homomorphism ρR : CB∞ → N
+factors through ∏  the quotient (CB∞ )S = CB∞ /I(S) by the ∗ -ideal I(S) generated by
+the polynomial λ∈S (b1 − λ).
+    If S = {λ}, the only unitary R-matrix with spectrum S is trivially R = λ1. In the
+case of two distinct eigenvalues, S = {λ1 , λ2 } with λ1 6= λ2 , the situation becomes much
+more interesting. We ﬁrst note that since the Yang-Baxter equation is homogeneous,
+multiples of R-matrices are again R-matrices, and two R-matrices R, S with spectrum
+{λ1 , λ2 } are equivalent if and only if −λ−1         −1
+                                           2 R ∼ −λ2 S are equivalent. That is, we may
+restrict to R-matrices having spectrum∪{−1, q}, where q := −λ1 /λ2 ∈ T\{−1}. In the
+following, we write Rq (V ) and Rq := V Rq (V ) for the sets of all unitary R-matrices
+with spectrum σ(R) = {−1, q} and base space V or arbitrary (ﬁnite-dimensional) base
+space, respectively.
+    The elements of Rq will be referred to as Hecke R-matrices (with parameter q)
+because the algebra H∞ (q) := (CB∞ ){−1,q} is known as the (inﬁnite) Hecke algebra
+(of type A).
+    A special case is q = 1. This case corresponds to R having the opposite pair of
+eigenvalues {−1, +1} and thus being involutive, and has been classiﬁed before [LPW19].
+In the non-involutive case, the results of the previous section immediately imply the
+following lemma.
+Lemma 3.1. Let R ∈ Rq with q 6= ±1. Then φ(LR ) ⊂ LR is irreducible, and τR is a
+positive Markov trace on H∞ (q).
+Proof. R does not have an opposite pair of eigenvalues because q 6= 1, which implies
+irreducibility and in particular the Markov property of τR by Prop. 2.4. The trace τR
+is positive by construction.
+
+                                               10
+   Given q 6= −1, let us recall the structure of the Hecke algebra H∞ (q). The minimal
+polynomial for spectrum {−1, q} is 0 = (b1 + 1)(b1 − q), which implies that in H∞ (q) =
+(CB∞ ){−1,q} we have, k ∈ N,
+
+                                                       q − bk
+                   bk = q − (1 + q)ek ,        ek :=          ,     q 6= −1.
+                                                       q+1
+It is a simple calculation to check that H∞ (q) is the unital ∗ -algebra with generators
+1, ek , k ∈ N, and relations
+                                    q                             q
+                  ek ek+1 ek −           2
+                                           ek = ek+1 ek ek+1 −          ek+1 ,       (3.1)
+                                 (1 + q)                       (1 + q)2
+                                       ek el = el ek for |k − l| > 1,
+                                           e2k = ek = e∗k .
+
+For an R-matrix R ∈ Rq with spectral decomposition R = −P + q(1 − P ) (i.e., P
+is the spectral projection corresponding to eigenvalue −1, and 1 − P is the spectral
+projection corresponding to eigenvalue q), the representation ρR of H∞ (q) is ﬁxed by
+
+                                          ρR (e1 ) = P.
+
+We will also use the generators e⊥
+                                 k := 1 − ek which satisfy the same relations as the ek .
+    Traces and representations of Hecke algebras have been thoroughly investigated
+because of their relation to the Jones polynomial and its generalizations, and to sub-
+factors [Fre+85; Jon87; Wen88]. It is known that for every η ∈ C, there exists a unique
+Markov trace µη on H∞ (q) with µη (e1 ) = η [Fre+85; Jon87]. In particular, a Markov
+trace µ on H∞ (q) is uniquely ﬁxed by its value η = µ(e1 ) on e1 .
+
+Corollary 3.2. Let q ∈ T\{1, −1} and R, S ∈ Rq . The following are equivalent:
+  a) R ∼ S.
+  b) τR (e1 ) = τS (e1 ) and dim R = dim S.
+  c) Tr R = Tr S and dim R = dim S.
+
+Proof. The implication a)⇒b) is clear, and the equivalence of b) and c) follows from
+the spectral decomposition R = −P + q(1 − P ), which yields
+                                             (             )
+                                          1        Tr(R)
+                     τR (e1 ) = τ (P ) =       q−            .
+                                         1+q      (dim R)2
+
+The implication b)⇒a) follows from the uniqueness result on Markov traces mentioned
+above, and (2.2).
+    We may therefore label the equivalence classes of Hecke type R-matrices by triples
+of the form
+
+                            (q, η, d) ∈ T \ {±1} × (0, 1) × N,
+
+with the entries corresponding to the second eigenvalue q (besides −1) of R, the value
+τR (e1 ) = τ (P ) of the normalized trace on the spectral projection of eigenvalue −1, and
+the dimension d = dim R. We will write [q, η, d] ∈ Rq /∼ for the equivalence class of
+R-matrices with these parameters. Note that [q, η, d] may be empty: The task is to
+
+                                               11
+ﬁnd out which triples (q, η, d) are realized by R-matrices, i.e. to decide when [q, η, d] is
+not empty. Some simple restrictions are d ≥ 2 because R has two distinct eigenvalues,
+and η ∈ Q because of the rationality property in Proposition 2.1 d), but we will ﬁnd
+much stronger constraints below.
+   A crucial aspect in this analysis are positivity properties. For a Hecke R-matrix
+R ∈ Rq , the B∞ -representation ρR deﬁnes a C ∗ -representation of H∞ (q) (denoted by
+the same symbol) by sending ek to the spectral projection of φk−1 (R) with eigenvalue
+−1. As shown above, these representations admit a positive Markov trace and are
+non-trivial in the sense that ρR (e1 ) 6= ρR (e2 ). Independently of R-matrices, Wenzl
+analyzed when H∞ (q) admits non-trivial C ∗ -representations, and for which values of
+µ(e1 ), the Markov trace µ on H∞ (q) is positive.
+
+Theorem 3.3. [Wen88] Let q ∈ T \ {1, −1}.
+  a) H∞ (q) admits non-trivial C ∗ -representations if and only if q = e±2πi/ℓ for some
+     ℓ ∈ N with ℓ ≥ 4.
+  b) Let q = e±2πi/ℓ , ℓ ≥ 4. Then there exist ℓ − 1 distinct positive Markov traces
+     on H∞ (q). They are parameterized by k ∈ {1, . . . , ℓ − 1} such that µ(e1 ) = ηℓ,k ,
+     where
+
+                                      1 − q −k+1          sin π(k−1)
+                                                                  ℓ
+                           ηℓ,k :=                    =                 .             (3.2)
+                                   (1 + q)(1 − q −k )   2 cos πℓ sin πk
+                                                                      ℓ
+
+    In combination with our previous ﬁndings, this result can be used to derive the
+following classiﬁcation theorem for non-trivial unitary Hecke R-matrices.
+
+Theorem 3.4. The only possibly non-empty equivalence classes of Hecke R-matrices
+are the eight families of the form
+            [            ]  [ ±iπ/3 1      ]  [ ±iπ/3 2      ]  [ ±iπ/3 1      ]
+              ±i, 12 , 2d ,  e     , 3 , 3d ,  e     , 3 , 3d ,  e     , 2 , 2d ,
+
+with d ∈ N.
+
+Proof. We ﬁrst show that Rq is empty unless q ∈ {±i, e±iπ/3 }. Let R ∈ Rq . Since
+R deﬁnes a non-trivial C ∗ -representation of H∞ (q), we have q = e±2πi/ℓ for some
+ℓ ∈ N, ℓ ≥ 4 by Thm. 3.3 a). By Lemma 3.1 and Thm. 3.3 b) we conclude that there
+exists k ∈ {1, . . . , ℓ − 1} such that τR (e1 ) = ηℓ,k (3.2).
+    The idea of the following argument is to exploit the rationality property (Propo-
+sition 2.1 d)) of τR : If ρR (p) is an orthogonal projection for some p ∈ H∞ (q), then
+there exists n ∈ N such that ρR (p) ∈ End V ⊗n and therefore τR (p) = τ (ρR (p)) =
+(dim R)−n TrV ⊗n (ρR (p)) is rational. In particular, ηℓ,k = τR (e1 ), the normalized trace
+of a spectral projection of R, must be rational.
+    We ﬁrst note that the two extreme values k = 1 and k = ℓ−1 yield τR (e1 ) = ηℓ,1 = 0
+and τR (e1 ) = ηℓ,ℓ−1 = 1, corresponding to R = q idV ⊗V and R = − idV ⊗V , respectively.
+Since we require σ(R) = {−1, q}, these values of k are ruled out.
+    To best analyse the remaining cases, we have to exhibit suitable projections in
+ρR (H∞ (q)). Similar to the analysis of Fredenhagen, Rehren, Schroer [FRS89, Prop. 3.1],
+we consider the orthogonal projections P1R := 1,
+                   R
+                  Pn+1 := ρR (e1 ) ∧ ρR (e2 ) ∧ . . . ∧ ρR (en ),   n ∈ N.
+
+                                               12
+In [FRS89], a recursion relation for these projections is proven which adapted to our
+Yang-Baxter setting reads, 1 ≤ n ≤ ℓ − 2,
+                                                                         2 cos πℓ sin nπ
+           R
+          Pn+1 = φ(PnR ) − αn · φ(PnR )ρR (e⊥     R
+                                            1 )φ(Pn ),           αn :=                 ℓ
+                                                                                           ,
+                                                                           sin (n+1)π
+                                                                                  ℓ
+                     R
+            PℓR = φ(Pℓ−1 ).
+
+Since τR is a Markov trace, we have ϕ(R) = τ (R)1 by Prop. 2.3 and therefore
+ϕ(ρR (e⊥                                    ⊥
+       1 )) = ϕ(1 − q+1 ) = 1 − ηℓ,k = τR (e1 ). Applying ϕ to the recursion relation then
+                    q−R
+
+gives
+                       R
+                    ϕ(Pn+1 ) = (1 − αn τR (e⊥    R
+                                            1 ))Pn ,         1 ≤ n ≤ ℓ − 2.
+
+As ϕ leaves τ invariant, we ﬁnd
+                                  R
+                              τ (Pn+1 ) = (1 − αn τR (e⊥       R
+                                                       1 ))τ (Pn ).
+
+Since ηℓ,k = τR (e1 ) and τ (PnR ), τ (Pn+1
+                                        R
+                                            ) are rational, also the coeﬃcients αn are rational.
+But
+                                      1         1
+                                         =1−           ,
+                                      α2     4 cos2 πℓ
+
+and we see that the Yang-Baxter property requires cos2 πℓ ∈ Q. For ℓ ∈ N, ℓ ≥ 4, this
+is the case exactly for ℓ = 4 (with cos2 π4 = 12 and q = e±2πi/ℓ = ±i) and ℓ = 6 (with
+cos2 π6 = 34 and q = e±iπ/3 ).
+    For ℓ = 4, the only value of k in {2, . . . , ℓ − 2} is k = 2, with η4,2 = 12 . For ℓ = 6,
+we have the three cases k ∈ {2, 3, 4} that lead to η6,2 = 13 , η6,3 = 12 and η6,4 = 23 .
+    This proves the claimed restrictions on the possible combination of values for q
+and η, and it remains to show the restrictions on the dimensions d. Let r denotes the
+mutliplicity of the eigenvalue −1 of R, and d = dim R. Then τR (e1 ) = dr2 , and we
+see that τR (e1 ) = 12 can only occur if dim R is even, whereas τR (e1 ) ∈ { 31 , 23 } can only
+occur if dim R is a multiple of 3.
+    To compare this result with other results in the literature, we recall that the
+Temperley-Lieb algebra TL∞ (q) is the quotient of H∞ (q) by the ∗ -ideal generated by
+                                 2 ek , k ∈ N, known as the . Thus in TL∞ (q), both sides
+                             q
+the relations ek ek+1 ek = (1+q)
+of the Hecke relation (3.1) vanish. We will say that R ∈ Rq is of Temperley-Lieb
+type if its representation ρR factors through TL∞ (q), i.e. if its spectral projection of
+eigenvalue −1 satisﬁes
+                                                    q
+                                    P1 P2 P1 =            P1 .
+                                                 (1 + q)2
+As the Hecke and Temperley-Lieb relations only involve the projection P , we will also
+speak of a Hecke projection and Temperley-Lieb projection, respectively.
+
+   Parts of the classiﬁcation in Theorem 3.4 were already known before. In the special
+case of dimension dim R = 2, Conti and Pinzari have shown that Rq is empty unless
+q = ±i or Re(q) ≥ 12 [CP96, Prop. 9.10]. In case q = i, they have also shown that R
+must necessarily be of Temperley-Lieb type. There is also a related result of Bytsko
+
+                                                 13
+[Byt19, Thm. 1]. In our notation, he showed that under the assumption that R is a
+non-trivial unitary R-matrix of Temperley-Lieb type, either q = ±i and τR (e1 ) = 12 ,
+or q = e±iπ/3 and τR (e1 ) = 31 .
+    It is therefore of interest to know when a Hecke R-matrix is of Temperley-Lieb
+type, and we list a few equivalent characterizations.
+Lemma 3.5. Let R ∈ Rq , q 6= ±1, and R = −P + q(1 − P ) is spectral decomposition.
+Then the following are equivalent:
+                                                          q
+  a) P is a Temperley-Lieb projection, i.e. P1 P2 P1 = (1+q) 2 P1 .
+                q
+  b) τ (P ) = (1+q)2 .
+  c) P1 ∧ P2 = 0.
+  d) There exist a, b ∈ C such that τ ((P1 P2 )n ) = abn for all n ∈ N. (In this case,
+                 q
+     a = b = (1+q)  2 .)
+
+                       q
+Proof. We write x := (1+q) 2 as a shorthand notation throughout the proof. Recall
+
+0 < x < 1.
+   a) ⇔ b) The Temperley-Lieb condition is equivalent to
+                0 = τ ((P1 P2 P1 − xP1 )∗ (P1 P2 P1 − xP1 ))
+                  = τ (P1 P2 P1 P2 P1 ) − 2xτ (P1 P2 P1 ) + x2 τ (P )
+                  = τ (P1 P2 P1 P2 ) − 2xτ (P1 P2 ) + x2 τ (P )
+                  = τ (P2 P1 P2 ) − xτ (P ) + xτ (P )2 − 2xτ (P )2 + x2 τ (P )
+                  = τ (P ) (1 − x) (τ (P ) − x) .
+As P 6= 0 and x 6= 1, this is equivalent to b).
+    a) ⇒ c) If the Temperley-Lieb condition holds, one has τ ((P1 P2 )n+1 ) = xτ ((P1 P2 )n )
+and hence τ ((P1 P2 )n+1 ) = xn τ (P1 P2 ) = xn+2 . In the limit n → ∞, the right hand
+side vanishes, and the left hand side converges to τ (P1 ∧ P2 ), so that c) follows from
+τ being faithful.
+    c) ⇒ a) Let v ∈ V ⊗3 , and w := (P1 P2 P1 − xP1 )v. Then clearly P1 w = w, and
+                    P2 w = (P2 P1 P2 P1 − xP2 P1 )v
+                         = (P1 P2 P1 − xP1 + xP2 P1 − xP2 P1 )v = w.
+Hence w lies in the range of P1 ∧P2 and is therefore 0 by c). This implies P1 P2 P1 = xP1 .
+   b) ⇔ d) For a Hecke solution P we calculate with the help of the Hecke relations
+and the Markov property of τ
+                                       (                                )
+                                          1 − xn−1
+                            n
+                 τ ((P1 P2 ) ) = τ (P ) x          (τ (P ) − 1) + τ (P ) .           (3.3)
+                                            1−x
+For P Temperley-Lieb, one has τ ((P1 P2 )n ) = xn+1 as in the proof of a) ⇒ c). Hence
+b) implies d). On the other hand, if d) holds, i.e. τ ((P1 P2 )n ) = abn , then we see from
+(3.3) b = x and after a short calculation x = τ (P ), i.e. b).
+    In agreement with the results of Bytsko and Conti/Pinzari, this Temperley-Lieb
+property is satisﬁed in two of the four cases listed in Prop. 3.4: For q = ±i and
+τR (e1 ) = 12 , and for q = e±iπ/3 and τR (e1 ) = 13 , property b) of Lemma 3.5 is satisﬁed,
+                       ±i      1            e±iπ/3             1      1
+                              = ,                         =        π = .
+                    (1 ± i) 2  2         (1 + e ±iπ/3 ) 2   4 cos 6
+                                                                 2    3
+
+                                             14
+              [              ]
+For the class e±iπ/3 , 23 , d , we have (1+q)
+                                          q
+                                              2 = 1 − τR (e1 ) 6= τR (e1 ), so it is not of
+
+Temperley-Lieb type. This case can be understood as follows. On Rq , we have an
+involutive symmetry operation that exchanges the two spectral projections of R. If
+P denotes the spectral projection of R corresponding to eigenvalue −1, then R =
+−P + q(1 − P ), and
+
+                                   R′ := −(1 − P ) + qP
+
+also lies in Rq : Clearly R′ is unitary with eigenvalues −1 and q, and the fact that it
+solves the Yang-Baxter equation is a consequence of the Hecke algebra relations being
+invariant under ek ↔ e⊥  k . On the level of equivalence classes, this implies
+
+                                  [q, η, d]′ = [q, 1 − η, d],
+
+so we realize that [e±iπ/3 , 32 , d] is to the “ﬂipped version” of the Temperley-Lieb class
+[e±iπ/3 , 23 , d]. The latter class if not of Temperley-Lieb type because the ﬂip symmetry
+preserves the Hecke relations, but not necessarily the Temperley-Lieb relations.
+    Similarly, we note that with an R-matrix R ∈ [q, η, d], its adjoint R∗ lies in the
+class
+
+                                     [q, η, d]∗ = [q, η, d].
+
+This observation reduces the task of ﬁnding representatives for the classes listed in
+Theorem 3.4 to the eigenvalues q = i and q = eiπ/3 , i.e. out of the eight families listed
+in Theorem 3.4, we may restrict without loss of generality to the three families
+                    [ 1       ]   [ iπ/3 1   ]         [ iπ/3 1    ]
+                     i, 2 , 2d ,   e , 3 , 3d ,         e , 2 , 2d
+
+(with varying dimension d ∈ N).
+    In the following proposition, we make use of the Gaussian R-matrices Gd from
+Lemma 2.5 and the tensor product R S ∈ R(V ⊗ W ) of R-matrices R ∈ R(V ), S ∈
+R(W ). It is deﬁned as R⊗S up to reshuﬄing of the tensor factors from V ⊗V ⊗W ⊗W
+to (V ⊗W )⊗(V ⊗W ), see for example [LPW19, (4.15)]. As R S is unitarily equivalent
+to R ⊗ S, we have dim(R S) = dim R · dim S and σ(R S) = {λµ : λ ∈ σ(R), µ ∈
+σ(S)}.
+    We write 1k := idCk ⊗Ck as shorthand notation.
+Proposition 3.6. Let d ∈ N. Then
+
+             −e−iπ/4 G2    1d ∈ [i, 12 , 2d],           i G3    1d ∈ [eiπ/3 , 13 , 3d].
+
+Proof. Consider the R-matrix R := −e−iπ/4 G2 . According to Lemma 2.5 a), σ(R) =
+{−1, i}, i.e. R is a Hecke R-matrix with q = i. Denoting one spectral projection of
+G2 by P , we have G2 = eiπ/4 P + e−iπ/4 (1 − P ) and hence R = i − (1 + i)P . Using
+Lemma 2.5 b), this yields
+                                             (              )
+                                          1        −iπ/4 1     1
+                     τR (e1 ) = τ (P ) =       i+e      √     = ,
+                                         1+i              2    2
+
+and we conclude R ∈ [i, 12 , 2]. By tensoring with the identity in dimension d we obtain
+R 1d ∈ [i, 12 , 2d].
+
+                                                15
+   Similarly, the R-matrix S := iG3 has spectrum σ(S) = {−1, eiπ/3 } according to
+Lemma 2.5 a), i.e. S is a Hecke R-matrix with q = eiπ/3 . Denoting one spectral
+projection of G3 by P , we have G3 = iP +e−iπ/6 (1−P ) and hence S = eiπ/3 −(1+eiπ/3 )P .
+Using Lemma 2.5 b), this yields
+                                                  (              )
+                                           1                 i      1
+                     τS (e1 ) = τ (P ) =     iπ/3
+                                                    e iπ/3
+                                                           −√      = .
+                                         1+e                   3    3
+
+Again we conclude S ∈ [eiπ/3 , 13 , 3] and S    1d ∈ [eiπ/3 , 13 , 3d].
+    The results presented so far almost provide a complete classiﬁcation of all unitary
+R-matrices with two eigenvalues, up to the class [eiπ/3 , 12 , 2d]. It is currently not known
+to us whether [eiπ/3 , 21 , 2d] is empty (for some d) or not. The question of existence of
+this R-matrix has also been raised in [GHR12, Sect. 5.6].
+    It should be noted that Wenzl has constructed a C ∗ -representation of H∞ (eiπ/3 )
+with Markov trace µ satisfying µ(e1 ) = 21 . This trace has all the properties listed in
+Proposition 2.1, including its rationality (with d = 2). It is however not clear whether
+it can be represented in the tensor product form required by an R-matrix.
+    We also note that for d = 1, the class [eiπ/3 , 21 , 2d] is empty. This can be seen
+from the list of equivalence classes of two-dimensional R-matrices provided in Proposi-
+tion 1.2: R1 has only one eigenvalue, and R2 , R3 have an opposite pair of eigenvalues.
+Hence R1 , R2 , R3 are not of Hecke type. R4 is a multiple of G∗2 , in particular its
+negative eigenvalue ratio is −i 6= e±iπ/3 .
+    If R ∈ [eiπ/3 , 21 , 2d] exists, its Yang-Baxter endomorphism [CL21] would have index
+4 and would be standard braided [CF00].
+
+Acknowledgements
+I would like to thank Roberto Conti, Hans Wenzl, and Eric Rowell for interesting
+discussions about R-matrices and subfactors. Also the ﬁnancial support by the Ger-
+man Research Foundation DFG through the Heisenberg Grant “Quantum Fields and
+Operator Algebras” (LE 2222/3-1) is gratefully acknowledged.
+
+References
+[AAR01] E. Abdalla, M. Abdalla, and K. Rothe. Non-perturbative methods in two-dimensional
+        quantum ﬁeld theory. World Scientiﬁc, 2001.
+[AG03]  N. Andruskiewitsch and M. Graña. “From racks to pointed Hopf algebras”. Adv.
+        Math. 178.2 (2003), 177–243.
+[AL17]  S. Alazzawi and G. Lechner. “Inverse Scattering and Locality in Integrable Quan-
+        tum Field Theories”. Commun. Math. Phys. 354 (2017), 913–956. doi: 10.1007/
+        s00220-017-2891-0.
+[Bax82] R. J. Baxter. Exactly solved models in statistical mechanics. Academic Press, 1982.
+[BEW98] B. C. Berndt, R. J. Evans, and K. S. Williams. Gauss and Jacobi Sums. Wiley-
+        Interscience, 1998.
+[Bir74] J. Birman. Braids, Links and Mapping Class Groups. Princeton University Press,
+        1974.
+[BK12]  I. Burban and B. Kreussler. Vector bundles on degenerations of elliptic curves and
+        YangBaxter equations. Vol. 220. 1035. American Mathematical Society, 2012.
+
+                                               16
+[Byt15]  A. G. Bytsko. “Tensor space representations of Temperley-Lieb algebra via or-
+         thogonal projections of rank r ≥ 1”. J. Math. Phys. 56 (2015), 083502. doi:
+         10.1063/1.4927629.
+[Byt19]  A. Bytsko. “A relation for the Jones-Wenzl projector and tensor space represen-
+         tations of the Temperley-Lieb algebra”. Linear Multilinear Algebra (2019), 1–15.
+         doi: 10.1080/03081087.2019.1577796.
+[Byt22]  A. Bytsko. “On orthogonal projections related to representations of the Hecke
+         algebra on a tensor space”. J. Math. Phys. 63 (2022). 12 pages, LaTeX, 081701.
+         doi: 10.1063/5.0102693.
+[CF00]   R. Conti and F. Fidaleo. “Braided endomorphisms of Cuntz algebras”. Math.
+         Scand. (2000), 93–114.
+[CL21]   R. Conti and G. Lechner. “Yang-Baxter Endomorphisms”. J. Lond. Math. Soc.
+         103.2 (2021), 633–671. doi: 10.1112/jlms.12387.
+[CL23]   R. Correa da Silva and G. Lechner. “Modular Structure and Inclusions of Twisted
+         Araki-Woods Algebras”. Commun. Math. Phys. 402 (2023), 2339–2386. doi: 10.
+         1007/s00220-023-04773-y.
+[CP94]   V. Chari and A. Pressley. A Guide to Quantum Groups. Cambridge University
+         Press, 1994.
+[CP96]   R. Conti and C. Pinzari. “Remarks on the index of endomorphisms of Cuntz
+         algebras”. J. Funct. Anal. 142 (1996), 369–405.
+[CV26]   F. Cedó and L. Vendramin. Groups, Radical Rings, and the Yang-Baxter Equation:
+         A Combinatorial Approach to Solutions. Springer Nature, 2026.
+[DRW17] C. Delaney, E. C. Rowell, and Z. Wang. “Local unitary representations of the braid
+         group and their applications to quantum computing”. Rev. Columbiana Mat. 50.2
+         (2017), 211. doi: 10.15446/recolma.v50n2.62211.
+[Dye03] H. A. Dye. “Unitary Solutions to the YangBaxter Equation in Dimension Four”.
+         Quantum Information Processing 2.1-2 (2003), 117. doi: 10.1023/A:1025843426102.
+[Fre+85] P. Freyd, D. Yetter, J. Hoste, W. B. R. Lickorish, K. Millett, and A. Ocneanu.
+         “A new polynomial invariant of knots and links”. Bull. Am. Math. Soc. 12 (1985),
+         239–246. doi: 10.1090/S0273-0979-1985-15361-3.
+[FRS89] K. Fredenhagen, K.-H. Rehren, and B. Schroer. “Superselection Sectors with Braid
+         Group Statistics and Exchange Algebras. 1. General Theory”. Comm. Math. Phys.
+         125 (1989), 201.
+[GHR12] C. Galindo, S.-M. Hong, and E. C. Rowell. “Generalized and quasi-localizations
+         of braid group representations”. Int. Math. Res. Not. 2013.3 (2012), 693–731. doi:
+         10.1093/imrn/rnr269.
+[GJ89]   D. M. Goldschmidt and V. F. R. Jones. “Metaplectic link invariants”. Geom.
+         Dedicata 31.2 (1989), 165–191. doi: 10.1007/BF00147477.
+[GR14]   C. Galindo and E. C. Rowell. “Braid Representations from Unitary Braided Vector
+         Spaces”. J. Math. Phys. 55 (2014), 061702. doi: 10.1063/1.4880196.
+[Gur93] D. Gurevich. “Hecke symmetries and braided Lie algebras”. Spinors, Twistors,
+         Cliﬀord Algebras and Quantum Deformations: Proceedings of the Second Max
+         Born Symposium held near Wrocaw, Poland, September 1992. Springer. 1993, 317–
+         326.
+[Hie92]  J. Hietarinta. “All solutions to the constant quantum Yang-Baxter equation in two
+         dimensions”. Phys. Lett. A 165.3 (1992), 245–251. doi: 10.1016/0375-9601(92)
+         90044-M.
+
+
+
+
+                                          17
+[HMR24] J. Hietarinta, P. Martin, and E. C. Rowell. “Solutions to the constant Yang-Baxter
+         equation: additive charge conservation in three dimensions” (Nov. 2024). doi:
+         10.1098/rspa.2023.0810.
+[Jon83]  V. F. R. Jones. “Index for subfactors”. Invent. Math. 72.1 (1983), 1–25. doi:
+         10.1007/BF01389127.
+[Jon87]  V. F. R. Jones. “Hecke algebra representations of braid groups and link polyno-
+         mials”. Ann. Math. 126 (1987), 335–388.
+[Jon89a] V. F. R. Jones. “On knot invariants related to some statistical mechanical models”.
+         Pac. J. Math. 137.2 (1989), 311–334. doi: 10.2140/pjm.1989.137.311.
+[Jon89b] V. F. R. Jones. “On a certain value of the Kauﬀman polynomial”. Comm. Math.
+         Phys. 125.3 (1989), 459–467. doi: 10.1007/BF01218412.
+[Lec25]  G. Lechner. “Unitary R-matrices, mostly with two eigenvalues”. Oberwolfach Rep.
+         (Mini-Workshop: The YangBaxter Equation and Representations of Braid Groups)
+         49/2025 (2025). doi: 10.4171/OWR/2025/49.
+[LPW19] G. Lechner, U. Pennig, and S. Wood. “Yang-Baxter representations of the inﬁnite
+         symmetric group”. Adv. Math. 355 (2019), 106769. doi: 10.1016/j.aim.2019.
+         106769.
+[Ram91] A. Ram. “A Frobenius formula for the characters of the Hecke algebras”. Invent.
+         Math. 106 (1991), 461–488.
+[RW12] E. C. Rowell and Z. Wang. “Localization of Unitary Braid Group Representations”.
+         Comm. Math. Phys. 311.3 (2012), 595–615. doi: 10.1007/s00220-011-1386-7.
+[RW17] E. C. Rowell and Z. Wang. Mathematics of Topological Quantum Computing. Dec.
+         2017.
+[Tur88]  V. G. Turaev. “The Yang-Baxter equation and invariants of links”. Invent. Math.
+         92.3 (1988), 527–553. doi: 10.1007/BF01393746.
+[Wen88] H. Wenzl. “Hecke algebras of type An and subfactors”. Invent. Math. 92.2 (1988),
+         349–383.
+[Wen90] H. Wenzl. “Representations of braid groups and the quantum Yang-Baxter equa-
+         tion”. Pac. J. Math. 145.1 (1990), 153–180.
+
+
+
+
+                                            18
+

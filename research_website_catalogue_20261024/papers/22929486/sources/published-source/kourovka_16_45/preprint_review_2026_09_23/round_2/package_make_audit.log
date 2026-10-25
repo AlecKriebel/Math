@@ -1,0 +1,282 @@
+mkdir -p build/certified
+python3 src/verify_counterexample.py --outdir build/certified
+{
+  "result": "PASS",
+  "prime": 29,
+  "group_order": 100920,
+  "claimed_invariants_proved_in_manuscript": {
+    "b": 3,
+    "mu_prime": 4,
+    "faithful_maximum_minimal_base": 3
+  },
+  "complement": {
+    "order": 120,
+    "subgroups": 76,
+    "normal_subgroup_orders": [
+      1,
+      2,
+      120
+    ],
+    "odd_subgroup_orders": [
+      1,
+      3,
+      5
+    ],
+    "unique_involution": [
+      28,
+      0,
+      0,
+      28
+    ],
+    "isomorphism_to_SL2_5_verified": true,
+    "quotient_A5_verified": true,
+    "all_proper_subgroup_4_families_checked": 1215450,
+    "irredundant_4_families": 0,
+    "all_proper_subgroup_3_families_checked": 67525,
+    "faithful_minimal_3_families": 0
+  },
+  "line_stabilizers": {
+    "number_of_lines": 30,
+    "all_orders": 4,
+    "all_cyclic": true
+  },
+  "independent_set": [
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      28,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      12,
+      24,
+      0,
+      17
+    ],
+    [
+      0,
+      0,
+      25,
+      3,
+      4,
+      4
+    ]
+  ],
+  "omission_orders": [
+    120,
+    6728,
+    10092,
+    16820
+  ],
+  "omission_total_intersection_order": 2,
+  "omission_intersection_normal": false,
+  "omission_core_orders": [
+    1,
+    1682,
+    1682,
+    1682
+  ],
+  "faithful_3_family": {
+    "subgroup_orders": [
+      58,
+      58,
+      58
+    ],
+    "pair_intersection_orders": [
+      2,
+      2,
+      2
+    ],
+    "total_intersection_order": 1,
+    "coset_action_degree": 5220
+  },
+  "adversarial_prime_11": {
+    "torus_generator": [
+      6,
+      10,
+      0,
+      2
+    ],
+    "eigenlines": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "subgroup_orders": [
+      110,
+      110,
+      242,
+      605
+    ],
+    "deletion_intersection_orders": [
+      11,
+      11,
+      5,
+      2
+    ]
+  },
+  "affine_elements_sha256": "2f4c3b8353a9a5cd7d2cbbeb8a0d48dd0e203f4371652fd25c5ca2936fff5efc",
+  "seconds": 0.625,
+  "scope": "The program verifies finite certificates. The universal upper bound on all affine subgroup families is structural, not a large-group enumeration."
+}
+c++ -O2 -std=c++17 -Wall -Wextra -pedantic src/verify_counterexample.cpp -o build/verify_counterexample_cpp
+./build/verify_counterexample_cpp build/certified/subgroups_cpp.txt
+PASS: independent C++17 verification
+H: 120 matrices; all 76 subgroups enumerated; SL(2,5) isomorphism checked on all products.
+Normal subgroup orders: 1, 2, 120. Odd subgroup orders: 1, 3, 5. Unique involution.
+All 1215450 proper-subgroup 4-families checked: none irredundant.
+All 67525 proper-subgroup 3-families checked: none faithful and minimal.
+Thirty line stabilizers: all cyclic of order 4.
+Independent complement triple: omission orders 8, 12, 20; generates 120.
+Independent affine 4-set: generates 100920; omission orders 120, 6728, 10092, 16820.
+Omission intersection: order 2, not normal in the affine group.
+Faithful minimal 3-family: subgroup orders 58,58,58; pair orders 2,2,2; total order 1.
+The all-representations upper bound is the structural proof, not a catalogue cutoff.
+python3 src/compare_certificates.py build/certified/finite_certificate.json build/certified/subgroups_cpp.txt
+PASS: all 76 actual matrix subgroups agree between Python and C++,
+despite different element orderings and independent generation.
+python3 audit_2026_09_21/independent_check.py
+{
+  "status": "all_assertions_passed",
+  "timestamp_utc": "2026-09-23T15:16:28.904610+00:00",
+  "runtime_seconds": 0.585,
+  "arithmetic": "exact integers, standard-library Python",
+  "complement_order": 120,
+  "subgroups": 76,
+  "subgroup_order_distribution": {
+    "1": 1,
+    "2": 1,
+    "3": 10,
+    "4": 15,
+    "5": 6,
+    "6": 10,
+    "8": 5,
+    "10": 6,
+    "12": 10,
+    "20": 6,
+    "24": 5,
+    "120": 1
+  },
+  "proper_subgroup_triples_checked": 67525,
+  "irredundant_triples": 900,
+  "faithful_irredundant_triples": 0,
+  "normal_bottom_irredundant_triples": 900,
+  "proper_subgroup_quadruples_checked": 1215450,
+  "irredundant_quadruples": 0,
+  "complement_invariants": {
+    "mu_prime": 3,
+    "b": 3,
+    "b_faithful": 2
+  },
+  "pair_subgroup_orders": [
+    8,
+    12,
+    20
+  ],
+  "line_stabilizer_order_distribution": {
+    "4": 30
+  },
+  "sl2_5_isomorphism_all_products_checked": 14400,
+  "a5_quotient_all_products_checked": 14400,
+  "a5_quotient_kernel_order": 2,
+  "pair_subgroup_core_orders": [
+    2,
+    2,
+    2
+  ],
+  "complement_translation_conjugate_intersection_order": 1,
+  "affine_group_order": 100920,
+  "affine_independent_set_omission_orders": [
+    120,
+    6728,
+    10092,
+    16820
+  ],
+  "affine_independent_set_common_intersection_order": 2,
+  "faithful_three_family_subgroup_orders": [
+    58,
+    58,
+    58
+  ],
+  "faithful_three_family_pair_intersection_orders": [
+    2,
+    2,
+    2
+  ],
+  "characteristic_11_group_order": 14520,
+  "characteristic_11_family_orders": [
+    110,
+    110,
+    242,
+    605
+  ],
+  "characteristic_11_deletion_intersection_orders": [
+    11,
+    11,
+    5,
+    2
+  ],
+  "finite_verification_completion_percent": 100,
+  "limitation": "General all-actions upper bound for G relies on manuscript structural proof; the subgroup lattice of G was not enumerated."
+}
+python3 audit_2026_09_21/structural_check.py
+{
+  "complement_order": 120,
+  "element_order_distribution": {
+    "1": 1,
+    "2": 1,
+    "3": 20,
+    "4": 30,
+    "5": 24,
+    "6": 20,
+    "10": 24
+  },
+  "pair_orders": [
+    8,
+    12,
+    20
+  ],
+  "pair_product_orders": [
+    4,
+    3,
+    10
+  ],
+  "line_stabilizer_orders": {
+    "4": 30
+  },
+  "faithful_family_orders": [
+    58,
+    58,
+    58
+  ],
+  "sl2_5_isomorphism_checked": true,
+  "characteristic_11_deletion_orders": [
+    11,
+    11,
+    5,
+    2
+  ],
+  "assertions": "all passed"
+}
+python3 audit_2026_09_21/compare_independent.py
+PASS: all 76 actual matrix subgroups match data/certified/finite_certificate.json
+PASS: all 76 actual matrix subgroups match build/certified/finite_certificate.json
+PASS: all 76 actual matrix subgroups match data/certified/subgroups_cpp.txt
+PASS: all 76 actual matrix subgroups match build/certified/subgroups_cpp.txt

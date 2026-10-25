@@ -1,0 +1,3092 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                 Report No. 13/2015
+
+                           DOI: 10.4171/OWR/2015/13
+
+                      Discrete Differential Geometry
+                                     Organised by
+                              Alexander I. Bobenko, Berlin
+                              Richard Kenyon, Providence
+                               Peter Schröder, Pasadena
+
+
+                              1 March – 7 March 2015
+
+         Abstract. This is the collection of extended abstracts for the 26 lectures
+         and the open problem session at the fourth Oberwolfach workshop on Discrete
+         Differential Geometry.
+
+
+
+Mathematics Subject Classification (2010): 52Cxx, 53xx, 57xx, 68U05.
+
+
+                       Introduction by the Organisers
+
+Discrete Differential Geometry is a very productive research area on the border
+between differential and discrete geometry. It aims to develop discrete equivalents
+of various notions and methods from classical differential geometry. The focus
+on discretization problems ensures strong connections to mathematical physics,
+numerical analysis, computer graphics and other applications.
+   This was the fourth Discrete Differential Geometry conference at Oberwolfach.
+The subject has evolved significantly since its beginning a decade ago. This years’s
+conference higlighted advances in particular in the areas of discrete uniformiza-
+tion, discrete surface theory, mathematical structures of integrability and cluster
+algebras, discretizations of PDEs and analysis on manifolds with applications to
+computer graphics.
+   The workshop featured many talks on discrete differential geometry problems
+motivated by applications in computer graphics. This area becomes an increas-
+ingly important source of inspiration for theoretical advances in discrete differential
+geometry. Some systems have natural discretizations which have even more math-
+ematical structure then their continuous counterparts, and often finding the right
+662                                                   Oberwolfach Report 13/2015
+
+discretizations makes a huge difference in efficiency. This phenomenon was demon-
+strated in many talks. The variety of problems varied from new ideas on generating
+of strip patterns with constant spacing in the talk by Pinkall, and on modelling of
+(piecewise) developable surfaces in the talk by Wallner to a representation of dis-
+crete vector fields as linear operators by Ben-Chen. Further topics directly related
+to applications included spectral analysis on meshes (Tong), seamless mappings
+between meshes (Lipman), linear operators on surfaces of revolution (Kazhdan),
+surfaces with nested layers (Jacobson), topological data analysis of shapes from
+sampled data (Bauer), consequent optimization with various norms (Zorin).
+   Traditionally for this workshop new results on discrete uniformization theory
+were presented. This includes a new uniformization theorem of surfaces with poly-
+herdal metric (Luo), dealing with meshes with changing combinatorics. Discrete
+conformal maps for general polyhedral surfaces and in particular experimental
+results on their convergence to smooth conformal maps were discussed by Spring-
+born. Other talks on harmonicity (discrete enharmonic functions) and holomor-
+phicity (discrete s-holomorphic functions appearing in the Ising model) were due
+to Kenyon and Chelkak. A description of inscribed polytopes related to discrete
+uniformization theory was given by Schlenker. Sanyal developed a quite different
+side of the polytope theory based on convex algebraic geometry.
+   Discrete surface theory is another traditional topic at this workshop. This
+year there was an emphasis on merging of the methods from the general the-
+ory of simplicial surfaces and from integrable geometry: We had talks on simpli-
+cial (non-parametrized) special classes of surfaces (Lam) as well as on quadrilat-
+eral (parametrized) rather general surfaces (Sageman-Furnas). Rörig described a
+piecewise smooth extension of nets with planar quadrilateral faces. A completely
+different approach of modelling surfaces as origami tesselations was presented by
+Vouga.
+   Mathematical structures of integrability and cluster algebras was another hot
+topic of the workshop. Here we heard talks by Schief, King and Fock on distin-
+guished discrete integrable models as well as on various approaches aiming at their
+classification.
+   A solution of a classification problem coming from Riemannian geometry was
+presented in the talk by Brehm. There were also a few talks (Akopyan, Nilov,
+Tabachnikov) on concrete geometric problems including line nets with circum-
+scribed quadrilaterals, circular webs and the circumcenter of mass.
+   The organizers are grateful to all participants for all the lectures, discussions,
+and conversations that combined into this very lively and successful workshop -
+and to everyone at Research Institute in Oberwolfach for the perfect setting.
+Acknowledgement: The MFO and the workshop organizers would like to thank the
+National Science Foundation for supporting the participation of junior researchers
+in the workshop by the grant DMS-1049268, “US Junior Oberwolfach Fellows”.
+Discrete Differential Geometry                                                                                   663
+
+
+
+
+Workshop: Discrete Differential Geometry
+
+Table of Contents
+
+
+Boris Springborn (joint with A. Bobenko, S. Sechelmann, U. Bücking,
+   and S. Born)
+   Some small theorems about discrete conformal maps . . . . . . . . . . . . . . . . . 665
+Wai Yeung Lam (joint with Ulrich Pinkall)
+  From isothermic triangulated surfaces to discrete holomorphicity . . . . . . 666
+Andrew O. Sageman-Furnas (joint with Tim Hoffmann and Max Wardetzky)
+  Towards a curvature theory for general quad meshes . . . . . . . . . . . . . . . . . 668
+Wolfgang K. Schief (joint with Alexander I. Bobenko)
+  Discrete line complexes and integrable evolution of minors . . . . . . . . . . . . 671
+Thilo Rörig (joint with Emanuel Huhnen-Venedey and Alexander I. Bobenko)
+   Supercyclidic nets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 674
+Mirela Ben-Chen (joint with Omri Azencot, Steffen Weißmann, Frederic
+   Chazal, Maks Ovsjanikov and Max Wardetzky)
+   Discrete Tangent Vector Fields as Linear Operators . . . . . . . . . . . . . . . . . . 676
+Alastair King (joint with B.T. Jensen, X. Su, K. Baur, R. Marsh)
+   Cluster categories from dimer models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 677
+Vladimir Fock
+   Flag configurations and integrable systems. . . . . . . . . . . . . . . . . . . . . . . . . . 680
+Arseniy Akopyan (joint with Alexander Bobenko)
+   Circle patterns and confocal conics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 682
+Feng Luo (joint with David Gu, Jian Sun, Tianqi Wu)
+   A discrete uniformization theorem for polyhedral surfaces . . . . . . . . . . . . . 685
+Yiying Tong (joint with Beibei Liu, Yuanzhen Wang, Gemma Mason,
+   Julian Hodgson, Mathieu Desbrun and Kun Zhou )
+   Spectral Discrete Exterior Calculus . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 688
+Johannes Wallner (joint with Helmut Pottmann, Chengcheng Tang,
+   Pengbo Bo)
+   Modelling of developables and curved folds . . . . . . . . . . . . . . . . . . . . . . . . . . 690
+Yaron Lipman (joint with Noam Aigerman, Roi Poranne)
+   Seamless Surface Mappings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 691
+Jean-Marc Schlenker (joint with Jeffrey Danciger and Sara Maloni)
+   Polyhedra inscribed in a quadric and anti-de Sitter geometry . . . . . . . . . . 692
+664                                                                           Oberwolfach Report 13/2015
+
+Ulrich Pinkall (joint with Keenan Crane, Felix Knöppel, Peter Schröder)
+   Stripe patterns . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 695
+Michael Kazhdan
+   Fast and Exact (Poisson) Solvers on Surfaces of Revolution . . . . . . . . . . . 696
+Etienne Vouga (joint with L. Dudte, L. Mahadevan)
+   Approximating Curved Surfaces with Miura-Ori Origami . . . . . . . . . . . . . 700
+Denis Zorin (joint with Zohar Levi)
+   Strict minimizers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 703
+Alec Jacobson (joint with Leonardo Sacht, Etienne Vouga)
+   Nested Cages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 704
+Fedor Nilov
+   On the Blaschke-Bol problem in the plane . . . . . . . . . . . . . . . . . . . . . . . . . . 706
+Serge Tabachnikov
+   The circumcenter of mass . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 706
+Raman Sanyal
+  Grassmann Orbitopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 707
+Ulrich Brehm
+   The Classification of compact Nil-manifolds up to isometry . . . . . . . . . . . 709
+Dmitry Chelkak
+  Kac-Ward formula and discrete boundary value problems coming from
+  the critical Ising and double-Ising models in 2D . . . . . . . . . . . . . . . . . . . . . 712
+Ulrich Bauer (joint with Herbert Edelsbrunner)
+   The Morse theory of Čech and Delaunay complexes . . . . . . . . . . . . . . . . . . 715
+Richard Kenyon (joint with Aaron Abrams)
+   Fixed-energy harmonic function . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 718
+Collected by Günter Rote
+   Open Problems in Discrete Differential Geometry . . . . . . . . . . . . . . . . . . . . 719
+Discrete Differential Geometry                                                    665
+
+                                    Abstracts
+
+
+           Some small theorems about discrete conformal maps
+                             Boris Springborn
+     (joint work with A. Bobenko, S. Sechelmann, U. Bücking, and S. Born)
+
+We consider polyhedral surfaces made from gluing convex euclidean polygons that
+are inscribed in circles. Two such surfaces are considered discretely conformally
+equivalent if they are combinatorially equivalent and the lengths ℓij and ℓ̃ij of
+                                            ui `uj
+corresponding edges are related by ℓ̃ij “ e 2 ℓij , where ui are logarithmic scale
+factors associated to the vertices. For triangulations, inscribability of faces is no
+restriction and this notion of discrete conformal equivalence is well known [4], [3].
+   The first part of the talk is concerned with observations and results [2] about the
+similarities and differences of discrete conformal equivalence for triangulations and
+for general polyhedral surfaces, in particular if all face degrees are even, or equal
+to four. Two triangulations are discretely conformally equivalent if and only if the
+length cross ratios for corresponding interior edges are equal [3]. Two quadrangu-
+lations are discretely conformally equivalent, if and only if the complex cross ratios
+of corresponding faces are equal. Like in the triangle case, the discrete conformal
+mapping problem (find a discretely conformally equivalent surface with prescribed
+angle sums at vertices) is variational: The unknown logarithmic scale factors min-
+imize a convex functional. This implies that solutions are unique if they exist.
+We comment on a couple of phenomena that are particular to quadrangulations
+and connected to the the edge graph being bipartite: the occurrence of orthogonal
+circle patterns among the solutions, and necessary conditions on angle sums at
+the boundary that have to hold for “black” and “white” vertices separately. We
+discuss examples of discrete conformal maps and experimental results on the rate
+of convergence to smooth conformal maps (which is conjectured).
+   The second part of the talk, which had to be cut due to lack of time, was to
+deal with results on the quasiconformal distortion of projective maps and appli-
+cations to discrete conformality [1]. The starting point of this research was the
+observation that circumcircle preserving piecewise projective interpolation between
+triangulations, which is continuous across the edges if and only if two triangula-
+tions are discretely conformally equivalent, “looks better” than piecewise linear
+interpolation [5]. Is this due to lower quasiconformal distortion? As it turns out,
+the contour lines of the quasiconformal distortion of a projective transformation of
+RP2 (that is not an affine transformation) form a hyperbolic pencil of circles. (We
+identify RP2 with the union of C and a line at infinity.) The circles of this pencil
+are the only circles that are mapped to circles. When a triangle is mapped to an-
+other triangle by a circumcircle preserving projective transformation, the maximal
+quasiconformal distortion is attained simultaneously at all three vertices, and this
+value is equal to the constant quasiconformal distortion of the affine linear map
+between the triangles. Of all projective transformations that map between two
+666                                                           Oberwolfach Report 13/2015
+
+fixed triangles, the maximal quasiconformal distortion is minimal for the projec-
+tive transformation that maps angle bisectors to angle bisectors. Angle bisector
+preserving piecewise projective interpolation is also continuous across edges if and
+only if the triangulations are discretely conformally equivalent. There is a one-
+parameter family of piecewise projective interpolations with this property, of which
+the circumcircle and angle bisector preserving ones are special cases.
+
+                                           References
+[1] U. Bücking, S. Born B. Springborn, Quasiconformal distortion of projective maps, in prepa-
+    ration.
+[2] A. Bobenko, S. Sechelmann, B. Springborn, Discrete uniformization of Riemann surfaces,
+    in preparation.
+[3] A. Bobenko, U. Pinkall, B. Springborn, Discrete conformal maps and ideal hyperbolic poly-
+    hedra, arXiv:1005.2698, to appear in Geometry & Topology.
+[4] F. Luo, Combinatorial Yamabe flow on surfaces, Commun. Contemp. Math. 6 (2004), no. 5,
+    765–780.
+[5] B. Springborn, P. Schröder, and U. Pinkall, Conformal equivalence of triangle meshes,
+    in ACM SIGGRAPH 2008 papers (SIGGRAPH ’08), ACM, New York, 2008, article 77,
+    11 pages.
+
+
+
+
+   From isothermic triangulated surfaces to discrete holomorphicity
+                            Wai Yeung Lam
+                     (joint work with Ulrich Pinkall)
+
+Isothermic surfaces are building blocks in classical differential geometry. They
+include all surfaces of revolution, quadrics, constant mean curvature surfaces and
+many other interesting surfaces. A smooth surface in Euclidean space is called
+isothermic if it admits conformal curvature line parametrization around every
+point. However there are various characterizations of isothermic surfaces that
+do not refer to special parametrizations.
+   We propose a definition of isothermic triangulated surfaces which does not in-
+volve the notion of conformal curvature line parametrizations. Its motivation is a
+result from the smooth theory that a surface is isothermic if and only if locally it
+admits an infinitesimal isometric deformation preserving the mean curvature. Let
+Vin , Ein denote the sets of interior vertices and edges respectively.
+Definition 1. A triangulated surface f : M Ñ R3 is isothermic if there exists a
+R3 -valued dual 1-form τ such that
+                                ÿ
+                                   τ p˚eij q “ 0 @vi P Vin
+                                       j
+                                  df peq ˆ τ p˚eq “ 0 @e P Ein
+                          ÿ
+                               xdf peij q, τ p˚eij qy “ 0 @vi P Vin .
+                           j
+Discrete Differential Geometry                                                               667
+
+Corollary 1. A simply connected triangulated surface immersed in Euclidean
+space is isothermic if and only if there exists a non-trivial infinitesimal isometric
+deformation preserving the integrated mean curvature H : Vin Ñ R defined by
+                                   ÿ
+                            Hi :“     αij ℓij @vi P Vin
+                                         j
+
+where α and ℓ denote dihedral angles and edge lengths respectively.
+   These triangulated surfaces resemble isothermic surfaces in the smooth theory.
+Isothermic triangulated surfaces can be characterized in terms of the theory of
+discrete conformality: circle patterns and conformal equivalence. It is shown that
+this definition generalizes isothermic quadrilateral meshes proposed by Bobenko
+and Pinkall. In particular,
+Theorem 1. The class of isothermic triangulated surfaces is Möbius invariant.
+   As a result, we obtain a discrete analogue of the Weierstrass representation for
+minimal surfaces. We define discrete minimal surfaces as the reciprocal-parallel
+meshes of triangulated surfaces with vertices on a sphere. The Weierstrass data
+consists of an immersed planar triangular mesh and a discrete harmonic function.
+Given an immersed planar triangular mesh, there is a 1-1 correspondence between
+discrete harmonic functions and the reciprocal-parallel meshes of its spherical im-
+age. Such harmonic functions appear in linear discrete complex analysis with
+applications to statistical physics (see Smirnov [5]). Figure 1 shows that our con-
+struction can be applied to minimal surfaces with umbilic points.
+
+
+
+
+            Figure 1. A discrete minimal surface with an umbilic point
+
+    Finally, we focus on planar triangular meshes. A simple relation among confor-
+mal equivalence, circle patterns and the linear theory of discrete complex analysis
+is found [3].
+
+                                        References
+ [1] A. I. Bobenko, C. Mercat, and Y. B. Suris, Linear and nonlinear theories of discrete analytic
+     functions. Integrable structure and isomonodromic Green’s function. J. Reine Angew. Math.
+     583, 117–161 (2005).
+668                                                          Oberwolfach Report 13/2015
+
+ [2] A. Bobenko, U. Pinkall, Discrete isothermic surfaces, J. Reine Angew. Math. 475, 187–208
+     (1996).
+ [3] W.Y. Lam, U. Pinkall, Infinitesimal deformations of triangle meshes and discrete holomor-
+     phicity, In preparation.
+ [4] W.Y. Lam, U. Pinkall, Isothermic triangulated surfaces, preprint (2015), arXiv:1501.02587.
+ [5] S. Smirnov, Discrete complex analysis and probability, Proceedings of the International
+     Congress of Mathematicians. Volume I, pages 595–621. Hindustan Book Agency, New Delhi,
+     2010.
+
+
+
+
+           Towards a curvature theory for general quad meshes
+                       Andrew O. Sageman-Furnas
+             (joint work with Tim Hoffmann and Max Wardetzky)
+
+
+                    Motivation from integrable geometry
+Surfaces of constant (mean or Gauss) curvature are often expressed in special
+parametrizations (e.g., conformal curvature line or asymptotic line), where their
+integrability equations reduce to completely integrable (”soliton”) PDEs from the-
+oretical physics. For each of these specially parametrized constant curvature sur-
+faces, there exists a one parameter associated family that stays within the surface
+class (e.g., minimal surfaces stay minimal), but the parametrization may change.
+   Discrete partial finite difference analogues for many of these integrable PDEs
+have been discovered, where discrete integrability is encoded by a certain closing
+condition around a 3D cube [5]. In this way algebraic constructions for discrete
+analogues of different classes of surfaces (reviewed in [3]), such as minimal surfaces,
+surfaces of constant mean curvature, and constant negative Gauss curvature, have
+been described, together with their one parameter associated families. However, a
+general notion of curvatures for these surfaces that is constant for the appropriate
+algebraic constructions has been lacking.
+   Investigating the geometry of these algebraic families leads us to the following
+curvature theory, which not only retrieves the thoroughly investigated curvature
+definitions in the case of planar quads [8, 4], but extends to the general setting of
+nonplanar quad meshes.
+
+              Quad meshes as discrete parametrized surfaces
+A natural discrete analogue of a smooth parametrized surface patch is given by
+a quad mesh patch, a map f : D Ă Z2 Ñ R3 with nonvanishing straight edges.
+Notice, in particular, that the quadrilateral faces in R3 may be nonplanar. Piecing
+together such patches defines a quad mesh with more general combinatorics and is
+understood as an atlas for a surface. To every vertex of a quad mesh we associate
+a unit ”normal” vector and define the corresponding map, written per patch as
+n : D Ă Z2 Ñ S2 , as the discrete Gauss map. An arbitrary Gauss map will not
+be ”normal” to its quad mesh, so we only allow for those Gauss maps that satisfy
+Discrete Differential Geometry                                                                 669
+
+a certain constraint along each edge. The resulting class of edge-constraint quad
+meshes is our focus.1
+Definition 1. A quad mesh f with Gauss map n is called edge-constraint if for
+every edge of f in R3 the average of the normals at its end points is perpendicular
+to f , i.e., for i “ 1, 2 we have pfi ´ f q ¨ 12 pni ` nq “ 0.
+Curvatures from offsets. For an edge-constraint quad mesh f with Gauss map
+n, the offset family is given by adding multiples of the Gauss map to each vertex,
+i.e., f t :“ f ` tn. Notice that every mesh of the offset family is edge-constraint
+with the same Gauss map. In the smooth setting, corresponding tangent planes
+between a surface, its normal offsets, and common Gauss map are parallel. This
+allows one to compare areas and derive curvatures.
+    In order to mimic this definition of curvatures in the discrete case, let Qn “
+pn, n1 , n12 , n2 q be a Gauss map quad with corresponding quad Qf “ pf, f1 , f12 , f2 q
+and offset quads Qf t . Define the discrete Gauss map partial derivatives as the
+midpoint connectors of Qn , i.e., nx :“ 12 pn12 ` n1 q ´ 21 pn2 ` nq and ny :“ 12 pn12 `
+n2 q ´ 12 pn1 ` nq. We define the common quad tangent plane between Qn , Qf , and
+                                                                 n ˆn
+Qf t as the plane spanned by nx , ny ; and we call N :“ }nxx ˆnyy } the projection
+direction.2 The midpoint connectors of Qf and Qf t do not lie in this common
+tangent plane, so we project them to the plane spanned by nx and ny . The partial
+derivatives fx , fy and fxt , fyt are each defined as the projection (induced by N ) of
+the corresponding midpoint connectors.
+    The curvature theory for edge-constraint quad meshes is now built per quad
+and mimics the smooth setting.
+Definition 2. The mixed area form per quad of two quad meshes g, h sharing a
+Gauss map n is given by Apg, hq :“ 12 pdetpgx , hy , N q ` detphx , gy , N qq.
+   Note that when corresponding quads of g, h and n are in fact planar, lying in
+parallel planes, and h “ g then the quantity Apg, gq coincides with the usual area
+of a quad.
+Lemma 1. The area of an offset quad satisfies the Steiner formula: Apf t , f t q “
+Apf, f q ` 2tApf, nq ` t2 Apn, nq.
+   As in the smooth setting, factoring out Apf, f q defines the mean and Gauss
+curvature.
+Definition 3. The mean and Gauss curvature per quad of an edge-constraint
+                                             Apn,nq
+quad mesh are given by H :“ Apf,nq
+                            Apf,f q and K :“ Apf,f q , respectively.
+
+
+   1We make use of shift notation to describe quantities per quad: f :“ f pk, ℓq, f :“ f pk ` 1, ℓq,
+                                                                                        1
+and f2 :“ f pk, ℓ ` 1q, so f12 :“ f pk ` 1, ℓ ` 1q; n, n1 , n2 , and n12 are defined similarly.
+   2To include the cases when n and n are parallel (corresponding to developable, i.e., vanishing
+                                  x       y
+Gauss curvature, surfaces), we in fact define a family of projection directions U :“ tN P S2 | N K
+spantnx , ny uu. The mean and Gauss curvatures are invariant to the choice of N P U .
+670                                                            Oberwolfach Report 13/2015
+
+Fundamental forms, shape operator, and principal curvatures. Funda-
+mental forms of a parametrized surface can be written in terms of the partial
+derivatives in the tangent plane at each point. The same formulas define these
+objects per common quad tangent plane of an edge-constraint quad mesh.
+                                                             ˆ                 ˙
+                                                               fx ¨ fx fx ¨ fy
+Definition 4. The fundamental forms are defined as I :“                         ,
+      ˆ                    ˙             ˆ                 ˙ fy ¨ fx fy ¨ fy
+         f x ¨ nx f x ¨ ny                 nx ¨ nx nx ¨ ny
+II :“                       , and III :“                    . The shape operator
+         f y ¨ nx f y ¨ ny                 ny ¨ nx ny ¨ ny
+is given by S :“ I´1 II.
+   Observe that the Gauss map being normal to the surface guarantees the exis-
+tence of principal curvatures and curvature lines.
+Lemma 2. The edge-constraint implies that the second fundamental form is sym-
+metric pfx ¨ ny “ nx ¨ fy q, so the shape operator is diagonalizable.
+Definition 5. The real eigenvalues k1 , k2 of the shape operator are the principal
+curvatures per quad. The corresponding eigenvectors yield curvature directions in
+each quad tangent plane.
+   The expected relationships hold between the principal curvatures, fundamental
+forms, and the mean and Gauss curvatures defined via the Steiner formula.
+Lemma 3. The following are true in the smooth and discrete case:
+  1. K “ k1 k2 “ det II{ det I,  2. H “ 12 pk1 ` k2 q,
+  3. III ´ 2HII ` KI “ 0, and    4. Apf, f q2 “ det I.
+
+
+                          Constant curvature quad meshes
+It turns out that many integrable geometries are edge-constraint quad meshes of
+the appropriate curvature; an example of non integrable geometry is recovered,
+too. For more details see [6].
+Theorem 1. The following previously defined algebraic quad meshes are edge-
+constraint of the appropriate constant curvature:
+   1. Discrete minimal [2] and their associated families,
+   2. Discrete cmc [3] and their associated families,
+   3. Discrete constant negative Gauß curvature [1] and their associated families,
+Theorem 2. Discrete developable quad meshes built from planar strips [7] can be
+extended to edge-constraint quad meshes with vanishing Gauss curvature.
+
+                                         References
+[1]   A. I. Bobenko and U. Pinkall. Discrete surfaces with constant negative Gaussian curvature
+      and the Hirota equation. Journal of Differential Geometry, 43:527–611, 1996.
+[2]   A. I. Bobenko and U. Pinkall. Discrete isothermic surfaces. Journal für die reine und ange-
+      wandte Mathematik, pages 187–208, 1996.
+Discrete Differential Geometry                                                               671
+
+[3]   A. I. Bobenko and U. Pinkall. Discretization of Surfaces and Integrable Systems. In A. I.
+      Bobenko and R. Seiler, editors, Discrete integrable geometry and physics, pages 3–58. Oxford
+      University Press, 1999.
+[4]   A. I. Bobenko, H. Pottmann, and J. Wallner. A curvature theory for discrete surfaces based
+      on mesh parallelity. Mathematische Annalen, 348(1):1–24, 2010.
+[5]   A. I. Bobenko and Y. B. Suris. Discrete Differential Geometry: Integrable Structure, vol-
+      ume 98 of Graduate Studies in Mathematics. American Mathematical Society, 2008.
+[6]   T. Hoffmann, A. O. Sageman-Furnas, and M. Wardetzky. A discrete parametrized surface
+      theory in R3 . arXiv preprint:1412.7293.
+[7]   Y. Liu, H. Pottmann, J. Wallner, Y.-L. Yang, and W. Wang. Geometric modeling with
+      conical meshes and developable surfaces. ACM Transactions on Graphics, 25(3):681–689,
+      2006.
+[8]   W. K. Schief. On a maximum principle for minimal surfaces and their integrable discrete
+      counterparts. Journal of Geometry and Physics, 56(9):1484–1495, 2006.
+
+
+
+         Discrete line complexes and integrable evolution of minors
+                              Wolfgang K. Schief
+                      (joint work with Alexander I. Bobenko)
+
+Two-parameter families of lines termed line congruences constitute fundamental
+objects in classical differential geometry [1]. Their importance in connection with
+the geometric theory of integrable systems has been well documented (see [2]
+and references therein). Recently, in the context of integrable discrete differential
+geometry [3], attention has been drawn to discrete line congruences [4], that is,
+two-parameter families of lines which are combinatorially attached to the vertices
+of a Z2 lattice. Discrete Weingarten congruences have been shown to lie at the
+heart of the Bäcklund transformation for discrete pseudospherical surfaces [5, 6,
+7]. Discrete normal congruences have been used to define Gaussian and mean
+curvatures and the associated Steiner formula for discrete analogues of surfaces
+parametrised in terms of curvature coordinates [8, 9, 10]. Discrete line congruences
+have also found important applications in architectural geometry [11].
+   Here, we are concerned with the extension of discrete line congruences in a
+three-dimensional complex projective space CP3 to three-dimensional “lattices of
+lines”, that is, maps of the form
+                                   l : Z3 Ñ tlines in CP3 u.
+These three-parameter families of lines which may be termed discrete line com-
+plexes admit remarkable algebraic and geometric properties if one imposes canon-
+ical geometric constraints. Thus, a discrete line complex is fundamental if the two
+lines combinatorially attached to the vertices of any edge of the Z3 lattice intersect
+and the four points of intersection associated with any four edges of the same type
+of an elementary cube are coplanar. This is illustrated in Figure 1. It is observed
+that, equivalently, any four “diagonals” of the same type as depicted schematically
+in Figure 1 may be required to be concurrent. Fundamental line complexes are
+termed discrete rectilinear congruences in [4]. The following summary is based on
+[12] and a forthcoming publication.
+672                                                        Oberwolfach Report 13/2015
+
+
+
+
+                                       Figure 1
+
+    It turns out that if one parametrises generic lines of a fundamental line complex
+l in terms of homogeneous coordinates
+                       V “ p1, M 45,45 , M 44 , M 55 , M 54 , M 45 q
+of points in the classical (complexified) Plücker quadric Q4 embedded in a five-
+dimensional complex projective space CP5 then the condition xV, Vy “ 0 ô rVs P
+Q4 shows that M 45,45 is just the determinant of the matrix
+                                   ˆ               ˙
+                                       M 44 M 45
+                              M̂ “                   ,
+                                       M 54 M 55
+the entries of which obey the algebraic system (with Mlik “ M ik |nl Ñnl `1 )
+                                   M il M lk
+                   Mlik “ M ik ´             , l P t1, 2, 3uzti, ku,
+                                      M ll
+where the auxiliary quantities M ik , i, k R t4, 5u likewise satisfy the above system.
+This system of discrete evolution equations for the entries M ik of the matrix
+M “ pM ik qi,k“1,...,5 (and, in turn, its minors) is termed M -system in [12] and
+is integrable in the sense of multi-dimensional consistency [3]. In fact, it plays a
+privileged role in the algebraic and geometric theory of discrete and continuous
+integrable systems.
+    The algebraic characterisation of fundamental line complexes in terms of the
+M -system gives rise to the consideration of sub-geometries by virtue of admissible
+constraints on the matrix M. If M is real then the Plücker quadric of signature
+p3, 3q is real and real fundamental line complexes are obtained. If M is Hermitian,
+Discrete Differential Geometry                                                             673
+
+that is, M: “ M then the associated subset of points in the complex Plücker
+quadric may be identified with the points of a real Lie quadric of signature p4, 2q.
+Hence, the admissible lines in CP3 are now interpreted as oriented spheres in a
+three-dimensional Euclidean space R3 and the intersection of lines becomes ori-
+ented contact of spheres, resulting in fundamental sphere complexes. Fundamental
+circle complexes on the plane are obtained by assuming that M is real and sym-
+metric, that is, MT “ M, corresponding to the restriction of the Plücker quadric
+to a Lie quadric of signature p3, 2q. These sphere and circle complexes may also
+be defined geometrically due to a characterisation of fundamental line complexes
+in terms of correlations of CP3 .
+   Fundamental circle complexes may be parametrised in terms of Bäcklund-
+related solutions of the master discrete CKP (dCKP) equation of integrable sys-
+tems theory [13]. The latter was obtained by Kashaev [14] in the context of
+star-triangle moves in the Ising model. It constitutes a canonical reduction of the
+“hexahedron recurrence” proposed by Kenyon and Pemantle [15] which admits a
+natural interpretation in terms of cluster algebras and dimer configurations. It is
+noted that the dCKP equation interpreted as a local relation between the princi-
+pal minors of a symmetric matrix M has been derived as a characteristic property
+by Holtz and Sturmfels [16] in connection with the ‘principal minor assignment
+problem’.
+   In the spirit of Klein’s Erlangen program, “deeper” reductions in Möbius, La-
+guerre and “hyperbolic” geometry may be obtained by imposing appropriate geo-
+metric constraints. These lead to the consideration of interesting classical and
+novel “circle theorems” such as (analogues of) Miquel’s theorem and Clifford’s
+chain of circle theorems. In the case of Möbius geometry, novel integrable hexag-
+onal circle patterns have been brought to light.
+
+                                        References
+ [1] S.P. Finikov, Theorie der Kongruenzen, Akademie-Verlag, Berlin (1959).
+ [2] A. Doliwa, Discrete asymptotic nets and W-congruences in Plücker line geometry, J. Geom.
+     Phys. 39 (2001) 9–29.
+ [3] A.I. Bobenko and Y.B. Suris, Discrete differential geometry. Integrable structure, Graduate
+     Studies in Mathematics 98, AMS, Providence (2008).
+ [4] A. Doliwa, P.M. Santini and M. Manas, Transformations of quadrilateral lattices, J. Math.
+     Phys. 41 (2000), 944–990.
+ [5] R. Sauer, Parallelogrammgitter als Modelle für pseudosphärische Flächen, Math. Z. 52
+     (1950), 611-622.
+ [6] W. Wunderlich, Zur Differenzengeometrie der Flächen konstanter negativer Krümmung,
+     Österreich. Akad. Wiss. math.-nat. Kl. S.-B. II 160 (1951), 39–77.
+ [7] A. Bobenko and U. Pinkall, Discrete surfaces with constant negative Gaussian curvature
+     and the Hirota equation, J. Diff. Geom. 43 (1996), 527–611.
+ [8] W.K. Schief, On the unification of classical and novel integrable surfaces. II. Difference
+     geometry, Proc. R. Soc. London A 459 (2003), 373–391.
+ [9] W.K. Schief, On a maximum principle for minimal surfaces and their integrable discrete
+     counterparts, J. Geom. Phys. 56 (2006), 1484–1495.
+[10] A.I. Bobenko, H. Pottmann and J. Wallner, A curvature theory for discrete surfaces based
+     on mesh parallelity, Math. Annalen 348 (2010), 1–24.
+674                                                         Oberwolfach Report 13/2015
+
+[11] J. Wang, C. Jiang, P. Bompas, J. Wallner and H. Pottmann, Discrete line congruences for
+     shading and lighting, SGP ’13 Proceedings of the Eleventh Eurographics/ACMSIGGRAPH
+     Symposium on Geometry Processing, The Eurographics Association and Blackwell Publish-
+     ing Ltd. (2013), 53–62.
+[12] A.I. Bobenko and W.K. Schief, Discrete line complexes and integrable evolution of minors,
+     Proc. R. Soc. London A 471 (2015), 20140819 (23pp).
+[13] W.K. Schief, Lattice geometry of the discrete Darboux, KP, BKP and CKP equations.
+     Menelaus’ and Carnot’s theorems, J. Nonlinear Math. Phys. 10, Supplement 2, (2003) 194–
+     208.
+[14] R.M. Kashaev, On discrete three-dimensional equations associated with the local Yang-
+     Baxter relation, Lett. Math. Phys. 33 (1996), 389–397.
+[15] R. Kenyon and R. Pemantle, Double-dimers, the Ising model and the hexahedron recurrence,
+     arXiv:1308.2998 [math-ph] (2013).
+[16] O. Holtz and B. Sturmfels, Hyperdeterminantal relations among symmetric principal mi-
+     nors, J. Algebra 316 (2007), 634–648.
+
+
+
+                             Supercyclidic nets
+                                Thilo Rörig
+      (joint work with Emanuel Huhnen-Venedey and Alexander I. Bobenko)
+
+We present the extension of discrete conjugate nets, i.e., nets with planar quadri-
+lateral faces, to piecewise smooth surface patchworks consisting of supercyclidic
+patches. Previously, such extensions have been studied for circular nets in [1] and
+discrete A-nets in [5]. For a detailed study and further references we refer to [2].
+
+2D supercyclidic nets. Supercyclides are surfaces with a characteristic conju-
+gate parametrization consisting of two families of conics such that the tangent
+planes along each conic envelop a quadratic cone.
+
+
+
+
+                  Figure 1. Three different types of supercyclides.
+
+   The image of the restriction of the characteristic conjugate parametrization
+to a rectangle yields a supercyclidic patch. These supercyclidic patches have the
+property that the corners lie in a plane and hence they can be attached to a Q-
+net, a discrete quadrilateral net with planar faces. We call a Q-net with adapted
+supercyclidic patches such that neighboring patches have the same tangent cones
+Discrete Differential Geometry                                                 675
+
+at the common conic segment a supercyclidic net. For an entire 2-dimensional
+Q-net with regular combinatorics we formulate the following Cauchy problem:
+
+   (1) Given the supporting Q-net x : Z2 Ñ RP3 ,
+   (2) two tangent congruences along two intersecting
+       coordinate lines for each coordinate direction, and
+   (3) two conic splines, one along each coordinate lines.
+
+   This problem has a unique solution and yields a piecewise smooth supercyclidic
+net adapted to the Q-net. The obtained tangent congruences are line systems
+adapted to Q-nets studied in [4] and fundamental line complexes in the sense
+of [3].
+
+
+
+
+        Figure 2. A 2-dimensional supercyclidic net and a 3-dimensional
+        supercyclidic cube.
+
+
+
+3D supercyclidic nets. In the 3-dimensional case we consider cubes with su-
+percyclidic patches attached to the six faces. We show that three patches of a
+supercyclidic cube that share one vertex and cyclically sharing a common bound-
+ary curve each, determine the three opposite faces. Accordingly, the extension of
+a cube with planar faces to a supercyclidic cube is uniquely determined by the
+free choice of three patches. These supercyclidic cubes come with a refinement
+in all coordinate directions and yield piecewise smooth 3-dimensional coordinate
+systems.
+   Additionally, supercyclidic nets give rise to a 3D system. So from given initial
+data on three coordinate planes we can construct 3-dimensional supercyclidic nets.
+If we consider initial data on the coordinate axes as for 2D supercyclidic nets and
+generate the corresponding nets on the coordinate planes, then all surface patches
+will share the tangent cones along common edges in any 2D net parallel to the
+coordinate planes. Furthermore, the system is multidimensionally consistent.
+   Motivated by the theories of cyclidic and hyperbolic nets, we define fundamental
+transformations of supercyclidic nets by combination of the according smooth and
+676                                                           Oberwolfach Report 13/2015
+
+discrete fundamental transformations of the involved SC-patches and supporting
+Q-nets, respectively.
+   It turns out that two mD supercyclidic nets are fundamental transforms if and
+only if they may be embedded as two consecutive layers of an pm ` 1q-dimensional
+supercyclidic net.
+Frames of supercyclidic nets. One essential aspect of the theory is the exten-
+sion of a given Q-net in RPN to a system of circumscribed discrete torsal line
+systems. We present a description of the latter in terms of projective reflections
+that generalizes the systems of orthogonal reflections which govern the extension
+of circular nets to cyclidic nets by means of Dupin cyclide patches.
+
+                                        References
+ [1] A. I. Bobenko and E. Huhnen-Venedey. Curvature line parametrized surfaces and orthogonal
+     coordinate systems: Discretization with Dupin cyclides. Geometriae Dedicata, 159(1):207–
+     237, 2012.
+ [2] A. I. Bobenko and E. Huhnen-Venedey and T. Rörig. Supercyclidic nets Preprint,
+     http://arxiv.org/abs/1412.7422, 2014.
+ [3] A. I. Bobenko and W. K. Schief. Discrete line complexes and integrable evolution of minors.
+     Preprint, http://arxiv.org/abs/1410.5794, 2014.
+ [4] A. Doliwa, P. M. Santini, and M. Mañas. Transformations of quadrilateral lattices. J. Math.
+     Phys., 41(2):944–990, 2000.
+ [5] E. Huhnen-Venedey and T. Rörig. Discretization of asymptotic line parametrizations using
+     hyperboloid surface patches. Geometriae Dedicata, 168(1):265–289, 2013.
+
+
+              Discrete Tangent Vector Fields as Linear Operators
+                               Mirela Ben-Chen
+      (joint work with Omri Azencot, Steffen Weißmann, Frederic Chazal, Maks
+                         Ovsjanikov and Max Wardetzky)
+
+Tangent vector fields on discrete surfaces are abundant in various applications
+in geometry processing. For example, tangent vector fields are used for guiding
+texture synthesis and quadrangular remeshing, as well as for representing the
+fluid’s velocity in flow simulation on surfaces. Various choices are available for
+representing tangent vector fields on triangle meshes, such as an arrow per vertex
+or an arrow per face. In [1] we suggested instead to take the approach commonly
+used in differential geometry, and represent discrete tangent vector fields as linear
+operators on discrete functions. The main advantage of this approach is that
+discrete scalar functions can be represented using a finite basis, and then a discrete
+tangent vector field v can be represented by a square matrix Dv .
+    This methodology has a few immediate applications to geometry processing.
+First, consider for example the computation of the flow lines of a discrete vector
+field v, which is known to be a difficult problem. Using the operator Dv , we
+can define the pushforward of a function f0 along the flow lines of v at time t as:
+f ptq “ expptDv qf0 , where exp is the matrix exponential. Under a suitable choice of
+basis for discrete functions, the matrix Dv is sparse, and the previous computation
+Discrete Differential Geometry                                                         677
+
+can be done efficiently. Furthermore, the operator Dv fulfills a discrete version
+of integration by parts, and therefore this definition of pushforward guarantees
+that the integral of f ptq over the mesh is independent of t if the vector field v is
+divergence free.
+   As an additional example, in [2] we showed how this approach can be used
+for simulating incompressible fluids on surfaces. For such fluids, the equations of
+motion can be formulated as Bt ωptq “ ´Dvptq ωptq, where vptq is the divergence
+free velocity of the fluid at time t, and ωptq is its vorticity. By taking a fixed
+velocity v k per iteration k, we can similarly use the exponential of Dvk to derive
+an efficient and simple simulation algorithm.
+
+                                     References
+ [1] O. Azencot, M. Ben-Chen, F. Chazal, and M. Ovsjanikov, An operator approach to tangent
+     vector field processing, Computer Graphics Forum 32(5) (2013), 73–82.
+ [2] O. Azencot, S. Weißmann, M. Ovsjanikov, M. Wardetzky and M. Ben-Chen, Functional
+     Fluids on Surfaces, Computer Graphics Forum 33(5) (2014), 237–246.
+
+
+
+                    Cluster categories from dimer models
+                                Alastair King
+             (joint work with B.T. Jensen, X. Su, K. Baur, R. Marsh)
+
+The homogeneous coordinate ring Ank of the Grassmannian                            n
+                                                             `n˘ of k-planes in C is
+generated by Plücker coordinates (or minors) ∆J , for J P k , subject to quadratic
+Plücker relations. For example, in A42 , there is the one short Plücker (or Ptolemy)
+relation
+                             ∆13 ∆24 “ ∆12 ∆34 ` ∆14 ∆23
+As a motivating example of their theory of cluster algebras, Fomin-Zelevinsky [4]
+showed that An2 has a cluster structure of finite (Dynkin) type An´3 in which the
+‘cluster variables’ are the minors, arranged into ‘clusters’ each corresponding to a
+triangulation of an n-gon and for which the ‘exchange relations’ are the Ptolemy
+relations. Scott [6] generalised the cluster structure to all Ank , showing that the
+only other finite type cases are for k “ 3 and n “ 6, 7, 8, where the Dynkin types
+are D4 , E6 , E8 .
+   One may observe that this numerology matches the fact that the plane curve
+singularity xk “ y n´k is simple in precisely these finite type cases and of the same
+type. One aim of this talk is to shed some light on this apparent coincidence.
+   Following the foundational work of Buan-Marsh et al [2], one looks for a cate-
+gory behind any cluster algebra, which naturally encodes the cluster structure. In
+particular, the cluster variables should be ‘characters’ of the rigid indecomposable
+objects in the category and the clusters correspond to maximal rigid objects. Tech-
+nically speaking, this category should be a stably 2-Calabi-Yau Frobenius category,
+whose exact structure encodes the exchange relations in a particular way.
+   In the case of An2 , it is possible to guess this category, inspired by the com-
+binatorics of Coxeter-Conway frieze patterns [3], which can themselves now be
+678                                                       Oberwolfach Report 13/2015
+
+understood in the broader context of cluster algebras. For example, for A52 a pic-
+ture (technically, the Auslander-Reiten quiver) of the category is given in Figure 1.
+Note that the labels ij and ji represent the same object, with character ∆ij , and
+the dashed squares commute.
+
+                    51         12         23         34          45
+
+                         52 ´´ 13 ´´ 24 ´´ 35
+
+                               53 ´´ 14 ´´ 25
+
+                                     54         15
+
+                      Figure 1. The cluster category for A52 .
+
+    It is natural to ask how to realise this category as a module category and to
+guess, as verified in [5], that it is the category CMpBq of Cohen-Macaulay modules
+for the algebra B “ EndpP q, where P is the direct sum of the projective-injective
+objects in the Frobenius category, e.g. the objects along the border of the ‘frieze’
+in Figure 1. It can be easily checked that, in this An2 case, B is the path algebra
+of the quiver depicted on the right of Figure 2, modulo the relations xy “ yx and
+x2 “ y n´2 .
+    However, P must also be a summand of any maximal rigid object and so B will
+be an idempotent subalgebra eCe of any ‘cluster tilted algebra’ C “ EndpXT q,
+for the maximal rigid object XT associated to a cluster/triangulation T . The
+question then arises as to how to determine the algebra C from the triangulation
+T . It is shown in [1] that this can be done by associating a dimer model to the
+triangulation, that is, a bipartite tiling of the dual n-gon, in the manner indicated
+by the example in Figure 2: the tiling vertices are the midpoints of the diagonals
+and there is one black triangular tile for each triangle in the triangulation. Next
+convert the dimer model to a quiver with relations by orienting the edges of the
+tiling so that they have black faces on the right and white faces on the left. The
+relations are commutation relations p`          ´
+                                           a ´ pa , for each internal arrow a, where the
+         ˘
+paths pa return from the head to the tail of arrow a around the left/right face of the
+tiling. The algebra C is the path algebra of the quiver modulo the ideal generated
+by these commutation relations. As expected, the algebra B is the idempotent
+subalgebra for the dimer model boundary, independent of triangulation.
+    For the case of Ank for k ě 3, the above logic is run in reverse. We consider
+the algebra B defined by the same boundary quiver, but with relations xy “ yx
+and xk “ y n´k . `Then ˘ the category CMpBq has indecomposable rigid modules
+XJ , for each J P nk , which are the summands of a maximal rigid modules XT ,
+for each cluster of minors T . The combinatorial object that determines a cluster
+of minors T is a Postnikov alternating strand diagram, as illustrated in Figure 3.
+The relevant minors are associated to the alternating regions of the diagram by
+writing down the labels marking the beginning of the strands on the right of the
+Discrete Differential Geometry                                                                                      679
+
+                                                              12                          x       12        x
+        1         2
+                                                15                13        23        15          y y        23
+                                                                                              y         y
+    5                 3                               14
+                                                                                      x            y            x
+                                                     45                34                  45           34
+            4                                                                                      x
+
+        Figure 2. A triangulation, its associated dimer model and
+        quiver, and the boundary quiver.
+
+
+region. The quiver, and thus the associated dimer model, can be written down
+(as in Figure 4) by joining those minors whose alternating regions share a crossing
+point of two strands. In this case, one may prove that the algebra C “ EndpXT q
+is, as before, the path algebra of the quiver modulo the ideal generated by the
+commutation relations coming from the tiles of the dimer model.
+
+                                                              1
+                                     7         567
+                                                                   671
+                                               156
+                                456                   157                         2
+
+                          6                145            147
+                                                                            712
+                               345       245         124
+                                                                                  3
+                                                                  123
+                                 5         234
+
+                                                          4
+
+                Figure 3. A Postnikov diagram, labelled by minors.
+
+
+
+                                         References
+[1] K. Baur, A. King, R. Marsh, Dimer models and cluster categories of Grassmannians,
+    arXiv:1309.6524v2
+[2] A.B. Buan, R. Marsh, M. Reineke, I. Reiten, G. Todorov Tilting theory and cluster combi-
+    natorics Adv. Math. 204 (2006) 572–618. (arXiv:math/0402054)
+[3] J.H. Conway, H.S.M. Coxeter, Triangulated polygons and frieze patterns Math. Gaz. 57
+    (1973), 87–94 & 175–183.
+[4] S. Fomin, A. Zelevinsky, Cluster algebras II: Finite type classification, Invent. Math. 154
+    (2003) 63–121. (arXiv:math/0208229)
+[5] B.T. Jensen, A. King, X. Su, A categorification of Grassmannian cluster algebras,
+    arXiv:1309.7301v2
+680                                                        Oberwolfach Report 13/2015
+
+                    567
+                                     167
+                         156
+                               157
+      456
+
+                               147
+                145                        127
+
+             245
+      345
+                               124
+                                     123
+                   234
+
+                Figure 4. The associated quiver and dimer model.
+
+ [6] J. Scott, Grassmannians and cluster algebras, Proc. London Math. Soc. 92 (2006) 345–380.
+     (arXiv:math/0311148)
+
+
+
+                   Flag configurations and integrable systems.
+                                 Vladimir Fock
+
+The aim of this talk is to discuss certain the configuration spaces of flags. We are
+convinced that these space play a central role in discrete differential geometry in
+disguise of the space of lattices on a plane, configurations of points in a projective
+spaces and many others. We try to introduce some structure which we hope will
+be useful for discrete geometric applications.
+   Recall briefly a construction of [FG] of cluster parameterization of higher Te-
+ichmller spaces and SLpN q local systems on 2D surfaces. The key ingredient is
+the consideration of the configuration space of complete flags in an N dimensional
+vector space H. Namely, associate a flag to every point of a rational projective
+line QP 1 . The space of such flag configurations is obviously infinite dimensional.
+However one can impose a certain symmetry condition in order to make it finite
+dimensional. Namely, let D P P SLp2, Zq be a finite index subgroup of the modu-
+lar group such that the quotient of the upper half plane H2 by D is a surface S.
+Consider now the configurations of flags invariant with respect to this subgroup.
+By invariance we mean that if we denote codimension i subspace of a flag corre-
+sponding to a point α P QP 1 by Fαi then we require that for any g P D there exists
+                                          i
+a linear map ρpgq : H Ñ H such that Fgpαq      “ ρpgqFαi for any i and α. Thus such
+flag configuration defines a homomorphism ρ from the fundamental group of S to
+the group P GLpN q and thus a local system on Σ. As it is proven in [FG], the map
+from invariant flag configurations to local system is a finite covering in a general
+point. Therefore the description of local system is reduced to the description of
+flag configurations.
+Discrete Differential Geometry                                                            681
+
+     The aim of the present talk is to consider a relative of this construction. We
+claim that if we consider a finite flag configurations but in infinite dimensional
+space we get a phase spaces of a large class of integrable systems, defined by
+A.Goncharov and R.Kenyon in [GK] and (still conjecturally) the discrete integrable
+systems considered by V.Adler, A.Bobenko and Y.Suris in [ABS].
+     Let H be an infinite-dimensional vector space (with a topology of injective limit
+of finite dimensional spaces). A complete flag in H is a collection of subspaces
+. . . Ă F 1 Ă F 0 Ă F ´1 Ă F ´2 Ă . . . enumerated by integers and such that
+F i {F i`1 is one dimensional, limnÑ`8 Fi “ 0, and limnÑ`8 Fi “ H. Let now Fαi
+be a collection of such flags enumerated by a finite set S and such that Xα Fα0 “ 0
+and the intersection is transversal. The space of such configurations is obviously
+infinite dimensional and in order to make it finite dimensional we need to impose
+an invariance condition. For this purpose fix a convex polygon ∆ on the plane with
+integer vertices and sides in bijection with our set S. Denote by aα P Z2 the sides
+of this polygon. Now consider flag configurations such that they are invariant with
+                                                                                  i`xg,aα y
+repect to an action of ρ of the Abelian group Z2 on H with ρpgqFαi “ Fα                       ,
+where x, y is a nondegenerate pairing.
+     We claim that the space of such configurations is birationally equivalent to the
+space of pairs (planar algebraic curve given by a polynomial with Newton polygon
+∆, line bundle of degree g ´ 1 on it). Here g is the number of integer points inside
+∆ and at the same time the genus of the planar curve.
+     The construction of a curve and a line bundle on it starting from a flag config-
+uration is essentially given by A.Goncharov and R.Kenyon in [GK]. The converse
+construction is described in [F] and goes as follows. Let Σ be ř       compactification of
+an algebraic curve in pCˆ q2 given by the equation P pλ, µq “ pijqP∆ cij λi µj “ 0
+and let L P Picg´1 pΣq be a line bundle of degree g ´ 1 on it. Observe that for a
+generic polynomial P pλ, µq the compactification points are in bijection with the
+sides (intervals between integer points on the boundary) of ∆ and thus they are in
+bijection with the set S. Let H be the space of meromorphic section of L having
+poles only at the compactification points. Let Fαi be the space of sections having
+zero of order at least i at the point α. The action of Z2 is given by multiplication
+of sections by monomials λi µj .
+     The key observation to introduce coordinates on flag configurations is the fol-
+lowing construction working both in finite and infinite dimensional cases. In both
+cases the set S has a canonical cyclic order. Consider a lattice ZS generated by
+labels of the flags. The symmetry group D acts on this lattice preserving degree.
+     A section of the lattice is two-dimensional D-invariant polygonal complex em-
+bedded into RS and homeomorphic to the plane. The faces of this complex are
+polygons with vertices rd ` α1 , d ´ α2 , . . . , d ` α2l´1 , d ´ α2l s, where α1 , . . . , α2l
+be any sequence of points of S such that αi ‰ αi`1 and d be any lattice point
+of degree 0. We also require that the action of the group D on the section be
+conjugated to the action of D on the upper half plane in the first case and on a
+Euclidean plane in the second case. In particular it means that the quotient of the
+section by the group D is a finite complex homeomorphic to the surface S in the
+682                                                          Oberwolfach Report 13/2015
+
+first case and to a two-dimensional torus in the second. The vertices of a section
+have either degree ´1 (we will call them white) or degree 1 (we will call them
+black). One edge of every edge isř      white and another black.
+     For every white vertex w “ α wα α associate a space F w “ Xα Fαwα . For
+every black vertex b associate a vector space ker ‘w´b F w Ñ H, where the direct
+sum is taken over the neighbors of the vertex b. For flags in general position both
+spaces are one dimensional and there is a natural map F b Ñ F w for every edge
+connecting b and w. Compositions of the maps around every face constitute a
+collection of numbers invariant under the action group D. Therefore the collection
+of numbers on the faces of the quotient of the section by the group D constitute
+coordinates of the flag configuration.
+     The coordinate system is not unique since the choice of the section is not unique.
+Any two sections are related by a sequence of elementary transformations called
+mutations. Namely, every quadrilateral face rd ` α1 , d ´ α2 , d ` α3 , d ´ α4 s can
+be replaced by a face rd1 ´ α1 , d1 ` α2 , d1 ´ α3 , d1 ´ α4 s, where d1 “ d ` α1 ´ α2 `
+α3 ´ α4 , and the adjacent faces, for example r. . . d ´ α2 , d1 ` α1 , . . .s replaced by
+r. . . d ´ α2 , d ´ α2 ` α1 ` α3 , d ` α2 ` α1 ´ α4 , d ` α1 , . . .s. Sequences of mutations
+leaving invariant the combinatorics of the section as a cell complex but changing
+its embedding in the lattice form a group coinciding with the mapping class group
+of the surface S in the first case and the group of discrete flows of the integrable
+system — a Abelian group of rank #S ´ 3 in the second.
+
+                                        References
+[ABS] V.Adler, A. Bobenko, Yu. Suris, Classification of integrable discrete equations of octahe-
+      dron type. Int. Math. Res. Not. IMRN 2012, no. 8, 1822–1889.
+[GK] A.B.Goncharov and R.Kenyon, Dimers and cluster integrable systems. Ann. Sci. Éc.
+      Norm. Supér. (4) 46(2013) , no. 5, 747-813. arXiv:1107.5588
+[FG] V.V. Fock, A.B. Goncharov, Moduli spaces of local systems and higher Teichmüller theory,
+      Publ. IHES vol. 103 nr.1, pp.1–221, 2006, math.AG/0311149
+[FM] V.V.Fock and A.V.Marshakov Loop groups, Clusters, Dimers and Integrable systems.
+      arXiv:1401.1606.
+[F]   V.V.Fock Inverse spectral problem for GK integrable system. arXiv:1503.0289.
+
+
+                        Circle patterns and confocal conics
+                                  Arseniy Akopyan
+                         (joint work with Alexander Bobenko)
+
+                                         1. IC-net
+We consider maps of the square grid to the plane f : Z2 Ñ R2 and use the following
+notations:
+      ‚ fi,j “ f pi, jq for the vertices of the net,
+      ‚ ˝ci,j for the quadrilateral pfi,j , fi`c,j , fi`c,j`c , fi,j`c q which we call a net-
+        square,
+      ‚ ˝i,j for the net-square ˝1i,j which we call a unit net-square.
+Discrete Differential Geometry                                                             683
+
+Definition 1. An IC-net (inscribed circular net) is a map f : P Ñ R2 satisfying
+the following conditions:
+  (i) For any integer i the points tf pi, jq|j P Zu lie on a straight line preserving the
+      order, i.e the point f pi, jq lies between f pi, j ´ 1q and f pi, j ` 1q. The same
+      holds for points tf pi, jq|i P Zu. We call these lines the lines of the IC-net.
+ (ii) all unit net-squares ˝i,j are circumscribed. We denote the inscribed circle of
+      ˝i,j by ωi,j and its center by oi,j .
+Theorem 1. Let f be an IC-net. Then the following properties hold:
+  (i) All lines of the IC-net f touch some conic α (possibly degenerate).
+ (ii) The points fi,j , where i ` j “ const lie on a conic confocal with α. As well
+      the points fi,j , where i ´ j “ const lie on a conic confocal with α.
+(iii) All net-squares of f are circumscribed.
+(iv) In any net-square with even sides the midlines have equal lengths:
+                                 |fi´c,j fi`c,j | “ |fi,j´c fi,j`c |.
+ (v) The cross ratio
+                                                        pfi,j1 ´ fi,j2 qpfi,j3 ´ fi,j4 q
+                 crpfi,j1 , fi,j2 , fi,j3 , fi,j4 q “
+                                                        pfi,j2 ´ fi,j3 qpfi,j4 ´ fi,j1 q
+      is independent of i. The cross ratio crpfi1 ,j , fi2 ,j , fi3 ,j , fi4 ,j q is independent
+      of j.
+ (vi) Consider the conics Ck that contain the points fi,j with i ` j “ k (see (ii)).
+      Then for any l P Z there exists an affine transformation Ak,l : Ck Ñ Ck`2l
+      such that Ak,l pfi,j q “ fi`l,j`l . The same holds for the conics through the
+      points fi,j with i ´ j “ const.
+                                   c`2l
+(vii) The net-squares ˝ci,j and ˝i´l,j´l   are perspective.
+(viii) Let ωi,j be the inscribed circle of the unit net-square ˝i,j . Consider the cone
+      in R3 intersecting the plane along ωi,j at constant oriented angle (all the
+      apexes ai,j of these cones lie in one half-space). Then all the apexes ai,j lie
+      on one-sheeted hyperboloid.
+ (ix) Let oi,j be the center of the circle ωi,j . Then all oi,j with i ` j “ const lie on
+      a conic, and oi,j with i ´ j “ const also lie on a conic.
+  (x) The centers oi,j of circles of an IC-net build a projective image of an IC-net.
+Theorem 2 (Construction of IC-net). IC-nets considered up to Euclidean mo-
+tions and homothety build a real four-dimensional family. An IC-net is uniquely
+determined by two neighboring circles ω0,0 , ω1,0 and their tangent lines ℓ0 , ℓ1 , ℓ2 ,
+m0 , m1 .
+
+                                 2. Checkerboard IC-net
+Definition 2. A checkerboard IC-net is a map f : P Ñ R2 satisfying the following
+conditions:
+   (1) For any integer i the points tfi,j |j P Zu lie on a straight line preserving
+        the order, i.e the point fi,j lies between fi,j´1 and fi,j`1 . The same holds
+684                                                          Oberwolfach Report 13/2015
+
+          for points tfi,j |i P Zu. We call these lines the lines of the checkerboard
+          IC-net.
+      (2) For any integer i and j, such that i ` j is even the quadrilateral with
+          verities fi,j , fi`1,j , fi`1,j`1 , fi,j`1 is circumscribed.
+    We call quadrilaterals ˝i,j with vertices fi,j , fi`1,j , fi`1,j`1 , fi,j`1 with even
+i ` j unit net-squares of checkerboard IC-net. The quadrilaterals ˝ci,j with vertices
+fi,j , fi`c,j , fi`c,j`c , fi,j`c with even i ` j and odd c we call net-squares.
+Theorem 3. Let f be a checkerboard IC-net. Then the following properties hold:
+  (i) All net-squares are circumscribed.
+                              c`2l
+ (ii) Net-squares ˝ci,j and ˝i´l,j´l , where l is odd, are perspective.
+(iii) The points fi,j , where i ` j “ const lie on a conic. The points fi,j , where
+      i ´ j “ const lie on a conic as well.
+(iv) (Ivory-type theorem) We define the distance dC p˝a,b , ˝c,d q between two unit
+      net-squares ˝a,b and ˝c,d of a checkerboard net as the distance between the
+      tangent points on a common exterior tangent line to the circles ωa,b and ωc,d
+      inscribed in ˝a,b and ˝c,d respectively. In case a “ c or b “ d these tangent
+      lines are the lines of the checkerboard IC-net.
+         For any pi, jq P Z2 , with even i ` j and any integer even c one has
+                        dC p˝i´c,j , ˝i`c,j q “ dC p˝i,j´c , ˝i,j`c q.
+ (v) Let ωi,j be the inscribed circle of the unit net-square ˝i,j . Consider the cone
+     in R3 intersecting the plane along ωi,j at constant oriented angle (all the
+     apexes ai,j of these cones lie in one half-space). Then all the apexes tai,j |i `
+     j “ 4n, n P Zu lie on one-sheeted hyperboloid. The the apexes tai,j |i ` j “
+     4n ` 2, n P Zu lie on one-sheeted hyperboloid as well.
+(vi) The centers oi,j of the incircles of a checkerboard IC-net build a circle-conical
+     net, i.e. a net that is simultaneously circular and conical. Recall that circular
+     nets are the nets with circular quadrilaterals poi,j oi`1,j`1 oi,j`2 oi´1,j`1 q and
+     conical nets in plane are characterized by the condition that the sums of two
+     opposite angles at a vertex are equal (and equal to π).
+   The construction of IC-nets is based on the following theorem.
+Theorem 4 (checkerboard incircles incidence theorem). Consider a quadrilateral
+which is cut by two sets of four lines in 25 quadrilaterals. Color the quadrilaterals
+in a checkerboard pattern with black quadrilaterals at the corners. Assume that
+all black quadrilaterals except one at a corner are circumscribed. The the the last
+black quadrilateral at the corner (thirteenth quadrilateral) is also circumscribed.
+
+                   3. Checkerboard inspherical nets in R3
+There is a natural generalization of checkerboard IC-net in three (and higher)
+dimension. Let P3 be a parallelepiped in Z3 .
+Definition 3. A checkerboard IS-net is a map f : P Ñ R3 satisfying the following
+conditions:
+Discrete Differential Geometry                                                         685
+
+   (i) All points of lines parallel to coordinate axis f maps to a point on a line with
+       the same order.
+  (ii) For any integer i the points tfi,j,k |k P Zu lie on a straight line preserving the
+       order, i.e the point fi,j,k lies between fi,j,k´1 and fi,j,k`1 . The same holds
+       for points tfi,j,k |i P Zu and tfi,j,k |j P Zu. We call these lines the lines of the
+       checkerboard IS-net.
+ (iii) Image of any unit cube of P3 which all coordinate even or odd is circumscribed
+       polytope.
+       
+    By ci,j,k we denote a net-cube with smallest vertex fi,j,k (having minimal
+coordinate in each axis) and edge length c. Images of lines in Z3 parallel to
+coordinate axis we denote by ℓxi,j , where x denote the axis (it could be y or z) and
+i, j is coordinate of line in perpendicular plane.
+Theorem 5. (i) All net-cubes of IS-net are circumscribed.
+                                 
+ (ii) The net cubes ci,j,k and c`4s`2
+                                    i´2s´1,j´2s´1,k´2s´1 are perspective.
+(iii) All net-cubes are projective cubes, i.e. projective images of the standard cube.
+(iv) The lines ℓzi,j , where i ` j “ const lie on hyperboloid of one sheet. The same
+      holds for lines with i ´ j “ const and for lines with other directions.
+Theorem 6 (9 inspheres incidence theorem). Suppose combinatorial cube             in 
+R3 cut by 6 planes on 27 combinatorial cubes. Suppose the central and seven of
+the corner cells are circumscribed. Then the last corner cell is also circumscribed.
+   We mention here a claim of independent interest which we used in the proof of
+the Theorem 5.
+Theorem 7. Suppose combinatorial cube          
+                                           in Rd is cut by 2d hyperplanes on 3d
+combinatorial cubes. Suppose the central and 2d corner cells are circumscribed.
+Then the cube   is also circumscribed.
+Remark. Everything from the previous theorems, works well in case of Hyperbolic
+plane or on Sphere.
+
+
+        A discrete uniformization theorem for polyhedral surfaces
+                                 Feng Luo
+               (joint work with David Gu, Jian Sun, Tianqi Wu)
+
+The Poincare-Koebe uniformization theorem for Riemann surfaces is one of the
+pillars in the last century mathematics. It states that given any Riemannian metric
+on any connected surface, there exists a complete constant curvature Riemannian
+metric conformal to the given one. The uniformization theorem has a wide range
+of applications within and outside mathematics. For instance, the uniformization
+theorem provides a canonical way to parameterize a simply connected Riemann
+surface. This special feature has been used in computer graphics and imaging pro-
+cessing. Polyhedral surfaces are ubiquitous due to digitization. Classifying and
+categorizing them appear to be an urgent task. On the other hand, algorithmically
+686                                                             Oberwolfach Report 13/2015
+
+implementation of the classical uniformization theorem for polyhedral surfaces ap-
+pears to be difficult. For instance there is no known algorithm to decide if the
+boundaries of two tetrahedra, considered as Riemann surfaces, are related by a
+conformal map preserving vertices. There has been much work on establishing
+various discrete versions of the uniformization theorem for discrete or polyhe-
+dral surfaces. A key step in discretization is to define the concept of discrete
+conformality. The most prominent discrete uniformization theorem is probably
+Andreev-Koebe-Thurston’s circle packing theorem [10], [9]. Unfortunately not all
+polyhedral surfaces can be canonically packed by circles. The purpose of this re-
+port is to introduce a discrete conformality for polyhedral metric surfaces and to
+establish a discrete uniformization theorem within the category of polyhedral met-
+rics. Two main features of the discrete conformality are the following. First, the
+discrete conformality is algorithmic and second, there exists a finite dimensional
+(convex) variational principle to find the discrete uniformization metric.
+   A closed surface S together with a non-empty finite subset of points V Ă S
+will be called a marked surface. A triangulation T of a marked surface pS, V q is a
+topological triangulation of S so that the vertex set of T is V . We use E “ EpT q,
+V “ V pT q to denote the sets of all edges and vertices in T respectively. A
+(Euclidean) polyhedral metric on pS, V q, to be called PL metric on pS, V q for
+simplicity, is a flat cone metric on pS, V q with cone points in V . For instance
+boundaries of convex polytopes are PL metrics on pS2 , V q. The discrete curvature
+of a PL metric d is the function Kd : V Ñ p´8, 2πq sending a vertex v to 2π less
+the cone angle
+          ř     at v. For a closed surface S, it is well known that the Gauss-Bonnet
+theorem vPV Kd pvq “ 2πχpSq holds. If T is a triangulation of pS, V q with a PL
+metric d for which all edges in T are geodesic, we say T is geometric in d and d
+is a PL metric on pS, V, T q. In this case, we can represent the PL metric d by the
+length function ld : EpT q Ñ Rą0 sending an edge to its length.
+   Each polyhedral metric d on pS, V q has a natural Delaunay triangulation Td
+which is a geometric triangulation with vertices V so that for each edge, the sum
+of two opposite angles facing e is at most π.
+
+
+Definition 1. Two PL metrics d and d1 on a marked closed surface pS, V q are
+discrete conformal if there is a sequence of PL metrics d1 “ d, d2 , ..., dn “ d1 and
+a sequence of triangulations T1 , T2 , ..., Tn of pS, V q so that
+   (a) each Ti is Delaunay in di ,
+   (b) if Ti ‰ Ti`1 , then there is an isometry hi from pS, V, di q to pS, V, di`1 q so
+that hi is homotopic to the identity map on pS, V q, and
+   (c) if Ti “ Ti`1 , there is a function ui : V Ñ Rą0 so that for each edge e “ vv 1
+in Ti , the lengths ldi pvv 1 q and ldi`1 pvv 1 q of e in di and di`1 are related by
+
+
+(1)                        ldi`1 pvv 1 q “ ldi pvv 1 qui pvqui pv 1 q.
+Discrete Differential Geometry                                                         687
+
+   The main theorems we proved are:
+Theorem 1.([3]) Given any PL ř     metric d on a closed marked surface pS, V q and
+any K ˚ : V Ñ p´8, 2πq so that vPV K ˚ pvq “ 2πχpSq, there exists a PL metric
+d˚ , unique up to scaling, so that
+   (a) d˚ is discrete conformal to d, and
+   (b) the discrete curvature Kd˚ “ K ˚ .
+   Furthermore, the PL metric d˚ can be found by a finite dimensional variational
+principle.
+Theorem 2.([4]) Given two PL metrics on a closed marked surface pS, V q whose
+edge lengths are algebraic numbers, there exists an algorithm to decide if they are
+discrete conformal.
+   Theorem 2 is proved in our joint work with Ren Guo in [4]. Similar theorems
+for hyperbolic polyhedral surfaces have been established in [4].
+    Recall that two PL metrics d, d1 on pS, V q are Teichüller equivalent if there ex-
+ists an isometry h : pS, V, dq Ñ pS, V, d1 q so that h is homotopic to the identity
+on pS, V q. There are two major steps involved in the proof of theorem 1. In the
+first step, we show that for any PL metric d, the space Dcpdq of all Teichmüller
+equivalance classes of PL metrics d1 which are discrete conformal to d is C 1 diffeo-
+morphic to the Euclidean space RV . This step uses the work of Penner [6], Rivin
+[7] and Bobenko-Pinkall-Springborn [2].
+                        ř show that the discrete curvature map K : Dcpdq{Rą0 Ñ
+    In the second step, we
+p´8, 2πqV X tx P RV | v xpvq “ 2πχpSqu is a homeomorphism. The local injec-
+tivity of K is proved using a variational principle developed in [5]. A theorem of
+Akiyoshi [1] together with a degeneration analysis shows that the map K is closed.
+Therefore, by the standard continuity method, we conclude that K is a bijection
+which is equivalent to theorem 1.
+    An interesting remaining issue is whether discrete conformality approximates
+the smooth conformality. The situation is very similar to Thurston’s circle packing
+approximation to smooth conformality. Thurston’s discrete Riemann mapping
+conjecture was established by Rodin-Sullivan’s work [8].
+A discrete Riemann mapping conjecture. Suppose Ω is a Jordan domain
+in the complex plane. Take three distinct points p, q, r in the boundary of Ω. For
+each ǫ ą 0, let Ωǫ be a maximum simply connected domain in Ω which has a tri-
+angulation Aǫ by equilateral triangles of edge length ǫ. Take three vertices pǫ , qǫ , rǫ
+in the boundary of Ωǫ so that Euclidean distances dpp, pǫ q, dpq, qǫ q and dpr, rǫ q are
+less than 2ǫ. Let the metric double of pΩǫ , Aǫ q along the boundary be the polyhe-
+dral 2-sphere pS2 , Bǫ , dǫ q. Using theorem
+                                        ?      1, one produces a new polyhedral metric
+pS2 , Tǫ , d˚ǫ q so that (1) its area is 3{2, (2) d˚ǫ is discrete conformal to dǫ , (3) the
+discrete curvatures of d˚ǫ at pǫ , qǫ , rǫ are 4π{3 and (4) the discrete curvatures of
+d˚ǫ at all other vertices are zero. Then as ǫ tends to 0, pS2 , Tǫ , d˚ǫ q converges to
+the metric double of the unit equilateral triangle.
+   Numerical evidences supporting this conjecture are very strong.
+688                                                          Oberwolfach Report 13/2015
+
+                                       References
+ [1] Hirotaka Akiyoshi, Finiteness of polyhedral decompositions of cusped hyperbolic manifolds
+     obtained by the Epstein-Penner’s method. Proc. Amer. Math. Soc. 129 (2001), no. 8, 2431–
+     2439.
+ [2] Alexander Bobenko, Ulrich Pinkall, Boris Springborn, Discrete conformal maps and ideal
+     hyperbolic polyhedra. arXiv:1005.2698
+ [3] David Gu, Feng Luo, Jian Sun, Tianqi Wu, A discrete uniformization theorem for polyhedral
+     surfaces. arXiv:1309.4175
+ [4] David Gu, Ren Guo, Feng Luo, Jian Sun, Tianqi Wu, A discrete uniformization theorem
+     for polyhedral surfaces II. arXiv.org:1401.4594
+ [5] Feng Luo, Combinatorial Yamabe flow on surfaces. Commun. Contemp. Math. 6 (2004),
+     no. 5, 765–780.
+ [6] Robert C. Penner, The decorated Teichmller space of punctured surfaces. Comm. Math.
+     Phys. 113 (1987), no. 2, 299–339.
+ [7] Rivin, Igor, Euclidean structures on simplicial surfaces and hyperbolic volume. Ann. of
+     Math. (2) 139 (1994), no. 3, 553–580.
+ [8] Rodin, Burt, Sullivan, Dennis, The convergence of circle packings to the Riemann mapping.
+     J. Differential Geom. 26 (1987), no. 2, 349–360.
+ [9] Stephenson, Kenneth, Introduction to circle packing. The theory of discrete analytic func-
+     tions. Cambridge University Press, Cambridge, 2005. xii+356 pp.
+[10] W. Thurston, Geometry and topology of 3-manifolds, Princeton University, 1980.
+
+
+                   Spectral Discrete Exterior Calculus
+                                Yiying Tong
+ (joint work with Beibei Liu, Yuanzhen Wang, Gemma Mason, Julian Hodgson,
+                       Mathieu Desbrun and Kun Zhou )
+
+As a generalization of spectral analysis from regular grids in Euclidean spaces to
+curved spaces, manifold harmonics (MH) [1] has been used in a wide range of
+applications, including geometry processing and surface correspondences. Linking
+analysis of scalar fields to vector fields and differential forms, discrete exterior
+calculus (DEC) [2] has proven to be a flexible computational device for efficient
+calculation performed on simplicial meshes. We propose to combine the power of
+the two tools into an efficient and effective toolkit for spectral analysis on meshes.
+   On surfaces, we first build the basis functions of differential forms, through
+manifold harmonics of scalar fields and harmonic 1-forms. Then, the basic op-
+erators in exterior calculus reduce to simple matrices. Specifically, we start with
+the scalar Laplacian ∆0 in DEC (the cotan formula) on a triangle surface mesh
+containing a single genus-g connected component, and calculate the smallest m`1
+eigenvalues of d˚dΦi “ ´κ2i ˚Φi , where κi corresponds to the i-th smallest spatial
+frequency (wave number), and Φi is the associated eigenfunction. For instance,
+with the total surface area rescaled to 1, the 0-th frequency (κ0 “ 0) eigenfunction
+is always Φ0 “ r1 1 . . . 1sT . The bases for the low frequency differential forms can
+be assembled as
+     0-form basis:                              rΦ0 Φ1 . . . Φm s,
+                                  dΦ1       dΦm ˚dΦ1       ˚dΦm
+     1-form basis: rh1 . . . h2g κ1   . . .  κm    κ1 . . . κm s,
+     2-form basis:                       r˚Φ0 ˚ Φ1 . . . ˚ Φm s,
+Discrete Differential Geometry                                                   689
+
+where hi ’s provide a basis for the harmonic 1-forms. The Hodge star ˚hi is a linear
+combination of hi ’s, which can be calculated through the period matrix [3] when
+hi ’s are computed based on the cohomology basis. For simplicity, we assume trivial
+topology in the following discussion. The Hodge star operators ˚ for 0-forms and
+2-forms become the identity matrix ˚0 “ ˚2 “ Im`1 , and ˚1 can be expressed as
+                                      ˆ            ˙
+                                  1      0 ´Im
+                                 ˚ “                 .
+                                        Im     0
+
+By using the diagonal matrix assembled from the wave numbers, D “ diagrκ1 . . .
+κm s, we can express the exterior derivatives as
+                      ˆ                 ˙         ˆ         ˙
+                         p0 . . . 0qT D             0 0...0
+                 d0 “                      , d1
+                                                “             ,
+                         p0 . . . 0qT 0             0  D
+
+where 0 denotes a matrix of the same size as D with every entry equal to 0.
+These operators reflect the fact that differential in spectral domain is achieved by
+multiplication of frequencies.
+    In volumetric meshes, we cannot construct the bases solely from the 0-form
+bases. Instead, we extend the bases proposed in [4] by solving for eigenvalues
+of the 1-form Laplacian, ∆1 Ψi “ ´µ2i Ψi . Note that the gradients of 0-form basis
+functions dΦi {κi are eigen 1-forms since d∆ “ ∆d. Thus the lowest m0 frequencies
+for 0-forms κi ’s form a subset of the m1 frequencies for 1-forms µi ’s, with m1
+chosen as the smallest integer satisfying µm1 ě κm0 . For a typical tetrahedral
+mesh, m1 « 3m0 . Assuming trivial topology, we can reorganize the 1-form basis
+by categorizing the basis 1-forms into those of the form dΦi {κi (the m0 gradient
+fields) and the rest (the m1 ´ m0 curl fields). Thus, the bases of all differential
+forms can be expressed as
+     0-form basis:                         rΦ0 Φ1 . . . Φm0 s,
+                                       dΦm0
+     1-form basis:        r dΦ
+                             κ1
+                               1
+                                 . . .  κm  Ψ1 . . . Ψm1 ´m0 s,
+                                     0
+                               dΦ
+    2-form basis: r˚ dΦ               m0
+                         κ1 ¨ ¨ ¨ ˚ κm0 ˚Ψ1 ¨ ¨ ¨ ˚Ψm1 ´m0 s,
+                           1
+
+
+    3-form basis:                     r˚Φ0 ˚ Φ1 . . . ˚ Φm0 s.
+  With these bases, all Hodge star ˚ operators become the identity matrices. As-
+sembling the eigenvalues as D0 “ diagrκ1 . . . κm0 s and D1 “ diagrµ1 . . . µm1´m0 s,
+we can express the exterior derivatives as
+          ˆ                      ˙        ˆ           ˙        ˆ             ˙
+      0     p0 . . . 0qT D0            1     0 0           2     0...0 0...0
+    d “                            , d “                , d “                  .
+            p0 . . . 0qT     0               0 D1                 D0     0
+
+With the Hodge star and exterior derivative expressed in these simple forms, dif-
+ferential and integral can be performed efficiently for the spaces of low frequency
+differential forms. In addition, Helmholtz-Hodge decomposition becomes simple
+projections to different subsets of the coefficients in the bases. Notice that, in 3D
+or 2D case with boundaries, the boundary conditions for k-forms and n ´ k-forms
+must match to get simple operators.
+690                                                          Oberwolfach Report 13/2015
+
+                                       References
+ [1] Bruno Vallet and Bruno Lévy. Spectral geometry processing with manifold harmonics. In
+     Computer Graphics Forum, volume 27, pages 251–260. Wiley Online Library, 2008.
+ [2] M. Desbrun, E. Kanso, and Y. Tong. Discrete differential forms for computational modeling.
+     Discrete differential geometry, pages 287–324, 2008.
+ [3] Xianfeng Gu and Shing-Tung Yau. Computing conformal structure of surfaces. arXiv
+     preprint cs/0212043, 2002.
+ [4] Tyler De Witt, Christian Lessig, and Eugene Fiume. Fluid simulation using Laplacian eigen-
+     functions. ACM Trans. Graph., 31(1):10:1–10:11, February 2012.
+
+
+
+                Modelling of developables and curved folds
+                            Johannes Wallner
+       (joint work with Helmut Pottmann, Chengcheng Tang, Pengbo Bo)
+
+We have been studying the problem of interactive geometric modelling of piecewise
+C 2 surfaces which either consist of intrinsically flat (developable) pieces or are
+entirely flat. This class of surfaces corresponds to shapes which can be made from
+paper or from sheet metal, either with or without cutting along the creases. In
+order to make this problem computationally tractable we use two facts:
+   — (i) developables decompose into ruled pieces definable by a correspondence
+between space curves. This is a simplified statement of Hartmann and Nirenberg’s
+theorem on existence of generators on intrinsically flat C 2 surfaces;
+   — (ii) curves in space may be approximated, together with their derivatives,
+by polynomial splines of degree ě 2.
+   These facts are the foundation of the following simplification of the modeling
+problem. We study composite surfaces which are built from polygonal planar
+faces and from spline developables. The latter is a parametric surface of the kind
+x : r0, 1s2 Ñ R3 , xpu, vq “ p1 ´ vqapuq ` vbpuq which has zero Gaussian curvature,
+and where both a, b are polynomial spline curves contained in the same spline
+space. The individual pieces of such a composite surface join each other either
+along a spline curve or along a straight line segment.
+   The shape of such a surface is stored in the combinatorics of its decomposition
+together with control points, i.e., coefficients of the boundary curves in the spline
+basis. The control points are not arbitrary but must be chosen such that the
+composite surface obeys the following conditions:
+     (1) developability of its smooth parts;
+     (2) if required, developability (intrinsic flatness) along creases;
+     (3) if required, developability in vertices, i.e., absence of cone points;
+     (4) further side conditions imposed by the problem at hand.
+   Since spline spaces are finite-dimensional, condition (1) amounts to a finite num-
+ber of equations imposed on the control points of an individual spline developable.
+The number of equations is determined by the polynomial degree of the condition
+         9 a ´ bq “ 0 expressing vanishing Gaussian curvature. Similar considera-
+detp 9a, b,
+tions apply to conditions (2)–(4). We have thus turned the problem of modeling
+Discrete Differential Geometry                                                       691
+
+with developables into a finite number of equations. As it turns out, this system
+can be solved at interactive speeds despite being nonlinear, under-determined, and
+very likely inconsistent at the same time. This is due to the fact that by introduc-
+ing auxiliary variables like spline normal vector fields, we can make all equations
+quadratic while still retaining sparsity. Tang et al. [3] have shown how to solve
+such a system of equations via “energy-guided projection”, which is essentially a
+regularized Newton method.
+    Taking the above as a guide, we were able to implement a modeling system
+for developables. Items such as the planar unfolding of surfaces are added via
+appropriate numerical approximations (meshes). In particular we demonstrate
+the capabilities of the implementation by recreating some of the popular curved-
+folding objects of art created by David Huffman and by Erik Demaine, see e.g.
+[1].
+
+                                    References
+[1] E. Demaine, M. Demaine, D. Koschitz. Reconstructing David Huffman’s legacy in curved-
+    crease folding. In Origami5 . A.K. Peters 2011, pp. 39–52.
+[2] C. Tang, P. Bo, J. Wallner, H. Pottmann, Interactive design of developable surfaces,
+    preprint.
+[3] C. Tang, X. Sun, A. Gomes, J. Wallner, and H. Pottmann, Form-finding with polyhedral
+    meshes made simple. ACM Trans. Graphics 33/4 (2014), #70,1–9.
+
+
+
+                         Seamless Surface Mappings
+                                Yaron Lipman
+                 (joint work with Noam Aigerman, Roi Poranne)
+
+We introduce a method for computing seamless homeomorphic piecewise-linear
+(PL) mapping between two surface-meshes that interpolates a given set of point
+correspondences.
+   A common approach for computing a map between surfaces is to cut the surfaces
+to disks, flatten them to the plane, and extract the mapping from the flattenings
+by composing one flattening with the inverse of the other. So far, a significant
+drawback in this class of techniques is that the choice of cuts introduces a bias in
+the computation of the map that often causes visible artifacts and wrong corre-
+spondences.
+   In this work we develop a homeomorphic surface mapping technique that is
+indifferent to the particular cut choice. This is achieved by a novel type of PL
+surface flattening, named G-flattening that encodes this cut-invariance. Here, G
+denotes a sub-group of affine transformations in the plane. The key idea is to use
+an energy functional E that is invariant to compositions with transformations in
+G. This implies that the energy landscape of E does not change when the cuts
+are deformed homotopically on the surface. In turn, this implies that any map
+produced from G-flattenings is ”blind” to the cut locations on the surfaces, up to
+a choice of homotopy class.
+692                                                     Oberwolfach Report 13/2015
+
+   We present an algorithm based on these observations and demonstrate it is able
+to produce high-quality seamless homeomorphic mappings of pairs of surfaces ex-
+hibiting a wide range of shape variability, while using a small number of prescribed
+point correspondences. We also use this framework to produce three-way, consis-
+tent and seamless mappings for triplets of surfaces.
+
+
+
+      Polyhedra inscribed in a quadric and anti-de Sitter geometry
+                         Jean-Marc Schlenker
+             (joint work with Jeffrey Danciger and Sara Maloni)
+
+According to a celebrated result of Steinitz (see e.g. [13, Chapter 4]), a graph Γ
+is the 1–skeleton of a convex polyhedron in R3 if and only if Γ is planar and 3–
+connected. Steinitz [12] also discovered, however, that there exists a 3–connected
+planar graph which is not realized as the 1–skeleton of any polyhedron inscribed
+in the unit sphere S, answering a question asked by Steiner [11] in 1832. An un-
+derstanding of which polyhedral types can or can not be inscribed in the sphere
+remained elusive until Hodgson, Rivin, and Smith [7] gave a computable but non-
+explict characterization in 1992, see below. Our first result is on realizability by
+polyhedra inscribed in other quadric surfaces in R3 . Up to projective transforma-
+tions, there are two such surfaces: the hyperboloid H, defined by x21 ` x22 ´ x23 “ 1,
+and the cylinder C, defined by x21 ` x22 “ 1 (with x3 free).
+
+Definition. A convex polyhedron P is inscribed in the hyperboloid H (resp. in the
+cylinder C) if P X H (resp. P X C) is exactly the set of vertices of P .
+
+Theorem A [3]. Let Γ be a planar graph. Then the following conditions are equiv-
+alent:
+  (C): Γ is the 1–skeleton of some convex polyhedron inscribed in the cylinder.
+  (H): Γ is the 1–skeleton of some convex polyhedron inscribed in the hyperboloid.
+  (S): Γ is the 1–skeleton of some convex polyhedron inscribed in the sphere and
+       Γ admits a Hamiltonian cycle.
+
+
+   The ball x21 `x22 `x23 ă 1 gives the projective model for hyperbolic space H3 , with
+the sphere S describing the ideal boundary B8 H3 . In this model, projective lines
+and planes intersecting the ball correspond to totally geodesic lines and planes in
+H3 . Therefore a convex polyhedron inscribed in the sphere is naturally associated
+to a convex ideal polyhedron in the hyperbolic space H3 .
+   Following the pioneering work of Andreev [1, 2], Rivin [8] gave a parameteriza-
+tion of the deformation space of such ideal polyhedra in terms of dihedral angles,
+as follows.
+Discrete Differential Geometry                                                   693
+
+Theorem B (Andreev ’70, Rivin ’92). The possible exterior dihedral angles of ideal
+hyperbolic polyhedra are the functions w : EpΓq Ñ p0, πq such that
+     ‚ for each vertex v, the sum of the values of w on the edges adjacent to v is
+       equal to 2π,                                       ř
+     ‚ for each other closed path c in the dual graph Γ˚ , ePc wpeq ą 2π.
+Each such function gives the angles of a unique ideal polyhedron in H3 .
+
+   As a corollary, Hodgson, Rivin and Smith [7] showed that deciding whether a
+planar graph Γ may be realized as the 1–skeleton of a polyhedron inscribed in
+the sphere amounts to solving a linear programming problem on Γ. To prove
+Theorem A, we show that, given a Hamiltonian cycle in Γ, there is a similar linear
+programming problem whose solutions determine polyhedra inscribed in either the
+cylinder or the hyperboloid.
+   The solid hyperboloid x21 ` x22 ´ x23 ă 1 in R3 gives a picture of the projective
+model for anti-de Sitter (AdS) geometry. Therefore a convex polyhedron inscribed
+in the hyperboloid is naturally associated to a convex ideal polyhedron in the anti-
+de Sitter space AdS3 , which is a Lorentzian analogue of hyperbolic space. Similarly,
+the solid cylinder x21 ` x22 ă 1 (with x3 free) in an affine chart R3 of RP3 gives
+the projective model for half-pipe (HP) geometry. Therefore a convex polyhedron
+inscribed in the cylinder is naturally associated to a convex ideal polyhedron in
+the half-pipe space HP3 . Half-pipe geometry, introduced by Danciger [4, 5, 6], is a
+transitional geometry which, in a natural sense, is a limit of both hyperbolic and
+anti-de Sitter geometry.
+
+
+
+
+        Figure 1. A polyhedron inscribed in the hyperboloid (left) and
+        a combinatorial equivalent polyhedron inscribed in the cylinder
+        (right). The 1–skeleton of any such polyhedron admits a Hamil-
+        tonian cycle which we call the equator (red/bold).
+694                                                           Oberwolfach Report 13/2015
+
+Theorem C [3]. The possible exterior dihedral angles of ideal AdS polyhedra are the
+functions w : EpΓq Ñ R‰0 such that
+      ‚ w ă 0 on a Hamiltonian cycle γ, w ą 0 elsewhere,
+      ‚ for each vertex v, the sum of the values of w on the edges adjacent to v is
+         equal to 0,
+      ‚ for each “other” closed path c in Γ˚ , crossing γ exactly twice, the sum of
+         the values of w on the edges of c is strictly positive.
+Each such function gives the dihedral angles of a unique ideal polyhedron in AdS3 .
+   The equivalence between conditions (H) and (S) in Theorem A follows from a
+direct argument comparing the conditions occuring in Theorem A and in Theorem
+C. For condition (C), one has to use instead of Theorem C its analog n half-pipe
+geometry.
+   Related results determine the possible induced metrics on ideal polyhedra. In
+the hyperbolic setting the following result is known.
+Theorem D (Rivin ’93). Let h be a hyperbolic metric of finite area on S 2 with at
+least 3 cusps. There exists a unique ideal polyhedron H3 with induced metric h on
+its boundary.
+  We have a similar result in the anti-de Sitter setting.
+Theorem E [3]. Let h be a hyperbolic metric of finite area on S 2 with at least 3
+cusps, and let γ be a Hamiltonian cycle through the cusps. There exists a unique
+ideal polyhedron in AdS3 with induced metric h on its boundary and and equator
+γ.
+   In spite of the close analogy between the hyperbolic and AdS statements, the
+proofs in the AdS case must be done along very different lines. The reason is that
+the hyperbolic proofs are largely based on the concavity of the volume of ideal
+hyperbolic polyhedra (in particular ideal simplices), while this property doesn’t
+hold for ideal AdS polyhedra. Other arguments must therefore be developed.
+   There are a number of open questions stemming from those results on ideal AdS
+polyhedra. For instance, do the description of their dihedral angles and induced
+metrics extend to hyperideal AdS polyhedra, that is, polyhedra with all vertices
+outside AdS3 but all edges intersecting it? This basically happens in the hyperbolic
+setting [9, 10].
+
+                                       References
+[1] E. M. Andreev, Convex polyhedra in Lobačevskiı̆ spaces, Mat. Sb. (N.S.) 81 (123) (1970),
+    445–478. MR 0259734 (41 #4367)
+[2]         , Convex polyhedra of finite volume in Lobačevskiı̆ space, Mat. Sb. (N.S.) 83 (125)
+    (1970), 256–260. MR 0273510 (42 #8388)
+[3] J. Danciger, S. Maloni, and J.-M. Schlenker, Polyhedra inscribed in a quadric, ArXiv e-prints
+    (2014).
+[4] Jeffrey Danciger, Geometric transitions: From hyperbolic to AdS geometry., Ph.D. thesis,
+    Stanford University, June 2011.
+Discrete Differential Geometry                                                                695
+
+ [5]        , A geometric transition from hyperbolic to anti-de Sitter geometry, Geom. Topol.
+     17 (2013), no. 5, 3077–3134. MR 3190306
+ [6]        , Ideal triangulations and geometric transitions, J. Topol., to appear (2014).
+ [7] Craig D. Hodgson, Igor Rivin, and Warren D. Smith, A characterization of convex hyperbolic
+     polyhedra and of convex polyhedra inscribed in the sphere, Bull. Amer. Math. Soc. (N.S.)
+     27 (1992), no. 2, 246–251. MR 1149872 (93a:52009)
+ [8] Igor Rivin, A characterization of ideal polyhedra in hyperbolic 3-space, Ann. of Math. (2)
+     143 (1996), no. 1, 51–70. MR 1370757 (96i:52008)
+ [9] Jean-Marc Schlenker, Métriques sur les polyèdres hyperboliques convexes, J. Differential
+     Geom. 48 (1998), no. 2, 323–405. MR 1630178 (2000a:52018)
+[10]        , Convex polyhedra in Lorentzian space-forms, Asian J. Math. 5 (2001), no. 2, 327–
+     363. MR 1868937 (2003f:53127)
+[11] Jakob Steiner, Systematische entwickelung der abhängigkeit geometrischer gestalten von
+     einander, G. Fincke, 1832.
+[12] Ernst Steinitz, Über isoperimetrische probleme bei konvexen polyedern, Journal für die reine
+     und angewandte Mathematik 159 (1928), 133–143.
+[13] Günter M. Ziegler, Lectures on polytopes, Graduate Texts in Mathematics, vol. 152,
+     Springer-Verlag, New York, 1995. MR 1311028 (96a:52011)
+
+
+
+                                Stripe patterns
+                               Ulrich Pinkall
+          (joint work with Keenan Crane, Felix Knöppel, Peter Schröder)
+
+This talk reports on recent results in [2] and how they are related to an earlier
+algorithm [1] concerning the approximation of velocity fields in space by fields that
+are generated by a collection of vortex filaments.
+   Many natural phenomena (animal skin, sand ripples...) exhibit stripe patterns
+on surfaces. We give an algorithm that generates such a pattern on a surface M
+based on the following data:
+    (1) An unoriented direction field defined away from finitely many points p1 , . . . ,
+         pn P M where the field fails to be orientable (i.e. to be representable by a
+         continuous unit vector field in some neighborhood).
+    (2) A function ρ : M Ñ R` that specifies the desired spacing of the stripes.
+   In the end the stripe pattern will be obtained in the form of a function α :
+M̃ ´ tq1 , . . . , qn u where M̃ is the double cover of M branched over p1 , . . . , pn .
+Here q1 , . . . , qn P M̃ are points (which include the branch points) where α might
+be discontinuous. So this is there we will find singularities of the stripe pattern.
+   Specifically, we find α in the form
+                                           α “ arg ψ
+where ψ : M̃ Ñ C minimizes the energy
+                                   ż
+                          Epψq :“     |dψ ´ iωψ|2
+                                              M̃
+                          ş      2
+under the constraint M |ψ| “ 1. Here ω is the 1-form on M that encodes the
+prescribed direction and spacing.
+696                                                         Oberwolfach Report 13/2015
+
+
+
+
+ Figure 1. Stripe patterns in nature often exhibit nonorientable singularities.
+
+
+   The question in which sense the resulting stripe pattern realizes the prescribed
+data as closely as possible leads to non-trivial open problems concerning the sta-
+tistical properties of the zeros of random sections of complex line bundles over
+surfaces.
+
+                                       References
+ [1] S. Weißmann and U. Pinkall and P. Schröder, Smoke rings from smoke, ACM Transactions
+     on Graphics 33 (2014), 140:1–140:8.
+ [2] K. Crane and F. Knöppel and U. Pinkall and P. Schröder, Stripe patterns on surfaces, to
+     appear in ACM Transactions on Graphics (Siggraph 2015).
+
+
+
+       Fast and Exact (Poisson) Solvers on Surfaces of Revolution
+                           Michael Kazhdan
+
+We consider the problem of solving Poisson-like systems on surfaces of revolution.
+On the one hand, these geometries contain sufficient regularity to enable the design
+of an efficient exact solver. On the other, they include surfaces with varying
+curvature – so an efficient solver makes it possible to interactively explore how the
+surface metric interacts with the Laplace-Beltrami operator.
+   The key to our approach derives from the observation that isometry invariant
+operator must commute with the symmetry group of the geometry, and hence the
+linear operator becomes block-diagonal in the irreducible representations of the
+group, with (at least) one block associated with each class of irreducible represen-
+tations. Thus, rather than having to solve one large linear system of equations,
+we obtain the solution to the linear system by solving multiple smaller ones.
+Discrete Differential Geometry                                                 697
+
+
+
+
+        Figure 2. A stripe pattern with constant prescribed spacing.
+        Note the additional singularities that are generated by the algo-
+        rithm.
+
+
+   In the particular case of a surface of revolution, sampled on an N ˆ N grid,
+this implies that when the linear operator commutes with the cyclic group we can
+solve the N 2 ˆ N 2 system by solving N different sub-systems, each of size N ˆ N .
+Furthermore, we show that if the linear operator also commutes with the dihedral
+group, then the same approach extends to surfaces with boundary, obtained by
+sweeping the generating curve by an angle ă 360˝ about the axis of revolution.
+   This generalizes the approach proposed by Hockney [Hoc65] for solving the
+discrete Poisson equation in the plane to the solution of general linear systems on
+surfaces of revolution that commute with rotation about the axis of revolution. It
+also extends earlier methods for block-circulant systems [Dav79, BB06] to more
+general groups.
+
+Representation Theoretic Perspective. We begin by recalling a basic theo-
+rem from representation theory ([Ser77, FH91]).
+698                                                        Oberwolfach Report 13/2015
+
+Theorem (Canonical Decomposition). Given a representation ρ of a finite/com-
+pact group G onto a vector space V , the vector space can be decomposed as the
+direct sum of irreducible representations, with multiplicity:
+                         à ω                              m
+                                                          à ω
+
+                    V “      V            with    Vω “        Vkω
+                           ωPΩ                                k“1
+
+where Vkω are irreducible representations, mω are the multiplicitices, and Vkω « Vk̃ω̃
+iff. ω “ ω̃.
+  Using the uniqueness of the decomposition, it follows (by Schur’s Lemma and
+Maschke’s Theorem) that:
+Lemma 1. Given a representation pρ, V q of a group G, if L is a G-linear map
+then LpV ω q Ă V ω for all ω.
+Corollary 1. If L is G-linear and tv1ω , . . . , vdωω u is a basis for V ω , then L is block
+diagonal in the basis tv1ω , . . . , vdωω uωPΩ . In particular, solving the system Lx “ b
+can be done by ř         |Ω| systems each of size dω ˆdω , rather than solving a single
+                 solving ř
+system of size dω ˆ dω .
+                                                                                  Àm
+    Without loss of generality, we will assume that V “ V ω and write V “ k“1 Vk
+where the Vi « Vj . We set n to the dimension of Vk and we set ιk : V1 Ñ Vk to
+the isomorphism between the irreducible representations.
+Definition We say that a basis tvjk upj,kqPr1,msˆr1,ns with vjk P Vk is consistent if
+vjk “ ιk pvjk q.
+    It is not hard to show that as G becomes more complicated (and irreducible
+representations are no longer one-dimensional) there is further opportunity to take
+advantage of symmetry in designing an efficient solver:
+Lemma 2. If V is a complex vector space and L : V Ñ V is G-linear, then the
+matrix representation of L in a consistent basis consists of m ˆ m blocks where
+each block is a multiple of the identity.
+Corollary 2. If we choose a consistent basis, then each dimpV ω q ˆ dimpV ω q block
+of the matrix representation of L further decomposes into a block diagonal matrix
+with dimpV1ω q identical blocks, each of size mω ˆ mω .
+Implications for Surfaces of Revolution (Sampled on an N ˆ N Grid).
+The above discussion has immediate implications for solving linear systems over
+surfaces of revolution.
+Rotations: Taking G “ CN to be the cyclic group, we obtain a decomposition of
+the space of functions on the surface of revolution F with respect to the irreducible
+representations of G:
+                                          N
+                                          à {2
+                                  F“            FCω
+                                     ω“´N {2
+       ω
+where FC is the space of functions which, restricted to any parallel of the surface
+of revolution, are complex exponentials of frequency ω.
+Discrete Differential Geometry                                                    699
+
+  By Corollary 1 it follows that if L isřG-linear, there exist linear operators
+tLω : FCω Ñ FCω u|ω|ďN {2 such that if f “ ω f ω , with f ω P FCω then:
+
+                                               N
+                                               ÿ {2
+                                Lpf q “                 Lω pf ω q.
+                                          ω“´N {2
+
+Rotations + Reflections: Taking G “ D2N to be the dihedral group, we obtain a
+decomposition of the space of functions on the surface of revolution F with respect
+to the irreducible representations of G:
+                         N
+                         à {2
+                                 ω                       ω    ω`    ω´
+                   F“           FD       with           FD “ FD  ‘ FD
+                        ω“0
+
+         ω`                   ω´
+where FD     (respectively FD    ) is the space of functions which, restricted to any
+parallel of the surface of revolution, are multiples of the cosine (respectively sine)
+functions of frequency ω.
+    By Corollary 2 it follows that if L is G-linear,
+                                                 ř       there exist linear operators
+        ω˘       ω˘                                                  ω`
+tLω : FD    Ñ FD    u0ďωďN {2 such that if f “ ω f ω , with f ω P FD     (respectively
+  ω    ω´
+f P FD ) then:
+                                               N
+                                               ÿ {2
+                                     Lpf q “          Lω pf ω q.
+                                               ω“0
+
+Surfaces of Revolution with Boundaries. We can extend the results for surfaces of
+revolution to surfaces of revolution with boundary, obtained by rotating a gen-
+erating curve by angle ă 360˝ , despite the fact that there is no group action.
+Specifically, taking a double-covering of the surface with boundary, where we at-
+tach a second copy of the domain at the angular boundaries, we obtain a surface
+of revolution on which we have an action of D4N .
+   Decomposing the space of functions on the double-covering into even/odd func-
+tions (functions which have the same/negative values on the two pre-images of a
+point), we can associate these with the spaces of functions on the initial surface
+with boundary satisfying Neumann/Dirichlet constraints. Thus, if L is a linear
+operator on the double-covering that commutes with the action of D4N , it fol-
+lows that it will map the even/odd subspaces back into themselves, giving a block
+diagonalization of the corresponding linear operator on the surface with boundary.
+
+Applications. Incorporating our solver in systems performing wave simulation
+using implicit time integration, we are able to process signals on high-resolution
+surfaces of revolution (with boundary) at interactive rates. For example, sampling
+such a surface at resolution N ˆ N “ 1024 ˆ 1024, we can solve the system of
+equations with roughly one million unknowns at a rate of 20 frames-per-second,
+significantly outperforming both the running time and memory usage of standard
+solvers [CDHR08].
+700                                                        Oberwolfach Report 13/2015
+
+                                      References
+[BB06]   Bindel D., Bruyns C.: Shape-changing symmetric objects for sound synthesis. In
+         Audio Engineering Society 121 (2006), pp. 875–881.
+[CDHR08] Chen Y., Davis T., Hager W., Rajamanickam S.: Algorithm 887: Cholmod, su-
+         pernodal sparse Cholesky factorization and update/downdate. ACM Transactions on
+         Mathematical Software 35, 3 (2008), 22:1–22:14.
+[Dav79]  Davis P.: Circulant matrices. Pure and applied mathematics. Wiley, 1979.
+[FH91]   Fulton W., Harris J.: Representation Theory: A First Course. Springer-Verlag,
+         New York, 1991.
+[Hoc65]  Hockney R.: A fast direct solution of Poisson’s equation using Fourier analysis.
+         Journal of the ACM 12, 1 (1965), 95–113.
+[Ser77]  Serre J.: Linear representations of finite groups. Springer-Verlag, New York, 1977.
+
+
+
+         Approximating Curved Surfaces with Miura-Ori Origami
+                             Etienne Vouga
+                 (joint work with L. Dudte, L. Mahadevan)
+
+Because of their simplicity and geometric properties, origami tessellations – par-
+ticularly those generated by folding along creases that tile the plane periodically,
+such as the Miuri-ori pattern formed by tiling the plane with a unit cell of four
+congruent parallelograms – are highly suitable for engineering deployable or fold-
+able structures. The Miura pattern in particular has four important geometric
+properties, in addition to its high degree of symmetry: (a) it can be rigidly folded
+isotopically from its flat, planar state to a folded state; (b) has only one isometric
+degree of freedom, with the shape of the entire structure determined by the folding
+angle of any single crease; (c) exhibits negative Poisson’s ratio: folding the Miura
+decreases its extent in both planar directions; and (d) is flat-foldable: when the
+Miura has been maximally folded along its one degree of freedom, all faces of the
+pattern are coplanar.
+    Given an arbitrary surface with intrinsic curvature, does there exist a Miura-
+like tessellation of the plane that, when folded, approximates that surface? Can
+this pattern be made rigidly foldable with one degree of freedom? Building on
+the existing mathematics of rigid foldability, the mechanics of folded structures,
+and existing exploration of the forward problem of how modifying the pattern
+modifies the folded geometry [1, 2], we demonstrate that the inverse problem of
+fitting Miura-like origami tessellations to surface with intrinsic curvature can be
+solved for a large variety of such surfaces.
+    The simplest case is that of generalized cylinders – developable surfaces formed
+by extruding a planar curve along the perpendicular axis. For such surfaces an
+explicit construction exists for how to approximate them using a modified Miura
+tessellation, and moreover, it can be shown that the constructed pattern is rigid-
+foldable. For doubly-curved surfaces, Miura patterns can be found computation-
+ally to fit the surface; our experiments with this tool reveal that the space of
+possible Miura designs is extremely rich, with most surfaces admitting many dif-
+ferent Miura approximations. While the Miura tessellations found using our tools
+Discrete Differential Geometry                                                    701
+
+
+
+
+        Figure 1. A Miura pattern approximating a generalized cylin-
+        der: the planar fold pattern (left) folds isotopically with one de-
+        gree of freedom to the target shape (middle-right) and, since the
+        pattern is flat-foldable, to a flat fully-folded configuration (right).
+
+
+
+
+        Figure 2. Some example generalized Miura patterns, generated
+        using numerical optimization, approximating curved surfaces.
+
+are not necessarily flat-foldable, with suitable modification of the optimization
+process, the strain needed to fold the pattern can be reduced.
+
+                            Geometry of the Miura
+It is clear that the space of shapes that can be approximated by perfectly peri-
+odic tilings of the plane is very limited. We therefore study Miura-like general-
+ized origami tessellations, whose unit cells are not necessarily congruent but vary
+smoothly in shape across the tessellation. An embedding of such a pattern in
+space can be represented as a quadrilateral mesh: a set of vertices; edges connect-
+ing the vertices and representing the pattern creases; and faces, with exactly four
+faces meeting at each interior vertex. A quadrilateral mesh of regular valence four
+must satisfy two additional constraints to be an embedding of a generalized Miura
+702                                                     Oberwolfach Report 13/2015
+
+tessellation: each face must be planar, and the neighborhood of each vertex must
+be developable, i.e. the interior angles around that vertex must sum to 2π.
+   A generalized Miura tessellation is guaranteed to possess some, but not all, of
+the four geometric properties of the regular Miura pattern. A unit cell in gen-
+eral position has only one degree of freedom, and this local property guarantees
+that the Miura pattern, if it is rigid-foldable at all, must have only one degree of
+freedom. Moreover, since each unit cell must consist of three valley and one moun-
+tain crease, or vice-verse, it must fold with negative Poison’s ratio. That leaves
+flat- and rigid-foldability. Unfortunately, no local condition is known for whether
+an origami pattern is flat-foldable, and it has been shown [3] that the problem
+of determining flat-foldability is NP-complete. However, several necessary flat-
+foldability conditions do exist, including Kawasaki’s Theorem that if a generalized
+Miura tessellation is flat-foldable, each pair of opposite interior angles around each
+vertex must sum to π. In practice, enforcing Kawasaki’s theorem does improve
+the degree to which a generalized Miura tessellation is flat-foldable. Finally, a
+non-trivial flat-foldable generalized Miura is always rigid-foldable [1], and in the
+case where a flat-foldable configuration cannot be found, one can characterize the
+degree of non-rigid-foldability by measuring the maximum strain required to snap
+the tessellation through from its flat to its embedded state.
+
+                          Curvilinear Miura Patterns
+For arbitrary curved surfaces, fitting a generalized Miura pattern is a difficult
+nonlinear optimization problem, with convergence far from guaranteed absent a
+good initial guess for how the pattern should be laid out. An alternative to brute-
+force optimization is suggested by the following observations: 1) the edges of the
+generalized Miura fold pattern can be grouped into eight equivalence classes, corre-
+sponding to the eight fold lines that make up a unit cell. Edges in each equivalence
+class vary smoothly over the surface, suggestive of a discrete vector field on the
+surface; 2) generalized Miura patterns come in scale-invariant families, with corre-
+sponding edges in two members of the family nearly parallel and uniformly scaled.
+A Miura pattern approximating a surface M can thus be specified on the surface
+M by eight vector fields ui , a scalar thickness field η, and a length scale ǫ. From a
+starting point p P M , the first vertex of the Miura pattern is at p ` ηǫn̂ppq, where
+n̂ is the surface normal. To get the second point, flow along u0 for time ǫ to get a
+new “base point” p0 P M , then place a vertex at p0 ´ ηǫn̂pp0 q. By continuing in
+this way, alternating which vector field is used for the flow, and choosing the sign
+of the normal displacement appropriately, the entire pattern can be constructed.
+The pattern is valid if all faces are planar, and if all vertices have zero angle
+deficit; analyzing these constraints for finite ǫ is intractable, but in the limit of an
+infintesimal Miura pattern, when ǫ Ñ 0, satisfying the constraints to first-order
+in ǫ can be expressed in terms of ui , η, and the surface metric and curvatures.
+In the special case of ruled surfaces, the faces of the generalized Miura pattern
+can be made parallelograms, greatly simplifying these equations and allowing a
+direct construction where the vector fields ui follow ruling and curvature lines;
+Discrete Differential Geometry                                                            703
+
+the general case for positively-curved surfaces remains open, though naive degree-
+counting and numerical evidence using optimization tools suggest such patterns
+should exist.
+
+                                       References
+ [1] T. Tachi, Generalization of Rigid Foldable Quadrilateral Mesh Origami, Proceedings of the
+     International Association for Shell and Spatial Structures (2009).
+ [2] M. Gattas and Z. You, Miura-Base Rigid Origami: Parametrizations of Curved-Crease
+     Geometries, J. Mech. Des. 136 (2014).
+ [3] M. W. Bern and B. Hayes, The Complexity of Flat Origami, Proceedings of the Seventh
+     Annual ACM-SIAM Symposium on Discrete Algorithms (1996), 175–183.
+
+
+
+
+                                   Strict minimizers
+                                      Denis Zorin
+                              (joint work with Zohar Levi)
+
+A variety of problems in geometry processing are solved by minimizing a global
+measure of distortion over a surface or volume. For example, computing the defor-
+mation of an object to a new pose can be achieved by setting a few target locations
+to new positions and minimizing a measure of isometric distortion; parameterizing
+a surface, or computing surface-to-surface map via an intermediate domain may
+be done by computing a pair of maps minimizing deviation from conformality.
+   In most cases, the global functional is obtained by making two choices: (1)
+a local, pointwise measure of distortion (for example, deviation from isometry or
+quasiconformal distortion); (2) a way to aggregate pointwise distortion into a single
+scalar measuring global distortion.
+   The second choice determines how distortion is distributed on the surface. L2 -
+norm of the distortion, viewed as a function on the surface emphasizes the decrease
+in average distortion, but allows arbitrarily high local distortion. On the opposite
+end of the spectrum, L8 -norm ensures the tightest possible control on the worst-
+case distortion. Unfortunately, it does not, in general, yield a unique solution.
+Moreover, below the maximal distortion, it does not distinguish between solutions
+with just one or all elements (triangles or tets) with high distortion. We describe a
+different approach of controlling distortion distribution. We use the notion of strict
+minimizers that appeared in a variety of contexts, in particluar in economics as
+one of possible models of fairness; these minimizers do not correspond to a globally
+defined energy. Rather, they are minimal with respect to an ordering of pointwise
+distortion distributions on a surface. Computing strict minimizers using a precise
+algorithm that follows the definition can be impractically expensive. We introduce
+two approximate algorithms representing different accuracy-performance tradeoffs.
+   The algorithms are applicable to a number of applications, such as deformation,
+surface-to-surface mapping, and shape interpolation.
+   This work is described in [1].
+704                                                         Oberwolfach Report 13/2015
+
+                                         References
+ [1] Z. Levi, D. Zorin, Strict minimizers for geometry optimization, ACM Transactions on Com-
+     puter Graphics 33, 6 (2014), 185
+
+
+                                    Nested Cages
+                                   Alec Jacobson
+                   (joint work with Leonardo Sacht, Etienne Vouga)
+
+Many tasks in geometry processing and physical simulation benefit from multires-
+olution hierarchies: efficient PDE solving, collision detection culling, physically
+based simulation, and cage-based geometric modeling. As a motivating example,
+consider solving a Poisson equation Ax “ b via finite-element method inside a
+non-convex subregion Ω P R3 approximated by 7M-tetrahedra mesh. In-core di-
+rect solvers are out of the question when memory is limited. Multiresolution solves
+this problem efficiently with the following recursive algorithm1 operating over a
+sequence of progressively coarser mesh approximations of the domain:
+    (1) Relax initial guess x according to A,
+    (2) Compute residual r “ Ax ´ b,
+    (3) Restrict residual from fine mesh to coarser mesh rc “ PT r,
+    (4) Solve Ac uc “ rc for “update” on coarser mesh,
+    (5) Prolongate “update” and add to running guess x Ð x ` Puc ,
+    (6) Relax x according to A,
+where Relax typically means applying a few Jacobi or Gauss-Seidel iterations,
+Restrict approximates a function defined on fine mesh vertices by one on coarse
+mesh vertices, Solve applies these six steps recursively, and Prolongate takes a
+function back up to the fine mesh. If the fine-mesh vertices lie strictly inside the
+coarse mesh, then the P is simple linear interpolation. To ensure that equations
+on coarser levels faithfully approximate lower frequencies of the original problem,
+meshes should have the same topology and similar geometry.
+   Existing techniques such as surface mesh decimation, voxelization, or contour-
+ing distance level sets, violate one or more of three characterstics: strict nesting,
+homeomorphic topology and geometric closeness. Instead, our methods succes-
+sively constructs each next-coarsest level of the hierarchy, using a sequence of
+decimation, flow, and contact-aware optimization steps. From coarse to fine, each
+layer then fully encages the next while retaining a snug fit and respecting the
+original surface topology.
+   The input to our method is a sequence of decimations of the original mesh which
+match its topology, but, in general, overlap. The output is a new embedding for
+each mesh (i.e. new vertex positions) such that each tightly contains all finer
+meshes. Our approach works pairwise, from the finest layer to coarsest. Each
+inductively contains all finer layers.
+   1Known as “rediscretization multiresolution” as opposed to “Galerkin multiresolution” which
+is intractable on unstructured hierarchies in R3 .
+Discrete Differential Geometry                                                   705
+
+   The pairwise problem is broken down into two stages: flow the fine mesh inside
+the coarse mesh and then re-inflate the fine mesh to its original position while
+pushing the coarse mesh outward.
+   Flow To attract the fine mesh F inside the coarse mesh C  p we flow it opposite
+the gradient of an energy integrating signed distance to the coarse mesh. In the
+continuous setting we write this as:
+                           ż
+                                               Bs
+                                                f
+(1)                Φp s
+                     Fq “ sps  pqdps pq dA, ÝÑ    “ ´∇fs Φp s
+                                                           Fq,
+                                               Bt
+                           F
+
+where ps is a point on the fine mesh, s and d compute the sign (1 outside, -1 inside)
+and distance to the coarse mesh.
+   This flow is non-trivial to discretize. We first approximate the integral with
+higher-order quadrature points sampled inside fine mesh facets. Then we employ
+a technique common to surface registration. During each small step of the flow,
+for each point p                                             p therefore linearizing
+                s we freeze its associated closest point on C,
+its signed distance gradient direction. We continue along this flow until the fine
+mesh is full inside the coarse mesh. In contrast to normal flows, this flow guides
+the fine mesh toward the medial axis of the coarse mesh.
+   Re-inflation Next we reverse the flow, marching the fine mesh back along its
+path, but now we resolve collisions with the coarse mesh à la physically based sim-
+ulation. There are many feasible embeddings for the coarse mesh so we regularize,
+treating the problem as a constrained optimization:
+(2)          min E pCq subject to: C does not intersect itself or Fs .
+               C
+
+In physics parlance, we find a static solution for each reverse time step as Fs moves
+like an infinite mass obstacle toward its original position and pushes the deformable
+C outward.
+   We leverage state-of-the-art physically-based simulation contact mechanics
+methods to satisfy these constraints. There are a variety of reasonable choices
+for E: total volume, total displacement, surface deformation, volumetric deforma-
+tion.
+   This pairwise method operates iteratively to create sequences of strictly nested,
+yet tightly fitting cages. We demonstrate the effectiveness of these cages for: im-
+proving convergence of geometric multiresolution (especially for Neumann bound-
+ary conditions), improving collision culling (especially for very non-convex shapes),
+and enabling cage construction for simulation and cage-based deformation where
+detailed shapes are embedded inside a deforming coarse cage.
+   Our heuristic is only a first step toward solving a very difficult problem. It is
+easy to find impossible cases (where no embedding of the coarse mesh will strictly
+nest a given fine mesh), but a general test of feasibility is elusive, much less an
+algorithm with strong guarantees of success. We excitedly look forward to im-
+proving upon our method by considering optimizing all layers simultaneously. We
+would also like to analyze our multiresolution solver and determine whether there
+706                                                         Oberwolfach Report 13/2015
+
+exists a concept of “nested enough.” Finally, we would like to apply our multireso-
+lution hierarchies to more complicated, harder problems: quadratic programs and
+second-order conic programs.
+
+                                      References
+[1] T. Chan, S. Go, J. Zou, Boundary treatments for multilevel methods on unstructured meshes,
+    SIAM Journal on Scientific Computing (1999).
+
+
+
+                 On the Blaschke-Bol problem in the plane
+                              Fedor Nilov
+
+We find several essentially new constructions of hexagonal 3-webs based on a com-
+bination of quadratic and linear families of circles. They are used to construct 5
+new types of hexagonal 3-webs, which is an advance in the solution of the Blaschke-
+Bol problem (1938) on the classification of such webs. Unlike many known exam-
+ples, in our proofs we give an explicit parallelizing diffeomorphism. We give a
+brief survey of all known examples of hexagonal 3-webs and their properties. In
+conclusion, we formulate several conjectures and open problems.
+
+
+                             The circumcenter of mass
+                               Serge Tabachnikov
+
+This talk is a survey of the recent work on an interesting geometrical construction,
+the circumcenter of mass [8, 3].
+   Consider a plane polygon P . Triangulate it, and assign the circumcenter to
+each triangle of the triangulation. Take these points with the weights equal to the
+(signed) areas of the respective triangles, and consider the center of mass of this
+system of point-masses. This center of mass does not depend on the triangulation;
+this is the circumcenter of mass of P , denoted by CCM pP q.
+   This construction resembles that of the center of mass, CM pP q, of a polygonal
+lamina P . That the result does not depend on the triangulation, follows from
+the Archimedes Lemma: if an object is divided into two smaller objects, then the
+center of mass of the compound is the weighted sum of the centers of mass of the
+two smaller objects. The same applies to CCM pP q.
+   This construction is not new. In [5], it is attributed to an Italian algebraic
+geometer G. Bellavitis. It was rediscovered by V. Adler as an integral of his
+polygon recutting transformation [1, 2] and, independently, by B. Grünbaum and
+G. Shephard [4]. It is also an integral of the discrete bicycle transformation [7],
+a.k.a. a discrete analog of the smoke ring flow [6].
+   Here are some properties of CCM pP q:
+       ‚ if P is an equilateral polygon then CCM pP q “ CM pP q;
+       ‚ the continuous limits of CCM pP q and CM pP q coincide;
+Discrete Differential Geometry                                                               707
+
+       ‚ if a ‘center’ is assigned to every polygon such that it commutes with di-
+         lations, satisfies the Archimedes Lemma, and depends analytically on the
+         polygon, then it is an affine combination of CCM pP q and CM pP q.
+   The construction extends to simplicial polytopes in higher dimensions. The
+following result is due to A. Akopyan: if the sums of squared edge lengths of
+all facets of P are the same then CCM pP q “ CM pP q. One can also extend the
+construction to the spherical and hyperbolic geometries.
+   In search of an axiomatic approach, one has the following result, see [9]: assign
+to every non-degenerate simplex ∆ a ‘center’ Cp∆q so that:
+     (1) The map ∆ ÞÑ Cp∆q commutes with similarities;
+     (2) The map ∆ ÞÑ Cp∆q is invariant under the permutations of the vertices
+         of the simplex ∆;
+     (3) The map ∆ ÞÑ Volp∆qCp∆q is polynomial in the coordinates of the vertices
+         of the simplex ∆.
+Then Cp∆q is an affine combination of the center of mass and the circumcenter:
+                          Cp∆q “ tCM p∆q ` p1 ´ tqCCM p∆q,
+where the constant t depends on the map ∆ ÞÑ Cp∆q (and not on the simplex ∆).
+
+                                        References
+ [1] V. Adler, Cutting of polygons. Funct. Anal. Appl. 27 (1993), 141–143.
+ [2] V. Adler, Integrable deformations of a polygon. Phys. D 87 (1995), 52–57.
+ [3] A. Akopyan, Some remarks on the circumcenter of mass. Discrete Comput. Geom. 51
+     (2014), 837–841.
+ [4] B. Grünbaum. Private communication.
+ [5] C.-A. Laisant, Théorie et applications des équipollences. Gauthier-Villars, Paris 1887, pp.
+     150–151.
+ [6] U. Pinkall, B. Springborn, S. Weissmann, A new doubly discrete analogue of smoke ring
+     flow and the real time simulation of fluid flow. J. Phys. A 40 (2007), 12563–12576.
+ [7] S. Tabachnikov, E. Tsukerman, On the discrete bicycle transformation. Publ. Math.
+     Uruguay (Proc. Montevideo Dynam. Syst. Congress 2012) 14 (2013), 201–220
+ [8] S. Tabachnikov, E. Tsukerman, Circumcenter of Mass and generalized Euler line. Discr.
+     Comp. Geom. 51 (2014), 815–836.
+ [9] S. Tabachnikov, E. Tsukerman, Remarks on the circumcenter of mass. arXiv:1410.5115.
+
+
+
+                                 Grassmann Orbitopes
+                                    Raman Sanyal
+An orbitope is the convex hull of the orbit of a point under the action of a compact
+group. This particular class of highly symmetric convex bodies was explored in
+collaboration with Frank Sottile and Bernd Sturmfels [5]. With the additional
+assumption that the group G is algebraic and the linear action of G on the ambient
+real vector space V is rational, the orbit G ¨ v for v P V is a real-algebraic variety
+and the orbitope Ov “ convpG ¨ vq is a semi-algebraic set. Thus orbitopes are
+prime examples of the field convex algebraic geometry, the intersection of convex
+geometry, real-algebraic geometry, and optimization.
+708                                                     Oberwolfach Report 13/2015
+
+   If G is finite, then Ov is a convex polytope. This very general construction
+yields many well-known polytopes, including the regular solids. A particular class
+of examples are the generalized permutahedra: For a point λ “ pλ1 , . . . , λd q P Rd ,
+the generalized permutahedron is the polytope
+                Πpλq “ convtpλσp1q , . . . , λσpdq q : σ permutationu.
+Generalized permutahedra occur in many areas including geometric combinatorics,
+representation theory, and algebraic geometry.
+    For general groups G, orbitopes Ov are typically proper convex bodies with in-
+finitely many extreme points. An interesting class of examples are the Schur-Horn
+orbitopes that yield a continuous generalization of permutahedra: Let G “ Opdq
+be the orthogonal group acting on real dˆd-matrices Sym2 Rd by conjugation, that
+is, g ¨ B :“ gAg t for g P G and B P Sym2 Rd . For a symmetric matrix B, we write
+λpBq “ pλ1 ě λ2 ě ¨ ¨ ¨ ě λd q for its vector of real eigenvalues. For A P Sym2 Rd ,
+the orbit G ¨ A is the collection of symmetric matrices B with λpBq “ λpAq. The
+Schur-Horn orbitope is SpAq :“ convpG ¨ Aq. There are many striking similarities
+between permutahedra and Schur-Horn orbitopes (see [5, Sect. 3]) most of which
+are a result of the following application of the well-known Schur-Horn theorem:
+Let us denote by π : Sym2 Rd Ñ Rd the linear projection onto the diagonal. Then
+the following holds
+                                πpSpAqq “ ΠpλpAqq.
+   A class of convex bodies that is computational tractable is that of spectrahedra.
+A spectrahedron is an affine section of the cone of semidefinite matrices (also known
+as the PSD-cone). Equivalently, a spectrahedron is a set of the form
+          S “ tx P Rd : A0 ` x1 A1 ` ¨ ¨ ¨ ` xd Ad positive semidefiniteu
+for some symmetric matrices A0 , . . . , Ad . Spectrahedra are exactly the feasible
+regions of semidefinite programs, a powerful extension of linear programming.
+Choosing all Ai diagonal yields the usual definition of polyhedra. In [5] we show
+that the Schur-Horn orbitopes are spectrahedra.
+   Interesting and important in differential geometry are the Grassmann orbitopes.
+Let V “ ^k Rn be the k-th exterior power of Rn . The standard action of G “ Opnq
+on Rn induces an action on V . For v “ e1 ^ e2 ^ ¨ ¨ ¨ ^ en , the points of the orbit
+Gk,n :“ G ¨ v are in bijection with oriented k-dimensional linear subspaces of Rn .
+The Grassmann orbitope (or mass ball ) is defined as Gk,n :“ convpGk,n q. An
+exposed face of Gk,n is the set of points maximizing a linear function ℓ over Gk,n .
+If the maximal value of ℓ over Gk,n is 1, then ℓ is called a calibration. According
+to the Fundamental Theorem of Calibrations [2], calibrations give certificates for
+manifolds to be area minimizing with given boundary. The points Gk,n X tℓ “ 1u
+are the calibrated geometries.
+   For k P t1, n ´ 1u, the Grassmann orbitopes are just n-dimensional balls Bn .
+The Grassmann orbitope G2,4 is linearly isomorphic to B3 ˆ B3 . For k P t2, n ´ 2u,
+the Grassmann orbitopes are skew-symmetric versions of the Schur-Horn orbitopes
+and hence spectrahedra. This implies that calibrated geometries and calibrations
+Discrete Differential Geometry                                                          709
+
+can be explored experimentally using the standard software for semidefinite pro-
+gramming.
+   For 2 ă k ă n ´ 2, our knowledge of the faces of Gk,n is very scarce. The
+Grassmann orbitope G3,6 was described by Dadok and Harvey [1] and Morgan [4].
+The results were extended to G3,7 by Harvey and Morgan [3]. It can be shown
+that these Grassmann orbitopes are not spectrahedra.
+   In joint work with Philipp Rostalski, we used state-of-the-art methods from
+polynomial optimization to explore Grassmann orbitopes computationally. The
+basic idea is the following: Maximizing a linear function ℓ over Gk,n is equivalent to
+finding the minimal δ such that δ ´ℓppq ě 0 for all p P G¨v. It is in general difficult
+to assert that a (linear) function δ ´ ℓ is nonnegative. A tractable relaxation is to
+replace it with the weaker condition of being a sum-of-squares: find the minimal
+δ such that
+(1)       δ ´ ℓppq “ h1 ppq2 ` h2 ppq2 ` ¨ ¨ ¨ ` hm ppq2        for all p P Gk,n
+for some polynomials h1 , . . . , hm . The Grassmannian Gk,n is a compact real variety
+with vanishing ideal Ik,n Ă RrpI : I Ď rns, |I| “ ks consisting of the Plücker
+relations plus the equation
+                        ř         of the unit sphere. Hence, (1) is equivalent to the
+condition that δ ´ ℓ ´ i h2i P Ik,n . For an upper bound D on the degree of the
+polynomials hi , the relaxed optimization problem can be cast into a semidefinite
+programming problem. This is computationally tractable if D is small. For n ď 7,
+we found that D “ 1 suffices. That is, every calibration is a sum-of-squares of
+linear polynomials relative to Ik,n . We conjecture that this holds true for all
+Grassmann orbitopes. It turns out that our conjecture is equivalent to a question
+of Harvey and Lawson [2, Question 6.5].
+
+                                      References
+ [1] Jiri Dadok and Reese Harvey, Calibrations on R6 , Duke Math. J. 50 (1983), no. 4, 1231–
+     1243.
+ [2] Reese Harvey and H. Blaine Lawson, Jr., Calibrated geometries, Acta Math. 148 (1982),
+     47–157.
+ [3] Reese Harvey and Frank Morgan, The faces of the Grassmannian of three-planes in R7
+     (calibrated geometries on R7 ), Invent. Math. 83 (1986), no. 2, 191–228.
+ [4] Frank Morgan, The exterior algebra Λk Rn and area minimization, Linear Algebra Appl.
+     66 (1985), 1–28.
+ [5] Raman Sanyal, Frank Sottile, and Bernd Sturmfels, Orbitopes, Mathematika 57 (2011),
+     275–314.
+
+
+
+       The Classification of compact Nil-manifolds up to isometry
+                              Ulrich Brehm
+
+Nil is one of the eight 3-dimensional Thurston geometries. We give a complete
+classification of all compact Nil-manifolds up to isometry. A compact Nil-manifold
+is by definition a compact 3-dimensional connected Riemannian manifold such that
+its universal cover is isometric to Nil. There is a canonical bijection between the
+710                                                           Oberwolfach Report 13/2015
+
+isometry classes of compact Nil-manifolds and the conjugacy classes of cocom-
+pact fixed-point free discrete subgroups G of the isometry group IsopNilq of Nil.
+The isometry group of the Nil-manifold Nil{G is isomorphic to NorpGq{G, where
+NorpGq denotes the normalizer of G.
+   We use the linear model of Nil which has been introduced by K. Brodaczewska
+in her thesis [1]. In this model, Nil is R3 with the Riemannian metric
+ds2 “ dx2 ` dy 2 ` p y2 dx ´ x2 dy ` dzq2 . The isometry group IsopNilq is in this
+model a 4-dimensional subgroup of the group of affine transformations of R3 . Nil
+has a natural filtration by parallels to the z-axis. The space of fibres is canonically
+isometric to the Euclidean plane. IsopNilq preserves the filtration and operates
+on the space of fibres as the full isometry group (of Euclidean motions).
+   Iso(Nil) contains the rotations Rφ around the z-axis, and the reflection ρ at
+the x-axis, and the Nil-translations Tpa,b,cq with
+                              ¨     ˛ ¨                          ˛
+                                 x                 x`a
+                     Tpa,b,cq ˝ y ‚ “ ˝            y`b           ‚.
+                                 z          z ` c ` 21 pay ´ bxq
+Each element of IsopNilq has a unique representation of the form Tpa,b,cqRφ or
+Tpa,b,cq Rφ ρ. Note that the group of Nil-translations operates simply transitive on
+Nil and that
+                        ´1      ´1
+                      Tpa,b,0q Tpc,d,0q Tpa,b,0q Tpa,b,0q “ Tp0,0,ad´bcq.
+   We first consider the conjugacy classes of elements of IsopNilq. Each element
+of IsopNilq is conjugate to exactly one of the following elements: The identity, a
+z-translation Tp0,0,uq with u ą 0, a Nil-translation Tpa,0,0q with a ą 0, a rotation
+Rφ with φ P p0, πs around the z-axis, a screw Tp0,0,uq Rφ with φ P p0, 2πq and u ą 0,
+the line reflection ρ, or a line glide reflection Tpa,0,0q ρ with a ą 0.
+   Let G be a cocompact fixed point free discrete subgroup of IsopNilq. Let N
+denote the group of z-translations in G. Then G{N operates canonically on the
+space of fibres as a discrete cocompact group of Euclidean motions containing no
+reflections. Thus G{N is isomorphic to one of the seven crystallographic groups
+p1, p2, p3, p4, p6, pg, pgg.
+   A crucial observation for the classification of compact Nil manifolds is that each
+cocompact group of Nil-translations is conjugate to a group of the form
+                             xTpa,0,0q, Tpb,c,0q , Tp0,0, ac
+                                                          k q
+                                                              y,
+where 0 ă a ď c and 0 ď b ď a2 and a2 ď b2 ` c2 and k P N. These a, b, c, k are
+uniquely determined by the conjugacy class. This is the classification in the case
+p1 and the basis for the classification in each of the other cases p2, p3, p4, p6, pg
+and pgg.
+   Note that Tp0,0,acq is the commutator of Tpa,0,0q and Tpb,c,0q . The number k is
+crucial for the topology of the Nil-manifold.
+Discrete Differential Geometry                                                711
+
+                 Table 1. Complete classification / summary
+
+ type   para-  fundamentalgroup and homology group             condition
+        meters
+
+  p1     3      tS, T, U | S ´1 T ´1 ST “ U k ,                kPN
+                SU “ U S, T U “ U T u
+                Z ‘ Z ‘ Zk
+
+  p2     3      tA1 , A2 , A3 | A21 “ A22 “ A23 ,              k ” 0 pmod2q
+                                   2p3`kq
+                pA1 A2 A3 q2 “ A1         u
+                Z2 ‘ Z2 ‘ Z2k
+
+                                                     3   3kq
+  p3     1      tB1 , B2 | B13 “ B2´3 , pB1 B2 q “ B1 u        k ı 0 pmod3q
+                                                    3p2˘kq
+                tB1 , B2 | B13 “ B23 , pB1 B2 q3 “ B1      u   k ” 0 pmod3q
+                two different types
+                Z3 ‘ Z3k in each case                          kPN
+
+                                             4
+  p4     1      tA, C | C 4 “ A2 , pAC ´1 q “ A2p1`kq u        k ” 0 pmod2q
+                and a different type
+                                           4
+                tA, C | C 4 “ A2 , pAC ´1 q “ A2p1´kq u        k ” 0 pmod4q
+                Z2 ‘ Z4k in each case                          k ” 0 pmod2q
+
+  p6     1      tA, B | B 3 “ A2 , pBAq6 “ A2p5`kq u           k ” 0 pmod6q or
+                                                               k ” 2 pmod6q
+                and a different type
+                                       6
+                tA, B | B 3 “ A2 , pBAq “ A2p5´kq u            k ” 0 pmod6q or
+                                                               k ” 4 pmod6q
+                Z6k in each case                               k ” 0 pmod2q
+
+  pg     2      tP, S, U | SP S “ P U k , P U “ U ´1 P,        kPN
+                SU “ U Su
+                Z ‘ Z2 ‘ Z2                                    k ” 0 pmod2q
+                Z ‘ Z4                                         k ” 1 pmod2q
+
+                                  2              2
+ pgg     2      tP, Q, U | pQP q “ pP ´1 Qq “ U k ,            k ” 1 pmod2q
+                U P U “ P, U QU “ Qu
+                Z4 ‘ Z4                                        k ” 1 pmod2q
+712                                                         Oberwolfach Report 13/2015
+
+   Some infinite sequences of Nil-manifolds have been investigated before (e.g. [2],
+[3]), but not systematically.
+   The same methods and ideas can be applied to get also a complete classification
+of Nil-orbifolds up to isometry, but this has is not yet been completed.
+   The present work is part of the joint research project on Nil geometry between
+TU Dresden and Budapest Univ. Techn. Econ.
+
+                                       References
+ [1] Katarzyna Brodaczewska, Elementargeometrie in Nil, PhD thesis, TU Dresden, (2014).
+ [2] Emil Molnár, On projective models of Thurston geometries, some relevant notes on Nil
+     orbifolds and manifolds, Siberian Electronic Mathemetical Reports 7(0) (2010), 491–498.
+ [3] Emil Molnár and Jeno Szirmai, On Nil crystallography, Symmetry: Culture and Science
+     17(1-2) (2006), 55–74.
+ [4] Emil Molnár, The projective interpretation of the eight 3-dimensional homogeneous geome-
+     tries, Beiträge zur Algebra und Geometrie 38(2) (1997), 261–288.
+ [5] Peter Scott, The geometries of 3-manifolds, Bulletin of the London Mathematical Society
+     15(5) (1983), 401–487.
+
+
+Kac-Ward formula and discrete boundary value problems coming from
+          the critical Ising and double-Ising models in 2D
+                           Dmitry Chelkak
+
+                                1. Kac-Ward formula
+1.1. Ising model. We begin this talk, based on a joint work in progress with
+D. Cimasoni and A. Kassel [1], with a new proof of the Kac-Ward formula [6, 5, 8]
+(1)             rZIsing pG, pxe qePEpGq qs2 “ ˘ detrKWpG, pxe qePEpGq qs
+for the partition function of the spin Ising model on a planar graph G. In fact,
+we work with the low-temperature representation of the model so that the spins
+σf “ ˘1 are assigned to faces of G and parameters xe “ expr´2Je s describe their
+nearest-neighbor interactions across edges e P EpGq. The particularly important
+setup is simply connected discrete domains Ω drawn on some fixed (e.g., square
+or honeycomb) planar grid, with constant interactions xe “ x. In this setup one
+can always assume that the big ‘outer’ face of G “ Ω carries the spin `1, which
+is equivalent to say that all the boundary grid cells σf , f P BΩ, carry the spin `1.
+1.2. Double-Ising model. The important feature of our proof comparing to
+other known ones, besides its simplicity and minimal number of cancellations in-
+volved, is that it provides a way to analyze the so-called double-Ising model in
+discrete domains via solutions to some special discrete boundary value problems;
+see Section 2.2. The double-Ising model on Ω is obtained by superimposing two
+copies of the Ising model: each face of Ω is in one of the four states ‘1’=‘+ +’,
+‘2’=‘+ –’, ‘3’=‘– –’, ‘4’=‘– +’, and the interactions across edges are given by xe for
+pairs 1|2, 1|4, 2|3 and 2|4, and by x2e for 1|3 and 2|4. Assigning the state ‘1’=‘+ +’
+to all boundary faces f P BΩ of Ω, we can reformulate (1) as follows:
+(2)                   Z``            `         2
+                       dbl-I pΩq “ rZIsing pΩqs “ ˘ detrKWpΩqs ,
+Discrete Differential Geometry                                                        713
+
+where superscripts denote boundary conditions and we omit xe “ x in the notation.
+   Now let us split the boundary BΩ into two complementary arcs pabq, pbaq, and
+impose the following boundary conditions: the states of faces along pabq are either
+‘1’=‘+ +’ or ‘3’=‘– –’, while the faces along pbaq are ‘2’=‘+ –’ or ‘4’=‘– +’. We call
+these Dobrushin boundary conditions since they generate an interface (domain
+wall) from a to b which separates the phase ‘1 or 3’ from ‘2 or 4’. It is worth
+noting that we do not specify the state of any particular boundary face neither on
+pabq nor on pbaq, and include the possible x2 interactions between those into the
+partition function. Then the following generalization of (1) holds:
+                13|24
+(3)            Zdbl-I pΩ, a, bq “ ˘ rKWpΩ, a, bqs´1
+                                                 a,b ¨ detrKWpΩ, a, bqs ,
+
+where the superscript ‘13|24’ stands for Dobrushin boundary conditions described
+above and KWpΩ, a, bq is a modified Kac-Ward matrix defined below.
+1.3. The matrices KWpΩq, KWpΩ, a, bq and proofs of identities (1)–(3).
+The entries of Kac-Ward matrices are labeled by oriented edges of G, we denote
+this set by EpGq. When working with discrete domains Ω, it is also convenient to
+include all ‘normal to BΩ’ edges (i.e., those separating faces on the boundary of Ω)
+into EpΩq. Then, for e, e1 P EpΩq, we set rKWpΩqse,e1 :“ 0 except
+                  #
+                     1,                                   if ē1 “ e,
+   rKWpΩqse,e1 :“
+                     ´pxe xe1 q1{2 ¨ expr 2i αpe, ē1 qs, if ē1 prolongates e and e1 ‰ e,
+where ē1 denotes e1 with the orientation inverted and αpe, ē1 q is the turning angle
+from e to ē1 . It is worth noting that the classical Kac-Ward matrix [6] slightly
+differs from the matrix KWpΩq defined above. Namely, the former can be obtained
+by multiplying the latter by the trivial matrix rJse,e1 “ δe,ē1 with det J “ ˘1.
+Sketch of the proof of identity (2). We consider the so-called terminal graph T pΩq
+whose vertices are in 1-to-1 correspondence with oriented edges of Ω. Note that
+KWpΩq is a weighted adjacency matrix of T pΩq which has edges of two sorts:
+‘long’ edges linking e with ē and ‘short’ ones linking e with e1 , if ē1 prolongates e.
+Expanding det KWpΩq, one gets terms labeled by coverings of T pΩq by oriented
+cycles and double-edges. It is easy to see that two opposite orientations of a cycle
+produce a cancellation for odd-length cycles and a factor 2 for even-length ones.
+   For simplicity, let us assume that Ω is a trivalent graph; see [1] for the general
+case. A covering of T pΩq consisting of even cycles and double edges can be in-
+terpreted as a double-Ising model configuration (on faces of Ω) as follows: cycles
+correspond to interfaces separating ‘1 or 3’ from ‘2 or 4’, short double edges form
+interfaces 1|3 or 2|4, while long double edges mean no change of the states ‘1’–‘4’
+across them. Moreover, the additional factors 2 per cycle exactly correspond to
+the remaining ambiguity of assigning the face states given all the interfaces.         l
+  The modified Kac-Ward matrix KWpΩ, a, bq is defined as
+                     #
+                      ¯ixe ,        if e “ e1 is ‘outward normal’ to BΩ, e ‰ a, b,
+rKWpΩ, a, bqse,e1 :“
+                      rKWpΩqse,e1 , otherwise,
+714                                                     Oberwolfach Report 13/2015
+
+where the sign is ´ for ‘outward normal’ edges on pabq and ` for those on pbaq.
+Sketch of the proof of identity (3). The proof goes along the same lines as above.
+Expanding the minor of KWpΩ, a, bq labeled by EpΩqzta, bu, one interprets all
+non-canceling terms (a path from a to b + even-length cycles + double-edges) as
+double-Ising configurations with Dobrushin boundary conditions.                 l
+      2. Boundary value problems and convergence for x “ xcrit
+2.1. Ising model. It was noticed in [7] that, at the critical temperature x “ xcrit ,
+the entries of KWpΩq´1 can be interpreted as discrete s-holomorphic functions [4]
+satisfying some special boundary conditions on BΩ. In particular, let a, b be two
+‘outward normal to BΩ’ edges, and b be oriented horizontally to the right. Let
+                       Fa pze q :“ rKWpΩqs´1           ´1
+                                          a,e ` rKWpΩqsa,ē ,
+where ze denotes a midpoint of an edge in Ω and e, ē stand for two possible
+orientations of this edge. Two crucial facts which eventually allow one to prove
+the convergence of interfaces in the critical Ising model to conformally invariant
+limits given by Schramm’s SLE(3) curves are the following (see [2] for details):
+   ‚ For each midedge ze in Ω, the ratio Fa pze q{Fa pzb q is a martingale with
+respect to the interface (separating ‘–’ and ‘+’ states) running from a to b in the
+Ising model with Dobrushin boundary conditions (‘–’ on pabq, ‘+’ on pbaq).
+   ‚ The function Fa p¨q{Fa pzb q is s-holomorphic inside Ω. Moreover,
+                                                                  ?          for each
+‘outward normal to BΩ’ edge c ‰ a, one has ImrFa pzc q{Fa pzb q ¨ c s “ 0 , and this
+discrete boundary value problem determines the function Fa p¨q uniquely.
+   Also, note that the analysis of similar boundary value problems and the con-
+vergence of their solutions to continuous counterparts are the core ingredients in a
+series of recent papers (see [2, 3] and references therein) devoted to the conformal
+invariance phenomenon in the critical 2D Ising model on bounded planar domains.
+2.2. Double-Ising model with Dobrushin boundary conditions. Denote
+                  Fa,b pze q :“ rKWpΩ, a, bqs´1                 ´1
+                                             a,e ` rKWpΩ, a, bqsa,ē .
+
+   ‚ Then, for each midedge ze in Ω, the ratio Fa,b pze q{Fa,b pzb q is a martingale
+with respect to the interface (13|24 domain wall) running from a to b in the double
+Ising model with Dobrushin boundary conditions (‘1 or 3’ on pabq, ‘2 or 4’ on pbaq).
+   ‚ The function Fa,b p¨q{Fa,b    ?pzb q is s-holomorphic inside Ω. Moreover, one has
+ImrFa,b pzc q{Fa,b pzb q ¨ p1 ¯ ixq c s “ 0 for each ‘outward normal’ edge c ‰ a, where
+the sign is ´ on pabq and ` on pbaq. These properties determine Fa,b p¨q uniquely.
+2.3. Wilson’s conjecture on double-Ising interfaces. In [9], D. Wilson con-
+jectured that ‘13|24’ domain walls at the critical temperature x “ xcrit converge
+to Schramm’s SLE(4) curves with drifts depending on boundary conditions. A
+striking part of the conjecture is that, even for Dobrushin boundary conditions,
+these scaling limits are not expected to satisfy the so-called domain Markov prop-
+erty despite their discrete precursors doing so. It means that solutions to discrete
+boundary value problems from Section 2.2 are somehow sensitive to ‘boundary ef-
+fects’, on the contrary to the fact that their analogues from Section 2.1 are not. At
+Discrete Differential Geometry                                                             715
+
+the moment, we do not know how to analyze such a dependence using the language
+of discrete s-holomorphic functions, which seems to be a challenging problem.
+
+                                        References
+ [1] D. Chelkak, D. Cimasoni, A. Kassel, Revisiting the combinatorics of the 2D Ising model,
+     Preprint 2015, in preparation.
+ [2] D. Chelkak, H. Duminil-Copin, C. Hongler, A. Kemppainen, S. Smirnov, Convergence of
+     Ising interfaces to Schramm’s SLE curves, C. R. Acad. Sci. Paris, Ser. I 352 (2014), 157–
+     161.
+ [3] D. Chelkak, C. Hongler, K. Izyurov, Conformal invariance of spin correlations in the planar
+     Ising model, Ann. Math. 181 (2015), no. 3, 1087–1138.
+ [4] D. Chelkak, S. Smirnov, Universality in the 2D Ising model and conformal invariance of
+     fermionic observables, Invent. Math. 189 (2012), no. 3, 515–580.
+ [5] D. Cimasoni, A generalized Kac-Ward formula, J. Stat. Mech., page P07023, 2010.
+ [6] M. Kac, J. C. Ward, A combinatorial solution of the two-dimensional Ising model, Phys.
+     Rev. 88 (1952), 1332–1337.
+ [7] M. Lis, The fermionic observable in the Ising model and the inverse Kac-Ward operator,
+     Ann. Henri Poincaré 15 (2014), no. 10, 1945–1965.
+ [8] M. Lis, A short proof of the Kac-Ward formula, Preprint arXiv:1502.04322.
+ [9] D. B. Wilson, XOR-Ising Loops and the Gaussian Free Field, Preprint arXiv:1102.3782.
+
+
+
+            The Morse theory of Čech and Delaunay complexes
+                               Ulrich Bauer
+                   (joint work with Herbert Edelsbrunner)
+
+Given a finite set of points in Rn and a radius parameter, we study the Čech,
+Delaunay–Čech, Delaunay (or alpha), and Wrap complexes in the light of gen-
+eralized discrete Morse theory. Establishing the Čech and Delaunay complexes
+as sublevel sets of generalized discrete Morse functions, we prove relationships
+between the functions that imply that the four complexes are simple-homotopy
+equivalent. Our results have applications in topological data analysis and in the
+reconstruction of shapes from sampled data.
+
+                                     1. Background
+1.1. Discrete Morse theory. Let K be a finite simplicial complex. Recall that
+an interval in the face relation of K is a subset of the form
+                                rP, Rs “ tQ | P Ď Q Ď Ru.
+We call a partition V of K into intervals a generalized discrete vector field. Suppose
+now that there is a function f : K Ñ R that satisfies f pP q ď f pQq whenever P is
+a face of Q with equality iff P and Q belong to a common interval in V . Then
+f is called a generalized discrete Morse function and V is its generalized discrete
+gradient. If an interval contains only one simplex, then we call the simplex a
+critical simplex and the value of the simplex a critical value of f . A generalized
+discrete gradient can encode a simplicial collapse.
+716                                                      Oberwolfach Report 13/2015
+
+Theorem 1 (Generalized Collapsing Theorem [1, 4]). Let K be a simplicial com-
+plex with a generalized discrete gradient V , and let K 1 Ď K be a subcomplex. If
+KzK 1 is a union of non-singular intervals in V , then K collapses to K 1 .
+1.2. Čech and Delaunay complexes. For r ě 0, let Br pxq “ ty P Rn | dpx, yq ď
+ru be the closed ball of radius r centered at x P X. The Čech complex of a finite
+set X Ď Rn for radius r ě 0,
+                                   "         č             *
+                     Cechr pXq “ Q Ď X |         Br pxq ‰ H ,
+                                             xPQ
+
+is isomorphic to the nerve of the collection of closed balls.
+    For a finite set X Ď Rn and a point x P Rn , the Voronoi domain of x with
+respect to X, and the Voronoi ball of x with respect to X for a radius r ě 0 are,
+respectively,
+             Vorpx, Xq “ ty P Rn | dpy, xq ď dpy, pq for all p P Xu and
+            Vorr px, Xq “ Br pxq X Vorpx, Xq.
+The Delaunay complex of X for radius r ě 0,
+                           "           č                 *
+                Delr pXq “ Q Ď X |        Vorr px, Xq ‰ H ,
+                                          xPQ
+
+often also called alpha complex, is isomorphic to the nerve of the collection of
+Voronoi balls.
+   The Delaunay–Čech complex for radius r ě 0 is the restriction of the Čech
+complex to the Delaunay triangulation. It contains all simplices in the Delaunay
+triangulation such that the balls of radius r centered at the vertices have a non-
+empty common intersection:
+                                 "               č             *
+                 DelCechr pXq “ Q P DelpXq |        Br pxq ‰ H .
+                                                   xPQ
+
+
+      2. Selective Delaunay complexes and their discrete gradients
+Generalizing the Čech and Delaunay complexes, the selective Delaunay complex
+of E Ď X and r contains all simplices over X whose vertices have Voronoi balls
+for the subset E with non-empty common intersection:
+                              "          č                 *
+                 Delr pX, Eq “ Q Ď X |      Vorr px, Eq ‰ H .
+                                           xPQ
+
+The Čech and Delaunay complexes appear as special cases Cechr pXq “ Delr pX, Hq
+and Delr pXq “ Delr pX, Xq.
+   There is an equivalent definition of selective Delaunay complexes in terms of
+radius functions. We write SpQ, Eq for the smallest pn ´ 1q-dimensional sphere S
+such that all points of Q lie on or inside S and all points of E lie on or outside S,
+if such a sphere exists, referring to it as the Delaunay sphere of Q for E, and
+Discrete Differential Geometry                                                 717
+
+we write spQ, Eq for its squared radius. The radius function for E is defined by
+sE pQq “ spQ, Eq. Now a subset Q Ď X is a simplex in Delr pX, Eq iff sE pQq ď r2 .
+   A finite set X P Rn is in general position if every subset Q Ď X of at most
+n ` 1 points is affinely independent and no point of XzQ lies on the smallest
+circumsphere of Q.
+   Let S be an pn ´ 1q-sphere, write Incl S, Excl S Ď X for the subsets of included
+and excluded points, and set On S “ Incl S X Excl S. Assuming that S is the
+smallest
+     ř circumsphere of On S, we can write the center z as an affine combination
+z “ ρx x of On S. If X is in general position, the affine combination is unique,
+and ρx ‰ 0 for all x P On S. We call
+                          Front S “ tx P On S | ρx ą 0u,
+                          Back S “ tx P On S | ρx ă 0u
+the front face and the back face of On S, respectively. Using these definitions,
+we can state combinatorial conditions characterizing the Delaunay spheres. These
+conditions are derived from the Karush–Kuhn–Tucker conditions, using the ob-
+servation that Delaunay spheres are defined as minimizers of a certain convex
+optimization problem.
+Theorem 2 (Combinatorial KKT Conditions). Let X be a finite set of weighted
+points in general position. Let Q, E Ď X for which there exists a sphere S with
+Q Ď Incl S and E Ď Excl S. It is the smallest such sphere, S “ SpQ, Eq, iff
+  (i) S is the smallest circumsphere of On S,
+ (ii) Front S Ď Q, and
+(iii) Back S Ď E.
+Corollary 1 (Selective Delaunay Morse Function Corollary). Let X be a finite
+set of weighted points in general position, and E Ď X. Then the radius function
+                                 sE : DelpX, Eq Ñ R
+is a generalized discrete Morse function whose gradient consists of the intervals
+rFront S, Incl Ss over all Delaunay spheres S “ SpQ, Eq with Q P DelpX, Eq.
+Corollary 2 (Critical Simplex Corollary). Let X be a finite set of weighted points
+in general position. Independent of E, a subset Q Ď X is a critical simplex of sE ,
+with critical value spQ, Qq, iff Q is a centered Delaunay simplex.
+
+                                   3. Collapses
+Given E Ď F Ď X, we can refine the generalized discrete gradients of the two
+radius functions sE and sF to a discrete gradient that induces a sequence of col-
+lapses.
+Theorem 3. Delr pX, Eq Œ Delr pX, Eq X DelpX, F q Œ Delr pX, F q.
+   In particular, we obtain a collapse of the Čech complex through the Delaunay–
+Čech complex to the Delaunay complex.
+Corollary 3. Cechr pXq Œ DelCechr pXq Œ Delr pXq.
+718                                                          Oberwolfach Report 13/2015
+
+   The face relation induces a partial order on the generalized gradient VX of the
+Delaunay function sX . The lower set of a subset A Ď VX in this partial order is
+denoted by Ó A. We can now give a very simple definition of the Wrap complex
+[3] for r ě 0, consisting of all simplices in the lower sets of all singleton intervals
+with Delaunay sphere of radius at most r:
+                        Singr pXq “ trQ, Qs P VX | sX pQq ď r2 u,
+                                    ď
+                       Wrapr pXq “     Ó Singr pXq.
+The Wrap complex is used in commercial software for surface reconstruction. The
+original definition of the Wrap complex corresponds to Wrap8 pXq, which we sim-
+ply denote as WrappXq. The following collapse is immediate from the definition.
+Theorem 4. Delr pXq Œ WrappXq.
+
+                                        References
+ [1] M. K. Chari, On discrete Morse functions and combinatorial decompositions, Discrete Math-
+     ematics 217 (2000), 101–113.
+ [2] H. Edelsbrunner, The union of balls and its dual shape, Discrete and Computational Ge-
+     ometry 13 (1995), 415–440.
+ [3] H. Edelsbrunner, Surface reconstruction by wrapping finite sets in space, Discrete and Com-
+     putational Geometry: The Goodman-Pollack Festschrift, 379–404, Springer, 2003.
+ [4] R. Forman, Morse theory for cell complexes, Advances in Mathematics 134 (1998), 90–145.
+
+
+                          Fixed-energy harmonic function
+                                   Richard Kenyon
+                            (joint work with Aaron Abrams)
+
+We study the map from conductances to edge energies for harmonic functions on
+graphs with Dirichlet boundary conditions. We prove that for any compatible
+acyclic orientation and choice of energies there is a unique choice of conductance
+such that the associated harmonic function realizes those orientations and energies.
+We call the associated function enharmonic. For rational energies and boundary
+data the Galois group of Qtr (the totally real algebraic numbers) over Q permutes
+the enharmonic functions, acting (generically transitively) on the set of compatible
+acyclic orientations.
+   For planar graphs there is an enharmonic conjugate function; together these
+form the real and imaginary parts of a “fixed energy” analytic function, or axilytic
+function. In the planar scaling limit for Z2 , these functions satisfy an analog of
+the Cauchy-Riemann equations, the axilytic equations
+                                       ux vy   “    1
+                                       uy vx   “    ´1.
+We give an analog of the Riemann mapping theorem for injective axilytic functions,
+as well as a variational approach to finding solutions in both the discrete and
+continuous settings.
+Discrete Differential Geometry                                                         719
+
+             Open Problems in Discrete Differential Geometry
+                      Collected by Günter Rote
+
+
+PROBLEM 1 (Sergei Tabachnikov). Paper Möbius strip and paper cylin-
+der eversion
+One can make a smooth Möbius strip from a paper rectangle if its aspect ratio is
+sufficiently large, but not from a square.
+Question 1. What is the smallest length λ such that a smooth Möbius band can
+be made of a 1 ˆ a paper rectangle if a ą λ?
+                                ?                                          ?
+The known bounds are π2 ď λ ď 3 [1, 2], and it is conjectured that λ “ 3. For
+smooth immersions, the answer is λ “ π{2. See [3, 4, 5] and the references there for
+developable Möbius bands. A related problem concerns the eversion of a cylinder:
+Question 2. What is the least perimeter µ of a paper cylinder of height 1 that
+can be turned inside out in the class of embedded smooth developable surfaces.
+   The known bounds are π ď µ ď π ` 2, and for smooth immersions, the answer
+is µ “ π [2].
+
+                                      References
+[1] D. Fuchs, S. Tabachnikov. Mathematical omnibus. Thirty lectures on classic mathematics.
+    Amer. Math. Soc., Providence, RI, 2007.
+[2] B. Halpern, C. Weaver. Inverting a cylinder through isometric immersions and isometric
+    embeddings. Trans. Amer. Math. Soc. 230 (1977), 41–70.
+[3] T. Randrup, P. Røgen. Sides of the Möbius strip. Arch. Math. 66 (1996), 511–521.
+[4] I. Sabitov. Isometric immersions and embeddings of a flat Möbius strip into Euclidean
+    spaces. Izv. Math. 71 (2007), 1049–1078.
+[5] G. Schwarz. The dark side of the Moebius strip. Amer. Math. Monthly 97 (1990), 890–897.
+
+PROBLEM 2 (Sergei Tabachnikov). Commuting billiard maps
+Given a smooth convex plane domain, the billiard ball map sends an incoming
+ray (the trajectory of the billiard ball) that hits the boundary from inside to an
+outgoing ray according to the law of reflection: the angle of incidence equals the
+angle of reflection.
+   Consider two nested convex domains. The two billiard ball maps, T1 and T2 ,
+act on the oriented lines that intersect both domains. If the domains are bounded
+by confocal ellipses, then the respective billiard ball maps commute; see, e.g., [4].
+Question. Assume that the two maps commute: T1 ˝ T2 “ T2 ˝ T1 . Does it follow
+that the two domains are bounded by confocal ellipses?
+   For piecewise analytic billiards, this conjecture was proved in [2]. For “outer
+billiards”, an analogous fact is proved in [3]. Of course, this problem has a multi-
+dimensional version, open both for inner and outer billiards; see, e.g., [1] on multi-
+dimensional integrable billiards.
+720                                                          Oberwolfach Report 13/2015
+
+                                       References
+[1] V. Dragović, M. Radnović. Poncelet porisms and beyond. Integrable billiards, hyperelliptic
+    Jacobians and pencils of quadrics. Birkhäuser, Basel, 2011.
+[2] A. Glutsyuk. On 4-reflective complex analytic planar billiards. arXiv:1405.5990, 2014.
+[3] S. Tabachnikov. Commuting dual billiard maps. Geom. Dedicata 53 (1994), 57–68.
+[4] S. Tabachnikov. Geometry and billiards. Amer. Math. Soc., Providence, RI, 2005.
+
+PROBLEM 3 (Mikhail Skopenkov). Inverse problem for alternating-
+current networks
+An alternating-current network [2, Section 2.4] is a (not necessarily planar) graph
+with a fixed subset of b vertices (boundary vertices) and a complex number cxy
+with positive real part (conductance) assigned to each edge xy. A voltage is a
+complex-valued function
+                    ř       vx on the set of vertices such that for each nonboundary
+vertex y we have xy cxy pvx ´ vy q “ 0, where the sum is over the edges containing
+the vertex y. One can see that the voltage is uniquely determined by its boundary
+values [2, Section 5.1].
+                      ř The current flowing into the network through a boundary
+vertex y is ipyq :“ xy cxy pvx ´ vy q. The network response is the matrix of the
+linear map taking the vector of voltages at the boundary vertices to the vector of
+currents flowing into the network through the boundary vertices.
+   The general electrical-impedance tomography problem is to reconstruct the net-
+work from its response. For direct-current planar networks, meaning that all
+conductances are real and positive, the problem has been solved [1].
+   Teaser. There is a matrix realizable as the response of the network in the figure
+to the right, for the boundary vertices N1 , N2 , N3 and some edge conductances
+R1 , R2 , R3 , but not by the network to the left.
+
+
+
+
+   Denote by Ψb the set of complex b ˆ b matrices Λ having the following 4 prop-
+erties:
+(1) Λ is symmetric;
+(2) the sum of the entries of Λ in each row is zero;
+(3) Re Λ is positive semidefinite;
+(4) if U “ pU1 , . . . , Ub q P Rb and U T pRe ΛqU “ 0 then U1 “ ¨ ¨ ¨ “ Ub .
+Question 1. Prove that the set of responses of all possible connected alternating-
+current networks with b boundary vertices is the set Ψb .
+It is known that Conditions (1–4) are necessary. Sufficiency is known for b “ 2
+and b “ 3 [2, Theorem 4.7].
+Discrete Differential Geometry                                                          721
+
+Question 2. Provide an algorithm to reconstruct a network and edge conductances
+for a given response matrix.
+   Note: Questions 1 and 2 have been solved by Günter Rote.
+Question 3. Describe the set of responses of all series-parallel networks.
+Question 4. Describe the set of responses of all planar networks that have the
+boundary vertices on the outer face.
+Question 5. Let the conductance of each edge be either ω or 1{ω, where ω is a
+variable. Describe the set of possible responses of such networks as functions in ω.
+This is known for b “ 2 boundary vertices — Foster’s reactance theorem [2, The-
+orem 2.5].
+
+                                      References
+ [1] E. B. Curtis, J. A. Morrow, Inverse Problems for Electrical Networks, Ser. Appl. Math.,
+     vol. 13, World Scientific, Singapore, 2000.
+ [2] M. Prasolov and M. Skopenkov, Tiling by rectangles and alternating current, J. Combin.
+     Theory A 118:3 (2011), 920–937.
+
+PROBLEM 4 (Nina Amenta). Are face angles determined by dihedral
+angles?
+Stoker’s conjecture says that, for a convex 3-polytope with given combinatorics, if
+all dihedral angles are specified (different from 0 and π), then all face angles are
+also determined.
+Question. Is this also true for a non-convex polytope?
+   One may assume that the polytope is triangulated and that it is homeomorphic
+to a sphere.
+PROBLEM 5 (Günter Rote). Existence of offset polytopes
+We are given a non-convex three-dimensional polytope P whose boundary is home-
+omorphic to a sphere. We want to construct an offset polytope Pε in which every
+face is translated outward by the same small distance ε. Pε should not have other
+faces than the faces coming from P , and the boundary of Pε should remain home-
+omorphic to a sphere. If P has a saddle-like vertex of degree 4 or larger, the result
+is not unique.
+Question. Does such an offset polytope always exist for sufficiently small ε ą 0?
+   It is enough to solve the problem locally for each vertex v of degree d ě 4. Such
+a vertex will be blown up into d ´ 2 new vertices, connected by edges that form a
+tree. The faces of Pε should be simply connected when clipped to a neighborhood
+of v.
+PROBLEM 6 (Ulrich Bauer). Subdivision of discrete conformal struc-
+tures
+Let T be a triangulated surface, and let λ, µ : ET Ñ Rą0 be two discrete confor-
+mally equivalent metrics on T , represented as edge lengths of the triangulation.
+722                                                                  Oberwolfach Report 13/2015
+
+Here, discrete conformal equivalence means that the edge lengths of λ and µ for
+                                                             1
+any edge ij between two vertices i, j are related by µij “ e 2 pui `uj q λij for some
+function u : VT Ñ R on the vertices.
+Question. Is there a metric subdivision scheme that preserves the conformal
+equivalence?
+   Specifically, a subdivision of a simplicial complex K is a complex K 1 such that
+|K| “ |K 1 | and each simplex of K 1 is contained in some simplex of K. A metric
+subdivision scheme is a map sending each simplicial complex K equipped with
+a metric λ to a subdivision K 1 of K equipped with a metric λ1 . A particular
+example is the barycentric subdivision. The question is whether there exists a
+metric subdivision scheme such that the subdivided metrics λ1 and µ1 are still
+conformally equivalent.
+
+                                             References
+ [1] F. Luo. Combinatorial Yamabe flow on surfaces. Commun. Contemp. Math., 6(5):765–780,
+     2004.
+
+PROBLEM 7 (Jim Propp, Richard Kenyon). Disk packings of maximum
+area
+Consider two disks of radius 1 with centers at p˘1, 1q. Together with the x-
+axis, they enclose at curved triangular region. Into this region, we want to place
+infinitely many non-overlapping disks that touch the x-axis, such that their total
+area is maximized.
+Question. Is it true that the greedy method of successively placing each new circle
+into the interstices such that they touch two previously placed circles will give the
+maximum area?
+PROBLEM 8 (Günter Rote). A curious identity on self-stresses
+Take the wheel graph G (the graph of a pyramid) embedded in the plane in general
+position, with a central vertex p0 that is connected to vertices p1 , . . . , pn (n ě 3)
+forming a cycle. On the 2n edges of this graph, we define the following function:
+                           1                                               rpi´1 pi pi`1 s
+  ωi,i`1 :“                                  ,      ω0,i :“                                               .
+              rpi pi`1 p0 srp1 p2 . . . pn s                  rpi´1 pi p0 srpi pi`1 p0 srp1 p2 . . . pn s
+for i “ 1, . . . , n, where rq1 q2 . . . qk s denotes signed area of the polygonřq1 q2 . . . qk ,
+and pn`1 “ p1 . This function is a self-stress: the equilibrium condition j ωij ppj ´
+pi q “ 0 holds for every vertex i, where the summation is over all edges ij incident
+to i. Pick two arbitrary points a and b and define another function fij on the
+edges of G:
+                                      fij :“ rapi pj srbpj pj s,
+Then we have the following identity, which was used (and proved) for n “ 3 in [1].
+                                  ÿ
+(1)                                    ωij fij “ 1
+                                          ijPEpGq
+Discrete Differential Geometry                                                             723
+
+A different formula for fij that fulfills (1) is given by a line integral over the
+segment pi pj , see [1, Lemma 3.10]:
+                           ż pj
+    1
+                                                            `                             ˘
+          3
+   fij :“ 2 ¨ kpi ´ pj k ¨      kxk2 ds “ 21 ¨ kpi ´ pj k2 ¨ kpi k2 ` kpj k2 ` xpi , pj y
+                            x“pi
+
+Question 1. Are there other graphs with n vertices and 2n ´ 2 edges, for which a
+self-stress ω satisfying (1) can be defined? The next candidates with 6 vertices are
+the graph of a triangular prism with an additional edge, and the complete bipartite
+graph K3,3 with an additional edge.
+Question 2. What is the meaning of the identity (1)? Is it an instance of a more
+general phenomenon? What are the connections to homology and cohomology?
+
+                                        References
+ [1] Günter Rote, Francisco Santos, and Ileana Streinu, Expansive motions and the polytope of
+     pointed pseudo-triangulations, in: Discrete and Computational Geometry—The Goodman-
+     Pollack Festschrift, Springer, 2003, pp. 699–736, arXiv:math/0206027 [math.CO].
+
+PROBLEM 9 (Hao Chen and Arnau Padrol, reported by Günter M. Ziegler).
+Approximately inscribed polytopes
+Steinitz proved in 1928 [3] that not every combinatorial type of 3-polytope can be
+inscribed, that is, realized with all vertices on a sphere. However, a weak version
+of this is true: Due to the Koebe–Andreev–Thurston circle packing theorem (see
+e.g. [2, 4]), every 3-polytope can be realized with all edges tangent to the sphere
+– and thus it has a representation with
+       ‚ all vertices outside a sphere
+       ‚ all facets cutting into the sphere.
+The question is whether this extends to higher dimensions:
+Question. Does every combinatorial type of d-polytope have a realization with
+    ‚ vertices outside a pd ´ 1q-sphere,
+    ‚ facets cutting into the same pd ´ 1q-sphere.
+   Our conjecture is that this is false for d ą 3, perhaps already for d “ 4, but
+certainly for high dimensions d, where we know that there are infinitely many
+projectively unique polytopes. The examples constructed in [1] are essentially
+inscribable, but there should be other such polytopes whose “shape” is far off
+from that of a sphere/quadric. However, we have not been able to construct such
+a polytope yet.
+
+                                        References
+ [1] Karim Adiprasito and Günter M. Ziegler. Many projectively unique polytopes. Inventiones
+     math., 199:581–652, 2015.
+ [2] Alexander I. Bobenko and Boris A. Springborn. Variational principles for circle patterns,
+     and Koebe’s theorem. Transactions Amer. Math. Soc., 356:659–689, 2004.
+ [3] Ernst Steinitz. Über isoperimetrische Probleme bei konvexen Polyedern. J. reine angewandte
+     Math., 159:133–143, 1928.
+724                                                      Oberwolfach Report 13/2015
+
+[4] Günter M. Ziegler. Convex polytopes: Extremal constructions and f -vector shapes. In
+    E. Miller, V. Reiner, and B. Sturmfels, editors, “Geometric Combinatorics”, Proc. Park
+    City Mathematical Institute (PCMI) 2004, pages 617–691, Providence, RI, 2007. Amer.
+    Math. Society.
+
+
+
+
+                                                                 Reporter: Jan Techter
+Discrete Differential Geometry                                             725
+
+                                    Participants
+
+
+Dr. Arseniy Akopyan                       Dr. Ulrike Bücking
+Institute of Science & Technology         Institut für Mathematik
+Austria                                   Fakultät II - Sekr. MA 8 - 3
+(IST Austria)                             Technische Universität Berlin
+Am Campus 1                               Straße des 17. Juni 136
+3400 Klosterneuburg                       10623 Berlin
+AUSTRIA                                   GERMANY
+
+Prof. Dr. Nina Amenta                     Dr. Dmitry Chelkak
+Department of Computer Science            ETH - ITS Zürich
+University of California, Davis           Clausiusstraße 47
+One Shields Ave.                          8092 Zürich
+Davis, CA 95616-8633                      SWITZERLAND
+UNITED STATES
+                                          Prof. Dr. Adam Doliwa
+Prof. Dr. Ulrich Bauer                    Department of Mathematics &
+Fakultät für Mathematik                 Computer Sciences
+Geometrie & Visualisierung (M10)          University of Warmia & Mazury
+Technische Universität München          ul. Sloneczna 54
+Boltzmannstraße 3                         10-710 Olsztyn
+85747 Garching bei München               POLAND
+GERMANY
+                                          Ekaterina Eremenko
+Prof. Dr. Mirela Ben-Chen                 Institut für Mathematik
+Computer Science Department               Fakultät II - Sekr. MA 8 - 3
+TECHNION                                  Technische Universität Berlin
+Israel Institute of Technology            Straße des 17. Juni 136
+Haifa 32000                               10623 Berlin
+ISRAEL                                    GERMANY
+
+Prof. Dr. Alexander I. Bobenko            Prof. Dr. Vladimir V. Fock
+Institut für Mathematik                  Institut de Mathématiques
+Fakultät II - Sekr. MA 8 - 3             Université de Strasbourg
+Technische Universität Berlin            7, rue Rene Descartes
+Straße des 17. Juni 136                   67084 Strasbourg Cedex
+10623 Berlin                              FRANCE
+GERMANY
+
+Prof. Dr. Ulrich Brehm
+Institut für Geometrie
+Technische Universität Dresden
+01062 Dresden
+GERMANY
+726                                              Oberwolfach Report 13/2015
+
+Dr. Felix Günther                    Benno König
+Isaac Newton Institute for            Zentrum Mathematik
+Mathematical Sciences                 Technische Universität München
+Cambridge University                  Boltzmannstr. 3
+20 Clarkson Road                      85748 Garching b. München
+Cambridge CB3 OEH                     GERMANY
+UNITED KINGDOM
+                                      Prof. Dr. Wolfgang Kühnel
+Prof. Dr. Tim Hoffmann                Fachbereich Mathematik
+Zentrum Mathematik                    Institut für Geometrie u. Topologie
+Technische Universität München      Universität Stuttgart
+Boltzmannstr. 3                       70550 Stuttgart
+85748 Garching b. München            GERMANY
+GERMANY
+                                      Wai Yeung Lam
+Dr. Alec Jacobson                     Institut für Mathematik
+Department of Computer Science        Fakultät II - Sekr. MA 8 - 1
+Columbia University                   Technische Universität Berlin
+500 West 120 Street                   Straße des 17. Juni 136
+New York, NY 10027                    10623 Berlin
+UNITED STATES                         GERMANY
+
+Prof. Dr. Michael Kazhdan             Dr. Yaron Lipman
+Department of Computer Science        Department of Computer Science
+The John Hopkins University           and Applied Mathematics
+229 Malone Hall                       The Weizmann Institute of Science
+Baltimore, MD 21218                   P.O.Box 26
+UNITED STATES                         Rehovot 76100
+                                      ISRAEL
+Prof. Dr. Richard Kenyon
+Department of Mathematics             Prof. Dr. Feng Luo
+Brown University                      Department of Mathematics
+Box 1917                              Rutgers University
+Providence, RI 02912                  Hill Center, Busch Campus
+UNITED STATES                         110 Frelinghuysen Road
+                                      Piscataway, NJ 08854-8019
+                                      UNITED STATES
+Prof. Dr. Alastair D. King
+Department of Mathematical Sciences
+University of Bath                    Dr. Christian Müller
+Claverton Down                        Institut f. Diskrete Mathematik &
+Bath BA2 7AY                          Geometrie
+UNITED KINGDOM                        Technische Universität Wien
+                                      Wiedner Hauptstraße 8 - 10/104
+                                      1040 Wien
+                                      AUSTRIA
+Discrete Differential Geometry                                            727
+
+Dr. Fedor Nilov                      Dr. Thilo Rörig
+Department of Geometry & Topology    Institut für Mathematik, MA 8-3
+Faculty of Mechanics & Mathematics   Technische Universität Berlin
+Moscow State University              Straße des 17. Juni 136
+Leninskie Gory                       10623 Berlin
+Moscow 119 992                       GERMANY
+RUSSIAN FEDERATION
+                                     Prof. Dr. Günter Rote
+Prof. Dr. Ulrich Pinkall             Institut für Informatik
+Institut für Mathematik             Freie Universität Berlin
+Technische Universität Berlin       Takustr. 9
+Sekr. MA 8-1                         14195 Berlin
+Straße des 17. Juni 136              GERMANY
+10623 Berlin
+GERMANY
+                                     Andrew Sageman-Furnas
+                                     Institut f. Numerische & Angew.
+Prof. Dr. Konrad Polthier            Mathematik
+Institut für Mathematik             Universität Göttingen
+Freie Universität Berlin            Lotzestr. 16-18
+Arnimallee 6                         37083 Göttingen
+14195 Berlin                         GERMANY
+GERMANY
+                                     Prof. Dr. Raman Sanyal
+Prof. Dr. Helmut Pottmann            Institut für Mathematik
+Institut f. Diskr. Mathematik &      Freie Universität Berlin
+Geometrie                            Arnimallee 2
+Technische Universität Wien         14195 Berlin
+Wiedner Hauptstraße 8-10             GERMANY
+1040 Wien
+AUSTRIA
+                                     Prof. Dr. Wolfgang K. Schief
+                                     School of Mathematics & Statistics
+Sanjay Ramassamy                     The University of Sydney
+Department of Mathematics            Sydney NSW 2052
+Brown University                     AUSTRALIA
+Box 1917
+Providence, RI 02912
+                                     Prof. Dr. Jean-Marc Schlenker
+UNITED STATES
+                                     Mathematics Research Unit, FSTC
+                                     University of Luxembourg
+Olga Romaskevich                     Campus Kirchberg
+Mathématiques                       1359 Luxembourg
+École Normale Supérieure de Lyon   LUXEMBOURG
+46, Allee d’Italie
+69364 Lyon Cedex 07
+FRANCE
+728                                             Oberwolfach Report 13/2015
+
+Prof. Dr. Peter Schröder            Prof. Dr. Yuri B. Suris
+Annenberg Center, CMS                Fachbereich Mathematik
+MC 305-16                            Sekr. MA 7-2
+California Institute of Technology   Technische Universität Berlin
+1200 E. California Blvd.             Straße des 17. Juni 135
+Pasadena, CA 91125                   10623 Berlin
+UNITED STATES                        GERMANY
+
+Dr. Mikhail Skopenkov                Prof. Dr. Sergei Tabachnikov
+National Research University         Department of Mathematics
+Higher School of Economics           Pennsylvania State University
+Department of Mathematics            University Park, PA 16802
+Vavilova 7                           UNITED STATES
+Moscow 117 332
+RUSSIAN FEDERATION
+                                     Jan Techter
+                                     Institut für Mathematik
+Lara Skuppin                         Fakultät II - Sekr. MA 8 - 3
+Institut für Mathematik             Technische Universität Berlin
+Fakultät II - Sekr. MA 8 - 3        Straße des 17. Juni 136
+Technische Universität Berlin       10623 Berlin
+Straße des 17. Juni 136              GERMANY
+10623 Berlin
+GERMANY
+                                     Alexander Thumm
+                                     Fachbereich Mathematik
+Prof. Dr. Boris Springborn           Institut für Geometrie und Topologie
+Institut für Mathematik, MA 8 - 3   Universität Stuttgart
+Technische Universität Berlin       70550 Stuttgart
+Straße des 17. Juni 136              GERMANY
+10623 Berlin
+GERMANY
+                                     Prof. Dr. Yiying Tong
+                                     Department of Computer Science &
+Prof. Dr. Kenneth Stephenson         Engineering
+Department of Mathematics            Michigan State University
+University of Tennessee              428 S. Shaw Lane #3115
+320 Ayres Hall                       East Lansing, MI 48824
+Knoxville, TN 37996-1300             UNITED STATES
+UNITED STATES
+                                     Prof. Dr. Etienne Vouga
+Prof. Dr. John M. Sullivan           Department of Computer Science
+Institut für Mathematik             The University of Texas at Austin
+Technische Universität Berlin       2317 Speedway, Stop D 9500
+Sekr. MA 8-1                         Austin, TX 78712
+Straße des 17. Juni 136              UNITED STATES
+10623 Berlin
+GERMANY
+Discrete Differential Geometry                                          729
+
+Prof. Dr. Johannes Wallner        Prof. Dr. Günter M. Ziegler
+Institut für Geometrie           Institut für Mathematik
+Technische Universität Graz      Freie Universität Berlin
+Kopernikusgasse 24                Arnimallee 2
+8010 Graz                         14195 Berlin
+AUSTRIA                           GERMANY
+
+Prof. Dr. Max Wardetzky           Prof. Dr. Denis Zorin
+Institut f. Numerische & Angew.   Vision, Learning and Graphics Group
+Mathematik                        Computer Science Department
+Universität Göttingen           Courant Institute of Mathematical
+Lotzestr. 16-18                   Sciences
+37083 Göttingen                  New York University
+GERMANY                           719 Broadway, 12th Fl.
+                                  New York NY 10003
+                                  UNITED STATES
+

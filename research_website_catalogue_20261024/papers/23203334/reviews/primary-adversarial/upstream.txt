@@ -1,0 +1,2860 @@
+          Global classical solutions of the three-dimensional
+                 relativistic Vlasov–Maxwell system
+                                               OpenAI
+
+                                       September 23, 2026
+
+
+                                              Abstract
+          We prove global existence and uniqueness for arbitrary smooth admissible initial
+      data in the three-dimensional, one-species relativistic Vlasov–Maxwell system. The
+      particle density is initially compactly supported, and the electromagnetic fields have
+      finite energy and bounded derivatives of all orders. The solution remains smooth on
+      every finite time interval. This resolves the large-data global classical regularity problem
+      for this model, without size or symmetry restrictions on the data.
+
+
+Contents
+1 Introduction                                                                                       2
+  1.1 Historical context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           3
+  1.2 Proof strategy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           4
+  1.3 Organization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             5
+
+2 The signed momentum estimate and its consequence                                                   5
+
+3 Energy and the retarded force                                                                       7
+  3.1 The retarded source labels . . . . . . . . . . . . . . . . . . . . . . . . . . . .              8
+  3.2 The exact electric and magnetic kernels . . . . . . . . . . . . . . . . . . . .                 9
+  3.3 Receiver geometry and pointwise force bounds . . . . . . . . . . . . . . . .                   11
+
+4 Occupation of retarded bins                                                                        13
+  4.1 The momentum and angular ranges . . . . . . . . . . . . . . . . . . . . . . .                  13
+  4.2 Two changes of variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             15
+  4.3 Stability on a short cell . . . . . . . . . . . . . . . . . . . . . . . . . . . . .            16
+  4.4 One energy budget for all distance and source-angle bins . . . . . . . . . . .                 17
+
+5 Direct bounds for the retarded force                                                               18
+  5.1 Field budgets and a single bin . . . . . . . . . . . . . . . . . . . . . . . . . .             19
+  5.2 Summing the radius . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .               20
+  5.3 Angular and momentum sums . . . . . . . . . . . . . . . . . . . . . . . . . .                  21
+
+6 Signed cancellation along the source trajectories                                                  24
+  6.1 The exact identity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             24
+  6.2 Smooth cutoffs and the small angular sector . . . . . . . . . . . . . . . . . .                25
+  6.3 Bounds for each derivative . . . . . . . . . . . . . . . . . . . . . . . . . . . .             26
+  6.4 Integration by parts and the initial cone . . . . . . . . . . . . . . . . . . . .              27
+  6.5 Coefficients used in the later selections . . . . . . . . . . . . . . . . . . . . .            28
+
+
+                                                   1
+7 Direction changes and improved occupation                                                          29
+  7.1 A bound on changes of direction . . . . . . . . . . . . . . . . . . . . . . . .                29
+  7.2 Occupation at intermediate angles . . . . . . . . . . . . . . . . . . . . . . .                31
+
+8 Selecting the signed part of the force                                                             34
+  8.1 The selection and its summable weight . . . . . . . . . . . . . . . . . . . . .                34
+  8.2 The receiver coefficient on selected bins . . . . . . . . . . . . . . . . . . . .              35
+  8.3 The spatial transition between selected and unselected bins . . . . . . . . .                  37
+  8.4 Time weights . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             39
+  8.5 The weighted signed estimate . . . . . . . . . . . . . . . . . . . . . . . . . .               39
+
+9 Closing the signed-increment bootstrap                                                             40
+
+10 Local theory and continuation for finite-energy fields                                            41
+   10.1 Characteristics and the Maxwell evolution . . . . . . . . . . . . . . . . . . .              42
+   10.2 Classical uniqueness and local Sobolev solutions . . . . . . . . . . . . . . . .             43
+   10.3 Changing the fields outside the particle region . . . . . . . . . . . . . . . . .            45
+   10.4 Smoothness through a classical interval . . . . . . . . . . . . . . . . . . . .              46
+   10.5 The bounded-momentum criterion . . . . . . . . . . . . . . . . . . . . . . .                 47
+
+
+1    Introduction
+The relativistic Vlasov–Maxwell system describes a collisionless plasma whose particles move
+under their self-consistent electromagnetic field. For momentum v ∈ R3 , write
+                                          √                                 v
+                                 q(v) =     1 + |v|2 ,        u(v) =            .
+                                                                           q(v)
+
+The particle density is f = f (t, x, v) ≥ 0; the electric and magnetic fields are E = E(t, x)
+and B = B(t, x). We use the one-species normalization
+
+          ∂t f + u(v) · ∇x f + (E + u(v) × B) · ∇v f = 0,
+                                          ∂t E − ∇x × B = −jf , ∂t B + ∇x × E = 0,                  (1.1)
+                                                    ∇x · E = ρ f ,                    ∇x · B = 0,
+
+where                        ∫                                         ∫
+               ρf (t, x) =        f (t, x, v) dv,        jf (t, x) =         u(v)f (t, x, v) dv.
+                             R3                                        R3
+There is no background charge.
+   A smooth admissible datum is a triple (f0 , E0 , B0 ) satisfying
+
+                                   f0 ∈ Cc∞ (R3x × R3v ),   f0 ≥ 0,
+                                            ∞
+                                 E0 , B0 ∈ Cb (R ; R ) ∩ L (R3 ; R3 ),
+                                                3   3     2                                         (1.2)
+                                  ∇x · E0 = ρf0 ,           ∇x · B0 = 0.
+
+Here Cb∞ means that every spatial derivative is bounded. A classical solution on [0, T ) is a
+C 1 triple solving (1.1) pointwise, with E, B ∈ C([0, T ); L2x ), such that the support of f in
+(x, v) is contained in a compact set on every compact time subinterval.
+
+
+
+
+                                                     2
+Theorem 1.1. Every smooth admissible datum (1.2) generates a unique global classical
+solution of (1.1). For every finite T , this solution satisfies
+                f ∈ C ∞ ([0, T ] × R3x × R3v ),       E, B ∈ C ∞ ([0, T ] × R3x ; R3 ),
+and f has compact phase-space support on [0, T ]. The two divergence constraints hold for
+all time.
+    Theorem 1.1 resolves the large-data global classical regularity problem for this one-species
+model in three spatial and three momentum dimensions. The data have no size or symmetry
+restriction. The field assumptions allow a nonzero total charge and its Coulomb tail; they
+do not require square-integrability of all field derivatives. The momentum support bound is
+on each finite time interval and may grow with that interval.
+
+1.1   Historical context
+The distinction between weak existence and classical regularity has shaped the Cauchy
+problem for Vlasov–Maxwell. Wollman established local existence and uniqueness for
+classical solutions [29]. DiPerna and Lions developed global weak existence for large data [5];
+a direct formulation for the relativistic one-species system is given by Rein [22]. These weak
+existence results do not furnish the regularity and uniqueness asserted in Theorem 1.1.
+    For classical solutions, Glassey and Strauss identified bounded momentum support as
+a continuation condition [11] and proved global existence for initially dilute plasmas [12].
+Global classical existence was also established by Glassey and Schaeffer in dimensional
+reductions: one and one-half dimensions, two and one-half dimensions, and the planar
+problem [7, 6, 9, 10]. For the spherically symmetric electrostatic reduction, Glassey and
+Schaeffer proved global classical existence for the repulsive relativistic Vlasov–Poisson
+system [8]. Rein proved persistence of global existence under small perturbations of suitably
+decaying global reference solutions, including nearly symmetric configurations [21]. These
+results use restrictions on size, dimension, or the reference configuration.
+    The continuation theory also led to new methods. Klainerman and Staffilani gave a
+Fourier-based proof of the bounded-momentum criterion [13], while Bouchut, Golse and
+Pallard gave a physical-space proof using a division lemma for wave kernels [4]. Luk and
+Strain showed that it suffices to control the momentum support after projection onto a
+fixed two-dimensional plane [15, Theorem 1.2]. Moment and spatial-density conditions for
+continuation were developed by Pallard [18, 19], Sospedra–Alfonso and Illner [24], and Luk
+and Strain [16]. We use the Glassey–Strauss criterion as stated in Luk and Strain [15,
+Theorem 1.1]; Section 10.5 verifies its hypotheses for the normalization and initial field class
+considered here.
+    Small-data theory also developed beyond compact momentum support. Schaeffer allowed
+a rapidly decaying momentum tail, retaining compact spatial support and a suitable smallness
+condition [23]. Using a vector-field method with modified commutators, Bigorgne obtained
+global existence and sharp asymptotic estimates under weighted smallness assumptions [1].
+His result permits nonzero charge and noncompact particle data. Wang proved a small-data
+result without compact support using vector-field and Fourier methods [25]. Wei and Yang
+allow arbitrarily large Maxwell fields with suitable spatial decay while requiring a sufficiently
+small weighted particle density [28]. Bigorgne subsequently proved global existence and
+modified scattering with a small distribution function and a large Maxwell field [3]. These
+theorems preserve a particle-smallness hypothesis. By prescribing asymptotic data and
+choosing a sufficiently late starting time, Bigorgne also constructs particular global solutions
+with large particle and field norms [2]. This construction does not prescribe arbitrary Cauchy
+data.
+
+                                                  3
+    Wang’s July 2026 two-paper treatment establishes global existence for large cylindrically
+symmetric data [26, 27]. The first paper develops an iterative smoothing construction and
+the second supplies pointwise estimates. Their Theorem 1.1 assumes H s fields, s ≥ 6, a
+weighted H s particle density, and covariance of the data under rotations about a fixed axis.
+It allows localized noncompact particle data and has no smallness requirement. The theorem
+here instead concerns arbitrary compatible compactly supported particle data, without
+symmetry, and fields in the class (1.2). Thus the two data classes should not be identified.
+    The formulas used below have several classical antecedents. The retarded-field repre-
+sentation goes back to Glassey and Strauss [11]. Luk and Strain organize its most singular
+terms using electromagnetic components controlled by energy flux through light cones [15,
+Proposition 2.2 and Section 3]; Pallard also uses the orthogonality of the acceleration kernel
+to the cone’s spatial normal [19, Lemma 2.1 and Section 2.3]. The change from retarded
+phase points to initial particle labels appears in Lazarovici [14, Lemma 9.2]. The moving-
+characteristic cone change of variables is used by Pallard [18]; its proof is also given by Luk
+and Strain [15, Proposition 5.2]. We derive the required formulas in the normalization (1.1).
+
+1.2   Proof strategy
+The central estimate concerns the signed change of a particle’s momentum. Along a
+characteristic (X(t), VX (t)), with X ′ = u(VX ) and VX′ = E(t, X) + u(VX ) × B(t, X), it is
+the impulse
+                                      ∫ t2
+                                             (                                     )
+              VX (t2 ) − VX (t1 ) =              E(t, X(t)) + u(VX (t)) × B(t, X(t)) dt.
+                                       t1
+
+We take the norm after integration. Section 2 states the estimate precisely and shows that
+it places a lower bound on the time needed to double the largest particle momentum. These
+lower bounds have a divergent sum, which rules out unbounded momentum support in finite
+time and allows the continuation criterion to apply.
+    To estimate the impulse, we follow source particles to their intersections with the
+backward light cone of the particle receiving the force. We divide the source contribution
+into ranges of momentum, distance, and angles between the source velocity, receiver velocity,
+and light ray. Energy flux through the cone and bounds on the time that source particles
+spend in these ranges give the direct force estimates of Sections 4 and 5. At receiver energy
+                                                                     √
+comparable to w, the absolute-force bound has an extra factor w compared with the
+signed estimate we need. The loss occurs when the source velocity is much closer to the
+light-ray direction than the receiver velocity is.
+    In this narrow angular region, we integrate the retarded force along a source trajec-
+tory before taking absolute values. The identity in Section 6 combines the part without
+source acceleration with the part containing it. The former cancels a term generated by
+differentiating the cone geometry. The force is thereby written as a total derivative plus
+less singular bulk terms, one of which contains the receiver’s acceleration. Expressing that
+acceleration through VX′ turns this into an error proportional to the receiver force. The
+proof must control its coefficient as well as the other integration-by-parts errors.
+    We use the signed identity twice, under an assumed bound on all signed momentum
+increments. First, after projection perpendicular to a particle’s momentum, it bounds the
+number of direction changes of a prescribed angular size. This step uses only the preliminary
+occupation and direct force estimates. When both source and receiver momenta are large,
+direction control gives a stronger occupation bound at intermediate relative angles: between
+changes of direction, relative motion makes a monotone crossing of the region contributing
+to a fixed range. Section 7 proves the direction bound before using it to improve occupation.
+
+                                                       4
+    For the second use, Section 8 selects only those ranges whose direct force estimates
+exceed a summable threshold. The other ranges already satisfy the required bound. On
+the selected ranges, the coefficient multiplying the receiver force is at most a constant
+                                                                   √
+times w−1/2 after summation. This exactly compensates for the w loss in the available
+absolute-force bound. The occupation improvement need only hold in the stated angular
+window: the selection inequalities force any possible obstruction to this coefficient bound
+into that window, where improved occupation rules it out. This yields an impulse estimate
+with a time weight that vanishes at the interval endpoints. Section 9 restores the short
+endpoint intervals using the assumed signed bound, obtains a strict improvement, and closes
+the bootstrap by continuity.
+
+1.3   Organization
+Section 2 states the signed estimate and deduces Theorem 1.1 from it and a continuation
+result. Sections 3–5 derive the retarded force, occupation estimates and direct bounds.
+Section 6 proves the signed cancellation; Section 7 bounds direction changes and improves
+occupation. Section 8 estimates the selected signed force, and Section 9 closes the bootstrap.
+Section 10 proves local existence, uniqueness, smooth persistence and the field modification
+needed to apply the bounded-momentum continuation theorem to (1.2).
+
+
+2     The signed momentum estimate and its consequence
+Our analytic goal is an estimate on momentum increments along characteristics. We state
+it first and explain why its logarithmic time scale excludes finite-time breakdown. Its proof
+occupies the central sections of the paper.
+     Fix a finite horizon T0 > 0 and a compact interval [0, t∗ ] ⊂ [0, Tmax ), with t∗ ≤ T0 , of a
+classical solution. A characteristic with initial label z = (yin , vin ) solves
+
+      Y ′ (s, z) = u(V (s, z)),      V ′ (s, z) = E(s, Y (s, z)) + u(V (s, z)) × B(s, Y (s, z)).
+
+It is supported if z ∈ supp f0 . A distinguished supported characteristic, along which we
+estimate the force, is written (X(t), VX (t)) and called the receiver. We write
+
+                    a(t) = u(VX (t)),      qX (t) = q(VX (t)),        K(t) = VX′ (t).
+
+The signed increment is the vector impulse
+                                                           ∫ t2
+                                   VX (t2 ) − VX (t1 ) =          K(t) dt.
+                                                            t1
+
+Source characteristics continue to use the letters Y, V, u.
+   For nonempty supp f0 , choose a dyadic number P such that
+
+                                                                                        P 2L
+            P ≥ 1024 max q(V (t, z)),              L = log(2 + P ),           S(w) =         .     (2.1)
+                        0≤t≤t∗                                                           w
+                       z∈supp f0
+
+A dyadic number is a power of two. Receiver scales are w = 2k , k ≥ 0. In every nonempty
+range w/8 ≤ qX ≤ 8w one has w ≤ P .
+
+Proposition 2.1 (Signed momentum increments). For each smooth admissible datum and
+finite T0 , there are constants M, A ≥ 1 and P0 with the following property. On every
+compact classical solution interval [0, t∗ ] as above, for every dyadic P ≥ P0 satisfying (2.1),
+
+                                                   5
+every supported receiver, every w = 2k , k ≥ 0, and every interval [t1 , t2 ] ⊂ [0, t∗ ] on which
+w/8 ≤ qX (t) ≤ 8w throughout, one has
+                                              √
+                   |VX (t2 ) − VX (t1 )| ≤ M P t2 − t1 + A(t2 − t1 )S(w).                    (2.2)
+
+The constants are independent of t∗ and P .
+
+Proposition 2.2 (Local theory and continuation). Every smooth admissible datum has a
+unique maximal classical solution. It is smooth on each compact subinterval of its lifespan.
+If its maximal time Tmax is finite and
+
+                      sup{ |v| : 0 ≤ t < Tmax , (x, v) ∈ supp f (t) } < ∞,
+
+then the solution has a classical extension beyond Tmax .
+
+    The proof is given in the final section. It combines the Glassey–Strauss bounded-
+momentum criterion in the H 5 formulation quoted by Luk and Strain [15, Theorem 1.1
+and Footnote 1, arXiv version] with a finite-horizon modification of the initial fields. The
+modification retains the initial Coulomb field and cuts off vector potentials for the divergence-
+free remainders. The removed part evolves as a vacuum Maxwell field that vanishes
+throughout the particle region for the chosen horizon. This supplies Sobolev field data for
+the continuation theorem while preserving the original particle dynamics.
+
+Proof of Theorem 1.1 from Propositions 2.1 and 2.2. If f0 = 0, the vacuum Maxwell solu-
+tion is global and smooth, as shown in the final section. Suppose supp f0 ̸= ∅ and, toward
+a contradiction, Tmax < ∞. Proposition 2.2 then forces unbounded momentum support. Set
+T0 = Tmax and
+                                Q(t) = max q(V (t, z)).
+                                           z∈supp f0
+
+Continuity of the characteristic flow and compactness of the label set make Q continuous.
+For all sufficiently large integers n, let tn < Tmax be the first time when Q(tn ) = 2n . Choose
+a label attaining this value. Along that label let sn be its last time before tn at energy 2n−1 .
+Such a time exists because the initial energy is smaller; moreover sn ≥ tn−1 . On [sn , tn ] the
+energy lies in [2n−1 , 2n ].
+    Apply Proposition 2.1 on the prefix [0, tn ] with P = 1024 · 2n and w = 2n . Since q is
+1-Lipschitz, writing ∆n = tn − sn gives
+                                               √
+        2n−1 ≤ |V (tn ) − V (sn )| ≤ 1024M 2n ∆n + 10242 A 2n ∆n log(2 + 1024 · 2n ).
+
+At least one term on the right is at least 2n−2 . Consequently
+                                                           c
+                             tn − tn−1 ≥ ∆n ≥
+                                                   log(2 + 1024 · 2n )
+
+for a fixed c > 0. The sum of these lower bounds diverges, contradicting tn < Tmax .
+Thus Tmax = ∞. Uniqueness, smoothness and propagation of the constraints follow from
+Proposition 2.2 and its proof.
+
+     To prove Proposition 2.1, we assume (2.2) for all such receivers, scales and intervals in
+[0, τ ], where τ ≤ t∗ , and derive a uniform strict improvement. Until that improvement is
+proved, (2.2) is a bootstrap assumption. In the estimates, C and the constants implicit
+in ≲ or ≍ may depend on the datum, T0 , and fixed decomposition parameters, but not
+on t∗ , P, M, A. Additional dependence is indicated explicitly. Lower thresholds on P may
+
+
+                                                6
+depend on M, A. The final choices are made in the order: a time-ramp fraction, then M ,
+then A, then the threshold on P .
+   For nonnegative estimates we allow integration over any measurable subset of receiver
+times in an interval J ⊂ [0, τ ] of length at most I, provided those times satisfy w/8 ≤ qX ≤ 8w
+and
+                                          0 < I ≤ (w/P )2 .                                 (2.3)
+The number I is an upper bound on length in these estimates. For the final signed estimate
+the interval has length exactly I and the receiver stays in the indicated range throughout.
+This distinction permits summation over disjoint time pieces without introducing a new
+constant for each piece.
+    Figure 1 records the conditional dependencies. We now prove Proposition 2.1. Energy
+and timelike geometry give preliminary bounds on absolute force. Those bounds lose a
+factor at large receiver momentum; the subsequent signed cancellation removes this loss.
+
+            Assumed increment bound                         Signed cancellation
+                 up to time τ                               along source labels
+
+                                                  e
+               Baseline occupation                us
+               and direct estimates          st
+                                            fir
+                                                                      second use
+                Bound on changes
+               of particle direction
+
+
+               Improved occupation                         Selected-bin estimate
+              in the angular window                         for the signed force
+
+
+              Continuity argument                           Strict improvement
+              establishes the bound                        of the assumed bound
+
+Figure 1: Main dependencies in the conditional proof of the signed momentum estimate.
+The dashed box is a bootstrap assumption. The first use of signed cancellation controls
+particle direction from this assumption and the baseline estimates; improved occupation is
+obtained afterward. The second use yields a strict improvement, and a continuity argument
+establishes the initially assumed bound.
+
+
+
+3    Energy and the retarded force
+The estimates below use the conserved energy and two different changes of variables on a
+backward light cone. We first derive the force kernels without derivatives of the density.
+This representation belongs to the Glassey–Strauss approach [11]; the organization by
+cone-controlled field components also appears in [15, Proposition 2.2 and Section 3]. We
+give the source-label calculation explicitly, including its initial boundary term.
+    Throughout this section, fix a classical solution on a compact interval [0, t∗ ], with
+t∗ ≤ T0 < ∞, in the class specified in the main theorem. All limiting operations are justified
+on this fixed compact interval. Constants in the final bounds depend only on the initial data
+and T0 ; constants used solely to remove a cutoff may also depend on the compact-interval
+momentum support. Retain the characteristic notation fixed in Section 2.
+
+
+                                                  7
+Lemma 3.1 (Transport and cone energy). The characteristic flow preserves phase volume
+and transports f0 . In particular 0 ≤ f ≤ ∥f0 ∥∞ . Define
+
+         |E|2 + |B|2
+                                    ∫                                            ∫                         ∫
+      U=             +                   qf dv,                 S =E×B+              quf dv,        H0 =        U(0, x) dx.
+              2                                                                                            R3
+
+Then                                         ∫
+                                                      U(s, x) dx = H0            (0 ≤ s ≤ t∗ ).                               (3.1)
+                                                 R3
+For every vertex (t, x) in this interval, put r = t − s, y = x − rn, n ∈ S 2 , and
+
+               d = 1 − n · u(v),                            G = |E(s, y) + n × B(s, y)| + |n · B(s, y)|.
+
+Then                   ∫ t∫                      (          ∫                           )
+                                             2        2
+                                         r        G +           qdf (s, x − rn, v) dv dn ds ≤ 4H0 .                           (3.2)
+                           0        S2
+
+Proof. The phase vector field has zero divergence: u is independent of x, E is independent
+of v, and ∇v · (u × B) = B · (∇v × ∇v q) = 0. Liouville’s formula gives volume preservation,
+and the Vlasov equation gives f (s, Y, V ) = f0 (z). The flow exists backwards from every
+finite phase point on this compact time interval. Indeed, its spatial path stays in a bounded
+ball because |u| < 1; the fields are bounded on the resulting compact spacetime set, so its
+momentum cannot escape in finite time.
+     Multiplication of Vlasov by q and integration in v, followed by Maxwell’s energy identity,
+give
+                                ∂s U + ∇x · S = 0,     |S| ≤ U.
+There is no momentum boundary term because f has compact phase-space support on the
+interval. Integrate against spatial cutoffs equal to one on a ball of radius R, with gradient
+bounded by C/R. The error tends to zero: the fields are bounded in C([0, t∗ ]; L2 ) and the
+particle energy has compact support and is continuous in time. Passing to the limit proves
+conservation.
+    The outward spatial normal of the ball |y − x| < t − s is −n. Its energy derivative is
+therefore minus the boundary integral of U − n · S. At the cone tip the ball energy tends to
+zero by local continuity. Hence the exact cone identity is
+                  ∫ t∫                                                                 ∫
+                                     2
+                                    r (U − n · S)(s, x − rn) dn ds =                              U(0, y) dy.
+                   0           S2                                                       |y−x|<t
+                       ∫
+Its particle part is       qdf dv, and its field part is
+                                                       1(
+                                                          |E + n × B|2 + |n · B|2 .
+                                                                                 )
+                                                       2
+Since (a + b)2 ≤ 2(a2 + b2 ), the last identity implies (3.2).
+
+3.1    The retarded source labels
+For fixed t, x, set r = |x − y|, s = t − r, and n = (x − y)/r when r > 0. The zero-data wave
+potentials are
+                               1                                         f (t − |x − y|, y, v)
+                                                       ∫            ∫
+               (Φ, A)(t, x) =                                                                  (1, u(v)) dv dy.               (3.3)
+                              4π                          |x−y|<t   R3         |x − y|
+
+    The following change to source labels also appears in [14, Section 9, Lemma 9.2]. We
+give the calculation for the present flow.
+
+                                                                         8
+Lemma 3.2 (Retarded phase change). Away from the cone tip, the map sending (y, v) at
+time s = t − |x − y| to its initial label is one-to-one, with Jacobian
+
+                                  dz = d dy dv,             d = 1 − n · u(v) > 0.                                  (3.4)
+
+Its image consists, up to the null set of tip labels, of
+
+                                            Lt,x = {z : |x − Y (0, z)| < t}.
+
+For such a label, the retarded time solves
+
+                                                s + |x − Y (s, z)| = t.                                            (3.5)
+
+Consequently (3.3) equals
+                                            1                            (1, u(V (s, z)))
+                                                      ∫
+                            (Φ, A)(t, x) =                      f0 (z)                    dz.                      (3.6)
+                                           4π            Lt,x                  rd
+Proof. Let Zs be the fixed-time inverse phase flow. Its determinant is one by Lemma 3.1,
+and ∂s Zs = −DZs (u, V ′ ). Since ∇y s = n, the derivative of Zt−|x−y| (y, v) is the fixed-time
+derivative multiplied by
+                                   Id − (u, V ′ ) ⊗ (n, 0).
+The determinant of this rank-one perturbation is 1 − n · u = d.
+    Along a fixed label, the function on the left of (3.5) is strictly increasing. More explicitly,
+on any compact part of that characteristic, its increment between s1 < s2 is at least
+(1 − sup |u|)(s2 − s1 ) > 0. It starts below t exactly for labels in Lt,x and at s = t is at least
+t. Thus it has exactly one root. The root is a tip only if Y (t, z) = x. This set has phase
+Lebesgue measure zero, by the volume-preserving fixed-time flow and Fubini’s theorem.
+This proves injectivity and the image assertion. Transport of f and (3.4) now give (3.6).
+
+3.2    The exact electric and magnetic kernels
+Along a source characteristic write
+                                                    Id − u ⊗ u
+                                       b = u′ =                (E + u × B),                                        (3.7)
+                                                        q
+where these fields, u, and q are evaluated at its retarded point.
+Proposition 3.3 (Retarded field representation). Let E fr , B fr be the homogeneous wave
+solutions with data
+
+           (E fr , ∂t E fr )|t=0 = (E0 , ∇ × B0 ),                  (B fr , ∂t B fr )|t=0 = (B0 , −∇ × E0 ).
+
+For t > 0, define initial boundary terms by
+                             1                      f0 (y0 , v0 ) (
+                                  ∫             ∫
+   (E bd , B bd )(t, x) =
+                                                                                             )
+                                                                    n0 − u0 , n0 × (n0 − u0 ) dv0 dSy0 ,
+                            4πt    |x−y0 |=t     R3     d0                                                         (3.8)
+                                           n0 = (x − y0 )/t,             u0 = u(v0 ),       d0 = 1 − n 0 · u 0 .
+
+Set these terms to zero at t = 0. Then
+                                                         1
+                                                                          ∫
+                                      fr
+                  E(t, x) = E (t, x) + E (t, x) +   bd
+                                                                f0 (z) K dz,
+                                                        4π Lt,x
+                                                                                                                   (3.9)
+                                                         1
+                                                           ∫
+                  B(t, x) = B fr (t, x) + B bd (t, x) +         f0 (z) (n × K ) dz,
+                                                        4π Lt,x
+
+                                                                9
+where
+                                         n−u      (n − u)(n · b) − db
+                                K =       2 2 3
+                                                +                     .                          (3.10)
+                                         r q d           rd3
+All these integrals are well defined at the stated classical regularity. Moreover,
+
+                        sup        (|E fr | + |B fr | + |E bd | + |B bd |) ≤ CT0 ,f0 ,E0 ,B0 .   (3.11)
+                   0≤t≤T0 , x∈R3
+
+Proof. Wave representation. Kirchhoff’s formula gives □(Φ, A) = (ρf , jf ) with zero data,
+where □ = ∂t2 − ∆. Maxwell’s equations give, distributionally,
+
+                              □E = −∇ρf − ∂t jf ,                 □B = ∇ × jf .
+
+Thus the fields are (−∇Φ − ∂t A, ∇ × A) plus the stated homogeneous waves. Here it is
+important that the electric potential contribution has initial time derivative −jf (0).
+    We justify this assertion with only C 1 sources. In the variables y = x − rn, the potentials
+integrate a C 1 source against r dr dn. Their first derivatives are continuous, and locally
+uniformly in x,
+
+                ∂t A(t, x) = tjf (0, x) + O(t2 ),            ∇Φ(t, x), ∇A(t, x) = O(t2 ).
+
+These formulas give the required zero initial values and initial difference quotients of the
+potential fields. For completeness, uniqueness of the resulting continuous distributional wave
+remainder can be reduced to classical uniqueness: convolve spatially with a compact smooth
+mollifier. The wave equation then supplies a continuous second time derivative, including at
+zero; the initial difference quotients identify its zero initial velocity. Local wave energy gives
+zero, and removal of the mollifier gives the assertion. No second derivative of f is used.
+    Interior kernels. To differentiate (3.6), hold the initial label fixed. Implicit differentiation
+of (3.5) gives
+                                   st = 1/d,      ∇x s = −n/d.
+Write ℓ = (rd)−1 . With s held fixed,
+                                                            n−u
+                                              ∇x ℓ = −            .
+                                                            r2 d2
+With x fixed,
+
+                                               u − n(n · u)                  q −2 − d n · b
+                rs = −n · u,         ns = −                 ,         ℓs =           + 2.
+                                                    r                          r2 d2  rd
+Therefore the interior electric kernel is
+                                                      n−u n−u       b
+                          −∇total
+                            x     ℓ − ∂t (uℓ) =        2 2
+                                                           +   ℓs − 2 ,
+                                                      r d    d     rd
+which simplifies to (3.10). In the magnetic curl the corresponding expression is its cross
+product with n: indeed
+                                            n−u n           n×b
+                                        (                     )
+                   ∇total
+                    x     × (uℓ) = −         2 2
+                                                 − ℓs × u −     =n×K .
+                                            r d   d         rd2
+    Boundary terms and the cone tip. The label domain has indicator 1{t>|x−y0 |} . Its time
+derivative is δ(t − |x − y0 |) and its spatial gradient is −n0 δ(t − |x − y0 |). The resulting electric
+factor is (n0 − u0 )/(td0 ) and the magnetic one is its cross product with n0 . Integration over
+the initial sphere gives (3.8). The initial velocities are bounded on supp f0 , so d0 has a fixed
+
+                                                       10
+positive lower bound. Sphere area and compact initial velocity support consequently give
+|E bd | + |B bd | ≤ Cf0 t, uniformly in x.
+    The differentiations at the cone tip can be justified by inserting a smooth cutoff that
+vanishes for r < γ and equals one for r > 2γ. On the supported labels of the fixed compact
+time interval, d is bounded below and u, b are bounded. Derivatives of this cutoff are at
+most C/γ. By (3.4), the omitted potential and cutoff errors are bounded by integrals of
+Cf /r over r < 2γ, multiplied by at most C/γ for the latter. They are O(γ 2 ) and O(γ),
+respectively. The omitted kernel integrals are O(γ) because their worst radial singularity
+after this change of variables is r−2 . These bounds are locally uniform for t > 0. The already
+established initial traces handle t = 0. Thus no term supported at the cone tip remains.
+    Finally, Kirchhoff’s formula for a homogeneous wave W with data (W0 , W1 ) bounds it
+by
+                            ∥W (t)∥∞ ≤ ∥W0 ∥∞ + t∥∇W0 ∥∞ + t∥W1 ∥∞ .
+The assumed bounded initial derivatives give (3.11). The homogeneous waves here need not
+together be a vacuum Maxwell solution; the representation requires only their displayed
+wave data.
+
+3.3    Receiver geometry and pointwise force bounds
+Let (X(t), VX (t)) be a supported receiver characteristic and write
+
+                           a = u(VX ),            qX = q(VX ),              K = VX′ ,
+                    D = 1 − n · a,           e = 1 − a · u,             Q = DId + n ⊗ a.
+
+Since h + a × (n × h) = Qh, Proposition 3.3 and (3.4) give
+                                          1
+                                              ∫                ∫
+                                data
+                       K=K             +                           (Tker + Sker ) dv dy,               (3.12)
+                                         4π    |X(t)−y|<t R3
+
+where |K data | ≤ CT0 ,f0 ,E0 ,B0 and
+                                                                   (                       )
+                           f Q(n − u)                     f Q (n − u)(n · b) − db
+                    Tker =             ,           Sker =                         .                    (3.13)
+                             r2 q 2 d2                              rd2
+The density and source quantities in these integrals are evaluated at (t − r, y, v), not at the
+receiver.
+    Figure 2 shows the source and receiver geometry.
+Lemma 3.4 (Pointwise force bounds). Let θ, ϕ > 0 satisfy θ2 ≍ d and ϕ2 ≍ D, with fixed
+comparison constants. The transport kernel splits into two terms, according to the normal
+and tangential parts of n − u, bounded by
+                                             Cf                         Cf ϕ
+                                  Tr =                ,        T⊥ =             .                      (3.14)
+                                           r2 q2 θ2                    r2 q2 θ3
+With G as in Lemma 3.1, the source acceleration satisfies
+              C                                   Cθ
+      |b| ≤     (G + θ2 |B|),      |n · b| ≤         (G + θ2 |B|),             |q ′ | ≤ C(G + θ|B|).   (3.15)
+              q                                    q
+Consequently
+                                                           Cf ϕ                     Cf ϕ
+                     |Sker | ≤ Sg + Sb ,          Sg =          G,          Sb =         |B|.          (3.16)
+                                                           rqθ2                      rq
+If VX ̸= 0 and PX is orthogonal projection onto VX⊥ , then |PX Sker | ≤ Cϕ(Sg + Sb ).
+
+                                                          11
+          (a) Spacetime: schematic 1 + 1 slice                              (b) Spatial geometry
+      time
+                                                                          Positions at times s and t
+            source Y                   receiver X
+                                                                         u(V (s))                    a(t)
+      t                              (t, X(t))
+                           ray
+                       lig
+                          ht                                                       n
+          (s, Y (s))
+      s                                                          Y (s)                          X(t)
+                                       backward                                    r
+                                       light cone
+                                                                                         X(t) − Y (s)
+                                                         space    r = t − s,        n=
+                                                                                              r
+
+Figure 2: Retarded geometry along a receiver characteristic. The source event (s, Y (s)) lies
+on the backward light cone of (t, X(t)), with r = t − s = |X(t) − Y (s)| > 0. The spatial unit
+vector n points from Y (s) to X(t). Panel (b) shows the source velocity u(V (s)) = Y ′ (s)
+and the receiver velocity a(t) = X ′ (t) at these respective events. The curves and vector
+directions are schematic.
+
+Proof. The exact identities
+                                                                              −2
+                               2d = |n − u|2 + q −2 ,        2D = |n − a|2 + qX
+
+give |n − u| ≤ Cθ and |n − a| ≤ Cϕ. Also Qn = n, whereas for h ⊥ n,
+
+                                       |Qh| ≤ D|h| + |a · h| ≤ Cϕ|h|.
+
+The normal component of n − u is dn and its tangential component has norm at most Cθ.
+This proves (3.14).
+   Put u = (1 − d)n + u⊥ and H = E + n × B. The force at the source is
+
+                                Fsrc = E + u × B = H + (−dn + u⊥ ) × B.
+
+Its tangential and normal components satisfy
+
+                       |(Fsrc )⊥ | ≤ C(G + θ2 |B|),          |n · Fsrc | ≤ C(G + θ|B|).
+
+Indeed the tangential part of u⊥ × B involves only n · B, while its normal part is bounded
+by Cθ|B|. For Lu = Id − u ⊗ u we have
+
+          |Lu n| ≤ Cθ,           |n · Lu n| = 2d − d2 ≤ Cθ2 ,        |n · Lu h| ≤ Cθ|h|      (h ⊥ n).
+
+Combining these component bounds with b = q −1 Lu Fsrc proves the first two inequalities in
+(3.15). The last follows from q ′ = u · E = u · H − u · (n × B).
+    The numerator N = (n − u)(n · b) − db is tangent to n, since n · N = d(n · b) − d(n · b) = 0.
+This cone tangency is also used in [19, Lemma 2.1]. The preceding estimates give
+
+                                                    Cθ2
+                                           |N | ≤       (G + θ2 |B|).
+                                                     q
+The tangential bound for Q now proves (3.16). Finally PX a = 0, so |PX n| = |PX (n − a)| ≤
+Cϕ. For h ⊥ n,
+                         |PX Qh| ≤ D|h| + |PX n| |a · h| ≤ Cϕ2 |h|.
+Applying this to N gives the additional projected factor.
+
+                                                        12
+Lemma 3.5 (Source time along a receiver). Along a retarded source label satisfying t =
+s + |X(t) − Y (s, z)| away from collisions,
+                     dt  d
+                        = ,         ds f0 (z) dz = D dt f (t − r, y, v) dy dv.           (3.17)
+                     ds  D
+For f0 (z)dz-almost every label there is no same-time collision Y (t, z) = X(t) anywhere in
+the compact time interval. Such a label has one continuously differentiable retarded branch
+after its initial-cone entry, when that entry occurs, and r is bounded below on each closed
+part of this branch in the compact interval.
+Proof. Differentiate t − s − |X(t) − Y (s, z)| = 0 to obtain D dt = d ds. Both factors are
+positive. Combining this with (3.4) gives the measure identity in (3.17).
+    To exclude same-time collisions, let Rv bound the supported momenta on [0, t∗ ]. Use a
+time grid of mesh at most ζ with O(1 + t∗ /ζ) points. If a collision occurs, at a nearest grid
+time the two positions are at distance at most 2ζ, since both spatial speeds are at most one.
+At each grid time the mass of labels satisfying this distance bound is at most C∥f0 ∥∞ Rv3 ζ 3 ,
+by phase-volume preservation. The union has mass O(ζ 2 ) and tends to zero.
+    For the remaining labels, strict timelikeness gives uniqueness and continuous differentia-
+bility of the retarded root. The entry time is unique because t − |X(t) − Y (0, z)| is strictly
+increasing. At entry r = t > 0, since an entry at zero would be an excluded initial collision.
+On any closed part of the branch, continuity and the absence of collisions give a positive
+minimum of r. This assertion is labelwise; no uniform lower bound over all labels is used.
+
+
+4     Occupation of retarded bins
+We estimate how much particle mass a receiver can meet in a prescribed momentum, angle,
+and distance range. Two changes of variables give crude bounds. The signed increment
+assumption then limits how long a source can remain close to the receiver. A time-averaged
+energy budget will make the result summable over the small angular sector.
+    The residence-time and relative-velocity viewpoint is inspired by Pfaffelmoser’s Vlasov–
+Poisson argument [20]. This is methodological inspiration, not a theorem input for the
+Vlasov–Maxwell system: the retarded geometry and source-acceleration terms require the
+estimates proved here.
+    Throughout this section assume (2.2) up to a time τ ≤ t∗ . Fix a supported receiver X,
+a dyad w, and a closed interval J ⊂ [0, τ ] of length at most I, where
+
+                                        0 < I ≤ (w/P )2 .                                 (4.1)
+
+We integrate over any measurable subset of {t ∈ J : w/8 ≤ qX (t) ≤ 8w}. The receiver need
+not remain in this momentum range at other times of J. All constants below may depend
+on the fixed horizon, initial energy, ∥f0 ∥∞ , and the fixed partition parameters, but not on
+M, A, P , τ, J, or the measurable subset. In particular, they are uniform over supported
+receivers. We use the already established bounds
+                                                ∫
+                 0 ≤ f ≤ ∥f0 ∥∞ ,        sup             q(v)f (s, y, v) dy dv ≤ C.
+                                        0≤s≤τ   R3 ×R3
+
+
+4.1   The momentum and angular ranges
+Let H0 = max(1, T0 ). At a source point on the receiver’s backward cone write
+
+                       r = t − s > 0,       y = X(t) − rn,          n ∈ S2,
+
+                                                13
+and retain the notation
+
+          u = v/q(v),     a = a(t),      d = 1 − n · u,    D = 1 − n · a,      e = 1 − a · u.
+                                                                       √   √       √
+Choose smooth nonnegative dyadic partitions for r/H0 , d/2, D/2, e/2, with repre-
+sentatives h, θ, ϕ, σ ∈ {1, 2−1 , 2−2 , . . .}. Each factor is supported where its argument lies
+between one half and twice its representative. The partitions sum to one, including near
+the upper endpoint 1, have bounded overlap, and have uniformly bounded derivatives with
+respect to the logarithm of each variable. For example, normalized dilates of a fixed bump
+supported in (1/2, 2) and positive on [3/4, 3/2] give such partitions. Use the analogous
+partition of q ≥ 1 with representatives p0 = 1, 2, 4, . . ., but write p = 64p0 . On its support,
+
+                               p/128 ≤ q ≤ p/32,           64 ≤ p ≤ P.
+
+The last inequality follows from the assumed bound on all supported momenta. We use
+closed support ranges for upper estimates; this preserves bounded overlap.
+    These are angular scales with the inverse-momentum deficits included, not literal geo-
+metric angles. The exact identities
+                                      2d = |n − u|2 + q −2 ,
+                                                      −2
+                                     2D = |n − a|2 + qX  ,                                      (4.2)
+                                                   2      −2      −2
+                                      2e = |a − u| + q         + qX
+imply, on a nonempty bin,
+
+                  θ ≥ 1/p,        ϕ ≥ c/w,        σ ≥ c/m,         m = min(p, w).               (4.3)
+
+All angles have at most C log(2 + P ) nonempty dyadic ranges. For the relations between
+them, apply the triangle and reverse triangle inequalities to
+                                                          −1
+                             (u − n, q −1 , 0),
+                                              (n − a, 0, qX  ) ∈ R5 .
+                 √ √                                        √
+Their norms are 2d, 2D, and the norm of their sum is 2e. Consequently σ ≤ C(θ + ϕ),
+and σ is comparable to the larger of θ, ϕ when those two angles are sufficiently separated.
+   Fix a sufficiently small numerical κ > 0. The small sector consists of representatives
+θ < κϕ; here σ ≍ ϕ, and we omit the σ partition entirely. All small-sector estimates below
+remain valid on the enlarged range θ ≤ 16κϕ. The remaining sector has θ ≥ κϕ and retains
+the σ partition. In particular it includes θ ≫ ϕ. For the two sectors define
+                                            ν         k1   ω
+                                 small      θ         1    ϕ                                    (4.4)
+                               remaining min(θ, σ) 1 + ϕ/σ σ.
+The parameter ω will be the velocity tolerance in the occupation argument.
+    Let N (t, s, n) be the integral of f (s, X(t) − rn, v) over the momentum restrictions of one
+bin, set to zero when the remaining restrictions fail. Then
+
+                                             N ≤ Cp3 ν 2 .                                      (4.5)
+
+Indeed the momentum shell has volume at most Cp3 . If θ is small, (4.2) restricts its velocity
+direction to a spherical cap of radius Cθ about n. If σ is small, both velocity magnitudes
+are close to one and their directions differ by at most Cσ, giving a cap about the receiver
+direction. Use whichever cap is smaller. When the controlling parameter is bounded below,
+the shell bound alone proves the same estimate with a larger constant. The same argument
+shows that the allowed n have spherical area at most Cϕ2 .
+
+                                                  14
+4.2       Two changes of variables
+Define the occupation measure of the bin by
+                                      ∫
+                                 M=       dt ds dn r2 DN (t, s, n),                             (4.6)
+
+where t ranges over the specified receiver times and 0 ≤ s < t. The constants below absorb
+H0 in the comparison r ≍ h. The factor D makes this cone integral equal to particle mass
+integrated over source-time hits, as the following changes of variables show.
+Lemma 4.1 (Crude occupation bounds). For every bin and every allowed set of receiver
+times,
+                                            max(I, h)
+                                       M≤C            ,                                         (4.7)
+                                                 p
+                                             ϕ2
+                                       M ≤ CI 2 .                                               (4.8)
+                                             θ
+Proof. The characteristic change of variables below is used in Pallard’s work [18, Lemma 2.1];
+see also Luk–Strain [15, Proof of Proposition 5.2]. Fix s. The map
+                           (t, n) |−→ y = X(t) − (t − s)n,                  t > s,
+is injective. Indeed, for fixed y, the function t − s − |X(t) − y| is strictly increasing: wherever
+differentiable its derivative is at least 1−|a(t)| > 0. Its absolute Jacobian is r2 D. This follows
+by taking two tangent vectors to the sphere and the time derivative a − n, whose normal
+component is −D. Hence (4.6) is the integral of f (s, y, v) ds dy dv over the corresponding
+hits. The possible source times lie in an interval of length at most C(I + h). On the
+momentum bin q ≥ cp, so the particle energy bound proves (4.7).
+     Passing at each fixed s to the initial phase labels z, whose measure is preserved by the
+characteristic flow, gives equivalently
+                                          ∫               ∫
+                                  M=          f0 (z) dz               ds.                       (4.9)
+                                                          hits of z
+
+By Lemma 3.5, labels having a same-time collision have zero f0 (z) dz measure. Every
+remaining label has a single increasing C 1 retarded branch, and
+                                    dt     d       ds     D
+                                       = ,             = .                             (4.10)
+                                    ds    D        dt     d
+The branch begins when it enters the initial cone, if such an entry occurs. Since its hit
+receiver times form a subset of J, their total length is at most I. On the bin, D/d ≤ Cϕ2 /θ2 .
+Thus the hit duration of each label is at most CIϕ2 /θ2 . Integrating in (4.9) and using the
+conserved finite particle mass proves (4.8).
+
+The three changes of variables. The preceding formulas use different fixed variables.
+For later reference, their Jacobians are collected here:
+
+ Fixed            Change of variables                                         Jacobian
+
+ (t, x)           Retarded (y, v) to the initial label z                      dz = d dy dv
+ s                (t, n) |→ X(t) − (t − s)n                                   dy = r2 D dt dn
+ Label z          t = s + |X(t) − Y (s, z)|                                   dt/ds = d/D
+
+In particular the combined measure identity is ds f0 (z)dz = D dt f dy dv.
+
+                                                   15
+4.3    Stability on a short cell
+Fix large constants C0 , C1 , chosen below, and set
+                                        ⎡        ⎛        √       ⎞⎤−2
+                                       P M                    AL ⎠⎦
+                                λ = ⎣C1 ⎝  +                             .                   (4.11)
+                                       m ω                     ω
+
+Call a bin actual if ω > C0 /m, and deficit otherwise. In an actual bin (4.2) implies
+|u(s) − a(t)| ≥ cω at each hit: the two inverse-momentum terms are smaller than a fixed
+small multiple of ω 2 once C0 is large. In the small sector use additionally θ ≤ 16κϕ. In a
+deficit bin,
+                                               C2
+                                         λ ≤ 20 2.                                   (4.12)
+                                             C1 P
+    We record explicitly the stability supplied by the bootstrap. Given a fixed constant C∗
+and a hit, all source times within C∗ λ of its source time, and all receiver times within C∗ λ
+of its receiver time, clipped to [0, τ ], satisfy
+
+                         |∆V | ≤ ε0 mω,            |∆u| ≤ ε0 ω,       q ≍ qhit .             (4.13)
+
+Here ε0 > 0 can be prescribed by choosing C1 sufficiently large in terms of C∗ and the fixed
+comparisons, independently of M, A. To prove this, choose a dyad w′ nearest qhit and stop
+at the first exit from [qhit /2, 2qhit ]. Before exit the bootstrap applies with w′ ≍ qhit ≥ cm.
+Its two terms on an interval of length at most C∗ λ are bounded by
+                                     √
+                         √               C∗                 P 2L    CC∗
+                     M P C∗ λ ≤             mω,      CAC∗ λ      ≤       mω.
+                                       C1                    m       C12
+For sufficiently large C1 , this excludes the first exit, because q is 1-Lipschitz and ω ≤ 1.
+The same stopping argument runs backwards from the hit. The segment between the two
+momentum vectors has q ≥ cqhit ; integrating ∥Dv u∥ ≤ 1/q on that segment then proves the
+velocity estimate. This proves (4.13). We now fix C∗ large enough to cover the cell and
+retarded-time separations used below, and then fix C1 accordingly.
+Lemma 4.2 (Occupation on stable cells). In every actual bin,
+                                              hk1
+                                     M≤C          max(1, I/λ, h/λ).                          (4.14)
+                                               p
+Proof. Suppose first h ≤ λ, and partition [0, τ ] into intervals of length λ, with the last
+interval clipped if necessary. For upper bounds we may enlarge the receiver times to all
+eligible times in J and use closed bin ranges. The labels with some hit in a closed cell form
+a measurable set: it is the projection of a compact subset of the product of the compact
+initial support, the cell, J, and S 2 ; the fixed bin has r ≥ ch > 0.
+    For any label with a hit (s0 , t0 ) in the cell, use that hit as a reference. At every same-time
+point s of the cell, both u(s, z) and a(s) are within a small multiple of ω of their respective
+reference velocities: the time separations are at most λ + CT0 h ≤ C∗ λ. The actual velocity
+difference therefore has projection at least cω in one fixed direction throughout the cell.
+This direction may depend on the label and its reference hit. At any hit in the cell,
+                               ∫ t
+           Y (s, z) − X(s) =         (a(t′ ) − n) dt′ ,   |Y (s, z) − X(s)| ≤ Ch(ϕ + ω),
+                                s
+
+using |a(t) − n| ≤ Cϕ and receiver stability between s and t. The projected same-time
+separation is strictly monotone with derivative of magnitude at least cω. Its values at hits lie
+
+                                                     16
+in an interval of length Ch(ϕ + ω), so their total s-duration is at most Ch(1 + ϕ/ω) ≤ Chk1 .
+This holds even if the hit set is disconnected.
+    All labels that hit the cell have q ≍ p at any one common time in the cell, by stability.
+Conservation of phase volume and the energy bound give their total label mass at most C/p.
+The source-time range of all hits has length at most C(I + h), so at most C max(1, I/λ, h/λ)
+cells can occur. Formula (4.9) proves (4.14). If h > λ, instead use (4.7): its right-hand side
+is bounded by that of (4.14), since k1 ≥ 1 and h max(I, h)/λ ≥ max(I, h).
+
+4.4   One energy budget for all distance and source-angle bins
+Choose a fixed enlargement
+
+                            J ∗ = {s ∈ [0, τ ] : dist(s, J) ≤ CT0 I},
+
+with its constant large enough for every source cell considered below when h ≤ λ ≤ I.
+In particular |J ∗ | ≤ CI. For fixed s, y, let tret (s, y) ∈ (s, τ ] be the unique solution of
+t − s = |X(t) − y|, if it exists; omit its tip y = X(s). This definition deliberately imposes no
+restriction that tret belong to J or to the eligible receiver subset.
+    The first indicator below is used to average the mass of hit labels over a stable cell,
+using the velocity separation that persists there. The second records the receiver angle at a
+retarded hit and is used when the spatial change of variables estimates hits directly. For
+each p, ϕ define these indicators with fixed sufficiently enlarged comparison constants:
+                (1)
+              Hpϕ (s, y, v) = 1{q(v) ≍ p, |u(v) − a(s)| ≍ ϕ},
+                                 ⎧                                 √                           ⎫
+                (2)
+                                 ⎨                                     1 − nret · a(tret )   ⎬
+              Hpϕ (s, y, v) = 1 q(v) ≍ p, tret exists,                                     ≍ϕ ,
+                                 ⎩                                            2              ⎭
+
+                               X(tret ) − y
+                      nret =                .
+                                tret − s
+The second indicator is zero when its retarded time does not exist. The strictly monotone
+implicit equation makes its non-tip solution continuous when the root lies in (s, τ ) and
+continuously extendible to a root at τ . The existence condition is a closed inequality at τ ,
+after excluding the tip; thus the indicators are measurable. Set
+                                 1
+                                     ∫    ∫
+                                                          ( (1)           (2) )
+                        Epϕ =                           qf Hpϕ + Hpϕ dy dv ds.                     (4.15)
+                                 I   J∗   R3 ×R3
+
+These numbers depend on the receiver, J, I, p, ϕ, but not on θ, h or on the eligible measurable
+subset. Their comparison constants, and hence the bound
+                                                  ∑
+                                                        Epϕ ≤ C,                                   (4.16)
+                                                  p,ϕ
+
+are independent of M, A. Indeed at each (s, y, v) only a bounded number of p and ϕ dyads
+can occur in either family. For the second family there is just one retarded time. Summing
+the indicators and using the energy bound and |J ∗ | ≤ CI proves (4.16).
+
+Proposition 4.3 (Baseline occupation with a joint energy budget). Suppose h ≤ I, excluding
+only deficit bins with h ≤ λ. Then
+                                                              {
+                     hk1   I                                      Epϕ ,    small sector,
+                             (                )
+                 M≤C     1+ E ,                          E=                                        (4.17)
+                      p    λ                                      1,       remaining sector.
+
+                                                         17
+                              √      √
+Consequently, with R = 1 +        I/λ E,
+
+                                                      hk1 2
+                                              M≤C        R                              (4.18)
+                                                       p
+
+for all h, except deficit bins with h ≤ min(I, λ).
+
+Proof. In the remaining sector, (4.14) proves the claim for actual bins; if h > λ, (4.7) gives
+M ≤ CI/p ≤ Ch(I/λ)/p. This also treats the allowed deficit bins.
+    Consider the small sector. When h ≤ λ ≤ I and the bin is actual, denote the set of
+hit labels in a cell C by ZC . At every time s ∈ C all these labels have both q ≍ p and
+|u − a(s)| ≍ ϕ, by the same stability argument as in Lemma 4.2. For a full cell, averaging
+its mass over its whole length therefore gives
+                                               C
+                          ∫                         ∫ ∫
+                                                              (1)
+                                f0 (z) dz ≤               qf Hpϕ dy dv ds.
+                           ZC                  pλ    C
+
+All such cells lie in J ∗ and their interiors are disjoint. The at most two cells clipped by
+the endpoints of [0, τ ] have mass at most C/p by the common-time argument, without
+averaging. Each label has hit duration at most Ch in its cell. Summing (4.9) proves
+M ≤ Chp−1 (1 + (I/λ)Epϕ ). If λ > I, the source-time range has length at most CI and
+meets only a bounded number of cells. Their crude mass and duration bounds already give
+M ≤ Ch/p; no averaging outside J ∗ is used.
+    Finally suppose λ < h ≤ I, whether actual or deficit. In the space map of Lemma 4.1,
+                        (2)
+each hit belongs to Hpϕ and its source time belongs to J ∗ . Hence
+
+                             C                                      CI
+                                    ∫     ∫
+                                                    (2)
+                          M≤                  qf Hpϕ dy dv ds ≤        Epϕ .
+                             p       J∗                              p
+
+Since h/λ > 1, this is bounded by the right-hand side of (4.17). The estimate 1+(I/λ)E ≤ R2
+proves (4.18) when h ≤ I. For h > I, (4.7) gives M ≤ Ch/p, and k1 R2 ≥ 1 completes the
+proof. The budget (4.15) can be defined for every bin, regardless of whether h ≤ I; its use
+in this last case requires only nonnegativity.
+
+
+5    Direct bounds for the retarded force
+We first estimate the retarded force by absolute values. These estimates control every term
+except the narrow-angle part of Sg at the scale needed for the signed bootstrap. They also
+                                                                    √
+give an absolute bound for the full force, with an additional factor w.
+    Retain the decomposition and occupation estimates of the preceding section. Let
+J ⊂ [0, τ ] have length at most I, where
+
+                                          0 < I ≤ (w/P )2 ,                              (5.1)
+
+and let T ⊂ J be any measurable set of times at which w/8 ≤ qX ≤ 8w. Every integral
+below is restricted to t ∈ T . Estimates for a nonnegative integrand remain valid if it is
+multiplied by any measurable weight between zero and one.
+
+Proposition 5.1 (Integrated force bounds). Assume the bootstrap (2.2). The bounded data
+term, Tr , T⊥ , Sb , and the remaining-sector part of Sg have combined integral at most
+                                   [ √            √         ]
+                                 C P I + (M + A)IS(w) .                                 (5.2)
+
+
+                                                    18
+The integral of the full force satisfies
+                          ∫
+                                            √ [ √        √       ]
+                               |K(t)| dt ≤ C w P I + (M + A)IS(w) .                                       (5.3)
+                           T
+
+The constant C is independent of P, w, I, M, A.
+   We prove the proposition in several steps. All dyadic sums below have fixed overlap
+constants. The normalization of the radius by max(1, T0 ) is absorbed into C, so that r ≍ h.
+
+5.1    Field budgets and a single bin
+We require field budgets shared by all the momentum and source-scale bins. Write χϕ (t, s, n)
+for the indicator of a fixed enlarged support of the receiver-angle bin. The overlap of these
+supports is bounded independently of all parameters. Define
+                                         ∫ t
+                       1
+                               ∫                       ∫
+                  Gϕ =              dt            ds         dn r2 χϕ (t, s, n)G(s, X(t) − rn, n)2 .      (5.4)
+                       I        T         0             S2
+
+The cone-energy estimate (3.2) gives ϕ Gϕ ≤ C. In particular this budget does not depend
+                                                        ∑
+
+on p, θ, σ, h.
+    For the magnetic field, let J ∗ be the common enlargement of J from the preceding
+section, chosen to contain all source times when h ≤ I; thus |J ∗ | ≤ CI. At a point (s, y)
+with a retarded receiver time tret (s, y) ∈ (s, τ ], put
+
+                                                                   X(tret (s, y)) − y
+                                          nret (s, y) =                               .
+                                                                    tret (s, y) − s
+Set the indicator in the following definition to zero when the retarded time does not exist:
+                        1
+                                ∫             ∫
+                                                       dy |B(s, y)|2 χϕ tret (s, y), s, nret (s, y) .
+                                                                             (                        )
+                   Fϕ =                  ds                                                               (5.5)
+                        I           J∗         R3
+
+The retarded time is unique and is a measurable function on its domain. Bounded overlap
+and conserved spatial energy (3.1) imply ϕ Fϕ ≤ C. Again the budget is independent of
+                                           ∑
+
+p, θ, σ, h. The Jacobian r2 D of the map (t, n) |→ X(t) − (t − s)n, together with D ≍ ϕ2 ,
+gives                                                        {
+                                                               Fϕ , h ≤ I,
+                 ∫
+                       2 2   2
+                      r ϕ |B| dt ds dn ≤ C(I + h)F ,    F=                          (5.6)
+                  bin                                          1,    h > I.
+For h > I the source times lie in an interval of length O(I + h), so conserved spatial energy
+proves the second case directly. The budgets in (5.4)–(5.5) may always be enlarged by fixed
+factors when supports are enlarged.
+                            ∫
+    For a fixed bin, let N = bin f dv and denote its hit measure by M. By (4.5), the angular
+cap bound, and the definition of M,
+                                                                         ∫
+                                                             3 2
+                                          N ≤ Cp ν ,                             dt ds dn ≤ CIhϕ2 ,
+                                                                           bin
+                                           CM
+                       ∫
+                              N dt ds dn ≤ 2 2 ,                                                          (5.7)
+                                          h ϕ
+                                                                   (                      )
+                                                                                   p3 ν 2 M
+                      ∫
+                           N 2 dt ds dn ≤ C min Ihϕ2 p6 ν 4 ,                               .
+                                                                                    h2 ϕ2
+
+Here and below N vanishes outside the indicated time and spatial restrictions. In the small
+sector ν = θ and the σ partition is omitted.
+
+                                                                    19
+   The force majorants on this bin are, up to fixed constants,
+
+                       f                            fϕ                          f ϕG                        f ϕ|B|
+             Tr =                ,       T⊥ =                ,           Sg =        ,               Sb =          .
+                    r 2 p2 θ 2                    r2 p2 θ3                      rpθ2                          rp
+
+Using dy = r2 ds dn yields the following bounds for their integrals. Both columns apply on
+every bin: the near bound uses the pointwise density estimate, while the far bound also
+uses the occupation measure. Their names indicate which estimate is useful at smaller or
+larger radii.
+
+                                      near bound                                 far bound
+                  Tr                  Ihp(ν/θ)2 ϕ2                                        −
+                  T⊥                  Ihpθ−3 ν 2 ϕ3                        M/(h2 ϕp2 θ3 )                               (5.8)
+                             √                                        √ √
+                            I h p2 (ν/θ)2 ϕ2 Gϕ                          I pM ν(θ2 h)−1 Gϕ
+                                            √                                            √
+                  Sg
+                                     √         √                     √      √             √
+                            I(I + h) h p2 ν 2 ϕ F                      I + h pM ν(ϕh)−1 F.
+                           √
+                  Sb
+
+The first two rows follow from (5.7). For Sg , apply Cauchy–Schwarz ∫to rGN : the first
+squared factor is bounded by IGϕ and the second by either bound for N 2 in (5.7). The
+prefactor is ϕ/(pθ2 ). For Sb , use rϕ|B| as the first factor, apply (5.6), and use the prefactor
+1/p. This proves every entry of the table.
+
+5.2    Summing the radius
+Recall the occupation factor
+
+                                       √
+                                                         {
+                            √                                    1,       θ ≥ κϕ,                ∑
+                R=1+                 I/λ E,        E=                                                  Epϕ ≤ C.
+                                                                 Epϕ ,    θ < κϕ,                p,ϕ
+
+It is independent of h, and also of θ in the small sector. The refined occupation estimate
+(4.17) gives
+                                       M ≤ Chk1 R2 /p                                 (5.9)
+when h ≤ I, except in deficit bins with h ≤ λ. For h > I the same inequality follows from
+(4.7), since R, k1 ≥ 1.
+    For positive a, b, α, β, the elementary dyadic estimate
+
+                                      min(ahα , bh−β ) ≤ Cα,β aβ/(α+β) bα/(α+β)
+                            ∑
+                                                                                                                       (5.10)
+                            h∈2Z
+
+follows by splitting at h = (b/a)1/(α+β) and summing geometric series on both sides. It
+remains an upper bound when the allowed radii form only a subset of the dyadic scales.
+Substituting (5.9) into (5.8) and applying (5.10) gives
+                                        √
+                                T⊥ : C I Rp−1 θ−3 νϕ k1 ,
+                                                        √
+                                                                                                √
+                                                                                          1/4
+                                           Sg :   CI 3/4 R1/2 pϕν 3/2 θ−2 k1                        Gϕ ,               (5.11)
+                                                                                      √
+                                                                                1/4
+                            Sb (h ≤ I) :          CI 3/4 R1/2 pν 3/2 k1                   Fϕ .
+
+The first line balances h with h−1 ; the other two balance h1/2 with h−1/2 . The exceptional
+deficit radii are excluded from these balances and are treated below.
+
+                                                             20
+    For Sb with h > I, use instead the time-change bound (4.8), namely M ≤ CIϕ2 /θ2 . The
+corresponding minimum in (5.8) is
+                               √       (             √     )
+                             C I min hp2 ν 2 ϕ, h−1/2 p ν/θ .
+
+Its radius sum is at most              √
+                                      C I pν 4/3 θ−2/3 ϕ1/3 .                           (5.12)
+If one of θ, ϕ is much larger than the other, σ has bounded multiplicity or is absent, and
+the angular factor is at most θ2/3 ϕ1/3 . If θ ≍ ϕ, it is at most Cθ(σ/θ)4/3 , with σ ≲ θ. The
+angular sums are√geometric in both cases. Summing p proves that all large-radius Sb terms
+cost at most CP I.
+    In an exceptional deficit bin, h ≤ min(I, λ) and λ ≤ CP −2 by (4.11). Summing the near
+bounds over these radii gives, per remaining bin,
+
+                                              p2
+                              Sg + Sb ≤ CI        ,
+                                             P m2
+                                          {                                             (5.13)
+                                            CIp/P 2 ,         θ ≥ κϕ,
+                                     T⊥ ≤
+                                            CIp2 /P 2 ,       θ < κϕ.
+
+Indeed, in the remaining sector ϕ ≲ θ and ν ≲ m−1 , whereas in the small sector ν = θ,
+ϕ ≲ m−1 , and θ−1 ≤ p. The individual field budgets are bounded by their total budgets.
+There are at most CL4 remaining bins. Since
+
+                                p2    1  P                p2
+                                    ≤   + 2,                 ≤ 1,
+                               P m2   P  w                P2
+the ratio of their total cost to IS(w) is at most
+
+                                         w   1   w                CL3
+                                     (                    )
+                                 3
+                              CL           +   +              ≤       .
+                                         P3 Pw P2                  P
+Thus these terms are absorbed uniformly into CIS(w).
+   The radius sum for Tr is also immediate from its near bound. When θ ≍ ϕ, summing
+(ν/θ)2 over σ is a geometric sum; otherwise σ has bounded multiplicity or is omitted.
+Summing h, the O(L) values of θ, then ϕ2 and p, gives
+                                 ∫
+                                     Tr ≤ CIP L ≤ CIS(w).                               (5.14)
+
+5.3   Angular and momentum sums
+The radius sums are complete, including the deficit exception and the magnetic terms with
+h > I. It remains to sum the angular and momentum factors in (5.11). We keep the
+small-sector Sg contribution separate because it yields the absolute-force bound with its
+                 √
+additional factor w. The following elementary momentum sums will be used repeatedly:
+         ∑                   ∑ p                           ∑ √p            √
+            p ≤ CP,                ≤ C(L + P/w),                  ≤ C(1 + P /w),
+          p                   p m                           p m
+ ∑    √            √               ∑      √                   √                     (5.15)
+     p P/m ≤ CP P/w,                  p3/2 P/m        ≤ CP 2 / w.
+  p                                      p
+
+To verify them, split at p = w. For p ≤ w one has m = p; for p > w one has m = w. Each
+resulting positive-power sum is geometric, while a constant summand costs at most CL.
+
+                                                21
+    Write ω = σ in the remaining sector and ω = ϕ in the small sector. The definition of λ
+gives the exact parameter dependence
+                                            √
+                              √ P M           AL √
+                                     (           )
+                    R−1≤C I               + √        E,
+                                  m ω          ω
+                               [               (√                )]                 (5.16)
+                        1/2          1/4
+                                         √         M    (AL)1/4
+                      R ≤C 1+I            P/m √ +                   .
+                                                   ω      ω 1/4
+
+For the second line we used E ≤ C; the first line retains the joint small-sector budget when
+it is needed.
+
+The small-sector transport term.           Here ν = θ and k1 ≍ 1. Summing the first line of
+(5.11) over θ ≥ 1/p gives              √
+                                     C I Rpϕ.                                         (5.17)
+                                          √
+The term with R replaced by one sums to CP I. The M term in (5.16) costs
+                            ∑ p√               (   √       )
+                     CIM P         Epϕ ≤ CIM P L + L P/w .
+                             p,ϕ
+                                 m
+
+Indeed, Cauchy–Schwarz and the joint budget reduce the sum to the square root      √ of
+∑          2                      2         2
+  p,ϕ (p/m) , which is at most C[L + L(P/w)
+                                         √ ] before taking the square root. For the AL
+term the weight has an additional factor ϕ; its squared sum is at most C[L + (P/w)2 ].
+That contribution is therefore at most
+                         √      √             √           √
+                     CI AL P ( L + P/w) = CI A P (L + L P/w).
+                                                                          √
+Since 1 ≤ w ≤ P and L ≥ 1, both parameter terms are bounded by C(M + A)IS(w).
+
+The remaining-sector transport term. Split into θ > 16ϕ, where σ ≍ θ, and θ ≍ ϕ,
+where σ ≲ θ. Fixed comparison constants may depend on κ. The angular factors in the
+plain term of the first line of (5.11) are respectively
+
+                              p−1 θ−2 ϕ,      p−1 θ−1 (σ/θ)1/2 .
+
+Their sums are bounded uniformly for each p: sum ϕ ≲ θ in the first expression,
+                                                                           √ and σ√≲ θ
+in the second, then use θ ≥ 1/p. Thus the plain contribution is at most CL I ≤ CP I.
+    After extracting CIM P (p/m), the M terms have angular factors
+                                    ϕ
+                             (pθ)−2 ,      (pθ)−2 (θ/σ)1/2 .
+                                    θ
+                               √          √
+The second σ sum is at most C mθ ≤ C pθ√because σ ≳ 1/m; hence both remaining
+                                                     √
+angular sums are bounded. After extracting CI AL P p/m, the corresponding factors are
+                                         ϕ
+                                 (pθ)−3/2 ,        (pθ)−3/2 .
+                                         θ
+                                                                                 √
+The number of allowed σ values in the second case is at most C[1 + log+ (mθ)] ≤ C pθ on
+a nonempty bin, so these angular sums are bounded as well. Here log+ s = max(0, log s).
+By (5.15), the two parameter contributions are at most
+                                               √           √
+                     CIM P (L + P/w),       CI AL P (1 + P /w).
+                             √
+Both are bounded by C(M + A)IS(w).
+
+                                              22
+                                                        Apart from CI 3/4 pR1/2 Gϕ , the angular
+                                                                              √
+The remaining-sector good-field term.
+factors for Sg in the same two cases are
+                                      √ ϕ          √
+                                       θ ,             θ(σ/θ)5/4 .
+                                        θ
+                                          √
+At fixed ϕ their
+               √  θ, σ sums are at most C ϕ. Consequently the plain term is at most
+CI 3/4 P ≤ CP I, by Cauchy–Schwarz with ϕ Gϕ ≤ C and ϕ ϕ ≤ C. Dividing the
+                                             ∑             ∑
+                      √
+displayed factors by σ leaves, up to constants,
+
+                                          ϕ/θ,     (σ/θ)3/4 ,
+
+whose sums at fixed ϕ are bounded. Division by σ 1/4 gives √
+                                                           no larger bound, since σ ≤ 1.
+                                            ∑ √
+There are at most CL receiver-angle bins, so ϕ Gϕ ≤ C L. The parameter terms in
+(5.16) therefore cost at most
+                        (√                ) √       √         √
+                   CI        M + (AL)1/4 P       P/w L ≤ C(M + A)IS(w).                   (5.18)
+
+The last inequality follows from w ≤ P , L ≥ 1, and M, A ≥ 1.
+
+The magnetic remainder for h ≤ I. For Sb the base angular factors in the two
+remaining-sector subcases and in the small sector are respectively
+
+                                 θ3/2 ,     θ3/2 (σ/θ)5/4 ,      θ3/2 .
+                                                                       √
+Their sums at fixed ϕ are bounded. This remains√ true after division by σ in the remaining-
+sector subcases, giving θ and θ(σ/θ)3/4 , or by ϕ in the small sector, where the θ sum
+                                                                                   √ is at
+                                                                      ∑ √
+most Cϕ. The quarter-power divisions give no larger bound. Using ϕ Fϕ ≤ C L thus
+                                                                             √
+gives the parameter estimate (5.18) again. The plain term is at most CI 3/4 P L. Uniformly
+in I,                                    √     √
+                                    I 3/4 L ≤ I + IL,                                 (5.19)
+                                           √
+as follows from x ≤ 1 + x2 with x = I 1/4 L. Since P L ≤ S(w), this completes the bound
+for Sb .
+
+The small-sector good-field term.   √        This term is needed only for the absolute estimate
+                                                                  √
+(5.3). Its base angular factor is ϕ/ θ, whose θ sum is at most C p ϕ. The plain contribution
+is therefore bounded by CI 3/4 P 3/2 . The time restriction (5.1) gives
+                                                   √     √
+                                     I 3/4 P 3/2 ≤ w P I.
+
+For the two parameter terms the ϕ factors after this sum are ϕ1/2 and ϕ3/4 . Their sums against
+√
+  Gϕ are bounded by Cauchy–Schwarz and geometric summation. The last momentum sum
+in (5.15) gives a total of at most
+                       (√                   √         √         √
+                    CI M + (AL)1/4 P 2 / w ≤ C w(M + A)IS(w).
+                                      )
+
+
+The exceptional bins were already included in (5.13).
+    Combining these bounds with (5.12), (5.13), and√(5.14) proves (5.2). The data force
+contributes at most CI, which is bounded by CP I since I ≤ 1. Finally the force
+representation is bounded by these nonnegative majorants; adding the small-sector Sg
+estimate and using w ≥ 1 proves (5.3). This proves Proposition 5.1.
+
+
+                                                  23
+6     Signed cancellation along the source trajectories
+The direct force estimates lose an angular factor when the source velocity is much closer to
+the cone direction than the receiver velocity is. In this region we integrate along the source
+trajectory before taking absolute values. The transport part of the force must be included:
+it cancels a term produced by differentiating the cone geometry.
+    Keep a supported receiver X(t), with velocity a = X ′ , energy qX and momentum
+derivative K = VX′ . A source label has position Y (s), velocity u = Y ′ and energy q. Along
+its retarded branch, set
+
+t = s + r,   rn = X(t) − Y (s),      d = 1 − n · u,       D = 1 − n · a,         e = 1 − a · u,    |n| = 1.
+
+A prime denotes differentiation in s along this branch, and at denotes the receiver derivative
+in its own time. By Lemma 3.5, the retarded measure identities are
+                        dt  d
+                           = ,            ds f0 (z) dz = D dt f (s, y, v) dy dv.                      (6.1)
+                        ds  D
+In particular d, D > 0. Differentiating the retarded relation gives
+                     d                            d
+              r′ =     − 1,        rn′ = N0 :=      (a − n) + n − u,               n · N0 = 0.        (6.2)
+                     D                            D
+Define the matrices and vectors
+                                                                 u−n                        e
+             Q = DId + n ⊗ a,         H = Q/D,             g=        ,           k0 = u −     n.      (6.3)
+                                                                  d                         D
+Thus Hg = k0 /d.
+
+6.1   The exact identity
+After the change to ds f0 (z)dz, the two interior force terms in (3.13) together have kernel
+                                               H (u)  Hg
+                                     K=−        ∂ g− 2 2 .                                            (6.4)
+                                               r s   r q d
+       (u)
+Here ∂s differentiates through u alone. The second term is the transport kernel. As in the
+force representation, we suppress the common constant 1/(4π) throughout this section.
+Lemma 6.1 (Signed force identity). At every non-tip point of a retarded branch,
+                                     )′            (             )
+                           k0                e           n       n(at · k0 )
+                               (
+                       K=−                + 2 2         2   −a +             .                        (6.5)
+                           rd              r D         qX D        rD2
+
+Consequently the two nondifferentiated terms, in dt dy dv measure, are
+                                     (             )
+                           fe              n                          f n(at · k0 )
+                        R= 2              2   −a ,           A=                     .                 (6.6)
+                          r D            qX D                             rD
+
+Proof. The product rule first rewrites the source-acceleration term as
+                           H (u)
+                       −    ∂ g = −(Hg/r)′ + (H/r)′ g + (H/r)∂s(n) g.
+                           r s
+For a variation A of a, with u, n fixed,
+                                                       n
+                                         ∂a k0 [A] =     (A · k0 ).
+                                                       D
+
+                                                   24
+Since a′ = at d/D, its contribution is the last term of (6.5). The terms from r, n, including
+the transport term, are
+                                  1 k0 ′      k0 r′     k0
+                                   ( )
+                                            − 2 − 2 2 2.
+                                  r d n        r d   r q d
+Multiplying by r2 d2 gives
+
+                                rd(k0 )′n + k0 (N0 · u − dr′ − q −2 ).
+
+Directly from (6.2) and |u|2 = 1 − q −2 ,
+                                       ed                         ed                 n(N0 · a)
+                                                                            (                )
+                        ′
+             N0 · u − dr − q    −2
+                                     =− ,           rd(k0 )′n = −               N0 +           .
+                                       D                                D               D
+                     −2
+Finally, |a|2 = 1 − qX  gives
+                                                               (                 )
+                                  n(N0 · a)        d                 n
+                             N0 +           + k0 =               a− 2                .
+                                     D             D               qX D
+
+These identities prove the middle term in (6.5), with its stated sign. Multiplication by the
+factor f D in (6.1) gives (6.6).
+
+    The two residual densities R and A contain neither the source acceleration b nor inverse
+powers of the source deficit d. The geometric residual R will be estimated directly. The
+receiver term A contains at , so its coefficient must be small enough to use an absolute bound
+on the receiver force. The primitive k0 /(rd) retains the source singularity: after integration
+by parts it creates boundary and cutoff-derivative terms. We now keep track of those terms.
+
+6.2   Smooth cutoffs and the small angular sector
+Use the dyadic representatives p, θ, ϕ, h for, respectively,
+                                 √              √
+                        q,           d/2,           D/2,             r/ max(1, T0 ).
+
+The fixed factor in the convention for p is retained. Thus q ≍ p, qX ≍ w, d ≍ θ2 , D ≍ ϕ2 and
+r ≍ h, with constants depending on T0 where necessary. The small-sector representatives
+satisfy θ < κϕ. All estimates below remain valid on the wider overlap range θ ≤ 16κϕ, after
+choosing the fixed κ > 0 sufficiently small.
+    Use the smooth partitions chosen in Section 4, whose factors have uniformly bounded
+derivatives in the logarithm of each variable. For an index j = (p, θ, ϕ, h), let βj be the
+product of its four factors. These products satisfy
+                                                      ∑
+                                      βj ≥ 0,                βj = 1.                               (6.7)
+                                                         j
+
+The sum is locally finite for r > 0, with uniformly bounded overlap. Derivative bounds are
+taken on the closed support indicators; no estimate of a derivative by the bump itself is
+assumed.
+Lemma 6.2 (Derivatives of a selected sum). Let S be any fixed set of representative indices,
+                                       ∑
+all in the small sector, and put χ = j∈S βj . Selection may depend on the interval and
+fixed parameters, but not on the variables being differentiated. For differentiation through
+source variables (q, u) alone, or through geometric variables (r, n) alone,
+                                                      ∑
+                                            ∂χ = −           ∂βj .                                 (6.8)
+                                                       ∈S
+                                                      j/
+
+
+                                                    25
+This derivative vanishes unless selected and unselected supports meet. On their intersection,
+representatives in each coordinate differ by at most a factor of four. In particular all relevant
+supports remain in the wider small-sector range above.
+Proof. Differentiate the locally finite identity (6.7) before restricting to a retarded trajectory.
+This proves (6.8) separately for each indicated partial derivative. A smooth nonnegative
+function and its first derivatives vanish at every point where the function vanishes. Thus if
+either family has no positive summand, the corresponding derivative sum is zero. Meeting
+supports constrain each representative to within a factor of two of the same variable,
+proving the factor-four comparison. The ratio θ/ϕ therefore changes by at most a factor of
+sixteen.
+
+    The cancellation applies to the cutoff derivative only after its common physical multiplier
+has been factored out. It does not compare derivatives of two different kernels. An additional
+σ-partition may subsequently be inserted into a nonnegative remaining-sector bound at the
+structural edge; it is not differentiated in (6.8).
+
+6.3    Bounds for each derivative
+The Lorentz acceleration satisfies
+
+                                       at = (Id − a ⊗ a)K/qX .
+
+The source estimates needed here, with G = |E + n × B| + |n · B| at the source point, are
+
+           |u′ | ≲ p−1 (G + θ2 |B|),    |n · u′ | ≲ p−1 θ(G + θ2 |B|),     |q ′ | ≲ G + θ|B|.    (6.9)
+
+These are (3.15) with q ≍ p. For nonzero VX , let PX denote orthogonal projection perpen-
+dicular to VX . In the small sector,
+
+                   |e − D| ≲ ϕθ,       |k0 | ≲ θ/ϕ,      |PX k0 | ≲ θ,   |PX n| ≲ ϕ.            (6.10)
+
+Indeed e − D = a · (n − u); splitting a = n + (a − n) proves the first bound, and then
+                                                                     −2
+k0 = (u − n) + n(1 − e/D) proves the next two. Also PX a = 0. Since qX  ≲ D,
+                                                              f θ|K|                f θ|K|
+             |R| ≲ f /r2 ,   |PX R| ≲ f ϕ/r2 ,        |A| ≲          ,   |PX A| ≲          .    (6.11)
+                                                              wrϕ2                   wrϕ
+For the last two bounds, |at | ≲ |K|/w and |n · at | ≲ ϕ|K|/w. Insert the decomposition of k0
+in (6.10) to obtain |at · k0 | ≲ θ|K|/w.
+    After integration by parts, a cutoff derivative in source time has common multiplier
+f Dk0 /(rd) in dt dy dv measure. Its size is at most Cf ϕ/(rθ), with an additional factor ϕ
+after projection. The separate logarithmic rates and resulting bounds are as follows.
+
+Source derivatives.       From (6.9),
+                                  |q ′ | |d′u |   1       G
+                                                      (             )
+                                        +       ≲           + θ|B| .
+                                   q      d       p       θ
+Thus their error kernels are bounded by
+                                                fϕ      fϕ
+                                           (                    )
+                                       C           2
+                                                     G+    |B| .                                (6.12)
+                                               rpθ      rp
+They coincide with the direct source-force majorants. By Lemma 6.2 they may be assigned
+to overlapping unselected support indicators.
+
+                                                    26
+Geometric derivatives.       Equation (6.2) gives |r′ | ≲ 1 and |n′ | ≲ θ/r. Since n′ ⊥ n,
+                             |d′n |                   |Dn′ |    θ
+                                    ≲ r−1 ,                  ≲    ≲ r−1 .
+                              d                        D       rϕ
+Together with the logarithmic rate of r, these give
+                                                     fϕ
+                                                    C 2 .                                (6.13)
+                                                     r θ
+These errors can also be assigned to unselected neighbors by Lemma 6.2.
+
+Receiver derivatives.     Only D in the cutoff depends directly on a. Its source-time rate is
+                                 |Da′ |   |n · at | d   θ2 |K|
+                                        =             ≲        .
+                                  D         D D          wϕ3
+Multiplication by f Dk0 /(rd) gives
+                                                    f θ|K|
+                                                C          .                             (6.14)
+                                                    wrϕ2
+This is estimated on selected supports directly. Every bound (6.12)–(6.14) gains a factor ϕ
+after projection by PX .
+
+Time weights and a varying projection. If ψ(t) is a Lipschitz weight, its derivative
+contributes                           |      |
+                               f k0   | f k0 |
+                          ψt χ      , |      | ≲ fθ.                          (6.15)
+                                r     |  r | rϕ
+For |VX | ≍ w, put Π = wPX /|VX |. Its norm is bounded and ∥Πt ∥ ≲ |K|/w, by differentiation
+of the unit direction VX /|VX | and of |VX |−1 . Consequently
+                                          |         |
+                                          | f Πt k0 | f θ|K|
+                                          | r | ≲ wrϕ .                                  (6.16)
+                                          |         |
+
+This has the size of the projected receiver term. The estimate uses |k0 | ≲ θ/ϕ, so it retains
+the longitudinal part of k0 .
+
+6.4   Integration by parts and the initial cone
+Write Kt = f DK for the interior force density in dt dy dv measure; the subscript identifies
+the measure and does not denote a derivative.
+Proposition 6.3 (Weighted signed formula). Let J = [t1 , t2 ] lie in a compact classical time
+interval. Let 0 ≤ ψ ≤ 1 be Lipschitz on J, vanish at its endpoints, and be extended by zero
+outside J. Let χ be a selected sum as in Lemma 6.2. One may integrate (6.5) labelwise
+against ψχ and a bounded C 1 matrix Π(t), including Π = Id. More precisely,
+                                                                    f k0
+      ∫ ∫                           ∫ ∫ [
+            ψχΠKt dy dv dt = B0 +              ψχΠ(R + A) + ψt χΠ
+      J                               J                               r
+                                                            f k0      f Dk0 ′
+                                                                              ]
+                                                     + ψχΠt      + ψΠ      χ dy dv dt,   (6.17)
+                                                             r          rd s
+where the spatial integral has r = |X(t) − y| < t, all source quantities are evaluated at
+s = t − r, and B0 is the initial-cone boundary term. If ∥Π∥ ≲ 1, that boundary term is
+bounded in norm by                     ∫
+                                           C        |ψ(t0 )| dt0 .                       (6.18)
+                                                J
+
+
+                                                      27
+The constant in (6.18) depends only on the datum and fixed time horizon. For Π = Id,
+and for Π = wPX /|VX | when |VX | ≍ w, the derivative kernels satisfy the bounds above,
+uniformly in the fixed selected index set. For a general Π, its derivative term retains the
+explicit bound Cf θ∥Πt ∥/(rϕ).
+Proof. The null set of labels with a same-time collision with the receiver can be discarded
+by Lemma 3.5. For any remaining label, continuity on the compact time interval gives
+mint |Y (t) − X(t)| > 0. At a retarded point,
+
+                          |Y (t) − X(t)| ≤ |Y (t) − Y (s)| + r ≤ 2r,
+
+so r is bounded below on that label’s branch. The branch is C 1 and increasing. Its entry at
+source time s = 0, when present, has receiver time t0 determined by t0 = |X(t0 ) − Y (0)|. All
+other integration endpoints occur where ψ = 0. Products with Lipschitz ψ are absolutely
+continuous along the branch. Integrating the total derivative in (6.5) is therefore legitimate
+for each such label. The factors ψs = ψt d/D and Πs = Πt d/D, followed by (6.1), give
+exactly (6.17).
+    The sign at s = 0 is positive. Its integrand relative to initial labels is
+                                                           k0
+                                  f0 (z)ψ(t0 )χΠ(t0 )           .
+                                                        t0 d(0)
+For fixed initial velocity, parameterize the initial position by yin = X(t0 ) − t0 n. This map
+is one-to-one on the initial cone and has absolute Jacobian t20 D. The initial momentum
+support bounds d(0) below, and
+                                       Dk0 = Du − ne
+is bounded in norm. Since χ ≤ 1, boundedness and compact velocity support of f0 , and
+t0 ≤ T0 , give (6.18). The same proof allows disjoint time weights to be summed, using their
+sum at the initial boundary.
+    Finally these operations also hold after integrating the labels and summing the dyadic
+products. On a fixed compact classical interval, d, D have positive lower bounds on the
+relevant supported trajectories, and source and receiver accelerations are bounded. After
+conversion to dt dy dv, all differentiated kernels have an integrable majorant Ccomp f (r−2 +
+r−1 ), using bounded partition overlap. Indeed dy = r2 dr dn and the momentum support
+is bounded. The constant here may depend on compact classical bounds and on the fixed
+weight; it is used only to justify the identity, not in the uniform estimates. For a completely
+truncated argument, insert a radial cutoff vanishing for r < γ and equal to one for r > 2γ.
+Its new derivative term is bounded by Ccomp f /(γr) on r ≍ γ, whose integral is Ocomp (γ). All
+remaining terms converge by domination. Local finiteness for r > 0 and the same majorants
+justify the infinite sum of distance bins and its differentiated version. Thus no cone-tip
+boundary remains.
+
+6.5   Coefficients used in the later selections
+We record a coefficient bound used in both selections, so that their receiver-derivative costs
+can be read without repeating the geometry. At a fixed receiver time, the coefficient on |K|
+in the receiver term of (6.11) or in (6.14), integrated over one small bin, obeys
+                                  C                  1
+                                         (                    )
+                                    min h2 (pθ)3 ,       .                              (6.19)
+                                  w                pθhϕ2
+For the first bound use the density estimate bin f dv ≲ p3 θ2 , the n-cap area O(ϕ2 ), and
+                                                ∫
+
+dy = r2 ds dn. For the second, divide the kernel f θ/(wrϕ2 ) by the particle cone-flux density
+
+                                              28
+qdf and use the cone budget. Projection adds ϕ to the first bound; the Πt term has the
+same projected size.
+    The direction estimate in Section 7 will use the first, projected coefficient with its
+own selection of indices; that argument also accounts for the varying projector. The final
+signed-increment estimate in Section 8 will use the two-sided minimum in (6.19). Both
+applications keep their selected index sets fixed while differentiating the cutoffs.
+
+
+7     Direction changes and improved occupation
+We now improve the occupation estimate when both particles have high energy and their
+relative angle is intermediate. The additional information is a bound on the number of
+direction changes of a prescribed angular size. Its proof uses the signed bootstrap and the
+baseline estimates already established; it does not use the improved occupation estimate
+proved at the end of this section.
+    We retain the notation of the preceding sections. In particular, L = log(2 + P ),
+S(w) = P 2 L/w, and m = min(p, w). All constants below may depend on the datum, the
+fixed time horizon, and the fixed decomposition parameters. A constant written C(M, A)
+may also depend on the two bootstrap parameters. The lower threshold for P may depend
+on M, A. Fix a bootstrap endpoint τ : throughout this section the bootstrap is assumed
+only on [0, τ ], and all time intervals are clipped to this range.
+
+7.1      A bound on changes of direction
+Lemma 7.1 (Direction changes). Assume the signed increment bootstrap (2.2) on [0, τ ].
+Let w be a dyad with w ≥ P 3/5 , and let J ⊂ [0, τ ] be a closed interval of length at most
+(w/P )2 on which a supported characteristic satisfies w/8 ≤ qX ≤ 8w. Suppose
+
+                                    w−3/5 ≤ δ ≤ w−1/10 .
+
+Starting at the left endpoint of J, stop whenever the direction ξ = VX /|VX | first has chordal
+distance δ from its direction at the preceding stopping time. Include the last, possibly
+incomplete, interval. For sufficiently large P , the number of intervals is at most
+
+                                         C(M, A)L6 /δ.                                    (7.1)
+
+Proof. Put I = (w/P )2 . Throughout J, |VX | ≍ w, so normalization of nonzero vectors gives
+
+                            |ξ(t) − ξ(s)| ≤ Cw−1 |VX (t) − VX (s)|.                       (7.2)
+
+Define                                   {(         )2             }
+                                              wδ            wδ
+                               ℓ = min                   ,             .
+                                              MP           AS(w)
+                                                                                     √
+The bootstrap and (7.2) bound the direction change on an interval of length cℓ by C( c+c)δ.
+Choosing c > 0 sufficiently small proves that each complete first-exit interval has length at
+least cℓ. In particular their number, denoted by Nc , is finite.
+    On each complete interval choose an endpoint-zero Lipschitz function 0 ≤ ψ ≤ 1 with
+monotone ramps of length c′ ℓ and value one between the ramps. Choose c′ sufficiently
+small that the ramps are disjoint. On a ramp, integrate the removed weight against ξt after
+                                                                                            1
+subtracting the direction at its outer endpoint. The derivative√of the′ removed weight has L
+norm one, so the removed signed integral is bounded by C( c′ + c )δ. Here the bootstrap
+
+
+                                               29
+bounds endpoint-relative increments; no bound on absolute direction variation is used. After
+reducing the fixed constant c′ once more, each complete interval satisfies
+                           |∫        |
+                           | ψ wξt dt| ≥ 1 wδ,
+                                                       ∫
+                           |         |
+                                                           |ψt | dt = 2.                          (7.3)
+                           |         |   2
+   Let PX = Id − ξ ⊗ ξ and Π = wPX /|VX |, so wξt = ΠK. Apply Proposition 6.3 with this
+multiplier and with the fixed selection
+                                               √
+                                   θ < κϕ,   pθ h ≤ 1.                            (7.4)
+
+The same representative index set is used on every interval. The weights have disjoint
+interiors and sum to at most one. Thus, after taking norms, all bulk errors can be bounded
+over their union with the single upper length I. Only derivatives of the weights will produce
+a factor Nc .
+    First consider the receiver and time-weight derivatives. Their bounds explain the radial
+threshold in (7.4). The signed primitive contains k0 = u − ne/D, with
+
+                               |k0 | ≤ Cθ/ϕ,        |PX k0 | ≤ Cθ.
+
+The projected receiver-acceleration and receiver-cutoff kernels have size at most
+
+                                       Cf θ|K|/(wrϕ).
+
+The moving projector has precisely the same size: writing ρ = |VX | gives
+                w                                                                       Cθ|K|
+          Πt = − 2 [(ξ · K)PX + (PX K) ⊗ ξ + ξ ⊗ (PX K)] ,                 |Πt k0 | ≤         .
+                ρ                                                                        wϕ
+The representative w is fixed here; no dyad indicator is differentiated.
+    At fixed receiver time, integrating these kernels over a bin uses the radial factor Ch2 ,
+the velocity density bound Cp3 θ2 , and an angular cap of area Cϕ2 . Their coefficient on |K|
+is therefore                             √
+                         Ch2 (pθ)3 ϕ   C hϕ
+                                     ≤          on selected indices.                     (7.5)
+                              w           w
+The sums in h, ϕ are geometric. The remaining p, θ count is O(L2 ), so the total coefficient
+is CL2 /w. The baseline absolute-force bound on our interval is
+              ∫
+                              √   √        √
+                    |K| dt ≤ C w{P I + (M + A)IS(w)} ≤ C(M, A)w3/2 L.
+                J
+
+Thus all receiver and projector derivative terms contribute at most C(M, A)w1/2 L3 . They
+do not contribute a factor Nc .
+   For a weight derivative, the kernel is f Πk0 /r, and its fixed-time coefficient is instead
+                                                    √
+                                  Ch2 (pθ)3 ϕ2 ≤ C h ϕ2 .                                  (7.6)
+
+Its sum is CL2 . Equation (7.3) consequently gives
+                                                 ∫∑
+                                                   a total weight-derivative cost CL2 Nc .
+Initial-cone boundary terms are bounded by C        ψ dt ≤ CI and create no further cell
+count.                                                                             √
+    We now estimate the remaining terms. On the complementary small-sector bins, pθ h >
+1 will make the projected good-field far bound summable. Outside the small-scale deficit
+exception, the baseline occupation estimates give
+                                                             √
+                             M ≤ ChR2 /p,           R=1+         I/λ.                             (7.7)
+
+                                               30
+For h > I this follows instead from the elementary energy bound M ≤ Ch/p. We use the
+unrefined R in (7.7); in particular no enhanced occupation estimate enters this proof. The
+definition of λ in the small sector yields
+                  √             wpϕ    w2 p (    √   )          √
+                      I Rpϕ ≤       +C        M + ALϕ ≤ C(M, A)w L,                         (7.8)
+                                 P     Pm
+where wp ≤ mP was used in the last inequality.
+   The baseline direct force bound contributes at most C(M, A)wL. For the small-sector
+good-field term, perpendicular projection supplies an additional factor ϕ. Its far bound
+outside (7.4) is therefore                            √
+                               √      ϕ     C(M, A)w L
+                              C IR √ ≤             √     .
+                                    θ h         pθ h
+When the second condition in (7.4) fails, the denominator is greater than one and h > P −2 .
+Hence only O(L) radial dyads occur. There are also O(L) momentum dyads and O(L) dyads
+for each angle. Summing gives at most C(M, A)wL5 .
+    The small deficit exception is entirely within (7.4) after increasing the fixed constant C1
+in the definition of λ. Indeed, when h ≤ λ and ϕ ≤ C0 /m,
+                     √       √
+                   pθ h ≤ pθ λ ≤ Cκ(p/P )mϕ2 /C1 ≤ CκC02 /(C1 m) ≤ 1.
+
+Source cutoff derivatives are assigned to overlapping unselected bins by Lemma 6.2. At
+the structural edge θ ≍ κϕ, use the direct bounds for the remaining sector. Fixed-factor
+neighboring indices change only constants in these estimates.
+    By (6.13), the projected spatial cutoff kernel is bounded by Cf ϕ2 /(r2 θ). Its baseline
+near/far balance, followed by the geometric sum in h, is
+                                          √
+                                        C I Rpϕ2
+
+per remaining indices. By (7.8), the sum over p, θ, ϕ is at most C(M, A)wL4 . The projected
+central residual is Cf ϕ/r2 , which is smaller in this sector. For the exceptional deficit scales,
+use their near bounds directly. Summing h ≤ λ ≤ C/P 2 and then θ ≤ Cϕ gives
+
+                                  CIP −2 p3 ϕ5 ≤ CIp3 /(P 2 m5 ).
+
+These terms fit the same bulk bound after summing the remaining dyads. This separate
+near estimate avoids using (7.7) on its exceptional set.
+   Summing (7.3) now yields the conservative bound
+                                1                  6    2
+                                2 Nc wδ ≤ C(M, A)wL + CL Nc .
+
+Since wδ ≥ w2/5 ≥ P 6/25 , the last term is absorbed for sufficiently large P . Division by wδ
+and addition of the last incomplete interval prove (7.1).
+
+7.2   Occupation at intermediate angles
+The baseline cell argument keeps each velocity within a small multiple of ϕ of its value at
+a reference hit, so its cell length λ shrinks with that tolerance. We now use cells whose
+length is chosen to keep only the energies comparable to p and w. Within each such cell,
+Lemma 7.1 partitions the source and receiver motions into intervals of nearly fixed direction.
+Their common refinement permits the same monotone-crossing argument as before; the
+number of direction intervals controls the total hit duration.
+
+                                                31
+Lemma 7.2 (Direction-based occupation at intermediate angles). Assume the signed
+increment bootstrap on [0, τ ]. Let a small-sector bin satisfy
+
+                     p, w ≥ P 7/10 ,      j −49/100 ≤ ϕ ≤ j −4/25       (j = p, w).               (7.9)
+
+Let the eligible receiver times lie in a closed interval J ⊂ [0, τ ] of length at most I ≤ (w/P )2 ,
+with receiver energy in [w/8, 8w] at those times. Set Im    0 = (m/P )2 and β = 29/25. Then,
+
+for P ≥ P∗ (M, A), the hit measure satisfies
+                                       h           I h
+                                                       (            )
+                                  M ≤ C ϕ−β max 1, 0 , 0 .                                       (7.10)
+                                       p          Im Im
+The constant C is independent of M, A.
+Proof. The window (7.9) implies
+
+                  mϕ ≥ m51/100 ,        m−2 /ϕ ≤ m−151/100 ,            ϕ ≤ P −14/125 .          (7.11)
+
+Thus the bins are actual for large P , and speed-magnitude deficits are small compared to ϕ.
+   Choose a sufficiently large fixed constant C2 and put
+
+                               Q0 = C2 (M 2 + AL),               0
+                                                           λ0 = Im /Q0 .
+
+For h > λ0 , the elementary energy estimate already suffices. Indeed, for sufficiently large P ,
+(7.11) implies ϕ−β ≥ Q0 , and hence hϕ−β ≥ Im 0 . Consequently
+
+
+                               hϕ−β max(1, I/Im
+                                              0      0
+                                                , h/Im ) ≥ max(I, h),
+
+which proves (7.10) in this case.
+     Suppose now that h ≤ λ0 . For upper bounds we may enlarge to all eligible receiver times
+in J and use closed bin support ranges. Partition source time into intervals of length λ0 ,
+clipped to [0, τ ]. All hit source times lie in an interval of length at most C(I + h), so at
+most C(1 + (I + h)/λ0 ) original intervals can contribute. Fix one such interval F . Extend it
+to the right by CT h, where CT bounds r/h, and clip this extension to [0, τ ].
+     If F has a hit, the receiver energy is comparable to w throughout the extended interval.
+For every label hitting F , its source energy is comparable to p throughout F . To see this,
+apply the bootstrap up to the first exit from a fixed enlarged range around a reference√hit
+energy. On a time interval of length CT λ0 , the two bootstrap terms are at most Cm/ C2
+and Cm/C2 . Increasing C2 excludes the first exit. The argument works in both time
+directions and is unaffected by clipping.
+     For each use of Lemma 7.1, choose a dyad j ′ nearest the relevant reference-hit energy.
+It is comparable to w for the receiver and to p for a source. The entire interval stays
+within [j ′ /8, 8j ′ ]. Increasing C2 also ensures that its length is at most (j ′ /P )2 . For large P ,
+j ′ ≥ P 3/5 . Choose a small fixed c2 > 0 and use δ = c2 ϕ. Uniformly for j ′ ≍ j,
+                       δ                                   δ
+                              ≥ cj 11/100 −→ ∞,                   ≤ Cj −3/50 −→ 0.
+                    j ′−3/5                            j ′−1/10
+Therefore all the hypotheses of Lemma 7.1 hold.
+    Choose one common receiver direction partition on the extended interval. Its number of
+cells is at most C(M, A)L6 /ϕ. For each hit label, independently choose its source direction
+partition on F , with the same bound on the number of cells. We shall prove that the hit
+duration for each such label is at most
+
+                                          C(M, A)hL6 /ϕ.                                         (7.12)
+
+                                                  32
+    Call a hit bad if a boundary b of the receiver direction partition lies in [s, t], and call all
+other hits good. Since 0 < t − s ≤ CT h, the source time of a bad hit belongs to [b − CT h, b].
+The total duration of bad hits is thus bounded by C(M, A)hL6 /ϕ. This bound uses only
+the time difference t − s; it is independent of the retarded derivative dt/ds.
+    At a remaining hit, s, t lie in one receiver direction cell. Throughout [s, t] its direction
+varies by at most 2c2 ϕ, and its speed differs from one by O(w−2 ). The bin condition
+|a(t) − n| ≤ Cϕ and (7.11) therefore give
+                                           |∫ t             |
+                                           |                |
+                          |Y (s) − X(s)| = | (a(ζ) − n) dζ || ≤ Chϕ.
+                                           |                                                (7.13)
+                                              s
+
+    On F , refine the source and receiver direction partitions together. The number of
+resulting intervals is bounded by the sum of the two numbers of cells plus one. In one such
+interval containing a good hit, choose that hit as reference. Actual small-angle geometry
+gives |u(s) − a(t)| ≥ cϕ. Replacing a(t) by a(s) changes this vector by at most Cc2 ϕ + Cm−2 .
+At any other time in the combined interval, the change of relative velocity has the same
+bound, since each direction varies by at most 2c2 ϕ and both speed deficits are O(m−2 ).
+Choose c2 small and then P large. There is a fixed unit vector eF for this label and combined
+interval such that
+                                    eF · (u(s) − a(s)) ≥ cϕ
+throughout it. Thus eF · (Y − X) is strictly increasing with derivative at least cϕ. At good
+hits it lies in an interval of length at most Chϕ, by (7.13). Their total duration in this
+combined interval is consequently at most Ch. This remains true when the good-hit set has
+several components. Summing the combined intervals and adding the bad-hit bound proves
+(7.12).
+    The set of labels hitting F has mass at most C/p: at any one time of F , all of these
+labels have energy at least cp, by the preceding stability argument, and total particle energy
+is bounded. The closed support convention makes the set of hit labels a compact projection
+before the null collision labels are discarded, as in the baseline occupation argument. The hit
+set is measurable, and the preceding reasoning bounds each of its source-time sections. The
+label-dependent reference hits and direction partitions serve only to prove this numerical
+bound; no measurability of those choices is required.
+    Multiplying the mass bound by (7.12) and then counting the original intervals yields
+
+                                      h           I +h
+                                                       (       )
+                           M ≤ C(M, A) ϕ−1 L6 1 +
+                                      p             λ0
+                                      h −1 7          I h
+                                                 (         )
+                             ≤ C(M, A) ϕ L max 1, 0 , 0 .                                   (7.14)
+                                      p              Im Im
+
+Clipped intervals and final direction remainders satisfy all the same estimates. Finally, since
+β − 1 = 4/25, (7.11) gives
+                                     ϕ−(β−1) ≥ P 56/3125 .
+This positive power absorbs the factor C(M, A)L7 for P ≥ P∗ (M, A). Equation (7.14)
+becomes (7.10), with a constant independent of the bootstrap parameters.
+
+    The gain in Lemma 7.2 comes from controlling how often relative motion can change its
+direction. Within each combined direction interval, a hit is confined to a short monotone
+crossing. Only after this estimate has been proved will it be used in the final selection of
+bins for the signed momentum bound.
+
+
+
+                                                  33
+8     Selecting the signed part of the force
+Fix a supported receiver and an interval J = [t1 , t2 ] of length I > 0 on which w/8 ≤ qX ≤ 8w.
+Throughout this section we assume (2.2) and
+
+                                             I ≤ (w/P )2 .                                  (8.1)
+
+Write L = log(2 + P ) and S(w) = P 2 L/w. The estimates proved above give
+                                       √          √
+                           B(I, w) = P I + (M + A)IS(w)                                     (8.2)
+
+as a bound, up to a fixed factor, for the direct transport and magnetic-remainder terms and
+the remaining-sector good-field term. They also give
+                                 ∫
+                                                     √
+                                        |K(t)| dt ≤ C w B(I, w).                            (8.3)
+                                    J
+                   √
+The extra factor w in this absolute estimate will be canceled by the small coefficient of
+the receiver terms after signed integration by parts.
+    Only the narrow-angle contribution controlled by Sg remains outside the baseline bound.
+We estimate bins directly when a near or far bound for Sg is already below a summable
+threshold. On the other bins we apply the signed identity to the original force kernels,
+including the transport term. The main task is to show that these selected bins have a
+sufficiently small coefficient on the receiver acceleration.
+    We use the small-sector representatives p, θ, ϕ, h, with θ < κϕ, θ ≥ 1/p, p ≤ P , and
+ϕ, h ≤ 1. All constants below may depend on the fixed decomposition and on
+
+                                        ϵ = 10−5 ,        β = 1.16,                         (8.4)
+
+but are independent of M, A, P, I, w. A sufficiently large lower threshold for P may depend
+on M, A.
+
+8.1   The selection and its summable weight
+Put m = min(p, w) and recall the small-sector stability length
+                                                     (         √      )
+                                    −1/2        P        M         AL
+                                λ          = C1            +          .                     (8.5)
+                                                m        ϕ          ϕ
+
+Put Im0 = (m/P )2 . The three occupation bounds available for selection come from energy,
+
+stable source-time cells, and the direction estimate, respectively. Define M∗ to be the
+minimum of the applicable entries in the following table. The displayed entries contain no
+implicit constants.
+
+                  entry                     condition for inclusion
+               max(I, h)/p                  always
+                                                                                            (8.6)
+          (h/p) max(1, I/λ, h/λ)            ϕ > C0 /m
+       (h/p)ϕ−β max(1, I/Im0 , h/I 0 )
+                                  m         p, w ≥ P .7 , j −.49 ≤ ϕ ≤ j −.16 (j = p, w),
+
+The occupation estimates give M ≤ CM∗ in every small bin. The distinction between this
+inequality and the exact entries of (8.6) is useful: the selection below is an exact inequality
+between representative quantities.
+
+
+                                                     34
+   We assign a summable weight to each bin:
+
+                                          W = (P θ)−ϵ ϕϵ hϵ .                             (8.7)
+
+The same√weight has two roles. The good-field contribution of an unselected bin will be at
+most CP I W by direct estimation. For a selected bin, we will prove that the coefficient of
+|K| in the receiver terms is at most Cw−1/2 W . Summing the latter coefficients will cancel
+           √
+the factor w in (8.3). The remaining task will then be to control the central residual and
+the cutoff and time-weight derivatives in the signed formula.
+    A small bin is selected if
+                                           √ √
+                                 √ 2 2 I pM∗              √
+                               {                    }
+                           min I h p ϕ ,               > P I W.                        (8.8)
+                                              θh
+
+This is a fixed set of indices during J. In particular, taking a partial derivative of a cutoff
+does not differentiate the selection.
+
+Lemma 8.1. The sum of W over all small-sector indices is bounded by a constant depending
+only on ϵ and the fixed decomposition.
+                         √             The unselected small-sector good-field terms have
+total integral at most CP I.
+
+Proof. The θ sum satisfies
+                                            (P θ)−ϵ ≤ Cϵ (p/P )ϵ .
+                                     ∑
+
+                                    θ≥1/p
+
+The remaining sums in p ≤ P , ϕ ≤ 1, and h ≤ 1 are geometric. The small sector has no
+additional σ partition. For an unselected bin,
+                                          √ the near and far good-field estimates, together
+with M ≤ CM∗ , bound its integral by CP I W . Summing proves the second assertion.
+
+8.2   The receiver coefficient on selected bins
+We first verify the coefficient bound promised by the selection. The source-time identity
+produces both the receiver-acceleration term A and a derivative of the receiver-angle cutoff.
+By (6.11) and ∫(6.14), both have majorant Cf θ|K|/(wrϕ2 ). At a fixed receiver time, the
+density bound bin f dv ≤ Cp3 θ2 and the angular cap give a coefficient at most Cw−1 h2 (pθ)3
+on |K|. Alternatively, the particle cone-flux bound gives C/(wpθhϕ2 ). Thus the coefficient,
+as recorded in (6.19), is at most a fixed multiple of
+                                               {                      }
+                              U = w−1 min h2 (pθ)3 , (pθhϕ2 )−1 .                         (8.9)
+
+Lemma 8.2 (Receiver coefficient on selected bins). For fixed M, A, there is a threshold
+P∗ (M, A) such that every selected index with P ≥ P∗ (M, A) satisfies the exact representative
+inequality
+                                        U ≤ w−1/2 W.                                    (8.10)
+
+Proof. We argue by contradiction: a selected bin violating (8.10) will first be forced into the
+actual regime, then into the improved-occupation window, where its exponent inequalities
+are incompatible.
+Step 1: an unsafe selected bin has actual velocity separation. Write the representa-
+tives as exact powers of P :
+
+                           p = P 1−α ,         w = P z,         c = 1 − z,
+                                                                                         (8.11)
+             pθ = P b ,      ϕ = P −y ,       h = P −H ,        ∆ = ϵ(α + b + y + H).
+
+                                                   35
+All terminating decimals below denote exact rational numbers. Here α, z, c, b, y, H are
+nonnegative and z + c = 1. The weight is W = P −∆ . Near selection and (8.1) give
+
+                                      2α + H/2 + 2y < z + ∆.                            (8.12)
+
+Far selection with the first pure bound in (8.6) gives
+                               {
+                                  b < H/2 − α + ∆,   H ≤ 2c,
+                                                                                        (8.13)
+                                  b < H − c − α + ∆, H > 2c.
+
+Indeed, when H ≤ 2c one has h ≥ I, whereas otherwise max(I, h) ≤ P −2c . In either case
+b ≤ H − α + ∆. Putting d∗ = α + b + y + H, we obtain
+
+                                  d∗ ≤ 2H + y + ∆ < 4z + 5∆.
+
+It follows that
+                                              4
+                               z > 0,        ∆<   z < .001z.                      (8.14)
+                                            99995
+Only the pure energy bound has been used so far.
+   Suppose (8.10) fails. Both terms of the minimum in (8.9) must exceed w−1/2 W , so
+
+                             2H  z ∆                              z
+                        b>      + − ,              b < H + 2y −     + ∆.                (8.15)
+                              3  6 3                              2
+If H ≤ 2c, the first inequalities of (8.13) and (8.15) force H + z + 6α < 8∆ < .008z, which
+is impossible. Hence H > 2c, and the other far bound gives
+                              z
+                        H>      + 3(α + c) − 4∆ > .496z + 3(α + c).                     (8.16)
+                              2
+Combining this with (8.12),
+                                             500
+      3.5α + 1.5c + 2y < .753z,         z>       > .66,   y < .377z − 1.75α − .75c.     (8.17)
+                                             751
+In particular,
+                             z − y > .623z + 1.75α + .75c ≥ .623,
+and
+                         1 − α − y > .623z + .75α + 1.75c ≥ .623.
+Thus mϕ > P .3 , and the bin is actual for sufficiently large P . This conclusion precedes any
+absorption of constants into powers of P .
+Step 2: stable-cell occupation forces that bin into the improved window. Put
+ρ = max(α, c), so P/m = P ρ . Equation (8.5) and ϕ ≤ 1 give
+                                        √
+                      λ−1/2 ≤ C1 (M + AL)P ρ+y ≤ P ρ+y+.001z
+
+once P ≥ P∗ (M, A). The last threshold is uniform over the indices because z > .66. Since
+I, h ≤ P −2c and ρ ≥ c, the actual pure bound gives
+
+                                    pM∗ ≤ P −H/2+ρ−c+y+.001z .
+                                  √
+
+
+Far selection therefore implies
+
+                              b < H/2 − min(α, c) + y + .002z.                          (8.18)
+
+                                                 36
+Comparing (8.18) with the first inequality in (8.15), then using (8.12), yields
+
+                  2y > H/3 + .328z + 2 min(α, c),          H < .8076z < .81z.           (8.19)
+
+Together with (8.16), this gives
+                                              200
+                    α + c < .105z,       z>       > .90,      1 − α > .895.             (8.20)
+                                              221
+The two inequalities in (8.15) also imply
+
+                                        z H     2∆
+                                   y>     −   −    > .19z.
+                                        3   6    3
+    We now check both ends of the improved-occupation window for both momenta. The
+last inequality gives y > .171 > .16 max(z, 1 − α). For the opposite end put Y = .377z −
+1.75α − .75c; by (8.17), y < Y , and
+
+                              .49z − Y = .113z + 1.75α + .75c > 0,
+                        .49(1 − α) − Y = .113z + 1.26α + 1.24c > 0.
+
+Therefore
+                         .16 max(z, 1 − α) < y < .49 min(z, 1 − α).
+Together with (8.20), these are exactly the conditions for including the improved entry of
+(8.6).
+                                                                      0 = P −2ρ ,
+Step 3: improved occupation contradicts an unsafe coefficient. Since Im
+that entry gives
+                            pM∗ ≤ P −H/2+ρ−c+βy/2 .
+                          √
+
+Far selection and (8.15) consequently give
+
+            b < H/2 − min(α, c) + βy/2 + ∆,         βy > H/3 + .33z + 2 min(α, c).
+
+On the other hand, multiplying (8.12) by β/2 = .58 and using (8.14) yields
+
+                         βy < .58z − .29H + .58∆ < .582z − .29H.
+
+Thus H < (378/935)z < .41z, contradicting (8.16). This proves (8.10).
+
+8.3   The spatial transition between selected and unselected bins
+The selected receiver terms now have the coefficient needed to use (8.3). We next estimate
+the source, spatial, and time-weight derivatives, together with the central residual R, in the
+signed formula. The spatial transition requires particular care: its angular sum must retain
+the joint energy budget without introducing another logarithmic factor.
+    Equation (6.13) gives the spatial-cutoff majorant
+
+                                              f ϕ
+                                            C 2 .                                       (8.21)
+                                             r θ
+By Lemma 6.2, the sum of the partial source or spatial derivatives of selected cutoff products
+is the negative of the corresponding sum over unselected products. It is supported where
+selected and unselected products overlap. Indeed, the full smooth partition sums to one,
+and a nonnegative smooth cutoff has zero derivative where it vanishes. Thus we estimate
+
+                                               37
+these errors on overlapping unselected supports. Neighboring representatives have ratios
+bounded by four.
+   For fixed p, ϕ, let             √    √         ∑
+                          R = 1 + I/λ Epϕ ,          Epϕ ≤ C.                     (8.22)
+                                                               p,ϕ
+
+Outside the deficit exception ϕ ≤ C0 /m and h ≤ min(I, λ), the near and far bounds for
+(8.21) are                            {             }
+                                                 2
+                                          3  3 R
+                                C min Ihp θϕ ,        .                         (8.23)
+                                               phθϕ
+For h > I the pure energy bound M ≤ Ch/p gives the second bound because R ≥ 1. Hence
+R is independent of both θ and h in every use of (8.23).
+
+Lemma 8.3. The total spatial-cutoff error is at most CB(I, w).
+
+Proof. First consider an unselected structural neighbor, with θ ≥ κϕ, overlapping a selected
+support. Its ratio θ/ϕ lies within fixed factors of κ, √
+                                                       so for each ϕ there are only a bounded
+number of such θ. Balancing (8.23) in h√gives C I Rpϕ, which fits the shared-budget
+calculation following (5.17): the sum of C I Rpϕ over p, ϕ is at most CB(I, w).
+    For another overlapping unselected bin, fix p, ϕ, θ and define h0 > 0 by
+                                                √
+                               I h0 p2 ϕ2 = P I(P θ)−ϵ ϕϵ hϵ0 .
+                                √
+                                                                                        (8.24)
+
+The ratio of the near quantity to its threshold is (h/h0 )1/2−ϵ . Overlap with a selected
+neighbor therefore implies h ≥ ch0 , for a fixed c > 0. If the unselected bin fails the near
+inequality, it also has h ≤ h0 . Only a bounded number of radial dyads occur in this case.
+    Put
+                                          R2                          √
+               n0 = Ih0 p3 θϕ3 ,   f∗ =         ,   D0 = (n0 f∗ )1/2 = I Rpϕ.          (8.25)
+                                         ph0 θϕ
+The near-failing transition bins cost at most C min(n0 , f∗ ). If instead the bin fails the far
+inequality, then
+                               M ≤ CM∗ ≤ CP 2 W 2 θ2 h2 /p.
+Substitution into the far spatial bound gives, by (8.24), the additional estimate
+
+                                   CP 2 W 2 θ
+                                              = Cn0 (h/h0 )2ϵ .
+                                     pϕ
+
+Together with (8.23), this bounds the sum over h ≥ ch0 by
+                                   {
+                                       f∗ ,                     f∗ ≤ n0 ,
+                               C        1/(1+2ϵ) 2ϵ/(1+2ϵ)                                   (8.26)
+                                       n0       f∗         ,    f∗ > n0 .
+
+To see this, split the dyadic sum of min(n0 t2ϵ , f∗ /t) at t = (f∗ /n0 )1/(1+2ϵ) , where t = h/h0 .
+Both resulting sums are geometric. The same bound includes the near-failing transition
+bins. No restriction on the size of h0 is needed; enlarging the actual radial range to t ≥ c
+only increases this upper bound.
+   Equation (8.24) gives
+                                                                          1 − 4ϵ
+                      h0 ∝ θ−ϵ/(1/2−ϵ) ,         n0 ∝ θγ ,           γ=          > 0.
+                                                                          1 − 2ϵ
+
+
+
+                                                    38
+Since D0 is independent of θ, writing x = n0 /D0 turns (8.26) into
+                                       {
+                                         x(1−2ϵ)/(1+2ϵ) , x ≤ 1,
+                                 CD0
+                                         x−1 ,            x ≥ 1.
+
+Both θ tails√are geometric. Their sum is at most CD0 , with no additional logarithm.
+Summing C I Rpϕ over p, ϕ as above gives CB(I, w).
+    Finally, in the omitted deficit exception one has λ ≤ CP −2 and ϕ ≤ C/m. The near
+spatial bound, summed over h and θ, is at most CIp3 ϕ4 /P 2 . The remaining momentum
+weights are bounded by 1/(P 2 p) when p ≤ w and by P/w4 when p > w. These fit CIS(w),
+including the fixed logarithmic counts from the decomposition. This treats the exception
+without using the unavailable far occupation bound there.
+
+    Source-cutoff derivatives have the direct good-field and magnetic-remainder majorants in
+(6.12). On overlapping unselected small bins, Lemma 8.1 applies to the good-field part; the
+magnetic-remainder part and structural neighbors are bounded
+                                                           √      by (8.2). The central
+                                                                                    √ term
+                              2
+in (6.11) has majorant Cf /r . Its near/far balance is C I Rpθ, whose θ sum is C I Rpϕ.
+Its deficit exception is bounded by the same near estimate used at the end of Lemma 8.3.
+
+8.4   Time weights
+Choose 0 < η < 1/2 and an endpoint-zero Lipschitz function ψ on J, equal to one away
+from monotone ramps of length ηI, with 0 ≤ ψ ≤ 1 and |ψt | ≤ C/(ηI). Equation (6.15)
+gives the time-weight majorant Cη f θ/(Irϕ).
+Lemma 8.4. The total time-weight derivative is at most Cη B(I, w).
+Proof. If h ≤ I, the ratio of this majorant to f /r2 is bounded by Cη hθ/(Iϕ) ≤ Cη . The
+preceding f /r2 estimate therefore applies. √
+   If h > I, the near integral, divided by P I, is at most
+                           Cη h2 p3 θ3 ϕ                      √
+                                √        ≤ Cη h(p/P )5 ϕ3 (P θ h)3 W −1
+                              P I
+                                         ≤ Cη h(p/P )5 ϕ3 W −4 .                       (8.27)
+
+The first inequality is the near-selection
+                                      √ inequality. For the second, use far selection and the
+pure bound M∗ ≤ h/p to obtain P θ h < W −1 . Equivalently,
+
+                                     (P θ)1−ϵ < ϕ−ϵ h−1/2−ϵ .
+
+Summing the increasing factor (P θ)4ϵ in the last line of (8.27) leaves
+
+                                Cη (p/P )5 h1−6ϵ/(1−ϵ) ϕ3−4ϵ/(1−ϵ) .
+
+Both√exponents are positive. The sums in h, ϕ, p are geometric, so these terms cost at most
+Cη P I.
+
+8.5   The weighted signed estimate
+Proposition 8.5. For the weight ψ above and P ≥ P∗ (M, A),
+                                        [ √        √
+                     |∫           |
+                     |            |                        ]
+                     | ψ(t)K(t) dt| ≤ Cη P I + (M + A)IS(w) .                          (8.28)
+                     |            |
+                       J
+
+The constant Cη is independent of M, A.
+
+                                                39
+Proof. Let χ = j∈S βj be the sum of the selected cutoffs, with the index set S fixed
+                 ∑
+
+throughout J. Split the interior force density as
+
+                     Tker + Sker = χ(Tker + Sker ) + (1 − χ)(Tker + Sker ).
+
+Although the selection criterion uses the good-field majorant Sg , the selected term contains
+the transport kernel as required by Lemma 6.1. Apply Proposition 6.3 to that term with
+Π = Id, and use the direct bounds on its complement. Lemmas 8.1, 8.3, and 8.4 bound
+the unselected good-field terms and all spatial and time-weight derivatives. The source
+derivatives, the central signed term, the unselected transport and magnetic-remainder terms,
+and structural neighbors were bounded above by Cη B(I,    √ w). By (6.18), the initial-cone
+boundary has a bounded-data cost CI, which fits CP I by (8.1); the endpoint weights
+remove the other time boundaries.
+    For the receiver terms, Lemmas 8.1 and 8.2 give, at every receiver time,
+
+                                                CU ≤ Cw−1/2 .
+                                      ∑
+
+                                     selected
+
+Multiplying this coefficient by (8.3) bounds their total integral by CB(I, w). All sums used
+fixed geometric exponents; their constants are independent of M, A. The only enlargement
+of the large-P threshold occurred in Lemma 8.2. This proves (8.28).
+
+
+9    Closing the signed-increment bootstrap
+We now prove Proposition 2.1. The preceding estimates were conditional on the signed bound
+(2.2). Their constants permit a strict improvement, uniformly over the chosen compact
+solution interval. A continuity argument then removes that assumption.
+    Fix an interval [t1 , t2 ] of length I on which w/8 ≤ qX ≤ 8w. Write the full bootstrap
+bound as                                         √
+                                     Bw (I) = M P I + AIS(w).
+If Bw (I) ≥ 32w, then
+
+                  |VX (t2 ) − VX (t1 )| ≤ qX (t2 ) + qX (t1 ) ≤ 16w ≤ 12 Bw (I).
+
+Otherwise, once M ≥ 32, we have I ≤ (w/P )2 , as required in the estimates. The case I = 0
+is immediate.
+    Let 0 < η < 1/2 and choose a Lipschitz function ψ on [t1 , t2 ] that vanishes at the
+endpoints, equals one off the two edge intervals of length ηI, and has linear monotone ramps
+on those intervals. The weighted impulse estimate (8.28) gives
+                                            [ √        √
+                     |∫ t             |
+                     | 2              |                        ]
+                     |    ψ(t)K(t) dt | ≤ Cη P I + (M + A)IS(w) .                       (9.1)
+                     |                |
+                        t1
+
+We restore each edge using the signed bootstrap, without estimating the absolute force
+there. On the left edge put χ = 1 − ψ and F (t) = VX (t) − VX (t1 ). Since F (t1 ) = 0 and χ
+vanishes at the other edge endpoint,
+                              ∫                        ∫
+                                  χ(t)K(t) dt = −          χ′ (t)F (t) dt.
+
+The monotonicity of the ramp gives |χ′ | = 1; every such F (t) has norm at most Bw (ηI) by
+                                      ∫
+
+(2.2). The right edge has the same bound, anchoring at t2 . Hence
+                                          √   √    [          √          ]
+          |VX (t2 ) − VX (t1 )| ≤ (Cη + 2M η)P I + Cη (M + A) + 2Aη IS(w).            (9.2)
+
+                                                  40
+                       √
+     Choose η so that 2 η ≤ 1/8 and 2η ≤ 1/8. Fix M ≥ max(32, 8Cη ) and then
+
+                                  A ≥ max(1, 16Cη M, 256Cη2 ).
+
+The right side of (9.2) is at most Bw (I)/4, and in particular at most Bw (I)/2. Finally
+choose P0 large enough for all preceding estimates with these fixed M, A. These choices
+depend only on the datum and T0 , and not on t∗ . Thus every bootstrap interval satisfies
+the uniform improvement
+
+                               |VX (t2 ) − VX (t1 )| ≤ 21 Bw (t2 − t1 ).                      (9.3)
+
+    For completeness, fix P ≥ P0 satisfying (2.1) on [0, t∗ ]. Let T be the set of τ ∈ [0, t∗ ] for
+which (2.2) holds for all eligible receivers, scales and intervals contained in [0, τ ]. It contains
+zero and is an initial interval. It is closed: truncate any nontrivial eligible interval at an
+increasing sequence of endpoints from below and use continuity of VX . The range condition
+is preserved by truncation.
+    It is also relatively open to the right. On this fixed compact solution interval there is a
+finite bound C∗ for |K| on all supported characteristics. Consequently
+                                                                    √       some ℓ0 > 0 ensures
+(2.2) for every interval of length at most ℓ0 , since C∗ I ≤ M P I there. If τ ∈ T , a longer
+eligible interval ending in [τ, τ + ε] has a prefix ending at τ . The strict estimate (9.3) on
+that prefix is at most half the full interval’s bound. The suffix has impulse at most C∗ ε,
+which is smaller than the remaining
+                                √       margin when ε is sufficiently small, uniformly because
+the full bound is at least M P ℓ0 . An interval starting after τ is short if ε < ℓ0 . This proves
+relative openness. Hence T = [0, t∗ ] and Proposition 2.1 follows.
+    The compact-time force bound C∗ was used only to propagate the bootstrap for a fixed
+P . It does not enter M, A or P0 . This distinction preserves the uniformity needed in the
+momentum-doubling argument of Section 2.
+
+
+10     Local theory and continuation for finite-energy fields
+We prove Proposition 2.2. The distinction between bounded smooth derivatives and square-
+integrable derivatives matters here: the initial fields in the theorem need not belong to H 5 .
+We first give the local theory for Sobolev fields, then replace the fields outside a sufficiently
+large ball while preserving the divergence constraints. For any prescribed finite horizon, a
+vacuum field transfers solutions between the original and modified data on every interval of
+existence within that horizon.
+    Throughout this section, F = (E, B), u(v) = v/(1 + |v|2 )1/2 , and
+                                    ∫                      ∫
+                             ρf =         f dv,     jf =        u(v)f dv.
+                                     R3                    R3
+
+The data are 0 ≤ f0 ∈ Cc∞ (R6 ) and E0 , B0 ∈ Cb∞ (R3 ) ∩ L2 (R3 ), with every spatial derivative
+bounded and with ∇ · E0 = ρf0 , ∇ · B0 = 0. Choose R0 , Rv so that
+
+                            supp f0 ⊂ {(x, v) : |x| ≤ R0 , |v| ≤ Rv }.
+
+As in Proposition 2.2, a classical solution is a C 1 pointwise solution whose fields are
+continuous into L2x and whose density has compact phase-space support on every compact
+time interval.
+
+
+
+
+                                                  41
+10.1    Characteristics and the Maxwell evolution
+For any C 1 fields on a closed finite time interval, the characteristic system is
+
+                       Ẋ = u(V ),      V̇ = E(t, X) + u(V ) × B(t, X).                   (10.1)
+
+It has a unique solution through every phase point throughout that interval. Indeed, |Ẋ| ≤ 1
+confines X to a compact spatial ball; the fields are bounded on the resulting compact
+spacetime cylinder, so |V̇ | is bounded there. The usual local ODE solution therefore cannot
+escape in finite time. Transport along these characteristics gives
+
+            f (t, X(t), V (t)) = f0 (X(0), V (0)),        suppx f (t) ⊂ {|x| ≤ R0 + t}.   (10.2)
+
+On every closed finite slab the same argument gives a common momentum bound, provided
+the C 1 solution exists on that closed slab. It does not give a bound up to an excluded endpoint
+of existence. The phase-space vector field in (10.1) has zero divergence: u = ∇v (1 + |v|2 )1/2
+and hence ∇v · (u × B) = 0. Consequently positivity and the L∞ norm of f are preserved.
+Integration of the transport equation gives ∂t ρf + ∇ · jf = 0, which, together with Maxwell’s
+equations, propagates both divergence constraints.
+    We shall use the homogeneous first-order Maxwell evolution on F = (E, B). If Cξ w =
+ξ × w, its Fourier generator is
+                                  (             )
+                                      0   iCξ
+                         A(ξ) =               ,            A(ξ)∗ = −A(ξ).
+                                     −iCξ 0
+
+Thus U (t), defined by the multiplier exp(tA(ξ)), is a strongly continuous unitary group on
+L2 and on every H k . No divergence constraint is needed for this assertion. The formula
+                                               ∫ t
+                        F (t) = U (t)F (0) +         U (t − s)(−jf (s), 0) ds             (10.3)
+                                                0
+
+therefore yields                                         ∫ t
+                          ∥F (t)∥H k ≤ ∥F (0)∥H k +            ∥jf (s)∥H k ds.
+                                                          0
+
+  We also need finite propagation without any global integrability assumption. For a C 1
+Maxwell field with current j, set e = (|E|2 + |B|2 )/2. Direct differentiation gives
+
+                        ∂t e + ∇ · (E × B) = −E · j,             |E × B| ≤ e.             (10.4)
+
+Integrating over the shrinking balls B(x, r + t − s), 0 ≤ s ≤ t, shows that a field with zero
+initial data and zero∫current in this backward cone vanishes on the final ball B(x, r): the
+boundary term is − ∂B (e + (E × B) · ν) ≤ 0. This local argument uses neither global L2
+bounds nor divergence constraints.
+Lemma 10.1 (Exterior comparison). Suppose that a C 1 solution exists on [0, S], that f0 is
+compactly supported as above, and that F (0) ∈ H k (R3 ) for every integer k. Then the fields
+belong to C([0, S]; L2 ) and have bounded first spatial derivatives on the entire slab. More
+precisely,
+                          F (t, x) = U (t)F (0)(x)   if |x| > R0 + t.
+Proof. The characteristic argument gives compact phase-space support on the whole slab,
+so jf is C 1 and vanishes outside |x| ≤ R0 + t. The homogeneous field F h (t) = U (t)F (0) is
+smooth and has bounded spatial derivatives on [0, S] × R3 , by its uniform Sobolev bounds.
+The difference W = F − F h has zero initial data and current jf . If |x| > R0 + t, choose
+
+                                                42
+r > 0 smaller than |x| − R0 − t. Every point (s, y) of the backward cone from B(x, r)
+satisfies |y| > R0 + s, so its current is zero. The local energy argument gives W (t) = 0 on
+B(x, r). Thus W is supported in the fixed ball |x| ≤ R0 + S on this slab. Its C 1 regularity
+on that compact cylinder gives W ∈ C([0, S]; L2 ) and uniform bounds on its first derivatives.
+Adding F h proves the claims. Notice that F h can have nonzero electric divergence; only
+the first-order Maxwell equations, not a component free-wave equation, were used for this
+comparison.
+
+10.2    Classical uniqueness and local Sobolev solutions
+Uniqueness holds in the full classical class stated above. To see this, let (fi , Fi ), i = 1, 2,
+have the same data, and work on an arbitrary compact common time interval. Choose
+R containing both momentum supports, and put g = f1 − f2 , δF = F1 − F2 . With the
+transport operator of the first solution,
+
+               (∂t + u · ∇x + (E1 + u × B1 ) · ∇v )g = −(δE + u × δB) · ∇v f2 .
+
+The phase-space divergence is zero, g is compactly supported, and
+
+                                  ∥jf1 − jf2 ∥L2x ≤ CR ∥g∥L2x,v .
+
+Since ∇v f2 is bounded on this slab, integration of the transport and Maxwell energies gives,
+with a slab-dependent finite constant C,
+                                                      ∫ t
+                     ∥g(t)∥22 + ∥δF (t)∥22 ≤ C                  ∥g(s)∥22 + ∥δF (s)∥22 ds.
+                                                            (                       )
+                                                                                              (10.5)
+                                                       0
+
+For completeness, the Maxwell integration is justified with cutoffs χ(x/N ), where
+                                                                             ∫S
+                                                                                   χ = 1 on
+the unit ball and |∇χ(x/N )| ≤ C/N . Its boundary error is at most CN     −1            2
+                                                                              0 ∥δF (s)∥2 ds,
+                                        2
+which tends to zero because δF ∈ Ct Lx . No square-integrable field derivatives are required.
+Gronwall’s inequality in (10.5) proves uniqueness.
+    We next record the estimate needed both to construct smooth solutions and to preserve
+their regularity. For an integer k ≥ 6, write
+
+                                Yk = ∥f ∥H k (R6 ) + ∥F ∥H k (R3 ) .
+
+For a smooth solution with momentum support in |v| ≤ R,
+                                      ∫ t
+                                            (                                           )
+             Yk (t) ≤ Yk (0) + Ck,R             1 + ∥F (s)∥Wx1,∞ + ∥∇x,v f (s)∥∞ Yk (s) ds.   (10.6)
+                                       0
+
+The H k norm of F is the Hilbert norm of the six-component vector (E, B); this is the
+norm preserved by U (t). The coefficient in (10.6) involves no derivatives above first order.
+For smooth solutions in these Sobolev spaces, bounds on the momentum support and this
+coefficient give a bound on Yk by Gronwall’s inequality. The local construction below will
+use the Y6 bound to obtain a common restart time.
+     To retain this dependence in the commutators, we use the integer Gagliardo–Nirenberg
+inequality on the whole space and include its proof; see also [17, Lecture II] for its classical
+context. For d ≥ 1, an integer s ≥ 1, a scalar or finite-dimensional vector-valued g ∈
+H s (Rd ) ∩ L∞ , and an integer 0 < j < s,
+                                                                             j/s
+                             ∥Dj g∥L2s/j ≤ Cd,s ∥g∥1−j/s
+                                                   ∞     ∥Ds g∥2 .                            (10.7)
+
+
+                                                       43
+Here Dj g denotes the array of all ordered jth derivatives, with its Euclidean pointwise norm;
+this convention is equivalent to the usual multiindex convention up to constants depending
+on d, s. For g ∈ Cc∞ put   pj = 2s/j and Aj = ∥Dj g∥pj , with A0 = ∥g∥∞ . Integrating one
+derivative by parts in |Dj g|pj gives
+                       ∫
+
+                             ∫
+                p                                                                 p −2
+               Aj j ≤ Cd,s       |Dj−1 g| |Dj+1 g| |Dj g|pj −2 ≤ Cd,s Aj−1 Aj+1 Aj j     .
+
+The last step is Hölder’s inequality, since 1/pj−1 + 1/pj+1 + (pj − 2)/pj = 1, with p0 = ∞.
+Thus A2j ≤ Cd,s Aj−1 Aj+1 . For a nonzero compactly supported g all Aj are positive. Choose
+C ≥ 1 valid for these inequalities and define
+
+                          bj = log Aj − (1 − j/s) log A0 − (j/s) log As .
+
+Then b0 = bs = 0 and 2bj − bj−1 − bj+1 ≤ log C. The discrete maximum principle, applied
+after subtracting 12 (log C)j(s − j), gives bj ≤ 12 (log C)j(s − j), which proves (10.7); the zero
+function is immediate. To pass to H s ∩ L∞ , first multiply by smooth compactly supported
+cutoffs bounded by one and then mollify with nonnegative unit-mass kernels. A diagonal
+sequence converges in H s , has L∞ norm at most ∥g∥∞ , and has the relevant derivatives
+converging almost everywhere along a subsequence. Fatou’s lemma proves (10.7) in the
+stated class.
+    We give the commutator argument explicitly. If s ≥ 1 is an integer, |α| + |β| = s, and
+the functions are in H s ∩ L∞ , then the Gagliardo–Nirenberg interpolation inequality and
+Hölder’s inequality give
+
+                        ∥Dα g Dβ h∥2 ≤ Cs ∥g∥∞ ∥h∥H s + ∥h∥∞ ∥g∥H s .
+                                               (                             )
+                                                                                             (10.8)
+
+Indeed, put j = |α|. For 0 < j < s apply (10.7) to g and the analogous bound with derivative
+order s − j to h, then use weighted arithmetic–geometric mean. The cases j = 0, s are direct.
+The same estimate for lower positive total derivative orders follows by using that order in
+place of s; total order zero is immediate.
+    Differentiate the Vlasov equation in (x, v) to order at most k and pair with the cor-
+responding derivative of f in L2 . The leading transport term vanishes by phase-space
+divergence. Derivatives falling on u are bounded and cost only ∥f ∥H k . For the force terms,
+choose a smooth momentum cutoff ζR equal to one on a neighborhood of |v| ≤ R, and set
+aR = ζR (v)(E + u × B). It is used only in the commutators; the leading transport operator
+is unchanged. We have
+
+                 ∥aR ∥H k (R6 ) ≤ Ck,R ∥F ∥H k (R3 ) ,    ∥∇aR ∥∞ ≤ CR ∥F ∥Wx1,∞ .
+
+Each commutator product is a derivative of ∇aR times a derivative of ∇f , with total
+derivative order at most k − 1. Equation (10.8) therefore bounds their sum by
+                                   (                                     )
+                             Ck,R ∥F ∥Wx1,∞ ∥f ∥H k + ∥F ∥H k ∥∇f ∥∞ .
+
+Finally, ∥jf ∥Hxk ≤ CR ∥f ∥Hx,v
+                            k   by Cauchy–Schwarz in v, and (10.3) completes (10.6). The
+estimates for unsquared norms follow from the squared energy estimates by regularizing a
+vanishing norm and taking the regularization parameter to zero.
+    Here are sufficient details of the local construction to make the restart time in this
+argument explicit. Suppose first that F0 belongs to every H k . Starting with the time-
+independent data, solve successively the linear transport equation for f n+1 with force F n ,
+and the linear Maxwell equations for F n+1 with current jf n ; every iterate has the same
+initial data. Characteristics and (10.3) produce smooth iterates. Because H 6 (R6 ) controls
+
+                                                    44
+first derivatives in L∞ , the preceding estimates give, while all momentum supports lie in a
+fixed ball,                                  ∫     t(
+                     Y6n+1 (t) ≤ Y6 (0) + CR            (1 + Y6n )Y6n+1 + Y6n ds.
+                                                                               )
+                                               0
+Choose M > 2(Y6 (0) + 1), and then choose τ > 0 small in terms of M and Rv . Induction
+gives Y6n ≤ M on [0, τ ]; shrinking τ further makes the momentum increase at most one,
+since |V̇ | ≤ |E n | + |B n | ≤ CM . This closes the support condition with R = Rv + 1.
+    The L2 difference estimate for consecutive iterates has the form
+                            ∫ t
+          Dn+1 (t) ≤ CR,M         Dn (s) ds,   Dn = ∥f n − f n−1 ∥2 + ∥F n − F n−1 ∥2 .
+                             0
+
+The term involving f n uses its uniform first-derivative bound, exactly as in (10.5); the
+Maxwell estimate is linear. Taking CR,M τ < 1/2 makes the iterates Cauchy in C([0, τ ]; L2 ).
+For every higher k, the uniform C 1 bounds already obtained give
+                                                    ∫ t
+                     Ykn+1 (t) ≤ Yk (0) + Ck,R,M            (Ykn+1 (s) + Ykn (s)) ds.
+                                                        0
+
+The exponential Yk (0)e2Ck,R,M t is a common upper bound, by induction and the scalar
+comparison inequality. Interpolating the L2 convergence with the uniform H k+1 bounds
+gives convergence in C([0, τ ]; H k ) for every k. The limit solves the equations; it preserves
+positivity, compact phase-space support, and the constraints. Sobolev embedding and the
+equations give smoothness in both space and time. Crucially, the common lifespan τ depends
+only on Y6 (0) and the initial momentum radius, not on higher norms.
+
+10.3    Changing the fields outside the particle region
+We first construct the vacuum evolution needed for data whose bounded derivatives need
+not lie in L2 .
+Lemma 10.2 (Smooth finite-energy vacuum fields). Let DE , DB ∈ Cb∞ (R3 ) ∩ L2 (R3 ) be
+divergence-free. There is a global smooth vacuum Maxwell solution on [0, ∞) with these data,
+continuous into L2 , whose spatial derivatives of every order are bounded on each finite slab.
+If the data vanish on B(0, L), the solution vanishes wherever |x| + t < L.
+Proof. For Mt g(x) = (4π)−1 S 2 g(x + tω) dω, define
+                                 ∫
+
+
+                            E v (t) = ∂t (tMt DE ) + tMt (∇ × DB ),
+                            B v (t) = ∂t (tMt DB ) − tMt (∇ × DE ).
+
+Kirchhoff’s formula gives smooth free-wave solutions with all the asserted finite-slab derivative
+bounds. Their Maxwell residuals Etv − ∇ × B v and Btv + ∇ × E v solve the wave equation with
+zero initial values. Their initial time derivatives are respectively ∇(∇ · DE ) and ∇(∇ · DB ),
+hence zero. Local wave uniqueness makes both residuals vanish. The divergences vanish as
+well. The spherical-mean formula proves the stated finite propagation.
+    To justify strong L2 continuity without assuming square-integrable derivatives, convolve
+the data with a smooth compactly supported approximate identity ηϵ . The resulting
+divergence-free data belong to every H k , converge in L2 , and converge uniformly with
+every fixed spatial derivative: the next bounded derivative makes each derivative uniformly
+continuous. Their Kirchhoff solutions converge with all fixed derivatives on finite slabs to
+the displayed solution. The same solutions are U (t)(ηϵ ∗ DE , ηϵ ∗ DB ), whose L2 convergence
+is uniform in t by unitarity. The two limits agree locally, so the displayed solution is
+U (t)(DE , DB ). It is therefore continuous into L2 and preserves its L2 norm.
+
+                                               45
+   Fix a finite horizon H > 0. Set ρ0 = ρf0 and take its Coulomb field
+
+                            EC = −∇(−∆)−1 ρ0 ,                  ∇ · EC = ρ0 .                   (10.9)
+
+This field belongs to every H s , s ≥ 0. Indeed, its Fourier transform is −iξ|ξ|−2 ρ^0 (ξ). Near
+zero its size is O(|ξ|−1 ), whose square is integrable in three dimensions, and at infinity ρ^0
+decays faster than any power. Sobolev embedding gives bounded smooth derivatives. This
+argument allows arbitrary total charge.
+    For a smooth divergence-free vector field G on R3 , define
+                                            (∫ 1                  )
+                                AG (x) =           tG(tx) dt × x.                           (10.10)
+                                              0
+                                                       ∫1
+Then ∇ × AG = G. To verify this, put V (x) =               0 tG(tx) dt. We have ∇ · V = 0 and
+                                                       ∫ 1
+                                                                d(2       )
+                ∇ × (V × x) = 2V + (x · ∇)V =                      t G(tx) dt = G(x).
+                                                            0   dt
+
+Choose χ ∈ Cc∞ (R3 ) equal to one on B(0, L), where L = R0 + 2H + 1, and set
+                                                       (              )
+                                 E 0 = EC + ∇ × χAE0 −EC ,
+                                             (         )                                    (10.11)
+                                 B 0 = ∇ × χAB0 .
+
+These fields belong to every H k , satisfy the original divergence constraints, and agree with
+E0 , B0 on B(0, L). Their difference from the original fields is divergence-free, smooth with
+bounded derivatives, and in L2 . Let D(t) be the vacuum solution of Lemma 10.2 with initial
+data D(0) = (E0 − E 0 , B0 − B 0 ). Then
+
+                         D(t, x) = 0   if   0 ≤ t ≤ H,            |x| ≤ R0 + t,             (10.12)
+
+because |x| + t ≤ R0 + 2H < L. Consequently
+
+                                    (f, F ) ←→ (f, F − D)                                   (10.13)
+
+is an equivalence, up to time H, between classical solutions with the original and modified
+initial fields. Maxwell’s equations and both constraints are preserved by subtracting a
+divergence-free vacuum solution. The transport equation is unchanged on the particle region
+by (10.12); outside that region f and its momentum derivatives vanish. The equivalence
+preserves Ct L2 and compact phase-space support.
+    The Sobolev construction above, applied to (10.11) with, for example, H = 1, and
+followed by addition of D, now proves local classical existence for the full initial field class.
+The uniqueness already proved permits these local solutions to be joined into a unique
+maximal classical solution.
+
+10.4    Smoothness through a classical interval
+Suppose first that the initial fields belong to every H k and that a classical solution exists on
+[0, S]. Lemma 10.1 gives a uniform global Wx1,∞ bound for its fields on this slab. Compact
+phase-space support and C 1 regularity give uniform bounds for the momentum radius and
+∇x,v f . Wherever the solution is smooth, (10.6) therefore bounds every Yk , in particular Y6 ,
+by a constant depending only on this slab and the initial norm.
+    To continue smoothness, suppose a first loss could occur before or at S. Choose times
+increasing to that first time from below. The Y6 bounds and momentum bounds just
+
+                                                  46
+obtained give the same positive local lifespan for the Sobolev construction at all these
+times. Restarting sufficiently close to the alleged loss extends a smooth solution beyond it.
+Classical uniqueness identifies this solution with the given one on their common interval, a
+contradiction. This argument requires no prior existence of an H 6 limit at the endpoint.
+The higher estimates on the same lifespan give persistence of every Sobolev order, and the
+equations give all time derivatives.
+    For the original field class, fix any compact classical interval, choose a larger finite horizon
+in (10.11), and subtract the associated vacuum field. The modified solution has all-Sobolev
+initial fields, so the preceding argument applies. Adding back the smooth vacuum proves
+smoothness on the chosen slab for the original solution.
+    The solutions just constructed satisfy the hypotheses of Lemma 3.1, so their total energy
+is conserved. Here Ct L2 was established independently; no square-integrable field derivatives
+are needed to apply that energy identity.
+
+10.5    The bounded-momentum criterion
+The continuation input is the Glassey–Strauss criterion in [15, Theorem 1.1 and Footnote 1,
+arXiv version]. In its normalization, nonnegative compactly supported H 5 particle data
+and H 5 field data satisfying the constraints have the following property: a unique classical
+solution on [0, T ), T < ∞, extends uniquely as a C 1 solution past T if there is a bounded
+continuous function κ : [0, T ) → (0, ∞) such that f (t, x, v) = 0 whenever |v| ≥ κ(t).
+The H 5 formulation in that statement does not require∫
+                                                            a separate momentum
+                                                                       ∫
+                                                                                   bound for
+approximation iterates. Its density and current are 4π fLS dv and 4π ufLS dv, so it applies
+to the present normalization with
+
+                          fLS = f /(4π),       ELS = E,       BLS = B.                      (10.14)
+
+    Now let a classical solution for the original data exist on [0, T ), where T < ∞, and
+suppose its momentum support is uniformly bounded there by P∗ < ∞. Perform (10.11)
+with H = T + 1. The modified solution (f, F − D) has all-Sobolev initial fields; its density is
+smooth and compactly supported initially, and the constraints and uniqueness have already
+been checked. After (10.14), all hypotheses of the cited theorem hold with the constant
+continuous choice κ = P∗ + 1. It gives a C 1 extension of the modified solution to [0, T + ϵ);
+shrink ϵ so that ϵ < 1.
+    It remains to check that this extension is in the classical class used here. On any closed
+subinterval of [0, T + ϵ), its characteristics give compact phase-space support, as in (10.2).
+Lemma 10.1 supplies Ct L2 for its fields, including continuity through T . Thus it is a classical
+solution in the stated class. Adding back D, which vanishes throughout its particle region
+up to T + ϵ < H, gives a classical extension for the original data. Section 10.4 then proves
+its smoothness on every compact slab; that conclusion was not imported from the cited
+theorem.
+    Finally, if f0 = 0, the constraints make both initial fields divergence-free. Lemma 10.2
+directly gives the global solution with f = 0, and classical uniqueness applies to it. This
+proves the local existence, uniqueness, persistence, and bounded-momentum continuation
+assertions of Proposition 2.2.
+
+
+References
+ [1] Léo Bigorgne. Sharp asymptotic behavior of solutions of the 3d Vlasov–Maxwell system
+     with small data. Communications in Mathematical Physics, 376:893–992, 2020.
+
+
+                                                47
+ [2] Léo Bigorgne. Scattering map for the Vlasov–Maxwell system around source-free
+     electromagnetic fields, 2023. arXiv:2312.12214v1, 19 December 2023.
+
+ [3] Léo Bigorgne. Global existence and modified scattering for the solutions to the Vlasov–
+     Maxwell system with a small distribution function. Analysis & PDE, 18(3):629–714,
+     2025.
+
+ [4] François Bouchut, François Golse, and Christophe Pallard. Classical solutions and
+     the Glassey–Strauss theorem for the 3D Vlasov–Maxwell system. Archive for Rational
+     Mechanics and Analysis, 170(1):1–15, 2003.
+
+ [5] Ronald J. DiPerna and Pierre-Louis Lions. Global weak solutions of Vlasov–Maxwell
+     systems. Communications on Pure and Applied Mathematics, 42(6):729–757, 1989.
+
+ [6] R. Glassey and J. Schaeffer. The “two and one-half dimensional” relativistic Vlasov
+     Maxwell system. Communications in Mathematical Physics, 185:257–284, 1997.
+
+ [7] Robert Glassey and Jack Schaeffer. On the “one and one-half dimensional” relativistic
+     Vlasov–Maxwell system. Mathematical Methods in the Applied Sciences, 13(2):169–179,
+     1990.
+
+ [8] Robert T. Glassey and Jack Schaeffer. On symmetric solutions of the relativistic
+     Vlasov–Poisson system. Communications in Mathematical Physics, 101:459–473, 1985.
+
+ [9] Robert T. Glassey and Jack Schaeffer. The relativistic Vlasov-Maxwell system in two
+     space dimensions: Part I. Archive for Rational Mechanics and Analysis, 141:331–354,
+     1998.
+
+[10] Robert T. Glassey and Jack Schaeffer. The relativistic Vlasov-Maxwell system in two
+     space dimensions: Part II. Archive for Rational Mechanics and Analysis, 141:355–374,
+     1998.
+
+[11] Robert T. Glassey and Walter A. Strauss. Singularity formation in a collisionless
+     plasma could occur only at high velocities. Archive for Rational Mechanics and
+     Analysis, 92(1):59–90, 1986.
+
+[12] Robert T. Glassey and Walter A. Strauss. Absence of shocks in an initially dilute
+     collisionless plasma. Communications in Mathematical Physics, 113(2):191–208, 1987.
+
+[13] Sergiu Klainerman and Gigliola Staffilani. A new approach to study the Vlasov–Maxwell
+     system. Communications on Pure and Applied Analysis, 1(1):103–125, 2002.
+
+[14] Dustin Lazarovici. A particle approximation for the relativistic Vlasov–Maxwell dy-
+     namics, 2016. arXiv:1602.07251v1, 23 February 2016.
+
+[15] Jonathan Luk and Robert M. Strain. A new continuation criterion for the relativistic
+     Vlasov–Maxwell system. Communications in Mathematical Physics, 331(3):1005–1027,
+     2014. Preprint version: arXiv:1406.0165v1.
+
+[16] Jonathan Luk and Robert M. Strain. Strichartz estimates and moment bounds for
+     the relativistic Vlasov–Maxwell system. Archive for Rational Mechanics and Analysis,
+     219(1):445–552, 2016.
+
+[17] Louis Nirenberg. On elliptic partial differential equations. Annali della Scuola Normale
+     Superiore di Pisa, Classe di Scienze, 13(2):115–162, 1959.
+
+
+                                             48
+[18] Christophe Pallard. On the boundedness of the momentum support of solutions to
+     the relativistic Vlasov–Maxwell system. Indiana University Mathematics Journal,
+     54(5):1395–1410, 2005.
+
+[19] Christophe Pallard. A refined existence criterion for the relativistic Vlasov–Maxwell
+     system. Communications in Mathematical Sciences, 13(2):347–354, 2015.
+
+[20] K. Pfaffelmoser. Global classical solutions of the Vlasov–Poisson system in three
+     dimensions for general initial data. Journal of Differential Equations, 95:281–303, 1992.
+
+[21] Gerhard Rein. Generic global solutions of the relativistic Vlasov-Maxwell system of
+     plasma physics. Communications in Mathematical Physics, 135(1):41–78, 1990.
+
+[22] Gerhard Rein. Global weak solutions to the relativistic Vlasov–Maxwell system revisited.
+     Communications in Mathematical Sciences, 2(2):145–158, 2004.
+
+[23] Jack Schaeffer. A small data theorem for collisionless plasma that includes high velocity
+     particles. Indiana University Mathematics Journal, 53(1):1–34, 2004.
+
+[24] Reinel Sospedra-Alfonso and Reinhard Illner. Classical solvability of the relativistic
+     Vlasov–Maxwell system with bounded spatial density. Mathematical Methods in the
+     Applied Sciences, 33(6):751–757, 2010.
+
+[25] Xuecheng Wang. Propagation of regularity and long time behavior of the 3D mas-
+     sive relativistic transport equation II: Vlasov–Maxwell system. Communications in
+     Mathematical Physics, 389(2):715–812, 2022.
+
+[26] Xuecheng Wang. Large data global solution of the 3D RVM system with cylindrical
+     symmetry I: Iterative smoothing scheme, 2026. arXiv:2203.01199v2, 16 July 2026; to
+     appear in Annals of Mathematics.
+
+[27] Xuecheng Wang. Large data global solution of the 3D RVM system with cylindrical
+     symmetry II: Pointwise estimates, 2026. arXiv:2607.14685v1, 16 July 2026.
+
+[28] Dongyi Wei and Shiwu Yang. On the 3D relativistic Vlasov–Maxwell system with large
+     Maxwell field. Communications in Mathematical Physics, 383:2275–2307, 2021.
+
+[29] Stephen Wollman. An existence and uniqueness theorem for the Vlasov–Maxwell system.
+     Communications on Pure and Applied Mathematics, 37(4):457–462, 1984.
+
+
+
+
+                                             49
+

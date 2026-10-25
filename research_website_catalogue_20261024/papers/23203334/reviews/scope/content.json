@@ -1,0 +1,123 @@
+{
+  "title": "Signed impulse estimates and global smooth solutions for finite multispecies relativistic Vlasov-Maxwell",
+  "slug": "multispecies-relativistic-vlasov-maxwell-signed-impulse",
+  "description": "A finite-species extension of the OpenAI signed-impulse argument for relativistic Vlasov–Maxwell, with distinct masses and charges and no neutrality assumption.",
+  "abstract": "We extend the signed-impulse proof of the one-species three-dimensional relativistic Vlasov–Maxwell theorem in OpenAI’s family 362 manuscript to a fixed finite collection of particle species. Mass normalization gives a common velocity law and constant species-dependent accelerations. The entire source–receiver cancellation has coefficient eₐe_b/mₐ; the source acceleration cancels before its sign is discarded. A positive mass-weighted energy controls a disjoint union of species label spaces, and the angular occupation and selected receiver coefficient use one simultaneous momentum bootstrap. We prove the resulting global classical theorem for nonnegative smooth compact phase data and compatible C_b^∞ ∩ L² Maxwell fields, without smallness, symmetry or neutrality. The universal geometric identity is inherited; the new estimates keep all source and receiver coefficients explicit and close the shared-field bootstrap.",
+  "plain_language": [
+    "The relativistic Vlasov–Maxwell equations describe a collisionless population of charged particles and the electromagnetic field they create. Several particle species share the same field, but their masses and charges make them respond differently. The question is whether initially smooth data can develop a singularity in finite time.",
+    "This paper claims global smooth evolution for a fixed finite collection of species under its stated regularity assumptions, without requiring the particles to be dilute, symmetric or electrically neutral overall. It extends the signed-impulse argument in a specific OpenAI one-species manuscript; that upstream analytical argument is an essential dependency.",
+    "The useful cancellation occurs before taking absolute values. Electric and magnetic contributions that look large separately can partly cancel in the accumulated change of a particle’s momentum. With several species, the signs and mass factors must stay attached to the correct source and receiving particle throughout that calculation.",
+    "The added problem is a shared-field estimate when charge-to-mass ratios differ. Simply adding all species into one density does not generally produce a one-species equation. The paper instead combines their positive energies and controls every species in one momentum argument."
+  ],
+  "result": [
+    "Fix a finite number of species in three space dimensions, each with a positive mass and a real charge, including zero charge. Their initial phase densities are nonnegative smooth functions with compact support in position and momentum.",
+    "The initial electric and magnetic fields lie in C_b^∞(R³) ∩ L²(R³): every spatial derivative is bounded, and the fields have finite L² norm. They satisfy the Maxwell divergence constraints for the initial charge density.",
+    "Under these assumptions, the published theorem asserts a unique global classical solution that is smooth on every finite time interval, with compact phase support on each such interval and fields continuous in time with values in L². No smallness, symmetry or neutrality condition is imposed.",
+    "Mass normalization gives all species the same velocity law u(v) = v/√(1 + |v|²), with acceleration coefficient eₐ/mₐ. The complete interaction between a receiver of species a and a source of species b carries eₐe_b/mₐ; positive mass-weighted energy controls all species together.",
+    "The argument imports the geometric cancellation and analytical framework of the pinned OpenAI family 362 manuscript. Its claimed addition is the explicit coefficient bookkeeping and simultaneous closure needed for a fixed finite multispecies system."
+  ],
+  "limitations": [
+    "This is an extension of a specific upstream proof. Its conclusion depends on the analytical estimates in that proof; it is not an independent proof of the one-species theorem obtained from the headline existence statement alone.",
+    "The data assumptions include compact phase support and bounded derivatives of all orders for the initial fields. The theorem does not cover arbitrary smooth finite-energy data, noncompact momentum tails, collisions or a different spacetime model.",
+    "The number of species and their masses and charges are fixed. Constants may depend on these parameters, the initial data and the time horizon. No uniform infinite-species or zero-mass limit, or uniform-in-time momentum bound, is established.",
+    "When all charged species have the same nonzero charge-to-mass ratio, a weighted reduction already gives a one-species problem. The substantive extension concerns differing ratios, including mixtures of opposite charges.",
+    "Classical bounded-momentum continuation results, the retarded division identities and the upstream signed-impulse mechanism are prior inputs. This bounded literature review does not establish exhaustive historical priority.",
+    "The finite algebraic and rational checks in the archive do not verify the full analytical theorem. No independently reproduced proof-assistant certificate or completed external human peer review is claimed."
+  ],
+  "background": [
+    {
+      "title": "OpenAI, Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system, pinned family 362 manuscript",
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+      "note": "The exact source dependency, pinned to commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. The multispecies paper inherits its geometric cancellation and signed-impulse estimates and adapts their coefficient and bootstrap structure."
+    },
+    {
+      "title": "Luk and Strain, A new continuation criterion for the relativistic Vlasov–Maxwell system",
+      "url": "https://arxiv.org/abs/1406.0165v1",
+      "note": "Reviews bounded-momentum continuation and explicitly notes the multispecies setting in Remark 1.2. Continuation once momentum stays bounded is a classical input, not the new step here."
+    },
+    {
+      "title": "Bouchut, Golse and Pallard, Classical solutions and the Glassey–Strauss theorem for the 3D Vlasov–Maxwell system",
+      "url": "https://arxiv.org/abs/math/0301175v1",
+      "note": "Lemma 3.1 gives the division identities; the derivative estimates use their angular cancellation and a logarithmic bound. These support the continuation background."
+    },
+    {
+      "title": "Mattingly, Pankavich and Ben-Artzi, Sharp time decay and scattering of small data solutions to the relativistic Vlasov–Maxwell system",
+      "url": "https://arxiv.org/abs/2609.29013v1",
+      "note": "A different result on small-data decay and scattering, with additional cancellation hypotheses for globally neutral systems. Those hypotheses and conclusions should not be conflated with arbitrary-size finite-time regularity."
+    }
+  ],
+  "why_it_works": [
+    "Normalize momentum by each species’ mass. This produces a common relativistic velocity law while leaving the distinct charge-to-mass ratios explicit in the acceleration.",
+    "Apply the inherited source–receiver identity to each pair of species before estimating magnitudes. The source acceleration cancels within the identity, leaving the correct receiver-dependent factor eₐe_b/mₐ.",
+    "Combine the separate species label spaces using their positive mass-weighted energy. One common momentum bound then controls angular occupation across the shared field without pretending that the sum of the densities solves a scalar transport equation.",
+    "The paper transfers the direct-force and selected-receiver estimates with this common bound. The selection gain offsets the angular loss, allowing the signed-impulse bootstrap to improve itself for every species simultaneously.",
+    "The resulting momentum-growth control rules out finite-time momentum blowup. A local theory compatible with nonneutral fields and the bounded-momentum continuation criterion then give the asserted global solution."
+  ],
+  "collaboration": "I welcome substantive collaboration on independently checking the multispecies transfer and its upstream analytical dependencies, sharpening the comparison with earlier plasma results, and assessing journal suitability. Expertise in kinetic equations, hyperbolic partial differential equations or relativistic plasma dynamics would be especially useful.",
+  "follow_up": null,
+  "followup_rationale": "No public follow-up is proposed. Removing compact phase support, lowering regularity or seeking uniform limits changes essential analytical inputs. This review has not established a concrete mechanism or a sufficiently compelling new conjecture for any such extension.",
+  "publication_date": "2026-10-06",
+  "version": "6 October 2026 manuscript; no numbered version",
+  "doi": "10.5281/zenodo.23203334",
+  "author": "Alec Kriebel",
+  "pdf_filename": "paper.pdf",
+  "supplement_filename": "source-and-verification.zip",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Original Zenodo README",
+      "url": "https://zenodo.org/records/23203334/files/README.md?download=1"
+    }
+  ],
+  "status": "Unrefereed preprint dated 6 October 2026, developed with extensive AI assistance. The Zenodo record does not supply a numbered version. No completed human peer review or formal verification is claimed.",
+  "ai_disclosure": "AI tools were used extensively in developing, checking and presenting the argument. Internal AI-assisted review and finite computational checks are not external human peer review or formal verification of the analytical theorem.",
+  "source_binding": {
+    "record_id": "23203334",
+    "concept_record_id": "23203333",
+    "record_url": "https://zenodo.org/records/23203334",
+    "doi": "10.5281/zenodo.23203334",
+    "zenodo_version": null,
+    "manuscript_version": null,
+    "manuscript_date": "6 October 2026",
+    "publication_date": "2026-10-06",
+    "archive_version_label": null,
+    "version_source": "Zenodo has no version metadata and the printed PDF gives a date without a numbered version. The page uses a descriptive manuscript-date label, not an invented version number.",
+    "source_retrieved_utc": "2026-10-25T00:57:12.482671+00:00",
+    "pdf_sha256": "8cfaa828abfe5f91626527a79679c503bb37cb081fb258de68ef7f776a74e046",
+    "supplement_sha256": "6b90c4116ba596ee56567be0d540c1866e5f4fdf18bd62f13c489c6ca996849e",
+    "files": [
+      {
+        "name": "README.md",
+        "url": "https://zenodo.org/api/records/23203334/files/README.md/content",
+        "bytes": 3114,
+        "sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823",
+        "zenodo_checksum": "md5:eacf0652daef6a37a00bc808697e81f7"
+      },
+      {
+        "name": "paper.pdf",
+        "url": "https://zenodo.org/api/records/23203334/files/paper.pdf/content",
+        "bytes": 128361,
+        "sha256": "8cfaa828abfe5f91626527a79679c503bb37cb081fb258de68ef7f776a74e046",
+        "zenodo_checksum": "md5:eb343c86126f1956dfa36666c0846abd"
+      },
+      {
+        "name": "source-and-verification.zip",
+        "url": "https://zenodo.org/api/records/23203334/files/source-and-verification.zip/content",
+        "bytes": 126979,
+        "sha256": "6b90c4116ba596ee56567be0d540c1866e5f4fdf18bd62f13c489c6ca996849e",
+        "zenodo_checksum": "md5:cb0e153c5b4c7a154576bb2886817902"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "filename": "paper.pdf",
+        "pages": 10,
+        "read_scope": "all pages"
+      }
+    ],
+    "support_read_scope": "All five published mathematical Markdown supplements read in full: pair identity, transfer lemma, uniform lemma chain, local theory and occupation audit. The occupation supplement includes historical independent review assessments, encountered before the scope checkpoint; exposure is disclosed and those assessments are not used as validation. No current sibling mathematical verdict consulted.",
+    "abstract_source": "Complete original page 1 abstract, visually checked and cross-checked against TeX. Only mathematical typography and whitespace normalized. AI/status prose is separate.",
+    "archive_pdf_identity": "No PDF or nested ZIP occurs in the source-and-verification archive; the separate ten-page PDF is the complete reader manuscript.",
+    "review_boundary": "Publication scope and bounded primary-literature review with explicitly disclosed archived-opinion exposure; not an independent mathematical gate, exhaustive novelty certificate or human peer review."
+  }
+}

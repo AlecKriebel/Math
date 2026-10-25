@@ -1,0 +1,1226 @@
+                                                   A NEW CONTINUATION CRITERION FOR THE
+                                                    RELATIVISTIC VLASOV-MAXWELL SYSTEM
+
+
+
+
+arXiv:1406.0165v1 [math.AP] 1 Jun 2014
+                                                                  JONATHAN LUK AND ROBERT STRAIN
+
+
+                                                 Abstract. The global existence of solutions to the relativistic Vlasov-Maxwell
+                                                 system given sufficiently regular finite energy initial data is a longstanding open
+                                                 problem. The main result of Glassey-Strauss [8] shows that a solution (f, E, B)
+                                                 remains C 1 as long as the momentum support of f remains bounded. Alternate
+                                                 proofs were later given by Bouchut-Golse-Pallard [2] and Klainerman-Staffilani
+                                                 [12]. We show that only the boundedness of the momentum support of f after
+                                                 projecting to any two dimensional plane is needed for (f, E, B) to remain C 1 .
+
+
+
+
+                                                                                1. Introduction
+                                            We consider the initial value problem for the relativistic Vlasov-Maxwell system
+                                         in three dimensions. Let the particle density f : Rt × R3x × R3p → R+ be a non-
+                                         negative function of time t ∈ R, position x ∈ R3 and momentum p ∈ R3 and
+                                         E, B : Rt × R3x → R3 be time-dependent vector fields on the position space R3 .
+                                            The relativistic Vlasov-Maxwell system can be written as
+                                         (1)                        ∂t f + p̂ · ∇x f + (E + p̂ × B) · ∇p f = 0,
+                                         (2)                        ∂t E = ∇x × B − j, ∂t B = −∇x × E,
+                                         (3)                        ∇x · E = ρ,             ∇x · B = 0.
+                                         Here we have the charge
+                                                                                              Z
+                                                                                      def
+                                                                         ρ(t, x) = 4π               f (t, x, p)dp,
+                                                                                               R3
+                                         and the current
+                                                                                Z
+                                                                       def
+                                                              ji (t, x) = 4π            p̂i f (t, x, p)dp,   (i = 1, 2, 3).
+                                                                                  R3
+                                         In these expressions we define
+                                                                         def   p             def
+                                                                                                   p
+                                         (4)                          p̂ =        ,     p0 =        1 + |p|2 .
+                                                                               p0
+                                         Notice that given initial data f0 , E0 , B0 which satisfy the constraint equations (3),
+                                         they are propagated by the evolution equation (1) and (2) as long as the solution
+                                         remains sufficiently regular.
+                                            According to the relativistic Vlasov-Maxwell system (1)-(3), the particle density
+                                         f is transported along the characteristics (X(t), V (t)), which verify the following
+
+                                            J.L. was partially supported by the NSF Postdoctoral Fellowship DMS-1204493.
+                                            R.M.S. was partially supported by the NSF grant DMS-1200747, and an Alfred P. Sloan
+                                         Foundation Research Fellowship.
+                                                                                               1
+2                            JONATHAN LUK AND ROBERT STRAIN
+
+
+ordinary differential equations:
+          d                 d
+(5)          X(t) = V̂ (t),    V (t) = E(t, X(t)) + V̂ (t) × B(t, X(t)).
+          dt                dt
+These characteristics are combined with suitable initial conditions.
+   The global existence of solutions given sufficiently regular finite energy initial
+data remains an open problem. A key result of Glassey-Strauss [8] shows that the
+solution remains C 1 as long as1 the momentum support of f remains bounded:
+Theorem 1.1 (Glassey-Strauss [8]). Consider initial data (f0 (x, p), E0 (x), B0 (x))
+which satisfies the constraints (3) such that f0 ∈ H 5 (R3x × R3p ) with compact support
+in (x, p), E0 , B0 ∈ H 5 (R3x ) and such that the initial particle density is non-negative,
+i.e., f0 ≥ 0. Let (f, E, B) be the unique classical solution to (1)-(3) in [0, T ).
+Assume that there exists a bounded continuous function κ(t) : [0, T ) → R+ such
+that
+(6)                       f (t, x, p) = 0     for |p| ≥ κ(t),    ∀x ∈ R3 .
+Then, there exists ǫ > 0 such that the solution extends uniquely in C 1 beyond T to
+an interval [0, T + ǫ].
+Remark 1.1. We note that as a consequence of the assumptions of the above
+theorem, the initial energy is bounded
+                 1
+                   Z                          Z Z
+                            2       2
+(7)                   (|E0 | + |B0 | )dx + 4π        p0 f dpdx < ∞,
+                 2 R3                          R3 R3
+the initial particle density satisfies
+(8)                                         ||f0 ||L∞
+                                                    x,p
+                                                        < ∞,
+and the momentum support is initially bounded as
+(9)             sup{|p|: there exists x ∈ R3 such that f0 (x, p) 6= 0} < ∞.
+We record the above bounds for the initial data explicitly as they will be useful for
+the argument of our main theorem below.
+   In this paper, we extend the Glassey-Strauss criterion to a new continuation
+criterion requiring only the boundedness of the momentum support of f after pro-
+jecting to any two dimensional plane. This is in contrast to the Glassey-Strauss
+criterion [8] which requires the boundedness of the full momentum support.
+Theorem 1.2. Consider initial data (f0 (x, p), E0 (x), B0 (x)) which satisfies the
+constraints (3) such that f0 ∈ H 5 (R3x ×R3p ) with compact support in (x, p), E0 , B0 ∈
+H 5 (R3x ) and such that the initial particle density is non-negative, i.e., f0 ≥ 0.
+    Let (f, E, B) be the unique classical solution to (1)-(3) in [0, T ). Assume that
+there exists a plane Q with 0 ∈ Q ⊂ R3 and a bounded continuous function κ(t) :
+[0, T ) → R+ such that
+                        f (t, x, p) = 0     for |PQ p| ≥ κ(t),     ∀x ∈ R3 ,
+
+    1The original work [8] actually requires that (6) holds for all approximations of f instead of
+only f itself, and uses initial data with regularity f0 ∈ Cc1 (R3x × R3p ), E0 , B0 ∈ C 2 (R3x ). The
+assumption that (6) holds for all approximations of f can be removed by a standard application
+of energy estimates (see, for example, [13]) but this requires slightly more regularity for the initial
+data (as in the statement of Theorem 1.1).
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM                   3
+
+
+where PQ denotes the orthogonal projection to the 2-plane Q. Then, there exists
+ǫ > 0 such that the solution extends uniquely in C 1 beyond T to an interval [0, T +ǫ].
+
+Remark 1.2. The methods in the paper extend in a straight-forward way to an
+analogous continuation criterion for multi-species relativistic Vlasov-Maxwell sys-
+tem, as well as the case where the equation is coupled with a given external electro-
+magnetic force. We omit the details here.
+
+Remark 1.3. Since the relativistic Vlasov-Maxwell system is invariant under rota-
+tion, given any 2-plane Q, it can be rotated to coincide with the p1 −p2 plane. Thus,
+without loss of generality, we can assume that the plane is given in the (p1 , p2 , p3 )
+coordinate system by {p3 = 0}. We will henceforth make this assumption.
+
+  In fact, we prove a more general and quantitative theorem, which implies Theo-
+rem 1.2. More precisely:
+
+Theorem 1.3. Consider initial data (f0 (x, p), E0 (x), B0 (x)) which satisfies the
+constraints (3) such that f0 ∈ H 5 (R3x ×R3p ) with compact support in (x, p), E0 , B0 ∈
+H 5 (R3x ) and such that the initial particle density is non-negative, i.e., f0 ≥ 0.
+   Let (f, E, B) be the unique solution to (1)-(3) in [0, T ). Assume that for every
+t ∈ [0, T ), there exists a measurable positive function κ = κ(t, γ) > 1 such that
+           q                                                            
+                2    2   p2                                            3
+(10) sup       p1 + p2 :    = tan γ and f (t, x, p) 6= 0 for some x ∈ R < κ,
+                         p1
+
+and for
+                                       def
+(11)                              A(t) = kκ(t, ·)kL4γ ,
+
+we have
+                   Z T              Z t                21 !
+                              2                  8
+(12)                     A(t) +              A(s) ds            dt < +∞.
+                    0                   0
+
+
+Then, there exists ǫ > 0 such that the solution extends uniquely in C 1 beyond T to
+an interval [0, T + ǫ].
+
+Remark 1.4. Notice that κ(t) from Theorem 1.2 is bounded and thus satisfies the
+assumptions (10) - (12).
+
+   Our result is motivated in part by the fact that global regularity of the relativistic
+Vlasov-Maxwell system is known in lower dimensions and also under symmetry
+assumptions (see the discussions in Section 1.1 later on). Here, we show that
+instead of assuming that the initial data are of lower dimensions in the spatial
+variables, we can also obtain an improved continuation criterion which makes an a
+priori assumption that is lower dimensional in the momentum variables compared
+to the known results.
+   While in general no bounds of the quantity kκkLpt Lqγ are to our knowledge cur-
+rently available a priori, we note that in the two-and-one-half dimensional case
+[5] Glassey-Schaeffer established that the orthogonal projection of the momentum
+4                             JONATHAN LUK AND ROBERT STRAIN
+
+
+support to a line is bounded, which implies2 in particular that
+(13)                                  kκkL∞ ([0,T ];L1,∞
+                                             t       γ   ) ≤ CT ,
+
+where L1,∞
+       γ   denotes the usual weak-L1 space in the variable γ. On the other hand,
+in order to obtain global regularity in the two-and-one-half dimensional case, the
+full strength of the assumption on two-and-one-half dimensionality, in addition to
+(13), was exploited in [5]. Without assuming any symmetries, Theorem 1.3 shows
+that it suffices to have κ in L4γ in order to continue the solution.
+1.1. Some previous results on the relativistic Vlasov-Maxwell system.
+The existence of global in time solutions to the relativistic Vlasov-Maxwell system
+is only known in the perturbation regime or under symmetry assumptions. Small
+data global existence was proved by Glassey-Strauss in [9]. This result was later
+generalized to the case where the initial data were only assumed to be nearly neutral
+[4]. The small data case was also generalized in [20] to include small initial data
+without assuming initial compact momentum support.
+    Global existence of classical solutions was established by Glassey-Schaeffer [5]
+for initial data with translational symmetry in one of the position variables, i.e.,
+the so-called two-and-one-half dimensional case (see also the related global exis-
+tence result in two dimensions in [6], [7]). Global existence is also known for the
+class of spherically symmetric solutions, for which the relativistic Vlasov-Maxwell
+system reduces to the relativistic Vlasov-Poisson system [3]. This class of solution
+is moreover shown to be globally stable [17].
+    While a large data well-posedness theory without symmetry assumptions is not
+available, various continuation criteria are known. The outstanding result is the
+aforementioned Glassey-Strauss criterion [8], which requires the momentum sup-
+port to be bounded. Alternative proofs of the Glassey-Strauss theorem were sub-
+sequently given by Bouchut-Golse-Pallard [2] and Klainerman-Staffilani [12]. In
+particular, in [12], a Fourier-analytic approach was introduced to obtain the con-
+tinuation criterion.
+    Another type of continuation criteria assumes the boundedness of
+                                                 def
+                                         Mθ,q = ||pθ0 f ||Lqx L1p ,
+It is known that for certain ranges of θ and q, the boundedness of Mθ,q implies
+the boundedness of the momentum support of f , and hence would be sufficient to
+conclude regularity by the Glassey-Strauss theorem. Results in this direction were
+first obtained by Glassey-Strauss in [10], [11] for the θ = 1, q = +∞ case. The
+range θ > q4 for 6 ≤ q ≤ +∞ was later achieved by Pallard [15]. An end-point case
+θ = 0, q = +∞ was subsequently attained by Sospedra–Alfonso-Illner [1].
+    We also note that in the non-relativistic limit, the relativistic Vlasov-Maxwell
+system reduces to the non-relativistic Vlasov-Poisson system [19]. In contrast to
+the relativistic Vlasov-Maxwell system, global regularity for the non-relativistic
+Vlasov-Poisson system in three dimensions has been established by Pfaffelmoser
+[16], Lions-Perthame [14], and Schaeffer [18].
+    2To see (13), notice that Glassey-Schaeffer showed that in the two-and-one-half dimensional
+case where x1 is the direction of symmetry,
+        P1 (T ) = sup{|p1 | : f (t, x, p1 , p2 , p3 ) 6= 0 for some t ≤ T, x ∈ R3 , p2 , p3 ∈ R} ≤ CT
+                                                                CT
+for some CT ≥ 0. Then, according to (10), we can choose κ(γ) = cos γ
+                                                                     + 2, which is in L1,∞
+                                                                                       γ   .
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM                 5
+
+
+1.2. Strategy of proof. To prove Theorem 1.3, we will reduce it to Theorem 1.1
+by showing that the momentum support of f is bounded. To this end, we make
+the following definition.
+Definition 1.1. Let P (t) be defined by
+             def
+        P (t) = 2 + sup{|p| : f (s, x, p) 6= 0 for some 0 ≤ s ≤ t and x ∈ R3 }.
+Remark 1.5. Notice that P (t) is an upper bound of the momentum support in
+the past of time t. Moreover, P (t) is by definition a non-decreasing function and
+P (t) ≥ 2.
+   Our goal will thus be to provide a bound for P (t). Notice that it is sufficient to
+establish an integral inequality of the form
+                                             Z t
+(14)                   P (t) . 1 + log P (t)     g(s)P (s)ds,
+                                                 0
+where we use the notation that
+      x . y if there exists a bounded function C(t) such that x ≤ C(t)y
+and g(s) is an integrable function.
+   In view of the ordinary differential equation (5) for the characteristics V , we
+in turn need to bound the integral of the electromagnetic fields E and B along
+characteristics of the Vlasov equation.
+1.2.1. Estimates for the singularity. In [8], Glassey-Strauss found a representation
+of E and B as integrals on a backward light cone whose integrand depends only
+on E, B and f , but not their derivatives. This in particular allowed them to prove
+Theorem 1.1. However, this representation contains singular terms of the type
+                    (|E| + |B|)f
+       Z    Z                                  Z    Z
+                                                                   f
+(15)                                     dpdσ,                                  3 dpdσ.
+        Ct,x R3 (t −  s)p 0 (1 + p̂ · ω)                       2 2
+                                                Ct,x R3 (t − s) p0 (1 + p̂ · ω) 2
+
+The above integral in position space is over a backward light cone Ct,x emanating
+from (t, x), i.e.,
+                   def 
+              Ct,x = (s, y) ∈ R × R3 | 0 ≤ s ≤ t, t − s = |y − x| .
+We refer the readers to (18) - (20) for the precise definition of this integral. Here,
+it suffices to note that ω is a unit vector and the singular terms become large only
+    p
+if |p| and ω are almost anti-parallel and p is large.
+    Now the assumptions (10) - (12) in the main theorem are useful in two ways.
+On one hand, the assumptions (10) - (12) reduce the dimensionality of the integral
+since the range of integration in two of the three dimensions are a priori bounded3
+by these assumptions.
+    On the other hand, while the pointwise behavior of the singularity is no better
+than
+                                        1
+                                                 . P 2,
+                                    (1 + p̂ · ω)
+our assumptions imply that this upper bound can only be achieved in a relatively
+small set in physical space. In particular, the set of ω such that this bound is
+achieved has area O(P −2 ). More precisely, the assumptions (10) - (12) also allow
+  3in an L4 -averaged sense along the angular directions γ.
+6                          JONATHAN LUK AND ROBERT STRAIN
+
+
+us to control the strength of the singularity when −ω is not parallel to e3 (where
+e3 = (0, 0, 1) is the standard basis vector). This is because the singular term is large
+    p
+if |p| and ω are anti-parallel and p is large. In the case where −ω is not parallel
+         p                                    p
+to e3 , |p| and −ω can only be parallel if |p|  is not parallel to e3 . However, in this
+case the assumptions (10) - (12) provide a bound for p0 . This can be appropriately
+quantified and it provides an estimate for the singular terms except when −ω is
+almost parallel to e3 .
+1.2.2. Estimates for the nonlinear terms. Now, returning to the estimate for E and
+B, we control the contribution from the term
+                                      (|E| + |B|)f
+                         Z    Z
+                                                          dpdσ.
+                          Ct,x R3 (t −  s)p0 (1 + p̂ · ω)
+   One of the important observations in our work, which is highly reminiscent of
+that of Glassey-Schaeffer [5], [6], [7] in the two dimensional case, is that for this
+term, the most singular contributions are always coupled with good components
+of the electromagnetic field, i.e., those components that can be controlled after
+integrating along the null cone by the conserved energy of the relativistic Vlasov-
+Maxwell system4. More precisely, the most singular terms are of the form
+                                           |Kg |f
+                        Z     Z
+                                                         dpdσ,
+                          Ct,x R3 (t − s)p0 (1 + p̂ · ω)
+
+where by energy conservation, Kg (which is defined in (21) later on) satisfies the a
+priori assumption (as in Proposition 2.2) that
+                                Z
+                                     |Kg |2 dσ . 1.
+                                        Ct,x
+
+Hence, we only need to control
+                           Z
+                                                 f
+                                                              dp
+                                  R3   (t − s)p0 (1 + p̂ · ω)
+in L2 on the cone Ct,x . Precisely because we are only required to obtain an L2
+bound (as opposed to an L∞ bound), we can take advantage of the fact that the
+singularity is large only on a small set of angular directions as mentioned above.
+This is sufficient to show that L2 norm of this integral is bounded by P log P.
+   However, unlike in the two-dimensional case, there are singular terms that are
+coupled with a “bad” component of the electromagnetic field. Nevertheless, these
+terms are less singular. More precisely, they take the form
+                                       (|E| + |B|)f
+                         Z    Z
+                                                          1 dpdσ.
+                          Ct,x R 3 (t − s)p0 (1 + p̂ · ω) 2
+Unlike for the previous terms, E and B cannot be controlled by the conservation
+law after integrating in L2 along the cone Ct,x .
+   Nevertheless, in order to control the growth of the velocity support, it is sufficient
+to bound E and B after integration along a characteristic of the Vlasov equation.
+We apply an estimate of Pallard in [15], which shows that after this integration,
+and up to an logarithmic loss in P , it suffices to control R3 (|E|+|B|)f1 dp in L2 of
+                                                            R
+                                                                      p0 (1+p̂·ω) 2
+
+  4Note that this conservation law misses two of the six independent components of the electro-
+magnetic field.
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM                       7
+
+
+R3 . Thus,Rwe can use the conservation law for E and B in L2 (R3 ) and it remains
+                 f              ∞
+to bound R3           1 dp in L   . This final goal can then be achieved by noticing
+              p0 (1+p̂·ω) 2
+that assumptions (10) - (12) give an a priori control over the size of the domain of
+integration in the p1 − p2 plane.
+1.2.3. Estimates for the linear terms. As pointed out above, there is another con-
+tribution to E and B from the term
+                       Z     Z
+                                            f
+                                                         3 dpdσ.
+                                        2 2
+                         Ct,x R3 (t − s) p0 (1 + p̂ · ω) 2
+                              1
+While the function                3    can be as large as P on the support of f , it is much
+                      p20 (1+p̂·ω) 2
+smaller (∼ p12 ) in the complement of a small set. Therefore, this term in fact behaves
+             0
+much more favorably and only grows logarithmically in terms of P . Combining all
+the above estimates, we therefore achieve (14).
+1.3. Outline of the paper. We outline the remainder of the paper. In Section 2,
+we state the conservation laws that we will apply in the proof of the main theorem.
+In Section 3, we state the Glassey-Strauss representation of the electromagnetic field
+and observe the structures of the singular terms as indicated above. In Section 4,
+we apply the assumptions (10) - (12) to obtain the main estimates for the particle
+density. This will then be applied in Section 5 to derive the necessary bounds for the
+electromagnetic fields E and B. Finally, in Section 6, we gather all the estimates
+to conclude the proof of Theorem 1.3.
+   In the rest of the paper we assume sometimes without additional commentary
+that (f, E, B) is a smooth solution to the relativistic Vlasov-Maxwell system (1)-(3)
+which satisfies the assumptions of Theorem 1.3.
+
+                                   2. Conservation Laws
+   The solution to the relativistic Vlasov-Maxwell system obeys a pointwise iden-
+tity:
+                      3                      Z          
+               ∂     X     ∂
+(16)              e+            (E × B)k + 4π     pk f dp = 0,
+               ∂t         ∂xk                  R3
+                        k=1
+where the energy density e is given by
+                         def 1
+                                             Z
+                                  2    2
+                       e = (|E| + |B| ) + 4π     p0 f dp,
+                             2                R3
+with p0 defined as before in (4).
+   The identity (16) can be integrated on spacetime regions to obtain conservation
+laws. We will derive two conservation laws that we will use later on. First, we
+integrate in the spacetime region bounded in the past by the initial slice {0} × R3
+and in the future by a constant time slice {t} × R3 . Since the initial energy is
+bounded by the assumptions of Theorem 1.3 (see equation (7)), we obtain
+Proposition 2.1. Solutions to the relativistic Vlasov-Maxwell system (1)-(3) sat-
+isfy
+      1
+        Z                            Z
+               (|E|2 + |B|2 )dx + 4π             p0 f dpdx = constant.
+      2 {t}×R3                        {t}×R3 ×R3
+8                               JONATHAN LUK AND ROBERT STRAIN
+
+
+   For the second conservation law, we need to control the flux of the electromag-
+netic field integrated along a backward null cone. To this end, we integrate (16) in
+the spacetime region bounded in the past by the initial slice {0} × R3 and in the
+future by the backward null cone Ct,x emanating from (t, x), which is defined to be
+the set from (17).
+   Fix a point (s, y) ∈ Ct,x , where we recall that:
+              Ct,x = (s, y) ∈ R × R3 | 0 ≤ s ≤ t, t − s = |y − x| .
+                     
+(17)
+Denote by ω the outward normal to the 2-sphere Ct,x ∩ ({s} × R3 ), i.e.,
+                                def y − x
+(18)                         ω =            .
+                                    |y − x|
+The volume form on Ct,x can be given in polar coordinates by
+      Z           Z t Z 2π      Z π
+(19)       f dσ =    ds      dφ     (t − s)2 sin θdθ f (s, x + (t − s)ω),
+           Ct,x             0        0        0
+
+where ω takes the form
+(20)                            ω = (sin θ cos φ, sin θ sin φ, cos θ)
+in this coordinate system.
+   We compute the flux of the electromagnetic field on the null cone, i.e., the
+boundary term Ct,x arising from integrating (16) by parts. We show that it is
+non-negative and moreover controls certain components of E and B. Notice5 that
+  1
+     |E|2 + |B|2 + ω · (E × B)
+                
+  2
+       1
+     =    2|E · ω|2 + 2|B · ω|2 + |E + ω × B|2 + |E − ω × B|2 + |B + ω × E|2
+       8
+                  +|B − ω × E|2 − 4(ω × B) · E + 4(ω × E) · B
+                                                                  
+
+                          1
+                              |E · ω|2 + |B · ω|2 + |E − ω × B|2 + |B + ω × E|2 .
+                                                                               
+                        =
+                          4
+This motivates the following definition
+                      def
+(21)              Kg2 = |E · ω|2 + |B · ω|2 + |E − ω × B|2 + |B + ω × E|2 .
+Therefore, by the boundedness of the initial energy, we have proved
+Proposition 2.2. Solutions to the relativistic Vlasov-Maxwell system (1)-(3) sat-
+isfy
+          1
+            Z                Z    Z
+                 Kg2 dσ + 4π          p0 (1 + p̂ · ω)f dpdσ ≤ constant.
+          4 Ct,x              Ct,x R3
+
+    Notice that this does not control all the components of E and B. As we will see
+in the later sections, this conservation law will nevertheless be useful in controlling
+the most singular terms.
+    Finally, we also need the conservation law for the L∞ norm of the particle density
+f . This follows from integrating f along the characteristics given by (5). Since f
+is initially bounded by (8), we have
+Lemma 2.3. ||f ||L∞  ∞ ≤ constant.
+                  p Lx
+
+
+    5Here we will use the vector identity a · (b × c) = b · (c × a) = c · (a × b) for a, b, c three vectors.
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM                  9
+
+
+   This completes the statements of all the conservation law estimates that we
+will use in the later sections. In the next section we decompose and estimate the
+electromagnetic fields.
+
+   3. Glassey-Strauss decomposition of the electromagnetic fields
+  In order to close our estimates, we need to obtain good control on the electro-
+magnetic fields E and B under the a priori assumptions (10) - (12). To this end,
+we need to exploit certain structures in the equations. Following [8], we decompose
+E and B in terms of:
+                         4πE(t, x) = 4πE = (E)0 + ES + ET ,
+and
+                     4πB(t, x) = 4πB = (B)0 + BS + BT ,
+where (E)0 and (B)0 depend only on the initial data and the other terms of E are
+                         (ωi + p̂i )(1 − |p̂|2 )
+                Z    Z
+(22) ETi = −                    2              2
+                                                 f dp dσ,
+                 Ct,x R3 (t − s) (1 + p̂ · ω)
+                     Z                 
+                           δij − p̂i p̂j (E + p̂ × B)j
+                Z
+       i
+(23) ES = −                                               f dp dσ
+                 Ct,x R3    1 + p̂ · ω       p0 (t − s)
+                     Z                                  
+                           (ωi + p̂i )(ωj − (ω · p̂)p̂j ) (E + p̂ × B)j
+                Z
+              +                                                          f dp dσ,
+                 Ct,x R3           (1 + p̂ · ω)2              p0 (t − s)
+for i, j = 1, 2, 3, where we used the convention that repeated indices are summed
+over. The rest of the B terms are given by
+                                 (ω × p̂)i (1 − |p̂|2 )
+                       Z    Z
+         i
+(24) BT (t, x) =                       2               2
+                                                         f dp dσ,
+                        Ct,x R3 (t − s) (1 + p̂ · ω)
+                                                          
+                                    ω × (E + p̂ × B) i
+                         Z    Z
+         i
+(25) BS (t, x) = −                                          f dp dσ
+                          Ct,x R3 p0 (t − s)(1 + p̂ · ω)
+                                   (ω × p̂)i (p̂ · (E + p̂ × B))
+                         Z    Z
+                       +                                          f dp dσ
+                          Ct,x R3     p0 (t − s)(1 + p̂ · ω)
+                                   (ω × p̂)i (ωj − (ω · p̂)p̂j ) (E + p̂ × B)j
+                         Z    Z
+                       −                                                       f dp dσ.
+                          Ct,x R3         (1 + p̂ · ω)2            p0 (t − s)
+In these terms, the integration over the cone Ct,x can be given in local coordinates
+as in (19). We refer the readers to Theorem 3 in [8] for a proof of this decomposition.
+   In the remainder of this section, we prove bounds on the integral kernels in each
+of these terms. We first estimate the kernels in the terms ET and BT :
+Proposition 3.1. We have the following estimate
+                                               f (s, x + (t − s)ω, p)
+                                     Z    Z
+         |ET (t, x)| + |BT (t, x)| .                                  3 dp dσ.
+                                                      2 2
+                                      Ct,x R3 (t − s) p0 (1 + p̂ · ω) 2
+
+Proof. Notice that
+                                                 1
+(26)                               1 − |p̂|2 =       ,
+                                                 p20
+and
+(27)            (ωi + p̂i )2 ≤ |ω + p̂|2 ≤ 2 + 2p̂ · ω = 2(1 + p̂ · ω).
+10                         JONATHAN LUK AND ROBERT STRAIN
+
+
+Thus, we have
+                          (ωi + p̂i )(1 − |p̂|2 )         2
+                                          2
+                                                  ≤ 2              3 .
+                              (1 + p̂ · ω)         p0 (1 + p̂ · ω) 2
+Therefore, by (22),
+                                Z      Z
+                                                            f
+                      |ET | .                                            3    dp dσ.
+                                Ct,x       R3   (t − s)2 p20 (1 + p̂ · ω) 2
+To derive an analogous control for BT , we first need to bound |p̂ × ω|. To this end,
+we consider
+                       p                   1 + |p|2 − (p · ω)2   1 + |p × ω|2
+      p0 (1 + p̂ · ω) = 1 + |p|2 + p · ω =                     ≥              .
+                                               p0 − p · ω            2p0
+This implies,
+(28)                            |p̂ × ω|2 ≤ 2(1 + p̂ · ω).
+Therefore (24), (26) and (28) together imply
+                           Z    Z
+                                               f
+                   |BT | .                   2              3 dp dσ.
+                                           2
+                            Ct,x R3 (t − s) p0 (1 + p̂ · ω) 2
+
+This completes the proof.                                                                  
+
+     We next control the kernels in the terms ES and BS :
+Proposition 3.2. We have the following estimates
+                                                    |E + p̂ × B|
+                                     Z     Z
+         |ES (t, x)| + |BS (t, x)| .                                   f dpdσ.
+                                       Ct,x R 3 (t − s)p0 (1 + p̂ · ω)
+Proof. By the definition of ES and BS in (23) and (25), it suffices to show that
+(29)                  |(p̂i + ωi )(ωj − (ω · p̂)p̂j )| . (1 + p̂ · ω),
+and
+(30)                  |(p̂ × ω)i (ωj − (ω · p̂)p̂j )| . (1 + p̂ · ω).
+We have
+                   |(ωj − (ω · p̂)p̂j )|        = |ωj + p̂j − (1 + p̂ · ω)p̂j |
+                                                ≤ |ωj + p̂j | + |(1 + p̂ · ω)p̂j |.
+Thus, by (27), we have
+                                                                        1
+                             |(ωj − (ω · p̂)p̂j )| . (1 + p̂ · ω) 2 .
+Moreover, by (27) and (28), we have
+                                                                              1
+                           |p̂i + ωi | + |(p̂ × ω)i | . (1 + p̂ · ω) 2 .
+Thus (29) and (30) follow.                                                                 
+
+     We also need the following bound for the Lorentz force:
+Proposition 3.3. The Lorentz force is bounded as follows.
+                                                                                       1
+           |E + p̂ × B| . |E · ω| + |B · ω| + |B + ω × E| + (1 + p̂ · ω) 2 |B|.
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 11
+
+
+Proof. Clearly, we have
+(31)          |E + p̂ × B| ≤ |ω · (E + p̂ × B)| + |ω × (E + p̂ × B)|.
+For the first term, we have
+(32) |ω · (E + p̂ × B)| ≤ |ω · E| + |ω · (p̂ × B)| = |ω · E| + |(ω × p̂) · B)|.
+By (28), we have
+                                                                1
+                             |p̂ × ω| . (1 + p̂ · ω) 2 .
+Therefore, the bound derived in (32) is acceptable.
+  We now estimate the second term6 in (31).
+            |ω × (E + p̂ × B)| =           |ω × E + B − (1 + p̂ · ω)B + (ω · B)p̂|
+                               ≤           |ω × E + B| + (1 + p̂ · ω)|B| + |ω · B|,
+and therefore all of the terms are acceptable.                                                         
+   Propositions 3.2 and 3.3 together imply that the ES and BS terms can be de-
+composed into a less singular term, and a more singular term which is coupled only
+to the components of the electromagnetic field that can be controlled by the flux.
+More precisely,
+Proposition 3.4. We can decompose
+                                          ES = ES,1 + ES,2
+and
+                                          BS = BS,1 + BS,2
+such that
+                                                         |B|f (s, x + (t − s)ω, p)
+                                            Z       Z
+            (|ES,1 | + |BS,1 |) (t, x) .                                         1   dp dσ
+                                             Ct,x   R3    (t − s)p0 (1 + p̂ · ω) 2
+and
+                                            (|E · ω| + |B · ω| + |B + ω × E|) f
+                              Z       Z
+        |ES,2 | + |BS,2 | .                                                     dp dσ,
+                               Ct,x   R3             (t − s)p0 (1 + p̂ · ω)
+where the last upper bound is more singular but it contains the components of the
+electromagnetic field that can be controlled by the flux terms in Proposition 2.2.
+
+                  4. Main estimates for the particle density
+   One of the main challenges in obtaining control for E and B is the presence of
+the singularities in the kernels. In this section, we estimate the singularities under
+the assumptions (10) - (12). This  R will fallow us to obtain the main estimate in
+Proposition 4.4 for the quantity R3 p0 (1+  p̂·ω) dp.
+   Recall that e3 = (0, 0, 1) is the standard basis vector. We will need to obtain
+                                                                                  p
+improved estimates when taking into account the angles between the vectors |p|      ,ω
+and e3 . We define the following notation to denote angles between two unit vectors:
+Definition 4.1. Let V1 , V2 be two unit vectors in R3 . Let ∠(V1 , V2 ) be the unique
+number in the range [0, π] such that
+                                             def
+                                  V1 · V2 = cos (∠(V1 , V2 )) .
+In particular, the angles ∠ are always defined to be positive.
+  6Here we will use the vector identity a × (b × c) = b(a · c) − c(a · b) for a, b, c three vectors.
+12                         JONATHAN LUK AND ROBERT STRAIN
+
+
+     We also define ∠(V1 , ±V2 ) to be the minimum of the two angles, i.e.,
+                                  def
+Definition 4.2. ∠(V1 , ±V2 ) = min{∠(V1 , V2 ), ∠(V1 , −V2 )}.
+Remark 4.1. In particular, we observe that
+                       ∠(V1 , ±V2 ) = min{∠(V1 , V2 ), π − ∠(V1 , V2 )}
+and we thus have ∠(V1 , ±V2 ) ∈ [0, π2 ].
+   We now proceed to derive bounds for the singularity. First, we have the following
+trivial pointwise estimate for the singularity:
+                                   −1                    p
+Proposition 4.1. (1 + p̂ · ω)           . min{p20 , (∠( |p| , −ω))−2 }.
+Proof. We first show that the singularity can be estimated by the size of |p|:
+                              p              p
+       1            1           1 + |p|2      1 + |p|2 + |p|
+               ≤          = p               ·p
+  (1 + p̂ · ω)   1 − |p̂|    1 + |p|2 − |p|   1 + |p|2 + |p|
+                                                                          ≤ 2(1 + |p|2 ) = 2p20 .
+Notice that this in particular shows that this singularity in the direction anti-parallel
+to p is bounded above by the square of the supremum of the momentum support.
+                                                                               p
+   We then show the bound by the squared inverse of the angle between |p|         and ω:
+                    1                       1                   p
+                             =                  p         . (∠( , −ω))−2 .
+                (1 + p̂ · ω)   1 − |p̂| cos(∠( |p| , −ω))      |p|
+This completes the proof.                                                                           
+   Using the assumption (10) on the support of f , we have an a priori bound for
+the size of |p|. This will allow us to apply Proposition 4.1 to control the singularity.
+Proposition 4.2. On the support of f , we have the estimate
+                                  κ(t, γ(p))
+                           |p| .     p          ,
+                                 ∠( |p| , ±e3 )
+where γ = γ(p) is defined implicitly by
+                                 q                q                   
+               (p1 , p2 , p3 ) =   p21 + p22 cos γ, p21 + p22 sin γ, p3 .
+
+Proof. The main assumption (10) of Theorem 1.3 implies that
+                            q
+                              p21 + p22 ≤ κ(t, γ(p))
+on the support of f .
+                p
+  The angle ∠( |p| , ±e3 ) is given by
+                                                      p
+                         p                p              p2 + p2
+                  sin(∠( , e3 )) = sin(∠( , −e3 )) = p 2 1 2 2 2 .
+                        |p|              |p|          p1 + p2 + p3
+                     p
+Therefore, since ∠( |p| , ±e3 ) ∈ [0, π2 ], we have
+                                             κ(t, γ(p))        κ(t, γ(p))
+                 q
+                   p21 + p22 + p23 ≤              p         .     p          ,
+                                        sin(∠( |p| , ±e3 ))   ∠( |p| , ±e3 )
+as claimed.                                                                                         
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 13
+
+
+   The estimates in Propositions 4.1 and 4.2 imply
+Proposition 4.3. We have the following estimate
+                   −1                     p                p
+       (1 + p̂ · ω) . min κ2 (t, γ(p))(∠( , ±e3 ))−2 , (∠( , ±ω))−2 .
+                         
+                                         |p|              |p|
+Proof. By Proposition 4.2, we have that
+                                             κ(t, γ(p))
+                                     p0 .       p          .
+                                            ∠( |p| , ±e3 )
+The conclusion then follows from Proposition 4.1.                                             
+
+    With the preparatory bounds above, we can now state and prove our main esti-
+mates for the particle density. This will then be used to control the electromagnetic
+fields in the next section.
+Proposition 4.4 (Main estimate). Recalling (11) for r ≥ 0 we have the estimate
+                                                      A(t)4 log P (t)
+                                                                     
+          f (t, x + rω, p)
+       Z
+(33)                       dp . min P (t)2 log P (t),                   .
+           p0 (1 + p̂ · ω)                            (∠(e3 , ±ω))2
+Proof. In the proof below, for notational purposes, we will suppress the explicit
+dependence of P (t) on t and write P instead.
+  We first show that
+                   Z
+                            f
+                                      dp . P 2 log P, for every ω.
+                      p0 (1 + p̂ · ω)
+To this end, for every fixed ω, we use polar coordinates (θ′ , φ′ ) such that θ′ is chosen
+for −ω to lie on the θ′ = 0 half-axis, i.e.,
+                                    p · (−ω) = |p| cos θ′ .
+(This choice of the polar coordinate system is different from that in (19).)
+  In the (|p|, θ′ , φ′ ) coordinate system, we can bound using Proposition 4.1
+                                            p
+            (1 + p̂ · ω)−1 . min{p20 , (∠( , −ω))−2 } . min{p20 , (θ′ )−2 }.
+                                           |p|
+We will use the bound (1+1p̂·ω) . p20 for 0 ≤ θ′ ≤ P −1 and use (1+1p̂·ω) . (θ′ )−2 for
+P −1 ≤ θ′ ≤ π. More precisely, by the conservation law in Lemma 2.3, we have
+                                               1
+   Z                         Z
+            f
+                      dp .                               dp
+      p0 (1 + p̂ · ω)         |p|≤P   p 0 (1  +  p̂ · ω)
+                        Z P           Z π                Z 2π
+                                                                         1
+                    .       |p|2 d|p|       sin θ′ dθ′         dφ′
+                         0              0                 0        p0 (1 + p̂ · ω)
+           Z P          Z π                            Z P                    Z P −1
+                                ′ −2         ′    ′                   3
+       .        |p|d|p|      (θ ) sin θ dθ +                (|p| + |p| )d|p|         sin θ′ dθ′
+             0           P −1                       0                  0
+                                                                               . P 2 log P,
+as desired.
+   We will now show that
+         Z
+                  f
+(34)                        dp . A(t)2 log P (∠(e3 , ±ω))−2 + A(t)4 (∠(e3 , ±ω))−2 .
+            p0 (1 + p̂ · ω)
+14                        JONATHAN LUK AND ROBERT STRAIN
+
+
+Notice that we assumed κ > 1 which guarantees A(t)2 . A(t)4 . For notational
+                    def
+convenience, let β = ∠(e3 , ±ω) = min{∠(e3 , ω), ∠(e3 , −ω)}. In particular, β ≤ π2 .
+                R       f
+   To estimate p0 (1+     p̂·ω) dp, we divide the domain of integration into the following
+                                                         p
+regions according to the size of the angles ∠( |p|         , ±e3 ):
+                                                                      
+                      def         p            β             p        β
+                    I = ∠( , e3 ) ≤                 ∪ ∠( , −e3 ) ≤         ,
+                                 |p|           2           |p|         2
+                                                                       
+                       def         p           β              p        β
+                   II = ∠( , e3 ) ≥                  ∩ ∠( , −e3 ) ≥         .
+                                  |p|           2            |p|        2
+We will first estimate region I.
+   On region I, in the case ∠( |p|    p
+                                        , e3 ) ≤ β2 , we have by the triangle inequality,
+                             p                         p        β
+                       ∠(       , ω) ≥ |∠(ω, e3 ) − ∠( , e3 )| ≥ .
+                            |p|                       |p|       2
+                p
+In the case ∠( |p| , −e3 ) ≤ β2 , we again have, by the triangle inequality,
+                           p                          p         β
+                     ∠(       , ω) ≥ |∠(ω, −e3 ) − ∠( , −e3 )| ≥ .
+                          |p|                        |p|        2
+Similarly, we have
+                                     p           β
+                                        , −ω) ≥ .
+                                        ∠(
+                                    |p|          2
+Thus, by Proposition 4.3, we have that
+                                  1
+(35)                                       . β −2 .
+                             (1 + p̂ · ω)
+Therefore, estimating the singularity pointwise by (35) and bounding the remaining
+integral in Cartesian coordinates, we have
+                                        1
+       Z                            Z
+                f                −2
+(36)                      dp . β           dp
+           p
+         I 0 (1 + p̂ · ω)            D 0p
+                                        Z P            ZZ
+                                                dp3
+                                 . β −2       p              dp1 dp2 . A(t)2 β −2 log P,
+                                          −P   1 + p23    D′
+
+where D is the subset of R3 given by
+                          def
+                      D = {p : f (t, x, p) 6= 0 for some x ∈ R3 },
+D′ is the subset of R2 given by
+              def
+          D′ = {(p1 , p2 ) : f (t, x, p1 , p2 , p3 ) 6= 0 for some x ∈ R3 , p3 ∈ R}.
+                                              RR
+In (36), we have estimated the integral D′ dp1 dp2 by changing into the 2-dimensional
+polar coordinates:
+           ZZ                Z 2π Z κ(t,γ)                 √
+                 dp1 dp2 =                     ududγ ≤ 2π||κ(t, ·)||2L4γ . A(t)2 .
+              D′                0   0
+Then (36) establishes a better estimate than (34) in region I.
+   We now move on to the estimate for the integral in region II. To this end, we
+use a system of polar coordinates (defined differently from above but the same as
+in (19)) with axis in the direction of e3 , i.e.,
+                                        p · e3 = |p| cos θ.
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 15
+
+                        p
+In other words, θ = ∠( |p| , e3 ). Thus, in region II, we have, by definition
+
+                                                      β      β
+                                                        ≤θ≤π− .
+                                                      2      2
+By definition of these polar coordinates, φ coincides with γ(p). By Proposition 4.2,
+
+                                     |p| . κ(t, φ)(θ−1 + (π − θ)−1 ).
+
+We therefore have using also Proposition 4.3 that
+  Z
+           f
+                     dp
+     p
+   II 0 (1 + p̂ · ω)
+    Z 2π    Z π− β2          Z Cκ(t,φ)(θ−1+(π−θ)−1 )
+  .      dφ          sin θdθ                         |p|d|p| κ(t, φ)2 (θ−2 + (π − θ)−2 )
+                     β
+           0         2                    0
+                              Z 2π        Z π− β2
+                          .          dφ                 dθ (κ(t, φ))4 (θ−3 + (π − θ)−3 )
+                                              β
+                               0              2
+                                                                              Z 2π
+                                                                     . β −2          (κ(t, φ))4 dφ . A(t)4 β −2 .
+                                                                               0
+
+This completes the proof.                                                                                           
+
+
+                      5. Estimates for the electromagnetic fields
+   We now apply the estimates we obtained for the particle density to control the
+electromagnetic fields. We first bound ET and BT :
+
+Proposition 5.1. For ET from (22) and BT from (24) we have
+                                                               Z t
+                                                             2
+          |ET (t, x)| + |BT (t, x)| . log P (t) + (log P (t))      A(s)4 ds.
+                                                                                         0
+
+Proof. Recall from Proposition 3.1 that we have
+
+                                                                  f (s, x + (t − s)ω, p)
+                                                  Z      Z
+(37) |ET (t, x)| + |BT (t, x)| .                                           3 dp dσ
+                                                 (t − s)2 p20 (1 + p̂ · ω) 2
+                                                  Ct,x       R3
+                                       Z t Z 2π     Z π
+                                                                          f (s, x + (t − s)ω, p)
+                                                                 Z
+                                     .    ds    dφ      sin θdθ        dp                      3 ,
+                                        0    0       0             R3         p20 (1 + p̂ · ω) 2
+
+where we have adopted the coordinate system in (19). We recall that in this coor-
+dinate system ω = (sin θ cos φ, sin θ sin φ, cos θ) as in (20).
+                                              −1
+   By Proposition 4.1 we have (1 + p̂ · ω)        . p20 , so that we can use the main
+estimates in Proposition 4.4 to obtain
+
+           f (s, x + (t − s)ω, p)                        f (s, x + (t − s)ω, p)
+  Z                                               Z
+                                3    dp .                                       dp
+      R3       p20 (1 + p̂ · ω) 2                     R3     p0 (1 + p̂ · ω)
+                                              . min{P (t)2 log P (t), A(t)4 log P (t)(∠(e3 , ±ω))−2 }.
+16                                      JONATHAN LUK AND ROBERT STRAIN
+
+
+Returning to (37), we have
+                                        Z t Z 2π Z P (t)−1
+     (|ET | + |BT |)(t, x) .                                                P (s)2 log P (s) sin θdθ dφ ds
+                                            0        0         0
+                                Z t Z 2π Z π
+                           +                                             P (s)2 log P (s) sin θdθ dφ ds
+                                    0       0            π−P (t)−1
+               Z t Z 2π Z π−P (t)−1
+           +                                             A(s)4 (θ−2 + (π − θ)−2 ) log P (s) sin θdθ dφ ds
+                0     0         P (t)−1
+                                                Z t Z 2π Z π−P (t)−1
+        . log P (t) + log P (t)                                                    A(s)4 (θ−1 + (π − θ)−1 )dθ dφ ds
+                                                     0     0           P (t)−1
+                                                                                                                   Z t
+                                                                                 . log P (t) + (log P (t))2              A(s)4 ds.
+                                                                                                                    0
+This completes the proof.                                                                                                            
+   We now proceed to estimate ES,1 and BS,1 . While these terms are less singular
+compared to ES,2 and BS,2 , they are not coupled to a good component of the
+electromagnetic field; a component that can be controlled after integrating along a
+null cone by the conservation law. As a result, we are unable to use a direct estimate
+of the particle density to close the argument. Instead, we integrate ES,1 and BS,1
+along the projection of a characteristic of the Vlasov equation to the position space.
+This will enable us to use the conservation law for E and B in L2 (R3 ).
+   To this end, we apply an estimate of Pallard:
+Proposition 5.2 (Pallard [15, Lemma 1.3]). Let X(t) : Rt → R3 be a C 1 function
+with |X ′ (t)| < 1 and define
+                         Z t
+                                                  g(s, X(s′ ) + (s′ − s)ω)
+                                 Z
+                     def
+                   I =       ds′         dσ(s, ω)                          .
+                          0       Cs′ ,x                 (s′ − s)
+Then
+                     Z t            Z t                                      12
+                                                     ′                                ′   ′
+             I.            ds                   ds (1 + |log (1 − |X (s )|)|)     kg(s, ·)kL2 (R3 ) .
+                      0                 s
+
+   This proposition is slightly stronger than Lemma 1.3 in [15] in the sense that
+the original statement does not have both of the integrations in time, i.e., it reads
+                                              1!
+                                                                                  2
+                 I.        1 + log(1 − sup |X ′ (s)|)                                         sup kg(s, ·)kL2 (R3 ) .
+                                                          0≤s≤t                           0≤s≤t
+
+The stronger version in fact follows from the proof of Lemma 1.3 in [15].
+   We point out for the reader that we also use X(s′ ) + (s′ − s)ω and Pallard [15]
+uses the opposite sign X(s′ ) − (s′ − s)ω.
+Proof. Notice by Fubini’s theorem that we have
+           Z t      Z s′    Z 2π    Z π
+                  ′
+       I=      ds        ds      dφ     (s′ − s) sin θ dθ g(s, X(s′ ) + (s′ − s)ω)
+                 0              0                0                 0
+                Z t        Z t              Z 2π               Z π
+            =         ds            ds′                  dφ            (s′ − s) sin θ dθ g(s, X(s′ ) + (s′ − s)ω).
+                 0          s                   0                  0
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 17
+
+
+We therefore define
+                  Z t     Z 2π    Z π
+        I˜s,t =
+              def
+                      ds′      dφ     (s′ − s) sin θ dθ g(s, X(s′ ) + (s′ − s)ω).
+                      s         0             0
+                                                                         def
+Then as in Lemma 2.1 in [15] we see that π = X(s′ ) + (s′ − s)ω is a Cs1′ ,θ,φ
+diffeomorphism with the Jacobian given by Jπ = (X ′ (s) · ω + 1)(s′ − s)2 sin θ. Then
+using the Cauchy-Schwartz inequality and this change of variable we have
+                               Z t          Z 2π        Z π                  1/2
+                                                             (s′ − s)2 sin2 θ
+  I˜s,t . kg(s, ·)kL2 (R3 )            ds′
+                                                dφ        dθ
+                                    s      0          0            |Jπ |
+                                                          Z t                               12
+                                                                 ′                 ′ ′
+                                      . kg(s, ·)kL2 (R3 )      ds (1 + |log (1 − |X (s )|)|)     .
+                                                                    s
+The last inequality follows by evaluating the integral in dφdθ and estimating the
+result from above. This implies the desired conclusion after integration in s. 
+   Using Proposition 5.2, we obtain the following bound on
+Proposition 5.3. Let X(t) be a characteristic associated to the solution of the
+relativistic Vlasov-Maxwell system. Then
+       Z t                                            p          Z t
+            (|ES,1 (s, X(s))| + |BS,1 (s, X(s))|) ds . log P (t)     A(s)2 P (s)ds.
+        0                                                                            0
+
+Proof. Since X ′ (s) = V̂ (s) along a characteristic, we have
+                                              sup |X ′ (s′ )| ≤ 1
+                                             s≤s′ ≤t
+
+and
+                      inf (1 − |X ′ (s′ )|) ≥ 1 − sup |X ′ (s′ )| & P (t)−2 ,
+                     s≤s′ ≤t                                  s≤s′ ≤t
+which imply
+           Z t                                     12
+                          ′                          ′   ′        1          1
+                      ds (1 + |log (1 − |X (s )|)|)     . (t − s) 2 log P (t) 2 .
+                 s
+Then we use the bound for ES,1 and BS,1 in Proposition 3.4 and Pallard’s estimate
+in Proposition 5.2 with
+                                          |B|f (s, x + (t − s)ω, p)
+                                     Z
+                g(s, x + (t − s)ω) =                           1    dp.
+                                      R 3      p0 (1 − p̂ · ω) 2
+Thus it suffices to show that
+                                        |B|f
+                       Z
+                                                     1   dp              . A(s)2 P (s).
+                                p0 (1 + p̂ · ω) 2             L2 (R3 )
+                                                               −1
+Recall from Proposition 4.1 that (1 + p̂ · ω) . p20 . Then we have
+                     |B|f
+             Z                                             Z
+                               1 dp          . kBkL2 (R3 )   f dp          .
+               p0 (1 + p̂ · ω) 2    L2 (R3 )                      L∞ (R3 )
+
+By the conservation law in Proposition 2.1,
+                                                  kBkL2 (R3 ) . 1.
+18                                   JONATHAN LUK AND ROBERT STRAIN
+
+
+On the other hand, the particle density can be estimated by the total volume of
+the momentum support of f , i.e.,
+          Z               Z P (s)     Z 2π Z κ(s,γ)
+             f dp       .         dp3     dγ        udu . A(s)2 P (s).
+                            L∞ (R3 )           −P (s)         0              0
+
+This completes the proof.                                                                                                     
+   Finally, the terms ES,2 and BS,2 can be controlled using the estimates in Propo-
+sition 4.4.
+Proposition 5.4. We have the following estimates
+                                                                                            Z t                21
+                                                                                                         8
+     |ES,2 (t, x)| + |BS,2 (t, x)| . P (t) log P (t) + P (t) log P (t)                               A(s) ds          .
+                                                                                                 0
+
+Proof. We use the estimates from Proposition 3.4 and Cauchy-Schwarz to obtain
+                                                   (|Kg | f )(s, x + (t − s)ω, p)
+                                      Z      Z
+(38) |ES,2 (t, x)| + |BS,2 (t, x)| .                                              dp dσ
+                                        Ct,x R3        (t − s)p0 (1 + p̂ · ω)
+         Z t Z 2π Z π Z
+                              (|Kg | f )(s, x + (t − s)ω, p)
+       .                                                        dp (t − s) sin θdθ dφ ds
+            0   0     0   R 3          p0 (1 + p̂ · ω)
+                        Z t Z 2π Z π                                     12
+                                              2                      2
+                    .                    |Kg | sin θdθ dφ (t − s) ds
+                                     0     0        0
+                                Z t Z 2π Z π Z                                             2                    ! 21
+                                                            f (s, x + (t − s)ω, p)
+                        ×                                                          dp            sin θdθ dφ ds            .
+                                 0    0        0        R 3     p0 (1 + p̂ · ω)
+Here we defined Kg in (21).
+  By the conservation law in Proposition 2.2,
+            Z t Z 2π Z π
+                         |Kg |2 sin θdθ dφ (t − s)2 ds = ||Kg ||2L2 (Ct,x ) . 1.
+                0       0        0
+The particle density term can be estimated using Proposition 4.4:
+         Z t Z 2π Z π Z                               2
+                             f (s, x + (t − s)ω, p)
+                                                    dp sin θdθ dφ ds
+           0  0    0      R3     p0 (1 + p̂ · ω)
+         Z t Z 2π Z P (s)−1
+     .                      P (s)4 log2 P (s) sin θdθ dφ ds
+            0       0       0
+               Z t Z 2π Z π
+           +                                   P (s)4 log2 P (s) sin θdθ dφ ds
+                0       0        π−P (s)−1
+               Z t Z 2π Z π−P (s)−1
+           +                                       A(s)8 (θ−4 + (π − θ)−4 ) log2 P (s) sin θdθ dφ ds
+                0       0        P (s)−1
+                                                        Z t                  Z π−P (t)−1
+                    2       2                  2                       8
+      .    P (t) log P (t) + log P (t)                        A(s) ds                      (θ−3 + (π − θ)−3 )dθ
+                                                          0                      P (t)−1
+                                                                  Z t
+      .    P (t)2 log2 P (t) + P (t)2 log2 P (t)                           A(s)8 ds.
+                                                                   0
+Returning to (38), we thus conclude that the estimate in the statement of Propo-
+sition 5.4 holds. This completes the proof.                                   
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 19
+
+
+                             6. Conclusion of the proof
+  We now conclude the proof of Theorem 1.3. By Theorem 1.1, it suffices to show
+that P is bounded by a function depending only on t. We have
+
+Proposition 6.1. P (t) . 1.
+
+Proof. For notational simplicity, we define
+                                                              Z s                          12
+                              def                     2                      ′ 8       ′
+                       g(s) = 1 + A(s) +                                A(s ) ds                  .
+                                                                0
+
+Notice that by the assumption of Theorem 1.3, g is integrable in time.
+  By (5), the momentum support P can be estimated by
+                                   Z t
+                       P (t) . 1 +     (|E(s)| + |B(s)|)ds.
+                                                  0
+
+By the estimates from Propositions 5.1, 5.3 and 5.4 we have
+                                  Z t       Z s            
+            P (t) . 1 + log P (t)     g(s) +     A(s′ )4 ds′ P (s)ds,
+                                          0                     0
+
+where the implicit constant depends on t. Notice that
+                        Z s                                   Z s                      21
+                                                          1
+                                    ′ 4       ′                              ′ 8   ′
+                              A(s ) ds . s                2          A(s ) ds                     .
+                         0                                      0
+
+Thus, we have
+                                                                    Z t
+                 P (t) ≤ C0 (t) + C0 (t) log P (t)                          g(s) P (s)ds,
+                                                                        0
+
+where C0 (t) is a positive continuous function on R. Let h(t) = logP P(t)(t) . Then, since
+P (s) . h(s) log h(s), the previous estimate implies
+                                         Z t
+(39)              h(t) ≤ C1 (t) + C1 (t)     g(s) h(s) log h(s) ds,
+                                                      0
+
+for some positive continuous function C1 (t). This is the main estimate that we will
+need.
+   We want to show that for fixed T > 0,
+
+(40)                           h(t) ≤ CT                  ∀t ∈ [0, T ).
+
+For any fixed T , we can assume without loss of generality that C1 (t) is a positive
+constant.
+   To achieve (40), we use a continuity argument. Assume as a bootstrap assump-
+tion that
+                                        Z t            
+                                                  ′    ′
+(41)               h(t) ≤ 2C1 exp exp ∆0       g(s )ds
+                                                                    0
+
+for all t < T , where ∆0 is a large constant to be chosen later.
+20                          JONATHAN LUK AND ROBERT STRAIN
+
+
+     Then, by (39), we have
+                    Z t
+     h(t) ≤ C1 + C1     g(s)h(s) log h(s)ds
+                     0
+                          Z t           R                            Rs
+                                     ∆0 s g(s′ )ds′
+                                                                          ′   ′
+                                                                                 
+             ≤ C1 + 2C1 2
+                              g(s)ee 0                log(2C1 ) + e∆0 0 g(s )ds ds
+                           0
+                    Z t           Rs   ′    ′
+                                                                    Z s              
+                  2           e∆0 0 g(s )ds                                      ′  ′
+         ≤ C1 + 2C1     g(s)e                 (log(2C1 ) + 1) exp ∆0         g(s )ds ds
+                       0                                                          0
+                                            Z eR0t g(s′ )ds′       Rs    ′    ′       Rs
+                                                                e∆0 0 g(s )ds              ′   ′
+         ≤ C1 + 2C12 (log(2C1 ) + 1)∆−1
+                                     0              e                d(e∆0 0 g(s )ds )
+                                           0
+                                                    ∆ R t g(s′ )ds′     
+                    = C1 + 2C12 (log(2C1 ) + 1)∆−1
+                                                       0
+                                                0   ee 0              −e
+                                                                           e∆0 R0t g(s′ )ds′
+                                      ≤ C1 + 2C12 (log(2C1 ) + 1)∆−1   0   e                  ,
+                                                R
+                                              ∆0 0t g(s′ )ds′
+where in the last steps we have used ee                         ≥ 1. By choosing ∆0 sufficiently
+large depending on C1 , we have
+                                                           3
+                           C1 + 2C12 (log(2C1 ) + 1)∆−1
+                                                     0 ≤     C1 .
+                                                           2
+Thus we have closed the bootstrap assumption (41). Therefore, (40) holds. Re-
+turning to the definition h(t) = logP P(t)(t) , we have thus showed that P (t) . 1, as
+desired.                                                                            
+
+                                         References
+ [1] R. Sospedra-Alfonso and R. Illner. Classical solvability of the relativistic Vlasov - Maxwell
+     system with bounded spatial density, Math. Methods Appl. Sci. 33(6) (2010), 751-757.
+ [2] F. Bouchut, F. Golse and C. Pallard, Classical solutions and the Glassey-Strauss theorem for
+     the 3D Vlasov-Maxwell system, Arch. Ration. Mech. Anal. 170 (2003), 1-15.
+ [3] R. Glassey and J. Schaeffer, On symmetric solutions of the relativistic Vlasov-Poisson system,
+     Commun. Math. Phys. 101 (1985), 459-473.
+ [4] R. Glassey and J. Schaeffer, Global existence for the relativistic Vlasov-Maxwell system with
+     nearly neutral initial data, Comm. Math. Phys. 119 (1988), 353-384.
+ [5] R. Glassey and J. Schaeffer, The two and one half dimensional relativistic Vlasov-Maxwell
+     system, Commun. Math. Phys. 185 (1997), 257-284.
+ [6] R. Glassey and J. Schaeffer, The relativistic Vlasov-Maxwell system in two space dimensions:
+     Part I, Arch. Rational Mech. Anal. 141 (1998) 331-354.
+ [7] R. Glassey and J. Schaeffer, The relativistic Vlasov-Maxwell system in two space dimensions:
+     Part II, Arch. Rational Mech. Anal. 141 (1998) 355-374.
+ [8] R. Glassey and W. Strauss, Singularity formation in a collisionless plasma could only occur
+     at large velocities, Arch. Rat. Mech. Anal. 92 (1986), 59-90.
+ [9] R. Glassey and W. Strauss, Absence of shocks in an initially dilute collisionless plasma,
+     Comm. Math. Phys. 113 (1987), 191-208
+[10] R. Glassey and W. Strauss, High velocity particles in a collisionless plasma, Math. Meth. in
+     the Appl. Sci. 9 (1987), 46-52.
+[11] R. Glassey and W. Strauss, Large velocities in the relativistic Vlasov-Maxwell equations, J.
+     Fac. Sci. Univ. Tokyo 36 Sec IA Math (1989), 615-527.
+[12] S. Klainerman and G. Staffilani, A new approach to study the Vlasov-Maxwell system, Com-
+     mun. Pure Appl. Anal. 1 (2002), 103-125.
+[13] J. Luk and R. Strain, Strichartz estimates and moment bounds for the Vlasov-Maxwell system
+     II. Continuation criterion in the 3D case, preprint (2014).
+[14] P.-L. Lions and B. Perthame, Propagation of moments and regularity for the 3-dimensional
+     Vlasov-Poisson system, Invent. Math 105 (1991), 415-430.
+   CONTINUATION CRITERION FOR THE RELATIVISTIC VLASOV-MAXWELL SYSTEM 21
+
+
+[15] C. Pallard, On the boundedness of the momentum support of solutions to the relativistic
+     Vlasov-Maxwell system, Indiana Univ. Math. J. 54(5) (2005), 1395-1409.
+[16] K. Pfaffermoser, Global classical solutions of the Vlasov-Poisson system in three dimensions
+     for general initial data, J. Diff. Equations 95 (1992), 281-303.
+[17] G. Rein, Generic global solutions of the relativistic Vlasov-Maxwell system of plasma physics,
+     Comm. Math. Phys. 135 (1990), 41-78.
+[18] J. Schaeffer, Global existence of smooth solutions to the Vlasov-Poisson system in three
+     dimensions, Comm. P.D.E. 16(8&9) (1991), 1313-1335.
+[19] J. Schaeffer, The classical limit of the relativistic Vlasov-Maxwell system, Comm. Math.
+     Phys. 104(3) (1986), 403-421.
+[20] J. Schaeffer, A small data theorem for collisionless plasma that includes high velocity parti-
+     cles, Indiana Univ. Math. J. 53(1) (2004), 1-34.
+
+   Department of Mathematics, University of Pennsylvania, Philadelphia, PA 19104
+   E-mail address: jwluk@sas.upenn.edu
+
+   Department of Mathematics, University of Pennsylvania, Philadelphia, PA 19104
+   E-mail address: strain@math.upenn.edu
+

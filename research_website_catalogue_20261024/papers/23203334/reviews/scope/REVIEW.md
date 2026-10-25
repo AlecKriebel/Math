@@ -1,0 +1,46 @@
+# Publication-scope review — 23203334
+
+**Disposition:** no publication-scope defect identified in the bounded review. The content is a candidate pending separate mathematical gates. The claimed conclusion is treated as a hypothesis, not certified here. This review has an explicitly disclosed archived-opinion exposure and must not be counted as a fully independent mathematical gate.
+
+## Source, edition and independence
+
+Fresh public [Zenodo record 23203334](https://zenodo.org/records/23203334), concept 23203333, DOI 10.5281/zenodo.23203334, publication date 6 October 2026. The record has **no version metadata**. The PDF prints 6 October 2026 without a numbered version. The candidate page uses that descriptive manuscript-date label and does not silently supply an invented version.
+
+Read all ten pages of the actual published `paper.pdf`, including references, and all five mathematical supplements in the released source ZIP: `SUPPLEMENT_PAIR_IDENTITY.md` (490 lines), `SUPPLEMENT_TRANSFER_LEMMA.md` (303), `SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md` (412), `SUPPLEMENT_LOCAL_THEORY.md` (186), and `SUPPLEMENT_OCCUPATION_AUDIT.md` (319). The original abstract was cross-checked with the TeX and visually against rendered page 1. No sentence was replaced by a paraphrase in the abstract, and AI disclosure is kept separate.
+
+**Independence exception:** the occupation supplement contains mathematical derivations together with historical independent audit assessments. Reading the complete relevant supplement exposed this reviewer to those assessments before the 60% scope checkpoint. This was reported promptly to root. The assessments are not adopted as evidence of correctness, but the exposure cannot be undone or described as strict opinion independence. No current sibling mathematical verdict or findings were consulted. Exchanges with the mathematical reviewer were limited to primary-source paths, acquisition status and the intended source scope. Dedicated additional audit and verdict files were not read for their conclusions.
+
+The original PDF is 128,361 bytes, SHA-256 `8cfaa828abfe5f91626527a79679c503bb37cb081fb258de68ef7f776a74e046`. The original source ZIP is 126,979 bytes, SHA-256 `6b90c4116ba596ee56567be0d540c1866e5f4fdf18bd62f13c489c6ca996849e`. The separate published README is also retained. `source_integrity.json` verifies all three files against the fresh record MD5/size and receipt SHA-256, ZIP CRC, and all 26 internal manifest entries against both archive and extracted bytes. There are no internal PDFs or nested ZIPs and no omitted reader PDF supplement.
+
+## Exact claim and contribution
+
+Theorem 1.1 concerns a fixed finite species list on R³ × R³. Every mass is strictly positive; charges are arbitrary real numbers, including zero. Initial phase densities are nonnegative C∞ functions with compact phase support. The Maxwell fields are C_b^∞ ∩ L², where **every spatial derivative is bounded**, but derivatives need not all be square integrable. Initial divergence constraints hold. There is no background charge. The claimed solution is unique and global classical, smooth on every finite interval, has compact phase support on each such interval, has fields continuous into L², and preserves the constraints. Net charge and Coulomb tails are allowed. This is not a theorem for arbitrary smooth finite-energy data without bounded derivatives.
+
+Mass normalization v = p/mₐ, fₐ = mₐ³Fₐ gives the common velocity u(v) = v/√(1+|v|²) while retaining λₐ = eₐ/mₐ in the force. The entire source–receiver term has coefficient λₐe_b = eₐe_b/mₐ, **not** λₐλ_b. Source acceleration is retained until its exact cancellation. Receiver direction differentiation uses the complete force once, without inserting an extra charge-to-mass factor.
+
+The paper explicitly inherits the universal pair geometry and angular-selection mechanism from the pinned OpenAI family 362 manuscript. Its claimed addition is transferring the signed estimates with correct cross-species coefficients and closing one common momentum bootstrap. The positive mass-weighted energy controls the disjoint union of species labels. The aggregate density generally does not solve a scalar Vlasov equation. Equal nonzero charge-to-mass ratios already admit a weighted one-species reduction; differing ratios, including opposite charges, are the substantive case.
+
+The direct-force estimate and selected-receiver coefficient must use the same common momentum bound. The cancellation of the angular loss, the order of choosing bootstrap constants, and the momentum doubling argument are load-bearing analytical steps. Reading their statements and mechanisms is not independent certification of their proofs. Bounded-momentum continuation and the nonneutral local construction complete the asserted conclusion only if those prior estimates hold.
+
+Constants may depend on the species list, fixed positive masses, charges, initial data and horizon. The paper does not give a massless or infinite-species limit, noncompact momentum tails, collisions, curved spacetime, or a uniform-in-time momentum estimate. Finite rational/algebraic certificates do not validate the full PDE argument. No proof-assistant build was reproduced or promoted as a formal theorem.
+
+## Primary-source comparison and access boundaries
+
+Fresh downloaded primary PDFs, URLs, page counts and SHA-256 receipts are retained under `primary-sources/`; the PDF/text caches are locally ignored. The review consulted actual source bodies, not only search summaries.
+
+- [Pinned OpenAI family 362 source](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026): acquired the exact 49-page PDF, whose SHA-256 `56691a44941097fa1a5131470d44c5bc23930faeda22836e177d2391252817d8` matches the published pinned-source inventory. Read its introductory theorem, assumptions, historical discussion and proof structure. This scope review does **not** claim a full independent reading or validation of all 49 upstream pages. The full upstream analytical verification is assigned separately. The manuscript date is not evidence of public release on that date.
+- [Luk–Strain, arXiv 1406.0165v1](https://arxiv.org/abs/1406.0165v1): read the introductory continuation statement, assumptions, footnote distinguishing the original iterate formulation and actual-solution formulation, and Remark 1.2 explicitly extending the setting to several species. The target paper does not originate bounded-momentum continuation.
+- [Bouchut–Golse–Pallard, arXiv math/0301175v1](https://arxiv.org/abs/math/0301175v1): read the division lemma and its angular cancellation, and the logarithmic derivative estimates in Sections 5.3–5.4. These clarify prior continuation inputs and why first-derivative closure is not established by a superficial force bound.
+- [Mattingly–Pankavich–Ben-Artzi, arXiv 2609.29013v1](https://arxiv.org/abs/2609.29013v1): read Theorem 1.1 and Theorems 1.5–1.6 with their setup. This is small-data decay/scattering and, for the fast neutral decay hierarchy, additional limiting-moment cancellation. It is not the arbitrary-size global-regularity statement claimed here.
+
+The bodies of Glassey–Schaeffer's 1988 nearly-neutral paper and Glassey's 1996 book were **not acquired** in this scope review. Their published citations and the target author's description are not substituted for a direct verification of their exact hypotheses. The public content therefore avoids asserting a freshly certified detailed C¹/C² comparison with that older theorem. The 1988/1996 items are background priority references, not presented as independently checked load-bearing imports here. Tighter historical priority assessment would need those sources and a broader literature search.
+
+The strongest supported attribution conclusion is narrower than a novelty certificate: the paper describes an extension of a named, pinned proof, with a distinguishable cross-species problem and explicit restrictions. Search nonappearance cannot establish first priority. No scope-level contradiction was identified, but the upstream and transferred analytical claims remain for the mathematical gates.
+
+## Candidate publication content
+
+`content.json` contains the complete original abstract, a plain explanation, exact assumptions, upstream dependency, bounded contribution claim, primary links, limitations, concise mechanism and a professional invitation to substantive verification. It contains no dated internal verification replay, authorship promise or outreach preparation. Status discloses extensive AI assistance and absence of completed external human review or reproduced formal certification.
+
+The original PDF and ZIP filenames are preserved. The separate README is linked directly as a supporting resource; `additional_assets` is empty. `follow_up` is null: lower regularity, noncompact support and uniform limits are difficult variants, but no specific new mechanism or unusually compelling conjecture was established here.
+
+**Completion:** source-bound scope/content work 100%; no repairs attempted, no website, spreadsheet, Git, Zenodo or outreach changes. This report is not an independent mathematical approval.

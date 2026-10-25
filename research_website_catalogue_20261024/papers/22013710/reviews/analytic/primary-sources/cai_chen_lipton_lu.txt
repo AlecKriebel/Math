@@ -1,0 +1,962 @@
+                                                                   On Tractable Exponential Sums
+
+
+                                                          Jin-Yi Cai ∗          Xi Chen †                Richard Lipton ‡       Pinyan Lu §
+
+
+
+
+arXiv:1005.2632v1 [cs.CC] 14 May 2010
+                                                                                                 Abstract
+                                                   We consider the problem of evaluating certain exponential sums. These sums take the form
+                                                                                     X         2πi
+                                                                                              e N f (x1 ,x2 ,...,xn ) ,
+                                                                                    x1 ,x2 ,...,xn ∈ZN
+
+
+                                                where each xi is summed over a ring ZN , and f (x1 , x2 , . . . , xn ) is a multivariate polynomial with
+                                                integer coefficients. We show that the sum can be evaluated in polynomial time in n and log N
+                                                when f is a quadratic polynomial. This is true even when the factorization of N is unknown.
+                                                Previously, this was known for a prime modulus N . On the other hand, for very specific families
+                                                of polynomials of degree ≥ 3 we show the problem is #P-hard, even for any fixed prime or prime
+                                                power modulus. This leads to a complexity dichotomy theorem — a complete classification of each
+                                                problem to be either computable in polynomial time or #P-hard — for a class of exponential sums.
+                                                These sums arise in the classifications of graph homomorphisms and some other counting CSP
+                                                type problems, and these results lead to complexity dichotomy theorems. For the polynomial-time
+                                                algorithm, Gauss sums form the basic building blocks. For the hardness results, we prove group-
+                                                theoretic necessary conditions for tractability. These tests imply that the problem is #P-hard for
+                                                even very restricted families of simple cubic polynomials over fixed modulus N .
+
+
+
+
+                                        1       Introduction
+                                        Exponential sums are among the most studied objects in number theory [12, 10, 11]. They have fas-
+                                        cinating properties and innumerable applications. Recently they have also played a pivotal role in the
+                                        study of the complexity of graph homomorphisms [8, 2].
+                                            The most fundamental and well-known among exponential sums are those named after Gauss. The
+                                        simplest Gauss sum is as follows. Let p be an odd prime, and ωp = e2πi/p be the p-th primitive root
+                                        of unity. Then the Gauss sum over Zp is
+                                                                  X t                 
+                                                                                          t
+                                                             G=           ωpt , where        is the Legendre symbol.                       (1)
+                                                                       p                 p
+                                                                      t∈Zp
+
+                                            ∗
+                                              University of Wisconsin-Madison, jyc@cs.wisc.edu
+                                            †
+                                              University of Southern California, csxichen@gmail.com
+                                            ‡
+                                              Georgia Institute of Technology, richard.lipton@cc.gatech.edu
+                                            §
+                                              Microsoft Research Asia, pinyanl@microsoft.com
+
+
+                                                                                                         1
+In this paper, we will need to use a more general form of the Gauss sum which will be defined later in
+Section 2. Another well-known expression for G in (1) is:
+                                                         P                  x2
+                                                   G=        x∈Zp      ωp         ,
+
+                                                                                                          2
+where the exponents are quadratic residues (mod p), and one can observe that (ωp )x are somewhat
+“randomly” distributed on the unit circle. Gauss knew the remarkable equality G2 = (−1)(p−1)/2 p:
+                        √                                                    √
+                   G = ± p if p ≡ 1 (mod 4),                 and       G = ±i p       if p ≡ 3 (mod 4).                   (2)
+                    √
+In particular |G| = p which is an expression that the p terms in the sum G are somewhat “random”
+(but note that the equality is exact). However, the truly amazing fact is that, in all cases, the plus
+sign (+) always holds in (2). Gauss recorded this conjecture in his diary in May 1801, and on August
+30, 1805, Gauss recorded that a proof of the “very elegant theorem mentioned in 1801” had finally
+been achieved. 1
+    In this paper, we consider the complexity of evaluating exponential sums of the form
+                                                X        2πi
+                                  Z(N, f ) =           e N f (x1 ,...,xn ) ,
+                                                      x1 ,...,xn ∈ZN
+
+where each xi is summed over a ring ZN and f (x1 , . . . , xn ) is a multivariate polynomial with integer
+coefficients. (We may assume that the coefficients of f are from ZN .) The output of this computation
+is an algebraic number, in the cyclotomic field Q(e2πi/N ). Any canonical representation of the output
+algebraic number will be acceptable [9, 7]. These sums are natural generalizations of the sums con-
+sidered by Gauss, and with arbitrary polynomials f (x1 , x2 , . . . , xn ), they have also played important
+roles in the development of number theory.
+     Our main results are as follows: We show that the sum Z(N, f ) can be evaluated in polynomial
+time when f is a quadratic polynomial. The computational complexity is measured in terms of n,
+log N , and the number of bits needed to describe f . While it is known that Z(N, f ) can be computed
+efficiently when N is a prime [13], our algorithm works for any composite modulus N , even without
+knowing its prime factorization. On the other hand, for very specific families of polynomials of degree
+≥ 3 we show the problem is #P-hard even for any fixed prime or prime power modulus. This leads to
+a complexity dichotomy theorem — a complete classification of each problem to be either computable
+in polynomial time or #P-hard — for a class of exponential sums.
+     For the polynomial-time algorithm, we employ an iterative process to eliminate one variable at a
+time. Gauss sums form the basic building blocks. The fact that we know the exact answer to the
+Gauss sum, including the sign, is crucial. It turns out that the situation is different for an odd or an
+even modulus N . A natural idea is to deal with each prime power in the modulus N separately, and
+combine the answers by Chinese remaindering. It turns out that the algorithm is more difficult for a
+modulus which is a power of 2, than for an odd prime power. A more fundamental difficulty arises
+when N is large and its prime factorization is unknown. We overcome this difficulty as follows: (1)
+Factor out all powers of 2 in N and deal with it separately. (2) Operate in the remaining odd modulus
+as if it were an odd prime power; whenever this operational commingling encounters an obstacle, we
+   1
+      In a letter dated September 3, 1805 Gauss wrote that ... Seldom had a week passed for four years that he had not
+tried in vein to prove his conjecture of 1801 ... Finally, “Wie der Blitz einschlägt, hat sich das Räthsel gelöst ...” (“as
+lightning strikes was the puzzle solved ...”).
+
+
+
+                                                              2
+manage to discover a non-trivial factorization of the modulus into relatively prime parts. In that case
+we recurse.
+
+Theorem 1.1. Let N be any positive integer and f ∈ Z[x1 , . . . , xn ] be a quadratic polynomial (every
+monomial has degree at most 2) in n variables x1 , . . . , xn . Then the sum Z(N, f ) can be evaluated in
+polynomial time in n, log N , and the number of bits needed to describe f .
+
+    Previously it was known that for quadratic polynomials f the sum can be computed in polynomial
+time, if N is a prime [13]. An algorithm with running time O(n3 ) can also be found in the paper by
+Ehrenfeucht and Karpinski [5]. Compared to these algorithms, ours works for any N even if it is given
+as a part of the input and its factorization is unknown. It was also suggested that there is a reduction
+from root counting. One can express the sum as
+                                         N
+                                         X −1
+                                                #[f = k] · e2πik/N .
+                                         k=0
+
+If N is polynomially bounded and if one can compute #[f = k] for all k, then one can compute the
+sum. But this works only when N is small. Our results are for general N (polynomial time in the
+length log N ). In our algorithm, Gauss sums play a crucial role. Any claim to the contrary amounts to
+an independent proof of Gauss’s sign formula (that “very elegant theorem mentioned in 1801”) since
+it is not only a crucial building block of our algorithm, but it is also a special case of the algorithm.
+We also note that our treatment for the case when N is a power of 2 is significantly different than
+previous work. No simple adaptation of ideas from Sylvester’s law of inertia seems to work.
+     For the hardness result, we give several successively more stringent necessary conditions for a class
+of polynomials to be tractable. The first necessary condition involves the rank of an associated matrix,
+and the proof uses the widely applicable dichotomy theorem of Bulatov and Grohe [1] for counting
+graph homomorphisms over non-negative weighted graphs. The second necessary condition involves
+linear independence and orthogonality. The third and much more stringent necessary condition is
+group-theoretic in nature; it asserts that the set of row vectors of a certain complex matrix must form
+a group. In [8], Goldberg et al. had proved a similar condition for {−1, +1} matrices, in the study
+of graph homomorphisms over real weighted graphs. Finally, in subsection 5.4 we give a generalized
+Group Condition which leads to a complexity dichotomy.
+     Previously, it was shown by Ehrenfeucht and Karpinski that for any fixed prime N , the problem
+of computing Z(N, f ) for general cubic polynomials is #P-hard [5]. However, our tests in Section 5
+are more powerful. They allow us to prove the #P-hardness of Z(N, f ) even if f belongs to some very
+restricted families of polynomials, since they fail one of the tests in Section 5 (see Corollary 5.2 and
+Corollary 5.3 for examples).
+     These sums arise recently in the classifications of graph homomorphisms and some other counting
+CSP type problems (a class of local constraint problems, including CSP as well as Holant Problems).
+For example, the tractability of the special case when N = 2 is a key component of the dichotomy
+theorem of Goldberg et al. [8] for graph homomorphisms over real weighted graphs. In particular, it
+implies that the graph homomorphism function ZH (·) (see definition in Section 5) with
+                                                           
+                                                     1 1
+                                              H=              ,
+                                                     1 −1
+
+which had been an obstacle to the dichotomy theorem of Bulatov and Grohe [1] and was left open for
+
+                                                       3
+some time, can actually be computed in polynomial time.
+
+
+2    Preliminaries
+Let ωN = e2πi/N denote the N th primitive root of unity. Let N = N1 N2 be a non-trivial factorization
+namely N1 , N2 > 1. Suppose N1 and N2 are relatively prime, gcd(N1 , N2 ) = 1. Then there exist two
+integers a and b, such that bN1 + aN2 = 1. It follows that
+
+                                     ωN = e2πia/N1 · e2πib/N2 = ωN
+                                                                 a
+                                                                   1
+                                                                        b
+                                                                     · ωN 2
+                                                                            .
+
+By Chinese remaindering, the mapping x 7→ (y, z), where y ≡ x (mod N1 ) and z ≡ x (mod N2 ), is an
+isomorphism from ZN → ZN1 × ZN2 . Thus, we have
+
+Lemma 2.1. If bN1 + aN2 = 1, then Z(N, f ) = Z(N1 , af ) · Z(N2 , bf ).
+
+   It follows that if we know a non-trivial factorization of N into relatively prime factors N1 and N2 ,
+then the problem Z(N, f ) decomposes. In particular, we can factor N = 2k N ′ , where N ′ is odd. Thus
+we can treat the problems Z(2k , ·) and Z(N ′ , ·) separately. In Section 3, we give an algorithm for the
+case when N is odd and in Section 4 we deal with the case when N = 2k . Theorem 1.1 then follows
+from these algorithms and Lemma 2.1.
+   Our algorithm crucially relies on the fact that the following general form of Gauss sum G(a,b) can
+be computed in polynomial time in log a and log b, without knowing their prime factorizations. Let a
+and b be non-zero integers, b > 0, and gcd(a, b) = 1. Then G(a, b) denotes the following sum:
+                                                               P         ax2
+                                               G(a, b) =           x∈Zb ωb .
+
+A list of properties that we need to prove the tractability of G(a, b) can be found in Appendix A.
+
+
+3    Odd Modulus
+In this section, we present a polynomial-time algorithm for the case when N is odd.
+
+Lemma 3.1. Given an odd positive integer N and a quadratic polynomial f (x1 , x2 , . . . , xn ) ∈ Z[x1 , x2 ,
+. . . , xn ], the sum Z(N, f ) can be computed in polynomial time.
+
+Proof. Consider the expression
+                                                    P                          P
+                           f (x1 , . . . , xn ) =       i≤j∈[n] ci,j xi xj +       i∈[n] ci xi + c0 .    (3)
+
+We may assume c0 = 0, because it only contributes a constant factor to Z(N, f ). For every non-zero
+coefficient c = ci,j or ci of f , we first compute the greatest common divisor g = gcd(N, c⌊log 2 N ⌋ ). Note
+that, if ordp N is the exact order of a prime p in N , then N ≥ pordp N and thus ordp N ≤ ⌊log2 N ⌋.
+Hence if c shares any prime p with N , but not all the prime factors of N , then g has the factor pordp N
+and N = g · (N/g) is a non-trivial factorization of N into two relatively prime factors, g and N/g.
+We can test for every nonzero coefficient c = ci,j or ci whether N = g · (N/g) gives us a non-trivial
+factorization of N into two relatively prime factors.
+
+
+                                                               4
+    By Lemma 2.1, if for some coefficient c, we did find such a factorization N = N1 · N2 , then the
+problem of computing Z(N, ·) decomposes into two subproblems Z(N1 , ·) and Z(N2 , ·). There can be
+altogether at most a linear number log2 N many subproblems. Therefore, a polynomial-time algorithm
+for each subproblem will give a polynomial-time algorithm for Z(N, f ).
+    Hence in the following we assume for each nonzero coefficient c = ci,j or ci , either gcd(N, c) = 1
+or c has all prime factors of N , and we know, by computing the gcd, which case it is for each c.
+    We consider the following four cases.
+
+Case 1. There exists some diagonal coefficient ci,i relatively prime to N .
+      Without loss of generality, we assume c1,1 is relatively prime to N .
+      Then c1,1 is invertible in ZN . As N is odd, 2 is also invertible. Denote by c′1,i an integer such that
+c′1,i ≡ (2c1,1 )−1 c1,i (mod N ), for 2 ≤ i ≤ n. We have, modulo N ,
+                                                                           P                        P
+       f (x1 , . . . , xn ) = c1,1 x21 + 2x1 (c′1,2 x2 + . . . + c′1,n xn ) + 2≤i≤j≤n ci,j xi xj + i∈[n] ci xi
+                                                          2                           
+                            = c1,1 x1 + g(x2 , . . . , xn ) + c1 x1 + g(x2 , . . . , xn ) + h(x2 , . . . , xn ),
+
+where g(x2 , . . . , xn ) = c′1,2 x2 + . . . + c′1,n xn and h is some quadratic polynomial in x2 , . . . , xn .
+    If we substitute y = x1 + g(x2 , . . . , xn ) for x1 , then for any fixed x2 , . . . , xn ∈ ZN , when x1 takes
+all the values in ZN , y also takes all the values in ZN . Hence, we have
+                                                 X         X         c       y 2 +c1 y+h(x2 ,...,xn )
+                                Z(N, f ) =                         ωN1,1                                   .
+                                             x2 ,...,xn ∈ZN y∈ZN
+
+
+Completing the square again, c1,1 y 2 + c1 y = c1,1 (y + (2c1,1 )−1 c1 )2 + c′ , where c′ = −c21 /(4c1,1 ) ∈ ZN ,
+                                                   X         X           c     z 2 +h′ (x2 ,...,xn )
+                                  Z(N, f ) =                         ωN1,1                             ,
+                                               x2 ,...,xn ∈ZN z∈ZN
+
+where h′ (x2 , . . . , xn ) = h(x2 , . . . , xn ) + c′ is an explicitly computed quadratic polynomial in x2 , . . . , xn .
+It then follows that Z(N, f ) = Z(N, h′ ) · G(c1,1 , N ) where h′ has one fewer variable than f and the
+Gauss sum G(c1,1 , N ) can be computed in polynomial time. This completes the proof of Case 1.
+
+Case 2. No ci,i is relatively prime to N , but there exist some 1 ≤ i < j ≤ n such that gcd(ci,j , N ) = 1.
+   By our earlier assumption, for every prime factor p of N , p divides every ci,i , for 1 ≤ i ≤ n.
+   The existence of ci,j for some i, j : 1 ≤ i < j ≤ n implies that in particular n ≥ 2. Without loss of
+generality, we assume gcd(c1,2 , N ) = 1. Now we perform the following substitution,
+
+                                        x1 = y 1 + y 2 ,   and       x2 = y 1 − y 2 ,
+
+and xi are unchanged, for any 2 < i ≤ n if n > 2. This transformation is a 1-1 correspondence from
+ZnN to itself with inverse y1 = (x1 + x2 )/2 and y2 = (x1 − x2 )/2, because 2 is invertible in ZN . Since
+the transformation is linear it does not change the degree of f . It is easily checked that the coefficient
+of y12 in the new polynomial is c1,1 + c2,2 + c1,2 . Since c1,1 and c2,2 have all the prime factors of N ,
+c1,1 + c2,2 + c1,2 is relatively prime to N . As a result, this transformation reduces the computation of
+Z(N, f ) to Case 1.
+
+
+
+                                                            5
+Case 3. No coefficients ci,j , where 1 ≤ i ≤ j ≤ n, are relatively prime to N . However, there exists a
+ci relatively prime to N , for some 1 ≤ i ≤ n.
+    Without loss of generality, assume gcd(c1 , N ) = 1. Let p be a prime divisor of N , then
+
+                                        p | c1,1 , . . . , c1,n         and yet         p ∤ c1 .                                       (4)
+
+Let k = ordp N be the exact order of p in N . Then k ≥ 1. Write N = pk N1 , then gcd(p, N1 ) = 1, and
+for some integers a and b we have bpk + aN1 = 1. By Lemma 2.1, Z(N, f ) = Z(pk , af ) · Z(N1 , bf ).
+Note that gcd(a, p) = 1. Hence the condition (4) above for the coefficients of f also holds for af . We
+will show Z(pk , af ) = 0. For notational simplicity, we will write below f for af .
+                                X             P                           P              X          P
+                 k                                 2≤i≤j≤n ci,j xi xj +   2≤i≤n ci xi                          c1,i x1 xi +c1 x1
+             Z(p , f ) =                     ωpk                                                   ωpk 1≤i≤n                       .
+                           x2 ,...,xn ∈Zpk                                              x1 ∈Zpk
+
+
+We fix any x2 , . . . , xn ∈ Zpk , and consider the inner sum over x1 .
+   If k = 1, then all terms c1,i x1 xi disappear, and because p ∤ c1 , the inner sum over x1 is equal to 0.
+   Suppose k > 1. Then we repeat the sum for p times with x(j) = x1 + j · pk−1 , where 0 ≤ j ≤ p − 1.
+By (4), we have c1,i x1 xi ≡ c1,i x(j) xi (mod pk ) and
+                                                                                                  
+                   X P1≤i≤n c1,i x1 xi +c1 x1         X     P                            p−1
+                                                                                         X
+                                                  1                  c1,i x1 xi +c1 x1
+                          ωpk                   =          ωpk 1≤i≤n                        ωpjc1  .
+                                                  p
+                x1 ∈Zpk                                         x1 ∈Zpk                                   j=0
+
+                                   Pp−1     jc1
+By p ∤ c1 , the geometric sum          j=0 ωp = 0. This finishes Case 3.
+
+
+Case 4. No coefficients ci,j and cℓ , where 1 ≤ i ≤ j ≤ n and 1 ≤ ℓ ≤ n, are relatively prime to N .
+     By our earlier assumption, this means that every prime factor of N divides every coefficient ci,j and
+cℓ . Then we can find the joint gcd d of N with all these coefficients, which must at least contain every
+prime factor of N , and divide out d in the exponent. By ωN d =ω                                        ′
+                                                                    N/d , we get Z(N, f ) = d · Z(N/d, f ),
+where f ′ = f /d is the quadratic polynomial obtained from f by dividing every coefficient with d. This
+reduces the modulus to N/d, and there can be at most log2 N many such steps.
+     This completes the proof of Lemma 3.1.
+
+
+4     Modulus is a Power of 2
+In this section, we deal with the more difficult case when the modulus, which we denote by q here, is
+a power of 2: q = 2k for some k ≥ 1. We note that the property of an element c ∈ Zq being even or
+odd is well-defined.
+
+Lemma 4.1. Let q = 2k for some positive integer k and let f ∈ Z[x1 , . . . , xn ] be a quadratic polynomial
+over n variables x1 , . . . , xn . Then Z(q, f ) can be evaluated in polynomial time.
+
+Proof. If k = 1, Z(q, f ) is computable in polynomial time according to [13], so we assume k > 1. The
+algorithm goes as follows. For each round, we can, in polynomial time, either
+
+    1. output the correct value of Z(q, f ); or
+
+
+                                                                    6
+   2. construct a new quadratic polynomial g ∈ Zq/2 [x1 , . . . , xn ] and reduce the computation
+      of Z(q, f ) to the computation of Z(q/2, g); or
+   3. construct a new quadratic polynomial g ∈ Zq [x1 , . . . , xn−1 ], and reduce the computation
+      of Z(q, f ) to the computation of Z(q, g).
+
+This gives us a polynomial-time algorithm for evaluating Z(q, f ), since we know how to solve the two
+base cases when either k = 1 or n = 0 efficiently.
+     Suppose we have a polynomial f ∈ Zq [x1 , . . . , xn ] as in (3). Our first step is to transform f so that
+all the coefficients of its cross terms (ci,j , where 1 ≤ i < j ≤ n) and linear terms (ci ) are even. Assume
+f does not yet have this property. We let t be the smallest index in [n] such that one of {ct , ct,j : j > t}
+is odd. By separating out the terms involving xt , we rewrite f as follows
+
+                            f = ct,t · x2t + xt · f1 (x1 , . . . , xbt , . . . , xn ) + f2 (x1 , . . . , xbt , . . . , xn ),                           (5)
+
+where f1 is an affine linear function and f2 is a quadratic polynomial. Both f1 and f2 here are over
+variables {x1 , . . . , xn } − {xt }. (The notation xbt means xt does not appear in the polynomial.) We let
+                                                                           P                   P
+                                   f1 (x1 , . . . , xbt , . . . , xn ) =       i<t ci,t xi +       j>t ct,j xj + ct .                                  (6)
+
+By the minimality of t, ci,t is even for all i < t, and at least one of {ct , ct,j : j > t} is odd.
+   We claim that
+                                              X                                             X
+                       Z(q, f ) =                        ωqf (x1 ,...,xn ) =                                       ωqf (x1 ,...,xn) .                  (7)
+                                        x1 ,...,xn ∈Zq                                   x1 ,...,xn ∈Zq
+                                                                               f1 (x1 ,...,b
+                                                                                           xt ,...,xn )≡ 0 mod 2
+
+This is because
+                                 X                                         X              X         c   x2 +xt f1 +f2
+                                             ωqf (x1 ,...,xn ) =                                   ωqt,t t               .
+                            x1 ,...,xn ∈Zq                                 xt ,...,xn ∈Zq xt ∈Zq
+                                                                   x1 ,...,b
+                            f1 ≡ 1 mod 2                              f1 ≡ 1 mod 2
+
+
+However, for any fixed x1 , . . . , xbt , . . . , xn , the inner sum over xt is equal to ωqf2 times
+
+     X                                                                                                       X
+                   c   x2 +xt f1         c    (xt +2k−1 )2 +(xt +2k−1 )f1                                                       c   x2 +xt f1
+                  ωqt,t t          + ωqt,t                                       =    1 + (−1)f1                             ωqt,t t            = 0,
+xt ∈[0:2k−1 −1]                                                                                          xt ∈[0:2k−1 −1]
+
+
+since f1 ≡ 1 mod 2. Note that we used (x + 2k−1 )2 ≡ x2 (mod 2k ) when k > 1 in the first equation.
+     Recall that f1 (see (6)) is an affine linear form over {x1 , . . . , x
+                                                                          bt , . . . , xn }. Also note that ci,t is even
+for all i < t, and one of {ct , ct,j : j > t} is odd. We consider the following two cases.
+     In the first case, ct,j is even for all j > t and ct is odd, then for any assignment (x1 , . . . , x   bt , . . . , xn )
+      n−1
+in Zq , f1 is odd. As a result, by (7), Z(q, f ) is trivially zero.
+     In the second case, there exists at least one j > t such that ct,j is odd. Let ℓ > t be the smallest
+of such j’s. Then we substitute the variable xℓ in f with a new variable x′ℓ , where (as ct,ℓ is odd, ct,ℓ
+is invertible in Zq )
+                                                P             P                           
+                            xℓ = c−1t,ℓ   2x ′ −
+                                             ℓ         c   x
+                                                    i<t i,t i +           c
+                                                                  j>t,j6=ℓ t,j jx    +  c t    .                         (8)
+
+
+                                                                             7
+and let f ′ denote the new quadratic polynomial in Zq [x1 , . . . , xℓ−1 , x′ℓ , xℓ+1 , . . . , xn ]. We claim that
+                                                                           X
+                                 Z(q, f ′ ) = 2 · Z(q, f ) = 2 ·                        ωqf (x1 ,...,xn) .
+                                                                       x1 ,...,xn ∈Zq
+                                                                       f1 ≡ 0 mod 2
+
+To prove this, we define the following map from Znq to Znq : (x1 , . . . , x′ℓ , . . . , xn ) 7→ (x1 , . . . , xℓ , . . . , xn ),
+where xℓ satisfies (8). It is easy to check that the range of the map is the set of (x1 , . . . , xℓ , . . . , xn ) in
+Znq such that f1 is even. Moreover for every such tuple (x1 , . . . , xℓ , . . . , xn ) the number of its preimages
+in Znq is exactly 2. The claim then follows.
+    As a result, to compute Z(q, f ), we only need to compute Z(q, f ′ ), and the advantage of the new
+polynomial f ′ over f is the following property.
+
+Property 4.1. For every cross and linear term that involves x1 , . . . , xt , its coefficient in f ′ is even.
+
+Proof. We show that after substituting the variable xℓ in f with a new variable x′ℓ as in equation (8),
+the new polynomial f ′ ∈ Zq [x1 , . . . , xℓ−1 , x′ℓ , xℓ+1 , . . . , xn ] we get satisfies Property 4.1.
+    To see this, we divide the terms of f ′ (that we are interested in, i.e. any cross term or linear term
+that contains at least one of x1 , . . . , xt ) into three groups: cross and linear terms that involve xt ; linear
+terms xs , s < t; and cross terms of the form xs xs′ , where s < s′ and s < t.
+    Firstly, we consider the expression (5) of f after the substitution. The first term ct,t x2t remains
+the same; the second term xt f1 becomes 2xt x′ℓ by (8); and xt does not appear in the third term even
+after the substitution. Therefore, Property 4.1 holds for xt .
+    Secondly, we consider the coefficient c′s of the linear term xs in f ′ , where s < t. Only the following
+terms in f can possibly contribute to c′s :
+
+                                            cs xs , cℓ,ℓ x2ℓ , cs,ℓ xs xℓ , and cℓ xℓ .
+
+By the minimality of t both cs and cs,ℓ are even. For cℓ,ℓ x2ℓ and cℓ xℓ , although we do not know whether
+cℓ,ℓ and cℓ are even or odd, we know that the coefficient −c−1   t,ℓ cs,t of xs in (8) is even since cs,t is even.
+As a result, for every term in the list above, its contribution to c′s is even and thus, c′s is even.
+     Finally, we consider the coefficient c′s,s′ of the term xs xs′ in f ′ , where s < s′ and s < t. Similarly,
+only the following terms in f can possibly contribute to c′s,s′ : (Here we consider the general case when
+s′ 6= ℓ. The special case when s′ = ℓ is easier.)
+
+                          cs,s′ xs xs′ , cℓ,ℓ x2ℓ , cs,ℓ xs xℓ , and cℓ,s′ xℓ xs′ (or cs′ ,ℓ xs′ xℓ ).
+
+By the minimality of t, both cs,s′ and cs,ℓ are even. Moreover, the coefficient −c−1 t,ℓ cs,t of xs in (8) is
+even. As a result, for every term listed above, its contribution to cs,s′ is even and thus, c′s,s′ is even.
+                                                                     ′
+
+   This finishes the proof of Property 4.1.
+
+    To summarize, after substituting xℓ with x′ℓ using (8), we get a new quadratic polynomial f ′ such
+that Z(q, f ′ ) = 2 · Z(q, f ) and for any cross and linear term that involves x1 , . . . , xt , its coefficient in f ′
+is even. We can repeat this substitution procedure on f ′ : either we show that Z(q, f ′ ) is trivially 0, or
+we get a quadratic polynomial f ′′ such that Z(q, f ′′ ) = 2 · Z(q, f ′ ) and the parameter t increases by at
+least one. As a result, given any quadratic polynomial f , we can, in polynomial time, either show that
+Z(q, f ) is 0, or construct a new quadratic polynomial g ∈ Zq [x1 , . . . , xn ] such that Z(q, f ) = 2d · Z(q, g)
+
+                                                                  8
+for some known integer d ≤ n, and every cross term and linear term of g has an even coefficient. For
+notational simplicity, we can just assume that the given f in form (3) satisfies this condition. (Or in
+other words, we rewrite f for g.) We will show that, given such a polynomial f in n variables, we can
+reduce it either to the computation of Z(q/2, f ′ ), in which f ′ is a quadratic polynomial in n variables;
+or to the computation of Z(q, f ′′ ), in which f ′′ is a quadratic polynomial in n − 1 variables.
+    We consider the following two cases: ci,i is even for all i ∈ [n]; or at least one of the ci,i ’s is odd.
+    In the first case, we know ci,j and ci are even for all 1 ≤ i ≤ j ≤ n. We use c′i,j and c′i to denote
+integers in [0 : 2k−1 − 1] such that ci,j ≡ 2c′i,j (mod q) and ci ≡ 2c′i (mod q), respectively. Then,
+                                                                P                         P               
+                                              X             2               ′
+                                                                   i≤j∈[n] ci,j xi xj +
+                                                                                                   ′
+                                                                                            i∈[n] ci xi
+             Z(q, f ) = ωqc0 ·                             ωq                                                 = 2n · ωqc0 · Z(2k−1 , f ′ ),
+                                          x1 ,...,xn ∈Zq
+
+where
+                                                            P                              P
+                                                   f′ =                  ′
+                                                                i≤j∈[n] ci,j xi xj +
+                                                                                                      ′
+                                                                                               i∈[n] ci xi
+
+is a quadratic polynomial over Zq/2 = Z2k−1 . This reduces the computation of Z(q, f ) to Z(q/2, f ′ ).
+    In the second case, without loss of generality, we assume c1,1 is odd. Then we have
+
+                                       f = c1,1 (x21 + 2x1 f1 ) + f2 = c1,1 (x1 + f1 )2 + f ′ ,
+
+where f1 is an affine linear form, and f2 , f ′ are quadratic polynomials, all of which are over x2 , . . . , xn .
+We are able to do this because c1,j and c1 , for all j ≥ 2, are even. Now we have
+                     X             c      (x1 +f1 )2 +f ′
+                                                                    X                ′
+                                                                                          X        c      (x1 +f1 )2
+    Z(q, f ) =                    ωq1,1                     =                    ωqf ·            ωq1,1                = G(c1,1 , q) · Z(q, f ′ ).
+                 x1 ,...,xn ∈Zq                                 x2 ,...,xn ∈Zq           x1 ∈Zq
+
+
+The last equation is because the sum over x1 ∈ Zq is independent of the value of f1 . This reduces the
+computation of Z(q, f ) to Z(q, f ′ ) in which f ′ is a quadratic polynomial in n − 1 variables.
+    To sum up, given any quadratic polynomial f , we can in polynomial time either output the correct
+value of Z(q, f ); or reduce one of the two parameters, k or n, by at least 1. This gives us a polynomial
+time algorithm to evaluate Z(q, f ), when q is a power of 2.
+
+
+5     #P-Hardness
+We first introduce the definition of a partition function ZA (·) [14, 4, 6, 1, 3], where A is a symmetric
+complex matrix. We will give four necessary conditions on the matrix A for the problem of computing
+ZA (·) being not #P-hard. Then we demonstrate the wide applicability of these necessary conditions
+by reducing ZA (·), for some appropriate A, to Z(N, f ) and proving that even computing Z(N, f ) for
+some very restricted families of polynomials over a fixed modulus N is #P-hard.
+    Finally, we show that for a large class of problems defined using Z(N, f ), these conditions actually
+cover all the #P-hard cases. Together with the polynomial-time algorithm presented in Section 3 and
+4, they imply an explicit complexity dichotomy theorem for this class.
+
+
+
+
+                                                                                 9
+5.1   Partition Functions
+Let A ∈ Cm×m be an m × m symmetric complex matrix. We define the partition function, or graph
+homomorphism function, ZA (·) as follows: Given any undirected graph G = (V, E) (here G is allowed
+to have multi-edges but no self loops)
+                              X                                                   Y
+                 ZA (G) =              wtA (G, ξ),   where wtA (G, ξ) =                    Aξ(u),ξ(v) .    (9)
+                            ξ:V →[m]                                             (u,v)∈E
+
+
+The computational complexity of ZA (·), for various A, has been studied intensely [14, 4, 6, 1, 3]. We
+need the following lemma which can be proved following an important result of Bulatov and Grohe [1].
+The proof of the lemma uses the technique of Valiant [16, 15] called interpolation, which is omitted
+here.
+
+Lemma 5.1 (The Rank-1 Condition). Let A ∈ Cm×m be a symmetric matrix, and A′ be the matrix
+such that A′i,j = |Ai,j | for all i, j. If there exists a 2 × 2 sub-matrix B of A′ such that B is of full rank
+and at least three of the four entries of B are non-zero, then computing ZA (·) is #P-hard.
+
+   Next we use Lemma 5.1 to prove a stronger necessary condition for ZA (·) being not #P-hard. The
+proof can be found in Appendix B. In the statement below, we let Ai,∗ denote the ith row vector of
+A. We say A is M -discrete, for some integer M ≥ 1, if every entry of A is an M -th root of unity.
+
+Lemma 5.2 (Orthogonality). Let M be a positive integer, and let A be a symmetric and M -discrete
+m × m matrix over C. If there exist i 6= j ∈ [m] such that Ai,∗ and Aj,∗ are neither linearly dependent
+nor orthogonal, then computing ZA (·) is #P-hard.
+
+5.2   The Group Condition
+Next, we prove a much stronger group-theoretic condition for ZA (·) being not #P-hard, where A is
+any discrete unitary matrix defined below. A similar condition was first used in the paper by Goldberg
+et al. [8] for {±1} matrices, in the study of ZA (·) over real matrices A. In the rest of this section, we
+use [0 : m − 1] to index the rows and columns of an m × m matrix for convenience.
+
+Definition 5.1 (Discrete Unitary Matrix). Let A ∈ Cm×m be a symmetric complex matrix. We say
+A is an M -discrete unitary matrix, for some positive integer M , if it is M -discrete and satisfies
+
+  — A0,i = Ai,0 = 1 for all i ∈ [0 : m − 1]; and for all i 6= j ∈ [0 : m − 1], hAi,∗ , Aj,∗ i = 0, where
+                                                              Pm−1
+                                           hAi,∗ , Aj,∗ i =    k=0 Ai,k Aj,k .
+
+
+   Given two vectors x and y ∈ Cm , we let x ◦ y denote their Hadamard product: z = x ◦ y ∈ Cm ,
+where zi = xi · yi for all i. It is easy to see that operation ◦ is associative, and when A is a discrete
+unitary matrix, its first row A0,∗ = 1, the all-1 vector, is an identity element under this operation ◦.
+Lemma 5.3 (The Group Condition). Let A ∈ Cm×m be a symmetric M -discrete unitary matrix, for
+some positive integer M . Then ZA (·) is #P-hard, unless A satisfies the following Group Condition:
+
+  — For all i, j ∈ [0 : m − 1], there exists a k ∈ [0 : m − 1] such that Ak,∗ = Ai,∗ ◦ Aj,∗ .
+
+
+
+                                                        10
+                                                                 c1
+
+
+
+                                               u                                     v
+                                                             a            b
+
+
+
+
+                                                                 d1
+
+  Figure 1: The gadget graph H [p] for p = 1, in which the bold line edges represent parallel edges.
+
+
+Remark: This is called the Group Condition because if A satisfies it, then the m row vectors Ai,∗
+of A form a group under the Hadamard product. To see that, by orthogonality, the map (i, j) 7→ k
+where Ak,∗ = Ai,∗ ◦ Aj,∗ is uniquely defined. Since entries of A are nonzero, this product ◦ satisfies
+the cancelation law: Ai,∗ ◦ Aj,∗ = Ai,∗ ◦ Aj ′ ,∗ =⇒ Aj,∗ = Aj ′ ,∗ , and by orthogonality j = j ′ . Since the
+row set is finite, by the pigeonhole principle every Ai,∗ has an inverse. Thus it forms a group under ◦.
+
+Proof. Assume that ZA (·) is not #P-hard. We prove that A satisfies the Group Condition.
+     Let G = (V, E) be an undirected graph. For every integer p ≥ 1, we build a new undirected graph
+G by replacing every edge uv ∈ E with a gadget graph called H [p] . (cf. the construction used by
+  [p]
+
+Goldberg et al. [8].) H [p] has 2p + 4 vertices u, v, a, b, ci , di where i ∈ [p]. There is one edge between
+(u, ci ), (ci , b), (di , a), (di , v); and M − 1 parallel edges between (ci , v), (ci , a), (di , b), (di , u). The gadget
+for the case p = 1 is shown in Figure 1. After replacing every uv ∈ E with H [p] , we get
+                                                          
+            G[p] = (V [p] , E [p] ),     where V [p] = V ∪ ae , be , ce,1 , . . . , ce,p , de,1 , . . . , de,p e ∈ E ,
+
+and E [p] contains the following edges: For any e = uv ∈ E and any i ∈ [p], there is one edge between
+(u, ce,i ), (ce,i , be ), (de,i , ae ), (de,i , v); and M − 1 edges between (ce,i , v), (ce,i , ae ), (de,i , be ), (de,i , u).
+    Now we define, for every p ≥ 1, the following m × m matrix B[p] :
+                                   [p]    P              [p] , ξ),
+                                Bi,j =        ξ wtA (H                    for all i, j ∈ [0 : m − 1],
+
+where the sum is over all possible assignments ξ from the vertex set of H [p] to [0 : m − 1] with ξ(u) =
+i and ξ(v) = j. By the definition of ZA (·) and the way we build G[p] from G, it can be checked that
+
+                               ZB[p] (G) = ZA (G[p] ),           for all undirected graphs G.
+
+This gives us a polynomial-time reduction from ZB[p] (·) to ZA (·), so ZB[p] (·) is also not #P-hard.
+   Next, we take a closer look at the entries of B[p] . We have
+
+
+
+
+                                                                     11
+                     m−1
+                                                                   !p       m−1
+                                                                                                        !p
+           [p]
+                     X m−1
+                         X            m−1
+                                      X                                     X
+          Bi,j   =                           Ai,c Aa,c Ab,c Aj,c                  Ai,d Aa,d Ab,d Aj,d
+                     a=0 b=0           c=0                                  d=0
+
+                                                                   2p       m−1
+                     m−1
+                     X m−1
+                         X m−1
+                           X                                                X m−1
+                                                                                X                                         2p
+                 =                          Ai,c Aa,c Ab,c Aj,c         =                hAi,∗ ◦ Aj,∗ , Aa,∗ ◦ Ab,∗ i          .
+                     a=0 b=0          c=0                                   a=0 b=0
+
+
+In the first equation, we used the fact that (Aa,c )M −1 = Aa,c since Aa,c is an M -th root of unity. Also
+note that B[p] is a symmetric non-negative matrix. Actually, every entry of B[p] is positive (by taking
+a = i and b = j). As a result, we can apply Lemma 5.1 on B[p] . Since we assumed that ZB[p] (·) is not
+#P-hard, we know that B[p] is of rank 1, for every p ≥ 1.
+    For the special case when j = i ∈ [0 : m − 1], we have
+                          m−1
+                          X m−1
+                              X                                         m−1
+                                                                        X m−1
+                                                                            X
+                  [p]                                         2p                                       2p
+                 Bi,i =                h1, Aa,∗ ◦ Ab,∗ i           =                  hAa,∗ , Ab,∗ i        = m · m2p ,
+                          a=0 b=0                                       a=0 b=0
+
+
+since A is an M -discrete unitary matrix. On the other hand, because the rank of B[p] is 1, we have
+                                [p]
+                           Bi,j = m2p+1 ,               for all i, j ∈ [0 : m − 1] and all p ≥ 1.                                  (10)
+
+   Now we use (10) to show that A satisfies the Group Condition. We start with some notation. Let
+                n                                              o
+         Xi,j = hAi,∗ ◦ Aj,∗ , Aa,∗ ◦ Ab,∗ i a, b ∈ [0 : m − 1] , for i, j ∈ [0 : m − 1].
+
+Clearly Xi,j is a finite set for all i, j, with cardinality at most m2 . Every x ∈ Xi,j satisfies 0 ≤ x ≤ m.
+For each x ∈ Xi,j , we let si,j (x) denote the number of pairs (a, b) ∈ [0 : m − 1] × [0 : m − 1] such that
+
+                                               hAi,∗ ◦ Aj,∗ , Aa,∗ ◦ Ab,∗ i = x.
+
+                          [p]
+We can now rewrite Bi,j as
+                                                  [p]
+                                                            X
+                                               Bi,j =              si,j (x) · x2p ,                                                (11)
+                                                          x∈Xi,j
+
+
+which is equal to m2p+1 for all p ≥ 1. Also note that si,j (x), for all x ∈ Xi,j , do not depend on p, and
+                                                    P                       2
+                                                         x∈Xi,j si,j (x) = m .                                                     (12)
+
+We can now view equations (11-12) as a linear system in the unknowns si,j (x). Fix i, j, then there
+are |Xi,j | many variables si,j (x), one for each distinct value x ∈ Xi,j . Equations in (11) are indexed
+by p ≥ 1. If we choose (12) and (11) for p = 1, ..., |Xi,j | − 1, this linear system forms an |Xi,j | × |Xi,j |
+Vandermonde matrix which has full rank |Xi,j |. Also notice that by setting (a, b) = (i, j) and (a, b) =
+(i′ , j), where i′ 6= i, respectively, we get that m ∈ Xi,j and 0 ∈ Xi,j , respectively. Moreover, we have
+si,j (0) = m2 − m, si,j (m) = m, and all other si,j (x) = 0 is a solution to the linear system. Therefore,
+this must be the unique solution. As a result, we have Xi,j = {0, m},
+
+                     si,j (m) = m and si,j (0) = m2 − m,                          for all i, j ∈ [0 : m − 1].
+
+
+                                                                   12
+This implies that for all i, j, a, b ∈ [0 : m − 1], |hAi,∗ ◦ Aj,∗ , Aa,∗ ◦ Ab,∗ i| is either m or 0.
+   Finally, we prove the Group Condition. Set j = 0. Because A0,∗ is the all-1 vector, we have
+
+          hAi,∗ ◦ 1, Aa,∗ ◦ Ab,∗ i = hAi,∗ ◦ Ab,∗ , Aa,∗ i ∈ {0, m},                     for all i, a, b ∈ [0 : m − 1].
+
+As {Aa,∗ : a ∈ [0 : m − 1]} is an orthogonal basis, where each kAa,∗ k2 = m, by Parseval, we have
+                              P                                  2
+                                  a   hAi,∗ ◦ Ab,∗ , Aa,∗ i          = m · kAi,∗ ◦ Ab,∗ k2 .
+
+Since every entry of Ai,∗ ◦ Ab,∗ is a root of unity, kAi,∗ ◦ Ab,∗ k2 = m. Hence
+                                         P                                  2
+                                             a   hAi,∗ ◦ Ab,∗ , Aa,∗ i          = m2 .
+
+As a result, for all i, b ∈ [0 : m − 1], there exists a unique a such that |hAi,∗ ◦ Ab,∗ , Aa,∗ i| = m.
+    Since A is discrete unitary, every entry of Ai,∗ , Ab,∗ and Aa,∗ is a root of unity. The inner product
+hAi,∗ ◦ Ab,∗ , Aa,∗ i is a sum of m terms each of complex norm 1. However, to sum to a complex number
+of norm m, every term must be a complex number of unit norm with the same argument: they are the
+same complex number eiθ . Thus, there exists a complex number eiθ , such that Ai,∗ ◦ Aj,∗ = eiθ · Ak,∗ .
+We assert that in fact eiθ = 1, and Ai,∗ ◦ Ab,∗ = Aa,∗ , since Ai,1 = Ab,1 = Aa,1 = 1. This finishes the
+proof of the lemma.
+
+5.3   Application to the #P-Hardness of Z(N, f )
+The three necessary conditions we proved in Section 5.2 are very powerful, and can be used to prove
+the #P-hardness of Z(N, f ), for some very restricted families of polynomials over a fixed modulus N .
+We would like to say, e.g., evaluating Z(N, f ), when f contains terms x1 x2 x3 , is #P-hard. However,
+we have to be very careful; such complexity-theoretic statements are only meaningful for a sequence
+of polynomials, and not an individual polynomial. This motivates the following definitions.
+       Let h ∈ Z[x1 , . . . , xr ] be a fixed polynomial (e.g., h = x1 x2 x3 , where r = 3). We say f ∈ Z[x1 ,
+. . . , xn ] is an h-type polynomial, if there exists an r-uniform hypergraph G = (V, E), where V = [n],
+such that (Here we allow G to have multiple edges, i.e., E is a multiset; and edges in E are ordered
+subsets of [n] of cardinality r)
+                                                        P
+                               f (x1 , . . . , xn ) =       (i1 ,...,ir )∈E h(xi1 , . . . , xir ).                        (13)
+
+Definition 5.2. Let q = pt be a prime power, and h ∈ Z[x1 , . . . , xr ] be a polynomial. We use S[q, h]
+to denote the following problem: Given any r-uniform hypergraph G, compute Z(q, f ), where f is the
+h-type polynomial defined by G = (V, E) using (13).
+
+   First, we use the rank-1 condition to prove the hardness of S[q, h1 ], where h1 (x1 , x2 , x3 ) = x1 x2 x3 .
+
+Corollary 5.1. For any fixed prime power q = pt , S[q, h1 ] is #P-hard.
+
+Proof. Let A be the following q × q complex matrix (here we use [0 : q − 1] to index A):
+                                  X
+                         Ai,j =        ωqijk , for all i, j ∈ [0 : q − 1].
+                                      k∈[0:q−1]
+
+
+
+
+                                                               13
+It is clear that A is symmetric. Moreover, we have A0,0 = A0,1 = A1,0 = q but A1,1 = 0. As a result,
+by Lemma 5.1 the problem of computing ZA (·) is #P-hard. However, there is also a polynomial-time
+reduction from ZA (·) to S[q, h1 ]. Given any input graph G = (V, E) of ZA (·), we build a 3-uniform
+hypergraph G′ = (V ′ , E ′ ) as follows:
+                                                            
+                    V ′ = V ∪ we : e ∈ E            and E ′ = (u, v, we ) : e = uv ∈ E .
+
+By definition, it is easy to check that ZA (G) = Z(q, f ), where f is the h1 -type polynomial defined by
+G′ . As a result, S[q, h1 ] is also #P-hard.
+
+   Second, we show how to employ the Orthogonality condition to prove the #P-hardness of S[q, h2 ]
+and S[q, h3 ], where h2 (x1 , x2 ) = x21 x2 and h3 (x1 , x2 ) = x1 x2 + x21 x22 , respectively.
+
+Corollary 5.2. For any prime power q ∈
+                                     / {2, 4}, S[q, h2 ] is #P-hard; and for any odd prime power q,
+S[q, h3 ] is #P-hard.
+
+Proof. Let A be the following q × q matrix defined by h2 :
+
+                          Ai,j = ωqh2 (i,j)+h2 (j,i) ,    for all i, j ∈ [0 : q − 1],
+
+and we show that ZA (·) can be reduced to S[q, h2 ]. Given any undirected graph G = (V, E), we build
+the following directed graph G′ = (V, E ′ ), where E ′ = {(u, v), (v, u) : uv ∈ E}. Then we always have
+ZA (G) = Z(q, f ), where f is the h2 -type polynomial defined by G′ . It is easy to check that if q is
+odd, then A0,∗ and A1,∗ are neither linearly dependent nor orthogonal; and if q ∈   / {2, 4} is a power of
+2, then A0,∗ and A2,∗ are neither linearly dependent nor orthogonal. This proves the #P-hardness of
+S[q, h2 ].
+    For S[q, h3 ], one can similarly define the following matrix A:
+
+                                 Ai,j = ωqh3 (i,j) ,     for all i, j ∈ [0 : q − 1],                 (14)
+
+and prove that ZA (·) can be reduced to S[q, h3 ]. Moreover, when q is an odd prime power, the two
+vectors A0,∗ and A1,∗ are neither linearly dependent nor orthogonal. This finishes the proof.
+
+   However, even with the Orthogonality condition, we are not able to show the hardness of S[q, h3 ]
+when q = 2t and t ≥ 3. This is because the matrix A defined by h3 in (14) is discrete unitary and thus,
+passes the orthogonality test. To prove its #P-hardness, we need to use the much stronger Group
+condition:
+
+Corollary 5.3. For any q = 2t ∈
+                              / {2, 4}, S[q, h3 ] is #P-hard.
+
+Proof. When q = 2t ∈
+                   / {2, 4}, the matrix A defined by h3 is q-discrete unitary but does not satisfy the
+Group Condition. The #P-hardness of S[q, h3 ] then follows from Lemma 5.3.
+
+5.4   A Dichotomy Theorem for S[q, h]
+Let q be a prime power, and h ∈ Zq [x1 , x2 ] be a symmetric polynomial. By the proofs of Corollary
+5.2 and 5.3 the problem S[q, h] is computationally equivalent to ZA (·) where A is the following q × q
+and q-discrete matrix:
+
+
+                                                          14
+                                Ai,j = ωqh(i,j) ,   for all i, j ∈ [0 : q − 1].                          (15)
+
+Although the Orthogonality condition and the Group condition can be used to prove the #P-hardness
+of S[q, h] for many interesting polynomials h, as demonstrated in Corollary 5.2 and 5.3, it does not
+cover all the #P-hard problems S[q, h]. For example, even if we assume that h is symmetric and every
+monomial in h(x1 , x2 ) contains both x1 and x2 (and thus, h(0, x) = h(x, 0) = 0 for all x ∈ Zq and the
+matrix A defined in (15) is symmetric and normalized: A0,i = Ai,0 = 1 for all i ), the Group condition
+cannot deal with the case when there exist indices i 6= j ∈ [0 : q − 1] such that Ai,∗ = Aj,∗ . We will
+use C to denote this class of problems.
+    We can prove a stronger theorem — the fourth condition, which is a strengthening of the current
+Group condition, leading to a complexity dichotomy theorem for C. The proof is omitted here.
+
+Lemma 5.4 (The Generalized Group Condition). Let A be any m × m symmetric, normalized, and
+M -discrete matrix for some positive integer M , such that for all indices i and j ∈ [0 : m − 1], either
+Ai,∗ = Aj,∗ or hAi,∗ , Aj,∗ i = 0. Let T1 , . . . , Tℓ be a partition of [0 : m − 1] such that
+
+                                 Ai,∗ = Aj,∗ ⇐⇒ ∃ k ∈ [ℓ] : i, j ∈ Tk .
+
+Then ZA (·) is #P-hard unless A satisfies the following Generalized Group Condition:
+
+  — ∀ k ∈ [ℓ], |Tk | = m/ℓ; and ∀ i, j ∈ [0 : m − 1], ∃ k ∈ [0 : m − 1] such that Ak,∗ = Ai,∗ ◦ Aj,∗ .
+
+    By combining the Generalized Group Condition with the Orthogonality Condition, we are able to
+show that for every problem S[q, h] ∈ C, either S[q, h] is #P-hard; or we have A = J ⊗ A′ where J
+is an all-1 matrix and A′ is a q-discrete unitary matrix that satisfies the original Group Condition.
+The latter can ultimately lead to a polynomial-time algorithm for ZA (·) as well as S[q, h], using the
+algorithm developed in Section 3 and 4.
+
+
+Acknowledgments
+We would like to thank Eric Bach, Richard Brualdi, Michael Kowalczyk, Endre Szemeredi and Mingji
+Xia for helpful discussions.
+
+
+
+
+                                                      15
+References
+ [1] A. Bulatov and M. Grohe. The complexity of partition functions. Theoretical Computer
+     Science, 348(2):148–186, 2005.
+
+ [2] J.-Y. Cai, X. Chen, and P. Lu. Graph homomorphisms with complex values: A dichotomy
+     theorem. In Proceedings of the 37th International Colloquium on Automata, Languages and
+     Programming, 2010.
+
+ [3] M.E. Dyer, L.A. Goldberg, and M. Paterson. On counting homomorphisms to directed acyclic
+     graphs. Journal of the ACM, 54(6), 2007.
+
+ [4] M.E. Dyer and C. Greenhill. The complexity of counting graph homomorphisms. In Proceedings
+     of the 9th International Conference on Random Structures and Algorithms, pages 260–289, 2000.
+
+ [5] A. Ehrenfeucht and M. Karpinski. The computational complexity of (XOR, AND)-counting
+     problems. University of Bonn, (Technical Report 8543-CS), 1990.
+
+ [6] M. Freedman, L. Lovász, and A. Schrijver. Reflection positivity, rank connectivity, and
+     homomorphism of graphs. Journal of the American Mathematical Society, 20:37–51, 2007.
+
+ [7] J. von zur Gathen and J. Gerhard. Modern Computer Algebra. Cambridge University Press,
+     2003.
+
+ [8] L.A. Goldberg, M. Grohe, M. Jerrum, and M. Thurley. A complexity dichotomy for partition
+     functions with mixed signs. In Proceedings of the 26th International Symposium on Theoretical
+     Aspects of Computer Science, pages 493–504, 2009.
+
+ [9] J. Grabmeier, E. Kaltofen, and V. Weispfenning. Computer Algebra Handbook. Springer, 2003.
+
+[10] L. Hua. Introduction to Number Theory. Springer-Verlag, 1982.
+
+[11] K. Ireland and M. Rosen. A Classical Introduction to Modern Number Theory. Springer, 1998.
+
+[12] S. Lang. Algebraic Number Theory. Addison-Wesley, 1970.
+
+[13] R. Lidl and H. Niederreiter. Finite Fields. volume 20 of Encyclopedia of Mathematics and its
+     Applications. Cambridge University Press, Cambridge, 1997.
+
+[14] L. Lovász. Operations with structures. Acta Mathematica Hungarica, 18:321–328, 1967.
+
+[15] L.G. Valiant. The complexity of computing the permanent. Theoretical Computer Science,
+     8:189–201, 1979.
+
+[16] L.G. Valiant. The complexity of enumeration and reliability problems. SIAM Journal on
+     Computing, 8(3):410–421, 1979.
+
+
+
+
+                                                16
+Appendix
+
+A     Gauss Sums
+In this section, we gather together some facts we need about Gauss sums. More information can be
+found in the book “Algebraic Number Theory” by Serge Lang [12].
+    Let a and b be non-zero integers, b > 0, and gcd(a, b) = 1. Let G(a, b) denote the following sum:
+                                                    X       2
+                                         G(a, b) =      ωbax .
+                                                                   x∈Zb
+
+The following identities are known.
+
+    • G(a, 1) = 1.
+
+    • If p is an odd prime, then
+                                                                      
+                                   a                                    a
+                        G(a, p) =     · G(1, p),                 where     is the Legendre symbol.
+                                   p                                    p
+
+    • If p is an odd prime, and r ≥ 2 is an integer, then G(a, pr ) = p · G(a, pr−2 ).
+
+    • Let b, c ≥ 1, gcd(b, c) = 1, and gcd(a, bc) = 1. Then G(a, bc) = G(ab, c) · G(ac, b).
+
+    • If b is odd ≥ 1, then
+                                           a                            a
+                          G(a, b) =                · G(1, b),     where         is the Jacobi symbol.
+                                               b                            b
+                                                                                √
+    • When a = 1, we have (Note the positive sign in front of                    b.)
+                                                          √
+                                                 
+                                                  (1 + i)   b            if b ≡ 0 (mod 4)
+                                                 
+                                                      √
+                                                         b                if b ≡ 1 (mod 4)
+                                       G(1, b) =
+                                                 
+                                                      0                  if b ≡ 2 (mod 4)
+                                                 
+                                                      √
+                                                      i b                 if b ≡ 3 (mod 4).
+
+    • For odd a,
+                                                                                       
+                                     −2r                                            −2r
+                   G(a, 2r ) =                 · ǫ(a) · G(1, 2r ),    where                   is the Jacobi symbol,
+                                      a                                              a
+
+      and                                                   (
+                                                                1 if a ≡ 1 (mod 4)
+                                                   ǫ(a) =
+                                                                i if a ≡ 3 (mod 4).
+
+An immediate conclusion is that the Gauss sum G(a, b) can be computed in polynomial time, in input
+length log a + log b, without knowing their prime factorizations.
+
+
+
+
+                                                                 17
+                                                                ae
+                                             u                                   v
+
+
+                                                                be
+
+         Figure 2: The gadget graph H, in which the bold line edges represent parallel edges.
+
+
+B      Proof of Lemma 5.2
+Let G = (V, E) be an undirected graph. We construct a new undirected graph G∗ by replacing each
+edge uv ∈ E with a gadget graph H as shown in Figure 2. H has four vertices u, v, a, b. There is one
+edge between (u, a) and (b, v), and M − 1 parallel edges between (a, v) and (u, b).
+   More exactly, we define the new graph G∗ = (V ∗ , E ∗ ) as follows:
+                                                
+                                      V ∗ = V ∪ ae , be e ∈ E
+
+and E ∗ contains exactly the following edges: For each e = uv ∈ E,
+
+    1. one edge between (u, ae ) and (be , v); and
+    2. (q − 1) parallel edges between (ae , v) and (u, be ).
+
+    Now we define A∗ as the following M × M symmetric matrix:
+                                                                                 2
+                             X                                   X
+                  A∗i,j =              Ai,a Aj,b Aj,a Ai,b =             Ai,a Aj,a ,   for all i, j ∈ [M ].
+                            a,b∈[M ]                            a∈[M ]
+
+
+By the definition of ZA (·) and the way we build G∗ from G using H, it can be checked that
+
+                               ZA∗ (G) = ZA (G∗ ),             for all undirected graphs G.
+
+This gives us a polynomial-time reduction from ZA∗ (·) to ZA (·).
+   Next we observe the entries of the new matrix A∗ . Without loss of generality, we assume the row
+1 and row 2 of A are neither linearly dependent nor orthogonal. As a result, we have
+
+                              A∗0,0 = A∗1,1 = M 2 ,        but       0 < A∗0,1 = A∗1,0 < M 2 .
+
+As a result, by Lemma 5.1, ZA∗ (·) is #P-hard and thus, ZA (·) is also #P-hard.
+
+
+
+
+                                                                18
+

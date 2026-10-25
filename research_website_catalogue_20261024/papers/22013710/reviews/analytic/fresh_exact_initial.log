@@ -1,0 +1,57 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22013710/reviews/analytic/fresh_exact.py", line 96, in <module>
+    for i,(r,g) in enumerate(((R1,g1),(R2,g2))):eq('same-generator all-strand intertwiner n3 i'+str(i),Un*r*adj(Un),g)
+                                                                                                            ~~~^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22013710/reviews/analytic/fresh_exact.py", line 19, in adj
+    return DM.from_dok({(j,i):F.from_sympy(s.conjugate(F.to_sympy(v))) for (i,j),v in m.to_dok().items()},m.shape[::-1],F)
+                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/domains/algebraicfield.py", line 369, in from_sympy
+    return self(to_number_field(a, self.ext).native_coeffs())
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/numberfields/subfield.py", line 510, in to_number_field
+    coeffs = field_isomorphism(root, theta)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/numberfields/subfield.py", line 239, in field_isomorphism
+    return field_isomorphism_factor(a, b)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/numberfields/subfield.py", line 140, in field_isomorphism_factor
+    _, factors = factor_list(a.minpoly, extension=b)
+                 ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/polytools.py", line 6641, in factor_list
+    return _generic_factor_list(f, gens, args, method='factor')
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/polytools.py", line 6379, in _generic_factor_list
+    cp, fp = _symbolic_factor_list(numer, opt, method)
+             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/polytools.py", line 6318, in _symbolic_factor_list
+    _coeff, _factors = func()
+                       ~~~~^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/polytools.py", line 3377, in factor_list
+    coeff, factors = f.rep.factor_list()
+                     ~~~~~~~~~~~~~~~~~^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/polyclasses.py", line 1640, in factor_list
+    coeff, factors = dmp_factor_list(f._rep, f.lev, f.dom)
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 1539, in dmp_factor_list
+    return dup_factor_list(f, K0)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 1467, in dup_factor_list
+    coeff, factors = dup_ext_factor(f, K0)
+                     ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 1344, in dup_ext_factor
+    factors = dup_factor_list_include(r, K.dom)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 1527, in dup_factor_list_include
+    coeff, factors = dup_factor_list(f, K)
+                     ~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 1488, in dup_factor_list
+    coeff, factors = dup_zz_factor(f, K)
+                     ~~~~~~~~~~~~~^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 714, in dup_zz_factor
+    H = dup_zz_zassenhaus(g, K)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 374, in dup_zz_zassenhaus
+    g = dup_zz_hensel_lift(p, f, modular, l, K)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 322, in dup_zz_hensel_lift
+    (g, h, s, t), m = dup_zz_hensel_step(m, f, g, h, s, t, K), m**2
+                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/factortools.py", line 261, in dup_zz_hensel_step
+    d = dup_trunc(d, M, K)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22729537/reviews/adversarial/.venv/lib/python3.14/site-packages/sympy/polys/densetools.py", line 450, in dup_trunc
+    c = c % p
+        ~~^~~
+KeyboardInterrupt

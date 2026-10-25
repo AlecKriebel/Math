@@ -1,0 +1,107 @@
+verification environment: Python 3.14.6; SymPy 1.14.0; mpmath 1.3.0; optimization=0
+
+== dependency-free exact matrix verifier ==
+[ok] H is Hermitian
+[ok] H^2 = I_16
+[ok] Tr(H) = 0
+[ok] cubic reflection identity on 64 dimensions
+[ok] GHR Eq. (5.2) literal block orientation fingerprint
+[ok] GHR Eq. (5.2) operator is unitary
+[ok] GHR Eq. (5.2) operator satisfies the normalized Hecke polynomial
+[ok] GHR Eq. (5.2) has normalized spectrum {-1,q}, multiplicities 4+4
+[ok] P^2 = P
+[ok] P is Hermitian
+[ok] Tr(P) = rank(P) = 8
+[ok] R is unitary
+[ok] (R + I)(R - qI) = 0
+[ok] Tr(R) = 8(q - 1) = -4 + 4i*sqrt(3)
+[ok] direct 64x64 Yang--Baxter equation for R
+[ok] Tr_right(P) = 2 I_4
+[ok] Tr_left(P) = 2 I_4
+[ok] exceptional trace-square value of the d=3 TL obstruction = 1/18
+[ok] exceptional trace-square value of the complementary d=3 obstruction = 1/18
+[ok] derived active terms equal the independently encoded printed K_H
+[ok] sitewise-swapped H factors as I_2 tensor K_H
+[ok] active K satisfies the Hecke polynomial
+[ok] sitewise-swapped R factors as I_2 tensor K
+[ok] active 8x8 operator is unitary
+[ok] standard (3,2)-generalized Yang--Baxter equation
+[ok] unnormalized squared Frobenius residuals: GHR (m=1,m=2)=(0,48); active K=(24,0)
+[ok] GHR (3,1)-gYB far commutativity
+[ok] (3,2)-gYB far commutativity
+[ok] dim span rho_3(H_3(q)) for the active representation = 6
+
+All dependency-free exact checks passed.
+base dimension: 4
+matrix size: 16 x 16
+rank of the (-1)-spectral projection: 8
+normalized spectral trace eta: 1/2
+standard active form: unitary (3,2)-gYB operator on three qubits
+
+== abstract tensor-word verifier ==
+[ok] ZIZZ^2 = I
+[ok] ZIJJ^2 = I
+[ok] JIZJ^2 = I
+[ok] JIJZ^2 = I
+[ok] XIXX^2 = I
+[ok] ZIZZ commutes with ZIJJ
+[ok] ZIZZ commutes with JIZJ
+[ok] ZIJJ commutes with JIZJ
+[ok] D = ABC
+[ok] E anticommutes with ZIZZ
+[ok] E anticommutes with ZIJJ
+[ok] E anticommutes with JIZJ
+[ok] E anticommutes with JIJZ
+[ok] H(alpha,beta)^2 = (alpha^2 + beta^2) I
+[ok] the cubic residual has exactly the printed 18-word certificate
+[ok] all 18 coefficients vanish for alpha^2=2/3, beta^2=1/3
+[ok] alpha=0, beta=0, and nondegenerate converse branches are certified
+
+The 18 surviving words and their coefficients are:
+  -1/2*alpha*beta^2 + 1/6*alpha                           : IIJIJZ, JIZJII, ZIJJII, ZIZZII
+  1/2*alpha*beta^2 + -1/6*alpha                           : IIJIZJ, IIZIJJ, IIZIZZ, JIJZII
+  -1*alpha^2*beta + 1*beta^3 + 1/3*beta                   : IIXIXX
+  1/2*alpha^3 + -1*alpha*beta^2                           : JIJZXX, JIZJXX, XIJXZJ, ZIZZXX
+  -1/2*alpha^3 + 1*alpha*beta^2                           : XIJXJZ, XIZXJJ, XIZXZZ, ZIJJXX
+  1*alpha^2*beta + -1*beta^3 + -1/3*beta                  : XIXXII
+
+All tensor-word checks passed.
+On alpha^2 + beta^2 = 1, the only nondegenerate obstruction is
+3 beta^2 - 1; hence beta^2 = 1/3 and alpha^2 = 2/3.
+
+== hardened SymPy verifier ==
+All exact checks passed.
+base dimension = 4
+matrix size = 16 x 16
+rank of (-1)-spectral projection = 8
+normalized spectral trace eta = 1/2
+q = 1/2 + sqrt(3)*I/2
+
+== concurrent-work exact equivalence verifier ==
+[ok] U_K^2 = -I
+[ok] V_K^2 = -I
+[ok] U_K V_K = -V_K U_K
+[ok] U_K V_K = mathsf B
+[ok] U_K + V_K + U_K V_K = -i sqrt(3) H
+[ok] intrinsic Family III formula for R_K
+[ok] S^dagger S = I_4
+[ok] R_K = (S^dagger tensor S^dagger) Sigma R_GR Sigma (S tensor S)
+[ok] quaternionic generators match componentwise after site reversal
+All concurrent-work equivalence checks passed exactly.
+
+== global braid-and-link exact verifier ==
+[ok] U_K and V_K are skew-Hermitian unitaries
+[ok] intrinsic factorization, S unitarity, and exact two-site comparison
+[ok] standard-frame eight-term witness for R(XIII)R^dagger (residual^2=0)
+[ok] scalar enhancement: Tr_1,Tr_2(R^+/-1)=2 kappa^+/-1 I_4
+[ok] R - q R^-1 = kappa I and q kappa^-2 = -1
+[ok] R^3 = -I, R^6 = I, and kappa^3 = 1
+[ok] low links: unknot 2, unlink_2 4, Hopf -2, trefoil -4
+[ok] enhanced two-strand values acquire a minus sign after three twists
+[ok] ordered quarter-turn factorization and full Pauli normalization
+[ok] exact site-reversal and direct Garside conjugacies for n=3
+[ok] exact site-reversal and direct Garside conjugacies for n=4
+[ok] literal five-word closures: figure-eight=-4, Borromean rings=2
+All global braid-and-link checks passed exactly.
+
+All five verification routes passed.
