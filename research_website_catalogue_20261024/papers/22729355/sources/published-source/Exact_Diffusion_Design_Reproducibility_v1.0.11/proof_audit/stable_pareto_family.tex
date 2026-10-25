@@ -1,0 +1,441 @@
+\section*{Stable Pareto theorem}
+For every integer $m\ge3$, write $\nu=m-2$ and let
+\[
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad
+ L_0=\frac{\kappa_\nu}{\sqrt\nu},
+ \qquad
+ L_1=\frac{90\nu}{90\nu+1}.
+\]
+For every $L\in[L_0,L_1]$, the frozen binary-complex topology admits positive
+rates, a positive equilibrium, and positive diagonal diffusion coefficients
+such that:
+\begin{enumerate}
+\item the homogeneous equilibrium is stable on its stoichiometric class;
+\item the first Neumann mode has one simple transverse stationary zero and all
+other eigenvalues stable;
+\item all higher modes are stable;
+\item the conservation-compatible cubic normal form has $\eta_m(L)>0$ and
+$c_m(L)<0$;
+\item the two nearby positive patterned equilibria are locally exponentially
+asymptotically stable in the fixed-mass $H^1$ phase space;
+\item the physical contrasts are
+\[
+ \chi_D(L)=\frac{23}{63}(91\nu L),
+ \qquad
+ \chi_H(L)=\frac{91\nu-1}{91\nu L}.
+\]
+\end{enumerate}
+Consequently
+\[
+ \chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+ =\frac{23(91m-183)}{63}=\chi_D^{\rm unit}(m),
+\]
+and at $L=L_0$ both contrasts are $\Theta(\sqrt{\nu})$.  Thus $L$ reallocates
+a fixed contrast product between physical diffusion and equilibrium
+concentration scales; it does not reduce the product.  Throughout the
+certified interval, $\chi_D(L)>\chi_H(L)$, so
+$\max(\chi_D,\chi_H)=\chi_D(L)$ is uniquely minimized at $L=L_0$.
+Since every stationary crossing in this topology satisfies
+$\chi_D\chi_H>8\nu$, the simultaneous square-root exponents are optimal among
+stationary-crossing realizations of $\widehat N_m$.
+
+
+\section*{An exact equilibrium-scaling family}
+Let $\nu=m-2$ and $K_i=91m-181-i$.  Retain the unit-flux effective reaction
+operator $A_m$, its full right and left critical vectors
+$r=(r_1,\ldots,r_m,r_Z)^T$ and
+$\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$, and the effective diffusion matrix
+\[
+ \Delta_m=\operatorname{diag}\left(
+ \frac{23}{63},\frac1{K_2},\ldots,\frac1{K_{m-1}},
+ \frac17,\frac{16}{45}\right).
+\]
+For a scalar $L>0$ define
+\[
+ \mathsf H_m(L)=\operatorname{diag}(h_1,\ldots,h_m,h_Z),
+\]
+with
+\[
+ h_1=h_m=h_Z=1,
+ \qquad
+ h_i=\frac{K_i}{L K_{i-1}}
+ \quad(2\le i\le m-1),
+\]
+and take the physical diffusion matrix
+\[
+ D_m^{\rm phys}(L)=\mathsf H_m(L)\Delta_m.
+\]
+The positive equilibrium is $x^*=\mathsf H_m(L)^{-1}\mathbf1$, and choosing each
+rate constant as the reciprocal of its source monomial at $x^*$ realizes
+unit reaction flux.  Hence every parameter is positive and the physical
+Jacobian is $\mathsf H_m(L)A_m$ in normalized concentration coordinates.
+
+Writing $\widehat x=\mathsf H_m(L)x$, the parameterized reaction--diffusion
+equation becomes
+\[
+ \partial_t\widehat x=\mathsf H_m(L)
+ \{f_m(\widehat x)+(1-\mu)D_m^{\rm eff}
+ \partial_{\xi\xi}\widehat x\},
+ \qquad D_m^{\rm eff}=\Delta_m.
+\]
+Thus, at $\mu=0$, the stationary bracket and its critical right vector are
+unchanged by $\mathsf H_m(L)$.  The dynamic left critical vector is
+\[
+ \widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell.
+\]
+Its transversality numerator is independent of the equilibrium scaling:
+\[
+ \widetilde\ell(L)^T\mathsf H_m(L)\Delta_m r
+ =\ell^T\Delta_m r<0.
+\]
+Since $\widetilde\ell(L)^Tr<0$, the quotient defining
+$\eta_m(L)$ is positive.
+The unit derivative identity gives
+\[
+ \ker[\mathsf H_m(L)(A_m-\Delta_m)]
+ =\ker(A_m-\Delta_m)=\operatorname{span}\{r\}.
+\]
+If $\mathsf H_m(L)(A_m-\Delta_m)v=r$, multiplication by
+$\widetilde\ell(L)^T$ would give
+$0=\widetilde\ell(L)^Tr$, which is impossible.  Thus the row-scaled
+critical zero is algebraically simple.
+The fixed physical conservation class becomes the normalized constraint with
+left vector $\mathsf H_m(L)^{-1}c$.
+Here $\chi_H$ measures equilibrium concentration-scale separation, not a
+universal measure of biological expense or implausibility.
+
+
+\section*{All-mode stability on the certified interval}
+For a mode with scalar damping $t$, row scaling gives
+\[
+ \det(\lambda I-\mathsf H_m(L)(A_m-t\Delta_m))
+ =\det \mathsf H_m(L)\,\{Q_m(\lambda,t)F(\lambda,t)-G(\lambda,t)\}.
+\]
+The fixed boundary factors are
+\[
+ g_1=\lambda+2+\frac{23}{63}t,
+ \quad g_m=\lambda+5+\frac17t,
+ \quad g_Z=\lambda+4+\frac{16}{45}t,
+\]
+\[
+ F=g_1g_mg_Z-4g_1-4g_m+g_Z,
+ \qquad G=g_Z(4g_1+g_m)-36.
+\]
+For $2\le i\le m-1$,
+\[
+ g_i=\frac{\lambda}{h_i}+1+\frac{t}{K_i}
+ =\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+If $t\ge1$ and $\operatorname{Re}\lambda\ge0$, then
+\[
+ |Q_m|^2\ge\left(\frac{91}{90}\right)^2|1+L\lambda|^{2\nu}
+ \ge\left(\frac{91}{90}\right)^2
+ \left(1+2\nu Lx+\nu L^2y^2\right),
+\]
+where $x=\operatorname{Re}\lambda$ and $y=\operatorname{Im}\lambda$.
+Throughout the certified interval $\nu L^2\ge1/3$, so this dominates the
+lower bound with coefficient $1/3$ in $y^2$.
+
+With $z=y^2$ and $s=t-1$, the exact 84-term source polynomial is
+\[
+ E_{84}(x,z,s;A)=\left(\frac{91}{90}\right)^2
+ \left(1+A x+\frac13z\right)
+ |F(x+i\sqrt z,1+s)|^2-|G(x+i\sqrt z,1+s)|^2,
+ \qquad A>0,
+\]
+has 84 nonzero monomials in $(x,y^2,t-1)$.  Every coefficient is a
+polynomial in $A$ with nonnegative rational coefficients.  Its coefficients
+of $x$, $y^2$, and $t-1$ are strictly positive, so equality occurs only at
+$(\lambda,t)=(0,1)$.  This proves a simple isolated first-mode zero and
+Hurwitz stability for every $t>1$.
+
+The homogeneous mode uses a different boundary polynomial.  At $t=0$,
+\[
+ \frac{\det(\lambda I-\mathsf H_m(L)A_m)}{
+ \det\mathsf H_m(L)}=Q(\lambda)F_0(\lambda)-R(\lambda),
+\]
+where
+\[
+ Q=\prod_{i=2}^{m-1}
+ \left(1+L\frac{K_{i-1}}{K_i}\lambda\right),
+ \quad F_0=\lambda^3+11\lambda^2+31\lambda+16,
+ \qquad R=5\lambda^2+33\lambda+16.
+\]
+For $x\ge0$, each factor in $Q$ has modulus at least $|1+L\lambda|$.
+If $\nu\ge2$, Bernoulli's inequality and the definition of $L_0$ give
+\[
+ |Q|^2\ge |1+L\lambda|^{2\nu}
+ \ge1+2\nu Lx+\nu L^2y^2
+ \ge1+Ax+\frac54y^2,
+ \qquad A=2\nu L.
+\]
+Here $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+With $U=A-1/4$, the exact 22-term source polynomial is
+\[
+ E_{22}(x,z;U)=
+ \left[1+\left(U+\frac14\right)x+\frac54z\right]
+ |F_0(x+i\sqrt z)|^2-|R(x+i\sqrt z)|^2.
+\]
+It has 22 nonzero monomials.  Every coefficient is a
+polynomial in $U$ with nonnegative rational coefficients, and equality occurs
+only at $\lambda=0$.  Hence no nonzero closed-right-half-plane homogeneous
+root exists.  The coefficient $5/4$ is sharp for this coefficientwise
+certificate only: replacing it by $B$ makes the coefficient of $z=y^2$ at
+$x=0$ equal to $256B-320$, which is zero at $B=5/4$ and negative below it.
+This identifies the boundary of the present modulus certificate, not an
+intrinsic dynamical boundary for $L_0$.  Also
+\[
+ (QF_0-R)'(0)
+ =16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
+\]
+because every ratio is greater than one and
+$L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.
+
+For $\nu=1$, put $\gamma=91L/90$.  Then
+\[
+ \frac{QF_0-R}{\lambda}
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2).
+\]
+Here $\gamma>1/8$, all coefficients are positive, and the cubic Routh--Hurwitz
+difference is
+\[
+ (1+11\gamma)(6+31\gamma)-\gamma(16\gamma-2)
+ =6+99\gamma+325\gamma^2>0.
+\]
+Thus the complementary homogeneous spectrum is Hurwitz in the exceptional
+dimension as well.
+
+The 22- and 84-term coefficient tables are in
+\texttt{pareto\_all\_m\_certificate.json} and are regenerated independently.
+
+
+\section*{Uniform supercritical sign along the scaling family}
+Let
+\[
+ \mathfrak h_m=\sum_{j=1}^{m-2}\frac1{K_j}.
+\]
+Then
+\[
+ \frac1{91}\le\mathfrak h_m<\frac1{90}.
+\]
+Let $w_0^{\rm ref}$ denote the reference zero-mode correction satisfying
+$c^Tw_0^{\rm ref}=0$, and let $\rho_m$ generate $\ker A_m$.  The corrected
+zero mode for the physical fixed-mass class is
+\[
+ w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho_m,
+\]
+\[
+ \tau_m(L)=-\frac{(\mathsf H_m(L)^{-1}c)^Tw_0^{\rm ref}}
+ {(\mathsf H_m(L)^{-1}c)^T\rho_m}.
+\]
+The second harmonic is unchanged, because the stationary equation inside the
+invertible row factor $\mathsf H_m(L)$ is unchanged.
+
+With the inherited normalization of $r$ and $\ell$,
+\[
+ \ell^T\mathsf H_m(L)^{-1}r
+ =-\frac{485873}{924210}-\frac{11180}{1467}L(m-2)<0.
+\]
+The cubic numerator has the exact decomposition
+\[
+ N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m,
+\]
+Put $\nu=m-2$.  Since $C_m<0$ and
+$\mathfrak h_m\le\nu/(90\nu+1)$, exact clearing gives
+\[
+ N_m^{\rm ref}-\frac1{100}\ge\frac{P_{\rm ref}(\nu)}{D_{\rm ref}(\nu)},
+\]
+where
+\begin{align*}
+P_{\rm ref}={}&3790502986637265684840\nu^5
+-974216530468600286489\nu^4-53103567440921218871\nu^3\\
+&-576386186827093561\nu^2+3649732858601219\nu+55281268032918,
+\end{align*}
+\begin{align*}
+D_{\rm ref}={}&715296950550(8\nu-1)(90\nu+1)\\
+&\times(589180301\nu^3+35065866\nu^2+629431\nu+3306).
+\end{align*}
+The denominator is positive.  After $\nu=v+1$, the descending coefficients
+of $P_{\rm ref}$ are
+\[
+\begin{gathered}
+3790502986637265684840,17978298402717728137711,
+33955060177057334483573,\\
+31899843595051464379292,14895188986348368035728,
+2762610207555043720056,
+\end{gathered}
+\]
+so $N_m^{\rm ref}>1/100$.
+
+Separately,
+\[
+ S_m=-\frac{4(1760850\mathfrak h_m-10253)}{462105}.
+\]
+The bounds $1/91\le\mathfrak h_m<1/90$ and the exact comparisons
+\[
+ \frac{1760850}{91}-10253>0,
+ \qquad
+ \frac4{462105}\left(\frac{1760850}{90}-10253\right)<\frac1{10}
+\]
+prove $-1/10<S_m<0$.  For the gauge, define
+\begin{align*}
+A_\tau={}&1494249120\mathfrak h_mL\nu^2-69786990\mathfrak h_mL\nu
++108738630L\nu^2\\
+&+1214388L\nu-8521L-125249670\nu^2+1031940\nu,
+\end{align*}
+\[
+B_\tau=32760\mathfrak h_mL\nu+32760L\nu^2+4L-4095\nu,
+\qquad
+\tau_m(L)=-\frac{A_\tau}{15876(8\nu-1)B_\tau}.
+\]
+On $L\ge1/\sqrt{3\nu}$,
+$B_\tau=4095\nu[8L(\nu+\mathfrak h_m)-1]+4L>0$ because
+$L\nu\ge1/\sqrt3$, and
+\[
+\partial_{\mathfrak h}\tau_m
+=-\frac{4225L\nu^2(182448L\nu+1008L-7513)}{2B_\tau^2}<0,
+\]
+\[
+\partial_L\tau_m
+=-\frac{65\nu(-61531470\mathfrak h_m\nu+125249670\nu^2
++1031940\nu-7513)}{252B_\tau^2}<0.
+\]
+Thus its maximum occurs at $\mathfrak h_m=1/91$ and
+$L=1/\sqrt{3\nu}$.  With $y=\sqrt{3\nu}$, define
+\[
+P_\tau=-1040195520\nu^3+756272790\nu^2y-507201030\nu^2
+-21412755\nu y-935658\nu+58481.
+\]
+Then
+\[
+\tau_m(1/91,1/y)-\frac1{20}
+=-\frac{P_\tau}{79380(8\nu-1)
+(-32760\nu^2+4095\nu y-360\nu-4)}.
+\]
+The denominator is negative because $y<2\nu$.
+For $\nu=1$, $\sqrt3<7/4$ gives
+$P_\tau<-1049074663/4<0$.  For $\nu\ge2$, $y\le5\nu/4$ gives
+$P_\tau<P_{\rm up}$, where
+\[
+P_{\rm up}=-\frac{189709065}{2}\nu^3-507201030\nu^2-935658\nu+58481.
+\]
+Since
+\[
+P_{\rm up}'=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0,
+\qquad P_{\rm up}(2)=-2789453215<0,
+\]
+the endpoint, and hence the full range, satisfies $\tau_m(L)<1/20$.
+
+If $\tau\le0$, then $\tau S_m\ge0$.  If $0<\tau<1/20$, then
+$\tau S_m>-1/200$.  Therefore
+\[
+ N_m(L)>\frac1{200}>0.
+\]
+The normal-form coefficients are
+\[
+ \eta_m(L)=\frac{\ell^T\Delta_m r}
+ {\ell^T\mathsf H_m(L)^{-1}r}>0,
+\]
+\[
+ c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}
+ =\frac{N_m(L)}{\ell^T\mathsf H_m(L)^{-1}r}<0.
+\]
+Thus every member with $L\ge1/\sqrt{3\nu}$ is supercritical.  The certified
+spectral interval below is a subset of this range: its lower endpoint agrees
+with $1/\sqrt{3\nu}$ for $\nu=1$ and is larger for $\nu\ge2$.
+The diagonal scaling commutes with spatial reflection
+$\xi\mapsto\pi-\xi$; consequently the scaled reduced vector field remains
+odd and reflection exchanges its two nonzero branches.
+For each fixed $m$ and $L$, the normalized branch converges to $\mathbf1$ in
+$H_N^2\hookrightarrow C^0$ and is componentwise strictly positive for
+sufficiently small $\mu>0$.  Multiplication by the positive diagonal matrix
+$\mathsf H_m(L)^{-1}$ preserves componentwise positivity in physical
+concentrations.
+
+
+\section*{Certified stable Pareto curve}
+Set
+\[
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad
+ L_0(\nu)=\frac{\kappa_\nu}{\sqrt\nu},
+ \qquad L_1(\nu)=\frac{90\nu}{90\nu+1}.
+\]
+The interval is nonempty for every $\nu\ge1$.  When $\nu=1$, the squared
+inequality $L_0<L_1$ is $8281<24300$.  When $\nu\ge2$, it follows from
+\[
+ (90\nu+1)^2\le(91\nu)^2<6480\nu^3,
+\]
+which is the squared endpoint inequality.  For
+$L\in[L_0,L_1]$, every interior equilibrium scaling satisfies $h_i\ge1$.
+The largest is
+\[
+ h_2=\frac{91\nu-1}{91\nu L},
+\]
+while the boundary scalings equal one.  Thus
+\[
+ \chi_H(L)=\frac{91\nu-1}{91\nu L}.
+\]
+The physical diffusivities are
+\[
+ d_1=\frac{23}{63},
+ \qquad d_i=\frac1{LK_{i-1}}
+ \ (2\le i\le m-1),
+ \qquad d_m=\frac17,
+ \qquad d_Z=\frac{16}{45}.
+\]
+Their minimum is $d_2=1/(91\nu L)$ and their maximum is $d_1$, so
+\[
+ \chi_D(L)=\frac{23}{63}(91\nu L).
+\]
+Consequently
+\[
+ \boxed{\chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+ =\chi_D^{\rm unit}(m)}
+\]
+throughout the certified stable curve.  Increasing $L$ increases diffusion
+contrast and decreases equilibrium contrast, reallocating a fixed product.
+Thus no two points of this curve dominate one another within the curve.
+At the lower endpoint,
+\[
+ \frac{\chi_D(L_0)}{\chi_H(L_0)}=
+ \begin{cases}
+  27209/2430,&\nu=1,\\[2pt]
+  \dfrac{136045\nu}{36(91\nu-1)},&\nu\ge2,
+ \end{cases}
+ \quad >1.
+\]
+Therefore $\chi_D(L)>\chi_H(L)$ throughout the interval and the maximum is
+uniquely minimized at $L_0$.
+
+At the certified square-root-scaling endpoint $L=L_0$,
+\[
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt{\nu},
+ \qquad
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu}.
+\]
+Hence both contrasts, and therefore their maximum, are $\Theta(\sqrt m)$ at
+$L_0$, compared with $\Theta(m)$ for the unit-equilibrium stable profile.
+
+For every stationary crossing of $\widehat N_m$, the exact diffusion law gives
+the strict topology-wide trade-off
+\[
+ \chi_D\chi_H>8\nu.
+\]
+In particular
+\[
+ \max(\chi_D,\chi_H)>\sqrt{8\nu}.
+\]
+The construction therefore attains the optimal square-root exponent in both
+coordinates among stationary-crossing realizations of this topology.  The
+complete constant-optimal diffusion--equilibrium Pareto frontier is not
+determined: the constructed product has asymptotic coefficient $2093/63$,
+while the topology-specific stationary lower coefficient is $8$.

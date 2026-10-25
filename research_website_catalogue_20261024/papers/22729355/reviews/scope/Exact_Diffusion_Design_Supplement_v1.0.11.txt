@@ -1,0 +1,1254 @@
+===== PAGE 1 =====
+Technical Supplement to
+Exact Diffusion Design for Maximally Collective Stable Turing Patterns
+in Binary-Complex Mass-Action Networks
+Alec Kriebel
+August 2026
+Contents
+S1 Reaction matrices, flux cone, and semipositive conservation . . . . . . . . . . . . . . . . . . . . . . . . 1
+S2 All-spectrum principal-block classification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+S3 The principal-minor diffusion-ray theorem in full detail . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+S4 Order- (n−1) omission minors and diffusion design . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+S5 Improved unit-equilibrium critical profile . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+S6 Conservation-compatible stable-mode corrections . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+S7 Equilibrium-scaled stable family . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+S8 Exact coefficient tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+S8.1 Coefficientwise-nonnegative modulus certificates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+S8.2 Signed scalar and rational-function certificates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+S9 Near-threshold control example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+S10 Semilinear stability and robustness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+S11 Numerical protocol and independent verification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+S1 Reaction matrices, flux cone, and semipositive conservation
+Order species asX1,...,Xm,Zand reactions asR0,R2,...,Rm−2,Ra,Rb,R+,R−. For each indexed reaction, the
+source and target vectors have total molecularity at most two. The source matrixYm and stoichiometric matrixΓm
+are obtained by placing these source vectors and reaction differences in columns.
+The balance equationsΓmv = 0 read, successively, equality of every flux around the long circuit and equality of the
+two boundary-pair fluxes. Thus
+ker Γm = span{(1m,0,0),(0m,1,1)}.
+The balance equations show that this kernel is exactly two-dimensional. Since Γm has m + 2 columns, rank–
+nullity gives rank Γm = m. As an independent explicit check, retain the rowsX1,X3,...,Xm,Zand the columns
+R2,...,Rm−2,Ra,Rb,R+, with the chain range empty whenm = 3. The resulting maximal minor has determinant
+4(−1)m. The vector
+c = (0,4,...,4,2,1)T
+is orthogonal to every reaction vector, soim Γm =c⊥. Notice thatc is semipositive rather than positive:X1 is absent.
+For flux (a1m,b,b) and unit equilibrium,Am(a,b) = Γ m diag(a1m,b,b)YT
+m has precisely the entries printed in
+the main text. At an arbitrary positive equilibrium, right multiplication byH = diag(1/x∗
+i ) gives J =Am(a,b)H.
+Conversely the rate assignmentkr =vr/(x∗)yr realizes everya,b,H >0.
+S2 All-spectrum principal-block classification
+Use the directed conventionXj→Xi when the (i,j) Jacobian entry is nonzero. The interior arrows are the one-way
+chainX2→X3→···→Xm−1. The boundary arrows are those incident toX1,Xm,Zand the returnsXm−1→X1,
+Xm→X2. The following case analysis is exhaustive for an induced set with fewer thanm vertices.
+Form = 3, inspect the principal sets of order at most two directly. The sets{X1,X2}and{X2,X3}are the two
+complete long cycles; every other non-singleton strongly connected component is a principal subgraph of{X1,X3,Z}.
+Hence assumem≥4 in the chain argument below.
+1
+
+===== PAGE 2 =====
+1. If a component contains a chain arrow and returns throughXm−1→X1, then the unique forward path fromX1
+forces every vertexX1,...,Xm−1. This is the first complete long cycle.
+2. If it contains a chain arrow and returns throughXm→X2, then the forward path forces every vertexX2,...,Xm.
+This is the second complete long cycle.
+3. The alternative chain closureX1→X2→···→Xm→X1 usesm vertices and is excluded. Adding any boundary
+vertex to either complete long cycle also uses at leastm vertices.
+4. If neither long cycle is complete, every feedback path not involving a complete chain lies inside{X1,Xm,Z}. All
+other retained chain vertices have no return path and therefore form negative singleton diagonal blocks.
+Atb = 2a, the coefficientAm1 vanishes. This deletes the arrowX1→Xm. That arrow lies on neither complete long
+cycle, so both long-cycle blocks and their characteristic equations are unchanged. Within the boundary graph, edge
+deletion can split but cannot merge strongly connected components, so the same list remains exhaustive.
+For the boundary triad, the Routh–Hurwitz difference expands as
+c1c2−c3 =a
+(
+4a2h2
+1hm + 16a2h1h2
+m + 11abh2
+1hm + 4abh2
+1hZ
++ 32abh1h2
+m + 32abh1hZhm + 64abhZh2
+m + 7b2h2
+1hm
++ 4b2h2
+1hZ + 7b2h1h2
+m + 48b2h1hZhm + 16b2h1h2
+Z
++ 16b2hZh2
+m + 64b2h2
+Zhm
+)
+.
+Every monomial is strictly positive. The two long-cycle modulus inequalities are strict becausea +b > aand
+4a +b> 4a. Frobenius permutation therefore proves Hurwitz stability of every smaller principal block.
+For completeness, the core determinant has a short exact Schur-complement calculation. First factor the column
+scalings ∏m
+i=1hi. For m ≥4, the lower-bidiagonal block onX3,...,Xm−1 has determinant (−a)m−3, and the
+bottom-left corner of its inverse is−1/a. Eliminating that block leaves, in the order(X1,X2,Xm),
+Bcore
+m =
+
+
+−(a +b) −a −b
+−a −a 2a
+2a−b 2a −(4a +b)
+
+, detBcore
+m = 2a2b.
+When m = 3 the interior block is empty andBcore
+m is the originalX-species block. Restoring the column factors
+therefore gives, in every dimension,
+(−1)m detJˆZ,ˆZ =−2am−1b
+m∏
+i=1
+hi.
+The complete omission table is derived in Section S4 below.
+S3 The principal-minor diffusion-ray theorem in full detail
+Let n≥2, aI = (−1)|I|detJI,I, anda∅ = 1. Assume detJ = 0, aI > 0 for|I|≤n−2, and ∑
+|I|=n−1aI > 0. The last
+condition follows from a simple zero and stable complementary spectrum but is stated directly because it is all the
+proof uses. Multilinearity in the diagonal entries ofsD gives
+det(sD−J) =
+∑
+I⊆[n]
+aI
+∏
+j/∈I
+sdj.
+Regrouping byk =n−|I|yields
+det(sD−J) =
+n∑
+k=1
+βk(D)sk, βk(D) =
+∑
+|I|=n−k
+aI
+∏
+j/∈I
+dj.
+Fork≥2, every contributing set has order at mostn−2, so the stated coefficient hypothesis givesaI > 0 and hence
+βk > 0.
+The bracketqD(s) =β1 +β2s +···+βnsn−1 is strictly increasing fors> 0. Ifβ1 < 0, it has exactly one positive
+zero and its derivative there is positive. This proves scalar simplicity of the dispersion root. Ordinary algebraic
+simplicity of zero as an eigenvalue ofJ−s∗D follows from the characteristic-polynomial derivative below.
+2
+
+===== PAGE 3 =====
+For the positive-real-eigenvalue band, differentiate
+χs(λ) =
+∑
+I
+aI
+∏
+j/∈I
+(λ+sdj).
+Every order-at-most-(n−2) contribution is nonnegative forλ≥0. The order-(n−1) contribution toχ′
+s is the constant∑
+|I|=n−1aI. This is positive by hypothesis. Under the common spectral corollary it equals the coefficient ofs in
+det(sI−J), and equal damping sends the simple zero and all stable eigenvalues left. Thusχ′
+s > 0 on the nonnegative
+real axis. The sign ofχs(0) then determines whether there is exactly one positive real eigenvalue. Ats =s∗,χs∗(0) = 0
+and χ′
+s∗(0)> 0, so zero is an algebraically simple eigenvalue ofJ−s∗D.
+The theorem says nothing about nonreal unstable eigenvalues whens>s ∗. The all-mode certificates below are
+separate, profile-specific results.
+S4 Order- (n−1) omission minors and diffusion design
+Right multiplication byH multiplies a principal determinant by the product of its retainedhi, so the combinatorial
+coefficients may be computed atH =I.
+Omitting Z leaves the completeX-chain block. The Schur-complement calculation above gives
+(−1)m detJˆZ,ˆZ =−2am−1b
+m∏
+i=1
+hi.
+For 2≤j ≤m−1, omit Xj. A Frobenius permutation orders the right chain fragmentXj+1,...,Xm−1, then
+{X1,Xm,Z}, then the left fragmentX2,...,Xj−1; empty fragments are omitted. The resulting matrix is block lower
+triangular. Them−3 chain singletons contribute signed factorsahi, and the boundary triad contributes
+(−1)3 detJ{X1,Xm,Z},{X1,Xm,Z}= 16a2bh 1hmhZ.
+Therefore
+(−1)m detJˆXj,ˆXj
+= 16am−1bhZ
+∏
+1≤i≤m
+i̸=j
+hi.
+OmittingX1 leaves the restricted semipositive conservation vector in the left kernel. OmittingXm leaves the restriction
+of H−1(2,−2,...,−2,0,1)T in the right kernel, because the omitted coordinate is zero. Hence both determinants
+vanish.
+Multiplication by the omitted diffusivities produces
+β1(D) = 2am−1b
+( m∏
+i=1
+hi
+) 
+8hZ
+m−1∑
+j=2
+dj
+hj
+−dZ
+
+.
+This yields the exact diffusion criterion and explains the coefficient eight as the exact ratio16/2.
+Define the stable realization domain
+Sm ={(a,b,H) :a,b>0, H≻0, Am(a,b)H|c⊥is Hurwitz}.
+The complete regionSm is not characterized here. For any(a,b,H)∈Sm, ifdmin = minidi, then
+dZ > 8hZ
+m−1∑
+j=2
+dj
+hj
+≥dminT (H),
+so χD >T (H). Setting allX diffusivities to one anddZ =T (H) +εproves the nonattained fixed-H infimum. Since
+hZ/hj≥1/χH, one obtainsχDχH > 8(m−2). The implicationT(H)> 1 is necessary under homogeneous stability;
+its converse is not proved.
+3
+
+===== PAGE 4 =====
+S5 Improved unit-equilibrium critical profile
+Put Ki = 91m−181−i. The right vectorr = (r1,...,rm,rZ)T and diffusion profile are
+r1 = 1, ri =− Ki
+63(m−2), rm =−2
+9, rZ = 5
+14,
+d1 = 23
+63, di = 1
+Ki
+, dm = 1
+7, dZ = 16
+45.
+Direct substitution gives(Am−Dm)r = 0. WithℓZ = 1, the left vectorℓ= (ℓ1,...,ℓm,ℓZ)T is
+ℓ1 =−266
+815, ℓi = 78260(m−2)
+163(91m−180−i), ℓm = 18368
+7335 , ℓZ = 1.
+Define
+hm =
+m−2∑
+j=1
+1
+91m−181−j.
+Then
+ℓTr =−7043400m−13600927−7043400hm
+924210 < 0,
+ℓTDmr =−2(1760850hm + 16559)
+462105 < 0.
+The harmonic boundhm≤(m−2)/(90m−179) makes the first sign an elementary shifted-polynomial inequality.
+Homogeneous and spatial determinants
+The homogeneous determinant has
+det(λI−Am) =λqm(λ), λqm = (1 +λ)m−3P(λ)−R(λ),
+with P =λ4 + 12λ3 + 42λ2 + 47λ+ 16 and R = 5λ2 + 33λ+ 16. Form = 3,
+q3 = (λ+ 7)(λ2 + 5λ+ 2)
+is Hurwitz. Form≥4, the exact 35-term certificate for|1 +λ|2|P|2−|R|2 is strictly positive away from the origin
+in the closed right half-plane. Since|1 +λ|≥1 there, a nonzero closed-right-half-plane root ofqm would contradict
+(1 +λ)m−3P = R. Finally, qm(0) = 16 m−34 > 0, so the conservation zero is simple and the complementary
+homogeneous spectrum is stable for everym≥3. For a mode with damping factort,
+det(λI−Am +tDm) =QmF−G,
+where
+Qm =
+m−1∏
+i=2
+(
+λ+ 1 + t
+Ki
+)
+,
+g1 =λ+ 2 + 23
+63t, gm =λ+ 5 + 1
+7t, gZ =λ+ 4 + 16
+45t,
+F =g1gmgZ−4g1−4gm +gZ, G =gZ(4g1 +gm)−36.
+At onset,∏m−1
+i=2 (1+K−1
+i ) = 91/90. The exact certificate tables appear in Section S8. The equality point is algebraically
+simple, not merely isolated from nonzero closed-right-half-plane roots. Indeed, with
+Πm(λ) = det(λI−Am +Dm) =Qm(λ,1)F(λ,1)−G(λ,1),
+one has the all-dimensional identity
+Π′
+m(0) = 7043400m−13600927−7043400hm
+255150 =−163
+45 ℓTr> 0.
+Thus zero is algebraically simple and the kernel and cokernel ofAm−Dm are one-dimensional.
+4
+
+===== PAGE 5 =====
+S6 Conservation-compatible stable-mode corrections
+The quadratic tensor is obtained reaction by reaction. Its components are
+(B(u,v))1 =−(u1vm−1 +um−1v1) + 2uZvZ−(u1vm +umv1),
+(B(u,v))2 =−(u1v2 +u2v1) + 2umvm,
+(B(u,v))i =u1vi−1 +ui−1v1−u1vi−uiv1,
+(B(u,v))m = 2(u1vm−1 +um−1v1)−4umvm + 2uZvZ−(u1vm +umv1),
+(B(u,v))Z =−4uZvZ + 2(u1vm +umv1).
+Here the third line holds for3≤i≤m−1. Reaction-wise conservation impliescTB(u,v) = 0.
+The zero mode solves
+Amw0 =−1
+4B(r,r), c Tw0 = 0.
+The exact solution is
+(w0)1 = 182448m−373417
+31752(8m−17) ,
+(w0)2 = 1008m2−20459m + 37138
+31752(m−2)(8m−17) ,
+(w0)i = (w0)2− i−2
+126(m−2), (w0)m =−1
+81, (w0)Z = 16861m−34044
+7938(8m−17) .
+The second harmonic solves
+(Am−4Dm)w2 =−1
+4B(r,r).
+With
+σ= 1
+126(m−2), T i = Ki−3Ki−2Ki−1Ki
+K−1K0K1K2
+,
+the chain recurrence is
+(w2)i =Ti
+(
+(w2)2 + σK2
+3
+)
+−σKi
+3 .
+Its boundary denominator is
+Qm = 589180301m3−3500015940m2 + 6930529579m−4574434500.
+After m =u + 3, the coefficients are
+589180301, 1802606769, 1838302066, 624878904,
+so it never vanishes form≥3. The complete boundary solve is exposed as follows. Write
+W1 = (w2)1, W2 = (w2)2, Wm = (w2)m, WZ = (w2)Z, b (2) =−1
+4B(r,r),
+and set
+δm = σ
+3 (Tm−1K2−Km−1).
+Substitution of the recurrence into the four boundary rows gives the complete system
+
+
+−218/63 −Tm−1 −1 2
+−1 −(1 + 4/K2) 2 0
+1 2 Tm−1 −39/7 2
+2 0 2 −244/45
+
+
+
+
+W1
+W2
+Wm
+WZ
+
+ =
+
+
+b(2)
+1 +δm
+b(2)
+2
+b(2)
+m −2δm
+b(2)
+Z
+
+.
+Its determinant is exactly
+64Qm
+6615(91m−183)(91m−181)(91m−180).
+5
+
+===== PAGE 6 =====
+All factors in the denominator are positive form≥3, while the displayed shifted-positive certificate provesQm > 0.
+Thus the four boundary values are the unique solution of this displayed system. Their expanded rational forms are
+supplied in the machine-readable archive for convenient verification.
+The cubic coefficient is
+cm = ℓT{B(r,w0) + 1
+2B(r,w2)}
+ℓTr .
+This is the cubic coefficient of the one-dimensional center-manifold normal form in the adjoint-projection coordinate.
+Setting the reduced vector field to zero gives the associated stationary Lyapunov–Schmidt equation. The spatial
+reflection (Ru)(ξ) =u(π−ξ) commutes with the Neumann semiflow, preserves the fixed integrated-mass class, and
+sends r cosξto−r cosξ. On an equivariant center manifold the adjoint-projection action isR :A↦→−A; hence the
+reduced vector field is odd inA, and reflection exchanges the two nonzero branches. For each fixedm, the branch
+perturbation tends to zero inH2
+N ↪→C0 from the base equilibrium1; hence both reflection-related equilibria remain
+componentwise strictly positive for sufficiently smallµ>0. For the cubic numerator, introduce
+PR(m) = 68605040480814208768m4−550882186169626030957m3
++ 1658612632937449670852m2−2219226476204103501323m
++ 1113379274975809565700,
+and
+PC(m) = 652054120726848m4−5151971981328467m3
++ 15265080924982572m2−20102347725659113m
++ 9927281930180400.
+Then the exact decomposition is
+Nm =Nref
+m =Rm +Cmhm,
+where
+Rm = PR(m)
+286118780220(8m−17)Qm
+, C m =− 215PC(m)
+11645046(8m−17)Qm
+.
+The shifted-positive coefficient certificates in Section S8.2 show thatQm > 0, PR(m)> 0, andPC(m)> 0 for m≥3.
+ConsequentlyRm > 0 and Cm < 0; in the latter conclusion the external factor−215 reverses the sign of the positive
+polynomial PC.
+The exact clearing identity is
+Rm +Cm
+m−2
+90m−179 = Lm
+286118780220(8m−17)(90m−179)Qm
+,
+where
+Lm = 2729945147827667886720m5−27755132420474170999952m4
++ 112813395868533457497683m3−229153280695458887386228m2
++ 232620996871721820873517m−94412163900120968220300. (S6.1)
+After m =u + 3, its coefficients are
+2729945147827667886720,13194044796940847300848,25446870127333515303059,
+24475321329207325509911,11736484608366875120374,2243933770033305838488,
+all positive. SinceCm < 0 and hm≤(m−2)/(90m−179), the complete comparison is
+Rm +Cmhm≥Rm +Cm
+m−2
+90m−179 > 0.
+Thus the cubic numerator is positive and, sinceℓTr< 0, cm < 0.
+6
+
+===== PAGE 7 =====
+S7 Equilibrium-scaled stable family
+Let ν=m−2 and define
+κν=
+{
+1/
+√
+3, ν= 1,√
+5/2, ν≥2, L0(ν) = κν√ν, L 1(ν) = 90ν
+90ν+ 1.
+This interval is nonempty. Forν= 1, square both positive sides and use8281< 24300. Forν≥2,
+(90ν+ 1)2≤(91ν)2 < 6480ν3,
+which is equivalent toL0(ν) < L1(ν). The lower endpoints are sufficient boundaries of the certificates below, not
+proved intrinsic dynamical boundaries. ForL∈[L0,L1], set
+h1 =hm =hZ = 1, h i = Ki
+LKi−1
+.
+Write Hm(L) = diag(h1,...,hm,hZ). The physical equilibrium isx∗= Hm(L)−11 and the physical diffusion matrix is
+Dphys = Hm(L)∆ , where, throughout this supplement,∆ := ∆ m is the improved unit profile. In normalized variables
+ˆx = Hm(L)x,
+∂tˆx = Hm(L){fm(ˆx) + (1−µ)∆∂ξξˆx}.
+Atµ= 0, the stationary bracketfm(ˆx) + ∆∂ξξˆx and its critical right vector are unchanged. The dynamic left vector is
+˜ℓ(L) = Hm(L)−1ℓ,
+and the physical conservation gauge usesHm(L)−1c. The crossing numerator is unchanged by the row scaling:
+˜ℓ(L)T Hm(L)∆r =ℓT ∆r< 0.
+Together with ˜ℓ(L)Tr< 0, this gives
+ηm(L) =
+˜ℓ(L)T Hm(L)∆r
+˜ℓ(L)Tr
+> 0.
+Moreover,
+ker[Hm(L)(Am−∆)] = ker(Am−∆) = span{r},
+because Hm(L) is invertible and the unit critical zero is simple. IfHm(L)(Am−∆)v =r for a generalized eigenvectorv,
+then left multiplication by˜ℓ(L)T would imply0 = ˜ℓ(L)Tr, a contradiction. Hence the scaled critical zero is algebraically
+simple as well.
+For interior chain factors,
+gi = Ki−1
+Ki
+(1 +Lλ) +t−1
+Ki
+.
+When t≥1 andℜλ≥0,
+|Qm|2≥
+(91
+90
+)2
+|1 +Lλ|2ν≥
+(91
+90
+)2 (
+1 + 2νLℜλ+ 1
+3(ℑλ)2
+)
+.
+The last inequality holds becauseνL2≥1/3 throughout the certified interval. The 84-term spatial coefficient table in
+Section S8 is nonnegative and is strict except at(λ,t) = (0,1).
+Homogeneous stability uses a different boundary polynomial. Att = 0,
+det(λI−Hm(L)Am)
+det Hm(L) =Q(λ)F0(λ)−R(λ),
+where
+Q =
+m−1∏
+i=2
+(
+1 +LKi−1
+Ki
+λ
+)
+, F 0 =λ3 + 11λ2 + 31λ+ 16, R = 5λ2 + 33λ+ 16.
+Forℜλ=x≥0, every factor inQ has modulus at least|1 +Lλ|. Ifν≥2, then
+|Q|2≥|1 +Lλ|2ν≥1 + 2νLx+νL2(ℑλ)2≥1 +Ax + 5
+4(ℑλ)2, A = 2νL.
+7
+
+===== PAGE 8 =====
+Here A≥
+√
+5ν≥
+√
+10> 1/4. The exact polynomial
+(
+1 +Ax + 5
+4(ℑλ)2
+)
+|F0|2−|R|2
+has 22 nonzero monomials. WithU =A−1/4, its coefficient polynomials have nonnegative rational coefficients and the
+expression is strict away fromλ= 0. Thus there is no nonzero homogeneous eigenvalue in the closed right half-plane.
+The coefficient5/4 is sharp for this coefficientwise certificate. If it is replaced byB, then atx = 0 the coefficient of
+z =y2 in (1 +Bz)|F0|2−|R|2 is 256B−320. It vanishes atB = 5/4 and is negative forB <5/4. This does not show
+that L0 is an intrinsic dynamical boundary; it identifies only the boundary of the present exact modulus certificate.
+Moreover
+(QF0−R)′(0) = 16L
+m−1∑
+i=2
+Ki−1
+Ki
+−2> 0,
+where the inequality usesKi−1/Ki > 1 and L≥
+√
+5/(2√ν). Thus the conservation zero is simple. Ifν= 1, put
+γ= 91L/90. Direct division by the conservation factor gives
+QF0−R
+λ =γλ3 + (1 + 11γ)λ2 + (6 + 31γ)λ+ (16γ−2).
+Here γ >1/8, and the remaining cubic Routh–Hurwitz difference is6 + 99γ+ 325γ2 > 0. This proves homogeneous
+relative stability in the exceptional dimension as well.
+Let ρm = (2,−2,...,−2,0,1)T. The physical zero-mode gauge is
+w0(L) =wref
+0 +τm(L)ρm, τm(L) =−(Hm(L)−1c)Twref
+0
+(Hm(L)−1c)Tρm
+.
+The second harmonic is unchanged. The cubic numerator satisfies
+Nm(L) =Nref
+m +τm(L)Sm,
+where Nref
+m =Rm +Cmhm. To make its quantitative margin explicit, set
+Pref(ν) = 3790502986637265684840ν5−974216530468600286489ν4
+−53103567440921218871ν3−576386186827093561ν2
++ 3649732858601219ν+ 55281268032918
+and
+Dref(ν) = 715296950550(8ν−1)(90ν+ 1)
+×(589180301ν3 + 35065866ν2 + 629431ν+ 3306).
+Since Cm < 0 and hm≤ν/(90ν+ 1), exact clearing gives
+Nref
+m −1
+100≥Pref(ν)
+Dref(ν).
+The denominator is positive forν≥1. Afterν=v + 1, the coefficients ofPref, in descending powersv5,...,v0, are
+3790502986637265684840,17978298402717728137711,33955060177057334483573,
+31899843595051464379292,14895188986348368035728,2762610207555043720056.
+They are positive, soPref(ν)> 0 and Nref
+m > 1/100.
+Separately,
+Sm =−4(1760850hm−10253)
+462105 .
+The bounds 1/91≤hm < 1/90 giveSm < 0 because
+1760850
+91 −10253> 0,
+8
+
+===== PAGE 9 =====
+and giveSm >−1/10 because
+4
+462105
+(1760850
+90 −10253
+)
+< 1
+10.
+For the remaining gauge estimate, define
+Aτ= 1494249120hmLν2−69786990hmLν+ 108738630Lν2
++ 1214388Lν−8521L−125249670ν2 + 1031940ν,
+Bτ= 32760hmLν+ 32760Lν2 + 4L−4095ν.
+Then the closed form is
+τm(L) =− Aτ
+15876(8ν−1)Bτ
+.
+On the broader certified cubic rangeL≥1/
+√
+3ν,
+Bτ= 4095ν
+[
+8L(ν+ hm)−1
+]
++ 4L> 0,
+because Lν≥1/
+√
+3. Exact differentiation then gives
+∂hτm =−4225Lν2(182448Lν+ 1008L−7513)
+2B2τ
+< 0,
+∂Lτm =−65ν(−61531470hmν+ 125249670ν2 + 1031940ν−7513)
+252B2τ
+< 0.
+For the first sign,Lν≥1/
+√
+3> 1/2 makes the parenthesis positive. For the second, usehm < 1/90 and ν≥1. Thus
+the maximum occurs athm = 1/91 and L = 1/
+√
+3ν.
+Put y =
+√
+3νand define the unreduced endpoint polynomial
+Pτ(ν,y) =−1040195520ν3 + 756272790ν2y−507201030ν2
+−21412755νy−935658ν+ 58481
+and Dτ(ν,y) =−32760ν2 + 4095νy−360ν−4. Direct substitution gives
+τm(1/91,1/y)−1
+20 =− Pτ(ν,y)
+79380(8ν−1)Dτ(ν,y).
+Since y <2ν, Dτ< 0. Forν= 1, the coefficient ofy in Pτ(1,y) is positive and
+√
+3< 7/4, whence
+Pτ(1,
+√
+3)<P τ(1,7/4) =−1049074663
+4 < 0.
+Forν≥2, y≤5ν/4 and deletion of the negative term−21412755νygivesPτ(ν,y)<P up(ν), where
+Pup(ν) =−189709065
+2 ν3−507201030ν2−935658ν+ 58481.
+This upper-bound polynomial is human-checkable:
+P′
+up(ν) =−569127195
+2 ν2−1014402060ν−935658< 0 ( ν≥0),
+and
+Pup(2) =−2789453215< 0.
+Hence Pup(ν)< 0 for everyν≥2, and thereforePτ(ν,y)< 0 in all dimensions. Because the displayed denominator
+79380(8ν−1)Dτis negative, the exact endpoint comparison provesτm(L)< 1/20.
+If τm(L)≤0, then τm(L)Sm ≥0. If instead 0 < τm(L) < 1/20, then τm(L)Sm >−1/200. Together with
+Nref
+m > 1/100, this yieldsNm(L)> 1/200. Also
+ℓT Hm(L)−1r =−485873
+924210−11180
+1467 L(m−2)< 0.
+9
+
+===== PAGE 10 =====
+Thus the scaled cubic coefficient is explicitly
+cm(L) = Nm(L)
+˜ℓ(L)Tr
+= Nm(L)
+ℓT Hm(L)−1r < 0.
+Therefore the family is uniformly supercritical over the certified interval. Indeed, the cubic comparison was proved on
+the broader rangeL≥1/
+√
+3ν; the present lower endpoint agrees with this value forν= 1 and is larger forν≥2. The
+diagonal concentration scaling commutes with the same spatial reflectionξ↦→π−ξ. Hence the scaled center-manifold
+vector field remains odd in its adjoint-projection amplitude, and reflection exchanges the two nonzero patterned
+branches. For each fixedm and L, the normalized branch converges to1 in H2
+N ↪→C0 and is componentwise strictly
+positive for sufficiently smallµ>0. Multiplication by the positive diagonal matrixHm(L)−1 preserves componentwise
+positivity in physical concentrations.
+The contrasts are
+χD(L) = 23
+63(91νL), χH(L) = 91ν−1
+91νL,
+where χH measures equilibrium concentration-scale separation, not a universal measure of biological expense or
+implausibility. Their product is fixed:
+χD(L)χH(L) = 23(91ν−1)
+63 = 23(91m−183)
+63 =χunit
+D (m).
+Thus the family reallocates this fixed contrast product between physical diffusion and equilibrium concentration scales;
+it does not reduce the product. The first contrast is strictly increasing and the second strictly decreasing inL, while
+χD(L0)
+χH(L0) =
+
+
+
+27209/2430, ν= 1,
+136045ν
+36(91ν−1), ν≥2, > 1.
+ConsequentlyχD(L)> χH(L) throughout the certified interval, andmax(χD,χH) = χD(L) is uniquely minimized
+within this family atL =L0. At that endpoint,
+χD = 2093
+63 κν
+√ν, χH =
+√ν
+κν
+91ν−1
+91ν,
+so both contrasts, and hence their maximum, have square-root growth, compared with linear growth for the unit-
+equilibrium stable profile.
+S8 Exact coefficient tables
+S8.1 Coefficientwise-nonnegative modulus certificates
+The first four tables below are coefficientwise-nonnegative modulus certificates. Each row records an exponent vector
+and the exact coefficient of the corresponding polynomial. The later shifted-polynomial tables are signed scalar
+certificates; for each such table we state the polynomial, any overall sign prefactor, the parameter domain, and the sign
+conclusion separately. Rational coefficients in the four modulus tables are printed in single-linea/b notation so adjacent
+exact entries remain visually separated; a rational coefficient multiplying a parameter is printed unambiguously as
+aA/b (or aU/b).
+By conjugation, takey≥0 and use the variables
+λ=x +iy =x +i√z, z =y2, t = 1 +s, x,y,z,s≥0.
+For the unit-profile spatial calculation, define
+g1 =λ+ 2 + 23
+63t, g m =λ+ 5 + 1
+7t, g Z =λ+ 4 + 16
+45t,
+F =g1gmgZ−4g1−4gm +gZ, G =gZ(4g1 +gm)−36.
+The 77-term table is exactly the expansion in(x,z,s) of
+E77(x,z,s) =
+[(91
+90
+)2
++z
+]
+⏐⏐F(x +i√z,1 +s)
+⏐⏐2
+−
+⏐⏐G(x +i√z,1 +s)
+⏐⏐2
+.
+10
+
+===== PAGE 11 =====
+Every one of its 77 displayed coefficients is strictly positive; there is no constant term. Hence equality occurs only at
+x =z =s = 0, equivalently(λ,t) = (0,1).
+For the equilibrium-scaled spatial calculation, putA = 2νL>0. The 84-term table is exactly the expansion in
+(x,z,s) of
+E84(x,z,s;A) =
+(91
+90
+)2 (
+1 +Ax + z
+3
+)⏐⏐F(x +i√z,1 +s)
+⏐⏐2
+−
+⏐⏐G(x +i√z,1 +s)
+⏐⏐2
+.
+Its 84 coefficients are polynomials inA with nonnegative rational coefficients and are positive forA> 0. Again there
+is no constant term, and equality occurs only atx =z =s = 0, equivalently(λ,t) = (0,1).
+For the equilibrium-scaled homogeneous calculation, define
+F0(λ) =λ3 + 11λ2 + 31λ+ 16, R (λ) = 5λ2 + 33λ+ 16, U =A−1
+4.
+The 22-term table is exactly the expansion in(x,z) of
+E22(x,z;U) =
+[
+1 +
+(
+U + 1
+4
+)
+x + 5
+4z
+]
+|F0(x +i√z)|2−|R(x +i√z)|2.
+ForU≥0, all 22 coefficient polynomials are nonnegative, and the expression vanishes only atx =z = 0, equivalently
+λ= 0.
+Finally, with
+P (λ) =λ4 + 12λ3 + 42λ2 + 47λ+ 16,
+the unit-profile homogeneous table is the 35-term expansion in(x,z) of
+E35(x,z) =|1 +λ|2|P (λ)|2−|R(λ)|2, λ=x +i√z.
+All 35 coefficients are strictly positive, there is no constant term, and equality occurs only atx =z = 0, equivalently
+λ= 0.
+From the repository root, the commandpython independent_verifier/verify_symbolic_certificates.py
+regenerates and checks the tables from exact symbolic expressions.
+35-term homogeneous certificate
+degx degz coefficient
+10 0 1
+9 0 26
+8 1 5
+8 0 277
+7 1 104
+7 0 1582
+6 2 10
+6 1 892
+6 0 5356
+5 2 156
+5 1 4034
+5 0 11282
+4 3 10
+4 2 1014
+4 1 10432
+4 0 15116
+3 3 104
+3 2 3322
+3 1 15628
+3 0 12612
+2 4 5
+2 3 460
+2 2 5804
+11
+
+===== PAGE 12 =====
+degx degz coefficient
+2 1 13296
+2 0 5568
+1 4 26
+1 3 870
+1 2 4858
+1 1 5700
+1 0 960
+0 5 1
+0 4 61
+0 3 728
+0 2 1508
+0 1 192
+77-term improved-profile spatial certificate
+degx degz degs coefficient
+6 1 0 1
+6 0 0 8281/8100
+5 1 1 544/315
+5 1 0 7474/315
+5 0 1 160888/91125
+5 0 0 4420871/182250
+4 2 0 3
+4 1 2 40058/33075
+4 1 1 1147126/33075
+4 1 0 9681647/44100
+4 0 2 3384901/2733750
+4 0 1 96932147/2733750
+4 0 0 1073317517/5467500
+3 2 1 1088/315
+3 2 0 14948/315
+3 1 3 2744576/6251175
+3 1 2 41276762/2083725
+3 1 1 8186375738/31255875
+3 1 0 10434543841/10418625
+3 0 3 115958336/258339375
+3 0 2 3487886389/172226250
+3 0 1 39671949511/172226250
+3 0 0 315432259813/516678750
+2 3 0 3
+2 2 2 147968/99225
+2 2 1 4065856/99225
+2 2 0 112938659/396900
+2 1 4 33947257/393824025
+2 1 3 2164641406/393824025
+2 1 2 1130666508023/9845600625
+2 1 1 9041228678666/9845600625
+2 1 0 5074377793279/2187911250
+2 0 4 5737086433/65101522500
+2 0 3 182912198807/32550761250
+2 0 2 2142193804481/21700507500
+2 0 1 17194597630733/32550761250
+2 0 0 34399269232129/65101522500
+1 3 1 544/315
+1 3 0 7474/315
+12
+
+===== PAGE 13 =====
+degx degz degs coefficient
+1 2 3 1817216/6251175
+1 2 2 24359162/2083725
+1 2 1 5056135954/31255875
+1 2 0 47437544293/62511750
+1 1 5 3399584/393824025
+1 1 4 57943048/78764805
+1 1 3 1934522477168/88610405625
+1 1 2 16308922895827/59073603750
+1 1 1 85574440190593/59073603750
+1 1 0 62146993882837/25317258750
+1 0 5 143632424/16275380625
+1 0 4 2448093778/3255076125
+1 0 3 98527787884/5425126875
+1 0 2 475980699652/3255076125
+1 0 1 4488365319374/16275380625
+1 0 0 1086412028/10333575
+0 4 0 1
+0 3 2 27794/99225
+0 3 1 624478/99225
+0 3 0 1747307/26460
+0 2 4 1744613/78764805
+0 2 3 437610814/393824025
+0 2 2 452220491743/19691201250
+0 2 1 4035916860091/19691201250
+0 2 0 10861695961357/13127467500
+0 1 6 135424/393824025
+0 1 5 2964608/78764805
+0 1 4 962538972893/637994920500
+0 1 3 43240103983367/1594987301250
+0 1 2 238300444324673/1063324867500
+0 1 1 170939874507539/227855328750
+0 1 0 32638690751329/65101522500
+0 0 6 5721664/16275380625
+0 0 5 125254688/3255076125
+0 0 4 6479423564/5425126875
+0 0 3 41256502232/3255076125
+0 0 2 513831327844/16275380625
+0 0 1 148103696/10333575
+22-term equilibrium-scaled homogeneous certificate (U =A−1/4)
+degx degz coefficient
+7 0 1/4 +U
+6 1 5/4
+6 0 13/2 + 22U
+5 1 113/4 + 3U
+5 0 271/4 + 183U
+4 2 15/4
+4 1 971/4 + 44U
+4 0 673/2 + 714U
+3 2 223/4 + 3U
+3 1 997 + 242U
+3 0 2849/4 + 1313U
+2 3 15/4
+2 2 311 + 22U
+13
+
+===== PAGE 14 =====
+degx degz coefficient
+2 1 7919/4 + 586U
+2 0 312 + 992U
+1 3 111/4 +U
+1 2 3077/4 + 59U
+1 1 6593/4 + 609U
+1 0 256U
+0 4 5/4
+0 3 299/4
+0 2 3181/4
+84-term equilibrium-scaled spatial certificate
+degx degz degs coefficient
+7 0 0 8281A/8100
+6 1 0 8281/24300
+6 0 1 160888A/91125
+6 0 0 8281/8100 + 4420871A/182250
+5 1 1 160888/273375
+5 1 0 4420871/546750 + 8281A/2700
+5 0 2 3384901A/2733750
+5 0 1 160888/91125 + 96932147A/2733750
+5 0 0 4420871/182250 + 1210005017A/5467500
+4 2 0 8281/8100
+4 1 2 3384901/8201250
+4 1 1 96932147/8201250 + 321776A/91125
+4 1 0 315078023/4100625 + 4420871A/91125
+4 0 3 115958336A/258339375
+4 0 2 3384901/2733750 + 3487886389A/172226250
+4 0 1 96932147/2733750 + 45494837011A/172226250
+4 0 0 1073317517/5467500 + 503404909813A/516678750
+3 2 1 321776/273375
+3 2 0 4420871/273375 + 8281A/2700
+3 1 3 115958336/775018125
+3 1 2 3487886389/516678750 + 6251648A/4100625
+3 1 1 47319306931/516678750 + 171782416A/4100625
+3 1 0 578603925523/1550036250 + 2360113561A/8201250
+3 0 4 5737086433A/65101522500
+3 0 3 115958336/258339375 + 182912198807A/32550761250
+3 0 2 3487886389/172226250 + 2513945531981A/21700507500
+3 0 1 39671949511/172226250 + 29165273350733A/32550761250
+3 0 0 315432259813/516678750 + 138537167092129A/65101522500
+2 3 0 8281/8100
+2 2 2 6251648/12301875
+2 2 1 171782416/12301875 + 160888A/91125
+2 2 0 4871148347/49207500 + 4420871A/182250
+2 1 4 5737086433/195304567500
+2 1 3 182912198807/97652283750 + 76777376A/258339375
+2 1 2 2613196695629/65101522500 + 2058349189A/172226250
+2 1 1 33256099805357/97652283750 + 28172026051A/172226250
+2 1 0 184975683058783/195304567500 + 388034017813A/516678750
+2 0 5 143632424A/16275380625
+2 0 4 5737086433/65101522500 + 2448093778A/3255076125
+2 0 3 182912198807/32550761250 + 119438423884A/5425126875
+2 0 2 2142193804481/21700507500 + 878963880652A/3255076125
+2 0 1 17194597630733/32550761250 + 21944279796374A/16275380625
+14
+
+===== PAGE 15 =====
+degx degz degs coefficient
+2 0 0 34399269232129/65101522500 + 21842305628A/10333575
+1 3 1 160888/273375
+1 3 0 4420871/546750 + 8281A/8100
+1 2 3 76777376/775018125
+1 2 2 2058349189/516678750 + 2348593A/8201250
+1 2 1 29084261011/516678750 + 52768391A/8201250
+1 2 0 212816762834/775018125 + 1090212071A/16402500
+1 1 5 143632424/48826141875
+1 1 4 2448093778/9765228375 + 294839597A/13020304500
+1 1 3 124275398572/16275380625 + 36978113783A/32550761250
+1 1 2 9956722796683/97652283750 + 503148512477A/21700507500
+1 1 1 11312104230233/19530456750 + 6606581721077A/32550761250
+1 1 0 241757054977/221433750 + 52308962411329A/65101522500
+1 0 6 5721664A/16275380625
+1 0 5 143632424/16275380625 + 125254688A/3255076125
+1 0 4 2448093778/3255076125 + 8242156364A/5425126875
+1 0 3 98527787884/5425126875 + 86436565592A/3255076125
+1 0 2 475980699652/3255076125 + 3438519744244A/16275380625
+1 0 1 4488365319374/16275380625 + 7094103536A/10333575
+1 0 0 1086412028/10333575 + 4999696A/6561
+0 4 0 8281/24300
+0 3 2 2348593/24603750
+0 3 1 52768391/24603750
+0 3 0 570259573/24603750
+0 2 4 294839597/39060913500
+0 2 3 36978113783/97652283750
+0 2 2 521791643711/65101522500
+0 2 1 3617447476357/48826141875
+0 2 0 30203751676613/97652283750
+0 1 6 5721664/48826141875
+0 1 5 125254688/9765228375
+0 1 4 11480941147/21700507500
+0 1 3 975299997269/97652283750
+0 1 2 17163191001769/195304567500
+0 1 1 10010796373877/32550761250
+0 1 0 650029271329/65101522500
+0 0 6 5721664/16275380625
+0 0 5 125254688/3255076125
+0 0 4 6479423564/5425126875
+0 0 3 41256502232/3255076125
+0 0 2 513831327844/16275380625
+0 0 1 148103696/10333575
+S8.2 Signed scalar and rational-function certificates
+Each generated row below states the exact scalar polynomial or rational expression, the descending coefficient order
+after its indicated shift, the sign of the polynomial on its parameter domain, and whether an external negative prefactor
+reverses that sign. The shifts useu = m−3 and v = ν−1, leavingz = y2 reserved for the modulus tables. In
+particular, thePC row certifiesCm < 0 through its external factor−215; the sign ofSm is certified separately.
+Unit-profile boundary denominator. The polynomial being certified is
+Qm = 589180301m3−3500015940m2 + 6930529579m−4574434500.
+15
+
+===== PAGE 16 =====
+After m =u + 3, the following coefficients are listed in descending powers ofu:
+589180301, 1802606769, 1838302066,
+624878904
+Every coefficient is positive, soQm > 0 for m≥3. There is no external sign prefactor.
+Unit-profile critical-denominator bound. The auxiliary polynomial is
+633906000m2−2491895430m + 2448652733.
+After m =u + 3, the following coefficients are listed in descending powers ofu:
+633906000, 1311540570, 678120443
+Every coefficient is positive, so the polynomial is positive form≥3. There is no external sign prefactor.
+Unit-profile cubic numerator lower bound.The polynomial being certified is
+Lm = 2729945147827667886720m5−27755132420474170999952m4
++ 112813395868533457497683m3−229153280695458887386228m2
++ 232620996871721820873517m−94412163900120968220300.
+This is the exact clearing polynomial defined in (S6.1). Its rational identity is
+Rm +Cm
+m−2
+90m−179 = Lm
+286118780220(8m−17)(90m−179)Qm
+.
+After m =u + 3, the following coefficients are listed in descending powers ofu:
+2729945147827667886720, 13194044796940847300848, 25446870127333515303059,
+24475321329207325509911, 11736484608366875120374, 2243933770033305838488
+Every coefficient is positive, soLm > 0 for m≥3. It enters the clearing identity with a positive denominator and no
+external negative prefactor.
+Reference coefficientRm. Define
+PR(m) = 68605040480814208768m4−550882186169626030957m3
++ 1658612632937449670852m2−2219226476204103501323m
++ 1113379274975809565700,
+Rm = PR(m)
+286118780220(8m−17)Qm
+.
+After m =u + 3, the following coefficients ofPR are listed in descending powers ofu:
+68605040480814208768, 272378299600144474259, 405345143374782665711,
+267974666768626234894, 66402795166594173768
+Every coefficient is positive. The denominator is positive form≥3, and there is no external negative prefactor; hence
+Rm > 0.
+Unit-profile coefficientCm. Define
+PC(m) = 652054120726848m4−5151971981328467m3
++ 15265080924982572m2−20102347725659113m + 9927281930180400,
+Cm =− 215PC(m)
+11645046(8m−17)Qm
+.
+After m =u + 3, the following coefficients ofPC are listed in descending powers ofu:
+652054120726848, 2672677467393709, 4108255612276161,
+2806739366867294, 719107361052288
+Every coefficient is positive. Since the denominator is positive and the external prefactor is−215, this provesCm < 0.
+16
+
+===== PAGE 17 =====
+Reference cubic margin. Let ν=m−2 and define
+Pref(ν) = 3790502986637265684840ν5−974216530468600286489ν4
+−53103567440921218871ν3−576386186827093561ν2
++ 3649732858601219ν+ 55281268032918,
+Dref(ν) = 715296950550(8ν−1)(90ν+ 1)(589180301ν3 + 35065866ν2 + 629431ν+ 3306).
+The exact comparison is
+Nref
+m −1
+100≥Pref(ν)
+Dref(ν).
+After ν=v + 1, the following coefficients ofPref are listed in descending powers ofv:
+3790502986637265684840, 17978298402717728137711, 33955060177057334483573,
+31899843595051464379292, 14895188986348368035728, 2762610207555043720056
+Every coefficient is positive, andDref(ν)> 0 for ν≥1. There is no external sign prefactor. HenceNref
+m > 1/100.
+Gauge upper-bound tail. Let ν=m−2. The exact rational expression being bounded is
+τm(L) =− Aτ
+15876(8ν−1)Bτ
+,
+where
+Aτ= 1494249120hmLν2−69786990hmLν+ 108738630Lν2
++ 1214388Lν−8521L−125249670ν2 + 1031940ν,
+Bτ= 32760hmLν+ 32760Lν2 + 4L−4095ν.
+The signed upper-bound polynomial is
+Pup(ν) =−189709065
+2 ν3−507201030ν2−935658ν+ 58481.
+The following coefficients are listed in descending powers ofν:
+−189709065/2,−507201030,−935658,
+58481
+This is a signed coefficient list, not a coefficientwise positivity certificate. Direct differentiation gives
+P′
+up(ν) =−569127195
+2 ν2−1014402060ν−935658< 0 ( ν≥0),
+and Pup(2) =−2789453215< 0. ThusPup(ν)< 0 for ν≥2. There is no external negative prefactor reversing this
+conclusion.
+The signed scalarSm. This sign is certified separately fromPC. With
+Sm =−4(1760850hm−10253)
+462105 , 1
+91≤hm < 1
+90,
+the exact comparisons
+1760850
+91 −10253> 0, 4
+462105
+(1760850
+90 −10253
+)
+< 1
+10,
+give−1/10 < Sm < 0. The displayed expression itself carries the external negative prefactor−4, which reverses
+the positive bracket and proves the upper sign. CombiningNref
+m > 1/100, Sm >−1/10, andτm(L) < 1/20 gives
+Nm(L)> 1/200.
+17
+
+===== PAGE 18 =====
+S9 Near-threshold control example
+Return here toa =b = 1 andH =I. For scalarsp,u,v,q, withu the Latin letter, define the affine-chain critical vector
+raff = (r1,...,rm,rZ)T by
+r1 = 1, r i =−
+(
+u +vm−1−i
+m−2
+)
+(2≤i≤m−1), r m =−p, r Z =q.
+The diagonal matrixD = diag(d1,...,dm,dZ) determined by(Am−D)raff = 0 has entries
+d1 =−2 +u +p + 2q,
+d2 = 1 + 2p−u−v(m−3)/(m−2)
+u +v(m−3)/(m−2) , d i = v
+(m−2)u +v(m−1−i) (3≤i≤m−1),
+dm = 2u−5p−2q−1
+p , d Z = 2−2p−4q
+q .
+For design parametersω,θ,M, the near-threshold affine path is
+p =ε, u= 1 + (2−ω)ε+θε2, v=ωε−θε2,
+q = 1
+2−
+(1
+2 +ω
+)
+ε+
+(
+θ−M
+2
+)
+ε2.
+Then the critical vector tends to one half of the homogeneous kernel vector. The diffusion excess over the exact linear
+threshold is
+dZ−8
+m−1∑
+j=2
+dj = 4
+(
+M + 6ω+ 3ω2−ω2
+m−2
+)
+ε2 +O(ε3).
+For (ω,θ,M) = (2/9,1/2,1) and m = 3, the selected path gives
+d1 = ε(3ε+ 8)
+6 , d2 = ε(4−9ε)
+9ε2 + 32ε+ 18, d3 =ε, dZ = 16ε
+9−13ε.
+All four entries are positive for0<ε≤10−3, and
+dZ−8d2 = 8ε2(197−99ε)
+(9−13ε)(9ε2 + 32ε+ 18) > 0.
+Let ℓT
+ε(A3−Dε) = 0 , and obtainw0,w2 from the reaction-derived Hessian tensorB3 through the equations of
+Section S6. Substitution in
+c3(ε) = ℓT
+ε{B3(r,w0) + 1
+2B3(r,w2)}
+ℓTεr
+gives the exact rational expression reconstructed by the public verifier and
+c3(ε) = 6
+1379 + 421985
+11409846ε+O(ε2),
+with c3(ε)> 0 throughout 0<ε≤10−3 by an exact coefficient certificate. For the complete onset check, write
+det(λI−A3 +tDε) =λ4 +a1λ3 +a2λ2 +a3λ+a4, H2 =a1a2−a3, H3 =a3H2−a2
+1a4.
+After cancelling common factors and substitutingt = 1 + s and ε= [1000(1 + w)]−1, the exact numerator and
+denominator polynomials fora1,a2,a3,a4/(t−1),H2,H3 have strictly positive coefficients fors,w≥0. At t = 1,
+a4 = 0 while a1,a2,a3,H2 > 0; hence zero is simple and the cubic complement is Hurwitz. Moreover∂ta4|t=1 > 0,
+so ∂tλ|t=1 =−(∂ta4)/a3 < 0, equivalently theµ= 1−t crossing coefficient is positive. For everyt >1, the strict
+quartic Routh–Hurwitz inequalities prove stability, including every higher Neumann mode. Finally, the fixed-mass
+homogeneous factor isq3(λ) = (λ+ 7)(λ2 + 5λ+ 2). Thus, for each fixedεin the stated interval, this is a primary
+transverse subcritical control example, not a universal nonlinear lower bound; no dimension- orε-uniform bifurcation
+neighborhood is claimed.
+18
+
+===== PAGE 19 =====
+S10 Semilinear stability and robustness
+At onset for the unit-equilibrium family, write
+L0 =Am +Dm∂ξξ:Xc−→Yc, X c =
+{
+u∈H2
+N :
+∫ π
+0
+cTu = 0
+}
+, Yc =
+{
+g∈L2 :
+∫ π
+0
+cTg = 0
+}
+.
+The identitycTAm = 0 and the Neumann boundary conditions make these fixed-mass subspaces invariant under
+the linearized evolution. The Neumann cosine transform sends this operator toAm−k2Dm. On the homogeneous
+coefficient the mass restriction gives the invertible mapAm :c⊥→c⊥. Thek = 1 block has kernelspan{r}and range
+ℓ⊥, while everyk≥2 block is invertible by the all-mode certificate. Fork2≥2∥D−1
+m Am∥, the factorization
+Am−k2Dm =−k2Dm(I−k−2D−1
+m Am)
+and the Neumann series give
+∥(Am−k2Dm)−1∥≤2∥D−1
+m∥k−2.
+Thus compatibleL2 Fourier data have anH2
+N preimage, and
+kerL0 = span{r cosξ}, ranL0 =
+{
+g∈Yc :
+∫ π
+0
+ℓTg cosξdξ= 0
+}
+.
+This proves directly thatL0 is Fredholm of index zero and that its cokernel isspan{ℓcosξ}. The same cosine-block
+argument applies to the equilibrium-scaled family after replacing the mode matrices byHm(L)(Am−k2∆) and the left
+vector by ˜ℓ(L).
+On the real fixed-integrated-massL2 space, the positive diagonal Neumann diffusion operator has domainH2
+N, is
+sectorial, and generates an analytic semigroup with compact resolvent. Its half-order fractional domain isH1. The
+reaction Jacobian is a bounded multiplication perturbation. Moreover,
+α(Am−k2Dm)≤
+
+Am +AT
+m
+2
+
+2
+−k2dmin→−∞,
+so the onset complementary spectral gap is determined by finitely many low modes. Positive diffusion lower bounds and
+bounded reaction Jacobians give the corresponding uniform high-frequency bound along a sufficiently small patterned
+branch; analytic perturbation preserves the finitely many low-mode gaps. In one space dimension,H1 is a Banach
+algebra and embeds intoC0, so the quadratic mass-action Nemytskii map is smooth fromH1 to L2. The patterned
+branch lies inH2
+N. The fixed-mass restriction removes the homogeneous conservation zero, and Neumann boundary
+conditions on an interval leave no continuous translation-neutral mode. Strict spectral negativity therefore implies
+local exponential asymptotic stability inH1.
+For robustness, perturb positive steady fluxes and equilibrium coordinates within the positive-equilibrium realization
+manifold, reconstructing the rate constants accordingly; also allow small perturbations of diffusion ratios and interval
+length. Use one scalar diffusion multiplier as the implicit variable. The critical eigenvalue derivative is nonzero, so
+the implicit function theorem continues the crossing. Low-mode gaps persist by analytic perturbation. A positive
+diffusion lower bound and a reaction-Jacobian upper bound give one neighborhood controlling all high modes. Smooth
+dependence of the reduced normal-form coefficients preserves the negative cubic sign and the branch spectral gap.
+This is a retuned codimension-one statement, not a claim that arbitrary nearby parameter points are already critical,
+and no dimension-uniform radius is claimed.
+S11 Numerical protocol and independent verification
+Cosine–Galerkin simulations use exact modal convolution for the quadratic reaction terms and an adaptive stiff
+integrator. Initial data are small perturbations of1 in the critical direction. The first-mode amplitude is measured by
+the adjoint projection. Spatial and temporal refinement tables, open-format profile data, exact parameters, and all
+solver tolerances are included in the data archive. No numerical output is used in a proof.
+The release contains independent programs for the reaction family, flux cone, all-spectrum block theorem, omission
+minors, principal-minor diffusion-ray theorem, diffusion criterion, contrast bounds, improved profile, Pareto family,
+mode certificates, harmonic corrections, cubic sign, and branch stability. Mutation tests change signs, endpoints, the
+factor eight, Fourier factors, and certificate coefficients and must be rejected.
+19

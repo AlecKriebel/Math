@@ -35,6 +35,7 @@ try:
         ':!'+PROGRAM.name+'/papers/*/sources/published-source/**',
         ':!'+PROGRAM.name+'/papers/*/sources/related-records/*/published-source/**',
         ':!'+PROGRAM.name+'/papers/*/reviews/*/primary-imports/*.tex',
+        ':!'+PROGRAM.name+'/papers/*/reviews/*/replay-work/**',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.log',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stderr',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stdout',
